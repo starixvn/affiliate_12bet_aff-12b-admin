@@ -1,0 +1,47 @@
+<form method="get">
+<div class="padl0">
+    {submenu}
+        <!--search form-->
+        <div id="search_cont">
+            <div id="header_search">
+                {date}&nbsp;&nbsp;<input type="text" value="{date-val}" size="13" readonly id="txtDate" name="txtDate" />&nbsp;&nbsp;
+                <img width="16" height="16" src="../{themepath}/images/cal.gif" class="img-date-selector hand"
+                        style="margin-bottom: -3px;" title="Date selector" id="fdateTrigger" />&nbsp;&nbsp;
+                    <script type="text/javascript">
+                        Calendar.setup({
+                            inputField: "txtDate",
+                            ifFormat: "%m/%d/%Y",
+                            button: "fdateTrigger",
+                            singleClick: true,
+                            showsTime: false,
+                            showOthers : true,
+                            step : 1
+                        });
+                    </script>
+                <input type="submit" value="{submit}" class="buttonlogin" />
+            </div>            
+        </div>
+        <input type="hidden" id="hdIsUpdate" name="hdIsUpdate" value="{isupdated}" />
+        <!--/search form-->
+        <div style="height:5px;" class="clear"></div>
+        <table class="aff-table" cellspacing="1" cellpadding="3" style="width: 338px;">
+            <!--header-->
+            <tr>
+                <th style="width:7%;">&nbsp;</th>
+                <th>{currency}</th>
+                <th>Selling</th>
+                <th>{buyingrate}</th>
+            </tr>
+            <!--/header-->
+            <!--content-->
+            <tr bgcolor="{color}" onmouseout="bgColor='{color}'" onmouseover="bgColor='{over}'">
+                <td class="c">{no-val}</td>
+                <td class="c">{currency-val}</td>
+                <td class="c"><div class="{class-val}" id="{exid-val}_{currency-val}_{rate-val}">{rate-val}</div></td>
+                <td class="c"><div class="{class-val}" data-col="buyingrate" id="{exid-val}_{currency-val}_{buyingrate-val}_buyingrate">{buyingrate-val}</div></td>
+
+            </tr>
+            <!--/content-->
+        </table>
+    </div>
+</form>

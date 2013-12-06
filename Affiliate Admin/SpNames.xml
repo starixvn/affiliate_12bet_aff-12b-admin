@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Functions>
+ <Function Name="Agent - BetList">
+  <Setting Key="Age_BetList_SelByDayAll_Mem" SpName="Age_BetList_SelByDayAll_Mem" DbName="archive" Plain="0" />
+  <Setting Key="Age_BetList_SelByDayAll_Mem_Old" SpName="Age_BetList_SelByDayAll_Mem_Old" DbName="warehouse" Plain="0" />
+  <Setting Key="Age_SelBalanceUpDay" SpName="Age_SelBalanceUpDay" DbName="archive" Plain="0" />
+  <Setting Key="Age_BetList_SelWinLossByDate_Mem" SpName="Age_BetList_SelWinLossByDate_Mem" DbName="archive" Plain="0" />
+  <Setting Key="Age_BetList_SelWinLossByDate_Mem_Old" SpName="Age_BetList_SelWinLossByDate_Mem_Old" DbName="warehouse" Plain="0" />
+  <Setting Key="Age_ScoreMap_SelBettype" SpName="Age_ScoreMap_SelBettype" DbName="archive" Plain="0" />
+  <Setting Key="Age_BetList_SelMatchResult" SpName="Age_BetList_SelMatchResult" DbName="DBAGE.BODB02" Plain="0" />
+  <Setting Key="Age_BetList_SelMatchResultSS" SpName="Age_BetList_SelMatchResultSS" DbName="archive" Plain="0" />
+  <Setting Key="Age_BetList_SelMatchResultParlay" SpName="Age_BetList_SelMatchResultParlay" DbName="DBAGE.BODB02" Plain="0" />
+  <Setting Key="Age_BetList_SelParlayDetail" SpName="Age_BetList_SelParlayDetail" DbName="DBAGE.BODB02" Plain="0" />
+  <Setting Key="Acc_BetlistCombinationParlay_Details" SpName="Acc_BetlistCombinationParlay_Details" DbName="archive" Plain="0" />  
+ </Function>
+</Functions>

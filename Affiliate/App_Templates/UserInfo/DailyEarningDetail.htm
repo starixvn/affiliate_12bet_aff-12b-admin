@@ -1,0 +1,87 @@
+﻿<form id="frmData" method="get">
+<div id="contents">
+    <div id="box_insite">
+        <div class="header_in">
+            <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                    <td class="in_left">&nbsp;</td>
+                    <td width="190" class="in_top">
+                        {DailyEarningDetail}
+                    </td>
+                    <td class="in_right">&nbsp;</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="in_conts">
+            <b><a href="DailyEarning.aspx?monthdate={lastdayofmonth}">{earningMonth}</a></b>
+            <div style="height: 5px;">
+                &nbsp;</div>
+            <table>
+                <tr valign="top">
+                    <td>{SelectDate}</td>
+                    <td><input type="text" id="monthdate" name="monthdate" size="13" value="{monthdate}" readonly /></td>
+                    <td><img hspace="3" height="20" border="0" width="18" src="../App_Themes/Default/Images/cal.gif"
+                                id="fdateTrigger" disabled="disabled" /></td>
+                    <td>{slSports}</td>
+                    <td> <input type="button" value="{Submit}" onclick="LoadData(1);" id="btnSubmit" name="{Submit}" class="button" /></td>
+                </tr>
+            </table>
+            <div style="height: 5px;">
+                &nbsp;</div>
+            <!--showdata-->
+            <div class="tbl-box">
+                <table class="aff-table" cellspacing="1" cellpadding="1">
+                    <!--header-->
+                    <tr class="tblheader">
+                        <th style="width: 15px;">&nbsp;</th>
+                        <th>{username}</th>
+                        <th>{deposit}</th>
+                        <th>{withdrawal}</th>
+                        <th>{turnover}</th>
+                        <th>{winlost}</th>
+                    </tr>
+                    <!--/header-->
+                    <!--content-->
+                    <tr class="{style}" onmouseover="this.className=c;" onmouseout="this.className={style1};">
+                        <td class="c">{no}</td>
+                        <td class="l">{isALinkStart}{username-val}{isALinkEnd}</td>
+                        <td class="r">
+                            {deposit-start}
+                            {deposit-val}
+                            {deposit-end}                            
+                        </td>
+                        <td class="r">
+                            {withdrawal-start}
+                            {withdrawal-val}
+                            {withdrawal-end}
+                        </td>
+                        <td class="r">{turnover-val}</td>
+                        <td class="r">{winlost-val}</td>
+                    </tr>
+                    <!--/content-->
+                    <!--total-->
+                    <tr class="tblfoot">
+                        <th class="c" colspan="2">{total}</th>
+                        <th class="r">{totaldeposit}</th>
+                        <th class="r">{totalwithdrawal}</th>
+                        <th class="r">{totalturnover}</th>
+                        <th class="r">{totalwinlost}</th>
+                    </tr>
+                    <!--/total-->
+                </table>
+            </div>
+            <!--/showdata-->
+            <!--managecheat-->
+            <div>
+                <span style="color:Red;">You are not authorized to view this data!</span>
+            </div>
+            <!--/managecheat-->
+        </div>      
+        
+    </div>
+</div>
+    <input type="hidden" id="step1" name="step1" value="{step1}" />
+    <input type="hidden" id="step2" name="step2" value="{step2}" />
+    <input type="hidden" id="custid" name="custid" value="{custid}" />
+</form>

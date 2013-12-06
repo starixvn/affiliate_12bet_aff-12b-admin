@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="Affiliate_12Bet">
+</Property><Property Name="Solution File" Value="D:\Gito\Affiliate\affiliate_12bet\Affiliate_12Bet.sln">
+</Property><Property Name="Date" Value="Thursday, April 25, 2013">
+</Property><Property Name="Time" Value="10:27:42 AM">
+</Property></Properties><Event ErrorLevel="0" Project="AffiliateMedia" Source="Affiliate Media\AffiliateMedia.csproj" Description="Project file successfully backed up as D:\Gito\Affiliate\affiliate_12bet\Backup\AffiliateMedia.csproj">
+</Event><Event ErrorLevel="0" Project="AffiliateMedia" Source="Affiliate Media\AffiliateMedia.csproj.user" Description="Project user file successfully backed up as D:\Gito\Affiliate\affiliate_12bet\Backup\AffiliateMedia.csproj.user">
+</Event><Event ErrorLevel="0" Project="AffiliateMedia" Source="Affiliate Media\Handler\MediaScript.ashx.cs" Description="File successfully backed up as D:\Gito\Affiliate\affiliate_12bet\Backup\Handler\MediaScript.ashx.cs">
+</Event><Event ErrorLevel="0" Project="AffiliateMedia" Source="Affiliate Media\Handler\MediaText.ashx.cs" Description="File successfully backed up as D:\Gito\Affiliate\affiliate_12bet\Backup\Handler\MediaText.ashx.cs">
+</Event><Event ErrorLevel="0" Project="AffiliateMedia" Source="Affiliate Media\HttpModules\PreProcessingModule.cs" Description="File successfully backed up as D:\Gito\Affiliate\affiliate_12bet\Backup\HttpModules\PreProcessingModule.cs">
+</Event><Event ErrorLevel="0" Project="AffiliateMedia" Source="Affiliate Media\Properties\AssemblyInfo.cs" Description="File successfully backed up as D:\Gito\Affiliate\affiliate_12bet\Backup\Properties\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="AffiliateMedia" Source="Affiliate Media\Scripts\affiliate.text.js" Description="File successfully backed up as D:\Gito\Affiliate\affiliate_12bet\Backup\Scripts\affiliate.text.js">
+</Event><Event ErrorLevel="0" Project="AffiliateMedia" Source="Affiliate Media\test\f.swf" Description="File successfully backed up as D:\Gito\Affiliate\affiliate_12bet\Backup\test\f.swf">
+</Event><Event ErrorLevel="0" Project="AffiliateMedia" Source="Affiliate Media\test\i.jpg" Description="File successfully backed up as D:\Gito\Affiliate\affiliate_12bet\Backup\test\i.jpg">
+</Event><Event ErrorLevel="0" Project="AffiliateMedia" Source="Affiliate Media\Web.config" Description="File successfully backed up as D:\Gito\Affiliate\affiliate_12bet\Backup\Web.config">
+</Event><Event ErrorLevel="0" Project="AffiliateMedia" Source="Affiliate Media\App_Code\DBType.cs" Description="File successfully backed up as D:\Gito\Affiliate\affiliate_12bet\Backup\App_Code\DBType.cs">
+</Event><Event ErrorLevel="0" Project="AffiliateMedia" Source="Affiliate Media\Handler\MediaScript.ashx" Description="File successfully backed up as D:\Gito\Affiliate\affiliate_12bet\Backup\Handler\MediaScript.ashx">
+</Event><Event ErrorLevel="2" Project="AffiliateMedia" Source="Affiliate Media\Scripts\JScript1.js" Description="Failed to backup file as D:\Gito\Affiliate\affiliate_12bet\Backup\Scripts\JScript1.js">
+</Event><Event ErrorLevel="0" Project="AffiliateMedia" Source="Affiliate Media\Handler\MediaText.ashx" Description="File successfully backed up as D:\Gito\Affiliate\affiliate_12bet\Backup\Handler\MediaText.ashx">
+</Event><Event ErrorLevel="0" Project="AffiliateMedia" Source="Affiliate Media\AffiliateMedia.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="AffiliateMedia" Source="Affiliate Media\AffiliateMedia.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="AffiliateMedia" Source="Affiliate Media\AffiliateMedia.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>

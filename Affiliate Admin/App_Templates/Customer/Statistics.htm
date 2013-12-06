@@ -1,0 +1,164 @@
+﻿<form method="get" id="frmSearch" name="frmSearch">
+<div style="padding-top: 10px;">
+    <div style="display:none;" title="Expand Statistics" id="divExpend">
+        <table id="Table1" width="530" cellspacing="1" cellpadding="2" border="0" bgcolor="#d0d0d0">
+            <tr class="header_06">
+                <td class="b">
+                    <span class="expendtop" title="Expand Statistics" onclick="ShowPage(true);">&nbsp;</span>{static}
+                </td>
+                <td class="r b" style="width: 140px">
+                    <span class="popup">{month}-</span>
+                    <span class="popup">{year}</span>
+                </td>
+                <td class="b r" style="width: 140px">
+                    {staticup}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <table id="tblContent" width="530" cellspacing="1" cellpadding="2" border="0" bgcolor="#d0d0d0">
+        <tr class="header_06">
+            <td class="b">
+                <span id="togtop" title="Toggle Statistics" onclick="ShowPage(false);">&nbsp;</span>{static}<input class="hide" type="submit" />&nbsp;
+            </td>
+            <td class="r b" style="width: 140px">
+                <span class="popup" id="spMonth" onclick="ChangeDate('spMonth', 'slMonth', true);">{month}-</span>
+                <select id="slMonth" name="slMonth" style="display:none;" onblur="ChangeDate('spMonth', 'slMonth', false);" onchange="Search();">
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+                <span class="popup" id="spYear" onclick="ChangeDate('spYear', 'slYear', true);">{year}</span>
+                <select id="slYear" name="slYear" style="display:none;" onblur="ChangeDate('spYear', 'slYear', false);" onchange="Search();">
+                    <option value="2007">2007</option>
+                    <option value="2008">2008</option>
+                    <option value="2009">2009</option>
+                    <option value="2010">2010</option>
+                    <option value="2011">2011</option>
+                    <option value="2012">2012</option>
+                    <option value="2013">2013</option>
+                    <option value="2014">2014</option>
+                    <option value="2015">2015</option>
+                    <option value="2016">2016</option>
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                </select>
+            </td>
+            <td class="b r" style="width: 140px">
+                {staticup}
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="#ffffff" class="text_conts">
+                {newsignup}/{fdm}
+            </td>
+            <td class="tb_01">
+                {newsignup-val}/{newsignupdep-val}
+            </td>
+            <td class="tb_01">
+                {totalplay-val}/<!--totalplaydep--><a href="../UserInfo/PlayersDetail.aspx?custid={custid}"
+                    target="fContent">{totalplaydep-val}</a><!--/totalplaydep-->
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="#ffffff" class="text_conts">
+                {totalactive}
+            </td>
+            <td class="tb_01">
+                <a class="text_link" href="#">
+                    <!--totalactive-->
+                    <a href="../UserInfo/PlayersDetail.aspx?month={fdate}&custid={custid}" target="fContent">
+                        {totalactive-val}</span><!--/totalactive--></a>
+            </td>
+            <td class="tb_01">
+                N/A
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="#ffffff" class="text_conts">
+                {totalqualifiedmembers} (<span class="hand" title="Sportbook">SB</span>/<span class="hand" title="Casino">Casino</span>)
+            </td>
+            <td class="tb_01">
+                {totalqualifiedmembers-val}/{totalqualifiedmembersCasino-val}
+            </td>
+            <td class="tb_01">
+                N/A
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="#ffffff" class="text_conts">
+                {totaldeposit}
+            </td>
+            <td class="tb_01" title="Deposit of Sportbook">
+                {totaldeposit-val}
+            </td>
+            <td class="tb_01">
+                {totaldepositup-val}
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="#ffffff" class="text_conts">
+                {turnover}
+            </td>
+            <td class="tb_01">
+                {turnovermonth-val}
+            </td>
+            <td class="tb_01">
+                {turnover-val}
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="#ffffff" class="text_conts">
+                {winlost}
+            </td>
+            <td class="tb_01">
+                {winlost-val}
+            </td>
+            <td class="tb_01">
+                {winlostup-val}
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="#ffffff" class="text_conts">
+                {trackingrate}
+            </td>
+            <td class="tb_01">
+                <a class="text_link" href="#">
+                    <!--TrackingRate-->
+                    <a href="../UserInfo/MediaStatistics.aspx?month={fdate}" target="fContent">{trackingrate-val}</span><!--/TrackingRate--></a>
+            </td>
+            <td class="tb_01">
+                N/A
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="#ffffff" class="text_conts">
+                Tracking Rate (Unique/Total) <b>New</b>!!!!!
+            </td>
+            <td class="tb_01">
+                <a class="text_link" href="#">
+                    <!--TrackingRate-->
+                    <a href="../UserInfo/MediaStatistics_New.aspx?fdate={fdate}&tdate={tdate}" target="fContent">{trackingbysite-val}</span><!--/TrackingRate--></a>
+            </td>
+            <td class="tb_01">
+                N/A
+            </td>
+        </tr>
+    </table>
+<script type="text/javascript">
+    $("slMonth").value = "{month-sel}";
+    $("slYear").value = "{year-sel}";
+</script>
+</form>
+</div>

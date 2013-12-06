@@ -1,0 +1,116 @@
+<script language="javascript" type="text/javascript">
+    function BannerUpload() {
+        if ($("txtfile").value == "") {
+            alert("Please select banner to upload.");
+            return;
+        }
+        else {
+            $("UploadBanner").submit();
+        }
+    }
+</script>
+<div class="padl0">
+    <div id="errMsg" style="display: none;width: 370px;" class="styleErrAddbanner">
+        <div id="error_item">
+            <ul>
+                <li><a class="err-msg" id="error_msg"></a></li>
+            </ul>
+        </div>
+    </div>
+    <form action="../Handler/AddNewBannerV2Old.ashx" method="post" enctype="multipart/form-data"
+    target="upload_target" onsubmit="return IsValidFileExtension();" id="UploadBanner">
+    <div class="pcontent" style="width: 420px; text-align: center;">
+        <table cellspacing="5" cellpadding="0" width="100%">
+            <tr>
+                <td>
+                    &nbsp;
+                </td>
+                <td>
+                    &nbsp;
+                </td>
+            </tr>
+            <tr>
+                <td class="l" colspan="2">
+                    [Valid Types: .gif, .jpg, .png, .jpeg, .swf]<br></br>
+                    [File Size Limit: 3MB]
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    &nbsp;
+                </td>
+                <td>
+                    &nbsp;
+                </td>
+            </tr>
+            <tr class="l" valign="middle">
+                <td colspan="2" style="padding-left: 50px; color: red">
+                </td>
+            </tr>
+            <tr class="l">
+                <td width="100px;" class="txt_addnew">
+                    {File}
+                </td>
+                <td style="padding-bottom: 3px;" id="contentfile">
+                    <input id="txtfile" name="txtfile" width="400px" height="19px" size="50" type="file"
+                        value="" onchange="return IsValidFileExtension(this);" style="color: Green; border: solid 1px #000000;" />
+                </td>
+            </tr>
+            <tr class="l">
+                <td class="txt_addnew">
+                    {Category}
+                </td>
+                <td style="padding-bottom: 3px;">
+                    {optioncate}
+                </td>
+            </tr>
+            <tr class="l">
+                <td class="txt_addnew">
+                    {Language}
+                </td>
+                <td style="padding-bottom: 3px;">
+                    {optionlang}
+                </td>
+            </tr>
+            <tr class="l">
+                <td class="txt_addnew">
+                    {Currency}
+                </td>
+                <td style="padding-bottom: 3px;">
+                    {optioncurrency}
+                </td>
+            </tr>
+            <tr class="l">
+                <td class="txt_addnew">
+                    {Type}
+                </td>
+                <td style="padding-bottom: 3px;">
+                    {optiontype}
+                </td>
+            </tr>
+            <tr class="l">
+                <td class="txt_addnew">
+                    {Size}
+                </td>
+                <td style="padding-bottom: 3px;">
+                    {optionsize}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    &nbsp;
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div style="text-align: left; margin-top: 5px;">
+        <input id="btnuploadbanner" class="buttonlogin" name="btnuploadbanner"
+            type="button" value="Upload" onclick="BannerUpload();"/>&nbsp;
+        <input id="btncancel" class="buttonlogin" name="btncancel" type="button" value="Cancel"
+            onclick="Cancelfunction();" />
+    </div>
+    </form>
+</div>
+<iframe id="upload_target" name="upload_target" src="#" style="width: 0; height: 0;
+    border: 0px solid #fff;"></iframe>
+<input id="hdErrFileExtension" name="hdErrFileExtension" type="hidden" value="{ErrFileExtension}" />
