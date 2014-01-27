@@ -95,7 +95,7 @@
       <HintPath>App_dll\Microsoft.Practices.ObjectBuilder.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation">
-      <HintPath>..\..\..\..\Fanex\Sources\Dependencies\Entlibs\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <HintPath>App_dll\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.Unity">
       <HintPath>..\..\..\..\Fanex\Sources\Dependencies\Entlibs\Microsoft.Practices.Unity.dll</HintPath>

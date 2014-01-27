@@ -1,0 +1,251 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D1A2565A-B67B-44EF-8C9B-C366C483FB69}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Aff_Dependency</RootNamespace>
+    <AssemblyName>Aff_Dependency</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="App_dll\CasinoLibrary.dll" />
+    <Content Include="App_dll\CasinoSetting.dll" />
+    <Content Include="App_dll\CasinoUtility.dll" />
+    <Content Include="App_dll\DNAide.dll" />
+    <Content Include="App_dll\DotNet.Highcharts.dll" />
+    <Content Include="App_dll\Enyim.Caching.dll" />
+    <Content Include="App_dll\EPPlus.dll" />
+    <Content Include="App_dll\Fanex.Age.Business.dll" />
+    <Content Include="App_dll\Fanex.Age.Business.Interface.dll" />
+    <Content Include="App_dll\Fanex.Age.DTO.dll" />
+    <Content Include="App_dll\Fanex.Age.Excel.dll" />
+    <Content Include="App_dll\Fanex.Age.UI.Components.dll" />
+    <Content Include="App_dll\Fanex.Age.UI.dll" />
+    <Content Include="App_dll\Fanex.Age.UI.Forecast.dll" />
+    <Content Include="App_dll\Fanex.Age.UI.LiveCasino.dll" />
+    <Content Include="App_dll\Fanex.Age.UI.Reports.dll" />
+    <Content Include="App_dll\Fanex.Age.UI.TotalBets.dll" />
+    <Content Include="App_dll\Fanex.Age.Utility.dll" />
+    <Content Include="App_dll\Fanex.BetList.Age.dll" />
+    <Content Include="App_dll\Fanex.BetList.Core.dll" />
+    <Content Include="App_dll\Fanex.BetList.Core.TicketHelper.dll" />
+    <Content Include="App_dll\Fanex.Caching.dll" />
+    <Content Include="App_dll\Fanex.Common.dll" />
+    <Content Include="App_dll\Fanex.Data.dll" />
+    <Content Include="App_dll\Fanex.LiveCasinoSetting.dll" />
+    <Content Include="App_dll\Fanex.Logging.dll" />
+    <Content Include="App_dll\Fanex.PTEngine.Age.dll" />
+    <Content Include="App_dll\Fanex.PTEngine.dll" />
+    <Content Include="App_dll\Fanex.PTVirtualSports.dll" />
+    <Content Include="App_dll\Fanex.SessionPartition.dll" />
+    <Content Include="App_dll\FluentValidation.dll" />
+    <Content Include="App_dll\FluentValidation.resources.dll" />
+    <Content Include="App_dll\FPS.Client.dll" />
+    <Content Include="App_dll\GotDotNet.ApplicationBlocks.Data.dll" />
+    <Content Include="App_dll\HandHistoryLibrary.dll" />
+    <Content Include="App_dll\IBCCrypt.dll" />
+    <Content Include="App_dll\IBCDBLibrary.dll" />
+    <Content Include="App_dll\IBCDLL.dll" />
+    <Content Include="App_dll\IBCFile.dll" />
+    <Content Include="App_dll\IBCMessage.dll" />
+    <Content Include="App_dll\IBCUtils.dll" />
+    <Content Include="App_dll\ILogger.dll" />
+    <Content Include="App_dll\Ionic.Zip.dll" />
+    <Content Include="App_dll\LiveCasinoLibrary.dll" />
+    <Content Include="App_dll\LoadBalancer.dll" />
+    <Content Include="App_dll\log4net.dll" />
+    <Content Include="App_dll\LVAPIDBLibrary.dll" />
+    <Content Include="App_dll\LVAPILibrary.dll" />
+    <Content Include="App_dll\Membase.dll" />
+    <Content Include="App_dll\Microsoft.ApplicationBlocks.Data.dll" />
+    <Content Include="App_dll\Microsoft.Practices.EnterpriseLibrary.Caching.dll" />
+    <Content Include="App_dll\Microsoft.Practices.EnterpriseLibrary.Common.dll" />
+    <Content Include="App_dll\Microsoft.Practices.EnterpriseLibrary.Data.dll" />
+    <Content Include="App_dll\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll" />
+    <Content Include="App_dll\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll" />
+    <Content Include="App_dll\Microsoft.Practices.EnterpriseLibrary.Logging.Database.dll" />
+    <Content Include="App_dll\Microsoft.Practices.EnterpriseLibrary.Logging.dll" />
+    <Content Include="App_dll\Microsoft.Practices.ObjectBuilder.dll" />
+    <Content Include="App_dll\Microsoft.Practices.ObjectBuilder2.dll" />
+    <Content Include="App_dll\Microsoft.Practices.ServiceLocation.dll" />
+    <Content Include="App_dll\Microsoft.Practices.Unity.Configuration.dll" />
+    <Content Include="App_dll\Microsoft.Practices.Unity.dll" />
+    <Content Include="App_dll\Microsoft.Practices.Unity.Interception.Configuration.dll" />
+    <Content Include="App_dll\Microsoft.Practices.Unity.Interception.dll" />
+    <Content Include="App_dll\Microsoft.Practices.Unity.StaticFactory.dll" />
+    <Content Include="App_dll\NetUtility.dll" />
+    <Content Include="App_dll\Newtonsoft.Json.dll" />
+    <Content Include="App_dll\Nexcel.WebControls.UI.dll" />
+    <Content Include="App_dll\Nini.dll" />
+    <Content Include="App_dll\NLog.dll" />
+    <Content Include="App_dll\NotifyPropertyChanged.dll" />
+    <Content Include="App_dll\NPOI.dll" />
+    <Content Include="App_dll\RemotingRef.dll" />
+    <Content Include="App_dll\RSACryptoPad.dll" />
+    <Content Include="App_dll\SharedCache.WinServiceCommon.dll" />
+    <Content Include="App_dll\SPSRemoting.dll" />
+    <Content Include="App_dll\Sunplus.Agent.Configurations.dll" />
+    <Content Include="App_dll\Sunplus.Agent.Model.dll" />
+    <Content Include="App_dll\Sunplus.Agent.UI.BetList.dll" />
+    <Content Include="App_dll\Sunplus.Agent.UI.BetSlip.dll" />
+    <Content Include="App_dll\Sunplus.Agent.UI.PositionTaking.RaceBook.dll" />
+    <Content Include="App_dll\Sunplus.Agent.UI.ScoreMap.dll" />
+    <Content Include="App_dll\Sunplus.Agent.Utilities.dll" />
+    <Content Include="App_dll\Sunplus.Bingo.Core.dll" />
+    <Content Include="App_dll\Sunplus.Bingo.Data.dll" />
+    <Content Include="App_dll\Sunplus.Bingo.Data.Entlib.dll" />
+    <Content Include="App_dll\Sunplus.Bingo.Data.LinqToSql.dll" />
+    <Content Include="App_dll\Sunplus.Bingo.DataServices.dll" />
+    <Content Include="App_dll\Sunplus.Bingo.Entities.dll" />
+    <Content Include="App_dll\Sunplus.Bingo.Services.dll" />
+    <Content Include="App_dll\Sunplus.Core.Common.dll" />
+    <Content Include="App_dll\Sunplus.Libraries.AOP.dll" />
+    <Content Include="App_dll\Sunplus.Libraries.APILogger.dll" />
+    <Content Include="App_dll\Sunplus.Libraries.ThirdPartyTestData.dll" />
+    <Content Include="App_dll\Sunplus.Shared.ViewLogLib.dll" />
+    <Content Include="App_dll\TplCore.dll" />
+    <Content Include="App_dll\UMControllerLibrary.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App_dll\CasinoLibrary.dll.refresh" />
+    <None Include="App_dll\CasinoSetting.dll.refresh" />
+    <None Include="App_dll\CasinoUtility.dll.refresh" />
+    <None Include="App_dll\DotNet.Highcharts.dll.refresh" />
+    <None Include="App_dll\Enyim.Caching.dll.refresh" />
+    <None Include="App_dll\EPPlus.dll.refresh" />
+    <None Include="App_dll\Fanex.Age.Business.dll.refresh" />
+    <None Include="App_dll\Fanex.Age.Business.Interface.dll.refresh" />
+    <None Include="App_dll\Fanex.Age.DTO.dll.refresh" />
+    <None Include="App_dll\Fanex.Age.Excel.dll.refresh" />
+    <None Include="App_dll\Fanex.Age.UI.Components.dll.refresh" />
+    <None Include="App_dll\Fanex.Age.UI.dll.refresh" />
+    <None Include="App_dll\Fanex.Age.UI.Forecast.dll.refresh" />
+    <None Include="App_dll\Fanex.Age.UI.LiveCasino.dll.refresh" />
+    <None Include="App_dll\Fanex.Age.UI.Reports.dll.refresh" />
+    <None Include="App_dll\Fanex.Age.UI.TotalBets.dll.refresh" />
+    <None Include="App_dll\Fanex.Age.Utility.dll.refresh" />
+    <None Include="App_dll\Fanex.BetList.Age.dll.refresh" />
+    <None Include="App_dll\Fanex.BetList.Core.dll.refresh" />
+    <None Include="App_dll\Fanex.BetList.Core.TicketHelper.dll.refresh" />
+    <None Include="App_dll\Fanex.Caching.dll.refresh" />
+    <None Include="App_dll\Fanex.Common.dll.refresh" />
+    <None Include="App_dll\Fanex.Data.dll.refresh" />
+    <None Include="App_dll\Fanex.LiveCasinoSetting.dll.refresh" />
+    <None Include="App_dll\Fanex.Logging.dll.refresh" />
+    <None Include="App_dll\Fanex.PTEngine.Age.dll.refresh" />
+    <None Include="App_dll\Fanex.PTEngine.dll.refresh" />
+    <None Include="App_dll\Fanex.PTVirtualSports.dll.refresh" />
+    <None Include="App_dll\Fanex.SessionPartition.dll.refresh" />
+    <None Include="App_dll\FluentValidation.dll.refresh" />
+    <None Include="App_dll\FluentValidation.resources.dll.refresh" />
+    <None Include="App_dll\FPS.Client.dll.refresh" />
+    <None Include="App_dll\GotDotNet.ApplicationBlocks.Data.dll.refresh" />
+    <None Include="App_dll\HandHistoryLibrary.dll.refresh" />
+    <None Include="App_dll\IBCCrypt.dll.refresh" />
+    <None Include="App_dll\IBCDBLibrary.dll.refresh" />
+    <None Include="App_dll\IBCDLL.dll.refresh" />
+    <None Include="App_dll\IBCFile.dll.refresh" />
+    <None Include="App_dll\IBCMessage.dll.refresh" />
+    <None Include="App_dll\IBCUtils.dll.refresh" />
+    <None Include="App_dll\ILogger.dll.refresh" />
+    <None Include="App_dll\Ionic.Zip.dll.refresh" />
+    <None Include="App_dll\LiveCasinoLibrary.dll.refresh" />
+    <None Include="App_dll\LoadBalancer.dll.refresh" />
+    <None Include="App_dll\log4net.dll.refresh" />
+    <None Include="App_dll\LVAPIDBLibrary.dll.refresh" />
+    <None Include="App_dll\LVAPILibrary.dll.refresh" />
+    <None Include="App_dll\Membase.dll.refresh" />
+    <None Include="App_dll\Microsoft.ApplicationBlocks.Data.dll.refresh" />
+    <None Include="App_dll\Microsoft.Practices.EnterpriseLibrary.Caching.dll.refresh" />
+    <None Include="App_dll\Microsoft.Practices.EnterpriseLibrary.Common.dll.refresh" />
+    <None Include="App_dll\Microsoft.Practices.EnterpriseLibrary.Data.dll.refresh" />
+    <None Include="App_dll\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll.refresh" />
+    <None Include="App_dll\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll.refresh" />
+    <None Include="App_dll\Microsoft.Practices.EnterpriseLibrary.Logging.Database.dll.refresh" />
+    <None Include="App_dll\Microsoft.Practices.EnterpriseLibrary.Logging.dll.refresh" />
+    <None Include="App_dll\Microsoft.Practices.ObjectBuilder.dll.refresh" />
+    <None Include="App_dll\Microsoft.Practices.ObjectBuilder2.dll.refresh" />
+    <None Include="App_dll\Microsoft.Practices.ServiceLocation.dll.refresh" />
+    <None Include="App_dll\Microsoft.Practices.Unity.Configuration.dll.refresh" />
+    <None Include="App_dll\Microsoft.Practices.Unity.dll.refresh" />
+    <None Include="App_dll\Microsoft.Practices.Unity.Interception.Configuration.dll.refresh" />
+    <None Include="App_dll\Microsoft.Practices.Unity.Interception.dll.refresh" />
+    <None Include="App_dll\Microsoft.Practices.Unity.StaticFactory.dll.refresh" />
+    <None Include="App_dll\NetUtility.dll.refresh" />
+    <None Include="App_dll\Newtonsoft.Json.dll.refresh" />
+    <None Include="App_dll\Nexcel.WebControls.UI.dll.refresh" />
+    <None Include="App_dll\Nini.dll.refresh" />
+    <None Include="App_dll\NLog.dll.refresh" />
+    <None Include="App_dll\NotifyPropertyChanged.dll.refresh" />
+    <None Include="App_dll\NPOI.dll.refresh" />
+    <None Include="App_dll\RemotingRef.dll.refresh" />
+    <None Include="App_dll\RSACryptoPad.dll.refresh" />
+    <None Include="App_dll\SharedCache.WinServiceCommon.dll.refresh" />
+    <None Include="App_dll\SPSRemoting.dll.refresh" />
+    <None Include="App_dll\Sunplus.Agent.Configurations.dll.refresh" />
+    <None Include="App_dll\Sunplus.Agent.Model.dll.refresh" />
+    <None Include="App_dll\Sunplus.Agent.UI.BetList.dll.refresh" />
+    <None Include="App_dll\Sunplus.Agent.UI.BetSlip.dll.refresh" />
+    <None Include="App_dll\Sunplus.Agent.UI.PositionTaking.RaceBook.dll.refresh" />
+    <None Include="App_dll\Sunplus.Agent.UI.ScoreMap.dll.refresh" />
+    <None Include="App_dll\Sunplus.Agent.Utilities.dll.refresh" />
+    <None Include="App_dll\Sunplus.Bingo.Core.dll.refresh" />
+    <None Include="App_dll\Sunplus.Bingo.Data.dll.refresh" />
+    <None Include="App_dll\Sunplus.Bingo.Data.Entlib.dll.refresh" />
+    <None Include="App_dll\Sunplus.Bingo.Data.LinqToSql.dll.refresh" />
+    <None Include="App_dll\Sunplus.Bingo.DataServices.dll.refresh" />
+    <None Include="App_dll\Sunplus.Bingo.Entities.dll.refresh" />
+    <None Include="App_dll\Sunplus.Bingo.Services.dll.refresh" />
+    <None Include="App_dll\Sunplus.Core.Common.dll.refresh" />
+    <None Include="App_dll\Sunplus.Libraries.AOP.dll.refresh" />
+    <None Include="App_dll\Sunplus.Libraries.APILogger.dll.refresh" />
+    <None Include="App_dll\Sunplus.Libraries.ThirdPartyTestData.dll.refresh" />
+    <None Include="App_dll\Sunplus.Shared.ViewLogLib.dll.refresh" />
+    <None Include="App_dll\TplCore.dll.refresh" />
+    <None Include="App_dll\UMControllerLibrary.dll.refresh" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
