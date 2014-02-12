@@ -46,27 +46,30 @@ function ExcLogin() {
     return false;
 }
 function Login(rs) { 
-    var err=rs.responseText.split(':');  
-     
-    if(err[0] == 100) {         
-         parent.location.href='UserInfo/Account_Overview.aspx';                   
-    }
-    else {
-        isLogin = false;
-        $('validCode').src ='Authorization/LoginCaptcha.ashx?t=' + new Date().toJSON();
-        if(err[0] == 101)
-        {
-           alert(err[1]);
-           $('txtvalidate').value='';
-           $('txtvalidate').focus();
-        }
-        else
-        {
-           alert(err[1]); 
-           $('txtvalidate').value='';
-           $('txtpassword').value='';          
-           $('txtpassword').focus();
-        }
+    var err=rs.responseText.split(':');
+
+    switch (err[0]) {
+        case '100':
+            parent.location.href = 'UserInfo/Account_Overview.aspx';                   
+            break;
+        case '101':
+            parent.location.href = 'Welcome.aspx';
+            break;
+        default:
+            isLogin = false;
+            $('validCode').src = 'Authorization/LoginCaptcha.ashx?t=' + new Date().toJSON();
+            if (err[0] == 101) {
+                alert(err[1]);
+                $('txtvalidate').value = '';
+                $('txtvalidate').focus();
+            }
+            else {
+                alert(err[1]);
+                $('txtvalidate').value = '';
+                $('txtpassword').value = '';
+                $('txtpassword').focus();
+            }
+            break;
     }
 }
 

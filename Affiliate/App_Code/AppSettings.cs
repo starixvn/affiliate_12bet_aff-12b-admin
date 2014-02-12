@@ -47,6 +47,7 @@ public static class AppSettings
     static string _affPublicKeyToken; //20101016@Peter add the public key token for affiliate personalized Page authentication
     static string _bannerUrl;
     static bool _showCasino;
+    static bool _localTest;
 
     static AppSettings()
     {
@@ -84,6 +85,7 @@ public static class AppSettings
         }
         _bannerUrl = ConfigurationManager.AppSettings["BannerUrl"];
         _showCasino = (ConfigurationManager.AppSettings["ShowCasino"] == "1");
+        _localTest = (ConfigurationManager.AppSettings["LocalTest"] == "1");
         initPageHeader();
     }
     static void initPageHeader()
@@ -542,6 +544,24 @@ public static class AppSettings
             get { return CastAide.AsBoolean(HttpContext.Current.Session["IsCasino"]); }
             set { HttpContext.Current.Session["IsCasino"] = value; }
         }
+        //20140211@Brian add to verify whether to force password change
+        public static bool ForceChangePass
+        {
+            get { return CastAide.AsBoolean(HttpContext.Current.Session["ForceChangePass"]); }
+            set { HttpContext.Current.Session["ForceChangePass"] = value; }
+        }
+
+        public static AffType AffType
+        {
+            get
+            {
+                return (AffType)CastAide.AsInt32(HttpContext.Current.Session["AffType"], -1);
+            }
+            set
+            {
+                HttpContext.Current.Session["AffType"] = value;
+            }
+        }
     }
 
 
@@ -611,5 +631,10 @@ public static class AppSettings
         {
             return _showCasino;
         }
+    }
+
+    public static bool LocalTest
+    {
+        get { return _localTest; }
     }
 }

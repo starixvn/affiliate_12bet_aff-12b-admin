@@ -35,6 +35,7 @@ public class RootPage : System.Web.UI.Page
 
         string startTime, endTime;
         bool isUM = Common.GetDownTime(out startTime, out endTime);
+
         if (isUM)
         {
             Response.Redirect("~/UnderMaintenance.aspx");
@@ -82,7 +83,8 @@ public class RootPage : System.Web.UI.Page
                 case "es-ES": return "ES";
                 default: return "E";
             }
-        }
+        }		
+
     }
     protected string RelativePath
     {
@@ -100,14 +102,23 @@ public class RootPage : System.Web.UI.Page
             return prePath;
         }
     }
+
+    protected override void OnPreInit(EventArgs e)
+    {
+        base.OnPreInit(e);
+
+        const string welcomPage = "~/Welcome.aspx";
+
+        if (Request.AppRelativeCurrentExecutionFilePath != null && (AppSettings.Session.ForceChangePass && !Request.AppRelativeCurrentExecutionFilePath.Equals(welcomPage)))
+        {
+            Response.Redirect(welcomPage);
+        }
+    }
+
     protected override void OnPreRender(EventArgs e)
     {
         base.OnPreRender(e);
         if (string.IsNullOrEmpty(this.Header.Title) || this.Header.Title == "Untitled Page")
             this.Header.Title = AppSettings.PageTitle;
-        /*if (string.IsNullOrEmpty(this.Header.) || this.Header.Title == "Untitled Page")
-            this.Header.Title = AppSettings.PageTitle;
-        if (string.IsNullOrEmpty(this.Header.Title) || this.Header.Title == "Untitled Page")
-            this.Header.Title = AppSettings.PageTitle;*/
     }
 }

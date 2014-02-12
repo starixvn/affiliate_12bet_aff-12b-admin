@@ -350,5 +350,26 @@ namespace DataHandler
 
             return DbHelper.Execute("Aff_ExistedMemberOfAff", hsParam, DBType.AFFILIATE_12BET);
         }
+
+        public static void ForceChangePass(int intAffId, string strOldPassword, string strNewPassword, string strQuestion, string strAnswer, ref int intErrCode, ref string strErrMsg)
+        {
+            Hashtable hsParam = new Hashtable();
+
+            hsParam.Add("affid", intAffId);
+            hsParam.Add("hashpwd", Encryption.CfsEnCode(strOldPassword));
+            hsParam.Add("rehashpwd", Encryption.CfsEnCode(strNewPassword));
+
+            hsParam.Add("question", formatInput(strQuestion));
+            hsParam.Add("answer", formatInput(strAnswer));
+            
+            hsParam.Add("ip", HttpContext.Current.Request.UserHostAddress);
+            hsParam.Add("errcode", intErrCode);
+            hsParam.Add("errmsg", strErrMsg);
+
+            DbResult dbr = DbHelper.Execute("Aff_AffiliateForceChangePwd", hsParam, DBType.AFFILIATE_12BET);
+            
+            intErrCode = CastAide.AsInt32(dbr.Outputs["errcode"]);
+            strErrMsg = dbr.Outputs["errmsg"].ToString();
+        }
     }
 }
