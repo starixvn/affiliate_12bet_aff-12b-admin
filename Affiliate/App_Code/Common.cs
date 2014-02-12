@@ -255,6 +255,14 @@ public class Common
                 return Resources.Lang.Err4004;
             case 4005:
                 return Resources.Lang.Err4005;
+            case 201:
+                return Resources.Lang.Err201;
+            case 202:
+                return Resources.Lang.Err202;
+            case 203:
+                return Resources.Lang.Err203;
+            case 204:
+                return Resources.Lang.Err204;
             default:
                 return Resources.Lang.ErrDefault;
         }

@@ -21,7 +21,8 @@ public class ChangePass : IHttpHandler, IRequiresSessionState
         {
             context.Response.Write("<script type='text/javascript'>parent.alert('" + Resources.Lang.OldPassandNewPass + "');</script>");
             return;
-        }        
+        }
+                
         try
         {
             string strOldPass = context.Request.Form["txtCurrPass"];
@@ -33,19 +34,14 @@ public class ChangePass : IHttpHandler, IRequiresSessionState
                 context.Response.Write("<script type='text/javascript'>parent.alert('" + Resources.Lang.PwdChanged + "');parent.location.href='../UserInfo/MyAccount.aspx';</script>");
                 return;
             }
-            else
+            
+            if (intErrCode == 1001)
             {
-                if (intErrCode == 1001)
-                {
-                    context.Response.Write("<script type='text/javascript'>parent.$(\"errMsg\").show();parent.ShowError([\"" + Resources.Lang.OldPassErr + "\"], [\"txtCurrPass\"], \"error_item\");</script>");
-                    return;
-                }
-                else
-                {
-                    context.Response.Write("<script type='text/javascript'>parent.alert(\"" + Resources.Lang.ChangePassErr + "\");</scrip>");
-                    return;
-                }
+                context.Response.Write("<script type='text/javascript'>parent.$(\"errMsg\").show();parent.ShowError([\"" + Resources.Lang.OldPassErr + "\"], [\"txtCurrPass\"], \"error_item\");</script>");
+                return;
             }
+            
+            context.Response.Write("<script type='text/javascript'>parent.alert(\"" + Resources.Lang.ChangePassErr + "\");</scrip>");
         }
         catch (Exception ex)
         {
