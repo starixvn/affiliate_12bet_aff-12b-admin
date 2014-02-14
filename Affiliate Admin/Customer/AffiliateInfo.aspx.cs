@@ -71,9 +71,13 @@ public partial class Customer_AffiliateInfo : IBCPage
             DataTable dtbInfo = result.ResultSet.Tables[0];
             if (dtbInfo.Rows.Count > 0)
             {
+                DataRow dr = dtbInfo.Rows[0];
+
+                AppSettings.Session.AffType = CastAide.AsInt32(dr["afftype"]);
+
                 TemplateHandler.Assign(ref strTpl, "url", GerUrl(AppSettings.Session.AffUsername));//Link to affiliate
                 TemplateHandler.Assign(ref strTpl, "noinfo-val", "0");
-                DataRow dr = dtbInfo.Rows[0];    
+                
 
                 string strStatus = dr["Status"].ToString();
                 bool isClosed = CastAide.AsBoolean(dr["Closed"]);
@@ -213,7 +217,7 @@ public partial class Customer_AffiliateInfo : IBCPage
         string accKey = FormsAuthentication.HashPasswordForStoringInConfigFile(Session.SessionID + rndStr, "MD5");
         string accID = AppSettings.Session.CustID.ToString();
         string accOnId = AppSettings.Session.OnUser.ToString();
-        string _url = AppSettings.InternalURL;
+        string _url = AppSettings.Session.AffType == 2 ? AppSettings.InternalEuroAffiliateURL : AppSettings.InternalAsiaAffiliateURL;
         _url += "?chalengeStr=" + rndStr;
         _url += "&accKey=" + accKey;
         _url += "&custName=" + custName;
@@ -221,6 +225,7 @@ public partial class Customer_AffiliateInfo : IBCPage
         _url += "&accOnId=" + accOnId;
         return _url;
     }
+
     string cutLongText(string val, int maxLength)
     {
         return (val.Length <= maxLength) ? val : "<span title='" + Server.HtmlEncode(val) + "'>" + val.Substring(0, maxLength - 3) + "...</span>";

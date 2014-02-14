@@ -34,7 +34,7 @@ public class SignUp : IHttpHandler, IRequiresSessionState
             string strPlayerUserName = context.Request.Form["txtBet12UserName"];
             string errMsg = string.Empty;
 
-            if (strPayment == "Player")
+            if (strPayment == "Player" && !AppSettings.LocalTest)
             {
                 DepositCustomerInfo customer = DataHandler.PaymentRequest.Get12BetPlayerDepositInfo(strPlayerUserName);
                 if (customer.Success != 0)
