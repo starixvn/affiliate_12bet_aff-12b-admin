@@ -25,6 +25,8 @@ public static class AppSettings
     static int _imagesize;
     static string _virtualDir;
     static string _internalURL;
+    static string _internalEuroAffiliateURL;
+    static string _internalAsiaAffiliateURL;
     static string _ipCheckerURL;
     static string _websiteCheckerURL;
     static string _lbUrl;
@@ -52,6 +54,9 @@ public static class AppSettings
         _imagesize =CastAide.AsInt32(ConfigurationManager.AppSettings["imagesize"]);
         _StatementAvailableFrom = CastAide.AsDateTime(ConfigurationManager.AppSettings["StatementAvailableFrom"]);
         _internalURL = ConfigurationManager.AppSettings["internalURL"];
+        _internalEuroAffiliateURL = ConfigurationManager.AppSettings["internalEuroAffiliateURL"];
+        _internalAsiaAffiliateURL = ConfigurationManager.AppSettings["internalAsiaAffiliateURL"];
+
         _websiteCheckerURL = ConfigurationManager.AppSettings["WebsiteCheckerURL"];
         _lbUrl = ConfigurationManager.AppSettings["LBUrl"];
         _urlAffSite = ConfigurationManager.AppSettings["UrlAffSite"];
@@ -229,6 +234,20 @@ public static class AppSettings
         get 
         {
             return _internalURL;
+        }
+    }
+    public static string InternalEuroAffiliateURL
+    {
+        get
+        {
+            return _internalEuroAffiliateURL;
+        }
+    }
+    public static string InternalAsiaAffiliateURL
+    {
+        get
+        {
+            return _internalAsiaAffiliateURL;
         }
     }
     public static string IPCheckerURL

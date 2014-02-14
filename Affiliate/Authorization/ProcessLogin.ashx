@@ -3,6 +3,7 @@
 using System;
 using System.Web;
 using System.Web.SessionState;
+using Affiliate;
 using DNAide.Web;
 using DNAide.Data;
 using Resources;

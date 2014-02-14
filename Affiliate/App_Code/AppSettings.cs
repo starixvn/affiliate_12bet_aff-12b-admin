@@ -3,6 +3,7 @@ using System.Configuration;
 using System.Web;
 using System.Xml;
 using System.IO;
+using Affiliate;
 using DNAide.Core;
 
 /// <summary>
@@ -30,6 +31,7 @@ public static class AppSettings
     static string _affmaster;
     static string _subdomain;
     static string _forgetpwurl;
+    static int _afftype;
 
     static string _mediaJS;
     static string _mediaJS_CS;
@@ -65,6 +67,7 @@ public static class AppSettings
         _serverId = ConfigurationManager.AppSettings["ServerId"];
         _tplFolder = ConfigurationManager.AppSettings["template_folder"];
         _affmaster = ConfigurationManager.AppSettings["AffMaster"];
+        _afftype = CastAide.AsInt32(ConfigurationManager.AppSettings["AffType"]);
         _mediaJS = ConfigurationManager.AppSettings["MediaJS"];
         _mediaJS_CS = ConfigurationManager.AppSettings["MediaJS_CS"];
         _mediaJS_TH = ConfigurationManager.AppSettings["MediaJS_TH"];
@@ -74,7 +77,7 @@ public static class AppSettings
         _lbUrl = ConfigurationManager.AppSettings["LBUrl"];
         _UMStartTime = CastAide.AsDateTime(ConfigurationManager.AppSettings["UM_StartTime"]);
         _UMEndTime = CastAide.AsDateTime(ConfigurationManager.AppSettings["UM_EndTime"]);
-        _pageSize = DNAide.Core.CastAide.AsInt32(ConfigurationManager.AppSettings["PageSize"]);
+        _pageSize = CastAide.AsInt32(ConfigurationManager.AppSettings["PageSize"]);
         _StatementAvailableFrom = CastAide.AsDateTime(ConfigurationManager.AppSettings["StatementAvailableFrom"]);
         _themeDir = @"App_Themes/" + (string.IsNullOrEmpty(ConfigurationManager.AppSettings["Theme"]) ? "Default" : ConfigurationManager.AppSettings["Theme"]);
         //GET CSS FILES
@@ -255,6 +258,13 @@ public static class AppSettings
         {
 
             return _affmaster;
+        }
+    }
+    public static int AffType
+    {
+        get
+        {
+            return _afftype;
         }
     }
     public static bool HasLogin
