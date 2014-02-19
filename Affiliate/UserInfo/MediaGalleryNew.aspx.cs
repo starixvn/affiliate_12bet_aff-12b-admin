@@ -68,7 +68,7 @@ public partial class MediaGallery : RootPageLogIn
             }
             else
             {
-                subCategory = Request["slSubCategoryMedia"].ToString();
+                subCategory = Request["slSubCategoryMedia"];
                 paramCategory = subCategory;
             }
         }
@@ -119,7 +119,7 @@ public partial class MediaGallery : RootPageLogIn
 
         TemplateHandler.ReplaceBlock(ref htmlContent, "Content",
             GenerateHTML.Banner.GetBannerList(paramCategory, isSearchByParentCategory, lang, type, size,
-            currency, pageIndex, pageSize, ref totalpage, domain, trackingcode, targetRequest, Common.NormalBanner));
+            currency, pageIndex, pageSize, ref totalpage, domain, trackingcode, targetRequest, Common.NormalBanner, AppSettings.AffType));
         TemplateHandler.Assign(ref htmlContent, "PageSize-val", pageSize);
         TemplateHandler.Assign(ref htmlContent, "page", pageIndex);
         /* Generate Banner paging*/

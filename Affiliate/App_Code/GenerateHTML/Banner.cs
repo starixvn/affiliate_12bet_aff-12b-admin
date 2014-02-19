@@ -118,15 +118,15 @@ namespace GenerateHTML
 
         public static string GetBannerList(string category, bool isSearchByParentCateogry, string language, 
             string imageType, string size, string currency, int pageIndex, int pagesize, ref int totalpage,
-            string domain, string trackingcode, string target, int type)
+            string domain, string trackingcode, string target, int type, int afftype)
         {
             string tmpLanguage = (language == "English (Europe)" ? "English" : language);//English Euro use English banner
 
             DbResult result = null;
             int nRows = 0;
             result = (isSearchByParentCateogry)
-                ? DataHandler.UserAff.SelAffBannerByParentCategory(category, tmpLanguage, imageType, size, currency, pageIndex, pagesize, type)
-                : DataHandler.UserAff.SelAffBanner(category, tmpLanguage, imageType, size, currency, pageIndex, pagesize, type);
+                ? DataHandler.UserAff.SelAffBannerByParentCategory(category, tmpLanguage, imageType, size, currency, pageIndex, pagesize, type, afftype)
+                : DataHandler.UserAff.SelAffBanner(category, tmpLanguage, imageType, size, currency, pageIndex, pagesize, type, afftype);
             nRows = CastAide.AsInt32(result.Outputs["nrows"]);
             //int pagesize = AppSettings.PageSize;
             int cols = 9;

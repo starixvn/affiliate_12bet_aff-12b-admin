@@ -48,7 +48,7 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState {
                                 if (currentDomain.Equals(asianAffiliateDomain, StringComparison.OrdinalIgnoreCase))
                                     isValidLogin = true;
                                 break;
-                            case AffType.EuroAffiliate:
+                            case AffType.EuropeanAffiliate:
                                 if (currentDomain.Equals(euroAffiliateDomain, StringComparison.OrdinalIgnoreCase))
                                     isValidLogin = true;
                                 break;

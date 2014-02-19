@@ -39,7 +39,7 @@ public partial class ListMediaBanner : IBCPage
             }
             else
             {
-                subCategory = Request["slSubCategoryMedia"].ToString();
+                subCategory = Request["slSubCategoryMedia"];
                 paramCategory = subCategory;
             }
         }

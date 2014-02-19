@@ -991,6 +991,7 @@ public class Common
         TemplateHandler.RemoveBlock(ref strPaging, "excelbutton");
         return strPaging;
     }
+
     public static string GenPaging(int numPages, int currPage, int pageSize, int numRows, string aID, string txtID, string[] txtButton, string[] txtButtonEvent, int width, bool hasCheckAll, bool hasPageSize, bool hasButton, bool hasExcel)
     {
         string strPaging = TemplateHandler.LoadTemplate("Paging.htm");
@@ -1057,6 +1058,7 @@ public class Common
 
         return text.ToString();
     }
+
     /// <summary>
     /// Common function to generate dropdown list in media gallery page by Peter 20090328
     /// </summary>
@@ -1102,6 +1104,48 @@ public class Common
        TemplateHandler.ReplaceBlock(ref opt, "optionList", result.ToString());
        return opt;
     }
+
+    public static string GenDropDownFromTable(DataTable dt, string valueColumn, string nameColumn, string id, ref string activeValue, bool isGenAll)
+    {
+        StringBuilder result = new StringBuilder();
+        string opt = TemplateHandler.LoadTemplate("Option.htm");
+        TemplateHandler.Assign(ref opt, "id", id);
+        string temp = TemplateHandler.CopyBlock(opt, "optionList");
+        string tempopt = temp;
+        if (isGenAll)
+        {
+            TemplateHandler.Assign(ref tempopt, "Optvalue", string.Empty);
+            TemplateHandler.Assign(ref tempopt, "Optname", Resources.Lang.All);
+            if (string.IsNullOrEmpty(activeValue))
+            {
+                TemplateHandler.Assign(ref tempopt, "selected", "selected");
+            }
+            result.Append(tempopt);
+        }
+        foreach (DataRow dr in dt.Rows)
+        {
+            tempopt = temp;
+            TemplateHandler.Assign(ref tempopt, "Optvalue", dr[valueColumn].ToString());
+            TemplateHandler.Assign(ref tempopt, "Optname", dr[nameColumn].ToString());
+
+            if (string.Compare(activeValue, dr[valueColumn].ToString(), true) == 0)
+            {
+                TemplateHandler.Assign(ref tempopt, "selected", "selected");
+            }
+            else
+            {
+                TemplateHandler.Assign(ref tempopt, "selected", string.Empty);
+            }
+            result.Append(tempopt);
+        }
+        if (string.IsNullOrEmpty(activeValue) && dt.Rows.Count > 0)
+        {
+            activeValue = dt.Rows[0][valueColumn].ToString();
+        }
+        TemplateHandler.ReplaceBlock(ref opt, "optionList", result.ToString());
+        return opt;
+    }
+
     //@VinhTrinh
     public static string GenSubMenu(string[] arrUrl, string[] arrText, int width, int currMenu)
     {
@@ -1120,6 +1164,7 @@ public class Common
         TemplateHandler.ReplaceBlock(ref strTpl, "menu", strBuild.ToString());
         return strTpl;
     }
+
     /// <summary>
     /// Generate a sub page
     /// </summary>
@@ -1165,14 +1210,17 @@ public class Common
         TemplateHandler.Assign(ref strTpl, "nPlayersDetail", playerDetails);
         return strTpl;
     }
+
     public static string GenSubPage(int currPage, params int[] activeMenus)
     {
         return Common.GenSubPage(currPage, string.Empty, string.Empty, null, null, activeMenus);
     }
+
     public static string GenSubPage(int currPage, string nMembers, string playerDetails, params int[] activeMenus)
     {
         return Common.GenSubPage(currPage, nMembers, playerDetails, null, null,activeMenus);
     }
+
     public static string GenSubPage(int currPage,  int[] paramIndexs, string[] paramValues, params int[] activeMenus)
     {
         return Common.GenSubPage(currPage, string.Empty, string.Empty, paramIndexs, paramValues, activeMenus);
@@ -1242,6 +1290,7 @@ public class Common
                 
         }
     }
+
     public static void SendEmailApproved(int affID, string strPreferLang, string strFname, string strUsername, string strEmail, string strPassword, string strEmailSuffix)
     {
         string[] strTags = { "fname", "username", "pass", "custid", "mailcontact", "url", "rooturl", "lang" };
@@ -1276,6 +1325,7 @@ public class Common
         strSubject = TemplateHandler.ReplaceBlock(ref strApproved, "subject", "").Replace("\r\n", "").Trim();
         DNAide.Utils.SendMailService.SendMail2(AppSettings.MailServer, strEmail, AppSettings.FromMail, AppSettings.CCMail, AppSettings.BCCMail, strSubject, strApproved, AppSettings.MailPwd);
     }
+
     public static void SendEmailDisapproved(string strPreferLang, string strFname, string strEmail, string strEmailSuffix)
     {
 
@@ -1296,12 +1346,14 @@ public class Common
         string strSubject = TemplateHandler.ReplaceBlock(ref strDisapproved, "subject", "").Replace("\r\n", "").Trim();
         DNAide.Utils.SendMailService.SendMail2(AppSettings.MailServer, strEmail, AppSettings.FromMail, AppSettings.CCMail, AppSettings.BCCMail, strSubject, strDisapproved, AppSettings.MailPwd);
     }
+
     public static string GetIPCheckerURL(string ip)
     {
         StringBuilder strIPCheckerURL=new StringBuilder(AppSettings.IPCheckerURL);
         strIPCheckerURL.Replace("{ip-val}",ip);
         return strIPCheckerURL.ToString();
     }
+
     public static string GetWebsiteCheckerURL(string url)
     {
         StringBuilder strWebsiteCheckerURL = new StringBuilder(AppSettings.WebsiteCheckerURL);
@@ -1343,6 +1395,7 @@ public class Common
     {
         return (MailOption ? "" : "_html");
     }
+
     public static bool GetDownTime(out string startTime, out string endTime)
     {
         startTime = endTime = null;
@@ -1438,10 +1491,12 @@ public class Common
 
         return isUM;
     }
+
 	 public static string FormatStringHtml(string value)
     {
         return HttpUtility.HtmlDecode(value.Replace("\r\n", "<br/>"));
     }
+
     public static string FormatStringJavascript(string value)
     {
         return HttpUtility.HtmlDecode(value).Replace("<br/>", "\r\n");

@@ -124,13 +124,13 @@ namespace GenerateHTML
 
         // ++ Modified by Frank.Ngo on IRP 671 - 10 Jan 2012
         // add "type" parameter to indicate normal banner or media banner
-        public static string GetBannerList(string category, bool isSearchByParentCateogry, string language, string imageType, string size, string currency, int pageIndex, ref int minNo, ref int maxNo, ref int totalBanner, ref int totalPage, int pageSize, int type)
+        public static string GetBannerList(string category, bool isSearchByParentCateogry, string language, string imageType, string size, string currency, int pageIndex, ref int minNo, ref int maxNo, ref int totalBanner, ref int totalPage, int pageSize, int type, int afftype)
         {
             DbResult result = null;
             int nRows = 0;
             result = (isSearchByParentCateogry)
-                ? DataHandler.Banner.GetBannerListByParentCategory(category, language, imageType, size, currency, pageIndex, pageSize, type)
-                : DataHandler.Banner.GetBannerList(category, language, imageType, size, currency, pageIndex, pageSize, type);
+                ? DataHandler.Banner.GetBannerListByParentCategory(category, language, imageType, size, currency, pageIndex, pageSize, type, afftype)
+                : DataHandler.Banner.GetBannerList(category, language, imageType, size, currency, pageIndex, pageSize, type, afftype);
             nRows = CastAide.AsInt32(result.Outputs["nrows"]);
             int pagesize = pageSize;
             int cols = 10;
@@ -138,9 +138,8 @@ namespace GenerateHTML
             maxNo = 0;
             if (nRows > 0)
             {
-                string temp = (type == Common.NormalBanner)
-                    ? TemplateHandler.LoadTemplate("Media/MainListBannerNew.htm")
-                    : TemplateHandler.LoadTemplate("Media/MainListMediaBanner.htm");
+                string temp = TemplateHandler.LoadTemplate("Media/MainListBannerNew.htm");
+                    
                 string content = TemplateHandler.CopyBlock(temp, "Content");
                 TemplateHandler.RemoveBlock(ref content, "UpdateMode1");
                 TemplateHandler.RemoveBlock(ref content, "UpdateMode2");

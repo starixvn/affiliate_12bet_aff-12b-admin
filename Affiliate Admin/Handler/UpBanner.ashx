@@ -23,6 +23,7 @@ public class UpBanner : IHttpHandler, IRequiresSessionState {
             string currency = context.Request.Params["slCurrency"];
             string imageType = context.Request.Params["slImageType"];
             string size = context.Request.Params["hdSize"];
+            string afftype = context.Request.Params["slAffType"];
             string idbanner = context.Request.Params["hdBannerID"];
             string oldFileName = context.Request.Params["hdOldFileName"];
             string oldCategory = context.Request.Params["hdOldCategory"];
@@ -115,19 +116,6 @@ public class UpBanner : IHttpHandler, IRequiresSessionState {
                 }
             }
 
-            //if (!needToUploadFile)
-            //{
-            //    if (File.Exists(oldFullPath))
-            //    {
-            //        if (!category.Equals(oldCategory))
-            //        {
-            //            if (Directory.Exists(path + newFolder) == false)
-            //                Directory.CreateDirectory(path + newFolder);
-            //        }
-            //        File.Move(oldFullPath, strDst);
-            //    }
-            //}
-            //else
             if (needToUploadFile)
             {
                 Common.UploadFileWithAutoDetectSize(context, newFolder, path, inputFileName, ref errCode, out size, ref strDst);
@@ -150,7 +138,7 @@ public class UpBanner : IHttpHandler, IRequiresSessionState {
                 //    Common.DeleteFile(oldFullPath);
             }
 
-            err = DataHandler.Banner.UpdBanner(Convert.ToInt32(idbanner), newFileName, category, language, currency, imageType, size);
+            err = DataHandler.Banner.UpdBanner(Convert.ToInt32(idbanner), newFileName, category, language, currency, imageType, size, afftype);
             if (!string.IsNullOrEmpty(err))
             {
                 //Delete image uploaded

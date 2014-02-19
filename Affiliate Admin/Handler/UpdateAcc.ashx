@@ -20,7 +20,7 @@ public class UpdateAcc : IHttpHandler, IRequiresSessionState
             string strPlayerUserName = context.Request.Form["txtBet12UserName"];
             string errMsg = string.Empty;
 
-            if (string.Compare(strPayment, "Player", true) == 0)
+            if (!AppSettings.LocalTest && strPayment.Equals("Player", StringComparison.OrdinalIgnoreCase))
             {
                 DepositCustomerInfo customer = DataHandler.Affiliate.Get12BetPlayerDepositInfo(strPlayerUserName);
                 if (customer.Success != 0)
@@ -33,14 +33,14 @@ public class UpdateAcc : IHttpHandler, IRequiresSessionState
             
             int intErrCode = 0;
             string strGender = context.Request.Form["rdGender"];
-            string strEmail = context.Request.Form["txtEmail"].ToString();
-            string strPhone = context.Request.Form["txtNumber"].ToString();
-            string strMobile = context.Request.Form["txtMobile"].ToString();
-            string strAddress = context.Request.Form["txtAddress"].ToString();
-            string strCity = context.Request.Form["txtCity"].ToString();
-            string strPostCode = context.Request.Form["txtPost"].ToString();
-            string strState = context.Request.Form["txtState"].ToString();
-            string strSiteUrl = context.Request.Form["txtSiteUrl"].ToString();
+            string strEmail = context.Request.Form["txtEmail"];
+            string strPhone = context.Request.Form["txtNumber"];
+            string strMobile = context.Request.Form["txtMobile"];
+            string strAddress = context.Request.Form["txtAddress"];
+            string strCity = context.Request.Form["txtCity"];
+            string strPostCode = context.Request.Form["txtPost"];
+            string strState = context.Request.Form["txtState"];
+            string strSiteUrl = context.Request.Form["txtSiteUrl"];
             string strEmailFormat = context.Request.Form["rdFormat"];
             string strErrMsg = "";
             //string strPayment = Common.GetMethodName(context.Request.Form["hdMethod"]);

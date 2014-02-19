@@ -61,6 +61,12 @@
                     {optionsize}
                 </td>
                 <td>
+                    {afftype}
+                </td>
+                <td>
+                    {optionafftype}
+                </td>
+                <td>
                     <div onclick="SubmitSearchFormNew();" id="divsearch">&nbsp;</div>
                 </td>
             </tr>
@@ -152,14 +158,14 @@
                 </td>
                 <td style="text-align: center">
                     <!--ViewMode2-->
-                    <a href="javascript:DoCal('EditBanner.aspx?editBannerID={bannerid}', 'Edit Banner', 460, 400);" id="edit{bannerid}"><span class="icedit">&nbsp;</span></a>
+                    <a href="javascript:DoCal('EditBanner.aspx?editBannerID={bannerid}', 'Edit Banner', 460, 450);" id="edit{bannerid}"><span class="icedit">&nbsp;</span></a>
                     <!--/ViewMode2-->
                     <!--UpdateMode2-->
                     &nbsp;
                     <div>
                     <input id="btnupdate{bannerid}" type="submit" class="buttonlogin" value="Update" />
                     </div>
-                    <div style="margin-top:10px; padding:5px 0px 5px 0px">
+                    <div style="margin-top:10px; padding:5px 0 5px 0">
                     <input id="btncancel{bannerid}" type="button" class="buttonlogin" value="Cancel"
                         onclick="CancelEdit();" /></div>
                     <input type="hidden" id="hdOldFileName" name="hdOldFileName" value="{filenamevalue}" />

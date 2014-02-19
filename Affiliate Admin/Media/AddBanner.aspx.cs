@@ -23,6 +23,7 @@ public partial class AddBanner : IBCPage
         TemplateHandler.Assign(ref temp, "Currency", Resources.Lang.Currency);
         TemplateHandler.Assign(ref temp, "Type", Resources.Lang.type);
         TemplateHandler.Assign(ref temp, "Size", Resources.Lang.Size);
+        TemplateHandler.Assign(ref temp, "AffType", Resources.Lang.AffiliateType);
         TemplateHandler.Assign(ref temp, "ErrFileExtension", Resources.Lang.errFileExtension);
 
         DataView dv = DbHelper.Execute("Aff_BannerSelType_1", DBType.AFFILIATE_12BET).ResultSet.Tables[0].DefaultView;
@@ -32,7 +33,12 @@ public partial class AddBanner : IBCPage
         TemplateHandler.Assign(ref temp, "optioncurrency", Common.GetDataOptionBanner(dv, "slCurrency", "Currency", string.Empty, false));
         TemplateHandler.Assign(ref temp, "optiontype", Common.GetDataOptionBanner(dv, "slImageType", "ImageType", string.Empty, false));
         TemplateHandler.Assign(ref temp, "filenamevalue", string.Empty);
-        //TemplateHandler.Assign(ref temp, "optionsize", Common.GetDataOptionBanner(dv, "slSize", "Size", string.Empty, false));
+
+
+        TemplateHandler.Assign(ref temp, "afftype", Resources.Lang.AffiliateType);
+        DataTable dt = DbHelper.Execute("Aff_AffTypeSel_2", DBType.AFFILIATE_12BET).ResultSet.Tables[0];
+        var afftype = string.Empty;
+        TemplateHandler.Assign(ref temp, "optionafftype", Common.GenDropDownFromTable(dt, "TypeId", "Name", "slAffType", ref afftype, false));
 
         this.HtmlContent = temp;
         

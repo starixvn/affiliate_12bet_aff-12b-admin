@@ -62,13 +62,11 @@ namespace DataHandler
             //hsParam.Add("gender", Gender);
             //hsParam.Add("address", formatInput(strAddress));
 
-
             hsParam.Add("phone", formatInput(strNumber));
             hsParam.Add("mobilephone", formatInput(strMobile));
             hsParam.Add("siteurl", formatInput(strURL));
             hsParam.Add("moresiteurls", formatInput(strMoreUrl));
             hsParam.Add("nositedesc", formatInput(strNoSiteDesc));  
-
 
             //hsParam.Add("preferredlanguage", formatInput(strPreferLang));
             hsParam.Add("player_username", formatInput(strPlayerUserName));
@@ -168,7 +166,7 @@ namespace DataHandler
         {
             return DbHelper.Execute("Aff_BannerSelType", DBType.AFFILIATE_12BET).ResultSet.Tables[0];
         }
-        public static DbResult SelAffBanner(string category, string language, string imageType, string size, string currency, int pageIndex, int pageSize, int type)
+        public static DbResult SelAffBanner(string category, string language, string imageType, string size, string currency, int pageIndex, int pageSize, int type, int afftype)
         {
             Hashtable hsParam = new Hashtable();
             if (!string.IsNullOrEmpty(category))
@@ -196,6 +194,7 @@ namespace DataHandler
             hsParam.Add("type", type);
             // -- Added by Frank.Ngo on IRP 671 - Jan 2012
 
+            hsParam.Add("afftype", afftype);
             hsParam.Add("pagesize", pageSize);
             hsParam.Add("pageindex", pageIndex);
             hsParam.Add("totalpages", 0);
@@ -236,7 +235,7 @@ namespace DataHandler
         }
         // Added by Frank.Ngo on IRP 671 - 10 Feb 2012
         // Get banners in parent category
-        public static DbResult SelAffBannerByParentCategory(string category, string language, string imageType, string size, string currency, int pageIndex, int pageSize, int type)
+        public static DbResult SelAffBannerByParentCategory(string category, string language, string imageType, string size, string currency, int pageIndex, int pageSize, int type, int afftype)
         {
             Hashtable hsParam = new Hashtable();
             if (!string.IsNullOrEmpty(category))
@@ -263,6 +262,8 @@ namespace DataHandler
             // ++ Added by Frank.Ngo on IRP 671 - Jan 2012
             hsParam.Add("type", type);
             // -- Added by Frank.Ngo on IRP 671 - Jan 2012
+
+            hsParam.Add("afftype", afftype);
 
             hsParam.Add("pagesize", pageSize);
             hsParam.Add("pageindex", pageIndex);

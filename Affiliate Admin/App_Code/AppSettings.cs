@@ -25,12 +25,13 @@ public static class AppSettings
     static int _imagesize;
     static string _virtualDir;
     static string _internalURL;
-    static string _internalEuroAffiliateURL;
-    static string _internalAsiaAffiliateURL;
+    static string _internalEuropeanAffiliateURL;
+    static string _internalAsianAffiliateURL;
     static string _ipCheckerURL;
     static string _websiteCheckerURL;
     static string _lbUrl;
     static string _urlAffSite;
+    static bool _localTest;
     static DateTime _UMStartTime;
     static DateTime _UMEndTime;
     static DateTime _StatementAvailableFrom;
@@ -54,8 +55,9 @@ public static class AppSettings
         _imagesize =CastAide.AsInt32(ConfigurationManager.AppSettings["imagesize"]);
         _StatementAvailableFrom = CastAide.AsDateTime(ConfigurationManager.AppSettings["StatementAvailableFrom"]);
         _internalURL = ConfigurationManager.AppSettings["internalURL"];
-        _internalEuroAffiliateURL = ConfigurationManager.AppSettings["internalEuroAffiliateURL"];
-        _internalAsiaAffiliateURL = ConfigurationManager.AppSettings["internalAsiaAffiliateURL"];
+        _internalEuropeanAffiliateURL = ConfigurationManager.AppSettings["internalEuropeanAffiliateURL"];
+        _internalAsianAffiliateURL = ConfigurationManager.AppSettings["internalAsianAffiliateURL"];
+        _localTest = ConfigurationManager.AppSettings["LocalTest"].Equals("1", StringComparison.OrdinalIgnoreCase);
 
         _websiteCheckerURL = ConfigurationManager.AppSettings["WebsiteCheckerURL"];
         _lbUrl = ConfigurationManager.AppSettings["LBUrl"];
@@ -215,6 +217,7 @@ public static class AppSettings
             return _virtualDir=="1";
         }
     }
+
     public static DateTime StatementAvailableFrom
     {
         get
@@ -236,18 +239,18 @@ public static class AppSettings
             return _internalURL;
         }
     }
-    public static string InternalEuroAffiliateURL
+    public static string InternalEuropeanAffiliateURL
     {
         get
         {
-            return _internalEuroAffiliateURL;
+            return _internalEuropeanAffiliateURL;
         }
     }
-    public static string InternalAsiaAffiliateURL
+    public static string InternalAsianAffiliateURL
     {
         get
         {
-            return _internalAsiaAffiliateURL;
+            return _internalAsianAffiliateURL;
         }
     }
     public static string IPCheckerURL
@@ -278,7 +281,13 @@ public static class AppSettings
             return _urlAffSite;
         }
     }
-
+    public static bool LocalTest
+    {
+        get
+        {
+            return _localTest;
+        }
+    }
     public static DateTime UMStartTime
     {
         get
@@ -411,11 +420,11 @@ public static class AppSettings
                 HttpContext.Current.Session["AffUsername"] = value;
             }
         }
-        public static int AffType
+        public static AffType AffType
         {
             get
             {
-                return CastAide.AsInt32(HttpContext.Current.Session["AffType"], 0);
+                return (AffType)CastAide.AsInt32(HttpContext.Current.Session["AffType"], 0);
             }
             set
             {
@@ -475,4 +484,5 @@ public static class AppSettings
         get { return DNAide.Core.CastAide.AsString(System.Configuration.ConfigurationManager.AppSettings["bccMail"]); }
     }
     #endregion
+    
 }

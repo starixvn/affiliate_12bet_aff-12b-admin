@@ -73,7 +73,7 @@ public partial class Customer_AffiliateInfo : IBCPage
             {
                 DataRow dr = dtbInfo.Rows[0];
 
-                AppSettings.Session.AffType = CastAide.AsInt32(dr["afftype"]);
+                AppSettings.Session.AffType = (AffType)CastAide.AsInt32(dr["afftype"], 0);
 
                 TemplateHandler.Assign(ref strTpl, "url", GerUrl(AppSettings.Session.AffUsername));//Link to affiliate
                 TemplateHandler.Assign(ref strTpl, "noinfo-val", "0");
@@ -217,7 +217,7 @@ public partial class Customer_AffiliateInfo : IBCPage
         string accKey = FormsAuthentication.HashPasswordForStoringInConfigFile(Session.SessionID + rndStr, "MD5");
         string accID = AppSettings.Session.CustID.ToString();
         string accOnId = AppSettings.Session.OnUser.ToString();
-        string _url = AppSettings.Session.AffType == 2 ? AppSettings.InternalEuroAffiliateURL : AppSettings.InternalAsiaAffiliateURL;
+        string _url = AppSettings.Session.AffType == AffType.EuropeanAffiliate ? AppSettings.InternalEuropeanAffiliateURL : AppSettings.InternalAsianAffiliateURL;
         _url += "?chalengeStr=" + rndStr;
         _url += "&accKey=" + accKey;
         _url += "&custName=" + custName;

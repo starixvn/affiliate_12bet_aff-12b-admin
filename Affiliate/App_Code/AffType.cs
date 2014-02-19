@@ -3,9 +3,8 @@
     /// <summary>
     /// Summary description for AffType
     /// </summary>
-
     public enum AffType
     {
-        AsianAffiliate = 0, MediaAffiliate = 1,  EuroAffiliate = 2
+        AsianAffiliate = 2, MediaAffiliate = 3,  EuropeanAffiliate = 4
     }
 }

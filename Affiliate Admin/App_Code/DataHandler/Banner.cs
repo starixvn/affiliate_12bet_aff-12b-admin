@@ -13,7 +13,7 @@ namespace DataHandler
 {
     public class Banner
     {
-        public static int InsBanner(string fileName, string category, string language, string currency, string imagetype, string size, ref int errcode, ref string errmsg, int type)
+        public static int InsBanner(string fileName, string category, string language, string currency, string imagetype, string size, string afftype, ref int errcode, ref string errmsg, int type)
         {
             DbResult dbr = null;
             int result = 0;          
@@ -28,6 +28,7 @@ namespace DataHandler
             htb.Add("filename", HttpContext.Current.Server.HtmlEncode(fileName));            
 
             htb.Add("bannerid", 0);
+            htb.Add("afftype", afftype);
             htb.Add("category", HttpContext.Current.Server.HtmlEncode(category));
             htb.Add("language", HttpContext.Current.Server.HtmlEncode(language));
             htb.Add("currency", HttpContext.Current.Server.HtmlEncode(currency));
@@ -72,7 +73,7 @@ namespace DataHandler
             return result;
         }
 
-        public static string UpdBanner(int id,string filename, string category, string language,string currency, string imagetype, string size)
+        public static string UpdBanner(int id,string filename, string category, string language,string currency, string imagetype, string size, string afftype)
         {                     
             Hashtable htb = new Hashtable();
             htb.Add("bannerid", id);
@@ -83,6 +84,7 @@ namespace DataHandler
             htb.Add("size", HttpContext.Current.Server.HtmlEncode(size));
             htb.Add("currency", HttpContext.Current.Server.HtmlEncode(currency));
             htb.Add("userid", AppSettings.Session.CustID);
+            htb.Add("afftype", afftype);
             htb.Add("ip", HttpContext.Current.Request.UserHostAddress);
             htb.Add("errcode", 0);
             htb.Add("errmsg", string.Empty);
@@ -135,7 +137,7 @@ namespace DataHandler
 
         // Modified by Frank.Ngo on IRP 671 - 10 Jan 2012
         // add "type" parameter to indicate normal banner or media banner
-        public static DbResult GetBannerList(string category,string language,string imageType,string size,string currency,int pageIndex, int pageSize, int type)
+        public static DbResult GetBannerList(string category,string language,string imageType,string size,string currency,int pageIndex, int pageSize, int type, int afftype)
         {
             Hashtable hsParam = new Hashtable();           
             if (!string.IsNullOrEmpty(category))
@@ -160,8 +162,10 @@ namespace DataHandler
             }
 
             // ++ Added by Frank.Ngo on IRP 671 - 10 Jan 2012
-            hsParam.Add("type", type);
+            hsParam.Add("type", type);            
             // -- Added by Frank.Ngo on IRP 671 - 10 Jan 2012
+
+            hsParam.Add("afftype", afftype);
 
             hsParam.Add("pagesize", pageSize);
             hsParam.Add("pageindex", pageIndex);
@@ -174,7 +178,7 @@ namespace DataHandler
 
         // Added by Frank.Ngo on IRP 671 - 10 Feb 2012
         // Get banners in parent category
-        public static DbResult GetBannerListByParentCategory(string category, string language, string imageType, string size, string currency, int pageIndex, int pageSize, int type)
+        public static DbResult GetBannerListByParentCategory(string category, string language, string imageType, string size, string currency, int pageIndex, int pageSize, int type, int afftype)
         {
             Hashtable hsParam = new Hashtable();
             if (!string.IsNullOrEmpty(category))
@@ -199,6 +203,7 @@ namespace DataHandler
             }
 
             hsParam.Add("type", type);
+            hsParam.Add("afftype", afftype);
             hsParam.Add("pagesize", pageSize);
             hsParam.Add("pageindex", pageIndex);
             hsParam.Add("totalpages", 0);

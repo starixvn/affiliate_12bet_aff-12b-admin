@@ -13,7 +13,6 @@ public partial class ListMediaBanner : IBCPage
         string temp = TemplateHandler.LoadTemplate("Media/MainListBannerNew.htm");
         int numRows = 0;
         TemplateHandler.Assign(ref temp, "SubCategory", Resources.Lang.SubCategory);
-        //TemplateHandler.Assign(ref temp, "File", Resources.Lang.File);
         TemplateHandler.Assign(ref temp, "Category", Resources.Lang.Category);
         TemplateHandler.Assign(ref temp, "Delete-val", Resources.Lang.Delete);
         TemplateHandler.Assign(ref temp, "Language", Resources.Lang.Language);
@@ -24,7 +23,7 @@ public partial class ListMediaBanner : IBCPage
         TemplateHandler.Assign(ref temp, "BannerList", Resources.Lang.ListBanner);
         TemplateHandler.Assign(ref temp, "ConfirmDelete", Resources.Lang.ConfirmDelBanner);
         TemplateHandler.Assign(ref temp, "ErrFileExtension", Resources.Lang.errFileExtension);
-        string cate = (Request["cateoption"] == null || Request["cateoption"].ToString() == "All") ? "" : Request["cateoption"].ToString();
+        string cate = (Request["cateoption"] == null || Request["cateoption"] == "All") ? "" : Request["cateoption"];
         bool hasSubCategory = false;
         string subCategory = string.Empty;
         bool isSearchByParentCategory = false;
@@ -32,22 +31,24 @@ public partial class ListMediaBanner : IBCPage
         if (cate == "Casino" || cate == "Sportsbook")
         {
             hasSubCategory = true;
-            if (string.IsNullOrEmpty(Request["slSubCategoryMedia"]) || Request["slSubCategoryMedia"].ToString() == "All")
+            if (string.IsNullOrEmpty(Request["slSubCategoryMedia"]) || Request["slSubCategoryMedia"] == "All")
             {
                 isSearchByParentCategory = true;
                 subCategory = string.Empty;
             }
             else
             {
-                subCategory = Request["slSubCategoryMedia"].ToString();
+                subCategory = Request["slSubCategoryMedia"];
                 paramCategory = subCategory;
             }
         }
         
-        string lang = (Request["langoption"] == null || Request["langoption"].ToString() == "All") ? "" : Request["langoption"].ToString();
-        string imgtype = (Request["typeoption"] == null || Request["typeoption"].ToString() == "All") ? "" : Request["typeoption"].ToString();
-        string size = (Request["sizeoption"] == null || Request["sizeoption"].ToString() == "All") ? "" : Request["sizeoption"].ToString();
-        string currency = (Request["currencyoption"] == null || Request["currencyoption"].ToString() == "All") ? "" : Request["currencyoption"].ToString();
+        string lang = (Request["langoption"] == null || Request["langoption"] == "All") ? "" : Request["langoption"];
+        string imgtype = (Request["typeoption"] == null || Request["typeoption"] == "All") ? "" : Request["typeoption"];
+        string size = (Request["sizeoption"] == null || Request["sizeoption"] == "All") ? "" : Request["sizeoption"];
+        string currency = (Request["currencyoption"] == null || Request["currencyoption"] == "All") ? "" : Request["currencyoption"];
+
+        int afftype = CastAide.AsInt32(Request["afftypeoption"], (int)AffType.AsianAffiliate);
         int pageSize = CastAide.AsInt32(Request["slPageSize"], 20);
         int currPage = CastAide.AsInt32(Request["page"], 1);
         
@@ -62,6 +63,11 @@ public partial class ListMediaBanner : IBCPage
         TemplateHandler.Assign(ref temp, "optiontype", Common.GetDataOptionBanner(dv,"typeoption", "ImageType", imgtype, true));
         TemplateHandler.Assign(ref temp, "optionsize", Common.GetDataOptionBanner(dv, "sizeoption","Size", size, true));
 
+        DataTable dt = DbHelper.Execute("Aff_AffTypeSel_2", DBType.AFFILIATE_12BET).ResultSet.Tables[0];
+        TemplateHandler.Assign(ref temp, "afftype", Resources.Lang.AffiliateType);
+        var tempAffType = afftype.ToString();
+        TemplateHandler.Assign(ref temp, "optionafftype", Common.GenDropDownFromTable(dt, "TypeId", "Name", "afftypeoption", ref tempAffType, false));
+
         TemplateHandler.Assign(ref temp, "Images", Resources.Lang.Images);
         TemplateHandler.Assign(ref temp, "Filename", Resources.Lang.filename);
         TemplateHandler.Assign(ref temp, "ImageType", Resources.Lang.ImageType);
@@ -69,8 +75,8 @@ public partial class ListMediaBanner : IBCPage
         TemplateHandler.Assign(ref temp, "Delete", Resources.Lang.Delete);
         int minNo=0, maxNo=0, totalBanner=0, totalPage=0;
         TemplateHandler.ReplaceBlock(ref temp, "Content", GenerateHTML.Banner.GetBannerList(
-            paramCategory, isSearchByParentCategory, lang, imgtype, size, currency, currPage, 
-            ref minNo, ref maxNo, ref totalBanner, ref totalPage, pageSize, Common.NormalBanner));
+            paramCategory, isSearchByParentCategory, lang, imgtype, size, currency, currPage,
+            ref minNo, ref maxNo, ref totalBanner, ref totalPage, pageSize, Common.NormalBanner, afftype));
         if (totalBanner > 0)
         {
             TemplateHandler.Assign(ref temp, "paging-top", Common.GenPaging(totalPage, currPage, pageSize, totalBanner, "aPageTop", "txtPageTop", new string[] { "Delete", "Add" }, new string[] { "DeleteSelectedMedia(0, 'true');",
@@ -83,9 +89,9 @@ public partial class ListMediaBanner : IBCPage
             TemplateHandler.Assign(ref temp, "paging-bottom", "");
         }
         TemplateHandler.Assign(ref temp, "submenu", SubMenu.GenSubMenu(
-            new string[] { "ListText.aspx", "ListMediaBanner.aspx", "ListBannerNew.aspx" },
-            new string[] { "Text List", "Media Banner List", "Banner List" },
-            2, totalBanner, Resources.Lang.MediaGallery, "i_media1.png"));
+            new string[] { "ListText.aspx", "ListBannerNew.aspx" },
+            new string[] { "Text List", "Banner List" },
+            1, totalBanner, Resources.Lang.MediaGallery, "i_media1.png"));
 
         TemplateHandler.Assign(ref temp, "totalMedia-val", totalBanner);
         TemplateHandler.Assign(ref temp, "minNo", minNo.ToString());

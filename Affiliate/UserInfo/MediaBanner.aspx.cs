@@ -117,7 +117,7 @@ public partial class MediaGallery : RootPageLogIn
 
         TemplateHandler.ReplaceBlock(ref htmlContent, "Content",
             GenerateHTML.Banner.GetBannerList(paramCategory, isSearchByParentCategory, lang, type, size,
-            currency, pageIndex, pageSize, ref totalpage, domain, trackingcode, targetRequest, Common.MediaBanner));
+            currency, pageIndex, pageSize, ref totalpage, domain, trackingcode, targetRequest, Common.MediaBanner, AppSettings.AffType));
         TemplateHandler.Assign(ref htmlContent, "PageSize-val", pageSize);
         TemplateHandler.Assign(ref htmlContent, "page", pageIndex);
         /* Generate Banner paging*/

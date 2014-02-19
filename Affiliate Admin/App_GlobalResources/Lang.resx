@@ -2323,4 +2323,7 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
   <data name="Japanese" xml:space="preserve">
     <value>Japanese</value>
   </data>
+  <data name="AffiliateType" xml:space="preserve">
+    <value>Affiliate Type</value>
+  </data>
 </root>
