@@ -15,4 +15,9 @@ public class HttpContextAnalysis
     {
         return context.Request.Url.Host;
     }
+
+    public static int GetPort(HttpContext context)
+    {
+        return context.Request.Url.Port;
+    }
 }

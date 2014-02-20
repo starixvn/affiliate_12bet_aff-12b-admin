@@ -8,13 +8,15 @@ using DNAide.Web;
 using DNAide.Data;
 using Resources;
 
-public class ProcessLogin : IHttpHandler, IRequiresSessionState {
-    
-    public void ProcessRequest (HttpContext context) {
+public class ProcessLogin : IHttpHandler, IRequiresSessionState
+{
+
+    public void ProcessRequest(HttpContext context)
+    {
         context = AffHandler.InitializeCulture(context);
         context.Response.ContentType = "text/html";
         string _s = string.Empty;
-        
+
         try
         {
             string _captcha = context.Request.Form["vcode"];
@@ -31,26 +33,33 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState {
                 if (string.IsNullOrEmpty(dr.Outputs["errmsg"].ToString()))
                 {
                     var afftype = (AffType)DNAide.Core.CastAide.AsInt32(dr.Outputs["afftype"], -1);
-                    
-                    var currentDomain = HttpContextAnalysis.GetDomain(context);
-                    bool isValidLogin = false; 
 
-                    switch (afftype)
+                    if (!AppSettings.LocalTest)
                     {
-                        case AffType.AsianAffiliate:
-                        case AffType.MediaAffiliate:
-                            isValidLogin = currentDomain.Equals(AppSettings.AsianAffDomain, StringComparison.OrdinalIgnoreCase);
-                            break;
-                        case AffType.EuropeanAffiliate:
-                            isValidLogin = currentDomain.Equals(AppSettings.EuropeanAffDomain, StringComparison.OrdinalIgnoreCase);
-                            break;
-                    }
-                    
-                    if (!isValidLogin)
-                    {
-                        _s = "103: " + Lang.NotAllowOnDomain;
-                        context.Response.Write(_s);
-                        return;
+                        var currentDomain = HttpContextAnalysis.GetDomain(context);
+                        var port = HttpContextAnalysis.GetPort(context);
+
+                        bool isValidLogin = false;
+
+                        switch (afftype)
+                        {
+                            case AffType.AsianAffiliate:
+                            case AffType.MediaAffiliate:
+                                isValidLogin = currentDomain.Equals(AppSettings.AsianAffDomain, StringComparison.OrdinalIgnoreCase) 
+                                    && port == AppSettings.AsianAffPort;
+                                break;
+                            case AffType.EuropeanAffiliate:
+                                isValidLogin = currentDomain.Equals(AppSettings.EuropeanAffDomain, StringComparison.OrdinalIgnoreCase) 
+                                    && port == AppSettings.EuropeanAffPort;
+                                break;
+                        }
+
+                        if (!isValidLogin)
+                        {
+                            _s = "103: " + Lang.NotAllowOnDomain;
+                            context.Response.Write(_s);
+                            return;
+                        }
                     }
 
                     AppSettings.Session.AffType = afftype;
@@ -65,14 +74,14 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState {
                         DNAide.Core.CastAide.AsBoolean(dr.Outputs["hassecurityquestion"]);
                     AppSettings.Session.HasDailyDetail = DNAide.Core.CastAide.AsBoolean(dr.Outputs["hasdailydetail"]);
                     AppSettings.Session.MailOption = DNAide.Core.CastAide.AsBoolean(dr.Outputs["mailoption"], true);
-                        //true is defined plain text
+                    //true is defined plain text
                     AppSettings.Session.PreferLang = DNAide.Core.CastAide.AsString(dr.Outputs["preferlang"], "en-US");
                     AppSettings.Session.IsCasino = DNAide.Core.CastAide.AsBoolean(dr.Outputs["iscasino"], false);
                     AppSettings.Session.ForceChangePass = DNAide.Core.CastAide.AsBoolean(dr.Outputs["forcechangepass"], false);
 
                     if (AppSettings.Session.Language == null)
                         AppSettings.Session.Language = "en-US";
-                    
+
                     AppSettings.Session.FirsTimeLoginSucc = true;
                     AppSettings.Session.CommGroupName = DNAide.Core.CastAide.AsString(dr.Outputs["commgroupname"]);
 
@@ -80,7 +89,7 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState {
                 }
                 else
                 {
-                    _s ="102:" + dr.Outputs["errmsg"];
+                    _s = "102:" + dr.Outputs["errmsg"];
                 }
             }
         }
@@ -88,15 +97,17 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState {
         {
             DNAideLog.Write(ex.Message);
             _s = "102:" + ex.Message;
-            #if DEBUG
+#if DEBUG
                         throw;
-            #endif
+#endif
         }
         context.Response.Write(_s);
     }
- 
-    public bool IsReusable {
-        get {
+
+    public bool IsReusable
+    {
+        get
+        {
             return false;
         }
     }

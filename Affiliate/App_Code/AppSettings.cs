@@ -51,7 +51,9 @@ public static class AppSettings
     static bool _showCasino;
     static bool _localTest;
     static string _asianAffDomain;
+    static int _asianAffPort;
     static string _europeanAffDomain;
+    static int _europeanAffPort;
 
     static AppSettings()
     {
@@ -59,7 +61,9 @@ public static class AppSettings
         _affPublicKeyToken = ConfigurationManager.AppSettings["AffPublicKeyToken"];
 
         _asianAffDomain = ConfigurationManager.AppSettings["AsianAffDomain"];
+        _asianAffPort = CastAide.AsInt32(ConfigurationManager.AppSettings["AsianAffPort"]);
         _europeanAffDomain = ConfigurationManager.AppSettings["EuropeanAffDomain"];
+        _europeanAffPort = CastAide.AsInt32(ConfigurationManager.AppSettings["EuropeanAffPort"]);
 
         _site = ConfigurationManager.AppSettings["Site"];
         _12BetLink = ConfigurationManager.AppSettings["12BetLink"];
@@ -281,6 +285,14 @@ public static class AppSettings
         }
     }
 
+    public static int AsianAffPort
+    {
+        get
+        {
+            return _asianAffPort;
+        }
+    }
+
     public static string EuropeanAffDomain
     {
         get
@@ -288,6 +300,15 @@ public static class AppSettings
             return _europeanAffDomain;
         }
     }
+
+    public static int EuropeanAffPort
+    {
+        get
+        {
+            return _europeanAffPort;
+        }
+    }
+
     public static bool HasLogin
     {
         get

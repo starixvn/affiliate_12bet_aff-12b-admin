@@ -78,8 +78,14 @@ public class BetterUrlRewriter : IHttpHandler, IRequiresSessionState
         {
 
             List<string> listParam = new List<string>(strPath.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries));
-            if (CastAide.AsInt32(listParam[0], 0) == 0)//Remove virtual directory
-                listParam.RemoveAt(0);
+
+            while (listParam.Count > 0)
+            {
+                if (CastAide.AsInt32(listParam[0], 0) == 0) //Remove virtual directory
+                    listParam.RemoveAt(0);
+                else
+                    break;
+            }
 
             // Example hard coded mapping of "FriendlyPage.html" to "UnfriendlyPage.aspx"                         
             strVirtualPath = "~/UserInfo/MediaLink.aspx";
