@@ -50,11 +50,16 @@ public static class AppSettings
     static string _bannerUrl;
     static bool _showCasino;
     static bool _localTest;
+    static string _asianAffDomain;
+    static string _europeanAffDomain;
 
     static AppSettings()
     {
         _affPersonalizedPageLink = ConfigurationManager.AppSettings["AffPersonalizedPageLink"];
         _affPublicKeyToken = ConfigurationManager.AppSettings["AffPublicKeyToken"];
+
+        _asianAffDomain = ConfigurationManager.AppSettings["AsianAffDomain"];
+        _europeanAffDomain = ConfigurationManager.AppSettings["EuropeanAffDomain"];
 
         _site = ConfigurationManager.AppSettings["Site"];
         _12BetLink = ConfigurationManager.AppSettings["12BetLink"];
@@ -265,6 +270,22 @@ public static class AppSettings
         get
         {
             return _afftype;
+        }
+    }
+    
+    public static string AsianAffDomain
+    {
+        get
+        {
+            return _asianAffDomain;
+        }
+    }
+
+    public static string EuropeanAffDomain
+    {
+        get
+        {
+            return _europeanAffDomain;
         }
     }
     public static bool HasLogin
@@ -580,19 +601,19 @@ public static class AppSettings
 
     public static string MailServer
     {
-        get { return System.Configuration.ConfigurationManager.AppSettings["SMTPServer"]; }
+        get { return ConfigurationManager.AppSettings["SMTPServer"]; }
     }
     public static string MailPwd
     {
-        get { return DNAide.Utils.Encryption.CfsDeCrypt(System.Configuration.ConfigurationManager.AppSettings["PassMail"]); }
+        get { return DNAide.Utils.Encryption.CfsDeCrypt(ConfigurationManager.AppSettings["PassMail"]); }
     }
     public static string FromMail
     {
-        get { return System.Configuration.ConfigurationManager.AppSettings["FromMail"]; }
+        get { return ConfigurationManager.AppSettings["FromMail"]; }
     }
     public static int Port
     {
-        get { return DNAide.Core.CastAide.AsInt32(System.Configuration.ConfigurationManager.AppSettings["SMTPPort"]); }
+        get { return CastAide.AsInt32(ConfigurationManager.AppSettings["SMTPPort"]); }
     }
 
     public static string ToMail

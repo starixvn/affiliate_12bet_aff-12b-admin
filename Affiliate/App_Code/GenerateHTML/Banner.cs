@@ -133,9 +133,7 @@ namespace GenerateHTML
             
             if (nRows > 0)
             {
-                string temp = (type == Common.NormalBanner)
-                    ? TemplateHandler.LoadTemplate("UserInfo/MediaGallery.htm")
-                    : TemplateHandler.LoadTemplate("UserInfo/MediaBanner.htm");
+                string temp = TemplateHandler.LoadTemplate("UserInfo/MediaGallery.htm");
                 string content = TemplateHandler.CopyBlock(temp, "Content");                
                 totalpage = CastAide.AsInt32(result.Outputs["totalpages"]);
                 DataTable dtbResult = result.ResultSet.Tables[0];

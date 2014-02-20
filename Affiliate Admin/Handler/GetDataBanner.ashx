@@ -24,6 +24,7 @@ public class GetDataBanner : IHttpHandler, IRequiresSessionState {
             // tam thoi type=0 <=> normal banner
             int bannerType = CastAide.AsInt32(context.Request.Params["bannerType"], 0);
             bool isNewCateStruct = CastAide.AsBoolean(context.Request.Params["isNewCateStruct"], false);
+            int affType = CastAide.AsInt32(context.Request["afftype"], (int)AffType.AsianAffiliate);
             string content = string.Empty;
             if (isNewCateStruct)
             {
@@ -36,10 +37,10 @@ public class GetDataBanner : IHttpHandler, IRequiresSessionState {
                     else
                         paramCategory = context.Request["subCategory"].ToString();
                 }
-                content = GenerateHTML.Banner.GetBannerList(paramCategory, isSearchByParentCategory, lang, type, size, currency, page, ref minNo, ref maxNo, ref totalBanner, ref totalPage, pageSize, bannerType);
+                content = GenerateHTML.Banner.GetBannerList(paramCategory, isSearchByParentCategory, lang, type, size, currency, page, ref minNo, ref maxNo, ref totalBanner, ref totalPage, pageSize, bannerType, affType);
             }
             else
-                content = GenerateHTML.Banner.GetBannerList(category, false, lang, type, size, currency, page, ref minNo, ref maxNo, ref totalBanner, ref totalPage, pageSize, bannerType);
+                content = GenerateHTML.Banner.GetBannerList(category, false, lang, type, size, currency, page, ref minNo, ref maxNo, ref totalBanner, ref totalPage, pageSize, bannerType, affType);
 
             result.Append(minNo.ToString());
             result.Append("$$$");

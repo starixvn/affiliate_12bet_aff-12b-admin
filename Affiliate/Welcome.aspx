@@ -275,7 +275,7 @@
                         </td>
                         <td class="width160">
                             <input name="txtYourAnswer" class="inputbox width150" id="txtYourAnswer"
-                                value="" size="30" onkeyup="return checkpass(this,'td_confirm');" type="password" />
+                                value="" size="30" onkeyup="return checkpass(this,'td_confirm');" type="text" />
                         </td>
                         <td class="width30">
                         </td>

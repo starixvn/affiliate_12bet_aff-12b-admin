@@ -108,8 +108,8 @@ function GetDataBannerList(page, bannerType, isNewCateStruct) {
                 + "&size=" + $('sizeoption').value
                 + "&page=" + page
                 + "&PageSize=" + $('slPageSize').value
-                + "&isNewCateStruct=" + isNewCateStruct
-                + "&bannerType=" + bannerType,
+                + "&isNewCateStruct=" + isNewCateStruct                
+                + "&afftype=" + $('afftypeoption').value,
             onComplete: function (data) {
                 ProcessResult(data.responseText);
             }

@@ -200,7 +200,7 @@ namespace DataHandler
             hsParam.Add("totalpages", 0);
             hsParam.Add("nrows", 0);
 
-            return DbHelper.Execute("Aff_BannerSel_1", hsParam, DBType.AFFILIATE_12BET);
+            return DbHelper.Execute("Aff_BannerSel_1_test", hsParam, DBType.AFFILIATE_12BET);
         }
 
         public static DbResult SelAffBannerOld(string category, string language, string imageType, string size, string currency, int pageIndex, int pageSize)
@@ -270,7 +270,7 @@ namespace DataHandler
             hsParam.Add("totalpages", 0);
             hsParam.Add("nrows", 0);
 
-            return DbHelper.Execute("Aff_BannerSelByParentCate", hsParam, DBType.AFFILIATE_12BET);
+            return DbHelper.Execute("Aff_BannerSelByParentCate_test", hsParam, DBType.AFFILIATE_12BET);
         }
         public static void ChangePassword(int intCustId, string strNewPass, string strOldPass, int intUserId, string strLang, ref int intErrCode)
         {

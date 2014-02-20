@@ -36,7 +36,7 @@ namespace DataHandler
                 htb.Add("commgroupname", "");
                 htb.Add("iscasino", 0);
                 htb.Add("forcechangepass", 0);
-                htb.Add("afftype", 0);
+                htb.Add("afftype", CastAide.AsInt32(0));
                 DbResult dbr = DbHelper.Execute("Aff_AffiliateLogin", htb, DBType.AFFILIATE_12BET);
                 return dbr;
             }

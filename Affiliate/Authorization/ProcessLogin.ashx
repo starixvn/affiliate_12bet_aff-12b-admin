@@ -14,10 +14,6 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState {
         context = AffHandler.InitializeCulture(context);
         context.Response.ContentType = "text/html";
         string _s = string.Empty;
-
-        const string euroAffiliateDomain = "euaffiliate.12bet.com";
-        const string asianAffiliateDomain = "affiliate.12bet.com";
-        
         
         try
         {
@@ -35,33 +31,28 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState {
                 if (string.IsNullOrEmpty(dr.Outputs["errmsg"].ToString()))
                 {
                     var afftype = (AffType)DNAide.Core.CastAide.AsInt32(dr.Outputs["afftype"], -1);
+                    
+                    var currentDomain = HttpContextAnalysis.GetDomain(context);
+                    bool isValidLogin = false; 
 
-                    if (!AppSettings.LocalTest)
+                    switch (afftype)
                     {
-                        var currentDomain = HttpContextAnalysis.GetDomain(context);
-                        var isValidLogin = false;
-
-                        switch (afftype)
-                        {
-                            case AffType.AsianAffiliate:
-                            case AffType.MediaAffiliate:
-                                if (currentDomain.Equals(asianAffiliateDomain, StringComparison.OrdinalIgnoreCase))
-                                    isValidLogin = true;
-                                break;
-                            case AffType.EuropeanAffiliate:
-                                if (currentDomain.Equals(euroAffiliateDomain, StringComparison.OrdinalIgnoreCase))
-                                    isValidLogin = true;
-                                break;
-                        }
-
-                        if (!isValidLogin)
-                        {
-                            _s = "103: " + Lang.NotAllowOnDomain;
-                            context.Response.Write(_s);
-                            return;
-                        }
+                        case AffType.AsianAffiliate:
+                        case AffType.MediaAffiliate:
+                            isValidLogin = currentDomain.Equals(AppSettings.AsianAffDomain, StringComparison.OrdinalIgnoreCase);
+                            break;
+                        case AffType.EuropeanAffiliate:
+                            isValidLogin = currentDomain.Equals(AppSettings.EuropeanAffDomain, StringComparison.OrdinalIgnoreCase);
+                            break;
                     }
                     
+                    if (!isValidLogin)
+                    {
+                        _s = "103: " + Lang.NotAllowOnDomain;
+                        context.Response.Write(_s);
+                        return;
+                    }
+
                     AppSettings.Session.AffType = afftype;
                     AppSettings.Session.CustID = DNAide.Core.CastAide.AsInt32(dr.Outputs["custid"], -1);
                     AppSettings.Session.OnUser = DataHandler.Auth.LoginOnuser(context);
@@ -89,7 +80,7 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState {
                 }
                 else
                 {
-                    _s ="102:" + dr.Outputs["errmsg"].ToString();
+                    _s ="102:" + dr.Outputs["errmsg"];
                 }
             }
         }
