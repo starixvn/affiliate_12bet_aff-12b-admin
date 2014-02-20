@@ -17,7 +17,7 @@ public class Active12BetAccount
          * @Check 12Player Account activated and automaticaly activate 2009-02-17
             In "payment request" page, we have to check whether member get activated or not. If not, then..
                  1. Get member information from 12bet databases.
-                 2. Insert member into IBC database (SP: Dot_Dep_CustomerInsMember_Ag)
+                 2. Insert member into IBC database (SP: Dot_Dep_CustomerInsMember_Ag_Cust)
                  3. Update IBC info into 12bet database.
         */
     public static bool Check12BetUsernameByAffId(int AffId, ref string errMsg)

@@ -133,7 +133,7 @@ namespace DataHandler
             hsParam.Add("username", string.Empty);
             hsParam.Add("errcode", 0);
             hsParam.Add("errmsg", string.Empty);
-            DbResult result=DbHelper.Execute("Dot_Dep_CustomerInsMember_Ag", hsParam, DBType.MAIN);
+            DbResult result=DbHelper.Execute("Dot_Dep_CustomerInsMember_Ag_Cust", hsParam, DBType.MAIN);
             username = result.Outputs["username"].ToString();
             custid=CastAide.AsInt32(result.Outputs["custid"]);
             errmsg=result.Outputs["errmsg"].ToString();

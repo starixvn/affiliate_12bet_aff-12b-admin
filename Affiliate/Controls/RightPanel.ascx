@@ -76,16 +76,17 @@
 			<span><a runat="server" href="~/UserInfo/Account_Overview.aspx" id="lnkAccOverview"><%=Resources.Lang.AccOverview%></a></span>
             <% if (AppSettings.Session.CommGroupName == "Korean Agent Comm")
                { %>
-                <%--<span><a runat="server" href="~/UserInfo/MediaGallery.aspx" id="lnkMediaGallery"><%=Resources.Lang.Media %></a></span>--%>
+               
                 <span><a runat="server" href="~/UserInfo/Customers.aspx" id="A15"><%= Resources.Lang.YourCustomers %></a></span>
             <%} %>
+          
 			<span><a runat="server" href="~/UserInfo/StatementHistory.aspx" id="lnkStaHis"><%=Resources.Lang.StatementHistory%></a></span>
 			<span><a runat="server" href="~/UserInfo/MyAccount.aspx" id="lnkMyAcc"><%=Resources.Lang.MyAcc %></a></span>
 			<span><a runat="server" href="~/UserInfo/PaymentRequest.aspx" id="lnkPayment"><%=Resources.Lang.PaymentRequest %></a></span>
 			
             <% if (AppSettings.Session.CommGroupName != "Media")
                { %>
-                <%--<span><a runat="server" href="~/UserInfo/MediaGallery.aspx" id="lnkMediaGallery"><%=Resources.Lang.Media %></a></span>--%>
+                
                 <span><a runat="server" href="~/UserInfo/MediaGalleryNew.aspx" id="lnkMediaGalleryNew"><%= Resources.Lang.Media%></a></span>
             <%} %>
             <%else

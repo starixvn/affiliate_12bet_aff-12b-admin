@@ -685,7 +685,7 @@ namespace DataHandler
             hsParam.Add("username", string.Empty);
             hsParam.Add("errcode", 0);
             hsParam.Add("errmsg", string.Empty);
-            DbResult result = DbHelper.Execute("Dot_Dep_CustomerInsMember_Ag", hsParam, DBType.MAIN);
+            DbResult result = DbHelper.Execute("Dot_Dep_CustomerInsMember_Ag_Cust", hsParam, DBType.CustDB);
             username = result.Outputs["username"].ToString();
             custid = CastAide.AsInt32(result.Outputs["custid"]);
             errmsg = result.Outputs["errmsg"].ToString();
@@ -699,7 +699,7 @@ namespace DataHandler
                 logParam.Add("creator", AppSettings.Session.CustID);
                 logParam.Add("affid", AppSettings.Session.CustID);
                 logParam.Add("typename", "Member");
-                logParam.Add("spname", "Dot_Dep_CustomerInsMember_Ag");
+                logParam.Add("spname", "Dot_Dep_CustomerInsMember_Ag_Cust");
                 logParam.Add("ip", HttpContext.Current.Request.UserHostAddress);
                 logParam.Add("refno", refNo);
                 logParam.Add("details", "Add 12Bet player account to IBC DepositCustID=" + customer.DepositUserId);

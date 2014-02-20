@@ -4,6 +4,7 @@
 public class DBType
 {
     private static string _main = "main";
+    private static string _custdb = "custdb";
     private static string _archive = "archive";    
     private static string _onUser = "on_user";
     private static string _wareHouse = "warehouse";
@@ -16,6 +17,14 @@ public class DBType
         get
         {
             return _main;
+        }
+    }
+
+    public static string CustDB
+    {
+        get
+        {
+            return _custdb;
         }
     }
 
