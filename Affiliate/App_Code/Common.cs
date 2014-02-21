@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Web;
 using System.Collections;
 using System.Text;
+using Affiliate;
 using DNAide.Web;
 using DNAide.Core;
 using LoadBalancerLibrary;
@@ -50,6 +51,16 @@ public class Common
             default:
                 return "en";
         }
+    }
+
+    public static string GetBannerFlash()
+    {
+        if (AppSettings.AffType == (int) AffType.European)
+        {
+            return string.Format("Flash/{0}/{1}", AffType.European.ToString(), "home_banner_eu.swf");
+        }
+
+        return string.Format("Flash/{0}/{1}", GetLanguage(), "home_banner.swf");
     }
 
     public static string GetLanguage()

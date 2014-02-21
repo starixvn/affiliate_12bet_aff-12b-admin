@@ -93,7 +93,7 @@ public class SignUp : IHttpHandler, IRequiresSessionState
                 string strCurrLang = AppSettings.Session.Language;
                 if (strPreferLang.ToUpper() == string.Empty)
                     strPreferLang = "en-US";
-                strFileName = "Email/SignupMail/SignupMail_" + strPreferLang + Common.EmailSuffix(true) + ".htm";                
+                strFileName = "Email/SignupMail/SignupMail_" + strPreferLang + Common.EmailSuffix(false) + ".htm";                
                
                 string strRegisMail = TemplateHandler.LoadTemplate(strFileName).Replace("\r\n", "");
                 TemplateHandler.Assign(ref strRegisMail, "fname", strFName);

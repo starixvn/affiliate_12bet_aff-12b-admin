@@ -34,32 +34,29 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
                 {
                     var afftype = (AffType)DNAide.Core.CastAide.AsInt32(dr.Outputs["afftype"], -1);
 
-                    if (!AppSettings.LocalTest)
+                    var currentDomain = HttpContextAnalysis.GetDomain(context);
+                    var port = HttpContextAnalysis.GetPort(context);
+
+                    bool isValidLogin = false;
+
+                    switch (afftype)
                     {
-                        var currentDomain = HttpContextAnalysis.GetDomain(context);
-                        var port = HttpContextAnalysis.GetPort(context);
+                        case AffType.Asian:
+                        case AffType.Media:
+                            isValidLogin = currentDomain.Equals(AppSettings.AsianAffDomain, StringComparison.OrdinalIgnoreCase) 
+                                && port == AppSettings.AsianAffPort;
+                            break;
+                        case AffType.European:
+                            isValidLogin = currentDomain.Equals(AppSettings.EuropeanAffDomain, StringComparison.OrdinalIgnoreCase) 
+                                && port == AppSettings.EuropeanAffPort;
+                            break;
+                    }
 
-                        bool isValidLogin = false;
-
-                        switch (afftype)
-                        {
-                            case AffType.AsianAffiliate:
-                            case AffType.MediaAffiliate:
-                                isValidLogin = currentDomain.Equals(AppSettings.AsianAffDomain, StringComparison.OrdinalIgnoreCase) 
-                                    && port == AppSettings.AsianAffPort;
-                                break;
-                            case AffType.EuropeanAffiliate:
-                                isValidLogin = currentDomain.Equals(AppSettings.EuropeanAffDomain, StringComparison.OrdinalIgnoreCase) 
-                                    && port == AppSettings.EuropeanAffPort;
-                                break;
-                        }
-
-                        if (!isValidLogin)
-                        {
-                            _s = "103: " + Lang.NotAllowOnDomain;
-                            context.Response.Write(_s);
-                            return;
-                        }
+                    if (!isValidLogin)
+                    {
+                        _s = "103: " + Lang.NotAllowOnDomain;
+                        context.Response.Write(_s);
+                        return;
                     }
 
                     AppSettings.Session.AffType = afftype;

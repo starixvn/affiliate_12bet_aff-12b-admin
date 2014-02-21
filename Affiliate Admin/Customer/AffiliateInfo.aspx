@@ -191,25 +191,23 @@
         var ajax = new Ajax.Request("../Handler/UpdAffType.ashx", {
             method: 'post',
             parameters: 'afftype=' + $("slAffType").value,
-            onComplete: function (data) {
+            onComplete: function(data) {
                 var arr = data.responseText.split("@");
-                if (arr[0] == '0') {
-
+                if (arr[0] == '1') {
+                    $('slAffType').blur();
+                    alert(arr[1]);
+                } else {
                     var options = $$("select#slAffType option");
                     var len = options.length;
-                    
+
                     for (var i = 0; i < len; i++) {
                         if (options[i].selected == true) {
                             $("spAffType").innerHTML = options[i].text;
                             break;
                         }
                     }
-
-                    if (parent.fContent.location.href.indexOf("AffiliateUpd.aspx") >= 0)
-                        parent.fContent.location.href = parent.fContent.location.href; 
+                    parent.fInfo.location.href = parent.fInfo.location.href;
                 }
-                $('slAffType').blur();
-                alert(arr[1]);
             }
         });
     }
