@@ -24,7 +24,7 @@ public class GetDataBanner : IHttpHandler, IRequiresSessionState {
             // tam thoi type=0 <=> normal banner
             int bannerType = CastAide.AsInt32(context.Request.Params["bannerType"], 0);
             bool isNewCateStruct = CastAide.AsBoolean(context.Request.Params["isNewCateStruct"], false);
-            int affType = CastAide.AsInt32(context.Request["afftype"], (int)AffType.AsianAffiliate);
+            int affType = CastAide.AsInt32(context.Request["afftype"], (int)AffType.Asian);
             string content = string.Empty;
             if (isNewCateStruct)
             {

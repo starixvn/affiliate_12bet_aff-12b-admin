@@ -3,5 +3,5 @@
 /// </summary>
 public enum AffType
 {
-    AsianAffiliate = 2, MediaAffiliate = 3, EuropeanAffiliate = 4
+    Asian = 2, Media = 3, European = 4
 }

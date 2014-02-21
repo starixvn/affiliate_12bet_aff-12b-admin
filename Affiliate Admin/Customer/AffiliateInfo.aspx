@@ -152,7 +152,70 @@
         }
         ChangeLang(false, 0);
     }
-    
+
+    //Status select box event.
+    function AffTypeTimeout(isShow) {
+        clearTimeout(status);
+        status = null;
+        if (!isShow)
+            status = setTimeout("ChangeAffType(false, 0);", 4000);
+        else
+            status = setTimeout("ChangeAffType(true, 0);", 4000);
+    }
+    function ChangeAffType(isChange, setValue) {
+        if (isChange) {
+            $("slAffType").show();
+            $("spAffType").hide();
+            $("slAffType").focus();
+            if (setValue == 1) {
+                var currentAffType = $("spAffType").innerHTML;
+                var options = $$("select#slAffType option");
+                var len = options.length;
+
+                for (var i = 0; i < len; i++) {
+                    if (options[i].text == currentAffType) {
+                        $("slAffType").value = options[i].value;        
+                        break;
+                    }
+                }
+            }
+                
+        }
+        else {
+            $("slAffType").hide();
+            $("spAffType").show();
+        }
+    }
+
+    function SubmitAffType() {
+        var ajax = new Ajax.Request("../Handler/UpdAffType.ashx", {
+            method: 'post',
+            parameters: 'afftype=' + $("slAffType").value,
+            onComplete: function (data) {
+                var arr = data.responseText.split("@");
+                if (arr[0] == '0') {
+
+                    var options = $$("select#slAffType option");
+                    var len = options.length;
+                    
+                    for (var i = 0; i < len; i++) {
+                        if (options[i].selected == true) {
+                            $("spAffType").innerHTML = options[i].text;
+                            break;
+                        }
+                    }
+
+                    if (parent.fContent.location.href.indexOf("AffiliateUpd.aspx") >= 0)
+                        parent.fContent.location.href = parent.fContent.location.href;
+                    parent.fInfo.location.href = parent.fInfo.location.href; 
+                }
+                $('slAffType').blur();
+                alert(arr[1]);
+            }
+        });
+    }
+
+
     //Status select box event.
     function StatusTimeout(isShow)
     {

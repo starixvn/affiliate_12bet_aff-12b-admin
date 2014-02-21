@@ -214,12 +214,28 @@
                                             <table class="ltable" width="100%" border="0" cellspacing="0" cellpadding="0">
                                                 <tr>
                                                     <td>
+                                                        {afftype}
+                                                    </td>
+                                                    <td class="r">
+                                                        <!--afftype-val-->
+                                                        <select id="slAffType" name="slAffType" style="display: none;" onblur="AffTypeTimeout(false);"
+                                                            onfocus="AffTypeTimeout(true);" onchange="SubmitAffType();">
+                                                            <option selected="" value="2">Asian</option>
+                                                            <option value="3">Media</option>
+                                                            <option  value="4">European</option>
+                                                        </select>
+                                                        <span class="popup" id="spAffType" onclick="ChangeAffType(true, 1);">{afftype-val}</span>
+                                                        <!--/afftype-val-->
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
                                                         {status}
                                                     </td>
                                                     <td class="r">
                                                         <!--status-val-->
                                                         <select id="slStatus" name="slStatus" style="display: none;" onblur="StatusTimeout(false);"
-                                                            onfocus="StatusTimeout(true);" onchange="SubmitStatus();">
+                                                                onfocus="StatusTimeout(true);" onchange="SubmitStatus();">
                                                             <option value="Approved">Approved</option>
                                                             <option value="Disapproved">Disapproved</option>
                                                             <option selected="" value="Pending">Pending</option>

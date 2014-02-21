@@ -448,6 +448,20 @@ namespace DataHandler
             hsParam.Add("errmsg", string.Empty);
             return DbHelper.Execute("Aff_AffiliateUpdClosedStatus", hsParam, DBType.AFFILIATE_12BET);
         }
+
+        //@Peter 
+        public static DbResult AffUpdateAffType(int affid, int afftype)
+        {
+            Hashtable hsParam = new Hashtable();
+            hsParam.Add("affid", affid);
+            hsParam.Add("userid", AppSettings.Session.CustID);
+            hsParam.Add("afftype", afftype);
+            hsParam.Add("ip", HttpContext.Current.Request.UserHostAddress);
+            hsParam.Add("language", AppSettings.Session.Language);
+            hsParam.Add("errcode", 0);            
+            return DbHelper.Execute("Aff_UpdAffType", hsParam, DBType.AFFILIATE_12BET);
+        }
+
         public static DbResult UpdateLanguage(int affID, string strLang)
         {
             Hashtable hsParam = new Hashtable();

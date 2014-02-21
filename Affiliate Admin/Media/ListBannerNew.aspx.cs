@@ -48,7 +48,7 @@ public partial class ListMediaBanner : IBCPage
         string size = (Request["sizeoption"] == null || Request["sizeoption"] == "All") ? "" : Request["sizeoption"];
         string currency = (Request["currencyoption"] == null || Request["currencyoption"] == "All") ? "" : Request["currencyoption"];
 
-        int afftype = CastAide.AsInt32(Request["afftypeoption"], (int)AffType.AsianAffiliate);
+        int afftype = CastAide.AsInt32(Request["afftypeoption"], (int)AffType.Asian);
         int pageSize = CastAide.AsInt32(Request["slPageSize"], 20);
         int currPage = CastAide.AsInt32(Request["page"], 1);
         
