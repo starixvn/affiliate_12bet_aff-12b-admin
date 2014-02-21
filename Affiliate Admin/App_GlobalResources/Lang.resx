@@ -2326,4 +2326,10 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
   <data name="AffiliateType" xml:space="preserve">
     <value>Affiliate Type</value>
   </data>
+  <data name="UpdateAffTypeFailed" xml:space="preserve">
+    <value>Occur an error when updating affiliate type!</value>
+  </data>
+  <data name="UpdateAffTypeSuccessful" xml:space="preserve">
+    <value>Update affiliate type successfully!</value>
+  </data>
 </root>

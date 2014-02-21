@@ -20,9 +20,9 @@ public class UpdAffType : IHttpHandler, IRequiresSessionState
             DbResult result = DataHandler.Affiliate.AffUpdateAffType(AppSettings.Session.AffId, afftype);
            
             if (CastAide.AsInt32(result.Outputs["errcode"], 0) == 0)
-                context.Response.Write("0@Update Affiliate Type successfully! :)");
+                context.Response.Write("0@" + Resources.Lang.UpdateAffTypeSuccessful);
             else
-                context.Response.Write("1@Error :( " + result.Outputs["errcode"]);
+                context.Response.Write("1@" + Resources.Lang.UpdateAffTypeFailed + result.Outputs["errcode"]);
         }
         catch (Exception ex)
         {

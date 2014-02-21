@@ -206,8 +206,7 @@
                     }
 
                     if (parent.fContent.location.href.indexOf("AffiliateUpd.aspx") >= 0)
-                        parent.fContent.location.href = parent.fContent.location.href;
-                    parent.fInfo.location.href = parent.fInfo.location.href; 
+                        parent.fContent.location.href = parent.fContent.location.href; 
                 }
                 $('slAffType').blur();
                 alert(arr[1]);

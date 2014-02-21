@@ -51,8 +51,8 @@ public partial class Media_ListText :IBCPage
             TemplateHandler.Assign(ref temp, "paging-bottom", "");
         }
         TemplateHandler.Assign(ref temp, "submenu", SubMenu.GenSubMenu(
-            new string[] { "ListText.aspx", "ListMediaBanner.aspx", "ListBannerNew.aspx" },
-            new string[] { "Text List", "Media Banner List", "Banner List" },
+            new string[] { "ListText.aspx", "ListBannerNew.aspx" },
+            new string[] { "Text List", "Banner List" },
             0, totalBanner, Resources.Lang.MediaGallery, "i_media1.png"));
         TemplateHandler.Assign(ref temp, "minNo", minNo.ToString());
         TemplateHandler.Assign(ref temp, "maxNo", maxNo.ToString());
