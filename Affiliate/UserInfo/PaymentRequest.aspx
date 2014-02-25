@@ -136,7 +136,11 @@
         window.onload = function() {
             if ($("hdMethod").value != "Player") {
                 $("frUpdate").disable();
-                $("btnRequest").className = "disabled";
+
+                if ($("btnRequest")) {
+                    $("btnRequest").className = "disabled";
+                }
+                
                 AddError("error_item", $("hdMethod").value);
                 $('errMsg').show();
                 ShowErrorNotLink(arrError, arrItem, "error_item");
@@ -146,7 +150,11 @@
             var MinAmt = parseFloat($("hdMinAmt").value.replace(/,/g, "").replace("$", ""));
             if (Balance <= 0 || Balance < MinAmt) {
                 $("frUpdate").disable();
-                $("btnRequest").className = "disabled";
+                
+                if ($("btnRequest")) {
+                    $("btnRequest").className = "disabled";
+                }
+                
                 AddError("error_item", "<%=Resources.Lang.Balance0 %>");
                 DisplayMsg(false);
             }

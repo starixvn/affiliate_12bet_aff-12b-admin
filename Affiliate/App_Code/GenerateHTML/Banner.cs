@@ -75,10 +75,10 @@ namespace GenerateHTML
 
             switch (AppSettings.Session.PreferLang)
             {
-                case "th-TH": _12betLink = AppSettings.BetLink_TH.ToString(); break;
-                case "zh-CN": _12betLink = AppSettings.BetLink_CS.ToString(); break;
-                case "zh-TW": _12betLink = AppSettings.BetLink_CS.ToString(); break;
-                case "vi-VN": _12betLink = AppSettings.BetLink_VI.ToString(); break;         
+                case "th-TH": _12betLink = AppSettings.BetLink_TH; break;
+                case "zh-CN": _12betLink = AppSettings.BetLink_CS; break;
+                case "zh-TW": _12betLink = AppSettings.BetLink_CS; break;
+                case "vi-VN": _12betLink = AppSettings.BetLink_VI; break;         
             }
 
             if (Common.IsAffInListEuLink())

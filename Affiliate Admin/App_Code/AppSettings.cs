@@ -24,7 +24,6 @@ public static class AppSettings
     static string _link_CS;
     static int _imagesize;
     static string _virtualDir;
-    static string _internalURL;
     static string _internalEuropeanAffiliateURL;
     static string _internalAsianAffiliateURL;
     static string _ipCheckerURL;
@@ -35,6 +34,10 @@ public static class AppSettings
     static DateTime _UMStartTime;
     static DateTime _UMEndTime;
     static DateTime _StatementAvailableFrom;
+
+    static string _europeanAffiliateURL;
+    static string _asianAffiliateURL;
+
     static AppSettings()
     {
         _virtualDir= System.Configuration.ConfigurationManager.AppSettings["VirtualDir"];
@@ -54,7 +57,7 @@ public static class AppSettings
         _link_CS = ConfigurationManager.AppSettings["12BetLink_CS"];
         _imagesize =CastAide.AsInt32(ConfigurationManager.AppSettings["imagesize"]);
         _StatementAvailableFrom = CastAide.AsDateTime(ConfigurationManager.AppSettings["StatementAvailableFrom"]);
-        _internalURL = ConfigurationManager.AppSettings["internalURL"];
+        
         _internalEuropeanAffiliateURL = ConfigurationManager.AppSettings["internalEuropeanAffiliateURL"];
         _internalAsianAffiliateURL = ConfigurationManager.AppSettings["internalAsianAffiliateURL"];
         _localTest = ConfigurationManager.AppSettings["LocalTest"].Equals("1", StringComparison.OrdinalIgnoreCase);
@@ -62,6 +65,10 @@ public static class AppSettings
         _websiteCheckerURL = ConfigurationManager.AppSettings["WebsiteCheckerURL"];
         _lbUrl = ConfigurationManager.AppSettings["LBUrl"];
         _urlAffSite = ConfigurationManager.AppSettings["UrlAffSite"];
+
+        _europeanAffiliateURL = ConfigurationManager.AppSettings["EuropeanAffiliateURL"];
+        _asianAffiliateURL = ConfigurationManager.AppSettings["AsianAffiliateURL"];
+
         _UMStartTime = CastAide.AsDateTime(ConfigurationManager.AppSettings["UM_StartTime"]);
         _UMEndTime = CastAide.AsDateTime(ConfigurationManager.AppSettings["UM_EndTime"]);
         for (int j = 0; j < _cssFiles.Length; ++j)
@@ -232,13 +239,6 @@ public static class AppSettings
             return CastAide.AsInt32(ConfigurationManager.AppSettings["pagesize"]);
         }
     }
-    public static string InternalURL
-    {
-        get 
-        {
-            return _internalURL;
-        }
-    }
     public static string InternalEuropeanAffiliateURL
     {
         get
@@ -281,6 +281,23 @@ public static class AppSettings
             return _urlAffSite;
         }
     }
+
+    public static string EuropeanAffiliateURL
+    {
+        get
+        {
+            return _europeanAffiliateURL;
+        }
+    }
+
+    public static string AsianAffiliateURL
+    {
+        get
+        {
+            return _asianAffiliateURL;
+        }
+    }
+
     public static bool LocalTest
     {
         get

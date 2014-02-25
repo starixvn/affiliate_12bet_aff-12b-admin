@@ -75,7 +75,7 @@ function PreSearch(e)
     {        
         e =(e) ?e :window.event;
         var key =(e.keyCode) ?e.keyCode :e.which;
-        if (key ==13)		
+        if (key == 13 && $('btnsearch'))		
         {
             $('btnsearch').click();                
         }

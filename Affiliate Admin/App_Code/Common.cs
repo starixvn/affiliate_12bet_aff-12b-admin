@@ -1294,7 +1294,7 @@ public class Common
     public static void SendEmailApproved(int affID, string strPreferLang, string strFname, string strUsername, string strEmail, string strPassword, string strEmailSuffix)
     {
         string[] strTags = { "fname", "username", "pass", "custid", "mailcontact", "url", "rooturl", "lang" };
-        string[] strValue = { strFname, strUsername, strPassword, affID.ToString(), AppSettings.MailContact, AppSettings.UrlAffSite, AppSettings.UrlAffSite, strPreferLang };
+        string[] strValue = { strFname, strUsername, strPassword, affID.ToString(), AppSettings.MailContact, GetRootUrl(), GetRootUrl(), strPreferLang };
 
         string FileName = "";
         string FileName2 = "";
@@ -1328,9 +1328,8 @@ public class Common
 
     public static void SendEmailDisapproved(string strPreferLang, string strFname, string strEmail, string strEmailSuffix)
     {
-
         string[] strTags = { "fname", "mailcontact", "rooturl", "lang" };
-        string[] strValue = { strFname, AppSettings.MailContact, AppSettings.UrlAffSite, strPreferLang };
+        string[] strValue = { strFname, AppSettings.MailContact, GetRootUrl(), strPreferLang };
 
         string FileName = "";
         if (string.IsNullOrEmpty(strPreferLang) || strPreferLang == "en-US")
@@ -1375,21 +1374,7 @@ public class Common
         }
         return 0;
     }*/
-
-    public static string RootURL()
-    {
-        string strURL = String.Format("http://{0}{1}", HttpContext.Current.Request.Url.Authority, HttpContext.Current.Request.ApplicationPath);
-        if (strURL.LastIndexOf("/") == strURL.Length - 1)
-            strURL = strURL.Substring(0, strURL.Length - 1);
-        return strURL;
-    }
-
-    public static string RootURLAff(string strURL)
-    {
-        if (strURL.IndexOf("/{custid}") > 0)
-            strURL = strURL.Substring(0, strURL.IndexOf("/{custid}"));
-        return strURL;
-    }
+    
     ///Johnny@20100317: Get suffix for sending mail template
     public static string EmailSuffix(bool MailOption)
     {
@@ -1669,6 +1654,11 @@ public class Common
             return "An error occured while reading example data. " + ex.Message;
         }
         return string.Empty;
+    }
+
+    public static string GetRootUrl()
+    {
+        return AppSettings.Session.AffType == AffType.European ? AppSettings.EuropeanAffiliateURL : AppSettings.AsianAffiliateURL;
     }
 }
 

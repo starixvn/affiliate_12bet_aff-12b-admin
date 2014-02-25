@@ -306,8 +306,13 @@ function DelayReloadPage(id,data)
     window.divMaskLoading.firstChild.style.left = Math.floor(window.viewport.width/2) + 'px';
     window.divMaskLoading.firstChild.style.top = document.body.scrollTop + 'px';
     
-    window.divMaskLoading.style.display = 'block';    
-    setTimeout(function(){window.divMaskLoading.style.display = 'none';$(id).innerHTML= data;},500);
+    window.divMaskLoading.style.display = 'block';
+    setTimeout(function () {
+        window.divMaskLoading.style.display = 'none';
+        if ($(id)) {
+            $(id).innerHTML = data;
+        }
+    }, 500);
 }
 function DelayReloadPage1()
 {
@@ -324,7 +329,13 @@ function DelayReloadPage1()
     window.divMaskLoading.firstChild.style.left = Math.floor(window.viewport.width/2) + 'px';
     window.divMaskLoading.firstChild.style.top = document.body.scrollTop + 'px';
     window.divMaskLoading.style.display = 'block';
-    setTimeout(function () { window.divMaskLoading.style.display = 'none'; $(id).innerHTML = data; }, 30000);
+    setTimeout(function() {
+        window.divMaskLoading.style.display = 'none';
+
+        if ($(id)) {
+            $(id).innerHTML = data;
+        }
+    }, 30000);
 }
 function DelayReloadPage2(time)
  {
@@ -400,19 +411,23 @@ function GotoPage(pageIndex, maxPage)
 }
 
 function ErrAlter(msg) {
-    $('errMsg').className = "";
-     $('errMsg').show();
-     $('error_msg').innerHTML=msg;
-     window.scroll(0, 0);
-     setTimeout("HideErr()", 10000);
- }
- function SuccAlter(msg) {
-     $("errMsg").className = "done";
-     $('errMsg').show();
-     $('error_msg').innerHTML = msg;
-     window.scroll(0, 0);
-     setTimeout("HideErr()", 10000);
- }
+    if ($('errMsg') && $('errMsg')) {
+        $('errMsg').className = "";
+        $('errMsg').show();
+        $('error_msg').innerHTML = msg;
+        window.scroll(0, 0);
+        setTimeout("HideErr()", 10000);
+    }
+}
+function SuccAlter(msg) {
+    if ($('errMsg') && $('errMsg')) {
+        $("errMsg").className = "done";
+        $('errMsg').show();
+        $('error_msg').innerHTML = msg;
+        window.scroll(0, 0);
+        setTimeout("HideErr()", 10000);
+    }
+}
 function ErrAlter2(msg)
 {
      $('errMsg2').style.display='block';                        

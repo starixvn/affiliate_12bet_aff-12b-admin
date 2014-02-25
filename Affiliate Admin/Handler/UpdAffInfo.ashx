@@ -25,7 +25,7 @@ public class UpdAffInfo : IHttpHandler, IRequiresSessionState
                     string strPayment = context.Request["hdPreferredPayment"];
                     int groupID = CastAide.AsInt32(context.Request["groupid"], -1);
                     string strPassword = string.Empty;
-
+                    
                     if (!AppSettings.LocalTest && string.Compare(context.Request["status"], Common.Approved, true) == 0 && strPayment == "Player")
                     {
                         string strPlayerUserName = context.Request["hdPlayer_Username"];
