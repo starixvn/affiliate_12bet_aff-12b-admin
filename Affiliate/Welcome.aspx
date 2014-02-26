@@ -33,10 +33,6 @@
             width: 11px;
         }
         
-        #ForceChangePass_form table tr td {
-            height: 10px;
-        }
-        
     </style>
 
     <script type="text/javascript"> 

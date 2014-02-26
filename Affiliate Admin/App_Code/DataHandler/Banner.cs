@@ -42,7 +42,7 @@ namespace DataHandler
             htb.Add("type", type);
             // -- Added by Frank.Ngo on IRP 671 - 10 Jan 2012
 
-            dbr = DbHelper.Execute("Aff_BannerMediaIns_test", htb, DBType.AFFILIATE_12BET);
+            dbr = DbHelper.Execute("Aff_BannerMediaIns", htb, DBType.AFFILIATE_12BET);
             errcode =CastAide.AsInt32(dbr.Outputs["errcode"]);
             result=CastAide.AsInt32(dbr.Outputs["bannerid"]);
             errmsg = dbr.Outputs["errmsg"].ToString();           
@@ -88,7 +88,7 @@ namespace DataHandler
             htb.Add("ip", HttpContext.Current.Request.UserHostAddress);
             htb.Add("errcode", 0);
             htb.Add("errmsg", string.Empty);
-            DbResult dbr = DbHelper.Execute("Aff_BannerUpd_1_test", htb, DBType.AFFILIATE_12BET);            
+            DbResult dbr = DbHelper.Execute("Aff_BannerUpd_1", htb, DBType.AFFILIATE_12BET);            
             return dbr.Outputs["errmsg"].ToString(); 
         }
 
@@ -172,7 +172,7 @@ namespace DataHandler
             hsParam.Add("totalpages", 0);
             hsParam.Add("nrows", 0);
 
-            return DbHelper.Execute("Aff_BannerSel_1_test", hsParam, DBType.AFFILIATE_12BET);
+            return DbHelper.Execute("Aff_BannerSel_1", hsParam, DBType.AFFILIATE_12BET);
         
         }
 
@@ -209,7 +209,7 @@ namespace DataHandler
             hsParam.Add("totalpages", 0);
             hsParam.Add("nrows", 0);
 
-            return DbHelper.Execute("Aff_BannerSelByParentCate_test", hsParam, DBType.AFFILIATE_12BET);
+            return DbHelper.Execute("Aff_BannerSelByParentCate", hsParam, DBType.AFFILIATE_12BET);
 
         }
 
@@ -250,7 +250,7 @@ namespace DataHandler
         {
             Hashtable hsParam = new Hashtable();            
             hsParam.Add("bannerid", bannerid);
-            return DbHelper.Execute("Aff_BannerSelDetail_1_test", hsParam, DBType.AFFILIATE_12BET);
+            return DbHelper.Execute("Aff_BannerSelDetail_1", hsParam, DBType.AFFILIATE_12BET);
         }
 
         public static DbResult GetBannerDetailOld(int bannerid)

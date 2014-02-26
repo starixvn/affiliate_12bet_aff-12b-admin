@@ -16,6 +16,8 @@
                 minHeight = 310;
             setHeight();
         }
+
+        
         if ($("hdStatus").value.toLowerCase() != "approved") {
             parent.document.getElementById("fRightContent").rows = "0,*";
             if ($("hdNoInfo").value != "1") {
@@ -26,6 +28,7 @@
                 parent.fContent.location.href = "blank.html";
         }
         else {
+            
             if (parent.document.getElementById("fRightContent").rows == "0,*")
                 parent.document.getElementById("fRightContent").rows = "193,*";
             if ($("hdNoInfo").value == "0") {

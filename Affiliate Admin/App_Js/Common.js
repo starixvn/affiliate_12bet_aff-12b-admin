@@ -331,10 +331,6 @@ function DelayReloadPage1()
     window.divMaskLoading.style.display = 'block';
     setTimeout(function() {
         window.divMaskLoading.style.display = 'none';
-
-        if ($(id)) {
-            $(id).innerHTML = data;
-        }
     }, 30000);
 }
 function DelayReloadPage2(time)

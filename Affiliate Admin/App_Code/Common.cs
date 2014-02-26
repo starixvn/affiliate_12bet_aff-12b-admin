@@ -1302,7 +1302,7 @@ public class Common
         if (string.IsNullOrEmpty(strPreferLang) || strPreferLang == "en-US")
         {
             FileName = "Email/AffApprove/Approved" + strEmailSuffix + ".htm";
-            FileName2 = "Email/AffApprove/ApprovalEmail_en-US" + strEmailSuffix + ".htm";
+            FileName2 = "Email/AffApprove/ApprovalEmail" + strEmailSuffix + ".htm";
             FileName3 = "Email/AffApprove/WithdrawalEmail" + strEmailSuffix + ".htm";             
         }
         else

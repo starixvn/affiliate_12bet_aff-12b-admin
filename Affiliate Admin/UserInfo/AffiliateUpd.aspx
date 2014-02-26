@@ -64,7 +64,14 @@
             ShowError(arrError, arrItem, "error_item");
             //var tmp = "";
             parent.fInfo.$("isReload").value = "2";
+            
+            setTimeout(function () {
+                parent.fInfo.$("isReload").value = "0";
+            }, 2000);
+            
             parent.fInfo.$("frmSearch").submit();
+
+            
         }
         else
         {

@@ -41,7 +41,7 @@ public class DbHelper
         if (HttpContext.Current.Session["lastCalledSP"] == null ||
                 string.Compare(HttpContext.Current.Session["lastCalledSP"].ToString(), pSPName, true) != 0)
         {
-            DbResult ret = DNAide.Data.DbHelper.Execute(pSPName, pHsParam, pDB, DbHelper.MAX_EXEC_TIME_LENGTH_NONRPTSP);
+            DbResult ret = DNAide.Data.DbHelper.Execute(pSPName, pHsParam, pDB, MAX_EXEC_TIME_LENGTH_NONRPTSP);
             HttpContext.Current.Session["lastCalledSP"] = null;
             return ret;
         }

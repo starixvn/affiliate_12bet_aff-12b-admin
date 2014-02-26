@@ -66,6 +66,8 @@ public partial class Customer_AffiliateInfo : IBCPage
         {
             TemplateHandler.Assign(ref strTpl, "noinfo-val", "2");
             TemplateHandler.Assign(ref strTpl, "isReload-val", Request["isReload"]);
+
+
         }
         TemplateHandler.Assign(ref strTpl, "isReload-val", "0");
 

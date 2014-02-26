@@ -10,7 +10,6 @@ using Resources;
 
 public class ProcessLogin : IHttpHandler, IRequiresSessionState
 {
-
     public void ProcessRequest(HttpContext context)
     {
         context = AffHandler.InitializeCulture(context);

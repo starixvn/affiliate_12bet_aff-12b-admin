@@ -55,6 +55,7 @@ public class ForceResetPassword : IHttpHandler, IRequiresSessionState
             else
             {
                 AppSettings.Session.ForceChangePass = false;
+                AppSettings.Session.HasSecurityQuestion = true;
                 context.Response.Write("<script type='text/javascript'>top.location.href='../UserInfo/Account_Overview.aspx';</script>");                
             }
         }
