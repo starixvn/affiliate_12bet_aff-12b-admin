@@ -31,7 +31,7 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
                 DbResult dr = DataHandler.Auth.ExecLogin(_username, _password, context);
                 if (string.IsNullOrEmpty(dr.Outputs["errmsg"].ToString()))
                 {
-                    var afftype = (AffType)DNAide.Core.CastAide.AsInt32(dr.Outputs["afftype"], -1);
+                    var afftype = (AffType)DNAide.Core.CastAide.AsInt32(dr.Outputs["afftype"], 2);
 
                     var currentDomain = HttpContextAnalysis.GetDomain(context);
                     var port = HttpContextAnalysis.GetPort(context);

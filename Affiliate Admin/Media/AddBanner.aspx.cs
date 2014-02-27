@@ -36,7 +36,7 @@ public partial class AddBanner : IBCPage
 
 
         TemplateHandler.Assign(ref temp, "afftype", Resources.Lang.AffiliateType);
-        DataTable dt = DbHelper.Execute("Aff_AffTypeSel_2", DBType.AFFILIATE_12BET).ResultSet.Tables[0];
+        DataTable dt = DbHelper.Execute("Aff_AffTypeSel", DBType.AFFILIATE_12BET).ResultSet.Tables[0];
         var afftype = string.Empty;
         TemplateHandler.Assign(ref temp, "optionafftype", Common.GenDropDownFromTable(dt, "TypeId", "Name", "slAffType", ref afftype, false));
 

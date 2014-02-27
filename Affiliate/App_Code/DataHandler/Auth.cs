@@ -212,6 +212,7 @@ namespace DataHandler
             p.Add("afflevel", 0);
             p.Add("commgroupname", "");
             p.Add("iscasino", 0);
+            p.Add("afftype", CastAide.AsInt32(0));
             return DbHelper.Execute("Aff_AffiliateInternalLogin", p, DBType.AFFILIATE_12BET);
         }
     }

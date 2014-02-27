@@ -51,7 +51,7 @@ public partial class AddBanner : IBCPage
             TemplateHandler.Assign(ref temp, "optiontype", Common.GetDataOptionBanner(dv, "slImageType", "ImageType", dr["imagetype"].ToString(), false));
 
             TemplateHandler.Assign(ref temp, "AffType", Resources.Lang.AffiliateType);
-            DataTable dt = DbHelper.Execute("Aff_AffTypeSel_2", DBType.AFFILIATE_12BET).ResultSet.Tables[0];
+            DataTable dt = DbHelper.Execute("Aff_AffTypeSel", DBType.AFFILIATE_12BET).ResultSet.Tables[0];
             var afftype = dr["afftype"].ToString();
             TemplateHandler.Assign(ref temp, "optionafftype", Common.GenDropDownFromTable(dt, "TypeId", "Name", "slAffType", ref afftype, false));
 

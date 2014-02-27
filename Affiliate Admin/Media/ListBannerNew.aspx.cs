@@ -63,7 +63,7 @@ public partial class ListMediaBanner : IBCPage
         TemplateHandler.Assign(ref temp, "optiontype", Common.GetDataOptionBanner(dv,"typeoption", "ImageType", imgtype, true));
         TemplateHandler.Assign(ref temp, "optionsize", Common.GetDataOptionBanner(dv, "sizeoption","Size", size, true));
 
-        DataTable dt = DbHelper.Execute("Aff_AffTypeSel_2", DBType.AFFILIATE_12BET).ResultSet.Tables[0];
+        DataTable dt = DbHelper.Execute("Aff_AffTypeSel", DBType.AFFILIATE_12BET).ResultSet.Tables[0];
         TemplateHandler.Assign(ref temp, "afftype", Resources.Lang.AffiliateType);
         var tempAffType = afftype.ToString();
         TemplateHandler.Assign(ref temp, "optionafftype", Common.GenDropDownFromTable(dt, "TypeId", "Name", "afftypeoption", ref tempAffType, false));

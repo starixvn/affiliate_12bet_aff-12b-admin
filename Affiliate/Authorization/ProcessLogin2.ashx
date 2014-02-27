@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
 using System.Collections.Generic;
+using Affiliate;
 using DNAide.Data;
 using DNAide.Utils;
 using System.Data;
@@ -49,6 +50,9 @@ public class ProcessLogin2 : IHttpHandler, IRequiresSessionState
             DbResult dr2 = Auth.LoginAuthentication(CastAide.AsInt32(_accId), _custName, context);
             if (string.IsNullOrEmpty(dr2.Outputs["errmsg"].ToString()))
             {
+                var afftype = (AffType)DNAide.Core.CastAide.AsInt32(dr.Outputs["afftype"], 2);
+                
+                AppSettings.Session.AffType = afftype;
                 AppSettings.Session.CustID = CastAide.AsInt32(dr2.Outputs["custid"], -1);
                 AppSettings.Session.OnUser = DataHandler.Auth.LoginOnuser(context, CastAide.AsInt32(_accId) * -1);
                 AppSettings.Session.UserName = _custName.ToUpper() + " : [" + dr2.Outputs["adminusername"].ToString() + "]";
