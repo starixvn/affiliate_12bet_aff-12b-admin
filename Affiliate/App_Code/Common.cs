@@ -592,6 +592,10 @@ public class Common
     public static bool GetDownTime(out string startTime, out string endTime)
     {
         startTime = endTime = null;
+
+        if (!AppSettings.HasCheckUMTime)
+            return AppSettings.HasCheckUMTime;
+
         #region check UM in web.config
         DateTime Now = DateTime.Now;
         if (Now >= AppSettings.UMStartTime && Now <= AppSettings.UMEndTime)

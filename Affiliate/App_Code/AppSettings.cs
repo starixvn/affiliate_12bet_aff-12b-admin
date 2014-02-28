@@ -41,6 +41,7 @@ public static class AppSettings
 
     static string _listAffUseEuLink;
     static string _lbUrl;
+    static bool _hasCheckUMTime;
     static DateTime _UMStartTime;
     static DateTime _UMEndTime;
     static DateTime _StatementAvailableFrom;
@@ -84,6 +85,8 @@ public static class AppSettings
         _mediaJS_EU = ConfigurationManager.AppSettings["MediaJS_EU"];
         _listAffUseEuLink = ConfigurationManager.AppSettings["ListAffUseEuLink"]; 
         _lbUrl = ConfigurationManager.AppSettings["LBUrl"];
+
+        _hasCheckUMTime = (ConfigurationManager.AppSettings["HasCheckUMTime"] == "1");
         _UMStartTime = CastAide.AsDateTime(ConfigurationManager.AppSettings["UM_StartTime"]);
         _UMEndTime = CastAide.AsDateTime(ConfigurationManager.AppSettings["UM_EndTime"]);
         _pageSize = CastAide.AsInt32(ConfigurationManager.AppSettings["PageSize"]);
@@ -375,6 +378,13 @@ public static class AppSettings
         get
         {
             return _lbUrl;
+        }
+    }
+    public static bool HasCheckUMTime
+    {
+        get
+        {
+            return _hasCheckUMTime;
         }
     }
     public static DateTime UMStartTime

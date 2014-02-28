@@ -84,7 +84,7 @@
         <tbody>
             <tr>
                 <td>
-                    <img src="App_Themes/Default/Images/um_head.gif" width="702" height="90" />
+                    <img src="App_Themes/Default/images/bgBanner.png" width="702" height="90" />
                 </td>
             </tr>
             <tr>

@@ -31,6 +31,7 @@ public static class AppSettings
     static string _lbUrl;
     static string _urlAffSite;
     static bool _localTest;
+    static bool _hasCheckUMTime;
     static DateTime _UMStartTime;
     static DateTime _UMEndTime;
     static DateTime _StatementAvailableFrom;
@@ -69,6 +70,7 @@ public static class AppSettings
         _europeanAffiliateURL = ConfigurationManager.AppSettings["EuropeanAffiliateURL"];
         _asianAffiliateURL = ConfigurationManager.AppSettings["AsianAffiliateURL"];
 
+        _hasCheckUMTime = (ConfigurationManager.AppSettings["HasCheckUMTime"] == "1");
         _UMStartTime = CastAide.AsDateTime(ConfigurationManager.AppSettings["UM_StartTime"]);
         _UMEndTime = CastAide.AsDateTime(ConfigurationManager.AppSettings["UM_EndTime"]);
         for (int j = 0; j < _cssFiles.Length; ++j)
@@ -305,6 +307,15 @@ public static class AppSettings
             return _localTest;
         }
     }
+
+    public static bool HasCheckUMTime
+    {
+        get
+        {
+            return _hasCheckUMTime;
+        }
+    }
+
     public static DateTime UMStartTime
     {
         get

@@ -777,6 +777,8 @@
                                     <%=Resources.Lang.Indonesian%></option>     
                                 <option value="ko-KR">
                                     <%=Resources.Lang.Korean%></option>        
+                                <option value="ja-JP">
+                                    <%=Resources.Lang.Japanese%></option>        
                             </select> 
                         </td>
                     </tr>
