@@ -1,5 +1,6 @@
 <%@ Page Language="C#" MasterPageFile="~/Master.master" AutoEventWireup="true" CodeFile="ProgramDetails.aspx.cs"
     Inherits="ProgramDetails" %>
+<%@ Import Namespace="Affiliate" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
     <div id="contents">
@@ -110,8 +111,8 @@
                             </table>
                         </div>
                     </div>
-                                        
-                    <p>
+                    <% if(AppSettings.AffType != (int)AffType.European) { %>
+                                           <p>
                         <b><%=Resources.Lang.Casino%></b>
                         <br />
                         <%=Resources.Lang.TC_Casino_Content1%>
@@ -180,6 +181,8 @@
                             </table>
                         </div>
                     </div>
+                    <% } %>         
+                               
                     <p>
                         <%=Resources.Lang.TC_Casino_Content2%>
                         <br />

@@ -167,15 +167,15 @@ namespace GenerateHTML
                         break;
                 }
 
-                TemplateHandler.Assign(ref signUpLink, "{domain}", domain);
-                TemplateHandler.Assign(ref signUpLink, "{target}", target);
-
                 if (Common.IsAffInListEuLink())//20100910@Johnny: EU Link
                 {
                     signUpLink = AppSettings.BetLink_EU;
                     strMedia = AppSettings.MediaJS_EU;
                     src = ConfigurationManager.AppSettings["MediaUrl_EU"].ToString();
                 }
+
+                TemplateHandler.Assign(ref signUpLink, "{domain}", domain);
+                TemplateHandler.Assign(ref signUpLink, "{target}", target);
 
                 if (language == "English (Europe)")
                     TemplateHandler.Assign(ref signUpLink, "lang", Eu);

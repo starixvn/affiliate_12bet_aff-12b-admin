@@ -50,7 +50,7 @@ public class ProcessLogin2 : IHttpHandler, IRequiresSessionState
             DbResult dr2 = Auth.LoginAuthentication(CastAide.AsInt32(_accId), _custName, context);
             if (string.IsNullOrEmpty(dr2.Outputs["errmsg"].ToString()))
             {
-                var afftype = (AffType)DNAide.Core.CastAide.AsInt32(dr.Outputs["afftype"], 2);
+                var afftype = (AffType)DNAide.Core.CastAide.AsInt32(dr2.Outputs["afftype"], 2);
                 
                 AppSettings.Session.AffType = afftype;
                 AppSettings.Session.CustID = CastAide.AsInt32(dr2.Outputs["custid"], -1);
