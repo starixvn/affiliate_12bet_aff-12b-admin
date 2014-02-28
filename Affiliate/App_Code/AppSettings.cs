@@ -1,10 +1,12 @@
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Web;
 using System.Xml;
 using System.IO;
 using Affiliate;
 using DNAide.Core;
+using System.Linq;
 
 /// <summary>
 /// Summary description for AppSettings
@@ -31,7 +33,7 @@ public static class AppSettings
     static string _affmaster;
     static string _subdomain;
     static string _forgetpwurl;
-    static int _afftype;
+    static string _affTypeList;
 
     static string _mediaJS;
     static string _mediaJS_CS;
@@ -77,7 +79,7 @@ public static class AppSettings
         _serverId = ConfigurationManager.AppSettings["ServerId"];
         _tplFolder = ConfigurationManager.AppSettings["template_folder"];
         _affmaster = ConfigurationManager.AppSettings["AffMaster"];
-        _afftype = CastAide.AsInt32(ConfigurationManager.AppSettings["AffType"]);
+        _affTypeList = ConfigurationManager.AppSettings["AffTypeList"];
         _mediaJS = ConfigurationManager.AppSettings["MediaJS"];
         _mediaJS_CS = ConfigurationManager.AppSettings["MediaJS_CS"];
         _mediaJS_TH = ConfigurationManager.AppSettings["MediaJS_TH"];
@@ -272,11 +274,21 @@ public static class AppSettings
             return _affmaster;
         }
     }
-    public static int AffType
+
+    public static List<AffType> AffTypeList
     {
         get
         {
-            return _afftype;
+            return _affTypeList.Split(',').Select(t => (AffType) CastAide.AsInt32(t, 2)).ToList();
+        }
+        
+    }
+
+    public static AffType AffType
+    {
+        get
+        {
+            return AffTypeList.FirstOrDefault();
         }
     }
     

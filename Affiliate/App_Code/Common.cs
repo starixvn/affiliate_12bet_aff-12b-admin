@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Specialized;
 using System.Globalization;
+using System.Linq;
 using System.Web;
 using System.Collections;
 using System.Text;
@@ -55,7 +56,7 @@ public class Common
 
     public static string GetBannerFlash()
     {
-        if (AppSettings.AffType == (int) AffType.European)
+        if (AppSettings.AffTypeList.Any(t => t == AffType.European))
         {
             return string.Format("Flash/{0}/{1}", AffType.European.ToString(), "home_banner_eu.swf");
         }

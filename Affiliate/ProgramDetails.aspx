@@ -111,7 +111,7 @@
                             </table>
                         </div>
                     </div>
-                    <% if(AppSettings.AffType != (int)AffType.European) { %>
+                    <% if(!AppSettings.AffTypeList.Any(t => t == AffType.European)) { %>
                                            <p>
                         <b><%=Resources.Lang.Casino%></b>
                         <br />

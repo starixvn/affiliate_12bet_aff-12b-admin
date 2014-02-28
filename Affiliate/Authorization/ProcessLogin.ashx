@@ -1,6 +1,7 @@
 ﻿<%@ WebHandler Language="C#" Class="ProcessLogin" %>
 
 using System;
+using System.Linq;
 using System.Web;
 using System.Web.SessionState;
 using Affiliate;
@@ -36,20 +37,7 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
                     var currentDomain = HttpContextAnalysis.GetDomain(context);
                     var port = HttpContextAnalysis.GetPort(context);
 
-                    bool isValidLogin = false;
-
-                    switch (afftype)
-                    {
-                        case AffType.Asian:
-                        case AffType.Media:
-                            isValidLogin = currentDomain.Equals(AppSettings.AsianAffDomain, StringComparison.OrdinalIgnoreCase) 
-                                && port == AppSettings.AsianAffPort;
-                            break;
-                        case AffType.European:
-                            isValidLogin = currentDomain.Equals(AppSettings.EuropeanAffDomain, StringComparison.OrdinalIgnoreCase) 
-                                && port == AppSettings.EuropeanAffPort;
-                            break;
-                    }
+                    bool isValidLogin = AppSettings.AffTypeList.Any(t => t == afftype);
 
                     if (!isValidLogin)
                     {

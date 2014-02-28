@@ -31,7 +31,7 @@ namespace DataHandler
             hsParam.Add("postal", formatInput(strPostal));
             hsParam.Add("country", formatInput(strCountry));
             hsParam.Add("affmaster", AppSettings.AffMaster);
-            hsParam.Add("afftype", AppSettings.AffType);
+            hsParam.Add("afftype", (int)AppSettings.AffType);
             hsParam.Add("siteurl", formatInput(strUrl));
             hsParam.Add("moresiteurls", formatInput(strMoreUrl));
             hsParam.Add("nositedesc", formatInput(strNoSiteDesc));            
