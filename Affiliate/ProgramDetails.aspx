@@ -1,6 +1,12 @@
-<%@ Page Language="C#" MasterPageFile="~/Master.master" AutoEventWireup="true" CodeFile="ProgramDetails.aspx.cs"
+<%@ Page Language="C#" MasterPageFile="~/Master2.master" AutoEventWireup="true" CodeFile="ProgramDetails.aspx.cs"
     Inherits="ProgramDetails" %>
 <%@ Import Namespace="Affiliate" %>
+<asp:Content ID="Content2" ContentPlaceHolderID="Title" Runat="Server">
+    <title>12BET Affiliate Program | Program Details</title>
+    <meta name="description" content="Enjoy Extra Cash from your Site, Check 12BET's Sports Betting and Online Casino Affiliate Program Details! Learn how it works and how to get paid." />
+    <meta name="keywords" content="12BET, 12BET Affiliate Program Details, Sports Betting Affiliate, Casino Affiliate, betting affiliate programs, earn extra cash, top affiliate programs, Asian casino affiliate programs, Asian betting affiliate programs, high payout affiliate programs" />
+    <meta name="robots" content="index,follow,archive" />
+</asp:Content>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
     <div id="contents">

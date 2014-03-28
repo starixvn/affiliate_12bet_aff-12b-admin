@@ -1,6 +1,14 @@
-<%@ Page Language="C#" MasterPageFile="~/Master.master" AutoEventWireup="true" CodeFile="ContactUs.aspx.cs" Inherits="ContactUS" %>
+<%@ Page Language="C#" MasterPageFile="~/Master2.master" AutoEventWireup="true" CodeFile="ContactUs.aspx.cs" Inherits="ContactUS" %>
 <%@ OutputCache Duration="600" VaryByParam="None" VaryByHeader="*" %>
 <%@ Register Src="Controls/ContactUs.ascx" TagName="ContactUs" TagPrefix="uc1" %>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="Title" Runat="Server">
+    <title>12BET Affiliate Program | Contact Us</title>
+    <meta name="description" content="12BET - Sports Betting and Online Casino Affiliate Program: Customer Support and Contact Details" />
+    <meta name="keywords" content="12BET, 12BET Affiliate Program, Sports Betting Affiliate, Casino Affiliate, betting affiliate programs, Contact Details, top affiliate programs, asian casino affiliate programs, Asian betting affiliate programs, high payout affiliate programs" />
+    <meta name="robots" content="index,follow,archive" />
+</asp:Content>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
   <div id="contents">        
         <div id="box_insite">

@@ -3,7 +3,21 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>12BET Affiliate Program</title>
+    <title>12BET Affiliate Program | Terms and Conditions for Sports Betting and Online Casino Affiliate</title>
+    <meta name="description" content="12BET - Sports Betting and Online Casino Affiliate Program: Terms and Conditions" />
+    <meta name="keywords" content="12BET, 12BET Affiliate Program, Sports Betting Affiliate, Casino Affiliate, betting affiliate programs, terms and conditions, top affiliate programs, asian casino affiliate programs, Asian betting affiliate programs, high payout affiliate programs" />
+    <meta name="robots" content="index,follow,archive" />
+    
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-5160706-44']);
+        _gaq.push(['_trackPageview']);
+        (function () {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
     <style type="text/css">
         div.ContentBox h3
         {

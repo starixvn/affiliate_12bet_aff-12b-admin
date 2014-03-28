@@ -1,85 +1,71 @@
 <%@ Master Language="C#" AutoEventWireup="true" CodeFile="Master2.master.cs" Inherits="Master2" %>
 <%@ Register Src="~/Controls/Header.ascx" TagName="CHeader" TagPrefix="mod" %>
 <%@ Register Src="~/Controls/Footer.ascx" TagName="CFooter" TagPrefix="mod" %>
-<%@ Register Src="~/Controls/LeftPanel.ascx" TagName="CLeft" TagPrefix="mod" %>
-
+<%@ Register Src="~/Controls/RightPanel.ascx" TagName="CRight" TagPrefix="mod" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" >
-<head id="Head1" runat="server">
-    <title>12BET Affiliates Program</title>
-    <script type="text/javascript">AC_FL_RunContent = 0;</script>
-    <script src="../App_Js/AC_RunActiveContent.js" type="text/javascript"></script>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <asp:ContentPlaceHolder ID="Title" runat="server"></asp:ContentPlaceHolder>
+
+    <meta content="text/html;charset=UTF-8" http-equiv="Content-Type" />
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-5160706-44']);
+        _gaq.push(['_trackPageview']);
+        (function () {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+        var a = "bgwhite", b = "bgcgy", c = "bghover";
+    </script>
     <style type="text/css">
+         .root-header{
+            width:800px;
+            padding-bottom:0px;
+        }
         .root-left{
-            width:200px;
-            float:left;
-            margin-top:5px
+            width:595px;         
+            float:left;   
+            margin-top:5px;         
         }
         .root-right{
-            width:595px;
-            float:left;
-            margin-top:5px;
+            width:201px;           
+            float:right;    
+            margin-top:5px;        
+        }
+        .root-footer
+        {
+            width:800px;
         }
         .clear{
-            clear:both;
+            clear:both;            
         }
-    </style>
         
+    </style>
 </head>
 <body>
-    <div style="background-color:White;">
-       
-        <script language="javascript" type="text/javascript" src="../App_Js/prototype.js"></script>
-        <script language="javascript" type="text/javascript" src="../App_Js/Common.js?vers=<%Response.Write(AppSettings.JsVersion);%>"></script>
-        <script language="javascript" type="text/javascript" src="../App_Js/login.js?vers=<%Response.Write(AppSettings.JsVersion);%>"></script>
+    <div style="background-color:White">
+        <%=strScript.ToString()%>
     </div>
-    <div id="container" style="background-color:White;">
-        <div id="topPan">
-            <mod:CHeader runat="server" id="Header1" />
-        </div>
-        <div class="red_line"></div> 
-        <div class="root-left" style="margin-top:3px;">
-            <mod:CLeft runat="server" ID="Left1" />
-            <br />
-            <div style="text-align:center;">
-            <script type="text/javascript">                
-                if (AC_FL_RunContent == 0) {
-                alert("This page requires AC_RunActiveContent.js");
-                } else {
-                AC_FL_RunContent(
-                'codebase', 'https://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0',
-                'width', '176',
-                'height', '190',
-                'src', 'yourswffile',
-                'quality', 'high',
-                'pluginspage', 'https://www.macromedia.com/go/getflashplayer',
-                'align', 'middle',
-                'play', 'true',
-                'loop', 'false',
-                'scale', 'noscale',
-                'wmode', 'window',
-                'devicefont', 'false',
-                'id', 'flash-animations',
-                'bgcolor', '#eeeeee',
-                'name', 'yourswffile',
-                'menu', 'false',
-                'allowScriptAccess','sameDomain',
-                'movie', '../<%=AppSettings.ThemeDir %>/images/176x190_<%=AppSettings.Session.Flag %>',
-                'salign', ''
-                );
-                }
-            </script>
+   <div id="container">        
+        <mod:CHeader runat="server" ID="Header1" />        
+        <div id="contents_page">
+            <div id="contents_main">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+            <div id="right_pane">
+                <mod:CRight runat="server" ID="Right1" />
             </div>
         </div>
-        <div class="root-right">
-            <asp:contentplaceholder id="MainContent" runat="server">
-            </asp:contentplaceholder>
-        </div>
         <div class="clear"></div>
-        <div>
-        <mod:CFooter runat="server" ID="Footer1" />
+        <div id="footer">
+            <mod:CFooter runat="server" ID="Footer1" />
         </div>
+        <div class="red_line"></div>
     </div>
+
 </body>
 </html>
