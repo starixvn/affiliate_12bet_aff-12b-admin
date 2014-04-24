@@ -78,8 +78,6 @@ public class UpdAffInfo : IHttpHandler, IRequiresSessionState
                 context.Response.Write("0@" + strSuccessMsg);
             else
                 context.Response.Write("1@" + result.Outputs["errmsg"]);
-
-
         }
         catch (Exception ex)
         {
