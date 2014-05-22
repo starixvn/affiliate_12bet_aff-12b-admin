@@ -23,11 +23,11 @@ namespace DataHandler
             hsParam.Add("username", strUsername);
             hsParam.Add("ibcusername", strUsername2);
             hsParam.Add("pagesize", intPageSize); // hardcode pagesize for member/player list
+            hsParam.Add("pageindex", pageIndex);
             hsParam.Add("nrows", 0);
             dbr = DbHelper.Execute("Aff_MemberListSel", hsParam, DBType.AFFILIATE_12BET);
             NRows = CastAide.AsInt32(dbr.Outputs["nrows"]);
             totalPages = NRows % intPageSize == 0 ? NRows / intPageSize : (NRows / intPageSize) + 1;
-            
             return (dbr.ResultSet.Tables.Count > 0 ? dbr.ResultSet.Tables[0] : new DataTable());
         }
         public static decimal GetPSPToday()
