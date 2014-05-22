@@ -22,14 +22,12 @@ namespace DataHandler
                 hsParam.Add("affusername", strAffUsername);
             hsParam.Add("username", strUsername);
             hsParam.Add("ibcusername", strUsername2);
-            hsParam.Add("pageindex", pageIndex);
             hsParam.Add("pagesize", intPageSize); // hardcode pagesize for member/player list
-            hsParam.Add("totalpages", 0);
             hsParam.Add("nrows", 0);
             dbr = DbHelper.Execute("Aff_MemberListSel", hsParam, DBType.AFFILIATE_12BET);
-            totalPages = CastAide.AsInt32(dbr.Outputs["totalpages"]);
             NRows = CastAide.AsInt32(dbr.Outputs["nrows"]);
-            pageIndex = CastAide.AsInt32(dbr.Outputs["pageindex"]);
+            totalPages = NRows % intPageSize == 0 ? NRows / intPageSize : (NRows / intPageSize) + 1;
+            
             return (dbr.ResultSet.Tables.Count > 0 ? dbr.ResultSet.Tables[0] : new DataTable());
         }
         public static decimal GetPSPToday()

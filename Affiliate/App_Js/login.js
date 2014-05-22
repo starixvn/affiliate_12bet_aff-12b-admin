@@ -52,9 +52,6 @@ function Login(rs) {
         case '100':
             parent.location.href = 'UserInfo/Account_Overview.aspx';                   
             break;
-        case '101':
-            parent.location.href = 'Welcome.aspx';
-            break;
         default:
             isLogin = false;
             $('validCode').src = 'Authorization/LoginCaptcha.ashx?t=' + new Date().toJSON();

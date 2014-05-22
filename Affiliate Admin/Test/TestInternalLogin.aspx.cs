@@ -11,7 +11,7 @@ public partial class Test_TestInternalLogin : System.Web.UI.Page
         string custName = Request["username"];
         string accID = AppSettings.Session.CustID.ToString();
         string accOnId = AppSettings.Session.OnUser.ToString();
-        string _url = AppSettings.InternalURL;
+        string _url = AppSettings.InternalAsianAffiliateURL;
         _url += "?chalengeStr=" + rndStr;
         _url += "&accKey=" + accKey;
         _url += "&custName=" + custName;

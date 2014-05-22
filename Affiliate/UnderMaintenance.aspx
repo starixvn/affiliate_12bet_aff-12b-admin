@@ -84,7 +84,7 @@
         <tbody>
             <tr>
                 <td>
-                    <img src="App_Themes/Default/images/bgBanner.png" width="702" height="90" />
+                    <img src="App_Themes/Default/images/um_head.gif" width="702" height="90" />
                 </td>
             </tr>
             <tr>
@@ -315,7 +315,7 @@
             </tr>
             <tr>
                 <td class="txt" align="center" height="40">
-                    © Copyright 2009 Pacific Sea Invests
+                    © Copyright <%= DateTime.Now.Year %> Pacific Sea Invests
                 </td>
             </tr>
         </tbody>
