@@ -2648,11 +2648,6 @@
   <data name="OwnWebsite" xml:space="preserve">
     <value>웹사이트가 있습니다.</value>
   </data>
-  <data name="DescWebsite" xml:space="preserve">
-    <value>현재 URL이 없으신경우,
-12bet  향후 업무계획을
-간략히 설명해주십시오.</value>
-  </data>
   <data name="NumberGame" xml:space="preserve">
     <value>넘버 게임</value>
   </data>
@@ -2778,5 +2773,8 @@
   </data>
   <data name="Year" xml:space="preserve">
     <value>년</value>
+  </data>
+  <data name="DescWebsite" xml:space="preserve">
+    <value>현재 URL이 없으신경우, 12bet  향후 업무계획을 간략히 설명해주십시오.</value>
   </data>
 </root>
