@@ -266,7 +266,7 @@
     <value>우편번호</value>
   </data>
   <data name="PreferLang" xml:space="preserve">
-    <value>우선권</value>
+    <value>설정</value>
   </data>
   <data name="ProgDetails" xml:space="preserve">
     <value>프로그렘 세부정보</value>
