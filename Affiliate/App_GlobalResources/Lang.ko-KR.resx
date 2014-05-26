@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -227,7 +227,7 @@
     <value>메니지 계정</value>
   </data>
   <data name="Media" xml:space="preserve">
-    <value>메디어 겔러리</value>
+    <value>배너 갤러리</value>
   </data>
   <data name="MinWithdraw" xml:space="preserve">
     <value>최소 출금금액</value>
@@ -242,7 +242,7 @@
     <value>더</value>
   </data>
   <data name="MyAcc" xml:space="preserve">
-    <value>나의 계좌</value>
+    <value>나의 계정</value>
   </data>
   <data name="MyHome" xml:space="preserve">
     <value>마이홈</value>
@@ -464,7 +464,7 @@
     <value>총 플레이어수</value>
   </data>
   <data name="Statistic" xml:space="preserve">
-    <value>총 클릭수</value>
+    <value>통계</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>홈</value>
@@ -641,7 +641,7 @@
     <value>저작권Pacific Sea Invests</value>
   </data>
   <data name="TotalActive" xml:space="preserve">
-    <value>총 활동한 플레이어</value>
+    <value>이 달에 베팅한 회원</value>
   </data>
   <data name="TotalDeposit" xml:space="preserve">
     <value>총 입금금액</value>
@@ -767,7 +767,7 @@
     <value>총</value>
   </data>
   <data name="For" xml:space="preserve">
-    <value>~를 위해서</value>
+    <value>이달의</value>
   </data>
   <data name="Err4005" xml:space="preserve">
     <value>이 거래는 이전에 취소된적이있습니다.</value>
@@ -1549,7 +1549,7 @@
     <value>회사소개</value>
   </data>
   <data name="_12BETPlayerAcc" xml:space="preserve">
-    <value>12BET 플레이어 계좌</value>
+    <value>12BET 플레이어 계정</value>
   </data>
   <data name="Thisemailwillin" xml:space="preserve">
     <value>이 이메일은 구하가 클릭해야할 링크를 포함하고있습니다. 귀하의 계정을 활성화한뒤 이메일주소를 확인후 등록하시기 바랍니다.</value>
@@ -1699,7 +1699,7 @@
     <value>원하는 결제 방법</value>
   </data>
   <data name="Preference" xml:space="preserve">
-    <value>우선권</value>
+    <value>설정</value>
   </data>
   <data name="Pleaseselectpre" xml:space="preserve">
     <value>원하는 언어를 선택해 주세요</value>
@@ -2242,7 +2242,7 @@
     <value>※보안 질문과 답변은 귀하의 신원을 확인하는데 사용됩니다.</value>
   </data>
   <data name="Turnover" xml:space="preserve">
-    <value>매출액</value>
+    <value>베팅금액</value>
   </data>
   <data name="UpToNow" xml:space="preserve">
     <value>지금까지</value>
@@ -2395,7 +2395,7 @@
     <value>트래킹 코드</value>
   </data>
   <data name="TrackingStatistics" xml:space="preserve">
-    <value>트래킹 통계</value>
+    <value>접속 통계</value>
   </data>
   <data name="TotalClick" xml:space="preserve">
     <value>총 클릭횟수</value>
@@ -2428,7 +2428,7 @@
     <value>제휴의 커미션은 멤버의 턴오버 및 승/패로부터 혹은 경마 및 카지노 게임으로부터  얻지 않습니다.</value>
   </data>
   <data name="NonDeposit" xml:space="preserve">
-    <value>입금한적 없는 계좌만</value>
+    <value>입금한 적 없는 아이디를 입력하셔야 수익 분배금이 해당 아이디 계정으로 적립되고 출금하실 수 있습니다.</value>
   </data>
   <data name="Of" xml:space="preserve">
     <value>~의</value>
@@ -2480,9 +2480,6 @@
   </data>
   <data name="Sport" xml:space="preserve">
     <value>스포츠</value>
-  </data>
-  <data name="Tier" xml:space="preserve">
-    <value />
   </data>
   <data name="AddUrl" xml:space="preserve">
     <value>URL주소</value>
@@ -2631,7 +2628,7 @@
     <value>프로모션을 받을수있는 조건을 충족하는회원(스포츠/카지노)</value>
   </data>
   <data name="Text" xml:space="preserve">
-    <value>텍스트 상자</value>
+    <value>회원가입 링크</value>
   </data>
   <data name="Promotional" xml:space="preserve">
     <value>프로그렘 설명</value>
@@ -2699,7 +2696,7 @@
     <value>첫 입금회원</value>
   </data>
   <data name="Referrals" xml:space="preserve">
-    <value>추천통계</value>
+    <value>유입사이트 통계</value>
   </data>
   <data name="LandingPages" xml:space="preserve">
     <value>방문페이지 통계</value>
@@ -2775,5 +2772,11 @@
   </data>
   <data name="Japanese" xml:space="preserve">
     <value>日本</value>
+  </data>
+  <data name="TurnoverUpToNow" xml:space="preserve">
+    <value>총 베팅금액</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>년</value>
   </data>
 </root>

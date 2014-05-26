@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Globalization;
 using DataHandler;
 using DNAide.Web;
 using DNAide.Utils;
@@ -34,7 +35,7 @@ public partial class Account_Overview : RootPageLogIn
             //ltrLast6.Text = Resources.Lang.Last6Month;
             ltrTotalActive.Text = Resources.Lang.TotalActive;
             ltrTotalDeposit.Text = Resources.Lang.TotalDeposit;
-            ltrTurnover.Text = Resources.Lang.Turnover;
+            ltrTurnover.Text = Resources.Lang.TurnoverUpToNow;
             ltrDepositUp.Text = Resources.Lang.TotalDeposit;
             GerMonthSel();
             #endregion
@@ -44,7 +45,9 @@ public partial class Account_Overview : RootPageLogIn
             strMonths = dtmFirstOfMonth.Month.ToString();
             strYears = dtmFirstOfMonth.Year.ToString();
             //ltrStatic.Text = Resources.Lang.Statistic + " " + Resources.Lang.For + " " + dtmFirstOfMonth.ToString("MMMM-yyyy");
-            ltrStatic.Text = Resources.Lang.Statistic + " " + Resources.Lang.For + " " + Common.ConvertDateTime(dtmFirstOfMonth, "-", false, false);
+
+            ltrStatic.Text = GetStatisticsFor(dtmFirstOfMonth);
+
             ltrStaticUp.Text = Resources.Lang.Statistic + " " + Resources.Lang.UpToNow;
 
             DbResult dep_result = UserAff.SelAffOverview_DEPOSIT(AppSettings.Session.CustID, dtmFirstOfMonth);
@@ -108,6 +111,25 @@ public partial class Account_Overview : RootPageLogIn
             DNAideLog.Write(ex.Message);
         }
     }
+
+    private string GetStatisticsFor(DateTime dtmFirstOfMonth)
+    {
+        var statisticsFor = Resources.Lang.Statistic + " " + Resources.Lang.For + " " +
+                         Common.ConvertDateTime(dtmFirstOfMonth, "-", false, false);
+
+        if (AppSettings.Session.Language.Equals("ko-KR", StringComparison.OrdinalIgnoreCase))
+        {
+            CultureInfo culture = new CultureInfo("en-US");
+            DateTime Tmp1 = Convert.ToDateTime(dtmFirstOfMonth, culture);
+
+            statisticsFor = Resources.Lang.For + " " + Resources.Lang.Statistic + " " +
+                             string.Format("{0} {1} {2}", dtmFirstOfMonth.Year, Resources.Lang.Year,
+                                           Tmp1.ToString("MMMM"));
+        }
+
+        return statisticsFor;
+    }
+
     private void GerMonthYearSelect()
     {
         DateTime now = DateTime.Now;
