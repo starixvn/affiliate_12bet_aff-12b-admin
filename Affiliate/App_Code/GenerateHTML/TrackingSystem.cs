@@ -160,11 +160,8 @@ namespace GenerateHTML
             string htmlContent = TemplateHandler.LoadTemplate("UserInfo/TrackingStatistics_New.htm");
             string strContent = TemplateHandler.CopyBlock(htmlContent, "Content");
 
-            TemplateHandler.Assign(ref strContent, "fdate", fromdate);
-            TemplateHandler.Assign(ref strContent, "tdate", todate);
-
-            
-
+            TemplateHandler.Assign(ref strContent, "fdate", Common.ConvertDateTime(fromdate, "/", true, false));
+            TemplateHandler.Assign(ref strContent, "tdate", Common.ConvertDateTime(todate, "/", true, false));
 
             DbResult result = DataHandler.TrackingSystem.SelClickStatisticsBySite(fromdate, todate);
             int cols = 5;
