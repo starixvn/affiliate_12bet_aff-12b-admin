@@ -1,4 +1,10 @@
-﻿<script type="text/javascript">
+﻿<style type="text/css">
+    .wordwrap {
+        word-break: break-all; 
+        word-wrap: break-word;
+    }
+</style>
+<script type="text/javascript">    
     function GotoPage(pageIndex, maxPage) {
         var currPage = parseInt($("page").value);
         if (currPage == 1 && pageIndex <= 1)
@@ -142,22 +148,22 @@
                     <tbody id="result">
                         <!--Content-->
                         <tr class="{rowstyle}" onmouseout="this.className={onmouseoutstyle};" onmouseover="this.className=c;">
-                            <td>
+                            <td class="wordwrap">
                                 <!--domain-->
                                 <a href="javascript:void(0);" onclick="ViewDetail('{fdate}', '{tdate}', '{Site-val}', 20, 1);">
                                     {Site-val}</a>
                                 <!--/domain-->
                             </td>
-                            <td class="r">
+                            <td class="r wordwrap">
                                 {TotalClick-val}
                             </td>
-                            <td class="r">
+                            <td class="r wordwrap">
                                 {UniqueClick-val}
                             </td>
-                            <td class="r">
+                            <td class="r wordwrap">
                                 {Signups-val}
                             </td>
-                            <td class="r">
+                            <td class="r wordwrap">
                                 {FDM-val}
                             </td>
                         </tr>
@@ -190,19 +196,19 @@
                     <tbody id="resultDetail">
                         <!--StatisticsDetailContent-->
                         <tr class="{rowstyle} l" onmouseout="this.className={onmouseoutstyle};" onmouseover="this.className=c;">
-                            <td>
+                            <td class="wordwrap">
                                 {Site-val}
                             </td>
-                            <td class="r fu">
+                            <td class="r fu wordwrap">
                                 {TotalClick-val}
                             </td>
-                            <td class="r">
+                            <td class="r wordwrap">
                                 {UniqueClick-val}
                             </td>
-                            <td class="r">
+                            <td class="r wordwrap">
                                 {Signups-val}
                             </td>
-                            <td class="r">
+                            <td class="r wordwrap">
                                 {FDM-val}
                             </td>
                         </tr>
