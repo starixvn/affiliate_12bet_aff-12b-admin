@@ -4,8 +4,7 @@
 	background: #666666;
 	margin: 0;
 	padding: 0;
-	background: #530007 url(images/bgMain1.jpg) center top;
-	background-attachment:fixed;
+	background: #530007 url(images/bgMain1.jpg) no-repeat fixed center top;
 	font-size: 11px;
 	color: #333;
 }
