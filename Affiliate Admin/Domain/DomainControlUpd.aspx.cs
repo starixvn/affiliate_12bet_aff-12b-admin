@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using DNAide.Web;
-using DNAide.Data;
 using DNAide.Core;
+using DNAide.Web;
 
 public partial class Domain_DomainControlUpd : IBCPage
 {
@@ -16,11 +10,15 @@ public partial class Domain_DomainControlUpd : IBCPage
 
         TemplateHandler.Assign(ref strTpl, "slMarket", AffAdmin.GenerateHTML.Domain.GenMarketList(Request["market"]));
         TemplateHandler.Assign(ref strTpl, "slAffDomain", AffAdmin.GenerateHTML.Domain.GenAffDomainList(Request["affdomain"]));
-        TemplateHandler.Assign(ref strTpl, "slRedirectDomain", AffAdmin.GenerateHTML.Domain.Gen12BetDomainList(Request["redirectdomain"]));        
+        TemplateHandler.Assign(ref strTpl, "slRedirectDomain", AffAdmin.GenerateHTML.Domain.Gen12BetDomainList(Request["deviceType"], Request["redirectdomain"]));
+        TemplateHandler.Assign(ref strTpl, "Device", Resources.Lang.Device);
         TemplateHandler.Assign(ref strTpl, "submit", Resources.Lang.Submit);
         TemplateHandler.Assign(ref strTpl, "cancel", Resources.Lang.Cancel);        
         TemplateHandler.Assign(ref strTpl, "ic-status", CastAide.AsBoolean(Request["status"]) ? "ic-check" : "ic-uncheck");
         TemplateHandler.Assign(ref strTpl, "id", Request["id"]);
+        TemplateHandler.Assign(ref strTpl, "slDevice", AffAdmin.GenerateHTML.Domain.GenDeviceList(Request["deviceType"]));
+        TemplateHandler.Assign(ref strTpl, "redirectDomain", Request["redirectdomain"]);
+        
         this.HtmlContent = strTpl;
     }
 }

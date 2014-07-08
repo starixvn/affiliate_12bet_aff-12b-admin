@@ -61,7 +61,6 @@ namespace DataHandler
             }
             catch
             {
-                
                 throw;
             }
         }

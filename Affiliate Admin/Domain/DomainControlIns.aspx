@@ -13,10 +13,27 @@
         CheckBox_AddEvent();
     }
 
+    function ChangeDevice() {
+        var myajax = new Ajax.Request('../Handler/Get12BetDomainList.ashx', {
+            method: 'post',
+            parameters: {
+                deviceType: $("slDevice").value
+            },
+            onComplete: function (res) {
+                $('12betdomain-region').innerHTML = res.responseText;
+            }
+        });
+    }
+
     function AddDomainControl() {
         $("errMsg").className = "";
         arrItem.clear();
         arrError.clear();
+
+        if ($("sl12BetDomain") === null) {
+            alert("Please choose a redirect domain.");
+            return false;
+        }
 
         DelayReloadPage1();
         var myajax = new Ajax.Request('../Handler/DomainControl.ashx', {
@@ -48,5 +65,10 @@
         });
         return false;
     }
+
+    document.observe("dom:loaded", function () {
+        $('slDevice').observe('change', ChangeDevice);
+    });
+
 </script>
 <!--/js-->

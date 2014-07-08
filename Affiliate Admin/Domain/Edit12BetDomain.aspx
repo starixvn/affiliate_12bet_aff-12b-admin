@@ -23,7 +23,12 @@
         }
         var ajax = new Ajax.Request('../Handler/Update12BetDomain.ashx', {
             method: 'post',
-            parameters: { _12BetDomainId: _12BetDomainId, _12BetDomainName: $('txt12betdomain').value, sta: 'Edit' },
+            parameters: {
+                _12BetDomainId: _12BetDomainId,
+                _12BetDomainName: $('txt12betdomain').value,
+                deviceType: $('slDevice').value,
+                sta: 'Edit'
+            },
             onComplete: function(strdata) {
                 if (strdata.responseText == 'Ok') {
                     isUpdate = true;

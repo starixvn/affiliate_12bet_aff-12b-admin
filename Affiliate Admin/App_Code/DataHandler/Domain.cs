@@ -33,11 +33,13 @@ namespace DataHandler
             return DbHelper.Execute("Aff_Domain12BetSel", null, DBType.AFFILIATE_12BET);
         }
 
-        public static DbResult DomainControlSel(string marketId)
+        public static DbResult DomainControlSel(string marketId, string deviceType)
         {
             Hashtable hs = new Hashtable();
             if(!string.IsNullOrEmpty(marketId))
                 hs.Add("marketid", marketId);
+            var device = string.IsNullOrEmpty(deviceType) ? 0 : byte.Parse(deviceType);
+            hs.Add("devicetype", device);
             return DbHelper.Execute("Aff_DomainControlSel", hs, DBType.AFFILIATE_12BET);
         }
 
@@ -175,35 +177,37 @@ namespace DataHandler
             return dr;
         }
 
-        public static DbResult GetList12BetDomain()
+        public static DbResult GetList12BetDomain(string deviceType)
         {
             DbResult dbr = null;
             try
             {
-
-                dbr = DbHelper.Execute("Aff_Domain12BetSel", null, DBType.AFFILIATE_12BET);
+                var hs = new Hashtable();
+                var device = string.IsNullOrEmpty(deviceType) ? 0 : byte.Parse(deviceType);
+                hs.Add("devicetype", device);
+                dbr = DbHelper.Execute("Aff_Domain12BetSel", hs, DBType.AFFILIATE_12BET);
             }
             catch
             {
-
                 throw;
             }
+
             return dbr;
         }
-        public static DbResult Update12BetDomain(int domainID, string domainName, int userID)
+        public static DbResult Update12BetDomain(int domainID, string domainName, string deviceType, int userID)
         {
-
             DbResult dr = null;
             try
             {
                 Hashtable htb = new Hashtable();
+                var device = string.IsNullOrEmpty(deviceType) ? 0 : byte.Parse(deviceType);
                 htb.Add("domainid", domainID);
                 htb.Add("domainname", HttpContext.Current.Server.HtmlEncode(domainName));
+                htb.Add("devicetype", device);
                 htb.Add("userid", userID);
                 htb.Add("ip", HttpContext.Current.Request.UserHostAddress);
                 htb.Add("errcode", 0);
                 htb.Add("errmsg", string.Empty);
-                // htb.Add("system", "AFFILIATE");
                 dr = DbHelper.Execute("Aff_Domain12BetUpd", htb, DBType.AFFILIATE_12BET);
             }
             catch
@@ -212,14 +216,16 @@ namespace DataHandler
             }
             return dr;
         }
-        public static DbResult Add12BetDomain(string domainName, int userID)
+        public static DbResult Add12BetDomain(string domainName, string deviceType, int userID)
         {
             DbResult dr = null;
             try
             {
                 Hashtable htb = new Hashtable();
+                var device = string.IsNullOrEmpty(deviceType) ? 0 : byte.Parse(deviceType);
                 htb.Add("domainid", 0);
                 htb.Add("domainname", HttpContext.Current.Server.HtmlEncode(domainName));
+                htb.Add("devicetype", device);
                 htb.Add("userid", userID);
                 htb.Add("ip", HttpContext.Current.Request.UserHostAddress);
                 htb.Add("errcode", 0);

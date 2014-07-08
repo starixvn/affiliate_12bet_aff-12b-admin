@@ -2332,4 +2332,10 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
   <data name="UpdateAffTypeSuccessful" xml:space="preserve">
     <value>Update affiliate type successfully!</value>
   </data>
+  <data name="Device" xml:space="preserve">
+    <value>Device</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>None</value>
+  </data>
 </root>

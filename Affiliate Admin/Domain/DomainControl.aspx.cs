@@ -23,16 +23,21 @@ public partial class Domain_DomainControl : IBCPage
         TemplateHandler.Assign(ref strTpl, "Creator", Resources.Lang.Creator);
         TemplateHandler.Assign(ref strTpl, "CreatedDate", Resources.Lang.CreatedDate);
         TemplateHandler.Assign(ref strTpl, "Status", Resources.Lang.Status);
+        TemplateHandler.Assign(ref strTpl, "Device", Resources.Lang.Device);
         TemplateHandler.Assign(ref strTpl, "Submit", Resources.Lang.Submit);
         TemplateHandler.Assign(ref strTpl, "AddNew", Resources.Lang.AddNew);
         TemplateHandler.Assign(ref strTpl, "Edit", Resources.Lang.Edit);
         TemplateHandler.Assign(ref strTpl, "Del", Resources.Lang.Del);
 
         string market = Request["slMarket"];
+        string deviceType = string.IsNullOrEmpty(Request["slDevice"]) ? "0" : Request["slDevice"];
+        
         try
         {
             TemplateHandler.Assign(ref strTpl, "slMarket", AffAdmin.GenerateHTML.Domain.GenMarketList(market, true));
-            DbResult rs = DataHandler.Domain.DomainControlSel(market);
+            TemplateHandler.Assign(ref strTpl, "slDevice", AffAdmin.GenerateHTML.Domain.GenDeviceList(deviceType));
+
+            DbResult rs = DataHandler.Domain.DomainControlSel(market, deviceType);
             StringBuilder strBuild = new StringBuilder();
 
             string rowTpl = TemplateHandler.CopyBlock(strTpl, "content");
@@ -57,6 +62,8 @@ public partial class Domain_DomainControl : IBCPage
                     TemplateHandler.Assign(ref rowContent, "CreatedDate-val", CastAide.AsDateTime(dr["CreateDate"].ToString()).ToShortDateString());               
                     TemplateHandler.Assign(ref rowContent, "Status-value", dr["Status"]);
                     TemplateHandler.Assign(ref rowContent, "Status-val", CastAide.AsBoolean(dr["Status"]) ? "ic-check" : "ic-uncheck");
+                    TemplateHandler.Assign(ref rowContent, "Device-val", dr["DeviceType"]);
+                    TemplateHandler.Assign(ref rowContent, "deviceType-val", deviceType);
 
                     strBuild.Append(rowContent);
                 }

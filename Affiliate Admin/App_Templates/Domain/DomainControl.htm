@@ -4,7 +4,9 @@
 <form id="frmSearch" name="frmSearch" method="get">
     <div id="search_cont">
         <div id="header_search">
-            {Market}&nbsp;&nbsp;&nbsp;&nbsp;{slMarket}&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="{Submit}" />
+            {Market}&nbsp;&nbsp;&nbsp;&nbsp;{slMarket}&nbsp;&nbsp;&nbsp;&nbsp;
+            {Device}&nbsp;&nbsp;&nbsp;&nbsp;{slDevice}&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="submit" value="{Submit}" />
         </div>
         <div id="spTime" style="float:right; vertical-align:middle; padding: 3px 10px 0 0;"></div>
     </div>
@@ -21,6 +23,7 @@
     <th>{Market}</th>
     <th>{Creator}</th>
     <th>{CreatedDate}</th>
+    <th>{Device}</th>
     <th style="width:45px">{Status}</th>
     <th style="width:45px">{Edit}</th>
     <th style="width:45px">{Del}</th>
@@ -34,8 +37,9 @@
     <td class="c">{Market-val}</td>
     <td class="c">{Creator-val}</td>
     <td class="c">{CreatedDate-val}</td>
+    <td class="c">{Device-val}</td>
     <td class="c"><span class="chk {Status-val}">&nbsp;</span></td>
-    <td class="c"><span class="icedit" onclick="DoCal('DomainControlUpd.aspx?id={ID-val}&affdomain={AffDomainId-val}&redirectdomain={RedirectDomainId-val}&market={MarketId-val}&status={Status-value}', 'Edit Domain Control', 450, 250);">&nbsp;</span></td>
+    <td class="c"><span class="icedit" onclick="DoCal('DomainControlUpd.aspx?id={ID-val}&affdomain={AffDomainId-val}&redirectdomain={RedirectDomainId-val}&market={MarketId-val}&status={Status-value}&deviceType={deviceType-val}', 'Edit Domain Control', 450, 250);">&nbsp;</span></td>
     <td class="c"><span class="icdel" onclick="DomainControlDel('{ID-val}')">&nbsp;</span></td>
 </tr>
 <!--/content-->

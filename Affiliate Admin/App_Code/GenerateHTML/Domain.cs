@@ -7,6 +7,7 @@ using System.Data;
 using DNAide.Web;
 using DNAide.Core;
 using DNAide.Data;
+using Resources;
 
 /// <summary>
 /// Summary description for Domain
@@ -61,11 +62,17 @@ namespace AffAdmin.GenerateHTML
             return Common.GenerateSelectObj("slAffDomain", arrValue, arrText, selectedDomain);
         }
 
-        public static string Gen12BetDomainList(string selectedDomain, bool hasAll = false)
+        public static string Gen12BetDomainList(string deviceType, string selectedDomain, bool hasAll = false)
         {
-            DbResult rs = DataHandler.Domain.Domain12BetSel();
-            ArrayList arrText = new ArrayList();
-            ArrayList arrValue = new ArrayList();
+            DbResult rs = DataHandler.Domain.GetList12BetDomain(deviceType);
+            var arrText = new ArrayList();
+            var arrValue = new ArrayList();
+
+            if (rs.ResultSet.Tables[0].Rows.Count == 0)
+            {
+                return Lang.None;
+            }
+
             if (hasAll)
             {
                 arrText.Add("All");
@@ -77,7 +84,27 @@ namespace AffAdmin.GenerateHTML
                 arrText.Add(dr["DomainName"]);
                 arrValue.Add(dr["DomainId"]);
             }
+
             return Common.GenerateSelectObj("sl12BetDomain", arrValue, arrText, selectedDomain);
+        }
+
+        public static string GenDeviceList(string selectedDevice = "0", bool hasAll = false)
+        {
+            var arrText = new ArrayList();
+            var arrValue = new ArrayList();
+
+            if (hasAll)
+            {
+                arrText.Add("All");
+                arrValue.Add("");
+            }
+
+            arrText.Add("PC / Laptop");
+            arrValue.Add("0");
+            arrText.Add("Mobile");
+            arrValue.Add("1");
+
+            return Common.GenerateSelectObj("slDevice", arrValue, arrText, selectedDevice);
         }
     }
 }
