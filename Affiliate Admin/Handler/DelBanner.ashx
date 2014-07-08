@@ -8,10 +8,8 @@ using System.Web.SessionState;
 //using System.Transactions;
 public class DelBanner : IHttpHandler, IRequiresSessionState
 {
-
     public void ProcessRequest(HttpContext context)
     {
-
         if (context.Request.UrlReferrer != null)
         {
             IBCHandler.InitializeCulture(HttpContext.Current);

@@ -25,6 +25,7 @@ public class GetDataBanner : IHttpHandler, IRequiresSessionState {
             int bannerType = CastAide.AsInt32(context.Request.Params["bannerType"], 0);
             bool isNewCateStruct = CastAide.AsBoolean(context.Request.Params["isNewCateStruct"], false);
             int affType = CastAide.AsInt32(context.Request["afftype"], (int)AffType.Asian);
+            var deviceType = string.IsNullOrEmpty(context.Request["deviceType"]) ? "0" : context.Request["deviceType"];
             string content = string.Empty;
             if (isNewCateStruct)
             {
@@ -37,10 +38,10 @@ public class GetDataBanner : IHttpHandler, IRequiresSessionState {
                     else
                         paramCategory = context.Request["subCategory"].ToString();
                 }
-                content = GenerateHTML.Banner.GetBannerList(paramCategory, isSearchByParentCategory, lang, type, size, currency, page, ref minNo, ref maxNo, ref totalBanner, ref totalPage, pageSize, bannerType, affType);
+                content = GenerateHTML.Banner.GetBannerList(paramCategory, isSearchByParentCategory, lang, type, size, currency, page, ref minNo, ref maxNo, ref totalBanner, ref totalPage, pageSize, bannerType, affType, deviceType);
             }
             else
-                content = GenerateHTML.Banner.GetBannerList(category, false, lang, type, size, currency, page, ref minNo, ref maxNo, ref totalBanner, ref totalPage, pageSize, bannerType, affType);
+                content = GenerateHTML.Banner.GetBannerList(category, false, lang, type, size, currency, page, ref minNo, ref maxNo, ref totalBanner, ref totalPage, pageSize, bannerType, affType, deviceType);
 
             result.Append(minNo.ToString());
             result.Append("$$$");

@@ -28,6 +28,7 @@ public class UpBanner : IHttpHandler, IRequiresSessionState {
             string oldFileName = context.Request.Params["hdOldFileName"];
             string oldCategory = context.Request.Params["hdOldCategory"];
             bool needToUploadFile = false;
+            string deviceType = context.Request.Params["slDevice"];
 
             //Save DB Info
             string ext = string.Empty;
@@ -138,7 +139,7 @@ public class UpBanner : IHttpHandler, IRequiresSessionState {
                 //    Common.DeleteFile(oldFullPath);
             }
 
-            err = DataHandler.Banner.UpdBanner(Convert.ToInt32(idbanner), newFileName, category, language, currency, imageType, size, afftype);
+            err = DataHandler.Banner.UpdBanner(Convert.ToInt32(idbanner), newFileName, category, language, currency, imageType, size, afftype, deviceType);
             if (!string.IsNullOrEmpty(err))
             {
                 //Delete image uploaded

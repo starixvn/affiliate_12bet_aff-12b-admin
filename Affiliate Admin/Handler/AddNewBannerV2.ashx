@@ -27,6 +27,7 @@ public class AddNewBannerV2 : IHttpHandler, IRequiresSessionState
             string imageType = context.Request.Params["slImageType"];
             string size = context.Request.Params["slSize"];
             string affType = context.Request.Params["slAffType"];
+            string deviceType = context.Request.Params["slDevice"];
             // ++ Added by Frank.Ngo on IRP 671 - 10 Jan 2012
             int type = CastAide.AsInt32(context.Request.Params["hidBannerType"], 0);
             // -- Added by Frank.Ngo on IRP 671 - 10 Jan 2012
@@ -89,7 +90,7 @@ public class AddNewBannerV2 : IHttpHandler, IRequiresSessionState
             Common.UploadFileWithAutoDetectSize(context, newFolder, path, inputfilename, ref errCode, out size, ref strDst);
             if (errCode == 0)
             {
-                int bannerID = DataHandler.Banner.InsBanner(fileName, category, language, currency, imageType, size, affType, ref errCode, ref err, type);
+                int bannerID = DataHandler.Banner.InsBanner(fileName, category, language, currency, imageType, size, affType, ref errCode, ref err, type, deviceType);
                 if (errCode != 0)
                 {
                     //Delete image uploaded

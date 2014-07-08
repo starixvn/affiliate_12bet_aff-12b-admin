@@ -98,18 +98,23 @@ function GetDataBannerList(page, bannerType, isNewCateStruct) {
         if ($('slSubCategoryMedia') != null)
             subCategory = $('slSubCategoryMedia').value;
 
+        var params = {
+            cate: $('cateoption').value,
+          subCategory: subCategory,
+          lang: $('langoption').value,
+          currency: $('currencyoption').value,
+          type: $('typeoption').value,
+          size: $('sizeoption').value,
+          page: page,
+          PageSize: $('slPageSize').value,
+          isNewCateStruct: isNewCateStruct,
+          afftype: $('afftypeoption').value,
+          deviceType: $('slDevice').value
+        };
+
         var ajax = new Ajax.Request("../Handler/GetDataBanner.ashx", {
             method: 'post',
-            parameters: 'cate=' + $('cateoption').value
-                + '&subCategory=' + subCategory
-                + '&lang=' + $('langoption').value
-                + '&currency=' + $('currencyoption').value
-                + '&type=' + $('typeoption').value
-                + "&size=" + $('sizeoption').value
-                + "&page=" + page
-                + "&PageSize=" + $('slPageSize').value
-                + "&isNewCateStruct=" + isNewCateStruct                
-                + "&afftype=" + $('afftypeoption').value,
+            parameters: params,
             onComplete: function (data) {
                 ProcessResult(data.responseText);
             }

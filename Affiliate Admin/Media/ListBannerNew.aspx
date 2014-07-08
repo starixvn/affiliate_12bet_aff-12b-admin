@@ -10,8 +10,6 @@
      var jQ = jQuery.noConflict();
      window.onload = Init;
 
-     
-
      function Init() {
          InitDivChkBox();
          if (($("totalMedia").value == 0)) {

@@ -14,7 +14,7 @@
         </div>
     </div>
     {submenu}
-    <div id="search_cont">
+    <div id="search_cont" style="height: 50px;">
         <table cellpadding="2" cellspacing="1">
             <tr>
                 <td>
@@ -60,11 +60,19 @@
                 <td>
                     {optionsize}
                 </td>
+            </tr>
+            <tr>
                 <td>
                     {afftype}
                 </td>
                 <td>
                     {optionafftype}
+                </td>
+                <td>
+                    {Device}
+                </td>
+                <td>
+                    {slDevice}
                 </td>
                 <td>
                     <div onclick="SubmitSearchFormNew();" id="divsearch">&nbsp;</div>
@@ -92,6 +100,9 @@
             </th>
             <th style="width: 50px; font-weight: bold;">
                 {Currency}
+            </th>
+            <th style="width: 80px; font-weight: bold;">
+                {Device}
             </th>
             <th style="width: 80px; font-weight: bold;">
                 {ImageType}
@@ -150,6 +161,9 @@
                 <td id="currency{bannerid}">
                     {currencyvalue}
                 </td>
+                <td id="device{devicetype}">
+                    {devicetypevalue}
+                </td>
                 <td id="imagetype{bannerid}">
                     {imagetypevalue}
                 </td>
@@ -158,7 +172,7 @@
                 </td>
                 <td style="text-align: center">
                     <!--ViewMode2-->
-                    <a href="javascript:DoCal('EditBanner.aspx?editBannerID={bannerid}', 'Edit Banner', 460, 450);" id="edit{bannerid}"><span class="icedit">&nbsp;</span></a>
+                    <a href="javascript:DoCal('EditBanner.aspx?editBannerID={bannerid}&deviceType={deviceType}', 'Edit Banner', 460, 450);" id="edit{bannerid}"><span class="icedit">&nbsp;</span></a>
                     <!--/ViewMode2-->
                     <!--UpdateMode2-->
                     &nbsp;

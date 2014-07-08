@@ -124,13 +124,14 @@ namespace GenerateHTML
 
         // ++ Modified by Frank.Ngo on IRP 671 - 10 Jan 2012
         // add "type" parameter to indicate normal banner or media banner
-        public static string GetBannerList(string category, bool isSearchByParentCateogry, string language, string imageType, string size, string currency, int pageIndex, ref int minNo, ref int maxNo, ref int totalBanner, ref int totalPage, int pageSize, int type, int afftype)
+        public static string GetBannerList(string category, bool isSearchByParentCateogry, string language, string imageType, string size, string currency, int pageIndex, ref int minNo, ref int maxNo, 
+            ref int totalBanner, ref int totalPage, int pageSize, int type, int afftype, string deviceType)
         {
             DbResult result = null;
             int nRows = 0;
             result = (isSearchByParentCateogry)
-                ? DataHandler.Banner.GetBannerListByParentCategory(category, language, imageType, size, currency, pageIndex, pageSize, type, afftype)
-                : DataHandler.Banner.GetBannerList(category, language, imageType, size, currency, pageIndex, pageSize, type, afftype);
+                ? DataHandler.Banner.GetBannerListByParentCategory(category, language, imageType, size, currency, pageIndex, pageSize, type, afftype, deviceType)
+                : DataHandler.Banner.GetBannerList(category, language, imageType, size, currency, pageIndex, pageSize, type, afftype, deviceType);
             nRows = CastAide.AsInt32(result.Outputs["nrows"]);
             int pagesize = pageSize;
             int cols = 10;
@@ -217,6 +218,8 @@ namespace GenerateHTML
                     TemplateHandler.Assign(ref rowText, "tdheight", intWidth > 515 ? CastAide.AsString(CastAide.AsInt32(strSize[1]) + 17, string.Empty) + "px" : "auto");
                     TemplateHandler.Assign(ref rowText, "bannerid", dr["bannerid"].ToString());
                     TemplateHandler.Assign(ref rowText, "currencyvalue", dr["currency"].ToString());
+                    TemplateHandler.Assign(ref rowText, "devicetypevalue", dr["devicetype"].ToString());
+                    TemplateHandler.Assign(ref rowText, "deviceType", deviceType);
                     contentList.Append(rowText);
 
                 }

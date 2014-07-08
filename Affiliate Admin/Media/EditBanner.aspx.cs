@@ -7,10 +7,8 @@ public partial class AddBanner : IBCPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-       
-        //-------------------------
-        
         int bannerID = Convert.ToInt32(Context.Request["editBannerID"].Trim());
+        var deviceType = Request["deviceType"];
         //Response.Redirect("EditMediaBanner.aspx?editBannerID=" + bannerID.ToString());
         DbResult result = DataHandler.Banner.GetBannerDetail(bannerID);
         if (result.ResultSet.Tables[0].Rows.Count > 0)
@@ -33,7 +31,6 @@ public partial class AddBanner : IBCPage
 
             string mediaCategory = dr["category"].ToString();
             string category = string.Empty;
-            bool newBanner = dr["filename"].ToString().Contains("CategoryMedia");
             if (Common.CheckHaveParentCategory(mediaCategory, out category))
             {
                     TemplateHandler.Assign(ref temp, "optioncate", Common.GetDataOptionBanner(dv, "slCategory", "CategoryMedia", category, false));
@@ -44,7 +41,6 @@ public partial class AddBanner : IBCPage
                 TemplateHandler.Assign(ref temp, "optioncate", Common.GetDataOptionBanner(dv, "slCategory", "CategoryMedia", mediaCategory, false));
                 TemplateHandler.Assign(ref temp, "subCategory", "None");
             }
-            
 
             TemplateHandler.Assign(ref temp, "optionlang", Common.GetDataOptionBanner(dv, "slLanguage", "Language", dr["language"].ToString(), false));
             TemplateHandler.Assign(ref temp, "optioncurrency", Common.GetDataOptionBanner(dv, "slCurrency", "Currency", dr["currency"].ToString(), false));
@@ -55,6 +51,8 @@ public partial class AddBanner : IBCPage
             var afftype = dr["afftype"].ToString();
             TemplateHandler.Assign(ref temp, "optionafftype", Common.GenDropDownFromTable(dt, "TypeId", "Name", "slAffType", ref afftype, false));
 
+            TemplateHandler.Assign(ref temp, "Device", Resources.Lang.Device);
+            TemplateHandler.Assign(ref temp, "slDevice", AffAdmin.GenerateHTML.Domain.GenDeviceList(deviceType));
 
             TemplateHandler.Assign(ref temp, "bannerid", dr["bannerid"].ToString());
             TemplateHandler.Assign(ref temp, "oldfilenamevalue", dr["filename"].ToString());

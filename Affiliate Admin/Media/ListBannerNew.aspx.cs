@@ -28,6 +28,8 @@ public partial class ListMediaBanner : IBCPage
         string subCategory = string.Empty;
         bool isSearchByParentCategory = false;
         string paramCategory = cate;
+        var deviceType = string.IsNullOrEmpty(Request["slDevice"]) ? "0" : Request["slDevice"];
+
         if (cate == "Casino" || cate == "Sportsbook")
         {
             hasSubCategory = true;
@@ -67,6 +69,9 @@ public partial class ListMediaBanner : IBCPage
         TemplateHandler.Assign(ref temp, "afftype", Resources.Lang.AffiliateType);
         var tempAffType = afftype.ToString();
         TemplateHandler.Assign(ref temp, "optionafftype", Common.GenDropDownFromTable(dt, "TypeId", "Name", "afftypeoption", ref tempAffType, false));
+        
+        TemplateHandler.Assign(ref temp, "Device", Resources.Lang.Device);
+        TemplateHandler.Assign(ref temp, "slDevice", AffAdmin.GenerateHTML.Domain.GenDeviceList(deviceType));
 
         TemplateHandler.Assign(ref temp, "Images", Resources.Lang.Images);
         TemplateHandler.Assign(ref temp, "Filename", Resources.Lang.filename);
@@ -76,7 +81,7 @@ public partial class ListMediaBanner : IBCPage
         int minNo=0, maxNo=0, totalBanner=0, totalPage=0;
         TemplateHandler.ReplaceBlock(ref temp, "Content", GenerateHTML.Banner.GetBannerList(
             paramCategory, isSearchByParentCategory, lang, imgtype, size, currency, currPage,
-            ref minNo, ref maxNo, ref totalBanner, ref totalPage, pageSize, Common.NormalBanner, afftype));
+            ref minNo, ref maxNo, ref totalBanner, ref totalPage, pageSize, Common.NormalBanner, afftype, deviceType));
         if (totalBanner > 0)
         {
             TemplateHandler.Assign(ref temp, "paging-top", Common.GenPaging(totalPage, currPage, pageSize, totalBanner, "aPageTop", "txtPageTop", new string[] { "Delete", "Add" }, new string[] { "DeleteSelectedMedia(0, 'true');",
