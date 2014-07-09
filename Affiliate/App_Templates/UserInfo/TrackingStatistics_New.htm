@@ -41,13 +41,14 @@
         }
     }
 
-    function ViewDetail(fdate, tdate, doman, pageSize, pageIndex) {
+    function ViewDetail(fdate, tdate, doman, pageSize, pageIndex, deviceType) {
         try {
             var params;
             $("tmpFromDate").value = fdate;
             $("tmpToDate").value = tdate;
             $("tmpSite").value = doman;
-            params = "fdate=" + fdate + "&tdate=" + tdate + "&domain=" + doman + "&pageSize=" + pageSize + "&pageIndex=" + pageIndex;
+            params = "fdate=" + fdate + "&tdate=" + tdate + "&domain=" + doman + "&pageSize=" + pageSize
+                + "&pageIndex=" + pageIndex + "&deviceType=" + deviceType;
 
             var ajax = new Ajax.Request("../Handler/GetStatisticsDetail_New.ashx", {
                 method: 'get',
@@ -57,7 +58,6 @@
                     $("slPageSize").value = pageSize;
                 }
             });
-
         }
         catch (e) {
             alert(e);
@@ -115,7 +115,13 @@
                         </td>
                         <td>
                             <img hspace="3" height="20" border="0" width="18" src="../App_Themes/Default/Images/cal.gif"
-                                id="tdateTrigger" />
+                                 id="tdateTrigger" />
+                        </td>
+                        <td>
+                            {Device}:
+                        </td>
+                        <td style="width: 100px" class="r">
+                            {slDevice}
                         </td>
                         <td>
                             <input type="button" value="{Submit}" onclick="LoadData(1);" id="btnSubmit" name="{Submit}"
@@ -150,7 +156,7 @@
                         <tr class="{rowstyle}" onmouseout="this.className={onmouseoutstyle};" onmouseover="this.className=c;">
                             <td class="wordwrap">
                                 <!--domain-->
-                                <a href="javascript:void(0);" onclick="ViewDetail('{fdate}', '{tdate}', '{Site-val}', 20, 1);">
+                                <a href="javascript:void(0);" onclick="ViewDetail('{fdate}', '{tdate}', '{Site-val}', 20, 1, '{DeviceType-val}');">
                                     {Site-val}</a>
                                 <!--/domain-->
                             </td>

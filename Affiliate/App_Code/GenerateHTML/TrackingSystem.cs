@@ -155,7 +155,7 @@ namespace GenerateHTML
             return opt;
         }
 
-        public static string GetStatisticsBySite(object fromdate, object todate)
+        public static string GetStatisticsBySite(object fromdate, object todate, string deviceType)
         {
             string htmlContent = TemplateHandler.LoadTemplate("UserInfo/TrackingStatistics_New.htm");
             string strContent = TemplateHandler.CopyBlock(htmlContent, "Content");
@@ -163,7 +163,7 @@ namespace GenerateHTML
             TemplateHandler.Assign(ref strContent, "fdate", Common.ConvertDateTime(fromdate, "/", true, false));
             TemplateHandler.Assign(ref strContent, "tdate", Common.ConvertDateTime(todate, "/", true, false));
 
-            DbResult result = DataHandler.TrackingSystem.SelClickStatisticsBySite(fromdate, todate);
+            DbResult result = DataHandler.TrackingSystem.SelClickStatisticsBySite(fromdate, todate, deviceType);
             int cols = 5;
             if (result.ResultSet.Tables.Count > 0)
             {
@@ -213,9 +213,9 @@ namespace GenerateHTML
 
         }
 
-        public static string GetStatisticsDetail_New(DateTime fDate, DateTime tDate, string domain, string sportCode, string languageCode, int pageSize, int pageIndex)
+        public static string GetStatisticsDetail_New(DateTime fDate, DateTime tDate, string domain, string sportCode, string languageCode, int pageSize, int pageIndex, string deviceType)
         {
-            DbResult result = DataHandler.TrackingSystem.SelStatisticsDetail_New(fDate, tDate, domain, sportCode, languageCode, pageSize, pageIndex);
+            DbResult result = DataHandler.TrackingSystem.SelStatisticsDetail_New(fDate, tDate, domain, sportCode, languageCode, pageSize, pageIndex, deviceType);
             string htmlContent = TemplateHandler.LoadTemplate("UserInfo/TrackingStatistics_New.htm");
             string strContentTable = TemplateHandler.CopyBlock(htmlContent, "StatisticsDetail");
 
@@ -250,6 +250,7 @@ namespace GenerateHTML
                     TemplateHandler.Assign(ref strTmp, "UniqueClick-val", dr["uniqueclick"].ToString());
                     TemplateHandler.Assign(ref strTmp, "Signups-val", dr["Signups"].ToString());
                     TemplateHandler.Assign(ref strTmp, "FDM-val", dr["FDM"].ToString());
+                    TemplateHandler.Assign(ref strTmp, "DeviceType-val", deviceType);
                     if ((intNo % 2) == 0)
                     {
                         TemplateHandler.Assign(ref strTmp, "rowstyle", "bgwhite");

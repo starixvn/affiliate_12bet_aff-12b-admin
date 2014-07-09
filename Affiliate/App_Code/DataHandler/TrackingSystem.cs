@@ -38,7 +38,7 @@ namespace DataHandler
             hsParam.Add("year", year);
             return DbHelper.Execute("Aff_AffiliateSelClickStatisticsMonthDetail", hsParam, DBType.AFFILIATE_12BET, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
         }
-        public static DbResult SelClickStatisticsBySite(object fromDate, object toDate)
+        public static DbResult SelClickStatisticsBySite(object fromDate, object toDate, string deviceType)
         {
             Hashtable hsParam = new Hashtable();
             CultureInfo culture = new CultureInfo("en-US");
@@ -46,9 +46,10 @@ namespace DataHandler
             hsParam.Add("affid", AppSettings.Session.CustID);
             hsParam.Add("fromdate", CastAide.AsDateTime(fromDate, culture));
             hsParam.Add("todate", CastAide.AsDateTime(toDate, culture));
+            hsParam.Add("devicetype", byte.Parse(deviceType));
             return DbHelper.Execute("Aff_ClickStatisticsSelBySite", hsParam, DBType.AFFILIATE_12BET);
         }
-        public static DbResult SelStatisticsDetail_New(DateTime fDate, DateTime tDate, string domain, string sportCode, string languageCode, int pageSize, int pageIndex)
+        public static DbResult SelStatisticsDetail_New(DateTime fDate, DateTime tDate, string domain, string sportCode, string languageCode, int pageSize, int pageIndex, string deviceType)
         {
             Hashtable hsParam = new Hashtable();
             hsParam.Add("affid", AppSettings.Session.CustID);
@@ -62,6 +63,7 @@ namespace DataHandler
                 hsParam.Add("sportcode", sportCode);
             if (!string.IsNullOrEmpty(languageCode))
                 hsParam.Add("languagecode", languageCode);
+            hsParam.Add("devicetype", byte.Parse(deviceType));
             hsParam.Add("pagesize", pageSize);
             hsParam.Add("pageindex", pageIndex);
             hsParam.Add("totalpages", 0);
@@ -111,7 +113,6 @@ namespace DataHandler
             totalUniqueClicks = CastAide.AsInt32(rs.Outputs["totaluniqueclicks"]);
             totalClicks = CastAide.AsInt32(rs.Outputs["totalclicks"]);
         }
-
 
         public static bool InsertStatistic(int affId, string trackingCode, string pageCode, string languageCode, HttpRequest request, string affDomain, out string redirectPage, out Int64 clickID, ref int errCode, ref string errMsg)
         {

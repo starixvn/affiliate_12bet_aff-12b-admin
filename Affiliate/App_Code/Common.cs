@@ -11,6 +11,7 @@ using DNAide.Core;
 using LoadBalancerLibrary;
 using System.Data;
 using System.Collections.Generic;
+using Resources;
 using Sunplus.UMControllerLibrary;
 using System.Web.Configuration;
 using DNAide.Data;
@@ -804,6 +805,31 @@ public class Common
         }
 
         return strBuild.ToString();
+    }
+
+    public static string GenDeviceList(string id, string selectedDevice = "0", bool hasAll = false)
+    {
+        var table = new DataTable("table");
+        table.Columns.Add(new DataColumn("value", Type.GetType("System.String")));
+        table.Columns.Add(new DataColumn("name", Type.GetType("System.String")));
+
+        var newRow = table.NewRow();
+        newRow["value"] = "0";
+        newRow["name"] = Lang.PCDevice;
+        table.Rows.Add(newRow);
+
+        newRow = table.NewRow();
+        newRow["value"] = "1";
+        newRow["name"] = Lang.MobileDevice;
+        table.Rows.Add(newRow);
+
+        return GenDropDownFromTable(table, "value", "name", id, ref selectedDevice, hasAll);
+    }
+
+
+    public static string GetDeviceType(string deviceType)
+    {
+        return string.IsNullOrEmpty(deviceType) ? "0" : deviceType;
     }
 }
 
