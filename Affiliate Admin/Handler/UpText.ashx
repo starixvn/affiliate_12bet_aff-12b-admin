@@ -16,15 +16,16 @@ public class UpText : IHttpHandler, IRequiresSessionState
             string category = context.Request.Params["slCategory"];
             string language = context.Request.Params["slLanguage"];
             string currency = context.Request.Params["slCurrency"];
+            string deviceType = context.Request.Params["slDevice"];
 
-            string err = DataHandler.Text.UpdText(Convert.ToInt32(idbanner), textvalue, category, language, currency);
+            string err = DataHandler.Text.UpdText(Convert.ToInt32(idbanner), textvalue, category, language, currency, deviceType);
             if (!string.IsNullOrEmpty(err))
             {
                 context.Response.Write("<script type=\"text/javascript\">parent.ErrAlter('" + err + "');</script>");
                 return;
             }
             //Upload new file
-            context.Response.Write("<script type=\"text/javascript\">parent.CancelEdit();</script>");
+            context.Response.Write("<script type=\"text/javascript\">parent.RefreshTextList();</script>");
         }
     }
  

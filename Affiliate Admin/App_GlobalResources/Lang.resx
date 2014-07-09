@@ -2338,4 +2338,10 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
   <data name="None" xml:space="preserve">
     <value>None</value>
   </data>
+  <data name="MobileDevice" xml:space="preserve">
+    <value>Mobile</value>
+  </data>
+  <data name="PCDevice" xml:space="preserve">
+    <value>PC / Laptop</value>
+  </data>
 </root>

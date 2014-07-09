@@ -3,7 +3,6 @@ var curBannerID = -1;
 var curTR;
 var curNoRow = -1;
 function DeleteSelectedText() {
-
     var bannerIDList = "";
     var fileList = "";
     listChk = $$("div .chk");
@@ -30,8 +29,10 @@ function DeleteSelectedText() {
 }
 function DeleteMedia(bannerIDList, fileList) {
     try {
-        var params;
-        params = "params=" + bannerIDList;
+        var params = {
+            params: bannerIDList
+        };
+
         var ajax = new Ajax.Request("../Handler/DelText.ashx", {
             method: 'post',
             parameters: params,
@@ -45,7 +46,6 @@ function DeleteMedia(bannerIDList, fileList) {
                 }
             }
         });
-
     }
     catch (e) {
         alert(e);
@@ -92,9 +92,19 @@ function NavigatePage(curPage) {
 }
 
 function GetDataBannerList(page) {
+    var params = {
+        cate: $('cateoption').value,
+        lang: $('langoption').value,
+        currency: $('currencyoption').value,
+        type: '',
+        page: page,
+        PageSize: $('slPageSize').value,
+        deviceType: $('deviceType').value
+    };
+    
     var ajax = new Ajax.Request("../Handler/GetDataText.ashx", {
         method: 'post',
-        parameters: 'cate=' + $('cateoption').value + '&lang=' + $('langoption').value + '&currency=' + $('currencyoption').value + '&type=' + "&page=" + page + "&PageSize=" + $('slPageSize').value,
+        parameters:  params,
         onComplete: function(data) {
             ProcessResult(data.responseText);
         }
@@ -156,7 +166,7 @@ function IsValidFileExtension() {
 
 }
 
-function ActiveEdit(textid, noRow) {
+function ActiveEdit(textid, noRow, deviceType) {
     if (curBannerID != -1) {
         alert('Please cancel current editing banner first.');
         $('btncancel' + curBannerID).focus();
@@ -167,7 +177,7 @@ function ActiveEdit(textid, noRow) {
         try {
             var ajax = new Ajax.Request("../Handler/GetEditedText.ashx", {
                 method: 'post',
-                parameters: 'textid=' + textid + '&noRow=' + noRow,
+                parameters: 'textid=' + textid + '&noRow=' + noRow + '&deviceType=' + deviceType,
                 onComplete: function(data) {
                     var tempDiv = document.createElement("DIV");
                     tempDiv.innerHTML = "<table><tbody>" + data.responseText + "</tbody></table>";
@@ -199,11 +209,11 @@ function ActiveEdit(textid, noRow) {
     }
 }
 
-function CancelEdit() {
+function CancelEdit(deviceType) {
     try {
         var ajax = new Ajax.Request("../Handler/GetViewedText.ashx", {
             method: 'post',
-            parameters: 'textid=' + curBannerID + '&noRow=' + curNoRow,
+            parameters: 'textid=' + curBannerID + '&noRow=' + curNoRow + "&deviceType=" + deviceType,
             onComplete: function(data) {
                 var tempDiv = document.createElement("DIV");
                 tempDiv.innerHTML = "<table><tbody>" + data.responseText + "</tbody></table>";
@@ -222,7 +232,6 @@ function CancelEdit() {
                 curBannerID = -1;
             }
         });
-
     }
     catch (e) {
         alert(e);
@@ -232,10 +241,16 @@ function CancelEdit() {
     }
 }
 
-function Cancelfunction() {
-    setTimeout("ClosePopup();", 500);
+function RefreshTextList() {
+    var url = location.href;
+    location.href = url.substr(0, url.indexOf("#") > 0 ? url.indexOf("#") : url.length);
 }
 
+function Cancelfunction() {
+    setTimeout(function () {
+        ClosePopup();
+    }, 500);
+}
 
 function SubmitSearchForm() {
     $("frmSearch").method = "get";

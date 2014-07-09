@@ -12,7 +12,7 @@ public partial class Domain_DomainControlIns : IBCPage
         TemplateHandler.Assign(ref strTpl, "Device", Resources.Lang.Device);
         TemplateHandler.Assign(ref strTpl, "submit", Resources.Lang.Add);
         TemplateHandler.Assign(ref strTpl, "cancel", Resources.Lang.Cancel);
-        TemplateHandler.Assign(ref strTpl, "slDevice", AffAdmin.GenerateHTML.Domain.GenDeviceList());
+        TemplateHandler.Assign(ref strTpl, "slDevice", AffAdmin.GenerateHTML.Domain.GenDeviceList("slDevice"));
         this.HtmlContent = strTpl;
 
     }

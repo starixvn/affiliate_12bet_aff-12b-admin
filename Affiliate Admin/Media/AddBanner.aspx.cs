@@ -41,7 +41,7 @@ public partial class AddBanner : IBCPage
         TemplateHandler.Assign(ref temp, "optionafftype", Common.GenDropDownFromTable(dt, "TypeId", "Name", "slAffType", ref afftype, false));
 
         TemplateHandler.Assign(ref temp, "Device", Resources.Lang.Device);
-        TemplateHandler.Assign(ref temp, "slDevice", AffAdmin.GenerateHTML.Domain.GenDeviceList());
+        TemplateHandler.Assign(ref temp, "slDevice", AffAdmin.GenerateHTML.Domain.GenDeviceList("slDevice"));
 
         this.HtmlContent = temp;
         

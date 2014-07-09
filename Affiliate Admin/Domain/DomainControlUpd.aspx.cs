@@ -16,7 +16,7 @@ public partial class Domain_DomainControlUpd : IBCPage
         TemplateHandler.Assign(ref strTpl, "cancel", Resources.Lang.Cancel);        
         TemplateHandler.Assign(ref strTpl, "ic-status", CastAide.AsBoolean(Request["status"]) ? "ic-check" : "ic-uncheck");
         TemplateHandler.Assign(ref strTpl, "id", Request["id"]);
-        TemplateHandler.Assign(ref strTpl, "slDevice", AffAdmin.GenerateHTML.Domain.GenDeviceList(Request["deviceType"]));
+        TemplateHandler.Assign(ref strTpl, "slDevice", AffAdmin.GenerateHTML.Domain.GenDeviceList("slDevice", Request["deviceType"]));
         TemplateHandler.Assign(ref strTpl, "redirectDomain", Request["redirectdomain"]);
         
         this.HtmlContent = strTpl;

@@ -35,7 +35,7 @@ public partial class Domain_DomainControl : IBCPage
         try
         {
             TemplateHandler.Assign(ref strTpl, "slMarket", AffAdmin.GenerateHTML.Domain.GenMarketList(market, true));
-            TemplateHandler.Assign(ref strTpl, "slDevice", AffAdmin.GenerateHTML.Domain.GenDeviceList(deviceType));
+            TemplateHandler.Assign(ref strTpl, "slDevice", AffAdmin.GenerateHTML.Domain.GenDeviceList("slDevice", deviceType));
 
             DbResult rs = DataHandler.Domain.DomainControlSel(market, deviceType);
             StringBuilder strBuild = new StringBuilder();

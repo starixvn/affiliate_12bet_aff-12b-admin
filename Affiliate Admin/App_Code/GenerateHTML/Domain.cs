@@ -88,23 +88,23 @@ namespace AffAdmin.GenerateHTML
             return Common.GenerateSelectObj("sl12BetDomain", arrValue, arrText, selectedDomain);
         }
 
-        public static string GenDeviceList(string selectedDevice = "0", bool hasAll = false)
+        public static string GenDeviceList(string id, string selectedDevice = "0", bool hasAll = false)
         {
-            var arrText = new ArrayList();
-            var arrValue = new ArrayList();
+            var table = new DataTable("table");
+            table.Columns.Add(new DataColumn("value", Type.GetType("System.String")));
+            table.Columns.Add(new DataColumn("name", Type.GetType("System.String")));
 
-            if (hasAll)
-            {
-                arrText.Add("All");
-                arrValue.Add("");
-            }
+            var newRow = table.NewRow();
+            newRow["value"] = "0";
+            newRow["name"] = Lang.PCDevice;
+            table.Rows.Add(newRow);
 
-            arrText.Add("PC / Laptop");
-            arrValue.Add("0");
-            arrText.Add("Mobile");
-            arrValue.Add("1");
+            newRow = table.NewRow();
+            newRow["value"] = "1";
+            newRow["name"] = Lang.MobileDevice;
+            table.Rows.Add(newRow);
 
-            return Common.GenerateSelectObj("slDevice", arrValue, arrText, selectedDevice);
+            return Common.GenDropDownFromTable(table, "value", "name", id, ref selectedDevice, hasAll);
         }
     }
 }

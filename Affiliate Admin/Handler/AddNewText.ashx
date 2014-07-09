@@ -17,9 +17,10 @@ public class AddNewText : IHttpHandler, IRequiresSessionState
             string category = context.Request.Params["slCategory"];
             string language = context.Request.Params["slLanguage"];
             string currency = context.Request.Params["slCurrency"];
+            string deviceType = context.Request.Params["slDevice"];
             string err = string.Empty;
             int errCode = 0;
-            int bannerID = DataHandler.Text.InsText(textvalue, category, language, currency, ref errCode, ref err);
+            int bannerID = DataHandler.Text.InsText(textvalue, category, language, currency, ref errCode, ref err, deviceType);
 
             if (!string.IsNullOrEmpty(err))
             {

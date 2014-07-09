@@ -18,7 +18,7 @@ namespace GenerateHTML
             // TODO: Add constructor logic here
             //
         }
-        public static string GetEditedText(int textID, int noRow)
+        public static string GetEditedText(int textID, int noRow, string deviceType)
         {
             DbResult result = DataHandler.Text.GetTextDetail(textID);
             if (result.ResultSet.Tables[0].Rows.Count > 0)
@@ -37,18 +37,19 @@ namespace GenerateHTML
                 TemplateHandler.Assign(ref content, "langvalue", Common.GetDataOptionBanner(dv, "slLanguage", "Language", dr["language"].ToString(), false));
                 TemplateHandler.Assign(ref content, "textid", dr["bannerid"].ToString());
                 TemplateHandler.Assign(ref content, "currencyvalue", Common.GetDataOptionBanner(dv, "slCurrency", "Currency", dr["currency"].ToString(), false));
+                TemplateHandler.Assign(ref content, "devicetypevalue", AffAdmin.GenerateHTML.Domain.GenDeviceList("slDevice", deviceType));
+                TemplateHandler.Assign(ref content, "deviceType", deviceType);
+                
                 return content;
-
-
             }
 
             return string.Empty;
         }
-        public static string GetListText(string category, string language, string currency, int pageIndex, ref int minNo, ref int maxNo, ref int totalText, ref int totalPage, int pageSize)
+        public static string GetListText(string category, string language, string currency, int pageIndex, ref int minNo, ref int maxNo, ref int totalText, ref int totalPage, int pageSize, string deviceType)
         {
             DbResult result = null;
             int nRows = 0;
-            result = DataHandler.Text.GetListText(category, language, currency, pageIndex, pageSize);
+            result = DataHandler.Text.GetListText(category, language, currency, pageIndex, pageSize, deviceType);
             nRows = CastAide.AsInt32(result.Outputs["nrows"]);
             int pagesize = pageSize;
             int cols = 10;
@@ -85,6 +86,8 @@ namespace GenerateHTML
                     TemplateHandler.Assign(ref rowText, "langvalue", dr["language"].ToString());
                     TemplateHandler.Assign(ref rowText, "textid", dr["bannerid"].ToString());
                     TemplateHandler.Assign(ref rowText, "currencyvalue", dr["currency"].ToString());
+                    TemplateHandler.Assign(ref rowText, "devicetypevalue", dr["devicetype"].ToString());
+                    TemplateHandler.Assign(ref rowText, "deviceType", deviceType);
                     contentList.Append(rowText);
                 }
                 maxNo = (pageIndex - 1) * pagesize + counter;
@@ -101,7 +104,7 @@ namespace GenerateHTML
             }
 
         }
-        public static string GetViewedText(int textID, int noRow)
+        public static string GetViewedText(int textID, int noRow, string deviceType)
         {
             DbResult result = DataHandler.Text.GetTextDetail(textID);
             if (result.ResultSet.Tables[0].Rows.Count > 0)
@@ -130,6 +133,8 @@ namespace GenerateHTML
                 TemplateHandler.Assign(ref content, "langvalue", dr["language"].ToString());
                 TemplateHandler.Assign(ref content, "textid", dr["bannerid"].ToString());
                 TemplateHandler.Assign(ref content, "currencyvalue", dr["currency"].ToString());
+                TemplateHandler.Assign(ref content, "devicetypevalue", dr["devicetype"]);
+                TemplateHandler.Assign(ref content, "deviceType", deviceType);
                 return content;
 
             }

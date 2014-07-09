@@ -36,6 +36,12 @@
                     {optioncurrency}
                 </td>
                 <td>
+                    {Device}
+                </td>
+                <td>
+                    {optiondevice}
+                </td>
+                <td>
                     <div onclick="SubmitSearchForm();" id="divsearch">&nbsp;</div>
                 </td>
             </tr>
@@ -58,6 +64,9 @@
             </th>
             <th style="width: 100px; font-weight: bold;">
                 {Currency}
+            </th>
+            <th style="width: 8px; font-weight: bold;">
+                {Device}
             </th>
             <th style="width: 40px; font-weight: bold;">
                 {Action}
@@ -91,9 +100,12 @@
                 <td id="currency{textid}">
                     {currencyvalue}
                 </td>
+                <td id="devicetype{textid}">
+                    {devicetypevalue}
+                </td>
                 <td style="text-align: center">
                     <!--ViewMode2-->
-                    <a href="javascript:ActiveEdit('{textid}','{No-val}');" id="edit{textid}"><span class="icedit">&nbsp;</span></a>
+                    <a href="javascript:ActiveEdit('{textid}','{No-val}', '{deviceType}');" id="edit{textid}"><span class="icedit">&nbsp;</span></a>
                     <!--/ViewMode2-->
                     <!--UpdateMode2-->
                     &nbsp;
@@ -102,7 +114,7 @@
                     </div>
                     <div style="margin-top:10px; padding:5px 0px 5px 0px">
                     <input id="btncancel{textid}" type="button" class="buttonlogin" value="Cancel"
-                        onclick="CancelEdit();" /></div>
+                        onclick="CancelEdit('{deviceType}');" /></div>
                     <input type="hidden" id="hdBannerID" name="hdBannerID" value="{textid}" />
                     <!--/UpdateMode2-->
                 </td>
@@ -123,6 +135,7 @@
     <input type="hidden" id="totalMedia" name="totalMedia" value="{totaltotalMedia-val}" />
     <input id="hdConfirmDelete" name="hdConfirmDelete" type="hidden" value="{ConfirmDelete}" />
     <input id="hdErrFileExtension" name="hdErrFileExtension" type="hidden" value="{ErrFileExtension}" />
+    <input type="hidden" id="deviceType" name="deviceType" value="{deviceType}" />
     </form>
 </div>
 <iframe id="upload_target" name="upload_target" src="#" style="width: 0; height: 0; border: 0px solid #fff;"></iframe>

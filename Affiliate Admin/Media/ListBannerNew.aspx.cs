@@ -71,7 +71,7 @@ public partial class ListMediaBanner : IBCPage
         TemplateHandler.Assign(ref temp, "optionafftype", Common.GenDropDownFromTable(dt, "TypeId", "Name", "afftypeoption", ref tempAffType, false));
         
         TemplateHandler.Assign(ref temp, "Device", Resources.Lang.Device);
-        TemplateHandler.Assign(ref temp, "slDevice", AffAdmin.GenerateHTML.Domain.GenDeviceList(deviceType));
+        TemplateHandler.Assign(ref temp, "slDevice", AffAdmin.GenerateHTML.Domain.GenDeviceList("slDevice", deviceType));
 
         TemplateHandler.Assign(ref temp, "Images", Resources.Lang.Images);
         TemplateHandler.Assign(ref temp, "Filename", Resources.Lang.filename);

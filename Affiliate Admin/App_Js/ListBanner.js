@@ -192,7 +192,7 @@ function IsValidFileExtension() {
     
 }
 
-function ActiveEdit(bannerid, noRow) {
+function ActiveEdit(bannerid, noRow, deviceType) {
     if (curBannerID != -1) {
         alert('Please cancel current editing banner first.');
         $('btncancel' + curBannerID).focus();
@@ -203,7 +203,7 @@ function ActiveEdit(bannerid, noRow) {
         try {
             var ajax = new Ajax.Request("../Handler/GetEditedBanner.ashx", {
                 method: 'post',
-                parameters: 'bannerid=' + bannerid + '&noRow=' + noRow,
+                parameters: 'bannerid=' + bannerid + '&noRow=' + noRow + "&deviceType=" + deviceType,
                 onComplete: function(data) {
                     var tempDiv = document.createElement("DIV");
                     tempDiv.innerHTML = "<table><tbody>" + data.responseText + "</tbody></table>";
@@ -281,7 +281,10 @@ function CancelEdit() {
 }
 
 function Cancelfunction() {
-    setTimeout("ClosePopup();", 500);
+    setTimeout(function () {
+        alert("stop");
+        ClosePopup();
+    }, 500);
 }
 
 

@@ -24,6 +24,10 @@ public partial class Media_AddText : IBCPage
         TemplateHandler.Assign(ref temp, "optionlang", Common.GetDataOptionBanner(dv, "slLanguage", "Language", string.Empty, false));
         TemplateHandler.Assign(ref temp, "optioncurrency", Common.GetDataOptionBanner(dv, "slCurrency", "Currency", string.Empty, false));
         TemplateHandler.Assign(ref temp, "optiontype",Resources.Lang.Text );
+
+        TemplateHandler.Assign(ref temp, "Device", Resources.Lang.Device);
+        TemplateHandler.Assign(ref temp, "slDevice", AffAdmin.GenerateHTML.Domain.GenDeviceList("slDevice"));
+
         this.HtmlContent = temp;
     }
 }

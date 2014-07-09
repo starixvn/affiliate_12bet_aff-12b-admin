@@ -1066,7 +1066,7 @@ public class Common
     /// <param name="type">type in ("Category","Language","Currency","Type","Size"))</param>
     /// <param name="activeValue">current selected value in the dropdownlist. string.Empty mean All</param>
     /// <returns>string for dropdownlist</returns>
-    public static string GetDataOptionBanner(DataView dv, string id, string type, string activeValue,bool isGenAll)
+    public static string GetDataOptionBanner(DataView dv, string id, string type, string activeValue, bool isGenAll)
     {
         dv.RowFilter = "type='" + type + "'";
         StringBuilder result = new StringBuilder();

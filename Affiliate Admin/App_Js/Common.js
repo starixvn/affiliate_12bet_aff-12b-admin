@@ -458,12 +458,12 @@ function HideErr()
 
  function ClosePopup() {
      if (parent.ibcWnd) {
-        var url = parent.location.href;        
+         var url = parent.location.href;
          parent.location.href = url.substr(0, url.indexOf("#") > 0 ? url.indexOf("#") : url.length);
          parent.ibcWnd.close();
-     }
-     else
+     } else {
          window.close();
+     }
  }
 
  function DoCal(url, title, width, heigh) {

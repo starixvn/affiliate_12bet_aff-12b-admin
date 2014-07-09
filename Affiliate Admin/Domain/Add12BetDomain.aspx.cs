@@ -13,7 +13,7 @@ public partial class Add12BetDomain : IBCPage
         TemplateHandler.Assign(ref list, "Status", Resources.Lang.Status);        
         TemplateHandler.Assign(ref list, "submit", Resources.Lang.Add);
         TemplateHandler.Assign(ref list, "cancel", Resources.Lang.Cancel);
-        TemplateHandler.Assign(ref list, "slDevice", AffAdmin.GenerateHTML.Domain.GenDeviceList());
+        TemplateHandler.Assign(ref list, "slDevice", AffAdmin.GenerateHTML.Domain.GenDeviceList("slDevice"));
         this.HtmlContent = list;
     }
 }

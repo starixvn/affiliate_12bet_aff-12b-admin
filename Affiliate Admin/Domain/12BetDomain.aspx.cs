@@ -23,7 +23,7 @@ public partial class _12BetDomain : IBCPage
         string deviceType = Request["slDevice"];
         try
         {
-            TemplateHandler.Assign(ref list, "slDevice", AffAdmin.GenerateHTML.Domain.GenDeviceList(deviceType));
+            TemplateHandler.Assign(ref list, "slDevice", AffAdmin.GenerateHTML.Domain.GenDeviceList("slDevice", deviceType));
 
             DbResult dbr = null;
             dbr = DataHandler.Domain.GetList12BetDomain(deviceType);

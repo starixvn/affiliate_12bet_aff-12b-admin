@@ -18,7 +18,8 @@ public class GetEditedText : IHttpHandler, IRequiresSessionState
             context.Response.ContentType = "text/plain";
             int textID = Convert.ToInt32(context.Request["textid"].Trim());
             int noRow = Convert.ToInt32(context.Request["noRow"].Trim());
-            context.Response.Write(GenerateHTML.Text.GetEditedText(textID, noRow));
+            var deviceType = context.Request["deviceType"];
+            context.Response.Write(GenerateHTML.Text.GetEditedText(textID, noRow, deviceType));
 
         }
     }

@@ -10,7 +10,7 @@ public partial class Media_ListText :IBCPage
     {
         string temp = TemplateHandler.LoadTemplate("Media/MainListText.htm");
         int numRows = 0;
-
+        var deviceType = string.IsNullOrEmpty(Request["optiondevice"]) ? "0" : Request["optiondevice"];
         TemplateHandler.Assign(ref temp, "Category", Resources.Lang.Category);
         TemplateHandler.Assign(ref temp, "Content", Resources.Lang.Content);
         TemplateHandler.Assign(ref temp, "Language", Resources.Lang.Language);
@@ -33,12 +33,16 @@ public partial class Media_ListText :IBCPage
 
         DataView dv = DbHelper.Execute("Aff_BannerSelType_1", DBType.AFFILIATE_12BET).ResultSet.Tables[0].DefaultView;
 
+        TemplateHandler.Assign(ref temp, "deviceType", deviceType);
+        TemplateHandler.Assign(ref temp, "Device", Resources.Lang.Device);
+        TemplateHandler.Assign(ref temp, "optiondevice", AffAdmin.GenerateHTML.Domain.GenDeviceList("optiondevice", deviceType));
+
         TemplateHandler.Assign(ref temp, "optioncate", Common.GetDataOptionBanner(dv, "cateoption", "Category", cate, true));
         TemplateHandler.Assign(ref temp, "optionlang", Common.GetDataOptionBanner(dv, "langoption", "Language", lang, true));
         TemplateHandler.Assign(ref temp, "optioncurrency", Common.GetDataOptionBanner(dv, "currencyoption", "Currency", currency, true));
 
         int minNo = 0, maxNo = 0, totalBanner = 0, totalPage = 0;
-        TemplateHandler.ReplaceBlock(ref temp, "Content", GenerateHTML.Text.GetListText(cate, lang, currency, currPage, ref minNo, ref maxNo, ref totalBanner, ref totalPage, pageSize));
+        TemplateHandler.ReplaceBlock(ref temp, "Content", GenerateHTML.Text.GetListText(cate, lang, currency, currPage, ref minNo, ref maxNo, ref totalBanner, ref totalPage, pageSize, deviceType));
         if (totalBanner > 0)
         {
             TemplateHandler.Assign(ref temp, "paging-top", Common.GenPaging(totalPage, currPage, pageSize, totalBanner, "aPageTop", "txtPageTop", new string[] { "Delete", "Add" }, new string[] { "DeleteSelectedText();",
