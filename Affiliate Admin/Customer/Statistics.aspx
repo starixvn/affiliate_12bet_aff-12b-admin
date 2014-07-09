@@ -35,7 +35,7 @@
         {
             $("tblContent").show();
             $("divExpend").hide();
-            parent.document.getElementById("fRightContent").rows="193,*";
+            parent.document.getElementById("fRightContent").rows="210,*";
         }
     }
 </script>

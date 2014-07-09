@@ -62,14 +62,15 @@
     }
 
 
-    function ViewDetail(fdate, tdate, doman, pageSize, pageIndex) {
+    function ViewDetail(fdate, tdate, doman, pageSize, pageIndex, deviceType) {
         try {
             var params;
             $("tmpFromDate").value = fdate;
             $("tmpToDate").value = tdate;
             $("tmpSite").value = doman;
 
-            params = "fdate=" + fdate + "&tdate=" + tdate + "&domain=" + doman + "&pageSize=" + pageSize + "&pageIndex=" + pageIndex;
+            params = "fdate=" + fdate + "&tdate=" + tdate + "&domain=" + doman + "&deviceType=" + deviceType
+                + "&pageSize=" + pageSize + "&pageIndex=" + pageIndex;
 
             var ajax = new Ajax.Request("../Handler/GetStatisticsDetail_New.ashx", {
                 method: 'get',

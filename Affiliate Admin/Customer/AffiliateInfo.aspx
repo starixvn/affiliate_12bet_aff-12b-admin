@@ -30,7 +30,7 @@
         else {
             
             if (parent.document.getElementById("fRightContent").rows == "0,*")
-                parent.document.getElementById("fRightContent").rows = "193,*";
+                parent.document.getElementById("fRightContent").rows = "210,*";
             if ($("hdNoInfo").value == "0") {
                 parent.fStatistics.location.href = "Statistics.aspx";
                 switch ($("hdPageid").value)//linked from affiliate list

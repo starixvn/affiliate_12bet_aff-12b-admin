@@ -33,6 +33,8 @@ public partial class Customer_Statistics : IBCPage
         TemplateHandler.Assign(ref strTpl, "winlost", Resources.Lang.Winlost);
         TemplateHandler.Assign(ref strTpl, "winlost", Resources.Lang.Winlost);
         TemplateHandler.Assign(ref strTpl, "trackingrate", Resources.Lang.TrackingRate);
+        TemplateHandler.Assign(ref strTpl, "trackingrateforpc", Resources.Lang.TrackingRateForPC);
+        TemplateHandler.Assign(ref strTpl, "trackingrateformobile", Resources.Lang.TrackingRateForMobile);
 
         TemplateHandler.Assign(ref strTpl, "sp", Resources.Lang.SP);
         TemplateHandler.Assign(ref strTpl, "hr", Resources.Lang.HR);
@@ -86,7 +88,6 @@ public partial class Customer_Statistics : IBCPage
             TemplateHandler.Assign(ref strTpl, "fdate", dtmFirstOfMonth.ToString("MM/dd/yyyy"));
         }
         TemplateHandler.Assign(ref strTpl, "totalactive-val", totalactiveplayer.ToString());
-        
        
         TemplateHandler.Assign(ref strTpl, "newsignupdep-val", CastAide.AsInt32(result.Outputs["newsignupdep"], 0));
         //int newSignUpNonDep = newSignUp - CastAide.AsInt32(result.Outputs["newsignupdep"]);
@@ -104,7 +105,9 @@ public partial class Customer_Statistics : IBCPage
 
         //Tracking Statistics        
         TemplateHandler.Assign(ref strTpl, "trackingrate-val", CastAide.AsInt32(result.Outputs["totaluniqueclicks"], 0) + "/" + CastAide.AsInt32(result.Outputs["totalclicks"], 0));
-        TemplateHandler.Assign(ref strTpl, "trackingbysite-val", CastAide.AsInt32(result.Outputs["totaluniqueclicksbysite"], 0) + "/" + CastAide.AsInt32(result.Outputs["totalclicksbysite"], 0));
+        TemplateHandler.Assign(ref strTpl, "trackingforpcbysite-val", CastAide.AsInt32(result.Outputs["totaluniqueclicksbysite"], 0) + "/" + CastAide.AsInt32(result.Outputs["totalclicksbysite"], 0));
+        TemplateHandler.Assign(ref strTpl, "trackingformobilebysite-val", CastAide.AsInt32(result.Outputs["totaluniqueclicksbymobile"], 0) + "/" + CastAide.AsInt32(result.Outputs["totalclicksbymobile"], 0));
+
         TemplateHandler.Assign(ref strTpl, "fdate", dtmFirstOfMonth.ToString("MM/dd/yyyy"));
         TemplateHandler.Assign(ref strTpl, "tdate", dtmFirstOfMonth.AddMonths(1).AddDays(-1).ToString("MM/dd/yyyy"));
         

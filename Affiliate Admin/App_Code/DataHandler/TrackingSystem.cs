@@ -48,17 +48,17 @@ namespace DataHandler
         }
 
         //@Johnny
-        public static DbResult SelClickStatisticsBySite(object fromDate, object toDate)
+        public static DbResult SelClickStatisticsBySite(object fromDate, object toDate, string deviceType)
         {
             Hashtable hsParam = new Hashtable();
             hsParam.Add("affid", AppSettings.Session.AffId);
             hsParam.Add("fromdate", fromDate);
             hsParam.Add("todate", toDate);
+            hsParam.Add("devicetype", byte.Parse(deviceType));
             return DbHelper.Execute("Aff_ClickStatisticsSelBySite", hsParam, DBType.AFFILIATE_12BET);
         }
 
-
-        public static DbResult SelStatisticsDetail_New(DateTime fDate, DateTime tDate, string domain, string sportCode, string languageCode, int pageSize, int pageIndex)
+        public static DbResult SelStatisticsDetail_New(DateTime fDate, DateTime tDate, string domain, string sportCode, string languageCode, int pageSize, int pageIndex, string deviceType)
         {
             Hashtable hsParam = new Hashtable();
             hsParam.Add("affid", AppSettings.Session.AffId);
@@ -72,13 +72,14 @@ namespace DataHandler
                 hsParam.Add("sportcode", sportCode);
             if (!string.IsNullOrEmpty(languageCode))
                 hsParam.Add("languagecode", languageCode);
+            hsParam.Add("devicetype", byte.Parse(deviceType));
             hsParam.Add("pagesize", pageSize);
             hsParam.Add("pageindex", pageIndex);
             hsParam.Add("totalpages", 0);
             return DbHelper.Execute("Aff_ClickStatisticsDetailBySite", hsParam, DBType.AFFILIATE_12BET, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
         }
 
-        public static DbResult SelClickStatisticsByPage(object fromDate, object toDate, string sportCode, string languageCode)
+        public static DbResult SelClickStatisticsByPage(object fromDate, object toDate, string sportCode, string languageCode, string deviceType)
         {
             Hashtable hsParam = new Hashtable();
             hsParam.Add("affid", AppSettings.Session.AffId);
@@ -88,6 +89,8 @@ namespace DataHandler
                 hsParam.Add("sportcode", sportCode);
             if (!string.IsNullOrEmpty(languageCode))
                 hsParam.Add("languagecode", languageCode);
+            hsParam.Add("devicetype", byte.Parse(deviceType));
+
             return DbHelper.Execute("Aff_ClickStatisticsSelByPage", hsParam, DBType.AFFILIATE_12BET);
         }
 

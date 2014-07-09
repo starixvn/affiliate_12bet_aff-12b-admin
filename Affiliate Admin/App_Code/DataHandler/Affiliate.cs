@@ -193,6 +193,8 @@ namespace DataHandler
             hsParam.Add("totalclicks", 0);            
             hsParam.Add("totaluniqueclicksbysite", 0);
             hsParam.Add("totalclicksbysite", 0);
+            hsParam.Add("totaluniqueclicksbymobile", 0);
+            hsParam.Add("totalclicksbymobile", 0);
             return DbHelper.Execute("Aff_StatisticsSel", hsParam, DBType.AFFILIATE_12BET, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
         }
         //@Vinh

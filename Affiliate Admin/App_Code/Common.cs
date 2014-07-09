@@ -89,6 +89,7 @@ public class Common
                 return "E";
         }
     }
+    
     public static string GetIPAddressOfClient()
     {
         string ip;
@@ -103,6 +104,7 @@ public class Common
         }
         return ip;
     }
+    
     public static string GetLangCharFor12Bet(string preferredLang)
     {
         switch (preferredLang)
@@ -478,6 +480,7 @@ public class Common
         strBuild.Append("</select>");
         return strBuild.ToString();
     }
+    
     public static string GetIndex(string strType)
     {
         switch (strType)
@@ -490,6 +493,7 @@ public class Common
             default: return "0";
         }
     }
+    
     public static string GetMethodName(string strValue)
     {
         switch (strValue)
@@ -502,6 +506,7 @@ public class Common
             default: return "Player";
         }
     }
+    
     public static string GetAlertMsg(int intAlertCode)
     {
         switch (intAlertCode)
@@ -522,6 +527,7 @@ public class Common
                 return Resources.Lang.UpdAffSuccess;
         }
     }
+    
     public static string FormatNumber(object Number)
     {
         decimal dcNumber = CastAide.AsDecimal(Number);
@@ -535,6 +541,7 @@ public class Common
             return "-$" + NumberFormat.DecFormat(dcNumber, 2);
         }
     }
+    
     public static string FormatNumber1(object Number,bool isMoneyAmount)
     {
         decimal dcNumber = CastAide.AsDecimal(Number);
@@ -544,11 +551,13 @@ public class Common
         }
         return NumberFormat.DecFormat(dcNumber, 0);
     }
+    
     public static string FormatDate(object dtmDate)
     {
         DateTime date = CastAide.AsDateTime(dtmDate);
         return date.ToString("MM/dd/yyyy HH:mm:ss");
     }
+    
     public static string FormatDateNoHour(object dtmDate)
     {
         if (string.IsNullOrEmpty(dtmDate.ToString()))
@@ -556,6 +565,7 @@ public class Common
         DateTime date = CastAide.AsDateTime(dtmDate);
         return date.ToString("MM/dd/yyyy");
     }
+    
     public static string GetErrMsg(int intErrCode, ref string strErrObj)
     {
         switch (intErrCode)
@@ -641,6 +651,7 @@ public class Common
                 return GetErrorText(intErrCode.ToString());
         }
     }
+    
     public static string NoInfo(int intNumCols)
     {
         string strNoInfo = TemplateHandler.LoadTemplate("NoInfo.htm");
@@ -648,6 +659,7 @@ public class Common
         TemplateHandler.Assign(ref strNoInfo, "num-cols", intNumCols.ToString());
         return strNoInfo;
     }
+    
     public static string NoInfo(int width, string strMsg)
     {
         string strNoInfo = TemplateHandler.LoadTemplate("NoInfo1.htm");
@@ -655,6 +667,7 @@ public class Common
         TemplateHandler.Assign(ref strNoInfo, "msg", strMsg);
         return strNoInfo;
     }
+    
     /// <summary>
     /// Create date time selector
     /// </summary>
@@ -680,6 +693,7 @@ public class Common
         }
         catch { throw; }
     }
+    
     public static string GenCalendarControl(string txtDateId, string currentPos, string triggerId, string currentDate, bool noJs)
     {
         try
@@ -688,6 +702,7 @@ public class Common
         }
         catch { throw; }
     }
+    
     /// <summary>
     /// Create date/time range selector
     /// </summary>
@@ -726,7 +741,6 @@ public class Common
         catch { throw; }
     }
 
-
     public static string CreateDateRangeSelector(string currentPos, int noDayReset, string fdateId, string tdateId, DateTime fdate, DateTime tdate, bool blShowToday)
     {
         try
@@ -735,6 +749,7 @@ public class Common
         }
         catch { throw; }
     }
+
     public static string CreateDateRangeSelector(string currentPos, int noDayReset, string fdateId, string tdateId)
     {
         try
@@ -743,6 +758,7 @@ public class Common
         }
         catch { throw; }
     }
+    
     public static string CreateDateRangeSelector(string currentPos, string fdateId, string tdateId)
     {
         try
@@ -751,6 +767,7 @@ public class Common
         }
         catch { throw; }
     }
+    
     public static string GerStatus(object strStatus)
     {
         switch (strStatus.ToString().ToLower())
@@ -769,6 +786,7 @@ public class Common
                 return strStatus.ToString();
         }
     }
+    
     public static string GenNoInformation(string colspan)
     {
         string noDataTpl = TemplateHandler.LoadTemplate("NoInformation.htm");
@@ -777,6 +795,7 @@ public class Common
         TemplateHandler.Assign(ref noDataTpl, "{nodata}", Resources.Lang.NoInfo);
         return noDataTpl;
     }
+    
     public static void InitAccessPermission()
     {
         Dictionary<string, string> pages = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
@@ -819,6 +838,7 @@ public class Common
             isTrue = true;
         return isTrue;
     }
+    
     //Get permission host per function
     public static bool isRead(string funcName)
     {
@@ -828,7 +848,6 @@ public class Common
         else
             return false;
     }
-    
 
     // get Error message according to error code
     public static string GetErrorText(string key)
@@ -1031,6 +1050,7 @@ public class Common
             TemplateHandler.RemoveBlock(ref strPaging, "excelbutton");
         return strPaging;
     }
+    
     /// <summary>
     /// Split long string into many smaller lines DungTong@20090319
     /// </summary>
@@ -1663,6 +1683,11 @@ public class Common
     public static string GetRootUrl()
     {
         return AppSettings.Session.AffType == AffType.European ? AppSettings.EuropeanAffiliateURL : AppSettings.AsianAffiliateURL;
+    }
+
+    public static string GetDeviceType(string deviceType)
+    {
+        return string.IsNullOrEmpty(deviceType) ? "0" : deviceType;
     }
 }
 

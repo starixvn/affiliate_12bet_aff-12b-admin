@@ -16,7 +16,7 @@
             </tr>
         </table>
     </div>
-    <table id="tblContent" width="530" cellspacing="1" cellpadding="2" border="0" bgcolor="#d0d0d0">
+    <table id="tblContent" width="600" cellspacing="1" cellpadding="2" border="0" bgcolor="#d0d0d0">
         <tr class="header_06">
             <td class="b">
                 <span id="togtop" title="Toggle Statistics" onclick="ShowPage(false);">&nbsp;</span>{static}<input class="hide" type="submit" />&nbsp;
@@ -144,12 +144,27 @@
         </tr>
         <tr>
             <td bgcolor="#ffffff" class="text_conts">
-                Tracking Rate (Unique/Total) <b>New</b>!!!!!
+                {trackingrateforpc}
             </td>
             <td class="tb_01">
                 <a class="text_link" href="#">
                     <!--TrackingRate-->
-                    <a href="../UserInfo/MediaStatistics_New.aspx?fdate={fdate}&tdate={tdate}" target="fContent">{trackingbysite-val}</span><!--/TrackingRate--></a>
+                <a href="../UserInfo/MediaStatistics_New.aspx?fdate={fdate}&tdate={tdate}&slDevice=0" target="fContent">{trackingforpcbysite-val}</span>
+                    <!--/TrackingRate-->
+                    </a>
+            </td>
+            <td class="tb_01">
+                N/A
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="#ffffff" class="text_conts">
+                {trackingrateformobile}
+            </td>
+            <td class="tb_01">
+                <a class="text_link" href="#">
+                    <!--TrackingRate-->
+                    <a href="../UserInfo/MediaStatistics_New.aspx?fdate={fdate}&tdate={tdate}&slDevice=1" target="fContent">{trackingformobilebysite-val}</span><!--/TrackingRate--></a>
             </td>
             <td class="tb_01">
                 N/A

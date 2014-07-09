@@ -70,16 +70,19 @@ public partial class UserInfo_MediaStatistics_LandingPage : IBCPage
             
             DateTime dtmFDate = CastAide.AsDateTime(Request["fdate"], new DateTime(now.Year, now.Month, 1));
             DateTime dtmTDate = CastAide.AsDateTime(Request["tdate"], DateTime.Now);
+            var deviceType = Common.GetDeviceType(Request["slDevice"]);
 
             TemplateHandler.Assign(ref strTpl, "fdate", dtmFDate.ToString("MM/dd/yyyy"));
             TemplateHandler.Assign(ref strTpl, "tdate", dtmTDate.ToString("MM/dd/yyyy"));
 
-            DbResult rs = DataHandler.TrackingSystem.SelClickStatisticsByPage(dtmFDate, dtmTDate, sportCode, GetLangCode(languageCode));
+            TemplateHandler.Assign(ref strTpl, "Device", Resources.Lang.Device);
+            TemplateHandler.Assign(ref strTpl, "slDevice", AffAdmin.GenerateHTML.Domain.GenDeviceList("slDevice", deviceType));
+
+            DbResult rs = DataHandler.TrackingSystem.SelClickStatisticsByPage(dtmFDate, dtmTDate, sportCode, GetLangCode(languageCode), deviceType);
 
             DataTable dtb = new DataTable();
             if (rs.ResultSet.Tables.Count > 0)
                 dtb = rs.ResultSet.Tables[0];
-
 
             if (dtb.Rows.Count > 0)
             {
@@ -108,6 +111,7 @@ public partial class UserInfo_MediaStatistics_LandingPage : IBCPage
                     TemplateHandler.Assign(ref strTmp, "UniqueClick-val", dr["uniqueclick"].ToString());
                     TemplateHandler.Assign(ref strTmp, "Signups-val", dr["Signups"].ToString());
                     TemplateHandler.Assign(ref strTmp, "FDM-val", dr["FDM"].ToString());
+                    TemplateHandler.Assign(ref strTpl, "DeviceType-val", deviceType);
 
                     strListRow.Append(strTmp);
                 }

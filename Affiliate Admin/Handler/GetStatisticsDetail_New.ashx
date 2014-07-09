@@ -23,11 +23,12 @@ public class GetStatisticsDetail_New : IHttpHandler, IRequiresSessionState
             string domain = context.Request["domain"];
             string sportCode = context.Request["sportCode"];
             string languageCode = context.Request["languageCode"];
+            string deviceType = Common.GetDeviceType(context.Request["deviceType"]);
             int pageSize = CastAide.AsInt32(context.Request["pageSize"]);
             int pageIndex = CastAide.AsInt32(context.Request["pageIndex"]);
-            StringBuilder result = new StringBuilder();
+            var result = new StringBuilder();
 
-            result.Append(GenerateHTML.TrackingSystem.GetStatisticsDetail_New(fDate, tDate, domain, sportCode, languageCode, pageSize, pageIndex));
+            result.Append(GenerateHTML.TrackingSystem.GetStatisticsDetail_New(fDate, tDate, domain, sportCode, languageCode, pageSize, pageIndex, deviceType));
 
             context.Response.Write(result.ToString());
 

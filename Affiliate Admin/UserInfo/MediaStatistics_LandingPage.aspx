@@ -62,7 +62,7 @@
     }
 
 
-    function ViewDetail(fdate, tdate, sportCode, languageCode, pageSize, pageIndex) {
+    function ViewDetail(fdate, tdate, sportCode, languageCode, pageSize, pageIndex, deviceType) {
         try {
             //Store old info in tmp hidden field
             $("tmpFromDate").value = fdate;
@@ -71,7 +71,9 @@
             $("tmpLanguageCode").value = languageCode;
 
             var params;
-            params = "fdate=" + fdate + "&tdate=" + tdate + "&sportCode=" + sportCode + "&languageCode=" + languageCode + "&pageSize=" + pageSize + "&pageIndex=" + pageIndex;
+            params = "fdate=" + fdate + "&tdate=" + tdate + "&sportCode=" + sportCode + "&languageCode=" + languageCode + "&pageSize=" + pageSize + "&pageIndex=" + pageIndex
+            + "&deviceType=" + deviceType;
+            
 
             var ajax = new Ajax.Request("../Handler/GetStatisticsDetail_New.ashx", {
                 method: 'get',

@@ -128,11 +128,9 @@ namespace GenerateHTML
 
         }
 
-
-
-        public static string GetStatisticsDetail_New(DateTime fDate, DateTime tDate, string domain, string sportCode, string languageCode, int pageSize, int pageNum)
+        public static string GetStatisticsDetail_New(DateTime fDate, DateTime tDate, string domain, string sportCode, string languageCode, int pageSize, int pageNum, string deviceType)
         {
-            DbResult result = DataHandler.TrackingSystem.SelStatisticsDetail_New(fDate, tDate, domain, sportCode, languageCode, pageSize, pageNum);
+            DbResult result = DataHandler.TrackingSystem.SelStatisticsDetail_New(fDate, tDate, domain, sportCode, languageCode, pageSize, pageNum, deviceType);
             string htmlContent = TemplateHandler.LoadTemplate("UserInfo/MediaStatistics_New.htm");
             string strContentTable = TemplateHandler.CopyBlock(htmlContent, "StatisticsDetail");
 

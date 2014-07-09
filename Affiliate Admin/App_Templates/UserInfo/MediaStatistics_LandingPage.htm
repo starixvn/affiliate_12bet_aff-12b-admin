@@ -54,9 +54,9 @@
             </td>
             <td>
                 <input type="text" readonly name="tdate" size="13" value="{tdate}" class="txtdate-no-time"
-                    id="tdate" />&nbsp;
+                       id="tdate" />&nbsp;
                 <img width="16" height="16" src="../{themepath}/images/cal.gif" class="img-date-selector hand"
-                    style="margin-bottom: -3px;" title="Date selector" id="tdateTrigger" />
+                     style="margin-bottom: -3px;" title="Date selector" id="tdateTrigger" />
                 <script type="text/javascript">
                     Calendar.setup({
                         inputField: "tdate",
@@ -68,6 +68,12 @@
                         step: 1
                     });
                 </script>
+            </td>
+            <td>
+                {Device}
+            </td>
+            <td>
+                {slDevice}
             </td>
             <td style="width: 100px">
                 <input type="button" value="Search" class="btn" onclick="searchData();" />
@@ -104,7 +110,7 @@
         <tr class="r" bgcolor="{color}" onmouseout="bgColor='{color}'" onmouseover="bgColor='{over}'">
             <td class="l">
                 <!--page-->
-                <a href="javascript:void(0);" onclick="ViewDetail('{fdate}', '{tdate}', '{Page-val}', '{LangCode-val}', 20, 1);">
+                <a href="javascript:void(0);" onclick="ViewDetail('{fdate}', '{tdate}', '{Page-val}', '{LangCode-val}', 20, 1, '{DeviceType-val}');">
                     {Page-val}</a>
                 <!--/page-->
             </td>
