@@ -14,21 +14,22 @@
         try {
             if ($("page"))
                 $("page").value = currPage;
-            ViewDetail($("tmpFromDate").value, $("tmpToDate").value, $("tmpSportCode").value, $("tmpLanguageCode").value, $("slPageSize").value, currPage)
+            ViewDetail($("tmpFromDate").value, $("tmpToDate").value, $("tmpSportCode").value, $("tmpLanguageCode").value, $("slPageSize").value, currPage, $('tmpDeviceType').value);
         }
         catch (e) {
             alert('Invalid data!');
         }
     }
 
-    function ViewDetail(fdate, tdate, sportCode, languageCode, pageSize, pageIndex) {
+    function ViewDetail(fdate, tdate, sportCode, languageCode, pageSize, pageIndex, deviceType) {
         try {
             var params;
             $("tmpFromDate").value = fdate;
             $("tmpToDate").value = tdate;
             $("tmpSportCode").value = sportCode;
             $("tmpLanguageCode").value = languageCode;
-            params = "fdate=" + fdate + "&tdate=" + tdate + "&sportCode=" + sportCode + "&languageCode=" + languageCode + "&pageSize=" + pageSize + "&pageIndex=" + pageIndex;
+            params = "fdate=" + fdate + "&tdate=" + tdate + "&sportCode=" + sportCode + "&languageCode=" + languageCode + "&pageSize=" + pageSize
+                + "&pageIndex=" + pageIndex + "&deviceType=" + deviceType;
 
             var ajax = new Ajax.Request("../Handler/GetStatisticsDetail_New.ashx", {
                 method: 'get',
@@ -70,10 +71,10 @@
             </table>
         </div>
         <div class="in_conts">
-            <div id="search_cont" style="height: 25px;">
+            <div id="search_cont" style="height: 47px;">
                 <table class="aff-table" cellspacing="1" cellpadding="1">
                     <tr>
-                        <td>
+                        <td style="width: 70px">
                             {Page}:
                         </td>
                         <td class="r" style="width: 80px">
@@ -93,7 +94,7 @@
                         </td>
                         <td>
                             <img hspace="3" height="20" border="0" width="18" src="../App_Themes/Default/Images/cal.gif"
-                                id="fdateTrigger" />
+                                 id="fdateTrigger" />
                         </td>
                         <td>
                             {To}:
@@ -103,10 +104,18 @@
                         </td>
                         <td>
                             <img hspace="3" height="20" border="0" width="18" src="../App_Themes/Default/Images/cal.gif"
-                                id="tdateTrigger" />
+                                 id="tdateTrigger" />
                         </td>
                         <td>
                             <input type="button" value="{Submit}" onclick="LoadData(1);" id="btnSubmit" name="{Submit}" class="button" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 70px">
+                            {Device}:
+                        </td>
+                        <td style="width: 100px" class="r">
+                            {slDevice}
                         </td>
                     </tr>
                 </table>
@@ -140,7 +149,7 @@
                         <tr class="{rowstyle}" onmouseout="this.className={onmouseoutstyle};" onmouseover="this.className=c;">
                             <td>
                                 <!--domain-->
-                                <a href="javascript:void(0);" onclick="ViewDetail('{fdate}', '{tdate}', '{Page-val}', '{langCode-val}', 20, 1);">{Page-val}</a>
+                                <a href="javascript:void(0);" onclick="ViewDetail('{fdate}', '{tdate}', '{Page-val}', '{langCode-val}', 20, 1, '{DeviceType-val}');">{Page-val}</a>
                                 <!--/domain-->
                             </td>
                             <td>
@@ -214,9 +223,9 @@
     </div>
 </div>
     <input type="hidden" id="page" name="page" value="{page}" />    
-<input type="hidden" id="tmpFromDate" name="tmpFromDate" />    
+    <input type="hidden" id="tmpFromDate" name="tmpFromDate" />
     <input type="hidden" id="tmpToDate" name="tmpToDate" />    
     <input type="hidden" id="tmpSportCode" name="tmpSportCode" />  
     <input type="hidden" id="tmpLanguageCode" name="tmpLanguageCode" />  
-
+    <input type="hidden" id="tmpDeviceType" name="tmpDeviceType" value="{DeviceType-val}"/>  
 </form>

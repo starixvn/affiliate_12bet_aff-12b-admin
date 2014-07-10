@@ -28,7 +28,6 @@ public class GetStatisticsDetail_New : IHttpHandler, IRequiresSessionState
             int pageSize = CastAide.AsInt32(context.Request["pageSize"]);
             int pageIndex = CastAide.AsInt32(context.Request["pageIndex"]);
             
-            
             StringBuilder result = new StringBuilder();
 
             result.Append(GenerateHTML.TrackingSystem.GetStatisticsDetail_New(fDate, tDate, domain, sportCode, languageCode, pageSize, pageIndex, deviceType));

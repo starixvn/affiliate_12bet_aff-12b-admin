@@ -34,7 +34,7 @@
         try {
             if ($("page"))
                 $("page").value = currPage;
-            ViewDetail($("tmpFromDate").value, $("tmpToDate").value, $("tmpSite").value, $("slPageSize").value, currPage)
+            ViewDetail($("tmpFromDate").value, $("tmpToDate").value, $("tmpSite").value, $("slPageSize").value, currPage, $('tmpDeviceType').value);
         }
         catch (e) {
             alert('Invalid data!');
@@ -231,5 +231,6 @@
     <input type="hidden" id="tmpFromDate" name="tmpFromDate" />
     <input type="hidden" id="tmpToDate" name="tmpToDate" />
     <input type="hidden" id="tmpSite" name="tmpSite" />
+    <input type="hidden" id="tmpDeviceType" name="tmpDeviceType" value="{DeviceType-val}"/>  
 </form>
 

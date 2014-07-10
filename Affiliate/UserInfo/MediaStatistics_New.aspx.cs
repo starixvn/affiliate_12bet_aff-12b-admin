@@ -28,6 +28,7 @@ public partial class UserInfo_MediaStatistics_New : RootPageLogIn
         object dtmFrom = Request["fdate"];
         object dtmTo = Request["tdate"];
         var deviceType = Common.GetDeviceType(Request["slDevice"]);
+        TemplateHandler.Assign(ref statisticsContent, "DeviceType-val", deviceType);
         TemplateHandler.Assign(ref statisticsContent, "slDevice", Common.GenDeviceList("slDevice", deviceType));
 
         

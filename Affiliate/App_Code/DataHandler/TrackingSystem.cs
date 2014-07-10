@@ -71,7 +71,7 @@ namespace DataHandler
         }
 
         #region Statistics by Page
-        public static DbResult SelClickStatisticsByPage(object fromDate, object toDate, string sportCode, string languageCode)
+        public static DbResult SelClickStatisticsByPage(object fromDate, object toDate, string sportCode, string languageCode, string deviceType)
         {
             Hashtable hsParam = new Hashtable();
             CultureInfo culture = new CultureInfo("en-US");
@@ -83,6 +83,8 @@ namespace DataHandler
                 hsParam.Add("sportcode", sportCode);
             if (!string.IsNullOrEmpty(languageCode))
                 hsParam.Add("languagecode", languageCode);
+
+            hsParam.Add("devicetype", byte.Parse(deviceType));
             return DbHelper.Execute("Aff_ClickStatisticsSelByPage", hsParam, DBType.AFFILIATE_12BET);
         }
         public static DbResult SelClickStatisticsDetailByPage(DateTime fDate, DateTime tDate, string sportCode, string languageCode)

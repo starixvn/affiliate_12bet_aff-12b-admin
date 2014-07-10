@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using DNAide.Web;
-using DNAide.Data;
 using System.Text;
 using System.Data;
 
@@ -30,6 +24,12 @@ public partial class UserInfo_MediaStatistics_LandingPage : RootPageLogIn
         TemplateHandler.Assign(ref statisticsContent, "{Signups}", Resources.Lang.SignUp);
         TemplateHandler.Assign(ref statisticsContent, "{FDM}", Resources.Lang.FDM);
         TemplateHandler.Assign(ref statisticsContent, "linkto", Resources.Lang.LinkTo);
+        TemplateHandler.Assign(ref statisticsContent, "Device", Resources.Lang.Device);
+        
+
+        var deviceType = Common.GetDeviceType(Request["slDevice"]);
+        TemplateHandler.Assign(ref statisticsContent, "DeviceType-val", deviceType);
+        TemplateHandler.Assign(ref statisticsContent, "slDevice", Common.GenDeviceList("slDevice", deviceType));
 
         object dtmFrom = Request["fdate"];
         object dtmTo = Request["tdate"];
@@ -46,12 +46,10 @@ public partial class UserInfo_MediaStatistics_LandingPage : RootPageLogIn
         DataView dv = (CacheUtil.GetBannerTypesOld() as DataTable).DefaultView;
         TemplateHandler.Assign(ref statisticsContent, "slLanguage", this.GetDataOptionBanner(dv, "languageCode", "Language", languageCode, true));
 
-
-        //TemplateHandler.Assign(ref statisticsContent, "slLanguage", Common.GenListLink2Page("languageCode", languageCode, true));
         TemplateHandler.Assign(ref statisticsContent, "fdate", Common.ConvertDateTime(dtmFrom, "/", true, false));
         TemplateHandler.Assign(ref statisticsContent, "tdate", Common.ConvertDateTime(dtmTo, "/", true, false));
 
-        TemplateHandler.ReplaceBlock(ref statisticsContent, "Content", GenerateHTML.TrackingSystem.GetStatisticsByPage(dtmFrom, dtmTo, sportCode, string.IsNullOrEmpty(languageCode) ? string.Empty : Common.GetLangCode(languageCode)));
+        TemplateHandler.ReplaceBlock(ref statisticsContent, "Content", GenerateHTML.TrackingSystem.GetStatisticsByPage(dtmFrom, dtmTo, sportCode, string.IsNullOrEmpty(languageCode) ? string.Empty : Common.GetLangCode(languageCode), deviceType));
     }
 
     string GetDataOptionBanner(DataView dv, string id, string type, string activeValue, bool isGenAll)

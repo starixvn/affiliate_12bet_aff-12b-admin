@@ -278,7 +278,7 @@ namespace GenerateHTML
 
         }
 
-        public static string GetStatisticsByPage(object fromdate, object todate, string sportCode, string languageCode)
+        public static string GetStatisticsByPage(object fromdate, object todate, string sportCode, string languageCode, string deviceType)
         {
             string htmlContent = TemplateHandler.LoadTemplate("UserInfo/TrackingStatistics_LandingPage.htm");
             string strContent = TemplateHandler.CopyBlock(htmlContent, "Content");
@@ -286,7 +286,7 @@ namespace GenerateHTML
             TemplateHandler.Assign(ref strContent, "fdate", fromdate);
             TemplateHandler.Assign(ref strContent, "tdate", todate);
 
-            DbResult result = DataHandler.TrackingSystem.SelClickStatisticsByPage(fromdate, todate, sportCode, languageCode);
+            DbResult result = DataHandler.TrackingSystem.SelClickStatisticsByPage(fromdate, todate, sportCode, languageCode, deviceType);
             int cols = 5;
             int totalSignups = 0, totalDeposits = 0;
             if (result.ResultSet.Tables.Count > 0)
@@ -307,6 +307,8 @@ namespace GenerateHTML
                     TemplateHandler.Assign(ref strTmp, "UniqueClick-val", dr["uniqueclick"].ToString());
                     TemplateHandler.Assign(ref strTmp, "Signups-val", dr["Signups"].ToString());
                     TemplateHandler.Assign(ref strTmp, "FDM-val", dr["FDM"].ToString());
+                    TemplateHandler.Assign(ref strTmp, "FDM-val", "DeviceType-val");
+                    
                     if ((intNo % 2) == 0)
                     {
                         TemplateHandler.Assign(ref strTmp, "rowstyle", "bgwhite");
