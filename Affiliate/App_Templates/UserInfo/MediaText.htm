@@ -76,6 +76,14 @@
                 </tr>
                 <tr>
                     <td>
+                        {Device}:
+                    </td>
+                    <td style="height: 25px">
+                        {slDevice}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                     </td>
                     <td style="height: 35px; padding-left: 50px;">
                         <input type="button" class="button" value="{Search}" name="btnSearch" onclick="checkData();LoadData(1);" />
@@ -96,7 +104,9 @@
                         {AvailableDomains}
                     </td>
                     <td>
-                        {slDomain}
+                        <div id="domain-region">
+                            {slDomain}                       
+                        </div>
                     </td>
                     <td class="cont12oe">
                     </td>
@@ -106,7 +116,9 @@
                         {LinkToLabel}
                     </td>
                     <td>
-                        {target}&nbsp;
+                        <span id="target-domain">
+                            {target} &nbsp;
+                        </span>
                         <input type="button" class="button" value="{GenerateLink}" name="btnGenerateLink"
                             onclick="checkData();LoadData(1);" />
                     </td>
@@ -127,7 +139,7 @@
                 <!--/TextLinkList-->
             </table>
             <br />
-            <!--listbanner-->
+            <!--bannerlist-->
             <div class="box_conts_header">
                 {Banner}
             </div>
@@ -137,7 +149,6 @@
             {paging-top}
             <div id="fb-root">
             </div>
-            <script src="http://connect.facebook.net/en_US/all.js#appId=226866500670079&amp;xfbml=1"></script>
             <div class="tbl-box">
                 <table class="aff-table" cellspacing="1" cellpadding="1">
                     <tbody id="result">
@@ -157,7 +168,7 @@
                 </table>
             </div>
             {paging-bottom}
-            <!--/listbanner-->
+            <!--/bannerlist-->
         </div>
     </div>
 </div>

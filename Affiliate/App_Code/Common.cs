@@ -49,7 +49,7 @@ public class Common
             case "vietnamese": return "vn";
             case "indonesian": return "id";
             case "korean": return "ko";
-            case "japan": return "ja";
+            case "japanese": return "jp";
             default:
                 return "en";
         }
@@ -709,15 +709,24 @@ public class Common
         return opt;
     }
 
-    public static string GenListLink2Page(string targetRequest)
+    public static string GenListLink2Page(string targetRequest, string deviceType)
     {
-        ArrayList arrTarget = new ArrayList();
-        arrTarget.Add("sportsbook");
-        arrTarget.Add("casino");
-        arrTarget.Add("signup");
-        arrTarget.Add("promotion");
-        if(AppSettings.Session.IsCasino)
-            arrTarget.Add("12betcasino");
+        var arrTarget = new ArrayList();
+        if (deviceType.Equals("0", StringComparison.OrdinalIgnoreCase))
+        {
+            arrTarget.Add("sportsbook");
+            arrTarget.Add("casino");
+            arrTarget.Add("signup");
+            arrTarget.Add("promotion");
+            if (AppSettings.Session.IsCasino)
+                arrTarget.Add("12betcasino");
+        }
+        else
+        {
+            arrTarget.Add("home");
+            arrTarget.Add("signup");
+        }
+
         return GenerateSelectObj("target", arrTarget, arrTarget, targetRequest);
     }
 
@@ -749,7 +758,11 @@ public class Common
                 TemplateHandler.Assign(ref tempopt, "selected", "selected");
             }
             result.Append(tempopt);
-        }        
+        }
+
+        if (dt.Rows.Count == 0)
+            return Lang.none;
+      
         foreach (DataRow dr in dt.Rows)
         {
             tempopt = temp;

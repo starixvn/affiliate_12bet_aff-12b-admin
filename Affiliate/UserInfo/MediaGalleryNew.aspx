@@ -30,6 +30,29 @@
                 jQ('#trSubCategoryMedia').hide();
             }
         });
+
+        jQ('#slDevice').change(function () {
+            var deviceType = jQ(this).val();
+            jQ('#btnSearch').attr("disabled", "disabled");
+            var ajax = new Ajax.Request("../Handler/GetDomainList.ashx", {
+                method: 'post',
+                parameters: 'deviceType=' + deviceType,
+                onComplete: function (data) {
+                    var domainRegion = document.getElementById("domain-region");
+                    domainRegion.innerHTML = data.responseText;
+                }
+            });
+
+            var ajax1 = new Ajax.Request("../Handler/GetPageList.ashx", {
+                method: 'post',
+                parameters: 'deviceType=' + deviceType,
+                onComplete: function (data) {
+                    var domainRegion = document.getElementById("target-domain");
+                    domainRegion.innerHTML = data.responseText;
+                    jQ('#btnSearch').removeAttr("disabled");
+                }
+            });
+        });
     };
 
     function getSubCategory(category, currentSubCategory) {
@@ -58,7 +81,6 @@
                     td.appendChild(select);
                 }
             });
-
         }
         catch (e) {
           //  alert(e);
@@ -66,8 +88,9 @@
     }
 
     function NavigatePage(curPage) {
-        GetDataBannerList(curPage,false);      
+        GetDataBannerList(curPage,false);
     }
+    
     function GetDataBannerList(page, isGetTextLink) {
         var param = 'cate=' + $('slCategory').value + '&lang=' + $('slLanguage').value + '&currency=' + $('slCurrency').value + '&type=' + $('slImageType').value + "&size=" + $('slSize').value + "&page=" + page;      
           
@@ -96,10 +119,13 @@
            // alert(e);
         }
     }
+    
     function EnableDisableInputTrackingCode() {   
         clock();
         setInterval("clock();", 1000);
     }
+    
+
 </script>
 <%=htmlContent %>
 </asp:Content>

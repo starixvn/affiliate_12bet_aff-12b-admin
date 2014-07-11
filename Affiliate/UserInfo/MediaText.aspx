@@ -1,7 +1,34 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.master" AutoEventWireup="true" CodeFile="MediaText.aspx.cs" Inherits="UserInfo_MediaText" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
-<script type ="text/javascript">   
-    window.onload=function(){EnableDisableInputTrackingCode();};
+<script src="../App_Js/jquery/jquery-1.4.2.min.js" type="text/javascript"></script>
+<script type ="text/javascript">
+    var jQ = jQuery.noConflict();
+    window.onload=function() {
+        EnableDisableInputTrackingCode();
+
+        jQ('#slDevice').change(function () {
+            var deviceType = jQ(this).val();
+            jQ('#btnSearch').attr("disabled", "disabled");
+            var ajax = new Ajax.Request("../Handler/GetDomainList.ashx", {
+                method: 'post',
+                parameters: 'deviceType=' + deviceType,
+                onComplete: function (data) {
+                    var domainRegion = document.getElementById("domain-region");
+                    domainRegion.innerHTML = data.responseText;
+                }
+            });
+
+            var ajax1 = new Ajax.Request("../Handler/GetPageList.ashx", {
+                method: 'post',
+                parameters: 'deviceType=' + deviceType,
+                onComplete: function (data) {
+                    var domainRegion = document.getElementById("target-domain");
+                    domainRegion.innerHTML = data.responseText;
+                    jQ('#btnSearch').removeAttr("disabled");
+                }
+            });
+        });
+    };
     function NavigatePage(curPage) {
         GetDataBannerList(curPage,false);      
     }

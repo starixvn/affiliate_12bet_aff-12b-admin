@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Data;
+﻿using System.Data;
 using System.Collections;
-
 
 namespace DataHandler
 {
@@ -13,10 +8,11 @@ namespace DataHandler
     /// </summary>
     public class MediaGallery
     {
-        public static DataTable SelAffDomains()
+        public static DataTable SelAffDomains(string deviceType)
         {            
-            Hashtable ht = new Hashtable();
+            var ht = new Hashtable();
             ht.Add("affid", AppSettings.Session.CustID);
+            ht.Add("devicetype", byte.Parse(deviceType));
             return DbHelper.Execute("Aff_DomainAffClientSel", ht, DBType.AFFILIATE_12BET).ResultSet.Tables[0];
         }
     }

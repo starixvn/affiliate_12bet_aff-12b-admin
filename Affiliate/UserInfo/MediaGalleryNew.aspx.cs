@@ -7,6 +7,7 @@ using System.Text;
 using DNAide.Utils;
 using DNAide.Core;
 using System.Collections;
+using Resources;
 
 public partial class MediaGallery : RootPageLogIn
 {
@@ -34,19 +35,15 @@ public partial class MediaGallery : RootPageLogIn
 
         TemplateHandler.Assign(ref htmlContent, "AvailableDomains", Resources.Lang.AvailableDomains);
         TemplateHandler.Assign(ref htmlContent, "LinkToLabel", Resources.Lang.LinkTo);
-        
-        /*smith:target*/
-        string targetRequest = Request["target"];
-        if (string.IsNullOrEmpty(targetRequest))
-        {
-            targetRequest = "sportsbook";
-        }
+
+        var deviceType = Common.GetDeviceType(Request["slDevice"]);
+        string targetRequest = GetTargetRequest(Request["target"], deviceType);
 
         string domain = string.IsNullOrEmpty(Request["slDomain"]) ? null : Request["slDomain"];
-        DataTable dtDomain = DataHandler.MediaGallery.SelAffDomains();
+        DataTable dtDomain = DataHandler.MediaGallery.SelAffDomains(deviceType);
         TemplateHandler.Assign(ref htmlContent, "slDomain", Common.GenDropDownFromTable(dtDomain, "DomainName", "DomainName", "slDomain", ref domain, false));
 
-        TemplateHandler.Assign(ref htmlContent, "target", Common.GenListLink2Page(targetRequest));
+        TemplateHandler.Assign(ref htmlContent, "target", Common.GenListLink2Page(targetRequest, deviceType));
 
         #region Get request information
         int pageIndex = CastAide.AsInt32(Request["page"], 1);
@@ -61,7 +58,7 @@ public partial class MediaGallery : RootPageLogIn
         if (category == "Casino" || category == "Sportsbook")
         {
             hasSubCategory = true;
-            if (string.IsNullOrEmpty(Request["slSubCategoryMedia"]) || Request["slSubCategoryMedia"].ToString() == "All")
+            if (string.IsNullOrEmpty(Request["slSubCategoryMedia"]) || Request["slSubCategoryMedia"] == "All")
             {
                 isSearchByParentCategory = true;
                 subCategory = string.Empty;
@@ -81,7 +78,6 @@ public partial class MediaGallery : RootPageLogIn
         string trackOption = string.IsNullOrEmpty(Request["hdTrack"]) ? null : Request["hdTrack"];
         string trackingcode = string.IsNullOrEmpty(Request["slTrackingCode"]) ? "" : Request["slTrackingCode"];
 
-        
         if (string.Compare(trackOption, "1", true) != 0)
         {
             TemplateHandler.Assign(ref htmlContent, "achecked", "checked");
@@ -112,34 +108,65 @@ public partial class MediaGallery : RootPageLogIn
         TemplateHandler.Assign(ref htmlContent, "slImageType", this.GetDataOptionBanner(dv, "slImageType", "ImageType", type, true));
         TemplateHandler.Assign(ref htmlContent, "slSize", this.GetDataOptionBanner(dv, "slSize", "Size", size, true));
 
+        TemplateHandler.Assign(ref htmlContent, "Device", Resources.Lang.Device);
+        TemplateHandler.Assign(ref htmlContent, "DeviceType-val", deviceType);
+        TemplateHandler.Assign(ref htmlContent, "slDevice", Common.GenDeviceList("slDevice", deviceType));
+
         /* Generate TestLinkList */
         dv.RowFilter = "type='Language'";
         DataTable dt = dv.ToTable();
-        TemplateHandler.ReplaceBlock(ref htmlContent, "TextLinkList", GenerateHTML.Banner.GetTextLink(domain, trackingcode, dt, targetRequest));
+
+        if (string.IsNullOrEmpty(domain) || string.IsNullOrEmpty(targetRequest))
+        {
+            TemplateHandler.Assign(ref htmlContent, "language_val", string.Empty);
+            TemplateHandler.Assign(ref htmlContent, "link_val", Lang.NoInfo);
+            TemplateHandler.ReplaceBlock(ref htmlContent, "bannerlist", string.Empty);
+
+            return;
+        }
+        
+        TemplateHandler.ReplaceBlock(ref htmlContent, "TextLinkList",
+                                        GenerateHTML.Banner.GetTextLink(domain, trackingcode, dt, targetRequest, deviceType));
 
         TemplateHandler.ReplaceBlock(ref htmlContent, "Content",
-                                     GenerateHTML.Banner.GetBannerList(paramCategory, isSearchByParentCategory, lang,
-                                                                       type, size,
-                                                                       currency, pageIndex, pageSize, ref totalpage,
-                                                                       domain, trackingcode, targetRequest,
-                                                                       Common.NormalBanner,
-                                                                       (int) AppSettings.Session.AffType));
+                                        GenerateHTML.Banner.GetBannerList(paramCategory, isSearchByParentCategory, lang,
+                                                                        type, size,
+                                                                        currency, pageIndex, pageSize, ref totalpage,
+                                                                        domain, trackingcode, targetRequest,
+                                                                        Common.NormalBanner,
+                                                                        (int) AppSettings.Session.AffType, deviceType));
         TemplateHandler.Assign(ref htmlContent, "PageSize-val", pageSize);
         TemplateHandler.Assign(ref htmlContent, "page", pageIndex);
         /* Generate Banner paging*/
         if (totalpage > 0)
         {
-            TemplateHandler.Assign(ref htmlContent, "paging-top", Common.GenPaging(totalpage, pageIndex, pageSize, 0, "aPageTop", "txtPageTop", null, null, 0, false, true, false, false));
-            TemplateHandler.Assign(ref htmlContent, "paging-bottom", Common.GenPaging(totalpage, pageIndex, pageSize, 0, "aPageBottom", "txtPageBottom", null, null, 0, false, false, false, false));
+            TemplateHandler.Assign(ref htmlContent, "paging-top",
+                                    Common.GenPaging(totalpage, pageIndex, pageSize, 0, "aPageTop", "txtPageTop",
+                                                    null, null, 0, false, true, false, false));
+            TemplateHandler.Assign(ref htmlContent, "paging-bottom",
+                                    Common.GenPaging(totalpage, pageIndex, pageSize, 0, "aPageBottom",
+                                                    "txtPageBottom", null, null, 0, false, false, false, false));
         }
         else
         {
             TemplateHandler.Assign(ref htmlContent, "paging-top", string.Empty);
             TemplateHandler.Assign(ref htmlContent, "paging-bottom", string.Empty);
         }
-       
     }
-   
+
+    private string GetTargetRequest(string target, string deviceType)
+    {
+        if (!string.IsNullOrEmpty(target))
+            return target;
+
+        if (deviceType.Equals("1", StringComparison.OrdinalIgnoreCase))
+        {
+            return "home";
+        }
+
+        return "sportsbook";
+    }
+
     /// <summary>
     /// Common function to generate dropdown list in media gallery page by Peter 20090328
     /// </summary>

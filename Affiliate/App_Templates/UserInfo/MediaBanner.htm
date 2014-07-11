@@ -100,9 +100,17 @@
                 </tr>
                 <tr>
                     <td>
+                        {Device}:
+                    </td>
+                    <td style="height: 25px">
+                        {slDevice}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                     </td>
                     <td style="height: 35px; padding-left: 50px;">
-                        <input type="button" class="button" value="{Search}" name="btnSearch" onclick="LoadData(1);" />
+                        <input type="button" class="button" value="{Search}" name="btnSearch" id="btnSearch" onclick="LoadData(1);" />
                     </td>
                 </tr>
             </table>
@@ -120,7 +128,9 @@
                         {AvailableDomains}
                     </td>
                     <td>
-                        {slDomain}                       
+                        <div id="domain-region">
+                            {slDomain}                       
+                        </div>
                     </td>
                     <td class="cont12oe">
                     </td>
@@ -130,9 +140,11 @@
                         {LinkToLabel}
                     </td>
                     <td>
-                        {target} &nbsp;
+                        <span id="target-domain">
+                            {target} &nbsp;
+                        </span>
                         <input type="button" class="button" value="{GenerateLink}" name="btnGenerateLink"
-                            onclick="LoadData(1);" />
+                               onclick="LoadData(1);" />
                     </td>
                     <td class="cont12oe">
                     </td>
@@ -151,7 +163,7 @@
                 <!--/TextLinkList-->
             </table>
             <br />
-            <!--listbanner-->
+            <!--bannerlist-->
             <div class="box_conts_header">
                 {Banner}
             </div>
@@ -205,7 +217,7 @@
                 </table>
             </div>
             {paging-bottom}
-            <!--/listbanner-->
+            <!--/bannerlist-->
         </div>
     </div>
 </div>

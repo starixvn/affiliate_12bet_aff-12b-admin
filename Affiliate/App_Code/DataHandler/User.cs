@@ -297,14 +297,16 @@ namespace DataHandler
             hsParam.Add("playtechfeepercent", 0);
             return DbHelper.Execute("Aff_EarningSelDaily", hsParam, DBType.AFFILIATE_12BET) ;
         }
+        
         //Vinh@20090908
         public static DbResult SportTypeSel()
         {
             return DbHelper.Execute("Aff_SportTypeSel", null, DBType.AFFILIATE_12BET);
         }
-        public static DbResult SelAffText(string category, string language, string currency, int pageIndex, int pageSize)
+        
+        public static DbResult SelAffText(string category, string language, string currency, int pageIndex, int pageSize, string deviceType)
         {
-            Hashtable hsParam = new Hashtable();
+            var hsParam = new Hashtable();
             if (!string.IsNullOrEmpty(category))
             {
                 hsParam.Add("category", category);
@@ -317,12 +319,14 @@ namespace DataHandler
             {
                 hsParam.Add("currency", currency);
             }
+
+            hsParam.Add("devicetype", byte.Parse(deviceType));
             hsParam.Add("pagesize", pageSize);
             hsParam.Add("pageindex", pageIndex);
             hsParam.Add("totalpages", 0);
             hsParam.Add("nrows", 0);
 
-            return DbHelper.Execute("Aff_TextSel", hsParam, DBType.AFFILIATE_12BET);
+            return DbHelper.Execute("Aff_TextSel_1", hsParam, DBType.AFFILIATE_12BET);
         }
 
         public static DbResult SportTypeSelByAff(int intCustId)

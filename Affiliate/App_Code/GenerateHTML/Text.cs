@@ -1,4 +1,5 @@
-﻿using DNAide.Web;
+﻿using System;
+using DNAide.Web;
 using DNAide.Core;
 using System.Data;
 using DNAide.Data;
@@ -95,14 +96,13 @@ namespace GenerateHTML
         }
 
         public static string GetTextList(string category, string language, string currency, int pageIndex, int pagesize, ref int totalpage,
-            string domain, string trackingcode, string target)
+            string domain, string trackingcode, string target, string deviceType)
         {
             string tmpLanguage = (language == "English (Europe)" ? "English" : language);//English Euro use English banner
 
             DbResult result = null;
-            int nRows = 0;
-            result = DataHandler.UserAff.SelAffText(category, tmpLanguage, currency, pageIndex, pagesize);
-            nRows = CastAide.AsInt32(result.Outputs["nrows"]);
+            result = DataHandler.UserAff.SelAffText(category, tmpLanguage, currency, pageIndex, pagesize, deviceType);
+            int nRows = CastAide.AsInt32(result.Outputs["nrows"]);
             int cols = 9;
 
             if (nRows > 0)
@@ -115,41 +115,35 @@ namespace GenerateHTML
                 int counter = 3;
                 string signUpLink = AppSettings.BetLink.ToString();
                 string strMedia = AppSettings.MediaJS;
-                string src = ConfigurationManager.AppSettings["MediaUrl"].ToString();
 
                 switch (AppSettings.Session.PreferLang)
                 {
                     case "th-TH":
                         signUpLink = AppSettings.BetLink_TH.ToString();
                         strMedia = AppSettings.MediaJS_TH;
-                        src = ConfigurationManager.AppSettings["MediaUrl_TH"].ToString();
                         break;
                     case "zh-CN":
                         signUpLink = AppSettings.BetLink_CS.ToString();
                         strMedia = AppSettings.MediaJS_CS;
-                        src = ConfigurationManager.AppSettings["MediaUrl_CS"].ToString();
                         break;
                     case "zh-TW":
                         signUpLink = AppSettings.BetLink_CS.ToString();
                         strMedia = AppSettings.MediaJS_CS;
-                        src = ConfigurationManager.AppSettings["MediaUrl_CS"].ToString();
                         break;
                     case "vi-VN":
                         signUpLink = AppSettings.BetLink_VI.ToString();
                         strMedia = AppSettings.MediaJS_CS;
-                        src = ConfigurationManager.AppSettings["MediaUrl_VI"].ToString();
                         break;
                 }
-
-                TemplateHandler.Assign(ref signUpLink, "{domain}", domain);
-                TemplateHandler.Assign(ref signUpLink, "{target}", target);
 
                 if (Common.IsAffInListEuLink())
                 {
                     signUpLink = AppSettings.BetLink_EU;
                     strMedia = AppSettings.MediaJS_EU;
-                    src = ConfigurationManager.AppSettings["MediaUrl_EU"].ToString();
                 }
+
+                TemplateHandler.Assign(ref signUpLink, "{domain}", domain);
+                TemplateHandler.Assign(ref signUpLink, "{target}", target);
 
                 if (language == "English (Europe)")
                     TemplateHandler.Assign(ref signUpLink, "lang", Eu);
@@ -180,7 +174,8 @@ namespace GenerateHTML
                     counter++;
                     string rowText = content;
                     string aSignUpLink = signUpLink;
-                    TemplateHandler.Assign(ref aSignUpLink, "lang", Common.GetLangCode(dr["language"].ToString()));
+                    TemplateHandler.Assign(ref aSignUpLink, "{/lang}", GetLanguageUri(Common.GetLangCode(dr["language"].ToString())));
+                    TemplateHandler.Assign(ref aSignUpLink, "{/DeviceType}", GetDeviceTypeUri(deviceType));
                     TemplateHandler.Assign(ref aSignUpLink, "target", target);
 
                     TemplateHandler.Assign(ref rowText, "messagevalue", Common.FormatStringHtml (dr["message"].ToString()));
@@ -189,20 +184,13 @@ namespace GenerateHTML
                     TemplateHandler.Assign(ref rowText, "textid", dr["BannerID"]);
                     TemplateHandler.Assign(ref rowText, "bannerurl", AppSettings.BannerUrl);
                     contentList.Append(rowText);
-
                 }
 
                 return contentList.ToString();
-
             }
-            else
-            {
-                return Common.NoInfo(cols);
-            }
-
+            
+            return Common.NoInfo(cols);
         }
-
-
 
         static string GenLink(string textLink, string langText, string link, string trackingCode, string linkLang, string target)
         {
@@ -242,6 +230,26 @@ namespace GenerateHTML
                 default:
                     return "en";
             }
+        }
+
+        private static string GetLanguageUri(string linkLang)
+        {
+            if (string.IsNullOrEmpty(linkLang))
+            {
+                return string.Empty;
+            }
+
+            return "/" + linkLang;
+        }
+
+        private static string GetDeviceTypeUri(string deviceType)
+        {
+            if (string.IsNullOrEmpty(deviceType) || !deviceType.Equals("1", StringComparison.OrdinalIgnoreCase))
+            {
+                return string.Empty;
+            }
+
+            return "/mobile";
         }
     }
 }

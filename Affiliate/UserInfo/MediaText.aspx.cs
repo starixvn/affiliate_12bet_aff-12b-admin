@@ -6,6 +6,7 @@ using DNAide.Data;
 using System.Text;
 using DNAide.Utils;
 using DNAide.Core;
+using Resources;
 
 public partial class UserInfo_MediaText : RootPageLogIn
 {
@@ -29,17 +30,21 @@ public partial class UserInfo_MediaText : RootPageLogIn
         TemplateHandler.Assign(ref htmlContent, "LinkToLabel", Resources.Lang.LinkTo);
 
         /*Johnny:target*/
-        string targetRequest = Request["target"];
-        if (string.IsNullOrEmpty(targetRequest))
-        {
-            targetRequest = "sportsbook";
-        }
+
+        var deviceType = Common.GetDeviceType(Request["slDevice"]);
+        string targetRequest = GetTargetRequest(Request["target"], deviceType);
+
+        
 
         string domain = string.IsNullOrEmpty(Request["slDomain"]) ? null : Request["slDomain"];
-        DataTable dtDomain = DataHandler.MediaGallery.SelAffDomains();
+        DataTable dtDomain = DataHandler.MediaGallery.SelAffDomains(deviceType);
         TemplateHandler.Assign(ref htmlContent, "slDomain", Common.GenDropDownFromTable(dtDomain, "DomainName", "DomainName", "slDomain", ref domain, false));
+        
+        TemplateHandler.Assign(ref htmlContent, "target", Common.GenListLink2Page(targetRequest, deviceType));
 
-        TemplateHandler.Assign(ref htmlContent, "target", Common.GenListLink2Page(targetRequest));
+        TemplateHandler.Assign(ref htmlContent, "Device", Resources.Lang.Device);
+        TemplateHandler.Assign(ref htmlContent, "DeviceType-val", deviceType);
+        TemplateHandler.Assign(ref htmlContent, "slDevice", Common.GenDeviceList("slDevice", deviceType));
         
         #region Get request information
         int pageIndex = CastAide.AsInt32(Request["page"], 1);
@@ -74,12 +79,21 @@ public partial class UserInfo_MediaText : RootPageLogIn
         TemplateHandler.Assign(ref htmlContent, "slLanguage", this.GetDataOptionBanner(dv, "slLanguage", "Language", lang, true));
         TemplateHandler.Assign(ref htmlContent, "slCurrency", this.GetDataOptionBanner(dv, "slCurrency", "Currency", currency, true));
 
+        if (string.IsNullOrEmpty(domain) || string.IsNullOrEmpty(targetRequest))
+        {
+            TemplateHandler.Assign(ref htmlContent, "language_val", string.Empty);
+            TemplateHandler.Assign(ref htmlContent, "link_val", Lang.NoInfo);
+            TemplateHandler.ReplaceBlock(ref htmlContent, "bannerlist", string.Empty);
+
+            return;
+        }
+
         /* Generate TestLinkList */
         dv.RowFilter = "type='Language'";
         DataTable dt = dv.ToTable();
-        TemplateHandler.ReplaceBlock(ref htmlContent, "TextLinkList", GenerateHTML.Banner.GetTextLink(domain, trackingcode, dt, targetRequest));
+        TemplateHandler.ReplaceBlock(ref htmlContent, "TextLinkList", GenerateHTML.Banner.GetTextLink(domain, trackingcode, dt, targetRequest, deviceType));
 
-        TemplateHandler.ReplaceBlock(ref htmlContent, "Content", GenerateHTML.Text.GetTextList(category, lang, currency, pageIndex, pageSize, ref totalpage, domain, trackingcode, targetRequest));
+        TemplateHandler.ReplaceBlock(ref htmlContent, "Content", GenerateHTML.Text.GetTextList(category, lang, currency, pageIndex, pageSize, ref totalpage, domain, trackingcode, targetRequest, deviceType));
         TemplateHandler.Assign(ref htmlContent, "PageSize-val", pageSize);
         TemplateHandler.Assign(ref htmlContent, "page", pageIndex);
         /* Generate Banner paging*/
@@ -94,6 +108,20 @@ public partial class UserInfo_MediaText : RootPageLogIn
             TemplateHandler.Assign(ref htmlContent, "paging-bottom", string.Empty);
         }
     }
+
+    private string GetTargetRequest(string target, string deviceType)
+    {
+        if (!string.IsNullOrEmpty(target))
+            return target;
+
+        if (deviceType.Equals("1", StringComparison.OrdinalIgnoreCase))
+        {
+            return "home";
+        }
+
+        return "sportsbook";
+    }
+
     private string GetDataOptionBanner(DataView dv, string id, string type, string activeValue, bool isGenAll)
     {
         dv.RowFilter = "type='" + type + "'";

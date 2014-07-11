@@ -29,13 +29,9 @@ public class GetMessageList : IHttpHandler, IRequiresSessionState
             if (string.IsNullOrEmpty(result.ToString()))
             {
                 //result.Append(GenerateHTML.HotNews.GetHotNewsContentList(important,fromdate,todate,curpage));
-                
             }
             context.Response.Write(result.ToString());
-
-
         }
-
     }
 
     private StringBuilder ValidateData(string[] param, ref int important,ref object fromdate,ref object todate, ref int curPage)
@@ -67,7 +63,6 @@ public class GetMessageList : IHttpHandler, IRequiresSessionState
 
         }
         return err;
-
     }
     
     public bool IsReusable
@@ -77,6 +72,4 @@ public class GetMessageList : IHttpHandler, IRequiresSessionState
             return false;
         }
     }
-
-
 }
