@@ -8,16 +8,16 @@
 //   <change who="" date=""></change>
 // </history>
 
+using Fanex.Affiliate.Utilities;
+
 namespace Fanex.Affiliate.Link.Controllers
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.Web.Mvc;
     using Criterias;
     using Services.Impl;
     using Services.Interface;
-    using Utilities;
 
     /// <summary>
     /// Home controller for affiliate link.
@@ -33,6 +33,7 @@ namespace Fanex.Affiliate.Link.Controllers
         /// Define Payment service.
         /// </summary>
         private readonly ITrackingSystemService _trackingSystemService;
+
         #endregion Services
 
         #region Constructor
@@ -74,14 +75,30 @@ namespace Fanex.Affiliate.Link.Controllers
             return View();
         }
 
+        public ActionResult Link(int affId, string pageId, string lang)
+        {
+            return InsertAffiliate(affId, pageId, lang, string.Empty);
+        }
+
         /// <summary>
         /// Handler when user click on affiliate's link.
         /// </summary>
         /// <param name="affId">Affiliate ID.</param>
         /// <param name="pageId">Page identification.</param>
         /// <param name="lang">Language ID.</param>
+        /// <param name="deviceType">Device Type.</param>
         /// <returns>Action result.</returns>
-        public ActionResult Link(int affId, string pageId, string lang)
+        public ActionResult LinkMobile(int affId, string pageId, string lang, string deviceType)
+        {
+            return InsertAffiliate(affId, pageId, lang, deviceType);
+        }
+
+        public ActionResult LinkTracking(int affId, string trackId, string pageId, string lang, string deviceType)
+        {
+            return InsertAffiliate(affId, pageId, lang, deviceType);
+        }
+
+        private ActionResult InsertAffiliate(int affId, string pageId, string lang, string deviceType)
         {
             if (Request.Url != null)
             {
@@ -97,40 +114,47 @@ namespace Fanex.Affiliate.Link.Controllers
                 }
 
                 var criteria = new TrackingSystemCriteria
-                {
-                    AffDomain = affDomain,
-                    AffiliateID = affId,
-                    PageCode = pageId,
-                    LanguageCode = lang,
-                    IP = Common.GetIPAddressOfClient(),
-                    Browser = Request.Browser.Browser,
-                    URLReferrer = urlReferrer,
-                    DomainReferrer = domainReferrer,
-                    OS = Common.GetOsName(Request.UserAgent),
-                    Device = Common.GetDeviceName(Request.UserAgent),
-                    BrowserVersion = Request.Browser.Version,
-                    BrowserResolution = Request.Browser.ScreenPixelsWidth + "x" + Request.Browser.ScreenPixelsHeight,
-                    BrowserLanguage = string.IsNullOrEmpty(Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"])
-                        ? string.Empty
-                        : Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"],
-                    UserAgent = Request.UserAgent,
-                    Country = Common.ResolveCountry() != null
-                        ? Common.ResolveCountry().EnglishName
-                        : CultureInfo.CurrentCulture.ToString()
-                };
+                    {
+                        AffDomain = affDomain,
+                        AffiliateID = affId,
+                        PageCode = pageId,
+                        LanguageCode = lang,
+                        DeviceType = GetDeviceType(deviceType),
+                        IP = Common.GetIPAddressOfClient(),
+                        Browser = Request.Browser.Browser,
+                        URLReferrer = urlReferrer,
+                        DomainReferrer = domainReferrer,
+                        OS = Common.GetOsName(Request.UserAgent),
+                        Device = Common.GetDeviceName(Request.UserAgent),
+                        BrowserVersion = Request.Browser.Version,
+                        BrowserResolution = Request.Browser.ScreenPixelsWidth + "x" + Request.Browser.ScreenPixelsHeight,
+                        BrowserLanguage = string.IsNullOrEmpty(Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"])
+                                              ? string.Empty
+                                              : Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"],
+                        UserAgent = Request.UserAgent,
+                        Country = Common.ResolveCountry() != null
+                                      ? Common.ResolveCountry().EnglishName
+                                      : CultureInfo.CurrentCulture.ToString()
+                    };
 
                 var redirectUrl = _trackingSystemService.InsertStatistic(criteria);
+
                 if (!string.IsNullOrEmpty(redirectUrl))
                 {
                     return Redirect(redirectUrl);
                 }
-                else
-                {
-                    ViewBag.Result = "This affiliate does not exists. Please contact administrator!";
-                }
+
+                ViewBag.Result = "This affiliate does not exists. Please contact administrator!";
             }
 
-            return View();
+            return View("Link");
+        }
+
+        private byte GetDeviceType(string deviceType)
+        {
+            if (string.IsNullOrEmpty(deviceType) || !deviceType.Equals("mobile", StringComparison.OrdinalIgnoreCase))
+                return 0;
+            return 1;
         }
     }
 }

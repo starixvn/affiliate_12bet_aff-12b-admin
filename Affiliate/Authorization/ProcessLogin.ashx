@@ -69,7 +69,7 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
                     AppSettings.Session.FirsTimeLoginSucc = true;
                     AppSettings.Session.CommGroupName = DNAide.Core.CastAide.AsString(dr.Outputs["commgroupname"]);
 
-                    _s = AppSettings.Session.ForceChangePass ? "101:Force to change password" : "100:OK";
+                    _s = AppSettings.Session.ForceChangePass ? "99:Force to change password" : "100:OK";
                 }
                 else
                 {

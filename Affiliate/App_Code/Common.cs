@@ -730,16 +730,25 @@ public class Common
         return GenerateSelectObj("target", arrTarget, arrTarget, targetRequest);
     }
 
-    public static string GenListLink2Page(string id, string targetRequest, bool hasSelect)
+    public static string GenListLink2Page(string id, string targetRequest, bool hasSelect, string deviceType)
     {
-        ArrayList arrTarget = new ArrayList();
-        arrTarget.Add("sportsbook");
-        arrTarget.Add("casino");
-        arrTarget.Add("signup");
-        arrTarget.Add("promotion");
-        if (AppSettings.Session.IsCasino)
-            arrTarget.Add("12betcasino");
-        return GenerateSelectObj(id, arrTarget, arrTarget, targetRequest, true);
+        var arrTarget = new ArrayList();
+        if (deviceType.Equals("0", StringComparison.OrdinalIgnoreCase))
+        {
+            arrTarget.Add("sportsbook");
+            arrTarget.Add("casino");
+            arrTarget.Add("signup");
+            arrTarget.Add("promotion");
+            if (AppSettings.Session.IsCasino)
+                arrTarget.Add("12betcasino");
+        }
+        else
+        {
+            arrTarget.Add("home");
+            arrTarget.Add("signup");
+        }
+
+        return GenerateSelectObj(id, arrTarget, arrTarget, targetRequest, hasSelect);
     }
 
     public static string GenDropDownFromTable(DataTable dt, string valueColumn, string nameColumn, string id, ref string activeValue, bool isGenAll)

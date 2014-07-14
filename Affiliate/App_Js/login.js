@@ -50,7 +50,10 @@ function Login(rs) {
 
     switch (err[0]) {
         case '100':
-            parent.location.href = 'UserInfo/Account_Overview.aspx';                   
+            parent.location.href = 'UserInfo/Account_Overview.aspx';
+            break;
+        case '99':
+            parent.location.href = 'Welcome.aspx';
             break;
         default:
             isLogin = false;

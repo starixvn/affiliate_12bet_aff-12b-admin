@@ -26,7 +26,6 @@ public partial class UserInfo_MediaStatistics_LandingPage : RootPageLogIn
         TemplateHandler.Assign(ref statisticsContent, "linkto", Resources.Lang.LinkTo);
         TemplateHandler.Assign(ref statisticsContent, "Device", Resources.Lang.Device);
         
-
         var deviceType = Common.GetDeviceType(Request["slDevice"]);
         TemplateHandler.Assign(ref statisticsContent, "DeviceType-val", deviceType);
         TemplateHandler.Assign(ref statisticsContent, "slDevice", Common.GenDeviceList("slDevice", deviceType));
@@ -41,7 +40,8 @@ public partial class UserInfo_MediaStatistics_LandingPage : RootPageLogIn
             dtmFrom = new DateTime(now.Year, now.Month, 1);
             dtmTo = now;
         }
-        TemplateHandler.Assign(ref statisticsContent, "slPage", Common.GenListLink2Page("sportCode", sportCode, true));
+
+        TemplateHandler.Assign(ref statisticsContent, "slPage", Common.GenListLink2Page("sportCode", sportCode, true, deviceType));
 
         DataView dv = (CacheUtil.GetBannerTypesOld() as DataTable).DefaultView;
         TemplateHandler.Assign(ref statisticsContent, "slLanguage", this.GetDataOptionBanner(dv, "languageCode", "Language", languageCode, true));
@@ -70,6 +70,7 @@ public partial class UserInfo_MediaStatistics_LandingPage : RootPageLogIn
             }
             result.Append(tempopt);
         }
+
         DataTable dt = dv.ToTable();
         foreach (DataRow dr in dt.Rows)
         {

@@ -32,9 +32,23 @@ namespace Fanex.Affiliate.Link
                 defaults:
                 new
                 {
-                    controller = "Home", 
-                    action = "Index", 
+                    controller = "Home",
+                    action = "Index",
                     id = UrlParameter.Optional
+                });
+
+            routes.MapRoute(
+                name: "LinkMobile",
+                url: "{affId}/{pageId}/{lang}/{deviceType}/index.html",
+                defaults:
+                new
+                {
+                    controller = "Home",
+                    action = "LinkMobile",
+                    affId = UrlParameter.Optional,
+                    pageId = UrlParameter.Optional,
+                    lang = UrlParameter.Optional,
+                    deviceType = UrlParameter.Optional
                 });
 
             routes.MapRoute(
@@ -43,26 +57,28 @@ namespace Fanex.Affiliate.Link
                 defaults:
                 new
                 {
-                    controller = "Home", 
-                    action = "Link", 
-                    affId = UrlParameter.Optional, 
-                    pageId = UrlParameter.Optional, 
+                    controller = "Home",
+                    action = "Link",
+                    affId = UrlParameter.Optional,
+                    pageId = UrlParameter.Optional,
                     lang = UrlParameter.Optional
                 });
 
             routes.MapRoute(
                 name: "TrackingLink",
-                url: "{affId}/{trackId}/{pageId}/{lang}/index.html",
+                url: "{affId}/{trackId}/{pageId}/{lang}/{deviceType}/index.html",
                 defaults:
                 new
                 {
                     controller = "Home",
-                    action = "Link",
+                    action = "LinkTracking",
                     affId = UrlParameter.Optional,
                     trackId = string.Empty,
                     pageId = UrlParameter.Optional,
-                    lang = UrlParameter.Optional
+                    lang = UrlParameter.Optional,
+                    deviceType = UrlParameter.Optional
                 });
+            
         }
     }
 }

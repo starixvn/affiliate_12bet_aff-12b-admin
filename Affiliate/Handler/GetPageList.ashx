@@ -16,11 +16,20 @@ public class GetPageList : IHttpHandler, IRequiresSessionState
             AffHandler.InitializeCulture(HttpContext.Current);
             context.Response.ContentType = "text/plain";
             var deviceType = Common.GetDeviceType(context.Request.Params["deviceType"]);
-            
-            var result = Common.GenListLink2Page(string.Empty, deviceType);
+            var hasAll = GetHasAll(context.Request.Params["hasAll"]);
+
+            var result = Common.GenListLink2Page("sportCode", string.Empty, hasAll, deviceType);
             
             context.Response.Write(result);
         }
+    }
+    
+    private bool GetHasAll(string hasAll)
+    {
+        bool isAll;
+        var result = bool.TryParse(hasAll, out isAll);
+
+        return result && isAll;
     }
     
     public bool IsReusable
