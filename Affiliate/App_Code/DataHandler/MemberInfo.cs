@@ -52,7 +52,7 @@ namespace DataHandler
             hsParam.Add("pageindex", intPage);
             hsParam.Add("pagesize", intPageSize);
             hsParam.Add("totalpages", intTotalPages);
-            DbResult dbr = DbHelper.Execute("DEP_AffiliateSelMemberList", hsParam, DBType.DEPOSIT);
+            DbResult dbr = DbHelper.Execute("Aff_DEP_MemberListSel", hsParam, DBType.AFFILIATE_12BET);
             intTotalPages = CastAide.AsInt32(dbr.Outputs["totalpages"]);
             return dbr;
         }

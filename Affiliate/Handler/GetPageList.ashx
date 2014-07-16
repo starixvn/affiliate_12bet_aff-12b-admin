@@ -18,7 +18,9 @@ public class GetPageList : IHttpHandler, IRequiresSessionState
             var deviceType = Common.GetDeviceType(context.Request.Params["deviceType"]);
             var hasAll = GetHasAll(context.Request.Params["hasAll"]);
 
-            var result = Common.GenListLink2Page("sportCode", string.Empty, hasAll, deviceType);
+            string result = hasAll 
+                ? Common.GenListLink2Page("sportCode", string.Empty, true, deviceType) 
+                : Common.GenListLink2Page("sportCode", deviceType);
             
             context.Response.Write(result);
         }

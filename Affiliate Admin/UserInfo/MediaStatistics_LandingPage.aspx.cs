@@ -111,7 +111,7 @@ public partial class UserInfo_MediaStatistics_LandingPage : IBCPage
                     TemplateHandler.Assign(ref strTmp, "UniqueClick-val", dr["uniqueclick"].ToString());
                     TemplateHandler.Assign(ref strTmp, "Signups-val", dr["Signups"].ToString());
                     TemplateHandler.Assign(ref strTmp, "FDM-val", dr["FDM"].ToString());
-                    TemplateHandler.Assign(ref strTpl, "DeviceType-val", deviceType);
+                    TemplateHandler.Assign(ref strTmp, "DeviceType-val", deviceType);
 
                     strListRow.Append(strTmp);
                 }
