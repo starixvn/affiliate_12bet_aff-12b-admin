@@ -1,13 +1,16 @@
 <%@ Page Language="C#" AutoEventWireup="true" CodeFile="Add12BetDomain.aspx.cs" Inherits="Add12BetDomain" %>
 <!--js-->
 <script src="../App_Js/prototype.js" language="javascript" type="text/javascript"></script>
+<script type="text/javascript" src="../App_Js/RefreshTime.js"></script>
 <script src="../App_Js/Common.js" language="javascript" type="text/javascript"></script>
 <script language="javascript" type="text/javascript">
 
-    window.onload = Focus;
-    function Focus() {        
+    window.onload = InitEvent;
+
+    function InitEvent() {
         $('txt12betdomain').blur();
         $('txt12betdomain').focus();
+        CheckBox_AddEvent();
     }
     
    function checkinput()
@@ -30,6 +33,7 @@
                 parameters: {
                     _12BetDomainName: $('txt12betdomain').value,
                     deviceType: $('slDevice').value,
+                    ssl: $("chkSSL").hasClassName("ic-check"),
                     sta: 'Add'
                 },
                 onComplete: function(strdata) {

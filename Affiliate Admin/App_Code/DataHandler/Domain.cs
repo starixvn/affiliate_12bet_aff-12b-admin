@@ -194,7 +194,7 @@ namespace DataHandler
 
             return dbr;
         }
-        public static DbResult Update12BetDomain(int domainID, string domainName, string deviceType, int userID)
+        public static DbResult Update12BetDomain(int domainID, string domainName, string deviceType, bool ssl, int userID)
         {
             DbResult dr = null;
             try
@@ -204,6 +204,7 @@ namespace DataHandler
                 htb.Add("domainid", domainID);
                 htb.Add("domainname", HttpContext.Current.Server.HtmlEncode(domainName));
                 htb.Add("devicetype", device);
+                htb.Add("isssl", ssl);
                 htb.Add("userid", userID);
                 htb.Add("ip", HttpContext.Current.Request.UserHostAddress);
                 htb.Add("errcode", 0);
@@ -216,7 +217,7 @@ namespace DataHandler
             }
             return dr;
         }
-        public static DbResult Add12BetDomain(string domainName, string deviceType, int userID)
+        public static DbResult Add12BetDomain(string domainName, string deviceType, bool ssl, int userID)
         {
             DbResult dr = null;
             try
@@ -226,6 +227,7 @@ namespace DataHandler
                 htb.Add("domainid", 0);
                 htb.Add("domainname", HttpContext.Current.Server.HtmlEncode(domainName));
                 htb.Add("devicetype", device);
+                htb.Add("isssl", ssl);
                 htb.Add("userid", userID);
                 htb.Add("ip", HttpContext.Current.Request.UserHostAddress);
                 htb.Add("errcode", 0);

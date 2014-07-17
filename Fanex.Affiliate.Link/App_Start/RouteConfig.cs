@@ -50,7 +50,6 @@ namespace Fanex.Affiliate.Link
                    lang = UrlParameter.Optional
                });
 
-
             routes.MapRoute(
                 name: "LinkMobile",
                 url: "{affId}/{pageId}/{lang}/{deviceType}/index.html",
@@ -64,22 +63,6 @@ namespace Fanex.Affiliate.Link
                     lang = UrlParameter.Optional,
                     deviceType = UrlParameter.Optional
                 });
-           
-            routes.MapRoute(
-                name: "TrackingLink",
-                url: "{affId}/{trackId}/{pageId}/{lang}/{deviceType}/index.html",
-                defaults:
-                new
-                {
-                    controller = "Home",
-                    action = "LinkTracking",
-                    affId = UrlParameter.Optional,
-                    trackId = string.Empty,
-                    pageId = UrlParameter.Optional,
-                    lang = UrlParameter.Optional,
-                    deviceType = UrlParameter.Optional
-                });
-            
         }
     }
 }

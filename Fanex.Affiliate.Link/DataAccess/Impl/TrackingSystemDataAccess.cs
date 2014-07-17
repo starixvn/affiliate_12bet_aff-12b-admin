@@ -10,9 +10,9 @@
 
 namespace Fanex.Affiliate.Link.DataAccess.Impl
 {
+    using System;
     using Fanex.Affiliate.Link.Criterias;
     using Fanex.Affiliate.Link.DataAccess.Interface;
-    using System;
     using Fanex.Data;
 
     /// <summary>

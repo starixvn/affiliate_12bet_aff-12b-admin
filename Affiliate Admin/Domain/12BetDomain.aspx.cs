@@ -18,6 +18,7 @@ public partial class _12BetDomain : IBCPage
         TemplateHandler.Assign(ref list, "Del", Resources.Lang.Del);
         TemplateHandler.Assign(ref list, "themepath", AppSettings.ThemeDir);
         TemplateHandler.Assign(ref list, "Device", Resources.Lang.Device);
+        TemplateHandler.Assign(ref list, "SSL", Resources.Lang.SSL);
         TemplateHandler.Assign(ref list, "Submit", Resources.Lang.Submit);
 
         string deviceType = Request["slDevice"];
@@ -47,6 +48,8 @@ public partial class _12BetDomain : IBCPage
                     TemplateHandler.Assign(ref _listcontent, "Edit", Resources.Lang.Edit);
                     TemplateHandler.Assign(ref _listcontent, "Del", Resources.Lang.Del);
                     TemplateHandler.Assign(ref _listcontent, "12betdomainid", dr["DomainID"]);
+                    TemplateHandler.Assign(ref _listcontent, "SSL-val", CastAide.AsBoolean(dr["IsSSL"]) ? "ic-check" : "ic-uncheck");
+                    TemplateHandler.Assign(ref _listcontent, "SSL-Value", CastAide.AsBoolean(dr["IsSSL"]));
                     TemplateHandler.Assign(ref _listcontent, "DeviceType_Value", deviceType);
                     strcontent.Append(_listcontent);
                 }

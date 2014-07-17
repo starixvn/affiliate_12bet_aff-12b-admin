@@ -47,6 +47,7 @@ public partial class UserInfo_MediaText : RootPageLogIn
         TemplateHandler.Assign(ref htmlContent, "slDevice", Common.GenDeviceList("slDevice", deviceType));
         
         #region Get request information
+
         int pageIndex = CastAide.AsInt32(Request["page"], 1);
         int pageSize = CastAide.AsInt32(Request["slPageSize"], 20);
         int totalpage = 0;
@@ -71,6 +72,7 @@ public partial class UserInfo_MediaText : RootPageLogIn
             TemplateHandler.Assign(ref htmlContent, "achecked", string.Empty);
             TemplateHandler.Assign(ref htmlContent, "track-val", trackingcode);
         }
+
         #endregion
 
         TemplateHandler.Assign(ref htmlContent, "slTrackingCode", GenerateHTML.TrackingSystem.GetTrackingCodeList(false, trackingcode));

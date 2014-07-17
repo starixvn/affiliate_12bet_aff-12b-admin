@@ -21,6 +21,7 @@
         }
     }
 </script>
+
 <div class="padl0">
     <div id="errMsg" style="display: none;width: 370px;" class="styleErrAddbanner">
         <div id="error_item">
@@ -64,8 +65,8 @@
                     {File}
                 </td>
                 <td style="padding-bottom: 3px;" id="contentfile">
-                    <input id="txtfile" name="txtfile" width="400px" height="19px" size="50" type="file"
-                        value="" onchange="return IsValidFileExtension(this);" style="color: Green; border: solid 1px #000000;" />
+                    <input id="txtfile" name="txtfile" type="file"
+                        value="" onchange="return IsValidFileExtension(this);" style="color: Green; border: solid 1px #000000; width: 250px; height: 19px;" />
                 </td>
             </tr>
             <tr class="l">
@@ -129,7 +130,7 @@
                     {FileName}
                 </td>
                 <td style="padding-bottom: 3px;">
-                    <input type="text" id="inpFileName" name="inpFileName" size="50" value="{filenamevalue}"/>
+                    <input type="text" id="inpFileName" name="inpFileName" style="width: 150px;" value="{filenamevalue}"/>
                 </td>
             </tr>
             <tr>
@@ -154,5 +155,5 @@
     </form>
 </div>
 <iframe id="upload_target" name="upload_target" src="#" style="width: 0; height: 0;
-    border: 0px solid #fff;"></iframe>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              border: 0px solid #fff;"></iframe>
 <input id="hdErrFileExtension" name="hdErrFileExtension" type="hidden" value="{ErrFileExtension}" />

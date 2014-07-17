@@ -57,7 +57,6 @@ namespace Fanex.Affiliate.Link.Services.Impl
         /// <returns>Success or fail.</returns>
         public string InsertStatistic(TrackingSystemCriteria criteria)
         {
-            //Check.Argument.IsNotNull(criteria, "criteria");
             return _trackingSystemDataAccess.InsertStatistic(criteria);
         }
     }

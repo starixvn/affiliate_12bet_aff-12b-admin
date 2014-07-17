@@ -8,14 +8,13 @@
 //   <change who="" date=""></change>
 // </history>
 
-using Fanex.Affiliate.Utilities;
-
 namespace Fanex.Affiliate.Link.Controllers
 {
     using System;
     using System.Globalization;
     using System.Web.Mvc;
     using Criterias;
+    using Fanex.Affiliate.Utilities;
     using Services.Impl;
     using Services.Interface;
 
@@ -75,13 +74,20 @@ namespace Fanex.Affiliate.Link.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Affiliate link for desktop/laptop.
+        /// </summary>
+        /// <param name="affId">Affiliate ID.</param>
+        /// <param name="pageId">Page identification.</param>
+        /// <param name="lang">Language ID.</param>
+        /// <returns>Action result.</returns>
         public ActionResult Link(int affId, string pageId, string lang)
         {
             return InsertAffiliate(affId, pageId, lang, string.Empty);
         }
 
         /// <summary>
-        /// Handler when user click on affiliate's link.
+        /// Affiliate link for mobile.
         /// </summary>
         /// <param name="affId">Affiliate ID.</param>
         /// <param name="pageId">Page identification.</param>
@@ -93,11 +99,14 @@ namespace Fanex.Affiliate.Link.Controllers
             return InsertAffiliate(affId, pageId, lang, deviceType);
         }
 
-        public ActionResult LinkTracking(int affId, string trackId, string pageId, string lang, string deviceType)
-        {
-            return InsertAffiliate(affId, pageId, lang, deviceType);
-        }
-
+        /// <summary>
+        /// Insert Affiliate Link.
+        /// </summary>
+        /// <param name="affId">Affiliate ID.</param>
+        /// <param name="pageId">Page identification.</param>
+        /// <param name="lang">Language ID.</param>
+        /// <param name="deviceType">Device Type.</param>
+        /// <returns>Action result.</returns>
         private ActionResult InsertAffiliate(int affId, string pageId, string lang, string deviceType)
         {
             if (Request.Url != null)
@@ -150,10 +159,18 @@ namespace Fanex.Affiliate.Link.Controllers
             return View("Link");
         }
 
+        /// <summary>
+        /// Convert into device type.
+        /// </summary>
+        /// <param name="deviceType">Device Type string.</param>
+        /// <returns>Actual device type.</returns>
         private byte GetDeviceType(string deviceType)
         {
             if (string.IsNullOrEmpty(deviceType) || !deviceType.Equals("mobile", StringComparison.OrdinalIgnoreCase))
+            {
                 return 0;
+            }
+
             return 1;
         }
     }

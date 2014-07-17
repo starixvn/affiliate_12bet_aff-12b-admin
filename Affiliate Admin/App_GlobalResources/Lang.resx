@@ -2350,4 +2350,7 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
   <data name="TrackingRateForPC" xml:space="preserve">
     <value>Tracking Rate for PC / Laptop (Unique/Total) &lt;b&gt;New&lt;/b&gt;!!!!!</value>
   </data>
+  <data name="SSL" xml:space="preserve">
+    <value>SSL</value>
+  </data>
 </root>

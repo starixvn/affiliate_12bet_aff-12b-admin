@@ -211,6 +211,7 @@ fieldset.pcontent {
 	width:180px;
 	clear:both;
 }
+
 #search_cont {
 	background:#DAE2EB url(images/bg_search01.jpg) repeat-x scroll center top;
 	border:2px solid #CEDBEA;
@@ -218,6 +219,23 @@ fieldset.pcontent {
 	margin-top:5px;
 	padding: 3px 5px 0 5px;
 }
+
+#search_cont select {
+    width: 120px;
+}
+
+#search_cont input {
+    width: 100px;
+}
+
+#search_cont #slmonth, #search_cont #slyear {
+    width: 60px;
+}
+
+.pcontent select, .pcontent input {
+    width: 120px;
+}
+
 #header_search 
 {
 	float:left;	

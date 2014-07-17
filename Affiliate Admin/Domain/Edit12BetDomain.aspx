@@ -21,12 +21,14 @@
             ErrAlter(top.fMenu.Msg.ErrAffDomain);
             return;
         }
+       
         var ajax = new Ajax.Request('../Handler/Update12BetDomain.ashx', {
             method: 'post',
             parameters: {
                 _12BetDomainId: _12BetDomainId,
                 _12BetDomainName: $('txt12betdomain').value,
                 deviceType: $('slDevice').value,
+                ssl: $("chkSSL").hasClassName("ic-check"),
                 sta: 'Edit'
             },
             onComplete: function(strdata) {

@@ -28,11 +28,9 @@ public class DbHelper
             HttpContext.Current.Session["lastCalledSP"] = null;
             return ret;
         }
-        else
-        {
-            HttpContext.Current.Response.End();
-            return null;
-        }
+
+        HttpContext.Current.Response.End();
+        return null;
     }
 
     public static DbResult Execute(string pSPName, Hashtable pHsParam, string pDB)

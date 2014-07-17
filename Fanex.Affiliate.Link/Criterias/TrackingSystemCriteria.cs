@@ -12,6 +12,9 @@ namespace Fanex.Affiliate.Link.Criterias
     using System;
     using Fanex.NAP.Framework.Data;
 
+    /// <summary>
+    /// Tracking System Criteria.
+    /// </summary>
     public class TrackingSystemCriteria : CriteriaBase
     {
         public int AffiliateID { get; set; }

@@ -15,19 +15,20 @@ public class UpdateDepartment : IHttpHandler, IRequiresSessionState
 
         int _12BetDomainId = CastAide.AsInt32(context.Request.Form["_12BetDomainId"]);   
         string _12BetDomainName = CastAide.AsString(context.Request.Form["_12BetDomainName"]);
-        string deviceType = CastAide.AsString(context.Request.Form["deviceType"]); 
+        string deviceType = CastAide.AsString(context.Request.Form["deviceType"]);
+        bool ssl= CastAide.AsBoolean(context.Request.Form["ssl"]); 
         DbResult dbr = null;
         
         switch (action)
         {
             case "Edit":
                 {
-                    dbr = DataHandler.Domain.Update12BetDomain(_12BetDomainId, _12BetDomainName, deviceType, AppSettings.Session.CustID);
+                    dbr = DataHandler.Domain.Update12BetDomain(_12BetDomainId, _12BetDomainName, deviceType, ssl, AppSettings.Session.CustID);
                     break;   
                 }
             case "Add":
                 {
-                    dbr = DataHandler.Domain.Add12BetDomain(_12BetDomainName, deviceType, AppSettings.Session.CustID);
+                    dbr = DataHandler.Domain.Add12BetDomain(_12BetDomainName, deviceType, ssl, AppSettings.Session.CustID);
                     break;
                 }
             case "Del":

@@ -15,12 +15,13 @@ public partial class Edit12BetDomain : IBCPage
 
         TemplateHandler.Assign(ref list, "12BetDomain", Resources.Lang.Domain);
         TemplateHandler.Assign(ref list, "Device", Resources.Lang.Device);
+        TemplateHandler.Assign(ref list, "SSL", Resources.Lang.SSL);
         TemplateHandler.Assign(ref list, "Status", Resources.Lang.Status);                
         TemplateHandler.Assign(ref list, "submit", Resources.Lang.Submit);
         TemplateHandler.Assign(ref list, "cancel", Resources.Lang.Cancel);
         TemplateHandler.Assign(ref list, "12betdomainid", _12BetDomainID);
         TemplateHandler.Assign(ref list, "12BetDomainName", _12BetDomainName);
-        TemplateHandler.Assign(ref list, "ic-status", CastAide.AsBoolean(Request["status"]) ? "ic-check" : "ic-uncheck");
+        TemplateHandler.Assign(ref list, "ic-ssl", CastAide.AsBoolean(Request["ssl"]) ? "ic-check" : "ic-uncheck");
         
         TemplateHandler.Assign(ref list, "slDevice", AffAdmin.GenerateHTML.Domain.GenDeviceList("slDevice", deviceType));
         this.HtmlContent = list;
