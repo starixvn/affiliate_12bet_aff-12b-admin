@@ -1,14 +1,27 @@
-﻿<div class="padl0">
+﻿<script type="text/javascript">
+    function SubmitSearchFormNew() {
+        $("frmSearch").method = "get";
+        $("frmSearch").action = "DomainControl.aspx";
+        $("frmSearch").target = "";
+        $("frmSearch").submit();
+    }
+</script>
+<div class="padl0">
 {submenu}
 <!--search form-->
 <form id="frmSearch" name="frmSearch" method="get">
     <div id="search_cont">
-        <div id="header_search">
-            {Market}&nbsp;&nbsp;&nbsp;&nbsp;{slMarket}&nbsp;&nbsp;&nbsp;&nbsp;
-            {Device}&nbsp;&nbsp;&nbsp;&nbsp;{slDevice}&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="submit" value="{Submit}" />
-        </div>
-        <div id="spTime" style="float:right; vertical-align:middle; padding: 3px 10px 0 0;"></div>
+        <table cellspacing="1" cellpadding="2">
+            <tbody>
+                <tr>
+                    <td>{Market}</td>
+                    <td>{slMarket}</td>
+                    <td>{Device}</td>
+                    <td>{slDevice}</td>
+                    <td><div id="divsearch" onclick="SubmitSearchFormNew();">&nbsp;</div></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </form>
 

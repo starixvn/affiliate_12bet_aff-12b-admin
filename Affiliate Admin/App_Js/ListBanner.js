@@ -282,7 +282,6 @@ function CancelEdit() {
 
 function Cancelfunction() {
     setTimeout(function () {
-        alert("stop");
         ClosePopup();
     }, 500);
 }

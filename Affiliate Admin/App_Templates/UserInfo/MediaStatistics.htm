@@ -6,13 +6,17 @@
             </ul>
         </div>
     </div>
-    <div id="search_cont">
-        <div id="header_search" style="padding:2px 0px 0px 0px">
-            {TrackingCode} &nbsp; {slTrackingCode}&nbsp;&nbsp;
-            <input type="button" value="{Submit}" id="btnSubmit" name="{Submit}" class="buttonlogin"
-                onclick="ViewStatisticsAll();" />
-        </div>
-    </div>
+<div id="search_cont">
+    <table cellspacing="1" cellpadding="2">
+        <tr>
+            <td>{TrackingCode}</td>
+            <td>{slTrackingCode}</td>
+            <td>
+                <div id="divsearch" onclick="ViewStatisticsAll();">&nbsp;</div>
+            </td>
+        </tr>
+    </table>
+</div>
     <table class="aff-table" cellspacing="1" cellpadding="2" id="tblResult" style="width: 400px;">
         <tr>
             <th style="width:20px;">&nbsp;</th>

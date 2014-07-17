@@ -2,6 +2,13 @@
     function NewWindow(HtmlName, WinName, ToolOptions) {
         window.open(HtmlName, WinName, ToolOptions);
     }
+
+    function SubmitSearchFormNew() {
+        $("frmSearch").method = "get";
+        $("frmSearch").action = "12BetDomain.aspx";
+        $("frmSearch").target = "";
+        $("frmSearch").submit();
+    }
 </script>
 
 <div class="padl0">
@@ -16,10 +23,15 @@
     <!--search form-->
     <form id="frmSearch" name="frmSearch" method="get">
         <div id="search_cont">
-            <div id="header_search">
-                {Device}&nbsp;&nbsp;&nbsp;&nbsp;{slDevice}&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="{Submit}" />
-            </div>
-            <div id="spTime" style="float:right; vertical-align:middle; padding: 3px 10px 0 0;"></div>
+            <table cellspacing="1" cellpadding="2">
+                <tbody>
+                    <tr>
+                        <td>{Device}</td>
+                        <td>{slDevice}</td>
+                        <td><div id="divsearch" onclick="SubmitSearchFormNew();">&nbsp;</div></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </form>
     <div style="margin: 10px 0px 0px 1px">

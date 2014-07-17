@@ -1,26 +1,42 @@
-<form method="get">
+<script type="text/javascript">
+    function SubmitSearchFormNew() {
+        $("frmSearch").method = "get";
+        $("frmSearch").action = "AffRate.aspx";
+        $("frmSearch").target = "";
+        $("frmSearch").submit();
+    }
+</script>
+
+<form id="frmSearch" name="frmSearch" method="get">
 <div class="padl0">
     {submenu}
         <!--search form-->
-        <div id="search_cont">
-            <div id="header_search">
-                {date}&nbsp;&nbsp;<input type="text" value="{date-val}" size="13" readonly id="txtDate" name="txtDate" />&nbsp;&nbsp;
-                <img width="16" height="16" src="../{themepath}/images/cal.gif" class="img-date-selector hand"
-                        style="margin-bottom: -3px;" title="Date selector" id="fdateTrigger" />&nbsp;&nbsp;
-                    <script type="text/javascript">
-                        Calendar.setup({
-                            inputField: "txtDate",
-                            ifFormat: "%m/%d/%Y",
-                            button: "fdateTrigger",
-                            singleClick: true,
-                            showsTime: false,
-                            showOthers : true,
-                            step : 1
-                        });
-                    </script>
-                <input type="submit" value="{submit}" class="buttonlogin" />
-            </div>            
-        </div>
+    <div id="search_cont">
+        <table cellspacing="1" cellpadding="2">
+            <tbody>
+                <tr>
+                    <td>{date}</td>
+                    <td><input type="text" value="{date-val}" size="13" readonly id="txtDate" name="txtDate" />&nbsp;&nbsp;
+                        <img width="16" height="16" src="../{themepath}/images/cal.gif" class="img-date-selector hand"
+                            style="margin-bottom: -3px;" title="Date selector" id="fdateTrigger" /></td>
+                    <td><div id="divsearch" onclick="SubmitSearchFormNew();">&nbsp;</div></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <script type="text/javascript">
+            Calendar.setup({
+                inputField: "txtDate",
+                ifFormat: "%m/%d/%Y",
+                button: "fdateTrigger",
+                singleClick: true,
+                showsTime: false,
+                showOthers : true,
+                step : 1
+            });
+        </script>
+        
+    </div>
         <input type="hidden" id="hdIsUpdate" name="hdIsUpdate" value="{isupdated}" />
         <!--/search form-->
         <div style="height:5px;" class="clear"></div>

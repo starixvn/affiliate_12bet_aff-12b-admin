@@ -441,7 +441,7 @@
 <div class="padl0">
     {submenu}
     <!-- Search -->
-    <form id="frmSearch" method="get">
+    <form id="frmSearch" name="frmSearch" method="get">
     <div id="search_cont">
         <table cellspacing="0" cellpadding="3" border="0" width="100%">
             <tr>
@@ -479,8 +479,7 @@
                         id="tdateTrigger" disabled="disabled" class="img-date-selector hand" />
                 </td>
                 <td width="57">
-                    <input type="submit" value="{Submit}" id="btnSubmit" name="{Submit}" class="buttonlogin"
-                        onclick="LoadData(1);" />
+                    <div id="divsearch" onclick="LoadData(1);">&nbsp;</div>
                 </td>
                 <td class="r">
                     <span id="spTime" style="vertical-align: middle; padding: 3px 10px 0 0;"></span>
