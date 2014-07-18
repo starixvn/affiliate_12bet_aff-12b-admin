@@ -50,8 +50,14 @@
                                 <th style="width: 20px">
                                     &nbsp;
                                 </th>
+                                 <th>
+                                    {Device}
+                                </th>
                                 <th>
                                     {Domain}
+                                </th>
+                                 <th>
+                                    {SSL}
                                 </th>
                                 <th style="width: 70px">
                                     {Creator}
@@ -59,12 +65,6 @@
                                 <th>
                                     {CreatedDate}
                                 </th>                                
-                                <th>
-                                    {Device}
-                                </th>
-                                <th>
-                                    {SSL}
-                                </th>
                                 <th>
                                     {Edit}
                                 </th>
@@ -77,21 +77,21 @@
                                 <td class="c">
                                     {No_Value}
                                 </td>
+                                <td class="c">
+                                    {Device_Value}
+                                </td>   
                                 <td>
                                     {12BetDomain_Value}
-                                </td>                                
+                                </td>   
+                                <td class="c">
+                                    <span class="chk {SSL-val}">&nbsp;</span>
+                                </td>                             
                                 <td class="c">
                                     {Creator_Value}
                                 </td>
                                 <td class="c">
                                     {CreatedDate_Value}
                                 </td>                                
-                                <td class="c">
-                                    {Device_Value}
-                                </td>                                
-                                <td class="c">
-                                    <span class="chk {SSL-val}">&nbsp;</span>
-                                </td>
                                 <td style="text-align: center;">
                                     &nbsp;                                    
                                     <a class="icedit" href="javascript:DoCal('Edit12BetDomain.aspx?12BetDomainID={12betdomainid}&12BetDomainName={12BetDomain_Value}&deviceType={DeviceType_Value}&ssl={SSL-Value}', 'Edit 12Bet Domain',340, 190);"

@@ -31,12 +31,12 @@
 <!--header-->
 <tr>
     <th style="width:10px">&nbsp;</th>
+    <th>{Market}</th>
+    <th>{Device}</th>
     <th>{AffDomain}</th>
     <th>{RedirectDomain}</th>
-    <th>{Market}</th>
     <th>{Creator}</th>
     <th>{CreatedDate}</th>
-    <th>{Device}</th>
     <th style="width:45px">{Status}</th>
     <th style="width:45px">{Edit}</th>
     <th style="width:45px">{Del}</th>
@@ -45,12 +45,12 @@
 <!--content-->
 <tr bgcolor="{color}" onmouseout="bgColor='{color}'" onmouseover="bgColor='{over}'">
     <td class="c">{no}</td>
+    <td class="l">{Market-val}</td>
+    <td class="c">{Device-val}</td>
     <td>{AffDomain-val}</td>
     <td>{RedirectDomain-val}</td>
-    <td class="c">{Market-val}</td>
     <td class="c">{Creator-val}</td>
     <td class="c">{CreatedDate-val}</td>
-    <td class="c">{Device-val}</td>
     <td class="c"><span class="chk {Status-val}">&nbsp;</span></td>
     <td class="c"><span class="icedit" onclick="DoCal('DomainControlUpd.aspx?id={ID-val}&affdomain={AffDomainId-val}&redirectdomain={RedirectDomainId-val}&market={MarketId-val}&status={Status-value}&deviceType={deviceType-val}', 'Edit Domain Control', 450, 250);">&nbsp;</span></td>
     <td class="c"><span class="icdel" onclick="DomainControlDel('{ID-val}')">&nbsp;</span></td>
