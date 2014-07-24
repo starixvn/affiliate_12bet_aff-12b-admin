@@ -36,7 +36,7 @@ namespace Fanex.Affiliate.Link
                     action = "Index",
                     id = UrlParameter.Optional
                 });
-
+           
             routes.MapRoute(
                name: "Link",
                url: "{affId}/{pageId}/{lang}/index.html",
@@ -63,6 +63,8 @@ namespace Fanex.Affiliate.Link
                     lang = UrlParameter.Optional,
                     deviceType = UrlParameter.Optional
                 });
+
+            routes.IgnoreRoute("go");
         }
     }
 }

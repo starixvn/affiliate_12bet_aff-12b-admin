@@ -109,8 +109,8 @@ namespace GenerateHTML
             DbResult result = null;
             int nRows = 0;
             result = (isSearchByParentCateogry)
-                ? DataHandler.UserAff.SelAffBannerByParentCategory(category, tmpLanguage, imageType, size, currency, pageIndex, pagesize, type, afftype)
-                : DataHandler.UserAff.SelAffBanner(category, tmpLanguage, imageType, size, currency, pageIndex, pagesize, type, afftype);
+                ? DataHandler.UserAff.SelAffBannerByParentCategory(category, tmpLanguage, imageType, size, currency, pageIndex, pagesize, type, afftype, deviceType)
+                : DataHandler.UserAff.SelAffBanner(category, tmpLanguage, imageType, size, currency, pageIndex, pagesize, type, afftype, deviceType);
             nRows = CastAide.AsInt32(result.Outputs["nrows"]);
 
             int cols = 9;

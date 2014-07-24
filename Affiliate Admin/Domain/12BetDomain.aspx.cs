@@ -21,10 +21,12 @@ public partial class _12BetDomain : IBCPage
         TemplateHandler.Assign(ref list, "SSL", Resources.Lang.SSL);
         TemplateHandler.Assign(ref list, "Submit", Resources.Lang.Submit);
 
-        string deviceType = Request["slDevice"];
+        string deviceType = Common.GetDeviceType(Request["slDevice"]);
+
         try
         {
             TemplateHandler.Assign(ref list, "slDevice", AffAdmin.GenerateHTML.Domain.GenDeviceList("slDevice", deviceType));
+            TemplateHandler.Assign(ref list, "DeviceType-val", deviceType);
 
             DbResult dbr = null;
             dbr = DataHandler.Domain.GetList12BetDomain(deviceType);
@@ -67,7 +69,7 @@ public partial class _12BetDomain : IBCPage
                                                                             "i_domain.jpg"));
             TemplateHandler.Assign(ref list, "ChooseConfirm", Resources.Lang.ConfirmDel12BetDomain);
             TemplateHandler.Assign(ref list, "Add12BetDomain-val", Resources.Lang.Add12BetDomain);
-
+            
 
             this.HtmlContent = list;
         }

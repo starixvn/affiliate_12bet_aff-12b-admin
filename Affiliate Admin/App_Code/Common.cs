@@ -1685,6 +1685,11 @@ public class Common
         return AppSettings.Session.AffType == AffType.European ? AppSettings.EuropeanAffiliateURL : AppSettings.AsianAffiliateURL;
     }
 
+    public static string GetMarket(string market)
+    {
+        return string.IsNullOrEmpty(market) ? string.Empty : market;
+    }
+
     public static string GetDeviceType(string deviceType)
     {
         return string.IsNullOrEmpty(deviceType) ? "0" : deviceType;

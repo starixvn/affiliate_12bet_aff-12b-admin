@@ -166,7 +166,7 @@ namespace DataHandler
         {
             return DbHelper.Execute("Aff_BannerSelType", DBType.AFFILIATE_12BET).ResultSet.Tables[0];
         }
-        public static DbResult SelAffBanner(string category, string language, string imageType, string size, string currency, int pageIndex, int pageSize, int type, int afftype)
+        public static DbResult SelAffBanner(string category, string language, string imageType, string size, string currency, int pageIndex, int pageSize, int type, int afftype, string deviceType)
         {
             Hashtable hsParam = new Hashtable();
             if (!string.IsNullOrEmpty(category))
@@ -195,6 +195,7 @@ namespace DataHandler
             // -- Added by Frank.Ngo on IRP 671 - Jan 2012
 
             hsParam.Add("afftype", afftype);
+            hsParam.Add("devicetype", deviceType);
             hsParam.Add("pagesize", pageSize);
             hsParam.Add("pageindex", pageIndex);
             hsParam.Add("totalpages", 0);
@@ -235,7 +236,7 @@ namespace DataHandler
         }
         // Added by Frank.Ngo on IRP 671 - 10 Feb 2012
         // Get banners in parent category
-        public static DbResult SelAffBannerByParentCategory(string category, string language, string imageType, string size, string currency, int pageIndex, int pageSize, int type, int afftype)
+        public static DbResult SelAffBannerByParentCategory(string category, string language, string imageType, string size, string currency, int pageIndex, int pageSize, int type, int afftype, string deviceType)
         {
             Hashtable hsParam = new Hashtable();
             if (!string.IsNullOrEmpty(category))
@@ -264,6 +265,7 @@ namespace DataHandler
             // -- Added by Frank.Ngo on IRP 671 - Jan 2012
 
             hsParam.Add("afftype", afftype);
+            hsParam.Add("devicetype", byte.Parse(deviceType));
 
             hsParam.Add("pagesize", pageSize);
             hsParam.Add("pageindex", pageIndex);

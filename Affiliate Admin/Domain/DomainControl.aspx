@@ -8,8 +8,8 @@
     function CloseDiv() {
         ibcWnd.close();
     }
-    function AddDomainControl() {
-        DoCal("DomainControlIns.aspx", "Add New Domain Control", 450, 250);
+    function AddDomainControl(market, deviceType) {
+        DoCal("DomainControlIns.aspx?market="+ market + "&deviceType=" + deviceType, "Add New Domain Control", 450, 250);
     }
     function DomainControlDel(id) {
         if (confirm("Are you sure you want to delete this domain settings?")) {

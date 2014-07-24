@@ -29,13 +29,15 @@ public partial class Domain_DomainControl : IBCPage
         TemplateHandler.Assign(ref strTpl, "Edit", Resources.Lang.Edit);
         TemplateHandler.Assign(ref strTpl, "Del", Resources.Lang.Del);
 
-        string market = Request["slMarket"];
-        string deviceType = string.IsNullOrEmpty(Request["slDevice"]) ? "0" : Request["slDevice"];
+        string market = Common.GetMarket(Request["slMarket"]);
+        string deviceType = Common.GetDeviceType(Request["slDevice"]);
         
         try
         {
             TemplateHandler.Assign(ref strTpl, "slMarket", AffAdmin.GenerateHTML.Domain.GenMarketList(market, true));
             TemplateHandler.Assign(ref strTpl, "slDevice", AffAdmin.GenerateHTML.Domain.GenDeviceList("slDevice", deviceType));
+            TemplateHandler.Assign(ref strTpl, "DeviceType-val", deviceType);
+            TemplateHandler.Assign(ref strTpl, "Market-value", market);
 
             DbResult rs = DataHandler.Domain.DomainControlSel(market, deviceType);
             StringBuilder strBuild = new StringBuilder();

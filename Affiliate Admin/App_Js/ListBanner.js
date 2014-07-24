@@ -1,42 +1,42 @@
 ﻿// JScript File
 var curBannerID = -1;
 var curTR;
-var curNoRow=-1;
+var curNoRow = -1;
 function DeleteSelectedMedia(bannerType, isNewCateStruct) {
-    
-        var bannerIDList = "";
-        var fileList = "";
-        listChk = $$("div .chk");
-        var i = 0;
-        var count = 0;
-        for (i = 0; i < listChk.length; i++) {
-            if (listChk[i].hasClassName("ic-check")) {
-                count++;             
-                var id = listChk[i].id;
-                bannerIDList += id;
-                bannerIDList += ",";
-                fileList += $("file" + id).innerHTML.trim();
-                fileList += ",";
-            }
+
+    var bannerIDList = "";
+    var fileList = "";
+    listChk = $$("div .chk");
+    var i = 0;
+    var count = 0;
+    for (i = 0; i < listChk.length; i++) {
+        if (listChk[i].hasClassName("ic-check")) {
+            count++;
+            var id = listChk[i].id;
+            bannerIDList += id;
+            bannerIDList += ",";
+            fileList += $("file" + id).innerHTML.trim();
+            fileList += ",";
         }
-        if (count == 0) {
-            alert("Please select banner to delete.");
-            return;
+    }
+    if (count == 0) {
+        alert("Please select banner to delete.");
+        return;
+    }
+    else {
+        if (confirm($("hdConfirmDelete").value)) {
+            DeleteMedia(bannerIDList, fileList, bannerType, isNewCateStruct);
         }
-        else {
-            if (confirm($("hdConfirmDelete").value)) {
-                DeleteMedia(bannerIDList, fileList, bannerType, isNewCateStruct);
-            }
     }
 }
 function DeleteMedia(bannerIDList, fileList, bannerType, isNewCateStruct) {
     try {
-        var params;        
+        var params;
         params = "params=" + bannerIDList + "$$$" + fileList;
         var ajax = new Ajax.Request("../Handler/DelBanner.ashx", {
             method: 'post',
             parameters: params,
-            onComplete: function(data) {
+            onComplete: function (data) {
                 if (data.responseText != "") {
                     $("frmSearch").submit();
                     alert(data.responseText);
@@ -100,16 +100,16 @@ function GetDataBannerList(page, bannerType, isNewCateStruct) {
 
         var params = {
             cate: $('cateoption').value,
-          subCategory: subCategory,
-          lang: $('langoption').value,
-          currency: $('currencyoption').value,
-          type: $('typeoption').value,
-          size: $('sizeoption').value,
-          page: page,
-          PageSize: $('slPageSize').value,
-          isNewCateStruct: isNewCateStruct,
-          afftype: $('afftypeoption').value,
-          deviceType: $('slDevice').value
+            subCategory: subCategory,
+            lang: $('langoption').value,
+            currency: $('currencyoption').value,
+            type: $('typeoption').value,
+            size: $('sizeoption').value,
+            page: page,
+            PageSize: $('slPageSize').value,
+            isNewCateStruct: isNewCateStruct,
+            afftype: $('afftypeoption').value,
+            deviceType: $('slDevice').value
         };
 
         var ajax = new Ajax.Request("../Handler/GetDataBanner.ashx", {
@@ -149,7 +149,7 @@ function ProcessResult(data) {
         $("tblResult").appendChild(tempDiv.firstChild.firstChild);
         InitDivChkBox();
         if (maxNo == 0) {
-            if ($$("div .pagesize") != null && $$("div .divpageleft") != null && $$("div .header_01")!=null) {
+            if ($$("div .pagesize") != null && $$("div .divpageleft") != null && $$("div .header_01") != null) {
                 $$("div .pagesize")[0].style.display = "none";
                 $$("div .divpageleft")[0].style.display = "none";
                 $$("div .header_01")[0].style.display = "none";
@@ -170,7 +170,7 @@ function IsValidFileExtension() {
     var filename = $('txtfile').value;
     var isOK = true;
     if (filename != "") {
-        var ext = filename.substring(filename.lastIndexOf('.')+1,filename.length).toLowerCase();
+        var ext = filename.substring(filename.lastIndexOf('.') + 1, filename.length).toLowerCase();
 
         isOK = (ext == "jpg" || ext == "jpeg" || ext == "png" || ext == "gif" || ext == "swf");
         if (!isOK) {
@@ -183,13 +183,13 @@ function IsValidFileExtension() {
             else {
                 $('slImageType').value = "Image";
             }
-        }        
+        }
     }
-    if ($('btnuploadbanner')) {      
+    if ($('btnuploadbanner')) {
         $('btnuploadbanner').disabled = !isOK;
     }
     return isOK;
-    
+
 }
 
 function ActiveEdit(bannerid, noRow, deviceType) {
@@ -204,7 +204,7 @@ function ActiveEdit(bannerid, noRow, deviceType) {
             var ajax = new Ajax.Request("../Handler/GetEditedBanner.ashx", {
                 method: 'post',
                 parameters: 'bannerid=' + bannerid + '&noRow=' + noRow + "&deviceType=" + deviceType,
-                onComplete: function(data) {
+                onComplete: function (data) {
                     var tempDiv = document.createElement("DIV");
                     tempDiv.innerHTML = "<table><tbody>" + data.responseText + "</tbody></table>";
 
@@ -221,7 +221,7 @@ function ActiveEdit(bannerid, noRow, deviceType) {
                     while (tr1.childNodes.length >= 1) {
                         tr.appendChild(tr1.firstChild);
                     }
-                    document.location = document.location + "#myeditarea";                   
+                    document.location = document.location + "#myeditarea";
                 }
             });
 
@@ -229,7 +229,7 @@ function ActiveEdit(bannerid, noRow, deviceType) {
         catch (e) {
             alert(e);
         }
-        finally{
+        finally {
             setTimeout("CheckBox_AddEvent();", 500);
         }
     }
@@ -240,7 +240,7 @@ function CancelEdit() {
         var ajax = new Ajax.Request("../Handler/GetViewedBanner.ashx", {
             method: 'post',
             parameters: 'bannerid=' + curBannerID + '&noRow=' + curNoRow,
-            onComplete: function(data) {
+            onComplete: function (data) {
                 var tempDiv = document.createElement("DIV");
                 tempDiv.innerHTML = "<table><tbody>" + data.responseText + "</tbody></table>";
 
@@ -263,19 +263,19 @@ function CancelEdit() {
     catch (e) {
         alert(e);
     }
-    finally{
+    finally {
         setTimeout("CheckBox_AddEvent();", 500);
     }
-  
-   /* var tr = $("banner" + curBannerID);
+
+    /* var tr = $("banner" + curBannerID);
    
     while (tr.childNodes.length >= 1) {
-        tr.removeChild(tr.firstChild);
+    tr.removeChild(tr.firstChild);
     }
     tr.setAttribute('class', curTR.getAttribute('class'));
     tr.setAttribute('onmouseout', curTR.getAttribute('onmouseout'));
     while (curTR.childNodes.length >= 1) {
-        tr.appendChild(curTR.firstChild);
+    tr.appendChild(curTR.firstChild);
     }
     curBannerID = -1;*/
 }
