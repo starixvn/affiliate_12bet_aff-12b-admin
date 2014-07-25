@@ -38,8 +38,7 @@ namespace DataHandler
             Hashtable hs = new Hashtable();
             if(!string.IsNullOrEmpty(marketId))
                 hs.Add("marketid", marketId);
-            var device = string.IsNullOrEmpty(deviceType) ? 0 : byte.Parse(deviceType);
-            hs.Add("devicetype", device);
+            hs.Add("devicetype", byte.Parse(deviceType));
             return DbHelper.Execute("Aff_DomainControlSel", hs, DBType.AFFILIATE_12BET);
         }
 

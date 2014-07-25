@@ -3,30 +3,39 @@
 <script src="../App_Js/jquery/jquery-1.4.2.min.js" type="text/javascript"></script>
 <script type ="text/javascript">
     var jQ = jQuery.noConflict();
+
+    jQ.fn.serializeObject = function () {
+        "use strict";
+        var o = {};
+
+        var a = this.serializeArray();
+
+        jQ.each(a, function () {
+            if (o[this.name] !== undefined) {
+                o[this.name] = o[this.name] + ',' + this.value;
+            } else {
+                o[this.name] = this.value || '';
+            }
+        });
+
+        return o;
+    };
+
     window.onload=function() {
         EnableDisableInputTrackingCode();
 
         jQ('#slDevice').change(function () {
-            var deviceType = jQ(this).val();
-            jQ('#btnSearch').attr("disabled", "disabled");
-            var ajax = new Ajax.Request("../Handler/GetDomainList.ashx", {
-                method: 'post',
-                parameters: 'deviceType=' + deviceType,
-                onComplete: function (data) {
-                    var domainRegion = document.getElementById("domain-region");
-                    domainRegion.innerHTML = data.responseText;
-                }
-            });
+            var obj = jQ('#frmData').serializeObject();
+            delete obj['target'];
+            delete obj['slDomain'];
+            var url = location.href;
+            var posQuestion = url.indexOf('?');
 
-            var ajax1 = new Ajax.Request("../Handler/GetPageList.ashx", {
-                method: 'post',
-                parameters: 'deviceType=' + deviceType,
-                onComplete: function (data) {
-                    var domainRegion = document.getElementById("target-domain");
-                    domainRegion.innerHTML = data.responseText;
-                    jQ('#btnSearch').removeAttr("disabled");
-                }
-            });
+            if (posQuestion > 0) {
+                url = url.substring(0, posQuestion);
+            }
+
+            location.href = url + "?" + jQ.param(obj);
         });
     };
     function NavigatePage(curPage) {

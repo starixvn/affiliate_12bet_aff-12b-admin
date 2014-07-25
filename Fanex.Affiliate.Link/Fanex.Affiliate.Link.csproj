@@ -41,6 +41,10 @@
     <Reference Include="Fanex.Affiliate.Resources">
       <HintPath>App_dll\Fanex.Affiliate.Resources.dll</HintPath>
     </Reference>
+    <Reference Include="Fanex.Common, Version=1.0.404.98, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>App_dll\Fanex.Common.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.Data">
       <HintPath>App_dll\Fanex.Data.dll</HintPath>
     </Reference>

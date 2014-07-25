@@ -4,6 +4,23 @@
 <script type ="text/javascript">
     var jQ = jQuery.noConflict();
 
+    jQ.fn.serializeObject = function () {
+        "use strict";
+        var o = {};
+
+        var a = this.serializeArray();
+
+        jQ.each(a, function () {
+            if (o[this.name] !== undefined) {
+                o[this.name] = o[this.name] + ',' + this.value;
+            } else {
+                o[this.name] = this.value || '';
+            }
+        });
+
+        return o;
+    };
+
     window.onload = function () {
         EnableDisableInputTrackingCode();
         jQ('#trSubCategoryMedia').css("visibility", "visible");
@@ -28,6 +45,20 @@
             else {
                 jQ('#trSubCategoryMedia').hide();
             }
+        });
+
+        jQ('#slDevice').change(function () {
+            var obj = jQ('#frmData').serializeObject();
+            delete obj['target'];
+            delete obj['slDomain'];
+            var url = location.href;
+            var posQuestion = url.indexOf('?');
+
+            if (posQuestion > 0) {
+                url = url.substring(0, posQuestion);
+            }
+
+            location.href = url + "?" + jQ.param(obj);
         });
     };
 
