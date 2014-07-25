@@ -8,6 +8,8 @@
 //   <change who="" date=""></change>
 // </history>
 
+using System.Configuration;
+
 namespace Fanex.Affiliate.Link.Controllers
 {
     using System;
@@ -111,7 +113,7 @@ namespace Fanex.Affiliate.Link.Controllers
         {
             if (Request.Url != null)
             {
-                var affDomain = Request.Url.ToString();
+                var affDomain = GetFullAffDomain(Request.Url.ToString(), affId);
                 var urlReferrer = Request.UrlReferrer != null ? Request.UrlReferrer.AbsoluteUri : null;
                 var domainReferrer = Request.UrlReferrer != null ? Request.UrlReferrer.Host : null;
 
@@ -157,6 +159,27 @@ namespace Fanex.Affiliate.Link.Controllers
             }
 
             return View("Link");
+        }
+
+        /// <summary>
+        /// Get full affiliate domain from affiliate link.
+        /// </summary>
+        /// <param name="url">Affiliate link.</param>
+        /// <param name="affId">Affiliate Id.</param>
+        /// <returns>Full affiliate domain.</returns>
+        private string GetFullAffDomain(string url, int affId)
+        {
+            if (byte.Parse(ConfigurationManager.AppSettings["RemovePortFromUrl"]) == 1)
+            {
+                var uri = new Uri(url);
+                url = url.Replace(":" + uri.Port, string.Empty);
+            }
+
+            const string slashString = "://";
+            var pos1 = url.IndexOf(slashString, 0, StringComparison.OrdinalIgnoreCase);
+            var pos2 = url.IndexOf("/" + affId.ToString(CultureInfo.InvariantCulture), 0, StringComparison.OrdinalIgnoreCase);
+            
+            return url.Substring(pos1 + slashString.Length, pos2 - (pos1 + slashString.Length));
         }
 
         /// <summary>
