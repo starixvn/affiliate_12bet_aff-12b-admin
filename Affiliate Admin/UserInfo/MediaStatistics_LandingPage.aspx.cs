@@ -115,13 +115,16 @@ public partial class UserInfo_MediaStatistics_LandingPage : IBCPage
 
                     strListRow.Append(strTmp);
                 }
-                TemplateHandler.Assign(ref strRowTpl, "color", (intCount % 2 == 0) ? Common.RowBgOdd : Common.RowBgEven);
-                //Assign total signups for Old URL
-                strListRow.Append(TrackingSystem.GenRowOldURL(strRowTpl, totalSignups, totalDeposits, dtmFDate, dtmTDate));
+
+                if (!deviceType.Equals("1", StringComparison.OrdinalIgnoreCase))
+                {
+                    TemplateHandler.Assign(ref strRowTpl, "color", (intCount%2 == 0) ? Common.RowBgOdd : Common.RowBgEven);
+                    //Assign total signups for Old URL
+                    strListRow.Append(TrackingSystem.GenRowOldURL(strRowTpl, totalSignups, totalDeposits, dtmFDate,
+                                                                  dtmTDate));
+                }
 
                 TemplateHandler.ReplaceBlock(ref strTpl, "content", strListRow.ToString());
-
-
             }
             else
             {
@@ -152,6 +155,7 @@ public partial class UserInfo_MediaStatistics_LandingPage : IBCPage
             case "vn": return "Tiếng Việt";
             case "id": return "Indonesian";
             case "ko": return "Korean";
+            case "jp": return "Japanese";
             default:
                 return "";
         }

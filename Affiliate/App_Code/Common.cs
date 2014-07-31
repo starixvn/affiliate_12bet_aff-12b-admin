@@ -162,7 +162,8 @@ public class Common
             case "vi": return "Tiếng Việt";
             case "id": return "Indonesian";
             case "ko": return "Korean";
-            case "ja": return "日本";
+            case "ja":
+            case "jp": return "日本";
             default:
                 return "en";
         }

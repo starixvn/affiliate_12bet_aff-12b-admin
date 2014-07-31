@@ -74,22 +74,35 @@
             <div id="search_cont" style="height: 47px;">
                 <table class="aff-table" cellspacing="1" cellpadding="1">
                     <tr>
-                        <td style="width: 70px">
+                        <td style="width: 30px">
                             {Device}:
                         </td>
-                        <td style="width: 100px" class="r">
+                        <td class="r" style="width: 100px">
                             {slDevice}
                         </td>
-                        <td>
+                        <td style="width: 30px;"></td>
+                        <td style="width: 60px;">
                             {Language}:
                         </td>
-                        <td class="r" style="width: 80px">
+                        <td class="r" style="width: 95px">
                             {slLanguage}
                         </td>
+                        <td style="width: 30px;"></td>
+                        <td style="width: 60px;">
+                            {Page}:
+                        </td>
+
+                        <td class="l">
+                            <div id="target-domain">
+                                {slPage}
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
                         <td>
                             {From}:
                         </td>
-                        <td class="r" style="width: 80px">
+                        <td class="r">
                             <input type="text" id="fdate" name="fdate" size="13" value="{fdate}" style="width: 80px" />
                         </td>
                         <td>
@@ -99,7 +112,7 @@
                         <td>
                             {To}:
                         </td>
-                        <td style="width: 80px" class="r">
+                        <td class="r">
                             <input type="text" id="tdate" name="tdate" size="13" value="{tdate}" style="width: 80px" />
                         </td>
                         <td>
@@ -110,21 +123,11 @@
                             <input type="button" value="{Submit}" onclick="LoadData(1);" id="btnSubmit" name="{Submit}" class="button" />
                         </td>
                     </tr>
-                    <tr>
-                        <td style="width: 70px">
-                            {Page}:
-                        </td>
-                        <td class="l" style="width: 80px">
-                            <div id="target-domain">
-                            {slPage}
-                            </div>
-                        </td>
-                    </tr>
                 </table>
             </div>
             <div style="height: 5px;">
                 &nbsp;</div>
-            <div class="tbl-box">
+            <div class="tbl-box" style="overflow-x: none;">
                 <table id="tblResult" class="aff-table" cellspacing="1" cellpadding="1">
                     <tr class="tblheader">
                         <td width="20%">
@@ -200,7 +203,9 @@
                         <!--StatisticsDetailContent-->
                         <tr class="{rowstyle} l" onmouseout="this.className={onmouseoutstyle};" onmouseover="this.className=c;">
                             <td>
+                                <div style="width: 248px; word-wrap: break-word; text-wrap: normal">
                                 {Site-val}
+                                </div>
                             </td>
                             <td class="r fu">
                                 {TotalClick-val}

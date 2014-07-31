@@ -84,9 +84,13 @@ public partial class Report_MediaStatistics_New : IBCPage
                     strListRow.Append(strTmp);
                 }
 
-                TemplateHandler.Assign(ref strRowTpl, "color", (intCount % 2 == 0) ? Common.RowBgOdd : Common.RowBgEven);
-                //Assign total signups for Old URL
-                strListRow.Append(TrackingSystem.GenRowOldURL(strRowTpl, totalSignups, totalDeposits, dtmFDate, dtmTDate));
+                if (!deviceType.Equals("1", StringComparison.OrdinalIgnoreCase))
+                {
+                    TemplateHandler.Assign(ref strRowTpl, "color", (intCount%2 == 0) ? Common.RowBgOdd : Common.RowBgEven);
+                    //Assign total signups for Old URL
+                    strListRow.Append(TrackingSystem.GenRowOldURL(strRowTpl, totalSignups, totalDeposits, dtmFDate,
+                                                                  dtmTDate));
+                }
 
                 TemplateHandler.ReplaceBlock(ref strTpl, "content", strListRow.ToString());
             }

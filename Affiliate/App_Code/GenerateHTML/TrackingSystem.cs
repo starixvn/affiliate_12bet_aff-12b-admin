@@ -181,6 +181,7 @@ namespace GenerateHTML
                     TemplateHandler.Assign(ref strTmp, "UniqueClick-val", dr["uniqueclick"].ToString());
                     TemplateHandler.Assign(ref strTmp, "Signups-val", dr["Signups"].ToString());
                     TemplateHandler.Assign(ref strTmp, "FDM-val", dr["FDM"].ToString());
+                    TemplateHandler.Assign(ref strTmp, "DeviceType-val", deviceType);
 
                     if (string.Compare(dr["DomainReferrer"].ToString(), "none", true) == 0)
                         TemplateHandler.ReplaceBlock(ref strTmp, "domain", dr["DomainReferrer"].ToString());
@@ -201,10 +202,14 @@ namespace GenerateHTML
 
                 if (intNo > 0)
                 {
-                    TemplateHandler.Assign(ref strContent, "rowstyle", (intNo % 2) == 0 ? "bgcgy" : "bgwhite");
-                    TemplateHandler.Assign(ref strContent, "onmouseoutstyle", (intNo % 2) == 0 ? "b" : "a");
-                    //Assign total signups for Old URL
-                    strBuild.Append(GenRowOldURL(strContent, totalSignups, totalDeposits, fromdate, todate));
+                    if (!deviceType.Equals("1", StringComparison.OrdinalIgnoreCase))
+                    {
+                        TemplateHandler.Assign(ref strContent, "rowstyle", (intNo%2) == 0 ? "bgcgy" : "bgwhite");
+                        TemplateHandler.Assign(ref strContent, "onmouseoutstyle", (intNo%2) == 0 ? "b" : "a");
+                        //Assign total signups for Old URL
+                        strBuild.Append(GenRowOldURL(strContent, totalSignups, totalDeposits, fromdate, todate));
+                    }
+
                     return strBuild.ToString();
                 }
                 return Common.NoInfo(cols);
@@ -227,8 +232,8 @@ namespace GenerateHTML
 
 
             int totalPage = CastAide.AsInt32(result.Outputs["totalpages"]);
-            TemplateHandler.Assign(ref strContentTable, "paging-top", Common.GenPaging(totalPage, pageIndex, pageSize, 0, "aPageTop", "txtPageTop", 620, false, true));
-            TemplateHandler.Assign(ref strContentTable, "paging-bottom", Common.GenPaging(totalPage, pageIndex, pageSize, 0, "aPageBottom", "txtPageBottom", 620, false, false));
+            TemplateHandler.Assign(ref strContentTable, "paging-top", Common.GenPaging(totalPage, pageIndex, pageSize, 0, "aPageTop", "txtPageTop", 612, false, true));
+            TemplateHandler.Assign(ref strContentTable, "paging-bottom", Common.GenPaging(totalPage, pageIndex, pageSize, 0, "aPageBottom", "txtPageBottom", 612, false, false));
             TemplateHandler.Assign(ref strContentTable, "page", pageIndex);
             strContentTable = strContentTable.Replace("LoadData", "LoadDetail");
             strContentTable = strContentTable.Replace("ChangePage", "submitPage");
@@ -322,11 +327,16 @@ namespace GenerateHTML
                     strBuild.Append(strTmp);
 
                 }
-                if (intNo > 0)
+                
+                if (intNo > 0) 
                 {
-                    TemplateHandler.Assign(ref strContent, "rowstyle", (intNo % 2) == 0 ? "bgcgy" : "bgwhite");
-                    TemplateHandler.Assign(ref strContent, "onmouseoutstyle", (intNo % 2) == 0 ? "b" : "a");
-                    strBuild.Append(GenRowOldURL(strContent, totalSignups, totalDeposits, fromdate, todate));
+                    if (!deviceType.Equals("1", StringComparison.OrdinalIgnoreCase))
+                    {
+                        TemplateHandler.Assign(ref strContent, "rowstyle", (intNo%2) == 0 ? "bgcgy" : "bgwhite");
+                        TemplateHandler.Assign(ref strContent, "onmouseoutstyle", (intNo%2) == 0 ? "b" : "a");
+                        strBuild.Append(GenRowOldURL(strContent, totalSignups, totalDeposits, fromdate, todate));
+                    }
+
                     return strBuild.ToString();
                 }
                 return Common.NoInfo(cols);

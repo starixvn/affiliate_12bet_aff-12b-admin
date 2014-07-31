@@ -155,7 +155,7 @@ namespace Fanex.Affiliate.Link.Controllers
                     return Redirect(redirectUrl);
                 }
 
-                ViewBag.Result = "This affiliate does not exists. Please contact administrator!";
+                ViewBag.Result = "This link does not exists. Please contact administrator!";
             }
 
             return View("Link");

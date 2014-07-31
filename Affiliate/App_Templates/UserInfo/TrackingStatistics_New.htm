@@ -132,7 +132,7 @@
             </div>
             <div style="height: 5px;">
                 &nbsp;</div>
-            <div class="tbl-box">
+            <div class="tbl-box" style="overflow-x: none;">
                 <table id="tblResult" class="aff-table" cellspacing="1" cellpadding="1">
                     <tr class="tblheader">
                         <td width="40%">
@@ -203,7 +203,9 @@
                         <!--StatisticsDetailContent-->
                         <tr class="{rowstyle} l" onmouseout="this.className={onmouseoutstyle};" onmouseover="this.className=c;">
                             <td class="wordwrap">
-                                {Site-val}
+                                <div style="width: 248px; word-wrap: break-word; text-wrap: normal">
+                                    {Site-val}
+                                </div>
                             </td>
                             <td class="r fu wordwrap">
                                 {TotalClick-val}
