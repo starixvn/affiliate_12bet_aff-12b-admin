@@ -49,7 +49,7 @@
                     </p>
                     
                     <p>
-                        <b><%=Resources.Lang.Sportbook%></b>
+                        <b><%=Resources.Lang.SportbookExtension%></b>
                         <br />
                         <%=Resources.Lang.TC_Sportbook_Content%>
                         <br />
@@ -119,7 +119,7 @@
                     </div>
                     <% if(!AppSettings.AffTypeList.Any(t => t == AffType.European)) { %>
                                            <p>
-                        <b><%=Resources.Lang.Casino%></b>
+                        <b><%=Resources.Lang.CasinoExtension%></b>
                         <br />
                         <%=Resources.Lang.TC_Casino_Content1%>
                         <br />

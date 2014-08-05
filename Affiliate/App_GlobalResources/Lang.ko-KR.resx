@@ -242,7 +242,7 @@
     <value>더</value>
   </data>
   <data name="MyAcc" xml:space="preserve">
-    <value>나의 계정</value>
+    <value>계정 정보</value>
   </data>
   <data name="MyHome" xml:space="preserve">
     <value>마이홈</value>
@@ -680,7 +680,7 @@
     <value>부족한 잔액 때문에 출금신청을 할수가 없습니다</value>
   </data>
   <data name="PaymentRequest" xml:space="preserve">
-    <value>결제요청</value>
+    <value>입출금 내역</value>
   </data>
   <data name="PaymentErr1001" xml:space="preserve">
     <value>죄송합니니다. 금액이 올바르지 않습니다</value>
@@ -901,7 +901,9 @@
  본사에서 무료 출금요청을 제공할경우, 본사는 그에따른 금융기관 또는  electronic wallets 에서 부과하는 커미션을 부담 하지 않습니다.</value>
   </data>
   <data name="TheMinimumWithdrawal" xml:space="preserve">
-    <value>최소 출금가능 금액은USD$100입니다.</value>
+    <value>최소 출금가능 금액은USD$100입니다. &lt;br/&gt;
+* 제휴아이디,동일아이피,동일계좌로 플레이된 것에 대해서는 지불되지 않습니다
+</value>
   </data>
   <data name="FrequentlyAskedQuestions" xml:space="preserve">
     <value>FAQ(자주 묻는 질문)</value>
@@ -2776,5 +2778,11 @@
   </data>
   <data name="DescWebsite" xml:space="preserve">
     <value>현재 URL이 없으신경우, 12bet  향후 업무계획을 간략히 설명해주십시오.</value>
+  </data>
+  <data name="SportbookExtension" xml:space="preserve">
+    <value>스포츠북 * 6명이하의 회원에 대해서는 정산되지 않습니다.</value>
+  </data>
+  <data name="CasinoExtension" xml:space="preserve">
+    <value>카지노 * 6명이하의 회원에 대해서는 정산되지 않습니다.</value>
   </data>
 </root>

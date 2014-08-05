@@ -2724,4 +2724,13 @@
 	<data name="Japanese" xml:space="preserve">
     <value>日本</value>
   </data>
+	<data name="SportbookExtension" xml:space="preserve">
+		<value>体育博彩</value>
+	</data>
+	<data name="CasinoExtension" xml:space="preserve">
+		<value>娱乐城</value>
+	</data>
+	<data name="Year" xml:space="preserve">
+		<value>Year</value>
+	</data>
 </root>
