@@ -164,18 +164,18 @@ namespace GenerateHTML
             TemplateHandler.Assign(ref strContent, "tdate", Common.ConvertDateTime(todate, "/", true, false));
 
             DbResult result = DataHandler.TrackingSystem.SelClickStatisticsBySite(fromdate, todate, deviceType);
+            int totalSignups = CastAide.AsInt32(result.Outputs["totalsignups"]);
+            int totalDeposits = CastAide.AsInt32(result.Outputs["totalfdms"]);
+
             int cols = 5;
             if (result.ResultSet.Tables.Count > 0)
             {
                 int intNo = 0;
-                int totalSignups = 0, totalDeposits = 0;
                 StringBuilder strBuild = new StringBuilder();
                 foreach (DataRow dr in result.ResultSet.Tables[0].Rows)
                 {
                     intNo++;
                     string strTmp = strContent;
-                    totalSignups += CastAide.AsInt32(dr["Signups"]);
-                    totalDeposits += CastAide.AsInt32(dr["FDM"]);
                     TemplateHandler.Assign(ref strTmp, "Site-val", dr["DomainReferrer"]);
                     TemplateHandler.Assign(ref strTmp, "TotalClick-val", dr["totalclick"].ToString());
                     TemplateHandler.Assign(ref strTmp, "UniqueClick-val", dr["uniqueclick"].ToString());
@@ -292,18 +292,18 @@ namespace GenerateHTML
             TemplateHandler.Assign(ref strContent, "tdate", todate);
 
             DbResult result = DataHandler.TrackingSystem.SelClickStatisticsByPage(fromdate, todate, sportCode, languageCode, deviceType);
+            int totalSignups = CastAide.AsInt32(result.Outputs["totalsignups"]);
+            int totalDeposits = CastAide.AsInt32(result.Outputs["totalfdms"]);
             int cols = 5;
-            int totalSignups = 0, totalDeposits = 0;
+            
             if (result.ResultSet.Tables.Count > 0)
             {
                 int intNo = 0;
-                StringBuilder strBuild = new StringBuilder();
+                var strBuild = new StringBuilder();
                 foreach (DataRow dr in result.ResultSet.Tables[0].Rows)
                 {
                     intNo++;
                     string strTmp = strContent;
-                    totalSignups += CastAide.AsInt32(dr["Signups"]);
-                    totalDeposits += CastAide.AsInt32(dr["FDM"]);
 
                     TemplateHandler.Assign(ref strTmp, "Page-val", dr["sportcode"]);
                     TemplateHandler.Assign(ref strTmp, "Language-val", Common.GetLanguageOriginal(dr["languagecode"].ToString()));

@@ -36,7 +36,7 @@
 
               var ajax = new Ajax.Request("../Handler/GetPageList.ashx", {
                   method: 'post',
-                  parameters: 'deviceType=' + deviceType + "&hasAll='true'",
+                  parameters: 'deviceType=' + deviceType + "&hasAll=True",
                   onComplete: function (data) {
                       var domainRegion = document.getElementById("target-domain");
                       domainRegion.innerHTML = data.responseText;

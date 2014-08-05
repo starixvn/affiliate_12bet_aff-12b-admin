@@ -79,6 +79,8 @@ public partial class UserInfo_MediaStatistics_LandingPage : IBCPage
             TemplateHandler.Assign(ref strTpl, "slDevice", AffAdmin.GenerateHTML.Domain.GenDeviceList("slDevice", deviceType));
 
             DbResult rs = DataHandler.TrackingSystem.SelClickStatisticsByPage(dtmFDate, dtmTDate, sportCode, GetLangCode(languageCode), deviceType);
+            int totalSignups = CastAide.AsInt32(rs.Outputs["totalsignups"]);
+            int totalDeposits = CastAide.AsInt32(rs.Outputs["totalfdms"]);
 
             DataTable dtb = new DataTable();
             if (rs.ResultSet.Tables.Count > 0)
@@ -86,21 +88,17 @@ public partial class UserInfo_MediaStatistics_LandingPage : IBCPage
 
             if (dtb.Rows.Count > 0)
             {
-
                 int intCount = 0;
                 string strRowTpl = TemplateHandler.CopyBlock(strTpl, "content");
                 string strListAffId = string.Empty;
 
-                StringBuilder strListRow = new StringBuilder();
-                int totalSignups = 0, totalDeposits = 0;
-                //Hashtable hsTotal = new Hashtable();
+                var strListRow = new StringBuilder();
+                
                 foreach (DataRow dr in dtb.Rows)
                 {
                     string strTmp = strRowTpl;
 
                     intCount++;
-                    totalSignups += CastAide.AsInt32(dr["Signups"]);
-                    totalDeposits += CastAide.AsInt32(dr["FDM"]);
 
                     TemplateHandler.Assign(ref strTmp, "color", (intCount % 2 == 0) ? Common.RowBgEven : Common.RowBgOdd);
 

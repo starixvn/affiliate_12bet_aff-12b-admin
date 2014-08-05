@@ -47,6 +47,8 @@ public partial class Report_MediaStatistics_New : IBCPage
             TemplateHandler.Assign(ref strTpl, "slDevice", AffAdmin.GenerateHTML.Domain.GenDeviceList("slDevice", deviceType));
 
             DbResult rs = DataHandler.TrackingSystem.SelClickStatisticsBySite(dtmFDate, dtmTDate, deviceType);
+            int totalSignups = CastAide.AsInt32(rs.Outputs["totalsignups"]);
+            int totalDeposits = CastAide.AsInt32(rs.Outputs["totalfdms"]);
 
             DataTable dtb = new DataTable();
             if (rs.ResultSet.Tables.Count > 0)
@@ -59,17 +61,13 @@ public partial class Report_MediaStatistics_New : IBCPage
                 int intCount = 0;
                 string strRowTpl = TemplateHandler.CopyBlock(strTpl, "content");
                 string strListAffId = string.Empty;
+                var strListRow = new StringBuilder();
 
-                StringBuilder strListRow = new StringBuilder();
-                int totalSignups = 0, totalDeposits = 0;
-                //Hashtable hsTotal = new Hashtable();
                 foreach (DataRow dr in dtb.Rows)
                 {
                     string strTmp = strRowTpl;
 
                     intCount++;
-                    totalSignups += CastAide.AsInt32(dr["Signups"]);
-                    totalDeposits += CastAide.AsInt32(dr["FDM"]);
                     TemplateHandler.Assign(ref strTmp, "color", (intCount % 2 == 0) ? Common.RowBgEven : Common.RowBgOdd);
                     if (string.Compare(dr["DomainReferrer"].ToString(), "none", true) == 0)
                         TemplateHandler.ReplaceBlock(ref strTmp, "page", dr["DomainReferrer"].ToString());
