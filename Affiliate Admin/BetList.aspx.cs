@@ -43,7 +43,7 @@
             BetListType betlistType = BetListType.Winlost;
             DataTable betListData = View as DataTable;
 
-            GetCachePropertyById funcGetOddsTypeName = Fanex.BetList.Core.TicketHelper.CacheRef.GetOddsTypeName;
+            GetCachePropertyById funcGetOddsTypeName = CacheRef.GetOddsTypeName;
             ITicketHelper ticketHelper = new TicketHelper();
             ticketHelper.CurrentLanguage = UserSession.Current.LangKey;
 
@@ -63,7 +63,7 @@
                 tickets = TicketTransformer.Transform(betListData);
                 betListData.Dispose();
             }
-            List<ITicketData> ticketData = new List<ITicketData>();
+            var ticketData = new List<ITicketData>();
 
             if (commandData != null)
             {
@@ -95,9 +95,6 @@
 
             content.Append(betlistHeader);
             content.Append("<tbody>");
-
-            ForecastBO bo = new ForecastBO(UserSession.Current.NetSessionId);
-            List<int> lstScoremap = bo.GetListBetTypeScoreMap();
 
             bool isShowScoremap = false;
 
