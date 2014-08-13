@@ -4,10 +4,40 @@
 	background: #666666;
 	margin: 0;
 	padding: 0;
-	background: #530007 url(images/bgMain1.jpg) no-repeat fixed center top;
+	background: #eef3fa url(images/bgMain.jpg) no-repeat fixed center top;
 	font-size: 11px;
 	color: #333;
 }
+
+body.zh-CN {
+	background: #eef3fa url(images/bgMain_cs.jpg) no-repeat fixed center top;
+}
+
+body.zh-TW {
+	background: #eef3fa url(images/bgMain_ch.jpg) no-repeat fixed center top;
+}
+
+body.id-ID {
+    background: #eef3fa url(images/bgMain_id.jpg) no-repeat fixed center top;
+}
+
+body.vi-VN {
+    background: #eef3fa url(images/bgMain_vn.jpg) no-repeat fixed center top;
+}
+
+body.th-TH {
+    background: #eef3fa url(images/bgMain_th.jpg) no-repeat fixed center top;
+}
+
+body.ko-KR {
+    background: #eef3fa url(images/bgMain_ko.jpg) no-repeat fixed center top;
+}
+
+body.ja-JP {
+    background: #eef3fa url(images/bgMain_jp.jpg) no-repeat fixed center top;
+}
+
+
 form
 {
 	padding: 0;
@@ -78,7 +108,7 @@ a.lnknormal:hover
 }
 #container
 {
-	width: 938px;
+	width: 930px;
 	background: #FFFFFF;
 	margin: 0 auto;
 	background: url(images/bg_center.jpg) repeat-y;

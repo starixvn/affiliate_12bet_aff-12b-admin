@@ -1,12 +1,40 @@
 /* CSS Document */
 body
 {
-    background:url(images/bgMain.jpg) repeat-x scroll center top #7D010B;
-    color: #333333;
+    background:url(images/bgMain.jpg) repeat-x scroll center top #eef3fa;
+    color: #333;
     font-family:"Myriad Pro", Tahoma, REZ, Arial;
     font-size: 11px;
     margin: 0;
     padding: 0;
+}
+
+body.zh-CN {
+	background: #eef3fa url(images/bgMain_cs.jpg) no-repeat fixed center top;
+}
+
+body.zh-TW {
+	background: #eef3fa url(images/bgMain_ch.jpg) no-repeat fixed center top;
+}
+
+body.id-ID {
+    background: #eef3fa url(images/bgMain_id.jpg) no-repeat fixed center top;
+}
+
+body.vi-VN {
+    background: #eef3fa url(images/bgMain_vn.jpg) no-repeat fixed center top;
+}
+
+body.th-TH {
+    background: #eef3fa url(images/bgMain_th.jpg) no-repeat fixed center top;
+}
+
+body.ko-KR {
+    background: #eef3fa url(images/bgMain_ko.jpg) no-repeat fixed center top;
+}
+
+body.ja-JP {
+    background: #eef3fa url(images/bgMain_jp.jpg) no-repeat fixed center top;
 }
 
 #top
