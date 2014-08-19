@@ -167,6 +167,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\SpNames.xml" />
+    <Content Include="App_Data\SpNames.Pro.xml">
+		<DependentUpon>SpNames.xml</DependentUpon>
+	</Content>
+    <Content Include="App_Data\SpNames.Uat.xml">
+		<DependentUpon>SpNames.xml</DependentUpon>
+	</Content>
+    <Content Include="App_Data\SpNames.LocalPro.xml">
+		<DependentUpon>SpNames.xml</DependentUpon>
+	</Content>
+    <Content Include="App_Data\SpNames.Local.xml">
+		<DependentUpon>SpNames.xml</DependentUpon>
+	</Content>
     <Content Include="App_dll\Fanex.Common.dll" />
     <Content Include="App_dll\Microsoft.Practices.EnterpriseLibrary.Caching.dll" />
     <Content Include="App_dll\Microsoft.Practices.EnterpriseLibrary.Common.dll" />
@@ -247,10 +259,16 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Web.Debug.config">
+    <Content Include="Web.Local.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Web.Release.config">
+    <Content Include="Web.LocalPro.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Uat.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Pro.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
