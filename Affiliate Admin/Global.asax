@@ -8,6 +8,7 @@
 <%@ Import Namespace="System.Web.Configuration" %>
 <%@ Import Namespace="System.Data" %>
 <%@ Import Namespace="Sunplus.Agent.Utilities" %>
+<%@ Import Namespace="Fanex.Logging" %>
 
 <script runat="server">
 
@@ -40,8 +41,8 @@
                         "\r\nQUERYSTRING: " + Request.QueryString.ToString() +
                         "\r\nTARGETSITE: " + ex.TargetSite +
                         "\r\nSTACKTRACE: " + ex.StackTrace;
-
-        DNAide.Web.DNAideLog.Write(message);
+        LogService.Error("12BET Admin " + System.Environment.NewLine + message);
+        //DNAide.Web.DNAideLog.Write(message);
     }   
     
     void Session_Start(object sender, EventArgs e) 

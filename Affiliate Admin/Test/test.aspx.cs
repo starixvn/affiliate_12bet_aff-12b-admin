@@ -17,7 +17,7 @@ public partial class test : System.Web.UI.Page
             string LastName = Request["txtLastName"];
             string Email = Request["txtEmail"];
             string UserName = Request["txtUserName"];
-            bool rs = false;
+            bool rs = true;
 
             switch (type)
             {
@@ -60,7 +60,7 @@ public partial class test : System.Web.UI.Page
     #region Email Content of Request Payment
     bool ApprovedMail(int intTransId, string strFName, string strLName, decimal Amt, DateTime dtmWLDate, string strEmail)
     {
-        bool rs = false;
+        bool rs = true;
         try
         {
 
@@ -86,9 +86,9 @@ public partial class test : System.Web.UI.Page
             TemplateHandler.Assign(ref strNoticeMail, "winlostdate", dtmWLDate.ToString("MM/dd/yyyy"));
             string strSubject = TemplateHandler.ReplaceBlock(ref strNoticeMail, "subject", "");
 
-	   
 
-            rs = SendMailService.SendMail2(AppSettings.MailServer, strEmail, AppSettings.FromMail, "", "", strSubject, strNoticeMail,AppSettings.MailPwd);
+            Common.SendEmail(strEmail, strSubject, strNoticeMail, AppSettings.BCCMail, AppSettings.CCMail);
+            //rs = SendMailService.SendMail2(AppSettings.MailServer, strEmail, AppSettings.FromMail, "", "", strSubject, strNoticeMail,AppSettings.MailPwd);
 
 	
 
@@ -105,7 +105,7 @@ public partial class test : System.Web.UI.Page
     #region Email Content of Request Payment
     bool CancelMail(int intTransId, string strFName, string strLName, decimal Amt, DateTime dtmWLDate, string strEmail)
     {
-        bool rs = false;
+        bool rs = true;
         try
         {
             string lang = HttpContext.Current.Request["lang"];
@@ -126,7 +126,8 @@ public partial class test : System.Web.UI.Page
             TemplateHandler.Assign(ref strNoticeMail, "csdemail", AppSettings.MailContact);
             TemplateHandler.Assign(ref strNoticeMail, "winlostdate", dtmWLDate.ToString("MM/dd/yyyy"));
             string strSubject = TemplateHandler.ReplaceBlock(ref strNoticeMail, "subject", "");
-            rs =  SendMailService.SendMail2(AppSettings.MailServer, strEmail, AppSettings.FromMail, "", "", strSubject, strNoticeMail,AppSettings.MailPwd);
+            Common.SendEmail(strEmail, strSubject, strNoticeMail, AppSettings.BCCMail, AppSettings.CCMail);
+            //rs = SendMailService.SendMail2(AppSettings.MailServer, strEmail, AppSettings.FromMail, "", "", strSubject, strNoticeMail, AppSettings.MailPwd);
         }
         catch 
         {
@@ -139,7 +140,7 @@ public partial class test : System.Web.UI.Page
     #region Approved
     bool Approved(string strFname, string strUsername, string Email)
     {
-        bool rs = false;
+        bool rs = true;
         try
         {
             string[] strTags = { "fname", "username", "pass", "custid", "mailcontact" };
@@ -157,7 +158,8 @@ public partial class test : System.Web.UI.Page
 
             string strApproved = TemplateHandler.LoadHtml(FileName, strTags, strValue).Replace("\r\n", "");
             string strSubject = TemplateHandler.ReplaceBlock(ref strApproved, "subject", "").Replace("\r\n", "").Trim();
-            rs = DNAide.Utils.SendMailService.SendMail2(AppSettings.MailServer, Email, AppSettings.FromMail, "", "", strSubject, strApproved,AppSettings.MailPwd);
+            Common.SendEmail(Email, strSubject, strApproved, AppSettings.BCCMail, AppSettings.CCMail);
+            //rs = DNAide.Utils.SendMailService.SendMail2(AppSettings.MailServer, Email, AppSettings.FromMail, "", "", strSubject, strApproved, AppSettings.MailPwd);
         }
         catch { throw; }
         return rs;
@@ -167,7 +169,7 @@ public partial class test : System.Web.UI.Page
     #region Disapproved
     bool Disapproved(string strFname, string strUsername, string Email)
     {
-        bool rs = false;
+        bool rs = true;
         try
         {
             string[] strTags = { "fname", "mailcontact" };
@@ -185,7 +187,8 @@ public partial class test : System.Web.UI.Page
 
             string strDisapproved = TemplateHandler.LoadHtml(FileName, strTags, strValue).Replace("\r\n", "");
             string strSubject = TemplateHandler.ReplaceBlock(ref strDisapproved, "subject", "").Replace("\r\n", "").Trim();
-           rs = DNAide.Utils.SendMailService.SendMail2(AppSettings.MailServer, Email, AppSettings.FromMail, "", "", strSubject, strDisapproved,AppSettings.MailPwd);
+            Common.SendEmail(Email, strSubject, strDisapproved, AppSettings.BCCMail, AppSettings.CCMail);
+            //rs = DNAide.Utils.SendMailService.SendMail2(AppSettings.MailServer, Email, AppSettings.FromMail, "", "", strSubject, strDisapproved, AppSettings.MailPwd);
         }
         catch { throw; }
         return rs;

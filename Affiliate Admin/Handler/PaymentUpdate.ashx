@@ -88,8 +88,9 @@ public class PaymentUpdate : IHttpHandler, IRequiresSessionState
             TemplateHandler.Assign(ref strNoticeMail, "transid", intTransId.ToString());
             TemplateHandler.Assign(ref strNoticeMail, "csdemail", AppSettings.MailContact);
             TemplateHandler.Assign(ref strNoticeMail, "winlostdate", dtmWLDate.ToString("MM/dd/yyyy"));
-            string strSubject = TemplateHandler.ReplaceBlock(ref strNoticeMail, "subject", "");            
-            SendMailService.SendMail2(AppSettings.MailServer, strEmail, AppSettings.FromMail, AppSettings.CCMail, AppSettings.BCCMail, strSubject, strNoticeMail, AppSettings.MailPwd);
+            string strSubject = TemplateHandler.ReplaceBlock(ref strNoticeMail, "subject", "");
+            Common.SendEmail(strEmail, strSubject, strNoticeMail, AppSettings.BCCMail, AppSettings.CCMail);
+            //SendMailService.SendMail2(AppSettings.MailServer, strEmail, AppSettings.FromMail, AppSettings.CCMail, AppSettings.BCCMail, strSubject, strNoticeMail, AppSettings.MailPwd);
             
         }
         catch (Exception ex)
@@ -121,8 +122,9 @@ public class PaymentUpdate : IHttpHandler, IRequiresSessionState
             TemplateHandler.Assign(ref strNoticeMail, "transid", intTransId.ToString());
             TemplateHandler.Assign(ref strNoticeMail, "csdemail", AppSettings.MailContact);
             TemplateHandler.Assign(ref strNoticeMail, "winlostdate", dtmWLDate.ToString("MM/dd/yyyy"));
-            string strSubject = TemplateHandler.ReplaceBlock(ref strNoticeMail, "subject", "");           
-            SendMailService.SendMail2(AppSettings.MailServer, strEmail, AppSettings.FromMail, AppSettings.CCMail, AppSettings.BCCMail, strSubject, strNoticeMail, AppSettings.MailPwd);
+            string strSubject = TemplateHandler.ReplaceBlock(ref strNoticeMail, "subject", "");
+            Common.SendEmail(strEmail, strSubject, strNoticeMail, AppSettings.BCCMail, AppSettings.CCMail);
+            //SendMailService.SendMail2(AppSettings.MailServer, strEmail, AppSettings.FromMail, AppSettings.CCMail, AppSettings.BCCMail, strSubject, strNoticeMail, AppSettings.MailPwd);
         }
         catch (Exception ex)
         {

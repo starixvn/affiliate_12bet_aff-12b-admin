@@ -157,6 +157,7 @@
     <Compile Include="Criterias\TrackingSystemCriteria.cs" />
     <Compile Include="DataAccess\Impl\TrackingSystemDataAccess.cs" />
     <Compile Include="DataAccess\Interface\ITrackingSystemDataAccess.cs" />
+    <None Include="Deployment.ignore" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -168,17 +169,17 @@
   <ItemGroup>
     <Content Include="App_Data\SpNames.xml" />
     <Content Include="App_Data\SpNames.Pro.xml">
-		<DependentUpon>SpNames.xml</DependentUpon>
-	</Content>
+      <DependentUpon>SpNames.xml</DependentUpon>
+    </Content>
     <Content Include="App_Data\SpNames.Uat.xml">
-		<DependentUpon>SpNames.xml</DependentUpon>
-	</Content>
+      <DependentUpon>SpNames.xml</DependentUpon>
+    </Content>
     <Content Include="App_Data\SpNames.LocalPro.xml">
-		<DependentUpon>SpNames.xml</DependentUpon>
-	</Content>
+      <DependentUpon>SpNames.xml</DependentUpon>
+    </Content>
     <Content Include="App_Data\SpNames.Local.xml">
-		<DependentUpon>SpNames.xml</DependentUpon>
-	</Content>
+      <DependentUpon>SpNames.xml</DependentUpon>
+    </Content>
     <Content Include="App_dll\Fanex.Common.dll" />
     <Content Include="App_dll\Microsoft.Practices.EnterpriseLibrary.Caching.dll" />
     <Content Include="App_dll\Microsoft.Practices.EnterpriseLibrary.Common.dll" />

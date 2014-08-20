@@ -20,6 +20,7 @@ using System.Data.OleDb;
 using OfficeOpenXml;
 using Sunplus.UMControllerLibrary;
 using System.Linq;
+using Fanex.MailDeliver.MailClient.API;
 
 
 /// <summary>
@@ -1311,6 +1312,25 @@ public class Common
         }
     }
 
+    public static void SendEmail(string mailTo, string subject, string message, string mailBcc = "", string mailCC = "")
+    {
+        var mailItem = new Fanex.MailDeliver.Model.MailRecord
+        {
+            MailTo = mailTo,
+            Subject = subject,
+            Title = subject,
+            ////IsBodyHtml ready
+            Body = message,
+            MailBcc = mailBcc,
+            MailCc = mailCC,
+        };
+
+        using (var client = new MailDeliver())
+        {
+            client.SendMail(mailItem);
+        }
+    }
+
     public static void SendEmailApproved(int affID, string strPreferLang, string strFname, string strUsername, string strEmail, string strPassword, string strEmailSuffix)
     {
         string[] strTags = { "fname", "username", "pass", "custid", "mailcontact", "url", "rooturl", "lang" };
@@ -1335,15 +1355,18 @@ public class Common
 
         string strApproved = TemplateHandler.LoadHtml(FileName, strTags, strValue).Replace("\r\n", "");
         string strSubject = TemplateHandler.ReplaceBlock(ref strApproved, "subject", "").Replace("\r\n", "").Trim();
-        DNAide.Utils.SendMailService.SendMail2(AppSettings.MailServer, strEmail, AppSettings.FromMail, AppSettings.CCMail, AppSettings.BCCMail, strSubject, strApproved, AppSettings.MailPwd);
+        Common.SendEmail(strEmail, strSubject, strApproved, AppSettings.BCCMail, AppSettings.CCMail);
+        //DNAide.Utils.SendMailService.SendMail2(AppSettings.MailServer, strEmail, AppSettings.FromMail, AppSettings.CCMail, AppSettings.BCCMail, strSubject, strApproved, AppSettings.MailPwd);
 
         strApproved = TemplateHandler.LoadHtml(FileName2, strTags, strValue).Replace("\r\n", "");
         strSubject = TemplateHandler.ReplaceBlock(ref strApproved, "subject", "").Replace("\r\n", "").Trim();
-        DNAide.Utils.SendMailService.SendMail2(AppSettings.MailServer, strEmail, AppSettings.FromMail, AppSettings.CCMail, AppSettings.BCCMail, strSubject, strApproved, AppSettings.MailPwd);
+        Common.SendEmail(strEmail, strSubject, strApproved, AppSettings.BCCMail, AppSettings.CCMail);
+        //DNAide.Utils.SendMailService.SendMail2(AppSettings.MailServer, strEmail, AppSettings.FromMail, AppSettings.CCMail, AppSettings.BCCMail, strSubject, strApproved, AppSettings.MailPwd);
 
         strApproved = TemplateHandler.LoadHtml(FileName3, strTags, strValue).Replace("\r\n", "");
         strSubject = TemplateHandler.ReplaceBlock(ref strApproved, "subject", "").Replace("\r\n", "").Trim();
-        DNAide.Utils.SendMailService.SendMail2(AppSettings.MailServer, strEmail, AppSettings.FromMail, AppSettings.CCMail, AppSettings.BCCMail, strSubject, strApproved, AppSettings.MailPwd);
+        Common.SendEmail(strEmail, strSubject, strApproved, AppSettings.BCCMail, AppSettings.CCMail);
+        //DNAide.Utils.SendMailService.SendMail2(AppSettings.MailServer, strEmail, AppSettings.FromMail, AppSettings.CCMail, AppSettings.BCCMail, strSubject, strApproved, AppSettings.MailPwd);
     }
 
     public static void SendEmailDisapproved(string strPreferLang, string strFname, string strEmail, string strEmailSuffix)
@@ -1363,7 +1386,8 @@ public class Common
 
         string strDisapproved = TemplateHandler.LoadHtml(FileName, strTags, strValue).Replace("\r\n", "");
         string strSubject = TemplateHandler.ReplaceBlock(ref strDisapproved, "subject", "").Replace("\r\n", "").Trim();
-        DNAide.Utils.SendMailService.SendMail2(AppSettings.MailServer, strEmail, AppSettings.FromMail, AppSettings.CCMail, AppSettings.BCCMail, strSubject, strDisapproved, AppSettings.MailPwd);
+        Common.SendEmail(strEmail, strSubject, strDisapproved, AppSettings.BCCMail, AppSettings.CCMail);
+        //DNAide.Utils.SendMailService.SendMail2(AppSettings.MailServer, strEmail, AppSettings.FromMail, AppSettings.CCMail, AppSettings.BCCMail, strSubject, strDisapproved, AppSettings.MailPwd);
     }
 
     public static string GetIPCheckerURL(string ip)
