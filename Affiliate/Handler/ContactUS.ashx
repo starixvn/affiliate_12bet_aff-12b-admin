@@ -3,6 +3,7 @@
 using System;
 using System.Web;
 using System.Web.SessionState;
+using Affiliate.MailServices;
 using DNAide.Web;
 using System.Text;
 
@@ -34,13 +35,7 @@ public class ContactUS : IHttpHandler, IRequiresSessionState {
 
                 return;
             }
-            
 
-            string body = TemplateHandler.LoadTemplate("MailContact.htm");
-            TemplateHandler.Assign(ref body, "name", context.Request.Form["txtName"]);
-            TemplateHandler.Assign(ref body, "email", context.Request.Form["txtEmail"]);
-            TemplateHandler.Assign(ref body, "AffID", context.Request.Form["txtAffID"]);
-            TemplateHandler.Assign(ref body, "comment", context.Request.Form["txtContent"]);
 
             string subject = "12Bet Affiliates - Contact Us - " + context.Request.Form["txtSubject"];
             string result = DataHandler.EmailHistory.InsertEmail(context.Request.Form["txtContent"], context.Request.Form["txtName"], context.Request.Form["txtAffID"],context.Request.Form["txtEmail"], subject);
@@ -48,23 +43,32 @@ public class ContactUS : IHttpHandler, IRequiresSessionState {
                 context.Response.Write("<script type ='text/javascript'>parent.SendMailFail('" + result + "');</script>");
                 return;
             }
+
+            var mailService = new ContactUsMailService
+                {
+                    Name = context.Request.Form["txtName"],
+                    Email = context.Request.Form["txtEmail"],
+                    AffId = context.Request.Form["txtAffID"],
+                    Content = context.Request.Form["txtContent"],
+                    Subject = subject,
+                };
             
-            bool rs = DNAide.Utils.SendMailService.SendMail2(AppSettings.MailServer, AppSettings.ToMail, AppSettings.FromMail, AppSettings.CCMail, AppSettings.BCCMail, subject, body, AppSettings.MailPwd);
+            mailService.SendContactUsMail();
+            
+            
             string script = "<script type ='text/javascript'>";
 
-            if (rs)//send email success
+            if (AppSettings.Session.IsFromHome)
             {
-                if (AppSettings.Session.IsFromHome)
-                {
-                    script += "parent.window.location.href = '../ContactUs.aspx?f=h';";//if the page was gone from Home page that show "message sent"
-                }
-                else
-                    script += "parent.SendMailSuccess();";
+                script += "parent.window.location.href = '../ContactUs.aspx?f=h';";
             }
             else
-                script += "parent.SendMailFail('');";
-
+            {
+                script += "parent.SendMailSuccess();";
+            }
+            
             script += "</script>";
+            
             context.Response.Write(script);
         }
         catch (Exception ex)

@@ -3,6 +3,8 @@
 using System;
 using System.Web;
 using System.Web.SessionState;
+using Affiliate;
+using Affiliate.MailServices;
 using DataHandler;
 using DNAide.Web;
 using DNAide.Core;
@@ -90,51 +92,17 @@ public class SignUp : IHttpHandler, IRequiresSessionState
             }
             else
             {
-                string strFileName = string.Empty;
-                string strCurrLang = AppSettings.Session.Language;
-                if (strPreferLang.ToUpper() == string.Empty)
-                    strPreferLang = "en-US";
-                strFileName = "Email/SignupMail/SignupMail_" + strPreferLang + Common.EmailSuffix(false) + ".htm";
-
-                string strRegisMail = TemplateHandler.LoadTemplate(strFileName).Replace("\r\n", "");
-                TemplateHandler.Assign(ref strRegisMail, "fname", strFName);
-                TemplateHandler.Assign(ref strRegisMail, "lname", strLName);
-                TemplateHandler.Assign(ref strRegisMail, "mailadd", AppSettings.MailContact);
-                TemplateHandler.Assign(ref strRegisMail, "rooturl", Common.RootURL());
-                TemplateHandler.Assign(ref strRegisMail, "lang", strPreferLang);
-                string strRegisSubject = TemplateHandler.ReplaceBlock(ref strRegisMail, "subject", "");
-                DNAide.Utils.SendMailService.SendMail2(AppSettings.MailServer, strEmail, AppSettings.FromMail, AppSettings.CCMail, AppSettings.BCCMail, strRegisSubject, strRegisMail, AppSettings.MailPwd);
-
-                string strCsdMail = TemplateHandler.LoadTemplate("CsdMail.htm").Replace("\r\n", "");
-                TemplateHandler.Assign(ref strCsdMail, "fname", strFName);
-                TemplateHandler.Assign(ref strCsdMail, "lname", strLName);
-                TemplateHandler.Assign(ref strCsdMail, "username", strUsername);
-                TemplateHandler.Assign(ref strCsdMail, "mailadd", AppSettings.MailContact);
-
-                if (context.Request["rdWebsite"] == "0")
-                {
-                    TemplateHandler.Assign(ref strCsdMail, "siteurl", strSiteUrl);
-                    TemplateHandler.RemoveBlock(ref strCsdMail, "nositeurl");
-                    if (strMoreUrl == "")
-                        TemplateHandler.ReplaceBlock(ref strCsdMail, "moreurl", "");
-                    else
-                        TemplateHandler.Assign(ref strCsdMail, "moreurl", strMoreUrl.Replace("\\n", ","));
-                }
-                else
-                {
-                    TemplateHandler.RemoveBlock(ref strCsdMail, "siteurl");
-                    TemplateHandler.Assign(ref strCsdMail, "nositedesc", strNoSiteDesc);
-                }
-
+                var signupMailService = new SignupMailService
+                    {
+                        FirstName = strFName,
+                        LastName = strLName,
+                        UserName = strUsername
+                    };
                 
-                string strCsdSubject = TemplateHandler.ReplaceBlock(ref strCsdMail, "subject", "");
-                try
-                {
-                    DNAide.Utils.SendMailService.SendMail2(AppSettings.MailServer, AppSettings.ToMail, AppSettings.FromMail, AppSettings.CCMail, AppSettings.BCCMail, strCsdSubject, strCsdMail, AppSettings.MailPwd);
-                }
-                catch(Exception emailEx) {
-                    DNAideLog.Write(emailEx.Message);
-                }
+                signupMailService.SendRegisterMail(strPreferLang, strEmail);
+
+                var rdWebsite = context.Request["rdWebsite"];
+                signupMailService.SendCsdMail(rdWebsite, strSiteUrl, strMoreUrl, strNoSiteDesc);
                     
                 context.Response.Write("<script type='text/javascript'>top.location.href='../SignUpSuccess.aspx';</script>");
             }

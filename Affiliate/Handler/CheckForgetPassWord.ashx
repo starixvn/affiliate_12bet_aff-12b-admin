@@ -3,6 +3,8 @@
 using System;
 using System.Web;
 using System.Web.SessionState;
+using Affiliate;
+using Affiliate.MailServices;
 using DNAide.Data;
 using DNAide.Web;
 using DNAide.Utils; 
@@ -22,33 +24,25 @@ public class CheckForgetPassWord : IHttpHandler, IRequiresSessionState {
         string preferredLanguage = string.Empty;
         bool mailOption = false;
         int idcust = DataHandler.Auth.CheckEmailForget(email, code, ref errcode, ref errmsg, ref username, ref firstname, ref lastname, ref preferredLanguage, ref mailOption);
+
         try
         {
             if (errcode == 0)
             {
-                string strFileName = "Email/ForgetPass/ForgetPass_" + preferredLanguage + Common.EmailSuffix(mailOption) + ".htm";
+                var mailService = new ForgetPasswordMailService
+                    {
+                        PreferLanguage = preferredLanguage,
+                        Code = code,
+                        Email = email,
+                        FirstName = firstname,
+                        IdCust = idcust,
+                        MailOption = mailOption,
+                        UserName = username
+                    };
+                
+                mailService.SendForgetPassword();
 
-                string strMail = TemplateHandler.LoadTemplate(strFileName).Replace("\r\n", "");
-                TemplateHandler.Assign(ref strMail, "fname", firstname);
-                TemplateHandler.Assign(ref strMail, "username", username);
-                TemplateHandler.Assign(ref strMail, "url", Common.RootURL() + "/Recoverpw.aspx");
-                TemplateHandler.Assign(ref strMail, "idcust", idcust.ToString());
-                TemplateHandler.Assign(ref strMail, "code", code);
-                TemplateHandler.Assign(ref strMail, "mailadd", AppSettings.MailContact);
-                TemplateHandler.Assign(ref strMail, "rooturl", Common.RootURL());
-                TemplateHandler.Assign(ref strMail, "lang", preferredLanguage);
-                string strSubject = TemplateHandler.ReplaceBlock(ref strMail, "subject", "");
-                bool isok = DNAide.Utils.SendMailService.SendMail2(AppSettings.MailServer, email, AppSettings.FromMail, AppSettings.CCMail, AppSettings.BCCMail, strSubject, strMail, AppSettings.MailPwd);
-                
-                
-                if (isok == true)
-                {                    
-                    context.Response.Write("Ok");
-                }
-                else
-                {
-                    context.Response.Write(Resources.Lang.CannotSendmail);
-                }
+                context.Response.Write("Ok");
             }
             else if (errcode == 1001)
             {

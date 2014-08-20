@@ -3,6 +3,7 @@
 using System;
 using System.Web;
 using System.Web.SessionState;
+using Affiliate.MailServices;
 using DNAide.Core;
 using DNAide.Data;
 using DNAide.Web;
@@ -79,31 +80,18 @@ public class RequestPayout : IHttpHandler, IRequiresSessionState
                 string strBalance = string.Empty;
                 string strMinAmt = string.Empty;
                 string strPaymentMethod=string.Empty;
-                string strListPayment =GenerateHTML.PaymentRequest.PaymentList(ref strBalance, ref strMinAmt,ref strPaymentMethod);
-                                                                     
-                #region Send Email
-                string strRequestMail = string.Empty;
-                string strCancelMail = string.Empty;
-                if (string.IsNullOrEmpty(strPreferredLang))
-                    strPreferredLang = "en-US";
-                strRequestMail = "Email/PaymentRequest/PaymentRequest_" + strPreferredLang + Common.EmailSuffix(AppSettings.Session.MailOption) + ".htm";
-                strCancelMail = "Email/PaymentCancel/PaymentCancel_" + strPreferredLang + Common.EmailSuffix(AppSettings.Session.MailOption) + ".htm";                
-               
-                string FileName = string.Empty;
-                if (!string.IsNullOrEmpty(context.Request["action"]) && context.Request["action"] == "cancel")//Cacel request
-                {
-                    dtmWinlostDate = CastAide.AsDateTime(context.Request["date"]);
-                    FileName = strCancelMail;
-                }
-                else
-                    FileName = strRequestMail;
-                
-                string[] strTags = { "fname", "lname", "amount", "transid", "csdemail", "date", "rooturl", "lang" };
-                string[] strValue = { AppSettings.Session.FirstName, AppSettings.Session.LastName, FormatHandler.FormatNumber2(Amt, "en-US"), intTransId.ToString(), AppSettings.MailContact, DateFormat.ShortDateFormat(dtmWinlostDate), Common.RootURL(), AppSettings.Session.PreferLang };
-                string strContent = TemplateHandler.LoadHtml(FileName, strTags, strValue).Replace("\r\n", "");
-                string strSubject = TemplateHandler.ReplaceBlock(ref strContent, "subject", "").Replace("\r\n", "").Trim();
-                DNAide.Utils.SendMailService.SendMail2(AppSettings.MailServer, AppSettings.Session.Email, AppSettings.FromMail, AppSettings.CCMail, AppSettings.BCCMail, strSubject, strContent, AppSettings.MailPwd);
-                #endregion
+                string strListPayment = GenerateHTML.PaymentRequest.PaymentList(ref strBalance, ref strMinAmt,ref strPaymentMethod);
+
+                var mailService = new RequestPayoutMailService
+                    {
+                        Action = context.Request["action"],
+                        Date = context.Request["date"],
+                        Amt = Amt,
+                        TransId = intTransId,
+                        PreferredLanguage = strPreferredLang,
+                        DtmWinlostDate = dtmWinlostDate
+                    };
+                mailService.SendRequestPayoutMail();
                 
                 context.Response.Write("<script type='text/javascript'>parent.UpdateSuccess(\"" + strSuccMsg + "\", \"" + strBalance + "\", \"" + strMinAmt + "\", \"" + strListPayment.Replace("\r\n", "").Replace("\"", "'") + "\");</script>");
             }

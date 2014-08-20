@@ -1,4 +1,5 @@
 ﻿<%@ Application Language="C#" %>
+<%@ Import Namespace="Fanex.Logging" %>
 <script runat="server">
 
     void Application_Start(object sender, EventArgs e) 
@@ -34,7 +35,7 @@
                         "\r\nTARGETSITE: " + ex.TargetSite +
                         "\r\nSTACKTRACE: " + ex.StackTrace;
 
-        DNAide.Web.DNAideLog.Write(message);
+        LogService.Error(message);
     }
 
     void Session_Start(object sender, EventArgs e) 
