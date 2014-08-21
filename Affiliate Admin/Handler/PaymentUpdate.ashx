@@ -19,7 +19,7 @@ public class PaymentUpdate : IHttpHandler, IRequiresSessionState
                 string strActionType = context.Request["hdApprove"];
                 string strAdminRemark = context.Request["txtAdminRemark"];
                 string strAffRemark = context.Request["txtAffRemark"];
-                string strPreferredLang = "E";
+                string strPreferredLang = "en-US";
                // int AffId = CastAide.AsInt32(context.Request["hdCustId"]);
                 Int64 intTransId = CastAide.AsInt64(context.Request["hdTransId"]);
                 int intErrCode = -1;
