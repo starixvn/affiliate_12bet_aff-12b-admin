@@ -148,6 +148,15 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="App.Local.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App.Pro.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App.Uat.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">

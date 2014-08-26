@@ -99,6 +99,15 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="App.Local.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App.Pro.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App.Uat.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_dll\DNAide.dll" />
