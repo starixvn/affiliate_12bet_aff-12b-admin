@@ -116,9 +116,10 @@ var StringBuilder = function() {
                     return;
             }
             DelayReloadPage1();
+            
             var ajax = new Ajax.Request("../Handler/CommGroupUpd.ashx", {
                 method: 'post',
-                parameters: "params=" + Object.toJSON(GroupSetting),
+                parameters: { params: Object.toJSON(GroupSetting) },
                 onComplete: function(data) {
                     var result = data.responseText;
                     if (result != "")
