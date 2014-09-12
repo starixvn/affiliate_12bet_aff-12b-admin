@@ -33,13 +33,7 @@ public class UpdateAcc : IHttpHandler, IRequiresSessionState {
                 context.Response.Write("<script type='text/javascript'>parent.$(\"errMsg\").show();parent.$(\"succMsg\").hide();parent.$(\"divErr\").show();parent.ShowError([\"" + Resources.Lang.errDepositDBConnectFailed + "\"], [\"txtBet12UserName\"], \"error_item\");</script>");
                 return;
             }
-            
-            //Request information to update
-            //bool Gender = (context.Request.Form["rdGender"] == "0" ? false : true);
-            //string strEmail = context.Request.Form["txtEmail"].ToString();
-            //string strPreferLang = context.Request.Form["slPreferLang"];
-            //string strAddress = context.Request.Form["txtAddress"].ToString();
-            
+
             string strNumber = context.Request.Form["txtNumber"].ToString();
             string strMobile = context.Request.Form["txtMobile"].ToString();
             string strURL = context.Request.Form["txtSiteUrl"];
@@ -55,8 +49,6 @@ public class UpdateAcc : IHttpHandler, IRequiresSessionState {
             }
             
             string strErrMsg = "";
-            
-            //string strEmailFormat = context.Request.Form["rdFormat"];//Johnny Add to config aff receive email template html or plain text
 
             UserAff.UpdateUser(intCustId, strNumber, strMobile, strURL, strMoreUrl, strNoSiteDesc, AppSettings.Session.Language, strPlayerUserName, ref intErrCode, ref strErrMsg);
             
@@ -68,9 +60,6 @@ public class UpdateAcc : IHttpHandler, IRequiresSessionState {
             }
             else
             {
-                //AppSettings.Session.Email = strEmail;
-                AppSettings.Session.MailOption = true;
-                //AppSettings.Session.PreferLang = strPreferLang;
                 context.Response.Write("<script type='text/javascript'>parent.UpdateSuccess();</script>");
             }    
         }
