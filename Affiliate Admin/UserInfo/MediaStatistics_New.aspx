@@ -54,7 +54,7 @@
                 $("page").value = currPage;
             if ($("pagesize") && $("slPageSize"))
                 $("pagesize").value = $("slPageSize")[$("slPageSize").selectedIndex].value;
-            ViewDetail($("tmpFromDate").value, $("tmpToDate").value, $("tmpSite").value, $("slPageSize").value, currPage)
+            ViewDetail($("tmpFromDate").value, $("tmpToDate").value, $("tmpSite").value, $("slPageSize").value, currPage, $("slDevice").value);
         }
         catch (e) {
             alert('Invalid data!');
