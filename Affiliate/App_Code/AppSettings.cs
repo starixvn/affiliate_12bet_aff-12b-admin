@@ -79,7 +79,7 @@ public static class AppSettings
         _tplFolder = ConfigurationManager.AppSettings["template_folder"];
         _affmaster = ConfigurationManager.AppSettings["AffMaster"];
         _affTypeList = ConfigurationManager.AppSettings["AffTypeList"];
-        _preferLang = ConfigurationManager.AppSettings["PreferLang"] ?? "en-US";
+        _preferLang = ConfigurationManager.AppSettings["PreferLang"] ?? string.Empty;
         _mediaJS = ConfigurationManager.AppSettings["MediaJS"];
         _mediaJS_CS = ConfigurationManager.AppSettings["MediaJS_CS"];
         _mediaJS_TH = ConfigurationManager.AppSettings["MediaJS_TH"];
@@ -658,7 +658,7 @@ public static class AppSettings
 
         public static string PreferLang
         {
-            get { return CastAide.AsString(HttpContext.Current.Session["PreferLang"], DefaultPreferLang); }
+            get { return CastAide.AsString(HttpContext.Current.Session["PreferLang"], "en-US"); }
 
             set { HttpContext.Current.Session["PreferLang"] = value; }
         }
