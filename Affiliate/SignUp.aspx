@@ -107,7 +107,7 @@
         if(!$('CheckTerm').checked)
         {
             AddError("CheckTerm", ErrMsg.Term);
-            DisplayMsg(false);            
+            DisplayMsg(false);
             return false;
         }
         if(!CheckSuccess())
@@ -230,7 +230,7 @@
     function reorderRows(starting)
     {
         var tbl = $("siteUrl");
-        if (tbl.tBodies[0].rows[starting]) {            
+        if (tbl.tBodies[0].rows[starting]) {
             for(var i = starting; i < tbl.tBodies[0].rows.length; i++)
             {          
                 var tr = tbl.tBodies[0].rows[i];
@@ -253,14 +253,17 @@
                         <td class="in_left">&nbsp;</td>
                         <td width="160" class="in_top"><asp:Literal ID="ltrRegisForm" runat="server"></asp:Literal></td>
                         <td class="in_right">&nbsp;</td>
-                    </tr>                
+                    </tr>
                 </table>
             </div>
             <div class="in_conts">
                 <asp:Literal runat="server" ID="ltrCompleteForm"></asp:Literal>
                 <br />
                 <asp:Literal ID="ltrRequireInfo" runat="server"></asp:Literal>
-                <br /><br />
+                <br />
+                <asp:Literal ID="ltrExtraTextForKorean" runat="server"></asp:Literal>
+                <br />
+                <br />
                 <input id="CliectAct" name="ClientAct" type="hidden" />
                 <div id="errMsg" style="display: none;" class="msg-wid">
                     <div id="divErr">
@@ -992,7 +995,7 @@
     </div>
     <input type="hidden" value="12" id="hdMethod" name="hdMethod" />
     <input type="hidden" value="" id="hdMoreurl" name="hdMoreurl" />
-    <input type="hidden" value="<%=Resources.Lang.TooltipEmailAddess%>" id="hdEmailAddress" name="hdEmailAddress" />
+    <input type="hidden" value='<%=Resources.Lang.TooltipEmailAddess%>' id="hdEmailAddress" name="hdEmailAddress" />
     <input type="hidden" value="<%=Resources.Lang.TooltipContactNumber%>" id="hdContactNumber" name="hdContactNumber" />
     </form>
     <iframe id="frRegister" name="frRegister" class="hide" style="height: 0px; width: 0px;"></iframe>

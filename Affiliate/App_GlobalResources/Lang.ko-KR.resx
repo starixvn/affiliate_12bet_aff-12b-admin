@@ -2642,7 +2642,7 @@
     <value>승인을 위해서 연락가능한 연락처가 필요합니다.</value>
   </data>
   <data name="TooltipEmailAddess" xml:space="preserve">
-    <value>비밀번호를 받기위해서 현재사용중인 이메일번호가 필요합니다.</value>
+    <value>* 반드시 Gmail 계정이용* 비밀번호는 "Gmail" 로만 전송가능합니다.</value>
   </data>
   <data name="NoWebsite" xml:space="preserve">
     <value>웹사이트가 없습니다.</value>
@@ -2784,5 +2784,8 @@
   </data>
   <data name="CasinoExtension" xml:space="preserve">
     <value>카지노 * 6명이하의 회원에 대해서는 정산되지 않습니다.</value>
+  </data>
+  <data name="ExtraTextForKorean" xml:space="preserve">
+    <value>*이메일 주소는 반드시 Gmail로 입력하세요.</value>
   </data>
 </root>

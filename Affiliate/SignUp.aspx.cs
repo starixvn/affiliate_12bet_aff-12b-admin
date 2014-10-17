@@ -19,6 +19,7 @@ public partial class SignUp : RootPage
         ltrRegisForm.Text = Resources.Lang.RegisForm;
         ltrCompleteForm.Text = Resources.Lang.CompleteForm;
         ltrRequireInfo.Text = Resources.Lang.RequireInfo;
+        ltrExtraTextForKorean.Text = Resources.Lang.ExtraTextForKorean;
         ltrContactInfo.Text = Resources.Lang.ContactInfo;
         ltrFName.Text = Resources.Lang.FName;
         ltrLName.Text = Resources.Lang.LName;
