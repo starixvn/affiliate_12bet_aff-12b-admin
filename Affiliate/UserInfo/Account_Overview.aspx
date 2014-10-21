@@ -4,8 +4,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
     <script type="text/javascript" language="javascript" src="../App_Js/swfobject.js"></script>
     <script src="../App_Js/Common.js" language="javascript" type="text/javascript"></script>
-    <script src="../App_Js/IBCWnd/IBCWnd.js" language="javascript" type="text/javascript"></script>
-    <script src="../App_Js/Cookie.js" language="javascript" type="text/javascript"></script>
+    <script src="../App_Js/IBCWnd/IBCWnd.js" language="javascript" type="text/javascript"></script>    
     <script type="text/javascript" language="javascript">
 
         function HidePopup() {
@@ -200,10 +199,10 @@
     --%>
     <script type="text/javascript">
         var Init = function () {
-            Cookie.init({ name: 'Announcement', expires: 30 });
-            var dontShowMessage = Cookie.getData('DontShowMessage');
+            var username = getCookie("Username");
+            var dontShowMessage = getCookie(username + '_DontShowMessage');
 
-            if (dontShowMessage !== true) {
+            if (dontShowMessage !== 'true') {
                 var height = document.body.clientHeight;
                 var width = document.body.clientWidth;
                 var widthDialog = 450;

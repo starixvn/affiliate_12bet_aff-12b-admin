@@ -10,9 +10,8 @@
         .aaa {
             padding: 0 15px;
         }
-    </style>
-    <script src="../App_Js/prototype.js" type="text/javascript"></script>
-    <script src="../App_Js/Cookie.js" language="javascript" type="text/javascript"></script>
+    </style>    
+    <script src="../App_Js/Common.js" type="text/javascript"></script>
 </head>
 <body style="background-color: #fff; background-image: none;  font-size: 13px">
     <div class="aaa">
@@ -27,10 +26,9 @@
     </div>
     <script type="text/javascript">
         function Init() {
-            Cookie.init({ name: 'Announcement', expires: 30 });
-            
             document.getElementById('chkDontShowMsgAgain').onclick = function () {
-                Cookie.setData('DontShowMessage', this.checked);
+                var username = getCookie("Username");
+                setCookie(username + '_DontShowMessage', this.checked, 30);
             };
         }
 
