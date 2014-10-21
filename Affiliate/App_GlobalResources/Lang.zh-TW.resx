@@ -2733,4 +2733,11 @@
 	<data name="Year" xml:space="preserve">
 		<value>Year</value>
 	</data>
+	<data name="AnnouncementBody" xml:space="preserve">
+		<value>好消息！&lt;br/&gt;
+圖片和文字鏈接的流量追踪技術已經加強了！ 立即訪問”媒體冊“獲取以更新吧！</value>
+	</data>
+	<data name="AnnouncementHeader" xml:space="preserve">
+		<value>追踪技術加強版</value>
+	</data>
 </root>

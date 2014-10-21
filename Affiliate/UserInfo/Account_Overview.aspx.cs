@@ -25,14 +25,10 @@ public partial class Account_Overview : RootPageLogIn
         {
             #region Load language
             ltrAccOverview.Text = Resources.Lang.AccOverview;
-            //ltrSumPerform.Text = Resources.Lang.SumPerform;
             ltrNewSignup.Text = Resources.Lang.NewSignup;
             ltrTotalPlay.Text = Resources.Lang.TotalPlay;
             ltrComm.Text = Resources.Lang.CurrentCommissiSetting;
             BalanceBroughtText.Text = Resources.Lang.BalForward;
-            //ltrComEarn.Text = Resources.Lang.CommCurr;
-            //ltrCurBal.Text = Resources.Lang.CurrBal;
-            //ltrLast6.Text = Resources.Lang.Last6Month;
             ltrTotalActive.Text = Resources.Lang.TotalActive;
             ltrTotalDeposit.Text = Resources.Lang.TotalDeposit;
             ltrTurnover.Text = Resources.Lang.TurnoverUpToNow;

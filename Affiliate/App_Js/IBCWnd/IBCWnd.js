@@ -115,9 +115,7 @@ IBCWnd.prototype.open = function(url, titleText, left, top, width, height, windo
         var divRLine = IBCWnd.createElement("div", divLLine);
         divRLine.className = "rline";
         divRLine.style.height = "100%";
-
-
-
+        
         this.iframe = IBCWnd._createIframe();
         divRLine.appendChild(this.iframe);
 
@@ -192,7 +190,7 @@ IBCWnd.prototype.setRect = function(left, top, width, height)
     scrOfY += 15;
     
     this.scrOfX = scrOfX;
-    this.scrOfY = scrOfY;    
+    this.scrOfY = scrOfY;
     
     if(!this.loaded)
     {        

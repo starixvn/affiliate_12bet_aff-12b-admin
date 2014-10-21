@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -1969,7 +1969,7 @@ One of our Affiliate Accounts Manager will be contacting you by email within 3 b
     <value>f. Complimentary Money, Free Money and Other incentives refer to those amounts credited to the account of customers. As they have not purchased these amounts 12BET cannot pay commissions on these amounts.</value>
   </data>
   <data name="ShouldYouFailToBe" xml:space="preserve">
-    <value>4. Should you fail to be entitled to the Commissionable Earnings in accordance with Clauses 4.1, 4.2, and 4.3 above for failure to maintain at least six(6) Active Wagering Members in a given month, you may be given (at 12Bet’s sole discretion) a grace period of two (2) months within which to comply. Upon compliance, your commission for the subject period not exceeding three (3) consecutive months will be consolidated to constitute your Commissionable Earnings for the same period. (at 12Bet’s sole discretion)</value>
+    <value>4. Should you fail to be entitled to the Commissionable Earnings in accordance with Clauses 4.1, 4.2, and 4.3 above for failure to maintain at least six(6) Active Wagering Members in a given month, you will not generate any commission in the month and the related member's lost will not be brought forward to the following months.</value>
   </data>
   <data name="Commissionableearnings" xml:space="preserve">
     <value>5. Commissionable earnings will be subject to commissions as calculated using the 12BET Affiliate Program commission structure in force from time to time.</value>
@@ -3073,10 +3073,94 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
   <data name="USDEqv" xml:space="preserve">
     <value>USD Eqv</value>
   </data>
-<<<<<<< HEAD
   <data name="MemDepositInfo" xml:space="preserve">
     <value>Member deposit information</value>
   </data>
+  <data name="MemberWithdrawalInfo" xml:space="preserve">
+    <value>Member withdrawal information</value>
+  </data>
+  <data name="SelectDate" xml:space="preserve">
+    <value>Select Date</value>
+  </data>
+  <data name="DateRangeValid" xml:space="preserve">
+    <value>"From date" must be less than or equal to "end date".</value>
+  </data>
+  <data name="Non_Deposit" xml:space="preserve">
+    <value>Non-Deposit</value>
+  </data>
+  <data name="Japanese" xml:space="preserve">
+    <value>日本</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Welcome</value>
+  </data>
+  <data name="WelcomeResettingNewPassword" xml:space="preserve">
+    <value>Welcome to 12BET Affiliate Program. You are required to change your password and accept our Terms &amp; Conditions.</value>
+  </data>
+  <data name="PasswordAndConfirmPasswordDontMatch" xml:space="preserve">
+    <value>Your password and confirmation password do not match.</value>
+  </data>
+  <data name="NotAllowOnDomain" xml:space="preserve">
+    <value>Sorry! You are not allowed to login on this domain.</value>
+  </data>
+  <data name="Err201" xml:space="preserve">
+    <value>This username is invalid.</value>
+  </data>
+  <data name="Err202" xml:space="preserve">
+    <value>This username didn't exist.</value>
+  </data>
+  <data name="Err203" xml:space="preserve">
+    <value>Old password is incorrect.</value>
+  </data>
+  <data name="Err204" xml:space="preserve">
+    <value>Your current password don't need to change.</value>
+  </data>
+  <data name="TurnoverUpToNow" xml:space="preserve">
+    <value>Turnover</value>
+  </data>
+  <data name="Device" xml:space="preserve">
+    <value>Device</value>
+  </data>
+  <data name="MobileDevice" xml:space="preserve">
+    <value>Mobile</value>
+  </data>
+  <data name="PCDevice" xml:space="preserve">
+    <value>PC / Laptop</value>
+  </data>
+<<<<<<< Updated upstream
+  <data name="SportbookExtension" xml:space="preserve">
+    <value>Sportbook</value>
+  </data>
+  <data name="CasinoExtension" xml:space="preserve">
+    <value>Casino</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>Year</value>
+  </data>
+  <data name="ExtraTextForKorean" xml:space="preserve">
+    <value />
 =======
->>>>>>> 1d65fc2cda7aa7012cf22cee7f2b6962aee78f61
+	<data name="SportbookExtension" xml:space="preserve">
+    <value>Sportbook</value>
+  </data>
+	<data name="CasinoExtension" xml:space="preserve">
+    <value>Casino</value>
+  </data>
+	<data name="Year" xml:space="preserve">
+    <value>Year</value>
+  </data>
+	<data name="AnnouncementBody" xml:space="preserve">
+    <value>Good news!
+      &lt;br/&gt;
+      Traffic tracking has been enhanced in your latest affiliate text and banner links. Please access "Media Gallery" to get them now!
+      &lt;br/&gt;&lt;br/&gt;
+      Thank you.</value>
+  </data>
+	<data name="AnnouncementHeader" xml:space="preserve">
+    <value>Enhanced Tracking Technology</value>
+  </data>
+	<data name="DontShowMessageAgain" xml:space="preserve">
+    <value>Don't show this message again.</value>
+>>>>>>> Stashed changes
+  </data>
 </root>

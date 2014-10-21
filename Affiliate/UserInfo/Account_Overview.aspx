@@ -1,23 +1,27 @@
 <%@ Page Language="C#" MasterPageFile="~/Master.master" AutoEventWireup="true" CodeFile="Account_Overview.aspx.cs"
     Inherits="Account_Overview" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
-<script type="text/javascript" language="javascript" src="../App_Js/swfobject.js"></script>
-<script type="text/javascript" language="javascript" >
+    <script type="text/javascript" language="javascript" src="../App_Js/swfobject.js"></script>
+    <script src="../App_Js/Common.js" language="javascript" type="text/javascript"></script>
+    <script src="../App_Js/IBCWnd/IBCWnd.js" language="javascript" type="text/javascript"></script>
+    <script src="../App_Js/Cookie.js" language="javascript" type="text/javascript"></script>
+    <script type="text/javascript" language="javascript">
 
-    function HidePopup() {
-        var p = document.getElementById("pop_up");
-        p.style.display = "none";
-        //set cookie according to checkbox status
-    }
+        function HidePopup() {
+            var p = document.getElementById("pop_up");
+            p.style.display = "none";
+            //set cookie according to checkbox status
+        }
 
-    function SetPopupShow() {
-        if($("dontshow").checked)
-            setCookie("dontshow" + "$" + $("custid").value, "true", 30);
-        else
-            setCookie("dontshow" + "$" + $("custid").value, "false", 30);
-    }
+        function SetPopupShow() {
+            if ($("dontshow").checked)
+                setCookie("dontshow" + "$" + $("custid").value, "true", 30);
+            else
+                setCookie("dontshow" + "$" + $("custid").value, "false", 30);
+        }
     
-</script>
+    </script>
     <div id="contents">
         <div id="box_insite">
             <div class="header_in">
@@ -181,30 +185,10 @@
             </form>
         </div>
     </div>
-
     <script type="text/javascript">
         $("slMonth").value = "<%=strMonths%>";
         $("slYear").value = "<%=strYears%>";
     </script>
-
-    <%--<div id="pop_up" style="display:none">
-        <div class="top">
-            <div class="Ltop">
-            </div>
-            <div class="Rtop">
-            </div>
-            <div class="Ctop">
-                <h1>
-                    <img id="close" " " src="../App_Themes/Default/Images/close.png" onclick="HidePopup()" /></h1>
-            </div>
-        </div>
-        <div id="fl" class="flash">
-        </div>
-        <div class="bottom">
-            <input name="dontshow" id="dontshow" type="checkbox" value="" onclick="SetPopupShow()"/>
-            <%=Resources.Lang.Dontshowit%>
-        </div>
-    </div>--%>
     <input type="hidden" name="flashpath" id="flashpath" value="<%=flashPath %>" />
     <input type="hidden" name="showpopup" id="showpopup" value="<%=showPopup %>" />
     <input type="hidden" name="custid" id="custid" value="<%=AppSettings.Session.CustID %>" />
@@ -213,5 +197,29 @@
         so.addVariable("afflink", "../ProgramDetails.aspx");
         so.write("fl");
     </script>
---%>
+    --%>
+    <script type="text/javascript">
+        var Init = function () {
+            Cookie.init({ name: 'Announcement', expires: 30 });
+            var dontShowMessage = Cookie.getData('DontShowMessage');
+
+            if (dontShowMessage !== true) {
+                var height = document.body.clientHeight;
+                var width = document.body.clientWidth;
+                var widthDialog = 450;
+                var heightDialog = 220;
+                var top = (height - heightDialog) / 2;
+                var left = (width - widthDialog) / 2 - 180;
+                DoCalFull('Announcement.aspx', '', widthDialog, heightDialog, top, left);
+
+                setTimeout(function () {
+                    var ibcTable = document.getElementsByClassName('IBCWndTable')[0];
+                    var iconTitle = ibcTable.getElementsByClassName('iconpopup')[0];
+                    iconTitle.style.display = 'none';
+                }, 50);
+            }
+        };
+
+        window.onload = Init;
+    </script>
 </asp:Content>

@@ -2719,4 +2719,13 @@ Memenuhi syarat</value>
 	<data name="Year" xml:space="preserve">
 		<value>Year</value>
 	</data>
+	<data name="AnnouncementHeader" xml:space="preserve">
+		<value>Peningkatan Teknologi Pelacakan</value>
+	</data>
+	<data name="AnnouncementBody" xml:space="preserve">
+		<value>Kabar Baik!&lt;br/&gt;
+Pelacakan data telah ditingkatkan dalam teks afiliasi dan spanduk link terbaru. Silakan mengakses "Media Gallery" untuk mendapatkannya sekarang!
+ &lt;br/&gt;&lt;br/&gt;
+Terima Kasih</value>
+	</data>
 </root>

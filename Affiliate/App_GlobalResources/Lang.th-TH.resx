@@ -2719,4 +2719,14 @@
 	<data name="Year" xml:space="preserve">
 		<value>Year</value>
 	</data>
+	<data name="AnnouncementHeader" xml:space="preserve">
+		<value>เสริมเทคโนโลยีในแบนเนอร์ของคุณ</value>
+	</data>
+	<data name="AnnouncementBody" xml:space="preserve">
+		<value>แจ้งข่าวดี!&lt;br/&gt;
+แบนเนอร์พันธมิตรของคุณได้รับการติดตั้งโค้ดติดตามเว็บไซต์แล้ว,
+กรุณาเข้าเมนู "ที่รวบรวมสื่อโฆษณา" เพื่อรับลิ้งค์ล่าสุดตอนนี้เลยค่ะ!
+&lt;br/&gt;&lt;br/&gt;
+ขอบพระคุณค่ะ</value>
+	</data>
 </root>

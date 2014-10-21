@@ -2710,4 +2710,13 @@ Tổng doanh thu sẽ được kết hợp cả hai thành phần của mô hìn
 	<data name="Year" xml:space="preserve">
 		<value>Năm</value>
 	</data>
+	<data name="AnnouncementBody" xml:space="preserve">
+		<value>Tin Mới!&lt;br/&gt;
+Đường dẫn và banner đại lý đã được nâng cấp tính năng theo dõi truy cập. Nhấp mục "Thư Viện Media" để cập nhật ngay!
+&lt;br/&gt;&lt;br/&gt; 
+Xin Cảm Ơn!</value>
+	</data>
+	<data name="AnnouncementHeader" xml:space="preserve">
+		<value>Nâng Cấp Kỹ Thuật Theo Dõi</value>
+	</data>
 </root>

@@ -2725,4 +2725,11 @@
 	<data name="Year" xml:space="preserve">
 		<value>Year</value>
 	</data>
+	<data name="AnnouncementBody" xml:space="preserve">
+		<value>最新情報！&lt;br/&gt;
+トラッキングテクノロジーアフィリエイトやバナーリンクへさらに強化されました。まずは「メディアギャラリー」へアクセスしてご確認願います。</value>
+	</data>
+	<data name="AnnouncementHeader" xml:space="preserve">
+		<value>さらに強化されたトラッキングテクノロジー</value>
+	</data>
 </root>
