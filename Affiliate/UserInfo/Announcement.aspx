@@ -30,6 +30,10 @@
                 var username = getCookie("Username");
                 setCookie(username + '_DontShowMessage', this.checked, 30);
             };
+
+            document.getElementById('media_gallery_link').onclick = function () {
+                parent.top.location = "MediaGalleryNew.aspx";
+            };
         }
 
         window.onload = Init;

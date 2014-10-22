@@ -215,12 +215,6 @@
                     var ibcTable = document.getElementsByClassName('IBCWndTable')[0];
                     var iconTitle = ibcTable.getElementsByClassName('iconpopup')[0];
                     iconTitle.style.display = 'none';
-
-                    var iframe = document.getElementsByClassName('IBCWndNoPadding')[1];
-                    var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
-                    innerDoc.getElementById('media_gallery_link').onclick = function () {
-                        location.href = "MediaGalleryNew.aspx";
-                    };
                 }, 200);
             }
         };
