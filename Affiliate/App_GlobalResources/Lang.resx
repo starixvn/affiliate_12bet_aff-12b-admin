@@ -3139,17 +3139,18 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
   <data name="ExtraTextForKorean" xml:space="preserve">
     <value />
   </data>
-	<data name="AnnouncementBody" xml:space="preserve">
+  <data name="AnnouncementBody" xml:space="preserve">
     <value>Good news!
-      &lt;br/&gt;
-      Traffic tracking has been enhanced in your latest affiliate text and banner links. Please access "Media Gallery" to get them now!
-      &lt;br/&gt;&lt;br/&gt;
-      Thank you.</value>
+&lt;br/&gt;
+Traffic tracking has been enhanced in your latest affiliate text and banner links. Please access 
+&lt;a href="javascript:void(0)" id="media_gallery_link"&gt;Media Gallery&lt;/a&gt; to get them now!
+&lt;br/&gt;&lt;br/&gt;
+Thank you.</value>
   </data>
-	<data name="AnnouncementHeader" xml:space="preserve">
+  <data name="AnnouncementHeader" xml:space="preserve">
     <value>Enhanced Tracking Technology</value>
   </data>
-	<data name="DontShowMessageAgain" xml:space="preserve">
+  <data name="DontShowMessageAgain" xml:space="preserve">
     <value>Don't show this message again.</value>
   </data>
 </root>
