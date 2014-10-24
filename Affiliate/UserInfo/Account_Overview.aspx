@@ -198,15 +198,38 @@
     </script>
     --%>
     <script type="text/javascript">
+        var getPopupHeight = function () {
+            var bodyEle = document.getElementsByTagName('body')[0];
+            var className = bodyEle.className;
+            var height = 210;
+
+            switch (className) {
+                case "id-ID":
+                    height = 220;
+                    break;
+                case "zh-CN":
+                case "zh-TW":
+                case "ja-JP":
+                    height = 180;
+                    break;
+                default:
+                    height = 210;
+                    break;
+            }
+            return height;
+        };
+
         var Init = function () {
             var username = getCookie("Username");
             var dontShowMessage = getCookie(username + '_DontShowMessage');
+            
+
 
             if (dontShowMessage !== 'true') {
                 var height = document.body.clientHeight;
                 var width = document.body.clientWidth;
                 var widthDialog = 450;
-                var heightDialog = 220;
+                var heightDialog = getPopupHeight();
                 var top = (height - heightDialog) / 2;
                 var left = (width - widthDialog) / 2 - 180;
                 DoCalFull('Announcement.aspx', '', widthDialog, heightDialog, top, left);

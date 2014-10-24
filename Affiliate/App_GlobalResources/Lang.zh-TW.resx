@@ -2735,7 +2735,7 @@
   </data>
   <data name="AnnouncementBody" xml:space="preserve">
     <value>好消息！&lt;br/&gt;
-圖片和文字鏈接的流量追踪技術已經加強了！ 立即訪問&lt;a href="javascript:void(0)" id="media_gallery_link"&gt;媒體冊&lt;/a&gt;獲取以更新吧！</value>
+圖片和文字鏈接的流量追踪技術已經加強了！ 立即訪問 &lt;a href="javascript:void(0)" id="media_gallery_link"&gt;媒體冊&lt;/a&gt; 獲取以更新吧！</value>
   </data>
   <data name="AnnouncementHeader" xml:space="preserve">
     <value>追踪技術加強版</value>

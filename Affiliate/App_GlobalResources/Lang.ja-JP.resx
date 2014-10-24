@@ -2727,7 +2727,7 @@
   </data>
   <data name="AnnouncementBody" xml:space="preserve">
     <value>最新情報！&lt;br/&gt;
-トラッキングテクノロジーアフィリエイトやバナーリンクへさらに強化されました。まずは「&lt;a href="javascript:void(0)" id="media_gallery_link"&gt;メディアギャラリー&lt;/a&gt;」へアクセスしてご確認願います。</value>
+トラッキングテクノロジーアフィリエイトやバナーリンクへさらに強化されました。まずは &lt;a href="javascript:void(0)" id="media_gallery_link"&gt;メディアギャラリー&lt;/a&gt; へアクセスしてご確認願います。</value>
   </data>
   <data name="AnnouncementHeader" xml:space="preserve">
     <value>さらに強化されたトラッキングテクノロジー</value>
