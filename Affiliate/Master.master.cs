@@ -6,6 +6,8 @@ using System.Text;
 public partial class Master : System.Web.UI.MasterPage
 {
     protected StringBuilder strScript = new StringBuilder();
+    protected string langClass = string.Empty;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         string strCssLink1 = Common.RootURL() + "/App_Themes/Aff12bet.ico?v=" + AppSettings.JsVersion;
@@ -19,5 +21,6 @@ public partial class Master : System.Web.UI.MasterPage
         strScript.AppendLine("<script language=\"javascript\" type=\"text/javascript\" src=\"" + Common.RootURL() + "/App_Js/login.js?vers=" + AppSettings.JsVersion + "\"></script>");
         strScript.AppendLine("<script language=\"javascript\" type=\"text/javascript\" src=\"" + Common.RootURL() + "/App_Js/Scroller.js?vers=" + AppSettings.JsVersion + "\"></script>");
         strScript.AppendLine("<script language=\"javascript\" type=\"text/javascript\" src=\"" + Common.RootURL() + "/App_Js/swfobject.js?vers=" + AppSettings.JsVersion + "\"></script>");
+        langClass = AppSettings.Session.Language;
     }
 }

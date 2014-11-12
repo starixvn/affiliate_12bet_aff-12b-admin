@@ -2642,7 +2642,7 @@
     <value>승인을 위해서 연락가능한 연락처가 필요합니다.</value>
   </data>
   <data name="TooltipEmailAddess" xml:space="preserve">
-    <value>비밀번호를 받기위해서 현재사용중인 이메일번호가 필요합니다.</value>
+    <value>* 반드시 Gmail 계정이용* 비밀번호는 "Gmail" 로만 전송가능합니다.</value>
   </data>
   <data name="NoWebsite" xml:space="preserve">
     <value>웹사이트가 없습니다.</value>
@@ -2784,5 +2784,18 @@
   </data>
   <data name="CasinoExtension" xml:space="preserve">
     <value>카지노 * 6명이하의 회원에 대해서는 정산되지 않습니다.</value>
+  </data>
+  <data name="ExtraTextForKorean" xml:space="preserve">
+    <value>*이메일 주소는 반드시 Gmail로 입력하세요.</value>
+  </data>
+  <data name="AnnouncementBody" xml:space="preserve">
+    <value>좋은  소식을 전합니다!&lt;br/&gt;
+한층 향상된 통계 시스템으로 분석하세요!
+최신 제휴사 배너링크는 &lt;a href="javascript:void(0)" id="media_gallery_link"&gt;베너 갤러리&lt;/a&gt; 에서 확인하실 수 있습니다.
+ &lt;br/&gt;&lt;br/&gt;
+대단히 감사합니다.</value>
+  </data>
+  <data name="AnnouncementHeader" xml:space="preserve">
+    <value> 향상된 트래킹 기술력</value>
   </data>
 </root>

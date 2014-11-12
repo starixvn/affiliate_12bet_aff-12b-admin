@@ -34,7 +34,7 @@
         
     </style>
 </head>
-<body>
+<body class="<%=langClass%>">
     <div style="background-color:White">
         <%=strScript.ToString()%>
     </div>

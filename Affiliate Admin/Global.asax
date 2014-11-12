@@ -18,6 +18,8 @@
         Sunplus.Agent.Configurations.AppSettings.Configuration.Load();
         // Code that runs on application startup
         Fanex.Data.Configuration.DbSettingProviderManager.Current.Start();    
+        
+        
     }
     
     void Application_End(object sender, EventArgs e) 

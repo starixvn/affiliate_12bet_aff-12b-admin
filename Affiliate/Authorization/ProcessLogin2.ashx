@@ -23,7 +23,7 @@ public class ProcessLogin2 : IHttpHandler, IRequiresSessionState
     public void ProcessRequest(HttpContext context)
     {
         context = AffHandler.InitializeCulture(context);
-        context.Response.ContentType = "text/html";            
+        context.Response.ContentType = "text/html";
         string _s = string.Empty;
         string _nl = Environment.NewLine;
         string _url = string.Empty;
@@ -70,6 +70,9 @@ public class ProcessLogin2 : IHttpHandler, IRequiresSessionState
                 _s = "100:OK"; 
              //   AppSettings.Session.FirsTimeLoginSucc = true;
                 AppSettings.Session.CommGroupName = DNAide.Core.CastAide.AsString(dr2.Outputs["commgroupname"]);
+
+                context.Response.Cookies["Username"].Value = _custName.ToUpper();
+                context.Response.Cookies["Username"].Expires = DateTime.Now.AddDays(30);
             }
             else
             {
