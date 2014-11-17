@@ -43,7 +43,6 @@ public partial class Report_AffiliateQMReport : IBCPage
 
     void GenerateHTML()
     {
-        //Get AffUsername by AffId "Common.GetAffUsername(1166364)"
         try
         {
             string strUsername = CastAide.AsString(Request["affname"]);
@@ -77,7 +76,6 @@ public partial class Report_AffiliateQMReport : IBCPage
                 int intCount = (intPage - 1) * intPageSize;
                 string strRowTpl = TemplateHandler.CopyBlock(strTpl, "content");
                 StringBuilder strListRow = new StringBuilder();
-                //Hashtable hsTotal = new Hashtable();
 
 
                 foreach (DataRow dr in dtb.Rows)

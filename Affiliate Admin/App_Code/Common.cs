@@ -782,7 +782,7 @@ public class Common
             case "approved":
                 return Resources.Lang.Approved;
             case "rejected":
-                return Resources.Lang.Rejected;            
+                return Resources.Lang.Rejected;
             default:
                 return strStatus.ToString();
         }
@@ -1137,6 +1137,47 @@ public class Common
         {
             TemplateHandler.Assign(ref tempopt, "Optvalue", string.Empty);
             TemplateHandler.Assign(ref tempopt, "Optname", Resources.Lang.All);
+            if (string.IsNullOrEmpty(activeValue))
+            {
+                TemplateHandler.Assign(ref tempopt, "selected", "selected");
+            }
+            result.Append(tempopt);
+        }
+        foreach (DataRow dr in dt.Rows)
+        {
+            tempopt = temp;
+            TemplateHandler.Assign(ref tempopt, "Optvalue", dr[valueColumn].ToString());
+            TemplateHandler.Assign(ref tempopt, "Optname", dr[nameColumn].ToString());
+
+            if (string.Compare(activeValue, dr[valueColumn].ToString(), true) == 0)
+            {
+                TemplateHandler.Assign(ref tempopt, "selected", "selected");
+            }
+            else
+            {
+                TemplateHandler.Assign(ref tempopt, "selected", string.Empty);
+            }
+            result.Append(tempopt);
+        }
+        if (string.IsNullOrEmpty(activeValue) && dt.Rows.Count > 0)
+        {
+            activeValue = dt.Rows[0][valueColumn].ToString();
+        }
+        TemplateHandler.ReplaceBlock(ref opt, "optionList", result.ToString());
+        return opt;
+    }
+
+    public static string GenDropDownFromTable2(DataTable dt, string valueColumn, string nameColumn, string id, ref string activeValue, bool isGenAll, string labelAll)
+    {
+        var result = new StringBuilder();
+        string opt = TemplateHandler.LoadTemplate("Option.htm");
+        TemplateHandler.Assign(ref opt, "id", id);
+        string temp = TemplateHandler.CopyBlock(opt, "optionList");
+        string tempopt = temp;
+        if (isGenAll)
+        {
+            TemplateHandler.Assign(ref tempopt, "Optvalue", string.Empty);
+            TemplateHandler.Assign(ref tempopt, "Optname", string.IsNullOrEmpty(labelAll) ? Resources.Lang.All : labelAll);
             if (string.IsNullOrEmpty(activeValue))
             {
                 TemplateHandler.Assign(ref tempopt, "selected", "selected");

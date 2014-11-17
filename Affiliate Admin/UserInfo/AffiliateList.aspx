@@ -10,7 +10,7 @@
     var time = 0;//set Timeout for clock refresh
     var timer = null;//set Timeout for choose refresh time
     var timePage = "";//set Timeout for go to page
-    function MyFocus() {                 
+    function MyFocus() {
         
         //$("slPageSize").value = $("pagesize").value;
         $("slTime").value = $("timer").value;
@@ -38,11 +38,11 @@
             $('txtUsername').focus();
         }      
     }
-    function ViewGroup(groupid) {       
+    function ViewGroup(groupid) {
         if (groupid > 1000)
             ibcWnd.open("../GroupSetting/EditGroup.aspx?groupid=" + groupid, 'Edit Commission Group for ' + $("u"+groupid).innerHTML, 150, 50, 755, 529, 'class1', 'class2');
         else
-            ibcWnd.open("../GroupSetting/EditGroup.aspx?groupid=" + groupid, 'Edit Commission Group', 150, 50, 755, 529, 'class1', 'class2');        
+            ibcWnd.open("../GroupSetting/EditGroup.aspx?groupid=" + groupid, 'Edit Commission Group', 150, 50, 755, 529, 'class1', 'class2');
             
     }
     //Start favorite 
@@ -113,18 +113,18 @@
             
     }
     //End change group block
-    function CloseDiv() {    
-        $('divChangePass').style.display ='none';            
+    function CloseDiv() {
+        $('divChangePass').style.display ='none';
     }
-    function DoCal(url) {    
+    function DoCal(url) {
         ibcWnd.open(url, 'Change Password', 150, 50, 350, 175, 'class1', 'class2');
     }
     function Refresh(url)
     {
         location.href = url;
     }
-    function setvaluefocus(e,isok,id) {          
-        if(isok ==1) {       
+    function setvaluefocus(e,isok,id) {
+        if(isok ==1) {
             if(e.value ==$(id).value) 
                 e.value=''; 
         }
@@ -152,7 +152,7 @@
             $("txtID").focus();
             return false;
         }   
-        LoadData(1);        
+        LoadData(1);
     } 
 </script>
 <!--/js-->

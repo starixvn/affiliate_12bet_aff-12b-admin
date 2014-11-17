@@ -1,4 +1,5 @@
 ﻿using System;
+using Criterias;
 using DNAide.Web;
 using DNAide.Core;
 using System.Text;
@@ -13,43 +14,38 @@ namespace AffAdmin.GenerateHTML
     public static partial class AffiliateList
     {
         #region Aff List content
-        public static string GetAffList(int groupID,ref string groupName,string username, string email, int custid,string status, bool isClosed, int curpage,int pagesize,out int nummem, ref int totalpage, bool isFavor)
+        public static string GetAffList(AffiliateListCriteria criteria)
         {
-                nummem = 0;
+                
                 DbResult result=null;
-                if (custid != -2)
+                if (criteria.AffId != -2)
                 {
-                    if(!isFavor)
-
-                        result = DataHandler.Affiliate.ListAff(groupID, groupName, username, email, custid, status, isClosed, curpage, pagesize);
+                    if (!criteria.IsFavorite)
+                        result = DataHandler.Affiliate.ListAff(criteria);
                     else
-                        result = DataHandler.Affiliate.ListAffFavorie(groupID, groupName, username, email, custid, status, curpage, pagesize);
-                    nummem = CastAide.AsInt32(result.Outputs["nrows"]);
+                        result = DataHandler.Affiliate.ListAffFavorie(criteria);
+
+                    criteria.NRows = CastAide.AsInt32(result.Outputs["nrows"]);
                 }
                 int cols = 11;
                 string strTemplate = TemplateHandler.LoadTemplate("UserInfo/AffList.htm");
-                if(string.IsNullOrEmpty(groupName))
-                {
-                    groupName=string.Empty;
-                }
 
-                if (status.ToLower() == "pending" || status.ToLower() == "disapproved")
+                if (criteria.Status.Equals("pending", StringComparison.OrdinalIgnoreCase) 
+                    || criteria.Status.Equals("disapproved", StringComparison.OrdinalIgnoreCase))
                 {
                     TemplateHandler.RemoveBlock(ref strTemplate, "approved1");
                     cols = 5;
                 }
-                if (nummem > 0)
+                if (criteria.TotalPages > 0)
                 {
-                    groupName=CastAide.AsString(result.Outputs["groupname"],string.Empty);
                     TemplateHandler.Assign(ref strTemplate, "Reset", Resources.Lang.Reset);
                     TemplateHandler.Assign(ref strTemplate, "view", Resources.Lang.View);
                     TemplateHandler.Assign(ref strTemplate, "Edit", Resources.Lang.Edit);
 
                     string strContent = TemplateHandler.CopyBlock(strTemplate, "content");
                     DataTable dtbResult = result.ResultSet.Tables[0]; 
-                    totalpage = CastAide.AsInt32(result.Outputs["totalpages"]);
                     int intNo = 0;
-                    StringBuilder strBuild = new StringBuilder();
+                    var strBuild = new StringBuilder();
                     decimal dcCurrentBalance = 0;
                     int intMemNum = 0;
                     TemplateHandler.Assign(ref strContent, "over", Common.RowBgOver);
@@ -57,7 +53,7 @@ namespace AffAdmin.GenerateHTML
                     {
                         string strTmp = strContent;
                         intNo++;
-                        string strStatus = status;// dr["status"].ToString();
+                        string strStatus = criteria.Status;
                         bool isClose = CastAide.AsBoolean(dr["isclosed"]);
                         if (isClose)
                         {
@@ -71,11 +67,11 @@ namespace AffAdmin.GenerateHTML
                         intMemNum = CastAide.AsInt32(dr["noofmember"]);
                         if(intMemNum == 0)
                             TemplateHandler.ReplaceBlock(ref strTmp, "nummem", intMemNum.ToString());
-                        TemplateHandler.Assign(ref strTmp, "no",(curpage-1) * pagesize + intNo);
+                        TemplateHandler.Assign(ref strTmp, "no",(criteria.PageIndex-1) * criteria.PageSize + intNo);
                         
                         TemplateHandler.Assign(ref strTmp, "custid", dr["AffID"].ToString());
                         TemplateHandler.Assign(ref strTmp, "username-val", dr["username"].ToString());
-                        if(status=="pending")
+                        if(criteria.Status.Equals("pending", StringComparison.OrdinalIgnoreCase))
                             TemplateHandler.Assign(ref strTmp, "userdate-val", Common.IBCDateTimeFormat(dr["registereddate"], DTFormatType.DT24h));
                         else
                             TemplateHandler.Assign(ref strTmp, "userdate-val", Common.IBCDateTimeFormat(dr["ApprovedDate"], DTFormatType.DT24h));
@@ -96,7 +92,8 @@ namespace AffAdmin.GenerateHTML
                         {
                             TemplateHandler.ReplaceBlock(ref strTmp, "no-pass", string.Empty);
                         }
-                        if (status.ToLower() == "approved")
+                        
+                        if (criteria.Status.Equals("approved", StringComparison.OrdinalIgnoreCase))
                         {
                             TemplateHandler.Assign(ref strTmp, "groupid-val", dr["groupid"].ToString());
                             if (Convert.ToInt32(dr["groupid"]) > 1000)
@@ -108,8 +105,8 @@ namespace AffAdmin.GenerateHTML
                                 TemplateHandler.RemoveBlock(ref strTmp, "PrivateGroup");
                             }
                             TemplateHandler.Assign(ref strTmp, "group-val",Common.CutLongText(dr["groupname"].ToString(),20));
-
                         }
+
                         TemplateHandler.Assign(ref strTmp, "isAdmin", "0");
                         strBuild.Append(strTmp);
                         
@@ -119,7 +116,7 @@ namespace AffAdmin.GenerateHTML
                 }
                 else
                 {
-                    return Common.NoInfo(cols);                    
+                    return Common.NoInfo(cols);
                 }
         }
         #endregion

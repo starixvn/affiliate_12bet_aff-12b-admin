@@ -2353,4 +2353,10 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
   <data name="SSL" xml:space="preserve">
     <value>SSL</value>
   </data>
+  <data name="AllCommGroup" xml:space="preserve">
+    <value>All comm group</value>
+  </data>
+  <data name="AllLanguage" xml:space="preserve">
+    <value>All language</value>
+  </data>
 </root>

@@ -2,6 +2,7 @@ using System;
 using System.Web;
 using System.Collections;
 using System.Data;
+using Criterias;
 using DNAide.Data;
 using DNAide.Core;
 using DNAide.Utils;
@@ -12,59 +13,68 @@ namespace DataHandler
 {
     public class Affiliate
     {
-        public static DbResult ListAff(int groupID,string groupName,string username,string email,int custid,string status, bool isClosed, int curpage,int pagesize)
+        public static DbResult ListAff(AffiliateListCriteria criteria)
         {
-            Hashtable hsParam = new Hashtable();            
-            hsParam.Add("userid", AppSettings.Session.CustID);
-            hsParam.Add("status", status);
-            hsParam.Add("pageindex", curpage);
-            hsParam.Add("pagesize", pagesize);
-            if (groupID != -1)
+            var hsParam = new Hashtable();
+            hsParam.Add("userid", criteria.UserId);
+            hsParam.Add("status", criteria.Status);
+            hsParam.Add("pageindex", criteria.PageIndex);
+            hsParam.Add("pagesize", criteria.PageSize);
+            if (criteria.GroupId != -1)
             {
-                hsParam.Add("groupid", groupID);
+                hsParam.Add("groupid", criteria.GroupId);
             }
-           
-            hsParam.Add("groupname", groupName);
+
+            hsParam.Add("language", criteria.Language);
             
-            if (!string.IsNullOrEmpty(username))
+            if (!string.IsNullOrEmpty(criteria.Username))
             {
-                hsParam.Add("username", username);
-                }
-            if (!string.IsNullOrEmpty(email))
-            {
-                hsParam.Add("email", email);
+                hsParam.Add("username", criteria.Username);
             }
-            if(custid!=-1)
-                hsParam.Add("affid", custid);
-            if (isClosed)
-                hsParam.Add("isclosed", isClosed);
-            return DbHelper.Execute("Aff_AffiliateSel", hsParam, DBType.AFFILIATE_12BET);
+
+            if (!string.IsNullOrEmpty(criteria.Email))
+            {
+                hsParam.Add("email", criteria.Email);
+            }
+
+            if(criteria.AffId !=-1)
+                hsParam.Add("affid", criteria.AffId);
+
+            if (criteria.IsClosed)
+                hsParam.Add("isclosed", criteria.IsClosed);
+
+            if(criteria.IsAll)
+                hsParam.Add("isall", criteria.IsAll);
+
+            return DbHelper.Execute(criteria.SpName, hsParam, DBType.AFFILIATE_12BET);
         }
-        public static DbResult ListAffFavorie(int groupID, string groupName, string username, string email, int custid, string status, int curpage, int pagesize)
+
+        public static DbResult ListAffFavorie(AffiliateListCriteria criteria)
         {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("userid", AppSettings.Session.CustID);
-            hsParam.Add("status", status);
-            hsParam.Add("pageindex", curpage);
-            hsParam.Add("pagesize", pagesize);
-            if (groupID != -1)
+            var hsParam = new Hashtable();
+            hsParam.Add("userid", criteria.UserId);
+            hsParam.Add("status", criteria.Status);
+            hsParam.Add("pageindex", criteria.PageIndex);
+            hsParam.Add("pagesize", criteria.PageSize);
+
+            if (criteria.GroupId != -1)
             {
-                hsParam.Add("groupid", groupID);
+                hsParam.Add("groupid", criteria.GroupId);
             }
 
-            hsParam.Add("groupname", groupName);
+            if (!string.IsNullOrEmpty(criteria.Username))
+            {
+                hsParam.Add("username", criteria.Username);
+            }
 
-            if (!string.IsNullOrEmpty(username))
+            if (!string.IsNullOrEmpty(criteria.Email))
             {
-                hsParam.Add("username", username);
+                hsParam.Add("email", criteria.Email);
             }
-            if (!string.IsNullOrEmpty(email))
-            {
-                hsParam.Add("email", email);
-            }
-            if (custid != -1)
-                hsParam.Add("affid", custid);           
-            return DbHelper.Execute("Aff_AffiliateSelFavorite", hsParam, DBType.AFFILIATE_12BET);
+
+            if (criteria.AffId != -1)
+                hsParam.Add("affid", criteria.AffId);
+            return DbHelper.Execute(criteria.SpName, hsParam, DBType.AFFILIATE_12BET);
         }
         public static DataTable SelAffInfo(int intCustId, ref string strMinCheque, ref string strMinMoneyBooker, ref string strMinNetteller, ref string strMinWire, ref string strMinPlayer)
         {

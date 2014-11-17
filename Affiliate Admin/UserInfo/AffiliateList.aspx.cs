@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Data;
+using Criterias;
 using DNAide.Web;
 using DNAide.Core;
 
@@ -7,7 +9,9 @@ public partial class AffiliateList : IBCPage
     protected void Page_Load(object sender, EventArgs e)
     {
         string strTemplate = TemplateHandler.LoadTemplate("UserInfo/AffList.htm");
+
         #region Assign submenu
+
         string strStatus = CastAide.AsString(Request["status"], Common.Approved);
 
         int currTab = 0;
@@ -17,7 +21,6 @@ public partial class AffiliateList : IBCPage
         bool isClosed = false;
         switch (strStatus.ToLower())
         {
-            //TemplateHandler.Assign(ref strTemplate, "submenu", Common.GenSubMenu(strArrLink, strArrText, 1171, 0));
             case "pending":
                 currTab = 2;
                 TemplateHandler.RemoveBlock(ref strTemplate, "GroupNameSearch");
@@ -29,7 +32,7 @@ public partial class AffiliateList : IBCPage
                 TemplateHandler.ReplaceBlock(ref strTemplate, "pending", Resources.Lang.Pending + " [<span id='nummem'>{nummem-val}</span>]");
                 break;
             case "approved":
-                isFavor = CastAide.AsInt32(Request["favor"], 0) == 1 ? true : false;
+                isFavor = CastAide.AsInt32(Request["favor"], 0) == 1;
                 isClosed = CastAide.AsBoolean(Request["isClosed"], false);
                 //isSelectAll = true;
                 currTab = isFavor ? 0 : 1;
@@ -56,18 +59,20 @@ public partial class AffiliateList : IBCPage
             default:
                 TemplateHandler.RemoveBlock(ref strTemplate, "GroupNameSearch");
                 TemplateHandler.RemoveBlock(ref strTemplate, "total");
-                TemplateHandler.RemoveBlock(ref strTemplate, "pass");   
+                TemplateHandler.RemoveBlock(ref strTemplate, "pass");
                 TemplateHandler.Assign(ref strTemplate, "userdate", Resources.Lang.registerdate);
                 TemplateHandler.Assign(ref strTemplate, "tabpending", string.Empty);
                 TemplateHandler.ReplaceBlock(ref strTemplate, "pending", Resources.Lang.Pending + " [{nummem}]");
                 break;
         }
+
         TemplateHandler.Assign(ref strTemplate, "tabdisapproved", "tabbottom");
         TemplateHandler.Assign(ref strTemplate, "tabapproved", "tabbottom");
         TemplateHandler.Assign(ref strTemplate, "tabpending", "tabbottom");
         TemplateHandler.Assign(ref strTemplate, "disapproved", Resources.Lang.Disapproved);
         TemplateHandler.Assign(ref strTemplate, "approved", Resources.Lang.Approved);
         TemplateHandler.Assign(ref strTemplate, "pending", Resources.Lang.Pending);
+
         #endregion
 
         TemplateHandler.Assign(ref strTemplate, "width", width);
@@ -83,14 +88,11 @@ public partial class AffiliateList : IBCPage
         TemplateHandler.Assign(ref strTemplate, "group", Resources.Lang.CommissionGroup);
         TemplateHandler.Assign(ref strTemplate, "com", Resources.Lang.Com);
         TemplateHandler.Assign(ref strTemplate, "member", Resources.Lang.Member);
-        TemplateHandler.Assign(ref strTemplate, "password", Resources.Lang.Password);        
+        TemplateHandler.Assign(ref strTemplate, "password", Resources.Lang.Password);
         TemplateHandler.Assign(ref strTemplate, "total", Resources.Lang.Total);
         TemplateHandler.Assign(ref strTemplate, "report", Resources.Lang.Report);
-        //TemplateHandler.Assign(ref strTemplate, "reportdetails", Resources.Lang.ReportDetails);
 
         //Search content
-        int nummem = 0;
-        int totalPage = 0;
         int intID = -1;
         try
         {
@@ -106,18 +108,15 @@ public partial class AffiliateList : IBCPage
         string strUserName = CastAide.AsString(Request["txtUsername"], string.Empty);
         string strEmail = CastAide.AsString(Request["txtEmail"], string.Empty);
         string groupName = CastAide.AsString(Request["txtGroupName"], string.Empty);
-        int groupID = CastAide.AsInt32(Request["groupid"], -1);
-        /*bool IsViewFromAccountPage = CastAide.AsBoolean(Request["IsViewFromAccountPage"],false);
-        if (IsViewFromAccountPage)
-        {
-            TemplateHandler.Assign(ref strTemplate, "IsViewFromAccountPage_val", "true");
-        }
-        else
-        {
-            TemplateHandler.Assign(ref strTemplate, "IsViewFromAccountPage_val", "false");
-        }*/
+        int slCommGroup = CastAide.AsInt32(Request["slCommGroup"], -1);
+        var selectedCommGroup = slCommGroup.ToString();
+        var slLanguage = CastAide.AsString(Request["slLanguage"], string.Empty);
 
-        TemplateHandler.Assign(ref strTemplate, "GroupID_val", groupID);
+        var commGroupTbl = DbHelper.Execute("Aff_CommGroupSelListNormal", DBType.AFFILIATE_12BET).ResultSet.Tables[0];
+        var languageTbl = DbHelper.Execute("Aff_MarketSel", DBType.AFFILIATE_12BET).ResultSet.Tables[0];
+        TemplateHandler.Assign(ref strTemplate, "SearchBy", Resources.Lang.SearchBy);
+        TemplateHandler.Assign(ref strTemplate, "optioncommgroup", Common.GenDropDownFromTable2(commGroupTbl, "GroupId", "GroupName", "slCommGroup", ref selectedCommGroup, true, Resources.Lang.AllCommGroup));
+        TemplateHandler.Assign(ref strTemplate, "optionlanguage", Common.GenDropDownFromTable2(languageTbl, "MarketId", "MarketName", "slLanguage", ref slLanguage, true, Resources.Lang.AllLanguage));
         TemplateHandler.Assign(ref strTemplate, "username", string.IsNullOrEmpty(strUserName) ? Resources.Lang.Username : strUserName);
         TemplateHandler.Assign(ref strTemplate, "email", string.IsNullOrEmpty(strEmail) ? Resources.Lang.Email : strEmail);
         TemplateHandler.Assign(ref strTemplate, "id", intID == -1 ? Resources.Lang.ID : intID.ToString());
@@ -126,22 +125,37 @@ public partial class AffiliateList : IBCPage
         strEmail = ((string.Compare(strEmail, Resources.Lang.Email, true) == 0 ? string.Empty : strEmail));
         groupName = ((string.Compare(groupName, Resources.Lang.GroupName, true) == 0 ? string.Empty : groupName));
 
-        string strContent = AffAdmin.GenerateHTML.AffiliateList.GetAffList(groupID,ref groupName,strUserName, strEmail, intID, strStatus,isClosed, intPage, intPageSize, out nummem, ref totalPage, isFavor);
+        var criteria = new AffiliateListCriteria
+            {
+                GroupId = slCommGroup,
+                Username = strUserName,
+                Email = strEmail,
+                AffId = intID,
+                Status = strStatus,
+                IsClosed = isClosed,
+                PageIndex = intPage,
+                PageSize = intPageSize,
+                IsFavorite = isFavor,
+                Language = string.IsNullOrEmpty(slLanguage) ? null : slLanguage,
+            };
+
+        string strContent = AffAdmin.GenerateHTML.AffiliateList.GetAffList(criteria);
+
         if (string.Compare(strStatus,"approved",true)==0)
         {
             TemplateHandler.Assign(ref strTemplate, "groupname-val", groupName);
-            TemplateHandler.Assign(ref strTemplate, "paging-top", Common.GenPaging(totalPage, intPage, intPageSize, nummem, "aPageTop", "txtPageTop", null, null, width, isSelectAll, true, false, false));
+            TemplateHandler.Assign(ref strTemplate, "paging-top", Common.GenPaging(criteria.TotalPages, criteria.PageIndex, criteria.PageSize, criteria.NRows, "aPageTop", "txtPageTop", null, null, width, isSelectAll, true, false, false));
         }
         else
         {
-            TemplateHandler.Assign(ref strTemplate, "paging-top", Common.GenPaging(totalPage, intPage, intPageSize, nummem, "aPageTop", "txtPageTop", null, null, width, isSelectAll, true, false, false));
+            TemplateHandler.Assign(ref strTemplate, "paging-top", Common.GenPaging(criteria.TotalPages, criteria.PageIndex, criteria.PageSize, criteria.NRows, "aPageTop", "txtPageTop", null, null, width, isSelectAll, true, false, false));
             TemplateHandler.RemoveBlock(ref strTemplate, "bottombtn");
         }
-        TemplateHandler.Assign(ref strTemplate, "paging-bottom", Common.GenPaging(totalPage, intPage, intPageSize, nummem, "aPageBottom", "txtPageBottom", width, isSelectAll, false));
-        if (nummem == 0)//No row return
+        TemplateHandler.Assign(ref strTemplate, "paging-bottom", Common.GenPaging(criteria.TotalPages, criteria.PageIndex, criteria.PageSize, criteria.NRows, "aPageBottom", "txtPageBottom", width, isSelectAll, false));
+        if (criteria.NRows == 0)//No row return
         {
             TemplateHandler.Assign(ref strTemplate, "pagingcss", "hide");
-            TemplateHandler.RemoveBlock(ref strTemplate, "bottombtn");            
+            TemplateHandler.RemoveBlock(ref strTemplate, "bottombtn");
             
             if (isFavor)//for favorite
             {
@@ -151,21 +165,21 @@ public partial class AffiliateList : IBCPage
                     return;
                 }
                 if (string.IsNullOrEmpty(groupName) && string.IsNullOrEmpty(strUserName) && string.IsNullOrEmpty(strEmail) && intID == -1)//no info and no search
-                    Response.Write("<script type='text/javascript'>location.href = 'AffiliateList.aspx?status=approved';</script>");                
+                    Response.Write("<script type='text/javascript'>location.href = 'AffiliateList.aspx?status=approved';</script>");
             }
         }
 
         //Sub menu        
-        TemplateHandler.Assign(ref strTemplate, "submenu", SubMenu.GenSubMenu(SubMenu.AffLink, SubMenu.AffText, currTab, nummem, Resources.Lang.AffList,"i_affiliateslist.png"));
+        TemplateHandler.Assign(ref strTemplate, "submenu", SubMenu.GenSubMenu(SubMenu.AffLink, SubMenu.AffText, currTab, criteria.NRows, Resources.Lang.AffList,"i_affiliateslist.png"));
         
 
         TemplateHandler.Assign(ref strTemplate, "timer-val", string.IsNullOrEmpty(Request["slTime"]) ? "0" : Request["slTime"]);
-        TemplateHandler.Assign(ref strTemplate, "status-val", strStatus.ToLower());
-        TemplateHandler.Assign(ref strTemplate, "page", intPage);
-        TemplateHandler.Assign(ref strTemplate, "pagesize", intPageSize);
-        TemplateHandler.Assign(ref strTemplate, "nummem-val", nummem);
+        TemplateHandler.Assign(ref strTemplate, "status-val", criteria.Status.ToLower());
+        TemplateHandler.Assign(ref strTemplate, "page", criteria.PageIndex);
+        TemplateHandler.Assign(ref strTemplate, "pagesize", criteria.PageSize);
+        TemplateHandler.Assign(ref strTemplate, "nummem-val", criteria.NRows);
         TemplateHandler.Assign(ref strTemplate, "favor-val", Request["favor"]);
-        TemplateHandler.Assign(ref strTemplate, "isclosed-val", isClosed);
+        TemplateHandler.Assign(ref strTemplate, "isclosed-val", criteria.IsClosed);
 
         TemplateHandler.ReplaceBlock(ref strTemplate, "content", strContent);
         this.HtmlContent = strTemplate;
