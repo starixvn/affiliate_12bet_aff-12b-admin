@@ -17,6 +17,7 @@ using DNAide.Data;
 public partial class Report_AffiliateReport : IBCPage
 {
     string strTpl = string.Empty;
+    public  DateTime now = DateTime.Now;
     StringBuilder strListRow = new StringBuilder();
 
     protected void Page_Load(object sender, EventArgs e)
@@ -46,10 +47,16 @@ public partial class Report_AffiliateReport : IBCPage
         TemplateHandler.Assign(ref strTpl, "bonus", Resources.Lang.Bonus);
         TemplateHandler.Assign(ref strTpl, "withdrawal", Resources.Lang.Withdrawal);
         TemplateHandler.Assign(ref strTpl, "adjustment", Resources.Lang.Adjustment);
-        //TemplateHandler.Assign(ref strTpl, "affcomm", Resources.Lang.Comm);
         TemplateHandler.Assign(ref strTpl, "affbf", Resources.Lang.BFComm);
         TemplateHandler.Assign(ref strTpl, "winlost", Resources.Lang.Winlost);
         TemplateHandler.Assign(ref strTpl, "affiliate", Resources.Lang.Affiliate);
+        TemplateHandler.Assign(ref strTpl, "trackingrate", Resources.Lang.OldTrackingRate);
+        TemplateHandler.Assign(ref strTpl, "newtrackingrate", Resources.Lang.NewTrackingRate);
+        TemplateHandler.Assign(ref strTpl, "signup", Resources.Lang.SignUp);
+        TemplateHandler.Assign(ref strTpl, "fdm", Resources.Lang.FDM);
+        TemplateHandler.Assign(ref strTpl, "activemember", Resources.Lang.ActiveMember);
+        TemplateHandler.Assign(ref strTpl, "qm", Resources.Lang.QM);
+
         TemplateHandler.Assign(ref strTpl, "total", Resources.Lang.Total);
         TemplateHandler.Assign(ref strTpl, "psp", Resources.Lang.PSP);
         TemplateHandler.Assign(ref strTpl, "back", Resources.Lang.Back);
@@ -74,9 +81,10 @@ public partial class Report_AffiliateReport : IBCPage
             int intSportId = CastAide.AsInt32(Request["slSport"], 0);
 
             TemplateHandler.Assign(ref strTpl, "lang-val", strPreferLang);
+            TemplateHandler.Assign(ref strTpl, "currentYear-val", DateTime.Now.Year);
             TemplateHandler.Assign(ref strTpl, "sportid-val", Request["slSport"]);
-            TemplateHandler.Assign(ref strTpl, "fdate", dtmFDate.ToString("MM/dd/yyyy"));
-            TemplateHandler.Assign(ref strTpl, "tdate", dtmTDate.ToString("MM/dd/yyyy"));
+            TemplateHandler.Assign(ref strTpl, "fdate", dtmFDate.ToString("MM/yyyy"));
+            TemplateHandler.Assign(ref strTpl, "tdate", dtmTDate.ToString("MM/yyyy"));
             TemplateHandler.Assign(ref strTpl, "cssgetall", isGetAll ? "ic-check" : "ic-uncheck");
             //TemplateHandler.Assign(ref strTpl, "turnover-total", NumberFormat.DecFormat(dcTotalTurnover, 2));
 
@@ -91,17 +99,28 @@ public partial class Report_AffiliateReport : IBCPage
             {
                 string strRowTpl = TemplateHandler.CopyBlock(strTpl, "content");
                 string strDate = string.Empty;
-                int intCount = 0;                
-                decimal dcTotalDeposit = 0, dcTotalWidthrawal = 0, dcTotalTurnover = 0, dcTotalWinloss = 0, dcTotalBonus = 0, dcTotalPsp = 0, dcTotalAdjustment = 0, dcTotalAffBF = 0, dcTotalAffWithdrawal = 0, dcTotalAffAdjustment = 0;//, dcTotalAffComm = 0;
+                int intCount = 0;
+                decimal dcTotalDeposit = 0, dcTotalWidthrawal = 0, dcTotalTurnover = 0, dcTotalWinloss = 0, dcTotalBonus = 0, dcTotalPsp = 0, dcTotalAdjustment = 0, dcTotalAffBF = 0, dcTotalAffWithdrawal = 0, dcTotalAffAdjustment = 0,
+                    dcTotalUniqueClick = 0, dcTotalClick = 0,
+                    dcTotalNewUniqueClick = 0, dcTotalNewClick = 0,
+                    dcTotalSignup = 0, dcTotalFDM = 0,
+                    dcTotalActiveMember = 0, dcTotalQM = 0;
 
                 TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.ReportLink, SubMenu.ReportText, 1, dtb.Rows.Count, SubMenu.ReportText[1], "i_report.png"));
 
                 strListRow = new StringBuilder();
+                decimal trackingRate;
+                decimal newTrackingRate;
+
                 foreach (DataRow dr in dtb.Rows)
                 {
                     string strTmp = strRowTpl;
                     intCount++;
-                    decimal dcDeposit = 0, dcWidthrawal = 0, dcTurnover = 0, dcWinloss = 0, dcBonus = 0, dcPsp = 0, dcAdjustment = 0, dcAffBF = 0, dcAffWithdrawal = 0, dcAffAdjustment = 0;//, affcomm = 0;
+                    decimal dcDeposit = 0, dcWidthrawal = 0, dcTurnover = 0, dcWinloss = 0, dcBonus = 0, dcPsp = 0, dcAdjustment = 0, dcAffBF = 0, dcAffWithdrawal = 0, dcAffAdjustment = 0,
+                        dcUniqueClick = 0, dcClick = 0,
+                        dcNewUniqueClick = 0, dcNewClick = 0,
+                        dcSignup = 0, dcFDM = 0,
+                        dcActiveMember = 0, dcQM = 0;
 
                     dcDeposit = CastAide.AsDecimal(dr["deposit"]);
                     dcWidthrawal = CastAide.AsDecimal(dr["withdrawal"]);
@@ -113,6 +132,19 @@ public partial class Report_AffiliateReport : IBCPage
                     dcAffAdjustment = CastAide.AsDecimal(dr["affadjustment"]);
                     dcAffWithdrawal = CastAide.AsDecimal(dr["affwithdrawal"]);
                     dcAffBF = CastAide.AsDecimal(dr["affbf"]);
+
+                    dcUniqueClick = CastAide.AsDecimal(dr["OldUniqueclick"]);
+                    dcClick = CastAide.AsDecimal(dr["OldTotalclick"]);
+                    dcNewUniqueClick = CastAide.AsDecimal(dr["NewUniqueclick"]);
+                    dcNewClick = CastAide.AsDecimal(dr["NewTotalclick"]);
+                    dcSignup = CastAide.AsDecimal(dr["TotalSignup"]);
+                    dcFDM = CastAide.AsDecimal(dr["TotalFDM"]);
+                    dcActiveMember = CastAide.AsDecimal(dr["TotalActiveMember"]);
+                    dcQM = CastAide.AsDecimal(dr["TotalQualifiedMember"]);
+
+                    trackingRate = dcClick == 0 ? 0 : dcUniqueClick/dcClick;
+                    newTrackingRate = dcNewClick == 0 ? 0 : dcNewUniqueClick / dcNewClick;
+
                     //affcomm = 0;//CastAide.AsDecimal(dr["affcomm"]);
 
                     TemplateHandler.Assign(ref strTmp, "color", (intCount % 2 == 0) ? Common.RowBgEven : Common.RowBgOdd);
@@ -130,6 +162,13 @@ public partial class Report_AffiliateReport : IBCPage
                     //TemplateHandler.Assign(ref strTmp, "affcomm-val", NumberFormat.DecFormat(affcomm, 2));
                     TemplateHandler.Assign(ref strTmp, "affbf-val", NumberFormat.DecFormat(dcAffBF, 2));
 
+                    TemplateHandler.Assign(ref strTmp, "trackingrate-val", string.Format("{0:P2}", trackingRate));
+                    TemplateHandler.Assign(ref strTmp, "newtrackingrate-val", string.Format("{0:P2}", newTrackingRate));
+                    TemplateHandler.Assign(ref strTmp, "signup-val", dcSignup);
+                    TemplateHandler.Assign(ref strTmp, "fdm-val", dcFDM);
+                    TemplateHandler.Assign(ref strTmp, "activemember-val", dcActiveMember);
+                    TemplateHandler.Assign(ref strTmp, "qm-val", dcQM);
+
                     strListRow.Append(strTmp);
 
                     dcTotalDeposit += dcDeposit;
@@ -143,6 +182,15 @@ public partial class Report_AffiliateReport : IBCPage
                     dcTotalAffWithdrawal += dcAffWithdrawal;
                     dcTotalAffBF += dcAffBF;
                     //dcTotalAffComm += affcomm;
+
+                    dcTotalClick += dcClick;
+                    dcTotalUniqueClick += dcUniqueClick;
+                    dcTotalNewClick += dcNewClick;
+                    dcTotalNewUniqueClick += dcNewUniqueClick;
+                    dcTotalSignup += dcSignup;
+                    dcTotalFDM += dcFDM;
+                    dcTotalActiveMember += dcActiveMember;
+                    dcTotalQM += dcQM;
                 }
                 TemplateHandler.ReplaceBlock(ref strTpl, "content", strListRow.ToString());
 
@@ -157,6 +205,16 @@ public partial class Report_AffiliateReport : IBCPage
                 TemplateHandler.Assign(ref strTpl, "affwithdrawal-total", NumberFormat.DecFormat(dcTotalAffWithdrawal, 2));
                 //TemplateHandler.Assign(ref strTpl, "affcomm-total", NumberFormat.DecFormat(dcTotalAffComm, 2));
                 TemplateHandler.Assign(ref strTpl, "affbf-total", NumberFormat.DecFormat(dcTotalAffBF, 2));
+
+                trackingRate = dcTotalClick == 0 ? 0 : dcTotalUniqueClick / dcTotalClick;
+                newTrackingRate = dcTotalNewClick == 0 ? 0 : dcTotalNewUniqueClick / dcTotalNewClick;
+
+                TemplateHandler.Assign(ref strTpl, "trackingrate-total", string.Format("{0:P2}", trackingRate));
+                TemplateHandler.Assign(ref strTpl, "newtrackingrate-total", string.Format("{0:P2}", newTrackingRate));
+                TemplateHandler.Assign(ref strTpl, "signup-total", dcTotalSignup);
+                TemplateHandler.Assign(ref strTpl, "fdm-total", dcTotalFDM);
+                TemplateHandler.Assign(ref strTpl, "activemember-total", dcTotalActiveMember);
+                TemplateHandler.Assign(ref strTpl, "qm-total", dcTotalQM);
             }
             else
             {

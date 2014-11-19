@@ -31,22 +31,7 @@
                 </td>
                 <td>
                     <input type="text" readonly name="fdate" size="13" value="{fdate}" class="txtdate-no-time"
-                        id="fdate" />&nbsp;
-                    <img width="16" height="16" src="../{themepath}/images/cal.gif" class="img-date-selector hand"
-                        style="margin-bottom: -3px;" title="Date selector" id="fdateTrigger" />
-
-                    <script type="text/javascript">
-                        Calendar.setup({
-                            inputField: "fdate",
-                            ifFormat: "%m/%d/%Y",
-                            button: "fdateTrigger",
-                            singleClick: true,
-                            showsTime: false,
-                            showOthers : true,
-                            step : 1
-                        });
-                    </script>
-
+                           id="fdate" />&nbsp;
                 </td>
                 <td class="r">
                     {tdate-txt}
@@ -54,20 +39,6 @@
                 <td>
                     <input type="text" readonly name="tdate" size="13" value="{tdate}" class="txtdate-no-time"
                         id="tdate" />&nbsp;
-                    <img width="16" height="16" src="../{themepath}/images/cal.gif" class="img-date-selector hand"
-                        style="margin-bottom: -3px;" title="Date selector" id="tdateTrigger" />
-
-                    <script type="text/javascript">
-                        Calendar.setup({
-                            inputField: "tdate",
-                            ifFormat: "%m/%d/%Y",
-                            button: "tdateTrigger",
-                            singleClick: true,
-                            showsTime: false,
-                            showOthers : true,
-                            step : 1
-                        });
-                    </script>
                 </td>
                 <td class="nowrap">
                     Get All&nbsp;&nbsp;<span onclick="chkOnclick();" id="chkDate" class="{cssgetall}">&nbsp;</span>
@@ -82,6 +53,8 @@
     <input type="hidden" id="hdLanguage" name="hdLanguage" value="{lang-val}" />
     <input type="hidden" id="hdSport" name="hdSport" value="{sportid-val}" />
     <input type="hidden" id="type" name="type" value="{type-val}" />
+    <input type="hidden" id="hdCurrentYear" name="hcCurrentYear" value="{currentYear-val}" />
+
     </form>
     
     <div id="divContent" class="ContentBox" style="width: {width}px; overflow: visible;">
@@ -95,6 +68,12 @@
             </tr>
             <tr>
                 <th rowspan="2">{affiliate}</th>
+                <th rowspan="2">{trackingrate}</th>
+                <th rowspan="2">{newtrackingrate}</th>
+                <th rowspan="2">{signup}</th>
+                <th rowspan="2">{fdm}</th>
+                <th rowspan="2">{activemember}</th>
+                <th rowspan="2">{qm}</th>
                 <th colspan="7">{memberstatistics}</th>
                 <!--affiliate-->
                 <th colspan="4">{affiliatestatistics}</th>
@@ -139,6 +118,12 @@
                 <td class="l" style="width: 55px;">
                     <a href="AffiliateReportDetail.aspx?affname={aff-val}&fdate={fdate}&tdate={tdate}&isGetAll={cssgetall}&type={type-val}&slSport={sportid-val}">{aff-val}</a>
                 </td>
+                <td>{trackingrate-val}</td>
+                <td>{newtrackingrate-val}</td>
+                <td>{signup-val}</td>
+                <td>{fdm-val}</td>
+                <td>{activemember-val}</td>
+                <td>{qm-val}</td>
                 <td>
                     {deposit-val}
                 </td>
@@ -178,6 +163,12 @@
                 <th style="text-transform: uppercase;">
                     {total}
                 </th>
+                <th class="r">{trackingrate-total}</th>
+                <th class="r">{newtrackingrate-total}</th>
+                <th class="r">{signup-total}</th>
+                <th class="r">{fdm-total}</th>
+                <th class="r">{activemember-total}</th>
+                <th class="r">{qm-total}</th>
                 <th class="r">
                     {deposit-total}
                 </th>
@@ -186,13 +177,13 @@
                 </th>
                 <th class="r">
                     {turnover-total}
-                </th>                
+                </th>
                 <th class="r">
                     {winlost-total}
                 </th>
                 <th class="r">
                     {bonus-total}
-                </th>                
+                </th>
                 <th class="r">
                     {psp-total}
                 </th>

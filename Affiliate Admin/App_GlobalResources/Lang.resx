@@ -2359,4 +2359,13 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
   <data name="AllLanguage" xml:space="preserve">
     <value>All language</value>
   </data>
+  <data name="NewTrackingRate" xml:space="preserve">
+    <value>New tracking rate (Unique/Total)</value>
+  </data>
+  <data name="OldTrackingRate" xml:space="preserve">
+    <value>Tracking rate (Unique/Total)</value>
+  </data>
+  <data name="QM" xml:space="preserve">
+    <value>Qualified Member</value>
+  </data>
 </root>
