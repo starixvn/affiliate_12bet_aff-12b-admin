@@ -45,7 +45,6 @@
                             step : 1
                         });
                     </script>
-
                 </td>
                 <td class="r">
                     {tdate-txt}
@@ -72,15 +71,22 @@
                     Get All&nbsp;&nbsp;<span onclick="chkOnclick();" id="chkDate" class="{cssgetall}">&nbsp;</span>
                     <input type="hidden" id="isGetAll" name="isGetAll" value="{cssgetall}" />
                 </td>
+                <td>
+                    <select name="slSortBy" id="slSortBy">
+                        <option value="0" >Sort by</option>
+                        <option value="1">Total registered</option>
+                    </select>
+                </td>
                 <td style="width: 100px">
                     <span id="divsearch" onclick="Search();">&nbsp;</span>
                 </td>
             </tr>
         </table>
     </div>
-    <input type="hidden" id="page" name="page" value="{page}" />    
+    <input type="hidden" id="page" name="page" value="{page}" />
     <input type="submit" value="" class="hide" />  
     <input type="hidden" id="hdLanguage" name="hdLanguage" value="{lang-val}" />
+    <input type="hidden" id="hdSortBy" name="hdSortBy" value="{sortBy-val}" />
     <input type="hidden" id="type" name="type" value="{type-val}" />
     <div id="divContent" class="ContentBox" style="width: 550px; overflow: visible;">
         {paging-top}

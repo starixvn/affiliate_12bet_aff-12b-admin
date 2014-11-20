@@ -15,7 +15,9 @@
         EnableCalendar($("chkDate").className == "ic-uncheck" ? true : false);
         if ($("hdLanguage").value != "")
             $("slPreferLang").value = $("hdLanguage").value;
-        //$("slPreferLang").value = $("hdLanguage").value;
+        if ($("hdSortBy").value != "") {
+            $("slSortBy").value = $("hdSortBy").value;
+        }
     };
     function chkOnclick() {
         if ($("chkDate").className == "ic-uncheck") {

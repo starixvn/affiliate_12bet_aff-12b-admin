@@ -58,16 +58,27 @@
                         <option value="2014">2014</option>
                     </select>
                 </td>
+                <td class="r">
+                    {sortby-txt}
+                </td>
+                <td>
+                    <select name="slSortBy" id="slSortBy">
+                        <option value="0" >None</option>
+                        <option value="1">Sportsbook</option>
+                        <option value="2">Horse Racing</option>
+                        <option value="3">Casino</option>
+                    </select>
+                </td>
                 <td style="width: 100px">
                     <span id="divsearch" onclick="Search();">&nbsp;</span>
                 </td>
             </tr>
         </table>
     </div>
-    <input type="hidden" id="page" name="page" value="{page}" />    
+    <input type="hidden" id="page" name="page" value="{page}" />
     <input type="submit" value="" class="hide" />  
     <input type="hidden" id="hdLanguage" name="hdLanguage" value="{lang-val}" />
-    
+    <input type="hidden" id="hdSortBy" name="hdSortBy" value="{sortBy-val}" />
     <div id="divContent" class="ContentBox" style="width: 550px; overflow: visible;">
         {paging-top}
         <table class="aff-table" cellspacing="1" cellpadding="3" width="100%">

@@ -2368,4 +2368,19 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
   <data name="QM" xml:space="preserve">
     <value>Qualified Member</value>
   </data>
+  <data name="SortBy" xml:space="preserve">
+    <value>Sort By</value>
+  </data>
+  <data name="Desc" xml:space="preserve">
+    <value>Desc</value>
+  </data>
+  <data name="CasinoPlayerTurnoverReport" xml:space="preserve">
+    <value>Casino Player Turnover Report</value>
+  </data>
+  <data name="Performance" xml:space="preserve">
+    <value>Performance</value>
+  </data>
+  <data name="SBPlayerTurnoverReport" xml:space="preserve">
+    <value>SB Player Turnover Report</value>
+  </data>
 </root>

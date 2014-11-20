@@ -1,18 +1,10 @@
 ﻿using System;
-using System.Collections;
-using System.Configuration;
 using System.Data;
 using System.Text;
-using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.HtmlControls;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
+using Criterias;
 using DNAide.Web;
 using DNAide.Data;
 using DNAide.Core;
-using DNAide.Utils;
 
 public partial class Report_AffiliateQMReport : IBCPage
 {
@@ -30,6 +22,7 @@ public partial class Report_AffiliateQMReport : IBCPage
         TemplateHandler.Assign(ref strTpl, "aff-txt", Resources.Lang.Affiliate);
         TemplateHandler.Assign(ref strTpl, "month-txt", Resources.Lang.Month);
         TemplateHandler.Assign(ref strTpl, "year-txt", Resources.Lang.Year);
+        TemplateHandler.Assign(ref strTpl, "sortby-txt", Resources.Lang.SortBy);
         TemplateHandler.Assign(ref strTpl, "search", Resources.Lang.Search);
         TemplateHandler.Assign(ref strTpl, "themepath", AppSettings.ThemeDir);
         TemplateHandler.Assign(ref strTpl, "affiliate", Resources.Lang.Affiliate);
@@ -51,8 +44,10 @@ public partial class Report_AffiliateQMReport : IBCPage
             int intPageSize = CastAide.AsInt32(Request["slPageSize"], 20);
             int intPage = CastAide.AsInt32(Request["page"], 1);
             string strPreferLang = Request["slPreferLang"];
+            int sortBy = CastAide.AsInt32(Request["slSortBy"], 0);
 
             TemplateHandler.Assign(ref strTpl, "lang-val", strPreferLang);
+            TemplateHandler.Assign(ref strTpl, "sortBy-val", sortBy);
             TemplateHandler.Assign(ref strTpl, "month-val", month);
             TemplateHandler.Assign(ref strTpl, "year-val", year);
             TemplateHandler.Assign(ref strTpl, "page", intPage);
@@ -63,14 +58,25 @@ public partial class Report_AffiliateQMReport : IBCPage
                 TemplateHandler.Assign(ref strTpl, "affname", strUsername);
             TemplateHandler.Assign(ref strTpl, "all-val", "[" + Resources.Lang.All + "]");
 
-            DbResult rs = DataHandler.Affiliate.SelAffiliateQMReport(strUsername, strPreferLang, month, year, intPage, intPageSize);
+            var criteria = new QMReportCriteria
+                {
+                    Username = strUsername,
+                    PreferredLanguage = strPreferLang, 
+                    Month = month,
+                    Year = year,
+                    PageIndex = intPage,
+                    PageSize = intPageSize,
+                    SortBy = sortBy
+                };
+
+            DbResult rs = DataHandler.Affiliate.SelAffiliateQMReport(criteria);
 
             DataTable dtb = new DataTable();
             if (rs.ResultSet.Tables.Count > 0)
                 dtb = rs.ResultSet.Tables[0];
 
-            int totalPage = CastAide.AsInt32(rs.Outputs["totalpages"]);
-            int nummem = CastAide.AsInt32(rs.Outputs["nrows"]);
+            criteria.NRows = CastAide.AsInt32(rs.Outputs["nrows"]);
+
             if (dtb.Rows.Count > 0)
             {
                 int intCount = (intPage - 1) * intPageSize;
@@ -102,11 +108,11 @@ public partial class Report_AffiliateQMReport : IBCPage
                 TemplateHandler.ReplaceBlock(ref strTpl, "nodata", Common.NoInfo(12));
             }
             //Assign Paging template
-            TemplateHandler.Assign(ref strTpl, "paging-top", Common.GenPaging(totalPage, intPage, intPageSize, nummem, "aPageTop", "txtPageTop", 550, false, true));
-            TemplateHandler.Assign(ref strTpl, "paging-bottom", Common.GenPaging(totalPage, intPage, intPageSize, nummem, "aPageBottom", "txtPageBottom", 550, false, false));
+            TemplateHandler.Assign(ref strTpl, "paging-top", Common.GenPaging(criteria.TotalPages, intPage, intPageSize, criteria.NRows, "aPageTop", "txtPageTop", 550, false, true));
+            TemplateHandler.Assign(ref strTpl, "paging-bottom", Common.GenPaging(criteria.TotalPages, intPage, intPageSize, criteria.NRows, "aPageBottom", "txtPageBottom", 550, false, false));
             if (dtb.Rows.Count > 0)
             {
-                TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.ReportLink, SubMenu.ReportText, 3, nummem, SubMenu.ReportText[3], "i_report.png"));
+                TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.ReportLink, SubMenu.ReportText, 3, criteria.NRows, SubMenu.ReportText[3], "i_report.png"));
             }
             else
             {
@@ -117,9 +123,9 @@ public partial class Report_AffiliateQMReport : IBCPage
         catch (Exception ex)
         {
             DNAideLog.Write(ex.Message);
-#if DEBUG
-            throw;
-#endif
+            #if DEBUG
+                  throw;
+            #endif
         }
     }
 }

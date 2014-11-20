@@ -36,8 +36,31 @@ public class SubMenu
     public static string[] AdminLink = new string[] { "ListUser.aspx", "ListDepartment.aspx"};
     public static string[] AdminText = new string[] { Resources.Lang.AdministratorList , Resources.Lang.DepartmentList};
 
-    public static string[] ReportLink = new string[] { "../Report/MemberReport.aspx", "../Report/AffiliateReport.aspx", "../Report/MemberStatisticsReport.aspx", "../Report/AffiliateQMReport.aspx", "../Report/SignUpActive.aspx", "../Report/Commission.aspx", "../Report/Performance.aspx" };
-    public static string[] ReportText = new string[] { Resources.Lang.ReportDetails, Resources.Lang.AffiliateReport, Resources.Lang.MemberStatistics, Resources.Lang.QMReport, Resources.Lang.SignUpActive, Resources.Lang.Commission, "Performance" };
+    public static string[] ReportLink = new string[]
+        {
+            "../Report/MemberReport.aspx", 
+            "../Report/AffiliateReport.aspx", 
+            "../Report/MemberStatisticsReport.aspx", 
+            "../Report/AffiliateQMReport.aspx", 
+            "../Report/SignUpActive.aspx", 
+            "../Report/Commission.aspx", 
+            "../Report/Performance.aspx",
+            "../Report/SBPlayerTurnoverReport.aspx",
+            "../Report/CasinoPlayerTurnoverReport.aspx"
+        };
+
+    public static string[] ReportText = new string[]
+        {
+            Resources.Lang.ReportDetails, 
+            Resources.Lang.AffiliateReport, 
+            Resources.Lang.MemberStatistics, 
+            Resources.Lang.QMReport, 
+            Resources.Lang.SignUpActive, 
+            Resources.Lang.Commission, 
+            Resources.Lang.Performance,
+            Resources.Lang.SBPlayerTurnoverReport,
+            Resources.Lang.CasinoPlayerTurnoverReport
+        };
 
     public static string[] MemberLink = new string[] { "MemberListAll.aspx", "MemberActiveList.aspx" };
     public static string[] MemberText = new string[] { Resources.Lang.Member, Resources.Lang.ActiveMember};
