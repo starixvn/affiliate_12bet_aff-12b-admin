@@ -580,7 +580,7 @@ namespace DataHandler
             hsParam.Add("pagesize", criteria.PageSize);
             hsParam.Add("pageindex", criteria.PageIndex);
             hsParam.Add("sortby", criteria.SortBy);
-            //hsParam.Add("isdesc", criteria.IsDesc);
+            hsParam.Add("isdesc", criteria.IsDesc);
             return DbHelper.Execute(criteria.SpName, hsParam, DBType.AFFILIATE_12BET);
         }
         //Johnny20100109

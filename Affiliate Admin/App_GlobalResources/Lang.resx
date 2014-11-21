@@ -2383,4 +2383,19 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
   <data name="SBPlayerTurnoverReport" xml:space="preserve">
     <value>SB Player Turnover Report</value>
   </data>
+  <data name="ClosingBalance" xml:space="preserve">
+    <value>Closing Balance</value>
+  </data>
+  <data name="DrawGame" xml:space="preserve">
+    <value>Draw Game</value>
+  </data>
+  <data name="NetTurnover" xml:space="preserve">
+    <value>Net Turnover</value>
+  </data>
+  <data name="OpeningBalance" xml:space="preserve">
+    <value>Opening Balance</value>
+  </data>
+  <data name="RegisteredDate" xml:space="preserve">
+    <value>Registered Date</value>
+  </data>
 </root>

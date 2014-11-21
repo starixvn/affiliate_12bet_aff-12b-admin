@@ -123,10 +123,6 @@ public partial class Report_MemberStatisticsReport : IBCPage
                     TemplateHandler.Assign(ref strTmp, "active-val", active);
                     TemplateHandler.Assign(ref strTmp, "dormant-val", total - active);
                     TemplateHandler.Assign(ref strTmp, "total-val", total);
-
-                    //hsTotal[dr["affid"].ToString()] = total;
-
-                    //TemplateHandler.Assign(ref strTmp, "nondeposit-val", "{non-" + dr["affid"].ToString() + "}");
                     TemplateHandler.Assign(ref strTmp, "totalregister-val", "{" + dr["affid"].ToString() + "}");
 
                     strListAffId += dr["affid"].ToString() + ";";
@@ -140,26 +136,15 @@ public partial class Report_MemberStatisticsReport : IBCPage
                 foreach (DataRow dr in rsRegister.ResultSet.Tables[0].Rows)
                 {
                     int totalRegister = CastAide.AsInt32(dr["totalregistered"]);
-                    //int tmpTotal = CastAide.AsInt32(hsTotal[dr["affid"].ToString()]);
-
-                    //if (totalRegister == 0)
-                        //TemplateHandler.ReplaceBlock(ref strTpl, dr["affid"].ToString(), Common.GetAffUsername(CastAide.AsInt32(dr["affid"])));
-
                     intTotalRegister += totalRegister;
                     TemplateHandler.Assign(ref strTpl, dr["affid"].ToString(), totalRegister);
-                    //TemplateHandler.Assign(ref strTpl, "non-" + dr["affid"].ToString(), (totalRegister - tmpTotal) < 0 ? 0 : totalRegister - tmpTotal);
                 }
-                //Calculate for total row
-                //TemplateHandler.Assign(ref strTpl, "totalregister-total", intTotalRegister);
-                //TemplateHandler.Assign(ref strTpl, "nondeposit-total", intTotalRegister - (intActive + intDormant) > 0 ? intTotalRegister - (intActive + intDormant) : 0);
-                //TemplateHandler.Assign(ref strTpl, "active-total", intActive);
-                //TemplateHandler.Assign(ref strTpl, "dormant-total", intTotal - intActive);
-                //TemplateHandler.Assign(ref strTpl, "total-total", intTotal);
             }
             else
             {
                 TemplateHandler.ReplaceBlock(ref strTpl, "nodata", Common.NoInfo(5));
             }
+
             //Assign Paging template
             TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.ReportLink, SubMenu.ReportText, 2, criteria.NRows, SubMenu.ReportText[2], "i_report.png"));
             if (dtb.Rows.Count > 0)

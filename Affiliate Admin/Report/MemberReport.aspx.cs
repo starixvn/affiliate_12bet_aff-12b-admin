@@ -46,7 +46,7 @@ public partial class MemberReport : IBCPage
         //Assign color
         TemplateHandler.Assign(ref strTpl, "over", Common.RowBgOver);
         TemplateHandler.Assign(ref strTpl, "color", Common.RowBgOdd);
-        TemplateHandler.Assign(ref strTpl, "colormonthly", Common.RowBgPending);        
+        TemplateHandler.Assign(ref strTpl, "colormonthly", Common.RowBgPending);
         
         //Hung added
         TemplateHandler.Assign(ref strTpl, "timer-val", string.IsNullOrEmpty(Request["slTime"]) ? "0" : Request["slTime"]);
