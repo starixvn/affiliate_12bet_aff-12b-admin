@@ -76,7 +76,7 @@
     <input type="hidden" id="page" name="page" value="{page}" />
     <input type="submit" value="" class="hide" />  
     <input type="hidden" id="hdLanguage" name="hdLanguage" value="{lang-val}" />
-    <div id="divContent" class="ContentBox" style="width: 550px; overflow: visible;">
+    <div id="divContent" class="ContentBox" style="width: 850px; overflow: visible;">
         {paging-top}
         <table class="aff-table" cellspacing="1" cellpadding="3" width="100%">
             <!--header-->
@@ -85,25 +85,25 @@
                 <th style="width:100px;">
                     {username-txt}
                 </th>
-                <th>
+                <th style="width:100px;">
                     {ibcusername-txt}
                 </th>
-                <th>
+                <th style="width:120px;">
                     {registereddate-txt}
                 </th>
-                <th>
+                <th style="width:100px;">
                     {turnover-txt}
                 </th>
-                <th>
+                <th style="width:100px;">
                     {winloss-txt}
                 </th>
-                <th>
+                <th style="width:100px;">
                     {deposit-txt}
                 </th>
-                <th>
+                <th style="width:100px;">
                     {bonus-txt}
                 </th>
-                <th>
+                <th style="width:100px;">
                     {affiliate-txt}
                 </th>
                 <!--<th>
@@ -118,7 +118,7 @@
                 <td class="l" style="width: 55px;">
                     {username-val}
                 </td>
-                <td>
+                <td class="l">
                     {ibcusername-val}
                 </td>
                 <td>
@@ -136,8 +136,8 @@
                 <td>
                     {bonus-val}
                 </td>
-                <td>
-                    {affiliate-val}
+                <td class="c">
+                    <a href="AffiliateReportDetail.aspx?affname={affiliate-val}&fdate={fdate}&tdate={tdate}&isGetAll={cssgetall}&slSport={sportid-val}">{affiliate-val}</a>
                 </td>
             </tr>
             <!--/content-->

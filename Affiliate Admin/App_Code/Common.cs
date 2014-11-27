@@ -1200,10 +1200,10 @@ public class Common
             }
             result.Append(tempopt);
         }
-        if (string.IsNullOrEmpty(activeValue) && dt.Rows.Count > 0)
-        {
-            activeValue = dt.Rows[0][valueColumn].ToString();
-        }
+        //if (string.IsNullOrEmpty(activeValue) && dt.Rows.Count > 0)
+        //{
+        //    activeValue = dt.Rows[0][valueColumn].ToString();
+        //}
         TemplateHandler.ReplaceBlock(ref opt, "optionList", result.ToString());
         return opt;
     }

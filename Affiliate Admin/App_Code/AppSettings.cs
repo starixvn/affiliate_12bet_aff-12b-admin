@@ -36,12 +36,14 @@ public static class AppSettings
     static DateTime _UMEndTime;
     static DateTime _StatementAvailableFrom;
 
+    private static DateTime _ReportStartDate;
+
     static string _europeanAffiliateURL;
     static string _asianAffiliateURL;
 
     static AppSettings()
     {
-        _virtualDir= System.Configuration.ConfigurationManager.AppSettings["VirtualDir"];
+        _virtualDir= ConfigurationManager.AppSettings["VirtualDir"];
         _site = ConfigurationManager.AppSettings["Site"];
         _jsVersion = ConfigurationManager.AppSettings["JsVersion"];
         _serverId = ConfigurationManager.AppSettings["ServerId"];
@@ -58,6 +60,7 @@ public static class AppSettings
         _link_CS = ConfigurationManager.AppSettings["12BetLink_CS"];
         _imagesize =CastAide.AsInt32(ConfigurationManager.AppSettings["imagesize"]);
         _StatementAvailableFrom = CastAide.AsDateTime(ConfigurationManager.AppSettings["StatementAvailableFrom"]);
+        _ReportStartDate = CastAide.AsDateTime(ConfigurationManager.AppSettings["ReportStartDate"]);
         
         _internalEuropeanAffiliateURL = ConfigurationManager.AppSettings["internalEuropeanAffiliateURL"];
         _internalAsianAffiliateURL = ConfigurationManager.AppSettings["internalAsianAffiliateURL"];
@@ -234,6 +237,15 @@ public static class AppSettings
             return _StatementAvailableFrom;
         }
     }
+
+    public static DateTime ReportStartDate
+    {
+        get
+        {
+            return _ReportStartDate;
+        }
+    }
+
     public static int PageSize
     {
         get

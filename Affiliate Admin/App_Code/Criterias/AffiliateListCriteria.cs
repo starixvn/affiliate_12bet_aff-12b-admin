@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Criterias
+﻿namespace Criterias
 {
     public class AffiliateListCriteria
     {

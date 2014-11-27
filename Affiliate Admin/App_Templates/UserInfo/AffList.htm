@@ -13,32 +13,17 @@
         <div id="header_search">
             {SearchBy}&nbsp;&nbsp;
             {optioncommgroup}
-           <!-- <select name="slPreferLang" id="slPreferLang">
-                <option value="">All language</option>
-                <option value="en-US">English</option>
-                <option value="en-GB">English_Euro</option>
-                <option value="zh-TW">Chinese Traditional</option>
-                <option value="zh-CN">Chinese Simplified</option>
-                <option value="th-TH">Thai</option>
-                <option value="es-ES">Spanish</option>
-                <option value="vi-VN">Vietnamese</option>
-                <option value="id-ID">Indonesian</option>
-                <option value="ko-KR">Korean</option>
-                <option value="ja-JP">Japanese</option>
-            </select>-->
-            
             {optionlanguage}
-            
             <input type="text" value="{username}" title="{username}" style="width:150px;" onblur="setvaluefocus(this,0,'us');" onfocus="setvaluefocus(this,1,'us');" id="txtUsername" name="txtUsername"/>&nbsp;&nbsp;
 
-             <input type="text" value="{email}" title="{email}" onblur="setvaluefocus(this,0,'email');" style="width:150px;" onfocus="setvaluefocus(this,1,'email');" id="txtEmail" name="txtEmail"/>&nbsp;&nbsp;
-             <input type="text" value="{id}" title="{id}" onblur="setvaluefocus(this,0,'id');" style="width:80px;" onfocus="setvaluefocus(this,1,'id');" id="txtID" name="txtID"/>&nbsp;&nbsp;
-             <span id="divsearch" onclick="checkData();">&nbsp;</span>
-             <input type="submit" value="submit" class="hide" />
+            <input type="text" value="{email}" title="{email}" onblur="setvaluefocus(this,0,'email');" style="width:150px;" onfocus="setvaluefocus(this,1,'email');" id="txtEmail" name="txtEmail"/>&nbsp;&nbsp;
+            <input type="text" value="{id}" title="{id}" onblur="setvaluefocus(this,0,'id');" style="width:80px;" onfocus="setvaluefocus(this,1,'id');" id="txtID" name="txtID"/>&nbsp;&nbsp;
+            <span id="divsearch" onclick="checkData();">&nbsp;</span>
+            <input type="submit" value="submit" class="hide" />
         </div>
-        <div id="search_icon">
-            <span id="icontime" onclick="showRefreshTime(true);">&nbsp;</span>
-            <span style="display: none;" id="divTime">
+	    <div id="search_icon">
+	        <span id="icontime" onclick="showRefreshTime(true);">&nbsp;</span>
+	        <span style="display: none;" id="divTime">
 	            <select id="slTime" name="slTime" onchange="UpdateTime();" onblur="hideRefreshTime(false);">
 	                <option value="0">Never</option>
 	                <option value="300">5 mins</option>
@@ -46,9 +31,13 @@
 	                <option value="1800">30 mins</option>
 	                <option value="3600">60 mins</option>
 	            </select>
-            </span>
-        </div>        
-        <div id="spTime" style="float:right; vertical-align:middle; padding: 3px 10px 0 0;"></div>
+	        </span>
+	    </div>
+	    <div id="exportExcel" onclick="getAction(this);" style="float:right; vertical-align:middle;">
+	        &nbsp;
+	        <div id="frameExport"></div>
+	    </div>
+	    <div id="spTime" style="float:right; vertical-align:middle; padding: 3px 10px 0 0;"></div>
     </div>
 	<!--/search form-->
 	<!--content form-->

@@ -24,7 +24,7 @@ public partial class SBPlayerTurnoverReport : IBCPage
         AssignFilter();
         AssignHeader();
         GenerateHTML();
-        this.HtmlContent = strTpl;
+        HtmlContent = strTpl;
     }
 
     void AssignFilter()
@@ -60,10 +60,11 @@ public partial class SBPlayerTurnoverReport : IBCPage
         try
         {
             #region Get paras and assign value to input fields.
-            
-            DateTime dtmFDate = CastAide.AsDateTime(Request["fdate"], DateTime.Now.AddDays(-1));
-            if (dtmFDate < AppSettings.StatementAvailableFrom)
-                dtmFDate = AppSettings.StatementAvailableFrom;
+
+            const int sportId = 1; // Sportsbook
+            DateTime dtmFDate = CastAide.AsDateTime(Request["fdate"], DateTime.Now.AddDays(-31));
+            if (dtmFDate < AppSettings.ReportStartDate)
+                dtmFDate = AppSettings.ReportStartDate;
             DateTime dtmTDate = CastAide.AsDateTime(Request["tdate"], DateTime.Now);
 
             string strPreferLang = Request["slPreferLang"];
@@ -74,6 +75,7 @@ public partial class SBPlayerTurnoverReport : IBCPage
             TemplateHandler.Assign(ref strTpl, "lang-val", strPreferLang);
             TemplateHandler.Assign(ref strTpl, "fdate", dtmFDate.ToString("MM/dd/yyyy"));
             TemplateHandler.Assign(ref strTpl, "tdate", dtmTDate.ToString("MM/dd/yyyy"));
+            TemplateHandler.Assign(ref strTpl, "sportid-val", sportId);
             TemplateHandler.Assign(ref strTpl, "cssgetall", isGetAll ? "ic-check" : "ic-uncheck");
             TemplateHandler.Assign(ref strTpl, "page", intPage); 
 
@@ -88,64 +90,65 @@ public partial class SBPlayerTurnoverReport : IBCPage
                     PageSize = intPageSize
                 };
 
-            //DbResult rs = DataHandler.Report.SBPlayerTurnoverReport(criteria);
+            DbResult rs = DataHandler.Report.SBPlayerTurnoverReport(criteria);
 
-            //DataTable dtb = new DataTable();
-            //if (rs.ResultSet.Tables.Count > 0)
-            //    dtb = rs.ResultSet.Tables[0];
+            DataTable dtb = new DataTable();
+            if (rs.ResultSet.Tables.Count > 0)
+                dtb = rs.ResultSet.Tables[0];
 
-            //criteria.NRows = CastAide.AsInt32(rs.Outputs["nrows"]);
+            criteria.NRows = CastAide.AsInt32(rs.Outputs["nrows"]);
 
-            //if (dtb.Rows.Count > 0)
-            //{
-            //    int intCount = (intPage - 1) * intPageSize;
-            //    string strRowTpl = TemplateHandler.CopyBlock(strTpl, "content");
-            //    StringBuilder strListRow = new StringBuilder();
+            if (dtb.Rows.Count > 0)
+            {
+                int intCount = (intPage - 1) * intPageSize;
+                string strRowTpl = TemplateHandler.CopyBlock(strTpl, "content");
+                StringBuilder strListRow = new StringBuilder();
 
-            //    foreach (DataRow dr in dtb.Rows)
-            //    {
-            //        string strTmp = strRowTpl;
-            //        intCount++;
+                foreach (DataRow dr in dtb.Rows)
+                {
+                    string strTmp = strRowTpl;
+                    intCount++;
 
-            //        TemplateHandler.Assign(ref strTmp, "color", (intCount % 2 == 0) ? Common.RowBgEven : Common.RowBgOdd);
+                    TemplateHandler.Assign(ref strTmp, "color", (intCount % 2 == 0) ? Common.RowBgEven : Common.RowBgOdd);
 
-            //        TemplateHandler.Assign(ref strTmp, "num-val", intCount);
-            //        TemplateHandler.Assign(ref strTmp, "username-val", dr["username"]);
-            //        TemplateHandler.Assign(ref strTmp, "ibcusername-val", dr["ibcusername"]);
-            //        TemplateHandler.Assign(ref strTmp, "openingbalance-val", dr["openingbalance"]);
-            //        TemplateHandler.Assign(ref strTmp, "deposit-val", dr["deposit"]);
-            //        TemplateHandler.Assign(ref strTmp, "withdrawal-val", dr["withdrawal"]);
-            //        TemplateHandler.Assign(ref strTmp, "bonus-val", dr["bonus"]);
-            //        TemplateHandler.Assign(ref strTmp, "adjustment-val", dr["adjustment"]);
-            //        TemplateHandler.Assign(ref strTmp, "turnover-val", dr["turnover"]);
-            //        TemplateHandler.Assign(ref strTmp, "drawgame-val", dr["drawgame"]);
-            //        TemplateHandler.Assign(ref strTmp, "netturnover-val", dr["netturnover"]);
-            //        TemplateHandler.Assign(ref strTmp, "outstanding-val", dr["outstanding"]);
-            //        TemplateHandler.Assign(ref strTmp, "winloss-val", dr["winloss"]);
-            //        TemplateHandler.Assign(ref strTmp, "closingbalance-val", dr["closingbalance"]);
-            //        TemplateHandler.Assign(ref strTmp, "affiliate-val", dr["affiliate"]);
+                    TemplateHandler.Assign(ref strTmp, "num-val", intCount);
+                    TemplateHandler.Assign(ref strTmp, "username-val", dr["username"]);
+                    TemplateHandler.Assign(ref strTmp, "ibcusername-val", dr["ibcusername"]);
+                    TemplateHandler.Assign(ref strTmp, "openingbalance-val", Common.FormatNumber(dr["openingbalance"]));
+                    TemplateHandler.Assign(ref strTmp, "deposit-val", Common.FormatNumber(dr["deposit"]));
+                    TemplateHandler.Assign(ref strTmp, "withdrawal-val", Common.FormatNumber(dr["withdrawal"]));
+                    TemplateHandler.Assign(ref strTmp, "bonus-val", Common.FormatNumber(dr["bonus"]));
+                    TemplateHandler.Assign(ref strTmp, "adjustment-val", Common.FormatNumber(dr["adjustment"]));
+                    TemplateHandler.Assign(ref strTmp, "turnover-val", Common.FormatNumber(dr["turnover"]));
+                    TemplateHandler.Assign(ref strTmp, "drawgame-val", Common.FormatNumber(dr["drawgame"]));
+                    TemplateHandler.Assign(ref strTmp, "netturnover-val", Common.FormatNumber(dr["netturnover"]));
+                    TemplateHandler.Assign(ref strTmp, "outstanding-val", Common.FormatNumber(dr["outstanding"]));
+                    TemplateHandler.Assign(ref strTmp, "winloss-val", Common.FormatNumber(dr["winloss"]));
+                    TemplateHandler.Assign(ref strTmp, "closingbalance-val", Common.FormatNumber(dr["closingbalance"]));
+                    TemplateHandler.Assign(ref strTmp, "affiliate-val", dr["affusername"]);
 
-            //        strListRow.Append(strTmp);
-            //    }
-            //    TemplateHandler.ReplaceBlock(ref strTpl, "content", strListRow.ToString());
-            //}
-            //else
-            //{
-            //    TemplateHandler.ReplaceBlock(ref strTpl, "nodata", Common.NoInfo(15));
-            //}
-            ////Assign Paging template
-            //TemplateHandler.Assign(ref strTpl, "paging-top", Common.GenPaging(criteria.TotalPages, intPage, intPageSize, criteria.NRows, "aPageTop", "txtPageTop", 550, false, true));
-            //TemplateHandler.Assign(ref strTpl, "paging-bottom", Common.GenPaging(criteria.TotalPages, intPage, intPageSize, criteria.NRows, "aPageBottom", "txtPageBottom", 550, false, false));
-            //if (dtb.Rows.Count > 0)
-            //{
-            //    TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.ReportLink, SubMenu.ReportText, 3, criteria.NRows, SubMenu.ReportText[3], "i_report.png"));
-            //}
-            //else
-            //{
+                    strListRow.Append(strTmp);
+                }
+                TemplateHandler.ReplaceBlock(ref strTpl, "content", strListRow.ToString());
+            }
+            else
+            {
+                TemplateHandler.ReplaceBlock(ref strTpl, "nodata", Common.NoInfo(15));
+            }
+            //Assign Paging template
+            TemplateHandler.Assign(ref strTpl, "paging-top", Common.GenPaging(criteria.TotalPages, intPage, intPageSize, criteria.NRows, "aPageTop", "txtPageTop", string.Empty, false, true));
+            TemplateHandler.Assign(ref strTpl, "paging-bottom", Common.GenPaging(criteria.TotalPages, intPage, intPageSize, criteria.NRows, "aPageBottom", "txtPageBottom", string.Empty, false, false));
             const int subMenuIndex = 7;
-            TemplateHandler.Assign(ref strTpl, "pagingcss", "hide");
-            TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.ReportLink, SubMenu.ReportText, subMenuIndex, 0, SubMenu.ReportText[subMenuIndex], "i_report.png"));
-            //}
+
+            if (dtb.Rows.Count > 0)
+            {
+                TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.ReportLink, SubMenu.ReportText, subMenuIndex, criteria.NRows, SubMenu.ReportText[subMenuIndex], "i_report.png"));
+            }
+            else
+            {
+                TemplateHandler.Assign(ref strTpl, "pagingcss", "hide");
+                TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.ReportLink, SubMenu.ReportText, subMenuIndex, 0, SubMenu.ReportText[subMenuIndex], "i_report.png"));
+            }
         }
         catch (Exception ex)
         {

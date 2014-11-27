@@ -153,6 +153,35 @@
             return false;
         }   
         LoadData(1);
-    } 
+    }
+
+    function getAction() {
+        var uriRoot = "../Handler/ExportExcel.ashx";
+
+        var param = {
+            slCommGroup: $('slCommGroup').value,
+            slLanguage: $('slLanguage').value,
+            txtUsername: $('txtUsername').value,
+            txtEmail: $('txtEmail').value,
+            txtID: $('txtID').value,
+            status: $('status').value,
+            isclosed: $('isclosed').value,
+            favor: $('favor').value
+        };
+
+        var queryString = "";
+        
+        for (var key in param) {
+            queryString += key + "=" + param[key] + "&";
+        }
+        
+        queryString = queryString.substring(0, queryString.length - 1);
+
+        var url = encodeURI(uriRoot + "?" + queryString);
+
+        var ele = document.getElementById('frameExport');
+        ele.innerHTML = '';
+        ele.innerHTML = "<iframe src='" + url + "' style='display:none;'></iframe>";
+    }
 </script>
 <!--/js-->

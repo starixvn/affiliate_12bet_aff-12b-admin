@@ -26,7 +26,7 @@ namespace DataHandler
             return DbHelper.Execute(criteria.SpName, hsParam, DBType.AFFILIATE_12BET);
         }
 
-        public static DbResult CasinoPlayerTurnoverReport(SBPlayerTurnoverReportCriteria criteria)
+        public static DbResult CasinoPlayerTurnoverReport(CasinoPlayerTurnoverReportCriteria criteria)
         {
             var hsParam = new Hashtable();
             hsParam.Add("fromdate", criteria.DtmFDate);

@@ -15,6 +15,8 @@ public partial class Report_AffiliateQMReport : IBCPage
         AssignHeader();
         GenerateHTML();
         this.HtmlContent = strTpl;
+
+        
     }
 
     void AssignHeader()
@@ -31,7 +33,6 @@ public partial class Report_AffiliateQMReport : IBCPage
         TemplateHandler.Assign(ref strTpl, "total", Resources.Lang.Total);
         TemplateHandler.Assign(ref strTpl, "datelimit", Resources.Lang.LimitDate + AppSettings.StatementAvailableFrom.ToString("d-MMM-yy"));
         TemplateHandler.Assign(ref strTpl, "over", Common.RowBgOver);
-        
     }
 
     void GenerateHTML()

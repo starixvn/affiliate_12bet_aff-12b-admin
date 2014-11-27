@@ -86,6 +86,9 @@ public partial class Report_AffiliateReport : IBCPage
             TemplateHandler.Assign(ref strTpl, "fdate", dtmFDate.ToString("MM/yyyy"));
             TemplateHandler.Assign(ref strTpl, "tdate", dtmTDate.ToString("MM/yyyy"));
             TemplateHandler.Assign(ref strTpl, "cssgetall", isGetAll ? "ic-check" : "ic-uncheck");
+
+            TemplateHandler.Assign(ref strTpl, "fdate-full", GetFirstDayOfMonth(dtmFDate).ToString("MM/dd/yyyy"));
+            TemplateHandler.Assign(ref strTpl, "tdate-full", GetLastDayOfMonth(dtmTDate).ToString("MM/dd/yyyy"));
             //TemplateHandler.Assign(ref strTpl, "turnover-total", NumberFormat.DecFormat(dcTotalTurnover, 2));
 
             DataTable dtb = new DataTable();
@@ -229,5 +232,21 @@ public partial class Report_AffiliateReport : IBCPage
             throw;
 #endif
         }
+    }
+
+    private DateTime GetLastDayOfMonth(DateTime date)
+    {
+        date = GetFirstDayOfMonth(date);
+        date = date.AddMonths(1).AddDays(-1);
+        return date > DateTime.Now ? DateTime.Now : date;
+    }
+
+    private DateTime GetFirstDayOfMonth(DateTime date)
+    {
+        var firstDay = new DateTime(date.Year, date.Month, 1);
+        if (firstDay < AppSettings.StatementAvailableFrom)
+            firstDay = AppSettings.StatementAvailableFrom;
+
+        return firstDay;
     }
 }

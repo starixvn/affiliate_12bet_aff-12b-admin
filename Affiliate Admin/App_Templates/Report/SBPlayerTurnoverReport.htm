@@ -76,7 +76,7 @@
     <input type="hidden" id="page" name="page" value="{page}" />
     <input type="submit" value="" class="hide" />  
     <input type="hidden" id="hdLanguage" name="hdLanguage" value="{lang-val}" />
-    <div id="divContent" class="ContentBox" style="width: 550px; overflow: visible;">
+    <div id="divContent" class="ContentBox" style="overflow: visible;">
         {paging-top}
         <table class="aff-table" cellspacing="1" cellpadding="3" width="100%">
             <!--header-->
@@ -85,43 +85,43 @@
                 <th style="width:100px;">
                     {username-txt}
                 </th>
-                <th>
+                <th style="width:100px;">
                     {ibcusername-txt}
                 </th>
-                <th>
+                <th style="width:100px;">
                     {openingbalance-txt}
                 </th>
-                <th>
+                <th style="width:100px;">
                     {deposit-txt}
                 </th>
-                <th>
+                <th style="width:100px;">
                     {withdrawal-txt}
                 </th>
-                <th>
+                <th style="width:70px;">
                     {bonus-txt}
                 </th>
-                <th>
+                <th style="width:80px;">
                     {adjustment-txt}
                 </th>
-                <th>
+                <th style="width:80px;">
                     {turnover-txt}
                 </th>
-                <th>
+                <th style="width:100px;">
                     {drawgame-txt}
                 </th>
-                <th>
+                <th style="width:100px;">
                     {netturnover-txt}
                 </th>
-                <th>
+                <th style="width:100px;">
                     {outstanding-txt}
                 </th>
-                <th>
+                <th style="width:100px;">
                     {winloss-txt}
                 </th>
-                <th>
+                <th style="width:100px;">
                     {closingbalance-txt}
                 </th>
-                <th>
+                <th style="width:120px;">
                     {affiliate-txt}
                 </th>
                 <!--<th>
@@ -133,11 +133,11 @@
             <!--content-->
             <tr class="nowrap r" bgcolor="{color}" onmouseout="bgColor='{color}'" onmouseover="bgColor='{over}'">
                 <td>{num-val}</td>
-                <td class="l" style="width: 55px;">
+                <td class="l">
                     {username-val}
                 </td>
-                <td>
-                    {systemid-val}
+                <td class="l">
+                    {ibcusername-val}
                 </td>
                 <td>
                     {openingbalance-val}
@@ -172,8 +172,8 @@
                 <td>
                     {closingbalance-val}
                 </td>
-                <td>
-                    {affiliate-val}
+                <td class="c">
+                    <a href="AffiliateReportDetail.aspx?affname={affiliate-val}&fdate={fdate}&tdate={tdate}&isGetAll={cssgetall}&slSport={sportid-val}">{affiliate-val}</a>
                 </td>
             </tr>
             <!--/content-->
