@@ -9,6 +9,7 @@ using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
+using Criterias;
 using DNAide.Web;
 using DNAide.Utils;
 using DNAide.Core;
@@ -66,9 +67,7 @@ public partial class Report_AffiliateReport : IBCPage
 
         //Hung added
         TemplateHandler.Assign(ref strTpl, "timer-val", string.IsNullOrEmpty(Request["slTime"]) ? "0" : Request["slTime"]);
-
     }
-
     
     void GenerateHTML()
     {
@@ -79,6 +78,8 @@ public partial class Report_AffiliateReport : IBCPage
             bool isGetAll = (CastAide.AsString(Request["isGetAll"], string.Empty) == "ic-check" ? true : false);
             string strPreferLang = Request["slPreferLang"];
             int intSportId = CastAide.AsInt32(Request["slSport"], 0);
+            int intPageSize = CastAide.AsInt32(Request["slPageSize"], 20);
+            int intPage = CastAide.AsInt32(Request["page"], 1);
 
             TemplateHandler.Assign(ref strTpl, "lang-val", strPreferLang);
             TemplateHandler.Assign(ref strTpl, "currentYear-val", DateTime.Now.Year);
@@ -86,6 +87,7 @@ public partial class Report_AffiliateReport : IBCPage
             TemplateHandler.Assign(ref strTpl, "fdate", dtmFDate.ToString("MM/yyyy"));
             TemplateHandler.Assign(ref strTpl, "tdate", dtmTDate.ToString("MM/yyyy"));
             TemplateHandler.Assign(ref strTpl, "cssgetall", isGetAll ? "ic-check" : "ic-uncheck");
+            TemplateHandler.Assign(ref strTpl, "page", intPage);
 
             TemplateHandler.Assign(ref strTpl, "fdate-full", GetFirstDayOfMonth(dtmFDate).ToString("MM/dd/yyyy"));
             TemplateHandler.Assign(ref strTpl, "tdate-full", GetLastDayOfMonth(dtmTDate).ToString("MM/dd/yyyy"));
@@ -93,10 +95,24 @@ public partial class Report_AffiliateReport : IBCPage
 
             DataTable dtb = new DataTable();
             DbResult rs = null;
-            rs = DataHandler.Affiliate.SelAffiliateReport(strPreferLang, dtmFDate, dtmTDate, intSportId, isGetAll);
+
+            var criteria = new AffiliateReportCriteria
+                {
+                    PreferredLanguage = strPreferLang,
+                    FromDate = dtmFDate,
+                    ToDate = dtmTDate,
+                    SportId = intSportId,
+                    IsGetAll = isGetAll,
+                    PageIndex = intPage,
+                    PageSize = intPageSize
+                };
+
+            rs = DataHandler.Affiliate.SelAffiliateReport(criteria);
 
             if (rs.ResultSet.Tables.Count > 0)
                 dtb = rs.ResultSet.Tables[0];
+
+            criteria.NRows = CastAide.AsInt32(rs.Outputs["nrows"]);
 
             if (dtb.Rows.Count > 0)
             {
@@ -224,6 +240,10 @@ public partial class Report_AffiliateReport : IBCPage
                 TemplateHandler.ReplaceBlock(ref strTpl, "nodata", Common.NoInfo(11));
                 TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.ReportLink, SubMenu.ReportText, 1, 0, SubMenu.ReportText[1], "i_report.png"));
             }
+
+            TemplateHandler.Assign(ref strTpl, "paging-top", Common.GenPaging(criteria.TotalPages, criteria.PageIndex, criteria.PageSize, criteria.NRows, "aPageTop", "txtPageTop", string.Empty, false, true));
+            TemplateHandler.Assign(ref strTpl, "paging-bottom", Common.GenPaging(criteria.TotalPages, criteria.PageIndex, criteria.PageSize, criteria.NRows, "aPageBottom", "txtPageBottom", string.Empty, false, false));
+
         }
         catch (Exception ex)
         {

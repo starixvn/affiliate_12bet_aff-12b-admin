@@ -52,13 +52,12 @@ namespace Exporters
 
             CreateSamplePalettes(workbook);
 
-            var maxValue = 128;
             int currentSheet = 1;
             const int colNo = 10;
             
             foreach (DataRow dr in dtbResult.Rows)
             {
-                if (currentRow >= maxValue - 1)
+                if (currentRow >= Int16.MaxValue - 1)
                 {
                     for (int i = 0; i < colNo; i++)
                     {

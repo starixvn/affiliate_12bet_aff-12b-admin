@@ -29,7 +29,6 @@ public partial class Report_AffiliateQMReport : IBCPage
         TemplateHandler.Assign(ref strTpl, "themepath", AppSettings.ThemeDir);
         TemplateHandler.Assign(ref strTpl, "affiliate", Resources.Lang.Affiliate);
         TemplateHandler.Assign(ref strTpl, "sportbook", Resources.Lang.Sportbook);
-        TemplateHandler.Assign(ref strTpl, "horseracing", Resources.Lang.HorseRacing);
         TemplateHandler.Assign(ref strTpl, "total", Resources.Lang.Total);
         TemplateHandler.Assign(ref strTpl, "datelimit", Resources.Lang.LimitDate + AppSettings.StatementAvailableFrom.ToString("d-MMM-yy"));
         TemplateHandler.Assign(ref strTpl, "over", Common.RowBgOver);
@@ -96,7 +95,6 @@ public partial class Report_AffiliateQMReport : IBCPage
                     TemplateHandler.Assign(ref strTmp, "aff-val", dr["username"]);
                     TemplateHandler.Assign(ref strTmp, "affid-val", dr["affid"]);
                     TemplateHandler.Assign(ref strTmp, "sportbook-val", dr["spqm"]);
-                    TemplateHandler.Assign(ref strTmp, "horseracing-val", dr["hrqm"]);
                     TemplateHandler.Assign(ref strTmp, "casino-val", dr["caqm"]);
                     TemplateHandler.Assign(ref strTmp, "total-val", dr["totalqm"]);
 

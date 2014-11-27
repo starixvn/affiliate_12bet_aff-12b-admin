@@ -255,24 +255,26 @@ namespace DataHandler
         //@Vinh
         public static DbResult SelMemberReport(DateTime dtmFDate, DateTime dtmTDate,int affType)
         {
-            Hashtable hsParam = new Hashtable();            
+            Hashtable hsParam = new Hashtable();
             hsParam.Add("fromdate", dtmFDate);
             hsParam.Add("todate", dtmTDate);
             return DbHelper.Execute("Aff_ReportDetailSelAll", hsParam, DBType.AFFILIATE_12BET, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
         }
 
          //@Vinh
-        public static DbResult SelAffiliateReport(string strPreferLang, DateTime dtmFDate, DateTime dtmTDate, int intSportId, bool isGetAll)
+        public static DbResult SelAffiliateReport(AffiliateReportCriteria criteria)
         {
             Hashtable hsParam = new Hashtable();
-            if(!string.IsNullOrEmpty(strPreferLang))
-                hsParam.Add("preferredlanguage", strPreferLang);
-            if (intSportId > 0)
-                hsParam.Add("sportid", intSportId);
-            hsParam.Add("fromdate", dtmFDate);
-            hsParam.Add("todate", dtmTDate);
-            hsParam.Add("isgetall", isGetAll);
-            return DbHelper.Execute("Aff_AffiliateReport", hsParam, DBType.AFFILIATE_12BET, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
+            if(!string.IsNullOrEmpty(criteria.PreferredLanguage))
+                hsParam.Add("preferredlanguage", criteria.PreferredLanguage);
+            if (criteria.SportId > 0)
+                hsParam.Add("sportid", criteria.SportId);
+            hsParam.Add("fromdate", criteria.FromDate);
+            hsParam.Add("todate", criteria.ToDate);
+            hsParam.Add("isgetall", criteria.IsGetAll);
+            hsParam.Add("pageindex", criteria.PageIndex);
+            hsParam.Add("pagesize", criteria.PageSize);
+            return DbHelper.Execute(criteria.SpName, hsParam, DBType.AFFILIATE_12BET, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
         }
 
         //@Vinh
