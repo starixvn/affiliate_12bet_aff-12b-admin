@@ -359,7 +359,7 @@ IBC.addEvent(window, "load", _startup);
 var arrMenu = new Array("menu1@Home/Home.aspx", "menu2@Customer/AffDefault.aspx", "menu3@UserInfo/AffiliateList.aspx, Payment/PaymentRequest.aspx, Others/EmailHistory.aspx, GroupSetting/GroupSetting.aspx",
         "menu4@UserInfo/MemberListAll.aspx", "menu5@Report/MemberReport.aspx", "menu6@Media/Listbanner.aspx", "menu7@Others/Message.aspx", "menu8@Exchange/AffRate.aspx", "menu9@UserControl/ListUser.aspx, UserControl/ListDepartment.aspx", "menu10@Domain/AffiliateDomain.aspx");
 function _startup()
-{
+{/*
     HideDelayReloadPage();
     IBC.calculateViewport();
     var lstSubmenu = $$("li a span");
@@ -385,7 +385,7 @@ function _startup()
         }
     }    
     if(itemFocus != "")
-        top.fMenu.ActiveMenu(itemFocus);
+        top.fMenu.ActiveMenu(itemFocus);*/
 }
 /*-----End script-----*/
 IBC.addEvent(window, "unload", _end);

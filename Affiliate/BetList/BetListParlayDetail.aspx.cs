@@ -1,0 +1,24 @@
+﻿using System;
+using AffBetlistService;
+
+public partial class BetList_BetListParlayDetail : RootPageLogIn
+{
+    protected object betlistParlayDetailHtmlString;
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        var criteria = new BetListSystemParlayDetailCriteria
+            {
+                TransId = long.Parse(Request["transId"]),
+                RefNo = long.Parse(Request["refno"]),
+                BetId = int.Parse(Request["betId"]),
+                CustId = int.Parse(Request["custid"])
+            };
+
+        var affBetlistService = new AffiliateAPI();
+        betlistParlayDetailHtmlString = affBetlistService.GetBetlistSystemParlay(
+            "12bet",
+            "1",
+            criteria);
+    }
+}

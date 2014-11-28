@@ -100,7 +100,9 @@
         </td>
         <td class="r">
             <!--amount-val-->
-            <a href="DailyEarning.aspx?custid={custid}&monthdate={month-val}&user={username}">{amount-val}</a><!--/amount-val-->
+            <!-- <a href="DailyEarning.aspx?custid={custid}&monthdate={month-val}&user={username}">{amount-val}</a> --><!--/amount-val-->
+            <a href="DailyEarning.aspx?custid={custid}&monthdate={month-val}&user={username}">{amount-val}</a>
+
             <!--transid-val-->
             <a href="javascript:ibcWnd.open('../Payment/PaymentUpdate.aspx?transid={transid-val}&lang=E&page=statement', '{transid} {transid-val}', 80, 0, 500, 510, 'class1', 'class2');">
                 {amount-val}</a><!--/transid-val-->

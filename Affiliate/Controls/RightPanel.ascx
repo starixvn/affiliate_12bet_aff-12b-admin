@@ -1,5 +1,6 @@
 <%@ Control Language="C#" AutoEventWireup="true" CodeFile="RightPanel.ascx.cs" Inherits="Controls_RightPanel" %>
 <!--login-->
+
 <div runat="server" id="LoginPanel" class="box_right">
     <div class="box_right_header">
         <%=strTitleLogin %>
@@ -70,12 +71,12 @@
 <!--After login-->
 <div class="box_right" id="divAfterLogin" runat="server">        
     <div class="box_right_header">
-        <div class="icon_top"><asp:Literal ID="ltrUserName" runat="server"></asp:Literal></div>        
+        <div class="icon_top"><asp:Literal ID="ltrUserName" runat="server"></asp:Literal></div>
     </div>
 	<div id="rightmenu">
 			<span><a runat="server" href="~/UserInfo/Account_Overview.aspx" id="lnkAccOverview"><%=Resources.Lang.AccOverview%></a></span>
             <% if (AppSettings.Session.CommGroupName == "Korean Agent Comm")
-               { %>
+                { %>
                
                 <span><a runat="server" href="~/UserInfo/Customers.aspx" id="A15"><%= Resources.Lang.YourCustomers %></a></span>
             <%} %>
@@ -85,12 +86,12 @@
 			<span><a runat="server" href="~/UserInfo/PaymentRequest.aspx" id="lnkPayment"><%=Resources.Lang.PaymentRequest %></a></span>
 			
             <% if (AppSettings.Session.CommGroupName != "Media")
-               { %>
+                { %>
                 
                 <span><a runat="server" href="~/UserInfo/MediaGalleryNew.aspx" id="lnkMediaGalleryNew"><%= Resources.Lang.Media%></a></span>
             <%} %>
             <%else
-               { %>
+                { %>
                 <span><a runat="server" href="~/UserInfo/MediaBanner.aspx" id="lnkMediaBanner"><%=Resources.Lang.Media %></a></span>
             <%} %>
 			<span><a runat="server" href="~/UserInfo/MediaText.aspx" id="lnkMediaText"><%=Resources.Lang.Text %></a></span>
@@ -109,7 +110,7 @@
                 <img src="<%=Common.RootURL()%>/<%=AppSettings.ThemeDir %>/Images/expand.png" class="outline-img" id="imgOutline" /> 
             </a> 
         </div>
-     </div>
+        </div>
     <div class="box_right_cons02" id="dvOutline" style="display:none;">
         <a id="A3" class="link_white" runat="server" href="~/FAQs.aspx#f1">1. <%=Resources.Lang.WhatIs12BETAffiliates%></a> 
         <a id="A4" class="link_white" runat="server" href="~/FAQs.aspx#f2">2. <%=Resources.Lang.HowDoISignUp%></a> 
@@ -133,14 +134,14 @@
 </div>
 
 <div id="aSignup" style="margin-bottom: 5px;" runat="server">
-     <!--<object height="144" width="268" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000">
-      <param value="<%=Common.RootURL() %>/Flash/<%=Common.GetLanguage() %>/Ads_Aff.swf?v=<%=AppSettings.JsVersion %>" name="movie"/>
-      <param value="high" name="quality"/>
-      <embed height="143" width="268" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" quality="high" src="<%=Common.RootURL() %>/Flash/<%=Common.GetLanguage() %>/Ads_Aff.swf?v=<%=AppSettings.JsVersion %>"/>
+        <!--<object height="144" width="268" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000">
+        <param value="<%=Common.RootURL() %>/Flash/<%=Common.GetLanguage() %>/Ads_Aff.swf?v=<%=AppSettings.JsVersion %>" name="movie"/>
+        <param value="high" name="quality"/>
+        <embed height="143" width="268" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" quality="high" src="<%=Common.RootURL() %>/Flash/<%=Common.GetLanguage() %>/Ads_Aff.swf?v=<%=AppSettings.JsVersion %>"/>
     </object>
     </script>-->
     <div id="flashcontent">
-      12BET Affiliate banner
+        12BET Affiliate banner
     </div>
     <script type="text/javascript">
         var flashvars = {};
@@ -162,6 +163,19 @@
                 }
             }
         }
+
+        function OnExpandView() {
+            if (document.getElementById("right_pane")) {
+                if (document.getElementById("right_pane").style.display == 'none') {
+                    document.getElementById("right_pane").style.display = 'block';
+                    document.getElementById("imgOutline").src = '<%=Common.RootURL()%>/<%=AppSettings.ThemeDir %>/Images/clollapse.png';
+                }
+                else {
+                    document.getElementById("right_pane").style.display = 'none';
+                    document.getElementById("imgOutline").src = '<%=Common.RootURL()%>/<%=AppSettings.ThemeDir %>/Images/expand.png';
+                }
+            }
+        }
     </script>
 </div>
 <a id="A12" href="~/ContactUs.aspx" runat="server">
@@ -173,9 +187,7 @@
     </div>
 </a>
 <!--/login-->
-
 <script language="javascript" type="text/javascript">
 <%=errmsg %>
 <%=script %>
 </script>
-

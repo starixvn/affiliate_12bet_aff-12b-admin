@@ -17,9 +17,9 @@ using System.Web.Caching;
 using LoadBalancerLibrary;
 using System.Xml;
 using System.Data.OleDb;
-using OfficeOpenXml;
+//using OfficeOpenXml;
 using Sunplus.UMControllerLibrary;
-using System.Linq;
+//using System.Linq;
 using Fanex.MailDeliver.MailClient.API;
 
 
@@ -1614,7 +1614,7 @@ public class Common
                 // Get the file we are going to process
                 var existingFile = new FileInfo(path);
                 // Open and read the XlSX file.
-                using (var package = new ExcelPackage(existingFile))
+                /*using (var package = new ExcelPackage(existingFile))
                 {
                     // Get the work book in the file
                     ExcelWorkbook workBook = package.Workbook;
@@ -1679,7 +1679,7 @@ public class Common
                             }
                         }
                     }
-                }
+                }*/
             }
             else
             {

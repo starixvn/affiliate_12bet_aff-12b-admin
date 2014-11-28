@@ -4,7 +4,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
     <script type="text/javascript" language="javascript" src="../App_Js/swfobject.js"></script>
     <script src="../App_Js/Common.js" language="javascript" type="text/javascript"></script>
-    <script src="../App_Js/IBCWnd/IBCWnd.js" language="javascript" type="text/javascript"></script>    
+    <script src="../App_Js/IBCWnd/IBCWnd.js" language="javascript" type="text/javascript"></script>
     <script type="text/javascript" language="javascript">
 
         function HidePopup() {
