@@ -32,9 +32,9 @@
         </div>
         <div style="height: 5px;"></div>
         <div id="betlist_breadcrum" style="margin-left: 5px;">
-            <a href="../UserInfo/StatementHistory.aspx"><%=Resources.Lang.StatementHistory%></a> >> 
-            <a href="../UserInfo/DailyEarning.aspx?monthdate=<%= DateTime.Now.ToShortDateString()%>"><%=Resources.Lang.DailyEarnings%></a> >> 
-            <a href="../UserInfo/DailyEarningDetail.aspx?monthdate=<%= monthdate%>&custid=<%= originalCustId%>&slSportType=<%= slSportType%>"><%=Resources.Lang.DailyEarningDetail%></a> >> 
+            <a href="../UserInfo/StatementHistory.aspx"><%=Resources.Lang.StatementHistory%> (<%= fromDate.ToString("MMM yyyy")%>)</a> >> 
+            <a href="../UserInfo/DailyEarning.aspx?monthdate=<%= monthdate.ToShortDateString()%>"><%=Resources.Lang.DailyEarnings%></a> >> 
+            <a href="../UserInfo/DailyEarningDetail.aspx?monthdate=<%= fromDate.ToShortDateString()%>&custid=<%= originalCustId%>&slSportType=<%= slSportType%>"><%=Resources.Lang.DailyEarningDetail%></a> >> 
             <b><%= UserName%></b>
         </div>
         <div style="height: 5px;"></div>

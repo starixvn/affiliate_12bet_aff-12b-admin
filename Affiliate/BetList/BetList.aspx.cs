@@ -11,7 +11,7 @@ public partial class BetList_BetList : RootPageLogIn
     protected int affId;
     protected string UserName = string.Empty;
     protected string slSportType = string.Empty;
-    protected string monthdate = string.Empty;
+    protected DateTime monthdate;
     protected DateTime fromDate;
     protected DateTime toDate;
 
@@ -27,7 +27,7 @@ public partial class BetList_BetList : RootPageLogIn
             toDate = DateTime.Parse(Request["tdate"]);
             UserName = Request["UserName"];
             slSportType = Request["slSportType"];
-            monthdate = Request["fdate"];
+            monthdate = new DateTime(fromDate.Year, fromDate.Month, DateTime.DaysInMonth(fromDate.Year, fromDate.Month));
             betlistInfo = "Bet List: " + fromDate.ToShortDateString();
             // check belonging
             if (false)//affId != AppSettings.Session.CustID)
