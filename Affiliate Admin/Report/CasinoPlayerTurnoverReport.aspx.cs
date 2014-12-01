@@ -64,7 +64,7 @@ public partial class CasinoPlayerTurnoverReport : IBCPage
 
             dtmFDate = new DateTime(2008, 3, 1);
 
-            string strPreferLang = Request["slPreferLang"];
+            string strPreferLang = string.IsNullOrEmpty(Request["slPreferLang"]) ? null : Request["slPreferLang"];
             bool isGetAll = (CastAide.AsString(Request["isGetAll"], string.Empty) == "ic-check" ? true : false);
             int intPageSize = CastAide.AsInt32(Request["slPageSize"], 20);
             int intPage = CastAide.AsInt32(Request["page"], 1);
@@ -84,7 +84,8 @@ public partial class CasinoPlayerTurnoverReport : IBCPage
                     DtmFDate = dtmFDate,
                     DtmTDate = dtmTDate,
                     PageIndex = intPage,
-                    PageSize = intPageSize
+                    PageSize = intPageSize,
+                    IsGetAll = isGetAll
                 };
 
             DbResult rs = DataHandler.Report.CasinoPlayerTurnoverReport(criteria);

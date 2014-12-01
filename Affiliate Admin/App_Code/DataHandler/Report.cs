@@ -18,7 +18,7 @@ namespace DataHandler
             var hsParam = new Hashtable();
             hsParam.Add("fromdate", criteria.DtmFDate);
             hsParam.Add("todate", criteria.DtmTDate);
-            hsParam.Add("preferredlanguage", criteria.PreferredLanguage);
+            hsParam.Add("preferedlanguage", criteria.PreferredLanguage);
             hsParam.Add("isgetall", criteria.IsGetAll);
 
             hsParam.Add("pagesize", criteria.PageSize);
@@ -31,7 +31,7 @@ namespace DataHandler
             var hsParam = new Hashtable();
             hsParam.Add("fromdate", criteria.DtmFDate);
             hsParam.Add("todate", criteria.DtmTDate);
-            hsParam.Add("preferredlanguage", criteria.PreferredLanguage);
+            hsParam.Add("preferedlanguage", criteria.PreferredLanguage);
             hsParam.Add("isgetall", criteria.IsGetAll);
 
             hsParam.Add("pagesize", criteria.PageSize);

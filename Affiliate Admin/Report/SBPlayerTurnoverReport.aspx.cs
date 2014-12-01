@@ -67,7 +67,7 @@ public partial class SBPlayerTurnoverReport : IBCPage
                 dtmFDate = AppSettings.ReportStartDate;
             DateTime dtmTDate = CastAide.AsDateTime(Request["tdate"], DateTime.Now);
 
-            string strPreferLang = Request["slPreferLang"];
+            string strPreferLang = string.IsNullOrEmpty(Request["slPreferLang"]) ? null : Request["slPreferLang"];
             bool isGetAll = (CastAide.AsString(Request["isGetAll"], string.Empty) == "ic-check" ? true : false);
             int intPageSize = CastAide.AsInt32(Request["slPageSize"], 20);
             int intPage = CastAide.AsInt32(Request["page"], 1);
@@ -87,7 +87,8 @@ public partial class SBPlayerTurnoverReport : IBCPage
                     DtmFDate = dtmFDate,
                     DtmTDate = dtmTDate,
                     PageIndex = intPage,
-                    PageSize = intPageSize
+                    PageSize = intPageSize,
+                    IsGetAll = isGetAll
                 };
 
             DbResult rs = DataHandler.Report.SBPlayerTurnoverReport(criteria);
