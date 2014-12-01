@@ -16,7 +16,7 @@
     </site>
     <site>
       <name>12betuser</name>
-      <status>1</status>
+      <status>0</status>
       <webconfigmodel>ConfigModels\WebConfigModels\WebConfigModel.xml</webconfigmodel>
     </site>
   </sites>

@@ -19,6 +19,7 @@
 
 	var fanexSettings = reader.GetSettingsOfNode("Fanex.Logging");
 	var appSettings = reader.GetSettingsOfNode("appSettings");
+	var connectionStrings = reader.GetSettingsOfNode("connectionStrings");
 #>
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
@@ -84,28 +85,28 @@
   </appSettings>
   <connectionStrings>
     <remove name="main" />
-    <add name="main" providerName="System.Data.SqlClient" connectionString="<#= appSettings.GetValue("main") #>" />
+    <add name="main" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("main") #>" />
     <remove name="custdb" />
-    <add name="custdb" providerName="System.Data.SqlClient" connectionString="<#= appSettings.GetValue("custdb") #>" />
+    <add name="custdb" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("custdb") #>" />
     <remove name="archive" />
-    <add name="archive" providerName="System.Data.SqlClient" connectionString="<#= appSettings.GetValue("archive") #>" />
+    <add name="archive" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("archive") #>" />
     <remove name="on_user" />
-    <add name="on_user" providerName="System.Data.SqlClient" connectionString="<#= appSettings.GetValue("on_user") #>" />
+    <add name="on_user" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("on_user") #>" />
     <remove name="replicate" />
-    <add name="replicate" providerName="System.Data.SqlClient" connectionString="<#= appSettings.GetValue("replicate") #>" />
+    <add name="replicate" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("replicate") #>" />
     <remove name="warehouse" />
-    <add name="warehouse" providerName="System.Data.SqlClient" connectionString="<#= appSettings.GetValue("warehouse") #>" />
+    <add name="warehouse" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("warehouse") #>" />
     <remove name="affiliate" />
-    <add name="affiliate" providerName="System.Data.SqlClient" connectionString="<#= appSettings.GetValue("affiliate") #>" />
+    <add name="affiliate" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("affiliate") #>" />
     <remove name="deposit" />
-    <add name="deposit" providerName="System.Data.SqlClient" connectionString="<#= appSettings.GetValue("deposit") #>" />
+    <add name="deposit" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("deposit") #>" />
     
     <!--New DB Affiliate-->
-    <add name="affiliate_12bet" providerName="System.Data.SqlClient" connectionString="<#= appSettings.GetValue("affiliate_12bet") #>" />
-    <add name="DBAGE.BODB02" providerName="System.Data.SqlClient" connectionString="<#= appSettings.GetValue("DBAGE.BODB02") #>" />
-    <add name="DBAGE.bodb_AGE" providerName="System.Data.SqlClient" connectionString="<#= appSettings.GetValue("DBAGE.bodb_AGE") #>" />
-    <add name="DBARC.bodb_Archive" providerName="System.Data.SqlClient" connectionString="<#= appSettings.GetValue("DBARC.bodb_Archive") #>" />
-    <add name="age_archive" providerName="System.Data.SqlClient" connectionString="<#= appSettings.GetValue("age_archive") #>" />
+    <add name="affiliate_12bet" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("affiliate_12bet") #>" />
+    <add name="DBAGE.BODB02" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("DBAGE.BODB02") #>" />
+    <add name="DBAGE.bodb_AGE" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("DBAGE.bodb_AGE") #>" />
+    <add name="DBARC.bodb_Archive" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("DBARC.bodb_Archive") #>" />
+    <add name="age_archive" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("age_archive") #>" />
   </connectionStrings>
   <system.web>
     <machineKey validationKey="DBD341D2E939399A19F6A977A91447BB784B473FD8EAFC272440BA1BE85289C39F681921F05F8DC08E452A7292F986B311ADADD23C7D3DE0B6A0999E0B4D792C" decryptionKey="A6925D7BFBEAD2B3FF1D5C54F862447209527FD7DD70B043AEB4CEBCB0BBF7E4" validation="SHA1" decryption="AES" />
