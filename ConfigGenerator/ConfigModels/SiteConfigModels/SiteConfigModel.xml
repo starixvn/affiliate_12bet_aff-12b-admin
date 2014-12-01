@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <webconfigmodel>ConfigModels\WebConfigModels\WebConfigModel.xml</webconfigmodel>
+  <environments>
+    <environment enable="1">local</environment>
+    <environment enable="1">master</environment>
+    <environment enable="1">uat</environment>
+    <environment enable="1">production</environment>
+  </environments>
+  <demoSite>affadmin</demoSite>
+  <sites>
+    <site>
+      <name>12betadmin</name>
+      <status>1</status>
+      <webconfigmodel>ConfigModels\WebConfigModels\WebConfigModel-12betadmin.xml</webconfigmodel>
+    </site>
+    <site>
+      <name>12betuser</name>
+      <status>1</status>
+      <webconfigmodel>ConfigModels\WebConfigModels\WebConfigModel.xml</webconfigmodel>
+    </site>
+  </sites>
+</root>

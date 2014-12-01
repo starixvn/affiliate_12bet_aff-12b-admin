@@ -1,0 +1,27 @@
+﻿
+
+//-> Web.12betadmin.local.config
+
+//-> Web.12betadmin.master.config
+
+//-> Web.12betadmin.production.config
+
+//-> Web.12betadmin.uat.config
+
+//-> Web.12betuser.local.config
+
+//-> Web.12betuser.master.config
+
+//-> Web.12betuser.production.config
+
+//-> Web.12betuser.uat.config
+// Generated helper templates
+// Generated items
+// D:\GitLab\affiliate-12bet\ConfigGenerator\Web.12betuser.production.config
+// D:\GitLab\affiliate-12bet\ConfigGenerator\Web.12betuser.uat.config
+// D:\GitLab\affiliate-12bet\ConfigGenerator\Web.12betuser.master.config
+// D:\GitLab\affiliate-12bet\ConfigGenerator\Web.12betuser.local.config
+// D:\GitLab\affiliate-12bet\ConfigGenerator\Web.12betadmin.production.config
+// D:\GitLab\affiliate-12bet\ConfigGenerator\Web.12betadmin.uat.config
+// D:\GitLab\affiliate-12bet\ConfigGenerator\Web.12betadmin.master.config
+// D:\GitLab\affiliate-12bet\ConfigGenerator\Web.12betadmin.local.config

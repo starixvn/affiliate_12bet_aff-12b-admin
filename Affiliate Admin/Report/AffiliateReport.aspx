@@ -82,7 +82,7 @@
                 var errors = {
                     0: "Valid",
                     1: "From Date is greater than To Date",
-                    2: "Date Period is greater than 6 months",
+                    2: "Sorry! We just allow to view the report within 6 months.",
                     3: "Date Period is invalid."
                 };
 

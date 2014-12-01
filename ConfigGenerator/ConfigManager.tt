@@ -1,0 +1,70 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ output extension=".txt" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Xml.Linq" #>
+<#@ assembly name="System.Data" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(SolutionDir)\ConfigGenerator\App_dll\Fanex.AffiliateAdmin.ConfigGenerator.dll" #>
+<#@ import namespace="Fanex.AffiliateAdmin.ConfigGenerator.ConfigModelReaders" #>
+<#@ include file="$(SolutionDir)\packages\T4.TemplateFileManager.2.1.2\tools\ttinc\TemplateFilemanager.CS.ttinclude" #>
+<# 
+	var fileManager = TemplateFileManager.Create(this);
+	fileManager.IsAutoIndentEnabled = true;
+	fileManager.CanOverwriteExistingFile = true;
+
+	// init handling for parameter templates
+	var paramTmpl = ParamTextTemplate.Create(this.Host);
+	var session = ParamTextTemplate.GetSessionObject();
+
+	var webProject = @"Affiliate Admin";
+
+	var manager = new SiteManager
+        {
+            XmlFile = Host.ResolvePath(@"ConfigModels\SiteConfigModels\SiteConfigModel.xml")
+        };
+
+    manager.LoadXml();
+
+    var globalWebConfigModel = manager.GetGlobalWebConfigModel();
+    var environments = manager.GetSupportedEnvironmentList();
+    var sites = manager.GetSupportedSiteList();
+
+	foreach(var site in sites)
+	{
+		if(site.Status)
+		{
+			site.WebConfigModel = string.IsNullOrEmpty(site.WebConfigModel) ? globalWebConfigModel : site.WebConfigModel;
+			
+			foreach(var environment in environments.Keys)
+			{
+				if(environments[environment])
+				{
+					site.Environment = environment;
+					session["Site"] = site;
+
+					var webconfigName = string.Format("Web.{0}.{1}.config", site.Name, site.Environment.ToLower());
+
+					if(site.Name.Equals("12betadmin"))
+					{
+						// for web config
+						fileManager.StartNewFile(webconfigName);
+						var webConfigOutput = paramTmpl.TransformText("Web.Admin.Config.tt", session);
+						this.Write(webConfigOutput);
+                    }
+
+					if(site.Name.Equals("12betuser"))
+					{
+						// for web config
+						fileManager.StartNewFile(webconfigName);
+						var webConfigOutput = paramTmpl.TransformText("Web.User.Config.tt", session);
+						this.Write(webConfigOutput);
+                    }
+
+				}
+			}
+		}
+	}
+
+
+	fileManager.Process();
+#>
