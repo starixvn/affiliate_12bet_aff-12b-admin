@@ -12,8 +12,10 @@
 <script type="text/javascript" language="javascript">
     window.onload = Init;
     
-    function Init()
-    {
+    function Init() {
+
+        EnableCalendar($("chkDate").className == "ic-uncheck" ? true : false);
+        
         if ($("hdLanguage").value != "")
             $("slPreferLang").value = $("hdLanguage").value;
     }

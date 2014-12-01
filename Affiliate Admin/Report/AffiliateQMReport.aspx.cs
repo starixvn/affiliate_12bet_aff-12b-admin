@@ -95,7 +95,7 @@ public partial class Report_AffiliateQMReport : IBCPage
                     TemplateHandler.Assign(ref strTmp, "aff-val", dr["username"]);
                     TemplateHandler.Assign(ref strTmp, "affid-val", dr["affid"]);
                     TemplateHandler.Assign(ref strTmp, "sportbook-val", dr["spqm"]);
-                    TemplateHandler.Assign(ref strTmp, "casino-val", dr["caqm"]);
+                    TemplateHandler.Assign(ref strTmp, "casino-val", dr["csqm"]);
                     TemplateHandler.Assign(ref strTmp, "total-val", dr["totalqm"]);
 
                     strListRow.Append(strTmp);
