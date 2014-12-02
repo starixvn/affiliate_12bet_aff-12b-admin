@@ -183,6 +183,12 @@
       <uat>packet size=4096; Data Source=10.40.40.51;Initial Catalog=12BetAffiliate;integrated security=false; user id=bodbDownlineNetview; password=TBAw8F+PqCx3u382anlnOXtGnv+Ylef9WzguKrc1cd0=;</uat>
       <production>packet size=4096; Data Source=10.40.40.51;Initial Catalog=12BetAffiliate;integrated security=false; user id=bodbDownlineNetview; password=TBAw8F+PqCx3u382anlnOXtGnv+Ylef9WzguKrc1cd0=;</production>
     </archive_view>
+    <affiliate_view>
+      <local>packet size=4096; Data Source=10.18.200.231;Initial Catalog=12BetAffiliate;integrated security=false; user id=bodbDownlineNetview; password=TBAw8F+PqCx3u382anlnOXtGnv+Ylef9WzguKrc1cd0=;</local>
+      <master></master>
+      <uat>packet size=4096; Data Source=10.40.40.51;Initial Catalog=12BetAffiliate;integrated security=false; user id=bodbDownlineNetview; password=TBAw8F+PqCx3u382anlnOXtGnv+Ylef9WzguKrc1cd0=;</uat>
+      <production>packet size=4096; Data Source=10.40.40.51;Initial Catalog=12BetAffiliate;integrated security=false; user id=bodbDownlineNetview; password=TBAw8F+PqCx3u382anlnOXtGnv+Ylef9WzguKrc1cd0=;</production>
+    </affiliate_view>
     <on_user_view>
       <local>packet size=4096; Data Source=10.18.200.231;Initial Catalog=on_user;integrated security=false; user id=bodbDownlineNetview; password=TBAw8F+PqCx3u382anlnOXtGnv+Ylef9WzguKrc1cd0=;</local>
       <master></master>
@@ -237,7 +243,8 @@
       <uat>packet size=4096; Data Source=10.40.40.100;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNet; password=TBAw8F+PqCx3u382anlnOVRxKIJYMsMwXVn1hJpeyKk==</uat>
       <production>packet size=4096; Data Source=10.40.40.100;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNet; password=TBAw8F+PqCx3u382anlnOVRxKIJYMsMwXVn1hJpeyKk==</production>
     </archive06>
-  </connectionStrings>
+  
+</connectionStrings>
   
   <compilation>
     <debug>
