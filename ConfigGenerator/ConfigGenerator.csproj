@@ -69,24 +69,88 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ConfigManager.tt</DependentUpon>
     </Content>
-    <Content Include="ConfigModels\SiteConfigModels\SiteConfigModel.xml" />
-    <Content Include="ConfigModels\WebConfigModels\WebConfigModel.xml" />
+    <Content Include="ConfigModels\SiteConfigModels\SiteConfigModel.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ConfigModels\WebConfigModels\WebConfigModel-12betgo.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ConfigModels\WebConfigModels\WebConfigModel-12betuser-euro.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ConfigModels\WebConfigModels\WebConfigModel-12betuser-asian.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ConfigModels\WebConfigModels\WebConfigModel-12betadmin.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Go.Config.txt">
+      <DependentUpon>Web.Go.Config.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Content>
+    <Content Include="Web.User.Config.txt">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Web.User.Config.tt</DependentUpon>
+    </Content>
     <None Include="ConfigManager.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ConfigManager.txt</LastGenOutput>
     </None>
     <Content Include="packages.config" />
-    <None Include="Web.Config.tt">
+    <Content Include="Web.12betadmin.local.config">
+      <DependentUpon>ConfigManager.tt</DependentUpon>
+    </Content>
+    <Content Include="Web.12betadmin.master.config">
+      <DependentUpon>ConfigManager.tt</DependentUpon>
+    </Content>
+    <Content Include="Web.12betadmin.production.config">
+      <DependentUpon>ConfigManager.tt</DependentUpon>
+    </Content>
+    <Content Include="Web.12betadmin.uat.config">
+      <DependentUpon>ConfigManager.tt</DependentUpon>
+    </Content>
+    <Content Include="Web.12betuser-asian.local.config">
+      <DependentUpon>ConfigManager.tt</DependentUpon>
+    </Content>
+    <Content Include="Web.12betuser-asian.master.config">
+      <DependentUpon>ConfigManager.tt</DependentUpon>
+    </Content>
+    <Content Include="Web.12betuser-asian.production.config">
+      <DependentUpon>ConfigManager.tt</DependentUpon>
+    </Content>
+    <Content Include="Web.12betuser-asian.uat.config">
+      <DependentUpon>ConfigManager.tt</DependentUpon>
+    </Content>
+    <Content Include="Web.12betuser-euro.local.config">
+      <DependentUpon>ConfigManager.tt</DependentUpon>
+    </Content>
+    <Content Include="Web.12betuser-euro.master.config">
+      <DependentUpon>ConfigManager.tt</DependentUpon>
+    </Content>
+    <Content Include="Web.12betuser-euro.production.config">
+      <DependentUpon>ConfigManager.tt</DependentUpon>
+    </Content>
+    <Content Include="Web.12betuser-euro.uat.config">
+      <DependentUpon>ConfigManager.tt</DependentUpon>
+    </Content>
+    <None Include="Web.Go.Config.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Web.Config.txt</LastGenOutput>
+      <LastGenOutput>Web.Go.Config.txt</LastGenOutput>
     </None>
-    <Content Include="Web.Config.txt">
+    <None Include="Web.User.Config.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Web.User.Config.txt</LastGenOutput>
+    </None>
+    <None Include="Web.Admin.Config.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Web.Admin.Config.txt</LastGenOutput>
+    </None>
+    <Content Include="Web.Admin.Config.txt">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Web.Config.tt</DependentUpon>
-    </Content>
-    <Content Include="Web.local.config">
-      <DependentUpon>ConfigManager.tt</DependentUpon>
+      <DependentUpon>Web.Admin.Config.tt</DependentUpon>
     </Content>
   </ItemGroup>
   <ItemGroup>

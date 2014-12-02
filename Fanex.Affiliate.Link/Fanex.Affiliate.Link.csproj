@@ -157,7 +157,6 @@
     <Compile Include="Criterias\TrackingSystemCriteria.cs" />
     <Compile Include="DataAccess\Impl\TrackingSystemDataAccess.cs" />
     <Compile Include="DataAccess\Interface\ITrackingSystemDataAccess.cs" />
-    <None Include="Deployment.ignore" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -291,6 +290,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\PageNotFound.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ConfigManager.txt4" />
+    <Content Include="Web.12betgo.production.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.12betgo.uat.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.12betgo.master.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
+    <Content Include="Web.12betgo.local.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

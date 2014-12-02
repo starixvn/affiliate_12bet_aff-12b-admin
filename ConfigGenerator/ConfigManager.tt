@@ -16,8 +16,6 @@
 	var paramTmpl = ParamTextTemplate.Create(this.Host);
 	var session = ParamTextTemplate.GetSessionObject();
 
-	var webProject = @"Affiliate Admin";
-
 	var manager = new SiteManager
         {
             XmlFile = Host.ResolvePath(@"ConfigModels\SiteConfigModels\SiteConfigModel.xml")
@@ -46,17 +44,23 @@
 
 					if(site.Name.Equals("12betadmin"))
 					{
-						// for web config
 						fileManager.StartNewFile(webconfigName);
 						var webConfigOutput = paramTmpl.TransformText("Web.Admin.Config.tt", session);
 						this.Write(webConfigOutput);
                     }
 
-					if(site.Name.Equals("12betuser"))
+					if(site.Name.StartsWith("12betuser"))
 					{
-						// for web config
 						fileManager.StartNewFile(webconfigName);
 						var webConfigOutput = paramTmpl.TransformText("Web.User.Config.tt", session);
+						this.Write(webConfigOutput);
+                    }
+
+					if(site.Name.Equals("12betgo"))
+                    {
+						var webProject = @"Fanex.Affiliate.Link";
+						fileManager.StartNewFile(webconfigName, webProject);
+						var webConfigOutput = paramTmpl.TransformText("Web.Go.Config.tt", session);
 						this.Write(webConfigOutput);
                     }
 
@@ -64,7 +68,6 @@
 			}
 		}
 	}
-
 
 	fileManager.Process();
 #>

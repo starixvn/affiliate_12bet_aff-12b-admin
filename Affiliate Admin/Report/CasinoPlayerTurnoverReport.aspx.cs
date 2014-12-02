@@ -57,12 +57,10 @@ public partial class CasinoPlayerTurnoverReport : IBCPage
 
             const int sportId = 3; // Casino
 
-            DateTime dtmFDate = CastAide.AsDateTime(Request["fdate"], DateTime.Now.AddDays(-1));
+            DateTime dtmFDate = CastAide.AsDateTime(Request["fdate"], DateTime.Now.AddDays(-31));
             if (dtmFDate < AppSettings.ReportStartDate)
                 dtmFDate = AppSettings.ReportStartDate;
             DateTime dtmTDate = CastAide.AsDateTime(Request["tdate"], DateTime.Now);
-
-            dtmFDate = new DateTime(2008, 3, 1);
 
             string strPreferLang = string.IsNullOrEmpty(Request["slPreferLang"]) ? null : Request["slPreferLang"];
             bool isGetAll = (CastAide.AsString(Request["isGetAll"], string.Empty) == "ic-check" ? true : false);

@@ -15,9 +15,19 @@
       <webconfigmodel>ConfigModels\WebConfigModels\WebConfigModel-12betadmin.xml</webconfigmodel>
     </site>
     <site>
-      <name>12betuser</name>
-      <status>0</status>
-      <webconfigmodel>ConfigModels\WebConfigModels\WebConfigModel.xml</webconfigmodel>
+      <name>12betuser-asian</name>
+      <status>1</status>
+      <webconfigmodel>ConfigModels\WebConfigModels\WebConfigModel-12betuser-asian.xml</webconfigmodel>
+    </site>
+    <site>
+      <name>12betuser-euro</name>
+      <status>1</status>
+      <webconfigmodel>ConfigModels\WebConfigModels\WebConfigModel-12betuser-euro.xml</webconfigmodel>
+    </site>
+    <site>
+      <name>12betgo</name>
+      <status>1</status>
+      <webconfigmodel>ConfigModels\WebConfigModels\WebConfigModel-12betgo.xml</webconfigmodel>
     </site>
   </sites>
 </root>

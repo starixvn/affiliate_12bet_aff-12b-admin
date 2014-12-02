@@ -1,0 +1,258 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <Fanex.Logging>
+    <msmqPath>
+      <local>FormatName:DIRECT=TCP:10.18.200.209\private$\entlib</local>
+      <master>FormatName:DIRECT=TCP:10.2.180.13\private$\entlib</master>
+      <uat>FormatName:DIRECT=TCP:10.2.180.13\private$\entlib</uat>
+      <production>FormatName:DIRECT=TCP:10.2.180.13\private$\entlib</production>
+    </msmqPath>
+  </Fanex.Logging>
+  <appSettings>
+    <AffTypeList>
+      <local>4</local>
+      <master>4</master>
+      <uat>4</uat>
+      <production>4</production>
+    </AffTypeList>
+    <RemoteRefURL>
+      <local>tcp://10.18.200.209:8888/CallGetRefFunction</local>
+      <master></master>
+      <uat>tcp://10.40.40.29:8098/CallGetRefFunction</uat>
+      <production>tcp://10.40.40.29:8098/CallGetRefFunction</production>
+    </RemoteRefURL>
+    <MailContact>
+      <local>brian.dinh@nexcel.vn</local>
+      <master></master>
+      <uat>brian.dinh@nexcel.vn</uat>
+      <production>affiliates@12csd.com</production>
+    </MailContact>
+    <RegAlertMail>
+      <local>jenny.phan@nexcel.vn</local>
+      <master></master>
+      <uat>jenny.phan@nexcel.vn</uat>
+      <production>affiliates@12csd.com</production>
+    </RegAlertMail>
+    <CCMail>
+      <local></local>
+      <master></master>
+      <uat></uat>
+      <production></production>
+    </CCMail>
+    <app_mail_id>
+      <local>48</local>
+      <master></master>
+      <uat>39</uat>
+      <production>39</production>
+    </app_mail_id>
+    <app_mail_address>
+      <local>net.tcp://10.18.200.209:8787/MailService</local>
+      <master></master>
+      <uat>net.tcp://10.40.40.127:8585/MailService</uat>
+      <production>net.tcp://10.40.40.127:8585/MailService</production>
+    </app_mail_address>
+    <MediaUrl>
+      <local>http://localhost:5004/</local>
+      <master></master>
+      <uat>http://banner.12biying.com/</uat>
+      <production>http://banner.12biying.com/</production>
+    </MediaUrl>
+    <MediaUrl_CS>
+      <local>http://localhost:5004/</local>
+      <master></master>
+      <uat>http://banner.12betscore.com/</uat>
+      <production>http://banner.12betscore.com/</production>
+    </MediaUrl_CS>
+    <MediaUrl_TH>
+      <local>http://localhost:5004/</local>
+      <master></master>
+      <uat>http://banner.12sheng.com/</uat>
+      <production>http://banner.12sheng.com/</production>
+    </MediaUrl_TH>
+    <MediaUrl_VI>
+      <local>http://localhost:5004/</local>
+      <master></master>
+      <uat>http://banner.4win1.com/</uat>
+      <production>http://banner.4win1.com/</production>
+    </MediaUrl_VI>
+    <MediaUrl_EU>
+      <local>http://localhost:5004/</local>
+      <master></master>
+      <uat>http://banner.12bet.com/</uat>
+      <production>http://banner.12bet.com/</production>
+    </MediaUrl_EU>
+
+    <AsianAffDomain>
+      <local>localhost</local>
+      <master></master>
+      <uat>affiliate.12bet.com/UAT</uat>
+      <production>affiliate.12bet.com</production>
+    </AsianAffDomain>
+    <AsianAffPort>
+      <local>51421</local>
+      <master></master>
+      <uat>80</uat>
+      <production>80</production>
+    </AsianAffPort>
+    <EuropeanAffDomain>
+      <local>localhost</local>
+      <master></master>
+      <uat>aff.12bet.com/UAT</uat>
+      <production>aff.12bet.com</production>
+    </EuropeanAffDomain>
+    <EuropeanAffPort>
+      <local>51421</local>
+      <master></master>
+      <uat>8083</uat>
+      <production>8083</production>
+    </EuropeanAffPort>
+
+    <LocalTest>
+      <local>1</local>
+      <master>0</master>
+      <uat>0</uat>
+      <production>0</production>
+    </LocalTest>
+    <LBUrl>
+      <local></local>
+      <master></master>
+      <uat>tcp://10.40.40.150:8990/UMControllerInterface</uat>
+      <production>tcp://10.40.40.150:8990/UMControllerInterface</production>
+    </LBUrl>
+    <HasCheckUmTime>
+      <local>0</local>
+      <master></master>
+      <uat></uat>
+      <production>1</production>
+    </HasCheckUmTime>
+  </appSettings>
+
+  <connectionStrings>
+    <main>
+      <local>packet size=4096; Data Source=10.18.200.206;Initial Catalog=custdb;integrated security=false; user id=bodbDownlineNet; password=TBAw8F+PqCx3u382anlnOVRxKIJYMsMwXVn1hJpeyKk=;</local>
+      <master></master>
+      <uat>packet size=4096; Data Source=10.40.40.17;Initial Catalog=custdb;integrated security=false; user id=bodbDownlineNet; password=TBAw8F+PqCx3u382anlnOVRxKIJYMsMwXVn1hJpeyKk=;</uat>
+      <production>packet size=4096; Data Source=10.40.40.17;Initial Catalog=custdb;integrated security=false; user id=bodbDownlineNet; password=TBAw8F+PqCx3u382anlnOVRxKIJYMsMwXVn1hJpeyKk=;</production>
+    </main>
+    <archive>
+      <local>packet size=4096; Data Source=10.18.200.231;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNet; password=TBAw8F+PqCx3u382anlnOVRxKIJYMsMwXVn1hJpeyKk=;</local>
+      <master></master>
+      <uat>packet size=4096; Data Source=10.40.40.91;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNet; password=TBAw8F+PqCx3u382anlnOVRxKIJYMsMwXVn1hJpeyKk=;</uat>
+      <production>packet size=4096; Data Source=10.40.40.91;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNet; password=TBAw8F+PqCx3u382anlnOVRxKIJYMsMwXVn1hJpeyKk=;</production>
+    </archive>
+    <affiliate>
+      <local>packet size=4096; Data Source=10.18.200.231;Initial Catalog=12BetAffiliate;integrated security=false; user id=bodbDownlineNet; password=TBAw8F+PqCx3u382anlnOVRxKIJYMsMwXVn1hJpeyKk=;</local>
+      <master></master>
+      <uat>packet size=4096; Data Source=10.40.40.51;Initial Catalog=12BetAffiliate;integrated security=false; user id=bodbDownlineNet; password=TBAw8F+PqCx3u382anlnOVRxKIJYMsMwXVn1hJpeyKk=;</uat>
+      <production>packet size=4096; Data Source=10.40.40.51;Initial Catalog=12BetAffiliate;integrated security=false; user id=bodbDownlineNet; password=TBAw8F+PqCx3u382anlnOVRxKIJYMsMwXVn1hJpeyKk=;</production>
+    </affiliate>
+    <affiliate_12bet>
+      <local>packet size=4096; Data Source=10.18.200.231;Initial Catalog=affiliate_12bet;integrated security=false; user id=bodbDownlineNet; password=TBAw8F+PqCx3u382anlnOVRxKIJYMsMwXVn1hJpeyKk=;</local>
+      <master></master>
+      <uat>packet size=4096; Data Source=10.40.40.92;Initial Catalog=affiliate_12bet;integrated security=false; user id=bodbDownlineNet; password=TBAw8F+PqCx3u382anlnOVRxKIJYMsMwXVn1hJpeyKk=;</uat>
+      <production>packet size=4096; Data Source=10.40.40.92;Initial Catalog=affiliate_12bet;integrated security=false; user id=bodbDownlineNet; password=TBAw8F+PqCx3u382anlnOVRxKIJYMsMwXVn1hJpeyKk=;</production>
+    </affiliate_12bet>
+    <on_user>
+      <local>packet size=4096; Data Source=10.18.200.231;Initial Catalog=on_user;integrated security=false; user id=bodbDownlineNet; password=TBAw8F+PqCx3u382anlnOVRxKIJYMsMwXVn1hJpeyKk=;</local>
+      <master></master>
+      <uat>packet size=4096; Data Source=10.40.40.51;Initial Catalog=on_user;integrated security=false; user id=bodbDownlineNet; password=TBAw8F+PqCx3u382anlnOVRxKIJYMsMwXVn1hJpeyKk=;</uat>
+      <production>packet size=4096; Data Source=10.40.40.51;Initial Catalog=on_user;integrated security=false; user id=bodbDownlineNet; password=TBAw8F+PqCx3u382anlnOVRxKIJYMsMwXVn1hJpeyKk=;</production>
+    </on_user>
+    <warehouse>
+      <local>packet size=4096; Data Source=10.18.200.231;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNet; password=TBAw8F+PqCx3u382anlnOVRxKIJYMsMwXVn1hJpeyKk=;</local>
+      <master></master>
+      <uat>packet size=4096; Data Source=10.40.40.100;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNet; password=TBAw8F+PqCx3u382anlnOVRxKIJYMsMwXVn1hJpeyKk=;</uat>
+      <production>packet size=4096; Data Source=10.40.40.100;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNet; password=TBAw8F+PqCx3u382anlnOVRxKIJYMsMwXVn1hJpeyKk=;</production>
+    </warehouse>
+    <deposit>
+      <local>packet size=4096; Data Source=10.18.200.231;Initial Catalog=Deposit_DB;integrated security=false; user id=bodbAffiliateNet; password=a59O1jgHk05Mhd7nyySQdQ==;</local>
+      <master></master>
+      <uat>packet size=4096; Data Source=10.2.106.47;Initial Catalog=Deposit_DB;integrated security=false; user id=bodbAffiliateNet; password=a59O1jgHk05Mhd7nyySQdQ==;</uat>
+      <production>packet size=4096; Data Source=10.2.106.47;Initial Catalog=Deposit_DB;integrated security=false; user id=bodbAffiliateNet; password=a59O1jgHk05Mhd7nyySQdQ==;</production>
+    </deposit>
+
+    <main_view>
+      <local>packet size=4096; Data Source=10.40.40.41;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNetview; password=TBAw8F+PqCx3u382anlnOXtGnv+Ylef9WzguKrc1cd0=;</local>
+      <master></master>
+      <uat>packet size=4096; Data Source=10.40.40.41;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNetview; password=TBAw8F+PqCx3u382anlnOXtGnv+Ylef9WzguKrc1cd0=;</uat>
+      <production>packet size=4096; Data Source=10.40.40.41;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNetview; password=TBAw8F+PqCx3u382anlnOXtGnv+Ylef9WzguKrc1cd0=;</production>
+    </main_view>
+    <archive_view>
+      <local>packet size=4096; Data Source=10.18.200.231;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNetview; password=TBAw8F+PqCx3u382anlnOXtGnv+Ylef9WzguKrc1cd0=;</local>
+      <master></master>
+      <uat>packet size=4096; Data Source=10.40.40.51;Initial Catalog=12BetAffiliate;integrated security=false; user id=bodbDownlineNetview; password=TBAw8F+PqCx3u382anlnOXtGnv+Ylef9WzguKrc1cd0=;</uat>
+      <production>packet size=4096; Data Source=10.40.40.51;Initial Catalog=12BetAffiliate;integrated security=false; user id=bodbDownlineNetview; password=TBAw8F+PqCx3u382anlnOXtGnv+Ylef9WzguKrc1cd0=;</production>
+    </archive_view>
+    <on_user_view>
+      <local>packet size=4096; Data Source=10.18.200.231;Initial Catalog=on_user;integrated security=false; user id=bodbDownlineNetview; password=TBAw8F+PqCx3u382anlnOXtGnv+Ylef9WzguKrc1cd0=;</local>
+      <master></master>
+      <uat>packet size=4096; Data Source=10.40.40.51;Initial Catalog=on_user;integrated security=false; user id=bodbDownlineNetview; password=TBAw8F+PqCx3u382anlnOXtGnv+Ylef9WzguKrc1cd0=;</uat>
+      <production>packet size=4096; Data Source=10.40.40.51;Initial Catalog=on_user;integrated security=false; user id=bodbDownlineNetview; password=TBAw8F+PqCx3u382anlnOXtGnv+Ylef9WzguKrc1cd0=;</production>
+    </on_user_view>
+    <warehouse_view>
+      <local>packet size=4096; Data Source=10.18.200.231;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNetview; password=TBAw8F+PqCx3u382anlnOXtGnv+Ylef9WzguKrc1cd0=;</local>
+      <master></master>
+      <uat>packet size=4096; Data Source=10.40.40.100;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNetview; password=TBAw8F+PqCx3u382anlnOXtGnv+Ylef9WzguKrc1cd0=;</uat>
+      <production>packet size=4096; Data Source=10.40.40.100;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNetview; password=TBAw8F+PqCx3u382anlnOXtGnv+Ylef9WzguKrc1cd0=;</production>
+    </warehouse_view>
+    <deposit_view>
+      <local>packet size=4096; Data Source=10.18.200.231;Initial Catalog=Deposit_DB;integrated security=false; user id=bodbAffiliateNet; password=a59O1jgHk05Mhd7nyySQdQ==;</local>
+      <master></master>
+      <uat>packet size=4096; Data Source=10.2.106.47;Initial Catalog=Deposit_DB;integrated security=false; user id=bodbAffiliateNet; password=a59O1jgHk05Mhd7nyySQdQ==;</uat>
+      <production>packet size=4096; Data Source=10.2.106.47;Initial Catalog=Deposit_DB;integrated security=false; user id=bodbAffiliateNet; password=a59O1jgHk05Mhd7nyySQdQ==;</production>
+    </deposit_view>
+    <affiliate_12bet_view>
+      <local>packet size=4096; Data Source=10.18.200.231;Initial Catalog=affiliate_12bet;integrated security=false; user id=bodbDownlineNetView; password=TBAw8F+PqCx3u382anlnOXtGnv+Ylef9WzguKrc1cd0=;</local>
+      <master></master>
+      <uat>packet size=4096; Data Source=10.40.40.92;Initial Catalog=affiliate_12bet;integrated security=false; user id=bodbDownlineNetView; password=TBAw8F+PqCx3u382anlnOXtGnv+Ylef9WzguKrc1cd0=;</uat>
+      <production>packet size=4096; Data Source=10.40.40.92;Initial Catalog=affiliate_12bet;integrated security=false; user id=bodbDownlineNetView; password=TBAw8F+PqCx3u382anlnOXtGnv+Ylef9WzguKrc1cd0=;</production>
+    </affiliate_12bet_view>
+    <DBAGE.BODB02>
+      <local>packet size=4096; Data Source=10.18.200.231;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNetView; password=TBAw8F+PqCx3u382anlnOXtGnv+Ylef9WzguKrc1cd0==</local>
+      <master></master>
+      <uat>packet size=4096; Data Source=10.40.40.94;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNetView; password=TBAw8F+PqCx3u382anlnOXtGnv+Ylef9WzguKrc1cd0==</uat>
+      <production>packet size=4096; Data Source=10.40.40.94;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNetView; password=TBAw8F+PqCx3u382anlnOXtGnv+Ylef9WzguKrc1cd0==</production>
+    </DBAGE.BODB02>
+    <DBAGE.bodb_AGE>
+      <local>packet size=4096; Data Source=10.18.200.231;Initial Catalog=bodb_AGE;integrated security=false; user id=bodbDownlineNetView; password=TBAw8F+PqCx3u382anlnOXtGnv+Ylef9WzguKrc1cd0==</local>
+      <master></master>
+      <uat>packet size=4096; Data Source=10.40.40.94;Initial Catalog=bodb_AGE;integrated security=false; user id=bodbDownlineNetView; password=TBAw8F+PqCx3u382anlnOXtGnv+Ylef9WzguKrc1cd0==</uat>
+      <production>packet size=4096; Data Source=10.40.40.94;Initial Catalog=bodb_AGE;integrated security=false; user id=bodbDownlineNetView; password=TBAw8F+PqCx3u382anlnOXtGnv+Ylef9WzguKrc1cd0==</production>
+    </DBAGE.bodb_AGE>
+    <DBARC.bodb_Archive>
+      <local>packet size=4096; Data Source=10.18.200.231;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNetView; password=TBAw8F+PqCx3u382anlnOXtGnv+Ylef9WzguKrc1cd0==</local>
+      <master></master>
+      <uat>packet size=4096; Data Source=10.40.40.100;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNetView; password=TBAw8F+PqCx3u382anlnOXtGnv+Ylef9WzguKrc1cd0==</uat>
+      <production>packet size=4096; Data Source=10.40.40.100;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNetView; password=TBAw8F+PqCx3u382anlnOXtGnv+Ylef9WzguKrc1cd0==</production>
+    </DBARC.bodb_Archive>
+    <age_archive>
+      <local>packet size=4096; Data Source=10.18.200.231;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNet; password=TBAw8F+PqCx3u382anlnOVRxKIJYMsMwXVn1hJpeyKk==</local>
+      <master></master>
+      <uat>packet size=4096; Data Source=10.40.40.94;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNet; password=TBAw8F+PqCx3u382anlnOVRxKIJYMsMwXVn1hJpeyKk==</uat>
+      <production>packet size=4096; Data Source=10.40.40.94;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNet; password=TBAw8F+PqCx3u382anlnOVRxKIJYMsMwXVn1hJpeyKk==</production>
+    </age_archive>
+    <archive06>
+      <local>packet size=4096; Data Source=10.18.200.231;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNet; password=TBAw8F+PqCx3u382anlnOVRxKIJYMsMwXVn1hJpeyKk==" providerName="System.Data.SqlClient</local>
+      <master></master>
+      <uat>packet size=4096; Data Source=10.40.40.100;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNet; password=TBAw8F+PqCx3u382anlnOVRxKIJYMsMwXVn1hJpeyKk==</uat>
+      <production>packet size=4096; Data Source=10.40.40.100;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNet; password=TBAw8F+PqCx3u382anlnOVRxKIJYMsMwXVn1hJpeyKk==</production>
+    </archive06>
+  </connectionStrings>
+  
+  <compilation>
+    <debug>
+      <local>true</local>
+      <master>false</master>
+      <uat>true</uat>
+      <production>false</production>
+    </debug>
+  </compilation>
+  <customErrors>
+    <mode>
+      <local>Off</local>
+      <master>RemoteOnly</master>
+      <uat>Off</uat>
+      <production>RemoteOnly</production>
+    </mode>
+  </customErrors>
+</configuration>
