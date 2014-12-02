@@ -238,7 +238,7 @@
       <production>packet size=4096; Data Source=10.40.40.94;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNet; password=TBAw8F+PqCx3u382anlnOVRxKIJYMsMwXVn1hJpeyKk==</production>
     </age_archive>
     <archive06>
-      <local>packet size=4096; Data Source=10.18.200.231;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNet; password=TBAw8F+PqCx3u382anlnOVRxKIJYMsMwXVn1hJpeyKk==" providerName="System.Data.SqlClient</local>
+      <local>packet size=4096; Data Source=10.18.200.231;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNet; password=TBAw8F+PqCx3u382anlnOVRxKIJYMsMwXVn1hJpeyKk==</local>
       <master></master>
       <uat>packet size=4096; Data Source=10.40.40.100;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNet; password=TBAw8F+PqCx3u382anlnOVRxKIJYMsMwXVn1hJpeyKk==</uat>
       <production>packet size=4096; Data Source=10.40.40.100;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNet; password=TBAw8F+PqCx3u382anlnOVRxKIJYMsMwXVn1hJpeyKk==</production>
