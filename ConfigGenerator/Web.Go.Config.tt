@@ -16,12 +16,8 @@
 				};
 
 	reader.LoadXml();
-
-	var fanexSettings = reader.GetSettingsOfNode("Fanex.Logging");
 	var appSettings = reader.GetSettingsOfNode("appSettings");
 	var connectionStrings = reader.GetSettingsOfNode("connectionStrings");
-	var compilations = reader.GetSettingsOfNode("compilation");
-	var customErrors = reader.GetSettingsOfNode("customErrors");
 #>
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
@@ -35,7 +31,7 @@
     </providers>
   </Fanex.Data.DbSettingProvider>
   <connectionStrings>
-    <add name="affiliate" providerName="System.Data.SqlClient" connectionString="packet size=4096; Data Source=10.18.200.231;Initial Catalog=affiliate_12bet;integrated security=false; user id=bodbDownlineNet; password=TBAw8F+PqCx3u382anlnOVRxKIJYMsMwXVn1hJpeyKk=;" />
+    <add name="affiliate" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("affiliate") #>" />
   </connectionStrings>
   <appSettings>
     <add key="webpages:Version" value="2.0.0.0" />
@@ -43,7 +39,7 @@
     <add key="PreserveLoginUrl" value="true" />
     <add key="ClientValidationEnabled" value="true" />
     <add key="UnobtrusiveJavaScriptEnabled" value="true" />
-    <add key="RemovePortFromUrl" value="0"/>
+    <add key="RemovePortFromUrl" value="<#= appSettings.GetValue("RemovePortFromUrl") #>"/>
   </appSettings>
   <system.web>
 	  <customErrors mode="Off" />
