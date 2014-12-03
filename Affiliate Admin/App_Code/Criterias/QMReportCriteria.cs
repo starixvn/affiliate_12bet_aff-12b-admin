@@ -36,7 +36,6 @@ namespace Criterias
         {
             get
             {
-                //return "Aff_ReportQM";
                 return "Aff_ReportQM_xtest";
             }
         }

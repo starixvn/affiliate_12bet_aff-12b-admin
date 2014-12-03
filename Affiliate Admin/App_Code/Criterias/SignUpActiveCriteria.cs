@@ -41,7 +41,6 @@ namespace Criterias
         {
             get
             {
-                //return "Aff_ActiveMemberReport";
                 return "Aff_ActiveMemberReport_xtest";
             }
         }

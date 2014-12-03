@@ -34,7 +34,6 @@ namespace Criterias
         {
             get
             {
-                //return "Aff_PlayerSportsBookReport";
                 return "Aff_PlayerSportsBookReport_xtest";
             }
         }
