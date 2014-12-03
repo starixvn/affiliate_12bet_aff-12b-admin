@@ -154,9 +154,9 @@ public partial class SBPlayerTurnoverReport : IBCPage
         catch (Exception ex)
         {
             DNAideLog.Write(ex.Message);
-            #if DEBUG
-                  throw;
-            #endif
+            //#if DEBUG
+            //      throw;
+            //#endif
         }
     }
 }

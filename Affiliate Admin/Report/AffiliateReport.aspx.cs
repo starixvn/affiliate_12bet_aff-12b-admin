@@ -248,9 +248,9 @@ public partial class Report_AffiliateReport : IBCPage
         catch (Exception ex)
         {
             DNAideLog.Write(ex.Message);
-#if DEBUG
-            throw;
-#endif
+            //#if DEBUG
+            //            throw;
+            //#endif
         }
     }
 
