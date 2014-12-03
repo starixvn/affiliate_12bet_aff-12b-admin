@@ -36,7 +36,11 @@ namespace Criterias
 
         public string SpName
         {
-            get { return "Aff_PerformanceReport"; }
+            get
+            {
+                //return "Aff_PerformanceReport";
+                return "Aff_PerformanceReport_xtest";
+            }
         }
     }
 }

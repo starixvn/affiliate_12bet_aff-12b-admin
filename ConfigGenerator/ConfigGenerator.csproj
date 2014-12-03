@@ -64,12 +64,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_dll\Fanex.AffiliateAdmin.ConfigGenerator.dll" />
-    <Content Include="ConfigManager.txt">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ConfigManager.tt</DependentUpon>
-    </Content>
     <Content Include="ConfigModels\SiteConfigModels\SiteConfigModel.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ConfigModels\WebConfigModels\WebConfigModel-12betbanner.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="ConfigModels\WebConfigModels\WebConfigModel-12betgo.xml">
@@ -84,19 +82,19 @@
     <Content Include="ConfigModels\WebConfigModels\WebConfigModel-12betadmin.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Web.Go.Config.txt">
-      <DependentUpon>Web.Go.Config.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Content>
     <Content Include="Web.User.Config.txt">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Web.User.Config.tt</DependentUpon>
     </Content>
+    <Content Include="ConfigManager.config">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ConfigManager.tt</DependentUpon>
+    </Content>
     <None Include="ConfigManager.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ConfigManager.txt</LastGenOutput>
+      <LastGenOutput>ConfigManager.config</LastGenOutput>
     </None>
     <Content Include="packages.config" />
     <Content Include="Web.12betadmin.local.config">
@@ -135,9 +133,23 @@
     <Content Include="Web.12betuser-euro.uat.config">
       <DependentUpon>ConfigManager.tt</DependentUpon>
     </Content>
+    <Content Include="Web.Go.Config.config">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Web.Go.Config.tt</DependentUpon>
+    </Content>
+    <Content Include="Web.Banner.Config.config">
+      <DependentUpon>Web.Banner.Config.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Content>
+    <None Include="Web.Banner.Config.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Web.Banner.Config.config</LastGenOutput>
+    </None>
     <None Include="Web.Go.Config.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Web.Go.Config.txt</LastGenOutput>
+      <LastGenOutput>Web.Go.Config.config</LastGenOutput>
     </None>
     <None Include="Web.User.Config.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

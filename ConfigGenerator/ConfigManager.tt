@@ -58,9 +58,15 @@
 
 					if(site.Name.Equals("12betgo"))
                     {
-						var webProject = @"Fanex.Affiliate.Link";
-						fileManager.StartNewFile(webconfigName, webProject);
+						fileManager.StartNewFile(webconfigName, @"Fanex.Affiliate.Link");
 						var webConfigOutput = paramTmpl.TransformText("Web.Go.Config.tt", session);
+						this.Write(webConfigOutput);
+                    }
+
+					if(site.Name.Equals("12betbanner"))
+                    {
+						fileManager.StartNewFile(webconfigName, @"AffiliateMedia");
+						var webConfigOutput = paramTmpl.TransformText("Web.Banner.Config.tt", session);
 						this.Write(webConfigOutput);
                     }
 

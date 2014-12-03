@@ -36,7 +36,11 @@ namespace Criterias
 
         public string SpName
         {
-            get { return "Aff_AffiliateCommReport"; }
+            get
+            {
+                //return "Aff_AffiliateCommReport";
+                return "Aff_AffiliateCommReport_xtest";
+            }
         }
     }
 }

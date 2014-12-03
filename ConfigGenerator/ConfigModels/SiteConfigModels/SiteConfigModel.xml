@@ -29,5 +29,10 @@
       <status>1</status>
       <webconfigmodel>ConfigModels\WebConfigModels\WebConfigModel-12betgo.xml</webconfigmodel>
     </site>
+    <site>
+      <name>12betbanner</name>
+      <status>1</status>
+      <webconfigmodel>ConfigModels\WebConfigModels\WebConfigModel-12betbanner.xml</webconfigmodel>
+    </site>
   </sites>
 </root>

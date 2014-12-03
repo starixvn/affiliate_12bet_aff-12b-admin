@@ -43,7 +43,11 @@
 
         public string SpName
         {
-            get { return IsFavorite ? "Aff_AffiliateSelFavorite" : "Aff_AffiliateSel"; }
+            get
+            {
+                //return IsFavorite ? "Aff_AffiliateSelFavorite" : "Aff_AffiliateSel";
+                return IsFavorite ? "Aff_AffiliateSelFavorite" : "Aff_AffiliateSel_xtest";
+            }
         }
     }
 }

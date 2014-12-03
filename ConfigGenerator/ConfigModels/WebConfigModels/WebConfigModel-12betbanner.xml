@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <Fanex.Logging>
+  </Fanex.Logging>
+  <appSettings>
+    <BannerUrl>
+      <local>http://localhost/AffiliateMedia/Handler/MediaText.ashx?textid=</local>
+      <master></master>
+      <uat></uat>
+      <production>http://banner.12betscore.com/Handler/MediaText.ashx?textid=</production>
+    </BannerUrl>
+    
+    
+  </appSettings>
+  <connectionStrings>
+    <main>
+      <local>packet size=4096; Data Source=10.18.200.40;Initial Catalog=bodb02;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</local>
+      <master></master>
+      <uat></uat>
+      <production>packet size=4096; Data Source=10.40.40.17;Initial Catalog=bodb02;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</production>
+    </main>
+    <archive>
+      <local>packet size=4096; Data Source=10.18.200.214;Initial Catalog=bodb02;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</local>
+      <master></master>
+      <uat></uat>
+      <production>packet size=4096; Data Source=10.40.40.91;Initial Catalog=bodb02;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</production>
+    </archive>
+    <on_user>
+      <local>packet size=4096; Data Source=10.18.200.214;Initial Catalog=on_user;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</local>
+      <master></master>
+      <uat></uat>
+      <production>packet size=4096; Data Source=10.40.40.51;Initial Catalog=on_user;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</production>
+    </on_user>
+    <replicate>
+      <local>packet size=4096; Data Source=10.18.200.214;Initial Catalog=bodb02;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</local>
+      <master></master>
+      <uat></uat>
+      <production>packet size=4096; Data Source=10.40.40.51;Initial Catalog=bodb02;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</production>
+    </replicate>
+    <warehouse>
+      <local>packet size=4096; Data Source=10.18.200.214;Initial Catalog=bodb02;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</local>
+      <master></master>
+      <uat></uat>
+      <production>packet size=4096; Data Source=10.40.40.99;Initial Catalog=bodb02;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</production>
+    </warehouse>
+    <affiliate_12bet>
+      <local>packet size=4096; Data Source=10.18.200.214;Initial Catalog=Affiliate_12Bet;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</local>
+      <master></master>
+      <uat></uat>
+      <production>packet size=4096; Data Source=10.40.40.51;Initial Catalog=Affiliate_12Bet;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</production>
+    </affiliate_12bet>
+    <deposit>
+      <local>packet size=4096; Data Source=10.18.200.214;Initial Catalog=Deposit_DB;integrated security=false; user id=bodbAffiliateNet; password=a59O1jgHk05Mhd7nyySQdQ==;</local>
+      <master></master>
+      <uat></uat>
+      <production>packet size=4096; Data Source=10.40.40.42;Initial Catalog=Deposit_DB;integrated security=false; user id=bodbAffiliateNet; password=a59O1jgHk05Mhd7nyySQdQ==;</production>
+    </deposit>
+  </connectionStrings>
+</configuration>

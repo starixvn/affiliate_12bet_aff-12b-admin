@@ -23,7 +23,7 @@ public partial class AffiliateList : IBCPage
         {
             case "pending":
                 currTab = 2;
-                TemplateHandler.RemoveBlock(ref strTemplate, "GroupNameSearch");
+                TemplateHandler.RemoveBlock(ref strTemplate, "optioncommgroup");
                 TemplateHandler.RemoveBlock(ref strTemplate, "total");
                 TemplateHandler.RemoveBlock(ref strTemplate, "pass");
                 TemplateHandler.RemoveBlock(ref strTemplate, "approved1"); 
@@ -47,7 +47,7 @@ public partial class AffiliateList : IBCPage
                 break;
             case "disapproved":
                 currTab = 3;
-                TemplateHandler.RemoveBlock(ref strTemplate, "GroupNameSearch");
+                TemplateHandler.RemoveBlock(ref strTemplate, "optioncommgroup");
                 TemplateHandler.RemoveBlock(ref strTemplate, "total");
                 TemplateHandler.RemoveBlock(ref strTemplate, "pass");
                 TemplateHandler.RemoveBlock(ref strTemplate, "approved1"); 
@@ -114,6 +114,7 @@ public partial class AffiliateList : IBCPage
 
         var commGroupTbl = DbHelper.Execute("Aff_CommGroupSelListNormal", DBType.AFFILIATE_12BET).ResultSet.Tables[0];
         var languageTbl = DbHelper.Execute("Aff_MarketSel", DBType.AFFILIATE_12BET).ResultSet.Tables[0];
+        
         TemplateHandler.Assign(ref strTemplate, "SearchBy", Resources.Lang.SearchBy);
         TemplateHandler.Assign(ref strTemplate, "optioncommgroup", Common.GenDropDownFromTable2(commGroupTbl, "GroupId", "GroupName", "slCommGroup", ref selectedCommGroup, true, Resources.Lang.AllCommGroup));
         TemplateHandler.Assign(ref strTemplate, "optionlanguage", Common.GenDropDownFromTable2(languageTbl, "MarketId", "MarketName", "slLanguage", ref slLanguage, true, Resources.Lang.AllLanguage));

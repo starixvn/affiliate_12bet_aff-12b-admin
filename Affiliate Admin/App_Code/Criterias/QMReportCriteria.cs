@@ -34,7 +34,11 @@ namespace Criterias
 
         public string SpName
         {
-            get { return "Aff_ReportQM"; }
+            get
+            {
+                //return "Aff_ReportQM";
+                return "Aff_ReportQM_xtest";
+            }
         }
     }
 }
