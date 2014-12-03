@@ -23,7 +23,7 @@ public partial class AffiliateList : IBCPage
         {
             case "pending":
                 currTab = 2;
-                TemplateHandler.RemoveBlock(ref strTemplate, "optioncommgroup");
+                TemplateHandler.RemoveBlock(ref strTemplate, "GroupNameSearch");
                 TemplateHandler.RemoveBlock(ref strTemplate, "total");
                 TemplateHandler.RemoveBlock(ref strTemplate, "pass");
                 TemplateHandler.RemoveBlock(ref strTemplate, "approved1"); 
@@ -34,7 +34,6 @@ public partial class AffiliateList : IBCPage
             case "approved":
                 isFavor = CastAide.AsInt32(Request["favor"], 0) == 1;
                 isClosed = CastAide.AsBoolean(Request["isClosed"], false);
-                //isSelectAll = true;
                 currTab = isFavor ? 0 : 1;
                 currTab = isClosed ? 4 : currTab;
                 TemplateHandler.Assign(ref strTemplate, "groupname-text", Resources.Lang.GroupName);
@@ -47,7 +46,7 @@ public partial class AffiliateList : IBCPage
                 break;
             case "disapproved":
                 currTab = 3;
-                TemplateHandler.RemoveBlock(ref strTemplate, "optioncommgroup");
+                TemplateHandler.RemoveBlock(ref strTemplate, "GroupNameSearch");
                 TemplateHandler.RemoveBlock(ref strTemplate, "total");
                 TemplateHandler.RemoveBlock(ref strTemplate, "pass");
                 TemplateHandler.RemoveBlock(ref strTemplate, "approved1"); 
