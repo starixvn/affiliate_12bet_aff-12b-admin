@@ -552,7 +552,7 @@ namespace DataHandler
             hsParam.Add("pagesize", criteria.PageSize);
             hsParam.Add("pageindex", criteria.PageIndex);
             hsParam.Add("sortby", criteria.SortBy);
-            return DbHelper.Execute("Aff_ReportQM", hsParam, DBType.AFFILIATE_12BET, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
+            return DbHelper.Execute(criteria.SpName, hsParam, DBType.AFFILIATE_12BET, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
         }
 
         //Bryan20091212
@@ -668,7 +668,7 @@ namespace DataHandler
                 foreach (DataRow dr in tbl.Rows)
                 {
                     DepositCustomerInfo customer = new DepositCustomerInfo();
-                    customer.DepositUserName = dr["username"].ToString();                           
+                    customer.DepositUserName = dr["username"].ToString();
                     customer.Address = dr["address"].ToString();
                     customer.AffiliateId = CastAide.AsInt32(dr["affiliateid"]);
                     customer.AgentID = CastAide.AsInt32(dr["agentid"]);

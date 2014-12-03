@@ -16,7 +16,7 @@ public partial class Report_AffiliateQMReport : IBCPage
         GenerateHTML();
         this.HtmlContent = strTpl;
 
-        
+
     }
 
     void AssignHeader()
@@ -51,8 +51,8 @@ public partial class Report_AffiliateQMReport : IBCPage
             TemplateHandler.Assign(ref strTpl, "month-val", month);
             TemplateHandler.Assign(ref strTpl, "year-val", year);
             TemplateHandler.Assign(ref strTpl, "page", intPage);
-            
-            if(String.IsNullOrEmpty(strUsername))
+
+            if (String.IsNullOrEmpty(strUsername))
                 TemplateHandler.Assign(ref strTpl, "affname", "[" + Resources.Lang.All + "]");
             else
                 TemplateHandler.Assign(ref strTpl, "affname", strUsername);
@@ -61,7 +61,7 @@ public partial class Report_AffiliateQMReport : IBCPage
             var criteria = new QMReportCriteria
                 {
                     Username = strUsername,
-                    PreferredLanguage = strPreferLang, 
+                    PreferredLanguage = strPreferLang,
                     Month = month,
                     Year = year,
                     PageIndex = intPage,
@@ -118,13 +118,14 @@ public partial class Report_AffiliateQMReport : IBCPage
                 TemplateHandler.Assign(ref strTpl, "pagingcss", "hide");
                 TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.ReportLink, SubMenu.ReportText, 3, 0, SubMenu.ReportText[3], "i_report.png"));
             }
+
         }
         catch (Exception ex)
         {
             DNAideLog.Write(ex.Message);
-            #if DEBUG
+#if DEBUG
                   throw;
-            #endif
+#endif
         }
     }
 }
