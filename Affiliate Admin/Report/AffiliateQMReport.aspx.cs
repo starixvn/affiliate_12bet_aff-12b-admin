@@ -123,9 +123,9 @@ public partial class Report_AffiliateQMReport : IBCPage
         catch (Exception ex)
         {
             DNAideLog.Write(ex.Message);
-            //#if DEBUG
-            //    throw;
-            //#endif
+            #if DEBUG
+                throw;
+            #endif
         }
     }
 }

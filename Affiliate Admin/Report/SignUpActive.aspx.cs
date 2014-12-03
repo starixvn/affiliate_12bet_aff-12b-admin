@@ -154,9 +154,9 @@ public partial class Report_SignUpActive : IBCPage
         catch (Exception ex)
         {
             DNAideLog.Write(ex.Message);
-            //#if DEBUG
-            //    throw;
-            //#endif
+            #if DEBUG
+                throw;
+            #endif
         }
     }
     public int GetSignUp(DataTable dt, int affId)

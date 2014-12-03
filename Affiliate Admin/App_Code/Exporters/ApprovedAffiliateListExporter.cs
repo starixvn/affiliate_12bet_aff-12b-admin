@@ -13,12 +13,7 @@ namespace Exporters
     {
         public override void CreateHeader(HSSFWorkbook workbook, ISheet sheet)
         {
-            var headerStyle = workbook.CreateCellStyle();
-            headerStyle.FillForegroundColor = IndexedColors.LIGHT_BLUE.Index;
-            headerStyle.FillPattern = FillPatternType.BRICKS;
-            headerStyle.FillBackgroundColor = IndexedColors.WHITE.Index;
-            headerStyle.Alignment = HorizontalAlignment.CENTER;
-
+            var headerStyle = GetHeaderStyle(workbook);
             var dataRow = sheet.CreateRow(0);
             dataRow.CreateCell(0);
             dataRow.CreateCell(1).SetCellValue(Resources.Lang.Username);

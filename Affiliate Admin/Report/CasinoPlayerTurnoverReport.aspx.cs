@@ -143,9 +143,9 @@ public partial class CasinoPlayerTurnoverReport : IBCPage
         catch (Exception ex)
         {
             DNAideLog.Write(ex.Message);
-            //#if DEBUG
-            //      throw;
-            //#endif
+            #if DEBUG
+               throw;
+            #endif
         }
     }
 }
