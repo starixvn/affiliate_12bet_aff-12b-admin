@@ -13,11 +13,15 @@ public class ExportExcel : IHttpHandler, IRequiresSessionState
 {
     public void ProcessRequest(HttpContext context)
     {
-        byte[] reportDoc = GetExportExcel(context);
+        var criteria = GetCritera(context);
+        
+        byte[] reportDoc = GetExportExcel(context, criteria);
         
         context.Response.ContentType = "application/vnd.ms-excel";
 
-        context.Response.AddHeader("Content-Disposition", "attachment;filename=" + "Export.xls");
+        var filename = string.Format("AffiliateList_{0}.xls", criteria.Status);
+
+        context.Response.AddHeader("Content-Disposition", "attachment;filename=" + filename);
 
         context.Response.BinaryWrite(reportDoc);
     }
@@ -63,15 +67,13 @@ public class ExportExcel : IHttpHandler, IRequiresSessionState
         return criteria;
     }
 
-    private byte[] GetExportExcel(HttpContext context)
+    private byte[] GetExportExcel(HttpContext context, AffiliateListCriteria criteria)
     {
         const string templatePath = @"..\ExcelFiles\AffiliateList\AffiliateList.xls";
         var fs = new FileStream(context.Server.MapPath(templatePath), FileMode.Open, FileAccess.Read);
 
         var workbook = new HSSFWorkbook(fs, true);
         var sheet = workbook.GetSheet("Sheet1");
-
-        var criteria = GetCritera(context);
 
         DbResult result = null;
         if (criteria.AffId != -2)

@@ -141,9 +141,9 @@ public partial class Report_Performance : IBCPage
         catch (Exception ex)
         {
             DNAideLog.Write(ex.Message);
-            #if DEBUG
+#if DEBUG
                 throw;
-            #endif
+#endif
         }
     }
     public int GetSignUp(DataTable dt, int affId)

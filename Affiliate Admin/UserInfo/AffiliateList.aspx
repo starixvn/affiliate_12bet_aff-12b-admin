@@ -159,8 +159,8 @@
         var uriRoot = "../Handler/ExportExcel.ashx";
 
         var param = {
-            slCommGroup: $('slCommGroup').value,
-            slLanguage: $('slLanguage').value,
+
+            slLanguage: $('slLanguage') === null ? '' : $('slLanguage').value,
             txtUsername: $('txtUsername').value,
             txtEmail: $('txtEmail').value,
             txtID: $('txtID').value,
