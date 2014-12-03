@@ -32,7 +32,7 @@ public partial class SBPlayerTurnoverReport : IBCPage
         TemplateHandler.Assign(ref strTpl, "fdate-txt", Resources.Lang.From);
         TemplateHandler.Assign(ref strTpl, "tdate-txt", Resources.Lang.To);
         TemplateHandler.Assign(ref strTpl, "search", Resources.Lang.Search);
-        TemplateHandler.Assign(ref strTpl, "datelimit", Resources.Lang.LimitDate + AppSettings.StatementAvailableFrom.ToString("d-MMM-yy"));
+        TemplateHandler.Assign(ref strTpl, "datelimit", Resources.Lang.LimitDate + AppSettings.ReportStartDate.ToString("d-MMM-yy"));
         TemplateHandler.Assign(ref strTpl, "over", Common.RowBgOver);
         TemplateHandler.Assign(ref strTpl, "themepath", AppSettings.ThemeDir);
     }
