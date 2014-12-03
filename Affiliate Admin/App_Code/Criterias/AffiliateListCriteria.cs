@@ -45,8 +45,7 @@
         {
             get
             {
-                //return IsFavorite ? "Aff_AffiliateSelFavorite" : "Aff_AffiliateSel";
-                return IsFavorite ? "Aff_AffiliateSelFavorite" : "Aff_AffiliateSel_xtest";
+                return IsFavorite ? "Aff_AffiliateSelFavorite" : "Aff_AffiliateSel";
             }
         }
     }
