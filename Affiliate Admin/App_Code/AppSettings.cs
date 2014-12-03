@@ -35,6 +35,7 @@ public static class AppSettings
     static DateTime _UMStartTime;
     static DateTime _UMEndTime;
     static DateTime _StatementAvailableFrom;
+    static string _suffixSp;
 
     private static DateTime _ReportStartDate;
 
@@ -65,6 +66,7 @@ public static class AppSettings
         _internalEuropeanAffiliateURL = ConfigurationManager.AppSettings["internalEuropeanAffiliateURL"];
         _internalAsianAffiliateURL = ConfigurationManager.AppSettings["internalAsianAffiliateURL"];
         _localTest = ConfigurationManager.AppSettings["LocalTest"].Equals("1", StringComparison.OrdinalIgnoreCase);
+        
 
         _websiteCheckerURL = ConfigurationManager.AppSettings["WebsiteCheckerURL"];
         _lbUrl = ConfigurationManager.AppSettings["LBUrl"];
@@ -80,6 +82,8 @@ public static class AppSettings
         {
             _cssFiles[j] = _cssFiles[j].Substring(_cssFiles[j].IndexOf("App_Themes")).Replace("\\", "/");
         }
+
+        _suffixSp = ConfigurationManager.AppSettings["SuffixSp"];
 
         initPageHeader();
     }
@@ -343,6 +347,13 @@ public static class AppSettings
         }
     }
 
+    public static string SuffixSp
+    {
+        get
+        {
+            return _suffixSp;
+        }
+    }
 
     #region ---------- for Session-------------
 

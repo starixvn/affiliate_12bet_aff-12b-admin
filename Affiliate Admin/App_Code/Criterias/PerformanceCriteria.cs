@@ -38,7 +38,7 @@ namespace Criterias
         {
             get
             {
-                return "Aff_PerformanceReport_xtest";
+                return "Aff_PerformanceReport" + AppSettings.SuffixSp;
             }
         }
     }

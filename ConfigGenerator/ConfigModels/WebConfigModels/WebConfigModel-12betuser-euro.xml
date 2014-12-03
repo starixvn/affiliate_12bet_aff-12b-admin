@@ -125,6 +125,12 @@
       <uat></uat>
       <production>1</production>
     </HasCheckUmTime>
+    <SuffixSp>
+      <local></local>
+      <master></master>
+      <uat>_xtest</uat>
+      <production></production>
+    </SuffixSp>
   </appSettings>
 
   <connectionStrings>
