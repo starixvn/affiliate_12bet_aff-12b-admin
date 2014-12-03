@@ -105,12 +105,12 @@
       <uat>http://affiliate.12bet.com/UAT</uat>
       <production>http://affiliate.12bet.com</production>
     </AsianAffiliateURL>
-    <Environment>
-      <local>Local Developement</local>
-      <master>Master</master>
-      <uat>UAT</uat>
-      <production>Production</production>
-    </Environment>
+    <SuffixSp>
+      <local></local>
+      <master></master>
+      <uat>_xtest</uat>
+      <production></production>
+    </SuffixSp>
   </appSettings>
 
   <connectionStrings>
