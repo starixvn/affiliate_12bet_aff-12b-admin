@@ -32,7 +32,11 @@ namespace Criterias
 
         public string SpName
         {
-            get { return "Aff_PlayerSportsBookReport"; }
+            get
+            {
+                //return "Aff_PlayerSportsBookReport";
+                return "Aff_PlayerSportsBookReport_xtest";
+            }
         }
     }
 }
