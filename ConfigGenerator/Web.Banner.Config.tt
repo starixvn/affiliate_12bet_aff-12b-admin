@@ -37,20 +37,7 @@
     <add key="sp_AffTextSelDetail" value="Aff_TextSelDetail"/>
   </appSettings>
   <connectionStrings>
-    <!--DB02-->
-    <add name="main" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("main") #>"/>
-    <!--DB05-->
-    <add name="archive" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("archive") #>"/>
-    <!--ON_USER-->
-    <add name="on_user" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("on_user") #>"/>
-    <!--DB03 replicate-->
-    <add name="replicate" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("replicate") #>"/>
-    <!--DB06-->
-    <add name="warehouse" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("warehouse") #>"/>
-    <!--New DB Affiliate-->
     <add name="affiliate_12bet" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("affiliate_12bet") #>"/>
-    <!--DEPOSIT-->
-    <add name="deposit" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("deposit") #>"/>
   </connectionStrings>
 	<system.web>
 		<compilation debug="true">

@@ -35,9 +35,6 @@ namespace Exporters
 
         protected ICellStyle GetHeaderStyle(HSSFWorkbook workbook)
         {
-            var pallette = new HSSFPalette(new PaletteRecord());
-            pallette.SetColorAtIndex(32, 221, 235, 248);
-
             var headerStyle = workbook.CreateCellStyle();
             headerStyle.FillForegroundColor = IndexedColors.PALE_BLUE.Index;
             headerStyle.FillPattern = FillPatternType.SOLID_FOREGROUND;
