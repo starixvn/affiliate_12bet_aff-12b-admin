@@ -69,7 +69,6 @@
 						var webConfigOutput = paramTmpl.TransformText("Web.Banner.Config.tt", session);
 						this.Write(webConfigOutput);
                     }
-
 				}
 			}
 		}

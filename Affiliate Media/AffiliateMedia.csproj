@@ -112,7 +112,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Handler\MediaScript.ashx" />
-    <Content Include="Scripts\JScript1.js" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Handler\MediaText.ashx" />
@@ -134,6 +133,7 @@
     <Content Include="Web.12betbanner.local.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
+    <None Include="Deployment.ignore" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
