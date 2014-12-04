@@ -1,4 +1,5 @@
-﻿\\*.local.config
+﻿\\.*
+\\*.local.config
 \\*.master.config
 \\*.uat.config
 \\*.production.config
