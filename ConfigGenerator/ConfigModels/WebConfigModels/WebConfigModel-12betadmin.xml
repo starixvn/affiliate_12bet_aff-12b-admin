@@ -76,13 +76,15 @@
       <production>net.tcp://10.40.40.127:8585/MailService</production>
     </app_mail_address>
     <internalEuropeanAffiliateURL>
-      <local>http://localhost:51421/Affiliate/Authorization/ProcessLogin2.ashx</local>
+      <!--<local>http://localhost:51421/Affiliate/Authorization/ProcessLogin2.ashx</local>-->
+      <local>http://10.18.200.209:5002/Euro-Pro/Authorization/ProcessLogin2.ashx</local>
       <master></master>
       <uat>http://aff.12bet.com/UAT/Authorization/ProcessLogin2.ashx</uat>
       <production>http://aff.12bet.com/Authorization/ProcessLogin2.ashx</production>
     </internalEuropeanAffiliateURL>
     <internalAsianAffiliateURL>
-      <local>http://localhost:51421/Affiliate/Authorization/ProcessLogin2.ashx</local>
+      <!--<local>http://localhost:51421/Affiliate/Authorization/ProcessLogin2.ashx</local>-->
+      <local>http://10.18.200.209:5002/User-Pro/Authorization/ProcessLogin2.ashx</local>
       <master></master>
       <uat>http://affiliate.12bet.com/UAT/Authorization/ProcessLogin2.ashx</uat>
       <production>http://affiliate.12bet.com/Authorization/ProcessLogin2.ashx</production>
