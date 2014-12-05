@@ -3,27 +3,29 @@
   <publishProfile publishUrl="D:\www\aba" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="FileSystem" replaceMatchingFiles="True" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
     <file relUrl="Web.config" publishTime="12/04/2014 16:37:43" />
     <file relUrl="bin/Microsoft.Practices.EnterpriseLibrary.Common.dll" publishTime="12/03/2014 13:44:40" />
+    <file relUrl="Scripts/affiliate.text.js" publishTime="01/27/2014 10:21:04" />
     <file relUrl="App_dll/Fanex.MailDeliver.MailClient.dll" publishTime="12/03/2014 13:44:40" />
-    <file relUrl="App_dll/Microsoft.Practices.EnterpriseLibrary.Caching.dll" publishTime="12/03/2014 13:44:40" />
+    <file relUrl="Deployment.ignore" publishTime="12/05/2014 14:07:55" />
     <file relUrl="Web.12betbanner.production.config" publishTime="12/04/2014 14:52:56" />
     <file relUrl="bin/Microsoft.Practices.ObjectBuilder.dll" publishTime="12/03/2014 13:44:40" />
+    <file relUrl="bin/AffiliateMedia.pdb" publishTime="12/05/2014 14:08:01" />
     <file relUrl="Web.12betbanner.uat.config" publishTime="12/04/2014 14:52:56" />
-    <file relUrl="Handler/MediaScript.ashx" publishTime="01/27/2014 10:21:04" />
     <file relUrl="App_dll/Microsoft.Practices.ObjectBuilder.dll" publishTime="12/03/2014 13:44:40" />
     <file relUrl="bin/DNAide.dll" publishTime="12/03/2014 13:44:40" />
     <file relUrl="bin/Microsoft.Practices.EnterpriseLibrary.Caching.dll" publishTime="12/03/2014 13:44:40" />
+    <file relUrl="bin/Deployment.ignore" publishTime="12/05/2014 14:07:55" />
     <file relUrl="bin/Microsoft.Practices.EnterpriseLibrary.Logging.dll" publishTime="12/03/2014 13:44:40" />
-    <file relUrl="App_dll/Microsoft.Practices.EnterpriseLibrary.Common.dll" publishTime="12/03/2014 13:44:40" />
+    <file relUrl="App_dll/Microsoft.Practices.EnterpriseLibrary.Logging.dll" publishTime="12/03/2014 13:44:40" />
     <file relUrl="test/i.jpg" publishTime="01/27/2014 10:21:04" />
-    <file relUrl="App_Code/DBType.cs" publishTime="01/27/2014 10:21:04" />
     <file relUrl="Handler/MediaText.ashx" publishTime="01/27/2014 10:21:04" />
     <file relUrl="Web.12betbanner.master.config" publishTime="12/04/2014 14:52:56" />
-    <file relUrl="Scripts/affiliate.text.js" publishTime="01/27/2014 10:21:04" />
+    <file relUrl="Handler/MediaScript.ashx" publishTime="01/27/2014 10:21:04" />
     <file relUrl="test/f.swf" publishTime="01/27/2014 10:21:04" />
     <file relUrl="App_dll/DNAide.dll" publishTime="12/03/2014 13:44:40" />
-    <file relUrl="App_dll/Microsoft.Practices.EnterpriseLibrary.Logging.dll" publishTime="12/03/2014 13:44:40" />
-    <file relUrl="bin/AffiliateMedia.dll" publishTime="12/04/2014 16:37:54" />
+    <file relUrl="App_dll/Microsoft.Practices.EnterpriseLibrary.Caching.dll" publishTime="12/03/2014 13:44:40" />
+    <file relUrl="App_Code/DBType.cs" publishTime="01/27/2014 10:21:04" />
     <file relUrl="Web.12betbanner.local.config" publishTime="12/04/2014 14:52:56" />
-    <file relUrl="bin/AffiliateMedia.pdb" publishTime="12/04/2014 16:37:54" />
+    <file relUrl="bin/AffiliateMedia.dll" publishTime="12/05/2014 14:08:01" />
+    <file relUrl="App_dll/Microsoft.Practices.EnterpriseLibrary.Common.dll" publishTime="12/03/2014 13:44:40" />
   </publishProfile>
 </publishData>
