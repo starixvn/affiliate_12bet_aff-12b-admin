@@ -52,31 +52,31 @@
       <production>net.tcp://10.40.40.127:8585/MailService</production>
     </app_mail_address>
     <MediaUrl>
-      <local>http://localhost:5004/</local>
+      <local>http://10.18.200.209:5002/Banner-Pro/</local>
       <master></master>
       <uat>http://banner.12biying.com/</uat>
       <production>http://banner.12biying.com/</production>
     </MediaUrl>
     <MediaUrl_CS>
-      <local>http://localhost:5004/</local>
+      <local>http://10.18.200.209:5002/Banner-Pro/</local>
       <master></master>
       <uat>http://banner.12betscore.com/</uat>
       <production>http://banner.12betscore.com/</production>
     </MediaUrl_CS>
     <MediaUrl_TH>
-      <local>http://localhost:5004/</local>
+      <local>http://10.18.200.209:5002/Banner-Pro/</local>
       <master></master>
       <uat>http://banner.12sheng.com/</uat>
       <production>http://banner.12sheng.com/</production>
     </MediaUrl_TH>
     <MediaUrl_VI>
-      <local>http://localhost:5004/</local>
+      <local>http://10.18.200.209:5002/Banner-Pro/</local>
       <master></master>
       <uat>http://banner.4win1.com/</uat>
       <production>http://banner.4win1.com/</production>
     </MediaUrl_VI>
     <MediaUrl_EU>
-      <local>http://localhost:5004/</local>
+      <local>http://10.18.200.209:5002/Banner-Pro/</local>
       <master></master>
       <uat>http://banner.12bet.com/</uat>
       <production>http://banner.12bet.com/</production>
