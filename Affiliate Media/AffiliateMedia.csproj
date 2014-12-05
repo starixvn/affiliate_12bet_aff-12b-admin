@@ -116,7 +116,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ConfigManager.txt4" />
-    <None Include="Deployment.ignore" />
+    <None Include="deployment.ignore" />
     <Content Include="Web.12betbanner.production.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
