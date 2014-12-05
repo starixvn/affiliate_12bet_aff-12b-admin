@@ -462,9 +462,15 @@ public class Common
 
     public static void DeleteFile(string path)
     {
-        FileInfo file = new FileInfo(path);
-        if (file.Exists)
-            file.Delete();    
+        try
+        {
+            var file = new FileInfo(path);
+            if (file.Exists)
+                file.Delete();
+        }
+        catch (Exception)
+        {
+        }
     }
 
     public static string GenerateSelectObj(string strID, ArrayList arrValue, ArrayList arrText, string strValueSelected)
