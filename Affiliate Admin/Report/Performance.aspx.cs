@@ -64,6 +64,8 @@ public partial class Report_Performance : IBCPage
 
             TemplateHandler.Assign(ref strTpl, "affname", String.IsNullOrEmpty(strUsername) ? "[" + Resources.Lang.All + "]" : strUsername);
 
+            strUsername = ((string.Compare(strUsername, "[" + Resources.Lang.All + "]", true) == 0 ? string.Empty : strUsername));
+
             var criteria = new PerformanceCriteria
                 {
                     Username = strUsername,

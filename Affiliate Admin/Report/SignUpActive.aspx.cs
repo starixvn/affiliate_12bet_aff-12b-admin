@@ -82,24 +82,11 @@ public partial class Report_SignUpActive : IBCPage
 
             if (dtb.Rows.Count > 0)
             {
-                DbResult rs1;
-                if (!string.IsNullOrEmpty(strUsername))
-                    rs1 = DataHandler.Affiliate.SignUpMembersReport(CastAide.AsInt32(dtb.Rows[0]["affid"]), dtmFDate, dtmTDate, isGetAll);
-                else
-                    rs1 = DataHandler.Affiliate.SignUpMembersReport(-1, dtmFDate, dtmTDate, isGetAll);
-                DataTable dtb1 = new DataTable();
-                if (rs1.ResultSet.Tables.Count > 0)
-                    dtb1 = rs1.ResultSet.Tables[0];
-
                 int intCount = (intPage - 1) * intPageSize + 1;
                 int intTotal = 0;
                 string strRowTpl = TemplateHandler.CopyBlock(strTpl, "content");
-                string strListAffId = string.Empty;
-
 
                 StringBuilder strListRow = new StringBuilder();
-                //Hashtable hsTotal = new Hashtable();
-
 
                 foreach (DataRow dr in dtb.Rows)
                 {
@@ -119,14 +106,13 @@ public partial class Report_SignUpActive : IBCPage
                     TemplateHandler.Assign(ref strTmp, "uniquenew-val", dr["UniqueClicks_New"]);
                     TemplateHandler.Assign(ref strTmp, "totalnew-val", dr["TotalClicks_New"]);
                     TemplateHandler.Assign(ref strTmp, "fdm-val", total);
-                   // TemplateHandler.Assign(ref strTmp, "type-val", 0);
                     if (CastAide.AsBoolean(dr["isclosed"]))
                         TemplateHandler.Assign(ref strTmp, "color", Common.RowBgClosed);
                     else
                         TemplateHandler.Assign(ref strTmp, "color", (intCount % 2 == 0) ? Common.RowBgEven : Common.RowBgOdd);
 
                     //sign up
-                    TemplateHandler.Assign(ref strTmp, "signup-val",GetSignUp( dtb1,int.Parse(dr["affid"].ToString())));
+                    TemplateHandler.Assign(ref strTmp, "signup-val", dr["Signup"]);
 
                     strListRow.Append(strTmp);
                 }

@@ -811,7 +811,6 @@ namespace DataHandler
             hsParam.Add("nrows", 0);
             hsParam.Add("sortby", criteria.SortBy);
             DbResult result = DbHelper.Execute(criteria.SpName, hsParam, DBType.AFFILIATE_12BET, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
-            //totalPages = int.Parse(result.Outputs["TotalPages"].ToString());
             return result;
         }
 
