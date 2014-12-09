@@ -488,8 +488,9 @@ function HideErr()
  {
     var url = location.href;
     location.href = url.substr(0, url.indexOf("#") > 0 ? url.indexOf("#") : url.length);
- }
-function EnableCalendar(isEnable)
+}
+ 
+function EnableCalendar(isEnable, dateFormat)
 {
     if(isEnable)
     {
@@ -498,23 +499,29 @@ function EnableCalendar(isEnable)
         $("fdateTrigger").disabled = false;
         $("tdateTrigger").disabled = false;
 
+        if (dateFormat === undefined) {
+            dateFormat = "%m/%d/%Y";
+        }
+
         Calendar.setup({
             inputField: "fdate",
-            ifFormat: "%m/%d/%Y",
+            ifFormat: dateFormat,
             button: "fdateTrigger",
             singleClick: true,
             showsTime: false,
-            showOthers : true,
+            showOthers : false,
             step : 1
         });
 
+        Calendar.showMonthsCombo();
+
         Calendar.setup({
             inputField: "tdate",
-            ifFormat: "%m/%d/%Y",
+            ifFormat: dateFormat,
             button: "tdateTrigger",
             singleClick: true,
             showsTime: false,
-            showOthers : true,
+            showOthers : false,
             step : 1
         });
     }

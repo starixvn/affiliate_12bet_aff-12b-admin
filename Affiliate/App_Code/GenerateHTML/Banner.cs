@@ -118,7 +118,7 @@ namespace GenerateHTML
             if (nRows > 0)
             {
                 string temp = TemplateHandler.LoadTemplate("UserInfo/MediaGallery.htm");
-                string content = TemplateHandler.CopyBlock(temp, "Content");                
+                string content = TemplateHandler.CopyBlock(temp, "Content");
                 totalpage = CastAide.AsInt32(result.Outputs["totalpages"]);
                 DataTable dtbResult = result.ResultSet.Tables[0];
                 var contentList = new StringBuilder();

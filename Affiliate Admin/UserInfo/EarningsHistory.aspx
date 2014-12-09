@@ -74,7 +74,7 @@
         var element = Event.element(event);
         if (element.hasClassName("ic-check")) {
             element.className = "chk ic-uncheck";
-            $("getAll").value = "false";            
+            $("getAll").value = "false";
             $("fdate").disabled = false;
             $("tdate").disabled = false;
             $("fdateTrigger").disabled = false;

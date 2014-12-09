@@ -13,7 +13,7 @@
                 <td>
                     <select name="slSport" id="slSport">
                         <option value="1">Sportbook</option>
-                        <option value="3">Casino</option>      
+                        <option value="3">Casino</option>
                     </select>
                 </td>
                 <td>
@@ -24,11 +24,11 @@
                         <option value="zh-TW">Chinese Traditional</option>
                         <option value="zh-CN">Chinese Simplified</option>
                         <option value="th-TH">Thai</option>
-                        <option value="es-ES">Spanish</option>    
-                        <option value="vi-VN">Vietnamese</option>    
+                        <option value="es-ES">Spanish</option>
+                        <option value="vi-VN">Vietnamese</option>
                         <option value="id-ID">Indonesian</option>
-                        <option value="ko-KR">Korean</option>       
-                        <option value="ja-JP">Japanese</option>     
+                        <option value="ko-KR">Korean</option>
+                        <option value="ja-JP">Japanese</option>
                     </select> 
                 </td>
                 <td class="r">
@@ -75,14 +75,19 @@
                     </script>
                 </td>
                 <td>
+                    {sortBy-txt} &nbsp;&nbsp;
                     <select id="sortby" name="sortby">
-                        <option value="">Sort by</option>
-                        <option value="Member">Member</option>
-                        <option value="Deposit">Deposit</option>
-                        <option value="Turnover">Turnover</option>
-                        <option value="Winlost">Winlost</option>
-                        <option value="Commission">Commission</option>
+                        <option value="0">Affiliate</option>
+                        <option value="1">Qualified Member</option>
+                        <option value="2">Deposit</option>
+                        <option value="3">Turnover</option>
+                        <option value="4">Winlost</option>
+                        <option value="5">Commission</option>
                     </select>
+                </td>
+                <td>
+                    {desc-txt} &nbsp;&nbsp;<span onclick="chkOnclick();" id="chkDesc" class="{cssgetall}">&nbsp;</span>
+                    <input type="hidden" id="isDesc" name="isDesc" value="{cssgetall}" />
                 </td>
                 <td style="width: 100px">
                     <span id="divsearch" onclick="Search();">&nbsp;</span>
@@ -90,7 +95,7 @@
             </tr>
         </table>
     </div>
-    <input type="hidden" id="page" name="page" value="{page}" />    
+    <input type="hidden" id="page" name="page" value="{page}" />
     <input type="submit" value="" class="hide" />  
     <input type="hidden" id="hdLanguage" name="hdLanguage" value="{lang-val}" />
     <input type="hidden" name="all" id="all" value="{all-val}"/>

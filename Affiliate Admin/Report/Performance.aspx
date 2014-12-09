@@ -20,15 +20,13 @@
         Select_Value_Set('sortby', getParam('sortby'));
     };
     function chkOnclick() {
-        if ($("chkDate").className == "ic-uncheck") {
-            $("chkDate").className = "ic-check";
-            $("isGetAll").value = "ic-check";
-            EnableCalendar(false);
+        if ($("chkDesc").className == "ic-uncheck") {
+            $("chkDesc").className = "ic-check";
+            $("isDesc").value = "ic-check";
         }
         else {
-            $("chkDate").className = "ic-uncheck"
-            $("isGetAll").value = "ic-uncheck";
-            EnableCalendar(true);
+            $("chkDesc").className = "ic-uncheck";
+            $("isDesc").value = "ic-uncheck";
         }
     }
     function Search() {

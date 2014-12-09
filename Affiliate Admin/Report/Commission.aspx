@@ -9,10 +9,29 @@
     function Init() {
         $("slmonth").value = $("month").value;
         $("slyear").value = $("year").value;
-        if ($("hdLanguage").value != "")
+
+        if ($("hdLanguage").value != "") {
             $("slPreferLang").value = $("hdLanguage").value;
+        }
+
+        if ($("hdSortBy").value != "") {
+            $("slSortBy").value = $("hdSortBy").value;
+        }
+
         $("slSport").value = $("hdSport").value;
     }
+
+    function chkOnclick() {
+        if ($("chkDesc").className == "ic-uncheck") {
+            $("chkDesc").className = "ic-check";
+            $("isDesc").value = "ic-check";
+        }
+        else {
+            $("chkDesc").className = "ic-uncheck";
+            $("isDesc").value = "ic-uncheck";
+        }
+    }
+
     function Search() {
         $("frmSearch").submit();
         DelayReloadPage1();
