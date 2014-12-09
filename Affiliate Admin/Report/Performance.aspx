@@ -1,17 +1,32 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Performance.aspx.cs" Inherits="Report_Performance" %>
 <!--js-->
 <script type="text/javascript" src="../App_Js/Common.js"></script>
-<link rel="stylesheet" type="text/css" href="../App_Js/Calendar2/Skin/calendar-blue.css" media="all" title="win2k-cold-1" />
-<script type="text/javascript" src="../App_Js/prototype.js"></script>
 <script type="text/javascript" src="../App_Js/RefreshTime.js"></script>
-<script type="text/javascript" src="../App_Js/IBCWnd/IBCWnd.js"></script>
-<script src="../App_Js/Calendar2/calendar-normal.js" type="text/javascript"></script>
-<script src="../App_Js/Calendar2/date.js" type="text/javascript"></script>
-<script src="../App_Js/Calendar2/Lang/calendar-e.js" type="text/javascript"></script>
-<script src="../App_Js/Calendar2/calendar-setup.js" type="text/javascript"></script>
+<link rel='stylesheet' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/base/jquery-ui.css'>
+<script type="text/javascript" src="../App_Js/prototype.js"></script>
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script> 
+<script src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js'></script>
+<script src="../App_Js/MonthPicker/jquery.mtz.monthpicker.js" type="text/javascript"></script>
+<link href="../App_Js/MonthPicker/month-picker.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
-    window.onload = function() {
-        //EnableCalendar($("chkDate").className == "ic-uncheck" ? true : false);
+    var $j = jQuery.noConflict();
+
+
+
+    window.onload = function () {
+
+        var currentYear = $('hdCurrentYear').value;
+
+        var monthPickerOptions = {
+            selectedYear: currentYear,
+            startYear: 2009,
+            finalYear: currentYear
+        };
+
+        $j('#fdate').monthpicker(monthPickerOptions);
+
+        $j('#tdate').monthpicker(monthPickerOptions);
+
         $("slPreferLang").value = $("hdLanguage").value;
 
         //set selected
@@ -19,6 +34,7 @@
         Select_Value_Set('slSport', getParam('slSport'));
         Select_Value_Set('sortby', getParam('sortby'));
     };
+    
     function chkOnclick() {
         if ($("chkDesc").className == "ic-uncheck") {
             $("chkDesc").className = "ic-check";
