@@ -29,7 +29,19 @@
             $("slPreferLang").value = $("hdLanguage").value;
         if ($("hdSport").value != "")
             $("slSport").value = $("hdSport").value;
+
+        EnableMonthCalendar($("chkDate").className == "ic-uncheck");
     };
+    
+    function EnableMonthCalendar(isEnable) {
+        if (isEnable) {
+            $j('#fdate').removeAttr("disabled");
+            $j('#fdate').removeAttr("disabled");
+        } else {
+            $j('#fdate').attr("disabled", "disabled");
+            $j('#tdate').attr("disabled", "disabled");
+        }
+    }
     
     function chkOnclick() {
         if($("chkDate").className == "ic-uncheck")
@@ -46,6 +58,7 @@
             $j('#tdate').removeAttr('disabled');
         }
     }
+    
     function Search() {
 
         if($("isGetAll").value === "ic-check")
@@ -54,15 +67,8 @@
             DelayReloadPage1();
         }
         else {
-            
-            var validateResult = ValidatePeriod.validate($j("#fdate").val(), $j("#tdate").val());
-        
-            if (validateResult === "Valid") {
-                $("frmSearch").submit();
-                DelayReloadPage1();
-            } else {
-                alert(validateResult);
-            }
+            $("frmSearch").submit();
+            DelayReloadPage1();
         }
     }
 

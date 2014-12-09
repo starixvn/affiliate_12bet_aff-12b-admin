@@ -52,7 +52,7 @@ public partial class Report_Performance : IBCPage
             int intPageSize = CastAide.AsInt32(Request["slPageSize"], 20);
             int intPage = CastAide.AsInt32(Request["page"], 1);
             int sortby = CastAide.AsInt32(Request["sortby"], 0);
-            bool isDesc = (CastAide.AsString(Request["isDesc"], string.Empty) == "ic-check");
+            bool isDesc = (CastAide.AsString(Request["isDesc"], string.Empty) != "ic-uncheck");
 
             TemplateHandler.Assign(ref strTpl, "sport-val", sportId);
             TemplateHandler.Assign(ref strTpl, "lang-val", strPreferLang);

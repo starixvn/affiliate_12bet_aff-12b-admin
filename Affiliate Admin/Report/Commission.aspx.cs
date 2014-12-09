@@ -68,7 +68,7 @@ public partial class Report_Commission : IBCPage
             int sport = CastAide.AsInt32(Request["slSport"], 1);
             string strPreferLang = Request["slPreferLang"];
             int sortBy = CastAide.AsInt32(Request["slSortBy"], 0);
-            bool isDesc = (CastAide.AsString(Request["isDesc"], string.Empty) == "ic-check");
+            bool isDesc = (CastAide.AsString(Request["isDesc"], string.Empty) != "ic-uncheck");
 
             TemplateHandler.Assign(ref strTpl, "sport-val", sport);
             TemplateHandler.Assign(ref strTpl, "lang-val", strPreferLang);

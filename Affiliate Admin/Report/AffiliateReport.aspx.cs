@@ -75,7 +75,7 @@ public partial class Report_AffiliateReport : IBCPage
         {
             DateTime dtmFDate = CastAide.AsDateTime(Request["fdate"], DateTime.Now.AddDays(-1));
             DateTime dtmTDate = CastAide.AsDateTime(Request["tdate"], DateTime.Now);
-            bool isGetAll = (CastAide.AsString(Request["isGetAll"], string.Empty) == "ic-check" ? true : false);
+            bool isGetAll = (CastAide.AsString(Request["isGetAll"], string.Empty) == "ic-check");
             string strPreferLang = Request["slPreferLang"];
             int intSportId = CastAide.AsInt32(Request["slSport"], 0);
             int intPageSize = CastAide.AsInt32(Request["slPageSize"], 20);
