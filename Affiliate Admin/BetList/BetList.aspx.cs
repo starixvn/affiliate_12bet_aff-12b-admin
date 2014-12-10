@@ -24,8 +24,9 @@ public partial class BetList_BetList : IBCPage
             bool isComm = (string.IsNullOrEmpty(Request["iscomm"]) ? false : Request["iscomm"] == "1");
             var commission = Request.ApplicationPath.TrimEnd('/') + "/Report/Commission.aspx";
             var statement = Request.ApplicationPath.TrimEnd('/') + "/UserInfo/EarningsHistory.aspx?iscomm=" + Request["iscomm"] + "&user=" + Request["ibcusername"];
+            var monthdate = new DateTime(fromDate.Year, fromDate.Month, DateTime.DaysInMonth(fromDate.Year, fromDate.Month));
             var dailyEarnings = Request.ApplicationPath.TrimEnd('/') + "/UserInfo/DailyEarning.aspx?";
-            dailyEarnings += "custid=" + Request["originalcustid"] + "&monthdate=" + DateTime.Today.ToShortDateString();
+            dailyEarnings += "custid=" + Request["originalcustid"] + "&monthdate=" + monthdate.ToShortDateString();
             dailyEarnings += "&user=" + Request["ibcusername"] + "&slSportType=" + Request["slSportType"] + "&iscomm=" + Request["iscomm"];
             var dailyEarningDetails = Request.ApplicationPath.TrimEnd('/') + "/UserInfo/DailyEarningDetail.aspx?";
             dailyEarningDetails += "custid=" + Request["originalcustid"] + "&monthdate=" + Request["fdate"];
