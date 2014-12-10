@@ -200,6 +200,12 @@
       <uat>packet size=4096; Data Source=10.40.40.94;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNet; password=TBAw8F+PqCx3u382anlnOVRxKIJYMsMwXVn1hJpeyKk==</uat>
       <production>packet size=4096; Data Source=10.40.40.94;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNet; password=TBAw8F+PqCx3u382anlnOVRxKIJYMsMwXVn1hJpeyKk==</production>
     </age_archive>
+    <CustomerLog>
+      <local>packet size=4096; Data Source=10.18.200.231;Initial Catalog=bodb_CustomerLog;integrated security=false; User Id=olympus;Password=@tiger#</local>
+      <master></master>
+      <uat>packet size=4096; Data Source=10.40.40.92;Asynchronous Processing=true;Initial Catalog=bodb_CustomerLog;integrated security=false; user id=bodbAdminNet; password=%bodbAdminNetLogin2587</uat>
+      <production>packet size=4096; Data Source=10.40.40.92;Asynchronous Processing=true;Initial Catalog=bodb_CustomerLog;integrated security=false; user id=bodbAdminNet; password=%bodbAdminNetLogin2587</production>
+    </CustomerLog>
   </connectionStrings>
   
   <compilation>
