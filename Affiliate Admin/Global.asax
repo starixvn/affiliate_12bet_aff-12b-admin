@@ -43,8 +43,8 @@
                         "\r\nQUERYSTRING: " + Request.QueryString.ToString() +
                         "\r\nTARGETSITE: " + ex.TargetSite +
                         "\r\nSTACKTRACE: " + ex.StackTrace;
-        LogService.Error("12BET Admin " + System.Environment.NewLine + message);
-        //DNAide.Web.DNAideLog.Write(message);
+        
+        DNAide.Web.DNAideLog.Write(message);
     }   
     
     void Session_Start(object sender, EventArgs e) 
