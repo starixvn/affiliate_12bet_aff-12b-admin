@@ -33,8 +33,8 @@
         <div style="height: 5px;"></div>
         <div id="betlist_breadcrum" style="margin-left: 5px;">
             <a href="../UserInfo/StatementHistory.aspx"><%=Resources.Lang.StatementHistory%> (<%= fromDate.ToString("MMM yyyy")%>)</a> >> 
-            <a href="../UserInfo/DailyEarning.aspx?monthdate=<%= monthdate.ToShortDateString()%>"><%=Resources.Lang.DailyEarnings%></a> >> 
-            <a href="../UserInfo/DailyEarningDetail.aspx?monthdate=<%= fromDate.ToShortDateString()%>&custid=<%= originalCustId%>&slSportType=<%= slSportType%>"><%=Resources.Lang.DailyEarningDetail%></a> >> 
+            <a href="../UserInfo/DailyEarning.aspx?monthdate=<%= monthdate.ToShortDateString()%>"><%= fromDate.ToString("MMMM yyyy")%></a> >> 
+            <a href="../UserInfo/DailyEarningDetail.aspx?monthdate=<%= fromDate.ToShortDateString()%>&custid=<%= originalCustId%>&slSportType=<%= slSportType%>"><%= fromDate.ToString("dd MMMM yyyy")%></a> >> 
             <b><%= UserName%></b>
         </div>
         <div style="height: 5px;"></div>

@@ -86,9 +86,9 @@ public partial class UserInfo_DailyEarningDetail : RootPageLogIn
         TemplateHandler.Assign(ref strTemplate, "SelectDate", Resources.Lang.SelectDate);
 
         var maxDateOfSelectedMonth = new DateTime(_date.Year, _date.Month, DateTime.DaysInMonth(_date.Year, _date.Month));
-        var betlist_breadcrum = "<a href=\"../UserInfo/StatementHistory.aspx\">" + Resources.Lang.StatementHistory + "(" + _date.ToString("MMM yyyy") + ")" + "</a> >> ";
+        var betlist_breadcrum = "<a href=\"../UserInfo/StatementHistory.aspx\">" + Resources.Lang.StatementHistory + "</a> >> ";
         betlist_breadcrum += "<b><a href=\"../UserInfo/DailyEarning.aspx?monthdate=" + maxDateOfSelectedMonth.ToShortDateString() +
-                             "\">" + Resources.Lang.DailyEarnings + "</a></b>";
+                             "\">" + _date.ToString("MMMM yyyy") + "</a></b>";
 
         TemplateHandler.Assign(ref strTemplate, "breadcrum", betlist_breadcrum);
 
