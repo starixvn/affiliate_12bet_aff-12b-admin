@@ -103,38 +103,44 @@
   </appSettings>
   <connectionStrings>
     <remove name="main" />
-    <remove name="archive" />
-    <remove name="affiliate" />
-    <remove name="on_user" />
-    <remove name="warehouse" />
-    <remove name="deposit" />
-    <remove name="affiliate_12bet" />
-    <add name="main" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("main") #>" />
+	<add name="main" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("main") #>" />
+	<remove name="archive" />
     <add name="archive" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("archive") #>" />
+	<remove name="affiliate" />
     <add name="affiliate" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("affiliate") #>" />
-    <add name="affiliate_12bet" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("affiliate_12bet") #>" />
-    <add name="on_user" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("on_user") #>" />
-    <add name="warehouse" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("warehouse") #>" />
+    <remove name="affiliate_12bet" />
+	<add name="affiliate_12bet" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("affiliate_12bet") #>" />
+    <remove name="on_user" />
+	<add name="on_user" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("on_user") #>" />
+    <remove name="warehouse" />
+	<add name="warehouse" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("warehouse") #>" />
+	<remove name="deposit" />
     <add name="deposit" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("deposit") #>" />
 
-    <remove name="main_view" />
-    <remove name="archive_view" />
-    <remove name="affiliate_view" />
-    <remove name="on_user_view" />
-    <remove name="warehouse_view" />
-    <remove name="deposit_view" />
-    <remove name="affiliate_12bet_view" />
-    <add name="main_view" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("main_view") #>" />
+	<remove name="main_view" />
+	<add name="main_view" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("main_view") #>" />
+	<remove name="archive_view" />
     <add name="archive_view" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("archive_view") #>" />
-    <add name="affiliate_view" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("affiliate_view") #>" />
-    <add name="on_user_view" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("on_user_view") #>" />
-    <add name="warehouse_view" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("warehouse_view") #>" />
+	<remove name="affiliate_view" />
+	<add name="affiliate_view" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("affiliate_view") #>" />
+	<remove name="on_user_view" />
+	<add name="on_user_view" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("on_user_view") #>" />
+	<remove name="warehouse_view" />
+	<add name="warehouse_view" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("warehouse_view") #>" />
+	<remove name="deposit_view" />
     <add name="deposit_view" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("deposit_view") #>" />
+	<remove name="affiliate_12bet_view" />
     <add name="affiliate_12bet_view" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("affiliate_12bet_view") #>" />
+
+	<remove name="DBAGE.BODB02" />
     <add name="DBAGE.BODB02" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("DBAGE.BODB02") #>" />
+	<remove name="DBAGE.bodb_AGE" />
     <add name="DBAGE.bodb_AGE" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("DBAGE.bodb_AGE") #>" />
+	<remove name="DBARC.bodb_Archive" />
     <add name="DBARC.bodb_Archive" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("DBARC.bodb_Archive") #>" />
+	<remove name="age_archive" />
     <add name="age_archive" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("age_archive") #>" />
+	<remove name="archive06" />
     <add name="archive06" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("archive06") #>"  />
   </connectionStrings>
   <system.web>

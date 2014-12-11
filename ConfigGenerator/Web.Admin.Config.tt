@@ -107,11 +107,17 @@
     <add name="deposit" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("deposit") #>" />
     
     <!--New DB Affiliate-->
+	<remove name="affiliate_12bet" />
     <add name="affiliate_12bet" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("affiliate_12bet") #>" />
+	<remove name="DBAGE.BODB02" />
     <add name="DBAGE.BODB02" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("DBAGE.BODB02") #>" />
-    <add name="DBAGE.bodb_AGE" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("DBAGE.bodb_AGE") #>" />
-    <add name="DBARC.bodb_Archive" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("DBARC.bodb_Archive") #>" />
-    <add name="age_archive" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("age_archive") #>" />
+    <remove name="DBAGE.bodb_AGE" />
+	<add name="DBAGE.bodb_AGE" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("DBAGE.bodb_AGE") #>" />
+    <remove name="DBARC.bodb_Archive" />
+	<add name="DBARC.bodb_Archive" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("DBARC.bodb_Archive") #>" />
+    <remove name="age_archive" />
+	<add name="age_archive" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("age_archive") #>" />
+	<remove name="CustomerLog" />
 	<add name="CustomerLog" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("CustomerLog") #>" />
   </connectionStrings>
   <system.web>
