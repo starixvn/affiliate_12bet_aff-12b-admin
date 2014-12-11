@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <Fanex.Logging>
+  </Fanex.Logging>
+  <appSettings>
+    <RemovePortFromUrl>
+      <local>0</local>
+      <master>0</master>
+      <uat>1</uat>
+      <production>1</production>
+    </RemovePortFromUrl>
+  </appSettings>
+  <connectionStrings>
+    <affiliate>
+      <local>packet size=4096; Data Source=10.18.200.231;Initial Catalog=affiliate_12bet;integrated security=false; user id=bodbDownlineNet; password=TBAw8F+PqCx3u382anlnOVRxKIJYMsMwXVn1hJpeyKk=;</local>
+      <master></master>
+      <uat>packet size=4096; Data Source=10.40.40.92;Initial Catalog=affiliate_12bet_test;integrated security=false; user id=bodbDownlineNet; password=TBAw8F+PqCx3u382anlnOVRxKIJYMsMwXVn1hJpeyKk=;</uat>
+      <production>packet size=4096; Data Source=10.40.40.92;Initial Catalog=affiliate_12bet;integrated security=false; user id=bodbDownlineNet; password=TBAw8F+PqCx3u382anlnOVRxKIJYMsMwXVn1hJpeyKk=;</production>
+    </affiliate>
+  </connectionStrings>
+</configuration>

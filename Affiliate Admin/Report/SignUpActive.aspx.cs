@@ -1,4 +1,5 @@
 ﻿using System.Xml.Linq;
+using Criterias;
 using DNAide.Web;
 using DNAide.Data;
 using DNAide.Core;
@@ -29,7 +30,7 @@ public partial class Report_SignUpActive : IBCPage
         TemplateHandler.Assign(ref strTpl, "fdate-txt", Resources.Lang.From);
         TemplateHandler.Assign(ref strTpl, "tdate-txt", Resources.Lang.To);
         TemplateHandler.Assign(ref strTpl, "search", Resources.Lang.Search);
-        TemplateHandler.Assign(ref strTpl, "themepath", AppSettings.ThemeDir);        
+        TemplateHandler.Assign(ref strTpl, "themepath", AppSettings.ThemeDir);
         TemplateHandler.Assign(ref strTpl, "affiliate", Resources.Lang.Affiliate);
         
         TemplateHandler.Assign(ref strTpl, "signup", Resources.Lang.SignUp);
@@ -49,42 +50,43 @@ public partial class Report_SignUpActive : IBCPage
             DateTime dtmTDate = CastAide.AsDateTime(Request["tdate"], DateTime.Now);
             int intPageSize = CastAide.AsInt32(Request["slPageSize"], 20);
             int intPage = CastAide.AsInt32(Request["page"], 1);
+            int sortBy = CastAide.AsInt32(Request["slSortBy"], 0);
 
             TemplateHandler.Assign(ref strTpl, "lang-val", strPreferLang);
+            TemplateHandler.Assign(ref strTpl, "sortBy-val", sortBy);
             TemplateHandler.Assign(ref strTpl, "fdate", dtmFDate.ToString("MM/dd/yyyy"));
             TemplateHandler.Assign(ref strTpl, "tdate", dtmTDate.ToString("MM/dd/yyyy"));
             TemplateHandler.Assign(ref strTpl, "cssgetall", isGetAll ? "ic-check" : "ic-uncheck");
             TemplateHandler.Assign(ref strTpl, "affname", strUsername);
 
-            DbResult rs = DataHandler.Affiliate.ActiveMemberReport(dtmFDate, dtmTDate, isGetAll, strUsername, strPreferLang, 0, intPageSize, intPage);
+            var criteria = new SignUpActiveCriteria
+                {
+                    DtmFDate = dtmFDate,
+                    DtmTDate = dtmTDate,
+                    IsGetAll = isGetAll,
+                    Username = strUsername,
+                    PreferredLanguage = strPreferLang,
+                    AffType = 0,
+                    PageSize = intPageSize,
+                    PageIndex = intPage,
+                    SortBy = sortBy
+                };
+
+            DbResult rs = DataHandler.Affiliate.ActiveMemberReport(criteria);
           
             DataTable dtb = new DataTable();
             if (rs.ResultSet.Tables.Count > 0)
                 dtb = rs.ResultSet.Tables[0];
 
-            int totalPage = CastAide.AsInt32(rs.Outputs["totalpages"]);
-            int nummem = CastAide.AsInt32(rs.Outputs["nrows"]);
+            criteria.NRows = CastAide.AsInt32(rs.Outputs["nrows"]);
 
             if (dtb.Rows.Count > 0)
             {
-                DbResult rs1;
-                if (!string.IsNullOrEmpty(strUsername))
-                    rs1 = DataHandler.Affiliate.SignUpMembersReport(CastAide.AsInt32(dtb.Rows[0]["affid"]), dtmFDate, dtmTDate, isGetAll);
-                else
-                    rs1 = DataHandler.Affiliate.SignUpMembersReport(-1, dtmFDate, dtmTDate, isGetAll);
-                DataTable dtb1 = new DataTable();
-                if (rs1.ResultSet.Tables.Count > 0)
-                    dtb1 = rs1.ResultSet.Tables[0];
-
                 int intCount = (intPage - 1) * intPageSize + 1;
                 int intTotal = 0;
                 string strRowTpl = TemplateHandler.CopyBlock(strTpl, "content");
-                string strListAffId = string.Empty;
-
 
                 StringBuilder strListRow = new StringBuilder();
-                //Hashtable hsTotal = new Hashtable();
-
 
                 foreach (DataRow dr in dtb.Rows)
                 {
@@ -99,19 +101,18 @@ public partial class Report_SignUpActive : IBCPage
 
                     TemplateHandler.Assign(ref strTmp, "aff-val", dr["username"]);
                     TemplateHandler.Assign(ref strTmp, "affid-val", dr["affid"]);
-                    TemplateHandler.Assign(ref strTmp, "unique-val", dr["TotalUniqueClicks"]);
-                    TemplateHandler.Assign(ref strTmp, "total-val", dr["TotalClicks"]);
-                    TemplateHandler.Assign(ref strTmp, "uniquenew-val", dr["TotalUniqueClicks_New"]);
+                    TemplateHandler.Assign(ref strTmp, "unique-val", dr["UniqueClicks_Old"]);
+                    TemplateHandler.Assign(ref strTmp, "total-val", dr["TotalClicks_Old"]);
+                    TemplateHandler.Assign(ref strTmp, "uniquenew-val", dr["UniqueClicks_New"]);
                     TemplateHandler.Assign(ref strTmp, "totalnew-val", dr["TotalClicks_New"]);
                     TemplateHandler.Assign(ref strTmp, "fdm-val", total);
-                   // TemplateHandler.Assign(ref strTmp, "type-val", 0);
                     if (CastAide.AsBoolean(dr["isclosed"]))
                         TemplateHandler.Assign(ref strTmp, "color", Common.RowBgClosed);
                     else
                         TemplateHandler.Assign(ref strTmp, "color", (intCount % 2 == 0) ? Common.RowBgEven : Common.RowBgOdd);
 
                     //sign up
-                    TemplateHandler.Assign(ref strTmp, "signup-val",GetSignUp( dtb1,int.Parse(dr["affid"].ToString())));
+                    TemplateHandler.Assign(ref strTmp, "signup-val", dr["Signup"]);
 
                     strListRow.Append(strTmp);
                 }
@@ -124,11 +125,11 @@ public partial class Report_SignUpActive : IBCPage
                 TemplateHandler.ReplaceBlock(ref strTpl, "nodata", Common.NoInfo(5));
             }
             //Assign Paging template
-            TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.ReportLink, SubMenu.ReportText, 4, nummem, SubMenu.ReportText[2], "i_report.png"));
+            TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.ReportLink, SubMenu.ReportText, 4, criteria.NRows, SubMenu.ReportText[2], "i_report.png"));
             if (dtb.Rows.Count > 0)
             {
-                TemplateHandler.Assign(ref strTpl, "paging-top", Common.GenPaging(totalPage, intPage, intPageSize, nummem, "aPageTop", "txtPageTop", 710, false, true));
-                TemplateHandler.Assign(ref strTpl, "paging-bottom", Common.GenPaging(totalPage, intPage, intPageSize, nummem, "aPageBottom", "txtPageBottom", 710, false, false));
+                TemplateHandler.Assign(ref strTpl, "paging-top", Common.GenPaging(criteria.TotalPages, intPage, intPageSize, criteria.NRows, "aPageTop", "txtPageTop", 710, false, true));
+                TemplateHandler.Assign(ref strTpl, "paging-bottom", Common.GenPaging(criteria.TotalPages, intPage, intPageSize, criteria.NRows, "aPageBottom", "txtPageBottom", 710, false, false));
             }
             else
             {
@@ -140,7 +141,7 @@ public partial class Report_SignUpActive : IBCPage
         {
             DNAideLog.Write(ex.Message);
             #if DEBUG
-                        throw;
+                throw;
             #endif
         }
     }

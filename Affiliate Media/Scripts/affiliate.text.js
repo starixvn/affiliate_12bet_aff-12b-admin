@@ -12,5 +12,6 @@
         _affcross.parentNode.insertBefore(_affscript, _affcross);
     }
 }
+
 _affChangeMediaText();
 var _afftimer = self.setInterval("_affChangeMediaText()", {requesttime});

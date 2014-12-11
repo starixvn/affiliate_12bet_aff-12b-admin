@@ -1,41 +1,121 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="AffiliateReport.aspx.cs" Inherits="Report_AffiliateReport" %>
-
 <!--js-->
 <script type="text/javascript" src="../App_Js/Common.js"></script>
-<link rel="stylesheet" type="text/css" href="../App_Js/Calendar2/Skin/calendar-blue.css" media="all" title="win2k-cold-1" />
+<script type="text/javascript" src="../App_Js/RefreshTime.js"></script>
+<link rel='stylesheet' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/base/jquery-ui.css'>
 <script type="text/javascript" src="../App_Js/prototype.js"></script>
-<script src="../App_Js/Calendar2/calendar-normal.js" type="text/javascript"></script>
-<script src="../App_Js/Calendar2/date.js" type="text/javascript"></script>
-<script src="../App_Js/Calendar2/Lang/calendar-e.js" type="text/javascript"></script>
-<script src="../App_Js/Calendar2/calendar-setup.js" type="text/javascript"></script>
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script> 
+<script src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js'></script>
+<script src="../App_Js/MonthPicker/jquery.mtz.monthpicker.js" type="text/javascript"></script>
+<link href="../App_Js/MonthPicker/month-picker.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
-    window.onload=function()
-                {
-                    EnableCalendar($("chkDate").className == "ic-uncheck" ? true : false);
-                    if ($("hdLanguage").value != "")
-                        $("slPreferLang").value = $("hdLanguage").value;
-                    if ($("hdSport").value != "")
-                        $("slSport").value = $("hdSport").value;
-                };
-    function chkOnclick()
-    {
+    
+    var $j = jQuery.noConflict();
+
+    window.onload = function () {
+        var currentYear = $('hdCurrentYear').value;
+
+        var monthPickerOptions = {
+            selectedYear: currentYear,
+            startYear: 2009,
+            finalYear: currentYear
+        };
+
+        $j('#fdate').monthpicker(monthPickerOptions);
+
+        $j('#tdate').monthpicker(monthPickerOptions);
+
+        if ($("hdLanguage").value != "")
+            $("slPreferLang").value = $("hdLanguage").value;
+        if ($("hdSport").value != "")
+            $("slSport").value = $("hdSport").value;
+
+        EnableMonthCalendar($("chkDate").className == "ic-uncheck");
+    };
+    
+    function EnableMonthCalendar(isEnable) {
+        if (isEnable) {
+            $j('#fdate').removeAttr("disabled");
+            $j('#fdate').removeAttr("disabled");
+        } else {
+            $j('#fdate').attr("disabled", "disabled");
+            $j('#tdate').attr("disabled", "disabled");
+        }
+    }
+    
+    function chkOnclick() {
         if($("chkDate").className == "ic-uncheck")
         {
             $("chkDate").className = "ic-check";
             $("isGetAll").value = "ic-check";
-            EnableCalendar(false);
+            $j('#fdate').attr('disabled', 'disabled');
+            $j('#tdate').attr('disabled', 'disabled');
         }
-        else
-        {
-            $("chkDate").className = "ic-uncheck"
+        else {
+            $("chkDate").className = "ic-uncheck";
             $("isGetAll").value = "ic-uncheck";
-            EnableCalendar(true);
+            $j('#fdate').removeAttr('disabled');
+            $j('#tdate').removeAttr('disabled');
         }
     }
-    function Search()
-    {        
-        $("frmSearch").submit();
-        DelayReloadPage1();
+    
+    function Search() {
+
+        if($("isGetAll").value === "ic-check")
+        {
+            $("frmSearch").submit();
+            DelayReloadPage1();
+        }
+        else {
+            $("frmSearch").submit();
+            DelayReloadPage1();
+        }
     }
+
+    var ValidatePeriod = (function ($) {
+        var convertDate = function (monthDate) {
+            var parts = monthDate.split('/');
+            if (parts.length == 2) {
+                return new Date(parts[0] + '/01/' + parts[1]);
+            }
+            return new Date();
+        };
+        return {
+            validate: function (fromDate, toDate) {
+                fromDate = convertDate(fromDate);
+                toDate = convertDate(toDate);
+
+                var errors = {
+                    0: "Valid",
+                    1: "From Date is greater than To Date",
+                    2: "Sorry! We just allow to view the report within 6 months.",
+                    3: "Date Period is invalid."
+                };
+
+                if (fromDate.getTime() > toDate.getTime()) {
+                    return errors[1];
+                }
+
+                var fMonth, fYear, tMonth, tYear;
+                fMonth = fromDate.getMonth();
+                fYear = fromDate.getYear();
+                tMonth = toDate.getMonth();
+                tYear = toDate.getYear();
+
+                var tempMonth = tMonth;
+
+                if (fYear < tYear) {
+                    tempMonth = tempMonth + 12;
+                }
+
+                if (tempMonth - fMonth <= 6) {
+                    return errors[0];
+                } else {
+                    return errors[2];
+                }
+            }
+        };
+    })($j);
+
 </script>
 <!--/js-->

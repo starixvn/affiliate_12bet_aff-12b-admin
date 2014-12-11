@@ -45,7 +45,7 @@ function LoadData(currPage) {
         if($("page"))
             $("page").value = currPage;
         if ($("pagesize") && $("slPageSize"))
-            $("pagesize").value = $("slPageSize")[$("slPageSize").selectedIndex].value;        
+            $("pagesize").value = $("slPageSize")[$("slPageSize").selectedIndex].value;
         $("frmSearch").submit();
     }
     catch (e) {
@@ -54,7 +54,7 @@ function LoadData(currPage) {
 }
 
 /*Manipulating the head and bottom paging. When mouse clicked on the page number, the text changed to textbox*/
-var pageTimeOut = null;    
+var pageTimeOut = null;
 function PageNum(aID, txtID, isInputPage) {
     clearTimeout(pageTimeOut);
     pageTimeOut = null;
