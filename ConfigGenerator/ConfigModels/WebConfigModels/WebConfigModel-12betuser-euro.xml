@@ -131,6 +131,12 @@
       <uat>_xtest</uat>
       <production></production>
     </SuffixSp>
+    <AffBetlistService.AffiliateAPI>
+      <local>http://10.18.200.209:5001/WebService/AffiliateAPI.asmx</local>
+      <master></master>
+      <uat></uat>
+      <production></production>
+    </AffBetlistService.AffiliateAPI>
   </appSettings>
 
   <connectionStrings>

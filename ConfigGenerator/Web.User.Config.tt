@@ -99,6 +99,7 @@
     <add key="ShowCasino" value="1"/>
     <add key="MemberInfoService.Service" value="http://test.12bet.com:13002/Service.asmx"/>
 	<add key="SuffixSp" value="<#= appSettings.GetValue("SuffixSp") #>"/>
+	<add key="AffBetlistService.AffiliateAPI" value="<#= appSettings.GetValue("AffBetlistService.AffiliateAPI") #>"/>
   </appSettings>
   <connectionStrings>
     <remove name="main" />
