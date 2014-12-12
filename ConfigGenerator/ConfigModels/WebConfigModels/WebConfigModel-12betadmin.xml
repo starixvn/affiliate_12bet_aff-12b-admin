@@ -92,7 +92,7 @@
     <AffBetlistService.AffiliateAPI>
       <local>http://10.18.200.209:5001/WebService/AffiliateAPI.asmx</local>
       <master></master>
-      <uat></uat>
+      <uat>http://affqa.starific.net/API/AffiliateAPI.asmx</uat>
       <production></production>
     </AffBetlistService.AffiliateAPI>
     <LBUrl>
