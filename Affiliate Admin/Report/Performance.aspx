@@ -4,14 +4,13 @@
 <script type="text/javascript" src="../App_Js/RefreshTime.js"></script>
 <link rel='stylesheet' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/base/jquery-ui.css'>
 <script type="text/javascript" src="../App_Js/prototype.js"></script>
+<script type="text/javascript" src="../App_Js/IBCWnd/IBCWnd.js"></script>
 <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script> 
 <script src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js'></script>
 <script src="../App_Js/MonthPicker/jquery.mtz.monthpicker.js" type="text/javascript"></script>
 <link href="../App_Js/MonthPicker/month-picker.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
     var $j = jQuery.noConflict();
-
-
 
     window.onload = function () {
 
@@ -67,8 +66,6 @@
                 obj.options[index].selected = true;
         }
     }
-
-
 
     function Focus() {
         if ($("affname").value == "[All]") {

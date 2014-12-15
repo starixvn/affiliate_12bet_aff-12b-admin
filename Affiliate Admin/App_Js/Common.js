@@ -467,7 +467,7 @@ function HideErr()
  }
 
  function DoCal(url, title, width, heigh) {
-     if (width == null || heigh == null) {         
+     if (width == null || heigh == null) {
          ibcWnd.open(url, title, 150, 50, 350, 200, 'class1', 'class2');
      }
      else {
