@@ -36,6 +36,7 @@ public static class AppSettings
     static DateTime _UMEndTime;
     static DateTime _StatementAvailableFrom;
     static string _suffixSp;
+    private static int _betListServiceTimeout;
 
     private static DateTime _ReportStartDate;
 
@@ -84,6 +85,8 @@ public static class AppSettings
         }
 
         _suffixSp = ConfigurationManager.AppSettings["SuffixSp"];
+        _betListServiceTimeout = CastAide.AsInt32(ConfigurationManager.AppSettings["BetListServiceTimeout"]);
+
 
         initPageHeader();
     }
@@ -355,6 +358,11 @@ public static class AppSettings
         }
     }
 
+    public static int BetListServiceTimeout
+    {
+        get { return _betListServiceTimeout; }
+    }
+
     #region ---------- for Session-------------
 
     public static class Session
@@ -535,5 +543,9 @@ public static class AppSettings
         get { return DNAide.Core.CastAide.AsString(System.Configuration.ConfigurationManager.AppSettings["bccMail"]); }
     }
     #endregion
+
+
+
+
     
 }

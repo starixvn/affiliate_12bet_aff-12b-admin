@@ -3,3 +3,4 @@
 \\*.uat.config
 \\*.production.config
 \\banner\\.*
+\\logs\\.*

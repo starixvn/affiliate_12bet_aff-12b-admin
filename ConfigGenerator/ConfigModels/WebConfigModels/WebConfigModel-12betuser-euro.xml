@@ -131,6 +131,12 @@
       <uat>_xtest</uat>
       <production></production>
     </SuffixSp>
+    <BetListServiceTimeout>
+      <local>60000</local>
+      <master></master>
+      <uat>300000</uat>
+      <production>300000</production>
+    </BetListServiceTimeout>
     <AffBetlistService.AffiliateAPI>
       <local>http://10.18.200.209:5001/WebService/AffiliateAPI.asmx</local>
       <master></master>

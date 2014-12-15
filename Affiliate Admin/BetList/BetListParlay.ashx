@@ -9,6 +9,7 @@ public class BetListParlay : IHttpHandler {
         context.Response.ContentType = "text/plain";
         
         var affBetlistService = new AffiliateAPI();
+        affBetlistService.Timeout = AppSettings.BetListServiceTimeout;
         var parlayHtmlString = affBetlistService.GetBetlistParlay(
             "12bet",
             context.Request["transId"],

@@ -86,6 +86,7 @@
     <add key="AsianAffiliateURL" value="<#= appSettings.GetValue("AsianAffiliateURL") #>" />
 	<add key="AffBetlistService.AffiliateAPI" value="<#= appSettings.GetValue("AffBetlistService.AffiliateAPI") #>"/>
 	<add key="SuffixSp" value="<#= appSettings.GetValue("SuffixSp") #>"/>
+	<add key="BetListServiceTimeout" value="<#= appSettings.GetValue("BetListServiceTimeout") #>"/>
 
   </appSettings>
   <connectionStrings>

@@ -44,6 +44,7 @@ public partial class BetList_BetList : IBCPage
             {
                 //betlistHtmlString = "Member Bet List " + fromDate.ToShortDateString();
                 AffiliateAPI affBetlistService = new AffiliateAPI();
+                affBetlistService.Timeout = AppSettings.BetListServiceTimeout;
 
                 List<Product> supportedProducts = new List<Product>();
                 supportedProducts.Add(new Product {ProductId = 1, ProductName = "Sportsbook"});

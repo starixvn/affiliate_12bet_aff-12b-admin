@@ -17,6 +17,7 @@ public partial class BetList_BetListParlayDetail : IBCPage
             };
 
         var affBetlistService = new AffiliateAPI();
+        affBetlistService.Timeout = AppSettings.BetListServiceTimeout;
         betlistParlayDetailHtmlString = affBetlistService.GetBetlistSystemParlay(
             "12bet",
             "1",

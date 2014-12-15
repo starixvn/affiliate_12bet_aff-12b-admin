@@ -12,7 +12,7 @@
     <RemoteRefURL>
       <local>tcp://10.18.200.209:8888/CallGetRefFunction</local>
       <master>0</master>
-      <uat>1</uat>
+      <uat>tcp://10.40.40.29:8098/CallGetRefFunction</uat>
       <production>tcp://10.40.40.29:8098/CallGetRefFunction</production>
     </RemoteRefURL>
     <LocalTest>
@@ -124,9 +124,15 @@
     <SuffixSp>
       <local></local>
       <master></master>
-      <uat>_xtest</uat>
+      <uat></uat>
       <production></production>
     </SuffixSp>
+    <BetListServiceTimeout>
+      <local>60000</local>
+      <master></master>
+      <uat>300000</uat>
+      <production>300000</production>
+    </BetListServiceTimeout>
   </appSettings>
 
   <connectionStrings>
