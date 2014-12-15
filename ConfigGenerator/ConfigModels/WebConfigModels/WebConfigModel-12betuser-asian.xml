@@ -261,7 +261,12 @@
       <uat>packet size=4096; Data Source=10.40.40.100;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNet; password=TBAw8F+PqCx3u382anlnOVRxKIJYMsMwXVn1hJpeyKk==</uat>
       <production>packet size=4096; Data Source=10.40.40.100;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNet; password=TBAw8F+PqCx3u382anlnOVRxKIJYMsMwXVn1hJpeyKk==</production>
     </archive06>
-  
+    <CustomerLog>
+      <local>packet size=4096; Data Source=10.18.200.231;Initial Catalog=bodb_CustomerLog;integrated security=false; User Id=olympus;Password=@tiger#</local>
+      <master>packet size=4096; Data Source=10.18.200.231;Initial Catalog=bodb_CustomerLog;integrated security=false; User Id=olympus;Password=@tiger#</master>
+      <uat>packet size=4096; Data Source=10.40.40.92;Asynchronous Processing=true;Initial Catalog=bodb_CustomerLog;integrated security=false; user id=bodbAdminNet; password=%bodbAdminNetLogin2587</uat>
+      <production>packet size=4096; Data Source=10.40.40.92;Asynchronous Processing=true;Initial Catalog=bodb_CustomerLog;integrated security=false; user id=bodbAdminNet; password=%bodbAdminNetLogin2587</production>
+    </CustomerLog>
 </connectionStrings>
   
   <compilation>
@@ -280,4 +285,37 @@
       <production>RemoteOnly</production>
     </mode>
   </customErrors>
+  
+  <loggingConfiguration>
+    <AffiliateEmailTraceListener>
+      <local>
+        type="Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.EmailTraceListener, Microsoft.Practices.EnterpriseLibrary.Logging, Version=5.0.414.0, Culture=neutral"
+        listenerDataType="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.EmailTraceListenerData, Microsoft.Practices.EnterpriseLibrary.Logging, Version=5.0.414.0, Culture=neutral"
+        toAddress="johnny.trinh@nexcel.vn" fromAddress="apollo-agent-local@nexcel.vn"
+        subjectLineStarter="Affiliate Local Error" smtpServer="mailnex.nexcel.vn"
+        formatter="Text Formatter" traceOutputOptions="LogicalOperationStack, DateTime, Timestamp, ProcessId, ThreadId, Callstack"
+      </local>
+      <master>
+        type="Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.EmailTraceListener, Microsoft.Practices.EnterpriseLibrary.Logging, Version=5.0.414.0, Culture=neutral"
+        listenerDataType="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.EmailTraceListenerData, Microsoft.Practices.EnterpriseLibrary.Logging, Version=5.0.414.0, Culture=neutral"
+        toAddress="johnny.trinh@nexcel.vn" fromAddress="apollo-agent-local@nexcel.vn"
+        subjectLineStarter="Affiliate Local Error" smtpServer="mailnex.nexcel.vn"
+        formatter="Text Formatter" traceOutputOptions="LogicalOperationStack, DateTime, Timestamp, ProcessId, ThreadId, Callstack"
+      </master>
+      <uat>
+        type="Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.EmailTraceListener, Microsoft.Practices.EnterpriseLibrary.Logging, Version=5.0.414.0, Culture=neutral"
+        listenerDataType="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.EmailTraceListenerData, Microsoft.Practices.EnterpriseLibrary.Logging, Version=5.0.414.0, Culture=neutral"
+        toAddress="johnny.trinh@nexcel.vn" fromAddress="noreply@12bet.com"
+        subjectLineStarter="Affiliate UAT Error" smtpServer="10.2.106.26"
+        formatter="Text Formatter" traceOutputOptions="LogicalOperationStack, DateTime, Timestamp, ProcessId, ThreadId, Callstack"
+      </uat>
+      <production>
+        type="Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.EmailTraceListener, Microsoft.Practices.EnterpriseLibrary.Logging, Version=5.0.414.0, Culture=neutral"
+        listenerDataType="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.EmailTraceListenerData, Microsoft.Practices.EnterpriseLibrary.Logging, Version=5.0.414.0, Culture=neutral"
+        toAddress="production@starixsoft.com" fromAddress="noreply@12bet.com"
+        subjectLineStarter="Affiliate Production Error" smtpServer="10.2.106.26"
+        formatter="Text Formatter" traceOutputOptions="LogicalOperationStack, DateTime, Timestamp, ProcessId, ThreadId, Callstack"
+      </production>
+    </AffiliateEmailTraceListener>
+  </loggingConfiguration>
 </configuration>

@@ -22,6 +22,7 @@
 	var connectionStrings = reader.GetSettingsOfNode("connectionStrings");
 	var compilations = reader.GetSettingsOfNode("compilation");
 	var customErrors = reader.GetSettingsOfNode("customErrors");
+	var loggingConfigurations = reader.GetSettingsOfNode("loggingConfiguration");
 #>
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
@@ -188,17 +189,13 @@
 		databaseInstanceName="CustomerLog" writeLogStoredProcName="WriteLog_AppLog"
 		addCategoryStoredProcName="Acc_AppLog_CategoryIns" formatter="Text Formatter"
 		traceOutputOptions="LogicalOperationStack, DateTime, Timestamp, ProcessId, ThreadId, Callstack" />
-			<add name="Affiliate Email Trace Listener" type="Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.EmailTraceListener, Microsoft.Practices.EnterpriseLibrary.Logging, Version=5.0.414.0, Culture=neutral"
-		listenerDataType="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.EmailTraceListenerData, Microsoft.Practices.EnterpriseLibrary.Logging, Version=5.0.414.0, Culture=neutral"
-		toAddress="johnny.trinh@nexcel.vn" fromAddress="apollo-agent-local@nexcel.vn"
-		subjectLineStarter="Affiliate Admin Local Error" smtpServer="mailnex.nexcel.vn"
-		formatter="Text Formatter" traceOutputOptions="LogicalOperationStack, DateTime, Timestamp, ProcessId, ThreadId, Callstack" />
+	<add name="Affiliate Email Trace Listener" <#= loggingConfigurations.GetValue("AffiliateEmailTraceListener") #> />
     </listeners>
     <formatters>
       <add template="{timestamp} -- {message} -- {category}" type="Microsoft.Practices.EnterpriseLibrary.Logging.Formatters.TextFormatter, Microsoft.Practices.EnterpriseLibrary.Logging, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" name="Text Formatter"/>
     </formatters>
     <categorySources>
-      <add switchValue="All" name="Affliate Anpha">
+      <add switchValue="All" name="Affiliate_12Bet">
         <listeners>
           <add name="IBCAffiliateAdmin"/>
           <add name="Database Trace Listener" />
