@@ -12,7 +12,7 @@
     <RemoteRefURL>
       <local>tcp://10.18.200.209:8888/CallGetRefFunction</local>
       <master>0</master>
-      <uat>tcp://10.40.40.29:8098/CallGetRefFunction</uat>
+      <uat>tcp://10.3.21.14:8091/CallGetRefFunction</uat>
       <production>tcp://10.40.40.29:8098/CallGetRefFunction</production>
     </RemoteRefURL>
     <LocalTest>

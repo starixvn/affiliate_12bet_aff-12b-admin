@@ -18,7 +18,7 @@
     <RemoteRefURL>
       <local>tcp://10.18.200.209:8888/CallGetRefFunction</local>
       <master></master>
-      <uat>tcp://10.40.40.29:8098/CallGetRefFunction</uat>
+      <uat>tcp://10.3.21.14:8091/CallGetRefFunction</uat>
       <production>tcp://10.40.40.29:8098/CallGetRefFunction</production>
     </RemoteRefURL>
     <MailContact>
@@ -116,7 +116,7 @@
     <LBUrl>
       <local></local>
       <master></master>
-      <uat>tcp://10.40.40.150:8990/UMControllerInterface</uat>
+      <uat>tcp://10.3.21.14:8091/CallGetRefFunction</uat>
       <production>tcp://10.40.40.150:8990/UMControllerInterface</production>
     </LBUrl>
     <HasCheckUmTime>
@@ -128,7 +128,7 @@
     <SuffixSp>
       <local></local>
       <master></master>
-      <uat>_xtest</uat>
+      <uat></uat>
       <production></production>
     </SuffixSp>
     <BetListServiceTimeout>
