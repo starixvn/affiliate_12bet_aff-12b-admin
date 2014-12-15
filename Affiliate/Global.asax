@@ -35,7 +35,7 @@
                         "\r\nTARGETSITE: " + ex.TargetSite +
                         "\r\nSTACKTRACE: " + ex.StackTrace;
 
-        LogService.Error(message);
+        DNAide.Web.DNAideLog.Write(message);
     }
 
     void Session_Start(object sender, EventArgs e) 
