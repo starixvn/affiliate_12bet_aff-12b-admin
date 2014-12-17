@@ -11,12 +11,6 @@ function Initialize() {
         setInterval("CountDown();", 1000);
     }
 
-   /* EnableDisableSearchDate($("hdchkDate").value);
-
-    $("fdate").value = $("hdfDate").value;
-    $("tdate").value = $("hdtDate").value;*/
-
-
     //Event Handler for related controls in the web page
     var listEdit = document.getElementsByClassName("icedit");
     for (var i = 0; i < listEdit.length; i++) {
@@ -43,25 +37,20 @@ function Initialize() {
         link[i].observe('click', linkOnClick);        
     }
 
-    /*$("chkDate").observe('click', EnableDisableSearchDate);
-        $("fdate").observe('blur', FixValidDate);
-    $("tdate").observe('blur', FixValidDate);
-     */
     $("txtGroupName").observe('keypress', PreSearch);    
     $('txtGroupName').blur();
     $('txtGroupName').focus();
-
-
 }
+
 function linkOnClick(event) {
     var id = "";
     if (this.id.indexOf("_NoComm") > 0) {
         id = this.id.split('_')[0].substring(1, this.id.length);
-        location.href = "../UserInfo/AffiliateList.aspx?groupid=" + id + "&isClosed=true";
+        location.href = "../UserInfo/AffiliateList.aspx?slCommGroup=" + id + "&isClosed=true&";
     }
     else {
         id = this.id.substring(1, this.id.length);
-        location.href = "../UserInfo/AffiliateList.aspx?groupid=" + id;
+        location.href = "../UserInfo/AffiliateList.aspx?slCommGroup=" + id;
     }
     
 }
@@ -156,9 +145,8 @@ function editOnClick(event) {
         $("fdateTrigger").onclick = "";
         $("tdateTrigger").onclick = "";
     }
-
-
 }
+
 function IsDate(str) {
     try {
         var myDate = new Date(dateString);
@@ -167,14 +155,13 @@ function IsDate(str) {
         return false;
     }
 }
+
 function FixValidDate(event) {
     var obj = Event.element(event);
     if (!IsDate(obj.value)) {
         obj.value = ctrInput;
     }
 }
-
-
 
 function DoCal(url) {
     ibcWnd.open(url, 'Message Details', 150, 50, 500, 320, 'class1', 'class2');
@@ -187,4 +174,3 @@ function PreSearch(e) {
         LoadData(1);
     }
 }
-    

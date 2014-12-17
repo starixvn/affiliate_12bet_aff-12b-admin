@@ -44,10 +44,7 @@ public partial class GroupSetting : IBCPage
         TemplateHandler.Assign(ref content, "To", Resources.Lang.To);
         TemplateHandler.Assign(ref content, "over", Common.RowBgOver);
         
-        
         int minNo = 0, maxNo = 0, totalRows = 0, totalpage = 0;
-        
-
         
         int currPage = CastAide.AsInt32(Request["page"], 1);//get the current page from hidden field in form
         int currPageSize = CastAide.AsInt32(Request["slPageSize"],AppSettings.PageSize);//get the current page from hidden field in form
@@ -59,12 +56,12 @@ public partial class GroupSetting : IBCPage
         
 
         object fdate = null, tdate = null;
-        int hasDate = CastAide.AsInt32(Request["hdchkDate"], 0);       
+        int hasDate = CastAide.AsInt32(Request["hdchkDate"], 0);
 
         if (hasDate>0)
         {
              fdate = CastAide.AsDateTime(Request["fdate"], null);
-             tdate = CastAide.AsDateTime(Request["tdate"], null);            
+             tdate = CastAide.AsDateTime(Request["tdate"], null);
         }
         TemplateHandler.ReplaceBlock(ref content, "Content", GenerateHTML.GroupSetting.GetGroupSettingList(strGroupName,fdate,tdate,currPage, ref minNo, ref maxNo, ref totalRows, currPageSize,ref totalpage));
                
