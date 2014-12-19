@@ -56,6 +56,7 @@ public static class AppSettings
     private static string _europeanAffDomain;
     private static string _preferLang;
     private static int _europeanAffPort;
+    private static int _betListServiceTimeout;
 
     static AppSettings()
     {
@@ -103,6 +104,7 @@ public static class AppSettings
         _bannerUrl = ConfigurationManager.AppSettings["BannerUrl"];
         _showCasino = (ConfigurationManager.AppSettings["ShowCasino"] == "1");
         _localTest = (ConfigurationManager.AppSettings["LocalTest"] == "1");
+        _betListServiceTimeout = CastAide.AsInt32(ConfigurationManager.AppSettings["BetListServiceTimeout"]);
         initPageHeader();
     }
 
@@ -752,4 +754,11 @@ public static class AppSettings
     {
         get { return _localTest; }
     }
+
+    public static int BetListServiceTimeout
+    {
+        get { return _betListServiceTimeout; }
+    }
+
+    
 }

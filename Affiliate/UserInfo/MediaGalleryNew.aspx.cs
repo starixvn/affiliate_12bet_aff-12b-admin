@@ -70,7 +70,6 @@ public partial class MediaGallery : RootPageLogIn
             }
         }
 
-        //string lang = string.IsNullOrEmpty(Request["slLanguage"]) ? Common.GetPreferLanguage() : Request["slLanguage"];
         string lang = string.IsNullOrEmpty(Request["slLanguage"]) ? null : Request["slLanguage"]; 
         string currency = string.IsNullOrEmpty(Request["slCurrency"]) ? null : Request["slCurrency"];
         string type = string.IsNullOrEmpty(Request["slImageType"]) ? null : Request["slImageType"];
@@ -89,7 +88,7 @@ public partial class MediaGallery : RootPageLogIn
             trackingcode = string.IsNullOrEmpty(Request["txtNewTrackingCode"]) ? "" : Request["txtNewTrackingCode"];
             TemplateHandler.Assign(ref htmlContent, "nchecked", "checked");
             TemplateHandler.Assign(ref htmlContent, "achecked", string.Empty);
-            TemplateHandler.Assign(ref htmlContent, "track-val", trackingcode);    
+            TemplateHandler.Assign(ref htmlContent, "track-val", trackingcode);
         }
         #endregion
 

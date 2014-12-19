@@ -12,8 +12,10 @@
                     </tr>                
                 </table>
             </div>
-            <br />
             <div class="in_conts">
+                <div style="height: 5px;"></div>
+                <b><a href="../UserInfo/StatementHistory.aspx"><%= Resources.Lang.StatementHistory%></a></b>
+                <hr style="display: block; height: 1px; border: 0; border-top: 1px solid #ccc;" />
                 <form method="get" id="frmData" name="frmData">
                     <%=strListSports %>                    
                     <input type="hidden" id="monthdate" name="monthdate" value="<%=Request["monthdate"] %>" />

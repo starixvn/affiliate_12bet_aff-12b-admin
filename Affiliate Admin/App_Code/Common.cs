@@ -17,9 +17,9 @@ using System.Web.Caching;
 using LoadBalancerLibrary;
 using System.Xml;
 using System.Data.OleDb;
-using OfficeOpenXml;
+//using OfficeOpenXml;
 using Sunplus.UMControllerLibrary;
-using System.Linq;
+//using System.Linq;
 using Fanex.MailDeliver.MailClient.API;
 
 
@@ -462,9 +462,15 @@ public class Common
 
     public static void DeleteFile(string path)
     {
-        FileInfo file = new FileInfo(path);
-        if (file.Exists)
-            file.Delete();    
+        try
+        {
+            var file = new FileInfo(path);
+            if (file.Exists)
+                file.Delete();
+        }
+        catch (Exception)
+        {
+        }
     }
 
     public static string GenerateSelectObj(string strID, ArrayList arrValue, ArrayList arrText, string strValueSelected)
@@ -782,7 +788,7 @@ public class Common
             case "approved":
                 return Resources.Lang.Approved;
             case "rejected":
-                return Resources.Lang.Rejected;            
+                return Resources.Lang.Rejected;
             default:
                 return strStatus.ToString();
         }
@@ -1167,6 +1173,47 @@ public class Common
         return opt;
     }
 
+    public static string GenDropDownFromTable2(DataTable dt, string valueColumn, string nameColumn, string id, ref string activeValue, bool isGenAll, string labelAll)
+    {
+        var result = new StringBuilder();
+        string opt = TemplateHandler.LoadTemplate("Option.htm");
+        TemplateHandler.Assign(ref opt, "id", id);
+        string temp = TemplateHandler.CopyBlock(opt, "optionList");
+        string tempopt = temp;
+        if (isGenAll)
+        {
+            TemplateHandler.Assign(ref tempopt, "Optvalue", string.Empty);
+            TemplateHandler.Assign(ref tempopt, "Optname", string.IsNullOrEmpty(labelAll) ? Resources.Lang.All : labelAll);
+            if (string.IsNullOrEmpty(activeValue))
+            {
+                TemplateHandler.Assign(ref tempopt, "selected", "selected");
+            }
+            result.Append(tempopt);
+        }
+        foreach (DataRow dr in dt.Rows)
+        {
+            tempopt = temp;
+            TemplateHandler.Assign(ref tempopt, "Optvalue", dr[valueColumn].ToString());
+            TemplateHandler.Assign(ref tempopt, "Optname", dr[nameColumn].ToString());
+
+            if (string.Compare(activeValue, dr[valueColumn].ToString(), true) == 0)
+            {
+                TemplateHandler.Assign(ref tempopt, "selected", "selected");
+            }
+            else
+            {
+                TemplateHandler.Assign(ref tempopt, "selected", string.Empty);
+            }
+            result.Append(tempopt);
+        }
+        //if (string.IsNullOrEmpty(activeValue) && dt.Rows.Count > 0)
+        //{
+        //    activeValue = dt.Rows[0][valueColumn].ToString();
+        //}
+        TemplateHandler.ReplaceBlock(ref opt, "optionList", result.ToString());
+        return opt;
+    }
+
     //@VinhTrinh
     public static string GenSubMenu(string[] arrUrl, string[] arrText, int width, int currMenu)
     {
@@ -1196,14 +1243,14 @@ public class Common
     /// <returns></returns>
     public static string GenSubPage(int currPage,string nMembers,string playerDetails, int[] paramIndexs, string[] paramValues, params int[] activeMenus)
     {
-        string strTpl = TemplateHandler.LoadTemplate("SubPage.htm");        
+        string strTpl = TemplateHandler.LoadTemplate("SubPage.htm");
         TemplateHandler.Assign(ref strTpl, "StatementHistory",Resources.Lang.StatementHistory);
         TemplateHandler.Assign(ref strTpl, "Edit", Resources.Lang.Edit);
         TemplateHandler.Assign(ref strTpl, "Member", Resources.Lang.Member);
         TemplateHandler.Assign(ref strTpl, "Note", Resources.Lang.Note);
         TemplateHandler.Assign(ref strTpl, "PlayersDetail", Resources.Lang.PlayersDetail);
         TemplateHandler.Assign(ref strTpl, "Adjustment", Resources.Lang.Adjustment);
-        TemplateHandler.Assign(ref strTpl, "TrackingStatistics", Resources.Lang.TrackingStatistics);        
+        TemplateHandler.Assign(ref strTpl, "TrackingStatistics", Resources.Lang.TrackingStatistics);
         int i;
         List<int> activeMenuList=new List<int>(activeMenus);
         /* Assign Parameters for page */
@@ -1614,7 +1661,7 @@ public class Common
                 // Get the file we are going to process
                 var existingFile = new FileInfo(path);
                 // Open and read the XlSX file.
-                using (var package = new ExcelPackage(existingFile))
+                /*using (var package = new ExcelPackage(existingFile))
                 {
                     // Get the work book in the file
                     ExcelWorkbook workBook = package.Workbook;
@@ -1679,7 +1726,7 @@ public class Common
                             }
                         }
                     }
-                }
+                }*/
             }
             else
             {

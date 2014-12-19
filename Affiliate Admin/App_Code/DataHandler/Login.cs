@@ -69,14 +69,15 @@ namespace DataHandler
         {
             try
             {
-                Hashtable htb = new Hashtable();
+                var htb = new Hashtable();
                 htb.Add("on_userid", AppSettings.Session.OnUser);
                 htb.Add("iskickedout", 0);
                 DbResult dbr = DNAide.Data.DbHelper.Execute("Aff_Recheckin", htb, DBType.AFFILIATE_12BET);
                 return CastAide.AsBoolean(dbr.Outputs["iskickedout"]);  
             }
             catch
-            { throw; }
+            
+            {   throw; }
         }
         public static void Logout(HttpContext hc)
         {

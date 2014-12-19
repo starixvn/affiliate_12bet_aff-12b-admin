@@ -35,13 +35,17 @@ public static class AppSettings
     static DateTime _UMStartTime;
     static DateTime _UMEndTime;
     static DateTime _StatementAvailableFrom;
+    static string _suffixSp;
+    private static int _betListServiceTimeout;
+
+    private static DateTime _ReportStartDate;
 
     static string _europeanAffiliateURL;
     static string _asianAffiliateURL;
 
     static AppSettings()
     {
-        _virtualDir= System.Configuration.ConfigurationManager.AppSettings["VirtualDir"];
+        _virtualDir= ConfigurationManager.AppSettings["VirtualDir"];
         _site = ConfigurationManager.AppSettings["Site"];
         _jsVersion = ConfigurationManager.AppSettings["JsVersion"];
         _serverId = ConfigurationManager.AppSettings["ServerId"];
@@ -58,10 +62,12 @@ public static class AppSettings
         _link_CS = ConfigurationManager.AppSettings["12BetLink_CS"];
         _imagesize =CastAide.AsInt32(ConfigurationManager.AppSettings["imagesize"]);
         _StatementAvailableFrom = CastAide.AsDateTime(ConfigurationManager.AppSettings["StatementAvailableFrom"]);
+        _ReportStartDate = CastAide.AsDateTime(ConfigurationManager.AppSettings["ReportStartDate"]);
         
         _internalEuropeanAffiliateURL = ConfigurationManager.AppSettings["internalEuropeanAffiliateURL"];
         _internalAsianAffiliateURL = ConfigurationManager.AppSettings["internalAsianAffiliateURL"];
         _localTest = ConfigurationManager.AppSettings["LocalTest"].Equals("1", StringComparison.OrdinalIgnoreCase);
+        
 
         _websiteCheckerURL = ConfigurationManager.AppSettings["WebsiteCheckerURL"];
         _lbUrl = ConfigurationManager.AppSettings["LBUrl"];
@@ -77,6 +83,10 @@ public static class AppSettings
         {
             _cssFiles[j] = _cssFiles[j].Substring(_cssFiles[j].IndexOf("App_Themes")).Replace("\\", "/");
         }
+
+        _suffixSp = ConfigurationManager.AppSettings["SuffixSp"];
+        _betListServiceTimeout = CastAide.AsInt32(ConfigurationManager.AppSettings["BetListServiceTimeout"]);
+
 
         initPageHeader();
     }
@@ -234,6 +244,15 @@ public static class AppSettings
             return _StatementAvailableFrom;
         }
     }
+
+    public static DateTime ReportStartDate
+    {
+        get
+        {
+            return _ReportStartDate;
+        }
+    }
+
     public static int PageSize
     {
         get
@@ -331,6 +350,18 @@ public static class AppSettings
         }
     }
 
+    public static string SuffixSp
+    {
+        get
+        {
+            return _suffixSp;
+        }
+    }
+
+    public static int BetListServiceTimeout
+    {
+        get { return _betListServiceTimeout; }
+    }
 
     #region ---------- for Session-------------
 
@@ -512,5 +543,9 @@ public static class AppSettings
         get { return DNAide.Core.CastAide.AsString(System.Configuration.ConfigurationManager.AppSettings["bccMail"]); }
     }
     #endregion
+
+
+
+
     
 }

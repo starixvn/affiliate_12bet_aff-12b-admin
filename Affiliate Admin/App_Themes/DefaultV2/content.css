@@ -40,6 +40,17 @@
 	cursor: pointer;
 }
 
+#exportExcel
+{
+	background: url(images/icon_excel.png) no-repeat;
+    width: 18px;
+    height: 17px;
+    padding: 0;
+    cursor: pointer;
+    background-position: 0px -1px;
+    margin: 2px 4px 0 0;
+}
+
 .icdel
 {
 	background: url(images/icon_delete.png) no-repeat left center;

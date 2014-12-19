@@ -359,7 +359,7 @@ IBC.addEvent(window, "load", _startup);
 var arrMenu = new Array("menu1@Home/Home.aspx", "menu2@Customer/AffDefault.aspx", "menu3@UserInfo/AffiliateList.aspx, Payment/PaymentRequest.aspx, Others/EmailHistory.aspx, GroupSetting/GroupSetting.aspx",
         "menu4@UserInfo/MemberListAll.aspx", "menu5@Report/MemberReport.aspx", "menu6@Media/Listbanner.aspx", "menu7@Others/Message.aspx", "menu8@Exchange/AffRate.aspx", "menu9@UserControl/ListUser.aspx, UserControl/ListDepartment.aspx", "menu10@Domain/AffiliateDomain.aspx");
 function _startup()
-{
+{/*
     HideDelayReloadPage();
     IBC.calculateViewport();
     var lstSubmenu = $$("li a span");
@@ -385,7 +385,7 @@ function _startup()
         }
     }    
     if(itemFocus != "")
-        top.fMenu.ActiveMenu(itemFocus);
+        top.fMenu.ActiveMenu(itemFocus);*/
 }
 /*-----End script-----*/
 IBC.addEvent(window, "unload", _end);
@@ -467,7 +467,7 @@ function HideErr()
  }
 
  function DoCal(url, title, width, heigh) {
-     if (width == null || heigh == null) {         
+     if (width == null || heigh == null) {
          ibcWnd.open(url, title, 150, 50, 350, 200, 'class1', 'class2');
      }
      else {
@@ -488,8 +488,9 @@ function HideErr()
  {
     var url = location.href;
     location.href = url.substr(0, url.indexOf("#") > 0 ? url.indexOf("#") : url.length);
- }
-function EnableCalendar(isEnable)
+}
+ 
+function EnableCalendar(isEnable, dateFormat)
 {
     if(isEnable)
     {
@@ -498,23 +499,29 @@ function EnableCalendar(isEnable)
         $("fdateTrigger").disabled = false;
         $("tdateTrigger").disabled = false;
 
+        if (dateFormat === undefined) {
+            dateFormat = "%m/%d/%Y";
+        }
+
         Calendar.setup({
             inputField: "fdate",
-            ifFormat: "%m/%d/%Y",
+            ifFormat: dateFormat,
             button: "fdateTrigger",
             singleClick: true,
             showsTime: false,
-            showOthers : true,
+            showOthers : false,
             step : 1
         });
 
+        Calendar.showMonthsCombo();
+
         Calendar.setup({
             inputField: "tdate",
-            ifFormat: "%m/%d/%Y",
+            ifFormat: dateFormat,
             button: "tdateTrigger",
             singleClick: true,
             showsTime: false,
-            showOthers : true,
+            showOthers : false,
             step : 1
         });
     }

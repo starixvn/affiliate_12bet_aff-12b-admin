@@ -12,13 +12,14 @@ public partial class UserInfo_EarningsHistory : IBCPage
         string strTpl = TemplateHandler.LoadTemplate("UserInfo/EarningsHistory.htm");
         TemplateHandler.RemoveBlock(ref strTpl, "total");
         int affID = AppSettings.Session.AffId;
+        var username = string.IsNullOrEmpty(Request["user"]) ? AppSettings.Session.AffUsername : Request["user"];
        
         int transType=CastAide.AsInt32(Request["transtype"],-1);
         #region Load language
         TemplateHandler.Assign(ref strTpl, "edit", Resources.Lang.EditInfor);
         TemplateHandler.Assign(ref strTpl, "note", Resources.Lang.Note);
         TemplateHandler.Assign(ref strTpl, "custid", affID.ToString());
-        TemplateHandler.Assign(ref strTpl, "username", AppSettings.Session.AffUsername);
+        TemplateHandler.Assign(ref strTpl, "username", username);
         TemplateHandler.Assign(ref strTpl, "accoverview", Resources.Lang.AccOverview);
         TemplateHandler.Assign(ref strTpl, "earning", Resources.Lang.EarningsHistory);
         TemplateHandler.Assign(ref strTpl, "edit", Resources.Lang.EditInfor);

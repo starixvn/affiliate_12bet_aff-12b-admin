@@ -8,7 +8,9 @@
 <head runat="server">
     <title>12BET Affiliate Program</title>
     <meta content="text/html;charset=UTF-8" http-equiv="Content-Type" />
-    <script type="text/javascript">var a = "bgwhite", b = "bgcgy", c = "bghover";</script>
+    <script type="text/javascript">
+        var a = "bgwhite", b = "bgcgy", c = "bghover";
+    </script>
     <style type="text/css">
          .root-header{
             width:800px;
@@ -40,12 +42,17 @@
     </div>
    <div id="container">        
         <mod:CHeader runat="server" ID="Header1" />        
-        <div id="contents_page">
+        <div id="contents_page" style="float: left;">
             <div id="contents_main">
                 <asp:ContentPlaceHolder ID="MainContent" runat="server">
                 </asp:ContentPlaceHolder>
+                <div id="dv_collapse_expand" style="width:14px; height: auto; float: right; margin-top: 0;">
+                    <a href="#" style="width:5px;height:220px;" onclick="OnExpandView();">
+                        <img src="../App_Themes/Default/Images/expand-ico.png" id="imgRightPanel" /> 
+                    </a> 
+                </div>
             </div>
-            <div id="right_pane">
+            <div id="right_pane" style="display:block;float: right;">
                 <mod:CRight runat="server" ID="Right1" />
             </div>
         </div>
@@ -55,6 +62,27 @@
         </div>
         <div class="red_line"></div>
     </div>
+    <script type="text/javascript">
+        var contentDivHeight = document.getElementById("contents").offsetHeight;
+        document.getElementById("dv_collapse_expand").setAttribute("style", "margin-top:" + (contentDivHeight/2 - 13) + "px");
+        function OnExpandView() {
+            if (document.getElementById("right_pane")) {
+                if (document.getElementById("right_pane").style.display == 'none') {
+                    document.getElementById("right_pane").style.display = 'block';
+                    document.getElementById("imgRightPanel").src = '../App_Themes/Default/Images/expand-ico.png';
 
+                    document.getElementById("contents_main").setAttribute("style", "width:644px");
+                    document.getElementById("contents").setAttribute("style", "width:627px");
+                }
+                else {
+                    document.getElementById("right_pane").style.display = 'none';
+                    document.getElementById("imgRightPanel").src = '../App_Themes/Default/Images/collapse-ico.png';
+
+                    document.getElementById("contents_main").setAttribute("style", "width:918px");
+                    document.getElementById("contents").setAttribute("style", "width:901px");
+                }
+            }
+        }
+    </script>
 </body>
 </html>

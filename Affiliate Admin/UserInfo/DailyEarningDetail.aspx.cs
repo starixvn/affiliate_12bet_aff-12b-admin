@@ -111,30 +111,27 @@ public partial class DailyEarningDetail : IBCPage
 
                         string requestDate = _date.Month.ToString() + "%2F" + _date.Day.ToString() + "%2F" + _date.Year.ToString();
                         var url4Betlist = Request.ApplicationPath.TrimEnd('/') + "/";
-                        url4Betlist += "BetList.aspx?fdate=" + requestDate + "&tdate=" + requestDate;
+                        url4Betlist += "BetList/BetList.aspx?fdate=" + requestDate + "&tdate=" + requestDate + "&slSportType=" + sporttype + "&ibcusername=" + Request["user"] + "&originalcustid=" + Request["custid"];
+                        url4Betlist += "&iscomm=" + Request["iscomm"];
 
                         switch (sporttype)
                         {
                             case 0: // all sports
-                                url4Betlist += "&chk_all=on&FilterPostback=postback&CustId=" + int.Parse(dr["custid"].ToString()) + "&IsHistoryReport=0&IsSwitch=0&UserName=" + CastAide.AsString(dr["ibcusername"]) + "&Type=WLByDate&WorkOnOldBetList=1&sortingcolumn=username&sortingup=true";
+                                url4Betlist += "&product=All&CustId=" + int.Parse(dr["custid"].ToString()) + "&AffId=" + custID.ToString() + "&UserName=" + CastAide.AsString(dr["username"]);
                                 break;
                             case 1: // sportsbook
-                                url4Betlist += "&chk_showsb=on&FilterPostback=postback&CustId=" + int.Parse(dr["custid"].ToString()) + "&IsHistoryReport=0&IsSwitch=0&UserName=" + CastAide.AsString(dr["ibcusername"]) + "&Type=WLByDate&WorkOnOldBetList=1&sortingcolumn=username&sortingup=true";
-                                break;
-                            case 2: // Horse Racing
-                                url4Betlist += "&chk_showrb=on&FilterPostback=postback&CustId=" + int.Parse(dr["custid"].ToString()) + "&IsHistoryReport=0&IsSwitch=0&UserName=" + CastAide.AsString(dr["ibcusername"]) + "&Type=WLByDate&WorkOnOldBetList=1&sortingcolumn=username&sortingup=true";
+                                url4Betlist += "&product=Sportsbook&CustId=" + int.Parse(dr["custid"].ToString()) + "&AffId=" + custID.ToString() + "&UserName=" + CastAide.AsString(dr["username"]);
                                 break;
                             case 3: // Casino
-                                url4Betlist += "&chk_showcasino=on&FilterPostback=postback&CustId=" + int.Parse(dr["custid"].ToString()) + "&IsHistoryReport=0&IsSwitch=0&UserName=" + CastAide.AsString(dr["ibcusername"]) + "&Type=WLByDate&WorkOnOldBetList=1&sortingcolumn=username&sortingup=true";
+                                url4Betlist += "&product=Casino&CustId=" + int.Parse(dr["custid"].ToString()) + "&AffId=" + custID.ToString() + "&UserName=" + CastAide.AsString(dr["username"]);
                                 break;
                         }
-                        string isALinkStart = "<span style=\"color:#0079FF; cursor: pointer; cursor: hand;\" onclick=\"javascript:DoCalFull('";
-                        isALinkStart += url4Betlist + "', '";
-                        isALinkStart += CastAide.AsString(dr["ibcusername"]) + "', 980, 580, 0, 0);\">";
+
+                        string isALinkStart = "<a href=\"" + url4Betlist + "\">";
 
                         // Betlist's username
                         TemplateHandler.Assign(ref strTmp, "isALinkStart", isALinkStart);
-                        TemplateHandler.Assign(ref strTmp, "isALinkEnd", "</span>");
+                        TemplateHandler.Assign(ref strTmp, "isALinkEnd", "</a>");
                     }
                     else // select ALL
                     {

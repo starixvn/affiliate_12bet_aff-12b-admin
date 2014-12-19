@@ -9,10 +9,11 @@ public partial class DailyEarning : RootPageLogIn
 {
     private System.Globalization.CultureInfo cult = System.Globalization.CultureInfo.CurrentCulture;
     protected string strListSports = "";
+    protected DateTime _date;
     protected void Page_Load(object sender, EventArgs e)
     {
 
-        DateTime _date = (Request["monthdate"] != null && Request["monthdate"]!="") ? DateTime.Parse(Request["monthdate"].ToString(), cult) : DateTime.Now.AddDays(-1);
+        _date = (Request["monthdate"] != null && Request["monthdate"]!="") ? DateTime.Parse(Request["monthdate"].ToString(), cult) : DateTime.Now.AddDays(-1);
         this.ltrDailyEarning.Text = Resources.Lang.DailyEarnings;
         string strTemplate = TemplateHandler.LoadTemplate("UserInfo/ViewDaily.htm");
         //Assign header

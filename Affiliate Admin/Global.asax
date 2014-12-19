@@ -14,10 +14,10 @@
 
     void Application_Start(object sender, EventArgs e) 
     {
-        // Code that runs on application startup            
+        // Code that runs on application startup
         Sunplus.Agent.Configurations.AppSettings.Configuration.Load();
         // Code that runs on application startup
-        Fanex.Data.Configuration.DbSettingProviderManager.Current.Start();    
+        Fanex.Data.Configuration.DbSettingProviderManager.Current.Start();
         
         
     }
@@ -25,13 +25,13 @@
     void Application_End(object sender, EventArgs e) 
     {
         //  Code that runs on application shutdown
-
     }
         
     void Application_Error(object sender, EventArgs e) 
     {
         // Code that runs when an unhandled error occurs
         Exception ex = Server.GetLastError().GetBaseException();
+        
         if (ex is HttpException)
         {
             return;
@@ -43,14 +43,13 @@
                         "\r\nQUERYSTRING: " + Request.QueryString.ToString() +
                         "\r\nTARGETSITE: " + ex.TargetSite +
                         "\r\nSTACKTRACE: " + ex.StackTrace;
-        LogService.Error("12BET Admin " + System.Environment.NewLine + message);
-        //DNAide.Web.DNAideLog.Write(message);
+        
+        DNAide.Web.DNAideLog.Write(message);
     }   
     
     void Session_Start(object sender, EventArgs e) 
     {
         // Code that runs when a new session is started
-
     }
 
     void Session_End(object sender, EventArgs e) 

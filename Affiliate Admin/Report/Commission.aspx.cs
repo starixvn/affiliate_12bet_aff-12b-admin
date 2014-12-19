@@ -9,6 +9,7 @@ using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
+using Criterias;
 using DNAide.Web;
 using DNAide.Data;
 using DNAide.Core;
@@ -34,10 +35,12 @@ public partial class Report_Commission : IBCPage
         TemplateHandler.Assign(ref strTpl, "themepath", AppSettings.ThemeDir);
         TemplateHandler.Assign(ref strTpl, "affiliate", Resources.Lang.Affiliate);
         TemplateHandler.Assign(ref strTpl, "commission", Resources.Lang.Commission);
-        TemplateHandler.Assign(ref strTpl, "aff-comm", Resources.Lang.Earning);        
+        TemplateHandler.Assign(ref strTpl, "aff-comm", Resources.Lang.Earning);
         TemplateHandler.Assign(ref strTpl, "datelimit", Resources.Lang.LimitDate + AppSettings.StatementAvailableFrom.ToString("d-MMM-yy"));
         TemplateHandler.Assign(ref strTpl, "over", Common.RowBgOver);
-
+        TemplateHandler.Assign(ref strTpl, "sortBy-txt", Resources.Lang.SortBy);
+        TemplateHandler.Assign(ref strTpl, "desc-txt", Resources.Lang.Desc);
+        
     }
     private DateTime GetLastDayOfMonth(DateTime dtDate)
     {
@@ -64,9 +67,13 @@ public partial class Report_Commission : IBCPage
             int intPage = CastAide.AsInt32(Request["page"], 1);
             int sport = CastAide.AsInt32(Request["slSport"], 1);
             string strPreferLang = Request["slPreferLang"];
+            int sortBy = CastAide.AsInt32(Request["slSortBy"], 0);
+            bool isDesc = (CastAide.AsString(Request["isDesc"], string.Empty) != "ic-uncheck");
 
             TemplateHandler.Assign(ref strTpl, "sport-val", sport);
             TemplateHandler.Assign(ref strTpl, "lang-val", strPreferLang);
+            TemplateHandler.Assign(ref strTpl, "sortBy-val", sortBy);
+            TemplateHandler.Assign(ref strTpl, "cssgetall", isDesc ? "ic-check" : "ic-uncheck");
             TemplateHandler.Assign(ref strTpl, "month-val", month);
             TemplateHandler.Assign(ref strTpl, "year-val", year);
             if (String.IsNullOrEmpty(strUsername))
@@ -75,22 +82,32 @@ public partial class Report_Commission : IBCPage
                 TemplateHandler.Assign(ref strTpl, "affname", strUsername);
             TemplateHandler.Assign(ref strTpl, "all-val", "[" + Resources.Lang.All + "]");
 
-            DbResult rs = DataHandler.Affiliate.SelAffiliateCommissionReport(strUsername, strPreferLang, sport, month, year, intPage, intPageSize);
+            var criteria = new CommissionReportCriteria
+                {
+                    Username = strUsername,
+                    PreferredLanguage = strPreferLang,
+                    Sport = sport,
+                    Month = month,
+                    Year = year,
+                    PageIndex = intPage,
+                    PageSize = intPageSize,
+                    SortBy = sortBy,
+                    IsDesc = isDesc
+                };
+
+            DbResult rs = DataHandler.Affiliate.SelAffiliateCommissionReport(criteria);
 
             DataTable dtb = new DataTable();
             if (rs.ResultSet.Tables.Count > 0)
                 dtb = rs.ResultSet.Tables[0];
 
-            int totalPage = CastAide.AsInt32(rs.Outputs["totalpages"]);
-            int nummem = CastAide.AsInt32(rs.Outputs["nrows"]);
+            criteria.NRows = CastAide.AsInt32(rs.Outputs["nrows"]);
             DateTime LastDay = GetLastDayOfMonth(new DateTime(year, month, 1));
             if (dtb.Rows.Count > 0)
             {
                 int intCount = (intPage - 1) * intPageSize;
                 string strRowTpl = TemplateHandler.CopyBlock(strTpl, "content");
                 StringBuilder strListRow = new StringBuilder();
-                //Hashtable hsTotal = new Hashtable();
-
 
                 foreach (DataRow dr in dtb.Rows)
                 {
@@ -98,7 +115,7 @@ public partial class Report_Commission : IBCPage
                     intCount++;
 
                     if (CastAide.AsBoolean(dr["isclosed"]))
-                        TemplateHandler.Assign(ref strTmp, "color", Common.RowBgClosed);   
+                        TemplateHandler.Assign(ref strTmp, "color", Common.RowBgClosed);
                     else
                         TemplateHandler.Assign(ref strTmp, "color", (intCount % 2 == 0) ? Common.RowBgEven : Common.RowBgOdd);
                     TemplateHandler.Assign(ref strTmp, "monthdate_val", month.ToString() + "/" + LastDay.Day + "/" + year.ToString());
@@ -106,9 +123,8 @@ public partial class Report_Commission : IBCPage
                     TemplateHandler.Assign(ref strTmp, "num-val", intCount);
                     TemplateHandler.Assign(ref strTmp, "aff-val", dr["username"]);
                     TemplateHandler.Assign(ref strTmp, "affid-val", dr["affid"]);
-                    TemplateHandler.Assign(ref strTmp, "commission-val", DNAide.Core.DataFormat.FormatNumber2(dr["commission"]));
+                    TemplateHandler.Assign(ref strTmp, "commission-val", DataFormat.FormatNumber2(dr["commission"]));
                     TemplateHandler.Assign(ref strTmp, "affcomm-val", dr["affComm"]);
-                    
 
                     strListRow.Append(strTmp);
                 }
@@ -121,9 +137,9 @@ public partial class Report_Commission : IBCPage
             //Assign Paging template
             if (dtb.Rows.Count > 0)
             {
-                TemplateHandler.Assign(ref strTpl, "paging-top", Common.GenPaging(totalPage, intPage, intPageSize, nummem, "aPageTop", "txtPageTop", 550, false, true));
-                TemplateHandler.Assign(ref strTpl, "paging-bottom", Common.GenPaging(totalPage, intPage, intPageSize, nummem, "aPageBottom", "txtPageBottom", 550, false, false));
-                TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.ReportLink, SubMenu.ReportText, 5, nummem, SubMenu.ReportText[3], "i_report.png"));
+                TemplateHandler.Assign(ref strTpl, "paging-top", Common.GenPaging(criteria.TotalPages, intPage, intPageSize, criteria.NRows, "aPageTop", "txtPageTop", 550, false, true));
+                TemplateHandler.Assign(ref strTpl, "paging-bottom", Common.GenPaging(criteria.TotalPages, intPage, intPageSize, criteria.NRows, "aPageBottom", "txtPageBottom", 550, false, false));
+                TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.ReportLink, SubMenu.ReportText, 5, criteria.NRows, SubMenu.ReportText[3], "i_report.png"));
             }
             else
             {

@@ -1,4 +1,5 @@
 ﻿using System.Xml.Linq;
+using Criterias;
 using DNAide.Web;
 using DNAide.Data;
 using DNAide.Core;
@@ -34,11 +35,12 @@ public partial class Report_Performance : IBCPage
         TemplateHandler.Assign(ref strTpl, "signup", Resources.Lang.SignUp);
         TemplateHandler.Assign(ref strTpl, "activemember", Resources.Lang.ActiveMember);
         TemplateHandler.Assign(ref strTpl, "over", Common.RowBgOver);
+        TemplateHandler.Assign(ref strTpl, "sortBy-txt", Resources.Lang.SortBy);
+        TemplateHandler.Assign(ref strTpl, "desc-txt", Resources.Lang.Desc);
     }
 
     void GenerateHTML()
     {
-
         try
         {
             string strUsername = CastAide.AsString(Request["affname"]);
@@ -49,45 +51,55 @@ public partial class Report_Performance : IBCPage
             int sportId = CastAide.AsInt32(Request["slSport"], 1);
             int intPageSize = CastAide.AsInt32(Request["slPageSize"], 20);
             int intPage = CastAide.AsInt32(Request["page"], 1);
-
-            var sortby = CastAide.AsString(Request["sortby"], "");
+            int sortby = CastAide.AsInt32(Request["sortby"], 0);
+            bool isDesc = (CastAide.AsString(Request["isDesc"], string.Empty) != "ic-uncheck");
 
             TemplateHandler.Assign(ref strTpl, "sport-val", sportId);
             TemplateHandler.Assign(ref strTpl, "lang-val", strPreferLang);
-            TemplateHandler.Assign(ref strTpl, "fdate", dtmFDate.ToString("MM/dd/yyyy"));
-            TemplateHandler.Assign(ref strTpl, "tdate", dtmTDate.ToString("MM/dd/yyyy"));
+            TemplateHandler.Assign(ref strTpl, "currentYear-val", DateTime.Now.Year);
+            TemplateHandler.Assign(ref strTpl, "fdate", dtmFDate.ToString("MM/yyyy"));
+            TemplateHandler.Assign(ref strTpl, "tdate", dtmTDate.ToString("MM/yyyy"));
             TemplateHandler.Assign(ref strTpl, "page", intPage);
             TemplateHandler.Assign(ref strTpl, "all-val", "[" + Resources.Lang.All + "]");
+            TemplateHandler.Assign(ref strTpl, "cssgetall", isDesc ? "ic-check" : "ic-uncheck");
 
             TemplateHandler.Assign(ref strTpl, "affname", String.IsNullOrEmpty(strUsername) ? "[" + Resources.Lang.All + "]" : strUsername);
 
-            DbResult rs = DataHandler.Affiliate.PerformanceReport(strUsername, sportId, strPreferLang, dtmFDate, dtmTDate, sortby, intPageSize, intPage);
+            strUsername = ((string.Compare(strUsername, "[" + Resources.Lang.All + "]", true) == 0 ? string.Empty : strUsername));
+
+            var criteria = new PerformanceCriteria
+                {
+                    Username = strUsername,
+                    Sport = sportId,
+                    Language = strPreferLang,
+                    FromDate = dtmFDate,
+                    ToDate = dtmTDate,
+                    SortBy = sortby,
+                    PageSize = intPageSize,
+                    PageIndex = intPage,
+                    IsDesc = isDesc
+                };
+
+            DbResult rs = DataHandler.Affiliate.PerformanceReport(criteria);
 
             DataTable dtb = new DataTable();
             if (rs.ResultSet.Tables.Count > 0)
                 dtb = rs.ResultSet.Tables[0];
 
-            int totalPage = CastAide.AsInt32(rs.Outputs["totalpages"]);
-            int nummem = CastAide.AsInt32(rs.Outputs["nrows"]);
+            criteria.NRows = CastAide.AsInt32(rs.Outputs["nrows"]);
 
             if (dtb.Rows.Count > 0)
             {
-
                 int intCount = (intPage - 1) * intPageSize + 1;
                 int intTotal = 0;
                 string strRowTpl = TemplateHandler.CopyBlock(strTpl, "content");
-                string strListAffId = string.Empty;
-
 
                 StringBuilder strListRow = new StringBuilder();
-                //Hashtable hsTotal = new Hashtable();
 
-
+                int total = 0;
                 foreach (DataRow dr in dtb.Rows)
                 {
                     string strTmp = strRowTpl;
-
-                    int total = 0;// CastAide.AsInt32(dr["Active"]);
 
                     intTotal += total;
 
@@ -109,20 +121,19 @@ public partial class Report_Performance : IBCPage
 
                     strListRow.Append(strTmp);
                 }
+
                 TemplateHandler.ReplaceBlock(ref strTpl, "content", strListRow.ToString());
-
-
             }
             else
             {
                 TemplateHandler.ReplaceBlock(ref strTpl, "nodata", Common.NoInfo(4));
             }
             //Assign Paging template
-            TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.ReportLink, SubMenu.ReportText, 6, nummem, SubMenu.ReportText[2], "i_report.png"));
+            TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.ReportLink, SubMenu.ReportText, 6, criteria.NRows, SubMenu.ReportText[2], "i_report.png"));
             if (dtb.Rows.Count > 0)
             {
-                TemplateHandler.Assign(ref strTpl, "paging-top", Common.GenPaging(totalPage, intPage, intPageSize, nummem, "aPageTop", "txtPageTop", 960, false, true));
-                TemplateHandler.Assign(ref strTpl, "paging-bottom", Common.GenPaging(totalPage, intPage, intPageSize, nummem, "aPageBottom", "txtPageBottom", 960, false, false));
+                TemplateHandler.Assign(ref strTpl, "paging-top", Common.GenPaging(criteria.TotalPages, intPage, intPageSize, criteria.NRows, "aPageTop", "txtPageTop", 960, false, true));
+                TemplateHandler.Assign(ref strTpl, "paging-bottom", Common.GenPaging(criteria.TotalPages, intPage, intPageSize, criteria.NRows, "aPageBottom", "txtPageBottom", 960, false, false));
             }
             else
             {
@@ -134,7 +145,7 @@ public partial class Report_Performance : IBCPage
         {
             DNAideLog.Write(ex.Message);
             #if DEBUG
-                throw;
+               throw;
             #endif
         }
     }

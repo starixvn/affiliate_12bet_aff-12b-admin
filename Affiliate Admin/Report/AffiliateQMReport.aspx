@@ -12,7 +12,11 @@
         $("slyear").value = $("year").value;
         if ($("hdLanguage").value != "")
             $("slPreferLang").value = $("hdLanguage").value;
+        if ($("hdSortBy").value != "") {
+            $("slSortBy").value = $("hdSortBy").value;
+        }
     }
+    
     function Search() {
         $("page").value = "1";
         $("frmSearch").submit();

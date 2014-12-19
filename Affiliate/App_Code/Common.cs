@@ -13,6 +13,9 @@ using Resources;
 using Sunplus.UMControllerLibrary;
 using System.Web.Configuration;
 using DNAide.Data;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Collections.Generic;
 
 /// <summary>
 /// Summary description for Common
@@ -851,6 +854,28 @@ public class Common
     public static string GetDeviceType(string deviceType)
     {
         return string.IsNullOrEmpty(deviceType) ? "0" : deviceType;
+    }
+
+    public static T ByteArrayToObject<T>(byte[] arrBytes)
+    {
+        MemoryStream memStream = new MemoryStream();
+        BinaryFormatter binForm = new BinaryFormatter();
+        memStream.Write(arrBytes, 0, arrBytes.Length);
+        memStream.Seek(0, SeekOrigin.Begin);
+        var structuredObject = (T)binForm.Deserialize(memStream);
+
+        return structuredObject;
+    }
+
+    public static List<T> ByteArrayToListObjects<T>(byte[] arrBytes)
+    {
+        MemoryStream memStream = new MemoryStream();
+        BinaryFormatter binForm = new BinaryFormatter();
+        memStream.Write(arrBytes, 0, arrBytes.Length);
+        memStream.Seek(0, SeekOrigin.Begin);
+        var listStructuredObjects = (List<T>)binForm.Deserialize(memStream);
+
+        return listStructuredObjects;
     }
 }
 

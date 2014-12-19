@@ -11,6 +11,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
+using Criterias;
 using DNAide.Web;
 using DNAide.Data;
 using DNAide.Core;
@@ -62,21 +63,34 @@ public partial class Report_MemberStatisticsReport : IBCPage
             DateTime dtmTDate = CastAide.AsDateTime(Request["tdate"], DateTime.Now);
             int intPageSize = CastAide.AsInt32(Request["slPageSize"], 20);
             int intPage = CastAide.AsInt32(Request["page"], 1);
+            int sortBy = CastAide.AsInt32(Request["slSortBy"], 0);
 
             TemplateHandler.Assign(ref strTpl, "lang-val", strPreferLang);
+            TemplateHandler.Assign(ref strTpl, "sortBy-val", sortBy);
             TemplateHandler.Assign(ref strTpl, "fdate", dtmFDate.ToString("MM/dd/yyyy"));
             TemplateHandler.Assign(ref strTpl, "tdate", dtmTDate.ToString("MM/dd/yyyy"));
             TemplateHandler.Assign(ref strTpl, "cssgetall", isGetAll ? "ic-check" : "ic-uncheck");
             TemplateHandler.Assign(ref strTpl, "affname", strUsername);
 
-            DbResult rs = DataHandler.Affiliate.SelAffiliateStatistics(strUsername, strPreferLang, dtmFDate, dtmTDate, isGetAll, 0,intPage, intPageSize);
+            var criteria = new MemberStatisticsReportCriteria
+                {
+                    Username = strUsername,
+                    PreferredLanguage = strPreferLang,
+                    DtmFDate = dtmFDate,
+                    DtmTDate = dtmTDate,
+                    IsGetAll = isGetAll,
+                    AffType = 0,
+                    PageIndex = intPage,
+                    PageSize = intPageSize,
+                    SortBy = sortBy
+                };
 
+            DbResult rs = DataHandler.Affiliate.SelAffiliateStatistics(criteria);
             DataTable dtb = new DataTable();
             if(rs.ResultSet.Tables.Count > 0)
                 dtb = rs.ResultSet.Tables[0];
-
-            int totalPage = CastAide.AsInt32(rs.Outputs["totalpages"]);
-            int nummem = CastAide.AsInt32(rs.Outputs["nrows"]);
+            
+            criteria.NRows = CastAide.AsInt32(rs.Outputs["nrows"]);
             
             if (dtb.Rows.Count > 0)
             {
@@ -109,10 +123,6 @@ public partial class Report_MemberStatisticsReport : IBCPage
                     TemplateHandler.Assign(ref strTmp, "active-val", active);
                     TemplateHandler.Assign(ref strTmp, "dormant-val", total - active);
                     TemplateHandler.Assign(ref strTmp, "total-val", total);
-
-                    //hsTotal[dr["affid"].ToString()] = total;
-
-                    //TemplateHandler.Assign(ref strTmp, "nondeposit-val", "{non-" + dr["affid"].ToString() + "}");
                     TemplateHandler.Assign(ref strTmp, "totalregister-val", "{" + dr["affid"].ToString() + "}");
 
                     strListAffId += dr["affid"].ToString() + ";";
@@ -126,32 +136,21 @@ public partial class Report_MemberStatisticsReport : IBCPage
                 foreach (DataRow dr in rsRegister.ResultSet.Tables[0].Rows)
                 {
                     int totalRegister = CastAide.AsInt32(dr["totalregistered"]);
-                    //int tmpTotal = CastAide.AsInt32(hsTotal[dr["affid"].ToString()]);
-
-                    //if (totalRegister == 0)
-                        //TemplateHandler.ReplaceBlock(ref strTpl, dr["affid"].ToString(), Common.GetAffUsername(CastAide.AsInt32(dr["affid"])));
-
                     intTotalRegister += totalRegister;
                     TemplateHandler.Assign(ref strTpl, dr["affid"].ToString(), totalRegister);
-                    //TemplateHandler.Assign(ref strTpl, "non-" + dr["affid"].ToString(), (totalRegister - tmpTotal) < 0 ? 0 : totalRegister - tmpTotal);
                 }
-                //Calculate for total row
-                //TemplateHandler.Assign(ref strTpl, "totalregister-total", intTotalRegister);
-                //TemplateHandler.Assign(ref strTpl, "nondeposit-total", intTotalRegister - (intActive + intDormant) > 0 ? intTotalRegister - (intActive + intDormant) : 0);
-                //TemplateHandler.Assign(ref strTpl, "active-total", intActive);
-                //TemplateHandler.Assign(ref strTpl, "dormant-total", intTotal - intActive);
-                //TemplateHandler.Assign(ref strTpl, "total-total", intTotal);
             }
             else
             {
                 TemplateHandler.ReplaceBlock(ref strTpl, "nodata", Common.NoInfo(5));
             }
+
             //Assign Paging template
-            TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.ReportLink, SubMenu.ReportText, 2, nummem, SubMenu.ReportText[2], "i_report.png"));
+            TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.ReportLink, SubMenu.ReportText, 2, criteria.NRows, SubMenu.ReportText[2], "i_report.png"));
             if (dtb.Rows.Count > 0)
             {
-                TemplateHandler.Assign(ref strTpl, "paging-top", Common.GenPaging(totalPage, intPage, intPageSize, nummem, "aPageTop", "txtPageTop", 550, false, true));
-                TemplateHandler.Assign(ref strTpl, "paging-bottom", Common.GenPaging(totalPage, intPage, intPageSize, nummem, "aPageBottom", "txtPageBottom", 550, false, false));
+                TemplateHandler.Assign(ref strTpl, "paging-top", Common.GenPaging(criteria.TotalPages, intPage, intPageSize, criteria.NRows, "aPageTop", "txtPageTop", 550, false, true));
+                TemplateHandler.Assign(ref strTpl, "paging-bottom", Common.GenPaging(criteria.TotalPages, intPage, intPageSize, criteria.NRows, "aPageBottom", "txtPageBottom", 550, false, false));
             }
             else
             {
@@ -162,9 +161,9 @@ public partial class Report_MemberStatisticsReport : IBCPage
         catch (Exception ex)
         {
             DNAideLog.Write(ex.Message);
-#if DEBUG
-            throw;
-#endif
+            #if DEBUG
+                        throw;
+            #endif
         }
     }
 }
