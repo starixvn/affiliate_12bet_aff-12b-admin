@@ -194,11 +194,13 @@
     <listeners>
       <add source="IBCAffiliate" formatter="Text Formatter" log="Application" machineName="" listenerDataType="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.FormattedEventLogTraceListenerData, Microsoft.Practices.EnterpriseLibrary.Logging, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" traceOutputOptions="None" type="Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.FormattedEventLogTraceListener, Microsoft.Practices.EnterpriseLibrary.Logging, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" name="Formatted EventLog TraceListener"/>
       <add fileName="Logs/trace.log" rollSizeKB="1000" timeStampPattern="yyyy-MM-dd" rollFileExistsBehavior="Increment" rollInterval="Day" formatter="Text Formatter" header="" footer="----------------------------------------" listenerDataType="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.RollingFlatFileTraceListenerData, Microsoft.Practices.EnterpriseLibrary.Logging, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" traceOutputOptions="None" type="Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.RollingFlatFileTraceListener, Microsoft.Practices.EnterpriseLibrary.Logging, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" name="IBCAffiliate"/>
+	  <remove name="Database Trace Listener" />
       <add name="Database Trace Listener" type="Microsoft.Practices.EnterpriseLibrary.Logging.Database.FormattedDatabaseTraceListener, Microsoft.Practices.EnterpriseLibrary.Logging.Database, Version=5.0.414.0, Culture=neutral"
 		listenerDataType="Microsoft.Practices.EnterpriseLibrary.Logging.Database.Configuration.FormattedDatabaseTraceListenerData, Microsoft.Practices.EnterpriseLibrary.Logging.Database, Version=5.0.414.0, Culture=neutral"
 		databaseInstanceName="CustomerLog" writeLogStoredProcName="WriteLog_AppLog"
 		addCategoryStoredProcName="Acc_AppLog_CategoryIns" formatter="Text Formatter"
 		traceOutputOptions="LogicalOperationStack, DateTime, Timestamp, ProcessId, ThreadId, Callstack" />
+	  <remove name="Affiliate Email Trace Listener" />
       <add name="Affiliate Email Trace Listener" <#= loggingConfigurations.GetValue("AffiliateEmailTraceListener") #> />
     </listeners>
     <formatters>
@@ -223,6 +225,7 @@
   </loggingConfiguration>
   <system.webServer>
     <handlers>
+	  <remove name="*.html_*" />
       <add name="*.html_*" path="*.html" verb="*" type="BetterUrlRewriter" preCondition="integratedMode,runtimeVersionv2.0"/>
     </handlers>
   </system.webServer>
