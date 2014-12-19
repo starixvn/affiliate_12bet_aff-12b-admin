@@ -93,7 +93,7 @@
       <local>http://10.18.200.209:5001/WebService/AffiliateAPI.asmx</local>
       <master></master>
       <uat>http://10.2.106.76:8084/UAT/AffiliateAPI.asmx</uat>
-      <production></production>
+      <production>http://10.2.106.76:8084/AffiliateAPI.asmx</production>
     </AffBetlistService.AffiliateAPI>
     <LBUrl>
       <local></local>

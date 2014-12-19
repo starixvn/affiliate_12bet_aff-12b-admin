@@ -1243,14 +1243,14 @@ public class Common
     /// <returns></returns>
     public static string GenSubPage(int currPage,string nMembers,string playerDetails, int[] paramIndexs, string[] paramValues, params int[] activeMenus)
     {
-        string strTpl = TemplateHandler.LoadTemplate("SubPage.htm");        
+        string strTpl = TemplateHandler.LoadTemplate("SubPage.htm");
         TemplateHandler.Assign(ref strTpl, "StatementHistory",Resources.Lang.StatementHistory);
         TemplateHandler.Assign(ref strTpl, "Edit", Resources.Lang.Edit);
         TemplateHandler.Assign(ref strTpl, "Member", Resources.Lang.Member);
         TemplateHandler.Assign(ref strTpl, "Note", Resources.Lang.Note);
         TemplateHandler.Assign(ref strTpl, "PlayersDetail", Resources.Lang.PlayersDetail);
         TemplateHandler.Assign(ref strTpl, "Adjustment", Resources.Lang.Adjustment);
-        TemplateHandler.Assign(ref strTpl, "TrackingStatistics", Resources.Lang.TrackingStatistics);        
+        TemplateHandler.Assign(ref strTpl, "TrackingStatistics", Resources.Lang.TrackingStatistics);
         int i;
         List<int> activeMenuList=new List<int>(activeMenus);
         /* Assign Parameters for page */
