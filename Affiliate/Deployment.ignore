@@ -2,4 +2,4 @@
 \\*.master.config
 \\*.uat.config
 \\*.production.config
-\\logs\\.*
+\\logs
