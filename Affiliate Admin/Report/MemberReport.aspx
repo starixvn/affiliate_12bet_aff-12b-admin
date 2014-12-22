@@ -13,11 +13,15 @@
     var timer = null; //set Timeout for choose refresh time
     var timePage = ""; //set Timeout for go to page
 
-    function CloseDiv() {    
-        $('divChangePass').style.display ='none';    
+    window.onload = function () {
+        parent.frames['fMenu'].ActiveMenu('menu5');
+    };
+
+    function CloseDiv() {
+        $('divChangePass').style.display ='none';
     }
-    function DoCal(url) {    
-        $('ifrChangePass').src = url;   
+    function DoCal(url) {
+        $('ifrChangePass').src = url;
         $('divChangePass').style.display ='inline';
     }
     function LoadData() {

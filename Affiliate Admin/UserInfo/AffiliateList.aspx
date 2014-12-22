@@ -11,6 +11,7 @@
     var timer = null;//set Timeout for choose refresh time
     var timePage = "";//set Timeout for go to page
     function MyFocus() {
+        parent.frames['fMenu'].ActiveMenu('menu3');
         
         //$("slPageSize").value = $("pagesize").value;
         $("slTime").value = $("timer").value;

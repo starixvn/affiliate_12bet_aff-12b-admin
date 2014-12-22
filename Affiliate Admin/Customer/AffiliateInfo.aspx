@@ -9,6 +9,10 @@
     var minHeight = 510;
     window.onresize = function(){setHeight();};
     window.onload = function () {
+        if (parent.top.frames['fMenu'] !== undefined) {
+            parent.top.frames['fMenu'].ActiveMenu('menu2');
+        }
+
         if ($("hdNoInfo").value == "1")
             window.onresize = "";
         else {
@@ -17,7 +21,7 @@
             setHeight();
         }
 
-        
+
         if ($("hdStatus").value.toLowerCase() != "approved") {
             parent.document.getElementById("fRightContent").rows = "0,*";
             if ($("hdNoInfo").value != "1") {
@@ -28,7 +32,7 @@
                 parent.fContent.location.href = "blank.html";
         }
         else {
-            
+
             if (parent.document.getElementById("fRightContent").rows == "0,*")
                 parent.document.getElementById("fRightContent").rows = "210,*";
             if ($("hdNoInfo").value == "0") {

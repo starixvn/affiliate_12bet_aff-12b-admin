@@ -1,5 +1,6 @@
 ﻿<%@ WebHandler Language="C#" Class="BetListParlay" %>
 
+using System;
 using System.Web;
 using AffBetlistService;
 
@@ -10,11 +11,8 @@ public class BetListParlay : IHttpHandler {
         
         var affBetlistService = new AffiliateAPI();
         affBetlistService.Timeout = AppSettings.BetListServiceTimeout;
-        var parlayHtmlString = affBetlistService.GetBetlistParlay(
-            "12bet",
-            context.Request.Form["transId"],
-            "1");
-        
+      
+        var parlayHtmlString = affBetlistService.GetBetlistParlay("12bet", context.Request.Params["transId"], "1");
         context.Response.Write(parlayHtmlString);
     }
  

@@ -129,6 +129,7 @@
     </Content>
     <Content Include="Web.12betuser-euro.production.config">
       <DependentUpon>ConfigManager.tt</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.12betuser-euro.uat.config">
       <DependentUpon>ConfigManager.tt</DependentUpon>
