@@ -62,18 +62,12 @@ public partial class UserInfo_DailyEarningDetail : RootPageLogIn
         TemplateHandler.Assign(ref strTemplate, "slSports", Common.GenListSportType(sporttype, AppSettings.Session.CustID, false));
         TemplateHandler.Assign(ref strTemplate, "monthdate", Request["monthdate"]);
 
-        //TemplateHandler.Assign(ref strTemplate, "detailearnings", Resources.Lang.DetailEarning);
         TemplateHandler.Assign(ref strTemplate, "date", _date.ToString("dd MMMM yyyy"));
-        //TemplateHandler.Assign(ref strTemplate, "ibcusername", Resources.Lang.IBCUsername);
         TemplateHandler.Assign(ref strTemplate, "username", Resources.Lang.Username);
-
         TemplateHandler.Assign(ref strTemplate, "deposit", Resources.Lang.Deposit);
         TemplateHandler.Assign(ref strTemplate, "withdrawal", Resources.Lang.Withdrawal);
-        //TemplateHandler.Assign(ref strTemplate, "bonus", Resources.Lang.Bonus);
         TemplateHandler.Assign(ref strTemplate, "winlost", Resources.Lang.Winlost);
         TemplateHandler.Assign(ref strTemplate, "turnover", Resources.Lang.Turnover);
-        //TemplateHandler.Assign(ref strTemplate, "adjustment", Resources.Lang.Adjustment);
-        //TemplateHandler.Assign(ref strTemplate, "psp", Resources.Lang.PSP);
         TemplateHandler.Assign(ref strTemplate, "total", Resources.Lang.Total);
         TemplateHandler.Assign(ref strTemplate, "back", Resources.Lang.Back);
         TemplateHandler.Assign(ref strTemplate, "statement", Resources.Lang.StatementHistory);
@@ -114,14 +108,12 @@ public partial class UserInfo_DailyEarningDetail : RootPageLogIn
                     dcDeposit += CastAide.AsDecimal(dr["deposit"]);
                     dcWinlost += CastAide.AsDecimal(dr["winlost"]);
                     dcTurnover += CastAide.AsDecimal(dr["turnover"]);
-                    //dcAdjustment += CastAide.AsDecimal(dr["adjustment"]);
-                    //dcPSP += CastAide.AsDecimal(dr["psp"]);
                     dcWithdrawal += CastAide.AsDecimal(dr["withdrawal"]);
 
                     TemplateHandler.Assign(ref strTmp, "no", intNo.ToString());
                     TemplateHandler.Assign(ref strTmp, "ibcusername-val", CastAide.AsString(dr["ibcusername"]));
 
-                    string strUsername2 = dr["username"].ToString();//make sure remove 12bet$ in the first position of strUsername2                    
+                    string strUsername2 = dr["username"].ToString(); //make sure remove 12bet$ in the first position of strUsername2
                     strUsername2 = (strUsername2.ToLower().IndexOf("12bet$") == 0 ? strUsername2.Substring(6, strUsername2.Length - 6) : strUsername2);
 
                     TemplateHandler.Assign(ref strTmp, "style", strRowStyle);
@@ -131,10 +123,7 @@ public partial class UserInfo_DailyEarningDetail : RootPageLogIn
                     TemplateHandler.Assign(ref strTmp, "withdrawal-val", Common.FormatNumber(dr["withdrawal"]));
                     TemplateHandler.Assign(ref strTmp, "turnover-val", Common.FormatNumber(dr["turnover"]));
                     TemplateHandler.Assign(ref strTmp, "winlost-val", Common.FormatNumber(dr["winlost"]));
-                    //TemplateHandler.Assign(ref strTmp, "bonus-val", Common.FormatNumber(dr["bonus"]));
-                    //TemplateHandler.Assign(ref strTmp, "adjustment-val", Common.FormatNumber(dr["adjustment"]));
-                    //TemplateHandler.Assign(ref strTmp, "psp-val", Common.FormatNumber(dr["psp"]));
-
+                  
                     var turnover = CastAide.AsDouble(dr["turnover"],0);
                     var exrate = CastAide.AsDouble(dr["affexrate"], 1);
                     var deposit = CastAide.AsDouble(dr["deposit"], 0);
@@ -156,7 +145,7 @@ public partial class UserInfo_DailyEarningDetail : RootPageLogIn
                         TemplateHandler.Assign(ref strTmp, "deposit-end", null);
                     }
                     else
-                    {                                                
+                    {
                         TemplateHandler.Assign(ref strTmp, "deposit-start", String.Format(deposit_start,1));
                         TemplateHandler.Assign(ref strTmp, "deposit-end", "</span>");
                     }
@@ -215,9 +204,6 @@ public partial class UserInfo_DailyEarningDetail : RootPageLogIn
                 TemplateHandler.Assign(ref strTemplate, "totalturnover", Common.FormatNumber(dcTurnover));
                 TemplateHandler.Assign(ref strTemplate, "totalwinlost", Common.FormatNumber(dcWinlost));
                 TemplateHandler.Assign(ref strTemplate, "totalwithdrawal", Common.FormatNumber(dcWithdrawal));
-                //TemplateHandler.Assign(ref strTemplate, "totalbonus", Common.FormatNumber(dcBonus));
-                //TemplateHandler.Assign(ref strTemplate, "totaladjustment", Common.FormatNumber(dcAdjustment));
-                //TemplateHandler.Assign(ref strTemplate, "totalpsp", Common.FormatNumber(dcPSP));
             }
             else
             {
