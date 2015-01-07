@@ -59,42 +59,31 @@ public partial class DailyEarning : RootPageLogIn
             if (dtbResult.Rows.Count > 0)
             {
                 string strContent = TemplateHandler.CopyBlock(strTemplate, "content");
-                int intNo = 0;
+                
                 StringBuilder strBuild = new StringBuilder();
-                decimal dcDeposit = 0,dcWithdrawal=0, dcWinlost = 0, dcBonus = 0, dcAdjustment = 0, dcPSP = 0,dcRealWilost=0
-                      ,oddsFeePercent= CastAide.AsDecimal(result.Outputs["oddsfeepercent"]),marketingPercent=CastAide.AsDecimal(result.Outputs["marketingpercent"])
-                      , pspFeePercent = CastAide.AsDecimal(result.Outputs["pspfeepercent"]);
+
                 string strRowStyle = "bgcgy";//bgwhite
                 string strMouseStyle = "b";//bgwhite
+                int intNo = 0;
                 foreach (DataRow dr in dtbResult.Rows)
                 {
                     strRowStyle = (strRowStyle == "bgcgy") ? "bgwhite" : "bgcgy";
                     strMouseStyle = (strMouseStyle == "b") ? "a" : "b";
                     string strTmp = strContent;
-                    /*decimal dcPercent = CastAide.AsDecimal(dr["PercentReceived"]);*/
+                    
                     intNo++;
-                    decimal winlostFake=CastAide.AsDecimal(dr["memwinlostfake"]);
-                    dcDeposit += CastAide.AsDecimal(dr["deposit"]);
-                    dcWithdrawal += CastAide.AsDecimal(dr["withdrawal"]);                    
-                    dcBonus += CastAide.AsDecimal(dr["bonus"]);
-                    dcAdjustment += CastAide.AsDecimal(dr["adjustment"]);
-                    dcPSP += CastAide.AsDecimal(dr["psp"]);
-                    dcRealWilost += CastAide.AsDecimal(dr["memberwinlost"]);
-                    if (intNo ==dtbResult.Rows.Count && Convert.ToDateTime(dr["winlostdate"]).AddDays(1).CompareTo(DateTime.Now.AddDays(-1))>0)
-                    {
-                        winlostFake = -(-dcRealWilost - Math.Abs(dcRealWilost) * (oddsFeePercent + marketingPercent) - dcPSP * pspFeePercent) - dcWinlost;
-                    }
-                    dcWinlost +=winlostFake ;
                     TemplateHandler.Assign(ref strTmp, "style", strRowStyle);
                     TemplateHandler.Assign(ref strTmp, "style1", strMouseStyle);
                     TemplateHandler.Assign(ref strTmp, "no", intNo.ToString());
                     TemplateHandler.Assign(ref strTmp, "date-val", Common.ConvertDateTime(dr["winlostdate"], "/", true, false));
+
                     if (AppSettings.Session.HasDailyDetail)
-                        TemplateHandler.Assign(ref strTmp, "winlost-val", Common.FormatNumber(dr["memberwinlost"]));
+                        TemplateHandler.Assign(ref strTmp, "winlost-val", Common.FormatNumber(CastAide.AsDecimal(dr["memberwinlost"])));
                     else
-                        TemplateHandler.Assign(ref strTmp, "winlost-val", Common.FormatNumber(winlostFake));
+                        TemplateHandler.Assign(ref strTmp, "winlost-val", Common.FormatNumber(CastAide.AsDecimal(dr["memwinlostfake"])));
 
                     TemplateHandler.Assign(ref strTmp, "monthdate-val", Common.ConvertDateTime(dr["winlostdate"], "/", true, false));
+
                     if (SportType != 2)
                     {
                         TemplateHandler.Assign(ref strTmp, "deposit-val", Common.FormatNumber(dr["deposit"]));
@@ -106,20 +95,10 @@ public partial class DailyEarning : RootPageLogIn
                     TemplateHandler.Assign(ref strTmp, "psp-val", Common.FormatNumber(dr["psp"]));
                     strBuild.Append(strTmp);
                 }
-                TemplateHandler.ReplaceBlock(ref strTemplate, "content", strBuild.ToString());
-                if (AppSettings.Session.HasDailyDetail)
-                    TemplateHandler.Assign(ref strTemplate, "totalwinlost", Common.FormatNumber(dcRealWilost));
-                else
-                    TemplateHandler.Assign(ref strTemplate, "totalwinlost", Common.FormatNumber(dcWinlost));
 
-                if (SportType != 2)
-                {
-                    TemplateHandler.Assign(ref strTemplate, "totaldeposit", Common.FormatNumber(dcDeposit));
-                    TemplateHandler.Assign(ref strTemplate, "totalwithdrawal", Common.FormatNumber(dcWithdrawal));
-                    TemplateHandler.Assign(ref strTemplate, "totalbonus", Common.FormatNumber(dcBonus));
-                    TemplateHandler.Assign(ref strTemplate, "totaladjustment", Common.FormatNumber(dcAdjustment));
-                    TemplateHandler.Assign(ref strTemplate, "totalpsp", Common.FormatNumber(dcPSP));
-                }
+                TemplateHandler.ReplaceBlock(ref strTemplate, "content", strBuild.ToString());
+                
+                MapTotalRow(result.ResultSet.Tables[1], SportType, ref strTemplate);
             }
             else
             {
@@ -131,6 +110,29 @@ public partial class DailyEarning : RootPageLogIn
         catch (Exception ex)
         {
             DNAideLog.Write(ex.Message);
+        }
+    }
+
+    private void MapTotalRow(DataTable dtbResult, int sportType, ref string strTemplate)
+    {
+        if (dtbResult.Rows.Count > 0)
+        {
+            foreach (DataRow dr in dtbResult.Rows)
+            {
+                if (AppSettings.Session.HasDailyDetail)
+                    TemplateHandler.Assign(ref strTemplate, "totalwinlost", Common.FormatNumber(CastAide.AsDecimal(dr["memberwinlost"])));
+                else
+                    TemplateHandler.Assign(ref strTemplate, "totalwinlost", Common.FormatNumber(CastAide.AsDecimal(dr["memwinlostfake"])));
+
+                if (sportType != 2)
+                {
+                    TemplateHandler.Assign(ref strTemplate, "totaldeposit", Common.FormatNumber(dr["deposit"]));
+                    TemplateHandler.Assign(ref strTemplate, "totalwithdrawal", Common.FormatNumber(dr["withdrawal"]));
+                    TemplateHandler.Assign(ref strTemplate, "totalbonus", Common.FormatNumber(dr["bonus"]));
+                    TemplateHandler.Assign(ref strTemplate, "totaladjustment", Common.FormatNumber(dr["adjustment"]));
+                    TemplateHandler.Assign(ref strTemplate, "totalpsp", Common.FormatNumber(dr["psp"]));
+                }
+            }
         }
     }
 }

@@ -9,6 +9,7 @@ public partial class DailyEarningDetail : IBCPage
     protected void Page_Load(object sender, EventArgs e)
     {
         DateTime _date = (Request["monthdate"] != null) ? CastAide.AsDateTime(Request["monthdate"]) : DateTime.Now.AddDays(-1);
+        var currentmonthdate = new DateTime(_date.Year, _date.Month, DateTime.DaysInMonth(_date.Year, _date.Month));
         int custID = CastAide.AsInt32(Request["custid"]);
         int sporttype = (string.IsNullOrEmpty(Request["slSportType"]) ? 1 : (CastAide.AsInt32(Request["slSportType"].ToString(), 1)));
         bool isComm = (string.IsNullOrEmpty(Request["iscomm"]) ? false : Request["iscomm"] == "1");
@@ -55,9 +56,9 @@ public partial class DailyEarningDetail : IBCPage
 
         if (isComm)
         {
-            TemplateHandler.Assign(ref strTemplate, "statementurl", "DailyEarning.aspx?custid=" + custID + "&monthdate=" + monthdate + "&user=" + username + "&iscomm=1&slSportType=" + sporttype);
+            TemplateHandler.Assign(ref strTemplate, "statementurl", "DailyEarning.aspx?custid=" + custID + "&monthdate=" + currentmonthdate + "&user=" + username + "&iscomm=1&slSportType=" + sporttype);
             TemplateHandler.Assign(ref strTemplate, "commissionarea", "<a href=\"../Report/Commission.aspx\">" + Resources.Lang.Commission + "</a> >> ");
-            TemplateHandler.Assign(ref strTemplate, "earningMonthurl", "DailyEarning.aspx?custid=" + custID + "&monthdate=" + monthdate + "&user=" + username + "&iscomm=1&slSportType=" + sporttype);
+            TemplateHandler.Assign(ref strTemplate, "earningMonthurl", "DailyEarning.aspx?custid=" + custID + "&monthdate=" + currentmonthdate + "&user=" + username + "&iscomm=1&slSportType=" + sporttype);
             TemplateHandler.Assign(ref strTemplate, "statement", Resources.Lang.StatementHistory + " (" + Request["user"] + ")");
             TemplateHandler.Assign(ref strTemplate, "iscommvalue", "1");            
         }
@@ -65,7 +66,7 @@ public partial class DailyEarningDetail : IBCPage
         {
             TemplateHandler.Assign(ref strTemplate, "statementurl", "EarningsHistory.aspx");//"DailyEarning.aspx?custid=" + custID + "&monthdate=" + Request["originalmonthdate"].ToString() + "&user=" + Request["user"]);
             TemplateHandler.Assign(ref strTemplate, "commissionarea", "");
-            TemplateHandler.Assign(ref strTemplate, "earningMonthurl", "DailyEarning.aspx?custid=" + custID + "&monthdate=" + monthdate + "&user=" + Request["user"] + "&slSportType=" + sporttype);
+            TemplateHandler.Assign(ref strTemplate, "earningMonthurl", "DailyEarning.aspx?custid=" + custID + "&monthdate=" + currentmonthdate + "&user=" + Request["user"] + "&slSportType=" + sporttype);
             TemplateHandler.Assign(ref strTemplate, "statement", Resources.Lang.StatementHistory);
             TemplateHandler.Assign(ref strTemplate, "iscommvalue", "");
         }

@@ -43,7 +43,7 @@ public partial class UserInfo_Note : IBCPage
 
         #endregion
 
-        this.HtmlContent = strTpl;    
+        this.HtmlContent = strTpl;
 
     }
 }

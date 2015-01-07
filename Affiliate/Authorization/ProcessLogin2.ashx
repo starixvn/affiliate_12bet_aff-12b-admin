@@ -58,7 +58,7 @@ public class ProcessLogin2 : IHttpHandler, IRequiresSessionState
                 AppSettings.Session.UserName = _custName.ToUpper() + " : [" + dr2.Outputs["adminusername"].ToString() + "]";
                 AppSettings.Session.FirstName = DNAide.Core.CastAide.AsString(dr2.Outputs["firstname"]);
                 AppSettings.Session.LastName = DNAide.Core.CastAide.AsString(dr2.Outputs["lastname"]);
-                AppSettings.Session.Email = DNAide.Core.CastAide.AsString(dr2.Outputs["email"]);                
+                AppSettings.Session.Email = DNAide.Core.CastAide.AsString(dr2.Outputs["email"]);
                 AppSettings.Session.HasSecurityQuestion = true;
                 AppSettings.Session.HasDailyDetail = DNAide.Core.CastAide.AsBoolean(dr2.Outputs["hasdailydetail"]);
                 AppSettings.Session.PreferLang = DNAide.Core.CastAide.AsString(dr2.Outputs["preferlang"], "en-US");

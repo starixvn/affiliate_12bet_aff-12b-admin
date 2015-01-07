@@ -13,7 +13,9 @@
     <script type="text/javascript">
         var arrItem = new Array();
         var arrError = new Array();
-        window.onload = function() {        
+        window.onload = function () {
+            parent.frames['fMenu'].ActiveMenu('menu3');
+
             if($("hdStatus").value == "")
                 $("slStatus").options[0].selected = true;
             else

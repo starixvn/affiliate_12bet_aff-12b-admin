@@ -15,8 +15,10 @@
         $("page").value = mypage
         $("frData").submit();
     }
-    
+
     function MyFocus() {
+        parent.frames['fMenu'].ActiveMenu('menu4');
+
         $('txtAffUsername').focus();
         $("slTime").value = $("timer").value;
         if($("slTime").value != "0")
@@ -26,7 +28,7 @@
         }
     }
     function CloseDiv() {    
-        $('divChangePass').style.display ='none';            
+        $('divChangePass').style.display ='none';
     }
     function DoCal(url) {    
         ibcWnd.open(url, 'Change Password', 150, 50, 350, 200, 'class1', 'class2');

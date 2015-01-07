@@ -44,13 +44,26 @@ function showMP(transId) {
 
     // Manage biz
     if (divEvent.style.display === 'none') {
-        var ajax = new Ajax.Request("BetListParlay.ashx", {
+        jQuery.ajax({
             method: 'post',
             dataType: 'text',
             parameters: 'transId=' + transId,
             onComplete: function (responseData) {
                 divEvent.innerHTML = responseData.responseText;
+            type: "GET",
+            dataType: "text",
+            cache: false,
+            url: "BetListParlay.ashx?transId=" + transId,
+            error: function () {
+            },
+            success: function (responseData) {
+                divEvent.innerHTML = responseData;
                 divEvent.style.display = "";
+            },
+            beforeSend: function () {
+
+            },
+            complete: function () {
             }
         });
     }
@@ -66,13 +79,26 @@ function showCombMP(transId, index) {
 
     // Manage biz
     if (divEvent.style.display === 'none') {
-        var ajax = new Ajax.Request("BetListParlay.ashx", {
+        jQuery.ajax({
             method: 'post',
             dataType: 'text',
             parameters: 'transId=' + transId,
             onComplete: function (responseData) {
                 divEvent.innerHTML = responseData.responseText;
+            type: "GET",
+            dataType: "text",
+            cache: false,
+            url: "BetListParlay.ashx?transId=" + transId,
+            error: function () {
+            },
+            success: function (responseData) {
+                divEvent.innerHTML = responseData;
                 divEvent.style.display = "";
+            },
+            beforeSend: function () {
+
+            },
+            complete: function () {
             }
         });
     }

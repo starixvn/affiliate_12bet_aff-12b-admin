@@ -11,7 +11,7 @@ public partial class UserInfo_MemberListAll : IBCPage
         string strTpl = TemplateHandler.LoadTemplate("UserInfo/MemListAll.htm");
         TemplateHandler.Assign(ref strTpl, "action", Resources.Lang.Action);
         TemplateHandler.Assign(ref strTpl, "Edit", Resources.Lang.Edit);
-        TemplateHandler.Assign(ref strTpl, "username-text", Resources.Lang.Username);        
+        TemplateHandler.Assign(ref strTpl, "username-text", Resources.Lang.Username);
         TemplateHandler.Assign(ref strTpl, "ibcusername-text", Resources.Lang.IBCUsername);
         TemplateHandler.Assign(ref strTpl, "fname", Resources.Lang.Fname);
         TemplateHandler.Assign(ref strTpl, "lname", Resources.Lang.Lname);
@@ -32,15 +32,7 @@ public partial class UserInfo_MemberListAll : IBCPage
             string username = string.Empty, ibcUsername = string.Empty, affUsername = string.Empty;
             int totalPages = 1, pageIndex = 0, NRows = 0;//affid = -1
             int width = 900;
-            //if (string.Compare(Request["all"], "0", true) == 0)
-            //{
-            //    //affid = AppSettings.Session.AffId;
-            //    TemplateHandler.Assign(ref strTpl, "pagepadd", string.Empty);
-            //    TemplateHandler.RemoveBlock(ref strTpl, "aff");
-            //    width = 800;
-            //}
-            //else
-                //TemplateHandler.Assign(ref strTpl, "pagepadd", "padl0");
+        
             TemplateHandler.Assign(ref strTpl, "pagepadd", "padl0");
             string strContent = TemplateHandler.CopyBlock(strTpl, "content");
 
@@ -61,14 +53,8 @@ public partial class UserInfo_MemberListAll : IBCPage
             int intPageSize = CastAide.AsInt32(Request["slPageSize"], 20);
             DataTable dtbResult = DataHandler.Member.SelMemInfoAll(affUsername, username, ibcUsername, ref pageIndex, intPageSize, ref totalPages, ref NRows);
 
-
             StringBuilder strBuild = new StringBuilder();
-            /*bool isHost = Common.isHost(AppSettings.Session.CustID, "[Affiliate]");
-            if (!isHost)
-            {
-                TemplateHandler.RemoveBlock(ref strTpl, "Remove1");
-                TemplateHandler.RemoveBlock(ref strContent, "Remove2");
-            }*/
+          
             if (dtbResult.Rows.Count > 0)
             {
                 int i = (pageIndex - 1) * intPageSize;// hardcode pagesize for member/player list
@@ -101,16 +87,7 @@ public partial class UserInfo_MemberListAll : IBCPage
             }
 
             //Hung submenu      
-
             TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.MemberLink,SubMenu.MemberText, 0, NRows, string.Empty, "i_member.png"));
-            //if (string.Compare(Request["all"], "0", true) == 0)
-            //{
-            //    TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.AffApprovedLink, SubMenu.AffApprovedText, 3, NRows, string.Empty, "i_customer.png"));
-            //}
-            //else
-            //    TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(new string[] { "MemberListAll.aspx" }, new string[] { Resources.Lang.Member }, 0, NRows, string.Empty, "i_member.png"));
-            
-            //TemplateHandler.Assign(ref strTpl, "all-val", Request["all"]);
             
             //Add search bar
             string strUserName = CastAide.AsString(Request["txtUsername"], string.Empty);

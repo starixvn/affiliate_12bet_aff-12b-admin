@@ -343,7 +343,7 @@ namespace DataHandler
             hsParam.Add("affid", intAffId);
             hsParam.Add("sporttype", SportType);
             hsParam.Add("monthdate", dtmMonthDate);
-            return DbHelper.Execute("Aff_EarningSelDetail", hsParam, DBType.AFFILIATE_12BET).ResultSet.Tables[0]; ;
+            return DbHelper.Execute("Aff_EarningSelDetail", hsParam, DBType.AFFILIATE_12BET).ResultSet.Tables[0];
         }
 
         static string formatInput(string val)
