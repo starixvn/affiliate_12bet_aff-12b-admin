@@ -297,7 +297,7 @@ namespace DataHandler
             hsParam.Add("marketingpercent", 0);
             hsParam.Add("pspfeepercent", 0);
             hsParam.Add("playtechfeepercent", 0);
-            return DbHelper.Execute("Aff_EarningSelDaily_xtest", hsParam, DBType.AFFILIATE_12BET) ;
+            return DbHelper.Execute("Aff_EarningSelDaily", hsParam, DBType.AFFILIATE_12BET) ;
         }
         
         //Vinh@20090908
