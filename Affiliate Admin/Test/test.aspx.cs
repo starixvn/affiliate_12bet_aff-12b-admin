@@ -28,7 +28,7 @@ public partial class test : System.Web.UI.Page
                     else
                         Response.Write("Payment Approved Fail");
                     break;
-                case "2"://Payment Rejected                 
+                case "2"://Payment Rejected
                     rs = CancelMail(123456, FirstName, LastName, 15000, DateTime.Now, Email);
                     if (rs)
                         Response.Write("Payment Rejected successfully");
