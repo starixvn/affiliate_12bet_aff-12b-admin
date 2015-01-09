@@ -842,7 +842,7 @@ namespace DataHandler
             hsParam.Add("affid", affId);
             hsParam.Add("sportid", sportID);
 
-            return DbHelper.Execute("Aff_PerformanceReportByAff_xtest", hsParam, DBType.AFFILIATE_12BET,
+            return DbHelper.Execute("Aff_PerformanceReportByAff", hsParam, DBType.AFFILIATE_12BET,
                 DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
         }
     }
