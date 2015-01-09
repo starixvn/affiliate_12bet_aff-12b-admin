@@ -113,6 +113,19 @@
     function viewDetail(affId, affiliate, sportId) {
         var fdate = document.getElementById('fdate').value;
         var tdate = document.getElementById('tdate').value;
-        DoCal('PerformanceReportByAffiliate.aspx?affId=' + affId + '&fdate=' + fdate + '&tdate=' + tdate + '&sportid=' + sportId, 'Performance report by ' + affiliate, 960, 400);
+
+        var selectedProductIdx = document.getElementById('slSport').value;
+        var length = document.getElementById('slSport').options.length;
+        var selectedProduct = '';
+
+        for (var i = 0; i < length; i++) {
+            var value = document.getElementById('slSport').options[i].value;
+            
+            if (value == selectedProductIdx) {
+                selectedProduct = document.getElementById('slSport').options[i].text;
+            }
+        }
+
+        DoCal('PerformanceReportByAffiliate.aspx?affId=' + affId + '&fdate=' + fdate + '&tdate=' + tdate + '&sportid=' + sportId, selectedProduct + ' - Performance report by ' + affiliate, 960, 400);
     }
 </script>
