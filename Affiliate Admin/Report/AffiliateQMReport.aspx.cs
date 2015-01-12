@@ -82,7 +82,6 @@ public partial class Report_AffiliateQMReport : IBCPage
                 string strRowTpl = TemplateHandler.CopyBlock(strTpl, "content");
                 StringBuilder strListRow = new StringBuilder();
 
-
                 foreach (DataRow dr in dtb.Rows)
                 {
                     string strTmp = strRowTpl;

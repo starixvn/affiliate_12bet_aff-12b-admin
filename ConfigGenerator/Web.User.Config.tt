@@ -103,6 +103,7 @@
 	<add key="SuffixSp" value="<#= appSettings.GetValue("SuffixSp") #>"/>
 	<add key="AffBetlistService.AffiliateAPI" value="<#= appSettings.GetValue("AffBetlistService.AffiliateAPI") #>"/>
 	<add key="BetListServiceTimeout" value="<#= appSettings.GetValue("BetListServiceTimeout") #>"/>
+	<add key="StartYearOfSystem" value="2007"/>
   </appSettings>
   <connectionStrings>
     <remove name="main" />
