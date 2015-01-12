@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Globalization;
 using DataHandler;
 using DNAide.Web;
@@ -14,6 +13,7 @@ public partial class Account_Overview : RootPageLogIn
     protected string strMonths = string.Empty;
     protected string strYears = string.Empty;
     protected string slMonth = string.Empty;
+    protected string slYear = string.Empty;
     protected string strTierSetting = string.Empty;
     public const int MAXQM = 1000000000;
     public const Int64 MAXAMOUNT = 100000000000000;
@@ -33,17 +33,18 @@ public partial class Account_Overview : RootPageLogIn
             ltrTotalDeposit.Text = Resources.Lang.TotalDeposit;
             ltrTurnover.Text = Resources.Lang.TurnoverUpToNow;
             ltrDepositUp.Text = Resources.Lang.TotalDeposit;
-            GerMonthSel();
+
             #endregion
             DateTime dtmFirstOfMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
             if (!string.IsNullOrEmpty(Request["slMonth"]) && !string.IsNullOrEmpty(Request["slYear"]))
                 dtmFirstOfMonth = new DateTime(Convert.ToInt32(Request["slYear"]), Convert.ToInt32(Request["slMonth"]), 1);
             strMonths = dtmFirstOfMonth.Month.ToString();
             strYears = dtmFirstOfMonth.Year.ToString();
-            //ltrStatic.Text = Resources.Lang.Statistic + " " + Resources.Lang.For + " " + dtmFirstOfMonth.ToString("MMMM-yyyy");
+
+            GenMonthSel();
+            slYear = Common.GenYearDropDown("slYear", strYears, false, null);
 
             ltrStatic.Text = GetStatisticsFor(dtmFirstOfMonth);
-
             ltrStaticUp.Text = Resources.Lang.Statistic + " " + Resources.Lang.UpToNow;
 
             DbResult dep_result = UserAff.SelAffOverview_DEPOSIT(AppSettings.Session.CustID, dtmFirstOfMonth);
@@ -126,17 +127,7 @@ public partial class Account_Overview : RootPageLogIn
         return statisticsFor;
     }
 
-    private void GerMonthYearSelect()
-    {
-        DateTime now = DateTime.Now;
-        ArrayList arrMonth = new ArrayList();
-        arrMonth.Add(now.ToString("MMMM"));
-        ArrayList arrYear = new ArrayList();
-        arrYear.Add(now.ToString("yyyy"));
-        strMonths = Common.GenerateSelectObj("slMonth", arrMonth, arrMonth, "");
-        strYears = Common.GenerateSelectObj("slYear", arrYear, arrYear, ""); ;
-    }
-    private void GerMonthSel()
+    private void GenMonthSel()
     {
         slMonth = TemplateHandler.LoadTemplate("SelMonth.htm");
         TemplateHandler.Assign(ref slMonth, "jan", Resources.Lang.January);
@@ -152,12 +143,11 @@ public partial class Account_Overview : RootPageLogIn
         TemplateHandler.Assign(ref slMonth, "nov", Resources.Lang.November);
         TemplateHandler.Assign(ref slMonth, "dec", Resources.Lang.December);
     }
+
     private String GenCommGroupSettingDetails()
     {
         string tbl_CommSetting = TemplateHandler.LoadTemplate("UserInfo/CommGroupSetting.htm");
         DbResult result = null;
-        int nRows = 0;
-        int totalOfNoneGroup = 0;
 
         //Assign text header of table
         TemplateHandler.Assign(ref tbl_CommSetting, "Sport", Resources.Lang.Sport);
@@ -167,7 +157,6 @@ public partial class Account_Overview : RootPageLogIn
         TemplateHandler.Assign(ref tbl_CommSetting, "ComNetWin", Resources.Lang.NetWinLoss);
         TemplateHandler.Assign(ref tbl_CommSetting, "MinAmount_Explain", Resources.Lang.MinAmt_explain);
         TemplateHandler.Assign(ref tbl_CommSetting, "MinQM_Explain", Resources.Lang.MinQM_explain);
-
 
         result = CommGroup.GetCommGroupSettingByAffId(AppSettings.Session.CustID);
 
@@ -179,17 +168,13 @@ public partial class Account_Overview : RootPageLogIn
             return string.Empty;
         }
 
-
         DataTable SportType = result.ResultSet.Tables[3];
-        DataTable DeductionType = result.ResultSet.Tables[4];
-        DataTable commGroup = result.ResultSet.Tables[0];
         DataTable GroupSetting = result.ResultSet.Tables[1];
-        DataTable DeductionSetting = result.ResultSet.Tables[2];
 
         string mainRow = TemplateHandler.CopyBlock(tbl_CommSetting, "Mainrow");
         //string deductionOption = TemplateHandler.CopyBlock(tbl_CommSetting, "DeductionOption");
         string tierRow = TemplateHandler.CopyBlock(tbl_CommSetting, "subrow");
-        StringBuilder ret = new StringBuilder();
+        var ret = new StringBuilder();
         int noSports = 0;
 
         foreach (DataRow sport in SportType.Rows)
@@ -200,55 +185,15 @@ public partial class Account_Overview : RootPageLogIn
                 {
                     string _sportSetting = mainRow;
                     TemplateHandler.Assign(ref _sportSetting, "sports-type", sport["SportName"]);
-                    //TemplateHandler.Assign(ref _sportSetting, "turnover-val", String.Format("{0:0.00}", sport["QMTurnOver"]));
 
                     noSports++;
                     TemplateHandler.Assign(ref _sportSetting, "class-main", (noSports % 2 == 0) ? "tbl_cs" : "tbl_spb");
                     TemplateHandler.Assign(ref _sportSetting, "class", (noSports % 2 == 0) ? "tbl_01" : "tbl_td_01");
-
-                    DataRow[] drDeductionType = DeductionType.Select("SportID=" + sport["SportID"]);
-
-                    StringBuilder deductionList = new StringBuilder();
-                    StringBuilder tierList = new StringBuilder();
-
-
-                    //Load Deduction Settings
-                    /*foreach (DataRow dtype in drDeductionType)
-                    {
-                        string _deductionOption = deductionOption;
-                        TemplateHandler.Assign(ref _deductionOption, "DeductionDescription_val", dtype["dtypedesc"]);
-                        switch (dtype["dtypename"].ToString())
-                        {
-                            case "Bonus":
-                                TemplateHandler.Assign(ref _deductionOption, "DeductionName_val", Resources.Lang.Bonus);
-                                break;
-                            case "Adjustment":
-                                TemplateHandler.Assign(ref _deductionOption, "DeductionName_val", Resources.Lang.Adjustment);
-                                break;
-                            case "Marketing":
-                                TemplateHandler.Assign(ref _deductionOption, "DeductionName_val", Resources.Lang.Marketing);
-                                break;
-                            default:
-                                TemplateHandler.Assign(ref _deductionOption, "DeductionName_val", Resources.Lang.PSP);
-                                break;
-
-                        }
                     
+                    var tierList = new StringBuilder();
 
-                        if (DeductionSetting.Select("DeductionID=" + dtype["dtypeid"]).Length > 0)
-                        {
-                            TemplateHandler.Assign(ref _deductionOption, "chkActiveDeductionClass_val", "chkbox_on_disable");
-                        }
-                        else
-                        {
-                            TemplateHandler.Assign(ref _deductionOption, "chkActiveDeductionClass_val", "chkbox_off_disable");
-                        }
-                        deductionList.Append(_deductionOption);
-                    }*/
                     //Load Tier Setting
                     DataRow[] Tiers = GroupSetting.Select("SportType=" + sport["SportID"]);
-
-                    //TemplateHandler.Assign(ref _sportSetting, "tierno-val", Tiers.Length);
 
                     int noTier = 0;
                     int totalShownTier = Tiers.Length;
@@ -309,10 +254,7 @@ public partial class Account_Overview : RootPageLogIn
                         }
                     }
                     TemplateHandler.Assign(ref _sportSetting, "tierno-val", noTier);
-
-
-                    //TemplateHandler.Assign(ref _sportSetting, "tierno-val", noTier);
-                    //TemplateHandler.ReplaceBlock(ref _sportSetting, "subrow", tierList.ToString());
+                    
                     if (tierList.Length == 0)
                     {
                         //TemplateHandler.ReplaceBlock(ref _sportSetting, "Mainrow", Common.NoInfo(5));
@@ -326,19 +268,7 @@ public partial class Account_Overview : RootPageLogIn
                     {
                         TemplateHandler.ReplaceBlock(ref _sportSetting, "subrow", tierList.ToString());
                     }
-
-
-                    /*
-                    if (deductionList.Length == 0)
-                    {
-                        TemplateHandler.ReplaceBlock(ref _sportSetting, "DeductionOption", string.Empty);
-                    }
-                    else
-                    {
-
-                        TemplateHandler.ReplaceBlock(ref _sportSetting, "DeductionOption", deductionList.ToString());
-                    }
-                     */
+                    
                     if (tierList.Length == 0)
                     {
                         TemplateHandler.ReplaceBlock(ref _sportSetting, "TierRow", Common.NoInfo(7));

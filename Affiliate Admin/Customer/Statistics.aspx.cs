@@ -51,25 +51,16 @@ public partial class Customer_Statistics : IBCPage
         TemplateHandler.Assign(ref strTpl, "year", dtmFirstOfMonth.ToString("yyyy"));
         TemplateHandler.Assign(ref strTpl, "staticup", Resources.Lang.UpToNow);
         TemplateHandler.Assign(ref strTpl, "custid", AppSettings.Session.AffId);
+        TemplateHandler.Assign(ref strTpl, "optionyear", Common.GenYearDropDown("slyear", dtmFirstOfMonth.ToString("yyyy"), false, null, false));
 
         DbResult dep_result = DataHandler.Affiliate.SelAffOverview_DEPOSIT(intCustId, dtmFirstOfMonth);
         int newSignUp = CastAide.AsInt32(dep_result.Outputs["newsignup"]);
         int totalPlayer = CastAide.AsInt32(dep_result.Outputs["totalplayer"]);
-
-        int newSignUpDep = CastAide.AsInt32(dep_result.Outputs["newsignupdep"]);
-        int totalPlayerDep = CastAide.AsInt32(dep_result.Outputs["totalplayerdep"]);
+        
         TemplateHandler.Assign(ref strTpl, "newsignup-val", newSignUp);
         TemplateHandler.Assign(ref strTpl, "totalplay-val", totalPlayer);
 
-        //TemplateHandler.Assign(ref strTpl, "newsignupdep-val", newSignUpDep);
-        //TemplateHandler.Assign(ref strTpl, "newsignupnondep-val", newSignUp - newSignUpDep);
-        //TemplateHandler.Assign(ref strTpl, "totalplaynondep-val", totalPlayer - totalPlayerDep);
-        //if (totalPlayerDep != 0)
-        //    TemplateHandler.Assign(ref strTpl, "totalplaydep-val", totalPlayerDep);
-        //else
-        //    TemplateHandler.ReplaceBlock(ref strTpl, "totalplaydep", totalPlayerDep.ToString());
-
-        //Assign info       
+        //Assign info
         DbResult result = DataHandler.Affiliate.SelStatistics(intCustId, dtmFirstOfMonth);
         TemplateHandler.Assign(ref strTpl, "totalqualifiedmembers", Resources.Lang.TotalQualifiedMembers);
         TemplateHandler.Assign(ref strTpl, "totalqualifiedmembers-val", CastAide.AsInt32(result.Outputs["totalqualifiedmembers"]));
@@ -78,7 +69,6 @@ public partial class Customer_Statistics : IBCPage
         TemplateHandler.Assign(ref strTpl, "turnovermonth-val", Common.FormatNumber(CastAide.AsDecimal(result.Outputs["totalturnover"])));
 
         int totalactiveplayer = CastAide.AsInt32(result.Outputs["totalactiveplayer"]);
-        //TemplateHandler.Assign(ref strTpl, "totalactive-val", totalactiveplayer.ToString());
 
         if (totalactiveplayer == 0 || dtmFirstOfMonth.CompareTo(AppSettings.StatementAvailableFrom) < 0)
             TemplateHandler.ReplaceBlock(ref strTpl, "totalactive", totalactiveplayer.ToString());
@@ -87,23 +77,17 @@ public partial class Customer_Statistics : IBCPage
             TemplateHandler.Assign(ref strTpl, "totalactive-val", totalactiveplayer.ToString());
             TemplateHandler.Assign(ref strTpl, "fdate", dtmFirstOfMonth.ToString("MM/dd/yyyy"));
         }
+
         TemplateHandler.Assign(ref strTpl, "totalactive-val", totalactiveplayer.ToString());
-       
         TemplateHandler.Assign(ref strTpl, "newsignupdep-val", CastAide.AsInt32(result.Outputs["newsignupdep"], 0));
-        //int newSignUpNonDep = newSignUp - CastAide.AsInt32(result.Outputs["newsignupdep"]);
-        //TemplateHandler.Assign(ref strTpl, "newsignupnondep", (newSignUpNonDep > 0) ? newSignUpNonDep : 0);
-        //totalplaydep
-        //int totalpayerdepup = CastAide.AsInt32(result.Outputs["totalplayerdepup"]);
         TemplateHandler.Assign(ref strTpl, "totalplaydep-val", CastAide.AsInt32(result.Outputs["totalplayerdepup"]));
-        //TemplateHandler.Assign(ref strTpl, "totalplaynondep", totalPlayer - totalpayerdepup);
         TemplateHandler.Assign(ref strTpl, "totaldeposit-val", Common.FormatNumber(CastAide.AsDecimal(result.Outputs["totaldeposit"])));
         TemplateHandler.Assign(ref strTpl, "turnover-val", Common.FormatNumber(CastAide.AsDecimal(result.Outputs["totalturnoverup"])));
         TemplateHandler.Assign(ref strTpl, "totaldepositup-val", Common.FormatNumber(CastAide.AsDecimal(result.Outputs["totaldepositup"])));
-
         TemplateHandler.Assign(ref strTpl, "winlost-val", Common.FormatNumber(CastAide.AsDecimal(result.Outputs["totalwinlost"])));
         TemplateHandler.Assign(ref strTpl, "winlostup-val", Common.FormatNumber(CastAide.AsDecimal(result.Outputs["totalwinlostup"])));
 
-        //Tracking Statistics        
+        //Tracking Statistics
         TemplateHandler.Assign(ref strTpl, "trackingrate-val", CastAide.AsInt32(result.Outputs["totaluniqueclicks"], 0) + "/" + CastAide.AsInt32(result.Outputs["totalclicks"], 0));
         TemplateHandler.Assign(ref strTpl, "trackingforpcbysite-val", CastAide.AsInt32(result.Outputs["totaluniqueclicksbysite"], 0) + "/" + CastAide.AsInt32(result.Outputs["totalclicksbysite"], 0));
         TemplateHandler.Assign(ref strTpl, "trackingformobilebysite-val", CastAide.AsInt32(result.Outputs["totaluniqueclicksbymobile"], 0) + "/" + CastAide.AsInt32(result.Outputs["totalclicksbymobile"], 0));

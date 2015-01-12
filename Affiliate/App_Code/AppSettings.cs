@@ -57,6 +57,7 @@ public static class AppSettings
     private static string _preferLang;
     private static int _europeanAffPort;
     private static int _betListServiceTimeout;
+    private static int _startYearOfSystem;
 
     static AppSettings()
     {
@@ -105,6 +106,8 @@ public static class AppSettings
         _showCasino = (ConfigurationManager.AppSettings["ShowCasino"] == "1");
         _localTest = (ConfigurationManager.AppSettings["LocalTest"] == "1");
         _betListServiceTimeout = CastAide.AsInt32(ConfigurationManager.AppSettings["BetListServiceTimeout"]);
+        _startYearOfSystem = string.IsNullOrEmpty(ConfigurationManager.AppSettings["StartYearOfSystem"])
+            ? 2007 : CastAide.AsInt32(ConfigurationManager.AppSettings["StartYearOfSystem"]);
         initPageHeader();
     }
 
@@ -760,5 +763,8 @@ public static class AppSettings
         get { return _betListServiceTimeout; }
     }
 
-    
+    public static int StartYearOfSystem
+    {
+        get { return _startYearOfSystem; }
+    }
 }

@@ -76,6 +76,8 @@ public partial class Report_Commission : IBCPage
             TemplateHandler.Assign(ref strTpl, "cssgetall", isDesc ? "ic-check" : "ic-uncheck");
             TemplateHandler.Assign(ref strTpl, "month-val", month);
             TemplateHandler.Assign(ref strTpl, "year-val", year);
+            TemplateHandler.Assign(ref strTpl, "optionyear", Common.GenYearDropDown("slyear", year.ToString(), false, null));
+
             if (String.IsNullOrEmpty(strUsername))
                 TemplateHandler.Assign(ref strTpl, "affname", "[" + Resources.Lang.All + "]");
             else

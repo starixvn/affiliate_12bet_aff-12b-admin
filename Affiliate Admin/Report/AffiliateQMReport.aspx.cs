@@ -15,8 +15,6 @@ public partial class Report_AffiliateQMReport : IBCPage
         AssignHeader();
         GenerateHTML();
         this.HtmlContent = strTpl;
-
-
     }
 
     void AssignHeader()
@@ -51,6 +49,7 @@ public partial class Report_AffiliateQMReport : IBCPage
             TemplateHandler.Assign(ref strTpl, "month-val", month);
             TemplateHandler.Assign(ref strTpl, "year-val", year);
             TemplateHandler.Assign(ref strTpl, "page", intPage);
+            TemplateHandler.Assign(ref strTpl, "optionyear", Common.GenYearDropDown("slyear", year.ToString(), false, null));
 
             if (String.IsNullOrEmpty(strUsername))
                 TemplateHandler.Assign(ref strTpl, "affname", "[" + Resources.Lang.All + "]");
