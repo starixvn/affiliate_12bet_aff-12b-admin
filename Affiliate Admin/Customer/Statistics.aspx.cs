@@ -8,9 +8,9 @@ public partial class Customer_Statistics : IBCPage
     {
         string strTpl = TemplateHandler.LoadTemplate("Customer/Statistics.htm");
         int intCustId = AppSettings.Session.AffId;
-        DateTime dtmFirstOfMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-        if (!string.IsNullOrEmpty(Request["slMonth"]) && !string.IsNullOrEmpty(Request["slYear"]))
-            dtmFirstOfMonth = new DateTime(Convert.ToInt32(Request["slYear"]), Convert.ToInt32(Request["slMonth"]), 1);
+        var dtmFirstOfMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+        var selectedMonth = CastAide.AsDateTime(Request["fmonth"], dtmFirstOfMonth);
+
         #region Load language
         TemplateHandler.Assign(ref strTpl, "custid", intCustId.ToString());
         TemplateHandler.Assign(ref strTpl, "newsignup", Resources.Lang.NewSignup);
@@ -43,15 +43,12 @@ public partial class Customer_Statistics : IBCPage
         TemplateHandler.Assign(ref strTpl, "horseracing", Resources.Lang.HorseRacing);
 
         #endregion
-
-        TemplateHandler.Assign(ref strTpl, "month-sel", dtmFirstOfMonth.Month.ToString());
-        TemplateHandler.Assign(ref strTpl, "year-sel", dtmFirstOfMonth.Year.ToString());
         TemplateHandler.Assign(ref strTpl, "static", Resources.Lang.Statistic);
-        TemplateHandler.Assign(ref strTpl, "month", dtmFirstOfMonth.ToString("MMMM"));
-        TemplateHandler.Assign(ref strTpl, "year", dtmFirstOfMonth.ToString("yyyy"));
         TemplateHandler.Assign(ref strTpl, "staticup", Resources.Lang.UpToNow);
         TemplateHandler.Assign(ref strTpl, "custid", AppSettings.Session.AffId);
-        TemplateHandler.Assign(ref strTpl, "optionyear", Common.GenYearDropDown("slyear", dtmFirstOfMonth.ToString("yyyy"), false, null, false));
+        TemplateHandler.Assign(ref strTpl, "fmonth", selectedMonth.ToString("MMMM-yyyy"));
+        TemplateHandler.Assign(ref strTpl, "currentYear-val", DateTime.Now.Year);
+        TemplateHandler.Assign(ref strTpl, "currentMonth-val", DateTime.Now.Month);
 
         DbResult dep_result = DataHandler.Affiliate.SelAffOverview_DEPOSIT(intCustId, dtmFirstOfMonth);
         int newSignUp = CastAide.AsInt32(dep_result.Outputs["newsignup"]);

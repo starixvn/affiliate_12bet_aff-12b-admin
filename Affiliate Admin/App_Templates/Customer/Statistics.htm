@@ -1,46 +1,12 @@
 ﻿<form method="get" id="frmSearch" name="frmSearch">
 <div style="padding-top: 10px;">
-    <div style="display:none;" title="Expand Statistics" id="divExpend">
-        <table id="Table1" width="530" cellspacing="1" cellpadding="2" border="0" bgcolor="#d0d0d0">
-            <tr class="header_06">
-                <td class="b">
-                    <span class="expendtop" title="Expand Statistics" onclick="ShowPage(true);">&nbsp;</span>{static}
-                </td>
-                <td class="r b" style="width: 140px">
-                    <span class="popup">{month}-</span>
-                    <span class="popup">{year}</span>
-                </td>
-                <td class="b r" style="width: 140px">
-                    {staticup}
-                </td>
-            </tr>
-        </table>
-    </div>
     <table id="tblContent" width="600" cellspacing="1" cellpadding="2" border="0" bgcolor="#d0d0d0">
         <tr class="header_06">
             <td class="b">
                 <span id="togtop" title="Toggle Statistics" onclick="ShowPage(false);">&nbsp;</span>{static}<input class="hide" type="submit" />&nbsp;
             </td>
             <td class="r b" style="width: 140px">
-                <span class="popup" id="spMonth" onclick="ChangeDate('spMonth', 'slMonth', true);">{month}-</span>
-                <select id="slMonth" name="slMonth" style="display:none;" onblur="ChangeDate('spMonth', 'slMonth', false);" onchange="Search();">
-                    <option value="1">January</option>
-                    <option value="2">February</option>
-                    <option value="3">March</option>
-                    <option value="4">April</option>
-                    <option value="5">May</option>
-                    <option value="6">June</option>
-                    <option value="7">July</option>
-                    <option value="8">August</option>
-                    <option value="9">September</option>
-                    <option value="10">October</option>
-                    <option value="11">November</option>
-                    <option value="12">December</option>
-                </select>
-                <span class="popup" id="spYear" onclick="ChangeDate('spYear', 'slYear', true);">{year}</span>
-                <select id="slYear" name="slYear" style="display:none;" onblur="ChangeDate('spYear', 'slYear', false);" onchange="Search();">
-                    {optionyear}
-                </select>
+                <input type="text" readonly name="fmonth" size="13" value="{fmonth}" class="txtdate-no-time" id="fmonth" />&nbsp;
             </td>
             <td class="b r" style="width: 140px">
                 {staticup}
@@ -123,7 +89,10 @@
             <td class="tb_01">
                 <a class="text_link" href="#">
                     <!--TrackingRate-->
-                    <a href="../UserInfo/MediaStatistics.aspx?month={fdate}" target="fContent">{trackingrate-val}</span><!--/TrackingRate--></a>
+                    <a href="../UserInfo/MediaStatistics.aspx?month={fdate}" target="fContent">
+                            <span>{trackingrate-val}</span></a>
+                    <!--/TrackingRate-->
+                </a>
             </td>
             <td class="tb_01">
                 N/A
@@ -136,7 +105,8 @@
             <td class="tb_01">
                 <a class="text_link" href="#">
                     <!--TrackingRate-->
-                <a href="../UserInfo/MediaStatistics_New.aspx?fdate={fdate}&tdate={tdate}&slDevice=0" target="fContent">{trackingforpcbysite-val}</span>
+                    <a href="../UserInfo/MediaStatistics_New.aspx?fdate={fdate}&tdate={tdate}&slDevice=0" target="fContent">
+                        <span>{trackingforpcbysite-val}</span></a>
                     <!--/TrackingRate-->
                     </a>
             </td>
@@ -151,16 +121,18 @@
             <td class="tb_01">
                 <a class="text_link" href="#">
                     <!--TrackingRate-->
-                    <a href="../UserInfo/MediaStatistics_New.aspx?fdate={fdate}&tdate={tdate}&slDevice=1" target="fContent">{trackingformobilebysite-val}</span><!--/TrackingRate--></a>
+                    <a href="../UserInfo/MediaStatistics_New.aspx?fdate={fdate}&tdate={tdate}&slDevice=1" target="fContent">
+                        <span>{trackingformobilebysite-val}</span></a>
+                    <!--/TrackingRate-->
+                </a>
             </td>
             <td class="tb_01">
                 N/A
             </td>
         </tr>
     </table>
-<script type="text/javascript">
-    $("slMonth").value = "{month-sel}";
-    $("slYear").value = "{year-sel}";
-</script>
-</form>
+    
+    <input type="hidden" id="hdCurrentYear" name="hcCurrentYear" value="{currentYear-val}" />
+    <input type="hidden" id="hdCurrentMonth" name="hdCurrentMonth" value="{currentMonth-val}" />
 </div>
+</form>

@@ -1,14 +1,6 @@
 ﻿using System;
 using System.Text;
-using System.Collections;
-using System.Configuration;
 using System.Data;
-using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.HtmlControls;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
 using Criterias;
 using DNAide.Web;
 using DNAide.Utils;
@@ -83,6 +75,7 @@ public partial class Report_AffiliateReport : IBCPage
 
             TemplateHandler.Assign(ref strTpl, "lang-val", strPreferLang);
             TemplateHandler.Assign(ref strTpl, "currentYear-val", DateTime.Now.Year);
+            TemplateHandler.Assign(ref strTpl, "currentMonth-val", DateTime.Now.Month);
             TemplateHandler.Assign(ref strTpl, "sportid-val", Request["slSport"]);
             TemplateHandler.Assign(ref strTpl, "fdate", dtmFDate.ToString("MM/yyyy"));
             TemplateHandler.Assign(ref strTpl, "tdate", dtmTDate.ToString("MM/yyyy"));
