@@ -9,6 +9,13 @@
 <link href="../App_Js/MonthPicker/month-picker.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="../App_Js/Common.js"></script>
 
+<style type="text/css">
+    .month-picker {
+        background: url('../App_Themes/DefaultV2/images/cal.gif') no-repeat right 2px center white; 
+        cursor: pointer;
+    }
+</style>
+
 <script type="text/javascript">
     var $j = jQuery.noConflict();
 
@@ -17,14 +24,14 @@
     function  Init() {
         var currentYear = $('hdCurrentYear').value;
 
+        var monthObject = $j('#fmonth');
+
         var monthPickerOptions = {
-            pattern: "mmm-yyyy",
-            selectedYear: currentYear,
+            pattern: 'mmm-yyyy',
             startYear: 2007,
-            finalYear: currentYear
+            finalYear: parseInt(currentYear, 10)
         };
 
-        var monthObject = $j('#fmonth');
         monthObject.monthpicker(monthPickerOptions);
 
         SetDefaultMonthConstraint(monthObject);
@@ -49,7 +56,7 @@
 
     function getSelectedYear(selector) {
         var value = selector.val();
-        var dateParts = value.split('/');
+        var dateParts = value.split('-');
         if (dateParts.length == 2) {
             return dateParts[1];
         } else {

@@ -120,26 +120,13 @@ namespace DataHandler
 
         public static DbResult SelAffOverview(int AffID, DateTime dtmMonthDate)
         {
-            /*Hashtable hsParam = new Hashtable();
-            hsParam.Add("affid", AffID);
-            hsParam.Add("monthdate", dtmMonthDate);            
-            hsParam.Add("totalactiveplayer", 0);
-            hsParam.Add("totaldeposit", 0);            
-            hsParam.Add("totaldepositup", 0);//vinh add
-            hsParam.Add("totalturnover", 0); //vinh add      
-            hsParam.Add("totalplayerdepup", 0);//vinh add      
-            hsParam.Add("newsignupdep", 0);//vinh add                 
-            hsParam.Add("balbroughtforward", 0);            
-            hsParam.Add("totalqualifiedmembers", 0); //Dung added
-            hsParam.Add("totalturnoverformonth", 0); //Dung added
-            return DbHelper.Execute("Aff_CustomerSelSummary", hsParam, DBType.AFFILIATE_12BET);*/
-            Hashtable hsParam = new Hashtable();
+            var hsParam = new Hashtable();
             hsParam.Add("affid", AffID);
             hsParam.Add("monthdate", dtmMonthDate);
             hsParam.Add("totalactiveplayer", 0);
             hsParam.Add("balbroughtforward", 0);
-            hsParam.Add("totalplayerdepup", 0);//vinh add      
-            hsParam.Add("newsignupdep", 0);//vinh add                 
+            hsParam.Add("totalplayerdepup", 0);//vinh add
+            hsParam.Add("newsignupdep", 0);//vinh add
             hsParam.Add("totaldeposit", 0);
             hsParam.Add("totaldepositup", 0);
             hsParam.Add("totalturnover", 0);

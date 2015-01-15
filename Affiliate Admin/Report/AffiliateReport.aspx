@@ -8,6 +8,14 @@
 <script src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js'></script>
 <script src="../App_Js/MonthPicker/jquery.mtz.monthpicker.js" type="text/javascript"></script>
 <link href="../App_Js/MonthPicker/month-picker.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+    .month-picker {
+        background: url('../App_Themes/DefaultV2/images/cal.gif') no-repeat right 2px center white; 
+        cursor: pointer;
+    }
+</style>
+
 <script type="text/javascript">
 
     var $j = jQuery.noConflict();

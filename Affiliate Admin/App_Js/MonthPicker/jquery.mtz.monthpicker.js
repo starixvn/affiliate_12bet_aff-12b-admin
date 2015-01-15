@@ -242,7 +242,8 @@
             // mount months table
             for (var i=1; i<=12; i++) {
                 td = $('<td class="ui-state-default mtz-monthpicker mtz-monthpicker-month" style="padding:5px;cursor:default;" />').attr('data-month',i);
-                if (settings.selectedMonth == i) {
+                // Brian: add more condition  (settings.selectedMonth == settings.monthNames[i-1])
+                if (settings.selectedMonth == i || settings.selectedMonth == settings.monthNames[i-1]) {
                    td.addClass('ui-state-active');
                 }
                 td.append(settings.monthNames[i-1]);

@@ -9,6 +9,13 @@
 <script type="text/javascript" src="../App_Js/RefreshTime.js"></script>
 <script type="text/javascript" src="../App_Js/Common.js"></script>
 
+<style type="text/css">
+    .month-picker {
+        background: url('../App_Themes/DefaultV2/images/cal.gif') no-repeat right 2px center white; 
+        cursor: pointer;
+    }
+</style>
+
 <script type="text/javascript" language="javascript">
     var $j = jQuery.noConflict();
     

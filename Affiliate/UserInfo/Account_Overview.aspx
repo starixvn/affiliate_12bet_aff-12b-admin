@@ -2,9 +2,27 @@
     Inherits="Account_Overview" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
+    <!--js-->
+    <link rel='stylesheet' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/base/jquery-ui.css'>
+    <script type="text/javascript" src="../App_Js/prototype.js"></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script> 
+    <script src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js'></script>
+    <script src="../App_Js/MonthPicker/jquery.mtz.monthpicker.js" type="text/javascript"></script>
+    <link href="../App_Js/MonthPicker/month-picker.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" language="javascript" src="../App_Js/swfobject.js"></script>
     <script src="../App_Js/Common.js" language="javascript" type="text/javascript"></script>
     <script src="../App_Js/IBCWnd/IBCWnd.js" language="javascript" type="text/javascript"></script>
+    
+    <style type="text/css">
+        .month-picker {
+            background: url('../App_Themes/Default/Images/cal.gif') no-repeat right 2px center white; 
+            cursor: pointer;
+            border: 1px solid #ccc;
+            height: 17px;
+            padding-left: 3px;
+        }
+    </style>
+
     <script type="text/javascript" language="javascript">
 
         function HidePopup() {
@@ -43,8 +61,8 @@
             <div class="in_conts">
                 <div class="box_conts_header">
                     <div class="flright">
-                        <%= slMonth %>&nbsp;&nbsp;
-                        <%= slYear %>&nbsp;&nbsp;<input value="<%=Resources.Lang.Submit %>" class="button" type="submit" />&nbsp;
+                        <input type="text" name="fmonth" size="13" value="<%= selectedMonth.ToString("MMM-yyyy") %>" class="txtdate-no-time month-picker" id="fmonth" />&nbsp;
+                        <input value="<%=Resources.Lang.Submit %>" class="button" type="submit" />&nbsp;
                     </div>
                     <asp:Literal runat="server" ID="ltrStatic"></asp:Literal>
                 </div>
@@ -176,6 +194,9 @@
     <input type="hidden" name="flashpath" id="flashpath" value="<%=flashPath %>" />
     <input type="hidden" name="showpopup" id="showpopup" value="<%=showPopup %>" />
     <input type="hidden" name="custid" id="custid" value="<%=AppSettings.Session.CustID %>" />
+    <input type="hidden" name="hdCurrentYear" id="hdCurrentYear" value="<%= DateTime.Now.Year %>" />
+    <input type="hidden" name="hdCurrentMonth" id="hdCurrentMonth" value="<%= DateTime.Now.Month %>" />
+
     <%--<script type="text/javascript">
         var so = new SWFObject(""+$("flashpath").value, "flCommission", "420", "270", "9", "#000000");
         so.addVariable("afflink", "../ProgramDetails.aspx");
@@ -183,23 +204,25 @@
     </script>
     --%>
     <script type="text/javascript">
+        var $j = jQuery.noConflict();
+
         var getPopupHeight = function () {
             var bodyEle = document.getElementsByTagName('body')[0];
             var className = bodyEle.className;
             var height = 210;
 
             switch (className) {
-                case "id-ID":
-                    height = 220;
-                    break;
-                case "zh-CN":
-                case "zh-TW":
-                case "ja-JP":
-                    height = 180;
-                    break;
-                default:
-                    height = 210;
-                    break;
+            case "id-ID":
+                height = 220;
+                break;
+            case "zh-CN":
+            case "zh-TW":
+            case "ja-JP":
+                height = 180;
+                break;
+            default:
+                height = 210;
+                break;
             }
             return height;
         };
@@ -207,8 +230,6 @@
         var Init = function () {
             var username = getCookie("Username");
             var dontShowMessage = getCookie(username + '_DontShowMessage');
-            
-
 
             if (dontShowMessage !== 'true') {
                 var height = document.body.clientHeight;
@@ -225,7 +246,71 @@
                     iconTitle.style.display = 'none';
                 }, 200);
             }
+
+            // support month picker.
+
+            var currentYear = $('hdCurrentYear').value;
+
+            var monthPickerOptions = {
+                pattern: 'mmm-yyyy',
+                selectedYear: currentYear,
+                startYear: 2007,
+                finalYear: currentYear
+            };
+
+            var monthObject = $j('#fmonth');
+            
+            monthObject.monthpicker(monthPickerOptions);
+
+            SetDefaultMonthConstraint(monthObject);
+
+            SetMonthConstraint(monthObject);
         };
+
+        function SetMonthConstraint(selector) {
+            var currentYear = $('hdCurrentYear').value;
+
+            selector.monthpicker().bind('monthpicker-change-year', function (e, year) {
+                selector.monthpicker('disableMonths', []); // (re)enables all
+                if (year === currentYear) {
+                    selector.monthpicker('disableMonths', GetDisabledMonths());
+                }
+            });
+        }
+
+        function getSelectedYear(selector) {
+            var value = selector.val();
+            var dateParts = value.split('-');
+            if (dateParts.length == 2) {
+                return dateParts[1];
+            } else {
+                return $('hdCurrentYear').value;
+            }
+        };
+
+        function SetDefaultMonthConstraint(selector) {
+            var currentYear = $('hdCurrentYear').value;
+
+            var selectedYear = getSelectedYear(selector);
+
+            if (selectedYear === currentYear) {
+                selector.monthpicker('disableMonths', GetDisabledMonths());
+            }
+        }
+
+        function GetDisabledMonths() {
+            var currentMonth = parseInt($('hdCurrentMonth').value, 10);
+
+            var disabledMonths = [];
+
+            for (var i = 0; i <= 12; i++) {
+                if (i > currentMonth) {
+                    disabledMonths.push(i);
+                }
+            }
+
+            return disabledMonths;
+        }
 
         window.onload = Init;
     </script>

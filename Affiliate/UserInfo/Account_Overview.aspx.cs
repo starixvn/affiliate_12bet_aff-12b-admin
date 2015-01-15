@@ -2,7 +2,6 @@
 using System.Globalization;
 using DataHandler;
 using DNAide.Web;
-using DNAide.Utils;
 using DNAide.Core;
 using DNAide.Data;
 using System.Data;
@@ -19,6 +18,8 @@ public partial class Account_Overview : RootPageLogIn
     public const Int64 MAXAMOUNT = 100000000000000;
     public string flashPath = string.Empty;
     public string showPopup = string.Empty;
+    public DateTime selectedMonth;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         try
@@ -35,9 +36,9 @@ public partial class Account_Overview : RootPageLogIn
             ltrDepositUp.Text = Resources.Lang.TotalDeposit;
 
             #endregion
-            DateTime dtmFirstOfMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-            if (!string.IsNullOrEmpty(Request["slMonth"]) && !string.IsNullOrEmpty(Request["slYear"]))
-                dtmFirstOfMonth = new DateTime(Convert.ToInt32(Request["slYear"]), Convert.ToInt32(Request["slMonth"]), 1);
+            var dtmFirstOfMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+            selectedMonth = CastAide.AsDateTime(Request["fmonth"], dtmFirstOfMonth);
+
             strMonths = dtmFirstOfMonth.Month.ToString();
             strYears = dtmFirstOfMonth.Year.ToString();
 
@@ -47,10 +48,11 @@ public partial class Account_Overview : RootPageLogIn
             ltrStatic.Text = GetStatisticsFor(dtmFirstOfMonth);
             ltrStaticUp.Text = Resources.Lang.Statistic + " " + Resources.Lang.UpToNow;
 
-            DbResult dep_result = UserAff.SelAffOverview_DEPOSIT(AppSettings.Session.CustID, dtmFirstOfMonth);
+            DbResult dep_result = UserAff.SelAffOverview_DEPOSIT(AppSettings.Session.CustID, selectedMonth);
             ltrSignup.Text = CastAide.AsInt32(dep_result.Outputs["newsignup"], 0).ToString();
             ltrTotalPlayer.Text = CastAide.AsInt32(dep_result.Outputs["totalplayer"], 0).ToString();
-            DbResult result = UserAff.SelAffOverview(AppSettings.Session.CustID, dtmFirstOfMonth);
+
+            DbResult result = UserAff.SelAffOverview(AppSettings.Session.CustID, selectedMonth);
             ltrTotalActiveVal.Text = CastAide.AsInt32(result.Outputs["totalactiveplayer"], 0).ToString();
             ltrTotalDepositVal.Text = Common.FormatNumber(CastAide.AsDecimal(result.Outputs["totaldeposit"]));
 

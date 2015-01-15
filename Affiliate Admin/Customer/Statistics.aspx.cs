@@ -4,6 +4,8 @@ using DNAide.Core;
 using DNAide.Data;
 public partial class Customer_Statistics : IBCPage
 {
+    
+
     protected void Page_Load(object sender, EventArgs e)
     {
         string strTpl = TemplateHandler.LoadTemplate("Customer/Statistics.htm");
@@ -46,11 +48,11 @@ public partial class Customer_Statistics : IBCPage
         TemplateHandler.Assign(ref strTpl, "static", Resources.Lang.Statistic);
         TemplateHandler.Assign(ref strTpl, "staticup", Resources.Lang.UpToNow);
         TemplateHandler.Assign(ref strTpl, "custid", AppSettings.Session.AffId);
-        TemplateHandler.Assign(ref strTpl, "fmonth", selectedMonth.ToString("MMMM-yyyy"));
+        TemplateHandler.Assign(ref strTpl, "fmonth", selectedMonth.ToString("MMM-yyyy"));
         TemplateHandler.Assign(ref strTpl, "currentYear-val", DateTime.Now.Year);
         TemplateHandler.Assign(ref strTpl, "currentMonth-val", DateTime.Now.Month);
 
-        DbResult dep_result = DataHandler.Affiliate.SelAffOverview_DEPOSIT(intCustId, dtmFirstOfMonth);
+        DbResult dep_result = DataHandler.Affiliate.SelAffOverview_DEPOSIT(intCustId, selectedMonth);
         int newSignUp = CastAide.AsInt32(dep_result.Outputs["newsignup"]);
         int totalPlayer = CastAide.AsInt32(dep_result.Outputs["totalplayer"]);
         
@@ -58,7 +60,7 @@ public partial class Customer_Statistics : IBCPage
         TemplateHandler.Assign(ref strTpl, "totalplay-val", totalPlayer);
 
         //Assign info
-        DbResult result = DataHandler.Affiliate.SelStatistics(intCustId, dtmFirstOfMonth);
+        DbResult result = DataHandler.Affiliate.SelStatistics(intCustId, selectedMonth);
         TemplateHandler.Assign(ref strTpl, "totalqualifiedmembers", Resources.Lang.TotalQualifiedMembers);
         TemplateHandler.Assign(ref strTpl, "totalqualifiedmembers-val", CastAide.AsInt32(result.Outputs["totalqualifiedmembers"]));
         TemplateHandler.Assign(ref strTpl, "totalqualifiedmembersCasino-val", CastAide.AsInt32(result.Outputs["totalqualifiedcasino"]));
