@@ -42,6 +42,7 @@ public static class AppSettings
 
     static string _europeanAffiliateURL;
     static string _asianAffiliateURL;
+    private static int _startYearOfSystem;
 
     static AppSettings()
     {
@@ -85,8 +86,11 @@ public static class AppSettings
         }
 
         _suffixSp = ConfigurationManager.AppSettings["SuffixSp"];
+
         _betListServiceTimeout = CastAide.AsInt32(ConfigurationManager.AppSettings["BetListServiceTimeout"]);
 
+        _startYearOfSystem = string.IsNullOrEmpty(ConfigurationManager.AppSettings["StartYearOfSystem"]) 
+            ? 2007 : CastAide.AsInt32(ConfigurationManager.AppSettings["StartYearOfSystem"]);
 
         initPageHeader();
     }
@@ -509,43 +513,44 @@ public static class AppSettings
 
     public static string MailServer
     {
-        get { return System.Configuration.ConfigurationManager.AppSettings["mailServer"]; }
+        get { return ConfigurationManager.AppSettings["mailServer"]; }
     }
     public static string MailPwd
     {
-        get { return DNAide.Utils.Encryption.CfsDeCrypt(System.Configuration.ConfigurationManager.AppSettings["emailPwd"]); }
+        get { return DNAide.Utils.Encryption.CfsDeCrypt(ConfigurationManager.AppSettings["emailPwd"]); }
     }
     public static string MailContact
     {
-        get { return System.Configuration.ConfigurationManager.AppSettings["MailContact"]; }
+        get { return ConfigurationManager.AppSettings["MailContact"]; }
     }
     public static string FromMail
     {
-        get { return System.Configuration.ConfigurationManager.AppSettings["fromMail"]; }
+        get { return ConfigurationManager.AppSettings["fromMail"]; }
     }
     public static int Port
     {
-        get { return DNAide.Core.CastAide.AsInt32(System.Configuration.ConfigurationManager.AppSettings["port"]); }
+        get { return CastAide.AsInt32(ConfigurationManager.AppSettings["port"]); }
     }
 
     public static string ToMail
     {
-        get { return DNAide.Core.CastAide.AsString(System.Configuration.ConfigurationManager.AppSettings["toMail"]); }
+        get { return CastAide.AsString(ConfigurationManager.AppSettings["toMail"]); }
     }
 
     public static string CCMail
     {
-        get { return DNAide.Core.CastAide.AsString(System.Configuration.ConfigurationManager.AppSettings["ccMail"]); }
+        get { return CastAide.AsString(ConfigurationManager.AppSettings["ccMail"]); }
     }
 
     public static string BCCMail
     {
-        get { return DNAide.Core.CastAide.AsString(System.Configuration.ConfigurationManager.AppSettings["bccMail"]); }
+        get { return CastAide.AsString(ConfigurationManager.AppSettings["bccMail"]); }
     }
+
+    public static int StartYearOfSystem
+    {
+        get { return _startYearOfSystem; }
+    }
+
     #endregion
-
-
-
-
-    
 }

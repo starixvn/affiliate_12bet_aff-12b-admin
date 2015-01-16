@@ -8,8 +8,16 @@
 <script src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js'></script>
 <script src="../App_Js/MonthPicker/jquery.mtz.monthpicker.js" type="text/javascript"></script>
 <link href="../App_Js/MonthPicker/month-picker.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+    .month-picker {
+        background: url('../App_Themes/DefaultV2/images/cal.gif') no-repeat right 2px center white; 
+        cursor: pointer;
+    }
+</style>
+
 <script type="text/javascript">
-    
+
     var $j = jQuery.noConflict();
 
     window.onload = function () {
@@ -17,7 +25,7 @@
 
         var monthPickerOptions = {
             selectedYear: currentYear,
-            startYear: 2009,
+            startYear: 2007,
             finalYear: currentYear
         };
 
@@ -25,14 +33,66 @@
 
         $j('#tdate').monthpicker(monthPickerOptions);
 
+        SetDefaultMonthConstraint($j('#fdate'));
+        SetDefaultMonthConstraint($j('#tdate'));
+
         if ($("hdLanguage").value != "")
             $("slPreferLang").value = $("hdLanguage").value;
         if ($("hdSport").value != "")
             $("slSport").value = $("hdSport").value;
 
         EnableMonthCalendar($("chkDate").className == "ic-uncheck");
+
+        SetMonthConstraint($j('#fdate'));
+        SetMonthConstraint($j('#tdate'));
     };
+
+    function SetMonthConstraint(selector) {
+        var currentYear = $('hdCurrentYear').value;
+
+        selector.monthpicker().bind('monthpicker-change-year', function (e, year) {
+            selector.monthpicker('disableMonths', []); // (re)enables all
+            if (year === currentYear) {
+                selector.monthpicker('disableMonths', GetDisabledMonths());
+            }
+        });
+    }
+
+    function getSelectedYear(selector) {
+        var value = selector.val();
+        var dateParts = value.split('/');
+        if (dateParts.length == 2) {
+            return dateParts[1];
+        } else {
+            return $('hdCurrentYear').value;
+        }
+    };
+
+    function SetDefaultMonthConstraint(selector) {
+        var currentYear = $('hdCurrentYear').value;
+
+        var selectedYear = getSelectedYear(selector);
+
+        if (selectedYear === currentYear) {
+            selector.monthpicker('disableMonths', GetDisabledMonths());
+        }
+    }
+
     
+    function GetDisabledMonths() {
+        var currentMonth = parseInt($('hdCurrentMonth').value, 10);
+
+        var disabledMonths = [];
+
+        for (var i = 0; i <= 12; i++) {
+            if (i > currentMonth) {
+                disabledMonths.push(i);
+            }
+        }
+
+        return disabledMonths;
+    }
+
     function EnableMonthCalendar(isEnable) {
         if (isEnable) {
             $j('#fdate').removeAttr("disabled");

@@ -1214,6 +1214,75 @@ public class Common
         return opt;
     }
 
+    public static string GenPartialDropDown(DataTable dt, string valueColumn, string nameColumn, string id, ref string activeValue, bool isGenAll, string labelAll)
+    {
+        var result = new StringBuilder();
+        string opt = TemplateHandler.LoadTemplate("OnlyOption.htm");
+        string temp = TemplateHandler.CopyBlock(opt, "optionList");
+        string tempopt = temp;
+
+        if (isGenAll)
+        {
+            TemplateHandler.Assign(ref tempopt, "Optvalue", string.Empty);
+            TemplateHandler.Assign(ref tempopt, "Optname", string.IsNullOrEmpty(labelAll) ? Resources.Lang.All : labelAll);
+            if (string.IsNullOrEmpty(activeValue))
+            {
+                TemplateHandler.Assign(ref tempopt, "selected", "selected");
+            }
+            result.Append(tempopt);
+        }
+        foreach (DataRow dr in dt.Rows)
+        {
+            tempopt = temp;
+            TemplateHandler.Assign(ref tempopt, "Optvalue", dr[valueColumn].ToString());
+            TemplateHandler.Assign(ref tempopt, "Optname", dr[nameColumn].ToString());
+
+            if (string.Compare(activeValue, dr[valueColumn].ToString(), true) == 0)
+            {
+                TemplateHandler.Assign(ref tempopt, "selected", "selected");
+            }
+            else
+            {
+                TemplateHandler.Assign(ref tempopt, "selected", string.Empty);
+            }
+            result.Append(tempopt);
+        }
+        
+        TemplateHandler.ReplaceBlock(ref opt, "optionList", result.ToString());
+
+        return opt;
+    }
+
+    public static string GenYearDropDown(string id, string activeValue, bool isGenAll, string labelAll, bool fullDropDown = true)
+    {
+        var table = GetYearDataTable("name", "value");
+
+        if (fullDropDown)
+        {
+            return GenDropDownFromTable2(table, "value", "name", id, ref activeValue, isGenAll, labelAll);
+        }
+
+        return GenPartialDropDown(table, "value", "name", id, ref activeValue, isGenAll, labelAll);
+    }
+
+    public static DataTable GetYearDataTable(string nameColumn, string valueColumn)
+    {
+        var dt = new DataTable();
+
+        dt.Columns.Add(nameColumn, typeof (string));
+        dt.Columns.Add(valueColumn, typeof(string));
+
+        var startYear = AppSettings.StartYearOfSystem;
+        var currentYear = DateTime.Now.Year;
+
+        for (int i = startYear; i <= currentYear; i++)
+        {
+            dt.Rows.Add(i.ToString(), i.ToString());
+        }
+
+        return dt;
+    }
+
     //@VinhTrinh
     public static string GenSubMenu(string[] arrUrl, string[] arrText, int width, int currMenu)
     {
@@ -1450,21 +1519,6 @@ public class Common
         strWebsiteCheckerURL.Replace("{siteurl-val}", url);
         return strWebsiteCheckerURL.ToString();
     }
-    /*public static string GetAffUsername(int AffId)
-    {
-        Hashtable hsAffInfo = (Hashtable)CacheUtil.GetHSAffInfo();
-        return hsAffInfo[AffId.ToString()].ToString();
-    }
-    public static int GetAffId(string Username)
-    {
-        Hashtable hsAffInfo = (Hashtable)CacheUtil.GetHSAffInfo();
-        foreach (DictionaryEntry de in hsAffInfo)
-        {
-            if (string.Compare(de.Value.ToString(), Username, true) == 0)
-                return CastAide.AsInt32(de.Key);
-        }
-        return 0;
-    }*/
     
     ///Johnny@20100317: Get suffix for sending mail template
     public static string EmailSuffix(bool MailOption)

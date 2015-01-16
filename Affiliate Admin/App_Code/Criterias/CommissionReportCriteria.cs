@@ -38,7 +38,7 @@ namespace Criterias
         {
             get
             {
-                return "Aff_AffiliateCommReport" + AppSettings.SuffixSp;
+                return "Aff_AffiliateCommReport";
             }
         }
     }

@@ -1,14 +1,6 @@
 ﻿using System;
 using System.Text;
-using System.Collections;
-using System.Configuration;
 using System.Data;
-using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.HtmlControls;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
 using Criterias;
 using DNAide.Web;
 using DNAide.Utils;
@@ -73,8 +65,10 @@ public partial class Report_AffiliateReport : IBCPage
     {
         try
         {
-            DateTime dtmFDate = CastAide.AsDateTime(Request["fdate"], DateTime.Now.AddDays(-1));
-            DateTime dtmTDate = CastAide.AsDateTime(Request["tdate"], DateTime.Now);
+            var dtmFirstOfMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+            DateTime dtmFDate = CastAide.AsDateTime(Request["fdate"], dtmFirstOfMonth);
+            DateTime dtmTDate = CastAide.AsDateTime(Request["tdate"], dtmFirstOfMonth);
+
             bool isGetAll = (CastAide.AsString(Request["isGetAll"], string.Empty) == "ic-check");
             string strPreferLang = Request["slPreferLang"];
             int intSportId = CastAide.AsInt32(Request["slSport"], 0);
@@ -83,6 +77,7 @@ public partial class Report_AffiliateReport : IBCPage
 
             TemplateHandler.Assign(ref strTpl, "lang-val", strPreferLang);
             TemplateHandler.Assign(ref strTpl, "currentYear-val", DateTime.Now.Year);
+            TemplateHandler.Assign(ref strTpl, "currentMonth-val", DateTime.Now.Month);
             TemplateHandler.Assign(ref strTpl, "sportid-val", Request["slSport"]);
             TemplateHandler.Assign(ref strTpl, "fdate", dtmFDate.ToString("MM/yyyy"));
             TemplateHandler.Assign(ref strTpl, "tdate", dtmTDate.ToString("MM/yyyy"));

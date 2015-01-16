@@ -15,8 +15,6 @@ public partial class Report_AffiliateQMReport : IBCPage
         AssignHeader();
         GenerateHTML();
         this.HtmlContent = strTpl;
-
-
     }
 
     void AssignHeader()
@@ -39,18 +37,19 @@ public partial class Report_AffiliateQMReport : IBCPage
         try
         {
             string strUsername = CastAide.AsString(Request["affname"]);
-            int month = CastAide.AsInt32(Request["slmonth"], DateTime.Now.Month);
-            int year = CastAide.AsInt32(Request["slyear"], DateTime.Now.Year);
+            var selectedMonth = CastAide.AsDateTime(Request["fmonth"], DateTime.Now);
+
             int intPageSize = CastAide.AsInt32(Request["slPageSize"], 20);
             int intPage = CastAide.AsInt32(Request["page"], 1);
             string strPreferLang = Request["slPreferLang"];
             int sortBy = CastAide.AsInt32(Request["slSortBy"], 0);
-
+            
             TemplateHandler.Assign(ref strTpl, "lang-val", strPreferLang);
             TemplateHandler.Assign(ref strTpl, "sortBy-val", sortBy);
-            TemplateHandler.Assign(ref strTpl, "month-val", month);
-            TemplateHandler.Assign(ref strTpl, "year-val", year);
             TemplateHandler.Assign(ref strTpl, "page", intPage);
+            TemplateHandler.Assign(ref strTpl, "fmonth", selectedMonth.ToString("MM/yyyy"));
+            TemplateHandler.Assign(ref strTpl, "currentYear-val", DateTime.Now.Year);
+            TemplateHandler.Assign(ref strTpl, "currentMonth-val", DateTime.Now.Month);
 
             if (String.IsNullOrEmpty(strUsername))
                 TemplateHandler.Assign(ref strTpl, "affname", "[" + Resources.Lang.All + "]");
@@ -62,8 +61,8 @@ public partial class Report_AffiliateQMReport : IBCPage
                 {
                     Username = strUsername,
                     PreferredLanguage = strPreferLang,
-                    Month = month,
-                    Year = year,
+                    Month = selectedMonth.Month,
+                    Year = selectedMonth.Year,
                     PageIndex = intPage,
                     PageSize = intPageSize,
                     SortBy = sortBy
@@ -71,7 +70,7 @@ public partial class Report_AffiliateQMReport : IBCPage
 
             DbResult rs = DataHandler.Affiliate.SelAffiliateQMReport(criteria);
 
-            DataTable dtb = new DataTable();
+            var dtb = new DataTable();
             if (rs.ResultSet.Tables.Count > 0)
                 dtb = rs.ResultSet.Tables[0];
 
@@ -81,8 +80,7 @@ public partial class Report_AffiliateQMReport : IBCPage
             {
                 int intCount = (intPage - 1) * intPageSize;
                 string strRowTpl = TemplateHandler.CopyBlock(strTpl, "content");
-                StringBuilder strListRow = new StringBuilder();
-
+                var strListRow = new StringBuilder();
 
                 foreach (DataRow dr in dtb.Rows)
                 {
@@ -90,13 +88,14 @@ public partial class Report_AffiliateQMReport : IBCPage
                     intCount++;
 
                     TemplateHandler.Assign(ref strTmp, "color", (intCount % 2 == 0) ? Common.RowBgEven : Common.RowBgOdd);
-
                     TemplateHandler.Assign(ref strTmp, "num-val", intCount);
                     TemplateHandler.Assign(ref strTmp, "aff-val", dr["username"]);
                     TemplateHandler.Assign(ref strTmp, "affid-val", dr["affid"]);
                     TemplateHandler.Assign(ref strTmp, "sportbook-val", dr["spqm"]);
                     TemplateHandler.Assign(ref strTmp, "casino-val", dr["csqm"]);
                     TemplateHandler.Assign(ref strTmp, "total-val", dr["totalqm"]);
+                    TemplateHandler.Assign(ref strTmp, "month-val", selectedMonth.Month);
+                    TemplateHandler.Assign(ref strTmp, "year-val", selectedMonth.Year);
 
                     strListRow.Append(strTmp);
                 }
@@ -106,7 +105,7 @@ public partial class Report_AffiliateQMReport : IBCPage
             {
                 TemplateHandler.ReplaceBlock(ref strTpl, "nodata", Common.NoInfo(12));
             }
-            //Assign Paging template
+            
             TemplateHandler.Assign(ref strTpl, "paging-top", Common.GenPaging(criteria.TotalPages, intPage, intPageSize, criteria.NRows, "aPageTop", "txtPageTop", 550, false, true));
             TemplateHandler.Assign(ref strTpl, "paging-bottom", Common.GenPaging(criteria.TotalPages, intPage, intPageSize, criteria.NRows, "aPageBottom", "txtPageBottom", 550, false, false));
             if (dtb.Rows.Count > 0)

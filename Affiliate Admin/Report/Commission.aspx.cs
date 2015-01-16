@@ -57,12 +57,10 @@ public partial class Report_Commission : IBCPage
 
     void GenerateHTML()
     {
-        //Get AffUsername by AffId "Common.GetAffUsername(1166364)"
         try
         {
             string strUsername = CastAide.AsString(Request["affname"]);
-            int month = CastAide.AsInt32(Request["slmonth"], DateTime.Now.Month);
-            int year = CastAide.AsInt32(Request["slyear"], DateTime.Now.Year);
+            var selectedMonth = CastAide.AsDateTime(Request["fmonth"], DateTime.Now);
             int intPageSize = CastAide.AsInt32(Request["slPageSize"], 20);
             int intPage = CastAide.AsInt32(Request["page"], 1);
             int sport = CastAide.AsInt32(Request["slSport"], 1);
@@ -74,8 +72,11 @@ public partial class Report_Commission : IBCPage
             TemplateHandler.Assign(ref strTpl, "lang-val", strPreferLang);
             TemplateHandler.Assign(ref strTpl, "sortBy-val", sortBy);
             TemplateHandler.Assign(ref strTpl, "cssgetall", isDesc ? "ic-check" : "ic-uncheck");
-            TemplateHandler.Assign(ref strTpl, "month-val", month);
-            TemplateHandler.Assign(ref strTpl, "year-val", year);
+
+            TemplateHandler.Assign(ref strTpl, "fmonth", selectedMonth.ToString("MM/yyyy"));
+            TemplateHandler.Assign(ref strTpl, "currentYear-val", DateTime.Now.Year);
+            TemplateHandler.Assign(ref strTpl, "currentMonth-val", DateTime.Now.Month);
+
             if (String.IsNullOrEmpty(strUsername))
                 TemplateHandler.Assign(ref strTpl, "affname", "[" + Resources.Lang.All + "]");
             else
@@ -87,8 +88,8 @@ public partial class Report_Commission : IBCPage
                     Username = strUsername,
                     PreferredLanguage = strPreferLang,
                     Sport = sport,
-                    Month = month,
-                    Year = year,
+                    Month = selectedMonth.Month,
+                    Year = selectedMonth.Year,
                     PageIndex = intPage,
                     PageSize = intPageSize,
                     SortBy = sortBy,
@@ -102,7 +103,7 @@ public partial class Report_Commission : IBCPage
                 dtb = rs.ResultSet.Tables[0];
 
             criteria.NRows = CastAide.AsInt32(rs.Outputs["nrows"]);
-            DateTime LastDay = GetLastDayOfMonth(new DateTime(year, month, 1));
+            DateTime LastDay = GetLastDayOfMonth(selectedMonth);
             if (dtb.Rows.Count > 0)
             {
                 int intCount = (intPage - 1) * intPageSize;
@@ -118,7 +119,7 @@ public partial class Report_Commission : IBCPage
                         TemplateHandler.Assign(ref strTmp, "color", Common.RowBgClosed);
                     else
                         TemplateHandler.Assign(ref strTmp, "color", (intCount % 2 == 0) ? Common.RowBgEven : Common.RowBgOdd);
-                    TemplateHandler.Assign(ref strTmp, "monthdate_val", month.ToString() + "/" + LastDay.Day + "/" + year.ToString());
+                    TemplateHandler.Assign(ref strTmp, "monthdate_val", selectedMonth.Month.ToString() + "/" + LastDay.Day + "/" + selectedMonth.Year.ToString());
                     
                     TemplateHandler.Assign(ref strTmp, "num-val", intCount);
                     TemplateHandler.Assign(ref strTmp, "aff-val", dr["username"]);

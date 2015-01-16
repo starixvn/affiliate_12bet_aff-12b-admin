@@ -186,7 +186,7 @@ namespace DataHandler
         {
             Hashtable hsParam = new Hashtable();
             hsParam.Add("affid", AffID);
-            hsParam.Add("monthdate", dtmMonthDate);           
+            hsParam.Add("monthdate", dtmMonthDate);
             hsParam.Add("totalactiveplayer", 0);
             hsParam.Add("totaldeposit", 0);
             hsParam.Add("totaldepositup", 0);
@@ -200,7 +200,7 @@ namespace DataHandler
             hsParam.Add("totalwinlostup", 0);
             hsParam.Add("totalwinlost", 0);
             hsParam.Add("totaluniqueclicks", 0);
-            hsParam.Add("totalclicks", 0);            
+            hsParam.Add("totalclicks", 0);
             hsParam.Add("totaluniqueclicksbysite", 0);
             hsParam.Add("totalclicksbysite", 0);
             hsParam.Add("totaluniqueclicksbymobile", 0);
