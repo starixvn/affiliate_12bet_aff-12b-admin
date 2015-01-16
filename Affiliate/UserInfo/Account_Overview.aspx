@@ -4,7 +4,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
     <!--js-->
     <link rel='stylesheet' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/base/jquery-ui.css'>
-    <script type="text/javascript" src="../App_Js/prototype.js"></script>
+    <!--<script src="../App_Js/prototype.js" type="text/javascript"></script>-->
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script> 
     <script src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js'></script>
     <script src="../App_Js/MonthPicker/jquery.mtz.monthpicker.js" type="text/javascript"></script>
@@ -15,10 +15,9 @@
     
     <style type="text/css">
         .month-picker {
-            background: url('../App_Themes/Default/Images/cal.gif') no-repeat right 2px center white; 
             cursor: pointer;
             border: 1px solid #ccc;
-            height: 17px;
+            height: 14px;
             padding-left: 3px;
         }
     </style>
@@ -62,6 +61,8 @@
                 <div class="box_conts_header">
                     <div class="flright">
                         <input type="text" name="fmonth" size="13" value="<%= selectedMonth.ToString("MMM-yyyy") %>" class="txtdate-no-time month-picker" id="fmonth" />&nbsp;
+                        <img width="16" height="16" src="../App_Themes/Default/images/cal.gif" class="img-date-selector hand"
+                        style="margin-bottom: -3px;" title="Date selector" id="fmonth-Trigger" />&nbsp;&nbsp;
                         <input value="<%=Resources.Lang.Submit %>" class="button" type="submit" />&nbsp;
                     </div>
                     <asp:Literal runat="server" ID="ltrStatic"></asp:Literal>
@@ -265,6 +266,10 @@
             SetDefaultMonthConstraint(monthObject);
 
             SetMonthConstraint(monthObject);
+
+            $j('#fmonth-Trigger').click(function () {
+                $j('#fmonth').monthpicker('show');
+            });	
         };
 
         function SetMonthConstraint(selector) {

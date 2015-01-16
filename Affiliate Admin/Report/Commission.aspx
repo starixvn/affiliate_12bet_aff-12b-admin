@@ -44,6 +44,10 @@
         }
 
         $("slSport").value = $("hdSport").value;
+
+        $j('#fmonth-Trigger').click(function () {
+            $j('#fmonth').monthpicker('show');
+        });
     }
 
     function SetMonthConstraint(selector) {

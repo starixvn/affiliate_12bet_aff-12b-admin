@@ -40,7 +40,7 @@ public partial class Report_Commission : IBCPage
         TemplateHandler.Assign(ref strTpl, "over", Common.RowBgOver);
         TemplateHandler.Assign(ref strTpl, "sortBy-txt", Resources.Lang.SortBy);
         TemplateHandler.Assign(ref strTpl, "desc-txt", Resources.Lang.Desc);
-        
+        TemplateHandler.Assign(ref strTpl, "themepath", AppSettings.ThemeDir);
     }
     private DateTime GetLastDayOfMonth(DateTime dtDate)
     {

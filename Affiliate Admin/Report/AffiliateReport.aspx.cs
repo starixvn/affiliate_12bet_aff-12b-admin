@@ -50,6 +50,7 @@ public partial class Report_AffiliateReport : IBCPage
         TemplateHandler.Assign(ref strTpl, "activemember", Resources.Lang.ActiveMember);
         TemplateHandler.Assign(ref strTpl, "qm", Resources.Lang.QM);
 
+        TemplateHandler.Assign(ref strTpl, "themepath", AppSettings.ThemeDir);
         TemplateHandler.Assign(ref strTpl, "total", Resources.Lang.Total);
         TemplateHandler.Assign(ref strTpl, "psp", Resources.Lang.PSP);
         TemplateHandler.Assign(ref strTpl, "back", Resources.Lang.Back);

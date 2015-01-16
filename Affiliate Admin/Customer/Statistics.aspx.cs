@@ -43,6 +43,7 @@ public partial class Customer_Statistics : IBCPage
 
         TemplateHandler.Assign(ref strTpl, "sportbook", Resources.Lang.Sportbook);
         TemplateHandler.Assign(ref strTpl, "horseracing", Resources.Lang.HorseRacing);
+        TemplateHandler.Assign(ref strTpl, "themepath", AppSettings.ThemeDir);
 
         #endregion
         TemplateHandler.Assign(ref strTpl, "static", Resources.Lang.Statistic);
