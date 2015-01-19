@@ -145,6 +145,15 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Content>
+    <Content Include="Web.12betadmin.backupmnl.config">
+      <DependentUpon>ConfigManager.tt</DependentUpon>
+    </Content>
+    <Content Include="Web.12betuser-asian.backupmnl.config">
+      <DependentUpon>ConfigManager.tt</DependentUpon>
+    </Content>
+    <Content Include="Web.12betuser-euro.backupmnl.config">
+      <DependentUpon>ConfigManager.tt</DependentUpon>
+    </Content>
     <None Include="Web.Banner.Config.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Web.Banner.Config.config</LastGenOutput>

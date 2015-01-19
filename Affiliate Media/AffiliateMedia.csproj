@@ -131,6 +131,9 @@
     <Content Include="Web.12betbanner.local.config">
       <DependentUpon>ConfigManager.txt4</DependentUpon>
     </Content>
+    <Content Include="Web.12betbanner.backupmnl.config">
+      <DependentUpon>ConfigManager.txt4</DependentUpon>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

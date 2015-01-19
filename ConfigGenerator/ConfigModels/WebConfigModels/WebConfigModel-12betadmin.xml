@@ -6,6 +6,7 @@
       <master>FormatName:DIRECT=TCP:10.2.180.13\private$\entlib</master>
       <uat>FormatName:DIRECT=TCP:10.2.180.13\private$\entlib</uat>
       <production>FormatName:DIRECT=TCP:10.2.180.13\private$\entlib</production>
+      <backupMNL>FormatName:DIRECT=TCP:10.2.98.3\private$\entlib</backupMNL>
     </msmqPath>
   </Fanex.Logging>
   <appSettings>
@@ -14,66 +15,77 @@
       <master>0</master>
       <uat>tcp://10.3.21.14:8091/CallGetRefFunction</uat>
       <production>tcp://10.40.40.29:8098/CallGetRefFunction</production>
+      <backupMNL>tcp://10.40.40.130:8098/CallGetRefFunction</backupMNL>
     </RemoteRefURL>
     <LocalTest>
       <local>1</local>
       <master>0</master>
       <uat>1</uat>
       <production>0</production>
+      <backupMNL>0</backupMNL>
     </LocalTest>
     <VirtualDir>
       <local>1</local>
       <master>0</master>
       <uat>0</uat>
       <production>0</production>
+      <backupMNL>0</backupMNL>
     </VirtualDir>
     <mailServer>
       <local>mailnex.nexcel.vn</local>
       <master></master>
       <uat>mail.12csd.com</uat>
       <production>mail.12csd.com</production>
+      <backupMNL>mail.12csd.com</backupMNL>
     </mailServer>
     <MailContact>
       <local>brian.dinh@nexcel.vn</local>
       <master></master>
       <uat>brian.dinh@nexcel.vn</uat>
       <production>affiliates@12csd.com</production>
+      <backupMNL>affiliates@12csd.com</backupMNL>
     </MailContact>
     <fromMail>
       <local>brian.dinh@nexcel.vn</local>
       <master></master>
       <uat>brian.dinh@nexcel.vn</uat>
       <production>affiliate-no-reply@12csd.com</production>
+      <backupMNL>affiliate-no-reply@12csd.com</backupMNL>
     </fromMail>
     <toMail>
       <local>brian.dinh@nexcel.vn</local>
       <master></master>
       <uat>brian.dinh@nexcel.vn</uat>
       <production>affiliates@12csd.com</production>
+      <backupMNL>affiliates@12csd.com</backupMNL>
     </toMail>
     <ccMail>
       <local></local>
       <master></master>
       <uat></uat>
       <production></production>
+      <backupMNL></backupMNL>
     </ccMail>
     <bccMail>
       <local>peter.tong@nexcel.vn</local>
       <master></master>
       <uat>peter.tong@nexcel.vn</uat>
       <production>jkmwo@hotmail.com</production>
+      <backupMNL>jkmwo@hotmail.com</backupMNL>
     </bccMail>
     <app_mail_id>
       <local>48</local>
       <master></master>
       <uat>39</uat>
       <production>39</production>
+      <backupMNL>39</backupMNL>
     </app_mail_id>
     <app_mail_address>
       <local>net.tcp://10.18.200.209:8787/MailService</local>
       <master></master>
       <uat>net.tcp://10.40.40.127:8585/MailService</uat>
       <production>net.tcp://10.40.40.127:8585/MailService</production>
+      <backupMNL>net.tcp://10.2.98.3:8585/MailService</backupMNL>
     </app_mail_address>
     <internalEuropeanAffiliateURL>
       <!--<local>http://localhost:51421/Affiliate/Authorization/ProcessLogin2.ashx</local>-->
@@ -81,6 +93,7 @@
       <master></master>
       <uat>http://aff.12ying.com/UAT/Authorization/ProcessLogin2.ashx</uat>
       <production>http://aff.12ying.com/Authorization/ProcessLogin2.ashx</production>
+      <backupMNL>http://aff-12bet.ibcbk.com/Authorization/ProcessLogin2.ashx</backupMNL>
     </internalEuropeanAffiliateURL>
     <internalAsianAffiliateURL>
       <!--<local>http://localhost:51421/Affiliate/Authorization/ProcessLogin2.ashx</local>-->
@@ -88,24 +101,28 @@
       <master></master>
       <uat>http://affiliate.12ying.com/UAT/Authorization/ProcessLogin2.ashx</uat>
       <production>http://affiliate.12ying.com/Authorization/ProcessLogin2.ashx</production>
+      <backupMNL>http://affiliate-12bet.ibcbk.com/Authorization/ProcessLogin2.ashx</backupMNL>
     </internalAsianAffiliateURL>
     <AffBetlistService.AffiliateAPI>
       <local>http://10.18.200.209:5001/WebService/AffiliateAPI.asmx</local>
       <master></master>
       <uat>http://10.2.106.76:8084/UAT/AffiliateAPI.asmx</uat>
       <production>http://10.2.106.76:8084/AffiliateAPI.asmx</production>
+      <backupMNL>http://10.2.97.1:8084/AffiliateAPI.asmx</backupMNL>
     </AffBetlistService.AffiliateAPI>
     <LBUrl>
       <local></local>
       <master></master>
       <uat>tcp://10.40.40.150:8990/UMControllerInterface</uat>
       <production>tcp://10.40.40.150:8990/UMControllerInterface</production>
+      <backupMNL>tcp://10.2.96.1:8990/UMControllerInterface</backupMNL>
     </LBUrl>
     <HasCheckUmTime>
       <local>0</local>
       <master></master>
       <uat></uat>
       <production>1</production>
+      <backupMNL>1</backupMNL>
     </HasCheckUmTime>
     <EuropeanAffiliateURL>
       <!--<local>http://localhost:51421/Affiliate</local>-->
@@ -113,6 +130,7 @@
       <master></master>
       <uat>http://aff.12ying.com/UAT2</uat>
       <production>http://aff.12ying.com</production>
+      <backupMNL>http://aff-12bet.ibcbk.com</backupMNL>
     </EuropeanAffiliateURL>
     <AsianAffiliateURL>
       <!--<local>http://localhost:51421/Affiliate</local>-->
@@ -120,18 +138,21 @@
       <master></master>
       <uat>http://affiliate.12ying.com/UAT2</uat>
       <production>http://affiliate.12ying.com</production>
+      <backupMNL>http://affiliate-12bet.ibcbk.com</backupMNL>
     </AsianAffiliateURL>
     <SuffixSp>
       <local></local>
       <master></master>
       <uat></uat>
       <production></production>
+      <backupMNL></backupMNL>
     </SuffixSp>
     <BetListServiceTimeout>
       <local>60000</local>
       <master></master>
       <uat>300000</uat>
       <production>300000</production>
+      <backupMNL>300000</backupMNL>
     </BetListServiceTimeout>
   </appSettings>
 
@@ -141,84 +162,63 @@
       <master></master>
       <uat>packet size=4096; Data Source=10.40.40.17;Initial Catalog=bodb02;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</uat>
       <production>packet size=4096; Data Source=10.40.40.17;Initial Catalog=bodb02;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</production>
+      <backupMNL>packet size=4096; Data Source=10.40.40.11;Initial Catalog=bodb02;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</backupMNL>
     </main>
     <custdb>
       <local>packet size=4096; Data Source=10.40.40.17;Initial Catalog=custdb;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</local>
       <master></master>
       <uat>packet size=4096; Data Source=10.40.40.17;Initial Catalog=custdb;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</uat>
       <production>packet size=4096; Data Source=10.40.40.17;Initial Catalog=custdb;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</production>
+      <backupMNL>packet size=4096; Data Source=10.40.40.11;Initial Catalog=custdb;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</backupMNL>
     </custdb>
-    <archive>
-      <local>packet size=4096; Data Source=10.18.200.231;Initial Catalog=bodb02;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</local>
-      <master></master>
-      <uat>packet size=4096; Data Source=10.40.40.91;Initial Catalog=bodb02;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</uat>
-      <production>packet size=4096; Data Source=10.40.40.91;Initial Catalog=bodb02;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</production>
-    </archive>
-    <on_user>
-      <local>packet size=4096; Data Source=10.18.200.231;Initial Catalog=on_user;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</local>
-      <master></master>
-      <uat>packet size=4096; Data Source=10.40.40.51;Initial Catalog=on_user;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</uat>
-      <production>packet size=4096; Data Source=10.40.40.51;Initial Catalog=on_user;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</production>
-    </on_user>
-    <replicate>
-      <local>packet size=4096; Data Source=10.18.200.231;Initial Catalog=bodb02;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</local>
-      <master></master>
-      <uat>packet size=4096; Data Source=10.40.40.51;Initial Catalog=bodb02;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</uat>
-      <production>packet size=4096; Data Source=10.40.40.51;Initial Catalog=bodb02;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</production>
-    </replicate>
-    <warehouse>
-      <local>packet size=4096; Data Source=10.18.200.231;Initial Catalog=bodb02;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</local>
-      <master></master>
-      <uat>packet size=4096; Data Source=10.40.40.99;Initial Catalog=bodb02;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</uat>
-      <production>packet size=4096; Data Source=10.40.40.99;Initial Catalog=bodb02;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</production>
-    </warehouse>
-    <affiliate>
-      <local>packet size=4096; Data Source=10.18.200.231;Initial Catalog=12BetAffiliate;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</local>
-      <master></master>
-      <uat>packet size=4096; Data Source=10.40.40.51;Initial Catalog=12BetAffiliate;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</uat>
-      <production>packet size=4096; Data Source=10.40.40.51;Initial Catalog=12BetAffiliate;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</production>
-    </affiliate>
     <deposit>
       <local>packet size=4096; Data Source=10.18.200.231;Initial Catalog=Deposit_DB;integrated security=false; user id=bodbAffiliateNet; password=a59O1jgHk05Mhd7nyySQdQ==;</local>
       <master></master>
       <uat>packet size=4096; Data Source=10.2.106.47;Initial Catalog=Deposit_DB;integrated security=false; user id=bodbAffiliateNet; password=a59O1jgHk05Mhd7nyySQdQ==;</uat>
       <production>packet size=4096; Data Source=10.2.106.47;Initial Catalog=Deposit_DB;integrated security=false; user id=bodbAffiliateNet; password=a59O1jgHk05Mhd7nyySQdQ==;</production>
+      <backupMNL>packet size=4096; Data Source=10.2.106.47;Initial Catalog=Deposit_DB;integrated security=false; user id=bodbAffiliateNet; password=a59O1jgHk05Mhd7nyySQdQ==;</backupMNL>
     </deposit>
     <affiliate_12bet>
       <local>packet size=4096; Data Source=10.18.200.231;Initial Catalog=Affiliate_12Bet;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</local>
       <master></master>
       <uat>packet size=4096; Data Source=10.40.40.92;Initial Catalog=Affiliate_12Bet_test;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</uat>
       <production>packet size=4096; Data Source=10.40.40.92;Initial Catalog=Affiliate_12Bet;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</production>
+      <backupMNL>packet size=4096; Data Source=10.40.40.21;Initial Catalog=Affiliate_12Bet;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</backupMNL>
     </affiliate_12bet>
     <DBAGE.BODB02>
       <local>packet size=4096; Data Source=10.18.200.231;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNetView; password=TBAw8F+PqCx3u382anlnOXtGnv+Ylef9WzguKrc1cd0==</local>
       <master></master>
       <uat>packet size=4096; Data Source=10.40.40.94;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNetView; password=TBAw8F+PqCx3u382anlnOXtGnv+Ylef9WzguKrc1cd0==</uat>
       <production>packet size=4096; Data Source=10.40.40.94;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNetView; password=TBAw8F+PqCx3u382anlnOXtGnv+Ylef9WzguKrc1cd0==</production>
+      <backupMNL>packet size=4096; Data Source=10.40.40.22;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNetView; password=TBAw8F+PqCx3u382anlnOXtGnv+Ylef9WzguKrc1cd0==</backupMNL>
     </DBAGE.BODB02>
     <DBAGE.bodb_AGE>
       <local>packet size=4096; Data Source=10.18.200.231;Initial Catalog=bodb_AGE;integrated security=false; user id=bodbDownlineNetView; password=TBAw8F+PqCx3u382anlnOXtGnv+Ylef9WzguKrc1cd0==</local>
       <master></master>
       <uat>packet size=4096; Data Source=10.40.40.94;Initial Catalog=bodb_AGE;integrated security=false; user id=bodbDownlineNetView; password=TBAw8F+PqCx3u382anlnOXtGnv+Ylef9WzguKrc1cd0==</uat>
       <production>packet size=4096; Data Source=10.40.40.94;Initial Catalog=bodb_AGE;integrated security=false; user id=bodbDownlineNetView; password=TBAw8F+PqCx3u382anlnOXtGnv+Ylef9WzguKrc1cd0==</production>
+      <backupMNL>packet size=4096; Data Source=10.40.40.22;Initial Catalog=bodb_AGE;integrated security=false; user id=bodbDownlineNetView; password=TBAw8F+PqCx3u382anlnOXtGnv+Ylef9WzguKrc1cd0==</backupMNL>
     </DBAGE.bodb_AGE>
     <DBARC.bodb_Archive>
       <local>packet size=4096; Data Source=10.18.200.231;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNetView; password=TBAw8F+PqCx3u382anlnOXtGnv+Ylef9WzguKrc1cd0==</local>
       <master></master>
       <uat>packet size=4096; Data Source=10.40.40.100;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNetView; password=TBAw8F+PqCx3u382anlnOXtGnv+Ylef9WzguKrc1cd0==</uat>
       <production>packet size=4096; Data Source=10.40.40.100;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNetView; password=TBAw8F+PqCx3u382anlnOXtGnv+Ylef9WzguKrc1cd0==</production>
+      <backupMNL>packet size=4096; Data Source=10.40.40.23;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNetView; password=TBAw8F+PqCx3u382anlnOXtGnv+Ylef9WzguKrc1cd0==</backupMNL>
     </DBARC.bodb_Archive>
     <age_archive>
       <local>packet size=4096; Data Source=10.18.200.231;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNet; password=TBAw8F+PqCx3u382anlnOVRxKIJYMsMwXVn1hJpeyKk==</local>
       <master></master>
       <uat>packet size=4096; Data Source=10.40.40.94;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNet; password=TBAw8F+PqCx3u382anlnOVRxKIJYMsMwXVn1hJpeyKk==</uat>
       <production>packet size=4096; Data Source=10.40.40.94;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNet; password=TBAw8F+PqCx3u382anlnOVRxKIJYMsMwXVn1hJpeyKk==</production>
+      <backupMNL>packet size=4096; Data Source=10.40.40.22;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNet; password=TBAw8F+PqCx3u382anlnOVRxKIJYMsMwXVn1hJpeyKk==</backupMNL>
     </age_archive>
     <CustomerLog>
       <local>packet size=4096; Data Source=10.18.200.231;Initial Catalog=bodb_CustomerLog;integrated security=false; User Id=olympus;Password=@tiger#</local>
       <master></master>
       <uat>packet size=4096; Data Source=10.40.40.92;Asynchronous Processing=true;Initial Catalog=bodb_CustomerLog;integrated security=false; user id=bodbAdminNet; password=%bodbAdminNetLogin2587</uat>
       <production>packet size=4096; Data Source=10.40.40.92;Asynchronous Processing=true;Initial Catalog=bodb_CustomerLog;integrated security=false; user id=bodbAdminNet; password=%bodbAdminNetLogin2587</production>
+      <backupMNL>packet size=4096; Data Source=10.40.40.21;Asynchronous Processing=true;Initial Catalog=bodb_CustomerLog;integrated security=false; user id=bodbAdminNet; password=%bodbAdminNetLogin2587</backupMNL>
     </CustomerLog>
   </connectionStrings>
   
@@ -228,6 +228,7 @@
       <master>false</master>
       <uat>true</uat>
       <production>false</production>
+      <backupMNL>false</backupMNL>
     </debug>
   </compilation>
   <customErrors>
@@ -236,6 +237,7 @@
       <master>RemoteOnly</master>
       <uat>Off</uat>
       <production>RemoteOnly</production>
+      <backupMNL>RemoteOnly</backupMNL>
     </mode>
   </customErrors>
 
@@ -269,6 +271,13 @@
         subjectLineStarter="Affiliate Admin Local Error" smtpServer="10.2.106.26"
         formatter="Text Formatter" traceOutputOptions="LogicalOperationStack, DateTime, Timestamp, ProcessId, ThreadId, Callstack"
       </production>
+      <backupMNL>
+        type="Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.EmailTraceListener, Microsoft.Practices.EnterpriseLibrary.Logging, Version=5.0.414.0, Culture=neutral"
+        listenerDataType="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.EmailTraceListenerData, Microsoft.Practices.EnterpriseLibrary.Logging, Version=5.0.414.0, Culture=neutral"
+        toAddress="production@starixsoft.com" fromAddress="noreply@12bet.com"
+        subjectLineStarter="Affiliate Admin Local Error" smtpServer="10.40.40.238"
+        formatter="Text Formatter" traceOutputOptions="LogicalOperationStack, DateTime, Timestamp, ProcessId, ThreadId, Callstack"
+      </backupMNL>
     </AffiliateEmailTraceListener>
   </loggingConfiguration>
 </configuration>
