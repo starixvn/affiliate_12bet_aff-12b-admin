@@ -96,16 +96,6 @@
     <add name="main" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("main") #>" />
     <remove name="custdb" />
     <add name="custdb" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("custdb") #>" />
-    <remove name="archive" />
-    <add name="archive" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("archive") #>" />
-    <remove name="on_user" />
-    <add name="on_user" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("on_user") #>" />
-    <remove name="replicate" />
-    <add name="replicate" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("replicate") #>" />
-    <remove name="warehouse" />
-    <add name="warehouse" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("warehouse") #>" />
-    <remove name="affiliate" />
-    <add name="affiliate" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("affiliate") #>" />
     <remove name="deposit" />
     <add name="deposit" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("deposit") #>" />
     
