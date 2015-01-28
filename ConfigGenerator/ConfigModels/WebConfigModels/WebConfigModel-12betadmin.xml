@@ -185,6 +185,13 @@
       <production>packet size=4096; Data Source=10.40.40.92;Initial Catalog=Affiliate_12Bet;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</production>
       <backupMNL>packet size=4096; Data Source=10.40.40.21;Initial Catalog=Affiliate_12Bet;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</backupMNL>
     </affiliate_12bet>
+    <warehouse>
+      <local>packet size=4096; Data Source=10.18.200.231;Initial Catalog=bodb02;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</local>
+      <master></master>
+      <uat>packet size=4096; Data Source=10.40.40.99;Initial Catalog=bodb02;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</uat>
+      <production>packet size=4096; Data Source=10.40.40.100;Initial Catalog=bodb02;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</production>
+      <backupMNL>packet size=4096; Data Source=10.40.40.23;Initial Catalog=bodb02;integrated security=false; user id=bodbAdminNet; password=i9hNnaZltx04XF6oTNOKTnvvtLC/zfxr;</backupMNL>
+    </warehouse>
     <DBAGE.BODB02>
       <local>packet size=4096; Data Source=10.18.200.231;Initial Catalog=bodb02;integrated security=false; user id=bodbDownlineNetView; password=TBAw8F+PqCx3u382anlnOXtGnv+Ylef9WzguKrc1cd0==</local>
       <master></master>
@@ -240,6 +247,15 @@
       <backupMNL>RemoteOnly</backupMNL>
     </mode>
   </customErrors>
+  <sessionState>
+    <state>
+      <local></local>
+      <master></master>
+      <uat></uat>
+      <production></production>
+      <backupMNL>timeout="20" stateConnectionString="tcpip=10.2.97.1:42424" cookieless="false"</backupMNL>
+    </state>
+  </sessionState>
 
   <loggingConfiguration>
     <AffiliateEmailTraceListener>

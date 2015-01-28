@@ -23,6 +23,7 @@
 	var compilations = reader.GetSettingsOfNode("compilation");
 	var customErrors = reader.GetSettingsOfNode("customErrors");
 	var loggingConfigurations = reader.GetSettingsOfNode("loggingConfiguration");
+    var sessionState = reader.GetSettingsOfNode("sessionState");
 #>
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
@@ -98,6 +99,8 @@
     <add name="custdb" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("custdb") #>" />
     <remove name="deposit" />
     <add name="deposit" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("deposit") #>" />
+    <remove name="warehouse" />
+    <add name="warehouse" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("warehouse") #>" />
     
     <!--New DB Affiliate-->
 	<remove name="affiliate_12bet" />
@@ -151,7 +154,7 @@
       <error statusCode="403" redirect="~/error.aspx" />
       <error statusCode="404" redirect="~/error.aspx" />
     </customErrors>
-    <sessionState mode="StateServer" />
+    <sessionState mode="StateServer" <#= sessionState.GetValue("state") #>/>
     <globalization fileEncoding="utf-8" requestEncoding="utf-8" responseEncoding="utf-8" culture="en-US" uiCulture="en-US" />
     <pages>
       <controls>

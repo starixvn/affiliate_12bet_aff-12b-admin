@@ -23,6 +23,7 @@
 	var compilations = reader.GetSettingsOfNode("compilation");
 	var customErrors = reader.GetSettingsOfNode("customErrors");
 	var loggingConfigurations = reader.GetSettingsOfNode("loggingConfiguration");
+    var sessionState = reader.GetSettingsOfNode("sessionState");
 #>
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
@@ -110,11 +111,15 @@
 	<add name="main" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("main") #>" />
     <remove name="affiliate_12bet" />
 	<add name="affiliate_12bet" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("affiliate_12bet") #>" />
+    <remove name="warehouse" />
+	<add name="warehouse" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("warehouse") #>" />
 	<remove name="deposit" />
     <add name="deposit" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("deposit") #>" />
 
 	<remove name="main_view" />
 	<add name="main_view" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("main_view") #>" />
+	<remove name="warehouse_view" />
+	<add name="warehouse_view" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("warehouse_view") #>" />
 	<remove name="deposit_view" />
     <add name="deposit_view" providerName="System.Data.SqlClient" connectionString="<#= connectionStrings.GetValue("deposit_view") #>" />
 	<remove name="affiliate_12bet_view" />
@@ -159,7 +164,7 @@
     <customErrors mode="<#= customErrors.GetValue("mode") #>" defaultRedirect="Error/Error.htm">
       <error statusCode="404" redirect="Error/PageNotFound.htm"/>
     </customErrors>    
-    <sessionState mode="StateServer"/>
+    <sessionState mode="StateServer" <#= sessionState.GetValue("state") #>/>
     <pages enableViewState="false" theme="Default" controlRenderingCompatibilityVersion="3.5" clientIDMode="AutoID"/>
     <globalization fileEncoding="utf-8" requestEncoding="utf-8" responseEncoding="utf-8"/>
     <httpHandlers>

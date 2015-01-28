@@ -273,6 +273,15 @@
       <backupMNL>RemoteOnly</backupMNL>
     </mode>
   </customErrors>
+  <sessionState>
+    <state>
+      <local></local>
+      <master></master>
+      <uat></uat>
+      <production></production>
+      <backupMNL>timeout="20" stateConnectionString="tcpip=10.2.97.1:42424" cookieless="false"</backupMNL>
+    </state>
+  </sessionState>
 
   <loggingConfiguration>
     <AffiliateEmailTraceListener>
