@@ -75,7 +75,7 @@ public partial class Customer_Statistics : IBCPage
         else
         {
             TemplateHandler.Assign(ref strTpl, "totalactive-val", totalactiveplayer.ToString());
-            TemplateHandler.Assign(ref strTpl, "fdate", dtmFirstOfMonth.ToString("MM/dd/yyyy"));
+            TemplateHandler.Assign(ref strTpl, "fdate", selectedMonth.ToString("MM/dd/yyyy"));
         }
 
         TemplateHandler.Assign(ref strTpl, "totalactive-val", totalactiveplayer.ToString());
