@@ -57,6 +57,7 @@ public partial class Report_Performance : IBCPage
             TemplateHandler.Assign(ref strTpl, "sport-val", sportId);
             TemplateHandler.Assign(ref strTpl, "lang-val", strPreferLang);
             TemplateHandler.Assign(ref strTpl, "currentYear-val", DateTime.Now.Year);
+            TemplateHandler.Assign(ref strTpl, "currentMonth-val", DateTime.Now.Month);
             TemplateHandler.Assign(ref strTpl, "fdate", dtmFDate.ToString("MM/yyyy"));
             TemplateHandler.Assign(ref strTpl, "tdate", dtmTDate.ToString("MM/yyyy"));
             TemplateHandler.Assign(ref strTpl, "page", intPage);
