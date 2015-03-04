@@ -230,7 +230,7 @@
         };
 
         var InitShowAnnouncement = function () {
-            window.Init();
+//            window.Init();
 
             var username = getCookie("Username");
             var dontShowMessage = getCookie(username + '_DontShowMessage');

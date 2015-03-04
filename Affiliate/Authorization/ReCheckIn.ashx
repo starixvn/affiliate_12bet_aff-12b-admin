@@ -7,10 +7,13 @@ public class ReCheckIn : IHttpHandler, IRequiresSessionState {
     
     public void ProcessRequest (HttpContext context) {
         context.Response.ContentType = "text/html";
-        context.Response.Cache.SetCacheability(HttpCacheability.NoCache);        
+        context.Response.Cache.SetCacheability(HttpCacheability.NoCache);
         if (AppSettings.Session.OnUser != -1)
         {
-            if (DataHandler.Auth.ReCheckin()) context.Response.Write("Expired");
+            if (DataHandler.Auth.ReCheckin())
+            {
+                context.Response.Write("Expired");
+            }
         }
 
         string startTime, endTime;
