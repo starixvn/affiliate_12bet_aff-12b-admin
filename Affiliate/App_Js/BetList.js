@@ -48,8 +48,9 @@ function showMP(transId) {
             method: 'post',
             dataType: 'text',
             parameters: 'transId=' + transId,
-            onComplete: function (responseData) {
+            onComplete: function(responseData) {
                 divEvent.innerHTML = responseData.responseText;
+            },
             type: "GET",
             dataType: "text",
             cache: false,
@@ -83,8 +84,9 @@ function showCombMP(transId, index) {
             method: 'post',
             dataType: 'text',
             parameters: 'transId=' + transId,
-            onComplete: function (responseData) {
+            onComplete: function(responseData) {
                 divEvent.innerHTML = responseData.responseText;
+            },
             type: "GET",
             dataType: "text",
             cache: false,

@@ -36,14 +36,18 @@
                 </td>
                 <td>
                     <input type="text" readonly name="fdate" size="13" value="{fdate}" class="txtdate-no-time"
-                        id="fdate" />
+                           id="fdate" />&nbsp;
+                    <img width="16" height="16" src="../{themepath}/images/cal.gif" class="img-date-selector hand"
+                        style="margin-bottom: -3px;" title="Date selector" id="fdate-Trigger" />
                 </td>
                 <td class="r">
                     {tdate-txt}
                 </td>
                 <td>
                     <input type="text" readonly name="tdate" size="13" value="{tdate}" class="txtdate-no-time"
-                        id="tdate" />
+                           id="tdate" />&nbsp;
+                        <img width="16" height="16" src="../{themepath}/images/cal.gif" class="img-date-selector hand"
+                    style="margin-bottom: -3px;" title="Date selector" id="tdate-Trigger" />
                 </td>
                 <td>
                     {sortBy-txt} &nbsp;&nbsp;
@@ -70,6 +74,7 @@
     <input type="submit" value="" class="hide" />  
     <input type="hidden" id="hdLanguage" name="hdLanguage" value="{lang-val}" />
     <input type="hidden" id="hdCurrentYear" name="hcCurrentYear" value="{currentYear-val}" />
+    <input type="hidden" id="hdCurrentMonth" name="hdCurrentMonth" value="{currentMonth-val}" />
     <input type="hidden" name="all" id="all" value="{all-val}"/>
     <div id="divContent" class="ContentBox" style="width: 960px; overflow: visible;">
         {paging-top}

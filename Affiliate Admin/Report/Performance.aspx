@@ -9,6 +9,7 @@
 <script src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js'></script>
 <script src="../App_Js/MonthPicker/jquery.mtz.monthpicker.js" type="text/javascript"></script>
 <link href="../App_Js/MonthPicker/month-picker.css" rel="stylesheet" type="text/css" />
+
 <script type="text/javascript">
     var $j = jQuery.noConflict();
 
@@ -25,6 +26,22 @@
         $j('#fdate').monthpicker(monthPickerOptions);
 
         $j('#tdate').monthpicker(monthPickerOptions);
+
+        var fromMonthObject = $j('#fdate'), toMonthObject = $j('#tdate');
+        fromMonthObject.monthpicker(monthPickerOptions);
+        SetDefaultMonthConstraint(fromMonthObject);
+        SetMonthConstraint(fromMonthObject);
+
+        SetDefaultMonthConstraint(toMonthObject);
+        SetMonthConstraint(toMonthObject);
+
+        $j('#fdate-Trigger').click(function () {
+            $j('#fdate').monthpicker('show');
+        });
+
+        $j('#tdate-Trigger').click(function () {
+            $j('#tdate').monthpicker('show');
+        });
 
         $("slPreferLang").value = $("hdLanguage").value;
 
@@ -78,5 +95,54 @@
             $("affname").value = $("all").value;
         }
     }
+    
+
+    // constraint month here.
+    
+    function SetMonthConstraint(selector) {
+        var currentYear = $('hdCurrentYear').value;
+
+        selector.monthpicker().bind('monthpicker-change-year', function (e, year) {
+            selector.monthpicker('disableMonths', []); // (re)enables all
+            if (year === currentYear) {
+                selector.monthpicker('disableMonths', GetDisabledMonths());
+            }
+        });
+    }
+
+    function getSelectedYear(selector) {
+        var value = selector.val();
+        var dateParts = value.split('/');
+        if (dateParts.length == 2) {
+            return dateParts[1];
+        } else {
+            return $('hdCurrentYear').value;
+        }
+    };
+
+    function SetDefaultMonthConstraint(selector) {
+        var currentYear = $('hdCurrentYear').value;
+
+        var selectedYear = getSelectedYear(selector);
+
+        if (selectedYear === currentYear) {
+            selector.monthpicker('disableMonths', GetDisabledMonths());
+        }
+    }
+
+    function GetDisabledMonths() {
+        var currentMonth = parseInt($('hdCurrentMonth').value, 10);
+
+        var disabledMonths = [];
+
+        for (var i = 0; i <= 12; i++) {
+            if (i > currentMonth) {
+                disabledMonths.push(i);
+            }
+        }
+
+        return disabledMonths;
+    }
+
 </script>
 <!--/js-->

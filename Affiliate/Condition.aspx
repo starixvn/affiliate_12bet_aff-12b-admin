@@ -189,7 +189,7 @@
                     <p>
                     <%=Resources.Lang.Wemaymodify%>
                     </p>                    
-                    <%=Resources.Lang.SpamWedonot%>                    
+                    <%=Resources.Lang.SpamWedonot%>
                     <div class="padd15">
                         <%=Resources.Lang.AnyformofSpam%>
                         <br />
@@ -211,7 +211,7 @@
                         <%=Resources.Lang.Youmaynotassign%>
                     </div>
                     <p></p>
-                    <%=Resources.Lang.NonWaiver%>                    
+                    <%=Resources.Lang.NonWaiver%>
                     <div class="padd15">
                         <%=Resources.Lang.Ourfailuretoenforce%>
                         <p>
