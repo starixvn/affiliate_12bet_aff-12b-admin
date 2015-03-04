@@ -27,8 +27,9 @@ public partial class Controls_Header : RootControl
             LogoutDisplay = "none";
         }
         else
-            strLogin = "setInterval('KickedOut();',30000);";
-
+        {
+            strLogin = "setInterval(function(){ KickedOut();} ,30000);";
+        }
 
         InitializeHotNews();
         Logout = Resources.Lang.Logout;

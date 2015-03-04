@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Threading;
 using DataHandler;
 using DNAide.Web;
 using DNAide.Core;
@@ -36,6 +37,9 @@ public partial class Account_Overview : RootPageLogIn
             ltrDepositUp.Text = Resources.Lang.TotalDeposit;
 
             #endregion
+
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+
             var dtmFirstOfMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
             selectedMonth = CastAide.AsDateTime(Request["fmonth"], dtmFirstOfMonth);
 
