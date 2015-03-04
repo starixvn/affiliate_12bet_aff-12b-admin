@@ -1,5 +1,6 @@
 <%@ Page Language="C#" MasterPageFile="~/Master.master" AutoEventWireup="true" CodeFile="Account_Overview.aspx.cs"
     Inherits="Account_Overview" %>
+<%@ Import Namespace="System.Globalization" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
     <!--js-->
@@ -60,7 +61,7 @@
             <div class="in_conts">
                 <div class="box_conts_header">
                     <div class="flright">
-                        <input type="text" name="fmonth" size="13" value="<%= selectedMonth.ToString("MMM-yyyy") %>" class="txtdate-no-time month-picker" id="fmonth" />&nbsp;
+                        <input type="text" name="fmonth" size="13" value="<%= selectedMonth.ToString("MMM-yyyy", CultureInfo.InvariantCulture ) %>" class="txtdate-no-time month-picker" id="fmonth" />&nbsp;
                         <img width="16" height="16" src="../App_Themes/Default/images/cal.gif" class="img-date-selector hand"
                         style="margin-bottom: -3px;" title="Date selector" id="fmonth-Trigger" />&nbsp;&nbsp;
                         <input value="<%=Resources.Lang.Submit %>" class="button" type="submit" />&nbsp;
@@ -228,7 +229,9 @@
             return height;
         };
 
-        var Init = function () {
+        var InitShowAnnouncement = function () {
+            window.Init();
+
             var username = getCookie("Username");
             var dontShowMessage = getCookie(username + '_DontShowMessage');
 
@@ -260,7 +263,7 @@
             };
 
             var monthObject = $j('#fmonth');
-            
+
             monthObject.monthpicker(monthPickerOptions);
 
             SetDefaultMonthConstraint(monthObject);
@@ -269,7 +272,7 @@
 
             $j('#fmonth-Trigger').click(function () {
                 $j('#fmonth').monthpicker('show');
-            });	
+            });
         };
 
         function SetMonthConstraint(selector) {
@@ -317,6 +320,6 @@
             return disabledMonths;
         }
 
-        window.onload = Init;
+        window.onload = InitShowAnnouncement;
     </script>
 </asp:Content>

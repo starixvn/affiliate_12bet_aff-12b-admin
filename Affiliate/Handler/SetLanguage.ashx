@@ -8,12 +8,12 @@ public class SetLanguage : IHttpHandler, IRequiresSessionState
 {
     
     public void ProcessRequest (HttpContext context) {
-        context = AffHandler.InitializeCulture(context);        
+        context = AffHandler.InitializeCulture(context);
         try
         {
             string strLang = context.Request["lang"];
             AppSettings.Session.Flag = strLang;
-            AppSettings.Session.Language = strLang;            
+            AppSettings.Session.Language = strLang;
             context.Response.Write(strLang);
         }
         catch (Exception ex)
