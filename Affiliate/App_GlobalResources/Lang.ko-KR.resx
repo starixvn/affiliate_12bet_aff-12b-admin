@@ -1893,7 +1893,7 @@
     <value>4.귀하는 본인 웹사이트 개발, 운영및 유지보수에 대한 책임을 갖습니다. 또한 웹사이트 상의모든 내용들과 본인이 비용을 부담한 모든 것들에 대해서 전 적인 책임을 갖습니다  예를들어, 귀하의 웨사이트에 게재된 내용들이  불법적또는  명예를 훼손하거나 또는 지적 재산권을 침해하는 것이 아님을 보증하는것은  전적인 본인의  책임입니다. 12BET은 귀하의 웹사이트에 대한 조정권한이 없으므로 위 사항들에 대한  법적인 책임을 갖지않습니다.  또한 본인 웹사이트의  운영, 유지및 보수 , 콘텐츠와 관련한 손실및  비용(변호사 비용 포함)청구등 으로 인해 12BET에 어떠한 손실이나 해를 끼치지않을 의무를 갖게됩니다. 배상과 관련한  본 규정은 해당 법률의적용 을 받습니다</value>
   </data>
   <data name="AffiliationGuidelines" xml:space="preserve">
-    <value>제휴 가이드라인</value>
+    <value>2. 제휴 가이드라인</value>
   </data>
   <data name="OnlyApprovedAndProperly" xml:space="preserve">
     <value>1. 비정기적으로 12BET이  제공하는올바르게 태그되고, 승인받은 내용들만 12BET의 홍보에 사용할수있습니다. 기사성 광고와 개인보증은 허용되나 12BET에 의해 제작되지않은 자료는 서면승인을 받아하며, 승인은 부당한 이유로 보류되지않을것입니다.</value>
@@ -1982,7 +1982,7 @@
     <value>7. 커미션으로부터 받을수있는 수입은 제휴사가 이 제휴프로그렘에서 멤버를 보유하고 있는한, 제휴사에 대한 고객의 거래내역을통해 얻은커미션을 기반합니다.</value>
   </data>
   <data name="PoliciesConfidentiality" xml:space="preserve">
-    <value>정책및 기밀유지</value>
+    <value>5. 정책및 기밀유지</value>
   </data>
   <data name="OneTwoBETassumeownership" xml:space="preserve">
     <value>1.12BET은 처음 고객과 접촉시 고객의 소유권을 맡게됩니다. 제휴사로서 귀하는 12BET의 조회 대리인으로서 활동하게된다.   주기적으로 제정하는 자격요건에 부합되어야할 필요성이 인정될경우12BET은 고객을거부 ( 또는 그들소유의 계정을 닫도록)할 권리가 있습니다.</value>
@@ -1994,7 +1994,7 @@
     <value>본 계약의 기간 동안 비즈니스, 운영, 또는 제휴 프로그램 ( 예를 들면, 이 프로그램으로 인해  귀하가 받는 추천 수수료등을 포함한 )의 기본 기술에 관한 기밀정보가 귀하에게  일임됩니다.  12BET의 사전 서면 동의가 있는경우를 제외하고 기밀사항을 제 3자 또는 외부에 공개하지않을것과  당 계약의 목적을 촉진하기 위한 용도로서 기밀정보를 이용할것에 동의하는 것입니다.  기밀 정보와 관련하여 귀하의 의무는 본 계약의 해지 이후에도 효력이 유지됩니다.</value>
   </data>
   <data name="LimitedLicense" xml:space="preserve">
-    <value>제한된 라이센스</value>
+    <value>6. 제한된 라이센스</value>
   </data>
   <data name="Weherebygrant" xml:space="preserve">
     <value>1.12BET은 본 계약기간동안 귀하의 웹사이트에 배너를게시하는것과 관련하여  전적으로 12BET의 상표(결과적으로  본사에 의해 자격이 부여된)를 사용할수있는 개인적이고 비독점적이며 양도불가능한 제한된 자격을 부여합니다</value>
@@ -2010,7 +2010,7 @@
     <value>4. 당 사는 이 라이센스를 언제든지 취소할수있는 권리를 갖으며 어떠한 이유로 이 계약의 종료시 라이센스가 취소된것으로 간주됩니다.</value>
   </data>
   <data name="LegalResponsibility" xml:space="preserve">
-    <value>법적책임</value>
+    <value>7. 법적책임</value>
   </data>
   <data name="Ownershipandcontent" xml:space="preserve">
     <value>1.우리 사이트의 소유권 및 콘텐츠는 해당 속성을 유지하고 제휴 계약에 관한 어떠한 행위 또는 누락을 통해 제휴사로  전송 된 것으로 간주되지 않는다.</value>
@@ -2048,7 +2048,7 @@
     <value>9. 귀하와 본사는 독립적 인 계약자이며, 본 계약의 어떠한 내용도  동업, 합작 투자, 대행, 프랜차이즈, 영업 담당자 또는 당사자 간  고용 관계를 만들수없습니다. 귀하는 어떠한 제안을 제시하거나  수용할 권리가없으며, 본 사를 대신하여 어떠한 제안도 제시할수없습니다. 이 조항과 대치되는 내용을 귀하의 사이트 혹은 다른 사이트에  게시할 수 없습니다.</value>
   </data>
   <data name="Miscellaneous" xml:space="preserve">
-    <value>기타</value>
+    <value>8. 기타</value>
   </data>
   <data name="Assignability" xml:space="preserve">
     <value>지정 - 능력과 익숙해지기</value>
@@ -2121,38 +2121,38 @@
     <value>귀하와 본사는 독립적인 계약자이며, 본 계약의 어떠한 내용도  동업, 합작 투자, 대행, 프랜차이즈, 영업 담당자 또는 당사자 간  고용 관계를 만들수없습니다. 귀하는 어떠한 제안을 제시하거나  수용할 권리가없으며, 본 사를 대신하여 어떠한 제안도 제시할수없습니다. 이 조항과 대치되는 내용또는 이 조항과 대치된다고 판단할 근거가 있는 내용을 을 귀하의 사이트 혹은 다른 사이트에  게시할 수 없습니다.</value>
   </data>
   <data name="Indemnity" xml:space="preserve">
-    <value>손해배상</value>
+    <value>11. 손해배상</value>
   </data>
   <data name="Youherebyagreetoindemnify" xml:space="preserve">
     <value>귀하는 모든 주장, 행위, 요구, 부채, 손실, 손해, 판결, 합의 , 지출 (적정한  변호사 수임료 포함) 과 비용(전술의 일부 또는 전부가 이하 "손실"이라한다)에 대하여 배상과 12BET에  어떠한 손해도 끼치지않을것에 동의하게됩니다.  이것이 의미하는 대상은 제휴사 그리고 12BET 이사, 임원, 직원, 대리인, 주주, 파트너, 회원 및 기타 소유자을 의미하니다. 손실에 있어서는  (또는 존중에서 작업 ) 중에 발생하거나 근거로 (i) 모든 제휴 상표의 사용이 제 3 자의 상표, 상호, 서비스 마크, 저작권, 라이센스, 지적 재산권, 또는 기타 소유권을 침해 주장하고, (ii) 표현 또는 보증의 허위 진술 또는 , (III) 제한없이 귀하의 사이트와 귀하의 사이트를 포함하여 사이트에 관해 (IV) 제공되는 제품과 서비스의 개발, 운영, 유지 보수 및 내용, 본인이 제작 언약과 계약 위반에 기인하는 콘텐츠입니다.</value>
   </data>
   <data name="Disclaimers" xml:space="preserve">
-    <value>유의사항</value>
+    <value>12. 유의사항</value>
   </data>
   <data name="Wemakenoexpress" xml:space="preserve">
     <value>본 사는  추천 프로그램 또는 추천 수수료 지급 계획에 대하여 보장이나 또는 그와 유사한 어떠한 표현도 하지않습니다. (제한없이 그들의 기능, 그들의 기능, 적합성,상업성, 합법성, 비 침해, 또는수행과정, 다룸또는 거래의 관행상 발생하는 묵시적 보증 )
 또한 본사의 사이트 운영이 중단되거나 오류가 발생하지않음을 의미하는 표현또한 하지않으며 사이트의 중단이나 오류의결과에 대해 책임을지지않습니다.</value>
   </data>
   <data name="LimitationofLiability" xml:space="preserve">
-    <value>의무의 한계</value>
+    <value>13. 의무의 한계</value>
   </data>
   <data name="Wewillnotbeliable" xml:space="preserve">
     <value>본사는 이 계약 또는 추천 프로그램과 관련하여 발생하는 간접, 특별, 또는 결과적 손해 (또는 수익, 이익 또는 데이터의 손실)에 대해 책임을지지 않으며, 본 사가 손실의가능성에 대해 미리 알고있었던 경우에도 동일합니다. 또한 본 프로그램과 계약과  관련하여 본 사의 종합적 책임은 계약서의거,  기 지불된 수수료및 지불해야할 수수료의 총 합계를 초과하지않습니다. 본 계약의 당사자가 아닌 개인 또는 업체에  권리 구제 나 혜택을 제공하는 것으로 해석되지않으며, 본 계약에 따른  본 사의 의무는 당 사의  이사, 임원 또는 주주의 개인 의무를 의미하지않습니다.  본 계약에 따라 발생하는 모든 책임은 발생한 추천수수료 에서 만족하여야하며, 직접적 손해로 제한됩니다.</value>
   </data>
   <data name="IndependentInvestigation" xml:space="preserve">
-    <value>독립적 조사</value>
+    <value>14. 독립적 조사</value>
   </data>
   <data name="YOUACKNOWLEDGETHATYOUHAVEREAD" xml:space="preserve">
     <value>귀하는 귀하가 본 계약을 읽었으며 모든 조건에 동의 함을 인정합니다. 귀하는 본사가 언제든지( 직접적또는 간접적으로) 이 계약서의 조건과 다른 조건으로 고객추천을 요청하거나 또는 귀하의 웹사이트와 유사하거나 경쟁하는 웹사이트를 운영할수도 있다는것을 잘 알고있습니다. 귀하는 이 제휴프로그램 참여의 적합성을 독자적으로 평가해보았을 것이며 다른 어떠한 대변이나 보장또는 진술보다는 당 계약에 명시된 내용을 신뢰합니다.</value>
   </data>
   <data name="GoverningLawandArbitration" xml:space="preserve">
-    <value>법률 및 중재에적용</value>
+    <value>15. 법률 및 중재에적용</value>
   </data>
   <data name="ThisAgreementshallbegoverned" xml:space="preserve">
     <value>이 계약은 영국법에 따라 지배되고 해석됩니다. 이 계약과 관련하여 발생하는 분쟁, 논란 또는 요구들은 중재센터로부터 지정된 한 중재자로 구성된 조사위원회로 이관되고, 이 조사위원회에 의해 결정됩니다. 중재재판의 장소는  중재센터에서 지정한 영국의 런던이며 사용언어는 영어입니다. 중재센터에서 정한  규정들이 이 과정을 관할하게됩니다. . 중재 재판소는 명령을 내릴 권한을 갖고있으며 이는 각 당사자들에게 매우 강제적이며 의무적인 최종결정으로, 결과적으로 중재적 결정에 동의하여 어떠한 종류의  항소도 포기하는것에 동의하고 이의 적용을 받게됩니다.</value>
   </data>
   <data name="INWITNESSWHEREOF" xml:space="preserve">
-    <value>증명</value>
+    <value>16. 증명</value>
   </data>
   <data name="Byhavingread" xml:space="preserve">
     <value>이용약관을 읽고, 제휴 등록 양식의 명시된 내용들을 이해함으로써 귀하는 여기에 명시된 모든 규정과 조건들에 동의한것으로 간주됩니다. 12BET은 제휴사가 여기에 포함된 약관들을 위반했을경우, 지불을 보류할수있는 권리를 갖습니다.</value>

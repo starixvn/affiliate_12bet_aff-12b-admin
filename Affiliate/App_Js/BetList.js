@@ -1,19 +1,20 @@
 ﻿/* global AFFILIATE, QueryString */
-/* exported showCombMP, showCombMPDetail, showMP, ViewResult */
+/* exported showCombMP, showCombMPDetail, showMP*/
 "use strict";
 
-function getMixParlayResultUrl(refno, winlostdate, bettype, username) {
+function getMixParlayResultUrl(refno, winlostdate, bettype, username, affid) {
     var url = "BetListResults.aspx?";
     url += "refno=" + refno;
     url += "&winlossdate=" + winlostdate;
     url += "&bettype=" + bettype;
     url += "&matchid=" + 1;
     url += "&username=" + username;
+    url += "&affid=" + affid;
 
     return url;
 }
 
-function getSportBookResultUrl(matchid, bettype, raceNo, sporttype, league, isOutright, username, betid) {
+function getSportBookResultUrl(matchid, bettype, raceNo, sporttype, league, isOutright, username, betid, affid) {
     var url = "BetListResults.aspx?";
     url += "matchid=" + matchid;
     url += "&bettype=" + bettype;
@@ -22,16 +23,18 @@ function getSportBookResultUrl(matchid, bettype, raceNo, sporttype, league, isOu
     url += "&isoutright=" + isOutright;
     url += "&username=" + username;
     url += "&betid=" + betid;
+    url += "&affid=" + affid;
 
     return url;
 }
         
 //var ViewResult = BetList.showResult;
-function ViewResult(matchid, raceNo, bettype, sporttype, refno, username, winlostdate, refnoMixParlay, league, isOutright, betid)
-{
+function ViewResult(matchid, raceNo, bettype, sporttype, refno, username, winlostdate, refnoMixParlay, league, isOutright, betid) {
+    var affid = $j('#affid').val();
+
     var url = bettype === 9 || bettype === 29
-                    ? getMixParlayResultUrl(refnoMixParlay, winlostdate, bettype, username)
-                    : getSportBookResultUrl(matchid, bettype, raceNo, sporttype, league, isOutright, username, betid);
+                    ? getMixParlayResultUrl(refnoMixParlay, winlostdate, bettype, username, affid)
+                    : getSportBookResultUrl(matchid, bettype, raceNo, sporttype, league, isOutright, username, betid, affid);
 
     var widthDialog = 720;
     var heightDialog = 400;
@@ -44,7 +47,7 @@ function showMP(transId) {
 
     // Manage biz
     if (divEvent.style.display === 'none') {
-        jQuery.ajax({
+        $j.ajax({
             method: 'post',
             dataType: 'text',
             parameters: 'transId=' + transId,
@@ -52,7 +55,6 @@ function showMP(transId) {
                 divEvent.innerHTML = responseData.responseText;
             },
             type: "GET",
-            dataType: "text",
             cache: false,
             url: "BetListParlay.ashx?transId=" + transId,
             error: function () {
@@ -80,9 +82,8 @@ function showCombMP(transId, index) {
 
     // Manage biz
     if (divEvent.style.display === 'none') {
-        jQuery.ajax({
+        $j.ajax({
             method: 'post',
-            dataType: 'text',
             parameters: 'transId=' + transId,
             onComplete: function(responseData) {
                 divEvent.innerHTML = responseData.responseText;

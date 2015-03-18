@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using AffBetlistService;
+using Criterias;
+using DNAide.Core;
+using DNAide.Data;
 using DNAide.Web;
 
 public partial class BetList_BetList : IBCPage
@@ -35,35 +38,51 @@ public partial class BetList_BetList : IBCPage
 
             betlistInfo = "Bet List: " + fromDate.ToShortDateString();
             // check belonging
-            if (false) //affId != AppSettings.Session.CustID)
+            if (false) //custId != AppSettings.Session.CustID)
             {
                 betlistHtmlString =
                     "<div><span style=\"color:Red;\">You are not authorized to view this data!</span></div>";
             }
             else
             {
-                //betlistHtmlString = "Member Bet List " + fromDate.ToShortDateString();
-                AffiliateAPI affBetlistService = new AffiliateAPI();
-                affBetlistService.Timeout = AppSettings.BetListServiceTimeout;
-
-                List<Product> supportedProducts = new List<Product>();
-                supportedProducts.Add(new Product {ProductId = 1, ProductName = "Sportsbook"});
-                supportedProducts.Add(new Product {ProductId = 5, ProductName = "Playtech Casino"});
-                var userName = Request["UserName"];
-                userName = userName.Replace("12bet$", string.Empty);
-                userName = userName.Replace("12Bet$", string.Empty);
-                BetlistSOAP betlistSOAP = new BetlistSOAP
+                var criteria = new ValidationCriteria
                     {
-                        AffiliateName = "12bet",
-                        Username = userName,
-                        Product = Request["product"],
-                        FromDate = fromDate,
-                        ToDate = toDate,
-                        ExchangeRate = 1, // no currency exchange
-                        SupportedProducts = supportedProducts.ToArray()
+                        AffId = affId,
+                        MemberName = Request["UserName"] // original usernaem "12bet$username"
                     };
 
-                betlistHtmlString += affBetlistService.GetBetlist(betlistSOAP);
+                var result = DataHandler.Affiliate.ValidatePermission(criteria);
+
+                if (!result)
+                {
+                    betlistHtmlString = "<p style=\"font-size: 11px; font-weight: bold; margin: 5px 0;\">No information is available.</p>";
+                }
+                else
+                {
+                    var userName = Request["UserName"];
+                    userName = userName.Replace("12bet$", string.Empty);
+                    userName = userName.Replace("12Bet$", string.Empty);
+
+                    var affBetlistService = new AffiliateAPI();
+                    affBetlistService.Timeout = AppSettings.BetListServiceTimeout;
+
+                    var supportedProducts = new List<Product>();
+                    supportedProducts.Add(new Product {ProductId = 1, ProductName = "Sportsbook"});
+                    supportedProducts.Add(new Product {ProductId = 5, ProductName = "Playtech Casino"});
+
+                    var betlistSOAP = new BetlistSOAP
+                        {
+                            AffiliateName = "12bet",
+                            Username = userName,
+                            Product = Request["product"],
+                            FromDate = fromDate,
+                            ToDate = toDate,
+                            ExchangeRate = 1, // no currency exchange
+                            SupportedProducts = supportedProducts.ToArray()
+                        };
+
+                    betlistHtmlString += affBetlistService.GetBetlist(betlistSOAP);
+                }
             }
 
             var subMenuHtmlString = string.Empty;
@@ -94,8 +113,10 @@ public partial class BetList_BetList : IBCPage
             TemplateHandler.Assign(ref strTemplate, "dailyearningdetails", "<a href=\"" + dailyEarningDetails + "\">" + fromDate.ToString("dd MMMM yyyy") + "</a>");
             TemplateHandler.Assign(ref strTemplate, "username", Request["UserName"]);
             TemplateHandler.Assign(ref strTemplate, "betlistInfo", betlistInfo);
-            TemplateHandler.Assign(ref strTemplate, "betlistHtmlString", betlistHtmlString);
 
+
+            TemplateHandler.Assign(ref strTemplate, "affid-value", affId);
+            TemplateHandler.Assign(ref strTemplate, "betlistHtmlString", betlistHtmlString);
             this.HtmlContent = strTemplate;
         }
         else

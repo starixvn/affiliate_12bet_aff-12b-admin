@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 
 using System.Collections;
+using Criterias;
 using DNAide.Data;
 using DNAide.Core;
 using System.Globalization;
@@ -45,9 +46,9 @@ namespace DataHandler
         public static DbResult SelDepositMemInfo(int AffId, object dtmFDate, object dtmTDate, int intMemberType, int intPage, int intPageSize, ref int intTotalPages)
         {
             Hashtable hsParam = new Hashtable();
-            hsParam.Add("affiliateid", AffId);            
+            hsParam.Add("affiliateid", AffId);
             hsParam.Add("fromdate", dtmFDate);
-            hsParam.Add("todate", dtmTDate);            
+            hsParam.Add("todate", dtmTDate);
             hsParam.Add("membertype", intMemberType);
             hsParam.Add("pageindex", intPage);
             hsParam.Add("pagesize", intPageSize);
@@ -55,6 +56,19 @@ namespace DataHandler
             DbResult dbr = DbHelper.Execute("Aff_DEP_MemberListSel", hsParam, DBType.AFFILIATE_12BET);
             intTotalPages = CastAide.AsInt32(dbr.Outputs["totalpages"]);
             return dbr;
+        }
+
+        public static bool ValidatePermission(ValidationCriteria criteria)
+        {
+            Hashtable hsParam = new Hashtable();
+            hsParam.Add("adminname", "");
+            hsParam.Add("affid", criteria.AffId);
+            hsParam.Add("membername", criteria.MemberName);
+            hsParam.Add("belonglevel1", 0);
+            hsParam.Add("belonglevel2", 0);
+
+            var rs = DbHelper.Execute(criteria.SpName, hsParam, DBType.AFFILIATE_12BET);
+            return CastAide.AsBoolean(rs.Outputs["belonglevel2"]);
         }
     }
 }

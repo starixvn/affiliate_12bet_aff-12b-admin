@@ -39,6 +39,8 @@
 
         public override void RenderContent(HtmlTextWriter writer)
         {
+
+
             UserTypes userType = UserTypes.Member;
             BetListType betlistType = BetListType.Winlost;
             DataTable betListData = View as DataTable;

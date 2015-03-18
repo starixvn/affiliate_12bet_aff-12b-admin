@@ -1,4 +1,8 @@
 using System;
+using System.Configuration;
+using System.Data.Common;
+using System.Data.SqlClient;
+using System.Globalization;
 using System.Web;
 using System.Collections;
 using System.Data;
@@ -6,6 +10,8 @@ using Criterias;
 using DNAide.Data;
 using DNAide.Core;
 using DNAide.Utils;
+using Microsoft.Practices.EnterpriseLibrary.Caching;
+
 /// <summary>
 /// Createrr: Vinh
 /// </summary>
@@ -844,6 +850,18 @@ namespace DataHandler
 
             return DbHelper.Execute("Aff_PerformanceReportByAff", hsParam, DBType.AFFILIATE_12BET,
                 DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
+        }
+
+        public static bool ValidatePermission(ValidationCriteria criteria)
+        {
+            Hashtable parameters = new Hashtable();
+            parameters.Add("adminname", null);
+            parameters.Add("affid", criteria.AffId);
+            parameters.Add("membername", criteria.MemberName);
+
+            var rs = DbHelper.Execute(criteria.SpName, parameters, DBType.AFFILIATE_12BET);
+            var resutl = CastAide.AsBoolean(rs.Outputs["belonglevel2"]);
+            return resutl;
         }
     }
 }
