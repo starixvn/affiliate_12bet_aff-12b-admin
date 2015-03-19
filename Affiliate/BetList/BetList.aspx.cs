@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using AffBetlistService;
+using Criterias;
 
 public partial class BetList_BetList : RootPageLogIn
 {
@@ -30,35 +31,52 @@ public partial class BetList_BetList : RootPageLogIn
             monthdate = new DateTime(fromDate.Year, fromDate.Month, DateTime.DaysInMonth(fromDate.Year, fromDate.Month));
             betlistInfo = "Bet List: " + fromDate.ToShortDateString();
             // check belonging
-            if (false)//affId != AppSettings.Session.CustID)
+            if (affId != AppSettings.Session.CustID)
             {
                 betlistHtmlString =
                     "<div><span style=\"color:Red;\">You are not authorized to view this data!</span></div>";
             }
             else
             {
-                //betlistHtmlString = "Member Bet List " + fromDate.ToShortDateString();
-                AffiliateAPI affBetlistService = new AffiliateAPI();
-                affBetlistService.Timeout = AppSettings.BetListServiceTimeout;
+                var criteria = new ValidationCriteria
+                    {
+                        AffId = affId,
+                        MemberName = Request["UserName"]
+                    };
 
-                List<Product> supportedProducts = new List<Product>();
-                supportedProducts.Add(new Product { ProductId = 1, ProductName = "Sportsbook" });
-                supportedProducts.Add(new Product { ProductId = 5, ProductName = "Playtech Casino" });
-                var userName = Request["UserName"];
-                userName = userName.Replace("12bet$", string.Empty);
-                userName = userName.Replace("12Bet$", string.Empty);
-                BetlistSOAP betlistSOAP = new BetlistSOAP
+                var result = DataHandler.MemberInfo.ValidatePermission(criteria);
+
+                if (!result)
                 {
-                    AffiliateName = "12bet",
-                    Username = userName,
-                    Product = Request["product"],
-                    FromDate = fromDate,
-                    ToDate = toDate,
-                    ExchangeRate = 1, // no currency exchange
-                    SupportedProducts = supportedProducts.ToArray()
-                };
+                    betlistHtmlString =
+                            "<p style=\"font-size: 11px; font-weight: bold; margin: 0 0 5px 5px;\">No information is available.</p>";
+                }
+                else
+                {
+                    //betlistHtmlString = "Member Bet List " + fromDate.ToShortDateString();
+                    AffiliateAPI affBetlistService = new AffiliateAPI();
+                    affBetlistService.Timeout = AppSettings.BetListServiceTimeout;
 
-                betlistHtmlString += affBetlistService.GetBetlist(betlistSOAP);
+                    List<Product> supportedProducts = new List<Product>();
+                    supportedProducts.Add(new Product {ProductId = 1, ProductName = "Sportsbook"});
+                    supportedProducts.Add(new Product {ProductId = 5, ProductName = "Playtech Casino"});
+                    var userName = Request["UserName"];
+                    userName = userName.Replace("12bet$", string.Empty);
+                    userName = userName.Replace("12Bet$", string.Empty);
+                    BetlistSOAP betlistSOAP = new BetlistSOAP
+                        {
+                            AffiliateName = "12bet",
+                            AffId = affId,
+                            Username = userName,
+                            Product = Request["product"],
+                            FromDate = fromDate,
+                            ToDate = toDate,
+                            ExchangeRate = 1, // no currency exchange
+                            SupportedProducts = supportedProducts.ToArray()
+                        };
+
+                    betlistHtmlString += affBetlistService.GetBetlist(betlistSOAP);
+                }
             }
         }
         else

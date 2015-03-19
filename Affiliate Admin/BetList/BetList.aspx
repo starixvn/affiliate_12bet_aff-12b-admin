@@ -27,7 +27,7 @@
                     <td class="in_left">&nbsp;</td>
                     <td width="170" class="in_top">Betlist: <%= betlistInfo%></td>
                     <td class="in_right">&nbsp;</td>
-                </tr>                
+                </tr>
             </table>
         </div>
         <br/>

@@ -42,7 +42,7 @@ public class ProcessLogin2 : IHttpHandler, IRequiresSessionState
             }
             AppSettings.Session.IsInternalSite = true;
             DbResult dr = Auth.GetAdminNetSessionID(_accOnId, context);
-            string _accNetSessionID = dr.Outputs["netsessionid"].ToString();            
+            string _accNetSessionID = dr.Outputs["netsessionid"].ToString();
             if (string.Compare(_accKey, FormsAuthentication.HashPasswordForStoringInConfigFile(_accNetSessionID + _chalengeStr, "MD5"), false) != 0) 
                 throw new IBCException("Can not authenticate log-in, invalid ticket!");
 
@@ -79,7 +79,7 @@ public class ProcessLogin2 : IHttpHandler, IRequiresSessionState
                 _s = "102:" + dr2.Outputs["errmsg"].ToString();
             }
             
-            _url = FormsAuthentication.DefaultUrl;            
+            _url = FormsAuthentication.DefaultUrl;
         }
         catch (IBCException ex)
         {
