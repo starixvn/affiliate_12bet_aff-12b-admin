@@ -51,12 +51,10 @@ public partial class Controls_RightPanel : RootControl
     void GenURL()
     {
         string strTmp = Request.Url.AbsolutePath;
-        strURL = "Flash/" + Common.GetLanguage() + "/Ads_Aff.swf?v=" + AppSettings.JsVersion;
-        strURL2 = "Flash/" + Common.GetLanguage() + "/";
+        strURL = "Content/Banner/" + Common.GetLanguage() + "/smallbanner.gif?v=" + AppSettings.JsVersion;
         if (strTmp.ToLower().IndexOf("userinfo") >= 0)
         {
             strURL = "../" + strURL;
-            strURL2 = "../" + strURL2;
         }
     }
 }

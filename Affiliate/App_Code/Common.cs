@@ -58,12 +58,8 @@ public class Common
 
     public static string GetBannerFlash()
     {
-        if (AppSettings.AffTypeList.Any(t => t == AffType.European))
-        {
-            return string.Format("Flash/{0}/{1}", AffType.European.ToString(), "home_banner_eu.swf");
-        }
-
-        return string.Format("Flash/{0}/{1}", GetLanguage(), "home_banner.swf");
+        string folder = AppSettings.AffTypeList.Any(t => t == AffType.European) ? AffType.European.ToString() : GetLanguage();
+        return string.Format("Content/Banner/{0}/{1}?v={2}", folder, "bigbanner.gif", AppSettings.JsVersion);
     }
 
     public static string GetLanguage()
