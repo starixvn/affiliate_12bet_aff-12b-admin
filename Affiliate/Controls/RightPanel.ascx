@@ -134,23 +134,10 @@
 </div>
 
 <div id="aSignup" style="margin-bottom: 5px;" runat="server">
-        <!--<object height="144" width="268" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000">
-        <param value="<%=Common.RootURL() %>/Flash/<%=Common.GetLanguage() %>/Ads_Aff.swf?v=<%=AppSettings.JsVersion %>" name="movie"/>
-        <param value="high" name="quality"/>
-        <embed height="143" width="268" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" quality="high" src="<%=Common.RootURL() %>/Flash/<%=Common.GetLanguage() %>/Ads_Aff.swf?v=<%=AppSettings.JsVersion %>"/>
-    </object>
-    </script>-->
     <div id="flashcontent">
-        12BET Affiliate banner
+        <img src="<%=strURL %>" width="268px" height="144px" />
     </div>
     <script type="text/javascript">
-        var flashvars = {};
-        var params = { allowScriptAccess: "sameDomain", allowfullscreen: "true", allowNetworking: "all", base: "slideshows/slideshow4" };
-        var attributes = { id: "monoslideshow", name: "monoslideshow", bgColor: "000000" };
-        var so = new SWFObject("<%=strURL %>", "mymovie", "268", "144", "9", "#fff", false, flashvars, params, attributes);
-        so.addVariable("path", "<%=strURL2 %>");
-        so.write("flashcontent");
-
         function OnOutline() {
             if (document.getElementById("dvOutline")) {
                 if (document.getElementById("dvOutline").style.display == 'none') {
