@@ -46,6 +46,12 @@ public partial class DailyEarning : RootPageLogIn
         {
             TemplateHandler.RemoveBlock(ref strTemplate, "notcasino");
         }
+        if (AppSettings.Session.CommGroupName != "Korean Agent Comm")
+        {
+            TemplateHandler.RemoveBlock(ref strTemplate, "withdrawalhead");
+            TemplateHandler.RemoveBlock(ref strTemplate, "withdrawalbody");
+            TemplateHandler.RemoveBlock(ref strTemplate, "withdrawalfooter");
+        }
         strListSports = Common.GenListSportType(SportType, AppSettings.Session.CustID);
 
         TemplateHandler.Assign(ref strTemplate, "custid", AppSettings.Session.CustID);
