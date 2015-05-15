@@ -6,7 +6,7 @@
 }
 
 .tblBetList th {
-    background: #e16328;
+    background: #0d94c3;
     border: solid 1px #BABABA;
     border-top: 0;
     font-size: 11px;
@@ -243,6 +243,11 @@ tr#tr_footer {
     background: none repeat scroll 0 0 rgb(245, 227, 227);
 }
 
+.div_result {
+    cursor: pointer;
+    color: rgb(27, 164, 237);
+}
+
 .result {
     cursor: pointer;
     color: rgb(27, 164, 237);
@@ -418,8 +423,9 @@ Format styles
 {
     color: #0000FF;
 }
+
 /*to make line-through for void-parlay-ticket*/
-div.mx-parlay div.refund span, div.mx-parlay div.refund div
+div.mx-parlay div.refund span, div.mx-parlay div.refund div,
 {
     text-decoration: line-through;
 }
@@ -427,7 +433,7 @@ div.mx-parlay div.refund > div.match, div.mx-parlay div.refund div.firstGoal, di
 {
     text-decoration: none;
 }
-div.mx-parlay div.reject span, div.mx-parlay div.reject div
+div.mx-parlay div.reject span, div.mx-parlay div.reject div,
 {
     text-decoration: line-through;
 }

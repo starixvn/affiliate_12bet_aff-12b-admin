@@ -243,6 +243,11 @@ tr#tr_footer {
     background: none repeat scroll 0 0 rgb(245, 227, 227);
 }
 
+.div_result {
+    cursor: pointer;
+    color: rgb(27, 164, 237);
+}
+
 .result {
     cursor: pointer;
     color: rgb(27, 164, 237);
@@ -418,6 +423,7 @@ Format styles
 {
     color: #0000FF;
 }
+
 /*to make line-through for void-parlay-ticket*/
 div.mx-parlay div.refund span, div.mx-parlay div.refund div
 {

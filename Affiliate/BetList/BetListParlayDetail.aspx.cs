@@ -20,6 +20,7 @@ public partial class BetList_BetListParlayDetail : RootPageLogIn
         betlistParlayDetailHtmlString = affBetlistService.GetBetlistSystemParlay(
             "12bet",
             "1",
-            criteria);
+            criteria,
+            "en-US");
     }
 }
