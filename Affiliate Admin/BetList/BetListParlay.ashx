@@ -13,7 +13,8 @@ public class BetListParlay : IHttpHandler {
         var parlayHtmlString = affBetlistService.GetBetlistParlay(
             "12bet",
             context.Request["transId"],
-            "1");
+            "1",
+            "en-US");
         
         context.Response.Write(parlayHtmlString);
     }

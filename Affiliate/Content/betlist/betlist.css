@@ -248,6 +248,11 @@ tr#tr_footer {
     color: rgb(27, 164, 237);
 }
 
+.result {
+    cursor: pointer;
+    color: rgb(27, 164, 237);
+}
+
 .line {
     border-top: #999 dashed 1px;
     height: 10px;

@@ -54,6 +54,6 @@ public partial class BetList_BetListResults : RootPageLogIn
 
         var affBetlistService = new AffiliateAPI();
         affBetlistService.Timeout = AppSettings.BetListServiceTimeout;
-        betlistResultsHtmlString = affBetlistService.GetBetlistResults("12bet", "en-US", criteria);
+        betlistResultsHtmlString = affBetlistService.GetBetlistResults("12bet", "en-US", criteria, "en-US");
     }
 }

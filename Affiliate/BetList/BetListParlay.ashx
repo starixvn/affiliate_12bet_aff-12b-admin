@@ -11,8 +11,8 @@ public class BetListParlay : IHttpHandler {
         
         var affBetlistService = new AffiliateAPI();
         affBetlistService.Timeout = AppSettings.BetListServiceTimeout;
-      
-        var parlayHtmlString = affBetlistService.GetBetlistParlay("12bet", context.Request.Params["transId"], "1");
+
+        var parlayHtmlString = affBetlistService.GetBetlistParlay("12bet", context.Request.Params["transId"], "1", "en-US");
         context.Response.Write(parlayHtmlString);
     }
  

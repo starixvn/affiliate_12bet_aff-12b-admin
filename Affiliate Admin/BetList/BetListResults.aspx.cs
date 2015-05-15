@@ -52,7 +52,8 @@ public partial class BetList_BetListResults : IBCPage
             betlistResultsHtmlString = affBetlistService.GetBetlistResults(
                 "12bet",
                 "en-US",
-                criteria);
+                criteria,
+                "en-US");
         }
 
         var strTemplate = TemplateHandler.LoadTemplate("UserInfo/BetListResults.htm");

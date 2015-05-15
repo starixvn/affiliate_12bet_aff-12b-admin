@@ -21,7 +21,8 @@ public partial class BetList_BetListParlayDetail : IBCPage
         betlistParlayDetailHtmlString = affBetlistService.GetBetlistSystemParlay(
             "12bet",
             "1",
-            criteria);
+            criteria,
+            "en-US");
 
         var strTemplate = TemplateHandler.LoadTemplate("UserInfo/BetListParlayDetail.htm");
         TemplateHandler.Assign(ref strTemplate, "betlistParlayDetailHtmlString", betlistParlayDetailHtmlString);

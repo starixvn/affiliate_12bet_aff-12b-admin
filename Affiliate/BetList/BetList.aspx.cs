@@ -66,7 +66,6 @@ public partial class BetList_BetList : RootPageLogIn
                     BetlistSOAP betlistSOAP = new BetlistSOAP
                         {
                             AffiliateName = "12bet",
-                            AffId = affId,
                             Username = userName,
                             Product = Request["product"],
                             FromDate = fromDate,
