@@ -56,7 +56,8 @@
         </div>
         <div class="red_line"></div>
     </div>
-    <% if (AppSettings.Environment.Equals("PRODUCTION", StringComparison.OrdinalIgnoreCase)){ %>
+    <% if (AppSettings.Environment.Equals("PRODUCTION", StringComparison.OrdinalIgnoreCase))
+       { %>
     <!-- Piwik -->
     <script type="text/javascript">
         var _paq = _paq || [];
@@ -71,7 +72,7 @@
         })();
 
     </script>
-    <noscript><p><img src="//pw.detecas.com/piwik.php?idsite=27" style="border:0;" alt="" /></p></noscript>
+    <noscript><p><img src="https://pw.detecas.com/piwik.php?idsite=27" style="border:0;" alt="" /></p></noscript>
     <!-- End Piwik Code -->
     <% } %>
 </body>    
