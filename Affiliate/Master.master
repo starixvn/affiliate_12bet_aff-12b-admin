@@ -84,7 +84,7 @@
             }
         }
     </script>
-    <% if (AppSettings.Environment.Equals("UAT", StringComparison.OrdinalIgnoreCase))
+    <% if (AppSettings.Environment.Equals("PRODUCTION", StringComparison.OrdinalIgnoreCase))
        { %>
     <!-- Piwik -->
     <script type="text/javascript">
