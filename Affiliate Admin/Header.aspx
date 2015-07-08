@@ -4,7 +4,7 @@
 <script src="App_Js/Header.js" type="text/javascript"></script>
 <link href='App_Themes/DefaultV2/header.css' type='text/css' rel='stylesheet' />
 <!--/js-->
- <% if (AppSettings.Environment.Equals("UAT", StringComparison.OrdinalIgnoreCase))
+ <% if (AppSettings.Environment.Equals("PRODUCTION", StringComparison.OrdinalIgnoreCase))
    { %>
     <!-- Piwik -->
     <script type="text/javascript">
