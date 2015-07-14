@@ -125,6 +125,15 @@ public static class AppSettings
         {
         }*/
     }
+
+    public static string Environment
+    {
+        get
+        {
+            return ConfigurationManager.AppSettings["Environment"];
+        }
+    }
+
     public static string[] CssFiles
     {
         get

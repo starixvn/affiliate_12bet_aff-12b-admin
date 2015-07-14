@@ -9,18 +9,7 @@
     <asp:ContentPlaceHolder ID="Title" runat="server"></asp:ContentPlaceHolder>
 
     <meta content="text/html;charset=UTF-8" http-equiv="Content-Type" />
-    <script type="text/javascript">
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-5160706-44']);
-        _gaq.push(['_trackPageview']);
-        (function () {
-            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-        })();
-        var a = "bgwhite", b = "bgcgy", c = "bghover";
-
-    </script>
+    
     <style type="text/css">
          .root-header{
             width:800px;
@@ -67,6 +56,24 @@
         </div>
         <div class="red_line"></div>
     </div>
+    <% if (AppSettings.Environment.Equals("PRODUCTION", StringComparison.OrdinalIgnoreCase))
+       { %>
+    <!-- Piwik -->
+    <script type="text/javascript">
+        var _paq = _paq || [];
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function () {
+            var u = "https://pw.detecas.com/";
+            _paq.push(['setTrackerUrl', u + 'piwik.php']);
+            _paq.push(['setSiteId', 27]);
+            var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+            g.type = 'text/javascript'; g.async = true; g.defer = true; g.src = u + 'piwik.js'; s.parentNode.insertBefore(g, s);
+        })();
 
-</body>
+    </script>
+    <noscript><p><img src="https://pw.detecas.com/piwik.php?idsite=27" style="border:0;" alt="" /></p></noscript>
+    <!-- End Piwik Code -->
+    <% } %>
+</body>    
 </html>
