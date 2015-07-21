@@ -8,12 +8,13 @@ using Resources;
 public partial class MediaGallery : RootPageLogIn
 {
     public string htmlContent = string.Empty;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         htmlContent = TemplateHandler.LoadTemplate("UserInfo/MediaBanner.htm");
         /*Request to re-enable media gallerry again 20100917 by Peter */
-       /* if (string.Compare(AppSettings.Session.PreferLang, "zh-CN", true) == 0 || string.Compare(AppSettings.Session.PreferLang, "zh-TW", true) == 0)
-            TemplateHandler.RemoveBlock(ref htmlContent, "listbanner");*/
+        /* if (string.Compare(AppSettings.Session.PreferLang, "zh-CN", true) == 0 || string.Compare(AppSettings.Session.PreferLang, "zh-TW", true) == 0)
+             TemplateHandler.RemoveBlock(ref htmlContent, "listbanner");*/
         TemplateHandler.Assign(ref htmlContent, "SubCategory", Resources.Lang.SubCategory);
         TemplateHandler.Assign(ref htmlContent, "Category", Resources.Lang.Category);
         TemplateHandler.Assign(ref htmlContent, "Language", Resources.Lang.Language);
@@ -42,6 +43,7 @@ public partial class MediaGallery : RootPageLogIn
         TemplateHandler.Assign(ref htmlContent, "target", Common.GenListLink2Page(targetRequest, deviceType));
 
         #region Get request information
+
         int pageIndex = CastAide.AsInt32(Request["page"], 1);
         int pageSize = CastAide.AsInt32(Request["slPageSize"], 20);
         int totalpage = 0;
@@ -66,7 +68,7 @@ public partial class MediaGallery : RootPageLogIn
             }
         }
 
-        string lang = Request["slLanguage"] == null ? Common.GetPreferLanguage() : Request["slLanguage"]; 
+        string lang = Request["slLanguage"] == null ? Common.GetPreferLanguage() : Request["slLanguage"];
         string currency = string.IsNullOrEmpty(Request["slCurrency"]) ? null : Request["slCurrency"];
         string type = string.IsNullOrEmpty(Request["slImageType"]) ? null : Request["slImageType"];
         string size = string.IsNullOrEmpty(Request["slSize"]) ? null : Request["slSize"];
@@ -86,14 +88,15 @@ public partial class MediaGallery : RootPageLogIn
             TemplateHandler.Assign(ref htmlContent, "achecked", string.Empty);
             TemplateHandler.Assign(ref htmlContent, "track-val", trackingcode);
         }
-        #endregion
+
+        #endregion Get request information
 
         TemplateHandler.Assign(ref htmlContent, "slSubCategory", "");
         TemplateHandler.Assign(ref htmlContent, "slTrackingCode", GenerateHTML.TrackingSystem.GetTrackingCodeList(false, trackingcode));
         DataView dv = (CacheUtil.GetBannerTypes() as DataTable).DefaultView;
         TemplateHandler.Assign(ref htmlContent, "slCategory", this.GetDataOptionBanner(dv, "slCategory", "CategoryMedia", category, true));
         if (hasSubCategory)
-        //    TemplateHandler.Assign(ref htmlContent, "slSubCategory", this.GetDataOptionBanner(dv, "slSubCategoryMedia", "CategoryMedia" + category, subCategory, true));
+            //    TemplateHandler.Assign(ref htmlContent, "slSubCategory", this.GetDataOptionBanner(dv, "slSubCategoryMedia", "CategoryMedia" + category, subCategory, true));
             TemplateHandler.Assign(ref htmlContent, "currentSubCategory", subCategory);
         else
             TemplateHandler.Assign(ref htmlContent, "currentSubCategory", "none");
@@ -119,7 +122,7 @@ public partial class MediaGallery : RootPageLogIn
 
             return;
         }
-        
+
         TemplateHandler.ReplaceBlock(ref htmlContent, "TextLinkList",
                                         GenerateHTML.Banner.GetTextLink(domain, trackingcode, dt, targetRequest, deviceType, lang));
 
@@ -129,7 +132,7 @@ public partial class MediaGallery : RootPageLogIn
                                                                         currency, pageIndex, pageSize, ref totalpage,
                                                                         domain, trackingcode, targetRequest,
                                                                         Common.NormalBanner,
-                                                                        (int) AppSettings.Session.AffType, deviceType));
+                                                                        (int)AppSettings.Session.AffType, deviceType));
         TemplateHandler.Assign(ref htmlContent, "PageSize-val", pageSize);
         TemplateHandler.Assign(ref htmlContent, "page", pageIndex);
         /* Generate Banner paging*/
@@ -208,5 +211,4 @@ public partial class MediaGallery : RootPageLogIn
         TemplateHandler.ReplaceBlock(ref opt, "optionList", result.ToString());
         return opt;
     }
-
 }

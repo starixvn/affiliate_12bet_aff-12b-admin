@@ -16,11 +16,11 @@ namespace GenerateHTML
     /// </summary>
     public class Banner
     {
-        static string Eu = "eneuro";
-        static string Es = "es";
+        private static string Eu = "eneuro";
+        private static string Es = "es";
+
         public static string GetBannerLang(string value)
         {
-
             switch (value.ToLower())
             {
                 case "bonus": return Resources.Lang.Bonus;
@@ -67,7 +67,8 @@ namespace GenerateHTML
             }
         }
 
-        public static string GetTextLink(string domain, string trackingcode, DataTable language, string target, string deviceType, string selectedLanguage = null)        {
+        public static string GetTextLink(string domain, string trackingcode, DataTable language, string target, string deviceType, string selectedLanguage = null)
+        {
             string htmlContent = TemplateHandler.LoadTemplate("UserInfo/MediaGallery.htm");
             var textLinkList = new StringBuilder();
             string textLink = TemplateHandler.CopyBlock(htmlContent, "TextLinkList");
@@ -78,14 +79,14 @@ namespace GenerateHTML
                 case "th-TH": _12betLink = AppSettings.BetLink_TH; break;
                 case "zh-CN": _12betLink = AppSettings.BetLink_CS; break;
                 case "zh-TW": _12betLink = AppSettings.BetLink_CS; break;
-                case "vi-VN": _12betLink = AppSettings.BetLink_VI; break;         
+                case "vi-VN": _12betLink = AppSettings.BetLink_VI; break;
             }
 
             if (Common.IsAffInListEuLink())
                 _12betLink = AppSettings.BetLink_EU;
 
             if (!string.IsNullOrEmpty(trackingcode))
-            { 
+            {
                 trackingcode = "/" + trackingcode;
             }
 
@@ -107,7 +108,7 @@ namespace GenerateHTML
             return textLinkList.ToString();
         }
 
-        public static string GetBannerList(string category, bool isSearchByParentCateogry, string language, 
+        public static string GetBannerList(string category, bool isSearchByParentCateogry, string language,
             string imageType, string size, string currency, int pageIndex, int pagesize, ref int totalpage,
             string domain, string trackingcode, string target, int type, int afftype, string deviceType)
         {
@@ -121,7 +122,7 @@ namespace GenerateHTML
             nRows = CastAide.AsInt32(result.Outputs["nrows"]);
 
             int cols = 9;
-            
+
             if (nRows > 0)
             {
                 string temp = TemplateHandler.LoadTemplate("UserInfo/MediaGallery.htm");
@@ -136,22 +137,25 @@ namespace GenerateHTML
 
                 switch (AppSettings.Session.PreferLang)
                 {
-                    case "th-TH": 
+                    case "th-TH":
                         signUpLink = AppSettings.BetLink_TH.ToString();
                         strMedia = AppSettings.MediaJS_TH;
                         src = ConfigurationManager.AppSettings["MediaUrl_TH"].ToString();
                         break;
-                    case "zh-CN": 
+
+                    case "zh-CN":
                         signUpLink = AppSettings.BetLink_CS.ToString();
                         strMedia = AppSettings.MediaJS_CS;
                         src = ConfigurationManager.AppSettings["MediaUrl_CS"].ToString();
                         break;
-                    case "zh-TW": 
+
+                    case "zh-TW":
                         signUpLink = AppSettings.BetLink_CS.ToString();
                         strMedia = AppSettings.MediaJS_CS;
                         src = ConfigurationManager.AppSettings["MediaUrl_CS"].ToString();
                         break;
-                    case "vi-VN": 
+
+                    case "vi-VN":
                         signUpLink = AppSettings.BetLink_VI.ToString();
                         strMedia = AppSettings.MediaJS_VI;
                         src = ConfigurationManager.AppSettings["MediaUrl_VI"].ToString();
@@ -179,15 +183,14 @@ namespace GenerateHTML
                 TemplateHandler.Assign(ref signUpLink, "{/TrackingCode}", trackingcode.Trim());
                 string _12betLink=signUpLink;
                 if (_12betLink.IndexOf("http://") >= 0)
-                 {
-                         _12betLink = _12betLink.Substring(7);
+                {
+                    _12betLink = _12betLink.Substring(7);
                 }
-        
-                 if (_12betLink.IndexOf("/") > 0)
-                 {
-                     _12betLink = _12betLink.Substring(0, _12betLink.IndexOf("/"));
-                 }
-                                 
+
+                if (_12betLink.IndexOf("/") > 0)
+                {
+                    _12betLink = _12betLink.Substring(0, _12betLink.IndexOf("/"));
+                }
 
                 string flContent = HttpContext.Current.Server.HtmlEncode(TemplateHandler.LoadTemplate("UserInfo/FlashCode.htm"));
                 TemplateHandler.Assign(ref flContent, "src", strMedia);
@@ -195,11 +198,11 @@ namespace GenerateHTML
                 foreach (DataRow dr in dtbResult.Rows)
                 {
                     string rowText = content;
-                    string aSignUpLink = signUpLink;                    
+                    string aSignUpLink = signUpLink;
                     string tmpSrc = src + dr["filename"];
                     //string src = ((string.Compare(AppSettings.Session.Language, "zh-CN", true) == 0 || string.Compare(AppSettings.Session.Language, "zh-TW", true) == 0) ? ConfigurationManager.AppSettings["MediaUrl_CS"].ToString() : ConfigurationManager.AppSettings["MediaUrl"].ToString()) + dr["filename"].ToString();
-                    string []strSize = dr["size"].ToString().Split(new char[]{'x'});
-                    
+                    string []strSize = dr["size"].ToString().Split(new char[] { 'x' });
+
                     counter++;
                     TemplateHandler.Assign(ref aSignUpLink, "{/lang}", GetLanguageUri(Common.GetLangCode(dr["language"].ToString())));
                     TemplateHandler.Assign(ref aSignUpLink, "{/DeviceType}", GetDeviceTypeUri(deviceType));
@@ -210,12 +213,11 @@ namespace GenerateHTML
                         TemplateHandler.Assign(ref rowText, "FlashContent_val", flashContent);
                         TemplateHandler.Assign(ref rowText, "custid_val", AppSettings.Session.CustID.ToString());
                         TemplateHandler.Assign(ref rowText, "srcnoswf_val", tmpSrc.Replace(".swf", string.Empty));
-
                     }
                     else
                     {
                         TemplateHandler.RemoveBlock(ref rowText, "FlashContent");
-                        TemplateHandler.Assign(ref rowText, "12betlink_val", _12betLink);                       
+                        TemplateHandler.Assign(ref rowText, "12betlink_val", _12betLink);
                     }
                     TemplateHandler.Assign(ref rowText, "src_val", tmpSrc);
                     TemplateHandler.Assign(ref rowText, "signuplink_val", aSignUpLink);
@@ -226,11 +228,11 @@ namespace GenerateHTML
 
                 return contentList.ToString();
             }
-            
+
             return Common.NoInfo(cols);
         }
 
-        private static string GenLink(string textLink, string langText, string link, string domain, string trackingCode, 
+        private static string GenLink(string textLink, string langText, string link, string domain, string trackingCode,
             string linkLang, string target, string deviceType)
         {
             TemplateHandler.Assign(ref textLink, "language_val", langText);
@@ -238,8 +240,8 @@ namespace GenerateHTML
             TemplateHandler.Assign(ref link, "{target}", target);
             TemplateHandler.Assign(ref link, "{custid}", AppSettings.Session.CustID.ToString());
             TemplateHandler.Assign(ref link, "{/TrackingCode}", trackingCode.Trim());
-            TemplateHandler.Assign(ref link, "{/DeviceType}",  GetDeviceTypeUri(deviceType));
-            TemplateHandler.Assign(ref link, "{/lang}", GetLanguageUri(linkLang) );
+            TemplateHandler.Assign(ref link, "{/DeviceType}", GetDeviceTypeUri(deviceType));
+            TemplateHandler.Assign(ref link, "{/lang}", GetLanguageUri(linkLang));
 
             TemplateHandler.Assign(ref textLink, "link_val", link);
 
@@ -247,14 +249,14 @@ namespace GenerateHTML
         }
 
         private static string GetLanguageUri(string linkLang)
-         {
-             if (string.IsNullOrEmpty(linkLang))
-             {
-                 return string.Empty;
-             }
+        {
+            if (string.IsNullOrEmpty(linkLang))
+            {
+                return string.Empty;
+            }
 
-             return "/" + linkLang;
-         }
+            return "/" + linkLang;
+        }
 
         private static string GetDeviceTypeUri(string deviceType)
         {
@@ -266,7 +268,7 @@ namespace GenerateHTML
             return "/mobile";
         }
 
-        static string GenCodeByPreferLang()
+        private static string GenCodeByPreferLang()
         {
             switch (AppSettings.Session.PreferLang.ToLower())
             {
