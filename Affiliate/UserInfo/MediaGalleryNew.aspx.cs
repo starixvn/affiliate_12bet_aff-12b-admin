@@ -1,12 +1,8 @@
 using System;
 using System.Data;
-using System.Configuration;
-using DNAide.Web;
-using DNAide.Data;
 using System.Text;
-using DNAide.Utils;
 using DNAide.Core;
-using System.Collections;
+using DNAide.Web;
 using Resources;
 
 public partial class MediaGallery : RootPageLogIn
@@ -70,7 +66,7 @@ public partial class MediaGallery : RootPageLogIn
             }
         }
 
-        string lang = string.IsNullOrEmpty(Request["slLanguage"]) ? null : Request["slLanguage"]; 
+        string lang = Request["slLanguage"] == null ? Common.GetPreferLanguage() : Request["slLanguage"]; 
         string currency = string.IsNullOrEmpty(Request["slCurrency"]) ? null : Request["slCurrency"];
         string type = string.IsNullOrEmpty(Request["slImageType"]) ? null : Request["slImageType"];
         string size = string.IsNullOrEmpty(Request["slSize"]) ? null : Request["slSize"];
@@ -125,7 +121,7 @@ public partial class MediaGallery : RootPageLogIn
         }
         
         TemplateHandler.ReplaceBlock(ref htmlContent, "TextLinkList",
-                                        GenerateHTML.Banner.GetTextLink(domain, trackingcode, dt, targetRequest, deviceType));
+                                        GenerateHTML.Banner.GetTextLink(domain, trackingcode, dt, targetRequest, deviceType, lang));
 
         TemplateHandler.ReplaceBlock(ref htmlContent, "Content",
                                         GenerateHTML.Banner.GetBannerList(paramCategory, isSearchByParentCategory, lang,
@@ -206,6 +202,7 @@ public partial class MediaGallery : RootPageLogIn
             {
                 TemplateHandler.Assign(ref tempopt, "selected", string.Empty);
             }
+
             result.Append(tempopt);
         }
         TemplateHandler.ReplaceBlock(ref opt, "optionList", result.ToString());

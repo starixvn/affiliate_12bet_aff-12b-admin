@@ -717,12 +717,21 @@ public class Common
             arrTarget.Add("signup");
             arrTarget.Add("promotion");
             if (AppSettings.Session.IsCasino)
+            {
                 arrTarget.Add("12betcasino");
+            }
+
+            arrTarget.Add("numbergame");
+            arrTarget.Add("keno");
+            arrTarget.Add("virtualsports");
         }
         else
         {
             arrTarget.Add("home");
             arrTarget.Add("signup");
+            arrTarget.Add("promotion");
+            arrTarget.Add("sportstoday");
+            arrTarget.Add("numbergame");
         }
 
         return GenerateSelectObj("target", arrTarget, arrTarget, targetRequest);

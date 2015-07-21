@@ -1,11 +1,11 @@
 ﻿using System;
-using DNAide.Web;
-using DNAide.Core;
-using System.Data;
-using DNAide.Data;
-using System.Text;
 using System.Configuration;
+using System.Data;
+using System.Text;
 using System.Web;
+using DNAide.Core;
+using DNAide.Data;
+using DNAide.Web;
 using Resources;
 
 namespace GenerateHTML
@@ -67,7 +67,7 @@ namespace GenerateHTML
             }
         }
 
-        public static string GetTextLink(string domain, string trackingcode, DataTable language, string target, string deviceType)        {
+        public static string GetTextLink(string domain, string trackingcode, DataTable language, string target, string deviceType, string selectedLanguage = null)        {
             string htmlContent = TemplateHandler.LoadTemplate("UserInfo/MediaGallery.htm");
             var textLinkList = new StringBuilder();
             string textLink = TemplateHandler.CopyBlock(htmlContent, "TextLinkList");
@@ -88,14 +88,21 @@ namespace GenerateHTML
             { 
                 trackingcode = "/" + trackingcode;
             }
-          
-            foreach (DataRow dr in language.Rows)
-            {                    
-                textLinkList.Append(GenLink(textLink, GetBannerLang(dr["value"].ToString()), _12betLink,
-                    domain, trackingcode, Common.GetLangCode(dr["value"].ToString()), target, deviceType));
-            }
 
-            textLinkList.Append(GenLink(textLink, Lang.Default, _12betLink, domain, trackingcode, GenCodeByPreferLang(), target, deviceType));
+            if (string.IsNullOrWhiteSpace(selectedLanguage))
+            {
+                foreach (DataRow dr in language.Rows)
+                {
+                    textLinkList.Append(GenLink(textLink, GetBannerLang(dr["value"].ToString()), _12betLink,
+                        domain, trackingcode, Common.GetLangCode(dr["value"].ToString()), target, deviceType));
+                }
+
+                textLinkList.Append(GenLink(textLink, Lang.Default, _12betLink, domain, trackingcode, GenCodeByPreferLang(), target, deviceType));
+            }
+            else
+            {
+                textLinkList.Append(GenLink(textLink, GetBannerLang(selectedLanguage), _12betLink, domain, trackingcode, Common.GetLangCode(selectedLanguage), target, deviceType));
+            }
 
             return textLinkList.ToString();
         }
