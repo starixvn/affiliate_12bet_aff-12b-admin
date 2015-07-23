@@ -53,7 +53,7 @@ public partial class UserInfo_MediaText : RootPageLogIn
         int totalpage = 0;
 
         string category = string.IsNullOrEmpty(Request["slCategory"]) ? null : Request["slCategory"];
-        string lang = Request["slLanguage"];
+        string lang = Request["slLanguage"] == null ? Common.GetPreferLanguage() : Request["slLanguage"];
         string currency = string.IsNullOrEmpty(Request["slCurrency"]) ? null : Request["slCurrency"];
         string trackOption = string.IsNullOrEmpty(Request["hdTrack"]) ? null : Request["hdTrack"];
         string trackingcode = string.IsNullOrEmpty(Request["slTrackingCode"]) ? "" : Request["slTrackingCode"];
@@ -93,7 +93,7 @@ public partial class UserInfo_MediaText : RootPageLogIn
         /* Generate TestLinkList */
         dv.RowFilter = "type='Language'";
         DataTable dt = dv.ToTable();
-        TemplateHandler.ReplaceBlock(ref htmlContent, "TextLinkList", GenerateHTML.Banner.GetTextLink(domain, trackingcode, dt, targetRequest, deviceType));
+        TemplateHandler.ReplaceBlock(ref htmlContent, "TextLinkList", GenerateHTML.Banner.GetTextLink(domain, trackingcode, dt, targetRequest, deviceType, lang));
 
         TemplateHandler.ReplaceBlock(ref htmlContent, "Content", GenerateHTML.Text.GetTextList(category, lang, currency, pageIndex, pageSize, ref totalpage, domain, trackingcode, targetRequest, deviceType));
         TemplateHandler.Assign(ref htmlContent, "PageSize-val", pageSize);
