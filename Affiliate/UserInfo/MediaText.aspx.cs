@@ -13,6 +13,7 @@ public partial class UserInfo_MediaText : RootPageLogIn
     public string htmlContent = string.Empty;
     protected void Page_Load(object sender, EventArgs e)
     {
+        AppSettings.RefreshPreferredLanguage();
         htmlContent = TemplateHandler.LoadTemplate("UserInfo/MediaText.htm");
         TemplateHandler.Assign(ref htmlContent, "Category", Resources.Lang.Category);
         TemplateHandler.Assign(ref htmlContent, "Language", Resources.Lang.Language);
@@ -53,7 +54,7 @@ public partial class UserInfo_MediaText : RootPageLogIn
         int totalpage = 0;
 
         string category = string.IsNullOrEmpty(Request["slCategory"]) ? null : Request["slCategory"];
-        string lang = Request["slLanguage"] == null ? Common.GetPreferLanguage() : Request["slLanguage"];
+        string lang = Request["slLanguage"] == null ? Common.GetPreferLanguageName() : Request["slLanguage"];
         string currency = string.IsNullOrEmpty(Request["slCurrency"]) ? null : Request["slCurrency"];
         string trackOption = string.IsNullOrEmpty(Request["hdTrack"]) ? null : Request["hdTrack"];
         string trackingcode = string.IsNullOrEmpty(Request["slTrackingCode"]) ? "" : Request["slTrackingCode"];

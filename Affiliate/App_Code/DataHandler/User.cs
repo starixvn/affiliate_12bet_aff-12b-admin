@@ -97,11 +97,23 @@ namespace DataHandler
             strMinWire = NumberFormat.DecFormat(result.Outputs["aff_minwire"], 0);
             return result.ResultSet.Tables[0];
         }*/
+
+        public static string GetPreferredLanguage(int custId)
+        {
+            var tempParam = string.Empty;
+            using (var table = SelAffInfo(custId, ref tempParam, ref tempParam, ref tempParam, ref tempParam, ref tempParam))
+            {
+                if (table.Rows.Count == 0)
+                {
+                    return AppSettings.Session.PreferLang;
+                }
+
+                return table.Rows[0]["PreferredLanguage"].ToString();
+            }
+        }
+
         public static DataTable SelAffInfo(int intCustId, ref string strMinCheque, ref string strMinMoneyBooker, ref string strMinNetteller, ref string strMinWire, ref string strMinPlayer)
         {
-            //Hashtable hsParam = new Hashtable();
-            //hsParam.Add("custid", intCustId);
-            //return DbHelper.Execute("Aff_CustomerSelEditAffiliate", hsParam, DBType.MAIN).ResultSet.Tables[0];
             Hashtable hsParam = new Hashtable();
             hsParam.Add("affid", intCustId);
             hsParam.Add("aff_minwire", "0");

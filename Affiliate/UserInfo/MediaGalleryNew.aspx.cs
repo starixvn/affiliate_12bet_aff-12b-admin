@@ -11,6 +11,7 @@ public partial class MediaGallery : RootPageLogIn
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        AppSettings.RefreshPreferredLanguage();
         htmlContent = TemplateHandler.LoadTemplate("UserInfo/MediaBanner.htm");
         /*Request to re-enable media gallerry again 20100917 by Peter */
         /* if (string.Compare(AppSettings.Session.PreferLang, "zh-CN", true) == 0 || string.Compare(AppSettings.Session.PreferLang, "zh-TW", true) == 0)
@@ -68,7 +69,7 @@ public partial class MediaGallery : RootPageLogIn
             }
         }
 
-        string lang = Request["slLanguage"] == null ? Common.GetPreferLanguage() : Request["slLanguage"];
+        string lang = Request["slLanguage"] == null ? Common.GetPreferLanguageName() : Request["slLanguage"];
         string currency = string.IsNullOrEmpty(Request["slCurrency"]) ? null : Request["slCurrency"];
         string type = string.IsNullOrEmpty(Request["slImageType"]) ? null : Request["slImageType"];
         string size = string.IsNullOrEmpty(Request["slSize"]) ? null : Request["slSize"];

@@ -77,6 +77,7 @@ public partial class MyAccount : RootPageLogIn
 
         try
         {
+            AppSettings.RefreshPreferredLanguage();
             strPayment = Request["ispay"] == null ? "0" : "1";
             DataTable dtbMyAcc = new DataTable();
             //dtbMyAcc = UserAff.SelAffInfo(677711);//

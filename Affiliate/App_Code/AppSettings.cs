@@ -775,4 +775,9 @@ public static class AppSettings
     {
         get { return _startYearOfSystem; }
     }
+
+    public static void RefreshPreferredLanguage()
+    {
+        AppSettings.Session.PreferLang = DataHandler.UserAff.GetPreferredLanguage(AppSettings.Session.CustID);
+    }
 }

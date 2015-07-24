@@ -89,7 +89,7 @@ public class Common
         }
     }
 
-    public static string GetPreferLanguage()
+    public static string GetPreferLanguageName()
     {
         switch (AppSettings.Session.PreferLang.ToLower())
         {
