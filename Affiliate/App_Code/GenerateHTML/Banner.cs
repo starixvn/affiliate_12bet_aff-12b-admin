@@ -112,7 +112,7 @@ namespace GenerateHTML
             string imageType, string size, string currency, int pageIndex, int pagesize, ref int totalpage,
             string domain, string trackingcode, string target, int type, int afftype, string deviceType)
         {
-            string tmpLanguage = (language == "English (Europe)" ? "English" : language);//English Euro use English banner
+            string tmpLanguage = language;// (language == "English (Europe)" ? "English" : language);//English Euro use English banner
 
             DbResult result = null;
             int nRows = 0;

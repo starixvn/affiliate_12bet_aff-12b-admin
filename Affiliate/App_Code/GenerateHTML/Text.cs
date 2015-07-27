@@ -98,10 +98,8 @@ namespace GenerateHTML
         public static string GetTextList(string category, string language, string currency, int pageIndex, int pagesize, ref int totalpage,
             string domain, string trackingcode, string target, string deviceType)
         {
-            string tmpLanguage = (language == "English (Europe)" ? "English" : language);//English Euro use English banner
-
             DbResult result = null;
-            result = DataHandler.UserAff.SelAffText(category, tmpLanguage, currency, pageIndex, pagesize, deviceType);
+            result = DataHandler.UserAff.SelAffText(category, language, currency, pageIndex, pagesize, deviceType);
             int nRows = CastAide.AsInt32(result.Outputs["nrows"]);
             int cols = 9;
 
