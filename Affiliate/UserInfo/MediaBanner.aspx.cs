@@ -73,7 +73,7 @@ public partial class MediaGallery : RootPageLogIn
         }
 
         //string lang = string.IsNullOrEmpty(Request["slLanguage"]) ? Common.GetPreferLanguage() : Request["slLanguage"];
-        string lang = string.IsNullOrEmpty(Request["slLanguage"]) ? Common.GetPreferLanguageName() : Request["slLanguage"]; 
+        string lang = Request["slLanguage"] == null ? Common.GetPreferLanguageName() : Request["slLanguage"]; 
         string currency = string.IsNullOrEmpty(Request["slCurrency"]) ? null : Request["slCurrency"];
         string type = string.IsNullOrEmpty(Request["slImageType"]) ? null : Request["slImageType"];
         string size = string.IsNullOrEmpty(Request["slSize"]) ? null : Request["slSize"];
