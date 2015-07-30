@@ -62,6 +62,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{7C6203
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigGenerator", "ConfigGenerator\ConfigGenerator.csproj", "{5A02B692-8572-43D2-A959-7C7F4738737E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AffiliateUser", "AffiliateUser\AffiliateUser.csproj", "{6617CFAB-C52A-4DD7-9F73-8FA33BED1D6C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -138,6 +140,16 @@ Global
 		{5A02B692-8572-43D2-A959-7C7F4738737E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{5A02B692-8572-43D2-A959-7C7F4738737E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{5A02B692-8572-43D2-A959-7C7F4738737E}.Release|x86.ActiveCfg = Release|Any CPU
+		{6617CFAB-C52A-4DD7-9F73-8FA33BED1D6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6617CFAB-C52A-4DD7-9F73-8FA33BED1D6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6617CFAB-C52A-4DD7-9F73-8FA33BED1D6C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{6617CFAB-C52A-4DD7-9F73-8FA33BED1D6C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{6617CFAB-C52A-4DD7-9F73-8FA33BED1D6C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6617CFAB-C52A-4DD7-9F73-8FA33BED1D6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6617CFAB-C52A-4DD7-9F73-8FA33BED1D6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6617CFAB-C52A-4DD7-9F73-8FA33BED1D6C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{6617CFAB-C52A-4DD7-9F73-8FA33BED1D6C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{6617CFAB-C52A-4DD7-9F73-8FA33BED1D6C}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -150,5 +162,6 @@ Global
 		{BC0925CE-A57A-4AD0-95C6-A4C41AC3B4BF} = {03684E3E-77AA-4AB1-9E92-6AB573C1E570}
 		{6CE25B47-449E-4282-A956-BAADC31CB372} = {03684E3E-77AA-4AB1-9E92-6AB573C1E570}
 		{5A02B692-8572-43D2-A959-7C7F4738737E} = {03684E3E-77AA-4AB1-9E92-6AB573C1E570}
+		{6617CFAB-C52A-4DD7-9F73-8FA33BED1D6C} = {03684E3E-77AA-4AB1-9E92-6AB573C1E570}
 	EndGlobalSection
 EndGlobal

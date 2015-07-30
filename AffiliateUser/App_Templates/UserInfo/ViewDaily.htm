@@ -1,0 +1,61 @@
+<div class="tbl-box" style="width:{width-val}px">
+<table class="aff-table" cellspacing="1" cellpadding="1" >
+    <tr class="tblheader">
+    <td></td>
+    <td style="width:120px">{date}</td>
+    <!--sportbookonlyhead-->
+    <td>{deposit}</td>
+    <!--withdrawalhead-->
+    <td>{withdrawal}</td>
+    <!--/withdrawalhead-->
+    <!--/sportbookonlyhead-->
+    <td>{winlost}</td>
+    <!--sportbookonlyhead-->
+    <td>{bonus}</td>
+    <!--notcasino-->
+    <td>{adjustment}</td>
+    <!--/notcasino-->
+    <!--/sportbookonlyhead-->
+</tr>
+<!--content-->
+<tr class="{style}" onmouseover="this.className=c;" onmouseout="this.className={style1};">
+    <td class="c">{no}</td>
+    <td class="c">
+        <!--hasdetail--><a href="DailyEarningDetail.aspx?custid={custid}&monthdate={monthdate-val}&slSportType={sporttype}">{date-val}</a><!--/hasdetail-->
+        <!--nodetail-->{date-val}<!--/nodetail-->
+    </td>
+    <!--sportbookonly-->
+    <td class="r">{deposit-val}</td>
+    <!--withdrawalbody-->
+    <td class="r">{withdrawal-val}</td>
+    <!--/withdrawalbody-->
+    <!--/sportbookonly-->
+    <td class="r">{winlost-val}</td>
+    <!--sportbookonly-->
+    <td class="r">{bonus-val}</td>
+    <!--notcasino-->
+    <td class="r">{adjustment-val}</td>
+    <!--/notcasino-->
+    <!--/sportbookonly-->
+</tr>
+<!--/content-->
+<!--total-->
+<tr class="tblfoot">
+    <td colspan="2" class="c b">{total}</td>
+    <!--totalsportbookonly-->
+    <td class="r b">{totaldeposit}</td>
+    <!--withdrawalfooter-->
+    <td class="r b">{totalwithdrawal}</td>
+    <!--/withdrawalfooter-->
+    <!--/totalsportbookonly-->
+    <td class="r b">{totalwinlost}</td>
+    <!--totalsportbookonly-->
+    <td class="r b">{totalbonus}</td>
+    <!--notcasino-->
+    <td class="r b">{totaladjustment}</td>
+    <!--/notcasino-->
+    <!--/totalsportbookonly-->
+</tr>
+<!--/total-->
+</table>
+</div>

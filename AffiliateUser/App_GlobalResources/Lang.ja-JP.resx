@@ -1,0 +1,2736 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutUs" xml:space="preserve">
+    <value>12BETについて</value>
+  </data>
+  <data name="AccId" xml:space="preserve">
+    <value>アカウントID</value>
+  </data>
+  <data name="AccInfo" xml:space="preserve">
+    <value>アカウント情報</value>
+  </data>
+  <data name="Account12bet" xml:space="preserve">
+    <value>12BETプレーヤー・アカウント</value>
+  </data>
+  <data name="AccOverview" xml:space="preserve">
+    <value>アカウント全容</value>
+  </data>
+  <data name="ActivatedTrackingCode" xml:space="preserve">
+    <value>有効になりました</value>
+  </data>
+  <data name="ActiveAcc" xml:space="preserve">
+    <value>このメールにあるリンクをクリックしてください。お客様のメールアドレスを確認後、登録が完了します。</value>
+  </data>
+  <data name="ActiveWageringMembersRefers" xml:space="preserve">
+    <value>2.アクティブ・ベットメンバーとは、1ヶ月間に100米国ドル以上の金額をベットされるメンバーの事です</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>住所</value>
+  </data>
+  <data name="AddressIsRequired" xml:space="preserve">
+    <value>住所を入力して下さい。</value>
+  </data>
+  <data name="AddUrl" xml:space="preserve">
+    <value>URLを記入</value>
+  </data>
+  <data name="Adjustment" xml:space="preserve">
+    <value>調整</value>
+  </data>
+  <data name="AffilatesAreOnlyAllowed" xml:space="preserve">
+    <value>アフィリエイトメンバーは、月に一度のみお引出申請が行なえます。もし月に2度以上の引出が必要な場合、担当者の承認が必要となります。当社からの引出には一切手数料はかかりません。但しお客様がご利用される金融機関または電子ウォレットから発生する手数料に関しては、当社は一切負担しません。</value>
+  </data>
+  <data name="Affiliate" xml:space="preserve">
+    <value>アフィリエイト</value>
+  </data>
+  <data name="AffiliateEarnings" xml:space="preserve">
+    <value>アフィリエイト収入</value>
+  </data>
+  <data name="AffiliateID" xml:space="preserve">
+    <value>アフィリエイトID</value>
+  </data>
+  <data name="Affiliatemustensure" xml:space="preserve">
+    <value>6.アフィリエイトがご自身のサイトに掲載するコンテンツは、合法的で、あらゆる著作権その他の権利を一切侵害しないことを約束しなくてはなりません</value>
+  </data>
+  <data name="Affiliatesareprohibited" xml:space="preserve">
+    <value>9. アフィリエイトがご自身の提供するリンク、またはコミッションを共有、または配分、関連アフィリエイト、第三者が提供するリンクから、12BETが運営するスポーツブックでプレーすることは禁止されています。これは、アフィリエイトがあらゆる種類の報酬を受取る個人、または団体も含めます。万が一これに対する違反があった場合、12BET及び当該サイトは、そのようなプレーを無効とし、発生した当該コミッションを排除し、その該当者をアフィリエイト・プログラムから削除し、12BETに於いてプレーできないようにする権利を有します</value>
+  </data>
+  <data name="AffiliatesWillNotEarn" xml:space="preserve">
+    <value>8.12BETウェブサイトから利用した競馬及びカジノのベット金額に関連したあらゆる結果からアフィリエイトが収益を受け取ることはできません。</value>
+  </data>
+  <data name="AffiliateTagging" xml:space="preserve">
+    <value>3.アフィリエイト・タギング</value>
+  </data>
+  <data name="AffiliationGuidelines" xml:space="preserve">
+    <value>2.アフィリエイトのガイドライン</value>
+  </data>
+  <data name="AfterChargeback" xml:space="preserve">
+    <value>&lt;p&gt;"12BETグロス・ウィン"とは、お客様のアフィリエイト・アカウントに紐付く少なくとも6名のアクティブ・ベティング会員が1ヶ月間に行うベットの総額から、その会員に対し同期間に支払われた賞金を引いたものをことです。&lt;/p&gt;
+
+&lt;p&gt;チャージバックとは、チャージバックを請求した方以外のプレイヤーがもたらす収益がその額を超えるまで、請求が継続されます。12BETでは、詐欺行為による物を除外して、実際の収益があった場合、それに対するパーセンテージをお支払いするということをご理解頂いております。&lt;/p&gt;
+
+&lt;p&gt;プレイヤー自身でチャージバックを行った際、またはその係争中の金額は放棄され、従い当月のお客様に支払われる金額から差し引かれます。&lt;/p&gt;
+
+&lt;p&gt;チャージバックは、チャージバックを請求した方以外のプレーヤーがもたらす利益がその額を超えるまで、請求が継続されます。12BETでは、詐欺行為による物を除外して、実際の収益があった場合、それに対するパーセンテージをお支払いするということをご理解いただきます。&lt;/p&gt;
+
+&lt;p&gt;"ボーナス”は入会特別金、フリーマネー、クレジット、サインアップ・ボーナス、プロモーション等その他のユーザーの口座に加算される奨励金を含みます。これらは、ユーザーが実際に払った金額ではないので当社の収益ではなく、従ってコミッションの対象にはなりません。&lt;/p&gt;</value>
+  </data>
+  <data name="AgreeTermNCondition" xml:space="preserve">
+    <value>12BETアフィリエイトの諸条件に同意します。</value>
+  </data>
+  <data name="Albania" xml:space="preserve">
+    <value>アルバニア</value>
+  </data>
+  <data name="Algeria" xml:space="preserve">
+    <value>アルジェリア</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>全て</value>
+  </data>
+  <data name="Allrightsandlicenses" xml:space="preserve">
+    <value>b. メンバー様に与えられた全ての権利、ライセンスは即座に剥奪されます</value>
+  </data>
+  <data name="AMaximumOfOneWithdrawal" xml:space="preserve">
+    <value>月に最高で1回の引出請求が可能です。もし月に2度以上の引出が必要な場合は、アフィリエイト・マネージャーの承認が必要となります。当社からの引出には一切手数料を頂いておりません。</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>金額</value>
+  </data>
+  <data name="AmtErr" xml:space="preserve">
+    <value>請求金額に誤りがあります！可能な金額の範囲</value>
+  </data>
+  <data name="And" xml:space="preserve">
+    <value>そして</value>
+  </data>
+  <data name="Anewpasswordwil" xml:space="preserve">
+    <value>お客様のメールアドレスに新しいパスワードが送られます。</value>
+  </data>
+  <data name="Angola" xml:space="preserve">
+    <value>アンゴラ</value>
+  </data>
+  <data name="Anguilla" xml:space="preserve">
+    <value>アンギラ</value>
+  </data>
+  <data name="AnyformofSpam" xml:space="preserve">
+    <value>a. いかなる形態のスパムも、お客様のアカウントを調査の対象へと導き、その間資金も保留されます。スパムメールの対応に要する費用は、お客様の口座より引かれる形で当社のクライアントから請求されます。この際、クライアントが決定する費用の額は公平であり交渉の余地のないもので、法的に回収可能であり、12BETのアフィリエイトの登録時に予め了承いただくものです</value>
+  </data>
+  <data name="AnyNegativeBalance" xml:space="preserve">
+    <value>口座残高がマイナスになった場合は翌月へ繰り越されます。例えば、1月末の時点で-$2,555の残高の場合、2月へ繰り越されます。2月のアフィリエイト収入が$3,400だった場合、$845の収入を得ることができます。</value>
+  </data>
+  <data name="ApplicationUnde" xml:space="preserve">
+    <value>申請審査中</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>承認されました</value>
+  </data>
+  <data name="Apr" xml:space="preserve">
+    <value>4月</value>
+  </data>
+  <data name="April" xml:space="preserve">
+    <value>4月</value>
+  </data>
+  <data name="Argentina" xml:space="preserve">
+    <value>アルゼンチン</value>
+  </data>
+  <data name="Armenia" xml:space="preserve">
+    <value>アルメニア</value>
+  </data>
+  <data name="Aruba" xml:space="preserve">
+    <value>アルバ</value>
+  </data>
+  <data name="As12BETAffiliates" xml:space="preserve">
+    <value>12BETアフィリエイト会員になると、お客様が紹介される全てのプレイヤーから、会員である期間中、コミッションを受け取れます。またオンライン・レポートも24時間ご利用いただけます。</value>
+  </data>
+  <data name="AsAnAffiliate" xml:space="preserve">
+    <value>1.アフィリエイトとして、メンバー様のサイトにトラッキングURL、Eメールアドレスまたはその他のコミュニケーション手段、またはバナーを設置して頂き、12BETの宣伝をして頂きます。</value>
+  </data>
+  <data name="AsaPolicy12BETShallNo" xml:space="preserve">
+    <value>方針として、メンバー様のサイトのIPアドレスがイギリスの法域に置かれるものであった場合、オンラインでのアフィリエイト登録申請はできません。</value>
+  </data>
+  <data name="Asa_12BetcomAff" xml:space="preserve">
+    <value>12BETアフィリエイトとして、お客様のサイトからトラッキング・コードを使用して人を当サイトに導くだけで結構です。</value>
+  </data>
+  <data name="Assignability" xml:space="preserve">
+    <value>1.  契約上の利益の帰属と契約の譲渡性</value>
+  </data>
+  <data name="Asyouhaverequested" xml:space="preserve">
+    <value>申請に基づき新しいパスワードを発行しました。お客様の新しいアカウント情報は下記のとおりです。</value>
+  </data>
+  <data name="AUD" xml:space="preserve">
+    <value>AUD（豪ドル）</value>
+  </data>
+  <data name="Aug" xml:space="preserve">
+    <value>８月</value>
+  </data>
+  <data name="August" xml:space="preserve">
+    <value>８月</value>
+  </data>
+  <data name="Australia" xml:space="preserve">
+    <value>オーストラリア</value>
+  </data>
+  <data name="Austria" xml:space="preserve">
+    <value>オーストリア</value>
+  </data>
+  <data name="AvailableDomains" xml:space="preserve">
+    <value>利用可能ドメイン</value>
+  </data>
+  <data name="Azerbaijan" xml:space="preserve">
+    <value>アゼルバイジャン</value>
+  </data>
+  <data name="Baccarat" xml:space="preserve">
+    <value>バカラ</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>戻る</value>
+  </data>
+  <data name="Bahamas" xml:space="preserve">
+    <value>バハマ</value>
+  </data>
+  <data name="Bahrain" xml:space="preserve">
+    <value>バーレーン</value>
+  </data>
+  <data name="Balance0" xml:space="preserve">
+    <value>残高が充分でないため支払の請求ができません</value>
+  </data>
+  <data name="BalForward" xml:space="preserve">
+    <value>繰越残高</value>
+  </data>
+  <data name="Bangladesh" xml:space="preserve">
+    <value>バングラデシュ</value>
+  </data>
+  <data name="BankABA_Swift_S" xml:space="preserve">
+    <value>銀行ABA/SWIFT/SORT/コード</value>
+  </data>
+  <data name="BankABA_Swift_SIsRequired" xml:space="preserve">
+    <value>銀行ABA/SWIFT/SORT/コードが必要です</value>
+  </data>
+  <data name="BankAccnumber" xml:space="preserve">
+    <value>銀行口座番号</value>
+  </data>
+  <data name="BankAccountName" xml:space="preserve">
+    <value>銀行口座名義</value>
+  </data>
+  <data name="BankAccountNameIsRequired" xml:space="preserve">
+    <value>銀行口座名義が必要です</value>
+  </data>
+  <data name="BankAccountNumb" xml:space="preserve">
+    <value>銀行口座番号</value>
+  </data>
+  <data name="BankAccountNumbIsRequired" xml:space="preserve">
+    <value>銀行口座番号が必要です</value>
+  </data>
+  <data name="BankAddress" xml:space="preserve">
+    <value>銀行支店住所</value>
+  </data>
+  <data name="BankAddressisre" xml:space="preserve">
+    <value>銀行支店住所が必要です</value>
+  </data>
+  <data name="BankCode" xml:space="preserve">
+    <value>銀行ABA/SWIFT/SORT/コード</value>
+  </data>
+  <data name="BankName" xml:space="preserve">
+    <value>銀行名</value>
+  </data>
+  <data name="BankNameisrequi" xml:space="preserve">
+    <value>銀行名が必要です</value>
+  </data>
+  <data name="BankTransfer" xml:space="preserve">
+    <value>銀行振り込み</value>
+  </data>
+  <data name="Banner" xml:space="preserve">
+    <value>バナー</value>
+  </data>
+  <data name="Bannersandlinks" xml:space="preserve">
+    <value>4. 未承諾メール、許可されていないニュースグループのポスティング、またはチャットルーム、BOTを利用した形ではバナー及びリンクは使用出来ません。非合法的に作られたトラフィックはカウントされません。更にアフィリエイトアカウントの除名 // 削除に繋がる可能性もあります。</value>
+  </data>
+  <data name="Barbados" xml:space="preserve">
+    <value>バルバドス</value>
+  </data>
+  <data name="Basketball" xml:space="preserve">
+    <value>バスケットボール</value>
+  </data>
+  <data name="Belarus" xml:space="preserve">
+    <value>ベラルース</value>
+  </data>
+  <data name="Belgium" xml:space="preserve">
+    <value>ベルギー</value>
+  </data>
+  <data name="Belize" xml:space="preserve">
+    <value>ベリーズ</value>
+  </data>
+  <data name="Benin" xml:space="preserve">
+    <value>ベニン共和国</value>
+  </data>
+  <data name="Bermuda" xml:space="preserve">
+    <value>バミューダ諸島</value>
+  </data>
+  <data name="BestRegards" xml:space="preserve">
+    <value>敬具</value>
+  </data>
+  <data name="BestView" xml:space="preserve">
+    <value>Best view in</value>
+  </data>
+  <data name="Bet12" xml:space="preserve">
+    <value>12BET</value>
+  </data>
+  <data name="Bet12Username" xml:space="preserve">
+    <value>12BETユーザー名</value>
+  </data>
+  <data name="BETAffiliatesProgram" xml:space="preserve">
+    <value>12BETアフィリエイト・プログラムは、お客様のWebサイトを仲介、またはオフラインで12BETをご紹介して頂きプレイヤー様のベット額に基づきコミッションを獲得するパートナーシッププログラムです。</value>
+  </data>
+  <data name="BetAffNotification" xml:space="preserve">
+    <value>12BETアフィリエイト - [{transid}] - 支払請求通知</value>
+  </data>
+  <data name="BETUserNameIsRequired" xml:space="preserve">
+    <value>12BETのユーザー名を入力して下さい</value>
+  </data>
+  <data name="Bhutan" xml:space="preserve">
+    <value>ブータン</value>
+  </data>
+  <data name="Blackjack" xml:space="preserve">
+    <value>ブラックジャック</value>
+  </data>
+  <data name="Bolivia" xml:space="preserve">
+    <value>ボリビア</value>
+  </data>
+  <data name="Bonus" xml:space="preserve">
+    <value>ボーナス</value>
+  </data>
+  <data name="BosniaandHerzegovina" xml:space="preserve">
+    <value>ボスニア・ヘルツェゴヴィナ</value>
+  </data>
+  <data name="Botswana" xml:space="preserve">
+    <value>ボツワナ</value>
+  </data>
+  <data name="Brazil" xml:space="preserve">
+    <value>ブラジル</value>
+  </data>
+  <data name="BruneiDarussalam" xml:space="preserve">
+    <value>ブルネイ</value>
+  </data>
+  <data name="Bulgaria" xml:space="preserve">
+    <value>ブルガリア</value>
+  </data>
+  <data name="BurkinaFaso" xml:space="preserve">
+    <value>ブルキナファソ</value>
+  </data>
+  <data name="Burundi" xml:space="preserve">
+    <value>ブルンジ</value>
+  </data>
+  <data name="ByAccessingOurMediaGallery" xml:space="preserve">
+    <value>メディアギャラリーから、お客様のWebサイトで使用するバナーのデザインを選択していただけます。</value>
+  </data>
+  <data name="Byagreeingtoparticipate" xml:space="preserve">
+    <value>3. 12BETアフィリエイト・プログラムへ参加していただくことで、バナー、テキストによるプロモーション広告をメンバー様のサイトに掲載していただき、メール、ダイレクト・マーケティング、または印刷という方法で告知していただくことに同意するものとします。12BETの製品及びサービスを宣伝していただくには上記の方法のみで行なって頂きます</value>
+  </data>
+  <data name="Byhavingread" xml:space="preserve">
+    <value>各当事者はアフィリエイト登録フォームにも記載されておりますように、本諸条件を十分にご理解された上、合意する必要がございます。また12BETは諸条件に違反する行為があった場合、アフィリエイトへの支払を保留する権利を有します。</value>
+  </data>
+  <data name="Byopeninganaccount" xml:space="preserve">
+    <value>2.アカウントを開設することで、個人または法人は当社の顧客となり、クライアント・ルール、方針、運営方法全てが該当するようになります。</value>
+  </data>
+  <data name="BythisAgreement" xml:space="preserve">
+    <value>2.この契約書によって、当社はお客様に対し、諸条件に従い当社に顧客を紹介できる非独占的権利を与えるものとします。この契約書はお客様に対し、ご紹介いただいた方にお客様がサービスを提供する独占的権利または特権を与えるものではありません。さらに当社は、いかなる時も、お客様と同様に他人または他社と契約を交わし協力を受ける権利があります。お客様は、当社が他人または他社に対して支払う紹介料及びその他の報酬に対し異論を唱えないことに同意して頂きます</value>
+  </data>
+  <data name="Cambodia" xml:space="preserve">
+    <value>カンボジア</value>
+  </data>
+  <data name="Cameroon" xml:space="preserve">
+    <value>カメルーン</value>
+  </data>
+  <data name="Canada" xml:space="preserve">
+    <value>カナダ</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="Cancelled" xml:space="preserve">
+    <value>キャンセル完了</value>
+  </data>
+  <data name="CancelPayoutSucc" xml:space="preserve">
+    <value>お客様の支払依頼はキャンセルされました！</value>
+  </data>
+  <data name="CancelRequest" xml:space="preserve">
+    <value>キャンセル依頼</value>
+  </data>
+  <data name="CancelSubject" xml:space="preserve">
+    <value>12BETアフィリエイト - [{transid}] - 支払請求通知</value>
+  </data>
+  <data name="CanIRequest" xml:space="preserve">
+    <value>お金の引出しは米国ドル以外の通貨でも可能ですか？</value>
+  </data>
+  <data name="CannotSendmail" xml:space="preserve">
+    <value>メールが送られませんでした。もう一度やり直してください。</value>
+  </data>
+  <data name="CapeVerde" xml:space="preserve">
+    <value>カーボベルデ共和国</value>
+  </data>
+  <data name="Casino" xml:space="preserve">
+    <value>カジノ</value>
+  </data>
+  <data name="CasinoBonus" xml:space="preserve">
+    <value>カジノ・ボーナス</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>カテゴリ</value>
+  </data>
+  <data name="CaymanIslands" xml:space="preserve">
+    <value>ケイマン諸島</value>
+  </data>
+  <data name="CentralAfricanRep" xml:space="preserve">
+    <value>中央アフリカ共和国</value>
+  </data>
+  <data name="Chad" xml:space="preserve">
+    <value>チャド</value>
+  </data>
+  <data name="Change" xml:space="preserve">
+    <value>変更</value>
+  </data>
+  <data name="ChangePass" xml:space="preserve">
+    <value>パスワード変更</value>
+  </data>
+  <data name="ChangePassErr" xml:space="preserve">
+    <value>パスワード変更エラー</value>
+  </data>
+  <data name="ChangePassText" xml:space="preserve">
+    <value>このフォームを使用してパスワードの変更を行なってください。次回ログインする時から新しいパスワードは有効になります。</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>パスワード変更</value>
+  </data>
+  <data name="Changepassworde" xml:space="preserve">
+    <value>パスワード変更エラー</value>
+  </data>
+  <data name="Chargeback" xml:space="preserve">
+    <value>a. チャージバック：クレジットカードを利用するメンバーが、クレジットカードまたはデビットカードに不適当、未承認の請求があることが発覚した際、銀行に対しこれらの請求をキャンセルするよう要求した際に引かれる額です。チャージバックは、第三者によるクレジットカードやカード番号を悪用した詐欺行為に関連している可能性があります</value>
+  </data>
+  <data name="Cheque" xml:space="preserve">
+    <value>小切手</value>
+  </data>
+  <data name="ChequeAddressis" xml:space="preserve">
+    <value>登録番地が必要です</value>
+  </data>
+  <data name="ChequeCityisreq" xml:space="preserve">
+    <value>登録市町村が必要です</value>
+  </data>
+  <data name="ChequeCountryis" xml:space="preserve">
+    <value>登録国名が必要です</value>
+  </data>
+  <data name="ChequeFullNamei" xml:space="preserve">
+    <value>登録名義が必要です</value>
+  </data>
+  <data name="ChequePostcode_" xml:space="preserve">
+    <value>登録郵便番号が必要です</value>
+  </data>
+  <data name="ChequeStateisre" xml:space="preserve">
+    <value>登録都道府県が必要です</value>
+  </data>
+  <data name="CHF" xml:space="preserve">
+    <value>CHF(スイスフラン）</value>
+  </data>
+  <data name="Chile" xml:space="preserve">
+    <value>チリ</value>
+  </data>
+  <data name="ChinaPeoplesRep" xml:space="preserve">
+    <value>中国（中華人民共和国）</value>
+  </data>
+  <data name="ChineseSimplifi" xml:space="preserve">
+    <value>简体中文</value>
+  </data>
+  <data name="ChineseSupport" xml:space="preserve">
+    <value>中国語サポート</value>
+  </data>
+  <data name="ChineseTraditio" xml:space="preserve">
+    <value>繁體中文</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>市区町村-建物名</value>
+  </data>
+  <data name="CityIsRequired" xml:space="preserve">
+    <value>市区町村-建物名を入力して下さい</value>
+  </data>
+  <data name="ClicksCount" xml:space="preserve">
+    <value>クリックはカウントされます</value>
+  </data>
+  <data name="Colombia" xml:space="preserve">
+    <value>コロンビア</value>
+  </data>
+  <data name="Comm" xml:space="preserve">
+    <value>コミッション</value>
+  </data>
+  <data name="CommCurr" xml:space="preserve">
+    <value>現在のコミッション額</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>コメント</value>
+  </data>
+  <data name="CommentsIsInvalid" xml:space="preserve">
+    <value>コメントが不正です</value>
+  </data>
+  <data name="Commissionableearnings" xml:space="preserve">
+    <value>5.12BETアフィリエイト・プログラムのコミッション計算方法(変更されることがあります）に基づき、収益計算され支払われます。</value>
+  </data>
+  <data name="CommissionableEarningsAreCalculated" xml:space="preserve">
+    <value>3.コミッション額は、御紹介していただいた最低6名様のアクティブ・ベット・会員からの1ヶ月の12BETの収益からチャージバック、新規入会祝金、フリーマネーその他の奨励金を引いたをベースに計算されます</value>
+  </data>
+  <data name="CommPercent" xml:space="preserve">
+    <value>コミッション・パーセンテージ</value>
+  </data>
+  <data name="CompletedDate" xml:space="preserve">
+    <value>完了日時</value>
+  </data>
+  <data name="CompleteForm" xml:space="preserve">
+    <value>このフォームに必要事項を記入し12BETアフィリエイトに登録してください。</value>
+  </data>
+  <data name="ComplimentaryMoney" xml:space="preserve">
+    <value>f. 入会祝金、フリーマネーその他の奨励金はメンバーの口座に振り込まれる金額を指します。これらは当社の売上ではないのでコミッションの対象にはなりません。</value>
+  </data>
+  <data name="CongoRep" xml:space="preserve">
+    <value>コンゴ共和国</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>お問い合わせ</value>
+  </data>
+  <data name="ContactInfo" xml:space="preserve">
+    <value>ご登録情報詳細</value>
+  </data>
+  <data name="ContactNumber" xml:space="preserve">
+    <value>お電話番号</value>
+  </data>
+  <data name="ContactTitle" xml:space="preserve">
+    <value>コメント、質問はこちらまで直接お問い合わせください。
+{email}
+または下記のフォームにてお問い合わせください。</value>
+  </data>
+  <data name="ContactUs" xml:space="preserve">
+    <value>お問い合わせ</value>
+  </data>
+  <data name="ContactusComment" xml:space="preserve">
+    <value>質問、コメントはお気軽にこちらまで</value>
+  </data>
+  <data name="CookiesAreAGeneralMechanism" xml:space="preserve">
+    <value>クッキーとはWebブラウザを通じてサーバー側にクライアント側の接続情報を一時的に保存し検索できる一般的な仕組みです。具体的にはアフィリエイトのサイトから12BET.comにアクセスしたコンピュターの軌跡を記録した小さなデータファイルです。このデータファイルの情報を12BET.comが読み取り、正確にどのアフィリエイトを経由したかを突き止めます。クッキーにて可能な追跡は、訪れたページのリストまた、どのくらいの時間滞在したかを含みます。</value>
+  </data>
+  <data name="CookIslands" xml:space="preserve">
+    <value>クック諸島</value>
+  </data>
+  <data name="Copyright" xml:space="preserve">
+    <value>© Copyright {now} Pacific Sea Invests</value>
+  </data>
+  <data name="CostaRica" xml:space="preserve">
+    <value>コスタリカ</value>
+  </data>
+  <data name="CotedIvoireRep" xml:space="preserve">
+    <value>コートジボアール共和国</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>居住国名</value>
+  </data>
+  <data name="CountryErr" xml:space="preserve">
+    <value>居住国名を選択してください</value>
+  </data>
+  <data name="Createcustomerf" xml:space="preserve">
+    <value>顧客の作成が失敗しました。もう一度やり直してください。</value>
+  </data>
+  <data name="Creator" xml:space="preserve">
+    <value>製作者</value>
+  </data>
+  <data name="Croatia" xml:space="preserve">
+    <value>クロアチア</value>
+  </data>
+  <data name="CsdSubject" xml:space="preserve">
+    <value>12BETアフィリエイト - 新しいアカウント作成承認待ち</value>
+  </data>
+  <data name="CurrBal" xml:space="preserve">
+    <value>口座残高</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>通貨</value>
+  </data>
+  <data name="Current" xml:space="preserve">
+    <value>現在</value>
+  </data>
+  <data name="CurrentCommissi" xml:space="preserve">
+    <value>現在のコミッション額</value>
+  </data>
+  <data name="CurrentCommissiSetting" xml:space="preserve">
+    <value>現在のコミッション設定</value>
+  </data>
+  <data name="Customized" xml:space="preserve">
+    <value>カスタムバナー</value>
+  </data>
+  <data name="Cyprus" xml:space="preserve">
+    <value>キプロス</value>
+  </data>
+  <data name="CzechRep" xml:space="preserve">
+    <value>チェコ</value>
+  </data>
+  <data name="DailyEarningDetail" xml:space="preserve">
+    <value>本日の利益詳細</value>
+  </data>
+  <data name="DailyEarnings" xml:space="preserve">
+    <value>今日の利益</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>日付</value>
+  </data>
+  <data name="DateRequest" xml:space="preserve">
+    <value>日付の要求</value>
+  </data>
+  <data name="Dear" xml:space="preserve">
+    <value>様</value>
+  </data>
+  <data name="DearFirstnameLa" xml:space="preserve">
+    <value>姓 名 様</value>
+  </data>
+  <data name="DearName" xml:space="preserve">
+    <value>{lname} {fname}様</value>
+  </data>
+  <data name="Dec" xml:space="preserve">
+    <value>12月</value>
+  </data>
+  <data name="December" xml:space="preserve">
+    <value>12月</value>
+  </data>
+  <data name="Deductions" xml:space="preserve">
+    <value>差引額</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>デフォルト</value>
+  </data>
+  <data name="Del" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="DemRepofCongo" xml:space="preserve">
+    <value>コンゴ民主共和国</value>
+  </data>
+  <data name="Denmark" xml:space="preserve">
+    <value>デンマーク</value>
+  </data>
+  <data name="Deposit" xml:space="preserve">
+    <value>預入金</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>詳細</value>
+  </data>
+  <data name="DescWebsite" xml:space="preserve">
+    <value>自分のURLがない場合どのように12BETを薦めるか書いてください。</value>
+  </data>
+  <data name="DetailedStas" xml:space="preserve">
+    <value>詳細統計追跡システム</value>
+  </data>
+  <data name="Disclaimers" xml:space="preserve">
+    <value>12.免責条項</value>
+  </data>
+  <data name="DoesNegativeBalance" xml:space="preserve">
+    <value>マイナスの残高は繰り越されますか？</value>
+  </data>
+  <data name="DominicaCommonwealthof" xml:space="preserve">
+    <value>ドミニカ国</value>
+  </data>
+  <data name="DominicanRep" xml:space="preserve">
+    <value>ドミニカ共和国</value>
+  </data>
+  <data name="Donothesitateto" xml:space="preserve">
+    <value>ご意見、ご質問はお気軽にAffiliates@12bet.comまで、お問い合わせ願います。</value>
+  </data>
+  <data name="DontSettleFor2ndBest" xml:space="preserve">
+    <value>ご紹介して頂いたお客様の負け越し総額の最高40%まで獲得できます。</value>
+  </data>
+  <data name="Dontshowit" xml:space="preserve">
+    <value>次回から表示しない</value>
+  </data>
+  <data name="Doyouhaveanyque" xml:space="preserve">
+    <value>質問はありますか？</value>
+  </data>
+  <data name="DoYouRewardTheFirstAffiliate" xml:space="preserve">
+    <value>最初と最後の収益を与えるメンバーの参照できますか？</value>
+  </data>
+  <data name="Duetosecurityr" xml:space="preserve">
+    <value>セキュリティ保護の理由から新しいパスワードを作成しました(後で変更可能です）</value>
+  </data>
+  <data name="Duringtheterm" xml:space="preserve">
+    <value>3.この契約書が有効な限り、お客様に対してビジネス、運営に関する部外秘情報またはアフィリエイト・プログラムに関する技術情報（例：プログラムに基いた紹介料等）を開示致します。お客様はこれらを他に開示したり、これらの部外秘情報を、予め書面で連絡なく、第三者に対し使用しないことに合意して頂きます。第三者に対し使用する場合もその目的は当契約書の内容を遂行する物に限定されます。部外秘情報保護の義務は契約書終端後も継続します。</value>
+  </data>
+  <data name="Earn30" xml:space="preserve">
+    <value>インセンティブ</value>
+  </data>
+  <data name="Ecuador" xml:space="preserve">
+    <value>エクアドル</value>
+  </data>
+  <data name="Egypt" xml:space="preserve">
+    <value>エジプト</value>
+  </data>
+  <data name="ElSalvador" xml:space="preserve">
+    <value>エルサルバドル</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Eメールアドレス</value>
+  </data>
+  <data name="Email1" xml:space="preserve">
+    <value>メール</value>
+  </data>
+  <data name="Emailaddressest" xml:space="preserve">
+    <value>入力したメールアドレスが照合できません</value>
+  </data>
+  <data name="EmailAddressIsInvalid" xml:space="preserve">
+    <value>メールアドレスが無効です</value>
+  </data>
+  <data name="EmailAddressIsRequired" xml:space="preserve">
+    <value>Eメールアドレスが無効です</value>
+  </data>
+  <data name="EmailFormat" xml:space="preserve">
+    <value>メールのフォーマット</value>
+  </data>
+  <data name="EmailInvalid" xml:space="preserve">
+    <value>入力したメールアドレスが無効です。もう一度やり直してください。</value>
+  </data>
+  <data name="EmailMatch" xml:space="preserve">
+    <value>入力したメールアドレスが照合できません</value>
+  </data>
+  <data name="EmailRequire" xml:space="preserve">
+    <value>メールアドレスが必要です</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="EnglishEU" xml:space="preserve">
+    <value>English_Euro</value>
+  </data>
+  <data name="EnglishSupport" xml:space="preserve">
+    <value>英語サポート</value>
+  </data>
+  <data name="Eritrea" xml:space="preserve">
+    <value>エリトリア</value>
+  </data>
+  <data name="Err1" xml:space="preserve">
+    <value>ディスカウント情報が間違っています</value>
+  </data>
+  <data name="Err100" xml:space="preserve">
+    <value>申し訳ございません。エージェントが作成できません</value>
+  </data>
+  <data name="Err1001" xml:space="preserve">
+    <value>アフィリエイト情報が無効です</value>
+  </data>
+  <data name="Err1002" xml:space="preserve">
+    <value>入力頂いたメールアドレスは登録の際使用されています。別のメールアドレスを入力してください！</value>
+  </data>
+  <data name="Err1003" xml:space="preserve">
+    <value>12BETユーザー名が無効です。</value>
+  </data>
+  <data name="Err1004" xml:space="preserve">
+    <value>ユーザー情報が無効です。アップデートできませんでした</value>
+  </data>
+  <data name="Err1005" xml:space="preserve">
+    <value>エラー発生：アップデートできませんでした</value>
+  </data>
+  <data name="Err1006" xml:space="preserve">
+    <value>エラー発生：アップデートできませんでした</value>
+  </data>
+  <data name="Err101" xml:space="preserve">
+    <value>このユーザー名は存在しません</value>
+  </data>
+  <data name="Err102" xml:space="preserve">
+    <value>ポジションが違います（スーパーが設定する最大）</value>
+  </data>
+  <data name="Err103" xml:space="preserve">
+    <value>申し訳ございません。最少の賭金は最高ベットより少なく、最高ベットはマッチごとの最大より少なくないといけません</value>
+  </data>
+  <data name="Err104" xml:space="preserve">
+    <value>申し訳ございません。クレジットのアップデートができませんでした。マスタークレジットの額を超えています。</value>
+  </data>
+  <data name="Err105" xml:space="preserve">
+    <value>申し訳ございません。最少の賭金は、マスターエージェントの最少額以上でないといけません。</value>
+  </data>
+  <data name="Err107" xml:space="preserve">
+    <value>申し訳ございません。マッチごとの最高額はマッチごとのマスターエージェントの最高以下でないと行けません。</value>
+  </data>
+  <data name="Err111" xml:space="preserve">
+    <value>顧客作成出来ませんでした。もう一度やり直してください。</value>
+  </data>
+  <data name="Err112" xml:space="preserve">
+    <value>顧客作成出来ませんでした。もう一度やり直してください。</value>
+  </data>
+  <data name="Err113" xml:space="preserve">
+    <value>顧客作成出来ませんでした。もう一度やり直してください。</value>
+  </data>
+  <data name="Err114" xml:space="preserve">
+    <value>顧客作成出来ませんでした。もう一度やり直してください。</value>
+  </data>
+  <data name="Err115" xml:space="preserve">
+    <value>顧客作成出来ませんでした。もう一度やり直してください。</value>
+  </data>
+  <data name="Err116" xml:space="preserve">
+    <value>この情報を作成/変更する権限がありません</value>
+  </data>
+  <data name="Err2" xml:space="preserve">
+    <value>誤った最少ベット/最高ベット/各マッチの最高額/クレジット/マスターエージェント名/ユーザグループ</value>
+  </data>
+  <data name="Err3" xml:space="preserve">
+    <value>ポジションが間違えています</value>
+  </data>
+  <data name="Err3001" xml:space="preserve">
+    <value>保留の依頼があります。新しい依頼をするには保留中の依頼が処理されるのを待つかキャンセルしてください</value>
+  </data>
+  <data name="Err3002" xml:space="preserve">
+    <value>ロールIDが無効です</value>
+  </data>
+  <data name="Err3003" xml:space="preserve">
+    <value>申し訳ございません。このアフィリエイトは引出すのに十分な残高がありません</value>
+  </data>
+  <data name="Err3004" xml:space="preserve">
+    <value>無効な残高、もしくは指定の通貨、支払方法がサポートされていません</value>
+  </data>
+  <data name="Err3006" xml:space="preserve">
+    <value>挿入取引に失敗しました</value>
+  </data>
+  <data name="Err3007" xml:space="preserve">
+    <value>申し訳ございません。金額が無効です</value>
+  </data>
+  <data name="Err4" xml:space="preserve">
+    <value>ポジションが間違えています（当社設定の最少/最高）</value>
+  </data>
+  <data name="Err4001" xml:space="preserve">
+    <value>顧客IDが無効です</value>
+  </data>
+  <data name="Err4002" xml:space="preserve">
+    <value>この取引は引出しではありません</value>
+  </data>
+  <data name="Err4003" xml:space="preserve">
+    <value>この取引は過去にキャンセルされています</value>
+  </data>
+  <data name="Err4004" xml:space="preserve">
+    <value>無効な残高、もしくは指定の通貨がサポートされていません</value>
+  </data>
+  <data name="Err4005" xml:space="preserve">
+    <value>この取引は過去にキャンセルされています</value>
+  </data>
+  <data name="Err5" xml:space="preserve">
+    <value>ポジションが間違えています（当社設定の最高）</value>
+  </data>
+  <data name="Err999" xml:space="preserve">
+    <value>アフィリエイト情報作成が失敗しました。もう一度やり直してください</value>
+  </data>
+  <data name="ErrAuthorized" xml:space="preserve">
+    <value>この機能を使用する権限がありません</value>
+  </data>
+  <data name="ErrBalance" xml:space="preserve">
+    <value>依頼する金額は現在の残高以下でないといけません</value>
+  </data>
+  <data name="ErrBalanceForward" xml:space="preserve">
+    <value>依頼する金額は繰越額以下でないといけません</value>
+  </data>
+  <data name="errContactNumberEmpty" xml:space="preserve">
+    <value>電話番号を入力して下さい</value>
+  </data>
+  <data name="ErrDefault" xml:space="preserve">
+    <value>不明のエラー</value>
+  </data>
+  <data name="errDepositDBConnectFailed" xml:space="preserve">
+    <value>12BETプレーヤー情報取得中にエラーが発生しました。管理者に連絡してください</value>
+  </data>
+  <data name="ErrEmailInvalid" xml:space="preserve">
+    <value>メールアドレス - 無効です</value>
+  </data>
+  <data name="ErrEmailRequire" xml:space="preserve">
+    <value>メールアドレス - 必要です</value>
+  </data>
+  <data name="errExistAccount" xml:space="preserve">
+    <value>このユーザーは既にIBCアカウントをお持ちです</value>
+  </data>
+  <data name="ErrGender" xml:space="preserve">
+    <value>性別が不明です</value>
+  </data>
+  <data name="ErrMinAmt" xml:space="preserve">
+    <value>依頼する金額は最少引出額以上でないといけません</value>
+  </data>
+  <data name="errMobileNumberEmpty" xml:space="preserve">
+    <value>MSNアカウントを入力して下さい</value>
+  </data>
+  <data name="ErrmsgEmailClose" xml:space="preserve">
+    <value>このメールアドレスは、活動していないまたは削除されたアフィリエイトに使用されています。もう一度やり直すかお問い合わせください。</value>
+  </data>
+  <data name="ErrmsgEmailNotApprove" xml:space="preserve">
+    <value>このメールアドレスは、活動していないまたは承認されていないアフィリエイトに使用されています。もう一度やり直すか、"お問い合わせ"から連絡してください。</value>
+  </data>
+  <data name="ErrmsgEntryPassword" xml:space="preserve">
+    <value>パスワードを入力してください</value>
+  </data>
+  <data name="ErrmsgEntryUsername" xml:space="preserve">
+    <value>ユーザー名を入力してください</value>
+  </data>
+  <data name="ErrmsgEntryValidCode" xml:space="preserve">
+    <value>認証コードを入力してください</value>
+  </data>
+  <data name="ErrMsgForgetPwFail" xml:space="preserve">
+    <value>パスワードをリセットする情報が無効です。もう一度やり直してください。まだリセットできな場合は"お問い合わせ"から連絡してください。</value>
+  </data>
+  <data name="ErrmsgNotExistsEmail" xml:space="preserve">
+    <value>入力されたメールアドレスを認識出来ません。もう一度やり直すか、"お問い合わせ"から連絡してください。</value>
+  </data>
+  <data name="ErroroccursUpda" xml:space="preserve">
+    <value>エラーが発生しました。アップデートができませんでした</value>
+  </data>
+  <data name="Errorofsendingm" xml:space="preserve">
+    <value>メールが送信中にエラーになりました</value>
+  </data>
+  <data name="Errorofsendmail" xml:space="preserve">
+    <value>メール送信がエラーになりました</value>
+  </data>
+  <data name="ErrPaymentMethod" xml:space="preserve">
+    <value>申し訳ございません。{method}による支払はサポートしていません。現在は12BETプレーヤー・アカウント支払方法のみのサポートとなります。マイ・アカウントから支払を選択し、変更してください。</value>
+  </data>
+  <data name="errSecQuestionEmpty" xml:space="preserve">
+    <value>セキュリティ質問を選択してください</value>
+  </data>
+  <data name="ErrSendMail" xml:space="preserve">
+    <value>メール送信がエラーになりました</value>
+  </data>
+  <data name="errUserNotFound" xml:space="preserve">
+    <value>ユーザーが見つかりません</value>
+  </data>
+  <data name="errYourAnswer" xml:space="preserve">
+    <value>その答えを入力して下さい</value>
+  </data>
+  <data name="Estonia" xml:space="preserve">
+    <value>エストニア</value>
+  </data>
+  <data name="Ethiopia" xml:space="preserve">
+    <value>エチオピア</value>
+  </data>
+  <data name="EUR" xml:space="preserve">
+    <value>EUR(ユーロ）</value>
+  </data>
+  <data name="ExcellentPlayers" xml:space="preserve">
+    <value>エクセレント・プレーヤ変換、記録レート</value>
+  </data>
+  <data name="ExpectList" xml:space="preserve">
+    <value>&lt;ul&gt;
+        &lt;li&gt;生涯負け金額（ネット）の30%をゲット &lt;/li&gt;
+        &lt;li&gt;詳細統計追跡システム&lt;/li&gt;
+        &lt;li&gt;エクセレント・プレーヤ変換、記録レート&lt;/li&gt;
+        &lt;li&gt;月ごとの迅速な支払&lt;/li&gt;
+        &lt;li&gt;様々な支払方法をサポート&lt;/li&gt;
+        &lt;li&gt;24時間365日お客様をサポート&lt;/li&gt;
+	&lt;/ul&gt;</value>
+  </data>
+  <data name="ExpectTitle" xml:space="preserve">
+    <value>提供します</value>
+  </data>
+  <data name="Faqs" xml:space="preserve">
+    <value>FAQ</value>
+  </data>
+  <data name="FDM" xml:space="preserve">
+    <value>FDM</value>
+  </data>
+  <data name="Feb" xml:space="preserve">
+    <value>2月</value>
+  </data>
+  <data name="February" xml:space="preserve">
+    <value>2月</value>
+  </data>
+  <data name="Female" xml:space="preserve">
+    <value>女性</value>
+  </data>
+  <data name="Fiji" xml:space="preserve">
+    <value>フィジー</value>
+  </data>
+  <data name="Finland" xml:space="preserve">
+    <value>フィンランド</value>
+  </data>
+  <data name="FirstNameIsRequired" xml:space="preserve">
+    <value>お名前 (姓)を入力して下さい</value>
+  </data>
+  <data name="Flash" xml:space="preserve">
+    <value>フラッシュ</value>
+  </data>
+  <data name="FName" xml:space="preserve">
+    <value>お名前 (姓)</value>
+  </data>
+  <data name="Football" xml:space="preserve">
+    <value>フットボール</value>
+  </data>
+  <data name="For" xml:space="preserve">
+    <value>For</value>
+  </data>
+  <data name="Foranyreasonyou" xml:space="preserve">
+    <value>何らかの理由でメールがとどかない場合、&lt;a href='ContactUs.aspx'&gt;お問い合わせ&lt;/a&gt;からご連絡ください。喜んで対応致します。</value>
+  </data>
+  <data name="ForgetPassword" xml:space="preserve">
+    <value>パスワードを忘れた？</value>
+  </data>
+  <data name="France" xml:space="preserve">
+    <value>フランス</value>
+  </data>
+  <data name="FrenchPolynesia" xml:space="preserve">
+    <value>フランス領ポリネシア</value>
+  </data>
+  <data name="FrequentlyAskedQuestions" xml:space="preserve">
+    <value>よくある質問</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="Fullname" xml:space="preserve">
+    <value>フルネーム</value>
+  </data>
+  <data name="Gabon" xml:space="preserve">
+    <value>ガボン</value>
+  </data>
+  <data name="GBP" xml:space="preserve">
+    <value>GBP(英ポンド）</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>性別</value>
+  </data>
+  <data name="General" xml:space="preserve">
+    <value>一般的なご質問</value>
+  </data>
+  <data name="GenerateLink" xml:space="preserve">
+    <value>リンクを作成</value>
+  </data>
+  <data name="Georgia" xml:space="preserve">
+    <value>グルジア</value>
+  </data>
+  <data name="Germany" xml:space="preserve">
+    <value>ドイツ</value>
+  </data>
+  <data name="GettingPaid" xml:space="preserve">
+    <value>支払いについて</value>
+  </data>
+  <data name="Ghana" xml:space="preserve">
+    <value>ガーナ</value>
+  </data>
+  <data name="Gibraltar" xml:space="preserve">
+    <value>ジブラルタル</value>
+  </data>
+  <data name="GoverningLawandArbitration" xml:space="preserve">
+    <value>15.準拠法と調停機関</value>
+  </data>
+  <data name="Greece" xml:space="preserve">
+    <value>ギリシャ</value>
+  </data>
+  <data name="Grenada" xml:space="preserve">
+    <value>グレナダ</value>
+  </data>
+  <data name="GrossEarnings" xml:space="preserve">
+    <value>グロス利益</value>
+  </data>
+  <data name="Guatemala" xml:space="preserve">
+    <value>ガテマラ</value>
+  </data>
+  <data name="Guinea" xml:space="preserve">
+    <value>ギニア</value>
+  </data>
+  <data name="Guyana" xml:space="preserve">
+    <value>ガイアナ</value>
+  </data>
+  <data name="Haiti" xml:space="preserve">
+    <value>ハイチ</value>
+  </data>
+  <data name="Haveagreatday" xml:space="preserve">
+    <value>いい一日を！</value>
+  </data>
+  <data name="Haveproblemwhil" xml:space="preserve">
+    <value>メール送信中に問題が発生しました。後ほどご連絡ください。</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>ホ－ム</value>
+  </data>
+  <data name="Honduras" xml:space="preserve">
+    <value>ホンジュラス</value>
+  </data>
+  <data name="HongKong" xml:space="preserve">
+    <value>香港</value>
+  </data>
+  <data name="hotnew" xml:space="preserve">
+    <value>12BET,comでオンライン・ベティング、スポーツ・べティング&amp;フットボール・ベティング</value>
+  </data>
+  <data name="HotNews" xml:space="preserve">
+    <value>ホットニュース</value>
+  </data>
+  <data name="HowAffilliateTitle" xml:space="preserve">
+    <value>どうゆう仕組みですか？</value>
+  </data>
+  <data name="HowAffilliateWork" xml:space="preserve">
+    <value>12BETアフィリエイトとして、お客様のサイトからトラッキング・コードを使用して人を当サイトに導くだけで結構です。</value>
+  </data>
+  <data name="HowCanICheck" xml:space="preserve">
+    <value>どのように収益を確認できますか？</value>
+  </data>
+  <data name="HowDoesItWork" xml:space="preserve">
+    <value>どうゆう仕組みですか？</value>
+  </data>
+  <data name="HowDoesTheSystem" xml:space="preserve">
+    <value>私が紹介したメンバーのシステムはどのように記録されますか？</value>
+  </data>
+  <data name="HowDoISignUp" xml:space="preserve">
+    <value>12BETアフィリエイト・プログラムに登録する方法？</value>
+  </data>
+  <data name="Howeveryoucanvisit" xml:space="preserve">
+    <value>{url}こちらからパスワードの変更はいつでも出来ます。</value>
+  </data>
+  <data name="HowMuchYouEarn" xml:space="preserve">
+    <value>お客様のWebサイトからどれだけのトラフィックを当サイトに導けるかで収益は大きく左右されます。メンバー様の登録、入金作業そして魅力的なマーケットの中でベットを活気的に行なっていただけるよう弊社が責任を持って行います。</value>
+  </data>
+  <data name="HowOftenCanIRequest" xml:space="preserve">
+    <value>引出し申請はどのくらいの頻度で行えますか？</value>
+  </data>
+  <data name="HowToBet" xml:space="preserve">
+    <value>賭け方</value>
+  </data>
+  <data name="HtmlFormat" xml:space="preserve">
+    <value>Htmlフォーマット</value>
+  </data>
+  <data name="Hungary" xml:space="preserve">
+    <value>ハンガリー</value>
+  </data>
+  <data name="IagreetotheTerm" xml:space="preserve">
+    <value>12BET.comアフィリエイトの諸条件に同意します。</value>
+  </data>
+  <data name="Iceland" xml:space="preserve">
+    <value>アイスランド</value>
+  </data>
+  <data name="ID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="Ifwecontinue" xml:space="preserve">
+    <value>f. 本契約の終了後も継続してお客様の活動（利益の発生）を許諾しても、本契約終了の撤回、または契約書の更新、継続することにはなりません。</value>
+  </data>
+  <data name="Ifyouareexperie" xml:space="preserve">
+    <value>更なる問題が発生する場合はお問い合わせください。</value>
+  </data>
+  <data name="IfYouDecide" xml:space="preserve">
+    <value>もし、本契約書の諸条件に同意いただけない場合は、バナーコード、テキストリンクコード、プロモーションコピーまたは、その他の12BETに関する情報をダウンロードなさらないで下さい。</value>
+  </data>
+  <data name="Ifyouhaveanyque" xml:space="preserve">
+    <value>質問があったり助けが必要な場合はお気軽にお問い合わせください。</value>
+  </data>
+  <data name="IfYouHaveAnyQuestions" xml:space="preserve">
+    <value>アフィリエイト収入に関する質問がある場合は{mail}までお気軽にご連絡ください。</value>
+  </data>
+  <data name="Ifyouhavefailed" xml:space="preserve">
+    <value>d. 万が一お客様が義務と責任を果たせなかった場合、本来お支払いするべき紹介料は支払われません。</value>
+  </data>
+  <data name="IfYourTotal" xml:space="preserve">
+    <value>もし1月のネット利益が$3,500だった場合、お客様はその30%をその月の利益として受け取ることができます。</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>イメージ</value>
+  </data>
+  <data name="ImageType" xml:space="preserve">
+    <value>タイプ</value>
+  </data>
+  <data name="Important" xml:space="preserve">
+    <value>重要</value>
+  </data>
+  <data name="Indemnity" xml:space="preserve">
+    <value>11.損害賠償</value>
+  </data>
+  <data name="IndependentInvestigation" xml:space="preserve">
+    <value>14.個別調査について</value>
+  </data>
+  <data name="India" xml:space="preserve">
+    <value>インド</value>
+  </data>
+  <data name="Indonesia" xml:space="preserve">
+    <value>インドネシア</value>
+  </data>
+  <data name="Indonesian" xml:space="preserve">
+    <value>Indonesian</value>
+  </data>
+  <data name="InputRequestAmo" xml:space="preserve">
+    <value>依頼する金額を入力してください（米ドル）</value>
+  </data>
+  <data name="Inserttransacti" xml:space="preserve">
+    <value>挿入取引に失敗しました</value>
+  </data>
+  <data name="Intheeventoftermination" xml:space="preserve">
+    <value>2. 本契約の終了の際に</value>
+  </data>
+  <data name="Invalidaffiliat" xml:space="preserve">
+    <value>アフィリエイト情報が無効です</value>
+  </data>
+  <data name="Invalidbalancea" xml:space="preserve">
+    <value>無効な残高、もしくは指定の通貨、支払方法がサポートされていません</value>
+  </data>
+  <data name="InvalidCustID" xml:space="preserve">
+    <value>顧客IDが無効です</value>
+  </data>
+  <data name="Invalidrequesta" xml:space="preserve">
+    <value>請求金額に誤りがあります！可能な金額の範囲</value>
+  </data>
+  <data name="InvalidRoleID" xml:space="preserve">
+    <value>ロールIDが無効です</value>
+  </data>
+  <data name="Invaliduserinfo" xml:space="preserve">
+    <value>ユーザー情報が無効です。アップデートできませんでした</value>
+  </data>
+  <data name="INWITNESSWHEREOF" xml:space="preserve">
+    <value>16.以上の証として</value>
+  </data>
+  <data name="IP" xml:space="preserve">
+    <value>IP</value>
+  </data>
+  <data name="Iran" xml:space="preserve">
+    <value>イラン</value>
+  </data>
+  <data name="Iraq" xml:space="preserve">
+    <value>イラク</value>
+  </data>
+  <data name="Ireland" xml:space="preserve">
+    <value>アイルランド</value>
+  </data>
+  <data name="IsInvalid" xml:space="preserve">
+    <value>が無効です</value>
+  </data>
+  <data name="Israel" xml:space="preserve">
+    <value>イスラエル</value>
+  </data>
+  <data name="IsRequired" xml:space="preserve">
+    <value>が必要です</value>
+  </data>
+  <data name="Italy" xml:space="preserve">
+    <value>イタリア</value>
+  </data>
+  <data name="Itistheaffiliates" xml:space="preserve">
+    <value>4.新しいお客様への追跡と支払を可能にするために、正しいリンクとタグの貼り方はお客様の責任にて行なってください</value>
+  </data>
+  <data name="Jamaica" xml:space="preserve">
+    <value>ジャマイカ</value>
+  </data>
+  <data name="Jan" xml:space="preserve">
+    <value>1月</value>
+  </data>
+  <data name="January" xml:space="preserve">
+    <value>1月</value>
+  </data>
+  <data name="Japan" xml:space="preserve">
+    <value>日本</value>
+  </data>
+  <data name="Japanese" xml:space="preserve">
+    <value>日本</value>
+  </data>
+  <data name="JoinThe12BetAffiliate" xml:space="preserve">
+    <value>12BETアフィリエイト・プログラムに参加する</value>
+  </data>
+  <data name="Jordan" xml:space="preserve">
+    <value>ヨルダン</value>
+  </data>
+  <data name="Jul" xml:space="preserve">
+    <value>7月</value>
+  </data>
+  <data name="July" xml:space="preserve">
+    <value>7月</value>
+  </data>
+  <data name="Jun" xml:space="preserve">
+    <value>6月</value>
+  </data>
+  <data name="June" xml:space="preserve">
+    <value>6月</value>
+  </data>
+  <data name="Kenya" xml:space="preserve">
+    <value>ケニア</value>
+  </data>
+  <data name="Korean" xml:space="preserve">
+    <value>한국어</value>
+  </data>
+  <data name="KoreaRep" xml:space="preserve">
+    <value>韓国</value>
+  </data>
+  <data name="Kuwait" xml:space="preserve">
+    <value>クウェート</value>
+  </data>
+  <data name="LandingPages" xml:space="preserve">
+    <value>ランディングページ統計</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>使用する言語</value>
+  </data>
+  <data name="LaoPeoplesDemRep" xml:space="preserve">
+    <value>ラオス</value>
+  </data>
+  <data name="Last6Month" xml:space="preserve">
+    <value>過去6ヶ月の利益</value>
+  </data>
+  <data name="Last6MonthsEarn" xml:space="preserve">
+    <value>過去6ヶ月の利益</value>
+  </data>
+  <data name="LastNameIsRequired" xml:space="preserve">
+    <value>お名前 (名)を入力して下さい</value>
+  </data>
+  <data name="Latvia" xml:space="preserve">
+    <value>ラトビア</value>
+  </data>
+  <data name="lblSecureQuestion" xml:space="preserve">
+    <value>セキュリティ質問</value>
+  </data>
+  <data name="lblYourAnswer" xml:space="preserve">
+    <value>その答え</value>
+  </data>
+  <data name="LegalResponsibility" xml:space="preserve">
+    <value>7.法律上の責任</value>
+  </data>
+  <data name="Lesotho" xml:space="preserve">
+    <value>レソト</value>
+  </data>
+  <data name="Liechtenstein" xml:space="preserve">
+    <value>リヒテンシュタイン</value>
+  </data>
+  <data name="LimitationofLiability" xml:space="preserve">
+    <value>13.賠償責任の制限</value>
+  </data>
+  <data name="LimitedLicense" xml:space="preserve">
+    <value>6. 限定ライセンス</value>
+  </data>
+  <data name="LinkTo" xml:space="preserve">
+    <value>へのリンク</value>
+  </data>
+  <data name="Lithuania" xml:space="preserve">
+    <value>リトアニア</value>
+  </data>
+  <data name="LName" xml:space="preserve">
+    <value>お名前 (名)</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>ログイン</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>ログアウト</value>
+  </data>
+  <data name="Luxembourg" xml:space="preserve">
+    <value>ルクセンブルク</value>
+  </data>
+  <data name="Macao" xml:space="preserve">
+    <value>マカオ</value>
+  </data>
+  <data name="Macedonia" xml:space="preserve">
+    <value>マケドニア</value>
+  </data>
+  <data name="Madagascar" xml:space="preserve">
+    <value>マダガスカル</value>
+  </data>
+  <data name="MailingInfor" xml:space="preserve">
+    <value>居住地情報</value>
+  </data>
+  <data name="MakeYourTrafficDay" xml:space="preserve">
+    <value>トラフィックが利益を生む！</value>
+  </data>
+  <data name="MakeYourTrafficDayContent" xml:space="preserve">
+    <value>12BETにプレーヤーを紹介して生涯続くコミッションをゲットしよう。最高の変換、記録レートで最高の利益。紹介活動感謝します。</value>
+  </data>
+  <data name="Malawi" xml:space="preserve">
+    <value>マラウイ</value>
+  </data>
+  <data name="Malaysia" xml:space="preserve">
+    <value>マレーシア</value>
+  </data>
+  <data name="Maldives" xml:space="preserve">
+    <value>モルジブ</value>
+  </data>
+  <data name="Male" xml:space="preserve">
+    <value>男性</value>
+  </data>
+  <data name="Mali" xml:space="preserve">
+    <value>マリ</value>
+  </data>
+  <data name="Malta" xml:space="preserve">
+    <value>マルタ島</value>
+  </data>
+  <data name="ManageAccount" xml:space="preserve">
+    <value>アカウント管理</value>
+  </data>
+  <data name="Mar" xml:space="preserve">
+    <value>3月</value>
+  </data>
+  <data name="March" xml:space="preserve">
+    <value>3月</value>
+  </data>
+  <data name="Marketing" xml:space="preserve">
+    <value>マーケティング</value>
+  </data>
+  <data name="MarketingTracking" xml:space="preserve">
+    <value>マーケティングとトラッキングについて</value>
+  </data>
+  <data name="Mauritania" xml:space="preserve">
+    <value>モーリタニア</value>
+  </data>
+  <data name="Mauritius" xml:space="preserve">
+    <value>モーリシャス</value>
+  </data>
+  <data name="MaxAmt" xml:space="preserve">
+    <value>最高額</value>
+  </data>
+  <data name="MaxAmt_explain" xml:space="preserve">
+    <value>メンバーのネット負け金額の最高合計</value>
+  </data>
+  <data name="MaxQM" xml:space="preserve">
+    <value>最高QM</value>
+  </data>
+  <data name="MaxQM_explain" xml:space="preserve">
+    <value>最高資格メンバー</value>
+  </data>
+  <data name="May" xml:space="preserve">
+    <value>5月</value>
+  </data>
+  <data name="May_short" xml:space="preserve">
+    <value>5月</value>
+  </data>
+  <data name="Media" xml:space="preserve">
+    <value>メディア・ギャラリー</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>メッセージ</value>
+  </data>
+  <data name="MessageHistory" xml:space="preserve">
+    <value>メッセージ履歴</value>
+  </data>
+  <data name="MessageSent" xml:space="preserve">
+    <value>メッセージが送られました</value>
+  </data>
+  <data name="MessageSentFail" xml:space="preserve">
+    <value>メッセージ送信に失敗しました</value>
+  </data>
+  <data name="MessageSentFailContent" xml:space="preserve">
+    <value>メール送信に問題があります。{br}しばらくたってからご連絡ください。</value>
+  </data>
+  <data name="MessageSentReview" xml:space="preserve">
+    <value>
+        お問い合わせありがとうございます {br}
+        メッセージが送信されました。早急に返信いたします。 {br}
+        ご質問等ございましたらお気軽に1-34354-3454までご連絡願います。{br}{br}
+        いい一日を！ {br}{br}
+        敬具, {br}{br}
+        12BETアフィリエイト・サポートチーム
+    </value>
+  </data>
+  <data name="Mexico" xml:space="preserve">
+    <value>メキシコ</value>
+  </data>
+  <data name="MinAmt" xml:space="preserve">
+    <value>最少金額</value>
+  </data>
+  <data name="MinAmt_explain" xml:space="preserve">
+    <value>メンバーのネット負け金額の最少合計</value>
+  </data>
+  <data name="MinQM" xml:space="preserve">
+    <value>最少QM</value>
+  </data>
+  <data name="MinQM_explain" xml:space="preserve">
+    <value>最少資格メンバー</value>
+  </data>
+  <data name="MinWithdraw" xml:space="preserve">
+    <value>最少引出金額</value>
+  </data>
+  <data name="Miscellaneous" xml:space="preserve">
+    <value>8.その他</value>
+  </data>
+  <data name="Mobile" xml:space="preserve">
+    <value>MSNアカウント</value>
+  </data>
+  <data name="Moldova" xml:space="preserve">
+    <value>モルドバ</value>
+  </data>
+  <data name="MoneyBooker" xml:space="preserve">
+    <value>マネーブッカーズ</value>
+  </data>
+  <data name="Moneybookers" xml:space="preserve">
+    <value>マネーブッカーズ</value>
+  </data>
+  <data name="MoneybookersEma" xml:space="preserve">
+    <value>マネーブッカーズのメールが無効です</value>
+  </data>
+  <data name="Mongolia" xml:space="preserve">
+    <value>モンゴル</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>月</value>
+  </data>
+  <data name="MonthlyWinlost" xml:space="preserve">
+    <value>月次の勝敗</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>詳細</value>
+  </data>
+  <data name="Morocco" xml:space="preserve">
+    <value>モロッコ</value>
+  </data>
+  <data name="Msgkickout" xml:space="preserve">
+    <value>別のセッションがログインされたかお客様のセッションの期限が切れました。強制的にログアウトします！</value>
+  </data>
+  <data name="MyAcc" xml:space="preserve">
+    <value>マイ・アカウント</value>
+  </data>
+  <data name="Myanmar" xml:space="preserve">
+    <value>ミャンマー</value>
+  </data>
+  <data name="MyHome" xml:space="preserve">
+    <value>マイ・ホーム</value>
+  </data>
+  <data name="MYR" xml:space="preserve">
+    <value>MYR(マレーシアリンギット)</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>名前</value>
+  </data>
+  <data name="NameIsInvalid" xml:space="preserve">
+    <value>名前が無効です</value>
+  </data>
+  <data name="Namibia" xml:space="preserve">
+    <value>ナミビア</value>
+  </data>
+  <data name="Nauru" xml:space="preserve">
+    <value>ナウル</value>
+  </data>
+  <data name="NegativeBalance" xml:space="preserve">
+    <value>マイナス残高</value>
+  </data>
+  <data name="Negativeearningsarecarried" xml:space="preserve">
+    <value>6.マイナスの収益は翌月に繰り越されますが、アフィリエイトの残高が月末でプラスになり、条件を満たしている際、プラス残高に対して収益が支払われます。</value>
+  </data>
+  <data name="Nepal" xml:space="preserve">
+    <value>ネパール</value>
+  </data>
+  <data name="NetEarnings" xml:space="preserve">
+    <value>ネット利益</value>
+  </data>
+  <data name="Neteller" xml:space="preserve">
+    <value>ネッテラー</value>
+  </data>
+  <data name="NetellerAccount" xml:space="preserve">
+    <value>ネッテラーIDが必要です</value>
+  </data>
+  <data name="Netherlands" xml:space="preserve">
+    <value>オランダ</value>
+  </data>
+  <data name="NetWinLoss" xml:space="preserve">
+    <value>今月の当社のネット利益 (CNW)($)</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="NewCaledonia" xml:space="preserve">
+    <value>ニューカレドニア</value>
+  </data>
+  <data name="NewPass" xml:space="preserve">
+    <value>新しいパスワード</value>
+  </data>
+  <data name="NewPasswordisre" xml:space="preserve">
+    <value>新しいパスワードが必要です</value>
+  </data>
+  <data name="NewSignup" xml:space="preserve">
+    <value>新しいサインアップ</value>
+  </data>
+  <data name="NewTrackingCode" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="NewZealand" xml:space="preserve">
+    <value>ニュージーランド</value>
+  </data>
+  <data name="Niger" xml:space="preserve">
+    <value>ニジェール</value>
+  </data>
+  <data name="Nigeria" xml:space="preserve">
+    <value>ナイジェリア</value>
+  </data>
+  <data name="NoInfo" xml:space="preserve">
+    <value>情報がありません</value>
+  </data>
+  <data name="NonDeposit" xml:space="preserve">
+    <value>預入金なしのアカウントのみ</value>
+  </data>
+  <data name="none" xml:space="preserve">
+    <value>なし</value>
+  </data>
+  <data name="NonWaiver" xml:space="preserve">
+    <value>2. 権利不放棄</value>
+  </data>
+  <data name="Normal" xml:space="preserve">
+    <value>ノーマル</value>
+  </data>
+  <data name="Norway" xml:space="preserve">
+    <value>ノルウェー</value>
+  </data>
+  <data name="Nov" xml:space="preserve">
+    <value>11月</value>
+  </data>
+  <data name="November" xml:space="preserve">
+    <value>11月</value>
+  </data>
+  <data name="NoWebsite" xml:space="preserve">
+    <value>ウェブサイトを持っていません</value>
+  </data>
+  <data name="NumberGame" xml:space="preserve">
+    <value>ナンバー・ゲーム</value>
+  </data>
+  <data name="Oct" xml:space="preserve">
+    <value>10月</value>
+  </data>
+  <data name="October" xml:space="preserve">
+    <value>10月</value>
+  </data>
+  <data name="Of" xml:space="preserve">
+    <value>Of</value>
+  </data>
+  <data name="OldPass" xml:space="preserve">
+    <value>旧パスワード</value>
+  </data>
+  <data name="OldPassandNewPass" xml:space="preserve">
+    <value>旧パスワードと新パスワードが必要です！</value>
+  </data>
+  <data name="OldPassErr" xml:space="preserve">
+    <value>旧パスワードが間違っています</value>
+  </data>
+  <data name="Oldpasswordandn" xml:space="preserve">
+    <value>旧パスワードと新パスワードが必要です！</value>
+  </data>
+  <data name="OldPasswordisre" xml:space="preserve">
+    <value>旧パスワードが必要です</value>
+  </data>
+  <data name="Oman" xml:space="preserve">
+    <value>オマーン</value>
+  </data>
+  <data name="OneTwoBETassumeownership" xml:space="preserve">
+    <value>1.12BETは最初に顧客とコンタクトした時点で顧客を所有したとみなします。顧客は12BETの紹介代理店として活動します。場合によっては必要事項に沿って、当社は顧客の拒否(またはアカウントの削除)を行う権利を有します。</value>
+  </data>
+  <data name="OneTwoBETwillpayout" xml:space="preserve">
+    <value>1.12BETは、12BETアフィリエイト・プログラムのコミッション構造に示す方法で、またお客様がアフィリエイトであり続ける限り、各月の最低6人のアクティブ・ベット・会員様の実績に基づいて、コミッションをお支払いします&lt;p&gt;アフィリエイトはメンバー様によってプレイされた新たなプレイ金額がコミッションに反映されているように、アフィリエイトは12BETに対し二ヶ月以上の間アフィリエイト活動、促進、推進が行われていない事が発覚した場合、12BETはアフィリエイトの意志の関係なく6名のアクティブ・ベット・会員様からのコミッションの一部もしくは全額、いずれか、または特定の月のアフィリエイトコミッション支払いを保留する権利を持つこととします。またメンバー様によって新たにプレイされた金額が反映されているようにアフィリエイトWebサイト上で12BETバナーの欠如、及びその他オンライン、オフラインでのプロモーション活動の欠如が発覚した場合12BETはアフィリエイトや関連会社に対しコミッション支払いの差し控え、または手数料が発生するかどうか独自の裁量で判断できる権利を持つこととします。&lt;/p&gt;&lt;p&gt;
+またアフィリエイトアカウントでメンバー様による新たなプレイが発生するまではコミッションの受け取りをご遠慮して頂きます。六ヶ月を超える期間で差し控えされた裁量でのコミッションは12BETの判断で無効にすることもできます。&lt;/p&gt;</value>
+  </data>
+  <data name="Onlinebettingsp" xml:space="preserve">
+    <value>12BET,comでオンライン・ベティング、スポーツ・べティング&amp;フットボール・ベティング</value>
+  </data>
+  <data name="OnlineSupport" xml:space="preserve">
+    <value>24時間365日お客様をサポート</value>
+  </data>
+  <data name="OnlineSupportDetail" xml:space="preserve">
+    <value>バナーに関する問い合わせ、マーケティングのヒント、最大限の利益の出し方等にお答えするために、経験豊富なアフィリエイト・マネージャー・スタッフがほぼ24時間、365日お客様をサポートします。</value>
+  </data>
+  <data name="OnlyApprovedAndProperly" xml:space="preserve">
+    <value>1. 12BETを推奨するのは、当社が提供する、正式にタグ付けされた素材のみ可能です。宣伝や個人的な紹介も可能ですが、その際に使用する素材は事前に書面による当社の承認が必要です。また承認が不条理に棄却されることはございません</value>
+  </data>
+  <data name="Onlyproperlytaggedcustomers" xml:space="preserve">
+    <value>2. 正式にタグ付けされた会員様のみアフィリエイトに紐付けとされます。またアフィリエイトタグが不適切にサイトに挿入されていたり、12BETのウェブサーバーに不適切に届いたりしていた場合、会員様の登録及び購入活動がアフィリエイトに紐付けられないことにつながります。従って全てのリンクが正しくタグ付けされていることは、アフィリエイトの責任でご確認願います</value>
+  </data>
+  <data name="Otherwiseplease" xml:space="preserve">
+    <value>または下記のリンクにアクセスしてください。すぐに新しいパスワードがメールで送られます。</value>
+  </data>
+  <data name="Ourfailuretoenforce" xml:space="preserve">
+    <value>a. 会員様の契約書のある規定条項の遂行を当社が実現できなくとも、その他の規定条項の遂行を実施することの免責にはつながりません。この契約書の変更、追加、削除、行間挿入は一切認められず、またそのような行為は必ず認識されます。当社の社員、役員または代理人は口頭等で、契約書の規定条項を修正、変更、撤回することは一切有りません</value>
+  </data>
+  <data name="Ourrightsandremedies" xml:space="preserve">
+    <value>a. 当社の権利及び下記の改善策は相互に排他的なものではありません。すなわち1つまたはそれ以上の規定条項の行使は、それ以外の規定条項の行使を妨げるものではありません。当契約書の規定条項違反または違反の危険のある行為は、損害では十分に表現できないことであり、実際にそれらの違反が行われた際は、該当する関係者の権利、義務が、特定の履行、強制命令または公平な改善策により強制執行されます。当社の権利を法的または法律とは関係なしに、当契約書の規定条項違反または違反の危険のある行為に対し制限または影響する内容は当契約書には存在しません。そしてそれが当社の権利と義務を法的または法律とは関係なしに公平に執行することを明確にすることがその目的です。</value>
+  </data>
+  <data name="Ownershipandcontent" xml:space="preserve">
+    <value>1.当サイトの所有権、及びコンテンツは当社の資産であり、アフィリエイト契約書に関するいかなる行為、または不作為により、アフィリエイトに移行するものではありません</value>
+  </data>
+  <data name="Ownershipcontentandliability" xml:space="preserve">
+    <value>2.アフィリエイトサイトの所有権、コンテンツ及び法的責任はアフィリエイトが一切の責任を負うものとします。あなたのサイトの開発、運営、維持、またサイトに存在する素材に対し、御自身の費用により絶対の責任を負うものとします。</value>
+  </data>
+  <data name="OwnWebsite" xml:space="preserve">
+    <value>自分のウェブサイトを持っています</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>ページ</value>
+  </data>
+  <data name="PageSize" xml:space="preserve">
+    <value>ページ・サイズ</value>
+  </data>
+  <data name="Pakistan" xml:space="preserve">
+    <value>パキスタン</value>
+  </data>
+  <data name="Panama" xml:space="preserve">
+    <value>パナマ</value>
+  </data>
+  <data name="PapuaNewGuinea" xml:space="preserve">
+    <value>パプアニューギニア</value>
+  </data>
+  <data name="Paraguay" xml:space="preserve">
+    <value>パラグアイ</value>
+  </data>
+  <data name="PassCheck" xml:space="preserve">
+    <value>パスワードは最低6文字で、最低2つのアルファベットと最低2つの数字を含んでいないといけません。（例：pass22)</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>パスワード</value>
+  </data>
+  <data name="Passwordchanged" xml:space="preserve">
+    <value>パスワードが変更されました</value>
+  </data>
+  <data name="PaymentErr1001" xml:space="preserve">
+    <value>申し訳ございません。金額が無効です</value>
+  </data>
+  <data name="PaymentErr1002" xml:space="preserve">
+    <value>ロールIDが無効です</value>
+  </data>
+  <data name="PaymentErr1003" xml:space="preserve">
+    <value>申し訳ございません。このアフィリエイトの口座には引出すのに十分な残高がありません</value>
+  </data>
+  <data name="PaymentErr1004" xml:space="preserve">
+    <value>無効な残高、もしくは指定の通貨、支払方法がサポートされていません</value>
+  </data>
+  <data name="PaymentErr1005" xml:space="preserve">
+    <value>申し訳ございません。金額は＿＿＿以上でないといけません</value>
+  </data>
+  <data name="PaymentErr1006" xml:space="preserve">
+    <value>挿入取引に失敗しました</value>
+  </data>
+  <data name="PaymentErr1007" xml:space="preserve">
+    <value>挿入取引に失敗しました</value>
+  </data>
+  <data name="PaymentInfor" xml:space="preserve">
+    <value>支払情報</value>
+  </data>
+  <data name="PaymentMethod" xml:space="preserve">
+    <value>支払方法</value>
+  </data>
+  <data name="PaymentRequest" xml:space="preserve">
+    <value>支払依頼</value>
+  </data>
+  <data name="PayoutSuccess" xml:space="preserve">
+    <value>支払依頼が送信されました</value>
+  </data>
+  <data name="PayoutTime" xml:space="preserve">
+    <value>支払依頼が可能なのは各月の8日から15日の間です</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>保留</value>
+  </data>
+  <data name="PendingComm" xml:space="preserve">
+    <value>保留コミッション</value>
+  </data>
+  <data name="PendingRequest" xml:space="preserve">
+    <value>依頼保留中</value>
+  </data>
+  <data name="PersonalizedSite" xml:space="preserve">
+    <value>個人サイト</value>
+  </data>
+  <data name="Peru" xml:space="preserve">
+    <value>ペルー</value>
+  </data>
+  <data name="Philippines" xml:space="preserve">
+    <value>フィリピン</value>
+  </data>
+  <data name="PlainText" xml:space="preserve">
+    <value>プレーンテキスト</value>
+  </data>
+  <data name="Pleasecheckyour" xml:space="preserve">
+    <value>お客様のユーザー名とパスワードの詳細はメールを確認して下さい</value>
+  </data>
+  <data name="PleaseNote" xml:space="preserve">
+    <value>注意</value>
+  </data>
+  <data name="Pleaseselectcou" xml:space="preserve">
+    <value>居住国名を選択してください</value>
+  </data>
+  <data name="Pleaseselectpre" xml:space="preserve">
+    <value>使用言語を選択してください</value>
+  </data>
+  <data name="Poker" xml:space="preserve">
+    <value>ポーカー</value>
+  </data>
+  <data name="Poland" xml:space="preserve">
+    <value>ポーランド</value>
+  </data>
+  <data name="PoliciesConfidentiality" xml:space="preserve">
+    <value>5. 方針と守秘義務</value>
+  </data>
+  <data name="Portugal" xml:space="preserve">
+    <value>ポルトガル</value>
+  </data>
+  <data name="PostCode" xml:space="preserve">
+    <value>郵便番号[半角]</value>
+  </data>
+  <data name="PostcodeZiIsRequired" xml:space="preserve">
+    <value>郵便番号[半角]を入力して下さい</value>
+  </data>
+  <data name="PostDate" xml:space="preserve">
+    <value>掲載日</value>
+  </data>
+  <data name="Preference" xml:space="preserve">
+    <value>プリファレンス設定</value>
+  </data>
+  <data name="PreferLang" xml:space="preserve">
+    <value>プリファレンス設定</value>
+  </data>
+  <data name="PreferLangErr" xml:space="preserve">
+    <value>使用言語を選択してください</value>
+  </data>
+  <data name="Preferredpaymen" xml:space="preserve">
+    <value>ご希望の支払方法</value>
+  </data>
+  <data name="Presentationofourbanners" xml:space="preserve">
+    <value>5.アフィリエイトサイトにおける当社のバナー及びコンテンツの表示は、アフィリエイト側の責任において行なって頂きます。アフィリエイトは、確実に当社のガイドラインに沿った方法でコンテンツが表示されることを行なって頂きます。</value>
+  </data>
+  <data name="Proccessing" xml:space="preserve">
+    <value>処理中</value>
+  </data>
+  <data name="ProgDetails" xml:space="preserve">
+    <value>プログラム詳細</value>
+  </data>
+  <data name="Promotional" xml:space="preserve">
+    <value>プロモーション詳細</value>
+  </data>
+  <data name="PromptMonthly" xml:space="preserve">
+    <value>月ごとの迅速な支払</value>
+  </data>
+  <data name="PSP" xml:space="preserve">
+    <value>PSP</value>
+  </data>
+  <data name="PwdChanged" xml:space="preserve">
+    <value>パスワードが変更されました</value>
+  </data>
+  <data name="Qatar" xml:space="preserve">
+    <value>カタール</value>
+  </data>
+  <data name="QualifiedMember" xml:space="preserve">
+    <value>{num} 資格メンバー</value>
+  </data>
+  <data name="QualifyingMem" xml:space="preserve">
+    <value>資格メンバー</value>
+  </data>
+  <data name="Racebook" xml:space="preserve">
+    <value>レースブック</value>
+  </data>
+  <data name="RecentPayment" xml:space="preserve">
+    <value>最近の支払</value>
+  </data>
+  <data name="ReEmail" xml:space="preserve">
+    <value>確認用 Eメールアドレス(再入力)</value>
+  </data>
+  <data name="ReenterNewPassw" xml:space="preserve">
+    <value>新パスワードの再入力が無効です</value>
+  </data>
+  <data name="Referrals" xml:space="preserve">
+    <value>紹介統計</value>
+  </data>
+  <data name="RefNo" xml:space="preserve">
+    <value>リファレンス番号</value>
+  </data>
+  <data name="RegisForm" xml:space="preserve">
+    <value>ご登録フォーム</value>
+  </data>
+  <data name="RegisSubject" xml:space="preserve">
+    <value>12BETアフィリエイト - お客様の申請</value>
+  </data>
+  <data name="RegisSuccess" xml:space="preserve">
+    <value>登録申請ありがとうございます。登録申請内容とお客様のウェブサイトが適切であるかを12BETアフィリエイトスタッフが確認致します。5日以内に申請に対する結果を提供いたします。承認後、アフィリエイト・プログラムの全てにアクセスすることができるようになります。
+
+12BETアフィリエイト・チーム</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>拒否されました</value>
+  </data>
+  <data name="RelationshipofParties" xml:space="preserve">
+    <value>10. メンバー様と当社の関係について</value>
+  </data>
+  <data name="Remedies" xml:space="preserve">
+    <value>3. 解決策</value>
+  </data>
+  <data name="RePass" xml:space="preserve">
+    <value>新パスワードを再度入力してください</value>
+  </data>
+  <data name="RequestAmount" xml:space="preserve">
+    <value>申請金額</value>
+  </data>
+  <data name="Requestamountmu" xml:space="preserve">
+    <value>申請金額は最少引出額以上でないといけません</value>
+  </data>
+  <data name="RequestAmt" xml:space="preserve">
+    <value>申請金額を入力してください（米ドル)</value>
+  </data>
+  <data name="RequestPayout" xml:space="preserve">
+    <value>支払申請</value>
+  </data>
+  <data name="RequestPayoutSucc" xml:space="preserve">
+    <value>支払申請を受け付けました</value>
+  </data>
+  <data name="Requestreferenc" xml:space="preserve">
+    <value>申請リファレンス番号は{transid}、日付{date}</value>
+  </data>
+  <data name="RequireInfo" xml:space="preserve">
+    <value>&lt;font color="red"&gt;*&lt;/font&gt;必須項目です</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>リセット</value>
+  </data>
+  <data name="ResponOfTheAff" xml:space="preserve">
+    <value>1. アフィリエイトメンバーの責任</value>
+  </data>
+  <data name="RevenueSharing" xml:space="preserve">
+    <value>4. 利益シェアリング＆支払</value>
+  </data>
+  <data name="RMB" xml:space="preserve">
+    <value>RMB(中国元)</value>
+  </data>
+  <data name="Romania" xml:space="preserve">
+    <value>ルーマニア</value>
+  </data>
+  <data name="Roulette" xml:space="preserve">
+    <value>ルーレット</value>
+  </data>
+  <data name="RussianFederation" xml:space="preserve">
+    <value>ロシア</value>
+  </data>
+  <data name="Rwanda" xml:space="preserve">
+    <value>ルワンダ</value>
+  </data>
+  <data name="SaintChristopherStKittsandNevis" xml:space="preserve">
+    <value>セントクリストファー・ネイビス</value>
+  </data>
+  <data name="SaintLucia" xml:space="preserve">
+    <value>セントルシア</value>
+  </data>
+  <data name="SaintVincentandtheGrenadines" xml:space="preserve">
+    <value>セントビンセント・グレナディーン</value>
+  </data>
+  <data name="SaoTomeandPrincipe" xml:space="preserve">
+    <value>サントメ・プリンシペ</value>
+  </data>
+  <data name="SaudiArabia" xml:space="preserve">
+    <value>サウジアラビア</value>
+  </data>
+  <data name="SBBonus" xml:space="preserve">
+    <value>SBボーナス</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>検索</value>
+  </data>
+  <data name="SecureQuestionGuide" xml:space="preserve">
+    <value>※セキュリティ質問と回答はお客様のIDの確認に使用します。</value>
+  </data>
+  <data name="SecurityQuestionUpdated" xml:space="preserve">
+    <value>セキュリティ質問と回答がアップデートされました！</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>選択</value>
+  </data>
+  <data name="SelectOne" xml:space="preserve">
+    <value>☆選択☆</value>
+  </data>
+  <data name="Senegal" xml:space="preserve">
+    <value>セネガル</value>
+  </data>
+  <data name="Sept" xml:space="preserve">
+    <value>9月</value>
+  </data>
+  <data name="September" xml:space="preserve">
+    <value>9月</value>
+  </data>
+  <data name="SeverabilityWaiver" xml:space="preserve">
+    <value>4. 条項 / 権利放棄</value>
+  </data>
+  <data name="Seychelles" xml:space="preserve">
+    <value>セーシェル</value>
+  </data>
+  <data name="Shouldtheplayer" xml:space="preserve">
+    <value>b. プレーヤーがチェックバックを行った時、チャージバックされた、またはその協議中の金額は放棄され、従ってその月のお客様に支払われる金額から引かれます。</value>
+  </data>
+  <data name="Shouldtheseexpenses" xml:space="preserve">
+    <value>b. 費用に関してメンバー様のアカウントの資金で補填されるべきではない。例えば引き出しを行う際に代替手段を調査してください：メンバー様のアカウントは、当社が調査、考慮等の間、アカウント手数料の支払いを保管しアカウント作成する必要があります。調査、考慮等が解決されるまで、アカウントが活動口座であってはなりません、当社は口座名義人からの支払い要求する権利を保留手数料の支払いを通じ利益を発生させなければなりません。</value>
+  </data>
+  <data name="Shouldthisdeduction" xml:space="preserve">
+    <value>c. 差引額がお客様の現在の残高を超えると、お客様の残高はマイナスとなり、再度利益を受け取るには、チャージバックの金額を超える利益を獲得する必要があります。</value>
+  </data>
+  <data name="ShouldYouFailToBe" xml:space="preserve">
+    <value>4. 上記の4.1条、4.2条及び4.3条に従い、1ヶ月間に最低6人のアクティブベットメンバーを維持できなかった事により、コミッションを獲得の権利が発生しなかった場合は、当月のコミッションはなし、並びに翌月へ繰り越されることはございません。</value>
+  </data>
+  <data name="Sicbo" xml:space="preserve">
+    <value>シックボー</value>
+  </data>
+  <data name="SierraLeone" xml:space="preserve">
+    <value>シエラレオネ</value>
+  </data>
+  <data name="SignUp" xml:space="preserve">
+    <value>新規ご登録</value>
+  </data>
+  <data name="Sincerely" xml:space="preserve">
+    <value>敬具</value>
+  </data>
+  <data name="Singapore" xml:space="preserve">
+    <value>シンガポール</value>
+  </data>
+  <data name="SiteInfor" xml:space="preserve">
+    <value>ウェブサイト情報</value>
+  </data>
+  <data name="SiteUrl" xml:space="preserve">
+    <value>ウェブサイトURL</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>サイズ</value>
+  </data>
+  <data name="Slot" xml:space="preserve">
+    <value>スロット</value>
+  </data>
+  <data name="Slovakia" xml:space="preserve">
+    <value>スロバキア</value>
+  </data>
+  <data name="Slovenia" xml:space="preserve">
+    <value>スロベニア</value>
+  </data>
+  <data name="Soccer" xml:space="preserve">
+    <value>サッカー</value>
+  </data>
+  <data name="SolomonIslands" xml:space="preserve">
+    <value>ソロモン諸島</value>
+  </data>
+  <data name="Somalia" xml:space="preserve">
+    <value>ソマリア</value>
+  </data>
+  <data name="Sorryamountisin" xml:space="preserve">
+    <value>申し訳ございません。金額が無効です</value>
+  </data>
+  <data name="Sorryamountmust" xml:space="preserve">
+    <value>申し訳ございません。金額は＿＿＿以上でないといけません</value>
+  </data>
+  <data name="Sorrycannotcrea" xml:space="preserve">
+    <value>申し訳ございません。エージェントが作成できません</value>
+  </data>
+  <data name="Sorrycreditupda" xml:space="preserve">
+    <value>申し訳ございません。クレジットのアップデートに失敗しました。マスタークレジットの上限を超えました</value>
+  </data>
+  <data name="SorryMaxPerMatc" xml:space="preserve">
+    <value>申し訳ございません。マッチごとの最高額はマッチごとのマスターエージェントの最高以下でないと行けません。</value>
+  </data>
+  <data name="Sorryminbetmust" xml:space="preserve">
+    <value>申し訳ございません。最少の賭金は、マスターエージェントの最少額以上でないといけません。</value>
+  </data>
+  <data name="SorrythisAffili" xml:space="preserve">
+    <value>申し訳ございません。このアフィリエイトは引出すのに十分な残高がありません</value>
+  </data>
+  <data name="SouthAfrica" xml:space="preserve">
+    <value>南アフリカ</value>
+  </data>
+  <data name="Spain" xml:space="preserve">
+    <value>スペイン</value>
+  </data>
+  <data name="SpamWedonot" xml:space="preserve">
+    <value>8. スパム - スパムに対し当社は容赦しません。</value>
+  </data>
+  <data name="Spanish" xml:space="preserve">
+    <value>Español</value>
+  </data>
+  <data name="SpCommStruct" xml:space="preserve">
+    <value>スポーツブック・コミッション構造</value>
+  </data>
+  <data name="Sport" xml:space="preserve">
+    <value>スポーツ</value>
+  </data>
+  <data name="Sportbook" xml:space="preserve">
+    <value>スポーツベット</value>
+  </data>
+  <data name="SportType" xml:space="preserve">
+    <value>スポーツタイプ</value>
+  </data>
+  <data name="SriLanka" xml:space="preserve">
+    <value>スリランカ</value>
+  </data>
+  <data name="State" xml:space="preserve">
+    <value>都道府県</value>
+  </data>
+  <data name="StateIsRequired" xml:space="preserve">
+    <value>都道府県が必要です</value>
+  </data>
+  <data name="StatementHistory" xml:space="preserve">
+    <value>明細履歴</value>
+  </data>
+  <data name="Statistic" xml:space="preserve">
+    <value>統計</value>
+  </data>
+  <data name="StatisticsDetail" xml:space="preserve">
+    <value>統計詳細</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>ステータス</value>
+  </data>
+  <data name="SubCategory" xml:space="preserve">
+    <value>サブカテゴリ</value>
+  </data>
+  <data name="Subject" xml:space="preserve">
+    <value>サブジェクト</value>
+  </data>
+  <data name="SubjectForgetPass" xml:space="preserve">
+    <value>12BETアフィリエイト - お客様のログイン詳細</value>
+  </data>
+  <data name="SubjectIsInvalid" xml:space="preserve">
+    <value>サブジェクトが無効です</value>
+  </data>
+  <data name="SubjectNewPass" xml:space="preserve">
+    <value>12BETアフィリエイト - お客様の新パスワード</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>送信</value>
+  </data>
+  <data name="Sudan" xml:space="preserve">
+    <value>スーダン</value>
+  </data>
+  <data name="SumPerform" xml:space="preserve">
+    <value>パフォーマンスサマリー</value>
+  </data>
+  <data name="Suriname" xml:space="preserve">
+    <value>スリナム</value>
+  </data>
+  <data name="Swaziland" xml:space="preserve">
+    <value>スワジランド</value>
+  </data>
+  <data name="Sweden" xml:space="preserve">
+    <value>スウェーデン</value>
+  </data>
+  <data name="Switzerland" xml:space="preserve">
+    <value>スイス</value>
+  </data>
+  <data name="Taiwan" xml:space="preserve">
+    <value>台湾</value>
+  </data>
+  <data name="Tanzania" xml:space="preserve">
+    <value>タンザニア</value>
+  </data>
+  <data name="TC_Casino_Content1" xml:space="preserve">
+    <value>12BETは売上共有モデルをカジノに対して提供します。月毎に新規のアクティブメンバー数に基づく累積的モデルです。</value>
+  </data>
+  <data name="TC_Casino_Content2" xml:space="preserve">
+    <value>上記の表「純収益」とは、月毎に関連したプレイヤーが行ったベット額を表わします。： (i) 収益（賞金）(ii) 支払われたボーナス (iii) チャージバック（iv）他に残高、補償または払い戻しがプレイヤーに与えられます。</value>
+  </data>
+  <data name="TC_RevenueShareModel" xml:space="preserve">
+    <value>収益分配モデル</value>
+  </data>
+  <data name="TC_RevenueShareModel_Content" xml:space="preserve">
+    <value>収益分配モデルは2つの構成に分割されています。カジノから収益割当と収益はスポーツブックから分担します。それぞれの計算内容は以下の通りです。アフィリエイトに支払われる総収益は収益分配モデル両方の構成要素の合計です。</value>
+  </data>
+  <data name="TC_Sportbook_Content" xml:space="preserve">
+    <value>12BETは、収益分配モデルをスポーツブックに対し分配します。毎月のアクティブメンバー数に基づく累積モデルであります。</value>
+  </data>
+  <data name="Tennis" xml:space="preserve">
+    <value>テニス</value>
+  </data>
+  <data name="TermCondition" xml:space="preserve">
+    <value>諸条件</value>
+  </data>
+  <data name="TermErr" xml:space="preserve">
+    <value>｛Terms &amp;amp｝;  条件に合意していません。再度確認してください！</value>
+  </data>
+  <data name="TermTermination" xml:space="preserve">
+    <value>9. 期間及び契約解除</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>テキストボックス</value>
+  </data>
+  <data name="TextLink" xml:space="preserve">
+    <value>テキストリンク</value>
+  </data>
+  <data name="Thai" xml:space="preserve">
+    <value>ภาษาไทย</value>
+  </data>
+  <data name="Thailand" xml:space="preserve">
+    <value>タイ</value>
+  </data>
+  <data name="ThaiSupport" xml:space="preserve">
+    <value>タイ語サポート</value>
+  </data>
+  <data name="Thanksforyourre" xml:space="preserve">
+    <value>ご登録ありがとうございます！</value>
+  </data>
+  <data name="ThanksPayment" xml:space="preserve">
+    <value>{winlostdate}付の支払依頼、金額${amount}を頂きありがとうございます。</value>
+  </data>
+  <data name="Thankyouforappl" xml:space="preserve">
+    <value>12BETアフィリエイトのご登録申請ありがとうございます。
+お客様の申請状況を確定するために、3日以内にアフィリエイト・アカウント・マネージャーがメールにてご連絡いたします。</value>
+  </data>
+  <data name="Thankyouforsubm" xml:space="preserve">
+    <value>申請いただきましてありがとうございます</value>
+  </data>
+  <data name="THB" xml:space="preserve">
+    <value>THB(タイバーツ)</value>
+  </data>
+  <data name="The12BETAffiliates" xml:space="preserve">
+    <value>12BETアフィリエイト・プログラムは無償で参加出来ます。申請書{AppForm}に必要事項を記入してください。申請書内容を審査の上3日以内に結果をご連絡します。審査承認後、お客様のアフィリエイトIDと、お客様のWebサイトでご利用いただくバナー、テキストリンク及びその他のコンテンツ及びマーケティングツールへのアクセス方法をEメールでお知らせいたします。</value>
+  </data>
+  <data name="Theabovelinkwi" xml:space="preserve">
+    <value>上記のリンクは今から24時間後に無効になります。</value>
+  </data>
+  <data name="TheCookiesAreOverwritten" xml:space="preserve">
+    <value>メンバーが紹介されると、最後のアフィリエイト情報によりクッキーが上書きされます。</value>
+  </data>
+  <data name="TheCurrenciesOfferedAre" xml:space="preserve">
+    <value>はい、できます。ご利用いただける通貨は英ポンド、ユーロ、中国元、マレーシアリンギット、タイバーツ、インドネシアルピア、ベトナムドンです。支払いが行われる日付けでの為替レートが適用されます。</value>
+  </data>
+  <data name="Theemailaddress" xml:space="preserve">
+    <value>入力頂いたメールアドレスは登録の際使用されています。別のメールアドレスを入力してください！</value>
+  </data>
+  <data name="TheMinimumWithdrawal" xml:space="preserve">
+    <value>お引き出し申請可能な最低金額は$100米国ドルです。</value>
+  </data>
+  <data name="Thenetrevenueplan" xml:space="preserve">
+    <value>7.コミッション構造に基づき計算されるアフィリエイトのコミッション収益は、アフィリエイトが当プログラムに登録されている間、顧客が行う全ての取引に対し支払われます。</value>
+  </data>
+  <data name="Theteamat_12Bet" xml:space="preserve">
+    <value>12BETアフィリエイト・チーム</value>
+  </data>
+  <data name="ThetermofthisAgreement" xml:space="preserve">
+    <value>1. 当契約書の条項は、メンバー様がリンクコードをダウンロードし、当社へのリンクを貼付された段階から有効となり、当事者のいずれかが相手に対し書面にて契約破棄の意思表示をするまで継続されます。そのような意思表示があった際は即座に契約解除となります。いずれにせよ当事者により、いかなる理由でも、自由に破棄できます。その意思表示の手段はEメールにて行い、それを持って書面によるものとし、即座に有効となります。</value>
+  </data>
+  <data name="ThisAgreementDetailsAll" xml:space="preserve">
+    <value>この契約書には、12BETアフィリエイト・プログラムにおける会員向けの諸条件のすべてが詳細に記載されています”メンバー様”、”アフィリエイト”は当契約書に基づき登録された個人、グループ、法人であるあなたを指し、個人または法人を管理する従業員、役員、出資者、所有者も含みます("あなたの”とするときも同様を含みます）。</value>
+  </data>
+  <data name="ThisAgreementshallbegoverned" xml:space="preserve">
+    <value>当契約書はイギリス国法律に準拠するものとします。当契約書に関するあらゆる論争、論議または要求は、仲裁機関が指定する仲裁者を構成する裁判所で判断を下します。仲裁地はイギリスのロンドンとし、仲裁機関が指定する場所で、英語をその言語とし、仲裁機関が決定する規則に従い執り行われます。仲裁裁判所は強制命令を下す権利を持ち、その命令は、当事者にとって強制的、最終的、義務的なものであり、当事者が代わりに他の法域及び機関によるあらゆる上告を放棄する仲裁決断です。</value>
+  </data>
+  <data name="Thisemailaddres" xml:space="preserve">
+    <value>このメールアドレスは、活動していないまたは削除されたアフィリエイトに使用されています。もう一度やり直すかお問い合わせください。</value>
+  </data>
+  <data name="Thisemailwillin" xml:space="preserve">
+    <value>このメールに含まれるリンクをクリックして、メールアドレスの確認と、アカウントを有効にしてください。これで登録作業は完了します。</value>
+  </data>
+  <data name="Thisisasystemau" xml:space="preserve">
+    <value>このメールはシステムから自動的に送信されています。このメールに対する返信はできませんのでご了承ください。</value>
+  </data>
+  <data name="Thislicensecannot" xml:space="preserve">
+    <value>3.このライセンスは、サブライセンスしたり、他人に譲渡、転送出来ません。商標の使用権利は、当ライセンスで認められるバナーの使用に限定されます。商標の無効、履行不能または所有権を、如何なる行動により主張することはできません。また当社のまたは当社にライセンスを許諾する者の商標権に損害をもたらす行動または商標の有効性を害する、または営業権を損なうことはできません。</value>
+  </data>
+  <data name="Thistransaction" xml:space="preserve">
+    <value>この取引は過去にキャンセルされています</value>
+  </data>
+  <data name="Thisusernameisn" xml:space="preserve">
+    <value>このユーザー名は存在しません</value>
+  </data>
+  <data name="Tier" xml:space="preserve">
+    <value>ティア</value>
+  </data>
+  <data name="TitelForgetPass" xml:space="preserve">
+    <value>新しいパスワードがお客様のメールアドレスに送信されます。更なる問題が発生する場合はお問い合わせください。</value>
+  </data>
+  <data name="TitleCancelledPayment" xml:space="preserve">
+    <value>12BETアフィリエイト - [{transid}] - 支払がキャンセルされました</value>
+  </data>
+  <data name="TitleLogin" xml:space="preserve">
+    <value>アフィリエイト・ログイン</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="ToBecomeAnAff" xml:space="preserve">
+    <value>12BETアフィリエイト・プログラムの会員になる為には、オンライン申請書に必要事項を書き込み、アフィリエイトとして正式に申請して頂く必要がございます。12BETアフィリエイト・プログラムで、アフィリエイトに登録する、またはバナーコードをダウンロードし、メンバー様のWebサイト、Eメールによるメッセージまたはそれ以外の場所で使用した時点で、当契約書の全ての条件に同意したとみなされます。</value>
+  </data>
+  <data name="Togo" xml:space="preserve">
+    <value>トーゴ</value>
+  </data>
+  <data name="TooltipContactNumber" xml:space="preserve">
+    <value>承認には連絡可能な電話番号が必要です</value>
+  </data>
+  <data name="TooltipEmailAddess" xml:space="preserve">
+    <value>パスワードを受け取るには実在するメールアドレスが必要です</value>
+  </data>
+  <data name="Top" xml:space="preserve">
+    <value>トップ</value>
+  </data>
+  <data name="ToParticipateIn12BET" xml:space="preserve">
+    <value>もちろん、可能です！スペシャル・アフィリエイト・セクションに自分のページを作り、承認されたマーケティング・マテリアルまたはメッセージを掲載します。この作業が完了すれば、すぐにスポーツやスポーツ・ベットに興味をお持ちのご友人、お知り合いにそのページのリンクを送っていただけます。その方達がリンクをクリックすると、お客様の紹介として認識されます。詳細情報をご希望の場合は、&lt;a href="mailto:affiliates@12csd.com"&gt;affiliate@12CSD.com&lt;/a&gt;までご連絡ください。</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>合計</value>
+  </data>
+  <data name="TotalActive" xml:space="preserve">
+    <value>合計アクティブ・プレーヤ数</value>
+  </data>
+  <data name="TotalClick" xml:space="preserve">
+    <value>合計クリック数</value>
+  </data>
+  <data name="TotalDeposit" xml:space="preserve">
+    <value>合計預入金</value>
+  </data>
+  <data name="TotalIP" xml:space="preserve">
+    <value>合計IP</value>
+  </data>
+  <data name="TotalPlay" xml:space="preserve">
+    <value>合計プレーヤー数</value>
+  </data>
+  <data name="TotalQualifiedMembers" xml:space="preserve">
+    <value>合計アクティブ資格プレーヤー数</value>
+  </data>
+  <data name="TotalUniqueClickByDate" xml:space="preserve">
+    <value>合計日次ユニーククリック数</value>
+  </data>
+  <data name="ToYour12BET" xml:space="preserve">
+    <value>12BETアカウントから</value>
+    <comment>お客様の12BETプレーヤー・アカウントを通して</comment>
+  </data>
+  <data name="Tqacsbc" xml:space="preserve">
+    <value>合計アクティブ資格プレーヤー数(SB/カジノ)</value>
+  </data>
+  <data name="TrackingCode" xml:space="preserve">
+    <value>追跡・コード</value>
+  </data>
+  <data name="TrackingStatistics" xml:space="preserve">
+    <value>追跡統計</value>
+  </data>
+  <data name="Transaction" xml:space="preserve">
+    <value>取引</value>
+  </data>
+  <data name="TrinidadandTobago" xml:space="preserve">
+    <value>トリニダード・トバゴ</value>
+  </data>
+  <data name="Tunisia" xml:space="preserve">
+    <value>チュニジア</value>
+  </data>
+  <data name="Turkey" xml:space="preserve">
+    <value>トルコ</value>
+  </data>
+  <data name="Turnover" xml:space="preserve">
+    <value>利益</value>
+  </data>
+  <data name="Turnover_explain" xml:space="preserve">
+    <value>資格メンバーの最低利益額</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>タイプ</value>
+  </data>
+  <data name="Uganda" xml:space="preserve">
+    <value>ウガンダ</value>
+  </data>
+  <data name="Ukraine" xml:space="preserve">
+    <value>ウクライナ</value>
+  </data>
+  <data name="UnderReview" xml:space="preserve">
+    <value>申請審査中</value>
+  </data>
+  <data name="UniqueClick" xml:space="preserve">
+    <value>ユニーククリック</value>
+  </data>
+  <data name="UnitedArabEmirates" xml:space="preserve">
+    <value>アラブ首長国連邦</value>
+  </data>
+  <data name="UnitedKingdomofGreatBritainandNorthernIreland" xml:space="preserve">
+    <value>イギリス</value>
+  </data>
+  <data name="UnitedStatesofAmerica" xml:space="preserve">
+    <value>米国</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>不明</value>
+  </data>
+  <data name="UnknownError" xml:space="preserve">
+    <value>不明エラー</value>
+  </data>
+  <data name="Unlikewithaplayer" xml:space="preserve">
+    <value>このフォームを使用してパスワードの変更を行なってください。次回ログインする時から新しいパスワードは有効になります。</value>
+  </data>
+  <data name="UpdateAccSuccess" xml:space="preserve">
+    <value>アカウント情報がアップデートされました</value>
+  </data>
+  <data name="UpdateSecurityQuestion" xml:space="preserve">
+    <value>セキュリティ質問をアップデートしてください</value>
+  </data>
+  <data name="UpdateSecurityQuestionRemind" xml:space="preserve">
+    <value>セキュリティ保護のため、セキュリティ質問と回答を設定して頂きます。パスワードを忘れた際やプライバシーを要する内容のお問い合わせの際お客様の認証のため使用されます。</value>
+  </data>
+  <data name="UpToNow" xml:space="preserve">
+    <value>累計</value>
+  </data>
+  <data name="Uruguay" xml:space="preserve">
+    <value>ウルグアイ</value>
+  </data>
+  <data name="USD" xml:space="preserve">
+    <value>USD(米ドル)</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>ユーザー名</value>
+  </data>
+  <data name="Usethisformtoch" xml:space="preserve">
+    <value>このフォームを使用してパスワードの変更を行なってください。次回ログインする時から新しいパスワードは有効になります。</value>
+  </data>
+  <data name="Validation" xml:space="preserve">
+    <value>認証コード</value>
+  </data>
+  <data name="ValidationCode" xml:space="preserve">
+    <value>入力されたコードが無効です</value>
+  </data>
+  <data name="Venezuela" xml:space="preserve">
+    <value>ベネズエラ</value>
+  </data>
+  <data name="VietNam" xml:space="preserve">
+    <value>ベトナム</value>
+  </data>
+  <data name="Vietnamese" xml:space="preserve">
+    <value>Tiếng Việt</value>
+  </data>
+  <data name="VietnameseSupport" xml:space="preserve">
+    <value>ベトナム語サポート</value>
+  </data>
+  <data name="ViewMore" xml:space="preserve">
+    <value>もっと見る</value>
+  </data>
+  <data name="WeAreAbleToTrackVisitors" xml:space="preserve">
+    <value>はい、大丈夫です。アフィリエイトサイトからアクセスし、すぐに新規ご登録を行わず、後日12BET.comに再アクセスしてサインアップする方々を追跡することができます。最初のアフィリエイトサイトからアクセスした情報を90日間保管し、適切な紹介者を特定します。これらのテクノロジー作業はクッキーを基に情報を管理できます。</value>
+  </data>
+  <data name="WebsiteInformat" xml:space="preserve">
+    <value>ウェブサイト情報</value>
+  </data>
+  <data name="WebsiteURL" xml:space="preserve">
+    <value>ウェブサイトURL</value>
+  </data>
+  <data name="WebsiteUrli" xml:space="preserve">
+    <value>ウェブサイトURLを入力してください</value>
+  </data>
+  <data name="WebsiteURLIsRequired" xml:space="preserve">
+    <value>URLアドレスが未記入です</value>
+  </data>
+  <data name="WebsiteURLs" xml:space="preserve">
+    <value>ウェブサイトURL</value>
+  </data>
+  <data name="WeDoNotTolerateSpamming" xml:space="preserve">
+    <value>当社はアフィリエイト・パートナーによるあらゆるスパム行為も容認しません。そのような行為が発覚した場合、そのアフィリエイトに1度警告を行います（低度のスパム行為の場合）。警告後もスパム行為が継続される場合、そのアフィリエイトは12BETアフィリエイト・プログラムから永久に追放されます。</value>
+  </data>
+  <data name="WeEmploys" xml:space="preserve">
+    <value>お客様が12BET.comに導くトラフィックは、先進技術を駆使して追跡され、お客様がそれに対するクレジットを100%受け取れるよう保証します。</value>
+  </data>
+  <data name="Weherebygrant" xml:space="preserve">
+    <value>1.本契約のお客様に対し、お客様のWebサイトにおけるバナー表示に限定的に関連する当社の商標の利用（他の所有者がある場合は当社がライセンスを受けた）における個人的、非独占的、譲渡不可能なライセンスを本契約が有効な期間中提供いたします。</value>
+  </data>
+  <data name="Wemakenoexpress" xml:space="preserve">
+    <value>当社は、紹介プログラムまたは紹介料の支払いに関し特定的または黙示的保証または表現（機能性、適切性の保証、市場性、適法性、権利侵害のなきことまたはあらゆる活動に由来する黙示的保証を含むがそれらに限定されることはない）は一切致しません。加えて、当サイトが妨げられることなく、エラーも起こさず運営される旨の表現も一切せず、またそれらの問題に対する損害責任は一切負わないものといたします</value>
+  </data>
+  <data name="Wemaymodify" xml:space="preserve">
+    <value>7.当契約書に含まれる諸条件は、当社の裁量の元、如何なる時も変更することがあります。その際は、その変更の告知または変更後の契約書を当サイトに掲載することで行います。変更とは、紹介料の捉え方、支払スケジュール、支払手順及び紹介・プログラムの規則等を対象とします。変更内容に不服な際は、契約破棄が唯一の手段となります。本プログラムに継続して参加する場合は、当サイトに告知された変更または変更された契約書に同意するものとします。</value>
+  </data>
+  <data name="WEMAYTERMINATE" xml:space="preserve">
+    <value>i. メンバー様のWebサイトが当社の裁量で不適切と判断した際(独自の決定権)は、当社は当契約書を破棄する場合がございます。不適切なサイトとは：子供を対象としている、露骨なポルノを掲載、暴力を推進、年齢、性、身体障害、国籍、宗教または人種に対する偏見を表現している、非合法活動を推進しているまたは知的財産を侵害する内容が含まれるものを指します。</value>
+  </data>
+  <data name="Wemaywithhold" xml:space="preserve">
+    <value>e. 正確な金額の支払を可能とする目的で、当社が支払を正当な期間保留する場合があります。</value>
+  </data>
+  <data name="WeOfferSeveralMethods" xml:space="preserve">
+    <value>いくつかの引き出し方法があります。</value>
+  </data>
+  <data name="WeReserveTheRight" xml:space="preserve">
+    <value>メンバー様のウェブサイトが当社の裁量で不適切と判断した際は、当社は当契約書を破棄する権利を有します。不適切なサイトとは：子供を対象としている、露骨なポルノを掲載している、暴力を推進している、年齢、性、身体障害、国籍、宗教または人種に対する偏見的な表現している、非合法活動を推進しているまたは知的財産(IP）を侵害する内容が含まれるものを指します。</value>
+  </data>
+  <data name="Wereservetherighttorevoke" xml:space="preserve">
+    <value>4.当社はいかなる時もこのライセンスを無効とする権利を有します。いかなる理由においても当契約書が破棄された場合は、ライセンスも無効と判断されます</value>
+  </data>
+  <data name="WeRolloverNegative" xml:space="preserve">
+    <value>はい、マイナスのコミッション残高は繰り越されます。月末の段階でマイナスのコミッション残高がある場合、それを相殺するに足るプラスのコミッション収入があるまで繰り越します。</value>
+  </data>
+  <data name="WesternSamoa" xml:space="preserve">
+    <value>サモア</value>
+  </data>
+  <data name="Weunderstandthat" xml:space="preserve">
+    <value>アフィリエイトにぜひご理解いただきたいのは、12BETは実質的な利益に対してパーセンテージをお支払いするのであって、詐欺行為による収入に対してはお支払いできません。</value>
+  </data>
+  <data name="Wewillnotbeliable" xml:space="preserve">
+    <value>当契約書または紹介プログラムに関連して発生する間接的、特殊なまたは結果的な損害（または売上、利益、データの損失）に対し、それらの可能性が前もって忠告されていたとしても、当社は一切の責任を負いません。更に、当契約書に基づいた総計的損害補償は、当契約書に基づき支払われるコミッションの額を超えることはありません。当契約書と関係のない個人、法人に対し、如何なる権利、賠償または利益が提供されると解釈できる内容は当契約書には含まれません。当契約書における当社の義務は、当社の重役、役員、株主の個人的な義務とは無関係です。当契約書に基づき発生した補償は、直接的な損害に限定し、プログラムが提供する紹介に付随する料金からのみ補われます。</value>
+  </data>
+  <data name="WewillterminatethisAgreement" xml:space="preserve">
+    <value>5. メンバー様による誤った広告、文章または発言により12BETが信用を失った場合、またはあらゆる形の利己的なスパム行為が発覚した場合、当社は即座に契約を解除します。</value>
+  </data>
+  <data name="WhatAreTheWithdrawal" xml:space="preserve">
+    <value>どのような方法で引き出せますか？</value>
+  </data>
+  <data name="WhatIfIDontHave" xml:space="preserve">
+    <value>個人用Webサイトを持っていませんが登録出来ますか？</value>
+  </data>
+  <data name="WhatIs12BETAffiliates" xml:space="preserve">
+    <value>12BETアフィリエイト・プログラムとは何ですか？</value>
+  </data>
+  <data name="WhatIsACookie" xml:space="preserve">
+    <value>クッキーとは何ですか？</value>
+  </data>
+  <data name="WhatIsTheMinimumWithdrawal" xml:space="preserve">
+    <value>引き出し申請できる最少金額はいくらですか？</value>
+  </data>
+  <data name="WhatIsYourPolicy" xml:space="preserve">
+    <value>スパム行為に対しての対策、方針は？</value>
+  </data>
+  <data name="Wheneverpossible" xml:space="preserve">
+    <value>a. 当契約書の各条項は、適応する法律に従い有効と常に解釈されます。しかし、ある観点から当契約書のある条項が無効、非合法、法的強制力のないものと解釈された場合、その条項は、契約書に記載さ入れるその他すべての条項を無効とすることなく、指摘される無効性においてのみ実施されません。更に、あらゆる権利の履行行為またはそれを怠る行為は撤回されることはありません。</value>
+  </data>
+  <data name="WhereDoIGetBanners" xml:space="preserve">
+    <value>バナーやコンテンツはどこで入手出来ますか？</value>
+  </data>
+  <data name="WideRange" xml:space="preserve">
+    <value>幅広い支払方法</value>
+  </data>
+  <data name="WillYouTrackAndGiveMeCredit" xml:space="preserve">
+    <value>初回のアクセスで新規ご登録しなかったお客様が、後日12BET.comのWebサイトに再度アクセスして新規登録を行った場合、私の紹介と認識され、そのユーザーからのクレジットを受け取ることは可能ですか？</value>
+  </data>
+  <data name="Winlost" xml:space="preserve">
+    <value>勝敗</value>
+  </data>
+  <data name="WireTransfer" xml:space="preserve">
+    <value>ワイヤートランスフファー</value>
+  </data>
+  <data name="Within5dayswesh" xml:space="preserve">
+    <value>5日以内に申請に対する結果を提供いたします。承認後、アフィリエイト・プログラムの全てにアクセスすることができるようになります。</value>
+  </data>
+  <data name="Withoutourpriorwritten" xml:space="preserve">
+    <value>7. 当社からの書面による承認がない段階では、承認されたバナー及びリンクのみ利用可能で、それらの見た目の変更及びあらゆる促進資料による当社の紹介は認められません。当社の提供するハイパーリンクの外観、構文は当社によりデザインされ指定されており、それらの使用によってのみ12BETの代理を許諾、承認されます。</value>
+  </data>
+  <data name="WrongMinbet_Max" xml:space="preserve">
+    <value>誤った最少ベット/最高ベット/各マッチの最高額/クレジット/マスターエージェント名/ユーザグループ</value>
+  </data>
+  <data name="Yemen" xml:space="preserve">
+    <value>イエメン</value>
+  </data>
+  <data name="YOUACKNOWLEDGETHATYOUHAVEREAD" xml:space="preserve">
+    <value>当契約書を読んでいただき、全ての条件に同意することを了承して頂きます。当契約書の条項以外の条件で、またはお客様のウェブサイトの内容とは異なるまたは競合しうる内容のWebサイトの運営による顧客紹介を、直接的または間接的に求めることもあることをご理解いただきます。お客様は、当契約書の条項以外の表現、保証または意見に依存するものではなく、お客様独自の評価で当アフィリエイト・プログラムに参加されていることもあわせてご了承して頂きます。</value>
+  </data>
+  <data name="Youandweareindependent" xml:space="preserve">
+    <value>c. お客様と当社は独立的な契約者であり、パートナーシップ、ジョイントベンチャー、フランチャイズ、代理営業または当事者間の雇用関係の創設を意味する条項は当契約書には存在しません。当社に成り代わり、代理を務める、またはその申し入れを許諾する権限はお客様にはございません。お客様のWebサイトまたはその他の場所で、当条項内容と若干でも矛盾する可能性のある表現することはできません。</value>
+  </data>
+  <data name="Youandweareindependentcontractors" xml:space="preserve">
+    <value>メンバー様と当社は独立的な契約者であり、パートナーシップ、ジョイントベンチャー、フランチャイズ、代理営業または当事者間の雇用関係の創設を意味する条項は当契約書には存在しません。当社に成り代わり、代理を務める、またはその申し入れを許諾する権限はメンバー様にはございません。メンバー様のWebサイトまたはその他の場所で、当条項内容と若干でも矛盾する可能性のある表現することはできません。</value>
+  </data>
+  <data name="Youandwewill" xml:space="preserve">
+    <value>h. 当契約破棄となる日をもち、当契約書に定める、その本質により契約破棄に影響されない類の義務を除き、お客様と当社は契約に基づくあらゆる相互に果たすべき義務及び法的責任から開放されます。破棄以前に発生した、当契約内容に対する違反に由来する法的責任は、当契約破棄により解除されることはありません。</value>
+  </data>
+  <data name="YouAreNotAllowed" xml:space="preserve">
+    <value>10. メンバー様は、12BETにおけるアフィリエイトの立場と、紹介される側の立場を同時に持つことはできません。万が一この違反が発覚した場合は、当社は一方的にメンバー様のアフィリエイトの権利、紹介される側の権利のいずれかまたは両方を破棄する権利を有します。紹介される側の立場とは、12BETの友達紹介プログラム（Webサイトに掲載）に従い12BETに参加した立場を指します。</value>
+  </data>
+  <data name="Youarenotauthor" xml:space="preserve">
+    <value>この情報を作成/変更する権限がありません</value>
+  </data>
+  <data name="Youareonlyresponsible" xml:space="preserve">
+    <value>1. 12BETのWebサイトにお客様を誘導するだけで結構です。</value>
+  </data>
+  <data name="YouCanLoginToYour12BET" xml:space="preserve">
+    <value>お客様のコミッション / 収益情報は、12BETアフィリエト・アカウントでログインし、リアルタイムで24時間、365日いつでもご確認できます。</value>
+  </data>
+  <data name="YouCanRequestForAWithdrawal" xml:space="preserve">
+    <value>お引出し申請は、マネーブッカーズ、ネッテラー、電子送金または直接12BETプレーヤー口座に振り込む方法でご利用いただけます。</value>
+  </data>
+  <data name="YouCanRequestPayout" xml:space="preserve">
+    <value>お引き出し申請は米国ドル以外の通貨でも可能です。ご利用可能な通貨は、英ポンド、ユーロ、中国元、マレーシアリンギット、タイバーツ、インドネシアルピアです。取引当日の為替レートが適用されます。</value>
+  </data>
+  <data name="Youhaveapending" xml:space="preserve">
+    <value>保留の依頼があります。新しい依頼をするには保留中の依頼が処理されるのを待つかキャンセルしてください。</value>
+  </data>
+  <data name="Youhaverequeste" xml:space="preserve">
+    <value>お客様によりユーザー名とパスワードの復帰がリクエストされました。このリクエストに覚えがない場合はこのメールを無視して下さい。</value>
+  </data>
+  <data name="Youherebyagreetoindemnify" xml:space="preserve">
+    <value>あなたはここに同意します補償しかつ無害に保ちます、12BET、それが表して、加入させる実体とすべての主張、行動、要求、責任、損失、損害賠償、判断、和解、出費（合理的な弁護士費用を含む）とその範囲においてそのような損失（または行動これに対して）としての経費（以下「損失」と記載する前述の一部または全部）に対する12BETディレクター（役員、従業員、エージェント、株主、パートナー、メンバーと他の所有者）は(i)から生じるか、それに基づきます。そして、何でも系列会社商標の我々の使用がどんな商標でも侵害すると主張する。そして、商品名、サービスマーク、著作権、許可、知的所有権または他の所有権がどんな第三者でも、表明または保証または契約の違反のどんな誤説と合意でもあなたによってここに作った(ii)、（iii）発展のある、と、あなたのサイトと製品・サービスの活動、メンテナンスと内容はあなたのサイトから申し出ました、または、どんな主張でもあなたのサイトに関するものでした（iv）。そして、その中の内容を含むが、これに限定されるものではないことが我々に起因していません。</value>
+  </data>
+  <data name="Youinputtedanin" xml:space="preserve">
+    <value>無効なコードが入力されました</value>
+  </data>
+  <data name="Youmaynotassign" xml:space="preserve">
+    <value>a. 当契約書及びその内容を、当社からの書面による事前の許諾がない限り、当然他に譲渡することはできません。この制限次第により、お客様と当社及び各自の譲受人または後継者に対し当契約書は拘束力が有り、そして収益のために効力を持つものである。</value>
+  </data>
+  <data name="Youmaynotmodify" xml:space="preserve">
+    <value>2. 12BETの書面による事前の承諾なく、あらゆる知的財産権、バナーまたはその他のあらゆるマテリアルを変更、または本来の目的以外のために使用することはできません。12BETにより承認、提供されたあらゆるマテリアルの全ての著作権、知的財産権の掲示も変更、消去することはできません。</value>
+  </data>
+  <data name="YoumustagreeTer" xml:space="preserve">
+    <value>この先に進むには諸条件に合意して頂く必要があります</value>
+  </data>
+  <data name="Youmustremove12BET" xml:space="preserve">
+    <value>a.  メンバー様のWebサイトから、12BETのバナーを全て削除し、当社への全てのリンクを無効にしてください。</value>
+  </data>
+  <data name="Youraccountinfo" xml:space="preserve">
+    <value>アカウント情報がアップデートされました</value>
+  </data>
+  <data name="YourEmail" xml:space="preserve">
+    <value>お客様のメールアドレス：</value>
+  </data>
+  <data name="Yourlogindetail" xml:space="preserve">
+    <value>ログイン情報が送信されました</value>
+  </data>
+  <data name="YourPayment" xml:space="preserve">
+    <value>お客様の支払依頼は24時間以内に審査されます。全ての依頼は受け取った順に審査いたします。</value>
+  </data>
+  <data name="Yourpaymentrequ" xml:space="preserve">
+    <value>ご依頼の支払、$(amount)はキャンセルされました</value>
+  </data>
+  <data name="Yourrequestrefe" xml:space="preserve">
+    <value>お客様のご依頼のリファレンス番号は{transid}です</value>
+  </data>
+  <data name="Youruseemailisi" xml:space="preserve">
+    <value>入力したメールアドレスが無効です。もう一度やり直してください。</value>
+  </data>
+  <data name="Yourusernameis" xml:space="preserve">
+    <value>お客様のユーザー名</value>
+  </data>
+  <data name="Yourwebsitesand" xml:space="preserve">
+    <value>登録申請内容とお客様のウェブサイトが適切であるかを12BETアフィリエイトスタッフが確認致します。</value>
+  </data>
+  <data name="Youshallnotmake" xml:space="preserve">
+    <value>6. 12BETに関連した保証や、異議申立ては行わないでください。またメンバー様は12BETに対しあらゆる義務を強制する権限はありません。</value>
+  </data>
+  <data name="YouWillAgreeToRegister" xml:space="preserve">
+    <value>2.12BETに対し、適切な連絡先情報を登録しそれを維持することを同意するものとします。</value>
+  </data>
+  <data name="Youwillbeentitled" xml:space="preserve">
+    <value>c.9.2条に記されるとおり、当契約書の条項に違反した結果契約破棄となった場合、破棄となった日またはそれ以前にお客様が正当に得るべきだった紹介料の内未払いのもののみ受け取る権利があります。正確な金額の支払を可能とする目的で、当社が支払を正当な期間保留する場合があります。</value>
+  </data>
+  <data name="YouWillBeSolelyResponsible" xml:space="preserve">
+    <value>4.メンバー様のWebサイトに表示される全てのマテリアルの開発、運営、維持は、メンバー様が、費用も含め全ての責任を負うものとします。例えば、メンバー様のWebサイトのコンテンツが、中傷的もしくは違法でなく、または第三者の知的財産を侵害しないものであるための確認作業等を指します。当社はメンバー様のWebサイトを管理する権限がないので、これらに関する責任は一切負いかねます。更に、メンバー様のウェブサイトの開発、運営、維持及びそのコンテンツに纏わる申立、損害、費用（弁護士費用も含む）が発生した場合は、メンバー様が補償し、当社を無害に保つことを約束して頂きます。この補償に関する条項は、適用する法律に従い、当社がメンバー様に対し起こす訴訟を訴外するものではありません。</value>
+  </data>
+  <data name="Youwillindemnify" xml:space="preserve">
+    <value>3.お客様のWebサイトの開発、運営、維持及びそのコンテンツに関する申立、損害、費用（弁護士費用も含む）が発生した場合は、お客様が補償し、当社を無害に保つことを約束して頂きます。この補償に関する条項は、適用する法律に従い、当社がお客様に対し起こす訴訟を訴外するものではありません。</value>
+  </data>
+  <data name="Youwillnotknowingly" xml:space="preserve">
+    <value>8. 実際に12BETが被害を被るか否かを別とし、メンバー様が善意的でない手段で紹介を行ったことが明確、または疑わしき場合、メンバー様の利益となりません。メンバー様のリンクを経由し、ユーザーが当サイトへ詐欺的行為より導かれた場合、いかなる時も当社は支払ったコミッションを撤回する権利を有します。この際の当社の判断は最終的なもので、異議の余地はありません。もしこのような導きがメンバー様の知る所であったと思わしき時は、当契約書に基づきメンバー様に対する全ての支払を保留する権利を有します。メンバー様の意図ではなかった場合でも、当社はそれに関するアフィリエイトコミッションを保留する権利を有します。</value>
+  </data>
+  <data name="YouWillPresentOnlyContent" xml:space="preserve">
+    <value>3.メンバー様のWebサイトにおいて当社により予め承認されたコンテンツ及び議題の提示が求められます。当社の判断により、メンバー様のコンテンツが不適切と判断された場合、即座に契約解除につながります。</value>
+  </data>
+  <data name="Youwillreturn" xml:space="preserve">
+    <value>g. お客様はあらゆる機密情報及びお客様の手元にある全ての複写を当社に返却するものとします。これらの保留および管理は、関係者の所有する称号、商標、サービスマーク及びロゴの利用を停止することにつながります。</value>
+  </data>
+  <data name="Yugoslavia" xml:space="preserve">
+    <value>ユーゴスラビア</value>
+  </data>
+  <data name="Zambia" xml:space="preserve">
+    <value>ザンビア</value>
+  </data>
+  <data name="Zimbabwe" xml:space="preserve">
+    <value>ジンバブエ</value>
+  </data>
+  <data name="_12BET" xml:space="preserve">
+    <value>12BET</value>
+  </data>
+  <data name="_12BETAffiliatesTeam" xml:space="preserve">
+    <value>12BETアフィリエイト・チーム</value>
+  </data>
+  <data name="_12BetAffiliatesYourApplication" xml:space="preserve">
+    <value>12BETアフィリエイト - お申込み</value>
+  </data>
+  <data name="_12BETPlayerAcc" xml:space="preserve">
+    <value>12BETプレーヤー・アカウント</value>
+  </data>
+  <data name="_12BETUserNamei" xml:space="preserve">
+    <value>12BETユーザー名が見つかりません</value>
+  </data>
+  <data name="SportbookExtension" xml:space="preserve">
+    <value>スポーツベット</value>
+  </data>
+  <data name="CasinoExtension" xml:space="preserve">
+    <value>カジノ</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>Year</value>
+  </data>
+  <data name="AnnouncementBody" xml:space="preserve">
+    <value>最新情報！&lt;br/&gt;
+トラッキングテクノロジーアフィリエイトやバナーリンクへさらに強化されました。まずは &lt;a href="javascript:void(0)" id="media_gallery_link"&gt;メディアギャラリー&lt;/a&gt; へアクセスしてご確認願います。</value>
+  </data>
+  <data name="AnnouncementHeader" xml:space="preserve">
+    <value>さらに強化されたトラッキングテクノロジー</value>
+  </data>
+</root>
