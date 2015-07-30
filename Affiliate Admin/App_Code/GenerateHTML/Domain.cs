@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Data;
-using DNAide.Web;
-using DNAide.Core;
 using DNAide.Data;
 using Resources;
 
@@ -16,57 +11,50 @@ namespace AffAdmin.GenerateHTML
 {
     public class Domain
     {
-	    public Domain()
-	    {
-		    //
-		    // TODO: Add constructor logic here
-		    //
-	    }
+        public Domain()
+        {
+            //
+            // TODO: Add constructor logic here
+            //
+        }
 
         public static string GenMarketList(string selectedMarket, bool hasAll = false)
         {
             DbResult rs = DataHandler.Domain.MarketSel();
-            ArrayList arrText = new ArrayList();
-            ArrayList arrValue = new ArrayList();
+            var markets = new Dictionary<string, string>();
 
             if (hasAll)
             {
-                arrText.Add("All");
-                arrValue.Add("");
+                markets.Add(string.Empty, "All");
             }
 
-            foreach (DataRow dr in rs.ResultSet.Tables[0].Rows)
+            foreach (DataRow row in rs.ResultSet.Tables[0].Rows)
             {
-                arrText.Add(dr["MarketName"]);
-                arrValue.Add(dr["MarketId"]);
+                markets.Add(row["MarketId"].ToString(), row["MarketName"].ToString());
             }
-            return Common.GenerateSelectObj("slMarket", arrValue, arrText, selectedMarket);
+
+            return Common.GenerateDropdownHtml("slMarket", markets, selectedMarket);
         }
 
         public static string GenAffDomainList(string selectedDomain, bool hasAll = false)
         {
             DbResult rs = DataHandler.Domain.DomainAffSel();
-            ArrayList arrText = new ArrayList();
-            ArrayList arrValue = new ArrayList();
-            
+            var domains = new Dictionary<string, string>();
             if (hasAll)
             {
-                arrText.Add("All");
-                arrValue.Add("");
+                domains.Add(string.Empty, "All");
             }
             foreach (DataRow dr in rs.ResultSet.Tables[0].Rows)
             {
-                arrText.Add(dr["DomainName"]);
-                arrValue.Add(dr["DomainId"]);
+                domains.Add(dr["DomainId"].ToString(), dr["DomainName"].ToString());
             }
-            return Common.GenerateSelectObj("slAffDomain", arrValue, arrText, selectedDomain);
+            return Common.GenerateDropdownHtml("slAffDomain", domains, selectedDomain);
         }
 
         public static string Gen12BetDomainList(string deviceType, string selectedDomain, bool hasAll = false)
         {
             DbResult rs = DataHandler.Domain.GetList12BetDomain(deviceType);
-            var arrText = new ArrayList();
-            var arrValue = new ArrayList();
+            var domains = new Dictionary<string, string>();
 
             if (rs.ResultSet.Tables[0].Rows.Count == 0)
             {
@@ -75,17 +63,15 @@ namespace AffAdmin.GenerateHTML
 
             if (hasAll)
             {
-                arrText.Add("All");
-                arrValue.Add("");
+                domains.Add(string.Empty, "All");
             }
 
             foreach (DataRow dr in rs.ResultSet.Tables[0].Rows)
             {
-                arrText.Add(dr["DomainName"]);
-                arrValue.Add(dr["DomainId"]);
+                domains.Add(dr["DomainId"].ToString(), dr["DomainName"].ToString());
             }
 
-            return Common.GenerateSelectObj("sl12BetDomain", arrValue, arrText, selectedDomain);
+            return Common.GenerateDropdownHtml("sl12BetDomain", domains, selectedDomain);
         }
 
         public static string GenDeviceList(string id, string selectedDevice = "0", bool hasAll = false)

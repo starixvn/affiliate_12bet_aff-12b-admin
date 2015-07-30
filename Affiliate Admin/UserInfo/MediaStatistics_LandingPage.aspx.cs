@@ -1,22 +1,17 @@
-﻿using System.Text;
-using System;
-using System.Data;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using DNAide.Web;
-using DNAide.Data;
+using System.Data;
+using System.Text;
 using DNAide.Core;
-using DNAide.Utils;
-using System.Collections;
+using DNAide.Data;
+using DNAide.Web;
 using GenerateHTML;
 
 public partial class UserInfo_MediaStatistics_LandingPage : IBCPage
 {
-    string strTpl = string.Empty;
-    StringBuilder strListRow = new StringBuilder();
+    private string strTpl = string.Empty;
+    private StringBuilder strListRow = new StringBuilder();
+
     protected void Page_Load(object sender, EventArgs e)
     {
         strTpl = TemplateHandler.LoadTemplate("UserInfo/MediaStatistics_LandingPage.htm");
@@ -27,47 +22,30 @@ public partial class UserInfo_MediaStatistics_LandingPage : IBCPage
         this.HtmlContent = strTpl;
     }
 
-    void AssignHeader()
+    private void AssignHeader()
     {
         TemplateHandler.Assign(ref strTpl, "themepath", AppSettings.ThemeDir);
         TemplateHandler.Assign(ref strTpl, "over", Common.RowBgOver);
     }
 
-    void GenerateHTML()
+    private void GenerateHTML()
     {
-
         try
         {
             #region Generate select list
+
             string sportCode = CastAide.AsString(Request["sportCode"]);
             string languageCode = CastAide.AsString(Request["languageCode"]);
-            ArrayList arrTarget = new ArrayList();            
-            arrTarget.Add("All");
-            arrTarget.Add("sportsbook");
-            arrTarget.Add("casino");
-            arrTarget.Add("signup");
-            arrTarget.Add("promotion");
 
-            ArrayList arrValue = new ArrayList();
-            arrValue.Add("");
-            arrValue.Add("sportsbook");
-            arrValue.Add("casino");
-            arrValue.Add("signup");
-            arrValue.Add("promotion");
-
-            if (AppSettings.Session.IsCasino)
-            {
-                arrTarget.Add("12betcasino");
-                arrValue.Add("12betcasino");
-            }
-
-            TemplateHandler.Assign(ref strTpl, "slPage", Common.GenerateSelectObj("sportCode", arrValue, arrTarget, sportCode));
+            TemplateHandler.Assign(ref strTpl, "slPage", GeneratePagesDropdown(sportCode));
 
             DataView dv = DbHelper.Execute("Aff_BannerSelType", DBType.AFFILIATE_12BET).ResultSet.Tables[0].DefaultView;
             TemplateHandler.Assign(ref strTpl, "slLanguage", Common.GetDataOptionBanner(dv, "languageCode", "Language", languageCode, true));
-            #endregion
+
+            #endregion Generate select list
+
             DateTime now = DateTime.Now;
-            
+
             DateTime dtmFDate = CastAide.AsDateTime(Request["fdate"], new DateTime(now.Year, now.Month, 1));
             DateTime dtmTDate = CastAide.AsDateTime(Request["tdate"], DateTime.Now);
             var deviceType = Common.GetDeviceType(Request["slDevice"]);
@@ -93,7 +71,7 @@ public partial class UserInfo_MediaStatistics_LandingPage : IBCPage
                 string strListAffId = string.Empty;
 
                 var strListRow = new StringBuilder();
-                
+
                 foreach (DataRow dr in dtb.Rows)
                 {
                     string strTmp = strRowTpl;
@@ -116,10 +94,9 @@ public partial class UserInfo_MediaStatistics_LandingPage : IBCPage
 
                 if (!deviceType.Equals("1", StringComparison.OrdinalIgnoreCase))
                 {
-                    TemplateHandler.Assign(ref strRowTpl, "color", (intCount%2 == 0) ? Common.RowBgOdd : Common.RowBgEven);
+                    TemplateHandler.Assign(ref strRowTpl, "color", (intCount % 2 == 0) ? Common.RowBgOdd : Common.RowBgEven);
                     //Assign total signups for Old URL
-                    strListRow.Append(TrackingSystem.GenRowOldURL(strRowTpl, totalSignups, totalDeposits, dtmFDate,
-                                                                  dtmTDate));
+                    strListRow.Append(TrackingSystem.GenRowOldURL(strRowTpl, totalSignups, totalDeposits, dtmFDate, dtmTDate));
                 }
 
                 TemplateHandler.ReplaceBlock(ref strTpl, "content", strListRow.ToString());
@@ -140,7 +117,28 @@ public partial class UserInfo_MediaStatistics_LandingPage : IBCPage
         }
     }
 
-    string GetLanguageOriginal(string strLangCode)
+    private static string GeneratePagesDropdown(string sportCode)
+    {
+        var pages = new Dictionary<string, string>();
+        pages.Add(string.Empty, "All");
+        pages.Add("sportsbook", "sportsbook");
+        pages.Add("casino", "casino");
+        pages.Add("signup", "signup");
+        pages.Add("promotion", "promotion");
+
+        if (AppSettings.Session.IsCasino)
+        {
+            pages.Add("12betcasino", "12betcasino");
+        }
+
+        pages.Add("numbergame", "numbergame");
+        pages.Add("keno", "keno");
+        pages.Add("virtualsports", "virtualsports");
+
+        return Common.GenerateDropdownHtml("sportCode", pages, sportCode);
+    }
+
+    private string GetLanguageOriginal(string strLangCode)
     {
         switch (strLangCode.ToLower())
         {
@@ -159,8 +157,7 @@ public partial class UserInfo_MediaStatistics_LandingPage : IBCPage
         }
     }
 
-
-    string GetLangCode(string value)
+    private string GetLangCode(string value)
     {
         switch (value.ToLower())
         {

@@ -1,26 +1,25 @@
 ﻿using System;
-using System.Text;
-using System.Collections;
 using System.Collections.Generic;
 using System.Data;
-using System.Web;
-using System.Web.Configuration;
-using System.Web.UI.HtmlControls;
-using System.IO;
-using DNAide.Web;
-using DNAide.Data;
-using DNAide.Core;
-using DNAide.Utils;
+using System.Data.OleDb;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
+using System.Text;
+using System.Web;
 using System.Web.Caching;
-using LoadBalancerLibrary;
+using System.Web.Configuration;
+using System.Web.UI.HtmlControls;
 using System.Xml;
-using System.Data.OleDb;
-//using OfficeOpenXml;
-using Sunplus.UMControllerLibrary;
+using DNAide.Core;
+using DNAide.Data;
+using DNAide.Utils;
+using DNAide.Web;
 //using System.Linq;
 using Fanex.MailDeliver.MailClient.API;
+using LoadBalancerLibrary;
+//using OfficeOpenXml;
+using Sunplus.UMControllerLibrary;
 
 
 /// <summary>
@@ -473,19 +472,18 @@ public class Common
         }
     }
 
-    public static string GenerateSelectObj(string strID, ArrayList arrValue, ArrayList arrText, string strValueSelected)
+    public static string GenerateDropdownHtml(string id, IDictionary<string, string> values, string selectedValue)
     {
-        StringBuilder strBuild = new StringBuilder();
-        strBuild.Append("<select id=\"" + strID + "\" name=\"" + strID + "\">");
-        for (int i = 0; i < arrValue.Count; i++)
+        var resultHtml = new StringBuilder();
+        resultHtml.AppendFormat("<select id='{0}' name='{0}'>", id);
+        foreach (var item in values)
         {
-            if (string.Compare(strValueSelected, arrValue[i].ToString()) == 0)
-                strBuild.Append("<option value=\"" + arrValue[i].ToString() + "\" selected>" + arrText[i].ToString() + "</option>");
-            else
-                strBuild.Append("<option value=\"" + arrValue[i].ToString() + "\">" + arrText[i].ToString() + "</option>");
+            var attribute = item.Key.Equals(selectedValue, StringComparison.OrdinalIgnoreCase) ? "selected" : string.Empty;
+            resultHtml.AppendFormat("<option value='{0}' {1}>{2}</option>", item.Key, attribute, item.Value);
         }
-        strBuild.Append("</select>");
-        return strBuild.ToString();
+
+        resultHtml.Append("</select>");
+        return resultHtml.ToString();
     }
     
     public static string GetIndex(string strType)
