@@ -1,4 +1,4 @@
-<%@ Master Language="C#" AutoEventWireup="true" Inherits="Master" Codebehind="Master.master.cs" %>
+<%@ Master Language="C#" AutoEventWireup="true" Inherits="Master" Codebehind="Master3.master.cs" %>
 <%@ Register Src="~/Controls/Header.ascx" TagName="CHeader" TagPrefix="mod" %>
 <%@ Register Src="~/Controls/Footer.ascx" TagName="CFooter" TagPrefix="mod" %>
 <%@ Register Src="~/Controls/RightPanel.ascx" TagName="CRight" TagPrefix="mod" %>
