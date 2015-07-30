@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
+﻿
 using System.Collections;
-using Criterias;
-using DNAide.Data;
-using DNAide.Core;
-using System.Globalization;
-using System.Threading;
 using System.Data;
+using AffiliateUser.Business.DataAccess;
+using Criterias;
+using DNAide.Core;
 namespace DataHandler
 {
     /// <summary>

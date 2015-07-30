@@ -2,9 +2,9 @@
 using System.Web;
 using System.Collections;
 using System.Configuration;
-using DNAide.Data;
-using DNAide.Core;
 using System.Globalization;
+using AffiliateUser.Business.DataAccess;
+using DNAide.Core;
 
 /*
  * Class to handle Clicks Tracking

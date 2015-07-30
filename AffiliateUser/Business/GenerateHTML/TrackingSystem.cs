@@ -1,7 +1,4 @@
-﻿using DNAide.Web;
-using DNAide.Core;
-using System.Data;
-using DNAide.Data;
+﻿using System.Data;
 using System.Text;
 using System;
 using System.Collections;
@@ -9,6 +6,9 @@ using System.Collections.Generic;
 using System.Web;
 using System.Globalization;
 using DataHandler;
+using AffiliateUser.Business.DataAccess;
+using DNAide.Web;
+using DNAide.Core;
 
 
 namespace GenerateHTML

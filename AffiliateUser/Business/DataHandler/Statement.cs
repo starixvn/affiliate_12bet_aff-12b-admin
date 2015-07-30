@@ -1,7 +1,7 @@
 ﻿using System.Collections;
-using DNAide.Data;
-using DNAide.Core;
 using System;
+using AffiliateUser.Business.DataAccess;
+using DNAide.Core;
 /// <summary>
 /// Summary description for Statement
 /// </summary>
@@ -20,6 +20,6 @@ namespace DataHandler
             DbResult rs = DbHelper.Execute("Aff_AffiliateStatementHistorySel", hsParam, DBType.AFFILIATE_12BET, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
             totalPages = CastAide.AsInt32(rs.Outputs["totalpages"], 1);
             return rs;
-        }      
+        }
     }
 }

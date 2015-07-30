@@ -169,6 +169,7 @@
     <Compile Include="BetList\BetListResults.aspx.designer.cs">
       <DependentUpon>BetListResults.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Business\DataAccess\DbResult.cs" />
     <Compile Include="Condition.aspx.designer.cs">
       <DependentUpon>Condition.aspx</DependentUpon>
     </Compile>
@@ -224,7 +225,7 @@
       <DependentUpon>MasterCalendar.master</DependentUpon>
     </Compile>
     <Compile Include="Business\AffHandler.cs" />
-    <Compile Include="Business\AffSPExecuter.cs" />
+    <Compile Include="Business\DataAccess\DbHelper.cs" />
     <Compile Include="Business\AffTicket.cs" />
     <Compile Include="Business\AffType.cs" />
     <Compile Include="Business\AppSettings.cs" />
@@ -762,16 +763,16 @@
     <Content Include="Master3.master" />
     <Content Include="MasterCalendar.master" />
     <None Include="Web References\AffBetlistService\AffiliateAPI.disco" />
-    <Content Include="Web.12betuser-asian.backupmnl.config" />
-    <Content Include="Web.12betuser-asian.local.config" />
-    <Content Include="Web.12betuser-asian.master.config" />
-    <Content Include="Web.12betuser-asian.production.config" />
-    <Content Include="Web.12betuser-asian.uat.config" />
-    <Content Include="Web.12betuser-euro.backupmnl.config" />
-    <Content Include="Web.12betuser-euro.local.config" />
-    <Content Include="Web.12betuser-euro.master.config" />
-    <Content Include="Web.12betuser-euro.production.config" />
-    <Content Include="Web.12betuser-euro.uat.config" />
+    <Content Include="DeployConfig\Web.12betuser-asian.backupmnl.config" />
+    <Content Include="DeployConfig\Web.12betuser-asian.local.config" />
+    <Content Include="DeployConfig\Web.12betuser-asian.master.config" />
+    <Content Include="DeployConfig\Web.12betuser-asian.production.config" />
+    <Content Include="DeployConfig\Web.12betuser-asian.uat.config" />
+    <Content Include="DeployConfig\Web.12betuser-euro.backupmnl.config" />
+    <Content Include="DeployConfig\Web.12betuser-euro.local.config" />
+    <Content Include="DeployConfig\Web.12betuser-euro.master.config" />
+    <Content Include="DeployConfig\Web.12betuser-euro.production.config" />
+    <Content Include="DeployConfig\Web.12betuser-euro.uat.config" />
     <Content Include="Web.config" />
     <None Include="Web References\AffBetlistService\AffiliateAPI.wsdl" />
     <None Include="Web References\AffBetlistService\Reference.map">

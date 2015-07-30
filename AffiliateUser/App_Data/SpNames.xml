@@ -1,5 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Functions>
+  <Function>
+    <Setting Key="aff_writeLog_userlog_runsp" SpName="aff_writeLog_userlog_runsp" DbName="age_archive" Plain="0" />
+  </Function>
+  
   <Function Name="Agent - BetList">
     <Setting Key="Age_SelBalanceUpDay" SpName="Age_SelBalanceUpDay" DbName="age_archive" Plain="0" />
     <Setting Key="Acc_BetlistCombinationParlay_Details" SpName="Acc_BetlistCombinationParlay_Details" DbName="age_archive" Plain="0" />
