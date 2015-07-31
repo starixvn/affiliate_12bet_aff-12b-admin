@@ -775,7 +775,7 @@
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Web.info" />
+    <Content Include="Web.info" />
     <None Include="WebWorkbench.mswwsettings" />
   </ItemGroup>
   <ItemGroup>
