@@ -5,26 +5,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aff_CasinoImportData", "Aff
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AffCheckSum", "AffChecksum\AffCheckSum.csproj", "{A2042A84-7A26-4023-B32C-3CD1463EB3BE}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Affiliate", "Affiliate\", "{BC0925CE-A57A-4AD0-95C6-A4C41AC3B4BF}"
-	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		Debug.AspNetCompiler.VirtualPath = "/Affiliate"
-		Debug.AspNetCompiler.PhysicalPath = "Affiliate\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\Affiliate\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/Affiliate"
-		Release.AspNetCompiler.PhysicalPath = "Affiliate\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\Affiliate\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "51421"
-	EndProjectSection
-EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Affiliate Admin", "Affiliate Admin\", "{ECEE1135-1E46-4478-A1EE-F5A7EDBB84B3}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
@@ -94,16 +74,6 @@ Global
 		{A2042A84-7A26-4023-B32C-3CD1463EB3BE}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{A2042A84-7A26-4023-B32C-3CD1463EB3BE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{A2042A84-7A26-4023-B32C-3CD1463EB3BE}.Release|x86.ActiveCfg = Release|Any CPU
-		{BC0925CE-A57A-4AD0-95C6-A4C41AC3B4BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BC0925CE-A57A-4AD0-95C6-A4C41AC3B4BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BC0925CE-A57A-4AD0-95C6-A4C41AC3B4BF}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{BC0925CE-A57A-4AD0-95C6-A4C41AC3B4BF}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{BC0925CE-A57A-4AD0-95C6-A4C41AC3B4BF}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{BC0925CE-A57A-4AD0-95C6-A4C41AC3B4BF}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{BC0925CE-A57A-4AD0-95C6-A4C41AC3B4BF}.Release|Any CPU.Build.0 = Debug|Any CPU
-		{BC0925CE-A57A-4AD0-95C6-A4C41AC3B4BF}.Release|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{BC0925CE-A57A-4AD0-95C6-A4C41AC3B4BF}.Release|Mixed Platforms.Build.0 = Debug|Any CPU
-		{BC0925CE-A57A-4AD0-95C6-A4C41AC3B4BF}.Release|x86.ActiveCfg = Debug|Any CPU
 		{ECEE1135-1E46-4478-A1EE-F5A7EDBB84B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{ECEE1135-1E46-4478-A1EE-F5A7EDBB84B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ECEE1135-1E46-4478-A1EE-F5A7EDBB84B3}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -161,7 +131,6 @@ Global
 		{F138D089-0EAE-43D6-84F2-DC4D7B309008} = {0CCA4E4C-FC6F-4FFC-8D90-F511276D245F}
 		{ECEE1135-1E46-4478-A1EE-F5A7EDBB84B3} = {03684E3E-77AA-4AB1-9E92-6AB573C1E570}
 		{54CA48E9-8E1F-4F36-AC37-34F0E52C1233} = {03684E3E-77AA-4AB1-9E92-6AB573C1E570}
-		{BC0925CE-A57A-4AD0-95C6-A4C41AC3B4BF} = {03684E3E-77AA-4AB1-9E92-6AB573C1E570}
 		{6CE25B47-449E-4282-A956-BAADC31CB372} = {03684E3E-77AA-4AB1-9E92-6AB573C1E570}
 		{5A02B692-8572-43D2-A959-7C7F4738737E} = {03684E3E-77AA-4AB1-9E92-6AB573C1E570}
 		{6617CFAB-C52A-4DD7-9F73-8FA33BED1D6C} = {03684E3E-77AA-4AB1-9E92-6AB573C1E570}
