@@ -108,7 +108,7 @@ public class IBCPage : System.Web.UI.Page
         writer.Write("<head>\n");
         writer.Write(AppSettings.HtmlHeader);
         writer.Write(CssLinks);
-        string aspxContent = DNAide.Web.TemplateHandler.LoadTemplate2(Request.AppRelativeCurrentExecutionFilePath.Replace("~/", string.Empty));
+        string aspxContent = DNAide.Web.TemplateHandler.LoadTemplate(Request.AppRelativeCurrentExecutionFilePath.Replace("~/", string.Empty));
         try
         {
             writer.Write(DNAide.Web.TemplateHandler.CopyBlock(aspxContent, "js").Replace(".js", ".js?ver=" + AppSettings.JsVersion));

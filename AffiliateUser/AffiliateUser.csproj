@@ -717,10 +717,6 @@
     <None Include="App_Data\Fanex.Result\VSTennis.xls" />
     <None Include="App_GlobalResources\Lang.ko-KR.resx.orig" />
     <None Include="App_GlobalResources\Lang.resx.orig" />
-    <None Include="Old_App_WebReferences\AffBetlistService\AffiliateAPI.discomap" />
-    <None Include="Old_App_WebReferences\AffBetlistService\AffiliateAPI.wsdl" />
-    <None Include="Old_App_WebReferences\MemberInfoService\Service.discomap" />
-    <None Include="Old_App_WebReferences\MemberInfoService\Service.wsdl" />
     <Content Include="Authorization\LoginCaptcha.ashx" />
     <Content Include="Authorization\LogOut.ashx" />
     <Content Include="Authorization\ProcessLogin.ashx" />
@@ -1303,8 +1299,6 @@
     <Content Include="App_Themes\Default\Paging.css" />
     <Content Include="App_Themes\Default\Right.css" />
     <Content Include="App_Themes\error2.png" />
-    <Content Include="Old_App_WebReferences\AffBetlistService\AffiliateAPI.disco" />
-    <Content Include="Old_App_WebReferences\MemberInfoService\Service.disco" />
     <Content Include="Authorization\Error.aspx" />
     <Content Include="BetList\BetList.aspx" />
     <Content Include="BetList\BetListParlayDetail.aspx" />

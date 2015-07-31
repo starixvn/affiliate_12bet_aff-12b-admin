@@ -46,6 +46,26 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{63F68E
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Affiliate", "Affiliate\", "{64032F23-14DC-4313-BF37-0E568BC6CDF7}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/Affiliate"
+		Debug.AspNetCompiler.PhysicalPath = "Affiliate\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\Affiliate\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/Affiliate"
+		Release.AspNetCompiler.PhysicalPath = "Affiliate\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\Affiliate\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "51421"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -122,6 +142,16 @@ Global
 		{6617CFAB-C52A-4DD7-9F73-8FA33BED1D6C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{6617CFAB-C52A-4DD7-9F73-8FA33BED1D6C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{6617CFAB-C52A-4DD7-9F73-8FA33BED1D6C}.Release|x86.ActiveCfg = Release|Any CPU
+		{64032F23-14DC-4313-BF37-0E568BC6CDF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64032F23-14DC-4313-BF37-0E568BC6CDF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64032F23-14DC-4313-BF37-0E568BC6CDF7}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{64032F23-14DC-4313-BF37-0E568BC6CDF7}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{64032F23-14DC-4313-BF37-0E568BC6CDF7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{64032F23-14DC-4313-BF37-0E568BC6CDF7}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{64032F23-14DC-4313-BF37-0E568BC6CDF7}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{64032F23-14DC-4313-BF37-0E568BC6CDF7}.Release|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{64032F23-14DC-4313-BF37-0E568BC6CDF7}.Release|Mixed Platforms.Build.0 = Debug|Any CPU
+		{64032F23-14DC-4313-BF37-0E568BC6CDF7}.Release|x86.ActiveCfg = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -134,5 +164,6 @@ Global
 		{6CE25B47-449E-4282-A956-BAADC31CB372} = {03684E3E-77AA-4AB1-9E92-6AB573C1E570}
 		{5A02B692-8572-43D2-A959-7C7F4738737E} = {03684E3E-77AA-4AB1-9E92-6AB573C1E570}
 		{6617CFAB-C52A-4DD7-9F73-8FA33BED1D6C} = {03684E3E-77AA-4AB1-9E92-6AB573C1E570}
+		{64032F23-14DC-4313-BF37-0E568BC6CDF7} = {03684E3E-77AA-4AB1-9E92-6AB573C1E570}
 	EndGlobalSection
 EndGlobal
