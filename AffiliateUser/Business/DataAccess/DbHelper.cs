@@ -1,13 +1,7 @@
-﻿using System;
-using System.Text;
-using System.Data;
-using System.Configuration;
+﻿using System.Text;
 using System.Web;
-using System.Web.Security;
 using System.Collections;
-using DNAide.Data;
 using DNAide.Core;
-using DNAide.Utils;
 using Fanex.Data;
 
 namespace AffiliateUser.Business.DataAccess
