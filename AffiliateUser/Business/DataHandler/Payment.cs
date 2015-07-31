@@ -16,7 +16,7 @@ namespace DataHandler
             hsParam.Add("aff_mincheque", "0");
             hsParam.Add("aff_minmoneybookers", "0");
 
-            return DbHelper.Execute("Aff_MinAmountSel", hsParam, DBType.AFFILIATE_12BET).Outputs;
+            return DbHelper.Execute("Aff_MinAmountSel", DBType.AFFILIATE_12BET, hsParam).Outputs;
         }
     }
 }

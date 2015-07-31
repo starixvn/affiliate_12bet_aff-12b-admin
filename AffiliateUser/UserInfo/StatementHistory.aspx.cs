@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Text;
 using System.Data;
-using DNAide.Web;
-using DNAide.Data;
-using DNAide.Core;
+using System.Text;
 using AffiliateUser;
+using DNAide.Core;
+using DNAide.Web;
 
 
 public partial class UserInfo_StatementHistory : RootPageLogIn
@@ -30,7 +29,7 @@ public partial class UserInfo_StatementHistory : RootPageLogIn
         int affID = AppSettings.Session.CustID;
         int transType = CastAide.AsInt32(Request["transtype"], -1);
 
-        DbResult result = DataHandler.Statement.SelStatementHistory(affID, transType, null, null, intPageIndex, intPageSize, ref intTotalPage);
+        var result = DataHandler.Statement.SelStatementHistory(affID, transType, null, null, intPageIndex, intPageSize, ref intTotalPage);
         //DbResult result = DataHandler.Statement.HistorySel(strStatus, intPageIndex, ref intTotalPage);
         if (result.ResultSet.Tables.Count > 0 && result.ResultSet.Tables[0].Rows.Count>0)
         {

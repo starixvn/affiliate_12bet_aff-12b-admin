@@ -14,7 +14,7 @@ namespace DataHandler
             var ht = new Hashtable();
             ht.Add("affid", AppSettings.Session.CustID);
             ht.Add("devicetype", byte.Parse(deviceType));
-            return DbHelper.Execute("Aff_DomainAffClientSel", ht, DBType.AFFILIATE_12BET).ResultSet.Tables[0];
+            return DbHelper.Execute("Aff_DomainAffClientSel", DBType.AFFILIATE_12BET, ht).ResultSet.Tables[0];
         }
     }
 }

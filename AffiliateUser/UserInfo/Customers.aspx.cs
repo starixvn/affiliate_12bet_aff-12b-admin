@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Text;
 using System.Data;
-using DNAide.Web;
-using DNAide.Data;
-using DNAide.Core;
-using System.Xml;
-using System.Xml.Linq;
-using System.Text.RegularExpressions;
 using System.Globalization;
+using System.Text;
 using System.Threading;
 using AffiliateUser;
+using DNAide.Core;
+using DNAide.Web;
 
 
 public partial class UserInfo_Customers : RootPageLogIn
@@ -72,7 +68,7 @@ public partial class UserInfo_Customers : RootPageLogIn
         int affID = AppSettings.Session.CustID;
         
 
-        DbResult result = DataHandler.MemberInfo.SelDepositMemInfo(affID, 
+        var result = DataHandler.MemberInfo.SelDepositMemInfo(affID, 
             getall ? null : dtmFrom,
             getall ? null : dtmTo, deposit, intPageIndex, intPageSize, ref intTotalPage);
         

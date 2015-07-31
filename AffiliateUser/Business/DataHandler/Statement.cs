@@ -17,7 +17,7 @@ namespace DataHandler
             hsParam.Add("pageindex", pageIndex);
             hsParam.Add("pagesize", pageSize);
             hsParam.Add("totalpages", 0);
-            DbResult rs = DbHelper.Execute("Aff_AffiliateStatementHistorySel", hsParam, DBType.AFFILIATE_12BET, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
+            DbResult rs = DbHelper.Execute("Aff_AffiliateStatementHistorySel", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
             totalPages = CastAide.AsInt32(rs.Outputs["totalpages"], 1);
             return rs;
         }

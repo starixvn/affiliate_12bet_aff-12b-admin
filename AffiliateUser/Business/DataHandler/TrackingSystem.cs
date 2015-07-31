@@ -19,14 +19,14 @@ namespace DataHandler
         {
             Hashtable hsParam = new Hashtable();
             hsParam.Add("affid", AppSettings.Session.CustID);
-            return DbHelper.Execute("Aff_AffiliateSelTrackingCode", hsParam, DBType.AFFILIATE_12BET);
+            return DbHelper.Execute("Aff_AffiliateSelTrackingCode", DBType.AFFILIATE_12BET, hsParam);
         }
         public static DbResult SelClickStatisticsAllMonths(string trackingCode)
         {
             Hashtable hsParam = new Hashtable();
             hsParam.Add("affid", AppSettings.Session.CustID);
             hsParam.Add("trackingcode", trackingCode);
-            return DbHelper.Execute("Aff_AffiliateSelClickStatisticsAllMonths", hsParam, DBType.AFFILIATE_12BET);
+            return DbHelper.Execute("Aff_AffiliateSelClickStatisticsAllMonths", DBType.AFFILIATE_12BET, hsParam);
         }
         public static DbResult SelClickStatisticsDetail(int month, int year, string trackingCode)
         {
@@ -36,7 +36,7 @@ namespace DataHandler
                 hsParam.Add("trackingcode", trackingCode);
             hsParam.Add("month", month);
             hsParam.Add("year", year);
-            return DbHelper.Execute("Aff_AffiliateSelClickStatisticsMonthDetail", hsParam, DBType.AFFILIATE_12BET, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
+            return DbHelper.Execute("Aff_AffiliateSelClickStatisticsMonthDetail", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
         }
         public static DbResult SelClickStatisticsBySite(object fromDate, object toDate, string deviceType)
         {
@@ -47,7 +47,7 @@ namespace DataHandler
             hsParam.Add("fromdate", CastAide.AsDateTime(fromDate, culture));
             hsParam.Add("todate", CastAide.AsDateTime(toDate, culture));
             hsParam.Add("devicetype", byte.Parse(deviceType));
-            return DbHelper.Execute("Aff_ClickStatisticsSelBySite", hsParam, DBType.AFFILIATE_12BET);
+            return DbHelper.Execute("Aff_ClickStatisticsSelBySite", DBType.AFFILIATE_12BET, hsParam);
         }
         public static DbResult SelStatisticsDetail_New(DateTime fDate, DateTime tDate, string domain, string sportCode, string languageCode, int pageSize, int pageIndex, string deviceType)
         {
@@ -67,7 +67,7 @@ namespace DataHandler
             hsParam.Add("pagesize", pageSize);
             hsParam.Add("pageindex", pageIndex);
             hsParam.Add("totalpages", 0);
-            return DbHelper.Execute("Aff_ClickStatisticsDetailBySite", hsParam, DBType.AFFILIATE_12BET, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
+            return DbHelper.Execute("Aff_ClickStatisticsDetailBySite", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
         }
 
         #region Statistics by Page
@@ -85,7 +85,7 @@ namespace DataHandler
                 hsParam.Add("languagecode", languageCode);
 
             hsParam.Add("devicetype", byte.Parse(deviceType));
-            return DbHelper.Execute("Aff_ClickStatisticsSelByPage", hsParam, DBType.AFFILIATE_12BET);
+            return DbHelper.Execute("Aff_ClickStatisticsSelByPage", DBType.AFFILIATE_12BET, hsParam);
         }
         public static DbResult SelClickStatisticsDetailByPage(DateTime fDate, DateTime tDate, string sportCode, string languageCode)
         {
@@ -97,7 +97,7 @@ namespace DataHandler
             hsParam.Add("todate", CastAide.AsDateTime(tDate, culture));
             hsParam.Add("sportcode", sportCode);
             hsParam.Add("languagecode", languageCode);
-            return DbHelper.Execute("Aff_ClickStatisticsDetailByPage", hsParam, DBType.AFFILIATE_12BET, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
+            return DbHelper.Execute("Aff_ClickStatisticsDetailByPage", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
         }
         #endregion
 
@@ -111,7 +111,7 @@ namespace DataHandler
             hsParam.Add("todate", CastAide.AsDateTime(toDate, culture));
             hsParam.Add("totaluniqueclicks", 0);
             hsParam.Add("totalclicks", 0);
-            DbResult rs = DbHelper.Execute("Aff_AffiliateSelClickSummaryByDate", hsParam, DBType.AFFILIATE_12BET);
+            DbResult rs = DbHelper.Execute("Aff_AffiliateSelClickSummaryByDate", DBType.AFFILIATE_12BET, hsParam);
             totalUniqueClicks = CastAide.AsInt32(rs.Outputs["totaluniqueclicks"]);
             totalClicks = CastAide.AsInt32(rs.Outputs["totalclicks"]);
         }
@@ -139,7 +139,7 @@ namespace DataHandler
             hsParam.Add("errcode", 0);
             hsParam.Add("errmsg", string.Empty);
 
-            var data = DbHelper.Execute("Aff_AffiliateInsClickStatistics_New", hsParam, DBType.AFFILIATE_12BET);
+            var data = DbHelper.Execute("Aff_AffiliateInsClickStatistics_New", DBType.AFFILIATE_12BET, hsParam);
             int result = int.Parse(data.Outputs["errcode"].ToString());
             redirectPage = data.Outputs["redirectpage"].ToString();
             clickID = Int64.Parse(data.Outputs["clickid"].ToString());
@@ -158,7 +158,7 @@ namespace DataHandler
             p.Add("todate", CastAide.AsDateTime(toDate, culture));
             p.Add("newsignup", 0);
             p.Add("totaldepositusers", 0);
-            DbResult rs = DbHelper.Execute("DEP_AffiliateSelSignupsByDate", p, DBType.DEPOSIT);
+            DbResult rs = DbHelper.Execute("DEP_AffiliateSelSignupsByDate", DBType.DEPOSIT, p);
             newSignups = CastAide.AsInt32(rs.Outputs["newsignup"], 0);
             totalDepositUsers = CastAide.AsInt32(rs.Outputs["totaldepositusers"], 0);
         }

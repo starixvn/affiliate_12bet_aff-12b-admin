@@ -10,26 +10,12 @@ namespace DataHandler
     /// Summary description for MemberInfo
     /// </summary>
     public class MemberInfo
-    {        
-        public static DbResult SelByAffiliate(int affID, object fromdate, object todate, int deposit, int pageIndex, int pageSize, ref int totalPages)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("affid", affID);
-            hsParam.Add("pageindex", pageIndex);
-            hsParam.Add("pagesize", pageSize);
-            hsParam.Add("fromdate", fromdate);
-            hsParam.Add("todate", todate);
-            hsParam.Add("isdeposit", deposit);
-            hsParam.Add("totalpages", 0);
-            DbResult rs = DbHelper.Execute("Aff_MemberInfoSel", hsParam, DBType.AFFILIATE_12BET, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
-            totalPages = CastAide.AsInt32(rs.Outputs["totalpages"], 1);            
-            return rs;
-        }
+    {               
         public static DataTable SelCreatedDates(string usernames)
         {
             Hashtable hsParam = new Hashtable();
             hsParam.Add("usernamelist", usernames);
-            DbResult rs = DbHelper.Execute("Aff_MemberInfoGetCreatedDate", hsParam, DBType.AFFILIATE_12BET, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
+            DbResult rs = DbHelper.Execute("Aff_MemberInfoGetCreatedDate", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
             return (rs.ResultSet.Tables.Count==0? null : rs.ResultSet.Tables[0]);
         }
         /// <summary>
@@ -47,7 +33,7 @@ namespace DataHandler
             hsParam.Add("pageindex", intPage);
             hsParam.Add("pagesize", intPageSize);
             hsParam.Add("totalpages", intTotalPages);
-            DbResult dbr = DbHelper.Execute("Aff_DEP_MemberListSel", hsParam, DBType.AFFILIATE_12BET);
+            DbResult dbr = DbHelper.Execute("Aff_DEP_MemberListSel", DBType.AFFILIATE_12BET, hsParam);
             intTotalPages = CastAide.AsInt32(dbr.Outputs["totalpages"]);
             return dbr;
         }
@@ -61,7 +47,7 @@ namespace DataHandler
             hsParam.Add("belonglevel1", 0);
             hsParam.Add("belonglevel2", 0);
 
-            var rs = DbHelper.Execute(criteria.SpName, hsParam, DBType.AFFILIATE_12BET);
+            var rs = DbHelper.Execute(criteria.SpName, DBType.AFFILIATE_12BET, hsParam);
             return CastAide.AsBoolean(rs.Outputs["belonglevel2"]);
         }
     }
