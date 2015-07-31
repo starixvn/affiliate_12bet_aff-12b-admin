@@ -1,13 +1,13 @@
-﻿using System.Text;
+﻿using System.Collections;
+using System.Text;
 using System.Web;
-using System.Collections;
 using DNAide.Core;
 using Fanex.Data;
 
 namespace AffiliateUser.Business.DataAccess
 {
     /// <summary>
-    /// Summary description for AffSPExecuter
+    /// Summary description for DbHelper
     /// </summary>
     public class DbHelper
     {

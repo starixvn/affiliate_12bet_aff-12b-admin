@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Data.SqlClient;
 using System.Web;
-using System.Web.Security;
-using System.Web.SessionState;
 
 namespace AffiliateUser
 {
@@ -51,7 +48,15 @@ namespace AffiliateUser
                             "\r\nTARGETSITE: " + ex.TargetSite +
                             "\r\nSTACKTRACE: " + ex.StackTrace;
 
-            DNAide.Web.DNAideLog.Write(message);
+            var sqlException = ex as SqlException;
+            if (sqlException != null)
+            {
+                message += "\r\nProcedure: " + sqlException.Procedure +
+                    "\r\nLine Number: " + sqlException.LineNumber +
+                    "\r\nServer: " + sqlException.Server;
+            }
+
+            Fanex.Logging.LogService.Error(message, ex);
         }
 
         protected void Session_End(object sender, EventArgs e)
