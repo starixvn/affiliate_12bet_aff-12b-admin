@@ -1,0 +1,131 @@
+<script type="text/javascript">
+    function NewWindow(HtmlName, WinName, ToolOptions) {
+        window.open(HtmlName, WinName, ToolOptions);
+    }
+
+    function SubmitSearchFormNew() {
+        $("frmSearch").method = "get";
+        $("frmSearch").action = "12BetDomain.aspx";
+        $("frmSearch").target = "";
+        $("frmSearch").submit();
+    }
+</script>
+
+<div class="padl0">
+    <div id="errMsg" style="display: none;" class="styleErrAddbanner">
+        <div id="error_item">
+            <ul>
+                <li><a class="err-msg" id="error_msg"></a></li>
+            </ul>
+        </div>
+    </div>
+    {submenu}
+    <!--search form-->
+    <form id="frmSearch" name="frmSearch" method="get">
+        <div id="search_cont">
+            <table cellspacing="1" cellpadding="2">
+                <tbody>
+                    <tr>
+                        <td>{Device}</td>
+                        <td>{slDevice}</td>
+                        <td><div id="divsearch" onclick="SubmitSearchFormNew();">&nbsp;</div></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+    <div style="margin: 10px 0px 0px 1px">
+        <a href="javascript:DoCal('Add12BetDomain.aspx?deviceType={DeviceType-val}', 'Add 12Bet Domain',340, 190);" class="abutton">
+            <span>{Add12BetDomain-val}</span> </a>
+    </div>
+    <div class="clear">
+    </div>
+    <div id="divContent" class="ContentBox" style="width: 860px;">
+        <table width="100%" border="0" cellpadding="0" cellspacing="2">
+            <tr>
+                <td>
+                    <div id="listuser" style="float: left;">
+                        <table class="aff-table" cellspacing="1" cellpadding="3" border="0" style="width: 700px">
+                            <tr>
+                                <th style="width: 20px">
+                                    &nbsp;
+                                </th>
+                                 <th>
+                                    {Device}
+                                </th>
+                                <th>
+                                    {Domain}
+                                </th>
+                                 <th>
+                                    {SSL}
+                                </th>
+                                <th style="width: 70px">
+                                    {Creator}
+                                </th>
+                                <th>
+                                    {CreatedDate}
+                                </th>                                
+                                <th>
+                                    {Edit}
+                                </th>
+                                <th>
+                                    {Del}
+                                </th>
+                            </tr>
+                            <!--content-->
+                            <tr bgcolor="{color}" onmouseout="bgColor='{color}'" onmouseover="bgColor='{over}'">
+                                <td class="c">
+                                    {No_Value}
+                                </td>
+                                <td class="c">
+                                    {Device_Value}
+                                </td>   
+                                <td>
+                                    {12BetDomain_Value}
+                                </td>   
+                                <td class="c">
+                                    <span class="chk {SSL-val}">&nbsp;</span>
+                                </td>                             
+                                <td class="c">
+                                    {Creator_Value}
+                                </td>
+                                <td class="c">
+                                    {CreatedDate_Value}
+                                </td>                                
+                                <td style="text-align: center;">
+                                    &nbsp;                                    
+                                    <a class="icedit" href="javascript:DoCal('Edit12BetDomain.aspx?12BetDomainID={12betdomainid}&12BetDomainName={12BetDomain_Value}&deviceType={DeviceType_Value}&ssl={SSL-Value}', 'Edit 12Bet Domain',340, 190);"
+                                        style="cursor: pointer;" />                                    
+                                </td>
+                                <td style="text-align: center;">                                    
+                                    <img border="0" src="../{themepath}/Images/delete.png" alt="Del" onclick="Del12BetDomain({12betdomainid},'{12BetDomain_Value}');"
+                                        style="cursor: pointer; text-align: center;" />                                    
+                                </td>
+                            </tr>
+                            <!--/content-->
+                        </table>
+                        <div style="margin: 3px 0px 0px 1px">
+                            <a href="javascript:DoCal('Add12BetDomain.aspx', 'Add 12Bet Domain',340, 190);" class="abutton">
+                                <span>{Add12BetDomain-val}</span> </a>
+                        </div>
+                     </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="errMsg" style="display: none; margin-top: 10px; margin-bottom: -5px; width: 410px"
+                        class="styleErrAddbanner">
+                        <div id="error_item">
+                            <ul>
+                                <li><a class="err-msg" id="error_msg"></a></li>
+                            </ul>
+                        </div>
+                    </div>                    
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</div>
+
+<input type="hidden" id="cfmchoose" name="cfmchoose" value="{ChooseConfirm}" />

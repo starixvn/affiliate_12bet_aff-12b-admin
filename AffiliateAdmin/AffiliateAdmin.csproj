@@ -1,0 +1,2585 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CB6C1C24-FB59-4A4F-B546-8C37556DE109}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AffiliateAdmin</RootNamespace>
+    <AssemblyName>AffiliateAdmin</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DNAide, Version=0.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Dependencies\DNAide.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Age.Business, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Dependencies\Fanex.Age.Business.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Age.Business.Interface, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Dependencies\Fanex.Age.Business.Interface.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Age.DTO, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Dependencies\Fanex.Age.DTO.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Age.Excel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Dependencies\Fanex.Age.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Age.UI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Dependencies\Fanex.Age.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Age.UI.Components, Version=1.0.4825.23636, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Dependencies\Fanex.Age.UI.Components.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Age.UI.Forecast, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Dependencies\Fanex.Age.UI.Forecast.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Age.UI.LiveCasino, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Dependencies\Fanex.Age.UI.LiveCasino.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Age.UI.Reports, Version=1.0.4874.18085, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Dependencies\Fanex.Age.UI.Reports.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Age.UI.TotalBets, Version=1.0.4580.20749, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Dependencies\Fanex.Age.UI.TotalBets.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.Age.Utility, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Dependencies\Fanex.Age.Utility.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.BetList.Age, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Dependencies\Fanex.BetList.Age.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.BetList.Core, Version=1.0.4875.28933, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Dependencies\Fanex.BetList.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.BetList.Core.TicketHelper, Version=1.0.4875.29081, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Dependencies\Fanex.BetList.Core.TicketHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.MailDeliver.MailClient, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.MailDeliver.MailClient.1.0.0.2\lib\net40\Fanex.MailDeliver.MailClient.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="IBCFile, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.File.1.0.0\lib\net40\IBCFile.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="LoadBalancer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Dependencies\LoadBalancer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Dependencies\Microsoft.Practices.EnterpriseLibrary.Caching.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Dependencies\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Dependencies\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Dependencies\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Dependencies\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Dependencies\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging.Database, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Dependencies\Microsoft.Practices.EnterpriseLibrary.Logging.Database.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ObjectBuilder, Version=1.0.51206.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Dependencies\Microsoft.Practices.ObjectBuilder.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ObjectBuilder2, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Dependencies\Microsoft.Practices.ObjectBuilder2.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Dependencies\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Dependencies\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Dependencies\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Dependencies\Microsoft.Practices.Unity.Interception.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception.Configuration, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Dependencies\Microsoft.Practices.Unity.Interception.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.StaticFactory, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Dependencies\Microsoft.Practices.Unity.StaticFactory.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI, Version=1.2.4.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Dependencies\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="RemotingRef, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Dependencies\RemotingRef.dll</HintPath>
+    </Reference>
+    <Reference Include="SPSRemoting, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SPSRemoting.1.0.0\lib\net40\SPSRemoting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Sunplus.Agent.Model, Version=1.0.4828.17564, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Dependencies\Sunplus.Agent.Model.dll</HintPath>
+    </Reference>
+    <Reference Include="Sunplus.Agent.Utilities, Version=1.0.4734.26154, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Dependencies\Sunplus.Agent.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="Sunplus.Core.Common, Version=1.1.4505.19054, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Dependencies\Sunplus.Core.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="TplCore, Version=1.0.4694.29951, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Dependencies\TplCore.dll</HintPath>
+    </Reference>
+    <Reference Include="UMControllerLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\UMControllerLibrary.1.0.0\lib\net40\UMControllerLibrary.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccessDenied.aspx.cs">
+      <DependentUpon>AccessDenied.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AccessDenied.aspx.designer.cs">
+      <DependentUpon>AccessDenied.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Alert.aspx.cs">
+      <DependentUpon>Alert.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Alert.aspx.designer.cs">
+      <DependentUpon>Alert.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Auth\Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BetList.aspx.designer.cs">
+      <DependentUpon>BetList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BetList\BetList.aspx.designer.cs">
+      <DependentUpon>BetList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BetList\BetListParlayDetail.aspx.designer.cs">
+      <DependentUpon>BetListParlayDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BetList\BetListResults.aspx.designer.cs">
+      <DependentUpon>BetListResults.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Casino\UploadExcel.aspx.designer.cs">
+      <DependentUpon>UploadExcel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ChangeAdminPass.aspx.designer.cs">
+      <DependentUpon>ChangeAdminPass.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ChangePass.aspx.designer.cs">
+      <DependentUpon>ChangePass.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\AffDefault.aspx.designer.cs">
+      <DependentUpon>AffDefault.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\AffiliateInfo.aspx.designer.cs">
+      <DependentUpon>AffiliateInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\Statistics.aspx.designer.cs">
+      <DependentUpon>Statistics.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\12BetDomain.aspx.designer.cs">
+      <DependentUpon>12BetDomain.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Add12BetDomain.aspx.designer.cs">
+      <DependentUpon>Add12BetDomain.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\AddAffiliateDomain.aspx.designer.cs">
+      <DependentUpon>AddAffiliateDomain.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\AffiliateDomain.aspx.designer.cs">
+      <DependentUpon>AffiliateDomain.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\DomainControl.aspx.designer.cs">
+      <DependentUpon>DomainControl.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\DomainControlIns.aspx.designer.cs">
+      <DependentUpon>DomainControlIns.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\DomainControlUpd.aspx.designer.cs">
+      <DependentUpon>DomainControlUpd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\Edit12BetDomain.aspx.designer.cs">
+      <DependentUpon>Edit12BetDomain.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Domain\EditAffiliateDomain.aspx.designer.cs">
+      <DependentUpon>EditAffiliateDomain.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Exchange\AffEditRate.aspx.designer.cs">
+      <DependentUpon>AffEditRate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Exchange\AffRate.aspx.designer.cs">
+      <DependentUpon>AffRate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GroupSetting\AddGroup.aspx.designer.cs">
+      <DependentUpon>AddGroup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GroupSetting\AssignGroup.aspx.designer.cs">
+      <DependentUpon>AssignGroup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GroupSetting\EditGroup.aspx.designer.cs">
+      <DependentUpon>EditGroup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GroupSetting\GroupSetting.aspx.designer.cs">
+      <DependentUpon>GroupSetting.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Header.aspx.designer.cs">
+      <DependentUpon>Header.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Home\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Media\AddBanner.aspx.designer.cs">
+      <DependentUpon>AddBanner.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Media\AddText.aspx.designer.cs">
+      <DependentUpon>AddText.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Media\BannerDetail.aspx.designer.cs">
+      <DependentUpon>BannerDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Media\EditBanner.aspx.designer.cs">
+      <DependentUpon>EditBanner.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Media\ListBannerNew.aspx.designer.cs">
+      <DependentUpon>ListBannerNew.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Media\ListText.aspx.designer.cs">
+      <DependentUpon>ListText.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Business\AffSPExecuter.cs" />
+    <Compile Include="Business\AffType.cs" />
+    <Compile Include="Business\AppSettings.cs" />
+    <Compile Include="Business\CacheRef.cs" />
+    <Compile Include="Business\CacheUtil.cs" />
+    <Compile Include="Business\Common.cs" />
+    <Compile Include="Business\Criterias\AffiliateListCriteria.cs" />
+    <Compile Include="Business\Criterias\AffiliateReportCriteria.cs" />
+    <Compile Include="Business\Criterias\CasinoPlayerTurnoverReportCriteria.cs" />
+    <Compile Include="Business\Criterias\CommissionReportCriteria.cs" />
+    <Compile Include="Business\Criterias\MemberStatisticsReportCriteria.cs" />
+    <Compile Include="Business\Criterias\PerformanceCriteria.cs" />
+    <Compile Include="Business\Criterias\QMReportCriteria.cs" />
+    <Compile Include="Business\Criterias\SBPlayerTurnoverReportCriteria.cs" />
+    <Compile Include="Business\Criterias\SignUpActiveCriteria.cs" />
+    <Compile Include="Business\Criterias\ValidationCriteria.cs" />
+    <Compile Include="Business\DataHandler\Account.cs" />
+    <Compile Include="Business\DataHandler\Active12BetAccount.cs" />
+    <Compile Include="Business\DataHandler\Affiliate.cs" />
+    <Compile Include="Business\DataHandler\Banner.cs" />
+    <Compile Include="Business\DataHandler\Casino.cs" />
+    <Compile Include="Business\DataHandler\Domain.cs" />
+    <Compile Include="Business\DataHandler\EmailHistory.cs" />
+    <Compile Include="Business\DataHandler\ExchangeRate.cs" />
+    <Compile Include="Business\DataHandler\GroupSetting.cs" />
+    <Compile Include="Business\DataHandler\Home.cs" />
+    <Compile Include="Business\DataHandler\HotNews.cs" />
+    <Compile Include="Business\DataHandler\Login.cs" />
+    <Compile Include="Business\DataHandler\Member.cs" />
+    <Compile Include="Business\DataHandler\PaymentRequest.cs" />
+    <Compile Include="Business\DataHandler\Report.cs" />
+    <Compile Include="Business\DataHandler\ServerDateTime.cs" />
+    <Compile Include="Business\DataHandler\Statement.cs" />
+    <Compile Include="Business\DataHandler\Text.cs" />
+    <Compile Include="Business\DataHandler\TrackingSystem.cs" />
+    <Compile Include="Business\DataHandler\UserControl.cs" />
+    <Compile Include="Business\DataHandler\UserLog.cs" />
+    <Compile Include="Business\DBType.cs" />
+    <Compile Include="Business\DepositCustomerInfo.cs" />
+    <Compile Include="Business\Exporters\AffiliateListExporter.cs" />
+    <Compile Include="Business\Exporters\ApprovedAffiliateListExporter.cs" />
+    <Compile Include="Business\Exporters\ClosedAffiliateListExporter.cs" />
+    <Compile Include="Business\Exporters\DisapprovedAffiliateListExporter.cs" />
+    <Compile Include="Business\Exporters\ExporterFactory.cs" />
+    <Compile Include="Business\Exporters\PendingAffiliateListExporter.cs" />
+    <Compile Include="Business\GenerateHTML\AffiliateList.cs" />
+    <Compile Include="Business\GenerateHTML\Banner.cs" />
+    <Compile Include="Business\GenerateHTML\Domain.cs" />
+    <Compile Include="Business\GenerateHTML\EmailHistory.cs" />
+    <Compile Include="Business\GenerateHTML\GroupSetting.cs" />
+    <Compile Include="Business\GenerateHTML\HotNews.cs" />
+    <Compile Include="Business\GenerateHTML\Note.cs" />
+    <Compile Include="Business\GenerateHTML\OnlineList.cs" />
+    <Compile Include="Business\GenerateHTML\Text.cs" />
+    <Compile Include="Business\GenerateHTML\TrackingSystem.cs" />
+    <Compile Include="Business\GenerateHTML\UserLog.cs" />
+    <Compile Include="Business\IBCHandler.cs" />
+    <Compile Include="Business\IBCPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Business\Language.cs" />
+    <Compile Include="Business\Status.cs" />
+    <Compile Include="Business\SubMenu.cs" />
+    <Compile Include="Business\SwfInfo.cs" />
+    <Compile Include="Business\TplCore\App_Templates\MemberInfo\CasinoPT.htm.cs" />
+    <Compile Include="Business\TplCore\_BetList\BetList.htm.cs" />
+    <Compile Include="Business\TplCore\_BetList\BetSlip.htm.cs" />
+    <Compile Include="Business\TplCore\_BetList\BingoResult.htm.cs" />
+    <Compile Include="Business\TplCore\_BetList\BingoResultDetail.htm.cs" />
+    <Compile Include="Business\TplCore\_BetList\CasinoResult_4hJOB.htm.cs" />
+    <Compile Include="Business\TplCore\_BetList\CasinoResult_BattleWar.htm.cs" />
+    <Compile Include="Business\TplCore\_BetList\CasinoResult_Champion.htm.cs" />
+    <Compile Include="Business\TplCore\_BetList\CasinoResult_CrazyHospital.htm.cs" />
+    <Compile Include="Business\TplCore\_BetList\CasinoResult_DinoCamp.htm.cs" />
+    <Compile Include="Business\TplCore\_BetList\CasinoResult_DragonSlot.htm.cs" />
+    <Compile Include="Business\TplCore\_BetList\CasinoResult_Engagement2.htm.cs" />
+    <Compile Include="Business\TplCore\_BetList\CasinoResult_FaceUp.htm.cs" />
+    <Compile Include="Business\TplCore\_BetList\CasinoResult_FanTan.htm.cs" />
+    <Compile Include="Business\TplCore\_BetList\CasinoResult_GongXiFaChai.htm.cs" />
+    <Compile Include="Business\TplCore\_BetList\CasinoResult_Halloween.htm.cs" />
+    <Compile Include="Business\TplCore\_BetList\CasinoResult_HiLoMahjong.htm.cs" />
+    <Compile Include="Business\TplCore\_BetList\CasinoResult_HoHoHoScratch.htm.cs" />
+    <Compile Include="Business\TplCore\_BetList\CasinoResult_HorseRacing.htm.cs" />
+    <Compile Include="Business\TplCore\_BetList\CasinoResult_JacksOrBetter.htm.cs" />
+    <Compile Include="Business\TplCore\_BetList\CasinoResult_JourneyWest.htm.cs" />
+    <Compile Include="Business\TplCore\_BetList\CasinoResult_Keno.htm.cs" />
+    <Compile Include="Business\TplCore\_BetList\CasinoResult_KnockEggs.htm.cs" />
+    <Compile Include="Business\TplCore\_BetList\CasinoResult_LoveStoryScratch.htm.cs" />
+    <Compile Include="Business\TplCore\_BetList\CasinoResult_MahjongLegend.htm.cs" />
+    <Compile Include="Business\TplCore\_BetList\CasinoResult_MamakCorner.htm.cs" />
+    <Compile Include="Business\TplCore\_BetList\CasinoResult_MayaPush.htm.cs" />
+    <Compile Include="Business\TplCore\_BetList\CasinoResult_MiniRoulette.htm.cs" />
+    <Compile Include="Business\TplCore\_BetList\CasinoResult_MoneySlot.htm.cs" />
+    <Compile Include="Business\TplCore\_BetList\CasinoResult_MoneyWheel.htm.cs" />
+    <Compile Include="Business\TplCore\_BetList\CasinoResult_MultiJOB.htm.cs" />
+    <Compile Include="Business\TplCore\_BetList\CasinoResult_PenaltyHatTrick.htm.cs" />
+    <Compile Include="Business\TplCore\_BetList\CasinoResult_RedDog.htm.cs" />
+    <Compile Include="Business\TplCore\_BetList\CasinoResult_Scratch.htm.cs" />
+    <Compile Include="Business\TplCore\_BetList\CasinoResult_TattooArt.htm.cs" />
+    <Compile Include="Business\TplCore\_BetList\CasinoResult_TenOrBetter.htm.cs" />
+    <Compile Include="Business\TplCore\_BetList\CasinoResult_TexasHoldem.htm.cs" />
+    <Compile Include="Business\TplCore\_BetList\CasinoResult_WaterMargin.htm.cs" />
+    <Compile Include="Business\TplCore\_BetList\CasinoResult_WesternZodiac.htm.cs" />
+    <Compile Include="Business\TplCore\_BetList\CasinoResult_WinterSlot.htm.cs" />
+    <Compile Include="Business\TplCore\_BetList\MixParlay\CombinationMixParlayDetail.htm.cs" />
+    <Compile Include="Business\TplCore\_BetList\MixParlay\CombinationMixParlayRow.htm.cs" />
+    <Compile Include="Business\TplCore\_BetList\P2P\TableSession.htm.cs" />
+    <Compile Include="Business\TplCore\_IPInfo\IpInfo.htm.cs" />
+    <Compile Include="Business\TplCore\_IPInfo\IpInfoDetail.htm.cs" />
+    <Compile Include="Business\TplCore\_UserGuide\Agent\UserGuide_CS\index.htm.cs" />
+    <Compile Include="Business\TplCore\_UserGuide\Agent\UserGuide_CS\Menu.htm.cs" />
+    <Compile Include="Business\TplCore\_UserGuide\Agent\UserGuide_CT\index.htm.cs" />
+    <Compile Include="Business\TplCore\_UserGuide\Agent\UserGuide_CT\Menu.htm.cs" />
+    <Compile Include="Business\TplCore\_UserGuide\Agent\UserGuide_E\index.htm.cs" />
+    <Compile Include="Business\TplCore\_UserGuide\Agent\UserGuide_E\Menu.htm.cs" />
+    <Compile Include="Business\TplCore\_UserGuide\Index.htm.cs" />
+    <Compile Include="Business\TplCore\_UserGuide\Master\UserGuide_CS\index.htm.cs" />
+    <Compile Include="Business\TplCore\_UserGuide\Master\UserGuide_CS\Menu.htm.cs" />
+    <Compile Include="Business\TplCore\_UserGuide\Master\UserGuide_CT\index.htm.cs" />
+    <Compile Include="Business\TplCore\_UserGuide\Master\UserGuide_CT\Menu.htm.cs" />
+    <Compile Include="Business\TplCore\_UserGuide\Master\UserGuide_E\index.htm.cs" />
+    <Compile Include="Business\TplCore\_UserGuide\Master\UserGuide_E\Menu.htm.cs" />
+    <Compile Include="Business\_UI\_BetList\BetList_Template2.cs" />
+    <Compile Include="Business\_UI\_Reports\BetList\OutstandingDetail_Template2.cs" />
+    <Compile Include="App_GlobalResources\BetList.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BetList.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Bingo.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Bingo.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Casino.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Casino.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Lang.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Lang.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\ResultLang.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResultLang.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Auth\Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BetList.aspx.cs">
+      <DependentUpon>BetList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BetList\BetList.aspx.cs">
+      <DependentUpon>BetList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BetList\BetListParlayDetail.aspx.cs">
+      <DependentUpon>BetListParlayDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BetList\BetListResults.aspx.cs">
+      <DependentUpon>BetListResults.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Casino\UploadExcel.aspx.cs">
+      <DependentUpon>UploadExcel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChangeAdminPass.aspx.cs">
+      <DependentUpon>ChangeAdminPass.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChangePass.aspx.cs">
+      <DependentUpon>ChangePass.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\AffDefault.aspx.cs">
+      <DependentUpon>AffDefault.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\AffiliateInfo.aspx.cs">
+      <DependentUpon>AffiliateInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\Statistics.aspx.cs">
+      <DependentUpon>Statistics.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Domain\12BetDomain.aspx.cs">
+      <DependentUpon>12BetDomain.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Domain\Add12BetDomain.aspx.cs">
+      <DependentUpon>Add12BetDomain.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Domain\AddAffiliateDomain.aspx.cs">
+      <DependentUpon>AddAffiliateDomain.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Domain\AffiliateDomain.aspx.cs">
+      <DependentUpon>AffiliateDomain.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Domain\DomainControl.aspx.cs">
+      <DependentUpon>DomainControl.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Domain\DomainControlIns.aspx.cs">
+      <DependentUpon>DomainControlIns.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Domain\DomainControlUpd.aspx.cs">
+      <DependentUpon>DomainControlUpd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Domain\Edit12BetDomain.aspx.cs">
+      <DependentUpon>Edit12BetDomain.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Domain\EditAffiliateDomain.aspx.cs">
+      <DependentUpon>EditAffiliateDomain.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Exchange\AffEditRate.aspx.cs">
+      <DependentUpon>AffEditRate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Exchange\AffRate.aspx.cs">
+      <DependentUpon>AffRate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GroupSetting\AddGroup.aspx.cs">
+      <DependentUpon>AddGroup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GroupSetting\AssignGroup.aspx.cs">
+      <DependentUpon>AssignGroup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GroupSetting\EditGroup.aspx.cs">
+      <DependentUpon>EditGroup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GroupSetting\GroupSetting.aspx.cs">
+      <DependentUpon>GroupSetting.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Header.aspx.cs">
+      <DependentUpon>Header.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Home\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Media\AddBanner.aspx.cs">
+      <DependentUpon>AddBanner.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Media\AddText.aspx.cs">
+      <DependentUpon>AddText.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Media\BannerDetail.aspx.cs">
+      <DependentUpon>BannerDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Media\EditBanner.aspx.cs">
+      <DependentUpon>EditBanner.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Media\ListBannerNew.aspx.cs">
+      <DependentUpon>ListBannerNew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Media\ListText.aspx.cs">
+      <DependentUpon>ListText.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Others\EmailHistory.aspx.cs">
+      <DependentUpon>EmailHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Others\EmailHistory.aspx.designer.cs">
+      <DependentUpon>EmailHistory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Others\Message.aspx.cs">
+      <DependentUpon>Message.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Others\Message.aspx.designer.cs">
+      <DependentUpon>Message.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Others\ViewEmailDetails.aspx.cs">
+      <DependentUpon>ViewEmailDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Others\ViewEmailDetails.aspx.designer.cs">
+      <DependentUpon>ViewEmailDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Others\ViewMessDetails.aspx.cs">
+      <DependentUpon>ViewMessDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Others\ViewMessDetails.aspx.designer.cs">
+      <DependentUpon>ViewMessDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\PaymentRequest.aspx.cs">
+      <DependentUpon>PaymentRequest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Payment\PaymentRequest.aspx.designer.cs">
+      <DependentUpon>PaymentRequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\PaymentUpdate.aspx.cs">
+      <DependentUpon>PaymentUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Payment\PaymentUpdate.aspx.designer.cs">
+      <DependentUpon>PaymentUpdate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Report\AffiliateQMReport.aspx.cs">
+      <DependentUpon>AffiliateQMReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report\AffiliateQMReport.aspx.designer.cs">
+      <DependentUpon>AffiliateQMReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Report\AffiliateQMReportDetail.aspx.cs">
+      <DependentUpon>AffiliateQMReportDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report\AffiliateQMReportDetail.aspx.designer.cs">
+      <DependentUpon>AffiliateQMReportDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Report\AffiliateReport.aspx.cs">
+      <DependentUpon>AffiliateReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report\AffiliateReport.aspx.designer.cs">
+      <DependentUpon>AffiliateReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Report\AffiliateReportDetail.aspx.cs">
+      <DependentUpon>AffiliateReportDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report\AffiliateReportDetail.aspx.designer.cs">
+      <DependentUpon>AffiliateReportDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Report\CasinoPlayerTurnoverReport.aspx.cs">
+      <DependentUpon>CasinoPlayerTurnoverReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report\CasinoPlayerTurnoverReport.aspx.designer.cs">
+      <DependentUpon>CasinoPlayerTurnoverReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Report\Commission.aspx.cs">
+      <DependentUpon>Commission.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report\Commission.aspx.designer.cs">
+      <DependentUpon>Commission.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Report\MemberReport.aspx.cs">
+      <DependentUpon>MemberReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report\MemberReport.aspx.designer.cs">
+      <DependentUpon>MemberReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Report\MemberStatisticsReport.aspx.cs">
+      <DependentUpon>MemberStatisticsReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report\MemberStatisticsReport.aspx.designer.cs">
+      <DependentUpon>MemberStatisticsReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Report\MemberStatisticsReportDetail.aspx.cs">
+      <DependentUpon>MemberStatisticsReportDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report\MemberStatisticsReportDetail.aspx.designer.cs">
+      <DependentUpon>MemberStatisticsReportDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Report\Performance.aspx.cs">
+      <DependentUpon>Performance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report\Performance.aspx.designer.cs">
+      <DependentUpon>Performance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Report\PerformanceReportByAffiliate.aspx.cs">
+      <DependentUpon>PerformanceReportByAffiliate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report\PerformanceReportByAffiliate.aspx.designer.cs">
+      <DependentUpon>PerformanceReportByAffiliate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Report\SBPlayerTurnoverReport.aspx.cs">
+      <DependentUpon>SBPlayerTurnoverReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report\SBPlayerTurnoverReport.aspx.designer.cs">
+      <DependentUpon>SBPlayerTurnoverReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Report\SignUpActive.aspx.cs">
+      <DependentUpon>SignUpActive.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report\SignUpActive.aspx.designer.cs">
+      <DependentUpon>SignUpActive.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SignIn.aspx.cs">
+      <DependentUpon>SignIn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SignIn.aspx.designer.cs">
+      <DependentUpon>SignIn.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test\DepMemberDetailUpd.aspx.cs">
+      <DependentUpon>DepMemberDetailUpd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\DepMemberDetailUpd.aspx.designer.cs">
+      <DependentUpon>DepMemberDetailUpd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test\test.aspx.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\test.aspx.designer.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Test\TestInternalLogin.aspx.cs">
+      <DependentUpon>TestInternalLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Test\TestInternalLogin.aspx.designer.cs">
+      <DependentUpon>TestInternalLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UnderMaintenance.aspx.cs">
+      <DependentUpon>UnderMaintenance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UnderMaintenance.aspx.designer.cs">
+      <DependentUpon>UnderMaintenance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\AddDepartment.aspx.cs">
+      <DependentUpon>AddDepartment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControl\AddDepartment.aspx.designer.cs">
+      <DependentUpon>AddDepartment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\AddUser.aspx.cs">
+      <DependentUpon>AddUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControl\AddUser.aspx.designer.cs">
+      <DependentUpon>AddUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\AddUserExist.aspx.cs">
+      <DependentUpon>AddUserExist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControl\AddUserExist.aspx.designer.cs">
+      <DependentUpon>AddUserExist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\EditAdminPolicy.aspx.cs">
+      <DependentUpon>EditAdminPolicy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControl\EditAdminPolicy.aspx.designer.cs">
+      <DependentUpon>EditAdminPolicy.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\EditDepartment.aspx.cs">
+      <DependentUpon>EditDepartment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControl\EditDepartment.aspx.designer.cs">
+      <DependentUpon>EditDepartment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\EditGroupPolicy.aspx.cs">
+      <DependentUpon>EditGroupPolicy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControl\EditGroupPolicy.aspx.designer.cs">
+      <DependentUpon>EditGroupPolicy.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\EditUser.aspx.cs">
+      <DependentUpon>EditUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControl\EditUser.aspx.designer.cs">
+      <DependentUpon>EditUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\ListDepartment.aspx.cs">
+      <DependentUpon>ListDepartment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControl\ListDepartment.aspx.designer.cs">
+      <DependentUpon>ListDepartment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\ListUser.aspx.cs">
+      <DependentUpon>ListUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControl\ListUser.aspx.designer.cs">
+      <DependentUpon>ListUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\ListUserInDept.aspx.cs">
+      <DependentUpon>ListUserInDept.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControl\ListUserInDept.aspx.designer.cs">
+      <DependentUpon>ListUserInDept.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\UpdateMultiAdmins.aspx.cs">
+      <DependentUpon>UpdateMultiAdmins.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControl\UpdateMultiAdmins.aspx.designer.cs">
+      <DependentUpon>UpdateMultiAdmins.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfo\AddNote.aspx.cs">
+      <DependentUpon>AddNote.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserInfo\AddNote.aspx.designer.cs">
+      <DependentUpon>AddNote.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfo\Adjustment.aspx.cs">
+      <DependentUpon>Adjustment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserInfo\Adjustment.aspx.designer.cs">
+      <DependentUpon>Adjustment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfo\AffiliateList.aspx.cs">
+      <DependentUpon>AffiliateList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserInfo\AffiliateList.aspx.designer.cs">
+      <DependentUpon>AffiliateList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfo\AffiliateUpd.aspx.cs">
+      <DependentUpon>AffiliateUpd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserInfo\AffiliateUpd.aspx.designer.cs">
+      <DependentUpon>AffiliateUpd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfo\DailyEarning.aspx.cs">
+      <DependentUpon>DailyEarning.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserInfo\DailyEarning.aspx.designer.cs">
+      <DependentUpon>DailyEarning.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfo\DailyEarningDetail.aspx.cs">
+      <DependentUpon>DailyEarningDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserInfo\DailyEarningDetail.aspx.designer.cs">
+      <DependentUpon>DailyEarningDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfo\EarningsHistory.aspx.cs">
+      <DependentUpon>EarningsHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserInfo\EarningsHistory.aspx.designer.cs">
+      <DependentUpon>EarningsHistory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfo\MediaStatistics.aspx.cs">
+      <DependentUpon>MediaStatistics.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserInfo\MediaStatistics.aspx.designer.cs">
+      <DependentUpon>MediaStatistics.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfo\MediaStatistics_LandingPage.aspx.cs">
+      <DependentUpon>MediaStatistics_LandingPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserInfo\MediaStatistics_LandingPage.aspx.designer.cs">
+      <DependentUpon>MediaStatistics_LandingPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfo\MediaStatistics_New.aspx.cs">
+      <DependentUpon>MediaStatistics_New.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserInfo\MediaStatistics_New.aspx.designer.cs">
+      <DependentUpon>MediaStatistics_New.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfo\MemberActiveList.aspx.cs">
+      <DependentUpon>MemberActiveList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserInfo\MemberActiveList.aspx.designer.cs">
+      <DependentUpon>MemberActiveList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfo\MemberList.aspx.cs">
+      <DependentUpon>MemberList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserInfo\MemberList.aspx.designer.cs">
+      <DependentUpon>MemberList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfo\MemberListAll.aspx.cs">
+      <DependentUpon>MemberListAll.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserInfo\MemberListAll.aspx.designer.cs">
+      <DependentUpon>MemberListAll.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfo\Note.aspx.cs">
+      <DependentUpon>Note.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserInfo\Note.aspx.designer.cs">
+      <DependentUpon>Note.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfo\PlayersDetail.aspx.cs">
+      <DependentUpon>PlayersDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserInfo\PlayersDetail.aspx.designer.cs">
+      <DependentUpon>PlayersDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfo\UserLog.aspx.cs">
+      <DependentUpon>UserLog.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserInfo\UserLog.aspx.designer.cs">
+      <DependentUpon>UserLog.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\AffBetlistService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="_GlobalResources\_IPInfo\IPInfo.aspx.cs">
+      <DependentUpon>IPInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="_GlobalResources\_IPInfo\IPInfo.aspx.designer.cs">
+      <DependentUpon>IPInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="_Reports\BetList\BetSummary.aspx.cs">
+      <DependentUpon>BetSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="_Reports\BetList\BetSummary.aspx.designer.cs">
+      <DependentUpon>BetSummary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="_Reports\BetList\CancelBetList.aspx.cs">
+      <DependentUpon>CancelBetList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="_Reports\BetList\CancelBetList.aspx.designer.cs">
+      <DependentUpon>CancelBetList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="_Reports\BetList\DailyStatement.aspx.cs">
+      <DependentUpon>DailyStatement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="_Reports\BetList\DailyStatement.aspx.designer.cs">
+      <DependentUpon>DailyStatement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="_Reports\BetList\OutstandingDetail.aspx.cs">
+      <DependentUpon>OutstandingDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="_Reports\BetList\OutstandingDetail.aspx.designer.cs">
+      <DependentUpon>OutstandingDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="_Reports\Common\MatchResultEntered.aspx.cs">
+      <DependentUpon>MatchResultEntered.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="_Reports\Common\MatchResultEntered.aspx.designer.cs">
+      <DependentUpon>MatchResultEntered.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="_Reports\Common\Outstanding.aspx.cs">
+      <DependentUpon>Outstanding.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="_Reports\Common\Outstanding.aspx.designer.cs">
+      <DependentUpon>Outstanding.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="_Reports\Common\SelectLeagues.aspx.cs">
+      <DependentUpon>SelectLeagues.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="_Reports\Common\SelectLeagues.aspx.designer.cs">
+      <DependentUpon>SelectLeagues.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="_Reports\Common\Statement.aspx.cs">
+      <DependentUpon>Statement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="_Reports\Common\Statement.aspx.designer.cs">
+      <DependentUpon>Statement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="_Reports\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="_Reports\Result\Result.aspx.cs">
+      <DependentUpon>Result.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="_Reports\Result\Result.aspx.designer.cs">
+      <DependentUpon>Result.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AccessDenied.aspx" />
+    <Content Include="Alert.aspx" />
+    <Content Include="App_dll\CasinoLibrary.dll" />
+    <Content Include="App_dll\CasinoSetting.dll" />
+    <Content Include="App_dll\CasinoUtility.dll" />
+    <Content Include="App_dll\DNAide.dll" />
+    <Content Include="App_dll\DotNet.Highcharts.dll" />
+    <Content Include="App_dll\Enyim.Caching.dll" />
+    <Content Include="App_dll\EPPlus.dll" />
+    <Content Include="App_dll\Fanex.Age.Business.dll" />
+    <Content Include="App_dll\Fanex.Age.Business.Interface.dll" />
+    <Content Include="App_dll\Fanex.Age.DTO.dll" />
+    <Content Include="App_dll\Fanex.Age.Excel.dll" />
+    <Content Include="App_dll\Fanex.Age.UI.Components.dll" />
+    <Content Include="App_dll\Fanex.Age.UI.dll" />
+    <Content Include="App_dll\Fanex.Age.UI.Forecast.dll" />
+    <Content Include="App_dll\Fanex.Age.UI.LiveCasino.dll" />
+    <Content Include="App_dll\Fanex.Age.UI.Reports.dll" />
+    <Content Include="App_dll\Fanex.Age.UI.TotalBets.dll" />
+    <Content Include="App_dll\Fanex.Age.Utility.dll" />
+    <Content Include="App_dll\Fanex.BetList.Age.dll" />
+    <Content Include="App_dll\Fanex.BetList.Core.dll" />
+    <Content Include="App_dll\Fanex.BetList.Core.TicketHelper.dll" />
+    <Content Include="App_dll\Fanex.Caching.dll" />
+    <Content Include="App_dll\Fanex.Common.dll" />
+    <Content Include="App_dll\Fanex.Data.dll" />
+    <Content Include="App_dll\Fanex.LiveCasinoSetting.dll" />
+    <Content Include="App_dll\Fanex.Logging.dll" />
+    <Content Include="App_dll\Fanex.MailDeliver.MailClient.dll" />
+    <Content Include="App_dll\Fanex.PTEngine.Age.dll" />
+    <Content Include="App_dll\Fanex.PTEngine.dll" />
+    <Content Include="App_dll\Fanex.PTVirtualSports.dll" />
+    <Content Include="App_dll\Fanex.SessionPartition.dll" />
+    <Content Include="App_dll\FluentValidation.dll" />
+    <Content Include="App_dll\FluentValidation.resources.dll" />
+    <Content Include="App_dll\FPS.Client.dll" />
+    <Content Include="App_dll\GotDotNet.ApplicationBlocks.Data.dll" />
+    <Content Include="App_dll\HandHistoryLibrary.dll" />
+    <Content Include="App_dll\IBCCrypt.dll" />
+    <Content Include="App_dll\IBCDBLibrary.dll" />
+    <Content Include="App_dll\IBCDLL.dll" />
+    <Content Include="App_dll\IBCFile.dll" />
+    <Content Include="App_dll\IBCMessage.dll" />
+    <Content Include="App_dll\IBCUtils.dll" />
+    <Content Include="App_dll\ILogger.dll" />
+    <Content Include="App_dll\Ionic.Zip.dll" />
+    <Content Include="App_dll\LiveCasinoLibrary.dll" />
+    <Content Include="App_dll\LoadBalancer.dll" />
+    <Content Include="App_dll\log4net.dll" />
+    <Content Include="App_dll\LVAPIDBLibrary.dll" />
+    <Content Include="App_dll\LVAPILibrary.dll" />
+    <Content Include="App_dll\Membase.dll" />
+    <Content Include="App_dll\Microsoft.ApplicationBlocks.Data.dll" />
+    <Content Include="App_dll\Microsoft.Practices.EnterpriseLibrary.Caching.dll" />
+    <Content Include="App_dll\Microsoft.Practices.EnterpriseLibrary.Common.dll" />
+    <Content Include="App_dll\Microsoft.Practices.EnterpriseLibrary.Data.dll" />
+    <Content Include="App_dll\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll" />
+    <Content Include="App_dll\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll" />
+    <Content Include="App_dll\Microsoft.Practices.EnterpriseLibrary.Logging.Database.dll" />
+    <Content Include="App_dll\Microsoft.Practices.EnterpriseLibrary.Logging.dll" />
+    <Content Include="App_dll\Microsoft.Practices.ObjectBuilder.dll" />
+    <Content Include="App_dll\Microsoft.Practices.ObjectBuilder2.dll" />
+    <Content Include="App_dll\Microsoft.Practices.ServiceLocation.dll" />
+    <Content Include="App_dll\Microsoft.Practices.Unity.Configuration.dll" />
+    <Content Include="App_dll\Microsoft.Practices.Unity.dll" />
+    <Content Include="App_dll\Microsoft.Practices.Unity.Interception.Configuration.dll" />
+    <Content Include="App_dll\Microsoft.Practices.Unity.Interception.dll" />
+    <Content Include="App_dll\Microsoft.Practices.Unity.StaticFactory.dll" />
+    <Content Include="App_dll\NetUtility.dll" />
+    <Content Include="App_dll\Newtonsoft.Json.dll" />
+    <Content Include="App_dll\Nexcel.WebControls.UI.dll" />
+    <Content Include="App_dll\Nini.dll" />
+    <Content Include="App_dll\NLog.dll" />
+    <Content Include="App_dll\NotifyPropertyChanged.dll" />
+    <Content Include="App_dll\NPOI.dll" />
+    <Content Include="App_dll\RemotingRef.dll" />
+    <Content Include="App_dll\RSACryptoPad.dll" />
+    <Content Include="App_dll\SharedCache.WinServiceCommon.dll" />
+    <Content Include="App_dll\SPSRemoting.dll" />
+    <Content Include="App_dll\Sunplus.Agent.Configurations.dll" />
+    <Content Include="App_dll\Sunplus.Agent.Model.dll" />
+    <Content Include="App_dll\Sunplus.Agent.UI.BetList.dll" />
+    <Content Include="App_dll\Sunplus.Agent.UI.BetSlip.dll" />
+    <Content Include="App_dll\Sunplus.Agent.UI.PositionTaking.RaceBook.dll" />
+    <Content Include="App_dll\Sunplus.Agent.UI.ScoreMap.dll" />
+    <Content Include="App_dll\Sunplus.Agent.Utilities.dll" />
+    <Content Include="App_dll\Sunplus.Bingo.Core.dll" />
+    <Content Include="App_dll\Sunplus.Bingo.Data.dll" />
+    <Content Include="App_dll\Sunplus.Bingo.Data.Entlib.dll" />
+    <Content Include="App_dll\Sunplus.Bingo.Data.LinqToSql.dll" />
+    <Content Include="App_dll\Sunplus.Bingo.DataServices.dll" />
+    <Content Include="App_dll\Sunplus.Bingo.Entities.dll" />
+    <Content Include="App_dll\Sunplus.Bingo.Services.dll" />
+    <Content Include="App_dll\Sunplus.Core.Common.dll" />
+    <Content Include="App_dll\Sunplus.Libraries.AOP.dll" />
+    <Content Include="App_dll\Sunplus.Libraries.APILogger.dll" />
+    <Content Include="App_dll\Sunplus.Libraries.ThirdPartyTestData.dll" />
+    <Content Include="App_dll\Sunplus.Shared.ViewLogLib.dll" />
+    <Content Include="App_dll\TplCore.dll" />
+    <Content Include="App_dll\UMControllerLibrary.dll" />
+    <Content Include="App_Js\AutoComplete\autocomplete.js" />
+    <Content Include="App_Js\AutoComplete\shadow.png" />
+    <Content Include="App_Js\AutoComplete\styles.css" />
+    <Content Include="App_Js\BetList.js" />
+    <Content Include="App_Js\Calendar2\calendar-control.js" />
+    <Content Include="App_Js\Calendar2\calendar-normal.js" />
+    <Content Include="App_Js\Calendar2\calendar-setup.js" />
+    <Content Include="App_Js\Calendar2\date.js" />
+    <Content Include="App_Js\Calendar2\Lang\calendar-CS.js" />
+    <Content Include="App_Js\Calendar2\Lang\calendar-CT.js" />
+    <Content Include="App_Js\Calendar2\Lang\calendar-E.js" />
+    <Content Include="App_Js\Calendar2\Lang\calendar-ES.js" />
+    <Content Include="App_Js\Calendar2\Lang\calendar-J.js" />
+    <Content Include="App_Js\Calendar2\Lang\calendar-TH.js" />
+    <Content Include="App_Js\Calendar2\Skin\calendar-blue.css" />
+    <Content Include="App_Js\Calendar2\Skin\calendar-system.css" />
+    <Content Include="App_Js\Calendar2\Skin\Images\bg_bg.gif" />
+    <Content Include="App_Js\Calendar\calendar-blue.css" />
+    <Content Include="App_Js\Calendar\calendar-en.js" />
+    <Content Include="App_Js\Calendar\calendar-setup.js" />
+    <Content Include="App_Js\Calendar\calendar.js" />
+    <Content Include="App_Js\Calendar\Images\bg_bg.gif" />
+    <Content Include="App_Js\CheckDate.js" />
+    <Content Include="App_Js\Common.js" />
+    <Content Include="App_Js\dhtmlwindow\bird.jpg" />
+    <Content Include="App_Js\dhtmlwindow\border-10.gif" />
+    <Content Include="App_Js\dhtmlwindow\close.gif" />
+    <Content Include="App_Js\dhtmlwindow\dhtmlwindow.css" />
+    <Content Include="App_Js\dhtmlwindow\dhtmlwindow.js" />
+    <Content Include="App_Js\dhtmlwindow\dog.jpg" />
+    <Content Include="App_Js\dhtmlwindow\max.gif" />
+    <Content Include="App_Js\dhtmlwindow\min.gif" />
+    <Content Include="App_Js\dhtmlwindow\resize.gif" />
+    <Content Include="App_Js\dhtmlwindow\restore.gif" />
+    <Content Include="App_Js\dhtmlwindow\x.jpg" />
+    <Content Include="App_Js\GroupSetting.css" />
+    <Content Include="App_Js\GroupSetting.js" />
+    <Content Include="App_Js\GroupSettingEdit.js" />
+    <Content Include="App_Js\Header.js" />
+    <Content Include="App_Js\IBCWnd\blank.html" />
+    <Content Include="App_Js\IBCWnd\IBCWnd.css" />
+    <Content Include="App_Js\IBCWnd\IBCWnd.js" />
+    <Content Include="App_Js\IBCWnd\icon_close.png" />
+    <Content Include="App_Js\IBCWnd\icon_closeOV.png" />
+    <Content Include="App_Js\IBCWnd\icon_head.png" />
+    <Content Include="App_Js\IBCWnd\pop_footer.jpg" />
+    <Content Include="App_Js\IBCWnd\pop_g01.jpg" />
+    <Content Include="App_Js\IBCWnd\pop_gtop.jpg" />
+    <Content Include="App_Js\IBCWnd\pop_left.jpg" />
+    <Content Include="App_Js\IBCWnd\pop_lineR.jpg" />
+    <Content Include="App_Js\IBCWnd\pop_top.jpg" />
+    <Content Include="App_Js\IBCWnd\x.jpg" />
+    <Content Include="App_Js\interface.js" />
+    <Content Include="App_Js\jquery\jquery-1.4.2.min.js" />
+    <Content Include="App_Js\KickedOut.js" />
+    <Content Include="App_Js\ListBanner.js" />
+    <Content Include="App_Js\ListBannerOld.js" />
+    <Content Include="App_Js\ListText.js" />
+    <Content Include="App_Js\login.js" />
+    <Content Include="App_Js\MonthPicker\Images\bg-month-picker-header.png" />
+    <Content Include="App_Js\MonthPicker\jquery.mtz.monthpicker.js" />
+    <Content Include="App_Js\MonthPicker\month-picker.css" />
+    <Content Include="App_Js\NoScroll.js" />
+    <Content Include="App_Js\popup.css" />
+    <Content Include="App_Js\prototype-full.js" />
+    <Content Include="App_Js\prototype.js" />
+    <Content Include="App_Js\RefreshTime.js" />
+    <Content Include="App_Js\RSH0.6\blank.html" />
+    <Content Include="App_Js\RSH0.6\json2007.js" />
+    <Content Include="App_Js\RSH0.6\rsh.js" />
+    <Content Include="App_Js\swfobject.js" />
+    <Content Include="App_Js\tipsy\jquery.tipsy.js" />
+    <Content Include="App_Js\UserControl.js" />
+    <Content Include="App_Js\wz_tooltip.js" />
+    <Content Include="App_Templates\AccessDenied.html" />
+    <Content Include="App_Templates\Alert.htm" />
+    <Content Include="App_Templates\Calendar.html" />
+    <Content Include="App_Templates\CalendarJs.html" />
+    <Content Include="App_Templates\Casino\UploadExcel.htm" />
+    <Content Include="App_Templates\ChangeAdminPass.htm" />
+    <Content Include="App_Templates\ChangePass.htm" />
+    <Content Include="App_Templates\Customer\AffiliateInfo.htm" />
+    <Content Include="App_Templates\Customer\Statistics.htm" />
+    <Content Include="App_Templates\DateRangeSelect.html" />
+    <Content Include="App_Templates\Domain\12BetDomain.html" />
+    <Content Include="App_Templates\Domain\Add12BetDomain.html" />
+    <Content Include="App_Templates\Domain\AddAffiliateDomain.html" />
+    <Content Include="App_Templates\Domain\AffiliateDomain.html" />
+    <Content Include="App_Templates\Domain\DomainControl.htm" />
+    <Content Include="App_Templates\Domain\DomainControlIns.htm" />
+    <Content Include="App_Templates\Domain\DomainControlUpd.htm" />
+    <Content Include="App_Templates\Domain\Edit12BetDomain.html" />
+    <Content Include="App_Templates\Domain\EditAffiliateDomain.html" />
+    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail.htm" />
+    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_en-GB.htm" />
+    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_en-GB_html.htm" />
+    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_en-US.htm" />
+    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_en-US_html.htm" />
+    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_en.htm" />
+    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_en_html.htm" />
+    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_es-ES.htm" />
+    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_es-ES_html.htm" />
+    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_html.htm" />
+    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_id-ID.htm" />
+    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_id-ID_html.htm" />
+    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_ja-JP.htm" />
+    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_ja-JP_html.htm" />
+    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_ko-KR.htm" />
+    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_ko-KR_html.htm" />
+    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_th-TH.htm" />
+    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_th-TH_html.htm" />
+    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_vi-VN.htm" />
+    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_vi-VN_html.htm" />
+    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_zh-CN.htm" />
+    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_zh-CN_html.htm" />
+    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_zh-TW.htm" />
+    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_zh-TW_html.htm" />
+    <Content Include="App_Templates\Email\AffApprove\Approved.htm" />
+    <Content Include="App_Templates\Email\AffApprove\Approved_en-GB.htm" />
+    <Content Include="App_Templates\Email\AffApprove\Approved_en-GB_html.htm" />
+    <Content Include="App_Templates\Email\AffApprove\Approved_en-US.htm" />
+    <Content Include="App_Templates\Email\AffApprove\Approved_en-US_html.htm" />
+    <Content Include="App_Templates\Email\AffApprove\Approved_en.htm" />
+    <Content Include="App_Templates\Email\AffApprove\Approved_en_html.htm" />
+    <Content Include="App_Templates\Email\AffApprove\Approved_es-ES.htm" />
+    <Content Include="App_Templates\Email\AffApprove\Approved_es-ES_html.htm" />
+    <Content Include="App_Templates\Email\AffApprove\Approved_html.htm" />
+    <Content Include="App_Templates\Email\AffApprove\Approved_id-ID.htm" />
+    <Content Include="App_Templates\Email\AffApprove\Approved_id-ID_html.htm" />
+    <Content Include="App_Templates\Email\AffApprove\Approved_ja-JP.htm" />
+    <Content Include="App_Templates\Email\AffApprove\Approved_ja-JP_html.htm" />
+    <Content Include="App_Templates\Email\AffApprove\Approved_ko-KR.htm" />
+    <Content Include="App_Templates\Email\AffApprove\Approved_ko-KR_html.htm" />
+    <Content Include="App_Templates\Email\AffApprove\Approved_th-TH.htm" />
+    <Content Include="App_Templates\Email\AffApprove\Approved_th-TH_html.htm" />
+    <Content Include="App_Templates\Email\AffApprove\Approved_vi-VN.htm" />
+    <Content Include="App_Templates\Email\AffApprove\Approved_vi-VN_html.htm" />
+    <Content Include="App_Templates\Email\AffApprove\Approved_zh-CN.htm" />
+    <Content Include="App_Templates\Email\AffApprove\Approved_zh-CN_html.htm" />
+    <Content Include="App_Templates\Email\AffApprove\Approved_zh-TW.htm" />
+    <Content Include="App_Templates\Email\AffApprove\Approved_zh-TW_html.htm" />
+    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail.htm" />
+    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_en-GB.htm" />
+    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_en-GB_html.htm" />
+    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_en-US.htm" />
+    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_en-US_html.htm" />
+    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_en.htm" />
+    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_en_html.htm" />
+    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_es-ES.htm" />
+    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_es-ES_html.htm" />
+    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_html.htm" />
+    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_id-ID.htm" />
+    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_id-ID_html.htm" />
+    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_ja-JP.htm" />
+    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_ja-JP_html.htm" />
+    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_ko-KR.htm" />
+    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_ko-KR_html.htm" />
+    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_th-TH.htm" />
+    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_th-TH_html.htm" />
+    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_vi-VN.htm" />
+    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_vi-VN_html.htm" />
+    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_zh-CN.htm" />
+    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_zh-CN_html.htm" />
+    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_zh-TW.htm" />
+    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_zh-TW_html.htm" />
+    <Content Include="App_Templates\Email\AffDisapprove\Disapproved.htm" />
+    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_en-GB.htm" />
+    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_en-GB_html.htm" />
+    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_en.htm" />
+    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_en_html.htm" />
+    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_es-ES.htm" />
+    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_es-ES_html.htm" />
+    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_html.htm" />
+    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_id-ID.htm" />
+    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_id-ID_html.htm" />
+    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_ja-JP.htm" />
+    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_ja-JP_html.htm" />
+    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_ko-KR.htm" />
+    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_ko-KR_html.htm" />
+    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_th-TH.htm" />
+    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_th-TH_html.htm" />
+    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_vi-VN.htm" />
+    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_vi-VN_html.htm" />
+    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_zh-CN.htm" />
+    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_zh-CN_html.htm" />
+    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_zh-TW.htm" />
+    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_zh-TW_html.htm" />
+    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail.htm" />
+    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_en-GB.htm" />
+    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_en-GB_html.htm" />
+    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_en-US.htm" />
+    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_en-US_html.htm" />
+    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_en.htm" />
+    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_en_html.htm" />
+    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_es-ES.htm" />
+    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_es-ES_html.htm" />
+    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_html.htm" />
+    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_id-ID.htm" />
+    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_id-ID_html.htm" />
+    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_ja-JP.htm" />
+    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_ja-JP_html.htm" />
+    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_ko-KR.htm" />
+    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_ko-KR_html.htm" />
+    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_th-TH.htm" />
+    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_th-TH_html.htm" />
+    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_vi-VN.htm" />
+    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_vi-VN_html.htm" />
+    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_zh-CN.htm" />
+    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_zh-CN_html.htm" />
+    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_zh-TW.htm" />
+    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_zh-TW_html.htm" />
+    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail.htm" />
+    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_en-GB.htm" />
+    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_en-GB_html.htm" />
+    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_en-US.htm" />
+    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_en-US_html.htm" />
+    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_en.htm" />
+    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_en_html.htm" />
+    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_es-ES.htm" />
+    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_es-ES_html.htm" />
+    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_html.htm" />
+    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_id-ID.htm" />
+    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_id-ID_html.htm" />
+    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_ja-JP.htm" />
+    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_ja-JP_html.htm" />
+    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_ko-KR.htm" />
+    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_ko-KR_html.htm" />
+    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_th-TH.htm" />
+    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_th-TH_html.htm" />
+    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_vi-VN.htm" />
+    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_vi-VN_html.htm" />
+    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_zh-CN.htm" />
+    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_zh-CN_html.htm" />
+    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_zh-TW.htm" />
+    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_zh-TW_html.htm" />
+    <Content Include="App_Templates\Exchange\AffEditRate.htm" />
+    <Content Include="App_Templates\Exchange\ExchangeRate.htm" />
+    <Content Include="App_Templates\GotoPage.html" />
+    <Content Include="App_Templates\GroupSetting\GroupAssignment.htm" />
+    <Content Include="App_Templates\GroupSetting\GroupSetting.htm" />
+    <Content Include="App_Templates\GroupSetting\GroupSettingEdit.htm" />
+    <Content Include="App_Templates\Header.htm" />
+    <Content Include="App_Templates\Home.htm" />
+    <Content Include="App_Templates\Login.htm" />
+    <Content Include="App_Templates\Media\BannerDetail.htm" />
+    <Content Include="App_Templates\Media\MainAddBanner.htm" />
+    <Content Include="App_Templates\Media\MainAddText.htm" />
+    <Content Include="App_Templates\Media\MainListBannerNew.htm" />
+    <Content Include="App_Templates\Media\MainListText.htm" />
+    <Content Include="App_Templates\NoInfo.htm" />
+    <Content Include="App_Templates\NoInfo1.htm" />
+    <Content Include="App_Templates\NoInformation.htm" />
+    <Content Include="App_Templates\OnlyOption.htm" />
+    <Content Include="App_Templates\Option.htm" />
+    <Content Include="App_Templates\Option1.htm" />
+    <Content Include="App_Templates\Others\EmailHistory.htm" />
+    <Content Include="App_Templates\Others\Message.htm" />
+    <Content Include="App_Templates\Others\ViewEmail.htm" />
+    <Content Include="App_Templates\Others\ViewMess.htm" />
+    <Content Include="App_Templates\PageIndex.html" />
+    <Content Include="App_Templates\Paging.htm" />
+    <Content Include="App_Templates\Paging.html" />
+    <Content Include="App_Templates\Payment\PaymentAppEmail_en-US.htm" />
+    <Content Include="App_Templates\Payment\PaymentAppEmail_es-ES.htm" />
+    <Content Include="App_Templates\Payment\PaymentAppEmail_id-ID.htm" />
+    <Content Include="App_Templates\Payment\PaymentAppEmail_th-TH.htm" />
+    <Content Include="App_Templates\Payment\PaymentAppEmail_vi-VN.htm" />
+    <Content Include="App_Templates\Payment\PaymentAppEmail_zh-CN.htm" />
+    <Content Include="App_Templates\Payment\PaymentAppEmail_zh-TW.htm" />
+    <Content Include="App_Templates\Payment\PaymentCanEmail_en-US.htm" />
+    <Content Include="App_Templates\Payment\PaymentCanEmail_es-ES.htm" />
+    <Content Include="App_Templates\Payment\PaymentCanEmail_id-ID.htm" />
+    <Content Include="App_Templates\Payment\PaymentCanEmail_th-TH.htm" />
+    <Content Include="App_Templates\Payment\PaymentCanEmail_vi-VN.htm" />
+    <Content Include="App_Templates\Payment\PaymentCanEmail_zh-CN.htm" />
+    <Content Include="App_Templates\Payment\PaymentCanEmail_zh-TW.htm" />
+    <Content Include="App_Templates\Payment\PaymentRequest.htm" />
+    <Content Include="App_Templates\Payment\PaymentUpdate.htm" />
+    <Content Include="App_Templates\Report\AffiliateQMReport.htm" />
+    <Content Include="App_Templates\Report\AffiliateQMReportDetail.htm" />
+    <Content Include="App_Templates\Report\AffiliateReport.htm" />
+    <Content Include="App_Templates\Report\AffiliateReportDetail.htm" />
+    <Content Include="App_Templates\Report\CasinoPlayerTurnoverReport.htm" />
+    <Content Include="App_Templates\Report\Commission.htm" />
+    <Content Include="App_Templates\Report\MemberReport.htm" />
+    <Content Include="App_Templates\Report\MemberStatisticsReport.htm" />
+    <Content Include="App_Templates\Report\MemberStatisticsReportDetail.htm" />
+    <Content Include="App_Templates\Report\Performance.htm" />
+    <Content Include="App_Templates\Report\PerformanceReportByAffiliate.htm" />
+    <Content Include="App_Templates\Report\SBPlayerTurnoverReport.htm" />
+    <Content Include="App_Templates\Report\SignUpActiveReport.htm" />
+    <Content Include="App_Templates\SubMenu.htm" />
+    <Content Include="App_Templates\SubMenu1.htm" />
+    <Content Include="App_Templates\SubPage.htm" />
+    <Content Include="App_Templates\UserControl\AddDepartment.html" />
+    <Content Include="App_Templates\UserControl\AddUser.html" />
+    <Content Include="App_Templates\UserControl\AddUserExist.html" />
+    <Content Include="App_Templates\UserControl\EditDepartment.html" />
+    <Content Include="App_Templates\UserControl\EditUser.html" />
+    <Content Include="App_Templates\UserControl\ListDepartment.html" />
+    <Content Include="App_Templates\UserControl\ListUser.html" />
+    <Content Include="App_Templates\UserControl\ListUserContent.html" />
+    <Content Include="App_Templates\UserControl\ListUserInDept.htm" />
+    <Content Include="App_Templates\UserControl\PolicyContent.html" />
+    <Content Include="App_Templates\UserControl\PolicyHeader.html" />
+    <Content Include="App_Templates\UserInfo\AddNote.htm" />
+    <Content Include="App_Templates\UserInfo\Adjustment.htm" />
+    <Content Include="App_Templates\UserInfo\AffList.htm" />
+    <Content Include="App_Templates\UserInfo\AffUpd.htm" />
+    <Content Include="App_Templates\UserInfo\ApprovalEmail_en-US.htm" />
+    <Content Include="App_Templates\UserInfo\ApprovalEmail_es-ES.htm" />
+    <Content Include="App_Templates\UserInfo\ApprovalEmail_id-ID.htm" />
+    <Content Include="App_Templates\UserInfo\ApprovalEmail_th-TH.htm" />
+    <Content Include="App_Templates\UserInfo\ApprovalEmail_vi-VN.htm" />
+    <Content Include="App_Templates\UserInfo\ApprovalEmail_zh-CN.htm" />
+    <Content Include="App_Templates\UserInfo\ApprovalEmail_zh-TW.htm" />
+    <Content Include="App_Templates\UserInfo\Approved.htm" />
+    <Content Include="App_Templates\UserInfo\Approved_es-ES.htm" />
+    <Content Include="App_Templates\UserInfo\Approved_id-ID.htm" />
+    <Content Include="App_Templates\UserInfo\Approved_th-TH.htm" />
+    <Content Include="App_Templates\UserInfo\Approved_vi-VN.htm" />
+    <Content Include="App_Templates\UserInfo\Approved_zh-CN.htm" />
+    <Content Include="App_Templates\UserInfo\Approved_zh-TW.htm" />
+    <Content Include="App_Templates\UserInfo\BetList.htm" />
+    <Content Include="App_Templates\UserInfo\BetListParlayDetail.htm" />
+    <Content Include="App_Templates\UserInfo\BetListResults.htm" />
+    <Content Include="App_Templates\UserInfo\Disapproved.htm" />
+    <Content Include="App_Templates\UserInfo\Disapproved_es-ES.htm" />
+    <Content Include="App_Templates\UserInfo\Disapproved_id-ID.htm" />
+    <Content Include="App_Templates\UserInfo\Disapproved_th-TH.htm" />
+    <Content Include="App_Templates\UserInfo\Disapproved_vi-VN.htm" />
+    <Content Include="App_Templates\UserInfo\Disapproved_zh-CN.htm" />
+    <Content Include="App_Templates\UserInfo\Disapproved_zh-TW.htm" />
+    <Content Include="App_Templates\UserInfo\EarningsHistory.htm" />
+    <Content Include="App_Templates\UserInfo\MediaStatistics.htm" />
+    <Content Include="App_Templates\UserInfo\MediaStatistics_LandingPage.htm" />
+    <Content Include="App_Templates\UserInfo\MediaStatistics_New.htm" />
+    <Content Include="App_Templates\UserInfo\MemActiveList.htm" />
+    <Content Include="App_Templates\UserInfo\MemberList.htm" />
+    <Content Include="App_Templates\UserInfo\MemList.htm" />
+    <Content Include="App_Templates\UserInfo\MemListAll.htm" />
+    <Content Include="App_Templates\UserInfo\NoteList.htm" />
+    <Content Include="App_Templates\UserInfo\PlayersDetail.htm" />
+    <Content Include="App_Templates\UserInfo\UserLog.htm" />
+    <Content Include="App_Templates\UserInfo\ViewDaily.htm" />
+    <Content Include="App_Templates\UserInfo\ViewDailyDetail.htm" />
+    <Content Include="App_Templates\UserInfo\WithdrawalEmail.htm" />
+    <Content Include="App_Templates\UserInfo\WithdrawalEmail_es-ES.htm" />
+    <Content Include="App_Templates\UserInfo\WithdrawalEmail_id-ID.htm" />
+    <Content Include="App_Templates\UserInfo\WithdrawalEmail_th-TH.htm" />
+    <Content Include="App_Templates\UserInfo\WithdrawalEmail_vi-VN.htm" />
+    <Content Include="App_Templates\UserInfo\WithdrawalEmail_zh-CN.htm" />
+    <Content Include="App_Templates\UserInfo\WithdrawalEmail_zh-TW.htm" />
+    <Content Include="App_Themes\Aff12bet.ico" />
+    <Content Include="App_Themes\Aff12bet.png" />
+    <Content Include="App_Themes\DefaultV2\common.css" />
+    <Content Include="App_Themes\DefaultV2\content.css" />
+    <Content Include="App_Themes\DefaultV2\footer.css" />
+    <Content Include="App_Themes\DefaultV2\header.css" />
+    <Content Include="App_Themes\DefaultV2\Images\arrow_left.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\arrow_left_out.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\a_bg.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\banner_top.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\bg_box_tab.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\bg_button2.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\bg_footer.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\bg_header01.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\bg_header_06.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\bg_home_top.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\bg_input_check.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\bg_left.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\bg_leftbottom.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\bg_lefttop.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\bg_menu.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\bg_search01.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\bg_top.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\btLg.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\b_01.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\b_02.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\b_022.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\b_04.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\b_add01.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\b_add01_dis.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\b_next1.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\b_next2.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\b_prev1.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\b_prev2.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\b_search.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\cal.gif" />
+    <Content Include="App_Themes\DefaultV2\Images\calen_n.png" />
+    <Content Include="App_Themes\DefaultV2\Images\calen_OV.png" />
+    <Content Include="App_Themes\DefaultV2\Images\check.gif" />
+    <Content Include="App_Themes\DefaultV2\Images\checkbox01.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\checkbox02.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\checkbox03.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\checkbox04.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\clock.gif" />
+    <Content Include="App_Themes\DefaultV2\Images\delete.png" />
+    <Content Include="App_Themes\DefaultV2\Images\dho.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\done.png" />
+    <Content Include="App_Themes\DefaultV2\Images\ex_excel.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\FF.png" />
+    <Content Include="App_Themes\DefaultV2\Images\g_01.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\g_02.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\g_menuleft.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\g_menuright.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\htab.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\htab_l.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\icAlert.png" />
+    <Content Include="App_Themes\DefaultV2\Images\icFF.png" />
+    <Content Include="App_Themes\DefaultV2\Images\icIE.png" />
+    <Content Include="App_Themes\DefaultV2\Images\icon-affiliateslist-big.png" />
+    <Content Include="App_Themes\DefaultV2\Images\icon13.png" />
+    <Content Include="App_Themes\DefaultV2\Images\icon_closeOV.png" />
+    <Content Include="App_Themes\DefaultV2\Images\icon_delete.png" />
+    <Content Include="App_Themes\DefaultV2\Images\icon_disable.png" />
+    <Content Include="App_Themes\DefaultV2\Images\icon_edit.png" />
+    <Content Include="App_Themes\DefaultV2\Images\icon_excel.png" />
+    <Content Include="App_Themes\DefaultV2\Images\icon_header.png" />
+    <Content Include="App_Themes\DefaultV2\Images\icon_home01.png" />
+    <Content Include="App_Themes\DefaultV2\Images\icon_home02.png" />
+    <Content Include="App_Themes\DefaultV2\Images\icon_refresh.png" />
+    <Content Include="App_Themes\DefaultV2\Images\icon_report.png" />
+    <Content Include="App_Themes\DefaultV2\Images\icon_search.png" />
+    <Content Include="App_Themes\DefaultV2\Images\icon_tb01.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\icon_tb02.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\icon_top.png" />
+    <Content Include="App_Themes\DefaultV2\Images\icon_view.png" />
+    <Content Include="App_Themes\DefaultV2\Images\icPass.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\icUser.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\ic_arr.gif" />
+    <Content Include="App_Themes\DefaultV2\Images\IE.png" />
+    <Content Include="App_Themes\DefaultV2\Images\i_admin.png" />
+    <Content Include="App_Themes\DefaultV2\Images\i_affiliateslist.png" />
+    <Content Include="App_Themes\DefaultV2\Images\i_commg.png" />
+    <Content Include="App_Themes\DefaultV2\Images\i_customer.png" />
+    <Content Include="App_Themes\DefaultV2\Images\i_disableSport.png" />
+    <Content Include="App_Themes\DefaultV2\Images\i_domain.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\i_email_history.png" />
+    <Content Include="App_Themes\DefaultV2\Images\i_enableSport.png" />
+    <Content Include="App_Themes\DefaultV2\Images\i_ex_rate.png" />
+    <Content Include="App_Themes\DefaultV2\Images\i_home.png" />
+    <Content Include="App_Themes\DefaultV2\Images\i_media1.png" />
+    <Content Include="App_Themes\DefaultV2\Images\i_member.png" />
+    <Content Include="App_Themes\DefaultV2\Images\i_message.png" />
+    <Content Include="App_Themes\DefaultV2\Images\i_pay_re.png" />
+    <Content Include="App_Themes\DefaultV2\Images\i_report.png" />
+    <Content Include="App_Themes\DefaultV2\Images\left_btleft.gif" />
+    <Content Include="App_Themes\DefaultV2\Images\left_button.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\lgBg.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\lgFtleft.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\lgFtright.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\lgFtrp.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\lgLeft.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\lgLogo.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\lgRight.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\lgRp.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\line_left02.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\line_left03.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\line_popup.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\loader3.gif" />
+    <Content Include="App_Themes\DefaultV2\Images\loading.gif" />
+    <Content Include="App_Themes\DefaultV2\Images\login_bgcenter.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\login_bgmain.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\login_butt.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\login_icon01.png" />
+    <Content Include="App_Themes\DefaultV2\Images\login_icon02.png" />
+    <Content Include="App_Themes\DefaultV2\Images\login_logo.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\login_welc.png" />
+    <Content Include="App_Themes\DefaultV2\Images\main_left.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\main_right.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\note_01.png" />
+    <Content Include="App_Themes\DefaultV2\Images\popup_01.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\popup_menu01.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\popup_menu02.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\pop_bgcenter.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\right_btleft.gif" />
+    <Content Include="App_Themes\DefaultV2\Images\right_button.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\table_left.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\TabsLeftKtHeader.gif" />
+    <Content Include="App_Themes\DefaultV2\Images\task.png" />
+    <Content Include="App_Themes\DefaultV2\Images\tbl_icon01.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\tbl_icon02.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\tbl_m.jpg" />
+    <Content Include="App_Themes\DefaultV2\Images\uncheck.gif" />
+    <Content Include="App_Themes\DefaultV2\left.css" />
+    <Content Include="App_Themes\DefaultV2\login.css" />
+    <Content Include="App_Themes\Default\Common.css" />
+    <Content Include="App_Themes\Default\Customer.css" />
+    <Content Include="App_Themes\Default\Images\18up.gif" />
+    <Content Include="App_Themes\Default\Images\1x1.gif" />
+    <Content Include="App_Themes\Default\Images\banner_img.jpg" />
+    <Content Include="App_Themes\Default\Images\banner_join.jpg" />
+    <Content Include="App_Themes\Default\Images\banner_live2.jpg" />
+    <Content Include="App_Themes\Default\Images\bg_button.gif" />
+    <Content Include="App_Themes\Default\Images\bg_center.gif" />
+    <Content Include="App_Themes\Default\Images\bg_footer.gif" />
+    <Content Include="App_Themes\Default\Images\bg_info.gif" />
+    <Content Include="App_Themes\Default\Images\bg_left.gif" />
+    <Content Include="App_Themes\Default\Images\bg_left.jpg" />
+    <Content Include="App_Themes\Default\Images\bg_leftbottom.jpg" />
+    <Content Include="App_Themes\Default\Images\bg_lefttop.jpg" />
+    <Content Include="App_Themes\Default\Images\bg_top.gif" />
+    <Content Include="App_Themes\Default\Images\box_bg.gif" />
+    <Content Include="App_Themes\Default\Images\bt.jpg" />
+    <Content Include="App_Themes\Default\Images\btn_icon.gif" />
+    <Content Include="App_Themes\Default\Images\btn_icon2.gif" />
+    <Content Include="App_Themes\Default\Images\button.gif" />
+    <Content Include="App_Themes\Default\Images\button_over.gif" />
+    <Content Include="App_Themes\Default\Images\b_01.jpg" />
+    <Content Include="App_Themes\Default\Images\b_022.jpg" />
+    <Content Include="App_Themes\Default\Images\cal.gif" />
+    <Content Include="App_Themes\Default\Images\conts_box002.gif" />
+    <Content Include="App_Themes\Default\Images\conts_box01.gif" />
+    <Content Include="App_Themes\Default\Images\conts_box02.gif" />
+    <Content Include="App_Themes\Default\Images\delete.gif" />
+    <Content Include="App_Themes\Default\Images\edit.gif" />
+    <Content Include="App_Themes\Default\Images\emsg_1_1.jpg" />
+    <Content Include="App_Themes\Default\Images\emsg_1_2.jpg" />
+    <Content Include="App_Themes\Default\Images\emsg_1_3.jpg" />
+    <Content Include="App_Themes\Default\Images\emsg_2_1.jpg" />
+    <Content Include="App_Themes\Default\Images\emsg_2_2.jpg" />
+    <Content Include="App_Themes\Default\Images\emsg_3_1.jpg" />
+    <Content Include="App_Themes\Default\Images\emsg_3_2.jpg" />
+    <Content Include="App_Themes\Default\Images\emsg_3_3.jpg" />
+    <Content Include="App_Themes\Default\Images\FC_logo.gif" />
+    <Content Include="App_Themes\Default\Images\footer_bg.gif" />
+    <Content Include="App_Themes\Default\Images\frbg58.gif" />
+    <Content Include="App_Themes\Default\Images\frbg581.gif" />
+    <Content Include="App_Themes\Default\Images\frbg582_1.gif" />
+    <Content Include="App_Themes\Default\Images\global_bg.gif" />
+    <Content Include="App_Themes\Default\Images\gradient_panel.gif" />
+    <Content Include="App_Themes\Default\Images\gradient_panelsurround.gif" />
+    <Content Include="App_Themes\Default\Images\gradient_tcat.gif" />
+    <Content Include="App_Themes\Default\Images\g_01.jpg" />
+    <Content Include="App_Themes\Default\Images\g_02.jpg" />
+    <Content Include="App_Themes\Default\Images\hd_bg.gif" />
+    <Content Include="App_Themes\Default\Images\hot_news.gif" />
+    <Content Include="App_Themes\Default\Images\icon_01.jpg" />
+    <Content Include="App_Themes\Default\Images\icon_02.jpg" />
+    <Content Include="App_Themes\Default\Images\icon_03.jpg" />
+    <Content Include="App_Themes\Default\Images\icon_dotbu.gif" />
+    <Content Include="App_Themes\Default\Images\icon_h1arrow.gif" />
+    <Content Include="App_Themes\Default\Images\icon_h1rbg.gif" />
+    <Content Include="App_Themes\Default\Images\ic_arr.gif" />
+    <Content Include="App_Themes\Default\Images\ic_close.jpg" />
+    <Content Include="App_Themes\Default\Images\ic_close_over.jpg" />
+    <Content Include="App_Themes\Default\Images\ic_del.jpg" />
+    <Content Include="App_Themes\Default\Images\ic_del.png" />
+    <Content Include="App_Themes\Default\Images\ic_error_msg.gif" />
+    <Content Include="App_Themes\Default\Images\ic_lock.gif" />
+    <Content Include="App_Themes\Default\Images\ic_lock.jpg" />
+    <Content Include="App_Themes\Default\Images\ic_lock.png" />
+    <Content Include="App_Themes\Default\Images\ic_lock1.jpg" />
+    <Content Include="App_Themes\Default\Images\ic_reset.gif" />
+    <Content Include="App_Themes\Default\Images\ic_reset.png" />
+    <Content Include="App_Themes\Default\Images\ic_warning.gif" />
+    <Content Include="App_Themes\Default\Images\left_btleft.gif" />
+    <Content Include="App_Themes\Default\Images\line_left02.jpg" />
+    <Content Include="App_Themes\Default\Images\line_left03.jpg" />
+    <Content Include="App_Themes\Default\Images\loader3.gif" />
+    <Content Include="App_Themes\Default\Images\login_code.jpg" />
+    <Content Include="App_Themes\Default\Images\logo.gif" />
+    <Content Include="App_Themes\Default\Images\more.gif" />
+    <Content Include="App_Themes\Default\Images\navbg.gif" />
+    <Content Include="App_Themes\Default\Images\navbg2.gif" />
+    <Content Include="App_Themes\Default\Images\navbg3.gif" />
+    <Content Include="App_Themes\Default\Images\navbg_new.gif" />
+    <Content Include="App_Themes\Default\Images\right_btleft.gif" />
+    <Content Include="App_Themes\Default\Images\sitenav.gif" />
+    <Content Include="App_Themes\Default\Images\sitenav1.gif" />
+    <Content Include="App_Themes\Default\Images\spacer.gif" />
+    <Content Include="App_Themes\Default\Images\subnav_foot.gif" />
+    <Content Include="App_Themes\Default\Images\subnav_footer.gif" />
+    <Content Include="App_Themes\Default\Images\t1.gif" />
+    <Content Include="App_Themes\Default\Images\TabsCenter.gif" />
+    <Content Include="App_Themes\Default\Images\TabsCenter3.gif" />
+    <Content Include="App_Themes\Default\Images\TabsLeft.gif" />
+    <Content Include="App_Themes\Default\Images\TabsLeft1.gif" />
+    <Content Include="App_Themes\Default\Images\TabsLeft3.gif" />
+    <Content Include="App_Themes\Default\Images\TabsLeftKtHeader.gif" />
+    <Content Include="App_Themes\Default\Images\TabsRight.gif" />
+    <Content Include="App_Themes\Default\Images\TabsRight1.gif" />
+    <Content Include="App_Themes\Default\Images\TabsRight2.gif" />
+    <Content Include="App_Themes\Default\Images\TabsRight3.gif" />
+    <Content Include="App_Themes\Default\Images\TabsRightKtHeader.gif" />
+    <Content Include="App_Themes\Default\Images\tab_th03.gif" />
+    <Content Include="App_Themes\Default\Images\tab_th03_1.gif" />
+    <Content Include="App_Themes\Default\Images\timelyinfobg.gif" />
+    <Content Include="App_Themes\Default\Images\tool_icon.jpg" />
+    <Content Include="App_Themes\Default\Images\TreeViewImg.gif" />
+    <Content Include="App_Themes\Default\Images\UnderMaintenance.gif" />
+    <Content Include="App_Themes\Default\Images\warning.gif" />
+    <Content Include="App_Themes\Default\Images\x5.gif" />
+    <Content Include="App_Themes\Default\jquery.ui.css" />
+    <Content Include="App_Themes\error2.png" />
+    <Content Include="Auth\Error.aspx" />
+    <Content Include="Banner\CategoryMedia\Casino\Baccarat\12Bet_IA_WiganSeason2014_160x600_Eng.gif" />
+    <Content Include="Banner\CategoryMedia\Casino\Baccarat\12Bet_IA_WiganSeason2014_300x28_Eng.gif" />
+    <Content Include="Banner\CategoryMedia\Casino\Baccarat\background-wrap.jpg" />
+    <Content Include="Banner\CategoryMedia\Casino\Baccarat\Capture.png" />
+    <Content Include="Banner\CategoryMedia\Casino\Baccarat\casino1.jpg" />
+    <Content Include="Banner\CategoryMedia\Casino\Baccarat\Maintenance I668Bet.png" />
+    <Content Include="Banner\CategoryMedia\Number Game\12Bet_IA_WiganSeason2014_314x126_Eng.gif" />
+    <Content Include="Banner\CategoryMedia\Number Game\Chrysanthemum.jpg" />
+    <Content Include="Banner\CategoryMedia\Number Game\landing2.jpg" />
+    <Content Include="Banner\CategoryMedia\Racebook\landing2.jpg" />
+    <Content Include="BetList.aspx" />
+    <Content Include="BetList\BetList.aspx" />
+    <Content Include="BetList\BetListParlayDetail.aspx" />
+    <Content Include="BetList\BetListResults.aspx" />
+    <Content Include="bin\CasinoLibrary.dll" />
+    <Content Include="bin\CasinoSetting.dll" />
+    <Content Include="bin\CasinoUtility.dll" />
+    <Content Include="bin\DNAide.dll" />
+    <Content Include="bin\DotNet.Highcharts.dll" />
+    <Content Include="bin\Enyim.Caching.dll" />
+    <Content Include="bin\EPPlus.dll" />
+    <Content Include="bin\Fanex.Age.Business.dll" />
+    <Content Include="bin\Fanex.Age.Business.Interface.dll" />
+    <Content Include="bin\Fanex.Age.DTO.dll" />
+    <Content Include="bin\Fanex.Age.Excel.dll" />
+    <Content Include="bin\Fanex.Age.UI.Components.dll" />
+    <Content Include="bin\Fanex.Age.UI.dll" />
+    <Content Include="bin\Fanex.Age.UI.Forecast.dll" />
+    <Content Include="bin\Fanex.Age.UI.LiveCasino.dll" />
+    <Content Include="bin\Fanex.Age.UI.Reports.dll" />
+    <Content Include="bin\Fanex.Age.UI.TotalBets.dll" />
+    <Content Include="bin\Fanex.Age.Utility.dll" />
+    <Content Include="bin\Fanex.BetList.Age.dll" />
+    <Content Include="bin\Fanex.BetList.Core.dll" />
+    <Content Include="bin\Fanex.BetList.Core.TicketHelper.dll" />
+    <Content Include="bin\Fanex.Caching.dll" />
+    <Content Include="bin\Fanex.Common.dll" />
+    <Content Include="bin\Fanex.Data.dll" />
+    <Content Include="bin\Fanex.LiveCasinoSetting.dll" />
+    <Content Include="bin\Fanex.Logging.dll" />
+    <Content Include="bin\Fanex.MailDeliver.MailClient.dll" />
+    <Content Include="bin\Fanex.PTEngine.Age.dll" />
+    <Content Include="bin\Fanex.PTEngine.dll" />
+    <Content Include="bin\Fanex.PTVirtualSports.dll" />
+    <Content Include="bin\Fanex.SessionPartition.dll" />
+    <Content Include="bin\FluentValidation.dll" />
+    <Content Include="bin\FluentValidation.resources.dll" />
+    <Content Include="bin\FPS.Client.dll" />
+    <Content Include="bin\GotDotNet.ApplicationBlocks.Data.dll" />
+    <Content Include="bin\HandHistoryLibrary.dll" />
+    <Content Include="bin\IBCCrypt.dll" />
+    <Content Include="bin\IBCDBLibrary.dll" />
+    <Content Include="bin\IBCDLL.dll" />
+    <Content Include="bin\IBCFile.dll" />
+    <Content Include="bin\IBCMessage.dll" />
+    <Content Include="bin\IBCUtils.dll" />
+    <Content Include="bin\ICSharpCode.SharpZipLib.dll" />
+    <Content Include="bin\ILogger.dll" />
+    <Content Include="bin\Ionic.Zip.dll" />
+    <Content Include="bin\ja-JP\Fanex.BetList.Core.resources.dll" />
+    <Content Include="bin\ko-KR\Fanex.BetList.Core.resources.dll" />
+    <Content Include="bin\LiveCasinoLibrary.dll" />
+    <Content Include="bin\LoadBalancer.dll" />
+    <Content Include="bin\log4net.dll" />
+    <Content Include="bin\LVAPIDBLibrary.dll" />
+    <Content Include="bin\LVAPILibrary.dll" />
+    <Content Include="bin\Membase.dll" />
+    <Content Include="bin\Microsoft.ApplicationBlocks.Data.dll" />
+    <Content Include="bin\Microsoft.Practices.EnterpriseLibrary.Caching.dll" />
+    <Content Include="bin\Microsoft.Practices.EnterpriseLibrary.Common.dll" />
+    <Content Include="bin\Microsoft.Practices.EnterpriseLibrary.Data.dll" />
+    <Content Include="bin\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll" />
+    <Content Include="bin\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll" />
+    <Content Include="bin\Microsoft.Practices.EnterpriseLibrary.Logging.Database.dll" />
+    <Content Include="bin\Microsoft.Practices.EnterpriseLibrary.Logging.dll" />
+    <Content Include="bin\Microsoft.Practices.ObjectBuilder.dll" />
+    <Content Include="bin\Microsoft.Practices.ObjectBuilder2.dll" />
+    <Content Include="bin\Microsoft.Practices.ServiceLocation.dll" />
+    <Content Include="bin\Microsoft.Practices.Unity.Configuration.dll" />
+    <Content Include="bin\Microsoft.Practices.Unity.dll" />
+    <Content Include="bin\Microsoft.Practices.Unity.Interception.Configuration.dll" />
+    <Content Include="bin\Microsoft.Practices.Unity.Interception.dll" />
+    <Content Include="bin\Microsoft.Practices.Unity.StaticFactory.dll" />
+    <Content Include="bin\NetUtility.dll" />
+    <Content Include="bin\Newtonsoft.Json.dll" />
+    <Content Include="bin\Nexcel.WebControls.UI.dll" />
+    <Content Include="bin\Nini.dll" />
+    <Content Include="bin\NLog.dll" />
+    <Content Include="bin\NotifyPropertyChanged.dll" />
+    <Content Include="bin\NPOI.dll" />
+    <Content Include="bin\NPOI.xml" />
+    <Content Include="bin\RemotingRef.dll" />
+    <Content Include="bin\RSACryptoPad.dll" />
+    <Content Include="bin\SharedCache.WinServiceCommon.dll" />
+    <Content Include="bin\SPSRemoting.dll" />
+    <Content Include="bin\Sunplus.Agent.Configurations.dll" />
+    <Content Include="bin\Sunplus.Agent.Model.dll" />
+    <Content Include="bin\Sunplus.Agent.UI.BetList.dll" />
+    <Content Include="bin\Sunplus.Agent.UI.BetSlip.dll" />
+    <Content Include="bin\Sunplus.Agent.UI.PositionTaking.RaceBook.dll" />
+    <Content Include="bin\Sunplus.Agent.UI.ScoreMap.dll" />
+    <Content Include="bin\Sunplus.Agent.Utilities.dll" />
+    <Content Include="bin\Sunplus.Bingo.Core.dll" />
+    <Content Include="bin\Sunplus.Bingo.Data.dll" />
+    <Content Include="bin\Sunplus.Bingo.Data.Entlib.dll" />
+    <Content Include="bin\Sunplus.Bingo.Data.LinqToSql.dll" />
+    <Content Include="bin\Sunplus.Bingo.DataServices.dll" />
+    <Content Include="bin\Sunplus.Bingo.Entities.dll" />
+    <Content Include="bin\Sunplus.Bingo.Services.dll" />
+    <Content Include="bin\Sunplus.Core.Common.dll" />
+    <Content Include="bin\Sunplus.Libraries.AOP.dll" />
+    <Content Include="bin\Sunplus.Libraries.APILogger.dll" />
+    <Content Include="bin\Sunplus.Libraries.ThirdPartyTestData.dll" />
+    <Content Include="bin\Sunplus.Shared.ViewLogLib.dll" />
+    <Content Include="bin\th-TH\Fanex.BetList.Core.resources.dll" />
+    <Content Include="bin\TplCore.dll" />
+    <Content Include="bin\UMControllerLibrary.dll" />
+    <Content Include="bin\vi-VN\Fanex.BetList.Core.resources.dll" />
+    <Content Include="bin\zh-CN\Fanex.BetList.Core.resources.dll" />
+    <Content Include="bin\zh-TW\Fanex.BetList.Core.resources.dll" />
+    <Content Include="Casino\UploadExcel.aspx" />
+    <Content Include="ChangeAdminPass.aspx" />
+    <Content Include="ChangePass.aspx" />
+    <Content Include="Content\betlist\betlist.core.css" />
+    <Content Include="Content\betlist\betlist.css" />
+    <Content Include="Content\betlist\fanex.result.css" />
+    <Content Include="Content\betlist\global.content.css" />
+    <Content Include="Content\betlist\images\1F.gif" />
+    <Content Include="Content\betlist\images\1L.gif" />
+    <Content Include="Content\betlist\images\bar-loader.gif" />
+    <Content Include="Content\betlist\images\bgHeader.jpg" />
+    <Content Include="Content\betlist\images\blank.gif" />
+    <Content Include="Content\betlist\images\firstGoal.gif" />
+    <Content Include="Content\betlist\images\goal-icon.png" />
+    <Content Include="Content\betlist\images\lastGoal.gif" />
+    <Content Include="Content\betlist\images\link_14x14.png" />
+    <Content Include="Content\betlist\images\link_16x16.png" />
+    <Content Include="Content\betlist\images\note.png" />
+    <Content Include="Content\betlist\images\plus.png" />
+    <Content Include="Content\betlist\images\q_Icon2_1.png" />
+    <Content Include="Content\betlist\images\q_Icon_2.png" />
+    <Content Include="Content\betlist\images\tab_topbg.gif" />
+    <Content Include="Content\betlist\images\undo.png" />
+    <Content Include="Content\betlist\images\up.png" />
+    <Content Include="Content\betlist\rngcasino.handhistory.css" />
+    <Content Include="Content\betlist\systemparlay.detail.css" />
+    <Content Include="Content\Fanex.Result\12betadmin.result.css" />
+    <Content Include="Content\Fanex.Result\fanex.result.css" />
+    <Content Include="Content\Fanex.Result\images\goal-icon.png" />
+    <Content Include="Content\tipsy\custom-tipsy.css" />
+    <Content Include="Content\tipsy\tipsy.css" />
+    <Content Include="Customer\AffDefault.aspx" />
+    <Content Include="Customer\AffiliateInfo.aspx" />
+    <Content Include="Customer\blank.html" />
+    <Content Include="Customer\Statistics.aspx" />
+    <Content Include="Default.aspx" />
+    <Content Include="Domain\12BetDomain.aspx" />
+    <Content Include="Domain\Add12BetDomain.aspx" />
+    <Content Include="Domain\AddAffiliateDomain.aspx" />
+    <Content Include="Domain\AffiliateDomain.aspx" />
+    <Content Include="Domain\DomainControl.aspx" />
+    <Content Include="Domain\DomainControlIns.aspx" />
+    <Content Include="Domain\DomainControlUpd.aspx" />
+    <Content Include="Domain\Edit12BetDomain.aspx" />
+    <Content Include="Domain\EditAffiliateDomain.aspx" />
+    <Content Include="Error.aspx" />
+    <Content Include="Exchange\AffEditRate.aspx" />
+    <Content Include="Exchange\AffRate.aspx" />
+    <Content Include="Footer.htm" />
+    <Content Include="Global.asax" />
+    <Content Include="GroupSetting\AddGroup.aspx" />
+    <Content Include="GroupSetting\AssignGroup.aspx" />
+    <Content Include="GroupSetting\EditGroup.aspx" />
+    <Content Include="GroupSetting\GroupSetting.aspx" />
+    <Content Include="Header.aspx" />
+    <Content Include="Home\Home.aspx" />
+    <Content Include="Joseph_BuyingExRate\Joseph_BuyingExRate.sln" />
+    <Content Include="Joseph_BuyingExRate\Joseph_BuyingExRate.vssscc" />
+    <Content Include="Media\AddBanner.aspx" />
+    <Content Include="Media\AddText.aspx" />
+    <Content Include="Media\BannerDetail.aspx" />
+    <Content Include="Media\EditBanner.aspx" />
+    <Content Include="Media\ListBannerNew.aspx" />
+    <Content Include="Media\ListText.aspx" />
+    <Content Include="Others\EmailHistory.aspx" />
+    <Content Include="Others\Message.aspx" />
+    <Content Include="Others\ViewEmailDetails.aspx" />
+    <Content Include="Others\ViewMessDetails.aspx" />
+    <Content Include="Payment\PaymentRequest.aspx" />
+    <Content Include="Payment\PaymentUpdate.aspx" />
+    <Content Include="Release Note.txt" />
+    <Content Include="Report\AffiliateQMReport.aspx" />
+    <Content Include="Report\AffiliateQMReportDetail.aspx" />
+    <Content Include="Report\AffiliateReport.aspx" />
+    <Content Include="Report\AffiliateReportDetail.aspx" />
+    <Content Include="Report\CasinoPlayerTurnoverReport.aspx" />
+    <Content Include="Report\Commission.aspx" />
+    <Content Include="Report\MemberReport.aspx" />
+    <Content Include="Report\MemberStatisticsReport.aspx" />
+    <Content Include="Report\MemberStatisticsReportDetail.aspx" />
+    <Content Include="Report\Performance.aspx" />
+    <Content Include="Report\PerformanceReportByAffiliate.aspx" />
+    <Content Include="Report\SBPlayerTurnoverReport.aspx" />
+    <Content Include="Report\SignUpActive.aspx" />
+    <Content Include="SignIn.aspx" />
+    <Content Include="SpNames.xml" />
+    <Content Include="Test\DepMemberDetailUpd.aspx" />
+    <Content Include="Test\Login2.jpg" />
+    <Content Include="Test\test.aspx" />
+    <Content Include="Test\TestInternalLogin.aspx" />
+    <Content Include="UnderMaintenance.aspx" />
+    <Content Include="UserControl\AddDepartment.aspx" />
+    <Content Include="UserControl\AddUser.aspx" />
+    <Content Include="UserControl\AddUserExist.aspx" />
+    <Content Include="UserControl\EditAdminPolicy.aspx" />
+    <Content Include="UserControl\EditDepartment.aspx" />
+    <Content Include="UserControl\EditGroupPolicy.aspx" />
+    <Content Include="UserControl\EditUser.aspx" />
+    <Content Include="UserControl\ListDepartment.aspx" />
+    <Content Include="UserControl\ListUser.aspx" />
+    <Content Include="UserControl\ListUserInDept.aspx" />
+    <Content Include="UserControl\UpdateMultiAdmins.aspx" />
+    <Content Include="UserInfo\AddNote.aspx" />
+    <Content Include="UserInfo\Adjustment.aspx" />
+    <Content Include="UserInfo\AffiliateList.aspx" />
+    <Content Include="UserInfo\AffiliateUpd.aspx" />
+    <Content Include="UserInfo\DailyEarning.aspx" />
+    <Content Include="UserInfo\DailyEarningDetail.aspx" />
+    <Content Include="UserInfo\EarningsHistory.aspx" />
+    <Content Include="UserInfo\MediaStatistics.aspx" />
+    <Content Include="UserInfo\MediaStatistics_LandingPage.aspx" />
+    <Content Include="UserInfo\MediaStatistics_New.aspx" />
+    <Content Include="UserInfo\MemberActiveList.aspx" />
+    <Content Include="UserInfo\MemberList.aspx" />
+    <Content Include="UserInfo\MemberListAll.aspx" />
+    <Content Include="UserInfo\Note.aspx" />
+    <Content Include="UserInfo\PlayersDetail.aspx" />
+    <Content Include="UserInfo\UserLog.aspx" />
+    <None Include="Web References\AffBetlistService\AffiliateAPI.disco" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="WhoamI.aspx" />
+    <Content Include="_Dependencies\CasinoLibrary.dll" />
+    <Content Include="_Dependencies\CasinoSetting.dll" />
+    <Content Include="_Dependencies\CasinoUtility.dll" />
+    <Content Include="_Dependencies\DNAide.dll" />
+    <Content Include="_Dependencies\DotNet.Highcharts.dll" />
+    <Content Include="_Dependencies\Enyim.Caching.dll" />
+    <Content Include="_Dependencies\Fanex.Age.Business.dll" />
+    <Content Include="_Dependencies\Fanex.Age.Business.Interface.dll" />
+    <Content Include="_Dependencies\Fanex.Age.DTO.dll" />
+    <Content Include="_Dependencies\Fanex.Age.Excel.dll" />
+    <Content Include="_Dependencies\Fanex.Age.UI.Components.dll" />
+    <Content Include="_Dependencies\Fanex.Age.UI.dll" />
+    <Content Include="_Dependencies\Fanex.Age.UI.Forecast.dll" />
+    <Content Include="_Dependencies\Fanex.Age.UI.LiveCasino.dll" />
+    <Content Include="_Dependencies\Fanex.Age.UI.Reports.dll" />
+    <Content Include="_Dependencies\Fanex.Age.UI.TotalBets.dll" />
+    <Content Include="_Dependencies\Fanex.Age.Utility.dll" />
+    <Content Include="_Dependencies\Fanex.BetList.Age.dll" />
+    <Content Include="_Dependencies\Fanex.BetList.Core.dll" />
+    <Content Include="_Dependencies\Fanex.BetList.Core.TicketHelper.dll" />
+    <Content Include="_Dependencies\Fanex.Caching.dll" />
+    <Content Include="_Dependencies\Fanex.Common.dll" />
+    <Content Include="_Dependencies\Fanex.Data.dll" />
+    <Content Include="_Dependencies\Fanex.LiveCasinoSetting.dll" />
+    <Content Include="_Dependencies\Fanex.Logging.dll" />
+    <Content Include="_Dependencies\Fanex.PTEngine.Age.dll" />
+    <Content Include="_Dependencies\Fanex.PTEngine.dll" />
+    <Content Include="_Dependencies\Fanex.PTVirtualSports.dll" />
+    <Content Include="_Dependencies\Fanex.SessionPartition.dll" />
+    <Content Include="_Dependencies\FluentValidation.dll" />
+    <Content Include="_Dependencies\FluentValidation.resources.dll" />
+    <Content Include="_Dependencies\FPS.Client.dll" />
+    <Content Include="_Dependencies\GotDotNet.ApplicationBlocks.Data.dll" />
+    <Content Include="_Dependencies\HandHistoryLibrary.dll" />
+    <Content Include="_Dependencies\IBCCrypt.dll" />
+    <Content Include="_Dependencies\IBCDBLibrary.dll" />
+    <Content Include="_Dependencies\IBCDLL.dll" />
+    <Content Include="_Dependencies\IBCFile.dll" />
+    <Content Include="_Dependencies\IBCMessage.dll" />
+    <Content Include="_Dependencies\IBCUtils.dll" />
+    <Content Include="_Dependencies\ILogger.dll" />
+    <Content Include="_Dependencies\Ionic.Zip.dll" />
+    <Content Include="_Dependencies\ja-JP\Fanex.BetList.Core.resources.dll" />
+    <Content Include="_Dependencies\ko-KR\Fanex.BetList.Core.resources.dll" />
+    <Content Include="_Dependencies\LiveCasinoLibrary.dll" />
+    <Content Include="_Dependencies\LoadBalancer.dll" />
+    <Content Include="_Dependencies\log4net.dll" />
+    <Content Include="_Dependencies\LVAPIDBLibrary.dll" />
+    <Content Include="_Dependencies\LVAPILibrary.dll" />
+    <Content Include="_Dependencies\Membase.dll" />
+    <Content Include="_Dependencies\Microsoft.ApplicationBlocks.Data.dll" />
+    <Content Include="_Dependencies\Microsoft.Practices.EnterpriseLibrary.Caching.dll" />
+    <Content Include="_Dependencies\Microsoft.Practices.EnterpriseLibrary.Common.dll" />
+    <Content Include="_Dependencies\Microsoft.Practices.EnterpriseLibrary.Data.dll" />
+    <Content Include="_Dependencies\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll" />
+    <Content Include="_Dependencies\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll" />
+    <Content Include="_Dependencies\Microsoft.Practices.EnterpriseLibrary.Logging.Database.dll" />
+    <Content Include="_Dependencies\Microsoft.Practices.EnterpriseLibrary.Logging.dll" />
+    <Content Include="_Dependencies\Microsoft.Practices.ObjectBuilder.dll" />
+    <Content Include="_Dependencies\Microsoft.Practices.ObjectBuilder2.dll" />
+    <Content Include="_Dependencies\Microsoft.Practices.ServiceLocation.dll" />
+    <Content Include="_Dependencies\Microsoft.Practices.Unity.Configuration.dll" />
+    <Content Include="_Dependencies\Microsoft.Practices.Unity.dll" />
+    <Content Include="_Dependencies\Microsoft.Practices.Unity.Interception.Configuration.dll" />
+    <Content Include="_Dependencies\Microsoft.Practices.Unity.Interception.dll" />
+    <Content Include="_Dependencies\Microsoft.Practices.Unity.StaticFactory.dll" />
+    <Content Include="_Dependencies\NetUtility.dll" />
+    <Content Include="_Dependencies\Newtonsoft.Json.dll" />
+    <Content Include="_Dependencies\Nexcel.WebControls.UI.dll" />
+    <Content Include="_Dependencies\Nini.dll" />
+    <Content Include="_Dependencies\NLog.dll" />
+    <Content Include="_Dependencies\NotifyPropertyChanged.dll" />
+    <Content Include="_Dependencies\NPOI.dll" />
+    <Content Include="_Dependencies\RemotingRef.dll" />
+    <Content Include="_Dependencies\RSACryptoPad.dll" />
+    <Content Include="_Dependencies\SharedCache.WinServiceCommon.dll" />
+    <Content Include="_Dependencies\SPSRemoting.dll" />
+    <Content Include="_Dependencies\Sunplus.Agent.Configurations.dll" />
+    <Content Include="_Dependencies\Sunplus.Agent.Model.dll" />
+    <Content Include="_Dependencies\Sunplus.Agent.UI.BetList.dll" />
+    <Content Include="_Dependencies\Sunplus.Agent.UI.BetSlip.dll" />
+    <Content Include="_Dependencies\Sunplus.Agent.UI.PositionTaking.RaceBook.dll" />
+    <Content Include="_Dependencies\Sunplus.Agent.UI.ScoreMap.dll" />
+    <Content Include="_Dependencies\Sunplus.Agent.Utilities.dll" />
+    <Content Include="_Dependencies\Sunplus.Bingo.Core.dll" />
+    <Content Include="_Dependencies\Sunplus.Bingo.Data.dll" />
+    <Content Include="_Dependencies\Sunplus.Bingo.Data.Entlib.dll" />
+    <Content Include="_Dependencies\Sunplus.Bingo.Data.LinqToSql.dll" />
+    <Content Include="_Dependencies\Sunplus.Bingo.DataServices.dll" />
+    <Content Include="_Dependencies\Sunplus.Bingo.Entities.dll" />
+    <Content Include="_Dependencies\Sunplus.Bingo.Services.dll" />
+    <Content Include="_Dependencies\Sunplus.Core.Common.dll" />
+    <Content Include="_Dependencies\Sunplus.Libraries.AOP.dll" />
+    <Content Include="_Dependencies\Sunplus.Libraries.APILogger.dll" />
+    <Content Include="_Dependencies\Sunplus.Libraries.ThirdPartyTestData.dll" />
+    <Content Include="_Dependencies\Sunplus.Shared.ViewLogLib.dll" />
+    <Content Include="_Dependencies\th-TH\Fanex.BetList.Core.resources.dll" />
+    <Content Include="_Dependencies\TplCore.dll" />
+    <Content Include="_Dependencies\UMControllerLibrary.dll" />
+    <Content Include="_Dependencies\vi-VN\Fanex.BetList.Core.resources.dll" />
+    <Content Include="_Dependencies\zh-CN\Fanex.BetList.Core.resources.dll" />
+    <Content Include="_Dependencies\zh-TW\Fanex.BetList.Core.resources.dll" />
+    <Content Include="_GlobalResources\_IPInfo\IPInfo.aspx" />
+    <Content Include="_GlobalResources\_IPInfo\IpInfo.htm" />
+    <Content Include="_GlobalResources\_IPInfo\Resources\IpInfo.css" />
+    <Content Include="_GlobalResources\_IPInfo\Resources\IpInfo.js" />
+    <Content Include="_Reports\BetList\BetSummary.aspx" />
+    <Content Include="_Reports\BetList\CancelBetList.aspx" />
+    <Content Include="_Reports\BetList\DailyStatement.aspx" />
+    <Content Include="_Reports\BetList\OutstandingDetail.aspx" />
+    <Content Include="_Reports\BetList\Resources\BetSummary.js" />
+    <Content Include="_Reports\BetList\Resources\CancelBetList.js" />
+    <Content Include="_Reports\BetList\Resources\DailyStatement.js" />
+    <Content Include="_Reports\BetList\Resources\OutstandingDetail.js" />
+    <Content Include="_Reports\Common\MatchResultEntered.aspx" />
+    <Content Include="_Reports\Common\Outstanding.aspx" />
+    <Content Include="_Reports\Common\SelectLeagues.aspx" />
+    <Content Include="_Reports\Common\Statement.aspx" />
+    <Content Include="_Reports\Default.aspx" />
+    <Content Include="_Reports\Resources\bg_nav.gif" />
+    <Content Include="_Reports\Resources\Reports.css" />
+    <Content Include="_Reports\Resources\Reports.js" />
+    <Content Include="_Reports\Resources\SelectLeagues.js" />
+    <Content Include="_Reports\Resources\ui-icons.png" />
+    <Content Include="_Reports\Result\Result.aspx" />
+    <None Include="Web References\AffBetlistService\AffiliateAPI.wsdl" />
+    <None Include="Web References\AffBetlistService\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AppSettings.ini" />
+    <None Include="App_dll\CasinoLibrary.dll.refresh" />
+    <None Include="App_dll\CasinoSetting.dll.refresh" />
+    <None Include="App_dll\CasinoUtility.dll.refresh" />
+    <None Include="App_dll\DotNet.Highcharts.dll.refresh" />
+    <None Include="App_dll\Enyim.Caching.dll.refresh" />
+    <None Include="App_dll\EPPlus.dll.refresh" />
+    <None Include="App_dll\Fanex.Age.Business.dll.refresh" />
+    <None Include="App_dll\Fanex.Age.Business.Interface.dll.refresh" />
+    <None Include="App_dll\Fanex.Age.DTO.dll.refresh" />
+    <None Include="App_dll\Fanex.Age.Excel.dll.refresh" />
+    <None Include="App_dll\Fanex.Age.UI.Components.dll.refresh" />
+    <None Include="App_dll\Fanex.Age.UI.dll.refresh" />
+    <None Include="App_dll\Fanex.Age.UI.Forecast.dll.refresh" />
+    <None Include="App_dll\Fanex.Age.UI.LiveCasino.dll.refresh" />
+    <None Include="App_dll\Fanex.Age.UI.Reports.dll.refresh" />
+    <None Include="App_dll\Fanex.Age.UI.TotalBets.dll.refresh" />
+    <None Include="App_dll\Fanex.Age.Utility.dll.refresh" />
+    <None Include="App_dll\Fanex.BetList.Age.dll.refresh" />
+    <None Include="App_dll\Fanex.BetList.Core.dll.refresh" />
+    <None Include="App_dll\Fanex.BetList.Core.TicketHelper.dll.refresh" />
+    <None Include="App_dll\Fanex.Caching.dll.refresh" />
+    <None Include="App_dll\Fanex.Common.dll.refresh" />
+    <None Include="App_dll\Fanex.Data.dll.refresh" />
+    <None Include="App_dll\Fanex.LiveCasinoSetting.dll.refresh" />
+    <None Include="App_dll\Fanex.Logging.dll.refresh" />
+    <None Include="App_dll\Fanex.PTEngine.Age.dll.refresh" />
+    <None Include="App_dll\Fanex.PTEngine.dll.refresh" />
+    <None Include="App_dll\Fanex.PTVirtualSports.dll.refresh" />
+    <None Include="App_dll\Fanex.SessionPartition.dll.refresh" />
+    <None Include="App_dll\FluentValidation.dll.refresh" />
+    <None Include="App_dll\FluentValidation.resources.dll.refresh" />
+    <None Include="App_dll\FPS.Client.dll.refresh" />
+    <None Include="App_dll\GotDotNet.ApplicationBlocks.Data.dll.refresh" />
+    <None Include="App_dll\HandHistoryLibrary.dll.refresh" />
+    <None Include="App_dll\IBCCrypt.dll.refresh" />
+    <None Include="App_dll\IBCDBLibrary.dll.refresh" />
+    <None Include="App_dll\IBCDLL.dll.refresh" />
+    <None Include="App_dll\IBCFile.dll.refresh" />
+    <None Include="App_dll\IBCMessage.dll.refresh" />
+    <None Include="App_dll\IBCUtils.dll.refresh" />
+    <None Include="App_dll\ILogger.dll.refresh" />
+    <None Include="App_dll\Ionic.Zip.dll.refresh" />
+    <None Include="App_dll\LiveCasinoLibrary.dll.refresh" />
+    <None Include="App_dll\LoadBalancer.dll.refresh" />
+    <None Include="App_dll\log4net.dll.refresh" />
+    <None Include="App_dll\LVAPIDBLibrary.dll.refresh" />
+    <None Include="App_dll\LVAPILibrary.dll.refresh" />
+    <None Include="App_dll\Membase.dll.refresh" />
+    <None Include="App_dll\Microsoft.ApplicationBlocks.Data.dll.refresh" />
+    <None Include="App_dll\Microsoft.Practices.EnterpriseLibrary.Caching.dll.refresh" />
+    <None Include="App_dll\Microsoft.Practices.EnterpriseLibrary.Common.dll.refresh" />
+    <None Include="App_dll\Microsoft.Practices.EnterpriseLibrary.Data.dll.refresh" />
+    <None Include="App_dll\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll.refresh" />
+    <None Include="App_dll\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll.refresh" />
+    <None Include="App_dll\Microsoft.Practices.EnterpriseLibrary.Logging.Database.dll.refresh" />
+    <None Include="App_dll\Microsoft.Practices.EnterpriseLibrary.Logging.dll.refresh" />
+    <None Include="App_dll\Microsoft.Practices.ObjectBuilder.dll.refresh" />
+    <None Include="App_dll\Microsoft.Practices.ObjectBuilder2.dll.refresh" />
+    <None Include="App_dll\Microsoft.Practices.ServiceLocation.dll.refresh" />
+    <None Include="App_dll\Microsoft.Practices.Unity.Configuration.dll.refresh" />
+    <None Include="App_dll\Microsoft.Practices.Unity.dll.refresh" />
+    <None Include="App_dll\Microsoft.Practices.Unity.Interception.Configuration.dll.refresh" />
+    <None Include="App_dll\Microsoft.Practices.Unity.Interception.dll.refresh" />
+    <None Include="App_dll\Microsoft.Practices.Unity.StaticFactory.dll.refresh" />
+    <None Include="App_dll\NetUtility.dll.refresh" />
+    <None Include="App_dll\Newtonsoft.Json.dll.refresh" />
+    <None Include="App_dll\Nexcel.WebControls.UI.dll.refresh" />
+    <None Include="App_dll\Nini.dll.refresh" />
+    <None Include="App_dll\NLog.dll.refresh" />
+    <None Include="App_dll\NotifyPropertyChanged.dll.refresh" />
+    <None Include="App_dll\NPOI.dll.refresh" />
+    <None Include="App_dll\RemotingRef.dll.refresh" />
+    <None Include="App_dll\RSACryptoPad.dll.refresh" />
+    <None Include="App_dll\SharedCache.WinServiceCommon.dll.refresh" />
+    <None Include="App_dll\SPSRemoting.dll.refresh" />
+    <None Include="App_dll\Sunplus.Agent.Configurations.dll.refresh" />
+    <None Include="App_dll\Sunplus.Agent.Model.dll.refresh" />
+    <None Include="App_dll\Sunplus.Agent.UI.BetList.dll.refresh" />
+    <None Include="App_dll\Sunplus.Agent.UI.BetSlip.dll.refresh" />
+    <None Include="App_dll\Sunplus.Agent.UI.PositionTaking.RaceBook.dll.refresh" />
+    <None Include="App_dll\Sunplus.Agent.UI.ScoreMap.dll.refresh" />
+    <None Include="App_dll\Sunplus.Agent.Utilities.dll.refresh" />
+    <None Include="App_dll\Sunplus.Bingo.Core.dll.refresh" />
+    <None Include="App_dll\Sunplus.Bingo.Data.dll.refresh" />
+    <None Include="App_dll\Sunplus.Bingo.Data.Entlib.dll.refresh" />
+    <None Include="App_dll\Sunplus.Bingo.Data.LinqToSql.dll.refresh" />
+    <None Include="App_dll\Sunplus.Bingo.DataServices.dll.refresh" />
+    <None Include="App_dll\Sunplus.Bingo.Entities.dll.refresh" />
+    <None Include="App_dll\Sunplus.Bingo.Services.dll.refresh" />
+    <None Include="App_dll\Sunplus.Core.Common.dll.refresh" />
+    <None Include="App_dll\Sunplus.Libraries.AOP.dll.refresh" />
+    <None Include="App_dll\Sunplus.Libraries.APILogger.dll.refresh" />
+    <None Include="App_dll\Sunplus.Libraries.ThirdPartyTestData.dll.refresh" />
+    <None Include="App_dll\Sunplus.Shared.ViewLogLib.dll.refresh" />
+    <None Include="App_dll\TplCore.dll.refresh" />
+    <None Include="App_dll\UMControllerLibrary.dll.refresh" />
+    <Content Include="Auth\ProcessLogin.ashx" />
+    <Content Include="Auth\ReCheckIn.ashx" />
+    <Content Include="BetList\BetListParlay.ashx" />
+    <None Include="bin\CasinoLibrary.dll.refresh" />
+    <None Include="bin\CasinoSetting.dll.refresh" />
+    <None Include="bin\CasinoUtility.dll.refresh" />
+    <None Include="bin\DNAide.dll.refresh" />
+    <None Include="bin\DotNet.Highcharts.dll.refresh" />
+    <None Include="bin\Enyim.Caching.dll.refresh" />
+    <None Include="bin\EPPlus.dll.refresh" />
+    <None Include="bin\Fanex.Age.Business.dll.refresh" />
+    <None Include="bin\Fanex.Age.Business.Interface.dll.refresh" />
+    <None Include="bin\Fanex.Age.DTO.dll.refresh" />
+    <None Include="bin\Fanex.Age.Excel.dll.refresh" />
+    <None Include="bin\Fanex.Age.UI.Components.dll.refresh" />
+    <None Include="bin\Fanex.Age.UI.dll.refresh" />
+    <None Include="bin\Fanex.Age.UI.Forecast.dll.refresh" />
+    <None Include="bin\Fanex.Age.UI.LiveCasino.dll.refresh" />
+    <None Include="bin\Fanex.Age.UI.Reports.dll.refresh" />
+    <None Include="bin\Fanex.Age.UI.TotalBets.dll.refresh" />
+    <None Include="bin\Fanex.Age.Utility.dll.refresh" />
+    <None Include="bin\Fanex.BetList.Age.dll.refresh" />
+    <None Include="bin\Fanex.BetList.Core.dll.refresh" />
+    <None Include="bin\Fanex.BetList.Core.TicketHelper.dll.refresh" />
+    <None Include="bin\Fanex.Caching.dll.refresh" />
+    <None Include="bin\Fanex.Common.dll.refresh" />
+    <None Include="bin\Fanex.Data.dll.refresh" />
+    <None Include="bin\Fanex.LiveCasinoSetting.dll.refresh" />
+    <None Include="bin\Fanex.Logging.dll.refresh" />
+    <None Include="bin\Fanex.MailDeliver.MailClient.dll.refresh" />
+    <None Include="bin\Fanex.PTEngine.Age.dll.refresh" />
+    <None Include="bin\Fanex.PTEngine.dll.refresh" />
+    <None Include="bin\Fanex.PTVirtualSports.dll.refresh" />
+    <None Include="bin\Fanex.SessionPartition.dll.refresh" />
+    <None Include="bin\FluentValidation.dll.refresh" />
+    <None Include="bin\FluentValidation.resources.dll.refresh" />
+    <None Include="bin\FPS.Client.dll.refresh" />
+    <None Include="bin\GotDotNet.ApplicationBlocks.Data.dll.refresh" />
+    <None Include="bin\HandHistoryLibrary.dll.refresh" />
+    <None Include="bin\IBCCrypt.dll.refresh" />
+    <None Include="bin\IBCDBLibrary.dll.refresh" />
+    <None Include="bin\IBCDLL.dll.refresh" />
+    <None Include="bin\IBCFile.dll.refresh" />
+    <None Include="bin\IBCMessage.dll.refresh" />
+    <None Include="bin\IBCUtils.dll.refresh" />
+    <None Include="bin\ICSharpCode.SharpZipLib.dll.refresh" />
+    <None Include="bin\ILogger.dll.refresh" />
+    <None Include="bin\Ionic.Zip.dll.refresh" />
+    <None Include="bin\LiveCasinoLibrary.dll.refresh" />
+    <None Include="bin\LoadBalancer.dll.refresh" />
+    <None Include="bin\log4net.dll.refresh" />
+    <None Include="bin\LVAPIDBLibrary.dll.refresh" />
+    <None Include="bin\LVAPILibrary.dll.refresh" />
+    <None Include="bin\Membase.dll.refresh" />
+    <None Include="bin\Microsoft.ApplicationBlocks.Data.dll.refresh" />
+    <None Include="bin\Microsoft.Practices.EnterpriseLibrary.Caching.dll.refresh" />
+    <None Include="bin\Microsoft.Practices.EnterpriseLibrary.Common.dll.refresh" />
+    <None Include="bin\Microsoft.Practices.EnterpriseLibrary.Data.dll.refresh" />
+    <None Include="bin\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll.refresh" />
+    <None Include="bin\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll.refresh" />
+    <None Include="bin\Microsoft.Practices.EnterpriseLibrary.Logging.Database.dll.refresh" />
+    <None Include="bin\Microsoft.Practices.EnterpriseLibrary.Logging.dll.refresh" />
+    <None Include="bin\Microsoft.Practices.ObjectBuilder.dll.refresh" />
+    <None Include="bin\Microsoft.Practices.ObjectBuilder2.dll.refresh" />
+    <None Include="bin\Microsoft.Practices.ServiceLocation.dll.refresh" />
+    <None Include="bin\Microsoft.Practices.Unity.Configuration.dll.refresh" />
+    <None Include="bin\Microsoft.Practices.Unity.dll.refresh" />
+    <None Include="bin\Microsoft.Practices.Unity.Interception.Configuration.dll.refresh" />
+    <None Include="bin\Microsoft.Practices.Unity.Interception.dll.refresh" />
+    <None Include="bin\Microsoft.Practices.Unity.StaticFactory.dll.refresh" />
+    <None Include="bin\NetUtility.dll.refresh" />
+    <None Include="bin\Newtonsoft.Json.dll.refresh" />
+    <None Include="bin\Nexcel.WebControls.UI.dll.refresh" />
+    <None Include="bin\Nini.dll.refresh" />
+    <None Include="bin\NLog.dll.refresh" />
+    <None Include="bin\NotifyPropertyChanged.dll.refresh" />
+    <None Include="bin\NPOI.dll.refresh" />
+    <None Include="bin\RemotingRef.dll.refresh" />
+    <None Include="bin\RSACryptoPad.dll.refresh" />
+    <None Include="bin\SharedCache.WinServiceCommon.dll.refresh" />
+    <None Include="bin\SPSRemoting.dll.refresh" />
+    <None Include="bin\Sunplus.Agent.Configurations.dll.refresh" />
+    <None Include="bin\Sunplus.Agent.Model.dll.refresh" />
+    <None Include="bin\Sunplus.Agent.UI.BetList.dll.refresh" />
+    <None Include="bin\Sunplus.Agent.UI.BetSlip.dll.refresh" />
+    <None Include="bin\Sunplus.Agent.UI.PositionTaking.RaceBook.dll.refresh" />
+    <None Include="bin\Sunplus.Agent.UI.ScoreMap.dll.refresh" />
+    <None Include="bin\Sunplus.Agent.Utilities.dll.refresh" />
+    <None Include="bin\Sunplus.Bingo.Core.dll.refresh" />
+    <None Include="bin\Sunplus.Bingo.Data.dll.refresh" />
+    <None Include="bin\Sunplus.Bingo.Data.Entlib.dll.refresh" />
+    <None Include="bin\Sunplus.Bingo.Data.LinqToSql.dll.refresh" />
+    <None Include="bin\Sunplus.Bingo.DataServices.dll.refresh" />
+    <None Include="bin\Sunplus.Bingo.Entities.dll.refresh" />
+    <None Include="bin\Sunplus.Bingo.Services.dll.refresh" />
+    <None Include="bin\Sunplus.Core.Common.dll.refresh" />
+    <None Include="bin\Sunplus.Libraries.AOP.dll.refresh" />
+    <None Include="bin\Sunplus.Libraries.APILogger.dll.refresh" />
+    <None Include="bin\Sunplus.Libraries.ThirdPartyTestData.dll.refresh" />
+    <None Include="bin\Sunplus.Shared.ViewLogLib.dll.refresh" />
+    <None Include="bin\TplCore.dll.refresh" />
+    <None Include="bin\UMControllerLibrary.dll.refresh" />
+    <None Include="Content\Fanex.Result\fanex.result.less" />
+    <None Include="Deployment.ignore" />
+    <None Include="ExcelFiles\AffiliateList\AffiliateList.xls" />
+    <None Include="ExcelFiles\Casino\2012\Apr\casino stats march 21.csv" />
+    <None Include="Global.asax.orig" />
+    <Content Include="Handler\AccountPolicy.ashx" />
+    <Content Include="Handler\ActiveMember.ashx" />
+    <Content Include="Handler\AddMessage.ashx" />
+    <Content Include="Handler\AddNewBannerV2.ashx" />
+    <Content Include="Handler\AddNewText.ashx" />
+    <Content Include="Handler\AddUser.ashx" />
+    <Content Include="Handler\Adjustment.ashx" />
+    <Content Include="Handler\ChangeAdminPass.ashx" />
+    <Content Include="Handler\ChangePass.ashx" />
+    <Content Include="Handler\CommGroupAssign.ashx" />
+    <Content Include="Handler\CommGroupDel.ashx" />
+    <Content Include="Handler\CommGroupUpd.ashx" />
+    <Content Include="Handler\DelBanner.ashx" />
+    <Content Include="Handler\DeleteMailList.ashx" />
+    <Content Include="Handler\DeleteMember.ashx" />
+    <Content Include="Handler\DeleteMessageList.ashx" />
+    <Content Include="Handler\DelText.ashx" />
+    <Content Include="Handler\DomainControl.ashx" />
+    <Content Include="Handler\EditRate.ashx" />
+    <Content Include="Handler\ExportExcel.ashx" />
+    <Content Include="Handler\Favorite.ashx" />
+    <Content Include="Handler\Get12BetDomainList.ashx" />
+    <Content Include="Handler\GetAffiliateList.ashx" />
+    <Content Include="Handler\GetClickStatisticsList.ashx" />
+    <Content Include="Handler\GetCommGroup.ashx" />
+    <Content Include="Handler\GetDataBanner.ashx" />
+    <Content Include="Handler\GetDataText.ashx" />
+    <Content Include="Handler\GetEditedBanner.ashx" />
+    <Content Include="Handler\GetEditedText.ashx" />
+    <Content Include="Handler\GetEmailContent.ashx" />
+    <Content Include="Handler\GetEmailHistoryList.ashx" />
+    <Content Include="Handler\GetMessage.ashx" />
+    <Content Include="Handler\GetMessageList.ashx" />
+    <Content Include="Handler\GetOnlineList.ashx" />
+    <Content Include="Handler\GetStatisticsDetail_New.ashx" />
+    <Content Include="Handler\GetStatisticsListDetail.ashx" />
+    <Content Include="Handler\GetSubCategory.ashx" />
+    <Content Include="Handler\GetViewedBanner.ashx" />
+    <Content Include="Handler\GetViewedText.ashx" />
+    <Content Include="Handler\GroupPolicy.ashx" />
+    <Content Include="Handler\ListUser.ashx" />
+    <Content Include="Handler\Logout.ashx" />
+    <Content Include="Handler\Note.ashx" />
+    <Content Include="Handler\PaymentUpdate.ashx" />
+    <Content Include="Handler\UpBanner.ashx" />
+    <Content Include="Handler\UpdAffInfo.ashx" />
+    <Content Include="Handler\UpdAffType.ashx" />
+    <Content Include="Handler\Update12BetDomain.ashx" />
+    <Content Include="Handler\UpdateAcc.ashx" />
+    <Content Include="Handler\UpdateAffDomain.ashx" />
+    <Content Include="Handler\UpdateDepartment.ashx" />
+    <Content Include="Handler\UpdateMessage.ashx" />
+    <Content Include="Handler\UpdatePolicy.ashx" />
+    <Content Include="Handler\UpdateStatus.ashx" />
+    <Content Include="Handler\UpdateUser.ashx" />
+    <Content Include="Handler\UploadExcel.ashx" />
+    <Content Include="Handler\UpText.ashx" />
+    <None Include="Logs\trace.log" />
+    <Content Include="packages.config" />
+    <Content Include="Web.12betadmin.backupmnl.config" />
+    <Content Include="Web.12betadmin.local.config" />
+    <Content Include="Web.12betadmin.master.config" />
+    <Content Include="Web.12betadmin.production.config" />
+    <Content Include="Web.12betadmin.uat.config" />
+    <Content Include="Web.config" />
+    <None Include="Web.info" />
+    <Content Include="Web.local.config" />
+    <None Include="WebWorkbench.mswwsettings" />
+    <None Include="_Dependencies\CasinoLibrary.dll.refresh" />
+    <None Include="_Dependencies\CasinoSetting.dll.refresh" />
+    <None Include="_Dependencies\CasinoUtility.dll.refresh" />
+    <None Include="_Dependencies\DotNet.Highcharts.dll.refresh" />
+    <None Include="_Dependencies\Enyim.Caching.dll.refresh" />
+    <None Include="_Dependencies\Fanex.Age.Business.dll.refresh" />
+    <None Include="_Dependencies\Fanex.Age.Business.Interface.dll.refresh" />
+    <None Include="_Dependencies\Fanex.Age.DTO.dll.refresh" />
+    <None Include="_Dependencies\Fanex.Age.Excel.dll.refresh" />
+    <None Include="_Dependencies\Fanex.Age.UI.Components.dll.refresh" />
+    <None Include="_Dependencies\Fanex.Age.UI.dll.refresh" />
+    <None Include="_Dependencies\Fanex.Age.UI.Forecast.dll.refresh" />
+    <None Include="_Dependencies\Fanex.Age.UI.LiveCasino.dll.refresh" />
+    <None Include="_Dependencies\Fanex.Age.UI.Reports.dll.refresh" />
+    <None Include="_Dependencies\Fanex.Age.UI.TotalBets.dll.refresh" />
+    <None Include="_Dependencies\Fanex.Age.Utility.dll.refresh" />
+    <None Include="_Dependencies\Fanex.BetList.Age.dll.refresh" />
+    <None Include="_Dependencies\Fanex.BetList.Core.dll.refresh" />
+    <None Include="_Dependencies\Fanex.BetList.Core.TicketHelper.dll.refresh" />
+    <None Include="_Dependencies\Fanex.Caching.dll.refresh" />
+    <None Include="_Dependencies\Fanex.Common.dll.refresh" />
+    <None Include="_Dependencies\Fanex.Data.dll.refresh" />
+    <None Include="_Dependencies\Fanex.LiveCasinoSetting.dll.refresh" />
+    <None Include="_Dependencies\Fanex.PTEngine.Age.dll.refresh" />
+    <None Include="_Dependencies\Fanex.PTEngine.dll.refresh" />
+    <None Include="_Dependencies\Fanex.PTVirtualSports.dll.refresh" />
+    <None Include="_Dependencies\Fanex.SessionPartition.dll.refresh" />
+    <None Include="_Dependencies\FluentValidation.dll.refresh" />
+    <None Include="_Dependencies\FluentValidation.resources.dll.refresh" />
+    <None Include="_Dependencies\FPS.Client.dll.refresh" />
+    <None Include="_Dependencies\GotDotNet.ApplicationBlocks.Data.dll.refresh" />
+    <None Include="_Dependencies\HandHistoryLibrary.dll.refresh" />
+    <None Include="_Dependencies\IBCCrypt.dll.refresh" />
+    <None Include="_Dependencies\IBCDBLibrary.dll.refresh" />
+    <None Include="_Dependencies\IBCDLL.dll.refresh" />
+    <None Include="_Dependencies\IBCFile.dll.refresh" />
+    <None Include="_Dependencies\IBCMessage.dll.refresh" />
+    <None Include="_Dependencies\IBCUtils.dll.refresh" />
+    <None Include="_Dependencies\ILogger.dll.refresh" />
+    <None Include="_Dependencies\Ionic.Zip.dll.refresh" />
+    <None Include="_Dependencies\LiveCasinoLibrary.dll.refresh" />
+    <None Include="_Dependencies\LoadBalancer.dll.refresh" />
+    <None Include="_Dependencies\log4net.dll.refresh" />
+    <None Include="_Dependencies\LVAPIDBLibrary.dll.refresh" />
+    <None Include="_Dependencies\LVAPILibrary.dll.refresh" />
+    <None Include="_Dependencies\Membase.dll.refresh" />
+    <None Include="_Dependencies\Microsoft.ApplicationBlocks.Data.dll.refresh" />
+    <None Include="_Dependencies\Microsoft.Practices.EnterpriseLibrary.Caching.dll.refresh" />
+    <None Include="_Dependencies\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll.refresh" />
+    <None Include="_Dependencies\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll.refresh" />
+    <None Include="_Dependencies\Microsoft.Practices.EnterpriseLibrary.Logging.Database.dll.refresh" />
+    <None Include="_Dependencies\Microsoft.Practices.ObjectBuilder.dll.refresh" />
+    <None Include="_Dependencies\Microsoft.Practices.ObjectBuilder2.dll.refresh" />
+    <None Include="_Dependencies\Microsoft.Practices.Unity.Configuration.dll.refresh" />
+    <None Include="_Dependencies\Microsoft.Practices.Unity.dll.refresh" />
+    <None Include="_Dependencies\Microsoft.Practices.Unity.Interception.Configuration.dll.refresh" />
+    <None Include="_Dependencies\Microsoft.Practices.Unity.Interception.dll.refresh" />
+    <None Include="_Dependencies\Microsoft.Practices.Unity.StaticFactory.dll.refresh" />
+    <None Include="_Dependencies\NetUtility.dll.refresh" />
+    <None Include="_Dependencies\Newtonsoft.Json.dll.refresh" />
+    <None Include="_Dependencies\Nexcel.WebControls.UI.dll.refresh" />
+    <None Include="_Dependencies\Nini.dll.refresh" />
+    <None Include="_Dependencies\NLog.dll.refresh" />
+    <None Include="_Dependencies\NotifyPropertyChanged.dll.refresh" />
+    <None Include="_Dependencies\NPOI.dll.refresh" />
+    <None Include="_Dependencies\RemotingRef.dll.refresh" />
+    <None Include="_Dependencies\RSACryptoPad.dll.refresh" />
+    <None Include="_Dependencies\SharedCache.WinServiceCommon.dll.refresh" />
+    <None Include="_Dependencies\SPSRemoting.dll.refresh" />
+    <None Include="_Dependencies\Sunplus.Agent.Configurations.dll.refresh" />
+    <None Include="_Dependencies\Sunplus.Agent.Model.dll.refresh" />
+    <None Include="_Dependencies\Sunplus.Agent.UI.BetList.dll.refresh" />
+    <None Include="_Dependencies\Sunplus.Agent.UI.BetSlip.dll.refresh" />
+    <None Include="_Dependencies\Sunplus.Agent.UI.PositionTaking.RaceBook.dll.refresh" />
+    <None Include="_Dependencies\Sunplus.Agent.UI.ScoreMap.dll.refresh" />
+    <None Include="_Dependencies\Sunplus.Agent.Utilities.dll.refresh" />
+    <None Include="_Dependencies\Sunplus.Bingo.Core.dll.refresh" />
+    <None Include="_Dependencies\Sunplus.Bingo.Data.dll.refresh" />
+    <None Include="_Dependencies\Sunplus.Bingo.Data.Entlib.dll.refresh" />
+    <None Include="_Dependencies\Sunplus.Bingo.Data.LinqToSql.dll.refresh" />
+    <None Include="_Dependencies\Sunplus.Bingo.DataServices.dll.refresh" />
+    <None Include="_Dependencies\Sunplus.Bingo.Entities.dll.refresh" />
+    <None Include="_Dependencies\Sunplus.Bingo.Services.dll.refresh" />
+    <None Include="_Dependencies\Sunplus.Core.Common.dll.refresh" />
+    <None Include="_Dependencies\Sunplus.Libraries.AOP.dll.refresh" />
+    <None Include="_Dependencies\Sunplus.Libraries.APILogger.dll.refresh" />
+    <None Include="_Dependencies\Sunplus.Libraries.ThirdPartyTestData.dll.refresh" />
+    <None Include="_Dependencies\Sunplus.Shared.ViewLogLib.dll.refresh" />
+    <None Include="_Dependencies\TplCore.dll.refresh" />
+    <None Include="_Dependencies\UMControllerLibrary.dll.refresh" />
+    <Content Include="_GlobalResources\_IPInfo\Whois.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\BetList.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>BetList.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\Bingo.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Bingo.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\Casino.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Casino.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\Lang.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Lang.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\ResultLang.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>ResultLang.designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://10.18.200.209:5001/WebService/AffiliateAPI.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\AffBetlistService\</RelPath>
+      <UpdateFromURL>http://10.18.200.209:5001/WebService/AffiliateAPI.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>AffiliateAdmin_AffBetlistService_AffiliateAPI</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>65181</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

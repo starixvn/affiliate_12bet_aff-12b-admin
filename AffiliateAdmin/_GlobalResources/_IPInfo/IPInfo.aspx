@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="false" Inherits="Sunplus.Agent.UI._IPInfo.IPInfo_Page" Codebehind="IPInfo.aspx.cs" %>

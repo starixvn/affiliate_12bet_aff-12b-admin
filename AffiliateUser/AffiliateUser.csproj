@@ -679,6 +679,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <Compile Include="Web References\MemberInfoService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
     <Compile Include="Welcome.aspx.cs">
       <DependentUpon>Welcome.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -769,6 +774,11 @@
     <Content Include="DeployConfig\Web.12betuser-euro.master.config" />
     <Content Include="DeployConfig\Web.12betuser-euro.production.config" />
     <Content Include="DeployConfig\Web.12betuser-euro.uat.config" />
+    <None Include="Web References\MemberInfoService\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\MemberInfoService\Service.disco" />
     <Content Include="Web.config" />
     <None Include="Web References\AffBetlistService\AffiliateAPI.wsdl" />
     <None Include="Web References\AffBetlistService\Reference.map">
@@ -1639,6 +1649,19 @@
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>AffiliateUser_WebReference1_AffiliateAPI</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://kraf.86812868.com/Service.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\MemberInfoService\</RelPath>
+      <UpdateFromURL>http://kraf.86812868.com/Service.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>
+      </CachedAppSettingsObjectName>
+      <CachedSettingsPropName>
+      </CachedSettingsPropName>
     </WebReferenceUrl>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
