@@ -35,6 +35,7 @@ namespace Fanex.Age.UI.Reports.BetList
     using Sunplus.Agent.Model.BL.Definitions;
     using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Utilities;
+    using Fanex.BetList.Age.BetListExcelBuilderExt;
 
 
     public partial class CancelBetList : TplPage

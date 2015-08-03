@@ -24,6 +24,13 @@ namespace Fanex.Age.UI.Reports.BetList
     using Sunplus.Agent.Model.BL.Forecast;
     using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Utilities;
+    using Fanex.BetList.Age.BetListExcelBuilderExt;
+    using Fanex.BetList.Age.BetListHTMLBuilderExt;
+    using Fanex.BetList.Age.Definition;
+    using Fanex.BetList.Core.TicketHelper;
+    using Fanex.BetList.Age.DTO;
+    using Fanex.BetList.Age.ExtTemplate;
+    using Fanex.Age.UI.Reports.Components;
 
     public partial class OutstandingDetail_Page : WinlossReports_Page
     {

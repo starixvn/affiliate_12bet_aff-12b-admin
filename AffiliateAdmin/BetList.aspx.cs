@@ -17,6 +17,9 @@
     using Fanex.BetList.Age.Definition;
     using Fanex.BetList.Age.DTO;
     using Fanex.BetList.Age.ExtTemplate;
+    using Fanex.BetList.Age.BetListExcelBuilderExt;
+    using Fanex.BetList.Age.BetListHTMLBuilderExt;
+    using Fanex.BetList.Core.TicketHelper;
 
     public partial class BetList : Fanex.Age.UI.Reports.WinlossReports_Page
     {

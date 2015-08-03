@@ -1,19 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using Sunplus.Core.Common.IPs;
 using Sunplus.Core.Common.IPs.DAL;
 
-/*
- * Created 20100212@Ryan - Render IP information page
- * Revision:
- * ?@? - ...
- *
- */
 
 namespace Sunplus.Agent.UI._IPInfo
 {

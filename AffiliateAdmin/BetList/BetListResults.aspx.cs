@@ -1,6 +1,7 @@
 ﻿using System;
 using Criterias;
 using DNAide.Web;
+using AffiliateAdmin.AffBetlistService;
 
 public partial class BetList_BetListResults : IBCPage
 {

@@ -43,7 +43,7 @@ namespace Sunplus.Agent.UI._IPInfo
             template.ipnote = string.Format(Resources.Lang.ipnote, "Whois.ashx?ip=" + this.IP);
 
             string currentIP = this.IP;
-            IPTable ipInfo = IpUtils.LocationFromIP(currentIP);
+            var ipInfo = IpUtils.LocationFromIP(currentIP);
             template.ip = currentIP;
             template.countryname = ipInfo.CountryLong;
             template.cityname = ipInfo.City;
