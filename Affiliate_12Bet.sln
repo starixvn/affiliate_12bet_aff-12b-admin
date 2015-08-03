@@ -22,7 +22,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Affiliate Admin", "Affiliat
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "50510"
+		VWDPort = "61740"
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AffiliateMedia", "Affiliate Media\AffiliateMedia.csproj", "{54CA48E9-8E1F-4F36-AC37-34F0E52C1233}"

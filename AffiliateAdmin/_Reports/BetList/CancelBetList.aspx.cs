@@ -29,6 +29,11 @@ namespace Fanex.Age.UI.Reports.BetList
     using Sunplus.Agent.Utilities;
     using DNAide.Web;
     using Fanex.BetList.Age.BetListCmd;
+    using Fanex.Age.UI.Components;
+    using Fanex.BetList.Age.ExtTemplate;
+    using Fanex.BetList.Core.TicketHelper;
+    using System.Web.UI.WebControls;
+    using Fanex.BetList.Age.DTO;
 
 
     public partial class CancelBetList : TplPage

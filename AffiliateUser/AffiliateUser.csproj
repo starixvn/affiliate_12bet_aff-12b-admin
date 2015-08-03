@@ -773,7 +773,9 @@
     <Content Include="DeployConfig\Web.12betuser-euro.local.config" />
     <Content Include="DeployConfig\Web.12betuser-euro.master.config" />
     <Content Include="DeployConfig\Web.12betuser-euro.production.config" />
-    <Content Include="DeployConfig\Web.12betuser-euro.uat.config" />
+    <Content Include="DeployConfig\Web.12betuser-euro.uat.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Web References\MemberInfoService\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -786,6 +788,7 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <Content Include="Web.info" />
+    <None Include="Web References\MemberInfoService\Service.wsdl" />
     <None Include="WebWorkbench.mswwsettings" />
   </ItemGroup>
   <ItemGroup>
@@ -1658,10 +1661,8 @@
       </ServiceLocationURL>
       <CachedDynamicPropName>
       </CachedDynamicPropName>
-      <CachedAppSettingsObjectName>
-      </CachedAppSettingsObjectName>
-      <CachedSettingsPropName>
-      </CachedSettingsPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>AffiliateUser_MemberInfoService_Service</CachedSettingsPropName>
     </WebReferenceUrl>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

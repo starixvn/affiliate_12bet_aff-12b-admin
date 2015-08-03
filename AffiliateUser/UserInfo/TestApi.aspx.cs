@@ -13,13 +13,13 @@ public partial class UserInfo_TestApi : System.Web.UI.Page
     {
         var user = CastAide.AsString(Request["username"], String.Empty);
         var date = CastAide.AsDateTime(Request["date"], DateTime.Now);
-        //var service = new MemberInfoService.Service();
-        //var isdeposit = CastAide.AsDouble(Request["isdeposit"], 1) == 1;
+        var service = new AffiliateUser.MemberInfoService.Service();
+        var isdeposit = CastAide.AsDouble(Request["isdeposit"], 1) == 1;
 
-        //var xmlNode = isdeposit ? service.DepositInfo(user, date.ToShortDateString())
-        //          : service.WithdrawalInfo(user, date.ToShortDateString());
-        //var xml = XElement.Parse(xmlNode.OuterXml);
-        //output.InnerHtml = "<pre>" + xml.Element("ReturnCode").Value + "</pre>";
+        var xmlNode = isdeposit ? service.DepositInfo(user, date.ToShortDateString())
+                  : service.WithdrawalInfo(user, date.ToShortDateString());
+        var xml = XElement.Parse(xmlNode.OuterXml);
+        output.InnerHtml = "<pre>" + xml.Element("ReturnCode").Value + "</pre>";
     }
 
     public static string ToString(System.Xml.XmlNode node, int indentation)

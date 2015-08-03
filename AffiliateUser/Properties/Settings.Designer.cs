@@ -32,5 +32,15 @@ namespace AffiliateUser.Properties {
                 return ((string)(this["AffiliateUser_WebReference1_AffiliateAPI"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://kraf.86812868.com:8010/Service.asmx")]
+        public string AffiliateUser_MemberInfoService_Service {
+            get {
+                return ((string)(this["AffiliateUser_MemberInfoService_Service"]));
+            }
+        }
     }
 }
