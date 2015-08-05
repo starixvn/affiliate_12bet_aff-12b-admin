@@ -24,96 +24,88 @@ public partial class Account_Overview : RootPageLogIn
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        try
+        #region Load language
+        ltrAccOverview.Text = Resources.Lang.AccOverview;
+        ltrNewSignup.Text = Resources.Lang.NewSignup;
+        ltrTotalPlay.Text = Resources.Lang.TotalPlay;
+        ltrComm.Text = Resources.Lang.CurrentCommissiSetting;
+        BalanceBroughtText.Text = Resources.Lang.BalForward;
+        ltrTotalActive.Text = Resources.Lang.TotalActive;
+        ltrTotalDeposit.Text = Resources.Lang.TotalDeposit;
+        ltrTurnover.Text = Resources.Lang.TurnoverUpToNow;
+        ltrDepositUp.Text = Resources.Lang.TotalDeposit;
+
+        #endregion
+
+        Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+
+        var dtmFirstOfMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+        selectedMonth = CastAide.AsDateTime(Request["fmonth"], dtmFirstOfMonth);
+
+        strMonths = dtmFirstOfMonth.Month.ToString();
+        strYears = dtmFirstOfMonth.Year.ToString();
+
+        GenMonthSel();
+        slYear = Common.GenYearDropDown("slYear", strYears, false, null);
+
+        ltrStatic.Text = GetStatisticsFor(selectedMonth);
+        ltrStaticUp.Text = Resources.Lang.Statistic + " " + Resources.Lang.UpToNow;
+
+        DbResult dep_result = UserAff.SelAffOverview_DEPOSIT(AppSettings.Session.CustID, selectedMonth);
+        ltrSignup.Text = CastAide.AsInt32(dep_result.Outputs["newsignup"], 0).ToString();
+        ltrTotalPlayer.Text = CastAide.AsInt32(dep_result.Outputs["totalplayer"], 0).ToString();
+
+        DbResult result = UserAff.SelAffOverview(AppSettings.Session.CustID, selectedMonth);
+        ltrTotalActiveVal.Text = CastAide.AsInt32(result.Outputs["totalactiveplayer"], 0).ToString();
+        ltrTotalDepositVal.Text = Common.FormatNumber(CastAide.AsDecimal(result.Outputs["totaldeposit"]));
+
+        ltrDepositUpVal.Text = Common.FormatNumber(CastAide.AsDecimal(result.Outputs["totaldepositup"]));
+        ltrTurnoverVal.Text = Common.FormatNumber(CastAide.AsDecimal(result.Outputs["totalturnoverup"]));
+
+        BalanceBroughtVal.Text = Common.FormatNumber(result.Outputs["balbroughtforward"]);
+        ltrTurnoverMonth.Text = Common.FormatNumber(result.Outputs["totalturnover"]);
+        //With totalQM=1--1, it means this month did not have the theory of QM
+        int totalQM = CastAide.AsInt32(result.Outputs["totalqualifiedmembers"], -1);
+        int totalCAQM = CastAide.AsInt32(result.Outputs["totalqualifiedcasino"], -1);
+        ltrTotalQualifiedMembers.Text = (totalQM == -1 || totalCAQM == -1) ? "N/A" : totalQM.ToString() + "/" + totalCAQM.ToString();
+
+        //set flash path
+        string lang = AppSettings.Session.Language;
+        switch (lang)
         {
-            #region Load language
-            ltrAccOverview.Text = Resources.Lang.AccOverview;
-            ltrNewSignup.Text = Resources.Lang.NewSignup;
-            ltrTotalPlay.Text = Resources.Lang.TotalPlay;
-            ltrComm.Text = Resources.Lang.CurrentCommissiSetting;
-            BalanceBroughtText.Text = Resources.Lang.BalForward;
-            ltrTotalActive.Text = Resources.Lang.TotalActive;
-            ltrTotalDeposit.Text = Resources.Lang.TotalDeposit;
-            ltrTurnover.Text = Resources.Lang.TurnoverUpToNow;
-            ltrDepositUp.Text = Resources.Lang.TotalDeposit;
-
-            #endregion
-
-            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
-
-            var dtmFirstOfMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-            selectedMonth = CastAide.AsDateTime(Request["fmonth"], dtmFirstOfMonth);
-
-            strMonths = dtmFirstOfMonth.Month.ToString();
-            strYears = dtmFirstOfMonth.Year.ToString();
-
-            GenMonthSel();
-            slYear = Common.GenYearDropDown("slYear", strYears, false, null);
-
-            ltrStatic.Text = GetStatisticsFor(selectedMonth);
-            ltrStaticUp.Text = Resources.Lang.Statistic + " " + Resources.Lang.UpToNow;
-
-            DbResult dep_result = UserAff.SelAffOverview_DEPOSIT(AppSettings.Session.CustID, selectedMonth);
-            ltrSignup.Text = CastAide.AsInt32(dep_result.Outputs["newsignup"], 0).ToString();
-            ltrTotalPlayer.Text = CastAide.AsInt32(dep_result.Outputs["totalplayer"], 0).ToString();
-
-            DbResult result = UserAff.SelAffOverview(AppSettings.Session.CustID, selectedMonth);
-            ltrTotalActiveVal.Text = CastAide.AsInt32(result.Outputs["totalactiveplayer"], 0).ToString();
-            ltrTotalDepositVal.Text = Common.FormatNumber(CastAide.AsDecimal(result.Outputs["totaldeposit"]));
-
-            ltrDepositUpVal.Text = Common.FormatNumber(CastAide.AsDecimal(result.Outputs["totaldepositup"]));
-            ltrTurnoverVal.Text = Common.FormatNumber(CastAide.AsDecimal(result.Outputs["totalturnoverup"]));
-
-            BalanceBroughtVal.Text = Common.FormatNumber(result.Outputs["balbroughtforward"]);
-            ltrTurnoverMonth.Text = Common.FormatNumber(result.Outputs["totalturnover"]);
-            //With totalQM=1--1, it means this month did not have the theory of QM
-            int totalQM = CastAide.AsInt32(result.Outputs["totalqualifiedmembers"], -1);
-            int totalCAQM = CastAide.AsInt32(result.Outputs["totalqualifiedcasino"], -1);
-            ltrTotalQualifiedMembers.Text = (totalQM == -1 || totalCAQM == -1) ? "N/A" : totalQM.ToString() + "/" + totalCAQM.ToString();
-
-            //set flash path
-            string lang = AppSettings.Session.Language;
-            switch (lang)
-            {
-                case "vi-VN":
-                    flashPath = "../Flash/Vietnamese/vn.swf";
-                    break;
-                case "es-ES":
-                    flashPath = "../Flash/Spanish/spanish.swf";
-                    break;
-                case "zh-CN":
-                    flashPath = "../Flash/Simplified/sc.swf";
-                    break;
-                case "zh-TW":
-                    flashPath = "../Flash/Tradition/tc.swf";
-                    break;
-                case "id-ID":
-                    flashPath = "../Flash/Indonesian/indo.swf";
-                    break;
-                case "th-TH":
-                    flashPath = "../Flash/Thai/thai.swf";
-                    break;
-                default:
-                    flashPath = "../Flash/English/en.swf";
-                    break;
-            }
-            if (AppSettings.Session.IsAuthenticated && AppSettings.Session.FirsTimeLoginSucc)
-            {
-                showPopup = "";
-                AppSettings.Session.FirsTimeLoginSucc = false;
-            }
-            else
-            {
-                showPopup = "none";
-            }
-
-            strTierSetting = GenCommGroupSettingDetails();
+            case "vi-VN":
+                flashPath = "../Flash/Vietnamese/vn.swf";
+                break;
+            case "es-ES":
+                flashPath = "../Flash/Spanish/spanish.swf";
+                break;
+            case "zh-CN":
+                flashPath = "../Flash/Simplified/sc.swf";
+                break;
+            case "zh-TW":
+                flashPath = "../Flash/Tradition/tc.swf";
+                break;
+            case "id-ID":
+                flashPath = "../Flash/Indonesian/indo.swf";
+                break;
+            case "th-TH":
+                flashPath = "../Flash/Thai/thai.swf";
+                break;
+            default:
+                flashPath = "../Flash/English/en.swf";
+                break;
         }
-        catch (Exception ex)
+        if (AppSettings.Session.IsAuthenticated && AppSettings.Session.FirsTimeLoginSucc)
         {
-            throw;
-            DNAideLog.Write(ex.Message);
+            showPopup = "";
+            AppSettings.Session.FirsTimeLoginSucc = false;
         }
+        else
+        {
+            showPopup = "none";
+        }
+
+        strTierSetting = GenCommGroupSettingDetails();
     }
 
     private string GetStatisticsFor(DateTime dtmFirstOfMonth)
@@ -196,7 +188,7 @@ public partial class Account_Overview : RootPageLogIn
                     noSports++;
                     TemplateHandler.Assign(ref _sportSetting, "class-main", (noSports % 2 == 0) ? "tbl_cs" : "tbl_spb");
                     TemplateHandler.Assign(ref _sportSetting, "class", (noSports % 2 == 0) ? "tbl_01" : "tbl_td_01");
-                    
+
                     var tierList = new StringBuilder();
 
                     //Load Tier Setting
@@ -261,7 +253,7 @@ public partial class Account_Overview : RootPageLogIn
                         }
                     }
                     TemplateHandler.Assign(ref _sportSetting, "tierno-val", noTier);
-                    
+
                     if (tierList.Length == 0)
                     {
                         //TemplateHandler.ReplaceBlock(ref _sportSetting, "Mainrow", Common.NoInfo(5));
@@ -269,13 +261,13 @@ public partial class Account_Overview : RootPageLogIn
                             TemplateHandler.ReplaceBlock(ref _sportSetting, "subrow", string.Empty);
                         else
                             _sportSetting = Common.NoInfo(5);
-                        
+
                     }
                     else
                     {
                         TemplateHandler.ReplaceBlock(ref _sportSetting, "subrow", tierList.ToString());
                     }
-                    
+
                     if (tierList.Length == 0)
                     {
                         TemplateHandler.ReplaceBlock(ref _sportSetting, "TierRow", Common.NoInfo(7));
@@ -285,7 +277,7 @@ public partial class Account_Overview : RootPageLogIn
                         TemplateHandler.ReplaceBlock(ref _sportSetting, "TierRow", tierList.ToString());
                     }
                     ret.Append(_sportSetting);
-                    if(tierList.Length==0)
+                    if (tierList.Length == 0)
                         break;
                 }
             }
