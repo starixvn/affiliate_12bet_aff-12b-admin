@@ -50,7 +50,7 @@ public partial class Account_Overview : RootPageLogIn
             GenMonthSel();
             slYear = Common.GenYearDropDown("slYear", strYears, false, null);
 
-            ltrStatic.Text = GetStatisticsFor(dtmFirstOfMonth);
+            ltrStatic.Text = GetStatisticsFor(selectedMonth);
             ltrStaticUp.Text = Resources.Lang.Statistic + " " + Resources.Lang.UpToNow;
 
             DbResult dep_result = UserAff.SelAffOverview_DEPOSIT(AppSettings.Session.CustID, selectedMonth);

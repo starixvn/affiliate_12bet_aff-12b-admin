@@ -1979,7 +1979,9 @@
     <Content Include="Report\SBPlayerTurnoverReport.aspx" />
     <Content Include="Report\SignUpActive.aspx" />
     <Content Include="SignIn.aspx" />
-    <Content Include="SpNames.xml" />
+    <Content Include="SpNames.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Test\DepMemberDetailUpd.aspx" />
     <Content Include="Test\Login2.jpg" />
     <Content Include="Test\test.aspx" />

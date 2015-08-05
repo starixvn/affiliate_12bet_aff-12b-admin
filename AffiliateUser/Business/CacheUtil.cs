@@ -28,31 +28,32 @@ public class CacheUtil
     private static void AddHotNews()
     {
         DbResult result = DataHandler.HotNews.GetLatestHotNews();
+        var cache = CacheFactory.GetCacheManager("Cache Manager");
         if (result.ResultSet.Tables.Count > 0 && result.ResultSet.Tables[0].Rows.Count > 0)
         {
-            CacheFactory.GetCacheManager().Add(hotNewsKey + "_" + "zh-TW", result.ResultSet.Tables[0].Rows[0]["message_tw"], CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
-            CacheFactory.GetCacheManager().Add(hotNewsKey + "_" + "zh-CN", result.ResultSet.Tables[0].Rows[0]["message_cn"], CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
-            CacheFactory.GetCacheManager().Add(hotNewsKey + "_" + "en-US", result.ResultSet.Tables[0].Rows[0]["message_en"], CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
-            CacheFactory.GetCacheManager().Add(hotNewsKey + "_" + "es-ES", result.ResultSet.Tables[0].Rows[0]["message_es"], CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
-            CacheFactory.GetCacheManager().Add(hotNewsKey + "_" + "th-TH", result.ResultSet.Tables[0].Rows[0]["message_th"], CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
-            CacheFactory.GetCacheManager().Add(hotNewsKey + "_" + "vi-VN", result.ResultSet.Tables[0].Rows[0]["message_vi"], CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
-            CacheFactory.GetCacheManager().Add(hotNewsKey + "_" + "id-ID", result.ResultSet.Tables[0].Rows[0]["message_id"], CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
-            CacheFactory.GetCacheManager().Add(hotNewsKey + "_" + "ko-KR", result.ResultSet.Tables[0].Rows[0]["message_kr"], CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
-            CacheFactory.GetCacheManager().Add(hotNewsKey + "_" + "ja-JP", result.ResultSet.Tables[0].Rows[0]["message_jp"], CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
-            CacheFactory.GetCacheManager().Add(importantKeys, result.ResultSet.Tables[0].Rows[0]["important"], CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
+            cache.Add(hotNewsKey + "_" + "zh-TW", result.ResultSet.Tables[0].Rows[0]["message_tw"], CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
+            cache.Add(hotNewsKey + "_" + "zh-CN", result.ResultSet.Tables[0].Rows[0]["message_cn"], CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
+            cache.Add(hotNewsKey + "_" + "en-US", result.ResultSet.Tables[0].Rows[0]["message_en"], CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
+            cache.Add(hotNewsKey + "_" + "es-ES", result.ResultSet.Tables[0].Rows[0]["message_es"], CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
+            cache.Add(hotNewsKey + "_" + "th-TH", result.ResultSet.Tables[0].Rows[0]["message_th"], CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
+            cache.Add(hotNewsKey + "_" + "vi-VN", result.ResultSet.Tables[0].Rows[0]["message_vi"], CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
+            cache.Add(hotNewsKey + "_" + "id-ID", result.ResultSet.Tables[0].Rows[0]["message_id"], CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
+            cache.Add(hotNewsKey + "_" + "ko-KR", result.ResultSet.Tables[0].Rows[0]["message_kr"], CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
+            cache.Add(hotNewsKey + "_" + "ja-JP", result.ResultSet.Tables[0].Rows[0]["message_jp"], CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
+            cache.Add(importantKeys, result.ResultSet.Tables[0].Rows[0]["important"], CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
         }
         else // no rows -- means there isn't any hot news
         {
-            CacheFactory.GetCacheManager().Add(hotNewsKey + "_" + "zh-TW", string.Empty, CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
-            CacheFactory.GetCacheManager().Add(hotNewsKey + "_" + "zh-CN", string.Empty, CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
-            CacheFactory.GetCacheManager().Add(hotNewsKey + "_" + "en-US", string.Empty, CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
-            CacheFactory.GetCacheManager().Add(hotNewsKey + "_" + "es-ES", string.Empty, CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
-            CacheFactory.GetCacheManager().Add(hotNewsKey + "_" + "th-TH", string.Empty, CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
-            CacheFactory.GetCacheManager().Add(hotNewsKey + "_" + "vi-VN", string.Empty, CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
-            CacheFactory.GetCacheManager().Add(hotNewsKey + "_" + "id-ID", string.Empty, CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
-            CacheFactory.GetCacheManager().Add(hotNewsKey + "_" + "ko-KR", string.Empty, CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
-            CacheFactory.GetCacheManager().Add(hotNewsKey + "_" + "ja-JP", string.Empty, CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
-            CacheFactory.GetCacheManager().Add(importantKeys, false, CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
+            cache.Add(hotNewsKey + "_" + "zh-TW", string.Empty, CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
+            cache.Add(hotNewsKey + "_" + "zh-CN", string.Empty, CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
+            cache.Add(hotNewsKey + "_" + "en-US", string.Empty, CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
+            cache.Add(hotNewsKey + "_" + "es-ES", string.Empty, CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
+            cache.Add(hotNewsKey + "_" + "th-TH", string.Empty, CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
+            cache.Add(hotNewsKey + "_" + "vi-VN", string.Empty, CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
+            cache.Add(hotNewsKey + "_" + "id-ID", string.Empty, CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
+            cache.Add(hotNewsKey + "_" + "ko-KR", string.Empty, CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
+            cache.Add(hotNewsKey + "_" + "ja-JP", string.Empty, CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
+            cache.Add(importantKeys, false, CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
         }
 
 
