@@ -134,11 +134,13 @@
         var td1 = IBCWnd.createElement("td", tr);
         var td2 = IBCWnd.createElement("td", tr);
         var td3 = IBCWnd.createElement("td", tr);
+        var td4 = IBCWnd.createElement("td", tr);
         tr.setAttribute("id", "tr" + siteIndex);
         td2.className = "cont12oe";
         td2.innerHTML = "*";
         td1.innerHTML = "<%=Resources.Lang.WebsiteURL %> " + siteIndex.toString();
-        td3.innerHTML = "<input type='text' size='30' class='sites' id='txtSiteUrl" + siteIndex + "' name='txtSiteUrl" + siteIndex + "' />&nbsp;&nbsp;&nbsp;&nbsp;<input type=\"button\" onclick=\"DelUrl(" + siteIndex + ");\" class=\"button\" value=\"<%=Resources.Lang.Del %>\" />";
+        td3.innerHTML = "<input type='text' size='30' class='sites' id='txtSiteUrl" + siteIndex + "' name='txtSiteUrl" + siteIndex + "' />";
+        td4.innerHTML = "<input type=\"button\" onclick=\"DelUrl(" + siteIndex + ");\" class=\"button\" value=\"<%=Resources.Lang.Del %>\" />";
         if($("txtUrl" + siteIndex))
             $("txtUrl" + siteIndex).focus();
     }
@@ -158,7 +160,8 @@
                 
                 var index = i;
                 tds[0].innerHTML = "<%=Resources.Lang.WebsiteURL %> " + index.toString();
-                tds[2].innerHTML = "<input type='text' size='30' value='" + tds[2].childNodes[0].value + "' class='sites' id='txtSiteUrl" + index + "' name='txtSiteUrl" + index + "' />&nbsp;&nbsp;&nbsp;&nbsp;<input type=\"button\" onclick=\"DelUrl(" + index + ");\" class=\"button\" value=\"<%=Resources.Lang.Del %>\" />";
+                tds[2].innerHTML = "<input type='text' size='30' value='" + tds[2].childNodes[0].value + "' class='sites' id='txtSiteUrl" + index + "' name='txtSiteUrl" + index + "' />";
+                tds[3].innerHTML = "<input type=\"button\" onclick=\"DelUrl(" + index + ");\" class=\"button\" value=\"<%=Resources.Lang.Del %>\" />";
             }
         }
     }
@@ -719,9 +722,12 @@
                         <td style="width: 15px;" class="cont12oe">
                             <span id="spURL">*</span>
                         </td>
-                        <td>
+                        <td style="width: 190px;" >
                             <input name="txtSiteUrl" id="txtSiteUrl" class="inputbox sites" size="30"
-                                type="text" value="<%=strSiteUrl %>" />&nbsp;&nbsp;&nbsp;<input type="button" id="addURL" class="button" onclick="AddOneMoreURL();" value="<%=Resources.Lang.AddUrl%>" />
+                                type="text" value="<%=strSiteUrl %>" />&nbsp;&nbsp;&nbsp;                                
+                        </td>
+                        <td>
+                            <input type="button" id="addURL" class="button" onclick="AddOneMoreURL();" value="<%=Resources.Lang.AddUrl%>" />
                         </td>
                     </tr>
                     <%=strWebsites %>
