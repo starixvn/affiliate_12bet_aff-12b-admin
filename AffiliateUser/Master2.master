@@ -34,8 +34,20 @@
         }
         
     </style>
+    <script type="text/javascript">
+        var Site = Site || {};
+        function init() {
+            Site.rootUrl = document.getElementById("rootUrl").value;
+        }
+
+        if (window.addEventListener)
+            window.addEventListener("load", init, true);
+        else
+            window.onload = init;
+    </script>
 </head>
 <body class="<%=langClass%>">
+ <input type="hidden" id="rootUrl" value="<%=rootUrl%>"/>
     <div style="background-color:White">
         <%=strScript.ToString()%>
     </div>

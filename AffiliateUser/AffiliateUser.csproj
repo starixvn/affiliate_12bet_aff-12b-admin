@@ -443,10 +443,6 @@
       <DependentUpon>Master2.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Master3.master.cs">
-      <DependentUpon>Master3.master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="MasterCalendar.master.cs">
       <DependentUpon>MasterCalendar.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -761,7 +757,6 @@
     <None Include="Logs\trace.log" />
     <Content Include="Master.master" />
     <Content Include="Master2.master" />
-    <Content Include="Master3.master" />
     <Content Include="MasterCalendar.master" />
     <None Include="Web References\AffBetlistService\AffiliateAPI.disco" />
     <Content Include="DeployConfig\Web.12betuser-asian.backupmnl.config" />

@@ -724,7 +724,7 @@
                         </td>
                         <td style="width: 190px;" >
                             <input name="txtSiteUrl" id="txtSiteUrl" class="inputbox sites" size="30"
-                                type="text" value="<%=strSiteUrl %>" />&nbsp;&nbsp;&nbsp;                                
+                                type="text" value="<%=strSiteUrl %>" />                              
                         </td>
                         <td>
                             <input type="button" id="addURL" class="button" onclick="AddOneMoreURL();" value="<%=Resources.Lang.AddUrl%>" />

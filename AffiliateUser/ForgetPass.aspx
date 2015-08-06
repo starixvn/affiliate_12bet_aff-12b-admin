@@ -40,9 +40,7 @@ function ExecRecover()
                 }
             }
         });
-        
-        
-    }    
+    }
 }
 function Reset()
 {
