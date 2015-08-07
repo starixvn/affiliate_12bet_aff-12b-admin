@@ -99,7 +99,7 @@ public class RequestPayout : IHttpHandler, IRequiresSessionState
         catch (Exception ex)
         {            
             context.Response.Write("<script type='text/javascript'>parent.ShowError1('" + Common.HTMLEncode(ex.Message) + "');</script>");
-            DNAide.Web.DNAideLog.Write(ex.Message);
+            Fanex.Logging.LogService.Error(ex.Message);
         }
     }
 

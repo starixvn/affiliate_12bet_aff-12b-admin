@@ -19,7 +19,7 @@ public class LogOut : IHttpHandler, IRequiresSessionState {
         }
         catch (Exception ex)
         {
-            DNAideLog.Write(ex.Message);
+            Fanex.Logging.LogService.Error(ex.Message);
         }
         AppSettings.Session.Language = CurrentLang;
         AppSettings.Session.Flag = CurrentLang;

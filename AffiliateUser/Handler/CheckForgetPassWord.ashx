@@ -63,8 +63,9 @@ public class CheckForgetPassWord : IHttpHandler, IRequiresSessionState {
         }
         catch(Exception ex)
         {
-            context.Response.Write(ex.Message);
-        }        
+            context.Response.Write(Resources.Lang.MailServerNotAvailable);
+            Fanex.Logging.LogService.Error(ex.Message, ex);
+        }
     }
  
     public bool IsReusable {

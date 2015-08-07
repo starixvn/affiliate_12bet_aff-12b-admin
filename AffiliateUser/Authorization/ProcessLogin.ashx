@@ -84,7 +84,7 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
         }
         catch (Exception ex)
         {
-            DNAideLog.Write(ex.Message);
+            Fanex.Logging.LogService.Error(ex.Message);
             _s = "102:" + ex.Message;
 #if DEBUG
                         throw;

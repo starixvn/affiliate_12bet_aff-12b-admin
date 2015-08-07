@@ -14,7 +14,7 @@ namespace AffiliateUser.Business.DataAccess
         // used for timeout of report-oriented SP execution.
         public static int MAX_EXEC_TIME_LENGTH_RPTSP = 30000;
         // used for timeout of non report-oriented SP execution.
-        public static int MAX_EXEC_TIME_LENGTH_NONRPTSP = 3000; 
+        public static int MAX_EXEC_TIME_LENGTH_NONRPTSP = 3000;
 
         public static DbResult Execute(string pSPName, string pDB, Hashtable pHsParam = null, int pTimeOut = 120)
         {

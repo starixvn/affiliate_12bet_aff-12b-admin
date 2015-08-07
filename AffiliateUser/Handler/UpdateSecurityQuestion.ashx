@@ -41,8 +41,8 @@ public class UpdateSecurityQuestion : IHttpHandler, IRequiresSessionState
         catch (Exception ex)
         {
             string strErrObj = "error_item";
-            context.Response.Write("<script type='text/javascript'>parent.$(\"errMsg\").show();parent.ShowError([\"" + ex.Message + "\"], [\"" + strErrObj + "\"], \"error_item\");</script>");           
-            DNAide.Web.DNAideLog.Write(ex.Message);
+            context.Response.Write("<script type='text/javascript'>parent.$(\"errMsg\").show();parent.ShowError([\"" + ex.Message + "\"], [\"" + strErrObj + "\"], \"error_item\");</script>");
+            Fanex.Logging.LogService.Error(ex.Message);
         }
     }
  

@@ -219,7 +219,7 @@ public partial class UserInfo_DailyEarningDetail : RootPageLogIn
         catch (Exception ex)
         {
             throw ex;
-            DNAideLog.Write(ex.Message);
+            Fanex.Logging.LogService.Error(ex.Message);
         }
     }
 }

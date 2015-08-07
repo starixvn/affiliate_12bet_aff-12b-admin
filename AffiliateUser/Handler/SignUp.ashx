@@ -111,7 +111,7 @@ public class SignUp : IHttpHandler, IRequiresSessionState
         {
             var messagex = ex.Message + "\n" + ex.StackTrace;
             context.Response.Write("<script type='text/javascript'>parent.document.getElementById(\"errMsg\").show();parent.ShowError([\"" + messagex + "\"], [\"error_item\"], \"error_item\");</script>");
-            DNAideLog.Write(ex.Message);
+            Fanex.Logging.LogService.Error(ex.Message);
         }
     }
 

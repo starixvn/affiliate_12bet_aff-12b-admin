@@ -28,7 +28,7 @@ public class CacheUtil
     private static void AddHotNews()
     {
         DbResult result = DataHandler.HotNews.GetLatestHotNews();
-        var cache = CacheFactory.GetCacheManager("Cache Manager");
+        var cache = CacheFactory.GetCacheManager();
         if (result.ResultSet.Tables.Count > 0 && result.ResultSet.Tables[0].Rows.Count > 0)
         {
             cache.Add(hotNewsKey + "_" + "zh-TW", result.ResultSet.Tables[0].Rows[0]["message_tw"], CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));

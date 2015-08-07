@@ -4560,6 +4560,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to We are sorry! The mail server is not available at the moment. Please contact administrator or try again later..
+        /// </summary>
+        internal static string MailServerNotAvailable {
+            get {
+                return ResourceManager.GetString("MailServerNotAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MAKE YOUR TRAFFIC PAY!.
         /// </summary>
         internal static string MakeYourTrafficDay {

@@ -29,7 +29,7 @@ public partial class UserInfo_MediaLink : System.Web.UI.Page
             
             if (errCode != 0)
             {
-                DNAide.Web.DNAideLog.Write(errMsg);
+                Fanex.Logging.LogService.Error(errMsg);
                 Response.Redirect("http://www.12bet.com");
                 return;
             }

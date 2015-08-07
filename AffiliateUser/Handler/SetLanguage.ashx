@@ -18,7 +18,7 @@ public class SetLanguage : IHttpHandler, IRequiresSessionState
         }
         catch (Exception ex)
         {
-            DNAide.Web.DNAideLog.Write(ex.Message);
+            Fanex.Logging.LogService.Error(ex.Message);
             context.Response.Write("");
         }
     }

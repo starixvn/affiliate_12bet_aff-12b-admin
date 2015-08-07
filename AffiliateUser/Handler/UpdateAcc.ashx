@@ -66,7 +66,7 @@ public class UpdateAcc : IHttpHandler, IRequiresSessionState {
         catch (Exception ex)
         {
             context.Response.Write("<script type='text/javascript'>parent.$('errMsg').show();parent.$('succMsg').hide();parent.$('divErr').show();parent.ShowError([\"" + ex.Message + "\"], [\"error_item\"], \"error_item\");</script>");
-            DNAideLog.Write(ex.Message);
+            Fanex.Logging.LogService.Error(ex.Message);
         }   
     }
  

@@ -25,7 +25,7 @@ public partial class Welcome : RootPage
         }
         catch(Exception ex)
         {
-            DNAideLog.Write(ex.Message);
+            Fanex.Logging.LogService.Error(ex.Message);
         }
     }
 }
