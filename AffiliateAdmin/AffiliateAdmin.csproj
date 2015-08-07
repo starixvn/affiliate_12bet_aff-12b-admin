@@ -496,7 +496,6 @@
     </Compile>
     <Compile Include="BetList.aspx.cs">
       <DependentUpon>BetList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="BetList\BetList.aspx.cs">
       <DependentUpon>BetList.aspx</DependentUpon>
@@ -1000,63 +999,54 @@
     </Compile>
     <Compile Include="_GlobalResources\_IPInfo\IPInfo.aspx.cs">
       <DependentUpon>IPInfo.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="_GlobalResources\_IPInfo\IPInfo.aspx.designer.cs">
       <DependentUpon>IPInfo.aspx</DependentUpon>
     </Compile>
     <Compile Include="_Reports\BetList\BetSummary.aspx.cs">
       <DependentUpon>BetSummary.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="_Reports\BetList\BetSummary.aspx.designer.cs">
       <DependentUpon>BetSummary.aspx</DependentUpon>
     </Compile>
     <Compile Include="_Reports\BetList\CancelBetList.aspx.cs">
       <DependentUpon>CancelBetList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="_Reports\BetList\CancelBetList.aspx.designer.cs">
       <DependentUpon>CancelBetList.aspx</DependentUpon>
     </Compile>
     <Compile Include="_Reports\BetList\DailyStatement.aspx.cs">
       <DependentUpon>DailyStatement.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="_Reports\BetList\DailyStatement.aspx.designer.cs">
       <DependentUpon>DailyStatement.aspx</DependentUpon>
     </Compile>
     <Compile Include="_Reports\BetList\OutstandingDetail.aspx.cs">
       <DependentUpon>OutstandingDetail.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="_Reports\BetList\OutstandingDetail.aspx.designer.cs">
       <DependentUpon>OutstandingDetail.aspx</DependentUpon>
     </Compile>
     <Compile Include="_Reports\Common\MatchResultEntered.aspx.cs">
       <DependentUpon>MatchResultEntered.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="_Reports\Common\MatchResultEntered.aspx.designer.cs">
       <DependentUpon>MatchResultEntered.aspx</DependentUpon>
     </Compile>
     <Compile Include="_Reports\Common\Outstanding.aspx.cs">
       <DependentUpon>Outstanding.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="_Reports\Common\Outstanding.aspx.designer.cs">
       <DependentUpon>Outstanding.aspx</DependentUpon>
     </Compile>
     <Compile Include="_Reports\Common\SelectLeagues.aspx.cs">
       <DependentUpon>SelectLeagues.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="_Reports\Common\SelectLeagues.aspx.designer.cs">
       <DependentUpon>SelectLeagues.aspx</DependentUpon>
     </Compile>
     <Compile Include="_Reports\Common\Statement.aspx.cs">
       <DependentUpon>Statement.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="_Reports\Common\Statement.aspx.designer.cs">
       <DependentUpon>Statement.aspx</DependentUpon>
@@ -1067,7 +1057,6 @@
     </Compile>
     <Compile Include="_Reports\Result\Result.aspx.cs">
       <DependentUpon>Result.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="_Reports\Result\Result.aspx.designer.cs">
       <DependentUpon>Result.aspx</DependentUpon>
