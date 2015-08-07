@@ -35,9 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DNAide, Version=0.0.0.0, Culture=neutral, processorArchitecture=x86">
+    <Reference Include="DNAide, Version=2.1.404.20, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\_Dependencies\DNAide.dll</HintPath>
+      <HintPath>_Dependencies\DNAide.dll</HintPath>
     </Reference>
     <Reference Include="Fanex.Age.Business, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -95,6 +95,19 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>_Dependencies\Fanex.BetList.Core.TicketHelper.dll</HintPath>
     </Reference>
+    <Reference Include="Fanex.Common, Version=1.0.404.97, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Fanex.Common.1.0.404.97\lib\net40\Fanex.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.Data, Version=0.5.404.63, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.Data.0.5.404.63\lib\net40\Fanex.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.Logging.1.0.0.0\lib\net40\Fanex.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Fanex.MailDeliver.MailClient, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Fanex.MailDeliver.MailClient.1.0.0.2\lib\net40\Fanex.MailDeliver.MailClient.dll</HintPath>
       <Private>True</Private>
@@ -110,63 +123,32 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>_Dependencies\Microsoft.Practices.EnterpriseLibrary.Caching.dll</HintPath>
+      <HintPath>..\packages\EnterpriseLibrary.Caching.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Caching.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>_Dependencies\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+      <HintPath>..\packages\EnterpriseLibrary.Common.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>_Dependencies\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>_Dependencies\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>_Dependencies\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll</HintPath>
+      <HintPath>..\packages\EnterpriseLibrary.Data.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>_Dependencies\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging.Database, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>_Dependencies\Microsoft.Practices.EnterpriseLibrary.Logging.Database.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.ObjectBuilder, Version=1.0.51206.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>_Dependencies\Microsoft.Practices.ObjectBuilder.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.ObjectBuilder2, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>_Dependencies\Microsoft.Practices.ObjectBuilder2.dll</HintPath>
+      <HintPath>..\packages\EnterpriseLibrary.Logging.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>_Dependencies\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <HintPath>..\packages\EnterpriseLibrary.Unity.5.0.414.0\lib\net40\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.Unity, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>_Dependencies\Microsoft.Practices.Unity.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>_Dependencies\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+      <HintPath>..\packages\EnterpriseLibrary.Unity.5.0.414.0\lib\net40\Microsoft.Practices.Unity.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.Unity.Interception, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>_Dependencies\Microsoft.Practices.Unity.Interception.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity.Interception.Configuration, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>_Dependencies\Microsoft.Practices.Unity.Interception.Configuration.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity.StaticFactory, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>_Dependencies\Microsoft.Practices.Unity.StaticFactory.dll</HintPath>
+      <HintPath>..\packages\EnterpriseLibrary.Unity.5.0.414.0\lib\net40\Microsoft.Practices.Unity.Interception.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="NPOI, Version=1.2.4.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -496,6 +478,7 @@
     </Compile>
     <Compile Include="BetList.aspx.cs">
       <DependentUpon>BetList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="BetList\BetList.aspx.cs">
       <DependentUpon>BetList.aspx</DependentUpon>
@@ -999,54 +982,63 @@
     </Compile>
     <Compile Include="_GlobalResources\_IPInfo\IPInfo.aspx.cs">
       <DependentUpon>IPInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="_GlobalResources\_IPInfo\IPInfo.aspx.designer.cs">
       <DependentUpon>IPInfo.aspx</DependentUpon>
     </Compile>
     <Compile Include="_Reports\BetList\BetSummary.aspx.cs">
       <DependentUpon>BetSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="_Reports\BetList\BetSummary.aspx.designer.cs">
       <DependentUpon>BetSummary.aspx</DependentUpon>
     </Compile>
     <Compile Include="_Reports\BetList\CancelBetList.aspx.cs">
       <DependentUpon>CancelBetList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="_Reports\BetList\CancelBetList.aspx.designer.cs">
       <DependentUpon>CancelBetList.aspx</DependentUpon>
     </Compile>
     <Compile Include="_Reports\BetList\DailyStatement.aspx.cs">
       <DependentUpon>DailyStatement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="_Reports\BetList\DailyStatement.aspx.designer.cs">
       <DependentUpon>DailyStatement.aspx</DependentUpon>
     </Compile>
     <Compile Include="_Reports\BetList\OutstandingDetail.aspx.cs">
       <DependentUpon>OutstandingDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="_Reports\BetList\OutstandingDetail.aspx.designer.cs">
       <DependentUpon>OutstandingDetail.aspx</DependentUpon>
     </Compile>
     <Compile Include="_Reports\Common\MatchResultEntered.aspx.cs">
       <DependentUpon>MatchResultEntered.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="_Reports\Common\MatchResultEntered.aspx.designer.cs">
       <DependentUpon>MatchResultEntered.aspx</DependentUpon>
     </Compile>
     <Compile Include="_Reports\Common\Outstanding.aspx.cs">
       <DependentUpon>Outstanding.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="_Reports\Common\Outstanding.aspx.designer.cs">
       <DependentUpon>Outstanding.aspx</DependentUpon>
     </Compile>
     <Compile Include="_Reports\Common\SelectLeagues.aspx.cs">
       <DependentUpon>SelectLeagues.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="_Reports\Common\SelectLeagues.aspx.designer.cs">
       <DependentUpon>SelectLeagues.aspx</DependentUpon>
     </Compile>
     <Compile Include="_Reports\Common\Statement.aspx.cs">
       <DependentUpon>Statement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="_Reports\Common\Statement.aspx.designer.cs">
       <DependentUpon>Statement.aspx</DependentUpon>
@@ -1057,6 +1049,7 @@
     </Compile>
     <Compile Include="_Reports\Result\Result.aspx.cs">
       <DependentUpon>Result.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="_Reports\Result\Result.aspx.designer.cs">
       <DependentUpon>Result.aspx</DependentUpon>
@@ -1777,112 +1770,6 @@
     <Content Include="BetList\BetList.aspx" />
     <Content Include="BetList\BetListParlayDetail.aspx" />
     <Content Include="BetList\BetListResults.aspx" />
-    <Content Include="bin\CasinoLibrary.dll" />
-    <Content Include="bin\CasinoSetting.dll" />
-    <Content Include="bin\CasinoUtility.dll" />
-    <Content Include="bin\DNAide.dll" />
-    <Content Include="bin\DotNet.Highcharts.dll" />
-    <Content Include="bin\Enyim.Caching.dll" />
-    <Content Include="bin\EPPlus.dll" />
-    <Content Include="bin\Fanex.Age.Business.dll" />
-    <Content Include="bin\Fanex.Age.Business.Interface.dll" />
-    <Content Include="bin\Fanex.Age.DTO.dll" />
-    <Content Include="bin\Fanex.Age.Excel.dll" />
-    <Content Include="bin\Fanex.Age.UI.Components.dll" />
-    <Content Include="bin\Fanex.Age.UI.dll" />
-    <Content Include="bin\Fanex.Age.UI.Forecast.dll" />
-    <Content Include="bin\Fanex.Age.UI.LiveCasino.dll" />
-    <Content Include="bin\Fanex.Age.UI.Reports.dll" />
-    <Content Include="bin\Fanex.Age.UI.TotalBets.dll" />
-    <Content Include="bin\Fanex.Age.Utility.dll" />
-    <Content Include="bin\Fanex.BetList.Age.dll" />
-    <Content Include="bin\Fanex.BetList.Core.dll" />
-    <Content Include="bin\Fanex.BetList.Core.TicketHelper.dll" />
-    <Content Include="bin\Fanex.Caching.dll" />
-    <Content Include="bin\Fanex.Common.dll" />
-    <Content Include="bin\Fanex.Data.dll" />
-    <Content Include="bin\Fanex.LiveCasinoSetting.dll" />
-    <Content Include="bin\Fanex.Logging.dll" />
-    <Content Include="bin\Fanex.MailDeliver.MailClient.dll" />
-    <Content Include="bin\Fanex.PTEngine.Age.dll" />
-    <Content Include="bin\Fanex.PTEngine.dll" />
-    <Content Include="bin\Fanex.PTVirtualSports.dll" />
-    <Content Include="bin\Fanex.SessionPartition.dll" />
-    <Content Include="bin\FluentValidation.dll" />
-    <Content Include="bin\FluentValidation.resources.dll" />
-    <Content Include="bin\FPS.Client.dll" />
-    <Content Include="bin\GotDotNet.ApplicationBlocks.Data.dll" />
-    <Content Include="bin\HandHistoryLibrary.dll" />
-    <Content Include="bin\IBCCrypt.dll" />
-    <Content Include="bin\IBCDBLibrary.dll" />
-    <Content Include="bin\IBCDLL.dll" />
-    <Content Include="bin\IBCFile.dll" />
-    <Content Include="bin\IBCMessage.dll" />
-    <Content Include="bin\IBCUtils.dll" />
-    <Content Include="bin\ICSharpCode.SharpZipLib.dll" />
-    <Content Include="bin\ILogger.dll" />
-    <Content Include="bin\Ionic.Zip.dll" />
-    <Content Include="bin\ja-JP\Fanex.BetList.Core.resources.dll" />
-    <Content Include="bin\ko-KR\Fanex.BetList.Core.resources.dll" />
-    <Content Include="bin\LiveCasinoLibrary.dll" />
-    <Content Include="bin\LoadBalancer.dll" />
-    <Content Include="bin\log4net.dll" />
-    <Content Include="bin\LVAPIDBLibrary.dll" />
-    <Content Include="bin\LVAPILibrary.dll" />
-    <Content Include="bin\Membase.dll" />
-    <Content Include="bin\Microsoft.ApplicationBlocks.Data.dll" />
-    <Content Include="bin\Microsoft.Practices.EnterpriseLibrary.Caching.dll" />
-    <Content Include="bin\Microsoft.Practices.EnterpriseLibrary.Common.dll" />
-    <Content Include="bin\Microsoft.Practices.EnterpriseLibrary.Data.dll" />
-    <Content Include="bin\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll" />
-    <Content Include="bin\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll" />
-    <Content Include="bin\Microsoft.Practices.EnterpriseLibrary.Logging.Database.dll" />
-    <Content Include="bin\Microsoft.Practices.EnterpriseLibrary.Logging.dll" />
-    <Content Include="bin\Microsoft.Practices.ObjectBuilder.dll" />
-    <Content Include="bin\Microsoft.Practices.ObjectBuilder2.dll" />
-    <Content Include="bin\Microsoft.Practices.ServiceLocation.dll" />
-    <Content Include="bin\Microsoft.Practices.Unity.Configuration.dll" />
-    <Content Include="bin\Microsoft.Practices.Unity.dll" />
-    <Content Include="bin\Microsoft.Practices.Unity.Interception.Configuration.dll" />
-    <Content Include="bin\Microsoft.Practices.Unity.Interception.dll" />
-    <Content Include="bin\Microsoft.Practices.Unity.StaticFactory.dll" />
-    <Content Include="bin\NetUtility.dll" />
-    <Content Include="bin\Newtonsoft.Json.dll" />
-    <Content Include="bin\Nexcel.WebControls.UI.dll" />
-    <Content Include="bin\Nini.dll" />
-    <Content Include="bin\NLog.dll" />
-    <Content Include="bin\NotifyPropertyChanged.dll" />
-    <Content Include="bin\NPOI.dll" />
-    <Content Include="bin\NPOI.xml" />
-    <Content Include="bin\RemotingRef.dll" />
-    <Content Include="bin\RSACryptoPad.dll" />
-    <Content Include="bin\SharedCache.WinServiceCommon.dll" />
-    <Content Include="bin\SPSRemoting.dll" />
-    <Content Include="bin\Sunplus.Agent.Configurations.dll" />
-    <Content Include="bin\Sunplus.Agent.Model.dll" />
-    <Content Include="bin\Sunplus.Agent.UI.BetList.dll" />
-    <Content Include="bin\Sunplus.Agent.UI.BetSlip.dll" />
-    <Content Include="bin\Sunplus.Agent.UI.PositionTaking.RaceBook.dll" />
-    <Content Include="bin\Sunplus.Agent.UI.ScoreMap.dll" />
-    <Content Include="bin\Sunplus.Agent.Utilities.dll" />
-    <Content Include="bin\Sunplus.Bingo.Core.dll" />
-    <Content Include="bin\Sunplus.Bingo.Data.dll" />
-    <Content Include="bin\Sunplus.Bingo.Data.Entlib.dll" />
-    <Content Include="bin\Sunplus.Bingo.Data.LinqToSql.dll" />
-    <Content Include="bin\Sunplus.Bingo.DataServices.dll" />
-    <Content Include="bin\Sunplus.Bingo.Entities.dll" />
-    <Content Include="bin\Sunplus.Bingo.Services.dll" />
-    <Content Include="bin\Sunplus.Core.Common.dll" />
-    <Content Include="bin\Sunplus.Libraries.AOP.dll" />
-    <Content Include="bin\Sunplus.Libraries.APILogger.dll" />
-    <Content Include="bin\Sunplus.Libraries.ThirdPartyTestData.dll" />
-    <Content Include="bin\Sunplus.Shared.ViewLogLib.dll" />
-    <Content Include="bin\th-TH\Fanex.BetList.Core.resources.dll" />
-    <Content Include="bin\TplCore.dll" />
-    <Content Include="bin\UMControllerLibrary.dll" />
-    <Content Include="bin\vi-VN\Fanex.BetList.Core.resources.dll" />
-    <Content Include="bin\zh-CN\Fanex.BetList.Core.resources.dll" />
-    <Content Include="bin\zh-TW\Fanex.BetList.Core.resources.dll" />
     <Content Include="Casino\UploadExcel.aspx" />
     <Content Include="ChangeAdminPass.aspx" />
     <Content Include="ChangePass.aspx" />
@@ -2241,105 +2128,6 @@
     <Content Include="Auth\ProcessLogin.ashx" />
     <Content Include="Auth\ReCheckIn.ashx" />
     <Content Include="BetList\BetListParlay.ashx" />
-    <None Include="bin\CasinoLibrary.dll.refresh" />
-    <None Include="bin\CasinoSetting.dll.refresh" />
-    <None Include="bin\CasinoUtility.dll.refresh" />
-    <None Include="bin\DNAide.dll.refresh" />
-    <None Include="bin\DotNet.Highcharts.dll.refresh" />
-    <None Include="bin\Enyim.Caching.dll.refresh" />
-    <None Include="bin\EPPlus.dll.refresh" />
-    <None Include="bin\Fanex.Age.Business.dll.refresh" />
-    <None Include="bin\Fanex.Age.Business.Interface.dll.refresh" />
-    <None Include="bin\Fanex.Age.DTO.dll.refresh" />
-    <None Include="bin\Fanex.Age.Excel.dll.refresh" />
-    <None Include="bin\Fanex.Age.UI.Components.dll.refresh" />
-    <None Include="bin\Fanex.Age.UI.dll.refresh" />
-    <None Include="bin\Fanex.Age.UI.Forecast.dll.refresh" />
-    <None Include="bin\Fanex.Age.UI.LiveCasino.dll.refresh" />
-    <None Include="bin\Fanex.Age.UI.Reports.dll.refresh" />
-    <None Include="bin\Fanex.Age.UI.TotalBets.dll.refresh" />
-    <None Include="bin\Fanex.Age.Utility.dll.refresh" />
-    <None Include="bin\Fanex.BetList.Age.dll.refresh" />
-    <None Include="bin\Fanex.BetList.Core.dll.refresh" />
-    <None Include="bin\Fanex.BetList.Core.TicketHelper.dll.refresh" />
-    <None Include="bin\Fanex.Caching.dll.refresh" />
-    <None Include="bin\Fanex.Common.dll.refresh" />
-    <None Include="bin\Fanex.Data.dll.refresh" />
-    <None Include="bin\Fanex.LiveCasinoSetting.dll.refresh" />
-    <None Include="bin\Fanex.Logging.dll.refresh" />
-    <None Include="bin\Fanex.MailDeliver.MailClient.dll.refresh" />
-    <None Include="bin\Fanex.PTEngine.Age.dll.refresh" />
-    <None Include="bin\Fanex.PTEngine.dll.refresh" />
-    <None Include="bin\Fanex.PTVirtualSports.dll.refresh" />
-    <None Include="bin\Fanex.SessionPartition.dll.refresh" />
-    <None Include="bin\FluentValidation.dll.refresh" />
-    <None Include="bin\FluentValidation.resources.dll.refresh" />
-    <None Include="bin\FPS.Client.dll.refresh" />
-    <None Include="bin\GotDotNet.ApplicationBlocks.Data.dll.refresh" />
-    <None Include="bin\HandHistoryLibrary.dll.refresh" />
-    <None Include="bin\IBCCrypt.dll.refresh" />
-    <None Include="bin\IBCDBLibrary.dll.refresh" />
-    <None Include="bin\IBCDLL.dll.refresh" />
-    <None Include="bin\IBCFile.dll.refresh" />
-    <None Include="bin\IBCMessage.dll.refresh" />
-    <None Include="bin\IBCUtils.dll.refresh" />
-    <None Include="bin\ICSharpCode.SharpZipLib.dll.refresh" />
-    <None Include="bin\ILogger.dll.refresh" />
-    <None Include="bin\Ionic.Zip.dll.refresh" />
-    <None Include="bin\LiveCasinoLibrary.dll.refresh" />
-    <None Include="bin\LoadBalancer.dll.refresh" />
-    <None Include="bin\log4net.dll.refresh" />
-    <None Include="bin\LVAPIDBLibrary.dll.refresh" />
-    <None Include="bin\LVAPILibrary.dll.refresh" />
-    <None Include="bin\Membase.dll.refresh" />
-    <None Include="bin\Microsoft.ApplicationBlocks.Data.dll.refresh" />
-    <None Include="bin\Microsoft.Practices.EnterpriseLibrary.Caching.dll.refresh" />
-    <None Include="bin\Microsoft.Practices.EnterpriseLibrary.Common.dll.refresh" />
-    <None Include="bin\Microsoft.Practices.EnterpriseLibrary.Data.dll.refresh" />
-    <None Include="bin\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll.refresh" />
-    <None Include="bin\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll.refresh" />
-    <None Include="bin\Microsoft.Practices.EnterpriseLibrary.Logging.Database.dll.refresh" />
-    <None Include="bin\Microsoft.Practices.EnterpriseLibrary.Logging.dll.refresh" />
-    <None Include="bin\Microsoft.Practices.ObjectBuilder.dll.refresh" />
-    <None Include="bin\Microsoft.Practices.ObjectBuilder2.dll.refresh" />
-    <None Include="bin\Microsoft.Practices.ServiceLocation.dll.refresh" />
-    <None Include="bin\Microsoft.Practices.Unity.Configuration.dll.refresh" />
-    <None Include="bin\Microsoft.Practices.Unity.dll.refresh" />
-    <None Include="bin\Microsoft.Practices.Unity.Interception.Configuration.dll.refresh" />
-    <None Include="bin\Microsoft.Practices.Unity.Interception.dll.refresh" />
-    <None Include="bin\Microsoft.Practices.Unity.StaticFactory.dll.refresh" />
-    <None Include="bin\NetUtility.dll.refresh" />
-    <None Include="bin\Newtonsoft.Json.dll.refresh" />
-    <None Include="bin\Nexcel.WebControls.UI.dll.refresh" />
-    <None Include="bin\Nini.dll.refresh" />
-    <None Include="bin\NLog.dll.refresh" />
-    <None Include="bin\NotifyPropertyChanged.dll.refresh" />
-    <None Include="bin\NPOI.dll.refresh" />
-    <None Include="bin\RemotingRef.dll.refresh" />
-    <None Include="bin\RSACryptoPad.dll.refresh" />
-    <None Include="bin\SharedCache.WinServiceCommon.dll.refresh" />
-    <None Include="bin\SPSRemoting.dll.refresh" />
-    <None Include="bin\Sunplus.Agent.Configurations.dll.refresh" />
-    <None Include="bin\Sunplus.Agent.Model.dll.refresh" />
-    <None Include="bin\Sunplus.Agent.UI.BetList.dll.refresh" />
-    <None Include="bin\Sunplus.Agent.UI.BetSlip.dll.refresh" />
-    <None Include="bin\Sunplus.Agent.UI.PositionTaking.RaceBook.dll.refresh" />
-    <None Include="bin\Sunplus.Agent.UI.ScoreMap.dll.refresh" />
-    <None Include="bin\Sunplus.Agent.Utilities.dll.refresh" />
-    <None Include="bin\Sunplus.Bingo.Core.dll.refresh" />
-    <None Include="bin\Sunplus.Bingo.Data.dll.refresh" />
-    <None Include="bin\Sunplus.Bingo.Data.Entlib.dll.refresh" />
-    <None Include="bin\Sunplus.Bingo.Data.LinqToSql.dll.refresh" />
-    <None Include="bin\Sunplus.Bingo.DataServices.dll.refresh" />
-    <None Include="bin\Sunplus.Bingo.Entities.dll.refresh" />
-    <None Include="bin\Sunplus.Bingo.Services.dll.refresh" />
-    <None Include="bin\Sunplus.Core.Common.dll.refresh" />
-    <None Include="bin\Sunplus.Libraries.AOP.dll.refresh" />
-    <None Include="bin\Sunplus.Libraries.APILogger.dll.refresh" />
-    <None Include="bin\Sunplus.Libraries.ThirdPartyTestData.dll.refresh" />
-    <None Include="bin\Sunplus.Shared.ViewLogLib.dll.refresh" />
-    <None Include="bin\TplCore.dll.refresh" />
-    <None Include="bin\UMControllerLibrary.dll.refresh" />
     <None Include="Content\Fanex.Result\fanex.result.less" />
     <None Include="Deployment.ignore" />
     <None Include="ExcelFiles\AffiliateList\AffiliateList.xls" />
