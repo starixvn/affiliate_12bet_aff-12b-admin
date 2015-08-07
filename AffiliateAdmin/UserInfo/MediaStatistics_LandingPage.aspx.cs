@@ -110,7 +110,7 @@ public partial class UserInfo_MediaStatistics_LandingPage : IBCPage
         }
         catch (Exception ex)
         {
-            DNAideLog.Write(ex.Message);
+            Fanex.Logging.LogService.Error(ex.Message);
 #if DEBUG
                 throw;
 #endif

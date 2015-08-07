@@ -82,7 +82,7 @@ public class UpdAffInfo : IHttpHandler, IRequiresSessionState
         catch (Exception ex)
         {
             context.Response.Write("1@" + ex.Message);
-            DNAideLog.Write(ex.Message);
+            Fanex.Logging.LogService.Error(ex.Message);
         }
     }
 

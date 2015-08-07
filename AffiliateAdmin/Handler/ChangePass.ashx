@@ -31,7 +31,7 @@ public class ChangePass : IHttpHandler, IRequiresSessionState {
         catch (Exception ex)
         {
             context.Response.Write("<script type='text/javascript'>parent.UpdateFail(\"" + ex.Message + "\");</script>");
-            DNAideLog.Write(ex.Message);
+            Fanex.Logging.LogService.Error(ex.Message);
         }
     }
  

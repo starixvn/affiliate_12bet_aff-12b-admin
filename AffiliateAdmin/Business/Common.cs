@@ -1611,7 +1611,7 @@ public class Common
             }
             catch (Exception ex)
             {
-                //DNAide.Web.DNAideLog.Write("LoadBalancerLibrary Error : " + ex.Message);
+                //Fanex.Logging.LogService.Error("LoadBalancerLibrary Error : " + ex.Message);
             }
         }
         else

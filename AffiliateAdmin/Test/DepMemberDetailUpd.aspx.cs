@@ -38,7 +38,7 @@ public partial class DepMemberDetailUpd : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            DNAide.Web.DNAideLog.Write(ex.Message);
+            Fanex.Logging.LogService.Error(ex.Message);
 #if DEBUG
             throw;
 #endif

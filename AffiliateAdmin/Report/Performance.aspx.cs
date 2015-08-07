@@ -144,7 +144,7 @@ public partial class Report_Performance : IBCPage
         }
         catch (Exception ex)
         {
-            DNAideLog.Write(ex.Message);
+            Fanex.Logging.LogService.Error(ex.Message);
             #if DEBUG
                throw;
             #endif

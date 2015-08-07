@@ -101,7 +101,7 @@ public partial class Report_MediaStatistics_New : IBCPage
         }
         catch (Exception ex)
         {
-            DNAideLog.Write(ex.Message);
+            Fanex.Logging.LogService.Error(ex.Message);
 #if DEBUG
                 throw;
 #endif

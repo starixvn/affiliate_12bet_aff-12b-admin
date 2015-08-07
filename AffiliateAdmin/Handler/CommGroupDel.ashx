@@ -36,7 +36,7 @@ public class CommGroupDel : IHttpHandler, IRequiresSessionState
                 throw;
 
 #else
-                DNAide.Web.DNAideLog.Write(e.ToString());
+                Fanex.Logging.LogService.Error(e.ToString());
 #endif
 
             }

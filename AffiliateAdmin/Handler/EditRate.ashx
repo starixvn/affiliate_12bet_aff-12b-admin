@@ -36,7 +36,7 @@ public class EditRate : IHttpHandler, IRequiresSessionState
 #if DEBUG
                 throw;
 #endif
-            DNAideLog.Write(ex.ToString());
+            Fanex.Logging.LogService.Error(ex.ToString());
             context.Response.Write(ex.Message);
         }  
     }

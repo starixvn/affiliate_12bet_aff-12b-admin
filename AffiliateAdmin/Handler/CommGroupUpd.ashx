@@ -58,7 +58,7 @@ public class CommGroupUpd : IHttpHandler, IRequiresSessionState
                 throw;
 
 #else
-                DNAide.Web.DNAideLog.Write(e.Message);
+                Fanex.Logging.LogService.Error(e.Message);
 #endif
 
             }

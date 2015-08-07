@@ -32,7 +32,7 @@ public partial class ChangeAdminPass : IBCPage
         }
         catch(Exception ex)
         {
-            DNAideLog.Write(ex.Message);
+            Fanex.Logging.LogService.Error(ex.Message);
         }
     }
 }

@@ -31,7 +31,7 @@ public partial class Alert : IBCPage
         }
         catch (Exception ex)
         {
-            DNAideLog.Write(ex.Message);
+            Fanex.Logging.LogService.Error(ex.Message);
         }
     }
 }

@@ -290,6 +290,9 @@
     <Compile Include="Exchange\AffRate.aspx.designer.cs">
       <DependentUpon>AffRate.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="GroupSetting\AddGroup.aspx.designer.cs">
       <DependentUpon>AddGroup.aspx</DependentUpon>
     </Compile>
