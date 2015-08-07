@@ -6,7 +6,7 @@ using System.Web.SessionState;
 using DNAide.Core;
 using DNAide.Web;
 using DNAide.Utils;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 public class UpdateUser : IHttpHandler, IRequiresSessionState
 {
     

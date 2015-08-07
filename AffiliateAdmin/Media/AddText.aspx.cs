@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 using DNAide.Web;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 
 public partial class Media_AddText : IBCPage
 {

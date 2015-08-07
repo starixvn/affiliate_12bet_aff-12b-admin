@@ -3,7 +3,7 @@
 using System;
 using System.Web;
 using System.Web.SessionState;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 using DNAide.Utils;
 using DNAide.Core;
 using DNAide.Web;

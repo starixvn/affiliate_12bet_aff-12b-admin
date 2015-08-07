@@ -3,7 +3,7 @@ using System.Web;
 using System.Collections;
 using System.Data;
 using Criterias;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 using DNAide.Core;
 using DNAide.Utils;
 /// <summary>
@@ -23,7 +23,7 @@ namespace DataHandler
 
             hsParam.Add("pagesize", criteria.PageSize);
             hsParam.Add("pageindex", criteria.PageIndex);
-            return DbHelper.Execute(criteria.SpName, hsParam, DBType.AFFILIATE_12BET);
+            return DbHelper.Execute(criteria.SpName, DBType.AFFILIATE_12BET, hsParam);
         }
 
         public static DbResult CasinoPlayerTurnoverReport(CasinoPlayerTurnoverReportCriteria criteria)
@@ -36,7 +36,7 @@ namespace DataHandler
 
             hsParam.Add("pagesize", criteria.PageSize);
             hsParam.Add("pageindex", criteria.PageIndex);
-            return DbHelper.Execute(criteria.SpName, hsParam, DBType.AFFILIATE_12BET);
+            return DbHelper.Execute(criteria.SpName, DBType.AFFILIATE_12BET, hsParam);
         }
     }
 }

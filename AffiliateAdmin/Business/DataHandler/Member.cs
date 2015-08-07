@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Data;
 using System.Web;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 using DNAide.Core;
 using System.Web.SessionState;
 using System;
@@ -25,7 +25,7 @@ namespace DataHandler
             hsParam.Add("pagesize", intPageSize); // hardcode pagesize for member/player list
             hsParam.Add("pageindex", pageIndex);
             hsParam.Add("nrows", 0);
-            dbr = DbHelper.Execute("Aff_MemberListSel", hsParam, DBType.AFFILIATE_12BET);
+            dbr = DbHelper.Execute("Aff_MemberListSel", DBType.AFFILIATE_12BET, hsParam);
             NRows = CastAide.AsInt32(dbr.Outputs["nrows"]);
             totalPages = NRows % intPageSize == 0 ? NRows / intPageSize : (NRows / intPageSize) + 1;
             return (dbr.ResultSet.Tables.Count > 0 ? dbr.ResultSet.Tables[0] : new DataTable());
@@ -34,7 +34,7 @@ namespace DataHandler
         {
             Hashtable hsParam = new Hashtable();
             hsParam.Add("psp", 0);
-            DbResult dbr = DbHelper.Execute("DEP_AffiliateGetPSP", hsParam, DBType.DEPOSIT);
+            DbResult dbr = DbHelper.Execute("DEP_AffiliateGetPSP", DBType.DEPOSIT, hsParam);
             return CastAide.AsDecimal(dbr.Outputs["psp"]);
         }
         public static string DeleteMember(int IbcCustId)
@@ -43,7 +43,7 @@ namespace DataHandler
             param.Add("ibccustid", IbcCustId);
             param.Add("userid", AppSettings.Session.CustID);
             param.Add("ip", HttpContext.Current.Request.UserHostAddress);
-            DbResult ret = DbHelper.Execute("Aff_MemberDel", param, DBType.AFFILIATE_12BET);
+            DbResult ret = DbHelper.Execute("Aff_MemberDel", DBType.AFFILIATE_12BET, param);
             if (CastAide.AsInt32(ret.Outputs["errcode"]) != 0)
             {
                 return ret.Outputs["errmsg"].ToString();
@@ -57,7 +57,7 @@ namespace DataHandler
                 int depositCustId = CastAide.AsInt32(ret.Outputs["depositcustid"]);
                 Hashtable param1 = new Hashtable();
                 param1.Add("depositcustid", depositCustId);
-                DbResult ret1 = DbHelper.Execute("DEP_AdminUpdAffID", param1, DBType.DEPOSIT);
+                DbResult ret1 = DbHelper.Execute("DEP_AdminUpdAffID", DBType.DEPOSIT, param1);
                 if (CastAide.AsInt32(ret1.Outputs["errcode"]) != 0)
                 {
                     return CastAide.AsString(ret1.Outputs["errmsg"]);
@@ -73,7 +73,7 @@ namespace DataHandler
                     logParam.Add("ip", HttpContext.Current.Request.UserHostAddress);
                     logParam.Add("refno", refNo);
                     logParam.Add("details", "Remove member. DepositCustID=" + depositCustId + " (On Deposit_DB)");
-                    DbHelper.Execute("Aff_WriteLog", logParam, DBType.AFFILIATE_12BET);
+                    DbHelper.Execute("Aff_WriteLog", DBType.AFFILIATE_12BET, logParam);
                 }
                 return string.Empty;
             }
@@ -87,7 +87,7 @@ namespace DataHandler
         {
             Hashtable hsParam = new Hashtable();
             hsParam.Add("ibccustid", IBCCustID);
-            DbResult dbr = DbHelper.Execute("Aff_MemberSel", hsParam, DBType.AFFILIATE_12BET);
+            DbResult dbr = DbHelper.Execute("Aff_MemberSel", DBType.AFFILIATE_12BET, hsParam);
             return (dbr.ResultSet.Tables.Count > 0 ? dbr.ResultSet.Tables[0] : new DataTable());
         }
 
@@ -125,7 +125,7 @@ namespace DataHandler
             hsParam.Add("pageindex", intPage);
             hsParam.Add("pagesize", intPageSize);
             hsParam.Add("totalpages", intTotalPages);
-            DbResult dbr = DbHelper.Execute("Aff_DEP_MemberListSel", hsParam, DBType.AFFILIATE_12BET);
+            DbResult dbr = DbHelper.Execute("Aff_DEP_MemberListSel", DBType.AFFILIATE_12BET, hsParam);
             intTotalPages = CastAide.AsInt32(dbr.Outputs["totalpages"]);
             return (dbr.ResultSet.Tables.Count > 0 ? dbr.ResultSet.Tables[0] : new DataTable());
         }
@@ -135,7 +135,7 @@ namespace DataHandler
             DbResult dbr = null;
             Hashtable hsParam = new Hashtable();
             hsParam.Add("usernames", strUserName);
-            dbr = DbHelper.Execute("Aff_CustomerCheckList12BetPlayerAccountsActivated", hsParam, DBType.AFFILIATE_12BET);            
+            dbr = DbHelper.Execute("Aff_CustomerCheckList12BetPlayerAccountsActivated", DBType.AFFILIATE_12BET, hsParam);            
             return (dbr.ResultSet.Tables.Count > 0 ? dbr.ResultSet.Tables[0] : new DataTable());
         }
 
@@ -144,7 +144,7 @@ namespace DataHandler
             DbResult dbr = null;
             Hashtable hsParam = new Hashtable();
             hsParam.Add("usernames", strUserName);
-            dbr = DbHelper.Execute("Deposit_MembersNotActivatedSel", hsParam, DBType.DEPOSIT);
+            dbr = DbHelper.Execute("Deposit_MembersNotActivatedSel", DBType.DEPOSIT, hsParam);
             return (dbr.ResultSet.Tables.Count > 0 ? dbr.ResultSet.Tables[0] : new DataTable());
         }
     }

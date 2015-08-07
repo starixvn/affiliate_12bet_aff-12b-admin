@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Web;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 using DNAide.Core;
 using DNAide.Utils;
 using System;
@@ -14,7 +14,7 @@ namespace DataHandler
             Hashtable hsParam = new Hashtable();
             hsParam.Add("hascasinodata", 0);
             hsParam.Add("date", date);
-            DbResult rs = DbHelper.Execute("Aff_CasinoHasData", hsParam, DBType.AFFILIATE_12BET);
+            DbResult rs = DbHelper.Execute("Aff_CasinoHasData", DBType.AFFILIATE_12BET, hsParam);
             return CastAide.AsBoolean(rs.Outputs["hascasinodata"]);
         }
 
@@ -22,7 +22,7 @@ namespace DataHandler
         {
             Hashtable hsParam = new Hashtable();
             hsParam.Add("date", date);
-            return DbHelper.Execute("Aff_CasinoSel", hsParam, DBType.AFFILIATE_12BET);
+            return DbHelper.Execute("Aff_CasinoSel", DBType.AFFILIATE_12BET, hsParam);
         }
 
         public static DbResult CasinoDataUpdate(string xmlData, bool isReplaceData, DateTime importDate)
@@ -34,7 +34,7 @@ namespace DataHandler
             hsParam.Add("importdate", importDate);            
             hsParam.Add("errcode", 0);
             hsParam.Add("errmsg", string.Empty);
-            return DbHelper.Execute("Aff_CasinoImportData", hsParam, DBType.AFFILIATE_12BET);
+            return DbHelper.Execute("Aff_CasinoImportData", DBType.AFFILIATE_12BET, hsParam);
         }
     }
 }

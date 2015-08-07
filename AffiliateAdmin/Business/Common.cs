@@ -12,7 +12,7 @@ using System.Web.Configuration;
 using System.Web.UI.HtmlControls;
 using System.Xml;
 using DNAide.Core;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 using DNAide.Utils;
 using DNAide.Web;
 //using System.Linq;

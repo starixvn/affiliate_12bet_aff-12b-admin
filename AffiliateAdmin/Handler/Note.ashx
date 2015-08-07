@@ -4,7 +4,7 @@ using System;
 using System.Web;
 using System.Web.SessionState;
 using DNAide.Core;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 
 public class Note : IHttpHandler, IRequiresSessionState {
     

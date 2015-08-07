@@ -1,7 +1,7 @@
 ﻿using DNAide.Web;
 using DNAide.Core;
 using DNAide.Utils;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 using System;
 public partial class UserInfo_MediaStatistics : IBCPage
 {

@@ -9,7 +9,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 
 /// <summary>
 /// Summary description for Active12BetAccount

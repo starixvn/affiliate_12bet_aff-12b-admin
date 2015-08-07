@@ -1,7 +1,7 @@
 ﻿using System;
 using DNAide.Core;
 using DNAide.Web;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 using System.Data;
 
 public partial class UserControl_EditAdminPolicy : IBCPage

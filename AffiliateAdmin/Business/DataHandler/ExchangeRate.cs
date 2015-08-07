@@ -2,7 +2,7 @@
 using System.Web;
 using System.Collections;
 using System.Data;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 namespace DataHandler
 {
     public class ExchangeRate
@@ -11,7 +11,7 @@ namespace DataHandler
         {
             Hashtable hsParams = new Hashtable();
             hsParams.Add("time", dtmTime);
-            return DbHelper.Execute("Aff_ExchangeSel", hsParams, DBType.AFFILIATE_12BET).ResultSet.Tables[0];
+            return DbHelper.Execute("Aff_ExchangeSel", DBType.AFFILIATE_12BET, hsParams).ResultSet.Tables[0];
         }
         public static DbResult Exchange_Update(int exId, decimal Rate, string column = null)
         {
@@ -28,7 +28,7 @@ namespace DataHandler
             else
                 hsParams.Add("ratetype", 0);
                 
-            return DbHelper.Execute("Aff_ExchangeUpdate", hsParams, DBType.AFFILIATE_12BET);
+            return DbHelper.Execute("Aff_ExchangeUpdate", DBType.AFFILIATE_12BET, hsParams);
         }
      
         /*public static DbResult Exchange_Update_RptDepWinlost(int exId)

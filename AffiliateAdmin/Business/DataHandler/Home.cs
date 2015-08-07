@@ -3,7 +3,7 @@ using System.Collections;
 using System.Data;
 using System.Web;
 using DNAide.Core;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 
 /// <summary>
 /// Summary description for Home
@@ -27,7 +27,7 @@ namespace DataHandler
             Hashtable param = new Hashtable();
             param.Add("pagesize", pageSize);
             param.Add("pageindex", pageIndex);
-            return DbHelper.Execute("Aff_UserOnlineList",param, DBType.AFFILIATE_12BET, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
+            return DbHelper.Execute("Aff_UserOnlineList", DBType.AFFILIATE_12BET, param, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
         }
     }
 }

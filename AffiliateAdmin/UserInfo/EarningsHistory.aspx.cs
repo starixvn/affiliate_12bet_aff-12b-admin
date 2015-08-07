@@ -3,7 +3,7 @@ using System.Text;
 using System.Data;
 using DNAide.Web;
 using DNAide.Core;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 
 public partial class UserInfo_EarningsHistory : IBCPage
 {

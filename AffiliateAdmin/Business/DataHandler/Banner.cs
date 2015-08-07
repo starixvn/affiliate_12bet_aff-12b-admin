@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Web;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 using DNAide.Core; 
 using System.Collections;
 using System.Configuration;
@@ -38,7 +38,7 @@ namespace DataHandler
             htb.Add("type", type);
             // -- Added by Frank.Ngo on IRP 671 - 10 Jan 2012
 
-            dbr = DbHelper.Execute("Aff_BannerMediaIns", htb, DBType.AFFILIATE_12BET);
+            dbr = DbHelper.Execute("Aff_BannerMediaIns", DBType.AFFILIATE_12BET, htb);
             errcode =CastAide.AsInt32(dbr.Outputs["errcode"]);
             result=CastAide.AsInt32(dbr.Outputs["bannerid"]);
             errmsg = dbr.Outputs["errmsg"].ToString();           
@@ -63,7 +63,7 @@ namespace DataHandler
             htb.Add("ip", HttpContext.Current.Request.UserHostAddress);
             htb.Add("errcode", 0);
             htb.Add("errmsg", string.Empty);
-            DbResult dbr = DbHelper.Execute("Aff_BannerUpd_1", htb, DBType.AFFILIATE_12BET);            
+            DbResult dbr = DbHelper.Execute("Aff_BannerUpd_1", DBType.AFFILIATE_12BET, htb);            
             return dbr.Outputs["errmsg"].ToString(); 
         }
         
@@ -76,7 +76,7 @@ namespace DataHandler
             hsParam.Add("ip", HttpContext.Current.Request.UserHostAddress);
             hsParam.Add("errcode", 0);
             hsParam.Add("errmsg", string.Empty);
-            DbResult result = DbHelper.Execute("Aff_BannerDel_1", hsParam, DBType.AFFILIATE_12BET);
+            DbResult result = DbHelper.Execute("Aff_BannerDel_1", DBType.AFFILIATE_12BET, hsParam);
             return DNAide.Core.CastAide.AsString(result.Outputs["errmsg"]);
         }
 
@@ -119,7 +119,7 @@ namespace DataHandler
             hsParam.Add("totalpages", 0);
             hsParam.Add("nrows", 0);
 
-            return DbHelper.Execute("Aff_BannerSel_1", hsParam, DBType.AFFILIATE_12BET);
+            return DbHelper.Execute("Aff_BannerSel_1", DBType.AFFILIATE_12BET, hsParam);
         
         }
 
@@ -158,7 +158,7 @@ namespace DataHandler
             hsParam.Add("totalpages", 0);
             hsParam.Add("nrows", 0);
 
-            return DbHelper.Execute("Aff_BannerSelByParentCate", hsParam, DBType.AFFILIATE_12BET);
+            return DbHelper.Execute("Aff_BannerSelByParentCate", DBType.AFFILIATE_12BET, hsParam);
         }
 
         public static DbResult GetBannerListOld(string category, string language, string imageType, string size, string currency, int pageIndex, int pageSize, int type)
@@ -190,7 +190,7 @@ namespace DataHandler
             hsParam.Add("totalpages", 0);
             hsParam.Add("nrows", 0);
 
-            return DbHelper.Execute("Aff_BannerSel", hsParam, DBType.AFFILIATE_12BET);
+            return DbHelper.Execute("Aff_BannerSel", DBType.AFFILIATE_12BET, hsParam);
 
         }
 
@@ -198,14 +198,14 @@ namespace DataHandler
         {
             Hashtable hsParam = new Hashtable();            
             hsParam.Add("bannerid", bannerid);
-            return DbHelper.Execute("Aff_BannerSelDetail_1", hsParam, DBType.AFFILIATE_12BET);
+            return DbHelper.Execute("Aff_BannerSelDetail_1", DBType.AFFILIATE_12BET, hsParam);
         }
 
         public static DbResult GetBannerDetailOld(int bannerid)
         {
             Hashtable hsParam = new Hashtable();
             hsParam.Add("bannerid", bannerid);
-            return DbHelper.Execute("Aff_BannerSelDetail", hsParam, DBType.AFFILIATE_12BET);
+            return DbHelper.Execute("Aff_BannerSelDetail", DBType.AFFILIATE_12BET, hsParam);
         }
     }
 }

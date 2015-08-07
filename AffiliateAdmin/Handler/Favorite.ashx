@@ -5,7 +5,7 @@ using System.Web.SessionState;
 using System.Web;
 using DNAide.Utils;
 using DNAide.Core;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 
 public class Favorite : IHttpHandler, IRequiresSessionState {
     

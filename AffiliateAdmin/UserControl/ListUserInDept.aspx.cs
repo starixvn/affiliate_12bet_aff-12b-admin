@@ -2,7 +2,7 @@
 using System.Text;
 using System.Data;
 using DNAide.Core;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 using DNAide.Web;
 
 public partial class UserControl_ListUserInDept : IBCPage

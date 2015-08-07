@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Criterias;
 using DNAide.Core;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 using DNAide.Web;
 using AffiliateAdmin.AffBetlistService;
 

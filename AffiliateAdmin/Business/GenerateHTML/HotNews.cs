@@ -1,7 +1,7 @@
 ﻿using DNAide.Web;
 using DNAide.Core;
 using System.Data;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 using System.Text;
 namespace GenerateHTML
 {

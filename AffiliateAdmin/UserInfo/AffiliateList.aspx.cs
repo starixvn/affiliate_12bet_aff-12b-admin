@@ -3,6 +3,7 @@ using System.Data;
 using Criterias;
 using DNAide.Web;
 using DNAide.Core;
+using AffiliateAdmin.Business.DataAccess;
 
 public partial class AffiliateList : IBCPage
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using DNAide.Web;
 using DNAide.Core;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 public partial class Customer_Statistics : IBCPage
 {
     

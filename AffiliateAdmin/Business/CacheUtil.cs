@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Web;
 using Microsoft.Practices.EnterpriseLibrary.Caching;
 using Microsoft.Practices.EnterpriseLibrary.Caching.Expirations;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 using System.Data;
 
 public class CacheUtil

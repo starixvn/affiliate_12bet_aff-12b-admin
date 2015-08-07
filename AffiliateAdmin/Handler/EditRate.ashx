@@ -2,7 +2,7 @@
 
 using System;
 using System.Web;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 using DNAide.Web;
 using DNAide.Core;
 using System.Web.SessionState;

@@ -3,7 +3,7 @@ using System.Text;
 using System.Data;
 using DNAide.Web;
 using DNAide.Core;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 using DNAide.Utils;
 
 public partial class PaymentRequest : IBCPage

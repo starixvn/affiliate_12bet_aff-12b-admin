@@ -1,6 +1,6 @@
 ﻿using System.Xml.Linq;
 using DNAide.Web;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 using DNAide.Core;
 using DNAide.Utils;
 using System.Text;

@@ -5,7 +5,7 @@ using System.Data;
 using System.Web.Security;
 using DNAide.Web;
 using DNAide.Core;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 using DNAide.Utils;
 
 public partial class Customer_AffiliateInfo : IBCPage

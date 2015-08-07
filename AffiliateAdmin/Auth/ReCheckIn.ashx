@@ -2,7 +2,7 @@
 
 using System;
 using System.Web;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 using System.Web.SessionState; 
 public class ReCheckIn : IHttpHandler, IRequiresSessionState {
     

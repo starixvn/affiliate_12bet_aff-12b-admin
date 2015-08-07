@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 using DNAide.Core;
 
 
@@ -20,17 +20,17 @@ namespace DataHandler
 
         public static DbResult MarketSel()
         {
-            return DbHelper.Execute("Aff_MarketSel", null, DBType.AFFILIATE_12BET);
+            return DbHelper.Execute("Aff_MarketSel", DBType.AFFILIATE_12BET);
         }
 
         public static DbResult DomainAffSel()
         {
-            return DbHelper.Execute("Aff_DomainAffSel", null, DBType.AFFILIATE_12BET);
+            return DbHelper.Execute("Aff_DomainAffSel", DBType.AFFILIATE_12BET);
         }
 
         public static DbResult Domain12BetSel()
         {
-            return DbHelper.Execute("Aff_Domain12BetSel", null, DBType.AFFILIATE_12BET);
+            return DbHelper.Execute("Aff_Domain12BetSel", DBType.AFFILIATE_12BET);
         }
 
         public static DbResult DomainControlSel(string marketId, string deviceType)
@@ -39,7 +39,7 @@ namespace DataHandler
             if(!string.IsNullOrEmpty(marketId))
                 hs.Add("marketid", marketId);
             hs.Add("devicetype", byte.Parse(deviceType));
-            return DbHelper.Execute("Aff_DomainControlSel", hs, DBType.AFFILIATE_12BET);
+            return DbHelper.Execute("Aff_DomainControlSel", DBType.AFFILIATE_12BET, hs);
         }
 
         public static bool DomainControlIns(string marketId, string affDomainId, string redirectDomainId, bool status, ref int errCode, ref string errMsg)
@@ -54,7 +54,7 @@ namespace DataHandler
             hs.Add("userid", AppSettings.Session.CustID);
             hs.Add("errcode", 0);
             hs.Add("errmsg", string.Empty);
-            DbResult rs = DbHelper.Execute("Aff_DomainControlIns", hs, DBType.AFFILIATE_12BET);
+            DbResult rs = DbHelper.Execute("Aff_DomainControlIns", DBType.AFFILIATE_12BET, hs);
             errCode = CastAide.AsInt32(rs.Outputs["errcode"]);
             errMsg = rs.Outputs["errmsg"].ToString();
 
@@ -73,7 +73,7 @@ namespace DataHandler
             hs.Add("ip", HttpContext.Current.Request.UserHostAddress);
             hs.Add("errcode", 0);
             hs.Add("errmsg", string.Empty);
-            DbResult rs = DbHelper.Execute("Aff_DomainControlUpd", hs, DBType.AFFILIATE_12BET);
+            DbResult rs = DbHelper.Execute("Aff_DomainControlUpd", DBType.AFFILIATE_12BET, hs);
             errCode = CastAide.AsInt32(rs.Outputs["errcode"]);
             errMsg = rs.Outputs["errmsg"].ToString();
 
@@ -88,7 +88,7 @@ namespace DataHandler
             hs.Add("ip", HttpContext.Current.Request.UserHostAddress);
             hs.Add("errcode", 0);
             hs.Add("errmsg", string.Empty);
-            DbResult rs = DbHelper.Execute("Aff_DomainControlDel", hs, DBType.AFFILIATE_12BET);
+            DbResult rs = DbHelper.Execute("Aff_DomainControlDel", DBType.AFFILIATE_12BET, hs);
             errCode = CastAide.AsInt32(rs.Outputs["errcode"]);
             errMsg = rs.Outputs["errmsg"].ToString();
 
@@ -101,7 +101,7 @@ namespace DataHandler
             try
             {
 
-                dbr = DbHelper.Execute("Aff_DomainAffSel", null, DBType.AFFILIATE_12BET);
+                dbr = DbHelper.Execute("Aff_DomainAffSel", DBType.AFFILIATE_12BET);
             }
             catch
             {
@@ -124,7 +124,7 @@ namespace DataHandler
                 htb.Add("errcode", 0);
                 htb.Add("errmsg", string.Empty);
                 // htb.Add("system", "AFFILIATE");
-                dr = DbHelper.Execute("Aff_DomainAffUpd", htb, DBType.AFFILIATE_12BET);
+                dr = DbHelper.Execute("Aff_DomainAffUpd", DBType.AFFILIATE_12BET, htb);
             }
             catch
             {
@@ -145,7 +145,7 @@ namespace DataHandler
                 htb.Add("errcode", 0);
                 htb.Add("errmsg", string.Empty);
                 //htb.Add("system", "AFFILIATE");
-                dr = DbHelper.Execute("Aff_DomainAffIns", htb, DBType.AFFILIATE_12BET);
+                dr = DbHelper.Execute("Aff_DomainAffIns", DBType.AFFILIATE_12BET, htb);
 
             }
             catch
@@ -167,7 +167,7 @@ namespace DataHandler
                 htb.Add("errcode", 0);
                 htb.Add("errmsg", string.Empty);
                 //  htb.Add("system", "AFFILIATE");
-                dr = DbHelper.Execute("Aff_DomainAffDel", htb, DBType.AFFILIATE_12BET);
+                dr = DbHelper.Execute("Aff_DomainAffDel", DBType.AFFILIATE_12BET, htb);
             }
             catch
             {
@@ -184,7 +184,7 @@ namespace DataHandler
                 var hs = new Hashtable();
                 var device = string.IsNullOrEmpty(deviceType) ? 0 : byte.Parse(deviceType);
                 hs.Add("devicetype", device);
-                dbr = DbHelper.Execute("Aff_Domain12BetSel", hs, DBType.AFFILIATE_12BET);
+                dbr = DbHelper.Execute("Aff_Domain12BetSel", DBType.AFFILIATE_12BET, hs);
             }
             catch
             {
@@ -208,7 +208,7 @@ namespace DataHandler
                 htb.Add("ip", HttpContext.Current.Request.UserHostAddress);
                 htb.Add("errcode", 0);
                 htb.Add("errmsg", string.Empty);
-                dr = DbHelper.Execute("Aff_Domain12BetUpd", htb, DBType.AFFILIATE_12BET);
+                dr = DbHelper.Execute("Aff_Domain12BetUpd", DBType.AFFILIATE_12BET, htb);
             }
             catch
             {
@@ -232,7 +232,7 @@ namespace DataHandler
                 htb.Add("errcode", 0);
                 htb.Add("errmsg", string.Empty);
                 //htb.Add("system", "AFFILIATE");
-                dr = DbHelper.Execute("Aff_Domain12BetIns", htb, DBType.AFFILIATE_12BET);
+                dr = DbHelper.Execute("Aff_Domain12BetIns", DBType.AFFILIATE_12BET, htb);
 
             }
             catch
@@ -254,7 +254,7 @@ namespace DataHandler
                 htb.Add("errcode", 0);
                 htb.Add("errmsg", string.Empty);
                 //  htb.Add("system", "AFFILIATE");
-                dr = DbHelper.Execute("Aff_Domain12BetDel", htb, DBType.AFFILIATE_12BET);
+                dr = DbHelper.Execute("Aff_Domain12BetDel", DBType.AFFILIATE_12BET, htb);
             }
             catch
             {

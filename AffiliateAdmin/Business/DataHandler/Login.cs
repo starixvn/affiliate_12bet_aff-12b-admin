@@ -1,6 +1,6 @@
 ﻿using System.Data;
 using System.Web;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 using System.Collections;
 using DNAide.Core;
 using DNAide.Utils;  
@@ -31,7 +31,7 @@ namespace DataHandler
                 htb.Add("errmsg", "");
                 htb.Add("language", lang);
                 htb.Add("from", hc.Request.UserHostName);
-                dbr = DbHelper.Execute("Aff_AdminLogin", htb, DBType.AFFILIATE_12BET);
+                dbr = DbHelper.Execute("Aff_AdminLogin", DBType.AFFILIATE_12BET, htb);
                 errcode = CastAide.AsInt32(dbr.Outputs["errcode"]);
                 errmsg = dbr.Outputs["errmsg"].ToString();
                 //username = dbr.Outputs["username"].ToString();
@@ -55,7 +55,7 @@ namespace DataHandler
                 htb.Add("on_userid", 0);
                 htb.Add("ip", Common.GetIPAddressOfClient());
                 htb.Add("subaccid", 6);
-                DbResult dbr = DbHelper.Execute("Aff_CheckIn", htb, DBType.AFFILIATE_12BET);
+                DbResult dbr = DbHelper.Execute("Aff_CheckIn", DBType.AFFILIATE_12BET, htb);
                 //DbResult dbr = DbHelper.Execute("Acc_CheckIn", htb, DBType.ON_USER);
                 return CastAide.AsInt32(dbr.Outputs["on_userid"]);
             }
@@ -72,7 +72,7 @@ namespace DataHandler
                 var htb = new Hashtable();
                 htb.Add("on_userid", AppSettings.Session.OnUser);
                 htb.Add("iskickedout", 0);
-                DbResult dbr = DNAide.Data.DbHelper.Execute("Aff_Recheckin", htb, DBType.AFFILIATE_12BET);
+                DbResult dbr = DbHelper.Execute("Aff_Recheckin", DBType.AFFILIATE_12BET, htb);
                 return CastAide.AsBoolean(dbr.Outputs["iskickedout"]);  
             }
             catch
@@ -83,7 +83,7 @@ namespace DataHandler
         {
             Hashtable htb = new Hashtable();
             htb.Add("on_userid", AppSettings.Session.OnUser);
-            DbHelper.Execute("Aff_Logout", htb, DBType.AFFILIATE_12BET);
+            DbHelper.Execute("Aff_Logout", DBType.AFFILIATE_12BET, htb);
             //DbHelper.Execute("Aff_Logout", htb, DBType.ON_USER);   
         }
         public static string AssignRoles(int custid)

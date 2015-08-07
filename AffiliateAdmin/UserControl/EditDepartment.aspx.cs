@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web;
 using DNAide.Web;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 public partial class EditDepartment : IBCPage
 {
     protected void Page_Load(object sender, EventArgs e)

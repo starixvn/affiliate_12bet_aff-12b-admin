@@ -2,7 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using DNAide.Web;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 using DNAide.Core;
 
 public partial class UserControl_UpdateMultiAdmins : IBCPage

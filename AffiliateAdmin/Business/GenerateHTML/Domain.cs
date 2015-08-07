@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 using Resources;
 
 /// <summary>

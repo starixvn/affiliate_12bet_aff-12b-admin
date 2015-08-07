@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using System.Data;
 using DNAide.Web;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 
 /// <summary>
 /// Summary description for Note

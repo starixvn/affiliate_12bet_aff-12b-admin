@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Web;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 using DNAide.Core;
 using System.Collections;
 using System.Configuration;
@@ -35,7 +35,7 @@ namespace DataHandler
             htb.Add("errcode", 0);
             htb.Add("errmsg", "");
 
-            dbr = DbHelper.Execute("Aff_TextIns_1", htb, DBType.AFFILIATE_12BET);
+            dbr = DbHelper.Execute("Aff_TextIns_1", DBType.AFFILIATE_12BET, htb);
             errcode = CastAide.AsInt32(dbr.Outputs["errcode"]);
             result = CastAide.AsInt32(dbr.Outputs["bannerid"]);
             errmsg = dbr.Outputs["errmsg"].ToString();
@@ -55,7 +55,7 @@ namespace DataHandler
             htb.Add("ip", HttpContext.Current.Request.UserHostAddress);
             htb.Add("errcode", 0);
             htb.Add("errmsg", string.Empty);
-            DbResult dbr = DbHelper.Execute("Aff_TextUpd_1", htb, DBType.AFFILIATE_12BET);
+            DbResult dbr = DbHelper.Execute("Aff_TextUpd_1", DBType.AFFILIATE_12BET, htb);
             return dbr.Outputs["errmsg"].ToString();
         }
         public static string DelDataText(string listBannerID)
@@ -66,7 +66,7 @@ namespace DataHandler
             hsParam.Add("ip", HttpContext.Current.Request.UserHostAddress);
             hsParam.Add("errcode", 0);
             hsParam.Add("errmsg", string.Empty);
-            DbResult result = DbHelper.Execute("Aff_TextDel_1", hsParam, DBType.AFFILIATE_12BET);
+            DbResult result = DbHelper.Execute("Aff_TextDel_1", DBType.AFFILIATE_12BET, hsParam);
             return CastAide.AsString(result.Outputs["errmsg"]);
         }
         public static DbResult GetListText(string category, string language, string currency, int pageIndex, int pageSize, string deviceType)
@@ -93,13 +93,13 @@ namespace DataHandler
             hsParam.Add("totalpages", 0);
             hsParam.Add("nrows", 0);
 
-            return DbHelper.Execute("Aff_TextSel_1", hsParam, DBType.AFFILIATE_12BET);
+            return DbHelper.Execute("Aff_TextSel_1", DBType.AFFILIATE_12BET, hsParam);
         }
         public static DbResult GetTextDetail(int textId)
         {
             Hashtable hsParam = new Hashtable();
             hsParam.Add("textid", textId);
-            return DbHelper.Execute("Aff_TextSelDetail_1", hsParam, DBType.AFFILIATE_12BET);
+            return DbHelper.Execute("Aff_TextSelDetail_1", DBType.AFFILIATE_12BET, hsParam);
         }
     }
 }

@@ -2,7 +2,7 @@
 using System.Data;
 using System.Web;
 using DNAide.Web;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 using System.Text;
 public partial class AddUser : IBCPage
 {

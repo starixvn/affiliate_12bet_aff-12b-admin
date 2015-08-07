@@ -2,7 +2,7 @@
 using DNAide.Web;
 using DNAide.Core;
 using DNAide.Utils;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 
 public partial class UserInfo_Adjustment : IBCPage
 {

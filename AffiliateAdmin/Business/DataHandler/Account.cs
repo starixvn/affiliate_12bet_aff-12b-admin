@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Web;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 using DNAide.Core;
 using DNAide.Utils;
 
@@ -18,7 +18,7 @@ namespace DataHandler
             hsParam.Add("language", strLang);
             hsParam.Add("ip", HttpContext.Current.Request.UserHostAddress);
             hsParam.Add("errcode", "0");
-            DbResult result = DbHelper.Execute("Aff_AdminUpdPwd", hsParam, DBType.AFFILIATE_12BET);
+            DbResult result = DbHelper.Execute("Aff_AdminUpdPwd", DBType.AFFILIATE_12BET, hsParam);
             return CastAide.AsInt32(result.Outputs["errcode"]);
         }
     }

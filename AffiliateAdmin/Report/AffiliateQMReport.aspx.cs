@@ -3,7 +3,7 @@ using System.Data;
 using System.Text;
 using Criterias;
 using DNAide.Web;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 using DNAide.Core;
 
 public partial class Report_AffiliateQMReport : IBCPage

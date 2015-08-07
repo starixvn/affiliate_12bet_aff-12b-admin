@@ -3,7 +3,7 @@ using System.Collections;
 using System.Data;
 using System.Web;
 using DNAide.Core;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 /// <summary>
 /// Summary description for PaymentRequest
 /// </summary>
@@ -30,13 +30,13 @@ namespace DataHandler
             hsParam.Add("pagesize", pagesize);
             hsParam.Add("pageindex", page);
             hsParam.Add("totalpages", 0);
-            return DbHelper.Execute("Aff_PaymentRequestSelList", hsParam, DBType.AFFILIATE_12BET);
+            return DbHelper.Execute("Aff_PaymentRequestSelList", DBType.AFFILIATE_12BET, hsParam);
         }
         public static DataTable PaymentRequestById(Int64 TransId)
         {
             Hashtable hsParam = new Hashtable();
             hsParam.Add("transid", TransId);
-            return DbHelper.Execute("Aff_PaymentRequestSelDetail", hsParam, DBType.AFFILIATE_12BET).ResultSet.Tables[0];
+            return DbHelper.Execute("Aff_PaymentRequestSelDetail", DBType.AFFILIATE_12BET, hsParam).ResultSet.Tables[0];
         }
         public static int PaymentUpdate(Int64 intTransId, string strStatus, string strLang, string strAdminRemark, string strAffRemark, ref string strPreferredLang, ref bool blMailOption)
         {
@@ -54,9 +54,9 @@ namespace DataHandler
             hsParam.Add("errmsg", string.Empty);
             DbResult result=null;
             if (strStatus.ToLower().CompareTo("approved") == 0)
-                result = DbHelper.Execute("Aff_PaymentRequestApprove", hsParam, DBType.MAIN);
+                result = DbHelper.Execute("Aff_PaymentRequestApprove", DBType.MAIN, hsParam);
             else
-                result = DbHelper.Execute("Aff_PaymentRequestUpd", hsParam, DBType.AFFILIATE_12BET);
+                result = DbHelper.Execute("Aff_PaymentRequestUpd", DBType.AFFILIATE_12BET, hsParam);
 
             strPreferredLang = result.Outputs["preferredlanguage"].ToString();
             blMailOption = CastAide.AsBoolean(result.Outputs["mailoption"]);

@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using System.Text;
 using DNAide.Web;
 using DNAide.Core;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 using System.Data;
 using DNAide.Utils;
 

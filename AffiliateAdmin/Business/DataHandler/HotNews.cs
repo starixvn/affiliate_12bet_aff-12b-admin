@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Configuration;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 using System.Web;
 namespace DataHandler
 {
@@ -20,7 +20,7 @@ namespace DataHandler
         {
             Hashtable hsParam = new Hashtable();
             hsParam.Add("msgid", id);
-            return DbHelper.Execute("Aff_HotNewsDetail", hsParam, DBType.AFFILIATE_12BET);
+            return DbHelper.Execute("Aff_HotNewsDetail", DBType.AFFILIATE_12BET, hsParam);
         }
         /// <summary>
         ///  Search Hot News
@@ -50,7 +50,7 @@ namespace DataHandler
             hsParam.Add("nrows", 0);
            /* hsParam.Add("language", Common.GetLangChar());*/
 
-            return DbHelper.Execute("Aff_HotNewsSel", hsParam, DBType.AFFILIATE_12BET);
+            return DbHelper.Execute("Aff_HotNewsSel", DBType.AFFILIATE_12BET, hsParam);
         }
         /// <summary>
         /// Delete list of selected messages by @DungTong
@@ -65,7 +65,7 @@ namespace DataHandler
             hsParam.Add("userid", AppSettings.Session.CustID);
             hsParam.Add("errcode", 0);
             hsParam.Add("errmsg", string.Empty);
-            DbResult result = DbHelper.Execute("Aff_HotNewsDel", hsParam, DBType.AFFILIATE_12BET);
+            DbResult result = DbHelper.Execute("Aff_HotNewsDel", DBType.AFFILIATE_12BET, hsParam);
             return DNAide.Core.CastAide.AsString(result.Outputs["errmsg"]);
         }
         /// <summary>
@@ -95,7 +95,7 @@ namespace DataHandler
             hsParam.Add("userid", AppSettings.Session.CustID);
             hsParam.Add("errcode", 0);
             hsParam.Add("errmsg", string.Empty);
-            DbResult result = DbHelper.Execute("Aff_HotNewsIns", hsParam, DBType.AFFILIATE_12BET);
+            DbResult result = DbHelper.Execute("Aff_HotNewsIns", DBType.AFFILIATE_12BET, hsParam);
             return DNAide.Core.CastAide.AsString(result.Outputs["errmsg"]);
         }
         /// <summary>
@@ -126,7 +126,7 @@ namespace DataHandler
             hsParam.Add("msgjp", HttpContext.Current.Server.HtmlEncode(msgJP));
             hsParam.Add("important", important);
             hsParam.Add("ip", HttpContext.Current.Request.UserHostAddress);
-            DbResult result = DbHelper.Execute("Aff_HotNewsUpd", hsParam, DBType.AFFILIATE_12BET);
+            DbResult result = DbHelper.Execute("Aff_HotNewsUpd", DBType.AFFILIATE_12BET, hsParam);
             return DNAide.Core.CastAide.AsString(result.Outputs["errmsg"]);
         }
 

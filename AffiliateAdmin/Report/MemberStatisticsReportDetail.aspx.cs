@@ -3,7 +3,7 @@ using System.Text;
 using System.Collections;
 using System.Data;
 using DNAide.Web;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 using DNAide.Core;
 
 public partial class Report_MemberStatisticsReportDetail : IBCPage

@@ -5,7 +5,7 @@ using System.Web;
 using DNAide.Core;
 using System.Web.SessionState;
 using System.Text;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 using System.Data;
 
 public class GetEditedText : IHttpHandler, IRequiresSessionState

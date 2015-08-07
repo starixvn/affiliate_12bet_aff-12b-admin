@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 using DNAide.Web;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 using DNAide.Core;
 
 public partial class Media_BannerDetail : IBCPage

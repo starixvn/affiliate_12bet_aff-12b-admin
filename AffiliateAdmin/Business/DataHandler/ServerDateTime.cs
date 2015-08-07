@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 
 namespace DataHandler
 {
@@ -12,7 +12,7 @@ namespace DataHandler
             hsParam.Add("dbtime", DateTime.Now);
             hsParam.Add("gmtoffset", "GMT");
 
-            DbResult result = DNAide.Data.DbHelper.Execute("Aff_AdminSelDBTime", hsParam, DBType.AFFILIATE_12BET);
+            DbResult result = DbHelper.Execute("Aff_AdminSelDBTime", DBType.AFFILIATE_12BET, hsParam);
             GMT = result.Outputs["gmtoffset"].ToString();
             return Convert.ToDateTime(result.Outputs["dbtime"]);
         }

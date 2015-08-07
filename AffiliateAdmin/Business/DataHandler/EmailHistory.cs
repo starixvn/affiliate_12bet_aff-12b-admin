@@ -2,7 +2,7 @@
 using System.Web;
 using System.Collections;
 using System.Configuration;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 namespace DataHandler
 {
     /// <summary>
@@ -43,7 +43,7 @@ namespace DataHandler
             hsParam.Add("nrows", 0);
             /* hsParam.Add("language", Common.GetLangChar());*/
 
-            return DbHelper.Execute("Aff_EmailHistorySel", hsParam, DBType.AFFILIATE_12BET);
+            return DbHelper.Execute("Aff_EmailHistorySel", DBType.AFFILIATE_12BET, hsParam);
         }
         /// <summary>
         /// Delete list of selected email id by @DungTong
@@ -58,7 +58,7 @@ namespace DataHandler
             hsParam.Add("ip", HttpContext.Current.Request.UserHostAddress);
             hsParam.Add("errcode", 0);
             hsParam.Add("errmsg", string.Empty);
-            DbResult result = DbHelper.Execute("Aff_EmailHistoryDel", hsParam, DBType.AFFILIATE_12BET);
+            DbResult result = DbHelper.Execute("Aff_EmailHistoryDel", DBType.AFFILIATE_12BET, hsParam);
             return DNAide.Core.CastAide.AsString(result.Outputs["errmsg"]);
         }
     }

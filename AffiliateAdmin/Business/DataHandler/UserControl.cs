@@ -1,5 +1,5 @@
 ﻿using System.Text;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 using DNAide.Core;
 using DNAide.Utils;
 using System.Collections;
@@ -49,7 +49,7 @@ namespace DataHandler
                 htb.Add("username","%" + username + "%");
             }
           //  htb.Add("system", "AFFILIATE");
-            dbr = DbHelper.Execute("Aff_Con_AdminSelByGroupID", htb, DBType.AFFILIATE_12BET);
+            dbr = DbHelper.Execute("Aff_Con_AdminSelByGroupID", DBType.AFFILIATE_12BET, htb);
             return dbr;
             
         }
@@ -69,7 +69,7 @@ namespace DataHandler
             try
             {
 
-                DbResult dbr = DbHelper.Execute("Aff_Con_AdminUpdClosed", htb, DBType.AFFILIATE_12BET);
+                DbResult dbr = DbHelper.Execute("Aff_Con_AdminUpdClosed", DBType.AFFILIATE_12BET, htb);
                 errcode=CastAide.AsInt32(dbr.Outputs["errcode"]);
                 errmsg = dbr.Outputs["errmsg"].ToString();
             }
@@ -88,7 +88,7 @@ namespace DataHandler
 
             Hashtable htb = new Hashtable();
            // htb.Add("system", "Affiliate");
-            DbResult dbr = DbHelper.Execute("Aff_Con_GroupInfoSel", htb, DBType.AFFILIATE_12BET);
+            DbResult dbr = DbHelper.Execute("Aff_Con_GroupInfoSel", DBType.AFFILIATE_12BET, htb);
             return dbr;
         }
         public static int AddNewUser(string firstname, string lastname, string username, string password, int groupid, ref string errmsg)
@@ -109,7 +109,7 @@ namespace DataHandler
             htb.Add("errmsg", "");
             try
             {
-                DbResult dbr = DbHelper.Execute("Aff_Con_AdminIns", htb, DBType.AFFILIATE_12BET);
+                DbResult dbr = DbHelper.Execute("Aff_Con_AdminIns", DBType.AFFILIATE_12BET, htb);
                 errcode = CastAide.AsInt32(dbr.Outputs["errcode"]);
                 errmsg = dbr.Outputs["errmsg"].ToString();
             }
@@ -134,7 +134,7 @@ namespace DataHandler
             htb.Add("errmsg", "");
             try
             {
-                DbResult dbr = DbHelper.Execute("Aff_Con_AdminInsFromExisted", htb, DBType.AFFILIATE_12BET);
+                DbResult dbr = DbHelper.Execute("Aff_Con_AdminInsFromExisted", DBType.AFFILIATE_12BET, htb);
                 errcode = CastAide.AsInt32(dbr.Outputs["errcode"]);
                 errmsg = dbr.Outputs["errmsg"].ToString();
             }
@@ -153,7 +153,7 @@ namespace DataHandler
             try
             {
 
-                dbr = DbHelper.Execute("Aff_Con_GroupInfoSel", htb, DBType.AFFILIATE_12BET); 
+                dbr = DbHelper.Execute("Aff_Con_GroupInfoSel", DBType.AFFILIATE_12BET, htb); 
             }
             catch {
 
@@ -177,7 +177,7 @@ namespace DataHandler
                 htb.Add("errmsg", string.Empty);
                 htb.Add("userid", userID);
                // htb.Add("system", "AFFILIATE");
-                dr = DbHelper.Execute("Aff_Con_GroupInfoUpd", htb, DBType.AFFILIATE_12BET);               
+                dr = DbHelper.Execute("Aff_Con_GroupInfoUpd", DBType.AFFILIATE_12BET, htb);               
             }
             catch
             {
@@ -200,7 +200,7 @@ namespace DataHandler
                 htb.Add("errcode", 0);
                 htb.Add("errmsg", string.Empty);
                 //htb.Add("system", "AFFILIATE");
-                dr = DbHelper.Execute("Aff_Con_GroupInfoIns", htb, DBType.AFFILIATE_12BET);
+                dr = DbHelper.Execute("Aff_Con_GroupInfoIns", DBType.AFFILIATE_12BET, htb);
                 
             }
             catch
@@ -222,7 +222,7 @@ namespace DataHandler
                 htb.Add("userid", userID);
                 htb.Add("ip", HttpContext.Current.Request.UserHostAddress);
               //  htb.Add("system", "AFFILIATE");
-                dr = DbHelper.Execute("Aff_Con_GroupInfoDel", htb, DBType.AFFILIATE_12BET);                
+                dr = DbHelper.Execute("Aff_Con_GroupInfoDel", DBType.AFFILIATE_12BET, htb);                
             }
             catch
             {
@@ -239,7 +239,7 @@ namespace DataHandler
                 Hashtable htb = new Hashtable();
                 htb.Add("custid", custid);
                // htb.Add("system", "AFFILIATE");
-                dr = DbHelper.Execute("Aff_Con_AdminSelByCustID", htb, DBType.AFFILIATE_12BET);                
+                dr = DbHelper.Execute("Aff_Con_AdminSelByCustID", DBType.AFFILIATE_12BET, htb);                
             }
             catch
             {
@@ -261,7 +261,7 @@ namespace DataHandler
                 htb.Add("userid", AppSettings.Session.CustID);
                 htb.Add("ip", HttpContext.Current.Request.UserHostAddress);
            //     htb.Add("system", "AFFILIATE");
-                dr = DbHelper.Execute("Aff_Con_AdminUpd", htb, DBType.AFFILIATE_12BET);
+                dr = DbHelper.Execute("Aff_Con_AdminUpd", DBType.AFFILIATE_12BET, htb);
             }
             catch 
             {
@@ -276,7 +276,7 @@ namespace DataHandler
             {
                 Hashtable htb = new Hashtable();
                 htb.Add("groupid", groupId);
-                return DbHelper.Execute("Aff_Con_GroupPolicySel", htb, DBType.AFFILIATE_12BET);
+                return DbHelper.Execute("Aff_Con_GroupPolicySel", DBType.AFFILIATE_12BET, htb);
             }
             catch
             {
@@ -291,7 +291,7 @@ namespace DataHandler
                 htb.Add("custid", custId);
                 htb.Add("groupid", 0);
                // htb.Add("system", "AFFILIATE");
-                return DbHelper.Execute("Aff_Con_AdminPolicySelByCustID", htb, DBType.AFFILIATE_12BET);
+                return DbHelper.Execute("Aff_Con_AdminPolicySelByCustID", DBType.AFFILIATE_12BET, htb);
             }
             catch
             {
@@ -311,7 +311,7 @@ namespace DataHandler
                 htb.Add("errcode", 0);
                 htb.Add("errmsg", string.Empty);
                // htb.Add("system", "AFFILIATE");
-                dr = DbHelper.Execute("Aff_Con_AdminPolicyUpd", htb, DBType.AFFILIATE_12BET);                
+                dr = DbHelper.Execute("Aff_Con_AdminPolicyUpd", DBType.AFFILIATE_12BET, htb);                
             }
             catch
             {
@@ -332,7 +332,7 @@ namespace DataHandler
                 htb.Add("errcode", 0);
                 htb.Add("errmsg", string.Empty);
                 //htb.Add("system", "AFFILIATE");
-                dr = DbHelper.Execute("Aff_Con_GroupPolicyUpd", htb, DBType.AFFILIATE_12BET);                
+                dr = DbHelper.Execute("Aff_Con_GroupPolicyUpd", DBType.AFFILIATE_12BET, htb);                
             }
             catch
             {
@@ -348,7 +348,7 @@ namespace DataHandler
                 htb.Add("custids", custId);
                 htb.Add("groupid", 0);
                 //htb.Add("system", "AFFILIATE");
-                return DbHelper.Execute("Aff_Con_Batch_AdminPolicySel", htb, DBType.AFFILIATE_12BET);
+                return DbHelper.Execute("Aff_Con_Batch_AdminPolicySel", DBType.AFFILIATE_12BET, htb);
             }
             catch
             {
@@ -361,7 +361,7 @@ namespace DataHandler
             {
                 Hashtable param = new Hashtable();
                 //param.Add("system", "AFFILIATE");
-                return DbHelper.Execute("Aff_Con_FuncInfoSel", param, DBType.AFFILIATE_12BET);
+                return DbHelper.Execute("Aff_Con_FuncInfoSel", DBType.AFFILIATE_12BET, param);
             }
             catch
             {
@@ -375,7 +375,7 @@ namespace DataHandler
             {
                 Hashtable param = new Hashtable();                
                 param.Add("funcid", funcid);
-                return DbHelper.Execute("Aff_Con_FuncInfoSelByFuncID", param, DBType.AFFILIATE_12BET);
+                return DbHelper.Execute("Aff_Con_FuncInfoSelByFuncID", DBType.AFFILIATE_12BET, param);
             }
             catch
             {
@@ -388,7 +388,7 @@ namespace DataHandler
             {
                 Hashtable param = new Hashtable();
                 //param.Add("system", "AFFILIATE");
-                return DbHelper.Execute("Aff_Con_FuncInfoSelParent", param, DBType.AFFILIATE_12BET);
+                return DbHelper.Execute("Aff_Con_FuncInfoSelParent", DBType.AFFILIATE_12BET, param);
             }
             catch
             {
@@ -416,7 +416,7 @@ namespace DataHandler
             DbResult dr = null;
             try
             {
-                dr = DbHelper.Execute("Aff_Con_FuncInfoIns", param, DBType.AFFILIATE_12BET);
+                dr = DbHelper.Execute("Aff_Con_FuncInfoIns", DBType.AFFILIATE_12BET, param);
             }
             catch 
             {
@@ -442,7 +442,7 @@ namespace DataHandler
             DbResult dr = null;
             try
             {
-                dr = DbHelper.Execute("Aff_Con_FuncInfoUpd", param, DBType.AFFILIATE_12BET);
+                dr = DbHelper.Execute("Aff_Con_FuncInfoUpd", DBType.AFFILIATE_12BET, param);
             }
             catch
             {
@@ -463,7 +463,7 @@ namespace DataHandler
             DbResult dr = null;
             try
             {
-                dr = DbHelper.Execute("Aff_Con_FuncInfoDel", param, DBType.AFFILIATE_12BET);
+                dr = DbHelper.Execute("Aff_Con_FuncInfoDel", DBType.AFFILIATE_12BET, param);
             }
             catch
             {

@@ -5,7 +5,7 @@ using Criterias;
 using DNAide.Web;
 using DNAide.Utils;
 using DNAide.Core;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 
 public partial class Report_AffiliateReport : IBCPage
 {

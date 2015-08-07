@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.SessionState;
 using System.Collections;
 using System.Text;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 using DNAide.Web;
 using DNAide.Core;
 using System.IO;

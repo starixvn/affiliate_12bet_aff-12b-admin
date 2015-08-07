@@ -5,7 +5,7 @@ using DNAide.Core;
 using System.Web.SessionState;
 using System.Text;
 using System.Data;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 public class GetClickStatisticsList : IHttpHandler, IRequiresSessionState
 {
     

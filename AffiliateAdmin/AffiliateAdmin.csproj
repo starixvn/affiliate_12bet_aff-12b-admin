@@ -236,6 +236,8 @@
     <Compile Include="BetList\BetListResults.aspx.designer.cs">
       <DependentUpon>BetListResults.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Business\DataAccess\DbHelper.cs" />
+    <Compile Include="Business\DataAccess\DbResult.cs" />
     <Compile Include="Casino\UploadExcel.aspx.designer.cs">
       <DependentUpon>UploadExcel.aspx</DependentUpon>
     </Compile>
@@ -329,7 +331,6 @@
     <Compile Include="Media\ListText.aspx.designer.cs">
       <DependentUpon>ListText.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Business\AffSPExecuter.cs" />
     <Compile Include="Business\AffType.cs" />
     <Compile Include="Business\AppSettings.cs" />
     <Compile Include="Business\CacheRef.cs" />

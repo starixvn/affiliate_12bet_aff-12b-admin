@@ -3,7 +3,7 @@ using Criterias;
 using DNAide.Web;
 using DNAide.Core;
 using System.Text;
-using DNAide.Data;
+using AffiliateAdmin.Business.DataAccess;
 using System.Data;
 namespace AffAdmin.GenerateHTML
 {
