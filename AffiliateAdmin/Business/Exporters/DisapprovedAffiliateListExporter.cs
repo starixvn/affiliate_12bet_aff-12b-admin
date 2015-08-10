@@ -64,22 +64,22 @@ namespace Exporters
             var selectedPalette = GetPalette(currentRow);
 
             dataRow.CreateCell(0).SetCellValue(count);
-            dataRow.GetCell(0).CellStyle = GetCellStyleFromPalette(selectedPalette, HorizontalAlignment.CENTER);
+            dataRow.GetCell(0).CellStyle = GetCellStyleFromPalette(selectedPalette, HorizontalAlignment.Center);
 
             dataRow.CreateCell(1).SetCellValue(dr["username"].ToString());
-            dataRow.GetCell(1).CellStyle = GetCellStyleFromPalette(selectedPalette, HorizontalAlignment.LEFT);
+            dataRow.GetCell(1).CellStyle = GetCellStyleFromPalette(selectedPalette, HorizontalAlignment.Left);
 
             dataRow.CreateCell(2).SetCellValue(dr["firstname"].ToString());
-            dataRow.GetCell(2).CellStyle = GetCellStyleFromPalette(selectedPalette, HorizontalAlignment.LEFT);
+            dataRow.GetCell(2).CellStyle = GetCellStyleFromPalette(selectedPalette, HorizontalAlignment.Left);
 
             dataRow.CreateCell(3).SetCellValue(dr["lastname"].ToString());
-            dataRow.GetCell(3).CellStyle = GetCellStyleFromPalette(selectedPalette, HorizontalAlignment.LEFT);
+            dataRow.GetCell(3).CellStyle = GetCellStyleFromPalette(selectedPalette, HorizontalAlignment.Left);
 
             dataRow.CreateCell(4).SetCellValue(Common.GerFullTextLang(dr["preferredlanguage"]));
-            dataRow.GetCell(4).CellStyle = GetCellStyleFromPalette(selectedPalette, HorizontalAlignment.LEFT);
+            dataRow.GetCell(4).CellStyle = GetCellStyleFromPalette(selectedPalette, HorizontalAlignment.Left);
 
             dataRow.CreateCell(5).SetCellValue(Common.IBCDateTimeFormat(dr["ApprovedDate"], DTFormatType.DT24h));
-            dataRow.GetCell(5).CellStyle = GetCellStyleFromPalette(selectedPalette, HorizontalAlignment.CENTER);
+            dataRow.GetCell(5).CellStyle = GetCellStyleFromPalette(selectedPalette, HorizontalAlignment.Center);
         }
     }
 }

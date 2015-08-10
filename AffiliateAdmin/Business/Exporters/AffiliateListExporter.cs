@@ -23,28 +23,28 @@ namespace Exporters
 
         protected void BorderCellStyle(ICellStyle style)
         {
-            style.BorderBottom = CellBorderType.DASHED;
-            style.BottomBorderColor = IndexedColors.BLACK.Index;
-            style.BorderLeft = CellBorderType.DASHED;
-            style.LeftBorderColor = IndexedColors.BLACK.Index;
-            style.BorderRight = CellBorderType.DASHED;
-            style.RightBorderColor = IndexedColors.BLACK.Index;
-            style.BorderTop = CellBorderType.DASHED;
-            style.TopBorderColor = IndexedColors.BLACK.Index;
+            style.BorderBottom = BorderStyle.Dashed;
+            style.BottomBorderColor = IndexedColors.Black.Index;
+            style.BorderLeft = BorderStyle.Dashed;
+            style.LeftBorderColor = IndexedColors.Black.Index;
+            style.BorderRight = BorderStyle.Dashed;
+            style.RightBorderColor = IndexedColors.Black.Index;
+            style.BorderTop = BorderStyle.Dashed;
+            style.TopBorderColor = IndexedColors.Black.Index;
         }
 
         protected ICellStyle GetHeaderStyle(HSSFWorkbook workbook)
         {
             var headerStyle = workbook.CreateCellStyle();
-            headerStyle.FillForegroundColor = IndexedColors.PALE_BLUE.Index;
-            headerStyle.FillPattern = FillPatternType.SOLID_FOREGROUND;
-            headerStyle.Alignment = HorizontalAlignment.CENTER;
-            headerStyle.FillPattern = FillPatternType.SOLID_FOREGROUND;
+            headerStyle.FillForegroundColor = IndexedColors.PaleBlue.Index;
+            headerStyle.FillPattern = FillPattern.SolidForeground;
+            headerStyle.Alignment = HorizontalAlignment.Center;
+            headerStyle.FillPattern = FillPattern.SolidForeground;
             BorderCellStyle(headerStyle);
 
             
             IFont font = workbook.CreateFont();
-            font.Boldweight = (short)FontBoldWeight.BOLD; 
+            font.Boldweight = (short)FontBoldWeight.Bold; 
             headerStyle.SetFont(font);
 
             return headerStyle;
@@ -53,15 +53,15 @@ namespace Exporters
         protected void CreateSamplePalettes(HSSFWorkbook workbook)
         {
             var oddStyle = workbook.CreateCellStyle();
-            oddStyle.FillForegroundColor = IndexedColors.GREY_25_PERCENT.Index;
-            oddStyle.FillPattern = FillPatternType.BRICKS;
-            oddStyle.FillBackgroundColor = IndexedColors.WHITE.Index;
+            oddStyle.FillForegroundColor = IndexedColors.Grey25Percent.Index;
+            oddStyle.FillPattern = FillPattern.Bricks;
+            oddStyle.FillBackgroundColor = IndexedColors.White.Index;
             BorderCellStyle(oddStyle);
 
             var evenStyle = workbook.CreateCellStyle();
-            evenStyle.FillForegroundColor = IndexedColors.WHITE.Index;
-            evenStyle.FillPattern = FillPatternType.BRICKS;
-            evenStyle.FillBackgroundColor = IndexedColors.WHITE.Index;
+            evenStyle.FillForegroundColor = IndexedColors.White.Index;
+            evenStyle.FillPattern = FillPattern.Bricks;
+            evenStyle.FillBackgroundColor = IndexedColors.White.Index;
             BorderCellStyle(evenStyle);
 
             samplePalettes = new[]
@@ -76,17 +76,17 @@ namespace Exporters
             var palette = new List<ICellStyle>();
             var style = workbook.CreateCellStyle();
             style.CloneStyleFrom(sampleStyle);
-            style.Alignment = HorizontalAlignment.LEFT;
+            style.Alignment = HorizontalAlignment.Left;
             palette.Add(style);
 
             style = workbook.CreateCellStyle();
             style.CloneStyleFrom(sampleStyle);
-            style.Alignment = HorizontalAlignment.CENTER;
+            style.Alignment = HorizontalAlignment.Center;
             palette.Add(style);
 
             style = workbook.CreateCellStyle();
             style.CloneStyleFrom(sampleStyle);
-            style.Alignment = HorizontalAlignment.RIGHT;
+            style.Alignment = HorizontalAlignment.Right;
             palette.Add(style);
 
             return palette;

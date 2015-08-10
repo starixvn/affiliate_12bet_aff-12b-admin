@@ -91,42 +91,42 @@ namespace Exporters
             }
 
             dataRow.CreateCell(0).SetCellValue(count);
-            dataRow.GetCell(0).CellStyle = GetCellStyleFromPalette(selectedPalette, HorizontalAlignment.CENTER);
+            dataRow.GetCell(0).CellStyle = GetCellStyleFromPalette(selectedPalette, HorizontalAlignment.Center);
 
             dataRow.CreateCell(1).SetCellValue(dr["username"].ToString());
-            dataRow.GetCell(1).CellStyle = GetCellStyleFromPalette(selectedPalette, HorizontalAlignment.LEFT);
+            dataRow.GetCell(1).CellStyle = GetCellStyleFromPalette(selectedPalette, HorizontalAlignment.Left);
 
             dataRow.CreateCell(2).SetCellValue(dr["firstname"].ToString());
-            dataRow.GetCell(2).CellStyle = GetCellStyleFromPalette(selectedPalette, HorizontalAlignment.LEFT);
+            dataRow.GetCell(2).CellStyle = GetCellStyleFromPalette(selectedPalette, HorizontalAlignment.Left);
 
             dataRow.CreateCell(3).SetCellValue(dr["lastname"].ToString());
-            dataRow.GetCell(3).CellStyle = GetCellStyleFromPalette(selectedPalette, HorizontalAlignment.LEFT);
+            dataRow.GetCell(3).CellStyle = GetCellStyleFromPalette(selectedPalette, HorizontalAlignment.Left);
 
             dataRow.CreateCell(4).SetCellValue(Common.GerFullTextLang(dr["preferredlanguage"]));
-            dataRow.GetCell(4).CellStyle = GetCellStyleFromPalette(selectedPalette, HorizontalAlignment.LEFT);
+            dataRow.GetCell(4).CellStyle = GetCellStyleFromPalette(selectedPalette, HorizontalAlignment.Left);
 
             dataRow.CreateCell(5).SetCellValue(Common.IBCDateTimeFormat(dr["ApprovedDate"], DTFormatType.DT24h));
-            dataRow.GetCell(5).CellStyle = GetCellStyleFromPalette(selectedPalette, HorizontalAlignment.CENTER);
+            dataRow.GetCell(5).CellStyle = GetCellStyleFromPalette(selectedPalette, HorizontalAlignment.Center);
 
             dataRow.CreateCell(6).SetCellValue(Common.FormatDateNoHour(dr["CasinoJoinedDate"]));
-            dataRow.GetCell(6).CellStyle = GetCellStyleFromPalette(selectedPalette, HorizontalAlignment.CENTER);
+            dataRow.GetCell(6).CellStyle = GetCellStyleFromPalette(selectedPalette, HorizontalAlignment.Center);
 
             dataRow.CreateCell(7).SetCellValue(Common.CutLongText(dr["groupname"].ToString(), 20));
-            dataRow.GetCell(7).CellStyle = GetCellStyleFromPalette(selectedPalette, HorizontalAlignment.CENTER);
+            dataRow.GetCell(7).CellStyle = GetCellStyleFromPalette(selectedPalette, HorizontalAlignment.Center);
 
             dataRow.CreateCell(8).SetCellValue(Common.FormatNumber(dr["balancebf"]));
-            dataRow.GetCell(8).CellStyle = GetCellStyleFromPalette(selectedPalette, HorizontalAlignment.RIGHT);
+            dataRow.GetCell(8).CellStyle = GetCellStyleFromPalette(selectedPalette, HorizontalAlignment.Right);
 
             dataRow.CreateCell(9).SetCellValue(CastAide.AsInt32(dr["noofmember"]).ToString());
-            dataRow.GetCell(9).CellStyle = GetCellStyleFromPalette(selectedPalette, HorizontalAlignment.CENTER);
+            dataRow.GetCell(9).CellStyle = GetCellStyleFromPalette(selectedPalette, HorizontalAlignment.Center);
         }
 
         private IList<ICellStyle> GetClosedPalette(HSSFWorkbook workbook)
         {
             var closedStyle = workbook.CreateCellStyle();
-            closedStyle.FillForegroundColor = IndexedColors.GREY_50_PERCENT.Index;
-            closedStyle.FillPattern = FillPatternType.BRICKS;
-            closedStyle.FillBackgroundColor = IndexedColors.WHITE.Index;
+            closedStyle.FillForegroundColor = IndexedColors.Grey50Percent.Index;
+            closedStyle.FillPattern = FillPattern.Bricks;
+            closedStyle.FillBackgroundColor = IndexedColors.White.Index;
 
             return CreateStylePalette(workbook, closedStyle);
         }

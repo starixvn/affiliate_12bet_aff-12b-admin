@@ -149,17 +149,8 @@ namespace DataHandler
             Hashtable htb = new Hashtable();
             htb.Add("groupid", groupid);
             htb.Add("system", "AFFILIATE");
-            DbResult dbr=null;
-            try
-            {
-
-                dbr = DbHelper.Execute("Aff_Con_GroupInfoSel", DBType.AFFILIATE_12BET, htb); 
-            }
-            catch {
-
-                throw;
-            }
-            return dbr;
+            
+            return DbHelper.Execute("Aff_Con_GroupInfoSel", DBType.AFFILIATE_12BET, htb); 
         }
         public static DbResult UpdateDepartment(int groupID, string groupName, string groupDesc, int userID)
         {
