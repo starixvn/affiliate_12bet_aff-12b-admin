@@ -35,7 +35,7 @@ function ExecRecover()
                 else
                 {
                     $('errMsg').style.display='block';
-                    $('err').innerHTML = '<li><a class=\'err-msg\' onclick="$(\'txtemail\').focus();" href=\'ContactUs.aspx\'>' + datastran.responseText + '</a></li>';
+                    $('err').innerHTML = '<li><a class=\'err-msg\' onclick="$(\'txtemail\').focus();" href=\'#\'>' + datastran.responseText + '</a></li>';
                 }
             }
         });

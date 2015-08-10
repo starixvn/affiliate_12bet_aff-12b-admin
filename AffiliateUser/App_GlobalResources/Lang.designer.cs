@@ -4560,7 +4560,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to We are sorry! The mail server is not available at the moment. Please contact administrator or try again later..
+        ///   Looks up a localized string similar to We are sorry! The mail server is not available at the moment. Please &lt;a href=&quot;/ContactUs.aspx&quot;&gt;contact administrator&lt;/a&gt; or try again later..
         /// </summary>
         internal static string MailServerNotAvailable {
             get {

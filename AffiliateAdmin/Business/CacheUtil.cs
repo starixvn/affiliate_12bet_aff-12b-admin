@@ -37,7 +37,6 @@ public class CacheUtil
             CacheFactory.GetCacheManager().Add(hsAffInfo, null, CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
             //CacheFactory.GetCacheManager().Add(dtbAffInfo, null, CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
         }
-
     }
     public static Hashtable GetHSAffInfo()
     {

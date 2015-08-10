@@ -3154,7 +3154,7 @@ Thank you.</value>
     <value>Don't show this message again.</value>
   </data>
   <data name="MailServerNotAvailable" xml:space="preserve">
-    <value>We are sorry! The mail server is not available at the moment. Please contact administrator or try again later.</value>
+    <value>We are sorry! The mail server is not available at the moment. Please &lt;a href="/ContactUs.aspx"&gt;contact administrator&lt;/a&gt; or try again later.</value>
     <comment>#40516</comment>
   </data>
 </root>

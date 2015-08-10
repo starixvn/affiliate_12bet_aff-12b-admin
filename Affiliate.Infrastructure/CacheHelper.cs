@@ -11,6 +11,7 @@ namespace Affiliate.Infrastructure
     using System.Linq;
     using System.Text;
     using Fanex.Caching;
+    using Newtonsoft.Json;
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
@@ -18,7 +19,7 @@ namespace Affiliate.Infrastructure
     {
         private const int TIMEOUT = 300; // 5 minutes.
 
-        private static readonly ICache Cache = CacheService.CreateInstance(CacheType.EntlibCache);
+        private static readonly ICache Cache = CacheService.CreateInstance(CacheType.MemoryCache);
 
         /// <summary>
         /// Getting cache value.
@@ -28,7 +29,7 @@ namespace Affiliate.Infrastructure
         /// <returns>Return value.</returns>
         public static T Get<T>(string key)
         {
-            return Cache.Get<T>(key);
+            return DeepClone(Cache.Get<T>(key));
         }
 
         /// <summary>
@@ -39,7 +40,7 @@ namespace Affiliate.Infrastructure
         /// <param name="value">Return value.</param>
         public static void Set<T>(string key, T value, int timeout = TIMEOUT)
         {
-            Cache.Set(key, value, timeout);
+            Cache.Set(key, DeepClone(value), timeout);
         }
 
         /// <summary>
@@ -57,6 +58,11 @@ namespace Affiliate.Infrastructure
         public static void Remove(string key)
         {
             Cache.Remove(key);
+        }
+
+        private static T DeepClone<T>(T source)
+        {
+            return JsonConvert.DeserializeObject<T>(JsonConvert.SerializeObject(source));
         }
     }
 }

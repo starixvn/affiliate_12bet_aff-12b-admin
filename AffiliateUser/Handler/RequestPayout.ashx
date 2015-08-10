@@ -11,7 +11,6 @@ using DNAide.Utils;
 
 public class RequestPayout : IHttpHandler, IRequiresSessionState
 {
-
     public void ProcessRequest(HttpContext context)
     {
         context = AffHandler.InitializeCulture(context);
@@ -56,16 +55,16 @@ public class RequestPayout : IHttpHandler, IRequiresSessionState
                 else
                 {
                     #region Activate 12Bet Player Account if not
-                    Boolean isActive = Active12BetAccount.Check12BetUsernameByAffId(AppSettings.Session.CustID, ref strErrorMsg);
+                    var isActive = Active12BetAccount.Check12BetUsernameByAffId(AppSettings.Session.CustID, ref strErrorMsg);
                     if (!isActive)
                     {
                         context.Response.Write("<script type='text/javascript'>parent.ShowError1(\"" + strErrorMsg + "\");</script>");
                         return;
                     }
                     #endregion
-                    intErrCode = DataHandler.PaymentRequest.PayoutRequest(Amt, AppSettings.Session.CustID,  ref intTransId, ref dtmWinlostDate, ref strPreferredLang, ref strErrorMsg);
+                    intErrCode = DataHandler.PaymentRequest.PayoutRequest(Amt, AppSettings.Session.CustID, ref intTransId, ref dtmWinlostDate, ref strPreferredLang, ref strErrorMsg);
                     strSuccMsg = Resources.Lang.PayoutSuccess;
-                   // strErrObj = "txtAmt";
+                    // strErrObj = "txtAmt";
                     //intErrCode = CastAide.AsInt32(result.Outputs["errcode"]);                    
                 }
             }
@@ -80,7 +79,7 @@ public class RequestPayout : IHttpHandler, IRequiresSessionState
                 string strBalance = string.Empty;
                 string strMinAmt = string.Empty;
                 string strPaymentMethod=string.Empty;
-                string strListPayment = GenerateHTML.PaymentRequest.PaymentList(ref strBalance, ref strMinAmt,ref strPaymentMethod);
+                string strListPayment = GenerateHTML.PaymentRequest.PaymentList(ref strBalance, ref strMinAmt, ref strPaymentMethod);
 
                 var mailService = new RequestPayoutMailService
                     {
@@ -91,13 +90,19 @@ public class RequestPayout : IHttpHandler, IRequiresSessionState
                         PreferredLanguage = strPreferredLang,
                         DtmWinlostDate = dtmWinlostDate
                     };
+
                 mailService.SendRequestPayoutMail();
-                
+
                 context.Response.Write("<script type='text/javascript'>parent.UpdateSuccess(\"" + strSuccMsg + "\", \"" + strBalance + "\", \"" + strMinAmt + "\", \"" + strListPayment.Replace("\r\n", "").Replace("\"", "'") + "\");</script>");
             }
         }
+        catch (System.ServiceModel.EndpointNotFoundException endpointNotFoundException)
+        {
+            context.Response.Write("<script type='text/javascript'>parent.ShowError1('" + Common.HTMLEncode(Resources.Lang.MailServerNotAvailable) + "');</script>");
+            Fanex.Logging.LogService.Error(endpointNotFoundException.Message);
+        }
         catch (Exception ex)
-        {            
+        {
             context.Response.Write("<script type='text/javascript'>parent.ShowError1('" + Common.HTMLEncode(ex.Message) + "');</script>");
             Fanex.Logging.LogService.Error(ex.Message);
         }
