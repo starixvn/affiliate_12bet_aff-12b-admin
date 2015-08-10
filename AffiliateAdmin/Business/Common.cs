@@ -11,8 +11,8 @@ using System.Web.Caching;
 using System.Web.Configuration;
 using System.Web.UI.HtmlControls;
 using System.Xml;
-using DNAide.Core;
 using AffiliateAdmin.Business.DataAccess;
+using DNAide.Core;
 using DNAide.Utils;
 using DNAide.Web;
 //using System.Linq;
@@ -52,7 +52,7 @@ public class Common
     };
 
     public static bool CheckHaveParentCategory(string subCategory, out string category)
-    { 
+    {
         foreach (string item in CategoryMediaCasino)
         {
             if (item == subCategory)
@@ -76,7 +76,7 @@ public class Common
         return false;
     }
     // -- Added by Frank.Ngo on IRP 671 - 10 Jan 2012
-    
+
     public static string GetLangChar()
     {
         switch (AppSettings.Session.Language)
@@ -89,7 +89,7 @@ public class Common
                 return "E";
         }
     }
-    
+
     public static string GetIPAddressOfClient()
     {
         string ip;
@@ -104,7 +104,7 @@ public class Common
         }
         return ip;
     }
-    
+
     public static string GetLangCharFor12Bet(string preferredLang)
     {
         switch (preferredLang)
@@ -182,7 +182,7 @@ public class Common
         }
     }
 
-    public static void UploadImage(string path, HtmlInputFile inputfile,string newname,ref int errcode)
+    public static void UploadImage(string path, HtmlInputFile inputfile, string newname, ref int errcode)
     {
 
         // Errcode
@@ -190,7 +190,7 @@ public class Common
         //  - 1 : filename is not exists
         //  - 2 : filename is exists
         //  - 3 : 
-       
+
         string filetype = "";
         string file = "";
         if (inputfile.Value != "")
@@ -212,76 +212,67 @@ public class Common
             errcode = 1;
         }
     }
-    public static void UploadFile(string file,string newfolder,string idname,ref string errmsg)
+    public static void UploadFile(string file, string newfolder, string idname, ref string errmsg)
     {
-        try
+        string type = Path.GetExtension(file.Substring(file.LastIndexOf("\\") + 1));
+        string filename = file.Substring(file.LastIndexOf("\\") + 1);
+        string p = HttpContext.Current.Server.MapPath("../Banner//");
+        string path ="";
+        //---------
+        if (Directory.Exists(p + newfolder) == false)
         {
-            
-            string type = Path.GetExtension(file.Substring(file.LastIndexOf("\\") + 1));
-            string filename = file.Substring(file.LastIndexOf("\\") + 1);
-            string p = HttpContext.Current.Server.MapPath("../Banner//");
-             string path ="";
-            //---------
-             if (Directory.Exists(p + newfolder) == false)
-             {
-                 Directory.CreateDirectory(p + newfolder);
-                
-             }
-             path = p + newfolder + "\\" + idname + type;
-            //---------
-           
-            Stream s = File.OpenRead(file);
-            byte[] buffer = new byte[s.Length];
-            s.Read(buffer, 0, (int)s.Length);
-            int len = (int)s.Length;
-            s.Dispose();
-            s.Close();
+            Directory.CreateDirectory(p + newfolder);
 
-            if (len <= 3000000)
+        }
+        path = p + newfolder + "\\" + idname + type;
+        //---------
+
+        Stream s = File.OpenRead(file);
+        byte[] buffer = new byte[s.Length];
+        s.Read(buffer, 0, (int)s.Length);
+        int len = (int)s.Length;
+        s.Dispose();
+        s.Close();
+
+        if (len <= 3000000)
+        {
+            FileStream fs = new FileStream(path, FileMode.Create);
+            fs.Write(buffer, 0, len);
+
+            Bitmap bmp=null;
+            if (Path.GetExtension(filename).Equals(".gif"))
             {
-                FileStream fs = new FileStream(path, FileMode.Create);
-                fs.Write(buffer, 0, len);
-
-                Bitmap bmp=null;                
-                if (Path.GetExtension(filename).Equals(".gif"))
-                {
-                     bmp = new Bitmap(fs);
-                    bmp.Save(fs, ImageFormat.Gif);
-                    bmp.Dispose();
-                }
-                else if (Path.GetExtension(filename).Equals(".png"))
-                {
-                     bmp = new Bitmap(fs);
-                    bmp.Save(fs, ImageFormat.Png);
-                    bmp.Dispose();
-                }
-                else if (Path.GetExtension(filename).Equals(".jpg"))
-                {
-                     bmp = new Bitmap(fs);
-                    bmp.Save(fs, ImageFormat.Jpeg);
-                    bmp.Dispose();
-                }
-                
-                else
-                {
-                    errmsg = Resources.Lang.ErrmsgFile ;
-                }
-                
-                fs.Dispose();
-                fs.Close();
+                bmp = new Bitmap(fs);
+                bmp.Save(fs, ImageFormat.Gif);
+                bmp.Dispose();
             }
+            else if (Path.GetExtension(filename).Equals(".png"))
+            {
+                bmp = new Bitmap(fs);
+                bmp.Save(fs, ImageFormat.Png);
+                bmp.Dispose();
+            }
+            else if (Path.GetExtension(filename).Equals(".jpg"))
+            {
+                bmp = new Bitmap(fs);
+                bmp.Save(fs, ImageFormat.Jpeg);
+                bmp.Dispose();
+            }
+
             else
             {
-                errmsg = Resources.Lang.ErrmsgSizeFile;
+                errmsg = Resources.Lang.ErrmsgFile;
             }
+
+            fs.Dispose();
+            fs.Close();
         }
-        catch 
+        else
         {
-            
-            throw;
+            errmsg = Resources.Lang.ErrmsgSizeFile;
         }
     }
-    public static void PostFile(string path,string file,HttpContext context)
+    public static void PostFile(string path, string file, HttpContext context)
     {
         // Get size of POST data
         int nPostSize = context.Request.TotalBytes;
@@ -310,9 +301,10 @@ public class Common
             nBytesRead = nBytesRead + nReadSize;
         }
         wData.Close();
-        fsData.Close(); 
+        fsData.Close();
     }
-    public static bool IsValidExtension(string fileName,ref string ext){
+    public static bool IsValidExtension(string fileName, ref string ext)
+    {
         string[] arr = fileName.Split('\\');
         string[] arr1 = arr[arr.Length - 1].Split('.');
         ext = arr1[arr1.Length - 1].ToLower();
@@ -320,142 +312,126 @@ public class Common
     }
     public static void UploadFile(HttpContext context, string newfolder, string path, ref int errcode, string id)
     {
-        try
+        errcode = 0;
+        string file="";
+        for (int i = 0; i < context.Request.Files.Count; i++)
         {
-            errcode = 0;
-            string file="";
-            for (int i = 0; i < context.Request.Files.Count; i++)
+            if (string.IsNullOrEmpty(context.Request.Files[i].FileName) == false)
             {
-                if (string.IsNullOrEmpty(context.Request.Files[i].FileName)==false)
-                {
-                    file = context.Request.Files[i].FileName;
-                    break;
-                }
+                file = context.Request.Files[i].FileName;
+                break;
             }
-            if (!string.IsNullOrEmpty(file))
+        }
+        if (!string.IsNullOrEmpty(file))
+        {
+            if (Directory.Exists(path + newfolder) == false)
             {
-                if (Directory.Exists(path + newfolder) == false)
-                {
-                    Directory.CreateDirectory(path + newfolder);
+                Directory.CreateDirectory(path + newfolder);
 
-                }                
-                string strDst;
-                //strSrc = context.Request.Files[0].FileName;
-                string Extension = Path.GetExtension(file);
-                if (Extension.ToLower().Equals(".gif") == true || Extension.ToLower().Equals(".jpg") == true || Extension.ToLower().Equals(".png") == true || Extension.ToLower().Equals(".jpeg") == true || Extension.ToLower().Equals(".swf") == true)
+            }
+            string strDst;
+            //strSrc = context.Request.Files[0].FileName;
+            string Extension = Path.GetExtension(file);
+            if (Extension.ToLower().Equals(".gif") == true || Extension.ToLower().Equals(".jpg") == true || Extension.ToLower().Equals(".png") == true || Extension.ToLower().Equals(".jpeg") == true || Extension.ToLower().Equals(".swf") == true)
+            {
+                for (int i = 0; i < context.Request.Files.Count; i++)
                 {
-                    for (int i = 0; i < context.Request.Files.Count; i++)
+                    if (string.IsNullOrEmpty(context.Request.Files[i].FileName) == false)
                     {
-                        if (string.IsNullOrEmpty(context.Request.Files[i].FileName) == false)
+                        if (context.Request.Files[i].ContentLength <= AppSettings.ImageSize)
                         {
-                            if (context.Request.Files[i].ContentLength <= AppSettings.ImageSize)
-                            {
-                                int nPos1 = file.LastIndexOf('\\');
-                                int nPos2 = file.LastIndexOf('/');
-                                //strDst = path + file.Substring(Math.Max(nPos1, nPos2) + 1);
-                                strDst = path + newfolder + "\\" + id + Extension;
-                                context.Request.Files[i].SaveAs(strDst);
-                                break;
-                            }
-                            else
-                            {
-                                errcode = 3;
-                            }
+                            int nPos1 = file.LastIndexOf('\\');
+                            int nPos2 = file.LastIndexOf('/');
+                            //strDst = path + file.Substring(Math.Max(nPos1, nPos2) + 1);
+                            strDst = path + newfolder + "\\" + id + Extension;
+                            context.Request.Files[i].SaveAs(strDst);
+                            break;
+                        }
+                        else
+                        {
+                            errcode = 3;
                         }
                     }
-                }
-                else
-                {
-                    // Extension fail
-                    errcode = 2;
                 }
             }
             else
             {
-                // file is null
-                errcode = 1;
+                // Extension fail
+                errcode = 2;
             }
         }
-        catch 
+        else
         {
-            
-            throw;
+            // file is null
+            errcode = 1;
         }
     }
 
     public static void UploadFileWithAutoDetectSize(HttpContext context, string newFolder, string path, string fileName, ref int errcode, out string size, ref string strDst)
     {
         size = string.Empty;
-        try
+        errcode = 0;
+        string file = "";
+        for (int i = 0; i < context.Request.Files.Count; i++)
         {
-            errcode = 0;
-            string file = "";
-            for (int i = 0; i < context.Request.Files.Count; i++)
+            if (string.IsNullOrEmpty(context.Request.Files[i].FileName) == false)
             {
-                if (string.IsNullOrEmpty(context.Request.Files[i].FileName) == false)
-                {
-                    file = context.Request.Files[i].FileName;
-                    break;
-                }
+                file = context.Request.Files[i].FileName;
+                break;
             }
-            if (!string.IsNullOrEmpty(file))
+        }
+        if (!string.IsNullOrEmpty(file))
+        {
+            if (Directory.Exists(path + newFolder) == false)
             {
-                if (Directory.Exists(path + newFolder) == false)
-                {
-                    Directory.CreateDirectory(path + newFolder);
+                Directory.CreateDirectory(path + newFolder);
 
-                }
-                //string strDst;
-                //strSrc = context.Request.Files[0].FileName;
-                string Extension = Path.GetExtension(file);
-                if (Extension.ToLower().Equals(".gif") == true || Extension.ToLower().Equals(".jpg") == true || Extension.ToLower().Equals(".png") == true || Extension.ToLower().Equals(".jpeg") == true || Extension.ToLower().Equals(".swf") == true)
+            }
+            //string strDst;
+            //strSrc = context.Request.Files[0].FileName;
+            string Extension = Path.GetExtension(file);
+            if (Extension.ToLower().Equals(".gif") == true || Extension.ToLower().Equals(".jpg") == true || Extension.ToLower().Equals(".png") == true || Extension.ToLower().Equals(".jpeg") == true || Extension.ToLower().Equals(".swf") == true)
+            {
+                for (int i = 0; i < context.Request.Files.Count; i++)
                 {
-                    for (int i = 0; i < context.Request.Files.Count; i++)
+                    if (string.IsNullOrEmpty(context.Request.Files[i].FileName) == false)
                     {
-                        if (string.IsNullOrEmpty(context.Request.Files[i].FileName) == false)
+                        if (context.Request.Files[i].ContentLength <= AppSettings.ImageSize)
                         {
-                            if (context.Request.Files[i].ContentLength <= AppSettings.ImageSize)
+                            int nPos1 = file.LastIndexOf('\\');
+                            int nPos2 = file.LastIndexOf('/');
+                            //strDst = path + file.Substring(Math.Max(nPos1, nPos2) + 1);
+                            strDst = path + newFolder + "\\" + fileName;
+                            context.Request.Files[i].SaveAs(strDst);
+                            if (!Extension.ToLower().Equals(".swf"))
                             {
-                                int nPos1 = file.LastIndexOf('\\');
-                                int nPos2 = file.LastIndexOf('/');
-                                //strDst = path + file.Substring(Math.Max(nPos1, nPos2) + 1);
-                                strDst = path + newFolder + "\\" + fileName;
-                                context.Request.Files[i].SaveAs(strDst);
-                                if (!Extension.ToLower().Equals(".swf"))
-                                {
-                                    Bitmap bitmap = new Bitmap(context.Request.Files[0].InputStream);
-                                    size = string.Format("{0}x{1}", bitmap.Width, bitmap.Height);
-                                }
-                                else
-                                {
-                                    SwfInfo swfInfo = new SwfInfo(strDst);
-                                    size = string.Format("{0}x{1}", swfInfo.Width, swfInfo.Height);
-                                }
-                                break;
+                                Bitmap bitmap = new Bitmap(context.Request.Files[0].InputStream);
+                                size = string.Format("{0}x{1}", bitmap.Width, bitmap.Height);
                             }
                             else
                             {
-                                errcode = 3;
+                                SwfInfo swfInfo = new SwfInfo(strDst);
+                                size = string.Format("{0}x{1}", swfInfo.Width, swfInfo.Height);
                             }
+                            break;
+                        }
+                        else
+                        {
+                            errcode = 3;
                         }
                     }
-                }
-                else
-                {
-                    // Extension fail
-                    errcode = 2;
                 }
             }
             else
             {
-                // file is null
-                errcode = 1;
+                // Extension fail
+                errcode = 2;
             }
         }
-        catch
+        else
         {
-
-            throw;
+            // file is null
+            errcode = 1;
         }
     }
 
@@ -485,7 +461,7 @@ public class Common
         resultHtml.Append("</select>");
         return resultHtml.ToString();
     }
-    
+
     public static string GetIndex(string strType)
     {
         switch (strType)
@@ -498,7 +474,7 @@ public class Common
             default: return "0";
         }
     }
-    
+
     public static string GetMethodName(string strValue)
     {
         switch (strValue)
@@ -511,7 +487,7 @@ public class Common
             default: return "Player";
         }
     }
-    
+
     public static string GetAlertMsg(int intAlertCode)
     {
         switch (intAlertCode)
@@ -532,7 +508,7 @@ public class Common
                 return Resources.Lang.UpdAffSuccess;
         }
     }
-    
+
     public static string FormatNumber(object Number)
     {
         decimal dcNumber = CastAide.AsDecimal(Number);
@@ -546,8 +522,8 @@ public class Common
             return "-$" + NumberFormat.DecFormat(dcNumber, 2);
         }
     }
-    
-    public static string FormatNumber1(object Number,bool isMoneyAmount)
+
+    public static string FormatNumber1(object Number, bool isMoneyAmount)
     {
         decimal dcNumber = CastAide.AsDecimal(Number);
         if (isMoneyAmount)
@@ -556,13 +532,13 @@ public class Common
         }
         return NumberFormat.DecFormat(dcNumber, 0);
     }
-    
+
     public static string FormatDate(object dtmDate)
     {
         DateTime date = CastAide.AsDateTime(dtmDate);
         return date.ToString("MM/dd/yyyy HH:mm:ss");
     }
-    
+
     public static string FormatDateNoHour(object dtmDate)
     {
         if (string.IsNullOrEmpty(dtmDate.ToString()))
@@ -570,7 +546,7 @@ public class Common
         DateTime date = CastAide.AsDateTime(dtmDate);
         return date.ToString("MM/dd/yyyy");
     }
-    
+
     public static string GetErrMsg(int intErrCode, ref string strErrObj)
     {
         switch (intErrCode)
@@ -656,7 +632,7 @@ public class Common
                 return GetErrorText(intErrCode.ToString());
         }
     }
-    
+
     public static string NoInfo(int intNumCols)
     {
         string strNoInfo = TemplateHandler.LoadTemplate("NoInfo.htm");
@@ -664,7 +640,7 @@ public class Common
         TemplateHandler.Assign(ref strNoInfo, "num-cols", intNumCols.ToString());
         return strNoInfo;
     }
-    
+
     public static string NoInfo(int width, string strMsg)
     {
         string strNoInfo = TemplateHandler.LoadTemplate("NoInfo1.htm");
@@ -672,7 +648,7 @@ public class Common
         TemplateHandler.Assign(ref strNoInfo, "msg", strMsg);
         return strNoInfo;
     }
-    
+
     /// <summary>
     /// Create date time selector
     /// </summary>
@@ -685,29 +661,21 @@ public class Common
     /// <returns></returns>
     public static string GenCalendarControl(string txtDateId, string currentPos, string triggerId, string currentDate, bool noJs, bool showTime)
     {
-        try
-        {
-            if (string.IsNullOrEmpty(txtDateId) || string.IsNullOrEmpty(triggerId)) return null;
-            string js = (noJs ? "" : TemplateHandler.LoadTemplate("CalendarJs.html"));
-            string txtClass = showTime ? "txtdate-show-time" : "txtdate-no-time";
-            string singleClick = showTime ? "false" : "true";
-            TemplateHandler.Assign(ref js, "{CurrentPos}", currentPos);
-            return TemplateHandler.LoadHtml("Calendar.html",
-                new string[] { "{txtDate}", "{themepath}", "{triggerId}", "{currentDate}", "{JS}", "{ShowTime}", "{TxtDateCls}", "{SecFormat}", "{IsSingleClick}", "{submit}" },
-                new string[] { txtDateId, currentPos + AppSettings.ThemeDir, triggerId, currentDate, js, showTime.ToString().ToLower(), txtClass, (showTime ? " %H:%M:%S" : ""), singleClick, Resources.Lang.Submit });
-        }
-        catch { throw; }
+        if (string.IsNullOrEmpty(txtDateId) || string.IsNullOrEmpty(triggerId)) return null;
+        string js = (noJs ? "" : TemplateHandler.LoadTemplate("CalendarJs.html"));
+        string txtClass = showTime ? "txtdate-show-time" : "txtdate-no-time";
+        string singleClick = showTime ? "false" : "true";
+        TemplateHandler.Assign(ref js, "{CurrentPos}", currentPos);
+        return TemplateHandler.LoadHtml("Calendar.html",
+            new string[] { "{txtDate}", "{themepath}", "{triggerId}", "{currentDate}", "{JS}", "{ShowTime}", "{TxtDateCls}", "{SecFormat}", "{IsSingleClick}", "{submit}" },
+            new string[] { txtDateId, currentPos + AppSettings.ThemeDir, triggerId, currentDate, js, showTime.ToString().ToLower(), txtClass, (showTime ? " %H:%M:%S" : ""), singleClick, Resources.Lang.Submit });
     }
-    
+
     public static string GenCalendarControl(string txtDateId, string currentPos, string triggerId, string currentDate, bool noJs)
     {
-        try
-        {
-            return GenCalendarControl(txtDateId, currentPos, triggerId, currentDate, noJs, false);
-        }
-        catch { throw; }
+        return GenCalendarControl(txtDateId, currentPos, triggerId, currentDate, noJs, false);
     }
-    
+
     /// <summary>
     /// Create date/time range selector
     /// </summary>
@@ -722,61 +690,45 @@ public class Common
     /// <returns></returns>
     public static string CreateDateRangeSelector(string currentPos, int noDayReset, string fdateId, string tdateId, DateTime fdate, DateTime tdate, bool noJs, bool showTime, bool blShowToday)
     {
-        try
-        {
-            string dateRangeTpl = TemplateHandler.LoadTemplate("DateRangeSelect.html");
-            TemplateHandler.Assign(ref dateRangeTpl, "{CurrentPos}", currentPos);
-            TemplateHandler.Assign(ref dateRangeTpl, "{DayNoReset}", noDayReset.ToString());
-            TemplateHandler.Assign(ref dateRangeTpl, "{Fdate}", fdateId);
-            TemplateHandler.Assign(ref dateRangeTpl, "{Tdate}", tdateId);
-            TemplateHandler.Assign(ref dateRangeTpl, "{submit}", Resources.Lang.Submit);
-            TemplateHandler.Assign(ref dateRangeTpl, "{today_now}", Resources.Lang.Today);
-            TemplateHandler.Assign(ref dateRangeTpl, "{yesterday}", Resources.Lang.Yesterday);
-            TemplateHandler.Assign(ref dateRangeTpl, "fdatetext", Resources.Lang.From);
-            TemplateHandler.Assign(ref dateRangeTpl, "tdatetext", Resources.Lang.To);
-            string strShowToday = blShowToday ? "" : "hidden";
-            TemplateHandler.Assign(ref dateRangeTpl, "{hide}", strShowToday);
-            string fdateStr = showTime ? DateFormat.ShortDateFormat(fdate) : DateFormat.ShortDateFormat(fdate);
-            string tdateStr = showTime ? DateFormat.ShortDateFormat(tdate) : DateFormat.ShortDateFormat(tdate);
+        string dateRangeTpl = TemplateHandler.LoadTemplate("DateRangeSelect.html");
+        TemplateHandler.Assign(ref dateRangeTpl, "{CurrentPos}", currentPos);
+        TemplateHandler.Assign(ref dateRangeTpl, "{DayNoReset}", noDayReset.ToString());
+        TemplateHandler.Assign(ref dateRangeTpl, "{Fdate}", fdateId);
+        TemplateHandler.Assign(ref dateRangeTpl, "{Tdate}", tdateId);
+        TemplateHandler.Assign(ref dateRangeTpl, "{submit}", Resources.Lang.Submit);
+        TemplateHandler.Assign(ref dateRangeTpl, "{today_now}", Resources.Lang.Today);
+        TemplateHandler.Assign(ref dateRangeTpl, "{yesterday}", Resources.Lang.Yesterday);
+        TemplateHandler.Assign(ref dateRangeTpl, "fdatetext", Resources.Lang.From);
+        TemplateHandler.Assign(ref dateRangeTpl, "tdatetext", Resources.Lang.To);
+        string strShowToday = blShowToday ? "" : "hidden";
+        TemplateHandler.Assign(ref dateRangeTpl, "{hide}", strShowToday);
+        string fdateStr = showTime ? DateFormat.ShortDateFormat(fdate) : DateFormat.ShortDateFormat(fdate);
+        string tdateStr = showTime ? DateFormat.ShortDateFormat(tdate) : DateFormat.ShortDateFormat(tdate);
 
-            TemplateHandler.Assign(ref dateRangeTpl, "{FromDateCal}", GenCalendarControl(fdateId, currentPos, fdateId + "_tg", fdateStr, noJs, showTime));
-            TemplateHandler.Assign(ref dateRangeTpl, "{ToDateCal}", GenCalendarControl(tdateId, currentPos, tdateId + "_tg", tdateStr, true, showTime));
-            return dateRangeTpl;
-        }
-        catch { throw; }
+        TemplateHandler.Assign(ref dateRangeTpl, "{FromDateCal}", GenCalendarControl(fdateId, currentPos, fdateId + "_tg", fdateStr, noJs, showTime));
+        TemplateHandler.Assign(ref dateRangeTpl, "{ToDateCal}", GenCalendarControl(tdateId, currentPos, tdateId + "_tg", tdateStr, true, showTime));
+        return dateRangeTpl;
     }
 
     public static string CreateDateRangeSelector(string currentPos, int noDayReset, string fdateId, string tdateId, DateTime fdate, DateTime tdate, bool blShowToday)
     {
-        try
-        {
-            return CreateDateRangeSelector(currentPos, noDayReset, fdateId, tdateId, fdate, tdate, false, false, blShowToday);
-        }
-        catch { throw; }
+        return CreateDateRangeSelector(currentPos, noDayReset, fdateId, tdateId, fdate, tdate, false, false, blShowToday);
     }
 
     public static string CreateDateRangeSelector(string currentPos, int noDayReset, string fdateId, string tdateId)
     {
-        try
-        {
-            return CreateDateRangeSelector(currentPos, noDayReset, fdateId, tdateId, DateTime.Now.AddDays(-noDayReset), DateTime.Now, false);
-        }
-        catch { throw; }
+        return CreateDateRangeSelector(currentPos, noDayReset, fdateId, tdateId, DateTime.Now.AddDays(-noDayReset), DateTime.Now, false);
     }
-    
+
     public static string CreateDateRangeSelector(string currentPos, string fdateId, string tdateId)
     {
-        try
-        {
-            return CreateDateRangeSelector(currentPos, 1, fdateId, tdateId);
-        }
-        catch { throw; }
+        return CreateDateRangeSelector(currentPos, 1, fdateId, tdateId);
     }
-    
+
     public static string GerStatus(object strStatus)
     {
         switch (strStatus.ToString().ToLower())
-        {           
+        {
             case "pending":
                 return Resources.Lang.Proccessing;
             case "completed":
@@ -791,7 +743,7 @@ public class Common
                 return strStatus.ToString();
         }
     }
-    
+
     public static string GenNoInformation(string colspan)
     {
         string noDataTpl = TemplateHandler.LoadTemplate("NoInformation.htm");
@@ -800,7 +752,7 @@ public class Common
         TemplateHandler.Assign(ref noDataTpl, "{nodata}", Resources.Lang.NoInfo);
         return noDataTpl;
     }
-    
+
     public static void InitAccessPermission()
     {
         Dictionary<string, string> pages = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
@@ -843,7 +795,7 @@ public class Common
             isTrue = true;
         return isTrue;
     }
-    
+
     //Get permission host per function
     public static bool isRead(string funcName)
     {
@@ -859,100 +811,96 @@ public class Common
     {
         key = "Err" + key;
         object text = HttpContext.GetGlobalResourceObject("Lang", key);
-        if (text == null) return key;        
+        if (text == null) return key;
         return text.ToString();
     }
 
     public static string GenPagingFooter(string url, int pageNum, int cpage, int colsNo)
     {
-        try
+        string pageIndexTpl = TemplateHandler.LoadTemplate("PageIndex.html");
+        string footerHtml = TemplateHandler.LoadTemplate("Paging.html");
+        string GotoPageHtml = TemplateHandler.LoadTemplate("GotoPage.html");
+        TemplateHandler.Assign(ref footerHtml, "{CurrentPage}", cpage.ToString());
+        TemplateHandler.Assign(ref footerHtml, "{Colspan}", colsNo.ToString());
+        string pageList = string.Empty;
+
+        int startpage, endpage;
+        startpage = cpage - 3;
+        if (startpage < 1)
+            startpage = 0;
+
+        endpage = startpage + 5;
+        if (endpage > pageNum)
+            endpage = pageNum;
+
+        if ((endpage - startpage) < 5 && (cpage < pageNum) && (pageNum - 5 > 0))
         {
-            string pageIndexTpl = TemplateHandler.LoadTemplate("PageIndex.html");
-            string footerHtml = TemplateHandler.LoadTemplate("Paging.html");
-            string GotoPageHtml = TemplateHandler.LoadTemplate("GotoPage.html");
-            TemplateHandler.Assign(ref footerHtml, "{CurrentPage}", cpage.ToString());
-            TemplateHandler.Assign(ref footerHtml, "{Colspan}", colsNo.ToString());
-            string pageList = string.Empty;
+            startpage = pageNum - 5;
+            endpage = pageNum;
+        }
 
-            int startpage, endpage;
-            startpage = cpage - 3;
-            if (startpage < 1)
-                startpage = 0;
+        if ((endpage + 1) == pageNum)
+            endpage = pageNum;
 
-            endpage = startpage + 5;
-            if (endpage > pageNum)
-                endpage = pageNum;
-
-            if ((endpage - startpage) < 5 && (cpage < pageNum) && (pageNum - 5 > 0))
-            {
-                startpage = pageNum - 5;
-                endpage = pageNum;
-            }
-
-            if ((endpage + 1) == pageNum)
-                endpage = pageNum;
-
-            if (cpage >= 4)
-            {
-                string pageIndex = (string)pageIndexTpl.Clone();
-                TemplateHandler.Assign(ref pageIndex, "{Url}", url);
-                TemplateHandler.Assign(ref pageIndex, "{CurrentPage}", string.Empty);
-                TemplateHandler.Assign(ref pageIndex, "{PageText}", "1");
-                TemplateHandler.Assign(ref pageIndex, "{Page}", "1");
-                if (cpage == 4 || pageNum == 6)
-                    pageList += pageIndex;
-                else
-                    pageList += pageIndex + " ... ";
-            }
-
-            if ((endpage == cpage) && (endpage - 5) > 0)
-                startpage = endpage - 5;
-
-            for (int i = startpage; i < endpage; ++i)
-            {
-                string pageIndex = (string)pageIndexTpl.Clone();
-
-                TemplateHandler.Assign(ref pageIndex, "{Url}", url);
-                if (cpage == (i + 1))
-                {
-                    pageIndex = "&nbsp;<strong style=\"padding:0 1px;\">" + cpage.ToString() + "</strong>";
-                }
-                else
-                {
-                    TemplateHandler.Assign(ref pageIndex, "{CurrentPage}", string.Empty);
-                    TemplateHandler.Assign(ref pageIndex, "{PageText}", "" + (i + 1));
-                    TemplateHandler.Assign(ref pageIndex, "{Page}", "" + (i + 1));
-                }
+        if (cpage >= 4)
+        {
+            string pageIndex = (string)pageIndexTpl.Clone();
+            TemplateHandler.Assign(ref pageIndex, "{Url}", url);
+            TemplateHandler.Assign(ref pageIndex, "{CurrentPage}", string.Empty);
+            TemplateHandler.Assign(ref pageIndex, "{PageText}", "1");
+            TemplateHandler.Assign(ref pageIndex, "{Page}", "1");
+            if (cpage == 4 || pageNum == 6)
                 pageList += pageIndex;
-            }
+            else
+                pageList += pageIndex + " ... ";
+        }
 
-            if ((endpage + 1) < pageNum)
-            {
-                string pageIndex = (string)pageIndexTpl.Clone();
-                TemplateHandler.Assign(ref pageIndex, "{Url}", url);
-                TemplateHandler.Assign(ref pageIndex, "{CurrentPage}", string.Empty);
-                TemplateHandler.Assign(ref pageIndex, "{PageText}", " " + pageNum);
-                TemplateHandler.Assign(ref pageIndex, "{Page}", " " + pageNum);
-                pageList += " ... " + pageIndex;
-            }
+        if ((endpage == cpage) && (endpage - 5) > 0)
+            startpage = endpage - 5;
 
-            if (pageList.Length > 0)
+        for (int i = startpage; i < endpage; ++i)
+        {
+            string pageIndex = (string)pageIndexTpl.Clone();
+
+            TemplateHandler.Assign(ref pageIndex, "{Url}", url);
+            if (cpage == (i + 1))
             {
-                TemplateHandler.Assign(ref footerHtml, "{PageList}", pageList.Remove(pageList.Length - 1));
-                TemplateHandler.Assign(ref footerHtml, "{GotoPage}", GotoPageHtml);
-                TemplateHandler.Assign(ref footerHtml, "{Url}", url);
+                pageIndex = "&nbsp;<strong style=\"padding:0 1px;\">" + cpage.ToString() + "</strong>";
             }
             else
             {
-                TemplateHandler.Assign(ref footerHtml, "{PageList}", "<strong>1</strong>");
-                TemplateHandler.Assign(ref footerHtml, "{Url}", "");
+                TemplateHandler.Assign(ref pageIndex, "{CurrentPage}", string.Empty);
+                TemplateHandler.Assign(ref pageIndex, "{PageText}", "" + (i + 1));
+                TemplateHandler.Assign(ref pageIndex, "{Page}", "" + (i + 1));
             }
-            return footerHtml;
+            pageList += pageIndex;
         }
-        catch { throw; }
+
+        if ((endpage + 1) < pageNum)
+        {
+            string pageIndex = (string)pageIndexTpl.Clone();
+            TemplateHandler.Assign(ref pageIndex, "{Url}", url);
+            TemplateHandler.Assign(ref pageIndex, "{CurrentPage}", string.Empty);
+            TemplateHandler.Assign(ref pageIndex, "{PageText}", " " + pageNum);
+            TemplateHandler.Assign(ref pageIndex, "{Page}", " " + pageNum);
+            pageList += " ... " + pageIndex;
+        }
+
+        if (pageList.Length > 0)
+        {
+            TemplateHandler.Assign(ref footerHtml, "{PageList}", pageList.Remove(pageList.Length - 1));
+            TemplateHandler.Assign(ref footerHtml, "{GotoPage}", GotoPageHtml);
+            TemplateHandler.Assign(ref footerHtml, "{Url}", url);
+        }
+        else
+        {
+            TemplateHandler.Assign(ref footerHtml, "{PageList}", "<strong>1</strong>");
+            TemplateHandler.Assign(ref footerHtml, "{Url}", "");
+        }
+        return footerHtml;
     }
 
-     /// <summary>
+    /// <summary>
     /// Generate paging header and footer include button at top of table VinhTrinh@20090612
     /// </summary>
     /// <param name="str"></param>
@@ -971,9 +919,9 @@ public class Common
         TemplateHandler.Assign(ref strPaging, "txtID", txtID);
         TemplateHandler.Assign(ref strPaging, "width", width);
 
-        if(!hasCheckAll)
+        if (!hasCheckAll)
             TemplateHandler.RemoveBlock(ref strPaging, "selectall");
-        if(!hasPageSize)
+        if (!hasPageSize)
             TemplateHandler.RemoveBlock(ref strPaging, "pagesize");
 
         TemplateHandler.Assign(ref strPaging, "pagesize", pageSize);
@@ -1051,11 +999,11 @@ public class Common
             }
             TemplateHandler.ReplaceBlock(ref strPaging, "headbutton", strBuild.ToString());
         }
-        if(!hasExcel)
+        if (!hasExcel)
             TemplateHandler.RemoveBlock(ref strPaging, "excelbutton");
         return strPaging;
     }
-    
+
     /// <summary>
     /// Split long string into many smaller lines DungTong@20090319
     /// </summary>
@@ -1097,7 +1045,7 @@ public class Common
         StringBuilder result = new StringBuilder();
         string opt = TemplateHandler.LoadTemplate("Option1.htm");
         TemplateHandler.Assign(ref opt, "id", id);
-        string temp = TemplateHandler.CopyBlock(opt,"optionList");
+        string temp = TemplateHandler.CopyBlock(opt, "optionList");
         string tempopt = temp;
         if (isGenAll)
         {
@@ -1126,8 +1074,8 @@ public class Common
             }
             result.Append(tempopt);
         }
-       TemplateHandler.ReplaceBlock(ref opt, "optionList", result.ToString());
-       return opt;
+        TemplateHandler.ReplaceBlock(ref opt, "optionList", result.ToString());
+        return opt;
     }
 
     public static string GenDropDownFromTable(DataTable dt, string valueColumn, string nameColumn, string id, ref string activeValue, bool isGenAll)
@@ -1245,7 +1193,7 @@ public class Common
             }
             result.Append(tempopt);
         }
-        
+
         TemplateHandler.ReplaceBlock(ref opt, "optionList", result.ToString());
 
         return opt;
@@ -1267,7 +1215,7 @@ public class Common
     {
         var dt = new DataTable();
 
-        dt.Columns.Add(nameColumn, typeof (string));
+        dt.Columns.Add(nameColumn, typeof(string));
         dt.Columns.Add(valueColumn, typeof(string));
 
         var startYear = AppSettings.StartYearOfSystem;
@@ -1308,10 +1256,10 @@ public class Common
     /// <param name="paramValues">List of values that have values</param>
     /// <param name="activePages">if we do not pass this param it means all of pages are active.Otherwise we will remove list of menu items not in active menu</param>
     /// <returns></returns>
-    public static string GenSubPage(int currPage,string nMembers,string playerDetails, int[] paramIndexs, string[] paramValues, params int[] activeMenus)
+    public static string GenSubPage(int currPage, string nMembers, string playerDetails, int[] paramIndexs, string[] paramValues, params int[] activeMenus)
     {
         string strTpl = TemplateHandler.LoadTemplate("SubPage.htm");
-        TemplateHandler.Assign(ref strTpl, "StatementHistory",Resources.Lang.StatementHistory);
+        TemplateHandler.Assign(ref strTpl, "StatementHistory", Resources.Lang.StatementHistory);
         TemplateHandler.Assign(ref strTpl, "Edit", Resources.Lang.Edit);
         TemplateHandler.Assign(ref strTpl, "Member", Resources.Lang.Member);
         TemplateHandler.Assign(ref strTpl, "Note", Resources.Lang.Note);
@@ -1326,12 +1274,12 @@ public class Common
             for (i = 0; i < paramIndexs.Length; i++)
             {
                 TemplateHandler.Assign(ref strTpl, "param" + paramIndexs[i].ToString(), paramValues[i]);
-            }   
+            }
         }
         /*Activate the current page */
         for (i = 1; i <= 7; i++)
         {
-            if (activeMenus.Length==0 || activeMenuList.Contains(i))
+            if (activeMenus.Length == 0 || activeMenuList.Contains(i))
             {
                 TemplateHandler.Assign(ref strTpl, "curr" + i.ToString(), (i == currPage ? "id=\"current\"" : string.Empty));
                 TemplateHandler.Assign(ref strTpl, "param" + i.ToString(), string.Empty);
@@ -1353,10 +1301,10 @@ public class Common
 
     public static string GenSubPage(int currPage, string nMembers, string playerDetails, params int[] activeMenus)
     {
-        return Common.GenSubPage(currPage, nMembers, playerDetails, null, null,activeMenus);
+        return Common.GenSubPage(currPage, nMembers, playerDetails, null, null, activeMenus);
     }
 
-    public static string GenSubPage(int currPage,  int[] paramIndexs, string[] paramValues, params int[] activeMenus)
+    public static string GenSubPage(int currPage, int[] paramIndexs, string[] paramValues, params int[] activeMenus)
     {
         return Common.GenSubPage(currPage, string.Empty, string.Empty, paramIndexs, paramValues, activeMenus);
     }
@@ -1419,10 +1367,10 @@ public class Common
         switch (type)
         {
             case DTFormatType.DT24h:
-                return string.Format("{0:MM/dd/yyyy HH:mm:ss}", dateCell);               
+                return string.Format("{0:MM/dd/yyyy HH:mm:ss}", dateCell);
             default:
                 return string.Empty;
-                
+
         }
     }
 
@@ -1457,7 +1405,7 @@ public class Common
         {
             FileName = "Email/AffApprove/Approved" + strEmailSuffix + ".htm";
             FileName2 = "Email/AffApprove/ApprovalEmail" + strEmailSuffix + ".htm";
-            FileName3 = "Email/AffApprove/WithdrawalEmail" + strEmailSuffix + ".htm";             
+            FileName3 = "Email/AffApprove/WithdrawalEmail" + strEmailSuffix + ".htm";
         }
         else
         {
@@ -1465,7 +1413,7 @@ public class Common
             FileName2 = "Email/AffApprove/ApprovalEmail_" + strPreferLang + strEmailSuffix + ".htm";
             FileName3 = "Email/AffApprove/WithdrawalEmail_" + strPreferLang + strEmailSuffix + ".htm";
         }
-        
+
 
         string strApproved = TemplateHandler.LoadHtml(FileName, strTags, strValue).Replace("\r\n", "");
         string strSubject = TemplateHandler.ReplaceBlock(ref strApproved, "subject", "").Replace("\r\n", "").Trim();
@@ -1507,7 +1455,7 @@ public class Common
     public static string GetIPCheckerURL(string ip)
     {
         StringBuilder strIPCheckerURL=new StringBuilder(AppSettings.IPCheckerURL);
-        strIPCheckerURL.Replace("{ip-val}",ip);
+        strIPCheckerURL.Replace("{ip-val}", ip);
         return strIPCheckerURL.ToString();
     }
 
@@ -1517,7 +1465,7 @@ public class Common
         strWebsiteCheckerURL.Replace("{siteurl-val}", url);
         return strWebsiteCheckerURL.ToString();
     }
-    
+
     ///Johnny@20100317: Get suffix for sending mail template
     public static string EmailSuffix(bool MailOption)
     {
@@ -1624,7 +1572,7 @@ public class Common
         return isUM;
     }
 
-	 public static string FormatStringHtml(string value)
+    public static string FormatStringHtml(string value)
     {
         return HttpUtility.HtmlDecode(value.Replace("\r\n", "<br/>"));
     }
@@ -1636,36 +1584,28 @@ public class Common
     //Upload Excel file to Server
     public static void UploadFileExcel(string path, HttpPostedFile fileUpload, ref string fileName, ref int errcode)
     {
-        try
+        if (!string.IsNullOrEmpty(fileUpload.FileName))
         {
-            if (!string.IsNullOrEmpty(fileUpload.FileName))
+            if (!Directory.Exists(path))//Create folder
+                Directory.CreateDirectory(path);
+
+            string Extension = Path.GetExtension(fileUpload.FileName);
+
+            if (Extension.ToLower().Equals(".xls") || Extension.ToLower().Equals(".xlsx"))
             {
-                if (!Directory.Exists(path))//Create folder
-                    Directory.CreateDirectory(path);
-
-                string Extension = Path.GetExtension(fileUpload.FileName);
-
-                if (Extension.ToLower().Equals(".xls") || Extension.ToLower().Equals(".xlsx"))
-                {
-                    fileName = Path.Combine(path, fileName);
-                    fileUpload.SaveAs(fileName);
-                }
-                else
-                {
-                    // Extension fail
-                    errcode = 2;
-                }
+                fileName = Path.Combine(path, fileName);
+                fileUpload.SaveAs(fileName);
             }
             else
             {
-                // file is null
-                errcode = 1;
+                // Extension fail
+                errcode = 2;
             }
         }
-        catch
+        else
         {
-
-            throw;
+            // file is null
+            errcode = 1;
         }
     }
 
@@ -1708,7 +1648,7 @@ public class Common
             const int startRow = 1;
 
             if (path != null)
-            {                
+            {
 
                 // Get the file we are going to process
                 var existingFile = new FileInfo(path);
