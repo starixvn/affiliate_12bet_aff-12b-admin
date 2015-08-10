@@ -18,8 +18,7 @@ function ExecRecover()
       $('err').innerHTML='<li><a class=\'err-msg\' onclick="$(\'txtemail\').focus();" href=\'#\'><%=emailrequire %></a></li>';      
     }
     else
-    {     
-        
+    {
         var ajax= new Ajax.Request("Handler/CheckForgetPassWord.ashx",{
         method:'post',  
         parameters:'eml=' + $('txtemail').value,
@@ -36,7 +35,7 @@ function ExecRecover()
                 else
                 {
                     $('errMsg').style.display='block';
-                    $('err').innerHTML=datastran.responseText;
+                    $('err').innerHTML = '<li><a class=\'err-msg\' onclick="$(\'txtemail\').focus();" href=\'ContactUs.aspx\'>' + datastran.responseText + '</a></li>';
                 }
             }
         });

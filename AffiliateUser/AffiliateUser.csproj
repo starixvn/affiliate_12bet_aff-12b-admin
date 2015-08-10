@@ -772,7 +772,9 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\MemberInfoService\Service.disco" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Web References\AffBetlistService\AffiliateAPI.wsdl" />
     <None Include="Web References\AffBetlistService\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
