@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web;
-using Microsoft.Practices.EnterpriseLibrary.Caching;
-using Microsoft.Practices.EnterpriseLibrary.Caching.Expirations;
 using DNAide.Data;
 using System.Data;
+using Affiliate.Infrastructure;
 
 /// <summary>
 /// Summary description for CacheUtil
@@ -15,75 +14,87 @@ public class CacheUtil
     private static string importantKeys = "importantKey";
     private static string bannerTypesKey = "bannerTypesKey";
     private static string bannerTypesKeyOld = "bannerTypesKeyOld";
-    static DateTime LastRefreshHotNews;
-    static DateTime LastRefreshBannerTypes;
-    static int _TimeCache = 5;
-    static int _TimeCacheBannerTypes = 120;
+
+    private static DateTime LastRefreshHotNews;
+    private static DateTime LastRefreshBannerTypes;
+
+    private static int _TimeCache = 10;
+    private static int _TimeCacheBannerTypes = 120;
+
     static CacheUtil()
     {
         LastRefreshHotNews = DateTime.MinValue;
         LastRefreshBannerTypes = DateTime.MinValue;
         InitCache();
     }
+
+    private static void InitCache()
+    {
+        AddHotNews();
+        AddBannerTypes();
+        AddBannerTypesOld();
+    }
+
     private static void AddHotNews()
     {
-        DbResult result = DataHandler.HotNews.GetLatestHotNews();
-        var cache = CacheFactory.GetCacheManager();
+        DbResult result = DataHandler.HotNews.GetLatestHotNews();        
         if (result.ResultSet.Tables.Count > 0 && result.ResultSet.Tables[0].Rows.Count > 0)
         {
-            cache.Add(hotNewsKey + "_" + "zh-TW", result.ResultSet.Tables[0].Rows[0]["message_tw"], CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
-            cache.Add(hotNewsKey + "_" + "zh-CN", result.ResultSet.Tables[0].Rows[0]["message_cn"], CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
-            cache.Add(hotNewsKey + "_" + "en-US", result.ResultSet.Tables[0].Rows[0]["message_en"], CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
-            cache.Add(hotNewsKey + "_" + "es-ES", result.ResultSet.Tables[0].Rows[0]["message_es"], CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
-            cache.Add(hotNewsKey + "_" + "th-TH", result.ResultSet.Tables[0].Rows[0]["message_th"], CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
-            cache.Add(hotNewsKey + "_" + "vi-VN", result.ResultSet.Tables[0].Rows[0]["message_vi"], CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
-            cache.Add(hotNewsKey + "_" + "id-ID", result.ResultSet.Tables[0].Rows[0]["message_id"], CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
-            cache.Add(hotNewsKey + "_" + "ko-KR", result.ResultSet.Tables[0].Rows[0]["message_kr"], CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
-            cache.Add(hotNewsKey + "_" + "ja-JP", result.ResultSet.Tables[0].Rows[0]["message_jp"], CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
-            cache.Add(importantKeys, result.ResultSet.Tables[0].Rows[0]["important"], CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
+            var row = result.ResultSet.Tables[0].Rows[0];
+            CacheHelper.Set(hotNewsKey + "_" + "zh-TW", row["message_tw"], _TimeCache);
+            CacheHelper.Set(hotNewsKey + "_" + "zh-CN", row["message_cn"], _TimeCache);
+            CacheHelper.Set(hotNewsKey + "_" + "en-US", row["message_en"], _TimeCache);            
+            CacheHelper.Set(hotNewsKey + "_" + "es-ES", row["message_es"], _TimeCache); 
+            CacheHelper.Set(hotNewsKey + "_" + "th-TH", row["message_th"], _TimeCache); 
+            CacheHelper.Set(hotNewsKey + "_" + "vi-VN", row["message_vi"], _TimeCache); 
+            CacheHelper.Set(hotNewsKey + "_" + "id-ID", row["message_id"], _TimeCache); 
+            CacheHelper.Set(hotNewsKey + "_" + "ko-KR", row["message_kr"], _TimeCache); 
+            CacheHelper.Set(hotNewsKey + "_" + "ja-JP", row["message_jp"], _TimeCache); 
+            CacheHelper.Set(importantKeys, row["important"], _TimeCache); 
         }
         else // no rows -- means there isn't any hot news
         {
-            cache.Add(hotNewsKey + "_" + "zh-TW", string.Empty, CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
-            cache.Add(hotNewsKey + "_" + "zh-CN", string.Empty, CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
-            cache.Add(hotNewsKey + "_" + "en-US", string.Empty, CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
-            cache.Add(hotNewsKey + "_" + "es-ES", string.Empty, CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
-            cache.Add(hotNewsKey + "_" + "th-TH", string.Empty, CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
-            cache.Add(hotNewsKey + "_" + "vi-VN", string.Empty, CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
-            cache.Add(hotNewsKey + "_" + "id-ID", string.Empty, CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
-            cache.Add(hotNewsKey + "_" + "ko-KR", string.Empty, CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
-            cache.Add(hotNewsKey + "_" + "ja-JP", string.Empty, CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
-            cache.Add(importantKeys, false, CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCache)));
+            CacheHelper.Remove(hotNewsKey + "_" + "zh-CN");
+            CacheHelper.Remove(hotNewsKey + "_" + "zh-TW");
+            CacheHelper.Remove(hotNewsKey + "_" + "zh-CN");
+            CacheHelper.Remove(hotNewsKey + "_" + "en-US");
+            CacheHelper.Remove(hotNewsKey + "_" + "es-ES");
+            CacheHelper.Remove(hotNewsKey + "_" + "th-TH");
+            CacheHelper.Remove(hotNewsKey + "_" + "vi-VN");
+            CacheHelper.Remove(hotNewsKey + "_" + "id-ID");
+            CacheHelper.Remove(hotNewsKey + "_" + "ko-KR");
+            CacheHelper.Remove(hotNewsKey + "_" + "ja-JP");
+            CacheHelper.Remove(importantKeys);
         }
-
-
     }
+
     private static void AddBannerTypesOld()
     {
         DbResult result = DbHelper.Execute("Aff_BannerSelType", DBType.AFFILIATE_12BET);
         if (result.ResultSet.Tables.Count > 0 && result.ResultSet.Tables[0].Rows.Count > 0)
         {
-            CacheFactory.GetCacheManager().Add(bannerTypesKeyOld, result.ResultSet.Tables[0], CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCacheBannerTypes)));
+            CacheHelper.Set(bannerTypesKeyOld, result.ResultSet.Tables[0], _TimeCacheBannerTypes);
         }
         else // no rows -- means there was system errors.Try to refresh after 2 seconds
         {
-            CacheFactory.GetCacheManager().Add(bannerTypesKeyOld, null, CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCacheBannerTypes)));
+            CacheHelper.Remove(bannerTypesKeyOld);
         }
-
     }
+
     private static void AddBannerTypes()
     {
         DbResult result = DbHelper.Execute("Aff_BannerSelType_1", DBType.AFFILIATE_12BET);
         if (result.ResultSet.Tables.Count > 0 && result.ResultSet.Tables[0].Rows.Count > 0)
         {
-            CacheFactory.GetCacheManager().Add(bannerTypesKey, result.ResultSet.Tables[0], CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCacheBannerTypes)));
+            CacheHelper.Set(bannerTypesKey, result.ResultSet.Tables[0], _TimeCacheBannerTypes);
         }
         else // no rows -- means there was system errors.Try to refresh after 2 seconds
         {
-            CacheFactory.GetCacheManager().Add(bannerTypesKey, null, CacheItemPriority.None, null, new AbsoluteTime(TimeSpan.FromSeconds(_TimeCacheBannerTypes)));
+            CacheHelper.Remove(bannerTypesKey);
         }
 
     }
+
     public static string GetLatestHotNews(out bool isImportant)
     {
         lock (HttpContext.Current.Application)
@@ -94,14 +105,16 @@ public class CacheUtil
                 AddHotNews();
             }
         }
-        isImportant = Convert.ToBoolean(CacheFactory.GetCacheManager().GetData(importantKeys));
-        return CacheFactory.GetCacheManager().GetData(hotNewsKey + "_" + AppSettings.Session.Language).ToString();
+        isImportant = Convert.ToBoolean(CacheHelper.Get<object>(importantKeys));
+        
+        return CacheHelper.Get<string>(hotNewsKey + "_" + AppSettings.Session.Language);
     }
+
     public static object GetBannerTypes()
     {
         lock (HttpContext.Current.Application)
         {
-            object bt = CacheFactory.GetCacheManager().GetData(bannerTypesKey);
+            object bt = CacheHelper.Get<object>(bannerTypesKey);
             if ((bt == null && LastRefreshBannerTypes.AddSeconds(_TimeCache).CompareTo(DateTime.Now) <= 0)
                 || LastRefreshBannerTypes.AddSeconds(_TimeCacheBannerTypes).CompareTo(DateTime.Now) <= 0)
             {
@@ -109,15 +122,15 @@ public class CacheUtil
                 AddBannerTypes();
             }
         }
-        return CacheFactory.GetCacheManager().GetData(bannerTypesKey);
-
+       
+        return CacheHelper.Get<object>(bannerTypesKey);
     }
 
     public static object GetBannerTypesOld()
     {
         lock (HttpContext.Current.Application)
         {
-            object bt = CacheFactory.GetCacheManager().GetData(bannerTypesKeyOld);
+            object bt = CacheHelper.Get<object>(bannerTypesKeyOld);
             if ((bt == null && LastRefreshBannerTypes.AddSeconds(_TimeCache).CompareTo(DateTime.Now) <= 0)
                 || LastRefreshBannerTypes.AddSeconds(_TimeCacheBannerTypes).CompareTo(DateTime.Now) <= 0)
             {
@@ -125,13 +138,7 @@ public class CacheUtil
                 AddBannerTypesOld();
             }
         }
-        return CacheFactory.GetCacheManager().GetData(bannerTypesKeyOld);
-
-    }
-    public static void InitCache()
-    {
-        AddHotNews();
-        AddBannerTypes();
-        AddBannerTypesOld();
+        
+        return CacheHelper.Get<object>(bannerTypesKeyOld);
     }
 }
