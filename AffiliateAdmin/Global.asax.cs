@@ -48,7 +48,7 @@ namespace AffiliateAdmin
                     "\r\nServer: " + sqlException.Server;
             }
 
-            Fanex.Logging.LogService.Error(message);
+            Fanex.Logging.LogService.Error(message, ex);
         }
 
         void Session_Start(object sender, EventArgs e)

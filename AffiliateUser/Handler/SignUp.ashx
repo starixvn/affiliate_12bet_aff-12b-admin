@@ -92,18 +92,17 @@ public class SignUp : IHttpHandler, IRequiresSessionState
             }
             else
             {
+                var rdWebsite = context.Request["rdWebsite"];
+
                 var signupMailService = new SignupMailService
                     {
                         FirstName = strFName,
                         LastName = strLName,
                         UserName = strUsername
                     };
-                
-                signupMailService.SendRegisterMail(strPreferLang, strEmail);
 
-                var rdWebsite = context.Request["rdWebsite"];
-                signupMailService.SendCsdMail(rdWebsite, strSiteUrl, strMoreUrl, strNoSiteDesc);
-                    
+                SendSignupEmail(signupMailService, strPreferLang, strEmail, rdWebsite, strSiteUrl, strMoreUrl, strNoSiteDesc);
+
                 context.Response.Write("<script type='text/javascript'>top.location.href='../SignUpSuccess.aspx';</script>");
             }
         }
@@ -115,6 +114,27 @@ public class SignUp : IHttpHandler, IRequiresSessionState
         }
     }
 
+    private static void SendSignupEmail(
+        SignupMailService signupMailService,
+        string strPreferLang, 
+        string strEmail,
+        string rdWebsite, 
+        string strSiteUrl, 
+        string strMoreUrl, 
+        string strNoSiteDesc)
+    {
+        try
+        {
+            signupMailService.SendRegisterMail(strPreferLang, strEmail);
+
+            signupMailService.SendCsdMail(rdWebsite, strSiteUrl, strMoreUrl, strNoSiteDesc);
+        }
+        catch (Exception ex)
+        {
+            Fanex.Logging.LogService.Error(ex.Message, ex);
+        }   
+    }
+    
     public bool IsReusable
     {
         get
