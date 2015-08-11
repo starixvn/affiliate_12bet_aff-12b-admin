@@ -10,7 +10,6 @@ using Criterias;
 using AffiliateAdmin.Business.DataAccess;
 using DNAide.Core;
 using DNAide.Utils;
-using Microsoft.Practices.EnterpriseLibrary.Caching;
 
 /// <summary>
 /// Createrr: Vinh

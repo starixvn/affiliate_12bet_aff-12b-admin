@@ -87,7 +87,7 @@ public partial class AffiliateUpd : IBCPage
             string strMinMoneyBooker = "0";
             string strMinPlayer = "0";
 
-            DataTable dtbCustInfo = Affiliate.SelAffInfo(intcustid, ref strMinCheque, ref strMinMoneyBooker, ref strMinNetteller, ref strMinWire, ref strMinPlayer);
+            DataTable dtbCustInfo = DataHandler.Affiliate.SelAffInfo(intcustid, ref strMinCheque, ref strMinMoneyBooker, ref strMinNetteller, ref strMinWire, ref strMinPlayer);
             if (dtbCustInfo.Rows.Count > 0)
             {
                 DataRow dr = dtbCustInfo.Rows[0];

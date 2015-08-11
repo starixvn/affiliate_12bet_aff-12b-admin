@@ -44,7 +44,7 @@ public partial class PlayersDetail : IBCPage
         TemplateHandler.Assign(ref strTpl, "pagesize", pageSize);
         TemplateHandler.Assign(ref strTpl, "width", width);
 
-        DbResult result = Affiliate.SelPlayersDetail(intCustId, sporttype, strMonth, pageIndex, pageSize, ref totalPages);
+        DbResult result = DataHandler.Affiliate.SelPlayersDetail(intCustId, sporttype, strMonth, pageIndex, pageSize, ref totalPages);
         
         StringBuilder strBuild = new StringBuilder();
         if (result.ResultSet.Tables.Count>0 && result.ResultSet.Tables[0].Rows.Count > 0)

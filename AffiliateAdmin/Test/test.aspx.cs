@@ -90,8 +90,6 @@ public partial class test : System.Web.UI.Page
             Common.SendEmail(strEmail, strSubject, strNoticeMail, AppSettings.BCCMail, AppSettings.CCMail);
             //rs = SendMailService.SendMail2(AppSettings.MailServer, strEmail, AppSettings.FromMail, "", "", strSubject, strNoticeMail,AppSettings.MailPwd);
 
-	
-
         }
         catch(Exception ex)
         {

@@ -46,7 +46,7 @@ namespace Affiliate.Infrastructure
         /// <summary>
         /// Removing the cache.
         /// </summary>
-        public static void Delete()
+        public static void Clear()
         {
             Cache.Clear();
         }
