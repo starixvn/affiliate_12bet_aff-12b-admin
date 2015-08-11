@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
+using System.Data.SqlClient;
 
 namespace AffiliateAdmin
 {
@@ -38,6 +39,14 @@ namespace AffiliateAdmin
                             "\r\nQUERYSTRING: " + Request.QueryString.ToString() +
                             "\r\nTARGETSITE: " + ex.TargetSite +
                             "\r\nSTACKTRACE: " + ex.StackTrace;
+
+            var sqlException = ex as SqlException;
+            if (sqlException != null)
+            {
+                message += "\r\nProcedure: " + sqlException.Procedure +
+                    "\r\nLine Number: " + sqlException.LineNumber +
+                    "\r\nServer: " + sqlException.Server;
+            }
 
             Fanex.Logging.LogService.Error(message);
         }

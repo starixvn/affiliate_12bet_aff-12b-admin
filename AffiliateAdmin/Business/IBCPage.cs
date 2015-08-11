@@ -1,6 +1,9 @@
 ﻿using System.Web;
 using System.Collections.Generic;
 using System.Web.UI;
+using System;
+using System.IO;
+using Affiliate.Infrastructure;
 
 /// <summary>
 /// Summary description for IBCPage
@@ -104,8 +107,7 @@ public class IBCPage : System.Web.UI.Page
         writer.Write("<head>\n");
         writer.Write(AppSettings.HtmlHeader);
         writer.Write(CssLinks);
-        string aspxContent = DNAide.Web.TemplateHandler.LoadTemplate2(Request.AppRelativeCurrentExecutionFilePath.Replace("~/", string.Empty));
-        //string aspxContent = DNAide.Web.TemplateHandler.LoadTemplate(Request.AppRelativeCurrentExecutionFilePath.Replace("~/", string.Empty));
+        string aspxContent = LoadTemplate(Request.AppRelativeCurrentExecutionFilePath.Replace("~/", string.Empty));
         try
         {
             writer.Write(DNAide.Web.TemplateHandler.CopyBlock(aspxContent, "js").Replace(".js", ".js?ver=" + AppSettings.JsVersion));
@@ -116,7 +118,32 @@ public class IBCPage : System.Web.UI.Page
         writer.Write(HtmlContent);
         writer.Write("\n</body>\n");
         writer.Write("</html>\n");
-
     }
-    
+
+    private static string LoadTemplate(string templateName)
+    {
+        string data;
+        if (AppSettings.LocalTest == false)
+        {
+            data = CacheHelper.Get<string>(templateName);
+            if (data != null)
+            {
+                return data;
+            }
+        }
+        string path = AppDomain.CurrentDomain.BaseDirectory + @"\" + templateName;
+        try
+        {
+            StreamReader reader = File.OpenText(path);
+            data = reader.ReadToEnd();
+            reader.Close();
+        }
+        catch
+        {
+            data = null;
+        }
+
+        CacheHelper.Set(templateName, data);
+        return data;
+    }
 }
