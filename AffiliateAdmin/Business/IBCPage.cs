@@ -89,9 +89,10 @@ public class IBCPage : System.Web.UI.Page
             {
                 string link = "<link href='{RelPath}' type='text/css' rel='stylesheet' />";
                 string links = "\n";
+                var path = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) + ResolveUrl("~/");
                 for (int i = 0; i < AppSettings.CssFiles.Length; ++i)
                 {
-                    links += link.Replace("{RelPath}", RelativePath + AppSettings.CssFiles[i]);
+                    links += link.Replace("{RelPath}", path + AppSettings.CssFiles[i]);
                 }
                 links += "\n";
                 return links;

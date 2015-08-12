@@ -1396,7 +1396,7 @@ public class Common
     public static void SendEmailApproved(int affID, string strPreferLang, string strFname, string strUsername, string strEmail, string strPassword, string strEmailSuffix)
     {
         string[] strTags = { "fname", "username", "pass", "custid", "mailcontact", "url", "rooturl", "lang" };
-        string[] strValue = { strFname, strUsername, strPassword, affID.ToString(), AppSettings.MailContact, GetRootUrl(), GetRootUrl(), strPreferLang };
+        string[] strValue = { strFname, strUsername, strPassword, affID.ToString(), AppSettings.MailContact, GetAffiliateUserRootUrl(), GetAffiliateUserRootUrl(), strPreferLang };
 
         string FileName = "";
         string FileName2 = "";
@@ -1434,7 +1434,7 @@ public class Common
     public static void SendEmailDisapproved(string strPreferLang, string strFname, string strEmail, string strEmailSuffix)
     {
         string[] strTags = { "fname", "mailcontact", "rooturl", "lang" };
-        string[] strValue = { strFname, AppSettings.MailContact, GetRootUrl(), strPreferLang };
+        string[] strValue = { strFname, AppSettings.MailContact, GetAffiliateUserRootUrl(), strPreferLang };
 
         string FileName = "";
         if (string.IsNullOrEmpty(strPreferLang) || strPreferLang == "en-US")
@@ -1743,7 +1743,7 @@ public class Common
         return string.Empty;
     }
 
-    public static string GetRootUrl()
+    public static string GetAffiliateUserRootUrl()
     {
         return AppSettings.Session.AffType == AffType.European ? AppSettings.EuropeanAffiliateURL : AppSettings.AsianAffiliateURL;
     }

@@ -1825,7 +1825,7 @@
     <Content Include="Auth\ReCheckIn.ashx" />
     <Content Include="BetList\BetListParlay.ashx" />
     <None Include="Content\Fanex.Result\fanex.result.less" />
-    <None Include="Deployment.ignore" />
+    <Content Include="Deployment.ignore" />
     <None Include="ExcelFiles\AffiliateList\AffiliateList.xls" />
     <None Include="ExcelFiles\Casino\2012\Apr\casino stats march 21.csv" />
     <Content Include="Handler\AccountPolicy.ashx" />
