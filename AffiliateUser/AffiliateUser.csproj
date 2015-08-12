@@ -762,7 +762,9 @@
     <Content Include="DeployConfig\Web.12betuser-euro.backupmnl.config" />
     <Content Include="DeployConfig\Web.12betuser-euro.local.config" />
     <Content Include="DeployConfig\Web.12betuser-euro.master.config" />
-    <Content Include="DeployConfig\Web.12betuser-euro.production.config" />
+    <Content Include="DeployConfig\Web.12betuser-euro.production.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="DeployConfig\Web.12betuser-euro.uat.config">
       <SubType>Designer</SubType>
     </Content>

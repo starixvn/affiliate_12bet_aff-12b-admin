@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 using DNAide.Web;
-public partial class Header : TplPage
+public partial class Header : IBCPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -47,8 +47,7 @@ public partial class Header : TplPage
         {
             TemplateHandler.Assign(ref temp, "username", AppSettings.Session.UserName);
         }
-        this.TplSetContent(temp + GerScriptMsg());
-        /*this.HtmlContent = temp + GerScriptMsg();*/
+        this.HtmlContent  = temp + GerScriptMsg();
     }
     string GerScriptMsg()
     {

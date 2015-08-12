@@ -40,7 +40,10 @@ namespace Affiliate.Infrastructure
         /// <param name="value">Return value.</param>
         public static void Set<T>(string key, T value, int timeout = TIMEOUT)
         {
-            Cache.Set(key, DeepClone(value), timeout);
+            if (value != null)
+            {
+                Cache.Set(key, DeepClone(value), timeout);
+            }
         }
 
         /// <summary>
