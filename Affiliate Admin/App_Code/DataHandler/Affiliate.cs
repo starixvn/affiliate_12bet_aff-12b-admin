@@ -309,7 +309,6 @@ namespace DataHandler
             hsParam.Add("isgetall", criteria.IsGetAll);
             hsParam.Add("pageindex", criteria.PageIndex);
             hsParam.Add("pagesize", criteria.PageSize);
-            hsParam.Add("totalpages", 0);
             hsParam.Add("sortby", criteria.SortBy);
             return DbHelper.Execute(criteria.SpName, hsParam, DBType.AFFILIATE_12BET, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
         }

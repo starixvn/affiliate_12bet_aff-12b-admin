@@ -308,7 +308,6 @@ namespace DataHandler
             hsParam.Add("isgetall", criteria.IsGetAll);
             hsParam.Add("pageindex", criteria.PageIndex);
             hsParam.Add("pagesize", criteria.PageSize);
-            hsParam.Add("totalpages", 0);
             hsParam.Add("sortby", criteria.SortBy);
             return DbHelper.Execute(criteria.SpName, DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
         }
@@ -809,10 +808,9 @@ namespace DataHandler
             hsParam.Add("username", criteria.Username);
             if(!string.IsNullOrEmpty(criteria.PreferredLanguage))
                 hsParam.Add("preferredlanguage", criteria.PreferredLanguage);
-            hsParam.Add("affyype", criteria.AffType);
+            hsParam.Add("afftype", criteria.AffType);
             hsParam.Add("pagesize", criteria.PageSize);
             hsParam.Add("pageindex", criteria.PageIndex);
-            hsParam.Add("totalpages", 0);
             hsParam.Add("nrows", 0);
             hsParam.Add("sortby", criteria.SortBy);
             DbResult result = DbHelper.Execute(criteria.SpName, DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
@@ -832,7 +830,6 @@ namespace DataHandler
             hsParam.Add("sortby", criteria.SortBy);
             hsParam.Add("pagesize", criteria.PageSize);
             hsParam.Add("pageindex", criteria.PageIndex);
-            hsParam.Add("totalpages", 0);
             hsParam.Add("nrows", 0);
             hsParam.Add("isdesc", criteria.IsDesc);
 
