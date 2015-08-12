@@ -1660,16 +1660,6 @@
     <Content Include="App_Themes\Default\jquery.ui.css" />
     <Content Include="App_Themes\error2.png" />
     <Content Include="Auth\Error.aspx" />
-    <Content Include="Banner\CategoryMedia\Casino\Baccarat\12Bet_IA_WiganSeason2014_160x600_Eng.gif" />
-    <Content Include="Banner\CategoryMedia\Casino\Baccarat\12Bet_IA_WiganSeason2014_300x28_Eng.gif" />
-    <Content Include="Banner\CategoryMedia\Casino\Baccarat\background-wrap.jpg" />
-    <Content Include="Banner\CategoryMedia\Casino\Baccarat\Capture.png" />
-    <Content Include="Banner\CategoryMedia\Casino\Baccarat\casino1.jpg" />
-    <Content Include="Banner\CategoryMedia\Casino\Baccarat\Maintenance I668Bet.png" />
-    <Content Include="Banner\CategoryMedia\Number Game\12Bet_IA_WiganSeason2014_314x126_Eng.gif" />
-    <Content Include="Banner\CategoryMedia\Number Game\Chrysanthemum.jpg" />
-    <Content Include="Banner\CategoryMedia\Number Game\landing2.jpg" />
-    <Content Include="Banner\CategoryMedia\Racebook\landing2.jpg" />
     <Content Include="BetList.aspx" />
     <Content Include="BetList\BetList.aspx" />
     <Content Include="BetList\BetListParlayDetail.aspx" />
@@ -1792,6 +1782,9 @@
     <Content Include="UserInfo\Note.aspx" />
     <Content Include="UserInfo\PlayersDetail.aspx" />
     <Content Include="UserInfo\UserLog.aspx" />
+    <Content Include="AppSettings.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Web References\AffBetlistService\AffiliateAPI.disco" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -1828,7 +1821,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="AppSettings.ini" />
     <Content Include="Auth\ProcessLogin.ashx" />
     <Content Include="Auth\ReCheckIn.ashx" />
     <Content Include="BetList\BetListParlay.ashx" />
@@ -1901,7 +1893,7 @@
     <Content Include="Web.12betadmin.production.config" />
     <Content Include="Web.12betadmin.uat.config" />
     <Content Include="Web.config" />
-    <None Include="Web.info" />
+    <Content Include="Web.info" />
     <Content Include="Web.local.config" />
     <None Include="WebWorkbench.mswwsettings" />
     <Content Include="_GlobalResources\_IPInfo\Whois.ashx" />
@@ -1949,6 +1941,11 @@
       <Project>{B9A60C3F-FC44-4BF7-B618-68F0118C9000}</Project>
       <Name>Affiliate.Infrastructure</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Banner\CategoryMedia\Casino\Baccarat\" />
+    <Folder Include="Banner\CategoryMedia\Number Game\" />
+    <Folder Include="Banner\CategoryMedia\Racebook\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
