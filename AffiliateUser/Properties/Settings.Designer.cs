@@ -26,20 +26,20 @@ namespace AffiliateUser.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://10.18.200.209:5001/WebService/AffiliateAPI.asmx")]
-        public string AffiliateUser_WebReference1_AffiliateAPI {
+        [global::System.Configuration.DefaultSettingValueAttribute("http://kraf.86812868.com:8010/Service.asmx")]
+        public string AffiliateUser_MemberInfoService_Service {
             get {
-                return ((string)(this["AffiliateUser_WebReference1_AffiliateAPI"]));
+                return ((string)(this["AffiliateUser_MemberInfoService_Service"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://kraf.86812868.com:8010/Service.asmx")]
-        public string AffiliateUser_MemberInfoService_Service {
+        [global::System.Configuration.DefaultSettingValueAttribute("http://10.18.200.209:5001/WebService/AffiliateAPI.asmx")]
+        public string AffiliateUser_AffBetlistService_AffiliateAPI {
             get {
-                return ((string)(this["AffiliateUser_MemberInfoService_Service"]));
+                return ((string)(this["AffiliateUser_AffBetlistService_AffiliateAPI"]));
             }
         }
     }

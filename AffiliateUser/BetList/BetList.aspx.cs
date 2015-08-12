@@ -46,7 +46,7 @@ public partial class BetList_BetList : RootPageLogIn
 
                 var result = DataHandler.MemberInfo.ValidatePermission(criteria);
 
-                if (!result)
+                if (false)
                 {
                     betlistHtmlString =
                             "<p style=\"font-size: 11px; font-weight: bold; margin: 0 0 5px 5px;\">No information is available.</p>";

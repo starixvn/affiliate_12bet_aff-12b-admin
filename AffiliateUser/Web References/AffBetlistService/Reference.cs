@@ -44,7 +44,7 @@ namespace AffiliateUser.AffBetlistService {
         
         /// <remarks/>
         public AffiliateAPI() {
-            this.Url = global::AffiliateUser.Properties.Settings.Default.AffiliateUser_WebReference1_AffiliateAPI;
+            this.Url = global::AffiliateUser.Properties.Settings.Default.AffiliateUser_AffBetlistService_AffiliateAPI;
             if ((this.IsLocalFileSystemWebService(this.Url) == true)) {
                 this.UseDefaultCredentials = true;
                 this.useDefaultCredentialsSetExplicitly = false;

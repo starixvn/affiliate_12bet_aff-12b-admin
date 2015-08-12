@@ -754,7 +754,6 @@
     <Content Include="Master.master" />
     <Content Include="Master2.master" />
     <Content Include="MasterCalendar.master" />
-    <None Include="Web References\AffBetlistService\AffiliateAPI.disco" />
     <Content Include="DeployConfig\Web.12betuser-asian.backupmnl.config" />
     <Content Include="DeployConfig\Web.12betuser-asian.local.config" />
     <Content Include="DeployConfig\Web.12betuser-asian.master.config" />
@@ -767,19 +766,20 @@
     <Content Include="DeployConfig\Web.12betuser-euro.uat.config">
       <SubType>Designer</SubType>
     </Content>
-    <None Include="Web References\MemberInfoService\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Web References\MemberInfoService\Service.disco" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
     <None Include="Web References\AffBetlistService\AffiliateAPI.wsdl" />
     <None Include="Web References\AffBetlistService\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Web References\MemberInfoService\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\MemberInfoService\Service.disco" />
+    <None Include="Web References\AffBetlistService\AffiliateAPI.disco" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.info" />
     <None Include="Web References\MemberInfoService\Service.wsdl" />
     <None Include="WebWorkbench.mswwsettings" />
@@ -1635,16 +1635,16 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://10.18.200.209:5001/WebService/AffiliateAPI.asmx%3fdisco">
+    <WebReferenceUrl Include="http://10.18.200.209:5001/WebService/AffiliateAPI.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\AffBetlistService\</RelPath>
-      <UpdateFromURL>http://10.18.200.209:5001/WebService/AffiliateAPI.asmx%3fdisco</UpdateFromURL>
+      <UpdateFromURL>http://10.18.200.209:5001/WebService/AffiliateAPI.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>AffiliateUser_WebReference1_AffiliateAPI</CachedSettingsPropName>
+      <CachedSettingsPropName>AffiliateUser_AffBetlistService_AffiliateAPI</CachedSettingsPropName>
     </WebReferenceUrl>
     <WebReferenceUrl Include="http://kraf.86812868.com/Service.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
