@@ -1884,7 +1884,9 @@
     <Content Include="Web.12betadmin.master.config" />
     <Content Include="Web.12betadmin.production.config" />
     <Content Include="Web.12betadmin.uat.config" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.info" />
     <Content Include="Web.local.config" />
     <None Include="WebWorkbench.mswwsettings" />
