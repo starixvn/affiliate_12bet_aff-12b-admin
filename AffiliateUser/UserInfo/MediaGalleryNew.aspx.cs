@@ -96,7 +96,7 @@ namespace AffiliateUser
 
             TemplateHandler.Assign(ref htmlContent, "slSubCategory", "");
             TemplateHandler.Assign(ref htmlContent, "slTrackingCode", GenerateHTML.TrackingSystem.GetTrackingCodeList(false, trackingcode));
-            DataView dv = (CacheUtil.GetBannerTypes() as DataTable).DefaultView;
+            DataView dv = CacheUtil.GetBannerTypes().DefaultView;
             TemplateHandler.Assign(ref htmlContent, "slCategory", this.GetDataOptionBanner(dv, "slCategory", "CategoryMedia", category, true));
             if (hasSubCategory)
                 //    TemplateHandler.Assign(ref htmlContent, "slSubCategory", this.GetDataOptionBanner(dv, "slSubCategoryMedia", "CategoryMedia" + category, subCategory, true));

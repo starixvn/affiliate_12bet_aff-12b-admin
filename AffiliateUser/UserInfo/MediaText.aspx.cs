@@ -78,7 +78,7 @@ public partial class UserInfo_MediaText : RootPageLogIn
         #endregion
 
         TemplateHandler.Assign(ref htmlContent, "slTrackingCode", GenerateHTML.TrackingSystem.GetTrackingCodeList(false, trackingcode));
-        DataView dv = (CacheUtil.GetBannerTypes() as DataTable).DefaultView;
+        DataView dv = CacheUtil.GetBannerTypes().DefaultView;
         TemplateHandler.Assign(ref htmlContent, "slCategory", this.GetDataOptionBanner(dv, "slCategory", "Category", category, true));
         TemplateHandler.Assign(ref htmlContent, "slLanguage", this.GetDataOptionBanner(dv, "slLanguage", "Language", lang, true));
         TemplateHandler.Assign(ref htmlContent, "slCurrency", this.GetDataOptionBanner(dv, "slCurrency", "Currency", currency, true));

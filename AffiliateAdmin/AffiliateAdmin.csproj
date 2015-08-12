@@ -1956,7 +1956,7 @@
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>65181</DevelopmentServerPort>
-          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <DevelopmentServerVPath>/V1</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

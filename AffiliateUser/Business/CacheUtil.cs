@@ -110,35 +110,37 @@ public class CacheUtil
         return CacheHelper.Get<string>(hotNewsKey + "_" + AppSettings.Session.Language);
     }
 
-    public static object GetBannerTypes()
+    public static DataTable GetBannerTypes()
     {
         lock (HttpContext.Current.Application)
         {
-            object bt = CacheHelper.Get<object>(bannerTypesKey);
-            if ((bt == null && LastRefreshBannerTypes.AddSeconds(_TimeCache).CompareTo(DateTime.Now) <= 0)
+            var table = CacheHelper.Get<DataTable>(bannerTypesKey);
+            if ((table == null && LastRefreshBannerTypes.AddSeconds(_TimeCache).CompareTo(DateTime.Now) <= 0)
                 || LastRefreshBannerTypes.AddSeconds(_TimeCacheBannerTypes).CompareTo(DateTime.Now) <= 0)
             {
                 LastRefreshBannerTypes = DateTime.Now;
                 AddBannerTypes();
+                return CacheHelper.Get<DataTable>(bannerTypesKey);
             }
+
+            return table;
         }
-       
-        return CacheHelper.Get<object>(bannerTypesKey);
     }
 
-    public static object GetBannerTypesOld()
+    public static DataTable GetBannerTypesOld()
     {
         lock (HttpContext.Current.Application)
         {
-            object bt = CacheHelper.Get<object>(bannerTypesKeyOld);
-            if ((bt == null && LastRefreshBannerTypes.AddSeconds(_TimeCache).CompareTo(DateTime.Now) <= 0)
+            var table = CacheHelper.Get<DataTable>(bannerTypesKeyOld);
+            if ((table == null && LastRefreshBannerTypes.AddSeconds(_TimeCache).CompareTo(DateTime.Now) <= 0)
                 || LastRefreshBannerTypes.AddSeconds(_TimeCacheBannerTypes).CompareTo(DateTime.Now) <= 0)
             {
                 LastRefreshBannerTypes = DateTime.Now;
                 AddBannerTypesOld();
+                return CacheHelper.Get<DataTable>(bannerTypesKeyOld);
             }
+
+            return table;
         }
-        
-        return CacheHelper.Get<object>(bannerTypesKeyOld);
     }
 }
