@@ -996,13 +996,6 @@
     <Compile Include="_Reports\BetList\BetSummary.aspx.designer.cs">
       <DependentUpon>BetSummary.aspx</DependentUpon>
     </Compile>
-    <Compile Include="_Reports\BetList\CancelBetList.aspx.cs">
-      <DependentUpon>CancelBetList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="_Reports\BetList\CancelBetList.aspx.designer.cs">
-      <DependentUpon>CancelBetList.aspx</DependentUpon>
-    </Compile>
     <Compile Include="_Reports\BetList\DailyStatement.aspx.cs">
       <DependentUpon>DailyStatement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1796,7 +1789,6 @@
     <Content Include="_GlobalResources\_IPInfo\Resources\IpInfo.css" />
     <Content Include="_GlobalResources\_IPInfo\Resources\IpInfo.js" />
     <Content Include="_Reports\BetList\BetSummary.aspx" />
-    <Content Include="_Reports\BetList\CancelBetList.aspx" />
     <Content Include="_Reports\BetList\DailyStatement.aspx" />
     <Content Include="_Reports\BetList\OutstandingDetail.aspx" />
     <Content Include="_Reports\BetList\Resources\BetSummary.js" />

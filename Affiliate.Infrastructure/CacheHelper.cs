@@ -65,6 +65,11 @@ namespace Affiliate.Infrastructure
 
         private static T DeepClone<T>(T source)
         {
+            if (source == null)
+            {
+                return source;
+            }
+
             return JsonConvert.DeserializeObject<T>(JsonConvert.SerializeObject(source));
         }
     }
