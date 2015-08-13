@@ -51,6 +51,7 @@ namespace DataHandler
             if(criteria.IsAll)
                 hsParam.Add("isall", criteria.IsAll);
 
+            hsParam.Add("nrows", 0);
             return DbHelper.Execute(criteria.SpName, DBType.AFFILIATE_12BET, hsParam);
         }
 
@@ -79,6 +80,7 @@ namespace DataHandler
 
             if (criteria.AffId != -1)
                 hsParam.Add("affid", criteria.AffId);
+            hsParam.Add("nrows", 0);
             return DbHelper.Execute(criteria.SpName, DBType.AFFILIATE_12BET, hsParam);
         }
         public static DataTable SelAffInfo(int intCustId, ref string strMinCheque, ref string strMinMoneyBooker, ref string strMinNetteller, ref string strMinWire, ref string strMinPlayer)

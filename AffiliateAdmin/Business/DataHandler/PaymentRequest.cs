@@ -30,6 +30,7 @@ namespace DataHandler
             hsParam.Add("pagesize", pagesize);
             hsParam.Add("pageindex", page);
             hsParam.Add("totalpages", 0);
+            hsParam.Add("nrows", 0);
             return DbHelper.Execute("Aff_PaymentRequestSelList", DBType.AFFILIATE_12BET, hsParam);
         }
         public static DataTable PaymentRequestById(Int64 TransId)
