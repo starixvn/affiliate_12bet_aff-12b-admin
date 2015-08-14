@@ -14,7 +14,6 @@ public partial class SignUp : RootPage
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        Fanex.Logging.LogService.Error("Test Logging");
         if (AppSettings.Session.IsAuthenticated) 
             Response.Redirect("UserInfo/Account_Overview.aspx");
         ltrRegisForm.Text = Resources.Lang.RegisForm;
