@@ -45,8 +45,7 @@
         {
             get
             {
-                //return IsFavorite ? "Aff_AffiliateSelFavorite" : "Aff_AffiliateSel" + AppSettings.SuffixSp;
-                return IsFavorite ? "Aff_AffiliateSelFavorite" : "Aff_AffiliateSel";
+                return IsFavorite ? "Aff_AffiliateSelFavorite_xtest" : "Aff_AffiliateSel";
             }
         }
     }

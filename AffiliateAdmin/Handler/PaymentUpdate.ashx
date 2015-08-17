@@ -79,7 +79,7 @@ public class PaymentUpdate : IHttpHandler, IRequiresSessionState
             if (strPreferredLang.ToLower() == "th-th")
                 strURLAff = AppSettings.Link_TH;
 
-            TemplateHandler.Assign(ref strNoticeMail, "rooturl", Common.GetRootUrl());
+            TemplateHandler.Assign(ref strNoticeMail, "rooturl", Common.GetAffiliateUserRootUrl());
             TemplateHandler.Assign(ref strNoticeMail, "lang", strPreferredLang);
             TemplateHandler.Assign(ref strNoticeMail, "fname", strFName);
             //TemplateHandler.Assign(ref strNoticeMail, "lname", strLName);
@@ -113,7 +113,7 @@ public class PaymentUpdate : IHttpHandler, IRequiresSessionState
             if (strPreferredLang.ToLower() == "th-th")
                 strURLAff = AppSettings.Link_TH;
 
-            TemplateHandler.Assign(ref strNoticeMail, "rooturl", Common.GetRootUrl());
+            TemplateHandler.Assign(ref strNoticeMail, "rooturl", Common.GetAffiliateUserRootUrl());
             TemplateHandler.Assign(ref strNoticeMail, "lang", strPreferredLang);
             TemplateHandler.Assign(ref strNoticeMail, "fname", strFName);
             //TemplateHandler.Assign(ref strNoticeMail, "lname", strLName);
