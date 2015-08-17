@@ -314,6 +314,10 @@
     <Compile Include="Media\AddText.aspx.designer.cs">
       <DependentUpon>AddText.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Media\BannerDetail.aspx.cs">
+      <DependentUpon>BannerDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Media\BannerDetail.aspx.designer.cs">
       <DependentUpon>BannerDetail.aspx</DependentUpon>
     </Compile>
@@ -596,10 +600,6 @@
     </Compile>
     <Compile Include="Media\AddText.aspx.cs">
       <DependentUpon>AddText.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Media\BannerDetail.aspx.cs">
-      <DependentUpon>BannerDetail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Media\EditBanner.aspx.cs">

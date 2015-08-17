@@ -282,6 +282,7 @@ namespace DataHandler
             hsParam.Add("isgetall", criteria.IsGetAll);
             hsParam.Add("pageindex", criteria.PageIndex);
             hsParam.Add("pagesize", criteria.PageSize);
+            hsParam.Add("nrows", 0);
             return DbHelper.Execute(criteria.SpName, DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
         }
 
@@ -312,6 +313,7 @@ namespace DataHandler
             hsParam.Add("pageindex", criteria.PageIndex);
             hsParam.Add("pagesize", criteria.PageSize);
             hsParam.Add("sortby", criteria.SortBy);
+            hsParam.Add("nrows", 0);
             return DbHelper.Execute(criteria.SpName, DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
         }
         //@Vinh 20091209
@@ -559,6 +561,7 @@ namespace DataHandler
             hsParam.Add("pagesize", criteria.PageSize);
             hsParam.Add("pageindex", criteria.PageIndex);
             hsParam.Add("sortby", criteria.SortBy);
+            hsParam.Add("nrows", 0);
             return DbHelper.Execute(criteria.SpName, DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
         }
 
@@ -571,6 +574,7 @@ namespace DataHandler
             hsParam.Add("year", year);
             hsParam.Add("pagesize", intPageSize);
             hsParam.Add("pageindex", intPage);
+            hsParam.Add("nrows", 0);
             return DbHelper.Execute("Aff_ReportQMDetail", DBType.AFFILIATE_12BET, hsParam);
         }
 
@@ -590,6 +594,7 @@ namespace DataHandler
             hsParam.Add("pageindex", criteria.PageIndex);
             hsParam.Add("sortby", criteria.SortBy);
             hsParam.Add("isdesc", criteria.IsDesc);
+            hsParam.Add("nrows", 0);
             return DbHelper.Execute(criteria.SpName, DBType.AFFILIATE_12BET, hsParam);
         }
         //Johnny20100109

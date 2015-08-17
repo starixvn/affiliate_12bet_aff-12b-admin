@@ -1,13 +1,10 @@
-﻿using System.Xml.Linq;
-using Criterias;
-using DNAide.Web;
-using AffiliateAdmin.Business.DataAccess;
-using DNAide.Core;
-using DNAide.Utils;
-using System.Text;
-using System;
+﻿using System;
 using System.Data;
-using System.Linq;
+using System.Text;
+using AffiliateAdmin.Business.DataAccess;
+using Criterias;
+using DNAide.Core;
+using DNAide.Web;
 
 public partial class Report_SignUpActive : IBCPage
 {
