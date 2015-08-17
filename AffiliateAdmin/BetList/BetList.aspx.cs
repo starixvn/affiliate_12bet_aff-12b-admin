@@ -37,13 +37,7 @@ public partial class BetList_BetList : IBCPage
             dailyEarningDetails += "&user=" + Request["ibcusername"] + "&slSportType=" + Request["slSportType"] + "&iscomm=" + Request["iscomm"];
 
             betlistInfo = "Bet List: " + fromDate.ToShortDateString();
-            // check belonging
-            if (false) //custId != AppSettings.Session.CustID)
-            {
-                betlistHtmlString =
-                    "<div><span style=\"color:Red;\">You are not authorized to view this data!</span></div>";
-            }
-            else
+            if (custId != AppSettings.Session.CustID)
             {
                 var criteria = new ValidationCriteria
                     {
@@ -67,8 +61,8 @@ public partial class BetList_BetList : IBCPage
                     affBetlistService.Timeout = AppSettings.BetListServiceTimeout;
 
                     var supportedProducts = new List<Product>();
-                    supportedProducts.Add(new Product {ProductId = 1, ProductName = "Sportsbook"});
-                    supportedProducts.Add(new Product {ProductId = 5, ProductName = "Playtech Casino"});
+                    supportedProducts.Add(new Product { ProductId = 1, ProductName = "Sportsbook" });
+                    supportedProducts.Add(new Product { ProductId = 5, ProductName = "Playtech Casino" });
 
                     var betlistSOAP = new BetlistSOAP
                         {
@@ -96,7 +90,7 @@ public partial class BetList_BetList : IBCPage
                 subMenuHtmlString = SubMenu.GenSubMenu(SubMenu.ReportLink, SubMenu.ReportText, 5, 0,
                                                           SubMenu.ReportText[3], "i_report.png");
             }
-            
+
             var strTemplate = TemplateHandler.LoadTemplate("UserInfo/BetList.htm");
             TemplateHandler.Assign(ref strTemplate, "submenu", subMenuHtmlString);
             if (!isComm)

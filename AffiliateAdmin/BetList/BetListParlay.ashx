@@ -1,7 +1,7 @@
 ﻿<%@ WebHandler Language="C#" Class="BetListParlay" %>
 
 using System.Web;
-using AffBetlistService;
+using AffiliateAdmin.AffBetlistService;
 
 public class BetListParlay : IHttpHandler {
     

@@ -78,6 +78,7 @@ namespace DataHandler
                 hsParam.Add("email", criteria.Email);
             }
 
+            hsParam.Add("language", criteria.Language);
             if (criteria.AffId != -1)
                 hsParam.Add("affid", criteria.AffId);
             hsParam.Add("nrows", 0);
@@ -856,10 +857,10 @@ namespace DataHandler
             parameters.Add("adminname", null);
             parameters.Add("affid", criteria.AffId);
             parameters.Add("membername", criteria.MemberName);
+            parameters.Add("belonglevel2", false);
 
             var rs = DbHelper.Execute(criteria.SpName, DBType.AFFILIATE_12BET, parameters);
-            var resutl = CastAide.AsBoolean(rs.Outputs["belonglevel2"]);
-            return resutl;
+            return CastAide.AsBoolean(rs.Outputs["belonglevel2"]);
         }
     }
 }

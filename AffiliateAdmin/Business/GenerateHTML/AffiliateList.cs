@@ -16,7 +16,6 @@ namespace AffAdmin.GenerateHTML
         #region Aff List content
         public static string GetAffList(AffiliateListCriteria criteria)
         {
-                
                 DbResult result=null;
                 if (criteria.AffId != -2)
                 {
