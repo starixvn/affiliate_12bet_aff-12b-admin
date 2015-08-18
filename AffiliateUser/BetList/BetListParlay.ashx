@@ -2,7 +2,7 @@
 
 using System;
 using System.Web;
-using AffBetlistService;
+using AffiliateUser.AffBetlistService;
 
 public class BetListParlay : IHttpHandler {
     
