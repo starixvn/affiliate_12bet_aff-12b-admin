@@ -4,7 +4,6 @@ namespace Criterias
 {
     public class SignUpActiveCriteria
     {
-
         public DateTime DtmFDate { get; set; }
 
         public DateTime DtmTDate { get; set; }
@@ -14,8 +13,6 @@ namespace Criterias
         public string Username { get; set; }
 
         public string PreferredLanguage { get; set; }
-
-        public int AffType { get; set; }
 
         public int SortBy { get; set; }
 

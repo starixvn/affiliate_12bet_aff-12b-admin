@@ -816,7 +816,7 @@ namespace DataHandler
             hsParam.Add("username", criteria.Username);
             if(!string.IsNullOrEmpty(criteria.PreferredLanguage))
                 hsParam.Add("preferredlanguage", criteria.PreferredLanguage);
-            hsParam.Add("afftype", criteria.AffType);
+
             hsParam.Add("pagesize", criteria.PageSize);
             hsParam.Add("pageindex", criteria.PageIndex);
             hsParam.Add("nrows", 0);

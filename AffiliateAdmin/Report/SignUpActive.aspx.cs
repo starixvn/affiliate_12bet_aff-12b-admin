@@ -60,7 +60,6 @@ public partial class Report_SignUpActive : IBCPage
                 IsGetAll = isGetAll,
                 Username = strUsername,
                 PreferredLanguage = strPreferLang,
-                AffType = 0,
                 PageSize = intPageSize,
                 PageIndex = intPage,
                 SortBy = sortBy
@@ -111,8 +110,6 @@ public partial class Report_SignUpActive : IBCPage
                 strListRow.Append(strTmp);
             }
             TemplateHandler.ReplaceBlock(ref strTpl, "content", strListRow.ToString());
-
-
         }
         else
         {

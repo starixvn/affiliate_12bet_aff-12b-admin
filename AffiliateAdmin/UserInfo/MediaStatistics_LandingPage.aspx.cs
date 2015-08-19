@@ -9,6 +9,8 @@ using GenerateHTML;
 
 public partial class UserInfo_MediaStatistics_LandingPage : IBCPage
 {
+    private const int DeviceMobile = 0;
+
     private string strTpl = string.Empty;
     private StringBuilder strListRow = new StringBuilder();
 
@@ -36,8 +38,9 @@ public partial class UserInfo_MediaStatistics_LandingPage : IBCPage
 
             string sportCode = CastAide.AsString(Request["sportCode"]);
             string languageCode = CastAide.AsString(Request["languageCode"]);
+            var deviceType = Common.GetDeviceType(Request["slDevice"]);
 
-            TemplateHandler.Assign(ref strTpl, "slPage", GeneratePagesDropdown(sportCode));
+            TemplateHandler.Assign(ref strTpl, "slPage", GeneratePagesDropdown(sportCode, deviceType));
 
             DataView dv = DbHelper.Execute("Aff_BannerSelType", DBType.AFFILIATE_12BET).ResultSet.Tables[0].DefaultView;
             TemplateHandler.Assign(ref strTpl, "slLanguage", Common.GetDataOptionBanner(dv, "languageCode", "Language", languageCode, true));
@@ -48,7 +51,7 @@ public partial class UserInfo_MediaStatistics_LandingPage : IBCPage
 
             DateTime dtmFDate = CastAide.AsDateTime(Request["fdate"], new DateTime(now.Year, now.Month, 1));
             DateTime dtmTDate = CastAide.AsDateTime(Request["tdate"], DateTime.Now);
-            var deviceType = Common.GetDeviceType(Request["slDevice"]);
+            
 
             TemplateHandler.Assign(ref strTpl, "fdate", dtmFDate.ToString("MM/dd/yyyy"));
             TemplateHandler.Assign(ref strTpl, "tdate", dtmTDate.ToString("MM/dd/yyyy"));
@@ -117,23 +120,34 @@ public partial class UserInfo_MediaStatistics_LandingPage : IBCPage
         }
     }
 
-    private static string GeneratePagesDropdown(string sportCode)
+    private static string GeneratePagesDropdown(string sportCode, string deviceType)
     {
         var pages = new Dictionary<string, string>();
         pages.Add(string.Empty, "All");
-        pages.Add("sportsbook", "sportsbook");
-        pages.Add("casino", "casino");
-        pages.Add("signup", "signup");
-        pages.Add("promotion", "promotion");
-
-        if (AppSettings.Session.IsCasino)
+        if (deviceType.Equals(DeviceMobile.ToString()))
         {
-            pages.Add("12betcasino", "12betcasino");
-        }
+            pages.Add("sportsbook", "sportsbook");
+            pages.Add("casino", "casino");
+            pages.Add("signup", "signup");
+            pages.Add("promotion", "promotion");
 
-        pages.Add("numbergame", "numbergame");
-        pages.Add("keno", "keno");
-        pages.Add("virtualsports", "virtualsports");
+            if (AppSettings.Session.IsCasino)
+            {
+                pages.Add("12betcasino", "12betcasino");
+            }
+
+            pages.Add("numbergame", "numbergame");
+            pages.Add("keno", "keno");
+            pages.Add("virtualsports", "virtualsports");
+        }
+        else
+        {
+            pages.Add("home", "home");
+            pages.Add("signup", "signup");
+            pages.Add("promotion", "promotion");
+            pages.Add("sportstoday", "sportstoday");
+            pages.Add("numbergame", "numbergame");
+        }
 
         return Common.GenerateDropdownHtml("sportCode", pages, sportCode);
     }
