@@ -27,6 +27,8 @@ using Sunplus.UMControllerLibrary;
 /// </summary>
 public class Common
 {
+    private const int DeviceMobile = 0;
+
     public const string System = "Affiliate";
     public const string Approved = "Approved";
     public const string Pending = "Pending";
@@ -50,6 +52,38 @@ public class Common
     public static readonly string[] CategoryMediaSportsbook = new string[] { 
         "SB Bonus", "Soccer", "Basketball" , "Tennis"
     };
+
+    public static string GeneratePagesDropdown(string sportCode, string deviceType)
+    {
+        var pages = new Dictionary<string, string>();
+        pages.Add(string.Empty, "All");
+        if (deviceType.Equals(DeviceMobile.ToString()))
+        {
+            pages.Add("sportsbook", "sportsbook");
+            pages.Add("casino", "casino");
+            pages.Add("signup", "signup");
+            pages.Add("promotion", "promotion");
+
+            if (AppSettings.Session.IsCasino)
+            {
+                pages.Add("12betcasino", "12betcasino");
+            }
+
+            pages.Add("numbergame", "numbergame");
+            pages.Add("keno", "keno");
+            pages.Add("virtualsports", "virtualsports");
+        }
+        else
+        {
+            pages.Add("home", "home");
+            pages.Add("signup", "signup");
+            pages.Add("promotion", "promotion");
+            pages.Add("sportstoday", "sportstoday");
+            pages.Add("numbergame", "numbergame");
+        }
+
+        return Common.GenerateDropdownHtml("sportCode", pages, sportCode);
+    }
 
     public static bool CheckHaveParentCategory(string subCategory, out string category)
     {

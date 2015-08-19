@@ -103,5 +103,20 @@
     function searchData() {
         $("frmSearch").submit();
     }
+
+    window.onload = function () {
+        $('slDevice').onchange = function () {
+            var deviceType = this.value;
+
+            var ajax = new Ajax.Request("../Handler/GetPageList.ashx", {
+                method: 'get',
+                parameters: 'deviceType=' + deviceType,
+                onComplete: function (data) {
+                    $("sportCode").parentNode.innerHTML = data.responseText;
+                }
+            });
+        };
+    };
+
 </script>
 <!--/js-->
