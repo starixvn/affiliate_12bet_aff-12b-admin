@@ -105,16 +105,15 @@ public partial class Home : IBCPage
         int page = CastAide.AsInt32(Request["page"], 1);
         int Nrows = 0, totalpages=0;
         int NrowOnCurPage = 0;
-        DbResult olRs;
+        DbResult result;
         DataTable oldtb = new DataTable() ;
 
         while (NrowOnCurPage == 0)
         {
-            olRs = null;
-            olRs = DataHandler.Home.GetOnlineList(pagesize, page);
-            totalpages = CastAide.AsInt32(olRs.Outputs["totalpages"]);
-            Nrows = CastAide.AsInt32(olRs.Outputs["NRows"]);
-            oldtb = olRs.ResultSet.Tables[0];
+            result = DataHandler.Home.GetOnlineList(pagesize, page);
+            totalpages = CastAide.AsInt32(result.Outputs["totalpages"]);
+            Nrows = CastAide.AsInt32(result.Outputs["NRows"]);
+            oldtb = result.ResultSet.Tables[0];
             if(page == 1)//Break out if page is equal 1
                 NrowOnCurPage = -1;
             else

@@ -27,6 +27,8 @@ namespace DataHandler
             Hashtable param = new Hashtable();
             param.Add("pagesize", pageSize);
             param.Add("pageindex", pageIndex);
+            param.Add("nrows", 0);
+            param.Add("totalpages", 0);
             return DbHelper.Execute("Aff_UserOnlineList", DBType.AFFILIATE_12BET, param, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
         }
     }

@@ -71,7 +71,7 @@ public class UpdateAcc : IHttpHandler, IRequiresSessionState
             int intCustId = CastAide.AsInt32(context.Request.Form["hdCustid"]);
             int intReload = 0;
 
-            Affiliate.UpdateUser(intCustId, AppSettings.Session.CustID, strFname, strLname, strGender, strCountry, strEmail, strPhone, strMobile, strAddress, strCity, strState, strPostCode, Common.GetLangChar(), strURL, strMoreUrl, strNoSiteDesc, strPlayerUserName, strPayment, strNetellerAccId, strMoneyBookerEmail, strBankName, strBankAddress, strSwiftCode, strAccName, strAccNo, strCheque_FullName, strCheque_Address, strCheque_City, strCheque_State, strCheque_Postal, strCheque_Country, strEmailFormat, ref intErrCode, ref strErrMsg);
+            DataHandler.Affiliate.UpdateUser(intCustId, AppSettings.Session.CustID, strFname, strLname, strGender, strCountry, strEmail, strPhone, strMobile, strAddress, strCity, strState, strPostCode, Common.GetLangChar(), strURL, strMoreUrl, strNoSiteDesc, strPlayerUserName, strPayment, strNetellerAccId, strMoneyBookerEmail, strBankName, strBankAddress, strSwiftCode, strAccName, strAccNo, strCheque_FullName, strCheque_Address, strCheque_City, strCheque_State, strCheque_Postal, strCheque_Country, strEmailFormat, ref intErrCode, ref strErrMsg);
             if (intErrCode != 0)
             {
                 string strErrObj = "error_item";
