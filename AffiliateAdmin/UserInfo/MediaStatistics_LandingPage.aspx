@@ -7,6 +7,7 @@
 <script src="../App_Js/Calendar2/date.js" type="text/javascript"></script>
 <script src="../App_Js/Calendar2/Lang/calendar-e.js" type="text/javascript"></script>
 <script src="../App_Js/Calendar2/calendar-setup.js" type="text/javascript"></script>
+<script src="../App_Js/Common.js" type="text/javascript"></script>
 <script type="text/javascript">
     var pageTimeOut;
     function PageNum(aID, txtID, isInputPage) {
@@ -106,13 +107,15 @@
 
     window.onload = function () {
         $('slDevice').onchange = function () {
+            Common.blockUI();
             var deviceType = this.value;
-
-            var ajax = new Ajax.Request("../Handler/GetPageList.ashx", {
+            
+            new Ajax.Request("../Handler/GetPageList.ashx", {
                 method: 'get',
                 parameters: 'deviceType=' + deviceType,
                 onComplete: function (data) {
                     $("sportCode").parentNode.innerHTML = data.responseText;
+                    Common.unBlockUI();
                 }
             });
         };

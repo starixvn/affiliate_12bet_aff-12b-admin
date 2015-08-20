@@ -1,260 +1,256 @@
-﻿function obj(id){
-	return document.getElementById(id);
+﻿var Common = (function () {
+    return {
+        blockUI: function () {
+            DelayReloadPage1();
+        },
+        unBlockUI: function () {
+            window.divMaskLoading.style.display = 'none';
+        }
+    };
+} ());
+
+
+function obj(id) {
+    return document.getElementById(id);
 }
-Array.prototype.clear =function(){
-	if (this.length >0) this.splice(0,this.length);  
+Array.prototype.clear = function () {
+    if (this.length > 0) this.splice(0, this.length);
 }
-String.prototype.isNumber =function() {        
-    var regs= new RegExp(/^-?\d+(\.\d+)?\s*$/);    
+String.prototype.isNumber = function () {
+    var regs = new RegExp(/^-?\d+(\.\d+)?\s*$/);
     return (regs.test(this));
 }
 
-StringBuilder=function(initialText) { 
-	var _parts=new Array();
-	if (initialText) _parts.append(initialText);		  
-	this.append=function(text){
-		if(text) _parts.push(text);
-	}
-	this.appendLine=function(text){
-		this.append(text);
-		this.append("\r\n");
-	}
-	this.clear =function(){ 
-		_parts.clear();
-	}	
-	this.isEmpty=function(){ 
-		return (_parts.length==0); 
-	}
-	this.toString=function(delimiter){
-		delimiter=delimiter || '';
-		return _parts.join(delimiter);
-	}
-}
-
-Number.prototype.toDecimals=function(n){
-    n=(isNaN(n)) ? 2: n;
-    var num=Math.pow(10,n);
-    function pad(s) {
-        s=s||'.';
-        return (s.length>2) ? s: pad(s+'0');
+StringBuilder = function (initialText) {
+    var _parts = new Array();
+    if (initialText) _parts.append(initialText);
+    this.append = function (text) {
+        if (text) _parts.push(text);
     }
-    return (isNaN(this)) ? this: (new String(Math.round(this*num)/num)).replace(/(\.\d*)?$/,pad);
+    this.appendLine = function (text) {
+        this.append(text);
+        this.append("\r\n");
+    }
+    this.clear = function () {
+        _parts.clear();
+    }
+    this.isEmpty = function () {
+        return (_parts.length == 0);
+    }
+    this.toString = function (delimiter) {
+        delimiter = delimiter || '';
+        return _parts.join(delimiter);
+    }
 }
 
-String.prototype.startsWith =function(prefix){
-  return (this.substr(0,prefix.length)==prefix);
+Number.prototype.toDecimals = function (n) {
+    n = (isNaN(n)) ? 2 : n;
+    var num = Math.pow(10, n);
+    function pad(s) {
+        s = s || '.';
+        return (s.length > 2) ? s : pad(s + '0');
+    }
+    return (isNaN(this)) ? this : (new String(Math.round(this * num) / num)).replace(/(\.\d*)?$/, pad);
 }
 
-String.prototype.endsWith =function(suffix){
-  return (this.substr(this.length -suffix.length)==suffix);
+String.prototype.startsWith = function (prefix) {
+    return (this.substr(0, prefix.length) == prefix);
 }
 
-String.prototype.contains =function(item){
-	return (this.indexOf(item) >=0);
+String.prototype.endsWith = function (suffix) {
+    return (this.substr(this.length - suffix.length) == suffix);
 }
 
-String.prototype.trimLeft =function(){
-  return this.replace(/^\s*/,"");
+String.prototype.contains = function (item) {
+    return (this.indexOf(item) >= 0);
 }
 
-String.prototype.trimRight =function(){
-  return this.replace(/\s*$/,"");
+String.prototype.trimLeft = function () {
+    return this.replace(/^\s*/, "");
 }
 
-String.prototype.trim =function(){
-  return this.trimRight().trimLeft();
+String.prototype.trimRight = function () {
+    return this.replace(/\s*$/, "");
 }
 
-String.prototype.compare =function(args, isIgnoreCase){		
-	if(isIgnoreCase) {
-		return ((new String(this.toLowerCase())==(new String(args)).toLowerCase()) ?0 :1);		
-	}
-	return ((this ==args) ?0 :1);
+String.prototype.trim = function () {
+    return this.trimRight().trimLeft();
 }
 
-String.format =function(format){
-  for (var i =1;i <arguments.length;i++){
-    format =format.replace("{"+(i -1)+"}",arguments[i]);
-  }
-  return format;
+String.prototype.compare = function (args, isIgnoreCase) {
+    if (isIgnoreCase) {
+        return ((new String(this.toLowerCase()) == (new String(args)).toLowerCase()) ? 0 : 1);
+    }
+    return ((this == args) ? 0 : 1);
 }
-function checkMail(value)
-{
-	var filter  = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-	if (filter.test(value))
-	    return true;
-	else 
-	    return false;
+
+String.format = function (format) {
+    for (var i = 1; i < arguments.length; i++) {
+        format = format.replace("{" + (i - 1) + "}", arguments[i]);
+    }
+    return format;
 }
-function isEmpty(value)
-{
-    if(value == null || value.trim() == "")
+function checkMail(value) {
+    var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    if (filter.test(value))
         return true;
     else
         return false;
 }
-function indexOfRadioChecked(name)
-{
+function isEmpty(value) {
+    if (value == null || value.trim() == "")
+        return true;
+    else
+        return false;
+}
+function indexOfRadioChecked(name) {
     var radios = document.getElementsByName(name);
     var length = radios.length;
-    for(i = 0; i < length; i++)
-        if(radios[i].checked ==1)
+    for (i = 0; i < length; i++)
+        if (radios[i].checked == 1)
             return i;
 }
-function valueOfRadioChecked(name)
-{
+function valueOfRadioChecked(name) {
     var radios = document.getElementsByName(name);
     var length = radios.length;
-    for(i = 0; i < length; i++)
-        if(radios[i].checked == 1)
+    for (i = 0; i < length; i++)
+        if (radios[i].checked == 1)
             return i;
 }
-function formatNumber(number){
-	var str =String(number);	
-	var end_i =str.indexOf('.');
-	
-	if (str.indexOf(',') >0) return str;	
-	var endstr ="";
-	if (end_i !=-1){
-		endstr =str.substring(end_i);
-		var t =str.substring(0, str.length -end_i);
-		if (t.length <4) return str;		
-	}
-	else {
-		end_i =str.length;
-	}
-	
-	var count =0;
-	var result ="";
-	for (i =end_i -1; i >=0; i--){		
-		if (count >2){		
-			result =str.charAt(i) +"," +result;
-			count =0;
-		}
-		else{
-			result =str.charAt(i) +result;		
-		}
-		count++;
-	}	
-	return (result +endstr);
+function formatNumber(number) {
+    var str = String(number);
+    var end_i = str.indexOf('.');
+
+    if (str.indexOf(',') > 0) return str;
+    var endstr = "";
+    if (end_i != -1) {
+        endstr = str.substring(end_i);
+        var t = str.substring(0, str.length - end_i);
+        if (t.length < 4) return str;
+    }
+    else {
+        end_i = str.length;
+    }
+
+    var count = 0;
+    var result = "";
+    for (i = end_i - 1; i >= 0; i--) {
+        if (count > 2) {
+            result = str.charAt(i) + "," + result;
+            count = 0;
+        }
+        else {
+            result = str.charAt(i) + result;
+        }
+        count++;
+    }
+    return (result + endstr);
 }
 
 /**/
-function toNumber(str){
-	var value ="";
-	for (i =0; i <str.length; i++) {
-		var c =str.charAt(i);
-		if (c !=',') value +=c;		
-	}
-	return value;
+function toNumber(str) {
+    var value = "";
+    for (i = 0; i < str.length; i++) {
+        var c = str.charAt(i);
+        if (c != ',') value += c;
+    }
+    return value;
 }
 //-----show date
-function showdate()
-{
-    if($('day').innerHTML!=null)
-    {
+function showdate() {
+    if ($('day').innerHTML != null) {
         var strMonth = new Array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
-        var dtime=new Date();
-        var time =(dtime.toTimeString().substr(0,8)).toString(); 
-        var d=strMonth[dtime.getMonth()] + " " + dtime.getDate() + ", " + dtime.getFullYear() + " GMT +8"; 
-        dtime=time.split(':');
-        var AP='AM';
-        if(dtime[0] >11)AP='PM';
-        if(dtime[0] ==0) dtime[0] =12;       
-        if(dtime[0] >12) dtime[0] -=12;
-        $('day').innerHTML=dtime.join(':') + " " + AP + " " + d; 
-        setTimeout("showdate();",1000);
+        var dtime = new Date();
+        var time = (dtime.toTimeString().substr(0, 8)).toString();
+        var d = strMonth[dtime.getMonth()] + " " + dtime.getDate() + ", " + dtime.getFullYear() + " GMT +8";
+        dtime = time.split(':');
+        var AP = 'AM';
+        if (dtime[0] > 11) AP = 'PM';
+        if (dtime[0] == 0) dtime[0] = 12;
+        if (dtime[0] > 12) dtime[0] -= 12;
+        $('day').innerHTML = dtime.join(':') + " " + AP + " " + d;
+        setTimeout("showdate();", 1000);
     }
-    else
-    {
-        setTimeout("showdate();",10000);
+    else {
+        setTimeout("showdate();", 10000);
     }
 }
 //--------------
-function MM_openBrWindow(theURL,winName,features)
-{ 
-    window.open(theURL,winName,features);
+function MM_openBrWindow(theURL, winName, features) {
+    window.open(theURL, winName, features);
 }
-function ShowError(errMsgs,tagIds,placeHolder)
-{	
-	window.scroll(0,0); 
-	//parent.scroll(0,0); 
-	var errHtml="";	
-	$(placeHolder).style.display=(errMsgs.length==0)?'none':'';
-	for(var i=0;i<errMsgs.length;++i){
-	    errHtml+="<li><a class='err-msg' href='' onclick=\"$('"+tagIds[i]+"').focus(); return false;\">"+errMsgs[i]+"</a></li>";
-	}
-	$(placeHolder).innerHTML = "<ul>" + errHtml + "</ul>";
-	setTimeout(function(){$('errMsg').hide()},3000);
+function ShowError(errMsgs, tagIds, placeHolder) {
+    window.scroll(0, 0);
+    //parent.scroll(0,0); 
+    var errHtml = "";
+    $(placeHolder).style.display = (errMsgs.length == 0) ? 'none' : '';
+    for (var i = 0; i < errMsgs.length; ++i) {
+        errHtml += "<li><a class='err-msg' href='' onclick=\"$('" + tagIds[i] + "').focus(); return false;\">" + errMsgs[i] + "</a></li>";
+    }
+    $(placeHolder).innerHTML = "<ul>" + errHtml + "</ul>";
+    setTimeout(function () { $('errMsg').hide() }, 3000);
 }
-function ShowError1(errMsgs,tagIds,placeHolder)
-{	
-	window.scroll(0,0); 
-	var errHtml="";	
-	$(placeHolder).style.display=(errMsgs.length==0)?'none':'';
-	for(var i=0;i<errMsgs.length;++i){
-	    errHtml+="<li><a class='err-msg' href='' onclick=\"$('"+tagIds[i]+"').focus(); return false;\">"+errMsgs[i]+"</a></li>";
-	}
-	$(placeHolder).innerHTML = "<ul>" + errHtml + "</ul><br />";
+function ShowError1(errMsgs, tagIds, placeHolder) {
+    window.scroll(0, 0);
+    var errHtml = "";
+    $(placeHolder).style.display = (errMsgs.length == 0) ? 'none' : '';
+    for (var i = 0; i < errMsgs.length; ++i) {
+        errHtml += "<li><a class='err-msg' href='' onclick=\"$('" + tagIds[i] + "').focus(); return false;\">" + errMsgs[i] + "</a></li>";
+    }
+    $(placeHolder).innerHTML = "<ul>" + errHtml + "</ul><br />";
 }
 
 //-------------------------------------------------------------------------
 // JScript File
-var IE = document.all?true:false;
+var IE = document.all ? true : false;
 // utility functions --------------------------
 IBC = [];
-IBC.addEvent = function(el, evname, func) {
-	if (el.attachEvent) { // IE
-		el.attachEvent("on" + evname, func);
-	} else if (el.addEventListener) { // Gecko / W3C
-		el.addEventListener(evname, func, true);
-	} else { // Opera (or old browsers)
-		el["on" + evname] = func;
-	}
+IBC.addEvent = function (el, evname, func) {
+    if (el.attachEvent) { // IE
+        el.attachEvent("on" + evname, func);
+    } else if (el.addEventListener) { // Gecko / W3C
+        el.addEventListener(evname, func, true);
+    } else { // Opera (or old browsers)
+        el["on" + evname] = func;
+    }
 }
 
-IBC.removeEvent = function(el, evname, func) {
-	if (el.detachEvent) { // IE
-		el.detachEvent("on" + evname, func);
-	} else if (el.removeEventListener) { // Gecko / W3C
-		el.removeEventListener(evname, func, true);
-	} else { // Opera (or old browsers)
-		el["on" + evname] = null;
-	}
+IBC.removeEvent = function (el, evname, func) {
+    if (el.detachEvent) { // IE
+        el.detachEvent("on" + evname, func);
+    } else if (el.removeEventListener) { // Gecko / W3C
+        el.removeEventListener(evname, func, true);
+    } else { // Opera (or old browsers)
+        el["on" + evname] = null;
+    }
 }
 
-IBC.calculateViewport = function()
-{
+IBC.calculateViewport = function () {
     window.viewport = [];
-    if(!this.is_ie)
-    {
+    if (!this.is_ie) {
         // in standards compliant mode (i.e. with a valid doctype as the first line in the document)
         if (typeof document.documentElement != 'undefined'
          && typeof document.documentElement.scrollWidth !=
-         'undefined' && document.documentElement.scrollWidth != 0)
-        {
-           window.viewport.width = document.documentElement.scrollWidth;
-           window.viewport.height = document.documentElement.scrollHeight;
-        }        
+         'undefined' && document.documentElement.scrollWidth != 0) {
+            window.viewport.width = document.documentElement.scrollWidth;
+            window.viewport.height = document.documentElement.scrollHeight;
+        }
 
         window.viewport.width = Math.max(window.viewport.width, (Math.max(document.body.scrollWidth, document.body.clientWidth)));
         window.viewport.height = Math.max(window.viewport.height, (Math.max(document.body.scrollHeight, document.body.clientHeight)));
     }
-    else
-    {
+    else {
         // in standards compliant mode (i.e. with a valid doctype as the first line in the document)
         if (typeof document.documentElement != 'undefined'
          && typeof document.documentElement.clientWidth !=
-         'undefined' && document.documentElement.clientWidth != 0)
-        {
-           window.viewport.width = document.documentElement.clientWidth;
-           window.viewport.height = document.documentElement.clientHeight;
+         'undefined' && document.documentElement.clientWidth != 0) {
+            window.viewport.width = document.documentElement.clientWidth;
+            window.viewport.height = document.documentElement.clientHeight;
         }
         // older versions of IE
-        else
-        {
-           window.viewport.width = document.getElementsByTagName('body')[0].clientWidth;
-           window.viewport.height = document.getElementsByTagName('body')[0].clientHeight;
+        else {
+            window.viewport.width = document.getElementsByTagName('body')[0].clientWidth;
+            window.viewport.height = document.getElementsByTagName('body')[0].clientHeight;
         }
 
         window.viewport.width = Math.max(document.body.scrollWidth, window.viewport.width);
@@ -262,50 +258,48 @@ IBC.calculateViewport = function()
     }
 }
 
-IBC.createElement = function(type, parent) {
-	var el = null;
-	if (document.createElementNS) {
-		// use the XHTML namespace; IE won't normally get here unless
-		// _they_ "fix" the DOM2 implementation.
-		el = document.createElementNS("http://www.w3.org/1999/xhtml", type);
-	} else {
-		el = document.createElement(type);
-	}
-	if (typeof parent != "undefined") {
-		parent.appendChild(el);
-	}
-	return el;
+IBC.createElement = function (type, parent) {
+    var el = null;
+    if (document.createElementNS) {
+        // use the XHTML namespace; IE won't normally get here unless
+        // _they_ "fix" the DOM2 implementation.
+        el = document.createElementNS("http://www.w3.org/1999/xhtml", type);
+    } else {
+        el = document.createElement(type);
+    }
+    if (typeof parent != "undefined") {
+        parent.appendChild(el);
+    }
+    return el;
 }
 
 //--------------------------------------------
 var timeDelay = "";
-function CreateMaskLoadingDiv()
-{
+function CreateMaskLoadingDiv() {
 
     window.divMaskLoading = IBC.createElement("div");
     var div1 = IBC.createElement("div");
-    
+
     window.divMaskLoading.className = "divframeloading"
-    
+
     window.divMaskLoading.style.filter = 'alpha(opacity=50)';
     window.divMaskLoading.style.opacity = '0.5';
     window.divMaskLoading.appendChild(div1);
     document.body.appendChild(window.divMaskLoading);
-    
+
 }
 
-function DelayReloadPage(id,data)
-{
-    if(!window.divMaskLoading) 
+function DelayReloadPage(id, data) {
+    if (!window.divMaskLoading)
         CreateMaskLoadingDiv();
-    if(!window.viewport)
+    if (!window.viewport)
         IBC.calculateViewport();
     window.divMaskLoading.style.width = (window.viewport.width - 20) + 'px';
     window.divMaskLoading.style.height = window.viewport.height + 'px';
     var div1 = IBC.createElement("div");
-    window.divMaskLoading.firstChild.style.left = Math.floor(window.viewport.width/2) + 'px';
+    window.divMaskLoading.firstChild.style.left = Math.floor(window.viewport.width / 2) + 'px';
     window.divMaskLoading.firstChild.style.top = document.body.scrollTop + 'px';
-    
+
     window.divMaskLoading.style.display = 'block';
     setTimeout(function () {
         window.divMaskLoading.style.display = 'none';
@@ -314,52 +308,48 @@ function DelayReloadPage(id,data)
         }
     }, 500);
 }
-function DelayReloadPage1()
-{
+function DelayReloadPage1() {
     clearTimeout(timeDelay);
     timeDelay = "";
-    
-    if(!window.divMaskLoading) 
+
+    if (!window.divMaskLoading)
         CreateMaskLoadingDiv();
-    if(!window.viewport)
+    if (!window.viewport)
         IBC.calculateViewport();
     window.divMaskLoading.style.width = (window.viewport.width - 3) + 'px';
     window.divMaskLoading.style.height = window.viewport.height + 'px';
-     var div1 = IBC.createElement("div");
-    window.divMaskLoading.firstChild.style.left = Math.floor(window.viewport.width/2) + 'px';
+    var div1 = IBC.createElement("div");
+    window.divMaskLoading.firstChild.style.left = Math.floor(window.viewport.width / 2) + 'px';
     window.divMaskLoading.firstChild.style.top = document.body.scrollTop + 'px';
     window.divMaskLoading.style.display = 'block';
-    setTimeout(function() {
+    setTimeout(function () {
         window.divMaskLoading.style.display = 'none';
     }, 30000);
 }
-function DelayReloadPage2(time)
- {
-    if(!window.divMaskLoading) 
+function DelayReloadPage2(time) {
+    if (!window.divMaskLoading)
         CreateMaskLoadingDiv();
-    if(!window.viewport)
+    if (!window.viewport)
         IBC.calculateViewport();
     window.divMaskLoading.style.width = (window.viewport.width - 20) + 'px';
     window.divMaskLoading.style.height = window.viewport.height + 'px';
-    window.divMaskLoading.style.display = 'block';  
+    window.divMaskLoading.style.display = 'block';
     var div1 = IBC.createElement("div");
-    window.divMaskLoading.firstChild.style.left = Math.floor(window.viewport.width/2) + 'px';
+    window.divMaskLoading.firstChild.style.left = Math.floor(window.viewport.width / 2) + 'px';
     window.divMaskLoading.firstChild.style.top = document.body.scrollTop + 'px';
-    setTimeout(function(){window.divMaskLoading.style.display = 'none';location.href = location.href;},time);
- }    
-function HideDelayReloadPage()
-{
+    setTimeout(function () { window.divMaskLoading.style.display = 'none'; location.href = location.href; }, time);
+}
+function HideDelayReloadPage() {
     clearTimeout(timeDelay);
-    timeDelay = "";    
-    if(window.divMaskLoading) 
+    timeDelay = "";
+    if (window.divMaskLoading)
         setTimeout("window.divMaskLoading.style.display = 'none';", 400);
-}   
+}
 // start up script ---------------------------
 IBC.addEvent(window, "load", _startup);
 var arrMenu = new Array("menu1@Home/Home.aspx", "menu2@Customer/AffDefault.aspx", "menu3@UserInfo/AffiliateList.aspx, Payment/PaymentRequest.aspx, Others/EmailHistory.aspx, GroupSetting/GroupSetting.aspx",
         "menu4@UserInfo/MemberListAll.aspx", "menu5@Report/MemberReport.aspx", "menu6@Media/Listbanner.aspx", "menu7@Others/Message.aspx", "menu8@Exchange/AffRate.aspx", "menu9@UserControl/ListUser.aspx, UserControl/ListDepartment.aspx", "menu10@Domain/AffiliateDomain.aspx");
-function _startup()
-{/*
+function _startup() {/*
     HideDelayReloadPage();
     IBC.calculateViewport();
     var lstSubmenu = $$("li a span");
@@ -389,19 +379,17 @@ function _startup()
 }
 /*-----End script-----*/
 IBC.addEvent(window, "unload", _end);
-function _end()
-{
+function _end() {
     HideDelayReloadPage();
 }
 
-function GotoPage(pageIndex, maxPage)
-{
+function GotoPage(pageIndex, maxPage) {
     var currPage = parseInt($("page").value);
-    if(currPage == 1 && pageIndex <=1)
+    if (currPage == 1 && pageIndex <= 1)
         return false;
-    if(currPage == maxPage && pageIndex >= maxPage)
+    if (currPage == maxPage && pageIndex >= maxPage)
         return false;
-    if(pageIndex > maxPage || pageIndex <= 0)
+    if (pageIndex > maxPage || pageIndex <= 0)
         return false;
     LoadData(pageIndex);
 }
@@ -424,76 +412,71 @@ function SuccAlter(msg) {
         setTimeout("HideErr()", 10000);
     }
 }
-function ErrAlter2(msg)
-{
-     $('errMsg2').style.display='block';                        
-     $('error_msg2').innerHTML=msg;
-     setTimeout("$('errMsg2').style.display='none';",3000);
+function ErrAlter2(msg) {
+    $('errMsg2').style.display = 'block';
+    $('error_msg2').innerHTML = msg;
+    setTimeout("$('errMsg2').style.display='none';", 3000);
 }
-function HideErr()
-{
-     $('errMsg').style.display='none';
-}   
- 
- function InitDivChkBox() {
-     var listChk = $$("div .chk");
-     if (listChk.length > 0) {
-         for (var i = 0; i < listChk.length; i++) {
-             listChk[i].observe('click', chkOnclick);
-         }
-     }
- }
+function HideErr() {
+    $('errMsg').style.display = 'none';
+}
 
- function chkOnclick(event) {
-     var element = Event.element(event);
-     divChkChangeState(element);
- }
+function InitDivChkBox() {
+    var listChk = $$("div .chk");
+    if (listChk.length > 0) {
+        for (var i = 0; i < listChk.length; i++) {
+            listChk[i].observe('click', chkOnclick);
+        }
+    }
+}
 
- function divChkChangeState(chk) {
-     if (chk.hasClassName("ic-check"))
-         chk.className = "chk ic-uncheck";
-     else
-         chk.className = "chk ic-check";
- }
+function chkOnclick(event) {
+    var element = Event.element(event);
+    divChkChangeState(element);
+}
 
- function ClosePopup() {
-     if (parent.ibcWnd) {
-         var url = parent.location.href;
-         parent.location.href = url.substr(0, url.indexOf("#") > 0 ? url.indexOf("#") : url.length);
-         parent.ibcWnd.close();
-     } else {
-         window.close();
-     }
- }
+function divChkChangeState(chk) {
+    if (chk.hasClassName("ic-check"))
+        chk.className = "chk ic-uncheck";
+    else
+        chk.className = "chk ic-check";
+}
 
- function DoCal(url, title, width, heigh) {
-     if (width == null || heigh == null) {
-         ibcWnd.open(url, title, 150, 50, 350, 200, 'class1', 'class2');
-     }
-     else {
-         ibcWnd.open(url, title, 150, 50, width, heigh, 'class1', 'class2');
-     }
- }
+function ClosePopup() {
+    if (parent.ibcWnd) {
+        var url = parent.location.href;
+        parent.location.href = url.substr(0, url.indexOf("#") > 0 ? url.indexOf("#") : url.length);
+        parent.ibcWnd.close();
+    } else {
+        window.close();
+    }
+}
 
- function DoCalFull(url, title, width, heigh, top, left) {
-     if (width == null || heigh == null || top == null || left == null) {
-         ibcWnd.open(url, title, 150, 50, 350, 200, 'class1', 'class2');
-     }
-     else {
-         ibcWnd.open(url, title, top, left, width, heigh, 'class1', 'class2');
-     }
- }
+function DoCal(url, title, width, heigh) {
+    if (width == null || heigh == null) {
+        ibcWnd.open(url, title, 150, 50, 350, 200, 'class1', 'class2');
+    }
+    else {
+        ibcWnd.open(url, title, 150, 50, width, heigh, 'class1', 'class2');
+    }
+}
 
- function ReloadPage()
- {
+function DoCalFull(url, title, width, heigh, top, left) {
+    if (width == null || heigh == null || top == null || left == null) {
+        ibcWnd.open(url, title, 150, 50, 350, 200, 'class1', 'class2');
+    }
+    else {
+        ibcWnd.open(url, title, top, left, width, heigh, 'class1', 'class2');
+    }
+}
+
+function ReloadPage() {
     var url = location.href;
     location.href = url.substr(0, url.indexOf("#") > 0 ? url.indexOf("#") : url.length);
 }
- 
-function EnableCalendar(isEnable, dateFormat)
-{
-    if(isEnable)
-    {
+
+function EnableCalendar(isEnable, dateFormat) {
+    if (isEnable) {
         $("fdate").style.backgroundColor = "";
         $("tdate").style.backgroundColor = "";
         $("fdateTrigger").disabled = false;
@@ -509,8 +492,8 @@ function EnableCalendar(isEnable, dateFormat)
             button: "fdateTrigger",
             singleClick: true,
             showsTime: false,
-            showOthers : false,
-            step : 1
+            showOthers: false,
+            step: 1
         });
 
         Calendar.showMonthsCombo();
@@ -521,12 +504,11 @@ function EnableCalendar(isEnable, dateFormat)
             button: "tdateTrigger",
             singleClick: true,
             showsTime: false,
-            showOthers : false,
-            step : 1
+            showOthers: false,
+            step: 1
         });
     }
-    else
-    {
+    else {
         $("fdate").style.backgroundColor = "#ECE9D8";
         $("tdate").style.backgroundColor = "#ECE9D8";
         $("fdateTrigger").disabled = true;
