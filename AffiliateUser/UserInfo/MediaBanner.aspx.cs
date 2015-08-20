@@ -1,15 +1,10 @@
 using System;
 using System.Data;
-using System.Configuration;
-using DNAide.Web;
-using DNAide.Data;
 using System.Text;
-using DNAide.Utils;
 using DNAide.Core;
-using System.Collections;
-using AffiliateUser;
+using DNAide.Web;
 
-public partial class MediaGallery : RootPageLogIn
+public partial class MediaBanner : RootPageLogIn
 {
     public string htmlContent = string.Empty;
     protected void Page_Load(object sender, EventArgs e)

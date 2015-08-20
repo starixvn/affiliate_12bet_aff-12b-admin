@@ -9,5 +9,5 @@
 
 
 
-public partial class MediaGallery {
+public partial class MediaBanner {
 }

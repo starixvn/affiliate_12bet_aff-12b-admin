@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/Master.master" AutoEventWireup="true" Inherits="MediaGallery" Codebehind="MediaBanner.aspx.cs" %>
+<%@ Page Language="C#" MasterPageFile="~/Master.master" AutoEventWireup="true" Inherits="MediaBanner" Codebehind="MediaBanner.aspx.cs" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
 <script src="../App_Js/jquery/jquery-1.4.2.min.js" type="text/javascript"></script>
 <script type ="text/javascript">
