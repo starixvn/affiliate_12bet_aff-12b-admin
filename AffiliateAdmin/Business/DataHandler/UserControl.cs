@@ -76,7 +76,6 @@ namespace DataHandler
 
         public static DbResult GetSelectDepartment()
         {
-
             Hashtable htb = new Hashtable();
             // htb.Add("system", "Affiliate");
             DbResult dbr = DbHelper.Execute("Aff_Con_GroupInfoSel", DBType.AFFILIATE_12BET, htb);
@@ -127,7 +126,6 @@ namespace DataHandler
         {
             Hashtable htb = new Hashtable();
             htb.Add("groupid", groupid);
-            htb.Add("system", "AFFILIATE");
 
             return DbHelper.Execute("Aff_Con_GroupInfoSel", DBType.AFFILIATE_12BET, htb);
         }

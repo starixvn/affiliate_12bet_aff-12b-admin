@@ -757,7 +757,9 @@
     <Content Include="DeployConfig\Web.12betuser-asian.backupmnl.config" />
     <Content Include="DeployConfig\Web.12betuser-asian.local.config" />
     <Content Include="DeployConfig\Web.12betuser-asian.master.config" />
-    <Content Include="DeployConfig\Web.12betuser-asian.production.config" />
+    <Content Include="DeployConfig\Web.12betuser-asian.production.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="DeployConfig\Web.12betuser-asian.uat.config">
       <SubType>Designer</SubType>
     </Content>
