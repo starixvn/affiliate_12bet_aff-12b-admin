@@ -810,8 +810,8 @@ namespace DataHandler
         public static DbResult ActiveMemberReport(SignUpActiveCriteria criteria)
         {
             Hashtable hsParam = new Hashtable();
-            hsParam.Add("fromdate", criteria.DtmFDate);
-            hsParam.Add("todate", criteria.DtmTDate);
+            hsParam.Add("fromdate", criteria.DtmFDate.Date);
+            hsParam.Add("todate", criteria.DtmTDate.Date);
             hsParam.Add("isgetall", criteria.IsGetAll);
             hsParam.Add("username", criteria.Username);
             if(!string.IsNullOrEmpty(criteria.PreferredLanguage))
