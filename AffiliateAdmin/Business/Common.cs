@@ -1533,15 +1533,11 @@ public class Common
 
         if (HttpContext.Current.Cache["IsUM"] == null)
         {
-            try
-            {
-                isUM = UMCtrl.isUnderMaintainence(Sites.Affiliate, UMCtrlURL, ref startTime, ref endTime);//Get Agnet Site UM Status.
-                //Cache Information which is gotten from Service
-                HttpContext.Current.Cache.Insert("IsUM", isUM, null, DateTime.Now.AddSeconds(TimeCacheUM), TimeSpan.Zero);
-                HttpContext.Current.Cache.Insert("StartTime", startTime, null, DateTime.Now.AddSeconds(TimeCacheUM), TimeSpan.Zero);
-                HttpContext.Current.Cache.Insert("EndTime", endTime, null, DateTime.Now.AddSeconds(TimeCacheUM), TimeSpan.Zero);
-            }
-            catch { }
+            isUM = UMCtrl.isUnderMaintainence(Sites.Affiliate, UMCtrlURL, ref startTime, ref endTime);//Get Agnet Site UM Status.
+            //Cache Information which is gotten from Service
+            HttpContext.Current.Cache.Insert("IsUM", isUM, null, DateTime.Now.AddSeconds(TimeCacheUM), TimeSpan.Zero);
+            HttpContext.Current.Cache.Insert("StartTime", startTime, null, DateTime.Now.AddSeconds(TimeCacheUM), TimeSpan.Zero);
+            HttpContext.Current.Cache.Insert("EndTime", endTime, null, DateTime.Now.AddSeconds(TimeCacheUM), TimeSpan.Zero);
         }
         else
         {
