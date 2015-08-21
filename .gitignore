@@ -24,6 +24,7 @@ Thumbs.db
 *.lib
 *.sbr
 obj/
+bin/
 [Rr]elease*/
 _ReSharper*/
 [Tt]est[Rr]esult*
@@ -31,3 +32,5 @@ _ReSharper*/
 /Affiliate/Logs
 /Affiliate Admin/Logs
 Affiliate/Report.csv
+/AffiliateAdmin/Banner
+/packages

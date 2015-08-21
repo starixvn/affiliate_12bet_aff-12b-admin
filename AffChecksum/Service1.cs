@@ -12,6 +12,7 @@ using DNAide.Core;
 using DNAide.Utils;
 using Fanex.MailDeliver.Model;
 using Fanex.MailDeliver.MailClient.API;
+using Fanex.Logging;
 
 namespace AffCheckSum
 {
@@ -34,7 +35,7 @@ namespace AffCheckSum
             }
             catch (Exception ex)
             {
-                DNAide.Web.DNAideLog.Write(ex.Message);
+                LogService.Error(ex.Message, ex);
             }
         }
 
@@ -59,7 +60,7 @@ namespace AffCheckSum
 
                     }
 
-                    DNAide.Web.DNAideLog.Write("AffCheckSum run for date: " + DateTime.Now.AddDays(Common.ForDate).ToShortDateString() + "; IsMatch: " + isMatch);
+                    LogService.Info("AffCheckSum run for date: " + DateTime.Now.AddDays(Common.ForDate).ToShortDateString() + "; IsMatch: " + isMatch);
                     isMatch = false;
                     DbResult rs1 = DAL.DataAccess.IA_CheckSumMemberDaily(date, out isMatch);
                     if (!isMatch)
@@ -69,12 +70,12 @@ namespace AffCheckSum
 
                     }
 
-                    DNAide.Web.DNAideLog.Write("Income Access check sum run for date: " + DateTime.Now.AddDays(Common.ForDate).ToShortDateString() + "; IsMatch: " + isMatch);
+                    LogService.Info("Income Access check sum run for date: " + DateTime.Now.AddDays(Common.ForDate).ToShortDateString() + "; IsMatch: " + isMatch);
                 }
             }
             catch (Exception ex)
             {
-                DNAide.Web.DNAideLog.Write(ex.Message);
+                LogService.Error(ex.Message, ex);
                 SendEmail(Common.SubjectMailError, ex.Message);
                 //SendMailService.SendMail2(Common.MailServer, Common.ToMail, Common.FromMail, Common.CCMail, Common.BCCMail, Common.SubjectMailError, ex.Message, Common.PasswordMail);
                 //SendMailError(termId, ex.Message);

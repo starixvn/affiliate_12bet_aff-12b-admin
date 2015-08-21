@@ -1,0 +1,40 @@
+﻿<%@ WebHandler Language="C#" Class="ReCheckIn" %>
+
+using System;
+using System.Web;
+using AffiliateAdmin.Business.DataAccess;
+using System.Web.SessionState; 
+public class ReCheckIn : IHttpHandler, IRequiresSessionState {
+    
+    public void ProcessRequest (HttpContext context) {
+        context.Response.ContentType = "text/html";
+        context.Response.Cache.SetCacheability(HttpCacheability.NoCache);
+
+        if (AppSettings.Session.OnUser > 0)
+        {
+            //bool isok = DataHandler.Login.ReCheckin(context);
+            if (DataHandler.Login.ReCheckin(context))
+                context.Response.Write("Expired");
+        }
+        else
+        {
+            context.Response.Write("Expired");
+            return;
+        }
+        
+        string startTime, endTime;
+        bool isUM = Common.GetDownTime(out startTime, out endTime);
+        if (isUM)
+        {
+            context.Response.Write("UM");            
+        }
+       
+    }
+ 
+    public bool IsReusable {
+        get {
+            return false;
+        }
+    }
+
+}

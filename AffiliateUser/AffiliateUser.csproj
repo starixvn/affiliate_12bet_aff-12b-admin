@@ -1,0 +1,1708 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6617CFAB-C52A-4DD7-9F73-8FA33BED1D6C}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AffiliateUser</RootNamespace>
+    <AssemblyName>AffiliateUser</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DNAide, Version=0.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Dependencies\DNAide.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.BetList.Core, Version=2.2.2.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.BetList.Core.2.2.5.1\lib\net40\Fanex.BetList.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.BetList.GoldDeluxe, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.BetList.Core.2.2.5.1\lib\net40\Fanex.BetList.GoldDeluxe.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.Data, Version=0.5.404.63, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.Data.0.5.404.63\lib\net40\Fanex.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.Logging.1.0.0.0\lib\net40\Fanex.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.MailDeliver.MailClient, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.MailDeliver.MailClient.1.0.0.2\lib\net40\Fanex.MailDeliver.MailClient.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="IBCFile, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.File.1.0.0\lib\net40\IBCFile.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.0.6\lib\net40\ICSharpCode.SharpZipLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.Common.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.Data.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.Logging.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.Unity.5.0.414.0\lib\net40\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.Unity.5.0.414.0\lib\net40\Microsoft.Practices.Unity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.Unity.5.0.414.0\lib\net40\Microsoft.Practices.Unity.Interception.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI, Version=2.0.6.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.0.6\lib\net40\NPOI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RemotingRef, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RemotingRef.1.0.0.2\lib\net40\RemotingRef.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SPSRemoting, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SPSRemoting.1.0.0\lib\net40\SPSRemoting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Sunplus.Agent.Configurations">
+      <HintPath>..\_Dependencies\Sunplus.Agent.Configurations.dll</HintPath>
+    </Reference>
+    <Reference Include="Sunplus.Agent.Model, Version=1.0.4828.17564, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Dependencies\Sunplus.Agent.Model.dll</HintPath>
+    </Reference>
+    <Reference Include="Sunplus.Agent.Utilities, Version=1.0.4734.26154, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_Dependencies\Sunplus.Agent.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="Sunplus.Core.Common, Version=1.1.4505.19054, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sunplus.Core.Common.1.1.4505.19054\lib\net40\Sunplus.Core.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="TplCore, Version=1.0.4694.29951, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\TplCore.1.0.4694.29951\lib\net40\TplCore.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="UMControllerLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\UMControllerLibrary.1.0.0\lib\net40\UMControllerLibrary.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutUs.aspx.cs">
+      <DependentUpon>AboutUs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AboutUs.aspx.designer.cs">
+      <DependentUpon>AboutUs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Authorization\Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BetList\BetList.aspx.designer.cs">
+      <DependentUpon>BetList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BetList\BetListParlayDetail.aspx.designer.cs">
+      <DependentUpon>BetListParlayDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BetList\BetListResults.aspx.designer.cs">
+      <DependentUpon>BetListResults.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Business\DataAccess\DbResult.cs" />
+    <Compile Include="Condition.aspx.designer.cs">
+      <DependentUpon>Condition.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ContactUs.aspx.designer.cs">
+      <DependentUpon>ContactUs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ContactUs.ascx.designer.cs">
+      <DependentUpon>ContactUs.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Footer.ascx.designer.cs">
+      <DependentUpon>Footer.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Header.ascx.designer.cs">
+      <DependentUpon>Header.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Home_Center.ascx.designer.cs">
+      <DependentUpon>Home_Center.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Home_Left.ascx.designer.cs">
+      <DependentUpon>Home_Left.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\LeftPanel.ascx.designer.cs">
+      <DependentUpon>LeftPanel.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RightPanel.ascx.designer.cs">
+      <DependentUpon>RightPanel.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Customized.aspx.designer.cs">
+      <DependentUpon>Customized.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FAQs.aspx.designer.cs">
+      <DependentUpon>FAQs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ForgetPass.aspx.designer.cs">
+      <DependentUpon>ForgetPass.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Index1.aspx.designer.cs">
+      <DependentUpon>Index1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Master.master.designer.cs">
+      <DependentUpon>Master.master</DependentUpon>
+    </Compile>
+    <Compile Include="Master2.master.designer.cs">
+      <DependentUpon>Master2.master</DependentUpon>
+    </Compile>
+    <Compile Include="MasterCalendar.master.designer.cs">
+      <DependentUpon>MasterCalendar.master</DependentUpon>
+    </Compile>
+    <Compile Include="Business\AffHandler.cs" />
+    <Compile Include="Business\DataAccess\DbHelper.cs" />
+    <Compile Include="Business\AffTicket.cs" />
+    <Compile Include="Business\AffType.cs" />
+    <Compile Include="Business\AppSettings.cs" />
+    <Compile Include="Business\BetListViewModel.cs" />
+    <Compile Include="Business\CacheRef.cs" />
+    <Compile Include="Business\CacheUtil.cs" />
+    <Compile Include="Business\Common.cs" />
+    <Compile Include="Business\Criterias\ValidationCriteria.cs" />
+    <Compile Include="Business\DataHandler\Active12BetAccount.cs" />
+    <Compile Include="Business\DataHandler\Auth.cs" />
+    <Compile Include="Business\DataHandler\CommGroup.cs" />
+    <Compile Include="Business\DataHandler\EmailHistory.cs" />
+    <Compile Include="Business\DataHandler\HotNews.cs" />
+    <Compile Include="Business\DataHandler\MediaGallery.cs" />
+    <Compile Include="Business\DataHandler\MemberInfo.cs" />
+    <Compile Include="Business\DataHandler\Payment.cs" />
+    <Compile Include="Business\DataHandler\PaymentRequest.cs" />
+    <Compile Include="Business\DataHandler\ServerDateTime.cs" />
+    <Compile Include="Business\DataHandler\Statement.cs" />
+    <Compile Include="Business\DataHandler\TrackingSystem.cs" />
+    <Compile Include="Business\DataHandler\User.cs" />
+    <Compile Include="Business\DBType.cs" />
+    <Compile Include="Business\DepositCustomerInfo.cs" />
+    <Compile Include="Business\GenerateHTML\Banner.cs" />
+    <Compile Include="Business\GenerateHTML\DailyEarning.cs" />
+    <Compile Include="Business\GenerateHTML\HotNews.cs" />
+    <Compile Include="Business\GenerateHTML\PaymentRequest.cs" />
+    <Compile Include="Business\GenerateHTML\Text.cs" />
+    <Compile Include="Business\GenerateHTML\TrackingSystem.cs" />
+    <Compile Include="Business\HttpContextAnalysis.cs" />
+    <Compile Include="Business\IBCHadler.cs" />
+    <Compile Include="Business\IBCPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Business\Language.cs" />
+    <Compile Include="Business\MailServices\ContactUsMailService.cs" />
+    <Compile Include="Business\MailServices\ForgetPasswordMailService.cs" />
+    <Compile Include="Business\MailServices\MailService.cs" />
+    <Compile Include="Business\MailServices\RecoverPasswordMailService.cs" />
+    <Compile Include="Business\MailServices\RequestPayoutMailService.cs" />
+    <Compile Include="Business\MailServices\SignupMailService.cs" />
+    <Compile Include="Business\RewriteModule\RewriteContext.cs" />
+    <Compile Include="Business\RewriteModule\RewriteModule.cs" />
+    <Compile Include="Business\RewriteModule\RewriteModuleSectionHandler.cs" />
+    <Compile Include="Business\RootControl.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Business\RootPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Business\RootPageLogIn.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Business\TicketResult.cs" />
+    <Compile Include="Business\TicketText.cs" />
+    <Compile Include="Business\TplCore\App_Templates\MemberInfo\CasinoPT.htm.cs" />
+    <Compile Include="Business\TplCore\_IPInfo\IpInfo.htm.cs" />
+    <Compile Include="Business\TplCore\_IPInfo\IpInfoDetail.htm.cs" />
+    <Compile Include="Business\TplCore\_UserGuide\Agent\UserGuide_CS\index.htm.cs" />
+    <Compile Include="Business\TplCore\_UserGuide\Agent\UserGuide_CS\Menu.htm.cs" />
+    <Compile Include="Business\TplCore\_UserGuide\Agent\UserGuide_CT\index.htm.cs" />
+    <Compile Include="Business\TplCore\_UserGuide\Agent\UserGuide_CT\Menu.htm.cs" />
+    <Compile Include="Business\TplCore\_UserGuide\Agent\UserGuide_E\index.htm.cs" />
+    <Compile Include="Business\TplCore\_UserGuide\Agent\UserGuide_E\Menu.htm.cs" />
+    <Compile Include="Business\TplCore\_UserGuide\Index.htm.cs" />
+    <Compile Include="Business\TplCore\_UserGuide\Master\UserGuide_CS\index.htm.cs" />
+    <Compile Include="Business\TplCore\_UserGuide\Master\UserGuide_CS\Menu.htm.cs" />
+    <Compile Include="Business\TplCore\_UserGuide\Master\UserGuide_CT\index.htm.cs" />
+    <Compile Include="Business\TplCore\_UserGuide\Master\UserGuide_CT\Menu.htm.cs" />
+    <Compile Include="Business\TplCore\_UserGuide\Master\UserGuide_E\index.htm.cs" />
+    <Compile Include="Business\TplCore\_UserGuide\Master\UserGuide_E\Menu.htm.cs" />
+    <Compile Include="Business\UrlRewriterHandler.cs" />
+    <Compile Include="App_GlobalResources\BetList.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BetList.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Bingo.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Bingo.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Casino.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Casino.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Lang.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Lang.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Lang.es-ES.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Lang.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Lang.id-ID.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Lang.id-ID.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Lang.ja-JP.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Lang.ja-JP.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Lang.ko-KR.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Lang.ko-KR.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Lang.th-TH.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Lang.th-TH.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Lang.vi-VN.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Lang.vi-VN.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Lang.zh-CN.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Lang.zh-CN.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Lang.zh-TW.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Lang.zh-TW.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\ResultLang.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResultLang.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Authorization\Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BetList\BetList.aspx.cs">
+      <DependentUpon>BetList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BetList\BetListParlayDetail.aspx.cs">
+      <DependentUpon>BetListParlayDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BetList\BetListResults.aspx.cs">
+      <DependentUpon>BetListResults.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Condition.aspx.cs">
+      <DependentUpon>Condition.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContactUs.aspx.cs">
+      <DependentUpon>ContactUs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\ContactUs.ascx.cs">
+      <DependentUpon>ContactUs.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Footer.ascx.cs">
+      <DependentUpon>Footer.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Header.ascx.cs">
+      <DependentUpon>Header.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Home_Center.ascx.cs">
+      <DependentUpon>Home_Center.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\Home_Left.ascx.cs">
+      <DependentUpon>Home_Left.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\LeftPanel.ascx.cs">
+      <DependentUpon>LeftPanel.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\RightPanel.ascx.cs">
+      <DependentUpon>RightPanel.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customized.aspx.cs">
+      <DependentUpon>Customized.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FAQs.aspx.cs">
+      <DependentUpon>FAQs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ForgetPass.aspx.cs">
+      <DependentUpon>ForgetPass.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Index1.aspx.cs">
+      <DependentUpon>Index1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master.master.cs">
+      <DependentUpon>Master.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master2.master.cs">
+      <DependentUpon>Master2.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterCalendar.master.cs">
+      <DependentUpon>MasterCalendar.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OnlineSupport.aspx.cs">
+      <DependentUpon>OnlineSupport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OnlineSupport.aspx.designer.cs">
+      <DependentUpon>OnlineSupport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProgramDetails.aspx.cs">
+      <DependentUpon>ProgramDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProgramDetails.aspx.designer.cs">
+      <DependentUpon>ProgramDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Promotional.aspx.cs">
+      <DependentUpon>Promotional.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Promotional.aspx.designer.cs">
+      <DependentUpon>Promotional.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Recoverpw.aspx.cs">
+      <DependentUpon>Recoverpw.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Recoverpw.aspx.designer.cs">
+      <DependentUpon>Recoverpw.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Root.aspx.cs">
+      <DependentUpon>Root.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Root.aspx.designer.cs">
+      <DependentUpon>Root.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SignUp.aspx.cs">
+      <DependentUpon>SignUp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SignUp.aspx.designer.cs">
+      <DependentUpon>SignUp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SignUpSuccess.aspx.cs">
+      <DependentUpon>SignUpSuccess.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SignUpSuccess.aspx.designer.cs">
+      <DependentUpon>SignUpSuccess.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SiteMap.aspx.cs">
+      <DependentUpon>SiteMap.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SiteMap.aspx.designer.cs">
+      <DependentUpon>SiteMap.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TermNCondition.aspx.cs">
+      <DependentUpon>TermNCondition.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TermNCondition.aspx.designer.cs">
+      <DependentUpon>TermNCondition.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="test.aspx.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="test.aspx.designer.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UnderMaintenance.aspx.cs">
+      <DependentUpon>UnderMaintenance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UnderMaintenance.aspx.designer.cs">
+      <DependentUpon>UnderMaintenance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfo\Account_Overview.aspx.cs">
+      <DependentUpon>Account_Overview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserInfo\Account_Overview.aspx.designer.cs">
+      <DependentUpon>Account_Overview.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfo\Announcement.aspx.cs">
+      <DependentUpon>Announcement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserInfo\Announcement.aspx.designer.cs">
+      <DependentUpon>Announcement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfo\ChangePass.aspx.cs">
+      <DependentUpon>ChangePass.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserInfo\ChangePass.aspx.designer.cs">
+      <DependentUpon>ChangePass.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfo\ChangeSecurityQuestion.aspx.cs">
+      <DependentUpon>ChangeSecurityQuestion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserInfo\ChangeSecurityQuestion.aspx.designer.cs">
+      <DependentUpon>ChangeSecurityQuestion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfo\Customers.aspx.cs">
+      <DependentUpon>Customers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserInfo\Customers.aspx.designer.cs">
+      <DependentUpon>Customers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfo\DailyEarning.aspx.cs">
+      <DependentUpon>DailyEarning.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserInfo\DailyEarning.aspx.designer.cs">
+      <DependentUpon>DailyEarning.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfo\DailyEarningDetail.aspx.cs">
+      <DependentUpon>DailyEarningDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserInfo\DailyEarningDetail.aspx.designer.cs">
+      <DependentUpon>DailyEarningDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfo\MediaBanner.aspx.cs">
+      <DependentUpon>MediaBanner.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserInfo\MediaBanner.aspx.designer.cs">
+      <DependentUpon>MediaBanner.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfo\MediaGalleryNew.aspx.cs">
+      <DependentUpon>MediaGalleryNew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserInfo\MediaGalleryNew.aspx.designer.cs">
+      <DependentUpon>MediaGalleryNew.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfo\MediaLink.aspx.cs">
+      <DependentUpon>MediaLink.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserInfo\MediaLink.aspx.designer.cs">
+      <DependentUpon>MediaLink.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfo\MediaStatistics.aspx.cs">
+      <DependentUpon>MediaStatistics.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserInfo\MediaStatistics.aspx.designer.cs">
+      <DependentUpon>MediaStatistics.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfo\MediaStatistics_LandingPage.aspx.cs">
+      <DependentUpon>MediaStatistics_LandingPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserInfo\MediaStatistics_LandingPage.aspx.designer.cs">
+      <DependentUpon>MediaStatistics_LandingPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfo\MediaStatistics_New.aspx.cs">
+      <DependentUpon>MediaStatistics_New.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserInfo\MediaStatistics_New.aspx.designer.cs">
+      <DependentUpon>MediaStatistics_New.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfo\MediaText.aspx.cs">
+      <DependentUpon>MediaText.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserInfo\MediaText.aspx.designer.cs">
+      <DependentUpon>MediaText.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfo\MemDepositInfo.aspx.cs">
+      <DependentUpon>MemDepositInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserInfo\MemDepositInfo.aspx.designer.cs">
+      <DependentUpon>MemDepositInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfo\Message.aspx.cs">
+      <DependentUpon>Message.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserInfo\Message.aspx.designer.cs">
+      <DependentUpon>Message.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfo\MyAccount.aspx.cs">
+      <DependentUpon>MyAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserInfo\MyAccount.aspx.designer.cs">
+      <DependentUpon>MyAccount.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfo\PaymentRequest.aspx.cs">
+      <DependentUpon>PaymentRequest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserInfo\PaymentRequest.aspx.designer.cs">
+      <DependentUpon>PaymentRequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfo\StatementHistory.aspx.cs">
+      <DependentUpon>StatementHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserInfo\StatementHistory.aspx.designer.cs">
+      <DependentUpon>StatementHistory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserInfo\TestApi.aspx.cs">
+      <DependentUpon>TestApi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserInfo\TestApi.aspx.designer.cs">
+      <DependentUpon>TestApi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\AffBetlistService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\MemberInfoService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Welcome.aspx.cs">
+      <DependentUpon>Welcome.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Welcome.aspx.designer.cs">
+      <DependentUpon>Welcome.aspx</DependentUpon>
+    </Compile>
+    <Content Include="App_Data\SpNames.xml" />
+    <Content Include="Global.asax" />
+    <Content Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AppSettings.ini" />
+    <None Include="App_Data\Fanex.Result\Badminton.xls" />
+    <None Include="App_Data\Fanex.Result\BaseBall.xls" />
+    <None Include="App_Data\Fanex.Result\Basketball.xls" />
+    <None Include="App_Data\Fanex.Result\Billiard.xls" />
+    <None Include="App_Data\Fanex.Result\Hockey.xls" />
+    <None Include="App_Data\Fanex.Result\HorseRacing.xls" />
+    <None Include="App_Data\Fanex.Result\LiveCasino.xls" />
+    <None Include="App_Data\Fanex.Result\NumberGame.xls" />
+    <None Include="App_Data\Fanex.Result\Other.xls" />
+    <None Include="App_Data\Fanex.Result\Outright.xls" />
+    <None Include="App_Data\Fanex.Result\Racing.xls" />
+    <None Include="App_Data\Fanex.Result\Soccer.xls" />
+    <None Include="App_Data\Fanex.Result\Tennis.xls" />
+    <None Include="App_Data\Fanex.Result\VSHRacing.xls" />
+    <None Include="App_Data\Fanex.Result\VSSpeedWay.xls" />
+    <None Include="App_Data\Fanex.Result\VSTennis.xls" />
+    <None Include="App_GlobalResources\Lang.ko-KR.resx.orig" />
+    <None Include="App_GlobalResources\Lang.resx.orig" />
+    <Content Include="Authorization\LoginCaptcha.ashx" />
+    <Content Include="Authorization\LogOut.ashx" />
+    <Content Include="Authorization\ProcessLogin.ashx" />
+    <Content Include="Authorization\ProcessLogin2.ashx" />
+    <Content Include="Authorization\ReCheckIn.ashx" />
+    <Content Include="BetList\BetListParlay.ashx" />
+    <None Include="Content\Fanex.Result\fanex.result.less" />
+    <None Include="Deployment.ignore" />
+    <None Include="Flash\English\home_banner.fla" />
+    <None Include="Flash\Japan\home_banner.fla" />
+    <None Include="Flash\SFlash\sbanner.fla" />
+    <None Include="Flash\Simplified\home_banner.fla" />
+    <None Include="Flash\Spanish\home_banner.fla" />
+    <None Include="Flash\Thai\home_banner.fla" />
+    <None Include="Flash\Tradition\home_banner.fla" />
+    <Content Include="Handler\ChangePass.ashx" />
+    <Content Include="Handler\CheckForgetPassWord.ashx" />
+    <Content Include="Handler\ContactUS.ashx" />
+    <Content Include="Handler\ForceResetPassword.ashx" />
+    <Content Include="Handler\GetAffEarningDaily.ashx" />
+    <Content Include="Handler\GetClickStatisticsList.ashx" />
+    <Content Include="Handler\GetDataBanner.ashx" />
+    <Content Include="Handler\GetDomainList.ashx" />
+    <Content Include="Handler\GetMessageList.ashx" />
+    <Content Include="Handler\GetPageList.ashx" />
+    <Content Include="Handler\GetStatisticsDetail_New.ashx" />
+    <Content Include="Handler\GetStatisticsListDetail.ashx" />
+    <Content Include="Handler\GetSubCategory.ashx" />
+    <Content Include="Handler\RequestPayout.ashx" />
+    <Content Include="Handler\SetLanguage.ashx" />
+    <Content Include="Handler\SignUp.ashx" />
+    <Content Include="Handler\UpdateAcc.ashx" />
+    <Content Include="Handler\UpdateSecurityQuestion.ashx" />
+    <Content Include="LogOff.ashx" />
+    <None Include="Logs\trace.2015-07-02.1.log" />
+    <None Include="Logs\trace.2015-07-23.1.log" />
+    <None Include="Logs\trace.log" />
+    <Content Include="Master.master" />
+    <Content Include="Master2.master" />
+    <Content Include="MasterCalendar.master" />
+    <Content Include="DeployConfig\Web.12betuser-asian.backupmnl.config" />
+    <Content Include="DeployConfig\Web.12betuser-asian.local.config" />
+    <Content Include="DeployConfig\Web.12betuser-asian.master.config" />
+    <Content Include="DeployConfig\Web.12betuser-asian.production.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DeployConfig\Web.12betuser-asian.uat.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DeployConfig\Web.12betuser-euro.backupmnl.config" />
+    <Content Include="DeployConfig\Web.12betuser-euro.local.config" />
+    <Content Include="DeployConfig\Web.12betuser-euro.master.config" />
+    <Content Include="DeployConfig\Web.12betuser-euro.production.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DeployConfig\Web.12betuser-euro.uat.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Web References\AffBetlistService\AffiliateAPI.wsdl" />
+    <None Include="Web References\AffBetlistService\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\MemberInfoService\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\MemberInfoService\Service.disco" />
+    <None Include="Web References\AffBetlistService\AffiliateAPI.disco" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.info" />
+    <None Include="Web References\MemberInfoService\Service.wsdl" />
+    <None Include="WebWorkbench.mswwsettings" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AboutUs.aspx" />
+    <Content Include="App_Data\Fanex.Result.Resource\en-US.xml" />
+    <Content Include="App_Data\Fanex.Result.Resource\ja-JP.xml" />
+    <Content Include="App_Data\Fanex.Result.Resource\ko-KR.xml" />
+    <Content Include="App_Data\Fanex.Result.Resource\th-TH.xml" />
+    <Content Include="App_Data\Fanex.Result.Resource\vi-VN.xml" />
+    <Content Include="App_Data\Fanex.Result.Resource\zh-CN.xml" />
+    <Content Include="App_Data\Fanex.Result.Resource\zh-TW.xml" />
+    <Content Include="App_Js\AC_ActiveX.js" />
+    <Content Include="App_Js\AC_RunActiveContent.js" />
+    <Content Include="App_Js\BetList.js" />
+    <Content Include="App_Js\Calendar2\calendar-control.js" />
+    <Content Include="App_Js\Calendar2\calendar-normal.js" />
+    <Content Include="App_Js\Calendar2\calendar-setup.js" />
+    <Content Include="App_Js\Calendar2\calendar.js" />
+    <Content Include="App_Js\Calendar2\date.js" />
+    <Content Include="App_Js\Calendar2\Lang\calendar_en-US.js" />
+    <Content Include="App_Js\Calendar2\Lang\calendar_es-ES.js" />
+    <Content Include="App_Js\Calendar2\Lang\calendar_id-ID.js" />
+    <Content Include="App_Js\Calendar2\Lang\calendar_ja-JP.js" />
+    <Content Include="App_Js\Calendar2\Lang\calendar_ko-KR.js" />
+    <Content Include="App_Js\Calendar2\Lang\calendar_th-TH.js" />
+    <Content Include="App_Js\Calendar2\Lang\calendar_vi-VN.js" />
+    <Content Include="App_Js\Calendar2\Lang\calendar_zh-CN.js" />
+    <Content Include="App_Js\Calendar2\Lang\calendar_zh-TW.js" />
+    <Content Include="App_Js\Calendar2\Skin\calendar-blue.css" />
+    <Content Include="App_Js\Calendar2\Skin\calendar-system.css" />
+    <Content Include="App_Js\Calendar2\Skin\Images\bg_bg.gif" />
+    <Content Include="App_Js\Common.js" />
+    <Content Include="App_Js\IBCWnd\blank.html" />
+    <Content Include="App_Js\IBCWnd\IBCWnd.css" />
+    <Content Include="App_Js\IBCWnd\IBCWnd.js" />
+    <Content Include="App_Js\IBCWnd\icon_close.png" />
+    <Content Include="App_Js\IBCWnd\icon_closeOV.png" />
+    <Content Include="App_Js\IBCWnd\icon_head.png" />
+    <Content Include="App_Js\IBCWnd\pop_footer.jpg" />
+    <Content Include="App_Js\IBCWnd\pop_footer.png" />
+    <Content Include="App_Js\IBCWnd\pop_g01.jpg" />
+    <Content Include="App_Js\IBCWnd\pop_g01.png" />
+    <Content Include="App_Js\IBCWnd\pop_gtop.jpg" />
+    <Content Include="App_Js\IBCWnd\pop_gtop.png" />
+    <Content Include="App_Js\IBCWnd\pop_left.jpg" />
+    <Content Include="App_Js\IBCWnd\pop_left.png" />
+    <Content Include="App_Js\IBCWnd\pop_lineR.jpg" />
+    <Content Include="App_Js\IBCWnd\pop_lineR.png" />
+    <Content Include="App_Js\IBCWnd\pop_top.jpg" />
+    <Content Include="App_Js\IBCWnd\pop_top.png" />
+    <Content Include="App_Js\IBCWnd\x.jpg" />
+    <Content Include="App_Js\interface.js" />
+    <Content Include="App_Js\jquery\jquery-1.4.2.min.js" />
+    <Content Include="App_Js\kickout.js" />
+    <Content Include="App_Js\login.js" />
+    <Content Include="App_Js\MonthPicker\Images\bg-month-picker-header.png" />
+    <Content Include="App_Js\MonthPicker\jquery.mtz.monthpicker.js" />
+    <Content Include="App_Js\MonthPicker\month-picker.css" />
+    <Content Include="App_Js\popup.js" />
+    <Content Include="App_Js\prototype-full.js" />
+    <Content Include="App_Js\prototype.js" />
+    <Content Include="App_Js\Scroller.js" />
+    <Content Include="App_Js\swfobject.js" />
+    <Content Include="App_Js\tipsy\jquery.tipsy.js" />
+    <Content Include="App_Js\wz_tooltip.js" />
+    <Content Include="App_Templates\BodyForgetPass.htm" />
+    <Content Include="App_Templates\BodyNewPassForget.htm" />
+    <Content Include="App_Templates\Controls\MainNavigator.htm" />
+    <Content Include="App_Templates\CsdMail.htm" />
+    <Content Include="App_Templates\Customer\AffiliateInfo.htm" />
+    <Content Include="App_Templates\Customized_en-US.htm" />
+    <Content Include="App_Templates\Customized_es-ES.htm" />
+    <Content Include="App_Templates\Customized_id-ID.htm" />
+    <Content Include="App_Templates\Customized_ja-JP.htm" />
+    <Content Include="App_Templates\Customized_ko-KR.htm" />
+    <Content Include="App_Templates\Customized_th-TH.htm" />
+    <Content Include="App_Templates\Customized_vi-VN.htm" />
+    <Content Include="App_Templates\Customized_zh-CN.htm" />
+    <Content Include="App_Templates\Customized_zh-TW.htm" />
+    <Content Include="App_Templates\Email\ForgetPass\ForgetPass_en-GB.htm" />
+    <Content Include="App_Templates\Email\ForgetPass\ForgetPass_en-GB_html.htm" />
+    <Content Include="App_Templates\Email\ForgetPass\ForgetPass_en-US.htm" />
+    <Content Include="App_Templates\Email\ForgetPass\ForgetPass_en-US_html.htm" />
+    <Content Include="App_Templates\Email\ForgetPass\ForgetPass_en.htm" />
+    <Content Include="App_Templates\Email\ForgetPass\ForgetPass_en_html.htm" />
+    <Content Include="App_Templates\Email\ForgetPass\ForgetPass_es-ES.htm" />
+    <Content Include="App_Templates\Email\ForgetPass\ForgetPass_es-ES_html.htm" />
+    <Content Include="App_Templates\Email\ForgetPass\ForgetPass_id-ID.htm" />
+    <Content Include="App_Templates\Email\ForgetPass\ForgetPass_id-ID_html.htm" />
+    <Content Include="App_Templates\Email\ForgetPass\ForgetPass_ja-JP.htm" />
+    <Content Include="App_Templates\Email\ForgetPass\ForgetPass_ja-JP_html.htm" />
+    <Content Include="App_Templates\Email\ForgetPass\ForgetPass_ko-KR.htm" />
+    <Content Include="App_Templates\Email\ForgetPass\ForgetPass_ko-KR_html.htm" />
+    <Content Include="App_Templates\Email\ForgetPass\ForgetPass_th-TH.htm" />
+    <Content Include="App_Templates\Email\ForgetPass\ForgetPass_th-TH_html.htm" />
+    <Content Include="App_Templates\Email\ForgetPass\ForgetPass_vi-VN.htm" />
+    <Content Include="App_Templates\Email\ForgetPass\ForgetPass_vi-VN_html.htm" />
+    <Content Include="App_Templates\Email\ForgetPass\ForgetPass_zh-CN.htm" />
+    <Content Include="App_Templates\Email\ForgetPass\ForgetPass_zh-CN_html.htm" />
+    <Content Include="App_Templates\Email\ForgetPass\ForgetPass_zh-TW.htm" />
+    <Content Include="App_Templates\Email\ForgetPass\ForgetPass_zh-TW_html.htm" />
+    <Content Include="App_Templates\Email\PaymentCancel\PaymentCancel_en-GB.htm" />
+    <Content Include="App_Templates\Email\PaymentCancel\PaymentCancel_en-GB_html.htm" />
+    <Content Include="App_Templates\Email\PaymentCancel\PaymentCancel_en-US.htm" />
+    <Content Include="App_Templates\Email\PaymentCancel\PaymentCancel_en-US_html.htm" />
+    <Content Include="App_Templates\Email\PaymentCancel\PaymentCancel_en.htm" />
+    <Content Include="App_Templates\Email\PaymentCancel\PaymentCancel_en_html.htm" />
+    <Content Include="App_Templates\Email\PaymentCancel\PaymentCancel_es-ES.htm" />
+    <Content Include="App_Templates\Email\PaymentCancel\PaymentCancel_es-ES_html.htm" />
+    <Content Include="App_Templates\Email\PaymentCancel\PaymentCancel_id-ID.htm" />
+    <Content Include="App_Templates\Email\PaymentCancel\PaymentCancel_id-ID_html.htm" />
+    <Content Include="App_Templates\Email\PaymentCancel\PaymentCancel_ja-JP.htm" />
+    <Content Include="App_Templates\Email\PaymentCancel\PaymentCancel_ja-JP_html.htm" />
+    <Content Include="App_Templates\Email\PaymentCancel\PaymentCancel_ko-KR.htm" />
+    <Content Include="App_Templates\Email\PaymentCancel\PaymentCancel_ko-KR_html.htm" />
+    <Content Include="App_Templates\Email\PaymentCancel\PaymentCancel_th-TH.htm" />
+    <Content Include="App_Templates\Email\PaymentCancel\PaymentCancel_th-TH_html.htm" />
+    <Content Include="App_Templates\Email\PaymentCancel\PaymentCancel_vi-VN.htm" />
+    <Content Include="App_Templates\Email\PaymentCancel\PaymentCancel_vi-VN_html.htm" />
+    <Content Include="App_Templates\Email\PaymentCancel\PaymentCancel_zh-CN.htm" />
+    <Content Include="App_Templates\Email\PaymentCancel\PaymentCancel_zh-CN_html.htm" />
+    <Content Include="App_Templates\Email\PaymentCancel\PaymentCancel_zh-TW.htm" />
+    <Content Include="App_Templates\Email\PaymentCancel\PaymentCancel_zh-TW_html.htm" />
+    <Content Include="App_Templates\Email\PaymentRequest\PaymentRequest_en-GB.htm" />
+    <Content Include="App_Templates\Email\PaymentRequest\PaymentRequest_en-GB_html.htm" />
+    <Content Include="App_Templates\Email\PaymentRequest\PaymentRequest_en-US.htm" />
+    <Content Include="App_Templates\Email\PaymentRequest\PaymentRequest_en-US_html.htm" />
+    <Content Include="App_Templates\Email\PaymentRequest\PaymentRequest_en.htm" />
+    <Content Include="App_Templates\Email\PaymentRequest\PaymentRequest_en_html.htm" />
+    <Content Include="App_Templates\Email\PaymentRequest\PaymentRequest_es-ES.htm" />
+    <Content Include="App_Templates\Email\PaymentRequest\PaymentRequest_es-ES_html.htm" />
+    <Content Include="App_Templates\Email\PaymentRequest\PaymentRequest_id-ID.htm" />
+    <Content Include="App_Templates\Email\PaymentRequest\PaymentRequest_id-ID_html.htm" />
+    <Content Include="App_Templates\Email\PaymentRequest\PaymentRequest_ja-JP.htm" />
+    <Content Include="App_Templates\Email\PaymentRequest\PaymentRequest_ja-JP_html.htm" />
+    <Content Include="App_Templates\Email\PaymentRequest\PaymentRequest_ko-KR.htm" />
+    <Content Include="App_Templates\Email\PaymentRequest\PaymentRequest_ko-KR_html.htm" />
+    <Content Include="App_Templates\Email\PaymentRequest\PaymentRequest_th-TH.htm" />
+    <Content Include="App_Templates\Email\PaymentRequest\PaymentRequest_th-TH_html.htm" />
+    <Content Include="App_Templates\Email\PaymentRequest\PaymentRequest_vi-VN.htm" />
+    <Content Include="App_Templates\Email\PaymentRequest\PaymentRequest_vi-VN_html.htm" />
+    <Content Include="App_Templates\Email\PaymentRequest\PaymentRequest_zh-CN.htm" />
+    <Content Include="App_Templates\Email\PaymentRequest\PaymentRequest_zh-CN_html.htm" />
+    <Content Include="App_Templates\Email\PaymentRequest\PaymentRequest_zh-TW.htm" />
+    <Content Include="App_Templates\Email\PaymentRequest\PaymentRequest_zh-TW_html.htm" />
+    <Content Include="App_Templates\Email\RecoverPass\RecoverPass_en-GB.htm" />
+    <Content Include="App_Templates\Email\RecoverPass\RecoverPass_en-GB_html.htm" />
+    <Content Include="App_Templates\Email\RecoverPass\RecoverPass_en-US.htm" />
+    <Content Include="App_Templates\Email\RecoverPass\RecoverPass_en-US_html.htm" />
+    <Content Include="App_Templates\Email\RecoverPass\RecoverPass_en.htm" />
+    <Content Include="App_Templates\Email\RecoverPass\RecoverPass_en_html.htm" />
+    <Content Include="App_Templates\Email\RecoverPass\RecoverPass_es-ES.htm" />
+    <Content Include="App_Templates\Email\RecoverPass\RecoverPass_es-ES_html.htm" />
+    <Content Include="App_Templates\Email\RecoverPass\RecoverPass_id-ID.htm" />
+    <Content Include="App_Templates\Email\RecoverPass\RecoverPass_id-ID_html.htm" />
+    <Content Include="App_Templates\Email\RecoverPass\RecoverPass_ja-JP.htm" />
+    <Content Include="App_Templates\Email\RecoverPass\RecoverPass_ja-JP_html.htm" />
+    <Content Include="App_Templates\Email\RecoverPass\RecoverPass_ko-KR.htm" />
+    <Content Include="App_Templates\Email\RecoverPass\RecoverPass_ko-KR_html.htm" />
+    <Content Include="App_Templates\Email\RecoverPass\RecoverPass_th-TH.htm" />
+    <Content Include="App_Templates\Email\RecoverPass\RecoverPass_th-TH_html.htm" />
+    <Content Include="App_Templates\Email\RecoverPass\RecoverPass_vi-VN.htm" />
+    <Content Include="App_Templates\Email\RecoverPass\RecoverPass_vi-VN_html.htm" />
+    <Content Include="App_Templates\Email\RecoverPass\RecoverPass_zh-CN.htm" />
+    <Content Include="App_Templates\Email\RecoverPass\RecoverPass_zh-CN_html.htm" />
+    <Content Include="App_Templates\Email\RecoverPass\RecoverPass_zh-TW.htm" />
+    <Content Include="App_Templates\Email\RecoverPass\RecoverPass_zh-TW_html.htm" />
+    <Content Include="App_Templates\Email\SignupMail\SignupMail_en-GB.htm" />
+    <Content Include="App_Templates\Email\SignupMail\SignupMail_en-GB_html.htm" />
+    <Content Include="App_Templates\Email\SignupMail\SignupMail_en-US.htm" />
+    <Content Include="App_Templates\Email\SignupMail\SignupMail_en-US_html.htm" />
+    <Content Include="App_Templates\Email\SignupMail\SignupMail_en.htm" />
+    <Content Include="App_Templates\Email\SignupMail\SignupMail_en_html.htm" />
+    <Content Include="App_Templates\Email\SignupMail\SignupMail_es-ES.htm" />
+    <Content Include="App_Templates\Email\SignupMail\SignupMail_es-ES_html.htm" />
+    <Content Include="App_Templates\Email\SignupMail\SignupMail_id-ID.htm" />
+    <Content Include="App_Templates\Email\SignupMail\SignupMail_id-ID_html.htm" />
+    <Content Include="App_Templates\Email\SignupMail\SignupMail_ja-JP.htm" />
+    <Content Include="App_Templates\Email\SignupMail\SignupMail_ja-JP_html.htm" />
+    <Content Include="App_Templates\Email\SignupMail\SignupMail_ko-KR.htm" />
+    <Content Include="App_Templates\Email\SignupMail\SignupMail_ko-KR_html.htm" />
+    <Content Include="App_Templates\Email\SignupMail\SignupMail_th-TH.htm" />
+    <Content Include="App_Templates\Email\SignupMail\SignupMail_th-TH_html.htm" />
+    <Content Include="App_Templates\Email\SignupMail\SignupMail_vi-VN.htm" />
+    <Content Include="App_Templates\Email\SignupMail\SignupMail_vi-VN_html.htm" />
+    <Content Include="App_Templates\Email\SignupMail\SignupMail_zh-CN.htm" />
+    <Content Include="App_Templates\Email\SignupMail\SignupMail_zh-CN_html.htm" />
+    <Content Include="App_Templates\Email\SignupMail\SignupMail_zh-TW.htm" />
+    <Content Include="App_Templates\Email\SignupMail\SignupMail_zh-TW_html.htm" />
+    <Content Include="App_Templates\ForgetPass_en-US.htm" />
+    <Content Include="App_Templates\ForgetPass_es-ES.htm" />
+    <Content Include="App_Templates\ForgetPass_id-ID.htm" />
+    <Content Include="App_Templates\ForgetPass_ko-KR.htm" />
+    <Content Include="App_Templates\ForgetPass_th-TH.htm" />
+    <Content Include="App_Templates\ForgetPass_vi-VN.htm" />
+    <Content Include="App_Templates\ForgetPass_zh-CN.htm" />
+    <Content Include="App_Templates\ForgetPass_zh-TW.htm" />
+    <Content Include="App_Templates\GotoPage.html" />
+    <Content Include="App_Templates\LoginDetailSucc.htm" />
+    <Content Include="App_Templates\MailContact.htm" />
+    <Content Include="App_Templates\NoInfo.html" />
+    <Content Include="App_Templates\OnlyOption.htm" />
+    <Content Include="App_Templates\Option.htm" />
+    <Content Include="App_Templates\PageIndex.html" />
+    <Content Include="App_Templates\Paging.htm" />
+    <Content Include="App_Templates\Paging.html" />
+    <Content Include="App_Templates\Promotional_en-US.htm" />
+    <Content Include="App_Templates\Promotional_es-ES.htm" />
+    <Content Include="App_Templates\Promotional_id-ID.htm" />
+    <Content Include="App_Templates\Promotional_ja-JP.htm" />
+    <Content Include="App_Templates\Promotional_ko-KR.htm" />
+    <Content Include="App_Templates\Promotional_th-TH.htm" />
+    <Content Include="App_Templates\Promotional_vi-VN.htm" />
+    <Content Include="App_Templates\Promotional_zh-CN.htm" />
+    <Content Include="App_Templates\Promotional_zh-TW.htm" />
+    <Content Include="App_Templates\RecoverPass_en-US.htm" />
+    <Content Include="App_Templates\RecoverPass_es-ES.htm" />
+    <Content Include="App_Templates\RecoverPass_id-ID.htm" />
+    <Content Include="App_Templates\RecoverPass_th-TH.htm" />
+    <Content Include="App_Templates\RecoverPass_vi-VN.htm" />
+    <Content Include="App_Templates\RecoverPass_zh-CN.htm" />
+    <Content Include="App_Templates\RecoverPass_zh-TW.htm" />
+    <Content Include="App_Templates\RegistrationSuccess.htm" />
+    <Content Include="App_Templates\Report\AffiliateQMReport.htm" />
+    <Content Include="App_Templates\Report\AffiliateReport.htm" />
+    <Content Include="App_Templates\Report\MemberStatisticsReport.htm" />
+    <Content Include="App_Templates\SelMonth.htm" />
+    <Content Include="App_Templates\SignupMail_en-US.htm" />
+    <Content Include="App_Templates\SignupMail_es-ES.htm" />
+    <Content Include="App_Templates\SignupMail_id-ID.htm" />
+    <Content Include="App_Templates\SignupMail_th-TH.htm" />
+    <Content Include="App_Templates\SignupMail_vi-VN.htm" />
+    <Content Include="App_Templates\SignupMail_zh-CN.htm" />
+    <Content Include="App_Templates\SignupMail_zh-TW.htm" />
+    <Content Include="App_Templates\UserInfo\CommGroupSetting.htm" />
+    <Content Include="App_Templates\UserInfo\Customers.htm" />
+    <Content Include="App_Templates\UserInfo\DailyEarningDetail.htm" />
+    <Content Include="App_Templates\UserInfo\FlashCode.htm" />
+    <Content Include="App_Templates\UserInfo\ForgetPass_ko-KR.htm" />
+    <Content Include="App_Templates\UserInfo\HotNews.htm" />
+    <Content Include="App_Templates\UserInfo\MediaBanner.htm" />
+    <Content Include="App_Templates\UserInfo\MediaGallery.htm" />
+    <Content Include="App_Templates\UserInfo\MediaText.htm" />
+    <Content Include="App_Templates\UserInfo\MemDepositInfo.htm" />
+    <Content Include="App_Templates\UserInfo\MoreUrls.htm" />
+    <Content Include="App_Templates\UserInfo\PaymentCancel_en-US.htm" />
+    <Content Include="App_Templates\UserInfo\PaymentCancel_es-ES.htm" />
+    <Content Include="App_Templates\UserInfo\PaymentCancel_id-ID.htm" />
+    <Content Include="App_Templates\UserInfo\PaymentCancel_th-TH.htm" />
+    <Content Include="App_Templates\UserInfo\PaymentCancel_vi-VN.htm" />
+    <Content Include="App_Templates\UserInfo\PaymentCancel_zh-CN.htm" />
+    <Content Include="App_Templates\UserInfo\PaymentCancel_zh-TW.htm" />
+    <Content Include="App_Templates\UserInfo\PaymentRequest.htm" />
+    <Content Include="App_Templates\UserInfo\PaymentRequestCancel.htm" />
+    <Content Include="App_Templates\UserInfo\PaymentRequestMail.htm" />
+    <Content Include="App_Templates\UserInfo\PaymentRequest_en-US.htm" />
+    <Content Include="App_Templates\UserInfo\PaymentRequest_es-ES.htm" />
+    <Content Include="App_Templates\UserInfo\PaymentRequest_id-ID.htm" />
+    <Content Include="App_Templates\UserInfo\PaymentRequest_th-TH.htm" />
+    <Content Include="App_Templates\UserInfo\PaymentRequest_vi-VN.htm" />
+    <Content Include="App_Templates\UserInfo\PaymentRequest_zh-CN.htm" />
+    <Content Include="App_Templates\UserInfo\PaymentRequest_zh-TW.htm" />
+    <Content Include="App_Templates\UserInfo\SecureQuestion_en-US.htm" />
+    <Content Include="App_Templates\UserInfo\SecureQuestion_es-ES.htm" />
+    <Content Include="App_Templates\UserInfo\SecureQuestion_id-ID.htm" />
+    <Content Include="App_Templates\UserInfo\SecureQuestion_ja-JP.htm" />
+    <Content Include="App_Templates\UserInfo\SecureQuestion_ko-KR.htm" />
+    <Content Include="App_Templates\UserInfo\SecureQuestion_th-TH.htm" />
+    <Content Include="App_Templates\UserInfo\SecureQuestion_vi-VN.htm" />
+    <Content Include="App_Templates\UserInfo\SecureQuestion_zh-CN.htm" />
+    <Content Include="App_Templates\UserInfo\SecureQuestion_zh-TW.htm" />
+    <Content Include="App_Templates\UserInfo\StatementHistory.htm" />
+    <Content Include="App_Templates\UserInfo\TrackingStatistics.htm" />
+    <Content Include="App_Templates\UserInfo\TrackingStatistics_LandingPage.htm" />
+    <Content Include="App_Templates\UserInfo\TrackingStatistics_New.htm" />
+    <Content Include="App_Templates\UserInfo\ViewDaily.htm" />
+    <Content Include="App_Themes\Aff12bet.ico" />
+    <Content Include="App_Themes\Aff12bet.png" />
+    <Content Include="App_Themes\Default\Content.css" />
+    <Content Include="App_Themes\Default\Images1\banner.png" />
+    <Content Include="App_Themes\Default\Images1\banner_en-GB.jpg" />
+    <Content Include="App_Themes\Default\Images1\banner_en-US.jpg" />
+    <Content Include="App_Themes\Default\Images1\banner_en.jpg" />
+    <Content Include="App_Themes\Default\Images1\banner_es-ES.jpg" />
+    <Content Include="App_Themes\Default\Images1\banner_id-ID.jpg" />
+    <Content Include="App_Themes\Default\Images1\banner_ja-JP.jpg" />
+    <Content Include="App_Themes\Default\Images1\banner_ko-KR.jpg" />
+    <Content Include="App_Themes\Default\Images1\banner_th-TH.jpg" />
+    <Content Include="App_Themes\Default\Images1\banner_vi-VN.jpg" />
+    <Content Include="App_Themes\Default\Images1\banner_zh-CN.jpg" />
+    <Content Include="App_Themes\Default\Images1\banner_zh-TW.jpg" />
+    <Content Include="App_Themes\Default\Images1\bgBanner.png" />
+    <Content Include="App_Themes\Default\Images1\bgMain.jpg" />
+    <Content Include="App_Themes\Default\Images1\bg_center.jpg" />
+    <Content Include="App_Themes\Default\Images1\bg_footer.jpg" />
+    <Content Include="App_Themes\Default\Images1\btLink.png" />
+    <Content Include="App_Themes\Default\Images1\btLinkHover.png" />
+    <Content Include="App_Themes\Default\Images1\button.png" />
+    <Content Include="App_Themes\Default\Images1\header.png" />
+    <Content Include="App_Themes\Default\Images1\in_left.jpg" />
+    <Content Include="App_Themes\Default\Images1\in_right.jpg" />
+    <Content Include="App_Themes\Default\Images1\in_top.jpg" />
+    <Content Include="App_Themes\Default\Images1\logo.png" />
+    <Content Include="App_Themes\Default\Images1\note.png" />
+    <Content Include="App_Themes\Default\Images1\noteLine.png" />
+    <Content Include="App_Themes\Default\Images\1.gif" />
+    <Content Include="App_Themes\Default\Images\2.gif" />
+    <Content Include="App_Themes\Default\Images\accept.png" />
+    <Content Include="App_Themes\Default\Images\ads2_cs.jpg" />
+    <Content Include="App_Themes\Default\Images\ads2_ct.jpg" />
+    <Content Include="App_Themes\Default\Images\ads2_e.jpg" />
+    <Content Include="App_Themes\Default\Images\ads2_es.jpg" />
+    <Content Include="App_Themes\Default\Images\ads2_id.jpg" />
+    <Content Include="App_Themes\Default\Images\ads2_jp.jpg" />
+    <Content Include="App_Themes\Default\Images\ads2_th.jpg" />
+    <Content Include="App_Themes\Default\Images\ads2_vi.jpg" />
+    <Content Include="App_Themes\Default\Images\ads3_e.jpg" />
+    <Content Include="App_Themes\Default\Images\arrUpDown.png" />
+    <Content Include="App_Themes\Default\Images\bet.jpg" />
+    <Content Include="App_Themes\Default\Images\bg-en-US.jpg" />
+    <Content Include="App_Themes\Default\Images\bg-es-ES.jpg" />
+    <Content Include="App_Themes\Default\Images\bg-id-ID.jpg" />
+    <Content Include="App_Themes\Default\Images\bg-ja-JP.jpg" />
+    <Content Include="App_Themes\Default\Images\bg-ko-KR.jpg" />
+    <Content Include="App_Themes\Default\Images\bg-th-TH.jpg" />
+    <Content Include="App_Themes\Default\Images\bg-vi-VN.jpg" />
+    <Content Include="App_Themes\Default\Images\bg-zh-CN.jpg" />
+    <Content Include="App_Themes\Default\Images\bg-zh-TW.jpg" />
+    <Content Include="App_Themes\Default\Images\bgBanner.png" />
+    <Content Include="App_Themes\Default\Images\bghotNews.png" />
+    <Content Include="App_Themes\Default\Images\bghotNewsContent.png" />
+    <Content Include="App_Themes\Default\Images\bgLogoutL.jpg" />
+    <Content Include="App_Themes\Default\Images\bgLogoutR.jpg" />
+    <Content Include="App_Themes\Default\Images\bgMain.jpg" />
+    <Content Include="App_Themes\Default\Images\bgMain_ch.jpg" />
+    <Content Include="App_Themes\Default\Images\bgMain_cs.jpg" />
+    <Content Include="App_Themes\Default\Images\bgMain_id.jpg" />
+    <Content Include="App_Themes\Default\Images\bgMain_jp.jpg" />
+    <Content Include="App_Themes\Default\Images\bgMain_ko.jpg" />
+    <Content Include="App_Themes\Default\Images\bgMain_th.jpg" />
+    <Content Include="App_Themes\Default\Images\bgMain_vn.jpg" />
+    <Content Include="App_Themes\Default\Images\bgPopup.jpg" />
+    <Content Include="App_Themes\Default\Images\bgTableHeader.jpg" />
+    <Content Include="App_Themes\Default\Images\bg_bottom.jpg" />
+    <Content Include="App_Themes\Default\Images\bg_box01.jpg" />
+    <Content Include="App_Themes\Default\Images\bg_box02.jpg" />
+    <Content Include="App_Themes\Default\Images\bg_box03.jpg" />
+    <Content Include="App_Themes\Default\Images\bg_buttonsite.jpg" />
+    <Content Include="App_Themes\Default\Images\bg_center.jpg" />
+    <Content Include="App_Themes\Default\Images\bg_contents.jpg" />
+    <Content Include="App_Themes\Default\Images\bg_footer.jpg" />
+    <Content Include="App_Themes\Default\Images\bg_header.jpg" />
+    <Content Include="App_Themes\Default\Images\bg_header01.jpg" />
+    <Content Include="App_Themes\Default\Images\bg_top.jpg" />
+    <Content Include="App_Themes\Default\Images\box.png" />
+    <Content Include="App_Themes\Default\Images\boxDown.png" />
+    <Content Include="App_Themes\Default\Images\boxUp.png" />
+    <Content Include="App_Themes\Default\Images\btDown.png" />
+    <Content Include="App_Themes\Default\Images\btLogin.jpg" />
+    <Content Include="App_Themes\Default\Images\btLoginOver.jpg" />
+    <Content Include="App_Themes\Default\Images\btUp.png" />
+    <Content Include="App_Themes\Default\Images\bt_top01.jpg" />
+    <Content Include="App_Themes\Default\Images\bt_top02.jpg" />
+    <Content Include="App_Themes\Default\Images\buttlets.png" />
+    <Content Include="App_Themes\Default\Images\b_01.gif" />
+    <Content Include="App_Themes\Default\Images\b_01_es.gif" />
+    <Content Include="App_Themes\Default\Images\b_02.gif" />
+    <Content Include="App_Themes\Default\Images\b_next1.jpg" />
+    <Content Include="App_Themes\Default\Images\b_next2.jpg" />
+    <Content Include="App_Themes\Default\Images\b_prev1.jpg" />
+    <Content Include="App_Themes\Default\Images\b_prev2.jpg" />
+    <Content Include="App_Themes\Default\Images\cal.gif" />
+    <Content Include="App_Themes\Default\Images\captr.jpg" />
+    <Content Include="App_Themes\Default\Images\checkbox03.jpg" />
+    <Content Include="App_Themes\Default\Images\checkbox04.jpg" />
+    <Content Include="App_Themes\Default\Images\clock.png" />
+    <Content Include="App_Themes\Default\Images\clollapse.png" />
+    <Content Include="App_Themes\Default\Images\close.png" />
+    <Content Include="App_Themes\Default\Images\collapse-ico.png" />
+    <Content Include="App_Themes\Default\Images\ComboBox.png" />
+    <Content Include="App_Themes\Default\Images\Cus-en-US.jpg" />
+    <Content Include="App_Themes\Default\Images\Cus-es-ES.jpg" />
+    <Content Include="App_Themes\Default\Images\Cus-id-ID.jpg" />
+    <Content Include="App_Themes\Default\Images\Cus-ja-JP.jpg" />
+    <Content Include="App_Themes\Default\Images\Cus-ko-KR.jpg" />
+    <Content Include="App_Themes\Default\Images\Cus-th-TH.jpg" />
+    <Content Include="App_Themes\Default\Images\Cus-vi-VN.jpg" />
+    <Content Include="App_Themes\Default\Images\Cus-zh-CN.jpg" />
+    <Content Include="App_Themes\Default\Images\Cus-zh-TW.jpg" />
+    <Content Include="App_Themes\Default\Images\customized-left-en-US.gif" />
+    <Content Include="App_Themes\Default\Images\customized-left-id-ID.gif" />
+    <Content Include="App_Themes\Default\Images\customized-left-ko-KR.gif" />
+    <Content Include="App_Themes\Default\Images\customized-left-th-TH.gif" />
+    <Content Include="App_Themes\Default\Images\customized-left-vi-VN.gif" />
+    <Content Include="App_Themes\Default\Images\customized-left-zh-CN.gif" />
+    <Content Include="App_Themes\Default\Images\customized-left-zh-TW.gif" />
+    <Content Include="App_Themes\Default\Images\customized-left.jpg" />
+    <Content Include="App_Themes\Default\Images\customized-right-en-US.gif" />
+    <Content Include="App_Themes\Default\Images\customized-right-id-ID.gif" />
+    <Content Include="App_Themes\Default\Images\customized-right-ko-KR.gif" />
+    <Content Include="App_Themes\Default\Images\customized-right-th-TH.gif" />
+    <Content Include="App_Themes\Default\Images\customized-right-vi-VN.gif" />
+    <Content Include="App_Themes\Default\Images\customized-right-zh-CN.gif" />
+    <Content Include="App_Themes\Default\Images\customized-right-zh-TW.gif" />
+    <Content Include="App_Themes\Default\Images\customized-right.jpg" />
+    <Content Include="App_Themes\Default\Images\earn.png" />
+    <Content Include="App_Themes\Default\Images\expand-ico.png" />
+    <Content Include="App_Themes\Default\Images\expand.png" />
+    <Content Include="App_Themes\Default\Images\fbut-en-US.jpg" />
+    <Content Include="App_Themes\Default\Images\fbut-id-ID.gif" />
+    <Content Include="App_Themes\Default\Images\fbut-ko-KR.jpg" />
+    <Content Include="App_Themes\Default\Images\fbut-th-TH.gif" />
+    <Content Include="App_Themes\Default\Images\fbut-vi-VN.gif" />
+    <Content Include="App_Themes\Default\Images\fbut-zh-CN.gif" />
+    <Content Include="App_Themes\Default\Images\fbut-zh-TW.gif" />
+    <Content Include="App_Themes\Default\Images\fChinese.png" />
+    <Content Include="App_Themes\Default\Images\fEnglish.png" />
+    <Content Include="App_Themes\Default\Images\fIndonesian.png" />
+    <Content Include="App_Themes\Default\Images\firefox.jpg" />
+    <Content Include="App_Themes\Default\Images\fJapan.png" />
+    <Content Include="App_Themes\Default\Images\flag_cs.png" />
+    <Content Include="App_Themes\Default\Images\flag_E.png" />
+    <Content Include="App_Themes\Default\Images\flag_ES.jpg" />
+    <Content Include="App_Themes\Default\Images\flag_id.png" />
+    <Content Include="App_Themes\Default\Images\flag_kr.png" />
+    <Content Include="App_Themes\Default\Images\flag_th.png" />
+    <Content Include="App_Themes\Default\Images\flag_vi.png" />
+    <Content Include="App_Themes\Default\Images\fSpain.png" />
+    <Content Include="App_Themes\Default\Images\fThai.png" />
+    <Content Include="App_Themes\Default\Images\fTV.png" />
+    <Content Include="App_Themes\Default\Images\go_top.jpg" />
+    <Content Include="App_Themes\Default\Images\go_top_cs.jpg" />
+    <Content Include="App_Themes\Default\Images\go_top_ct.jpg" />
+    <Content Include="App_Themes\Default\Images\go_top_es.jpg" />
+    <Content Include="App_Themes\Default\Images\go_top_id.png" />
+    <Content Include="App_Themes\Default\Images\go_top_jp.jpg" />
+    <Content Include="App_Themes\Default\Images\go_top_OV.jpg" />
+    <Content Include="App_Themes\Default\Images\go_top_vi.png" />
+    <Content Include="App_Themes\Default\Images\hotNewsArr.png" />
+    <Content Include="App_Themes\Default\Images\hotNewsLeft.jpg" />
+    <Content Include="App_Themes\Default\Images\hotNewsRight.jpg" />
+    <Content Include="App_Themes\Default\Images\hotNewsRp.jpg" />
+    <Content Include="App_Themes\Default\Images\icLogout.png" />
+    <Content Include="App_Themes\Default\Images\icon04.png" />
+    <Content Include="App_Themes\Default\Images\iconAll.png" />
+    <Content Include="App_Themes\Default\Images\icon_button02.gif" />
+    <Content Include="App_Themes\Default\Images\icon_top.png" />
+    <Content Include="App_Themes\Default\Images\ie.jpg" />
+    <Content Include="App_Themes\Default\Images\in_left.jpg" />
+    <Content Include="App_Themes\Default\Images\in_right.jpg" />
+    <Content Include="App_Themes\Default\Images\in_top.jpg" />
+    <Content Include="App_Themes\Default\Images\listBt.png" />
+    <Content Include="App_Themes\Default\Images\listRp.png" />
+    <Content Include="App_Themes\Default\Images\listTop.png" />
+    <Content Include="App_Themes\Default\Images\loading.gif" />
+    <Content Include="App_Themes\Default\Images\lock.png" />
+    <Content Include="App_Themes\Default\Images\lock_large_locked.png" />
+    <Content Include="App_Themes\Default\Images\log-en-US.png" />
+    <Content Include="App_Themes\Default\Images\log-es-ES.png" />
+    <Content Include="App_Themes\Default\Images\log-id-ID.png" />
+    <Content Include="App_Themes\Default\Images\log-ko-KR.png" />
+    <Content Include="App_Themes\Default\Images\log-th-TH.png" />
+    <Content Include="App_Themes\Default\Images\log-vi-VN.png" />
+    <Content Include="App_Themes\Default\Images\log-zh-CN.png" />
+    <Content Include="App_Themes\Default\Images\log-zh-TW.png" />
+    <Content Include="App_Themes\Default\Images\LogoutLeft.png" />
+    <Content Include="App_Themes\Default\Images\LogoutRight.png" />
+    <Content Include="App_Themes\Default\Images\logo_cs.png" />
+    <Content Include="App_Themes\Default\Images\logo_e.png" />
+    <Content Include="App_Themes\Default\Images\logo_es.png" />
+    <Content Include="App_Themes\Default\Images\logo_id.png" />
+    <Content Include="App_Themes\Default\Images\logo_jp.png" />
+    <Content Include="App_Themes\Default\Images\logo_kr.png" />
+    <Content Include="App_Themes\Default\Images\logo_th.png" />
+    <Content Include="App_Themes\Default\Images\logo_vi.png" />
+    <Content Include="App_Themes\Default\Images\L_bg.gif" />
+    <Content Include="App_Themes\Default\Images\L_bg_top.png" />
+    <Content Include="App_Themes\Default\Images\mainFlash.jpg" />
+    <Content Include="App_Themes\Default\Images\navContact.jpg" />
+    <Content Include="App_Themes\Default\Images\navContactOver.jpg" />
+    <Content Include="App_Themes\Default\Images\navFaq.jpg" />
+    <Content Include="App_Themes\Default\Images\navFaqOver.jpg" />
+    <Content Include="App_Themes\Default\Images\navHome.jpg" />
+    <Content Include="App_Themes\Default\Images\navHomeOver.jpg" />
+    <Content Include="App_Themes\Default\Images\NavProgram.jpg" />
+    <Content Include="App_Themes\Default\Images\navProgramOver.jpg" />
+    <Content Include="App_Themes\Default\Images\negative.png" />
+    <Content Include="App_Themes\Default\Images\new.png" />
+    <Content Include="App_Themes\Default\Images\note_icon.gif" />
+    <Content Include="App_Themes\Default\Images\payment.png" />
+    <Content Include="App_Themes\Default\Images\prompt.png" />
+    <Content Include="App_Themes\Default\Images\rightFooter.jpg" />
+    <Content Include="App_Themes\Default\Images\right_menu.jpg" />
+    <Content Include="App_Themes\Default\Images\R_bg_top.png" />
+    <Content Include="App_Themes\Default\Images\sbut-en-US.jpg" />
+    <Content Include="App_Themes\Default\Images\sbut-id-ID.gif" />
+    <Content Include="App_Themes\Default\Images\sbut-ko-KR.jpg" />
+    <Content Include="App_Themes\Default\Images\sbut-th-TH.gif" />
+    <Content Include="App_Themes\Default\Images\sbut-vi-VN.gif" />
+    <Content Include="App_Themes\Default\Images\sbut-zh-CN.gif" />
+    <Content Include="App_Themes\Default\Images\sbut-zh-TW.gif" />
+    <Content Include="App_Themes\Default\Images\Signup1.jpg" />
+    <Content Include="App_Themes\Default\Images\Signup2.jpg" />
+    <Content Include="App_Themes\Default\Images\spliter.png" />
+    <Content Include="App_Themes\Default\Images\splitter.jpg" />
+    <Content Include="App_Themes\Default\Images\support.png" />
+    <Content Include="App_Themes\Default\Images\table_left.jpg" />
+    <Content Include="App_Themes\Default\Images\tbut-en-US.jpg" />
+    <Content Include="App_Themes\Default\Images\tbut-id-ID.gif" />
+    <Content Include="App_Themes\Default\Images\tbut-ko-KR.jpg" />
+    <Content Include="App_Themes\Default\Images\tbut-th-TH.gif" />
+    <Content Include="App_Themes\Default\Images\tbut-vi-VN.gif" />
+    <Content Include="App_Themes\Default\Images\tbut-zh-CN.gif" />
+    <Content Include="App_Themes\Default\Images\tbut-zh-TW.gif" />
+    <Content Include="App_Themes\Default\Images\tracking.png" />
+    <Content Include="App_Themes\Default\Images\um_head.gif" />
+    <Content Include="App_Themes\Default\Images\UnderMaintenance.gif" />
+    <Content Include="App_Themes\Default\Images\user-white.png" />
+    <Content Include="App_Themes\Default\Images\user.png" />
+    <Content Include="App_Themes\Default\Images\warning.png" />
+    <Content Include="App_Themes\Default\Paging.css" />
+    <Content Include="App_Themes\Default\Right.css" />
+    <Content Include="App_Themes\error2.png" />
+    <Content Include="Authorization\Error.aspx" />
+    <Content Include="BetList\BetList.aspx" />
+    <Content Include="BetList\BetListParlayDetail.aspx" />
+    <Content Include="BetList\BetListResults.aspx" />
+    <Content Include="Condition.aspx" />
+    <Content Include="ContactUs.aspx" />
+    <Content Include="Content\Banner\English\bigbanner.gif" />
+    <Content Include="Content\Banner\English\smallbanner.gif" />
+    <Content Include="Content\Banner\European\bigbanner.gif" />
+    <Content Include="Content\Banner\European\smallbanner.gif" />
+    <Content Include="Content\Banner\Indonesian\bigbanner.gif" />
+    <Content Include="Content\Banner\Indonesian\smallbanner.gif" />
+    <Content Include="Content\Banner\Japan\bigbanner.gif" />
+    <Content Include="Content\Banner\Japan\smallbanner.gif" />
+    <Content Include="Content\Banner\Korean\bigbanner.gif" />
+    <Content Include="Content\Banner\Korean\smallbanner.gif" />
+    <Content Include="Content\Banner\Simplified\bigbanner.gif" />
+    <Content Include="Content\Banner\Simplified\smallbanner.gif" />
+    <Content Include="Content\Banner\Spanish\bigbanner.gif" />
+    <Content Include="Content\Banner\Spanish\smallbanner.gif" />
+    <Content Include="Content\Banner\Thai\bigbanner.gif" />
+    <Content Include="Content\Banner\Thai\smallbanner.gif" />
+    <Content Include="Content\Banner\Tradition\bigbanner.gif" />
+    <Content Include="Content\Banner\Tradition\smallbanner.gif" />
+    <Content Include="Content\Banner\Vietnamese\bigbanner.gif" />
+    <Content Include="Content\Banner\Vietnamese\smallbanner.gif" />
+    <Content Include="Content\betlist\betlist.core.css" />
+    <Content Include="Content\betlist\betlist.css" />
+    <Content Include="Content\betlist\fanex.result.css" />
+    <Content Include="Content\betlist\global.content.css" />
+    <Content Include="Content\betlist\images\1F.gif" />
+    <Content Include="Content\betlist\images\1L.gif" />
+    <Content Include="Content\betlist\images\bar-loader.gif" />
+    <Content Include="Content\betlist\images\bgHeader.jpg" />
+    <Content Include="Content\betlist\images\blank.gif" />
+    <Content Include="Content\betlist\images\firstGoal.gif" />
+    <Content Include="Content\betlist\images\goal-icon.png" />
+    <Content Include="Content\betlist\images\lastGoal.gif" />
+    <Content Include="Content\betlist\images\link_14x14.png" />
+    <Content Include="Content\betlist\images\link_16x16.png" />
+    <Content Include="Content\betlist\images\note.png" />
+    <Content Include="Content\betlist\images\plus.png" />
+    <Content Include="Content\betlist\images\q_Icon2_1.png" />
+    <Content Include="Content\betlist\images\q_Icon_2.png" />
+    <Content Include="Content\betlist\images\tab_topbg.gif" />
+    <Content Include="Content\betlist\images\undo.png" />
+    <Content Include="Content\betlist\images\up.png" />
+    <Content Include="Content\betlist\rngcasino.handhistory.css" />
+    <Content Include="Content\betlist\systemparlay.detail.css" />
+    <Content Include="Content\Fanex.Result\fanex.result.css" />
+    <Content Include="Content\Fanex.Result\images\goal-icon.png" />
+    <Content Include="Content\tipsy\custom-tipsy.css" />
+    <Content Include="Content\tipsy\tipsy.css" />
+    <Content Include="Controls\ContactUs.ascx" />
+    <Content Include="Controls\Footer.ascx" />
+    <Content Include="Controls\Header.ascx" />
+    <Content Include="Controls\Home_Center.ascx" />
+    <Content Include="Controls\Home_Left.ascx" />
+    <Content Include="Controls\LeftPanel.ascx" />
+    <Content Include="Controls\RightPanel.ascx" />
+    <Content Include="Customized.aspx" />
+    <Content Include="Default.aspx" />
+    <Content Include="Error.aspx" />
+    <Content Include="Error\Error.htm" />
+    <Content Include="Error\Images\bgMain.jpg" />
+    <Content Include="Error\Images\icon.png" />
+    <Content Include="Error\Images\iconnf.png" />
+    <Content Include="Error\Images\logo_e.png" />
+    <Content Include="Error\Images\sry.png" />
+    <Content Include="Error\Images\srynf.png" />
+    <Content Include="Error\PageNotFound.htm" />
+    <Content Include="Error\style.css" />
+    <Content Include="FAQs.aspx" />
+    <Content Include="Flash\English\Ads_Aff.swf" />
+    <Content Include="Flash\English\Ads_Aff.swf.swf" />
+    <Content Include="Flash\English\banner_img.xml" />
+    <Content Include="Flash\English\eleInfo.xml" />
+    <Content Include="Flash\English\en.swf" />
+    <Content Include="Flash\English\home_banner.swf" />
+    <Content Include="Flash\English\images\img0.jpg" />
+    <Content Include="Flash\English\images\img1.jpg" />
+    <Content Include="Flash\English\images\img2.jpg" />
+    <Content Include="Flash\English\images\img3.jpg" />
+    <Content Include="Flash\English\images\img4.jpg" />
+    <Content Include="Flash\English\img\1.swf" />
+    <Content Include="Flash\English\img\2.swf" />
+    <Content Include="Flash\English\img\3.swf" />
+    <Content Include="Flash\English\img\message_txt.xml" />
+    <Content Include="Flash\English\swfobject.js" />
+    <Content Include="Flash\European\home_banner_eu.swf" />
+    <Content Include="Flash\Indonesian\Ads_Aff.swf" />
+    <Content Include="Flash\Indonesian\Ads_Aff.swf.swf" />
+    <Content Include="Flash\Indonesian\banner_img.xml" />
+    <Content Include="Flash\Indonesian\eleInfo.xml" />
+    <Content Include="Flash\Indonesian\home_banner.swf" />
+    <Content Include="Flash\Indonesian\images\img0.jpg" />
+    <Content Include="Flash\Indonesian\images\img1.jpg" />
+    <Content Include="Flash\Indonesian\images\img2.jpg" />
+    <Content Include="Flash\Indonesian\images\img3.jpg" />
+    <Content Include="Flash\Indonesian\images\img4.jpg" />
+    <Content Include="Flash\Indonesian\img\1.swf" />
+    <Content Include="Flash\Indonesian\img\2.swf" />
+    <Content Include="Flash\Indonesian\img\3.swf" />
+    <Content Include="Flash\Indonesian\img\message_txt.xml" />
+    <Content Include="Flash\Indonesian\indo.swf" />
+    <Content Include="Flash\Indonesian\swfobject.js" />
+    <Content Include="Flash\Japan\Ads_Aff.swf" />
+    <Content Include="Flash\Japan\banner_img.xml" />
+    <Content Include="Flash\Japan\eleInfo.xml" />
+    <Content Include="Flash\Japan\en.swf" />
+    <Content Include="Flash\Japan\home_banner.swf" />
+    <Content Include="Flash\Japan\images\img0.jpg" />
+    <Content Include="Flash\Japan\images\img1.jpg" />
+    <Content Include="Flash\Japan\images\img2.jpg" />
+    <Content Include="Flash\Japan\images\img3.jpg" />
+    <Content Include="Flash\Japan\images\img4.jpg" />
+    <Content Include="Flash\Japan\img\1.swf" />
+    <Content Include="Flash\Japan\img\2.swf" />
+    <Content Include="Flash\Japan\img\3.swf" />
+    <Content Include="Flash\Japan\img\message_txt.xml" />
+    <Content Include="Flash\Japan\swfobject.js" />
+    <Content Include="Flash\Korean\Ads_Aff.swf" />
+    <Content Include="Flash\Korean\banner_img.xml" />
+    <Content Include="Flash\Korean\eleInfo.xml" />
+    <Content Include="Flash\Korean\home_banner.swf" />
+    <Content Include="Flash\Korean\img\1.swf" />
+    <Content Include="Flash\Korean\img\2.swf" />
+    <Content Include="Flash\Korean\img\3.swf" />
+    <Content Include="Flash\Korean\img\message_txt.xml" />
+    <Content Include="Flash\Korean\swfobject.js" />
+    <Content Include="Flash\Korean\vn.swf" />
+    <Content Include="Flash\PersonalizedSite\APP_en-US.swf" />
+    <Content Include="Flash\PersonalizedSite\APP_es-ES.swf" />
+    <Content Include="Flash\PersonalizedSite\APP_id-ID.swf" />
+    <Content Include="Flash\PersonalizedSite\APP_th-TH.swf" />
+    <Content Include="Flash\PersonalizedSite\APP_vi-VN.swf" />
+    <Content Include="Flash\PersonalizedSite\APP_zh-CN.swf" />
+    <Content Include="Flash\PersonalizedSite\APP_zh-TW.swf" />
+    <Content Include="Flash\SFlash\eleInfo.xml" />
+    <Content Include="Flash\SFlash\images\img0.jpg" />
+    <Content Include="Flash\SFlash\images\img1.jpg" />
+    <Content Include="Flash\SFlash\images\img2.jpg" />
+    <Content Include="Flash\SFlash\images\img3.jpg" />
+    <Content Include="Flash\SFlash\images\img4.jpg" />
+    <Content Include="Flash\SFlash\index1.html" />
+    <Content Include="Flash\SFlash\sbanner.swf" />
+    <Content Include="Flash\Simplified\Ads_Aff.swf" />
+    <Content Include="Flash\Simplified\Ads_Aff.swf.swf" />
+    <Content Include="Flash\Simplified\banner_img.xml" />
+    <Content Include="Flash\Simplified\eleInfo.xml" />
+    <Content Include="Flash\Simplified\home_banner.swf" />
+    <Content Include="Flash\Simplified\images\img0.jpg" />
+    <Content Include="Flash\Simplified\images\img1.jpg" />
+    <Content Include="Flash\Simplified\images\img2.jpg" />
+    <Content Include="Flash\Simplified\images\img3.jpg" />
+    <Content Include="Flash\Simplified\images\img4.jpg" />
+    <Content Include="Flash\Simplified\img\1.swf" />
+    <Content Include="Flash\Simplified\img\2.swf" />
+    <Content Include="Flash\Simplified\img\3.swf" />
+    <Content Include="Flash\Simplified\img\message_txt.xml" />
+    <Content Include="Flash\Simplified\sc.swf" />
+    <Content Include="Flash\Simplified\swfobject.js" />
+    <Content Include="Flash\Spanish\Ads_Aff.swf" />
+    <Content Include="Flash\Spanish\banner_img.xml" />
+    <Content Include="Flash\Spanish\eleInfo.xml" />
+    <Content Include="Flash\Spanish\home_banner.swf" />
+    <Content Include="Flash\Spanish\images\img0.jpg" />
+    <Content Include="Flash\Spanish\images\img1.jpg" />
+    <Content Include="Flash\Spanish\images\img2.jpg" />
+    <Content Include="Flash\Spanish\images\img3.jpg" />
+    <Content Include="Flash\Spanish\img\1.swf" />
+    <Content Include="Flash\Spanish\img\2.swf" />
+    <Content Include="Flash\Spanish\img\3.swf" />
+    <Content Include="Flash\Spanish\img\message_txt.xml" />
+    <Content Include="Flash\Spanish\spanish.swf" />
+    <Content Include="Flash\Spanish\swfobject.js" />
+    <Content Include="Flash\Thai\Ads_Aff.swf" />
+    <Content Include="Flash\Thai\Ads_Aff.swf.swf" />
+    <Content Include="Flash\Thai\banner_img.xml" />
+    <Content Include="Flash\Thai\eleInfo.xml" />
+    <Content Include="Flash\Thai\home_banner.swf" />
+    <Content Include="Flash\Thai\images\img0.jpg" />
+    <Content Include="Flash\Thai\images\img1.jpg" />
+    <Content Include="Flash\Thai\images\img2.jpg" />
+    <Content Include="Flash\Thai\images\img3.jpg" />
+    <Content Include="Flash\Thai\images\img4.jpg" />
+    <Content Include="Flash\Thai\img\1.swf" />
+    <Content Include="Flash\Thai\img\2.swf" />
+    <Content Include="Flash\Thai\img\3.swf" />
+    <Content Include="Flash\Thai\img\message_txt.xml" />
+    <Content Include="Flash\Thai\swfobject.js" />
+    <Content Include="Flash\Thai\thai.swf" />
+    <Content Include="Flash\Tradition\Ads_Aff.swf" />
+    <Content Include="Flash\Tradition\Ads_Aff.swf.swf" />
+    <Content Include="Flash\Tradition\Ads_cn.swf" />
+    <Content Include="Flash\Tradition\banner_img.xml" />
+    <Content Include="Flash\Tradition\eleInfo.xml" />
+    <Content Include="Flash\Tradition\home_banner.swf" />
+    <Content Include="Flash\Tradition\images\img0.jpg" />
+    <Content Include="Flash\Tradition\images\img1.jpg" />
+    <Content Include="Flash\Tradition\images\img2.jpg" />
+    <Content Include="Flash\Tradition\images\img3.jpg" />
+    <Content Include="Flash\Tradition\images\img4.jpg" />
+    <Content Include="Flash\Tradition\img\1.swf" />
+    <Content Include="Flash\Tradition\img\2.swf" />
+    <Content Include="Flash\Tradition\img\3.swf" />
+    <Content Include="Flash\Tradition\img\home_banner.swf" />
+    <Content Include="Flash\Tradition\img\message_txt.xml" />
+    <Content Include="Flash\Tradition\swfobject.js" />
+    <Content Include="Flash\Tradition\tc.swf" />
+    <Content Include="Flash\Vietnamese\Ads_Aff.swf" />
+    <Content Include="Flash\Vietnamese\Ads_Aff.swf.swf" />
+    <Content Include="Flash\Vietnamese\banner_img.xml" />
+    <Content Include="Flash\Vietnamese\eleInfo.xml" />
+    <Content Include="Flash\Vietnamese\home_banner.swf" />
+    <Content Include="Flash\Vietnamese\images\img0.jpg" />
+    <Content Include="Flash\Vietnamese\images\img1.jpg" />
+    <Content Include="Flash\Vietnamese\images\img2.jpg" />
+    <Content Include="Flash\Vietnamese\images\img3.jpg" />
+    <Content Include="Flash\Vietnamese\images\img4.jpg" />
+    <Content Include="Flash\Vietnamese\img\1.swf" />
+    <Content Include="Flash\Vietnamese\img\2.swf" />
+    <Content Include="Flash\Vietnamese\img\3.swf" />
+    <Content Include="Flash\Vietnamese\img\message_txt.xml" />
+    <Content Include="Flash\Vietnamese\swfobject.js" />
+    <Content Include="Flash\Vietnamese\vn.swf" />
+    <Content Include="ForgetPass.aspx" />
+    <Content Include="Index.aspx" />
+    <Content Include="Index1.aspx" />
+    <Content Include="OnlineSupport.aspx" />
+    <Content Include="ProgramDetails.aspx" />
+    <Content Include="Promotional.aspx" />
+    <Content Include="Recoverpw.aspx" />
+    <Content Include="Release Note.txt" />
+    <Content Include="Root.aspx" />
+    <Content Include="sendmail.aspx" />
+    <Content Include="SignUp.aspx" />
+    <Content Include="SignUpSuccess.aspx" />
+    <Content Include="SiteMap.aspx" />
+    <Content Include="TermNCondition.aspx" />
+    <Content Include="test.aspx" />
+    <Content Include="testbanner\English_140x60.htm" />
+    <Content Include="testbanner\English_160x700.htm" />
+    <Content Include="testbanner\Spanish_140x60.htm" />
+    <Content Include="testbanner\Spanish_160x700.htm" />
+    <Content Include="testbanner\Spanish_Splash_690x316.htm" />
+    <Content Include="testbanner\viettest.htm" />
+    <Content Include="UnderMaintenance.aspx" />
+    <Content Include="UserInfo\Account_Overview.aspx" />
+    <Content Include="UserInfo\Announcement.aspx" />
+    <Content Include="UserInfo\ChangePass.aspx" />
+    <Content Include="UserInfo\ChangeSecurityQuestion.aspx" />
+    <Content Include="UserInfo\Customers.aspx" />
+    <Content Include="UserInfo\DailyEarning.aspx" />
+    <Content Include="UserInfo\DailyEarningDetail.aspx" />
+    <Content Include="UserInfo\MediaBanner.aspx" />
+    <Content Include="UserInfo\MediaGalleryNew.aspx" />
+    <Content Include="UserInfo\MediaLink.aspx" />
+    <Content Include="UserInfo\MediaStatistics.aspx" />
+    <Content Include="UserInfo\MediaStatistics_LandingPage.aspx" />
+    <Content Include="UserInfo\MediaStatistics_New.aspx" />
+    <Content Include="UserInfo\MediaText.aspx" />
+    <Content Include="UserInfo\MemDepositInfo.aspx" />
+    <Content Include="UserInfo\Message.aspx" />
+    <Content Include="UserInfo\MyAccount.aspx" />
+    <Content Include="UserInfo\PaymentRequest.aspx" />
+    <Content Include="UserInfo\StatementHistory.aspx" />
+    <Content Include="UserInfo\TestApi.aspx" />
+    <Content Include="Welcome.aspx" />
+    <Content Include="WhoamI.aspx" />
+    <Content Include="_Aff_Sync.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\BetList.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>BetList.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\Bingo.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Bingo.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\Casino.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Casino.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\Lang.es-ES.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Lang.es-ES.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\Lang.id-ID.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Lang.id-ID.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\Lang.ja-JP.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Lang.ja-JP.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\Lang.ko-KR.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Lang.ko-KR.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\Lang.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Lang.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\Lang.th-TH.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Lang.th-TH.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\Lang.vi-VN.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Lang.vi-VN.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\Lang.zh-CN.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Lang.zh-CN.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\Lang.zh-TW.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Lang.zh-TW.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\ResultLang.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>ResultLang.designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://10.18.200.209:5001/WebService/AffiliateAPI.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\AffBetlistService\</RelPath>
+      <UpdateFromURL>http://10.18.200.209:5001/WebService/AffiliateAPI.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>AffiliateUser_AffBetlistService_AffiliateAPI</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://kraf.86812868.com/Service.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\MemberInfoService\</RelPath>
+      <UpdateFromURL>http://kraf.86812868.com/Service.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>AffiliateUser_MemberInfoService_Service</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Affiliate.Infrastructure\Affiliate.Infrastructure.csproj">
+      <Project>{B9A60C3F-FC44-4BF7-B618-68F0118C9000}</Project>
+      <Name>Affiliate.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>55419</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
