@@ -26,65 +26,59 @@ public partial class Report_PerformanceReportByAffiliate : IBCPage
     }
     void GenerateHTML()
     {
-        try
+        int affId = CastAide.AsInt32(Request["affId"]);
+        int sportID = CastAide.AsInt32(Request["sportid"]);
+        DbResult rs = DataHandler.Affiliate.PerformanceReportByAffiliate(sportID, affId);
+
+        DataTable dtb = new DataTable();
+        if (rs.ResultSet.Tables.Count > 0)
+            dtb = rs.ResultSet.Tables[0];
+
+        if (dtb.Rows.Count > 0)
         {
-            int affId = CastAide.AsInt32(Request["affId"]);
-            int sportID = CastAide.AsInt32(Request["sportid"]);
-            DbResult rs = DataHandler.Affiliate.PerformanceReportByAffiliate(sportID, affId);
 
-            DataTable dtb = new DataTable();
-            if (rs.ResultSet.Tables.Count > 0)
-                dtb = rs.ResultSet.Tables[0];
+            int intCount = 0;
+            int intTotal = 0;
+            string strRowTpl = TemplateHandler.CopyBlock(strTpl, "content");
+            string strListAffId = string.Empty;
 
-            if (dtb.Rows.Count > 0)
+
+            StringBuilder strListRow = new StringBuilder();
+            //Hashtable hsTotal = new Hashtable();
+
+
+            foreach (DataRow dr in dtb.Rows)
             {
+                string strTmp = strRowTpl;
 
-                int intCount = 0;
-                int intTotal = 0;
-                string strRowTpl = TemplateHandler.CopyBlock(strTpl, "content");
-                string strListAffId = string.Empty;
+                int total = 0;// CastAide.AsInt32(dr["Active"]);
 
+                intTotal += total;
 
-                StringBuilder strListRow = new StringBuilder();
-                //Hashtable hsTotal = new Hashtable();
+                TemplateHandler.Assign(ref strTmp, "no", intCount);
+                intCount++;
 
+                TemplateHandler.Assign(ref strTmp, "color", (intCount % 2 == 0)
+                    ? Common.RowBgEven : Common.RowBgOdd);
 
-                foreach (DataRow dr in dtb.Rows)
-                {
-                    string strTmp = strRowTpl;
+                TemplateHandler.Assign(ref strTmp, "month", DateTime.Parse(dr["WinLostDate"].ToString()).ToString("MMM-yyyy"));
+                TemplateHandler.Assign(ref strTmp, "activeplayer", dr["ActivePlayer"]);
+                TemplateHandler.Assign(ref strTmp, "qualified-member", NumberFormat.DecFormat(dr["QualifiedMember"], 0));
+                TemplateHandler.Assign(ref strTmp, "deposit", NumberFormat.DecFormat(dr["MemberDeposit"], 2));
+                TemplateHandler.Assign(ref strTmp, "withdrawal", NumberFormat.DecFormat(dr["MemberWithdrawal"], 2));
+                TemplateHandler.Assign(ref strTmp, "turnover", NumberFormat.DecFormat(dr["MemberTurnover"], 2));
+                TemplateHandler.Assign(ref strTmp, "winlost", NumberFormat.DecFormat(dr["MemberWinlost"], 2));
+                TemplateHandler.Assign(ref strTmp, "commission", NumberFormat.DecFormat(dr["commission"], 2));
 
-                    int total = 0;// CastAide.AsInt32(dr["Active"]);
-
-                    intTotal += total;
-
-                    TemplateHandler.Assign(ref strTmp, "no", intCount);
-                    intCount++;
-
-                    TemplateHandler.Assign(ref strTmp, "color", (intCount % 2 == 0)
-                        ? Common.RowBgEven : Common.RowBgOdd);
-
-                    TemplateHandler.Assign(ref strTmp, "month",  DateTime.Parse(dr["WinLostDate"].ToString()).ToString("MMM-yyyy"));
-                    TemplateHandler.Assign(ref strTmp, "activeplayer", dr["ActivePlayer"]);
-                    TemplateHandler.Assign(ref strTmp, "qualified-member", NumberFormat.DecFormat(dr["QualifiedMember"], 0));
-                    TemplateHandler.Assign(ref strTmp, "deposit", NumberFormat.DecFormat(dr["MemberDeposit"], 2));
-                    TemplateHandler.Assign(ref strTmp, "withdrawal", NumberFormat.DecFormat(dr["MemberWithdrawal"], 2));
-                    TemplateHandler.Assign(ref strTmp, "turnover", NumberFormat.DecFormat(dr["MemberTurnover"], 2));
-                    TemplateHandler.Assign(ref strTmp, "winlost", NumberFormat.DecFormat(dr["MemberWinlost"], 2));
-                    TemplateHandler.Assign(ref strTmp, "commission", NumberFormat.DecFormat(dr["commission"], 2));
-
-                    strListRow.Append(strTmp);
-                }
-                TemplateHandler.ReplaceBlock(ref strTpl, "content", strListRow.ToString());
-
-
+                strListRow.Append(strTmp);
             }
-            else
-            {
-                TemplateHandler.ReplaceBlock(ref strTpl, "nodata", Common.NoInfo(7));
-            }
+            TemplateHandler.ReplaceBlock(ref strTpl, "content", strListRow.ToString());
+
+
         }
-        catch
+        else
         {
+            TemplateHandler.ReplaceBlock(ref strTpl, "nodata", Common.NoInfo(7));
         }
     }
 }
