@@ -575,6 +575,7 @@ namespace DataHandler
             hsParam.Add("pagesize", intPageSize);
             hsParam.Add("pageindex", intPage);
             hsParam.Add("nrows", 0);
+            hsParam.Add("totalpages", 0);
             return DbHelper.Execute("Aff_ReportQMDetail", DBType.AFFILIATE_12BET, hsParam);
         }
 

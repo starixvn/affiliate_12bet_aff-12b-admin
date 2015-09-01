@@ -57,104 +57,94 @@ public partial class Report_Commission : IBCPage
 
     void GenerateHTML()
     {
-        try
+        string strUsername = CastAide.AsString(Request["affname"]);
+        var selectedMonth = CastAide.AsDateTime(Request["fmonth"], DateTime.Now);
+        int intPageSize = CastAide.AsInt32(Request["slPageSize"], 20);
+        int intPage = CastAide.AsInt32(Request["page"], 1);
+        int sport = CastAide.AsInt32(Request["slSport"], 1);
+        string strPreferLang = Request["slPreferLang"];
+        int sortBy = CastAide.AsInt32(Request["slSortBy"], 0);
+        bool isDesc = (CastAide.AsString(Request["isDesc"], string.Empty) != "ic-uncheck");
+
+        TemplateHandler.Assign(ref strTpl, "sport-val", sport);
+        TemplateHandler.Assign(ref strTpl, "lang-val", strPreferLang);
+        TemplateHandler.Assign(ref strTpl, "sortBy-val", sortBy);
+        TemplateHandler.Assign(ref strTpl, "cssgetall", isDesc ? "ic-check" : "ic-uncheck");
+
+        TemplateHandler.Assign(ref strTpl, "fmonth", selectedMonth.ToString("MM/yyyy"));
+        TemplateHandler.Assign(ref strTpl, "currentYear-val", DateTime.Now.Year);
+        TemplateHandler.Assign(ref strTpl, "currentMonth-val", DateTime.Now.Month);
+
+        if (String.IsNullOrEmpty(strUsername))
+            TemplateHandler.Assign(ref strTpl, "affname", "[" + Resources.Lang.All + "]");
+        else
+            TemplateHandler.Assign(ref strTpl, "affname", strUsername);
+        TemplateHandler.Assign(ref strTpl, "all-val", "[" + Resources.Lang.All + "]");
+
+        var criteria = new CommissionReportCriteria
+            {
+                Username = strUsername,
+                PreferredLanguage = strPreferLang,
+                Sport = sport,
+                Month = selectedMonth.Month,
+                Year = selectedMonth.Year,
+                PageIndex = intPage,
+                PageSize = intPageSize,
+                SortBy = sortBy,
+                IsDesc = isDesc
+            };
+
+        DbResult rs = DataHandler.Affiliate.SelAffiliateCommissionReport(criteria);
+
+        DataTable dtb = new DataTable();
+        if (rs.ResultSet.Tables.Count > 0)
+            dtb = rs.ResultSet.Tables[0];
+
+        criteria.NRows = CastAide.AsInt32(rs.Outputs["nrows"]);
+        DateTime LastDay = GetLastDayOfMonth(selectedMonth);
+        if (dtb.Rows.Count > 0)
         {
-            string strUsername = CastAide.AsString(Request["affname"]);
-            var selectedMonth = CastAide.AsDateTime(Request["fmonth"], DateTime.Now);
-            int intPageSize = CastAide.AsInt32(Request["slPageSize"], 20);
-            int intPage = CastAide.AsInt32(Request["page"], 1);
-            int sport = CastAide.AsInt32(Request["slSport"], 1);
-            string strPreferLang = Request["slPreferLang"];
-            int sortBy = CastAide.AsInt32(Request["slSortBy"], 0);
-            bool isDesc = (CastAide.AsString(Request["isDesc"], string.Empty) != "ic-uncheck");
+            int intCount = (intPage - 1) * intPageSize;
+            string strRowTpl = TemplateHandler.CopyBlock(strTpl, "content");
+            StringBuilder strListRow = new StringBuilder();
 
-            TemplateHandler.Assign(ref strTpl, "sport-val", sport);
-            TemplateHandler.Assign(ref strTpl, "lang-val", strPreferLang);
-            TemplateHandler.Assign(ref strTpl, "sortBy-val", sortBy);
-            TemplateHandler.Assign(ref strTpl, "cssgetall", isDesc ? "ic-check" : "ic-uncheck");
-
-            TemplateHandler.Assign(ref strTpl, "fmonth", selectedMonth.ToString("MM/yyyy"));
-            TemplateHandler.Assign(ref strTpl, "currentYear-val", DateTime.Now.Year);
-            TemplateHandler.Assign(ref strTpl, "currentMonth-val", DateTime.Now.Month);
-
-            if (String.IsNullOrEmpty(strUsername))
-                TemplateHandler.Assign(ref strTpl, "affname", "[" + Resources.Lang.All + "]");
-            else
-                TemplateHandler.Assign(ref strTpl, "affname", strUsername);
-            TemplateHandler.Assign(ref strTpl, "all-val", "[" + Resources.Lang.All + "]");
-
-            var criteria = new CommissionReportCriteria
-                {
-                    Username = strUsername,
-                    PreferredLanguage = strPreferLang,
-                    Sport = sport,
-                    Month = selectedMonth.Month,
-                    Year = selectedMonth.Year,
-                    PageIndex = intPage,
-                    PageSize = intPageSize,
-                    SortBy = sortBy,
-                    IsDesc = isDesc
-                };
-
-            DbResult rs = DataHandler.Affiliate.SelAffiliateCommissionReport(criteria);
-
-            DataTable dtb = new DataTable();
-            if (rs.ResultSet.Tables.Count > 0)
-                dtb = rs.ResultSet.Tables[0];
-
-            criteria.NRows = CastAide.AsInt32(rs.Outputs["nrows"]);
-            DateTime LastDay = GetLastDayOfMonth(selectedMonth);
-            if (dtb.Rows.Count > 0)
+            foreach (DataRow dr in dtb.Rows)
             {
-                int intCount = (intPage - 1) * intPageSize;
-                string strRowTpl = TemplateHandler.CopyBlock(strTpl, "content");
-                StringBuilder strListRow = new StringBuilder();
+                string strTmp = strRowTpl;
+                intCount++;
 
-                foreach (DataRow dr in dtb.Rows)
-                {
-                    string strTmp = strRowTpl;
-                    intCount++;
+                if (CastAide.AsBoolean(dr["isclosed"]))
+                    TemplateHandler.Assign(ref strTmp, "color", Common.RowBgClosed);
+                else
+                    TemplateHandler.Assign(ref strTmp, "color", (intCount % 2 == 0) ? Common.RowBgEven : Common.RowBgOdd);
+                TemplateHandler.Assign(ref strTmp, "monthdate_val", selectedMonth.Month.ToString() + "/" + LastDay.Day + "/" + selectedMonth.Year.ToString());
 
-                    if (CastAide.AsBoolean(dr["isclosed"]))
-                        TemplateHandler.Assign(ref strTmp, "color", Common.RowBgClosed);
-                    else
-                        TemplateHandler.Assign(ref strTmp, "color", (intCount % 2 == 0) ? Common.RowBgEven : Common.RowBgOdd);
-                    TemplateHandler.Assign(ref strTmp, "monthdate_val", selectedMonth.Month.ToString() + "/" + LastDay.Day + "/" + selectedMonth.Year.ToString());
-                    
-                    TemplateHandler.Assign(ref strTmp, "num-val", intCount);
-                    TemplateHandler.Assign(ref strTmp, "aff-val", dr["username"]);
-                    TemplateHandler.Assign(ref strTmp, "affid-val", dr["affid"]);
-                    TemplateHandler.Assign(ref strTmp, "commission-val", DataFormat.FormatNumber2(dr["commission"]));
-                    TemplateHandler.Assign(ref strTmp, "affcomm-val", dr["affComm"]);
+                TemplateHandler.Assign(ref strTmp, "num-val", intCount);
+                TemplateHandler.Assign(ref strTmp, "aff-val", dr["username"]);
+                TemplateHandler.Assign(ref strTmp, "affid-val", dr["affid"]);
+                TemplateHandler.Assign(ref strTmp, "commission-val", DataFormat.FormatNumber2(dr["commission"]));
+                TemplateHandler.Assign(ref strTmp, "affcomm-val", dr["affComm"]);
 
-                    strListRow.Append(strTmp);
-                }
-                TemplateHandler.ReplaceBlock(ref strTpl, "content", strListRow.ToString());
+                strListRow.Append(strTmp);
             }
-            else
-            {
-                TemplateHandler.ReplaceBlock(ref strTpl, "nodata", Common.NoInfo(12));
-            }
-            //Assign Paging template
-            if (dtb.Rows.Count > 0)
-            {
-                TemplateHandler.Assign(ref strTpl, "paging-top", Common.GenPaging(criteria.TotalPages, intPage, intPageSize, criteria.NRows, "aPageTop", "txtPageTop", 550, false, true));
-                TemplateHandler.Assign(ref strTpl, "paging-bottom", Common.GenPaging(criteria.TotalPages, intPage, intPageSize, criteria.NRows, "aPageBottom", "txtPageBottom", 550, false, false));
-                TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.ReportLink, SubMenu.ReportText, 5, criteria.NRows, SubMenu.ReportText[3], "i_report.png"));
-            }
-            else
-            {
-                TemplateHandler.Assign(ref strTpl, "paging-top", string.Empty);
-                TemplateHandler.Assign(ref strTpl, "paging-bottom", string.Empty);
-                TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.ReportLink, SubMenu.ReportText, 5, 0, SubMenu.ReportText[3], "i_report.png"));
-            }
+            TemplateHandler.ReplaceBlock(ref strTpl, "content", strListRow.ToString());
         }
-        catch (Exception ex)
+        else
         {
-            Fanex.Logging.LogService.Error(ex.Message);
-            #if DEBUG
-                throw;
-            #endif
+            TemplateHandler.ReplaceBlock(ref strTpl, "nodata", Common.NoInfo(12));
+        }
+        //Assign Paging template
+        if (dtb.Rows.Count > 0)
+        {
+            TemplateHandler.Assign(ref strTpl, "paging-top", Common.GenPaging(criteria.TotalPages, intPage, intPageSize, criteria.NRows, "aPageTop", "txtPageTop", 550, false, true));
+            TemplateHandler.Assign(ref strTpl, "paging-bottom", Common.GenPaging(criteria.TotalPages, intPage, intPageSize, criteria.NRows, "aPageBottom", "txtPageBottom", 550, false, false));
+            TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.ReportLink, SubMenu.ReportText, 5, criteria.NRows, SubMenu.ReportText[3], "i_report.png"));
+        }
+        else
+        {
+            TemplateHandler.Assign(ref strTpl, "paging-top", string.Empty);
+            TemplateHandler.Assign(ref strTpl, "paging-bottom", string.Empty);
+            TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.ReportLink, SubMenu.ReportText, 5, 0, SubMenu.ReportText[3], "i_report.png"));
         }
     }
 }
