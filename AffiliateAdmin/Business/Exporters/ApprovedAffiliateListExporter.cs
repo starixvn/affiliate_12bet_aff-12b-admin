@@ -11,13 +11,15 @@ namespace Exporters
 {
     public class ApprovedAffiliateListExporter : AffiliateListExporter
     {
+        private IList<ICellStyle> _closedCellStyles;
+
         public override void CreateHeader(HSSFWorkbook workbook, ISheet sheet)
         {
             var headerStyle = GetHeaderStyle(workbook);
             var dataRow = sheet.CreateRow(0);
             dataRow.CreateCell(0);
             dataRow.CreateCell(1).SetCellValue(Resources.Lang.Username);
-            
+
             dataRow.CreateCell(2).SetCellValue(Resources.Lang.FirstName);
             dataRow.CreateCell(3).SetCellValue(Resources.Lang.LastName);
             dataRow.CreateCell(4).SetCellValue(Resources.Lang.Language);
@@ -25,7 +27,7 @@ namespace Exporters
             dataRow.CreateCell(6).SetCellValue(Resources.Lang.CasinoDate);
             dataRow.CreateCell(7).SetCellValue(Resources.Lang.CommGroup);
             dataRow.CreateCell(8).SetCellValue(Resources.Lang.BalanceForward);
-            
+
             dataRow.CreateCell(9).SetCellValue(Resources.Lang.Member);
 
             const int colNo = 10;
@@ -49,7 +51,7 @@ namespace Exporters
 
             int currentSheet = 1;
             const int colNo = 10;
-            
+
             foreach (DataRow dr in dtbResult.Rows)
             {
                 if (currentRow >= Int16.MaxValue - 1)
@@ -59,7 +61,7 @@ namespace Exporters
                         sheet.AutoSizeColumn(i);
                     }
 
-                    currentSheet ++;
+                    currentSheet++;
                     sheet = workbook.CreateSheet("Sheet" + currentSheet);
                     CreateHeader(workbook, sheet);
                     currentRow = 0;
@@ -123,12 +125,24 @@ namespace Exporters
 
         private IList<ICellStyle> GetClosedPalette(HSSFWorkbook workbook)
         {
-            var closedStyle = workbook.CreateCellStyle();
-            closedStyle.FillForegroundColor = IndexedColors.Grey50Percent.Index;
-            closedStyle.FillPattern = FillPattern.Bricks;
-            closedStyle.FillBackgroundColor = IndexedColors.White.Index;
+            var cellStyle = GetClosedCellStype(workbook);
 
-            return CreateStylePalette(workbook, closedStyle);
+            if (_closedCellStyles == null)
+            {
+                _closedCellStyles = CreateStylePalette(workbook, cellStyle);
+            }
+
+            return _closedCellStyles;
+        }
+
+        private ICellStyle GetClosedCellStype(HSSFWorkbook workbook)
+        {
+            var cellStyle = workbook.CreateCellStyle();
+            cellStyle.FillForegroundColor = IndexedColors.Grey50Percent.Index;
+            cellStyle.FillPattern = FillPattern.Bricks;
+            cellStyle.FillBackgroundColor = IndexedColors.White.Index;
+
+            return cellStyle;
         }
     }
 }
