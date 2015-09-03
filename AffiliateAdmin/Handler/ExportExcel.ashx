@@ -19,11 +19,30 @@ public class ExportExcel : IHttpHandler, IRequiresSessionState
         
         context.Response.ContentType = "application/vnd.ms-excel";
 
-        var filename = string.Format("AffiliateList_{0}.xls", criteria.IsClosed ? "closed" : criteria.Status);
+        var fileName = GetExportFileName(criteria);
 
-        context.Response.AddHeader("Content-Disposition", "attachment;filename=" + filename);
+        context.Response.AddHeader("Content-Disposition", "attachment;filename=" + fileName);
 
         context.Response.BinaryWrite(reportDoc);
+    }
+
+    private static string GetExportFileName(AffiliateListCriteria criteria)
+    {
+        var suffix = string.Empty;
+        if (criteria.IsFavorite)
+        {
+            suffix = "MyFavorite";
+        }
+        else if (criteria.IsClosed)
+        {
+            suffix = "closed";
+        }
+        else
+        {
+            suffix = criteria.Status;
+        }
+
+        return string.Format("AffiliateList_{0}.xls", suffix);
     }
 
     private AffiliateListCriteria GetCritera(HttpContext context)
