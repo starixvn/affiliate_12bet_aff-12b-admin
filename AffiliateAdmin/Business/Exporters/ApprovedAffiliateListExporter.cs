@@ -125,10 +125,9 @@ namespace Exporters
 
         private IList<ICellStyle> GetClosedPalette(HSSFWorkbook workbook)
         {
-            var cellStyle = GetClosedCellStype(workbook);
-
             if (_closedCellStyles == null)
             {
+                var cellStyle = GetClosedCellStype(workbook);
                 _closedCellStyles = CreateStylePalette(workbook, cellStyle);
             }
 

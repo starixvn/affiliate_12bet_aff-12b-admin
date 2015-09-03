@@ -19,7 +19,7 @@ public class ExportExcel : IHttpHandler, IRequiresSessionState
         
         context.Response.ContentType = "application/vnd.ms-excel";
 
-        var filename = string.Format("AffiliateList_{0}.xls", criteria.Status);
+        var filename = string.Format("AffiliateList_{0}.xls", criteria.IsClosed ? "closed" : criteria.Status);
 
         context.Response.AddHeader("Content-Disposition", "attachment;filename=" + filename);
 
