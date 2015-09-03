@@ -92,7 +92,9 @@
     <Content Include="Scripts\affiliate.text.js" />
     <Content Include="test\f.swf" />
     <Content Include="test\i.jpg" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Code\DBType.cs" />
