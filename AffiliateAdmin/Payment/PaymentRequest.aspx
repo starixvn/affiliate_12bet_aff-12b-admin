@@ -36,6 +36,7 @@
         {
             ibcWnd.open(url, title, 100, 10, 500, 515, 'class1', 'class2');
         }
+
         function ValidateForm()
         {
             arrError.clear();
@@ -45,8 +46,9 @@
                arrError.push(top.fMenu.Msg.ErrDate);                           
                ErrAlter(arrError);
                return false;
-            }    
-            NavigatePage(1);
+           }
+           var page = $('frmSearch').getAttribute('data-page') || 1;
+            NavigatePage(page);
             return true;
         }
         function CheckValidDate(id)

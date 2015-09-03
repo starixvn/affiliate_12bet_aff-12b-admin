@@ -1818,8 +1818,8 @@
     <Content Include="BetList\BetListParlay.ashx" />
     <None Include="Content\Fanex.Result\fanex.result.less" />
     <Content Include="Deployment.ignore" />
-    <None Include="ExcelFiles\AffiliateList\AffiliateList.xls" />
-    <None Include="ExcelFiles\Casino\2012\Apr\casino stats march 21.csv" />
+    <Content Include="ExcelFiles\AffiliateList\AffiliateList.xls" />
+    <Content Include="ExcelFiles\Casino\2012\Apr\casino stats march 21.csv" />
     <Content Include="Handler\AccountPolicy.ashx" />
     <Content Include="Handler\ActiveMember.ashx" />
     <Content Include="Handler\AddMessage.ashx" />

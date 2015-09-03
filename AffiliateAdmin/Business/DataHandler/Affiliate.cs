@@ -60,9 +60,16 @@ namespace DataHandler
             var hsParam = new Hashtable();
             hsParam.Add("userid", criteria.UserId);
             hsParam.Add("status", criteria.Status);
-            hsParam.Add("pageindex", criteria.PageIndex);
-            hsParam.Add("pagesize", criteria.PageSize);
+            if (criteria.PageIndex > 0)
+            {
+                hsParam.Add("pageindex", criteria.PageIndex);
+            }
 
+            if (criteria.PageSize > 0)
+            {
+                hsParam.Add("pagesize", criteria.PageSize);
+            }
+            
             if (criteria.GroupId != -1)
             {
                 hsParam.Add("groupid", criteria.GroupId);
