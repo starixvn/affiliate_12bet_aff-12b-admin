@@ -140,11 +140,11 @@
             checkData();
         }
     }   
-    function checkData()
-    {
+    function checkData() {
+        var page = $('frmSearch').getAttribute('data-page') || 1
         if($("txtID").value.toLowerCase() == "id" || $("txtID").value.trim() == '')
         {
-            LoadData(1);  
+            LoadData(page);  
             return false;
         }
         if(!$("txtID").value.isNumber())
@@ -152,8 +152,8 @@
             alert("ID is not number. Please input number!");
             $("txtID").focus();
             return false;
-        }   
-        LoadData(1);
+        }
+        LoadData(page);
     }
 
     function getAction() {

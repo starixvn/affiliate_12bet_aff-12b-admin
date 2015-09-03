@@ -46,6 +46,7 @@ function LoadData(currPage) {
             $("page").value = currPage;
         if ($("pagesize") && $("slPageSize"))
             $("pagesize").value = $("slPageSize")[$("slPageSize").selectedIndex].value;
+        $("frmSearch").setAttribute("data-page", currPage); 
         $("frmSearch").submit();
     }
     catch (e) {
