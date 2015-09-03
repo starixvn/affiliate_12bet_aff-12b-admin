@@ -82,7 +82,13 @@ public class ExportExcel : IHttpHandler, IRequiresSessionState
             IsFavorite = isFavor,
             Language = string.IsNullOrEmpty(slLanguage) ? null : slLanguage,
         };
-
+        
+        if (isFavor)
+        {
+            criteria.PageIndex = 1;
+            criteria.PageSize = int.MaxValue - 1;        
+        }
+        
         return criteria;
     }
 

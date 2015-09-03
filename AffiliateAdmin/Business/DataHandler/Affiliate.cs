@@ -69,7 +69,7 @@ namespace DataHandler
             {
                 hsParam.Add("pagesize", criteria.PageSize);
             }
-
+            
             if (criteria.GroupId != -1)
             {
                 hsParam.Add("groupid", criteria.GroupId);
