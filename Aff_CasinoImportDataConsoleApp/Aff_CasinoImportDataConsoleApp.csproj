@@ -185,6 +185,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="AppPRO.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Aff_CasinoImportDataJob\Aff_CasinoImportDataJob.csproj">

@@ -14,6 +14,7 @@ namespace Aff_CasinoImportDataConsoleApp
         private static ImportCasinoDataJob _job = new ImportCasinoDataJob();
         static void Main(string[] args)
         {
+            Console.WriteLine("start..");
             try
             {
                 TimerCallback timerDelegate = new TimerCallback(_job.DoWork);
@@ -24,6 +25,8 @@ namespace Aff_CasinoImportDataConsoleApp
             {
                 DNAideLog.Write(ex.Message);
             }
+
+            Console.WriteLine("Start-Done--");
 
             Console.ReadLine();
         }
