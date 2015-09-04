@@ -116,8 +116,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Code\Common.cs" />
-    <Compile Include="App_Code\DataAccess.cs" />
     <Compile Include="Service1.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -139,6 +137,7 @@
     <Content Include="App_dll\Microsoft.Practices.EnterpriseLibrary.Common.dll" />
     <Content Include="App_dll\Microsoft.Practices.EnterpriseLibrary.Logging.dll" />
     <Content Include="App_dll\Microsoft.Practices.ObjectBuilder.dll" />
+    <Content Include="App_dll\Microsoft.Practices.Unity.dll" />
     <Content Include="SpNames.xml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -179,6 +178,12 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Aff_CasinoImportDataJob\Aff_CasinoImportDataJob.csproj">
+      <Project>{9DB9EB77-FF08-45A7-80B5-250D99AF81F6}</Project>
+      <Name>Aff_CasinoImportDataJob</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
