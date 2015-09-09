@@ -42,7 +42,6 @@ namespace DataHandler
         public static int PaymentUpdate(Int64 intTransId, string strStatus, string strLang, string strAdminRemark, string strAffRemark, ref string strPreferredLang, ref bool blMailOption)
         {
             Hashtable hsParam = new Hashtable();
-            hsParam.Add("status", HttpContext.Current.Server.HtmlEncode(strStatus));
             hsParam.Add("transid", intTransId);
             hsParam.Add("admindesc", HttpContext.Current.Server.HtmlEncode(strAdminRemark));
             hsParam.Add("userid", AppSettings.Session.CustID);
@@ -57,7 +56,10 @@ namespace DataHandler
             if (strStatus.ToLower().CompareTo("approved") == 0)
                 result = DbHelper.Execute("Aff_PaymentRequestApprove", DBType.MAIN, hsParam);
             else
+            {
+                hsParam.Add("status", HttpContext.Current.Server.HtmlEncode(strStatus));
                 result = DbHelper.Execute("Aff_PaymentRequestUpd", DBType.AFFILIATE_12BET, hsParam);
+            }
 
             strPreferredLang = result.Outputs["preferredlanguage"].ToString();
             blMailOption = CastAide.AsBoolean(result.Outputs["mailoption"]);
