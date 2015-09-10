@@ -76,8 +76,6 @@ public partial class MyAccount : RootPageLogIn
         ltr12UserName.Text = Resources.Lang.Username;// +" " + Resources.Lang.Bet12;
         #endregion
 
-        try
-        {
             AppSettings.RefreshPreferredLanguage();
             strPayment = Request["ispay"] == null ? "0" : "1";
             DataTable dtbMyAcc = new DataTable();
@@ -142,11 +140,6 @@ public partial class MyAccount : RootPageLogIn
             }
 
             #endregion
-        }
-        catch (Exception ex)
-        {
-            Fanex.Logging.LogService.Error(ex.Message);
-        }
     }
 }
 

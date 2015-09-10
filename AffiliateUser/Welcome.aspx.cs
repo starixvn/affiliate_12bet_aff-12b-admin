@@ -10,7 +10,7 @@ public partial class Welcome : RootPage
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if(!AppSettings.Session.IsAuthenticated)
+        if (!AppSettings.Session.IsAuthenticated)
             Response.Redirect("~/");
 
         //if (!AppSettings.Session.ForceChangePass)
@@ -18,14 +18,7 @@ public partial class Welcome : RootPage
 
         ltrForceResetPasswordForm.Text = Resources.Lang.Welcome;
         ltrDearAff.Text = string.Format("Dear {0},", AppSettings.Session.UserName);
-        
-        try
-        {
-            strSecureQuestion = TemplateHandler.LoadTemplate("UserInfo/SecureQuestion_" + AppSettings.Session.Language + ".htm");
-        }
-        catch(Exception ex)
-        {
-            Fanex.Logging.LogService.Error(ex.Message);
-        }
+
+        strSecureQuestion = TemplateHandler.LoadTemplate("UserInfo/SecureQuestion_" + AppSettings.Session.Language + ".htm");
     }
 }
