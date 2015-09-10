@@ -7,7 +7,7 @@ using DNAide.Core;
 using System.Web.SessionState;
 using System.Text;
 using System.Data;
-using DNAide.Data;
+
 public class GetDataBanner : IHttpHandler, IRequiresSessionState {
     
     public void ProcessRequest (HttpContext context) {

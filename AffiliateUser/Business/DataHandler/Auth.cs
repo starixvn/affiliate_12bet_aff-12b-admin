@@ -1,7 +1,7 @@
-﻿using System.Web;
-using DNAide.Data;
+﻿using System.Collections;
+using System.Web;
+using AffiliateUser.Business.DataAccess;
 using DNAide.Core;
-using System.Collections;
 using DNAide.Utils;
 
 /// <summary>
@@ -14,36 +14,30 @@ namespace DataHandler
     {
         public static DbResult ExecLogin(string username, string password, HttpContext hc)
         {
-            try
-            {
-                Hashtable htb = new Hashtable();
-                htb.Add("username", username);
-                htb.Add("userpwd", Encryption.CfsEnCode(password));
-                htb.Add("loginip", hc.Request.ServerVariables["REMOTE_ADDR"]);
-                htb.Add("serverid", CastAide.AsInt32(AppSettings.ServerId));
-                htb.Add("custid", 0);
-                htb.Add("errcode", 0);
-                htb.Add("errmsg", string.Empty);
-                htb.Add("firstname", "");
-                htb.Add("lastname", "");
-                htb.Add("email", "");
-                htb.Add("language", AppSettings.Session.Language);
-                htb.Add("mailoption", false);
-                htb.Add("preferlang", "en-US");
-                htb.Add("isallowedpersonalizedpage", 0);
-                htb.Add("afflevel", 0);
-                htb.Add("hasdailydetail", 0);                
-                htb.Add("commgroupname", "");
-                htb.Add("iscasino", 0);
-                htb.Add("forcechangepass", 0);
-                htb.Add("afftype", CastAide.AsInt32(0));
-                DbResult dbr = DbHelper.Execute("Aff_AffiliateLogin", htb, DBType.AFFILIATE_12BET);
-                return dbr;
-            }
-            catch
-            {
-                throw;
-            }
+            Hashtable htb = new Hashtable();
+            htb.Add("username", username);
+            htb.Add("userpwd", Encryption.CfsEnCode(password));
+            htb.Add("loginip", hc.Request.ServerVariables["REMOTE_ADDR"]);
+            htb.Add("serverid", CastAide.AsInt32(AppSettings.ServerId));
+            htb.Add("custid", 0);
+            htb.Add("errcode", 0);
+            htb.Add("errmsg", string.Empty);
+            htb.Add("firstname", "");
+            htb.Add("lastname", "");
+            htb.Add("email", "");
+            htb.Add("language", AppSettings.Session.Language);
+            htb.Add("mailoption", false);
+            htb.Add("preferlang", "en-US");
+            htb.Add("isallowedpersonalizedpage", 0);
+            htb.Add("afflevel", 0);
+            htb.Add("hasdailydetail", 0);
+            htb.Add("commgroupname", "");
+            htb.Add("iscasino", 0);
+            htb.Add("forcechangepass", 0);
+            htb.Add("afftype", CastAide.AsInt32(0));
+            htb.Add("hassecurityquestion", 0);
+            DbResult dbr = DbHelper.Execute("Aff_AffiliateLogin", DBType.AFFILIATE_12BET, htb);
+            return dbr;
         }
 
         public static int LoginOnuser(HttpContext hc)
@@ -55,9 +49,8 @@ namespace DataHandler
             p.Add("on_userid", 0);
             p.Add("ip", HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"]);
             p.Add("subaccid", 0);
-            p.Add("language", AppSettings.Session.Language);
 
-            DbResult dr = DbHelper.Execute("Aff_CheckIn", p, DBType.AFFILIATE_12BET);
+            DbResult dr = DbHelper.Execute("Aff_CheckIn", DBType.AFFILIATE_12BET, p);
             //DbResult dr = DbHelper.Execute("Acc_Checkin", p, DBType.ON_USER);
             return CastAide.AsInt32(dr.Outputs["on_userid"]);
         }
@@ -71,9 +64,8 @@ namespace DataHandler
             p.Add("on_userid", 0);
             p.Add("ip", hc.Request.ServerVariables["REMOTE_ADDR"]);
             p.Add("subaccid", adminID);
-            p.Add("language", AppSettings.Session.Language);
 
-            DbResult dr = DbHelper.Execute("Aff_CheckIn", p, DBType.AFFILIATE_12BET);
+            DbResult dr = DbHelper.Execute("Aff_CheckIn", DBType.AFFILIATE_12BET, p);
             //DbResult dr = DbHelper.Execute("Acc_Checkin", p, DBType.ON_USER);
             return CastAide.AsInt32(dr.Outputs["on_userid"]);
         }
@@ -82,7 +74,7 @@ namespace DataHandler
         {
             Hashtable p = new Hashtable();
             p.Add("on_userid", OnUserId);
-            DbHelper.Execute("Aff_Logout", p, DBType.AFFILIATE_12BET);
+            DbHelper.Execute("Aff_Logout", DBType.AFFILIATE_12BET, p);
         }
         public static int CheckEmailForget(string email, string valicode, ref int errcode, ref string errmsg, ref string username, ref string firstname, ref string lastname, ref string PreferredLanguage, ref bool MailOption)
         {
@@ -101,7 +93,7 @@ namespace DataHandler
             htb.Add("mailoption", false);
             htb.Add("errcode", 0);
             htb.Add("errmsg", "");
-            dbr = DbHelper.Execute("Aff_AffiliateForgotPwd", htb, DBType.AFFILIATE_12BET, 600);
+            dbr = DbHelper.Execute("Aff_AffiliateForgotPwd", DBType.AFFILIATE_12BET, htb, 600);
             errcode = CastAide.AsInt32(dbr.Outputs["errcode"]);
             errmsg = dbr.Outputs["errmsg"].ToString();
             custid = CastAide.AsInt32(dbr.Outputs["affid"]);
@@ -128,7 +120,7 @@ namespace DataHandler
             htb.Add("firstname", "");
             htb.Add("lastname", "");
             htb.Add("language", AppSettings.Session.Language);
-            dbr = DbHelper.Execute("Aff_AffiliateRecoverPwd", htb, DBType.AFFILIATE_12BET);
+            dbr = DbHelper.Execute("Aff_AffiliateRecoverPwd", DBType.AFFILIATE_12BET, htb);
             errcode = CastAide.AsInt32(dbr.Outputs["errcode"]);
             errmsg = dbr.Outputs["errmsg"].ToString();
             email = dbr.Outputs["email"].ToString();
@@ -145,42 +137,32 @@ namespace DataHandler
             Hashtable htb = new Hashtable();
             DbResult dbr = null;
             int errcode = 0;
-            try
-            {
-                htb.Add("affid", AppSettings.Session.CustID);
-                htb.Add("ip", HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"]);
-                htb.Add("errcode", 0);
-                htb.Add("errmsg", "");
-                htb.Add("username", AppSettings.Session.UserName);
-                htb.Add("question", question);
-                htb.Add("answer", answer);
-                htb.Add("language", AppSettings.Session.Language);
-                htb.Add("loginip", hc.Request.ServerVariables["REMOTE_ADDR"]);
-                htb.Add("serverid", CastAide.AsInt32(AppSettings.ServerId));
-                dbr = DbHelper.Execute("Aff_CustomerUdpSecurityQuestion", htb, DBType.AFFILIATE_12BET);
-                errcode = CastAide.AsInt32(dbr.Outputs["errcode"]);
-                errmsg = dbr.Outputs["errmsg"].ToString();
-            }
-            catch
-            {
-                throw;
-            }
+
+            htb.Add("affid", AppSettings.Session.CustID);
+            htb.Add("ip", HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"]);
+            htb.Add("errcode", 0);
+            htb.Add("errmsg", "");
+            htb.Add("username", AppSettings.Session.UserName);
+            htb.Add("question", question);
+            htb.Add("answer", answer);
+            htb.Add("language", AppSettings.Session.Language);
+            htb.Add("loginip", hc.Request.ServerVariables["REMOTE_ADDR"]);
+            htb.Add("serverid", CastAide.AsInt32(AppSettings.ServerId));
+            dbr = DbHelper.Execute("Aff_CustomerUdpSecurityQuestion", DBType.AFFILIATE_12BET, htb);
+            errcode = CastAide.AsInt32(dbr.Outputs["errcode"]);
+            errmsg = dbr.Outputs["errmsg"].ToString();
+
             return errcode;
         }
 
 
         public static bool ReCheckin()
         {
-            try
-            {
-                Hashtable p = new Hashtable();
-                p.Add("on_userid", AppSettings.Session.OnUser);
-                p.Add("iskickedout", 0);
-                DbResult dr = DNAide.Data.DbHelper.Execute("Aff_Recheckin", p, DBType.AFFILIATE_12BET);
-                return CastAide.AsBoolean(dr.Outputs["iskickedout"]);
-            }
-            catch
-            { throw; }
+            Hashtable p = new Hashtable();
+            p.Add("on_userid", AppSettings.Session.OnUser);
+            p.Add("iskickedout", 0);
+            DbResult dr = DbHelper.Execute("Aff_Recheckin", DBType.AFFILIATE_12BET, p);
+            return CastAide.AsBoolean(dr.Outputs["iskickedout"]);
         }
 
         public static DbResult GetAdminNetSessionID(string onuserID, HttpContext hc)
@@ -188,7 +170,7 @@ namespace DataHandler
             Hashtable p = new Hashtable();
             p.Add("on_userid", onuserID);
             p.Add("netsessionid", string.Empty);
-            return DbHelper.Execute("Aff_OnUserSelNetSessionID", p, DBType.AFFILIATE_12BET);
+            return DbHelper.Execute("Aff_OnUserSelNetSessionID", DBType.AFFILIATE_12BET, p);
         }
 
         public static DbResult LoginAuthentication(int adminID, string username, HttpContext hc)
@@ -213,7 +195,7 @@ namespace DataHandler
             p.Add("commgroupname", "");
             p.Add("iscasino", 0);
             p.Add("afftype", CastAide.AsInt32(0));
-            return DbHelper.Execute("Aff_AffiliateInternalLogin", p, DBType.AFFILIATE_12BET);
+            return DbHelper.Execute("Aff_AffiliateInternalLogin", DBType.AFFILIATE_12BET, p);
         }
     }
 }

@@ -1,16 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Data;
 //using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using DNAide.Data;
 using System.Text;
-using DNAide.Utils;
 using DNAide.Core;
 using DNAide.Web;
-using System.Data;
-using AffiliateUser;
 
 public partial class UserInfo_DailyEarningDetail : RootPageLogIn
 {

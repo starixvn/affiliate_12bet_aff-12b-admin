@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Web;
 using System.Collections;
 using System.Data;
-using Affiliate;
-using DNAide.Data;
+using System.Web;
+using AffiliateUser.Business.DataAccess;
 using DNAide.Core;
 using DNAide.Utils;
 
@@ -24,7 +23,6 @@ namespace DataHandler
             hsParam.Add("email", formatInput(strEmail));
             hsParam.Add("phone", formatInput(strPhone));
             hsParam.Add("mobilephone", formatInput(strMobile));
-            hsParam.Add("masterusername", AppSettings.AffMaster);
             hsParam.Add("address", formatInput(strAddress));
             hsParam.Add("city", formatInput(strCity));
             hsParam.Add("state", formatInput(strState));
@@ -47,7 +45,7 @@ namespace DataHandler
             hsParam.Add("language", formatInput(strLang));           
             hsParam.Add("errcode", intErrCode);
             hsParam.Add("errmsg", strErrMsg);
-            DbResult dbr = DbHelper.Execute("Aff_AffiliateIns", hsParam, DBType.AFFILIATE_12BET, 600);
+            var dbr = DbHelper.Execute("Aff_AffiliateIns", DBType.AFFILIATE_12BET, hsParam, 600);
             intCustId = CastAide.AsInt32(dbr.Outputs["custid"]);
             intErrCode = CastAide.AsInt32(dbr.Outputs["errcode"]);
             strErrMsg = dbr.Outputs["errmsg"].ToString();
@@ -76,7 +74,7 @@ namespace DataHandler
             hsParam.Add("language", formatInput(strLang));
             hsParam.Add("errcode", intErrCode);
             hsParam.Add("errmsg", strErrMsg);
-            DbResult dbr = DbHelper.Execute("Aff_AffiliateUpdInfo", hsParam, DBType.AFFILIATE_12BET, 600);
+            var dbr = DbHelper.Execute("Aff_AffiliateUpdInfo", DBType.AFFILIATE_12BET, hsParam, 600);
             intAffId = CastAide.AsInt32(dbr.Outputs["affid"]);
             intErrCode = CastAide.AsInt32(dbr.Outputs["errcode"]);
             strErrMsg = dbr.Outputs["errmsg"].ToString();
@@ -121,7 +119,7 @@ namespace DataHandler
             hsParam.Add("aff_mincheque", "0");
             hsParam.Add("aff_minmoneybookers", "0");
             hsParam.Add("aff_minplayer", "0");
-            DbResult result = DbHelper.Execute("Aff_AffiliateSelEditInfo", hsParam, DBType.AFFILIATE_12BET);
+            DbResult result = DbHelper.Execute("Aff_AffiliateSelEditInfo", DBType.AFFILIATE_12BET, hsParam);
             strMinCheque = NumberFormat.DecFormat(result.Outputs["aff_mincheque"], 0);
             strMinMoneyBooker = NumberFormat.DecFormat(result.Outputs["aff_minmoneybookers"], 0);
             strMinNetteller = NumberFormat.DecFormat(result.Outputs["aff_minneteller"], 0);
@@ -148,7 +146,7 @@ namespace DataHandler
             hsParam.Add("totalwinlostup", 0);
             hsParam.Add("totalwinlost", 0);
             hsParam.Add("totalqualifiedcasino", 0);
-            return DbHelper.Execute("Aff_StatisticsSel", hsParam, DBType.AFFILIATE_12BET);
+            return DbHelper.Execute("Aff_StatisticsSel", DBType.AFFILIATE_12BET, hsParam);
         }
 
         public static DbResult SelAffOverview_DEPOSIT(int intCustId, DateTime dtmMonthDate)
@@ -158,7 +156,7 @@ namespace DataHandler
             p.Add("monthdate", dtmMonthDate);
             p.Add("newsignup", 0);
             p.Add("totalplayer", 0);
-            return DbHelper.Execute("DEP_AffiliateSelSummary", p, DBType.DEPOSIT);
+            return DbHelper.Execute("DEP_AffiliateSelSummary", DBType.DEPOSIT, p);
         }        
 
         public static DataTable SelAffBannerType()
@@ -200,7 +198,7 @@ namespace DataHandler
             hsParam.Add("totalpages", 0);
             hsParam.Add("nrows", 0);
 
-            return DbHelper.Execute("Aff_BannerSel_1", hsParam, DBType.AFFILIATE_12BET);
+            return DbHelper.Execute("Aff_BannerSel_1", DBType.AFFILIATE_12BET, hsParam);
         }
 
         public static DbResult SelAffBannerOld(string category, string language, string imageType, string size, string currency, int pageIndex, int pageSize)
@@ -231,7 +229,7 @@ namespace DataHandler
             hsParam.Add("totalpages", 0);
             hsParam.Add("nrows", 0);
 
-            return DbHelper.Execute("Aff_BannerSel", hsParam, DBType.AFFILIATE_12BET);
+            return DbHelper.Execute("Aff_BannerSel", DBType.AFFILIATE_12BET, hsParam);
         }
         // Added by Frank.Ngo on IRP 671 - 10 Feb 2012
         // Get banners in parent category
@@ -271,7 +269,7 @@ namespace DataHandler
             hsParam.Add("totalpages", 0);
             hsParam.Add("nrows", 0);
 
-            return DbHelper.Execute("Aff_BannerSelByParentCate", hsParam, DBType.AFFILIATE_12BET);
+            return DbHelper.Execute("Aff_BannerSelByParentCate", DBType.AFFILIATE_12BET, hsParam);
         }
         public static void ChangePassword(int intCustId, string strNewPass, string strOldPass, int intUserId, string strLang, ref int intErrCode)
         {
@@ -283,7 +281,7 @@ namespace DataHandler
             hsParam.Add("language", strLang);
             hsParam.Add("errcode", "0");
             //DbResult result = DbHelper.ExecuteCmd("Aff_CustomerUpdPwd", hsParam, DBType.MAIN);
-            DbResult result = DbHelper.Execute("Aff_AffiliateUpdPwd", hsParam, DBType.AFFILIATE_12BET); 
+            DbResult result = DbHelper.Execute("Aff_AffiliateUpdPwd", DBType.AFFILIATE_12BET, hsParam); 
             intErrCode = CastAide.AsInt32(result.Outputs["errcode"]);
         }
          public static DbResult SelAffEarningDaily(int intCustId, int intSportType, DateTime dtmMonthDate)
@@ -296,13 +294,13 @@ namespace DataHandler
             hsParam.Add("marketingpercent", 0);
             hsParam.Add("pspfeepercent", 0);
             hsParam.Add("playtechfeepercent", 0);
-            return DbHelper.Execute("Aff_EarningSelDaily", hsParam, DBType.AFFILIATE_12BET) ;
+            return DbHelper.Execute("Aff_EarningSelDaily", DBType.AFFILIATE_12BET, hsParam);
         }
         
         //Vinh@20090908
         public static DbResult SportTypeSel()
         {
-            return DbHelper.Execute("Aff_SportTypeSel", null, DBType.AFFILIATE_12BET);
+            return DbHelper.Execute("Aff_SportTypeSel", DBType.AFFILIATE_12BET);
         }
         
         public static DbResult SelAffText(string category, string language, string currency, int pageIndex, int pageSize, string deviceType)
@@ -327,14 +325,14 @@ namespace DataHandler
             hsParam.Add("totalpages", 0);
             hsParam.Add("nrows", 0);
 
-            return DbHelper.Execute("Aff_TextSel_1", hsParam, DBType.AFFILIATE_12BET);
+            return DbHelper.Execute("Aff_TextSel_1", DBType.AFFILIATE_12BET, hsParam);
         }
 
         public static DbResult SportTypeSelByAff(int intCustId)
         {
             Hashtable hsParam = new Hashtable();
             hsParam.Add("affid", intCustId);
-            return DbHelper.Execute("Aff_SporttypeSelByAff", hsParam, DBType.AFFILIATE_12BET);
+            return DbHelper.Execute("Aff_SporttypeSelByAff", DBType.AFFILIATE_12BET, hsParam);
         }
         public static DataTable SelAffEarningDetail(int intAffId, int SportType, DateTime dtmMonthDate)
         {
@@ -342,7 +340,7 @@ namespace DataHandler
             hsParam.Add("affid", intAffId);
             hsParam.Add("sporttype", SportType);
             hsParam.Add("monthdate", dtmMonthDate);
-            return DbHelper.Execute("Aff_EarningSelDetail", hsParam, DBType.AFFILIATE_12BET).ResultSet.Tables[0];
+            return DbHelper.Execute("Aff_EarningSelDetail", DBType.AFFILIATE_12BET, hsParam).ResultSet.Tables[0];
         }
 
         static string formatInput(string val)
@@ -356,7 +354,7 @@ namespace DataHandler
             hsParam.Add("custid", custid);
             hsParam.Add("affid", affid);
 
-            return DbHelper.Execute("Aff_ExistedMemberOfAff", hsParam, DBType.AFFILIATE_12BET);
+            return DbHelper.Execute("Aff_ExistedMemberOfAff", DBType.AFFILIATE_12BET, hsParam);
         }
 
         public static void ForceChangePass(int intAffId, string strOldPassword, string strNewPassword, string strQuestion, string strAnswer, ref int intErrCode, ref string strErrMsg)
@@ -374,7 +372,7 @@ namespace DataHandler
             hsParam.Add("errcode", intErrCode);
             hsParam.Add("errmsg", strErrMsg);
 
-            DbResult dbr = DbHelper.Execute("Aff_AffiliateForceChangePwd", hsParam, DBType.AFFILIATE_12BET);
+            DbResult dbr = DbHelper.Execute("Aff_AffiliateForceChangePwd", DBType.AFFILIATE_12BET, hsParam);
             
             intErrCode = CastAide.AsInt32(dbr.Outputs["errcode"]);
             strErrMsg = dbr.Outputs["errmsg"].ToString();

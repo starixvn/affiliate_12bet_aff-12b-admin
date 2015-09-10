@@ -1,21 +1,20 @@
 ﻿using System;
-using System.Collections.Specialized;
-using System.Globalization;
-using System.Linq;
-using System.Web;
 using System.Collections;
-using System.Text;
-using Affiliate;
-using DNAide.Web;
-using DNAide.Core;
+using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Data;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
+using System.Web;
+using System.Web.Configuration;
+using Affiliate;
+using DNAide.Core;
+using DNAide.Web;
 using Resources;
 using Sunplus.UMControllerLibrary;
-using System.Web.Configuration;
-using DNAide.Data;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Collections.Generic;
 
 /// <summary>
 /// Summary description for Common
@@ -946,7 +945,7 @@ public class Common
     {
         StringBuilder strBuild = new StringBuilder();
 
-        DbResult rs = DataHandler.UserAff.SportTypeSelByAff(affID);
+        var rs = DataHandler.UserAff.SportTypeSelByAff(affID);
         if (rs.ResultSet.Tables[0].Rows.Count > 1)
         {
             strBuild.Append(Resources.Lang.SportType + "&nbsp;&nbsp;&nbsp;");

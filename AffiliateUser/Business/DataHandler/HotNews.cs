@@ -1,8 +1,6 @@
-﻿using System;
+﻿using System.Collections;
 using System.Globalization;
-using System.Collections;
-using System.Configuration;
-using DNAide.Data;
+using AffiliateUser.Business.DataAccess;
 using DNAide.Core;
 
 namespace DataHandler
@@ -22,7 +20,7 @@ namespace DataHandler
         {
             Hashtable hsParam = new Hashtable();
             hsParam.Add("msgid", -1);
-            return DNAide.Data.DbHelper.Execute("Aff_HotNewsDetail", hsParam, DBType.AFFILIATE_12BET);            
+            return DbHelper.Execute("Aff_HotNewsDetail", DBType.AFFILIATE_12BET, hsParam);            
         }
         /// <summary>
         ///  Search Hot News
@@ -53,7 +51,7 @@ namespace DataHandler
             hsParam.Add("nrows", 0);
             hsParam.Add("language", AppSettings.Session.Language);
 
-            return DbHelper.Execute("Aff_HotNewsSel", hsParam, DBType.AFFILIATE_12BET);
+            return DbHelper.Execute("Aff_HotNewsSel", DBType.AFFILIATE_12BET, hsParam);
         }
 
     }

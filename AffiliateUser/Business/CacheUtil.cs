@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Web;
-using DNAide.Data;
 using System.Data;
+using System.Web;
 using Affiliate.Infrastructure;
+using AffiliateUser.Business.DataAccess;
 
 /// <summary>
 /// Summary description for CacheUtil
@@ -37,7 +36,7 @@ public class CacheUtil
 
     private static void AddHotNews()
     {
-        DbResult result = DataHandler.HotNews.GetLatestHotNews();        
+        var result = DataHandler.HotNews.GetLatestHotNews();        
         if (result.ResultSet.Tables.Count > 0 && result.ResultSet.Tables[0].Rows.Count > 0)
         {
             var row = result.ResultSet.Tables[0].Rows[0];
@@ -70,7 +69,7 @@ public class CacheUtil
 
     private static void AddBannerTypesOld()
     {
-        DbResult result = DbHelper.Execute("Aff_BannerSelType", DBType.AFFILIATE_12BET);
+        var result = DbHelper.Execute("Aff_BannerSelType", DBType.AFFILIATE_12BET);
         if (result.ResultSet.Tables.Count > 0 && result.ResultSet.Tables[0].Rows.Count > 0)
         {
             CacheHelper.Set(bannerTypesKeyOld, result.ResultSet.Tables[0], _TimeCacheBannerTypes);
@@ -83,7 +82,7 @@ public class CacheUtil
 
     private static void AddBannerTypes()
     {
-        DbResult result = DbHelper.Execute("Aff_BannerSelType_1", DBType.AFFILIATE_12BET);
+        var result = DbHelper.Execute("Aff_BannerSelType_1", DBType.AFFILIATE_12BET);
         if (result.ResultSet.Tables.Count > 0 && result.ResultSet.Tables[0].Rows.Count > 0)
         {
             CacheHelper.Set(bannerTypesKey, result.ResultSet.Tables[0], _TimeCacheBannerTypes);

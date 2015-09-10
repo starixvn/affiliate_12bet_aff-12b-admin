@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Web;
-using DataHandler;
-using DNAide.Web;
-using DNAide.Data;
-using DNAide.Core;
-using System.Text;
 using System.Data;
+using System.Text;
+using DataHandler;
+using DNAide.Core;
+using DNAide.Web;
 public partial class ProgramDetails : RootPage
 {
     public string mail = "";
@@ -29,7 +27,7 @@ public partial class ProgramDetails : RootPage
                             "</td>" +
                         "</tr>";
         
-        DbResult result = CommGroup.GetCommGroupSettingByGroupId(101);
+        var result = CommGroup.GetCommGroupSettingByGroupId(101);
         if (result.ResultSet.Tables.Count < 5 || result.ResultSet.Tables[0].Rows.Count <= 0)
         {
             tableBody.Append("<tr colspan='3'>There is no information available</tr>");

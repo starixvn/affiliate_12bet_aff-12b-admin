@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.SessionState;
 using Affiliate;
 using Affiliate.MailServices;
-using DNAide.Data;
 using DNAide.Web;
 using DNAide.Utils; 
 public class CheckForgetPassWord : IHttpHandler, IRequiresSessionState {

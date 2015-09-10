@@ -6,7 +6,6 @@ using System.Web;
 using System.Web.SessionState;
 using Affiliate;
 using DNAide.Web;
-using DNAide.Data;
 using Resources;
 
 public class ProcessLogin : IHttpHandler, IRequiresSessionState
@@ -29,7 +28,7 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
             else
             {
                 AppSettings.Session.IsInternalSite = false;
-                DbResult dr = DataHandler.Auth.ExecLogin(_username, _password, context);
+                var dr = DataHandler.Auth.ExecLogin(_username, _password, context);
                 if (string.IsNullOrEmpty(dr.Outputs["errmsg"].ToString()))
                 {
                     var afftype = (AffType)DNAide.Core.CastAide.AsInt32(dr.Outputs["afftype"], 2);

@@ -4,7 +4,6 @@ using System.Data;
 using System.Text;
 using System.Web;
 using DNAide.Core;
-using DNAide.Data;
 using DNAide.Web;
 using Resources;
 
@@ -114,9 +113,8 @@ namespace GenerateHTML
         {
             string tmpLanguage = language;// (language == "English (Europe)" ? "English" : language);//English Euro use English banner
 
-            DbResult result = null;
             int nRows = 0;
-            result = (isSearchByParentCateogry)
+            var result = (isSearchByParentCateogry)
                 ? DataHandler.UserAff.SelAffBannerByParentCategory(category, tmpLanguage, imageType, size, currency, pageIndex, pagesize, type, afftype, deviceType)
                 : DataHandler.UserAff.SelAffBanner(category, tmpLanguage, imageType, size, currency, pageIndex, pagesize, type, afftype, deviceType);
             nRows = CastAide.AsInt32(result.Outputs["nrows"]);

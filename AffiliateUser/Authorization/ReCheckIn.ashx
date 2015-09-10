@@ -1,7 +1,6 @@
 ﻿<%@ WebHandler Language="C#" Class="ReCheckIn" %>
 using System;
 using System.Web;
-using DNAide.Data;
 using System.Web.SessionState; 
 public class ReCheckIn : IHttpHandler, IRequiresSessionState {
     

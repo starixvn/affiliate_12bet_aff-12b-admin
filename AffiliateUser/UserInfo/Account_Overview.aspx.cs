@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Globalization;
-using System.Threading;
-using DataHandler;
-using DNAide.Web;
-using DNAide.Core;
-using DNAide.Data;
 using System.Data;
+using System.Globalization;
 using System.Text;
-using AffiliateUser;
+using System.Threading;
+using AffiliateUser.Business.DataAccess;
+using DataHandler;
+using DNAide.Core;
+using DNAide.Web;
 
 public partial class Account_Overview : RootPageLogIn
 {
@@ -51,11 +50,11 @@ public partial class Account_Overview : RootPageLogIn
         ltrStatic.Text = GetStatisticsFor(selectedMonth);
         ltrStaticUp.Text = Resources.Lang.Statistic + " " + Resources.Lang.UpToNow;
 
-        DbResult dep_result = UserAff.SelAffOverview_DEPOSIT(AppSettings.Session.CustID, selectedMonth);
+        var dep_result = UserAff.SelAffOverview_DEPOSIT(AppSettings.Session.CustID, selectedMonth);
         ltrSignup.Text = CastAide.AsInt32(dep_result.Outputs["newsignup"], 0).ToString();
         ltrTotalPlayer.Text = CastAide.AsInt32(dep_result.Outputs["totalplayer"], 0).ToString();
 
-        DbResult result = UserAff.SelAffOverview(AppSettings.Session.CustID, selectedMonth);
+        var result = UserAff.SelAffOverview(AppSettings.Session.CustID, selectedMonth);
         ltrTotalActiveVal.Text = CastAide.AsInt32(result.Outputs["totalactiveplayer"], 0).ToString();
         ltrTotalDepositVal.Text = Common.FormatNumber(CastAide.AsDecimal(result.Outputs["totaldeposit"]));
 

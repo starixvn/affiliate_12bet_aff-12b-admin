@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections;
 using DNAide.Web;
-using DNAide.Data;
-using System.Text;
-using AffiliateUser;
 public partial class UserInfo_MediaStatistics_New : RootPageLogIn
 {
     protected string statisticsContent = string.Empty; 

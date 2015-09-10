@@ -3,7 +3,6 @@ using System.Data;
 using System.Text;
 using DNAide.Web;
 using DNAide.Core;
-using DNAide.Data;
 using AffiliateUser;
 
 public partial class DailyEarning : RootPageLogIn
@@ -59,7 +58,7 @@ public partial class DailyEarning : RootPageLogIn
         TemplateHandler.Assign(ref strTemplate, "sporttype", SportType);
 
         //Get data and assign value
-        DbResult result = DataHandler.UserAff.SelAffEarningDaily(AppSettings.Session.CustID, SportType, _date);
+        var result = DataHandler.UserAff.SelAffEarningDaily(AppSettings.Session.CustID, SportType, _date);
         DataTable dtbResult = result.ResultSet.Tables[0];
         if (dtbResult.Rows.Count > 0)
         {

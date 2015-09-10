@@ -6,7 +6,6 @@ using System.Web.SessionState;
 using System.Text;
 using System.Globalization;
 using System.Data;
-using DNAide.Data;
 using DNAide.Core;
 
 public class GetStatisticsDetail_New : IHttpHandler, IRequiresSessionState

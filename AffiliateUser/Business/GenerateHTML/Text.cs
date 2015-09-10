@@ -2,7 +2,6 @@
 using DNAide.Web;
 using DNAide.Core;
 using System.Data;
-using DNAide.Data;
 using System.Text;
 using System.Configuration;
 using System.Web;
@@ -98,8 +97,7 @@ namespace GenerateHTML
         public static string GetTextList(string category, string language, string currency, int pageIndex, int pagesize, ref int totalpage,
             string domain, string trackingcode, string target, string deviceType)
         {
-            DbResult result = null;
-            result = DataHandler.UserAff.SelAffText(category, language, currency, pageIndex, pagesize, deviceType);
+            var result = DataHandler.UserAff.SelAffText(category, language, currency, pageIndex, pagesize, deviceType);
             int nRows = CastAide.AsInt32(result.Outputs["nrows"]);
             int cols = 9;
 

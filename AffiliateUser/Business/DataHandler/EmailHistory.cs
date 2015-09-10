@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Web;
-using DNAide.Data;
+using AffiliateUser.Business.DataAccess;
 
 namespace DataHandler
 {
@@ -26,7 +26,7 @@ namespace DataHandler
             hsParam.Add("sessionid", HttpContext.Current.Session.SessionID);
             hsParam.Add("errcode", 0);
             hsParam.Add("errmsg", string.Empty);
-            DbResult result = DbHelper.Execute("Aff_EmailHistoryIns", hsParam, DBType.AFFILIATE_12BET);
+            var result = DbHelper.Execute("Aff_EmailHistoryIns", DBType.AFFILIATE_12BET, hsParam);
             return DNAide.Core.CastAide.AsString(result.Outputs["errmsg"]); 
         }
     }

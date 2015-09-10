@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Data;
-using System.Configuration;
-using DNAide.Web;
-using DNAide.Data;
 using System.Text;
-using DNAide.Utils;
 using DNAide.Core;
+using DNAide.Web;
 using Resources;
-using AffiliateUser;
 
 public partial class UserInfo_MediaText : RootPageLogIn
 {
