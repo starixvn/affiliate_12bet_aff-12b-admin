@@ -15,7 +15,6 @@ public class CacheUtil
     private static string bannerTypesKeyOld = "bannerTypesKeyOld";
 
     private static DateTime LastRefreshHotNews;
-    private static DateTime LastRefreshBannerTypes;
 
     private static int _TimeCache = 10;
     private static int _TimeCacheBannerTypes = 120;
@@ -23,7 +22,6 @@ public class CacheUtil
     static CacheUtil()
     {
         LastRefreshHotNews = DateTime.MinValue;
-        LastRefreshBannerTypes = DateTime.MinValue;
         InitCache();
     }
 
@@ -114,10 +112,8 @@ public class CacheUtil
         lock (HttpContext.Current.Application)
         {
             var table = CacheHelper.Get<DataTable>(bannerTypesKey);
-            if ((table == null && LastRefreshBannerTypes.AddSeconds(_TimeCache).CompareTo(DateTime.Now) <= 0)
-                || LastRefreshBannerTypes.AddSeconds(_TimeCacheBannerTypes).CompareTo(DateTime.Now) <= 0)
+            if (table == null )
             {
-                LastRefreshBannerTypes = DateTime.Now;
                 AddBannerTypes();
                 return CacheHelper.Get<DataTable>(bannerTypesKey);
             }
@@ -131,10 +127,8 @@ public class CacheUtil
         lock (HttpContext.Current.Application)
         {
             var table = CacheHelper.Get<DataTable>(bannerTypesKeyOld);
-            if ((table == null && LastRefreshBannerTypes.AddSeconds(_TimeCache).CompareTo(DateTime.Now) <= 0)
-                || LastRefreshBannerTypes.AddSeconds(_TimeCacheBannerTypes).CompareTo(DateTime.Now) <= 0)
+            if (table == null)
             {
-                LastRefreshBannerTypes = DateTime.Now;
                 AddBannerTypesOld();
                 return CacheHelper.Get<DataTable>(bannerTypesKeyOld);
             }
