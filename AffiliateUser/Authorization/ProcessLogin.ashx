@@ -18,15 +18,17 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
 
         try
         {
+            var isProduction = AppSettings.Environment.Equals("PRODUCTION", StringComparison.OrdinalIgnoreCase);
             string _captcha = context.Request.Form["vcode"];
-            string _username = context.Request.Form["un"];
-            string _password = context.Request.Form["pw"];
-            if (string.Compare(AppSettings.Session.CaptchaCode, _captcha, true) != 0)
+            
+            if (isProduction && string.Compare(AppSettings.Session.CaptchaCode, _captcha, true) != 0)
             {
                 _s = "101:" + Resources.Lang.ValidationCode;
             }
             else
             {
+                string _username = context.Request.Form["un"];
+                string _password = context.Request.Form["pw"];
                 AppSettings.Session.IsInternalSite = false;
                 var dr = DataHandler.Auth.ExecLogin(_username, _password, context);
                 if (string.IsNullOrEmpty(dr.Outputs["errmsg"].ToString()))

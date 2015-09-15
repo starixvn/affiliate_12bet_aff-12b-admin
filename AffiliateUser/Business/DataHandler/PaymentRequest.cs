@@ -27,8 +27,11 @@ namespace DataHandler
             hsParam.Add("amount", Amt);
             hsParam.Add("affid", AffID);
             hsParam.Add("language", AppSettings.Session.Language);
+            hsParam.Add("transid", 0);
+            hsParam.Add("transdate", DateTime.Now);
+            hsParam.Add("preferredlanguage", string.Empty);
             hsParam.Add("errcode", 0);
-            hsParam.Add("errmsg", "");
+            hsParam.Add("errmsg", string.Empty);
             hsParam.Add("ip", HttpContext.Current.Request.UserHostAddress);
             DbResult result = DbHelper.Execute("Aff_PaymentRequestIns", DBType.AFFILIATE_12BET, hsParam, 600);
             intTransId = CastAide.AsInt64(result.Outputs["transid"]);
@@ -45,6 +48,9 @@ namespace DataHandler
             hsParam.Add("ip", HttpContext.Current.Request.UserHostAddress);
             hsParam.Add("language", AppSettings.Session.Language);
             hsParam.Add("status", "Cancelled");
+            hsParam.Add("preferredlanguage", string.Empty);
+            hsParam.Add("errcode", 0);
+            hsParam.Add("errmsg", string.Empty);
             DbResult result = DbHelper.Execute("Aff_PaymentRequestUpd", DBType.AFFILIATE_12BET, hsParam, 600);
             strPreferredLang = result.Outputs["preferredlanguage"].ToString();
             strErrorMsg = result.Outputs["errmsg"].ToString();          
