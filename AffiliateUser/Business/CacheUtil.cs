@@ -28,7 +28,7 @@ public class CacheUtil
     private static void InitCache()
     {
         AddHotNews();
-        AddBannerTypes();
+        LoadBannerTypes();
         AddBannerTypesOld();
     }
 
@@ -78,7 +78,7 @@ public class CacheUtil
         }
     }
 
-    private static void AddBannerTypes()
+    private static void LoadBannerTypes()
     {
         var result = DbHelper.Execute("Aff_BannerSelType_1", DBType.AFFILIATE_12BET);
         if (result.ResultSet.Tables.Count > 0 && result.ResultSet.Tables[0].Rows.Count > 0)
@@ -114,7 +114,7 @@ public class CacheUtil
             var table = CacheHelper.Get<DataTable>(bannerTypesKey);
             if (table == null )
             {
-                AddBannerTypes();
+                LoadBannerTypes();
                 return CacheHelper.Get<DataTable>(bannerTypesKey);
             }
 

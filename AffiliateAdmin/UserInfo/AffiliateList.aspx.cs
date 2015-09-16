@@ -178,7 +178,7 @@ public partial class AffiliateList : IBCPage
         TemplateHandler.Assign(ref strTemplate, "status-val", criteria.Status.ToLower());
         TemplateHandler.Assign(ref strTemplate, "page", criteria.PageIndex);
         TemplateHandler.Assign(ref strTemplate, "pagesize", criteria.PageSize);
-        TemplateHandler.Assign(ref strTemplate, "nummem-val", criteria.NRows);
+        TemplateHandler.Assign(ref strTemplate, "nummem-val", criteria.NRows.ToString(Common.NumberFormatPlaceholder));
         TemplateHandler.Assign(ref strTemplate, "favor-val", Request["favor"]);
         TemplateHandler.Assign(ref strTemplate, "isclosed-val", criteria.IsClosed);
 
