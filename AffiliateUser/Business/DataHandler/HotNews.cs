@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Data;
 using System.Globalization;
 using AffiliateUser.Business.DataAccess;
 using DNAide.Core;
@@ -16,11 +17,12 @@ namespace DataHandler
         /// Get the latest hot news
         /// </summary>
         /// <returns>string for the news</returns>
-        public static DbResult GetLatestHotNews()
+        public static DataTable GetLatestHotNews()
         {
             Hashtable hsParam = new Hashtable();
             hsParam.Add("msgid", -1);
-            return DbHelper.Execute("Aff_HotNewsDetail", DBType.AFFILIATE_12BET, hsParam);            
+            var result = DbHelper.Execute("Aff_HotNewsDetail", DBType.AFFILIATE_12BET, hsParam);
+            return result.ResultSet.Tables.Count > 0 ? result.ResultSet.Tables[0] : null;
         }
         /// <summary>
         ///  Search Hot News
