@@ -83,7 +83,7 @@ public class SubMenu
             TemplateHandler.Assign(ref strTmp, "url", arrUrl[i]);
             if (i == currMenu)
             {
-                string strText = (numRows == 0 ? arrText[i] : arrText[i] + " [" + numRows.ToString() + "]");
+                string strText = (numRows == 0 ? arrText[i] : arrText[i] + " [" + numRows.ToString(Common.NumberFormatPlaceholder) + "]");
                 TemplateHandler.Assign(ref strTmp, "text", strText);
             }
             else

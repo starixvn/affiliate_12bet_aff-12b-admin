@@ -35,8 +35,8 @@ namespace GenerateHTML
                     {
                         string strTmp = strContent;
                         TemplateHandler.Assign(ref strTmp, "No-val", ++intNo);
-                        TemplateHandler.Assign(ref strTmp, "TotalClick-val", dr["totalclick"].ToString());
-                        TemplateHandler.Assign(ref strTmp, "UniqueClick-val", dr["uniqueclick"].ToString());
+                        TemplateHandler.Assign(ref strTmp, "TotalClick-val", CastAide.AsInt32(dr["totalclick"]).ToString(Common.NumberFormatPlaceholder));
+                        TemplateHandler.Assign(ref strTmp, "UniqueClick-val", CastAide.AsInt32(dr["uniqueclick"]).ToString(Common.NumberFormatPlaceholder));
                         
                         TemplateHandler.Assign(ref strTmp, "Month-val", Common.ConvertDateTime(dr["date"], "-", false, false));
                         TemplateHandler.Assign(ref strTmp, "MonthFull-val", dr["date"].ToString());
@@ -177,10 +177,10 @@ namespace GenerateHTML
                     intNo++;
                     string strTmp = strContent;
                     TemplateHandler.Assign(ref strTmp, "Site-val", dr["DomainReferrer"]);
-                    TemplateHandler.Assign(ref strTmp, "TotalClick-val", dr["totalclick"].ToString());
-                    TemplateHandler.Assign(ref strTmp, "UniqueClick-val", dr["uniqueclick"].ToString());
-                    TemplateHandler.Assign(ref strTmp, "Signups-val", dr["Signups"].ToString());
-                    TemplateHandler.Assign(ref strTmp, "FDM-val", dr["FDM"].ToString());
+                    TemplateHandler.Assign(ref strTmp, "TotalClick-val", CastAide.AsInt32(dr["totalclick"]).ToString(Common.NumberFormatPlaceholder));
+                    TemplateHandler.Assign(ref strTmp, "UniqueClick-val", CastAide.AsInt32(dr["uniqueclick"]).ToString(Common.NumberFormatPlaceholder));
+                    TemplateHandler.Assign(ref strTmp, "Signups-val", CastAide.AsInt32(dr["Signups"]).ToString(Common.NumberFormatPlaceholder));
+                    TemplateHandler.Assign(ref strTmp, "FDM-val", CastAide.AsInt32(dr["FDM"]).ToString(Common.NumberFormatPlaceholder));
                     TemplateHandler.Assign(ref strTmp, "DeviceType-val", deviceType);
 
                     if (string.Compare(dr["DomainReferrer"].ToString(), "none", true) == 0)
@@ -308,10 +308,10 @@ namespace GenerateHTML
                     TemplateHandler.Assign(ref strTmp, "Page-val", dr["sportcode"]);
                     TemplateHandler.Assign(ref strTmp, "Language-val", Common.GetLanguageOriginal(dr["languagecode"].ToString()));
                     TemplateHandler.Assign(ref strTmp, "langCode-val", dr["languagecode"]);
-                    TemplateHandler.Assign(ref strTmp, "TotalClick-val", dr["totalclick"].ToString());
-                    TemplateHandler.Assign(ref strTmp, "UniqueClick-val", dr["uniqueclick"].ToString());
-                    TemplateHandler.Assign(ref strTmp, "Signups-val", dr["Signups"].ToString());
-                    TemplateHandler.Assign(ref strTmp, "FDM-val", dr["FDM"].ToString());
+                    TemplateHandler.Assign(ref strTmp, "TotalClick-val", CastAide.AsInt32(dr["totalclick"]).ToString(Common.NumberFormatPlaceholder));
+                    TemplateHandler.Assign(ref strTmp, "UniqueClick-val", CastAide.AsInt32(dr["uniqueclick"]).ToString(Common.NumberFormatPlaceholder));
+                    TemplateHandler.Assign(ref strTmp, "Signups-val", CastAide.AsInt32(dr["Signups"]).ToString(Common.NumberFormatPlaceholder));
+                    TemplateHandler.Assign(ref strTmp, "FDM-val", CastAide.AsInt32(dr["FDM"]).ToString(Common.NumberFormatPlaceholder));
                     TemplateHandler.Assign(ref strTmp, "DeviceType-val", deviceType);
                     
                     if ((intNo % 2) == 0)
@@ -353,10 +353,10 @@ namespace GenerateHTML
 
             TemplateHandler.ReplaceBlock(ref strRowTpl, "domain", "Old URL");
             TemplateHandler.Assign(ref strRowTpl, "Language-val", Resources.Lang.none);
-            TemplateHandler.Assign(ref strRowTpl, "TotalClick-val", totalClicks);
-            TemplateHandler.Assign(ref strRowTpl, "UniqueClick-val", totalUniqueClicks);
-            TemplateHandler.Assign(ref strRowTpl, "Signups-val", (newSignups - totalSignupsNewLink) > 0 ? (newSignups - totalSignupsNewLink).ToString() : "0");
-            TemplateHandler.Assign(ref strRowTpl, "FDM-val", (totalDepositUsers - totalDepositsNewLink) > 0 ? (totalDepositUsers - totalDepositsNewLink).ToString() : "0");
+            TemplateHandler.Assign(ref strRowTpl, "TotalClick-val", totalClicks.ToString(Common.NumberFormatPlaceholder));
+            TemplateHandler.Assign(ref strRowTpl, "UniqueClick-val", totalUniqueClicks.ToString(Common.NumberFormatPlaceholder));
+            TemplateHandler.Assign(ref strRowTpl, "Signups-val", (newSignups - totalSignupsNewLink) > 0 ? (newSignups - totalSignupsNewLink).ToString(Common.NumberFormatPlaceholder) : "0");
+            TemplateHandler.Assign(ref strRowTpl, "FDM-val", (totalDepositUsers - totalDepositsNewLink) > 0 ? (totalDepositUsers - totalDepositsNewLink).ToString(Common.NumberFormatPlaceholder) : "0");
             return strRowTpl;
         }
 

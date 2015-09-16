@@ -94,18 +94,18 @@ public partial class Report_SignUpActive : IBCPage
 
                 TemplateHandler.Assign(ref strTmp, "aff-val", dr["username"]);
                 TemplateHandler.Assign(ref strTmp, "affid-val", dr["affid"]);
-                TemplateHandler.Assign(ref strTmp, "unique-val", dr["UniqueClicks_Old"]);
-                TemplateHandler.Assign(ref strTmp, "total-val", dr["TotalClicks_Old"]);
-                TemplateHandler.Assign(ref strTmp, "uniquenew-val", dr["UniqueClicks_New"]);
-                TemplateHandler.Assign(ref strTmp, "totalnew-val", dr["TotalClicks_New"]);
-                TemplateHandler.Assign(ref strTmp, "fdm-val", total);
+                TemplateHandler.Assign(ref strTmp, "unique-val", CastAide.AsInt32(dr["UniqueClicks_Old"]).ToString(Common.NumberFormatPlaceholder));
+                TemplateHandler.Assign(ref strTmp, "total-val", CastAide.AsInt32(dr["TotalClicks_Old"]).ToString(Common.NumberFormatPlaceholder));
+                TemplateHandler.Assign(ref strTmp, "uniquenew-val", CastAide.AsInt32(dr["UniqueClicks_New"]).ToString(Common.NumberFormatPlaceholder));
+                TemplateHandler.Assign(ref strTmp, "totalnew-val", CastAide.AsInt32(dr["TotalClicks_New"]).ToString(Common.NumberFormatPlaceholder));
+                TemplateHandler.Assign(ref strTmp, "fdm-val", total.ToString(Common.NumberFormatPlaceholder));
                 if (CastAide.AsBoolean(dr["isclosed"]))
                     TemplateHandler.Assign(ref strTmp, "color", Common.RowBgClosed);
                 else
                     TemplateHandler.Assign(ref strTmp, "color", (intCount % 2 == 0) ? Common.RowBgEven : Common.RowBgOdd);
 
                 //sign up
-                TemplateHandler.Assign(ref strTmp, "signup-val", dr["Signup"]);
+                TemplateHandler.Assign(ref strTmp, "signup-val", CastAide.AsInt32(dr["Signup"]).ToString(Common.NumberFormatPlaceholder));
 
                 strListRow.Append(strTmp);
             }

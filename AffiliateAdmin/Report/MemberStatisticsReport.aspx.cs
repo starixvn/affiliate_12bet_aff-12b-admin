@@ -119,9 +119,9 @@ public partial class Report_MemberStatisticsReport : IBCPage
                 TemplateHandler.Assign(ref strTmp, "color", (intCount % 2 == 0) ? Common.RowBgEven : Common.RowBgOdd);
                 TemplateHandler.Assign(ref strTmp, "affid-val", dr["affid"]);
                 TemplateHandler.Assign(ref strTmp, "aff-val", dr["username"]);
-                TemplateHandler.Assign(ref strTmp, "active-val", active);
-                TemplateHandler.Assign(ref strTmp, "dormant-val", total - active);
-                TemplateHandler.Assign(ref strTmp, "total-val", total);
+                TemplateHandler.Assign(ref strTmp, "active-val", active.ToString(Common.NumberFormatPlaceholder));
+                TemplateHandler.Assign(ref strTmp, "dormant-val", (total - active).ToString(Common.NumberFormatPlaceholder));
+                TemplateHandler.Assign(ref strTmp, "total-val", total.ToString(Common.NumberFormatPlaceholder));
                 TemplateHandler.Assign(ref strTmp, "totalregister-val", "{" + dr["affid"].ToString() + "}");
 
                 strListAffId += dr["affid"].ToString() + ";";
@@ -136,7 +136,7 @@ public partial class Report_MemberStatisticsReport : IBCPage
             {
                 int totalRegister = CastAide.AsInt32(dr["totalregistered"]);
                 intTotalRegister += totalRegister;
-                TemplateHandler.Assign(ref strTpl, dr["affid"].ToString(), totalRegister);
+                TemplateHandler.Assign(ref strTpl, dr["affid"].ToString(), totalRegister.ToString(Common.NumberFormatPlaceholder));
             }
         }
         else
