@@ -256,7 +256,7 @@ namespace DataHandler
             hsParams.Add("groupid", -1);
             return DbHelper.Execute("Aff_CommGroupSelListNormal", DBType.AFFILIATE_12BET, hsParams);
         }
-        public static DbResult CommGroupAssign(int groupID,string affIDList,string ip)
+        public static DbResult CommGroupAssign(int groupID, string affIDList, string ip)
         {
             Hashtable hsParams = new Hashtable();            
             hsParams.Add("userid", AppSettings.Session.CustID);
