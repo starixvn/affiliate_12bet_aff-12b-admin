@@ -25,7 +25,7 @@ namespace DataHandler
             hsParam.Add("pagesize", intPageSize); // hardcode pagesize for member/player list
             hsParam.Add("pageindex", pageIndex);
             hsParam.Add("nrows", 0);
-            dbr = DbHelper.Execute("Aff_MemberListSel", DBType.AFFILIATE_12BET, hsParam);
+            dbr = DbHelper.Execute("Aff_MemberListSel_xtest", DBType.AFFILIATE_12BET, hsParam);
             NRows = CastAide.AsInt32(dbr.Outputs["nrows"]);
             totalPages = NRows % intPageSize == 0 ? NRows / intPageSize : (NRows / intPageSize) + 1;
             return (dbr.ResultSet.Tables.Count > 0 ? dbr.ResultSet.Tables[0] : new DataTable());
