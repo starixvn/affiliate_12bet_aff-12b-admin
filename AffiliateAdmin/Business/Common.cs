@@ -546,15 +546,15 @@ public class Common
 
     public static string FormatNumber(object Number)
     {
-        decimal dcNumber = CastAide.AsDecimal(Number);
+        decimal dcNumber = decimal.Round(CastAide.AsDecimal(Number), 2);
         if (dcNumber >= 0)
         {
-            return "$" + NumberFormat.DecFormat(dcNumber, 2);
+            return "$" + dcNumber;
         }
         else
         {
             dcNumber = dcNumber * -1;
-            return "-$" + NumberFormat.DecFormat(dcNumber, 2);
+            return "-$" + dcNumber;
         }
     }
 
