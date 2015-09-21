@@ -23,7 +23,7 @@ public class Common
 {
     public const string Male = "Male";
     public const string Female = "Female";
-    public const string NumberFormatPlaceholder = "#,#;-#,#;0";// positive; negative; zero
+    public const string NumberFormatPlaceholder = "N0";
     private const int TimeCacheUM = 10;//second
 
     // ++ Added by Frank.Ngo on IRP 671 - Jan 2012

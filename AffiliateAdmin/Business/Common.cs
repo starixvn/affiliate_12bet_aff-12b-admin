@@ -39,7 +39,7 @@ public class Common
     public const string RowBgOver = "#FFF5A5";
     public const string RowBgClosed = "#d6d4d2";
     public const string RowBgPending = "#e8ded6";
-    public const string NumberFormatPlaceholder = "#,#;-#,#;0";// positive; negative; zero
+    public const string NumberFormatPlaceholder = "N0";
     private const int TimeCacheUM = 10;
 
     // ++ Added by Frank.Ngo on IRP 671 - 10 Jan 2012
@@ -549,12 +549,12 @@ public class Common
         decimal decimalNumber = decimal.Round(CastAide.AsDecimal(Number), 2);
         if (decimalNumber >= 0)
         {
-            return "$" + decimalNumber;
+            return "$" + decimalNumber.ToString("N");
         }
         else
         {
             decimalNumber = decimalNumber * -1;
-            return "-$" + decimalNumber;
+            return "-$" + decimalNumber.ToString("N");
         }
     }
 
