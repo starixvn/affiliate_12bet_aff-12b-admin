@@ -10,6 +10,14 @@ public class DBType
     private static string _affiliate_12betView = "affiliate_12bet_view";
     private static string _deposit = "deposit";
     private static string _depositView = "deposit_view";
+
+    public static string IPDB
+    {
+        get
+        {
+            return "DBCUST.IPDB";
+        }
+    }
     
     public static string MAIN
     {

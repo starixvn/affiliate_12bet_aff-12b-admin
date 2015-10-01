@@ -24,7 +24,14 @@ namespace AffiliateUser
 
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
-
+            if (HttpContext.Current.Request.Url.Host.Equals(AppSettings.RedirectionEuHost, StringComparison.OrdinalIgnoreCase))
+            {
+                string ipAddress = Common.GetIPAddress();
+                if (DataHandler.Common.IsNeedRedirect(ipAddress))
+                {
+                    Response.Redirect(AppSettings.RedirectionEuTarget);
+                }
+            }
         }
 
         protected void Application_AuthenticateRequest(object sender, EventArgs e)
