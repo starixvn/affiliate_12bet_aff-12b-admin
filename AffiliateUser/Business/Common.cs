@@ -41,17 +41,18 @@ public class Common
     public static string GetIPAddress()
     {
         var context = System.Web.HttpContext.Current;
-        var ipAddress = context.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
         string result = null;
-        if (!string.IsNullOrEmpty(ipAddress))
-        {
-            string[] addresses = ipAddress.Split(',');
-            if (addresses.Length != 0)
-            {
-                result = addresses[0];
-            }
-        }
-
+        //var ipAddress = context.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+        //
+        //if (!string.IsNullOrEmpty(ipAddress))
+        //{
+        //    string[] addresses = ipAddress.Split(',');
+        //    if (addresses.Length != 0)
+        //    {
+        //        result = addresses[0];
+        //    }
+        //}
+        result = context.Request.UserHostAddress;
         result = result ?? context.Request.ServerVariables["REMOTE_ADDR"];
 
         if (result == "::1")

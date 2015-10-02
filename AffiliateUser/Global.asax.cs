@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Web;
 
 namespace AffiliateUser
@@ -24,7 +25,8 @@ namespace AffiliateUser
 
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
-            if (HttpContext.Current.Request.Url.Host.Equals(AppSettings.RedirectionEuHost, StringComparison.OrdinalIgnoreCase))
+            if (Request.AcceptTypes != null && Request.AcceptTypes.Contains("text/html") &&
+                Request.Url.Host.Equals(AppSettings.RedirectionEuHost, StringComparison.OrdinalIgnoreCase))
             {
                 string ipAddress = Common.GetIPAddress();
                 if (DataHandler.Common.IsNeedRedirect(ipAddress))
