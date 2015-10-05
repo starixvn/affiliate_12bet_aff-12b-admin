@@ -21,7 +21,7 @@ namespace DataHandler
 
             Hashtable param = new Hashtable();
             param.Add("ip", ipAddress);
-            var result = DbHelper.Execute("Acc_GetIPInfo_Full", param, DBType.IPDB);
+            var result = DbHelper.Execute("Aff_GetIPInfo", param, DBType.IPDB);
 
             if (result.ResultSet.Tables.Count == 0)
             {
