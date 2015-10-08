@@ -166,6 +166,7 @@
       <DependentUpon>BetListResults.aspx</DependentUpon>
     </Compile>
     <Compile Include="Business\DataAccess\DbResult.cs" />
+    <Compile Include="Business\DataHandler\Common.cs" />
     <Compile Include="Condition.aspx.designer.cs">
       <DependentUpon>Condition.aspx</DependentUpon>
     </Compile>

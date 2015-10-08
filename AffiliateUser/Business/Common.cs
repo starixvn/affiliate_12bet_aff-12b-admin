@@ -37,6 +37,32 @@ public class Common
         // TODO: Add constructor logic here
         //
     }
+
+    public static string GetIPAddress()
+    {
+        var context = System.Web.HttpContext.Current;
+        string result = null;
+        var ipAddress = context.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+
+        if (!string.IsNullOrEmpty(ipAddress))
+        {
+            string[] addresses = ipAddress.Split(',');
+            if (addresses.Length != 0)
+            {
+                result = addresses[0];
+            }
+        }
+        
+        result = result ?? context.Request.ServerVariables["REMOTE_ADDR"];
+
+        if (result == "::1")
+        {
+            result = "127.0.0.1";
+        }
+
+        return result;
+    }
+
     public static string GetLangCode(string value)
     {
         switch (value.ToLower())

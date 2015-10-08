@@ -776,6 +776,24 @@ public static class AppSettings
         get { return _startYearOfSystem; }
     }
 
+    public static string RedirectionEuHost
+    {
+        get { return ConfigurationManager.AppSettings["RedirectionEuHost"] ?? string.Empty; }
+    }
+
+    public static string RedirectionEuCountryList
+    {
+        get
+        {
+            return ConfigurationManager.AppSettings["RedirectionEuCountryList"] ?? string.Empty;
+        }
+    }
+
+    public static string RedirectionEuTarget
+    {
+        get { return ConfigurationManager.AppSettings["RedirectionEuTarget"] ?? string.Empty; }
+    }
+
     public static void RefreshPreferredLanguage()
     {
         AppSettings.Session.PreferLang = DataHandler.UserAff.GetPreferredLanguage(AppSettings.Session.CustID);
