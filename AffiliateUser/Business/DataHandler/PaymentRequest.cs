@@ -128,7 +128,7 @@ namespace DataHandler
             hsParam.Add("firstname", HttpContext.Current.Server.HtmlEncode(customer.FirstName));
             hsParam.Add("lastname", HttpContext.Current.Server.HtmlEncode(customer.LastName));
             hsParam.Add("email", HttpContext.Current.Server.HtmlEncode(customer.Email));
-            hsParam.Add("depositusername",HttpContext.Current.Server.HtmlEncode(customer.DepositUserName));
+            hsParam.Add("depositusername", HttpContext.Current.Server.HtmlEncode(customer.DepositUserName));
             hsParam.Add("deposituserid", customer.DepositUserId);
             hsParam.Add("password", customer.Password);
             hsParam.Add("oddstype", HttpContext.Current.Server.HtmlEncode(customer.OddsType));
