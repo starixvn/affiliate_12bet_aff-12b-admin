@@ -10,7 +10,7 @@ using System.Web.Security;
 using System.Web.SessionState;
 using DataHandler;
 using System.Text;
-
+using AffiliateAdmin.Business.Constants;
 
 public class DeleteMailList : IHttpHandler, IRequiresSessionState
 {
@@ -29,7 +29,7 @@ public class DeleteMailList : IHttpHandler, IRequiresSessionState
                 context.Response.Write("Null data is sent to server");
                 return;
             }
-            bool isHost = Common.IsHost(AppSettings.Session.CustID, "[HotNews]");
+            bool isHost = Common.HasHostPermission(AppSettings.Session.CustID, PermissionNames.HotNews);
             if (isHost)
             {
                 //Drop the comma at the end of message

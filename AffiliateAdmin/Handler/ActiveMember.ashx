@@ -2,13 +2,19 @@
 using System.Web.SessionState;
 using System;
 using System.Web;
+using AffiliateAdmin.Business.Constants;
 
 public class ActiveMember : IHttpHandler, IRequiresSessionState
 {
     
     public void ProcessRequest (HttpContext context) {
         context.Response.ContentType = "text/html";
-
+        if (!Common.HasHostPermission(AppSettings.Session.CustID, PermissionNames.ActiveMembers))
+        {
+            context.Response.Write("errMsg, You don't have permission to perform this action.");
+            return;
+        }
+        
         string errUserNames = string.Empty;
         string errMsg = string.Empty;
         

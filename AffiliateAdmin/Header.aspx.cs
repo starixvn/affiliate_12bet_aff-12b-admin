@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using DNAide.Web;
+using AffiliateAdmin.Business.Constants;
 public partial class Header : IBCPage
 {
     protected void Page_Load(object sender, EventArgs e)
@@ -34,7 +35,7 @@ public partial class Header : IBCPage
         TemplateHandler.Assign(ref temp, "minute", dt.Minute);
         TemplateHandler.Assign(ref temp, "second", dt.Second);
 
-        if (!Common.IsRead("[Domain]"))
+        if (!Common.HasReadPermission(PermissionNames.Domain))
             TemplateHandler.RemoveBlock(ref temp, "domain");
 
 

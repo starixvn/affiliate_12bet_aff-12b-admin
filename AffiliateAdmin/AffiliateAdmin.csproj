@@ -235,6 +235,7 @@
     <Compile Include="BetList\BetListResults.aspx.designer.cs">
       <DependentUpon>BetListResults.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Business\Constants\PermissionNames.cs" />
     <Compile Include="Business\DataAccess\DbHelper.cs" />
     <Compile Include="Business\DataAccess\DbResult.cs" />
     <Compile Include="Casino\UploadExcel.aspx.designer.cs">

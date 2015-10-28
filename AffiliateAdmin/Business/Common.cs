@@ -822,14 +822,14 @@ public class Common
     }
 
     //Get permission host per function
-    public static bool IsHost(int CustId, string funcName)
+    public static bool HasHostPermission(int CustId, string funcName)
     {
         var result = DataHandler.Affiliate.SelPermission(CustId, funcName);
         return CastAide.AsInt32(result.Outputs["errcode"]) == 0;        
     }
 
     //Get permission host per function
-    public static bool IsRead(string funcName)
+    public static bool HasReadPermission(string funcName)
     {
         return AppSettings.Session.RoleAccess.IndexOf(funcName + "-1") >= 0;
     }
