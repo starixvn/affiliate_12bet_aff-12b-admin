@@ -16,7 +16,7 @@ public partial class AffiliateUpd : IBCPage
         string strTpl = TemplateHandler.LoadTemplate("UserInfo/AffUpd.htm");
 
         int intcustid = AppSettings.Session.AffId;
-        if (!Common.isRead("[SecurityQA]"))
+        if (!Common.IsRead("[SecurityQA]"))
             TemplateHandler.RemoveBlock(ref strTpl, "securityqa");
 
         TemplateHandler.Assign(ref strTpl, "edit", Resources.Lang.Edit);

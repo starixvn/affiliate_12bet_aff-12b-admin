@@ -29,7 +29,7 @@ public class DeleteMailList : IHttpHandler, IRequiresSessionState
                 context.Response.Write("Null data is sent to server");
                 return;
             }
-            bool isHost = Common.isHost(AppSettings.Session.CustID, "[HotNews]");
+            bool isHost = Common.IsHost(AppSettings.Session.CustID, "[HotNews]");
             if (isHost)
             {
                 //Drop the comma at the end of message

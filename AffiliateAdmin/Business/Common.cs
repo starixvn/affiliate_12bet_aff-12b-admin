@@ -822,23 +822,16 @@ public class Common
     }
 
     //Get permission host per function
-    public static bool isHost(int CustId, string funcName)
+    public static bool IsHost(int CustId, string funcName)
     {
-        bool isTrue = false;
-        DbResult result = DataHandler.Affiliate.SelPermission(CustId, funcName);
-        if (CastAide.AsInt32(result.Outputs["errcode"]) == 0)
-            isTrue = true;
-        return isTrue;
+        var result = DataHandler.Affiliate.SelPermission(CustId, funcName);
+        return CastAide.AsInt32(result.Outputs["errcode"]) == 0;        
     }
 
     //Get permission host per function
-    public static bool isRead(string funcName)
+    public static bool IsRead(string funcName)
     {
-        string roleAccess = HttpContext.Current.Session["RoleAccess"] == null ? string.Empty : HttpContext.Current.Session["RoleAccess"].ToString();
-        if (roleAccess.IndexOf(funcName + "-1") >= 0)
-            return true;
-        else
-            return false;
+        return AppSettings.Session.RoleAccess.IndexOf(funcName + "-1") >= 0;
     }
 
     // get Error message according to error code

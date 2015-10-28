@@ -37,7 +37,7 @@ public partial class AffRate : IBCPage
             int intCount = 0;
             if (dtmTime <= dtmNow)
             {
-                bool isHost = Common.isHost(AppSettings.Session.CustID, "[AffEx.Rate]");
+                bool isHost = Common.IsHost(AppSettings.Session.CustID, "[AffEx.Rate]");
 
                 DataTable dtbResult = DataHandler.ExchangeRate.Exchange_Sel(dtmTime);
                 if (dtbResult.Rows.Count > 0)

@@ -34,7 +34,7 @@ public partial class Header : IBCPage
         TemplateHandler.Assign(ref temp, "minute", dt.Minute);
         TemplateHandler.Assign(ref temp, "second", dt.Second);
 
-        if (!Common.isRead("[Domain]"))
+        if (!Common.IsRead("[Domain]"))
             TemplateHandler.RemoveBlock(ref temp, "domain");
 
 
