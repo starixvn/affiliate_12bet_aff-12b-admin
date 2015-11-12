@@ -1,9 +1,16 @@
 ﻿using System;
 using System.Text;
-using DNAide.Web;
+using System.Web;
 using AffiliateAdmin.Business.Constants;
+using DNAide.Web;
 public partial class Header : IBCPage
 {
+    protected override void OnInit(EventArgs e)
+    {
+        base.OnInit(e);
+        Response.Cache.SetCacheability(HttpCacheability.NoCache);
+    }
+
     protected void Page_Load(object sender, EventArgs e)
     {
         string temp = TemplateHandler.LoadTemplate("Header.htm");

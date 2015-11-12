@@ -4,25 +4,25 @@ using System;
 using System.Web;
 using System.Web.SessionState;
 using System.Web.Security;
-public class Logout : IHttpHandler,IRequiresSessionState 
+public class Logout : IHttpHandler, IRequiresSessionState
 {
-    
-    public void ProcessRequest (HttpContext context) {
+
+    public void ProcessRequest(HttpContext context)
+    {
         context.Response.ContentType = "text/html";
-        try
-        {
-            DataHandler.Login.Logout(context);            
-        }
-        catch { }
-        context.Session.Clear();
+        DataHandler.Login.Logout(context);
         FormsAuthentication.SignOut();
-        context.Response.Write("<html><head></head><body><script type='text/javascript'>top.location.href='" + FormsAuthentication.LoginUrl + "';</script></body></html>");        
+        context.Session.Clear();
+        context.Session.Abandon();
+
+        FormsAuthentication.RedirectToLoginPage();
     }
- 
-    public bool IsReusable {
-        get {
+
+    public bool IsReusable
+    {
+        get
+        {
             return false;
         }
     }
-
 }

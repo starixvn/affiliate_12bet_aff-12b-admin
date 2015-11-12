@@ -1,19 +1,21 @@
 ﻿using System;
 using System.Data;
 using System.Text;
+using System.Web;
 using AffiliateAdmin.Business.Constants;
 using DNAide.Core;
 using DNAide.Web;
 
 public partial class UserInfo_MemberActiveList : IBCPage
 {
+    protected override void OnInit(EventArgs e)
+    {
+        base.OnInit(e);
+        Response.Cache.SetCacheability(HttpCacheability.NoCache);
+    }
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!Common.HasReadPermission(PermissionNames.ActiveMembers))
-        {
-            Response.Redirect("~/AccessDenied.aspx");
-        }
-
         string strTpl = TemplateHandler.LoadTemplate("UserInfo/MemActiveList.htm");
 
 

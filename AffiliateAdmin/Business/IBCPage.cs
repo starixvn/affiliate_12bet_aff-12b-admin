@@ -16,17 +16,6 @@ public class IBCPage : System.Web.UI.Page
     protected string ThemePath;
     protected bool IsGetAllCss =true;
 
-    protected override void OnInit(EventArgs e)
-    {
-        base.OnInit(e);
-
-        // Stop Caching in IE
-        Response.Cache.SetCacheability(System.Web.HttpCacheability.NoCache);
-
-        // Stop Caching in Firefox
-        Response.Cache.SetNoStore();
-    }
-
     protected override void InitializeCulture()
     {
         _locale = (HttpContext.Current.Session["Culture"] == null) ? "en-US" : HttpContext.Current.Session["Culture"].ToString();

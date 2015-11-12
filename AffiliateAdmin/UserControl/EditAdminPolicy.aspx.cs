@@ -1,11 +1,18 @@
 ﻿using System;
+using System.Data;
+using System.Web;
+using AffiliateAdmin.Business.DataAccess;
 using DNAide.Core;
 using DNAide.Web;
-using AffiliateAdmin.Business.DataAccess;
-using System.Data;
 
 public partial class UserControl_EditAdminPolicy : IBCPage
 {
+    protected override void OnInit(EventArgs e)
+    {
+        base.OnInit(e);
+        Response.Cache.SetCacheability(HttpCacheability.NoCache);
+    }
+
     protected void Page_Load(object sender, EventArgs e)
     {
         string content = TemplateHandler.LoadTemplate("UserControl/PolicyHeader.html");
