@@ -10,6 +10,8 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using DNAide.Web;
+using System.Collections.Generic;
+using AffiliateAdmin.Business.Constants;
 
 /// <summary>
 /// Summary description for SubMenu
@@ -33,8 +35,8 @@ public class SubMenu
     public static string[] MediaCustomerLink = new string[] { "../UserInfo/EarningsHistory.aspx", "../UserInfo/AffiliateUpd.aspx", "../UserInfo/note.aspx", "../UserInfo/PlayersDetail.aspx", "../UserInfo/MediaGallery.aspx", "../UserInfo/MediaStatistics.aspx", "../UserInfo/MemberList.aspx", "../UserInfo/UserLog.aspx" };
     public static string[] MediaCustomerText = new string[] { Resources.Lang.StatementHistory, Resources.Lang.Edit, Resources.Lang.Note, Resources.Lang.PlayersDetail, Resources.Lang.MediaGallery, Resources.Lang.TrackingStatistics, Resources.Lang.Member, Resources.Lang.ViewLog };
 
-    public static string[] AdminLink = new string[] { "ListUser.aspx", "ListDepartment.aspx"};
-    public static string[] AdminText = new string[] { Resources.Lang.AdministratorList , Resources.Lang.DepartmentList};
+    public static string[] AdminLink = new string[] { "ListUser.aspx", "ListDepartment.aspx" };
+    public static string[] AdminText = new string[] { Resources.Lang.AdministratorList, Resources.Lang.DepartmentList };
 
     public static string[] ReportLink = new string[]
         {
@@ -62,8 +64,33 @@ public class SubMenu
             Resources.Lang.CasinoPlayerTurnoverReport
         };
 
-    public static string[] MemberLink = new string[] { "MemberListAll.aspx", "MemberActiveList.aspx" };
-    public static string[] MemberText = new string[] { Resources.Lang.Member, Resources.Lang.ActiveMember};
+    public static string[] MemberLink
+    {
+        get
+        {
+            var links = new List<string> { "MemberListAll.aspx" };
+            if (Common.HasReadPermission(PermissionNames.ActiveMembers))
+            {
+                links.Add("MemberActiveList.aspx");
+            }
+
+            return links.ToArray();
+        }
+    }
+
+    public static string[] MemberText
+    {
+        get
+        {
+            var texts = new List<string> { Resources.Lang.Member };
+            if (Common.HasReadPermission(PermissionNames.ActiveMembers))
+            {
+                texts.Add(Resources.Lang.ActiveMember);
+            }
+
+            return texts.ToArray();
+        }
+    }
 
     public static string[] DomainLink = new string[] { "AffiliateDomain.aspx", "12BetDomain.aspx", "DomainControl.aspx" };
     public static string[] DomainText = new string[] { "Affiliate Domains", "12Bet Domains", "Domain Control" };
@@ -83,7 +110,7 @@ public class SubMenu
             TemplateHandler.Assign(ref strTmp, "url", arrUrl[i]);
             if (i == currMenu)
             {
-                string strText = (numRows == 0 ? arrText[i] : arrText[i] + " [" + numRows.ToString() + "]");
+                string strText = (numRows == 0 ? arrText[i] : arrText[i] + " [" + numRows.ToString(Common.NumberFormatPlaceholder) + "]");
                 TemplateHandler.Assign(ref strTmp, "text", strText);
             }
             else
@@ -110,7 +137,7 @@ public class SubMenu
             TemplateHandler.Assign(ref strTmp, "url", arrUrl[i]);
             if (i == currMenu)
             {
-                TemplateHandler.Assign(ref strTmp, "curr", (i == currMenu ? "id=\"current\"" : string.Empty));                
+                TemplateHandler.Assign(ref strTmp, "curr", (i == currMenu ? "id=\"current\"" : string.Empty));
                 TemplateHandler.Assign(ref strTmp, "text", arrText[i] + "(" + strText + ")");
             }
             else

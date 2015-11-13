@@ -4,7 +4,6 @@ using System.Web;
 using DNAide.Core;
 using System.Web.SessionState;
 using System.Text;
-using DNAide.Data;
 using System.Data;
 
 public class GetSubCategory : IHttpHandler, IRequiresSessionState

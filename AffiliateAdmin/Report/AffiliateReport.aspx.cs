@@ -179,10 +179,10 @@ public partial class Report_AffiliateReport : IBCPage
 
                     TemplateHandler.Assign(ref strTmp, "trackingrate-val", string.Format("{0:P2}", trackingRate));
                     TemplateHandler.Assign(ref strTmp, "newtrackingrate-val", string.Format("{0:P2}", newTrackingRate));
-                    TemplateHandler.Assign(ref strTmp, "signup-val", dcSignup);
-                    TemplateHandler.Assign(ref strTmp, "fdm-val", dcFDM);
-                    TemplateHandler.Assign(ref strTmp, "activemember-val", dcActiveMember);
-                    TemplateHandler.Assign(ref strTmp, "qm-val", dcQM);
+                    TemplateHandler.Assign(ref strTmp, "signup-val", dcSignup.ToString(Common.NumberFormatPlaceholder));
+                    TemplateHandler.Assign(ref strTmp, "fdm-val", dcFDM.ToString(Common.NumberFormatPlaceholder));
+                    TemplateHandler.Assign(ref strTmp, "activemember-val", dcActiveMember.ToString(Common.NumberFormatPlaceholder));
+                    TemplateHandler.Assign(ref strTmp, "qm-val", dcQM.ToString(Common.NumberFormatPlaceholder));
 
                     strListRow.Append(strTmp);
 
@@ -226,10 +226,10 @@ public partial class Report_AffiliateReport : IBCPage
 
                 TemplateHandler.Assign(ref strTpl, "trackingrate-total", string.Format("{0:P2}", trackingRate));
                 TemplateHandler.Assign(ref strTpl, "newtrackingrate-total", string.Format("{0:P2}", newTrackingRate));
-                TemplateHandler.Assign(ref strTpl, "signup-total", dcTotalSignup);
-                TemplateHandler.Assign(ref strTpl, "fdm-total", dcTotalFDM);
-                TemplateHandler.Assign(ref strTpl, "activemember-total", dcTotalActiveMember);
-                TemplateHandler.Assign(ref strTpl, "qm-total", dcTotalQM);
+                TemplateHandler.Assign(ref strTpl, "signup-total", dcTotalSignup.ToString(Common.NumberFormatPlaceholder));
+                TemplateHandler.Assign(ref strTpl, "fdm-total", dcTotalFDM.ToString(Common.NumberFormatPlaceholder));
+                TemplateHandler.Assign(ref strTpl, "activemember-total", dcTotalActiveMember.ToString(Common.NumberFormatPlaceholder));
+                TemplateHandler.Assign(ref strTpl, "qm-total", dcTotalQM.ToString(Common.NumberFormatPlaceholder));
             }
             else
             {

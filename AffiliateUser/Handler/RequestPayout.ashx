@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.SessionState;
 using Affiliate.MailServices;
 using DNAide.Core;
-using DNAide.Data;
 using DNAide.Web;
 using DNAide.Utils;
 

@@ -14,7 +14,7 @@ public partial class SignUp : RootPage
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (AppSettings.Session.IsAuthenticated) 
+        if (AppSettings.Session.IsAuthenticated)
             Response.Redirect("UserInfo/Account_Overview.aspx");
         ltrRegisForm.Text = Resources.Lang.RegisForm;
         ltrCompleteForm.Text = Resources.Lang.CompleteForm;
@@ -48,19 +48,12 @@ public partial class SignUp : RootPage
         //ltrAgreeto.Text = Resources.Lang.AgreeTo;
         //ltrTermcondition.Text = Resources.Lang.TermCondition;
         //ltrOfAff.Text = Resources.Lang.Of + " " + Resources.Lang.Bet12 + " " + Resources.Lang.Affiliate;
-        try
-        {
-            Hashtable hsMinWidthdraw = Payment.MinWithdraw();
-            strMinCheque = NumberFormat.DecFormat(hsMinWidthdraw["aff_mincheque"], 0);
-            strMinMoneyBooker = NumberFormat.DecFormat(hsMinWidthdraw["aff_minmoneybookers"], 0);
-            strMinNetteller = NumberFormat.DecFormat(hsMinWidthdraw["aff_minneteller"], 0);
-            strMinWire = NumberFormat.DecFormat(hsMinWidthdraw["aff_minwire"], 0);
-            strSecureQuestion = DNAide.Web.TemplateHandler.LoadTemplate("UserInfo/SecureQuestion_" + AppSettings.Session.Language + ".htm");
-            
-        }
-        catch(Exception ex)
-        {
-            Fanex.Logging.LogService.Error(ex.Message);
-        }
+
+        Hashtable hsMinWidthdraw = Payment.MinWithdraw();
+        strMinCheque = NumberFormat.DecFormat(hsMinWidthdraw["aff_mincheque"], 0);
+        strMinMoneyBooker = NumberFormat.DecFormat(hsMinWidthdraw["aff_minmoneybookers"], 0);
+        strMinNetteller = NumberFormat.DecFormat(hsMinWidthdraw["aff_minneteller"], 0);
+        strMinWire = NumberFormat.DecFormat(hsMinWidthdraw["aff_minwire"], 0);
+        strSecureQuestion = DNAide.Web.TemplateHandler.LoadTemplate("UserInfo/SecureQuestion_" + AppSettings.Session.Language + ".htm");
     }
 }

@@ -217,7 +217,7 @@ namespace GenerateHTML
                     TemplateHandler.Assign(ref noneGroupRow, "Description_val", "All private groups for affiliates");
                     TemplateHandler.Assign(ref noneGroupRow, "CreatedDate_val", string.Empty);
                     TemplateHandler.Assign(ref noneGroupRow, "Creator_val", string.Empty);
-                    TemplateHandler.Assign(ref noneGroupRow, "NoOfAffiliate_val", totalOfNoneGroup);
+                    TemplateHandler.Assign(ref noneGroupRow, "NoOfAffiliate_val", totalOfNoneGroup.ToString(Common.NumberFormatPlaceholder));
 
                     TemplateHandler.Assign(ref noneGroupRow, "GroupID_val", 0);
                     TemplateHandler.Assign(ref noneGroupRow, "color", Common.RowBgEven);
@@ -245,16 +245,17 @@ namespace GenerateHTML
                     TemplateHandler.Assign(ref strTmp, "Description_val", Common.CutLongText(dr["Description"].ToString(), 50));
                     TemplateHandler.Assign(ref strTmp, "CreatedDate_val", Common.IBCDateTimeFormat(dr["createddate"], DTFormatType.DT24h));
                     TemplateHandler.Assign(ref strTmp, "Creator_val", dr["Creator"].ToString());
-                    if (Convert.ToInt32(dr["NoOfAffiliate"]) > 0)
+
+                    int noOfAffiliate = Convert.ToInt32(dr["NoOfAffiliate"]);
+                    if (noOfAffiliate > 0)
                     {
-                        TemplateHandler.Assign(ref strTmp, "NoOfAffiliate_val", dr["NoOfAffiliate"].ToString());
+                        TemplateHandler.Assign(ref strTmp, "NoOfAffiliate_val", noOfAffiliate.ToString(Common.NumberFormatPlaceholder));
                     }
                     else
                     {
-                        TemplateHandler.ReplaceBlock(ref strTmp, "link", dr["NoOfAffiliate"].ToString());
+                        TemplateHandler.ReplaceBlock(ref strTmp, "link", noOfAffiliate.ToString(Common.NumberFormatPlaceholder));
                     }
                     
-                   
                     TemplateHandler.Assign(ref strTmp, "App_Themes", AppSettings.ThemeDir);
                     //if(string.Compare(dr["GroupName"].ToString(), "NoCommission", true) == 0)
                         //TemplateHandler.Assign(ref strTmp, "GroupID_val", dr["GroupID"].ToString() + "_NoComm");

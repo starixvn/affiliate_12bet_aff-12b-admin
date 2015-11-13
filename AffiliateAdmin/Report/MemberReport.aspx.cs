@@ -97,7 +97,6 @@ public partial class MemberReport : IBCPage
             DateTime dtmTDate = CastAide.AsDateTime(Request["tdate"], DateTime.Now);
             TemplateHandler.Assign(ref strTpl, "tdate", dtmTDate.ToString("MM/dd/yyyy"));
             
-            DataTable dtb = new DataTable();
             DbResult rs = null;
             if (intCustId != 0)
             {
@@ -110,9 +109,9 @@ public partial class MemberReport : IBCPage
                 TemplateHandler.Assign(ref strTpl, "hwidth", "100");
                 rs = DataHandler.Affiliate.SelMemberReport(dtmFDate, dtmTDate,0);
             }
-            if(rs.ResultSet.Tables.Count > 0)
-                dtb = rs.ResultSet.Tables[0];
-            if (dtb.Rows.Count > 0)
+
+            DataTable table = rs.ResultSet.Tables.Count > 0 ? rs.ResultSet.Tables[0] : null;
+            if (table != null && table.Rows.Count > 0)
             {
                 string strRowTpl = TemplateHandler.CopyBlock(strTpl, "content");
                 string strSubTpl = TemplateHandler.ReplaceBlock(ref strTpl, "subtotal", "");
@@ -125,7 +124,7 @@ public partial class MemberReport : IBCPage
                 strListRow = new StringBuilder();
                 StringBuilder strRow = new StringBuilder();
                 int intMonth = 0;
-                foreach (DataRow dr in dtb.Rows)
+                foreach (DataRow dr in table.Rows)
                 {
                     string strTmpDate = CastAide.AsDateTime(dr["Winlostdate"]).ToString("d-MMM-yy ddd");
                     string strTmp = TemplateHandler.CopyBlock(strRowTpl, "currency");
@@ -227,7 +226,7 @@ public partial class MemberReport : IBCPage
                     if (string.IsNullOrEmpty(strNewRow))//New row but is not first row of date
                         strRow.Append("<tr class=\"nowrap\" bgcolor=\"" + Common.RowBgOdd + "\" onmouseout=\"bgColor='" + Common.RowBgOdd + "'\" onmouseover=\"bgColor='" + Common.RowBgOver + "'\">" + strTmp + "</tr>");
                     intCount++;
-                    if (numRow == dtb.Rows.Count)
+                    if (numRow == table.Rows.Count)
                     {
                         GenerateSubTotal(strRow, strSubTpl, intCount, ref dcDeposit, ref dcTurnover, ref dcBonus, ref dcMemWinloss, ref dcAffWinloss, ref dcHouseWinloss, ref dcAffNetPos, ref dcHouseNetWinloss);//Sub total
                         GenerateMonthlyRow(strTotal, hsTotal);//Monthly for last row

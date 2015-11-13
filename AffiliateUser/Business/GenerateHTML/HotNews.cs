@@ -1,8 +1,8 @@
-﻿using DNAide.Web;
-using DNAide.Core;
-using System.Data;
-using DNAide.Data;
+﻿using System.Data;
 using System.Text;
+using AffiliateUser.Business.DataAccess;
+using DNAide.Core;
+using DNAide.Web;
 
 namespace GenerateHTML
 {

@@ -17,7 +17,7 @@ namespace Affiliate.Infrastructure
     /// </summary>
     public class CacheHelper
     {
-        private const int TIMEOUT = 300; // 5 minutes.
+        private const int TIMEOUT = 120; // 2 minutes.
 
         private static readonly ICache Cache = CacheService.CreateInstance(CacheType.MemoryCache);
 

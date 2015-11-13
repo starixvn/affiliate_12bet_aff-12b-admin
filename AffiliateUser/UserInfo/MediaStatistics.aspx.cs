@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections;
 using DNAide.Web;
-using DNAide.Data;
-using System.Text;
-using AffiliateUser;
 
 public partial class UserInfo_MediaStatistics :RootPageLogIn
 {    
@@ -20,9 +16,6 @@ public partial class UserInfo_MediaStatistics :RootPageLogIn
         TemplateHandler.Assign(ref statisticsContent, "{TotalClick}", Resources.Lang.TotalClick);
         TemplateHandler.Assign(ref statisticsContent, "{UniqueClick}", Resources.Lang.UniqueClick);
         TemplateHandler.Assign(ref statisticsContent, "{Date}", Resources.Lang.Date);
-        TemplateHandler.ReplaceBlock(ref statisticsContent, "Content", GenerateHTML.TrackingSystem.GetStatisticsAllMonthsContentList(null));
-        
+        TemplateHandler.ReplaceBlock(ref statisticsContent, "Content", GenerateHTML.TrackingSystem.GetStatisticsAllMonthsContentList(null)); 
     }
-  
-   
 }

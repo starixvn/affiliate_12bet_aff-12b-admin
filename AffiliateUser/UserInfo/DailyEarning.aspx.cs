@@ -3,7 +3,6 @@ using System.Data;
 using System.Text;
 using DNAide.Web;
 using DNAide.Core;
-using DNAide.Data;
 using AffiliateUser;
 
 public partial class DailyEarning : RootPageLogIn
@@ -14,7 +13,7 @@ public partial class DailyEarning : RootPageLogIn
     protected void Page_Load(object sender, EventArgs e)
     {
 
-        _date = (Request["monthdate"] != null && Request["monthdate"]!="") ? DateTime.Parse(Request["monthdate"].ToString(), cult) : DateTime.Now.AddDays(-1);
+        _date = (Request["monthdate"] != null && Request["monthdate"] != "") ? DateTime.Parse(Request["monthdate"].ToString(), cult) : DateTime.Now.AddDays(-1);
         this.ltrDailyEarning.Text = Resources.Lang.DailyEarnings;
         string strTemplate = TemplateHandler.LoadTemplate("UserInfo/ViewDaily.htm");
         //Assign header
@@ -58,66 +57,59 @@ public partial class DailyEarning : RootPageLogIn
         TemplateHandler.Assign(ref strTemplate, "custid", AppSettings.Session.CustID);
         TemplateHandler.Assign(ref strTemplate, "sporttype", SportType);
 
-        try
-        { 
-            //Get data and assign value
-            DbResult result = DataHandler.UserAff.SelAffEarningDaily(AppSettings.Session.CustID, SportType, _date);
-            DataTable dtbResult = result.ResultSet.Tables[0];
-            if (dtbResult.Rows.Count > 0)
+        //Get data and assign value
+        var result = DataHandler.UserAff.SelAffEarningDaily(AppSettings.Session.CustID, SportType, _date);
+        DataTable dtbResult = result.ResultSet.Tables[0];
+        if (dtbResult.Rows.Count > 0)
+        {
+            string strContent = TemplateHandler.CopyBlock(strTemplate, "content");
+
+            StringBuilder strBuild = new StringBuilder();
+
+            string strRowStyle = "bgcgy";//bgwhite
+            string strMouseStyle = "b";//bgwhite
+            int intNo = 0;
+            foreach (DataRow dr in dtbResult.Rows)
             {
-                string strContent = TemplateHandler.CopyBlock(strTemplate, "content");
-                
-                StringBuilder strBuild = new StringBuilder();
+                strRowStyle = (strRowStyle == "bgcgy") ? "bgwhite" : "bgcgy";
+                strMouseStyle = (strMouseStyle == "b") ? "a" : "b";
+                string strTmp = strContent;
 
-                string strRowStyle = "bgcgy";//bgwhite
-                string strMouseStyle = "b";//bgwhite
-                int intNo = 0;
-                foreach (DataRow dr in dtbResult.Rows)
+                intNo++;
+                TemplateHandler.Assign(ref strTmp, "style", strRowStyle);
+                TemplateHandler.Assign(ref strTmp, "style1", strMouseStyle);
+                TemplateHandler.Assign(ref strTmp, "no", intNo.ToString());
+                TemplateHandler.Assign(ref strTmp, "date-val", Common.ConvertDateTime(dr["winlostdate"], "/", true, false));
+
+                if (AppSettings.Session.HasDailyDetail)
+                    TemplateHandler.Assign(ref strTmp, "winlost-val", Common.FormatNumber(CastAide.AsDecimal(dr["memberwinlost"])));
+                else
+                    TemplateHandler.Assign(ref strTmp, "winlost-val", Common.FormatNumber(CastAide.AsDecimal(dr["memwinlostfake"])));
+
+                TemplateHandler.Assign(ref strTmp, "monthdate-val", Common.ConvertDateTime(dr["winlostdate"], "/", true, false));
+
+                if (SportType != 2)
                 {
-                    strRowStyle = (strRowStyle == "bgcgy") ? "bgwhite" : "bgcgy";
-                    strMouseStyle = (strMouseStyle == "b") ? "a" : "b";
-                    string strTmp = strContent;
-                    
-                    intNo++;
-                    TemplateHandler.Assign(ref strTmp, "style", strRowStyle);
-                    TemplateHandler.Assign(ref strTmp, "style1", strMouseStyle);
-                    TemplateHandler.Assign(ref strTmp, "no", intNo.ToString());
-                    TemplateHandler.Assign(ref strTmp, "date-val", Common.ConvertDateTime(dr["winlostdate"], "/", true, false));
-
-                    if (AppSettings.Session.HasDailyDetail)
-                        TemplateHandler.Assign(ref strTmp, "winlost-val", Common.FormatNumber(CastAide.AsDecimal(dr["memberwinlost"])));
-                    else
-                        TemplateHandler.Assign(ref strTmp, "winlost-val", Common.FormatNumber(CastAide.AsDecimal(dr["memwinlostfake"])));
-
-                    TemplateHandler.Assign(ref strTmp, "monthdate-val", Common.ConvertDateTime(dr["winlostdate"], "/", true, false));
-
-                    if (SportType != 2)
-                    {
-                        TemplateHandler.Assign(ref strTmp, "deposit-val", Common.FormatNumber(dr["deposit"]));
-                        TemplateHandler.Assign(ref strTmp, "withdrawal-val", Common.FormatNumber(dr["withdrawal"]));
-                        TemplateHandler.Assign(ref strTmp, "bonus-val", Common.FormatNumber(dr["bonus"]));
-                        TemplateHandler.Assign(ref strTmp, "adjustment-val", Common.FormatNumber(dr["adjustment"]));
-                    }
-                    
-                    TemplateHandler.Assign(ref strTmp, "psp-val", Common.FormatNumber(dr["psp"]));
-                    strBuild.Append(strTmp);
+                    TemplateHandler.Assign(ref strTmp, "deposit-val", Common.FormatNumber(dr["deposit"]));
+                    TemplateHandler.Assign(ref strTmp, "withdrawal-val", Common.FormatNumber(dr["withdrawal"]));
+                    TemplateHandler.Assign(ref strTmp, "bonus-val", Common.FormatNumber(dr["bonus"]));
+                    TemplateHandler.Assign(ref strTmp, "adjustment-val", Common.FormatNumber(dr["adjustment"]));
                 }
 
-                TemplateHandler.ReplaceBlock(ref strTemplate, "content", strBuild.ToString());
-                
-                MapTotalRow(result.ResultSet.Tables[1], SportType, ref strTemplate);
+                TemplateHandler.Assign(ref strTmp, "psp-val", Common.FormatNumber(dr["psp"]));
+                strBuild.Append(strTmp);
             }
-            else
-            {
-                TemplateHandler.ReplaceBlock(ref strTemplate, "content", Common.NoInfo(6));
-                TemplateHandler.RemoveBlock(ref strTemplate, "total");
-            }
-            this.ltrViewDaily.Text = strTemplate;
+
+            TemplateHandler.ReplaceBlock(ref strTemplate, "content", strBuild.ToString());
+
+            MapTotalRow(result.ResultSet.Tables[1], SportType, ref strTemplate);
         }
-        catch (Exception ex)
+        else
         {
-            Fanex.Logging.LogService.Error(ex.Message);
+            TemplateHandler.ReplaceBlock(ref strTemplate, "content", Common.NoInfo(6));
+            TemplateHandler.RemoveBlock(ref strTemplate, "total");
         }
+        this.ltrViewDaily.Text = strTemplate;
     }
 
     private void MapTotalRow(DataTable dtbResult, int sportType, ref string strTemplate)

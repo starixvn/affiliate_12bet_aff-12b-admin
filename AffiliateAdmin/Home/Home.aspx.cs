@@ -53,15 +53,15 @@ public partial class Home : IBCPage
         Decimal dcPSPAll = CastAide.AsDecimal(dr["PSPFeeAll"]);
         Decimal dcPSPMonth = CastAide.AsDecimal(dr["PSPFeeMonth"]);
 
-        TemplateHandler.Assign(ref content, "AffNum-val", CastAide.AsInt32(dr["PendingAllNum"], 0));
-        TemplateHandler.Assign(ref content, "PaymentReqNum-val", CastAide.AsInt32(dr["PaymentReqNum"], 0));
+        TemplateHandler.Assign(ref content, "AffNum-val", CastAide.AsInt32(dr["PendingAllNum"], 0).ToString(Common.NumberFormatPlaceholder));
+        TemplateHandler.Assign(ref content, "PaymentReqNum-val", CastAide.AsInt32(dr["PaymentReqNum"], 0).ToString(Common.NumberFormatPlaceholder));
 
-        TemplateHandler.Assign(ref content, "AffInProAll-val", CastAide.AsInt32(dr["AffInProAllNum"], 0));
-        TemplateHandler.Assign(ref content, "PendingAll-val", CastAide.AsInt32(dr["PendingAllNum"], 0));
-        TemplateHandler.Assign(ref content, "ApprovedAll-val", CastAide.AsInt32(dr["ApprovedAllNum"], 0));
-        TemplateHandler.Assign(ref content, "DisapprovedAll-val", CastAide.AsInt32(dr["DisapprovedAllNum"], 0));
+        TemplateHandler.Assign(ref content, "AffInProAll-val", CastAide.AsInt32(dr["AffInProAllNum"], 0).ToString(Common.NumberFormatPlaceholder));
+        TemplateHandler.Assign(ref content, "PendingAll-val", CastAide.AsInt32(dr["PendingAllNum"], 0).ToString(Common.NumberFormatPlaceholder));
+        TemplateHandler.Assign(ref content, "ApprovedAll-val", CastAide.AsInt32(dr["ApprovedAllNum"], 0).ToString(Common.NumberFormatPlaceholder));
+        TemplateHandler.Assign(ref content, "DisapprovedAll-val", CastAide.AsInt32(dr["DisapprovedAllNum"], 0).ToString(Common.NumberFormatPlaceholder));
 
-        TemplateHandler.Assign(ref content, "Deposit-val", CastAide.AsInt32(dr["DepositMemAllNum"], 0));
+        TemplateHandler.Assign(ref content, "Deposit-val", CastAide.AsInt32(dr["DepositMemAllNum"], 0).ToString(Common.NumberFormatPlaceholder));
         TemplateHandler.Assign(ref content, "TotalDepositAll-val", Common.FormatNumber(dr["DepositAll"]));
         TemplateHandler.Assign(ref content, "TotalWinlostAll-val", Common.FormatNumber(dr["WinlostAll"]));
         TemplateHandler.Assign(ref content, "TotalBonusAll-val", Common.FormatNumber(dr["BonusAll"]));
@@ -69,18 +69,18 @@ public partial class Home : IBCPage
         TemplateHandler.Assign(ref content, "TotalAdjustmentAll-val", Common.FormatNumber(dr["AdjustmentAll"]));
         TemplateHandler.Assign(ref content, "TotalNetWinlostAll-val", Common.FormatNumber(dr["NetWinlostAll"]));
 
-        TemplateHandler.Assign(ref content, "BannerInPro-val", CastAide.AsInt32(dr["BannerNum"], 0));
-        TemplateHandler.Assign(ref content, "ImageBanner-val", CastAide.AsInt32(dr["ImageBannerNum"], 0));
-        TemplateHandler.Assign(ref content, "FlashBanner-val", CastAide.AsInt32(dr["FlashBannerNum"], 0));
+        TemplateHandler.Assign(ref content, "BannerInPro-val", CastAide.AsInt32(dr["BannerNum"], 0).ToString(Common.NumberFormatPlaceholder));
+        TemplateHandler.Assign(ref content, "ImageBanner-val", CastAide.AsInt32(dr["ImageBannerNum"], 0).ToString(Common.NumberFormatPlaceholder));
+        TemplateHandler.Assign(ref content, "FlashBanner-val", CastAide.AsInt32(dr["FlashBannerNum"], 0).ToString(Common.NumberFormatPlaceholder));
 
-        TemplateHandler.Assign(ref content, "AffInProMoth-val", CastAide.AsInt32(dr["AffInProMonthNum"], 0));
-        TemplateHandler.Assign(ref content, "PendingMonth-val", CastAide.AsInt32(dr["PendingMonthNum"], 0));
-        TemplateHandler.Assign(ref content, "ApprovedMonth-val", CastAide.AsInt32(dr["ApprovedMonthNum"], 0));
-        TemplateHandler.Assign(ref content, "DisapprovedMonth-val", CastAide.AsInt32(dr["DisapprovedMonthNum"], 0));
-        TemplateHandler.Assign(ref content, "ClosedMonth-val", CastAide.AsInt32(dr["ClosedMonthNum"], 0));
-        TemplateHandler.Assign(ref content, "ClosedAllNum-val", CastAide.AsInt32(dr["ClosedAllNum"], 0));
+        TemplateHandler.Assign(ref content, "AffInProMoth-val", CastAide.AsInt32(dr["AffInProMonthNum"], 0).ToString(Common.NumberFormatPlaceholder));
+        TemplateHandler.Assign(ref content, "PendingMonth-val", CastAide.AsInt32(dr["PendingMonthNum"], 0).ToString(Common.NumberFormatPlaceholder));
+        TemplateHandler.Assign(ref content, "ApprovedMonth-val", CastAide.AsInt32(dr["ApprovedMonthNum"], 0).ToString(Common.NumberFormatPlaceholder));
+        TemplateHandler.Assign(ref content, "DisapprovedMonth-val", CastAide.AsInt32(dr["DisapprovedMonthNum"], 0).ToString(Common.NumberFormatPlaceholder));
+        TemplateHandler.Assign(ref content, "ClosedMonth-val", CastAide.AsInt32(dr["ClosedMonthNum"], 0).ToString(Common.NumberFormatPlaceholder));
+        TemplateHandler.Assign(ref content, "ClosedAllNum-val", CastAide.AsInt32(dr["ClosedAllNum"], 0).ToString(Common.NumberFormatPlaceholder));
 
-        TemplateHandler.Assign(ref content, "DepositMonth-val", CastAide.AsInt32(dr["DepositMemMonthNum"], 0));
+        TemplateHandler.Assign(ref content, "DepositMonth-val", CastAide.AsInt32(dr["DepositMemMonthNum"], 0).ToString(Common.NumberFormatPlaceholder));
         TemplateHandler.Assign(ref content, "TotalDepositMonth-val", Common.FormatNumber(dr["DepositMonth"]));
         TemplateHandler.Assign(ref content, "TotalWinlostMonth-val", Common.FormatNumber(dr["WinlostMonth"]));
         TemplateHandler.Assign(ref content, "TotalBonusMonth-val", Common.FormatNumber(dr["BonusMonth"]));
@@ -97,9 +97,9 @@ public partial class Home : IBCPage
 
 
         TemplateHandler.Assign(ref content, "MemInAffProAll-val", CastAide.AsInt32(dr1["MemInProAllNum"], 0));
-        TemplateHandler.Assign(ref content, "NonDeposit-val", nonDepositMemAllNum);
+        TemplateHandler.Assign(ref content, "NonDeposit-val", nonDepositMemAllNum.ToString(Common.NumberFormatPlaceholder));
         TemplateHandler.Assign(ref content, "MemInAffProMonth-val", CastAide.AsInt32(dr1["MemInProMonthNum"], 0));
-        TemplateHandler.Assign(ref content, "NonDepositMonth-val", NonDepositMemMonthNum);
+        TemplateHandler.Assign(ref content, "NonDepositMonth-val", NonDepositMemMonthNum.ToString(Common.NumberFormatPlaceholder));
 
         int pagesize = CastAide.AsInt32(Request["pagesize"], 20);
         int page = CastAide.AsInt32(Request["page"], 1);

@@ -1,11 +1,8 @@
-﻿using System.Text;
+﻿using System;
 using System.Data;
-using System.Web.UI.WebControls;
-using DNAide.Data;
-using DNAide.Web;
+using System.Text;
 using DNAide.Core;
-using DNAide.Utils;
-using System;
+using DNAide.Web;
 
 /// <summary>
 /// Thai@20121105
@@ -41,7 +38,7 @@ namespace GenerateHTML
             }
 
             //Get data and assign value
-            DbResult result = DataHandler.UserAff.SelAffEarningDaily(AppSettings.Session.CustID, sportType, date);
+            var result = DataHandler.UserAff.SelAffEarningDaily(AppSettings.Session.CustID, sportType, date);
             DataTable dtbResult = result.ResultSet.Tables[0];
             if (dtbResult.Rows.Count > 0)
             {

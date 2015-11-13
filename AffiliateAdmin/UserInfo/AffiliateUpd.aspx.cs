@@ -7,6 +7,7 @@ using DNAide.Web;
 using DNAide.Core;
 using DNAide.Utils;
 using DataHandler;
+using AffiliateAdmin.Business.Constants;
 
 public partial class AffiliateUpd : IBCPage
 {
@@ -16,7 +17,7 @@ public partial class AffiliateUpd : IBCPage
         string strTpl = TemplateHandler.LoadTemplate("UserInfo/AffUpd.htm");
 
         int intcustid = AppSettings.Session.AffId;
-        if (!Common.isRead("[SecurityQA]"))
+        if (!Common.HasReadPermission(PermissionNames.SecurityQA))
             TemplateHandler.RemoveBlock(ref strTpl, "securityqa");
 
         TemplateHandler.Assign(ref strTpl, "edit", Resources.Lang.Edit);

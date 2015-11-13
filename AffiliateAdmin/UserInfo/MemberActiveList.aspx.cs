@@ -1,15 +1,29 @@
 ﻿using System;
-using System.Text;
 using System.Data;
-using DNAide.Web;
+using System.Text;
+using System.Web;
+using AffiliateAdmin.Business.Constants;
 using DNAide.Core;
+using DNAide.Web;
 
 public partial class UserInfo_MemberActiveList : IBCPage
 {
+    protected override void OnInit(EventArgs e)
+    {
+        base.OnInit(e);
+        Response.Cache.SetCacheability(HttpCacheability.NoCache);
+    }
+
     protected void Page_Load(object sender, EventArgs e)
     {
         string strTpl = TemplateHandler.LoadTemplate("UserInfo/MemActiveList.htm");
-        
+
+
+        if (!Common.HasHostPermission(AppSettings.Session.CustID, PermissionNames.ActiveMembers))
+        {
+            TemplateHandler.RemoveBlock(ref strTpl, "active-button");
+        }
+
         TemplateHandler.Assign(ref strTpl, "username-text", Resources.Lang.Username);        
         TemplateHandler.Assign(ref strTpl, "ibcusername-text", Resources.Lang.IBCUsername);
         TemplateHandler.Assign(ref strTpl, "fname", Resources.Lang.Fname);

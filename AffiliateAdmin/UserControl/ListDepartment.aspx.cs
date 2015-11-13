@@ -50,7 +50,7 @@ public partial class ListDepartment : IBCPage
                 }
                 else
                 {
-                    TemplateHandler.Assign(ref _listcontent, "NoOfUser_Value", dr["nouser"]);
+                    TemplateHandler.Assign(ref _listcontent, "NoOfUser_Value", CastAide.AsInt32(dr["nouser"]).ToString(Common.NumberFormatPlaceholder));
                 }
                 TemplateHandler.Assign(ref _listcontent, "Description_Value", dr["groupdesc"]);
                 TemplateHandler.Assign(ref _listcontent, "RolePolicy_Value", Resources.Lang.RolePolicy);

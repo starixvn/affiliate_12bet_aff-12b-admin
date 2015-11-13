@@ -3,7 +3,8 @@ using System.Web;
 using AffiliateAdmin.Business.DataAccess;
 using System.Collections;
 using DNAide.Core;
-using DNAide.Utils;  
+using DNAide.Utils;
+using System.Text;  
 /// <summary>
 /// Summary description for Login
 /// </summary>
@@ -86,30 +87,23 @@ namespace DataHandler
             DbHelper.Execute("Aff_Logout", DBType.AFFILIATE_12BET, htb);
             //DbHelper.Execute("Aff_Logout", htb, DBType.ON_USER);   
         }
+
         public static string AssignRoles(int custid)
         {
-            string result = string.Empty;
-            DbResult ds = DataHandler.UserControl.GetUserPolicy(custid);
-            int counter = 0;
-            if (ds != null)
+            var result = new StringBuilder();
+            var dataSet = DataHandler.UserControl.GetUserPolicy(custid);
+            if (dataSet != null)
             {
-                foreach (DataRow dr in ds.ResultSet.Tables[0].Rows)
+                foreach (DataRow dr in dataSet.ResultSet.Tables[0].Rows)
                 {
-                    counter++;
                     if (CastAide.AsInt32(dr["subfunccount"]) == 0)
                     {
-                        if (counter == ds.ResultSet.Tables[0].Rows.Count)
-                        {
-                            result += dr["funcname"] + "-" + ((CastAide.AsInt32(dr["actual_policy"]) > 1) ? "1" : dr["actual_policy"]);
-                        }
-                        else
-                        {
-                            result += dr["funcname"] + "-" + ((CastAide.AsInt32(dr["actual_policy"]) > 1) ? "1" : dr["actual_policy"]) + "|";
-                        }
+                        result.Append(dr["funcname"] + "-" + ((CastAide.AsInt32(dr["actual_policy"]) > 1) ? "1" : dr["actual_policy"]) + "|");                        
                     }
                 }
             }
-            return result;
+
+            return result.ToString().TrimEnd('|');
         }
 
     }

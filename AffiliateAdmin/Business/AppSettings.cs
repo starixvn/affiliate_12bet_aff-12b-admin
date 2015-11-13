@@ -463,13 +463,15 @@ public static class AppSettings
         {
             get
             {
-                return HttpContext.Current.Session["RoleAccess"].ToString();
+                var value = HttpContext.Current.Session["RoleAccess"];
+                return value == null ? string.Empty : value.ToString();
             }
             set
             {
                 HttpContext.Current.Session["RoleAccess"] = value;
             }
         }
+
         public static int AffId
         {
             get

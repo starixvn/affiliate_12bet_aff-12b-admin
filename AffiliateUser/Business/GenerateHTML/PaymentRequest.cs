@@ -1,10 +1,9 @@
-﻿using System.Text;
-using System.Data;
+﻿using System.Data;
+using System.Text;
 using System.Web.UI.WebControls;
-using DNAide.Data;
-using DNAide.Web;
 using DNAide.Core;
 using DNAide.Utils;
+using DNAide.Web;
 
 /// <summary>
 /// Vinh
@@ -27,7 +26,7 @@ namespace GenerateHTML
             TemplateHandler.Assign(ref strListRequest, "description", Resources.Lang.Description);
             TemplateHandler.Assign(ref strListRequest, "cancelpayout", Resources.Lang.CancelRequest);
             //Get data and assign list request
-            DbResult result = DataHandler.PaymentRequest.GetInfo(AppSettings.Session.CustID);
+            var result = DataHandler.PaymentRequest.GetInfo(AppSettings.Session.CustID);
            
             strBalance = Common.FormatNumber(result.Outputs["balbroughtforward"]);
             strMinAmt = Common.FormatNumber(result.Outputs["minamount"]);

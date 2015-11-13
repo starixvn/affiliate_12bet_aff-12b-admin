@@ -1,7 +1,9 @@
 <%@ Page Language="C#" MasterPageFile="~/Master.master" AutoEventWireup="true"
     Inherits="PaymentRequest" Title="12Bet Affiliate Program" Codebehind="PaymentRequest.aspx.cs" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
+<%
+    bool canRequestPayout = DateTime.Now.Day >= 8 && DateTime.Now.Day <= 15;
+ %>
     <script type="text/javascript">
         RefreshPage(300);
     </script>
@@ -23,7 +25,7 @@
                     </div>
                     <div class="box_conts_line"></div>
                     <br />
-                    <%if (DateTime.Now.Day >= 8 && DateTime.Now.Day <= 15)
+                    <%if (canRequestPayout)
                       {%>  
                     <div id="errMsg" style="display: none;" class="msg-wid">
                         <div id="divErr">
@@ -102,12 +104,12 @@
                         </tr>
                         <tr>
                             <td><%=Resources.Lang.RequestAmt %></td>
-                            <td class="r"><input type="text" id="txtAmt" name="txtAmt" <%= !(DateTime.Now.Day >= 8 && DateTime.Now.Day <= 15) ? "readonly" : string.Empty %> class="inputbox" style="width: 90px; text-align: right;" /></td>
+                            <td class="r"><input type="text" id="txtAmt" name="txtAmt" <%= !canRequestPayout ? "readonly" : string.Empty %> class="inputbox" style="width: 90px; text-align: right;" /></td>
                             <td></td>
                         </tr>
                         <tr>
                             <td colspan="2" class="c">
-                                <%if (DateTime.Now.Day >= 8 && DateTime.Now.Day <= 15)
+                                <%if (canRequestPayout)
                                   {%>                                
                                     <input type="submit" class="button" id="btnRequest" name="btnRequest" value="<%=Resources.Lang.RequestPayout %>" />
                                     <%}
@@ -174,7 +176,7 @@
             ShowErrorNotLink(arrError, arrItem, "error_item");
         }
         function RequestPayout() {
-            <%if (!(DateTime.Now.Day >= 8 && DateTime.Now.Day <= 15))
+            <%if (!canRequestPayout)
               {%>  
                 return false;
               <%} %>

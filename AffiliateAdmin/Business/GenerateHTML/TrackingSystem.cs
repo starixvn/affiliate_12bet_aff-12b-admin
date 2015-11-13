@@ -29,8 +29,8 @@ namespace GenerateHTML
                     {
                         string strTmp = strContent;
                         TemplateHandler.Assign(ref strTmp, "No-val", ++intNo);
-                        TemplateHandler.Assign(ref strTmp, "TotalClick-val", dr["totalclick"].ToString());
-                        TemplateHandler.Assign(ref strTmp, "UniqueClick-val", dr["uniqueclick"].ToString());
+                        TemplateHandler.Assign(ref strTmp, "TotalClick-val",CastAide.AsInt32(dr["totalclick"]).ToString(Common.NumberFormatPlaceholder));
+                        TemplateHandler.Assign(ref strTmp, "UniqueClick-val", CastAide.AsInt32(dr["uniqueclick"]).ToString(Common.NumberFormatPlaceholder));
                         TemplateHandler.Assign(ref strTmp, "Month-val", Convert.ToDateTime(dr["date"]).ToString("MMMM-yyyy"));
                         TemplateHandler.Assign(ref strTmp, "MonthFull-val", dr["date"].ToString());
                         TemplateHandler.Assign(ref strTmp, "color", (intNo % 2 == 0) ? Common.RowBgEven : Common.RowBgOdd);
@@ -187,10 +187,10 @@ namespace GenerateHTML
 
                 TemplateHandler.ReplaceBlock(ref strRowTpl, "page", "Old URL");
                 TemplateHandler.Assign(ref strRowTpl, "Language-val", "none");
-                TemplateHandler.Assign(ref strRowTpl, "TotalClick-val", totalClicks);
-                TemplateHandler.Assign(ref strRowTpl, "UniqueClick-val", totalUniqueClicks);
-                TemplateHandler.Assign(ref strRowTpl, "Signups-val", (newSignups - totalSignupsNewLink) > 0 ? (newSignups - totalSignupsNewLink).ToString() : "0");
-                TemplateHandler.Assign(ref strRowTpl, "FDM-val", (totalDepositUsers - totalDepositsNewLink) > 0 ? (totalDepositUsers - totalDepositsNewLink).ToString() : "0");
+                TemplateHandler.Assign(ref strRowTpl, "TotalClick-val", totalClicks.ToString(Common.NumberFormatPlaceholder));
+                TemplateHandler.Assign(ref strRowTpl, "UniqueClick-val", totalUniqueClicks.ToString(Common.NumberFormatPlaceholder));
+                TemplateHandler.Assign(ref strRowTpl, "Signups-val", (newSignups - totalSignupsNewLink) > 0 ? (newSignups - totalSignupsNewLink).ToString(Common.NumberFormatPlaceholder) : "0");
+                TemplateHandler.Assign(ref strRowTpl, "FDM-val", (totalDepositUsers - totalDepositsNewLink) > 0 ? (totalDepositUsers - totalDepositsNewLink).ToString(Common.NumberFormatPlaceholder) : "0");
 
 
                 return strRowTpl;

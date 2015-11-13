@@ -32,7 +32,6 @@ namespace DataHandler
         }
         public static DbResult GetListUser(int groupid, string username, string firstchar)
         {
-            DbResult dbr = null;
             Hashtable htb = new Hashtable();
             if (groupid != 0)
             {
@@ -48,14 +47,11 @@ namespace DataHandler
             {
                 htb.Add("username", "%" + username + "%");
             }
-            //  htb.Add("system", "AFFILIATE");
-            dbr = DbHelper.Execute("Aff_Con_AdminSelByGroupID", DBType.AFFILIATE_12BET, htb);
-            return dbr;
 
+            return DbHelper.Execute("Aff_Con_AdminSelByGroupID", DBType.AFFILIATE_12BET, htb);
         }
         public static int UpdateStatusAccount(int custid, bool closed, ref string errmsg)
         {
-            //Acc_Con_AdminUpdClosed
             int errcode = -1;
             Hashtable htb = new Hashtable();
             htb.Add("custid", custid);
@@ -65,7 +61,6 @@ namespace DataHandler
             htb.Add("ip", HttpContext.Current.Request.UserHostAddress);
             htb.Add("errcode", 0);
             htb.Add("errmsg", string.Empty);
-            //htb.Add("system", "AFFILIATE");
 
             DbResult dbr = DbHelper.Execute("Aff_Con_AdminUpdClosed", DBType.AFFILIATE_12BET, htb);
             errcode = CastAide.AsInt32(dbr.Outputs["errcode"]);
@@ -76,10 +71,7 @@ namespace DataHandler
 
         public static DbResult GetSelectDepartment()
         {
-            Hashtable htb = new Hashtable();
-            // htb.Add("system", "Affiliate");
-            DbResult dbr = DbHelper.Execute("Aff_Con_GroupInfoSel", DBType.AFFILIATE_12BET, htb);
-            return dbr;
+            return DbHelper.Execute("Aff_Con_GroupInfoSel", DBType.AFFILIATE_12BET);
         }
         public static int AddNewUser(string firstname, string lastname, string username, string password, int groupid, ref string errmsg)
         {
@@ -92,7 +84,6 @@ namespace DataHandler
             htb.Add("custid", 0);
             htb.Add("userid", AppSettings.Session.CustID);
             htb.Add("groupid", groupid);
-            //htb.Add("system", "AFFILIATE");
             htb.Add("ip", HttpContext.Current.Request.UserHostAddress);
             htb.Add("language", "E");
             htb.Add("errcode", 0);
@@ -111,7 +102,6 @@ namespace DataHandler
             htb.Add("username", HttpContext.Current.Server.HtmlEncode(username.Trim()));
             htb.Add("creator", AppSettings.Session.CustID);
             htb.Add("groupid", groupid);
-            //htb.Add("system", "AFFILIATE");
             htb.Add("ip", HttpContext.Current.Request.UserHostAddress);
             htb.Add("language", "E");
             htb.Add("errcode", 0);
@@ -140,7 +130,6 @@ namespace DataHandler
             htb.Add("errcode", 0);
             htb.Add("errmsg", string.Empty);
             htb.Add("userid", userID);
-            // htb.Add("system", "AFFILIATE");
             return DbHelper.Execute("Aff_Con_GroupInfoUpd", DBType.AFFILIATE_12BET, htb);
         }
         public static DbResult AddDepartment(string groupName, string groupDesc, int userID)
@@ -154,7 +143,6 @@ namespace DataHandler
             htb.Add("language", "E");
             htb.Add("errcode", 0);
             htb.Add("errmsg", string.Empty);
-            //htb.Add("system", "AFFILIATE");
             return DbHelper.Execute("Aff_Con_GroupInfoIns", DBType.AFFILIATE_12BET, htb);
         }
         public static DbResult DelDepartment(int groupID, int userID)
@@ -166,19 +154,16 @@ namespace DataHandler
             htb.Add("errmsg", string.Empty);
             htb.Add("userid", userID);
             htb.Add("ip", HttpContext.Current.Request.UserHostAddress);
-            //  htb.Add("system", "AFFILIATE");
             return DbHelper.Execute("Aff_Con_GroupInfoDel", DBType.AFFILIATE_12BET, htb);
         }
         public static DbResult GetOnlyUser(int custid)
         {
             Hashtable htb = new Hashtable();
             htb.Add("custid", custid);
-            // htb.Add("system", "AFFILIATE");
             return DbHelper.Execute("Aff_Con_AdminSelByCustID", DBType.AFFILIATE_12BET, htb);
         }
         public static DbResult UpdateUser(int custid, string firstname, string lastname, int groupid)
         {
-            //Acc_Con_AdminUpd_1
             Hashtable htb = new Hashtable();
             htb.Add("custid", custid);
             htb.Add("groupid", groupid);
@@ -186,7 +171,6 @@ namespace DataHandler
             htb.Add("lastname", HttpContext.Current.Server.HtmlEncode(lastname));
             htb.Add("userid", AppSettings.Session.CustID);
             htb.Add("ip", HttpContext.Current.Request.UserHostAddress);
-            //     htb.Add("system", "AFFILIATE");
             return DbHelper.Execute("Aff_Con_AdminUpd", DBType.AFFILIATE_12BET, htb);
         }
         public static DbResult GetGroupPolicy(int groupId)
@@ -200,7 +184,6 @@ namespace DataHandler
             Hashtable htb = new Hashtable();
             htb.Add("custid", custId);
             htb.Add("groupid", 0);
-            // htb.Add("system", "AFFILIATE");
             return DbHelper.Execute("Aff_Con_AdminPolicySelByCustID", DBType.AFFILIATE_12BET, htb);
         }
         public static DbResult UpdateUserPolicy(string memberPolicies, int userID)
@@ -212,7 +195,6 @@ namespace DataHandler
             htb.Add("ip", HttpContext.Current.Request.UserHostAddress);
             htb.Add("errcode", 0);
             htb.Add("errmsg", string.Empty);
-            // htb.Add("system", "AFFILIATE");
             return DbHelper.Execute("Aff_Con_AdminPolicyUpd", DBType.AFFILIATE_12BET, htb);
         }
         public static DbResult UpdateGroupPolicy(string groupPolicies, int userID)
@@ -224,7 +206,6 @@ namespace DataHandler
             htb.Add("language", "E");
             htb.Add("errcode", 0);
             htb.Add("errmsg", string.Empty);
-            //htb.Add("system", "AFFILIATE");
             return DbHelper.Execute("Aff_Con_GroupPolicyUpd", DBType.AFFILIATE_12BET, htb);
         }
         public static DbResult GetMultUpdPolicy(string custId)
@@ -232,14 +213,11 @@ namespace DataHandler
             Hashtable htb = new Hashtable();
             htb.Add("custids", custId);
             htb.Add("groupid", 0);
-            //htb.Add("system", "AFFILIATE");
             return DbHelper.Execute("Aff_Con_Batch_AdminPolicySel", DBType.AFFILIATE_12BET, htb);
         }
         public static DbResult GetFunctionInfo()
         {
-            Hashtable param = new Hashtable();
-            //param.Add("system", "AFFILIATE");
-            return DbHelper.Execute("Aff_Con_FuncInfoSel", DBType.AFFILIATE_12BET, param);
+            return DbHelper.Execute("Aff_Con_FuncInfoSel", DBType.AFFILIATE_12BET);
         }
         public static DbResult GetOnlyFunctionInfo(int funcid)
         {
@@ -249,59 +227,7 @@ namespace DataHandler
         }
         public static DbResult FunctionParent()
         {
-            Hashtable param = new Hashtable();
-            //param.Add("system", "AFFILIATE");
-            return DbHelper.Execute("Aff_Con_FuncInfoSelParent", DBType.AFFILIATE_12BET, param);
-        }
-
-        public static DbResult InsertFunction(string strName, string strDesc, string strFileNames, string strParent, int intUserId)
-        {
-            Hashtable param = new Hashtable();
-            param.Add("funcid", 0);
-            param.Add("funcname", HttpContext.Current.Server.HtmlEncode(strName));
-            param.Add("funcnote", "");
-            param.Add("funcdesc", HttpContext.Current.Server.HtmlEncode(strDesc));
-            param.Add("displayorder", 1);
-            if (!string.IsNullOrEmpty(strParent))
-                param.Add("parentid", HttpContext.Current.Server.HtmlEncode(strParent));
-            param.Add("filenames", HttpContext.Current.Server.HtmlEncode(strFileNames));
-            param.Add("userid", intUserId);
-            param.Add("ip", HttpContext.Current.Request.UserHostAddress);
-            param.Add("language", "E");
-            param.Add("errcode", 0);
-            param.Add("errmsg", "");
-            // param.Add("system", "AFFILIATE");
-            return DbHelper.Execute("Aff_Con_FuncInfoIns", DBType.AFFILIATE_12BET, param);
-        }
-        public static DbResult UpdateFunction(int intFuncId, int intUserId, string strName, string strDesc, string strFileNames)
-        {
-            Hashtable param = new Hashtable();
-            param.Add("funcid", intFuncId);
-            param.Add("funcname", HttpContext.Current.Server.HtmlEncode(strName));
-            param.Add("funcnote", "");
-            param.Add("funcdesc", HttpContext.Current.Server.HtmlEncode(strDesc));
-            param.Add("displayorder", 1);
-            param.Add("filenames", HttpContext.Current.Server.HtmlEncode(strFileNames));
-            param.Add("userid", intUserId);
-            param.Add("ip", HttpContext.Current.Request.UserHostAddress);
-            param.Add("language", "E");
-            param.Add("errcode", 0);
-            param.Add("errmsg", "");
-            // param.Add("system", "AFFILIATE");
-            return DbHelper.Execute("Aff_Con_FuncInfoUpd", DBType.AFFILIATE_12BET, param);
-        }
-
-        public static DbResult DeleteFunction(int intFuncId, int intUserId)
-        {
-            Hashtable param = new Hashtable();
-            param.Add("funcid", intFuncId);
-            param.Add("language", "E");
-            param.Add("errcode", 0);
-            param.Add("errmsg", "");
-            param.Add("userid", intUserId);
-            //param.Add("system", "AFFILIATE");
-            param.Add("ip", HttpContext.Current.Request.UserHostAddress);
-            return DbHelper.Execute("Aff_Con_FuncInfoDel", DBType.AFFILIATE_12BET, param);
+            return DbHelper.Execute("Aff_Con_FuncInfoSelParent", DBType.AFFILIATE_12BET);
         }
     }
 }

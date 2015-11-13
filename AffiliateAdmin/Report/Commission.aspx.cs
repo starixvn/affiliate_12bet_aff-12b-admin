@@ -123,7 +123,7 @@ public partial class Report_Commission : IBCPage
                 TemplateHandler.Assign(ref strTmp, "aff-val", dr["username"]);
                 TemplateHandler.Assign(ref strTmp, "affid-val", dr["affid"]);
                 TemplateHandler.Assign(ref strTmp, "commission-val", DataFormat.FormatNumber2(dr["commission"]));
-                TemplateHandler.Assign(ref strTmp, "affcomm-val", dr["affComm"]);
+                TemplateHandler.Assign(ref strTmp, "affcomm-val", CastAide.AsDecimal(dr["affComm"]).ToString("N"));
 
                 strListRow.Append(strTmp);
             }

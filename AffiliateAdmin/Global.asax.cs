@@ -74,14 +74,10 @@ namespace AffiliateAdmin
         {
             try
             {
-
-                if (!User.Identity.IsAuthenticated || Request.RawUrl.IndexOf(".aspx") == -1 || Session["RoleAccess"] == null)
+                if (!User.Identity.IsAuthenticated || Request.RawUrl.IndexOf(".aspx") == -1 || string.IsNullOrWhiteSpace(AppSettings.Session.RoleAccess))
                     return;
 
-
-                string _accessPermission = "";
-                _accessPermission = Session["RoleAccess"].ToString();
-                if (_accessPermission.IndexOf("[All]", StringComparison.CurrentCultureIgnoreCase) != -1) return;
+                if (AppSettings.Session.RoleAccess.IndexOf("[All]", StringComparison.CurrentCultureIgnoreCase) != -1) return;
 
                 string url;
                 if (AppSettings.VirtualDir)
@@ -100,7 +96,7 @@ namespace AffiliateAdmin
                 string pageRole = ((Dictionary<string, string>)Context.Cache["AccessPermission"]).ContainsKey(url) ? ((Dictionary<string, string>)Context.Cache["AccessPermission"])[url] : "";
                 //HttpContext.Current.Response.Write("Raw url: " + Request.RawUrl.ToString() + "");
                 if (string.Compare(pageRole, "[All]", true) == 0) return;
-                if (_accessPermission.IndexOf(pageRole) == -1)
+                if (AppSettings.Session.RoleAccess.IndexOf(pageRole) == -1)
                 {
                     Response.Redirect("~/AccessDenied.aspx");
                 }

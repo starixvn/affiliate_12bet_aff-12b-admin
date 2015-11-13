@@ -39,6 +39,7 @@ public class Common
     public const string RowBgOver = "#FFF5A5";
     public const string RowBgClosed = "#d6d4d2";
     public const string RowBgPending = "#e8ded6";
+    public const string NumberFormatPlaceholder = "N0";
     private const int TimeCacheUM = 10;
 
     // ++ Added by Frank.Ngo on IRP 671 - 10 Jan 2012
@@ -545,15 +546,15 @@ public class Common
 
     public static string FormatNumber(object Number)
     {
-        decimal dcNumber = CastAide.AsDecimal(Number);
-        if (dcNumber >= 0)
+        decimal decimalNumber = decimal.Round(CastAide.AsDecimal(Number), 2);
+        if (decimalNumber >= 0)
         {
-            return "$" + NumberFormat.DecFormat(dcNumber, 2);
+            return "$" + decimalNumber.ToString("N");
         }
         else
         {
-            dcNumber = dcNumber * -1;
-            return "-$" + NumberFormat.DecFormat(dcNumber, 2);
+            decimalNumber = decimalNumber * -1;
+            return "-$" + decimalNumber.ToString("N");
         }
     }
 
@@ -821,23 +822,16 @@ public class Common
     }
 
     //Get permission host per function
-    public static bool isHost(int CustId, string funcName)
+    public static bool HasHostPermission(int CustId, string funcName)
     {
-        bool isTrue = false;
-        DbResult result = DataHandler.Affiliate.SelPermission(CustId, funcName);
-        if (CastAide.AsInt32(result.Outputs["errcode"]) == 0)
-            isTrue = true;
-        return isTrue;
+        var result = DataHandler.Affiliate.SelPermission(CustId, funcName);
+        return CastAide.AsInt32(result.Outputs["errcode"]) == 0;        
     }
 
     //Get permission host per function
-    public static bool isRead(string funcName)
+    public static bool HasReadPermission(string funcName)
     {
-        string roleAccess = HttpContext.Current.Session["RoleAccess"] == null ? string.Empty : HttpContext.Current.Session["RoleAccess"].ToString();
-        if (roleAccess.IndexOf(funcName + "-1") >= 0)
-            return true;
-        else
-            return false;
+        return AppSettings.Session.RoleAccess.IndexOf(funcName + "-1") >= 0;
     }
 
     // get Error message according to error code

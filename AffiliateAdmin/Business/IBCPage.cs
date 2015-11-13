@@ -15,6 +15,7 @@ public class IBCPage : System.Web.UI.Page
     private string _vers = string.Empty;
     protected string ThemePath;
     protected bool IsGetAllCss =true;
+
     protected override void InitializeCulture()
     {
         _locale = (HttpContext.Current.Session["Culture"] == null) ? "en-US" : HttpContext.Current.Session["Culture"].ToString();

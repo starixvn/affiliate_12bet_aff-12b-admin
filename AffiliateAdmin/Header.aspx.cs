@@ -1,8 +1,16 @@
 ﻿using System;
 using System.Text;
+using System.Web;
+using AffiliateAdmin.Business.Constants;
 using DNAide.Web;
 public partial class Header : IBCPage
 {
+    protected override void OnInit(EventArgs e)
+    {
+        base.OnInit(e);
+        Response.Cache.SetCacheability(HttpCacheability.NoCache);
+    }
+
     protected void Page_Load(object sender, EventArgs e)
     {
         string temp = TemplateHandler.LoadTemplate("Header.htm");
@@ -34,7 +42,7 @@ public partial class Header : IBCPage
         TemplateHandler.Assign(ref temp, "minute", dt.Minute);
         TemplateHandler.Assign(ref temp, "second", dt.Second);
 
-        if (!Common.isRead("[Domain]"))
+        if (!Common.HasReadPermission(PermissionNames.Domain))
             TemplateHandler.RemoveBlock(ref temp, "domain");
 
 

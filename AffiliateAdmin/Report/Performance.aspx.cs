@@ -110,8 +110,8 @@ public partial class Report_Performance : IBCPage
 
                 TemplateHandler.Assign(ref strTmp, "affiliate-val", dr["Username"]);
                 TemplateHandler.Assign(ref strTmp, "affiliateid", dr["AffId"]);
-                TemplateHandler.Assign(ref strTmp, "activeplayer", dr["ActivePlayer"]);
-                TemplateHandler.Assign(ref strTmp, "qualified-member", dr["QualifiedMembers"]);
+                TemplateHandler.Assign(ref strTmp, "activeplayer", CastAide.AsInt32(dr["ActivePlayer"]).ToString(Common.NumberFormatPlaceholder));
+                TemplateHandler.Assign(ref strTmp, "qualified-member", CastAide.AsInt32(dr["QualifiedMembers"]).ToString(Common.NumberFormatPlaceholder));
                 TemplateHandler.Assign(ref strTmp, "deposit", NumberFormat.DecFormat(dr["deposit"], 2));
                 TemplateHandler.Assign(ref strTmp, "withdrawal", NumberFormat.DecFormat(dr["withdrawal"], 2));
                 TemplateHandler.Assign(ref strTmp, "turnover", NumberFormat.DecFormat(dr["turnover"], 2));

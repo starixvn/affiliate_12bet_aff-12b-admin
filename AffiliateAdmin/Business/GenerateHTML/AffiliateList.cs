@@ -79,7 +79,7 @@ namespace AffAdmin.GenerateHTML
                         TemplateHandler.Assign(ref strTmp, "lname-val", dr["lastname"].ToString());
                         TemplateHandler.Assign(ref strTmp, "language-val", Common.GerFullTextLang(dr["preferredlanguage"])); 
                        
-                        TemplateHandler.Assign(ref strTmp, "member-val", intMemNum);
+                        TemplateHandler.Assign(ref strTmp, "member-val", intMemNum.ToString(Common.NumberFormatPlaceholder));
                         TemplateHandler.Assign(ref strTmp, "favorcss", CastAide.AsInt32(dr["favorite"]) == 0 ? "favor-uncheck" : "favor-check");
                        
                         if (string.Compare(strStatus, "Pending", true) != 0 && string.Compare(strStatus, "Disapproved", true) != 0)

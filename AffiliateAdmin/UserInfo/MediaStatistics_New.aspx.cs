@@ -73,10 +73,10 @@ public partial class Report_MediaStatistics_New : IBCPage
                         TemplateHandler.ReplaceBlock(ref strTmp, "page", dr["DomainReferrer"].ToString());
 
                     TemplateHandler.Assign(ref strTmp, "Site-val", dr["DomainReferrer"]);
-                    TemplateHandler.Assign(ref strTmp, "TotalClick-val", dr["totalclick"].ToString());
-                    TemplateHandler.Assign(ref strTmp, "UniqueClick-val", dr["uniqueclick"].ToString());
-                    TemplateHandler.Assign(ref strTmp, "Signups-val", dr["Signups"].ToString());
-                    TemplateHandler.Assign(ref strTmp, "FDM-val", dr["FDM"].ToString());
+                    TemplateHandler.Assign(ref strTmp, "TotalClick-val", CastAide.AsInt32(dr["totalclick"]).ToString(Common.NumberFormatPlaceholder));
+                    TemplateHandler.Assign(ref strTmp, "UniqueClick-val", CastAide.AsInt32(dr["uniqueclick"]).ToString(Common.NumberFormatPlaceholder));
+                    TemplateHandler.Assign(ref strTmp, "Signups-val", CastAide.AsInt32(dr["Signups"]).ToString(Common.NumberFormatPlaceholder));
+                    TemplateHandler.Assign(ref strTmp, "FDM-val", CastAide.AsInt32(dr["FDM"]).ToString(Common.NumberFormatPlaceholder));
                     TemplateHandler.Assign(ref strTmp, "DeviceType-val", deviceType);
 
                     strListRow.Append(strTmp);

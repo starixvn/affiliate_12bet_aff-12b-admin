@@ -11,19 +11,12 @@ public partial class PaymentRequest : RootPageLogIn
     protected void Page_Load(object sender, EventArgs e)
     {
         Response.Cache.SetCacheability(HttpCacheability.Private);
-        try
-        {
             ltrListRequest.Text = GenerateHTML.PaymentRequest.PaymentList(ref strBalance, ref strMinAmt,ref strPaymentMethod);
            // strPayment = DataHandler.PaymentRequest.PaymentMethodSel(AppSettings.Session.CustID);//.ToLower();
             if (string.Compare(strPaymentMethod.ToLower(), "player", true) != 0)
             {
                 strPaymentMethod = Resources.Lang.ErrPaymentMethod.Replace("{method}", strPaymentMethod.Replace("Wire", Resources.Lang.BankTransfer));
             }
-        }
-        catch(Exception ex)
-        {
-            Fanex.Logging.LogService.Error(ex.Message);
-        }
     }
 }
 

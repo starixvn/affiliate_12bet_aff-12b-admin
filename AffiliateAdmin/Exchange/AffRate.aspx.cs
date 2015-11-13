@@ -4,6 +4,7 @@ using System.Data;
 using DNAide.Web;
 using DNAide.Utils;
 using DNAide.Core;
+using AffiliateAdmin.Business.Constants;
 
 public partial class AffRate : IBCPage
 {
@@ -37,7 +38,7 @@ public partial class AffRate : IBCPage
             int intCount = 0;
             if (dtmTime <= dtmNow)
             {
-                bool isHost = Common.isHost(AppSettings.Session.CustID, "[AffEx.Rate]");
+                bool isHost = Common.HasHostPermission(AppSettings.Session.CustID, PermissionNames.AffExRate);
 
                 DataTable dtbResult = DataHandler.ExchangeRate.Exchange_Sel(dtmTime);
                 if (dtbResult.Rows.Count > 0)

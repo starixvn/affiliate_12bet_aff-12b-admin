@@ -2,8 +2,8 @@
 using System.Collections;
 using System.Data;
 using System.Web;
-using DNAide.Data;
 using DNAide.Core;
+using AffiliateUser.Business.DataAccess;
 
 /// <summary>
 /// Trinh Quang Vinh
@@ -19,7 +19,7 @@ namespace DataHandler
             hsParam.Add("preferredpayment", string.Empty);            
             hsParam.Add("balbroughtforward", 0);            
             hsParam.Add("minamount", 0);
-            return DbHelper.Execute("Aff_PaymentRequestSelInfoByAff", hsParam, DBType.AFFILIATE_12BET, 600);
+            return DbHelper.Execute("Aff_PaymentRequestSelInfoByAff", DBType.AFFILIATE_12BET, hsParam, 600);
         }
         public static int PayoutRequest(decimal Amt, int AffID,  ref Int64 intTransId, ref DateTime dtmWinlostDate, ref string strPreferredLang, ref string strErrorMsg)
         {
@@ -27,10 +27,13 @@ namespace DataHandler
             hsParam.Add("amount", Amt);
             hsParam.Add("affid", AffID);
             hsParam.Add("language", AppSettings.Session.Language);
+            hsParam.Add("transid", 0);
+            hsParam.Add("transdate", DateTime.Now);
+            hsParam.Add("preferredlanguage", string.Empty);
             hsParam.Add("errcode", 0);
-            hsParam.Add("errmsg", "");
+            hsParam.Add("errmsg", string.Empty);
             hsParam.Add("ip", HttpContext.Current.Request.UserHostAddress);
-            DbResult result = DbHelper.Execute("Aff_PaymentRequestIns", hsParam, DBType.AFFILIATE_12BET, 600);
+            DbResult result = DbHelper.Execute("Aff_PaymentRequestIns", DBType.AFFILIATE_12BET, hsParam, 600);
             intTransId = CastAide.AsInt64(result.Outputs["transid"]);
             dtmWinlostDate = CastAide.AsDateTime(result.Outputs["transdate"]);
             strErrorMsg = result.Outputs["errmsg"].ToString();
@@ -44,8 +47,11 @@ namespace DataHandler
             hsParam.Add("userid", AppSettings.Session.CustID);            
             hsParam.Add("ip", HttpContext.Current.Request.UserHostAddress);
             hsParam.Add("language", AppSettings.Session.Language);
-            hsParam.Add("status", "Cancelled");            
-            DbResult result = DbHelper.Execute("Aff_PaymentRequestUpd", hsParam, DBType.AFFILIATE_12BET, 600);
+            hsParam.Add("status", "Cancelled");
+            hsParam.Add("preferredlanguage", string.Empty);
+            hsParam.Add("errcode", 0);
+            hsParam.Add("errmsg", string.Empty);
+            DbResult result = DbHelper.Execute("Aff_PaymentRequestUpd", DBType.AFFILIATE_12BET, hsParam, 600);
             strPreferredLang = result.Outputs["preferredlanguage"].ToString();
             strErrorMsg = result.Outputs["errmsg"].ToString();          
             return CastAide.AsInt32(result.Outputs["errcode"]);
@@ -66,7 +72,7 @@ namespace DataHandler
             hsParam.Add("result",false);
             hsParam.Add("errcode", 0);
             hsParam.Add("errmsg", "");
-            DbResult result = DbHelper.Execute("Aff_CustomerCheck12BetPlayerAccountActivated", hsParam, DBType.AFFILIATE_12BET);           
+            DbResult result = DbHelper.Execute("Aff_CustomerCheck12BetPlayerAccountActivated", DBType.AFFILIATE_12BET, hsParam);           
             errMsg = result.Outputs["errmsg"].ToString();
             depositUserName = result.Outputs["12betplayerusername"].ToString();
             return CastAide.AsBoolean(result.Outputs["result"]);
@@ -82,7 +88,7 @@ namespace DataHandler
             customer.DepositUserName = deposit_username;
             Hashtable hsParam = new Hashtable();
             hsParam.Add("deposit_username", customer.DepositUserName);
-            DbResult result = DbHelper.Execute("Deposit_GetCustDataForCreateIBCACByUserName", hsParam, DBType.DEPOSIT);
+            DbResult result = DbHelper.Execute("Deposit_GetCustDataForCreateIBCACByUserName", DBType.DEPOSIT, hsParam);
             DataTable tbl = result.ResultSet.Tables[0];
             customer.Success= CastAide.AsInt32(tbl.Rows[0]["success"]);
             customer.Address = tbl.Rows[0]["address"].ToString();
@@ -122,7 +128,7 @@ namespace DataHandler
             hsParam.Add("firstname", HttpContext.Current.Server.HtmlEncode(customer.FirstName));
             hsParam.Add("lastname", HttpContext.Current.Server.HtmlEncode(customer.LastName));
             hsParam.Add("email", HttpContext.Current.Server.HtmlEncode(customer.Email));
-            hsParam.Add("depositusername",HttpContext.Current.Server.HtmlEncode(customer.DepositUserName));
+            hsParam.Add("depositusername", HttpContext.Current.Server.HtmlEncode(customer.DepositUserName));
             hsParam.Add("deposituserid", customer.DepositUserId);
             hsParam.Add("password", customer.Password);
             hsParam.Add("oddstype", HttpContext.Current.Server.HtmlEncode(customer.OddsType));
@@ -133,7 +139,7 @@ namespace DataHandler
             hsParam.Add("username", string.Empty);
             hsParam.Add("errcode", 0);
             hsParam.Add("errmsg", string.Empty);
-            DbResult result=DbHelper.Execute("Dot_Dep_CustomerInsMember_Ag_Cust", hsParam, DBType.MAIN);
+            DbResult result=DbHelper.Execute("Dot_Dep_CustomerInsMember_Ag_Cust", DBType.MAIN, hsParam);
             username = result.Outputs["username"].ToString();
             custid=CastAide.AsInt32(result.Outputs["custid"]);
             errmsg=result.Outputs["errmsg"].ToString();
@@ -151,7 +157,7 @@ namespace DataHandler
                 logParam.Add("ip", HttpContext.Current.Request.UserHostAddress);
                 logParam.Add("refno", refNo);
                 logParam.Add("details", "Add 12Bet player account to IBC DepositCustID=" + customer.DepositUserId);
-                DbHelper.Execute("Aff_WriteLog", logParam, DBType.AFFILIATE_12BET);
+                DbHelper.Execute("Aff_WriteLog", DBType.AFFILIATE_12BET, logParam);
             }
             
         }
@@ -171,7 +177,7 @@ namespace DataHandler
             hsParam.Add("ibcusername", HttpContext.Current.Server.HtmlEncode(ibcUserName));
             hsParam.Add("errorcode", 0);
             hsParam.Add("errormsg", string.Empty);
-            DbResult result = DbHelper.Execute("Deposit_MemberIBCDetail", hsParam, DBType.DEPOSIT);
+            DbResult result = DbHelper.Execute("Deposit_MemberIBCDetail", DBType.DEPOSIT, hsParam);
             errcode = CastAide.AsInt32(result.Outputs["errorcode"]);
             errmsg = result.Outputs["errormsg"].ToString();
 
@@ -188,7 +194,7 @@ namespace DataHandler
                 logParam.Add("ip", HttpContext.Current.Request.UserHostAddress);
                 logParam.Add("refno", refNo);
                 logParam.Add("details", "Update 12Bet player status to deposit DepositCustID=" + ibcCustid);
-                DbHelper.Execute("Aff_WriteLog", logParam, DBType.AFFILIATE_12BET);
+                DbHelper.Execute("Aff_WriteLog", DBType.AFFILIATE_12BET, logParam);
             }
         }
 

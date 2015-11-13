@@ -1,11 +1,18 @@
 ﻿using System;
-using System.Text;
 using System.Data;
-using DNAide.Web;
+using System.Text;
+using System.Web;
 using DNAide.Core;
+using DNAide.Web;
 
 public partial class UserInfo_MemberListAll : IBCPage
 {
+    protected override void OnInit(EventArgs e)
+    {
+        base.OnInit(e);
+        Response.Cache.SetCacheability(HttpCacheability.NoCache);
+    }
+
     protected void Page_Load(object sender, EventArgs e)
     {
         string strTpl = TemplateHandler.LoadTemplate("UserInfo/MemListAll.htm");

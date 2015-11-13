@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Globalization;
-using System.Threading;
-using DataHandler;
-using DNAide.Web;
-using DNAide.Core;
-using DNAide.Data;
 using System.Data;
+using System.Globalization;
 using System.Text;
-using AffiliateUser;
+using System.Threading;
+using AffiliateUser.Business.DataAccess;
+using DataHandler;
+using DNAide.Core;
+using DNAide.Web;
 
 public partial class Account_Overview : RootPageLogIn
 {
@@ -51,12 +50,12 @@ public partial class Account_Overview : RootPageLogIn
         ltrStatic.Text = GetStatisticsFor(selectedMonth);
         ltrStaticUp.Text = Resources.Lang.Statistic + " " + Resources.Lang.UpToNow;
 
-        DbResult dep_result = UserAff.SelAffOverview_DEPOSIT(AppSettings.Session.CustID, selectedMonth);
-        ltrSignup.Text = CastAide.AsInt32(dep_result.Outputs["newsignup"], 0).ToString();
-        ltrTotalPlayer.Text = CastAide.AsInt32(dep_result.Outputs["totalplayer"], 0).ToString();
+        var dep_result = UserAff.SelAffOverview_DEPOSIT(AppSettings.Session.CustID, selectedMonth);
+        ltrSignup.Text = CastAide.AsInt32(dep_result.Outputs["newsignup"], 0).ToString(Common.NumberFormatPlaceholder);
+        ltrTotalPlayer.Text = CastAide.AsInt32(dep_result.Outputs["totalplayer"], 0).ToString(Common.NumberFormatPlaceholder);
 
-        DbResult result = UserAff.SelAffOverview(AppSettings.Session.CustID, selectedMonth);
-        ltrTotalActiveVal.Text = CastAide.AsInt32(result.Outputs["totalactiveplayer"], 0).ToString();
+        var result = UserAff.SelAffOverview(AppSettings.Session.CustID, selectedMonth);
+        ltrTotalActiveVal.Text = CastAide.AsInt32(result.Outputs["totalactiveplayer"], 0).ToString(Common.NumberFormatPlaceholder);
         ltrTotalDepositVal.Text = Common.FormatNumber(CastAide.AsDecimal(result.Outputs["totaldeposit"]));
 
         ltrDepositUpVal.Text = Common.FormatNumber(CastAide.AsDecimal(result.Outputs["totaldepositup"]));
@@ -67,7 +66,7 @@ public partial class Account_Overview : RootPageLogIn
         //With totalQM=1--1, it means this month did not have the theory of QM
         int totalQM = CastAide.AsInt32(result.Outputs["totalqualifiedmembers"], -1);
         int totalCAQM = CastAide.AsInt32(result.Outputs["totalqualifiedcasino"], -1);
-        ltrTotalQualifiedMembers.Text = (totalQM == -1 || totalCAQM == -1) ? "N/A" : totalQM.ToString() + "/" + totalCAQM.ToString();
+        ltrTotalQualifiedMembers.Text = (totalQM == -1 || totalCAQM == -1) ? "N/A" : totalQM.ToString(Common.NumberFormatPlaceholder) + "/" + totalCAQM.ToString(Common.NumberFormatPlaceholder);
 
         //set flash path
         string lang = AppSettings.Session.Language;

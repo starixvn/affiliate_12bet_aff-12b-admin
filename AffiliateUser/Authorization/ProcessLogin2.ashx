@@ -11,7 +11,6 @@ using System.Web.Security;
 using System.Web.SessionState;
 using System.Collections.Generic;
 using Affiliate;
-using DNAide.Data;
 using DNAide.Utils;
 using System.Data;
 using DNAide.Web;
@@ -41,13 +40,13 @@ public class ProcessLogin2 : IHttpHandler, IRequiresSessionState
                 return;
             }
             AppSettings.Session.IsInternalSite = true;
-            DbResult dr = Auth.GetAdminNetSessionID(_accOnId, context);
+            var dr = Auth.GetAdminNetSessionID(_accOnId, context);
             string _accNetSessionID = dr.Outputs["netsessionid"].ToString();
             if (string.Compare(_accKey, FormsAuthentication.HashPasswordForStoringInConfigFile(_accNetSessionID + _chalengeStr, "MD5"), false) != 0) 
                 throw new IBCException("Can not authenticate log-in, invalid ticket!");
 
 
-            DbResult dr2 = Auth.LoginAuthentication(CastAide.AsInt32(_accId), _custName, context);
+            var dr2 = Auth.LoginAuthentication(CastAide.AsInt32(_accId), _custName, context);
             if (string.IsNullOrEmpty(dr2.Outputs["errmsg"].ToString()))
             {
                 var afftype = (AffType)DNAide.Core.CastAide.AsInt32(dr2.Outputs["afftype"], 2);
