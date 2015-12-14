@@ -110,7 +110,8 @@ namespace DataHandler
             DbResult dbr = null;
             int errcode = 0;
             htb.Add("affid", custid);
-            //htb.Add("affmaster", AppSettings.AffMaster);
+            htb.Add("preferredlanguage", string.Empty);
+            htb.Add("mailoption", false);
             htb.Add("validcode", validcode);
             htb.Add("newpwd", Encryption.CfsEnCode(newpass));
             htb.Add("errcode", 0);
