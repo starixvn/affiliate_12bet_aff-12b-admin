@@ -1240,6 +1240,10 @@ a.signup:hover span
 {
 	background: url(images/fJapan.png) no-repeat;
 }
+#langList li a.fIndia
+{
+	background: url(images/fIndia.png) no-repeat;
+}
 #langList li:hover a
 {
 	color: red;

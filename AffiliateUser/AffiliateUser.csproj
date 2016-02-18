@@ -23,6 +23,11 @@
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <OldToolsVersion>4.0</OldToolsVersion>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -693,6 +698,7 @@
       <DependentUpon>Welcome.aspx</DependentUpon>
     </Compile>
     <Content Include="App_Data\SpNames.xml" />
+    <Content Include="App_Themes\Default\Images\fIndia.png" />
     <Content Include="Global.asax" />
     <Content Include="packages.config" />
     <Content Include="DeployConfig\Web.12betuser-asian.uatsit.config">
