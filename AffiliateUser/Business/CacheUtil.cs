@@ -40,18 +40,6 @@ public class CacheUtil
         return table;
     }
 
-    public static DataTable GetBannerTypesOld()
-    {
-        var table = CacheHelper.Get<DataTable>(bannerTypesKeyOld);
-        if (table == null)
-        {
-            table = DataHandler.Banner.GetBannerTypesOld();
-            CacheHelper.Set(bannerTypesKeyOld, table);
-        }
-
-        return table;
-    }
-
     #region Private Methods
 
     private static void LoadHotNews()
