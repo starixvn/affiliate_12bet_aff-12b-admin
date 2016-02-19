@@ -1166,6 +1166,12 @@ a.signup:hover span
 	padding-left: 30px;
 	color: #fff;
 }
+.fIndia
+{
+	background: url(images/fIndia.png) no-repeat;
+	padding-left: 30px;
+	color: #fff;
+}
 #langList
 {
 	width: 136px;

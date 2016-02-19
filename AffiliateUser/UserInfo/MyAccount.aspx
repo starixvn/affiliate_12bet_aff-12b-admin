@@ -769,7 +769,7 @@ function AddOneMoreURL() {
                                         <%=Resources.Lang.Korean%></option>
                                     <option value="ja-JP">
                                         <%=Resources.Lang.Japanese%></option>
-                                    <option value="in-IN">
+                                    <option value="hi-IN">
                                         <%=Resources.Lang.India%></option>
                                 </select>
                             </td>

@@ -106,6 +106,10 @@ public partial class Controls_Header : RootControl
                 langClass = "fJapan";
                 selectedLang = "日本";
                 break;
+            case "hi-IN":
+                langClass = "fIndia";
+                selectedLang = "Indian";
+                break;
             default:
                 langClass = "fEng";
                 selectedLang = "English";

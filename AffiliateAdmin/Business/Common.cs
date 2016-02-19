@@ -193,7 +193,7 @@ public class Common
                 return Resources.Lang.Korean;
             case "ja-jp":
                 return Resources.Lang.Japanese;
-            case "in-in":
+            case "hi-in":
                 return Resources.Lang.Indian;
             default:
                 return Resources.Lang.English;
