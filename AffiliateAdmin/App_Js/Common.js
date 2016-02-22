@@ -517,8 +517,3 @@ function EnableCalendar(isEnable, dateFormat) {
         $("tdateTrigger").onclick = "";
     }
 }
-
-//Cheat for main frame always scroll to top-----------
-function scrollMainFrameToTop() {
-    window.parent.scrollTo(0, 0);
-}

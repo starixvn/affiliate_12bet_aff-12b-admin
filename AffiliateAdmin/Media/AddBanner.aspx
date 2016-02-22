@@ -6,7 +6,10 @@
 <script src="../App_Js/Common.js" type="text/javascript"></script>
 
 <script type="text/javascript">
-    window.onload = scrollMainFrameToTop;
+    //Cheat for main frame always scroll to top
+    window.onload = function () {
+        window.parent.scrollTo(0, 0);
+    };
 
     var jQ = jQuery.noConflict();
 
