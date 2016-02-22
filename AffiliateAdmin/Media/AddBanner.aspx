@@ -6,6 +6,12 @@
 <script src="../App_Js/Common.js" type="text/javascript"></script>
 
 <script type="text/javascript">
+    window.onload = Init;
+
+    function Init() {
+        window.parent.window.scrollTo(0, 0);
+    }
+
     var jQ = jQuery.noConflict();
 
     function getSubCategory(category) {
