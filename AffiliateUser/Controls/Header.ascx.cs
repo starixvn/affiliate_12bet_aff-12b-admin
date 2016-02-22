@@ -108,7 +108,7 @@ public partial class Controls_Header : RootControl
                 break;
             case "hi-IN":
                 langClass = "fIndia";
-                selectedLang = "Indian";
+                selectedLang = "Republic of India";
                 break;
             default:
                 langClass = "fEng";
