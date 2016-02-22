@@ -4,10 +4,6 @@
 <script src="../App_Js/ListText.js" type="text/javascript"></script>
 <script src="../App_Js/Common.js" type="text/javascript"></script>
 <script type="text/javascript">
-    window.onload = Init;
-
-    function Init() {
-        window.parent.window.scrollTo(0, 0);
-    }
+    window.onload = scrollMainFrameToTop;
 </script>
 <!--/js-->
