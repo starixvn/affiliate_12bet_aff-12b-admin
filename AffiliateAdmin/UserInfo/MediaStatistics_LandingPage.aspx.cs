@@ -40,7 +40,7 @@ public partial class UserInfo_MediaStatistics_LandingPage : IBCPage
 
             TemplateHandler.Assign(ref strTpl, "slPage", Common.GeneratePagesDropdown(sportCode, deviceType));
 
-            DataView dv = DbHelper.Execute("Aff_BannerSelType", DBType.AFFILIATE_12BET).ResultSet.Tables[0].DefaultView;
+            DataView dv = DbHelper.Execute("Aff_BannerSelType_1", DBType.AFFILIATE_12BET).ResultSet.Tables[0].DefaultView;
             TemplateHandler.Assign(ref strTpl, "slLanguage", Common.GetDataOptionBanner(dv, "languageCode", "Language", languageCode, true));
 
             #endregion Generate select list
