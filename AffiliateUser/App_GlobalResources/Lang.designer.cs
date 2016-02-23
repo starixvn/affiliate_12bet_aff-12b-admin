@@ -3740,7 +3740,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Indian.
+        ///   Looks up a localized string similar to Republic of India.
         /// </summary>
         internal static string Indian {
             get {
