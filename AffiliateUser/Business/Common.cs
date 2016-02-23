@@ -77,7 +77,7 @@ public class Common
             case "indonesian": return "id";
             case "korean": return "ko";
             case "japanese": return "jp";
-            case "indian": return "hi";
+            case "republic of india": return "hi";
             default:
                 return "en";
         }
