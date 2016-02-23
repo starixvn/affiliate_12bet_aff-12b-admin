@@ -852,26 +852,29 @@
                                     <%= AppSettings.DefaultPreferLang.Equals("zh-TW") ? "selected=selected" : string.Empty %>>
                                     <%=Resources.Lang.ChineseTraditio%></option>
                                 <option value="zh-CN"
-                                    <%= AppSettings.DefaultPreferLang.Equals("zh-CN") ? "selected=selected" : string.Empty %>>>
+                                    <%= AppSettings.DefaultPreferLang.Equals("zh-CN") ? "selected=selected" : string.Empty %>>
                                     <%=Resources.Lang.ChineseSimplifi%></option>
                                 <option value="th-TH"
-                                    <%= AppSettings.DefaultPreferLang.Equals("th-TH") ? "selected=selected" : string.Empty %>>>
+                                    <%= AppSettings.DefaultPreferLang.Equals("th-TH") ? "selected=selected" : string.Empty %>>
                                     <%=Resources.Lang.Thai%></option>
                                 <option value="es-ES"
-                                    <%= AppSettings.DefaultPreferLang.Equals("es-ES") ? "selected=selected" : string.Empty %>>>
+                                    <%= AppSettings.DefaultPreferLang.Equals("es-ES") ? "selected=selected" : string.Empty %>>
                                     <%=Resources.Lang.Spanish%></option>
                                 <option value="vi-VN"
-                                    <%= AppSettings.DefaultPreferLang.Equals("vi-VN") ? "selected=selected" : string.Empty %>>>
+                                    <%= AppSettings.DefaultPreferLang.Equals("vi-VN") ? "selected=selected" : string.Empty %>>
                                     <%=Resources.Lang.Vietnamese%></option> 
                                 <option value="id-ID"
-                                    <%= AppSettings.DefaultPreferLang.Equals("id-ID") ? "selected=selected" : string.Empty %>>>
+                                    <%= AppSettings.DefaultPreferLang.Equals("id-ID") ? "selected=selected" : string.Empty %>>
                                     <%=Resources.Lang.Indonesian%></option>
                                 <option value="ko-KR"
-                                    <%= AppSettings.DefaultPreferLang.Equals("ko-KR") ? "selected=selected" : string.Empty %>>>
+                                    <%= AppSettings.DefaultPreferLang.Equals("ko-KR") ? "selected=selected" : string.Empty %>>
                                     <%=Resources.Lang.Korean%></option>
                                 <option value="ja-JP"
-                                    <%= AppSettings.DefaultPreferLang.Equals("ja-JP") ? "selected=selected" : string.Empty %>>>
+                                    <%= AppSettings.DefaultPreferLang.Equals("ja-JP") ? "selected=selected" : string.Empty %>>
                                     <%=Resources.Lang.Japanese%></option>
+                                <option value="hi-IN"
+                                    <%= AppSettings.DefaultPreferLang.Equals("hi-IN") ? "selected=selected" : string.Empty %>>
+                                    <%=Resources.Lang.Indian%></option>
                             </select>
                         </td>
                     </tr>

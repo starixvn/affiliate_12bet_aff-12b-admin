@@ -3157,4 +3157,7 @@ Thank you.</value>
     <value>We are sorry! The mail server is not available at the moment. Please &lt;a href="/ContactUs.aspx"&gt;contact administrator&lt;/a&gt; or try again later.</value>
     <comment>#40516</comment>
   </data>
+  <data name="Indian" xml:space="preserve">
+    <value>Indian</value>
+  </data>
 </root>
