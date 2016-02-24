@@ -188,6 +188,7 @@ public class Common
             case "ko": return "Korean";
             case "ja":
             case "jp": return "日本";
+            case "hi": return "Republic of India";
             default:
                 return "en";
         }
