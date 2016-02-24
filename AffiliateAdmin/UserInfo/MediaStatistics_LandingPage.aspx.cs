@@ -132,6 +132,7 @@ public partial class UserInfo_MediaStatistics_LandingPage : IBCPage
             case "id": return "Indonesian";
             case "ko": return "Korean";
             case "jp": return "Japanese";
+            case "hi": return "republic of india";
             default:
                 return "";
         }
@@ -150,6 +151,7 @@ public partial class UserInfo_MediaStatistics_LandingPage : IBCPage
             case "vietnamese": return "vn";
             case "indonesian": return "id";
             case "korean": return "ko";
+            case "republic of india": return "hi";
             default:
                 return "";
         }
