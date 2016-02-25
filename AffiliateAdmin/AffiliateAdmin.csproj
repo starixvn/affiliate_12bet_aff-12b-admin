@@ -1200,6 +1200,8 @@
     <Content Include="App_Templates\Email\AffApprove\Approved_en_html.htm" />
     <Content Include="App_Templates\Email\AffApprove\Approved_es-ES.htm" />
     <Content Include="App_Templates\Email\AffApprove\Approved_es-ES_html.htm" />
+    <Content Include="App_Templates\Email\AffApprove\Approved_hi-IN.htm" />
+    <Content Include="App_Templates\Email\AffApprove\Approved_hi-IN_html.htm" />
     <Content Include="App_Templates\Email\AffApprove\Approved_html.htm" />
     <Content Include="App_Templates\Email\AffApprove\Approved_id-ID.htm" />
     <Content Include="App_Templates\Email\AffApprove\Approved_id-ID_html.htm" />
@@ -1224,6 +1226,8 @@
     <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_en_html.htm" />
     <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_es-ES.htm" />
     <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_es-ES_html.htm" />
+    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_hi-IN.htm" />
+    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_hi-IN_html.htm" />
     <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_html.htm" />
     <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_id-ID.htm" />
     <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_id-ID_html.htm" />
