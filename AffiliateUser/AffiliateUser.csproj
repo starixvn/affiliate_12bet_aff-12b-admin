@@ -698,6 +698,16 @@
       <DependentUpon>Welcome.aspx</DependentUpon>
     </Compile>
     <Content Include="App_Data\SpNames.xml" />
+    <Content Include="App_Templates\Email\ForgetPass\ForgetPass_hi-IN.htm" />
+    <Content Include="App_Templates\Email\ForgetPass\ForgetPass_hi-IN_html.htm" />
+    <Content Include="App_Templates\Email\PaymentCancel\PaymentCancel_hi-IN.htm" />
+    <Content Include="App_Templates\Email\PaymentCancel\PaymentCancel_hi-IN_html.htm" />
+    <Content Include="App_Templates\Email\PaymentRequest\PaymentRequest_hi-IN.htm" />
+    <Content Include="App_Templates\Email\PaymentRequest\PaymentRequest_hi-IN_html.htm" />
+    <Content Include="App_Templates\Email\RecoverPass\RecoverPass_hi-IN.htm" />
+    <Content Include="App_Templates\Email\RecoverPass\RecoverPass_hi-IN_html.htm" />
+    <Content Include="App_Templates\Email\SignupMail\SignupMail_hi-IN.htm" />
+    <Content Include="App_Templates\Email\SignupMail\SignupMail_hi-IN_html.htm" />
     <Content Include="App_Themes\Default\Images\fIndia.png" />
     <Content Include="Global.asax" />
     <Content Include="packages.config" />
