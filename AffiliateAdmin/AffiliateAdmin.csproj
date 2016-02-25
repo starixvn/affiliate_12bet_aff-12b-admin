@@ -1174,6 +1174,8 @@
     <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_en_html.htm" />
     <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_es-ES.htm" />
     <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_es-ES_html.htm" />
+    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_hi-IN.htm" />
+    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_hi-IN_html.htm" />
     <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_html.htm" />
     <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_id-ID.htm" />
     <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_id-ID_html.htm" />
@@ -1244,6 +1246,8 @@
     <Content Include="App_Templates\Email\AffDisapprove\Disapproved_en_html.htm" />
     <Content Include="App_Templates\Email\AffDisapprove\Disapproved_es-ES.htm" />
     <Content Include="App_Templates\Email\AffDisapprove\Disapproved_es-ES_html.htm" />
+    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_hi-IN.htm" />
+    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_hi-IN_html.htm" />
     <Content Include="App_Templates\Email\AffDisapprove\Disapproved_html.htm" />
     <Content Include="App_Templates\Email\AffDisapprove\Disapproved_id-ID.htm" />
     <Content Include="App_Templates\Email\AffDisapprove\Disapproved_id-ID_html.htm" />
@@ -1268,6 +1272,8 @@
     <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_en_html.htm" />
     <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_es-ES.htm" />
     <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_es-ES_html.htm" />
+    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_hi-IN.htm" />
+    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_hi-IN_html.htm" />
     <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_html.htm" />
     <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_id-ID.htm" />
     <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_id-ID_html.htm" />
@@ -1292,6 +1298,8 @@
     <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_en_html.htm" />
     <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_es-ES.htm" />
     <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_es-ES_html.htm" />
+    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_hi-IN.htm" />
+    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_hi-IN_html.htm" />
     <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_html.htm" />
     <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_id-ID.htm" />
     <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_id-ID_html.htm" />
