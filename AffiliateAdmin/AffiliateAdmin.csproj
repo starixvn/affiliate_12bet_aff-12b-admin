@@ -14,7 +14,7 @@
     <RootNamespace>AffiliateAdmin</RootNamespace>
     <AssemblyName>AffiliateAdmin</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
     <FileUpgradeFlags>
@@ -22,6 +22,11 @@
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <OldToolsVersion>4.0</OldToolsVersion>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -1169,6 +1174,8 @@
     <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_en_html.htm" />
     <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_es-ES.htm" />
     <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_es-ES_html.htm" />
+    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_hi-IN.htm" />
+    <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_hi-IN_html.htm" />
     <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_html.htm" />
     <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_id-ID.htm" />
     <Content Include="App_Templates\Email\AffApprove\ApprovalEmail_id-ID_html.htm" />
@@ -1193,6 +1200,8 @@
     <Content Include="App_Templates\Email\AffApprove\Approved_en_html.htm" />
     <Content Include="App_Templates\Email\AffApprove\Approved_es-ES.htm" />
     <Content Include="App_Templates\Email\AffApprove\Approved_es-ES_html.htm" />
+    <Content Include="App_Templates\Email\AffApprove\Approved_hi-IN.htm" />
+    <Content Include="App_Templates\Email\AffApprove\Approved_hi-IN_html.htm" />
     <Content Include="App_Templates\Email\AffApprove\Approved_html.htm" />
     <Content Include="App_Templates\Email\AffApprove\Approved_id-ID.htm" />
     <Content Include="App_Templates\Email\AffApprove\Approved_id-ID_html.htm" />
@@ -1217,6 +1226,8 @@
     <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_en_html.htm" />
     <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_es-ES.htm" />
     <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_es-ES_html.htm" />
+    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_hi-IN.htm" />
+    <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_hi-IN_html.htm" />
     <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_html.htm" />
     <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_id-ID.htm" />
     <Content Include="App_Templates\Email\AffApprove\WithdrawalEmail_id-ID_html.htm" />
@@ -1239,6 +1250,8 @@
     <Content Include="App_Templates\Email\AffDisapprove\Disapproved_en_html.htm" />
     <Content Include="App_Templates\Email\AffDisapprove\Disapproved_es-ES.htm" />
     <Content Include="App_Templates\Email\AffDisapprove\Disapproved_es-ES_html.htm" />
+    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_hi-IN.htm" />
+    <Content Include="App_Templates\Email\AffDisapprove\Disapproved_hi-IN_html.htm" />
     <Content Include="App_Templates\Email\AffDisapprove\Disapproved_html.htm" />
     <Content Include="App_Templates\Email\AffDisapprove\Disapproved_id-ID.htm" />
     <Content Include="App_Templates\Email\AffDisapprove\Disapproved_id-ID_html.htm" />
@@ -1263,6 +1276,8 @@
     <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_en_html.htm" />
     <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_es-ES.htm" />
     <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_es-ES_html.htm" />
+    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_hi-IN.htm" />
+    <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_hi-IN_html.htm" />
     <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_html.htm" />
     <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_id-ID.htm" />
     <Content Include="App_Templates\Email\PaymentApp\PaymentAppEmail_id-ID_html.htm" />
@@ -1287,6 +1302,8 @@
     <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_en_html.htm" />
     <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_es-ES.htm" />
     <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_es-ES_html.htm" />
+    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_hi-IN.htm" />
+    <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_hi-IN_html.htm" />
     <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_html.htm" />
     <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_id-ID.htm" />
     <Content Include="App_Templates\Email\PaymentCan\PaymentCanEmail_id-ID_html.htm" />
@@ -1960,12 +1977,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>65181</DevelopmentServerPort>
           <DevelopmentServerVPath>/V1</DevelopmentServerVPath>
-          <IISUrl>
-          </IISUrl>
+          <IISUrl>http://localhost:65181</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

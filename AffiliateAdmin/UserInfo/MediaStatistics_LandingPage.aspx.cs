@@ -40,7 +40,7 @@ public partial class UserInfo_MediaStatistics_LandingPage : IBCPage
 
             TemplateHandler.Assign(ref strTpl, "slPage", Common.GeneratePagesDropdown(sportCode, deviceType));
 
-            DataView dv = DbHelper.Execute("Aff_BannerSelType", DBType.AFFILIATE_12BET).ResultSet.Tables[0].DefaultView;
+            DataView dv = DbHelper.Execute("Aff_BannerSelType_1", DBType.AFFILIATE_12BET).ResultSet.Tables[0].DefaultView;
             TemplateHandler.Assign(ref strTpl, "slLanguage", Common.GetDataOptionBanner(dv, "languageCode", "Language", languageCode, true));
 
             #endregion Generate select list
@@ -132,6 +132,7 @@ public partial class UserInfo_MediaStatistics_LandingPage : IBCPage
             case "id": return "Indonesian";
             case "ko": return "Korean";
             case "jp": return "Japanese";
+            case "hi": return "Republic of India";
             default:
                 return "";
         }
@@ -150,6 +151,7 @@ public partial class UserInfo_MediaStatistics_LandingPage : IBCPage
             case "vietnamese": return "vn";
             case "indonesian": return "id";
             case "korean": return "ko";
+            case "republic of india": return "hi";
             default:
                 return "";
         }

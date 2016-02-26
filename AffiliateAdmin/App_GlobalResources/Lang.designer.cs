@@ -3612,6 +3612,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Republic of India.
+        /// </summary>
+        internal static string Indian {
+            get {
+                return ResourceManager.GetString("Indian", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Individual Permission.
         /// </summary>
         internal static string IndividualPermission {

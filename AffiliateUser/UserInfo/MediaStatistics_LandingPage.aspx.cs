@@ -44,7 +44,7 @@ public partial class UserInfo_MediaStatistics_LandingPage : RootPageLogIn
 
         TemplateHandler.Assign(ref statisticsContent, "slPage", Common.GenListLink2Page("sportCode", sportCode, true, deviceType));
 
-        DataView dv = CacheUtil.GetBannerTypesOld().DefaultView;
+        DataView dv = CacheUtil.GetBannerTypes().DefaultView;
         TemplateHandler.Assign(ref statisticsContent, "slLanguage", this.GetDataOptionBanner(dv, "languageCode", "Language", languageCode, true));
 
         TemplateHandler.Assign(ref statisticsContent, "fdate", Common.ConvertDateTime(dtmFrom, "/", true, false));

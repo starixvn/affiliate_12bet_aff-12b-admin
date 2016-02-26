@@ -1086,7 +1086,7 @@ a.signup:hover span
 /*new language box style*/
 #langSelectLink
 {
-	width: 136px;
+	width: 170px;
 	height: 24px;
 	margin-bottom: 1px;
 	padding-bottom: 5px;
@@ -1097,6 +1097,7 @@ a.signup:hover span
 	height: 24px;
 	cursor: pointer;
 	padding: 4px 0 0 10px;
+    background-size: 170px 24px;
 }
 .arrUp
 {
@@ -1166,9 +1167,15 @@ a.signup:hover span
 	padding-left: 30px;
 	color: #fff;
 }
+.fIndia
+{
+	background: url(images/fIndia.png) no-repeat;
+	padding-left: 30px;
+	color: #fff;
+}
 #langList
 {
-	width: 136px;
+	width: 170px;
 	margin: 0;
 	position: fixed;
 	top: 26px;
@@ -1178,17 +1185,20 @@ a.signup:hover span
 {
 	background: url(images/listTop.png) no-repeat;
 	height: 6px;
+    background-size: cover;
 }
 .langListRp
 {
 	text-align: left;
 	background: url(images/listRp.png) top repeat-y;
 	padding-bottom: 5px;
+    background-size: contain;
 }
 .langListBottom
 {
 	background: url(images/listBt.png) top no-repeat;
 	height: 5px;
+    background-size: cover;
 }
 #langList li
 {
@@ -1239,6 +1249,10 @@ a.signup:hover span
 #langList li a.fJapan
 {
 	background: url(images/fJapan.png) no-repeat;
+}
+#langList li a.fIndia
+{
+	background: url(images/fIndia.png) no-repeat;
 }
 #langList li:hover a
 {

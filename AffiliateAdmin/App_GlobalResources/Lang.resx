@@ -2401,4 +2401,7 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
   <data name="CasinoDate" xml:space="preserve">
     <value>Casino Date</value>
   </data>
+  <data name="Indian" xml:space="preserve">
+    <value>Republic of India</value>
+  </data>
 </root>
