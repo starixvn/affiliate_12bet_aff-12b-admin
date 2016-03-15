@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Functions>
+  <Function Name="Aff">
+    <Setting Key="Aff_TextSelDetail" SpName="Aff_TextSelDetail" DbName="affiliate_12bet" Plain="0" />
+  </Function>
+</Functions>

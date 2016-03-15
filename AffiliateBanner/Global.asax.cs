@@ -1,0 +1,47 @@
+﻿// ----------------------------------------------------------------------
+// <copyright file="Global.asax.cs" company="Nexcel Solutions Vietnam">
+//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
+// </copyright>
+// ------------------------------------------------------------------------
+
+namespace Affiliate.Banner
+{
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Web;
+    using System.Web.Mvc;
+    using System.Web.Routing;
+    using App_Start;
+    using Fanex.Data.Configuration;
+    using Logging;
+
+    public class MvcApplication : System.Web.HttpApplication
+    {
+        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "Reviewed. Suppression is OK here.")]
+        protected void Application_Start()
+        {
+            DbSettingProviderManager.Current.Start();
+            AreaRegistration.RegisterAllAreas();
+
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+        }
+
+        /// <summary>
+        /// Application Error.
+        /// </summary>
+        /// <param name="sender">Object sender.</param>
+        /// <param name="e">Error arguments.</param>
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            var exception = Server.GetLastError();
+            if (exception is HttpException)
+            {
+                return;
+            }
+
+            var message = exception.Message + Environment.NewLine + exception.StackTrace;
+            LogService.Error("Affiliate Media Error!" + Environment.NewLine + message + Environment.NewLine + Request.Url);
+        }
+    }
+}
