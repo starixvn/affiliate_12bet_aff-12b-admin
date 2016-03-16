@@ -13,7 +13,7 @@ namespace Affiliate.Banner
     using System.Web.Routing;
     using App_Start;
     using Fanex.Data.Configuration;
-    using Logging;
+    using Fanex.Logging;
 
     public class MvcApplication : System.Web.HttpApplication
     {
