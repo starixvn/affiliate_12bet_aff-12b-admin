@@ -145,9 +145,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\a.pubxml" />
-    <None Include="Web.12betbanner.local.config">
+    <Content Include="Web.12betbanner.uat.config">
       <SubType>Designer</SubType>
-    </None>
+    </Content>
+    <Content Include="Web.12betbanner.local.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
