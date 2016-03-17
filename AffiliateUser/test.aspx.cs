@@ -9,7 +9,7 @@ public partial class test : System.Web.UI.Page
         Response.Write(DNAide.Utils.Encryption.CfsDeCrypt("f04OETq4v+XIUGHxP6Hy4w=="));
         const string message = "test MNL";
         const string subject = "test MNL";
-        const string toMail = "alex.nguyen@nexcel.vn;jenny.phan@nexcel.vn";
+        const string toMail = "alex.nguyen@starixsoft.com";
 
         var mailService = new MailService();
         mailService.SendEmail(message, toMail, subject, AppSettings.BCCMail, AppSettings.CCMail);
