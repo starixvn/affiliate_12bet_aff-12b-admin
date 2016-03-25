@@ -36,6 +36,11 @@ namespace Affiliate.Banner
             return JavaScript("document.getElementById('_affMediaText').innerHTML ='" + HttpUtility.HtmlDecode(message).Replace("\r\n", "<br/>") + "';");
         }
 
+        public ActionResult Error()
+        {
+            return View();
+        }
+
         private static string GetMessageContent(int textId)
         {
             using (var objectDb = new ObjectDb("Aff_TextSelDetail"))

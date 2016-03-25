@@ -151,6 +151,7 @@
     <Content Include="Web.12betbanner.local.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Views\Home\Error.cshtml" />
     <None Include="Web.12betbanner.backupmnl.config">
       <SubType>Designer</SubType>
     </None>
