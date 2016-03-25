@@ -144,6 +144,7 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Deployment.ignore" />
     <None Include="Properties\PublishProfiles\a.pubxml" />
     <Content Include="Web.12betbanner.uat.config">
       <SubType>Designer</SubType>
