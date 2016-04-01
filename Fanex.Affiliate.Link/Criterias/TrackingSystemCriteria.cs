@@ -9,8 +9,7 @@
 
 namespace Fanex.Affiliate.Link.Criterias
 {
-    using System;
-    using Fanex.NAP.Framework.Data;
+    using Data.Repository;
 
     /// <summary>
     /// Tracking System Criteria.
