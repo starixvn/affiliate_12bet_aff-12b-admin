@@ -1,5 +1,6 @@
 ﻿using System;
 using DNAide.Web;
+
 public partial class SignIn : IBCPage
 {
     protected void Page_Load(object sender, EventArgs e)
@@ -13,5 +14,13 @@ public partial class SignIn : IBCPage
         TemplateHandler.Assign(ref temp, "Logon", Resources.Lang.LogOn);
         TemplateHandler.Assign(ref temp, "now", DateTime.Now.Year.ToString());
         this.HtmlContent = temp; 
+    }
+
+    public override void CheckUnderMaintenance()
+    {
+        if (Common.IsUnderMaintenance())
+        {
+            Response.Redirect("~/UnderMaintenance.aspx");
+        }
     }
 }

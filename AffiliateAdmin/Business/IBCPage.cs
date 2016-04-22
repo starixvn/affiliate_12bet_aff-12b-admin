@@ -3,7 +3,6 @@ using System.Web.UI;
 using System;
 using System.IO;
 using Affiliate.Infrastructure;
-using ONEbook.UM.Services.Impl;
 
 /// <summary>
 /// Summary description for IBCPage
@@ -14,7 +13,7 @@ public class IBCPage : System.Web.UI.Page
     protected string HtmlContent = string.Empty;
     private string _vers = string.Empty;
     protected string ThemePath;
-    protected bool IsGetAllCss =true;
+    protected bool IsGetAllCss = true;
 
     protected override void InitializeCulture()
     {
@@ -30,13 +29,18 @@ public class IBCPage : System.Web.UI.Page
             System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(_locale);
             System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.CreateSpecificCulture(_locale);
         }
-        
-        if (Common.IsUnderMaintenance())
+
+        CheckUnderMaintenance();
+
+        base.InitializeCulture();
+    }
+
+    public virtual void CheckUnderMaintenance()
+    {
+        if (!Common.IsPassUnderMaintenance())
         {
             Response.Redirect("~/UnderMaintenance.aspx");
         }
-
-        base.InitializeCulture();
     }
 
     public string GetText(string key)
@@ -114,7 +118,7 @@ public class IBCPage : System.Web.UI.Page
         }
         catch { }
         writer.Write("</head>\n");
-        writer.Write("<body>\n");       
+        writer.Write("<body>\n");
         writer.Write(HtmlContent);
         writer.Write("\n</body>\n");
         writer.Write("</html>\n");

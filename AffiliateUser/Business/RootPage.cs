@@ -33,15 +33,17 @@ public class RootPage : System.Web.UI.Page
         System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(_locale);
         System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.CreateSpecificCulture(_locale);
 
-        string startTime, endTime;
-        bool isUM = Common.GetDownTime(out startTime, out endTime);
+        CheckUnderMaintenance();
 
-        if (isUM)
+        base.InitializeCulture();
+    }
+
+    public virtual void CheckUnderMaintenance()
+    {
+        if (!Common.IsPassUnderMaintenance())
         {
             Response.Redirect("~/UnderMaintenance.aspx");
         }
-
-        base.InitializeCulture();
     }
 
     public string GetText(string key)

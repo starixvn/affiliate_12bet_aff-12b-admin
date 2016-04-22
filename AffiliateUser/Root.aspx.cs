@@ -14,4 +14,12 @@ public partial class Root : RootPage
         Controls_ContactUs.WidthTextArea = "270px";
         AppSettings.Session.IsFromHome = true;
     }
+
+    public override void CheckUnderMaintenance()
+    {
+        if (Common.IsUnderMaintenance())
+        {
+            Response.Redirect("~/UnderMaintenance.aspx");
+        }
+    }
 }

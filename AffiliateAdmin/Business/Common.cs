@@ -8,7 +8,6 @@ using System.IO;
 using System.Text;
 using System.Web;
 using System.Web.Caching;
-using System.Web.Configuration;
 using System.Web.UI.HtmlControls;
 using System.Xml;
 using AffiliateAdmin.Business.DataAccess;
@@ -17,12 +16,8 @@ using DNAide.Utils;
 using DNAide.Web;
 //using System.Linq;
 using Fanex.MailDeliver.MailClient.API;
-using LoadBalancerLibrary;
 using ONEbook.UM.Models;
 using ONEbook.UM.Services.Impl;
-//using OfficeOpenXml;
-using Sunplus.UMControllerLibrary;
-
 
 /// <summary>
 /// Summary description for Common
@@ -1504,20 +1499,6 @@ public class Common
         return (MailOption ? "" : "_html");
     }
 
-    public static UnderMaintenanceTime GetUnderMaintenanceTime()
-    {
-        var maintenaceService = new MaintenanceService();
-
-        return maintenaceService.GetUnderMaintenanceTime();
-    }
-
-    public static bool IsUnderMaintenance()
-    {
-        var maintenaceService = new MaintenanceService();
-
-        return maintenaceService.IsUnderMaintenance();
-    }
-
     public static string FormatStringHtml(string value)
     {
         return HttpUtility.HtmlDecode(value.Replace("\r\n", "<br/>"));
@@ -1702,6 +1683,27 @@ public class Common
     public static string GetDeviceType(string deviceType)
     {
         return string.IsNullOrEmpty(deviceType) ? "0" : deviceType;
+    }
+
+    public static UnderMaintenanceTime GetUnderMaintenanceTime()
+    {
+        var maintenaceService = new MaintenanceService();
+
+        return maintenaceService.GetUnderMaintenanceTime();
+    }
+
+    public static bool IsUnderMaintenance()
+    {
+        var maintenaceService = new MaintenanceService();
+
+        return maintenaceService.IsUnderMaintenance();
+    }
+
+    public static bool IsPassUnderMaintenance()
+    {
+        var maintenaceService = new MaintenanceService();
+
+        return maintenaceService.IsPassUnderMaintenance();
     }
 }
 
