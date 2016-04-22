@@ -6,7 +6,7 @@ using System.Web.Security;
 using System.Web.SessionState;
 using DNAide.Web;
 public class ProcessLogin : IHttpHandler, IRequiresSessionState {
-    
+
     public void ProcessRequest (HttpContext context) {
         context.Response.ContentType = "text/html";
         context.Response.Cache.SetCacheability(HttpCacheability.Private);
@@ -37,22 +37,21 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState {
             {
                 isok = errmsg;
             }
-            context.Response.Write(isok); 
+            context.Response.Write(isok);
         }
         catch (Exception ex)
         {
-            string startTime, endTime;
-            bool isUM = Common.GetDownTime(out startTime, out endTime);
-            if (isUM)
+            if (Common.IsUnderMaintenance())
             {
                 context.Response.Write("UM");
                 return;
             }
+
             context.Response.Write(ex.Message.ToString());
         }
-                         
+
     }
- 
+
     public bool IsReusable {
         get {
             return false;

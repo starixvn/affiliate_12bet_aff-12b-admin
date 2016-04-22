@@ -1,9 +1,9 @@
 ﻿using System.Web;
-using System.Collections.Generic;
 using System.Web.UI;
 using System;
 using System.IO;
 using Affiliate.Infrastructure;
+using ONEbook.UM.Services.Impl;
 
 /// <summary>
 /// Summary description for IBCPage
@@ -30,10 +30,8 @@ public class IBCPage : System.Web.UI.Page
             System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(_locale);
             System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.CreateSpecificCulture(_locale);
         }
-
-        string startTime, endTime;
-        bool isUM = Common.GetDownTime(out startTime, out endTime);
-        if (isUM)
+        
+        if (Common.IsUnderMaintenance())
         {
             Response.Redirect("~/UnderMaintenance.aspx");
         }
