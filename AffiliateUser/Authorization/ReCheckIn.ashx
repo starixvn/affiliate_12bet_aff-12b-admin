@@ -15,9 +15,7 @@ public class ReCheckIn : IHttpHandler, IRequiresSessionState {
             }
         }
 
-        string startTime, endTime;
-        bool isUM = Common.GetDownTime(out startTime, out endTime);
-        if (isUM)
+        if (!Common.IsPassUnderMaintenance())
         {
             context.Response.Write("UM");
         }

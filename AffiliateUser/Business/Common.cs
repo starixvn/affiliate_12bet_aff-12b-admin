@@ -9,12 +9,13 @@ using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Web;
-using System.Web.Configuration;
 using Affiliate;
+using AffiliateUser.Business;
 using DNAide.Core;
 using DNAide.Web;
+using ONEbook.UM.Models;
+using ONEbook.UM.Services.Impl;
 using Resources;
-using Sunplus.UMControllerLibrary;
 
 /// <summary>
 /// Summary description for Common
@@ -616,53 +617,7 @@ public class Common
     {
         return (MailOption ? "" : "_html");
     }
-    ///Johnny@20100420: Get suffix for sending mail template
-    public static bool GetDownTime(out string startTime, out string endTime)
-    {
-        startTime = endTime = null;
 
-        if (!AppSettings.HasCheckUMTime)
-            return AppSettings.HasCheckUMTime;
-
-        #region check UM in web.config
-        DateTime Now = DateTime.Now;
-        if (Now >= AppSettings.UMStartTime && Now <= AppSettings.UMEndTime)
-        {
-            startTime = AppSettings.UMStartTime.ToString("hh:mm tt");
-            endTime = AppSettings.UMEndTime.ToString("hh:mm tt"); ;
-            return true;
-        }
-        #endregion
-        ////
-        // bool AgnetSiteIsUM = false;
-        //   bool AffiliateSiteIsUM = false;
-        //string TimeFrom = "", TimeTo = "";//To get UM start and end time.
-
-        UMBusiness UMCtrl = new UMBusiness();
-        string UMCtrlURL = WebConfigurationManager.AppSettings["LBUrl"];//Get UM Remoting Connection String
-        bool isUM = false;
-
-        if (HttpContext.Current.Cache["IsUM"] == null)
-        {
-            try
-            {
-                isUM = UMCtrl.isUnderMaintainence(Sites.Affiliate, UMCtrlURL, ref startTime, ref endTime);//Get Agnet Site UM Status.
-                //Cache Information which is gotten from Service
-                HttpContext.Current.Cache.Insert("IsUM", isUM, null, DateTime.Now.AddSeconds(TimeCacheUM), TimeSpan.Zero);
-                HttpContext.Current.Cache.Insert("StartTime", startTime, null, DateTime.Now.AddSeconds(TimeCacheUM), TimeSpan.Zero);
-                HttpContext.Current.Cache.Insert("EndTime", endTime, null, DateTime.Now.AddSeconds(TimeCacheUM), TimeSpan.Zero);
-            }
-            catch { }
-        }
-        else
-        {
-            isUM = CastAide.AsBoolean(HttpContext.Current.Cache["IsUM"]);
-            startTime = CastAide.AsString(HttpContext.Current.Cache["StartTime"]);
-            endTime = CastAide.AsString(HttpContext.Current.Cache["EndTime"]);
-        }
-
-        return isUM;
-    }
     public static string ConvertDateTime(object dtmTime, string slash, bool isFullDate, bool hasTime)
     {
         CultureInfo culture = new CultureInfo("en-US");
@@ -1021,6 +976,27 @@ public class Common
         var listStructuredObjects = (List<T>)binForm.Deserialize(memStream);
 
         return listStructuredObjects;
+    }
+
+    public static UnderMaintenanceTime GetUnderMaintenanceTime()
+    {
+        var maintenaceService = new MaintenanceService();
+
+        return maintenaceService.GetUnderMaintenanceTime();
+    }
+
+    public static bool IsUnderMaintenance()
+    {
+        var maintenaceService = new MaintenanceService();
+
+        return maintenaceService.IsUnderMaintenance();
+    }
+
+    public static bool IsPassUnderMaintenance()
+    {
+        var maintenaceService = new MaintenanceService();
+
+        return maintenaceService.IsPassUnderMaintenance();
     }
 }
 

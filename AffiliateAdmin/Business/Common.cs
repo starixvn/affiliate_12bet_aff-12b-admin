@@ -8,7 +8,6 @@ using System.IO;
 using System.Text;
 using System.Web;
 using System.Web.Caching;
-using System.Web.Configuration;
 using System.Web.UI.HtmlControls;
 using System.Xml;
 using AffiliateAdmin.Business.DataAccess;
@@ -17,10 +16,8 @@ using DNAide.Utils;
 using DNAide.Web;
 //using System.Linq;
 using Fanex.MailDeliver.MailClient.API;
-using LoadBalancerLibrary;
-//using OfficeOpenXml;
-using Sunplus.UMControllerLibrary;
-
+using ONEbook.UM.Models;
+using ONEbook.UM.Services.Impl;
 
 /// <summary>
 /// Summary description for Common
@@ -1502,102 +1499,6 @@ public class Common
         return (MailOption ? "" : "_html");
     }
 
-    public static bool GetDownTime(out string startTime, out string endTime)
-    {
-        startTime = endTime = null;
-
-        if (!AppSettings.HasCheckUMTime)
-            return AppSettings.HasCheckUMTime;
-
-        #region check UM in web.config
-        DateTime Now = DateTime.Now;
-        if (Now >= AppSettings.UMStartTime && Now <= AppSettings.UMEndTime)
-        {
-            startTime = AppSettings.UMStartTime.ToString("hh:mm tt");
-            endTime = AppSettings.UMEndTime.ToString("hh:mm tt"); ;
-            return true;
-        }
-        #endregion
-        ////
-        // bool AgnetSiteIsUM = false;
-        //   bool AffiliateSiteIsUM = false;
-        //string TimeFrom = "", TimeTo = "";//To get UM start and end time.
-
-        UMBusiness UMCtrl = new UMBusiness();
-        string UMCtrlURL = WebConfigurationManager.AppSettings["LBUrl"];//Get UM Remoting Connection String
-        bool isUM = false;
-
-        if (HttpContext.Current.Cache["IsUM"] == null)
-        {
-            isUM = UMCtrl.isUnderMaintainence(Sites.Affiliate, UMCtrlURL, ref startTime, ref endTime);//Get Agnet Site UM Status.
-            //Cache Information which is gotten from Service
-            HttpContext.Current.Cache.Insert("IsUM", isUM, null, DateTime.Now.AddSeconds(TimeCacheUM), TimeSpan.Zero);
-            HttpContext.Current.Cache.Insert("StartTime", startTime, null, DateTime.Now.AddSeconds(TimeCacheUM), TimeSpan.Zero);
-            HttpContext.Current.Cache.Insert("EndTime", endTime, null, DateTime.Now.AddSeconds(TimeCacheUM), TimeSpan.Zero);
-        }
-        else
-        {
-            isUM = CastAide.AsBoolean(HttpContext.Current.Cache["IsUM"]);
-            startTime = CastAide.AsString(HttpContext.Current.Cache["StartTime"]);
-            endTime = CastAide.AsString(HttpContext.Current.Cache["EndTime"]);
-        }
-
-        return isUM;
-    }
-
-    public static bool IsDownTime(out string startTime, out string endTime)
-    {
-        startTime = endTime = null;
-        DateTime Now = DateTime.Now;
-        if (Now >= AppSettings.UMStartTime && Now <= AppSettings.UMEndTime)
-        {
-            startTime = AppSettings.UMStartTime.ToString("hh:mm tt");
-            endTime = AppSettings.UMEndTime.ToString("hh:mm tt"); ;
-            return true;
-        }
-        //return true;
-        if (string.IsNullOrEmpty(AppSettings.LBUrl))
-        {
-            return false;
-        }
-
-        bool isUM = false;
-        if (HttpContext.Current.Cache["IsUM"] == null)
-        {
-            LoadBalancer LB = null;
-
-            try
-            {
-                LB = (LoadBalancer)Activator.GetObject(typeof(LoadBalancer), AppSettings.LBUrl);
-                isUM = LB.isUnderMaintainence(IBCSites.Agency);
-                if (isUM)
-                {
-                    string[] UMTime = LB.GetUMTimeSetting();
-                    startTime = UMTime[0];
-                    endTime = UMTime[1];
-                }
-                //Cache Information which is gotten from Service
-                DateTime TimeCache = DateTime.Now.AddSeconds(TimeCacheUM);
-                HttpContext.Current.Cache.Insert("IsUM", isUM, null, TimeCache, TimeSpan.Zero);
-                HttpContext.Current.Cache.Insert("StartTime", startTime, null, TimeCache, TimeSpan.Zero);
-                HttpContext.Current.Cache.Insert("EndTime", endTime, null, TimeCache, TimeSpan.Zero);
-
-            }
-            catch (Exception ex)
-            {
-                //Fanex.Logging.LogService.Error("LoadBalancerLibrary Error : " + ex.Message);
-            }
-        }
-        else
-        {
-            isUM = CastAide.AsBoolean(HttpContext.Current.Cache["IsUM"]);
-            startTime = CastAide.AsString(HttpContext.Current.Cache["StartTime"]);
-            endTime = CastAide.AsString(HttpContext.Current.Cache["EndTime"]);
-        }
-
-        return isUM;
-    }
-
     public static string FormatStringHtml(string value)
     {
         return HttpUtility.HtmlDecode(value.Replace("\r\n", "<br/>"));
@@ -1782,6 +1683,27 @@ public class Common
     public static string GetDeviceType(string deviceType)
     {
         return string.IsNullOrEmpty(deviceType) ? "0" : deviceType;
+    }
+
+    public static UnderMaintenanceTime GetUnderMaintenanceTime()
+    {
+        var maintenaceService = new MaintenanceService();
+
+        return maintenaceService.GetUnderMaintenanceTime();
+    }
+
+    public static bool IsUnderMaintenance()
+    {
+        var maintenaceService = new MaintenanceService();
+
+        return maintenaceService.IsUnderMaintenance();
+    }
+
+    public static bool IsPassUnderMaintenance()
+    {
+        var maintenaceService = new MaintenanceService();
+
+        return maintenaceService.IsPassUnderMaintenance();
     }
 }
 

@@ -1,5 +1,4 @@
 ﻿using System.Web;
-using System.Collections.Generic;
 using System.Web.UI;
 using System;
 using System.IO;
@@ -14,7 +13,7 @@ public class IBCPage : System.Web.UI.Page
     protected string HtmlContent = string.Empty;
     private string _vers = string.Empty;
     protected string ThemePath;
-    protected bool IsGetAllCss =true;
+    protected bool IsGetAllCss = true;
 
     protected override void InitializeCulture()
     {
@@ -31,14 +30,17 @@ public class IBCPage : System.Web.UI.Page
             System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.CreateSpecificCulture(_locale);
         }
 
-        string startTime, endTime;
-        bool isUM = Common.GetDownTime(out startTime, out endTime);
-        if (isUM)
+        CheckUnderMaintenance();
+
+        base.InitializeCulture();
+    }
+
+    public virtual void CheckUnderMaintenance()
+    {
+        if (!Common.IsPassUnderMaintenance())
         {
             Response.Redirect("~/UnderMaintenance.aspx");
         }
-
-        base.InitializeCulture();
     }
 
     public string GetText(string key)
@@ -116,7 +118,7 @@ public class IBCPage : System.Web.UI.Page
         }
         catch { }
         writer.Write("</head>\n");
-        writer.Write("<body>\n");       
+        writer.Write("<body>\n");
         writer.Write(HtmlContent);
         writer.Write("\n</body>\n");
         writer.Write("</html>\n");

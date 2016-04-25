@@ -28,12 +28,8 @@ public static class AppSettings
     static string _internalAsianAffiliateURL;
     static string _ipCheckerURL;
     static string _websiteCheckerURL;
-    static string _lbUrl;
     static string _urlAffSite;
     static bool _localTest;
-    static bool _hasCheckUMTime;
-    static DateTime _UMStartTime;
-    static DateTime _UMEndTime;
     static DateTime _StatementAvailableFrom;
     static string _suffixSp;
     private static int _betListServiceTimeout;
@@ -71,15 +67,11 @@ public static class AppSettings
         
 
         _websiteCheckerURL = ConfigurationManager.AppSettings["WebsiteCheckerURL"];
-        _lbUrl = ConfigurationManager.AppSettings["LBUrl"];
         _urlAffSite = ConfigurationManager.AppSettings["UrlAffSite"];
 
         _europeanAffiliateURL = ConfigurationManager.AppSettings["EuropeanAffiliateURL"];
         _asianAffiliateURL = ConfigurationManager.AppSettings["AsianAffiliateURL"];
 
-        _hasCheckUMTime = (ConfigurationManager.AppSettings["HasCheckUMTime"] == "1");
-        _UMStartTime = CastAide.AsDateTime(ConfigurationManager.AppSettings["UM_StartTime"]);
-        _UMEndTime = CastAide.AsDateTime(ConfigurationManager.AppSettings["UM_EndTime"]);
         for (int j = 0; j < _cssFiles.Length; ++j)
         {
             _cssFiles[j] = _cssFiles[j].Substring(_cssFiles[j].IndexOf("App_Themes")).Replace("\\", "/");
@@ -301,13 +293,7 @@ public static class AppSettings
             return _websiteCheckerURL;
         }
     }
-    public static string LBUrl
-    {
-        get
-        {
-            return _lbUrl;
-        }
-    }
+
     public static string UrlAffSite
     {
         get
@@ -339,30 +325,7 @@ public static class AppSettings
             return _localTest;
         }
     }
-
-    public static bool HasCheckUMTime
-    {
-        get
-        {
-            return _hasCheckUMTime;
-        }
-    }
-
-    public static DateTime UMStartTime
-    {
-        get
-        {
-            return _UMStartTime;
-        }
-    }
-    public static DateTime UMEndTime
-    {
-        get
-        {
-            return _UMEndTime;
-        }
-    }
-
+    
     public static string SuffixSp
     {
         get

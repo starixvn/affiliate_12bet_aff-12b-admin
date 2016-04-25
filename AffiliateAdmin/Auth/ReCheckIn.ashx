@@ -12,7 +12,6 @@ public class ReCheckIn : IHttpHandler, IRequiresSessionState {
 
         if (AppSettings.Session.OnUser > 0)
         {
-            //bool isok = DataHandler.Login.ReCheckin(context);
             if (DataHandler.Login.ReCheckin(context))
                 context.Response.Write("Expired");
         }
@@ -22,9 +21,7 @@ public class ReCheckIn : IHttpHandler, IRequiresSessionState {
             return;
         }
         
-        string startTime, endTime;
-        bool isUM = Common.GetDownTime(out startTime, out endTime);
-        if (isUM)
+        if (!Common.IsPassUnderMaintenance())
         {
             context.Response.Write("UM");            
         }
