@@ -425,7 +425,7 @@ Format styles
 }
 
 /*to make line-through for void-parlay-ticket*/
-div.mx-parlay div.refund span, div.mx-parlay div.refund div
+div.mx-parlay div.refund span, div.mx-parlay div.refund div,
 {
     text-decoration: line-through;
 }
@@ -433,7 +433,7 @@ div.mx-parlay div.refund > div.match, div.mx-parlay div.refund div.firstGoal, di
 {
     text-decoration: none;
 }
-div.mx-parlay div.reject span, div.mx-parlay div.reject div
+div.mx-parlay div.reject span, div.mx-parlay div.reject div,
 {
     text-decoration: line-through;
 }
@@ -451,3 +451,24 @@ div.mx-parlay div.reject > div.match, div.mx-parlay div.reject div.firstGoal, di
 .light-blue{
     color: #0000CD;
 }
+.mx-parlay .system-parlay-ticket-infor{
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 15px;
+    color: #000000;
+    font-weight: bold;
+}
+.mx-parlay .system-parlay-ticket-infor .system-parlay-unit-stake{
+    color: #003399;
+}
+.combinationLink .offer-name-list, .combinationLink a{
+    font-weight: bold;
+}
+.detail{
+    margin: 5px 0;
+}
+.detail .detail-link{
+    color: #755200;
+    font-weight: bold;
+}
+/********** ------------------ **************/
