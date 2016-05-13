@@ -8,12 +8,6 @@
     <title></title>
 </head>
 <body style="background-color: #fff; background-image: none;  font-size: 13px">
-    <div class="aaa">
-        <h2 style="color: #b50000; font-weight: normal; text-transform: uppercase">
-            BetList Parlay Detail
-        </h2>
-    </div>
-    <hr/>
     <div>
         <%= betlistParlayDetailHtmlString%>
     </div>
