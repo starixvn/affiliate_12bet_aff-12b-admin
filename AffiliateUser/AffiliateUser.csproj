@@ -726,6 +726,7 @@
     <Content Include="DeployConfig\Web.12betuser-euro.uatsit.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="BetList\BetListNewParlay.ashx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
