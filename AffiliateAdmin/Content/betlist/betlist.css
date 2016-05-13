@@ -425,7 +425,7 @@ Format styles
 }
 
 /*to make line-through for void-parlay-ticket*/
-div.mx-parlay div.refund span, div.mx-parlay div.refund div,
+div.mx-parlay div.refund span, div.mx-parlay div.refund div
 {
     text-decoration: line-through;
 }
@@ -433,7 +433,7 @@ div.mx-parlay div.refund > div.match, div.mx-parlay div.refund div.firstGoal, di
 {
     text-decoration: none;
 }
-div.mx-parlay div.reject span, div.mx-parlay div.reject div,
+div.mx-parlay div.reject span, div.mx-parlay div.reject div
 {
     text-decoration: line-through;
 }
@@ -464,8 +464,19 @@ div.mx-parlay div.reject > div.match, div.mx-parlay div.reject div.firstGoal, di
 .combinationLink .offer-name-list, .combinationLink a{
     font-weight: bold;
 }
-.detail{
-    margin: 5px 0;
+.detail
+{
+    background: url("images/q_Icon2_1.png") no-repeat scroll center center transparent;
+    color: #755200;
+    display: inline;
+    font-weight: bold;
+    line-height: 20px;
+    padding: 0 1px 0 65px;
+    cursor: pointer;
+}
+.detail:hover
+{
+    background: url("images/q_Icon_2.png") no-repeat scroll center center transparent;
 }
 .detail .detail-link{
     color: #755200;
