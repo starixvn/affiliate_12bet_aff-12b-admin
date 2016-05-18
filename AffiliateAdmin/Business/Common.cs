@@ -1698,13 +1698,6 @@ public class Common
 
         return maintenaceService.IsUnderMaintenance();
     }
-
-    public static bool IsPassUnderMaintenance()
-    {
-        var maintenaceService = new MaintenanceService();
-
-        return maintenaceService.IsPassUnderMaintenance();
-    }
 }
 
 public enum DTFormatType
