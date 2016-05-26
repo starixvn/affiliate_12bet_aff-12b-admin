@@ -40,7 +40,7 @@ public class RootPage : System.Web.UI.Page
 
     public virtual void CheckUnderMaintenance()
     {
-        if (!Common.IsPassUnderMaintenance())
+        if (Common.IsUnderMaintenance())
         {
             Response.Redirect("~/UnderMaintenance.aspx");
         }
