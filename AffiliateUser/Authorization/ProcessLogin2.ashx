@@ -27,7 +27,7 @@ public class ProcessLogin2 : IHttpHandler, IRequiresSessionState
         string _nl = Environment.NewLine;
         string _url = string.Empty;
         try
-        {            
+        {
             string _accId = context.Request["accId"];
             string _custName = context.Request["custName"];
             string _accKey = context.Request["accKey"];
@@ -42,7 +42,7 @@ public class ProcessLogin2 : IHttpHandler, IRequiresSessionState
             AppSettings.Session.IsInternalSite = true;
             var dr = Auth.GetAdminNetSessionID(_accOnId, context);
             string _accNetSessionID = dr.Outputs["netsessionid"].ToString();
-            if (string.Compare(_accKey, FormsAuthentication.HashPasswordForStoringInConfigFile(_accNetSessionID + _chalengeStr, "MD5"), false) != 0) 
+            if (string.Compare(_accKey, FormsAuthentication.HashPasswordForStoringInConfigFile(_accNetSessionID + _chalengeStr, "MD5"), false) != 0)
                 throw new IBCException("Can not authenticate log-in, invalid ticket!");
 
 
@@ -50,7 +50,7 @@ public class ProcessLogin2 : IHttpHandler, IRequiresSessionState
             if (string.IsNullOrEmpty(dr2.Outputs["errmsg"].ToString()))
             {
                 var afftype = (AffType)DNAide.Core.CastAide.AsInt32(dr2.Outputs["afftype"], 2);
-                
+
                 AppSettings.Session.AffType = afftype;
                 AppSettings.Session.CustID = CastAide.AsInt32(dr2.Outputs["custid"], -1);
                 AppSettings.Session.OnUser = DataHandler.Auth.LoginOnuser(context, CastAide.AsInt32(_accId) * -1);
@@ -66,8 +66,8 @@ public class ProcessLogin2 : IHttpHandler, IRequiresSessionState
                 if (AppSettings.Session.Language == null)
                     AppSettings.Session.Language = "en-US";
 
-                _s = "100:OK"; 
-             //   AppSettings.Session.FirsTimeLoginSucc = true;
+                _s = "100:OK";
+                //   AppSettings.Session.FirsTimeLoginSucc = true;
                 AppSettings.Session.CommGroupName = DNAide.Core.CastAide.AsString(dr2.Outputs["commgroupname"]);
 
                 context.Response.Cookies["Username"].Value = _custName.ToUpper();
@@ -77,12 +77,13 @@ public class ProcessLogin2 : IHttpHandler, IRequiresSessionState
             {
                 _s = "102:" + dr2.Outputs["errmsg"].ToString();
             }
-            
+
             _url = FormsAuthentication.DefaultUrl;
         }
         catch (IBCException ex)
         {
-            context.Response.Write("<body><script type='text/javascript'>alert('" + ex.Message.Replace("'", string.Empty) + "');location.href='../SignIn.aspx';</script></body>");
+            context.Response.Write("<body><script type='text/javascript'>alert('" + ex.Message.Replace("'", string.Empty) + "');location.href='" + Common.RootURL() + "';</script></body>");
+            return;
         }
         catch (Exception ex)
         {
