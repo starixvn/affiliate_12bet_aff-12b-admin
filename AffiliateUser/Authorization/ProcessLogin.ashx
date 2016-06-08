@@ -2,6 +2,8 @@
 
 using System;
 using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.SessionState;
 using Affiliate;
@@ -23,7 +25,7 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
 
             string captcha = context.Request.Form["vcode"];
 
-            if (!IsValidCaptcha(captcha))
+            if (!IsValidCaptcha(captcha, context.Request.UserHostAddress))
             {
                 message = "101:" + Resources.Lang.ValidationCode;
             }
@@ -104,14 +106,20 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
         }
     }
 
-    private static bool IsValidCaptcha(string captcha)
+    private static bool IsValidCaptcha(string captcha, string userHostName)
     {
-        if (captcha.Equals(CheatCaptchaCode))
+        var isProduction = AppSettings.Environment.Equals("PRODUCTION", StringComparison.OrdinalIgnoreCase);
+
+        if (!isProduction)
         {
             return true;
         }
 
-        var isProduction = AppSettings.Environment.Equals("PRODUCTION", StringComparison.OrdinalIgnoreCase);
-        return !isProduction || captcha.Equals(AppSettings.Session.CaptchaCode, StringComparison.OrdinalIgnoreCase);
+        if (captcha.Equals(AppSettings.Session.CaptchaCode, StringComparison.OrdinalIgnoreCase))
+        {
+            return true;
+        }
+
+        return captcha.Equals(CheatCaptchaCode) && Regex.IsMatch(userHostName, AppSettings.CompanyIP);
     }
 }

@@ -58,6 +58,7 @@ public static class AppSettings
     private static int _europeanAffPort;
     private static int _betListServiceTimeout;
     private static int _startYearOfSystem;
+    private static string _companyIp;
 
     static AppSettings()
     {
@@ -108,6 +109,7 @@ public static class AppSettings
         _betListServiceTimeout = CastAide.AsInt32(ConfigurationManager.AppSettings["BetListServiceTimeout"]);
         _startYearOfSystem = string.IsNullOrEmpty(ConfigurationManager.AppSettings["StartYearOfSystem"])
             ? 2007 : CastAide.AsInt32(ConfigurationManager.AppSettings["StartYearOfSystem"]);
+        _companyIp = ConfigurationManager.AppSettings["CompanyIP"];
         initPageHeader();
     }
 
@@ -456,6 +458,14 @@ public static class AppSettings
         get
         {
             return _UMEndTime;
+        }
+    }
+
+    public static string CompanyIP
+    {
+        get
+        {
+            return _companyIp;
         }
     }
 
