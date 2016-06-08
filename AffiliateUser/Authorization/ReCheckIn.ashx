@@ -15,7 +15,7 @@ public class ReCheckIn : IHttpHandler, IRequiresSessionState {
             }
         }
 
-        if (!Common.IsPassUnderMaintenance())
+        if (Common.IsUnderMaintenance())
         {
             context.Response.Write("UM");
         }
