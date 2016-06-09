@@ -1753,7 +1753,6 @@
     <Content Include="Casino\UploadExcel.aspx" />
     <Content Include="ChangeAdminPass.aspx" />
     <Content Include="ChangePass.aspx" />
-    <Content Include="Content\betlist\betlist.core.css" />
     <Content Include="Content\betlist\betlist.css" />
     <Content Include="Content\betlist\fanex.result.css" />
     <Content Include="Content\betlist\global.content.css" />

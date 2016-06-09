@@ -1394,7 +1394,6 @@
     <Content Include="Content\Banner\Tradition\smallbanner.gif" />
     <Content Include="Content\Banner\Vietnamese\bigbanner.gif" />
     <Content Include="Content\Banner\Vietnamese\smallbanner.gif" />
-    <Content Include="Content\betlist\betlist.core.css" />
     <Content Include="Content\betlist\betlist.css" />
     <Content Include="Content\betlist\fanex.result.css" />
     <Content Include="Content\betlist\global.content.css" />
