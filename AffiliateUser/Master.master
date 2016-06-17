@@ -30,6 +30,11 @@
         .clear{
             clear:both;            
         }
+
+        .icon-collapse{
+            float: right;
+            margin-right: 5px;
+        }
         
     </style>
    <script type="text/javascript">
@@ -58,7 +63,7 @@
             <div id="contents_main">
                 <asp:ContentPlaceHolder ID="MainContent" runat="server">
                 </asp:ContentPlaceHolder>
-                <div id="dv_collapse_expand" style="width:14px; height: auto; float: right; margin-top: 0;">
+                <div id="dv_collapse_expand" class="icon-collapse">
                     <a href="#" style="width:5px;height:220px;" onclick="OnExpandView();">
                        <img runat="server" src="~/App_Themes/Default/Images/expand-ico.png" id="imgRightPanel" /> 
                     </a> 
@@ -75,7 +80,7 @@
         <div class="red_line"></div>
     </div>
     <script type="text/javascript">
-        var contentDivHeight = document.getElementById("contents").offsetHeight;
+        var contentDivHeight = document.getElementById("right_pane").offsetHeight;
         document.getElementById("dv_collapse_expand").setAttribute("style", "margin-top:" + (contentDivHeight/2 - 13) + "px");
         function OnExpandView() {
             if (document.getElementById("right_pane")) {

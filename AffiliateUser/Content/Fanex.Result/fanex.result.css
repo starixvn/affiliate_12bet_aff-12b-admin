@@ -254,3 +254,15 @@ table .row-noinfo
     text-align: center;
     padding: 4px;
 }
+.cl-match-mt.home, .cl-match-mt.away{
+    text-align: left;
+}
+.cl-match-mt.home{
+    color: red;
+}
+.cl-match-mt.away{
+    color: blue;
+}
+.cl-status .ko{
+    color: blue;
+}
