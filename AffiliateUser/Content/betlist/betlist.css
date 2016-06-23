@@ -442,8 +442,11 @@ div.mx-parlay div.reject > div.match, div.mx-parlay div.reject div.firstGoal, di
     text-decoration: none;
 }
 /********** ------------------ **************/
-.leagueName{
+.leagueName, .excluding-choices{
     color: #666666;
+}
+.excluding-choices{
+    font-weight: normal;
 }
 .light-blue{
     color: #0000CD;
