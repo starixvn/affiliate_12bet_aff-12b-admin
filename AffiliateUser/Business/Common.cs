@@ -712,9 +712,9 @@ public class Common
         {
             arrTarget.Add("home");
             arrTarget.Add("signup");
-            arrTarget.Add("promotion");
-            arrTarget.Add("sportstoday");
+            arrTarget.Add("sportsbook");
             arrTarget.Add("numbergame");
+            arrTarget.Add("promotion");
         }
 
         return GenerateSelectObj("target", arrTarget, arrTarget, targetRequest);
