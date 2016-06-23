@@ -61,7 +61,7 @@
             parent.fInfo.$("isReload").value = "2";
 
             setTimeout(function () {
-                parent.fInfo.$("frmSearch").submit();
+                parent.fInfo.$("isReload").value = "0";
             }, 2000);
 
         }
