@@ -186,7 +186,7 @@ public class Common
             case "vn": 
             case "vi": return "Tiếng Việt";
             case "id": return "Indonesian";
-            case "ko": return "Korean";
+            case "ko": return "한국어";
             case "ja":
             case "jp": return "日本";
             case "hi": return "Republic of India";
