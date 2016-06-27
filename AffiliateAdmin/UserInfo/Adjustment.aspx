@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" Inherits="UserInfo_Adjustment" Codebehind="Adjustment.aspx.cs" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" Inherits="UserInfo_Adjustment" CodeBehind="Adjustment.aspx.cs" %>
 
 <!--js-->
 
@@ -12,52 +12,50 @@
     var arrItem = new Array();
     var arrError = new Array();
     var isEdit = false;
-    function Adjust()
-    {
-        if(isEdit)
+    function Adjust() {
+        if (isEdit)
             return false;
         isEdit = true;
         arrItem.clear();
         arrError.clear();
-        if(isEmpty($("txtAdjust").value.trim()))
-        {
+        if (isEmpty($("txtAdjust").value.trim())) {
             ErrAlter("The amount is required");
             isEdit = false;
             return false;
         }
-        var txtAdj = 0;        
+        var txtAdj = 0;
         var adjVal = 0;
-        try
-        {
+        try {
             txtAdj = toNumber($("txtAdjust").value)
             adjVal = parseFloat(txtAdj);
-            if(!(txtAdj.isNumber()) || adjVal == 0)
-            {
+            if (!(txtAdj.isNumber()) || adjVal == 0) {
                 ErrAlter("The amount is invalid");
                 isEdit = false;
                 return false;
-            }          
+            }
         }
-        catch(o){ErrAlter("The amount is invalid"); return false;}
+        catch (o) { ErrAlter("The amount is invalid"); return false; }
+
+        DelayReloadPage1();
         var ajax = new Ajax.Request('../Handler/Adjustment.ashx', {
             method: 'post',
             parameters: { custid: $('custid').value, adj: adjVal, des: $('txtDescript').value },
-            onComplete: function(strdata) {
+            onComplete: function (strdata) {
+                HideDelayReloadPage();
                 var result = strdata.responseText.split("@");
                 if (result[0] == '0') {
                     //reload this page and lef panel
                     $("errMsg").className = "done";
-                    SuccAlter(result[1]);
-                    DelayReloadPage1();
+                    SuccAlter(result[1]);                   
                     parent.fInfo.$("isReload").value = "4";
-                    setTimeout("parent.fInfo.$('frmSearch').submit();", 2500);
+                    setTimeout("parent.fInfo.$('frmSearch').submit();", 1500);
                 }
                 else {
                     ErrAlter(result[1]);
                     isEdit = false;
                 }
             }
-        });  
+        });
         return false;
     }
 </script>
