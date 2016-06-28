@@ -1,4 +1,4 @@
-<%@ Page Language="C#" AutoEventWireup="true" Inherits="AffiliateUpd" Codebehind="AffiliateUpd.aspx.cs" %>
+<%@ Page Language="C#" AutoEventWireup="true" Inherits="AffiliateUpd" CodeBehind="AffiliateUpd.aspx.cs" %>
 
 <!--js-->
 <script type="text/javascript" src="../App_Js/prototype.js"></script>
@@ -6,37 +6,34 @@
 <script type="text/javascript" src="../App_Js/IBCWnd/IBCWnd.js"></script>
 
 <script type="text/javascript">
-    window.onload=function(){
-        $("slPayment").value = $('hdMethod').value;        
+    window.onload = function () {
+        $("slPayment").value = $('hdMethod').value;
         ShowMethod();
-        CloseClick(); 
+        CloseClick();
     };
-    
+
     var arrItem = new Array();
     var arrError = new Array();
-    function ShowMethod()
-    {
+    function ShowMethod() {
         var divs = $('divPlayer', 'divNeteller', 'divMoneybookers', 'divWire', 'divCheque');
         var spans = $('spPlayer', 'spNeteller', 'spMoneybookers', 'spWire', 'spCheque');
-        for(i = 0; i < 4; i++)
-        {
+        for (i = 0; i < 4; i++) {
             divs[i].hide();
             spans[i].className = "hide";
         }
-        if($("div" + $("slPayment").value))
+        if ($("div" + $("slPayment").value))
             $("div" + $("slPayment").value).show();
-        if($("sp" + $("slPayment").value))
+        if ($("sp" + $("slPayment").value))
             $("sp" + $("slPayment").value).className = "";
     }
-    function submitForm()
-    {
+    function submitForm() {
         $('errMsg').className = "";
         $("hdMoreurl").value = "";
         arrItem.clear();
         arrError.clear();
         $('errMsg').hide();
         var isSucc = CheckSuccess();
-        if(isSucc == false)
+        if (isSucc == false)
             return false;
         for (var i = 2; i < 100; i++) {
             if (!$("txtSiteUrl" + i)) {
@@ -50,11 +47,9 @@
         DelayReloadPage1();
         return true;
     }
-    function UpdateSuccess(msg, url, intReload)
-    {   
+    function UpdateSuccess(msg, url, intReload) {
         HideDelayReloadPage();
-        if(parent.fInfo)
-        {
+        if (parent.fInfo) {
             arrError.clear();
             arrItem.clear();
             arrError.push(msg);
@@ -64,23 +59,18 @@
             ShowError(arrError, arrItem, "error_item");
             //var tmp = "";
             parent.fInfo.$("isReload").value = "2";
-            
-            setTimeout(function () {
-                parent.fInfo.$("isReload").value = "0";
-            }, 2000);
-            
-            parent.fInfo.$("frmSearch").submit();
 
-            
+            setTimeout(function () {
+                parent.fInfo.$("frmSearch").submit();
+            }, 2000);
+
         }
-        else
-        {
-            location.href=url;
-        }        
+        else {
+            location.href = url;
+        }
     }
-    function UpdateErr(msg, itemFocus)
-    {        
-        $('errMsg').show();        
+    function UpdateErr(msg, itemFocus) {
+        $('errMsg').show();
         arrError.clear();
         arrItem.clear();
         arrError.push(msg);
@@ -88,51 +78,43 @@
         ShowError(arrError, arrItem, "error_item");
         HideDelayReloadPage();
     }
-    function CheckSuccess()
-    {
-        if(isEmpty($('txtFName').value))
-        {
+    function CheckSuccess() {
+        if (isEmpty($('txtFName').value)) {
             arrError.push(top.fMenu.Msg.FName);
             arrItem.push("txtFName");
         }
-        if(isEmpty($('txtLName').value))
-        {
+        if (isEmpty($('txtLName').value)) {
             arrError.push(top.fMenu.Msg.LName);
             arrItem.push("txtLName");
         }
         if (!document.getElementsByName("rdGender")[0].checked) {
-            if(!document.getElementsByName("rdGender")[1].checked){
+            if (!document.getElementsByName("rdGender")[1].checked) {
                 arrItem.push("rdGender");
                 arrError.push(top.fMenu.Msg.ErrGender);
             }
         }
-        if(isEmpty($('txtAddress').value))
-        {
+        if (isEmpty($('txtAddress').value)) {
             arrError.push(top.fMenu.Msg.Address);
             arrItem.push("txtAddress");
         }
-        if(isEmpty($('txtCity').value))
-        {
+        if (isEmpty($('txtCity').value)) {
             arrError.push(top.fMenu.Msg.City);
             arrItem.push("txtCity");
         }
-//        if(isEmpty($('txtState').value))
-//        {
-//            arrError.push(top.fMenu.Msg.State);
-//            arrItem.push("txtState");
-//        }
-        if(isEmpty($('txtPost').value))
-        {
+        //        if(isEmpty($('txtState').value))
+        //        {
+        //            arrError.push(top.fMenu.Msg.State);
+        //            arrItem.push("txtState");
+        //        }
+        if (isEmpty($('txtPost').value)) {
             arrError.push(top.fMenu.Msg.PostCode);
             arrItem.push("txtPost");
         }
-        if(isEmpty($('selCountry').value))
-        {
+        if (isEmpty($('selCountry').value)) {
             arrError.push(top.fMenu.Msg.Country);
             arrItem.push("selCountry");
         }
-        if(!checkMail($('txtEmail').value))
-        {
+        if (!checkMail($('txtEmail').value)) {
             arrError.push(top.fMenu.Msg.EmailValid);
             arrItem.push("txtEmail");
         }
@@ -145,8 +127,7 @@
             arrItem.push("txtMobile");
         }
 
-        if (isEmpty($("txtSiteUrl").value) && isEmpty($("txtNoWebsite").value))
-        {
+        if (isEmpty($("txtSiteUrl").value) && isEmpty($("txtNoWebsite").value)) {
             arrError.push(top.fMenu.Msg.SiteUrl);
             arrItem.push("txtSiteUrl");
         }
@@ -160,10 +141,9 @@
                     break;
                 }
             }
-        }  
+        }
 
-        switch($("slPayment").value)
-        {
+        switch ($("slPayment").value) {
             case "Player":
                 check12Bet();
                 break;
@@ -182,110 +162,86 @@
             default:
                 check12Bet();
                 break;
-        }        
-        if(arrItem.length > 0)
-        {            
+        }
+        if (arrItem.length > 0) {
             $('errMsg').show();
             ShowError(arrError, arrItem, "error_item");
             return false;
-        } 
+        }
         return true;
     }
-    function check12Bet()
-    {
-        if(isEmpty($('txtBet12UserName').value))
-        {
+    function check12Bet() {
+        if (isEmpty($('txtBet12UserName').value)) {
             arrError.push(top.fMenu.Msg.UserName12Bet);
             arrItem.push("txtBet12UserName");
         }
     }
-    function checkNeteller()
-    {
-        if(isEmpty($('txtNetellerAccId').value))
-        {
+    function checkNeteller() {
+        if (isEmpty($('txtNetellerAccId').value)) {
             arrError.push(top.fMenu.Msg.Neteller);
             arrItem.push("txtNetellerAccId");
         }
     }
-    function checkMoneyBooker()
-    {
-        if(isEmpty($('txtMoneyBookerEmail').value))
-        {
+    function checkMoneyBooker() {
+        if (isEmpty($('txtMoneyBookerEmail').value)) {
             arrError.push(top.fMenu.Msg.Moneybooker);
             arrItem.push("txtMoneyBookerEmail");
         }
-        else
-        {
-            if(!checkMail($('txtMoneyBookerEmail').value))
-            {
+        else {
+            if (!checkMail($('txtMoneyBookerEmail').value)) {
                 arrError.push(top.fMenu.Msg.MoneybookerValid);
                 arrItem.push("txtMoneyBookerEmail");
             }
         }
     }
-    function checkWire()
-    {
-        if(isEmpty($('txtBankName').value))
-        {
+    function checkWire() {
+        if (isEmpty($('txtBankName').value)) {
             arrError.push(top.fMenu.Msg.BankName);
             arrItem.push("txtBankName");
         }
-        if(isEmpty($('txtBankAddress').value))
-        {
+        if (isEmpty($('txtBankAddress').value)) {
             arrError.push(top.fMenu.Msg.BankAddress);
             arrItem.push("txtBankAddress");
         }
-        if(isEmpty($('txtBankAccName').value))
-        {
+        if (isEmpty($('txtBankAccName').value)) {
             arrError.push(top.fMenu.Msg.BankAccName);
             arrItem.push("txtBankAccName");
         }
-        if(isEmpty($('txtBankAccNumber').value))
-        {
+        if (isEmpty($('txtBankAccNumber').value)) {
             arrError.push(top.fMenu.Msg.BankAccNumber);
             arrItem.push("txtBankAccNumber");
         }
     }
-    function checkCheque()
-    {
-        if(isEmpty($('txtChequeFullName').value))
-        {
+    function checkCheque() {
+        if (isEmpty($('txtChequeFullName').value)) {
             arrError.push(top.fMenu.Msg.ChequeFullname);
             arrItem.push("txtChequeFullName");
         }
-        if(isEmpty($('txtChequeAddress').value))
-        {
+        if (isEmpty($('txtChequeAddress').value)) {
             arrError.push(top.fMenu.Msg.ChequeAddress);
             arrItem.push("txtChequeAddress");
         }
-        if(isEmpty($('txtChequeCity').value))
-        {
+        if (isEmpty($('txtChequeCity').value)) {
             arrError.push(top.fMenu.Msg.ChequeCity);
             arrItem.push("txtChequeCity");
         }
-        if(isEmpty($('txtChequeState').value))
-        {
+        if (isEmpty($('txtChequeState').value)) {
             arrError.push(top.fMenu.Msg.ChequeState);
             arrItem.push("txtChequeState");
         }
-        if(isEmpty($('txtChequePostcode').value))
-        {
+        if (isEmpty($('txtChequePostcode').value)) {
             arrError.push(top.fMenu.Msg.ChequePostcode);
             arrItem.push("txtChequePostcode");
         }
     }
-    function CloseClick()
-    {
-        if($("chkStatus"))
-        {
+    function CloseClick() {
+        if ($("chkStatus")) {
             $("slComm").disabled = $("chkStatus").checked;
-            if($("chkStatus").checked)
-            {
+            if ($("chkStatus").checked) {
                 $("spCommList").hide();
                 $("spComm").show();
             }
-            else
-            {
+            else {
                 $("spCommList").show();
                 $("spComm").hide();
                 $("slComm").value = ($("spComm").innerHTML == "0.00" ? "0.30" : $("spComm").innerHTML);
@@ -326,7 +282,7 @@
                 var tr = tbl.tBodies[0].rows[i];
                 var tds = tr.getElementsByTagName("td");
 
-                var index = i ;
+                var index = i;
                 tds[0].innerHTML = "Website URL " + index.toString();
                 tds[2].innerHTML = "<input type='text' size='30' value='" + tds[2].childNodes[0].value + "' class='sites' id='txtSiteUrl" + index + "' name='txtSiteUrl" + index + "' />&nbsp;&nbsp;<input type=\"button\" onclick=\"DelUrl(" + index + ");\" class=\"buttonlogin\" value=\"Del\" />";
             }

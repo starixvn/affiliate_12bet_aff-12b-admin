@@ -1,14 +1,4 @@
-﻿// ----------------------------------------------------------------------
-// <copyright file="HomeController.cs" company="Nexcel Solutions Vietnam">
-//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// ------------------------------------------------------------------------
-// <history>
-//   <change who="Long.Luu" date="2013/08/05">Created</change>
-//   <change who="" date=""></change>
-// </history>
-
-using System.Configuration;
+﻿using System.Configuration;
 
 namespace Fanex.Affiliate.Link.Controllers
 {

@@ -21,11 +21,10 @@ public class ReCheckIn : IHttpHandler, IRequiresSessionState {
             return;
         }
         
-        if (!Common.IsPassUnderMaintenance())
+        if (Common.IsUnderMaintenance())
         {
             context.Response.Write("UM");            
         }
-       
     }
  
     public bool IsReusable {

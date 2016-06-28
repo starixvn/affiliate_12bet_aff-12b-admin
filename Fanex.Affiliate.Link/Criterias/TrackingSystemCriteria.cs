@@ -1,13 +1,4 @@
-﻿// --------------------------------------------------------------------------
-// <copyright file="TrackingSystemCriteria.cs" company="Nexcel Solutions Vietnam">
-// Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------
-// <history>
-//   <change who="Brian.Dinh" date="2014.7.11">Created</change>
-// </history>
-
-namespace Fanex.Affiliate.Link.Criterias
+﻿namespace Fanex.Affiliate.Link.Criterias
 {
     using Data.Repository;
 
