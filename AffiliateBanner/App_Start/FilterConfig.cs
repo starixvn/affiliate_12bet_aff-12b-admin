@@ -1,10 +1,4 @@
-﻿// ----------------------------------------------------------------------
-// <copyright file="FilterConfig.cs" company="Nexcel Solutions Vietnam">
-//     Copyright (c) Nexcel Solutions Vietnam. All rights reserved.
-// </copyright>
-// ------------------------------------------------------------------------
-
-namespace Affiliate.Banner
+﻿namespace Affiliate.Banner
 {
     using System.Web.Mvc;
 
