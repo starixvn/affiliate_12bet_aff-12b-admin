@@ -108,7 +108,7 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
 
     private static bool IsValidCaptcha(string captcha, string userHostName)
     {
-        var isProduction = AppSettings.Environment.Equals("PRODUCTION", StringComparison.OrdinalIgnoreCase);
+        var isProduction = AppSettings.Environment.Equals("UAT", StringComparison.OrdinalIgnoreCase);
 
         if (!isProduction)
         {
