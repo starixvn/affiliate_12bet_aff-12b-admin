@@ -12,8 +12,6 @@ using Resources;
 
 public class ProcessLogin : IHttpHandler, IRequiresSessionState
 {
-    private const string CheatCaptchaCode = "1508";
-
     public void ProcessRequest(HttpContext context)
     {
         context = AffHandler.InitializeCulture(context);
@@ -25,7 +23,7 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
 
             string captcha = context.Request.Form["vcode"];
 
-            if (!IsValidCaptcha(captcha, context.Request.UserHostAddress))
+            if (!Common.IsValidCaptcha(captcha, context.Request.UserHostAddress))
             {
                 message = "101:" + Resources.Lang.ValidationCode;
             }
@@ -104,22 +102,5 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
         {
             return false;
         }
-    }
-
-    private static bool IsValidCaptcha(string captcha, string userHostName)
-    {
-        var isProduction = AppSettings.Environment.Equals("UAT", StringComparison.OrdinalIgnoreCase);
-
-        if (!isProduction)
-        {
-            return true;
-        }
-
-        if (captcha.Equals(AppSettings.Session.CaptchaCode, StringComparison.OrdinalIgnoreCase))
-        {
-            return true;
-        }
-
-        return captcha.Equals(CheatCaptchaCode) && Regex.IsMatch(userHostName, AppSettings.CompanyIP);
     }
 }

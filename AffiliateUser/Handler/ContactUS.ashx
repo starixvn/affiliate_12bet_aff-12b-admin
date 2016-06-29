@@ -22,7 +22,7 @@ public class ContactUS : IHttpHandler, IRequiresSessionState {
         {
             context.Response.ContentType = "text/html";
             string strCaptcha = context.Request.Form["txtValidateRegister"];
-            if (string.Compare(AppSettings.Session.CaptchaCode, strCaptcha, true) != 0)
+            if (!Common.IsValidCaptcha(strCaptcha, context.Request.UserHostAddress))
             {
                 StringBuilder err = new StringBuilder("<script type='text/javascript'>parent.$('validCodeRegister').src='Authorization/LoginCaptcha.ashx?ver=");
                 err.Append(DateTime.Now.ToBinary().ToString());

@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Web;
 using Affiliate;
 using AffiliateUser.Business;
@@ -22,6 +23,8 @@ using Resources;
 /// </summary>
 public class Common
 {
+    private const string CheatCaptchaCode = "1508";
+
     public const string Male = "Male";
     public const string Female = "Female";
     public const string NumberFormatPlaceholder = "N0";
@@ -990,6 +993,23 @@ public class Common
         var maintenaceService = new MaintenanceService();
 
         return maintenaceService.IsUnderMaintenance();
+    }
+
+    public static bool IsValidCaptcha(string captcha, string userHostName)
+    {
+        var isProduction = AppSettings.Environment.Equals("UAT", StringComparison.OrdinalIgnoreCase);
+
+        if (!isProduction)
+        {
+            return true;
+        }
+
+        if (captcha.Equals(AppSettings.Session.CaptchaCode, StringComparison.OrdinalIgnoreCase))
+        {
+            return true;
+        }
+
+        return captcha.Equals(CheatCaptchaCode) && Regex.IsMatch(userHostName, AppSettings.CompanyIP);
     }
 }
 
