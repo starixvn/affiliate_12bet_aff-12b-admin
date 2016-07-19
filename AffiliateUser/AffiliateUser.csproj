@@ -232,10 +232,8 @@
     </Compile>
     <Compile Include="Business\AffHandler.cs" />
     <Compile Include="Business\DataAccess\DbHelper.cs" />
-    <Compile Include="Business\AffTicket.cs" />
     <Compile Include="Business\AffType.cs" />
     <Compile Include="Business\AppSettings.cs" />
-    <Compile Include="Business\BetListViewModel.cs" />
     <Compile Include="Business\CacheRef.cs" />
     <Compile Include="Business\CacheUtil.cs" />
     <Compile Include="Business\Common.cs" />
@@ -285,7 +283,6 @@
     <Compile Include="Business\RootPageLogIn.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Business\TicketResult.cs" />
     <Compile Include="Business\TicketText.cs" />
     <Compile Include="Business\TplCore\App_Templates\MemberInfo\CasinoPT.htm.cs" />
     <Compile Include="Business\TplCore\_IPInfo\IpInfo.htm.cs" />
