@@ -7,15 +7,14 @@ public partial class UnderMaintenance : System.Web.UI.Page
 
     protected override void OnLoad(EventArgs e)
     {
-        var underMaintenanceTime = Common.GetUnderMaintenanceTime();
-
-        if (!underMaintenanceTime.IsUnderMaintenanceTime)
+        if (!Common.IsUnderMaintenance())
         {
             Response.Redirect("~/Root.aspx");
             Response.End();
             return;
         }
 
+        var underMaintenanceTime = Common.GetUnderMaintenanceTime();
         UMTime_From = underMaintenanceTime.From;
         UMTime_To = underMaintenanceTime.To;
         
