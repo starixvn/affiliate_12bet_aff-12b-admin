@@ -5827,7 +5827,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sportbook.
+        ///   Looks up a localized string similar to Sportsbook.
         /// </summary>
         internal static string Sportbook {
             get {

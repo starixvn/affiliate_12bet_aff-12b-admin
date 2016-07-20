@@ -129,3 +129,40 @@ function showCombMPDetail(transId, refNo, betId, custId, betTeam, baseCurrency)
     var heightDialog = 450;
     DoCalFull(url, 'System Parlay Detail', widthDialog, heightDialog, 150, 290);
 }
+
+function showNewCombMP(transId, transIndex, refNo, handicap1, handicap2, betcheck, betteam) {
+    var $detaillDiv = $j('#divEvent_' + transId + "" + transIndex);
+    var $nameDiv = $j('#combinationOfferName_' + transId + transIndex);
+    $detaillDiv.addClass("mx-parlay"); //to make line-through for void-parlay-ticket
+
+    if ($detaillDiv.is(':hidden')) {
+        var url = "BetListNewParlay.ashx?";
+        url += "transId=" + transId;
+        url += "&refno=" + refNo;
+        url += "&handicap1=" + handicap1;
+        url += "&handicap2=" + handicap2;
+        url += "&betcheck=" + betcheck;
+        url += "&betteam=" + betteam;
+        $j.ajax({
+            type: "GET",
+            contentType: 'application/json',
+            dataType: "text",
+            cache: false,
+            url: url,
+            error: function () {
+            },
+            success: function (response) {
+                $detaillDiv.html(response).show();
+                $nameDiv.hide();
+            },
+            beforeSend: function () {
+            },
+            complete: function () {
+            }
+        });
+    }
+    else {
+        $detaillDiv.hide().html("");
+        $nameDiv.show();
+    }
+}

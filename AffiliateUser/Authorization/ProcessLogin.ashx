@@ -2,6 +2,8 @@
 
 using System;
 using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.SessionState;
 using Affiliate;
@@ -14,16 +16,16 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
     {
         context = AffHandler.InitializeCulture(context);
         context.Response.ContentType = "text/html";
-        string _s = string.Empty;
+        string message = string.Empty;
 
         try
         {
-            var isProduction = AppSettings.Environment.Equals("PRODUCTION", StringComparison.OrdinalIgnoreCase);
-            string _captcha = context.Request.Form["vcode"];
-            
-            if (isProduction && string.Compare(AppSettings.Session.CaptchaCode, _captcha, true) != 0)
+
+            string captcha = context.Request.Form["vcode"];
+
+            if (!Common.IsValidCaptcha(captcha, context.Request.UserHostAddress))
             {
-                _s = "101:" + Resources.Lang.ValidationCode;
+                message = "101:" + Resources.Lang.ValidationCode;
             }
             else
             {
@@ -42,8 +44,8 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
 
                     if (!isValidLogin)
                     {
-                        _s = "103: " + Lang.NotAllowOnDomain;
-                        context.Response.Write(_s);
+                        message = "103: " + Lang.NotAllowOnDomain;
+                        context.Response.Write(message);
                         return;
                     }
 
@@ -51,7 +53,7 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
                     AppSettings.Session.CustID = DNAide.Core.CastAide.AsInt32(dr.Outputs["custid"], -1);
                     AppSettings.Session.OnUser = DataHandler.Auth.LoginOnuser(context);
                     AppSettings.Session.UserName = _username;
-                    
+
                     AppSettings.Session.FirstName = DNAide.Core.CastAide.AsString(dr.Outputs["firstname"]);
                     AppSettings.Session.LastName = DNAide.Core.CastAide.AsString(dr.Outputs["lastname"]);
                     AppSettings.Session.Email = DNAide.Core.CastAide.AsString(dr.Outputs["email"]);
@@ -71,27 +73,27 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
                     AppSettings.Session.FirsTimeLoginSucc = true;
                     AppSettings.Session.CommGroupName = DNAide.Core.CastAide.AsString(dr.Outputs["commgroupname"]);
 
-                    _s = AppSettings.Session.ForceChangePass ? "99:Force to change password" : "100:OK";
+                    message = AppSettings.Session.ForceChangePass ? "99:Force to change password" : "100:OK";
 
                     context.Response.Cookies["Username"].Value = _username.ToUpper();
-                    
+
                     context.Response.Cookies["Username"].Expires = DateTime.Now.AddDays(30);
                 }
                 else
                 {
-                    _s = "102:" + dr.Outputs["errmsg"];
+                    message = "102:" + dr.Outputs["errmsg"];
                 }
             }
         }
         catch (Exception ex)
         {
             Fanex.Logging.LogService.Error(ex.Message);
-            _s = "102:" + ex.Message;
+            message = "102:" + ex.Message;
 #if DEBUG
                         throw;
 #endif
         }
-        context.Response.Write(_s);
+        context.Response.Write(message);
     }
 
     public bool IsReusable
@@ -101,5 +103,4 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
             return false;
         }
     }
-
 }
