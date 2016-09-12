@@ -710,6 +710,8 @@ public class Common
             arrTarget.Add("numbergame");
             arrTarget.Add("keno");
             arrTarget.Add("virtualsports");
+            arrTarget.Add("playtech");
+            arrTarget.Add("livecasino");
         }
         else
         {
