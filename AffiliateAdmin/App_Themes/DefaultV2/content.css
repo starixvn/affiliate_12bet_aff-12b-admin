@@ -75,12 +75,12 @@
 	cursor: pointer;
 	padding: 0 8px;
 }
-.ic-uncheck
+.ic-uncheck, .date-uncheck
 {
 	background: url(images/checkbox01.jpg) no-repeat;
 }
 
-.ic-check
+.ic-check, .date-check
 {
 	background: url(images/checkbox02.jpg) no-repeat;
 }
@@ -90,7 +90,7 @@ span.ic-uncheck, span.ic-check
 	cursor:pointer;
 	display: inline-block;
 }
-div.ic-uncheck, div.ic-check
+div.ic-uncheck, div.ic-check, .date-check, .date-uncheck
 {
 	width: 12px;
 	height: 12px;	

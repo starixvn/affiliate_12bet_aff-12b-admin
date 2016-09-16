@@ -44,9 +44,11 @@ public class DeleteMailList : IHttpHandler, IRequiresSessionState
             }
         }
     }
- 
-    public bool IsReusable {
-        get {
+
+    public bool IsReusable
+    {
+        get
+        {
             return false;
         }
     }

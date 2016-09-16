@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Text;
-using System.Collections;
-using DNAide.Web;
 using DNAide.Core;
-
+using DNAide.Web;
 
 public partial class Others_EmailHistory : IBCPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        string content=TemplateHandler.LoadTemplate("Others/EmailHistory.htm");
+        string content = TemplateHandler.LoadTemplate("Others/EmailHistory.htm");
         TemplateHandler.Assign(ref content, "EmailHistory", Resources.Lang.EmailHistory);
         TemplateHandler.Assign(ref content, "Search", Resources.Lang.SearchBy);
         TemplateHandler.Assign(ref content, "All", Resources.Lang.All);
@@ -40,7 +37,7 @@ public partial class Others_EmailHistory : IBCPage
         string name = string.Empty, email = string.Empty, affiliateName = string.Empty;
 
         int minNo = 0, maxNo = 0, totalEmail = 0, totalpage = 0;
-        int currPage = CastAide.AsInt32(Request["page"],1);//get the current page from hidden field in form
+        int currPage = CastAide.AsInt32(Request["page"], 1);//get the current page from hidden field in form
         int currPageSize = CastAide.AsInt32(Request["pagesize"], 20);//get the current page from hidden field in form
         int searchOption = CastAide.AsInt32(Request["slSearchOption"], -1);
         bool isUnknown = false;
@@ -51,18 +48,23 @@ public partial class Others_EmailHistory : IBCPage
         {
             case -1:
                 break;
+
             case 0:
                 name = strSearchText;
                 break;
+
             case 1:
                 email = strSearchText;
                 break;
+
             case 2:
                 affiliateName = strSearchText;
                 break;
+
             case -2:
                 msgId = -1;
                 break;
+
             default:
                 break;
         }
@@ -86,7 +88,7 @@ public partial class Others_EmailHistory : IBCPage
         TemplateHandler.Assign(ref content, "hdfDate-val", fdate.ToString("MM/dd/yyyy"));
         TemplateHandler.Assign(ref content, "hdtDate-val", tdate.ToString("MM/dd/yyyy"));
         TemplateHandler.Assign(ref content, "hdTotalEmail-val", totalEmail.ToString());
-        
+
         TemplateHandler.Assign(ref content, "minNo", minNo.ToString());
         TemplateHandler.Assign(ref content, "maxNo", maxNo.ToString());
         TemplateHandler.Assign(ref content, "page", currPage);
@@ -99,7 +101,7 @@ public partial class Others_EmailHistory : IBCPage
         else
         {
             TemplateHandler.Assign(ref content, "paging-top", "");
-            TemplateHandler.Assign(ref content, "paging-bottom","");
+            TemplateHandler.Assign(ref content, "paging-bottom", "");
         }
         this.HtmlContent = content;
     }
