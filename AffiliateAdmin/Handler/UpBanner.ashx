@@ -43,7 +43,7 @@ public class UpBanner : IHttpHandler, IRequiresSessionState {
             }
             else
                 ext = oldFileName.Substring(oldFileName.LastIndexOf(".") + 1, oldFileName.Length - oldFileName.LastIndexOf(".") - 1);
-            
+
             if (string.IsNullOrEmpty(inputFileName))
             {
                 if (needToUploadFile)
@@ -67,13 +67,12 @@ public class UpBanner : IHttpHandler, IRequiresSessionState {
                 tempSB.Append(ext);
                 inputFileName = tempSB.ToString();
             }
-            
+
             string err = string.Empty;
             int errCode = 0;
             string newFileName = string.Empty;
             string strDst = string.Empty;
             string newFolder = string.Empty;
-            string path = context.Server.MapPath("../Banner//");
 
             if (oldFileName.Contains("CategoryMedia"))  // banner with new categories
             {
@@ -87,7 +86,7 @@ public class UpBanner : IHttpHandler, IRequiresSessionState {
                     sb.Append("/");
                     category = subCategory;
                 }
-                
+
                 newFolder = sb.ToString();
                 sb.Append(inputFileName);
                 newFileName = sb.ToString();
@@ -96,14 +95,16 @@ public class UpBanner : IHttpHandler, IRequiresSessionState {
             {
                 if (category == "Casino" || category == "Sportsbook")
                     category = subCategory;
-                
+
                 //newFolder = category + "/";
                 int index = oldFileName.LastIndexOf("/") + 1;
                 newFolder = oldFileName.Substring(0, index);
                 inputFileName = oldFileName.Substring(index, oldFileName.LastIndexOf(".") - index) + "." + ext;
                 newFileName = newFolder + inputFileName;
             }
-            
+
+            string path = AppSettings.BannerDirectory;
+
             string oldFullPath = path + oldFileName;
             strDst = path + newFileName;
             if (!category.Equals(oldCategory) && oldFileName.Contains("CategoryMedia"))
@@ -162,12 +163,12 @@ public class UpBanner : IHttpHandler, IRequiresSessionState {
                 }
             }
             else if (!oldFileName.Equals(newFileName))
-                    Common.DeleteFile(oldFullPath);
-            
+                Common.DeleteFile(oldFullPath);
+
             context.Response.Write("<script type=\"text/javascript\">alert('" + Resources.Lang.UpdateBannerSuccessfull + "');parent.Cancelfunction();</script>");
         }
     }
- 
+
     public bool IsReusable {
         get {
             return false;

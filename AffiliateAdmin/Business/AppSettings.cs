@@ -118,6 +118,14 @@ public static class AppSettings
         }*/
     }
 
+    public static string BannerDirectory
+    {
+        get
+        {
+            return ConfigurationManager.AppSettings["BannerDirectory"];
+        }
+    }
+
     public static string Environment
     {
         get
