@@ -144,6 +144,7 @@ namespace GenerateHTML
                 string content = TemplateHandler.CopyBlock(temp, "Content");
                 TemplateHandler.RemoveBlock(ref content, "UpdateMode1");
                 TemplateHandler.RemoveBlock(ref content, "UpdateMode2");
+                TemplateHandler.Assign(ref content, "banner-url", AppSettings.BannerUrl);
                 int totalpage = CastAide.AsInt32(result.Outputs["totalpages"]);
                 DataTable dtbResult = result.ResultSet.Tables[0];
                 StringBuilder contentList = new StringBuilder();
