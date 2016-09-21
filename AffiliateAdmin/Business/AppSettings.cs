@@ -296,18 +296,6 @@ public static class AppSettings
             }
         }
 
-        public static string CaptchaCode
-        {
-            get
-            {
-                return CastAide.AsString(HttpContext.Current.Session["CaptchaCode"]);
-            }
-            set
-            {
-                HttpContext.Current.Session["CaptchaCode"] = value;
-            }
-        }
-
         public static int CustID
         {
             get
@@ -329,14 +317,6 @@ public static class AppSettings
             set
             {
                 HttpContext.Current.Session["On_UserID"] = value;
-            }
-        }
-
-        public static bool IsAuthenticated
-        {
-            get
-            {
-                return (HttpContext.Current.Session["CustID"] != null);
             }
         }
 
