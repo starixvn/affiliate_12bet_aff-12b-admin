@@ -32,7 +32,6 @@ public partial class AffRate : IBCPage
         TemplateHandler.Assign(ref strTpl, "submit", Resources.Lang.Submit);
         TemplateHandler.Assign(ref strTpl, "themepath", AppSettings.ThemeDir);
         TemplateHandler.Assign(ref strTpl, "isupdated", (dtmTime.DayOfYear == dtmNow.DayOfYear && dtmTime.Year == dtmNow.Year) ? "1" : "0");
-        //TemplateHandler.Assign(ref strTpl, "submenu", Common.GenSubMenu(new string[] { "#" }, new string[] { Resources.Lang.ExchangeRate }, 399, 0));
         try
         {
             int intCount = 0;

@@ -228,7 +228,6 @@ namespace GenerateHTML
                 totalBanner = nRows;
                 if (totalpage > 0)
                 {
-                    //contentList.Append(Common.GenPagingFooter("", totalpage, pageIndex, cols));
                     totalPage = totalpage;
                 }
                 return contentList.ToString();
@@ -340,7 +339,6 @@ namespace GenerateHTML
                 totalBanner = nRows;
                 if (totalpage > 0)
                 {
-                    //contentList.Append(Common.GenPagingFooter("", totalpage, pageIndex, cols));
                     totalPage = totalpage;
                 }
                 return contentList.ToString();

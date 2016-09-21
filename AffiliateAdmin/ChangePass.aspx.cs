@@ -10,7 +10,7 @@ public partial class ChangePass : IBCPage
         {
             string strContent = TemplateHandler.LoadTemplate("ChangePass.htm");
             string isAdmin = CastAide.AsString(Request["isAdmin"], "0");
-            //TemplateHandler.Assign(ref strContent, "submenu", Common.GenSubMenu(new string[] { "#" }, new string[] { Request["username"] }, 322, 0));
+            
             TemplateHandler.Assign(ref strContent, "resetpass", Resources.Lang.ResetPass);
             TemplateHandler.Assign(ref strContent, "paththeme", AppSettings.ThemeDir);
             TemplateHandler.Assign(ref strContent, "password", Resources.Lang.Password);

@@ -60,13 +60,6 @@ public class UploadExcel : IHttpHandler, IRequiresSessionState
             string ext = fileName.Substring(fileName.LastIndexOf('.') + 1, fileName.Length - fileName.LastIndexOf('.') - 1);
             XmlDocument doc = new XmlDocument();
 
-            string errMsg = Common.ConvertExcelToXML(fileName, ref doc);
-            if (!String.IsNullOrEmpty(errMsg))
-            {
-                context.Response.Write("<script type='text/javascript'>parent.UpdateErr(\"" + errMsg + "\");</script>");
-                return;
-            }
-
             //Update database here
             DbResult rs = DataHandler.Casino.CasinoDataUpdate(doc.OuterXml, true, date);//Alway replace old data
             //DbResult rs = DataHandler.Casino.CasinoDataUpdate(doc.OuterXml, (context.Request["hdHasData"] == "1"), date);        

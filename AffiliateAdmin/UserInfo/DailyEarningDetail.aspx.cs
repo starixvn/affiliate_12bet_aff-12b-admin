@@ -165,8 +165,6 @@ public partial class DailyEarningDetail : IBCPage
                 TemplateHandler.Assign(ref strTemplate, "iscomm", Request["iscomm"]);
                 TemplateHandler.RemoveBlock(ref strTemplate, "directory");                
             }
-            //string subPage = Common.GenSubPage(1);
-            //TemplateHandler.Assign(ref subPage, "ContentPage", strTemplate);
             #endregion
 
             this.HtmlContent = strTemplate;

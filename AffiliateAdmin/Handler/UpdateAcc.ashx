@@ -43,9 +43,6 @@ public class UpdateAcc : IHttpHandler, IRequiresSessionState
             string strSiteUrl = context.Request.Form["txtSiteUrl"];
             string strEmailFormat = context.Request.Form["rdFormat"];
             string strErrMsg = "";
-            //string strPayment = Common.GetMethodName(context.Request.Form["hdMethod"]);
-            //string strPayment = context.Request.Form["slPayment"];
-            //string strPlayerUserName = context.Request.Form["txtBet12UserName"];
             string strURL = context.Request.Form["txtSiteUrl"];
             string strMoreUrl = context.Request.Form["hdMoreurl"];
             string strNoSiteDesc = context.Request.Form["txtNoWebsite"];
@@ -75,7 +72,7 @@ public class UpdateAcc : IHttpHandler, IRequiresSessionState
             if (intErrCode != 0)
             {
                 string strErrObj = "error_item";
-                string strMsg = strErrMsg;// Common.GetErrMsg(intErrCode, ref strErrObj);
+                string strMsg = strErrMsg;
                 if (intErrCode == 500)
                 {
                     context.Response.Write("<script type='text/javascript'>parent.UpdateErr(\"" + strErrMsg + "\", \"strErrObj\");</script>");

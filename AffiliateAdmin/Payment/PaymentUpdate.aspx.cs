@@ -54,7 +54,7 @@ public partial class PaymentUpdate : IBCPage
                 else
                     TemplateHandler.ReplaceBlock(ref strTpl, "pending", string.Empty);
 
-                TemplateHandler.Assign(ref strTpl, "status-val", Common.GerStatus(dr["status"].ToString()));
+                TemplateHandler.Assign(ref strTpl, "status-val", Common.GetStatus(dr["status"].ToString()));
 
                 StatusGer(ref strTpl, dr);
 
