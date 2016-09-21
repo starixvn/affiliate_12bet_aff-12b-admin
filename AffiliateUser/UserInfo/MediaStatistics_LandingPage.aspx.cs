@@ -42,7 +42,7 @@ public partial class UserInfo_MediaStatistics_LandingPage : RootPageLogIn
             dtmTo = now;
         }
 
-        TemplateHandler.Assign(ref statisticsContent, "slPage", Common.GenListLink2Page("sportCode", sportCode, deviceType));
+        TemplateHandler.Assign(ref statisticsContent, "slPage", Common.GenListLink2Page("sportCode", sportCode, deviceType, true));
 
         DataView dv = CacheUtil.GetBannerTypes().DefaultView;
         TemplateHandler.Assign(ref statisticsContent, "slLanguage", this.GetDataOptionBanner(dv, "languageCode", "Language", languageCode, true));

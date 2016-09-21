@@ -327,7 +327,7 @@ public class Common
         }
     }
 
-    public static string GenerateSelectObj(string strID, ArrayList arrValue, ArrayList arrText, string strValueSelected, bool hasTextAll = false)
+    public static string GenerateSelectObj(string strID, ArrayList arrValue, ArrayList arrText, string strValueSelected, bool hasTextAll)
     {
         StringBuilder strBuild = new StringBuilder();
         strBuild.Append("<select id=\"" + strID + "\" name=\"" + strID + "\">");
@@ -685,7 +685,7 @@ public class Common
         return opt;
     }
 
-    public static string GenListLink2Page(string id, string targetRequest, string deviceType)
+    public static string GenListLink2Page(string id, string targetRequest, string deviceType, bool hasTextAll = false)
     {
         var arrTarget = new ArrayList();
         if (deviceType.Equals("0", StringComparison.OrdinalIgnoreCase))
@@ -714,7 +714,7 @@ public class Common
             arrTarget.Add("promotion");
         }
 
-        return GenerateSelectObj(id, arrTarget, arrTarget, targetRequest);
+        return GenerateSelectObj(id, arrTarget, arrTarget, targetRequest, hasTextAll);
     }
 
     public static string GenDropDownFromTable(DataTable dt, string valueColumn, string nameColumn, string id, ref string activeValue, bool isGenAll)
