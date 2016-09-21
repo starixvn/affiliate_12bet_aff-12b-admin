@@ -109,7 +109,6 @@ public class PaymentUpdate : IHttpHandler, IRequiresSessionState
         TemplateHandler.Assign(ref strNoticeMail, "winlostdate", dtmWLDate.ToString("MM/dd/yyyy"));
         string strSubject = TemplateHandler.ReplaceBlock(ref strNoticeMail, "subject", "");
         Common.SendEmail(strEmail, strSubject, strNoticeMail, AppSettings.BCCMail, AppSettings.CCMail);
-        //SendMailService.SendMail2(AppSettings.MailServer, strEmail, AppSettings.FromMail, AppSettings.CCMail, AppSettings.BCCMail, strSubject, strNoticeMail, AppSettings.MailPwd);
     }
     #endregion
 

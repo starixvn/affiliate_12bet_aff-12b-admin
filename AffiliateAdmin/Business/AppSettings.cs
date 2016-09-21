@@ -417,35 +417,9 @@ public static class AppSettings
     #endregion ---------- for Session-------------
 
     #region -------------For Mail Service------------------
-
-    public static string MailServer
-    {
-        get { return ConfigurationManager.AppSettings["mailServer"]; }
-    }
-
-    public static string MailPwd
-    {
-        get { return DNAide.Utils.Encryption.CfsDeCrypt(ConfigurationManager.AppSettings["emailPwd"]); }
-    }
-
     public static string MailContact
     {
         get { return ConfigurationManager.AppSettings["MailContact"]; }
-    }
-
-    public static string FromMail
-    {
-        get { return ConfigurationManager.AppSettings["fromMail"]; }
-    }
-
-    public static int Port
-    {
-        get { return CastAide.AsInt32(ConfigurationManager.AppSettings["port"]); }
-    }
-
-    public static string ToMail
-    {
-        get { return CastAide.AsString(ConfigurationManager.AppSettings["toMail"]); }
     }
 
     public static string CCMail

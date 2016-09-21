@@ -78,7 +78,6 @@ public partial class test : System.Web.UI.Page
 
 
             TemplateHandler.Assign(ref strNoticeMail, "fname", strFName);
-            //TemplateHandler.Assign(ref strNoticeMail, "lname", strLName);
             TemplateHandler.Assign(ref strNoticeMail, "mailcontact", AppSettings.MailContact);
             TemplateHandler.Assign(ref strNoticeMail, "amount", FormatHandler.FormatNumber2(Amt, "en-US"));
             TemplateHandler.Assign(ref strNoticeMail, "transid", intTransId.ToString());
@@ -88,7 +87,6 @@ public partial class test : System.Web.UI.Page
 
 
             Common.SendEmail(strEmail, strSubject, strNoticeMail, AppSettings.BCCMail, AppSettings.CCMail);
-            //rs = SendMailService.SendMail2(AppSettings.MailServer, strEmail, AppSettings.FromMail, "", "", strSubject, strNoticeMail,AppSettings.MailPwd);
 
         }
         catch(Exception ex)
@@ -117,7 +115,6 @@ public partial class test : System.Web.UI.Page
             }
             string strNoticeMail = TemplateHandler.LoadTemplate(FileName).Replace("\r\n", "");
             TemplateHandler.Assign(ref strNoticeMail, "fname", strFName);
-            //TemplateHandler.Assign(ref strNoticeMail, "lname", strLName);
             TemplateHandler.Assign(ref strNoticeMail, "mailcontact", AppSettings.MailContact);
             TemplateHandler.Assign(ref strNoticeMail, "amount", FormatHandler.FormatNumber2(Amt, "en-US"));
             TemplateHandler.Assign(ref strNoticeMail, "transid", intTransId.ToString());
@@ -125,7 +122,6 @@ public partial class test : System.Web.UI.Page
             TemplateHandler.Assign(ref strNoticeMail, "winlostdate", dtmWLDate.ToString("MM/dd/yyyy"));
             string strSubject = TemplateHandler.ReplaceBlock(ref strNoticeMail, "subject", "");
             Common.SendEmail(strEmail, strSubject, strNoticeMail, AppSettings.BCCMail, AppSettings.CCMail);
-            //rs = SendMailService.SendMail2(AppSettings.MailServer, strEmail, AppSettings.FromMail, "", "", strSubject, strNoticeMail, AppSettings.MailPwd);
         }
         catch 
         {
@@ -157,7 +153,6 @@ public partial class test : System.Web.UI.Page
             string strApproved = TemplateHandler.LoadHtml(FileName, strTags, strValue).Replace("\r\n", "");
             string strSubject = TemplateHandler.ReplaceBlock(ref strApproved, "subject", "").Replace("\r\n", "").Trim();
             Common.SendEmail(Email, strSubject, strApproved, AppSettings.BCCMail, AppSettings.CCMail);
-            //rs = DNAide.Utils.SendMailService.SendMail2(AppSettings.MailServer, Email, AppSettings.FromMail, "", "", strSubject, strApproved, AppSettings.MailPwd);
         }
         catch { throw; }
         return rs;
@@ -186,7 +181,6 @@ public partial class test : System.Web.UI.Page
             string strDisapproved = TemplateHandler.LoadHtml(FileName, strTags, strValue).Replace("\r\n", "");
             string strSubject = TemplateHandler.ReplaceBlock(ref strDisapproved, "subject", "").Replace("\r\n", "").Trim();
             Common.SendEmail(Email, strSubject, strDisapproved, AppSettings.BCCMail, AppSettings.CCMail);
-            //rs = DNAide.Utils.SendMailService.SendMail2(AppSettings.MailServer, Email, AppSettings.FromMail, "", "", strSubject, strDisapproved, AppSettings.MailPwd);
         }
         catch { throw; }
         return rs;
