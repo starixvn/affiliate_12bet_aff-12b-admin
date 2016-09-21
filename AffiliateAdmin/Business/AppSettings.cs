@@ -1,128 +1,20 @@
 ﻿using System;
 using System.Configuration;
+using System.IO;
 using System.Web;
 using System.Xml;
-using System.IO;
 using DNAide.Core;
+
 /// <summary>
 /// Summary description for AppSettings
 /// </summary>
 public static class AppSettings
 {
-    static string _site;
-    static string _jsVersion;
-    static string _serverId;
-    static string _tplFolder;
-    static string _themeDir;
-    static string _pageHeader = string.Empty;
-    static string[] _cssFiles;
-    static string _affmaster;
-    static string _affMedia;
-    static string _mediaUrl;
-    static string _link;
-    static string _link_TH;
-    static string _link_CS;
-    static int _imagesize;
-    static string _virtualDir;
-    static string _internalEuropeanAffiliateURL;
-    static string _internalAsianAffiliateURL;
-    static string _ipCheckerURL;
-    static string _websiteCheckerURL;
-    static string _urlAffSite;
-    static bool _localTest;
-    static DateTime _StatementAvailableFrom;
-    static string _suffixSp;
-    private static int _betListServiceTimeout;
-
-    private static DateTime _ReportStartDate;
-
-    static string _europeanAffiliateURL;
-    static string _asianAffiliateURL;
-    private static int _startYearOfSystem;
-
-    static AppSettings()
-    {
-        _virtualDir= ConfigurationManager.AppSettings["VirtualDir"];
-        _site = ConfigurationManager.AppSettings["Site"];
-        _jsVersion = ConfigurationManager.AppSettings["JsVersion"];
-        _serverId = ConfigurationManager.AppSettings["ServerId"];
-        _tplFolder = ConfigurationManager.AppSettings["template_folder"];
-        _ipCheckerURL = ConfigurationManager.AppSettings["IPCheckerURL"];
-        _themeDir = @"App_Themes/" + (string.IsNullOrEmpty(ConfigurationManager.AppSettings["Theme"]) ? "Default" : ConfigurationManager.AppSettings["Theme"]);
-        //GET CSS FILES
-        _cssFiles = Directory.GetFiles(System.AppDomain.CurrentDomain.BaseDirectory + _themeDir);
-        _affmaster = ConfigurationManager.AppSettings["AffMaster"];
-        _affMedia = ConfigurationManager.AppSettings["AffMedia"];
-        _mediaUrl = ConfigurationManager.AppSettings["MediaUrl"]; 
-        _link = ConfigurationManager.AppSettings["12BetLink"];
-        _link_TH = ConfigurationManager.AppSettings["12BetLink_TH"];
-        _link_CS = ConfigurationManager.AppSettings["12BetLink_CS"];
-        _imagesize =CastAide.AsInt32(ConfigurationManager.AppSettings["imagesize"]);
-        _StatementAvailableFrom = CastAide.AsDateTime(ConfigurationManager.AppSettings["StatementAvailableFrom"]);
-        _ReportStartDate = CastAide.AsDateTime(ConfigurationManager.AppSettings["ReportStartDate"]);
-        
-        _internalEuropeanAffiliateURL = ConfigurationManager.AppSettings["internalEuropeanAffiliateURL"];
-        _internalAsianAffiliateURL = ConfigurationManager.AppSettings["internalAsianAffiliateURL"];
-        _localTest = ConfigurationManager.AppSettings["LocalTest"].Equals("1", StringComparison.OrdinalIgnoreCase);
-        
-
-        _websiteCheckerURL = ConfigurationManager.AppSettings["WebsiteCheckerURL"];
-        _urlAffSite = ConfigurationManager.AppSettings["UrlAffSite"];
-
-        _europeanAffiliateURL = ConfigurationManager.AppSettings["EuropeanAffiliateURL"];
-        _asianAffiliateURL = ConfigurationManager.AppSettings["AsianAffiliateURL"];
-
-        for (int j = 0; j < _cssFiles.Length; ++j)
-        {
-            _cssFiles[j] = _cssFiles[j].Substring(_cssFiles[j].IndexOf("App_Themes")).Replace("\\", "/");
-        }
-
-        _suffixSp = ConfigurationManager.AppSettings["SuffixSp"];
-
-        _betListServiceTimeout = CastAide.AsInt32(ConfigurationManager.AppSettings["BetListServiceTimeout"]);
-
-        _startYearOfSystem = string.IsNullOrEmpty(ConfigurationManager.AppSettings["StartYearOfSystem"]) 
-            ? 2007 : CastAide.AsInt32(ConfigurationManager.AppSettings["StartYearOfSystem"]);
-
-        initPageHeader();
-    }
-    static void initPageHeader()
-    {
-        //try
-        //{
-        _pageHeader = string.Empty;
-        XmlDocument doc = new XmlDocument();
-        doc.Load(System.AppDomain.CurrentDomain.BaseDirectory + @"\Web.info");
-        foreach (XmlNode node in doc.ChildNodes[1].ChildNodes)
-        {
-            if (node.Attributes["name"].Value == "title")
-            {
-                _pageHeader += "<title>" + node.Attributes["value"].Value + "</title>\n";
-            }
-            else if (node.Attributes["name"].Value == "keywords")
-            {
-                _pageHeader += "<meta name=\"keywords\" content=\"" + node.Attributes["value"].Value + "\" />\n";
-            }
-            else if (node.Attributes["name"].Value == "description")
-            {
-                _pageHeader += "<meta name=\"description\" content=\"" + node.Attributes["value"].Value + "\" />\n";
-            }
-            else if (node.Attributes["name"].Value == "contenttype")
-            {
-                _pageHeader += "<meta http-equiv=\"Content-Type\" content=\"" + node.Attributes["value"].Value + "\" />\n";
-            }
-        }
-        /*}
-        catch
-        {
-        }*/
-    }
-
     public static string BannerDirectory
     {
         get
         {
-            return ConfigurationManager.AppSettings["BannerDirectory"];
+            return GetValue("BannerDirectory");
         }
     }
 
@@ -130,7 +22,7 @@ public static class AppSettings
     {
         get
         {
-            return ConfigurationManager.AppSettings["BannerUrl"];
+            return GetValue("BannerUrl");
         }
     }
 
@@ -138,7 +30,7 @@ public static class AppSettings
     {
         get
         {
-            return ConfigurationManager.AppSettings["Environment"];
+            return GetValue("Environment");
         }
     }
 
@@ -146,115 +38,124 @@ public static class AppSettings
     {
         get
         {
-            return _cssFiles;
+            var cssFiles = Directory.GetFiles(System.AppDomain.CurrentDomain.BaseDirectory + ThemeDir);
+            for (int j = 0; j < cssFiles.Length; ++j)
+            {
+                cssFiles[j] = cssFiles[j].Substring(cssFiles[j].IndexOf("App_Themes")).Replace("\\", "/");
+            }
+
+            return cssFiles;
         }
     }
+
     public static string Site
     {
         get
         {
-            return _site;
+            return GetValue("Site");
         }
     }
+
     public static string JsVersion
     {
         get
         {
-            return _jsVersion;
+            return GetValue("JsVersion");
         }
     }
+
     public static string ServerId
     {
         get
         {
-            return _serverId;
+            return GetValue("ServerId");
         }
     }
+
     public static string TplFolder
     {
         get
         {
-            return _tplFolder;
+            return GetValue("template_folder");
         }
     }
-    public static void InitThemeInfo()
-    {
 
-    }
     public static string HtmlHeader
     {
         get
         {
-            return _pageHeader;
+            var pageHeader = string.Empty;
+            XmlDocument doc = new XmlDocument();
+            doc.Load(System.AppDomain.CurrentDomain.BaseDirectory + @"\Web.info");
+            foreach (XmlNode node in doc.ChildNodes[1].ChildNodes)
+            {
+                if (node.Attributes["name"].Value == "title")
+                {
+                    pageHeader += "<title>" + node.Attributes["value"].Value + "</title>\n";
+                }
+                else if (node.Attributes["name"].Value == "keywords")
+                {
+                    pageHeader += "<meta name=\"keywords\" content=\"" + node.Attributes["value"].Value + "\" />\n";
+                }
+                else if (node.Attributes["name"].Value == "description")
+                {
+                    pageHeader += "<meta name=\"description\" content=\"" + node.Attributes["value"].Value + "\" />\n";
+                }
+                else if (node.Attributes["name"].Value == "contenttype")
+                {
+                    pageHeader += "<meta http-equiv=\"Content-Type\" content=\"" + node.Attributes["value"].Value + "\" />\n";
+                }
+            }
+
+            return pageHeader;
         }
     }
+
     public static string ThemeDir
     {
         get
         {
-            return _themeDir;
+            return @"App_Themes/" + (string.IsNullOrEmpty(GetValue("Theme")) ? "Default" : GetValue("Theme"));
         }
     }
+
     public static string AffMaster
     {
         get
         {
-
-            return _affmaster;
+            return GetValue("AffMaster");
         }
     }
-    public static string AffMedia
-    {
-        get
-        {
 
-            return _affMedia;
-        }
-    }
-    public static string MediaUrl
-    {
-        get
-        {
-
-            return _mediaUrl;
-        }
-    }
     public static string Link
     {
         get
         {
-
-            return _link;
+            return GetValue("12BetLink");
         }
     }
-    public static string Link_CS
-    {
-        get
-        {
 
-            return _link_CS;
-        }
-    }
     public static string Link_TH
     {
         get
         {
-
-            return _link_TH;
+            return GetValue("12BetLink_TH");
         }
     }
+
     public static int ImageSize
     {
         get
         {
-            return _imagesize;
+            return CastAide.AsInt32(GetValue("imagesize"));
         }
     }
+
     public static bool VirtualDir
     {
         get
         {
-            return _virtualDir=="1";
+            return GetValue("VirtualDir") == "1";
         }
     }
 
@@ -262,7 +163,7 @@ public static class AppSettings
     {
         get
         {
-            return _StatementAvailableFrom;
+            return CastAide.AsDateTime(GetValue("StatementAvailableFrom"));
         }
     }
 
@@ -270,7 +171,7 @@ public static class AppSettings
     {
         get
         {
-            return _ReportStartDate;
+            return CastAide.AsDateTime(GetValue("ReportStartDate"));
         }
     }
 
@@ -281,32 +182,36 @@ public static class AppSettings
             return CastAide.AsInt32(ConfigurationManager.AppSettings["pagesize"]);
         }
     }
+
     public static string InternalEuropeanAffiliateURL
     {
         get
         {
-            return _internalEuropeanAffiliateURL;
+            return GetValue("internalEuropeanAffiliateURL");
         }
     }
+
     public static string InternalAsianAffiliateURL
     {
         get
         {
-            return _internalAsianAffiliateURL;
+            return GetValue("internalAsianAffiliateURL");
         }
     }
+
     public static string IPCheckerURL
     {
         get
         {
-            return _ipCheckerURL;
+            return GetValue("IPCheckerURL");
         }
     }
+
     public static string WebsiteCheckerURL
     {
         get
         {
-            return _websiteCheckerURL;
+            return GetValue("WebsiteCheckerURL");
         }
     }
 
@@ -314,7 +219,7 @@ public static class AppSettings
     {
         get
         {
-            return _urlAffSite;
+            return GetValue("UrlAffSite");
         }
     }
 
@@ -322,7 +227,7 @@ public static class AppSettings
     {
         get
         {
-            return _europeanAffiliateURL;
+            return GetValue("EuropeanAffiliateURL");
         }
     }
 
@@ -330,7 +235,7 @@ public static class AppSettings
     {
         get
         {
-            return _asianAffiliateURL;
+            return GetValue("AsianAffiliateURL");
         }
     }
 
@@ -338,21 +243,29 @@ public static class AppSettings
     {
         get
         {
-            return _localTest;
+            return GetValue("LocalTest") == "1";
         }
     }
-    
+
     public static string SuffixSp
     {
         get
         {
-            return _suffixSp;
+            return GetValue("SuffixSp");
         }
     }
 
     public static int BetListServiceTimeout
     {
-        get { return _betListServiceTimeout; }
+        get
+        {
+            return CastAide.AsInt32(GetValue("BetListServiceTimeout"));
+        }
+    }
+
+    public static string GetValue(string key)
+    {
+        return ConfigurationManager.AppSettings[key];
     }
 
     #region ---------- for Session-------------
@@ -373,15 +286,14 @@ public static class AppSettings
 
         public static int RoleID
         {
-            get {
-                return CastAide.AsInt32(HttpContext.Current.Session["RoleID"],-1);   
-            
+            get
+            {
+                return CastAide.AsInt32(HttpContext.Current.Session["RoleID"], -1);
             }
             set
             {
-                HttpContext.Current.Session["RoleID"] = value; 
+                HttpContext.Current.Session["RoleID"] = value;
             }
-        
         }
 
         public static string CaptchaCode
@@ -419,6 +331,7 @@ public static class AppSettings
                 HttpContext.Current.Session["On_UserID"] = value;
             }
         }
+
         public static bool IsAuthenticated
         {
             get
@@ -426,9 +339,9 @@ public static class AppSettings
                 return (HttpContext.Current.Session["CustID"] != null);
             }
         }
+
         public static string UserName
         {
-            
             get
             {
                 return HttpContext.Current.Session["UserName"].ToString();
@@ -438,6 +351,7 @@ public static class AppSettings
                 HttpContext.Current.Session["UserName"] = value;
             }
         }
+
         public static string RoleAccess
         {
             get
@@ -462,6 +376,7 @@ public static class AppSettings
                 HttpContext.Current.Session["AffId"] = value;
             }
         }
+
         public static string AffUsername
         {
             get
@@ -473,6 +388,7 @@ public static class AppSettings
                 HttpContext.Current.Session["AffUsername"] = value;
             }
         }
+
         public static AffType AffType
         {
             get
@@ -484,6 +400,7 @@ public static class AppSettings
                 HttpContext.Current.Session["AffType"] = value;
             }
         }
+
         public static bool IsCasino
         {
             get
@@ -497,7 +414,7 @@ public static class AppSettings
         }
     }
 
-    #endregion
+    #endregion ---------- for Session-------------
 
     #region -------------For Mail Service------------------
 
@@ -505,18 +422,22 @@ public static class AppSettings
     {
         get { return ConfigurationManager.AppSettings["mailServer"]; }
     }
+
     public static string MailPwd
     {
         get { return DNAide.Utils.Encryption.CfsDeCrypt(ConfigurationManager.AppSettings["emailPwd"]); }
     }
+
     public static string MailContact
     {
         get { return ConfigurationManager.AppSettings["MailContact"]; }
     }
+
     public static string FromMail
     {
         get { return ConfigurationManager.AppSettings["fromMail"]; }
     }
+
     public static int Port
     {
         get { return CastAide.AsInt32(ConfigurationManager.AppSettings["port"]); }
@@ -539,8 +460,11 @@ public static class AppSettings
 
     public static int StartYearOfSystem
     {
-        get { return _startYearOfSystem; }
+        get
+        {
+            return string.IsNullOrEmpty(GetValue("StartYearOfSystem")) ? 2007 : CastAide.AsInt32(GetValue("StartYearOfSystem"));
+        }
     }
 
-    #endregion
+    #endregion -------------For Mail Service------------------
 }
