@@ -326,10 +326,17 @@ public class Common
             return "-$" + string.Format(info, "{0:#,##0.00}", dcNumber);
         }
     }
-    public static string GenerateSelectObj(string strID, ArrayList arrValue, ArrayList arrText, string strValueSelected)
+
+    public static string GenerateSelectObj(string strID, ArrayList arrValue, ArrayList arrText, string strValueSelected, bool hasTextAll = false)
     {
         StringBuilder strBuild = new StringBuilder();
         strBuild.Append("<select id=\"" + strID + "\" name=\"" + strID + "\">");
+
+        if(hasTextAll)
+        {
+            strBuild.Append("<option value=\"\">" + Resources.Lang.All + "</option>");
+        }
+
         for (int i = 0; i < arrValue.Count; i++)
         {
             if (string.Compare(strValueSelected, arrValue[i].ToString()) == 0)
@@ -341,21 +348,6 @@ public class Common
         return strBuild.ToString();
     }
 
-    public static string GenerateSelectObj(string strID, ArrayList arrValue, ArrayList arrText, string strValueSelected, bool hasSelect)
-    {
-        StringBuilder strBuild = new StringBuilder();
-        strBuild.Append("<select id=\"" + strID + "\" name=\"" + strID + "\">");
-        strBuild.Append("<option value=\"\">" + Resources.Lang.All + "</option>");
-        for (int i = 0; i < arrValue.Count; i++)
-        {
-            if (string.Compare(strValueSelected, arrValue[i].ToString()) == 0)
-                strBuild.Append("<option value=\"" + arrValue[i].ToString() + "\" selected>" + arrText[i].ToString() + "</option>");
-            else
-                strBuild.Append("<option value=\"" + arrValue[i].ToString() + "\">" + arrText[i].ToString() + "</option>");
-        }
-        strBuild.Append("</select>");
-        return strBuild.ToString();
-    }
     public static string NoInfo(int intNumCols)
     {
         string strNoInfo = TemplateHandler.LoadTemplate("NoInfo.html");
@@ -693,7 +685,7 @@ public class Common
         return opt;
     }
 
-    public static string GenListLink2Page(string targetRequest, string deviceType)
+    public static string GenListLink2Page(string id, string targetRequest, string deviceType)
     {
         var arrTarget = new ArrayList();
         if (deviceType.Equals("0", StringComparison.OrdinalIgnoreCase))
@@ -722,34 +714,7 @@ public class Common
             arrTarget.Add("promotion");
         }
 
-        return GenerateSelectObj("target", arrTarget, arrTarget, targetRequest);
-    }
-
-    public static string GenListLink2Page(string id, string targetRequest, bool hasSelect, string deviceType)
-    {
-        var arrTarget = new ArrayList();
-        if (deviceType.Equals("0", StringComparison.OrdinalIgnoreCase))
-        {
-            arrTarget.Add("sportsbook");
-            arrTarget.Add("casino");
-            arrTarget.Add("signup");
-            arrTarget.Add("promotion");
-            if (AppSettings.Session.IsCasino)
-                arrTarget.Add("12betcasino");
-            arrTarget.Add("numbergame");
-            arrTarget.Add("keno");
-            arrTarget.Add("virtualsports");
-        }
-        else
-        {
-            arrTarget.Add("home");
-            arrTarget.Add("signup");
-            arrTarget.Add("promotion");
-            arrTarget.Add("sportstoday");
-            arrTarget.Add("numbergame");
-        }
-
-        return GenerateSelectObj(id, arrTarget, arrTarget, targetRequest, hasSelect);
+        return GenerateSelectObj(id, arrTarget, arrTarget, targetRequest);
     }
 
     public static string GenDropDownFromTable(DataTable dt, string valueColumn, string nameColumn, string id, ref string activeValue, bool isGenAll)

@@ -41,7 +41,7 @@ public partial class MediaBanner : RootPageLogIn
         DataTable dtDomain = DataHandler.MediaGallery.SelAffDomains(deviceType);
         TemplateHandler.Assign(ref htmlContent, "slDomain", Common.GenDropDownFromTable(dtDomain, "DomainName", "DomainName", "slDomain", ref domain, false));
 
-        TemplateHandler.Assign(ref htmlContent, "target", Common.GenListLink2Page(targetRequest, deviceType));
+        TemplateHandler.Assign(ref htmlContent, "target", Common.GenListLink2Page("target", targetRequest, deviceType));
 
         #region Get request information
         int pageIndex = CastAide.AsInt32(Request["page"], 1);
