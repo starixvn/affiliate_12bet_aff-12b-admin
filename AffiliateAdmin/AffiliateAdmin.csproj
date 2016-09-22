@@ -262,7 +262,7 @@
     <Compile Include="Business\Services\Banner\DeleteBannerService.cs" />
     <Compile Include="Business\Services\Banner\UploadBannerService.cs" />
     <Compile Include="Business\Services\AddMessageService.cs" />
-    <Compile Include="Business\Services\AddNewTextService.cs" />
+    <Compile Include="Business\Services\Text\AddTextService.cs" />
     <Compile Include="Business\Services\AddUserService.cs" />
     <Compile Include="Business\Services\AdjustmentService.cs" />
     <Compile Include="Business\Services\ChangeAdminPassService.cs" />
@@ -273,7 +273,7 @@
     <Compile Include="Business\Services\DeleteMailListService.cs" />
     <Compile Include="Business\Services\DeleteMemberService.cs" />
     <Compile Include="Business\Services\DeleteMessageListService.cs" />
-    <Compile Include="Business\Services\DelTextService.cs" />
+    <Compile Include="Business\Services\Text\DeleteTextService.cs" />
     <Compile Include="Business\Services\DomainControlService.cs" />
     <Compile Include="Business\Services\EditRateService.cs" />
     <Compile Include="Business\Services\ExportExcelService.cs" />
@@ -311,7 +311,7 @@
     <Compile Include="Business\Services\UpdateMessageService.cs" />
     <Compile Include="Business\Services\UpdatePolicyService.cs" />
     <Compile Include="Business\Services\UpdateStatusService.cs" />
-    <Compile Include="Business\Services\UpdateTextService.cs" />
+    <Compile Include="Business\Services\Text\UpdateTextService.cs" />
     <Compile Include="Business\Services\UpdateUserService.cs" />
     <Compile Include="Business\Services\UploadExcelService.cs" />
     <Compile Include="Casino\UploadExcel.aspx.designer.cs">
