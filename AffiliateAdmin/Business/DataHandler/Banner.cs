@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Web;
 using AffiliateAdmin.Business.DataAccess;
-using DNAide.Core; 
+using DNAide.Core;
 using System.Collections;
 using System.Configuration;
+using AffiliateAdmin.Business.Models.Core;
 /// <summary>
 /// Summary description for Banner
 /// Author: Peter 20090328
@@ -13,10 +14,8 @@ namespace DataHandler
 {
     public class Banner
     {
-        public static int InsBanner(string fileName, string category, string language, string currency, string imagetype, string size, string afftype, ref int errcode, ref string errmsg, int type, string deviceType)
+        public static ResultInfo InsertBanner(string fileName, string category, string language, string currency, string imagetype, string size, string afftype, int type, string deviceType)
         {
-            DbResult dbr = null;
-            int result = 0;          
             Hashtable htb = new Hashtable();
             var device = string.IsNullOrEmpty(deviceType) ? "0" : deviceType;
 
@@ -38,11 +37,12 @@ namespace DataHandler
             htb.Add("type", type);
             // -- Added by Frank.Ngo on IRP 671 - 10 Jan 2012
 
-            dbr = DbHelper.Execute("Aff_BannerMediaIns", DBType.AFFILIATE_12BET, htb);
-            errcode =CastAide.AsInt32(dbr.Outputs["errcode"]);
-            result=CastAide.AsInt32(dbr.Outputs["bannerid"]);
-            errmsg = dbr.Outputs["errmsg"].ToString();           
-            return result;
+            var dbr = DbHelper.Execute("Aff_BannerMediaIns", DBType.AFFILIATE_12BET, htb);
+            return new ResultInfo()
+            {
+                Code = CastAide.AsInt32(dbr.Outputs["errcode"]),
+                Message = dbr.Outputs["errmsg"].ToString()
+            };  
         }
 
         public static string UpdBanner(int id,string filename, string category, string language,string currency, string imagetype, string size, string afftype, string deviceType)

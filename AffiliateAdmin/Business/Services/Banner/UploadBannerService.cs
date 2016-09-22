@@ -26,17 +26,20 @@ namespace AffiliateAdmin.Business.Services.Banner
             bool needToUploadFile = false;
             string deviceType = context.Request.Params["slDevice"];
 
-            string ext = string.Empty;
+            string extension = string.Empty;
             if (!string.IsNullOrEmpty(upFileName))
             {
                 needToUploadFile = true;
-                if (!BannerHelper.IsValidExtension(upFileName, ref ext))
+                extension = Path.GetExtension(upFileName);
+                if (!BannerHelper.IsValidExtension(extension))
                 {
                     return new ResultInfo(ResultInfo.UnknownErrorCode, Resources.Lang.errFileExtension);
                 }
             }
             else
-                ext = oldFileName.Substring(oldFileName.LastIndexOf(".") + 1, oldFileName.Length - oldFileName.LastIndexOf(".") - 1);
+            {
+                extension = Path.GetExtension(oldFileName);
+            }
 
             if (string.IsNullOrEmpty(inputFileName))
             {
@@ -57,7 +60,7 @@ namespace AffiliateAdmin.Business.Services.Banner
                     tempSB.Append(inputFileName);
 
                 tempSB.Append(".");
-                tempSB.Append(ext);
+                tempSB.Append(extension);
                 inputFileName = tempSB.ToString();
             }
 
@@ -91,7 +94,7 @@ namespace AffiliateAdmin.Business.Services.Banner
 
                 int index = oldFileName.LastIndexOf("/") + 1;
                 newFolder = oldFileName.Substring(0, index);
-                inputFileName = oldFileName.Substring(index, oldFileName.LastIndexOf(".") - index) + "." + ext;
+                inputFileName = oldFileName.Substring(index, oldFileName.LastIndexOf(".") - index) + "." + extension;
                 newFileName = newFolder + inputFileName;
             }
 
@@ -109,18 +112,10 @@ namespace AffiliateAdmin.Business.Services.Banner
 
             if (needToUploadFile)
             {
-                BannerHelper.UploadFileWithAutoDetectSize(context, newFolder, path, inputFileName, ref errCode, out size, ref strDst);
-                if (errCode == 1)
+                var result = BannerHelper.UploadFileWithAutoDetectSize(context, newFolder, path, inputFileName, out size, ref strDst);
+                if (result.IsSuccessful == false)
                 {
-                    return new ResultInfo(errCode, Resources.Lang.ErrmsgFileEmpty);
-                }
-                else if (errCode == 2)
-                {
-                    return new ResultInfo(errCode, Resources.Lang.ErrmsgFile);
-                }
-                else if (errCode == 3)
-                {
-                    return new ResultInfo(errCode, Resources.Lang.ErrmsgSizeFile);
+                    return result;
                 }
             }
 

@@ -24,10 +24,11 @@ namespace AffiliateAdmin.Business.Services.Banner
 
             int type = CastAide.AsInt32(context.Request.Params["hidBannerType"], 0);
 
-            string ext = string.Empty;
+            string extension = string.Empty;
             if (!string.IsNullOrEmpty(newfilename))
             {
-                if (!BannerHelper.IsValidExtension(newfilename, ref ext))
+                extension = Path.GetExtension(newfilename);
+                if (!BannerHelper.IsValidExtension(extension))
                 {
                     return new ResultInfo(ResultInfo.UnknownErrorCode, Resources.Lang.errFileExtension);
                 }
@@ -46,7 +47,7 @@ namespace AffiliateAdmin.Business.Services.Banner
                 else
                     tempSB.Append(inputfilename);
 
-                tempSB.Append(".").Append(ext);
+                tempSB.Append(".").Append(extension);
                 inputfilename = tempSB.ToString();
             }
 
@@ -66,9 +67,7 @@ namespace AffiliateAdmin.Business.Services.Banner
             sb.Append(inputfilename);
             fileName = sb.ToString();
 
-            string err = string.Empty;
-            int errCode = 0;
-            string path = context.Server.MapPath("../Banner//");
+            string path = AppSettings.BannerDirectory;
             string strDst = string.Empty;
 
             if (File.Exists(path + newFolder + "\\" + inputfilename))
@@ -76,35 +75,22 @@ namespace AffiliateAdmin.Business.Services.Banner
                 return new ResultInfo(ResultInfo.UnknownErrorCode, Resources.Lang.ErrmsgFileExist);
             }
 
-            BannerHelper.UploadFileWithAutoDetectSize(context, newFolder, path, inputfilename, ref errCode, out size, ref strDst);
-            if (errCode == 0)
+            var result = BannerHelper.UploadFileWithAutoDetectSize(context, newFolder, path, inputfilename, out size, ref strDst);
+            if (result.IsSuccessful)
             {
-                int bannerID = DataHandler.Banner.InsBanner(fileName, category, language, currency, imageType, size, affType, ref errCode, ref err, type, deviceType);
-                if (errCode != 0)
+                result = DataHandler.Banner.InsertBanner(fileName, category, language, currency, imageType, size, affType, type, deviceType);
+                if (result.IsSuccessful == false && !string.IsNullOrEmpty(strDst))
                 {
-                    if (!string.IsNullOrEmpty(strDst))
-                        BannerHelper.DeleteFile(strDst);
-                    return new ResultInfo(ResultInfo.UnknownErrorCode, err);
+                    BannerHelper.DeleteFile(strDst);
                 }
             }
 
-            if (errCode == 1)
+            if (result.IsSuccessful)
             {
-                return new ResultInfo(errCode, Resources.Lang.ErrmsgFileEmpty);
-            }
-            else if (errCode == 2)
-            {
-                return new ResultInfo(errCode, Resources.Lang.ErrmsgFile);
-            }
-            else if (errCode == 3)
-            {
-                return new ResultInfo(errCode, Resources.Lang.ErrmsgSizeFile);
+                result.Message = Resources.Lang.AddBannerSuccessful;
             }
 
-            return new ResultInfo()
-            {
-                Message = Resources.Lang.AddBannerSuccessful
-            };
+            return result;
         }
     }
 }
