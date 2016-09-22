@@ -38,18 +38,6 @@ namespace AffiliateAdmin.Business.Services.Banner
             {
                 inputfilename = newfilename;
             }
-            else
-            {
-                StringBuilder tempSB = new StringBuilder();
-                int temp = inputfilename.LastIndexOf(".");
-                if (temp > 0)
-                    tempSB.Append(inputfilename.Substring(0, temp));
-                else
-                    tempSB.Append(inputfilename);
-
-                tempSB.Append(".").Append(extension);
-                inputfilename = tempSB.ToString();
-            }
 
             string fileName = string.Empty;
             string newFolder = string.Empty;

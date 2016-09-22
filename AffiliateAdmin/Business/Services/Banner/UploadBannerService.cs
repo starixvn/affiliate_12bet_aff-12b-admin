@@ -21,7 +21,7 @@ namespace AffiliateAdmin.Business.Services.Banner
             string size = context.Request.Params["hdSize"];
             string afftype = context.Request.Params["slAffType"];
             string idbanner = context.Request.Params["hdBannerID"];
-            string oldFileName = context.Request.Params["hdOldFileName"];
+            string oldRelativeFilePath = context.Request.Params["hdOldFileName"];
             string oldCategory = context.Request.Params["hdOldCategory"];
             bool needToUploadFile = false;
             string deviceType = context.Request.Params["slDevice"];
@@ -38,39 +38,27 @@ namespace AffiliateAdmin.Business.Services.Banner
             }
             else
             {
-                extension = Path.GetExtension(oldFileName);
+                extension = Path.GetExtension(oldRelativeFilePath);
             }
 
             if (string.IsNullOrEmpty(inputFileName))
             {
                 if (needToUploadFile)
+                {
                     inputFileName = upFileName;
+                }
                 else
                 {
                     return new ResultInfo(ResultInfo.UnknownErrorCode, Resources.Lang.ErrmsgFileNameEmpty);
                 }
             }
-            else
-            {
-                var tempSB = new StringBuilder();
-                int temp = inputFileName.LastIndexOf(".");
-                if (temp > 0)
-                    tempSB.Append(inputFileName.Substring(0, temp));
-                else
-                    tempSB.Append(inputFileName);
-
-                tempSB.Append(".");
-                tempSB.Append(extension);
-                inputFileName = tempSB.ToString();
-            }
 
             string err = string.Empty;
-            int errCode = 0;
-            string newFileName = string.Empty;
-            string strDst = string.Empty;
+            string newRelativeFilePath = string.Empty;
+            string fullFilePath = string.Empty;
             string newFolder = string.Empty;
 
-            if (oldFileName.Contains("CategoryMedia"))  // banner with new categories
+            if (oldRelativeFilePath.Contains("CategoryMedia"))  // banner with new categories
             {
                 StringBuilder sb = new StringBuilder();
                 sb.Append("CategoryMedia/");
@@ -85,67 +73,84 @@ namespace AffiliateAdmin.Business.Services.Banner
 
                 newFolder = sb.ToString();
                 sb.Append(inputFileName);
-                newFileName = sb.ToString();
+                newRelativeFilePath = sb.ToString();
             }
             else
             {
                 if (category == "Casino" || category == "Sportsbook")
                     category = subCategory;
 
-                int index = oldFileName.LastIndexOf("/") + 1;
-                newFolder = oldFileName.Substring(0, index);
-                inputFileName = oldFileName.Substring(index, oldFileName.LastIndexOf(".") - index) + "." + extension;
-                newFileName = newFolder + inputFileName;
+                int index = oldRelativeFilePath.LastIndexOf("/") + 1;
+                newFolder = oldRelativeFilePath.Substring(0, index);
+                inputFileName = oldRelativeFilePath.Substring(index, oldRelativeFilePath.LastIndexOf(".") - index) + "." + extension;
+                newRelativeFilePath = newFolder + inputFileName;
             }
 
-            string path = AppSettings.BannerFolders[0];
-
-            string oldFullPath = path + oldFileName;
-            strDst = path + newFileName;
-            if (!category.Equals(oldCategory) && oldFileName.Contains("CategoryMedia"))
+            if (!category.Equals(oldCategory) && oldRelativeFilePath.Contains("CategoryMedia"))
             {
-                if (File.Exists(strDst))
+                foreach (var folder in AppSettings.BannerFolders)
                 {
-                    return new ResultInfo(ResultInfo.UnknownErrorCode, Resources.Lang.ErrmsgFileExist);
+                    if (File.Exists(Path.Combine(folder, newRelativeFilePath)))
+                    {
+                        return new ResultInfo(ResultInfo.UnknownErrorCode, Resources.Lang.ErrmsgFileExist);
+                    }
                 }
             }
 
             if (needToUploadFile)
             {
-                var result = BannerHelper.UploadFileWithAutoDetectSize(context, newFolder, inputFileName, out size);
-                if (result.IsSuccessful == false)
+                var uploadingResult = BannerHelper.UploadFileWithAutoDetectSize(context, newFolder, inputFileName, out size);
+                if (uploadingResult.IsSuccessful == false)
                 {
-                    return result;
+                    return uploadingResult;
                 }
             }
 
-            err = DataHandler.Banner.UpdBanner(Convert.ToInt32(idbanner), newFileName, category, language, currency, imageType, size, afftype, deviceType);
-            if (!string.IsNullOrEmpty(err))
+            var result = DataHandler.Banner.UpdateBanner(Convert.ToInt32(idbanner), newRelativeFilePath, category, language, currency, imageType, size, afftype, deviceType);
+            if (result.IsSuccessful == false)
             {
-                if (!string.IsNullOrEmpty(strDst))
-                    BannerHelper.DeleteFile(strDst);
-                return new ResultInfo(ResultInfo.UnknownErrorCode, err);
+                BannerHelper.DeleteFile(newRelativeFilePath);
+                return result;
             }
 
             if (!needToUploadFile)
             {
-                if (File.Exists(oldFullPath))
-                {
-                    if (!category.Equals(oldCategory))
-                    {
-                        if (Directory.Exists(path + newFolder) == false)
-                            Directory.CreateDirectory(path + newFolder);
-                    }
-                    File.Move(oldFullPath, strDst);
-                }
+                MoveFiles(category, oldCategory, newFolder, newRelativeFilePath, oldRelativeFilePath);
             }
-            else if (!oldFileName.Equals(newFileName))
-                BannerHelper.DeleteFile(oldFullPath);
+            else if (!oldRelativeFilePath.Equals(newRelativeFilePath))
+            {
+                BannerHelper.DeleteFile(oldRelativeFilePath);
+            }
 
             return new ResultInfo()
             {
                 Message = Resources.Lang.UpdateBannerSuccessfull
             };
+        }
+
+        private static void MoveFiles(
+            string category,
+            string oldCategory,
+            string newFolder,
+            string newRelativeFilePath,
+            string oldRelativeFilePath)
+        {
+            foreach (var folder in AppSettings.BannerFolders)
+            {
+                var oldFullPath = Path.Combine(folder, oldRelativeFilePath);
+                var newFullPath = Path.Combine(folder, newRelativeFilePath);
+                if (File.Exists(oldFullPath))
+                {
+                    if (!category.Equals(oldCategory))
+                    {
+                        var relativeFolderPath = Path.Combine(folder, newFolder);
+                        if (Directory.Exists(relativeFolderPath) == false)
+                            Directory.CreateDirectory(relativeFolderPath);
+                    }
+
+                    File.Move(oldFullPath, newFullPath);
+                }
+            }
         }
     }
 }

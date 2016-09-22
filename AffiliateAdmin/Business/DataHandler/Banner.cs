@@ -33,9 +33,7 @@ namespace DataHandler
             htb.Add("ip", HttpContext.Current.Request.UserHostAddress);
             htb.Add("errcode", 0);
             htb.Add("errmsg", "");
-            // ++ Added by Frank.Ngo on IRP 671 - 10 Jan 2012
             htb.Add("type", type);
-            // -- Added by Frank.Ngo on IRP 671 - 10 Jan 2012
 
             var dbr = DbHelper.Execute("Aff_BannerMediaIns", DBType.AFFILIATE_12BET, htb);
             return new ResultInfo()
@@ -45,7 +43,7 @@ namespace DataHandler
             };  
         }
 
-        public static string UpdBanner(int id,string filename, string category, string language,string currency, string imagetype, string size, string afftype, string deviceType)
+        public static ResultInfo UpdateBanner(int id,string filename, string category, string language,string currency, string imagetype, string size, string afftype, string deviceType)
         {                     
             var htb = new Hashtable();
             var device = string.IsNullOrEmpty(deviceType) ? "0" : deviceType;
@@ -63,8 +61,12 @@ namespace DataHandler
             htb.Add("ip", HttpContext.Current.Request.UserHostAddress);
             htb.Add("errcode", 0);
             htb.Add("errmsg", string.Empty);
-            DbResult dbr = DbHelper.Execute("Aff_BannerUpd_1", DBType.AFFILIATE_12BET, htb);            
-            return dbr.Outputs["errmsg"].ToString(); 
+            var dbr = DbHelper.Execute("Aff_BannerUpd_1", DBType.AFFILIATE_12BET, htb);            
+            return new ResultInfo()
+            {
+                Code = CastAide.AsInt32(dbr.Outputs["errcode"]),
+                Message = dbr.Outputs["errmsg"].ToString()
+            };
         }
         
         //Delete Banner

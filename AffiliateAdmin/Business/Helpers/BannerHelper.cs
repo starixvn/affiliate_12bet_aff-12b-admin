@@ -29,7 +29,7 @@ namespace AffiliateAdmin.Business.Helpers
         public static ResultInfo UploadFileWithAutoDetectSize(HttpContext context, string newFolder, string fileName, out string size)
         {
             size = string.Empty;
-            var uploadedFile = GetUploadedFile(context);
+            var uploadedFile = context.Request.Files.Count == 0 ? null :context.Request.Files[0];
             var result = ValidateFile(uploadedFile);
             if (result.IsSuccessful == false)
             {
@@ -38,7 +38,8 @@ namespace AffiliateAdmin.Business.Helpers
 
             foreach (var path in AppSettings.BannerFolders)
             {
-                if (File.Exists(path + newFolder + "\\" + fileName))
+                var fullPath = Path.Combine(path, newFolder, fileName);
+                if (File.Exists(fullPath))
                 {
                     return new ResultInfo(ResultInfo.UnknownErrorCode, Resources.Lang.ErrmsgFileExist);
                 }
@@ -48,11 +49,10 @@ namespace AffiliateAdmin.Business.Helpers
                     Directory.CreateDirectory(path + newFolder);
                 }
 
-                var fullPath = path + newFolder + "\\" + fileName;
                 uploadedFile.SaveAs(fullPath);
                 if (!Path.GetExtension(uploadedFile.FileName).ToLower().Equals(".swf"))
                 {
-                    var bitmap = new Bitmap(context.Request.Files[0].InputStream);
+                    var bitmap = new Bitmap(uploadedFile.InputStream);
                     size = string.Format("{0}x{1}", bitmap.Width, bitmap.Height);
                 }
                 else
@@ -116,19 +116,6 @@ namespace AffiliateAdmin.Business.Helpers
             }
 
             return new ResultInfo();
-        }
-
-        private static HttpPostedFile GetUploadedFile(HttpContext context)
-        {
-            for (int i = 0; i < context.Request.Files.Count; i++)
-            {
-                if (string.IsNullOrEmpty(context.Request.Files[i].FileName) == false)
-                {
-                    return context.Request.Files[i];
-                }
-            }
-
-            return null;
         }
     }
 }
