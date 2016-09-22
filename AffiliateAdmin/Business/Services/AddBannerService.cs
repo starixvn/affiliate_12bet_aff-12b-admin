@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Text;
 using System.Web;
+using AffiliateAdmin.Business.Helpers;
 using AffiliateAdmin.Business.Models.Core;
 using DNAide.Core;
 
@@ -26,7 +27,7 @@ namespace AffiliateAdmin.Business.Services
             string ext = string.Empty;
             if (!string.IsNullOrEmpty(newfilename))
             {
-                if (!Common.IsValidExtension(newfilename, ref ext))
+                if (!BannerHelper.IsValidExtension(newfilename, ref ext))
                 {
                     return new ResultInfo(ResultInfo.UnknownErrorCode, Resources.Lang.errFileExtension);
                 }
@@ -75,14 +76,14 @@ namespace AffiliateAdmin.Business.Services
                 return new ResultInfo(ResultInfo.UnknownErrorCode, Resources.Lang.ErrmsgFileExist);
             }
 
-            Common.UploadFileWithAutoDetectSize(context, newFolder, path, inputfilename, ref errCode, out size, ref strDst);
+            BannerHelper.UploadFileWithAutoDetectSize(context, newFolder, path, inputfilename, ref errCode, out size, ref strDst);
             if (errCode == 0)
             {
                 int bannerID = DataHandler.Banner.InsBanner(fileName, category, language, currency, imageType, size, affType, ref errCode, ref err, type, deviceType);
                 if (errCode != 0)
                 {
                     if (!string.IsNullOrEmpty(strDst))
-                        Common.DeleteFile(strDst);
+                        BannerHelper.DeleteFile(strDst);
                     return new ResultInfo(ResultInfo.UnknownErrorCode, err);
                 }
             }

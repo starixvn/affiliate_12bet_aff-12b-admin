@@ -6,6 +6,7 @@ using System.Web.SessionState;
 using System.Text;
 using System.Drawing;
 using System.IO;
+using AffiliateAdmin.Business.Helpers;
 
 public class UpBanner : IHttpHandler, IRequiresSessionState {
     public void ProcessRequest(HttpContext context)
@@ -35,7 +36,7 @@ public class UpBanner : IHttpHandler, IRequiresSessionState {
             if (!string.IsNullOrEmpty(upFileName))
             {
                 needToUploadFile = true;
-                if (!Common.IsValidExtension(upFileName, ref ext))
+                if (!BannerHelper.IsValidExtension(upFileName, ref ext))
                 {
                     context.Response.Write("<script type=\"text/javascript\">parent.ErrAlter(\"" + Resources.Lang.errFileExtension + "\");</script>");
                     return;
@@ -120,7 +121,7 @@ public class UpBanner : IHttpHandler, IRequiresSessionState {
 
             if (needToUploadFile)
             {
-                Common.UploadFileWithAutoDetectSize(context, newFolder, path, inputFileName, ref errCode, out size, ref strDst);
+                BannerHelper.UploadFileWithAutoDetectSize(context, newFolder, path, inputFileName, ref errCode, out size, ref strDst);
                 if (errCode == 1)
                 {
                     context.Response.Write("<script type=\"text/javascript\">parent.ErrAlter('" + Resources.Lang.ErrmsgFileEmpty + "');</script>");
@@ -145,7 +146,7 @@ public class UpBanner : IHttpHandler, IRequiresSessionState {
             {
                 //Delete image uploaded
                 if (!string.IsNullOrEmpty(strDst))
-                    Common.DeleteFile(strDst);
+                    BannerHelper.DeleteFile(strDst);
                 context.Response.Write("<script type=\"text/javascript\">parent.ErrAlter('" + err + "');</script>");
                 return;
             }
@@ -163,7 +164,7 @@ public class UpBanner : IHttpHandler, IRequiresSessionState {
                 }
             }
             else if (!oldFileName.Equals(newFileName))
-                Common.DeleteFile(oldFullPath);
+                BannerHelper.DeleteFile(oldFullPath);
 
             context.Response.Write("<script type=\"text/javascript\">alert('" + Resources.Lang.UpdateBannerSuccessfull + "');parent.Cancelfunction();</script>");
         }

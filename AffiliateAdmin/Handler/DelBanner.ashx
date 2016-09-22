@@ -2,7 +2,7 @@
 
 using System;
 using System.Web;
-using AffiliateAdmin.Business.DataAccess;
+using AffiliateAdmin.Business.Helpers;
 using DNAide.Core;
 using System.Web.SessionState;
 //using System.Transactions;
@@ -38,7 +38,7 @@ public class DelBanner : IHttpHandler, IRequiresSessionState
                     //Delete files first
                     for (int i = 0; i < files.Length; i++)
                     {
-                        Common.DeleteFile(parentFolder + files[i].Replace("/", "\\"));
+                        BannerHelper.DeleteFile(parentFolder + files[i].Replace("/", "\\"));
 
                     }
 
