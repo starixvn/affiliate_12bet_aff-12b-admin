@@ -1,27 +1,21 @@
 ﻿<%@ WebHandler Language="C#" Class="GetOnlineList" %>
 
-using System;
 using System.Web;
-using AffiliateAdmin.Business.DataAccess;
-using DNAide;
-using DNAide.Core;
 using System.Web.SessionState;
+using AffiliateAdmin.Business.Services;
 
-public class GetOnlineList : IHttpHandler, IRequiresSessionState{
-    
-    public void ProcessRequest (HttpContext context) {
-        context.Response.ContentType = "text/plain";
-        string param = context.Request["params"];
-        int page = CastAide.AsInt32(param.Split(',')[0]);
-        int pagesize = CastAide.AsInt32(param.Split(',')[1]);
-        string ret = OnlineList.GenerateOnlineListTable(page, pagesize);
-        context.Response.Write(ret);
+public class GetOnlineList : IHttpHandler, IRequiresSessionState
+{
+    public void ProcessRequest(HttpContext context)
+    {
+        new GetOnlineListService().GetOnlineList(context);
     }
- 
-    public bool IsReusable {
-        get {
+
+    public bool IsReusable
+    {
+        get
+        {
             return false;
         }
     }
-
 }

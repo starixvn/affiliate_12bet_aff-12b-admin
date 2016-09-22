@@ -1,38 +1,21 @@
 ﻿<%@ WebHandler Language="C#" Class="UpText" %>
 
-using System;
 using System.Web;
 using System.Web.SessionState;
+using AffiliateAdmin.Business.Services;
 
 public class UpText : IHttpHandler, IRequiresSessionState
 {
-    public void ProcessRequest (HttpContext context) {
-        if (context.Request.UrlReferrer != null)
-        {
-            IBCHandler.InitializeCulture(HttpContext.Current);
-            context.Response.ContentType = "text/html";
-            string idbanner = context.Request.Params["hdBannerID"];
-            string textvalue = context.Request.Params["textvalue"];
-            string category = context.Request.Params["slCategory"];
-            string language = context.Request.Params["slLanguage"];
-            string currency = context.Request.Params["slCurrency"];
-            string deviceType = context.Request.Params["slDevice"];
-
-            string err = DataHandler.Text.UpdText(Convert.ToInt32(idbanner), textvalue, category, language, currency, deviceType);
-            if (!string.IsNullOrEmpty(err))
-            {
-                context.Response.Write("<script type=\"text/javascript\">parent.ErrAlter('" + err + "');</script>");
-                return;
-            }
-            //Upload new file
-            context.Response.Write("<script type=\"text/javascript\">parent.RefreshTextList();</script>");
-        }
+    public void ProcessRequest(HttpContext context)
+    {
+        new UpdateTextService().Update(context);
     }
- 
-    public bool IsReusable {
-        get {
+
+    public bool IsReusable
+    {
+        get
+        {
             return false;
         }
     }
-
 }

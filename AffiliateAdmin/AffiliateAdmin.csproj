@@ -258,8 +258,9 @@
     <Compile Include="Business\Models\Core\ResultInfo.cs" />
     <Compile Include="Business\Services\AccountPolicyService.cs" />
     <Compile Include="Business\Services\ActiveMemberService.cs" />
-    <Compile Include="Business\Services\AddBannerService.cs" />
-    <Compile Include="Business\Services\DeleteBannerService.cs" />
+    <Compile Include="Business\Services\Banner\AddBannerService.cs" />
+    <Compile Include="Business\Services\Banner\DeleteBannerService.cs" />
+    <Compile Include="Business\Services\Banner\UploadBannerService.cs" />
     <Compile Include="Business\Services\AddMessageService.cs" />
     <Compile Include="Business\Services\AddNewTextService.cs" />
     <Compile Include="Business\Services\AddUserService.cs" />
@@ -286,6 +287,33 @@
     <Compile Include="Business\Services\GetEditedBannerService.cs" />
     <Compile Include="Business\Services\GetEditedTextService.cs" />
     <Compile Include="Business\Services\GetEmailContentService.cs" />
+    <Compile Include="Business\Services\GetEmailHistoryService.cs" />
+    <Compile Include="Business\Services\GetMessageListService.cs" />
+    <Compile Include="Business\Services\GetMessageService.cs" />
+    <Compile Include="Business\Services\GetOnlineListService.cs" />
+    <Compile Include="Business\Services\GetPageListService.cs" />
+    <Compile Include="Business\Services\GetStatisticsDetailNewService.cs" />
+    <Compile Include="Business\Services\GetStatisticsListDetailService.cs" />
+    <Compile Include="Business\Services\GetSubCategoryService.cs" />
+    <Compile Include="Business\Services\GetViewedBannerService.cs" />
+    <Compile Include="Business\Services\GetViewedTextService.cs" />
+    <Compile Include="Business\Services\GroupPolicyService.cs" />
+    <Compile Include="Business\Services\ListUserService.cs" />
+    <Compile Include="Business\Services\LogoutService.cs" />
+    <Compile Include="Business\Services\NoteService.cs" />
+    <Compile Include="Business\Services\PaymentUpdateService.cs" />
+    <Compile Include="Business\Services\UpdateAccountService.cs" />
+    <Compile Include="Business\Services\UpdateAffiliateDomainService.cs" />
+    <Compile Include="Business\Services\UpdateAffiliateService.cs" />
+    <Compile Include="Business\Services\UpdateAffiliateType.cs" />
+    <Compile Include="Business\Services\Update12BetDomainService.cs" />
+    <Compile Include="Business\Services\UpdateDepartmentService.cs" />
+    <Compile Include="Business\Services\UpdateMessageService.cs" />
+    <Compile Include="Business\Services\UpdatePolicyService.cs" />
+    <Compile Include="Business\Services\UpdateStatusService.cs" />
+    <Compile Include="Business\Services\UpdateTextService.cs" />
+    <Compile Include="Business\Services\UpdateUserService.cs" />
+    <Compile Include="Business\Services\UploadExcelService.cs" />
     <Compile Include="Casino\UploadExcel.aspx.designer.cs">
       <DependentUpon>UploadExcel.aspx</DependentUpon>
     </Compile>

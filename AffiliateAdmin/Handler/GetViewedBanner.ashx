@@ -1,31 +1,21 @@
 ﻿<%@ WebHandler Language="C#" Class="GetViewedBanner" %>
-using System;
+
 using System.Web;
-using DNAide.Core;
 using System.Web.SessionState;
-using System.Text;
-using AffiliateAdmin.Business.DataAccess;
-using System.Data;
+using AffiliateAdmin.Business.Services;
 
 public class GetViewedBanner : IHttpHandler, IRequiresSessionState
 {
-    
-    public void ProcessRequest (HttpContext context) {
-        if (context.Request.UrlReferrer != null)
-        {
-            IBCHandler.InitializeCulture(HttpContext.Current);
-            context.Response.ContentType = "text/plain";
-            int bannerID = Convert.ToInt32(context.Request["bannerid"].Trim());
-            int noRow = Convert.ToInt32(context.Request["noRow"].Trim());             
-            context.Response.Write(GenerateHTML.Banner.GetViewedBanner(bannerID,noRow));
-        }
-
+    public void ProcessRequest(HttpContext context)
+    {
+        new GetViewedBannerService().GetViewedBanner(context);
     }
-   
-    public bool IsReusable {
-        get {
+
+    public bool IsReusable
+    {
+        get
+        {
             return false;
         }
     }
-
 }
