@@ -257,6 +257,7 @@
     <Compile Include="Business\Models\Core\ResultInfo.cs" />
     <Compile Include="Business\Services\AccountPolicyService.cs" />
     <Compile Include="Business\Services\AddBannerService.cs" />
+    <Compile Include="Business\Services\DeleteBannerService.cs" />
     <Compile Include="Casino\UploadExcel.aspx.designer.cs">
       <DependentUpon>UploadExcel.aspx</DependentUpon>
     </Compile>
