@@ -1,28 +1,25 @@
 ﻿using System;
 using System.Text;
-using System.Web;
+using AffiliateAdmin.Business.Models.Core;
 
-namespace AffiliateAdmin.Business.Services
+namespace AffiliateAdmin.Business.Services.Message
 {
     public class AddMessageService
     {
-        public void AddMessage(HttpContext context)
+        public ResultInfo AddMessage(string data)
         {
-            if (context.Request.UrlReferrer != null)
+            string[] param = data.Split(new string[] { "$$$" }, 10, StringSplitOptions.None);
+            bool important = false;
+            string msgEN = string.Empty, msgCN = string.Empty, msgTW = string.Empty, msgTH = string.Empty, msgES = string.Empty, msgVI = string.Empty, msgID = string.Empty, msgKR = string.Empty, msgJP = string.Empty;
+            StringBuilder result = ValidateData(param, out important, ref msgEN, ref msgCN, ref msgTW, ref msgTH, ref msgES, ref msgVI, ref msgID, ref msgKR, ref msgJP);
+            var resultMessage = result.ToString();
+
+            if (string.IsNullOrEmpty(resultMessage))
             {
-                IBCHandler.InitializeCulture(HttpContext.Current);
-                context.Response.ContentType = "text/plain";
-                string t = context.Request.Params["params"];
-                string[] param = t.Split(new string[] { "$$$" }, 10, StringSplitOptions.None);
-                bool important = false;
-                string msgEN = string.Empty, msgCN = string.Empty, msgTW = string.Empty, msgTH = string.Empty, msgES = string.Empty, msgVI = string.Empty, msgID = string.Empty, msgKR = string.Empty, msgJP = string.Empty;
-                StringBuilder result = ValidateData(param, out important, ref msgEN, ref msgCN, ref msgTW, ref msgTH, ref msgES, ref msgVI, ref msgID, ref msgKR, ref msgJP);
-                if (string.IsNullOrEmpty(result.ToString()))
-                {
-                    result.Append(DataHandler.HotNews.AddHotNews(msgEN, msgCN, msgTW, msgTH, msgES, msgVI, msgID, msgKR, msgJP, important));
-                }
-                context.Response.Write(result.ToString());
+                resultMessage = DataHandler.HotNews.AddHotNews(msgEN, msgCN, msgTW, msgTH, msgES, msgVI, msgID, msgKR, msgJP, important);
             }
+
+            return new ResultInfo { Message = resultMessage };
         }
 
         private StringBuilder ValidateData(string[] param, out bool important, ref string msgEN, ref string msgCN, ref string msgTW, ref string msgTH, ref string msgES, ref string msgVI, ref string msgID, ref string msgKR, ref string msgJP)

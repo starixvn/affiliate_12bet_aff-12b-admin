@@ -261,7 +261,7 @@
     <Compile Include="Business\Services\Banner\AddBannerService.cs" />
     <Compile Include="Business\Services\Banner\DeleteBannerService.cs" />
     <Compile Include="Business\Services\Banner\UploadBannerService.cs" />
-    <Compile Include="Business\Services\AddMessageService.cs" />
+    <Compile Include="Business\Services\Message\AddMessageService.cs" />
     <Compile Include="Business\Services\Text\AddTextService.cs" />
     <Compile Include="Business\Services\AddUserService.cs" />
     <Compile Include="Business\Services\AdjustmentService.cs" />
@@ -272,7 +272,7 @@
     <Compile Include="Business\Services\CommGroupUpdService.cs" />
     <Compile Include="Business\Services\DeleteMailListService.cs" />
     <Compile Include="Business\Services\DeleteMemberService.cs" />
-    <Compile Include="Business\Services\DeleteMessageListService.cs" />
+    <Compile Include="Business\Services\Message\DeleteMessageListService.cs" />
     <Compile Include="Business\Services\Text\DeleteTextService.cs" />
     <Compile Include="Business\Services\DomainControlService.cs" />
     <Compile Include="Business\Services\EditRateService.cs" />
@@ -308,7 +308,7 @@
     <Compile Include="Business\Services\UpdateAffiliateType.cs" />
     <Compile Include="Business\Services\Update12BetDomainService.cs" />
     <Compile Include="Business\Services\UpdateDepartmentService.cs" />
-    <Compile Include="Business\Services\UpdateMessageService.cs" />
+    <Compile Include="Business\Services\Message\UpdateMessageService.cs" />
     <Compile Include="Business\Services\UpdatePolicyService.cs" />
     <Compile Include="Business\Services\UpdateStatusService.cs" />
     <Compile Include="Business\Services\Text\UpdateTextService.cs" />
