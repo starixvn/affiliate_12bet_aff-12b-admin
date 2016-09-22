@@ -2,7 +2,7 @@
 
 using System.Web;
 using System.Web.SessionState;
-using AffiliateAdmin.Business.Services;
+using AffiliateAdmin.Business.Services.Banner;
 
 public class AddNewBannerV2 : IHttpHandler, IRequiresSessionState
 {

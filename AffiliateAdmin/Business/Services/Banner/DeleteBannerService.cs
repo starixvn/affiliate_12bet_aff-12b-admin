@@ -3,7 +3,7 @@ using System.Web;
 using AffiliateAdmin.Business.Helpers;
 using AffiliateAdmin.Business.Models.Core;
 
-namespace AffiliateAdmin.Business.Services
+namespace AffiliateAdmin.Business.Services.Banner
 {
     public class DeleteBannerService
     {

@@ -5,7 +5,7 @@ using AffiliateAdmin.Business.Helpers;
 using AffiliateAdmin.Business.Models.Core;
 using DNAide.Core;
 
-namespace AffiliateAdmin.Business.Services
+namespace AffiliateAdmin.Business.Services.Banner
 {
     public class AddBannerService
     {

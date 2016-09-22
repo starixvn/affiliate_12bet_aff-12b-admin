@@ -1,14 +1,14 @@
 ﻿<%@ WebHandler Language="C#" Class="DelBanner" %>
 
 using System.Web;
-using AffiliateAdmin.Business.Services;
+using AffiliateAdmin.Business.Services.Banner;
 using System.Web.SessionState;
 
 public class DelBanner : IHttpHandler, IRequiresSessionState
 {
     public void ProcessRequest(HttpContext context)
     {
-        if (context.Request.UrlReferrer != null)
+        if (context.Request.UrlReferrer == null)
         {
             return;
         }
