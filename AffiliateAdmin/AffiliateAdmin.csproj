@@ -204,6 +204,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -256,8 +257,35 @@
     <Compile Include="Business\Helpers\BannerHelper.cs" />
     <Compile Include="Business\Models\Core\ResultInfo.cs" />
     <Compile Include="Business\Services\AccountPolicyService.cs" />
+    <Compile Include="Business\Services\ActiveMemberService.cs" />
     <Compile Include="Business\Services\AddBannerService.cs" />
     <Compile Include="Business\Services\DeleteBannerService.cs" />
+    <Compile Include="Business\Services\AddMessageService.cs" />
+    <Compile Include="Business\Services\AddNewTextService.cs" />
+    <Compile Include="Business\Services\AddUserService.cs" />
+    <Compile Include="Business\Services\AdjustmentService.cs" />
+    <Compile Include="Business\Services\ChangeAdminPassService.cs" />
+    <Compile Include="Business\Services\ChangePassService.cs" />
+    <Compile Include="Business\Services\CommGroupAssignService.cs" />
+    <Compile Include="Business\Services\CommGroupDelService.cs" />
+    <Compile Include="Business\Services\CommGroupUpdService.cs" />
+    <Compile Include="Business\Services\DeleteMailListService.cs" />
+    <Compile Include="Business\Services\DeleteMemberService.cs" />
+    <Compile Include="Business\Services\DeleteMessageListService.cs" />
+    <Compile Include="Business\Services\DelTextService.cs" />
+    <Compile Include="Business\Services\DomainControlService.cs" />
+    <Compile Include="Business\Services\EditRateService.cs" />
+    <Compile Include="Business\Services\ExportExcelService.cs" />
+    <Compile Include="Business\Services\FavoriteService.cs" />
+    <Compile Include="Business\Services\Get12BetDomainListService.cs" />
+    <Compile Include="Business\Services\GetAffiliateListService.cs" />
+    <Compile Include="Business\Services\GetClickStatisticsListService.cs" />
+    <Compile Include="Business\Services\GetCommGroupService.cs" />
+    <Compile Include="Business\Services\GetDataBannerService.cs" />
+    <Compile Include="Business\Services\GetDataTextService.cs" />
+    <Compile Include="Business\Services\GetEditedBannerService.cs" />
+    <Compile Include="Business\Services\GetEditedTextService.cs" />
+    <Compile Include="Business\Services\GetEmailContentService.cs" />
     <Compile Include="Casino\UploadExcel.aspx.designer.cs">
       <DependentUpon>UploadExcel.aspx</DependentUpon>
     </Compile>
