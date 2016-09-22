@@ -98,7 +98,7 @@ namespace AffiliateAdmin.Business.Services.Banner
                 newFileName = newFolder + inputFileName;
             }
 
-            string path = AppSettings.BannerDirectory;
+            string path = AppSettings.BannerFolders[0];
 
             string oldFullPath = path + oldFileName;
             strDst = path + newFileName;
@@ -112,7 +112,7 @@ namespace AffiliateAdmin.Business.Services.Banner
 
             if (needToUploadFile)
             {
-                var result = BannerHelper.UploadFileWithAutoDetectSize(context, newFolder, path, inputFileName, out size, ref strDst);
+                var result = BannerHelper.UploadFileWithAutoDetectSize(context, newFolder, inputFileName, out size);
                 if (result.IsSuccessful == false)
                 {
                     return result;

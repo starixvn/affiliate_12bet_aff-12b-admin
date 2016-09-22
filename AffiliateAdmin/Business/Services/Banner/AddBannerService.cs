@@ -67,21 +67,13 @@ namespace AffiliateAdmin.Business.Services.Banner
             sb.Append(inputfilename);
             fileName = sb.ToString();
 
-            string path = AppSettings.BannerDirectory;
-            string strDst = string.Empty;
-
-            if (File.Exists(path + newFolder + "\\" + inputfilename))
-            {
-                return new ResultInfo(ResultInfo.UnknownErrorCode, Resources.Lang.ErrmsgFileExist);
-            }
-
-            var result = BannerHelper.UploadFileWithAutoDetectSize(context, newFolder, path, inputfilename, out size, ref strDst);
+            var result = BannerHelper.UploadFileWithAutoDetectSize(context, newFolder, inputfilename, out size);
             if (result.IsSuccessful)
             {
                 result = DataHandler.Banner.InsertBanner(fileName, category, language, currency, imageType, size, affType, type, deviceType);
-                if (result.IsSuccessful == false && !string.IsNullOrEmpty(strDst))
+                if (result.IsSuccessful == false)
                 {
-                    BannerHelper.DeleteFile(strDst);
+                    BannerHelper.DeleteFile(Path.Combine(newFolder, inputfilename));
                 }
             }
 

@@ -26,7 +26,7 @@ namespace AffiliateAdmin.Business.Helpers
             return ValidExtensions.Contains(extension.ToLowerInvariant());
         }
 
-        public static ResultInfo UploadFileWithAutoDetectSize(HttpContext context, string newFolder, string path, string fileName, out string size, ref string strDst)
+        public static ResultInfo UploadFileWithAutoDetectSize(HttpContext context, string newFolder, string fileName, out string size)
         {
             size = string.Empty;
             var uploadedFile = GetUploadedFile(context);
@@ -36,40 +36,52 @@ namespace AffiliateAdmin.Business.Helpers
                 return result;
             }
 
-            if (Directory.Exists(path + newFolder) == false)
+            foreach (var path in AppSettings.BannerFolders)
             {
-                Directory.CreateDirectory(path + newFolder);
-            }
+                if (File.Exists(path + newFolder + "\\" + fileName))
+                {
+                    return new ResultInfo(ResultInfo.UnknownErrorCode, Resources.Lang.ErrmsgFileExist);
+                }
 
-            strDst = path + newFolder + "\\" + fileName;
-            uploadedFile.SaveAs(strDst);
-            if (!Path.GetExtension(uploadedFile.FileName).ToLower().Equals(".swf"))
-            {
-                var bitmap = new Bitmap(context.Request.Files[0].InputStream);
-                size = string.Format("{0}x{1}", bitmap.Width, bitmap.Height);
-            }
-            else
-            {
-                SwfInfo swfInfo = new SwfInfo(strDst);
-                size = string.Format("{0}x{1}", swfInfo.Width, swfInfo.Height);
+                if (Directory.Exists(path + newFolder) == false)
+                {
+                    Directory.CreateDirectory(path + newFolder);
+                }
+
+                var fullPath = path + newFolder + "\\" + fileName;
+                uploadedFile.SaveAs(fullPath);
+                if (!Path.GetExtension(uploadedFile.FileName).ToLower().Equals(".swf"))
+                {
+                    var bitmap = new Bitmap(context.Request.Files[0].InputStream);
+                    size = string.Format("{0}x{1}", bitmap.Width, bitmap.Height);
+                }
+                else
+                {
+                    SwfInfo swfInfo = new SwfInfo(fullPath);
+                    size = string.Format("{0}x{1}", swfInfo.Width, swfInfo.Height);
+                }
             }
 
             return new ResultInfo();
         }
 
-        public static void DeleteFile(string path)
+        public static void DeleteFile(string relativeFilePath)
         {
-            try
+            foreach (var folder in AppSettings.BannerFolders)
             {
-                var file = new FileInfo(path);
-                if (file.Exists)
+                try
                 {
-                    file.Delete();
+                    var fullPath = Path.Combine(folder, relativeFilePath);
+                    var file = new FileInfo(fullPath);
+                    if (file.Exists)
+                    {
+                        file.Delete();
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                Logger.Log.Error(ex.Message, ex);
+                catch (Exception ex)
+                {
+                    Logger.Log.Error(ex.Message, ex);
+                }
             }
         }
 

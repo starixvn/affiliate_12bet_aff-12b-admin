@@ -1978,7 +1978,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.info" />
-    <Content Include="Web.local.config" />
     <None Include="Web References\AffBetlistService\AffiliateAPI.wsdl" />
     <None Include="Web References\AffBetlistService\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>

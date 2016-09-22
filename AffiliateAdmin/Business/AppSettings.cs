@@ -10,11 +10,11 @@ using DNAide.Core;
 /// </summary>
 public static class AppSettings
 {
-    public static string BannerDirectory
+    public static string[] BannerFolders
     {
         get
         {
-            return GetValue("BannerDirectory");
+            return GetValue("BannerFolders").Split(';');
         }
     }
 
