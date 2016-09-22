@@ -253,6 +253,7 @@
     <Compile Include="Business\Constants\PermissionNames.cs" />
     <Compile Include="Business\DataAccess\DbHelper.cs" />
     <Compile Include="Business\DataAccess\DbResult.cs" />
+    <Compile Include="Business\Models\Core\ResultInfo.cs" />
     <Compile Include="Business\Services\AccountPolicyService.cs" />
     <Compile Include="Business\Services\AddBannerService.cs" />
     <Compile Include="Casino\UploadExcel.aspx.designer.cs">
