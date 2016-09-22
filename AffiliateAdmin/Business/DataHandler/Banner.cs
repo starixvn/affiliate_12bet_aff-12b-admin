@@ -70,7 +70,7 @@ namespace DataHandler
         }
         
         //Delete Banner
-        public static string DelDataBanner(string listBannerID)
+        public static ResultInfo DeleteBanner(string listBannerID)
         {           
             Hashtable hsParam = new Hashtable();
             hsParam.Add("listbannerid", listBannerID);
@@ -78,8 +78,12 @@ namespace DataHandler
             hsParam.Add("ip", HttpContext.Current.Request.UserHostAddress);
             hsParam.Add("errcode", 0);
             hsParam.Add("errmsg", string.Empty);
-            DbResult result = DbHelper.Execute("Aff_BannerDel_1", DBType.AFFILIATE_12BET, hsParam);
-            return DNAide.Core.CastAide.AsString(result.Outputs["errmsg"]);
+            var result = DbHelper.Execute("Aff_BannerDel_1", DBType.AFFILIATE_12BET, hsParam);
+            return new ResultInfo()
+            {
+                Code = CastAide.AsInt32(result.Outputs["errcode"]),
+                Message = result.Outputs["errmsg"].ToString()
+            };
         }
 
         // Modified by Frank.Ngo on IRP 671 - 10 Jan 2012
