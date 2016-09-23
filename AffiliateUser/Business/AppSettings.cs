@@ -43,14 +43,6 @@ public static class AppSettings
         }
     }
 
-    public static string Site
-    {
-        get
-        {
-            return GetValue("Site");
-        }
-    }
-
     public static string BetLink
     {
         get
@@ -91,14 +83,6 @@ public static class AppSettings
         }
     }
 
-    public static string SubDomain
-    {
-        get
-        {
-            return GetValue("SubDomain");
-        }
-    }
-
     public static string JsVersion
     {
         get
@@ -113,18 +97,6 @@ public static class AppSettings
         {
             return GetValue("ServerId");
         }
-    }
-
-    public static string TplFolder
-    {
-        get
-        {
-            return GetValue("template_folder");
-        }
-    }
-
-    public static void InitThemeInfo()
-    {
     }
 
     public static string HtmlHeader
@@ -209,38 +181,6 @@ public static class AppSettings
         }
     }
 
-    public static string AsianAffDomain
-    {
-        get
-        {
-            return GetValue("AsianAffDomain");
-        }
-    }
-
-    public static int AsianAffPort
-    {
-        get
-        {
-            return CastAide.AsInt32(GetValue("AsianAffPort")); ;
-        }
-    }
-
-    public static string EuropeanAffDomain
-    {
-        get
-        {
-            return GetValue("EuropeanAffDomain");
-        }
-    }
-
-    public static int EuropeanAffPort
-    {
-        get
-        {
-            return CastAide.AsInt32(GetValue("EuropeanAffPort"));
-        }
-    }
-
     public static bool HasLogin
     {
         get
@@ -310,38 +250,6 @@ public static class AppSettings
         }
     }
 
-    public static string LBUrl
-    {
-        get
-        {
-            return GetValue("LBUrl");
-        }
-    }
-
-    public static bool HasCheckUMTime
-    {
-        get
-        {
-            return GetValue("HasCheckUMTime") == "1";
-        }
-    }
-
-    public static DateTime UMStartTime
-    {
-        get
-        {
-            return CastAide.AsDateTime(GetValue("UM_StartTime"));
-        }
-    }
-
-    public static DateTime UMEndTime
-    {
-        get
-        {
-            return CastAide.AsDateTime(GetValue("UM_EndTime"));
-        }
-    }
-
     public static string CompanyIP
     {
         get
@@ -354,42 +262,6 @@ public static class AppSettings
 
     public static class Session
     {
-        public static bool IsAllowedAffPersonalizedPage
-        {
-            get
-            {
-                return CastAide.AsBoolean(HttpContext.Current.Session["IsAllowedAffPersonalizedPage"]);
-            }
-            set
-            {
-                HttpContext.Current.Session["IsAllowedAffPersonalizedPage"] = value;
-            }
-        }
-
-        public static int AffLevel
-        {
-            get
-            {
-                return CastAide.AsInt32(HttpContext.Current.Session["AffLevel"]);
-            }
-            set
-            {
-                HttpContext.Current.Session["AffLevel"] = value;
-            }
-        }
-
-        public static int AdminID
-        {
-            get
-            {
-                return CastAide.AsInt32(HttpContext.Current.Session["AdminID"]);
-            }
-            set
-            {
-                HttpContext.Current.Session["AdminID"] = value;
-            }
-        }
-
         public static string Language
         {
             get
@@ -498,14 +370,11 @@ public static class AppSettings
             set { HttpContext.Current.Session["Email"] = value; }
         }
 
-        // ++ Added by Frank.Ngo IRP-671 on Jan 2012
         public static string CommGroupName
         {
             get { return CastAide.AsString(HttpContext.Current.Session["CommGroupName"]); }
             set { HttpContext.Current.Session["CommGroupName"] = value; }
         }
-
-        // -- Added by Frank.Ngo IRP-671 on Jan 2012
 
         public static bool IsInternalSite
         {
@@ -529,8 +398,6 @@ public static class AppSettings
             set { HttpContext.Current.Session["HasDailyDetail"] = value; }
         }
 
-        /*20090202@DungTong add to check where the this aff has secSuriry question yet */
-
         public static bool HasSecurityQuestion
         {
             get { return CastAide.AsBoolean(HttpContext.Current.Session["HasSecurityQuestion"]); }
@@ -553,7 +420,6 @@ public static class AppSettings
             set { firsTimeLoginSucc = value; }
         }
 
-        //20100305@Johnny add to get mail option of aff(plain text or html format)
         public static bool MailOption
         {
             get { return CastAide.AsBoolean(HttpContext.Current.Session["MailOption"]); }
@@ -567,14 +433,12 @@ public static class AppSettings
             set { HttpContext.Current.Session["PreferLang"] = value; }
         }
 
-        //20100305@Johnny add to verify whether this user has 12betcasino
         public static bool IsCasino
         {
             get { return CastAide.AsBoolean(HttpContext.Current.Session["IsCasino"]); }
             set { HttpContext.Current.Session["IsCasino"] = value; }
         }
 
-        //20140211@Brian add to verify whether to force password change
         public static bool ForceChangePass
         {
             get { return CastAide.AsBoolean(HttpContext.Current.Session["ForceChangePass"]); }
@@ -619,22 +483,6 @@ public static class AppSettings
     }
 
     #endregion -------------For Mail Service------------------
-
-    public static string AffPersonalizedPageLink
-    {
-        get
-        {
-            return GetValue("AffPersonalizedPageLink");
-        }
-    }
-
-    public static string AffPublicKeyToken
-    {
-        get
-        {
-            return GetValue("AffPublicKeyToken");
-        }
-    }
 
     public static string BannerUrl
     {
