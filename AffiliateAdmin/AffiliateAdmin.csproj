@@ -1192,7 +1192,6 @@
     <Content Include="App_Js\interface.js" />
     <Content Include="App_Js\jquery\jquery-1.4.2.min.js" />
     <Content Include="App_Js\ListBanner.js" />
-    <Content Include="App_Js\ListBannerOld.js" />
     <Content Include="App_Js\ListText.js" />
     <Content Include="App_Js\login.js" />
     <Content Include="App_Js\MonthPicker\Images\bg-month-picker-header.png" />
@@ -1913,7 +1912,7 @@
     <Content Include="Handler\AccountPolicy.ashx" />
     <Content Include="Handler\ActiveMember.ashx" />
     <Content Include="Handler\AddMessage.ashx" />
-    <Content Include="Handler\AddNewBannerV2.ashx" />
+    <Content Include="Handler\Banner\AddBanner.ashx" />
     <Content Include="Handler\AddNewText.ashx" />
     <Content Include="Handler\AddUser.ashx" />
     <Content Include="Handler\Adjustment.ashx" />
@@ -1922,7 +1921,7 @@
     <Content Include="Handler\CommGroupAssign.ashx" />
     <Content Include="Handler\CommGroupDel.ashx" />
     <Content Include="Handler\CommGroupUpd.ashx" />
-    <Content Include="Handler\DelBanner.ashx" />
+    <Content Include="Handler\Banner\DelBanner.ashx" />
     <Content Include="Handler\DeleteMailList.ashx" />
     <Content Include="Handler\DeleteMember.ashx" />
     <Content Include="Handler\DeleteMessageList.ashx" />
@@ -1954,7 +1953,7 @@
     <Content Include="Handler\Logout.ashx" />
     <Content Include="Handler\Note.ashx" />
     <Content Include="Handler\PaymentUpdate.ashx" />
-    <Content Include="Handler\UpBanner.ashx" />
+    <Content Include="Handler\Banner\UpBanner.ashx" />
     <Content Include="Handler\UpdAffInfo.ashx" />
     <Content Include="Handler\UpdAffType.ashx" />
     <Content Include="Handler\Update12BetDomain.ashx" />

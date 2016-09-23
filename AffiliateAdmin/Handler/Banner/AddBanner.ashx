@@ -1,10 +1,10 @@
-﻿<%@ WebHandler Language="C#" Class="AddNewBannerV2" %>
+﻿<%@ WebHandler Language="C#" Class="AddBanner" %>
 
 using System.Web;
 using System.Web.SessionState;
 using AffiliateAdmin.Business.Services.Banner;
 
-public class AddNewBannerV2 : IHttpHandler, IRequiresSessionState
+public class AddBanner : IHttpHandler, IRequiresSessionState
 {
     public void ProcessRequest(HttpContext context)
     {

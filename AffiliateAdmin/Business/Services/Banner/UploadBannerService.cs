@@ -104,6 +104,19 @@ namespace AffiliateAdmin.Business.Services.Banner
                 {
                     return uploadingResult;
                 }
+
+                if (!oldRelativeFilePath.Equals(newRelativeFilePath))
+                {
+                    BannerHelper.DeleteFile(oldRelativeFilePath);
+                }
+            }
+            else
+            {
+                var movingResult = BannerHelper.MoveFiles(category, oldCategory, newFolder, newRelativeFilePath, oldRelativeFilePath);
+                if (movingResult.IsSuccessful == false)
+                {
+                    return movingResult;
+                }
             }
 
             var result = DataHandler.Banner.UpdateBanner(Convert.ToInt32(idbanner), newRelativeFilePath, category, language, currency, imageType, size, afftype, deviceType);
@@ -113,44 +126,10 @@ namespace AffiliateAdmin.Business.Services.Banner
                 return result;
             }
 
-            if (!needToUploadFile)
-            {
-                MoveFiles(category, oldCategory, newFolder, newRelativeFilePath, oldRelativeFilePath);
-            }
-            else if (!oldRelativeFilePath.Equals(newRelativeFilePath))
-            {
-                BannerHelper.DeleteFile(oldRelativeFilePath);
-            }
-
             return new ResultInfo()
             {
                 Message = Resources.Lang.UpdateBannerSuccessfull
             };
-        }
-
-        private static void MoveFiles(
-            string category,
-            string oldCategory,
-            string newFolder,
-            string newRelativeFilePath,
-            string oldRelativeFilePath)
-        {
-            foreach (var folder in AppSettings.BannerFolders)
-            {
-                var oldFullPath = Path.Combine(folder, oldRelativeFilePath);
-                var newFullPath = Path.Combine(folder, newRelativeFilePath);
-                if (File.Exists(oldFullPath))
-                {
-                    if (!category.Equals(oldCategory))
-                    {
-                        var relativeFolderPath = Path.Combine(folder, newFolder);
-                        if (Directory.Exists(relativeFolderPath) == false)
-                            Directory.CreateDirectory(relativeFolderPath);
-                    }
-
-                    File.Move(oldFullPath, newFullPath);
-                }
-            }
         }
     }
 }

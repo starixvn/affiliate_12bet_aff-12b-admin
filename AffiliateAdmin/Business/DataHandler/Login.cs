@@ -1,29 +1,29 @@
-﻿using System.Data;
+﻿using System.Collections;
+using System.Data;
+using System.Text;
 using System.Web;
 using AffiliateAdmin.Business.DataAccess;
-using System.Collections;
 using DNAide.Core;
 using DNAide.Utils;
-using System.Text;  
+
 /// <summary>
 /// Summary description for Login
 /// </summary>
-/// 
+///
 namespace DataHandler
 {
     public static class Login
     {
-        public static int ExecLogin(ref string username,string password,ref string errmsg,HttpContext hc,ref int custid,ref int roleid,string lang)
+        public static int ExecLogin(ref string username, string password, ref string errmsg, HttpContext hc, ref int custid, ref int roleid, string lang)
         {
-
             Hashtable htb = new Hashtable();
-            DbResult dbr=null;
+            DbResult dbr = null;
             int errcode = 0;
-            
+
             try
             {
                 htb.Add("username", username);
-                htb.Add("userpwd",Encryption.CfsEnCode(password));
+                htb.Add("userpwd", Encryption.CfsEnCode(password));
 
                 htb.Add("loginip", Common.GetIPAddressOfClient());
                 htb.Add("custid", 0);
@@ -41,10 +41,11 @@ namespace DataHandler
             }
             catch
             {
-                throw; 
+                throw;
             }
             return errcode;
         }
+
         public static int LoginOnUser(HttpContext hc)
         {
             try
@@ -68,24 +69,18 @@ namespace DataHandler
 
         public static bool ReCheckin(HttpContext hc)
         {
-            try
-            {
-                var htb = new Hashtable();
-                htb.Add("on_userid", AppSettings.Session.OnUser);
-                htb.Add("iskickedout", 0);
-                DbResult dbr = DbHelper.Execute("Aff_Recheckin", DBType.AFFILIATE_12BET, htb);
-                return CastAide.AsBoolean(dbr.Outputs["iskickedout"]);  
-            }
-            catch
-            
-            {   throw; }
+            var htb = new Hashtable();
+            htb.Add("on_userid", AppSettings.Session.OnUser);
+            htb.Add("iskickedout", 0);
+            DbResult dbr = DbHelper.Execute("Aff_Recheckin", DBType.AFFILIATE_12BET, htb);
+            return CastAide.AsBoolean(dbr.Outputs["iskickedout"]);
         }
+
         public static void Logout(HttpContext hc)
         {
             Hashtable htb = new Hashtable();
             htb.Add("on_userid", AppSettings.Session.OnUser);
             DbHelper.Execute("Aff_Logout", DBType.AFFILIATE_12BET, htb);
-            //DbHelper.Execute("Aff_Logout", htb, DBType.ON_USER);   
         }
 
         public static string AssignRoles(int custid)
@@ -98,13 +93,12 @@ namespace DataHandler
                 {
                     if (CastAide.AsInt32(dr["subfunccount"]) == 0)
                     {
-                        result.Append(dr["funcname"] + "-" + ((CastAide.AsInt32(dr["actual_policy"]) > 1) ? "1" : dr["actual_policy"]) + "|");                        
+                        result.Append(dr["funcname"] + "-" + ((CastAide.AsInt32(dr["actual_policy"]) > 1) ? "1" : dr["actual_policy"]) + "|");
                     }
                 }
             }
 
             return result.ToString().TrimEnd('|');
         }
-
     }
 }

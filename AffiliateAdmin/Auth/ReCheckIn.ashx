@@ -1,8 +1,6 @@
 ﻿<%@ WebHandler Language="C#" Class="ReCheckIn" %>
 
-using System;
 using System.Web;
-using AffiliateAdmin.Business.DataAccess;
 using System.Web.SessionState; 
 public class ReCheckIn : IHttpHandler, IRequiresSessionState {
     

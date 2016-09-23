@@ -33,7 +33,7 @@ function DeleteMedia(bannerIDList, fileList, bannerType, isNewCateStruct) {
     try {
         var params;
         params = "params=" + bannerIDList + "$$$" + fileList;
-        var ajax = new Ajax.Request("../Handler/DelBanner.ashx", {
+        var ajax = new Ajax.Request("../Handler/Banner/DelBanner.ashx", {
             method: 'post',
             parameters: params,
             onComplete: function (data) {

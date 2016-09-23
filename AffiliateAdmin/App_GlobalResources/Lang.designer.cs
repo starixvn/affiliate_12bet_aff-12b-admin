@@ -2208,6 +2208,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Can not access folder..
+        /// </summary>
+        internal static string ErrAccessFolder {
+            get {
+                return ResourceManager.GetString("ErrAccessFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Address is required.
         /// </summary>
         internal static string ErrAddress {
