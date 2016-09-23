@@ -8,7 +8,7 @@ public class GetStatisticsListPaging : IHttpHandler, IRequiresSessionState
 {
     public void ProcessRequest(HttpContext context)
     {
-        new GetStatisticsListService().GetStatisticsList(context);
+        new GetStatisticsListDetailService().GetStatisticsList(context);
     }
 
     public bool IsReusable
