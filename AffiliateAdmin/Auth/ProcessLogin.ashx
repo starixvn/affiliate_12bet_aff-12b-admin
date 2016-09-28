@@ -13,8 +13,6 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
     {
         context.Response.ContentType = "text/html";
         context.Response.Cache.SetCacheability(HttpCacheability.Private);
-        context.Response.Cookies.Clear();
-        context.Session.Abandon();
         string _username = context.Request.Form["un"];
         string _password = context.Request.Form["pw"];
         string errmsg = "";
@@ -30,7 +28,7 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
             int errcode = DataHandler.Login.ExecLogin(ref _username, _password, ref errmsg, context, ref custid, ref roleid, lang);
             if (errcode == 0)
             {
-                var authTicket = new FormsAuthenticationTicket(custid.ToString(), false, 20);
+                var authTicket = new FormsAuthenticationTicket(custid.ToString(), true, 20);
                 var encryptedTicket = FormsAuthentication.Encrypt(authTicket);
                 var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket)
                 {
