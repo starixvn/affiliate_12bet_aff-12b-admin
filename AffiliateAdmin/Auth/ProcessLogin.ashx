@@ -13,6 +13,8 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
     {
         context.Response.ContentType = "text/html";
         context.Response.Cache.SetCacheability(HttpCacheability.Private);
+        context.Response.Cookies.Clear();
+        context.Session.Abandon();
         string _username = context.Request.Form["un"];
         string _password = context.Request.Form["pw"];
         string errmsg = "";
@@ -45,7 +47,6 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
                 AppSettings.Session.UserName = _username;
                 AppSettings.Session.RoleAccess = DataHandler.Login.AssignRoles(custid);
                 isok = "OK";
-
                 context.Response.SetCookie(cookie);
 
             }
