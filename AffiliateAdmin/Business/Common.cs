@@ -70,6 +70,8 @@ public class Common
             pages.Add("numbergame", "numbergame");
             pages.Add("keno", "keno");
             pages.Add("virtualsports", "virtualsports");
+            pages.Add("playtech", "playtech");
+            pages.Add("livecasino", "livecasino");
         }
         else
         {

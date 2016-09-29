@@ -38,7 +38,7 @@ public partial class UserInfo_MediaText : RootPageLogIn
         DataTable dtDomain = DataHandler.MediaGallery.SelAffDomains(deviceType);
         TemplateHandler.Assign(ref htmlContent, "slDomain", Common.GenDropDownFromTable(dtDomain, "DomainName", "DomainName", "slDomain", ref domain, false));
         
-        TemplateHandler.Assign(ref htmlContent, "target", Common.GenListLink2Page(targetRequest, deviceType));
+        TemplateHandler.Assign(ref htmlContent, "target", Common.GenListLink2Page("target", targetRequest, deviceType));
 
         TemplateHandler.Assign(ref htmlContent, "Device", Resources.Lang.Device);
         TemplateHandler.Assign(ref htmlContent, "DeviceType-val", deviceType);
