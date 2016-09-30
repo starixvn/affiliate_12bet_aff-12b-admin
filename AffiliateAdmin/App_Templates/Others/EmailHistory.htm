@@ -23,47 +23,53 @@
             LoadMessageListData(1);
         }
     }
-    function EnableDisableSearchDate(chkbox) {
-        /*Enable search by date */
-        if (chkbox.hasClassName("ic-check")) {
-            $("hdchkDate").value = "on";
-            $("fdate").disabled = false;
-            $("tdate").disabled = false;
-            $("fdateTrigger").disabled = false;
-            $("tdateTrigger").disabled = false;
+    function EnableSearchDate(chkbox) {
+        $("fdate").disabled = false;
+        $("tdate").disabled = false;
+        $("fdateTrigger").disabled = false;
+        $("tdateTrigger").disabled = false;
 
-            Calendar.setup({
-                inputField: "fdate",
-                ifFormat: "%m/%d/%Y",
-                button: "fdateTrigger",
-                singleClick: true,
-                showsTime: false,
-                showOthers : true,
-                step : 1
-            });
+        Calendar.setup({
+            inputField: "fdate",
+            ifFormat: "%m/%d/%Y",
+            button: "fdateTrigger",
+            singleClick: true,
+            showsTime: false,
+            showOthers: true,
+            step: 1
+        });
 
-            Calendar.setup({
-                inputField: "tdate",
-                ifFormat: "%m/%d/%Y",
-                button: "tdateTrigger",
-                singleClick: true,
-                showsTime: false,
-                showOthers : true,
-                step : 1
-            });
-       
-        }
-        else {
-            $("hdchkDate").value = "";
-            $("fdate").disabled = true;
-            $("tdate").disabled = true;
-            $("fdateTrigger").disabled = true;
-            $("tdateTrigger").disabled = true;
-            $("fdateTrigger").onclick = "";
-            $("tdateTrigger").onclick = "";            
-        }
+        Calendar.setup({
+            inputField: "tdate",
+            ifFormat: "%m/%d/%Y",
+            button: "tdateTrigger",
+            singleClick: true,
+            showsTime: false,
+            showOthers: true,
+            step: 1
+        });
 
     }
+    function DisableSearchDate(chkbox) {
+        $("fdate").disabled = true;
+        $("tdate").disabled = true;
+        $("fdateTrigger").disabled = true;
+        $("tdateTrigger").disabled = true;
+        $("fdateTrigger").onclick = "";
+        $("tdateTrigger").onclick = "";
+    }
+
+    function checkSearchDate() {
+        if ($("hdchkDate").value == "on") {
+            $("chkDate").className = "date-check";
+            EnableSearchDate($("chkDate"));
+        }
+        else {
+            $("chkDate").className = "date-uncheck";
+            DisableSearchDate($("chkDate"));
+        }
+    }
+
     function IsDate(str) {
       try{
          var myDate = new Date(dateString);
@@ -259,7 +265,7 @@
                     </div>
                 </td>
                 <td class="r" width="20">
-                    <div class="chk ic-uncheck" id="chkDate">
+                    <div class="date-uncheck" id="chkDate" onclick="onCheckSearchDate();">
                     </div>
                 </td>
                 <td class="r" width="36">

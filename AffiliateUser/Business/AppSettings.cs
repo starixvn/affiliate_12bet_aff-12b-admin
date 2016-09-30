@@ -13,141 +13,6 @@ using DNAide.Core;
 /// </summary>
 public static class AppSettings
 {
-    private static string _site;
-    private static string _12BetLink;
-    private static string _12BetLink_CS;
-    private static string _12BetLink_TH;
-    private static string _12BetLink_EU;
-    private static string _12BetLink_VI;
-
-    private static string _jsVersion;
-    private static string _serverId;
-    private static string _tplFolder;
-    private static string _themeDir;
-    private static string _pageHeader = string.Empty;
-    private static string[] _cssFiles;
-    private static bool _hasLogin;
-    private static string _pageTitle = string.Empty, _pageKeywords = string.Empty, _pageDescription = string.Empty;
-    private static string _affmaster;
-    private static string _subdomain;
-    private static string _forgetpwurl;
-    private static string _affTypeList;
-
-    private static string _mediaJS;
-    private static string _mediaJS_CS;
-    private static string _mediaJS_TH;
-    private static string _mediaJS_VI;
-    private static string _mediaJS_EU;
-
-    private static string _listAffUseEuLink;
-    private static string _lbUrl;
-    private static bool _hasCheckUMTime;
-    private static DateTime _UMStartTime;
-    private static DateTime _UMEndTime;
-    private static DateTime _StatementAvailableFrom;
-    private static int _pageSize;
-    private static string _affPersonalizedPageLink; //20101016@Peter add the link for affiliate personalized Page
-    private static string _affPublicKeyToken; //20101016@Peter add the public key token for affiliate personalized Page authentication
-    private static string _bannerUrl;
-    private static bool _showCasino;
-    private static bool _localTest;
-    private static string _asianAffDomain;
-    private static int _asianAffPort;
-    private static string _europeanAffDomain;
-    private static string _preferLang;
-    private static int _europeanAffPort;
-    private static int _betListServiceTimeout;
-    private static int _startYearOfSystem;
-    private static string _companyIp;
-
-    static AppSettings()
-    {
-        _affPersonalizedPageLink = ConfigurationManager.AppSettings["AffPersonalizedPageLink"];
-        _affPublicKeyToken = ConfigurationManager.AppSettings["AffPublicKeyToken"];
-
-        _asianAffDomain = ConfigurationManager.AppSettings["AsianAffDomain"];
-        _asianAffPort = CastAide.AsInt32(ConfigurationManager.AppSettings["AsianAffPort"]);
-        _europeanAffDomain = ConfigurationManager.AppSettings["EuropeanAffDomain"];
-        _europeanAffPort = CastAide.AsInt32(ConfigurationManager.AppSettings["EuropeanAffPort"]);
-
-        _site = ConfigurationManager.AppSettings["Site"];
-        _12BetLink = ConfigurationManager.AppSettings["12BetLink"];
-        _12BetLink_CS = ConfigurationManager.AppSettings["12BetLink_CS"];
-        _12BetLink_TH = ConfigurationManager.AppSettings["12BetLink_TH"];
-        _12BetLink_EU = ConfigurationManager.AppSettings["12BetLink_EU"];
-        _12BetLink_VI = ConfigurationManager.AppSettings["12BetLink_VI"];
-        _subdomain = ConfigurationManager.AppSettings["SubDomain"];
-        _jsVersion = ConfigurationManager.AppSettings["JsVersion"];
-        _serverId = ConfigurationManager.AppSettings["ServerId"];
-        _tplFolder = ConfigurationManager.AppSettings["template_folder"];
-        _affmaster = ConfigurationManager.AppSettings["AffMaster"];
-        _affTypeList = ConfigurationManager.AppSettings["AffTypeList"];
-        _preferLang = ConfigurationManager.AppSettings["PreferLang"] ?? string.Empty;
-        _mediaJS = ConfigurationManager.AppSettings["MediaJS"];
-        _mediaJS_CS = ConfigurationManager.AppSettings["MediaJS_CS"];
-        _mediaJS_TH = ConfigurationManager.AppSettings["MediaJS_TH"];
-        _mediaJS_VI = ConfigurationManager.AppSettings["MediaJS_VI"];
-        _mediaJS_EU = ConfigurationManager.AppSettings["MediaJS_EU"];
-        _listAffUseEuLink = ConfigurationManager.AppSettings["ListAffUseEuLink"];
-        _lbUrl = ConfigurationManager.AppSettings["LBUrl"];
-
-        _hasCheckUMTime = (ConfigurationManager.AppSettings["HasCheckUMTime"] == "1");
-        _UMStartTime = CastAide.AsDateTime(ConfigurationManager.AppSettings["UM_StartTime"]);
-        _UMEndTime = CastAide.AsDateTime(ConfigurationManager.AppSettings["UM_EndTime"]);
-        _pageSize = CastAide.AsInt32(ConfigurationManager.AppSettings["PageSize"]);
-        _StatementAvailableFrom = CastAide.AsDateTime(ConfigurationManager.AppSettings["StatementAvailableFrom"]);
-        _themeDir = @"App_Themes/" + (string.IsNullOrEmpty(ConfigurationManager.AppSettings["Theme"]) ? "Default" : ConfigurationManager.AppSettings["Theme"]);
-        //GET CSS FILES
-        _cssFiles = Directory.GetFiles(System.AppDomain.CurrentDomain.BaseDirectory + _themeDir);
-        for (int j = 0; j < _cssFiles.Length; ++j)
-        {
-            _cssFiles[j] = _cssFiles[j].Substring(_cssFiles[j].IndexOf("App_Themes")).Replace("\\", "/");
-        }
-        _bannerUrl = ConfigurationManager.AppSettings["BannerUrl"];
-        _showCasino = (ConfigurationManager.AppSettings["ShowCasino"] == "1");
-        _localTest = (ConfigurationManager.AppSettings["LocalTest"] == "1");
-        _betListServiceTimeout = CastAide.AsInt32(ConfigurationManager.AppSettings["BetListServiceTimeout"]);
-        _startYearOfSystem = string.IsNullOrEmpty(ConfigurationManager.AppSettings["StartYearOfSystem"])
-            ? 2007 : CastAide.AsInt32(ConfigurationManager.AppSettings["StartYearOfSystem"]);
-        _companyIp = ConfigurationManager.AppSettings["CompanyIP"];
-        initPageHeader();
-    }
-
-    private static void initPageHeader()
-    {
-        //try
-        //{
-        _pageHeader = string.Empty;
-        XmlDocument doc = new XmlDocument();
-        doc.Load(System.AppDomain.CurrentDomain.BaseDirectory + @"\Web.info");
-        foreach (XmlNode node in doc.ChildNodes[1].ChildNodes)
-        {
-            if (node.Attributes["name"].Value == "title")
-            {
-                _pageHeader += "<title>" + node.Attributes["value"].Value + "</title>\n";
-                _pageTitle = node.Attributes["value"].Value;
-            }
-            else if (node.Attributes["name"].Value == "keywords")
-            {
-                _pageHeader += "<meta name=\"keywords\" content=\"" + node.Attributes["value"].Value + "\" />\n";
-                _pageKeywords = node.Attributes["value"].Value;
-            }
-            else if (node.Attributes["name"].Value == "description")
-            {
-                _pageHeader += "<meta name=\"description\" content=\"" + node.Attributes["value"].Value + "\" />\n";
-                _pageDescription = node.Attributes["value"].Value;
-            }
-            else if (node.Attributes["name"].Value == "contenttype")
-            {
-                _pageHeader += "<meta http-equiv=\"Content-Type\" content=\"" + node.Attributes["value"].Value + "\" />\n";
-            }
-        }
-        /*}
-        catch
-        {
-        }*/
-    }
-
     public static string Environment
     {
         get
@@ -160,7 +25,7 @@ public static class AppSettings
     {
         get
         {
-            return _pageSize;
+            return CastAide.AsInt32(GetValue("PageSize"));
         }
     }
 
@@ -168,15 +33,13 @@ public static class AppSettings
     {
         get
         {
-            return _cssFiles;
-        }
-    }
+            var cssFiles = Directory.GetFiles(System.AppDomain.CurrentDomain.BaseDirectory + ThemeDir);
+            for (int j = 0; j < cssFiles.Length; ++j)
+            {
+                cssFiles[j] = cssFiles[j].Substring(cssFiles[j].IndexOf("App_Themes")).Replace("\\", "/");
+            }
 
-    public static string Site
-    {
-        get
-        {
-            return _site;
+            return cssFiles;
         }
     }
 
@@ -184,7 +47,7 @@ public static class AppSettings
     {
         get
         {
-            return _12BetLink;
+            return GetValue("12BetLink");
         }
     }
 
@@ -192,15 +55,15 @@ public static class AppSettings
     {
         get
         {
-            return _12BetLink_CS;
+            return GetValue("12BetLink_CS");
         }
     }
 
-    public static string BetLink_TH//Use for Thai language
+    public static string BetLink_TH
     {
         get
         {
-            return _12BetLink_TH;
+            return GetValue("12BetLink_TH");
         }
     }
 
@@ -208,7 +71,7 @@ public static class AppSettings
     {
         get
         {
-            return _12BetLink_EU;
+            return GetValue("12BetLink_EU");
         }
     }
 
@@ -216,15 +79,7 @@ public static class AppSettings
     {
         get
         {
-            return _12BetLink_VI;
-        }
-    }
-
-    public static string SubDomain
-    {
-        get
-        {
-            return _subdomain;
+            return GetValue("12BetLink_VI");
         }
     }
 
@@ -232,7 +87,7 @@ public static class AppSettings
     {
         get
         {
-            return _jsVersion;
+            return GetValue("JsVersion");
         }
     }
 
@@ -240,27 +95,38 @@ public static class AppSettings
     {
         get
         {
-            return _serverId;
+            return GetValue("ServerId");
         }
-    }
-
-    public static string TplFolder
-    {
-        get
-        {
-            return _tplFolder;
-        }
-    }
-
-    public static void InitThemeInfo()
-    {
     }
 
     public static string HtmlHeader
     {
         get
         {
-            return _pageHeader;
+            var pageHeader = string.Empty;
+            XmlDocument doc = new XmlDocument();
+            doc.Load(System.AppDomain.CurrentDomain.BaseDirectory + @"\Web.info");
+            foreach (XmlNode node in doc.ChildNodes[1].ChildNodes)
+            {
+                if (node.Attributes["name"].Value == "title")
+                {
+                    pageHeader += "<title>" + node.Attributes["value"].Value + "</title>\n";
+                }
+                else if (node.Attributes["name"].Value == "keywords")
+                {
+                    pageHeader += "<meta name=\"keywords\" content=\"" + node.Attributes["value"].Value + "\" />\n";
+                }
+                else if (node.Attributes["name"].Value == "description")
+                {
+                    pageHeader += "<meta name=\"description\" content=\"" + node.Attributes["value"].Value + "\" />\n";
+                }
+                else if (node.Attributes["name"].Value == "contenttype")
+                {
+                    pageHeader += "<meta http-equiv=\"Content-Type\" content=\"" + node.Attributes["value"].Value + "\" />\n";
+                }
+            }
+
+            return pageHeader;
         }
     }
 
@@ -268,7 +134,8 @@ public static class AppSettings
     {
         get
         {
-            return _themeDir;
+            var theme = GetValue("Theme");
+            return @"App_Themes/" + (string.IsNullOrEmpty(theme) ? "Default" : theme);
         }
     }
 
@@ -276,23 +143,7 @@ public static class AppSettings
     {
         get
         {
-            return _pageTitle;
-        }
-    }
-
-    public static string PageKeywords
-    {
-        get
-        {
-            return _pageKeywords;
-        }
-    }
-
-    public static string PageDescription
-    {
-        get
-        {
-            return _pageDescription;
+            return "12BET Affiliate Program";
         }
     }
 
@@ -300,7 +151,7 @@ public static class AppSettings
     {
         get
         {
-            return _affmaster;
+            return GetValue("AffMaster");
         }
     }
 
@@ -308,7 +159,8 @@ public static class AppSettings
     {
         get
         {
-            return _affTypeList.Split(',').Select(t => (AffType)CastAide.AsInt32(t, 2)).ToList();
+            var affTypes = GetValue("AffTypeList");
+            return affTypes.Split(',').Select(t => (AffType)CastAide.AsInt32(t, 2)).ToList();
         }
     }
 
@@ -324,39 +176,8 @@ public static class AppSettings
     {
         get
         {
-            return _preferLang;
-        }
-    }
-
-    public static string AsianAffDomain
-    {
-        get
-        {
-            return _asianAffDomain;
-        }
-    }
-
-    public static int AsianAffPort
-    {
-        get
-        {
-            return _asianAffPort;
-        }
-    }
-
-    public static string EuropeanAffDomain
-    {
-        get
-        {
-            return _europeanAffDomain;
-        }
-    }
-
-    public static int EuropeanAffPort
-    {
-        get
-        {
-            return _europeanAffPort;
+            var language = GetValue("PreferLang");
+            return string.IsNullOrEmpty(language) ? string.Empty : language;
         }
     }
 
@@ -372,7 +193,7 @@ public static class AppSettings
     {
         get
         {
-            return _mediaJS;
+            return GetValue("MediaJS");
         }
     }
 
@@ -380,7 +201,7 @@ public static class AppSettings
     {
         get
         {
-            return _mediaJS_CS;
+            return GetValue("MediaJS_CS");
         }
     }
 
@@ -388,7 +209,7 @@ public static class AppSettings
     {
         get
         {
-            return _mediaJS_TH;
+            return GetValue("MediaJS_TH");
         }
     }
 
@@ -396,7 +217,7 @@ public static class AppSettings
     {
         get
         {
-            return _mediaJS_VI;
+            return GetValue("MediaJS_VI");
         }
     }
 
@@ -404,7 +225,7 @@ public static class AppSettings
     {
         get
         {
-            return _mediaJS_EU;
+            return GetValue("MediaJS_EU");
         }
     }
 
@@ -412,7 +233,7 @@ public static class AppSettings
     {
         get
         {
-            return _listAffUseEuLink;
+            return GetValue("ListAffUseEuLink");
         }
     }
 
@@ -425,39 +246,7 @@ public static class AppSettings
     {
         get
         {
-            return _StatementAvailableFrom;
-        }
-    }
-
-    public static string LBUrl
-    {
-        get
-        {
-            return _lbUrl;
-        }
-    }
-
-    public static bool HasCheckUMTime
-    {
-        get
-        {
-            return _hasCheckUMTime;
-        }
-    }
-
-    public static DateTime UMStartTime
-    {
-        get
-        {
-            return _UMStartTime;
-        }
-    }
-
-    public static DateTime UMEndTime
-    {
-        get
-        {
-            return _UMEndTime;
+            return CastAide.AsDateTime(GetValue("StatementAvailableFrom"));
         }
     }
 
@@ -465,7 +254,7 @@ public static class AppSettings
     {
         get
         {
-            return _companyIp;
+            return GetValue("CompanyIP");
         }
     }
 
@@ -473,42 +262,6 @@ public static class AppSettings
 
     public static class Session
     {
-        public static bool IsAllowedAffPersonalizedPage
-        {
-            get
-            {
-                return CastAide.AsBoolean(HttpContext.Current.Session["IsAllowedAffPersonalizedPage"]);
-            }
-            set
-            {
-                HttpContext.Current.Session["IsAllowedAffPersonalizedPage"] = value;
-            }
-        }
-
-        public static int AffLevel
-        {
-            get
-            {
-                return CastAide.AsInt32(HttpContext.Current.Session["AffLevel"]);
-            }
-            set
-            {
-                HttpContext.Current.Session["AffLevel"] = value;
-            }
-        }
-
-        public static int AdminID
-        {
-            get
-            {
-                return CastAide.AsInt32(HttpContext.Current.Session["AdminID"]);
-            }
-            set
-            {
-                HttpContext.Current.Session["AdminID"] = value;
-            }
-        }
-
         public static string Language
         {
             get
@@ -617,14 +370,11 @@ public static class AppSettings
             set { HttpContext.Current.Session["Email"] = value; }
         }
 
-        // ++ Added by Frank.Ngo IRP-671 on Jan 2012
         public static string CommGroupName
         {
             get { return CastAide.AsString(HttpContext.Current.Session["CommGroupName"]); }
             set { HttpContext.Current.Session["CommGroupName"] = value; }
         }
-
-        // -- Added by Frank.Ngo IRP-671 on Jan 2012
 
         public static bool IsInternalSite
         {
@@ -648,8 +398,6 @@ public static class AppSettings
             set { HttpContext.Current.Session["HasDailyDetail"] = value; }
         }
 
-        /*20090202@DungTong add to check where the this aff has secSuriry question yet */
-
         public static bool HasSecurityQuestion
         {
             get { return CastAide.AsBoolean(HttpContext.Current.Session["HasSecurityQuestion"]); }
@@ -672,7 +420,6 @@ public static class AppSettings
             set { firsTimeLoginSucc = value; }
         }
 
-        //20100305@Johnny add to get mail option of aff(plain text or html format)
         public static bool MailOption
         {
             get { return CastAide.AsBoolean(HttpContext.Current.Session["MailOption"]); }
@@ -686,14 +433,12 @@ public static class AppSettings
             set { HttpContext.Current.Session["PreferLang"] = value; }
         }
 
-        //20100305@Johnny add to verify whether this user has 12betcasino
         public static bool IsCasino
         {
             get { return CastAide.AsBoolean(HttpContext.Current.Session["IsCasino"]); }
             set { HttpContext.Current.Session["IsCasino"] = value; }
         }
 
-        //20140211@Brian add to verify whether to force password change
         public static bool ForceChangePass
         {
             get { return CastAide.AsBoolean(HttpContext.Current.Session["ForceChangePass"]); }
@@ -739,27 +484,11 @@ public static class AppSettings
 
     #endregion -------------For Mail Service------------------
 
-    public static string AffPersonalizedPageLink
-    {
-        get
-        {
-            return _affPersonalizedPageLink; //20101016@Peter add the link for affiliate personalized Page
-        }
-    }
-
-    public static string AffPublicKeyToken
-    {
-        get
-        {
-            return _affPublicKeyToken;
-        }
-    }
-
     public static string BannerUrl
     {
         get
         {
-            return _bannerUrl;
+            return GetValue("BannerUrl");
         }
     }
 
@@ -767,23 +496,27 @@ public static class AppSettings
     {
         get
         {
-            return _showCasino;
+            return GetValue("ShowCasino") == "1";
         }
     }
 
     public static bool LocalTest
     {
-        get { return _localTest; }
+        get { return GetValue("LocalTest") == "1"; }
     }
 
     public static int BetListServiceTimeout
     {
-        get { return _betListServiceTimeout; }
+        get { return CastAide.AsInt32(GetValue("BetListServiceTimeout")); }
     }
 
     public static int StartYearOfSystem
     {
-        get { return _startYearOfSystem; }
+        get
+        {
+            var startYear = GetValue("StartYearOfSystem");
+            return string.IsNullOrEmpty(startYear) ? 2007 : CastAide.AsInt32(startYear);
+        }
     }
 
     public static string RedirectionEuHost
@@ -807,5 +540,10 @@ public static class AppSettings
     public static void RefreshPreferredLanguage()
     {
         AppSettings.Session.PreferLang = DataHandler.UserAff.GetPreferredLanguage(AppSettings.Session.CustID);
+    }
+
+    public static string GetValue(string key)
+    {
+        return ConfigurationManager.AppSettings[key];
     }
 }

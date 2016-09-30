@@ -1,38 +1,39 @@
 ﻿<%@ WebHandler Language="C#" Class="UpText" %>
 
-using System;
 using System.Web;
 using System.Web.SessionState;
+using AffiliateAdmin.Business.Services.Text;
 
 public class UpText : IHttpHandler, IRequiresSessionState
 {
-    public void ProcessRequest (HttpContext context) {
-        if (context.Request.UrlReferrer != null)
+    public void ProcessRequest(HttpContext context)
+    {
+        if (context.Request.UrlReferrer == null)
         {
-            IBCHandler.InitializeCulture(HttpContext.Current);
-            context.Response.ContentType = "text/html";
-            string idbanner = context.Request.Params["hdBannerID"];
-            string textvalue = context.Request.Params["textvalue"];
-            string category = context.Request.Params["slCategory"];
-            string language = context.Request.Params["slLanguage"];
-            string currency = context.Request.Params["slCurrency"];
-            string deviceType = context.Request.Params["slDevice"];
+            return;
+        }
 
-            string err = DataHandler.Text.UpdText(Convert.ToInt32(idbanner), textvalue, category, language, currency, deviceType);
-            if (!string.IsNullOrEmpty(err))
-            {
-                context.Response.Write("<script type=\"text/javascript\">parent.ErrAlter('" + err + "');</script>");
-                return;
-            }
-            //Upload new file
+        IBCHandler.InitializeCulture(HttpContext.Current);
+        context.Response.ContentType = "text/html";
+        var service = new UpdateTextService();
+        var result = service.Update(context);
+
+        if (string.IsNullOrEmpty(result.Message))
+        {
             context.Response.Write("<script type=\"text/javascript\">parent.RefreshTextList();</script>");
         }
+        else
+        {
+            context.Response.Write("<script type=\"text/javascript\">parent.ErrAlter('" + result.Message + "');</script>");
+        }
+
     }
- 
-    public bool IsReusable {
-        get {
+
+    public bool IsReusable
+    {
+        get
+        {
             return false;
         }
     }
-
 }

@@ -1,32 +1,21 @@
 ﻿<%@ WebHandler Language="C#" Class="GetEditedBanner" %>
-using System;
+
 using System.Web;
-using DNAide.Core;
 using System.Web.SessionState;
-using System.Text;
-using AffiliateAdmin.Business.DataAccess;
-using System.Data;
+using AffiliateAdmin.Business.Services;
 
 public class GetEditedBanner : IHttpHandler, IRequiresSessionState
 {
-    
-    public void ProcessRequest (HttpContext context) {
-        if (context.Request.UrlReferrer != null)
-        {
-            IBCHandler.InitializeCulture(HttpContext.Current);
-            context.Response.ContentType = "text/plain";
-            int bannerID = Convert.ToInt32(context.Request["bannerid"].Trim());
-            int noRow = Convert.ToInt32(context.Request["noRow"].Trim());             
-            context.Response.Write(GenerateHTML.Banner.GetEditedBanner(bannerID,noRow));
-
-        }
-
+    public void ProcessRequest(HttpContext context)
+    {
+        new GetEditedBannerService().GetEditedBanner(context);
     }
-   
-    public bool IsReusable {
-        get {
+
+    public bool IsReusable
+    {
+        get
+        {
             return false;
         }
     }
-
 }

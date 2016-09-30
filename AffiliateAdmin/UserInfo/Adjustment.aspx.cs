@@ -30,8 +30,6 @@ public partial class UserInfo_Adjustment : IBCPage
             TemplateHandler.Assign(ref strTpl, "bf-val", NumberFormat.DecFormat(dcBF, 2));
             #region Load SubPage
             TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.AffApprovedLink, SubMenu.AffApprovedText, 4, 0, Resources.Lang.Adjustment, "i_customer.png"));
-            //string subPage = Common.GenSubPage(6);
-            //TemplateHandler.Assign(ref subPage, "ContentPage", strTpl);
             #endregion
 
             this.HtmlContent = strTpl;

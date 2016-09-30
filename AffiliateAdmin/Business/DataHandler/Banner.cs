@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Web;
 using AffiliateAdmin.Business.DataAccess;
-using DNAide.Core; 
+using DNAide.Core;
 using System.Collections;
 using System.Configuration;
+using AffiliateAdmin.Business.Models.Core;
 /// <summary>
 /// Summary description for Banner
 /// Author: Peter 20090328
@@ -13,10 +14,8 @@ namespace DataHandler
 {
     public class Banner
     {
-        public static int InsBanner(string fileName, string category, string language, string currency, string imagetype, string size, string afftype, ref int errcode, ref string errmsg, int type, string deviceType)
+        public static ResultInfo InsertBanner(string fileName, string category, string language, string currency, string imagetype, string size, string afftype, int type, string deviceType)
         {
-            DbResult dbr = null;
-            int result = 0;          
             Hashtable htb = new Hashtable();
             var device = string.IsNullOrEmpty(deviceType) ? "0" : deviceType;
 
@@ -34,18 +33,17 @@ namespace DataHandler
             htb.Add("ip", HttpContext.Current.Request.UserHostAddress);
             htb.Add("errcode", 0);
             htb.Add("errmsg", "");
-            // ++ Added by Frank.Ngo on IRP 671 - 10 Jan 2012
             htb.Add("type", type);
-            // -- Added by Frank.Ngo on IRP 671 - 10 Jan 2012
 
-            dbr = DbHelper.Execute("Aff_BannerMediaIns", DBType.AFFILIATE_12BET, htb);
-            errcode =CastAide.AsInt32(dbr.Outputs["errcode"]);
-            result=CastAide.AsInt32(dbr.Outputs["bannerid"]);
-            errmsg = dbr.Outputs["errmsg"].ToString();           
-            return result;
+            var dbr = DbHelper.Execute("Aff_BannerMediaIns", DBType.AFFILIATE_12BET, htb);
+            return new ResultInfo()
+            {
+                Code = CastAide.AsInt32(dbr.Outputs["errcode"]),
+                Message = dbr.Outputs["errmsg"].ToString()
+            };  
         }
 
-        public static string UpdBanner(int id,string filename, string category, string language,string currency, string imagetype, string size, string afftype, string deviceType)
+        public static ResultInfo UpdateBanner(int id,string filename, string category, string language,string currency, string imagetype, string size, string afftype, string deviceType)
         {                     
             var htb = new Hashtable();
             var device = string.IsNullOrEmpty(deviceType) ? "0" : deviceType;
@@ -63,12 +61,16 @@ namespace DataHandler
             htb.Add("ip", HttpContext.Current.Request.UserHostAddress);
             htb.Add("errcode", 0);
             htb.Add("errmsg", string.Empty);
-            DbResult dbr = DbHelper.Execute("Aff_BannerUpd_1", DBType.AFFILIATE_12BET, htb);            
-            return dbr.Outputs["errmsg"].ToString(); 
+            var dbr = DbHelper.Execute("Aff_BannerUpd_1", DBType.AFFILIATE_12BET, htb);            
+            return new ResultInfo()
+            {
+                Code = CastAide.AsInt32(dbr.Outputs["errcode"]),
+                Message = dbr.Outputs["errmsg"].ToString()
+            };
         }
         
         //Delete Banner
-        public static string DelDataBanner(string listBannerID)
+        public static ResultInfo DeleteBanner(string listBannerID)
         {           
             Hashtable hsParam = new Hashtable();
             hsParam.Add("listbannerid", listBannerID);
@@ -76,8 +78,12 @@ namespace DataHandler
             hsParam.Add("ip", HttpContext.Current.Request.UserHostAddress);
             hsParam.Add("errcode", 0);
             hsParam.Add("errmsg", string.Empty);
-            DbResult result = DbHelper.Execute("Aff_BannerDel_1", DBType.AFFILIATE_12BET, hsParam);
-            return DNAide.Core.CastAide.AsString(result.Outputs["errmsg"]);
+            var result = DbHelper.Execute("Aff_BannerDel_1", DBType.AFFILIATE_12BET, hsParam);
+            return new ResultInfo()
+            {
+                Code = CastAide.AsInt32(result.Outputs["errcode"]),
+                Message = result.Outputs["errmsg"].ToString()
+            };
         }
 
         // Modified by Frank.Ngo on IRP 671 - 10 Jan 2012

@@ -14,7 +14,7 @@ public partial class EditDepartment : IBCPage
         TemplateHandler.Assign(ref list, "submit", Resources.Lang.Submit);
         TemplateHandler.Assign(ref list, "cancel", Resources.Lang.Cancel);
         TemplateHandler.Assign(ref list, "depid", depid);
-        //TemplateHandler.Assign(ref list, "submenu", Common.GenSubMenu(new string[] { "#" }, new string[] { "{DepartmentName}" }, 321, 0));
+        
         DbResult dbr = null;
         dbr = DataHandler.UserControl.GetListDepartment(depid);
         if (dbr.ResultSet.Tables[0].Rows.Count > 0)

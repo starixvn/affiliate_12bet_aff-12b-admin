@@ -22,8 +22,7 @@ public partial class ListDepartment : IBCPage
         TemplateHandler.Assign(ref list, "Edit", Resources.Lang.Edit);
         TemplateHandler.Assign(ref list, "Del", Resources.Lang.Del);
         TemplateHandler.Assign(ref list, "themepath", AppSettings.ThemeDir);
-        //TemplateHandler.Assign(ref list, "submenu", Common.GenSubMenu(new string[] { "ListUser.aspx", "AddUser.aspx", "AddUserExist.aspx", "ListDepartment.aspx", "AddDepartment.aspx" }, new string[] { Resources.Lang.AdministratorList, Resources.Lang.AddAdministrator, Resources.Lang.AddAdministratorExist, Resources.Lang.DepartmentList + " [{numDep}]", Resources.Lang.AddDepartment }, 881, 3));
-
+        
         DbResult dbr = null;
         dbr = DataHandler.UserControl.GetListDepartment(null);
         string _content = TemplateHandler.CopyBlock(list, "content");

@@ -144,6 +144,7 @@ namespace GenerateHTML
                 string content = TemplateHandler.CopyBlock(temp, "Content");
                 TemplateHandler.RemoveBlock(ref content, "UpdateMode1");
                 TemplateHandler.RemoveBlock(ref content, "UpdateMode2");
+                TemplateHandler.Assign(ref content, "banner-url", AppSettings.BannerUrl);
                 int totalpage = CastAide.AsInt32(result.Outputs["totalpages"]);
                 DataTable dtbResult = result.ResultSet.Tables[0];
                 StringBuilder contentList = new StringBuilder();
@@ -227,7 +228,6 @@ namespace GenerateHTML
                 totalBanner = nRows;
                 if (totalpage > 0)
                 {
-                    //contentList.Append(Common.GenPagingFooter("", totalpage, pageIndex, cols));
                     totalPage = totalpage;
                 }
                 return contentList.ToString();
@@ -339,7 +339,6 @@ namespace GenerateHTML
                 totalBanner = nRows;
                 if (totalpage > 0)
                 {
-                    //contentList.Append(Common.GenPagingFooter("", totalpage, pageIndex, cols));
                     totalPage = totalpage;
                 }
                 return contentList.ToString();

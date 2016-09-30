@@ -20,7 +20,7 @@ public partial class AddUserExist : IBCPage
         TemplateHandler.Assign(ref list, "department", Resources.Lang.Department);
         TemplateHandler.Assign(ref list, "Add", Resources.Lang.Add);
         TemplateHandler.Assign(ref list, "Cancel", Resources.Lang.Cancel);
-        //TemplateHandler.Assign(ref list, "submenu", Common.GenSubMenu(new string[] { "ListUser.aspx", "AddUser.aspx", "AddUserExist.aspx", "ListDepartment.aspx", "AddDepartment.aspx" }, new string[] { Resources.Lang.AdministratorList, Resources.Lang.AddAdministrator, Resources.Lang.AddAdministratorExist, Resources.Lang.DepartmentList, Resources.Lang.AddDepartment }, 731, 2));
+        
         StringBuilder res_opt = new StringBuilder();
         DbResult dbr = DataHandler.UserControl.GetSelectDepartment();        
         string _option = "<Option value='{opt_value}'>{opt_name}</Option>";            

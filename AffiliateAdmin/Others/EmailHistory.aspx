@@ -43,12 +43,7 @@
 
             $("txtSearchText").value = $("hdSearchText").value;
 
-            if ($("hdchkDate").value == "on") {
-                $("chkDate").className = "chk ic-check";
-                EnableDisableSearchDate($("chkDate"));
-            }
-            else
-                $("chkDate").className = "chk ic-uncheck";
+            checkSearchDate();
 
             $("fdate").value = $("hdfDate").value;
             $("tdate").value = $("hdtDate").value;
@@ -69,6 +64,19 @@
         }
         catch (e) { }
     }
+
+    function onCheckSearchDate() {
+        var element = $("chkDate");
+        if (element.hasClassName("date-check")){
+            $("hdchkDate").value = ""
+        }
+        else {
+            $("hdchkDate").value = "on"
+        }
+
+        checkSearchDate();
+    }
+
     //Start favorite 
     function favorOnClick(event) {
         var element = Event.element(event);
@@ -109,46 +117,6 @@
             element.className = "chk ic-uncheck";
         else
             element.className = "chk ic-check";
-        if (element.id.toString() == "chkDate") {
-            /*Enable search by date */
-            if (element.hasClassName("ic-check")) {
-                $("hdchkDate").value = "on";
-                $("fdate").disabled = false;
-                $("tdate").disabled = false;
-                $("fdateTrigger").disabled = false;
-                $("tdateTrigger").disabled = false;
-
-                Calendar.setup({
-                    inputField: "fdate",
-                    ifFormat: "%m/%d/%Y",
-                    button: "fdateTrigger",
-                    singleClick: true,
-                    showsTime: false,
-                    showOthers : true,
-                    step : 1
-                });
-
-                Calendar.setup({
-                    inputField: "tdate",
-                    ifFormat: "%m/%d/%Y",
-                    button: "tdateTrigger",
-                    singleClick: true,
-                    showsTime: false,
-                    showOthers : true,
-                    step : 1
-                });
-
-            }
-            else {/*Disable search by date */
-                $("hdchkDate").value = "";
-                $("fdate").disabled = true;
-                $("tdate").disabled = true;
-                $("fdateTrigger").disabled = true;
-                $("tdateTrigger").disabled = true;
-                $("fdateTrigger").onclick = "";
-                $("tdateTrigger").onclick = "";
-            }
-        }
     }
 
     function checkAll(isCheckAll) {
@@ -156,23 +124,12 @@
         var i = 0;
         if (isCheckAll)
             for (i = 0; i < listChk.length; i++) {
-                if (listChk[i].id != "chkDate")
-                    listChk[i].className = "chk ic-check";
+                listChk[i].className = "chk ic-check";
             }
         else
             for (i = 0; i < listChk.length; i++) {
-                if (listChk[i].id != "chkDate")
-                    listChk[i].className = "chk ic-uncheck";
+                listChk[i].className = "chk ic-uncheck";
             }
-    }
-    function ChangeGroup() {
-        var listChk = $$("div .chk");
-        var i = 0;
-        var listAffID = "";
-        for (i = 0; i < listChk.length; i++) {
-            if (listChk[i].hasClassName("ic-check"))
-                listAffID += listChk[i].id + ";";
-        }
     }
     //End change group block
     function CloseDiv() {

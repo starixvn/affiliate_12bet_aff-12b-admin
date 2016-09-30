@@ -1,21 +1,15 @@
 ﻿<%@ WebHandler Language="C#" Class="Logout" %>
 
-using System;
 using System.Web;
 using System.Web.SessionState;
-using System.Web.Security;
+using AffiliateAdmin.Business.Services;
+
 public class Logout : IHttpHandler, IRequiresSessionState
 {
 
     public void ProcessRequest(HttpContext context)
     {
-        context.Response.ContentType = "text/html";
-        DataHandler.Login.Logout(context);
-        FormsAuthentication.SignOut();
-        context.Session.Clear();
-        context.Session.Abandon();
-
-        FormsAuthentication.RedirectToLoginPage();
+        new LogoutService().Logout(context);
     }
 
     public bool IsReusable

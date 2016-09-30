@@ -40,7 +40,6 @@ public partial class PaymentRequest : IBCPage
         TemplateHandler.Assign(ref strTpl, "username", Resources.Lang.Username);
         TemplateHandler.Assign(ref strTpl, "searchby", Resources.Lang.SearchBy);
         TemplateHandler.Assign(ref strTpl, "others", Resources.Lang.Others);
-        //TemplateHandler.Assign(ref strTpl, "submenu", Common.GenSubMenu(new string[] { "#" }, new string[] { Resources.Lang.PaymentRequest + " [{nummem}]" }, 801, 0));
         #endregion
 
         string strSearchBy = string.Empty;
@@ -100,7 +99,7 @@ public partial class PaymentRequest : IBCPage
                     TemplateHandler.Assign(ref strTmp, "transdate-val", Common.IBCDateTimeFormat(dr["transdate"],DTFormatType.DT24h));
                     TemplateHandler.Assign(ref strTmp, "uname-val", dr["username"].ToString());
                     TemplateHandler.Assign(ref strTmp, "amt-val", Common.FormatNumber(dr["amt"]));
-                    TemplateHandler.Assign(ref strTmp, "status-val", Common.GerStatus(dr["status"].ToString()));
+                    TemplateHandler.Assign(ref strTmp, "status-val", Common.GetStatus(dr["status"].ToString()));
                     if (dr["status"].ToString().ToLower() == "pending")
                     {
                         TemplateHandler.Assign(ref strTmp, "completeddate-val", "--");

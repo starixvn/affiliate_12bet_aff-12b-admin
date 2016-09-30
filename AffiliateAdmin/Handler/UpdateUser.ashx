@@ -1,39 +1,21 @@
 ﻿<%@ WebHandler Language="C#" Class="UpdateUser" %>
 
-using System;
 using System.Web;
 using System.Web.SessionState;
-using DNAide.Core;
-using DNAide.Web;
-using DNAide.Utils;
-using AffiliateAdmin.Business.DataAccess;
+using AffiliateAdmin.Business.Services;
+
 public class UpdateUser : IHttpHandler, IRequiresSessionState
 {
-    
-    public void ProcessRequest (HttpContext context) {
-        context.Response.ContentType = "text/html";
-        int custid = (string.IsNullOrEmpty(context.Request.Form["custid"])) ? 0 : CastAide.AsInt32(context.Request.Form["custid"]);
-        string fn = string.IsNullOrEmpty(context.Request.Form["fn"]) ? "" : context.Request.Form["fn"];
-        string ln = string.IsNullOrEmpty(context.Request.Form["ln"]) ? "" : context.Request.Form["ln"];
-        int depid = string.IsNullOrEmpty(context.Request.Form["depid"]) ? 0 : CastAide.AsInt32(context.Request.Form["depid"]);
-     
-        DbResult dbr = null;
-        dbr = DataHandler.UserControl.UpdateUser(custid, fn, ln, depid);
-        if (CastAide.AsInt32(dbr.Outputs["errcode"]) == 0)
-        {
-            context.Response.Write("Ok");
-        }
-        else
-        {
-            context.Response.Write(dbr.Outputs["errmsg"]);
-        }           
-        
+    public void ProcessRequest(HttpContext context)
+    {
+        new UpdateUserService().Update(context);
     }
- 
-    public bool IsReusable {
-        get {
+
+    public bool IsReusable
+    {
+        get
+        {
             return false;
         }
     }
-
 }

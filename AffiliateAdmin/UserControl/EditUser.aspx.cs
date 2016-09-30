@@ -15,7 +15,7 @@ public partial class EditUser : IBCPage
         TemplateHandler.Assign(ref list, "LastName", Resources.Lang.LastName);
         TemplateHandler.Assign(ref list, "Department", Resources.Lang.Department);
         TemplateHandler.Assign(ref list, "AlertSucc","The " + Request["us"].ToString() + " " + Common.GetAlertMsg(3));
-        //TemplateHandler.Assign(ref list, "submenu", Common.GenSubMenu(new string[] { "#" }, new string[] { "{UserName}" }, 321, 0));
+        
         TemplateHandler.Assign(ref list, "UserName", Request["us"].ToString());
 
         int isdep = string.IsNullOrEmpty(Request["isdep"]) ? 0 : CastAide.AsInt32(Request["isdep"]);

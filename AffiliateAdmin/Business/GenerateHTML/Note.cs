@@ -48,7 +48,6 @@ namespace GenerateHTML
                     TemplateHandler.Assign(ref strTmp, "custid", custid);
                     strBuild.Append(strTmp);
                 }
-                //strBuild.Append(Common.GenPagingFooter("Note.aspx", totalPages, pageIndex, 8));
                 TemplateHandler.ReplaceBlock(ref strTpl, "content", strBuild.ToString());
                 TemplateHandler.Assign(ref strTpl, "paging-top", Common.GenPaging(totalPages, pageIndex, pageSize, rows, "aPageTop", "txtPageTop", new string[] {Resources.Lang.Add }, new string[] { "AddNote();" }, 682, false, true, true, false));
                 TemplateHandler.Assign(ref strTpl, "paging-bottom", Common.GenPaging(totalPages, pageIndex, pageSize, rows, "aPageBottom", "txtPageBottom", 682, false, false));

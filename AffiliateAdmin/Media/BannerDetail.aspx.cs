@@ -22,6 +22,7 @@ public partial class Media_BannerDetail : IBCPage
         else
             TemplateHandler.RemoveBlock(ref content, "limit-img");
 
+        TemplateHandler.Assign(ref content, "banner-url", AppSettings.BannerUrl);
         TemplateHandler.Assign(ref content, "imagevalue", imagevalue);
         TemplateHandler.Assign(ref content, "lastupdate", lastupdate);
         TemplateHandler.Assign(ref content, "width", width);

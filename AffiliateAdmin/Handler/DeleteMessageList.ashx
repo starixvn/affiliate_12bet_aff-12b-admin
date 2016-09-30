@@ -1,50 +1,40 @@
 ﻿<%@ WebHandler Language="C#" Class="DeleteMessageList" %>
 
-using System;
 using System.Web;
-using AffiliateAdmin.Business.DataAccess;
-using DNAide.Utils;
-using DNAide.Core;
-using System.Data;
-using System.Web.Security;
 using System.Web.SessionState;
-using DataHandler;
-using System.Text;
-
+using AffiliateAdmin.Business.Services.Message;
 
 public class DeleteMessageList : IHttpHandler, IRequiresSessionState
 {
-
     public void ProcessRequest(HttpContext context)
     {
-        if (context.Request.UrlReferrer != null)
+        if (context.Request.UrlReferrer == null)
         {
-
-            IBCHandler.InitializeCulture(HttpContext.Current);
-            context.Response.ContentType = "text/plain";
-
-            string msgidlist = context.Request.Params["params"].Trim();
-            if (string.IsNullOrEmpty(msgidlist))
-            {
-                context.Response.Write("Null data is sent to server");
-                return;
-            }
-            //Drop a comma at the end of message
-            msgidlist = msgidlist.Substring(0, msgidlist.Length - 1);
-
-            StringBuilder result = new StringBuilder();
-            result.Append(DataHandler.HotNews.DeleteHotNews(msgidlist));           
-            context.Response.Write(result.ToString());
-
-
+            return;
         }
 
+        IBCHandler.InitializeCulture(HttpContext.Current);
+        context.Response.ContentType = "text/plain";
+
+        string idList = context.Request.Params["params"].Trim();
+        if (string.IsNullOrEmpty(idList))
+        {
+            context.Response.Write("Null data is sent to server");
+            return;
+        }
+
+        idList = idList.Substring(0, idList.Length - 1);
+        var service = new DeleteMessageListService();
+        var result = service.DeleteMessageList(idList);
+
+        context.Response.Write(result.Message);
     }
- 
-    public bool IsReusable {
-        get {
+
+    public bool IsReusable
+    {
+        get
+        {
             return false;
         }
     }
-
 }

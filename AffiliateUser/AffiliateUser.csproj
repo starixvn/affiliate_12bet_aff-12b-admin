@@ -176,6 +176,24 @@
     <Compile Include="Business\DataAccess\DbResult.cs" />
     <Compile Include="Business\DataHandler\Common.cs" />
     <Compile Include="Business\DataHandler\Banner.cs" />
+    <Compile Include="Business\Services\ChangePassService.cs" />
+    <Compile Include="Business\Services\CheckForgetPasswordService.cs" />
+    <Compile Include="Business\Services\ContactUsService.cs" />
+    <Compile Include="Business\Services\ForceResetPasswordService.cs" />
+    <Compile Include="Business\Services\GetAffiliateEarningDailyService.cs" />
+    <Compile Include="Business\Services\GetClickStatisticsListService.cs" />
+    <Compile Include="Business\Services\GetDataBannerService.cs" />
+    <Compile Include="Business\Services\GetDomainListService.cs" />
+    <Compile Include="Business\Services\GetMessageListService.cs" />
+    <Compile Include="Business\Services\GetPageListService.cs" />
+    <Compile Include="Business\Services\GetStatisticsDetailNewService.cs" />
+    <Compile Include="Business\Services\GetStatisticsListDetailService.cs" />
+    <Compile Include="Business\Services\GetSubCategoryService.cs" />
+    <Compile Include="Business\Services\RequestPayoutService.cs" />
+    <Compile Include="Business\Services\SetLanguageService.cs" />
+    <Compile Include="Business\Services\SignUpService.cs" />
+    <Compile Include="Business\Services\UpdateAccountService.cs" />
+    <Compile Include="Business\Services\UpdateSecurityQuestionService.cs" />
     <Compile Include="Condition.aspx.designer.cs">
       <DependentUpon>Condition.aspx</DependentUpon>
     </Compile>

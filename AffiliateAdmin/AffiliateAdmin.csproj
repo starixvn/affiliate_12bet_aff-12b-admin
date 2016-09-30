@@ -131,10 +131,6 @@
       <HintPath>..\packages\NPOI.2.0.6\lib\net40\ICSharpCode.SharpZipLib.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LoadBalancer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LoadBalancer.1.0.0.0\lib\net40\LoadBalancer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\EnterpriseLibrary.Common.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
@@ -204,6 +200,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -253,6 +250,66 @@
     <Compile Include="Business\Constants\PermissionNames.cs" />
     <Compile Include="Business\DataAccess\DbHelper.cs" />
     <Compile Include="Business\DataAccess\DbResult.cs" />
+    <Compile Include="Business\Helpers\BannerHelper.cs" />
+    <Compile Include="Business\Models\Core\ResultInfo.cs" />
+    <Compile Include="Business\Services\AccountPolicyService.cs" />
+    <Compile Include="Business\Services\ActiveMemberService.cs" />
+    <Compile Include="Business\Services\Banner\AddBannerService.cs" />
+    <Compile Include="Business\Services\Banner\DeleteBannerService.cs" />
+    <Compile Include="Business\Services\Banner\UploadBannerService.cs" />
+    <Compile Include="Business\Services\Message\AddMessageService.cs" />
+    <Compile Include="Business\Services\Text\AddTextService.cs" />
+    <Compile Include="Business\Services\AddUserService.cs" />
+    <Compile Include="Business\Services\AdjustmentService.cs" />
+    <Compile Include="Business\Services\ChangeAdminPassService.cs" />
+    <Compile Include="Business\Services\ChangePassService.cs" />
+    <Compile Include="Business\Services\CommGroupAssignService.cs" />
+    <Compile Include="Business\Services\CommGroupDelService.cs" />
+    <Compile Include="Business\Services\CommGroupUpdService.cs" />
+    <Compile Include="Business\Services\DeleteMailListService.cs" />
+    <Compile Include="Business\Services\DeleteMemberService.cs" />
+    <Compile Include="Business\Services\Message\DeleteMessageListService.cs" />
+    <Compile Include="Business\Services\Text\DeleteTextService.cs" />
+    <Compile Include="Business\Services\DomainControlService.cs" />
+    <Compile Include="Business\Services\EditRateService.cs" />
+    <Compile Include="Business\Services\ExportExcelService.cs" />
+    <Compile Include="Business\Services\FavoriteService.cs" />
+    <Compile Include="Business\Services\Get12BetDomainListService.cs" />
+    <Compile Include="Business\Services\GetAffiliateListService.cs" />
+    <Compile Include="Business\Services\GetClickStatisticsListService.cs" />
+    <Compile Include="Business\Services\GetCommGroupService.cs" />
+    <Compile Include="Business\Services\GetDataBannerService.cs" />
+    <Compile Include="Business\Services\GetDataTextService.cs" />
+    <Compile Include="Business\Services\GetEditedBannerService.cs" />
+    <Compile Include="Business\Services\GetEditedTextService.cs" />
+    <Compile Include="Business\Services\GetEmailContentService.cs" />
+    <Compile Include="Business\Services\GetEmailHistoryService.cs" />
+    <Compile Include="Business\Services\GetMessageListService.cs" />
+    <Compile Include="Business\Services\GetMessageService.cs" />
+    <Compile Include="Business\Services\GetOnlineListService.cs" />
+    <Compile Include="Business\Services\GetPageListService.cs" />
+    <Compile Include="Business\Services\GetStatisticsDetailNewService.cs" />
+    <Compile Include="Business\Services\GetStatisticsListDetailService.cs" />
+    <Compile Include="Business\Services\GetSubCategoryService.cs" />
+    <Compile Include="Business\Services\GetViewedBannerService.cs" />
+    <Compile Include="Business\Services\GetViewedTextService.cs" />
+    <Compile Include="Business\Services\GroupPolicyService.cs" />
+    <Compile Include="Business\Services\ListUserService.cs" />
+    <Compile Include="Business\Services\LogoutService.cs" />
+    <Compile Include="Business\Services\NoteService.cs" />
+    <Compile Include="Business\Services\PaymentUpdateService.cs" />
+    <Compile Include="Business\Services\UpdateAccountService.cs" />
+    <Compile Include="Business\Services\UpdateAffiliateDomainService.cs" />
+    <Compile Include="Business\Services\UpdateAffiliateService.cs" />
+    <Compile Include="Business\Services\UpdateAffiliateType.cs" />
+    <Compile Include="Business\Services\Update12BetDomainService.cs" />
+    <Compile Include="Business\Services\UpdateDepartmentService.cs" />
+    <Compile Include="Business\Services\Message\UpdateMessageService.cs" />
+    <Compile Include="Business\Services\UpdatePolicyService.cs" />
+    <Compile Include="Business\Services\UpdateStatusService.cs" />
+    <Compile Include="Business\Services\Text\UpdateTextService.cs" />
+    <Compile Include="Business\Services\UpdateUserService.cs" />
+    <Compile Include="Business\Services\UploadExcelService.cs" />
     <Compile Include="Casino\UploadExcel.aspx.designer.cs">
       <DependentUpon>UploadExcel.aspx</DependentUpon>
     </Compile>
@@ -1131,7 +1188,6 @@
     <Content Include="App_Js\interface.js" />
     <Content Include="App_Js\jquery\jquery-1.4.2.min.js" />
     <Content Include="App_Js\ListBanner.js" />
-    <Content Include="App_Js\ListBannerOld.js" />
     <Content Include="App_Js\ListText.js" />
     <Content Include="App_Js\login.js" />
     <Content Include="App_Js\MonthPicker\Images\bg-month-picker-header.png" />
@@ -1852,7 +1908,7 @@
     <Content Include="Handler\AccountPolicy.ashx" />
     <Content Include="Handler\ActiveMember.ashx" />
     <Content Include="Handler\AddMessage.ashx" />
-    <Content Include="Handler\AddNewBannerV2.ashx" />
+    <Content Include="Handler\Banner\AddBanner.ashx" />
     <Content Include="Handler\AddNewText.ashx" />
     <Content Include="Handler\AddUser.ashx" />
     <Content Include="Handler\Adjustment.ashx" />
@@ -1861,7 +1917,7 @@
     <Content Include="Handler\CommGroupAssign.ashx" />
     <Content Include="Handler\CommGroupDel.ashx" />
     <Content Include="Handler\CommGroupUpd.ashx" />
-    <Content Include="Handler\DelBanner.ashx" />
+    <Content Include="Handler\Banner\DelBanner.ashx" />
     <Content Include="Handler\DeleteMailList.ashx" />
     <Content Include="Handler\DeleteMember.ashx" />
     <Content Include="Handler\DeleteMessageList.ashx" />
@@ -1893,7 +1949,7 @@
     <Content Include="Handler\Logout.ashx" />
     <Content Include="Handler\Note.ashx" />
     <Content Include="Handler\PaymentUpdate.ashx" />
-    <Content Include="Handler\UpBanner.ashx" />
+    <Content Include="Handler\Banner\UpBanner.ashx" />
     <Content Include="Handler\UpdAffInfo.ashx" />
     <Content Include="Handler\UpdAffType.ashx" />
     <Content Include="Handler\Update12BetDomain.ashx" />
@@ -1917,7 +1973,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.info" />
-    <Content Include="Web.local.config" />
     <None Include="Web References\AffBetlistService\AffiliateAPI.wsdl" />
     <None Include="Web References\AffBetlistService\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>

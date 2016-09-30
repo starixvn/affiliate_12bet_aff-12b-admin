@@ -2404,4 +2404,7 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
   <data name="Indian" xml:space="preserve">
     <value>Republic of India</value>
   </data>
+  <data name="ErrAccessFolder" xml:space="preserve">
+    <value>Can not access folder.</value>
+  </data>
 </root>

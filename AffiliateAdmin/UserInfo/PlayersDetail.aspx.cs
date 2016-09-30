@@ -74,7 +74,6 @@ public partial class PlayersDetail : IBCPage
                 TemplateHandler.Assign(ref strTmp, "psp-val", Common.FormatNumber(dr["psp"]));
                 strBuild.Append(strTmp);
             }
-            //strBuild.Append(Common.GenPagingFooter("PlayersDetail.aspx", totalPages, pageIndex, 5));
             TemplateHandler.Assign(ref strTpl, "paging-top", Common.GenPaging(totalPages, pageIndex, pageSize, dtb.Rows.Count, "aPageTop", "txtPageTop", width, false, true));
             //TemplateHandler.Assign(ref strTpl, "paging-top", Common.GenPaging(totalPages, pageIndex, pageSize, dtb.Rows.Count, "aPageTop", "txtPageTop", new string[] { "[ALL]", "Sportsbook", "Casino" }, new string[] { "all", "sportsbook", "casino" }, 662, false, true, true, false));
             TemplateHandler.Assign(ref strTpl, "paging-bottom", Common.GenPaging(totalPages, pageIndex, pageSize, dtb.Rows.Count, "aPageBottom", "txtPageBottom", width, false, false));
@@ -90,8 +89,6 @@ public partial class PlayersDetail : IBCPage
         TemplateHandler.ReplaceBlock(ref strTpl, "content", strBuild.ToString());       
        
         #region Load SubPage
-        //string subPage = Common.GenSubPage(5, string.Empty, " (" + (string.IsNullOrEmpty(Request["month"]) ? Resources.Lang.All : CastAide.AsDateTime(Request["month"]).ToString("MMMM yyyy")) + ")");
-        //TemplateHandler.Assign(ref subPage, "ContentPage", strTpl);
         TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.AffApprovedLink, SubMenu.AffApprovedText, 3, string.IsNullOrEmpty(Request["month"]) ? Resources.Lang.All : CastAide.AsDateTime(Request["month"]).ToString("MMMM yyyy"), Resources.Lang.PlayersDetail, "i_customer.png"));
         #endregion
 

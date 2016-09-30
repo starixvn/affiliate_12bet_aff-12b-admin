@@ -17,7 +17,7 @@ public partial class AddDepartment : IBCPage
         TemplateHandler.Assign(ref list, "Description", Resources.Lang.Description);
         TemplateHandler.Assign(ref list, "submit", Resources.Lang.Add);
         TemplateHandler.Assign(ref list, "cancel", Resources.Lang.Cancel);
-        //TemplateHandler.Assign(ref list, "submenu", Common.GenSubMenu(new string[] { "ListUser.aspx", "AddUser.aspx", "AddUserExist.aspx", "ListDepartment.aspx", "AddDepartment.aspx" }, new string[] { Resources.Lang.AdministratorList, Resources.Lang.AddAdministrator, Resources.Lang.AddAdministratorExist, Resources.Lang.DepartmentList, Resources.Lang.AddDepartment }, 731, 4));
+        
         this.HtmlContent = list;
 
     }

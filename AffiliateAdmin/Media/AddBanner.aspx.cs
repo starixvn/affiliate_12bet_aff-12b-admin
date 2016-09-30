@@ -8,7 +8,7 @@ public partial class AddBanner : IBCPage
     protected void Page_Load(object sender, EventArgs e)
     {
         string temp = TemplateHandler.LoadTemplate("Media/MainAddBanner.htm");
-        TemplateHandler.Assign(ref temp, "formAction", "../Handler/AddNewBannerV2.ashx");
+        TemplateHandler.Assign(ref temp, "formAction", "../Handler/Banner/AddBanner.ashx");
         TemplateHandler.Assign(ref temp, "FileName", Resources.Lang.filename);
         TemplateHandler.Assign(ref temp, "AddBanner", Resources.Lang.AddBanner);
         TemplateHandler.Assign(ref temp, "BannerList", Resources.Lang.ListBanner);

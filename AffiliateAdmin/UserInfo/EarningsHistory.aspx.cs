@@ -109,7 +109,7 @@ public partial class UserInfo_EarningsHistory : IBCPage
 
                 if (transtype == 0 || string.Compare(dr["status"].ToString(), "pending", true) != 0)// do not allow transfer
                 {
-                    TemplateHandler.ReplaceBlock(ref strTmp, "status-val", Common.GerStatus(dr["status"]));
+                    TemplateHandler.ReplaceBlock(ref strTmp, "status-val", Common.GetStatus(dr["status"]));
                     TemplateHandler.ReplaceBlock(ref strTmp, "updatestatus", string.Empty);
                 }
                 else if (transtype == 201)//Exists bettype = 105 and status != peding => allow transfer.
@@ -126,7 +126,7 @@ public partial class UserInfo_EarningsHistory : IBCPage
                 TemplateHandler.Assign(ref strTmp, "creator-val", dr["creator"]);
                 TemplateHandler.Assign(ref strTmp, "amount-val", Common.FormatNumber(dr["amount"]));
                 TemplateHandler.Assign(ref strTmp, "disabled", string.Empty);
-                TemplateHandler.Assign(ref strTmp, "status-val", Common.GerStatus(dr["status"]));
+                TemplateHandler.Assign(ref strTmp, "status-val", Common.GetStatus(dr["status"]));
                 TemplateHandler.Assign(ref strTmp, "description-val", dr["description"].ToString());
                 strBuild.Append(strTmp);
             }

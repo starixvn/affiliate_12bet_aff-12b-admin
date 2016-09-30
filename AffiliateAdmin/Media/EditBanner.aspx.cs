@@ -9,12 +9,11 @@ public partial class EditBanner : IBCPage
     {
         int bannerID = Convert.ToInt32(Context.Request["editBannerID"].Trim());
         var deviceType = Request["deviceType"];
-        //Response.Redirect("EditMediaBanner.aspx?editBannerID=" + bannerID.ToString());
         DbResult result = DataHandler.Banner.GetBannerDetail(bannerID);
         if (result.ResultSet.Tables[0].Rows.Count > 0)
         {
             string temp = TemplateHandler.LoadTemplate("Media/MainAddBanner.htm");
-            TemplateHandler.Assign(ref temp, "formAction", "../Handler/UpBanner.ashx");
+            TemplateHandler.Assign(ref temp, "formAction", "../Handler/Banner/UpBanner.ashx");
             TemplateHandler.Assign(ref temp, "FileName", Resources.Lang.filename);
             TemplateHandler.Assign(ref temp, "AddBanner", Resources.Lang.AddBanner);
             TemplateHandler.Assign(ref temp, "BannerList", Resources.Lang.ListBanner);
