@@ -11,9 +11,7 @@ namespace AffiliateUser.Business.Services
             var deviceType = Common.GetDeviceType(context.Request.Params["deviceType"]);
             var hasAll = GetHasAll(context.Request.Params["hasAll"]);
 
-            string result = hasAll
-                ? Common.GenListLink2Page("sportCode", string.Empty, true, deviceType)
-                : Common.GenListLink2Page("sportCode", deviceType);
+            string result = Common.GenListLink2Page("sportCode", string.Empty, deviceType, hasAll);
 
             context.Response.Write(result);
         }
