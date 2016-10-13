@@ -7,6 +7,7 @@
     </div>
     <div class="box_right_cons01">
         <form id="frLogin" name="frLogin" onsubmit="return ExcLogin();" method="post">
+            <input type="password" style="display: none">
             <table width="100%" cellspacing="0" cellpadding="0" border="0">
             <tr>
                 <td width="9%">
