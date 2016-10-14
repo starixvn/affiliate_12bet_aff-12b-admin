@@ -38,7 +38,7 @@ namespace AffiliateUser.Business.Services
                 }
                 else
                 {
-                    if (!AppSettings.LocalTest && (DateTime.Now.Day < MinAvailableDay || DateTime.Now.Day > MaxAvailableDay))
+                    if (DateTime.Now.Day < MinAvailableDay || DateTime.Now.Day > MaxAvailableDay)
                     {
                         context.Response.Write("<script type='text/javascript'>parent.ShowError1(\"" + Resources.Lang.PayoutTime + "\");</script>");
                         return;
