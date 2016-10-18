@@ -722,6 +722,7 @@
     <Content Include="App_Templates\Email\SignupMail\SignupMail_hi-IN.htm" />
     <Content Include="App_Templates\Email\SignupMail\SignupMail_hi-IN_html.htm" />
     <Content Include="App_Themes\Default\Images1\banner_hi-IN.jpg" />
+    <Content Include="App_Themes\Default\Images\bgMain_hi.jpg" />
     <Content Include="App_Themes\Default\Images\fIndia.png" />
     <Content Include="Global.asax" />
     <Content Include="packages.config" />
