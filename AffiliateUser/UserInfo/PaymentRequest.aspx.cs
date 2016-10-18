@@ -8,6 +8,7 @@ public partial class PaymentRequest : RootPageLogIn
     protected string strBalance = string.Empty;
     protected string strMinAmt = string.Empty;    
     protected string strPaymentMethod = string.Empty;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         Response.Cache.SetCacheability(HttpCacheability.Private);

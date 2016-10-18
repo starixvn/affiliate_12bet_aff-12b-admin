@@ -7,6 +7,7 @@ using DNAide.Web;
 using DNAide.Core;
 using AffiliateAdmin.Business.DataAccess;
 using DNAide.Utils;
+using System.Web;
 
 public partial class Customer_AffiliateInfo : IBCPage
 {
@@ -44,7 +45,7 @@ public partial class Customer_AffiliateInfo : IBCPage
         
 
         #endregion
-        string strUsername = Request["username"];
+        string strUsername = Server.UrlEncode(Request["username"]);
         if(!string.IsNullOrEmpty(strUsername))
             AppSettings.Session.AffUsername = strUsername.Trim();
 

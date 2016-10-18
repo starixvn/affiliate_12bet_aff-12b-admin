@@ -6,7 +6,7 @@
         <%=strTitleLogin %>
     </div>
     <div class="box_right_cons01">
-        <form id="frLogin" name="frLogin" onsubmit="return ExcLogin();" method="post">
+        <form id="frLogin" name="frLogin" onsubmit="return ExcLogin();" method="post" autocomplete="off">
             <table width="100%" cellspacing="0" cellpadding="0" border="0">
             <tr>
                 <td width="9%">
@@ -36,7 +36,7 @@
             <tr>
                 <td />
                 <td height="23" colspan="3">
-                    <input name="txtpassword" id="txtpassword" type="password" style="width: 160px;" />
+                    <input name="txtpassword" id="txtpassword" autocomplete="off" type="password" style="width: 160px;" />
                 </td>
             </tr>
             <tr>

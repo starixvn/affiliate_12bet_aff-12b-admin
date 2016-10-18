@@ -7,6 +7,10 @@ namespace AffiliateUser.Business.Services
 {
     public class RequestPayoutService
     {
+        private const int MinAvailableDay = 8;
+
+        private const int MaxAvailableDay = 15;
+
         public void RequestPayout(HttpContext context)
         {
             context = AffHandler.InitializeCulture(context);
@@ -34,7 +38,7 @@ namespace AffiliateUser.Business.Services
                 }
                 else
                 {
-                    if (!(DateTime.Now.Day >= 1 && DateTime.Now.Day <= 30))
+                    if (DateTime.Now.Day < MinAvailableDay || DateTime.Now.Day > MaxAvailableDay)
                     {
                         context.Response.Write("<script type='text/javascript'>parent.ShowError1(\"" + Resources.Lang.PayoutTime + "\");</script>");
                         return;
