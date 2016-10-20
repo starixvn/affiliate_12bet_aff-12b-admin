@@ -40,6 +40,7 @@ namespace AffiliateUser.Business.Services.Authorization
                 {
                     var afftype = (AffType)DNAide.Core.CastAide.AsInt32(dr2.Outputs["afftype"], 2);
 
+                    AuthHelper.AddAuthToken(context);
                     AppSettings.Session.AffType = afftype;
                     AppSettings.Session.CustID = CastAide.AsInt32(dr2.Outputs["custid"], -1);
                     AppSettings.Session.OnUser = DataHandler.Auth.LoginOnuser(context, CastAide.AsInt32(_accId) * -1);

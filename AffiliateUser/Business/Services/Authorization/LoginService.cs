@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Web;
-using System.Web.Security;
 using Affiliate;
 using Resources;
 
@@ -21,7 +20,7 @@ namespace AffiliateUser.Business.Services.Authorization
 
                 if (!Common.IsValidCaptcha(captcha, context.Request.UserHostAddress))
                 {
-                    message = "101:" + Resources.Lang.ValidationCode;
+                    message = "101:" + Lang.ValidationCode;
                 }
                 else
                 {
@@ -44,6 +43,8 @@ namespace AffiliateUser.Business.Services.Authorization
                             context.Response.Write(message);
                             return;
                         }
+
+                        AuthHelper.AddAuthToken(context);
 
                         AppSettings.Session.AffType = afftype;
                         AppSettings.Session.CustID = DNAide.Core.CastAide.AsInt32(dr.Outputs["custid"], -1);
