@@ -27,8 +27,8 @@
     <script type="text/javascript">
         function Init() {
             document.getElementById('chkDontShowMsgAgain').onclick = function () {
-                var username = getCookie("Username");
-                setCookie(username + '_DontShowMessage', this.checked, 30);
+                var username = Common.getCookie("Username");
+                Common.setCookie(username + '_DontShowMessage', this.checked, 30);
             };
 
             document.getElementById('media_gallery_link').onclick = function () {

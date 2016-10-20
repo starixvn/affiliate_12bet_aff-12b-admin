@@ -12,7 +12,7 @@ function ExecRecover()
       $('err').innerHTML='<li><a class=\'err-msg\' onclick="$(\'txtemail\').focus();" href=\'#\'><%=emailrequire %></a></li>';      
       return;
     }
-    else if(validate_email($('txtemail'))==false)
+    else if(Common.validateEmail($('txtemail'))==false)
     {
       $('errMsg').style.display='';
       $('err').innerHTML='<li><a class=\'err-msg\' onclick="$(\'txtemail\').focus();" href=\'#\'><%=emailrequire %></a></li>';      

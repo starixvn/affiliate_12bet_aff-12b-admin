@@ -15,7 +15,7 @@ namespace AffiliateUser.Business.Services
             {
                 if (AppSettings.Session.IsInternalSite)
                 {
-                    context.Response.Write("<script type='text/javascript'>parent.$(\"errMsg\").show();parent.ShowError([\"" + Resources.Lang.ErrAuthorized + "\"], [\"error_item\"], \"error_item\");</script>");
+                    context.Response.Write("<script type='text/javascript'>parent.$(\"errMsg\").show();parent.Common.showError([\"" + Resources.Lang.ErrAuthorized + "\"], [\"error_item\"], \"error_item\");</script>");
                     return;
                 }
 
@@ -48,7 +48,7 @@ namespace AffiliateUser.Business.Services
                     string strErrObj = "error_item";
                     string strMsg = Common.GetErrMsg(intErrCode, ref strErrObj);
                     context.Response.Write(
-                        "<script type='text/javascript'>parent.$(\"errMsg\").show();parent.ShowError([\"" + strMsg +
+                        "<script type='text/javascript'>parent.$(\"errMsg\").show();parent.Common.showError([\"" + strMsg +
                         "\"], [\"" + strErrObj + "\"], \"error_item\");</script>");
                 }
                 else
@@ -60,7 +60,7 @@ namespace AffiliateUser.Business.Services
             }
             catch (Exception ex)
             {
-                context.Response.Write("<script type='text/javascript'>parent.document.getElementById(\"errMsg\").show();parent.ShowError([\"" + ex.Message + "\"], [\"error_item\"], \"error_item\");</script>");
+                context.Response.Write("<script type='text/javascript'>parent.document.getElementById(\"errMsg\").show();parent.Common.showError([\"" + ex.Message + "\"], [\"error_item\"], \"error_item\");</script>");
                 Fanex.Logging.LogService.Error(ex.Message);
             }
         }

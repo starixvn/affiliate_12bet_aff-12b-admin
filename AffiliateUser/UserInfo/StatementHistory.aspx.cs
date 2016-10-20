@@ -73,12 +73,10 @@ public partial class UserInfo_StatementHistory : RootPageLogIn
 
                 strBuild.Append(strTmp);
             }
-            //strBuild.Append(Common.GenPagingFooter("", intTotalPage, intPageIndex, 6));
             TemplateHandler.Assign(ref strTpl, "page", intPageIndex);
             TemplateHandler.Assign(ref strTpl, "paging-top", Common.GenPaging(intTotalPage, intPageIndex, intPageSize, rowNo, "aPageTop", "txtPageTop", null, null, 0, false, true, false, false));
             TemplateHandler.Assign(ref strTpl, "paging-bottom", Common.GenPaging(intTotalPage, intPageIndex, intPageSize, rowNo, "aPageBottom", "txtPageBottom", null, null, 0, false, false, false, false));
             TemplateHandler.ReplaceBlock(ref strTpl, "content", strBuild.ToString());
-            //TemplateHandler.Assign(ref strTpl, "earning-val", Common.FormatNumber(dcTotal));
             TemplateHandler.Assign(ref strTpl, "disabled", isCheckAll ? "" : "disabled");
         }
         else

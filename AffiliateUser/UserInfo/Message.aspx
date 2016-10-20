@@ -7,11 +7,11 @@
 <link href="../App_Js/Calendar2/Skin/calendar-blue.css?vers=<%Response.Write(AppSettings.JsVersion);%>" media="all" rel="stylesheet" type="text/css" title="Blue" />
 <%=hotNewsContent %>
 <script type="text/javascript">
-    if($("slSearchOption") && GetDataFromUrl("slSearchOption") != "")
-        $("slSearchOption").value = GetDataFromUrl("slSearchOption");
+    if($("slSearchOption") && Common.getDataFromUrl("slSearchOption") != "")
+        $("slSearchOption").value = Common.getDataFromUrl("slSearchOption");
     
     window.onload = function() {EnableDisableSearchDate();};
-    if(GetDataFromUrl("chkDate") == "on")
+    if (Common.getDataFromUrl("chkDate") == "on")
     {
         $("chkDate").checked = true;
         EnableDisableSearchDate();

@@ -63,10 +63,6 @@ namespace GenerateHTML
                     strBuild.Append(strTmp);
 
                 }
-                //if (totalpage > 0)
-                //{
-                //    strBuild.Append(Common.GenPagingFooter("", totalpage, curpage, cols));
-                //}
 
                return strBuild.ToString();
             }           

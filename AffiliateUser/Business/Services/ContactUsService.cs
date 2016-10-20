@@ -13,7 +13,7 @@ namespace AffiliateUser.Business.Services
             context.Response.ContentType = "text/html";
             if (AppSettings.Session.IsInternalSite)
             {
-                context.Response.Write("<script type='text/javascript'>parent.$(\"errMsg\").show();parent.ShowError([\"" + Resources.Lang.ErrAuthorized + "\"], [\"error_item\"], \"error_item\");</script>");
+                context.Response.Write("<script type='text/javascript'>parent.$(\"errMsg\").show();parent.Common.showError([\"" + Resources.Lang.ErrAuthorized + "\"], [\"error_item\"], \"error_item\");</script>");
                 return;
             }
             try
@@ -26,9 +26,9 @@ namespace AffiliateUser.Business.Services
                     err.Append(DateTime.Now.ToBinary().ToString());
                     err.Append("';if(parent.$('validCode')){ parent.$('validCode').src=parent.$('validCodeRegister').src};parent.$('txtValidateRegister').value='");
                     err.Append(Resources.Lang.Validation);
-                    err.Append("';if(parent.$('txtvalidate')) {parent.$('txtvalidate').value=parent.$('txtValidateRegister').value};parent.AddError('txtValidateRegister','");
+                    err.Append("';if(parent.$('txtvalidate')) {parent.$('txtvalidate').value=parent.$('txtValidateRegister').value};parent.Common.addError('txtValidateRegister','");
                     err.Append(Resources.Lang.ValidationCode);
-                    err.Append("');parent.$('errMsg').show();parent.ShowError(parent.arrError, parent.arrItem, 'error_item');</script>");
+                    err.Append("');parent.$('errMsg').show();parent.Common.showError(parent.arrError, parent.arrItem, 'error_item');</script>");
                     context.Response.Write(err.ToString());
 
                     return;

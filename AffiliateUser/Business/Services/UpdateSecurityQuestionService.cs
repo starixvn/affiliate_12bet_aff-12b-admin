@@ -13,7 +13,7 @@ namespace AffiliateUser.Business.Services
             {
                 string strErrObj = "error_item";
                 string strMsg = "Invalid data are sent to the server!";
-                context.Response.Write("<script type='text/javascript'>parent.$(\"errMsg\").show();parent.ShowError([\"" + strMsg + "\"], [\"" + strErrObj + "\"], \"error_item\");</script>");
+                context.Response.Write("<script type='text/javascript'>parent.$(\"errMsg\").show();parent.Common.showError([\"" + strMsg + "\"], [\"" + strErrObj + "\"], \"error_item\");</script>");
                 return;
             }
             try
@@ -32,14 +32,14 @@ namespace AffiliateUser.Business.Services
                 else
                 {
                     string strErrObj = "error_item";
-                    context.Response.Write("<script type='text/javascript'>parent.$(\"errMsg\").show();parent.ShowError([\"" + errmsg + "\"], [\"" + strErrObj + "\"], \"error_item\");</script>");
+                    context.Response.Write("<script type='text/javascript'>parent.$(\"errMsg\").show();parent.Common.showError([\"" + errmsg + "\"], [\"" + strErrObj + "\"], \"error_item\");</script>");
                     return;
                 }
             }
             catch (Exception ex)
             {
                 string strErrObj = "error_item";
-                context.Response.Write("<script type='text/javascript'>parent.$(\"errMsg\").show();parent.ShowError([\"" + ex.Message + "\"], [\"" + strErrObj + "\"], \"error_item\");</script>");
+                context.Response.Write("<script type='text/javascript'>parent.$(\"errMsg\").show();parent.Common.showError([\"" + ex.Message + "\"], [\"" + strErrObj + "\"], \"error_item\");</script>");
                 Fanex.Logging.LogService.Error(ex.Message);
             }
         }

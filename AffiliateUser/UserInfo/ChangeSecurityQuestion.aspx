@@ -21,14 +21,14 @@
     function CheckValid()
     {
         Reset();
-        if (isEmpty($('slSecurityQuestion').value))
-            AddError("slSecurityQuestion", ErrMsg.SecurityQuestion);
-        if (isEmpty($('txtAnswer').value))
-            AddError("txtAnswer", ErrMsg.YourAnswer);
+        if (Common.isEmpty($('slSecurityQuestion').value))
+            Common.addError("slSecurityQuestion", ErrMsg.SecurityQuestion);
+        if (Common.isEmpty($('txtAnswer').value))
+            Common.addError("txtAnswer", ErrMsg.YourAnswer);
         
         if (arrItem.length > 0) {
             $('errMsg').show();
-            ShowError(arrError, arrItem, "error_item");
+            Common.showError(arrError, arrItem, "error_item");
             return false;
         }     
         return true;      

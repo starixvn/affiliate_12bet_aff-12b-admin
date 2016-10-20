@@ -12,7 +12,7 @@ namespace AffiliateUser.Business.Services
             context.Response.ContentType = "text/html";
             if (AppSettings.Session.IsInternalSite)
             {
-                context.Response.Write("<script type='text/javascript'>parent.$(\"errMsg\").show();parent.$(\"succMsg\").hide();parent.$(\"divErr\").show();parent.ShowError([\"" + Resources.Lang.ErrAuthorized + "\"], [\"error_item\"], \"error_item\");</script>");
+                context.Response.Write("<script type='text/javascript'>parent.$(\"errMsg\").show();parent.$(\"succMsg\").hide();parent.$(\"divErr\").show();parent.Common.showError([\"" + Resources.Lang.ErrAuthorized + "\"], [\"error_item\"], \"error_item\");</script>");
                 return;
             }
             try
@@ -27,7 +27,7 @@ namespace AffiliateUser.Business.Services
                 DepositCustomerInfo customer = DataHandler.PaymentRequest.Get12BetPlayerDepositInfo(strPlayerUserName);
                 if (customer.Success != 0)
                 {
-                    context.Response.Write("<script type='text/javascript'>parent.$(\"errMsg\").show();parent.$(\"succMsg\").hide();parent.$(\"divErr\").show();parent.ShowError([\"" + Resources.Lang.errDepositDBConnectFailed + "\"], [\"txtBet12UserName\"], \"error_item\");</script>");
+                    context.Response.Write("<script type='text/javascript'>parent.$(\"errMsg\").show();parent.$(\"succMsg\").hide();parent.$(\"divErr\").show();parent.Common.showError([\"" + Resources.Lang.errDepositDBConnectFailed + "\"], [\"txtBet12UserName\"], \"error_item\");</script>");
                     return;
                 }
 
@@ -53,7 +53,7 @@ namespace AffiliateUser.Business.Services
                 {
                     string strErrObj = "error_item";
                     string strMsg = Common.GetErrMsg(intErrCode, ref strErrObj);
-                    context.Response.Write("<script type='text/javascript'>parent.$(\"errMsg\").show();parent.$(\"succMsg\").hide();parent.$(\"divErr\").show();parent.ShowError([\"" + strMsg + "\"], [\"" + strErrObj + "\"], \"error_item\");</script>");
+                    context.Response.Write("<script type='text/javascript'>parent.$(\"errMsg\").show();parent.$(\"succMsg\").hide();parent.$(\"divErr\").show();parent.Common.showError([\"" + strMsg + "\"], [\"" + strErrObj + "\"], \"error_item\");</script>");
                 }
                 else
                 {
@@ -62,7 +62,7 @@ namespace AffiliateUser.Business.Services
             }
             catch (Exception ex)
             {
-                context.Response.Write("<script type='text/javascript'>parent.$('errMsg').show();parent.$('succMsg').hide();parent.$('divErr').show();parent.ShowError([\"" + ex.Message + "\"], [\"error_item\"], \"error_item\");</script>");
+                context.Response.Write("<script type='text/javascript'>parent.$('errMsg').show();parent.$('succMsg').hide();parent.$('divErr').show();parent.Common.showError([\"" + ex.Message + "\"], [\"error_item\"], \"error_item\");</script>");
                 Fanex.Logging.LogService.Error(ex.Message);
             }
         }

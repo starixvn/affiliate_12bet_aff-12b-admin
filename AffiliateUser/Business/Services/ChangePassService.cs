@@ -13,7 +13,7 @@ namespace AffiliateUser.Business.Services
 
             if (AppSettings.Session.IsInternalSite)
             {
-                context.Response.Write("<script type='text/javascript'>parent.$(\"errMsg\").show();parent.ShowError([\"" + Resources.Lang.ErrAuthorized + "\"], [\"error_item\"], \"error_item\");</script>");
+                context.Response.Write("<script type='text/javascript'>parent.$(\"errMsg\").show();parent.Common.showError([\"" + Resources.Lang.ErrAuthorized + "\"], [\"error_item\"], \"error_item\");</script>");
                 return;
             }
 
@@ -37,7 +37,7 @@ namespace AffiliateUser.Business.Services
 
                 if (intErrCode == 1001)
                 {
-                    context.Response.Write("<script type='text/javascript'>parent.$(\"errMsg\").show();parent.ShowError([\"" + Resources.Lang.OldPassErr + "\"], [\"txtCurrPass\"], \"error_item\");</script>");
+                    context.Response.Write("<script type='text/javascript'>parent.$(\"errMsg\").show();parent.Common.showError([\"" + Resources.Lang.OldPassErr + "\"], [\"txtCurrPass\"], \"error_item\");</script>");
                     return;
                 }
 

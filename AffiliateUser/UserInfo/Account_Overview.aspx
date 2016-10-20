@@ -33,9 +33,9 @@
 
         function SetPopupShow() {
             if ($("dontshow").checked)
-                setCookie("dontshow" + "$" + $("custid").value, "true", 30);
+                Common.setCookie("dontshow" + "$" + $("custid").value, "true", 30);
             else
-                setCookie("dontshow" + "$" + $("custid").value, "false", 30);
+                Common.setCookie("dontshow" + "$" + $("custid").value, "false", 30);
         }
     
     </script>
@@ -230,10 +230,9 @@
         };
 
         var InitShowAnnouncement = function () {
-//            window.Init();
 
-            var username = getCookie("Username");
-            var dontShowMessage = getCookie(username + '_DontShowMessage');
+            var username = Common.getCookie("Username");
+            var dontShowMessage = Common.getCookie(username + '_DontShowMessage');
 
             if (dontShowMessage !== 'true') {
                 var height = document.body.clientHeight;
@@ -242,7 +241,7 @@
                 var heightDialog = getPopupHeight();
                 var top = (height - heightDialog) / 2;
                 var left = (width - widthDialog) / 2 - 180;
-                DoCalFull('Announcement.aspx', '', widthDialog, heightDialog, top, left);
+                Common.openPopup('Announcement.aspx', '', widthDialog, heightDialog, top, left);
 
                 setTimeout(function () {
                     var ibcTable = document.getElementsByClassName('IBCWndTable')[0];

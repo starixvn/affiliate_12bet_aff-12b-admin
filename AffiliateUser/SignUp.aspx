@@ -106,8 +106,8 @@
 
         if(!$('CheckTerm').checked)
         {
-            AddError("CheckTerm", ErrMsg.Term);
-            DisplayMsg(false);
+            Common.addError("CheckTerm", ErrMsg.Term);
+            Common.displayMessage(false);
             return false;
         }
         if(!CheckSuccess())
@@ -116,82 +116,82 @@
     }
     function CheckSuccess()
     {
-        if(isEmpty($('txtFName').value))
-            AddError("txtFName", ErrMsg.FName);
-        if(isEmpty($('txtLName').value))
-            AddError("txtLName", ErrMsg.LName);
+        if (Common.isEmpty($('txtFName').value))
+            Common.addError("txtFName", ErrMsg.FName);
+        if (Common.isEmpty($('txtLName').value))
+            Common.addError("txtLName", ErrMsg.LName);
         if (!document.getElementsByName("rdGender")[0].checked) {
             if(!document.getElementsByName("rdGender")[1].checked){
-                AddError("rdGender", ErrMsg.ErrGender);
+                Common.addError("rdGender", ErrMsg.ErrGender);
             }
         }
-        if(isEmpty($('txtEmail').value))
-            AddError("txtEmail", ErrMsg.Email);
+        if (Common.isEmpty($('txtEmail').value))
+            Common.addError("txtEmail", ErrMsg.Email);
         else
         {
-            if(!checkMail($('txtEmail').value))
-                AddError("txtEmail", ErrMsg.EmailValid);
+            if(!Common.checkMail($('txtEmail').value))
+                Common.addError("txtEmail", ErrMsg.EmailValid);
             else
             {
                 if ($('txtEmail').value.trim() != $('txtConfirmEmail').value.trim())
-                    AddError("txtConfirmEmail", ErrMsg.EmailMatch);
+                    Common.addError("txtConfirmEmail", ErrMsg.EmailMatch);
             }
         }
-        if (isEmpty($('txtNumber').value))
-            AddError("txtNumber", ErrMsg.ContactNumber);
-        if (isEmpty($('txtMobile').value))
-            AddError("txtMobile", ErrMsg.MobileNumber);            
-        if(isEmpty($('txtAddress').value))
-            AddError("txtAddress", ErrMsg.Address);
+        if (Common.isEmpty($('txtNumber').value))
+            Common.addError("txtNumber", ErrMsg.ContactNumber);
+        if (Common.isEmpty($('txtMobile').value))
+            Common.addError("txtMobile", ErrMsg.MobileNumber);
+        if (Common.isEmpty($('txtAddress').value))
+            Common.addError("txtAddress", ErrMsg.Address);
         <%if (AppSettings.Session.Language == "zh-CN" || AppSettings.Session.Language == "zh-TW"){%>
-        if(isEmpty($('txtState').value))
-            AddError("txtState", ErrMsg.State);
+        if (Common.isEmpty($('txtState').value))
+            Common.addError("txtState", ErrMsg.State);
         <%} %>
-        if(isEmpty($('txtCity').value))
-            AddError("txtCity", ErrMsg.City);
-        if(isEmpty($('txtPost').value))
-            AddError("txtPost", ErrMsg.PostCode);
-        if(isEmpty($('selCountry').value))
-            AddError("selCountry", ErrMsg.Country);
+        if (Common.isEmpty($('txtCity').value))
+            Common.addError("txtCity", ErrMsg.City);
+        if (Common.isEmpty($('txtPost').value))
+            Common.addError("txtPost", ErrMsg.PostCode);
+        if (Common.isEmpty($('selCountry').value))
+            Common.addError("selCountry", ErrMsg.Country);
         
         var typeValue = $$('input:checked[type="radio"][name="rdWebsite"]').pluck('value');
 
-        if(document.getElementsByName("rdWebsite")[0].checked && isEmpty($("txtSiteUrl").value))
-            AddError("txtSiteUrl", ErrMsg.SiteUrl);
-        else if(document.getElementsByName("rdWebsite")[1].checked && isEmpty($("txtNoWebsite").value))
-            AddError("txtNoWebsite", "<%=Resources.Lang.DescWebsite%>");
+        if (document.getElementsByName("rdWebsite")[0].checked && Common.isEmpty($("txtSiteUrl").value))
+            Common.addError("txtSiteUrl", ErrMsg.SiteUrl);
+        else if (document.getElementsByName("rdWebsite")[1].checked && Common.isEmpty($("txtNoWebsite").value))
+            Common.addError("txtNoWebsite", "<%=Resources.Lang.DescWebsite%>");
         else if(document.getElementsByName("rdWebsite")[0].checked){            
             var listSites = $$(".sites");
             for(var i = 1; i < listSites.length; i++)
             {
                 if(listSites[i])
                 {
-                    if(isEmpty(listSites[i].value))
+                    if (Common.isEmpty(listSites[i].value))
                     {
-                        AddError(listSites[i].id, "<%=Resources.Lang.WebsiteURL %> " + (i==0 ? "" : (i + 1).toString()) + " <%=Resources.Lang.IsRequired%>");
+                        Common.addError(listSites[i].id, "<%=Resources.Lang.WebsiteURL %> " + (i == 0 ? "" : (i + 1).toString()) + " <%=Resources.Lang.IsRequired%>");
                         break;
                     }  
                 }
             }   
         }        
-        else if (isEmpty($("txtSiteUrl").value) && isEmpty($("txtNoWebsite").value))
-                AddError("txtSiteUrl", ErrMsg.SiteUrl);
+        else if (Common.isEmpty($("txtSiteUrl").value) && Common.isEmpty($("txtNoWebsite").value))
+            Common.addError("txtSiteUrl", ErrMsg.SiteUrl);
 
-        if(isEmpty($('slPreferLang').value))
-            AddError("slPreferLang", ErrMsg.PreferLang);
-        if (isEmpty($('slSecurityQuestion').value))
-            AddError("slSecurityQuestion", ErrMsg.SecurityQuestion);
-        if (isEmpty($('txtAnswer').value))
-            AddError("txtAnswer", ErrMsg.YourAnswer);
-        if (isEmpty($('txtValidateRegister').value) || $('txtValidateRegister').value == gMsg.entryvalidation)
-            AddError("txtValidateRegister", gMsg.Errmsgentryvalidcode);
-        if (isEmpty($('txtBet12UserName').value))
-            AddError("txtBet12UserName", ErrMsg.UserName12Bet);
+        if (Common.isEmpty($('slPreferLang').value))
+            Common.addError("slPreferLang", ErrMsg.PreferLang);
+        if (Common.isEmpty($('slSecurityQuestion').value))
+            Common.addError("slSecurityQuestion", ErrMsg.SecurityQuestion);
+        if (Common.isEmpty($('txtAnswer').value))
+            Common.addError("txtAnswer", ErrMsg.YourAnswer);
+        if (Common.isEmpty($('txtValidateRegister').value) || $('txtValidateRegister').value == gMsg.entryvalidation)
+            Common.addError("txtValidateRegister", gMsg.Errmsgentryvalidcode);
+        if (Common.isEmpty($('txtBet12UserName').value))
+            Common.addError("txtBet12UserName", ErrMsg.UserName12Bet);
 
         if(arrItem.length > 0)
         {
             $('errMsg').show();
-            ShowError(arrError, arrItem, "error_item");
+            Common.showError(arrError, arrItem, "error_item");
             return false;
         } 
         return true;
@@ -202,7 +202,7 @@
         var listSites = $$(".sites");
         var siteIndex = listSites.length;        
         if(listSites[siteIndex - 1])
-            if(isEmpty(listSites[siteIndex - 1].value))
+            if (Common.isEmpty(listSites[siteIndex - 1].value))
             {
                 alert("<%=Resources.Lang.WebsiteUrli %>".replace("{i}", siteIndex.toString()));
                 listSites[siteIndex - 1].focus();
@@ -977,7 +977,7 @@
                         <td colspan="3">
                             <div class="submit-bar">
                                 <input name="CheckTerm" id="CheckTerm" onclick="AgreeTerm();" value="CheckTerm" class="noborder" type="checkbox" />
-                                <a class="link_black" onclick="MM_openBrWindow('TermNCondition.aspx','','scrollbars=yes,resizable=yes,width=980,height=800')"
+                                <a class="link_black" onclick="Common.openWindow('TermNCondition.aspx','','scrollbars=yes,resizable=yes,width=980,height=800')"
                                     href="#">
                                     <asp:Literal ID="ltrAgreeto" runat="server"></asp:Literal></a>
                                 <br />

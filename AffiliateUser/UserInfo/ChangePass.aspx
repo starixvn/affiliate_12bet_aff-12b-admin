@@ -10,20 +10,20 @@
             arrError.clear();
             arrItem.clear();
             $("errMsg").hide();
-            if (isEmpty($('txtCurrPass').value))
-                AddError("txtCurrPass", ErrMsg.OldPass);
-            if (isEmpty($('txtNewPass').value))
-                AddError("txtNewPass", ErrMsg.NewPass);
+            if (Common.isEmpty($('txtCurrPass').value))
+                Common.addError("txtCurrPass", ErrMsg.OldPass);
+            if (Common.isEmpty($('txtNewPass').value))
+                Common.addError("txtNewPass", ErrMsg.NewPass);
             else if ($('txtConfirmPass').value != $('txtNewPass').value)
-                AddError("txtConfirmPass", ErrMsg.RePass);
+                Common.addError("txtConfirmPass", ErrMsg.RePass);
             if (arrItem.length > 0) {
-                ShowError(arrError, arrItem, "error_item");
+                Common.showError(arrError, arrItem, "error_item");
                 $("errMsg").show();
                 return false;
             }
             if (!checkpass($("txtNewPass"), "td_pass") || !checkpass($("txtConfirmPass"), "td_confirm")) {
-                AddError("txtNewPass", $("hdPassCheck").value);
-                ShowError(arrError, arrItem, "error_item");
+                Common.addError("txtNewPass", $("hdPassCheck").value);
+                Common.showError(arrError, arrItem, "error_item");
                 $('errMsg').show();
                 return false;
             }

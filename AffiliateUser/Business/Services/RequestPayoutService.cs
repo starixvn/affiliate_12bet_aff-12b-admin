@@ -18,7 +18,7 @@ namespace AffiliateUser.Business.Services
             string strPreferredLang = "E";
             if (AppSettings.Session.IsInternalSite)
             {
-                context.Response.Write("<script type='text/javascript'>parent.$(\"errMsg\").show();parent.ShowError([\"" + Resources.Lang.ErrAuthorized + "\"], [\"error_item\"], \"error_item\");</script>");
+                context.Response.Write("<script type='text/javascript'>parent.$(\"errMsg\").show();parent.Common.showError([\"" + Resources.Lang.ErrAuthorized + "\"], [\"error_item\"], \"error_item\");</script>");
                 return;
             }
             try
@@ -44,11 +44,11 @@ namespace AffiliateUser.Business.Services
                         return;
                     }
                     if (string.IsNullOrEmpty(context.Request.Form["txtAmt"]))
-                        context.Response.Write("<script type='text/javascript'>parent.DisplayMsg(false);</script>");
+                        context.Response.Write("<script type='text/javascript'>parent.Common.displayMessage(false);</script>");
                     Amt = CastAide.AsDecimal(context.Request.Form["txtAmt"]);
                     if (Amt == 0)
                     {
-                        context.Response.Write("<script type='text/javascript'>parent.DisplayMsg(false);</script>");
+                        context.Response.Write("<script type='text/javascript'>parent.Common.displayMessage(false);</script>");
                         return;
                     }
                     else

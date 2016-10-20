@@ -104,7 +104,7 @@
         var lang = 'en-US';
         if (InLang!=null){
             lang = InLang;
-            setCookie("afffavoritelang",lang, 30);
+            Common.setCookie("afffavoritelang",lang, 30);
         }
         
         var d=new Date();

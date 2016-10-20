@@ -38,7 +38,7 @@ function ViewResult(matchid, raceNo, bettype, sporttype, refno, username, winlos
 
     var widthDialog = 720;
     var heightDialog = 400;
-    DoCalFull(url, 'Results', widthDialog, heightDialog, 150, 290);
+    Common.openPopup(url, 'Results', widthDialog, heightDialog, 150, 290);
 }
 
 function showMP(transId) {
@@ -127,7 +127,7 @@ function showCombMPDetail(transId, refNo, betId, custId, betTeam, baseCurrency)
 
     var widthDialog = 760;
     var heightDialog = 450;
-    DoCalFull(url, 'System Parlay Detail', widthDialog, heightDialog, 150, 290);
+    Common.openPopup(url, 'System Parlay Detail', widthDialog, heightDialog, 150, 290);
 }
 
 function showNewCombMP(transId, transIndex, refNo, handicap1, handicap2, betcheck, betteam) {
