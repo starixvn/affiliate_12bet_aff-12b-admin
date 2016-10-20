@@ -4,11 +4,6 @@
 <%
     bool canRequestPayout = DateTime.Now.Day >= 8 && DateTime.Now.Day <= 15;
 %>
-    <script type="text/javascript">
-        setTimeout(function () {
-            window.location.reload(1);
-        }, 300000);
-    </script>
     <div id="contents">
         <div id="box_insite">
             <div class="header_in">
