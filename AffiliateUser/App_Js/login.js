@@ -40,12 +40,19 @@ function ExcLogin() {
     }
     var ajax= new Ajax.Request("Authorization/ProcessLogin.ashx",{
         method:'post',  
-        parameters:'un=' + $('txtusername').value + '&pw=' + $('txtpassword').value +'&vcode=' +$('txtvalidate').value,
+        parameters:'un=' + $('txtusername').value + '&pw=' + $('txtpassword').value +'&vcode=' +$('txtvalidate').value +
+            "&X-CSRF-Token=" + $('X-CSRF-Token').value,
         onComplete:Login
     });
     return false;
 }
-function Login(rs) { 
+function Login(rs) {
+    if (rs.status === 500)
+    {
+        alert(gMsg.ErrDefault);
+        return;
+    }
+    
     var err=rs.responseText.split(':');
 
     switch (err[0]) {

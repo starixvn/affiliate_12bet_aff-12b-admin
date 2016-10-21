@@ -39,12 +39,13 @@ namespace AffiliateUser.Business.Services.Authorization
                 if (string.IsNullOrEmpty(dr2.Outputs["errmsg"].ToString()))
                 {
                     var afftype = (AffType)DNAide.Core.CastAide.AsInt32(dr2.Outputs["afftype"], 2);
-
+                    var username = _custName.ToUpper() + " : [" + dr2.Outputs["adminusername"].ToString() + "]";
                     AuthHelper.AddAuthToken(context);
+                    FormsAuthentication.SetAuthCookie(username, false);
                     AppSettings.Session.AffType = afftype;
                     AppSettings.Session.CustID = CastAide.AsInt32(dr2.Outputs["custid"], -1);
                     AppSettings.Session.OnUser = DataHandler.Auth.LoginOnuser(context, CastAide.AsInt32(_accId) * -1);
-                    AppSettings.Session.UserName = _custName.ToUpper() + " : [" + dr2.Outputs["adminusername"].ToString() + "]";
+                    AppSettings.Session.UserName = username;
                     AppSettings.Session.FirstName = DNAide.Core.CastAide.AsString(dr2.Outputs["firstname"]);
                     AppSettings.Session.LastName = DNAide.Core.CastAide.AsString(dr2.Outputs["lastname"]);
                     AppSettings.Session.Email = DNAide.Core.CastAide.AsString(dr2.Outputs["email"]);

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using Affiliate;
 using Resources;
 
@@ -45,7 +46,7 @@ namespace AffiliateUser.Business.Services.Authorization
                         }
 
                         AuthHelper.AddAuthToken(context);
-
+                        FormsAuthentication.SetAuthCookie(_username, false);
                         AppSettings.Session.AffType = afftype;
                         AppSettings.Session.CustID = DNAide.Core.CastAide.AsInt32(dr.Outputs["custid"], -1);
                         AppSettings.Session.OnUser = DataHandler.Auth.LoginOnuser(context);

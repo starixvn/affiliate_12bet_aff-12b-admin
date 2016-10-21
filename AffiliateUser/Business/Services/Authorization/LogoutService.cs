@@ -15,6 +15,7 @@ namespace AffiliateUser.Business.Services.Authorization
                 //clear online list
                 if (AppSettings.HasLogin) DataHandler.Auth.Logout(AppSettings.Session.OnUser);
                 AuthHelper.ClearSession(context);
+                FormsAuthentication.SignOut();
             }
             catch (Exception ex)
             {

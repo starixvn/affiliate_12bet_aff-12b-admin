@@ -1,15 +1,25 @@
 ﻿using System;
 using System.Text;
+using System.Web;
+using System.Web.Helpers;
+using AffiliateUser.Business.Services.Authorization;
 
 public partial class Controls_RightPanel : RootControl
 {
-
-
     protected string strUsername, strPwd, strValidate, strLogin, strSignup, strForgetPwd, errmsg, strTitleLogin;
     public string script = "";
     public string strURL = string.Empty;
     public string strURL2 = string.Empty;
 
+    protected string _XsrfTokenFormValue;
+
+    protected override void OnInit(EventArgs e)
+    {
+        _XsrfTokenFormValue = AuthHelper.GenerateXsrfFormToken(HttpContext.Current);
+
+        base.OnInit(e);
+    }
+    
     protected void Page_Load(object sender, EventArgs e)
     {
         GenURL();
@@ -43,12 +53,13 @@ public partial class Controls_RightPanel : RootControl
         _s.Append("     entryvalidation: \"" + Resources.Lang.Validation.Replace("\"", "'") + "\"," + _nl);
         _s.Append("     Errmsgentryvalidcode: \"" + Resources.Lang.ErrmsgEntryValidCode.Replace("\"", "'") + "\"," + _nl);
         _s.Append("     Errmsgentryusername: \"" + Resources.Lang.ErrmsgEntryUsername.Replace("\"", "'") + "\"," + _nl);
-        _s.Append("     Errmsgentrypassword: \"" + Resources.Lang.ErrmsgEntryPassword.Replace("\"", "'") + "\"" + _nl);
+        _s.Append("     Errmsgentrypassword: \"" + Resources.Lang.ErrmsgEntryPassword.Replace("\"", "'") + "\"," + _nl);
+        _s.Append("     ErrDefault: \"" + Resources.Lang.ErrDefault.Replace("\"", "'") + "\"" + _nl);
         _s.Append("};");
         errmsg = _nl + _s.ToString() + _nl;
     }
 
-    void GenURL()
+    private void GenURL()
     {
         string strTmp = Request.Url.AbsolutePath;
         strURL = "/Content/Banner/" + Common.GetLanguage() + "/smallbanner.gif?v=" + AppSettings.JsVersion;
