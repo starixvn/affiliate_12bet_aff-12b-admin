@@ -36,6 +36,9 @@ body.ko-KR {
 body.ja-JP {
     background: #eef3fa url(images/bgMain_jp.jpg) no-repeat fixed center top;
 }
+body.hi-IN{
+    background: #eef3fa url(images/bgMain_hi.jpg) no-repeat fixed center top;
+}
 
 
 form
