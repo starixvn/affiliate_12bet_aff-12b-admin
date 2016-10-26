@@ -159,9 +159,6 @@
             }
             else
                 $("frUpdate").enable();
-                
-            clock();
-            setInterval("clock();", 1000);
         };
         function ShowError1(msg) {
             $('errMsg').hide();

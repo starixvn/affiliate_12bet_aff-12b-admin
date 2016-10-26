@@ -1,7 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" Inherits="Controls_Header" Codebehind="Header.ascx.cs" %>
 
 <script type="text/javascript" language="javascript">  
-    //window.document.onload = Init;
     var gmt_offset = '<%=gmt %>';
     var year = <%=year %>;
     var month = <%=month %>;
@@ -23,7 +22,7 @@
 
     function PreInit() {
         clock();
-        setInterval("clock();", 1000);
+        setInterval(clock, 1000);
         <%=strLogin %>
     }
 

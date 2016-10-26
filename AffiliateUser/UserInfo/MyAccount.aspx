@@ -38,9 +38,6 @@
         $('slPreferLang').value = "<%=strPreferLang %>";
         $('selCountry').value = "<%=strCountry %>";
         var moreurl = "<%=strMoreSiteUrl %>";
-
-        clock();
-        setInterval("clock();", 1000);
     }
     function submitForm() {
         arrItem.clear();

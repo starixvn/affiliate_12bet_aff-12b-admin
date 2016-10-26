@@ -21,12 +21,9 @@
     <script type="text/javascript"> 
     
     window.onload = function() {
-        //MoreUrl();
         AgreeTerm();
         $("txtFName").blur();
         $("txtFName").focus(); 
-        clock();
-        setInterval("clock();", 1000);
         showRequire();
     }
     function ResetClick()

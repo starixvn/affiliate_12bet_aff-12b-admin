@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.master" AutoEventWireup="true" Inherits="UserInfo_MediaText" Codebehind="MediaText.aspx.cs" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
-<script src="../App_Js/jquery/jquery-1.4.2.min.js" type="text/javascript"></script>
+<script src="../App_Js/vendors/jquery.min.js" type="text/javascript"></script>
 <script type ="text/javascript">
     var jQ = jQuery.noConflict();
 
@@ -22,8 +22,6 @@
     };
 
     window.onload=function() {
-        EnableDisableInputTrackingCode();
-
         jQ('#slDevice').change(function () {
             var obj = jQ('#frmData').serializeObject();
             delete obj['target'];
@@ -47,10 +45,8 @@
         var ajax = new Ajax.Request("../Handler/GetDataBanner.ashx", {
             method: 'post',
             parameters: param,
-            
             onComplete: function(data) {
-            ProcessResult(data.responseText);
-                
+                ProcessResult(data.responseText);
             }
         });
     }
@@ -70,14 +66,6 @@
         catch (e) {
             //alert(e);
         }
-    }
-    function EnableDisableInputTrackingCode() {        
-        
-        clock();
-        setInterval("clock();", 1000);
-    }
-    function checkData()
-    {
     }
 </script>
 <%=htmlContent %>

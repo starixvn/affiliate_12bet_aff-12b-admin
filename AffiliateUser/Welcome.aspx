@@ -38,12 +38,9 @@
     <script type="text/javascript"> 
     
     window.onload = function() {
-        //MoreUrl();
         AgreeTerm();
         $("txtOldPassword").blur();
         $("txtOldPassword").focus(); 
-        clock();
-        setInterval("clock();", 1000);
     }
     function ResetClick()
     {

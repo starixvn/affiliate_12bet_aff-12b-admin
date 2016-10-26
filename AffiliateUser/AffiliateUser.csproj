@@ -714,6 +714,8 @@
       <DependentUpon>Welcome.aspx</DependentUpon>
     </Compile>
     <Content Include="App_Data\SpNames.xml" />
+    <Content Include="App_Js\libs\jquery-ui\jquery-ui.css" />
+    <Content Include="App_Js\vendors\jquery.min.js" />
     <Content Include="App_Templates\Email\ForgetPass\ForgetPass_hi-IN.htm" />
     <Content Include="App_Templates\Email\ForgetPass\ForgetPass_hi-IN_html.htm" />
     <Content Include="App_Templates\Email\PaymentCancel\PaymentCancel_hi-IN.htm" />
@@ -890,11 +892,10 @@
     <Content Include="App_Js\IBCWnd\pop_top.png" />
     <Content Include="App_Js\IBCWnd\x.jpg" />
     <Content Include="App_Js\interface.js" />
-    <Content Include="App_Js\jquery\jquery-1.4.2.min.js" />
     <Content Include="App_Js\login.js" />
-    <Content Include="App_Js\MonthPicker\Images\bg-month-picker-header.png" />
-    <Content Include="App_Js\MonthPicker\jquery.mtz.monthpicker.js" />
-    <Content Include="App_Js\MonthPicker\month-picker.css" />
+    <Content Include="App_Js\libs\MonthPicker\Images\bg-month-picker-header.png" />
+    <Content Include="App_Js\libs\MonthPicker\jquery.mtz.monthpicker.js" />
+    <Content Include="App_Js\libs\MonthPicker\month-picker.css" />
     <Content Include="App_Js\popup.js" />
     <Content Include="App_Js\prototype-full.js" />
     <Content Include="App_Js\prototype.js" />
