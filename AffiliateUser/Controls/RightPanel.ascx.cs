@@ -54,7 +54,7 @@ public partial class Controls_RightPanel : RootControl
         _s.Append("     Errmsgentryvalidcode: \"" + Resources.Lang.ErrmsgEntryValidCode.Replace("\"", "'") + "\"," + _nl);
         _s.Append("     Errmsgentryusername: \"" + Resources.Lang.ErrmsgEntryUsername.Replace("\"", "'") + "\"," + _nl);
         _s.Append("     Errmsgentrypassword: \"" + Resources.Lang.ErrmsgEntryPassword.Replace("\"", "'") + "\"," + _nl);
-        _s.Append("     ErrDefault: \"" + Resources.Lang.ErrDefault.Replace("\"", "'") + "\"" + _nl);
+        _s.Append("     ErrAuthorized: \"" + Resources.Lang.ErrAuthorized.Replace("\"", "'") + "\"" + _nl);
         _s.Append("};");
         errmsg = _nl + _s.ToString() + _nl;
     }

@@ -49,7 +49,7 @@ function ExcLogin() {
 function Login(rs) {
     if (rs.status === 500)
     {
-        alert(gMsg.ErrDefault);
+        alert(gMsg.ErrAuthorized);
         return;
     }
     

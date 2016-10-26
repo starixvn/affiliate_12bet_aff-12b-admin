@@ -17,6 +17,7 @@
             </div>
             <div class="in_conts">                                
                 <form id="frUpdate" name="frUpdate" method="post" onsubmit="return RequestPayout();" target="frUpdateData" action="../Handler/RequestPayout.ashx">
+                    <input type="hidden" id="X-CSRF-Token" name="X-CSRF-Token" value="<%=_XsrfTokenFormValue %>" />
                     <div class="box_conts_header">
                         <%=Resources.Lang.PaymentInfor %>
                     </div>

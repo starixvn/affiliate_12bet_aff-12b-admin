@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web;
 using Affiliate.MailServices;
+using AffiliateUser.Business.Services.Authorization;
 using DNAide.Core;
 
 namespace AffiliateUser.Business.Services
@@ -15,6 +16,16 @@ namespace AffiliateUser.Business.Services
         {
             context = AffHandler.InitializeCulture(context);
             context.Response.ContentType = "text/html";
+            try
+            {
+                AuthHelper.ValidateXsrfToken(context);
+            }
+            catch
+            {
+                context.Response.Write("<script type='text/javascript'>parent.$(\"errMsg\").show();parent.Common.showError([\"" + Resources.Lang.ErrAuthorized + "\"], [\"error_item\"], \"error_item\");</script>");
+                return;
+            }
+            
             string strPreferredLang = "E";
             if (AppSettings.Session.IsInternalSite)
             {
