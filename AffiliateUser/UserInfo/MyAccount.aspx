@@ -196,6 +196,7 @@ function AddOneMoreURL() {
                 <div class="box_conts_line"></div>
                 <br />
                 <form id="Update_form" name="Update_form" action="../Handler/UpdateAcc.ashx" method="post" onsubmit="return submitForm()" target="frRegister">
+                    <input type="hidden" id="X-CSRF-Token" name="X-CSRF-Token" value="<%=_XsrfTokenFormValue %>" />
                     <table width="100%" cellspacing="0" cellpadding="2">
                         <tr>
                             <td style="width: 150px;">

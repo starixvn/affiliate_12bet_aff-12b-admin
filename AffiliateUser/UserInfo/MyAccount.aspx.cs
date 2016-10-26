@@ -5,6 +5,7 @@ using DNAide.Web;
 using DNAide.Core;
 using DataHandler;
 using AffiliateUser;
+using AffiliateUser.Business.Services.Authorization;
 
 public partial class MyAccount : RootPageLogIn
 {
@@ -56,7 +57,7 @@ public partial class MyAccount : RootPageLogIn
         ltrUser.Text = Resources.Lang.Username;
         ltrPass.Text = Resources.Lang.Password;
         ltrAccInfo.Text = Resources.Lang.AccInfo;
-      
+
         ltrEmail.Text = Resources.Lang.Email;
         ltrContactNumber.Text = Resources.Lang.ContactNumber;
         ltrMobile.Text = Resources.Lang.Mobile;
@@ -73,73 +74,71 @@ public partial class MyAccount : RootPageLogIn
         ltrPaymentInfor.Text = Resources.Lang.PaymentInfor;
         ltrPaymentMethod.Text = Resources.Lang.PaymentMethod;
         ltrAccount12Bet.Text = Resources.Lang.Account12bet;
-        ltr12UserName.Text = Resources.Lang.Username;// +" " + Resources.Lang.Bet12;
+        ltr12UserName.Text = Resources.Lang.Username;
         #endregion
 
-            AppSettings.RefreshPreferredLanguage();
-            strPayment = Request["ispay"] == null ? "0" : "1";
-            DataTable dtbMyAcc = new DataTable();
-            //dtbMyAcc = UserAff.SelAffInfo(677711);//
-            dtbMyAcc = UserAff.SelAffInfo(AppSettings.Session.CustID, ref strMinCheque, ref strMinMoneyBooker, ref strMinNetteller, ref strMinWire,ref strMinPlayer);
-            DataRow drAcc = dtbMyAcc.Rows[0];
-            #region bind data
-         /*   strFName = drAcc["firstname"].ToString();
-            strLName = drAcc["lastname"].ToString();*/
-            hasGender = (DBNull.Value.Equals(drAcc["gender"]) ? false : true);
-            isGender = CastAide.AsBoolean(drAcc["gender"], true);
-            strAddress = drAcc["address"].ToString();
-            strCity = drAcc["city"].ToString();
-            strState = drAcc["state"].ToString();
-            strPost = drAcc["postal"].ToString();
-            strCountry = drAcc["country"].ToString();
-            strEmail = drAcc["email"].ToString();
-            strNumber = drAcc["phone"].ToString();
-            strMobile = drAcc["mobilephone"].ToString();
-            strSiteUrl = drAcc["siteurl"].ToString();
-            strMoreSiteUrl = drAcc["moresiteurls"].ToString().Replace("\r\n", "\\n");
-            strBet12UserName = drAcc["player_username"].ToString();
-            strNetellerAccId = drAcc["Neteller_accountid"].ToString();
-            strMoneyBookerEmail = drAcc["moneybookers_email"].ToString();
-            strChequeFullName = drAcc["cheque_fullname"].ToString();
-            strChequeAddress = drAcc["cheque_address"].ToString();
-            strChequeCity = drAcc["cheque_city"].ToString();
-            strChequeState = drAcc["cheque_state"].ToString();
-            strChequePostcode = drAcc["cheque_postal"].ToString();
-            strChequeCountry = drAcc["cheque_country"].ToString();
-            strBankName = drAcc["wire_bankname"].ToString();
-            strBankAddress = drAcc["wire_bankaddress"].ToString();
-            strBankCode = drAcc["wire_swiftcode"].ToString();
-            strBankAccName = drAcc["wire_accountname"].ToString();
-            strBankAccNumber = drAcc["wire_accountno"].ToString();
-            strPreferLang = drAcc["PreferredLanguage"].ToString();
-            strMethod = Common.GetIndex(drAcc["preferredpayment"].ToString());
-            str12Bet = strMethod;
-            ltrUsername.Text = drAcc["username"].ToString();
-            strNoSiteDesc = drAcc["NoSiteDesc"].ToString();
-            strWebsites = drAcc["MoreSiteURLs"].ToString(); //Load more urls
-            string strUrls = drAcc["MoreSiteURLs"].ToString();
+        AppSettings.RefreshPreferredLanguage();
+        strPayment = Request["ispay"] == null ? "0" : "1";
+        DataTable dtbMyAcc = new DataTable();
+        dtbMyAcc = UserAff.SelAffInfo(AppSettings.Session.CustID, ref strMinCheque, ref strMinMoneyBooker, ref strMinNetteller, ref strMinWire, ref strMinPlayer);
+        DataRow drAcc = dtbMyAcc.Rows[0];
+        #region bind data
 
-            if (strUrls.Trim().Length > 0)
+        hasGender = (DBNull.Value.Equals(drAcc["gender"]) ? false : true);
+        isGender = CastAide.AsBoolean(drAcc["gender"], true);
+        strAddress = drAcc["address"].ToString();
+        strCity = drAcc["city"].ToString();
+        strState = drAcc["state"].ToString();
+        strPost = drAcc["postal"].ToString();
+        strCountry = drAcc["country"].ToString();
+        strEmail = drAcc["email"].ToString();
+        strNumber = drAcc["phone"].ToString();
+        strMobile = drAcc["mobilephone"].ToString();
+        strSiteUrl = drAcc["siteurl"].ToString();
+        strMoreSiteUrl = drAcc["moresiteurls"].ToString().Replace("\r\n", "\\n");
+        strBet12UserName = drAcc["player_username"].ToString();
+        strNetellerAccId = drAcc["Neteller_accountid"].ToString();
+        strMoneyBookerEmail = drAcc["moneybookers_email"].ToString();
+        strChequeFullName = drAcc["cheque_fullname"].ToString();
+        strChequeAddress = drAcc["cheque_address"].ToString();
+        strChequeCity = drAcc["cheque_city"].ToString();
+        strChequeState = drAcc["cheque_state"].ToString();
+        strChequePostcode = drAcc["cheque_postal"].ToString();
+        strChequeCountry = drAcc["cheque_country"].ToString();
+        strBankName = drAcc["wire_bankname"].ToString();
+        strBankAddress = drAcc["wire_bankaddress"].ToString();
+        strBankCode = drAcc["wire_swiftcode"].ToString();
+        strBankAccName = drAcc["wire_accountname"].ToString();
+        strBankAccNumber = drAcc["wire_accountno"].ToString();
+        strPreferLang = drAcc["PreferredLanguage"].ToString();
+        strMethod = Common.GetIndex(drAcc["preferredpayment"].ToString());
+        str12Bet = strMethod;
+        ltrUsername.Text = drAcc["username"].ToString();
+        strNoSiteDesc = drAcc["NoSiteDesc"].ToString();
+        strWebsites = drAcc["MoreSiteURLs"].ToString();
+        string strUrls = drAcc["MoreSiteURLs"].ToString();
+
+        if (strUrls.Trim().Length > 0)
+        {
+            string strTpl = TemplateHandler.LoadTemplate("UserInfo/MoreUrls.htm");
+            TemplateHandler.Assign(ref strTpl, "siteurl", Resources.Lang.WebsiteURL);
+
+            string[] strMoreUrls = strUrls.Split(';');
+            if (strMoreUrls.Length > 0)
             {
-                string strTpl = TemplateHandler.LoadTemplate("UserInfo/MoreUrls.htm");
-                TemplateHandler.Assign(ref strTpl, "siteurl", Resources.Lang.WebsiteURL);
-
-                string[] strMoreUrls = strUrls.Split(';');
-                if (strMoreUrls.Length > 0)
+                StringBuilder strBuild = new StringBuilder();
+                for (int i = 0; i < strMoreUrls.Length; i++)
                 {
-                    StringBuilder strBuild = new StringBuilder();
-                    for (int i = 0; i < strMoreUrls.Length; i++)
-                    {
-                        string strTmp = strTpl;
-                        TemplateHandler.Assign(ref strTmp, "moreurl-val", strMoreUrls[i]);
-                        TemplateHandler.Assign(ref strTmp, "i", (i + 2).ToString());
-                        strBuild.Append(strTmp);
-                    }
-                    strWebsites = strBuild.ToString();
+                    string strTmp = strTpl;
+                    TemplateHandler.Assign(ref strTmp, "moreurl-val", strMoreUrls[i]);
+                    TemplateHandler.Assign(ref strTmp, "i", (i + 2).ToString());
+                    strBuild.Append(strTmp);
                 }
+                strWebsites = strBuild.ToString();
             }
+        }
 
-            #endregion
+        #endregion
     }
 }
 

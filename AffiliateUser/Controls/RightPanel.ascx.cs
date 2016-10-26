@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Text;
 using System.Web;
-using System.Web.Helpers;
 using AffiliateUser.Business.Services.Authorization;
 
 public partial class Controls_RightPanel : RootControl
@@ -19,7 +18,7 @@ public partial class Controls_RightPanel : RootControl
 
         base.OnInit(e);
     }
-    
+
     protected void Page_Load(object sender, EventArgs e)
     {
         GenURL();
@@ -27,15 +26,12 @@ public partial class Controls_RightPanel : RootControl
         {
             ltrUserName.Text = AppSettings.Session.UserName;
             LoginPanel.Visible = false;
-            //aSignup.Visible = false;
         }
         else
         {
             divAfterLogin.Visible = false;
         }
 
-        //script += "if($('us')) $('txtusername').value = $('us').value;";
-        //script += "if($('pw')) $('txtpassword').value = $('pw').value;";
         script += "if($('val')) $('txtvalidate').value = $('val').value;";
 
         strUsername = Resources.Lang.Username;
