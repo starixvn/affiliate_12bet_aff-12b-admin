@@ -254,6 +254,7 @@
     <Compile Include="Business\Models\Core\ResultInfo.cs" />
     <Compile Include="Business\Services\AccountPolicyService.cs" />
     <Compile Include="Business\Services\ActiveMemberService.cs" />
+    <Compile Include="Business\Services\Auth\LoginService.cs" />
     <Compile Include="Business\Services\Banner\AddBannerService.cs" />
     <Compile Include="Business\Services\Banner\DeleteBannerService.cs" />
     <Compile Include="Business\Services\Banner\UploadBannerService.cs" />

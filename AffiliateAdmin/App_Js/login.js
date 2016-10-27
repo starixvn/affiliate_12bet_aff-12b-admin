@@ -16,21 +16,31 @@ function ExcLogin() {
     if ($('txtun').value == '') {
         ErrAlter('User Name is empty. Please check!');
         $('txtun').focus();
-        return;
     }
-    else if ($('txtpw').value == '') {
+
+    if ($('txtpw').value == '') {
         ErrAlter('Password is empty. Please check!');
         $('txtpw').focus();
-        return;
     }
-    else {
-        $('error_msg').innerHTML = '';
-        var ajax = new Ajax.Request("Auth/ProcessLogin.ashx", {
-            method: 'post',
-            parameters: 'un=' + $('txtun').value + '&pw=' + $('txtpw').value,
-            onComplete: AlertMsg
-        });
-    }
+
+    $('error_msg').innerHTML = '';
+    var ajax = new Ajax.Request("Auth/ProcessLogin.ashx", {
+        method: 'post',
+        parameters: 'un=' + $('txtun').value + '&pw=' + $('txtpw').value + "&X-CSRF-Token=" + $('X-CSRF-Token').value,
+        onComplete: function (res) {
+            if (res.responseText == 'OK') {
+                parent.location.href = 'Default.aspx';
+            }
+            else if (res.responseText == 'UM') {
+                location.href = 'UnderMaintenance.aspx';
+            }
+            else {
+                $('errMsg').show();
+                $('error_msg').className = "comment";
+                $('error_msg').innerHTML = res.responseText;
+            }
+        }
+    });
 }
 function setdisable() {
     if ($('txtun').value != '' || $('txtpw').value != '') {
@@ -38,19 +48,6 @@ function setdisable() {
     }
     else {
         $('btnlogin').disabled = true;
-    }
-}
-function AlertMsg(res) {
-    if (res.responseText == 'OK') {
-        parent.location.href = 'Default.aspx';
-    }
-    else if (res.responseText == 'UM') {
-        location.href = 'UnderMaintenance.aspx';
-    }
-    else {
-        $('errMsg').show();
-        $('error_msg').className = "comment";
-        $('error_msg').innerHTML = res.responseText;
     }
 }
 
