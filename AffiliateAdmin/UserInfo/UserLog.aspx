@@ -19,7 +19,7 @@
 
 <script src="../App_Js/Calendar2/calendar-setup.js" type="text/javascript"></script>
 
-<script src="../App_Js/jquery/jquery-1.4.2.min.js" type="text/javascript"></script>
+<script src="../App_Js/vendors/jquery.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
     function LoadData(pageIndex) {

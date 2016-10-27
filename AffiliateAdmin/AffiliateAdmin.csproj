@@ -1187,7 +1187,11 @@
     <Content Include="App_Js\IBCWnd\pop_top.jpg" />
     <Content Include="App_Js\IBCWnd\x.jpg" />
     <Content Include="App_Js\interface.js" />
-    <Content Include="App_Js\jquery\jquery-1.4.2.min.js" />
+    <Content Include="App_Js\libs\jquery-ui\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="App_Js\libs\jquery-ui\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="App_Js\libs\jquery-ui\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="App_Js\libs\jquery-ui\jquery-ui.css" />
+    <Content Include="App_Js\libs\jquery-ui\jquery-ui.min.js" />
     <Content Include="App_Js\ListBanner.js" />
     <Content Include="App_Js\ListText.js" />
     <Content Include="App_Js\login.js" />
@@ -1205,6 +1209,7 @@
     <Content Include="App_Js\swfobject.js" />
     <Content Include="App_Js\tipsy\jquery.tipsy.js" />
     <Content Include="App_Js\UserControl.js" />
+    <Content Include="App_Js\vendors\jquery.min.js" />
     <Content Include="App_Js\wz_tooltip.js" />
     <Content Include="App_Templates\AccessDenied.html" />
     <Content Include="App_Templates\Alert.htm" />

@@ -1,7 +1,7 @@
 <%@ Page Language="C#" AutoEventWireup="true" Inherits="ListMediaBanner" Codebehind="ListBannerNew.aspx.cs" %>
 <!--js-->
 <script src="../App_Js/prototype.js" language="javascript" type="text/javascript"></script>
-<script src="../App_Js/jquery/jquery-1.4.2.min.js" type="text/javascript"></script>
+<script src="../App_Js/vendors/jquery.min.js" type="text/javascript"></script>
 <script src="../App_Js/ListBanner.js" language="javascript" type="text/javascript"></script>
 <script src="../App_Js/Common.js" language="javascript" type="text/javascript"></script>
 <script src="../App_Js/RefreshTime.js" language="javascript" type="text/javascript"></script>
