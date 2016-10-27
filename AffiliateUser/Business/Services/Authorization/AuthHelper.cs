@@ -26,7 +26,8 @@ namespace AffiliateUser.Business.Services.Authorization
                 var responseCookie = new HttpCookie(AntiXsrfTokenKey)
                 {
                     HttpOnly = true,
-                    Value = cookieToken
+                    Value = cookieToken,
+                    Expires = DateTime.Now.AddMinutes(20)
                 };
 
                 if (FormsAuthentication.RequireSSL && context.Request.IsSecureConnection)
