@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Web;
-using AffiliateUser.Business.Services.Authorization;
+using Affiliate.Infrastructure.Helpers;
 
 public partial class Controls_RightPanel : RootControl
 {
@@ -14,7 +14,7 @@ public partial class Controls_RightPanel : RootControl
 
     protected override void OnInit(EventArgs e)
     {
-        _XsrfTokenFormValue = AuthHelper.GenerateXsrfFormToken(HttpContext.Current);
+        _XsrfTokenFormValue = AntiForgeryHelper.GenerateXsrfFormToken(HttpContext.Current);
 
         base.OnInit(e);
     }

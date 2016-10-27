@@ -1,8 +1,8 @@
-﻿using System.Web;
-using System.Web.UI;
-using System;
+﻿using System;
 using System.IO;
-using Affiliate.Infrastructure;
+using System.Web;
+using System.Web.UI;
+using Affiliate.Infrastructure.Helpers;
 
 /// <summary>
 /// Summary description for IBCPage
@@ -60,6 +60,7 @@ public class IBCPage : System.Web.UI.Page
         this.UICulture = _locale;
         return result;
     }
+
     public string Locale
     {
         get
@@ -67,6 +68,7 @@ public class IBCPage : System.Web.UI.Page
             return _locale;
         }
     }
+
     protected string RelativePath
     {
         get
@@ -103,6 +105,7 @@ public class IBCPage : System.Web.UI.Page
             return string.Empty;
         }
     }
+
     protected override void Render(HtmlTextWriter writer)
     {
         writer.Write("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n");

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Web;
-using AffiliateUser.Business.Services.Authorization;
+using Affiliate.Infrastructure.Helpers;
 using DataHandler;
 
 namespace AffiliateUser.Business.Services
@@ -14,7 +14,7 @@ namespace AffiliateUser.Business.Services
 
             try
             {
-                AuthHelper.ValidateXsrfToken(context);
+                AntiForgeryHelper.ValidateXsrfToken(context);
             }
             catch
             {

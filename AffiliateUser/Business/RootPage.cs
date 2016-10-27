@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Web;
-using System.Web.Helpers;
-using System.Web.Security;
-using AffiliateUser.Business.Services.Authorization;
+using Affiliate.Infrastructure.Helpers;
 
 public class RootPage : System.Web.UI.Page
 {
@@ -16,7 +14,7 @@ public class RootPage : System.Web.UI.Page
 
     protected override void OnInit(EventArgs e)
     {
-        _XsrfTokenFormValue = AuthHelper.GenerateXsrfFormToken(HttpContext.Current);
+        _XsrfTokenFormValue = AntiForgeryHelper.GenerateXsrfFormToken(HttpContext.Current);
 
         base.OnInit(e);
     }
@@ -36,6 +34,7 @@ public class RootPage : System.Web.UI.Page
             aCookie.Expires = DateTime.Now.AddDays(30);
             Response.Cookies.Add(aCookie);
         }
+
         Response.Cache.SetCacheability(HttpCacheability.NoCache);
         _locale = (string.IsNullOrEmpty(AppSettings.Session.Language)) ? "en-US" : AppSettings.Session.Language;
         this.Culture = _locale;
@@ -74,6 +73,7 @@ public class RootPage : System.Web.UI.Page
         this.UICulture = _locale;
         return result;
     }
+
     public string Locale
     {
         get
@@ -97,8 +97,8 @@ public class RootPage : System.Web.UI.Page
                 default: return "E";
             }
         }
-
     }
+
     protected string RelativePath
     {
         get

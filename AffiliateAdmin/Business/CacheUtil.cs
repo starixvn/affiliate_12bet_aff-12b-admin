@@ -1,21 +1,22 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Web;
-using AffiliateAdmin.Business.DataAccess;
 using System.Data;
-using Affiliate.Infrastructure;
+using System.Web;
+using Affiliate.Infrastructure.Helpers;
+using AffiliateAdmin.Business.DataAccess;
 
 public class CacheUtil
 {
     private static string hsAffInfo = "hsAffInfo";
-    static DateTime LastRefresh;
-    static int _TimeCache = 120;
+    private static DateTime LastRefresh;
+    private static int _TimeCache = 120;
+
     static CacheUtil()
     {
         LastRefresh = DateTime.MinValue;
         InitCache();
     }
+
     private static void AddAffInfo()
     {
         DbResult result = DbHelper.Execute("Aff_AffiliateSelAffInfo", DBType.AFFILIATE_12BET);
@@ -34,6 +35,7 @@ public class CacheUtil
             CacheHelper.Remove(hsAffInfo);
         }
     }
+
     public static Hashtable GetHSAffInfo()
     {
         lock (HttpContext.Current.Application)
@@ -45,7 +47,6 @@ public class CacheUtil
             }
         }
         return CacheHelper.Get<Hashtable>(hsAffInfo);
-
     }
 
     public static void InitCache()

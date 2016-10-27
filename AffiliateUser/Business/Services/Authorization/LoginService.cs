@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 using Affiliate;
+using Affiliate.Infrastructure.Helpers;
 using Resources;
 
 namespace AffiliateUser.Business.Services.Authorization
@@ -13,6 +14,7 @@ namespace AffiliateUser.Business.Services.Authorization
         {
             context = AffHandler.InitializeCulture(context);
             context.Response.ContentType = "text/html";
+            AntiForgeryHelper.ValidateXsrfToken(context);
             string message = string.Empty;
 
             try

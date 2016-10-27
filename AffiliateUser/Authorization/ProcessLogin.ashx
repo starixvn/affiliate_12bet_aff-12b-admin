@@ -8,7 +8,6 @@ public class ProcessLogin : IHttpHandler, IRequiresSessionState
 {
     public void ProcessRequest(HttpContext context)
     {
-        AuthHelper.ValidateXsrfToken(context);
         new LoginService().Login(context);
     }
 

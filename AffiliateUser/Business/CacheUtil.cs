@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Data;
-using System.Web;
-using Affiliate.Infrastructure;
-using AffiliateUser.Business.DataAccess;
+using Affiliate.Infrastructure.Helpers;
 
 /// <summary>
 /// Summary description for CacheUtil
