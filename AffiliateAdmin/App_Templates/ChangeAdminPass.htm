@@ -4,6 +4,7 @@
 </script>
 
 <form id="frmChangePass" name="frmChangePass" action="Handler/ChangeAdminPass.ashx" method="post" target="frChangePass" onsubmit="return CheckForm();">
+    <input type="hidden" id="X-CSRF-Token" name="X-CSRF-Token" value="{XsrfTokenFormValue}" />
   <div class="padl0">    
     <div id="errMsg" style="display: none;width:322px">
       <div id="error_item">
