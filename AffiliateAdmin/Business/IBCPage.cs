@@ -4,9 +4,6 @@ using System.Web;
 using System.Web.UI;
 using Affiliate.Infrastructure.Helpers;
 
-/// <summary>
-/// Summary description for IBCPage
-/// </summary>
 public class IBCPage : System.Web.UI.Page
 {
     private string _locale;
@@ -14,6 +11,15 @@ public class IBCPage : System.Web.UI.Page
     private string _vers = string.Empty;
     protected string ThemePath;
     protected bool IsGetAllCss = true;
+
+    protected string _XsrfTokenFormValue;
+
+    protected override void OnInit(EventArgs e)
+    {
+        _XsrfTokenFormValue = AntiForgeryHelper.GenerateXsrfFormToken(HttpContext.Current);
+
+        base.OnInit(e);
+    }
 
     protected override void InitializeCulture()
     {
@@ -115,11 +121,9 @@ public class IBCPage : System.Web.UI.Page
         writer.Write(AppSettings.HtmlHeader);
         writer.Write(CssLinks);
         string aspxContent = LoadTemplate(Request.AppRelativeCurrentExecutionFilePath.Replace("~/", string.Empty));
-        try
-        {
-            writer.Write(DNAide.Web.TemplateHandler.CopyBlock(aspxContent, "js").Replace(".js", ".js?ver=" + AppSettings.JsVersion));
-        }
-        catch { }
+
+        writer.Write(DNAide.Web.TemplateHandler.CopyBlock(aspxContent, "js").Replace(".js", ".js?ver=" + AppSettings.JsVersion));
+
         writer.Write("</head>\n");
         writer.Write("<body>\n");
         writer.Write(HtmlContent);

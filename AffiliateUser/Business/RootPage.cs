@@ -9,7 +9,6 @@ public class RootPage : System.Web.UI.Page
     private string _vers = string.Empty;
     protected string ThemePath;
 
-    private const string AntiXsrfTokenKey = "__RequestVerificationToken";
     protected string _XsrfTokenFormValue;
 
     protected override void OnInit(EventArgs e)
