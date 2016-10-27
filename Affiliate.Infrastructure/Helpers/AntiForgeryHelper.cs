@@ -27,7 +27,7 @@
                 {
                     HttpOnly = true,
                     Value = cookieToken,
-                    Expires = DateTime.Now.AddMinutes(20)
+                    Expires = DateTime.Now.AddMinutes(10)
                 };
 
                 if (FormsAuthentication.RequireSSL && context.Request.IsSecureConnection)
