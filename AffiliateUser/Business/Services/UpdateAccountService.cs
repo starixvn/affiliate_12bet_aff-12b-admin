@@ -18,7 +18,7 @@ namespace AffiliateUser.Business.Services
             }
             catch
             {
-                context.Response.Write("<script type='text/javascript'>parent.$(\"errMsg\").show();parent.Common.showError([\"" + Resources.Lang.ErrAuthorized + "\"], [\"error_item\"], \"error_item\");</script>");
+                context.Response.Write("<script type='text/javascript'>parent.$(\"errMsg\").show();parent.$(\"succMsg\").hide();parent.$(\"divErr\").show();parent.Common.showError([\"" + Resources.Lang.ErrAuthorized + "\"], [\"error_item\"], \"error_item\");</script>");
                 return;
             }
 

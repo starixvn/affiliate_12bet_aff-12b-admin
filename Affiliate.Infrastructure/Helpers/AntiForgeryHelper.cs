@@ -1,33 +1,33 @@
 ﻿namespace Affiliate.Infrastructure.Helpers
 {
     using System;
+    using System.Security.Cryptography;
+    using System.Text;
     using System.Web;
-    using System.Web.Helpers;
     using System.Web.Security;
 
     public static class AntiForgeryHelper
     {
-        public const string AntiXsrfTokenKey = "__RequestVerificationToken";
+        public const string AntiXsrfTokenKey = "__AntiCSRFToken";
 
         public static string GenerateXsrfFormToken(HttpContext context)
         {
             var requestCookie = context.Request.Cookies[AntiXsrfTokenKey];
-            string formToken;
-
-            if (requestCookie != null)
+            string resultFormToken;
+            Guid requestCookieGuidValue;
+            if (requestCookie != null && Guid.TryParse(requestCookie.Value, out requestCookieGuidValue))
             {
-                string cookieToken;
-                AntiForgery.GetTokens(requestCookie.Value, out cookieToken, out formToken);
+                resultFormToken = CreateFormToken(requestCookie.Value, context.User.Identity.Name);
             }
             else
             {
-                string cookieToken;
-                AntiForgery.GetTokens(null, out cookieToken, out formToken);
+                var cookieToken = Guid.NewGuid().ToString("N");
+                resultFormToken = CreateFormToken(cookieToken, context.User.Identity.Name);
+
                 var responseCookie = new HttpCookie(AntiXsrfTokenKey)
                 {
                     HttpOnly = true,
-                    Value = cookieToken,
-                    Expires = DateTime.Now.AddMinutes(10)
+                    Value = cookieToken
                 };
 
                 if (FormsAuthentication.RequireSSL && context.Request.IsSecureConnection)
@@ -38,7 +38,7 @@
                 context.Response.Cookies.Set(responseCookie);
             }
 
-            return formToken;
+            return resultFormToken;
         }
 
         public static void ValidateXsrfToken(HttpContext context)
@@ -49,7 +49,21 @@
 
                 var cookieTokenValue = requestCookie != null ? requestCookie.Value : string.Empty;
 
-                AntiForgery.Validate(cookieTokenValue, context.Request["X-CSRF-Token"]);
+                var expectedFormToken = CreateFormToken(cookieTokenValue, context.User.Identity.Name);
+
+                if (expectedFormToken != context.Request["X-CSRF-Token"])
+                {
+                    throw new InvalidOperationException("Validation of Anti-XSRF token failed.");
+                }
+            }
+        }
+
+        private static string CreateFormToken(string guid, string userName)
+        {
+            using (MD5 md5 = MD5.Create())
+            {
+                byte[] hash = md5.ComputeHash(Encoding.Default.GetBytes(guid + userName));
+                return BitConverter.ToString(hash).Replace("-", string.Empty);
             }
         }
     }
