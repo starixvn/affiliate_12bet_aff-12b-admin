@@ -4,6 +4,7 @@
 
 <div class="pad7">
   <form id="frmChangePass" name="frmChangePass" action="Handler/ChangePass.ashx" method="post" target="frChangePass" onsubmit="return CheckForm();">
+      <input type="hidden" id="X-CSRF-Token" name="X-CSRF-Token" value="{XsrfTokenFormValue}" />
     <div id="errMsg" style="display:none; width:266px;">
       <div id="error_item">
         <ul>
