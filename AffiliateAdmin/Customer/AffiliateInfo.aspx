@@ -141,7 +141,7 @@
         {
             var ajax= new Ajax.Request("../Handler/UpdAffInfo.ashx",{
                 method:'post',         
-                parameters:'func=2&lang=' + $('slPreferLang').value,     
+                parameters: 'func=2&lang=' + $('slPreferLang').value + "&X-CSRF-Token=" + $('X-CSRF-Token').value,
                 onComplete:function(data)
                 {
                     var arr = data.responseText.split("@");
