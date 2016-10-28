@@ -9,14 +9,14 @@
     {
         arrItem.clear();
         arrErr.clear();
-        if(isEmpty($("OldPass").value))
+        if(Common.isEmpty($("OldPass").value))
         {
             arrItem.push('OldPass');
             arrErr.push($("hdOldPass").value);
         }
         else
         {
-            if(isEmpty($("NewPassword").value))
+            if (Common.isEmpty($("NewPassword").value))
             {
                 arrItem.push('NewPassword');
                 arrErr.push($("hdPassRequire").value);
@@ -33,7 +33,7 @@
         if(arrItem.length > 0)
         {
             $('errMsg').show();
-            ShowError(arrErr, arrItem, "error_item");
+            Common.showError(arrErr, arrItem, "error_item");
             return false;
         }
         return true;
@@ -43,25 +43,25 @@
         arrErr.push(Msg);
         arrItem.push("OldPass");
         $('errMsg').show();
-        ShowError(arrErr, arrItem, "error_item");
-        ErrAlter(Msg);
+        Common.showError(arrErr, arrItem, "error_item");
+        Common.alertError(Msg);
     }
     function UpdateSucess(Msg) {
-        SuccAlter(Msg);
+        Common.alertSuccess(Msg);
     }
-    function ErrAlter(msg) {
+    function Common.alertError(msg) {
         $('errMsg').className = "";
         $('errMsg').show();
         $('error_item').innerHTML = msg;
         window.scroll(0, 0);
-        setTimeout("HideErr()", 3000);
+        setTimeout("Common.hideError()", 3000);
     }
-    function SuccAlter(msg) {
+    function Common.alertSuccess(msg) {
         $("errMsg").className = "done";
         $('errMsg').show();
         $('error_item').innerHTML = msg;
         window.scroll(0, 0);
-        setTimeout("HideErr()", 3000);
+        setTimeout("Common.hideError()", 3000);
     }
      window.onload=function()
         {

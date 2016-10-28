@@ -88,17 +88,11 @@ var Common = (function () {
     return {
         checkMail: function (value) {
             var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-            if (filter.test(value.trim()))
-                return true;
-            else
-                return false;
+            return filter.test(value.trim());
         },
 
         isEmpty: function (value) {
-            if (value == null || value.trim() == "")
-                return true;
-            else
-                return false;
+            return value == null || value.trim() == "";
         },
 
         openWindow: function (theURL, winName, features) {

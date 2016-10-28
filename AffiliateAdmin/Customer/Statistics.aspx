@@ -101,7 +101,7 @@
     }
     function Search()
     {
-        DelayReloadPage1();
+        Common.delayReloadPage1();
         $('frmSearch').submit();
     }
     function ShowPage(isShow)

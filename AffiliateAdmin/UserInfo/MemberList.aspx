@@ -12,7 +12,7 @@
 <script type="text/javascript">
     window.onload=function()
                 {
-                    EnableCalendar($("chkDate").className == "ic-uncheck" ? true : false);
+                    Common.enableCalendar($("chkDate").className == "ic-uncheck" ? true : false);
                     $("slType").value = $("hdType").value;
                 };
     function chkOnclick()
@@ -21,19 +21,19 @@
         {
             $("chkDate").className = "ic-check";
             $("isGetAll").value = "ic-check";
-            EnableCalendar(false);
+            Common.enableCalendar(false);
         }
         else
         {
             $("chkDate").className = "ic-uncheck"
             $("isGetAll").value = "ic-uncheck";
-            EnableCalendar(true);
+            Common.enableCalendar(true);
         }
     }
     function Search()
     {        
         $("frmSearch").submit();
-        DelayReloadPage1();
+        Common.delayReloadPage1();
     }
 </script>
 <!--/js-->

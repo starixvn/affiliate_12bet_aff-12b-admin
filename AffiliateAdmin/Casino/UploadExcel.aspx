@@ -44,11 +44,11 @@
         }
     }
     function UpdateErr(msg) {
-        ErrAlter(msg);
+        Common.alertError(msg);
     }
     function UpdateSucc(tbl) {
         $("hdHasData").value = "1";//Change status to has data
-        SuccAlter("Import data successfully!")
+        Common.alertSuccess("Import data successfully!")
         $("divData").innerHTML = tbl;
     }
     function searchCasino() {

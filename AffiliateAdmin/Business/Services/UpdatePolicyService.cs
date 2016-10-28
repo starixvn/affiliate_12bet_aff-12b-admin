@@ -83,7 +83,7 @@ namespace AffiliateAdmin.Business.Services
                 if (CastAide.AsInt32(dr.Outputs["errcode"]) != 0)
                 {
                     context.Response.ContentType = "text/html";
-                    context.Response.Write("parent.ErrAlter(\"" + Resources.Lang.UpdateRolePolicyErr + "\");");
+                    context.Response.Write("parent.Common.alertError(\"" + Resources.Lang.UpdateRolePolicyErr + "\");");
                 }
                 else
                 {
@@ -95,7 +95,7 @@ namespace AffiliateAdmin.Business.Services
                     {
                         context.Response.Write("parent.OpenUpdateMult('" + deptid + "','" + dept + "');");
                     }
-                    context.Response.Write("parent.SuccAlter('" + Resources.Lang.UpdateRolePolicySucc + "');");
+                    context.Response.Write("parent.Common.alertSuccess('" + Resources.Lang.UpdateRolePolicySucc + "');");
                 }
             }
         }
@@ -139,12 +139,12 @@ namespace AffiliateAdmin.Business.Services
             dbr = DataHandler.UserControl.UpdateGroupPolicy(groupPolicies, AppSettings.Session.CustID);
             if (CastAide.AsInt32(dbr.Outputs["errcode"]) != 0)
             {
-                context.Response.Write("parent.ErrAlter('" + dbr.Outputs["errmsg"] + "');");
+                context.Response.Write("parent.Common.alertError('" + dbr.Outputs["errmsg"] + "');");
             }
             else
             {
                 //context.Response.Write("parent.ListPolicyDep(" + groupId.ToString() + ",'" + dept + "');");
-                context.Response.Write("parent.SuccAlter('" + Resources.Lang.UpdateRolePolicySucc + "');");
+                context.Response.Write("parent.Common.alertSuccess('" + Resources.Lang.UpdateRolePolicySucc + "');");
             }
         }
     }

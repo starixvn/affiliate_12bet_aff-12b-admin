@@ -13,7 +13,7 @@
     }
     function DomainControlDel(id) {
         if (confirm("Are you sure you want to delete this domain settings?")) {
-            DelayReloadPage1();
+            Common.delayReloadPage1();
             var myajax = new Ajax.Request('../Handler/DomainControl.ashx', {
                 method: 'post',
                 parameters: {
@@ -23,12 +23,9 @@
                 onComplete: function (res) {
                     if (res.responseText == "1") {
                         location.href = location.href;
-                        //alert("Delete Successfully!");
-                        //setTimeout("location.href=location.href;", 3000);
                     }
                     else {
-                        ErrAlter(res.responseText);
-                        //HideDelayReloadPage();
+                        Common.alertError(res.responseText);
                     }
                 }
             });

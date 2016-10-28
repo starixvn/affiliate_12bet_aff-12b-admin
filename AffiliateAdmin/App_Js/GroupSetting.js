@@ -74,7 +74,7 @@ function editOnClick(event) {
     this.readOnly = true;
     var arr = this.id.split('_');    
     if (confirm('Are you sure you want to delete the commission group "'+ $("g" + arr[0]).innerHTML + '" ?')) {
-    DelayReloadPage1();
+    Common.delayReloadPage1();
     var ajax = new Ajax.Request("../Handler/CommGroupDel.ashx", {
     method: 'post',
     parameters: "params=" + arr[0],
@@ -86,7 +86,7 @@ function editOnClick(event) {
     else {
     location.href = location.href;
     }
-    HideDelayReloadPage();
+    Common.hideLoading();
     }
     });
         

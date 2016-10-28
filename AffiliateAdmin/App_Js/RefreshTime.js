@@ -40,7 +40,7 @@ function CountDown() {
 
 /* when paging enable, used to load data of specific page to the grid*/
 function LoadData(currPage) {
-    DelayReloadPage1();
+    Common.delayReloadPage1();
     try {
         if($("page"))
             $("page").value = currPage;

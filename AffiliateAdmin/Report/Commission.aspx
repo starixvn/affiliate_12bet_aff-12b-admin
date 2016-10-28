@@ -101,7 +101,7 @@
 
     function Search() {
         $("frmSearch").submit();
-        DelayReloadPage1();
+        Common.delayReloadPage1();
     }
 
     function Focus() {

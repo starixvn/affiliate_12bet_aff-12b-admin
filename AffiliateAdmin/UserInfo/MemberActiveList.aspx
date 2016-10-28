@@ -38,7 +38,7 @@
     }
 
     function CheckStatus() {
-        if (isEmpty($("txtUsername").value))
+        if (Common.isEmpty($("txtUsername").value))
             alert("Please input Deposit User Name!")
         else
             LoadData(1);
@@ -58,14 +58,14 @@
                     arrError.push("Members has been activated successfully!");
                     arrItem.push("errMsg");
                     $("errMsg").show();
-                    ShowError(arrError, arrItem, "error_item");
+                    Common.showError(arrError, arrItem, "error_item");
                     location.href = location.href;
                 }
                 else {
                     var errors = strdata.responseText.split(',');
                     if (errors[0] == "errMsg")//exceptional errors
                     {
-                        ErrAlter(errors[1]);
+                        Common.alertError(errors[1]);
                     }
                     else
                     if (errors[0] == "errUserNames")//user errors
@@ -77,7 +77,6 @@
                             }
                         }
                         setTimeout(function () { location.href = location.href; }, 3000);
-                        //DelayReloadPage2(3000);                        
                     }
                 }
             }

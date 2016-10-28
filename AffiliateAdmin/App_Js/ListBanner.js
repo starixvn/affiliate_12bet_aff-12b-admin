@@ -147,7 +147,7 @@ function ProcessResult(data) {
         tempDiv.innerHTML = sXmlBody;
         $("tblResult").removeChild($("result"));
         $("tblResult").appendChild(tempDiv.firstChild.firstChild);
-        InitDivChkBox();
+        Common.initDivCheckBox();
         if (maxNo == 0) {
             if ($$("div .pagesize") != null && $$("div .divpageleft") != null && $$("div .header_01") != null) {
                 $$("div .pagesize")[0].style.display = "none";

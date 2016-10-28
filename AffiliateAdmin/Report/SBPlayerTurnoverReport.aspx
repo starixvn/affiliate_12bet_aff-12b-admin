@@ -14,7 +14,7 @@
     
     function Init() {
 
-        EnableCalendar($("chkDate").className == "ic-uncheck" ? true : false);
+        Common.enableCalendar($("chkDate").className == "ic-uncheck" ? true : false);
         
         if ($("hdLanguage").value != "")
             $("slPreferLang").value = $("hdLanguage").value;
@@ -24,19 +24,19 @@
         if ($("chkDate").className == "ic-uncheck") {
             $("chkDate").className = "ic-check";
             $("isGetAll").value = "ic-check";
-            EnableCalendar(false);
+            Common.enableCalendar(false);
         }
         else {
             $("chkDate").className = "ic-uncheck";
             $("isGetAll").value = "ic-uncheck";
-            EnableCalendar(true);
+            Common.enableCalendar(true);
         }
     }
 
     function Search() {
         $("page").value = "1";
         $("frmSearch").submit();
-        DelayReloadPage1();
+        Common.delayReloadPage1();
     }
 </script>
 <!--/js-->

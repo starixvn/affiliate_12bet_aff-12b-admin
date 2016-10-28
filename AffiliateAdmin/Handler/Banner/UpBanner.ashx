@@ -23,7 +23,7 @@ public class UpBanner : IHttpHandler, IRequiresSessionState
         }
         else
         {
-            context.Response.Write("<script type=\"text/javascript\">parent.ErrAlter(\"" + resultInfo.Message + "\");</script>");
+            context.Response.Write("<script type=\"text/javascript\">parent.Common.alertError(\"" + resultInfo.Message + "\");</script>");
         }
     }
 

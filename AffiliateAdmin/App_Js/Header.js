@@ -69,7 +69,7 @@ function clock() {
 function ActiveMenuHead(id) {
     try {
         ActiveMenu(id);
-        parent.fMain.DelayReloadPage1();
+        parent.fMain.Common.delayReloadPage1();
     }
     catch(o){}
 }

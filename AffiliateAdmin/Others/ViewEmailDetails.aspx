@@ -15,13 +15,13 @@
         arrErr.push(Message);
         arrItem.push("errMsg");
         $("errMsg").show();
-        ShowError(arrErr, arrItem, "error_item");                        
+        Common.showError(arrErr, arrItem, "error_item");
         setTimeout("closePopup();", 2500);  
     }
     function UpdateFail(Message)
     {      
         arrErr.push(Message);
-        ErrAlter(arrErr);
+        Common.alertError(arrErr);
     }
     
     var paththeme = "{paththeme}";

@@ -44,11 +44,11 @@
             }
             $("hdMoreurl").value = $("hdMoreurl").value + $("txtSiteUrl" + i).value + ";";
         }
-        DelayReloadPage1();
+        Common.delayReloadPage1();
         return true;
     }
     function UpdateSuccess(msg, url, intReload) {
-        HideDelayReloadPage();
+        Common.hideLoading();
         if (parent.fInfo) {
             arrError.clear();
             arrItem.clear();
@@ -56,7 +56,7 @@
             $('errMsg').className = "done";
             $('errMsg').show();
             arrItem.push("error_item");
-            ShowError(arrError, arrItem, "error_item");
+            Common.showError(arrError, arrItem, "error_item");
             //var tmp = "";
             parent.fInfo.$("isReload").value = "2";
 
@@ -75,15 +75,15 @@
         arrItem.clear();
         arrError.push(msg);
         arrItem.push(itemFocus);
-        ShowError(arrError, arrItem, "error_item");
-        HideDelayReloadPage();
+        Common.showError(arrError, arrItem, "error_item");
+        Common.hideLoading();
     }
     function CheckSuccess() {
-        if (isEmpty($('txtFName').value)) {
+        if (Common.isEmpty($('txtFName').value)) {
             arrError.push(top.fMenu.Msg.FName);
             arrItem.push("txtFName");
         }
-        if (isEmpty($('txtLName').value)) {
+        if (Common.isEmpty($('txtLName').value)) {
             arrError.push(top.fMenu.Msg.LName);
             arrItem.push("txtLName");
         }
@@ -93,11 +93,11 @@
                 arrError.push(top.fMenu.Msg.ErrGender);
             }
         }
-        if (isEmpty($('txtAddress').value)) {
+        if (Common.isEmpty($('txtAddress').value)) {
             arrError.push(top.fMenu.Msg.Address);
             arrItem.push("txtAddress");
         }
-        if (isEmpty($('txtCity').value)) {
+        if (Common.isEmpty($('txtCity').value)) {
             arrError.push(top.fMenu.Msg.City);
             arrItem.push("txtCity");
         }
@@ -106,28 +106,28 @@
         //            arrError.push(top.fMenu.Msg.State);
         //            arrItem.push("txtState");
         //        }
-        if (isEmpty($('txtPost').value)) {
+        if (Common.isEmpty($('txtPost').value)) {
             arrError.push(top.fMenu.Msg.PostCode);
             arrItem.push("txtPost");
         }
-        if (isEmpty($('selCountry').value)) {
+        if (Common.isEmpty($('selCountry').value)) {
             arrError.push(top.fMenu.Msg.Country);
             arrItem.push("selCountry");
         }
-        if (!checkMail($('txtEmail').value)) {
+        if (!Common.checkMail($('txtEmail').value)) {
             arrError.push(top.fMenu.Msg.EmailValid);
             arrItem.push("txtEmail");
         }
-        if (isEmpty($('txtNumber').value)) {
+        if (Common.isEmpty($('txtNumber').value)) {
             arrError.push(top.fMenu.Msg.ContactNumber);
             arrItem.push("txtNumber");
         }
-        if (isEmpty($('txtMobile').value)) {
+        if (Common.isEmpty($('txtMobile').value)) {
             arrError.push(top.fMenu.Msg.MobileNumber);
             arrItem.push("txtMobile");
         }
 
-        if (isEmpty($("txtSiteUrl").value) && isEmpty($("txtNoWebsite").value)) {
+        if (Common.isEmpty($("txtSiteUrl").value) && isEmpty($("txtNoWebsite").value)) {
             arrError.push(top.fMenu.Msg.SiteUrl);
             arrItem.push("txtSiteUrl");
         }
@@ -135,7 +135,7 @@
         var listSites = $$(".sites");
         for (var i = 1; i < listSites.length; i++) {
             if (listSites[i]) {
-                if (isEmpty(listSites[i].value)) {
+                if (Common.isEmpty(listSites[i].value)) {
                     arrError.push("Website URL " + (i == 0 ? "" : (i + 1).toString()) + " is required");
                     arrItem.push(listSites[i].id);
                     break;
@@ -165,71 +165,71 @@
         }
         if (arrItem.length > 0) {
             $('errMsg').show();
-            ShowError(arrError, arrItem, "error_item");
+            Common.showError(arrError, arrItem, "error_item");
             return false;
         }
         return true;
     }
     function check12Bet() {
-        if (isEmpty($('txtBet12UserName').value)) {
+        if (Common.isEmpty($('txtBet12UserName').value)) {
             arrError.push(top.fMenu.Msg.UserName12Bet);
             arrItem.push("txtBet12UserName");
         }
     }
     function checkNeteller() {
-        if (isEmpty($('txtNetellerAccId').value)) {
+        if (Common.isEmpty($('txtNetellerAccId').value)) {
             arrError.push(top.fMenu.Msg.Neteller);
             arrItem.push("txtNetellerAccId");
         }
     }
     function checkMoneyBooker() {
-        if (isEmpty($('txtMoneyBookerEmail').value)) {
+        if (Common.isEmpty($('txtMoneyBookerEmail').value)) {
             arrError.push(top.fMenu.Msg.Moneybooker);
             arrItem.push("txtMoneyBookerEmail");
         }
         else {
-            if (!checkMail($('txtMoneyBookerEmail').value)) {
+            if (!Common.checkMail($('txtMoneyBookerEmail').value)) {
                 arrError.push(top.fMenu.Msg.MoneybookerValid);
                 arrItem.push("txtMoneyBookerEmail");
             }
         }
     }
     function checkWire() {
-        if (isEmpty($('txtBankName').value)) {
+        if (Common.isEmpty($('txtBankName').value)) {
             arrError.push(top.fMenu.Msg.BankName);
             arrItem.push("txtBankName");
         }
-        if (isEmpty($('txtBankAddress').value)) {
+        if (Common.isEmpty($('txtBankAddress').value)) {
             arrError.push(top.fMenu.Msg.BankAddress);
             arrItem.push("txtBankAddress");
         }
-        if (isEmpty($('txtBankAccName').value)) {
+        if (Common.isEmpty($('txtBankAccName').value)) {
             arrError.push(top.fMenu.Msg.BankAccName);
             arrItem.push("txtBankAccName");
         }
-        if (isEmpty($('txtBankAccNumber').value)) {
+        if (Common.isEmpty($('txtBankAccNumber').value)) {
             arrError.push(top.fMenu.Msg.BankAccNumber);
             arrItem.push("txtBankAccNumber");
         }
     }
     function checkCheque() {
-        if (isEmpty($('txtChequeFullName').value)) {
+        if (Common.isEmpty($('txtChequeFullName').value)) {
             arrError.push(top.fMenu.Msg.ChequeFullname);
             arrItem.push("txtChequeFullName");
         }
-        if (isEmpty($('txtChequeAddress').value)) {
+        if (Common.isEmpty($('txtChequeAddress').value)) {
             arrError.push(top.fMenu.Msg.ChequeAddress);
             arrItem.push("txtChequeAddress");
         }
-        if (isEmpty($('txtChequeCity').value)) {
+        if (Common.isEmpty($('txtChequeCity').value)) {
             arrError.push(top.fMenu.Msg.ChequeCity);
             arrItem.push("txtChequeCity");
         }
-        if (isEmpty($('txtChequeState').value)) {
+        if (Common.isEmpty($('txtChequeState').value)) {
             arrError.push(top.fMenu.Msg.ChequeState);
             arrItem.push("txtChequeState");
         }
-        if (isEmpty($('txtChequePostcode').value)) {
+        if (Common.isEmpty($('txtChequePostcode').value)) {
             arrError.push(top.fMenu.Msg.ChequePostcode);
             arrItem.push("txtChequePostcode");
         }
@@ -252,7 +252,7 @@
     function AddOneMoreURL() {
         var listSites = $$(".sites");
         var siteIndex = listSites.length;
-        if (isEmpty(listSites[siteIndex - 1].value)) {
+        if (Common.isEmpty(listSites[siteIndex - 1].value)) {
             alert("Please input Website URL " + siteIndex.toString());
             listSites[siteIndex - 1].focus();
             return;

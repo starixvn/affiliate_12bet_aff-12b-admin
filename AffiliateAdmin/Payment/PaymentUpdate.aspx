@@ -14,14 +14,14 @@
         if(radios[0].checked == false && radios[1].checked == false)
         {
             arrError.push($("AppErr").value);                       
-            ErrAlter(arrError);
+            Common.alertError(arrError);
             return false;
         }
         if(radios[0].checked)
             $("hdApprove").value = "Approved";
         if(radios[1].checked)
             $("hdApprove").value = "Rejected";
-        DelayReloadPage1();
+        Common.delayReloadPage1();
         return true;
     }
     function EnableUpdate(isLoad)
@@ -42,9 +42,9 @@
     function UpdateSuccess(msg)
     {
         scroll(0, 0);
-        ErrAlter(msg);
+        Common.alertError(msg);
         $("errMsg").className = "done";
-        setTimeout("parent.DelayReloadPage1();parent.location.href = parent.location.href.replace(/#/, '')", 2000); 
+        setTimeout("parent.Common.delayReloadPage1();parent.location.href = parent.location.href.replace(/#/, '')", 2000); 
     }
     function ReloadPage(msg)
     {
@@ -57,8 +57,8 @@
     }
     function UpdateErr(msg)
     {
-        ErrAlter(msg);
-        HideDelayReloadPage();
+        Common.alertError(msg);
+        Common.hideLoading();
     }
 </script>    
 <!--/js-->

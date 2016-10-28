@@ -18,7 +18,7 @@
    {
        if ($("txtaffdomain").value.trim() == "")
         {
-            ErrAlter(top.fMenu.Msg.ErrAffDomain);
+            Common.alertError(top.fMenu.Msg.ErrAffDomain);
             return;
         }
         var ajax = new Ajax.Request('../Handler/UpdateAffDomain.ashx', {
@@ -28,11 +28,11 @@
                 if (strdata.responseText == 'Ok') {
                     isUpdate = true;
                     $("errMsg").className = "done";
-                    SuccAlter(top.fMenu.Msg.UpdateSucc);
+                    Common.alertSuccess(top.fMenu.Msg.UpdateSucc);
                     setTimeout("parent.ibcWnd.close();", 2000);
                 }
                 else {
-                    ErrAlter(strdata.responseText);
+                    Common.alertError(strdata.responseText);
                 }
             }
         });  

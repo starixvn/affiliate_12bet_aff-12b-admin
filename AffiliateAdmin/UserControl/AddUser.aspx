@@ -7,17 +7,17 @@
     function CheckInput() {
 
         if ($('username').value == '') {
-            ErrAlter(top.fMenu.Msg.Username);
+            Common.alertError(top.fMenu.Msg.Username);
             $('username').focus();
             return false;
         }
         else if ($('password').value == '') {
-            ErrAlter(top.fMenu.Msg.PasswordRequired);
+            Common.alertError(top.fMenu.Msg.PasswordRequired);
             $('password').focus();
             return false;
         }
         else if ($('dep').value == 0 || $('dep').value == '') {
-            ErrAlter(top.fMenu.Msg.DepartmentChoose);
+            Common.alertError(top.fMenu.Msg.DepartmentChoose);
             $('dep').focus();
             return false;
         }
@@ -32,12 +32,12 @@
             return;
         }
         else {
-            DelayReloadPage1();
+            Common.delayReloadPage1();
             var ajax = new Ajax.Request('../Handler/AddUser.ashx', {
                 method: 'post',
                 parameters: { us: $('username').value, pw: $('password').value, ln: $('lastname').value, fn: $('firstname').value, gpid: $('dep').value, isex: isexist },
                 onComplete: function (strdata) {
-                    HideDelayReloadPage();
+                    Common.hideLoading();
                     if (strdata.responseText == 'Ok') {
                         var arrError = new Array();
                         var arrItem = new Array();
@@ -48,12 +48,12 @@
                         arrError.push("Administrator has been added successfully!");
                         arrItem.push("errMsg");
                         $("errMsg").show();
-                        ShowError(arrError, arrItem, "error_item");                        
+                        Common.showError(arrError, arrItem, "error_item");
                         setTimeout("ClosePopup();", 1500);
 
                     }
                     if (strdata.responseText != 'Ok') {
-                        ErrAlter(strdata.responseText);
+                        Common.alertError(strdata.responseText);
                     }
 
                 }
@@ -80,7 +80,7 @@
         var iChars = "!@#$%^&*()+=-[]\';,./{}|\":<>?";
         for (var i = 0; i < $('username').value.length; i++) {
             if (iChars.indexOf($('username').value.charAt(i)) != -1) {
-                ErrAlter(top.fMenu.Msg.Character);
+                Common.alertError(top.fMenu.Msg.Character);
                 return false;
             }
             else

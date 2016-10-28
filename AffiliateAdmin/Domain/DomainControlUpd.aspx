@@ -36,7 +36,7 @@
             return false;
         }
 
-        DelayReloadPage1();
+        Common.delayReloadPage1();
 
         var myajax = new Ajax.Request('../Handler/DomainControl.ashx', {
             method: 'post',
@@ -54,15 +54,15 @@
                     arrError.push("Update Successfully!");
                     arrItem.push("errMsg");
                     $("errMsg").show();
-                    ShowError(arrError, arrItem, "error_item");
-                    setTimeout("DelayReloadPage1();parent.ibcWnd.close();parent.location.href=parent.location.href;", 3000);
+                    Common.showError(arrError, arrItem, "error_item");
+                    setTimeout("Common.delayReloadPage1();parent.ibcWnd.close();parent.location.href=parent.location.href;", 3000);
                 }
                 else {
                     arrError.push(res.responseText);
                     arrItem.push("slMarket");
                     $('errMsg').show();
-                    ShowError(arrError, arrItem, "error_item");
-                    HideDelayReloadPage();
+                    Common.showError(arrError, arrItem, "error_item");
+                    Common.hideLoading();
                 }
             }
         });

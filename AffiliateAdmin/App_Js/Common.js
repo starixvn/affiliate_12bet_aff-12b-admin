@@ -1,16 +1,4 @@
-﻿var Common = (function () {
-    return {
-        blockUI: function () {
-            DelayReloadPage1();
-        },
-        unBlockUI: function () {
-            window.divMaskLoading.style.display = 'none';
-        }
-    };
-} ());
-
-
-function obj(id) {
+﻿function obj(id) {
     return document.getElementById(id);
 }
 Array.prototype.clear = function () {
@@ -90,115 +78,177 @@ String.format = function (format) {
     }
     return format;
 }
-function checkMail(value) {
-    var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-    if (filter.test(value))
-        return true;
-    else
-        return false;
-}
-function isEmpty(value) {
-    if (value == null || value.trim() == "")
-        return true;
-    else
-        return false;
-}
-function indexOfRadioChecked(name) {
-    var radios = document.getElementsByName(name);
-    var length = radios.length;
-    for (i = 0; i < length; i++)
-        if (radios[i].checked == 1)
-            return i;
-}
-function valueOfRadioChecked(name) {
-    var radios = document.getElementsByName(name);
-    var length = radios.length;
-    for (i = 0; i < length; i++)
-        if (radios[i].checked == 1)
-            return i;
-}
-function formatNumber(number) {
-    var str = String(number);
-    var end_i = str.indexOf('.');
+var Common = (function () {
+    function createMaskLoadingDiv() {
+        window.divMaskLoading = IBC.createElement("div");
+        var div1 = IBC.createElement("div");
 
-    if (str.indexOf(',') > 0) return str;
-    var endstr = "";
-    if (end_i != -1) {
-        endstr = str.substring(end_i);
-        var t = str.substring(0, str.length - end_i);
-        if (t.length < 4) return str;
-    }
-    else {
-        end_i = str.length;
+        window.divMaskLoading.className = "divframeloading"
+
+        window.divMaskLoading.style.filter = 'alpha(opacity=50)';
+        window.divMaskLoading.style.opacity = '0.5';
+        window.divMaskLoading.appendChild(div1);
+        document.body.appendChild(window.divMaskLoading);
     }
 
-    var count = 0;
-    var result = "";
-    for (i = end_i - 1; i >= 0; i--) {
-        if (count > 2) {
-            result = str.charAt(i) + "," + result;
-            count = 0;
+    return {
+        blockUI: function () {
+            Common.delayReloadPage1();
+        },
+        unBlockUI: function () {
+            window.divMaskLoading.style.display = 'none';
+        },
+        checkMail: function (value) {
+            var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            return filter.test(value);
+        },
+        isEmpty: function (value) {
+            return value == null || value.trim() == "";
+        },
+        toNumber: function (str) {
+            var value = "";
+            for (i = 0; i < str.length; i++) {
+                var c = str.charAt(i);
+                if (c != ',') value += c;
+            }
+            return value;
+        },
+        showError: function (errMsgs, tagIds, placeHolder) {
+            window.scroll(0, 0);
+            var errHtml = "";
+            $(placeHolder).style.display = (errMsgs.length == 0) ? 'none' : '';
+            for (var i = 0; i < errMsgs.length; ++i) {
+                errHtml += "<li><a class='err-msg' href='' onclick=\"$('" + tagIds[i] + "').focus(); return false;\">" + errMsgs[i] + "</a></li>";
+            }
+            $(placeHolder).innerHTML = "<ul>" + errHtml + "</ul>";
+            setTimeout(function () { $('errMsg').hide() }, 3000);
+        },
+        delayReloadPage: function (id, data) {
+            if (!window.divMaskLoading)
+                createMaskLoadingDiv();
+            if (!window.viewport)
+                IBC.calculateViewport();
+            window.divMaskLoading.style.width = (window.viewport.width - 20) + 'px';
+            window.divMaskLoading.style.height = window.viewport.height + 'px';
+            var div1 = IBC.createElement("div");
+            window.divMaskLoading.firstChild.style.left = Math.floor(window.viewport.width / 2) + 'px';
+            window.divMaskLoading.firstChild.style.top = document.body.scrollTop + 'px';
+
+            window.divMaskLoading.style.display = 'block';
+            setTimeout(function () {
+                window.divMaskLoading.style.display = 'none';
+                if ($(id)) {
+                    $(id).innerHTML = data;
+                }
+            }, 500);
+        },
+        delayReloadPage1: function () {
+            if (!window.divMaskLoading)
+                createMaskLoadingDiv();
+            if (!window.viewport)
+                IBC.calculateViewport();
+            window.divMaskLoading.style.width = (window.viewport.width - 3) + 'px';
+            window.divMaskLoading.style.height = window.viewport.height + 'px';
+            var div1 = IBC.createElement("div");
+            window.divMaskLoading.firstChild.style.left = Math.floor(window.viewport.width / 2) + 'px';
+            window.divMaskLoading.firstChild.style.top = document.body.scrollTop + 'px';
+            window.divMaskLoading.style.display = 'block';
+            setTimeout(function () {
+                window.divMaskLoading.style.display = 'none';
+            }, 30000);
+        },
+        delayReloadPage2: function (time) {
+            if (!window.divMaskLoading)
+                createMaskLoadingDiv();
+            if (!window.viewport)
+                IBC.calculateViewport();
+            window.divMaskLoading.style.width = (window.viewport.width - 20) + 'px';
+            window.divMaskLoading.style.height = window.viewport.height + 'px';
+            window.divMaskLoading.style.display = 'block';
+            var div1 = IBC.createElement("div");
+            window.divMaskLoading.firstChild.style.left = Math.floor(window.viewport.width / 2) + 'px';
+            window.divMaskLoading.firstChild.style.top = document.body.scrollTop + 'px';
+            setTimeout(function () { window.divMaskLoading.style.display = 'none'; location.href = location.href; }, time);
+        },
+        hideLoading: function () {
+            if (window.divMaskLoading)
+                setTimeout("window.divMaskLoading.style.display = 'none';", 400);
+        },
+        alertError: function (msg) {
+            if ($('errMsg') && $('errMsg')) {
+                $('errMsg').className = "";
+                $('errMsg').show();
+                $('error_msg').innerHTML = msg;
+                window.scroll(0, 0);
+                setTimeout("Common.hideError()", 10000);
+            }
+        },
+        alertSuccess: function (msg) {
+            if ($('errMsg') && $('errMsg')) {
+                $("errMsg").className = "done";
+                $('errMsg').show();
+                $('error_msg').innerHTML = msg;
+                window.scroll(0, 0);
+                setTimeout("Common.hideError()", 10000);
+            }
+        },
+        hideError: function () {
+            $('errMsg').style.display = 'none';
+        },
+        initDivCheckBox: function () {
+            var listChk = $$("div .chk");
+            if (listChk.length > 0) {
+                for (var i = 0; i < listChk.length; i++) {
+                    listChk[i].observe('click', chkOnclick);
+                }
+            }
+        },
+
+        enableCalendar: function (isEnable, dateFormat) {
+            if (isEnable) {
+                $("fdate").style.backgroundColor = "";
+                $("tdate").style.backgroundColor = "";
+                $("fdateTrigger").disabled = false;
+                $("tdateTrigger").disabled = false;
+
+                if (dateFormat === undefined) {
+                    dateFormat = "%m/%d/%Y";
+                }
+
+                Calendar.setup({
+                    inputField: "fdate",
+                    ifFormat: dateFormat,
+                    button: "fdateTrigger",
+                    singleClick: true,
+                    showsTime: false,
+                    showOthers: false,
+                    step: 1
+                });
+
+                Calendar.showMonthsCombo();
+
+                Calendar.setup({
+                    inputField: "tdate",
+                    ifFormat: dateFormat,
+                    button: "tdateTrigger",
+                    singleClick: true,
+                    showsTime: false,
+                    showOthers: false,
+                    step: 1
+                });
+            }
+            else {
+                $("fdate").style.backgroundColor = "#ECE9D8";
+                $("tdate").style.backgroundColor = "#ECE9D8";
+                $("fdateTrigger").disabled = true;
+                $("tdateTrigger").disabled = true;
+                $("fdateTrigger").onclick = "";
+                $("tdateTrigger").onclick = "";
+            }
         }
-        else {
-            result = str.charAt(i) + result;
-        }
-        count++;
-    }
-    return (result + endstr);
-}
+    };
+}());
 
-/**/
-function toNumber(str) {
-    var value = "";
-    for (i = 0; i < str.length; i++) {
-        var c = str.charAt(i);
-        if (c != ',') value += c;
-    }
-    return value;
-}
-//-----show date
-function showdate() {
-    if ($('day').innerHTML != null) {
-        var strMonth = new Array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
-        var dtime = new Date();
-        var time = (dtime.toTimeString().substr(0, 8)).toString();
-        var d = strMonth[dtime.getMonth()] + " " + dtime.getDate() + ", " + dtime.getFullYear() + " GMT +8";
-        dtime = time.split(':');
-        var AP = 'AM';
-        if (dtime[0] > 11) AP = 'PM';
-        if (dtime[0] == 0) dtime[0] = 12;
-        if (dtime[0] > 12) dtime[0] -= 12;
-        $('day').innerHTML = dtime.join(':') + " " + AP + " " + d;
-        setTimeout("showdate();", 1000);
-    }
-    else {
-        setTimeout("showdate();", 10000);
-    }
-}
-//--------------
-function MM_openBrWindow(theURL, winName, features) {
-    window.open(theURL, winName, features);
-}
-function ShowError(errMsgs, tagIds, placeHolder) {
-    window.scroll(0, 0);
-    //parent.scroll(0,0); 
-    var errHtml = "";
-    $(placeHolder).style.display = (errMsgs.length == 0) ? 'none' : '';
-    for (var i = 0; i < errMsgs.length; ++i) {
-        errHtml += "<li><a class='err-msg' href='' onclick=\"$('" + tagIds[i] + "').focus(); return false;\">" + errMsgs[i] + "</a></li>";
-    }
-    $(placeHolder).innerHTML = "<ul>" + errHtml + "</ul>";
-    setTimeout(function () { $('errMsg').hide() }, 3000);
-}
-function ShowError1(errMsgs, tagIds, placeHolder) {
-    window.scroll(0, 0);
-    var errHtml = "";
-    $(placeHolder).style.display = (errMsgs.length == 0) ? 'none' : '';
-    for (var i = 0; i < errMsgs.length; ++i) {
-        errHtml += "<li><a class='err-msg' href='' onclick=\"$('" + tagIds[i] + "').focus(); return false;\">" + errMsgs[i] + "</a></li>";
-    }
-    $(placeHolder).innerHTML = "<ul>" + errHtml + "</ul><br />";
-}
 
 //-------------------------------------------------------------------------
 // JScript File
@@ -247,7 +297,7 @@ IBC.calculateViewport = function () {
             window.viewport.width = document.documentElement.clientWidth;
             window.viewport.height = document.documentElement.clientHeight;
         }
-        // older versions of IE
+            // older versions of IE
         else {
             window.viewport.width = document.getElementsByTagName('body')[0].clientWidth;
             window.viewport.height = document.getElementsByTagName('body')[0].clientHeight;
@@ -273,116 +323,6 @@ IBC.createElement = function (type, parent) {
     return el;
 }
 
-//--------------------------------------------
-var timeDelay = "";
-function CreateMaskLoadingDiv() {
-
-    window.divMaskLoading = IBC.createElement("div");
-    var div1 = IBC.createElement("div");
-
-    window.divMaskLoading.className = "divframeloading"
-
-    window.divMaskLoading.style.filter = 'alpha(opacity=50)';
-    window.divMaskLoading.style.opacity = '0.5';
-    window.divMaskLoading.appendChild(div1);
-    document.body.appendChild(window.divMaskLoading);
-
-}
-
-function DelayReloadPage(id, data) {
-    if (!window.divMaskLoading)
-        CreateMaskLoadingDiv();
-    if (!window.viewport)
-        IBC.calculateViewport();
-    window.divMaskLoading.style.width = (window.viewport.width - 20) + 'px';
-    window.divMaskLoading.style.height = window.viewport.height + 'px';
-    var div1 = IBC.createElement("div");
-    window.divMaskLoading.firstChild.style.left = Math.floor(window.viewport.width / 2) + 'px';
-    window.divMaskLoading.firstChild.style.top = document.body.scrollTop + 'px';
-
-    window.divMaskLoading.style.display = 'block';
-    setTimeout(function () {
-        window.divMaskLoading.style.display = 'none';
-        if ($(id)) {
-            $(id).innerHTML = data;
-        }
-    }, 500);
-}
-function DelayReloadPage1() {
-    clearTimeout(timeDelay);
-    timeDelay = "";
-
-    if (!window.divMaskLoading)
-        CreateMaskLoadingDiv();
-    if (!window.viewport)
-        IBC.calculateViewport();
-    window.divMaskLoading.style.width = (window.viewport.width - 3) + 'px';
-    window.divMaskLoading.style.height = window.viewport.height + 'px';
-    var div1 = IBC.createElement("div");
-    window.divMaskLoading.firstChild.style.left = Math.floor(window.viewport.width / 2) + 'px';
-    window.divMaskLoading.firstChild.style.top = document.body.scrollTop + 'px';
-    window.divMaskLoading.style.display = 'block';
-    setTimeout(function () {
-        window.divMaskLoading.style.display = 'none';
-    }, 30000);
-}
-function DelayReloadPage2(time) {
-    if (!window.divMaskLoading)
-        CreateMaskLoadingDiv();
-    if (!window.viewport)
-        IBC.calculateViewport();
-    window.divMaskLoading.style.width = (window.viewport.width - 20) + 'px';
-    window.divMaskLoading.style.height = window.viewport.height + 'px';
-    window.divMaskLoading.style.display = 'block';
-    var div1 = IBC.createElement("div");
-    window.divMaskLoading.firstChild.style.left = Math.floor(window.viewport.width / 2) + 'px';
-    window.divMaskLoading.firstChild.style.top = document.body.scrollTop + 'px';
-    setTimeout(function () { window.divMaskLoading.style.display = 'none'; location.href = location.href; }, time);
-}
-function HideDelayReloadPage() {
-    clearTimeout(timeDelay);
-    timeDelay = "";
-    if (window.divMaskLoading)
-        setTimeout("window.divMaskLoading.style.display = 'none';", 400);
-}
-// start up script ---------------------------
-IBC.addEvent(window, "load", _startup);
-var arrMenu = new Array("menu1@Home/Home.aspx", "menu2@Customer/AffDefault.aspx", "menu3@UserInfo/AffiliateList.aspx, Payment/PaymentRequest.aspx, Others/EmailHistory.aspx, GroupSetting/GroupSetting.aspx",
-        "menu4@UserInfo/MemberListAll.aspx", "menu5@Report/MemberReport.aspx", "menu6@Media/Listbanner.aspx", "menu7@Others/Message.aspx", "menu8@Exchange/AffRate.aspx", "menu9@UserControl/ListUser.aspx, UserControl/ListDepartment.aspx", "menu10@Domain/AffiliateDomain.aspx");
-function _startup() {/*
-    HideDelayReloadPage();
-    IBC.calculateViewport();
-    var lstSubmenu = $$("li a span");
-    if(lstSubmenu.length > 0)
-        for(var i = 0; i < lstSubmenu.length; i++)
-        {
-            lstSubmenu[i].observe('click', DelayReloadPage1);
-        }
-    var itemFocus = "";
-    var url = location.href;    
-    for(var i = 0; i < arrMenu.length; i++)
-    {
-        var menuItem = arrMenu[i].split("@");
-        var listItem = menuItem[1].split(",");
-        for(var j = 0; j < listItem.length; j ++)
-        {
-            //alert(menuItem[1]);
-            if(url.indexOf(listItem[j].trim()) >= 0)
-            {
-                itemFocus = menuItem[0];                
-                break;
-            }
-        }
-    }    
-    if(itemFocus != "")
-        top.fMenu.ActiveMenu(itemFocus);*/
-}
-/*-----End script-----*/
-IBC.addEvent(window, "unload", _end);
-function _end() {
-    HideDelayReloadPage();
-}
-
 function GotoPage(pageIndex, maxPage) {
     var currPage = parseInt($("page").value);
     if (currPage == 1 && pageIndex <= 1)
@@ -394,41 +334,6 @@ function GotoPage(pageIndex, maxPage) {
     LoadData(pageIndex);
 }
 
-function ErrAlter(msg) {
-    if ($('errMsg') && $('errMsg')) {
-        $('errMsg').className = "";
-        $('errMsg').show();
-        $('error_msg').innerHTML = msg;
-        window.scroll(0, 0);
-        setTimeout("HideErr()", 10000);
-    }
-}
-function SuccAlter(msg) {
-    if ($('errMsg') && $('errMsg')) {
-        $("errMsg").className = "done";
-        $('errMsg').show();
-        $('error_msg').innerHTML = msg;
-        window.scroll(0, 0);
-        setTimeout("HideErr()", 10000);
-    }
-}
-function ErrAlter2(msg) {
-    $('errMsg2').style.display = 'block';
-    $('error_msg2').innerHTML = msg;
-    setTimeout("$('errMsg2').style.display='none';", 3000);
-}
-function HideErr() {
-    $('errMsg').style.display = 'none';
-}
-
-function InitDivChkBox() {
-    var listChk = $$("div .chk");
-    if (listChk.length > 0) {
-        for (var i = 0; i < listChk.length; i++) {
-            listChk[i].observe('click', chkOnclick);
-        }
-    }
-}
 
 function chkOnclick(event) {
     var element = Event.element(event);
@@ -473,47 +378,4 @@ function DoCalFull(url, title, width, heigh, top, left) {
 function ReloadPage() {
     var url = location.href;
     location.href = url.substr(0, url.indexOf("#") > 0 ? url.indexOf("#") : url.length);
-}
-
-function EnableCalendar(isEnable, dateFormat) {
-    if (isEnable) {
-        $("fdate").style.backgroundColor = "";
-        $("tdate").style.backgroundColor = "";
-        $("fdateTrigger").disabled = false;
-        $("tdateTrigger").disabled = false;
-
-        if (dateFormat === undefined) {
-            dateFormat = "%m/%d/%Y";
-        }
-
-        Calendar.setup({
-            inputField: "fdate",
-            ifFormat: dateFormat,
-            button: "fdateTrigger",
-            singleClick: true,
-            showsTime: false,
-            showOthers: false,
-            step: 1
-        });
-
-        Calendar.showMonthsCombo();
-
-        Calendar.setup({
-            inputField: "tdate",
-            ifFormat: dateFormat,
-            button: "tdateTrigger",
-            singleClick: true,
-            showsTime: false,
-            showOthers: false,
-            step: 1
-        });
-    }
-    else {
-        $("fdate").style.backgroundColor = "#ECE9D8";
-        $("tdate").style.backgroundColor = "#ECE9D8";
-        $("fdateTrigger").disabled = true;
-        $("tdateTrigger").disabled = true;
-        $("fdateTrigger").onclick = "";
-        $("tdateTrigger").onclick = "";
-    }
 }

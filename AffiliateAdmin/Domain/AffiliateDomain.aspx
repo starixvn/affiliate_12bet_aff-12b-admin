@@ -22,7 +22,7 @@
                         location.href = location.href;
                     }
                     if (strdata.responseText != 'Ok') {
-                        ErrAlter(strdata.responseText);
+                        Common.alertError(strdata.responseText);
                     }
 
                 }

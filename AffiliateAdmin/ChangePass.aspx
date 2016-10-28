@@ -9,10 +9,10 @@
     {
         arrItem.clear();
         arrErr.clear();        
-        if(isEmpty($("NewPassword").value))
+        if (Common.isEmpty($("NewPassword").value))
         {               
             arrErr.push($("hdPassRequire").value);
-            ErrAlter(arrErr);
+            Common.alertError(arrErr);
             $("NewPassword").focus();
             return false;
         }
@@ -21,7 +21,7 @@
             if($("ConfirmPassword").value != $("NewPassword").value)
             {                              
                 arrErr.push($("hdPassConfirm").value);                
-                ErrAlter(arrErr);
+                Common.alertError(arrErr);
                 $("ConfirmPassword").focus();
                 return false;
             }
@@ -34,14 +34,14 @@
         arrItem.push("errMsg");
         $("errMsg").className = "done";
         $("errMsg").show();        
-        ShowError(arrErr, arrItem, "error_item");
+        Common.showError(arrErr, arrItem, "error_item");
         setTimeout("closePopup();", 2500);  
     }
     function UpdateFail(Message)
     {   
         $("errMsg").className = "";   
         arrErr.push(Message);
-        ErrAlter(arrErr);
+        Common.alertError(arrErr);
     }
     function closePopup(){
         if(parent.ibcWnd)

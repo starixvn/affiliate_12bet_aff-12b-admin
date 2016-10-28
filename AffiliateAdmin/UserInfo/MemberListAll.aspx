@@ -54,10 +54,10 @@
                 parameters: param,
                 onComplete: function(data) {
                     if (data.responseText == "") {
-                        SuccAlter("Member has been removed suseccfully");
+                        Common.alertSuccess("Member has been removed suseccfully");
                     }
                     else {
-                        ErrAlter(data.responseText);
+                        Common.alertError(data.responseText);
                     }
                     setTimeout("LoadData($('page').value);", 3000);
                 }

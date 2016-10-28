@@ -18,40 +18,40 @@
         isEdit = true;
         arrItem.clear();
         arrError.clear();
-        if (isEmpty($("txtAdjust").value.trim())) {
-            ErrAlter("The amount is required");
+        if (Common.isEmpty($("txtAdjust").value.trim())) {
+            Common.alertError("The amount is required");
             isEdit = false;
             return false;
         }
         var txtAdj = 0;
         var adjVal = 0;
         try {
-            txtAdj = toNumber($("txtAdjust").value)
+            txtAdj = Common.toNumber($("txtAdjust").value)
             adjVal = parseFloat(txtAdj);
             if (!(txtAdj.isNumber()) || adjVal == 0) {
-                ErrAlter("The amount is invalid");
+                Common.alertError("The amount is invalid");
                 isEdit = false;
                 return false;
             }
         }
-        catch (o) { ErrAlter("The amount is invalid"); return false; }
+        catch (o) { Common.alertError("The amount is invalid"); return false; }
 
-        DelayReloadPage1();
+        Common.delayReloadPage1();
         var ajax = new Ajax.Request('../Handler/Adjustment.ashx', {
             method: 'post',
             parameters: { custid: $('custid').value, adj: adjVal, des: $('txtDescript').value },
             onComplete: function (strdata) {
-                HideDelayReloadPage();
+                Common.hideLoading();
                 var result = strdata.responseText.split("@");
                 if (result[0] == '0') {
                     //reload this page and lef panel
                     $("errMsg").className = "done";
-                    SuccAlter(result[1]);                   
+                    Common.alertSuccess(result[1]);                   
                     parent.fInfo.$("isReload").value = "4";
                     setTimeout("parent.fInfo.$('frmSearch').submit();", 1500);
                 }
                 else {
-                    ErrAlter(result[1]);
+                    Common.alertError(result[1]);
                     isEdit = false;
                 }
             }

@@ -1,5 +1,5 @@
 ﻿function GetCheck() {
-    DelayReloadPage1();    
+    Common.delayReloadPage1();    
     setTimeout("UpdatePolicy();", 2000);
  }
 function CancelUpd()
@@ -48,17 +48,17 @@ function UpdateStatus(custid,isclose,depid,depname)
         parameters: "cstid=" + custid + "&iscls=" + isclose,
         onComplete: function(strdata) {
             if (strdata.responseText == 'Ok') {
-                SuccAlter("The status has been updated successfully!");
+                Common.alertSuccess("The status has been updated successfully!");
                 if (depid == 0 && depname == '') {
-                    DelayReloadPage2(2000);
+                    Common.delayReloadPage2(2000);
                 }
                 else {
-                    DelayReloadPage1();
+                    Common.delayReloadPage1();
                     setTimeout("ListUser(" + depid + ",'" + depname + "', true);", 2000);
                 }
             }
             if (strdata.responseText != 'Ok' && strdata.responseText != 'Fail') {
-                ErrAlter(strdata.responseText);
+                Common.alertError(strdata.responseText);
                 if (isclose == "False") {
                     $(custid).checked = true;
                 }
@@ -86,23 +86,11 @@ function ListPolicyUser(custid,depname,depid,islstuser)
         method: 'post',
         parameters: { custid: custid, depname: depname, depid: depid, isLstUser: islstuser },
         onComplete: function(strdata) {
-            //alert(strdata.responseText);
-            //DelayReloadPage('listPolicy', strdata.responseText);
-            //setTimeout("location.href='#idfocus';", 1000);
         }
     });    
 }
 function LoadMultUpdate(arrCustId,arrUser,dept,deptid,isListUser)
 {            
-    /*var myajax= new Ajax.Request("../Handler/AccountMultPolicy.ashx",{
-        asynchronous:true,
-        method:'post',        
-        parameters:{custId:arrCustId,user:arrUser,dept:dept,deptid:deptid,isLstUser:isListUser},
-        onComplete:function(strdata)
-        {
-            DelayReloadPage('listPolicy',strdata.responseText);
-        }               
-    });*/    
     if(arrUser.length > 64)
     {
         arrUser = arrUser.substr(0, 60);        
@@ -149,7 +137,7 @@ function OpenUpdateMult(deptid,dept,isListUser)
     else
     {
         
-        ErrAlter("Please choose at least one account.");                    
+        Common.alertError("Please choose at least one account.");                    
                         
     }
 }

@@ -125,11 +125,11 @@
         if($("isGetAll").value === "ic-check")
         {
             $("frmSearch").submit();
-            DelayReloadPage1();
+            Common.delayReloadPage1();
         }
         else {
             $("frmSearch").submit();
-            DelayReloadPage1();
+            Common.delayReloadPage1();
         }
     }
 

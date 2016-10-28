@@ -13,13 +13,13 @@
     {
         if($('username').value=='')
         {
-            ErrAlter(top.fMenu.Msg.Username);                                 
+            Common.alertError(top.fMenu.Msg.Username);                                 
             $('username').focus();
             return false;
         }       
         else if($('dep').value==0 || $('dep').value=='')
         {
-            ErrAlter(top.fMenu.Msg.DepartmentChoose);
+            Common.alertError(top.fMenu.Msg.DepartmentChoose);
             $('dep').focus();
             return false;
         }
@@ -40,7 +40,7 @@
                         location.href = '../Alert.aspx?code=2&user=' + $('username').value + '&link=UserControl/ListUser.aspx';
                     }
                     if (strdata.responseText != 'Ok') {
-                        ErrAlter(strdata.responseText);
+                        Common.alertError(strdata.responseText);
                     }
                 }
             });  

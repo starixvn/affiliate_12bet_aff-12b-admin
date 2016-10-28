@@ -6,7 +6,6 @@
 <script type="text/javascript" src="../App_Js/IBCWnd/IBCWnd.js"></script>
 <script type="text/javascript">
     window.onload = MyFocus;
-    //DelayReloadPage1();
     var time = 0;//set Timeout for clock refresh
     var timer = null;//set Timeout for choose refresh time
     var timePage = "";//set Timeout for go to page

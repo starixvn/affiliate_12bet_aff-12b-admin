@@ -115,7 +115,7 @@ var StringBuilder = function() {
                 if(!confirm(alertText))
                     return;
             }
-            DelayReloadPage1();
+            Common.delayReloadPage1();
             
             var ajax = new Ajax.Request("../Handler/CommGroupUpd.ashx", {
                 method: 'post',
@@ -135,7 +135,7 @@ var StringBuilder = function() {
                     if (GroupSetting.isApproved) {                        
                         parent.parent.location.href = parent.parent.location.href.replace(/#/, ""); 
                     }
-                    HideDelayReloadPage();
+                    Common.hideLoading();
                 }
             });                         
            }

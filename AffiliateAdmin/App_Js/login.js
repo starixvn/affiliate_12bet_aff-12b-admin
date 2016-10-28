@@ -14,12 +14,12 @@ function setvaluefocus(e, isok, id) {
 
 function ExcLogin() {
     if ($('txtun').value == '') {
-        ErrAlter('User Name is empty. Please check!');
+        Common.alertError('User Name is empty. Please check!');
         $('txtun').focus();
     }
 
     if ($('txtpw').value == '') {
-        ErrAlter('Password is empty. Please check!');
+        Common.alertError('Password is empty. Please check!');
         $('txtpw').focus();
     }
 

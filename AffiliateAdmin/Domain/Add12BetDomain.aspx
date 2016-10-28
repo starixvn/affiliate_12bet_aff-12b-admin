@@ -17,7 +17,7 @@
    {
        if ($('txt12betdomain').value == '')
         {
-            ErrAlter(top.fMenu.Msg._12BetDomain);
+            Common.alertError(top.fMenu.Msg._12BetDomain);
             $('txt12betdomain').focus();
             return false;
         }
@@ -43,12 +43,12 @@
                         arrError.push("12Bet Domain has been added successfully!");
                         arrItem.push("errMsg");
                         $("errMsg").show();
-                        ShowError(arrError, arrItem, "error_item");
-                        DelayReloadPage1();                       
+                        Common.showError(arrError, arrItem, "error_item");
+                        Common.delayReloadPage1();                       
                         setTimeout("ClosePopup();", 3000);
                     }
                     if (strdata.responseText != 'Ok') {
-                        ErrAlter(strdata.responseText);
+                        Common.alertError(strdata.responseText);
                     }
 
                 }
