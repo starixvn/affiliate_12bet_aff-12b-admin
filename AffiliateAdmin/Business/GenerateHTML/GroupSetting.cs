@@ -439,7 +439,7 @@ namespace GenerateHTML
 
             JavaScriptSerializer js = new JavaScriptSerializer();
 
-            
+            TemplateHandler.Assign(ref settingTemplate, "XsrfTokenFormValue", AntiForgeryHelper.GenerateXsrfFormToken(HttpContext.Current));
             TemplateHandler.Assign(ref settingTemplate, "SportStatusColor_val", js.Serialize(SportStatusColor.GetInstance()));
             TemplateHandler.Assign(ref settingTemplate, "IconSportStatus_val", js.Serialize(IconSportStatus.GetInstance()));
             TemplateHandler.Assign(ref settingTemplate, "SportTabSwitchIcon_val", js.Serialize(SportTabSwitchIcon.GetInstance()));
@@ -758,9 +758,9 @@ namespace GenerateHTML
                 obj.description = string.Empty;
                 obj.groupName = string.Empty;
             }
-           
-            
 
+
+            TemplateHandler.Assign(ref settingTemplate, "XsrfTokenFormValue", AntiForgeryHelper.GenerateXsrfFormToken(HttpContext.Current));
             TemplateHandler.Assign(ref settingTemplate, "SportStatusColor_val", js.Serialize(SportStatusColor.GetInstance()));
             TemplateHandler.Assign(ref settingTemplate, "IconSportStatus_val", js.Serialize(IconSportStatus.GetInstance()));
             TemplateHandler.Assign(ref settingTemplate, "SportTabSwitchIcon_val", js.Serialize(SportTabSwitchIcon.GetInstance()));

@@ -119,7 +119,10 @@ var StringBuilder = function() {
             
             var ajax = new Ajax.Request("../Handler/CommGroupUpd.ashx", {
                 method: 'post',
-                parameters: { params: Object.toJSON(GroupSetting) },
+                parameters: {
+                    params: Object.toJSON(GroupSetting),
+                    "X-CSRF-Token": $('X-CSRF-Token').value
+                },
                 onComplete: function(data) {
                     var result = data.responseText;
                     if (result != "")

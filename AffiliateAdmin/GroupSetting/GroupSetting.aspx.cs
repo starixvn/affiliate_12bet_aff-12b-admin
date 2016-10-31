@@ -11,8 +11,8 @@ public partial class GroupSetting : IBCPage
     {
        
         string content = TemplateHandler.LoadTemplate("GroupSetting/GroupSetting.htm");
+        TemplateHandler.Assign(ref content, "XsrfTokenFormValue", _XsrfTokenFormValue);
         TemplateHandler.Assign(ref content, "GroupName", Resources.Lang.GroupName);
-      //  TemplateHandler.Assign(ref content, "No", Resources.Lang.No);
         TemplateHandler.Assign(ref content, "Name", Resources.Lang.Name);
         TemplateHandler.Assign(ref content, "Description", Resources.Lang.Description);
         TemplateHandler.Assign(ref content, "Creator", Resources.Lang.Creator);
@@ -27,10 +27,6 @@ public partial class GroupSetting : IBCPage
         TemplateHandler.Assign(ref content, "MinQM", Resources.Lang.MinQM);
         TemplateHandler.Assign(ref content, "MaxQM", Resources.Lang.MaxQM);
         TemplateHandler.Assign(ref content, "Comm", Resources.Lang.Comm);
-       /* TemplateHandler.Assign(ref content, "Bonus", Resources.Lang.Bonus);
-        TemplateHandler.Assign(ref content, "Adjustment", Resources.Lang.Adjustment);
-        TemplateHandler.Assign(ref content, "MKT", Resources.Lang.MKT);
-        TemplateHandler.Assign(ref content, "PSP", Resources.Lang.PSP);*/
         TemplateHandler.Assign(ref content, "MinAmount_Explain", Resources.Lang.MinAmountExplain);
         TemplateHandler.Assign(ref content, "MaxAmount_Explain", Resources.Lang.MaxAmountExplain);
         TemplateHandler.Assign(ref content, "MinQM_Explain", Resources.Lang.MinQMExplain);
