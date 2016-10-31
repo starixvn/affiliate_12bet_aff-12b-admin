@@ -15,7 +15,10 @@
         Common.delayReloadPage1();
         var ajax = new Ajax.Request('../Handler/Note.ashx', {
             method: 'post',
-            parameters: { status: 1, custid: $("custid").value, note: $("txtNote").value.trim() },
+            parameters: {
+                status: 1, custid: $("custid").value, note: $("txtNote").value.trim(),
+                "X-CSRF-Token": $('X-CSRF-Token').value
+            },
             onComplete: function (strdata)//Get list note here
             {
                 Common.hideLoading();
@@ -26,7 +29,7 @@
                     Common.alertSuccess(top.frames[0].Msg.NoteAdd);
                 }
                 else {
-                    Common.alertError(returnData[1]);                   
+                    Common.alertError(returnData[1]);
                 }
             }
         });
@@ -42,12 +45,15 @@
         Common.delayReloadPage1();
         var ajax = new Ajax.Request('../Handler/Note.ashx', {
             method: 'post',
-            parameters: { status: 2, id: $("noteid").value, note: $("txtNote").value.trim(), custid: $("custid").value },
+            parameters: {
+                status: 2, id: $("noteid").value, note: $("txtNote").value.trim(), custid: $("custid").value,
+                "X-CSRF-Token": $('X-CSRF-Token').value
+            },
             onComplete: function (strdata)//Get list note here
             {
                 Common.hideLoading();
                 var returnData = strdata.responseText.split("@");
-                if (returnData[0] == 'ok') {                  
+                if (returnData[0] == 'ok') {
                     $("errMsg").className = "done";
                     Common.alertSuccess(top.frames[0].Msg.UpdateSucc);
                     setTimeout("parent.LoadData(1);", 1500);

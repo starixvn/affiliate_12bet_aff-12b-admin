@@ -9,6 +9,7 @@ public partial class UserInfo_Adjustment : IBCPage
     protected void Page_Load(object sender, EventArgs e)
     {
         string strTpl = TemplateHandler.LoadTemplate("UserInfo/Adjustment.htm");
+        TemplateHandler.Assign(ref strTpl, "XsrfTokenFormValue", _XsrfTokenFormValue);
         TemplateHandler.Assign(ref strTpl, "affiliate", Resources.Lang.Affiliate);
         TemplateHandler.Assign(ref strTpl, "balforward", Resources.Lang.BalanceForward);
         TemplateHandler.Assign(ref strTpl, "adjust", Resources.Lang.Amount);

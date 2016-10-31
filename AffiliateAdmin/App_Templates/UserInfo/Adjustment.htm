@@ -1,5 +1,6 @@
-﻿<form id="frmSearch" name="frmSearch" method="get" onsubmit="return Adjust();">
-{submenu}
+﻿{submenu}
+<form id="frmSearch" name="frmSearch" method="get" onsubmit="return Adjust();">
+    <input type="hidden" id="X-CSRF-Token" name="X-CSRF-Token" value="{XsrfTokenFormValue}" />
 <div id="errMsg" style="display: none; width: 370px;">
     <div id="error_item">
         <ul>
