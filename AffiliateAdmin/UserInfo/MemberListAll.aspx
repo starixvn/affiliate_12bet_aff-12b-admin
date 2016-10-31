@@ -51,7 +51,7 @@
             param = "ibccustid=" + ibccustid;
             var ajax = new Ajax.Request("../Handler/DeleteMember.ashx", {
                 method: "post",
-                parameters: param,
+                parameters: param + "&X-CSRF-Token=" + $('X-CSRF-Token').value,
                 onComplete: function(data) {
                     if (data.responseText == "") {
                         Common.alertSuccess("Member has been removed suseccfully");

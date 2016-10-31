@@ -10,7 +10,7 @@ namespace AffiliateUser.Business.Services
     {
         private const int MinAvailableDay = 8;
 
-        private const int MaxAvailableDay = 31;
+        private const int MaxAvailableDay = 15;
 
         public void RequestPayout(HttpContext context)
         {

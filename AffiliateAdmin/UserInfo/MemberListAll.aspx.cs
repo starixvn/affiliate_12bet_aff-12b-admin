@@ -16,6 +16,7 @@ public partial class UserInfo_MemberListAll : IBCPage
     protected void Page_Load(object sender, EventArgs e)
     {
         string strTpl = TemplateHandler.LoadTemplate("UserInfo/MemListAll.htm");
+        TemplateHandler.Assign(ref strTpl, "XsrfTokenFormValue", _XsrfTokenFormValue);
         TemplateHandler.Assign(ref strTpl, "action", Resources.Lang.Action);
         TemplateHandler.Assign(ref strTpl, "Edit", Resources.Lang.Edit);
         TemplateHandler.Assign(ref strTpl, "username-text", Resources.Lang.Username);

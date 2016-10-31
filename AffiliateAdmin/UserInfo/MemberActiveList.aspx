@@ -50,7 +50,10 @@
 
         var ajax = new Ajax.Request('../Handler/ActiveMember.ashx', {
             method: 'post',
-            parameters: { usernames: usernames },
+            parameters: {
+                usernames: usernames,
+                "X-CSRF-Token": $('X-CSRF-Token').value
+            },
             onComplete: function (strdata) {
 
                 if (strdata.responseText == 'Ok') {

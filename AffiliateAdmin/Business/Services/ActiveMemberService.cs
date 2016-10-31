@@ -1,4 +1,5 @@
 ﻿using System.Web;
+using Affiliate.Infrastructure.Helpers;
 using AffiliateAdmin.Business.Constants;
 
 namespace AffiliateAdmin.Business.Services
@@ -8,6 +9,16 @@ namespace AffiliateAdmin.Business.Services
         public void ActiveMember(HttpContext context)
         {
             context.Response.ContentType = "text/html";
+            try
+            {
+                AntiForgeryHelper.ValidateXsrfToken(context);
+            }
+            catch
+            {
+                context.Response.Write("errMsg, " + Resources.Lang.Err500);
+                return;
+            }
+
             if (!Common.HasHostPermission(AppSettings.Session.CustID, PermissionNames.ActiveMembers))
             {
                 context.Response.Write("errMsg, You don't have permission to perform this action.");
