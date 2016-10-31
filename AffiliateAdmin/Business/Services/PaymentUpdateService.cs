@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web;
+using Affiliate.Infrastructure.Helpers;
 using DNAide.Core;
 using DNAide.Utils;
 using DNAide.Web;
@@ -11,6 +12,17 @@ namespace AffiliateAdmin.Business.Services
         public void PaymentUpdate(HttpContext context)
         {
             context = IBCHandler.InitializeCulture(context);
+
+            try
+            {
+                AntiForgeryHelper.ValidateXsrfToken(context);
+            }
+            catch
+            {
+                context.Response.Write("<script type='text/javascript'>parent.UpdateErr(\"" + Resources.Lang.Err500 + "\");</script>");
+                return;
+            }
+
             try
             {
                 if (!string.IsNullOrEmpty(context.Request["hdApprove"]))
