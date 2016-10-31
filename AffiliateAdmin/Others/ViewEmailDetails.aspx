@@ -39,8 +39,7 @@
     }
     function DeleteMessage(msgList) {
         try {
-            var params;
-            params = "params=" + msgList;
+            var params = "params=" + msgList + "&X-CSRF-Token=" + $('X-CSRF-Token').value;
 
             var ajax = new Ajax.Request("../Handler/DeleteMailList.ashx", {
                 method: 'post',

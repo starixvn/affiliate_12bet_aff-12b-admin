@@ -7,6 +7,7 @@ public partial class Others_EmailHistory : IBCPage
     protected void Page_Load(object sender, EventArgs e)
     {
         string content = TemplateHandler.LoadTemplate("Others/EmailHistory.htm");
+        TemplateHandler.Assign(ref content, "XsrfTokenFormValue", _XsrfTokenFormValue);
         TemplateHandler.Assign(ref content, "EmailHistory", Resources.Lang.EmailHistory);
         TemplateHandler.Assign(ref content, "Search", Resources.Lang.SearchBy);
         TemplateHandler.Assign(ref content, "All", Resources.Lang.All);
