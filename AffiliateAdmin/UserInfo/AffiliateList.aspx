@@ -56,7 +56,7 @@
             //Call ajax to remove this aff in favorite list
             var ajax = new Ajax.Request("../Handler/Favorite.ashx", {
                 method: 'post',
-                parameters: "affid=" + element.id + "&action=0",
+                parameters: "affid=" + element.id + "&action=0" + "&X-CSRF-Token=" + $('X-CSRF-Token').value,
                 onComplete: function(data) {
                     var result = data.responseText.split(";");
                     if(result[0] != "0")
@@ -73,7 +73,7 @@
             //Call ajax to add this aff in favorite list
             var ajax = new Ajax.Request("../Handler/Favorite.ashx", {
                 method: 'post',
-                parameters: "affid=" + element.id + "&action=1",
+                parameters: "affid=" + element.id + "&action=1" + "&X-CSRF-Token=" + $('X-CSRF-Token').value,
                 onComplete: function(data) {
                     var result = data.responseText.split(";");
                     if (result[0] != "0")
