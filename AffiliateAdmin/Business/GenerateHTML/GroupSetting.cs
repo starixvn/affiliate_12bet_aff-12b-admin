@@ -7,6 +7,9 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 using System.Web.Script.Serialization;
+using Affiliate.Infrastructure.Helpers;
+using System.Web;
+
 namespace GenerateHTML
 {
     /// <summary>
@@ -931,6 +934,7 @@ namespace GenerateHTML
         }
         public static string GetAssignmentForm(string affName,int affID,bool isApproved, string MailOption){
             string assignTemplate = TemplateHandler.LoadTemplate("GroupSetting/GroupAssignment.htm");
+            TemplateHandler.Assign(ref assignTemplate, "XsrfTokenFormValue", AntiForgeryHelper.GenerateXsrfFormToken(HttpContext.Current));
             TemplateHandler.Assign(ref assignTemplate, "Assignee",Resources.Lang.Assignee);
             TemplateHandler.Assign(ref assignTemplate, "AssignCommGroup", Resources.Lang.AssignCommGroup);
             TemplateHandler.Assign(ref assignTemplate, "AddNew", Resources.Lang.AddNew);
