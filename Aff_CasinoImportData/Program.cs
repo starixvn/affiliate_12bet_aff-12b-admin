@@ -14,6 +14,7 @@ namespace Aff_CasinoImportData
         static void Main()
         {
             System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+            Fanex.Data.Configuration.DbSettingProviderManager.Current.Start();
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[] 
 			{ 
