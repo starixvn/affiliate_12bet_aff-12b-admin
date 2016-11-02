@@ -8,6 +8,7 @@ namespace Aff_CasinoImportDataJob
 {
     using System;
     using System.Xml;
+    using AffCasinoImportDataAccess;
     using DNAide.Web;
     using Fanex.MailDeliver.MailClient.API;
     using Fanex.MailDeliver.Model;
@@ -51,7 +52,7 @@ namespace Aff_CasinoImportDataJob
 
             XmlDocument docXML = Common.ConvertCSVToXML(filePath);
 
-            DAL.DataAccess.CasinoDataUpdate(docXML.OuterXml, date, ref errCode, ref errMsg);
+            DataAccess.ImportCasinoData(Common.ForSystem, Common.AdminID, docXML.OuterXml, date, ref errCode, ref errMsg);
 
             DNAideLog.Write(logMessage);
             if (errCode != 0)

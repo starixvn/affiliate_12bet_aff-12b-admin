@@ -13,6 +13,7 @@ namespace Aff_CasinoImportData
         /// </summary>
         static void Main()
         {
+            System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[] 
 			{ 

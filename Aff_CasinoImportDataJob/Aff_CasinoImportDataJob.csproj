@@ -100,7 +100,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Code\Common.cs" />
-    <Compile Include="App_Code\DataAccess.cs" />
     <Compile Include="ImportCasinoDataJob.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -117,6 +116,12 @@
     <Content Include="App_dll\Microsoft.Practices.EnterpriseLibrary.Logging.dll" />
     <Content Include="App_dll\Microsoft.Practices.ObjectBuilder.dll" />
     <Content Include="App_dll\Microsoft.Practices.Unity.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AffCasinoImportDataAccess\AffCasinoImportDataAccess.csproj">
+      <Project>{ace69816-1c6e-4522-8c37-a590187a6311}</Project>
+      <Name>AffCasinoImportDataAccess</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

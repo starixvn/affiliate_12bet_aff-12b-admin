@@ -23,11 +23,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Affiliate.Infrastructure", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Affiliate.Banner", "AffiliateBanner\Affiliate.Banner.csproj", "{DC64F5C6-2585-4B73-B8B7-19A6C7216325}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aff_CasinoImportDataConsoleApp", "Aff_CasinoImportDataConsoleApp\Aff_CasinoImportDataConsoleApp.csproj", "{D9B9614C-4B9C-4BD8-9264-7B22A94B255C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aff_CasinoImportDataJob", "Aff_CasinoImportDataJob\Aff_CasinoImportDataJob.csproj", "{9DB9EB77-FF08-45A7-80B5-250D99AF81F6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AffCasinoImportDataWinApp", "AffCasinoImportDataWinApp\AffCasinoImportDataWinApp.csproj", "{842BDA10-C062-4695-A50A-CC9F2D6286F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AffCasinoImportDataAccess", "AffCasinoImportDataAccess\AffCasinoImportDataAccess.csproj", "{ACE69816-1C6E-4522-8C37-A590187A6311}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -109,16 +109,6 @@ Global
 		{DC64F5C6-2585-4B73-B8B7-19A6C7216325}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{DC64F5C6-2585-4B73-B8B7-19A6C7216325}.Release|x86.ActiveCfg = Release|Any CPU
 		{DC64F5C6-2585-4B73-B8B7-19A6C7216325}.Release|x86.Build.0 = Release|Any CPU
-		{D9B9614C-4B9C-4BD8-9264-7B22A94B255C}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{D9B9614C-4B9C-4BD8-9264-7B22A94B255C}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{D9B9614C-4B9C-4BD8-9264-7B22A94B255C}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{D9B9614C-4B9C-4BD8-9264-7B22A94B255C}.Debug|x86.ActiveCfg = Debug|x86
-		{D9B9614C-4B9C-4BD8-9264-7B22A94B255C}.Debug|x86.Build.0 = Debug|x86
-		{D9B9614C-4B9C-4BD8-9264-7B22A94B255C}.Release|Any CPU.ActiveCfg = Release|x86
-		{D9B9614C-4B9C-4BD8-9264-7B22A94B255C}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{D9B9614C-4B9C-4BD8-9264-7B22A94B255C}.Release|Mixed Platforms.Build.0 = Release|x86
-		{D9B9614C-4B9C-4BD8-9264-7B22A94B255C}.Release|x86.ActiveCfg = Release|x86
-		{D9B9614C-4B9C-4BD8-9264-7B22A94B255C}.Release|x86.Build.0 = Release|x86
 		{9DB9EB77-FF08-45A7-80B5-250D99AF81F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9DB9EB77-FF08-45A7-80B5-250D99AF81F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DB9EB77-FF08-45A7-80B5-250D99AF81F6}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -141,6 +131,18 @@ Global
 		{842BDA10-C062-4695-A50A-CC9F2D6286F8}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{842BDA10-C062-4695-A50A-CC9F2D6286F8}.Release|x86.ActiveCfg = Release|Any CPU
 		{842BDA10-C062-4695-A50A-CC9F2D6286F8}.Release|x86.Build.0 = Release|Any CPU
+		{ACE69816-1C6E-4522-8C37-A590187A6311}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACE69816-1C6E-4522-8C37-A590187A6311}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACE69816-1C6E-4522-8C37-A590187A6311}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{ACE69816-1C6E-4522-8C37-A590187A6311}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{ACE69816-1C6E-4522-8C37-A590187A6311}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{ACE69816-1C6E-4522-8C37-A590187A6311}.Debug|x86.Build.0 = Debug|Any CPU
+		{ACE69816-1C6E-4522-8C37-A590187A6311}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACE69816-1C6E-4522-8C37-A590187A6311}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACE69816-1C6E-4522-8C37-A590187A6311}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{ACE69816-1C6E-4522-8C37-A590187A6311}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{ACE69816-1C6E-4522-8C37-A590187A6311}.Release|x86.ActiveCfg = Release|Any CPU
+		{ACE69816-1C6E-4522-8C37-A590187A6311}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -153,8 +155,8 @@ Global
 		{CB6C1C24-FB59-4A4F-B546-8C37556DE109} = {03684E3E-77AA-4AB1-9E92-6AB573C1E570}
 		{B9A60C3F-FC44-4BF7-B618-68F0118C9000} = {E2F5DB7C-9A45-4B57-BA5D-FDCAA5E6EC15}
 		{DC64F5C6-2585-4B73-B8B7-19A6C7216325} = {03684E3E-77AA-4AB1-9E92-6AB573C1E570}
-		{D9B9614C-4B9C-4BD8-9264-7B22A94B255C} = {0CCA4E4C-FC6F-4FFC-8D90-F511276D245F}
 		{9DB9EB77-FF08-45A7-80B5-250D99AF81F6} = {0CCA4E4C-FC6F-4FFC-8D90-F511276D245F}
 		{842BDA10-C062-4695-A50A-CC9F2D6286F8} = {0CCA4E4C-FC6F-4FFC-8D90-F511276D245F}
+		{ACE69816-1C6E-4522-8C37-A590187A6311} = {0CCA4E4C-FC6F-4FFC-8D90-F511276D245F}
 	EndGlobalSection
 EndGlobal

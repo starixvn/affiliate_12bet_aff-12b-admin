@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
+using AffCasinoImportDataAccess;
 
 namespace AffCasinoImportDataWinApp
 {
@@ -65,7 +66,7 @@ namespace AffCasinoImportDataWinApp
             var filePath = Common.DownloadCsvFileFromApi(date);
             XmlDocument docXML = Common.ConvertCSVToXML(filePath);
 
-            DataAccess.ImportCasinoData(docXML.OuterXml, date, ref errCode, ref errMsg);
+            DataAccess.ImportCasinoData(Common.ForSystem, Common.AdminID, docXML.OuterXml, date, ref errCode, ref errMsg);
 
             if (errCode != 0)
             {
