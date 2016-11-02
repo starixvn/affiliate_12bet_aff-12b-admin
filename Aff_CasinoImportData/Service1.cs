@@ -1,21 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Linq;
 using System.ServiceProcess;
-using System.Text;
 using System.Threading;
-using System.Xml;
-using log4net;
-using DNAide.Utils;
-using DNAide.Web;
-//using Fanex.Logging;
-using Fanex.MailDeliver.Model;
-using Fanex.MailDeliver.MailClient.API;
 using Aff_CasinoImportDataJob;
-
+using Fanex.Logging;
 
 namespace Aff_CasinoImportData
 {
@@ -23,7 +10,7 @@ namespace Aff_CasinoImportData
     {
         private Timer serviceTimer;
         private ImportCasinoDataJob _job;
-        //private ILog log;
+
         public Service1()
         {
             InitializeComponent();
@@ -40,7 +27,7 @@ namespace Aff_CasinoImportData
             }
             catch (Exception ex)
             {
-                DNAideLog.Write(ex.Message);
+                LogService.Error("AFF Import Casino Data: " + ex.Message, ex);
             }
         }
     }

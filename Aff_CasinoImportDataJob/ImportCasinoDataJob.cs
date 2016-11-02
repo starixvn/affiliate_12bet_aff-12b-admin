@@ -9,7 +9,7 @@ namespace Aff_CasinoImportDataJob
     using System;
     using System.Xml;
     using AffCasinoImportDataAccess;
-    using DNAide.Web;
+    using Fanex.Logging;
     using Fanex.MailDeliver.MailClient.API;
     using Fanex.MailDeliver.Model;
 
@@ -35,9 +35,8 @@ namespace Aff_CasinoImportDataJob
             }
             catch (Exception ex)
             {
-                DNAideLog.Write(ex.Message);
+                LogService.Error("AFF Import Casino Data: " + ex.Message, ex);
                 SendEmail(ex.Message);
-                //LogService.Error(ex.Message);
             }
         }
 
@@ -54,10 +53,10 @@ namespace Aff_CasinoImportDataJob
 
             DataAccess.ImportCasinoData(Common.ForSystem, Common.AdminID, docXML.OuterXml, date, ref errCode, ref errMsg);
 
-            DNAideLog.Write(logMessage);
+            LogService.Info("AFF Import Casino Data: " + logMessage);
             if (errCode != 0)
             {
-                DNAideLog.Write(errMsg);
+                LogService.Error("AFF Import Casino Data: " + errCode + ": " + errMsg);
                 SendEmail(errMsg);
             }
         }
@@ -76,7 +75,6 @@ namespace Aff_CasinoImportDataJob
             };
             using (MailDeliver client = new MailDeliver())
             {
-                // call send mail service
                 client.SendMail(mailItem);
             }
         }
