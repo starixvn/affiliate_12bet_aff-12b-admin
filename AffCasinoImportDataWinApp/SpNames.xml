@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Functions>
+    <Function Name="Report">
+      <Setting Key="Aff_CasinoImportData" SpName="Aff_CasinoImportData" DbName="Affiliate" Plain="0"></Setting>
+      <Setting Key="IA_MemberDailySummaryCasino" SpName="IA_MemberDailySummaryCasino" DbName="IA" Plain="0"></Setting>
+    </Function>
+</Functions>
