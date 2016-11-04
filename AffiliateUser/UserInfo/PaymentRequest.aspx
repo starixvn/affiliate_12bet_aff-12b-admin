@@ -2,7 +2,7 @@
     Inherits="PaymentRequest" Title="12Bet Affiliate Program" Codebehind="PaymentRequest.aspx.cs" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
 <%
-    bool canRequestPayout = DateTime.Now.Day >= 8 && DateTime.Now.Day <= 15;
+    bool canRequestPayout = (DateTime.Now.Day >= 8 && DateTime.Now.Day <= 15) || AppSettings.LocalTest;
 %>
     <div id="contents">
         <div id="box_insite">
