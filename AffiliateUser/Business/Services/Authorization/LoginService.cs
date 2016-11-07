@@ -14,7 +14,16 @@ namespace AffiliateUser.Business.Services.Authorization
         {
             context = AffHandler.InitializeCulture(context);
             context.Response.ContentType = "text/html";
-            AntiForgeryHelper.ValidateXsrfToken(context);
+            try
+            {
+                AntiForgeryHelper.ValidateXsrfToken(context);
+            }
+            catch
+            {
+                context.Response.Write("500:" + Resources.Lang.ErrAuthorized);
+                return;
+            }
+
             string message = string.Empty;
 
             try
