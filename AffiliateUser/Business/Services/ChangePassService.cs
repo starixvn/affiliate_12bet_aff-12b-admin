@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web;
+using Affiliate.Infrastructure.Helpers;
 using DataHandler;
 
 namespace AffiliateUser.Business.Services
@@ -10,6 +11,15 @@ namespace AffiliateUser.Business.Services
         {
             context = AffHandler.InitializeCulture(context);
             context.Response.ContentType = "text/html";
+            try
+            {
+                AntiForgeryHelper.ValidateXsrfToken(context);
+            }
+            catch
+            {
+                context.Response.Write("<script type='text/javascript'>parent.$(\"errMsg\").show();parent.Common.showError([\"" + Resources.Lang.ErrAuthorized + "\"], [\"error_item\"], \"error_item\");</script>");
+                return;
+            }
 
             if (AppSettings.Session.IsInternalSite)
             {

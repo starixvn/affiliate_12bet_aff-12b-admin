@@ -79,10 +79,10 @@
             return bol;
         }
     </script>
-
     <form id="Update_form" name="Update_form" onsubmit="return submitForm();" action="../Handler/ChangePass.ashx"
     method="post" target="frChangePass">
     <div id="contents">
+        <input type="hidden" id="X-CSRF-Token" name="X-CSRF-Token" value="<%=_XsrfTokenFormValue%>" />
         <div id="box_insite">
             <div class="header_in">
                 <table width="100%" cellspacing="0" cellpadding="0" border="0">
@@ -129,7 +129,7 @@
                                     </td>
                                     <td style="width: 160px;">
                                         <input name="txtCurrPass" style="width: 150px;" class="inputbox" id="txtCurrPass"
-                                            value="" size="30" type="password" />
+                                            value="" size="30" type="password"  />
                                     </td>
                                     <td class="cont12oe" style="width: 30px">
                                         &nbsp;
