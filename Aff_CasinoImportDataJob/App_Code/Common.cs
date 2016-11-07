@@ -10,7 +10,7 @@ using System.Collections;
 using System.Security.Cryptography;
 using System.Data.OleDb;
 using System.Xml;
-using DNAide.Core;
+//using DNAide.Core;
 
 /// <summary>
 /// Summary description for Common
@@ -140,11 +140,11 @@ public class Common
     }
     public static int AdminID
     {
-        get { return CastAide.AsInt32(ConfigurationManager.AppSettings["adminID"]); }
+        get { return Convert.ToInt32(ConfigurationManager.AppSettings["adminID"]); }
     }
     public static int ForSystem
     {
-        get { return CastAide.AsInt32(ConfigurationManager.AppSettings["forSystem"]); }
+        get { return Convert.ToInt32(ConfigurationManager.AppSettings["forSystem"]); }
     }
     public enum DateImport
     {
@@ -228,9 +228,9 @@ public class Common
     static int GetIndexOfColName(Hashtable hs, string colName)
     {
         if (hs[colName] != null)
-            return CastAide.AsInt32(hs[colName]);
+            return Convert.ToInt32(hs[colName]);
         else
-            return CastAide.AsInt32(hs["\"" + colName + "\""]);
+            return Convert.ToInt32(hs["\"" + colName + "\""]);
     }
 
     #region read excel file
