@@ -6,11 +6,11 @@
 }
 
 .tblBetList th {
-    background: #0d94c3;
+    background-color: #BAD9EA;
     border: solid 1px #BABABA;
     border-top: 0;
     font-size: 11px;
-    color: #FFF;
+    color: #000;
     text-align: center;
     padding: 2px 2px 0 2px;
     height: 33px;
