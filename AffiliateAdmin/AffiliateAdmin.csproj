@@ -1872,7 +1872,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Handler\GetPageList.ashx" />
-    <Content Include="Web.12betadmin.uatsit.config" />
+    <Content Include="Web.12betadmin.sit.config" />
     <Content Include="BetList\BetListNewParlay.ashx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

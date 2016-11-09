@@ -734,10 +734,10 @@
     <Content Include="App_Themes\Default\Images\fIndia.png" />
     <Content Include="Global.asax" />
     <Content Include="packages.config" />
-    <Content Include="DeployConfig\Web.12betuser-asian.uatsit.config">
+    <Content Include="DeployConfig\Web.12betuser-asian.sit.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="DeployConfig\Web.12betuser-euro.uatsit.config">
+    <Content Include="DeployConfig\Web.12betuser-euro.sit.config">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="BetList\BetListNewParlay.ashx" />
