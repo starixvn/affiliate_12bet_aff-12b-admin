@@ -16,7 +16,7 @@ public partial class Domain_DomainControl : IBCPage
     protected void Page_Load(object sender, EventArgs e)
     {
         string strTpl = TemplateHandler.LoadTemplate("Domain/DomainControl.htm");
-        
+        TemplateHandler.Assign(ref strTpl, "XsrfTokenFormValue", _XsrfTokenFormValue);
         TemplateHandler.Assign(ref strTpl, "AffDomain", Resources.Lang.AffDomain);
         TemplateHandler.Assign(ref strTpl, "RedirectDomain", Resources.Lang.RedirectDomain);
         TemplateHandler.Assign(ref strTpl, "Market", Resources.Lang.Market);

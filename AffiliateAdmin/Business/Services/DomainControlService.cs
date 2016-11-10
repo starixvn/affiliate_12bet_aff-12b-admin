@@ -1,4 +1,5 @@
 ﻿using System.Web;
+using Affiliate.Infrastructure.Helpers;
 using DNAide.Core;
 
 namespace AffiliateAdmin.Business.Services
@@ -8,6 +9,16 @@ namespace AffiliateAdmin.Business.Services
         public void DomainControl(HttpContext context)
         {
             context.Response.ContentType = "text/html";
+            try
+            {
+                AntiForgeryHelper.ValidateXsrfToken(context);
+            }
+            catch
+            {
+                context.Response.Write(Resources.Lang.Err500);
+                return;
+            }
+
             int errCode = 0;
             string errMsg = string.Empty;
             bool status = CastAide.AsBoolean(context.Request["status"]);

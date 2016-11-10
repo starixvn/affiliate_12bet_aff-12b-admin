@@ -8,6 +8,7 @@ public partial class Domain_DomainControlUpd : IBCPage
     {
         string strTpl = TemplateHandler.LoadTemplate("Domain/DomainControlUpd.htm");
 
+        TemplateHandler.Assign(ref strTpl, "XsrfTokenFormValue", _XsrfTokenFormValue);
         TemplateHandler.Assign(ref strTpl, "slMarket", AffAdmin.GenerateHTML.Domain.GenMarketList(Request["market"]));
         TemplateHandler.Assign(ref strTpl, "slAffDomain", AffAdmin.GenerateHTML.Domain.GenAffDomainList(Request["affdomain"]));
         TemplateHandler.Assign(ref strTpl, "slRedirectDomain", AffAdmin.GenerateHTML.Domain.Gen12BetDomainList(Request["deviceType"], Request["redirectdomain"]));

@@ -29,7 +29,8 @@
                 _12BetDomainName: $('txt12betdomain').value,
                 deviceType: $('slDevice').value,
                 ssl: $("chkSSL").hasClassName("ic-check"),
-                sta: 'Edit'
+                sta: 'Edit',
+                "X-CSRF-Token": $('X-CSRF-Token').value
             },
             onComplete: function(strdata) {
                 if (strdata.responseText == 'Ok') {

@@ -15,7 +15,10 @@
         {
             var ajax = new Ajax.Request('../Handler/UpdateAffDomain.ashx', {
                 method: 'post',
-                parameters: { affDomainId: affDomainId, affDomainName: affDomainName, sta: 'Del' },
+                parameters: {
+                    affDomainId: affDomainId, affDomainName: affDomainName, sta: 'Del',
+                    "X-CSRF-Token": $('X-CSRF-Token').value
+                },
                 onComplete: function(strdata) {
 
                     if (strdata.responseText == 'Ok') {

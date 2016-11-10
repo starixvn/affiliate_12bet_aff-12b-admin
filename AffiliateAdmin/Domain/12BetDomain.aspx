@@ -15,7 +15,10 @@
         {
             var ajax = new Ajax.Request('../Handler/Update12BetDomain.ashx', {
                 method: 'post',
-                parameters: { _12BetDomainId: _12BetDomainId, _12BetDomainName: _12BetDomainName, sta: 'Del' },
+                parameters: {
+                    _12BetDomainId: _12BetDomainId, _12BetDomainName: _12BetDomainName, sta: 'Del',
+                    "X-CSRF-Token": $('X-CSRF-Token').value
+                },
                 onComplete: function(strdata) {
 
                     if (strdata.responseText == 'Ok') {

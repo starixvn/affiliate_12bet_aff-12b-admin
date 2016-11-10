@@ -13,6 +13,7 @@ public partial class Edit12BetDomain : IBCPage
         string _12BetDomainName = Request["12BetDomainName"];
         string deviceType = Request["deviceType"];
 
+        TemplateHandler.Assign(ref list, "XsrfTokenFormValue", _XsrfTokenFormValue);
         TemplateHandler.Assign(ref list, "12BetDomain", Resources.Lang.Domain);
         TemplateHandler.Assign(ref list, "Device", Resources.Lang.Device);
         TemplateHandler.Assign(ref list, "SSL", Resources.Lang.SSL);

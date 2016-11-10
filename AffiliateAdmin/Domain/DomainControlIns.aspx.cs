@@ -9,6 +9,7 @@ public partial class Domain_DomainControlIns : IBCPage
         string market = Common.GetMarket(Request["market"]);
         string deviceType = Common.GetDeviceType(Request["deviceType"]);
 
+        TemplateHandler.Assign(ref strTpl, "XsrfTokenFormValue", _XsrfTokenFormValue);
         TemplateHandler.Assign(ref strTpl, "slAffDomain", AffAdmin.GenerateHTML.Domain.GenAffDomainList(string.Empty));
         TemplateHandler.Assign(ref strTpl, "slRedirectDomain", AffAdmin.GenerateHTML.Domain.Gen12BetDomainList(deviceType, string.Empty));
         TemplateHandler.Assign(ref strTpl, "Device", Resources.Lang.Device);

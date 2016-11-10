@@ -46,7 +46,8 @@
                 domainAff: $("slAffDomain").value,
                 domain12bet: $("sl12BetDomain").value,
                 status: $("chkStatus").hasClassName("ic-check"),
-                action: "upd"
+                action: "upd",
+                "X-CSRF-Token": $('X-CSRF-Token').value
             },
             onComplete: function (res) {
                 if (res.responseText == "1") {

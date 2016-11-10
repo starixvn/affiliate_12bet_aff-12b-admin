@@ -26,7 +26,10 @@
             Common.delayReloadPage1();
             var ajax = new Ajax.Request('../Handler/UpdateAffDomain.ashx', {
                 method: 'post',
-                parameters: { affDomainName: $('txtaffdomain').value, sta: 'Add' },
+                parameters: {
+                    affDomainName: $('txtaffdomain').value, sta: 'Add',
+                    "X-CSRF-Token": $('X-CSRF-Token').value
+                },
                 onComplete: function (strdata) {
                     Common.hideLoading();
                     if (strdata.responseText == 'Ok') {

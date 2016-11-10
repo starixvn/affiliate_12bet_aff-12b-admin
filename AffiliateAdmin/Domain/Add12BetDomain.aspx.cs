@@ -7,7 +7,8 @@ public partial class Add12BetDomain : IBCPage
     protected void Page_Load(object sender, EventArgs e)
     {
         Response.Cache.SetCacheability(HttpCacheability.Private);
-        string list = TemplateHandler.LoadTemplate("Domain/Add12BetDomain.html");        
+        string list = TemplateHandler.LoadTemplate("Domain/Add12BetDomain.html");
+        TemplateHandler.Assign(ref list, "XsrfTokenFormValue", _XsrfTokenFormValue);
         TemplateHandler.Assign(ref list, "12BetDomain", Resources.Lang.Domain);
         TemplateHandler.Assign(ref list, "Device", Resources.Lang.Device);
         TemplateHandler.Assign(ref list, "SSL", Resources.Lang.SSL);

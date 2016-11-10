@@ -18,7 +18,8 @@
                 method: 'post',
                 parameters: {
                     id: id,
-                    action: "del"
+                    action: "del",
+                    "X-CSRF-Token": $('X-CSRF-Token').value
                 },
                 onComplete: function (res) {
                     if (res.responseText == "1") {
@@ -27,6 +28,7 @@
                     else {
                         Common.alertError(res.responseText);
                     }
+                    Common.hideLoading();
                 }
             });
         }
