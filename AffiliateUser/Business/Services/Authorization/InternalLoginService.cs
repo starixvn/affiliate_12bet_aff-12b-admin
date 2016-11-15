@@ -15,7 +15,6 @@ namespace AffiliateUser.Business.Services.Authorization
             context.Response.ContentType = "text/html";
             string _s = string.Empty;
             string _nl = Environment.NewLine;
-            string _url = string.Empty;
             try
             {
                 string _accId = context.Request["accId"];
@@ -68,8 +67,6 @@ namespace AffiliateUser.Business.Services.Authorization
                 {
                     _s = "102:" + dr2.Outputs["errmsg"].ToString();
                 }
-
-                _url = FormsAuthentication.DefaultUrl;
             }
             catch (IBCException ex)
             {
@@ -84,7 +81,7 @@ namespace AffiliateUser.Business.Services.Authorization
                 throw;
 #endif
             }
-            context.Response.Redirect(_url);
+            context.Response.Redirect(FormsAuthentication.DefaultUrl);
         }
     }
 }
