@@ -23,7 +23,7 @@ public partial class UserInfo_MemberActiveList : IBCPage
         {
             TemplateHandler.RemoveBlock(ref strTpl, "active-button");
         }
-
+        TemplateHandler.Assign(ref strTpl, "XsrfTokenFormValue", _XsrfTokenFormValue);
         TemplateHandler.Assign(ref strTpl, "username-text", Resources.Lang.Username);        
         TemplateHandler.Assign(ref strTpl, "ibcusername-text", Resources.Lang.IBCUsername);
         TemplateHandler.Assign(ref strTpl, "fname", Resources.Lang.Fname);

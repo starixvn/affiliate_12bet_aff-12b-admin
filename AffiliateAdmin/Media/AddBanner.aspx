@@ -1,7 +1,7 @@
 <%@ Page Language="C#" AutoEventWireup="true" Inherits="AddBanner" Codebehind="AddBanner.aspx.cs" %>
 <!--js-->
 <script src="../App_Js/prototype.js" type="text/javascript"></script>
-<script src="../App_Js/jquery/jquery-1.4.2.min.js" type="text/javascript"></script>
+<script src="../App_Js/vendors/jquery.min.js" type="text/javascript"></script>
 <script src="../App_Js/ListBanner.js" type="text/javascript"></script>
 <script src="../App_Js/Common.js" type="text/javascript"></script>
 

@@ -407,94 +407,6 @@ public class Common
         }
         return strBuild.ToString();
     }
-    public static string GenPagingFooter(string url, int pageNum, int cpage, int colsNo)
-    {
-        try
-        {
-            string pageIndexTpl = TemplateHandler.LoadTemplate("PageIndex.html");
-            string footerHtml = TemplateHandler.LoadTemplate("Paging.html");
-            string GotoPageHtml = TemplateHandler.LoadTemplate("GotoPage.html");
-            TemplateHandler.Assign(ref footerHtml, "{CurrentPage}", cpage.ToString());
-            TemplateHandler.Assign(ref footerHtml, "{Colspan}", colsNo.ToString());
-            string pageList = string.Empty;
-
-            int startpage, endpage;
-            startpage = cpage - 3;
-            if (startpage < 1)
-                startpage = 0;
-
-            endpage = startpage + 5;
-            if (endpage > pageNum)
-                endpage = pageNum;
-
-            if ((endpage - startpage) < 5 && (cpage < pageNum) && (pageNum - 5 > 0))
-            {
-                startpage = pageNum - 5;
-                endpage = pageNum;
-            }
-
-            if ((endpage + 1) == pageNum)
-                endpage = pageNum;
-
-            if (cpage >= 4)
-            {
-                string pageIndex = (string)pageIndexTpl.Clone();
-                TemplateHandler.Assign(ref pageIndex, "{Url}", url);
-                TemplateHandler.Assign(ref pageIndex, "{CurrentPage}", string.Empty);
-                TemplateHandler.Assign(ref pageIndex, "{PageText}", "1");
-                TemplateHandler.Assign(ref pageIndex, "{Page}", "1");
-                if (cpage == 4 || pageNum == 6)
-                    pageList += pageIndex;
-                else
-                    pageList += pageIndex + " ... ";
-            }
-
-            if ((endpage == cpage) && (endpage - 5) > 0)
-                startpage = endpage - 5;
-
-            for (int i = startpage; i < endpage; ++i)
-            {
-                string pageIndex = (string)pageIndexTpl.Clone();
-
-                TemplateHandler.Assign(ref pageIndex, "{Url}", url);
-                if (cpage == (i + 1))
-                {
-                    pageIndex = "&nbsp;<strong style=\"padding:0 1px;\">" + cpage.ToString() + "</strong>";
-                }
-                else
-                {
-                    TemplateHandler.Assign(ref pageIndex, "{CurrentPage}", string.Empty);
-                    TemplateHandler.Assign(ref pageIndex, "{PageText}", "" + (i + 1));
-                    TemplateHandler.Assign(ref pageIndex, "{Page}", "" + (i + 1));
-                }
-                pageList += pageIndex;
-            }
-
-            if ((endpage + 1) < pageNum)
-            {
-                string pageIndex = (string)pageIndexTpl.Clone();
-                TemplateHandler.Assign(ref pageIndex, "{Url}", url);
-                TemplateHandler.Assign(ref pageIndex, "{CurrentPage}", string.Empty);
-                TemplateHandler.Assign(ref pageIndex, "{PageText}", " " + pageNum);
-                TemplateHandler.Assign(ref pageIndex, "{Page}", " " + pageNum);
-                pageList += " ... " + pageIndex;
-            }
-
-            if (pageList.Length > 0)
-            {
-                TemplateHandler.Assign(ref footerHtml, "{PageList}", pageList.Remove(pageList.Length - 1));
-                TemplateHandler.Assign(ref footerHtml, "{GotoPage}", GotoPageHtml);
-                TemplateHandler.Assign(ref footerHtml, "{Url}", url);
-            }
-            else
-            {
-                TemplateHandler.Assign(ref footerHtml, "{PageList}", "<strong>1</strong>");
-                TemplateHandler.Assign(ref footerHtml, "{Url}", "");
-            }
-            return footerHtml;
-        }
-        catch { throw; }
-    }
     public static string RootURL()
     {
         //string strURL = String.Format("http://{0}{1}", HttpContext.Current.Request.Url.Authority, HttpContext.Current.Request.ApplicationPath);
@@ -877,7 +789,7 @@ public class Common
         if (rs.ResultSet.Tables[0].Rows.Count > 1)
         {
             strBuild.Append(Resources.Lang.SportType + "&nbsp;&nbsp;&nbsp;");
-            strBuild.Append("<select id=\"slSportType\" name=\"slSportType\"" + (autoReload ? " onchange=\"LoadData(1);\"" : string.Empty)  + ">");
+            strBuild.Append("<select id=\"slSportType\" name=\"slSportType\"" + (autoReload ? " onchange=\"Common.loadData(1);\"" : string.Empty)  + ">");
             if (intCurrent == 0)
             {
                 strBuild.Append("<option value=\"0\" selected>" + Resources.Lang.All + "</option>");

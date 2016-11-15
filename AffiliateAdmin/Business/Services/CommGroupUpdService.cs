@@ -3,6 +3,7 @@ using System.IO;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Web;
+using Affiliate.Infrastructure.Helpers;
 using AffiliateAdmin.Business.DataAccess;
 using DNAide.Core;
 using GenerateHTML;
@@ -17,6 +18,16 @@ namespace AffiliateAdmin.Business.Services
             {
                 IBCHandler.InitializeCulture(HttpContext.Current);
                 context.Response.ContentType = "text/plain";
+                try
+                {
+                    AntiForgeryHelper.ValidateXsrfToken(context);
+                }
+                catch
+                {
+                    context.Response.Write(Resources.Lang.Err500);
+                    return;
+                }
+
                 string groupSetting = context.Request.Params["params"];
                 GroupSettingObj obj = GetInstanceFromJSON(groupSetting);
 

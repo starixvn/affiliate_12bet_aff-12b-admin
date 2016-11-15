@@ -44,7 +44,7 @@
             if($('chkGetAll').checked == false && ($("fdate").value == "" || $("tdate").value == ""))
             {               
                arrError.push(top.fMenu.Msg.ErrDate);                           
-               ErrAlter(arrError);
+               Common.alertError(arrError);
                return false;
            }
            var page = $('frmSearch').getAttribute('data-page') || 1;

@@ -51,7 +51,7 @@
     <script type="text/javascript">
         function CheckForm()
         {
-            if(isEmpty($("txtDepUsername").value) || isEmpty($("txtIBCCustId").value) || isEmpty($("txtIBCUsername").value) || isEmpty($("txtAffId").value))
+            if (Common.isEmpty($("txtDepUsername").value) || Common.isEmpty($("txtIBCCustId").value) || Common.isEmpty($("txtIBCUsername").value) || Common.isEmpty($("txtAffId").value))
             {
                 alert("Fields marked * must be completed");
                 return false;

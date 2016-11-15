@@ -126,8 +126,8 @@ public partial class UserInfo_DailyEarningDetail : RootPageLogIn
                 var url = String.Format("MemDepositInfo.aspx?user={0}&date={1}&rate={2}",
                     strUsername2, _date, exrate);
 
-                string deposit_start = 
-                        "<span style=\"color:#0079FF; cursor: pointer; cursor: hand;\" onclick=\"javascript:DoCalFull('";
+                string deposit_start =
+                        "<span style=\"color:#0079FF; cursor: pointer; cursor: hand;\" onclick=\"javascript:Common.openPopup('";
                 deposit_start += url + "&isdeposit={0}', '" + strUsername2 + "', 1000, 580, 150, 240);\">";
 
 

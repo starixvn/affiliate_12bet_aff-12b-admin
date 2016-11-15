@@ -15,7 +15,7 @@
     
 </style>
 <link rel="stylesheet" type="text/css" href="../Content/betlist/betlist.css">
-<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
+<script src='../App_Js/vendors/jquery.min.js'></script>
     <script src="../App_Js/prototype.js" type="text/javascript"></script>
 <script type="text/javascript" src="../App_Js/Common.js"></script>
 <script src="../App_Js/IBCWnd/IBCWnd.js" language="javascript" type="text/javascript"></script>

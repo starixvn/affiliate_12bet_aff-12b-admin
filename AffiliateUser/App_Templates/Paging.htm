@@ -3,7 +3,7 @@
     <div  >
         <div class="pagesize">
             {pagesizetext} 
-            <select id="slPageSize" name="slPageSize" onchange="LoadData(1);" class="r">
+            <select id="slPageSize" name="slPageSize" onchange="Common.loadData(1);" class="r">
                 <option value="10">10</option>
                 <option value="20">20</option>
                 <option value="50">50</option>
@@ -24,13 +24,13 @@
         <div id="header_link">{select}: <a href="javascript:checkAll(true);" class="textlink_bold">{alltext}</a> <a href="javascript:checkAll(false);" class="textlink_bold">None</a></div>
         <!--/selectall-->
         <div id="next_page">
-            <span id="first" style="padding-top:2px;" onclick="GotoPage(1, {maxpage});">&nbsp;</span>
-            <span id="prev" style="padding-top:2px;" onclick="GotoPage({ppage}, {maxpage});">&nbsp;</span>
-            {pagetext}&nbsp;<a id="{aId}" href="javascript:PageNum('{aId}', '{txtID}', true);">{page}</a> 
-            <input type="text" onkeypress="ChangePage(event, '{txtID}', {maxpage});" onblur="PageNum('{aId}', '{txtID}', false);" onfocus="PageNum('{aId}', '{txtID}', true);" value="{page}" name="{txtID}" id="{txtID}" style="width: 30px; display: none;" />
+            <span id="first" style="padding-top:2px;" onclick="Common.gotoPage(1, {maxpage});">&nbsp;</span>
+            <span id="prev" style="padding-top:2px;" onclick="Common.gotoPage({ppage}, {maxpage});">&nbsp;</span>
+            {pagetext}&nbsp;<a id="{aId}" href="javascript:Common.pageNum('{aId}', '{txtID}', true);">{page}</a> 
+            <input type="text" onkeypress="Common.changePage(event, '{txtID}', {maxpage});" onblur="Common.pageNum('{aId}', '{txtID}', false);" onfocus="Common.pageNum('{aId}', '{txtID}', true);" value="{page}" name="{txtID}" id="{txtID}" style="width: 30px; display: none;" />
             &nbsp;{of} {all}
-            <span id="next" style="padding-top:2px;" onclick="GotoPage({npage}, {maxpage});">&nbsp;</span>
-            <span id="last" style="padding-top:2px;" onclick="GotoPage({lpage}, {maxpage});">&nbsp;</span>
+            <span id="next" style="padding-top:2px;" onclick="Common.gotoPage({npage}, {maxpage});">&nbsp;</span>
+            <span id="last" style="padding-top:2px;" onclick="Common.gotoPage({lpage}, {maxpage});">&nbsp;</span>
         </div>
     </div>
 </div>

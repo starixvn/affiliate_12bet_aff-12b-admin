@@ -35,12 +35,12 @@ namespace AffiliateAdmin.Business.Services
 
             if (errcode == 1)
             {
-                context.Response.Write("<script type=\"text/javascript\">parent.ErrAlter('" + Resources.Lang.ExcelErrmsgEmpty + "');</script>");
+                context.Response.Write("<script type=\"text/javascript\">parent.Common.alertError('" + Resources.Lang.ExcelErrmsgEmpty + "');</script>");
                 return;
             }
             else if (errcode == 2)
             {
-                context.Response.Write("<script type=\"text/javascript\">parent.ErrAlter('" + Resources.Lang.ExcelErrmsgFile + "');</script>");
+                context.Response.Write("<script type=\"text/javascript\">parent.Common.alertError('" + Resources.Lang.ExcelErrmsgFile + "');</script>");
                 return;
             }
             /*Read file excel and insert to database*/

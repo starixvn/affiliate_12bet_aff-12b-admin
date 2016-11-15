@@ -14,7 +14,7 @@
     
 </style>
 <link rel="stylesheet" type="text/css" href="../Content/betlist/betlist.css">
-<script type="text/javascript" language="javascript" src="../App_Js/jquery/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" language="javascript" src="../App_Js/vendors/jquery.min.js"></script>
 <script src="../App_Js/Common.js" language="javascript" type="text/javascript"></script>
 <script src="../App_Js/IBCWnd/IBCWnd.js" language="javascript" type="text/javascript"></script>
 <script type="text/javascript" language="javascript" src="../App_Js/BetList.js"></script>

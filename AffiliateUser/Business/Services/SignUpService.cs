@@ -21,9 +21,9 @@ namespace AffiliateUser.Business.Services
                     err.Append(DateTime.Now.ToBinary().ToString());
                     err.Append("'; parent.$('validCode').src=parent.$('validCodeRegister').src;parent.$('txtValidateRegister').value='");
                     err.Append(Resources.Lang.Validation);
-                    err.Append("';parent.$('txtvalidate').value=parent.$('txtValidateRegister').value;parent.AddError('txtValidateRegister','");
+                    err.Append("';parent.$('txtvalidate').value=parent.$('txtValidateRegister').value;parent.Common.addError('txtValidateRegister','");
                     err.Append(Resources.Lang.ValidationCode);
-                    err.Append("');parent.$('errMsg').show();parent.ShowError(parent.arrError, parent.arrItem, 'error_item');</script>");
+                    err.Append("');parent.$('errMsg').show();parent.Common.showError(parent.arrError, parent.arrItem, 'error_item');</script>");
                     context.Response.Write(err.ToString());
 
                     return;
@@ -38,7 +38,7 @@ namespace AffiliateUser.Business.Services
                     DepositCustomerInfo customer = DataHandler.PaymentRequest.Get12BetPlayerDepositInfo(strPlayerUserName);
                     if (customer.Success != 0)
                     {
-                        context.Response.Write("<script type='text/javascript'>parent.$(\"errMsg\").show();parent.$(\"divErr\").show();parent.ShowError([\"" + Resources.Lang.errDepositDBConnectFailed + "\"], [\"txtBet12UserName\"], \"error_item\");</script>");
+                        context.Response.Write("<script type='text/javascript'>parent.$(\"errMsg\").show();parent.$(\"divErr\").show();parent.Common.showError([\"" + Resources.Lang.errDepositDBConnectFailed + "\"], [\"txtBet12UserName\"], \"error_item\");</script>");
                         return;
                     }
                 }
@@ -81,7 +81,7 @@ namespace AffiliateUser.Business.Services
                 {
                     string strErrObj = "error_item";
                     string strMsg = Common.GetErrMsg(intErrCode, ref strErrObj);
-                    context.Response.Write("<script type='text/javascript'>parent.$(\"errMsg\").show();parent.ShowError([\"" + strMsg + "\"], [\"" + strErrObj + "\"], \"error_item\");</script>");
+                    context.Response.Write("<script type='text/javascript'>parent.$(\"errMsg\").show();parent.Common.showError([\"" + strMsg + "\"], [\"" + strErrObj + "\"], \"error_item\");</script>");
                 }
                 else
                 {
@@ -102,7 +102,7 @@ namespace AffiliateUser.Business.Services
             catch (Exception ex)
             {
                 var messagex = ex.Message + "\n" + ex.StackTrace;
-                context.Response.Write("<script type='text/javascript'>parent.document.getElementById(\"errMsg\").show();parent.ShowError([\"" + messagex + "\"], [\"error_item\"], \"error_item\");</script>");
+                context.Response.Write("<script type='text/javascript'>parent.document.getElementById(\"errMsg\").show();parent.Common.showError([\"" + messagex + "\"], [\"error_item\"], \"error_item\");</script>");
                 Fanex.Logging.LogService.Error(ex.Message);
             }
         }

@@ -60,7 +60,7 @@
             
         if(!confirm("Are you sure you want to delete these notes?"))
             return;        
-        DelayReloadPage1();
+        Common.delayReloadPage1();
         var pagesize = $("slPageSize").value;        
         var ajax= new Ajax.Request('../Handler/Note.ashx',{
            method:'post',  
@@ -71,15 +71,15 @@
                if(returnData[0]=='ok')
                {         
                     //$("divNote").innerHTML = returnData[1];
-                    ErrAlter(top.frames[0].Msg.NoteDel); 
+                    Common.alertError(top.frames[0].Msg.NoteDel); 
                     $("errMsg").className = "done";
                     $("slPageSize").value = pagesize;
                     setTimeout("LoadData(1);", 1500);
                }
                else
                {
-                    ErrAlter(returnData[1]);     
-                    HideDelayReloadPage();                              
+                    Common.alertError(returnData[1]);     
+                    Common.hideLoading();                              
                }
                
            }               
@@ -90,7 +90,7 @@
         $("errMsg").className = "";
         if(!confirm(top.frames[0].Msg.NoteConfirm))
             return;
-        DelayReloadPage1();
+        Common.delayReloadPage1();
         var pagesize = $("slPageSize").value;  
         var ajax= new Ajax.Request('../Handler/Note.ashx',{
            method:'post',  
@@ -100,15 +100,15 @@
                var returnData = strdata.responseText.split("@");
                if(returnData[0]=='ok')
                {         
-                    ErrAlter(top.frames[0].Msg.NoteDel);
+                    Common.alertError(top.frames[0].Msg.NoteDel);
                     $("errMsg").className = "done"; 
                     $("slPageSize").value = pagesize;
                     setTimeout("LoadData(1);", 1500);
                }
                else
                {
-                    ErrAlter(returnData[1]);                                   
-                    HideDelayReloadPage();
+                    Common.alertError(returnData[1]);                                   
+                    Common.hideLoading();
                }
                
            }               

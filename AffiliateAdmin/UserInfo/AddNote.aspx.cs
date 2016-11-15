@@ -19,6 +19,7 @@ public partial class UserInfo_AddNote : IBCPage
     {
         string strTpl = TemplateHandler.LoadTemplate("UserInfo/AddNote.htm");
         int action = CastAide.AsInt32(Request["action"], 1);
+        TemplateHandler.Assign(ref strTpl, "XsrfTokenFormValue", _XsrfTokenFormValue);
         TemplateHandler.Assign(ref strTpl, "add", Resources.Lang.Add);
         TemplateHandler.Assign(ref strTpl, "update", Resources.Lang.Update);
         TemplateHandler.Assign(ref strTpl, "cancel", Resources.Lang.Cancel);

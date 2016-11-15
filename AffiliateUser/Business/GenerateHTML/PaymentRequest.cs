@@ -1,6 +1,9 @@
 ﻿using System.Data;
 using System.Text;
+using System.Web;
 using System.Web.UI.WebControls;
+using Affiliate.Infrastructure.Helpers;
+using AffiliateUser.Business.Services.Authorization;
 using DNAide.Core;
 using DNAide.Utils;
 using DNAide.Web;
@@ -12,10 +15,12 @@ namespace GenerateHTML
 {
     public class PaymentRequest
     {
-        public static string PaymentList( ref string strBalance, ref string strMinAmt,ref string strPaymentMethod)
+        public static string PaymentList(ref string strBalance, ref string strMinAmt,ref string strPaymentMethod)
         {
             string strListRequest = TemplateHandler.LoadTemplate("UserInfo/PaymentRequest.htm");
             //Assign header
+            var xsrfTokenFormValue = AntiForgeryHelper.GenerateXsrfFormToken(HttpContext.Current);
+            TemplateHandler.Assign(ref strListRequest, "X-CSRF-Token-Value", xsrfTokenFormValue);
             TemplateHandler.Assign(ref strListRequest, "title", Resources.Lang.RecentPayment);
             TemplateHandler.Assign(ref strListRequest, "refno", Resources.Lang.RefNo);
             TemplateHandler.Assign(ref strListRequest, "daterequest", Resources.Lang.DateRequest);

@@ -2,11 +2,8 @@
     Inherits="PaymentRequest" Title="12Bet Affiliate Program" Codebehind="PaymentRequest.aspx.cs" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
 <%
-    bool canRequestPayout = DateTime.Now.Day >= 8 && DateTime.Now.Day <= 15;
- %>
-    <script type="text/javascript">
-        RefreshPage(300);
-    </script>
+    bool canRequestPayout = (DateTime.Now.Day >= 8 && DateTime.Now.Day <= 15) || AppSettings.LocalTest;
+%>
     <div id="contents">
         <div id="box_insite">
             <div class="header_in">
@@ -20,6 +17,7 @@
             </div>
             <div class="in_conts">                                
                 <form id="frUpdate" name="frUpdate" method="post" onsubmit="return RequestPayout();" target="frUpdateData" action="../Handler/RequestPayout.ashx">
+                    <input type="hidden" id="X-CSRF-Token" name="X-CSRF-Token" value="<%=_XsrfTokenFormValue %>" />
                     <div class="box_conts_header">
                         <%=Resources.Lang.PaymentInfor %>
                     </div>
@@ -143,9 +141,9 @@
                     $("btnRequest").className = "disabled";
                 }
                 
-                AddError("error_item", $("hdMethod").value);
+                Common.addError("error_item", $("hdMethod").value);
                 $('errMsg').show();
-                ShowErrorNotLink(arrError, arrItem, "error_item");
+                Common.showErrorNotLink(arrError, arrItem, "error_item");
                 return;
             }
             var Balance = parseFloat($("hdBalance").value.replace(/,/g, "").replace("$", ""));
@@ -157,23 +155,20 @@
                     $("btnRequest").className = "disabled";
                 }
                 
-                AddError("error_item", "<%=Resources.Lang.Balance0 %>");
-                DisplayMsg(false);
+                Common.addError("error_item", "<%=Resources.Lang.Balance0 %>");
+                Common.displayMessage(false);
             }
             else
                 $("frUpdate").enable();
-                
-            clock();
-            setInterval("clock();", 1000);
         };
         function ShowError1(msg) {
             $('errMsg').hide();
             $('succMsg').hide();
             arrItem.clear();
             arrError.clear();
-            AddError("error_item", msg);
+            Common.addError("error_item", msg);
             $('errMsg').show();
-            ShowErrorNotLink(arrError, arrItem, "error_item");
+            Common.showErrorNotLink(arrError, arrItem, "error_item");
         }
         function RequestPayout() {
             <%if (!canRequestPayout)
@@ -185,29 +180,29 @@
             arrItem.clear();
             arrError.clear();
             if ($("isPending").value == "1") {
-                AddError("error_item", "<%=Resources.Lang.Err3001 %>");
-                DisplayMsg(false);
+                Common.addError("error_item", "<%=Resources.Lang.Err3001 %>");
+                Common.displayMessage(false);
                 return false;
             }
             if (!$("txtAmt").value.isNumber()) {
-                AddError("txtAmt", "<%=Resources.Lang.AmtErr %> " + $("hdMinAmt").value + " <%=Resources.Lang.And %> " + $("hdBalance").value);
-                DisplayMsg(false);
+                Common.addError("txtAmt", "<%=Resources.Lang.AmtErr %> " + $("hdMinAmt").value + " <%=Resources.Lang.And %> " + $("hdBalance").value);
+                Common.displayMessage(false);
                 return false;
             }
             var amtRequest = parseFloat($("txtAmt").value.replace(/,/g, "").replace("$", ""));
             var amtBalance = parseFloat($("hdBalance").value.replace(/,/g, "").replace("$", ""));
             var MinAmt = parseFloat($("hdMinAmt").value.replace(/,/g, "").replace("$", ""));
             if (amtRequest > amtBalance) {
-                AddError("txtAmt", "<%=Resources.Lang.ErrBalanceForward%>");
+                Common.addError("txtAmt", "<%=Resources.Lang.ErrBalanceForward%>");
             }
             if (MinAmt > amtRequest) {
                 if (arrItem.length == 0)
-                    AddError("txtAmt", "<%=Resources.Lang.ErrMinAmt %>");
+                    Common.addError("txtAmt", "<%=Resources.Lang.ErrMinAmt %>");
                 else
-                    AddError("error_item", "<%=Resources.Lang.ErrMinAmt %>");
+                    Common.addError("error_item", "<%=Resources.Lang.ErrMinAmt %>");
             }
             if (arrItem.length > 0 || arrError.length > 0) {
-                DisplayMsg(false);
+                Common.displayMessage(false);
                 return false;
             }
             return true;
@@ -220,9 +215,9 @@
         }
         //var tblink = null;
         function UpdateSuccess(Msg, balance, minAmt, listPayment) {
-            AddError("error_item", Msg);
+            Common.addError("error_item", Msg);
             $("succ_item").innerHTML = Msg;
-            DisplayMsg(true);
+            Common.displayMessage(true);
             $("spBalance").innerHTML = balance;
             $("hdBalance").value = balance;
             $("spMinAmt").innerHTML = minAmt;
@@ -236,8 +231,8 @@
             $('succMsg').hide();
             arrItem.clear();
             arrError.clear();
-            AddError("error_item", Msg);
-            parent.DisplayMsg(false);
+            Common.addError("error_item", Msg);
+            parent.Common.displayMessage(false);
         }
     </script>
 

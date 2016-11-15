@@ -9,6 +9,7 @@ public partial class PaymentUpdate : IBCPage
     protected void Page_Load(object sender, EventArgs e)
     {
         string strTpl = TemplateHandler.LoadTemplate("Payment/PaymentUpdate.htm");
+        TemplateHandler.Assign(ref strTpl, "XsrfTokenFormValue", _XsrfTokenFormValue);
         TemplateHandler.Assign(ref strTpl, "PaymentInfo", Resources.Lang.PaymentInfo);
         TemplateHandler.Assign(ref strTpl, "transid-tit", Resources.Lang.TransactionsId);
         TemplateHandler.Assign(ref strTpl, "daterequest", Resources.Lang.DateRequest);
@@ -60,13 +61,8 @@ public partial class PaymentUpdate : IBCPage
 
                 RemovePreferWaste(ref strTpl, dr);
             }
-            else
-            {
-            }
         }
-        else
-        {
-        }
+
         this.HtmlContent = strTpl;
     }
 

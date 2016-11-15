@@ -1,15 +1,6 @@
 <%@ Control Language="C#" AutoEventWireup="true" Inherits="Controls_ContactUs" Codebehind="ContactUs.ascx.cs" %>
 
 <script type="text/javascript">
-            function ShowError(errMsgs,tagIds,placeHolder)
-            {	
-	            var errHtml="";	
-	            $(placeHolder).style.display=(errMsgs.length==0)?'none':'';
-	            for(var i=0;i<errMsgs.length;++i){
-	                errHtml+="<li><a class='err-msg' href='' onclick=\"$('"+tagIds[i]+"').focus(); return false;\">"+errMsgs[i]+"</a></li>";
-	            }
-	            $(placeHolder).innerHTML = "<ul>" + errHtml + "</ul>";
-            }
             function submitForm()
             {
                 arrItem.clear();
@@ -18,24 +9,23 @@
                 if(CheckSuccess())
                     return true;
                 return false;
-                    //$("ContactUS_form").submit();
             }
             function CheckSuccess()
             {
-                if(isEmpty($('txtName').value))
-                    AddError("txtName", ErrMsg.Name);
-                if(isEmpty($('txtSubject').value))
-                    AddError("txtSubject", ErrMsg.Subject);
-                if(!checkMail($('txtEmail').value))
-                    AddError("txtEmail", ErrMsg.EmailValid);
-                if(isEmpty($('txtContent').value))
-                    AddError("txtContent", ErrMsg.Comment);
-                if (isEmpty($('txtValidateRegister').value) || $('txtValidateRegister').value == '<%=Resources.Lang.Validation%>')
-                    AddError("txtValidateRegister", ErrMsg.Errmsgentryvalidcode);
+                if(Common.isEmpty($('txtName').value))
+                    Common.addError("txtName", ErrMsg.Name);
+                if (Common.isEmpty($('txtSubject').value))
+                    Common.addError("txtSubject", ErrMsg.Subject);
+                if(!Common.checkMail($('txtEmail').value))
+                    Common.addError("txtEmail", ErrMsg.EmailValid);
+                if (Common.isEmpty($('txtContent').value))
+                    Common.addError("txtContent", ErrMsg.Comment);
+                if (Common.isEmpty($('txtValidateRegister').value) || $('txtValidateRegister').value == '<%=Resources.Lang.Validation%>')
+                    Common.addError("txtValidateRegister", ErrMsg.Errmsgentryvalidcode);
                     
                 if(arrItem.length > 0)
                 {
-                    DisplayMsg(false);
+                    Common.displayMessage(false);
                     return false;
                 }              
                 return true;
@@ -67,14 +57,9 @@
                 $('dvContact').show();
                  arrError.push(strErr);
                  arrItem.push("txtEmail");
-                 ShowError(arrError, arrItem, "error_item");
+                 Common.showError(arrError, arrItem, "error_item");
                  ChangeCapchaCode($('validCodeRegister'));                                 
-           }
-           
-           function tt()
-           {
-                alert('ok');
-            }          
+           }        
 </script>
 
 <iframe id="frmContactUS" name="frmContactUS" style="display: none;" width="0" height="0"

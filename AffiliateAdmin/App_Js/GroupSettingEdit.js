@@ -115,11 +115,14 @@ var StringBuilder = function() {
                 if(!confirm(alertText))
                     return;
             }
-            DelayReloadPage1();
+            Common.delayReloadPage1();
             
             var ajax = new Ajax.Request("../Handler/CommGroupUpd.ashx", {
                 method: 'post',
-                parameters: { params: Object.toJSON(GroupSetting) },
+                parameters: {
+                    params: Object.toJSON(GroupSetting),
+                    "X-CSRF-Token": $('X-CSRF-Token').value
+                },
                 onComplete: function(data) {
                     var result = data.responseText;
                     if (result != "")
@@ -135,7 +138,7 @@ var StringBuilder = function() {
                     if (GroupSetting.isApproved) {                        
                         parent.parent.location.href = parent.parent.location.href.replace(/#/, ""); 
                     }
-                    HideDelayReloadPage();
+                    Common.hideLoading();
                 }
             });                         
            }

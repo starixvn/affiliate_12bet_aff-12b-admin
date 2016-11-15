@@ -4,12 +4,11 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
     <!--js-->
-    <link rel='stylesheet' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/base/jquery-ui.css'>
-    <!--<script src="../App_Js/prototype.js" type="text/javascript"></script>-->
-    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script> 
-    <script src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js'></script>
-    <script src="../App_Js/MonthPicker/jquery.mtz.monthpicker.js" type="text/javascript"></script>
-    <link href="../App_Js/MonthPicker/month-picker.css" rel="stylesheet" type="text/css" />
+    <link href="../App_Js/libs/jquery-ui/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <link href="../App_Js/libs/MonthPicker/month-picker.css" rel="stylesheet" type="text/css" />
+
+    <script src='../App_Js/vendors/jquery.min.js'></script>
+    <script src="../App_Js/libs/MonthPicker/jquery.mtz.monthpicker.js" type="text/javascript"></script>
     <script type="text/javascript" language="javascript" src="../App_Js/swfobject.js"></script>
     <script src="../App_Js/Common.js" language="javascript" type="text/javascript"></script>
     <script src="../App_Js/IBCWnd/IBCWnd.js" language="javascript" type="text/javascript"></script>
@@ -33,9 +32,9 @@
 
         function SetPopupShow() {
             if ($("dontshow").checked)
-                setCookie("dontshow" + "$" + $("custid").value, "true", 30);
+                Common.setCookie("dontshow" + "$" + $("custid").value, "true", 30);
             else
-                setCookie("dontshow" + "$" + $("custid").value, "false", 30);
+                Common.setCookie("dontshow" + "$" + $("custid").value, "false", 30);
         }
     
     </script>
@@ -230,10 +229,9 @@
         };
 
         var InitShowAnnouncement = function () {
-//            window.Init();
 
-            var username = getCookie("Username");
-            var dontShowMessage = getCookie(username + '_DontShowMessage');
+            var username = Common.getCookie("Username");
+            var dontShowMessage = Common.getCookie(username + '_DontShowMessage');
 
             if (dontShowMessage !== 'true') {
                 var height = document.body.clientHeight;
@@ -242,7 +240,7 @@
                 var heightDialog = getPopupHeight();
                 var top = (height - heightDialog) / 2;
                 var left = (width - widthDialog) / 2 - 180;
-                DoCalFull('Announcement.aspx', '', widthDialog, heightDialog, top, left);
+                Common.openPopup('Announcement.aspx', '', widthDialog, heightDialog, top, left);
 
                 setTimeout(function () {
                     var ibcTable = document.getElementsByClassName('IBCWndTable')[0];

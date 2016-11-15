@@ -235,8 +235,8 @@ namespace GenerateHTML
             TemplateHandler.Assign(ref strContentTable, "paging-top", Common.GenPaging(totalPage, pageIndex, pageSize, 0, "aPageTop", "txtPageTop", 612, false, true));
             TemplateHandler.Assign(ref strContentTable, "paging-bottom", Common.GenPaging(totalPage, pageIndex, pageSize, 0, "aPageBottom", "txtPageBottom", 612, false, false));
             TemplateHandler.Assign(ref strContentTable, "page", pageIndex);
-            strContentTable = strContentTable.Replace("LoadData", "LoadDetail");
-            strContentTable = strContentTable.Replace("ChangePage", "submitPage");
+            strContentTable = strContentTable.Replace("Common.loadData", "loadDetail");
+            strContentTable = strContentTable.Replace("changePage", "submitPage");
             
 
             string strContent = TemplateHandler.CopyBlock(strContentTable, "StatisticsDetailContent");

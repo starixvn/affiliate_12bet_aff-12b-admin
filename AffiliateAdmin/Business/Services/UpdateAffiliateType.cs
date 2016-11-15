@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web;
+using Affiliate.Infrastructure.Helpers;
 using AffiliateAdmin.Business.DataAccess;
 using DNAide.Core;
 
@@ -10,6 +11,16 @@ namespace AffiliateAdmin.Business.Services
         public void Update(HttpContext context)
         {
             context = IBCHandler.InitializeCulture(context);
+            try
+            {
+                AntiForgeryHelper.ValidateXsrfToken(context);
+            }
+            catch
+            {
+                context.Response.Write("1@" + Resources.Lang.Err500);
+                return;
+            }
+
             try
             {
                 int afftype = CastAide.AsInt32(context.Request["afftype"], 2);

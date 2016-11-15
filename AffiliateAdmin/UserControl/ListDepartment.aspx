@@ -22,7 +22,7 @@
                         location.href = location.href;
                     }
                     if (strdata.responseText != 'Ok') {
-                        ErrAlter(strdata.responseText);
+                        Common.alertError(strdata.responseText);
                     }
 
                 }
@@ -36,7 +36,7 @@
             parameters:'depid=' + depid + '&depname=' + depname,
             onComplete:function(strdata)
             {
-                DelayReloadPage('listPolicy',strdata.responseText);
+                Common.delayReloadPage('listPolicy',strdata.responseText);
             }               
             });    
         }
@@ -48,7 +48,7 @@
             parameters:{depid:depid,depname:depname},
             onComplete:function(strdata)
             {
-               DelayReloadPage('listPolicy',strdata.responseText);
+               Common.delayReloadPage('listPolicy',strdata.responseText);
             }               
         });    
     }    
@@ -64,7 +64,7 @@
         parameters:{depid:depid,depname:depname,us:$('keyword').value,fl:$('alp').value},
         onComplete:function(strdata)
         {                              
-           DelayReloadPage('listPolicy',strdata.responseText);                
+           Common.delayReloadPage('listPolicy',strdata.responseText);                
         }               
         });    
     }   

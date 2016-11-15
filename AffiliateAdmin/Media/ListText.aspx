@@ -11,7 +11,7 @@
      function Init() {
          parent.frames['fMenu'].ActiveMenu('menu6');
          
-         InitDivChkBox();
+         Common.initDivCheckBox();
          if (($("totalMedia").value == 0)) {
              $("btnDelete").style.display = "none";
          }

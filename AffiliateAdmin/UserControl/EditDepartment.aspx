@@ -9,7 +9,7 @@
    {   
         if($("txtdep").value.trim() == "")
         {
-            ErrAlter(top.fMenu.Msg.ErrDepartment);
+            Common.alertError(top.fMenu.Msg.ErrDepartment);
             return;
         }
         var ajax = new Ajax.Request('../Handler/UpdateDepartment.ashx', {
@@ -19,11 +19,11 @@
                 if (strdata.responseText == 'Ok') {
                     isUpdate = true;
                     $("errMsg").className = "done";
-                    SuccAlter(top.fMenu.Msg.UpdateSucc);
+                    Common.alertSuccess(top.fMenu.Msg.UpdateSucc);
                     setTimeout("parent.ibcWnd.close();", 2000);
                 }
                 else {
-                    ErrAlter(strdata.responseText);
+                    Common.alertError(strdata.responseText);
                 }
             }
         });  

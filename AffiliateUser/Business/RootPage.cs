@@ -1,15 +1,23 @@
 ﻿using System;
 using System.Web;
+using Affiliate.Infrastructure.Helpers;
 
-/// <summary>
-/// Summary description for IBCPage2
-/// </summary>
 public class RootPage : System.Web.UI.Page
 {
     private string _locale;
     protected string HtmlContent = string.Empty;
     private string _vers = string.Empty;
     protected string ThemePath;
+
+    protected string _XsrfTokenFormValue;
+
+    protected override void OnInit(EventArgs e)
+    {
+        _XsrfTokenFormValue = AntiForgeryHelper.GenerateXsrfFormToken(HttpContext.Current);
+
+        base.OnInit(e);
+    }
+
     protected override void InitializeCulture()
     {
         if (Request.Cookies["afffavoritelang"] != null && string.IsNullOrEmpty(AppSettings.Session.Language))
@@ -25,6 +33,7 @@ public class RootPage : System.Web.UI.Page
             aCookie.Expires = DateTime.Now.AddDays(30);
             Response.Cookies.Add(aCookie);
         }
+
         Response.Cache.SetCacheability(HttpCacheability.NoCache);
         _locale = (string.IsNullOrEmpty(AppSettings.Session.Language)) ? "en-US" : AppSettings.Session.Language;
         this.Culture = _locale;
@@ -63,6 +72,7 @@ public class RootPage : System.Web.UI.Page
         this.UICulture = _locale;
         return result;
     }
+
     public string Locale
     {
         get
@@ -85,9 +95,9 @@ public class RootPage : System.Web.UI.Page
                 case "es-ES": return "ES";
                 default: return "E";
             }
-        }		
-
+        }
     }
+
     protected string RelativePath
     {
         get

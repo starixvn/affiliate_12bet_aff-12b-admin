@@ -7,6 +7,13 @@
     }
 </script>
 <div class="padl0">
+    <div id="errMsg" style="display: none;" class="styleErrAddbanner">
+        <div id="error_item">
+            <ul>
+                <li><a class="err-msg" id="error_msg"></a></li>
+            </ul>
+        </div>
+    </div>
 {submenu}
 <!--search form-->
 <form id="frmSearch" name="frmSearch" method="get">
@@ -27,6 +34,7 @@
 
 <div class="divpageleft" style="display: inline-block;"><a class="abutton" href="javascript:AddDomainControl('{Market-value}', '{DeviceType-val}');"><span id="Span1">{AddNew}</span></a></div>
 <!--/search form-->
+    <input type="hidden" id="X-CSRF-Token" name="X-CSRF-Token" value="{XsrfTokenFormValue}" />
 <table class="aff-table" cellpadding="3" cellspacing="1" style="width: 900px;"> 
 <!--header-->
 <tr>

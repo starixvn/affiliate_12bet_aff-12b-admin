@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="../Content/Fanex.Result/12betadmin.result.css" />
     <link rel="stylesheet" type="text/css" href="../Content/tipsy/tipsy.css" />
     <link href="../Content/tipsy/custom-tipsy.css" rel="stylesheet" type="text/css" />
-    <script src="../App_Js/jquery/jquery-1.4.2.min.js" type="text/javascript"></script>
+    <script src="../App_Js/vendors/jquery.min.js" type="text/javascript"></script>
     <script src="../App_Js/tipsy/jquery.tipsy.js" type="text/javascript"></script>
     <title></title>
         </head>

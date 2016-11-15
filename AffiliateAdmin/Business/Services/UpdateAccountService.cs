@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web;
+using Affiliate.Infrastructure.Helpers;
 using DNAide.Core;
 
 namespace AffiliateAdmin.Business.Services
@@ -10,6 +11,17 @@ namespace AffiliateAdmin.Business.Services
         {
             context.Response.ContentType = "text/html";
             context.Response.Cache.SetCacheability(HttpCacheability.Private);
+
+            try
+            {
+                AntiForgeryHelper.ValidateXsrfToken(context);
+            }
+            catch
+            {
+                context.Response.Write("<script type='text/javascript'>parent.UpdateErr(\"" + Resources.Lang.Err500 + "\", \"strErrObj\");</script>");
+                return;
+            }
+
             try
             {
                 //Check 12BetUsername Correct or not

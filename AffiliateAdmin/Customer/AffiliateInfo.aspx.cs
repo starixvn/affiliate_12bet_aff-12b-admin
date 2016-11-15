@@ -1,20 +1,18 @@
 ﻿using System;
-using System.Text;
-using System.Collections;
 using System.Data;
+using System.Text;
 using System.Web.Security;
-using DNAide.Web;
-using DNAide.Core;
 using AffiliateAdmin.Business.DataAccess;
+using DNAide.Core;
 using DNAide.Utils;
-using System.Web;
+using DNAide.Web;
 
 public partial class Customer_AffiliateInfo : IBCPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
         string strTpl = TemplateHandler.LoadTemplate("Customer/AffiliateInfo.htm");
-        #region Load language
+        TemplateHandler.Assign(ref strTpl, "XsrfTokenFormValue", _XsrfTokenFormValue);
         TemplateHandler.Assign(ref strTpl, "affiliate", Resources.Lang.Affiliate);
         TemplateHandler.Assign(ref strTpl, "fname", Resources.Lang.Fname);
         TemplateHandler.Assign(ref strTpl, "lname", Resources.Lang.Lname);
@@ -29,9 +27,9 @@ public partial class Customer_AffiliateInfo : IBCPage
         TemplateHandler.Assign(ref strTpl, "change", Resources.Lang.Change);
         TemplateHandler.Assign(ref strTpl, "CommGroup", Resources.Lang.CommGroup);
         TemplateHandler.Assign(ref strTpl, "comm", Resources.Lang.Comm);
-        
+
         TemplateHandler.Assign(ref strTpl, "balforward", Resources.Lang.BalanceForward);
-        TemplateHandler.Assign(ref strTpl, "setting", Resources.Lang.Setting);        
+        TemplateHandler.Assign(ref strTpl, "setting", Resources.Lang.Setting);
         TemplateHandler.Assign(ref strTpl, "status", Resources.Lang.Status);
         TemplateHandler.Assign(ref strTpl, "closed", Resources.Lang.Closed);
         TemplateHandler.Assign(ref strTpl, "currlist", Resources.Lang.CurrOnlineList);
@@ -39,17 +37,14 @@ public partial class Customer_AffiliateInfo : IBCPage
         TemplateHandler.Assign(ref strTpl, "lastcheckin", Resources.Lang.LastCheckIn);
         TemplateHandler.Assign(ref strTpl, "reportdetail", Resources.Lang.ReportDetails);
         TemplateHandler.Assign(ref strTpl, "memberlist", Resources.Lang.MemList);
-        //TemplateHandler.Assign(ref strTpl, "listmember", Resources.Lang.MemList);
 
         TemplateHandler.Assign(ref strTpl, "afftype", Resources.Lang.AffiliateType);
-        
 
-        #endregion
         string strUsername = Server.UrlEncode(Request["username"]);
-        if(!string.IsNullOrEmpty(strUsername))
+        if (!string.IsNullOrEmpty(strUsername))
             AppSettings.Session.AffUsername = strUsername.Trim();
 
-        if(string.IsNullOrEmpty(strUsername) && string.IsNullOrEmpty(AppSettings.Session.AffUsername))
+        if (string.IsNullOrEmpty(strUsername) && string.IsNullOrEmpty(AppSettings.Session.AffUsername))
         {
             TemplateHandler.Assign(ref strTpl, "username", string.Empty);
             TemplateHandler.ReplaceBlock(ref strTpl, "noinfo", string.Empty);
@@ -59,16 +54,14 @@ public partial class Customer_AffiliateInfo : IBCPage
             this.HtmlContent = strTpl;
             return;
         }
+
         TemplateHandler.Assign(ref strTpl, "username", AppSettings.Session.AffUsername);
         TemplateHandler.Assign(ref strTpl, "pageid-val", Request["pageid"]);
 
-        
         if (!string.IsNullOrEmpty(Request["isReload"]) && string.Compare(Request["isReload"], "0", true) != 0)//proccess refresh page
         {
             TemplateHandler.Assign(ref strTpl, "noinfo-val", "2");
             TemplateHandler.Assign(ref strTpl, "isReload-val", Request["isReload"]);
-
-
         }
         TemplateHandler.Assign(ref strTpl, "isReload-val", "0");
 
@@ -83,10 +76,8 @@ public partial class Customer_AffiliateInfo : IBCPage
                 AppSettings.Session.AffType = (AffType)CastAide.AsInt32(dr["afftype"], 2);
                 TemplateHandler.Assign(ref strTpl, "afftype-val", AppSettings.Session.AffType.ToString());
 
-
                 TemplateHandler.Assign(ref strTpl, "url", GerUrl(AppSettings.Session.AffUsername));//Link to affiliate
                 TemplateHandler.Assign(ref strTpl, "noinfo-val", "0");
-                
 
                 string strStatus = dr["Status"].ToString();
                 bool isClosed = CastAide.AsBoolean(dr["Closed"]);
@@ -101,7 +92,7 @@ public partial class Customer_AffiliateInfo : IBCPage
                 TemplateHandler.Assign(ref strTpl, "fnametext-val", cutLongText(dr["firstname"].ToString(), 23));
                 TemplateHandler.Assign(ref strTpl, "fname-val", dr["firstname"]);
                 TemplateHandler.Assign(ref strTpl, "lname-val", cutLongText(dr["lastname"].ToString(), 23));
-                if(DBNull.Value.Equals(dr["gender"]))
+                if (DBNull.Value.Equals(dr["gender"]))
                     TemplateHandler.Assign(ref strTpl, "gender-val", string.Empty);
                 else
                     TemplateHandler.Assign(ref strTpl, "gender-val", (CastAide.AsBoolean(dr["gender"], true) ? Resources.Lang.Male : Resources.Lang.Female));
@@ -122,17 +113,16 @@ public partial class Customer_AffiliateInfo : IBCPage
                 else
                 {
                     TemplateHandler.Assign(ref strTpl, "siteurl-val", "http://" + dr["siteurl"].ToString());
-                    TemplateHandler.Assign(ref strTpl, "WebsiteCheckerURL-val",Common.GetWebsiteCheckerURL("http://" + dr["siteurl"].ToString()));
+                    TemplateHandler.Assign(ref strTpl, "WebsiteCheckerURL-val", Common.GetWebsiteCheckerURL("http://" + dr["siteurl"].ToString()));
                 }
                 TemplateHandler.Assign(ref strTpl, "lastlogin-val", Common.IBCDateTimeFormat(dr["lastLoginDate"], DTFormatType.DT24h));
                 TemplateHandler.Assign(ref strTpl, "lastloginip-val", dr["lastloginip"]);
-                TemplateHandler.Assign(ref strTpl, "LastLoginIPCheckerURL-val",Common.GetIPCheckerURL(dr["lastloginip"].ToString()));
-                TemplateHandler.Assign(ref strTpl, "CommGroup-val",dr["groupname"].ToString());
+                TemplateHandler.Assign(ref strTpl, "LastLoginIPCheckerURL-val", Common.GetIPCheckerURL(dr["lastloginip"].ToString()));
+                TemplateHandler.Assign(ref strTpl, "CommGroup-val", dr["groupname"].ToString());
                 TemplateHandler.Assign(ref strTpl, "GroupID-val", dr["groupid"]);
 
                 if (Convert.ToInt32(dr["groupid"]) > 1000)
                 {
-
                     TemplateHandler.RemoveBlock(ref strTpl, "PublicGroup");
                 }
                 else
@@ -141,7 +131,7 @@ public partial class Customer_AffiliateInfo : IBCPage
                     groupName = (groupName.Length <= 14) ? groupName : groupName.Substring(0, 11) + "...";
                     TemplateHandler.Assign(ref strTpl, "CommGroup1-val", groupName);
                     TemplateHandler.RemoveBlock(ref strTpl, "PrivateGroup");
-                    if(isClosed)
+                    if (isClosed)
                         TemplateHandler.ReplaceBlock(ref strTpl, "PublicGroup", groupName);
                 }
 
@@ -158,7 +148,7 @@ public partial class Customer_AffiliateInfo : IBCPage
                     TemplateHandler.RemoveBlock(ref strTpl, "MemberList");
                 }
                 else
-                {					
+                {
                     TemplateHandler.ReplaceBlock(ref strTpl, "status-val", strStatus);
                     if (isClosed)
                     {
@@ -174,12 +164,12 @@ public partial class Customer_AffiliateInfo : IBCPage
                 TemplateHandler.Assign(ref strTpl, "status-val", strStatus);
                 if (isClosed)
                 {
-                    TemplateHandler.Assign(ref strTpl, "closed-val", Resources.Lang.Yes);                    
+                    TemplateHandler.Assign(ref strTpl, "closed-val", Resources.Lang.Yes);
                 }
                 else
                 {
-                    TemplateHandler.Assign(ref strTpl, "closed-val", Resources.Lang.No);                    
-                }                
+                    TemplateHandler.Assign(ref strTpl, "closed-val", Resources.Lang.No);
+                }
             }
             else
             {
@@ -199,7 +189,7 @@ public partial class Customer_AffiliateInfo : IBCPage
                     string strTmp = strOnlineContent;
                     TemplateHandler.Assign(ref strTmp, "no", rowNo);
                     TemplateHandler.Assign(ref strTmp, "ip-val", dr["ip"]);
-                    TemplateHandler.Assign(ref strTmp, "IPCheckerURL-val",Common.GetIPCheckerURL(dr["ip"].ToString()));
+                    TemplateHandler.Assign(ref strTmp, "IPCheckerURL-val", Common.GetIPCheckerURL(dr["ip"].ToString()));
                     TemplateHandler.Assign(ref strTmp, "time", Common.IBCDateTimeFormat(dr["reload_time"], DTFormatType.DT24h));
                     strBuild.Append(strTmp);
                 }
@@ -218,9 +208,8 @@ public partial class Customer_AffiliateInfo : IBCPage
 
         this.HtmlContent = strTpl;
     }
-   
-    
-    string GerUrl(string custName)
+
+    private string GerUrl(string custName)
     {
         string rndStr = Encryption.RandomString(6);
         string accKey = FormsAuthentication.HashPasswordForStoringInConfigFile(Session.SessionID + rndStr, "MD5");
@@ -235,7 +224,7 @@ public partial class Customer_AffiliateInfo : IBCPage
         return _url;
     }
 
-    string cutLongText(string val, int maxLength)
+    private string cutLongText(string val, int maxLength)
     {
         return (val.Length <= maxLength) ? val : "<span title='" + Server.HtmlEncode(val) + "'>" + val.Substring(0, maxLength - 3) + "...</span>";
     }

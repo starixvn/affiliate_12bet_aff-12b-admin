@@ -1,4 +1,5 @@
 ﻿using System.Web;
+using Affiliate.Infrastructure.Helpers;
 using AffiliateAdmin.Business.DataAccess;
 using DNAide.Core;
 
@@ -9,6 +10,17 @@ namespace AffiliateAdmin.Business.Services
         public void Update(HttpContext context)
         {
             context.Response.ContentType = "text/html";
+
+            try
+            {
+                AntiForgeryHelper.ValidateXsrfToken(context);
+            }
+            catch
+            {
+                context.Response.Write(Resources.Lang.Err500);
+                return;
+            }
+
             string action = (string.IsNullOrEmpty(context.Request.Form["sta"]) ? "Add" : context.Request.Form["sta"].ToString());
 
             int affDomainId = CastAide.AsInt32(context.Request.Form["affDomainId"]);

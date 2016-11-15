@@ -20,8 +20,8 @@
 </style>
 
 <div class="padl0">
-    <form id="frmSearch" method="get">
     {submenu}
+    <form id="frmSearch" method="get">
     <div id="search_cont">
         <div id="header_search">
               {GroupName} &nbsp;  
@@ -56,6 +56,7 @@
      {paging-top}
     </form>
   
+    <input type="hidden" id="X-CSRF-Token" name="X-CSRF-Token" value="{XsrfTokenFormValue}" />
     <table class="aff-table" cellspacing="1" cellpadding="3" width="1020px" id="tblResult">
         <tr class="nowrap">
                     <th rowspan="2">&nbsp;</th>
@@ -78,8 +79,6 @@
                     <th>{Comm}</th>
                     <th>{Deductions}</th>                    
         </tr>
-
-        
         <tbody id="result">
             <!--Content-->
              <!--NoneGroupRow-->

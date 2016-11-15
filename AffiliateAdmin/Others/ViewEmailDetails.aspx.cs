@@ -11,6 +11,7 @@ public partial class ViewEmailDetails : IBCPage
         try
         {
             string strContent = TemplateHandler.LoadTemplate("Others/ViewEmail.htm");
+            TemplateHandler.Assign(ref strContent, "XsrfTokenFormValue", _XsrfTokenFormValue);
             TemplateHandler.Assign(ref strContent, "paththeme", AppSettings.ThemeDir);
             TemplateHandler.Assign(ref strContent, "Delete", Resources.Lang.Delete);
             TemplateHandler.Assign(ref strContent, "Cancel", Resources.Lang.Cancel);

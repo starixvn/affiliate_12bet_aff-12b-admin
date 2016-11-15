@@ -12,7 +12,7 @@
 <script src="../App_Js/Calendar2/calendar-setup.js" type="text/javascript"></script>
 <script type="text/javascript">
     window.onload = function () {
-        EnableCalendar($("chkDate").className == "ic-uncheck" ? true : false);
+        Common.enableCalendar($("chkDate").className == "ic-uncheck" ? true : false);
         if ($("hdLanguage").value != "")
             $("slPreferLang").value = $("hdLanguage").value;
         if ($("hdSortBy").value != "") {
@@ -23,17 +23,17 @@
         if ($("chkDate").className == "ic-uncheck") {
             $("chkDate").className = "ic-check";
             $("isGetAll").value = "ic-check";
-            EnableCalendar(false);
+            Common.enableCalendar(false);
         }
         else {
             $("chkDate").className = "ic-uncheck"
             $("isGetAll").value = "ic-uncheck";
-            EnableCalendar(true);
+            Common.enableCalendar(true);
         }
     }
     function Search() {
         $("frmSearch").submit();
-        DelayReloadPage1();
+        Common.delayReloadPage1();
     }
 </script>
 <!--/js-->

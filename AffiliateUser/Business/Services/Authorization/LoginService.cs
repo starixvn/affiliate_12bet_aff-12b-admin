@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 using Affiliate;
+using Affiliate.Infrastructure.Helpers;
 using Resources;
 
 namespace AffiliateUser.Business.Services.Authorization
@@ -13,6 +14,16 @@ namespace AffiliateUser.Business.Services.Authorization
         {
             context = AffHandler.InitializeCulture(context);
             context.Response.ContentType = "text/html";
+            try
+            {
+                AntiForgeryHelper.ValidateXsrfToken(context);
+            }
+            catch
+            {
+                context.Response.Write("500:" + Resources.Lang.ErrAuthorized);
+                return;
+            }
+
             string message = string.Empty;
 
             try
@@ -21,7 +32,7 @@ namespace AffiliateUser.Business.Services.Authorization
 
                 if (!Common.IsValidCaptcha(captcha, context.Request.UserHostAddress))
                 {
-                    message = "101:" + Resources.Lang.ValidationCode;
+                    message = "101:" + Lang.ValidationCode;
                 }
                 else
                 {
@@ -45,6 +56,8 @@ namespace AffiliateUser.Business.Services.Authorization
                             return;
                         }
 
+                        AuthHelper.AddAuthToken(context);
+                        FormsAuthentication.SetAuthCookie(_username, false);
                         AppSettings.Session.AffType = afftype;
                         AppSettings.Session.CustID = DNAide.Core.CastAide.AsInt32(dr.Outputs["custid"], -1);
                         AppSettings.Session.OnUser = DataHandler.Auth.LoginOnuser(context);

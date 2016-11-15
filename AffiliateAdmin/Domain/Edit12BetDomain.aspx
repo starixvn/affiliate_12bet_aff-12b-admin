@@ -18,7 +18,7 @@
    {
        if ($("txt12betdomain").value.trim() == "")
         {
-            ErrAlter(top.fMenu.Msg.ErrAffDomain);
+            Common.alertError(top.fMenu.Msg.ErrAffDomain);
             return;
         }
        
@@ -29,17 +29,18 @@
                 _12BetDomainName: $('txt12betdomain').value,
                 deviceType: $('slDevice').value,
                 ssl: $("chkSSL").hasClassName("ic-check"),
-                sta: 'Edit'
+                sta: 'Edit',
+                "X-CSRF-Token": $('X-CSRF-Token').value
             },
             onComplete: function(strdata) {
                 if (strdata.responseText == 'Ok') {
                     isUpdate = true;
                     $("errMsg").className = "done";
-                    SuccAlter(top.fMenu.Msg.UpdateSucc);
+                    Common.alertSuccess(top.fMenu.Msg.UpdateSucc);
                     setTimeout("parent.ibcWnd.close();", 2000);
                 }
                 else {
-                    ErrAlter(strdata.responseText);
+                    Common.alertError(strdata.responseText);
                 }
             }
         });  

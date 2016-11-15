@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web;
+using Affiliate.Infrastructure.Helpers;
 using AffiliateAdmin.Business.DataAccess;
 using DNAide.Core;
 
@@ -11,11 +12,20 @@ namespace AffiliateAdmin.Business.Services
         {
             context.Response.ContentType = "text/html";
             context.Response.Cache.SetCacheability(HttpCacheability.Private);
+            try
+            {
+                AntiForgeryHelper.ValidateXsrfToken(context);
+            }
+            catch
+            {
+                context.Response.Write("error@" + Resources.Lang.Err500);
+                return;
+            }
+
             int intStatus = CastAide.AsInt32(context.Request["status"]);
             int intCustId = CastAide.AsInt32(context.Request["custid"]);
             int noteid = CastAide.AsInt32(context.Request["id"]);
             string strNoteContent = context.Request["note"];
-            //strNoteContent = context.Server.HtmlEncode(strNoteContent);
             try
             {
                 DbResult result = null;

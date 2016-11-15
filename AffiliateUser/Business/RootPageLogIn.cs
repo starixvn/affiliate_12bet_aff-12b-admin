@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web;
+using AffiliateUser.Business.Services.Authorization;
 
 /// <summary>
 /// Summary description for RootPageLogIn
@@ -8,23 +9,36 @@ public class RootPageLogIn : RootPage
 {
     protected override void OnInit(EventArgs e)
     {
-        var cache = HttpContext.Current.Response.Cache;
-        cache.SetNoStore();
-
-        base.OnInit(e);
-    }
-
-    protected override void InitializeCulture()
-    {
         if (!AppSettings.Session.IsAuthenticated)
         {
+            HttpContext.Current.Response.Redirect(Common.RootURL());
+        }
+        if (!IsSessionValid())
+        {
+            AuthHelper.ClearSession(HttpContext.Current);
             HttpContext.Current.Response.Redirect(Common.RootURL());
         }
         if (!AppSettings.Session.HasSecurityQuestion && !HttpContext.Current.Request.RawUrl.Contains("ChangeSecurityQuestion.aspx"))
         {
             HttpContext.Current.Response.Redirect("ChangeSecurityQuestion.aspx", false);
         }
-        //InitializeCulture();
+        var cache = HttpContext.Current.Response.Cache;
+        cache.SetNoStore();
+
+        base.OnInit(e);
+    }
+
+    private bool IsSessionValid()
+    {
+        var sessionAuthToken = AppSettings.Session.AuthToken;
+        var cookieAuthToken = Request.Cookies["AuthToken"];
+        return sessionAuthToken != null && cookieAuthToken != null && sessionAuthToken.Equals(cookieAuthToken.Value);
+    }
+
+    protected override void InitializeCulture()
+    {
+        
+
         AffHandler.InitializeCulture(HttpContext.Current);
     }
 }

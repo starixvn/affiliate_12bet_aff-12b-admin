@@ -66,26 +66,12 @@
                     onComplete: function(strdata) {                    
                     if (strdata.responseText == 'Ok') {
                         $("errMsg").className = "done";
-                        ErrAlter("The status has been updated successfully!");
-                        DelayReloadPage1();
+                        Common.alertError("The status has been updated successfully!");
+                        Common.delayReloadPage1();
                         setTimeout("$('btnsearch').click()", 2000);
-//                        
-//                        if (depid == 0 && depname == '') {
-//                            DelayReloadPage2(2000);
-//                        }
-//                        else {
-//                            DelayReloadPage1();
-//                            setTimeout("ListUser(" + depid + ",'" + depname + "', true);", 2000);
-                        //}
                     }
                     if (strdata.responseText != 'Ok' && strdata.responseText != 'Fail') {
-                        ErrAlter(strdata.responseText);
-//                        if (isclose == "False") {
-//                            $(custid).checked = true;
-//                        }
-//                        else {
-//                            $(custid).checked = false;
-//                        }
+                        Common.alertError(strdata.responseText);
                     }
                     }
                 });

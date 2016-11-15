@@ -233,8 +233,9 @@ function tt_Init()
 function tt_MkCmdEnum()
 {
 	var n = 0;
-	for(var i in config)
-		eval("window." + i.toString().toUpperCase() + " = " + n++);
+	for (var i in config) {
+	    window[i.toString().toUpperCase()] = n++;
+	}
 	tt_aV.length = n;
 }
 function tt_Browser()
@@ -243,7 +244,7 @@ function tt_Browser()
 
 	n = navigator.userAgent.toLowerCase(),
 	nv = navigator.appVersion;
-	tt_op = (document.defaultView && typeof(eval("w" + "indow" + "." + "o" + "p" + "er" + "a")) != tt_u);
+	tt_op = (document.defaultView && typeof(window.opera) != tt_u);
 	tt_ie = n.indexOf("msie") != -1 && document.all && !tt_op;
 	if(tt_ie)
 	{
@@ -1007,10 +1008,10 @@ function tt_ExtCmdEnum()
 	var s;
 	for(var i in config)
 	{
-		s = "window." + i.toString().toUpperCase();
-		if(eval("typeof(" + s + ") == tt_u"))
+		s = window[i.toString().toUpperCase()];
+		if(typeof(s) == tt_u)
 		{
-			eval(s + " = " + tt_aV.length);
+			s = tt_aV.length;
 			tt_aV[tt_aV.length] = null;
 		}
 	}

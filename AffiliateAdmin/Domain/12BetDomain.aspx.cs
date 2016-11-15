@@ -9,7 +9,7 @@ public partial class _12BetDomain : IBCPage
     protected void Page_Load(object sender, EventArgs e)
     {
         string list = TemplateHandler.LoadTemplate("Domain/12BetDomain.html");
-
+        TemplateHandler.Assign(ref list, "XsrfTokenFormValue", _XsrfTokenFormValue);
         TemplateHandler.Assign(ref list, "Domain", Resources.Lang.Domain);
         TemplateHandler.Assign(ref list, "Creator", Resources.Lang.Creator);
         TemplateHandler.Assign(ref list, "CreatedDate", Resources.Lang.CreatedDate);

@@ -66,7 +66,7 @@
                }
                else
                {
-                   DelayReloadPage('listuser',strdata.responseText);
+                   Common.delayReloadPage('listuser',strdata.responseText);
                 }
             }               
             });    
@@ -79,7 +79,7 @@
             onComplete:function(strdata)
             {
                $('listPolicy').innerHTML='';               
-               DelayReloadPage('listuser',strdata.responseText);
+               Common.delayReloadPage('listuser',strdata.responseText);
                 
             }               
             });

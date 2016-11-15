@@ -26,6 +26,7 @@
    }
 </script>
 <div class="container">  
+    <input type="hidden" id="X-CSRF-Token" name="X-CSRF-Token" value="{XsrfTokenFormValue}" />
 <!--NormalGroup-->
  <div class="form_row">
   {GroupName}:&nbsp;<input type="text" style="width:150px;" id="txtGroupName" name="txtGroupName" value="{GroupName_val}" maxlength="{maxlengthGroupName_val}" {txtGroupName_disabled_val}/> <span class="required" title="{RequiedExplain_val}">&nbsp;*</span>

@@ -4,8 +4,9 @@
   width:150px;
   }
 </style>
+{submenu}
 <form id="Update_form" name="Update_form" action="../Handler/UpdateAcc.ashx?ischild={ischild}" method="post" target="frRegister" onsubmit="return submitForm();">
-  {submenu}
+    <input type="hidden" id="X-CSRF-Token" name="X-CSRF-Token" value="{XsrfTokenFormValue}" />
   <div style="width: 700px;">
     <div id="errMsg" style="display: none;">
       <div id="error_item">

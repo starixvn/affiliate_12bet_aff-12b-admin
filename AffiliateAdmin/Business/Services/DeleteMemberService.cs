@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web;
+using Affiliate.Infrastructure.Helpers;
 
 namespace AffiliateAdmin.Business.Services
 {
@@ -7,6 +8,16 @@ namespace AffiliateAdmin.Business.Services
     {
         public void DeleteMember(HttpContext context)
         {
+            try
+            {
+                AntiForgeryHelper.ValidateXsrfToken(context);
+            }
+            catch
+            {
+                context.Response.Write(Resources.Lang.Err500);
+                return;
+            }
+
             string ibccustid = context.Request.Params["ibccustid"];
             if (string.IsNullOrEmpty(ibccustid))
             {

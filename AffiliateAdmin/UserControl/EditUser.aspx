@@ -12,12 +12,12 @@
            parameters: { custid: custid, fn: $('txtfirstname').value, ln: $('txtlastname').value, depid: $('SelDep').value },
            onComplete: function(strdata) {
                if (strdata.responseText == 'Ok') {
-                   DelayReloadPage1();
+                   Common.delayReloadPage1();
                    arrError.push($('AlertSucc').value);
                    arrItem.push("errMsg");
                    $("errMsg").className = "done";
                    $("errMsg").show();
-                   ShowError(arrError, arrItem, "error_item");
+                   Common.showError(arrError, arrItem, "error_item");
                    if (parent.$("isReload"))
                        parent.$("isReload").value = "1"; //Reload parent window when update Data
                    if (depname == "") {
@@ -28,7 +28,7 @@
                    }
                }
                else {
-                   ErrAlter(strdata.responseText);
+                   Common.alertError(strdata.responseText);
                }
 
            }

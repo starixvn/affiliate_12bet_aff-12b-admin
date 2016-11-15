@@ -24,7 +24,7 @@ public class UpText : IHttpHandler, IRequiresSessionState
         }
         else
         {
-            context.Response.Write("<script type=\"text/javascript\">parent.ErrAlter('" + result.Message + "');</script>");
+            context.Response.Write("<script type=\"text/javascript\">parent.Common.alertError('" + result.Message + "');</script>");
         }
 
     }

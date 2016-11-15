@@ -11,12 +11,12 @@
         $("errMsg").className = "";
         arrItem.clear();
         arrError.clear();
-        if(isEmpty($("txtRate").value))
+        if (Common.isEmpty($("txtRate").value))
         {
               arrError.push(top.fMenu.Msg.RateRequire);            
               arrItem.push("errMsg");
               $('errMsg').show();
-              ShowError(arrError, arrItem, "error_item");  
+              Common.showError(arrError, arrItem, "error_item");
               return false;
         }
         var Rate = parseFloat($("txtRate").value);
@@ -25,10 +25,10 @@
             arrError.push(top.fMenu.Msg.Rate);
             arrItem.push("errMsg");
             $('errMsg').show();
-            ShowError(arrError, arrItem, "error_item");  
+            Common.showError(arrError, arrItem, "error_item");
             return false;
 	    }
-        DelayReloadPage1();
+        Common.delayReloadPage1();
 
         
         var col = $("txtRate").getAttribute("data-col");
@@ -43,15 +43,15 @@
 	                arrItem.push("errMsg");
 	                isUpdate = true;	                
 	                $("errMsg").show();
-	                ShowError(arrError, arrItem, "error_item");
-	                setTimeout("DelayReloadPage1();parent.ibcWnd.close();", 2000);
+	                Common.showError(arrError, arrItem, "error_item");
+	                setTimeout("Common.delayReloadPage1();parent.ibcWnd.close();", 2000);
 	            }
 	            else {
 	                arrError.push(res.responseText);
 	                arrItem.push("txtRate");
 	                $('errMsg').show();
-	                ShowError(arrError, arrItem, "error_item");
-	                HideDelayReloadPage();
+	                Common.showError(arrError, arrItem, "error_item");
+	                Common.hideLoading();
 	            }
 	        }
 	    });

@@ -19,7 +19,7 @@ public partial class AffiliateUpd : IBCPage
         int intcustid = AppSettings.Session.AffId;
         if (!Common.HasReadPermission(PermissionNames.SecurityQA))
             TemplateHandler.RemoveBlock(ref strTpl, "securityqa");
-
+        TemplateHandler.Assign(ref strTpl, "XsrfTokenFormValue", _XsrfTokenFormValue);
         TemplateHandler.Assign(ref strTpl, "edit", Resources.Lang.Edit);
         TemplateHandler.Assign(ref strTpl, "note", Resources.Lang.Note);
         TemplateHandler.Assign(ref strTpl, "upduser", Resources.Lang.UpdUser);

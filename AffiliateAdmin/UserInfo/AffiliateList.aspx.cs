@@ -74,7 +74,7 @@ public partial class AffiliateList : IBCPage
         TemplateHandler.Assign(ref strTemplate, "pending", Resources.Lang.Pending);
 
         #endregion
-
+        TemplateHandler.Assign(ref strTemplate, "XsrfTokenFormValue", _XsrfTokenFormValue);
         TemplateHandler.Assign(ref strTemplate, "width", width);
         TemplateHandler.Assign(ref strTemplate, "pending", Resources.Lang.Pending);
         TemplateHandler.Assign(ref strTemplate, "approved", Resources.Lang.Approved);

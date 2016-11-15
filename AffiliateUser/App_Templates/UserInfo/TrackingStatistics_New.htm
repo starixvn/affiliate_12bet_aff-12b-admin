@@ -4,8 +4,9 @@
         word-wrap: break-word;
     }
 </style>
-<script type="text/javascript">    
-    function GotoPage(pageIndex, maxPage) {
+<script type="text/javascript">   
+    // overwrite method, not my code  
+    Common.gotoPage = function(pageIndex, maxPage) {
         var currPage = parseInt($("page").value);
         if (currPage == 1 && pageIndex <= 1)
             return false;
@@ -13,7 +14,7 @@
             return false;
         if (pageIndex > maxPage || pageIndex <= 0)
             return false;
-        LoadDetail(pageIndex);
+        loadDetail(pageIndex);
     }
 
     function submitPage(e, txtID, maxPage, aID) {
@@ -26,11 +27,11 @@
                 setTimeout("$(\"" + txtID + "\").hide();$(\"" + txtID + "\").value=\"" + $("page").value + "\";$(\"" + aID + "\").show();", 3000);
                 return false;
             }
-            LoadDetail(currPage);
+            loadDetail(currPage);
         }
     }
 
-    function LoadDetail(currPage) {
+    function loadDetail(currPage) {
         try {
             if ($("page"))
                 $("page").value = currPage;
@@ -124,7 +125,7 @@
                             {slDevice}
                         </td>
                         <td>
-                            <input type="button" value="{Submit}" onclick="LoadData(1);" id="btnSubmit" name="{Submit}"
+                            <input type="button" value="{Submit}" onclick="Common.loadData(1);" id="btnSubmit" name="{Submit}"
                                 class="button" />
                         </td>
                     </tr>

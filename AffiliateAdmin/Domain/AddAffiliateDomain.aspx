@@ -13,7 +13,7 @@
 
     function checkinput() {
         if ($('txtaffdomain').value == '') {
-            ErrAlter(top.fMenu.Msg.AffDomain);
+            Common.alertError(top.fMenu.Msg.AffDomain);
             $('txtaffdomain').focus();
             return false;
         }
@@ -23,22 +23,25 @@
         var arrError = new Array();
         var arrItem = new Array();
         if (checkinput()) {
-            DelayReloadPage1();
+            Common.delayReloadPage1();
             var ajax = new Ajax.Request('../Handler/UpdateAffDomain.ashx', {
                 method: 'post',
-                parameters: { affDomainName: $('txtaffdomain').value, sta: 'Add' },
+                parameters: {
+                    affDomainName: $('txtaffdomain').value, sta: 'Add',
+                    "X-CSRF-Token": $('X-CSRF-Token').value
+                },
                 onComplete: function (strdata) {
-                    HideDelayReloadPage();
+                    Common.hideLoading();
                     if (strdata.responseText == 'Ok') {
                         $("errMsg").className = "done";
                         arrError.push("Affiliate Domain has been added successfully!");
                         arrItem.push("errMsg");
                         $("errMsg").show();
-                        ShowError(arrError, arrItem, "error_item");
+                        Common.showError(arrError, arrItem, "error_item");
                         setTimeout("ClosePopup();", 1500);
                     }
                     if (strdata.responseText != 'Ok') {
-                        ErrAlter(strdata.responseText);
+                        Common.alertError(strdata.responseText);
                     }
 
                 }

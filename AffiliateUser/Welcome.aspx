@@ -38,12 +38,9 @@
     <script type="text/javascript"> 
     
     window.onload = function() {
-        //MoreUrl();
         AgreeTerm();
         $("txtOldPassword").blur();
         $("txtOldPassword").focus(); 
-        clock();
-        setInterval("clock();", 1000);
     }
     function ResetClick()
     {
@@ -75,8 +72,8 @@
 
         if(!$('CheckTerm').checked)
         {
-            AddError("CheckTerm", ErrMsg.Term);
-            DisplayMsg(false);            
+            Common.addError("CheckTerm", ErrMsg.Term);
+            Common.displayMessage(false);            
             return false;
         }
         
@@ -86,26 +83,26 @@
     }
     function CheckSuccess()
     {
-        if(isEmpty($('txtOldPassword').value))
-            AddError("txtOldPassword", ErrMsg.OldPass);
-        if(isEmpty($('txtNewPassword').value))
-            AddError("txtNewPassword", ErrMsg.NewPass);
+        if (Common.isEmpty($('txtOldPassword').value))
+            Common.addError("txtOldPassword", ErrMsg.OldPass);
+        if (Common.isEmpty($('txtNewPassword').value))
+            Common.addError("txtNewPassword", ErrMsg.NewPass);
         else if ($('txtNewPassword').value != $('txtReNewPassword').value)
-            AddError("txtReNewPassword", ErrMsg.RePass);
-        if (isEmpty($('slSecurityQuestion').value))
-            AddError("slSecurityQuestion", ErrMsg.SecurityQuestion);
-        if (isEmpty($('txtYourAnswer').value))
-            AddError("txtYourAnswer", ErrMsg.YourAnswer);
+            Common.addError("txtReNewPassword", ErrMsg.RePass);
+        if (Common.isEmpty($('slSecurityQuestion').value))
+            Common.addError("slSecurityQuestion", ErrMsg.SecurityQuestion);
+        if (Common.isEmpty($('txtYourAnswer').value))
+            Common.addError("txtYourAnswer", ErrMsg.YourAnswer);
 
         if (arrItem.length > 0) {
-            ShowError(arrError, arrItem, "error_item");
+            Common.showError(arrError, arrItem, "error_item");
             $("errMsg").show();
             return false;
         }
 
         if (!checkpass($("txtNewPassword"), "td_pass") || !checkpass($("txtReNewPassword"), "td_confirm")) {
-            AddError("txtNewPass", $("hdPassCheck").value);
-            ShowError(arrError, arrItem, "error_item");
+            Common.addError("txtNewPass", $("hdPassCheck").value);
+            Common.showError(arrError, arrItem, "error_item");
             $('errMsg').show();
             return false;
         }
@@ -282,7 +279,7 @@
                         <td colspan="3">
                             <div class="submit-bar">
                                 <input name="CheckTerm" id="CheckTerm" onclick="AgreeTerm();" value="CheckTerm" class="noborder" type="checkbox" />
-                                <a class="link_black" onclick="MM_openBrWindow('TermNCondition.aspx','','scrollbars=yes,resizable=yes,width=980,height=800')"
+                                <a class="link_black" onclick="Common.openWindow('TermNCondition.aspx','','scrollbars=yes,resizable=yes,width=980,height=800')"
                                     href="#">
                                     <%=Resources.Lang.AgreeTermNCondition%></a>
                                 <br />

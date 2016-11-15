@@ -9,6 +9,7 @@
 	  </div>
   </div>  
     <form id="form1" name="form1" action="../Handler/PaymentUpdate.ashx" target="frUpdate" method="post" onsubmit="return ValidForm();">
+        <input type="hidden" id="X-CSRF-Token" name="X-CSRF-Token" value="{XsrfTokenFormValue}" />
         <div class="fieldset">
             <div class="legend">Account Information</div>
             <div class="clear"></div>

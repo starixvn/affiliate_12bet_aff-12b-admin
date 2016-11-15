@@ -16,7 +16,7 @@
     function UpdSucc()
     {
         ibcWnd.close();
-        DelayReloadPage1();
+        Common.delayReloadPage1();
         setTimeout("ReloadPage();", 1000);
     }
     function ReloadPage()

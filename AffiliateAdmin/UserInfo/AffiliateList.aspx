@@ -6,7 +6,6 @@
 <script type="text/javascript" src="../App_Js/IBCWnd/IBCWnd.js"></script>
 <script type="text/javascript">
     window.onload = MyFocus;
-    //DelayReloadPage1();
     var time = 0;//set Timeout for clock refresh
     var timer = null;//set Timeout for choose refresh time
     var timePage = "";//set Timeout for go to page
@@ -57,7 +56,7 @@
             //Call ajax to remove this aff in favorite list
             var ajax = new Ajax.Request("../Handler/Favorite.ashx", {
                 method: 'post',
-                parameters: "affid=" + element.id + "&action=0",
+                parameters: "affid=" + element.id + "&action=0" + "&X-CSRF-Token=" + $('X-CSRF-Token').value,
                 onComplete: function(data) {
                     var result = data.responseText.split(";");
                     if(result[0] != "0")
@@ -74,7 +73,7 @@
             //Call ajax to add this aff in favorite list
             var ajax = new Ajax.Request("../Handler/Favorite.ashx", {
                 method: 'post',
-                parameters: "affid=" + element.id + "&action=1",
+                parameters: "affid=" + element.id + "&action=1" + "&X-CSRF-Token=" + $('X-CSRF-Token').value,
                 onComplete: function(data) {
                     var result = data.responseText.split(";");
                     if (result[0] != "0")

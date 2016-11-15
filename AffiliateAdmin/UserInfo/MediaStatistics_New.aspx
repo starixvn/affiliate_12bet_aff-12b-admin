@@ -48,7 +48,6 @@
     }
 
     function LoadData(currPage) {
-        //DelayReloadPage1();
         try {
             if ($("page"))
                 $("page").value = currPage;

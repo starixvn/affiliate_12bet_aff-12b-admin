@@ -10,20 +10,20 @@
             arrError.clear();
             arrItem.clear();
             $("errMsg").hide();
-            if (isEmpty($('txtCurrPass').value))
-                AddError("txtCurrPass", ErrMsg.OldPass);
-            if (isEmpty($('txtNewPass').value))
-                AddError("txtNewPass", ErrMsg.NewPass);
+            if (Common.isEmpty($('txtCurrPass').value))
+                Common.addError("txtCurrPass", ErrMsg.OldPass);
+            if (Common.isEmpty($('txtNewPass').value))
+                Common.addError("txtNewPass", ErrMsg.NewPass);
             else if ($('txtConfirmPass').value != $('txtNewPass').value)
-                AddError("txtConfirmPass", ErrMsg.RePass);
+                Common.addError("txtConfirmPass", ErrMsg.RePass);
             if (arrItem.length > 0) {
-                ShowError(arrError, arrItem, "error_item");
+                Common.showError(arrError, arrItem, "error_item");
                 $("errMsg").show();
                 return false;
             }
             if (!checkpass($("txtNewPass"), "td_pass") || !checkpass($("txtConfirmPass"), "td_confirm")) {
-                AddError("txtNewPass", $("hdPassCheck").value);
-                ShowError(arrError, arrItem, "error_item");
+                Common.addError("txtNewPass", $("hdPassCheck").value);
+                Common.showError(arrError, arrItem, "error_item");
                 $('errMsg').show();
                 return false;
             }
@@ -79,10 +79,10 @@
             return bol;
         }
     </script>
-
     <form id="Update_form" name="Update_form" onsubmit="return submitForm();" action="../Handler/ChangePass.ashx"
     method="post" target="frChangePass">
     <div id="contents">
+        <input type="hidden" id="X-CSRF-Token" name="X-CSRF-Token" value="<%=_XsrfTokenFormValue%>" />
         <div id="box_insite">
             <div class="header_in">
                 <table width="100%" cellspacing="0" cellpadding="0" border="0">
@@ -129,7 +129,7 @@
                                     </td>
                                     <td style="width: 160px;">
                                         <input name="txtCurrPass" style="width: 150px;" class="inputbox" id="txtCurrPass"
-                                            value="" size="30" type="password" />
+                                            value="" size="30" type="password"  />
                                     </td>
                                     <td class="cont12oe" style="width: 30px">
                                         &nbsp;

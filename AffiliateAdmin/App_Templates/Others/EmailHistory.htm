@@ -206,7 +206,7 @@
          try {
             var params;
                         
-            params = "params=" + msgList;
+            params = "params=" + msgList + "&X-CSRF-Token=" + $('X-CSRF-Token').value;
         
             var ajax = new Ajax.Request("../Handler/DeleteMailList.ashx", {
                 method: 'post',
@@ -243,8 +243,8 @@
 </script>
 
 <div class="padl0">
-    <form id="frmSearch" method="get">
     {submenu}
+    <form id="frmSearch" method="get">
     <div id="search_cont">
         <table cellspacing="0" cellpadding="3" border="0" width="100%">
             <tr>
@@ -321,6 +321,7 @@
     <div style="height: 5px;">
         &nbsp;</div>
     </form>
+    <input type="hidden" id="X-CSRF-Token" name="X-CSRF-Token" value="{XsrfTokenFormValue}" />
     {paging-top}
     <table class="aff-table" cellspacing="1" cellpadding="3" width="1020px" id="tblResult">
         <tr>

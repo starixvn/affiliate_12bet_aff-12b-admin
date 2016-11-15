@@ -262,6 +262,19 @@ public static class AppSettings
 
     public static class Session
     {
+        // Prevent Session Fixation
+        public static string AuthToken
+        {
+            get
+            {
+                return CastAide.AsString(HttpContext.Current.Session["AuthToken"], string.Empty);
+            }
+            set
+            {
+                HttpContext.Current.Session["AuthToken"] = value;
+            }
+        }
+
         public static string Language
         {
             get

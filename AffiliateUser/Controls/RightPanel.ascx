@@ -7,6 +7,7 @@
     </div>
     <div class="box_right_cons01">
         <form id="frLogin" name="frLogin" onsubmit="return ExcLogin();" method="post" autocomplete="off">
+            <input type="hidden" id="X-CSRF-Token" name="X-CSRF-Token" value="<%=_XsrfTokenFormValue %>" />
             <table width="100%" cellspacing="0" cellpadding="0" border="0">
             <tr>
                 <td width="9%">
@@ -64,7 +65,7 @@
             </tr>
         </table>
         <input id="val" name="val" type="hidden" value="<%=Resources.Lang.Validation %>"/>
-        </form>
+            </form>
     </div>
 </div>
 <!--/login-->

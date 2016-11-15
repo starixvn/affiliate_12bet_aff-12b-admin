@@ -10,11 +10,6 @@ namespace AffiliateUser
 
         protected void Application_Start(object sender, EventArgs e)
         {
-            // Code that runs on application startup
-            /*  CacheUtil.GetLatestHotNews(null);*/
-            // Code that runs on application startup            
-            //   Sunplus.Agent.Configurations.AppSettings.Configuration.Load();
-            // Code that runs on application startup
             Fanex.Data.Configuration.DbSettingProviderManager.Current.Start();
         }
 

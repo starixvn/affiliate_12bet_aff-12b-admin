@@ -12,7 +12,7 @@
    {
         if($('txtdep').value=='')
         {         
-            ErrAlter(top.fMenu.Msg.Department);
+            Common.alertError(top.fMenu.Msg.Department);
             $('txtdep').focus();
             return false;
         }
@@ -34,12 +34,12 @@
                         arrError.push("Department has been added successfully!");
                         arrItem.push("errMsg");
                         $("errMsg").show();
-                        ShowError(arrError, arrItem, "error_item");
-                        DelayReloadPage1();                       
+                        Common.showError(arrError, arrItem, "error_item");
+                        Common.delayReloadPage1();                       
                         setTimeout("ClosePopup();", 3000);
                     }
                     if (strdata.responseText != 'Ok') {
-                        ErrAlter(strdata.responseText);
+                        Common.alertError(strdata.responseText);
                     }
 
                 }

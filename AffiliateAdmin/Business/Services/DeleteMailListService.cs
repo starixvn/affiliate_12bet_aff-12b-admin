@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using System.Web;
+using Affiliate.Infrastructure.Helpers;
 using AffiliateAdmin.Business.Constants;
 
 namespace AffiliateAdmin.Business.Services
@@ -12,6 +13,15 @@ namespace AffiliateAdmin.Business.Services
             {
                 IBCHandler.InitializeCulture(HttpContext.Current);
                 context.Response.ContentType = "text/plain";
+                try
+                {
+                    AntiForgeryHelper.ValidateXsrfToken(context);
+                }
+                catch
+                {
+                    context.Response.Write(Resources.Lang.Err500);
+                    return;
+                }
 
                 string midlist = context.Request.Params["params"].Trim();
                 if (string.IsNullOrEmpty(midlist))

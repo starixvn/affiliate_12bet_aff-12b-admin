@@ -38,9 +38,6 @@
         $('slPreferLang').value = "<%=strPreferLang %>";
         $('selCountry').value = "<%=strCountry %>";
         var moreurl = "<%=strMoreSiteUrl %>";
-
-        clock();
-        setInterval("clock();", 1000);
     }
     function submitForm() {
         arrItem.clear();
@@ -61,59 +58,48 @@
         return true;
     }
     function CheckSuccess() {
-        /*if (!genders[0].checked) {
-            if(!genders[1].checked){
-                AddError("rdGender", ErrMsg.ErrGender);
-            }
-        }
-        if(isEmpty($('txtAddress').value))
-            AddError("txtAddress", ErrMsg.Address);
-            */
-        if (isEmpty($('txtNumber').value))
-            AddError("txtNumber", ErrMsg.ContactNumber);
-        if (isEmpty($('txtMobile').value))
-            AddError("txtMobile", ErrMsg.MobileNumber);
+        if (Common.isEmpty($('txtNumber').value))
+            Common.addError("txtNumber", ErrMsg.ContactNumber);
+        if (Common.isEmpty($('txtMobile').value))
+            Common.addError("txtMobile", ErrMsg.MobileNumber);
         var typeValue = $$('input:checked[type="radio"][name="rdWebsite"]').pluck('value');
 
-        if (websites[0].checked && isEmpty($("txtSiteUrl").value))
-            AddError("txtSiteUrl", ErrMsg.SiteUrl);
-        else if (websites[1].checked && isEmpty($("txtNoWebsite").value))
-            AddError("txtNoWebsite", "<%=Resources.Lang.DescWebsite%>");
+        if (websites[0].checked && Common.isEmpty($("txtSiteUrl").value))
+            Common.addError("txtSiteUrl", ErrMsg.SiteUrl);
+        else if (websites[1].checked && Common.isEmpty($("txtNoWebsite").value))
+            Common.addError("txtNoWebsite", "<%=Resources.Lang.DescWebsite%>");
         else if (websites[0].checked) {
             var listSites = $$(".sites");
             for (var i = 1; i < listSites.length; i++) {
                 if (listSites[i]) {
-                    if (isEmpty(listSites[i].value)) {
-                        AddError(listSites[i].id, "<%=Resources.Lang.WebsiteURL %> " + (i == 0 ? "" : (i + 1).toString()) + " <%=Resources.Lang.IsRequired%>");
+                    if (Common.isEmpty(listSites[i].value)) {
+                        Common.addError(listSites[i].id, "<%=Resources.Lang.WebsiteURL %> " + (i == 0 ? "" : (i + 1).toString()) + " <%=Resources.Lang.IsRequired%>");
                         break;
                     }
                 }
             }
         }
-        else if (isEmpty($("txtSiteUrl").value) && isEmpty($("txtNoWebsite").value))
-            AddError("txtSiteUrl", ErrMsg.SiteUrl);
+        else if (Common.isEmpty($("txtSiteUrl").value) && Common.isEmpty($("txtNoWebsite").value))
+            Common.addError("txtSiteUrl", ErrMsg.SiteUrl);
 
-        //if(isEmpty($('slPreferLang').value))
-        //AddError("slPreferLang", ErrMsg.PreferLang);
-
-    if (isEmpty($('txtBet12UserName').value))
-        AddError("txtBet12UserName", ErrMsg.UserName12Bet);
+        if (Common.isEmpty($('txtBet12UserName').value))
+            Common.addError("txtBet12UserName", ErrMsg.UserName12Bet);
 
     if (arrItem.length > 0) {
-        DisplayMsg(false);
+        Common.displayMessage(false);
         return false;
     }
     return true;
 }
 function UpdateSuccess() {
-    DisplayMsg(true);
+    Common.displayMessage(true);
     window.scroll(0, 0);
 }
 function AddOneMoreURL() {
     var listSites = $$(".sites");
     var siteIndex = listSites.length;
     if (listSites[siteIndex - 1])
-        if (isEmpty(listSites[siteIndex - 1].value)) {
+        if (Common.isEmpty(listSites[siteIndex - 1].value)) {
             alert("<%=Resources.Lang.WebsiteUrli %>".replace("{i}", siteIndex.toString()));
                 listSites[siteIndex - 1].focus();
                 return;
@@ -210,6 +196,7 @@ function AddOneMoreURL() {
                 <div class="box_conts_line"></div>
                 <br />
                 <form id="Update_form" name="Update_form" action="../Handler/UpdateAcc.ashx" method="post" onsubmit="return submitForm()" target="frRegister">
+                    <input type="hidden" id="X-CSRF-Token" name="X-CSRF-Token" value="<%=_XsrfTokenFormValue %>" />
                     <table width="100%" cellspacing="0" cellpadding="2">
                         <tr>
                             <td style="width: 150px;">

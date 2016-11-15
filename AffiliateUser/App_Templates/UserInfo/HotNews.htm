@@ -41,8 +41,6 @@
             $("fdateTrigger").onclick = "";
             $("tdateTrigger").onclick = "";            
         }
-        clock();
-        setInterval("clock();", 1000);
     }
     function IsDate(str) {
       try{
@@ -164,7 +162,7 @@
                                 id="tdateTrigger" disabled="disabled" />
                         </td>
                         <td>
-                            <input type="button" value="{Submit}" onclick="LoadData(1);" id="btnSubmit" name="{Submit}" class="button" />
+                            <input type="button" value="{Submit}" onclick="Common.loadData(1);" id="btnSubmit" name="{Submit}" class="button" />
                         </td>
                         <td style="width: 50px;"></td>
                     </tr>

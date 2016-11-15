@@ -1,10 +1,10 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" Inherits="Customer_Statistics" Codebehind="Statistics.aspx.cs" %>
 
 <!--js-->
-<link rel='stylesheet' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/base/jquery-ui.css'>
+<link rel='stylesheet' href='../App_Js/libs/jquery-ui/jquery-ui.css'>
 <script type="text/javascript" src="../App_Js/prototype.js"></script>
-<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script> 
-<script src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js'></script>
+<script src='../App_Js/vendors/jquery.min.js'></script> 
+<script src='../App_Js/libs/jquery-ui/jquery-ui.min.js'></script>
 <script src="../App_Js/MonthPicker/jquery.mtz.monthpicker.js" type="text/javascript"></script>
 <link href="../App_Js/MonthPicker/month-picker.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="../App_Js/Common.js"></script>
@@ -101,7 +101,7 @@
     }
     function Search()
     {
-        DelayReloadPage1();
+        Common.delayReloadPage1();
         $('frmSearch').submit();
     }
     function ShowPage(isShow)

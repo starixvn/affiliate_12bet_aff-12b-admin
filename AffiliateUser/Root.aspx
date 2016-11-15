@@ -11,11 +11,10 @@
     <meta name="robots" content="index,follow,archive" />
 </asp:Content>
 
-
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" Runat="Server">
     <div>
         <uc3:Home_Center ID="Home_Center" runat="server" />
-    </div>        
+    </div>
 </asp:Content>
 
 

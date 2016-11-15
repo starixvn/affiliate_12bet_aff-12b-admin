@@ -15,13 +15,13 @@
         arrErr.push(Message);
         arrItem.push("errMsg");
         $("errMsg").show();
-        ShowError(arrErr, arrItem, "error_item");                        
+        Common.showError(arrErr, arrItem, "error_item");
         setTimeout("closePopup();", 2500);  
     }
     function UpdateFail(Message)
     {      
         arrErr.push(Message);
-        ErrAlter(arrErr);
+        Common.alertError(arrErr);
     }
     
     var paththeme = "{paththeme}";
@@ -39,8 +39,7 @@
     }
     function DeleteMessage(msgList) {
         try {
-            var params;
-            params = "params=" + msgList;
+            var params = "params=" + msgList + "&X-CSRF-Token=" + $('X-CSRF-Token').value;
 
             var ajax = new Ajax.Request("../Handler/DeleteMailList.ashx", {
                 method: 'post',

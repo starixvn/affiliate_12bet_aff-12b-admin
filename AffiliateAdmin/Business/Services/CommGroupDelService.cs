@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web;
+using Affiliate.Infrastructure.Helpers;
 using AffiliateAdmin.Business.DataAccess;
 
 namespace AffiliateAdmin.Business.Services
@@ -12,6 +13,16 @@ namespace AffiliateAdmin.Business.Services
             {
                 IBCHandler.InitializeCulture(HttpContext.Current);
                 context.Response.ContentType = "text/plain";
+                try
+                {
+                    AntiForgeryHelper.ValidateXsrfToken(context);
+                }
+                catch
+                {
+                    context.Response.Write(Resources.Lang.Err500);
+                    return;
+                }
+
                 string groupID = context.Request.Params["params"];
 
                 if (string.IsNullOrEmpty(groupID))

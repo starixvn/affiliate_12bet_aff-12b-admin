@@ -51,13 +51,13 @@
             param = "ibccustid=" + ibccustid;
             var ajax = new Ajax.Request("../Handler/DeleteMember.ashx", {
                 method: "post",
-                parameters: param,
+                parameters: param + "&X-CSRF-Token=" + $('X-CSRF-Token').value,
                 onComplete: function(data) {
                     if (data.responseText == "") {
-                        SuccAlter("Member has been removed suseccfully");
+                        Common.alertSuccess("Member has been removed suseccfully");
                     }
                     else {
-                        ErrAlter(data.responseText);
+                        Common.alertError(data.responseText);
                     }
                     setTimeout("LoadData($('page').value);", 3000);
                 }

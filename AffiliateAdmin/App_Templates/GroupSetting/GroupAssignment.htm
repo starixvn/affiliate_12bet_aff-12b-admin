@@ -50,24 +50,17 @@
                 else{
                   groupid= parent.parent.fInfo.$("affID").innerHTML;
                   parent.ibcWnd.open("../GroupSetting/AddGroup.aspx?groupid=" + groupid , 'Change commission group for ' + $('listAff').innerHTML + ' (private group)' , 150, 50, 755, 529, 'class1', 'class2');
-                  }
-                                    
-                
-               /* parent.ibcWnd.setRect(50,50,800,600);    
-                ibcWnd.onClosed=f;    */                       
+                  }                     
             }
             else{
                 if(IsApproved){
-                    var params= 'func=0&status=approved&fname=' + encodeURIComponent(parent.parent.fInfo.$("hdFname").value) + '&username=' +  $('listAff').innerHTML + '&lang=' + encodeURIComponent(parent.parent.fInfo.$("hdPreferLang").value) + '&hdPreferredPayment=' + encodeURIComponent(parent.parent.fInfo.$("hdPreferredPayment").value) + '&hdPlayer_Username=' + encodeURIComponent(parent.parent.fInfo.$("hdPlayer_Username").value) + '&email=' + encodeURIComponent(parent.parent.fInfo.$("hdEmail").value) + '&groupid=' +$("slCommGroup").value + '&mailoption={mailoption}';                     
+                    var params = 'func=0&status=approved&fname=' + encodeURIComponent(parent.parent.fInfo.$("hdFname").value) + '&username=' + $('listAff').innerHTML + '&lang=' + encodeURIComponent(parent.parent.fInfo.$("hdPreferLang").value) + '&hdPreferredPayment=' + encodeURIComponent(parent.parent.fInfo.$("hdPreferredPayment").value) + '&hdPlayer_Username=' + encodeURIComponent(parent.parent.fInfo.$("hdPlayer_Username").value) + '&email=' + encodeURIComponent(parent.parent.fInfo.$("hdEmail").value) + '&groupid=' + $("slCommGroup").value + '&mailoption={mailoption}' +
+                        "&X-CSRF-Token=" + $('X-CSRF-Token').value;
                     var ajax = new Ajax.Request("../Handler/UpdAffInfo.ashx?" , {
                     method: 'post',
                     parameters: params ,
                     onComplete: function(data) {
                         var arr = data.responseText.split("@");
-                        /*if (arr[0] == '0') {
-                          
-                                parent.location.href = parent.location.href;
-                        }*/
                         alert(arr[1]);
                         parent.parent.location.href=parent.parent.location.href.replace(/#/, ""); 
                     }
@@ -76,7 +69,7 @@
                 else if (confirm('Are you sure you want to change the commission group for affiliate: \n' + $('listAff').innerHTML.replace(/<BR>/gi,"\n") + ' ?')) {
                          var ajax = new Ajax.Request("../Handler/CommGroupAssign.ashx", {
                          method: 'post',
-                         parameters: "params=" +$("slCommGroup").value + "${affid}",
+                         parameters: "params=" + $("slCommGroup").value + "${affid}" + "&X-CSRF-Token=" + $('X-CSRF-Token').value,
                          onComplete: function(data) {
                              var result = data.responseText;
                              if (result != "") {
@@ -94,7 +87,8 @@
         var OldGroupID={OldGroupID_val};
         
   </script>
-  <div class="container" style="width:550px;" >     
+  <div class="container" style="width:550px;" >    
+      <input type="hidden" id="X-CSRF-Token" name="X-CSRF-Token" value="{XsrfTokenFormValue}" /> 
      <div class="tab_content" style="border-width: 0 1px 0;">
     <!--ApproveAffiliate--><div class="form_row" style="margin: 0;"> Before you approve this affiliate, you must create or assign one commission group for him.</div><!--/ApproveAffiliate-->
      <div class="fieldset">

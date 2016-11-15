@@ -26,18 +26,18 @@ function Initialize() {
     var listTR = document.getElementsByClassName("TR");
     for (var i = 0; i < listTR.length; i++) {
         var arr = listTR[i].id.split('_');
-        if(arr[1]=="NoComm") continue;
+        if (arr[1] == "NoComm") continue;
         listTR[i].style.backgroundColor = arr[1];
-        listTR[i].observe('mouseout', function(event) { var t = this.id.split('_'); this.style.backgroundColor = t[1]; });
-        listTR[i].observe('mouseover', function(event) { this.style.backgroundColor = overColor; });
+        listTR[i].observe('mouseout', function (event) { var t = this.id.split('_'); this.style.backgroundColor = t[1]; });
+        listTR[i].observe('mouseover', function (event) { this.style.backgroundColor = overColor; });
     }
 
-   var link=document.getElementsByClassName("link");
-   for (var i = 0; i < link.length; i++) {
-        link[i].observe('click', linkOnClick);        
+    var link = document.getElementsByClassName("link");
+    for (var i = 0; i < link.length; i++) {
+        link[i].observe('click', linkOnClick);
     }
 
-    $("txtGroupName").observe('keypress', PreSearch);    
+    $("txtGroupName").observe('keypress', PreSearch);
     $('txtGroupName').blur();
     $('txtGroupName').focus();
 }
@@ -52,11 +52,11 @@ function linkOnClick(event) {
         id = this.id.substring(1, this.id.length);
         location.href = "../UserInfo/AffiliateList.aspx?slCommGroup=" + id;
     }
-    
+
 }
 
 function AddNewGroup() {
-    ibcWnd.open("AddGroup.aspx?groupid=" , 'Add a Commission Group', 150, 50, 755, 529, 'class1', 'class2');
+    ibcWnd.open("AddGroup.aspx?groupid=", 'Add a Commission Group', 150, 50, 755, 529, 'class1', 'class2');
 }
 
 function editOnClick(event) {
@@ -66,35 +66,35 @@ function editOnClick(event) {
         Firefox width/height = 740/491
         IE =740/492
     */
-    ibcWnd.open("EditGroup.aspx?groupid=" + element.id.substring(1, element.id.length ), 'Edit Commission Group', 150, 50, 755, 529, 'class1', 'class2');
-    
+    ibcWnd.open("EditGroup.aspx?groupid=" + element.id.substring(1, element.id.length), 'Edit Commission Group', 150, 50, 755, 529, 'class1', 'class2');
+
     element.readOnly = false;
-    }
-    function deleteOnClick(event) {    
+}
+function deleteOnClick(event) {
     this.readOnly = true;
-    var arr = this.id.split('_');    
-    if (confirm('Are you sure you want to delete the commission group "'+ $("g" + arr[0]).innerHTML + '" ?')) {
-    DelayReloadPage1();
-    var ajax = new Ajax.Request("../Handler/CommGroupDel.ashx", {
-    method: 'post',
-    parameters: "params=" + arr[0],
-    onComplete: function(data) {
-    var result = data.responseText;
-    if (result != "") {
-    alert(result);
+    var arr = this.id.split('_');
+    if (confirm('Are you sure you want to delete the commission group "' + $("g" + arr[0]).innerHTML + '" ?')) {
+        Common.delayReloadPage1();
+        var ajax = new Ajax.Request("../Handler/CommGroupDel.ashx", {
+            method: 'post',
+            parameters: "params=" + arr[0] + "&X-CSRF-Token=" + $('X-CSRF-Token').value,
+            onComplete: function (data) {
+                var result = data.responseText;
+                if (result != "") {
+                    alert(result);
+                }
+                else {
+                    location.href = location.href;
+                }
+                Common.hideLoading();
+            }
+        });
+
+
     }
-    else {
-    location.href = location.href;
-    }
-    HideDelayReloadPage();
-    }
-    });
-        
-        
-    }    
     this.readOnly = false;
-    }
-    function EnableDisableSearchDate(arg) {
+}
+function EnableDisableSearchDate(arg) {
     /*Enable search by date */
     var isEnabled = 0;
     var chkbox = $("chkDate");
