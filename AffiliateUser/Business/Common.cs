@@ -11,7 +11,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 using Affiliate;
-using AffiliateUser.Business;
 using DNAide.Core;
 using DNAide.Web;
 using ONEbook.UM.Models;
@@ -56,7 +55,7 @@ public class Common
                 result = addresses[0];
             }
         }
-        
+
         result = result ?? context.Request.ServerVariables["REMOTE_ADDR"];
 
         if (result == "::1")
@@ -81,7 +80,7 @@ public class Common
             case "indonesian": return "id";
             case "korean": return "ko";
             case "japanese": return "jp";
-            case "republic of india": return "hi";
+            case "republic of india": return "hien";
             default:
                 return "en";
         }
@@ -186,15 +185,15 @@ public class Common
             case "cs": return "简体中文";
             case "th": return "ภาษาไทย";
             case "es": return "Español";
-            case "vn": 
+            case "vn":
             case "vi": return "Tiếng Việt";
             case "id": return "Indonesian";
             case "ko": return "한국어";
             case "ja":
             case "jp": return "日本";
-            case "hi": return "Republic of India";
+            case "hien": return "Republic of India";
             default:
-                return "en";
+                return strLangCode;
         }
     }
 
@@ -332,7 +331,7 @@ public class Common
         StringBuilder strBuild = new StringBuilder();
         strBuild.Append("<select id=\"" + strID + "\" name=\"" + strID + "\">");
 
-        if(hasTextAll)
+        if (hasTextAll)
         {
             strBuild.Append("<option value=\"\">" + Resources.Lang.All + "</option>");
         }
@@ -529,7 +528,7 @@ public class Common
     {
         CultureInfo culture = new CultureInfo("en-US");
         DateTime Tmp1 = Convert.ToDateTime(dtmTime, culture);
-        if(AppSettings.Session.Language != "th-TH")
+        if (AppSettings.Session.Language != "th-TH")
         {
             if (isFullDate)
                 return Tmp1.ToString("MM" + slash + "dd" + slash + "yyyy") + (hasTime ? " " + Tmp1.ToString("hh:mm:ss") : string.Empty);
@@ -649,7 +648,7 @@ public class Common
 
         if (dt.Rows.Count == 0)
             return Lang.none;
-      
+
         foreach (DataRow dr in dt.Rows)
         {
             tempopt = temp;
@@ -669,7 +668,7 @@ public class Common
         if (string.IsNullOrEmpty(activeValue) && dt.Rows.Count > 0)
         {
             activeValue = dt.Rows[0][valueColumn].ToString();
-        }        
+        }
         TemplateHandler.ReplaceBlock(ref opt, "optionList", result.ToString());
         return opt;
     }
@@ -707,7 +706,7 @@ public class Common
             }
             result.Append(tempopt);
         }
-     
+
         TemplateHandler.ReplaceBlock(ref opt, "optionList", result.ToString());
         return opt;
     }
@@ -789,7 +788,7 @@ public class Common
         if (rs.ResultSet.Tables[0].Rows.Count > 1)
         {
             strBuild.Append(Resources.Lang.SportType + "&nbsp;&nbsp;&nbsp;");
-            strBuild.Append("<select id=\"slSportType\" name=\"slSportType\"" + (autoReload ? " onchange=\"Common.loadData(1);\"" : string.Empty)  + ">");
+            strBuild.Append("<select id=\"slSportType\" name=\"slSportType\"" + (autoReload ? " onchange=\"Common.loadData(1);\"" : string.Empty) + ">");
             if (intCurrent == 0)
             {
                 strBuild.Append("<option value=\"0\" selected>" + Resources.Lang.All + "</option>");

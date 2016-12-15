@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Text;
-using DNAide.Core;
 using AffiliateAdmin.Business.DataAccess;
+using DNAide.Core;
 using DNAide.Web;
 using GenerateHTML;
 
@@ -49,7 +48,7 @@ public partial class UserInfo_MediaStatistics_LandingPage : IBCPage
 
             DateTime dtmFDate = CastAide.AsDateTime(Request["fdate"], new DateTime(now.Year, now.Month, 1));
             DateTime dtmTDate = CastAide.AsDateTime(Request["tdate"], DateTime.Now);
-            
+
 
             TemplateHandler.Assign(ref strTpl, "fdate", dtmFDate.ToString("MM/dd/yyyy"));
             TemplateHandler.Assign(ref strTpl, "tdate", dtmTDate.ToString("MM/dd/yyyy"));
@@ -113,7 +112,7 @@ public partial class UserInfo_MediaStatistics_LandingPage : IBCPage
         {
             Fanex.Logging.LogService.Error(ex.Message);
 #if DEBUG
-                throw;
+            throw;
 #endif
         }
     }
@@ -132,9 +131,9 @@ public partial class UserInfo_MediaStatistics_LandingPage : IBCPage
             case "id": return "Indonesian";
             case "ko": return "Korean";
             case "jp": return "Japanese";
-            case "hi": return "Republic of India";
+            case "hien": return "Republic of India";
             default:
-                return "";
+                return strLangCode;
         }
     }
 
@@ -151,7 +150,7 @@ public partial class UserInfo_MediaStatistics_LandingPage : IBCPage
             case "vietnamese": return "vn";
             case "indonesian": return "id";
             case "korean": return "ko";
-            case "republic of india": return "hi";
+            case "republic of india": return "hien";
             default:
                 return "";
         }
