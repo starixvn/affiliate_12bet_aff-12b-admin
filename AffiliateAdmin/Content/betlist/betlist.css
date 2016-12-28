@@ -482,4 +482,16 @@ div.mx-parlay div.reject > div.match, div.mx-parlay div.reject div.firstGoal, di
     color: #755200;
     font-weight: bold;
 }
+/********** ------------------ **************/}
 /********** ------------------ **************/
+
+div.match + div.league
+{
+    color: #666666;
+    line-height: 15px;
+    margin-top: 1px;
+    background: none repeat scroll 0 0 transparent;
+    font-weight: normal;
+    text-align: right;
+    text-transform: none;
+}

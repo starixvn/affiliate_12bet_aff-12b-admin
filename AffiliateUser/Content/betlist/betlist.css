@@ -6,11 +6,11 @@
 }
 
 .tblBetList th {
-    background: #0d94c3;
+    background-color: #BAD9EA;
     border: solid 1px #BABABA;
     border-top: 0;
     font-size: 11px;
-    color: #FFF;
+    color: #000;
     text-align: center;
     padding: 2px 2px 0 2px;
     height: 33px;
@@ -482,4 +482,15 @@ div.mx-parlay div.reject > div.match, div.mx-parlay div.reject div.firstGoal, di
     color: #755200;
     font-weight: bold;
 }
+/********** ------------------ **************/}
 /********** ------------------ **************/
+div.match + div.league
+{
+    color: #666666;
+    line-height: 15px;
+    margin-top: 1px;
+    background: none repeat scroll 0 0 transparent;
+    font-weight: normal;
+    text-align: right;
+    text-transform: none;
+}
