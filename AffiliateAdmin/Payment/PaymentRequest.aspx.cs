@@ -1,17 +1,18 @@
 ﻿using System;
-using System.Text;
 using System.Data;
-using DNAide.Web;
-using DNAide.Core;
+using System.Text;
 using AffiliateAdmin.Business.DataAccess;
-using DNAide.Utils;
+using DNAide.Core;
+using DNAide.Web;
 
 public partial class PaymentRequest : IBCPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
         string strTpl = TemplateHandler.LoadTemplate("Payment/PaymentRequest.htm");
+
         #region assign text
+
         TemplateHandler.Assign(ref strTpl, "PaymentMethod", Resources.Lang.PaymentMethod);
         TemplateHandler.Assign(ref strTpl, "search", Resources.Lang.Search);
         TemplateHandler.Assign(ref strTpl, "paymentrequest", Resources.Lang.PaymentRequest);
@@ -40,7 +41,8 @@ public partial class PaymentRequest : IBCPage
         TemplateHandler.Assign(ref strTpl, "username", Resources.Lang.Username);
         TemplateHandler.Assign(ref strTpl, "searchby", Resources.Lang.SearchBy);
         TemplateHandler.Assign(ref strTpl, "others", Resources.Lang.Others);
-        #endregion
+
+        #endregion assign text
 
         string strSearchBy = string.Empty;
         string strFrom = string.Empty;
@@ -61,85 +63,76 @@ public partial class PaymentRequest : IBCPage
         DateTime dtmTo = CastAide.AsDateTime(Request["tdate"], dtmNow);
 
         TemplateHandler.Assign(ref strTpl, "timer-val", string.IsNullOrEmpty(Request["slTime"]) ? "0" : Request["slTime"]);
-        TemplateHandler.Assign(ref strTpl, "search-val", strSearchBy); 
+        TemplateHandler.Assign(ref strTpl, "search-val", strSearchBy);
         TemplateHandler.Assign(ref strTpl, "completeddate", Resources.Lang.CompletedDate);
         TemplateHandler.Assign(ref strTpl, "creator", Resources.Lang.Creator);
         TemplateHandler.Assign(ref strTpl, "username-val", strUsername);
         TemplateHandler.Assign(ref strTpl, "page", page);
         TemplateHandler.Assign(ref strTpl, "pagesize", iPagesize);
-        try
-        {
-            TemplateHandler.Assign(ref strTpl, "isgetall", isGetAll ? "checked" : string.Empty);
-            TemplateHandler.Assign(ref strTpl, "fdate", dtmFrom.ToString("MM/dd/yyyy"));
-            TemplateHandler.Assign(ref strTpl, "tdate", dtmTo.ToString("MM/dd/yyyy"));
-            TemplateHandler.Assign(ref strTpl, "curStatus", strStatus);//get current status selected
-            //Response.Write("<script type='text/javascript'>alert('" + isGetAll.ToString() + "');</script>");
-            DbResult rs = DataHandler.PaymentRequest.PaymentRequestList(strSearchBy, strUsername, strStatus, dtmFrom, dtmTo, isGetAll, page, iPagesize);
 
-            int intMaxPage = CastAide.AsInt32(rs.Outputs["totalpages"]);
-            int intNumRows = CastAide.AsInt32(rs.Outputs["nrows"]);
-            int intPageId = page;
-            TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.AffLink, SubMenu.AffText, 5, intNumRows, Resources.Lang.PaymentRequest, "i_pay_re.png"));
-            
-            if (intNumRows > 0)
+        TemplateHandler.Assign(ref strTpl, "isgetall", isGetAll ? "checked" : string.Empty);
+        TemplateHandler.Assign(ref strTpl, "fdate", dtmFrom.ToString("MM/dd/yyyy"));
+        TemplateHandler.Assign(ref strTpl, "tdate", dtmTo.ToString("MM/dd/yyyy"));
+        TemplateHandler.Assign(ref strTpl, "curStatus", strStatus);//get current status selected
+                                                                   //Response.Write("<script type='text/javascript'>alert('" + isGetAll.ToString() + "');</script>");
+        DbResult rs = DataHandler.PaymentRequest.PaymentRequestList(strSearchBy, strUsername, strStatus, dtmFrom, dtmTo, isGetAll, page, iPagesize);
+
+        int intMaxPage = CastAide.AsInt32(rs.Outputs["totalpages"]);
+        int intNumRows = CastAide.AsInt32(rs.Outputs["nrows"]);
+        int intPageId = page;
+        TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.AffLink, SubMenu.AffText, 5, intNumRows, Resources.Lang.PaymentRequest, "i_pay_re.png"));
+
+        if (intNumRows > 0)
+        {
+            DataTable dtb = rs.ResultSet.Tables[0];
+            string strContentTpl = TemplateHandler.CopyBlock(strTpl, "content");
+            StringBuilder strContent = new StringBuilder();
+            int intRowNo = (intPageId - 1) * iPagesize;
+            TemplateHandler.Assign(ref strContentTpl, "over", Common.RowBgOver);
+            foreach (DataRow dr in dtb.Rows)
             {
-                DataTable dtb= rs.ResultSet.Tables[0];
-                string strContentTpl = TemplateHandler.CopyBlock(strTpl, "content");
-                StringBuilder strContent = new StringBuilder();
-                int intRowNo = (intPageId - 1) * iPagesize;
-                TemplateHandler.Assign(ref strContentTpl, "over", Common.RowBgOver);
-                foreach (DataRow dr in dtb.Rows)
+                string strTmp = strContentTpl;
+                intRowNo++;
+
+                TemplateHandler.Assign(ref strTmp, "color", GetRowStyle(dr["status"].ToString()));
+                TemplateHandler.Assign(ref strTmp, "no", intRowNo);
+                TemplateHandler.Assign(ref strTmp, "transid-val", dr["transid"].ToString());
+                TemplateHandler.Assign(ref strTmp, "transdate-val", Common.IBCDateTimeFormat(dr["transdate"], DTFormatType.DT24h));
+                TemplateHandler.Assign(ref strTmp, "uname-val", dr["username"].ToString());
+                TemplateHandler.Assign(ref strTmp, "amt-val", Common.FormatNumber(dr["amt"]));
+                TemplateHandler.Assign(ref strTmp, "status-val", Common.GetStatus(dr["status"].ToString()));
+                if (dr["status"].ToString().ToLower() == "pending")
                 {
-                    string strTmp = strContentTpl;
-                    intRowNo++;
-
-                    TemplateHandler.Assign(ref strTmp, "color", GetRowStyle(dr["status"].ToString()));
-                    TemplateHandler.Assign(ref strTmp, "no", intRowNo);
-                    TemplateHandler.Assign(ref strTmp, "transid-val", dr["transid"].ToString());
-                    TemplateHandler.Assign(ref strTmp, "transdate-val", Common.IBCDateTimeFormat(dr["transdate"],DTFormatType.DT24h));
-                    TemplateHandler.Assign(ref strTmp, "uname-val", dr["username"].ToString());
-                    TemplateHandler.Assign(ref strTmp, "amt-val", Common.FormatNumber(dr["amt"]));
-                    TemplateHandler.Assign(ref strTmp, "status-val", Common.GetStatus(dr["status"].ToString()));
-                    if (dr["status"].ToString().ToLower() == "pending")
-                    {
-                        TemplateHandler.Assign(ref strTmp, "completeddate-val", "--");
-                        TemplateHandler.Assign(ref strTmp, "creator-val", "--");
-                    }
-                    else
-                    {
-                        TemplateHandler.Assign(ref strTmp, "completeddate-val", Common.IBCDateTimeFormat(dr["completeddate"],DTFormatType.DT24h));
-                        TemplateHandler.Assign(ref strTmp, "creator-val", dr["creator"].ToString());
-                    }
-                    strContent.Append(strTmp);
+                    TemplateHandler.Assign(ref strTmp, "completeddate-val", "--");
+                    TemplateHandler.Assign(ref strTmp, "creator-val", "--");
                 }
-                TemplateHandler.ReplaceBlock(ref strTpl, "content", strContent.ToString());
-                TemplateHandler.Assign(ref strTpl, "paging-top", Common.GenPaging(intMaxPage, intPageId, iPagesize, intNumRows, "aPageTop", "txtPageTop", 800, false, true));
-                TemplateHandler.Assign(ref strTpl, "paging-bottom", Common.GenPaging(intMaxPage, intPageId, iPagesize, intNumRows, "aPageBottom", "txtPageBottom", 800, false, false));
+                else
+                {
+                    TemplateHandler.Assign(ref strTmp, "completeddate-val", Common.IBCDateTimeFormat(dr["completeddate"], DTFormatType.DT24h));
+                    TemplateHandler.Assign(ref strTmp, "creator-val", dr["creator"].ToString());
+                }
+                strContent.Append(strTmp);
             }
-            else
-            {
-                TemplateHandler.Assign(ref strTpl, "paging-top", "");
-                TemplateHandler.Assign(ref strTpl, "paging-bottom", "");
-                TemplateHandler.ReplaceBlock(ref strTpl, "content", Common.NoInfo(8));
-            }
-            TemplateHandler.Assign(ref strTpl, "nummem", intNumRows);
-            this.HtmlContent = strTpl;
+            TemplateHandler.ReplaceBlock(ref strTpl, "content", strContent.ToString());
+            TemplateHandler.Assign(ref strTpl, "paging-top", Common.GenPaging(intMaxPage, intPageId, iPagesize, intNumRows, "aPageTop", "txtPageTop", 800, false, true));
+            TemplateHandler.Assign(ref strTpl, "paging-bottom", Common.GenPaging(intMaxPage, intPageId, iPagesize, intNumRows, "aPageBottom", "txtPageBottom", 800, false, false));
         }
-        catch(Exception ex)
+        else
         {
-            Fanex.Logging.LogService.Error(ex.Message);
-#if DEBUG
-            throw;
-#endif
+            TemplateHandler.Assign(ref strTpl, "paging-top", "");
+            TemplateHandler.Assign(ref strTpl, "paging-bottom", "");
+            TemplateHandler.ReplaceBlock(ref strTpl, "content", Common.NoInfo(8));
         }
+        TemplateHandler.Assign(ref strTpl, "nummem", intNumRows);
+        this.HtmlContent = strTpl;
     }
 
-    DateTime GenStartOfDate(DateTime dtmDate)
+    private DateTime GenStartOfDate(DateTime dtmDate)
     {
         return CastAide.AsDateTime(dtmDate.ToString("MM/dd/yyyy"), dtmDate);
     }
 
-    string GetRowStyle(string strStatus)
+    private string GetRowStyle(string strStatus)
     {
         switch (strStatus.ToLower())
         {

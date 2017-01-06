@@ -2,7 +2,6 @@
 using System.Web;
 using System.Web.Security;
 using Affiliate.Infrastructure.Helpers;
-using Fanex.Logging;
 
 namespace AffiliateAdmin.Business.Services.Auth
 {
@@ -66,7 +65,7 @@ namespace AffiliateAdmin.Business.Services.Auth
             }
             catch (Exception ex)
             {
-                LogService.Error(ex.Message, ex);
+                AffiliateAdmin.Business.Helpers.LogHelper.WriteError(ex);
 
                 if (Common.IsUnderMaintenance())
                 {

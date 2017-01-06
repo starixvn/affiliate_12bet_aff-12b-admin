@@ -33,27 +33,7 @@ namespace AffiliateAdmin
                 return;
             }
 
-            string message = ex.Message +
-                            "\r\nSOURCE: " + ex.Source +
-                            "\r\nDOMAIN: " + HttpContext.Current.Request.Headers["Host"] +
-                            "\r\nFORM: " + Request.Form.ToString() +
-                            "\r\nUrl: " + Request.RawUrl +
-                            "\r\nQUERYSTRING: " + Request.QueryString.ToString() +
-                            "\r\nTARGETSITE: " + ex.TargetSite +
-                            "\r\nSTACKTRACE: " + ex.StackTrace +
-                            "\r\nBrowser:" + Request.Browser.Type.ToString() +
-                            "\r\nBrowserVer:" + Request.Browser.Version.ToString() +
-                            "\r\nAgent:" + Request.UserAgent.ToString();
-
-            var sqlException = ex as SqlException;
-            if (sqlException != null)
-            {
-                message += "\r\nProcedure: " + sqlException.Procedure +
-                    "\r\nLine Number: " + sqlException.LineNumber +
-                    "\r\nServer: " + sqlException.Server;
-            }
-
-            Fanex.Logging.LogService.Error(message, ex);
+            AffiliateAdmin.Business.Helpers.LogHelper.WriteError(ex);
         }
 
         void Session_Start(object sender, EventArgs e)

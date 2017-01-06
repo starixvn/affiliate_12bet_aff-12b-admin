@@ -1,26 +1,28 @@
 ﻿using System;
 using System.Collections;
-using System.Text;
 using System.Data;
-using DNAide.Web;
+using System.Text;
 using AffiliateAdmin.Business.DataAccess;
 using DNAide.Core;
 using DNAide.Utils;
+using DNAide.Web;
 
 public partial class MemberReport : IBCPage
 {
-    string strTpl = string.Empty;
-    StringBuilder strListRow = new StringBuilder();
+    private string strTpl = string.Empty;
+    private StringBuilder strListRow = new StringBuilder();
+
     protected void Page_Load(object sender, EventArgs e)
     {
         strTpl = TemplateHandler.LoadTemplate("Report/MemberReport.htm");
-        
+
         AssignHeader();
         GenerateHTML();
 
         this.HtmlContent = strTpl;
     }
-    void AssignHeader()
+
+    private void AssignHeader()
     {
         TemplateHandler.Assign(ref strTpl, "fdate-txt", Resources.Lang.From);
         TemplateHandler.Assign(ref strTpl, "tdate-txt", Resources.Lang.To);
@@ -47,224 +49,216 @@ public partial class MemberReport : IBCPage
         TemplateHandler.Assign(ref strTpl, "over", Common.RowBgOver);
         TemplateHandler.Assign(ref strTpl, "color", Common.RowBgOdd);
         TemplateHandler.Assign(ref strTpl, "colormonthly", Common.RowBgPending);
-        
+
         //Hung added
         TemplateHandler.Assign(ref strTpl, "timer-val", string.IsNullOrEmpty(Request["slTime"]) ? "0" : Request["slTime"]);
-        
     }
 
-    void GenerateHTML()
+    private void GenerateHTML()
     {
-        try
+        int intCustId = 0;
+        string strMenuText = string.Empty, strUsername = string.Empty;
+        if (string.Compare(Request["isaff"], "1", true) == 0)
         {
-            int intCustId = 0;
-            string strMenuText = string.Empty, strUsername = string.Empty;
-            if (string.Compare(Request["isaff"], "1", true) == 0)
+            if (!string.IsNullOrEmpty(Request["custid"]) && !string.IsNullOrEmpty(Request["username"]))
             {
-                if (!string.IsNullOrEmpty(Request["custid"]) && !string.IsNullOrEmpty(Request["username"]))
+                intCustId = CastAide.AsInt32(Request["custid"]);
+                strUsername = CastAide.AsString(Request["username"]);
+            }
+            else
+            {
+                intCustId = AppSettings.Session.AffId;
+                strUsername = AppSettings.Session.AffUsername;
+            }
+            TemplateHandler.Assign(ref strTpl, "pagepadd", string.Empty);
+            TemplateHandler.Assign(ref strTpl, "username", strUsername);
+            TemplateHandler.Assign(ref strTpl, "username-val", strUsername + " --- ");
+            TemplateHandler.Assign(ref strTpl, "custid", intCustId);
+            strMenuText = Resources.Lang.ReportDetails + " [" + strUsername + "]";
+            //TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.AffApprovedLink, SubMenu.AffApprovedText, 1, 0, Resources.Lang.Report, "i_customer.png"));
+        }
+        else
+        {
+            TemplateHandler.Assign(ref strTpl, "pagepadd", "padl0");
+            TemplateHandler.Assign(ref strTpl, "username", string.Empty);
+            TemplateHandler.Assign(ref strTpl, "username-val", string.Empty);
+            TemplateHandler.Assign(ref strTpl, "custid", string.Empty);
+            strMenuText = Resources.Lang.ReportDetails;
+        }
+        TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.ReportLink, SubMenu.ReportText, 0, 0, SubMenu.ReportText[0], "i_report.png"));
+
+        TemplateHandler.Assign(ref strTpl, "isaff-val", Request["isaff"]);
+
+        DateTime dtmFDate = CastAide.AsDateTime(Request["fdate"], DateTime.Now.AddDays(-1));
+        TemplateHandler.Assign(ref strTpl, "fdate", dtmFDate.ToString("MM/dd/yyyy"));
+        if (dtmFDate < AppSettings.StatementAvailableFrom)
+            dtmFDate = AppSettings.StatementAvailableFrom;
+        DateTime dtmTDate = CastAide.AsDateTime(Request["tdate"], DateTime.Now);
+        TemplateHandler.Assign(ref strTpl, "tdate", dtmTDate.ToString("MM/dd/yyyy"));
+
+        DbResult rs = null;
+        if (intCustId != 0)
+        {
+            TemplateHandler.Assign(ref strTpl, "hwidth", "170");
+            rs = DataHandler.Affiliate.SelMemberReportByAff(intCustId, dtmFDate, dtmTDate, 0);
+        }
+        else
+        {
+            TemplateHandler.ReplaceBlock(ref strTpl, "username", string.Empty);
+            TemplateHandler.Assign(ref strTpl, "hwidth", "100");
+            rs = DataHandler.Affiliate.SelMemberReport(dtmFDate, dtmTDate, 0);
+        }
+
+        DataTable table = rs.ResultSet.Tables.Count > 0 ? rs.ResultSet.Tables[0] : null;
+        if (table != null && table.Rows.Count > 0)
+        {
+            string strRowTpl = TemplateHandler.CopyBlock(strTpl, "content");
+            string strSubTpl = TemplateHandler.ReplaceBlock(ref strTpl, "subtotal", "");
+            string strTotal = TemplateHandler.ReplaceBlock(ref strTpl, "total", "");
+            string strDate = string.Empty;
+            int intCount = 0, numRow = 0;
+            decimal dcDeposit = 0, dcTurnover = 0, dcBonus = 0, dcMemWinloss = 0, dcAffWinloss = 0, dcHouseWinloss = 0, dcAffNetPos = 0, dcHouseNetWinloss = 0;
+            Hashtable hsTotal = new Hashtable();//Use for Total monthly
+            ArrayList arr = new ArrayList();
+            strListRow = new StringBuilder();
+            StringBuilder strRow = new StringBuilder();
+            int intMonth = 0;
+            foreach (DataRow dr in table.Rows)
+            {
+                string strTmpDate = CastAide.AsDateTime(dr["Winlostdate"]).ToString("d-MMM-yy ddd");
+                string strTmp = TemplateHandler.CopyBlock(strRowTpl, "currency");
+                string strNewRow = string.Empty;
+                //Load 1 row without date value
+                decimal dcActualRate = CastAide.AsDecimal(dr["actualrate"]);
+
+                //Add new 1 column here
+                TemplateHandler.Assign(ref strTmp, "currency-val", dr["Currency"].ToString());
+                TemplateHandler.Assign(ref strTmp, "units-val", NumberFormat.DecFormat(dcActualRate, 5));
+                TemplateHandler.Assign(ref strTmp, "deposit-val", NumberFormat.DecFormat(dr["deposit"], 2));
+                TemplateHandler.Assign(ref strTmp, "depositeqv-val", Common.FormatNumber(CastAide.AsDecimal(dr["deposit"]) * dcActualRate));
+                TemplateHandler.Assign(ref strTmp, "turnover-val", NumberFormat.DecFormat(dr["Turnover"], 2));
+                TemplateHandler.Assign(ref strTmp, "turnovereqv-val", Common.FormatNumber(CastAide.AsDecimal(dr["Turnover"]) * dcActualRate));
+                TemplateHandler.Assign(ref strTmp, "bonus-val", NumberFormat.DecFormat(dr["Bonus"], 2));
+                TemplateHandler.Assign(ref strTmp, "bonuseqv-val", Common.FormatNumber(CastAide.AsDecimal(dr["Bonus"]) * dcActualRate));
+                TemplateHandler.Assign(ref strTmp, "memwinloss-val", NumberFormat.DecFormat(dr["MemberWinLost"], 2));
+                TemplateHandler.Assign(ref strTmp, "memwinlosseqv-val", Common.FormatNumber(CastAide.AsDecimal(dr["MemberWinLost"]) * dcActualRate));
+                TemplateHandler.Assign(ref strTmp, "affwinloss-val", NumberFormat.DecFormat(dr["AffiliateWinLost"], 2));
+                TemplateHandler.Assign(ref strTmp, "affwinlosseqv-val", Common.FormatNumber(CastAide.AsDecimal(dr["AffiliateWinLost"]) * dcActualRate));
+                TemplateHandler.Assign(ref strTmp, "housewinloss-val", NumberFormat.DecFormat(dr["HouseWinLost"], 2));
+                TemplateHandler.Assign(ref strTmp, "housewinlosseqv-val", Common.FormatNumber(CastAide.AsDecimal(dr["HouseWinLost"]) * dcActualRate));
+                TemplateHandler.Assign(ref strTmp, "affnetpos-val", NumberFormat.DecFormat(dr["AffiliateNetWinLost"], 2));
+                TemplateHandler.Assign(ref strTmp, "affnetposeqv-val", Common.FormatNumber(CastAide.AsDecimal(dr["AffiliateNetWinLost"]) * dcActualRate));
+                TemplateHandler.Assign(ref strTmp, "housenetwinloss-val", NumberFormat.DecFormat(dr["HouseNetWinLost"], 2));
+                TemplateHandler.Assign(ref strTmp, "housenetwinlosseqv-val", Common.FormatNumber(CastAide.AsDecimal(dr["HouseNetWinLost"]) * dcActualRate));
+
+                numRow++;
+                if (string.Compare(strDate, strTmpDate, true) != 0)//New row
                 {
-                    intCustId = CastAide.AsInt32(Request["custid"]);
-                    strUsername = CastAide.AsString(Request["username"]);
+                    //hsTotal = new Hashtable();
+
+                    #region insert old row to list rows
+
+                    string strOldRow = strRow.ToString();
+                    TemplateHandler.Assign(ref strOldRow, "numrow", intCount.ToString());
+                    strRow = new StringBuilder();
+                    strListRow.Append(strOldRow);
+
+                    #endregion insert old row to list rows
+
+                    if (!string.IsNullOrEmpty(strDate))//insert subtotal row for list rows before
+                    {
+                        GenerateSubTotal(strRow, strSubTpl, intCount, ref dcDeposit, ref dcTurnover, ref dcBonus, ref dcMemWinloss, ref dcAffWinloss, ref dcHouseWinloss, ref dcAffNetPos, ref dcHouseNetWinloss);//Sub total
+                    }
+                    strNewRow = strRowTpl;
+                    TemplateHandler.Assign(ref strNewRow, "date-val", strTmpDate);
+                    TemplateHandler.ReplaceBlock(ref strNewRow, "currency", strTmp);
+                    strRow.Append(strNewRow);
+
+                    strDate = strTmpDate;
+                    intCount = 0;
+                }
+                dcDeposit += CastAide.AsDecimal(dr["deposit"]) * dcActualRate;
+                dcTurnover += CastAide.AsDecimal(dr["Turnover"]) * dcActualRate;
+                dcBonus += CastAide.AsDecimal(dr["Bonus"]) * dcActualRate;
+                dcMemWinloss += CastAide.AsDecimal(dr["MemberWinLost"]) * dcActualRate;
+                dcAffWinloss += CastAide.AsDecimal(dr["AffiliateWinLost"]) * dcActualRate;
+                dcHouseWinloss += CastAide.AsDecimal(dr["HouseWinLost"]) * dcActualRate;
+                dcAffNetPos += CastAide.AsDecimal(dr["AffiliateNetWinLost"]) * dcActualRate;
+                dcHouseNetWinloss += CastAide.AsDecimal(dr["HouseNetWinLost"]) * dcActualRate;
+
+                int intCurrMonth = CastAide.AsDateTime(dr["Winlostdate"]).Month;
+                if (intMonth != intCurrMonth)
+                {
+                    //Assign Monthly row
+                    if (intMonth != 0)
+                        GenerateMonthlyRow(strTotal, hsTotal);
+                    intMonth = intCurrMonth;
+                    hsTotal = new Hashtable();
+                }
+                if (hsTotal.ContainsKey(dr["Currency"]))
+                {
+                    Hashtable hsCurrency = (Hashtable)hsTotal[dr["Currency"]];
+                    hsCurrency["Deposit"] = CastAide.AsDecimal(hsCurrency["Deposit"]) + (CastAide.AsDecimal(dr["Deposit"]) * dcActualRate);
+                    hsCurrency["Turnover"] = CastAide.AsDecimal(hsCurrency["Turnover"]) + (CastAide.AsDecimal(dr["Turnover"]) * dcActualRate);
+                    hsCurrency["Bonus"] = CastAide.AsDecimal(hsCurrency["Bonus"]) + (CastAide.AsDecimal(dr["Bonus"]) * dcActualRate);
+                    hsCurrency["MemberWinLost"] = CastAide.AsDecimal(hsCurrency["MemberWinLost"]) + (CastAide.AsDecimal(dr["MemberWinLost"]) * dcActualRate);
+                    hsCurrency["AffiliateWinLost"] = CastAide.AsDecimal(hsCurrency["AffiliateWinLost"]) + (CastAide.AsDecimal(dr["AffiliateWinLost"]) * dcActualRate);
+                    hsCurrency["HouseWinLost"] = CastAide.AsDecimal(hsCurrency["HouseWinLost"]) + (CastAide.AsDecimal(dr["HouseWinLost"]) * dcActualRate);
+                    hsCurrency["AffiliateNetWinLost"] = CastAide.AsDecimal(hsCurrency["AffiliateNetWinLost"]) + (CastAide.AsDecimal(dr["AffiliateNetWinLost"]) * dcActualRate);
+                    hsCurrency["HouseNetWinLost"] = CastAide.AsDecimal(hsCurrency["HouseNetWinLost"]) + (CastAide.AsDecimal(dr["HouseNetWinLost"]) * dcActualRate);
+
+                    hsTotal[dr["Currency"]] = hsCurrency;
                 }
                 else
                 {
-                    intCustId = AppSettings.Session.AffId;
-                    strUsername = AppSettings.Session.AffUsername;
+                    Hashtable hsCurrency = new Hashtable();
+                    hsCurrency.Add("Deposit", CastAide.AsDecimal(dr["Deposit"]) * dcActualRate);
+                    hsCurrency.Add("Turnover", CastAide.AsDecimal(dr["Turnover"]) * dcActualRate);
+                    hsCurrency.Add("Bonus", CastAide.AsDecimal(dr["Bonus"]) * dcActualRate);
+                    hsCurrency.Add("MemberWinLost", CastAide.AsDecimal(dr["MemberWinLost"]) * dcActualRate);
+                    hsCurrency.Add("AffiliateWinLost", CastAide.AsDecimal(dr["AffiliateWinLost"]) * dcActualRate);
+                    hsCurrency.Add("HouseWinLost", CastAide.AsDecimal(dr["HouseWinLost"]) * dcActualRate);
+                    hsCurrency.Add("AffiliateNetWinLost", CastAide.AsDecimal(dr["AffiliateNetWinLost"]) * dcActualRate);
+                    hsCurrency.Add("HouseNetWinLost", CastAide.AsDecimal(dr["HouseNetWinLost"]) * dcActualRate);
+                    hsCurrency["Currency"] = dr["Currency"];
+                    //hsCurrency.Add("Rate", CastAide.AsDecimal(dr["actualrate"]));
+                    hsTotal.Add(dr["Currency"], hsCurrency);
                 }
-                TemplateHandler.Assign(ref strTpl, "pagepadd", string.Empty);
-                TemplateHandler.Assign(ref strTpl, "username", strUsername);
-                TemplateHandler.Assign(ref strTpl, "username-val", strUsername + " --- ");
-                TemplateHandler.Assign(ref strTpl, "custid", intCustId);
-                strMenuText = Resources.Lang.ReportDetails + " [" + strUsername + "]";
-                //TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.AffApprovedLink, SubMenu.AffApprovedText, 1, 0, Resources.Lang.Report, "i_customer.png"));
-            }
-            else
-            {
-                TemplateHandler.Assign(ref strTpl, "pagepadd", "padl0");
-                TemplateHandler.Assign(ref strTpl, "username", string.Empty);
-                TemplateHandler.Assign(ref strTpl, "username-val", string.Empty);
-                TemplateHandler.Assign(ref strTpl, "custid", string.Empty);
-                strMenuText = Resources.Lang.ReportDetails;
-            }
-            TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.ReportLink, SubMenu.ReportText, 0, 0, SubMenu.ReportText[0], "i_report.png"));
 
-            TemplateHandler.Assign(ref strTpl, "isaff-val", Request["isaff"]);
-                       
-            DateTime dtmFDate = CastAide.AsDateTime(Request["fdate"], DateTime.Now.AddDays(-1));
-            TemplateHandler.Assign(ref strTpl, "fdate", dtmFDate.ToString("MM/dd/yyyy"));
-            if (dtmFDate < AppSettings.StatementAvailableFrom)
-                dtmFDate = AppSettings.StatementAvailableFrom;
-            DateTime dtmTDate = CastAide.AsDateTime(Request["tdate"], DateTime.Now);
-            TemplateHandler.Assign(ref strTpl, "tdate", dtmTDate.ToString("MM/dd/yyyy"));
-            
-            DbResult rs = null;
-            if (intCustId != 0)
-            {
-                TemplateHandler.Assign(ref strTpl, "hwidth", "170");
-                rs = DataHandler.Affiliate.SelMemberReportByAff(intCustId, dtmFDate, dtmTDate,0);
-            }
-            else
-            {
-                TemplateHandler.ReplaceBlock(ref strTpl, "username", string.Empty);
-                TemplateHandler.Assign(ref strTpl, "hwidth", "100");
-                rs = DataHandler.Affiliate.SelMemberReport(dtmFDate, dtmTDate,0);
-            }
-
-            DataTable table = rs.ResultSet.Tables.Count > 0 ? rs.ResultSet.Tables[0] : null;
-            if (table != null && table.Rows.Count > 0)
-            {
-                string strRowTpl = TemplateHandler.CopyBlock(strTpl, "content");
-                string strSubTpl = TemplateHandler.ReplaceBlock(ref strTpl, "subtotal", "");
-                string strTotal = TemplateHandler.ReplaceBlock(ref strTpl, "total", "");
-                string strDate = string.Empty;
-                int intCount = 0, numRow = 0;
-                decimal dcDeposit = 0, dcTurnover = 0, dcBonus = 0, dcMemWinloss = 0, dcAffWinloss = 0, dcHouseWinloss = 0, dcAffNetPos = 0, dcHouseNetWinloss = 0;
-                Hashtable hsTotal = new Hashtable();//Use for Total monthly
-                ArrayList arr = new ArrayList();
-                strListRow = new StringBuilder();
-                StringBuilder strRow = new StringBuilder();
-                int intMonth = 0;
-                foreach (DataRow dr in table.Rows)
+                if (string.IsNullOrEmpty(strNewRow))//New row but is not first row of date
+                    strRow.Append("<tr class=\"nowrap\" bgcolor=\"" + Common.RowBgOdd + "\" onmouseout=\"bgColor='" + Common.RowBgOdd + "'\" onmouseover=\"bgColor='" + Common.RowBgOver + "'\">" + strTmp + "</tr>");
+                intCount++;
+                if (numRow == table.Rows.Count)
                 {
-                    string strTmpDate = CastAide.AsDateTime(dr["Winlostdate"]).ToString("d-MMM-yy ddd");
-                    string strTmp = TemplateHandler.CopyBlock(strRowTpl, "currency");
-                    string strNewRow = string.Empty;
-                    //Load 1 row without date value
-                    decimal dcActualRate = CastAide.AsDecimal(dr["actualrate"]);
-
-                    //Add new 1 column here
-                    TemplateHandler.Assign(ref strTmp, "currency-val", dr["Currency"].ToString());
-                    TemplateHandler.Assign(ref strTmp, "units-val", NumberFormat.DecFormat(dcActualRate, 5));
-                    TemplateHandler.Assign(ref strTmp, "deposit-val", NumberFormat.DecFormat(dr["deposit"], 2));
-                    TemplateHandler.Assign(ref strTmp, "depositeqv-val", Common.FormatNumber(CastAide.AsDecimal(dr["deposit"]) * dcActualRate));
-                    TemplateHandler.Assign(ref strTmp, "turnover-val", NumberFormat.DecFormat(dr["Turnover"], 2));
-                    TemplateHandler.Assign(ref strTmp, "turnovereqv-val", Common.FormatNumber(CastAide.AsDecimal(dr["Turnover"]) * dcActualRate));
-                    TemplateHandler.Assign(ref strTmp, "bonus-val", NumberFormat.DecFormat(dr["Bonus"], 2));
-                    TemplateHandler.Assign(ref strTmp, "bonuseqv-val", Common.FormatNumber(CastAide.AsDecimal(dr["Bonus"]) * dcActualRate));
-                    TemplateHandler.Assign(ref strTmp, "memwinloss-val", NumberFormat.DecFormat(dr["MemberWinLost"], 2));
-                    TemplateHandler.Assign(ref strTmp, "memwinlosseqv-val", Common.FormatNumber(CastAide.AsDecimal(dr["MemberWinLost"]) * dcActualRate));
-                    TemplateHandler.Assign(ref strTmp, "affwinloss-val", NumberFormat.DecFormat(dr["AffiliateWinLost"], 2));
-                    TemplateHandler.Assign(ref strTmp, "affwinlosseqv-val", Common.FormatNumber(CastAide.AsDecimal(dr["AffiliateWinLost"]) * dcActualRate));
-                    TemplateHandler.Assign(ref strTmp, "housewinloss-val", NumberFormat.DecFormat(dr["HouseWinLost"], 2));
-                    TemplateHandler.Assign(ref strTmp, "housewinlosseqv-val", Common.FormatNumber(CastAide.AsDecimal(dr["HouseWinLost"]) * dcActualRate));
-                    TemplateHandler.Assign(ref strTmp, "affnetpos-val", NumberFormat.DecFormat(dr["AffiliateNetWinLost"], 2));
-                    TemplateHandler.Assign(ref strTmp, "affnetposeqv-val", Common.FormatNumber(CastAide.AsDecimal(dr["AffiliateNetWinLost"]) * dcActualRate));
-                    TemplateHandler.Assign(ref strTmp, "housenetwinloss-val", NumberFormat.DecFormat(dr["HouseNetWinLost"], 2));
-                    TemplateHandler.Assign(ref strTmp, "housenetwinlosseqv-val", Common.FormatNumber(CastAide.AsDecimal(dr["HouseNetWinLost"]) * dcActualRate));
-
-                    numRow++;                    
-                    if (string.Compare(strDate, strTmpDate, true) != 0)//New row
-                    {
-                        //hsTotal = new Hashtable();
-                        #region insert old row to list rows
-                        string strOldRow = strRow.ToString();
-                        TemplateHandler.Assign(ref strOldRow, "numrow", intCount.ToString());
-                        strRow = new StringBuilder();
-                        strListRow.Append(strOldRow);
-                        #endregion
-
-                        if (!string.IsNullOrEmpty(strDate))//insert subtotal row for list rows before
-                        {
-                            GenerateSubTotal(strRow, strSubTpl, intCount, ref dcDeposit, ref dcTurnover, ref dcBonus, ref dcMemWinloss, ref dcAffWinloss, ref dcHouseWinloss, ref dcAffNetPos, ref dcHouseNetWinloss);//Sub total                            
-                        }
-                        strNewRow = strRowTpl;
-                        TemplateHandler.Assign(ref strNewRow, "date-val", strTmpDate);
-                        TemplateHandler.ReplaceBlock(ref strNewRow, "currency", strTmp);
-                        strRow.Append(strNewRow);
-
-                        strDate = strTmpDate;
-                        intCount = 0;
-                    }
-                    dcDeposit += CastAide.AsDecimal(dr["deposit"]) * dcActualRate;
-                    dcTurnover += CastAide.AsDecimal(dr["Turnover"]) * dcActualRate;
-                    dcBonus += CastAide.AsDecimal(dr["Bonus"]) * dcActualRate;
-                    dcMemWinloss += CastAide.AsDecimal(dr["MemberWinLost"]) * dcActualRate;
-                    dcAffWinloss += CastAide.AsDecimal(dr["AffiliateWinLost"]) * dcActualRate;
-                    dcHouseWinloss += CastAide.AsDecimal(dr["HouseWinLost"]) * dcActualRate;
-                    dcAffNetPos += CastAide.AsDecimal(dr["AffiliateNetWinLost"]) * dcActualRate;
-                    dcHouseNetWinloss += CastAide.AsDecimal(dr["HouseNetWinLost"]) * dcActualRate;
-
-                    int intCurrMonth = CastAide.AsDateTime(dr["Winlostdate"]).Month;
-                    if (intMonth != intCurrMonth)
-                    {
-                        //Assign Monthly row
-                        if(intMonth != 0)
-                            GenerateMonthlyRow(strTotal, hsTotal);
-                        intMonth = intCurrMonth;
-                        hsTotal = new Hashtable();
-                    }
-                    if (hsTotal.ContainsKey(dr["Currency"]))
-                    {
-                        Hashtable hsCurrency = (Hashtable)hsTotal[dr["Currency"]];
-                        hsCurrency["Deposit"] = CastAide.AsDecimal(hsCurrency["Deposit"]) + (CastAide.AsDecimal(dr["Deposit"]) * dcActualRate);
-                        hsCurrency["Turnover"] = CastAide.AsDecimal(hsCurrency["Turnover"]) + (CastAide.AsDecimal(dr["Turnover"]) * dcActualRate);
-                        hsCurrency["Bonus"] = CastAide.AsDecimal(hsCurrency["Bonus"]) + (CastAide.AsDecimal(dr["Bonus"]) * dcActualRate);
-                        hsCurrency["MemberWinLost"] = CastAide.AsDecimal(hsCurrency["MemberWinLost"]) + (CastAide.AsDecimal(dr["MemberWinLost"]) * dcActualRate);
-                        hsCurrency["AffiliateWinLost"] = CastAide.AsDecimal(hsCurrency["AffiliateWinLost"]) + (CastAide.AsDecimal(dr["AffiliateWinLost"]) * dcActualRate);
-                        hsCurrency["HouseWinLost"] = CastAide.AsDecimal(hsCurrency["HouseWinLost"]) + (CastAide.AsDecimal(dr["HouseWinLost"]) * dcActualRate);
-                        hsCurrency["AffiliateNetWinLost"] = CastAide.AsDecimal(hsCurrency["AffiliateNetWinLost"]) + (CastAide.AsDecimal(dr["AffiliateNetWinLost"]) * dcActualRate);
-                        hsCurrency["HouseNetWinLost"] = CastAide.AsDecimal(hsCurrency["HouseNetWinLost"]) + (CastAide.AsDecimal(dr["HouseNetWinLost"]) * dcActualRate);
-
-                        hsTotal[dr["Currency"]] = hsCurrency;
-                    }
-                    else
-                    {
-                        Hashtable hsCurrency = new Hashtable();
-                        hsCurrency.Add("Deposit", CastAide.AsDecimal(dr["Deposit"]) * dcActualRate);
-                        hsCurrency.Add("Turnover", CastAide.AsDecimal(dr["Turnover"]) * dcActualRate);
-                        hsCurrency.Add("Bonus", CastAide.AsDecimal(dr["Bonus"]) * dcActualRate);
-                        hsCurrency.Add("MemberWinLost", CastAide.AsDecimal(dr["MemberWinLost"]) * dcActualRate);
-                        hsCurrency.Add("AffiliateWinLost", CastAide.AsDecimal(dr["AffiliateWinLost"]) * dcActualRate);
-                        hsCurrency.Add("HouseWinLost", CastAide.AsDecimal(dr["HouseWinLost"]) * dcActualRate);
-                        hsCurrency.Add("AffiliateNetWinLost", CastAide.AsDecimal(dr["AffiliateNetWinLost"]) * dcActualRate);
-                        hsCurrency.Add("HouseNetWinLost", CastAide.AsDecimal(dr["HouseNetWinLost"]) * dcActualRate);
-                        hsCurrency["Currency"] = dr["Currency"];
-                        //hsCurrency.Add("Rate", CastAide.AsDecimal(dr["actualrate"]));
-                        hsTotal.Add(dr["Currency"], hsCurrency);
-                    }
-
-                    if (string.IsNullOrEmpty(strNewRow))//New row but is not first row of date
-                        strRow.Append("<tr class=\"nowrap\" bgcolor=\"" + Common.RowBgOdd + "\" onmouseout=\"bgColor='" + Common.RowBgOdd + "'\" onmouseover=\"bgColor='" + Common.RowBgOver + "'\">" + strTmp + "</tr>");
-                    intCount++;
-                    if (numRow == table.Rows.Count)
-                    {
-                        GenerateSubTotal(strRow, strSubTpl, intCount, ref dcDeposit, ref dcTurnover, ref dcBonus, ref dcMemWinloss, ref dcAffWinloss, ref dcHouseWinloss, ref dcAffNetPos, ref dcHouseNetWinloss);//Sub total
-                        GenerateMonthlyRow(strTotal, hsTotal);//Monthly for last row
-                    }
+                    GenerateSubTotal(strRow, strSubTpl, intCount, ref dcDeposit, ref dcTurnover, ref dcBonus, ref dcMemWinloss, ref dcAffWinloss, ref dcHouseWinloss, ref dcAffNetPos, ref dcHouseNetWinloss);//Sub total
+                    GenerateMonthlyRow(strTotal, hsTotal);//Monthly for last row
                 }
-                TemplateHandler.ReplaceBlock(ref strTpl, "content", strListRow.ToString());
             }
-            else
-            {
-                TemplateHandler.ReplaceBlock(ref strTpl, "content", Common.NoInfo(19));
-                TemplateHandler.ReplaceBlock(ref strTpl, "subtotal", string.Empty);
-                TemplateHandler.ReplaceBlock(ref strTpl, "total", string.Empty);
-            }
+            TemplateHandler.ReplaceBlock(ref strTpl, "content", strListRow.ToString());
         }
-        catch (Exception ex)
+        else
         {
-            Fanex.Logging.LogService.Error(ex.Message);
-            #if DEBUG
-                        throw;
-            #endif
+            TemplateHandler.ReplaceBlock(ref strTpl, "content", Common.NoInfo(19));
+            TemplateHandler.ReplaceBlock(ref strTpl, "subtotal", string.Empty);
+            TemplateHandler.ReplaceBlock(ref strTpl, "total", string.Empty);
         }
     }
 
-    void GenerateMonthlyRow(string strTotal, Hashtable hsTotal)
+    private void GenerateMonthlyRow(string strTotal, Hashtable hsTotal)
     {
         string strMonthly = strTotal;
         string strMonthlyTotal = TemplateHandler.ReplaceBlock(ref strMonthly, "monthly-total", string.Empty);
         TemplateHandler.Assign(ref strMonthly, "monthly-val", Resources.Lang.TotalMonthly);
         TemplateHandler.Assign(ref strMonthly, "numrow", hsTotal.Keys.Count.ToString());
         decimal dcDeposit = 0, dcTurnoverTotal = 0, dcBonusTotal = 0, dcMemTotal = 0, dcAffTotal = 0, dcHouseTotal = 0, dcAffNetTotal = 0, dcHouseNetTotal = 0;
-        
+
         ArrayList arrItem = new ArrayList();
         foreach (DictionaryEntry de in hsTotal)
         {
             arrItem.Add(de.Key);
         }
         arrItem.Sort();
-        
+
         for (int i = 0; i < arrItem.Count; i++)
         {
             string strTmpMonthly = strMonthly;
@@ -307,7 +301,7 @@ public partial class MemberReport : IBCPage
         strListRow.Append(strMonthlyTotal);
     }
 
-    void GenerateSubTotal(StringBuilder strRow, string strSubTpl, int intCount, ref decimal dcDeposit, ref decimal dcTurnover, ref decimal dcBonus, ref decimal dcMemWinloss, ref decimal dcAffWinloss, ref decimal dcHouseWinloss, ref decimal dcAffNetPos, ref decimal dcHouseNetWinloss)
+    private void GenerateSubTotal(StringBuilder strRow, string strSubTpl, int intCount, ref decimal dcDeposit, ref decimal dcTurnover, ref decimal dcBonus, ref decimal dcMemWinloss, ref decimal dcAffWinloss, ref decimal dcHouseWinloss, ref decimal dcAffNetPos, ref decimal dcHouseNetWinloss)
     {
         string strOldRow = strRow.ToString();
         TemplateHandler.Assign(ref strOldRow, "numrow", intCount.ToString());

@@ -35,7 +35,7 @@ namespace AffiliateAdmin.Business.Services
             catch (Exception ex)
             {
                 context.Response.Write("1@" + ex.Message);
-                Fanex.Logging.LogService.Error(ex.Message);
+                AffiliateAdmin.Business.Helpers.LogHelper.WriteError(ex);
             }
         }
     }

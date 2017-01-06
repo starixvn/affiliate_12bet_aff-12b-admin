@@ -78,9 +78,9 @@ public partial class Domain_DomainControl : IBCPage
         }
         catch (Exception ex)
         {
-            Fanex.Logging.LogService.Error(ex.Message);
+            AffiliateAdmin.Business.Helpers.LogHelper.WriteError(ex);
 #if DEBUG
-                throw;
+            throw;
 #endif
         }
         TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.DomainLink, SubMenu.DomainText, 2, 0, "Domain Control", "i_domain.jpg"));

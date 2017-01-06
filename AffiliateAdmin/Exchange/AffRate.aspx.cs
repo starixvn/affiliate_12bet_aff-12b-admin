@@ -80,9 +80,9 @@ public partial class AffRate : IBCPage
         }
         catch (Exception ex)
         {
-            Fanex.Logging.LogService.Error(ex.Message);
+            AffiliateAdmin.Business.Helpers.LogHelper.WriteError(ex);
 #if DEBUG
-                throw;
+            throw;
 #endif
         }
         this.HtmlContent = strTpl;

@@ -1,11 +1,13 @@
 using System;
 using System.Data;
 using System.Text;
-using DNAide.Web;
 using DNAide.Core;
+using DNAide.Web;
+
 public partial class DailyEarning : IBCPage
 {
     private System.Globalization.CultureInfo cult = System.Globalization.CultureInfo.CurrentCulture;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         string strTemplate = TemplateHandler.LoadTemplate("UserInfo/ViewDaily.htm");
@@ -21,7 +23,7 @@ public partial class DailyEarning : IBCPage
         TemplateHandler.Assign(ref strTemplate, "total", Resources.Lang.Total);
         TemplateHandler.Assign(ref strTemplate, "back", Resources.Lang.Back);
         TemplateHandler.Assign(ref strTemplate, "originalmonthdate", (Request["monthdate"] != null) ? Request["monthdate"].ToString() : DateTime.Now.AddDays(-1).ToString());
-        DateTime _date = (Request["monthdate"] != null) ? DateTime.Parse(Request["monthdate"].ToString(),cult) : DateTime.Now.AddDays(-1);
+        DateTime _date = (Request["monthdate"] != null) ? DateTime.Parse(Request["monthdate"].ToString(), cult) : DateTime.Now.AddDays(-1);
 
         int step = CastAide.AsInt32(Request["hdStep"], 0) + 1;
         int custID = CastAide.AsInt32(Request["custid"]);
@@ -50,7 +52,8 @@ public partial class DailyEarning : IBCPage
         {
             TemplateHandler.RemoveBlock(ref strTemplate, "sportbook");
             width = 250;
-        }else if (sporttype == 3)
+        }
+        else if (sporttype == 3)
         {
             TemplateHandler.RemoveBlock(ref strTemplate, "notcasino");
         }
@@ -69,81 +72,77 @@ public partial class DailyEarning : IBCPage
         TemplateHandler.Assign(ref strTemplate, "width", width);
 
         TemplateHandler.Assign(ref strTemplate, "slSports", Common.GenListSportType(sporttype));
-        try
+
+        DataTable dtbResult = DataHandler.Affiliate.SelAffEarningDaily(custID, sporttype, _date);
+        if (dtbResult.Rows.Count > 0)
         {
-            DataTable dtbResult = DataHandler.Affiliate.SelAffEarningDaily(custID, sporttype, _date);
-            if (dtbResult.Rows.Count > 0)
+            string strContent = TemplateHandler.CopyBlock(strTemplate, "content");
+            TemplateHandler.Assign(ref strContent, "over", Common.RowBgOver);
+            int intNo = 0;
+            StringBuilder strBuild = new StringBuilder();
+            decimal dcWinlost = 0, dcDeposit = 0, dcBonus = 0, dcAdjust = 0, dcPSP = 0, dcWithdrawal = 0;
+            foreach (DataRow dr in dtbResult.Rows)
             {
-                string strContent = TemplateHandler.CopyBlock(strTemplate, "content");
-                TemplateHandler.Assign(ref strContent, "over", Common.RowBgOver);
-                int intNo = 0;
-                StringBuilder strBuild = new StringBuilder();
-                decimal dcWinlost = 0, dcDeposit = 0, dcBonus = 0,dcAdjust = 0, dcPSP = 0,dcWithdrawal=0;
-                foreach (DataRow dr in dtbResult.Rows)
+                string strTmp = strContent;
+                intNo++;
+                dcWinlost += CastAide.AsDecimal(dr["MemberWinlost"]);
+                dcDeposit += CastAide.AsDecimal(dr["deposit"]);
+                dcBonus += CastAide.AsDecimal(dr["bonus"]);
+                dcAdjust += CastAide.AsDecimal(dr["adjustment"]);
+                dcPSP += CastAide.AsDecimal(dr["psp"]);
+                dcWithdrawal += CastAide.AsDecimal(dr["withdrawal"]);
+
+                TemplateHandler.Assign(ref strTmp, "color", (intNo % 2 == 0) ? Common.RowBgEven : Common.RowBgOdd);
+                TemplateHandler.Assign(ref strTmp, "no", intNo.ToString());
+                TemplateHandler.Assign(ref strTmp, "date-val", CastAide.AsDateTime(dr["winlostdate"]).ToString("dd MMMM yyyy"));
+                TemplateHandler.Assign(ref strTmp, "winlost-val", Common.FormatNumber(dr["MemberWinlost"]));
+                TemplateHandler.Assign(ref strTmp, "deposit-val", Common.FormatNumber(dr["deposit"]));
+                TemplateHandler.Assign(ref strTmp, "withdrawal-val", Common.FormatNumber(dr["withdrawal"]));
+                TemplateHandler.Assign(ref strTmp, "bonus-val", Common.FormatNumber(dr["bonus"]));
+                TemplateHandler.Assign(ref strTmp, "adjustment-val", Common.FormatNumber(dr["adjustment"]));
+                TemplateHandler.Assign(ref strTmp, "psp-val", Common.FormatNumber(dr["psp"]));
+                TemplateHandler.Assign(ref strTmp, "custid", custID.ToString());
+                TemplateHandler.Assign(ref strTmp, "monthdate-val", CastAide.AsDateTime(dr["winlostdate"]).ToShortDateString());
+                TemplateHandler.Assign(ref strTmp, "omonth", Request["monthdate"].ToString());
+
+                if (isComm)
                 {
-                    string strTmp = strContent;
-                    intNo++;
-                    dcWinlost += CastAide.AsDecimal(dr["MemberWinlost"]);
-                    dcDeposit += CastAide.AsDecimal(dr["deposit"]);
-                    dcBonus += CastAide.AsDecimal(dr["bonus"]);
-                    dcAdjust += CastAide.AsDecimal(dr["adjustment"]);
-                    dcPSP += CastAide.AsDecimal(dr["psp"]);
-                    dcWithdrawal += CastAide.AsDecimal(dr["withdrawal"]);
-
-                    TemplateHandler.Assign(ref strTmp, "color", (intNo % 2 == 0) ? Common.RowBgEven : Common.RowBgOdd);
-                    TemplateHandler.Assign(ref strTmp, "no", intNo.ToString());
-                    TemplateHandler.Assign(ref strTmp, "date-val", CastAide.AsDateTime(dr["winlostdate"]).ToString("dd MMMM yyyy"));
-                    TemplateHandler.Assign(ref strTmp, "winlost-val", Common.FormatNumber(dr["MemberWinlost"]));
-                    TemplateHandler.Assign(ref strTmp, "deposit-val", Common.FormatNumber(dr["deposit"]));
-                    TemplateHandler.Assign(ref strTmp, "withdrawal-val", Common.FormatNumber(dr["withdrawal"]));
-                    TemplateHandler.Assign(ref strTmp, "bonus-val", Common.FormatNumber(dr["bonus"]));
-                    TemplateHandler.Assign(ref strTmp, "adjustment-val", Common.FormatNumber(dr["adjustment"]));
-                    TemplateHandler.Assign(ref strTmp, "psp-val", Common.FormatNumber(dr["psp"]));
-                    TemplateHandler.Assign(ref strTmp, "custid", custID.ToString());
-                    TemplateHandler.Assign(ref strTmp, "monthdate-val", CastAide.AsDateTime(dr["winlostdate"]).ToShortDateString());
-                    TemplateHandler.Assign(ref strTmp, "omonth", Request["monthdate"].ToString());
-
-                    if (isComm)
-                    {
-                        TemplateHandler.Assign(ref strTmp, "showIsComm", "&iscomm=1");
-                    }
-                    else
-                    {
-                        TemplateHandler.Assign(ref strTmp, "showIsComm", "");
-                    }
-
-                    strBuild.Append(strTmp);
+                    TemplateHandler.Assign(ref strTmp, "showIsComm", "&iscomm=1");
                 }
-                TemplateHandler.ReplaceBlock(ref strTemplate, "content", strBuild.ToString());
-                TemplateHandler.Assign(ref strTemplate, "totalwinlost", Common.FormatNumber(dcWinlost));
-                TemplateHandler.Assign(ref strTemplate, "totaldeposit", Common.FormatNumber(dcDeposit));
-                TemplateHandler.Assign(ref strTemplate, "totalwithdrawal", Common.FormatNumber(dcWithdrawal));
-                TemplateHandler.Assign(ref strTemplate, "totalbonus", Common.FormatNumber(dcBonus));
-                TemplateHandler.Assign(ref strTemplate, "totaladjustment", Common.FormatNumber(dcAdjust));
-                TemplateHandler.Assign(ref strTemplate, "totalpsp", Common.FormatNumber(dcPSP));
-            }
-            else
-            {
-                TemplateHandler.ReplaceBlock(ref strTemplate, "content", Common.NoInfo(7));
-                TemplateHandler.RemoveBlock(ref strTemplate, "total");
-            }
-            #region Load SubPage         
-            if (!isComm)
-                TemplateHandler.Assign(ref strTemplate, "submenu", SubMenu.GenSubMenu(SubMenu.AffApprovedLink, SubMenu.AffApprovedText, 0, 0, Resources.Lang.StatementHistory, "i_customer.png"));
-            else
-            {
-                TemplateHandler.Assign(ref strTemplate, "submenu", SubMenu.GenSubMenu(SubMenu.ReportLink, SubMenu.ReportText, 5, 0, SubMenu.ReportText[3], "i_report.png"));
-                TemplateHandler.Assign(ref strTemplate, "iscommvalue", Request["iscomm"]);
-                TemplateHandler.RemoveBlock(ref strTemplate, "directory");                
-            }
-            #endregion
+                else
+                {
+                    TemplateHandler.Assign(ref strTmp, "showIsComm", "");
+                }
 
-            this.HtmlContent = strTemplate;
+                strBuild.Append(strTmp);
+            }
+            TemplateHandler.ReplaceBlock(ref strTemplate, "content", strBuild.ToString());
+            TemplateHandler.Assign(ref strTemplate, "totalwinlost", Common.FormatNumber(dcWinlost));
+            TemplateHandler.Assign(ref strTemplate, "totaldeposit", Common.FormatNumber(dcDeposit));
+            TemplateHandler.Assign(ref strTemplate, "totalwithdrawal", Common.FormatNumber(dcWithdrawal));
+            TemplateHandler.Assign(ref strTemplate, "totalbonus", Common.FormatNumber(dcBonus));
+            TemplateHandler.Assign(ref strTemplate, "totaladjustment", Common.FormatNumber(dcAdjust));
+            TemplateHandler.Assign(ref strTemplate, "totalpsp", Common.FormatNumber(dcPSP));
         }
-        catch (Exception ex)
+        else
         {
-            Fanex.Logging.LogService.Error(ex.Message);
+            TemplateHandler.ReplaceBlock(ref strTemplate, "content", Common.NoInfo(7));
+            TemplateHandler.RemoveBlock(ref strTemplate, "total");
         }
 
+        #region Load SubPage
+
+        if (!isComm)
+            TemplateHandler.Assign(ref strTemplate, "submenu", SubMenu.GenSubMenu(SubMenu.AffApprovedLink, SubMenu.AffApprovedText, 0, 0, Resources.Lang.StatementHistory, "i_customer.png"));
+        else
+        {
+            TemplateHandler.Assign(ref strTemplate, "submenu", SubMenu.GenSubMenu(SubMenu.ReportLink, SubMenu.ReportText, 5, 0, SubMenu.ReportText[3], "i_report.png"));
+            TemplateHandler.Assign(ref strTemplate, "iscommvalue", Request["iscomm"]);
+            TemplateHandler.RemoveBlock(ref strTemplate, "directory");
+        }
+
+        #endregion Load SubPage
+
+        this.HtmlContent = strTemplate;
     }
 }

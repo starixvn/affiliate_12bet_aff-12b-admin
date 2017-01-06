@@ -40,7 +40,7 @@ namespace AffiliateAdmin.Business.Services
             catch (Exception ex)
             {
                 context.Response.Write("<script type='text/javascript'>parent.UpdateFail(\"" + ex.Message + "\");</script>");
-                Fanex.Logging.LogService.Error(ex.Message);
+                AffiliateAdmin.Business.Helpers.LogHelper.WriteError(ex);
             }
         }
     }
