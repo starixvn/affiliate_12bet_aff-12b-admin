@@ -472,66 +472,6 @@
     <Compile Include="Business\Status.cs" />
     <Compile Include="Business\SubMenu.cs" />
     <Compile Include="Business\SwfInfo.cs" />
-    <Compile Include="Business\TplCore\App_Templates\MemberInfo\CasinoPT.htm.cs" />
-    <Compile Include="Business\TplCore\_BetList\BetList.htm.cs" />
-    <Compile Include="Business\TplCore\_BetList\BetSlip.htm.cs" />
-    <Compile Include="Business\TplCore\_BetList\BingoResult.htm.cs" />
-    <Compile Include="Business\TplCore\_BetList\BingoResultDetail.htm.cs" />
-    <Compile Include="Business\TplCore\_BetList\CasinoResult_4hJOB.htm.cs" />
-    <Compile Include="Business\TplCore\_BetList\CasinoResult_BattleWar.htm.cs" />
-    <Compile Include="Business\TplCore\_BetList\CasinoResult_Champion.htm.cs" />
-    <Compile Include="Business\TplCore\_BetList\CasinoResult_CrazyHospital.htm.cs" />
-    <Compile Include="Business\TplCore\_BetList\CasinoResult_DinoCamp.htm.cs" />
-    <Compile Include="Business\TplCore\_BetList\CasinoResult_DragonSlot.htm.cs" />
-    <Compile Include="Business\TplCore\_BetList\CasinoResult_Engagement2.htm.cs" />
-    <Compile Include="Business\TplCore\_BetList\CasinoResult_FaceUp.htm.cs" />
-    <Compile Include="Business\TplCore\_BetList\CasinoResult_FanTan.htm.cs" />
-    <Compile Include="Business\TplCore\_BetList\CasinoResult_GongXiFaChai.htm.cs" />
-    <Compile Include="Business\TplCore\_BetList\CasinoResult_Halloween.htm.cs" />
-    <Compile Include="Business\TplCore\_BetList\CasinoResult_HiLoMahjong.htm.cs" />
-    <Compile Include="Business\TplCore\_BetList\CasinoResult_HoHoHoScratch.htm.cs" />
-    <Compile Include="Business\TplCore\_BetList\CasinoResult_HorseRacing.htm.cs" />
-    <Compile Include="Business\TplCore\_BetList\CasinoResult_JacksOrBetter.htm.cs" />
-    <Compile Include="Business\TplCore\_BetList\CasinoResult_JourneyWest.htm.cs" />
-    <Compile Include="Business\TplCore\_BetList\CasinoResult_Keno.htm.cs" />
-    <Compile Include="Business\TplCore\_BetList\CasinoResult_KnockEggs.htm.cs" />
-    <Compile Include="Business\TplCore\_BetList\CasinoResult_LoveStoryScratch.htm.cs" />
-    <Compile Include="Business\TplCore\_BetList\CasinoResult_MahjongLegend.htm.cs" />
-    <Compile Include="Business\TplCore\_BetList\CasinoResult_MamakCorner.htm.cs" />
-    <Compile Include="Business\TplCore\_BetList\CasinoResult_MayaPush.htm.cs" />
-    <Compile Include="Business\TplCore\_BetList\CasinoResult_MiniRoulette.htm.cs" />
-    <Compile Include="Business\TplCore\_BetList\CasinoResult_MoneySlot.htm.cs" />
-    <Compile Include="Business\TplCore\_BetList\CasinoResult_MoneyWheel.htm.cs" />
-    <Compile Include="Business\TplCore\_BetList\CasinoResult_MultiJOB.htm.cs" />
-    <Compile Include="Business\TplCore\_BetList\CasinoResult_PenaltyHatTrick.htm.cs" />
-    <Compile Include="Business\TplCore\_BetList\CasinoResult_RedDog.htm.cs" />
-    <Compile Include="Business\TplCore\_BetList\CasinoResult_Scratch.htm.cs" />
-    <Compile Include="Business\TplCore\_BetList\CasinoResult_TattooArt.htm.cs" />
-    <Compile Include="Business\TplCore\_BetList\CasinoResult_TenOrBetter.htm.cs" />
-    <Compile Include="Business\TplCore\_BetList\CasinoResult_TexasHoldem.htm.cs" />
-    <Compile Include="Business\TplCore\_BetList\CasinoResult_WaterMargin.htm.cs" />
-    <Compile Include="Business\TplCore\_BetList\CasinoResult_WesternZodiac.htm.cs" />
-    <Compile Include="Business\TplCore\_BetList\CasinoResult_WinterSlot.htm.cs" />
-    <Compile Include="Business\TplCore\_BetList\MixParlay\CombinationMixParlayDetail.htm.cs" />
-    <Compile Include="Business\TplCore\_BetList\MixParlay\CombinationMixParlayRow.htm.cs" />
-    <Compile Include="Business\TplCore\_BetList\P2P\TableSession.htm.cs" />
-    <Compile Include="Business\TplCore\_IPInfo\IpInfo.htm.cs" />
-    <Compile Include="Business\TplCore\_IPInfo\IpInfoDetail.htm.cs" />
-    <Compile Include="Business\TplCore\_UserGuide\Agent\UserGuide_CS\index.htm.cs" />
-    <Compile Include="Business\TplCore\_UserGuide\Agent\UserGuide_CS\Menu.htm.cs" />
-    <Compile Include="Business\TplCore\_UserGuide\Agent\UserGuide_CT\index.htm.cs" />
-    <Compile Include="Business\TplCore\_UserGuide\Agent\UserGuide_CT\Menu.htm.cs" />
-    <Compile Include="Business\TplCore\_UserGuide\Agent\UserGuide_E\index.htm.cs" />
-    <Compile Include="Business\TplCore\_UserGuide\Agent\UserGuide_E\Menu.htm.cs" />
-    <Compile Include="Business\TplCore\_UserGuide\Index.htm.cs" />
-    <Compile Include="Business\TplCore\_UserGuide\Master\UserGuide_CS\index.htm.cs" />
-    <Compile Include="Business\TplCore\_UserGuide\Master\UserGuide_CS\Menu.htm.cs" />
-    <Compile Include="Business\TplCore\_UserGuide\Master\UserGuide_CT\index.htm.cs" />
-    <Compile Include="Business\TplCore\_UserGuide\Master\UserGuide_CT\Menu.htm.cs" />
-    <Compile Include="Business\TplCore\_UserGuide\Master\UserGuide_E\index.htm.cs" />
-    <Compile Include="Business\TplCore\_UserGuide\Master\UserGuide_E\Menu.htm.cs" />
-    <Compile Include="Business\_UI\_BetList\BetList_Template2.cs" />
-    <Compile Include="Business\_UI\_Reports\BetList\OutstandingDetail_Template2.cs" />
     <Compile Include="App_GlobalResources\BetList.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1060,73 +1000,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
-    </Compile>
-    <Compile Include="_GlobalResources\_IPInfo\IPInfo.aspx.cs">
-      <DependentUpon>IPInfo.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="_GlobalResources\_IPInfo\IPInfo.aspx.designer.cs">
-      <DependentUpon>IPInfo.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="_Reports\BetList\BetSummary.aspx.cs">
-      <DependentUpon>BetSummary.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="_Reports\BetList\BetSummary.aspx.designer.cs">
-      <DependentUpon>BetSummary.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="_Reports\BetList\DailyStatement.aspx.cs">
-      <DependentUpon>DailyStatement.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="_Reports\BetList\DailyStatement.aspx.designer.cs">
-      <DependentUpon>DailyStatement.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="_Reports\BetList\OutstandingDetail.aspx.cs">
-      <DependentUpon>OutstandingDetail.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="_Reports\BetList\OutstandingDetail.aspx.designer.cs">
-      <DependentUpon>OutstandingDetail.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="_Reports\Common\MatchResultEntered.aspx.cs">
-      <DependentUpon>MatchResultEntered.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="_Reports\Common\MatchResultEntered.aspx.designer.cs">
-      <DependentUpon>MatchResultEntered.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="_Reports\Common\Outstanding.aspx.cs">
-      <DependentUpon>Outstanding.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="_Reports\Common\Outstanding.aspx.designer.cs">
-      <DependentUpon>Outstanding.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="_Reports\Common\SelectLeagues.aspx.cs">
-      <DependentUpon>SelectLeagues.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="_Reports\Common\SelectLeagues.aspx.designer.cs">
-      <DependentUpon>SelectLeagues.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="_Reports\Common\Statement.aspx.cs">
-      <DependentUpon>Statement.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="_Reports\Common\Statement.aspx.designer.cs">
-      <DependentUpon>Statement.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="_Reports\Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="_Reports\Result\Result.aspx.cs">
-      <DependentUpon>Result.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="_Reports\Result\Result.aspx.designer.cs">
-      <DependentUpon>Result.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -1880,28 +1753,6 @@
     </None>
     <None Include="Web References\AffBetlistService\AffiliateAPI.disco" />
     <Content Include="WhoamI.aspx" />
-    <Content Include="_GlobalResources\_IPInfo\IPInfo.aspx" />
-    <Content Include="_GlobalResources\_IPInfo\IpInfo.htm" />
-    <Content Include="_GlobalResources\_IPInfo\Resources\IpInfo.css" />
-    <Content Include="_GlobalResources\_IPInfo\Resources\IpInfo.js" />
-    <Content Include="_Reports\BetList\BetSummary.aspx" />
-    <Content Include="_Reports\BetList\DailyStatement.aspx" />
-    <Content Include="_Reports\BetList\OutstandingDetail.aspx" />
-    <Content Include="_Reports\BetList\Resources\BetSummary.js" />
-    <Content Include="_Reports\BetList\Resources\CancelBetList.js" />
-    <Content Include="_Reports\BetList\Resources\DailyStatement.js" />
-    <Content Include="_Reports\BetList\Resources\OutstandingDetail.js" />
-    <Content Include="_Reports\Common\MatchResultEntered.aspx" />
-    <Content Include="_Reports\Common\Outstanding.aspx" />
-    <Content Include="_Reports\Common\SelectLeagues.aspx" />
-    <Content Include="_Reports\Common\Statement.aspx" />
-    <Content Include="_Reports\Default.aspx" />
-    <Content Include="_Reports\Resources\bg_nav.gif" />
-    <Content Include="_Reports\Resources\Reports.css" />
-    <Content Include="_Reports\Resources\Reports.js" />
-    <Content Include="_Reports\Resources\SelectLeagues.js" />
-    <Content Include="_Reports\Resources\ui-icons.png" />
-    <Content Include="_Reports\Result\Result.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Auth\ProcessLogin.ashx" />
@@ -1985,7 +1836,6 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="WebWorkbench.mswwsettings" />
-    <Content Include="_GlobalResources\_IPInfo\Whois.ashx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_GlobalResources\BetList.resx">
@@ -2007,6 +1857,7 @@
     <Content Include="App_GlobalResources\ResultLang.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>ResultLang.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
@@ -2030,6 +1881,9 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>AffiliateAdmin_AffBetlistService_AffiliateAPI</CachedSettingsPropName>
     </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="_GlobalResources\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
