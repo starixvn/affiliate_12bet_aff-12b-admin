@@ -50,62 +50,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\_Dependencies\DNAide.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.Age.Business, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>_Dependencies\Fanex.Age.Business.dll</HintPath>
-    </Reference>
-    <Reference Include="Fanex.Age.Business.Interface, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>_Dependencies\Fanex.Age.Business.Interface.dll</HintPath>
-    </Reference>
-    <Reference Include="Fanex.Age.DTO, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>_Dependencies\Fanex.Age.DTO.dll</HintPath>
-    </Reference>
-    <Reference Include="Fanex.Age.Excel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>_Dependencies\Fanex.Age.Excel.dll</HintPath>
-    </Reference>
-    <Reference Include="Fanex.Age.UI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>_Dependencies\Fanex.Age.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Fanex.Age.UI.Components, Version=1.0.4825.23636, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>_Dependencies\Fanex.Age.UI.Components.dll</HintPath>
-    </Reference>
-    <Reference Include="Fanex.Age.UI.Forecast, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>_Dependencies\Fanex.Age.UI.Forecast.dll</HintPath>
-    </Reference>
-    <Reference Include="Fanex.Age.UI.LiveCasino, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>_Dependencies\Fanex.Age.UI.LiveCasino.dll</HintPath>
-    </Reference>
-    <Reference Include="Fanex.Age.UI.Reports, Version=1.0.4874.18085, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>_Dependencies\Fanex.Age.UI.Reports.dll</HintPath>
-    </Reference>
-    <Reference Include="Fanex.Age.UI.TotalBets, Version=1.0.4580.20749, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>_Dependencies\Fanex.Age.UI.TotalBets.dll</HintPath>
-    </Reference>
-    <Reference Include="Fanex.Age.Utility, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>_Dependencies\Fanex.Age.Utility.dll</HintPath>
-    </Reference>
-    <Reference Include="Fanex.BetList.Age, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>_Dependencies\Fanex.BetList.Age.dll</HintPath>
-    </Reference>
-    <Reference Include="Fanex.BetList.Core, Version=1.0.4875.28933, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>_Dependencies\Fanex.BetList.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Fanex.BetList.Core.TicketHelper, Version=1.0.4875.29081, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>_Dependencies\Fanex.BetList.Core.TicketHelper.dll</HintPath>
-    </Reference>
     <Reference Include="Fanex.Common, Version=1.0.404.97, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Fanex.Common.1.0.404.97\lib\net40\Fanex.Common.dll</HintPath>
@@ -234,9 +178,6 @@
     </Compile>
     <Compile Include="Auth\Error.aspx.designer.cs">
       <DependentUpon>Error.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="BetList.aspx.designer.cs">
-      <DependentUpon>BetList.aspx</DependentUpon>
     </Compile>
     <Compile Include="BetList\BetList.aspx.designer.cs">
       <DependentUpon>BetList.aspx</DependentUpon>
@@ -499,10 +440,6 @@
     </Compile>
     <Compile Include="Auth\Error.aspx.cs">
       <DependentUpon>Error.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="BetList.aspx.cs">
-      <DependentUpon>BetList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="BetList\BetList.aspx.cs">
@@ -1620,7 +1557,6 @@
     <Content Include="App_Themes\Default\jquery.ui.css" />
     <Content Include="App_Themes\error2.png" />
     <Content Include="Auth\Error.aspx" />
-    <Content Include="BetList.aspx" />
     <Content Include="BetList\BetList.aspx" />
     <Content Include="BetList\BetListParlayDetail.aspx" />
     <Content Include="BetList\BetListResults.aspx" />
@@ -1882,9 +1818,7 @@
       <CachedSettingsPropName>AffiliateAdmin_AffBetlistService_AffiliateAPI</CachedSettingsPropName>
     </WebReferenceUrl>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="_GlobalResources\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
