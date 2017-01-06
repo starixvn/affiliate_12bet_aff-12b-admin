@@ -4,6 +4,7 @@ using System.Web;
 using System.Web.Security;
 using Affiliate;
 using Affiliate.Infrastructure.Helpers;
+using AffiliateUser.Business.Helper;
 using Resources;
 
 namespace AffiliateUser.Business.Services.Authorization
@@ -96,7 +97,7 @@ namespace AffiliateUser.Business.Services.Authorization
             }
             catch (Exception ex)
             {
-                Fanex.Logging.LogService.Error(ex.Message);
+                LogHelper.WriteError(ex);
                 message = "102:" + ex.Message;
 #if DEBUG
                 throw;

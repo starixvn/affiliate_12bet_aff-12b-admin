@@ -35,7 +35,7 @@ namespace Aff_CasinoImportDataJob
             }
             catch (Exception ex)
             {
-                LogService.Error("AFF Import Casino Data: " + ex.Message, ex + "\nStacktrace: " + ex.StackTrace);
+                LogService.Error("AFF Import Casino Data: " + ex.Message, ex + "\r\nStacktrace: " + ex.StackTrace);
                 SendEmail(ex.Message);
             }
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web;
 using System.Web.Security;
+using AffiliateUser.Business.Helper;
 
 namespace AffiliateUser.Business.Services.Authorization
 {
@@ -19,7 +20,7 @@ namespace AffiliateUser.Business.Services.Authorization
             }
             catch (Exception ex)
             {
-                Fanex.Logging.LogService.Error(ex.Message);
+                LogHelper.WriteError(ex);
             }
 
             AppSettings.Session.Language = CurrentLang;

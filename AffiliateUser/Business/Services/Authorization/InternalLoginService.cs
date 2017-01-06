@@ -2,6 +2,7 @@
 using System.Web;
 using System.Web.Security;
 using Affiliate;
+using AffiliateUser.Business.Helper;
 using DataHandler;
 using DNAide.Core;
 
@@ -75,7 +76,7 @@ namespace AffiliateUser.Business.Services.Authorization
             }
             catch (Exception ex)
             {
-                Fanex.Logging.LogService.Error(ex.Message);
+                LogHelper.WriteError(ex);
                 _s = "102:" + ex.Message;
 #if DEBUG
                 throw;
