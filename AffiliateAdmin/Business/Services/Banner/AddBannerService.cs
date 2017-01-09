@@ -38,6 +38,13 @@ namespace AffiliateAdmin.Business.Services.Banner
             {
                 inputfilename = newfilename;
             }
+            else
+            {
+                if (!BannerHelper.IsValidExtension(Path.GetExtension(inputfilename)))
+                {
+                    return new ResultInfo(ResultInfo.UnknownErrorCode, Resources.Lang.errFileExtension);
+                }
+            }
 
             string fileName = string.Empty;
             string newFolder = string.Empty;

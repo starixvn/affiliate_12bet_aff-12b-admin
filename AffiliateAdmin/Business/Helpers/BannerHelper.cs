@@ -73,6 +73,16 @@ namespace AffiliateAdmin.Business.Helpers
             string newRelativeFilePath,
             string oldRelativeFilePath)
         {
+            var newExtension = Path.GetExtension(newRelativeFilePath);
+            if (!IsValidExtension(newExtension))
+            {
+                return new ResultInfo
+                {
+                    Code = InvalidExtensionError,
+                    Message = Resources.Lang.errFileExtension
+                };
+            }
+
             if (!category.Equals(oldCategory))
             {
                 var result = EnsureFoldersExisted(newFolder);
@@ -86,6 +96,15 @@ namespace AffiliateAdmin.Business.Helpers
             {
                 var oldFullPath = Path.Combine(folder, oldRelativeFilePath);
                 var newFullPath = Path.Combine(folder, newRelativeFilePath);
+                if (File.Exists(newFullPath))
+                {
+                    return new ResultInfo
+                    {
+                        Code = ResultInfo.UnknownErrorCode,
+                        Message = Resources.Lang.ErrmsgFileExist
+                    };
+                }
+
                 if (File.Exists(oldFullPath))
                 {
                     File.Move(oldFullPath, newFullPath);
@@ -153,7 +172,7 @@ namespace AffiliateAdmin.Business.Helpers
                 return new ResultInfo()
                 {
                     Code = InvalidExtensionError,
-                    Message = Resources.Lang.ErrmsgFile
+                    Message = Resources.Lang.errFileExtension
                 };
             }
 
