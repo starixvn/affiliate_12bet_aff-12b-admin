@@ -103,7 +103,7 @@ namespace AffiliateUser.Business.Services
             {
                 var messagex = ex.Message + "\n" + ex.StackTrace;
                 context.Response.Write("<script type='text/javascript'>parent.document.getElementById(\"errMsg\").show();parent.Common.showError([\"" + messagex + "\"], [\"error_item\"], \"error_item\");</script>");
-                Fanex.Logging.LogService.Error(ex.Message);
+                Business.Helper.LogHelper.WriteError(ex);
             }
         }
 
@@ -124,7 +124,7 @@ namespace AffiliateUser.Business.Services
             }
             catch (Exception ex)
             {
-                Fanex.Logging.LogService.Error(ex.Message, ex);
+                Business.Helper.LogHelper.WriteError(ex);
             }
         }
     }

@@ -75,7 +75,7 @@ namespace AffiliateUser.Business.Services
             catch (Exception ex)
             {
                 context.Response.Write("<script type='text/javascript'>parent.$('errMsg').show();parent.$('succMsg').hide();parent.$('divErr').show();parent.Common.showError([\"" + ex.Message + "\"], [\"error_item\"], \"error_item\");</script>");
-                Fanex.Logging.LogService.Error(ex.Message);
+                Business.Helper.LogHelper.WriteError(ex);
             }
         }
     }

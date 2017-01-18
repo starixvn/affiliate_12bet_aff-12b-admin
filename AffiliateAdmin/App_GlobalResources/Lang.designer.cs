@@ -2694,7 +2694,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error occurs.FileName has already been exist..
+        ///   Looks up a localized string similar to The file name already exists..
         /// </summary>
         internal static string ErrmsgFileExist {
             get {

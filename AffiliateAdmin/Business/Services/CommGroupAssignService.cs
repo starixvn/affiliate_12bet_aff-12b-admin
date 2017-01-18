@@ -30,14 +30,14 @@ namespace AffiliateAdmin.Business.Services
                     DbResult result = DataHandler.GroupSetting.CommGroupAssign(Convert.ToInt32(arr[0]), arr[1], context.Request.UserHostAddress);
                     context.Response.Write(result.Outputs["errmsg"]);
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
-                    context.Response.Write(e.ToString());
+                    context.Response.Write(ex.ToString());
 #if DEBUG
                     throw;
 
 #else
-                Fanex.Logging.LogService.Error(e.ToString());
+                AffiliateAdmin.Business.Helpers.LogHelper.WriteError(ex);
 #endif
                 }
             }

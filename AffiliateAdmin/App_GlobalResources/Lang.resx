@@ -1888,7 +1888,7 @@ The team at 12Bet Affiliates
     <value>Sub Category</value>
   </data>
   <data name="ErrmsgFileExist" xml:space="preserve">
-    <value>Error occurs.FileName has already been exist.</value>
+    <value>The file name already exists.</value>
   </data>
   <data name="ErrmsgFileNameEmpty" xml:space="preserve">
     <value>You must enter a file name for banner</value>

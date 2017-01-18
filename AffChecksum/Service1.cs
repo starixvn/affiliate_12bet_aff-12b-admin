@@ -35,7 +35,7 @@ namespace AffCheckSum
             }
             catch (Exception ex)
             {
-                LogService.Error(ex.Message, ex);
+                Common.WriteErrorLog("AFFCheckSum", ex);
             }
         }
 
@@ -75,7 +75,7 @@ namespace AffCheckSum
             }
             catch (Exception ex)
             {
-                LogService.Error(ex.Message, ex);
+                Common.WriteErrorLog("AFFCheckSum", ex);
                 SendEmail(Common.SubjectMailError, ex.Message);
                 //SendMailService.SendMail2(Common.MailServer, Common.ToMail, Common.FromMail, Common.CCMail, Common.BCCMail, Common.SubjectMailError, ex.Message, Common.PasswordMail);
                 //SendMailError(termId, ex.Message);

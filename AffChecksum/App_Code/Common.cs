@@ -1,90 +1,117 @@
 ﻿using System;
-using System.Data;
 using System.Configuration;
-using System.Web;
+using System.Data.SqlClient;
 using System.IO;
-using System.Text;
-using System.Net;
-using System.Net.NetworkInformation;
-using DNAide.Data;
-using DNAide.Web;
-using DNAide.Core;
-using DNAide.Utils;
-using System.Collections;
 using System.Security.Cryptography;
-/// <summary>
-/// Summary description for Common
-/// </summary>
+using System.Text;
+using Fanex.Logging;
+
 public class Common
 {
     private static string cfsKey = "&％#@?,:*!~^.";
+
     #region Get config information
+
     public static string TimeInterval
     {
-        get { return System.Configuration.ConfigurationSettings.AppSettings["timeInterval"]; }
+        get { return ConfigurationManager.AppSettings["timeInterval"]; }
     }
+
     public static string DueTime
     {
-        get { return System.Configuration.ConfigurationSettings.AppSettings["dueTime"]; }
+        get { return ConfigurationManager.AppSettings["dueTime"]; }
     }
+
     public static int CheckingTime
     {
-        get { return Convert.ToInt32(System.Configuration.ConfigurationSettings.AppSettings["checkingTime"]); }
+        get { return Convert.ToInt32(ConfigurationManager.AppSettings["checkingTime"]); }
     }
+
     public static string IsSendMail
     {
-        get { return System.Configuration.ConfigurationSettings.AppSettings["isSendMail"]; }
+        get { return ConfigurationManager.AppSettings["isSendMail"]; }
     }
+
     public static string FromMail
     {
-        get { return System.Configuration.ConfigurationSettings.AppSettings["fromMail"]; }
+        get { return ConfigurationManager.AppSettings["fromMail"]; }
     }
+
     public static string ToMail
     {
-        get { return System.Configuration.ConfigurationSettings.AppSettings["toMail"]; }
+        get { return ConfigurationManager.AppSettings["toMail"]; }
     }
+
     public static string MailServer
     {
-        get { return System.Configuration.ConfigurationSettings.AppSettings["mailServer"]; }
+        get { return ConfigurationManager.AppSettings["mailServer"]; }
     }
+
     public static string CCMail
     {
-        get { return System.Configuration.ConfigurationSettings.AppSettings["CCMail"]; }
+        get { return ConfigurationManager.AppSettings["CCMail"]; }
     }
+
     public static string BCCMail
     {
-        get { return System.Configuration.ConfigurationSettings.AppSettings["BCCMail"]; }
+        get { return ConfigurationManager.AppSettings["BCCMail"]; }
     }
+
     public static string PortMail
     {
-        get { return System.Configuration.ConfigurationSettings.AppSettings["port"]; }
+        get { return ConfigurationManager.AppSettings["port"]; }
     }
+
     public static string PasswordMail
     {
-        get { return System.Configuration.ConfigurationSettings.AppSettings["password"]; }
+        get { return ConfigurationManager.AppSettings["password"]; }
     }
+
     public static string SubjectMailError
     {
-        get { return System.Configuration.ConfigurationSettings.AppSettings["subjectMailError"]; }
+        get { return ConfigurationManager.AppSettings["subjectMailError"]; }
     }
+
     public static string SendMailService
     {
-        get { return System.Configuration.ConfigurationSettings.AppSettings["ServiceName"]; }
+        get { return ConfigurationManager.AppSettings["ServiceName"]; }
     }
+
     public static string EnableSSL
     {
-        get { return System.Configuration.ConfigurationSettings.AppSettings["enableSSL"]; }
+        get { return ConfigurationManager.AppSettings["enableSSL"]; }
     }
+
     public static bool ForTest
     {
-        get { return (System.Configuration.ConfigurationSettings.AppSettings["forTest"] == "1"); }
+        get { return (ConfigurationManager.AppSettings["forTest"] == "1"); }
     }
 
     public static int ForDate
     {
-        get { return Convert.ToInt32(System.Configuration.ConfigurationSettings.AppSettings["forDate"]); }
+        get { return Convert.ToInt32(ConfigurationManager.AppSettings["forDate"]); }
     }
-    #endregion
+
+    #endregion Get config information
+
+    public static void WriteErrorLog(string message, Exception exception)
+    {
+        var content = new StringBuilder().AppendLine(message).AppendLine(exception.Message);
+
+        content.AppendLine("SOURCE: " + exception.Source)
+               .AppendLine("TARGETSITE: " + exception.TargetSite)
+               .AppendLine("STACKTRACE: " + exception.StackTrace);
+
+        var sqlException = exception as SqlException;
+        if (sqlException != null)
+        {
+            content.AppendLine("Procedure: " + sqlException.Procedure)
+                .AppendLine("Line Number: " + sqlException.LineNumber)
+                .AppendLine("Server: " + sqlException.Server);
+        }
+
+        LogService.Error(content.ToString(), exception);
+    }
 
     public static string LoadFile(string fileName)
     {
@@ -109,7 +136,6 @@ public class Common
             throw new Exception("Cannot find file" + fileN);
         }
         return fileContent;
-
     }
 
     public static string CfsDeCrypt(string strText)

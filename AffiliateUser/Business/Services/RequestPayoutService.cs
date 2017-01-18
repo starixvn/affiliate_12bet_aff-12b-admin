@@ -108,12 +108,12 @@ namespace AffiliateUser.Business.Services
             catch (System.ServiceModel.EndpointNotFoundException endpointNotFoundException)
             {
                 context.Response.Write("<script type='text/javascript'>parent.ShowError1('" + Common.HTMLEncode(Resources.Lang.MailServerNotAvailable) + "');</script>");
-                Fanex.Logging.LogService.Error(endpointNotFoundException.Message);
+                Business.Helper.LogHelper.WriteError(endpointNotFoundException);
             }
             catch (Exception ex)
             {
                 context.Response.Write("<script type='text/javascript'>parent.ShowError1('" + Common.HTMLEncode(ex.Message) + "');</script>");
-                Fanex.Logging.LogService.Error(ex.Message);
+                Business.Helper.LogHelper.WriteError(ex);
             }
         }
     }

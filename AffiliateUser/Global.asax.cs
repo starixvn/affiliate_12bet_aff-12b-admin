@@ -2,6 +2,7 @@
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using AffiliateUser.Business.Helper;
 
 namespace AffiliateUser
 {
@@ -39,34 +40,13 @@ namespace AffiliateUser
         protected void Application_Error(object sender, EventArgs e)
         {
             // Code that runs when an unhandled error occurs
-            Exception ex = Server.GetLastError().GetBaseException();
-            if (ex is HttpException)
+            Exception exception = Server.GetLastError().GetBaseException();
+            if (exception is HttpException)
             {
                 return;
             }
 
-            string message = ex.Message +
-                            "\r\nSOURCE: " + ex.Source +
-                            "\r\nDOMAIN: " + HttpContext.Current.Request.Headers["Host"] +
-                            "\r\nFORM: " + Request.Form.ToString() +
-                            "\r\nUrl: " + Request.RawUrl +
-                            "\r\nReferrer: " + Request.UrlReferrer +
-                            "\r\nQUERYSTRING: " + Request.QueryString.ToString() +
-                            "\r\nTARGETSITE: " + ex.TargetSite +
-                            "\r\nSTACKTRACE: " + ex.StackTrace +
-                            "\r\nBrowser:" + Request.Browser.Type.ToString() +
-                            "\r\nBrowserVer:" + Request.Browser.Version.ToString() +
-                            "\r\nAgent:" + Request.UserAgent.ToString();
-
-            var sqlException = ex as SqlException;
-            if (sqlException != null)
-            {
-                message += "\r\nProcedure: " + sqlException.Procedure +
-                    "\r\nLine Number: " + sqlException.LineNumber +
-                    "\r\nServer: " + sqlException.Server;
-            }
-
-            Fanex.Logging.LogService.Error(message, ex);
+            LogHelper.WriteError(exception);
         }
 
         protected void Session_End(object sender, EventArgs e)

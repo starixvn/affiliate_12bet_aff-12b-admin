@@ -40,7 +40,7 @@ namespace AffiliateUser.Business.Services
             {
                 string strErrObj = "error_item";
                 context.Response.Write("<script type='text/javascript'>parent.$(\"errMsg\").show();parent.Common.showError([\"" + ex.Message + "\"], [\"" + strErrObj + "\"], \"error_item\");</script>");
-                Fanex.Logging.LogService.Error(ex.Message);
+                Business.Helper.LogHelper.WriteError(ex);
             }
         }
     }

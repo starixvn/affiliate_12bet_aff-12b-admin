@@ -62,7 +62,7 @@ namespace AffiliateUser.Business.Services
             catch (Exception ex)
             {
                 context.Response.Write(Resources.Lang.MailServerNotAvailable);
-                Fanex.Logging.LogService.Error(ex.Message, ex);
+                Business.Helper.LogHelper.WriteError(ex);
             }
         }
     }

@@ -51,10 +51,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\_Dependencies\DNAide.dll</HintPath>
     </Reference>
-    <Reference Include="Fanex.BetList.GoldDeluxe, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fanex.BetList.Core.2.14.0.8-beta\lib\net40\Fanex.BetList.GoldDeluxe.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Fanex.Data, Version=0.5.404.63, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Fanex.Data.0.5.404.63\lib\net40\Fanex.Data.dll</HintPath>
       <Private>True</Private>
@@ -181,6 +177,7 @@
     <Compile Include="Business\DataAccess\DbResult.cs" />
     <Compile Include="Business\DataHandler\Common.cs" />
     <Compile Include="Business\DataHandler\Banner.cs" />
+    <Compile Include="Business\Helper\LogHelper.cs" />
     <Compile Include="Business\Services\Authorization\InternalLoginService.cs" />
     <Compile Include="Business\Services\Authorization\AuthHelper.cs" />
     <Compile Include="Business\Services\Authorization\LoginService.cs" />

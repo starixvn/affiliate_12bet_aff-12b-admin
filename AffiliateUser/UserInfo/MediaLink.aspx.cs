@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using DNAide.Web;
 
 public partial class UserInfo_MediaLink : System.Web.UI.Page
 {
@@ -26,7 +20,7 @@ public partial class UserInfo_MediaLink : System.Web.UI.Page
 
             //save user's info here to database
             DataHandler.TrackingSystem.InsertStatistic(affId, track, pageId, lang, Request, affDomain, out redirectPage, out clickID, ref errCode, ref errMsg);
-            
+
             if (errCode != 0)
             {
                 Fanex.Logging.LogService.Error(errMsg);

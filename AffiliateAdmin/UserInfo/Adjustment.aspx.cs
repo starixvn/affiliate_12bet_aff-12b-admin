@@ -38,7 +38,7 @@ public partial class UserInfo_Adjustment : IBCPage
         }
         catch (Exception ex)
         {
-            Fanex.Logging.LogService.Error(ex.Message);
+            AffiliateAdmin.Business.Helpers.LogHelper.WriteError(ex);
             Response.Write(ex.Message);
         }
     }

@@ -55,14 +55,14 @@ namespace AffiliateAdmin.Business.Services
                     }
                     context.Response.Write(result.Outputs["errmsg"]);
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
-                    context.Response.Write(e.Message);
+                    context.Response.Write(ex.Message);
 #if DEBUG
                     throw;
 
 #else
-                Fanex.Logging.LogService.Error(e.Message);
+                AffiliateAdmin.Business.Helpers.LogHelper.WriteError(ex);
 #endif
                 }
             }

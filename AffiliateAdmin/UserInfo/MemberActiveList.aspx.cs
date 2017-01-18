@@ -166,7 +166,7 @@ public partial class UserInfo_MemberActiveList : IBCPage
         }
         catch (Exception ex)
         {
-            Fanex.Logging.LogService.Error(ex.Message);
+            AffiliateAdmin.Business.Helpers.LogHelper.WriteError(ex);
             Response.Write(ex.Message);
         }
     }
