@@ -44,6 +44,7 @@ namespace AffiliateUser.Business.Helper
             var builder = new StringBuilder(message).AppendLine();
             builder.AppendLine("DOMAIN: " + request.Headers["Host"])
                    .AppendLine("FORM: " + string.Join("~", request.Form))
+                   .AppendLine("IP: " + Common.GetIPAddress())
                    .AppendLine("Url: " + request.RawUrl)
                    .AppendLine("Referrer: " + request.UrlReferrer)
                    .AppendLine("QUERYSTRING: " + string.Join("~", request.QueryString))
