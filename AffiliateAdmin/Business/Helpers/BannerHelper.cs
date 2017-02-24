@@ -167,7 +167,7 @@ namespace AffiliateAdmin.Business.Helpers
             }
 
             string extension = Path.GetExtension(uploadedFile.FileName);
-            if (!IsValidExtension(extension))
+            if (!IsValidExtension(extension) || !MimeTypeHelper.IsValidMimeType(uploadedFile.InputStream))
             {
                 return new ResultInfo()
                 {
