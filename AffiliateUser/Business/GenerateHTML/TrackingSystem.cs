@@ -1,15 +1,12 @@
-﻿using System.Data;
-using System.Text;
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using System.Web;
+using System.Data;
 using System.Globalization;
-using DataHandler;
+using System.Text;
+using System.Web;
 using AffiliateUser.Business.DataAccess;
-using DNAide.Web;
 using DNAide.Core;
-
+using DNAide.Web;
 
 namespace GenerateHTML
 {
@@ -21,23 +18,23 @@ namespace GenerateHTML
     {
         public static string GetStatisticsAllMonthsContentList(string trackingcode)
         {
-            string htmlContent = TemplateHandler.LoadTemplate("UserInfo/TrackingStatistics.htm");            
+            string htmlContent = TemplateHandler.LoadTemplate("UserInfo/TrackingStatistics.htm");
             string strContent = TemplateHandler.CopyBlock(htmlContent, "Content");
-            DbResult result = DataHandler.TrackingSystem.SelClickStatisticsAllMonths(trackingcode);                       
+            DbResult result = DataHandler.TrackingSystem.SelClickStatisticsAllMonths(trackingcode);
             int cols = 4;
             if (result.ResultSet.Tables.Count > 0)
-            {                
+            {
                 int intNo = 0;
                 StringBuilder strBuild = new StringBuilder();
                 foreach (DataTable dtbResult in result.ResultSet.Tables)
-                {                    
+                {
                     foreach (DataRow dr in dtbResult.Rows)
                     {
                         string strTmp = strContent;
                         TemplateHandler.Assign(ref strTmp, "No-val", ++intNo);
                         TemplateHandler.Assign(ref strTmp, "TotalClick-val", CastAide.AsInt32(dr["totalclick"]).ToString(Common.NumberFormatPlaceholder));
                         TemplateHandler.Assign(ref strTmp, "UniqueClick-val", CastAide.AsInt32(dr["uniqueclick"]).ToString(Common.NumberFormatPlaceholder));
-                        
+
                         TemplateHandler.Assign(ref strTmp, "Month-val", Common.ConvertDateTime(dr["date"], "-", false, false));
                         TemplateHandler.Assign(ref strTmp, "MonthFull-val", dr["date"].ToString());
                         if ((intNo % 2) == 0)
@@ -52,22 +49,20 @@ namespace GenerateHTML
                         }
 
                         strBuild.Append(strTmp);
-
                     }
                 }
-                if(intNo>0)
+                if (intNo > 0)
                     return strBuild.ToString();
                 return Common.NoInfo(cols);
             }
             return Common.NoInfo(cols);
-
         }
 
-        public static string GetStatisticsMonthDetailContent(int month,int year,string trackingcode)
+        public static string GetStatisticsMonthDetailContent(int month, int year, string trackingcode)
         {
             string htmlContent = TemplateHandler.LoadTemplate("UserInfo/TrackingStatistics.htm");
             string strContent = TemplateHandler.CopyBlock(htmlContent, "StatisticsDetailContent");
-            DbResult result = DataHandler.TrackingSystem.SelClickStatisticsDetail(month,year,trackingcode);
+            DbResult result = DataHandler.TrackingSystem.SelClickStatisticsDetail(month, year, trackingcode);
             int cols = 4;
             if (result.ResultSet.Tables.Count > 0)
             {
@@ -81,7 +76,7 @@ namespace GenerateHTML
                         TemplateHandler.Assign(ref strTmp, "No-val", ++intNo);
                         TemplateHandler.Assign(ref strTmp, "TotalClick-val", dr["totalclick"].ToString());
                         TemplateHandler.Assign(ref strTmp, "UniqueClick-val", dr["uniqueclick"].ToString());
-                        TemplateHandler.Assign(ref strTmp, "Date-val", Common.ConvertDateTime(dr["date"], "-", true, false));                        
+                        TemplateHandler.Assign(ref strTmp, "Date-val", Common.ConvertDateTime(dr["date"], "-", true, false));
                         if ((intNo % 2) == 0)
                         {
                             TemplateHandler.Assign(ref strTmp, "rowstyle", "bgwhite");
@@ -94,7 +89,6 @@ namespace GenerateHTML
                         }
 
                         strBuild.Append(strTmp);
-
                     }
                 }
                 if (intNo > 0)
@@ -102,9 +96,7 @@ namespace GenerateHTML
                 return Common.NoInfo(cols);
             }
             return Common.NoInfo(cols);
-
         }
-
 
         public static string GetTrackingCodeList(bool isGenAll, string activedValue)
         {
@@ -176,16 +168,23 @@ namespace GenerateHTML
                 {
                     intNo++;
                     string strTmp = strContent;
-                    TemplateHandler.Assign(ref strTmp, "Site-val", dr["DomainReferrer"]);
                     TemplateHandler.Assign(ref strTmp, "TotalClick-val", CastAide.AsInt32(dr["totalclick"]).ToString(Common.NumberFormatPlaceholder));
                     TemplateHandler.Assign(ref strTmp, "UniqueClick-val", CastAide.AsInt32(dr["uniqueclick"]).ToString(Common.NumberFormatPlaceholder));
                     TemplateHandler.Assign(ref strTmp, "Signups-val", CastAide.AsInt32(dr["Signups"]).ToString(Common.NumberFormatPlaceholder));
                     TemplateHandler.Assign(ref strTmp, "FDM-val", CastAide.AsInt32(dr["FDM"]).ToString(Common.NumberFormatPlaceholder));
                     TemplateHandler.Assign(ref strTmp, "DeviceType-val", deviceType);
 
-                    if (string.Compare(dr["DomainReferrer"].ToString(), "none", true) == 0)
-                        TemplateHandler.ReplaceBlock(ref strTmp, "domain", dr["DomainReferrer"].ToString());
-
+                    var domain = dr["DomainReferrer"].ToString();
+                    if (domain.Equals("none", StringComparison.OrdinalIgnoreCase) ||
+                        domain.Equals("old url", StringComparison.OrdinalIgnoreCase))
+                    {
+                        TemplateHandler.ReplaceBlock(ref strTmp, "domain", domain);
+                    }
+                    else
+                    {
+                        TemplateHandler.Assign(ref strTmp, "Site-val", domain);
+                    }
+                    
                     if ((intNo % 2) == 0)
                     {
                         TemplateHandler.Assign(ref strTmp, "rowstyle", "bgwhite");
@@ -197,25 +196,12 @@ namespace GenerateHTML
                         TemplateHandler.Assign(ref strTmp, "onmouseoutstyle", "b");
                     }
                     strBuild.Append(strTmp);
-
                 }
 
-                if (intNo > 0)
-                {
-                    if (!deviceType.Equals("1", StringComparison.OrdinalIgnoreCase))
-                    {
-                        TemplateHandler.Assign(ref strContent, "rowstyle", (intNo%2) == 0 ? "bgcgy" : "bgwhite");
-                        TemplateHandler.Assign(ref strContent, "onmouseoutstyle", (intNo%2) == 0 ? "b" : "a");
-                        //Assign total signups for Old URL
-                        strBuild.Append(GenRowOldURL(strContent, totalSignups, totalDeposits, fromdate, todate));
-                    }
-
-                    return strBuild.ToString();
-                }
-                return Common.NoInfo(cols);
+                return strBuild.ToString();
             }
-            return Common.NoInfo(cols);
 
+            return Common.NoInfo(cols);
         }
 
         public static string GetStatisticsDetail_New(DateTime fDate, DateTime tDate, string domain, string sportCode, string languageCode, int pageSize, int pageIndex, string deviceType)
@@ -230,14 +216,12 @@ namespace GenerateHTML
             TemplateHandler.Assign(ref strContentTable, "{Signups}", Resources.Lang.SignUp);
             TemplateHandler.Assign(ref strContentTable, "{FDM}", Resources.Lang.FDM);
 
-
             int totalPage = CastAide.AsInt32(result.Outputs["totalpages"]);
             TemplateHandler.Assign(ref strContentTable, "paging-top", Common.GenPaging(totalPage, pageIndex, pageSize, 0, "aPageTop", "txtPageTop", 612, false, true));
             TemplateHandler.Assign(ref strContentTable, "paging-bottom", Common.GenPaging(totalPage, pageIndex, pageSize, 0, "aPageBottom", "txtPageBottom", 612, false, false));
             TemplateHandler.Assign(ref strContentTable, "page", pageIndex);
             strContentTable = strContentTable.Replace("Common.loadData", "loadDetail");
             strContentTable = strContentTable.Replace("changePage", "submitPage");
-            
 
             string strContent = TemplateHandler.CopyBlock(strContentTable, "StatisticsDetailContent");
             int cols = 5;
@@ -268,7 +252,6 @@ namespace GenerateHTML
                     }
 
                     strBuild.Append(strTmp);
-
                 }
             }
             if (intNo > 0)
@@ -280,7 +263,6 @@ namespace GenerateHTML
                 TemplateHandler.ReplaceBlock(ref strContentTable, "StatisticsDetailContent", Common.NoInfo(cols));
             }
             return strContentTable;
-
         }
 
         public static string GetStatisticsByPage(object fromdate, object todate, string sportCode, string languageCode, string deviceType)
@@ -295,7 +277,7 @@ namespace GenerateHTML
             int totalSignups = CastAide.AsInt32(result.Outputs["totalsignups"]);
             int totalDeposits = CastAide.AsInt32(result.Outputs["totalfdms"]);
             int cols = 5;
-            
+
             if (result.ResultSet.Tables.Count > 0)
             {
                 int intNo = 0;
@@ -304,8 +286,17 @@ namespace GenerateHTML
                 {
                     intNo++;
                     string strTmp = strContent;
+                    var sportcode = dr["sportcode"].ToString();
+                    if (sportcode.Equals("none", StringComparison.OrdinalIgnoreCase) ||
+                        sportcode.Equals("old url", StringComparison.OrdinalIgnoreCase))
+                    {
+                        TemplateHandler.ReplaceBlock(ref strTmp, "domain", sportcode);
+                    }
+                    else
+                    {
+                        TemplateHandler.Assign(ref strTmp, "Page-val", sportcode);
+                    }
 
-                    TemplateHandler.Assign(ref strTmp, "Page-val", dr["sportcode"]);
                     TemplateHandler.Assign(ref strTmp, "Language-val", Common.GetLanguageOriginal(dr["languagecode"].ToString()));
                     TemplateHandler.Assign(ref strTmp, "langCode-val", dr["languagecode"]);
                     TemplateHandler.Assign(ref strTmp, "TotalClick-val", CastAide.AsInt32(dr["totalclick"]).ToString(Common.NumberFormatPlaceholder));
@@ -313,7 +304,7 @@ namespace GenerateHTML
                     TemplateHandler.Assign(ref strTmp, "Signups-val", CastAide.AsInt32(dr["Signups"]).ToString(Common.NumberFormatPlaceholder));
                     TemplateHandler.Assign(ref strTmp, "FDM-val", CastAide.AsInt32(dr["FDM"]).ToString(Common.NumberFormatPlaceholder));
                     TemplateHandler.Assign(ref strTmp, "DeviceType-val", deviceType);
-                    
+
                     if ((intNo % 2) == 0)
                     {
                         TemplateHandler.Assign(ref strTmp, "rowstyle", "bgwhite");
@@ -325,42 +316,16 @@ namespace GenerateHTML
                         TemplateHandler.Assign(ref strTmp, "onmouseoutstyle", "b");
                     }
                     strBuild.Append(strTmp);
-
                 }
-                
-                if (intNo > 0) 
-                {
-                    if (!deviceType.Equals("1", StringComparison.OrdinalIgnoreCase))
-                    {
-                        TemplateHandler.Assign(ref strContent, "rowstyle", (intNo%2) == 0 ? "bgcgy" : "bgwhite");
-                        TemplateHandler.Assign(ref strContent, "onmouseoutstyle", (intNo%2) == 0 ? "b" : "a");
-                        strBuild.Append(GenRowOldURL(strContent, totalSignups, totalDeposits, fromdate, todate));
-                    }
 
-                    return strBuild.ToString();
-                }
-                return Common.NoInfo(cols);
+                return strBuild.ToString();
             }
+
             return Common.NoInfo(cols);
         }
 
-        public static string GenRowOldURL(string strRowTpl, int totalSignupsNewLink, int totalDepositsNewLink, object fromdate, object todate)
-        {
-            int newSignups = 0, totalDepositUsers = 0, totalClicks = 0, totalUniqueClicks = 0;
-            DataHandler.TrackingSystem.SelClickStatisticsOldURL(fromdate, todate, ref totalClicks, ref totalUniqueClicks);
-            DataHandler.TrackingSystem.SelAffSignupsByDate_DEPOSIT(AppSettings.Session.CustID, fromdate, todate, ref newSignups, ref totalDepositUsers);
-            
-
-            TemplateHandler.ReplaceBlock(ref strRowTpl, "domain", "Old URL");
-            TemplateHandler.Assign(ref strRowTpl, "Language-val", Resources.Lang.none);
-            TemplateHandler.Assign(ref strRowTpl, "TotalClick-val", totalClicks.ToString(Common.NumberFormatPlaceholder));
-            TemplateHandler.Assign(ref strRowTpl, "UniqueClick-val", totalUniqueClicks.ToString(Common.NumberFormatPlaceholder));
-            TemplateHandler.Assign(ref strRowTpl, "Signups-val", (newSignups - totalSignupsNewLink) > 0 ? (newSignups - totalSignupsNewLink).ToString(Common.NumberFormatPlaceholder) : "0");
-            TemplateHandler.Assign(ref strRowTpl, "FDM-val", (totalDepositUsers - totalDepositsNewLink) > 0 ? (totalDepositUsers - totalDepositsNewLink).ToString(Common.NumberFormatPlaceholder) : "0");
-            return strRowTpl;
-        }
-
         #region for clickstatistics insert
+
         public static string GetIPAddressOfClient()
         {
             string ip;
@@ -375,6 +340,7 @@ namespace GenerateHTML
             }
             return ip;
         }
+
         public static Int64 GetIPValue()
         {
             string ip = GetIPAddressOfClient();
@@ -388,6 +354,7 @@ namespace GenerateHTML
                 return 16777216 * int.Parse(parts[0]) + 65536 * int.Parse(parts[1]) + 256 * int.Parse(parts[2]) + int.Parse(parts[3]);
             }
         }
+
         public static IList<string> GetStringIList(string stringArray, string sep)
         {
             string[] separator = { sep };
@@ -400,6 +367,7 @@ namespace GenerateHTML
             }
             return data;
         }
+
         public static string GetKeyword(Uri urlReferrer)
         {
             if (urlReferrer != null)
@@ -558,9 +526,8 @@ namespace GenerateHTML
             else
                 os = "unknown";
             return os;
-
         }
-        #endregion
-    }
 
+        #endregion for clickstatistics insert
+    }
 }

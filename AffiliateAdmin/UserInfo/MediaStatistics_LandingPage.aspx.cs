@@ -4,7 +4,6 @@ using System.Text;
 using AffiliateAdmin.Business.DataAccess;
 using DNAide.Core;
 using DNAide.Web;
-using GenerateHTML;
 
 public partial class UserInfo_MediaStatistics_LandingPage : IBCPage
 {
@@ -74,10 +73,19 @@ public partial class UserInfo_MediaStatistics_LandingPage : IBCPage
                 string strTmp = strRowTpl;
 
                 intCount++;
+                var sportcode = dr["sportcode"].ToString();
+                if (sportcode.Equals("none", StringComparison.OrdinalIgnoreCase) ||
+                    sportcode.Equals("old url", StringComparison.OrdinalIgnoreCase))
+                {
+                    TemplateHandler.ReplaceBlock(ref strTmp, "page", sportcode);
+                }
+                else
+                {
+                    TemplateHandler.Assign(ref strTmp, "Page-val", sportcode);
+                }
 
                 TemplateHandler.Assign(ref strTmp, "color", (intCount % 2 == 0) ? Common.RowBgEven : Common.RowBgOdd);
 
-                TemplateHandler.Assign(ref strTmp, "Page-val", dr["sportcode"]);
                 TemplateHandler.Assign(ref strTmp, "LangCode-val", dr["languagecode"]);
                 TemplateHandler.Assign(ref strTmp, "Language-val", GetLanguageOriginal(dr["languagecode"].ToString()));
                 TemplateHandler.Assign(ref strTmp, "TotalClick-val", CastAide.AsInt32(dr["totalclick"]).ToString(Common.NumberFormatPlaceholder));
@@ -87,13 +95,6 @@ public partial class UserInfo_MediaStatistics_LandingPage : IBCPage
                 TemplateHandler.Assign(ref strTmp, "DeviceType-val", deviceType);
 
                 strListRow.Append(strTmp);
-            }
-
-            if (!deviceType.Equals("1", StringComparison.OrdinalIgnoreCase))
-            {
-                TemplateHandler.Assign(ref strRowTpl, "color", (intCount % 2 == 0) ? Common.RowBgOdd : Common.RowBgEven);
-                //Assign total signups for Old URL
-                strListRow.Append(TrackingSystem.GenRowOldURL(strRowTpl, totalSignups, totalDeposits, dtmFDate, dtmTDate));
             }
 
             TemplateHandler.ReplaceBlock(ref strTpl, "content", strListRow.ToString());
