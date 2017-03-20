@@ -49,12 +49,10 @@ public partial class Account_Overview : RootPageLogIn
 
         ltrStatic.Text = GetStatisticsFor(selectedMonth);
         ltrStaticUp.Text = Resources.Lang.Statistic + " " + Resources.Lang.UpToNow;
-
-        var dep_result = UserAff.SelAffOverview_DEPOSIT(AppSettings.Session.CustID, selectedMonth);
-        ltrSignup.Text = CastAide.AsInt32(dep_result.Outputs["newsignup"], 0).ToString(Common.NumberFormatPlaceholder);
-        ltrTotalPlayer.Text = CastAide.AsInt32(dep_result.Outputs["totalplayer"], 0).ToString(Common.NumberFormatPlaceholder);
-
+        
         var result = UserAff.SelAffOverview(AppSettings.Session.CustID, selectedMonth);
+        ltrSignup.Text = CastAide.AsInt32(result.Outputs["newsignup"], 0).ToString(Common.NumberFormatPlaceholder);
+        ltrTotalPlayer.Text = CastAide.AsInt32(result.Outputs["totalplayer"], 0).ToString(Common.NumberFormatPlaceholder);
         ltrTotalActiveVal.Text = CastAide.AsInt32(result.Outputs["totalactiveplayer"], 0).ToString(Common.NumberFormatPlaceholder);
         ltrTotalDepositVal.Text = Common.FormatNumber(CastAide.AsDecimal(result.Outputs["totaldeposit"]));
 
