@@ -67,7 +67,7 @@ namespace DataHandler
             hsParam.Add("pagesize", pageSize);
             hsParam.Add("pageindex", pageIndex);
             hsParam.Add("totalpages", 0);
-            return DbHelper.Execute("Aff_ClickStatisticsDetailBySite", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
+            return DbHelper.Execute("Aff_ClickStatisticsDetailBySite_xtest", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
         }
 
         public static DbResult SelClickStatisticsByPage(object fromDate, object toDate, string sportCode, string languageCode, string deviceType)
