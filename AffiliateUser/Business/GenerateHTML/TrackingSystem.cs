@@ -10,12 +10,12 @@ using DNAide.Web;
 
 namespace GenerateHTML
 {
-    /// <summary>
-    /// Generate content for Tracking System
-    /// Written by : Tong Hoang Dung on 19/03/2009
-    /// </summary>
     public class TrackingSystem
     {
+        private readonly static IList<string> DeviceNames = new List<string> {
+                "iPhone", "iPad", "iPod", "BlackBerry", "HTC", "Motorola", "Nokia"
+            };
+
         public static string GetStatisticsAllMonthsContentList(string trackingcode)
         {
             string htmlContent = TemplateHandler.LoadTemplate("UserInfo/TrackingStatistics.htm");
@@ -184,7 +184,7 @@ namespace GenerateHTML
                     {
                         TemplateHandler.Assign(ref strTmp, "Site-val", domain);
                     }
-                    
+
                     if ((intNo % 2) == 0)
                     {
                         TemplateHandler.Assign(ref strTmp, "rowstyle", "bgwhite");
@@ -341,59 +341,6 @@ namespace GenerateHTML
             return ip;
         }
 
-        public static Int64 GetIPValue()
-        {
-            string ip = GetIPAddressOfClient();
-            if (string.IsNullOrEmpty(ip) || ip == "127.0.0.1")
-            {
-                return 0;
-            }
-            else
-            {
-                IList<string> parts = GetStringIList(ip, ".");
-                return 16777216 * int.Parse(parts[0]) + 65536 * int.Parse(parts[1]) + 256 * int.Parse(parts[2]) + int.Parse(parts[3]);
-            }
-        }
-
-        public static IList<string> GetStringIList(string stringArray, string sep)
-        {
-            string[] separator = { sep };
-            string[] result = stringArray.Split(separator, StringSplitOptions.RemoveEmptyEntries);
-
-            IList<string> data = new List<string>();
-            foreach (string item in result)
-            {
-                data.Add(item);
-            }
-            return data;
-        }
-
-        public static string GetKeyword(Uri urlReferrer)
-        {
-            if (urlReferrer != null)
-            {
-                System.Collections.Specialized.NameValueCollection parameters = HttpUtility.ParseQueryString(urlReferrer.Query);
-                if (urlReferrer.Host.Contains("google.com") ||
-                    urlReferrer.Host.Contains("bing.com") ||
-                    urlReferrer.Host.Contains("ask.com"))
-                {
-                    return parameters["q"];
-                }
-                else if (urlReferrer.Host.Contains("yahoo.com"))
-                {
-                    return parameters["p"];
-                }
-                else
-                {
-                    return string.Empty;
-                }
-            }
-            else
-            {
-                return string.Empty;
-            }
-        }
-
         public static RegionInfo ResolveCountry()
         {
             CultureInfo culture = ResolveCulture();
@@ -425,37 +372,13 @@ namespace GenerateHTML
         {
             string device = "Computer/Laptop";
 
-            if (userAgent.Contains("iPhone"))
+            foreach (var name in DeviceNames)
             {
-                device = "iPhone";
-            }
-            if (userAgent.Contains("iPad"))
-            {
-                device = "iPad";
-            }
-            if (userAgent.Contains("iPod"))
-            {
-                device = "iPod";
-            }
-
-            if (userAgent.Contains("BlackBerry"))
-            {
-                device = "BlackBerry";
-            }
-
-            if (userAgent.Contains("HTC"))
-            {
-                device = "HTC";
-            }
-
-            if (userAgent.Contains("Motorola"))
-            {
-                device = "Motorola";
-            }
-
-            if (userAgent.Contains("Nokia"))
-            {
-                device = "Nokia";
+                if (userAgent.Contains(name))
+                {
+                    device = name;
+                    break;
+                }
             }
 
             return device;

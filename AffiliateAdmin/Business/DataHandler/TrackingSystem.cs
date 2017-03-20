@@ -39,17 +39,6 @@ namespace DataHandler
             return DbHelper.Execute("Aff_AffiliateSelClickStatisticsMonthDetail", DBType.AFFILIATE_12BET, hsParam);
         }
 
-        //Statistics
-        public static DbResult SelStatisticsAllForMonth(int affiliateID, DateTime dtmMonthDate)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("affid", affiliateID);
-            hsParam.Add("monthdate", dtmMonthDate);
-            hsParam.Add("totaluniqueclicks", 0);
-            hsParam.Add("totalclicks", 0);
-            return DbHelper.Execute("Aff_AffiliateSelClickStatisticsMonthDetailAll", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
-        }
-
         public static DbResult SelClickStatisticsBySite(object fromDate, object toDate, string deviceType)
         {
             Hashtable hsParam = new Hashtable();

@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Web;
 using System.Collections;
-using System.Configuration;
 using System.Globalization;
+using System.Web;
 using AffiliateUser.Business.DataAccess;
 using DNAide.Core;
 
@@ -11,6 +10,7 @@ using DNAide.Core;
  * Author: Peter
  * Date : May 05,2009
  */
+
 namespace DataHandler
 {
     public class TrackingSystem
@@ -21,6 +21,7 @@ namespace DataHandler
             hsParam.Add("affid", AppSettings.Session.CustID);
             return DbHelper.Execute("Aff_AffiliateSelTrackingCode", DBType.AFFILIATE_12BET, hsParam);
         }
+
         public static DbResult SelClickStatisticsAllMonths(string trackingCode)
         {
             Hashtable hsParam = new Hashtable();
@@ -28,6 +29,7 @@ namespace DataHandler
             hsParam.Add("trackingcode", trackingCode);
             return DbHelper.Execute("Aff_AffiliateSelClickStatisticsAllMonths", DBType.AFFILIATE_12BET, hsParam);
         }
+
         public static DbResult SelClickStatisticsDetail(int month, int year, string trackingCode)
         {
             Hashtable hsParam = new Hashtable();
@@ -38,6 +40,7 @@ namespace DataHandler
             hsParam.Add("year", year);
             return DbHelper.Execute("Aff_AffiliateSelClickStatisticsMonthDetail", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
         }
+
         public static DbResult SelClickStatisticsBySite(object fromDate, object toDate, string deviceType)
         {
             Hashtable hsParam = new Hashtable();
@@ -49,6 +52,7 @@ namespace DataHandler
             hsParam.Add("devicetype", byte.Parse(deviceType));
             return DbHelper.Execute("Aff_ClickStatisticsSelBySite_xtest", DBType.AFFILIATE_12BET, hsParam);
         }
+
         public static DbResult SelStatisticsDetail_New(DateTime fDate, DateTime tDate, string domain, string sportCode, string languageCode, int pageSize, int pageIndex, string deviceType)
         {
             Hashtable hsParam = new Hashtable();
@@ -57,7 +61,7 @@ namespace DataHandler
             CultureInfo culture = new CultureInfo("en-US");
             hsParam.Add("fromdate", CastAide.AsDateTime(fDate, culture));
             hsParam.Add("todate", CastAide.AsDateTime(tDate, culture));
-            if(!string.IsNullOrEmpty(domain))
+            if (!string.IsNullOrEmpty(domain))
                 hsParam.Add("domain", domain);
             if (!string.IsNullOrEmpty(sportCode))
                 hsParam.Add("sportcode", sportCode);
@@ -71,6 +75,7 @@ namespace DataHandler
         }
 
         #region Statistics by Page
+
         public static DbResult SelClickStatisticsByPage(object fromDate, object toDate, string sportCode, string languageCode, string deviceType)
         {
             Hashtable hsParam = new Hashtable();
@@ -79,7 +84,7 @@ namespace DataHandler
             hsParam.Add("affid", AppSettings.Session.CustID);
             hsParam.Add("fromdate", CastAide.AsDateTime(fromDate, culture));
             hsParam.Add("todate", CastAide.AsDateTime(toDate, culture));
-            if(!string.IsNullOrEmpty(sportCode))
+            if (!string.IsNullOrEmpty(sportCode))
                 hsParam.Add("sportcode", sportCode);
             if (!string.IsNullOrEmpty(languageCode))
                 hsParam.Add("languagecode", languageCode);
@@ -87,20 +92,9 @@ namespace DataHandler
             hsParam.Add("devicetype", byte.Parse(deviceType));
             return DbHelper.Execute("Aff_ClickStatisticsSelByPage_xtest", DBType.AFFILIATE_12BET, hsParam);
         }
-        public static DbResult SelClickStatisticsDetailByPage(DateTime fDate, DateTime tDate, string sportCode, string languageCode)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("affid", AppSettings.Session.CustID);
 
-            CultureInfo culture = new CultureInfo("en-US");
-            hsParam.Add("fromdate", CastAide.AsDateTime(fDate, culture));
-            hsParam.Add("todate", CastAide.AsDateTime(tDate, culture));
-            hsParam.Add("sportcode", sportCode);
-            hsParam.Add("languagecode", languageCode);
-            return DbHelper.Execute("Aff_ClickStatisticsDetailByPage", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
-        }
-        #endregion
-        
+        #endregion Statistics by Page
+
         public static bool InsertStatistic(int affId, string trackingCode, string pageCode, string languageCode, HttpRequest request, string affDomain, out string redirectPage, out Int64 clickID, ref int errCode, ref string errMsg)
         {
             Hashtable hsParam = new Hashtable();
@@ -133,5 +127,4 @@ namespace DataHandler
             return result == 0 ? true : false;
         }
     }
- }
-
+}
