@@ -93,6 +93,7 @@
             </tr>
             <tr>
                 <td style="padding: 20px;" bgcolor="#e4e4e4">
+                    <%--EN--%>
                     <table width="100%" align="center" border="0" cellpadding="0" cellspacing="0">
                         <tbody>
                             <tr>
@@ -114,16 +115,17 @@
                                         <%= UMTime_To%> (HK Time GMT +8).</span><br>
                                     Please accept our apologies for the inconvenience caused!
                                     <br>
-                                    To reach customer service, please <a href="http://server.iad.liveperson.net/hc/69174729/?cmd=file&amp;file=visitorWantsToChat&amp;site=69174729&amp;SESSIONVAR%21skill=English&amp;imageUrl=http://server.iad.liveperson.net/hcp/Gallery/ChatButton-Gallery/English/General/1a&amp;referrer=http%3A//www.12bet.com/homeleft.aspx"
+                                    To reach customer service, please <a href="https://secure.livechatinc.com/licence/7903821/open_chat.cgi?groups=1"
                                         target="_blank">click here</a> or email to
 
-                                    <a href="mailto:support@12CSD.com?subject=Enquiries%20sent%20from%2012BET%20website">
-                                        support@12CSD.com</a>
+                                    <a href="mailto:support.my@12csd.com?subject=Enquiries%20sent%20from%2012BET%20website">
+                                        support.my@12csd.com</a>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                     <hr style="border-top: 1px dotted rgb(153, 153, 153);" noshade="noshade" size="1">
+                    <%--CS--%>
                     <table width="100%" align="center" border="0" cellpadding="0" cellspacing="0">
                         <tbody>
                             <tr>
@@ -143,17 +145,17 @@
                                 <td class="cont">
                                     本公司正进行伺服器维护，时间至 <span class="cont2"><%= UMTime_To%> (HK Time GMT +8).</span><br>
                                     所有网页将无法登入，不便之处有请见谅！<br>
-                                    如需要在线帮助，有请<a href="http://server.iad.liveperson.net/hc/69174729/?cmd=file&amp;file=visitorWantsToChat&amp;site=69174729&amp;SESSIONVAR%21skill=Chinese&amp;imageUrl=http://server.iad.liveperson.net/hcp/Gallery/ChatButton-Gallery/English/General/1a&amp;referrer=http%3A//www.12bet.com/homeleft.aspx"
+                                    如需要在线帮助，有请<a href="https://secure.livechatinc.com/licence/7903821/open_chat.cgi?groups=2"
                                         target="_blank">点击这里</a>或邮件至
 
-                                    <a href="mailto:support@12CSD.com?subject=Enquiries%20sent%20from%2012BET%20website">
-                                        support@12CSD.com</a>
+                                    <a href="mailto:support.cs@12csd.com?subject=Enquiries%20sent%20from%2012BET%20website">
+                                        support.cs@12csd.com</a>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-                    <hr style="border-top: 1px dotted rgb(153, 153, 
-153);" noshade="noshade" size="1">
+                    <hr style="border-top: 1px dotted rgb(153, 153, 153);" noshade="noshade" size="1">
+                    <%--CH--%>
                     <table width="100%" align="center" border="0" cellpadding="0" cellspacing="0">
                         <tbody>
                             <tr>
@@ -173,16 +175,17 @@
                                 <td class="cont">
                                     本公司正進行伺服器維護，時間至 <span class="cont2"><%= UMTime_To%> (HK Time GMT +8).</span><br>
                                     所有網頁將無法登入，不便之處 有請見諒！<br>
-                                    如需要在線幫助，有請<a href="http://server.iad.liveperson.net/hc/69174729/?cmd=file&amp;file=visitorWantsToChat&amp;site=69174729&amp;SESSIONVAR%21skill=Chinese&amp;imageUrl=http://server.iad.liveperson.net/hcp/Gallery/ChatButton-Gallery/English/General/1a&amp;referrer=http%3A//www.12bet.com/homeleft.aspx"
+                                    如需要在線幫助，有請<a href="https://secure.livechatinc.com/licence/7903821/open_chat.cgi?groups=1"
                                         target="_blank">點擊這裡</a>或郵件至
 
-                                    <a href="mailto:support@12CSD.com?subject=Enquiries%20sent%20from%2012BET%20website">
-                                        support@12CSD.com</a>
+                                    <a href="mailto:support.my@12csd.com?subject=Enquiries%20sent%20from%2012BET%20website">
+                                        support.my@12csd.com</a>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                     <hr style="border-top: 1px dotted rgb(153, 153, 153);" noshade="noshade" size="1">
+                    <%--TH--%>
                     <table width="100%" align="center" border="0" cellpadding="0" cellspacing="0">
                         <tbody>
                             <tr>
@@ -205,16 +208,17 @@
                                         class="cont2"><%= UMTime_To%> (HK Time GMT +8).</span><br>
                                     ขออภัยในความไม่สะดวก คะ!
                                     <br>
-                                    ติอต่อฝ่ายบริการลูกค้าเราได้ที่ <a href="http://server.iad.liveperson.net/hc/69174729/?cmd=file&amp;file=visitorWantsToChat&amp;site=69174729&amp;SESSIONVAR%21skill=Thai&amp;imageUrl=http://server.iad.liveperson.net/hcp/Gallery/ChatButton-Gallery/English/General/1a&amp;referrer=http%3A//www.12bet.com/homeleft.aspx"
+                                    ติอต่อฝ่ายบริการลูกค้าเราได้ที่ <a href="https://secure.livechatinc.com/licence/7903821/open_chat.cgi?groups=4"
                                         target="_blank">ห้องสนทนาสด</a> หรือ อีเมลล์
 
-                                    <a href="mailto:support@12CSD.com?subject=Enquiries%20sent%20from%2012BET%20website">
-                                        support@12CSD.com</a>
+                                    <a href="mailto:support.th@12csd.com?subject=Enquiries%20sent%20from%2012BET%20website">
+                                        support.th@12csd.com</a>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                     <hr style="border-top: 1px dotted rgb(153, 153, 153);" noshade="noshade" size="1">
+                    <%--VN--%>
                     <table width="100%" align="center" border="0" cellpadding="0" cellspacing="0">
                         <tbody>
                             <tr>
@@ -237,17 +241,17 @@
                                         <%= UMTime_To%> (HK Time GMT +8).</span><br>
                                     Thành thật xin lỗi những bất tiện gây ra. 
                                     <br>
-                                    Yêu cầu dịch vụ khách hàng, xin vui lòng <a href="http://server.iad.liveperson.net/hc/69174729/?cmd=file&amp;file=visitorWantsToChat&amp;site=69174729&amp;SESSIONVAR%21skill=English&amp;imageUrl=http://server.iad.liveperson.net/hcp/Gallery/ChatButton-Gallery/English/General/1a&amp;referrer=http%3A//www.12bet.com/homeleft.aspx"
+                                    Yêu cầu dịch vụ khách hàng, xin vui lòng <a href="https://secure.livechatinc.com/licence/7903821/open_chat.cgi?groups=3"
                                         target="_blank">Nhấp vào đây</a> hoặc gửi Email đến
 
-                                    <a href="mailto:support@12CSD.com?subject=Enquiries%20sent%20from%2012BET%20website">
-                                        support@12CSD.com</a>
+                                    <a href="mailto:support.vn@12csd.com?subject=Enquiries%20sent%20from%2012BET%20website">
+                                        support.vn@12csd.com</a>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                     <hr style="border-top: 1px dotted rgb(153, 153, 153);" noshade="noshade" size="1">
-
+                    <%--Spanish--%>
                     <table width="100%" align="center" border="0" cellpadding="0" cellspacing="0">
                         <tbody>
                             <tr>
@@ -269,17 +273,17 @@
                                         class="cont2"><%= UMTime_To%> (HK Time GMT +8).</span><br>
                                     Acepta por favor nuestras disculpas para el inconveniente causado"!
                                     <br>
-                                    Para alcanzar servicio de atención al cliente, por favor <a href="http://server.iad.liveperson.net/hc/69174729/?cmd=file&amp;file=visitorWantsToChat&amp;site=69174729&amp;SESSIONVAR%21skill=English&amp;imageUrl=http://server.iad.liveperson.net/hcp/Gallery/ChatButton-Gallery/English/General/1a&amp;referrer=http%3A//www.12bet.com/homeleft.aspx"
+                                    Para alcanzar servicio de atención al cliente, por favor <a href="https://secure.livechatinc.com/licence/7903821/open_chat.cgi?groups=1"
                                         target="_blank">clic aquí</a> o correo electrónico a
 
-                                    <a href="mailto:support@12CSD.com?subject=Enquiries%20sent%20from%2012BET%20website">
-                                        support@12CSD.com</a>
+                                    <a href="mailto:support.my@12csd.com?subject=Enquiries%20sent%20from%2012BET%20website">
+                                        support.my@12csd.com</a>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-                    <hr style="border-top: 1px dotted rgb(153, 153, 
-153);" noshade="noshade" size="1">
+                    <hr style="border-top: 1px dotted rgb(153, 153, 153);" noshade="noshade" size="1">
+                    <%--Indo--%>
                     <table width="100%" align="center" border="0" cellpadding="0" cellspacing="0">
                         <tbody>
                             <tr>
@@ -301,11 +305,11 @@
                                     Kami sedang melakukan server maintenance, website tidak tersedia hingga pukul <span
                                         class="cont2"><%= UMTime_To%> (HK Time GMT +8).</span><br>
                                     Mohon maaf untuk ketidaknyamanan ini!<br>
-                                    Untuk menghubungi Customer Service, mohon <a href="http://server.iad.liveperson.net/hc/69174729/?cmd=file&amp;file=visitorWantsToChat&amp;site=69174729&amp;SESSIONVAR%21skill=Indonesia&amp;imageUrl=http://server.iad.liveperson.net/hcp/Gallery/ChatButton-Gallery/English/General/1a&amp;referrer=http%3A//www.12bet.com/homeleft.aspx"
+                                    Untuk menghubungi Customer Service, mohon <a href="https://secure.livechatinc.com/licence/7903821/open_chat.cgi?groups=5"
                                         target="_blank">klik disini</a> atau email ke
 
-                                    <a href="mailto:support@12CSD.com?subject=Enquiries%20sent%20from%2012BET%20website">
-                                        support@12CSD.com</a>
+                                    <a href="mailto:support.id@12csd.com?subject=Enquiries%20sent%20from%2012BET%20website">
+                                        support.id@12csd.com</a>
                                 </td>
                             </tr>
                         </tbody>
