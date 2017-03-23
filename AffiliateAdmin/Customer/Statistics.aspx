@@ -85,20 +85,6 @@
         return disabledMonths;
     }
 
-    function ChangeDate(spId, selId, isSelDate)
-    {
-        if(isSelDate)
-        {
-            $(spId).hide();
-            $(selId).show();
-            $(selId).focus();
-        }
-        else
-        {
-            $(spId).show();
-            $(selId).hide();
-        }
-    }
     function Search()
     {
         Common.delayReloadPage1();
