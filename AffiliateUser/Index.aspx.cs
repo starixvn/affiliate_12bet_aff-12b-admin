@@ -5,7 +5,7 @@ public partial class Index : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {        
-        Response.Cache.SetCacheability(HttpCacheability.Private);
+        Response.Cache.SetCacheability(HttpCacheability.NoCache);
         string lang = (Request.QueryString["lang"] ?? string.Empty);
         switch (lang.ToLower())
         {
