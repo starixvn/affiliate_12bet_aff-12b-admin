@@ -48,9 +48,9 @@
     }
     function ProcessResultDetail(data) {
         try {
-            $("statisticsDetail").innerHTML = data;
-            $("statisticsDetail").style.display = "";
-            $("aPageBottom").focus();
+            jQuery("#statisticsDetail").html(data);
+            jQuery("#statisticsDetail").show();
+            jQuery("aPageBottom").focus();
         }
         catch (e) {
             alert(e);
