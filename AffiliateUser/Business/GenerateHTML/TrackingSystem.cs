@@ -160,7 +160,7 @@ namespace GenerateHTML
             int totalDeposits = CastAide.AsInt32(result.Outputs["totalfdms"]);
 
             int cols = 5;
-            if (result.ResultSet.Tables.Count > 0)
+            if (result.ResultSet.Tables.Count > 0 && result.ResultSet.Tables[0].Rows.Count > 0)
             {
                 int intNo = 0;
                 StringBuilder strBuild = new StringBuilder();
@@ -278,7 +278,7 @@ namespace GenerateHTML
             int totalDeposits = CastAide.AsInt32(result.Outputs["totalfdms"]);
             int cols = 5;
 
-            if (result.ResultSet.Tables.Count > 0)
+            if (result.ResultSet.Tables.Count > 0 && result.ResultSet.Tables[0].Rows.Count > 0)
             {
                 int intNo = 0;
                 var strBuild = new StringBuilder();
