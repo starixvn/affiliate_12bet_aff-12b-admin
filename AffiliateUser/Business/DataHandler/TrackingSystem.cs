@@ -50,7 +50,7 @@ namespace DataHandler
             hsParam.Add("fromdate", CastAide.AsDateTime(fromDate, culture));
             hsParam.Add("todate", CastAide.AsDateTime(toDate, culture));
             hsParam.Add("devicetype", byte.Parse(deviceType));
-            return DbHelper.Execute("Aff_ClickStatisticsSelBySite_xtest", DBType.AFFILIATE_12BET, hsParam);
+            return DbHelper.Execute("Aff_ClickStatisticsSelBySite", DBType.AFFILIATE_12BET, hsParam);
         }
 
         public static DbResult SelStatisticsDetail_New(DateTime fDate, DateTime tDate, string domain, string sportCode, string languageCode, int pageSize, int pageIndex, string deviceType)
@@ -71,7 +71,7 @@ namespace DataHandler
             hsParam.Add("pagesize", pageSize);
             hsParam.Add("pageindex", pageIndex);
             hsParam.Add("totalpages", 0);
-            return DbHelper.Execute("Aff_ClickStatisticsDetailBySite_xtest", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
+            return DbHelper.Execute("Aff_ClickStatisticsDetailBySite", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
         }
 
         #region Statistics by Page
@@ -90,7 +90,7 @@ namespace DataHandler
                 hsParam.Add("languagecode", languageCode);
 
             hsParam.Add("devicetype", byte.Parse(deviceType));
-            return DbHelper.Execute("Aff_ClickStatisticsSelByPage_xtest", DBType.AFFILIATE_12BET, hsParam);
+            return DbHelper.Execute("Aff_ClickStatisticsSelByPage", DBType.AFFILIATE_12BET, hsParam);
         }
 
         #endregion Statistics by Page
