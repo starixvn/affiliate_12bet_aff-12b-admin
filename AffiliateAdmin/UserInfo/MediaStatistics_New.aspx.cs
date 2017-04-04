@@ -32,6 +32,11 @@ public partial class Report_MediaStatistics_New : IBCPage
         DateTime now = DateTime.Now;
         DateTime dtmFDate = CastAide.AsDateTime(Request["fdate"], new DateTime(now.Year, now.Month, 1));
         DateTime dtmTDate = CastAide.AsDateTime(Request["tdate"], DateTime.Now);
+        if(dtmTDate > DateTime.Now)
+        {
+            dtmTDate = DateTime.Now;
+        }
+
         var deviceType = Common.GetDeviceType(Request["slDevice"]);
 
         TemplateHandler.Assign(ref strTpl, "fdate", dtmFDate.ToString("MM/dd/yyyy"));
