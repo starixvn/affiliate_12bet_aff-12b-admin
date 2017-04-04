@@ -50,7 +50,7 @@ namespace AffiliateUser.Business.Helper
                    .AppendLine("QUERYSTRING: " + string.Join("~", request.QueryString))
                    .AppendLine("Browser: " + request.Browser.Type.ToString())
                    .AppendLine("BrowserVer: " + request.Browser.Version.ToString())
-                   .AppendLine("Agent: " + request.UserAgent.ToString());
+                   .AppendLine("Agent: " + request.UserAgent);
 
             builder.AppendLine("UserName: " + AppSettings.Session.UserName);
 

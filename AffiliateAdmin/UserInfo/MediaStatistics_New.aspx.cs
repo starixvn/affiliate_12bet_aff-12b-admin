@@ -32,6 +32,11 @@ public partial class Report_MediaStatistics_New : IBCPage
         DateTime now = DateTime.Now;
         DateTime dtmFDate = CastAide.AsDateTime(Request["fdate"], new DateTime(now.Year, now.Month, 1));
         DateTime dtmTDate = CastAide.AsDateTime(Request["tdate"], DateTime.Now);
+        if(dtmTDate > DateTime.Now)
+        {
+            dtmTDate = DateTime.Now;
+        }
+
         var deviceType = Common.GetDeviceType(Request["slDevice"]);
 
         TemplateHandler.Assign(ref strTpl, "fdate", dtmFDate.ToString("MM/dd/yyyy"));
@@ -61,10 +66,17 @@ public partial class Report_MediaStatistics_New : IBCPage
 
                 intCount++;
                 TemplateHandler.Assign(ref strTmp, "color", (intCount % 2 == 0) ? Common.RowBgEven : Common.RowBgOdd);
-                if (string.Compare(dr["DomainReferrer"].ToString(), "none", true) == 0)
-                    TemplateHandler.ReplaceBlock(ref strTmp, "page", dr["DomainReferrer"].ToString());
+                var domain = dr["DomainReferrer"].ToString();
+                if (domain.Equals("none", StringComparison.OrdinalIgnoreCase) ||
+                    domain.Equals("old url", StringComparison.OrdinalIgnoreCase))
+                {
+                    TemplateHandler.ReplaceBlock(ref strTmp, "page", domain);
+                }
+                else
+                {
+                    TemplateHandler.Assign(ref strTmp, "Site-val", domain);
+                }
 
-                TemplateHandler.Assign(ref strTmp, "Site-val", dr["DomainReferrer"]);
                 TemplateHandler.Assign(ref strTmp, "TotalClick-val", CastAide.AsInt32(dr["totalclick"]).ToString(Common.NumberFormatPlaceholder));
                 TemplateHandler.Assign(ref strTmp, "UniqueClick-val", CastAide.AsInt32(dr["uniqueclick"]).ToString(Common.NumberFormatPlaceholder));
                 TemplateHandler.Assign(ref strTmp, "Signups-val", CastAide.AsInt32(dr["Signups"]).ToString(Common.NumberFormatPlaceholder));
@@ -72,14 +84,6 @@ public partial class Report_MediaStatistics_New : IBCPage
                 TemplateHandler.Assign(ref strTmp, "DeviceType-val", deviceType);
 
                 strListRow.Append(strTmp);
-            }
-
-            if (!deviceType.Equals("1", StringComparison.OrdinalIgnoreCase))
-            {
-                TemplateHandler.Assign(ref strRowTpl, "color", (intCount % 2 == 0) ? Common.RowBgOdd : Common.RowBgEven);
-                //Assign total signups for Old URL
-                strListRow.Append(TrackingSystem.GenRowOldURL(strRowTpl, totalSignups, totalDeposits, dtmFDate,
-                                                              dtmTDate));
             }
 
             TemplateHandler.ReplaceBlock(ref strTpl, "content", strListRow.ToString());

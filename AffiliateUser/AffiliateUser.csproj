@@ -274,7 +274,7 @@
     <Compile Include="Business\DataHandler\ServerDateTime.cs" />
     <Compile Include="Business\DataHandler\Statement.cs" />
     <Compile Include="Business\DataHandler\TrackingSystem.cs" />
-    <Compile Include="Business\DataHandler\User.cs" />
+    <Compile Include="Business\DataHandler\UserAff.cs" />
     <Compile Include="Business\DBType.cs" />
     <Compile Include="Business\DepositCustomerInfo.cs" />
     <Compile Include="Business\GenerateHTML\Banner.cs" />

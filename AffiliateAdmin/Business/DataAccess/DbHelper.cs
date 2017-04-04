@@ -13,35 +13,23 @@ namespace AffiliateAdmin.Business.DataAccess
     {
         // used for timeout of report-oriented SP execution.
         public static int MAX_EXEC_TIME_LENGTH_RPTSP = 30000;
+
         // used for timeout of non report-oriented SP execution.
         public static int MAX_EXEC_TIME_LENGTH_NONRPTSP = 3000;
 
         public static DbResult Execute(string pSPName, string pDB, Hashtable pHsParam = null, int pTimeOut = 120)
         {
             WriteLogCallingSp(pSPName, pHsParam);
-            if (HttpContext.Current.Session["lastCalledSP"] == null ||
-                    string.Compare(HttpContext.Current.Session["lastCalledSP"].ToString(), pSPName, true) != 0)
+            var setting = new DbSetting()
             {
-                var setting = new DbSetting()
-                {
-                    ConnectionString = ConnectionStringGetter.GetConnectionString(pDB),
-                    SpName = pSPName,
-                    ExecuteTimeOut = pTimeOut
-                };
-                DbResult result;
-                using (var objectDB = new ObjectDb(setting))
-                {
-                    var dataSet = objectDB.ExecuteDataSet(pHsParam);
-                    result = new DbResult(dataSet, objectDB.GetOuputParams());
-                }
-
-                HttpContext.Current.Session["lastCalledSP"] = null;
-                return result;
-            }
-            else
+                ConnectionString = ConnectionStringGetter.GetConnectionString(pDB),
+                SpName = pSPName,
+                ExecuteTimeOut = pTimeOut
+            };
+            using (var objectDB = new ObjectDb(setting))
             {
-                HttpContext.Current.Response.End();
-                return null;
+                var dataSet = objectDB.ExecuteDataSet(pHsParam);
+                return new DbResult(dataSet, objectDB.GetOuputParams());
             }
         }
 

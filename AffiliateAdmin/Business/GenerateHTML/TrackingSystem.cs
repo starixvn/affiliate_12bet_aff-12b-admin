@@ -160,9 +160,7 @@ namespace GenerateHTML
                     TemplateHandler.Assign(ref strTmp, "FDM-val", dr["FDM"].ToString());
                     TemplateHandler.Assign(ref strTmp, "color", (intNo % 2 == 0) ? Common.RowBgEven : Common.RowBgOdd);
                     
-
                     strBuild.Append(strTmp);
-
                 }
             }
             if (intNo > 0)
@@ -174,29 +172,6 @@ namespace GenerateHTML
                 TemplateHandler.ReplaceBlock(ref strContentTable, "StatisticsDetailContent", Common.NoInfo(cols));
             }
             return strContentTable;
-        }
-
-        public static string GenRowOldURL(string strRowTpl, int totalSignupsNewLink, int totalDepositsNewLink, object fromdate, object todate)
-        {
-            int newSignups = 0, totalDepositUsers = 0, totalClicks = 0, totalUniqueClicks = 0;
-            DataHandler.TrackingSystem.SelClickStatisticsOldURL(fromdate, todate, ref totalClicks, ref totalUniqueClicks);
-            DataHandler.TrackingSystem.SelAffSignupsByDate_DEPOSIT(AppSettings.Session.AffId, fromdate, todate, ref newSignups, ref totalDepositUsers);
-
-            if (totalClicks > 0 || totalUniqueClicks > 0)
-            {
-
-                TemplateHandler.ReplaceBlock(ref strRowTpl, "page", "Old URL");
-                TemplateHandler.Assign(ref strRowTpl, "Language-val", "none");
-                TemplateHandler.Assign(ref strRowTpl, "TotalClick-val", totalClicks.ToString(Common.NumberFormatPlaceholder));
-                TemplateHandler.Assign(ref strRowTpl, "UniqueClick-val", totalUniqueClicks.ToString(Common.NumberFormatPlaceholder));
-                TemplateHandler.Assign(ref strRowTpl, "Signups-val", (newSignups - totalSignupsNewLink) > 0 ? (newSignups - totalSignupsNewLink).ToString(Common.NumberFormatPlaceholder) : "0");
-                TemplateHandler.Assign(ref strRowTpl, "FDM-val", (totalDepositUsers - totalDepositsNewLink) > 0 ? (totalDepositUsers - totalDepositsNewLink).ToString(Common.NumberFormatPlaceholder) : "0");
-
-
-                return strRowTpl;
-            }
-            else
-                return string.Empty;
         }
     }
 

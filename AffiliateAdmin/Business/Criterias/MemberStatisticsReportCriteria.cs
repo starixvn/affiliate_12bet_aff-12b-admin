@@ -40,7 +40,7 @@ namespace Criterias
         {
             get
             {
-                return "Aff_AffiliateStatistics" + AppSettings.SuffixSp;
+                return "Aff_AffiliateStatistics";
             }
         }
     }

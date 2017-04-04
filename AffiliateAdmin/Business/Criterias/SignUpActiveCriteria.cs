@@ -38,7 +38,7 @@ namespace Criterias
         {
             get
             {
-                return "Aff_ActiveMemberReport" + AppSettings.SuffixSp;
+                return "Aff_ActiveMemberReport";
             }
         }
     }

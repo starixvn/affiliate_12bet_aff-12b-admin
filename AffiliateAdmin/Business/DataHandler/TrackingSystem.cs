@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections;
-using System.Configuration;
-using AffiliateAdmin.Business.DataAccess;
 using System.Globalization;
-using DNAide.Core;
+using AffiliateAdmin.Business.DataAccess;
+
 /*
  * Class to handle Clicks Tracking
  * Author: Peter
  * Date : May 05,2009
  */
+
 namespace DataHandler
 {
     public class TrackingSystem
@@ -19,14 +19,16 @@ namespace DataHandler
             hsParam.Add("affid", affiliateID);
             return DbHelper.Execute("Aff_AffiliateSelTrackingCode", DBType.AFFILIATE_12BET, hsParam);
         }
-        public static DbResult SelClickStatisticsAllMonths(int affiliateID,string trackingCode)
+
+        public static DbResult SelClickStatisticsAllMonths(int affiliateID, string trackingCode)
         {
             Hashtable hsParam = new Hashtable();
             hsParam.Add("affid", affiliateID);
             hsParam.Add("trackingcode", trackingCode);
             return DbHelper.Execute("Aff_AffiliateSelClickStatisticsAllMonths", DBType.AFFILIATE_12BET, hsParam);
         }
-        public static DbResult SelClickStatisticsDetail(int affiliateID,int month, int year, string trackingCode)
+
+        public static DbResult SelClickStatisticsDetail(int affiliateID, int month, int year, string trackingCode)
         {
             Hashtable hsParam = new Hashtable();
             hsParam.Add("affid", affiliateID);
@@ -36,18 +38,7 @@ namespace DataHandler
             hsParam.Add("year", year);
             return DbHelper.Execute("Aff_AffiliateSelClickStatisticsMonthDetail", DBType.AFFILIATE_12BET, hsParam);
         }
-        //Statistics
-        public static DbResult SelStatisticsAllForMonth(int affiliateID,DateTime dtmMonthDate)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("affid", affiliateID);
-            hsParam.Add("monthdate", dtmMonthDate);            
-            hsParam.Add("totaluniqueclicks", 0);
-            hsParam.Add("totalclicks", 0);
-            return DbHelper.Execute("Aff_AffiliateSelClickStatisticsMonthDetailAll", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
-        }
 
-        //@Johnny
         public static DbResult SelClickStatisticsBySite(object fromDate, object toDate, string deviceType)
         {
             Hashtable hsParam = new Hashtable();
@@ -66,7 +57,7 @@ namespace DataHandler
             CultureInfo culture = new CultureInfo("en-US");
             hsParam.Add("fromdate", fDate);
             hsParam.Add("todate", tDate);
-            if(!string.IsNullOrEmpty(domain))
+            if (!string.IsNullOrEmpty(domain))
                 hsParam.Add("domain", domain);
             if (!string.IsNullOrEmpty(sportCode))
                 hsParam.Add("sportcode", sportCode);
@@ -93,36 +84,5 @@ namespace DataHandler
 
             return DbHelper.Execute("Aff_ClickStatisticsSelByPage", DBType.AFFILIATE_12BET, hsParam);
         }
-
-        public static void SelClickStatisticsOldURL(object fromDate, object toDate, ref int totalClicks, ref int totalUniqueClicks)
-        {
-            Hashtable hsParam = new Hashtable();
-            CultureInfo culture = new CultureInfo("en-US");
-
-            hsParam.Add("affid", AppSettings.Session.AffId);
-            hsParam.Add("fromdate", CastAide.AsDateTime(fromDate, culture));
-            hsParam.Add("todate", CastAide.AsDateTime(toDate, culture));
-            hsParam.Add("totaluniqueclicks", 0);
-            hsParam.Add("totalclicks", 0);
-            DbResult rs = DbHelper.Execute("Aff_AffiliateSelClickSummaryByDate", DBType.AFFILIATE_12BET, hsParam);
-            totalUniqueClicks = CastAide.AsInt32(rs.Outputs["totaluniqueclicks"]);
-            totalClicks = CastAide.AsInt32(rs.Outputs["totalclicks"]);
-        }
-
-        public static void SelAffSignupsByDate_DEPOSIT(int intCustId, object fromDate, object toDate, ref int newSignups, ref int totalDepositUsers)
-        {
-            Hashtable p = new Hashtable();
-            p.Add("affiliateid", intCustId);
-            System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("en-US");
-
-            p.Add("fromdate", CastAide.AsDateTime(fromDate, culture));
-            p.Add("todate", CastAide.AsDateTime(toDate, culture));
-            p.Add("newsignup", 0);
-            p.Add("totaldepositusers", 0);
-            DbResult rs = DbHelper.Execute("DEP_AffiliateSelSignupsByDate", DBType.DEPOSIT, p);
-            newSignups = CastAide.AsInt32(rs.Outputs["newsignup"], 0);
-            totalDepositUsers = CastAide.AsInt32(rs.Outputs["totaldepositusers"], 0);
-        }
     }
 }
-

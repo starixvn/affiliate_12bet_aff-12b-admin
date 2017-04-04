@@ -14,7 +14,8 @@ namespace AffiliateUser.Business.Services
             context.Response.ContentType = "text/html";
             try
             {
-                string strCaptcha = context.Request.Form["txtValidateRegister"];
+                string strCaptcha = context.Request.Form["txtValidateRegister"] ?? string.Empty;
+                
                 if (string.Compare(AppSettings.Session.CaptchaCode, strCaptcha.Trim(), true) != 0)
                 {
                     StringBuilder err = new StringBuilder("<script type='text/javascript'>parent.$('validCodeRegister').src='Authorization/LoginCaptcha.ashx?ver=");
