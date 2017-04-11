@@ -93,24 +93,5 @@
         $("frmSearch").submit();
         Common.delayReloadPage1();
     }
-    
-    function Focus(){
-        if($("affname").value == "[All]")
-        {
-            $("affname").value = "";
-        }
-        else
-        {
-            
-        }
-    }
-    
-    function Blur()
-    {
-        if($("affname").value == "")
-        {
-            $("affname").value = $("all").value;
-        }
-    }
 </script>
 <!--/js-->

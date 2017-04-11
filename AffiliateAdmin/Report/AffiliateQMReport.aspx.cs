@@ -51,11 +51,7 @@ public partial class Report_AffiliateQMReport : IBCPage
         TemplateHandler.Assign(ref strTpl, "currentYear-val", DateTime.Now.Year);
         TemplateHandler.Assign(ref strTpl, "currentMonth-val", DateTime.Now.Month);
 
-        if (String.IsNullOrEmpty(strUsername))
-            TemplateHandler.Assign(ref strTpl, "affname", "[" + Resources.Lang.All + "]");
-        else
-            TemplateHandler.Assign(ref strTpl, "affname", strUsername);
-        TemplateHandler.Assign(ref strTpl, "all-val", "[" + Resources.Lang.All + "]");
+        TemplateHandler.Assign(ref strTpl, "affname", strUsername);
 
         var criteria = new QMReportCriteria
         {

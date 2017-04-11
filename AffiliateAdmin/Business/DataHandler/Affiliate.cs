@@ -276,6 +276,7 @@ namespace DataHandler
                 hsParam.Add("preferredlanguage", criteria.PreferredLanguage);
             if (criteria.SportId > 0)
                 hsParam.Add("sportid", criteria.SportId);
+            hsParam.Add("username", criteria.Username);
             hsParam.Add("fromdate", criteria.FromDate);
             hsParam.Add("todate", criteria.ToDate);
             hsParam.Add("isgetall", criteria.IsGetAll);

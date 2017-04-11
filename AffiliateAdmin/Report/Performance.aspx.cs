@@ -1,13 +1,11 @@
-﻿using System.Xml.Linq;
-using Criterias;
-using DNAide.Web;
+﻿using System;
+using System.Data;
+using System.Text;
 using AffiliateAdmin.Business.DataAccess;
+using Criterias;
 using DNAide.Core;
 using DNAide.Utils;
-using System.Text;
-using System;
-using System.Data;
-using System.Linq;
+using DNAide.Web;
 public partial class Report_Performance : IBCPage
 {
     string strTpl = string.Empty;
@@ -59,25 +57,21 @@ public partial class Report_Performance : IBCPage
         TemplateHandler.Assign(ref strTpl, "fdate", dtmFDate.ToString("MM/yyyy"));
         TemplateHandler.Assign(ref strTpl, "tdate", dtmTDate.ToString("MM/yyyy"));
         TemplateHandler.Assign(ref strTpl, "page", intPage);
-        TemplateHandler.Assign(ref strTpl, "all-val", "[" + Resources.Lang.All + "]");
         TemplateHandler.Assign(ref strTpl, "cssgetall", isDesc ? "ic-check" : "ic-uncheck");
-
-        TemplateHandler.Assign(ref strTpl, "affname", String.IsNullOrEmpty(strUsername) ? "[" + Resources.Lang.All + "]" : strUsername);
-
-        strUsername = ((string.Compare(strUsername, "[" + Resources.Lang.All + "]", true) == 0 ? string.Empty : strUsername));
+        TemplateHandler.Assign(ref strTpl, "affname", strUsername);
 
         var criteria = new PerformanceCriteria
-            {
-                Username = strUsername,
-                Sport = sportId,
-                Language = strPreferLang,
-                FromDate = dtmFDate,
-                ToDate = dtmTDate,
-                SortBy = sortby,
-                PageSize = intPageSize,
-                PageIndex = intPage,
-                IsDesc = isDesc
-            };
+        {
+            Username = strUsername,
+            Sport = sportId,
+            Language = strPreferLang,
+            FromDate = dtmFDate,
+            ToDate = dtmTDate,
+            SortBy = sortby,
+            PageSize = intPageSize,
+            PageIndex = intPage,
+            IsDesc = isDesc
+        };
 
         DbResult rs = DataHandler.Affiliate.PerformanceReport(criteria);
 

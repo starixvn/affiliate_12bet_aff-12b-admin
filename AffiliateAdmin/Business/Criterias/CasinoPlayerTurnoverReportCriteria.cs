@@ -4,6 +4,8 @@ namespace Criterias
 {
     public class CasinoPlayerTurnoverReportCriteria
     {
+        public string Username { get; set; }
+
         public string PreferredLanguage { get; set; }
 
         public DateTime DtmFDate { get; set; }
@@ -34,7 +36,7 @@ namespace Criterias
         {
             get
             {
-                return "Aff_PlayerCasinoReport" + AppSettings.SuffixSp;
+                return "Aff_PlayerCasinoReport_xtest";
             }
         }
     }

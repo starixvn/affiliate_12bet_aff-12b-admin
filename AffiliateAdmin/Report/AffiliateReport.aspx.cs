@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Text;
 using System.Data;
-using Criterias;
-using DNAide.Web;
-using DNAide.Utils;
-using DNAide.Core;
+using System.Text;
 using AffiliateAdmin.Business.DataAccess;
+using Criterias;
+using DNAide.Core;
+using DNAide.Utils;
+using DNAide.Web;
 
 public partial class Report_AffiliateReport : IBCPage
 {
@@ -17,17 +17,22 @@ public partial class Report_AffiliateReport : IBCPage
     {
         strTpl = TemplateHandler.LoadTemplate("Report/AffiliateReport.htm");
 
-
+        AssignFilter();
         AssignHeader();
         GenerateHTML();
 
         this.HtmlContent = strTpl;
     }
 
-    void AssignHeader()
+    void AssignFilter()
     {
+        TemplateHandler.Assign(ref strTpl, "aff-txt", Resources.Lang.Affiliate);
         TemplateHandler.Assign(ref strTpl, "fdate-txt", Resources.Lang.From);
         TemplateHandler.Assign(ref strTpl, "tdate-txt", Resources.Lang.To);
+    }
+
+    void AssignHeader()
+    {
         TemplateHandler.Assign(ref strTpl, "search", Resources.Lang.Search);
         TemplateHandler.Assign(ref strTpl, "themepath", AppSettings.ThemeDir);
         TemplateHandler.Assign(ref strTpl, "memberstatistics", Resources.Lang.MemberStatistics);
@@ -68,12 +73,14 @@ public partial class Report_AffiliateReport : IBCPage
         DateTime dtmFDate = CastAide.AsDateTime(Request["fdate"], dtmFirstOfMonth);
         DateTime dtmTDate = CastAide.AsDateTime(Request["tdate"], dtmFirstOfMonth);
 
+        string strUsername = CastAide.AsString(Request["affname"]);
         bool isGetAll = (CastAide.AsString(Request["isGetAll"], string.Empty) == "ic-check");
         string strPreferLang = Request["slPreferLang"];
         int intSportId = CastAide.AsInt32(Request["slSport"], 0);
         int intPageSize = CastAide.AsInt32(Request["slPageSize"], 20);
         int intPage = CastAide.AsInt32(Request["page"], 1);
 
+        TemplateHandler.Assign(ref strTpl, "affname", strUsername);
         TemplateHandler.Assign(ref strTpl, "lang-val", strPreferLang);
         TemplateHandler.Assign(ref strTpl, "currentYear-val", DateTime.Now.Year);
         TemplateHandler.Assign(ref strTpl, "currentMonth-val", DateTime.Now.Month);
@@ -85,13 +92,13 @@ public partial class Report_AffiliateReport : IBCPage
 
         TemplateHandler.Assign(ref strTpl, "fdate-full", GetFirstDayOfMonth(dtmFDate).ToString("MM/dd/yyyy"));
         TemplateHandler.Assign(ref strTpl, "tdate-full", GetLastDayOfMonth(dtmTDate).ToString("MM/dd/yyyy"));
-        //TemplateHandler.Assign(ref strTpl, "turnover-total", NumberFormat.DecFormat(dcTotalTurnover, 2));
 
         DataTable dtb = new DataTable();
         DbResult rs = null;
 
         var criteria = new AffiliateReportCriteria
         {
+            Username = strUsername,
             PreferredLanguage = strPreferLang,
             FromDate = dtmFDate,
             ToDate = dtmTDate,
