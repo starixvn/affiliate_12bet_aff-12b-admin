@@ -46,6 +46,10 @@
         $j('#tdate-Trigger').click(function () {
             $j('#tdate').monthpicker('show');
         });
+
+        $j('#affname').on("keypress", function () {
+            Search();
+        });
     };
 
     function SetMonthConstraint(selector) {

@@ -22,7 +22,6 @@ public partial class SBPlayerTurnoverReport : IBCPage
     private void AssignFilter()
     {
         TemplateHandler.Assign(ref strTpl, "aff-txt", Resources.Lang.Affiliate);
-        TemplateHandler.Assign(ref strTpl, "aff-txt", Resources.Lang.Affiliate);
         TemplateHandler.Assign(ref strTpl, "fdate-txt", Resources.Lang.From);
         TemplateHandler.Assign(ref strTpl, "tdate-txt", Resources.Lang.To);
         TemplateHandler.Assign(ref strTpl, "search", Resources.Lang.Search);

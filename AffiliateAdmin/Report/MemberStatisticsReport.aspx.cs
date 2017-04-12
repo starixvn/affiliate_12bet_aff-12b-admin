@@ -32,7 +32,7 @@ public partial class Report_MemberStatisticsReport : IBCPage
         TemplateHandler.Assign(ref strTpl, "affiliate", Resources.Lang.Affiliate);
         TemplateHandler.Assign(ref strTpl, "active", Resources.Lang.Active);
         TemplateHandler.Assign(ref strTpl, "dormant", Resources.Lang.Dormant);
-        TemplateHandler.Assign(ref strTpl, "deposit", Resources.Lang.Deposit);
+        TemplateHandler.Assign(ref strTpl, "deposit", Resources.Lang.FirstDeposit);
         TemplateHandler.Assign(ref strTpl, "nondeposit", Resources.Lang.NonDeposit);
         TemplateHandler.Assign(ref strTpl, "totalregister", Resources.Lang.TotalRegister);
         TemplateHandler.Assign(ref strTpl, "total", Resources.Lang.Total);
@@ -83,7 +83,7 @@ public partial class Report_MemberStatisticsReport : IBCPage
         if (dtb.Rows.Count > 0)
         {
             int intCount = (intPage - 1) * intPageSize + 1;
-            int intActive = 0, intTotal = 0, intTotalRegister = 0;
+            int intActive = 0, intTotal = 0;
             string strRowTpl = TemplateHandler.CopyBlock(strTpl, "content");
             string strListAffId = string.Empty;
 
