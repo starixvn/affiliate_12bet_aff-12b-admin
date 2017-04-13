@@ -33,7 +33,7 @@ public partial class Report_MemberStatisticsReportDetail : IBCPage
         TemplateHandler.Assign(ref strTpl, "affiliate", Resources.Lang.Affiliate);
         TemplateHandler.Assign(ref strTpl, "active", Resources.Lang.Active);
         TemplateHandler.Assign(ref strTpl, "dormant", Resources.Lang.Dormant);
-        TemplateHandler.Assign(ref strTpl, "deposit", Resources.Lang.Deposit);
+        TemplateHandler.Assign(ref strTpl, "deposit", Resources.Lang.FirstDeposit);
         TemplateHandler.Assign(ref strTpl, "nondeposit", Resources.Lang.NonDeposit);
         TemplateHandler.Assign(ref strTpl, "totalregister", Resources.Lang.TotalRegister);
         TemplateHandler.Assign(ref strTpl, "total", Resources.Lang.Total);
