@@ -325,18 +325,7 @@ namespace DataHandler
             hsParam.Add("fromdate", dtmFDate);
             hsParam.Add("todate", dtmTDate);
             hsParam.Add("isgetall", isGetAll);
-            return DbHelper.Execute("Aff_AffiliateStatisticsDetail", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
-        }
-
-        //@Vinh 20091212
-        public static DbResult SelAffiliateTotalRegisterDetail(int intAffId, DateTime dtmFDate, DateTime dtmTDate, bool isGetAll)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("affid", intAffId);
-            hsParam.Add("fromdate", dtmFDate);
-            hsParam.Add("todate", dtmTDate);
-            hsParam.Add("isgetall", isGetAll);
-            return DbHelper.Execute("DEP_AffiliateSelTotalRegisteredByDate", DBType.DEPOSIT, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
+            return DbHelper.Execute("Aff_AffiliateStatisticsDetail_xtest", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
         }
 
         //@Vinh
