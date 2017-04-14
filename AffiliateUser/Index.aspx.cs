@@ -4,7 +4,7 @@ using System.Web;
 public partial class Index : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
-    {        
+    {
         Response.Cache.SetCacheability(HttpCacheability.NoCache);
         string lang = (Request.QueryString["lang"] ?? string.Empty);
         switch (lang.ToLower())
@@ -13,11 +13,11 @@ public partial class Index : System.Web.UI.Page
                 AppSettings.Session.Flag = "ct";
                 lang = "zh-TW";
                 break;
-            case "cs":                
+            case "cs":
                 AppSettings.Session.Flag = "cs";
                 lang = "zh-CN";
                 break;
-            case "es":                
+            case "es":
                 AppSettings.Session.Flag = "es";
                 lang = "es-ES";
                 break;
@@ -41,6 +41,10 @@ public partial class Index : System.Web.UI.Page
                 AppSettings.Session.Flag = "ja";
                 lang = "ja-JP";
                 break;
+            case "hi":
+                AppSettings.Session.Flag = "hi";
+                lang = "hi-IN";
+                break;
             default:
                 AppSettings.Session.Flag = "e";
                 lang = "en-US";
@@ -49,6 +53,6 @@ public partial class Index : System.Web.UI.Page
         AppSettings.Session.Language = lang;
         System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(lang);
         System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.CreateSpecificCulture(lang);
-        Response.Redirect(Common.RootURL());        
+        Response.Redirect(Common.RootURL());
     }
 }
