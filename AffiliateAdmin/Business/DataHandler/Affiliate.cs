@@ -325,7 +325,7 @@ namespace DataHandler
             hsParam.Add("fromdate", dtmFDate);
             hsParam.Add("todate", dtmTDate);
             hsParam.Add("isgetall", isGetAll);
-            return DbHelper.Execute("Aff_AffiliateStatisticsDetail_xtest", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
+            return DbHelper.Execute("Aff_AffiliateStatisticsDetail", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
         }
 
         //@Vinh

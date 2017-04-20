@@ -36,7 +36,7 @@ namespace Criterias
         {
             get
             {
-                return "Aff_PlayerCasinoReport_xtest";
+                return "Aff_PlayerCasinoReport";
             }
         }
     }

@@ -40,7 +40,7 @@ namespace Criterias
         {
             get
             {
-                return "Aff_AffiliateStatistics_xtest";
+                return "Aff_AffiliateStatistics";
             }
         }
     }
