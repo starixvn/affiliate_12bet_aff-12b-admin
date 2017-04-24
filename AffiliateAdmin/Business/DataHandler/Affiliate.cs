@@ -276,6 +276,7 @@ namespace DataHandler
                 hsParam.Add("preferredlanguage", criteria.PreferredLanguage);
             if (criteria.SportId > 0)
                 hsParam.Add("sportid", criteria.SportId);
+            hsParam.Add("username", criteria.Username);
             hsParam.Add("fromdate", criteria.FromDate);
             hsParam.Add("todate", criteria.ToDate);
             hsParam.Add("isgetall", criteria.IsGetAll);
@@ -316,17 +317,6 @@ namespace DataHandler
             return DbHelper.Execute(criteria.SpName, DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
         }
 
-        //@Vinh 20091209
-        public static DbResult SelAffiliateTotalRegister(string strListAffId, DateTime dtmFDate, DateTime dtmTDate, bool isGetAll)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("fromdate", dtmFDate);
-            hsParam.Add("todate", dtmTDate);
-            hsParam.Add("isgetall", isGetAll);
-            hsParam.Add("listaffid", strListAffId);
-            return DbHelper.Execute("DEP_AffiliateSelTotalRegistered", DBType.DEPOSIT, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
-        }
-
         //@Vinh 20091212
         public static DbResult SelAffiliateStatisticsDetail(int intAffId, DateTime dtmFDate, DateTime dtmTDate, bool isGetAll)
         {
@@ -336,17 +326,6 @@ namespace DataHandler
             hsParam.Add("todate", dtmTDate);
             hsParam.Add("isgetall", isGetAll);
             return DbHelper.Execute("Aff_AffiliateStatisticsDetail", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
-        }
-
-        //@Vinh 20091212
-        public static DbResult SelAffiliateTotalRegisterDetail(int intAffId, DateTime dtmFDate, DateTime dtmTDate, bool isGetAll)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("affid", intAffId);
-            hsParam.Add("fromdate", dtmFDate);
-            hsParam.Add("todate", dtmTDate);
-            hsParam.Add("isgetall", isGetAll);
-            return DbHelper.Execute("DEP_AffiliateSelTotalRegisteredByDate", DBType.DEPOSIT, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
         }
 
         //@Vinh

@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Data;
 using System.Text;
-using AffiliateAdmin.Business.DataAccess;
 using DNAide.Core;
 using DNAide.Web;
 
@@ -33,7 +32,7 @@ public partial class Report_MemberStatisticsReportDetail : IBCPage
         TemplateHandler.Assign(ref strTpl, "affiliate", Resources.Lang.Affiliate);
         TemplateHandler.Assign(ref strTpl, "active", Resources.Lang.Active);
         TemplateHandler.Assign(ref strTpl, "dormant", Resources.Lang.Dormant);
-        TemplateHandler.Assign(ref strTpl, "deposit", Resources.Lang.Deposit);
+        TemplateHandler.Assign(ref strTpl, "deposit", Resources.Lang.FirstDeposit);
         TemplateHandler.Assign(ref strTpl, "nondeposit", Resources.Lang.NonDeposit);
         TemplateHandler.Assign(ref strTpl, "totalregister", Resources.Lang.TotalRegister);
         TemplateHandler.Assign(ref strTpl, "total", Resources.Lang.Total);
@@ -60,48 +59,24 @@ public partial class Report_MemberStatisticsReportDetail : IBCPage
         TemplateHandler.Assign(ref strTpl, "affid", intAffId);
 
         //Get data from Deposit site
-        DbResult rsRegister = DataHandler.Affiliate.SelAffiliateTotalRegisterDetail(intAffId, dtmFDate, dtmTDate, isGetAll);
-        DbResult rsTotal = DataHandler.Affiliate.SelAffiliateStatisticsDetail(intAffId, dtmFDate, dtmTDate, isGetAll);
-
-        DataTable dtb = myJoinMethod(rsRegister.ResultSet.Tables[0], rsTotal.ResultSet.Tables[0], "ForeignKey", "ForeignKey");
-        decimal dctotalPage = dtb.Rows.Count / intPageSize;
-        int totalPage = CastAide.AsInt32(Math.Ceiling(CastAide.AsDecimal(dtb.Rows.Count) / CastAide.AsDecimal(intPageSize)));
-
-        //Response.Write("<script type='text/javascript'>alert('" + dtb.Rows.Count.ToString() + "');</script>");
-        //int totalPage = CastAide.AsInt32(rs.Outputs["totalpages"]);
+        var result = DataHandler.Affiliate.SelAffiliateStatisticsDetail(intAffId, dtmFDate, dtmTDate, isGetAll);
+        var dataTable = result.ResultSet.Tables[0];
 
         int start = (intPage - 1) * intPageSize;
-        int end = (start + intPageSize <= dtb.Rows.Count ? start + intPageSize : dtb.Rows.Count);
-        int nummem = dtb.Rows.Count;
+        int end = (start + intPageSize <= dataTable.Rows.Count ? start + intPageSize : dataTable.Rows.Count);
+        int nummem = dataTable.Rows.Count;
 
-        if (dtb.Rows.Count > 0)
+        if (dataTable.Rows.Count > 0)
         {
             int intCount = 0;
-            //int intActive = 0, intTotal = 0, intTotalRegister = 0;
             string strRowTpl = TemplateHandler.CopyBlock(strTpl, "content");
             string strListAffId = string.Empty;
             StringBuilder strListRow = new StringBuilder();
-            //Hashtable hsTotal = new Hashtable();
 
-            //Sort datatable Again
-            DataView dv = new DataView(dtb);
-            dv.Sort = "ForeignKey";
-            dtb = dv.ToTable();
-
-            //foreach (DataRow dr in dtb.Rows)
-            for (int i = start; i < end; i++)
+            foreach (DataRow dr in dataTable.Rows)
             {
-                DataRow dr = dtb.Rows[i];
                 string strTmp = strRowTpl;
                 intCount++;
-
-                int active = CastAide.AsInt32(dr["active"]);
-                int total = CastAide.AsInt32(dr["total"]);
-                int register = CastAide.AsInt32(dr["totalregistered"]);
-
-                //intActive += active;
-                //intTotal += total;
-
                 TemplateHandler.Assign(ref strTmp, "color", (intCount % 2 == 0) ? Common.RowBgEven : Common.RowBgOdd);
 
                 DateTime dtmCreatedDate = CastAide.AsDateTime(dr["CreatedDate"], DateTime.Now);
@@ -109,14 +84,15 @@ public partial class Report_MemberStatisticsReportDetail : IBCPage
                     dtmCreatedDate = CastAide.AsDateTime(dr["CreatDate"], DateTime.Now);
 
                 TemplateHandler.Assign(ref strTmp, "date-val", dtmCreatedDate.ToString("d-MMM-yyyy"));
-                TemplateHandler.Assign(ref strTmp, "active-val", active);
-                TemplateHandler.Assign(ref strTmp, "dormant-val", total - active);
-                TemplateHandler.Assign(ref strTmp, "totalregister-val", register);
-                TemplateHandler.Assign(ref strTmp, "total-val", total);
-                TemplateHandler.Assign(ref strTmp, "totalclick-val", CastAide.AsInt32(dr["TotalClick"]));
-                TemplateHandler.Assign(ref strTmp, "totalunique-val", CastAide.AsInt32(dr["UniqueClick"]));
+                TemplateHandler.Assign(ref strTmp, "active-val", CastAide.AsInt32(dr["active"]).ToString(Common.NumberFormatPlaceholder));
+                TemplateHandler.Assign(ref strTmp, "dormant-val", CastAide.AsInt32(dr["dormant"]).ToString(Common.NumberFormatPlaceholder));
+                TemplateHandler.Assign(ref strTmp, "totalregister-val", CastAide.AsInt32(dr["totalregistered"]).ToString(Common.NumberFormatPlaceholder));
+                TemplateHandler.Assign(ref strTmp, "total-val", CastAide.AsInt32(dr["total"]).ToString(Common.NumberFormatPlaceholder));
+                TemplateHandler.Assign(ref strTmp, "totalclick-val", CastAide.AsInt32(dr["TotalClick"]).ToString(Common.NumberFormatPlaceholder));
+                TemplateHandler.Assign(ref strTmp, "totalunique-val", CastAide.AsInt32(dr["UniqueClick"]).ToString(Common.NumberFormatPlaceholder));
                 strListRow.Append(strTmp);
             }
+
             TemplateHandler.ReplaceBlock(ref strTpl, "content", strListRow.ToString());
         }
         else
@@ -126,8 +102,9 @@ public partial class Report_MemberStatisticsReportDetail : IBCPage
 
         TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.ReportLink, SubMenu.ReportText, 2, nummem, SubMenu.ReportText[2], "i_report.png"));
         //Assign Paging template
-        if (dtb.Rows.Count > 0)
+        if (dataTable.Rows.Count > 0)
         {
+            int totalPage = CastAide.AsInt32(Math.Ceiling(CastAide.AsDecimal(dataTable.Rows.Count) / CastAide.AsDecimal(intPageSize)));
             TemplateHandler.Assign(ref strTpl, "paging-top", Common.GenPaging(totalPage, intPage, intPageSize, 0, "aPageTop", "txtPageTop", 550, false, true));
             TemplateHandler.Assign(ref strTpl, "paging-bottom", Common.GenPaging(totalPage, intPage, intPageSize, 0, "aPageBottom", "txtPageBottom", 550, false, false));
         }
@@ -151,85 +128,4 @@ public partial class Report_MemberStatisticsReportDetail : IBCPage
     }
 
     #endregion Convert datatable to Arraylist
-
-    #region Full outer join 2 datatables
-
-    public DataTable myJoinMethod(DataTable LeftTable, DataTable RightTable,
-            String LeftPrimaryColumn, String RightPrimaryColumn)
-    {
-        //first create the datatable columns
-        DataSet mydataSet = new DataSet();
-        mydataSet.Tables.Add("  ");
-        DataTable myDataTable = mydataSet.Tables[0];
-
-        //add left table columns
-        DataColumn[] dcLeftTableColumns = new DataColumn[LeftTable.Columns.Count];
-        LeftTable.Columns.CopyTo(dcLeftTableColumns, 0);
-
-        foreach (DataColumn LeftTableColumn in dcLeftTableColumns)
-        {
-            if (!myDataTable.Columns.Contains(LeftTableColumn.ToString()))
-                myDataTable.Columns.Add(LeftTableColumn.ToString());
-        }
-
-        //now add right table columns
-        DataColumn[] dcRightTableColumns = new DataColumn[RightTable.Columns.Count];
-        RightTable.Columns.CopyTo(dcRightTableColumns, 0);
-
-        foreach (DataColumn RightTableColumn in dcRightTableColumns)
-        {
-            if (!myDataTable.Columns.Contains(RightTableColumn.ToString()))
-            {
-                if (RightTableColumn.ToString() != RightPrimaryColumn)
-                    myDataTable.Columns.Add(RightTableColumn.ToString());
-            }
-        }
-
-        //add left-table data to mytable
-        foreach (DataRow LeftTableDataRows in LeftTable.Rows)
-        {
-            myDataTable.ImportRow(LeftTableDataRows);
-        }
-
-        ArrayList var = new ArrayList(); //this variable holds the id's which have joined
-
-        ArrayList LeftTableIDs = new ArrayList();
-        LeftTableIDs = this.DataSetToArrayList(0, LeftTable);
-
-        //import righttable which having not equal Id's with lefttable
-        foreach (DataRow rightTableDataRows in RightTable.Rows)
-        {
-            if (LeftTableIDs.Contains(rightTableDataRows[0]))
-            {
-                string wherecondition = "[" + myDataTable.Columns[0].ColumnName + "]='"
-                        + rightTableDataRows[0].ToString() + "'";
-                DataRow[] dr = myDataTable.Select(wherecondition);
-                int iIndex = myDataTable.Rows.IndexOf(dr[0]);
-
-                foreach (DataColumn dc in RightTable.Columns)
-                {
-                    if (dc.Ordinal != 0)
-                        myDataTable.Rows[iIndex][dc.ColumnName.ToString().Trim()] =
-                rightTableDataRows[dc.ColumnName.ToString().Trim()].ToString();
-                }
-            }
-            else
-            {
-                int count = myDataTable.Rows.Count;
-                DataRow row = myDataTable.NewRow();
-                row[0] = rightTableDataRows[0].ToString();
-                myDataTable.Rows.Add(row);
-                foreach (DataColumn dc in RightTable.Columns)
-                {
-                    if (dc.Ordinal != 0)
-                        myDataTable.Rows[count][dc.ColumnName.ToString().Trim()] =
-                rightTableDataRows[dc.ColumnName.ToString().Trim()].ToString();
-                }
-            }
-        }
-
-        return myDataTable;
-    }
-
-    #endregion Full outer join 2 datatables
 }

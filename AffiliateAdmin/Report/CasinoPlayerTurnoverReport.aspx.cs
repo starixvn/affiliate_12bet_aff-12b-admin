@@ -21,6 +21,7 @@ public partial class CasinoPlayerTurnoverReport : IBCPage
 
     private void AssignFilter()
     {
+        TemplateHandler.Assign(ref strTpl, "aff-txt", Resources.Lang.Affiliate);
         TemplateHandler.Assign(ref strTpl, "fdate-txt", Resources.Lang.From);
         TemplateHandler.Assign(ref strTpl, "tdate-txt", Resources.Lang.To);
         TemplateHandler.Assign(ref strTpl, "search", Resources.Lang.Search);
@@ -52,11 +53,13 @@ public partial class CasinoPlayerTurnoverReport : IBCPage
             dtmFDate = AppSettings.ReportStartDate;
         DateTime dtmTDate = CastAide.AsDateTime(Request["tdate"], DateTime.Now);
 
+        string strUsername = CastAide.AsString(Request["affname"]);
         string strPreferLang = string.IsNullOrEmpty(Request["slPreferLang"]) ? null : Request["slPreferLang"];
         bool isGetAll = (CastAide.AsString(Request["isGetAll"], string.Empty) == "ic-check" ? true : false);
         int intPageSize = CastAide.AsInt32(Request["slPageSize"], 20);
         int intPage = CastAide.AsInt32(Request["page"], 1);
 
+        TemplateHandler.Assign(ref strTpl, "affname", strUsername);
         TemplateHandler.Assign(ref strTpl, "lang-val", strPreferLang);
         TemplateHandler.Assign(ref strTpl, "fdate", dtmFDate.ToString("MM/dd/yyyy"));
         TemplateHandler.Assign(ref strTpl, "tdate", dtmTDate.ToString("MM/dd/yyyy"));
@@ -68,6 +71,7 @@ public partial class CasinoPlayerTurnoverReport : IBCPage
 
         var criteria = new CasinoPlayerTurnoverReportCriteria
         {
+            Username = strUsername,
             PreferredLanguage = strPreferLang,
             DtmFDate = dtmFDate,
             DtmTDate = dtmTDate,

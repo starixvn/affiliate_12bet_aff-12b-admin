@@ -1,14 +1,7 @@
-using System;
-using System.Web;
 using System.Collections;
-using System.Data;
-using Criterias;
 using AffiliateAdmin.Business.DataAccess;
-using DNAide.Core;
-using DNAide.Utils;
-/// <summary>
-/// Createrr: Vinh
-/// </summary>
+using Criterias;
+
 namespace DataHandler
 {
     public class Report
@@ -16,6 +9,7 @@ namespace DataHandler
         public static DbResult SBPlayerTurnoverReport(SBPlayerTurnoverReportCriteria criteria)
         {
             var hsParam = new Hashtable();
+            hsParam.Add("username", criteria.Username);
             hsParam.Add("fromdate", criteria.DtmFDate);
             hsParam.Add("todate", criteria.DtmTDate);
             hsParam.Add("preferedlanguage", criteria.PreferredLanguage);
@@ -30,6 +24,7 @@ namespace DataHandler
         public static DbResult CasinoPlayerTurnoverReport(CasinoPlayerTurnoverReportCriteria criteria)
         {
             var hsParam = new Hashtable();
+            hsParam.Add("username", criteria.Username);
             hsParam.Add("fromdate", criteria.DtmFDate);
             hsParam.Add("todate", criteria.DtmTDate);
             hsParam.Add("preferedlanguage", criteria.PreferredLanguage);

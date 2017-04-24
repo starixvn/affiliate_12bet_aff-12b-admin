@@ -1,21 +1,10 @@
 ﻿using System;
-using System.Text;
-using System.Collections;
-using System.Configuration;
 using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.HtmlControls;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Xml.Linq;
-using Criterias;
-using DNAide.Web;
+using System.Text;
 using AffiliateAdmin.Business.DataAccess;
+using Criterias;
 using DNAide.Core;
-using DNAide.Utils;
+using DNAide.Web;
 
 public partial class Report_MemberStatisticsReport : IBCPage
 {
@@ -43,7 +32,7 @@ public partial class Report_MemberStatisticsReport : IBCPage
         TemplateHandler.Assign(ref strTpl, "affiliate", Resources.Lang.Affiliate);
         TemplateHandler.Assign(ref strTpl, "active", Resources.Lang.Active);
         TemplateHandler.Assign(ref strTpl, "dormant", Resources.Lang.Dormant);
-        TemplateHandler.Assign(ref strTpl, "deposit", Resources.Lang.Deposit);
+        TemplateHandler.Assign(ref strTpl, "deposit", Resources.Lang.FirstDeposit);
         TemplateHandler.Assign(ref strTpl, "nondeposit", Resources.Lang.NonDeposit);
         TemplateHandler.Assign(ref strTpl, "totalregister", Resources.Lang.TotalRegister);
         TemplateHandler.Assign(ref strTpl, "total", Resources.Lang.Total);
@@ -72,17 +61,17 @@ public partial class Report_MemberStatisticsReport : IBCPage
         TemplateHandler.Assign(ref strTpl, "affname", strUsername);
 
         var criteria = new MemberStatisticsReportCriteria
-            {
-                Username = strUsername,
-                PreferredLanguage = strPreferLang,
-                DtmFDate = dtmFDate,
-                DtmTDate = dtmTDate,
-                IsGetAll = isGetAll,
-                AffType = 0,
-                PageIndex = intPage,
-                PageSize = intPageSize,
-                SortBy = sortBy
-            };
+        {
+            Username = strUsername,
+            PreferredLanguage = strPreferLang,
+            DtmFDate = dtmFDate,
+            DtmTDate = dtmTDate,
+            IsGetAll = isGetAll,
+            AffType = 0,
+            PageIndex = intPage,
+            PageSize = intPageSize,
+            SortBy = sortBy
+        };
 
         DbResult rs = DataHandler.Affiliate.SelAffiliateStatistics(criteria);
         DataTable dtb = new DataTable();
@@ -94,7 +83,7 @@ public partial class Report_MemberStatisticsReport : IBCPage
         if (dtb.Rows.Count > 0)
         {
             int intCount = (intPage - 1) * intPageSize + 1;
-            int intActive = 0, intTotal = 0, intTotalRegister = 0;
+            int intActive = 0, intTotal = 0;
             string strRowTpl = TemplateHandler.CopyBlock(strTpl, "content");
             string strListAffId = string.Empty;
 
@@ -120,24 +109,14 @@ public partial class Report_MemberStatisticsReport : IBCPage
                 TemplateHandler.Assign(ref strTmp, "affid-val", dr["affid"]);
                 TemplateHandler.Assign(ref strTmp, "aff-val", dr["username"]);
                 TemplateHandler.Assign(ref strTmp, "active-val", active.ToString(Common.NumberFormatPlaceholder));
-                TemplateHandler.Assign(ref strTmp, "dormant-val", (total - active).ToString(Common.NumberFormatPlaceholder));
+                TemplateHandler.Assign(ref strTmp, "dormant-val", CastAide.AsInt32(dr["dormant"]).ToString(Common.NumberFormatPlaceholder));
                 TemplateHandler.Assign(ref strTmp, "total-val", total.ToString(Common.NumberFormatPlaceholder));
-                TemplateHandler.Assign(ref strTmp, "totalregister-val", "{" + dr["affid"].ToString() + "}");
+                TemplateHandler.Assign(ref strTmp, "totalregister-val", CastAide.AsInt32(dr["totalregistered"]).ToString(Common.NumberFormatPlaceholder));
 
-                strListAffId += dr["affid"].ToString() + ";";
                 strListRow.Append(strTmp);
             }
-            TemplateHandler.ReplaceBlock(ref strTpl, "content", strListRow.ToString());
 
-            strListAffId = (!string.IsNullOrEmpty(strListAffId) ? strListAffId.Substring(0, strListAffId.Length - 1) : string.Empty);
-            //Get list Total Register and calculate non-Deposite here
-            DbResult rsRegister = DataHandler.Affiliate.SelAffiliateTotalRegister(strListAffId, dtmFDate, dtmTDate, isGetAll);
-            foreach (DataRow dr in rsRegister.ResultSet.Tables[0].Rows)
-            {
-                int totalRegister = CastAide.AsInt32(dr["totalregistered"]);
-                intTotalRegister += totalRegister;
-                TemplateHandler.Assign(ref strTpl, dr["affid"].ToString(), totalRegister.ToString(Common.NumberFormatPlaceholder));
-            }
+            TemplateHandler.ReplaceBlock(ref strTpl, "content", strListRow.ToString());
         }
         else
         {

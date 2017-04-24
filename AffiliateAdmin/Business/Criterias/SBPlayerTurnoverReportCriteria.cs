@@ -4,6 +4,8 @@ namespace Criterias
 {
     public class SBPlayerTurnoverReportCriteria
     {
+        public string Username { get; set; }
+
         public string PreferredLanguage { get; set; }
 
         public DateTime DtmFDate { get; set; }
@@ -34,7 +36,7 @@ namespace Criterias
         {
             get
             {
-                return "Aff_PlayerSportsBookReport" + AppSettings.SuffixSp;
+                return "Aff_PlayerSportsBookReport";
             }
         }
     }

@@ -82,23 +82,9 @@
             if (obj.options[index].value == Value)
                 obj.options[index].selected = true;
         }
-    }
-
-    function Focus() {
-        if ($("affname").value == "[All]") {
-            $("affname").value = "";
-        }
-    }
-
-    function Blur() {
-        if ($("affname").value == "") {
-            $("affname").value = $("all").value;
-        }
-    }
-    
+    }    
 
     // constraint month here.
-    
     function SetMonthConstraint(selector) {
         var currentYear = $('hdCurrentYear').value;
 

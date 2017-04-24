@@ -1,19 +1,10 @@
 ﻿using System;
-using System.Collections;
-using System.Configuration;
 using System.Data;
 using System.Text;
-using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.HtmlControls;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using Criterias;
-using DNAide.Web;
 using AffiliateAdmin.Business.DataAccess;
+using Criterias;
 using DNAide.Core;
-using DNAide.Utils;
+using DNAide.Web;
 
 public partial class Report_Commission : IBCPage
 {
@@ -75,24 +66,20 @@ public partial class Report_Commission : IBCPage
         TemplateHandler.Assign(ref strTpl, "currentYear-val", DateTime.Now.Year);
         TemplateHandler.Assign(ref strTpl, "currentMonth-val", DateTime.Now.Month);
 
-        if (String.IsNullOrEmpty(strUsername))
-            TemplateHandler.Assign(ref strTpl, "affname", "[" + Resources.Lang.All + "]");
-        else
-            TemplateHandler.Assign(ref strTpl, "affname", strUsername);
-        TemplateHandler.Assign(ref strTpl, "all-val", "[" + Resources.Lang.All + "]");
+        TemplateHandler.Assign(ref strTpl, "affname", strUsername);
 
         var criteria = new CommissionReportCriteria
-            {
-                Username = strUsername,
-                PreferredLanguage = strPreferLang,
-                Sport = sport,
-                Month = selectedMonth.Month,
-                Year = selectedMonth.Year,
-                PageIndex = intPage,
-                PageSize = intPageSize,
-                SortBy = sortBy,
-                IsDesc = isDesc
-            };
+        {
+            Username = strUsername,
+            PreferredLanguage = strPreferLang,
+            Sport = sport,
+            Month = selectedMonth.Month,
+            Year = selectedMonth.Year,
+            PageIndex = intPage,
+            PageSize = intPageSize,
+            SortBy = sortBy,
+            IsDesc = isDesc
+        };
 
         DbResult rs = DataHandler.Affiliate.SelAffiliateCommissionReport(criteria);
 

@@ -3063,6 +3063,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to First Deposit.
+        /// </summary>
+        internal static string FirstDeposit {
+            get {
+                return ResourceManager.GetString("FirstDeposit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to First Goal.
         /// </summary>
         internal static string firstgoal {

@@ -4,6 +4,8 @@ namespace Criterias
 {
     public class AffiliateReportCriteria
     {
+        public string Username { get; set; }
+
         public string PreferredLanguage { get; set; }
 
         public DateTime FromDate { get; set; }
