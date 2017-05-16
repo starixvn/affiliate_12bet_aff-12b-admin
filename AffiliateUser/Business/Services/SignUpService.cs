@@ -15,7 +15,7 @@ namespace AffiliateUser.Business.Services
             try
             {
                 string strCaptcha = context.Request.Form["txtValidateRegister"] ?? string.Empty;
-                
+
                 if (string.Compare(AppSettings.Session.CaptchaCode, strCaptcha.Trim(), true) != 0)
                 {
                     StringBuilder err = new StringBuilder("<script type='text/javascript'>parent.$('validCodeRegister').src='Authorization/LoginCaptcha.ashx?ver=");
@@ -33,6 +33,12 @@ namespace AffiliateUser.Business.Services
                 string strPayment = Common.GetMethodName(context.Request.Form["hdMethod"]);
                 string strPlayerUserName = context.Request.Form["txtBet12UserName"];
                 string errMsg = string.Empty;
+
+                if (string.IsNullOrWhiteSpace(strPlayerUserName))
+                {
+                    context.Response.Write("<script type='text/javascript'>parent.$(\"errMsg\").show();parent.$(\"divErr\").show();parent.Common.showError([\"Invalid player name\"], [\"txtBet12UserName\"], \"error_item\");</script>");
+                    return;
+                }
 
                 if (strPayment == "Player" && !AppSettings.LocalTest)
                 {
