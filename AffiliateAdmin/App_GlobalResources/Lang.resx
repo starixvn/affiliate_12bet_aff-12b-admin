@@ -2411,4 +2411,7 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
     <value>First Deposit</value>
     <comment>#74560</comment>
   </data>
+  <data name="CashOutDeductionNote" xml:space="preserve">
+    <value>* Apply change will take affect on 1st day next month</value>
+  </data>
 </root>

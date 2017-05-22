@@ -917,6 +917,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to * Apply change will take affect on 1st day next month.
+        /// </summary>
+        internal static string CashOutDeductionNote {
+            get {
+                return ResourceManager.GetString("CashOutDeductionNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Casino.
         /// </summary>
         internal static string Casino {
