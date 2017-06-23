@@ -217,7 +217,7 @@ namespace GenerateHTML
         public static string GetCashOutWLShareOptionList(double selectedCashOutWLShare, string htmlTemplate)
         {
             StringBuilder list = new StringBuilder();
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i <= 100; i++)
             {
                 string option = htmlTemplate;
                 double val = Convert.ToDouble(i) / 100;
@@ -607,7 +607,7 @@ namespace GenerateHTML
                         deductionObj.id = Convert.ToInt32(dtype["dtypeid"]);
                         deductionObj.name = dtype["dtypename"].ToString();
 
-                        string _deductionOption = deductionObj.name == "Cash Out Winloss Share" ? cashOutWLOption : deductionOption;
+                        string _deductionOption = deductionObj.name == "Cash Out Win Loss Share" ? cashOutWLOption : deductionOption;
 
                         TemplateHandler.Assign(ref _deductionOption, "SportID_val", sport["SportID"]);
                         TemplateHandler.Assign(ref _deductionOption, "DeductionID_val", dtype["dtypeid"]);
@@ -626,7 +626,7 @@ namespace GenerateHTML
                             deductionObj.isCheck = false;
                             deductionObj.deductedPercentage = CastAide.AsDouble(dtype["deductedpercentage"]);
                         }
-                        if (deductionObj.name == "Cash Out Winloss Share")
+                        if (deductionObj.name == "Cash Out Win Loss Share")
                         {
                             TemplateHandler.ReplaceBlock(ref _deductionOption, "CashOutWLShareOption", GetCashOutWLShareOptionList(deductionObj.deductedPercentage, cashOutWLShareOption));
                             TemplateHandler.Assign(ref _deductionOption, "Deduction_val", deductionObj.deductedPercentage);
@@ -708,7 +708,7 @@ namespace GenerateHTML
                         sportSettingObj.deductions.Add(deductionObj);
 
                         string _deductionOption;
-                        if (deductionObj.name == "Cash Out Winloss Share")
+                        if (deductionObj.name == "Cash Out Win Loss Share")
                         {
                             _deductionOption = cashOutWLOption;
                             TemplateHandler.ReplaceBlock(ref _deductionOption, "CashOutWLShareOption", GetCashOutWLShareOptionList(deductionObj.deductedPercentage, cashOutWLShareOption));
@@ -927,7 +927,7 @@ namespace GenerateHTML
                     sportSettingObj.deductions.Add(deductionObj);
 
                     string _deductionOption;
-                    if (deductionObj.name == "Cash Out Winloss Share")
+                    if (deductionObj.name == "Cash Out Win Loss Share")
                     {
                         _deductionOption = cashOutWLOption;
                         TemplateHandler.ReplaceBlock(ref _deductionOption, "CashOutWLShareOption", GetCashOutWLShareOptionList(0, cashOutWLShareOption));

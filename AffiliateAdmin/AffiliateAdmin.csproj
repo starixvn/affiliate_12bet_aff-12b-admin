@@ -182,6 +182,13 @@
     <Compile Include="BetList\BetList.aspx.designer.cs">
       <DependentUpon>BetList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="BetList\BetListCashOutDetail.aspx.cs">
+      <DependentUpon>BetListCashOutDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BetList\BetListCashOutDetail.aspx.designer.cs">
+      <DependentUpon>BetListCashOutDetail.aspx</DependentUpon>
+    </Compile>
     <Compile Include="BetList\BetListParlayDetail.aspx.designer.cs">
       <DependentUpon>BetListParlayDetail.aspx</DependentUpon>
     </Compile>
@@ -1285,6 +1292,7 @@
     <Content Include="App_Templates\UserInfo\Approved_zh-CN.htm" />
     <Content Include="App_Templates\UserInfo\Approved_zh-TW.htm" />
     <Content Include="App_Templates\UserInfo\BetList.htm" />
+    <Content Include="App_Templates\UserInfo\BetListCashOutDetail.html" />
     <Content Include="App_Templates\UserInfo\BetListParlayDetail.htm" />
     <Content Include="App_Templates\UserInfo\BetListResults.htm" />
     <Content Include="App_Templates\UserInfo\Disapproved.htm" />
@@ -1559,6 +1567,7 @@
     <Content Include="App_Themes\error2.png" />
     <Content Include="Auth\Error.aspx" />
     <Content Include="BetList\BetList.aspx" />
+    <Content Include="BetList\BetListCashOutDetail.aspx" />
     <Content Include="BetList\BetListParlayDetail.aspx" />
     <Content Include="BetList\BetListResults.aspx" />
     <Content Include="Casino\UploadExcel.aspx" />

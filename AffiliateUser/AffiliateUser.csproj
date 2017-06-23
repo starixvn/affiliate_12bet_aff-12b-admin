@@ -168,6 +168,13 @@
     <Compile Include="BetList\BetList.aspx.designer.cs">
       <DependentUpon>BetList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="BetList\BetListCashOutDetail.aspx.cs">
+      <DependentUpon>BetListCashOutDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BetList\BetListCashOutDetail.aspx.designer.cs">
+      <DependentUpon>BetListCashOutDetail.aspx</DependentUpon>
+    </Compile>
     <Compile Include="BetList\BetListParlayDetail.aspx.designer.cs">
       <DependentUpon>BetListParlayDetail.aspx</DependentUpon>
     </Compile>
@@ -730,9 +737,11 @@
     <Content Include="App_Templates\Email\RecoverPass\RecoverPass_hi-IN_html.htm" />
     <Content Include="App_Templates\Email\SignupMail\SignupMail_hi-IN.htm" />
     <Content Include="App_Templates\Email\SignupMail\SignupMail_hi-IN_html.htm" />
+    <Content Include="App_Templates\UserInfo\BetListCashOutDetail.html" />
     <Content Include="App_Themes\Default\Images1\banner_hi-IN.jpg" />
     <Content Include="App_Themes\Default\Images\bgMain_hi.jpg" />
     <Content Include="App_Themes\Default\Images\fIndia.png" />
+    <Content Include="BetList\BetListCashOutDetail.aspx" />
     <Content Include="Global.asax" />
     <Content Include="packages.config" />
     <Content Include="DeployConfig\Web.12betuser-asian.sit.config">
