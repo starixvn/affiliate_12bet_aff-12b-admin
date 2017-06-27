@@ -74,12 +74,17 @@
             <div class="clear"></div>
             <div id="deduction_{SportID_val}_{DeductionID_val}" class="{chkActiveDeductionClass_val}" title="{DeductionDescription_val}">
                 &nbsp;
-            </div> {DeductionName_val} &nbsp;&nbsp;&nbsp;&nbsp;
-            <select style="width:80px;" id="slDeduction_{SportID_val}_{DeductionID_val}" name="slDeduction_{SportID_val}_{DeductionID_val}" value="{Deduction_val}">
-                <!--CashOutWLShareOption-->
-                <option value="{option_value}" {selected_val}>{option_value}</option> <!--/CashOutWLShareOption-->
-            </select>
-            &nbsp;&nbsp;&nbsp;&nbsp; {CashOutDeductionNote}
+            </div> {DeductionName_val} &nbsp;
+                <!--CashOutContent-->
+                ({CashoutCurrent_title}: {CashoutCurrent_val} |
+                {CashoutNext_title}:&nbsp;
+                <!--CashOutSeletion-->
+                <select style="width:80px;" id="slDeduction_{SportID_val}_{DeductionID_val}" name="slDeduction_{SportID_val}_{DeductionID_val}" value="{Deduction_val}" {disabled_slDeduction_val}>
+                    <!--CashOutWLShareOption--><option value="{option_value}" {selected_val}>{option_value}</option> <!--/CashOutWLShareOption-->
+                </select>
+                <!--/CashOutSeletion-->
+                &nbsp;)
+                <!--/CashOutContent-->
             <!--/CashOutWinLoss-->
         <!--/DeductionOption-->          
     </div>            

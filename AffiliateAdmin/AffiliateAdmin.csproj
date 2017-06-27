@@ -198,6 +198,7 @@
     <Compile Include="Business\Constants\PermissionNames.cs" />
     <Compile Include="Business\DataAccess\DbHelper.cs" />
     <Compile Include="Business\DataAccess\DbResult.cs" />
+    <Compile Include="Business\DeductionType.cs" />
     <Compile Include="Business\Helpers\BannerHelper.cs" />
     <Compile Include="Business\Helpers\LogHelper.cs" />
     <Compile Include="Business\Helpers\MimeTypeHelper.cs" />

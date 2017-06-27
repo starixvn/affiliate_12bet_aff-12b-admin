@@ -917,15 +917,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to * Apply change will take affect on 1st day next month.
-        /// </summary>
-        internal static string CashOutDeductionNote {
-            get {
-                return ResourceManager.GetString("CashOutDeductionNote", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Casino.
         /// </summary>
         internal static string Casino {
@@ -1453,6 +1444,15 @@ namespace Resources {
         internal static string CurrencyGroupName {
             get {
                 return ResourceManager.GetString("CurrencyGroupName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current.
+        /// </summary>
+        internal static string Current {
+            get {
+                return ResourceManager.GetString("Current", resourceCulture);
             }
         }
         
@@ -4680,6 +4680,15 @@ namespace Resources {
         internal static string NewTrackingRate {
             get {
                 return ResourceManager.GetString("NewTrackingRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Next month rate.
+        /// </summary>
+        internal static string NextMonthRate {
+            get {
+                return ResourceManager.GetString("NextMonthRate", resourceCulture);
             }
         }
         

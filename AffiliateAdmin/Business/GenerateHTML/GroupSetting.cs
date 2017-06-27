@@ -21,6 +21,7 @@ namespace GenerateHTML
         public string name;
         public bool isCheck;
         public double deductedPercentage;
+        public double nextDeductedPercentage;
 
         public static DeductionTypeObj GetInstance()
         {
@@ -505,7 +506,6 @@ namespace GenerateHTML
             TemplateHandler.Assign(ref settingTemplate, "Save", Resources.Lang.Save);
 
             TemplateHandler.Assign(ref sportSetting, "Deductions", Resources.Lang.Deductions);
-            TemplateHandler.Assign(ref sportSetting, "CashOutDeductionNote", Resources.Lang.CashOutDeductionNote);
             TemplateHandler.Assign(ref sportSetting, "TierSetting", Resources.Lang.TierSetting);
             TemplateHandler.Assign(ref sportSetting, "Tier", Resources.Lang.Tier);
             TemplateHandler.Assign(ref sportSetting, "MinAmount", Resources.Lang.MinAmount);
@@ -533,7 +533,7 @@ namespace GenerateHTML
             TemplateHandler.Assign(ref settingTemplate, "TierRowTpl_val", js.Serialize(tierRowTpl));
 
             DataTable SportType = setting.ResultSet.Tables[3];
-            DataTable DeductionType = setting.ResultSet.Tables[4];
+            DataTable DeductionTypes = setting.ResultSet.Tables[4];
             DataTable CommGroup = setting.ResultSet.Tables[0];
             DataTable GroupSetting = setting.ResultSet.Tables[1];
             DataTable DeductionSetting = setting.ResultSet.Tables[2];
@@ -573,7 +573,7 @@ namespace GenerateHTML
 
                 noSports++;
 
-                DataRow[] drDeductionType = DeductionType.Select("SportID=" + sport["SportID"]);
+                DataRow[] drDeductionType = DeductionTypes.Select("SportID=" + sport["SportID"]);
 
                 StringBuilder deductionList = new StringBuilder();
                 StringBuilder tierList = new StringBuilder();
@@ -607,30 +607,51 @@ namespace GenerateHTML
                         deductionObj.id = Convert.ToInt32(dtype["dtypeid"]);
                         deductionObj.name = dtype["dtypename"].ToString();
 
-                        string _deductionOption = deductionObj.name == "Cash Out Win Loss Share" ? cashOutWLOption : deductionOption;
+                        string _deductionOption;
+                       
+                        if (deductionObj.id == (int)DeductionType.CashOutWinLossShare)
+                        {
+                            _deductionOption = cashOutWLOption;
+                            if (DeductionSetting.Select("DeductionID=" + dtype["dtypeid"]).Length > 0)
+                            {
+                                TemplateHandler.Assign(ref _deductionOption, "chkActiveDeductionClass_val", CheckboxStatus.GetInstance().OnEnable);
+                                deductionObj.isCheck = true;
+                                deductionObj.deductedPercentage = CastAide.AsDouble(DeductionSetting.Select("DeductionID=" + dtype["dtypeid"])[0]["deductedpercentage"]);
+                            }
+                            else
+                            {
+                                TemplateHandler.Assign(ref _deductionOption, "chkActiveDeductionClass_val", CheckboxStatus.GetInstance().OffEnable);
+                                deductionObj.isCheck = false;
+                                deductionObj.deductedPercentage = CastAide.AsDouble(dtype["deductedpercentage"]);
+                            }
+                            TemplateHandler.Assign(ref _deductionOption, "CashoutCurrent_title", Resources.Lang.Current);
+                            TemplateHandler.Assign(ref _deductionOption, "CashoutCurrent_val", deductionObj.deductedPercentage.ToString("0.00"));
+                            TemplateHandler.Assign(ref _deductionOption, "CashoutNext_title", Resources.Lang.NextMonthRate);
+                            TemplateHandler.Assign(ref _deductionOption, "disabled_slDeduction_val", deductionObj.isCheck ? string.Empty : "disabled");
+                            TemplateHandler.ReplaceBlock(ref _deductionOption, "CashOutWLShareOption", GetCashOutWLShareOptionList(deductionObj.deductedPercentage, cashOutWLShareOption));
+                        }
+                        else
+                        {
+                            _deductionOption = deductionOption;
+                            if (DeductionSetting.Select("DeductionID=" + dtype["dtypeid"]).Length > 0)
+                            {
+                                TemplateHandler.Assign(ref _deductionOption, "chkActiveDeductionClass_val", CheckboxStatus.GetInstance().OnEnable);
+                                deductionObj.isCheck = true;
+                                deductionObj.deductedPercentage = CastAide.AsDouble(DeductionSetting.Select("DeductionID=" + dtype["dtypeid"])[0]["deductedpercentage"]);
+                            }
+                            else
+                            {
+                                TemplateHandler.Assign(ref _deductionOption, "chkActiveDeductionClass_val", CheckboxStatus.GetInstance().OffEnable);
+                                deductionObj.isCheck = false;
+                                deductionObj.deductedPercentage = CastAide.AsDouble(dtype["deductedpercentage"]);
+                            }
+                        }
 
                         TemplateHandler.Assign(ref _deductionOption, "SportID_val", sport["SportID"]);
                         TemplateHandler.Assign(ref _deductionOption, "DeductionID_val", dtype["dtypeid"]);
                         TemplateHandler.Assign(ref _deductionOption, "DeductionDescription_val", dtype["dtypedesc"]);
                         TemplateHandler.Assign(ref _deductionOption, "DeductionName_val", dtype["dtypename"]);
 
-                        if (DeductionSetting.Select("DeductionID=" + dtype["dtypeid"]).Length > 0)
-                        {
-                            TemplateHandler.Assign(ref _deductionOption, "chkActiveDeductionClass_val", CheckboxStatus.GetInstance().OnEnable);
-                            deductionObj.isCheck = true;
-                            deductionObj.deductedPercentage = CastAide.AsDouble(DeductionSetting.Select("DeductionID=" + dtype["dtypeid"])[0]["deductedpercentage"]);
-                        }
-                        else
-                        {
-                            TemplateHandler.Assign(ref _deductionOption, "chkActiveDeductionClass_val", CheckboxStatus.GetInstance().OffEnable);
-                            deductionObj.isCheck = false;
-                            deductionObj.deductedPercentage = CastAide.AsDouble(dtype["deductedpercentage"]);
-                        }
-                        if (deductionObj.name == "Cash Out Win Loss Share")
-                        {
-                            TemplateHandler.ReplaceBlock(ref _deductionOption, "CashOutWLShareOption", GetCashOutWLShareOptionList(deductionObj.deductedPercentage, cashOutWLShareOption));
-                            TemplateHandler.Assign(ref _deductionOption, "Deduction_val", deductionObj.deductedPercentage);
-                        }
                         deductionList.Append(_deductionOption);
                         sportSettingObj.deductions.Add(deductionObj);
                     }
@@ -708,11 +729,15 @@ namespace GenerateHTML
                         sportSettingObj.deductions.Add(deductionObj);
 
                         string _deductionOption;
-                        if (deductionObj.name == "Cash Out Win Loss Share")
+                        if (deductionObj.id == (int)DeductionType.CashOutWinLossShare)
                         {
                             _deductionOption = cashOutWLOption;
+                            TemplateHandler.Assign(ref _deductionOption, "CashoutCurrent_title", Resources.Lang.Current);
+                            TemplateHandler.Assign(ref _deductionOption, "CashoutCurrent_val", "0.00");
+                            TemplateHandler.Assign(ref _deductionOption, "CashoutNext_title", Resources.Lang.NextMonthRate);
+                            TemplateHandler.Assign(ref _deductionOption, "disabled_slDeduction_val", "disabled");
+                            TemplateHandler.Assign(ref _deductionOption, "Deduction_val", 0);
                             TemplateHandler.ReplaceBlock(ref _deductionOption, "CashOutWLShareOption", GetCashOutWLShareOptionList(deductionObj.deductedPercentage, cashOutWLShareOption));
-                            TemplateHandler.Assign(ref _deductionOption, "Deduction_val", deductionObj.deductedPercentage);
                         }
                         else
                         {
@@ -837,7 +862,6 @@ namespace GenerateHTML
             TemplateHandler.Assign(ref settingTemplate, "Save", Resources.Lang.Add);
 
             TemplateHandler.Assign(ref sportSetting, "Deductions", Resources.Lang.Deductions);
-            TemplateHandler.Assign(ref sportSetting, "CashOutDeductionNote", Resources.Lang.CashOutDeductionNote);
             TemplateHandler.Assign(ref sportSetting, "TierSetting", Resources.Lang.TierSetting);
             TemplateHandler.Assign(ref sportSetting, "Tier", Resources.Lang.Tier);
             TemplateHandler.Assign(ref sportSetting, "MinAmount", Resources.Lang.MinAmount);
@@ -855,8 +879,6 @@ namespace GenerateHTML
             TemplateHandler.Assign(ref sportSetting, "MaxAmountExplain", Resources.Lang.MaxAmountExplain);
 
             string deductionOption = TemplateHandler.CopyBlock(sportSetting, "DeductionType");
-            string cashOutWLOption = TemplateHandler.CopyBlock(sportSetting, "CashOutWinLoss");
-            string cashOutWLShareOption = TemplateHandler.CopyBlock(cashOutWLOption, "CashOutWLShareOption");
             string tierRow = TemplateHandler.CopyBlock(sportSetting, "TierRow");
             string slOption = TemplateHandler.CopyBlock(tierRow, "SelectOption");
 
@@ -865,7 +887,7 @@ namespace GenerateHTML
             TemplateHandler.Assign(ref settingTemplate, "TierRowTpl_val", js.Serialize(tierRowTpl));
 
             DataTable SportType = commonSetting.ResultSet.Tables[0];
-            DataTable DeductionType = commonSetting.ResultSet.Tables[1];
+            DataTable DeductionTypes = commonSetting.ResultSet.Tables[1];
 
             TemplateHandler.Assign(ref settingTemplate, "GroupName_val", string.Empty);
             TemplateHandler.Assign(ref settingTemplate, "Description_val", string.Empty);
@@ -888,7 +910,7 @@ namespace GenerateHTML
                 TemplateHandler.Assign(ref _sportSetting, "CopyAllText", copyText);
                 TemplateHandler.Assign(ref _sportSetting, "SportID_val", sport["SportID"]);
 
-                DataRow[] drDeductionType = DeductionType.Select("SportID=" + sport["SportID"]);
+                DataRow[] drDeductionType = DeductionTypes.Select("SportID=" + sport["SportID"]);
 
                 StringBuilder deductionList = new StringBuilder();
 
@@ -927,11 +949,17 @@ namespace GenerateHTML
                     sportSettingObj.deductions.Add(deductionObj);
 
                     string _deductionOption;
-                    if (deductionObj.name == "Cash Out Win Loss Share")
+                    if (deductionObj.id == (int)DeductionType.CashOutWinLossShare)
                     {
+                        var cashOutWLOption = TemplateHandler.CopyBlock(sportSetting, "CashOutWinLoss");
+                        var cashOutWLShareSelection = TemplateHandler.CopyBlock(cashOutWLOption, "CashOutSeletion");
+                        var cashOutWLShareOption = TemplateHandler.CopyBlock(cashOutWLOption, "CashOutWLShareOption");
+                        TemplateHandler.Assign(ref cashOutWLShareSelection, "disabled_slDeduction_val", "disabled");
+                        TemplateHandler.Assign(ref cashOutWLShareSelection, "Deduction_val", deductionObj.deductedPercentage);
+                        TemplateHandler.ReplaceBlock(ref cashOutWLOption, "CashOutContent", cashOutWLShareSelection);
+
                         _deductionOption = cashOutWLOption;
-                        TemplateHandler.ReplaceBlock(ref _deductionOption, "CashOutWLShareOption", GetCashOutWLShareOptionList(0, cashOutWLShareOption));
-                        TemplateHandler.Assign(ref _deductionOption, "Deduction_val", 0);
+                        TemplateHandler.ReplaceBlock(ref _deductionOption, "CashOutWLShareOption", GetCashOutWLShareOptionList(deductionObj.deductedPercentage, cashOutWLShareOption));
                     }
                     else
                     {

@@ -63,8 +63,7 @@ var StringBuilder = function() {
              //Deduction Event Handler for each control in each Tier
              for(var k=1;k<=GroupSetting.sportSetting[i].minAmounts.length;k++){
                  AddEventHandlerForOneTierRow(GroupSetting.sportSetting[i].id,k);        
-             }
-             
+             }            
         }  
         //Disable check box copy when have only one sport enabled
         var enabledSportID=-1,count=0;
@@ -440,14 +439,24 @@ function fireEvent(element,event) {
         {
             this.className=CheckboxStatus.OffEnable;
         }
+
+        var deductionDll = $("slDeduction_" + arr[1] + "_" + arr[2]);
+        if (deductionDll != null) {
+            if (isEnabled) {
+                deductionDll.enable();
+            }
+            else {
+                deductionDll.disable();
+            }
+        }
+
         var sportSetting=GetSportSetting(arr[1]);
         for(var j=0;j<sportSetting.deductions.length;j++){
             if(sportSetting.deductions[j].id==arr[2]){
-                sportSetting.deductions[j].isCheck=isEnabled;                
+                sportSetting.deductions[j].isCheck = isEnabled;
                 return;
             }
         }
-        
     }
     function CopySetting(event){
         //Control phai duoc enable
