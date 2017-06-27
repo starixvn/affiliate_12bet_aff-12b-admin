@@ -258,9 +258,6 @@
     <Compile Include="Master2.master.designer.cs">
       <DependentUpon>Master2.master</DependentUpon>
     </Compile>
-    <Compile Include="MasterCalendar.master.designer.cs">
-      <DependentUpon>MasterCalendar.master</DependentUpon>
-    </Compile>
     <Compile Include="Business\AffHandler.cs" />
     <Compile Include="Business\DataAccess\DbHelper.cs" />
     <Compile Include="Business\AffType.cs" />
@@ -475,10 +472,6 @@
     </Compile>
     <Compile Include="Master2.master.cs">
       <DependentUpon>Master2.master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MasterCalendar.master.cs">
-      <DependentUpon>MasterCalendar.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="OnlineSupport.aspx.cs">
@@ -813,12 +806,8 @@
     <Content Include="Handler\UpdateAcc.ashx" />
     <Content Include="Handler\UpdateSecurityQuestion.ashx" />
     <Content Include="LogOff.ashx" />
-    <None Include="Logs\trace.2015-07-02.1.log" />
-    <None Include="Logs\trace.2015-07-23.1.log" />
-    <None Include="Logs\trace.log" />
     <Content Include="Master.master" />
     <Content Include="Master2.master" />
-    <Content Include="MasterCalendar.master" />
     <Content Include="DeployConfig\Web.12betuser-asian.backupmnl.config" />
     <Content Include="DeployConfig\Web.12betuser-asian.local.config" />
     <Content Include="DeployConfig\Web.12betuser-asian.master.config" />
@@ -1606,7 +1595,6 @@
     <Content Include="ProgramDetails.aspx" />
     <Content Include="Promotional.aspx" />
     <Content Include="Recoverpw.aspx" />
-    <Content Include="Release Note.txt" />
     <Content Include="Root.aspx" />
     <Content Include="sendmail.aspx" />
     <Content Include="SignUp.aspx" />
