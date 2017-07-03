@@ -218,7 +218,7 @@ namespace DataHandler
             hsParam.Add("totalclicksbymobile", 0);
             hsParam.Add("newsignup", 0);
             hsParam.Add("totalplayer", 0);
-            return DbHelper.Execute("Aff_StatisticsSel", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
+            return DbHelper.Execute("Aff_StatisticsSel_xtest", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
         }
 
         //@Vinh
@@ -237,7 +237,7 @@ namespace DataHandler
             hsParam.Add("affid", intAffID);
             hsParam.Add("sporttype", SportType);
             hsParam.Add("monthdate", dtmMonthDate);
-            return DbHelper.Execute("Aff_EarningSelDaily", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP).ResultSet.Tables[0]; ;
+            return DbHelper.Execute("Aff_EarningSelDaily_xtest", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP).ResultSet.Tables[0]; ;
         }
 
         public static DataTable SelAffEarningDetail(int intAffId, int SportType, DateTime dtmMonthDate)
@@ -265,7 +265,7 @@ namespace DataHandler
             Hashtable hsParam = new Hashtable();
             hsParam.Add("fromdate", dtmFDate);
             hsParam.Add("todate", dtmTDate);
-            return DbHelper.Execute("Aff_ReportDetailSelAll", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
+            return DbHelper.Execute("Aff_ReportDetailSelAll_xtest", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
         }
 
         //@Vinh
@@ -338,7 +338,7 @@ namespace DataHandler
             p.Add("pageindex", pageIndex);
             p.Add("pagesize", pageSize); // hardcode pagesize for member/player list
             p.Add("totalpages", 0);
-            DbResult rs = DbHelper.Execute("Aff_PlayersSelDetail", DBType.AFFILIATE_12BET, p);
+            DbResult rs = DbHelper.Execute("Aff_PlayersSelDetail_xtest", DBType.AFFILIATE_12BET, p);
             totalPages = CastAide.AsInt32(rs.Outputs["totalpages"], 1);
             return rs;
         }
@@ -561,7 +561,7 @@ namespace DataHandler
             hsParam.Add("pageindex", intPage);
             hsParam.Add("nrows", 0);
             hsParam.Add("totalpages", 0);
-            return DbHelper.Execute("Aff_ReportQMDetail", DBType.AFFILIATE_12BET, hsParam);
+            return DbHelper.Execute("Aff_ReportQMDetail_xtest", DBType.AFFILIATE_12BET, hsParam);
         }
 
         //Pete20110110

@@ -25,7 +25,7 @@ namespace DataHandler
             hsParams.Add("pageindex", pageindex);
             hsParams.Add("totalpages", 0);
             hsParams.Add("nrows", 0);
-            return DbHelper.Execute("Aff_CommGroupSel", DBType.AFFILIATE_12BET, hsParams);
+            return DbHelper.Execute("Aff_CommGroupSel_xtest", DBType.AFFILIATE_12BET, hsParams);
         }
 
         public static DbResult CommGroupDel(int groupID, string ip)
@@ -52,7 +52,7 @@ namespace DataHandler
 
         public static DbResult CommGroupSelCommonSetting()
         {
-            return DbHelper.Execute("Aff_CommGroupSelCommonSetting", DBType.AFFILIATE_12BET);
+            return DbHelper.Execute("Aff_CommGroupSelCommonSetting_xtest", DBType.AFFILIATE_12BET);
         }
 
         public static DbResult CommGroupIns(GroupSettingObj obj, string ip)

@@ -129,7 +129,7 @@ namespace DataHandler
             hsParam.Add("totalqualifiedcasino", 0);
             hsParam.Add("newsignup", 0);
             hsParam.Add("totalplayer", 0);
-            return DbHelper.Execute("Aff_StatisticsSel", DBType.AFFILIATE_12BET, hsParam);
+            return DbHelper.Execute("Aff_StatisticsSel_xtest", DBType.AFFILIATE_12BET, hsParam);
         }
 
         public static DataTable SelAffBannerType()
