@@ -1293,7 +1293,7 @@
     <Content Include="App_Templates\UserInfo\Approved_zh-CN.htm" />
     <Content Include="App_Templates\UserInfo\Approved_zh-TW.htm" />
     <Content Include="App_Templates\UserInfo\BetList.htm" />
-    <Content Include="App_Templates\UserInfo\BetListCashOutDetail.html" />
+    <Content Include="App_Templates\UserInfo\BetListCashOutDetail.htm" />
     <Content Include="App_Templates\UserInfo\BetListParlayDetail.htm" />
     <Content Include="App_Templates\UserInfo\BetListResults.htm" />
     <Content Include="App_Templates\UserInfo\Disapproved.htm" />
@@ -1575,6 +1575,7 @@
     <Content Include="ChangeAdminPass.aspx" />
     <Content Include="ChangePass.aspx" />
     <Content Include="Content\betlist\betlist.css" />
+    <Content Include="Content\betlist\cashoutdetail.css" />
     <Content Include="Content\betlist\fanex.result.css" />
     <Content Include="Content\betlist\global.content.css" />
     <Content Include="Content\betlist\images\1F.gif" />

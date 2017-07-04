@@ -3,6 +3,9 @@
 "use strict";
 
 var BetList = (function ($) {
+    var BETTYPE_CASHOUT = 911;
+    var BETTYPE_BOUGHT = 912;
+
     return {
         initialize: function () {
         },
@@ -115,9 +118,9 @@ var BetList = (function ($) {
             url += "&betType=" + betType;
             url += "&betdaqId=" + betdaqId;
             url += "&isCashOut=" + isCashOut;
-            var widthDialog = 760;
+            var widthDialog = 900;
             var heightDialog = 450;
-            DoCalFull(url, isCashOut ? 'Cash Out Details' : 'Bought Details', widthDialog, heightDialog, 150, 0);
+            DoCalFull(url, isCashOut ? 'Cash Out Details' : 'Bought Details', widthDialog, heightDialog, 50, 0);
         },
     };
 })(jQuery);

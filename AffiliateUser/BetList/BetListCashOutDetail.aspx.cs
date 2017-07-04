@@ -24,11 +24,6 @@ public partial class BetList_BetListCashOutDetail : RootPageLogIn
             affBetlistService.Timeout = AppSettings.BetListServiceTimeout;
             betlistCashOutDetailHtmlString = affBetlistService.GetBetListCashOutDetail(
                 criteria, isCashOut, "en-US");
-
-            var strTemplate = TemplateHandler.LoadTemplate("UserInfo/BetListCashOutDetail.htm");
-            TemplateHandler.Assign(ref strTemplate, @"betlistCashOutDetailHtmlString", betlistCashOutDetailHtmlString);
-
-            this.HtmlContent = strTemplate;
         }
     }
 }
