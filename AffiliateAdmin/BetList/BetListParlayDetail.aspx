@@ -8,8 +8,13 @@
     <title></title>
 </head>
 <body style="background-color: #fff; background-image: none;  font-size: 13px">
-    <div>
+    <div class="content-data">
         <%= betlistParlayDetailHtmlString%>
+    </div>
+
+    <div class="note-block">
+        <p class="note-content"><span class="asterisk">* </span><span class="note-title"><%=Resources.Lang.Note2%></span></p>
+        <p class="text-content"><%=Resources.Lang.SystemParlayDetailNote%></p>
     </div>
 </body>
 </html>

@@ -4855,6 +4855,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Note.
+        /// </summary>
+        internal static string Note2 {
+            get {
+                return ResourceManager.GetString("Note2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid username.
         /// </summary>
         internal static string NoUser {
@@ -6012,6 +6021,15 @@ namespace Resources {
         internal static string symbol {
             get {
                 return ResourceManager.GetString("symbol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Win Loss is rounded for reference only. Therefore, Sub Total amount may be different from the sum of Win Loss when it sums all the actual Win Loss amounts..
+        /// </summary>
+        internal static string SystemParlayDetailNote {
+            get {
+                return ResourceManager.GetString("SystemParlayDetailNote", resourceCulture);
             }
         }
         
