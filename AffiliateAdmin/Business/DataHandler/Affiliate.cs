@@ -246,7 +246,7 @@ namespace DataHandler
             hsParam.Add("affid", intAffId);
             hsParam.Add("sporttype", SportType);
             hsParam.Add("monthdate", dtmMonthDate);
-            return DbHelper.Execute("Aff_EarningSelDetail", DBType.AFFILIATE_12BET, hsParam).ResultSet.Tables[0]; ;
+            return DbHelper.Execute("Aff_EarningSelDetail_xtest", DBType.AFFILIATE_12BET, hsParam).ResultSet.Tables[0]; ;
         }
 
         //@Vinh
