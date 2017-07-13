@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System;
 using AffiliateUser.Business.DataAccess;
 using DNAide.Core;
 /// <summary>
@@ -17,7 +16,7 @@ namespace DataHandler
             hsParam.Add("pageindex", pageIndex);
             hsParam.Add("pagesize", pageSize);
             hsParam.Add("totalpages", 0);
-            DbResult rs = DbHelper.Execute("Aff_AffiliateStatementHistorySel_xtest", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
+            DbResult rs = DbHelper.Execute("Aff_AffiliateStatementHistorySel", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
             totalPages = CastAide.AsInt32(rs.Outputs["totalpages"], 1);
             return rs;
         }

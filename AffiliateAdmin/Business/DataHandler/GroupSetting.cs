@@ -25,7 +25,7 @@ namespace DataHandler
             hsParams.Add("pageindex", pageindex);
             hsParams.Add("totalpages", 0);
             hsParams.Add("nrows", 0);
-            return DbHelper.Execute("Aff_CommGroupSel_xtest", DBType.AFFILIATE_12BET, hsParams);
+            return DbHelper.Execute("Aff_CommGroupSel", DBType.AFFILIATE_12BET, hsParams);
         }
 
         public static DbResult CommGroupDel(int groupID, string ip)
@@ -47,12 +47,12 @@ namespace DataHandler
         {
             Hashtable hsParams = new Hashtable();
             hsParams.Add("groupid", groupID);
-            return DbHelper.Execute("Aff_CommGroupSelDetail_xtest", DBType.AFFILIATE_12BET, hsParams);
+            return DbHelper.Execute("Aff_CommGroupSelDetail", DBType.AFFILIATE_12BET, hsParams);
         }
 
         public static DbResult CommGroupSelCommonSetting()
         {
-            return DbHelper.Execute("Aff_CommGroupSelCommonSetting_xtest", DBType.AFFILIATE_12BET);
+            return DbHelper.Execute("Aff_CommGroupSelCommonSetting", DBType.AFFILIATE_12BET);
         }
 
         public static DbResult CommGroupIns(GroupSettingObj obj, string ip)
@@ -138,7 +138,7 @@ namespace DataHandler
             hsParams.Add("ip", ip);
             hsParams.Add("errcode", 0);
             hsParams.Add("errmsg", string.Empty);
-            return DbHelper.Execute("Aff_CommGroupIns_xtest", DBType.AFFILIATE_12BET, hsParams);
+            return DbHelper.Execute("Aff_CommGroupIns", DBType.AFFILIATE_12BET, hsParams);
         }
 
         public static SportSettingObj GetCopySportSetting(GroupSettingObj obj)
@@ -227,7 +227,7 @@ namespace DataHandler
             hsParams.Add("ip", ip);
             hsParams.Add("errcode", 0);
             hsParams.Add("errmsg", string.Empty);
-            return DbHelper.Execute("Aff_CommGroupUpd_xtest", DBType.AFFILIATE_12BET, hsParams);
+            return DbHelper.Execute("Aff_CommGroupUpd", DBType.AFFILIATE_12BET, hsParams);
         }
 
         public static DbResult CommGroupSelListNormal(int affID)

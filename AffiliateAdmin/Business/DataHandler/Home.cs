@@ -14,7 +14,7 @@ namespace DataHandler
     {
         public static DbResult GetGenInforFromAff()
         {
-            return DbHelper.Execute("Aff_HomeGeneralInfo_xtest", DBType.AFFILIATE_12BET);
+            return DbHelper.Execute("Aff_HomeGeneralInfo", DBType.AFFILIATE_12BET);
         }
 
         public static DbResult GetGenInforFromDeposit()
