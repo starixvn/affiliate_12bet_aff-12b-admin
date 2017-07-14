@@ -58,13 +58,16 @@ var StringBuilder = function() {
              $("btnAddTier" + GroupSetting.sportSetting[i].id).observe('click', AddTier);                            
              //Deduction Event Handler
              for(var j=0;j<GroupSetting.sportSetting[i].deductions.length;j++){
-                $("deduction_" + GroupSetting.sportSetting[i].id + "_" + GroupSetting.sportSetting[i].deductions[j].id).observe('click', ChangeDeductionStatus);                   
+                 $("deduction_" + GroupSetting.sportSetting[i].id + "_" + GroupSetting.sportSetting[i].deductions[j].id).observe('click', ChangeDeductionStatus);
+                 var deductedValueDDL = $("slDeduction_" + GroupSetting.sportSetting[i].id + "_" + GroupSetting.sportSetting[i].deductions[j].id);
+                 if (deductedValueDDL != null) {
+                     deductedValueDDL.observe('change', ChangeDeductionValue);
+                 }
              }
              //Deduction Event Handler for each control in each Tier
              for(var k=1;k<=GroupSetting.sportSetting[i].minAmounts.length;k++){
                  AddEventHandlerForOneTierRow(GroupSetting.sportSetting[i].id,k);        
-             }
-             
+             }            
         }  
         //Disable check box copy when have only one sport enabled
         var enabledSportID=-1,count=0;
@@ -440,14 +443,40 @@ function fireEvent(element,event) {
         {
             this.className=CheckboxStatus.OffEnable;
         }
+
+        var deductedValueDDL = $("slDeduction_" + arr[1] + "_" + arr[2]);
+        if (deductedValueDDL != null) {
+            if (isEnabled) {
+                deductedValueDDL.enable();
+            }
+            else {
+                deductedValueDDL.disable();
+            }
+        }
+
         var sportSetting=GetSportSetting(arr[1]);
         for(var j=0;j<sportSetting.deductions.length;j++){
             if(sportSetting.deductions[j].id==arr[2]){
-                sportSetting.deductions[j].isCheck=isEnabled;                
+                sportSetting.deductions[j].isCheck = isEnabled;
                 return;
             }
         }
-        
+    }
+    function ChangeDeductionValue(event) {
+        var valueOptions = this;
+        var arr = valueOptions.id.split("_");
+        var sportSetting = GetSportSetting(arr[1]);
+        for (var j = 0; j < sportSetting.deductions.length; j++) {
+            if (sportSetting.deductions[j].id == arr[2]) {
+                if (GroupSetting.isEdited) {
+                    sportSetting.deductions[j].nextDeductedPercentage = valueOptions.value;
+                }
+                else {
+                    sportSetting.deductions[j].deductedPercentage = valueOptions.value;
+                }
+                return;
+            }
+        }
     }
     function CopySetting(event){
         //Control phai duoc enable

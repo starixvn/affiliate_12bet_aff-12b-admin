@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System;
 using AffiliateUser.Business.DataAccess;
 using DNAide.Core;
 /// <summary>

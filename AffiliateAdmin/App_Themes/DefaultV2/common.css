@@ -280,6 +280,10 @@ input.disabled
 	color:#aca899;
 	background-color:#ece9d8;	
 }
+select:disabled
+{
+    background-color: #ebebe4;
+}
 
 
 /*FOR BANNER PAGE*/

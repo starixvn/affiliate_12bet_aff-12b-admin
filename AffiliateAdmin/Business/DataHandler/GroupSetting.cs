@@ -1,73 +1,79 @@
 ﻿using System;
 using System.Collections;
-using System.Data;
-using AffiliateAdmin.Business.DataAccess;
-using GenerateHTML;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Web;
+using AffiliateAdmin.Business.DataAccess;
+using GenerateHTML;
+
 namespace DataHandler
 {
-    
     public class GroupSetting
     {
-        public static DbResult CommGroupSel(string strGroupName,object fromdate, object todate, int pagesize, int pageindex)
+        public static DbResult CommGroupSel(string strGroupName, object fromdate, object todate, int pagesize, int pageindex)
         {
             Hashtable hsParams = new Hashtable();
             hsParams.Add("groupname", strGroupName);
-             if (fromdate != null && todate != null)
+            if (fromdate != null && todate != null)
             {
                 hsParams.Add("fromdate", fromdate);
                 hsParams.Add("todate", Convert.ToDateTime(todate).AddDays(1).AddMilliseconds(-3));
             }
-             hsParams.Add("totalnonegroup", 0);
-             hsParams.Add("pagesize", Convert.ToInt32(pagesize));
-             hsParams.Add("pageindex", pageindex);
-             hsParams.Add("totalpages", 0);
-             hsParams.Add("nrows", 0);
+            hsParams.Add("totalnonegroup", 0);
+            hsParams.Add("pagesize", Convert.ToInt32(pagesize));
+            hsParams.Add("pageindex", pageindex);
+            hsParams.Add("totalpages", 0);
+            hsParams.Add("nrows", 0);
             return DbHelper.Execute("Aff_CommGroupSel", DBType.AFFILIATE_12BET, hsParams);
         }
-        public static DbResult CommGroupDel(int groupID,string ip)
+
+        public static DbResult CommGroupDel(int groupID, string ip)
         {
             Hashtable hsParams = new Hashtable();
             hsParams.Add("userid", AppSettings.Session.CustID);
             hsParams.Add("groupid", groupID);
-            hsParams.Add("ip",ip );
+            hsParams.Add("ip", ip);
             hsParams.Add("errcode", 0);
             hsParams.Add("errmsg", string.Empty);
             return DbHelper.Execute("Aff_CommGroupDel", DBType.AFFILIATE_12BET, hsParams);
         }
+
         //public static DbResult CommGroupSelAll(string strGroupName)
         //{
         //    return DbHelper.Execute("Aff_CommGroupSelAll", DBType.AFFILIATE_12BET);
         //}
         public static DbResult CommGroupSelDetail(int groupID)
         {
-            Hashtable hsParams = new Hashtable();            
-            hsParams.Add("groupid", groupID);            
+            Hashtable hsParams = new Hashtable();
+            hsParams.Add("groupid", groupID);
             return DbHelper.Execute("Aff_CommGroupSelDetail", DBType.AFFILIATE_12BET, hsParams);
         }
+
         public static DbResult CommGroupSelCommonSetting()
-        {            
+        {
             return DbHelper.Execute("Aff_CommGroupSelCommonSetting", DBType.AFFILIATE_12BET);
         }
-        
+
         public static DbResult CommGroupIns(GroupSettingObj obj, string ip)
         {
             Hashtable hsParams = new Hashtable();
             hsParams.Add("userid", AppSettings.Session.CustID);
-           
+
             hsParams.Add("groupid", obj.id);
             if (obj.isApproved)
             {
                 hsParams.Add("isapproved", 1);
                 hsParams.Add("password", obj.password);
             }
-           
+
             hsParams.Add("groupname", HttpContext.Current.Server.HtmlEncode(obj.groupName));
             hsParams.Add("description", HttpContext.Current.Server.HtmlEncode(obj.description));
-            StringBuilder sportIDList = new StringBuilder(), deductionList = new StringBuilder(), deductedPercentageList = new StringBuilder(), tierList = new StringBuilder(), minAmountList = new StringBuilder()
+            StringBuilder sportIDList = new StringBuilder(), deductionList = new StringBuilder("<root>"), tierList = new StringBuilder(), minAmountList = new StringBuilder()
                               , maxAmountList = new StringBuilder(), minQMList = new StringBuilder(), maxQMList = new StringBuilder(), commissionList = new StringBuilder();
+
             SportSettingObj copyFromSport = GetCopySportSetting(obj);
+
             foreach (SportSettingObj s in obj.sportSetting)
             {
                 if (s.isEnabled)
@@ -82,16 +88,9 @@ namespace DataHandler
                     sportIDList.Append(";");
                     tierList.Append(t.commissions.Count.ToString());
                     tierList.Append(";");
-                    foreach (DeductionTypeObj d in s.deductions)
-                    {
-                        if (d.isCheck)
-                        {
-                            deductionList.Append(d.id.ToString());
-                            deductionList.Append(",");
-                            deductedPercentageList.Append(d.deductedPercentage.ToString());
-                            deductedPercentageList.Append(",");
-                        }
-                    }
+
+                    deductionList.Append(BuildDeductionListXml(s.deductions.Where(x => x.isCheck).ToList()));
+
                     for (int i = 0; i < t.commissions.Count; i++)
                     {
                         minAmountList.Append(t.minAmounts[i].ToString());
@@ -115,16 +114,12 @@ namespace DataHandler
                     minQMList.Append(";");
                     maxQMList.Append(";");
                     commissionList.Append(";");
-
                 }
             }
+            deductionList.Append("</root>");
+
             sportIDList.Remove(sportIDList.Length - 1, 1);
             tierList.Remove(tierList.Length - 1, 1);
-            if (deductionList.Length > 0)
-            {
-                deductionList.Remove(deductionList.Length - 1, 1);
-                deductedPercentageList.Remove(deductedPercentageList.Length - 1, 1);
-            }
             minAmountList.Remove(minAmountList.Length - 1, 1);
             maxAmountList.Remove(maxAmountList.Length - 1, 1);
             minQMList.Remove(minQMList.Length - 1, 1);
@@ -133,7 +128,6 @@ namespace DataHandler
 
             hsParams.Add("sportidlist", sportIDList.ToString());
             hsParams.Add("deductionlist", deductionList.ToString());
-            hsParams.Add("deductedpercentagelist", deductedPercentageList.ToString());
             hsParams.Add("tierlist", tierList.ToString());
             hsParams.Add("minamountlist", minAmountList.ToString());
             hsParams.Add("maxamountlist", maxAmountList.ToString());
@@ -146,6 +140,7 @@ namespace DataHandler
             hsParams.Add("errmsg", string.Empty);
             return DbHelper.Execute("Aff_CommGroupIns", DBType.AFFILIATE_12BET, hsParams);
         }
+
         public static SportSettingObj GetCopySportSetting(GroupSettingObj obj)
         {
             if (obj.copySportID != -1)
@@ -158,6 +153,7 @@ namespace DataHandler
             }
             return null;
         }
+
         public static DbResult CommGroupUpd(GroupSettingObj obj, string ip)
         {
             Hashtable hsParams = new Hashtable();
@@ -165,7 +161,7 @@ namespace DataHandler
             hsParams.Add("groupid", obj.id);
             hsParams.Add("groupname", HttpContext.Current.Server.HtmlEncode(obj.groupName));
             hsParams.Add("description", HttpContext.Current.Server.HtmlEncode(obj.description));
-            StringBuilder sportIDList = new StringBuilder(), deductionList = new StringBuilder(), deductedPercentageList = new StringBuilder(), tierList = new StringBuilder(), minAmountList = new StringBuilder()
+            StringBuilder sportIDList = new StringBuilder(), deductionList = new StringBuilder("<root>"), tierList = new StringBuilder(), minAmountList = new StringBuilder()
                               , maxAmountList = new StringBuilder(), minQMList = new StringBuilder(), maxQMList = new StringBuilder(), commissionList = new StringBuilder();
             SportSettingObj copyFromSport = GetCopySportSetting(obj);
             foreach (SportSettingObj s in obj.sportSetting)
@@ -182,16 +178,9 @@ namespace DataHandler
                     sportIDList.Append(";");
                     tierList.Append(t.commissions.Count.ToString());
                     tierList.Append(";");
-                    foreach (DeductionTypeObj d in s.deductions)
-                    {
-                        if (d.isCheck)
-                        {
-                            deductionList.Append(d.id.ToString());
-                            deductionList.Append(",");
-                            deductedPercentageList.Append(d.deductedPercentage.ToString());
-                            deductedPercentageList.Append(",");
-                        }
-                    }
+
+                    deductionList.Append(BuildDeductionListXml(s.deductions.Where(x => x.isCheck || x.KeepCurrentValue).ToList()));
+
                     for (int i = 0; i < t.commissions.Count; i++)
                     {
                         minAmountList.Append(t.minAmounts[i].ToString());
@@ -215,16 +204,12 @@ namespace DataHandler
                     minQMList.Append(";");
                     maxQMList.Append(";");
                     commissionList.Append(";");
-
                 }
             }
+            deductionList.Append("</root>");
+
             sportIDList.Remove(sportIDList.Length - 1, 1);
             tierList.Remove(tierList.Length - 1, 1);
-            if (deductionList.Length > 0)
-            {
-                deductionList.Remove(deductionList.Length - 1, 1);
-                deductedPercentageList.Remove(deductedPercentageList.Length - 1, 1);
-            }
             minAmountList.Remove(minAmountList.Length - 1, 1);
             maxAmountList.Remove(maxAmountList.Length - 1, 1);
             minQMList.Remove(minQMList.Length - 1, 1);
@@ -233,7 +218,6 @@ namespace DataHandler
 
             hsParams.Add("sportidlist", sportIDList.ToString());
             hsParams.Add("deductionlist", deductionList.ToString());
-            hsParams.Add("deductedpercentagelist", deductedPercentageList.ToString());
             hsParams.Add("tierlist", tierList.ToString());
             hsParams.Add("minamountlist", minAmountList.ToString());
             hsParams.Add("maxamountlist", maxAmountList.ToString());
@@ -256,17 +240,36 @@ namespace DataHandler
             hsParams.Add("groupid", -1);
             return DbHelper.Execute("Aff_CommGroupSelListNormal", DBType.AFFILIATE_12BET, hsParams);
         }
+
         public static DbResult CommGroupAssign(int groupID, string affIDList, string ip)
         {
-            Hashtable hsParams = new Hashtable();            
+            Hashtable hsParams = new Hashtable();
             hsParams.Add("userid", AppSettings.Session.CustID);
-            hsParams.Add("groupid",groupID);
+            hsParams.Add("groupid", groupID);
             hsParams.Add("affidlist", affIDList);
             hsParams.Add("ip", ip);
             hsParams.Add("errcode", 0);
             hsParams.Add("errmsg", string.Empty);
             return DbHelper.Execute("Aff_CommGroupAssign", DBType.AFFILIATE_12BET, hsParams);
         }
-        
+
+        private static string BuildDeductionListXml(List<DeductionTypeObj> deductionSettings)
+        {
+            if (!deductionSettings.Any())
+            {
+                return string.Empty;
+            }
+
+            var xmlContent = new StringBuilder();
+            foreach (var deduction in deductionSettings)
+            {
+                xmlContent.Append($"<row id='{deduction.id}'"
+                    + (deduction.deductedPercentage.HasValue ? $" percent='{deduction.deductedPercentage.Value}'" : string.Empty)
+                    + (deduction.nextDeductedPercentage.HasValue && deduction.isCheck ? $" nextpercent='{deduction.nextDeductedPercentage.Value}'" : string.Empty)
+                    + " />");
+            }
+
+            return xmlContent.ToString();
+        }
     }
 }

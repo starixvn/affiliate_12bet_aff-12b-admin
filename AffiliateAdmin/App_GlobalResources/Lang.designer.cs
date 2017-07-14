@@ -1448,6 +1448,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Current.
+        /// </summary>
+        internal static string Current {
+            get {
+                return ResourceManager.GetString("Current", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current Balance Member.
         /// </summary>
         internal static string CurrentBalanceMem {
@@ -4671,6 +4680,15 @@ namespace Resources {
         internal static string NewTrackingRate {
             get {
                 return ResourceManager.GetString("NewTrackingRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Next month rate.
+        /// </summary>
+        internal static string NextMonthRate {
+            get {
+                return ResourceManager.GetString("NextMonthRate", resourceCulture);
             }
         }
         

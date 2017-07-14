@@ -3,6 +3,9 @@
 "use strict";
 
 var BetList = (function ($) {
+    var BETTYPE_CASHOUT = 911;
+    var BETTYPE_BOUGHT = 912;
+
     return {
         initialize: function () {
         },
@@ -104,7 +107,21 @@ var BetList = (function ($) {
             url += urlParam;
             var title = "Results";
             AFFILIATE.openDialogFrame(url, title, { width: 950, height: 500 });
-        }
+        },
+
+        viewCashOutHistory: function (transId, refNo, betType, betdaqId) {
+            var isCashOut = betType === BETTYPE_CASHOUT || (betdaqId < 1 && betType !== BETTYPE_BOUGHT);
+
+            var url = "BetListCashOutDetail.aspx?";
+            url += "transId=" + transId;
+            url += "&refno=" + refNo;
+            url += "&betType=" + betType;
+            url += "&betdaqId=" + betdaqId;
+            url += "&isCashOut=" + isCashOut;
+            var widthDialog = 900;
+            var heightDialog = 450;
+            DoCalFull(url, isCashOut ? 'Cash Out Details' : 'Bought Details', widthDialog, heightDialog, 50, 0);
+        },
     };
 })(jQuery);
 
@@ -172,3 +189,4 @@ function showCombMP(transId, index) {
 
 var showCombMPDetail = BetList.showSystemParlayDetail;
 var showNewCombMP = BetList.showNewParlayDetail;
+var ViewCashOutHistory = BetList.viewCashOutHistory;

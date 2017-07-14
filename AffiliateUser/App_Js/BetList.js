@@ -166,3 +166,20 @@ function showNewCombMP(transId, transIndex, refNo, handicap1, handicap2, betchec
         $nameDiv.show();
     }
 }
+
+var BETTYPE_CASHOUT = 911;
+var BETTYPE_BOUGHT = 912;
+
+function ViewCashOutHistory(transId, refNo, betType, betdaqId) {
+    var isCashOut = betType === BETTYPE_CASHOUT || (betdaqId < 1 && betType !== BETTYPE_BOUGHT);
+
+    var url = "BetListCashOutDetail.aspx?";
+    url += "transId=" + transId;
+    url += "&refno=" + refNo;
+    url += "&betType=" + betType;
+    url += "&betdaqId=" + betdaqId;
+    url += "&isCashOut=" + isCashOut;
+    var widthDialog = 850;
+    var heightDialog = 450;
+    Common.openPopup(url, isCashOut ? 'Cash Out Details' : 'Bought Details', widthDialog, heightDialog, window.innerWidth > widthDialog ? (window.innerWidth - widthDialog)/2 : 0, 290);
+}
