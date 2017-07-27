@@ -74,6 +74,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -86,6 +87,8 @@
   <ItemGroup>
     <Compile Include="Helpers\AntiForgeryHelper.cs" />
     <Compile Include="Helpers\CacheHelper.cs" />
+    <Compile Include="Helpers\ConnectionStringHelper.cs" />
+    <Compile Include="Helpers\Cryptography.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Text;
 using System.Web;
+using Affiliate.Infrastructure.Helpers;
 using DNAide.Core;
 using Fanex.Data;
 
@@ -20,9 +21,9 @@ namespace AffiliateAdmin.Business.DataAccess
         public static DbResult Execute(string pSPName, string pDB, Hashtable pHsParam = null, int pTimeOut = 120)
         {
             WriteLogCallingSp(pSPName, pHsParam);
-            var setting = new DbSetting()
+            var setting = new DbSetting
             {
-                ConnectionString = ConnectionStringGetter.GetConnectionString(pDB),
+                ConnectionString = ConnectionStringHelper.GetConnectionString(pDB),
                 SpName = pSPName,
                 ExecuteTimeOut = pTimeOut
             };
@@ -35,7 +36,7 @@ namespace AffiliateAdmin.Business.DataAccess
 
         private static void WriteLogCallingSp(string pSPName, Hashtable pHsParam)
         {
-            StringBuilder strDoing = new StringBuilder();
+            var strDoing = new StringBuilder();
             strDoing.Append(HttpContext.Current.Request.AppRelativeCurrentExecutionFilePath + " ");
             if (pHsParam != null)
             {
@@ -45,16 +46,16 @@ namespace AffiliateAdmin.Business.DataAccess
                 }
             }
 
-            Hashtable hsParam = new Hashtable();
+            var hsParam = new Hashtable();
             hsParam.Add("creator", AppSettings.Session.CustID);
             hsParam.Add("spname", pSPName);
             hsParam.Add("details", strDoing.ToString());
             hsParam.Add("affid", AppSettings.Session.CustID);
             hsParam.Add("isadmin", 0);
             hsParam.Add("ip", HttpContext.Current.Request.UserHostAddress);
-            var setting = new DbSetting()
+            var setting = new DbSetting
             {
-                ConnectionString = ConnectionStringGetter.GetConnectionString(DBType.AFFILIATE_12BET),
+                ConnectionString = ConnectionStringHelper.GetConnectionString(DBType.AFFILIATE_12BET),
                 SpName = "aff_writeLog_userlog_runsp"
             };
             using (var objectDB = new ObjectDb(setting))

@@ -1,7 +1,5 @@
 ﻿using System.Collections;
-using System.Text;
-using System.Web;
-using DNAide.Core;
+using Affiliate.Infrastructure.Helpers;
 using Fanex.Data;
 
 namespace AffiliateUser.Business.DataAccess
@@ -18,9 +16,9 @@ namespace AffiliateUser.Business.DataAccess
 
         public static DbResult Execute(string pSPName, string pDB, Hashtable pHsParam = null, int pTimeOut = 120)
         {
-            var setting = new DbSetting()
+            var setting = new DbSetting
             {
-                ConnectionString = ConnectionStringGetter.GetConnectionString(pDB),
+                ConnectionString = ConnectionStringHelper.GetConnectionString(pDB),
                 SpName = pSPName,
                 ExecuteTimeOut = pTimeOut
             };
