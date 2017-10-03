@@ -32,49 +32,9 @@
         background-image: url(images/bgMain_ko.jpg);
     }
 
-    body.ja-JP {
-        background-image: url(images/bgMain_jp.jpg);
-    }
-
     body.hi-IN {
         background-image: url(images/bgMain_hi.jpg);
     }
-
-@media(max-width: 1280px) {
-    body {
-        background-size: 120% 100%;
-    }
-}
-
-@media(min-width: 1280px) {
-    body {
-        background-size: 120% 100%;
-    }
-}
-
-@media(min-width: 1360px) {
-    body {
-        background-size: 125% 100%;
-    }
-}
-
-@media(min-width: 1400px) {
-    body {
-        background-size: 121.5% 100%;
-    }
-}
-
-@media(min-width: 1600px) {
-    body {
-        background-size: 106% 100%;
-    }
-}
-
-@media(min-width: 1920px) {
-    body {
-        background-size: 88.5% 100%;
-    }
-}
 
 form {
     padding: 0;

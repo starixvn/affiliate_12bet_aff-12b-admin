@@ -1177,7 +1177,6 @@
     <Content Include="App_Themes\Default\Images\bgMain_ch.jpg" />
     <Content Include="App_Themes\Default\Images\bgMain_cs.jpg" />
     <Content Include="App_Themes\Default\Images\bgMain_id.jpg" />
-    <Content Include="App_Themes\Default\Images\bgMain_jp.jpg" />
     <Content Include="App_Themes\Default\Images\bgMain_ko.jpg" />
     <Content Include="App_Themes\Default\Images\bgMain_th.jpg" />
     <Content Include="App_Themes\Default\Images\bgMain_vn.jpg" />
