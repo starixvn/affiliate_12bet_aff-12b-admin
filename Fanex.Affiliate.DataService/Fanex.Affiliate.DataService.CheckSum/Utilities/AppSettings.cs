@@ -5,19 +5,17 @@
 
     public class AppSettings : IAppSettings
     {
-        public int CheckingTime => Convert.ToInt32(GetValue("checkingTime"));
+        public int CheckingTime => Convert.ToInt32(GetValue("CheckSumCheckingTime"));
 
-        public bool ForTest => Convert.ToBoolean(GetValue("forTest"));
+        public bool IsLocalTest => Convert.ToBoolean(GetValue("IsLocalTest"));
 
-        public int ForDate => Convert.ToInt32(GetValue("forDate"));
+        public int DayToAdd => Convert.ToInt32(GetValue("DayToAdd"));
 
-        public string ToMail => GetValue("toMail");
+        public string ToMail => GetValue("ToMail");
 
         public string CcMail => GetValue("CCMail");
 
         public string BccMail => GetValue("BCCMail");
-
-        public string SubjectMailError => GetValue("subjectMailError");
 
         public string GetValue(string key) => ConfigurationManager.AppSettings[key];
     }

@@ -10,9 +10,9 @@
 
         string FileExtension { get; }
 
-        int ForSystem { get; }
+        int SystemType { get; }
 
-        bool ForTest { get; }
+        bool IsLocalTest { get; }
 
         string PathSaveFile { get; }
 
@@ -23,8 +23,6 @@
         string CcMail { get; }
 
         string BccMail { get; }
-
-        string SubjectMailError { get; }
 
         string GetValue(string key);
     }

@@ -31,9 +31,9 @@
         public void Run()
         {
             // decide time to compare data(check data 2 times: first at 11:00-12:00, second at 23:00-24:00)
-            if (DateTime.Now.Hour == _appSettings.CheckingTime || _appSettings.ForTest)
+            if (DateTime.Now.Hour == _appSettings.CheckingTime || _appSettings.IsLocalTest)
             {
-                var date = DateTime.Now.AddDays(_appSettings.ForDate);
+                var date = DateTime.Now.AddDays(_appSettings.DayToAdd);
                 CheckDailyMember(date);
                 CheckDailyMemberIncomeAccess(date);
             }
@@ -55,13 +55,13 @@
 
         private void SendMail(string content)
         {
-            var title = _appSettings.SubjectMailError;
+            const string Title = "Affiliate_12BET DB checksum - There is an error when summarize data to MemberDaily table.";
 
             var email = new MailRecord
             {
                 MailTo = _appSettings.ToMail,
-                Subject = title,
-                Title = title,
+                Subject = Title,
+                Title = Title,
                 Body = content,
                 MailBcc = _appSettings.BccMail,
                 MailCc = _appSettings.CcMail

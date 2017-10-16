@@ -43,7 +43,7 @@
                 AdminId = _appSettings.AdminId
             };
 
-            var systemType = (SystemType)_appSettings.ForSystem;
+            var systemType = (SystemType)_appSettings.SystemType;
 
             return SyncDataToDB(systemType, metaModel);
         }

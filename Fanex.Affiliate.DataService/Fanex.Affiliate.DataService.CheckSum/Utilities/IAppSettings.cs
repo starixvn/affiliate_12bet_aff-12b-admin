@@ -4,17 +4,15 @@
     {
         int CheckingTime { get; }
 
-        bool ForTest { get; }
+        bool IsLocalTest { get; }
 
-        int ForDate { get; }
+        int DayToAdd { get; }
 
         string ToMail { get; }
 
         string CcMail { get; }
 
         string BccMail { get; }
-
-        string SubjectMailError { get; }
 
         string GetValue(string key);
     }

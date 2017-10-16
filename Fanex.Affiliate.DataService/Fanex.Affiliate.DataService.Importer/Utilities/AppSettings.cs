@@ -5,29 +5,27 @@
 
     public class AppSettings : IAppSettings
     {
-        public int CheckingTime1 => Convert.ToInt32("checkingTime1");
+        public int CheckingTime1 => Convert.ToInt32("ImportCheckingTime1");
 
-        public int CheckingTime2 => Convert.ToInt32(GetValue("checkingTime2"));
+        public int CheckingTime2 => Convert.ToInt32(GetValue("ImportCheckingTime2"));
 
         public string DailyDataUrl => GetValue("DailyDataURL");
 
-        public string FileExtension => GetValue("fileExtension");
+        public string FileExtension => GetValue("FileExtension");
 
-        public int ForSystem => Convert.ToInt32(GetValue("forSystem"));
+        public int SystemType => Convert.ToInt32(GetValue("SystemType"));
 
-        public bool ForTest => GetValue("forTest") == "1";
+        public bool IsLocalTest => GetValue("IsLocalTest") == "1";
 
-        public string PathSaveFile => GetValue("pathSaveFile");
+        public string PathSaveFile => GetValue("PathSaveFile");
 
-        public int AdminId => Convert.ToInt32(GetValue("adminID"));
+        public int AdminId => Convert.ToInt32(GetValue("AdminId"));
 
-        public string ToMail => GetValue("toMail");
+        public string ToMail => GetValue("ToMail");
 
         public string CcMail => GetValue("CCMail");
 
         public string BccMail => GetValue("BCCMail");
-
-        public string SubjectMailError => GetValue("subjectMailError");
 
         public string GetValue(string key) => ConfigurationManager.AppSettings[key];
     }
