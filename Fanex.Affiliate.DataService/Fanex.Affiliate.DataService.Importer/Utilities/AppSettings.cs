@@ -5,7 +5,7 @@
 
     public class AppSettings : IAppSettings
     {
-        public int CheckingTime1 => Convert.ToInt32("ImportCheckingTime1");
+        public int CheckingTime1 => Convert.ToInt32(GetValue("ImportCheckingTime1"));
 
         public int CheckingTime2 => Convert.ToInt32(GetValue("ImportCheckingTime2"));
 

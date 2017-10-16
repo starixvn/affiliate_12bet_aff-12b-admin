@@ -1,10 +1,5 @@
 ﻿namespace Fanex.Affiliate.DataService.CheckSum.Utilities
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.Linq;
-    using DTO;
     using ViewModel;
 
     public class EmailBuilder : IEmailBuilder
@@ -22,17 +17,17 @@
             _htmlRender = htmlRender ?? new HtmlRender();
         }
 
-        public string GenerateDailyMemberContent(DailyMemberViewModel data)
+        public string GenerateDailyMemberContent(DailyMemberViewModel data, string emailTemplatePath)
         {
-            const string FilePath = "Template\\DailyMemberEmail.cshtml";
-            var templateContent = _fileSystem.ReadFile(FilePath);
+            var filePath = $"{emailTemplatePath}/DailyMemberEmail.cshtml";
+            var templateContent = _fileSystem.ReadFile(filePath);
             return _htmlRender.Generate(templateContent, "DailyMemberEmail", data);
         }
 
-        public string GenerateDailyMemberIncomeAccessContent(DailyMemberIncomeAccessViewModel data)
+        public string GenerateDailyMemberIncomeAccessContent(DailyMemberIncomeAccessViewModel data, string emailTemplatePath)
         {
-            const string FilePath = "Template\\DailyMemberIncomeAccessEmail.cshtml";
-            var templateContent = _fileSystem.ReadFile(FilePath);
+            var filePath = $"{emailTemplatePath}/DailyMemberIncomeAccessEmail.cshtml";
+            var templateContent = _fileSystem.ReadFile(filePath);
 
             return _htmlRender.Generate(templateContent, "DailyMemberIncomeAccessEmail", data);
         }

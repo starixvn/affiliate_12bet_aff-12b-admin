@@ -42,20 +42,20 @@
         private void CheckDailyMember(DateTime date)
         {
             var result = _dailyMemberRepository.CheckSumDailyMemberFor12Bet(date);
-            var emailContent = result.isMatch ? NotFoundError : _emailBuilder.GenerateDailyMemberContent(result);
+            var emailContent = result.isMatch ? NotFoundError : _emailBuilder.GenerateDailyMemberContent(result, _appSettings.EmailTemplateFolder);
             SendMail(emailContent);
         }
 
         private void CheckDailyMemberIncomeAccess(DateTime date)
         {
             var result = _dailyMemberRepository.CheckSumDailyMemberForIncomeAccess(date);
-            var emailContent = result.isMatch ? NotFoundError : _emailBuilder.GenerateDailyMemberIncomeAccessContent(result);
+            var emailContent = result.isMatch ? NotFoundError : _emailBuilder.GenerateDailyMemberIncomeAccessContent(result, _appSettings.EmailTemplateFolder);
             SendMail(emailContent);
         }
 
         private void SendMail(string content)
         {
-            const string Title = "Affiliate_12BET DB checksum - There is an error when summarize data to MemberDaily table.";
+            const string Title = "Affiliate_12BET DB Checksum - There is an error when summarize data to MemberDaily table.";
 
             var email = new MailRecord
             {

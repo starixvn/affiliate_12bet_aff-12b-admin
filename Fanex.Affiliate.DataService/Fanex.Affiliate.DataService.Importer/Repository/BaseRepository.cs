@@ -24,8 +24,8 @@
 
             return new ResultInfo
             {
-                Code = Convert.ToInt32(errorCode),
-                Message = Convert.ToString(errorMessage)
+                Code = errorCode == DBNull.Value ? 0 : Convert.ToInt32(errorCode),
+                Message = errorMessage == DBNull.Value ? string.Empty : Convert.ToString(errorMessage)
             };
         }
 

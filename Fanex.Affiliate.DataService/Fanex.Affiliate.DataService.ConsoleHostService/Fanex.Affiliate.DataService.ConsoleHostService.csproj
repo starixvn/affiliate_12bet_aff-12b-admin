@@ -97,6 +97,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <None Include="sampled_data.csv" />
+    <None Include="Template\DailyMemberEmail.cshtml" />
+    <None Include="Template\DailyMemberIncomeAccessEmail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fanex.Affiliate.DataService.CheckSum\Fanex.Affiliate.DataService.CheckSum.csproj">

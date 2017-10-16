@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections;
-    using System.Collections.Generic;
     using System.IO;
     using System.Net;
     using System.Xml;
@@ -29,17 +28,17 @@
         public ResultInfo ImportData(DateTime date)
         {
             var fileName = DownloadFile(date);
-            return ProcessAndImportData(date, fileName);
-        }
-
-        private ResultInfo ProcessAndImportData(DateTime date, string fileName)
-        {
             var xmlDocument = ConvertCSVToXml(fileName);
 
+            return ProcessImporting(date, xmlDocument.OuterXml);
+        }
+
+        private ResultInfo ProcessImporting(DateTime date, string xmlData)
+        {
             var metaModel = new CasinoDataMetaModel
             {
                 DateImport = date,
-                XmlData = xmlDocument.OuterXml,
+                XmlData = xmlData,
                 AdminId = _appSettings.AdminId
             };
 

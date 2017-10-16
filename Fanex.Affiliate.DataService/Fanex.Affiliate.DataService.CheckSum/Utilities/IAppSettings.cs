@@ -14,6 +14,8 @@
 
         string BccMail { get; }
 
+        string EmailTemplateFolder { get; }
+
         string GetValue(string key);
     }
 }

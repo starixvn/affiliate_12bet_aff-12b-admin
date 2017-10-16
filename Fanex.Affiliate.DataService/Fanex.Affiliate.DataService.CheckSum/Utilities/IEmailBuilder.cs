@@ -1,13 +1,11 @@
 ﻿namespace Fanex.Affiliate.DataService.CheckSum.Utilities
 {
-    using System.Collections.Generic;
-    using DTO;
     using ViewModel;
 
     public interface IEmailBuilder
     {
-        string GenerateDailyMemberContent(DailyMemberViewModel data);
+        string GenerateDailyMemberContent(DailyMemberViewModel data, string emailTemplatePath);
 
-        string GenerateDailyMemberIncomeAccessContent(DailyMemberIncomeAccessViewModel data);
+        string GenerateDailyMemberIncomeAccessContent(DailyMemberIncomeAccessViewModel data, string emailTemplatePath);
     }
 }
