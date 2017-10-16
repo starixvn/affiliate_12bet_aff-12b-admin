@@ -24,7 +24,8 @@ namespace Fanex.Affiliate.DataService.Job
 
                 var _umBusiness = (UMBusiness)dataMap.Get("umBusiness");
                 var umUrl = ConfigurationManager.AppSettings["LBUrl"];
-                if (!string.IsNullOrEmpty(umUrl) && !_umBusiness.isUnderMaintainence(Sites.Aff12Bet, umUrl))
+                var isUm = !string.IsNullOrEmpty(umUrl) && _umBusiness.isUnderMaintainence(Sites.Aff12Bet, umUrl);
+                if (!isUm)
                 {
                     importService.Run();
                     sumService.Run();
