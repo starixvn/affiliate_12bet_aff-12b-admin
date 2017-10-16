@@ -33,6 +33,13 @@
             return ProcessImporting(date, xmlDocument.OuterXml);
         }
 
+        public ResultInfo ImportData(DateTime date, string filePath)
+        {
+            var xmlDocument = ConvertCSVToXml(filePath);
+
+            return ProcessImporting(date, xmlDocument.OuterXml);
+        }
+
         private ResultInfo ProcessImporting(DateTime date, string xmlData)
         {
             var metaModel = new CasinoDataMetaModel
@@ -141,11 +148,6 @@
                 return Convert.ToInt32(hs[colName]);
             else
                 return Convert.ToInt32(hs["\"" + colName + "\""]);
-        }
-
-        public bool ImportData(string filePath)
-        {
-            throw new NotImplementedException();
         }
     }
 }
