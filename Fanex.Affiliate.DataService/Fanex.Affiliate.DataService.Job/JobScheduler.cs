@@ -3,6 +3,7 @@ using Fanex.Affiliate.DataService.CheckSum;
 using Fanex.Affiliate.DataService.Importer;
 using Quartz;
 using Quartz.Impl;
+using Sunplus.UMControllerLibrary;
 
 namespace Fanex.Affiliate.DataService.Job
 {
@@ -15,7 +16,7 @@ namespace Fanex.Affiliate.DataService.Job
             _scheduler = StdSchedulerFactory.GetDefaultScheduler();
         }
 
-        public void Start(IDailyMemberCheckSumRunner dailyMemberCheckSumRunner, IDataImportingRunner dataImportingRunner)
+        public void Start(IDailyMemberCheckSumRunner dailyMemberCheckSumRunner, IDataImportingRunner dataImportingRunner, UMBusiness umBusiness)
         {
             var job = JobBuilder.Create<InHoursJob>()
                 .UsingJobData(new JobDataMap(new Dictionary<string, IDailyMemberCheckSumRunner>
@@ -25,10 +26,14 @@ namespace Fanex.Affiliate.DataService.Job
                 .UsingJobData(new JobDataMap(new Dictionary<string, IDataImportingRunner>
                 {
                     { nameof(dataImportingRunner), dataImportingRunner}
+                }))
+                .UsingJobData(new JobDataMap(new Dictionary<string, UMBusiness>
+                {
+                    { nameof(umBusiness), umBusiness}
                 })).Build();
 
             var trigger = TriggerBuilder.Create()
-                   .WithSimpleSchedule(a => a.WithIntervalInHours(1)
+                    .WithSimpleSchedule(a => a.WithIntervalInHours(1)
                    .RepeatForever())
                    .Build();
 

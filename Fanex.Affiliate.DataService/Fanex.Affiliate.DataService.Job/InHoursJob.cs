@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Configuration;
 using Fanex.Affiliate.DataService.CheckSum;
 using Fanex.Affiliate.DataService.Importer;
 using Fanex.Logging;
 using Quartz;
+using Sunplus.UMControllerLibrary;
 
 namespace Fanex.Affiliate.DataService.Job
 {
@@ -20,8 +22,13 @@ namespace Fanex.Affiliate.DataService.Job
                 var sumService = (IDailyMemberCheckSumRunner)dataMap.Get("dailyMemberCheckSumRunner");
                 var importService = (IDataImportingRunner)dataMap.Get("dataImportingRunner");
 
-                importService.Run();
-                sumService.Run();
+                var _umBusiness = (UMBusiness)dataMap.Get("umBusiness");
+                var umUrl = ConfigurationManager.AppSettings["LBUrl"];
+                if (!string.IsNullOrEmpty(umUrl) && !_umBusiness.isUnderMaintainence(Sites.Aff12Bet, umUrl))
+                {
+                    importService.Run();
+                    sumService.Run();
+                }
             }
             catch (Exception exception)
             {

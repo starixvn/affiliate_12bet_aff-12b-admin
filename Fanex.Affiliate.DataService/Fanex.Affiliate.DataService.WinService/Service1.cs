@@ -4,6 +4,7 @@ using Fanex.Affiliate.DataService.CheckSum;
 using Fanex.Affiliate.DataService.Importer;
 using Fanex.Affiliate.DataService.Job;
 using Fanex.Logging;
+using Sunplus.UMControllerLibrary;
 
 namespace Fanex.Affiliate.DataService.WinService
 {
@@ -12,6 +13,7 @@ namespace Fanex.Affiliate.DataService.WinService
         private readonly IDailyMemberCheckSumRunner _dailyMemberCheckSumRunner;
         private readonly JobScheduler _scheduler;
         private readonly IDataImportingRunner _dataImportingRunner;
+        private readonly UMBusiness _umBusiness;
 
         public Service1()
         {
@@ -19,13 +21,14 @@ namespace Fanex.Affiliate.DataService.WinService
             _scheduler = new JobScheduler();
             _dailyMemberCheckSumRunner = new DailyMemberCheckSumRunner();
             _dataImportingRunner = new DataImportingRunner();
+            _umBusiness = new UMBusiness();
         }
 
         protected override void OnStart(string[] args)
         {
             try
             {
-                _scheduler.Start(_dailyMemberCheckSumRunner, _dataImportingRunner);
+                _scheduler.Start(_dailyMemberCheckSumRunner, _dataImportingRunner, _umBusiness);
             }
             catch (Exception exception)
             {
