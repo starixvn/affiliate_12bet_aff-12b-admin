@@ -32,10 +32,6 @@
         background-image: url(images/bgMain_ko.jpg);
     }
 
-    body.hi-IN {
-        background-image: url(images/bgMain_hi.jpg);
-    }
-
 form {
     padding: 0;
     margin: 0;
