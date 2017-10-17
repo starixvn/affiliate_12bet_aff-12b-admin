@@ -1,0 +1,11 @@
+echo off
+cls
+set DOTNETFX2=%SystemRoot%\Microsoft.NET\Framework\v2.0.50727
+set DOTNETFX4=%SystemRoot%\Microsoft.NET\Framework\v4.0.30319
+set PATH=%PATH%;%DOTNETFX4%;%DOTNETFX2%
+echo Uninstalling Service ... 
+echo ---------------------------------------------------
+InstallUtil /u "D:\Projects\affiliate-12bet\Fanex.Affiliate.DataService\Fanex.Affiliate.DataService.WinService\bin\Debug\Fanex.Affiliate.DataService.WinService.exe"
+echo ---------------------------------------------------
+echo Done.
+pause

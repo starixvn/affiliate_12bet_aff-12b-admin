@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.ServiceProcess;
 using Fanex.Affiliate.DataService.CheckSum;
 using Fanex.Affiliate.DataService.Importer;
@@ -18,6 +19,7 @@ namespace Fanex.Affiliate.DataService.WinService
         public Service1()
         {
             InitializeComponent();
+            Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
             _scheduler = new JobScheduler();
             _dailyMemberCheckSumRunner = new DailyMemberCheckSumRunner();
             _dataImportingRunner = new DataImportingRunner();
