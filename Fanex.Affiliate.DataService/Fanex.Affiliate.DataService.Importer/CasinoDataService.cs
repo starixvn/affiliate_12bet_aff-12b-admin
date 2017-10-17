@@ -62,7 +62,7 @@
                 Directory.CreateDirectory(path);
             }
 
-            var fileName = $"{path}Casino {date.ToString("yyyyMMdd")}{_appSettings.FileExtension}";
+            var fileName = $"{path}Casino_{date.ToString("yyyyMMdd")}{_appSettings.FileExtension}";
             var downloadURL = _appSettings.DailyDataUrl.Replace("{date}", date.ToString("yyyy-MM-dd"));
             using (WebClient wc = new WebClient())
             {

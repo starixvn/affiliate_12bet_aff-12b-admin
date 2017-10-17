@@ -110,6 +110,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="SampleData\Casino_2017-10-14.csv" />
+    <None Include="SampleData\Casino_2017-10-15.csv" />
+    <None Include="SampleData\Casino_2017-10-16.csv" />
+    <None Include="SampleData\sampled_data.csv" />
     <None Include="Template\DailyMemberEmail.cshtml" />
     <None Include="Template\DailyMemberIncomeAccessEmail.cshtml" />
   </ItemGroup>
