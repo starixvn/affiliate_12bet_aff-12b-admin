@@ -56,6 +56,9 @@
 
         private string DownloadFile(DateTime date)
         {
+            ServicePointManager
+    .ServerCertificateValidationCallback +=
+    (sender, cert, chain, sslPolicyErrors) => true;
             var path = $"{_appSettings.PathSaveFile}{date.ToString("yyyy/MM/")}";
             if (!Directory.Exists(path))
             {

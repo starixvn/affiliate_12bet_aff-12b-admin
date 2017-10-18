@@ -27,7 +27,11 @@ namespace Fanex.Affiliate.DataService.Job
                 var isUm = !string.IsNullOrEmpty(umUrl) && _umBusiness.isUnderMaintainence(Sites.Aff12Bet, umUrl);
                 if (!isUm)
                 {
-                    importService.Run();
+                    var importResult = importService.Run();
+                    if (!importResult.IsSuccessful)
+                    {
+                        LogService.Error($"{importResult.Code}\n{importResult.Message}");
+                    }
                     sumService.Run();
                 }
                 else
