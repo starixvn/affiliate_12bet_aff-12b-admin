@@ -130,7 +130,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Fanex.Affiliate.DataService.WinService.exe.PRO.config" />
+    <Content Include="Fanex.Affiliate.DataService.WinService.exe.PRO.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="App.config" />
     <None Include="InstallService.cmd" />
     <None Include="job_scheduling_data_2_0.xsd">
