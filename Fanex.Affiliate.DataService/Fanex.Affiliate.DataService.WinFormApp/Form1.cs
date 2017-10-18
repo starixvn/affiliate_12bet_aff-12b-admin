@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using Fanex.Affiliate.DataService.Importer;
 using Fanex.Data.Configuration;
+using System.Linq;
 
 namespace Fanex.Affiliate.DataService.WinFormApp
 {
@@ -26,16 +27,18 @@ namespace Fanex.Affiliate.DataService.WinFormApp
         {
             Reset();
 
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Title = "Chose File";
-            dialog.Filter = "csv Files(*.csv)|*.csv|All files (*.*)|*.*";
-            dialog.RestoreDirectory = true;
-            dialog.Multiselect = true;
-
-            if (dialog.ShowDialog() == DialogResult.OK)
+            using (var dialog = new OpenFileDialog())
             {
-                _selectedFiles = dialog.FileNames;
-                txtFileName.Text = string.Join(",", _selectedFiles);
+                dialog.Title = "Chose File";
+                dialog.Filter = "csv Files(*.csv)|*.csv|All files (*.*)|*.*";
+                dialog.RestoreDirectory = true;
+                dialog.Multiselect = true;
+
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    _selectedFiles = dialog.FileNames;
+                    txtFileName.Text = string.Join(",", _selectedFiles);
+                }
             }
         }
 
@@ -133,20 +136,12 @@ namespace Fanex.Affiliate.DataService.WinFormApp
         private DateTime? GetDateByFileName(string fileName)
         {
             var fileNameWithoutExtension = Path.GetFileNameWithoutExtension(fileName);
-            var splittingName = fileNameWithoutExtension.Split(new char[] { '_' }, StringSplitOptions.RemoveEmptyEntries);
 
-            if (splittingName.Length < 2)
+            var temp = fileNameWithoutExtension.Replace("Casino ", "");
+            DateTime value;
+            if (DateTime.TryParseExact(temp, DateFormatForFile, cultureInfo, DateTimeStyles.None, out value))
             {
-                return null;
-            }
-
-            var dateInfo = splittingName[1];
-            DateTime date;
-            var success = DateTime.TryParseExact(dateInfo, DateFormatForFile, cultureInfo, DateTimeStyles.None, out date);
-
-            if (success)
-            {
-                return date;
+                return value;
             }
 
             return null;

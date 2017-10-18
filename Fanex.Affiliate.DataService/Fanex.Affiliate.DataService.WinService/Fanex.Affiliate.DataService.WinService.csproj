@@ -138,8 +138,12 @@
     </None>
     <None Include="packages.config" />
     <None Include="sampled_data.csv" />
-    <None Include="Template\DailyMemberEmail.cshtml" />
-    <None Include="Template\DailyMemberIncomeAccessEmail.cshtml" />
+    <Content Include="Template\DailyMemberEmail.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Template\DailyMemberIncomeAccessEmail.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="UninstallService.cmd" />
   </ItemGroup>
   <ItemGroup>
