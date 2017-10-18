@@ -30,6 +30,10 @@ namespace Fanex.Affiliate.DataService.Job
                     importService.Run();
                     sumService.Run();
                 }
+                else
+                {
+                    LogService.Info("12Bet Aff service was suppended by UM");
+                }
             }
             catch (Exception exception)
             {

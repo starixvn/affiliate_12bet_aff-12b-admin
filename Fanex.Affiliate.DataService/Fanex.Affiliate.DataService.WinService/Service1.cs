@@ -30,6 +30,7 @@ namespace Fanex.Affiliate.DataService.WinService
         {
             try
             {
+                LogService.Info("Start 12bet AFF service");
                 _scheduler.Start(_dailyMemberCheckSumRunner, _dataImportingRunner, _umBusiness);
             }
             catch (Exception exception)
@@ -42,6 +43,8 @@ namespace Fanex.Affiliate.DataService.WinService
         {
             try
             {
+                LogService.Info("Stop 12bet AFF service");
+
                 _scheduler.Stop();
             }
             catch (Exception exception)
