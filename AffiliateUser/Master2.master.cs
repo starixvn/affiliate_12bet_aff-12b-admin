@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using System.Web;
 using System.Web.UI;
 
 public partial class Master2 : System.Web.UI.MasterPage
@@ -7,7 +8,8 @@ public partial class Master2 : System.Web.UI.MasterPage
     protected StringBuilder strScript = new StringBuilder();
     protected string langClass = string.Empty;
     protected string rootUrl;
-    protected string serverVariable;
+    protected string rootPath;
+    protected string urlInfo;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -25,9 +27,8 @@ public partial class Master2 : System.Web.UI.MasterPage
         strScript.AppendLine("<script language=\"javascript\" type=\"text/javascript\" src=\"" + rootUrl + "/App_Js/swfobject.js?vers=" + AppSettings.JsVersion + "\"></script>");
         langClass = AppSettings.Session.Language;
 
-        foreach (var key in Request.ServerVariables)
-        {
-            serverVariable += key.ToString() + "; ";
-        }
+        rootPath = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) + ResolveUrl("~/");
+
+        urlInfo = Request.Url.GetLeftPart(UriPartial.Authority);
     }
 }

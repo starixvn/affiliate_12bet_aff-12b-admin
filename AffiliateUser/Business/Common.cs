@@ -408,24 +408,20 @@ public class Common
     }
     public static string RootURL()
     {
-        //string strURL = String.Format("http://{0}{1}", HttpContext.Current.Request.Url.Authority, HttpContext.Current.Request.ApplicationPath);
-        //if (strURL.LastIndexOf("/") == strURL.Length - 1)
-        //    strURL = strURL.Substring(0, strURL.Length - 1);
-        //return strURL;
-
         NameValueCollection variables = HttpContext.Current.Request.ServerVariables;
 
         string domain = variables["SERVER_NAME"];
         string port = variables["SERVER_PORT"];
-        string protocol = HttpContext.Current.Request.IsSecureConnection ? "https://" : "http://";
+
+        var isSecure = HttpContext.Current.Request.IsSecureConnection || String.Equals(variables["HTTP_X_FORWARDED_PROTO"], "https", StringComparison.OrdinalIgnoreCase);
+        string protocol = isSecure ? "https://" : "http://";
 
         var fulldomain = protocol + domain;
         if (AppSettings.LocalTest)
             fulldomain = fulldomain + ":" + port;
         fulldomain = fulldomain + (HttpRuntime.AppDomainAppVirtualPath == "/" ? string.Empty : HttpRuntime.AppDomainAppVirtualPath);
-        return fulldomain;
 
-        //return protocol + domain + ":" + port + (HttpRuntime.AppDomainAppVirtualPath == "/" ? string.Empty : HttpRuntime.AppDomainAppVirtualPath);
+        return fulldomain;
     }
     public static string HTMLEncode(string text)
     {
