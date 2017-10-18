@@ -93,6 +93,8 @@ namespace Fanex.Affiliate.DataService.WinFormApp
                     {
                         errorMessage.AppendLine($"File Not Found - Date: {fromDate.Date}");
                     }
+
+                    errorMessage.Append(exception.Message);
                 }
 
                 fromDate = fromDate.AddDays(1);
