@@ -51,9 +51,6 @@
     </script>
 </head>
 <body class="<%=langClass%>">
-    <input type="hidden" id="urlInfo" value="<%=urlInfo%>" />
-    <input type="hidden" id="rootPath" value="<%=rootPath%>" />
-    <input type="hidden" id="GetLeftPart" value="<%=Request.Url.GetLeftPart(UriPartial.Authority)%>" />
     <input type="hidden" id="rootUrl" value="<%=rootUrl%>" />
     <div style="background-color: White">
         <%=strScript.ToString()%>
