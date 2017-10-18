@@ -227,6 +227,9 @@
     <Content Include="App_Data\SampleData\Casino_2017-10-15.csv" />
     <Content Include="App_Data\SampleData\Casino_2017-10-16.csv" />
     <Content Include="App_Data\SampleData\Casino_2017-10-18.csv" />
+    <Content Include="App_Data\SampleData\Casino_2017-10-17.csv" />
+    <Content Include="App_Data\SampleData\Casino_2017-10-19.csv" />
+    <Content Include="App_Data\SampleData\Casino_2017-10-20.csv" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
