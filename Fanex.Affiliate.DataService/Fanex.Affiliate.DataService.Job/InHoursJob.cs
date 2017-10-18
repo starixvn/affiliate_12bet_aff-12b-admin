@@ -36,7 +36,7 @@ namespace Fanex.Affiliate.DataService.Job
                 }
                 else
                 {
-                    LogService.Info("12Bet Aff service was suppended by UM");
+                    LogService.Info("12Bet Aff service was suspended by UM");
                 }
             }
             catch (Exception exception)
