@@ -114,8 +114,12 @@
     <None Include="SampleData\Casino_2017-10-15.csv" />
     <None Include="SampleData\Casino_2017-10-16.csv" />
     <None Include="SampleData\sampled_data.csv" />
-    <None Include="Template\DailyMemberEmail.cshtml" />
-    <None Include="Template\DailyMemberIncomeAccessEmail.cshtml" />
+    <Content Include="Template\DailyMemberEmail.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Template\DailyMemberIncomeAccessEmail.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -127,7 +131,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\SpName.xml" />
+    <Content Include="App_Data\SpName.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

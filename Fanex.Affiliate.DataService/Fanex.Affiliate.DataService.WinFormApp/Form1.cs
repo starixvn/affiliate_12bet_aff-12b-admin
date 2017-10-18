@@ -61,8 +61,8 @@ namespace Fanex.Affiliate.DataService.WinFormApp
         private string ImportByDate()
         {
             var errorMessage = new StringBuilder();
-            var fromDate = fromDatePicker.Value;
-            var toDate = toDatePicker.Value;
+            var fromDate = fromDatePicker.Value.Date;
+            var toDate = toDatePicker.Value.Date;
 
             if (fromDate > toDate)
             {
@@ -121,7 +121,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp
                 }
                 else
                 {
-                    var result = service.ImportData(date.GetValueOrDefault(), file);
+                    var result = service.ImportData(date.GetValueOrDefault().Date, file);
 
                     if (!result.IsSuccessful)
                     {
@@ -155,6 +155,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp
         private void rdImportByFiles_CheckedChanged(object sender, EventArgs e)
         {
             _selectedFiles = null;
+            txtFileName.Text = string.Empty;
 
             ToggleImportByFilesArea(rdImportByFiles.Checked);
         }

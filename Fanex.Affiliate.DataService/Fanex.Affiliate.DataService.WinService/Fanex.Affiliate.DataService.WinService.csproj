@@ -146,7 +146,6 @@
     <Content Include="Template\DailyMemberIncomeAccessEmail.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="UninstallService.cmd" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fanex.Affiliate.DataService.CheckSum\Fanex.Affiliate.DataService.CheckSum.csproj">
@@ -163,7 +162,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\SpName.xml" />
+    <Content Include="App_Data\SpName.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ProjectInstaller.resx">
