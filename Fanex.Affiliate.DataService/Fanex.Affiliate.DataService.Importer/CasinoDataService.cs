@@ -33,6 +33,13 @@
             return ProcessImporting(date, xmlDocument.OuterXml);
         }
 
+        public ResultInfo ImportData(DateTime date, string filePath)
+        {
+            var xmlDocument = ConvertCSVToXml(filePath);
+
+            return ProcessImporting(date, xmlDocument.OuterXml);
+        }
+
         private ResultInfo ProcessImporting(DateTime date, string xmlData)
         {
             var metaModel = new CasinoDataMetaModel
@@ -49,6 +56,9 @@
 
         private string DownloadFile(DateTime date)
         {
+            ServicePointManager
+    .ServerCertificateValidationCallback +=
+    (sender, cert, chain, sslPolicyErrors) => true;
             var path = $"{_appSettings.PathSaveFile}{date.ToString("yyyy/MM/")}";
             if (!Directory.Exists(path))
             {
@@ -141,11 +151,6 @@
                 return Convert.ToInt32(hs[colName]);
             else
                 return Convert.ToInt32(hs["\"" + colName + "\""]);
-        }
-
-        public bool ImportData(string filePath)
-        {
-            throw new NotImplementedException();
         }
     }
 }
