@@ -15,10 +15,10 @@ namespace Fanex.Affiliate.DataService.LocalAPI.Controllers
             return "HelloWord";
         }
 
-        [System.Web.Http.HttpGet]
-        public HttpResponseMessage Download(string fileName)
+        [HttpGet]
+        public HttpResponseMessage Download()
         {
-            var path = HttpContext.Current.Server.MapPath($"~/App_Data/SampleData/{fileName}");
+            var path = HttpContext.Current.Server.MapPath($"~/App_Data/SampleData/CasinoData.csv");
 
             HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
             var stream = new FileStream(path, FileMode.Open, FileAccess.Read);
@@ -26,7 +26,7 @@ namespace Fanex.Affiliate.DataService.LocalAPI.Controllers
             result.Content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
             result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
             {
-                FileName = fileName
+                FileName = "FileName.csv"
             };
 
             return result;
