@@ -185,6 +185,7 @@
     <Compile Include="Business\DataHandler\Common.cs" />
     <Compile Include="Business\DataHandler\Banner.cs" />
     <Compile Include="Business\Helper\LogHelper.cs" />
+    <Compile Include="Business\Helper\UrlHelper.cs" />
     <Compile Include="Business\Services\Authorization\InternalLoginService.cs" />
     <Compile Include="Business\Services\Authorization\AuthHelper.cs" />
     <Compile Include="Business\Services\Authorization\LoginService.cs" />

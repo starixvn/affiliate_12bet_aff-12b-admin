@@ -19,14 +19,16 @@ namespace AffiliateAdmin.Business.Helpers
         public static string GetUrlFromHostNamePattern(string hostNamePattern)
         {
             var hostName = HttpContext.Current.Request.Url.Host;
-            if (hostName.Equals("localhost"))
+            if (string.Equals(hostName, "localhost", StringComparison.OrdinalIgnoreCase))
             {
                 return hostNamePattern;
             }
 
+            var protocol = GetProtocol();
+
             return AppSettings.LocalTest ?
-                string.Format(hostNamePattern, GetProtocol(), HttpContext.Current.Request.ServerVariables["SERVER_PORT"]) :
-                string.Format(hostNamePattern, GetProtocol());
+                string.Format(hostNamePattern, protocol, HttpContext.Current.Request.ServerVariables["SERVER_PORT"]) :
+                string.Format(hostNamePattern, protocol);
         }
     }
 }

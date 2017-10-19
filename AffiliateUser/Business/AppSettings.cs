@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Xml;
 using Affiliate;
+using AffiliateUser.Business.Helper;
 using DNAide.Core;
 
 /// <summary>
@@ -501,8 +502,33 @@ public static class AppSettings
     {
         get
         {
-            return GetValue("BannerUrl");
+            return UrlHelper.GetUrlFromHostNamePattern(GetValue("BannerUrl"));
         }
+    }
+
+    public static string MediaUrl
+    {
+        get { return UrlHelper.GetUrlFromHostNamePattern(GetValue("MediaUrl")); }
+    }
+
+    public static string MediaUrlCS
+    {
+        get { return UrlHelper.GetUrlFromHostNamePattern(GetValue("MediaUrl_CS")); }
+    }
+
+    public static string MediaUrlTH
+    {
+        get { return UrlHelper.GetUrlFromHostNamePattern(GetValue("MediaUrl_TH")); }
+    }
+
+    public static string MediaUrlVI
+    {
+        get { return UrlHelper.GetUrlFromHostNamePattern(GetValue("MediaUrl_VI")); }
+    }
+
+    public static string MediaUrlEU
+    {
+        get { return UrlHelper.GetUrlFromHostNamePattern(GetValue("MediaUrl_EU")); }
     }
 
     public static bool ShowCasino
