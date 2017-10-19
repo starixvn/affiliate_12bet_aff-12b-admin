@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text.RegularExpressions;
 using System.Web;
 
 namespace AffiliateAdmin.Business.Helpers
@@ -17,17 +16,17 @@ namespace AffiliateAdmin.Business.Helpers
             return IsSecureConnection() ? Uri.UriSchemeHttps : Uri.UriSchemeHttp;
         }
 
-        public static string GetLeftPart()
+        public static string GetUrlFromHostNamePattern(string hostNamePattern)
         {
-            return GetProtocol() + Uri.SchemeDelimiter;
-        }
+            var hostName = HttpContext.Current.Request.Url.Host;
+            if (hostName.Equals("localhost"))
+            {
+                return hostNamePattern;
+            }
 
-        public static string GetUrlFromHostName(string hostName)
-        {
-            var pattern = @"^(http:\/\/|https:\/\/)";
-            hostName = Regex.Replace(hostName, pattern, string.Empty);
-
-            return GetLeftPart() + hostName;
+            return AppSettings.LocalTest ?
+                string.Format(hostNamePattern, GetProtocol(), HttpContext.Current.Request.ServerVariables["SERVER_PORT"]) :
+                string.Format(hostNamePattern, GetProtocol());
         }
     }
 }

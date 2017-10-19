@@ -23,7 +23,7 @@ public static class AppSettings
     {
         get
         {
-            return GetValue("BannerUrl");
+            return UrlHelper.GetUrlFromHostNamePattern(GetValue("BannerUrl"));
         }
     }
 
@@ -188,7 +188,7 @@ public static class AppSettings
     {
         get
         {
-            return UrlHelper.GetUrlFromHostName(GetValue("internalEuropeanAffiliateURL"));
+            return UrlHelper.GetUrlFromHostNamePattern(GetValue("internalEuropeanAffiliateURL"));
         }
     }
 
@@ -196,7 +196,7 @@ public static class AppSettings
     {
         get
         {
-            return UrlHelper.GetUrlFromHostName(GetValue("internalAsianAffiliateURL"));
+            return UrlHelper.GetUrlFromHostNamePattern(GetValue("internalAsianAffiliateURL"));
         }
     }
 
@@ -220,7 +220,7 @@ public static class AppSettings
     {
         get
         {
-            return UrlHelper.GetUrlFromHostName(GetValue("EuropeanAffiliateURL"));
+            return UrlHelper.GetUrlFromHostNamePattern(GetValue("EuropeanAffiliateURL"));
         }
     }
 
@@ -228,7 +228,7 @@ public static class AppSettings
     {
         get
         {
-            return UrlHelper.GetUrlFromHostName(GetValue("AsianAffiliateURL"));
+            return UrlHelper.GetUrlFromHostNamePattern(GetValue("AsianAffiliateURL"));
         }
     }
 
