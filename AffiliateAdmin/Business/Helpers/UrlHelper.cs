@@ -27,7 +27,7 @@ namespace AffiliateAdmin.Business.Helpers
             var protocol = GetProtocol();
 
             return AppSettings.LocalTest ?
-                string.Format(hostNamePattern, protocol, HttpContext.Current.Request.ServerVariables["SERVER_PORT"]) :
+                string.Format(hostNamePattern, protocol, HttpContext.Current.Request.Url.Port) :
                 string.Format(hostNamePattern, protocol);
         }
     }
