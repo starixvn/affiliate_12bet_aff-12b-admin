@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Data;
 using System.Globalization;
 using System.IO;
@@ -408,20 +407,7 @@ public class Common
     }
     public static string RootURL()
     {
-        NameValueCollection variables = HttpContext.Current.Request.ServerVariables;
-
-        string domain = variables["SERVER_NAME"];
-        string port = variables["SERVER_PORT"];
-
-        var isSecure = HttpContext.Current.Request.IsSecureConnection || String.Equals(variables["HTTP_X_FORWARDED_PROTO"], "https", StringComparison.OrdinalIgnoreCase);
-        string protocol = isSecure ? "https://" : "http://";
-
-        var fulldomain = protocol + domain;
-        if (AppSettings.LocalTest)
-            fulldomain = fulldomain + ":" + port;
-        fulldomain = fulldomain + (HttpRuntime.AppDomainAppVirtualPath == "/" ? string.Empty : HttpRuntime.AppDomainAppVirtualPath);
-
-        return fulldomain;
+        return "~";
     }
     public static string HTMLEncode(string text)
     {
