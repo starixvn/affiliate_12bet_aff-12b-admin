@@ -202,7 +202,6 @@
     <Compile Include="Business\Helpers\BannerHelper.cs" />
     <Compile Include="Business\Helpers\LogHelper.cs" />
     <Compile Include="Business\Helpers\MimeTypeHelper.cs" />
-    <Compile Include="Business\Helpers\UrlHelper.cs" />
     <Compile Include="Business\Models\Core\ResultInfo.cs" />
     <Compile Include="Business\Services\AccountPolicyService.cs" />
     <Compile Include="Business\Services\ActiveMemberService.cs" />

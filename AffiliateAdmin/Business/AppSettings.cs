@@ -3,7 +3,6 @@ using System.Configuration;
 using System.IO;
 using System.Web;
 using System.Xml;
-using AffiliateAdmin.Business.Helpers;
 using DNAide.Core;
 
 /// <summary>
@@ -23,7 +22,7 @@ public static class AppSettings
     {
         get
         {
-            return UrlHelper.GetUrlFromHostNamePattern(GetValue("BannerUrl"));
+            return GetValue("BannerUrl");
         }
     }
 
@@ -188,7 +187,7 @@ public static class AppSettings
     {
         get
         {
-            return UrlHelper.GetUrlFromHostNamePattern(GetValue("internalEuropeanAffiliateURL"));
+            return GetValue("internalEuropeanAffiliateURL");
         }
     }
 
@@ -196,7 +195,7 @@ public static class AppSettings
     {
         get
         {
-            return UrlHelper.GetUrlFromHostNamePattern(GetValue("internalAsianAffiliateURL"));
+            return GetValue("internalAsianAffiliateURL");
         }
     }
 
@@ -220,7 +219,7 @@ public static class AppSettings
     {
         get
         {
-            return UrlHelper.GetUrlFromHostNamePattern(GetValue("EuropeanAffiliateURL"));
+            return GetValue("EuropeanAffiliateURL");
         }
     }
 
@@ -228,7 +227,7 @@ public static class AppSettings
     {
         get
         {
-            return UrlHelper.GetUrlFromHostNamePattern(GetValue("AsianAffiliateURL"));
+            return GetValue("AsianAffiliateURL");
         }
     }
 
