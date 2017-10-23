@@ -412,7 +412,11 @@ public class Common
 
     public static string GetFullDomain()
     {
-        return HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority);
+        var domainName = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority);
+
+        var fulldomain = domainName + (HttpRuntime.AppDomainAppVirtualPath == "/" ? string.Empty : HttpRuntime.AppDomainAppVirtualPath);
+
+        return fulldomain;
     }
 
     public static string HTMLEncode(string text)
