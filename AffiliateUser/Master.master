@@ -87,13 +87,11 @@
                 if (document.getElementById("right_pane").style.display == 'none') {
                     document.getElementById("right_pane").style.display = 'block';
                     document.getElementById("contents_main").setAttribute("style", "width:644px");
-                    document.getElementById("contents").setAttribute("style", "width:627px");
                     document.getElementById("imgRightPanel").src = Site.rootUrl + '/App_Themes/Default/Images/expand-ico.png';
                 }
                 else {
                     document.getElementById("right_pane").style.display = 'none';                    
                     document.getElementById("contents_main").setAttribute("style", "width:918px");
-                    document.getElementById("contents").setAttribute("style", "width:901px");
                     document.getElementById("imgRightPanel").src = Site.rootUrl + '/App_Themes/Default/Images/collapse-ico.png';
                 }
             }

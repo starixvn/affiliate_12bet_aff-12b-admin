@@ -21,8 +21,8 @@
             <td valign="top" bgcolor="#fdfdfd">
                 <div id="para_content">
                     <p class="justify">
-                        The <a href="<%=Common.RootURL() %>">
-                            <%=Common.RootURL() %>
+                        The <a href="<%=Common.GetFullDomain() %>">
+                            <%=Common.GetFullDomain() %>
                         </a>Partnership Gateway gives you access to earning exciting revenues from Pacific
                         Sea Invests SA.
                     </p>

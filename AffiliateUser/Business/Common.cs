@@ -407,31 +407,12 @@ public class Common
     }
     public static string RootURL()
     {
-        var rootUrl = VirtualPathUtility.ToAbsolute("~/");
-        if (rootUrl.EndsWith("/"))
-        {
-            rootUrl = rootUrl.Remove(rootUrl.Length - 1);
-        }
-
-        return rootUrl;
+        return VirtualPathUtility.ToAbsolute("~/");
     }
 
     public static string GetFullDomain()
     {
-        var serverVariables = HttpContext.Current.Request.ServerVariables;
-
-        string domain = serverVariables["SERVER_NAME"];
-        string port = serverVariables["SERVER_PORT"];
-
-        var isSecure = HttpContext.Current.Request.IsSecureConnection || String.Equals(serverVariables["HTTP_X_FORWARDED_PROTO"], "https", StringComparison.OrdinalIgnoreCase);
-        string protocol = isSecure ? "https://" : "http://";
-
-        var fulldomain = protocol + domain;
-        if (AppSettings.LocalTest)
-            fulldomain = fulldomain + ":" + port;
-        fulldomain = fulldomain + (HttpRuntime.AppDomainAppVirtualPath == "/" ? string.Empty : HttpRuntime.AppDomainAppVirtualPath);
-
-        return fulldomain;
+        return HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority);
     }
 
     public static string HTMLEncode(string text)
