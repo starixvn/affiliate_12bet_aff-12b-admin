@@ -29,7 +29,8 @@ public partial class Recoverpw : RootPage
                 int result = DataHandler.Auth.ExecChangePassword(CastAide.AsInt32(id), vid, newpw, ref errmsg, ref email, ref username, ref firstname, ref lastname, ref strPreferredLanguage, ref mailOption);
                 if (result == 0)
                 {
-                    string url = "<a href='{url}'>{url}</a>".Replace("{url}", Common.GetFullDomain());
+                    var fullDomainName = Common.GetFullDomain();
+                    string url = $"<a href=\"{fullDomainName}\">{fullDomainName}</a>";
 
                     var mailService = new RecoverPasswordMailService
                     {
@@ -58,7 +59,7 @@ public partial class Recoverpw : RootPage
             else
             {
                 string err = Resources.Lang.ErrMsgForgetPwFail;
-                TemplateHandler.Assign(ref err, "here", Common.GetFullDomain() + "/ForgetPass.aspx");
+                TemplateHandler.Assign(ref err, "here", Common.RootURL() + "ForgetPass.aspx");
                 Literal1.Text = err;
             }
         }

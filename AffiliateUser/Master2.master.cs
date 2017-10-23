@@ -11,8 +11,8 @@ public partial class Master2 : System.Web.UI.MasterPage
     protected void Page_Load(object sender, EventArgs e)
     {
         rootUrl = Common.RootURL();
-        string strCssLink1 = rootUrl + "App_Themes/Aff12bet.ico?v=" + AppSettings.JsVersion;
-        string strCssLink2 = rootUrl + "App_Themes/Aff12bet.png?v=" + AppSettings.JsVersion;
+        string strCssLink1 = $"{rootUrl}App_Themes/Aff12bet.ico?v={AppSettings.JsVersion}";
+        string strCssLink2 = $"{rootUrl}App_Themes/Aff12bet.png?v={AppSettings.JsVersion}";
         string link1 = "<link href=\"" + strCssLink1 + "\" rel=\"shortcut icon\"/>";
         string link2 = "<![if ! IE]><link href=\"" + strCssLink2 + "\" rel=\"shortcut icon\"/><![endif]>";
         Page.Header.Controls.AddAt(2, new LiteralControl(link1));
