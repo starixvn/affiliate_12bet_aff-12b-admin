@@ -26,7 +26,7 @@ namespace Affiliate.MailServices
             TemplateHandler.Assign(ref strMail, "password", NewPassword);
             TemplateHandler.Assign(ref strMail, "url", Url);
             TemplateHandler.Assign(ref strMail, "mailadd", AppSettings.MailContact);
-            TemplateHandler.Assign(ref strMail, "rooturl", Common.GetFullDomain());
+            TemplateHandler.Assign(ref strMail, "rooturl", Common.CurrentRootAddress());
             TemplateHandler.Assign(ref strMail, "lang", PreferredLanguage);
             string strSubject = TemplateHandler.ReplaceBlock(ref strMail, "subject", "");
 

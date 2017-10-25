@@ -22,7 +22,7 @@ namespace Affiliate.MailServices
             TemplateHandler.Assign(ref strRegisMail, "fname", FirstName);
             TemplateHandler.Assign(ref strRegisMail, "lname", LastName);
             TemplateHandler.Assign(ref strRegisMail, "mailadd", AppSettings.MailContact);
-            TemplateHandler.Assign(ref strRegisMail, "rooturl", Common.GetFullDomain());
+            TemplateHandler.Assign(ref strRegisMail, "rooturl", Common.CurrentRootAddress());
             TemplateHandler.Assign(ref strRegisMail, "lang", preferLang);
             string strRegisSubject = TemplateHandler.ReplaceBlock(ref strRegisMail, "subject", "");
 

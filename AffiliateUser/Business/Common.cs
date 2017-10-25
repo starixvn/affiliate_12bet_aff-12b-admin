@@ -15,6 +15,7 @@ using DNAide.Web;
 using ONEbook.UM.Models;
 using ONEbook.UM.Services.Impl;
 using Resources;
+using System.Web.UI;
 
 /// <summary>
 /// Summary description for Common
@@ -489,9 +490,10 @@ public class Common
         return VirtualPathUtility.ToAbsolute("~/");
     }
 
-    public static string GetFullDomain()
+    public static string CurrentRootAddress()
     {
-        return HttpContext.Current.Request.Url.Host;
+        var request = HttpContext.Current.Request;
+        return $"http{((request.IsSecureConnection) ? "s" : string.Empty)}://{request.Url.Host}";
     }
 
     public static string HTMLEncode(string text)

@@ -20,7 +20,7 @@
                 <div id="para_content">
                     <p class="justify">
                         The <a href="<%=Common.RootURL() %>">
-                            <%=Common.GetFullDomain() %>
+                            <%=Common.CurrentRootAddress() %>
                         </a>Partnership Gateway gives you access to earning exciting revenues from Pacific
                         Sea Invests SA.
                     </p>

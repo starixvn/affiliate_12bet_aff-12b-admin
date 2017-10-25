@@ -29,7 +29,7 @@ public partial class Recoverpw : RootPage
                 int result = DataHandler.Auth.ExecChangePassword(CastAide.AsInt32(id), vid, newpw, ref errmsg, ref email, ref username, ref firstname, ref lastname, ref strPreferredLanguage, ref mailOption);
                 if (result == 0)
                 {
-                    var fullDomainName = Common.GetFullDomain();
+                    var fullDomainName = Common.CurrentRootAddress();
                     var url = $"<a href=\"{fullDomainName}\">{fullDomainName}</a>";
 
                     var mailService = new RecoverPasswordMailService

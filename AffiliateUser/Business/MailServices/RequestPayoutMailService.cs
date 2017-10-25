@@ -44,7 +44,7 @@ namespace Affiliate.MailServices
                 AppSettings.Session.LastName,
                 FormatHandler.FormatNumber2(Amt, "en-US"), TransId.ToString(),
                 AppSettings.MailContact, DateFormat.ShortDateFormat(DtmWinlostDate),
-                Common.GetFullDomain(), AppSettings.Session.PreferLang };
+                Common.CurrentRootAddress(), AppSettings.Session.PreferLang };
             string strContent = TemplateHandler.LoadHtml(fileName, strTags, strValue).Replace("\r\n", "");
             string strSubject = TemplateHandler.ReplaceBlock(ref strContent, "subject", "").Replace("\r\n", "").Trim();
 
