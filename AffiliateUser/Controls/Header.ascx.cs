@@ -164,7 +164,7 @@ public partial class Controls_Header : RootControl
         _s.Append("Name: \"" + Resources.Lang.NameIsInvalid + "\"," + _nl);
         _s.Append("Comment: \"" + Resources.Lang.CommentsIsInvalid + "\"," + _nl);
         _s.Append("Subject: \"" + Resources.Lang.SubjectIsInvalid + "\"," + _nl);
-        _s.Append("RootUrl : \"" + Common.GetFullDomain() + "\"," + _nl);
+        _s.Append("RootUrl : \"" + Common.RootURL() + "\"," + _nl);
 
         _s.Append("language: \"" + "\"" + _nl);
 
