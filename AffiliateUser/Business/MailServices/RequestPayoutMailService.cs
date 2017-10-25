@@ -40,7 +40,11 @@ namespace Affiliate.MailServices
             }
 
             string[] strTags = { "fname", "lname", "amount", "transid", "csdemail", "date", "rooturl", "lang" };
-            string[] strValue = { AppSettings.Session.FirstName, AppSettings.Session.LastName, FormatHandler.FormatNumber2(Amt, "en-US"), TransId.ToString(), AppSettings.MailContact, DateFormat.ShortDateFormat(DtmWinlostDate), Common.GetFullDomain(), AppSettings.Session.PreferLang };
+            string[] strValue = { AppSettings.Session.FirstName,
+                AppSettings.Session.LastName,
+                FormatHandler.FormatNumber2(Amt, "en-US"), TransId.ToString(),
+                AppSettings.MailContact, DateFormat.ShortDateFormat(DtmWinlostDate),
+                Common.GetFullDomain(), AppSettings.Session.PreferLang };
             string strContent = TemplateHandler.LoadHtml(fileName, strTags, strValue).Replace("\r\n", "");
             string strSubject = TemplateHandler.ReplaceBlock(ref strContent, "subject", "").Replace("\r\n", "").Trim();
 

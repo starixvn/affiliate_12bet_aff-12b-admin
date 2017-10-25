@@ -491,17 +491,7 @@ public class Common
 
     public static string GetFullDomain()
     {
-        var url = HttpContext.Current.Request.Url;
-        var domainName = $"{url.Scheme}{Uri.SchemeDelimiter}{url.Host}";
-
-        if (AppSettings.LocalTest)
-        {
-            domainName = $"{domainName}:{url.Port}";
-        }
-
-        var fulldomain = domainName + (HttpRuntime.AppDomainAppVirtualPath == "/" ? string.Empty : HttpRuntime.AppDomainAppVirtualPath);
-
-        return fulldomain;
+        return HttpContext.Current.Request.Url.Host;
     }
 
     public static string HTMLEncode(string text)

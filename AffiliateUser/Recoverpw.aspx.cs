@@ -30,7 +30,7 @@ public partial class Recoverpw : RootPage
                 if (result == 0)
                 {
                     var fullDomainName = Common.GetFullDomain();
-                    string url = $"<a href=\"{fullDomainName}\">{fullDomainName}</a>";
+                    var url = $"<a href=\"{fullDomainName}\">{fullDomainName}</a>";
 
                     var mailService = new RecoverPasswordMailService
                     {
