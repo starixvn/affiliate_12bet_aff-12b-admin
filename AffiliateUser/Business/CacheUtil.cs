@@ -12,6 +12,8 @@ public class CacheUtil
     private static string bannerTypesKey = "bannerTypesKey";
     private static string bannerTypesKeyOld = "bannerTypesKeyOld";
 
+    private const string DefaultHotNewKey = "hotNewsKey_en-US";
+
     public static string GetLatestHotNews(out bool isImportant)
     {
         var key = hotNewsKey + "_" + AppSettings.Session.Language;
@@ -19,7 +21,7 @@ public class CacheUtil
         if (hotNews == null)
         {
             LoadHotNews();
-            hotNews = CacheHelper.Get<string>(key);
+            hotNews = CacheHelper.Get<string>(key) ?? CacheHelper.Get<string>(DefaultHotNewKey);
         }
 
         isImportant = Convert.ToBoolean(CacheHelper.Get<object>(importantKeys));
