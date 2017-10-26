@@ -62,7 +62,7 @@ public partial class Controls_Header : RootControl
         TemplateHandler.Assign(ref navTpl, "my-home", Resources.Lang.Home);
         TemplateHandler.Assign(ref navTpl, "sign-up", Resources.Lang.SignUp);
         TemplateHandler.Assign(ref navTpl, "prog-details", Resources.Lang.ProgDetails);
-        TemplateHandler.Assign(ref   navTpl, "faqs", Resources.Lang.Faqs);
+        TemplateHandler.Assign(ref navTpl, "faqs", Resources.Lang.Faqs);
         TemplateHandler.Assign(ref navTpl, "contact-us", Resources.Lang.ContactUs);
         TemplateHandler.Assign(ref navTpl, "about-us", Resources.Lang.AboutUs);
         TemplateHandler.Assign(ref navTpl, "home-url", Common.RootURL());
@@ -172,7 +172,6 @@ public partial class Controls_Header : RootControl
 
         _s.Append("};");
         strErrMsg = _s.ToString();
-        //Response.Write("<script type='text/javascript'>" + _nl + _s.ToString() + _nl + "</script>" + _nl);
 
 
         this.MainNavHtml.Text = navTpl;
@@ -191,14 +190,12 @@ public partial class Controls_Header : RootControl
         bool isImportant;
         string latestews = CacheUtil.GetLatestHotNews(out isImportant);
         Page.ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + latestews + "');", true);
-        //ScriptManager.RegisterStartupScript(this, this.GetType(), Guid.NewGuid().ToString("N"), "alert('" + latestews + "');", true);
-        
+
         string textStyle = "text_hotnews";
         StringBuilder news = new StringBuilder();
-        string url = String.Format(Common.RootURL() + "/UserInfo/Message.aspx");
+        string url = String.Format(Common.RootURL() + "UserInfo/Message.aspx");
         if (!string.IsNullOrEmpty(latestews))
         {
-            //imgHotNews.Src = "../App_Themes/Default/Images/hotnews_" + AppSettings.Session.Language + ".gif";
             if (isImportant)
             {
                 textStyle += "_important";
@@ -207,26 +204,12 @@ public partial class Controls_Header : RootControl
             if (AppSettings.Session.CustID == -1)
             {
                 news.Append("<span class=\"" + textStyle + "\" id=\"topnews\">" + latestews + "</span>");
-                //news.Append(string.Format("<div class={0}><marquee onMouseover='this.scrollAmount=2;' onMouseout='this.scrollAmount=3;' scrollAmount='3'>", textStyle));
-                //news.Append(latestews);
-                //news.Append("</marquee></div>");
             }
             else
             {
                 news.Append("<a class=\"" + textStyle + "\" id=\"topnews\" href=\"" + url + "\">" + latestews + "</a>");
-                //string url = String.Format(Common.RootURL() + "/UserInfo/Message.aspx");
-
-                //news.Append("<a class='link_hotnews' href='");
-                //news.Append(url);
-                //news.Append("'>");
-                //news.Append(string.Format("<div class={0}><marquee style='cursor:pointer;' onMouseover='this.scrollAmount=2;' onMouseout='this.scrollAmount=3;' scrollAmount='3'>", textStyle));
-                //news.Append(latestews);
-                //news.Append("</marquee></div>");
-                //news.Append("</a>");
             }
         }
-        //else
-        //    imgHotNews.Visible = false;
         hotnews = news.ToString();
     }
     protected string GetLangCss()

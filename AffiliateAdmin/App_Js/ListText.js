@@ -209,6 +209,16 @@ function ActiveEdit(textid, noRow, deviceType) {
     }
 }
 
+function onSubmitToUpdate(event) {
+    event.preventDefault();
+    if ($("textvalue").value === "") {
+        alert("Please input text to update.");
+        return false;
+    }
+
+    return event.target.submit();
+}
+
 function CancelEdit(deviceType) {
     try {
         var ajax = new Ajax.Request("../Handler/GetViewedText.ashx", {

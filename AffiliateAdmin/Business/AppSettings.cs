@@ -215,14 +215,6 @@ public static class AppSettings
         }
     }
 
-    public static string UrlAffSite
-    {
-        get
-        {
-            return GetValue("UrlAffSite");
-        }
-    }
-
     public static string EuropeanAffiliateURL
     {
         get

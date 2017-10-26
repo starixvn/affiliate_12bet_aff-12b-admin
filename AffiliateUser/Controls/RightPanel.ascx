@@ -108,7 +108,7 @@
         <div style="float:left"><%=Resources.Lang.Faqs %></div>
         <div style="float:right;width:30px;">
             <a href="#" style="width:22px;height:22px;" onclick="OnOutline();">
-                <img src="<%=Common.RootURL()%>/<%=AppSettings.ThemeDir %>/Images/expand.png" class="outline-img" id="imgOutline" /> 
+                <img src="<%=Common.RootURL()%><%=AppSettings.ThemeDir %>/Images/expand.png" class="outline-img" id="imgOutline" /> 
             </a> 
         </div>
         </div>
@@ -125,12 +125,12 @@
 </div>
 <div class="box_right">
     <div class="box_right_header">
-        <a href="#" onclick="javascript:window.open('<%=Common.RootURL()%>/Promotional.aspx','_blank','scrollbars=yes,resizable=yes,width=810,height=610',false);" class="outline-a full-a"><%=Resources.Lang.Promotional %></a>
+        <a href="#" onclick="javascript:window.open('<%=Common.RootURL()%>Promotional.aspx','_blank','scrollbars=yes,resizable=yes,width=810,height=610',false);" class="outline-a full-a"><%=Resources.Lang.Promotional %></a>
     </div>
 </div>
 <div class="box_right">
     <div class="box_right_header">
-        <a href="#" onclick="javascript:window.open('<%=Common.RootURL()%>/Customized.aspx','_blank','scrollbars=yes,resizable=yes,width=1000,height=410',false);" class="outline-a full-a"><%=Resources.Lang.Customized %></a>
+        <a href="#" onclick="javascript:window.open('<%=Common.RootURL()%>Customized.aspx','_blank','scrollbars=yes,resizable=yes,width=1000,height=410',false);" class="outline-a full-a"><%=Resources.Lang.Customized %></a>
     </div>
 </div>
 
@@ -143,11 +143,11 @@
             if (document.getElementById("dvOutline")) {
                 if (document.getElementById("dvOutline").style.display == 'none') {
                     document.getElementById("dvOutline").style.display = 'block';
-                    document.getElementById("imgOutline").src = '<%=Common.RootURL()%>/<%=AppSettings.ThemeDir %>/Images/clollapse.png';
+                    document.getElementById("imgOutline").src = '<%=Common.RootURL()%><%=AppSettings.ThemeDir %>/Images/clollapse.png';
                 }
                 else {
                     document.getElementById("dvOutline").style.display = 'none';
-                    document.getElementById("imgOutline").src = '<%=Common.RootURL()%>/<%=AppSettings.ThemeDir %>/Images/expand.png';
+                    document.getElementById("imgOutline").src = '<%=Common.RootURL()%><%=AppSettings.ThemeDir %>/Images/expand.png';
                 }
             }
         }
@@ -156,11 +156,11 @@
             if (document.getElementById("right_pane")) {
                 if (document.getElementById("right_pane").style.display == 'none') {
                     document.getElementById("right_pane").style.display = 'block';
-                    document.getElementById("imgOutline").src = '<%=Common.RootURL()%>/<%=AppSettings.ThemeDir %>/Images/clollapse.png';
+                    document.getElementById("imgOutline").src = '<%=Common.RootURL()%><%=AppSettings.ThemeDir %>/Images/clollapse.png';
                 }
                 else {
                     document.getElementById("right_pane").style.display = 'none';
-                    document.getElementById("imgOutline").src = '<%=Common.RootURL()%>/<%=AppSettings.ThemeDir %>/Images/expand.png';
+                    document.getElementById("imgOutline").src = '<%=Common.RootURL()%><%=AppSettings.ThemeDir %>/Images/expand.png';
                 }
             }
         }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Data;
 using System.Globalization;
 using System.IO;
@@ -16,6 +15,7 @@ using DNAide.Web;
 using ONEbook.UM.Models;
 using ONEbook.UM.Services.Impl;
 using Resources;
+using System.Web.UI;
 
 /// <summary>
 /// Summary description for Common
@@ -31,6 +31,7 @@ public class Common
 
     // ++ Added by Frank.Ngo on IRP 671 - Jan 2012
     public const int NormalBanner = 0;
+
     public const int MediaBanner = 1;
     // -- Added by Frank.Ngo on IRP 671 - Jan 2012
 
@@ -98,22 +99,31 @@ public class Common
         {
             case "en-us":
                 return "English";
+
             case "zh-cn":
                 return "Simplified";
+
             case "zh-tw":
                 return "Tradition";
+
             case "th-th":
                 return "Thai";
+
             case "es-es":
                 return "Spanish";
+
             case "vi-vn":
                 return "Vietnamese";
+
             case "id-id":
                 return "Indonesian";
+
             case "ko-kr":
                 return "Korean";
+
             case "ja-jp":
                 return "Japan";
+
             default:
                 return "English";
         }
@@ -125,24 +135,34 @@ public class Common
         {
             case "en-us":
                 return "English";
+
             case "en-gb":
                 return "English (Europe)";
+
             case "zh-cn":
                 return "Chinese Simplified";
+
             case "zh-tw":
                 return "Chinese Traditional";
+
             case "th-th":
                 return "Thai";
+
             case "es-es":
                 return "Spanish";
+
             case "vi-vn":
                 return "Vietnamese";
+
             case "id-id":
                 return "Indonesian";
+
             case "ko-kr":
                 return "Korean";
+
             case "ja-jp":
                 return "Japan";
+
             default:
                 return "English";
         }
@@ -154,22 +174,31 @@ public class Common
         {
             case "en-us":
                 return Resources.Lang.English;
+
             case "zh-cn":
                 return Resources.Lang.ChineseSimplifi;
+
             case "zh-tw":
                 return Resources.Lang.ChineseTraditio;
+
             case "th-th":
                 return Resources.Lang.Thai;
+
             case "es-es":
                 return Resources.Lang.Spanish;
+
             case "vi-vn":
                 return Resources.Lang.Vietnamese;
+
             case "id-id":
                 return Resources.Lang.Indonesian;
+
             case "ko-kr":
                 return Resources.Lang.Korean;
+
             case "ja-jp":
                 return Resources.Lang.Japanese;
+
             default:
                 return Resources.Lang.English;
         }
@@ -209,6 +238,7 @@ public class Common
             default: return "0";
         }
     }
+
     public static string GetMethodName(string strValue)
     {
         switch (strValue)
@@ -221,94 +251,135 @@ public class Common
             default: return "Player";
         }
     }
+
     public static string GetErrMsg(int intErrCode, ref string strErrObj)
     {
         switch (intErrCode)
         {
             case 1:
                 return Resources.Lang.Err1;
+
             case 2:
                 return Resources.Lang.Err2;
+
             case 3:
                 return Resources.Lang.Err3;
+
             case 4:
                 return Resources.Lang.Err4;
+
             case 5:
                 return Resources.Lang.Err5;
+
             case 101:
                 return Resources.Lang.Err101;
+
             case 102:
                 return Resources.Lang.Err102;
+
             case 103:
                 return Resources.Lang.Err103;
+
             case 104:
                 return Resources.Lang.Err104;
+
             case 105:
                 return Resources.Lang.Err105;
+
             case 107:
                 return Resources.Lang.Err107;
+
             case 111:
                 return Resources.Lang.Err111;
+
             case 112:
                 return Resources.Lang.Err112;
+
             case 113:
                 return Resources.Lang.Err113;
+
             case 114:
                 return Resources.Lang.Err114;
+
             case 115:
                 return Resources.Lang.Err115;
+
             case 116:
                 return Resources.Lang.Err116;
+
             case 100:
                 return Resources.Lang.Err100;
+
             case 999:
                 return Resources.Lang.Err999;
+
             case 1001:
                 return Resources.Lang.Err1001;
+
             case 1002:
                 strErrObj = "txtEmail";
                 return Resources.Lang.Err1002;
+
             case 1003:
                 strErrObj = "txtBet12UserName";
                 return Resources.Lang.Err1003;
+
             case 1004:
                 return Resources.Lang.Err1004;
+
             case 1005:
                 return Resources.Lang.Err1005;
+
             case 1006:
                 return Resources.Lang.Err1006;
+
             case 3001:
                 return Resources.Lang.Err3001;
+
             case 3002:
                 return Resources.Lang.Err3002;
+
             case 3003:
                 return Resources.Lang.Err3003;
+
             case 3004:
                 return Resources.Lang.Err3004;
+
             case 3006:
                 return Resources.Lang.Err3006;
+
             case 4001:
                 return Resources.Lang.Err4001;
+
             case 4002:
                 return Resources.Lang.Err4002;
+
             case 4003:
                 return Resources.Lang.Err4003;
+
             case 4004:
                 return Resources.Lang.Err4004;
+
             case 4005:
                 return Resources.Lang.Err4005;
+
             case 201:
                 return Resources.Lang.Err201;
+
             case 202:
                 return Resources.Lang.Err202;
+
             case 203:
                 return Resources.Lang.Err203;
+
             case 204:
                 return Resources.Lang.Err204;
+
             default:
                 return Resources.Lang.ErrDefault;
         }
     }
+
     public static string FormatNumber(object Number)
     {
         decimal dcNumber = CastAide.AsDecimal(Number);
@@ -362,20 +433,27 @@ public class Common
             case "running":
             case "pending":
                 return Resources.Lang.Proccessing;
+
             case "completed":
                 return Resources.Lang.Approved;
+
             case "cancelled":
                 return Resources.Lang.Cancelled;
+
             case "approved":
                 return Resources.Lang.Approved;
+
             case "rejected":
                 return Resources.Lang.Rejected;
+
             case "current":
                 return Resources.Lang.Current;
+
             default:
                 return strStatus.ToString();
         }
     }
+
     /// <summary>
     /// Split long string into many smaller lines DungTong@20090319
     /// </summary>
@@ -406,27 +484,18 @@ public class Common
         }
         return strBuild.ToString();
     }
+
     public static string RootURL()
     {
-        //string strURL = String.Format("http://{0}{1}", HttpContext.Current.Request.Url.Authority, HttpContext.Current.Request.ApplicationPath);
-        //if (strURL.LastIndexOf("/") == strURL.Length - 1)
-        //    strURL = strURL.Substring(0, strURL.Length - 1);
-        //return strURL;
-
-        NameValueCollection variables = HttpContext.Current.Request.ServerVariables;
-
-        string domain = variables["SERVER_NAME"];
-        string port = variables["SERVER_PORT"];
-        string protocol = HttpContext.Current.Request.IsSecureConnection ? "https://" : "http://";
-
-        var fulldomain = protocol + domain;
-        if (AppSettings.LocalTest)
-            fulldomain = fulldomain + ":" + port;
-        fulldomain = fulldomain + (HttpRuntime.AppDomainAppVirtualPath == "/" ? string.Empty : HttpRuntime.AppDomainAppVirtualPath);
-        return fulldomain;
-
-        //return protocol + domain + ":" + port + (HttpRuntime.AppDomainAppVirtualPath == "/" ? string.Empty : HttpRuntime.AppDomainAppVirtualPath);
+        return VirtualPathUtility.ToAbsolute("~/");
     }
+
+    public static string CurrentRootAddress()
+    {
+        var request = HttpContext.Current.Request;
+        return $"http{((request.IsSecureConnection) ? "s" : string.Empty)}://{request.Url.Host}";
+    }
+
     public static string HTMLEncode(string text)
     {
         return text.Replace("\r\n", "").Replace("'", "&rsquo;");
@@ -466,6 +535,7 @@ public class Common
         TemplateHandler.RemoveBlock(ref strPaging, "excelbutton");
         return strPaging;
     }
+
     public static string GenPaging(int numPages, int currPage, int pageSize, int numRows, string aID, string txtID, string[] txtButton, string[] txtButtonEvent, int width, bool hasCheckAll, bool hasPageSize, bool hasButton, bool hasExcel)
     {
         string strPaging = TemplateHandler.LoadTemplate("Paging.htm");
@@ -509,6 +579,7 @@ public class Common
             TemplateHandler.RemoveBlock(ref strPaging, "excelbutton");
         return strPaging;
     }
+
     public static string CutLongText(string strText, int maxLength)
     {
         if (strText.Length <= maxLength)
@@ -518,6 +589,7 @@ public class Common
         int end = strText.LastIndexOf(" ", maxLength);
         return strText.Substring(0, end) + "...";
     }
+
     ///Johnny@20100317: Get suffix for sending mail template
     public static string EmailSuffix(bool MailOption)
     {
@@ -548,10 +620,12 @@ public class Common
         string strUsername = strTmp[0].Trim();
         return (AppSettings.ListAffUseEuLink.ToLower().IndexOf(strUsername) >= 0 || AppSettings.Session.PreferLang.ToLower() == "es-es" || AppSettings.Session.PreferLang.ToLower() == "en-gb");
     }
+
     public static string FormatStringHtml(string value)
     {
         return HttpUtility.HtmlDecode(value.Replace("\r\n", "<br/>"));
     }
+
     public static string FormatStringJavascript(string value)
     {
         return HttpUtility.HtmlDecode(value).Replace("<br/>", "\r\n");
@@ -893,10 +967,18 @@ public class Common
 
 public class IBCException : Exception
 {
-    public IBCException() : base() { }
-    public IBCException(string message) : base(message) { }
-    public IBCException(string message, Exception ex) : base(message, ex) { }
+    public IBCException() : base()
+    {
+    }
+
+    public IBCException(string message) : base(message)
+    {
+    }
+
+    public IBCException(string message, Exception ex) : base(message, ex)
+    {
+    }
+
     protected IBCException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context)
         : base(info, context) { }
 }
-

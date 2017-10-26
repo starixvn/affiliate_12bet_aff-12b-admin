@@ -505,6 +505,31 @@ public static class AppSettings
         }
     }
 
+    public static string MediaUrl
+    {
+        get { return GetValue("MediaUrl"); }
+    }
+
+    public static string MediaUrlCS
+    {
+        get { return GetValue("MediaUrl_CS"); }
+    }
+
+    public static string MediaUrlTH
+    {
+        get { return GetValue("MediaUrl_TH"); }
+    }
+
+    public static string MediaUrlVI
+    {
+        get { return GetValue("MediaUrl_VI"); }
+    }
+
+    public static string MediaUrlEU
+    {
+        get { return GetValue("MediaUrl_EU"); }
+    }
+
     public static bool ShowCasino
     {
         get

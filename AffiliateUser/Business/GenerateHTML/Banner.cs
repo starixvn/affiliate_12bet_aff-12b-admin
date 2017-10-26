@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Configuration;
 using System.Data;
 using System.Text;
 using System.Web;
@@ -131,32 +130,27 @@ namespace GenerateHTML
                 int counter = 3;
                 string signUpLink = AppSettings.BetLink.ToString();
                 string strMedia = AppSettings.MediaJS;
-                string src = ConfigurationManager.AppSettings["MediaUrl"].ToString();
+                string src = AppSettings.MediaUrl;
 
                 switch (AppSettings.Session.PreferLang)
                 {
                     case "th-TH":
                         signUpLink = AppSettings.BetLink_TH.ToString();
                         strMedia = AppSettings.MediaJS_TH;
-                        src = ConfigurationManager.AppSettings["MediaUrl_TH"].ToString();
+                        src = AppSettings.MediaUrlTH;
                         break;
 
                     case "zh-CN":
-                        signUpLink = AppSettings.BetLink_CS.ToString();
-                        strMedia = AppSettings.MediaJS_CS;
-                        src = ConfigurationManager.AppSettings["MediaUrl_CS"].ToString();
-                        break;
-
                     case "zh-TW":
                         signUpLink = AppSettings.BetLink_CS.ToString();
                         strMedia = AppSettings.MediaJS_CS;
-                        src = ConfigurationManager.AppSettings["MediaUrl_CS"].ToString();
+                        src = AppSettings.MediaUrlCS;
                         break;
 
                     case "vi-VN":
                         signUpLink = AppSettings.BetLink_VI.ToString();
                         strMedia = AppSettings.MediaJS_VI;
-                        src = ConfigurationManager.AppSettings["MediaUrl_VI"].ToString();
+                        src = AppSettings.MediaUrlVI;
                         break;
                 }
 
@@ -164,7 +158,7 @@ namespace GenerateHTML
                 {
                     signUpLink = AppSettings.BetLink_EU;
                     strMedia = AppSettings.MediaJS_EU;
-                    src = ConfigurationManager.AppSettings["MediaUrl_EU"].ToString();
+                    src = AppSettings.MediaUrlEU;
                 }
 
                 TemplateHandler.Assign(ref signUpLink, "{domain}", domain);
@@ -179,7 +173,7 @@ namespace GenerateHTML
                     trackingcode = "/" + trackingcode;
                 }
                 TemplateHandler.Assign(ref signUpLink, "{/TrackingCode}", trackingcode.Trim());
-                string _12betLink=signUpLink;
+                string _12betLink = signUpLink;
                 if (_12betLink.IndexOf("http://") >= 0)
                 {
                     _12betLink = _12betLink.Substring(7);
@@ -198,8 +192,7 @@ namespace GenerateHTML
                     string rowText = content;
                     string aSignUpLink = signUpLink;
                     string tmpSrc = src + dr["filename"];
-                    //string src = ((string.Compare(AppSettings.Session.Language, "zh-CN", true) == 0 || string.Compare(AppSettings.Session.Language, "zh-TW", true) == 0) ? ConfigurationManager.AppSettings["MediaUrl_CS"].ToString() : ConfigurationManager.AppSettings["MediaUrl"].ToString()) + dr["filename"].ToString();
-                    string []strSize = dr["size"].ToString().Split(new char[] { 'x' });
+                    string[] strSize = dr["size"].ToString().Split(new char[] { 'x' });
 
                     counter++;
                     TemplateHandler.Assign(ref aSignUpLink, "{/lang}", GetLanguageUri(Common.GetLangCode(dr["language"].ToString())));

@@ -22,7 +22,7 @@ namespace Affiliate.MailServices
             TemplateHandler.Assign(ref strRegisMail, "fname", FirstName);
             TemplateHandler.Assign(ref strRegisMail, "lname", LastName);
             TemplateHandler.Assign(ref strRegisMail, "mailadd", AppSettings.MailContact);
-            TemplateHandler.Assign(ref strRegisMail, "rooturl", Common.RootURL());
+            TemplateHandler.Assign(ref strRegisMail, "rooturl", Common.CurrentRootAddress());
             TemplateHandler.Assign(ref strRegisMail, "lang", preferLang);
             string strRegisSubject = TemplateHandler.ReplaceBlock(ref strRegisMail, "subject", "");
 
@@ -36,7 +36,7 @@ namespace Affiliate.MailServices
             TemplateHandler.Assign(ref strCsdMail, "lname", LastName);
             TemplateHandler.Assign(ref strCsdMail, "username", UserName);
             TemplateHandler.Assign(ref strCsdMail, "mailadd", AppSettings.MailContact);
-            
+
             if (rdWebsite.Equals("0", StringComparison.OrdinalIgnoreCase))
             {
                 TemplateHandler.Assign(ref strCsdMail, "siteurl", strSiteUrl);

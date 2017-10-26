@@ -1,4 +1,5 @@
-<%@ Master Language="C#" AutoEventWireup="true" Inherits="Master2" Codebehind="Master2.master.cs" %>
+<%@ Master Language="C#" AutoEventWireup="true" Inherits="Master2" CodeBehind="Master2.master.cs" %>
+
 <%@ Register Src="~/Controls/Header.ascx" TagName="CHeader" TagPrefix="mod" %>
 <%@ Register Src="~/Controls/Footer.ascx" TagName="CFooter" TagPrefix="mod" %>
 <%@ Register Src="~/Controls/RightPanel.ascx" TagName="CRight" TagPrefix="mod" %>
@@ -10,30 +11,32 @@
 
     <meta content="text/html;charset=UTF-8" http-equiv="Content-Type" />
     <meta content="width=device-width,initial-scale=1" name="viewport" />
-    
+
     <style type="text/css">
-         .root-header{
-            width:800px;
-            padding-bottom:0px;
+        .root-header {
+            width: 800px;
+            padding-bottom: 0px;
         }
-        .root-left{
-            width:595px;         
-            float:left;   
-            margin-top:5px;         
+
+        .root-left {
+            width: 595px;
+            float: left;
+            margin-top: 5px;
         }
-        .root-right{
-            width:201px;           
-            float:right;    
-            margin-top:5px;        
+
+        .root-right {
+            width: 201px;
+            float: right;
+            margin-top: 5px;
         }
-        .root-footer
-        {
-            width:800px;
+
+        .root-footer {
+            width: 800px;
         }
-        .clear{
-            clear:both;            
+
+        .clear {
+            clear: both;
         }
-        
     </style>
     <script type="text/javascript">
         var Site = Site || {};
@@ -48,12 +51,12 @@
     </script>
 </head>
 <body class="<%=langClass%>">
- <input type="hidden" id="rootUrl" value="<%=rootUrl%>"/>
-    <div style="background-color:White">
+    <input type="hidden" id="rootUrl" value="<%=rootUrl%>" />
+    <div style="background-color: White">
         <%=strScript.ToString()%>
     </div>
-   <div id="container">        
-        <mod:CHeader runat="server" ID="Header1" />        
+    <div id="container">
+        <mod:CHeader runat="server" ID="Header1" />
         <div id="contents_page">
             <div id="contents_main">
                 <asp:ContentPlaceHolder ID="MainContent" runat="server">
@@ -69,5 +72,5 @@
         </div>
         <div class="red_line"></div>
     </div>
-</body>    
+</body>
 </html>

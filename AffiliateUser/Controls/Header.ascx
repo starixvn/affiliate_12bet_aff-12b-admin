@@ -107,7 +107,7 @@
         }
         
         var d=new Date();
-        var _ajax= new Ajax.Request(ErrMsg.RootUrl + "/Handler/SetLanguage.ashx",{
+        var _ajax= new Ajax.Request(ErrMsg.RootUrl + "Handler/SetLanguage.ashx",{
             asynchronous:true,
             method:'get',        
             parameters:'lang=' + lang + '&d=' + d.getMilliseconds(),//add "d" param to prevent cache in IE
@@ -130,18 +130,18 @@
     //Kick out
     function KickedOut() {
        
-       var ajax= new Ajax.Request(ErrMsg.RootUrl + "/Authorization/ReCheckIn.ashx",{
+       var ajax= new Ajax.Request(ErrMsg.RootUrl + "Authorization/ReCheckIn.ashx",{
                 method:'get',              
                 onComplete:function(datastran)
                 {
                     if(datastran.responseText=='Expired')
                     {
                         alert("Another session has logged in or your session is expired. Force to logout!");
-                        window.location.href = ErrMsg.RootUrl + "/Authorization/Logout.ashx";
+                        window.location.href = ErrMsg.RootUrl + "Authorization/Logout.ashx";
                     }
                     else if(datastran.responseText=='UM')
                     {
-                        window.location.href = ErrMsg.RootUrl + "/UnderMaintenance.aspx";
+                        window.location.href = ErrMsg.RootUrl + "UnderMaintenance.aspx";
                     }
                 }
             }); 

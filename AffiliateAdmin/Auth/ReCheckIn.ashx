@@ -1,10 +1,17 @@
 ﻿<%@ WebHandler Language="C#" Class="ReCheckIn" %>
 
 using System.Web;
-using System.Web.SessionState; 
-public class ReCheckIn : IHttpHandler, IRequiresSessionState {
-    
-    public void ProcessRequest (HttpContext context) {
+using System.Web.SessionState;
+public class ReCheckIn : IHttpHandler, IRequiresSessionState
+{
+
+    public void ProcessRequest(HttpContext context)
+    {
+        if (AppSettings.LocalTest)
+        {
+            return;
+        }
+
         context.Response.ContentType = "text/html";
         context.Response.Cache.SetCacheability(HttpCacheability.NoCache);
 
@@ -18,15 +25,17 @@ public class ReCheckIn : IHttpHandler, IRequiresSessionState {
             context.Response.Write("Expired");
             return;
         }
-        
+
         if (Common.IsUnderMaintenance())
         {
-            context.Response.Write("UM");            
+            context.Response.Write("UM");
         }
     }
- 
-    public bool IsReusable {
-        get {
+
+    public bool IsReusable
+    {
+        get
+        {
             return false;
         }
     }

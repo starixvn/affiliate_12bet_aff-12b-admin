@@ -370,7 +370,7 @@
                     <span class="popup hand" onclick="DoCal('ViewEmailDetails.aspx?mid={ID-val}')">{Subject-val}</span>
                 </td>
                 <td class="l hand">
-                    <a href="mailto:{From-val}">{From-val}</a>
+                    <a target="_top" href="mailto:{From-val}">{From-val}</a>
                 </td>
                 <td class="c">
                     {SentDate-val}
@@ -401,7 +401,7 @@
                         {From}:
                     </td>
                     <td id="tdFrom">
-                        {Sender-val}&nbsp;(<a href="mailto:{Email-val}">{Email-val}</a>)
+                        {Sender-val}&nbsp;(<a target="_top" href="mailto:{Email-val}">{Email-val}</a>)
                     </td>
                 </tr>
                 <tr>
