@@ -1,8 +1,7 @@
 using System;
 using System.Collections;
-using DNAide.Web;
-using DNAide.Utils;
 using DataHandler;
+using DNAide.Utils;
 
 public partial class SignUp : RootPage
 {
@@ -11,6 +10,8 @@ public partial class SignUp : RootPage
     protected string strMinCheque = "0";
     protected string strMinMoneyBooker = "0";
     protected string strSecureQuestion = "";
+
+    private const string DefaultSecurityQuestionTemplate = "UserInfo/SecureQuestion_en-US.htm";
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -55,5 +56,10 @@ public partial class SignUp : RootPage
         strMinNetteller = NumberFormat.DecFormat(hsMinWidthdraw["aff_minneteller"], 0);
         strMinWire = NumberFormat.DecFormat(hsMinWidthdraw["aff_minwire"], 0);
         strSecureQuestion = DNAide.Web.TemplateHandler.LoadTemplate("UserInfo/SecureQuestion_" + AppSettings.Session.Language + ".htm");
+
+        if (string.IsNullOrEmpty(strSecureQuestion))
+        {
+            strSecureQuestion = DNAide.Web.TemplateHandler.LoadTemplate(DefaultSecurityQuestionTemplate);
+        }
     }
 }
