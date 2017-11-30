@@ -99,6 +99,8 @@
                 var indexBonus = GetIndexOfColName(hsColumnName, ColumnName.Bonus);
                 var indexIAWinlost = GetIndexOfColName(hsColumnName, ColumnName.IAWinlost);
                 var indexWinlostAff = GetIndexOfColName(hsColumnName, ColumnName.Winlost);
+                var indexProgressiveShare = GetIndexOfColName(hsColumnName, ColumnName.ProgressiveShare);
+                var indexProgressiveWin = GetIndexOfColName(hsColumnName, ColumnName.ProgressiveWin);
 
                 while (!stream.EndOfStream)
                 {
@@ -113,6 +115,8 @@
                         transNode.SetAttribute("bonus", lineContent[indexBonus]);
                         transNode.SetAttribute("winlostaff", lineContent[indexWinlostAff]);
                         transNode.SetAttribute("winlost", lineContent[indexIAWinlost]);
+                        transNode.SetAttribute("progressiveshare", lineContent[indexProgressiveShare]);
+                        transNode.SetAttribute("progressivewin", lineContent[indexProgressiveWin]);
                         root.AppendChild(transNode);
                     }
                 }

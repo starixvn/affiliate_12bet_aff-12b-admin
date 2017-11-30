@@ -1,6 +1,6 @@
 ﻿namespace Fanex.Affiliate.DataService.Importer.DTO
 {
-    public class ColumnName
+    public static class ColumnName
     {
         public const string Date = "Date";
 
@@ -15,5 +15,9 @@
         public const string Bonus = "Bonus amount";
 
         public const string IAWinlost = "Game income";
+
+        public const string ProgressiveShare = "Progressive share";
+
+        public const string ProgressiveWin = "Progressive wins";
     }
 }
