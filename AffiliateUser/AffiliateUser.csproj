@@ -738,6 +738,16 @@
     <Content Include="App_Themes\Default\Images1\banner_hi-IN.jpg" />
     <Content Include="App_Themes\Default\Images\fIndia.png" />
     <Content Include="BetList\BetListCashOutDetail.aspx" />
+    <Content Include="Content\Banner\English\affiliate-russia.jpg" />
+    <Content Include="Content\Banner\European\affiliate-russia.jpg" />
+    <Content Include="Content\Banner\Indonesian\affiliate-russia.jpg" />
+    <Content Include="Content\Banner\Japan\affiliate-russia.jpg" />
+    <Content Include="Content\Banner\Korean\affiliate-russia.jpg" />
+    <Content Include="Content\Banner\Simplified\affiliate-russia.jpg" />
+    <Content Include="Content\Banner\Spanish\affiliate-russia.jpg" />
+    <Content Include="Content\Banner\Thai\affiliate-russia.jpg" />
+    <Content Include="Content\Banner\Tradition\affiliate-russia.jpg" />
+    <Content Include="Content\Banner\Vietnamese\affiliate-russia.jpg" />
     <Content Include="Content\betlist\cashoutdetail.css" />
     <Content Include="Global.asax" />
     <Content Include="packages.config" />
