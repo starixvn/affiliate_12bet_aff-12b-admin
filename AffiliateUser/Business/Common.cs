@@ -15,7 +15,6 @@ using DNAide.Web;
 using ONEbook.UM.Models;
 using ONEbook.UM.Services.Impl;
 using Resources;
-using System.Web.UI;
 
 /// <summary>
 /// Summary description for Common
@@ -90,7 +89,7 @@ public class Common
     public static string GetBannerFlash()
     {
         string folder = AppSettings.AffTypeList.Any(t => t == AffType.European) ? AffType.European.ToString() : GetLanguage();
-        return string.Format("Content/Banner/{0}/{1}?v={2}", folder, "bigbanner.gif", AppSettings.JsVersion);
+        return string.Format("Content/Banner/{0}/{1}?v={2}", folder, "affiliate-russia.jpg", AppSettings.JsVersion);
     }
 
     public static string GetLanguage()
