@@ -92,6 +92,47 @@ public class Common
         return string.Format("Content/Banner/{0}/{1}?v={2}", folder, "affiliate-russia.jpg", AppSettings.JsVersion);
     }
 
+    public static string ConvertSpecialLanguageCode()
+    {
+        var languageCode = AppSettings.Session.Language.ToLower();
+        if (languageCode == "hi-in")
+        {
+            return "hien";
+        }
+
+        return ConvertToShortLanguageCode();
+    }
+
+    public static string ConvertToShortLanguageCode()
+    {
+        switch (AppSettings.Session.Language.ToLower())
+        {
+            case "en-us":
+                return "en";
+
+            case "zh-cn":
+                return "cs";
+
+            case "zh-tw":
+                return "ch";
+
+            case "th-th":
+                return "th";
+
+            case "vi-vn":
+                return "vn";
+
+            case "id-id":
+                return "id";
+
+            case "hi-in":
+                return "hi";
+
+            default:
+                return "en";
+        }
+    }
+
     public static string GetLanguage()
     {
         switch (AppSettings.Session.Language.ToLower())
