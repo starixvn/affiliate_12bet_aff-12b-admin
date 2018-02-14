@@ -95,7 +95,7 @@ public class Common
     public static string ConvertSpecialLanguageCode()
     {
         var languageCode = AppSettings.Session.Language.ToLower();
-        if (languageCode == "hi-in")
+        if (languageCode == "hi-in" && !IsEuroSite())
         {
             return "hien";
         }
@@ -105,6 +105,11 @@ public class Common
 
     public static string ConvertToShortLanguageCode()
     {
+        if (IsEuroSite())
+        {
+            return "en";
+        }
+
         switch (AppSettings.Session.Language.ToLower())
         {
             case "en-us":
@@ -131,6 +136,11 @@ public class Common
             default:
                 return "en";
         }
+    }
+
+    public static bool IsEuroSite()
+    {
+        return AppSettings.AffTypeList.Any(t => t == AffType.European);
     }
 
     public static string GetLanguage()
