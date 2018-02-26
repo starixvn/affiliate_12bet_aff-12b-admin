@@ -92,6 +92,57 @@ public class Common
         return string.Format("Content/Banner/{0}/{1}?v={2}", folder, "affiliate-russia.jpg", AppSettings.JsVersion);
     }
 
+    public static string ConvertSpecialLanguageCode()
+    {
+        var languageCode = AppSettings.Session.Language.ToLower();
+        if (languageCode == "hi-in" && !IsEuroSite())
+        {
+            return "hien";
+        }
+
+        return ConvertToShortLanguageCode();
+    }
+
+    public static string ConvertToShortLanguageCode()
+    {
+        if (IsEuroSite())
+        {
+            return "en";
+        }
+
+        switch (AppSettings.Session.Language.ToLower())
+        {
+            case "en-us":
+                return "en";
+
+            case "zh-cn":
+                return "cs";
+
+            case "zh-tw":
+                return "ch";
+
+            case "th-th":
+                return "th";
+
+            case "vi-vn":
+                return "vn";
+
+            case "id-id":
+                return "id";
+
+            case "hi-in":
+                return "hi";
+
+            default:
+                return "en";
+        }
+    }
+
+    public static bool IsEuroSite()
+    {
+        return AppSettings.AffTypeList.Any(t => t == AffType.European);
+    }
+
     public static string GetLanguage()
     {
         switch (AppSettings.Session.Language.ToLower())
