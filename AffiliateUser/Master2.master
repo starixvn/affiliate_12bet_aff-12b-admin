@@ -78,12 +78,21 @@
     <!-- Google Analytics -->
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-5160706-44"></script>
-    <script>
+    <script type="text/javascript">
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+       gtag('js', new Date());
+   
 
-      gtag('config', 'UA-5160706-44');
+        gtag('config', 'UA-5160706-44');
+
+        var bigBannerLink = document.getElementById("big_banner_link");
+        bigBannerLink.addEventListener("click", function (event) {
+            gtag('event', 'PromoWorldCup2018-<%=Common.ConvertToShortLanguageCode().ToUpper() %>', {
+              'event_category': 'AFFiliatePage',
+              'event_label': 'AFFBigBanner'
+        });
+        });
     </script>
     <!-- End Google Analytics -->
     <% } %>
