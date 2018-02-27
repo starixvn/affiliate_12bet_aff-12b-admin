@@ -81,17 +81,16 @@
     <script type="text/javascript">
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+       gtag('js', new Date());
    
 
         gtag('config', 'UA-5160706-44');
 
         var bigBannerLink = document.getElementById("big_banner_link");
         bigBannerLink.addEventListener("click", function (event) {
-            gtag('event', '_trackEvent', {
-          'event_category': 'AFFiliatePage',
-          'event_label': 'PromoWorldCup2018-<%=Common.ConvertToShortLanguageCode().ToUpper() %>',
-          'value': 'AFFBigBanner'
+            gtag('event', 'PromoWorldCup2018-<%=Common.ConvertToShortLanguageCode().ToUpper() %>', {
+              'event_category': 'AFFiliatePage',
+              'event_label': 'AFFBigBanner'
         });
         });
     </script>
