@@ -1,8 +1,7 @@
 <%@ Control Language="C#" AutoEventWireup="true" Inherits="Controls_Home_Center" CodeBehind="Home_Center.ascx.cs" %>
 
 <div id="banner_main">
-    <a onclick="gtag('send', 'event', { event_category: 'AFFiliatePage', event_action: '_trackEvent',event_label:'PromoWorldCup2018-<%=Common.ConvertToShortLanguageCode().ToUpper() %>',value:'AFFBigBanner'});"
-          href="http://promotions.12bet.com/landing/worldcup/2018/img/<%=Common.ConvertSpecialLanguageCode() %>/affiliate-news.pdf" target="_blank">
+    <a href="http://promotions.12bet.com/landing/worldcup/2018/img/<%=Common.ConvertSpecialLanguageCode() %>/affiliate-news.pdf" target="_blank">
         <img src="<%=Common.GetBannerFlash() %>" width="646px" height="275px" />
     </a>
 </div>
