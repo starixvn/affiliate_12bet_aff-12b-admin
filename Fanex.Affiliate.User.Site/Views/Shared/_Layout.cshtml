@@ -1,42 +1,111 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sport page</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdn.materialdesignicons.com/2.1.19/css/materialdesignicons.min.css">
+    <link type="text/css" rel="stylesheet" href="~/www/build/styles/css/lib.min.css" />
+    @RenderSection("stylesheet", required: false)
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+    <div class="header-top">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 col-md-5 logo">
+                    <a href="index.html"><img src="styles/Images/logo.png" /><span class="logo-text">AFFILIATES</span></a>
+                </div>
+                <div class="col-sm-12 col-md-7">
+                    <div class="user-signup">
+                        <div class="sign-up">
+                            <button type="button" class="btn btn-signup"><span class="icon mdi mdi-pencil"></span>sign up affiliate</button>
+                        </div>
+                        <div class="bfh-selectbox bfh-languages" data-language="en_US" data-available="en_US,fr_CA,es_MX" data-flags="true">
+                            <input type="hidden" value="">
+                            <a class="bfh-selectbox-toggle" role="button" data-toggle="bfh-selectbox" href="#">
+                                <span class="bfh-selectbox-option input-medium" data-option=""></span>
+                                <b class="caret"></b>
+                            </a>
+                            <div class="bfh-selectbox-options">
+                                <div role="listbox" class="list-item">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="user-login">
+                        <input class="text-field" type="text" placeholder="Username">
+                        <input class="text-field" type="password" placeholder="Password">
+                        <input class="text-field" type="text" placeholder="Validation">
+                        <span class="validation-value">4074</span>
+                        <button type="button" class="btn btn-forgot"><span class="mdi mdi-account-key"></span></button>
+                        <a class="btn btn-login" href="myAccount.html">Log in</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-bottom">
+        <div class="navbar">
+            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+            <div class="collapse navbar-collapse menu" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav list-unstyled">
+                    <li><a class="menu-item active" href="index.html">Home</a></li>
+                    <li><a class="menu-item" href="commission-structure.html">Commission Structure</a></li>
+                    <li><a class="menu-item" href="#">Product</a></li>
+                    <li><a class="menu-item" href="#">Promotion</a></li>
+                    <li><a class="menu-item" href="faq.html">FAQ</a></li>
+                    <li><a class="menu-item" href="contact-us.html">Contact us</a></li>
                 </ul>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+        <div class="hot-news">
+            <div class="title">Hot news!</div>
+            <div class="message">Our records show many of our top income affiliate earners talk to us almost daily to discuss new ways to market. latest news, sport articles, rew...</div>
+        </div>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    @RenderBody()
+
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 footer-img">
+                    <div class="img-top">
+                        <a class="item" href="#"><img src="styles/Images/footer/cr-rank-sponsors.png" alt="cr-rank-sponsors-logo" /></a>
+                    </div>
+                    <div class="img-bottom">
+                        <a class="item" href="#"><img src="styles/Images/footer/cr-18.png" alt="cr-18-logo" /></a>
+                        <a class="item" href="#"><img src="styles/Images/footer/cr-gamleaware.png" alt="cr-gamleaware-logo" /></a>
+                        <a class="item" href="#"><img src="styles/Images/footer/cr-cagayan.png" alt="cr-cagayan-logo" /></a>
+                        <a class="item" href="#"><img src="styles/Images/footer/cr-tst.png" alt="cr-tst-logo" /></a>
+                        <a class="item" href="#"><img src="styles/Images/footer/cr-thawte.png" alt="cr-thawte-logo" /></a>
+                        <a class="item" href="#"><img src="styles/Images/footer/cr-playtech.png" alt="cr-playtech-logo" /></a>
+                        <a class="item" href="#"><img src="styles/Images/footer/cr-safe&secure.png" alt="cr-safe&secure-logo" /></a>
+                    </div>
+                </div>
+                <div class="col-sm-12 footer-text">
+                    © Copyright 2018. All Rights Reserved. Designed and Powered by <span class="text-red">12BET.com</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="~/www/build/styles/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/www/build/styles/lib/bootstrap/js/bootstrap-formhelpers.js"></script>
+    <script src="~/www/build/js/layout.min.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

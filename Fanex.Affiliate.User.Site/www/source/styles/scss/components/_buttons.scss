@@ -1,0 +1,76 @@
+﻿.btn {
+    display: inline-block;
+    padding: 0 12px;
+    height: 26px;
+    line-height: 1;
+    text-transform: uppercase;
+    transition: all .2s ease;
+    border-radius: 2px;
+    font-weight: 500;
+    vertical-align: middle;
+}
+
+.button-group {
+    padding-bottom: 2rem;
+}
+
+.btn-signup, .btn-login {
+    background: #fe2400;
+    font-size: 14px;
+    color: #fff;
+    line-height: 25px;
+
+    &:hover, &:focus {
+        color: #fff;
+        background: darken(#fe2400, 5%);
+    }
+
+    &:focus {
+        outline: none;
+    }
+
+    .icon {
+        color: #fff;
+        line-height: 1;
+        padding-right: 6px;
+    }
+}
+
+.btn-submit {
+    $bg-submit: #b8491f, #ee6736;
+    @include background-gradient(top, $bg-submit);
+    font-size: 14px;
+    color: #fff;
+    height: 30px;
+    line-height: 30px;
+    text-transform: capitalize;
+
+    &:hover, &:focus {
+        color: #fff;
+        $bg-submit: #a8441d, #ee6736;
+        @include background-gradient(top, $bg-submit);
+    }
+
+    &:focus {
+        outline: none;
+    }
+
+    .icon {
+        color: #fff;
+        line-height: 1;
+        padding-right: 6px;
+    }
+}
+
+.btn-forgot {
+    background: transparent;
+    color: #fff;
+    font-size: 16px;
+    padding: 0 6px;
+    border: 1px solid #fff;
+
+    &:hover {
+        background: rgba(255,255,255,.2);
+        color: #fff;
+    }
+}
