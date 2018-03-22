@@ -122,12 +122,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="DTO\Auth\AuthorizedUserInfo.cs" />
     <Compile Include="DTO\Result.cs" />
     <Compile Include="MetalModels\UserLogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\IAuthRepository.cs" />
+    <Compile Include="Repository\AuthRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Repository\" />
+    <Folder Include="BusinessService\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
