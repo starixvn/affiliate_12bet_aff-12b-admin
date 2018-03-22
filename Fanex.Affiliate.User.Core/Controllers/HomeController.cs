@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Fanex.Affiliate.User.Core.DTO;
+using Fanex.Affiliate.User.Core.MetalModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +14,18 @@ namespace Fanex.Affiliate.User.Core.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public ActionResult Login(UserLogin user)
+        {
+            var result = new JResult
+            {
+
+            };
+
+            return Json(result);
         }
     }
 }
