@@ -1,0 +1,137 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
+}
+
+@section styles{
+    
+}
+
+<div class="main-myaccount">
+    <div class="container-fluid">
+        <div class="page-title">
+            <span class="text">Account Overview</span>
+        </div>
+
+        <div class="info-group">
+            <div class="title">
+                <span class="text">Statistics For January - 2018</span>
+                <div class="day-filter">
+                    <div class="form-group day-filter">
+                        <div class="input-group date" id="datetimepicker1">
+                            <input type="text" class="field" />
+                            <span class="input-group-addon icon-calendar mdi mdi-calendar">
+                            </span>
+                        </div>
+                    </div>
+                    <button class="btn btn-submit" type="button">Submit</button>
+                </div>
+            </div>
+            <div class="info">
+                <p class="item">
+                    <span class="text">New Signups:</span>
+                    <span class="value">0</span>
+                </p>
+                <p class="item">
+                    <span class="text">Total active players:</span>
+                    <span class="value">2</span>
+                </p>
+                <p class="item">
+                    <span class="text">Total qualified active players(SB/Casino):</span>
+                    <span class="value">1/1</span>
+                </p>
+                <p class="item">
+                    <span class="text">Total Deposits:</span>
+                    <span class="value">$5,213.67</span>
+                </p>
+                <p class="item">
+                    <span class="text">Turnover:</span>
+                    <span class="value">$48,405.64</span>
+                </p>
+            </div>
+        </div>
+
+        <div class="info-group">
+            <div class="title">
+                <span class="text">Current Up To Now</span>
+            </div>
+            <div class="info">
+                <p class="item">
+                    <span class="text">Total Players:</span>
+                    <span class="value">122</span>
+                </p>
+                <p class="item">
+                    <span class="text">Turnover:</span>
+                    <span class="value">$1,778,761.10</span>
+                </p>
+                <p class="item">
+                    <span class="text">Total Deposits:</span>
+                    <span class="value">$422,839.33</span>
+                </p>
+                <p class="item">
+                    <span class="text">Balance Brought Forward:</span>
+                    <span class="value">-$1,405.64</span>
+                </p>
+            </div>
+        </div>
+
+        <div class="info-group">
+            <div class="title">
+                <span class="text">Current Commission Setting</span>
+            </div>
+            <div class="table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sport</th>
+                            <th>Tier</th>
+                            <th class="text-uppercase">Company net win for the month (CNW)($)</th>
+                            <th>Qualifying Member</th>
+                            <th>Commission</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="bg-sportsbook" rowspan="3">Sportsbook</td>
+                            <td>1</td>
+                            <td class="text-right">$1.00 - $2,99.99</td>
+                            <td class="text-right">6 - 10</td>
+                            <td class="text-right">20%</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td class="text-right">$3,000.00 - $45,000.99</td>
+                            <td class="text-right">11 - 50</td>
+                            <td class="text-right">30%</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td class="text-right">$3,000.00 - $45,000.99</td>
+                            <td class="text-right">11 - 50</td>
+                            <td class="text-right">30%</td>
+                        </tr>
+                        <tr>
+                            <td class="bg-casino" rowspan="3">Casino</td>
+                            <td>1</td>
+                            <td class="text-right">$1.00 - $2,99.99</td>
+                            <td class="text-right">6 - 10</td>
+                            <td class="text-right">20%</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td class="text-right">$3,000.00 - $45,000.99</td>
+                            <td class="text-right">11 - 50</td>
+                            <td class="text-right">30%</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td class="text-right">$3,000.00 - $45,000.99</td>
+                            <td class="text-right">11 - 50</td>
+                            <td class="text-right">30%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

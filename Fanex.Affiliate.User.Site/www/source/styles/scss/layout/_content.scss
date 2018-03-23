@@ -4,11 +4,12 @@
     display: flex;
     justify-content: center;
     overflow: hidden;
-    /*.container {
-        padding-left: 0;
-        padding-right: 0;
-        margin: 0;
-    }*/
+
+    &.after-login {
+        flex-direction: column;
+        background: $bg-main-color;
+    }
+
     @media (max-width: 1400px) {
         .banner-left, .banner-right {
             width: 150px;
@@ -27,7 +28,6 @@
         padding-right: 1rem;
     }
 }
-
 
 .hot-news {
     display: flex;
@@ -719,10 +719,10 @@
         justify-content: flex-start;
 
         .capcha-value {
-            display: inline-block;            
+            display: inline-block;
             height: 30px;
             line-height: 30px;
-            padding: 0 2rem;            
+            padding: 0 2rem;
             margin-left: 1rem;
             font-size: 18px;
             background: #87e4ec;

@@ -1,0 +1,32 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles{
+    @RenderSection("styles", required: false)
+}
+
+@section scripts{
+    @RenderSection("scripts", required: false)
+}
+
+<div class="main after-login">
+    <div class="content-menu">
+        <ul class="menu list-unstyled">
+            <li><a class="menu-item active" href="@Url.Action("Index", "AccountOverview")">Account overview</a></li>
+            <li><a class="menu-item" href="#">Statement history</a></li>
+            <li><a class="menu-item" href="#">My account</a></li>
+            <li><a class="menu-item" href="#">Payment request</a></li>
+            <li><a class="menu-item" href="#">Media gallery</a></li>
+            <li><a class="menu-item" href="#">Text box</a></li>
+            <li><a class="menu-item" href="#">Tracking statistics</a></li>
+            <li><a class="menu-item" href="#">Referrers statistics</a></li>
+            <li><a class="menu-item" href="#">Landing page statistics</a></li>
+            <li><a class="menu-item" href="#">Spare place for future functions</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        @RenderBody()
+    </div>
+</div>
