@@ -1,0 +1,156 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
+}
+
+@section styles{
+    <link href="@Url.Content("~/www/build/styles/css/my-account.css")" rel="stylesheet" />
+}
+
+<div class="page-title">
+    <span class="text">My Account</span>
+</div>
+
+<div class="info-group">
+    <div class="title">
+        <span class="text">Account Information</span>
+    </div>
+    <div class="info">
+        <p class="item">
+            <span class="text">User Name</span>
+            <span class="value">12BETAFF2233</span>
+        </p>
+        <p class="item">
+            <span class="text">Password</span>
+            <span class="value"><a href="#">Change</a></span>
+        </p>
+    </div>
+</div>
+
+<div class="info-group">
+    <div class="title">
+        <span class="text">Contact Information</span>
+    </div>
+    <div class="info">
+        <p class="item">
+            <span class="text">Gender</span>
+            <span class="value">Male</span>
+        </p>
+        <p class="item">
+            <span class="text">Address</span>
+            <span class="value">SMS</span>
+        </p>
+        <p class="item">
+            <span class="text">City</span>
+            <span class="value">HCM</span>
+        </p>
+        <p class="item">
+            <span class="text">Postcode/Zip</span>
+            <span class="value">123456</span>
+        </p>
+        <p class="item">
+            <span class="text">Country</span>
+            <span class="value">Việt Nam</span>
+        </p>
+        <p class="item">
+            <span class="text">Email Address</span>
+            <span class="value">abc@gmail.com</span>
+        </p>
+        <p class="item">
+            <span class="text">Contact Number</span>
+            <span class="value">+84721375123</span>
+        </p>
+        <p class="item">
+            <span class="text">MSN</span>
+            <span class="value">987123</span>
+        </p>
+    </div>
+</div>
+
+<div class="info-group">
+    <div class="title">
+        <span class="text">Website Information</span>
+    </div>
+    <div class="radio">
+        <label>
+            <input type="radio" name="optionsRadios" id="hasWebsite" value="1" checked />
+            I have own website
+        </label>
+    </div>
+    <div class="form-horizontal form-default">
+        <div class="form-group">
+            <label for="websiteUrl" class="col-sm-3 control-label">Website URL</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control col-sm-10" name="websiteUrl" />
+            </div>
+            <button class="btn btn-submit" type="button">Add Url</button>
+        </div>
+
+        <div class="form-group">
+            <label for="websiteUrl" class="col-sm-3 control-label">Website URL 2</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control col-sm-10" name="websiteUrl" value="https://12bet.in.th" />
+            </div>
+            <button class="btn btn-submit" type="button">Delete</button>
+        </div>
+    </div>
+
+    <div class="radio">
+        <label>
+            <input type="radio" name="optionsRadios" id="doNotHasWebsite" value="0" checked />
+            I don’t have a website
+        </label>
+    </div>
+
+    <div class="form-horizontal form-default">
+        <div class="form-group">
+            <label for="websiteUrl" class="col-sm-3 control-label">Please describe how you would like to promote 12Bet if you don’t have the URL</label>
+            <div class="col-sm-3">
+                <textarea class="form-control col-sm-10">abc</textarea>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="info-group">
+    <div class="title">
+        <span class="text">Preference</span>
+    </div>
+    <div class="info">
+        <p class="item">
+            <span class="text">Language</span>
+            <span class="value">Việt Nam</span>
+        </p>
+    </div>
+</div>
+
+<div class="info-group">
+    <div class="title">
+        <span class="text">Payment Information</span>
+    </div>
+    <p>Payment Method</p>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="radio">
+                <label>
+                    <input type="radio" name="playerAccount" id="playerAccount" checked />
+                    12BET Player Account
+                </label>
+            </div>
+        </div>
+
+        <div class="col-sm-9">
+            <div class="form-horizontal form-default">
+                <div class="form-group">
+                    <label for="websiteUrl" class="col-sm-2 col-md-2 col-lg-1 control-label">User Name</label>
+                    <label class="col-sm-9 control-label">12bet2233 (Non-deposited account only)</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="button-group col-sm-offset-3">
+    <button class="btn btn-submit" type="button">Submit</button>
+    <button class="btn btn-submit" type="button">Cancel</button>
+</div>

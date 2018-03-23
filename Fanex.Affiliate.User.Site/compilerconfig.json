@@ -4,7 +4,11 @@
     "inputFile": "www/source/styles/scss/main.scss"
   },
   {
-    "inputFile": "www/source/styles/scss/vendors/_bootstrap.scss",
-    "outputFile": "www/build/styles/css/bootstrap.css"
-  }  
+    "outputFile": "www/build/styles/css/bootstrap.css",
+    "inputFile": "www/source/styles/scss/vendors/_bootstrap.scss"
+  },
+  {
+    "outputFile": "www/build/styles/css/my-account.css",
+    "inputFile": "www/source/styles/pages/my-account.scss"
+  }
 ]

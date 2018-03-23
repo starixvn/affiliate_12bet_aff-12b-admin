@@ -1,1 +1,25 @@
-﻿
+﻿@import "../scss/components/form-control";
+
+.button-group {
+    .btn {
+        margin-left: 10px;
+    }
+}
+
+.info-group {
+    .item {
+        .value {
+            text-align: left;
+        }
+    }
+}
+
+.form-static {
+    margin-bottom: 0;
+
+    .control-label {
+        padding-top: 0;
+        padding-left: 10px;
+        font-weight: normal;
+    }
+}

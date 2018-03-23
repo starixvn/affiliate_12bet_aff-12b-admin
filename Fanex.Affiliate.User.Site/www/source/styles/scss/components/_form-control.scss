@@ -1,0 +1,17 @@
+﻿.form-default {
+    margin-left: 15px;
+    margin-right: 15px;
+
+    .control-label {
+        text-align: left;
+        font-weight: normal;
+        padding-left: 10px;
+    }
+
+    .form-control {
+        padding: 1rem;
+        border: 1px solid #adadad;
+        background-color: transparent;
+        border-radius: 0;
+    }
+}
