@@ -1,7 +1,7 @@
 ﻿
 .header-top {
     //height: 9rem;
-    background: #000 url(../../Images/header-bg.png) center top no-repeat;
+    background: #000 url(../Images/header-bg.png) center top no-repeat;
 
     .logo {
         padding: 1.7rem 0 1.7rem 3rem;
@@ -115,34 +115,6 @@
         &:hover, &:focus, &.active {
             color: #fff;
         }
-        /*&:after {
-            content: '';
-            position: absolute;
-            z-index: -1;
-            width: 0;
-            height: 103%;
-            top: 50%;
-            left: 50%;
-            background: rgba(255,255,255,.2);
-            opacity: 0;
-            -webkit-transform: translateX(-50%) translateY(-50%);
-            -moz-transform: translateX(-50%) translateY(-50%);
-            -ms-transform: translateX(-50%) translateY(-50%);
-            transform: translateX(-50%) translateY(-50%);
-            -webkit-transition: all 0.3s;
-            -moz-transition: all 0.3s;
-            transition: all 0.3s;
-        }
-
-        &:hover:after {
-            width: 100%;
-            opacity: 1;
-            z-index: 1;
-        }
-
-        &:hover {
-            color: rgba(255,255,255,.8);
-        }*/
     }
 }
 

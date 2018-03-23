@@ -4,10 +4,6 @@
     "inputFile": "www/source/styles/scss/main.scss"
   },
   {
-    "outputFile": "www/build/styles/css/bootstrap-ex.css",
-    "inputFile": "www/source/styles/scss/vendors-extensions/bootstrap-ex.scss"
-  },
-  {
     "inputFile": "www/source/styles/scss/vendors/_bootstrap.scss",
     "outputFile": "www/build/styles/css/bootstrap.css"
   }  

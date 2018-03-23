@@ -200,9 +200,13 @@
     <Content Include="www\build\js\lib\bootstrap-datetimepicker.js" />
     <Content Include="www\build\js\lib\wow\wow.js" />
     <Content Include="www\build\js\lib\wow\wow.min.js" />
-    <Content Include="www\build\styles\css\lib.css" />
-    <Content Include="www\build\styles\css\lib.min.css">
-      <DependentUpon>lib.css</DependentUpon>
+    <Content Include="www\build\styles\css\bootstrap.css" />
+    <Content Include="www\build\styles\css\bootstrap.min.css">
+      <DependentUpon>bootstrap.css</DependentUpon>
+    </Content>
+    <Content Include="www\build\styles\css\main.css" />
+    <Content Include="www\build\styles\css\main.min.css">
+      <DependentUpon>main.css</DependentUpon>
     </Content>
     <Content Include="www\build\styles\fonts\font_bebas\Flat-it License.txt" />
     <Content Include="www\build\styles\fonts\glypicons\glyphicons-halflings-regular.svg" />

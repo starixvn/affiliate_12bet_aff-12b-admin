@@ -1,12 +1,5 @@
 [
   {
-    "outputFileName": "www/build/styles/css/lib.css",
-    "inputFiles": [
-      "www/source/styles/css/bootstrap.css",
-      "www/source/styles/css/main.css"
-    ]
-  },
-  {
     "outputFileName": "www/build/js/layout.js",
     "inputFiles": [
       "www/source/js/layout.js"
