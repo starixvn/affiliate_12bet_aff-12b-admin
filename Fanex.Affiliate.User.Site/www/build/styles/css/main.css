@@ -2191,8 +2191,10 @@ input[type="checkbox"], input[type="radio"] {
     background: rgba(255, 255, 255, 0.2);
     color: #fff; }
 
+.table-medium {
+  width: 70%; }
+
 .table {
-  width: 70%;
   font-size: 13px; }
   .table table {
     border: 1px solid #c1c1c1;

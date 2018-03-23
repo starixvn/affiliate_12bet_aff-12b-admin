@@ -123,6 +123,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountOverViewController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\StatementHistoryController.cs" />
     <Compile Include="DTO\Auth\AuthorizedUserInfo.cs" />
     <Compile Include="DTO\Result.cs" />
     <Compile Include="MetalModels\UserLogin.cs" />

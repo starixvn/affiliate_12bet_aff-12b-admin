@@ -14,7 +14,7 @@
     <div class="content-menu">
         <ul class="menu list-unstyled">
             <li><a class="menu-item active" href="@Url.Action("Index", "AccountOverview")">Account overview</a></li>
-            <li><a class="menu-item" href="#">Statement history</a></li>
+            <li><a class="menu-item" href="@Url.Action("Index", "StatementHistory")">Statement history</a></li>
             <li><a class="menu-item" href="#">My account</a></li>
             <li><a class="menu-item" href="#">Payment request</a></li>
             <li><a class="menu-item" href="#">Media gallery</a></li>
@@ -27,6 +27,8 @@
     </div>
 
     <div class="main-content">
-        @RenderBody()
+        <div class="container-fluid">
+            @RenderBody()
+        </div>
     </div>
 </div>

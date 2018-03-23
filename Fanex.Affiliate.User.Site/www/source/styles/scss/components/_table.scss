@@ -1,5 +1,8 @@
-﻿.table {
+﻿.table-medium {
     width: 70%;
+}
+
+.table {
     font-size: 13px;
 
     table {
@@ -67,8 +70,6 @@
     }
 }
 
-
-
 .table-info {
     border: 1px solid #ccc;
     border-top: 0;
@@ -118,9 +119,6 @@
         padding: 6px 10px;
     }
 }
-
-
-
 
 .paging {
     display: inline-block;

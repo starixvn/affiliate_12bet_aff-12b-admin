@@ -590,6 +590,7 @@
     <Content Include="Views\AccountOverView\Index.cshtml" />
     <Content Include="www\source\styles\scss\layout\_menu.scss" />
     <Content Include="Views\Shared\_LayoutBeforeLogin.cshtml" />
+    <Content Include="Views\StatementHistory\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fanex.Affiliate.User.Core\Fanex.Affiliate.User.Core.csproj">
