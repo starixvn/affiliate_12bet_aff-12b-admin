@@ -1,0 +1,138 @@
+﻿@{
+    ViewBag.Title = "Contact Us";
+}
+
+<div class="content">
+    <div class="page-title">
+        <span class="text text-uppercase">Contact us</span>
+    </div>
+
+    <div class="support">
+        <div class="date-time">
+            <div class="img-support">
+                <img src="@Url.Content("~/www/build/styles/Images/contact-us/Support_girl.png")" />
+            </div>
+            <div class="date-time-info">
+                <p>Monday - Saturday</p>
+                <p>09:00 am - 06:00 pm (GMT +8)</p>
+            </div>
+        </div>
+        <div class="languages-support">
+            <div class="languages-item">
+                <div class="flag">
+                    <img src="@Url.Content("~/www/build/styles/Images/contact-us/english_lang.png")" />
+                </div>
+                <div class="info">
+                    <p class="language">English Support</p>
+                    <a class="skype-info" href="#">
+                        <img class="skype-icon" src="@Url.Content("~/www/build/styles/Images/contact-us/skype_icon.png")" />
+                        <span>affiliate12bet</span>
+                    </a>
+                </div>
+            </div>
+            <div class="languages-item">
+                <div class="flag">
+                    <img src="@Url.Content("~/www/build/styles/Images/contact-us/China_lang.png")" />
+                </div>
+                <div class="info">
+                    <p class="language">China Support</p>
+                    <a class="skype-info" href="#">
+                        <img class="skype-icon" src="@Url.Content("~/www/build/styles/Images/contact-us/skype_icon.png")" />
+                        <span>18064120343</span>
+                    </a>
+                </div>
+            </div>
+            <div class="languages-item">
+                <div class="flag">
+                    <img src="@Url.Content("~/www/build/styles/Images/contact-us/indonesian_lang.png")" />
+                </div>
+                <div class="info">
+                    <p class="language">Indonesia Support</p>
+                    <a class="skype-info" href="#">
+                        <img class="skype-icon" src="@Url.Content("~/www/build/styles/Images/contact-us/skype_icon.png")" />
+                        <span>live:aff.12betindo</span>
+                    </a>
+                </div>
+            </div>
+            <div class="languages-item">
+                <div class="flag">
+                    <img src="@Url.Content("~/www/build/styles/Images/contact-us/thailand_lang.png")" />
+                </div>
+                <div class="info">
+                    <p class="language">Thailand Support</p>
+                    <a class="skype-info" href="#">
+                        <img class="skype-icon" src="@Url.Content("~/www/build/styles/Images/contact-us/skype_icon.png")" />
+                        <span>th.affiliate12bet</span>
+                    </a>
+                </div>
+            </div>
+            <div class="languages-item">
+                <div class="flag">
+                    <img src="@Url.Content("~/www/build/styles/Images/contact-us/vietnam_lang.png")" />
+                </div>
+                <div class="info">
+                    <p class="language">Vietnam Support</p>
+                    <a class="skype-info" href="#">
+                        <img class="skype-icon" src="@Url.Content("~/www/build/styles/Images/contact-us/skype_icon.png")" />
+                        <span>aff12b_viet@yahoo.com</span>
+                    </a>
+                </div>
+            </div>
+            <div class="languages-item">
+                <div class="flag">
+                    <img src="@Url.Content("~/www/build/styles/Images/contact-us/india_lang.png")" />
+                </div>
+                <div class="info">
+                    <p class="language">Indian Support</p>
+                    <a class="skype-info" href="#">
+                        <img class="skype-icon" src="@Url.Content("~/www/build/styles/Images/contact-us/skype_icon.png")" />
+                        <span>aff12csdindia</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="contact-form">
+        <p class="intro">Please direct any comments or questions to <a href="mailto:affiliate@12csd.com">affiliate@12csd.com</a>, or using the form below.</p>
+        <form class="form">
+            <div class="form-group">
+                <div class="name">
+                    <label class="require" for="name">Name</label>
+                    <input class="field" type="text" name="name">
+                </div>
+                <div class="affiliate">
+                    <label for="affiliate">Affiliate</label>
+                    <input class="field" type="text" name="affiliate">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="subject">
+                    <label class="require" for="name">Subject</label>
+                    <input class="field" type="text" name="subject">
+                </div>
+                <div class="email">
+                    <label class="require" for="email">Email</label>
+                    <input class="field" type="text" name="email">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="require" for="comment">Comment</label>
+                <textarea class="field" name="comment"></textarea>
+            </div>
+            <div class="form-group capcha">
+                <div class="name">
+                    <label class="require" for="name">Validation</label>
+                    <input class="field" type="text" name="name">
+                </div>
+                <div class="capcha-value">5678</div>
+            </div>
+
+            <div class="form-group button-group">
+                <label></label>
+                <button class="btn btn-submit" type="button">Submit</button>
+                <button class="btn btn-submit" type="button">Reset</button>
+            </div>
+        </form>
+    </div>
+</div>

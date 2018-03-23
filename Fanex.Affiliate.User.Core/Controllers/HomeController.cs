@@ -1,11 +1,6 @@
-﻿using Fanex.Affiliate.User.Core.DTO;
+﻿using System.Web.Mvc;
+using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.MetalModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Mvc;
 
 namespace Fanex.Affiliate.User.Core.Controllers
 {
@@ -26,6 +21,24 @@ namespace Fanex.Affiliate.User.Core.Controllers
             };
 
             return Json(result);
+        }
+
+        [HttpGet]
+        public ActionResult FAQ()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult ContactUs()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult ProgramDetail()
+        {
+            return View();
         }
     }
 }

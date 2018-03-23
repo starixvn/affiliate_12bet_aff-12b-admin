@@ -17,7 +17,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-xs-12 col-md-5 logo">
-                    <a href="~/"><img src="~/www/build/styles/Images/logo.png" /><span class="logo-text">AFFILIATES</span></a>
+                    <a href="~/"><img src="@Url.Content("~/www/build/styles/Images/logo.png")" /><span class="logo-text">AFFILIATES</span></a>
                 </div>
                 <div class="col-sm-12 col-md-7">
                     <div class="user-signup">
@@ -62,12 +62,10 @@
             </div>
             <div class="collapse navbar-collapse menu" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav list-unstyled">
-                    <li><a class="menu-item active" href="#">Home</a></li>
-                    <li><a class="menu-item" href="#">Commission Structure</a></li>
-                    <li><a class="menu-item" href="#">Product</a></li>
-                    <li><a class="menu-item" href="#">Promotion</a></li>
-                    <li><a class="menu-item" href="#">FAQ</a></li>
-                    <li><a class="menu-item" href="#">Contact us</a></li>
+                    <li><a class="menu-item active" href="@Url.Action("Index", "Home")">Home</a></li>
+                    <li><a class="menu-item" href="@Url.Action("ProgramDetail", "Home")">Program Details</a></li>
+                    <li><a class="menu-item" href="@Url.Action("FAQ", "Home")">FAQs</a></li>
+                    <li><a class="menu-item" href="@Url.Action("ContactUs", "Home")">Contact Us</a></li>
                 </ul>
             </div>
         </div>
@@ -79,13 +77,13 @@
 
     <div class="main">
         <div class="banner-left">
-            <img src="~/www/build/styles/Images/banner-red.png">
+            <img src="@Url.Content("~/www/build/styles/Images/banner-red.png")">
         </div>
         <div class="main-content-container">
             @RenderBody()
         </div>
         <div class="banner-right">
-            <img src="~/www/build/styles/Images/banner-blue.png">
+            <img src="@Url.Content("~/www/build/styles/Images/banner-blue.png")">
         </div>
     </div>
 
@@ -94,16 +92,32 @@
             <div class="row">
                 <div class="col-sm-12 footer-img">
                     <div class="img-top">
-                        <a class="item" href="#"><img src="~/www/build/styles/Images/footer/cr-rank-sponsors.png" alt="cr-rank-sponsors-logo" /></a>
+                        <a class="item" href="#">
+                            <img src="@Url.Content("~/www/build/styles/Images/footer/cr-rank-sponsors.png")" alt="cr-rank-sponsors-logo" />
+                        </a>
                     </div>
                     <div class="img-bottom">
-                        <a class="item" href="#"><img src="~/www/build/styles/Images/footer/cr-18.png" alt="cr-18-logo" /></a>
-                        <a class="item" href="#"><img src="~/www/build/styles/Images/footer/cr-gamleaware.png" alt="cr-gamleaware-logo" /></a>
-                        <a class="item" href="#"><img src="~/www/build/styles/Images/footer/cr-cagayan.png" alt="cr-cagayan-logo" /></a>
-                        <a class="item" href="#"><img src="~/www/build/styles/Images/footer/cr-tst.png" alt="cr-tst-logo" /></a>
-                        <a class="item" href="#"><img src="~/www/build/styles/Images/footer/cr-thawte.png" alt="cr-thawte-logo" /></a>
-                        <a class="item" href="#"><img src="~/www/build/styles/Images/footer/cr-playtech.png" alt="cr-playtech-logo" /></a>
-                        <a class="item" href="#"><img src="~/www/build/styles/Images/footer/cr-safe&secure.png" alt="cr-safe&secure-logo" /></a>
+                        <a class="item" href="#">
+                            <img src="@Url.Content("~/www/build/styles/Images/footer/cr-18.png")" alt="cr-18-logo" />
+                        </a>
+                        <a class="item" href="#">
+                            <img src="@Url.Content("~/www/build/styles/Images/footer/cr-gamleaware.png")" alt="cr-gamleaware-logo" />
+                        </a>
+                        <a class="item" href="#">
+                            <img src="@Url.Content("~/www/build/styles/Images/footer/cr-cagayan.png")" alt="cr-cagayan-logo" />
+                        </a>
+                        <a class="item" href="#">
+                            <img src="@Url.Content("~/www/build/styles/Images/footer/cr-tst.png")" alt="cr-tst-logo" />
+                        </a>
+                        <a class="item" href="#">
+                            <img src="@Url.Content("~/www/build/styles/Images/footer/cr-thawte.png")" alt="cr-thawte-logo" />
+                        </a>
+                        <a class="item" href="#">
+                            <img src="@Url.Content("~/www/build/styles/Images/footer/cr-playtech.png")" alt="cr-playtech-logo" />
+                        </a>
+                        <a class="item" href="#">
+                            <img src="@Url.Content("~/www/build/styles/Images/footer/cr-safe&secure.png")" alt="cr-safe&secure-logo" />
+                        </a>
                     </div>
                 </div>
                 <div class="col-sm-12 footer-text">
@@ -112,7 +126,7 @@
             </div>
         </div>
     </div>
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="~/www/build/styles/lib/bootstrap/js/bootstrap.min.js"></script>
     <script src="~/www/build/styles/lib/bootstrap/js/bootstrap-formhelpers.js"></script>

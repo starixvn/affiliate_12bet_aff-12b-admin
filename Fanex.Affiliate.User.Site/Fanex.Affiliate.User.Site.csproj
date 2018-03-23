@@ -190,8 +190,8 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\ProgramDetail.cshtml" />
+    <Content Include="Views\Home\ContactUs.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="www\build\js\layout.js" />
     <Content Include="www\build\js\layout.min.js">
@@ -329,6 +329,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="www\source\js\pages\" />
+    <Folder Include="www\source\styles\scss\pages\" />
     <Folder Include="www\source\styles\scss\vendors-extensions\" />
   </ItemGroup>
   <ItemGroup>
@@ -380,7 +381,6 @@
     <Content Include="www\source\styles\scss\layout\_content.scss" />
     <Content Include="www\source\styles\scss\layout\_header.scss" />
     <Content Include="www\source\styles\scss\main.scss" />
-    <Content Include="www\source\styles\scss\pages\_my-account.scss" />
     <Content Include="www\source\styles\scss\vendors\animate\animate.css.map" />
     <Content Include="www\source\styles\scss\vendors\animate\animate.min.css.map" />
     <Content Include="www\source\styles\scss\vendors\animate\animate.scss" />
@@ -585,6 +585,7 @@
     <Content Include="www\build\styles\lib\MaterialFont\fonts\materialdesignicons-webfont.woff" />
     <Content Include="www\build\styles\lib\MaterialFont\fonts\materialdesignicons-webfont.woff2" />
     <Content Include="www\source\styles\pages\my-account.scss" />
+    <Content Include="Views\Home\FAQ.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fanex.Affiliate.User.Core\Fanex.Affiliate.User.Core.csproj">
