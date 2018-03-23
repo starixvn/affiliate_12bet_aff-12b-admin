@@ -584,6 +584,7 @@
     <Content Include="www\build\styles\lib\MaterialFont\fonts\materialdesignicons-webfont.ttf" />
     <Content Include="www\build\styles\lib\MaterialFont\fonts\materialdesignicons-webfont.woff" />
     <Content Include="www\build\styles\lib\MaterialFont\fonts\materialdesignicons-webfont.woff2" />
+    <Content Include="www\source\styles\pages\my-account.scss" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fanex.Affiliate.User.Core\Fanex.Affiliate.User.Core.csproj">
