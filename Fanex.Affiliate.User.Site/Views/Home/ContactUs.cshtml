@@ -3,6 +3,10 @@
     ViewBag.Title = "Contact Us";
 }
 
+@section styles{
+    <link href="~/www/build/styles/css/contact-us.css" rel="stylesheet" />
+}
+
 <div class="content">
     <div class="page-title">
         <span class="text text-uppercase">Contact us</span>
@@ -98,31 +102,33 @@
         <p class="intro">Please direct any comments or questions to <a href="mailto:affiliate@12csd.com">affiliate@12csd.com</a>, or using the form below.</p>
         <form class="form">
             <div class="form-group">
-                <div class="name">
+                <div class="group group-small">
                     <label class="require" for="name">Name</label>
                     <input class="field" type="text" name="name">
                 </div>
-                <div class="affiliate">
+                <div class="group group-small">
                     <label for="affiliate">Affiliate</label>
                     <input class="field" type="text" name="affiliate">
                 </div>
             </div>
             <div class="form-group">
-                <div class="subject">
+                <div class="group group-small">
                     <label class="require" for="name">Subject</label>
                     <input class="field" type="text" name="subject">
                 </div>
-                <div class="email">
+                <div class="group group-small">
                     <label class="require" for="email">Email</label>
                     <input class="field" type="text" name="email">
                 </div>
             </div>
             <div class="form-group">
-                <label class="require" for="comment">Comment</label>
-                <textarea class="field" name="comment"></textarea>
+                <div class="group group-full">
+                    <label class="require" for="comment">Comment</label>
+                    <textarea class="field" name="comment"></textarea>
+                </div>
             </div>
             <div class="form-group capcha">
-                <div class="name">
+                <div class="group group-small">
                     <label class="require" for="name">Validation</label>
                     <input class="field" type="text" name="name">
                 </div>
@@ -130,8 +136,10 @@
             </div>
 
             <div class="form-group button-group">
-                <button class="btn btn-submit" type="button">Submit</button>
-                <button class="btn btn-submit" type="button">Reset</button>
+                <div class="group">
+                    <button class="btn btn-submit" type="button">Submit</button>
+                    <button class="btn btn-submit" type="button">Reset</button>
+                </div>
             </div>
         </form>
     </div>

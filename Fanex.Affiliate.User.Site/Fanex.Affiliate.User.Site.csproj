@@ -204,6 +204,18 @@
     <Content Include="www\build\styles\css\bootstrap.min.css">
       <DependentUpon>bootstrap.css</DependentUpon>
     </Content>
+    <Content Include="www\build\styles\css\contact-us.css" />
+    <Content Include="www\build\styles\css\contact-us.min.css">
+      <DependentUpon>contact-us.css</DependentUpon>
+    </Content>
+    <Content Include="www\build\styles\css\faq.css" />
+    <Content Include="www\build\styles\css\faq.min.css">
+      <DependentUpon>faq.css</DependentUpon>
+    </Content>
+    <Content Include="www\build\styles\css\home.css" />
+    <Content Include="www\build\styles\css\home.min.css">
+      <DependentUpon>home.css</DependentUpon>
+    </Content>
     <Content Include="www\build\styles\css\main.css" />
     <Content Include="www\build\styles\css\main.min.css">
       <DependentUpon>main.css</DependentUpon>
@@ -600,6 +612,9 @@
     <Content Include="Views\StatementHistory\Index.cshtml" />
     <Content Include="Views\MyAccount\Index.cshtml" />
     <Content Include="www\source\styles\scss\components\_form-control.scss" />
+    <Content Include="www\source\styles\pages\home.scss" />
+    <Content Include="www\source\styles\pages\faq.scss" />
+    <Content Include="www\source\styles\pages\contact-us.scss" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fanex.Affiliate.User.Core\Fanex.Affiliate.User.Core.csproj">

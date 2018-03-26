@@ -3,7 +3,11 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="home-content">
+@section styles{
+    <link href="~/www/build/styles/css/home.css" rel="stylesheet" />
+}
+
+<div class="content home-page">
     <div id="carousel-example-generic" class="carousel slide banner-center" data-ride="carousel">
         <div class="carousel-inner" role="listbox">
             <div class="item active">
@@ -40,19 +44,6 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-    <!--<div class="banner-center">
-        <img class="img-small" src="~/www/build/styles/Images/banner-1.png" />
-        <img class="img-big" src="~/www/build/styles/Images/banner-2.png" />
-        <div class="caption">
-            <div class="caption-big">
-                ROAD TO </br>  WORLD CUP 2018
-            </div>
-            <div class="caption-small">
-                BOOST YOUR AFFILIATE REVENUE TO WIN FREE TICKET TO RUSSIA
-            </div>
-            <button class="btn btn-more">More details</button>
-        </div>
-    </div>-->
     <div class="news">
         <div class="card">
             <div class="card-content">
