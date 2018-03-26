@@ -1,7 +1,7 @@
 ﻿using System;
+using AffiliateAdmin.AffBetlistService;
 using Criterias;
 using DNAide.Web;
-using AffiliateAdmin.AffBetlistService;
 
 public partial class BetList_BetListResults : IBCPage
 {
@@ -27,8 +27,9 @@ public partial class BetList_BetListResults : IBCPage
         {
             var bettype = int.Parse(Request["bettype"]);
             var criteria = new BetListResultsCriteria();
+            var isMixParlay = bettype == 9 || bettype == 29;
 
-            if (bettype == 9 || bettype == 29)
+            if (isMixParlay)
             {
                 criteria.MatchId = int.Parse(Request["matchid"]);
                 criteria.Bettype = int.Parse(Request["bettype"]);
@@ -45,6 +46,7 @@ public partial class BetList_BetListResults : IBCPage
                 criteria.IsOutRight = int.Parse(Request["isoutright"]);
                 criteria.UserName = Request["username"];
                 criteria.BetId = Request["betid"];
+                criteria.Handicap2 = int.Parse(Request["handicap2"]);
             }
 
             var affBetlistService = new AffiliateAPI();
@@ -52,8 +54,7 @@ public partial class BetList_BetListResults : IBCPage
             betlistResultsHtmlString = affBetlistService.GetBetlistResults(
                 "12bet",
                 "en-US",
-                criteria,
-                "en-US");
+                criteria);
         }
 
         var strTemplate = TemplateHandler.LoadTemplate("UserInfo/BetListResults.htm");

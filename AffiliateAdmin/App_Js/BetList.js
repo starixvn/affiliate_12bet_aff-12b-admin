@@ -21,25 +21,26 @@ var BetList = (function ($) {
             return url;
         },
 
-        getSportsbookResultUrl: function (matchid, bettype, raceNo, sporttype, league, isOutright, username, betid, affid) {
+        getSportsbookResultUrl: function (matchid, bettype, raceNo, sporttype, league, isOutright, username, affid, betidOrHdp1, hdp2) {
             var url = "BetListResults.aspx?";
             url += "matchid=" + matchid;
             url += "&bettype=" + bettype;
             url += "&raceno=" + raceNo;
             url += "&sporttype=" + sporttype;
             url += "&isoutright=" + isOutright;
-            url += "&username=" + username;
-            url += "&betid=" + betid;
+            url += "&username=" + username;        
             url += "&affid=" + affid;
+            url += "&betid=" + betidOrHdp1;
+            url += "&handicap2=" + hdp2;
 
             return url;
         },
 
-        showResult: function (matchid, raceNo, bettype, sporttype, refno, username, winlostdate, refnoMixParlay, league, isOutright, betid) {
+        showResult: function (matchid, raceNo, bettype, sporttype, refno, username, winlostdate, refnoMixParlay, league, isOutright, betidOrHdp1, hdp2) {
             var affid = $("#affid").val();
             var url = bettype === 9 || bettype === 29
                     ? BetList.getMixParlayResultUrl(refnoMixParlay, winlostdate, bettype, username, affid)
-                    : BetList.getSportsbookResultUrl(matchid, bettype, raceNo, sporttype, league, isOutright, username, betid, affid);
+                    : BetList.getSportsbookResultUrl(matchid, bettype, raceNo, sporttype, league, isOutright, username, affid, betidOrHdp1, hdp2);
 
             var widthDialog = 720;
             var heightDialog = 400;

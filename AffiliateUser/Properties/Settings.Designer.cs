@@ -36,7 +36,7 @@ namespace AffiliateUser.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://10.18.200.209:5001/WebService/AffiliateAPI.asmx")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:52390/AffiliateAPI.asmx")]
         public string AffiliateUser_AffBetlistService_AffiliateAPI {
             get {
                 return ((string)(this["AffiliateUser_AffBetlistService_AffiliateAPI"]));

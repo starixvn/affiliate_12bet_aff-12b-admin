@@ -1823,10 +1823,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://10.18.200.209:5001/WebService/AffiliateAPI.asmx">
+    <WebReferenceUrl Include="http://localhost:52390/AffiliateAPI.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\AffBetlistService\</RelPath>
-      <UpdateFromURL>http://10.18.200.209:5001/WebService/AffiliateAPI.asmx</UpdateFromURL>
+      <UpdateFromURL>http://localhost:52390/AffiliateAPI.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
