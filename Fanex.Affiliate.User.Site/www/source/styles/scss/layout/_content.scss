@@ -407,6 +407,7 @@
         color: #2b2b2b;
 
         .text, .value {
+            display: flex;
             flex-basis: 50%;
             max-width: 50%;
         }

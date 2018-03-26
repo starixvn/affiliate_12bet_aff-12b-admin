@@ -1320,6 +1320,7 @@ input[type="checkbox"], input[type="radio"] {
         text-align: center; } }
 
 .navbar {
+  background: -ms-linear-gradient(top, #d43131, #ab0101);
   background: -webkit-linear-gradient(top, #d43131, #ab0101);
   background: -moz-linear-gradient(top, #d43131, #ab0101);
   background: -o-linear-gradient(top, #d43131, #ab0101);
@@ -1453,6 +1454,7 @@ input[type="checkbox"], input[type="radio"] {
   margin-right: 8px; }
 
 .main {
+  background: -ms-linear-gradient(left, #500001, #020518);
   background: -webkit-linear-gradient(left, #500001, #020518);
   background: -moz-linear-gradient(left, #500001, #020518);
   background: -o-linear-gradient(left, #500001, #020518);
@@ -1613,6 +1615,7 @@ input[type="checkbox"], input[type="radio"] {
       display: block;
       font-size: 14px; }
     .card-content .offers-content .btn-join {
+      background: -ms-linear-gradient(top, #dfa982 0%, #f4eccd 50%, #c09f84 100%);
       background: -webkit-linear-gradient(top, #dfa982 0%, #f4eccd 50%, #c09f84 100%);
       background: -moz-linear-gradient(top, #dfa982 0%, #f4eccd 50%, #c09f84 100%);
       background: -o-linear-gradient(top, #dfa982 0%, #f4eccd 50%, #c09f84 100%);
@@ -1674,6 +1677,7 @@ input[type="checkbox"], input[type="radio"] {
   background: #f5f5f5;
   border-top: 1px solid #e04f29; }
   .page-title .text {
+    background: -ms-linear-gradient(top, #df4f29, #a24627);
     background: -webkit-linear-gradient(top, #df4f29, #a24627);
     background: -moz-linear-gradient(top, #df4f29, #a24627);
     background: -o-linear-gradient(top, #df4f29, #a24627);
@@ -1729,6 +1733,7 @@ input[type="checkbox"], input[type="radio"] {
       .info-group .title .day-filter .btn-submit {
         height: 22px;
         line-height: 22px;
+        background: -ms-linear-gradient(top, #b8491f, #ee6735);
         background: -webkit-linear-gradient(top, #b8491f, #ee6735);
         background: -moz-linear-gradient(top, #b8491f, #ee6735);
         background: -o-linear-gradient(top, #b8491f, #ee6735);
@@ -1784,6 +1789,7 @@ input[type="checkbox"], input[type="radio"] {
     padding: 0 1rem;
     color: #2b2b2b; }
     .info-group .item .text, .info-group .item .value {
+      display: flex;
       flex-basis: 50%;
       max-width: 50%; }
     .info-group .item .value {
@@ -2063,6 +2069,7 @@ input[type="checkbox"], input[type="radio"] {
       .banner-center .caption-small {
         width: 80%; } }
   .banner-center .btn-more {
+    background: -ms-linear-gradient(top, #a63038 50%, #ee0001 0);
     background: -webkit-linear-gradient(top, #a63038 50%, #ee0001 0);
     background: -moz-linear-gradient(top, #a63038 50%, #ee0001 0);
     background: -o-linear-gradient(top, #a63038 50%, #ee0001 0);
@@ -2103,6 +2110,7 @@ input[type="checkbox"], input[type="radio"] {
       z-index: 1; }
 
 .content-menu .menu {
+  background: -ms-linear-gradient(top, #a65528, #d39c6a);
   background: -webkit-linear-gradient(top, #a65528, #d39c6a);
   background: -moz-linear-gradient(top, #a65528, #d39c6a);
   background: -o-linear-gradient(top, #a65528, #d39c6a);
@@ -2122,6 +2130,7 @@ input[type="checkbox"], input[type="radio"] {
     .content-menu .menu .menu-item:hover, .content-menu .menu .menu-item:focus {
       text-decoration: none; }
     .content-menu .menu .menu-item.active, .content-menu .menu .menu-item:hover {
+      background: -ms-linear-gradient(top, #ff7a00, #ffea00);
       background: -webkit-linear-gradient(top, #ff7a00, #ffea00);
       background: -moz-linear-gradient(top, #ff7a00, #ffea00);
       background: -o-linear-gradient(top, #ff7a00, #ffea00);
@@ -2159,6 +2168,7 @@ input[type="checkbox"], input[type="radio"] {
     padding-right: 6px; }
 
 .btn-submit {
+  background: -ms-linear-gradient(top, #b8491f, #ee6736);
   background: -webkit-linear-gradient(top, #b8491f, #ee6736);
   background: -moz-linear-gradient(top, #b8491f, #ee6736);
   background: -o-linear-gradient(top, #b8491f, #ee6736);
@@ -2170,6 +2180,7 @@ input[type="checkbox"], input[type="radio"] {
   text-transform: capitalize; }
   .btn-submit:hover, .btn-submit:focus {
     color: #fff;
+    background: -ms-linear-gradient(top, #a8441d, #ee6736);
     background: -webkit-linear-gradient(top, #a8441d, #ee6736);
     background: -moz-linear-gradient(top, #a8441d, #ee6736);
     background: -o-linear-gradient(top, #a8441d, #ee6736);
