@@ -11,5 +11,6 @@ namespace Fanex.Affiliate.User.Core.DTO.Auth
         public bool IsInternal { get; set; }
         public string LanguageCode { get; set; }
         public string UserName { get; set; }
+        public int CustID { get; set; }
     }
 }
