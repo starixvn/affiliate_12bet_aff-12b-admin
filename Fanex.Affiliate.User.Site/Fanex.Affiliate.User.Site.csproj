@@ -208,6 +208,10 @@
     <Content Include="www\build\js\lib\bootstrap-datetimepicker.js" />
     <Content Include="www\build\js\lib\wow\wow.js" />
     <Content Include="www\build\js\lib\wow\wow.min.js" />
+    <Content Include="www\build\js\user-panel.js" />
+    <Content Include="www\build\js\user-panel.min.js">
+      <DependentUpon>user-panel.js</DependentUpon>
+    </Content>
     <Content Include="www\build\styles\css\bootstrap.css" />
     <Content Include="www\build\styles\css\bootstrap.min.css">
       <DependentUpon>bootstrap.css</DependentUpon>
@@ -289,6 +293,7 @@
     <Content Include="www\source\js\lib\wow\wow.js" />
     <Content Include="www\source\js\lib\wow\wow.min.js" />
     <Content Include="www\source\js\layout.js" />
+    <Content Include="www\source\js\pages\user-panel.js" />
     <Content Include="www\source\styles\css\bootstrap.css" />
     <Content Include="www\source\styles\css\bootstrap.min.css" />
     <Content Include="www\source\styles\css\main.css" />
@@ -351,7 +356,6 @@
     <Content Include="www\source\styles\scss\vendors\bootstrap\glypicons\glyphicons-halflings-regular.svg" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="www\source\js\pages\" />
     <Folder Include="www\source\styles\scss\pages\" />
     <Folder Include="www\source\styles\scss\vendors-extensions\" />
   </ItemGroup>
@@ -623,6 +627,7 @@
     <Content Include="www\source\styles\pages\home.scss" />
     <Content Include="www\source\styles\pages\faq.scss" />
     <Content Include="www\source\styles\pages\contact-us.scss" />
+    <Content Include="Views\UserPanel\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fanex.Affiliate.User.Core\Fanex.Affiliate.User.Core.csproj">

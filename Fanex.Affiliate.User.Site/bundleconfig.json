@@ -4,5 +4,11 @@
     "inputFiles": [
       "www/source/js/layout.js"
     ]
+  },
+  {
+    "outputFileName": "www/build/js/user-panel.min.js",
+    "inputFiles": [
+      "www/source/js/pages/user-panel.js"
+    ]
   }
 ]
