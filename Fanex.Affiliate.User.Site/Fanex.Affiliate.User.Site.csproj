@@ -181,6 +181,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\SpName.xml" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="ApplicationInsights.config">
@@ -350,7 +351,6 @@
     <Content Include="www\source\styles\scss\vendors\bootstrap\glypicons\glyphicons-halflings-regular.svg" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="www\source\js\pages\" />
     <Folder Include="www\source\styles\scss\pages\" />
     <Folder Include="www\source\styles\scss\vendors-extensions\" />
@@ -361,6 +361,7 @@
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
+    <Content Include="ConnectionString.config" />
     <None Include="packages.config" />
     <Content Include="www\source\styles\fonts\font_bebas\BEBAS___.TTF" />
     <Content Include="www\source\styles\fonts\glypicons\glyphicons-halflings-regular.eot" />

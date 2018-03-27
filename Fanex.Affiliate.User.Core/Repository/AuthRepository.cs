@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Fanex.Affiliate.User.Core.DTO.Auth;
+using Fanex.Data;
 
 namespace Fanex.Affiliate.User.Core.Repository
 {
@@ -15,6 +16,7 @@ namespace Fanex.Affiliate.User.Core.Repository
 
         public AuthorizedUserInfo Auth(string userName, string userPass, string loginIp, int serverId)
         {
+         
             throw new NotImplementedException();
         }
     }
