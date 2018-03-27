@@ -9,6 +9,6 @@ namespace Fanex.Affiliate.User.Core.Repository
 {
     public interface IDataBox
     {
-       IObjectDb ObjectDb { get; }
+        IObjectDb DB { get; }
     }
 }

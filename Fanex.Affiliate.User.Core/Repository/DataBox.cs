@@ -10,21 +10,20 @@ namespace Fanex.Affiliate.User.Core.Repository
 {
     public class DataBox : IDataBox, IDisposable
     {
-        private readonly IDbSetting _dbSetting;
-        private readonly string _dBMode;
-        private readonly string _spKey;
+        public IObjectDb DB { get; }
+
         public DataBox(string spKey, string dbMode = DBMode.Main)
         {
-
-            _dBMode = dbMode;
-            _spKey = spKey;
+            DB = new ObjectDb(spKey + dbMode);
         }
 
-        public IObjectDb ObjectDb => throw new NotImplementedException();
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            if (DB != null)
+            {
+                DB.Dispose();
+            }
         }
     }
 }

@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.Auth;
+using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Data;
 
 namespace Fanex.Affiliate.User.Core.Repository
@@ -14,10 +17,20 @@ namespace Fanex.Affiliate.User.Core.Repository
         {
         }
 
-        public AuthorizedUserInfo Auth(string userName, string userPass, string loginIp, int serverId)
+        public AuthorizedUserInfo Auth(UserLogin userLogin)
         {
-         
-            throw new NotImplementedException();
+            const string spKey = "Aff_AffiliateLogin";
+
+            using (var conn = new DataBox(spKey))
+            {
+                conn.DB.ExecuteNonQuery(parameterSet: userLogin);
+                var result = new AuthorizedUserInfo
+                {
+
+                };
+                return result;
+            }
+
         }
     }
 }

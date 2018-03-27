@@ -1,9 +1,10 @@
 ﻿using Fanex.Affiliate.User.Core.DTO.Auth;
+using Fanex.Affiliate.User.Core.MetalModels;
 
 namespace Fanex.Affiliate.User.Core.Repository
 {
     public interface IAuthRepository
     {
-        AuthorizedUserInfo Auth(string userName, string userPass, string loginIp, int serverId);
+        AuthorizedUserInfo Auth(UserLogin userLogin);
     }
 }
