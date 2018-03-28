@@ -23,7 +23,7 @@
             success: function (response) {
                 $("#mainPanel").html(response);
             }
-        })
+        });
     }
 
     return {

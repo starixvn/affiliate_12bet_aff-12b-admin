@@ -26,5 +26,17 @@
   {
     "outputFile": "www/build/js/user-panel.js",
     "inputFile": "www/source/js/pages/user-panel.js"
+  },
+  {
+    "outputFile": "www/build/js/lib/bootstrap.min.js",
+    "inputFile": "www/source/js/lib/bootstrap.min.js"
+  },
+  {
+    "outputFile": "www/build/js/lib/jquery-3.3.1.min.js",
+    "inputFile": "www/source/js/lib/jquery-3.3.1.min.js"
+  },
+  {
+    "outputFile": "www/build/js/lib/bootstrap-formhelpers.min.js",
+    "inputFile": "www/source/js/lib/bootstrap-formhelpers.min.js"
   }
 ]

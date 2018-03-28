@@ -206,6 +206,9 @@
       <DependentUpon>layout.js</DependentUpon>
     </Content>
     <Content Include="www\build\js\lib\bootstrap-datetimepicker.js" />
+    <Content Include="www\build\js\lib\bootstrap-formhelpers.min.js" />
+    <Content Include="www\build\js\lib\bootstrap.min.js" />
+    <Content Include="www\build\js\lib\jquery-3.3.1.min.js" />
     <Content Include="www\build\js\lib\wow\wow.js" />
     <Content Include="www\build\js\lib\wow\wow.min.js" />
     <Content Include="www\build\js\user-panel.js" />
@@ -290,6 +293,9 @@
     <Content Include="www\build\styles\lib\MaterialFont\fonts\materialdesignicons-webfont.svg" />
     <Content Include="www\build\styles\lib\moment.min.js" />
     <Content Include="www\source\js\lib\bootstrap-datetimepicker.js" />
+    <Content Include="www\source\js\lib\bootstrap-formhelpers.min.js" />
+    <Content Include="www\source\js\lib\bootstrap.min.js" />
+    <Content Include="www\source\js\lib\jquery-3.3.1.min.js" />
     <Content Include="www\source\js\lib\wow\wow.js" />
     <Content Include="www\source\js\lib\wow\wow.min.js" />
     <Content Include="www\source\js\layout.js" />
@@ -298,8 +304,8 @@
     <Content Include="www\source\styles\css\bootstrap.min.css" />
     <Content Include="www\source\styles\css\main.css" />
     <Content Include="www\source\styles\css\main.min.css" />
+    <Content Include="www\source\styles\fonts\bootstrap\glyphicons-halflings-regular.svg" />
     <Content Include="www\source\styles\fonts\font_bebas\Flat-it License.txt" />
-    <Content Include="www\source\styles\fonts\glypicons\glyphicons-halflings-regular.svg" />
     <Content Include="www\source\styles\Images\ads-1.jpg" />
     <Content Include="www\source\styles\Images\advertise.png" />
     <Content Include="www\source\styles\Images\banner-1.png" />
@@ -335,25 +341,8 @@
     <Content Include="www\source\styles\Images\logo.png" />
     <Content Include="www\source\styles\Images\offers.png" />
     <Content Include="www\source\styles\Images\slider-1.png" />
-    <Content Include="www\source\styles\lib\animate.css" />
-    <Content Include="www\source\styles\lib\bootstrap\css\bootstrap-theme.css" />
-    <Content Include="www\source\styles\lib\bootstrap\css\bootstrap-theme.min.css" />
-    <Content Include="www\source\styles\lib\bootstrap\css\bootstrap.css" />
-    <Content Include="www\source\styles\lib\bootstrap\css\bootstrap.min.css" />
-    <Content Include="www\source\styles\lib\bootstrap\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="www\source\styles\lib\bootstrap\js\bootstrap-datetimepicker.js" />
-    <Content Include="www\source\styles\lib\bootstrap\js\bootstrap-formhelpers.js" />
-    <Content Include="www\source\styles\lib\bootstrap\js\bootstrap-formhelpers.min.js" />
-    <Content Include="www\source\styles\lib\bootstrap\js\bootstrap.js" />
-    <Content Include="www\source\styles\lib\bootstrap\js\bootstrap.min.js" />
-    <Content Include="www\source\styles\lib\bootstrap\js\npm.js" />
-    <Content Include="www\source\styles\lib\MaterialFont\css\materialdesignicons.css" />
-    <Content Include="www\source\styles\lib\MaterialFont\css\materialdesignicons.min.css" />
-    <Content Include="www\source\styles\lib\MaterialFont\fonts\materialdesignicons-webfont.svg" />
-    <Content Include="www\source\styles\lib\moment.min.js" />
     <Content Include="www\source\styles\scss\vendors\animate\animate.css" />
     <Content Include="www\source\styles\scss\vendors\animate\animate.min.css" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\glypicons\glyphicons-halflings-regular.svg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="www\source\styles\scss\pages\" />
@@ -368,10 +357,6 @@
     <Content Include="ConnectionString.config" />
     <None Include="packages.config" />
     <Content Include="www\source\styles\fonts\font_bebas\BEBAS___.TTF" />
-    <Content Include="www\source\styles\fonts\glypicons\glyphicons-halflings-regular.eot" />
-    <Content Include="www\source\styles\fonts\glypicons\glyphicons-halflings-regular.ttf" />
-    <Content Include="www\source\styles\fonts\glypicons\glyphicons-halflings-regular.woff" />
-    <Content Include="www\source\styles\fonts\glypicons\glyphicons-halflings-regular.woff2" />
     <Content Include="www\source\styles\fonts\Montserrat\Montserrat-Light.ttf" />
     <Content Include="www\source\styles\fonts\Montserrat\Montserrat-Medium.eot" />
     <Content Include="www\source\styles\fonts\Montserrat\Montserrat-Medium.ttf" />
@@ -385,20 +370,6 @@
     <Content Include="www\source\styles\fonts\Montserrat\Montserrat-SemiBold.ttf" />
     <Content Include="www\source\styles\fonts\Montserrat\Montserrat-SemiBold.woff" />
     <Content Include="www\source\styles\fonts\Montserrat\Montserrat-SemiBold.woff2" />
-    <Content Include="www\source\styles\lib\bootstrap\css\bootstrap-theme.css.map" />
-    <Content Include="www\source\styles\lib\bootstrap\css\bootstrap-theme.min.css.map" />
-    <Content Include="www\source\styles\lib\bootstrap\css\bootstrap.css.map" />
-    <Content Include="www\source\styles\lib\bootstrap\css\bootstrap.min.css.map" />
-    <Content Include="www\source\styles\lib\bootstrap\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="www\source\styles\lib\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="www\source\styles\lib\bootstrap\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="www\source\styles\lib\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="www\source\styles\lib\MaterialFont\css\materialdesignicons.css.map" />
-    <Content Include="www\source\styles\lib\MaterialFont\css\materialdesignicons.min.css.map" />
-    <Content Include="www\source\styles\lib\MaterialFont\fonts\materialdesignicons-webfont.eot" />
-    <Content Include="www\source\styles\lib\MaterialFont\fonts\materialdesignicons-webfont.ttf" />
-    <Content Include="www\source\styles\lib\MaterialFont\fonts\materialdesignicons-webfont.woff" />
-    <Content Include="www\source\styles\lib\MaterialFont\fonts\materialdesignicons-webfont.woff2" />
     <Content Include="www\source\styles\scss\abstracts\_mixins.scss" />
     <Content Include="www\source\styles\scss\abstracts\_variables.scss" />
     <Content Include="www\source\styles\scss\base\_animations.scss" />
@@ -505,10 +476,6 @@
     <Content Include="www\source\styles\scss\vendors\animate\_zooming-exits\_zoomOutLeft.scss" />
     <Content Include="www\source\styles\scss\vendors\animate\_zooming-exits\_zoomOutRight.scss" />
     <Content Include="www\source\styles\scss\vendors\animate\_zooming-exits\_zoomOutUp.scss" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\glypicons\glyphicons-halflings-regular.eot" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\glypicons\glyphicons-halflings-regular.ttf" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\glypicons\glyphicons-halflings-regular.woff" />
-    <Content Include="www\source\styles\scss\vendors\bootstrap\glypicons\glyphicons-halflings-regular.woff2" />
     <Content Include="www\source\styles\scss\vendors\bootstrap\mixins\_alerts.scss" />
     <Content Include="www\source\styles\scss\vendors\bootstrap\mixins\_background-variant.scss" />
     <Content Include="www\source\styles\scss\vendors\bootstrap\mixins\_border-radius.scss" />
@@ -628,6 +595,10 @@
     <Content Include="www\source\styles\pages\faq.scss" />
     <Content Include="www\source\styles\pages\contact-us.scss" />
     <Content Include="Views\UserPanel\Index.cshtml" />
+    <Content Include="www\source\styles\fonts\bootstrap\glyphicons-halflings-regular.eot" />
+    <Content Include="www\source\styles\fonts\bootstrap\glyphicons-halflings-regular.ttf" />
+    <Content Include="www\source\styles\fonts\bootstrap\glyphicons-halflings-regular.woff" />
+    <Content Include="www\source\styles\fonts\bootstrap\glyphicons-halflings-regular.woff2" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fanex.Affiliate.User.Core\Fanex.Affiliate.User.Core.csproj">
