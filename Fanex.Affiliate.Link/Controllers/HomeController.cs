@@ -93,7 +93,8 @@ namespace Fanex.Affiliate.Link.Controllers
                     UserAgent = Request.UserAgent,
                     Country = Common.ResolveCountry() != null
                                       ? Common.ResolveCountry().EnglishName
-                                      : CultureInfo.CurrentCulture.ToString()
+                                      : CultureInfo.CurrentCulture.ToString(),
+                        
                 };
 
                 var redirectUrl = _trackingSystemService.InsertStatistic(criteria);
