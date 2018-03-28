@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Functions SiteId="32" SiteName="12Bet">
+  <Function Name="Account Overview">
+    <Setting Key="Aff_StatisticsSel" SpName="Aff_StatisticsSel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_StatisticsSel_view" SpName="Aff_StatisticsSel" DbName="affiliate_12bet_view" />
+  </Function>
+</Functions>

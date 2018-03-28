@@ -1,5 +1,12 @@
-﻿@{
+﻿@using Fanex.Affiliate.User.Core.Extensions
+
+@{
     Layout = null;
+}
+
+@model Fanex.Affiliate.User.Core.DTO.UserPanel.AccountOverviewStatistics
+@{ 
+    var statistics = Model;
 }
 
 @section styles{
@@ -7,12 +14,12 @@
 }
 
 <div class="page-title">
-    <span class="text">Account Overview</span>
+    <span class="text">@Lang.AccOverview</span>
 </div>
 
 <div class="info-group">
     <div class="title">
-        <span class="text">Statistics For January - 2018</span>
+        <span class="text">@(Lang.Statistic + " " + Lang.For) January - 2018</span>
         <div class="day-filter">
             <div class="form-group day-filter">
                 <div class="input-group date" id="datetimepicker1">
@@ -21,70 +28,70 @@
                     </span>
                 </div>
             </div>
-            <button class="btn btn-submit" type="button">Submit</button>
+            <button class="btn btn-submit" type="button">@Lang.Submit</button>
         </div>
     </div>
     <div class="info">
         <p class="item">
-            <span class="text">New Signups:</span>
-            <span class="value">0</span>
+            <span class="text">@Lang.NewSignup:</span>
+            <span class="value">@statistics.NewSignup.ToStringNumber()</span>
         </p>
         <p class="item">
-            <span class="text">Total active players:</span>
-            <span class="value">2</span>
+            <span class="text">@Lang.TotalActive:</span>
+            <span class="value">@statistics.TotalActivePlayer.ToStringNumber()</span>
         </p>
         <p class="item">
-            <span class="text">Total qualified active players(SB/Casino):</span>
-            <span class="value">1/1</span>
+            <span class="text">@Lang.Tqacsbc:</span>
+            <span class="value">@statistics.TotalQualifiedActivePlayer.ToStringNumber()</span>
         </p>
         <p class="item">
-            <span class="text">Total Deposits:</span>
-            <span class="value">$5,213.67</span>
+            <span class="text">@Lang.TotalDeposit:</span>
+            <span class="value">@statistics.TotalDeposit.ToStringMoneyWithSymbol()</span>
         </p>
         <p class="item">
-            <span class="text">Turnover:</span>
-            <span class="value">$48,405.64</span>
+            <span class="text">@Lang.Turnover:</span>
+            <span class="value">@statistics.Turnover.ToStringMoneyWithSymbol()</span>
         </p>
     </div>
 </div>
 
 <div class="info-group">
     <div class="title">
-        <span class="text">Current Up To Now</span>
+        <span class="text">@(Lang.Statistic + " " + Lang.UpToNow)</span>
     </div>
     <div class="info">
         <p class="item">
-            <span class="text">Total Players:</span>
-            <span class="value">122</span>
+            <span class="text">@Lang.TotalPlay:</span>
+            <span class="value">@statistics.TotalPlayerUpToNow.ToStringNumber()</span>
         </p>
         <p class="item">
-            <span class="text">Turnover:</span>
-            <span class="value">$1,778,761.10</span>
+            <span class="text">@Lang.Turnover:</span>
+            <span class="value">@statistics.TurnoverUpToNow.ToStringMoneyWithSymbol()</span>
         </p>
         <p class="item">
-            <span class="text">Total Deposits:</span>
-            <span class="value">$422,839.33</span>
+            <span class="text">@Lang.TotalDeposit:</span>
+            <span class="value">@statistics.TotalDepositUpToNow.ToStringMoneyWithSymbol()</span>
         </p>
         <p class="item">
-            <span class="text">Balance Brought Forward:</span>
-            <span class="value">-$1,405.64</span>
+            <span class="text">@Lang.BalForward:</span>
+            <span class="value">@statistics.BalanceBroughtForward.ToStringMoneyWithSymbol()</span>
         </p>
     </div>
 </div>
 
 <div class="info-group">
     <div class="title">
-        <span class="text">Current Commission Setting</span>
+        <span class="text">@Lang.CurrentCommissiSetting</span>
     </div>
     <div class="table table-medium">
         <table>
             <thead>
                 <tr>
-                    <th>Sport</th>
-                    <th>Tier</th>
-                    <th class="text-uppercase">Company net win for the month (CNW)($)</th>
-                    <th>Qualifying Member</th>
-                    <th>Commission</th>
+                    <th>@Lang.Sport</th>
+                    <th>@Lang.Tier</th>
+                    <th class="text-uppercase">@Lang.NetWinLoss</th>
+                    <th>@Lang.QualifyingMem</th>
+                    <th>@Lang.Comm</th>
                 </tr>
             </thead>
             <tbody>
