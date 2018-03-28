@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Mvc;
-
-namespace Fanex.Affiliate.User.Core.Controllers
+﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
+    using System.Web.Mvc;
+
     public partial class UserPanelController : Controller
     {
-
+        [HttpGet]
+        public ActionResult PaymentRequest()
+        {
+            return View();
+        }
     }
 }

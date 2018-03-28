@@ -2,9 +2,8 @@
 {
     using System.Web.Mvc;
 
-    public class StatementHistoryController : Controller
+    public class ProgramDetailController : Controller
     {
-        [HttpGet]
         public ActionResult Index()
         {
             return View();

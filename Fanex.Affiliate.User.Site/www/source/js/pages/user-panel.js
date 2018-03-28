@@ -1,19 +1,16 @@
 ﻿var UserPanel = (function ($) {
-    var allowedControllerList = ["AccountOverView", "StatementHistory", "MyAccount", "PaymentRequest",
+    var allowedActionList = ["AccountOverView", "StatementHistory", "MyAccount", "PaymentRequest",
         "MediaGallery", "TextBox", "TrackingStatistics", "ReferrersStatistics", "LandingPageStatistics"];
 
     function renderView() {
         var hash = window.location.hash;
-        console.log(hash);
-        var controller = hash.split('#')[1];
+        var action = hash.split('#')[1];
 
-        if (!hash || !controller || allowedControllerList.indexOf(controller) === -1) {
-            controller = "AccountOverView";
+        if (!hash || !action || allowedActionList.indexOf(action) === -1) {
+            action = "AccountOverView";
         }
 
-        console.log(controller);
-
-        var url = "/" + controller;
+        var url = "/UserPanel/" + action;
 
         $.ajax({
             type: "GET",
@@ -35,6 +32,12 @@
         initEvent: function () {
             $(window).on('hashchange', function () {
                 renderView();
+            });
+
+            $("#mainMenu").on("click", ".menu-item", function () {
+                var activeClassName = "active";
+                $(".menu-item").removeClass(activeClassName);
+                $(this).addClass(activeClassName);
             });
         }
     };

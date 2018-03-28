@@ -127,11 +127,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\AccountOverViewController.cs" />
     <Compile Include="Controllers\BetListController.cs" />
+    <Compile Include="Controllers\ContactUsController.cs" />
+    <Compile Include="Controllers\FaqController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MyAccountController.cs" />
-    <Compile Include="Controllers\StatementHistoryController.cs" />
+    <Compile Include="Controllers\ProgramDetailController.cs" />
+    <Compile Include="Controllers\UserPanelController.MyAccount.cs" />
     <Compile Include="Controllers\UserPanelController.StatementHistory.cs" />
     <Compile Include="Controllers\UserPanelController.PaymentRequest.cs" />
     <Compile Include="Controllers\UserPanelController.cs" />
@@ -210,6 +211,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResultLang.resx</DependentUpon>
     </Compile>
+    <Compile Include="UserPanelController.MyAccount.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BusinessService\" />
@@ -232,6 +234,7 @@
       <LastGenOutput>ResultLang.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
+    <Compile Include="Controllers\UserPanelController.AccountOverView.cs" />
     <None Include="packages.config" />
     <EmbeddedResource Include="Resources\Lang.es-ES.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

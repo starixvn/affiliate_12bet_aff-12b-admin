@@ -29,23 +29,5 @@ namespace Fanex.Affiliate.User.Core.Controllers
 
             return Json(result);
         }
-
-        [HttpGet]
-        public ActionResult FAQ()
-        {
-            return View();
-        }
-
-        [HttpGet]
-        public ActionResult ContactUs()
-        {
-            return View();
-        }
-
-        [HttpGet]
-        public ActionResult ProgramDetail()
-        {
-            return View();
-        }
     }
 }

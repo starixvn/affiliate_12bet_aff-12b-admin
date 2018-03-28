@@ -198,8 +198,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\ProgramDetail.cshtml" />
-    <Content Include="Views\Home\ContactUs.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="www\build\js\layout.js" />
     <Content Include="www\build\js\layout.min.js">
@@ -583,13 +581,12 @@
     <Content Include="www\build\styles\lib\MaterialFont\fonts\materialdesignicons-webfont.woff" />
     <Content Include="www\build\styles\lib\MaterialFont\fonts\materialdesignicons-webfont.woff2" />
     <Content Include="www\source\styles\pages\my-account.scss" />
-    <Content Include="Views\Home\FAQ.cshtml" />
     <Content Include="Views\Shared\_LayoutAfterLogin.cshtml" />
-    <Content Include="Views\AccountOverView\Index.cshtml" />
+    <Content Include="Views\UserPanel\AccountOverView.cshtml" />
     <Content Include="www\source\styles\scss\layout\_menu.scss" />
     <Content Include="Views\Shared\_LayoutBeforeLogin.cshtml" />
-    <Content Include="Views\StatementHistory\Index.cshtml" />
-    <Content Include="Views\MyAccount\Index.cshtml" />
+    <Content Include="Views\UserPanel\StatementHistory.cshtml" />
+    <Content Include="Views\UserPanel\MyAccount.cshtml" />
     <Content Include="www\source\styles\scss\components\_form-control.scss" />
     <Content Include="www\source\styles\pages\home.scss" />
     <Content Include="www\source\styles\pages\faq.scss" />
@@ -599,6 +596,9 @@
     <Content Include="www\source\styles\fonts\bootstrap\glyphicons-halflings-regular.ttf" />
     <Content Include="www\source\styles\fonts\bootstrap\glyphicons-halflings-regular.woff" />
     <Content Include="www\source\styles\fonts\bootstrap\glyphicons-halflings-regular.woff2" />
+    <Content Include="Views\ContactUs\Index.cshtml" />
+    <Content Include="Views\Faq\Index.cshtml" />
+    <Content Include="Views\ProgramDetail\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fanex.Affiliate.User.Core\Fanex.Affiliate.User.Core.csproj">

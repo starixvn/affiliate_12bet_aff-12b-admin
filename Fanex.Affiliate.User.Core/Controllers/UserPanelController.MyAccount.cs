@@ -2,10 +2,10 @@
 {
     using System.Web.Mvc;
 
-    public class AccountOverViewController : Controller
+    public partial class UserPanelController : Controller
     {
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult MyAccount()
         {
             return View();
         }

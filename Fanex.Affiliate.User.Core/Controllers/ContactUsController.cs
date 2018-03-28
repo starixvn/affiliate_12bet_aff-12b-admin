@@ -2,9 +2,8 @@
 {
     using System.Web.Mvc;
 
-    public class MyAccountController : Controller
+    public class ContactUsController : Controller
     {
-        [HttpGet]
         public ActionResult Index()
         {
             return View();
