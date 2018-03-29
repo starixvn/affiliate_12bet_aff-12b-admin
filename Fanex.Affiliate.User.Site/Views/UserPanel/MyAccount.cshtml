@@ -2,110 +2,26 @@
     Layout = null;
 }
 
-@section styles{
-    <link href="@Url.Content("~/www/build/styles/css/my-account.css")" rel="stylesheet" />
-}
-
 <div class="page-title">
-    <span class="text">My Account</span>
+    <span class="text">@Lang.MyAcc</span>
 </div>
 
 <div class="info-group">
     <div class="title">
-        <span class="text">Account Information</span>
+        <span class="text">@Lang.AccInfo</span>
     </div>
-    <div class="info">
-        <p class="item">
-            <span class="text">User Name</span>
-            <span class="value">12BETAFF2233</span>
-        </p>
-        <p class="item">
-            <span class="text">Password</span>
-            <span class="value"><a href="#">Change</a></span>
-        </p>
-    </div>
-</div>
 
-<div class="info-group">
-    <div class="title">
-        <span class="text">Contact Information</span>
-    </div>
-    <div class="info">
-        <p class="item">
-            <span class="text">Gender</span>
-            <span class="value">Male</span>
-        </p>
-        <p class="item">
-            <span class="text">Address</span>
-            <span class="value">SMS</span>
-        </p>
-        <p class="item">
-            <span class="text">City</span>
-            <span class="value">HCM</span>
-        </p>
-        <p class="item">
-            <span class="text">Postcode/Zip</span>
-            <span class="value">123456</span>
-        </p>
-        <p class="item">
-            <span class="text">Country</span>
-            <span class="value">Việt Nam</span>
-        </p>
-        <p class="item">
-            <span class="text">Email Address</span>
-            <span class="value">abc@gmail.com</span>
-        </p>
-        <p class="item">
-            <span class="text">Contact Number</span>
-            <span class="value">+84721375123</span>
-        </p>
-        <p class="item">
-            <span class="text">MSN</span>
-            <span class="value">987123</span>
-        </p>
-    </div>
-</div>
-
-<div class="info-group">
-    <div class="title">
-        <span class="text">Website Information</span>
-    </div>
-    <div class="radio">
-        <label>
-            <input type="radio" name="optionsRadios" id="hasWebsite" value="1" checked />
-            I have own website
-        </label>
-    </div>
-    <div class="form-horizontal form-default">
+    <div class="form-horizontal">
         <div class="form-group">
-            <label for="websiteUrl" class="col-sm-3 control-label">Website URL</label>
-            <div class="col-sm-3">
-                <input type="text" class="form-control col-sm-10" name="websiteUrl" />
+            <label class="col-sm-3 control-label">@Lang.Username</label>
+            <div class="col-sm-4">
+                <p class="form-control-static">12BETAFF001</p>
             </div>
-            <button class="btn btn-submit" type="button">Add Url</button>
         </div>
-
         <div class="form-group">
-            <label for="websiteUrl" class="col-sm-3 control-label">Website URL 2</label>
-            <div class="col-sm-3">
-                <input type="text" class="form-control col-sm-10" name="websiteUrl" value="https://12bet.in.th" />
-            </div>
-            <button class="btn btn-submit" type="button">Delete</button>
-        </div>
-    </div>
-
-    <div class="radio">
-        <label>
-            <input type="radio" name="optionsRadios" id="doNotHasWebsite" value="0" checked />
-            I don’t have a website
-        </label>
-    </div>
-
-    <div class="form-horizontal form-default">
-        <div class="form-group">
-            <label for="websiteUrl" class="col-sm-3 control-label">Please describe how you would like to promote 12Bet if you don’t have the URL</label>
-            <div class="col-sm-3">
-                <textarea class="form-control col-sm-10">abc</textarea>
+            <label class="col-sm-3 control-label">@Lang.Password</label>
+            <div class="col-sm-4">
+                <p class="form-control-static"><a href="javascript:;">Change</a></p>
             </div>
         </div>
     </div>
@@ -113,43 +29,161 @@
 
 <div class="info-group">
     <div class="title">
-        <span class="text">Preference</span>
+        <span class="text">@Lang.ContactInfo</span>
     </div>
-    <div class="info">
-        <p class="item">
-            <span class="text">Language</span>
-            <span class="value">Việt Nam</span>
-        </p>
-    </div>
-</div>
 
-<div class="info-group">
-    <div class="title">
-        <span class="text">Payment Information</span>
-    </div>
-    <p>Payment Method</p>
-    <div class="row">
-        <div class="col-sm-3">
-            <div class="radio">
-                <label>
-                    <input type="radio" name="playerAccount" id="playerAccount" checked />
-                    12BET Player Account
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label class="col-sm-3 control-label">@Lang.Gender</label>
+            <div class="col-sm-4">
+                <label class="radio-inline">
+                    <input type="radio" name="Gender" id="male" value="male"> @Lang.Male
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="Gender" id="female" value="female"> @Lang.Female
                 </label>
             </div>
         </div>
 
-        <div class="col-sm-9">
-            <div class="form-horizontal form-default">
-                <div class="form-group">
-                    <label for="websiteUrl" class="col-sm-2 col-md-2 col-lg-1 control-label">User Name</label>
-                    <label class="col-sm-9 control-label">12bet2233 (Non-deposited account only)</label>
-                </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">@Lang.Address</label>
+            <div class="col-sm-4">
+                <p class="form-control-static">123, SMS</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">@Lang.City</label>
+            <div class="col-sm-4">
+                <p class="form-control-static">Ho Chi Minh</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">@Lang.PostCode</label>
+            <div class="col-sm-4">
+                <p class="form-control-static">123456</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">@Lang.Country</label>
+            <div class="col-sm-4">
+                <p class="form-control-static">Việt Nam</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">@Lang.Email</label>
+            <div class="col-sm-4">
+                <p class="form-control-static">walter.tran@starixsoft.com</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">@Lang.ContactNumber</label>
+            <div class="col-sm-4">
+                <input class="form-control" type="text" value="123456" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">MSN</label>
+            <div class="col-sm-4">
+                <input class="form-control" type="text" value="987456" />
             </div>
         </div>
     </div>
 </div>
 
-<div class="button-group col-sm-offset-3">
-    <button class="btn btn-submit" type="button">Submit</button>
-    <button class="btn btn-submit" type="button">Cancel</button>
+<div class="info-group">
+    <div class="title">
+        <span class="text">@Lang.WebsiteInformat</span>
+    </div>
+
+    <div class="form-horizontal">
+        <div class="form-group">
+            <div class="col-sm-4">
+                <label class="radio-inline">
+                    <input type="radio" name="HasWebSite" id="hasWebSite"> @Lang.OwnWebsite
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">@Lang.WebsiteURL</label>
+            <div class="col-sm-4">
+                <input class="form-control" type="text" value="http://10.19.10.46:5005/xook.html" />
+            </div>
+            <div class="col-sm-1">
+                <button type="button" class="btn btn-submit">@Lang.AddUrl</button>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">@Lang.WebsiteURL 2</label>
+            <div class="col-sm-4">
+                <input class="form-control" type="text" value="http://10.19.10.46:5005/xook.html0W45pz4p" />
+            </div>
+            <div class="col-sm-1">
+                <button type="button" class="btn btn-submit">@Lang.Del</button>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-4">
+                <label class="radio-inline">
+                    <input type="radio" name="HasWebSite" id="hasNoWebSite"> @Lang.NoWebsite
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">@Lang.DescWebsite</label>
+            <div class="col-sm-4">
+                <textarea class="form-control" rows="5"></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="info-group">
+    <div class="title">
+        <span class="text">@Lang.Preference</span>
+    </div>
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label class="col-sm-3 control-label">@Lang.Language</label>
+            <div class="col-sm-4">
+                <p class="form-control-static">Republic of India</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="info-group">
+    <div class="title">
+        <span class="text">@Lang.PaymentInfor</span>
+    </div>
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label class="col-sm-3 control-label">@Lang.PaymentMethod</label>
+            <div class="col-sm-4">
+                <label class="radio-inline">
+                    <input type="radio" checked /> @Lang._12BETPlayerAcc
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">@Lang.Username</label>
+            <div class="col-sm-4">
+                <p class="form-control-static">qatest01 (@Lang.NonDeposit)</p>
+            </div>
+        </div>
+
+        <div class="col-sm-offset-3">
+            <button class="btn btn-submit" type="button">Submit</button>
+            <button class="btn btn-submit" type="button">Cancel</button>
+        </div>
+    </div>
 </div>
