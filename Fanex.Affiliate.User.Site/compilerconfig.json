@@ -42,5 +42,9 @@
   {
     "outputFile": "www/build/styles/css/payment-request.css",
     "inputFile": "www/source/styles/pages/payment-request.scss"
+  },
+  {
+    "outputFile": "www/build/styles/css/media-gallery.css",
+    "inputFile": "www/source/styles/pages/media-gallery.scss"
   }
 ]

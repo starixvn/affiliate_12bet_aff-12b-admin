@@ -1,0 +1,40 @@
+﻿@{
+    Layout = null;
+}
+
+<link href="~/www/build/styles/css/media-gallery.css" rel="stylesheet" />
+
+<div class="page-title">
+    <span class="text">@Lang.Media</span>
+</div>
+
+@{ 
+    Html.RenderPartial("~/Views/UserPanel/MediaGalleryPartial/_Search.cshtml", true);
+    Html.RenderPartial("~/Views/UserPanel/MediaGalleryPartial/_Link.cshtml");
+}
+
+
+
+<div class="info-group">
+    <div class="title">
+        <span class="text">@Lang.Banner</span>
+    </div>
+
+    <div class="list-container">
+        <ul class="list-unstyled list-content">
+            <li>
+                <a href="#">
+                    <img class="img-responsive" src="http://ha.nexdev.net:7643/12BetBanner/CategoryMedia/Casino/Baccarat/error.PNG" alt="banner" />
+                </a>
+                <input readonly class="link-text" onclick="this.focus();this.select()" value="<a onclick='window.open(&quot;http://10.18.200.209:8017/927841/sportsbook/vn/index.html&quot;,&quot;_blank&quot;); return false;' href='10.18.200.209:8017' target='_blank'><img src='http://ha.nexdev.net:7643/12BetBanner/CategoryMedia/Casino/Baccarat/error.PNG' border='0' width='1578' height='890' /></a>" type="text" />
+            </li>
+
+            <li>
+                <a href="#">
+                    <img class="img-responsive" src="http://ha.nexdev.net:7643/12BetBanner/CategoryMedia/Casino/Baccarat/error.PNG" alt="banner" />
+                </a>
+                <input readonly class="link-text" onclick="this.focus();this.select()" value="<a onclick='window.open(&quot;http://10.18.200.209:8017/927841/sportsbook/vn/index.html&quot;,&quot;_blank&quot;); return false;' href='10.18.200.209:8017' target='_blank'><img src='http://ha.nexdev.net:7643/12BetBanner/CategoryMedia/Casino/Baccarat/error.PNG' border='0' width='1578' height='890' /></a>" type="text" />
+            </li>
+        </ul>
+    </div>
+</div>

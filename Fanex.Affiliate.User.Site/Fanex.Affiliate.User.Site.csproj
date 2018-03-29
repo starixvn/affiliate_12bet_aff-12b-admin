@@ -242,6 +242,10 @@
     <Content Include="www\build\styles\css\main.min.css">
       <DependentUpon>main.css</DependentUpon>
     </Content>
+    <Content Include="www\build\styles\css\media-gallery.css" />
+    <Content Include="www\build\styles\css\media-gallery.min.css">
+      <DependentUpon>media-gallery.css</DependentUpon>
+    </Content>
     <Content Include="www\build\styles\css\my-account.css" />
     <Content Include="www\build\styles\css\my-account.min.css">
       <DependentUpon>my-account.css</DependentUpon>
@@ -614,6 +618,11 @@
     <Content Include="Views\ProgramDetail\Index.cshtml" />
     <Content Include="Views\UserPanel\PaymentRequest.cshtml" />
     <Content Include="www\source\styles\pages\payment-request.scss" />
+    <Content Include="Views\UserPanel\MediaGallery.cshtml" />
+    <Content Include="Views\UserPanel\TextBox.cshtml" />
+    <Content Include="www\source\styles\pages\media-gallery.scss" />
+    <Content Include="Views\UserPanel\MediaGalleryPartial\_Search.cshtml" />
+    <Content Include="Views\UserPanel\MediaGalleryPartial\_Link.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fanex.Affiliate.User.Core\Fanex.Affiliate.User.Core.csproj">
