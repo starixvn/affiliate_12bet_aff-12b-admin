@@ -246,6 +246,10 @@
     <Content Include="www\build\styles\css\my-account.min.css">
       <DependentUpon>my-account.css</DependentUpon>
     </Content>
+    <Content Include="www\build\styles\css\payment-request.css" />
+    <Content Include="www\build\styles\css\payment-request.min.css">
+      <DependentUpon>payment-request.css</DependentUpon>
+    </Content>
     <Content Include="www\build\styles\fonts\font_bebas\Flat-it License.txt" />
     <Content Include="www\build\styles\fonts\glypicons\glyphicons-halflings-regular.svg" />
     <Content Include="www\build\styles\Images\ads-1.jpg" />
@@ -608,6 +612,8 @@
     <Content Include="Views\ContactUs\Index.cshtml" />
     <Content Include="Views\Faq\Index.cshtml" />
     <Content Include="Views\ProgramDetail\Index.cshtml" />
+    <Content Include="Views\UserPanel\PaymentRequest.cshtml" />
+    <Content Include="www\source\styles\pages\payment-request.scss" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fanex.Affiliate.User.Core\Fanex.Affiliate.User.Core.csproj">

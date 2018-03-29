@@ -38,5 +38,9 @@
   {
     "outputFile": "www/build/js/lib/bootstrap-formhelpers.min.js",
     "inputFile": "www/source/js/lib/bootstrap-formhelpers.min.js"
+  },
+  {
+    "outputFile": "www/build/styles/css/payment-request.css",
+    "inputFile": "www/source/styles/pages/payment-request.scss"
   }
 ]
