@@ -1,0 +1,50 @@
+﻿@{
+    Layout = null;
+}
+<link href="~/www/build/styles/css/statistics.css" rel="stylesheet" />
+
+<div class="info-group">
+    <div class="title">
+        <span class="text">@Lang.TrackingStatistics</span>
+    </div>
+
+    <form class="form-inline">
+        <div class="form-group">
+            <label class="w150">@Lang.TrackingCode:</label>
+            <select class="form-control">
+                <option>[All]</option>
+                <option>[None]</option>
+            </select>
+        </div>
+        <button type="button" class="btn btn-submit">@Lang.Submit</button>
+    </form>
+
+    <div class="report-container">
+        <div class="table table-medium">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>@Lang.Month</th>
+                        <th>@Lang.TotalClick</th>
+                        <th>@Lang.UniqueClick</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center">1</td>
+                        <td class="text-center"><a href="javascript:;">Feb-2018</a></td>
+                        <td class="text-right">0</td>
+                        <td class="text-center">0</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">2</td>
+                        <td class="text-center"><a href="javascript:;">March-2018</a></td>
+                        <td class="text-right">4</td>
+                        <td class="text-center">2</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

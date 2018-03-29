@@ -46,5 +46,9 @@
   {
     "outputFile": "www/build/styles/css/media-gallery.css",
     "inputFile": "www/source/styles/pages/media-gallery.scss"
+  },
+  {
+    "outputFile": "www/build/styles/css/statistics.css",
+    "inputFile": "www/source/styles/pages/statistics.scss"
   }
 ]

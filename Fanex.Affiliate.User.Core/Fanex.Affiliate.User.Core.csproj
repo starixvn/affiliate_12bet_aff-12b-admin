@@ -137,6 +137,7 @@
     <Compile Include="Controllers\UserPanelController.StatementHistory.cs" />
     <Compile Include="Controllers\UserPanelController.PaymentRequest.cs" />
     <Compile Include="Controllers\UserPanelController.cs" />
+    <Compile Include="Controllers\UserPanelController.Statistics.cs" />
     <Compile Include="DTO\AuthorizedUserInfo.cs" />
     <Compile Include="DTO\DBMode.cs" />
     <Compile Include="DTO\UserPanel\AccountOverviewStatistics.cs" />

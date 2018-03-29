@@ -1,0 +1,84 @@
+﻿@{
+    Layout = null;
+}
+
+<link href="~/www/build/styles/css/statistics.css" rel="stylesheet" />
+
+<div class="info-group">
+    <div class="title">
+        <span class="text">@Lang.LandingPages</span>
+    </div>
+
+    <form class="form-inline">
+        <div class="form-group">
+            <label>@Lang.Device:</label>
+            <select class="form-control">
+                <option>PC/Laptop</option>
+                <option>Mobile</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>@Lang.Language:</label>
+            <select class="form-control">
+                <option>English</option>
+                <option>Indonesia</option>
+                <option>Tiếng Việt</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>@Lang.Page:</label>
+            <select class="form-control">
+                <option>Casino</option>
+                <option>Number Game</option>
+                <option>Sportsbook</option>
+            </select>
+        </div>
+    </form>
+
+    <form class="form-inline">
+        <div class="form-group">
+            <label>@Lang.From:</label>
+            <input class="form-control" type="text" value="03/01/2018" />
+        </div>
+        <div class="form-group">
+            <label>@Lang.To:</label>
+            <input class="form-control" type="text" value="03/29/2018" />
+        </div>
+        <button type="button" class="btn btn-submit">@Lang.Submit</button>
+    </form>
+
+    <div class="report-container">
+        <div class="table table-medium">
+            <table>
+                <thead>
+                    <tr>
+                        <th>@Lang.Page</th>
+                        <th>@Lang.Language</th>
+                        <th>@Lang.TotalClick</th>
+                        <th>@Lang.UniqueClick</th>
+                        <th>@Lang.SignUp</th>
+                        <th>@Lang.FDM</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="javascript:;">Casino</a></td>
+                        <td>en-US</td>
+                        <td class="text-right">70</td>
+                        <td class="text-right">69</td>
+                        <td class="text-right">0</td>
+                        <td class="text-right">0</td>
+                    </tr>
+                    <tr>
+                        <td><a href="javascript:;">Sportsbook</a></td>
+                        <td>en-US</td>
+                        <td class="text-right">70</td>
+                        <td class="text-right">69</td>
+                        <td class="text-right">0</td>
+                        <td class="text-right">0</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+﻿.form-group {
+    margin-right: 30px;
+
+    label {
+        width: 80px;
+
+        &.w150 {
+            width: 150px;
+        }
+    }
+
+    .form-control {
+        width: 200px;
+    }
+}
+
+.form-inline {
+    margin-bottom: 15px;
+}
