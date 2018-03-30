@@ -1,0 +1,21 @@
+﻿.captcha {
+    .captcha-value {
+        display: inline-block;
+        height: 30px;
+        line-height: 30px;
+        padding: 0 20px;
+        font-size: 18px;
+        background: #87e4ec;
+        font-weight: 500;
+    }
+}
+
+label {
+    &.require {
+        &:after {
+            content: '*';
+            color: #f15050;
+            padding: 0 2px;
+        }
+    }
+}

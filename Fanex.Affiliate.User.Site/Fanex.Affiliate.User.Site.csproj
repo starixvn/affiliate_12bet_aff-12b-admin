@@ -363,10 +363,7 @@
     <Content Include="www\source\styles\scss\vendors\animate\animate.css" />
     <Content Include="www\source\styles\scss\vendors\animate\animate.min.css" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="www\source\styles\scss\pages\" />
-    <Folder Include="www\source\styles\scss\vendors-extensions\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="bundleconfig.json" />
     <Content Include="compilerconfig.json" />
@@ -631,6 +628,8 @@
     <Content Include="Views\UserPanel\ReferrersStatistics.cshtml" />
     <Content Include="Views\UserPanel\LandingPageStatistics.cshtml" />
     <Content Include="www\source\styles\pages\statistics.scss" />
+    <Content Include="Views\Signup\Index.cshtml" />
+    <Content Include="www\source\styles\scss\base\_common.scss" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fanex.Affiliate.User.Core\Fanex.Affiliate.User.Core.csproj">

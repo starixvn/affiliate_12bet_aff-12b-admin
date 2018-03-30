@@ -102,12 +102,3 @@
   .form .group-full {
     width: 100%; }
 
-.capcha .capcha-value {
-  display: inline-block;
-  height: 30px;
-  line-height: 30px;
-  padding: 0 20px;
-  font-size: 18px;
-  background: #87e4ec;
-  font-weight: 500; }
-

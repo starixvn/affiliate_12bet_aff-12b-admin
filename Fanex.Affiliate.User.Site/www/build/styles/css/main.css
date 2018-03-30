@@ -1652,46 +1652,6 @@ input[type="checkbox"], input[type="radio"] {
       font-weight: 600;
       padding-left: 10px; }
 
-.checkbox input[type="checkbox"] {
-  display: block;
-  opacity: 0;
-  height: 16px;
-  position: absolute;
-  width: 16px; }
-  .checkbox input[type="checkbox"]:checked + label::after {
-    background-color: #e04f29;
-    transform: scale(1); }
-  .checkbox input[type="checkbox"]:disabled + label::after {
-    background-color: #e04f29;
-    transform: scale(1);
-    opacity: 0.7;
-    cursor: not-allowed; }
-  .checkbox input[type="checkbox"]:disabled + label {
-    cursor: not-allowed; }
-
-.checkbox label {
-  display: block;
-  padding-left: 25px;
-  position: relative;
-  color: #e04f29;
-  margin-bottom: 8px;
-  cursor: pointer; }
-  .checkbox label:before, .checkbox label:after {
-    border: 2px solid #e04f29;
-    content: "";
-    display: block;
-    left: 0;
-    height: 16px;
-    position: absolute;
-    width: 16px;
-    top: 0;
-    border-radius: 2px; }
-  .checkbox label:after {
-    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAGCAYAAAD+Bd/7AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNXG14zYAAABMSURBVAiZfc0xDkAAFIPhd2Kr1WRjcAExuIgzGUTIZ/AkImjSofnbNBAfHvzAHjOKNzhiQ42IDFXCDivaaxAJd0xYshT3QqBxqnxeHvhunpu23xnmAAAAAElFTkSuQmCC") center center no-repeat;
-    border: 0;
-    transform: scale(0);
-    transition: .2s; }
-
 .form {
   display: flex;
   flex-direction: column;
@@ -1709,10 +1669,6 @@ input[type="checkbox"], input[type="radio"] {
     .form .form-group label {
       flex: 0 0 100px;
       margin-top: 5px; }
-      .form .form-group label.require:after {
-        content: '*';
-        color: #f15050;
-        padding: 0 2px; }
     .form .form-group .field {
       width: calc(100% - 100px);
       height: 30px;
@@ -1844,6 +1800,20 @@ input[type="checkbox"], input[type="radio"] {
       background: linear-gradient(top, #ff7a00, #ffea00);
       color: #2b2b2b;
       text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.32); }
+
+.captcha .captcha-value {
+  display: inline-block;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 20px;
+  font-size: 18px;
+  background: #87e4ec;
+  font-weight: 500; }
+
+label.require:after {
+  content: '*';
+  color: #f15050;
+  padding: 0 2px; }
 
 .btn {
   display: inline-block;

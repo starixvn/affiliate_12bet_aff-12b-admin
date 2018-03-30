@@ -132,6 +132,7 @@
     <Compile Include="Controllers\FaqController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProgramDetailController.cs" />
+    <Compile Include="Controllers\SignupController.cs" />
     <Compile Include="Controllers\UserPanelController.MediaGallery.cs" />
     <Compile Include="Controllers\UserPanelController.MyAccount.cs" />
     <Compile Include="Controllers\UserPanelController.StatementHistory.cs" />
