@@ -2,14 +2,12 @@
     Layout = null;
 }
 
-<link href="~/www/build/styles/css/statistics.css" rel="stylesheet" />
-
 <div class="info-group">
     <div class="title">
         <span class="text">@Lang.LandingPages</span>
     </div>
 
-    <form class="form-inline">
+    <form class="form-inline form-filter">
         <div class="form-group">
             <label>@Lang.Device:</label>
             <select class="form-control">
@@ -35,7 +33,7 @@
         </div>
     </form>
 
-    <form class="form-inline">
+    <form class="form-inline  form-filter">
         <div class="form-group">
             <label>@Lang.From:</label>
             <input class="form-control" type="text" value="03/01/2018" />

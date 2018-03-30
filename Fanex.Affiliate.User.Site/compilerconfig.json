@@ -48,7 +48,11 @@
     "inputFile": "www/source/styles/pages/media-gallery.scss"
   },
   {
-    "outputFile": "www/build/styles/css/statistics.css",
-    "inputFile": "www/source/styles/pages/statistics.scss"
+    "outputFile": "www/build/js/statement-history.js",
+    "inputFile": "www/source/js/pages/statement-history.js"
+  },
+  {
+    "outputFile": "www/build/js/daily-earning.js",
+    "inputFile": "www/source/js/pages/daily-earning.js"
   }
 ]

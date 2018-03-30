@@ -1,0 +1,67 @@
+﻿
+@{
+    Layout = null;
+}
+
+<div class="page-title">
+    <span class="text">@Lang.DailyEarningDetail</span>
+</div>
+
+<div>
+    <form class="form-inline form-filter">
+        <div class="form-group">
+            <label class="w100">@Lang.SelectDate:</label>
+            <input class="form-control" type="text" value="09/13/2017" />
+        </div>
+        <div class="form-group">
+            <label class="w100">@Lang.SportType:</label>
+            <select class="form-control">
+                <option>[All]</option>
+                <option>Sportsbook</option>
+                <option>Casino</option>
+            </select>
+        </div>
+        <button type="button" class="btn btn-submit">@Lang.Submit</button>
+    </form>
+
+    <div class="table" id="dailyEarningDetailContent">
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>@Lang.Username</th>
+                    <th>@Lang.Deposit</th>
+                    <th>@Lang.Withdrawal</th>
+                    <th>@Lang.Turnover</th>
+                    <th>@Lang.Winlost</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td class="text-center"><a class="dateItem" href="javascript:;">Walter</a></td>
+                    <td class="text-right">$2,173.50</td>
+                    <td class="text-right">$2,158.79</td>
+                    <td class="text-right">-$1,998.12</td>
+                    <td class="text-right">$5.80</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td class="text-center"><a class="dateItem" href="javascript:;">Walter</a></td>
+                    <td class="text-right">$2,173.50</td>
+                    <td class="text-right">$2,158.79</td>
+                    <td class="text-right">-$1,998.12</td>
+                    <td class="text-right">$5.80</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td class="text-center"><a class="dateItem" href="javascript:;">Walter</a></td>
+                    <td class="text-right">$2,173.50</td>
+                    <td class="text-right">$2,158.79</td>
+                    <td class="text-right">-$1,998.12</td>
+                    <td class="text-right">$5.80</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -8,7 +8,7 @@
 
 <div class="info-group">
     <div class="title">
-        <div class="form-group">
+        <div class="form-group form-filter">
             <span class="text">Page size</span>
             <select id="pageSize">
                 <option>10</option>
@@ -19,7 +19,7 @@
         </div>
     </div>
 
-    <div class="table">
+    <div class="table" id="statementContent">
         <table>
             <thead>
                 <tr>
@@ -36,7 +36,7 @@
                     <td>1</td>
                     <td class="text-bold">March-2018</td>
                     <td>Transaction</td>
-                    <td class="text-right">$0.00</td>
+                    <td class="text-right"><a class="amountItem" href="javascript:;">$100.00</a></td>
                     <td class="text-center">Current</td>
                     <td></td>
                 </tr>
@@ -84,3 +84,4 @@
         </table>
     </div>
 </div>
+<script src="~/www/build/js/statement-history.js"></script>

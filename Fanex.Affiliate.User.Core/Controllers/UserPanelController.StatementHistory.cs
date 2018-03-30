@@ -9,5 +9,17 @@
         {
             return View();
         }
+
+        [HttpGet]
+        public ActionResult DailyEarning()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult DailyEarningDetail()
+        {
+            return View();
+        }
     }
 }

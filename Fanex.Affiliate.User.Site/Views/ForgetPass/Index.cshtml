@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = Lang.ForgetPassword;
+    Layout = "~/Views/Shared/_LayoutBeforeLogin.cshtml";
+}
+
+<div class="content">
+    <div class="page-title">
+        <span class="text">@Lang.ForgetPassword</span>
+    </div>
+
+    <div>
+        <p>@Html.Raw(Lang.TitelForgetPass)</p>
+
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-2 control-label require">@Lang.YourEmail</label>
+                <div class="col-sm-4">
+                    <input class="form-control" type="text" value="abc@gmail.com" />
+                </div>
+            </div>
+
+            <div class="col-sm-offset-2">
+                <button class="btn btn-submit" type="button">@Lang.Submit</button>
+                <button class="btn btn-submit" type="button">@Lang.Reset</button>
+            </div>
+        </div>
+    </div>
+</div>

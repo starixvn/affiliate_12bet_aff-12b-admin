@@ -19,3 +19,29 @@ label {
         }
     }
 }
+
+.form-filter {
+    .form-group {
+        margin-right: 30px;
+
+        label {
+            width: 80px;
+
+            &.w150 {
+                width: 150px;
+            }
+
+            &.w100 {
+                width: 100px;
+            }
+        }
+
+        .form-control {
+            width: 200px;
+        }
+    }
+}
+
+.form-inline {
+    margin-bottom: 15px;
+}
