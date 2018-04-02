@@ -95,6 +95,10 @@
     <Reference Include="ONEbook.UM, Version=2.0.2.9, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ONEbook.UM.2.0.2.9\lib\net40\ONEbook.UM.dll</HintPath>
     </Reference>
+    <Reference Include="RazorEngine, Version=3.10.0.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
+      <HintPath>..\packages\RazorEngine.3.10.0\lib\net45\RazorEngine.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\RestSharp.105.2.3\lib\net46\RestSharp.dll</HintPath>
     </Reference>
@@ -196,6 +200,18 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Views\Shared\Email\ForgetPassword\Content.en-GB.txt" />
+    <Content Include="Views\Shared\Email\ForgetPassword\Content.en-US.txt" />
+    <Content Include="Views\Shared\Email\ForgetPassword\Content.en.txt" />
+    <Content Include="Views\Shared\Email\ForgetPassword\Content.es-ES.txt" />
+    <Content Include="Views\Shared\Email\ForgetPassword\Content.hi-IN.txt" />
+    <Content Include="Views\Shared\Email\ForgetPassword\Content.id-ID.txt" />
+    <Content Include="Views\Shared\Email\ForgetPassword\Content.ja-JP.txt" />
+    <Content Include="Views\Shared\Email\ForgetPassword\Content.ko-KR.txt" />
+    <Content Include="Views\Shared\Email\ForgetPassword\Content.th-TH.txt" />
+    <Content Include="Views\Shared\Email\ForgetPassword\Content.vi-VN.txt" />
+    <Content Include="Views\Shared\Email\ForgetPassword\Content.zh-CN.txt" />
+    <Content Include="Views\Shared\Email\ForgetPassword\Content.zh-TW.txt" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -349,6 +365,23 @@
     <Content Include="www\source\styles\Images\contact-us\Support_girl.png" />
     <Content Include="www\source\styles\Images\contact-us\thailand_lang.png" />
     <Content Include="www\source\styles\Images\contact-us\vietnam_lang.png" />
+    <Content Include="www\source\styles\Images\email\banner.png" />
+    <Content Include="www\source\styles\Images\email\banner_en-GB.jpg" />
+    <Content Include="www\source\styles\Images\email\banner_en-US.jpg" />
+    <Content Include="www\source\styles\Images\email\banner_en.jpg" />
+    <Content Include="www\source\styles\Images\email\banner_es-ES.jpg" />
+    <Content Include="www\source\styles\Images\email\banner_hi-IN.jpg" />
+    <Content Include="www\source\styles\Images\email\banner_id-ID.jpg" />
+    <Content Include="www\source\styles\Images\email\banner_ja-JP.jpg" />
+    <Content Include="www\source\styles\Images\email\banner_ko-KR.jpg" />
+    <Content Include="www\source\styles\Images\email\banner_th-TH.jpg" />
+    <Content Include="www\source\styles\Images\email\banner_vi-VN.jpg" />
+    <Content Include="www\source\styles\Images\email\banner_zh-CN.jpg" />
+    <Content Include="www\source\styles\Images\email\banner_zh-TW.jpg" />
+    <Content Include="www\source\styles\Images\email\bgMain.jpg" />
+    <Content Include="www\source\styles\Images\email\button.png" />
+    <Content Include="www\source\styles\Images\email\header.png" />
+    <Content Include="www\source\styles\Images\email\note.png" />
     <Content Include="www\source\styles\Images\FAQ.png" />
     <Content Include="www\source\styles\Images\footer-brand.png" />
     <Content Include="www\source\styles\Images\footer\cr-18.png" />
@@ -638,6 +671,19 @@
     <Content Include="Views\ForgetPass\Index.cshtml" />
     <Content Include="Views\UserPanel\DailyEarning.cshtml" />
     <Content Include="Views\UserPanel\DailyEarningDetail.cshtml" />
+    <Content Include="Views\Shared\Email\ForgetPassword\Content.en.cshtml" />
+    <Content Include="Views\Shared\Email\ForgetPassword\Content.en-GB.cshtml" />
+    <Content Include="Views\Shared\Email\ForgetPassword\Content.en-US.cshtml" />
+    <Content Include="Views\Shared\Email\ForgetPassword\Content.es-ES.cshtml" />
+    <Content Include="Views\Shared\Email\ForgetPassword\Content.hi-IN.cshtml" />
+    <Content Include="Views\Shared\Email\ForgetPassword\Content.id-ID.cshtml" />
+    <Content Include="Views\Shared\Email\ForgetPassword\Content.ja-JP.cshtml" />
+    <Content Include="Views\Shared\Email\ForgetPassword\Content.ko-KR.cshtml" />
+    <Content Include="Views\Shared\Email\ForgetPassword\Content.th-TH.cshtml" />
+    <Content Include="Views\Shared\Email\ForgetPassword\Content.vi-VN.cshtml" />
+    <Content Include="Views\Shared\Email\ForgetPassword\Content.zh-CN.cshtml" />
+    <Content Include="Views\Shared\Email\ForgetPassword\Content.zh-TW.cshtml" />
+    <Content Include="Views\Test\Email.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fanex.Affiliate.User.Core\Fanex.Affiliate.User.Core.csproj">

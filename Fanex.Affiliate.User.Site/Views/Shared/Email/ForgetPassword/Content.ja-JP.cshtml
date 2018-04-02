@@ -1,0 +1,104 @@
+﻿@{
+    var imageFolderUrl = Model.RootUrl + @"/www/source/styles/Images/email";
+    var recoverUrl = $"{Model.RecoverPwdURL}?uid={Model.CustId}&vid={Model.ValidationCode}";
+}
+<table width="100%">
+    <tr>
+        <td valign="top" align="center" background="@imageFolderUrl/bgMain.jpg">
+            <table width="599" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td height="88" background="@imageFolderUrl/banner_@(Model.Language).jpg"></td>
+                </tr>
+                <tr height="3">
+                    <td height="3" bgcolor="#ff0000"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td width="482" height="31" background="@imageFolderUrl/header.png">
+                                    &nbsp;&nbsp;
+                                    <strong style="color: rgb(255, 255, 255);">
+                                        <font style="font-size: 9px; font-family: Verdana,Arial,Helvetica,sans-serif; text-transform: uppercase;">
+                                            「ログイン情報」　について&nbsp;
+                                        </font>
+                                    </strong>
+                                </td>
+                                <td bgcolor="#f9f9f9" width="117">&nbsp;</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <br />
+                        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td width="15">&nbsp;</td>
+                                <td>
+                                    <font style="font-size: 12px; font-family: Verdana,Arial,Helvetica,sans-serif; line-height: 22px;">
+                                        <strong>@Model.FirstName様、,</strong><br /><br />
+
+                                        お客様からユーザー名またはパスワードリセット依頼を申請されました。　申請されていない場合、このメールは無視していただくようお願いいたします。<br />
+                                        申請された場合は、以下のリンクへアクセス、リセット手順を行なってください。のちほどお客様へユーザー名と新しいパスワードをEメールにてお知らせいたします:<br />
+                                        <a href='@recoverUrl'>@recoverUrl</a><br /><br />
+
+                                        お知らせと注意事項<br />
+                                        * ユーザー名: @Model.Username <br />
+                                        * セキュリティ上の観点から、一度弊社からお客様へ新規パスワードを発行し、ご案内させて頂きます。　(後ほどご自身でいつでもこちらから変更ができます)<br />
+                                        * 上記のリンクは、24時間経過しますと自動的に期限切れとなりますのでご注意願います。<br /><br />
+
+                                        また、何かご不明な点等ございましたら、お気軽に12BETまでお問い合わせ願います。<br /><br />
+
+                                        以上、よろしくお願いします。<br /><br />
+
+                                        12BETアフィリエイトチーム<br />
+
+                                        <a href="mailto:@Model.MailContact">@Model.MailContact</a>
+                                    </font>
+                                </td>
+                                <td width="15">&nbsp;</td>
+                            </tr>
+                        </table>
+                        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td width="400">&nbsp;</td>
+                                <td align="center" width="185" height="41" background="@imageFolderUrl/button.png">
+                                    <a href="@Model.RootUrl" style="text-decoration: none; border: 0px; color: rgb(255, 255, 255);">
+                                        <font style="font-size: 20px; font-family: Verdana,Arial,Helvetica,sans-serif;">
+                                            アフィリエイト
+                                        </font>
+                                    </a><br />
+                                </td>
+                                <td width="19">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" height="30">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" align="right" bgcolor="#b6b6b6" height="25">
+                                    <font style="font-size: 11px; color: #333333; font-family: Verdana,Arial,Helvetica,sans-serif;">
+                                        © 著作権 2009 Pacific Sea Invests.
+                                    </font>
+                                </td>
+                                <td width="5" bgcolor="#b6b6b6"></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td heght="20">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td align="center" height="40" background="@imageFolderUrl/note.png">
+                        <font style="font-size: 11px; color: rgb(255, 255, 255); font-family: Verdana,Arial,Helvetica,sans-serif;">
+                            このEメールはシステムにより自動生成されております。直接このメールご返信なさらないようお願い申し上げます。
+                        </font>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>

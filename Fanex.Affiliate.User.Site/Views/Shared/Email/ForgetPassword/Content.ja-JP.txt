@@ -1,0 +1,23 @@
+﻿@{
+	var recoverUrl = $"{Model.RecoverPwdURL}?uid={Model.CustId}&vid={Model.ValidationCode}";
+}
+<div>
+@Model.FirstName様、,<br /><br />
+
+お客様からユーザー名またはパスワードリセット依頼を申請されました。　申請されていない場合、このメールは無視していただくようお願いいたします。<br />
+申請された場合は、以下のリンクへアクセス、リセット手順を行なってください。のちほどお客様へユーザー名と新しいパスワードをEメールにてお知らせいたします:<br />
+<a href='@recoverUrl'>@recoverUrl</a><br /><br />
+
+お知らせと注意事項<br />
+* ユーザー名: @Model.Username <br />
+* セキュリティ上の観点から、一度弊社からお客様へ新規パスワードを発行し、ご案内させて頂きます。　(後ほどご自身でいつでもこちらから変更ができます)<br />
+* 上記のリンクは、24時間経過しますと自動的に期限切れとなりますのでご注意願います。<br /><br />
+
+また、何かご不明な点等ございましたら、お気軽に12BETまでお問い合わせ願います。<br /><br />
+
+以上、よろしくお願いします。<br /><br />
+
+12BETアフィリエイトチーム<br />
+
+<a href="mailto:@Model.MailContact">@Model.MailContact</a>
+</div>
