@@ -70,6 +70,10 @@
     <Reference Include="Fanex.Logging, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Fanex.Logging.1.0.4\lib\net40\Fanex.Logging.dll</HintPath>
     </Reference>
+    <Reference Include="Fanex.MailDeliver.MailClient, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.MailDeliver.MailClient.1.0.0.2\lib\net40\Fanex.MailDeliver.MailClient.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -688,7 +692,7 @@
     <Content Include="Views\Shared\Email\ForgetPassword\Content.vi-VN.cshtml" />
     <Content Include="Views\Shared\Email\ForgetPassword\Content.zh-CN.cshtml" />
     <Content Include="Views\Shared\Email\ForgetPassword\Content.zh-TW.cshtml" />
-    <Content Include="Views\Test\Email.cshtml" />
+    <Content Include="Views\Test\Preview.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

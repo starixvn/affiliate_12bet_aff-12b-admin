@@ -1,23 +1,12 @@
 ﻿"use strict";
 
 var Aff12BetTesting = (function ($) {
-    function render() {
+    function getUrl(actionName) {
         var rootAction = $("#rootAction").val();
         var format = $('input[name=Format]:checked').val() || "cshtml";
         var language = $('input[name=Language]:checked').val() || "en-US";
         var functionName = $('input[name=Function]:checked').val();
-        var url = rootAction + "Test/Email?language=" + language + "&function=" + functionName + "&format=" + format;
-        console.log(url);
-
-        $.ajax({
-            type: "GET",
-            dataType: "html",
-            cache: false,
-            url: url,
-            success: function success(response) {
-                $("#resultContent").html(response);
-            }
-        });
+        return rootAction + "Test/" + actionName + "?language=" + language + "&function=" + functionName + "&format=" + format;
     }
 
     return {
@@ -26,9 +15,49 @@ var Aff12BetTesting = (function ($) {
         },
 
         initEvent: function initEvent() {
-            $("#btnSubmit").on("click", function () {
+            $("#btnPreview").on("click", function () {
                 $("#resultContent").html("");
-                render();
+
+                var url = getUrl("Preview");
+                console.log(url);
+
+                $.ajax({
+                    type: "GET",
+                    dataType: "html",
+                    cache: false,
+                    url: url,
+                    success: function success(response) {
+                        $("#resultContent").html(response);
+                    }
+                });
+            });
+
+            $("#btnSendMail").on("click", function () {
+                $("#resultContent").html("");
+                var emailAddress = $("#emailAddress").val();
+                if (!emailAddress) {
+                    $("#resultContent").html("Please enter email address");
+                    return;
+                }
+
+                var url = getUrl("SendEmail");
+                url += "&EmailAddress=" + emailAddress;
+                console.log(url);
+
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    cache: false,
+                    url: url,
+                    success: function success(response) {
+                        if (response.Success) {
+                            $("#resultContent").html("Send Successfully");
+                        } else {
+                            var message = "Send Failed<br />" + response.Message;
+                            $("#resultContent").html(message);
+                        }
+                    }
+                });
             });
         }
     };
