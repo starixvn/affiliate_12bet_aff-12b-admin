@@ -1,7 +1,4 @@
 ﻿@{
-    Layout = null;
-}
-@{
 	var recoverUrl = Model.RecoverPwdURL + "?uid=" + Model.CustId + "&vid=" + Model.ValidationCode;
 }
 <div>

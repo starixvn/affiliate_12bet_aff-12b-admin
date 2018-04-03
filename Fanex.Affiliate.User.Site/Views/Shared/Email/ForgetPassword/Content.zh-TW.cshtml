@@ -1,13 +1,12 @@
 ﻿@{
-    var imageFolderUrl = Model.RootUrl + @"/www/source/styles/Images/email";
     var recoverUrl = Model.RecoverPwdURL + "?uid=" + Model.CustId + "&vid=" + Model.ValidationCode;
 }
 <table width="100%">
     <tr>
-        <td valign="top" align="center" background="@imageFolderUrl/bgMain.jpg">
+        <td valign="top" align="center" background="@Model.ImageRootUrl/bgMain.jpg">
             <table width="599" cellpadding="0" cellspacing="0" border="0">
                 <tr>
-                    <td height="88" background="@imageFolderUrl/banner_@(Model.Language).jpg"></td>
+                    <td height="88" background="@Model.ImageRootUrl/banner_@(Model.Language).jpg"></td>
                 </tr>
                 <tr height="3">
                     <td height="3" bgcolor="#ff0000"></td>
@@ -16,7 +15,7 @@
                     <td>
                         <table width="100%" cellpadding="0" cellspacing="0" border="0">
                             <tr>
-                                <td width="482" height="31" background="@imageFolderUrl/header.png">
+                                <td width="482" height="31" background="@Model.ImageRootUrl/header.png">
                                     &nbsp;&nbsp;
                                     <strong style="color: rgb(255, 255, 255);">
                                         <font style="font-size: 9px; font-family: Verdana,Arial,Helvetica,sans-serif; text-transform: uppercase;">
@@ -64,7 +63,7 @@
                         <table width="100%" cellpadding="0" cellspacing="0" border="0">
                             <tr>
                                 <td width="400">&nbsp;</td>
-                                <td align="center" width="185" height="41" background="@imageFolderUrl/button.png">
+                                <td align="center" width="185" height="41" background="@Model.ImageRootUrl/button.png">
                                     <a href="@Model.RootUrl" style="text-decoration: none; border: 0px; color: rgb(255, 255, 255);">
                                         <font style="font-size: 20px; font-family: Verdana,Arial,Helvetica,sans-serif;">
                                             合作夥伴
@@ -93,7 +92,7 @@
                     <td heght="20">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td align="center" height="40" background="@imageFolderUrl/note.png">
+                    <td align="center" height="40" background="@Model.ImageRootUrl/note.png">
                         <font style="font-size: 11px; color: rgb(255, 255, 255); font-family: Verdana,Arial,Helvetica,sans-serif;">
                             此郵件為系統郵件，請不要直接回复。
                         </font>

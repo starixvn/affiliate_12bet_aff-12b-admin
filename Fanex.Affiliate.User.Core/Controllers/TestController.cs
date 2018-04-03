@@ -2,6 +2,7 @@
 {
     using System;
     using System.Web.Mvc;
+    using Constants;
     using Utilities;
 
     public class TestController : Controller
@@ -59,7 +60,7 @@
             var language = criteria.Language;
             var function = criteria.Function;
 
-            var viewPath = string.Format("~/Views/Shared/Email/{0}/Content.{1}.{2}", function, language, criteria.Format);
+            var viewPath = string.Format(TemplateString.EmailTemplatePath, function, language, criteria.Format);
             var path = Server.MapPath(viewPath);
             var model = GetModelByFunction(function, language);
 
@@ -91,7 +92,8 @@
                 Language = language,
                 FirstName = "Walter",
                 UserName = "aawalter",
-                MailContact = "mailcontact@gmail.com"
+                MailContact = "mailcontact@gmail.com",
+                ImageRootUrl = string.Format(TemplateString.EmailImageRootPath, SiteDomainHelper.GetRootUrl(this))
             };
         }
 
@@ -105,7 +107,8 @@
                 MailContact = "mailcontact@gmail.com",
                 TransId = 10008751L,
                 Date = DateTime.Now.Date.ToString("MM/dd/yyyy"),
-                Amount = 989
+                Amount = 989,
+                ImageRootUrl = string.Format(TemplateString.EmailImageRootPath, SiteDomainHelper.GetRootUrl(this))
             };
         }
     }
