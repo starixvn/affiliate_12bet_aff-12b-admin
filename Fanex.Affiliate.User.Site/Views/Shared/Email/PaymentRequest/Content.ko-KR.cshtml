@@ -1,0 +1,95 @@
+﻿<table width="100%">
+    <tr>
+        <td valign="top" align="center" background="@Model.ImageRootUrl/bgMain.jpg">
+            <table width="599" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td height="88" background="@Model.ImageRootUrl/banner_@(Model.Language).jpg"></td>
+                </tr>
+                <tr height="3">
+                    <td height="3" bgcolor="#ff0000"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td width="482" height="31" background="@Model.ImageRootUrl/header.png">
+                                    &nbsp;&nbsp;
+                                    <strong style="color: rgb(255, 255, 255);">
+                                        <font style="font-size: 9px; font-family: Verdana,Arial,Helvetica,sans-serif; text-transform: uppercase;">
+                                            지불요청 알림&nbsp;
+                                        </font>
+                                    </strong>
+                                </td>
+                                <td bgcolor="#f9f9f9" width="117">&nbsp;</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <br />
+                        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td width="15">&nbsp;</td>
+                                <td>
+                                    <font style="font-size: 12px; font-family: Verdana,Arial,Helvetica,sans-serif; line-height: 22px;">
+                                        <strong>@(Model.FirstName)고객님,</strong><br /><br />
+
+                                        고객님께서는 @(Model.Date)에    @(Model.Amount)$의 지불을 요청하셨습니다.감사합니다.<br />
+                                        고객님의 요청 확인번호는  @(Model.TransId)입니다.<br /><br />
+
+                                        고객님의 지불 요청은 7 영업일 안에 처리될 것입니다. 모든 요청은 접수된 순서에 따라 검토 되어집니다.<br /><br />
+
+                                        본 메일은 시스템 자동발신 메일이므로 답신의 수신은 불가능합니다.<br />
+                                        요청및 문의사항은 다음의 주소로 메일보내주시기 바랍니다. <a href="mailto:@Model.MailContact">@Model.MailContact</a>
+
+                                        좋은 하루 되십시요!<br /><br />
+                                        감사합니다.<br /><br />
+                                        12EBT 업무제휴 팀 
+                                    </font>
+                                </td>
+                                <td width="15">&nbsp;</td>
+                            </tr>
+                        </table>
+                        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                            <tr>
+                                <td width="400">&nbsp;</td>
+                                <td align="center" width="185" height="41" background="@Model.ImageRootUrl/button.png">
+                                    <a href="@Model.RootUrl" style="text-decoration: none; border: 0px; color: rgb(255, 255, 255);">
+                                        <font style="font-size: 20px; font-family: Verdana,Arial,Helvetica,sans-serif;">
+                                            제휴
+                                        </font>
+                                    </a><br />
+                                </td>
+                                <td width="19">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" height="30">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" align="right" bgcolor="#b6b6b6" height="25">
+                                    <font style="font-size: 11px; color: #333333; font-family: Verdana,Arial,Helvetica,sans-serif;">
+                                        © 저작권Pacific Sea Invests
+                                    </font>
+                                </td>
+                                <td width="5" bgcolor="#b6b6b6"></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td heght="20">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td align="center" height="40" background="@Model.ImageRootUrl/note.png">
+                        <font style="font-size: 11px; color: rgb(255, 255, 255); font-family: Verdana,Arial,Helvetica,sans-serif;">
+                            이 메일은 시스템에서 자동적으로 답변하는 메일입니다. 답변 안 하셔도 됩니다.
+                        </font>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>

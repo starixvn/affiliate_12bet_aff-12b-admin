@@ -75,7 +75,8 @@
                     return GetForgetPasswordModel(language);
 
                 case "PaymentCancel":
-                    return GetPaymentCancelModel(language);
+                case "PaymentRequest":
+                    return GetPaymentModel(language);
             }
 
             return null;
@@ -97,7 +98,7 @@
             };
         }
 
-        private object GetPaymentCancelModel(string language)
+        private object GetPaymentModel(string language)
         {
             return new
             {
