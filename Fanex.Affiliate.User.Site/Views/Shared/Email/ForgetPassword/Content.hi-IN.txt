@@ -1,5 +1,5 @@
 ﻿@{
-	var recoverUrl = $"{Model.RecoverPwdURL}?uid={Model.CustId}&vid={Model.ValidationCode}";
+	var recoverUrl = Model.RecoverPwdURL + "?uid=" + Model.CustId + "&vid=" + Model.ValidationCode;
 }
 <div>
 Dear @Model.FirstName,<br /><br />
@@ -9,7 +9,7 @@ Otherwise please visit the following link, then your new password will be emaile
 <a href='@recoverUrl'>@recoverUrl</a><br /><br />
 
 Please note<br />
-* Your username is: @Model.Username <br />
+* Your username is: @Model.UserName <br />
 * Due to security reason, we must provide you a new password (you can change this at anytime later).<br />
 * The above link will be expired and become useless in 24 hours time.<br /><br />
 

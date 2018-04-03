@@ -1,47 +1,10 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Email</title>
-</head>
-<body>
-    <div>
-        <div>
-            Language:
-            <label for="English">
-                <input name="Language" id="English" type="radio" checked value="en-US" />
-                English
-            </label>
-            <label for="EnglishEuro">
-                <input name="Language" id="EnglishEuro" type="radio" value="es-ES" />
-                English Euro
-            </label>
-        </div>
-
-        <div>
-            Function:
-            <label for="ForgetPassword">
-                <input name="Function" id="ForgetPassword" type="radio" checked value="ForgetPassword" />
-                English
-            </label>
-        </div>
-
-        <div>
-            <button type="submit" id="btnSubmit">Submit</button>
-        </div>
-
-        <div style="width: 100%;">
-            @if (ViewBag.Data != null)
-            {
-                @ViewBag.Data
-            }
-        </div>
-    </div>
-</body>
-</html>
+<div>
+    @if (ViewBag.Data != null)
+    {
+        @Html.Raw(ViewBag.Data)
+    }
+</div>

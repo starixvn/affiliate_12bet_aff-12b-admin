@@ -1,6 +1,6 @@
 ﻿@{
     var imageFolderUrl = Model.RootUrl + @"/www/source/styles/Images/email";
-    var recoverUrl = $"{Model.RecoverPwdURL}?uid={Model.CustId}&vid={Model.ValidationCode}";
+    var recoverUrl = Model.RecoverPwdURL + "?uid=" + Model.CustId + "&vid=" + Model.ValidationCode;
 }
 <table width="100%">
     <tr>
@@ -43,7 +43,7 @@
                                         <a href='@recoverUrl'>@recoverUrl</a><br /><br />
 
                                         Xin lưu ý:<br />
-                                        *Tên tài khoản là: @Model.Username<br />
+                                        *Tên tài khoản là: @Model.UserName<br />
                                         *Vì lý do an toàn, chúng tôi phải cung cấp cho bạn mật mã mới (bạn có thể đổi mật mã bất cứ khi nào).<br />
                                         *Liên kết trên sẽ hết hạn và vô hiệu trong vòng 24 tiếng.<br /><br />
 

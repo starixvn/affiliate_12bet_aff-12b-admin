@@ -242,6 +242,10 @@
     <Content Include="www\build\js\statement-history.min.js">
       <DependentUpon>statement-history.js</DependentUpon>
     </Content>
+    <Content Include="www\build\js\test.js" />
+    <Content Include="www\build\js\test.min.js">
+      <DependentUpon>test.js</DependentUpon>
+    </Content>
     <Content Include="www\build\js\user-panel.js" />
     <Content Include="www\build\js\user-panel.min.js">
       <DependentUpon>user-panel.js</DependentUpon>
@@ -340,6 +344,7 @@
     <Content Include="www\source\js\layout.js" />
     <Content Include="www\source\js\pages\daily-earning.js" />
     <Content Include="www\source\js\pages\statement-history.js" />
+    <Content Include="www\source\js\pages\test.js" />
     <Content Include="www\source\js\pages\user-panel.js" />
     <Content Include="www\source\styles\css\bootstrap.css" />
     <Content Include="www\source\styles\css\bootstrap.min.css" />
@@ -684,6 +689,7 @@
     <Content Include="Views\Shared\Email\ForgetPassword\Content.zh-CN.cshtml" />
     <Content Include="Views\Shared\Email\ForgetPassword\Content.zh-TW.cshtml" />
     <Content Include="Views\Test\Email.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fanex.Affiliate.User.Core\Fanex.Affiliate.User.Core.csproj">

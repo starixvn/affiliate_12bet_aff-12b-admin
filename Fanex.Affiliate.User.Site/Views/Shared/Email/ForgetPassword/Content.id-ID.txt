@@ -1,5 +1,5 @@
 ﻿@{
-	var recoverUrl = $"{Model.RecoverPwdURL}?uid={Model.CustId}&vid={Model.ValidationCode}";
+	var recoverUrl = Model.RecoverPwdURL + "?uid=" + Model.CustId + "&vid=" + Model.ValidationCode;
 }
 <div>
 Yang terhotmat @Model.FirstName,<br /><br />
@@ -10,7 +10,7 @@ Sebaliknya silakan klik link berikut ini, maka password baru akan segera diemail
 <a href='@recoverUrl'>@recoverUrl</a><br /><br />
 
 Catatan :<br />
-* Username anda: @Model.Username <br />
+* Username anda: @Model.UserName <br />
 * Untuk alasan keamanan, kami akan memberikan password baru pada anda (anda dapat mengubahnya kapan saja nanti).<br />
 * Link yang diberikan diatas akan kadaluarsa dan menjadi tidak berguna setelah 24 jam.<br /><br />
 

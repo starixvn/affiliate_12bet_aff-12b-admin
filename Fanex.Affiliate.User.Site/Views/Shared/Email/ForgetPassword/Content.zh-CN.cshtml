@@ -1,6 +1,6 @@
 ﻿@{
     var imageFolderUrl = Model.RootUrl + @"/www/source/styles/Images/email";
-    var recoverUrl = $"{Model.RecoverPwdURL}?uid={Model.CustId}&vid={Model.ValidationCode}";
+    var recoverUrl = Model.RecoverPwdURL + "?uid=" + Model.CustId + "&vid=" + Model.ValidationCode;
 }
 <table width="100%">
     <tr>
@@ -45,7 +45,7 @@
                                         <a href='@recoverUrl'>@recoverUrl</a><br /><br />
 
                                         请注意：<br />
-                                        *您的用户名是： @Model.Username <br />
+                                        *您的用户名是： @Model.UserName <br />
                                         *基于安全理由，我们必须发送给您一个新密码（您可随后更改此密码）<br />
                                         *以上链接将在24小时内失效<br /><br />
 

@@ -1,6 +1,6 @@
 ﻿@{
     var imageFolderUrl = Model.RootUrl + @"/www/source/styles/Images/email";
-    var recoverUrl = $"{Model.RecoverPwdURL}?uid={Model.CustId}&vid={Model.ValidationCode}";
+    var recoverUrl = Model.RecoverPwdURL + "?uid=" + Model.CustId + "&vid=" + Model.ValidationCode;
 }
 <table width="100%">
     <tr>
@@ -37,14 +37,14 @@
                                 <td width="15">&nbsp;</td>
                                 <td>
                                     <font style="font-size: 12px; font-family: Verdana,Arial,Helvetica,sans-serif; line-height: 22px;">
-                                        <strong>@Model.FirstName様、,</strong><br /><br />
+                                        <strong>@(Model.FirstName)様、,</strong><br /><br />
 
                                         お客様からユーザー名またはパスワードリセット依頼を申請されました。　申請されていない場合、このメールは無視していただくようお願いいたします。<br />
                                         申請された場合は、以下のリンクへアクセス、リセット手順を行なってください。のちほどお客様へユーザー名と新しいパスワードをEメールにてお知らせいたします:<br />
                                         <a href='@recoverUrl'>@recoverUrl</a><br /><br />
 
                                         お知らせと注意事項<br />
-                                        * ユーザー名: @Model.Username <br />
+                                        * ユーザー名: @Model.UserName <br />
                                         * セキュリティ上の観点から、一度弊社からお客様へ新規パスワードを発行し、ご案内させて頂きます。　(後ほどご自身でいつでもこちらから変更ができます)<br />
                                         * 上記のリンクは、24時間経過しますと自動的に期限切れとなりますのでご注意願います。<br /><br />
 

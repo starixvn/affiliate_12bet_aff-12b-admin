@@ -1,6 +1,6 @@
 ﻿@{
     var imageFolderUrl = Model.RootUrl + @"/www/source/styles/Images/email";
-    var recoverUrl = $"{Model.RecoverPwdURL}?uid={Model.CustId}&vid={Model.ValidationCode}";
+    var recoverUrl = Model.RecoverPwdURL + "?uid=" + Model.CustId + "&vid=" + Model.ValidationCode;
 }
 <table width="100%">
     <tr>
@@ -37,14 +37,14 @@
                                 <td width="15">&nbsp;</td>
                                 <td>
                                     <font style="font-size: 12px; font-family: Verdana,Arial,Helvetica,sans-serif; line-height: 22px;">
-                                        <strong>@Model.FirstName고객님께,</strong><br /><br />
+                                        <strong>@(Model.FirstName)고객님께,</strong><br /><br />
 
                                         고객님께서는 아이디 또는 패스워드의 복구를 요청하셨습니다.  만약 고객님께서 이를 요청하시지 않으셨다면, 이 메일을 무시하셔도 좋습니다.<br />
                                         그렇지 않은경우, 다음의 링크를 클릭해 주십시요. 고객님의 이메일로 즉시 새 비밀번호가 전송됩니다:<br />
                                         <a href='@recoverUrl'>@recoverUrl</a><br /><br />
 
                                         다음을 확인해주시기 바랍니다.<br />
-                                        * 아이디: @Model.Username <br />
+                                        * 아이디: @Model.UserName <br />
                                         *보안 상의 이유로, 고객님께 새 비밀번호를 제공합니다.( 추 후 변경가능)<br />
                                         *위 의 링크는 24시간안에 만료되어 사용하실 수없습니다.<br /><br />
 

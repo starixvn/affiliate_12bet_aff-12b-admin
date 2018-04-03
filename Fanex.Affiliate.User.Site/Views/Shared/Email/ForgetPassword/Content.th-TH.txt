@@ -1,5 +1,5 @@
 ﻿@{
-	var recoverUrl = $"{Model.RecoverPwdURL}?uid={Model.CustId}&vid={Model.ValidationCode}";
+	var recoverUrl = Model.RecoverPwdURL + "?uid=" + Model.CustId + "&vid=" + Model.ValidationCode;
 }
 <div>
 เรียน คุณ @Model.FirstName<br /><br />
@@ -9,7 +9,7 @@
 <a href='@recoverUrl'>@recoverUrl</a><br /><br />
 
 หมายเหตุ<br />
-ชื่อ ยูสเซอร์เนม คือ @Model.Username<br />
+ชื่อ ยูสเซอร์เนม คือ @Model.UserName<br />
 เนื่องจากเหตุผลในเรื่องของความปลอดภัย หลังจากที่เราให้รหัสใหม่กับคุณกรุณาเข้าไปเปลี่ยนรหัสอีกครั้งตามที่คุณต้องการ<br />
 ลิ๊งค์ข้างบนนี้ จะหมดอายุการใช้งาน ภายใน 24 ชั่วโมง<br /><br />
 
