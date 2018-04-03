@@ -216,6 +216,18 @@
     <Content Include="Views\Shared\Email\ForgetPassword\Content.vi-VN.txt" />
     <Content Include="Views\Shared\Email\ForgetPassword\Content.zh-CN.txt" />
     <Content Include="Views\Shared\Email\ForgetPassword\Content.zh-TW.txt" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Content.en-GB.txt" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Content.en-US.txt" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Content.en.txt" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Content.es-ES.txt" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Content.hi-IN.txt" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Content.id-ID.txt" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Content.ja-JP.txt" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Content.ko-KR.txt" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Content.th-TH.txt" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Content.vi-VN.txt" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Content.zh-CN.txt" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Content.zh-TW.txt" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -694,6 +706,18 @@
     <Content Include="Views\Shared\Email\ForgetPassword\Content.zh-TW.cshtml" />
     <Content Include="Views\Test\Preview.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Content.en-US.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Content.en-GB.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Content.en.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Content.es-ES.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Content.hi-IN.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Content.id-ID.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Content.ja-JP.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Content.ko-KR.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Content.th-TH.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Content.vi-VN.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Content.zh-CN.cshtml" />
+    <Content Include="Views\Shared\Email\PaymentCancel\Content.zh-TW.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fanex.Affiliate.User.Core\Fanex.Affiliate.User.Core.csproj">

@@ -45,7 +45,6 @@
                 message = ex.Message + "\n" + ex.StackTrace;
             }
 
-
             var result = new
             {
                 Success = success,
@@ -57,21 +56,57 @@
 
         private string GetEmailContent(TestCriteria criteria)
         {
-            var viewPath = string.Format("~/Views/Shared/Email/{0}/Content.{1}.{2}", criteria.Function, criteria.Language, criteria.Format);
+            var language = criteria.Language;
+            var function = criteria.Function;
+
+            var viewPath = string.Format("~/Views/Shared/Email/{0}/Content.{1}.{2}", function, language, criteria.Format);
             var path = Server.MapPath(viewPath);
-            dynamic model = new
+            var model = GetModelByFunction(function, language);
+
+            return model == null ? string.Empty : _mailProcessor.BuildTemplateContent(path, model);
+        }
+
+        private object GetModelByFunction(string functionName, string language)
+        {
+            switch (functionName)
+            {
+                case "ForgetPassword":
+                    return GetForgetPasswordModel(language);
+
+                case "PaymentCancel":
+                    return GetPaymentCancelModel(language);
+            }
+
+            return null;
+        }
+
+        private object GetForgetPasswordModel(string language)
+        {
+            return new
             {
                 RootUrl = SiteDomainHelper.GetRootUrl(this),
                 RecoverPwdURL = Url.Action("Recovery", "Test", null, Request.Url.Scheme),
                 CustId = 0,
                 ValidationCode = "1234",
-                Language = criteria.Language,
+                Language = language,
                 FirstName = "Walter",
                 UserName = "aawalter",
                 MailContact = "mailcontact@gmail.com"
             };
+        }
 
-            return _mailProcessor.BuildTemplateContent(path, model);
+        private object GetPaymentCancelModel(string language)
+        {
+            return new
+            {
+                RootUrl = SiteDomainHelper.GetRootUrl(this),
+                Language = language,
+                FirstName = "Walter",
+                MailContact = "mailcontact@gmail.com",
+                TransId = 10008751L,
+                Date = DateTime.Now.Date.ToString("MM/dd/yyyy"),
+                Amount = 989
+            };
         }
     }
 
