@@ -73,7 +73,7 @@
             var language = criteria.Language;
             var function = criteria.Function;
 
-            var viewPath = string.Format(TemplateString.EmailTemplatePath, function, language, "txt");
+            var viewPath = string.Format(TemplateString.EmailTemplatePath, function, language);
             var physicalPath = Server.MapPath(viewPath);
             var model = GetModelByFunction(function);
 

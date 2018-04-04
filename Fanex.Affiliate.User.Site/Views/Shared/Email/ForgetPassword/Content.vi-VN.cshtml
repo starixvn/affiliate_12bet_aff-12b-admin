@@ -1,101 +1,21 @@
 ﻿@{
-    var recoverUrl = Model.RecoverPwdURL + "?uid=" + Model.CustId + "&vid=" + Model.ValidationCode;
+	var recoverUrl = Model.RecoverPwdURL + "?uid=" + Model.CustId + "&vid=" + Model.ValidationCode;
 }
-<table width="100%">
-    <tr>
-        <td valign="top" align="center" background="@Model.ImageRootUrl/bgMain.jpg">
-            <table width="599" cellpadding="0" cellspacing="0" border="0">
-                <tr>
-                    <td height="88" background="@Model.ImageRootUrl/banner_@(Model.Language).jpg"></td>
-                </tr>
-                <tr height="3">
-                    <td height="3" bgcolor="#ff0000"></td>
-                </tr>
-                <tr>
-                    <td>
-                        <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                            <tr>
-                                <td width="482" height="31" background="@Model.ImageRootUrl/header.png">
-                                    &nbsp;&nbsp;
-                                    <strong style="color: rgb(255, 255, 255);">
-                                        <font style="font-size: 9px; font-family: Verdana,Arial,Helvetica,sans-serif; text-transform: uppercase;">
-                                            Chi tiết đăng nhập của bạn&nbsp;
-                                        </font>
-                                    </strong>
-                                </td>
-                                <td bgcolor="#f9f9f9" width="117">&nbsp;</td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-                <tr>
-                    <td bgcolor="#ffffff">
-                        <br />
-                        <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                            <tr>
-                                <td width="15">&nbsp;</td>
-                                <td>
-                                    <font style="font-size: 12px; font-family: Verdana,Arial,Helvetica,sans-serif; line-height: 22px;">
-                                        <strong>Kính gửi @Model.FirstName</strong><br /><br />
+<div>
+Kính gửi @Model.FirstName<br /><br />
 
-                                        Bạn đã yêu cầu chúng tôi phục hồi tên tài khoản và mật mã của bạn. Xin hãy nhấp vào liên kết dưới đây, mật mã mới sẽ được gửi đến cho bạn trong thời gian sớm nhất.<br />
-                                        <a href='@recoverUrl'>@recoverUrl</a><br /><br />
+Bạn đã yêu cầu chúng tôi phục hồi tên tài khoản và mật mã của bạn. Xin hãy nhấp vào liên kết dưới đây, mật mã mới sẽ được gửi đến cho bạn trong thời gian sớm nhất.<br />
+<a href='@recoverUrl'>@recoverUrl</a><br /><br />
 
-                                        Xin lưu ý:<br />
-                                        *Tên tài khoản là: @Model.UserName<br />
-                                        *Vì lý do an toàn, chúng tôi phải cung cấp cho bạn mật mã mới (bạn có thể đổi mật mã bất cứ khi nào).<br />
-                                        *Liên kết trên sẽ hết hạn và vô hiệu trong vòng 24 tiếng.<br /><br />
+Xin lưu ý:<br />
+*Tên tài khoản là: @Model.UserName<br />
+*Vì lý do an toàn, chúng tôi phải cung cấp cho bạn mật mã mới (bạn có thể đổi mật mã bất cứ khi nào).<br />
+*Liên kết trên sẽ hết hạn và vô hiệu trong vòng 24 tiếng.<br /><br />
 
-                                        Nếu yêu cầu này không phải từ bạn, xin bỏ qua lá thư này.<br /><br />
+Nếu yêu cầu này không phải từ bạn, xin bỏ qua lá thư này.<br /><br />
 
-                                        Xin chân thành cám ơn.<br /><br />
+Xin chân thành cám ơn.<br /><br />
 
-                                        Bộ phận liên kết 12BET<br />
-                                        <a href="mailto:@Model.MailContact">@Model.MailContact</a>
-                                    </font>
-                                </td>
-                                <td width="15">&nbsp;</td>
-                            </tr>
-                        </table>
-                        <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                            <tr>
-                                <td width="400">&nbsp;</td>
-                                <td align="center" width="185" height="41" background="@Model.ImageRootUrl/button.png">
-                                    <a href="@Model.RootUrl" style="text-decoration: none; border: 0px; color: rgb(255, 255, 255);">
-                                        <font style="font-size: 20px; font-family: Verdana,Arial,Helvetica,sans-serif;">
-                                            Affiliate
-                                        </font>
-                                    </a><br />
-                                </td>
-                                <td width="19">&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td colspan="3" height="30">&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td colspan="2" align="right" bgcolor="#b6b6b6" height="25">
-                                    <font style="font-size: 11px; color: #333333; font-family: Verdana,Arial,Helvetica,sans-serif;">
-                                        © Copyright 2009 Pacific Sea Invests.
-                                    </font>
-                                </td>
-                                <td width="5" bgcolor="#b6b6b6"></td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-            </table>
-            <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                <tr>
-                    <td heght="20">&nbsp;</td>
-                </tr>
-                <tr>
-                    <td align="center" height="40" background="@Model.ImageRootUrl/note.png">
-                        <font style="font-size: 11px; color: rgb(255, 255, 255); font-family: Verdana,Arial,Helvetica,sans-serif;">
-                            Đây là lá thư tự động do hệ thống gửi, xin vui lòng không trả lời trực tiếp lá thư này.
-                        </font>
-                    </td>
-                </tr>
-            </table>
-        </td>
-    </tr>
-</table>
+Bộ phận liên kết 12BET<br />
+<a href="mailto:@Model.MailContact">@Model.MailContact</a>
+</div>
