@@ -110,6 +110,9 @@
 
                 case "RecoverPassword":
                     return GetRecoverPasswordModel();
+
+                case "Signup":
+                    return GetSignupModel();
             }
 
             return null;
@@ -149,6 +152,15 @@
                 UserName = "12BET1001",
                 Password = "1234aa",
                 Url = "http://affiliate.12ying.com/"
+            };
+        }
+
+        private object GetSignupModel()
+        {
+            return new
+            {
+                FirstName = "Walter",
+                MailContact = "mailcontact@gmail.com"
             };
         }
 
