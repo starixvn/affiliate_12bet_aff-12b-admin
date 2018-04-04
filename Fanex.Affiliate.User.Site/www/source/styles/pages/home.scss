@@ -1,5 +1,21 @@
 ﻿@import "../scss/abstracts/variables";
 @import "../scss/abstracts/mixins";
+@import "../scss/vendors/animate/properties";
+@import "../scss/vendors/animate/_bouncing-entrances/bounceInUp";
+@import "../scss/vendors/animate/_bouncing-entrances/bounceInDown";
+@import "../scss/vendors/animate/_zooming-entrances/zoomInRight";
+
+.bounceInDown {
+    @include bounceInDown( $duration: 2s, $count: 1, $delay: .2s, $function: ease, $fill: both );
+}
+
+.bounceInUp {
+    @include bounceInUp( $duration: 2s, $count: 1, $delay: .4s, $function: ease, $fill: both );
+}
+
+.zoomInRight {
+    @include zoomInRight( $duration: 2s, $count: 1, $delay: .6s, $function: ease, $fill: both );
+}
 
 .main {
     .home-page {
