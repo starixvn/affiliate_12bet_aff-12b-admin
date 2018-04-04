@@ -1,0 +1,17 @@
+﻿<div>
+Yang terhotmat @Model.FirstName, <br /><br />
+
+Seperti yang Anda minta, kami berikan kata sandi yang baru. Anda informasi account baru adalah sebagai berikut: <br /><br />
+
+-------------------------------------------------------- <br />
+Nama Pengguna: @Model.UserName <br />
+Kata Sandi: @Model.Password <br />
+-------------------------------------------------------- <br /><br />
+
+Namun, Anda dapat mengunjungi @Model.Url untuk mengubah sandi Anda kapan saja <br /><br />
+
+Salam Sejahtera, <br /><br />
+
+Tim di 12Bet Afiliasi<br />
+<a href="mailto:@Model.MailContact">@Model.MailContact</a>
+</div>

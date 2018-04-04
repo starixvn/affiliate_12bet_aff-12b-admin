@@ -240,6 +240,17 @@
     <Content Include="Views\Shared\Email\PaymentRequest\Content.vi-VN.txt" />
     <Content Include="Views\Shared\Email\PaymentRequest\Content.zh-CN.txt" />
     <Content Include="Views\Shared\Email\PaymentRequest\Content.zh-TW.txt" />
+    <Content Include="Views\Shared\Email\RecoverPassword\Content.en-GB.txt" />
+    <Content Include="Views\Shared\Email\RecoverPassword\Content.en-US.txt" />
+    <Content Include="Views\Shared\Email\RecoverPassword\Content.es-ES.txt" />
+    <Content Include="Views\Shared\Email\RecoverPassword\Content.hi-IN.txt" />
+    <Content Include="Views\Shared\Email\RecoverPassword\Content.id-ID.txt" />
+    <Content Include="Views\Shared\Email\RecoverPassword\Content.ja-JP.txt" />
+    <Content Include="Views\Shared\Email\RecoverPassword\Content.ko-KR.txt" />
+    <Content Include="Views\Shared\Email\RecoverPassword\Content.th-TH.txt" />
+    <Content Include="Views\Shared\Email\RecoverPassword\Content.vi-VN.txt" />
+    <Content Include="Views\Shared\Email\RecoverPassword\Content.zh-CN.txt" />
+    <Content Include="Views\Shared\Email\RecoverPassword\Content.zh-TW.txt" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -742,6 +753,7 @@
     <Content Include="Views\Shared\Email\PaymentRequest\Content.vi-VN.cshtml" />
     <Content Include="Views\Shared\Email\PaymentRequest\Content.zh-CN.cshtml" />
     <Content Include="Views\Shared\Email\PaymentRequest\Content.zh-TW.cshtml" />
+    <Content Include="Views\Shared\Email\CommonLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fanex.Affiliate.User.Core\Fanex.Affiliate.User.Core.csproj">

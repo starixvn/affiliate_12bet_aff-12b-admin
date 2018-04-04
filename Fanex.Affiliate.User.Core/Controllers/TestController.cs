@@ -1,9 +1,12 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
     using System;
+    using System.Globalization;
+    using System.Threading;
     using System.Web.Mvc;
     using Constants;
     using Utilities;
+    using ViewModels;
 
     public class TestController : Controller
     {
@@ -23,7 +26,10 @@
         [HttpGet]
         public ActionResult Preview(TestCriteria criteria)
         {
+            ChangeSystemLanguage(criteria.Language);
             ViewBag.Data = GetEmailContent(criteria);
+            ChangeSystemLanguage("en-US");
+
             return View();
         }
 
@@ -57,60 +63,102 @@
 
         private string GetEmailContent(TestCriteria criteria)
         {
+            var content = GetEmailTextContent(criteria);
+
+            return criteria.Format == "txt" ? content : GetEmailHtmlContent(content, criteria.Language);
+        }
+
+        private string GetEmailTextContent(TestCriteria criteria)
+        {
             var language = criteria.Language;
             var function = criteria.Function;
 
-            var viewPath = string.Format(TemplateString.EmailTemplatePath, function, language, criteria.Format);
-            var path = Server.MapPath(viewPath);
-            var model = GetModelByFunction(function, language);
+            var viewPath = string.Format(TemplateString.EmailTemplatePath, function, language, "txt");
+            var physicalPath = Server.MapPath(viewPath);
+            var model = GetModelByFunction(function);
 
-            return model == null ? string.Empty : _mailProcessor.BuildTemplateContent(path, model);
+            return model == null ? string.Empty : _mailProcessor.BuildTemplateContent(physicalPath, model);
         }
 
-        private object GetModelByFunction(string functionName, string language)
+        private string GetEmailHtmlContent(string content, string language)
+        {
+            var domain = SiteDomainHelper.GetRootUrl(this);
+
+            var viewModel = new EmailTemplateViewModel
+            {
+                RootUrl = domain,
+                ImageRootUrl = string.Format(TemplateString.EmailImageRootPath, domain),
+                Language = language,
+                Content = content,
+                Title = "This is title"
+            };
+            var viewPath = Server.MapPath("~/Views/Shared/Email/CommonLayout.cshtml");
+
+            return _mailProcessor.BuildTemplateContent(viewPath, viewModel);
+        }
+
+        private object GetModelByFunction(string functionName)
         {
             switch (functionName)
             {
                 case "ForgetPassword":
-                    return GetForgetPasswordModel(language);
+                    return GetForgetPasswordModel();
 
                 case "PaymentCancel":
                 case "PaymentRequest":
-                    return GetPaymentModel(language);
+                    return GetPaymentModel();
+
+                case "RecoverPassword":
+                    return GetRecoverPasswordModel();
             }
 
             return null;
         }
 
-        private object GetForgetPasswordModel(string language)
+        private object GetForgetPasswordModel()
         {
             return new
             {
-                RootUrl = SiteDomainHelper.GetRootUrl(this),
                 RecoverPwdURL = Url.Action("Recovery", "Test", null, Request.Url.Scheme),
                 CustId = 0,
                 ValidationCode = "1234",
-                Language = language,
                 FirstName = "Walter",
                 UserName = "aawalter",
-                MailContact = "mailcontact@gmail.com",
-                ImageRootUrl = string.Format(TemplateString.EmailImageRootPath, SiteDomainHelper.GetRootUrl(this))
+                MailContact = "mailcontact@gmail.com"
             };
         }
 
-        private object GetPaymentModel(string language)
+        private object GetPaymentModel()
         {
             return new
             {
-                RootUrl = SiteDomainHelper.GetRootUrl(this),
-                Language = language,
                 FirstName = "Walter",
                 MailContact = "mailcontact@gmail.com",
                 TransId = 10008751L,
                 Date = DateTime.Now.Date.ToString("MM/dd/yyyy"),
-                Amount = 989,
-                ImageRootUrl = string.Format(TemplateString.EmailImageRootPath, SiteDomainHelper.GetRootUrl(this))
+                Amount = 989
             };
+        }
+
+        private object GetRecoverPasswordModel()
+        {
+            return new
+            {
+                FirstName = "Walter",
+                MailContact = "mailcontact@gmail.com",
+                UserName = "12BET1001",
+                Password = "1234aa",
+                Url = "http://affiliate.12ying.com/"
+            };
+        }
+
+        private void ChangeSystemLanguage(string language)
+        {
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(language);
+
+            Thread.CurrentThread.CurrentCulture.DateTimeFormat = CultureInfo.CreateSpecificCulture("en-US").DateTimeFormat;
+            Thread.CurrentThread.CurrentCulture.NumberFormat = CultureInfo.CreateSpecificCulture("en-US").NumberFormat;
         }
     }
 

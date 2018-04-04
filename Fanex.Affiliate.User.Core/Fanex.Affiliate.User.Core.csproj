@@ -237,6 +237,7 @@
     <Compile Include="Utilities\IAppSetting.cs" />
     <Compile Include="Utilities\IMailProcessor.cs" />
     <Compile Include="Utilities\UrlHelper.cs" />
+    <Compile Include="ViewModels\EmailTemplateViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BusinessService\" />
