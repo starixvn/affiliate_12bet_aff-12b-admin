@@ -1,7 +1,6 @@
-﻿@import "../vendors/bootstrap-helpers";
+﻿@import "../components/flag";
 
 .header-top {
-    //height: 9rem;
     background: #000 url(../Images/header-bg.png) center top no-repeat;
 
     .logo {
@@ -132,29 +131,55 @@
     vertical-align: middle;
 }
 
-.bfh-languages {
-    width: 120px;
+.language-container {
+    width: 175px;
     display: inline-block;
     vertical-align: middle;
     text-align: left;
     height: 26px;
     margin-left: 8px;
+    position: relative;
 
-    .bfh-selectbox-toggle {
+    #selectedLanguage {
+        cursor: pointer;
+    }
+
+    .language-selection {
         background: transparent;
         color: #fff;
         font-weight: 500;
         height: 26px;
-        padding-top: 3px;
-        border-color: #fff;
+        padding: 3px 5px;
+        border: 1px solid #fff;
+        text-align: center;
         border-radius: 2px;
+        white-space: nowrap;
+        overflow: hidden;
     }
 
-    .bfh-selectbox-options {
-        text-align: left;
+    .language-list-wrapper {
+        position: absolute;
+        background: #fff;
+        z-index: 100;
+        width: 175px;
+        padding: 5px 0;
+        font-size: 13px;
 
-        > div > ul > li:first-child {
-            display: none;
+        .language-list {
+            line-height: 15px;
+
+            .language-item {
+                padding: 3px 20px;
+                width: 100%;
+                display: block;
+                color: #333;
+
+                &:hover {
+                    color: #262626;
+                    text-decoration: none;
+                    background: #fbefef;
+                }
+            }
         }
     }
 }

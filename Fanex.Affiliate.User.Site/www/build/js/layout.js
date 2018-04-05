@@ -1,10 +1,21 @@
 (function ($) {
-    //Variables on page load
-    var $myCarousel = $('#carousel-example-generic');
+    function initSlider() {
+        var $mainBanner = $('#mainBanner');
+        $mainBanner.carousel();
+    }
 
-    //Initialize carousel
-    $myCarousel.carousel();
+    var _me = {
+        initialize: function () {
+            initSlider();
 
-    //Pause carousel
-    $myCarousel.carousel('pause');
+            _me.initEvent();
+        },
+        initEvent: function () {
+            $("#selectedLanguage").on("click", function () {
+                $("#languageList").toggle();
+            });
+        }
+    }
+
+    _me.initialize();
 })(jQuery);

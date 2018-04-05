@@ -24,15 +24,27 @@
                         <div class="sign-up">
                             <a href="@Url.Action("Index", "Signup")" class="btn btn-signup"><span class="icon mdi mdi-pencil"></span>sign up affiliate</a>
                         </div>
-                        <div class="bfh-selectbox bfh-languages" data-language="en_US" data-available="en_US,fr_CA,es_MX" data-flags="true">
-                            <input type="hidden" value="">
-                            <a class="bfh-selectbox-toggle" role="button" data-toggle="bfh-selectbox" href="#">
-                                <span class="bfh-selectbox-option input-medium" data-option=""></span>
-                                <b class="caret"></b>
-                            </a>
-                            <div class="bfh-selectbox-options">
-                                <div role="listbox" class="list-item">
-                                </div>
+
+                        <div class="language-container">
+                            <div class="language-selection">
+                                <p id="selectedLanguage">
+                                    <span><i class="flag flag-en-US"></i> English</span>
+                                    <i class="caret"></i>
+                                </p>
+                            </div>
+                            <div class="language-list-wrapper" id="languageList" style="display: none;">
+                                <ul class="list-unstyled language-list">
+                                    <li><a href="javascript:;" class="language-item" data-option="en-US"><i class="flag flag-en-US"></i> English</a></li>
+                                    <li><a href="javascript:;" class="language-item" data-option="zh-CN"><i class="flag flag-zh-CN"></i> 中文简体</a></li>
+                                    <li><a href="javascript:;" class="language-item" data-option="zh-TW"><i class="flag flag-zh-TW"></i> 中文繁体</a></li>
+                                    <li><a href="javascript:;" class="language-item" data-option="id-ID"><i class="flag flag-id-ID"></i> Indonesia</a></li>
+                                    <li><a href="javascript:;" class="language-item" data-option="vi-VN"><i class="flag flag-vi-VN"></i> Tiếng Việt</a></li>
+                                    <li><a href="javascript:;" class="language-item" data-option="th-TH"><i class="flag flag-th-TH"></i> ภาษาไทย</a></li>
+                                    <li><a href="javascript:;" class="language-item" data-option="ko-KR"><i class="flag flag-ko-KR"></i> 한국어</a></li>
+                                    <li><a href="javascript:;" class="language-item" data-option="es-ES"><i class="flag flag-es-ES"></i> Español</a></li>
+                                    <li><a href="javascript:;" class="language-item" data-option="ja-JP"><i class="flag flag-ja-JP"></i> 日本</a></li>
+                                    <li><a href="javascript:;" class="language-item" data-option="hi-IN"><i class="flag flag-hi-IN"></i> Republic of India</a></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
