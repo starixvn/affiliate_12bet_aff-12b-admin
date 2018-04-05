@@ -2,8 +2,9 @@
 {
     using System.Web.Mvc;
 
-    public class ProgramDetailController : Controller
+    public class PromotionController : Controller
     {
+        [HttpGet]
         public ActionResult Index()
         {
             return View();

@@ -204,6 +204,9 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Views\CommissionStructure\Index.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Promotion\Index.cshtml" />
     <None Include="Views\Shared\Email\ForgetPassword\Content.en-GB.cshtml" />
     <None Include="Views\Shared\Email\ForgetPassword\Content.en-US.cshtml" />
     <None Include="Views\Shared\Email\ForgetPassword\Content.es-ES.cshtml" />
@@ -707,7 +710,6 @@
     <Content Include="www\source\styles\fonts\bootstrap\glyphicons-halflings-regular.woff2" />
     <Content Include="Views\ContactUs\Index.cshtml" />
     <Content Include="Views\Faq\Index.cshtml" />
-    <Content Include="Views\ProgramDetail\Index.cshtml" />
     <Content Include="Views\UserPanel\PaymentRequest.cshtml" />
     <Content Include="www\source\styles\pages\payment-request.scss" />
     <Content Include="Views\UserPanel\MediaGallery.cshtml" />

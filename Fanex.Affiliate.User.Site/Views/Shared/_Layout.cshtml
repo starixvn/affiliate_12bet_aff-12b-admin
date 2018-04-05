@@ -37,12 +37,14 @@
                         </div>
                     </div>
                     <div class="user-login">
-                        <input class="text-field" type="text" placeholder="Username">
-                        <input class="text-field" type="password" placeholder="Password">
-                        <input class="text-field" type="text" placeholder="Validation">
+                        <input class="text-field" type="text" placeholder="Username" />
+                        <input class="text-field" type="password" placeholder="Password" />
+                        <input class="text-field validation" type="text" placeholder="Validation" />
                         <span class="validation-value">4074</span>
-                        <button type="button" class="btn btn-forgot"><span class="mdi mdi-account-key"></span></button>
-                        <a class="btn btn-login" href="#">Log in</a>
+                        <a class="btn btn-forgot" title="Forgot Password?" href="@Url.Action("Index", "ForgetPass")">
+                            <span class="mdi mdi-account-key"></span>
+                        </a>
+                        <button class="btn btn-login" type="button">Log in</button>
                     </div>
                 </div>
             </div>
@@ -63,7 +65,9 @@
             <div class="collapse navbar-collapse menu" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav list-unstyled">
                     <li><a class="menu-item active" href="@Url.Action("Index", "Home")">Home</a></li>
-                    <li><a class="menu-item" href="@Url.Action("Index", "ProgramDetail")">Program Details</a></li>
+                    <li><a class="menu-item" href="@Url.Action("Index", "CommissionStructure")">Commission Structure</a></li>
+                    <li><a class="menu-item" href="@Url.Action("Index", "Product")">Product</a></li>
+                    <li><a class="menu-item" href="@Url.Action("Index", "Promotion")">Promotion</a></li>
                     <li><a class="menu-item" href="@Url.Action("Index", "FAQ")">FAQs</a></li>
                     <li><a class="menu-item" href="@Url.Action("Index", "ContactUs")">Contact Us</a></li>
                 </ul>

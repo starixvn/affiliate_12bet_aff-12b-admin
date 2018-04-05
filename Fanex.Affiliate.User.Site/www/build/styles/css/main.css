@@ -2,7 +2,7 @@
   font-size: 62.5%; }
 
 body {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   color: #2b2b2b;
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
@@ -1340,7 +1340,7 @@ input[type="checkbox"], input[type="radio"] {
     .navbar ul li a {
       color: #fff;
       display: block;
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       text-decoration: none;
       padding: 2rem; }
     .navbar ul li:hover a, .navbar ul li:focus a, .navbar ul li:visited a {
@@ -1427,18 +1427,30 @@ input[type="checkbox"], input[type="radio"] {
   .user-login .text-field {
     background: #fff;
     border-radius: 2px;
-    width: 100px;
+    width: 120px;
     height: 26px;
     border: 1px solid #fff;
     vertical-align: middle;
     margin-right: 8px;
     padding-left: 5px;
     color: #000; }
+    .user-login .text-field.validation {
+      width: 80px; }
     .user-login .text-field:focus {
       outline: none;
       border-color: #3ea4bd; }
   .user-login .btn:last-child {
     margin-left: 6px; }
+  .user-login .btn-forgot {
+    background: transparent;
+    color: #fff;
+    font-size: 16px;
+    padding: 0 6px;
+    border: 1px solid #fff;
+    line-height: 25px; }
+    .user-login .btn-forgot:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff; }
 
 .validation-value {
   background: #3ea4bd;
@@ -1483,7 +1495,7 @@ input[type="checkbox"], input[type="radio"] {
     line-height: 30px;
     margin-right: 30px;
     text-transform: uppercase;
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 600; }
     .hot-news .title:after {
       content: "";
@@ -1504,7 +1516,7 @@ input[type="checkbox"], input[type="radio"] {
     padding: 0 10px;
     height: 30px;
     line-height: 30px;
-    font-size: 16px; }
+    font-size: 12px; }
     .hot-news .message:before {
       content: "";
       position: absolute;
@@ -1556,9 +1568,10 @@ input[type="checkbox"], input[type="radio"] {
     justify-content: space-between;
     align-items: flex-end; }
     .info-group .title .text {
-      margin-bottom: .3rem; }
+      margin-bottom: 0.3rem;
+      font-size: 1.4rem; }
     .info-group .title .day-filter {
-      margin-bottom: .5rem; }
+      margin-bottom: 0.5rem; }
       .info-group .title .day-filter .input-group {
         display: inline-block; }
       .info-group .title .day-filter .form-group {
@@ -1783,7 +1796,7 @@ input[type="checkbox"], input[type="radio"] {
     border-right: 1px solid #f9f9f9; }
   .content-menu .menu .menu-item {
     display: block;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     height: 3.6rem;
     text-transform: capitalize;
     font-weight: 400;
@@ -1882,16 +1895,6 @@ label.require:after {
     color: #fff;
     line-height: 1;
     padding-right: 6px; }
-
-.btn-forgot {
-  background: transparent;
-  color: #fff;
-  font-size: 16px;
-  padding: 0 6px;
-  border: 1px solid #fff; }
-  .btn-forgot:hover {
-    background: rgba(255, 255, 255, 0.2);
-    color: #fff; }
 
 .table-medium {
   width: 70%; }
@@ -2007,5 +2010,9 @@ table + .button-group {
 
 .form-control {
   border: 1px solid #adadad;
-  border-radius: 2px; }
+  border-radius: 2px;
+  height: 30px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 13px; }
 
