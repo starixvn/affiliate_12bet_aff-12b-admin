@@ -10,5 +10,18 @@
     "inputFiles": [
       "www/source/js/pages/user-panel.js"
     ]
+  },
+  {
+    "outputFileName": "www/build/js/account-overview.js",
+    "inputFiles": [
+      "www/source/js/lib/pikaday.js",
+      "www/source/js/pages/account-overview.js"
+    ]
+  },
+  {
+    "outputFileName": "www/build/styles/css/pikaday.min.css",
+    "inputFiles": [
+      "www/source/styles/scss/vendors/pikaday.css"
+    ]
   }
 ]

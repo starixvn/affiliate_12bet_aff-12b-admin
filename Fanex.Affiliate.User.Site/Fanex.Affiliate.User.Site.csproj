@@ -263,6 +263,10 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="www\build\js\account-overview.js" />
+    <Content Include="www\build\js\account-overview.min.js">
+      <DependentUpon>account-overview.js</DependentUpon>
+    </Content>
     <Content Include="www\build\js\daily-earning.js" />
     <Content Include="www\build\js\daily-earning.min.js">
       <DependentUpon>daily-earning.js</DependentUpon>
@@ -321,6 +325,7 @@
     <Content Include="www\build\styles\css\payment-request.min.css">
       <DependentUpon>payment-request.css</DependentUpon>
     </Content>
+    <Content Include="www\build\styles\css\pikaday.min.css" />
     <Content Include="www\build\styles\fonts\font_bebas\Flat-it License.txt" />
     <Content Include="www\build\styles\fonts\glypicons\glyphicons-halflings-regular.svg" />
     <Content Include="www\build\styles\Images\ads-1.jpg" />
@@ -378,9 +383,11 @@
     <Content Include="www\source\js\lib\bootstrap-formhelpers.min.js" />
     <Content Include="www\source\js\lib\bootstrap.min.js" />
     <Content Include="www\source\js\lib\jquery-3.3.1.min.js" />
+    <Content Include="www\source\js\lib\pikaday.js" />
     <Content Include="www\source\js\lib\wow\wow.js" />
     <Content Include="www\source\js\lib\wow\wow.min.js" />
     <Content Include="www\source\js\layout.js" />
+    <Content Include="www\source\js\pages\account-overview.js" />
     <Content Include="www\source\js\pages\daily-earning.js" />
     <Content Include="www\source\js\pages\statement-history.js" />
     <Content Include="www\source\js\pages\test.js" />
@@ -456,6 +463,7 @@
     <Content Include="Views\Shared\Email\Signup\Content.vi-VN.cshtml" />
     <Content Include="Views\Shared\Email\Signup\Content.zh-CN.cshtml" />
     <Content Include="Views\Shared\Email\Signup\Content.zh-TW.cshtml" />
+    <Content Include="www\source\styles\scss\components\_flag.scss" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -658,6 +666,7 @@
     <Content Include="www\source\styles\scss\vendors\bootstrap\_wells.scss" />
     <Content Include="www\source\styles\scss\vendors\datetime-picker\bootstrap-datetimepicker-build.scss" />
     <Content Include="www\source\styles\scss\vendors\datetime-picker\_bootstrap-datetimepicker.scss" />
+    <Content Include="www\source\styles\scss\vendors\pikaday.css" />
     <Content Include="www\source\styles\scss\vendors\_bootstrap-helpers.scss" />
     <Content Include="www\source\styles\scss\vendors\_bootstrap.scss" />
     <Content Include="www\build\styles\fonts\font_bebas\BEBAS___.TTF" />

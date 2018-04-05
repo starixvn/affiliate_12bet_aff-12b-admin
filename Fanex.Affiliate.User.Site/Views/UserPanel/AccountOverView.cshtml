@@ -5,13 +5,10 @@
 }
 
 @model Fanex.Affiliate.User.Core.DTO.UserPanel.AccountOverviewStatistics
-@{ 
+@{
     var statistics = Model;
 }
-
-@section styles{
-
-}
+<link href="~/www/build/styles/css/pikaday.min.css" rel="stylesheet" />
 
 <div class="page-title">
     <span class="text">@Lang.AccOverview</span>
@@ -23,7 +20,7 @@
         <div class="day-filter">
             <div class="form-group day-filter">
                 <div class="input-group date" id="datetimepicker1">
-                    <input type="text" class="field" />
+                    <input id="statisticsDate" type="text" class="field" />
                     <span class="input-group-addon icon-calendar mdi mdi-calendar">
                     </span>
                 </div>
@@ -137,3 +134,5 @@
         </table>
     </div>
 </div>
+
+<script src="~/www/build/js/account-overview.js"></script>
