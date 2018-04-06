@@ -51,11 +51,11 @@
   transition: all .2s ease; }
   .languages-item:hover {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); }
-  .languages-item .flag {
+  .languages-item .single-flag {
     width: 8rem;
     text-align: center;
     align-self: center; }
-    .languages-item .flag img {
+    .languages-item .single-flag img {
       width: 4.6rem;
       margin: 0 auto; }
   .languages-item .skype-icon {

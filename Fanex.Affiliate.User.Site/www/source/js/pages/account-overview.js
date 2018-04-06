@@ -3,11 +3,19 @@
         initialize: function () {
             console.log("Init");
             var picker = new Pikaday({
-                field: $('#statisticsDate')[0],
-                format: 'MM/DD/YYYY',
+                field: document.getElementById('statisticsDate'),
+                format: 'D/M/YYYY',
+                toString(date, format) {
+                    const day = date.getDate();
+                    const month = date.getMonth() + 1;
+                    const year = date.getFullYear();
+                    return `${month}/${day}/${year}`;
+                },
                 onSelect: function (date) {
-                    console.log(date);
-                    $('#statisticsDate').val(date);
+                    console.log(arguments);
+                    console.log(this);
+                    console.log(this.toString('MM/DD/YYYY'));
+                    //$('#statisticsDate').val(date);
                 }
             });
         },
