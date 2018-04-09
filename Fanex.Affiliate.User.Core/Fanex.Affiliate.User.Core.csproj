@@ -107,6 +107,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
@@ -235,6 +236,7 @@
       <DependentUpon>ResultLang.resx</DependentUpon>
     </Compile>
     <Compile Include="Utilities\AppSetting.cs" />
+    <Compile Include="Utilities\CaptchaGenerator.cs" />
     <Compile Include="Utilities\MailProcessor.cs" />
     <Compile Include="Utilities\IAppSetting.cs" />
     <Compile Include="Utilities\IMailProcessor.cs" />
