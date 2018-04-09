@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Criterias;
 using AffiliateUser.AffBetlistService;
+using Criterias;
 
 public partial class BetList_BetList : RootPageLogIn
 {
@@ -39,10 +39,10 @@ public partial class BetList_BetList : RootPageLogIn
             else
             {
                 var criteria = new ValidationCriteria
-                    {
-                        AffId = affId,
-                        MemberName = Request["UserName"]
-                    };
+                {
+                    AffId = affId,
+                    MemberName = Request["UserName"]
+                };
 
                 var result = DataHandler.MemberInfo.ValidatePermission(criteria);
 
@@ -53,7 +53,6 @@ public partial class BetList_BetList : RootPageLogIn
                 }
                 else
                 {
-                    //betlistHtmlString = "Member Bet List " + fromDate.ToShortDateString();
                     AffiliateAPI affBetlistService = new AffiliateAPI();
                     affBetlistService.Timeout = AppSettings.BetListServiceTimeout;
 
@@ -64,15 +63,16 @@ public partial class BetList_BetList : RootPageLogIn
                     userName = userName.Replace("12bet$", string.Empty);
                     userName = userName.Replace("12Bet$", string.Empty);
                     BetlistSOAP betlistSOAP = new BetlistSOAP
-                        {
-                            AffiliateName = "12bet",
-                            Username = userName,
-                            Product = Request["product"],
-                            FromDate = fromDate,
-                            ToDate = toDate,
-                            ExchangeRate = 1, // no currency exchange
-                            SupportedProducts = supportedProducts.ToArray()
-                        };
+                    {
+                        AffiliateName = "12bet",
+                        Username = userName,
+                        Product = Request["product"],
+                        FromDate = fromDate,
+                        ToDate = toDate,
+                        ExchangeRate = 1, // no currency exchange
+                        SupportedProducts = supportedProducts.ToArray(),
+                        Language = AppSettings.Session.Language
+                    };
 
                     betlistHtmlString += affBetlistService.GetBetlist(betlistSOAP);
                 }
