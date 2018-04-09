@@ -8,6 +8,8 @@
 
         public string UserName { get; set; }
 
-        public int CustID { get; set; }
+        public int CustId { get; set; }
+
+        public int OnUserId { get; set; }
     }
 }

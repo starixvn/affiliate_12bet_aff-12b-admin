@@ -1,12 +1,12 @@
-﻿using Autofac;
-using Autofac.Integration.Mvc;
-using Fanex.Affiliate.User.Core.Repository;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using System.Reflection;
 using System.Web.Compilation;
 using System.Web.Mvc;
+using Autofac;
+using Autofac.Integration.Mvc;
+using Fanex.Affiliate.User.Core.CoreService;
+using Fanex.Affiliate.User.Core.Repository;
 
 namespace Fanex.Affiliate.User.Site
 {
@@ -68,6 +68,7 @@ namespace Fanex.Affiliate.User.Site
         private static void RegisterRepository(ContainerBuilder builder)
         {
             builder.RegisterType<AuthRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<SessionService>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
 
     }

@@ -281,6 +281,10 @@
     <Content Include="www\build\js\lib\jquery-3.3.1.min.js" />
     <Content Include="www\build\js\lib\wow\wow.js" />
     <Content Include="www\build\js\lib\wow\wow.min.js" />
+    <Content Include="www\build\js\login.js" />
+    <Content Include="www\build\js\login.min.js">
+      <DependentUpon>login.js</DependentUpon>
+    </Content>
     <Content Include="www\build\js\statement-history.js" />
     <Content Include="www\build\js\statement-history.min.js">
       <DependentUpon>statement-history.js</DependentUpon>
@@ -389,6 +393,7 @@
     <Content Include="www\source\js\layout.js" />
     <Content Include="www\source\js\pages\account-overview.js" />
     <Content Include="www\source\js\pages\daily-earning.js" />
+    <Content Include="www\source\js\pages\login.js" />
     <Content Include="www\source\js\pages\statement-history.js" />
     <Content Include="www\source\js\pages\test.js" />
     <Content Include="www\source\js\pages\user-panel.js" />

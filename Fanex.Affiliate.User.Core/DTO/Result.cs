@@ -7,6 +7,6 @@
         public bool IsOk { get; set; }
 
         [JsonProperty("Msg")]
-        public bool Message { get; set; }
+        public string Message { get; set; }
     }
 }

@@ -154,6 +154,8 @@
     <Compile Include="Controllers\UserPanelController.PaymentRequest.cs" />
     <Compile Include="Controllers\UserPanelController.cs" />
     <Compile Include="Controllers\UserPanelController.Statistics.cs" />
+    <Compile Include="CoreService\ISessionService.cs" />
+    <Compile Include="CoreService\SessionService.cs" />
     <Compile Include="DTO\AuthorizedUserInfo.cs" />
     <Compile Include="DTO\DBMode.cs" />
     <Compile Include="DTO\UserPanel\AccountOverviewStatistics.cs" />
