@@ -46,7 +46,12 @@ public partial class BetList_BetListResults : IBCPage
                 criteria.IsOutRight = int.Parse(Request["isoutright"]);
                 criteria.UserName = Request["username"];
                 criteria.BetId = Request["betid"];
-                criteria.Handicap2 = int.Parse(Request["handicap2"]);
+
+                var hdp2 = Request["handicap2"];
+                if (!string.IsNullOrEmpty(hdp2))
+                {
+                    criteria.Handicap2 = int.Parse(hdp2);
+                }
             }
 
             var affBetlistService = new AffiliateAPI();

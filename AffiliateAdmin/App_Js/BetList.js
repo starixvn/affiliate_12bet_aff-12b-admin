@@ -31,7 +31,9 @@ var BetList = (function ($) {
             url += "&username=" + username;        
             url += "&affid=" + affid;
             url += "&betid=" + betidOrHdp1;
-            url += "&handicap2=" + hdp2;
+            if (hdp2) {
+                url += "&handicap2=" + hdp2;
+            }
 
             return url;
         },
