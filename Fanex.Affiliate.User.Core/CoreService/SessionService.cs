@@ -5,8 +5,8 @@ namespace Fanex.Affiliate.User.Core.CoreService
 {
     public class SessionService : ISessionService
     {
-        private const string UserSessionKey = "UserSessionKey";
-        private const string CaptchaCodeKey = "CaptchaCodeKey";
+        private const string UserSessionKey = "Affiliate12Bet.UserSessionKey";
+        private const string CaptchaCodeKey = "Affiliate12Bet.CaptchaCodeKey";
 
         public string CaptchaCode
         {
@@ -23,8 +23,15 @@ namespace Fanex.Affiliate.User.Core.CoreService
             }
         }
 
-        public void AssignSessions(UserSession userSession)
+        public void AssignSessions(AuthorizedUserInfo authorizedUser)
         {
+            var userSession = new UserSession
+            {
+                AffId = authorizedUser.AffId,
+                UserName = authorizedUser.UserName,
+                PreferredLanguage = authorizedUser.PreferredLanguage
+            };
+
             HttpContext.Current.Session[UserSessionKey] = userSession;
         }
     }

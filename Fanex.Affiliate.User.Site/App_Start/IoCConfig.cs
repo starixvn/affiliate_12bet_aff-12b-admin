@@ -7,6 +7,7 @@ using Autofac;
 using Autofac.Integration.Mvc;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.Repository;
+using Fanex.Affiliate.User.Core.Utilities;
 
 namespace Fanex.Affiliate.User.Site
 {
@@ -69,6 +70,7 @@ namespace Fanex.Affiliate.User.Site
         {
             builder.RegisterType<AuthRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<SessionService>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<AppSetting>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
 
     }

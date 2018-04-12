@@ -62,5 +62,9 @@
   {
     "outputFile": "www/build/js/login.js",
     "inputFile": "www/source/js/pages/login.js"
+  },
+  {
+    "outputFile": "www/build/js/site.js",
+    "inputFile": "www/source/js/site.js"
   }
 ]

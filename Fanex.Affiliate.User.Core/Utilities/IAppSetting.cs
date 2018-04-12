@@ -1,4 +1,6 @@
-﻿namespace Fanex.Affiliate.User.Core.Utilities
+﻿using System.Collections.Generic;
+
+namespace Fanex.Affiliate.User.Core.Utilities
 {
     public interface IAppSetting
     {
@@ -7,5 +9,11 @@
         string Environment { get; }
 
         bool IsLocal { get; }
+
+        bool IsProduction { get; }
+
+        IEnumerable<string> AllowedAffiliateTypes { get; }
+
+        int ServerId { get; }
     }
 }

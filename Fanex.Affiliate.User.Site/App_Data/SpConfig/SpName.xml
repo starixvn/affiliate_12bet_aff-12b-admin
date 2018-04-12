@@ -3,5 +3,7 @@
   <Function Name="Account Overview">
     <Setting Key="Aff_StatisticsSel" SpName="Aff_StatisticsSel" DbName="affiliate_12bet" />
     <Setting Key="Aff_StatisticsSel_view" SpName="Aff_StatisticsSel" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_AffiliateLogin_GetUserInfo" SpName="Aff_AffiliateLogin_GetUserInfo" DbName="affiliate_12bet" />
+    <Setting Key="Aff_CheckIn" SpName="Aff_CheckIn" DbName="affiliate_12bet" />
   </Function>
 </Functions>

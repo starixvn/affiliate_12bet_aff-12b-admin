@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Fanex.Affiliate.User.Core.DTO;
-using Fanex.Affiliate.User.Core.DTO.Auth;
+﻿using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.MetalModels;
-using Fanex.Data;
 
 namespace Fanex.Affiliate.User.Core.Repository
 {
@@ -17,20 +9,29 @@ namespace Fanex.Affiliate.User.Core.Repository
         {
         }
 
-        public AuthorizedUserInfo Auth(UserLogin userLogin)
+        public int GetOnUserId(OnUserIdParam onUserIdParam)
         {
-            const string spKey = "Aff_AffiliateLogin";
+            const string spKey = "Aff_CheckIn";
 
-            using (var conn = new DataBox(spKey))
+            using (var dataBox = new DataBox(spKey))
             {
-                conn.DB.ExecuteNonQuery(parameterSet: userLogin);
-                var result = new AuthorizedUserInfo
-                {
-
-                };
-                return result;
+                dataBox.DB.ExecuteNonQuery(onUserIdParam);
             }
 
+            return onUserIdParam.On_UserId;
+        }
+
+        public AuthorizedUserInfo GetUserInfo(UserLoginParam userLoginParam)
+        {
+            const string spKey = "Aff_AffiliateLogin_GetUserInfo";
+            AuthorizedUserInfo result = null;
+
+            using (var dataBox = new DataBox(spKey))
+            {
+                result = dataBox.DB.QueryEntity<AuthorizedUserInfo>(userLoginParam);
+            }
+
+            return result;
         }
     }
 }

@@ -5,6 +5,8 @@ namespace Fanex.Affiliate.User.Core.Repository
 {
     public interface IAuthRepository
     {
-        AuthorizedUserInfo Auth(UserLogin userLogin);
+        AuthorizedUserInfo GetUserInfo(UserLoginParam userLoginParam);
+
+        int GetOnUserId(OnUserIdParam onUserIdParam);
     }
 }

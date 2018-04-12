@@ -7,7 +7,7 @@
     using System.Drawing.Text;
     using System.IO;
 
-    public static class CaptchaGenerator
+    public static class CaptchaHelper
     {
         public static byte[] GenerateImageBuffer(string captcha, int width, int height)
         {

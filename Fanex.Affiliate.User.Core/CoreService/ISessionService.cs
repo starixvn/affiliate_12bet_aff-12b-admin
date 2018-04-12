@@ -8,6 +8,6 @@ namespace Fanex.Affiliate.User.Core.CoreService
 
         string CaptchaCode { get; set; }
 
-        void AssignSessions(UserSession userSession);
+        void AssignSessions(AuthorizedUserInfo authorizedUser);
     }
 }

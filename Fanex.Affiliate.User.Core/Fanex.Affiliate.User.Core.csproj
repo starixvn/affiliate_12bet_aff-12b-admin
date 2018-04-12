@@ -39,6 +39,9 @@
     <Reference Include="Dapper, Version=1.50.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dapper.1.50.2\lib\net451\Dapper.dll</HintPath>
     </Reference>
+    <Reference Include="DNAide">
+      <HintPath>..\_Dependencies\DNAide.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.Data, Version=2.1.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Fanex.Data.2.1.0.1\lib\net461\Fanex.Data.dll</HintPath>
     </Reference>
@@ -137,7 +140,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants\SystemLanguage.cs" />
     <Compile Include="Constants\TemplateString.cs" />
+    <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BetListController.cs" />
     <Compile Include="Controllers\CommissionStructureController.cs" />
     <Compile Include="Controllers\ContactUsController.cs" />
@@ -164,7 +170,8 @@
     <Compile Include="DTO\UserSession.cs" />
     <Compile Include="DTO\Result.cs" />
     <Compile Include="Extensions\NumberFormatter.cs" />
-    <Compile Include="MetalModels\UserLogin.cs" />
+    <Compile Include="MetalModels\OnUserIdParam.cs" />
+    <Compile Include="MetalModels\UserLoginParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\DataBox.cs" />
     <Compile Include="Repository\IAuthRepository.cs" />
@@ -238,10 +245,12 @@
       <DependentUpon>ResultLang.resx</DependentUpon>
     </Compile>
     <Compile Include="Utilities\AppSetting.cs" />
-    <Compile Include="Utilities\CaptchaGenerator.cs" />
+    <Compile Include="Utilities\CaptchaHelper.cs" />
+    <Compile Include="Utilities\CryptographyHelper.cs" />
     <Compile Include="Utilities\MailProcessor.cs" />
     <Compile Include="Utilities\IAppSetting.cs" />
     <Compile Include="Utilities\IMailProcessor.cs" />
+    <Compile Include="Utilities\RequestHelper.cs" />
     <Compile Include="Utilities\UrlHelper.cs" />
     <Compile Include="ViewModels\EmailTemplateViewModel.cs" />
   </ItemGroup>

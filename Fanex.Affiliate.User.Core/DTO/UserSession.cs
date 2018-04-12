@@ -4,11 +4,11 @@
     {
         public bool IsInternal { get; set; }
 
-        public string LanguageCode { get; set; }
+        public string PreferredLanguage { get; set; }
 
         public string UserName { get; set; }
 
-        public int CustId { get; set; }
+        public int AffId { get; set; }
 
         public int OnUserId { get; set; }
     }

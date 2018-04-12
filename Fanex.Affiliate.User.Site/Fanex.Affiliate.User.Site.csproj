@@ -207,6 +207,9 @@
     <Content Include="Views\CommissionStructure\Index.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Promotion\Index.cshtml" />
+    <Content Include="AppSetting.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Views\Shared\Email\ForgetPassword\Content.en-GB.cshtml" />
     <None Include="Views\Shared\Email\ForgetPassword\Content.en-US.cshtml" />
     <None Include="Views\Shared\Email\ForgetPassword\Content.es-ES.cshtml" />
@@ -284,6 +287,10 @@
     <Content Include="www\build\js\login.js" />
     <Content Include="www\build\js\login.min.js">
       <DependentUpon>login.js</DependentUpon>
+    </Content>
+    <Content Include="www\build\js\site.js" />
+    <Content Include="www\build\js\site.min.js">
+      <DependentUpon>site.js</DependentUpon>
     </Content>
     <Content Include="www\build\js\statement-history.js" />
     <Content Include="www\build\js\statement-history.min.js">
@@ -397,6 +404,7 @@
     <Content Include="www\source\js\pages\statement-history.js" />
     <Content Include="www\source\js\pages\test.js" />
     <Content Include="www\source\js\pages\user-panel.js" />
+    <Content Include="www\source\js\site.js" />
     <Content Include="www\source\styles\css\bootstrap.css" />
     <Content Include="www\source\styles\css\bootstrap.min.css" />
     <Content Include="www\source\styles\css\main.css" />
