@@ -5,6 +5,7 @@ using System.Web.Compilation;
 using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
+using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.Repository;
 using Fanex.Affiliate.User.Core.Utilities;
@@ -71,6 +72,7 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterType<AuthRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<SessionService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<AppSetting>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<LanguageService>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
 
     }

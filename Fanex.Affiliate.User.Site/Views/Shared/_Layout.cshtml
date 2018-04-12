@@ -1,6 +1,9 @@
-﻿@{ 
-    var sessionService = DependencyResolver.Current.GetService<Fanex.Affiliate.User.Core.CoreService.ISessionService>();
+﻿@using Fanex.Affiliate.User.Core.CoreService
+@using Fanex.Affiliate.User.Core.Constants
+@{
+    var sessionService = DependencyResolver.Current.GetService<ISessionService>();
     var userSession = sessionService.UserSession;
+    var languageDictionary = SystemLanguage.LanguageNameByCode;
 }
 
 <!DOCTYPE html>
@@ -33,22 +36,18 @@
                         <div class="language-container">
                             <div class="language-selection">
                                 <p id="selectedLanguage">
-                                    <span><i class="flag flag-en-US"></i> English</span>
+                                    <span><i class="flag flag-@sessionService.CurrentLanguage"></i>@(languageDictionary[sessionService.CurrentLanguage])</span>
                                     <i class="caret"></i>
                                 </p>
                             </div>
                             <div class="language-list-wrapper" id="languageList" style="display: none;">
                                 <ul class="list-unstyled language-list">
-                                    <li><a href="javascript:;" class="language-item" data-option="en-US"><i class="flag flag-en-US"></i> English</a></li>
-                                    <li><a href="javascript:;" class="language-item" data-option="zh-CN"><i class="flag flag-zh-CN"></i> 中文简体</a></li>
-                                    <li><a href="javascript:;" class="language-item" data-option="zh-TW"><i class="flag flag-zh-TW"></i> 中文繁体</a></li>
-                                    <li><a href="javascript:;" class="language-item" data-option="id-ID"><i class="flag flag-id-ID"></i> Indonesia</a></li>
-                                    <li><a href="javascript:;" class="language-item" data-option="vi-VN"><i class="flag flag-vi-VN"></i> Tiếng Việt</a></li>
-                                    <li><a href="javascript:;" class="language-item" data-option="th-TH"><i class="flag flag-th-TH"></i> ภาษาไทย</a></li>
-                                    <li><a href="javascript:;" class="language-item" data-option="ko-KR"><i class="flag flag-ko-KR"></i> 한국어</a></li>
-                                    <li><a href="javascript:;" class="language-item" data-option="es-ES"><i class="flag flag-es-ES"></i> Español</a></li>
-                                    <li><a href="javascript:;" class="language-item" data-option="ja-JP"><i class="flag flag-ja-JP"></i> 日本</a></li>
-                                    <li><a href="javascript:;" class="language-item" data-option="hi-IN"><i class="flag flag-hi-IN"></i> Republic of India</a></li>
+                                    @foreach (var language in languageDictionary)
+                                    {
+                                        <li>
+                                            <a href="javascript:;" class="language-item" data-option="@language.Key"><i class="flag flag-@language.Key"></i>@language.Value</a>
+                                        </li>
+                                    }
                                 </ul>
                             </div>
                         </div>

@@ -1,4 +1,5 @@
 ﻿using System.Web;
+using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.DTO.Auth;
 
 namespace Fanex.Affiliate.User.Core.CoreService
@@ -7,6 +8,7 @@ namespace Fanex.Affiliate.User.Core.CoreService
     {
         private const string UserSessionKey = "Affiliate12Bet.UserSessionKey";
         private const string CaptchaCodeKey = "Affiliate12Bet.CaptchaCodeKey";
+        private const string CurrentLanguageKey = "Affiliate12Bet.CurrentLanguageKey";
 
         public string CaptchaCode
         {
@@ -23,13 +25,35 @@ namespace Fanex.Affiliate.User.Core.CoreService
             }
         }
 
+        public string CurrentLanguage
+        {
+            get
+            {
+                var session = HttpContext.Current.Session;
+                if (session == null)
+                {
+                    return SystemLanguage.DefaultLanguageCode;
+                }
+
+                var currentLanguage = session[CurrentLanguageKey] as string;
+
+                return string.IsNullOrEmpty(currentLanguage) ? SystemLanguage.DefaultLanguageCode : currentLanguage;
+            }
+            set
+            {
+                HttpContext.Current.Session[CurrentLanguageKey] = value;
+            }
+        }
+
         public void AssignSessions(AuthorizedUserInfo authorizedUser)
         {
             var userSession = new UserSession
             {
                 AffId = authorizedUser.AffId,
                 UserName = authorizedUser.UserName,
-                PreferredLanguage = authorizedUser.PreferredLanguage
+                PreferredLanguage = string.IsNullOrEmpty(authorizedUser.PreferredLanguage) ?
+                                        SystemLanguage.DefaultLanguageCode :
+                                        authorizedUser.PreferredLanguage
             };
 
             HttpContext.Current.Session[UserSessionKey] = userSession;

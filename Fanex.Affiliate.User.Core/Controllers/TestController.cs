@@ -1,9 +1,8 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
     using System;
-    using System.Globalization;
-    using System.Threading;
     using System.Web.Mvc;
+    using BusinessService;
     using Constants;
     using Utilities;
     using ViewModels;
@@ -11,10 +10,12 @@
     public class TestController : Controller
     {
         private readonly IMailProcessor _mailProcessor;
+        private readonly ILanguageService _languageService;
 
-        public TestController()
+        public TestController(ILanguageService languageService)
         {
             _mailProcessor = new MailProcessor();
+            _languageService = languageService;
         }
 
         [HttpGet]
@@ -26,9 +27,9 @@
         [HttpGet]
         public ActionResult Preview(TestCriteria criteria)
         {
-            ChangeSystemLanguage(criteria.Language);
+            _languageService.SetCulture(criteria.Language);
             ViewBag.Data = GetEmailContent(criteria);
-            ChangeSystemLanguage("en-US");
+            _languageService.SetCulture("en-US");
 
             return View();
         }
@@ -162,15 +163,6 @@
                 FirstName = "Walter",
                 MailContact = "mailcontact@gmail.com"
             };
-        }
-
-        private void ChangeSystemLanguage(string language)
-        {
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo(language);
-            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(language);
-
-            Thread.CurrentThread.CurrentCulture.DateTimeFormat = CultureInfo.CreateSpecificCulture("en-US").DateTimeFormat;
-            Thread.CurrentThread.CurrentCulture.NumberFormat = CultureInfo.CreateSpecificCulture("en-US").NumberFormat;
         }
     }
 

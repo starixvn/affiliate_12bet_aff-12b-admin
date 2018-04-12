@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
+using Fanex.Affiliate.User.Core.BusinessService;
+using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.Utilities;
 
@@ -7,9 +9,12 @@ namespace Fanex.Affiliate.User.Core.Controllers
 {
     public class HomeController : BaseController
     {
-        public HomeController(ISessionService sessionService, IAppSetting appSetting)
+        private readonly ILanguageService _languageService;
+
+        public HomeController(ISessionService sessionService, IAppSetting appSetting, ILanguageService languageService)
             : base(sessionService, appSetting)
         {
+            _languageService = languageService;
         }
 
         public ActionResult Index()
@@ -23,6 +28,16 @@ namespace Fanex.Affiliate.User.Core.Controllers
             SessionService.CaptchaCode = captcha;
 
             return File(CaptchaHelper.GenerateImageBuffer(captcha, 65, 26), "image/Jpeg");
+        }
+
+        [HttpPost]
+        public ActionResult ChangeLanguage(string languageCode)
+        {
+            languageCode = string.IsNullOrEmpty(languageCode) ? SystemLanguage.DefaultLanguageCode : languageCode;
+            SessionService.CurrentLanguage = languageCode;
+            _languageService.SetCulture(languageCode);
+
+            return Json(true);
         }
     }
 }

@@ -140,6 +140,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessService\ILanguageService.cs" />
+    <Compile Include="BusinessService\LanguageService.cs" />
     <Compile Include="Constants\SystemLanguage.cs" />
     <Compile Include="Constants\TemplateString.cs" />
     <Compile Include="Controllers\AuthController.cs" />
@@ -255,7 +257,6 @@
     <Compile Include="ViewModels\EmailTemplateViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BusinessService\" />
     <Folder Include="DTO\BetList\" />
     <Folder Include="MetalModels\BetList\" />
     <Folder Include="MetalModels\UserPanel\" />

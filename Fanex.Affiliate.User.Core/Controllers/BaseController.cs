@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.Utilities;
 
@@ -8,6 +9,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
     {
         private readonly ISessionService _sessionService;
         private readonly IAppSetting _appSetting;
+        private readonly ILanguageService _languageService;
 
         protected const string AuthenticatedMasterName = "~/Views/Shared/_LayoutAfterLogin.cshtml";
         protected const string UnAuthenticatedMasterName = "~/Views/Shared/_LayoutBeforeLogin.cshtml";

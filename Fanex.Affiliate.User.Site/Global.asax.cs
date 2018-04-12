@@ -1,6 +1,9 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Fanex.Affiliate.User.Core.BusinessService;
+using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Data;
 using Fanex.Data.OldConnectionStringProvider;
 
@@ -24,6 +27,14 @@ namespace Fanex.Affiliate.User.Site
                 ignoreRedundantParameters: false,
                 enableWatching: true)
               .Run();
+        }
+
+        protected void Application_AcquireRequestState(object sender, EventArgs e)
+        {
+            var languageService = DependencyResolver.Current.GetService<ILanguageService>();
+            var sessionService = DependencyResolver.Current.GetService<ISessionService>();
+
+            languageService.SetCulture(sessionService.CurrentLanguage);
         }
     }
 }
