@@ -1,4 +1,6 @@
-﻿using System.Web;
+﻿using System.Globalization;
+using System.Threading;
+using System.Web;
 
 /// <summary>
 /// Summary description for AffHandler
@@ -9,8 +11,11 @@ public class AffHandler
     {
         context.Response.ContentType = "text/html";
         context.Response.Cache.SetCacheability(HttpCacheability.Private);
-        System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(AppSettings.Session.Language);
-        System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.CreateSpecificCulture(AppSettings.Session.Language);
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(AppSettings.Session.Language);
+        Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(AppSettings.Session.Language);
+
+        Thread.CurrentThread.CurrentCulture.DateTimeFormat = CultureInfo.CreateSpecificCulture("en-US").DateTimeFormat;
+        Thread.CurrentThread.CurrentCulture.NumberFormat = CultureInfo.CreateSpecificCulture("en-US").NumberFormat;
         return context;
     }
 }

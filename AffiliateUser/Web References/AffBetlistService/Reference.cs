@@ -381,30 +381,28 @@ namespace AffiliateUser.AffBetlistService {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetBetlistResults", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public string GetBetlistResults(string affiliateName, string sessionLanguage, BetListResultsCriteria criteria, string language) {
+        public string GetBetlistResults(string affiliateName, string language, BetListResultsCriteria criteria) {
             object[] results = this.Invoke("GetBetlistResults", new object[] {
                         affiliateName,
-                        sessionLanguage,
-                        criteria,
-                        language});
+                        language,
+                        criteria});
             return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void GetBetlistResultsAsync(string affiliateName, string sessionLanguage, BetListResultsCriteria criteria, string language) {
-            this.GetBetlistResultsAsync(affiliateName, sessionLanguage, criteria, language, null);
+        public void GetBetlistResultsAsync(string affiliateName, string language, BetListResultsCriteria criteria) {
+            this.GetBetlistResultsAsync(affiliateName, language, criteria, null);
         }
         
         /// <remarks/>
-        public void GetBetlistResultsAsync(string affiliateName, string sessionLanguage, BetListResultsCriteria criteria, string language, object userState) {
+        public void GetBetlistResultsAsync(string affiliateName, string language, BetListResultsCriteria criteria, object userState) {
             if ((this.GetBetlistResultsOperationCompleted == null)) {
                 this.GetBetlistResultsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetBetlistResultsOperationCompleted);
             }
             this.InvokeAsync("GetBetlistResults", new object[] {
                         affiliateName,
-                        sessionLanguage,
-                        criteria,
-                        language}, this.GetBetlistResultsOperationCompleted, userState);
+                        language,
+                        criteria}, this.GetBetlistResultsOperationCompleted, userState);
         }
         
         private void OnGetBetlistResultsOperationCompleted(object arg) {
@@ -634,6 +632,8 @@ namespace AffiliateUser.AffBetlistService {
         
         private string userNameField;
         
+        private int handicap2Field;
+        
         /// <remarks/>
         public int MatchId {
             get {
@@ -725,6 +725,16 @@ namespace AffiliateUser.AffBetlistService {
             }
             set {
                 this.userNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int Handicap2 {
+            get {
+                return this.handicap2Field;
+            }
+            set {
+                this.handicap2Field = value;
             }
         }
     }

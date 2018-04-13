@@ -1,6 +1,6 @@
 ﻿using System;
-using Criterias;
 using AffiliateUser.AffBetlistService;
+using Criterias;
 
 public partial class BetList_BetListResults : RootPageLogIn
 {
@@ -17,10 +17,10 @@ public partial class BetList_BetListResults : RootPageLogIn
         }
 
         var validationCriteria = new ValidationCriteria
-                    {
-                        AffId = affId,
-                        MemberName = "12bet$" + Request["UserName"]
-                    };
+        {
+            AffId = affId,
+            MemberName = "12bet$" + Request["UserName"]
+        };
 
         var result = DataHandler.MemberInfo.ValidatePermission(validationCriteria);
 
@@ -33,7 +33,9 @@ public partial class BetList_BetListResults : RootPageLogIn
 
         var bettype = int.Parse(Request["bettype"]);
         var criteria = new BetListResultsCriteria();
-        if (bettype == 9 || bettype == 29)
+        var isMixParlay = bettype == 9 || bettype == 29;
+
+        if (isMixParlay)
         {
             criteria.MatchId = int.Parse(Request["matchid"]);
             criteria.Bettype = int.Parse(Request["bettype"]);
@@ -50,10 +52,16 @@ public partial class BetList_BetListResults : RootPageLogIn
             criteria.IsOutRight = int.Parse(Request["isoutright"]);
             criteria.UserName = Request["username"];
             criteria.BetId = Request["betid"];
+
+            var hdp2 = Request["handicap2"];
+            if (!string.IsNullOrEmpty(hdp2))
+            {
+                criteria.Handicap2 = int.Parse(hdp2);
+            }
         }
 
         var affBetlistService = new AffiliateAPI();
         affBetlistService.Timeout = AppSettings.BetListServiceTimeout;
-        betlistResultsHtmlString = affBetlistService.GetBetlistResults("12bet", "en-US", criteria, "en-US");
+        betlistResultsHtmlString = affBetlistService.GetBetlistResults("12bet", "en-US", criteria);
     }
 }
