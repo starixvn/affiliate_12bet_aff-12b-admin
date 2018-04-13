@@ -7,13 +7,15 @@
 }
 
 @section scripts{
-    var validationMessage = {
-    enterUserName: '@Lang.ErrmsgEntryUsername',
-    enterPassword: '@Lang.ErrmsgEntryPassword',
-    enterValidationCode: '@Lang.ErrmsgEntryValidCode'
-    }
+    <script>
+        var validationMessage = {
+            enterUserName: '@Lang.ErrmsgEntryUsername',
+            enterPassword: '@Lang.ErrmsgEntryPassword',
+            enterValidationCode: '@Lang.ErrmsgEntryValidCode'
+        }
+    </script>
 
-    <script src="~/www/build/js/login.js"></script>
+    @Html.InlineScripts("~/www/build/js/login.js")
     @RenderSection("scripts", required: false)
 }
 

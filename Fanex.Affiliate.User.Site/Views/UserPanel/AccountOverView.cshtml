@@ -8,7 +8,8 @@
 @{
     var statistics = Model;
 }
-<link href="~/www/build/styles/css/pikaday.min.css" rel="stylesheet" />
+
+@Html.InlineStyles("~/www/build/styles/css/pikaday.min.css")
 
 <div class="page-title">
     <span class="text">@Lang.AccOverview</span>
@@ -135,4 +136,4 @@
     </div>
 </div>
 
-<script src="~/www/build/js/account-overview.js"></script>
+@Html.InlineScripts("~/www/build/js/account-overview.js")

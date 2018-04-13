@@ -2,6 +2,7 @@
 {
     using System.Web.Mvc;
 
+    [Authorize]
     public partial class UserPanelController : Controller
     {
         [HttpGet]

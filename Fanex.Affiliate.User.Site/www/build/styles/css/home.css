@@ -539,7 +539,7 @@
     text-align: center;
     padding: 10px 0; }
   .card-content .offers-content {
-    background-image: url(../../../source/styles/Images/bg-offers.png);
+    background-image: url(../../../www/build/styles/Images/bg-offers.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: left center;
