@@ -58,41 +58,6 @@ namespace GenerateHTML
 
         }
 
-        public static string GetTextLink(string trackingcode, DataTable language, string target)
-        {
-            string htmlContent = TemplateHandler.LoadTemplate("UserInfo/MediaGallery.htm");
-            StringBuilder textLinkList = new StringBuilder();
-            string textLink = TemplateHandler.CopyBlock(htmlContent, "TextLinkList");
-            string _12betLink = AppSettings.BetLink.ToString();
-
-            switch (AppSettings.Session.PreferLang)
-            {
-                case "th-TH": _12betLink = AppSettings.BetLink_TH.ToString(); break;
-                case "zh-CN": _12betLink = AppSettings.BetLink_CS.ToString(); break;
-                case "zh-TW": _12betLink = AppSettings.BetLink_CS.ToString(); break;
-                case "vi-VN": _12betLink = AppSettings.BetLink_VI.ToString(); break;
-            }
-
-            if (Common.IsAffInListEuLink())
-                _12betLink = AppSettings.BetLink_EU;
-
-            if (!string.IsNullOrEmpty(trackingcode))
-            {
-                trackingcode = "/" + trackingcode;
-            }
-
-            foreach (DataRow dr in language.Rows)
-            {
-                textLinkList.Append(GenLink(textLink, GetBannerLang(dr["value"].ToString()), _12betLink,
-                    trackingcode, Common.GetLangCode(dr["value"].ToString()), target));
-            }
-
-            //Default link
-            textLinkList.Append(GenLink(textLink, Resources.Lang.Default, _12betLink, trackingcode, GenCodeByPreferLang(), target));
-            //}           
-            return textLinkList.ToString();
-        }
-
         public static string GetTextList(string category, string language, string currency, int pageIndex, int pagesize, ref int totalpage,
             DataRow selectedDomain, string trackingcode, string target, string deviceType)
         {
