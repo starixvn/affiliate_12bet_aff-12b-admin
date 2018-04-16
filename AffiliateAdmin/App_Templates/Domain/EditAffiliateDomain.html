@@ -19,15 +19,24 @@
                 </td>
                 <td class="left" id="td_pass">
                     <input id="txtaffdomain" type="text" name="txtaffdomain" class="textbox" value="{AffDomainName}"
-                        onkeypress="return PreExec(event,{affdomainid});" />
+                           onkeypress="return PreExec(event,{affdomainid});" />
                 </td>
-            </tr>               
+            </tr>
+            <tr align="left">
+                <td style="width: 70px; padding-left: 20px;">
+                    {SSL}
+                </td>
+                <td class="b">
+                    <div id="chkSSL" class="chk {ic-ssl}">
+                    </div>
+                </td>
+            </tr>
         </table>
     </div>
     <div class="l" style="height:20px; padding:3px 0px 0px 0px;">
         <input type="button" name="btnSubmit" value="{submit}" id="btnSubmit" class="buttonlogin"
-            onclick="EditAffDomain({affdomainid})" />&nbsp;
+               onclick="EditAffDomain({affdomainid})" />&nbsp;
         <input name="btnCancel" id="btnCancel" type="button" onclick="parent.CloseDiv();"
-            class="buttonlogin" value="{cancel}" />
+               class="buttonlogin" value="{cancel}" />
     </div>
 </div>

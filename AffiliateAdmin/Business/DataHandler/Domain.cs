@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections;
 using System.Web;
 using AffiliateAdmin.Business.DataAccess;
 using DNAide.Core;
@@ -97,31 +94,33 @@ namespace DataHandler
 
         public static DbResult GetListAffDomain()
         {
-            return DbHelper.Execute("Aff_DomainAffSel", DBType.AFFILIATE_12BET);
+            return DbHelper.Execute("Aff_DomainAffSel_xtest", DBType.AFFILIATE_12BET);
         }
-        public static DbResult UpdateAffDomain(int domainID, string domainName, int userID)
+        public static DbResult UpdateAffDomain(int domainID, string domainName, int userID, bool isSSL)
         {
             Hashtable htb = new Hashtable();
             htb.Add("domainid", domainID);
             htb.Add("domainname", HttpContext.Current.Server.HtmlEncode(domainName));
+            htb.Add("IsSSL", isSSL);
             htb.Add("userid", userID);
             htb.Add("ip", HttpContext.Current.Request.UserHostAddress);
             htb.Add("errcode", 0);
             htb.Add("errmsg", string.Empty);
             // htb.Add("system", "AFFILIATE");
-            return DbHelper.Execute("Aff_DomainAffUpd", DBType.AFFILIATE_12BET, htb);
+            return DbHelper.Execute("Aff_DomainAffUpd_xtest", DBType.AFFILIATE_12BET, htb);
         }
-        public static DbResult AddAffDomain(string domainName, int userID)
+        public static DbResult AddAffDomain(string domainName, int userID, bool isSSL)
         {
             Hashtable htb = new Hashtable();
             htb.Add("domainid", 0);
             htb.Add("domainname", HttpContext.Current.Server.HtmlEncode(domainName));
+            htb.Add("IsSSL", isSSL);
             htb.Add("userid", userID);
             htb.Add("ip", HttpContext.Current.Request.UserHostAddress);
             htb.Add("errcode", 0);
             htb.Add("errmsg", string.Empty);
             //htb.Add("system", "AFFILIATE");
-            return DbHelper.Execute("Aff_DomainAffIns", DBType.AFFILIATE_12BET, htb);
+            return DbHelper.Execute("Aff_DomainAffIns_xtest", DBType.AFFILIATE_12BET, htb);
         }
         public static DbResult DelAffDomain(int domainID, string domainName, int userID)
         {

@@ -5,7 +5,13 @@
 <script src="../App_Js/Common.js" language="javascript" type="text/javascript"></script>
 <script language="javascript" type="text/javascript">
 
-    window.onload = Focus;
+    window.onload = InitEvent;
+
+    function InitEvent() {
+        Focus();
+        Common.initDivCheckBox();
+    }
+
     function Focus() {
         $('txtaffdomain').blur();
         $('txtaffdomain').focus();
@@ -28,7 +34,8 @@
                 method: 'post',
                 parameters: {
                     affDomainName: $('txtaffdomain').value, sta: 'Add',
-                    "X-CSRF-Token": $('X-CSRF-Token').value
+                    "X-CSRF-Token": $('X-CSRF-Token').value,
+                    ssl: $("chkSSL").hasClassName("ic-check")
                 },
                 onComplete: function (strdata) {
                     Common.hideLoading();
