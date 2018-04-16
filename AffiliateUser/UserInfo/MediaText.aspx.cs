@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Linq;
 using System.Text;
 using DNAide.Core;
 using DNAide.Web;
@@ -32,18 +33,18 @@ public partial class UserInfo_MediaText : RootPageLogIn
         var deviceType = Common.GetDeviceType(Request["slDevice"]);
         string targetRequest = GetTargetRequest(Request["target"], deviceType);
 
-        
+
 
         string domain = string.IsNullOrEmpty(Request["slDomain"]) ? null : Request["slDomain"];
         DataTable dtDomain = DataHandler.MediaGallery.SelAffDomains(deviceType);
-        TemplateHandler.Assign(ref htmlContent, "slDomain", Common.GenDropDownFromTable(dtDomain, "DomainName", "DomainName", "slDomain", ref domain, false));
-        
+        TemplateHandler.Assign(ref htmlContent, "slDomain", Common.GenDropDownFromTable(dtDomain, "DomainID", "DomainName", "slDomain", ref domain, false));
+
         TemplateHandler.Assign(ref htmlContent, "target", Common.GenListLink2Page("target", targetRequest, deviceType));
 
         TemplateHandler.Assign(ref htmlContent, "Device", Resources.Lang.Device);
         TemplateHandler.Assign(ref htmlContent, "DeviceType-val", deviceType);
         TemplateHandler.Assign(ref htmlContent, "slDevice", Common.GenDeviceList("slDevice", deviceType));
-        
+
         #region Get request information
 
         int pageIndex = CastAide.AsInt32(Request["page"], 1);
@@ -91,9 +92,11 @@ public partial class UserInfo_MediaText : RootPageLogIn
         /* Generate TestLinkList */
         dv.RowFilter = "type='Language'";
         DataTable dt = dv.ToTable();
-        TemplateHandler.ReplaceBlock(ref htmlContent, "TextLinkList", GenerateHTML.Banner.GetTextLink(domain, trackingcode, dt, targetRequest, deviceType, lang));
+        var selectedDomain = dtDomain.AsEnumerable().FirstOrDefault(row => domain.Equals(row["DomainID"].ToString()));
 
-        TemplateHandler.ReplaceBlock(ref htmlContent, "Content", GenerateHTML.Text.GetTextList(category, lang, currency, pageIndex, pageSize, ref totalpage, domain, trackingcode, targetRequest, deviceType));
+        TemplateHandler.ReplaceBlock(ref htmlContent, "TextLinkList", GenerateHTML.Banner.GetTextLink(selectedDomain, trackingcode, dt, targetRequest, deviceType, lang));
+
+        TemplateHandler.ReplaceBlock(ref htmlContent, "Content", GenerateHTML.Text.GetTextList(category, lang, currency, pageIndex, pageSize, ref totalpage, selectedDomain, trackingcode, targetRequest, deviceType));
         TemplateHandler.Assign(ref htmlContent, "PageSize-val", pageSize);
         TemplateHandler.Assign(ref htmlContent, "page", pageIndex);
         /* Generate Banner paging*/

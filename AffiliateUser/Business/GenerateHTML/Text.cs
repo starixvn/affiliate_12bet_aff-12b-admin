@@ -1,10 +1,9 @@
 ﻿using System;
-using DNAide.Web;
-using DNAide.Core;
 using System.Data;
 using System.Text;
-using System.Configuration;
 using System.Web;
+using DNAide.Core;
+using DNAide.Web;
 
 /// <summary>
 /// Summary description for Text
@@ -95,7 +94,7 @@ namespace GenerateHTML
         }
 
         public static string GetTextList(string category, string language, string currency, int pageIndex, int pagesize, ref int totalpage,
-            string domain, string trackingcode, string target, string deviceType)
+            DataRow selectedDomain, string trackingcode, string target, string deviceType)
         {
             var result = DataHandler.UserAff.SelAffText(category, language, currency, pageIndex, pagesize, deviceType);
             int nRows = CastAide.AsInt32(result.Outputs["nrows"]);
@@ -115,30 +114,27 @@ namespace GenerateHTML
                 switch (AppSettings.Session.PreferLang)
                 {
                     case "th-TH":
-                        signUpLink = AppSettings.BetLink_TH.ToString();
                         strMedia = AppSettings.MediaJS_TH;
                         break;
                     case "zh-CN":
-                        signUpLink = AppSettings.BetLink_CS.ToString();
-                        strMedia = AppSettings.MediaJS_CS;
-                        break;
                     case "zh-TW":
-                        signUpLink = AppSettings.BetLink_CS.ToString();
                         strMedia = AppSettings.MediaJS_CS;
                         break;
                     case "vi-VN":
-                        signUpLink = AppSettings.BetLink_VI.ToString();
                         strMedia = AppSettings.MediaJS_CS;
                         break;
                 }
 
                 if (Common.IsAffInListEuLink())
                 {
-                    signUpLink = AppSettings.BetLink_EU;
                     strMedia = AppSettings.MediaJS_EU;
                 }
 
-                TemplateHandler.Assign(ref signUpLink, "{domain}", domain);
+                var selectedDomainName = selectedDomain["DomainName"].ToString();
+                var scheme = CastAide.AsBoolean(selectedDomain["IsSSL"], false) ? Uri.UriSchemeHttps : Uri.UriSchemeHttp;
+
+                TemplateHandler.Assign(ref signUpLink, "{scheme}", scheme);
+                TemplateHandler.Assign(ref signUpLink, "{domain}", selectedDomainName);
                 TemplateHandler.Assign(ref signUpLink, "{target}", target);
 
                 if (language == "English (Europe)")
@@ -150,13 +146,9 @@ namespace GenerateHTML
                     trackingcode = "/" + trackingcode;
                 }
                 TemplateHandler.Assign(ref signUpLink, "{/TrackingCode}", trackingcode.Trim());
-                string _12betLink = signUpLink;
-                if (_12betLink.IndexOf("http://") >= 0)
-                {
-                    _12betLink = _12betLink.Substring(7);
-                }
+                string _12betLink = selectedDomainName;
 
-                if (_12betLink.IndexOf("/") > 0)
+                if (_12betLink.IndexOf("/") != -1)
                 {
                     _12betLink = _12betLink.Substring(0, _12betLink.IndexOf("/"));
                 }
@@ -174,7 +166,7 @@ namespace GenerateHTML
                     TemplateHandler.Assign(ref aSignUpLink, "{/DeviceType}", GetDeviceTypeUri(deviceType));
                     TemplateHandler.Assign(ref aSignUpLink, "target", target);
 
-                    TemplateHandler.Assign(ref rowText, "messagevalue", Common.FormatStringHtml (dr["message"].ToString()));
+                    TemplateHandler.Assign(ref rowText, "messagevalue", Common.FormatStringHtml(dr["message"].ToString()));
                     TemplateHandler.Assign(ref rowText, "signuplink_val", aSignUpLink);
                     TemplateHandler.Assign(ref rowText, "12betlink_val", _12betLink);
                     TemplateHandler.Assign(ref rowText, "textid", dr["BannerID"]);
@@ -184,7 +176,7 @@ namespace GenerateHTML
 
                 return contentList.ToString();
             }
-            
+
             return Common.NoInfo(cols);
         }
 

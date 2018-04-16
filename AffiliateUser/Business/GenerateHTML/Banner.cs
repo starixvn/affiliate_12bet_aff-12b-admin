@@ -65,23 +65,12 @@ namespace GenerateHTML
             }
         }
 
-        public static string GetTextLink(string domain, string trackingcode, DataTable language, string target, string deviceType, string selectedLanguage = null)
+        public static string GetTextLink(DataRow selectedDomain, string trackingcode, DataTable language, string target, string deviceType, string selectedLanguage = null)
         {
             string htmlContent = TemplateHandler.LoadTemplate("UserInfo/MediaGallery.htm");
             var textLinkList = new StringBuilder();
             string textLink = TemplateHandler.CopyBlock(htmlContent, "TextLinkList");
             string _12betLink = AppSettings.BetLink.ToString();
-
-            switch (AppSettings.Session.PreferLang)
-            {
-                case "th-TH": _12betLink = AppSettings.BetLink_TH; break;
-                case "zh-CN": _12betLink = AppSettings.BetLink_CS; break;
-                case "zh-TW": _12betLink = AppSettings.BetLink_CS; break;
-                case "vi-VN": _12betLink = AppSettings.BetLink_VI; break;
-            }
-
-            if (Common.IsAffInListEuLink())
-                _12betLink = AppSettings.BetLink_EU;
 
             if (!string.IsNullOrEmpty(trackingcode))
             {
@@ -93,14 +82,14 @@ namespace GenerateHTML
                 foreach (DataRow dr in language.Rows)
                 {
                     textLinkList.Append(GenLink(textLink, GetBannerLang(dr["value"].ToString()), _12betLink,
-                        domain, trackingcode, Common.GetLangCode(dr["value"].ToString()), target, deviceType));
+                        selectedDomain, trackingcode, Common.GetLangCode(dr["value"].ToString()), target, deviceType));
                 }
 
-                textLinkList.Append(GenLink(textLink, Lang.Default, _12betLink, domain, trackingcode, GenCodeByPreferLang(), target, deviceType));
+                textLinkList.Append(GenLink(textLink, Lang.Default, _12betLink, selectedDomain, trackingcode, GenCodeByPreferLang(), target, deviceType));
             }
             else
             {
-                textLinkList.Append(GenLink(textLink, GetBannerLang(selectedLanguage), _12betLink, domain, trackingcode, Common.GetLangCode(selectedLanguage), target, deviceType));
+                textLinkList.Append(GenLink(textLink, GetBannerLang(selectedLanguage), _12betLink, selectedDomain, trackingcode, Common.GetLangCode(selectedLanguage), target, deviceType));
             }
 
             return textLinkList.ToString();
@@ -108,7 +97,7 @@ namespace GenerateHTML
 
         public static string GetBannerList(string category, bool isSearchByParentCateogry, string language,
             string imageType, string size, string currency, int pageIndex, int pagesize, ref int totalpage,
-            string domain, string trackingcode, string target, int type, int afftype, string deviceType)
+            DataRow selectedDomain, string trackingcode, string target, int type, int afftype, string deviceType)
         {
             string tmpLanguage = language;// (language == "English (Europe)" ? "English" : language);//English Euro use English banner
 
@@ -125,30 +114,27 @@ namespace GenerateHTML
                 string temp = TemplateHandler.LoadTemplate("UserInfo/MediaGallery.htm");
                 string content = TemplateHandler.CopyBlock(temp, "Content");
                 totalpage = CastAide.AsInt32(result.Outputs["totalpages"]);
-                DataTable dtbResult = result.ResultSet.Tables[0];
+
                 var contentList = new StringBuilder();
                 int counter = 3;
-                string signUpLink = AppSettings.BetLink.ToString();
+                string signUpLink = AppSettings.BetLink;
                 string strMedia = AppSettings.MediaJS;
                 string src = AppSettings.MediaUrl;
 
                 switch (AppSettings.Session.PreferLang)
                 {
                     case "th-TH":
-                        signUpLink = AppSettings.BetLink_TH.ToString();
                         strMedia = AppSettings.MediaJS_TH;
                         src = AppSettings.MediaUrlTH;
                         break;
 
                     case "zh-CN":
                     case "zh-TW":
-                        signUpLink = AppSettings.BetLink_CS.ToString();
                         strMedia = AppSettings.MediaJS_CS;
                         src = AppSettings.MediaUrlCS;
                         break;
 
                     case "vi-VN":
-                        signUpLink = AppSettings.BetLink_VI.ToString();
                         strMedia = AppSettings.MediaJS_VI;
                         src = AppSettings.MediaUrlVI;
                         break;
@@ -156,12 +142,16 @@ namespace GenerateHTML
 
                 if (Common.IsAffInListEuLink())//20100910@Johnny: EU Link
                 {
-                    signUpLink = AppSettings.BetLink_EU;
                     strMedia = AppSettings.MediaJS_EU;
                     src = AppSettings.MediaUrlEU;
                 }
 
-                TemplateHandler.Assign(ref signUpLink, "{domain}", domain);
+                var selectedDomainName = selectedDomain["DomainName"].ToString();
+                var isSSL = CastAide.AsBoolean(selectedDomain["IsSSL"], false);
+                var scheme = isSSL ? Uri.UriSchemeHttps : Uri.UriSchemeHttp;
+
+                TemplateHandler.Assign(ref signUpLink, "{scheme}", scheme);
+                TemplateHandler.Assign(ref signUpLink, "{domain}", selectedDomainName);
                 TemplateHandler.Assign(ref signUpLink, "{target}", target);
 
                 if (language == "English (Europe)")
@@ -173,13 +163,9 @@ namespace GenerateHTML
                     trackingcode = "/" + trackingcode;
                 }
                 TemplateHandler.Assign(ref signUpLink, "{/TrackingCode}", trackingcode.Trim());
-                string _12betLink = signUpLink;
-                if (_12betLink.IndexOf("http://") >= 0)
-                {
-                    _12betLink = _12betLink.Substring(7);
-                }
+                string _12betLink = selectedDomainName;
 
-                if (_12betLink.IndexOf("/") > 0)
+                if (_12betLink.IndexOf("/") != -1)
                 {
                     _12betLink = _12betLink.Substring(0, _12betLink.IndexOf("/"));
                 }
@@ -187,6 +173,7 @@ namespace GenerateHTML
                 string flContent = HttpContext.Current.Server.HtmlEncode(TemplateHandler.LoadTemplate("UserInfo/FlashCode.htm"));
                 TemplateHandler.Assign(ref flContent, "src", strMedia);
 
+                var dtbResult = result.ResultSet.Tables[0];
                 foreach (DataRow dr in dtbResult.Rows)
                 {
                     string rowText = content;
@@ -223,11 +210,15 @@ namespace GenerateHTML
             return Common.NoInfo(cols);
         }
 
-        private static string GenLink(string textLink, string langText, string link, string domain, string trackingCode,
+        private static string GenLink(string textLink, string langText, string link, DataRow selectedDomain, string trackingCode,
             string linkLang, string target, string deviceType)
         {
+            var isSSL = CastAide.AsBoolean(selectedDomain["IsSSL"], false);
+            var scheme = isSSL ? Uri.UriSchemeHttps : Uri.UriSchemeHttp;
+
             TemplateHandler.Assign(ref textLink, "language_val", langText);
-            TemplateHandler.Assign(ref link, "{domain}", domain);
+            TemplateHandler.Assign(ref link, "{scheme}", scheme);
+            TemplateHandler.Assign(ref link, "{domain}", selectedDomain["DomainName"].ToString());
             TemplateHandler.Assign(ref link, "{target}", target);
             TemplateHandler.Assign(ref link, "{custid}", AppSettings.Session.CustID.ToString());
             TemplateHandler.Assign(ref link, "{/TrackingCode}", trackingCode.Trim());
