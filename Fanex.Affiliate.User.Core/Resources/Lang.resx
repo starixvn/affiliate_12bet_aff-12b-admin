@@ -3168,4 +3168,13 @@ One of our Affiliate Accounts Manager will be contacting you by email within 3 b
   <data name="_12BETUserNamei" xml:space="preserve">
     <value>12BET User Name is invalid</value>
   </data>
+  <data name="CommissionStructure" xml:space="preserve">
+    <value>Commission Structure</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>Product</value>
+  </data>
+  <data name="Promotion" xml:space="preserve">
+    <value>Promotion</value>
+  </data>
 </root>

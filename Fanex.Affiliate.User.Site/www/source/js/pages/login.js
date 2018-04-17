@@ -1,6 +1,7 @@
 ﻿var Login = (function ($) {
     var _me = {
         initialize: function () {
+            _me.generateCaptcha();
             _me.initEvent();
         },
 
@@ -16,7 +17,7 @@
             });
         },
 
-        requestSignin: function(){
+        requestSignin: function () {
             var username = $("#txtUsername").val();
             var password = $("#txtPassword").val();
             var validation = $("#txtValidation").val();
@@ -51,6 +52,7 @@
                         }
                         else {
                             alert(response.Message);
+                            location.reload();
                         }
                     }
                 });
@@ -65,7 +67,7 @@
             var result = {
                 isValid: false,
                 message: empty
-            }
+            };
 
             if (username === empty) {
                 $("#txtUsername").focus();
@@ -98,6 +100,11 @@
                 mode: CryptoJS.mode.CBC,
                 padding: CryptoJS.pad.Pkcs7
             }).toString();
+        },
+
+        generateCaptcha: function () {
+            var captchaUrl = Site.resolveRelativeUrl("Home/CaptchaImage?_v=" + new Date().getTime());
+            $("#captchaImg").attr("src", captchaUrl);
         }
     };
 

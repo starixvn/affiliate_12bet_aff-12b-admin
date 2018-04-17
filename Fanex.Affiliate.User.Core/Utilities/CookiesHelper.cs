@@ -30,7 +30,12 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         public static void RemoveCookie(string name)
         {
-            HttpContext.Current.Response.Cookies.Remove(name);
+            var cookie = HttpContext.Current.Response.Cookies.Get(name);
+
+            if (cookie != null)
+            {
+                cookie.Expires = DateTime.Now.AddDays(-1);
+            }
         }
 
         public static void ClearAllCookies()
