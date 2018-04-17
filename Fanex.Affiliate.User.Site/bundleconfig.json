@@ -23,5 +23,12 @@
     "inputFiles": [
       "www/source/styles/scss/vendors/pikaday.css"
     ]
+  },
+  {
+    "outputFileName": "www/build/js/login.js",
+    "inputFiles": [
+      "www/source/js/lib/aes.js",
+      "www/source/js/pages/login.js"
+    ]
   }
 ]

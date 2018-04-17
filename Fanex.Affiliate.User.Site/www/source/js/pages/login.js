@@ -24,11 +24,17 @@
             var validationResult = _me.validate(username, password, validation);
             if (validationResult.isValid) {
                 var token = $('input[name="__RequestVerificationToken"]', $("#userLogin")).val();
+                var encryptKey = $("#KeyString").val();
+                var encryptIV = $("#IVString").val();
+
+                var encryptedPassword = _me.encryptPassword(password, encryptKey, encryptIV);
+
+                $("#txtPassword").val(encryptedPassword);
 
                 var postData = {
                     __RequestVerificationToken: token,
                     UserName: username,
-                    Password: password,
+                    Password: encryptedPassword,
                     ValidationKey: validation
                 };
 
@@ -41,7 +47,7 @@
                     contentType: "application/x-www-form-urlencoded; charset=UTF-8",
                     success: function (response) {
                         if (response.IsOk) {
-                            location.href = "/UserPanel/#AccountOverview";
+                            location.href = Site.resolveRelativeUrl("UserPanel/#AccountOverview");
                         }
                         else {
                             alert(response.Message);
@@ -81,6 +87,17 @@
 
             result.isValid = true;
             return result;
+        },
+
+        encryptPassword: function (password, encryptKey, encryptIV) {
+            var key = CryptoJS.enc.Utf8.parse(encryptKey);
+            var iv = CryptoJS.enc.Utf8.parse(encryptIV);
+
+            return CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(password), key, {
+                iv: iv,
+                mode: CryptoJS.mode.CBC,
+                padding: CryptoJS.pad.Pkcs7
+            }).toString();
         }
     };
 

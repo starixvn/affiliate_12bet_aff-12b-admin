@@ -19,6 +19,18 @@ namespace Fanex.Affiliate.User.Core.Controllers
 
         public ActionResult Index()
         {
+            if (SessionService.UserSession == null)
+            {
+                var keyString = Generator.GetRandomString(32);
+                var ivString = Generator.GetRandomString(16);
+
+                ViewBag.KeyString = keyString;
+                ViewBag.IVString = ivString;
+
+                CookiesHelper.SetCookies(CookieName.EncryptionKey, keyString);
+                CookiesHelper.SetCookies(CookieName.InitializationVector, ivString);
+            }
+
             return View();
         }
 

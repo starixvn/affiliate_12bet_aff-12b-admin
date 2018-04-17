@@ -1,8 +1,7 @@
-﻿using System;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
+using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.MetalModels;
@@ -55,11 +54,14 @@ namespace Fanex.Affiliate.User.Core.Controllers
             }
             else
             {
+                var encryptionKey = CookiesHelper.GetCookies(CookieName.EncryptionKey);
+                var iv = CookiesHelper.GetCookies(CookieName.InitializationVector);
+
+                var password = CryptographyHelper.DecryptWithAES(userParam.Password, encryptionKey, iv);
+
                 var clientIpAddress = RequestHelper.GetClientIPAddress();
                 userParam.ServerId = AppSetting.ServerId;
                 userParam.LoginIP = clientIpAddress;
-
-                var password = userParam.Password;
                 userParam.Password = CryptographyHelper.Encrypt(password);
 
                 var user = _authRepository.GetUserInfo(userParam);
@@ -73,7 +75,6 @@ namespace Fanex.Affiliate.User.Core.Controllers
                         result.Message = Lang.NotAllowOnDomain;
                         return Json(result);
                     }
-
 
                     SessionService.AssignSessions(user);
 
@@ -89,6 +90,9 @@ namespace Fanex.Affiliate.User.Core.Controllers
                     userSession.OnUserId = _authRepository.GetOnUserId(onUserIdParam);
                     userSession.IsInternal = false;
                     FormsAuthentication.SetAuthCookie(user.UserName, false);
+
+                    CookiesHelper.RemoveCookie(CookieName.EncryptionKey);
+                    CookiesHelper.RemoveCookie(CookieName.InitializationVector);
                 }
                 else
                 {
@@ -102,28 +106,11 @@ namespace Fanex.Affiliate.User.Core.Controllers
         [HttpGet]
         public ActionResult SignOut()
         {
-            ClearCookies();
+            CookiesHelper.ClearAllCookies();
             Session.Clear();
             FormsAuthentication.SignOut();
 
             return RedirectToAction("Index", "Home");
-        }
-
-        private void ClearCookies()
-        {
-            var cache = Response.Cache;
-            cache.SetNoStore();
-            cache.SetExpires(DateTime.Now.AddMinutes(-1));
-            cache.SetCacheability(HttpCacheability.NoCache);
-            var cookies = Request.Cookies.AllKeys;
-            foreach (string cookie in cookies)
-            {
-                var item = new HttpCookie(cookie)
-                {
-                    Expires = DateTime.Now.AddDays(-1)
-                };
-                Response.Cookies.Add(item);
-            }
         }
     }
 }

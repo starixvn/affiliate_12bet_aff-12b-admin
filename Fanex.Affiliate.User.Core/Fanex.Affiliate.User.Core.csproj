@@ -155,6 +155,7 @@
   <ItemGroup>
     <Compile Include="BusinessService\ILanguageService.cs" />
     <Compile Include="BusinessService\LanguageService.cs" />
+    <Compile Include="Constants\CookieName.cs" />
     <Compile Include="Constants\SystemLanguage.cs" />
     <Compile Include="Constants\TemplateString.cs" />
     <Compile Include="Controllers\AuthController.cs" />
@@ -262,7 +263,9 @@
     </Compile>
     <Compile Include="Utilities\AppSetting.cs" />
     <Compile Include="Utilities\CaptchaHelper.cs" />
+    <Compile Include="Utilities\CookiesHelper.cs" />
     <Compile Include="Utilities\CryptographyHelper.cs" />
+    <Compile Include="Utilities\Generator.cs" />
     <Compile Include="Utilities\MailProcessor.cs" />
     <Compile Include="Utilities\IAppSetting.cs" />
     <Compile Include="Utilities\IMailProcessor.cs" />

@@ -68,6 +68,11 @@
                                 <span class="mdi mdi-account-key"></span>
                             </a>
                             @Html.AntiForgeryToken()
+                            if (ViewBag.KeyString != null && ViewBag.IVString != null)
+                            {
+                                @Html.Hidden("KeyString", ViewBag.KeyString as string)
+                                @Html.Hidden("IVString", ViewBag.IVString as string)
+                            }
                             <button class="btn btn-login" id="btnLogin" type="button">@Lang.Login</button>
                         }
                     </div>
