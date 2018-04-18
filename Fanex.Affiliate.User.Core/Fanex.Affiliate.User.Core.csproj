@@ -187,6 +187,7 @@
     <Compile Include="DTO\Result.cs" />
     <Compile Include="Extensions\HtmlHelperExtension.cs" />
     <Compile Include="Extensions\NumberFormatter.cs" />
+    <Compile Include="Extensions\UrlHelperExtension.cs" />
     <Compile Include="MetalModels\OnUserIdParam.cs" />
     <Compile Include="MetalModels\UserLoginParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

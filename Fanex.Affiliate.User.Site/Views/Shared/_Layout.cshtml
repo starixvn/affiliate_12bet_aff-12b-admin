@@ -16,8 +16,8 @@
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600" rel="stylesheet">
     <link rel="stylesheet" href="http://cdn.materialdesignicons.com/2.1.19/css/materialdesignicons.min.css">
-    <link href="~/www/build/styles/css/bootstrap.css" rel="stylesheet" />
-    <link href="~/www/build/styles/css/main.css" rel="stylesheet" />
+    <link href="~/www/build/styles/css/bootstrap.min.css" rel="stylesheet" />   
+    <link href="@Url.RenderLink("~/www/build/styles/css/main.css")" rel="stylesheet" />
     @RenderSection("styles", required: false)
 </head>
 <body>
@@ -157,8 +157,8 @@
 
     <script src="~/www/build/js/lib/jquery-3.3.1.min.js"></script>
     <script src="~/www/build/js/lib/bootstrap.min.js"></script>
-    <script src="~/www/build/js/layout.min.js"></script>
-    <script src="~/www/build/js/site.js"></script>
+    <script src="@Url.RenderLink("~/www/build/js/layout.js")"></script>
+    <script src="@Url.RenderLink("~/www/build/js/site.js")"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

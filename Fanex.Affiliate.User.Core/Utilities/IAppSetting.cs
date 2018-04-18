@@ -15,5 +15,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
         IEnumerable<string> AllowedAffiliateTypes { get; }
 
         int ServerId { get; }
+
+        string JsVersion { get; }
     }
 }

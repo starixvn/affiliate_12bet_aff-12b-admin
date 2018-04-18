@@ -16,6 +16,8 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         public IEnumerable<string> AllowedAffiliateTypes => GetValue("AllowedAffType").Split(',');
 
+        public string JsVersion => GetValue("JsVersion");
+
         public string GetValue(string key) => ConfigurationManager.AppSettings[key];
     }
 }
