@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Web;
@@ -66,6 +65,8 @@ public class Common
             pages.Add("virtualsports", "virtualsports");
             pages.Add("playtech", "playtech");
             pages.Add("livecasino", "livecasino");
+            pages.Add("lottery", "lottery");
+            pages.Add("cricket", "cricket");
         }
         else
         {
@@ -74,6 +75,7 @@ public class Common
             pages.Add("promotion", "promotion");
             pages.Add("sportstoday", "sportstoday");
             pages.Add("numbergame", "numbergame");
+            pages.Add("cricket", "cricket");
         }
 
         return Common.GenerateDropdownHtml("sportCode", pages, sportCode);
