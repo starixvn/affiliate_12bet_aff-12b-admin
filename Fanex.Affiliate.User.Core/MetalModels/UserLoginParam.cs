@@ -6,6 +6,7 @@ namespace Fanex.Affiliate.User.Core.MetalModels
     {
         public string UserName { get; set; }
 
+        [SpParam(Ignored = true)]
         public string Password { get; set; }
 
         [SpParam(Ignored = true)]

@@ -7,6 +7,8 @@ namespace Fanex.Affiliate.User.Core.Repository
     {
         AuthorizedUserInfo GetUserInfo(UserLoginParam userLoginParam);
 
+        void UpdateLoginResult(LoginResultParam loginResultParam);
+
         int GetOnUserId(OnUserIdParam onUserIdParam);
     }
 }

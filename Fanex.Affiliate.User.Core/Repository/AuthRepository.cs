@@ -5,10 +5,6 @@ namespace Fanex.Affiliate.User.Core.Repository
 {
     public class AuthRepository : IAuthRepository
     {
-        public AuthRepository()
-        {
-        }
-
         public int GetOnUserId(OnUserIdParam onUserIdParam)
         {
             const string spKey = "Aff_CheckIn";
@@ -32,6 +28,16 @@ namespace Fanex.Affiliate.User.Core.Repository
             }
 
             return result;
+        }
+
+        public void UpdateLoginResult(LoginResultParam loginResultParam)
+        {
+            const string spKey = "Aff_AffiliateLogin_LoginResultUpd";
+
+            using (var dataBox = new DataBox(spKey))
+            {
+                dataBox.DB.ExecuteNonQuery(loginResultParam);
+            }
         }
     }
 }

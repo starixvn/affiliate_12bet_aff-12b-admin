@@ -54,21 +54,36 @@ namespace Fanex.Affiliate.User.Core.Controllers
             }
             else
             {
-                var encryptionKey = CookiesHelper.GetCookies(CookieName.EncryptionKey);
-                var iv = CookiesHelper.GetCookies(CookieName.InitializationVector);
-
-                var password = CryptographyHelper.DecryptWithAES(userParam.Password, encryptionKey, iv);
-
                 var clientIpAddress = RequestHelper.GetClientIPAddress();
                 userParam.ServerId = AppSetting.ServerId;
                 userParam.LoginIP = clientIpAddress;
-                userParam.Password = CryptographyHelper.Encrypt(password);
+                userParam.Language = SessionService.CurrentLanguage;
 
                 var user = _authRepository.GetUserInfo(userParam);
 
                 result.IsOk = userParam.ErrorCode == 0;
                 if (result.IsOk)
                 {
+                    string encryptedPassword = EncryptPassword(userParam);
+
+                    var loginResultParam = new LoginResultParam
+                    {
+                        AffId = user.AffId,
+                        ServerId = AppSetting.ServerId,
+                        LoginIp = clientIpAddress,
+                        SessionId = HttpContext.Session.SessionID,
+                        Language = SessionService.CurrentLanguage,
+                        IsSuccessful = encryptedPassword.Equals(user.Password)
+                    };
+
+                    _authRepository.UpdateLoginResult(loginResultParam);
+                    if (loginResultParam.ErrorCode != 0)
+                    {
+                        result.IsOk = false;
+                        result.Message = loginResultParam.ErrorMessage;
+                        return Json(result);
+                    }
+
                     if (!AppSetting.AllowedAffiliateTypes.Any(t => t.Equals(user.AffType.ToString())))
                     {
                         result.IsOk = false;
@@ -111,6 +126,16 @@ namespace Fanex.Affiliate.User.Core.Controllers
             FormsAuthentication.SignOut();
 
             return RedirectToAction("Index", "Home");
+        }
+
+        private static string EncryptPassword(UserLoginParam userParam)
+        {
+            var encryptionKey = CookiesHelper.GetCookies(CookieName.EncryptionKey);
+            var iv = CookiesHelper.GetCookies(CookieName.InitializationVector);
+
+            var plainPassword = CryptographyHelper.DecryptWithAES(userParam.Password, encryptionKey, iv);
+
+            return CryptographyHelper.Encrypt(plainPassword);
         }
     }
 }
