@@ -369,6 +369,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All Products.
+        /// </summary>
+        public static string AllProducts {
+            get {
+                return ResourceManager.GetString("AllProducts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to b. All rights and licenses given to you in this Agreement shall immediately terminate..
         /// </summary>
         public static string Allrightsandlicenses {
@@ -1661,6 +1670,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string CommissionableEarningsAreCalculated {
             get {
                 return ResourceManager.GetString("CommissionableEarningsAreCalculated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Commission Payment.
+        /// </summary>
+        public static string CommissionPayment {
+            get {
+                return ResourceManager.GetString("CommissionPayment", resourceCulture);
             }
         }
         
@@ -3011,6 +3029,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to E-Sports.
+        /// </summary>
+        public static string ESports {
+            get {
+                return ResourceManager.GetString("ESports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Estonia .
         /// </summary>
         public static string Estonia {
@@ -4110,6 +4137,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Keno.
+        /// </summary>
+        public static string Keno {
+            get {
+                return ResourceManager.GetString("Keno", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Kenya .
         /// </summary>
         public static string Kenya {
@@ -4574,6 +4610,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Logout {
             get {
                 return ResourceManager.GetString("Logout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lottery.
+        /// </summary>
+        public static string Lottery {
+            get {
+                return ResourceManager.GetString("Lottery", resourceCulture);
             }
         }
         
@@ -5068,6 +5113,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string More {
             get {
                 return ResourceManager.GetString("More", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to More details about 12BET products.
+        /// </summary>
+        public static string MoreDetailProduct {
+            get {
+                return ResourceManager.GetString("MoreDetailProduct", resourceCulture);
             }
         }
         
@@ -6519,6 +6573,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string result {
             get {
                 return ResourceManager.GetString("result", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Revenue Share.
+        /// </summary>
+        public static string RevenueShare {
+            get {
+                return ResourceManager.GetString("RevenueShare", resourceCulture);
             }
         }
         

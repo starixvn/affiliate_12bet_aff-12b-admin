@@ -3177,4 +3177,25 @@ One of our Affiliate Accounts Manager will be contacting you by email within 3 b
   <data name="Promotion" xml:space="preserve">
     <value>Promotion</value>
   </data>
+  <data name="AllProducts" xml:space="preserve">
+    <value>All Products</value>
+  </data>
+  <data name="CommissionPayment" xml:space="preserve">
+    <value>Commission Payment</value>
+  </data>
+  <data name="ESports" xml:space="preserve">
+    <value>E-Sports</value>
+  </data>
+  <data name="Keno" xml:space="preserve">
+    <value>Keno</value>
+  </data>
+  <data name="Lottery" xml:space="preserve">
+    <value>Lottery</value>
+  </data>
+  <data name="MoreDetailProduct" xml:space="preserve">
+    <value>More details about 12BET products</value>
+  </data>
+  <data name="RevenueShare" xml:space="preserve">
+    <value>Revenue Share</value>
+  </data>
 </root>
