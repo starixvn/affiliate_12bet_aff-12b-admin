@@ -2,6 +2,7 @@
 using System.Data;
 using System.Text;
 using System.Web;
+using AffiliateUser.Helpers;
 using DNAide.Core;
 using DNAide.Web;
 using Resources;
@@ -150,6 +151,7 @@ namespace GenerateHTML
                 var isSSL = CastAide.AsBoolean(selectedDomain["IsSSL"], false);
                 var scheme = isSSL ? Uri.UriSchemeHttps : Uri.UriSchemeHttp;
 
+                target = TrackingCodeHelper.Convert(target);
                 TemplateHandler.Assign(ref signUpLink, "{scheme}", scheme);
                 TemplateHandler.Assign(ref signUpLink, "{domain}", selectedDomainName);
                 TemplateHandler.Assign(ref signUpLink, "{target}", target);
@@ -213,8 +215,8 @@ namespace GenerateHTML
         private static string GenLink(string textLink, string langText, string link, DataRow selectedDomain, string trackingCode,
             string linkLang, string target, string deviceType)
         {
-            var isSSL = CastAide.AsBoolean(selectedDomain["IsSSL"], false);
-            var scheme = isSSL ? Uri.UriSchemeHttps : Uri.UriSchemeHttp;
+            var scheme = CastAide.AsBoolean(selectedDomain["IsSSL"], false) ? Uri.UriSchemeHttps : Uri.UriSchemeHttp;
+            target = TrackingCodeHelper.Convert(target);
 
             TemplateHandler.Assign(ref textLink, "language_val", langText);
             TemplateHandler.Assign(ref link, "{scheme}", scheme);

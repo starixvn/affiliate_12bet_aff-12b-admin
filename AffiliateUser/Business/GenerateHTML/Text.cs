@@ -2,6 +2,7 @@
 using System.Data;
 using System.Text;
 using System.Web;
+using AffiliateUser.Helpers;
 using DNAide.Core;
 using DNAide.Web;
 
@@ -98,6 +99,7 @@ namespace GenerateHTML
                 var selectedDomainName = selectedDomain["DomainName"].ToString();
                 var scheme = CastAide.AsBoolean(selectedDomain["IsSSL"], false) ? Uri.UriSchemeHttps : Uri.UriSchemeHttp;
 
+                target = TrackingCodeHelper.Convert(target);
                 TemplateHandler.Assign(ref signUpLink, "{scheme}", scheme);
                 TemplateHandler.Assign(ref signUpLink, "{domain}", selectedDomainName);
                 TemplateHandler.Assign(ref signUpLink, "{target}", target);
