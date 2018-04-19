@@ -113,6 +113,7 @@
       <HintPath>..\packages\SPSRemoting.1.0.0\lib\net40\SPSRemoting.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -188,6 +189,7 @@
     <Compile Include="Extensions\HtmlHelperExtension.cs" />
     <Compile Include="Extensions\NumberFormatter.cs" />
     <Compile Include="Extensions\UrlHelperExtension.cs" />
+    <Compile Include="MetalModels\InternalLoginParam.cs" />
     <Compile Include="MetalModels\LoginResultParam.cs" />
     <Compile Include="MetalModels\OnUserIdParam.cs" />
     <Compile Include="MetalModels\UserLoginParam.cs" />

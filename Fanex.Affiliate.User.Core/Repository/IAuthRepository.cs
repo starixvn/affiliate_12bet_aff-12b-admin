@@ -10,5 +10,7 @@ namespace Fanex.Affiliate.User.Core.Repository
         void UpdateLoginResult(LoginResultParam loginResultParam);
 
         int GetOnUserId(OnUserIdParam onUserIdParam);
+
+        string GetSessionId(int onUserId);
     }
 }

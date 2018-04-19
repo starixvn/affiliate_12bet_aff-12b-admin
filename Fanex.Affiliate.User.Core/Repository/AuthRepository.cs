@@ -39,5 +39,22 @@ namespace Fanex.Affiliate.User.Core.Repository
                 dataBox.DB.ExecuteNonQuery(loginResultParam);
             }
         }
+
+        public string GetSessionId(int onUserId)
+        {
+            const string spKey = "Aff_SessionIdSel";
+            var result = string.Empty;
+
+            using (var dataBox = new DataBox(spKey))
+            {
+                var objectDb = dataBox.DB;
+
+                objectDb.AddInParameter("OnUserId", System.Data.SqlDbType.Int, onUserId);
+
+                result = objectDb.ExecuteScalar().ToString();
+            }
+
+            return result;
+        }
     }
 }

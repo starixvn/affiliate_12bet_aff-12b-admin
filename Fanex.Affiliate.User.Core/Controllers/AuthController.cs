@@ -46,15 +46,8 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 {
                     string encryptedPassword = EncryptPassword(userParam.Password);
 
-                    var loginResultParam = new LoginResultParam
-                    {
-                        AffId = user.AffId,
-                        ServerId = AppSetting.ServerId,
-                        LoginIp = clientIpAddress,
-                        SessionId = HttpContext.Session.SessionID,
-                        Language = SessionService.CurrentLanguage,
-                        IsSuccessful = encryptedPassword.Equals(user.Password)
-                    };
+                    var isMatchPassword = encryptedPassword.Equals(user.Password);
+                    var loginResultParam = GetLoginResultParam(user.AffId, clientIpAddress, isMatchPassword);
 
                     _authRepository.UpdateLoginResult(loginResultParam);
                     if (loginResultParam.ErrorCode != 0)
@@ -92,7 +85,44 @@ namespace Fanex.Affiliate.User.Core.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        private void AssignUserSession(string clientIpAddress, AuthorizedUserInfo user)
+        [HttpGet]
+        public ActionResult AdminLogin(InternalLoginParam loginParam)
+        {
+            if (ModelState.IsValid)
+            {
+                var adminSessionId = _authRepository.GetSessionId(loginParam.AccOnId);
+                var hashedPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(adminSessionId + loginParam.ChalengeStr, "MD5");
+                if (string.CompareOrdinal(loginParam.AccKey, hashedPassword) == 0)
+                {
+                    var clientIpAddress = RequestHelper.GetClientIPAddress();
+                    var userLoginParam = new UserLoginParam
+                    {
+                        UserName = loginParam.CustName,
+                        ServerId = AppSetting.ServerId,
+                        LoginIP = clientIpAddress,
+                        Language = SessionService.CurrentLanguage
+                    };
+
+                    var user = _authRepository.GetUserInfo(userLoginParam);
+                    if (userLoginParam.ErrorCode == 0)
+                    {
+                        var loginResultParam = GetLoginResultParam(user.AffId, clientIpAddress, true);
+                        _authRepository.UpdateLoginResult(loginResultParam);
+
+                        if (loginResultParam.ErrorCode == 0 && AppSetting.AllowedAffiliateTypes.Any(t => t.Equals(user.AffType.ToString())))
+                        {
+                            var adminId = loginParam.AccId * -1;
+                            AssignUserSession(clientIpAddress, user, adminId, true);
+                            FormsAuthentication.SetAuthCookie(user.UserName, false);
+                        }
+                    }
+                }
+            }
+
+            return Redirect(Url.Action("Index", "UserPanel") + "/#AccountOverView");
+        }
+
+        private void AssignUserSession(string clientIpAddress, AuthorizedUserInfo user, int adminId = 0, bool isInternal = false)
         {
             SessionService.AssignSessions(user);
 
@@ -101,12 +131,13 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 CustId = user.AffId,
                 ServerId = AppSetting.ServerId,
                 Ip = clientIpAddress,
-                NetSessionId = HttpContext.Session.SessionID
+                NetSessionId = HttpContext.Session.SessionID,
+                SubAccId = adminId
             };
 
             var userSession = SessionService.UserSession;
             userSession.OnUserId = _authRepository.GetOnUserId(onUserIdParam);
-            userSession.IsInternal = false;
+            userSession.IsInternal = isInternal;
         }
 
         private static string EncryptPassword(string inputPassword)
@@ -145,6 +176,19 @@ namespace Fanex.Affiliate.User.Core.Controllers
             {
                 IsOk = false,
                 Message = message
+            };
+        }
+
+        private LoginResultParam GetLoginResultParam(int affId, string clientIpAddress, bool isSuccessful)
+        {
+            return new LoginResultParam
+            {
+                AffId = affId,
+                ServerId = AppSetting.ServerId,
+                LoginIp = clientIpAddress,
+                SessionId = HttpContext.Session.SessionID,
+                Language = SessionService.CurrentLanguage,
+                IsSuccessful = isSuccessful
             };
         }
     }
