@@ -4,6 +4,7 @@ using System.Web.Security;
 using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO;
+using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.Repository;
 using Fanex.Affiliate.User.Core.Resources;
@@ -25,34 +26,13 @@ namespace Fanex.Affiliate.User.Core.Controllers
         [HttpPost]
         public ActionResult SignIn(UserLoginParam userParam)
         {
-            var result = new JResult
-            {
-                IsOk = false,
-                Message = string.Empty
-            };
-
             if (!Request.IsAjaxRequest())
             {
-                result.Message = Lang.ErrAuthorized;
-                return Json(result);
+                return Json(GetErrorResult(Lang.ErrAuthorized));
             }
 
-            if (string.IsNullOrEmpty(userParam.UserName))
-            {
-                result.Message = Lang.ErrmsgEntryUsername;
-                return Json(result);
-            }
-            else if (string.IsNullOrEmpty(userParam.Password))
-            {
-                result.Message = Lang.ErrmsgEntryPassword;
-                return Json(result);
-            }
-            else if (AppSetting.IsProduction && !userParam.ValidationKey.Equals(SessionService.CaptchaCode))
-            {
-                result.Message = Lang.ValidationCode;
-                return Json(result);
-            }
-            else
+            var result = GetParamValidationResult(userParam);
+            if (result.IsOk)
             {
                 var clientIpAddress = RequestHelper.GetClientIPAddress();
                 userParam.ServerId = AppSetting.ServerId;
@@ -64,7 +44,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 result.IsOk = userParam.ErrorCode == 0;
                 if (result.IsOk)
                 {
-                    string encryptedPassword = EncryptPassword(userParam);
+                    string encryptedPassword = EncryptPassword(userParam.Password);
 
                     var loginResultParam = new LoginResultParam
                     {
@@ -79,31 +59,15 @@ namespace Fanex.Affiliate.User.Core.Controllers
                     _authRepository.UpdateLoginResult(loginResultParam);
                     if (loginResultParam.ErrorCode != 0)
                     {
-                        result.IsOk = false;
-                        result.Message = loginResultParam.ErrorMessage;
-                        return Json(result);
+                        return Json(GetErrorResult(loginResultParam.ErrorMessage));
                     }
 
                     if (!AppSetting.AllowedAffiliateTypes.Any(t => t.Equals(user.AffType.ToString())))
                     {
-                        result.IsOk = false;
-                        result.Message = Lang.NotAllowOnDomain;
-                        return Json(result);
+                        return Json(GetErrorResult(Lang.NotAllowOnDomain));
                     }
 
-                    SessionService.AssignSessions(user);
-
-                    var onUserIdParam = new OnUserIdParam
-                    {
-                        CustId = user.AffId,
-                        ServerId = AppSetting.ServerId,
-                        Ip = clientIpAddress,
-                        NetSessionId = HttpContext.Session.SessionID
-                    };
-
-                    var userSession = SessionService.UserSession;
-                    userSession.OnUserId = _authRepository.GetOnUserId(onUserIdParam);
-                    userSession.IsInternal = false;
+                    AssignUserSession(clientIpAddress, user);
                     FormsAuthentication.SetAuthCookie(user.UserName, false);
 
                     CookiesHelper.RemoveCookie(CookieName.EncryptionKey);
@@ -128,14 +92,60 @@ namespace Fanex.Affiliate.User.Core.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        private static string EncryptPassword(UserLoginParam userParam)
+        private void AssignUserSession(string clientIpAddress, AuthorizedUserInfo user)
+        {
+            SessionService.AssignSessions(user);
+
+            var onUserIdParam = new OnUserIdParam
+            {
+                CustId = user.AffId,
+                ServerId = AppSetting.ServerId,
+                Ip = clientIpAddress,
+                NetSessionId = HttpContext.Session.SessionID
+            };
+
+            var userSession = SessionService.UserSession;
+            userSession.OnUserId = _authRepository.GetOnUserId(onUserIdParam);
+            userSession.IsInternal = false;
+        }
+
+        private static string EncryptPassword(string inputPassword)
         {
             var encryptionKey = CookiesHelper.GetCookies(CookieName.EncryptionKey);
             var iv = CookiesHelper.GetCookies(CookieName.InitializationVector);
 
-            var plainPassword = CryptographyHelper.DecryptWithAES(userParam.Password, encryptionKey, iv);
+            var plainPassword = CryptographyHelper.DecryptWithAES(inputPassword, encryptionKey, iv);
 
             return CryptographyHelper.Encrypt(plainPassword);
+        }
+
+        private JResult GetParamValidationResult(UserLoginParam userLoginParam)
+        {
+            if (string.IsNullOrEmpty(userLoginParam.UserName))
+            {
+                return GetErrorResult(Lang.ErrmsgEntryUsername);
+            }
+
+            if (string.IsNullOrEmpty(userLoginParam.Password))
+            {
+                return GetErrorResult(Lang.ErrmsgEntryPassword);
+            }
+
+            if (!AppSetting.IsProduction && !userLoginParam.ValidationKey.Equals(SessionService.CaptchaCode))
+            {
+                return GetErrorResult(Lang.ValidationCode);
+            }
+
+            return new JResult { IsOk = true };
+        }
+
+        private JResult GetErrorResult(string message)
+        {
+            return new JResult
+            {
+                IsOk = false,
+                Message = message
+            };
         }
     }
 }
