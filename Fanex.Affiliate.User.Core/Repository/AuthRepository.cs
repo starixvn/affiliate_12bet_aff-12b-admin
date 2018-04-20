@@ -19,7 +19,7 @@ namespace Fanex.Affiliate.User.Core.Repository
 
         public AuthorizedUserInfo GetUserInfo(UserLoginParam userLoginParam)
         {
-            const string spKey = "Aff_AffiliateLogin_GetUserInfo";
+            const string spKey = "Aff_AffiliateLogin_UserInfoSel";
             AuthorizedUserInfo result = null;
 
             using (var dataBox = new ObjectDBBuilder(spKey))

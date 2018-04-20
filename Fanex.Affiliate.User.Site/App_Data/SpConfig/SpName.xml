@@ -7,8 +7,12 @@
 
   <Function Name="Authorization">
     <Setting Key="Aff_SessionIdSel" SpName="Aff_SessionIdSel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_AffiliateLogin_GetUserInfo" SpName="Aff_AffiliateLogin_GetUserInfo" DbName="affiliate_12bet" />
+    <Setting Key="Aff_SessionIdSel_view" SpName="Aff_SessionIdSel" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_AffiliateLogin_UserInfoSel" SpName="Aff_AffiliateLogin_UserInfoSel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_AffiliateLogin_UserInfoSel_view" SpName="Aff_AffiliateLogin_UserInfoSel" DbName="affiliate_12bet_view" />
     <Setting Key="Aff_AffiliateLogin_LoginResultUpd" SpName="Aff_AffiliateLogin_LoginResultUpd" DbName="affiliate_12bet" />
+    <Setting Key="Aff_AffiliateLogin_LoginResultUpd_view" SpName="Aff_AffiliateLogin_LoginResultUpd" DbName="affiliate_12bet_view" />
     <Setting Key="Aff_CheckIn" SpName="Aff_CheckIn" DbName="affiliate_12bet" />
+    <Setting Key="Aff_CheckIn_view" SpName="Aff_CheckIn" DbName="affiliate_12bet_view" />
   </Function>
 </Functions>
