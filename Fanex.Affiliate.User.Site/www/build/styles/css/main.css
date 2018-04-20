@@ -2,7 +2,7 @@
   font-size: 62.5%; }
 
 body {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   color: #2b2b2b;
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
@@ -356,7 +356,7 @@ input[type="checkbox"], input[type="radio"] {
   position: relative;
   padding: 0 15px;
   line-height: 3.6rem;
-  color: #eb9b9b;
+  color: #fff;
   text-transform: uppercase;
   font-weight: 600; }
   .menu .menu-item:hover, .menu .menu-item:focus, .menu .menu-item.active {
@@ -785,7 +785,7 @@ input[type="checkbox"], input[type="radio"] {
     border-right: 1px solid #f9f9f9; }
   .content-menu .menu .menu-item {
     display: block;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     height: 3.6rem;
     text-transform: capitalize;
     font-weight: 400;

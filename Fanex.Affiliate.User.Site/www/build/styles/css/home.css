@@ -628,6 +628,8 @@
     padding: 15px 0 10px; }
     .news-content li:not(:last-child) {
       border-bottom: 1px solid #fff; }
+    .news-content li > a {
+      color: #212121; }
   .news-content .news-title {
     display: block;
     font-weight: 600;

@@ -197,6 +197,10 @@
         &:not(:last-child) {
             border-bottom: 1px solid #fff;
         }
+
+        > a{
+            color: #212121;
+        }
     }
 
     .news-title {
