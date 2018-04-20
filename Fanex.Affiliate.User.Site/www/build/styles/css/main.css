@@ -842,6 +842,14 @@ label.require:after {
   border-right: 4px solid transparent;
   border-left: 4px solid transparent; }
 
+.text-block {
+  margin: 10px 0; }
+
+.nounderline {
+  text-decoration: none; }
+  .nounderline:hover {
+    text-decoration: none; }
+
 .btn {
   display: inline-block;
   padding: 0 12px;
@@ -856,17 +864,17 @@ label.require:after {
 .button-group {
   padding-bottom: 2rem; }
 
-.btn-signup, .btn-login {
+.btn-signup, .btn-login, .btn-link {
   background: #fe2400;
   font-size: 14px;
   color: #fff;
   line-height: 25px; }
-  .btn-signup:hover, .btn-signup:focus, .btn-login:hover, .btn-login:focus {
+  .btn-signup:hover, .btn-signup:focus, .btn-login:hover, .btn-login:focus, .btn-link:hover, .btn-link:focus {
     color: #fff;
     background: #e52000; }
-  .btn-signup:focus, .btn-login:focus {
+  .btn-signup:focus, .btn-login:focus, .btn-link:focus {
     outline: none; }
-  .btn-signup .icon, .btn-login .icon {
+  .btn-signup .icon, .btn-login .icon, .btn-link .icon {
     color: #fff;
     line-height: 1;
     padding-right: 6px; }

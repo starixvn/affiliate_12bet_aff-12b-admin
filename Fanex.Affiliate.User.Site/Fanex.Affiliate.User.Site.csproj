@@ -333,6 +333,10 @@
       <DependentUpon>payment-request.css</DependentUpon>
     </Content>
     <Content Include="www\build\styles\css\pikaday.min.css" />
+    <Content Include="www\build\styles\css\products.css" />
+    <Content Include="www\build\styles\css\products.min.css">
+      <DependentUpon>products.css</DependentUpon>
+    </Content>
     <Content Include="www\build\styles\fonts\font_bebas\Flat-it License.txt" />
     <Content Include="www\build\styles\fonts\glypicons\glyphicons-halflings-regular.svg" />
     <Content Include="www\build\styles\Images\ads-1.jpg" />
@@ -369,6 +373,7 @@
     <Content Include="www\build\styles\Images\icon-3.png" />
     <Content Include="www\build\styles\Images\logo.png" />
     <Content Include="www\build\styles\Images\offers.png" />
+    <Content Include="www\build\styles\Images\products\ad-banner.jpg" />
     <Content Include="www\build\styles\Images\products\ad-sb.jpg" />
     <Content Include="www\build\styles\Images\slider-1.png" />
     <Content Include="www\source\js\lib\aes.js" />
@@ -455,6 +460,7 @@
     <Content Include="Views\Shared\Email\Signup\Content.zh-CN.cshtml" />
     <Content Include="Views\Shared\Email\Signup\Content.zh-TW.cshtml" />
     <Content Include="www\source\styles\scss\components\_flag.scss" />
+    <Content Include="www\source\styles\pages\products.scss" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -1,0 +1,26 @@
+﻿.content {
+  padding-top: 15px;
+  padding-bottom: 15px; }
+
+.adv .img-responsive {
+  margin: 15px auto; }
+
+.signup-block {
+  margin-top: 15px;
+  margin-bottom: 20px; }
+  .signup-block .btn-link {
+    height: 40px;
+    line-height: 40px; }
+    .signup-block .btn-link:hover {
+      background-color: #c11b00; }
+
+.table .game-list tr {
+  background: transparent; }
+  .table .game-list tr .game-name {
+    background-color: #ded5d5;
+    border: 3px solid #fff;
+    width: 200px; }
+
+.table .casino-table tbody > tr:nth-of-type(even) {
+  background-color: #f9f4f4; }
+

@@ -30,6 +30,21 @@
     "sourceMap": false
   },
   {
+    "outputFile": "www/build/styles/css/payment-request.css",
+    "inputFile": "www/source/styles/pages/payment-request.scss",
+    "sourceMap": false
+  },
+  {
+    "outputFile": "www/build/styles/css/media-gallery.css",
+    "inputFile": "www/source/styles/pages/media-gallery.scss",
+    "sourceMap": false
+  },
+  {
+    "outputFile": "www/build/styles/css/products.css",
+    "inputFile": "www/source/styles/pages/products.scss",
+    "sourceMap": false
+  },
+  {
     "outputFile": "www/build/js/user-panel.js",
     "inputFile": "www/source/js/pages/user-panel.js",
     "sourceMap": false
@@ -42,16 +57,6 @@
   {
     "outputFile": "www/build/js/lib/jquery-3.3.1.min.js",
     "inputFile": "www/source/js/lib/jquery-3.3.1.min.js",
-    "sourceMap": false
-  },
-  {
-    "outputFile": "www/build/styles/css/payment-request.css",
-    "inputFile": "www/source/styles/pages/payment-request.scss",
-    "sourceMap": false
-  },
-  {
-    "outputFile": "www/build/styles/css/media-gallery.css",
-    "inputFile": "www/source/styles/pages/media-gallery.scss",
     "sourceMap": false
   },
   {

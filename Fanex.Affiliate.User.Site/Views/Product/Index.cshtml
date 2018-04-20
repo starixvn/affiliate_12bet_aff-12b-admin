@@ -4,43 +4,47 @@
     Layout = "~/Views/Shared/_LayoutBeforeLogin.cshtml";
 }
 
+@section styles{
+    <link href="@Url.RenderLink("~/www/build/styles/css/products.css")" rel="stylesheet" />
+}
+
 <div class="content">
     <div class="adv">
-        <img class="img-responsive" src="~/www/build/styles/Images/products/ad-banner.jpg" alt="Products" style="margin: 0 auto;" />
+        <img class="img-responsive" src="~/www/build/styles/Images/products/ad-banner.jpg" alt="Products" />
     </div>
 
     <div>
-        <p>
+        <p class="text-block">
             12BET, one of the world's leading gambling websites, established itself as a global market leader in Asia. Known for offering the best competitive odds, it's ranked 17th Best Online Gaming Operator in the world.
         </p>
 
-        <p>
+        <p class="text-block">
             12BET is a renowned provider of dynamic online products ranging from Sports Betting, Live Casino, Slots, Pool Betting, Number Game, and Keno. Above all, this online casino is highly geared to offer safe and secured gambling venue. Each game interface provides visually satisfying aesthetics and unique design elements that immerse players into the revolutionized gameplay.
         </p>
 
-        <p>
+        <p class="text-block">
             We will be very pleased to welcome everyone to join through 12BET affiliate program. Earn as much commission as you can from all 12BET products.
         </p>
     </div>
 
     <div>
-        <p>1. Sportsbook</p>
+        <p class="text-bold text-uppercase">1. Sportsbook</p>
         <p>
             12BET is favored by millions of betting players from all over the world, because it provides a wide variety of options. Customers can easily search for any type of sport and conveniently place wager on it.
         </p>
-        <p>
+        <p class="text-block">
             Upon successful registration on the website through affiliate advertising, gamers are given complete access to the following: soccer, table tennis, basketball, golf, boxing, volleyball, motorsports, ice hockey, baseball, handball, water polo, rugby, darts, swimming, snooker, and cricket. The wager of members is partly accounted as affiliate commission.
         </p>
 
-        <p>
+        <p class="text-block">
             12BET offers the most in demand games in Asia.
         </p>
 
-        <div class="table">
-            <table>
+        <div class="table table-responsive">
+            <table class="game-list">
                 <tbody>
                     <tr>
-                        <td class="text-center">
+                        <td class="text-center text-bold text-uppercase game-name">
                             @Lang.VirtualSports
                         </td>
                         <td>
@@ -48,7 +52,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="text-center">
+                        <td class="text-center text-bold text-uppercase game-name">
                             @Lang.ESports
                         </td>
                         <td>
@@ -56,7 +60,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="text-center">
+                        <td class="text-center text-bold text-uppercase game-name">
                             @Lang.NumberGame
                         </td>
                         <td>
@@ -64,7 +68,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="text-center">
+                        <td class="text-center text-bold text-uppercase game-name">
                             @Lang.Keno
                         </td>
                         <td>
@@ -72,7 +76,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="text-center">
+                        <td class="text-center text-bold text-uppercase game-name">
                             @Lang.Lottery
                         </td>
                         <td>
@@ -83,22 +87,22 @@
             </table>
         </div>
 
-        <div class="adv text-center">
-            <img src="~/www/build/styles/Images/products/ad-sb.jpg" />
+        <div class="adv">
+            <img class="img-responsive" src="~/www/build/styles/Images/products/ad-sb.jpg" />
         </div>
     </div>
 
     <div>
-        <p>2. Casino</p>
+        <p class="text-bold text-uppercase">2. Casino</p>
         <p>
             On 12BET, casino games are grouped according to its software and are all respectively housed in different 12BET Clubs. For instance, all Playtech are stored in 12Emerald Club, Pragmatic Play are in 12Diamond Club, etc.  Hundreds of live casino, table games, video poker games, RNG games, slot games are compiled in here for customer's best gaming experience.
         </p>
-        <p>
+        <p class="text-block">
             Get to know more casino games and high-end platform technology that 12BET features.
         </p>
 
-        <div class="table">
-            <table>
+        <div class="table table-responsive">
+            <table class="casino-table">
                 <thead>
                     <tr>
                         <th>12BET CASINO CLUBS</th>
@@ -113,7 +117,34 @@
                 <tbody>
                     <tr>
                         <td>12EMERALD <span class="text-danger">(PLAYTECH)</span></td>
+                        <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                        <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                        <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                        <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                        <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
                         <td></td>
+                    </tr>
+                    <tr>
+                        <td>12RUBY <span class="text-danger">(12BET)</span></td>
+                        <td></td>
+                        <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                        <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                        <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                        <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>12DIAMOND <span class="text-danger">(OPUS & PRAGMATIC PLAY)</span></td>
+                        <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                        <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                        <td></td>
+                        <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                        <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>12PEARL <span class="text-danger">(ASIA GAMING)</span></td>
+                        <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -121,25 +152,79 @@
                         <td></td>
                     </tr>
                     <tr>
-                        <td>12RUBY <span class="text-danger">(12BET)</span></td>
+                        <td>12TOPAZ <span class="text-danger">(MICRO GAMING)</span></td>
+                        <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                        <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                        <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
                         <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>12CRYSTAL <span class="text-danger">(GAME PLAY INTERACTIVE)</span></td>
+                        <td></td>
+                        <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                        <td></td>
+                        <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                        <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                        <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                    </tr>
+                    <tr>
+                        <td>12OPAL <span class="text-danger">(EBET)</span></td>
+                        <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
                     </tr>
+                    <tr>
+                        <td>12AMETHYST <span class="text-danger">(GOLD DELUXE)</span></td>
+                        <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>12ONYX <span class="text-danger">(ALLBET)</span></td>
+                        <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>12QUARZT <span class="text-danger">(ISOFTBET)</span></td>
+                        <td></td>
+                        <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                        <td></td>
+                        <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                        <td></td>
+                        <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                    </tr>
+                    <tr>
+                        <td>12AMBER <span class="text-danger">(BETSOFT)</span></td>
+                        <td></td>
+                        <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                        <td></td>
+                        <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                        <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                        <td class="text-center"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
+                    </tr>
                 </tbody>
             </table>
         </div>
 
-        <p>
+        <p class="text-block">
             All betting products are listed in 12BET affiliate program.  We invite you to be one of our long term partners. Contribute to our brand awareness and advertising in terms of bringing customer. Together, raise your income and consistent commission; Join our 12BET Affiliate Program today!
         </p>
     </div>
 
-    <div class="col-xs-offset-4 col-xs-4">
-        <a href="@Url.Action("Index", "SignUp")" class="btn btn-danger btn-lg btn-block">SIGN UP 12BET AFFILIATE PROGRAM NOW!</a>
+    <div class="col-xs-offset-4 col-xs-4 signup-block">
+        <a href="@Url.Action("Index", "SignUp")" class="btn btn-link btn-block nounderline">SIGN UP 12BET AFFILIATE PROGRAM NOW!</a>
     </div>
 </div>
 
