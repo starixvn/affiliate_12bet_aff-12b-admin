@@ -4,11 +4,11 @@ using Fanex.Data;
 
 namespace Fanex.Affiliate.User.Core.Repository
 {
-    public class DataBox : IDataBox, IDisposable
+    public class ObjectDBBuilder : IObjectDBBuilder, IDisposable
     {
         public IObjectDb DB { get; private set; }
 
-        public DataBox(string spKey, string dbMode = DBMode.Main)
+        public ObjectDBBuilder(string spKey, string dbMode = DBMode.Main)
         {
             DB = new ObjectDb(spKey + dbMode);
         }

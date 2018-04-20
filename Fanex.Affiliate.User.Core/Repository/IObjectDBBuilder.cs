@@ -2,7 +2,7 @@
 
 namespace Fanex.Affiliate.User.Core.Repository
 {
-    public interface IDataBox
+    public interface IObjectDBBuilder
     {
         IObjectDb DB { get; }
     }

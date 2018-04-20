@@ -9,7 +9,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
         {
             const string uSpKey = "Aff_StatisticsSel";
 
-            using (var dataBox = new DataBox(uSpKey))
+            using (var dataBox = new ObjectDBBuilder(uSpKey))
             {
                 var db = dataBox.DB;
 

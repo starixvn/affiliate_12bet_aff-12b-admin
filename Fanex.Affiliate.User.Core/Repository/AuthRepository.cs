@@ -9,7 +9,7 @@ namespace Fanex.Affiliate.User.Core.Repository
         {
             const string spKey = "Aff_CheckIn";
 
-            using (var dataBox = new DataBox(spKey))
+            using (var dataBox = new ObjectDBBuilder(spKey))
             {
                 dataBox.DB.ExecuteNonQuery(onUserIdParam);
             }
@@ -22,7 +22,7 @@ namespace Fanex.Affiliate.User.Core.Repository
             const string spKey = "Aff_AffiliateLogin_GetUserInfo";
             AuthorizedUserInfo result = null;
 
-            using (var dataBox = new DataBox(spKey))
+            using (var dataBox = new ObjectDBBuilder(spKey))
             {
                 result = dataBox.DB.QueryEntity<AuthorizedUserInfo>(userLoginParam);
             }
@@ -34,7 +34,7 @@ namespace Fanex.Affiliate.User.Core.Repository
         {
             const string spKey = "Aff_AffiliateLogin_LoginResultUpd";
 
-            using (var dataBox = new DataBox(spKey))
+            using (var dataBox = new ObjectDBBuilder(spKey))
             {
                 dataBox.DB.ExecuteNonQuery(loginResultParam);
             }
@@ -43,18 +43,16 @@ namespace Fanex.Affiliate.User.Core.Repository
         public string GetSessionId(int onUserId)
         {
             const string spKey = "Aff_SessionIdSel";
-            var result = string.Empty;
 
-            using (var dataBox = new DataBox(spKey))
+            using (var dataBox = new ObjectDBBuilder(spKey))
             {
                 var objectDb = dataBox.DB;
 
                 objectDb.AddInParameter("OnUserId", System.Data.SqlDbType.Int, onUserId);
 
-                result = objectDb.ExecuteScalar().ToString();
+                return objectDb.ExecuteScalar() as string;
             }
 
-            return result;
         }
     }
 }
