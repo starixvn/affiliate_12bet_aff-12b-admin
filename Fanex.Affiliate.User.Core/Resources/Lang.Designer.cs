@@ -7496,6 +7496,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Terms And Conditions.
+        /// </summary>
+        public static string TermAndCondition {
+            get {
+                return ResourceManager.GetString("TermAndCondition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Terms &amp; Conditions.
         /// </summary>
         public static string TermCondition {

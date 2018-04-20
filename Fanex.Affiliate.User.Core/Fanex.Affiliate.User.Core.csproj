@@ -170,6 +170,7 @@
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\PromotionController.cs" />
     <Compile Include="Controllers\SignupController.cs" />
+    <Compile Include="Controllers\TermAndConditionController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\UserPanelController.MediaGallery.cs" />
     <Compile Include="Controllers\UserPanelController.MyAccount.cs" />
