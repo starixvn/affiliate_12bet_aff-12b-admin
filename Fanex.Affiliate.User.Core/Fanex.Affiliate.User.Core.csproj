@@ -155,7 +155,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessService\AuthService.cs" />
+    <Compile Include="BusinessService\CookieService.cs" />
     <Compile Include="BusinessService\IAuthService.cs" />
+    <Compile Include="BusinessService\ICookieService.cs" />
     <Compile Include="BusinessService\ILanguageService.cs" />
     <Compile Include="BusinessService\LanguageService.cs" />
     <Compile Include="Constants\CookieName.cs" />
@@ -270,7 +272,6 @@
     </Compile>
     <Compile Include="Utilities\AppSetting.cs" />
     <Compile Include="Utilities\CaptchaHelper.cs" />
-    <Compile Include="Utilities\CookiesHelper.cs" />
     <Compile Include="Utilities\CryptographyHelper.cs" />
     <Compile Include="Utilities\Generator.cs" />
     <Compile Include="Utilities\MailProcessor.cs" />

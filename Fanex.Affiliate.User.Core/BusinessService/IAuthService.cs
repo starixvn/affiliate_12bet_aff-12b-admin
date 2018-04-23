@@ -8,5 +8,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         LoginResultViewModel GetLoginResult(UserLoginParam userParam, bool isInternal);
 
         int GetOnUserId(OnUserIdParam onUserIdParam);
+
+        string GetSessionId(int onUserId);
     }
 }

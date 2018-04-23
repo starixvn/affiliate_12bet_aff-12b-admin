@@ -12,10 +12,12 @@ namespace Fanex.Affiliate.User.Core.BusinessService
     public class AuthService : IAuthService
     {
         private readonly IAuthRepository _authRepository;
+        private readonly ICookieService _cookieService;
 
-        public AuthService(IAuthRepository authRepository)
+        public AuthService(IAuthRepository authRepository, ICookieService cookieService)
         {
             _authRepository = authRepository;
+            _cookieService = cookieService;
         }
 
         public LoginResultViewModel GetLoginResult(UserLoginParam userParam, bool isInternal)
@@ -49,6 +51,11 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return _authRepository.GetOnUserId(onUserIdParam);
         }
 
+        public string GetSessionId(int onUserId)
+        {
+            return _authRepository.GetSessionId(onUserId);
+        }
+
         private LoginResultParam GetLoginResultParam(UserLoginParam userParam, AuthorizedUserInfo userInfo, bool isInternal)
         {
             var isMatchPassword = false;
@@ -69,10 +76,10 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             };
         }
 
-        private static string EncryptPassword(string inputPassword)
+        private string EncryptPassword(string inputPassword)
         {
-            var encryptionKey = CookiesHelper.GetCookies(CookieName.EncryptionKey);
-            var iv = CookiesHelper.GetCookies(CookieName.InitializationVector);
+            var encryptionKey = _cookieService.GetCookie(CookieName.EncryptionKey);
+            var iv = _cookieService.GetCookie(CookieName.InitializationVector);
 
             var plainPassword = CryptographyHelper.DecryptWithAES(inputPassword, encryptionKey, iv);
 

@@ -74,6 +74,7 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterType<AppSetting>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<LanguageService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<AuthService>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<CookieService>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
 
     }

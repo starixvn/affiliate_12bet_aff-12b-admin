@@ -11,10 +11,17 @@ namespace Fanex.Affiliate.User.Core.Controllers
     {
         private readonly ILanguageService _languageService;
 
-        public HomeController(ISessionService sessionService, IAppSetting appSetting, ILanguageService languageService)
+        private readonly ICookieService _cookieService;
+
+        public HomeController(
+            ISessionService sessionService,
+            IAppSetting appSetting,
+            ILanguageService languageService,
+            ICookieService cookieService)
             : base(sessionService, appSetting)
         {
             _languageService = languageService;
+            _cookieService = cookieService;
         }
 
         public ActionResult Index()
@@ -27,8 +34,8 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 ViewBag.KeyString = keyString;
                 ViewBag.IVString = ivString;
 
-                CookiesHelper.SetCookies(CookieName.EncryptionKey, keyString);
-                CookiesHelper.SetCookies(CookieName.InitializationVector, ivString);
+                _cookieService.SetCookie(CookieName.EncryptionKey, keyString);
+                _cookieService.SetCookie(CookieName.InitializationVector, ivString);
             }
 
             return View();

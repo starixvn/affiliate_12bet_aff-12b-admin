@@ -6,7 +6,6 @@ using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.MetalModels;
-using Fanex.Affiliate.User.Core.Repository;
 using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.Utilities;
 
@@ -14,14 +13,18 @@ namespace Fanex.Affiliate.User.Core.Controllers
 {
     public class AuthController : BaseController
     {
-        private readonly IAuthRepository _authRepository;
         private readonly IAuthService _authService;
+        private readonly ICookieService _cookieService;
 
-        public AuthController(IAuthRepository authRepository, IAuthService authService, ISessionService sessionService, IAppSetting appSetting)
+        public AuthController(
+            IAuthService authService,
+            ICookieService cookieService,
+            ISessionService sessionService,
+            IAppSetting appSetting)
             : base(sessionService, appSetting)
         {
-            _authRepository = authRepository;
             _authService = authService;
+            _cookieService = cookieService;
         }
 
         [ValidateAntiForgeryToken]
@@ -63,8 +66,8 @@ namespace Fanex.Affiliate.User.Core.Controllers
                         SessionService.UserSession.IsInternal = IsInternal;
                         FormsAuthentication.SetAuthCookie(user.UserName, false);
 
-                        CookiesHelper.RemoveCookie(CookieName.EncryptionKey);
-                        CookiesHelper.RemoveCookie(CookieName.InitializationVector);
+                        _cookieService.RemoveCookie(CookieName.EncryptionKey);
+                        _cookieService.RemoveCookie(CookieName.InitializationVector);
                     }
                 }
                 else
@@ -83,7 +86,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
         [HttpGet]
         public ActionResult SignOut()
         {
-            CookiesHelper.ClearAllCookies();
+            _cookieService.ClearAllCookies();
             Session.Clear();
             FormsAuthentication.SignOut();
 
@@ -95,7 +98,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
         {
             if (ModelState.IsValid)
             {
-                var adminSessionId = _authRepository.GetSessionId(loginParam.AccOnId);
+                var adminSessionId = _authService.GetSessionId(loginParam.AccOnId);
                 var hashedPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(adminSessionId + loginParam.ChalengeStr, "MD5");
                 if (string.CompareOrdinal(loginParam.AccKey, hashedPassword) == 0)
                 {
