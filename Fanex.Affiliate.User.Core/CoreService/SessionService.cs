@@ -53,7 +53,8 @@ namespace Fanex.Affiliate.User.Core.CoreService
                 UserName = authorizedUser.UserName,
                 PreferredLanguage = string.IsNullOrEmpty(authorizedUser.PreferredLanguage) ?
                                         SystemLanguage.DefaultLanguageCode :
-                                        authorizedUser.PreferredLanguage
+                                        authorizedUser.PreferredLanguage,
+                OnUserId = authorizedUser.OnUserId
             };
 
             HttpContext.Current.Session[UserSessionKey] = userSession;

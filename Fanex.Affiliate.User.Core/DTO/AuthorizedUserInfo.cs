@@ -8,12 +8,10 @@
 
         public string Password { get; set; }
 
-        public int CurrencyId { get; set; }
-
-        public int GroupId { get; set; }
-
         public int AffType { get; set; }
 
         public string PreferredLanguage { get; set; }
+
+        public int OnUserId { get; set; }
     }
 }

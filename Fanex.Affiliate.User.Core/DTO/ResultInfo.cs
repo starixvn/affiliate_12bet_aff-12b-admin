@@ -1,6 +1,6 @@
 ﻿namespace Fanex.Affiliate.User.Core.DTO
 {
-    public class JResult
+    public class ResultInfo
     {
         public bool IsOk { get; set; }
 

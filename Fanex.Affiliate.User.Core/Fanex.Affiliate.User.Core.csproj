@@ -154,6 +154,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessService\AuthService.cs" />
+    <Compile Include="BusinessService\IAuthService.cs" />
     <Compile Include="BusinessService\ILanguageService.cs" />
     <Compile Include="BusinessService\LanguageService.cs" />
     <Compile Include="Constants\CookieName.cs" />
@@ -186,7 +188,7 @@
     <Compile Include="DTO\UserPanel\CommissionSetting.cs" />
     <Compile Include="DTO\UserPanel\CommissionSettingDetail.cs" />
     <Compile Include="DTO\UserSession.cs" />
-    <Compile Include="DTO\Result.cs" />
+    <Compile Include="DTO\ResultInfo.cs" />
     <Compile Include="Extensions\HtmlHelperExtension.cs" />
     <Compile Include="Extensions\NumberFormatter.cs" />
     <Compile Include="Extensions\UrlHelperExtension.cs" />
@@ -277,6 +279,7 @@
     <Compile Include="Utilities\RequestHelper.cs" />
     <Compile Include="Utilities\UrlHelper.cs" />
     <Compile Include="ViewModels\EmailTemplateViewModel.cs" />
+    <Compile Include="ViewModels\LoginResultViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DTO\BetList\" />

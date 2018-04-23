@@ -1,10 +1,10 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
+using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO;
-using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.Repository;
 using Fanex.Affiliate.User.Core.Resources;
@@ -15,11 +15,13 @@ namespace Fanex.Affiliate.User.Core.Controllers
     public class AuthController : BaseController
     {
         private readonly IAuthRepository _authRepository;
+        private readonly IAuthService _authService;
 
-        public AuthController(IAuthRepository authRepository, ISessionService sessionService, IAppSetting appSetting)
+        public AuthController(IAuthRepository authRepository, IAuthService authService, ISessionService sessionService, IAppSetting appSetting)
             : base(sessionService, appSetting)
         {
             _authRepository = authRepository;
+            _authService = authService;
         }
 
         [ValidateAntiForgeryToken]
@@ -31,45 +33,48 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 return Json(GetErrorResult(Lang.ErrAuthorized));
             }
 
-            var result = GetParamValidationResult(userParam);
-            if (result.IsOk)
+            var result = new ResultInfo();
+            if (ModelState.IsValid)
             {
-                var clientIpAddress = RequestHelper.GetClientIPAddress();
-                userParam.ServerId = AppSetting.ServerId;
-                userParam.LoginIP = clientIpAddress;
-                userParam.Language = SessionService.CurrentLanguage;
-
-                var user = _authRepository.GetUserInfo(userParam);
-
-                result.IsOk = userParam.ErrorCode == 0;
-                if (result.IsOk)
+                if (IsValidCaptcha(userParam.ValidationKey))
                 {
-                    string encryptedPassword = EncryptPassword(userParam.Password);
+                    var clientIpAddress = RequestHelper.GetClientIPAddress();
+                    userParam.ServerId = AppSetting.ServerId;
+                    userParam.LoginIP = clientIpAddress;
+                    userParam.Language = SessionService.CurrentLanguage;
 
-                    var isMatchPassword = encryptedPassword.Equals(user.Password);
-                    var loginResultParam = GetLoginResultParam(user.AffId, clientIpAddress, isMatchPassword);
+                    const bool IsInternal = false;
+                    var loginResult = _authService.GetLoginResult(userParam, IsInternal);
+                    var user = loginResult.UserInfo;
+                    result = loginResult.Result;
 
-                    _authRepository.UpdateLoginResult(loginResultParam);
-                    if (loginResultParam.ErrorCode != 0)
+                    if (result.IsOk)
                     {
-                        return Json(GetErrorResult(loginResultParam.ErrorMessage));
+                        if (!AppSetting.AllowedAffiliateTypes.Any(t => t.Equals(user.AffType.ToString())))
+                        {
+                            return Json(GetErrorResult(Lang.NotAllowOnDomain));
+                        }
+
+                        const int AdminId = 0;
+                        var onUserIdParam = GetOnUserIdParam(user.AffId, clientIpAddress, AdminId);
+                        user.OnUserId = _authService.GetOnUserId(onUserIdParam);
+
+                        SessionService.AssignSessions(user);
+                        SessionService.UserSession.IsInternal = IsInternal;
+                        FormsAuthentication.SetAuthCookie(user.UserName, false);
+
+                        CookiesHelper.RemoveCookie(CookieName.EncryptionKey);
+                        CookiesHelper.RemoveCookie(CookieName.InitializationVector);
                     }
-
-                    if (!AppSetting.AllowedAffiliateTypes.Any(t => t.Equals(user.AffType.ToString())))
-                    {
-                        return Json(GetErrorResult(Lang.NotAllowOnDomain));
-                    }
-
-                    AssignUserSession(clientIpAddress, user);
-                    FormsAuthentication.SetAuthCookie(user.UserName, false);
-
-                    CookiesHelper.RemoveCookie(CookieName.EncryptionKey);
-                    CookiesHelper.RemoveCookie(CookieName.InitializationVector);
                 }
                 else
                 {
-                    result.Message = userParam.ErrorMessage;
+                    result.Message = Lang.ValidationCode;
                 }
+            }
+            else
+            {
+                result.Message = string.Join(", ", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage));
             }
 
             return Json(result);
@@ -103,18 +108,20 @@ namespace Fanex.Affiliate.User.Core.Controllers
                         Language = SessionService.CurrentLanguage
                     };
 
-                    var user = _authRepository.GetUserInfo(userLoginParam);
-                    if (userLoginParam.ErrorCode == 0)
-                    {
-                        var loginResultParam = GetLoginResultParam(user.AffId, clientIpAddress, true);
-                        _authRepository.UpdateLoginResult(loginResultParam);
+                    const bool IsInternal = true;
+                    var loginResult = _authService.GetLoginResult(userLoginParam, IsInternal);
+                    var user = loginResult.UserInfo;
 
-                        if (loginResultParam.ErrorCode == 0 && AppSetting.AllowedAffiliateTypes.Any(t => t.Equals(user.AffType.ToString())))
-                        {
-                            var adminId = loginParam.AccId * -1;
-                            AssignUserSession(clientIpAddress, user, adminId, true);
-                            FormsAuthentication.SetAuthCookie(user.UserName, false);
-                        }
+                    if (loginResult.Result.IsOk && AppSetting.AllowedAffiliateTypes.Any(t => t.Equals(user.AffType.ToString())))
+                    {
+                        var adminId = loginParam.AccId * -1;
+                        var onUserIdParam = GetOnUserIdParam(user.AffId, clientIpAddress, adminId);
+                        user.OnUserId = _authService.GetOnUserId(onUserIdParam);
+
+                        SessionService.AssignSessions(user);
+                        SessionService.UserSession.IsInternal = IsInternal;
+
+                        FormsAuthentication.SetAuthCookie(user.UserName, false);
                     }
                 }
             }
@@ -122,73 +129,34 @@ namespace Fanex.Affiliate.User.Core.Controllers
             return Redirect(Url.Action("Index", "UserPanel") + "/#AccountOverView");
         }
 
-        private void AssignUserSession(string clientIpAddress, AuthorizedUserInfo user, int adminId = 0, bool isInternal = false)
+        private OnUserIdParam GetOnUserIdParam(int affId, string clientIpAddress, int adminId = 0)
         {
-            SessionService.AssignSessions(user);
-
-            var onUserIdParam = new OnUserIdParam
+            return new OnUserIdParam
             {
-                CustId = user.AffId,
+                CustId = affId,
                 ServerId = AppSetting.ServerId,
                 Ip = clientIpAddress,
                 NetSessionId = HttpContext.Session.SessionID,
                 SubAccId = adminId
             };
-
-            var userSession = SessionService.UserSession;
-            userSession.OnUserId = _authRepository.GetOnUserId(onUserIdParam);
-            userSession.IsInternal = isInternal;
         }
 
-        private static string EncryptPassword(string inputPassword)
+        private bool IsValidCaptcha(string validationKey)
         {
-            var encryptionKey = CookiesHelper.GetCookies(CookieName.EncryptionKey);
-            var iv = CookiesHelper.GetCookies(CookieName.InitializationVector);
+            if (!AppSetting.IsProduction)
+            {
+                return true;
+            }
 
-            var plainPassword = CryptographyHelper.DecryptWithAES(inputPassword, encryptionKey, iv);
-
-            return CryptographyHelper.Encrypt(plainPassword);
+            return validationKey.Equals(SessionService.CaptchaCode);
         }
 
-        private JResult GetParamValidationResult(UserLoginParam userLoginParam)
+        private ResultInfo GetErrorResult(string message)
         {
-            if (string.IsNullOrEmpty(userLoginParam.UserName))
-            {
-                return GetErrorResult(Lang.ErrmsgEntryUsername);
-            }
-
-            if (string.IsNullOrEmpty(userLoginParam.Password))
-            {
-                return GetErrorResult(Lang.ErrmsgEntryPassword);
-            }
-
-            if (!AppSetting.IsProduction && !userLoginParam.ValidationKey.Equals(SessionService.CaptchaCode))
-            {
-                return GetErrorResult(Lang.ValidationCode);
-            }
-
-            return new JResult { IsOk = true };
-        }
-
-        private JResult GetErrorResult(string message)
-        {
-            return new JResult
+            return new ResultInfo
             {
                 IsOk = false,
                 Message = message
-            };
-        }
-
-        private LoginResultParam GetLoginResultParam(int affId, string clientIpAddress, bool isSuccessful)
-        {
-            return new LoginResultParam
-            {
-                AffId = affId,
-                ServerId = AppSetting.ServerId,
-                LoginIp = clientIpAddress,
-                SessionId = HttpContext.Session.SessionID,
-                Language = SessionService.CurrentLanguage,
-                IsSuccessful = isSuccessful
             };
         }
     }

@@ -1,15 +1,20 @@
-﻿using Fanex.Data;
+﻿using System.ComponentModel.DataAnnotations;
+using Fanex.Affiliate.User.Core.Resources;
+using Fanex.Data;
 
 namespace Fanex.Affiliate.User.Core.MetalModels
 {
     public class UserLoginParam
     {
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "ErrmsgEntryUsername")]
         public string UserName { get; set; }
 
         [SpParam(Ignored = true)]
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "ErrmsgEntryPassword")]
         public string Password { get; set; }
 
         [SpParam(Ignored = true)]
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "ErrmsgEntryValidCode")]
         public string ValidationKey { get; set; }
 
         public string LoginIP { get; set; }
