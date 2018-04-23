@@ -72,7 +72,8 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 LoginIp = userParam.LoginIP,
                 SessionId = HttpContext.Current.Session.SessionID,
                 Language = userParam.Language,
-                IsSuccessful = isInternal || isMatchPassword
+                IsSuccessful = isInternal || isMatchPassword,
+                IsInternal = userParam.IsInternal
             };
         }
 

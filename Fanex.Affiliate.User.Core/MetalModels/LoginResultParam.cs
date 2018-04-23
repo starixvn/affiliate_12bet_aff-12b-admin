@@ -1,6 +1,6 @@
 ﻿namespace Fanex.Affiliate.User.Core.MetalModels
 {
-    public class LoginResultParam
+    public class LoginResultParam : BaseParam
     {
         public int AffId { get; set; }
 

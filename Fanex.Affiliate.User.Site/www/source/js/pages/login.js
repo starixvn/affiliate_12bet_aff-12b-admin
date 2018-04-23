@@ -72,19 +72,19 @@
             if (username === empty) {
                 $("#txtUsername").focus();
                 result.message = validationMessage.enterUserName;
-                return false;
+                return result;
             }
 
             if (password === empty) {
                 $("#txtPassword").focus();
                 result.message = validationMessage.enterPassword;
-                return false;
+                return result;
             }
 
             if (validationCode === empty) {
                 $("#txtValidation").focus();
                 result.message = validationMessage.enterValidationCode;
-                return false;
+                return result;
             }
 
             result.isValid = true;

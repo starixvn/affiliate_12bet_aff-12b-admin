@@ -1,6 +1,6 @@
 ﻿namespace Fanex.Affiliate.User.Core.MetalModels
 {
-    public class OnUserIdParam
+    public class OnUserIdParam : BaseParam
     {
         public int CustId { get; set; }
 

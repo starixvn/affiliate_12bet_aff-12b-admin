@@ -2,8 +2,6 @@
 {
     public class UserSession
     {
-        public bool IsInternal { get; set; }
-
         public string PreferredLanguage { get; set; }
 
         public string UserName { get; set; }

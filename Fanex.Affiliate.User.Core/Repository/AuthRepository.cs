@@ -1,4 +1,5 @@
-﻿using Fanex.Affiliate.User.Core.DTO.Auth;
+﻿using Fanex.Affiliate.User.Core.DTO;
+using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.MetalModels;
 
 namespace Fanex.Affiliate.User.Core.Repository
@@ -8,8 +9,9 @@ namespace Fanex.Affiliate.User.Core.Repository
         public int GetOnUserId(OnUserIdParam onUserIdParam)
         {
             const string spKey = "Aff_CheckIn";
+            var dbMode = onUserIdParam.IsInternal ? DBMode.View : DBMode.Main;
 
-            using (var dataBox = new ObjectDBBuilder(spKey))
+            using (var dataBox = new ObjectDBBuilder(spKey, dbMode))
             {
                 dataBox.DB.ExecuteNonQuery(onUserIdParam);
             }
@@ -20,9 +22,10 @@ namespace Fanex.Affiliate.User.Core.Repository
         public AuthorizedUserInfo GetUserInfo(UserLoginParam userLoginParam)
         {
             const string spKey = "Aff_AffiliateLogin_UserInfoSel";
+            var dbMode = userLoginParam.IsInternal ? DBMode.View : DBMode.Main;
             AuthorizedUserInfo result = null;
 
-            using (var dataBox = new ObjectDBBuilder(spKey))
+            using (var dataBox = new ObjectDBBuilder(spKey, dbMode))
             {
                 result = dataBox.DB.QueryEntity<AuthorizedUserInfo>(userLoginParam);
             }
@@ -33,8 +36,9 @@ namespace Fanex.Affiliate.User.Core.Repository
         public void UpdateLoginResult(LoginResultParam loginResultParam)
         {
             const string spKey = "Aff_AffiliateLogin_LoginResultUpd";
+            var dbMode = loginResultParam.IsInternal ? DBMode.View : DBMode.Main;
 
-            using (var dataBox = new ObjectDBBuilder(spKey))
+            using (var dataBox = new ObjectDBBuilder(spKey, dbMode))
             {
                 dataBox.DB.ExecuteNonQuery(loginResultParam);
             }
@@ -44,7 +48,7 @@ namespace Fanex.Affiliate.User.Core.Repository
         {
             const string spKey = "Aff_SessionIdSel";
 
-            using (var dataBox = new ObjectDBBuilder(spKey))
+            using (var dataBox = new ObjectDBBuilder(spKey, DBMode.View))
             {
                 var objectDb = dataBox.DB;
 

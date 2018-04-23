@@ -4,7 +4,7 @@ using Fanex.Data;
 
 namespace Fanex.Affiliate.User.Core.MetalModels
 {
-    public class UserLoginParam
+    public class UserLoginParam : BaseParam
     {
         [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "ErrmsgEntryUsername")]
         public string UserName { get; set; }

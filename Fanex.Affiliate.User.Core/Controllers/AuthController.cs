@@ -47,6 +47,8 @@ namespace Fanex.Affiliate.User.Core.Controllers
                     userParam.Language = SessionService.CurrentLanguage;
 
                     const bool IsInternal = false;
+                    SessionService.IsInternal = IsInternal;
+                    userParam.IsInternal = IsInternal;
                     var loginResult = _authService.GetLoginResult(userParam, IsInternal);
                     var user = loginResult.UserInfo;
                     result = loginResult.Result;
@@ -63,7 +65,6 @@ namespace Fanex.Affiliate.User.Core.Controllers
                         user.OnUserId = _authService.GetOnUserId(onUserIdParam);
 
                         SessionService.AssignSessions(user);
-                        SessionService.UserSession.IsInternal = IsInternal;
                         FormsAuthentication.SetAuthCookie(user.UserName, false);
 
                         _cookieService.RemoveCookie(CookieName.EncryptionKey);
@@ -112,6 +113,8 @@ namespace Fanex.Affiliate.User.Core.Controllers
                     };
 
                     const bool IsInternal = true;
+                    SessionService.IsInternal = IsInternal;
+                    userLoginParam.IsInternal = IsInternal;
                     var loginResult = _authService.GetLoginResult(userLoginParam, IsInternal);
                     var user = loginResult.UserInfo;
 
@@ -122,8 +125,6 @@ namespace Fanex.Affiliate.User.Core.Controllers
                         user.OnUserId = _authService.GetOnUserId(onUserIdParam);
 
                         SessionService.AssignSessions(user);
-                        SessionService.UserSession.IsInternal = IsInternal;
-
                         FormsAuthentication.SetAuthCookie(user.UserName, false);
                     }
                 }
@@ -140,7 +141,8 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 ServerId = AppSetting.ServerId,
                 Ip = clientIpAddress,
                 NetSessionId = HttpContext.Session.SessionID,
-                SubAccId = adminId
+                SubAccId = adminId,
+                IsInternal = SessionService.IsInternal
             };
         }
 

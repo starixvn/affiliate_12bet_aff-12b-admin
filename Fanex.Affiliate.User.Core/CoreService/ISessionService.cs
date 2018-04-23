@@ -10,6 +10,8 @@ namespace Fanex.Affiliate.User.Core.CoreService
 
         string CurrentLanguage { get; set; }
 
+        bool IsInternal { get; set; }
+
         void AssignSessions(AuthorizedUserInfo authorizedUser);
     }
 }
