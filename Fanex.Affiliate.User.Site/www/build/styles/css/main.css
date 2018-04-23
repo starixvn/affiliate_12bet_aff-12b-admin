@@ -853,6 +853,11 @@ label.require:after {
 .adv .img-responsive {
   margin: 15px auto; }
 
+.moving-block {
+  position: fixed;
+  bottom: 165px;
+  right: 175px; }
+
 .btn {
   display: inline-block;
   padding: 0 12px;
@@ -906,6 +911,22 @@ label.require:after {
     color: #fff;
     line-height: 1;
     padding-right: 6px; }
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  padding: 6px 0px;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.42857; }
+
+.btn-move-top {
+  background: #dcdc1a; }
+  .btn-move-top:hover {
+    background: #fbfb07; }
+  .btn-move-top:focus {
+    outline: none; }
 
 .table-medium {
   width: 70%; }

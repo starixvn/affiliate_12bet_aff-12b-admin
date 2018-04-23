@@ -210,6 +210,7 @@
     <Content Include="AppSetting.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="App_Code\RazorHelper.cshtml" />
     <None Include="Views\Shared\Email\ForgetPassword\Content.en-GB.cshtml" />
     <None Include="Views\Shared\Email\ForgetPassword\Content.en-US.cshtml" />
     <None Include="Views\Shared\Email\ForgetPassword\Content.es-ES.cshtml" />
