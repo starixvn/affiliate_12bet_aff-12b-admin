@@ -1,5 +1,6 @@
 using System;
 using System.Data;
+using System.Linq;
 using System.Text;
 using DNAide.Core;
 using DNAide.Web;
@@ -12,8 +13,8 @@ public partial class MediaBanner : RootPageLogIn
         AppSettings.RefreshPreferredLanguage();
         htmlContent = TemplateHandler.LoadTemplate("UserInfo/MediaBanner.htm");
         /*Request to re-enable media gallerry again 20100917 by Peter */
-       /* if (string.Compare(AppSettings.Session.PreferLang, "zh-CN", true) == 0 || string.Compare(AppSettings.Session.PreferLang, "zh-TW", true) == 0)
-            TemplateHandler.RemoveBlock(ref htmlContent, "listbanner");*/
+        /* if (string.Compare(AppSettings.Session.PreferLang, "zh-CN", true) == 0 || string.Compare(AppSettings.Session.PreferLang, "zh-TW", true) == 0)
+             TemplateHandler.RemoveBlock(ref htmlContent, "listbanner");*/
         TemplateHandler.Assign(ref htmlContent, "SubCategory", Resources.Lang.SubCategory);
         TemplateHandler.Assign(ref htmlContent, "Category", Resources.Lang.Category);
         TemplateHandler.Assign(ref htmlContent, "Language", Resources.Lang.Language);
@@ -36,7 +37,7 @@ public partial class MediaBanner : RootPageLogIn
 
         var deviceType = Common.GetDeviceType(Request["slDevice"]);
         string targetRequest = GetTargetRequest(Request["target"], deviceType);
-        
+
         string domain = string.IsNullOrEmpty(Request["slDomain"]) ? null : Request["slDomain"];
         DataTable dtDomain = DataHandler.MediaGallery.SelAffDomains(deviceType);
         TemplateHandler.Assign(ref htmlContent, "slDomain", Common.GenDropDownFromTable(dtDomain, "DomainName", "DomainName", "slDomain", ref domain, false));
@@ -69,14 +70,14 @@ public partial class MediaBanner : RootPageLogIn
         }
 
         //string lang = string.IsNullOrEmpty(Request["slLanguage"]) ? Common.GetPreferLanguage() : Request["slLanguage"];
-        string lang = Request["slLanguage"] == null ? Common.GetPreferLanguageName() : Request["slLanguage"]; 
+        string lang = Request["slLanguage"] == null ? Common.GetPreferLanguageName() : Request["slLanguage"];
         string currency = string.IsNullOrEmpty(Request["slCurrency"]) ? null : Request["slCurrency"];
         string type = string.IsNullOrEmpty(Request["slImageType"]) ? null : Request["slImageType"];
         string size = string.IsNullOrEmpty(Request["slSize"]) ? null : Request["slSize"];
         string trackOption = string.IsNullOrEmpty(Request["hdTrack"]) ? null : Request["hdTrack"];
         string trackingcode = string.IsNullOrEmpty(Request["slTrackingCode"]) ? "" : Request["slTrackingCode"];
 
-        
+
         if (string.Compare(trackOption, "1", true) != 0)
         {
             TemplateHandler.Assign(ref htmlContent, "achecked", "checked");
@@ -88,7 +89,7 @@ public partial class MediaBanner : RootPageLogIn
             trackingcode = string.IsNullOrEmpty(Request["txtNewTrackingCode"]) ? "" : Request["txtNewTrackingCode"];
             TemplateHandler.Assign(ref htmlContent, "nchecked", "checked");
             TemplateHandler.Assign(ref htmlContent, "achecked", string.Empty);
-            TemplateHandler.Assign(ref htmlContent, "track-val", trackingcode);    
+            TemplateHandler.Assign(ref htmlContent, "track-val", trackingcode);
         }
         #endregion
 
@@ -113,16 +114,18 @@ public partial class MediaBanner : RootPageLogIn
         /* Generate TestLinkList */
         dv.RowFilter = "type='Language'";
         DataTable dt = dv.ToTable();
-        TemplateHandler.ReplaceBlock(ref htmlContent, "TextLinkList", GenerateHTML.Banner.GetTextLink(domain, trackingcode, dt, targetRequest, deviceType, lang));
+        var selectedDomain = dtDomain.AsEnumerable().FirstOrDefault(row => domain.Equals(row["DomainID"].ToString()));
+
+        TemplateHandler.ReplaceBlock(ref htmlContent, "TextLinkList", GenerateHTML.Banner.GetTextLink(selectedDomain, trackingcode, dt, targetRequest, deviceType, lang));
 
         TemplateHandler.ReplaceBlock(ref htmlContent, "Content",
                                      GenerateHTML.Banner.GetBannerList(paramCategory, isSearchByParentCategory, lang,
                                                                        type, size,
                                                                        currency, pageIndex, pageSize, ref totalpage,
-                                                                       domain, trackingcode, targetRequest,
+                                                                       selectedDomain, trackingcode, targetRequest,
                                                                        Common.NormalBanner,
                                                                        (int)AppSettings.Session.AffType, deviceType));
-        
+
         TemplateHandler.Assign(ref htmlContent, "PageSize-val", pageSize);
         TemplateHandler.Assign(ref htmlContent, "page", pageIndex);
         /* Generate Banner paging*/
@@ -136,7 +139,7 @@ public partial class MediaBanner : RootPageLogIn
             TemplateHandler.Assign(ref htmlContent, "paging-top", string.Empty);
             TemplateHandler.Assign(ref htmlContent, "paging-bottom", string.Empty);
         }
-       
+
     }
 
     private string GetTargetRequest(string target, string deviceType)

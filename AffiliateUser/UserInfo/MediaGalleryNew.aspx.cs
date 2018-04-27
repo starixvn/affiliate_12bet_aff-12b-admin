@@ -1,5 +1,6 @@
 using System;
 using System.Data;
+using System.Linq;
 using System.Text;
 using DNAide.Core;
 using DNAide.Web;
@@ -39,7 +40,7 @@ public partial class MediaGallery : RootPageLogIn
 
         string domain = string.IsNullOrEmpty(Request["slDomain"]) ? null : Request["slDomain"];
         DataTable dtDomain = DataHandler.MediaGallery.SelAffDomains(deviceType);
-        TemplateHandler.Assign(ref htmlContent, "slDomain", Common.GenDropDownFromTable(dtDomain, "DomainName", "DomainName", "slDomain", ref domain, false));
+        TemplateHandler.Assign(ref htmlContent, "slDomain", Common.GenDropDownFromTable(dtDomain, "DomainID", "DomainName", "slDomain", ref domain, false));
 
         TemplateHandler.Assign(ref htmlContent, "target", Common.GenListLink2Page("target", targetRequest, deviceType));
 
@@ -124,14 +125,16 @@ public partial class MediaGallery : RootPageLogIn
             return;
         }
 
+        var selectedDomain = dtDomain.AsEnumerable().FirstOrDefault(row => domain.Equals(row["DomainID"].ToString()));
+
         TemplateHandler.ReplaceBlock(ref htmlContent, "TextLinkList",
-                                        GenerateHTML.Banner.GetTextLink(domain, trackingcode, dt, targetRequest, deviceType, lang));
+                                        GenerateHTML.Banner.GetTextLink(selectedDomain, trackingcode, dt, targetRequest, deviceType, lang));
 
         TemplateHandler.ReplaceBlock(ref htmlContent, "Content",
                                         GenerateHTML.Banner.GetBannerList(paramCategory, isSearchByParentCategory, lang,
                                                                         type, size,
                                                                         currency, pageIndex, pageSize, ref totalpage,
-                                                                        domain, trackingcode, targetRequest,
+                                                                        selectedDomain, trackingcode, targetRequest,
                                                                         Common.NormalBanner,
                                                                         (int)AppSettings.Session.AffType, deviceType));
         TemplateHandler.Assign(ref htmlContent, "PageSize-val", pageSize);

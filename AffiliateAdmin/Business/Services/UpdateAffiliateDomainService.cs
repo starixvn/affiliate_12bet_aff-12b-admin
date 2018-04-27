@@ -25,18 +25,19 @@ namespace AffiliateAdmin.Business.Services
 
             int affDomainId = CastAide.AsInt32(context.Request.Form["affDomainId"]);
             string affDomainName = CastAide.AsString(context.Request.Form["affDomainName"]);
+            var isSSL = CastAide.AsBoolean(context.Request.Form["ssl"], false);
             DbResult dbr = null;
 
             switch (action)
             {
                 case "Edit":
                     {
-                        dbr = DataHandler.Domain.UpdateAffDomain(affDomainId, affDomainName, AppSettings.Session.CustID);
+                        dbr = DataHandler.Domain.UpdateAffDomain(affDomainId, affDomainName, AppSettings.Session.CustID, isSSL);
                         break;
                     }
                 case "Add":
                     {
-                        dbr = DataHandler.Domain.AddAffDomain(affDomainName, AppSettings.Session.CustID);
+                        dbr = DataHandler.Domain.AddAffDomain(affDomainName, AppSettings.Session.CustID, isSSL);
                         break;
                     }
                 case "Del":

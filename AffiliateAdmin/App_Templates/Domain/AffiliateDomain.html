@@ -33,6 +33,9 @@
                                 <th>
                                     {Domain}
                                 </th>
+                                <th>
+                                    {SSL}
+                                </th>
                                 <th style="width: 70px">
                                     {Creator}
                                 </th>
@@ -53,21 +56,23 @@
                                 </td>
                                 <td>
                                     {AffDomain_Value}
-                                </td>                                
+                                </td>
                                 <td class="c">
+                                    <span class="chk {SSL-class}">&nbsp;</span>
+                                </td><td class="c">
                                     {Creator_Value}
                                 </td>
                                 <td class="c">
                                     {CreatedDate_Value}
-                                </td>                           
-                                <td style="text-align: center;">
-                                    &nbsp;                                    
-                                    <a class="icedit" href="javascript:DoCal('EditAffiliateDomain.aspx?affDomainID={affdomainid}&affDomainName={AffDomain_Value}', 'Edit AffDomain',340, 190);"
-                                        style="cursor: pointer;" />                                    
                                 </td>
-                                <td style="text-align: center;">                                    
+                                <td style="text-align: center;">
+                                    &nbsp;
+                                    <a class="icedit" href="javascript:DoCal('EditAffiliateDomain.aspx?affDomainID={affdomainid}&affDomainName={AffDomain_Value}&ssl={SSL-Value}', 'Edit AffDomain',340, 190);"
+                                       style="cursor: pointer;" />
+                                </td>
+                                <td style="text-align: center;">
                                     <img border="0" src="../{themepath}/Images/delete.png" alt="Del" onclick="DelAffDomain({affdomainid},'{AffDomain_Value}');"
-                                        style="cursor: pointer; text-align: center;" />                                    
+                                         style="cursor: pointer; text-align: center;" />
                                 </td>
                             </tr>
                             <!--/content-->

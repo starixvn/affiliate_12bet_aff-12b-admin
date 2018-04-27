@@ -51,38 +51,6 @@ public static class AppSettings
         }
     }
 
-    public static string BetLink_CS
-    {
-        get
-        {
-            return GetValue("12BetLink_CS");
-        }
-    }
-
-    public static string BetLink_TH
-    {
-        get
-        {
-            return GetValue("12BetLink_TH");
-        }
-    }
-
-    public static string BetLink_EU
-    {
-        get
-        {
-            return GetValue("12BetLink_EU");
-        }
-    }
-
-    public static string BetLink_VI
-    {
-        get
-        {
-            return GetValue("12BetLink_VI");
-        }
-    }
-
     public static string JsVersion
     {
         get

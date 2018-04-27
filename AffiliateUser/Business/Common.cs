@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
@@ -447,7 +446,7 @@ public class Common
         }
     }
 
-    public static string GenerateSelectObj(string strID, ArrayList arrValue, ArrayList arrText, string strValueSelected, bool hasTextAll)
+    public static string GenerateDropdownTextList(string strID, IEnumerable<string> targetList, string strValueSelected, bool hasTextAll)
     {
         StringBuilder strBuild = new StringBuilder();
         strBuild.Append("<select id=\"" + strID + "\" name=\"" + strID + "\">");
@@ -457,13 +456,13 @@ public class Common
             strBuild.Append("<option value=\"\">" + Resources.Lang.All + "</option>");
         }
 
-        for (int i = 0; i < arrValue.Count; i++)
+        foreach (var item in targetList)
         {
-            if (string.Compare(strValueSelected, arrValue[i].ToString()) == 0)
-                strBuild.Append("<option value=\"" + arrValue[i].ToString() + "\" selected>" + arrText[i].ToString() + "</option>");
-            else
-                strBuild.Append("<option value=\"" + arrValue[i].ToString() + "\">" + arrText[i].ToString() + "</option>");
+            var selected = item.Equals(strValueSelected, StringComparison.OrdinalIgnoreCase) ? "selected" : string.Empty;
+
+            strBuild.Append("<option value=\"" + item + "\" " + selected + ">" + item + "</option>");
         }
+
         strBuild.Append("</select>");
         return strBuild.ToString();
     }
@@ -722,34 +721,38 @@ public class Common
 
     public static string GenListLink2Page(string id, string targetRequest, string deviceType, bool hasTextAll = false)
     {
-        var arrTarget = new ArrayList();
-        if (deviceType.Equals("0", StringComparison.OrdinalIgnoreCase))
+        const string PcLaptopDevice = "0";
+        var targetList = new List<string>();
+        if (deviceType.Equals(PcLaptopDevice, StringComparison.OrdinalIgnoreCase))
         {
-            arrTarget.Add("sportsbook");
-            arrTarget.Add("casino");
-            arrTarget.Add("signup");
-            arrTarget.Add("promotion");
+            targetList.Add("sportsbook");
+            targetList.Add("casino");
+            targetList.Add("signup");
+            targetList.Add("promotion");
             if (AppSettings.Session.IsCasino)
             {
-                arrTarget.Add("12betcasino");
+                targetList.Add("12betcasino");
             }
 
-            arrTarget.Add("numbergame");
-            arrTarget.Add("keno");
-            arrTarget.Add("virtualsports");
-            arrTarget.Add("playtech");
-            arrTarget.Add("livecasino");
+            targetList.Add("numbergame");
+            targetList.Add("keno");
+            targetList.Add("virtualsports");
+            targetList.Add("playtech");
+            targetList.Add("livecasino");
+            targetList.Add("lottery");
+            targetList.Add("cricket");
         }
         else
         {
-            arrTarget.Add("home");
-            arrTarget.Add("signup");
-            arrTarget.Add("sportsbook");
-            arrTarget.Add("numbergame");
-            arrTarget.Add("promotion");
+            targetList.Add("home");
+            targetList.Add("signup");
+            targetList.Add("sportsbook");
+            targetList.Add("numbergame");
+            targetList.Add("promotion");
+            targetList.Add("cricket");
         }
 
-        return GenerateSelectObj(id, arrTarget, arrTarget, targetRequest, hasTextAll);
+        return GenerateDropdownTextList(id, targetList, targetRequest, hasTextAll);
     }
 
     public static string GenDropDownFromTable(DataTable dt, string valueColumn, string nameColumn, string id, ref string activeValue, bool isGenAll)

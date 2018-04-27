@@ -9,7 +9,7 @@
 
     window.onload = InitEvent;
     function InitEvent() {
-        CheckBox_AddEvent();
+        Common.initDivCheckBox();
         $('txtaffdomain').blur();
         $('txtaffdomain').focus();
     }
@@ -20,18 +20,21 @@
         {
             Common.alertError(top.fMenu.Msg.ErrAffDomain);
             return;
-        }
+       }
+       Common.delayReloadPage1();
         var ajax = new Ajax.Request('../Handler/UpdateAffDomain.ashx', {
             method: 'post',
             parameters: {
                 affDomainId: affDomainId, affDomainName: $('txtaffdomain').value, sta: 'Edit',
-                "X-CSRF-Token": $('X-CSRF-Token').value
+                "X-CSRF-Token": $('X-CSRF-Token').value,
+                ssl: $("chkSSL").hasClassName("ic-check")
             },
             onComplete: function (strdata) {
-                console.log(strdata);
+                Common.hideLoading();
                 if (strdata.responseText == 'Ok') {
                     isUpdate = true;
                     $("errMsg").className = "done";
+                    console.log(top.fMenu);
                     Common.alertSuccess(top.fMenu.Msg.UpdateSucc);
                     setTimeout("parent.ibcWnd.close();", 2000);
                 }

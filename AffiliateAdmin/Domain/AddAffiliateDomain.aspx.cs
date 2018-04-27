@@ -10,9 +10,10 @@ public partial class AddAffiliateDomain : IBCPage
         string list = TemplateHandler.LoadTemplate("Domain/AddAffiliateDomain.html");
         TemplateHandler.Assign(ref list, "XsrfTokenFormValue", _XsrfTokenFormValue);
         TemplateHandler.Assign(ref list, "AffDomain", Resources.Lang.Domain);
-        TemplateHandler.Assign(ref list, "Status", Resources.Lang.Status);        
+        TemplateHandler.Assign(ref list, "SSL", Resources.Lang.SSL);
+        TemplateHandler.Assign(ref list, "Status", Resources.Lang.Status);
         TemplateHandler.Assign(ref list, "submit", Resources.Lang.Add);
-        TemplateHandler.Assign(ref list, "cancel", Resources.Lang.Cancel);        
+        TemplateHandler.Assign(ref list, "cancel", Resources.Lang.Cancel);
         this.HtmlContent = list;
 
     }
