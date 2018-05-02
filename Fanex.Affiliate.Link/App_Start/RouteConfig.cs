@@ -26,10 +26,10 @@
                     action = "Index",
                     id = UrlParameter.Optional
                 });
-           
+
             routes.MapRoute(
                name: "Link",
-               url: "{affId}/{pageId}/{lang}/index.html",
+               url: "{affId}/{pageId}/{lang}/{deviceType}/index.html",
                defaults:
                new
                {
@@ -37,22 +37,9 @@
                    action = "Link",
                    affId = UrlParameter.Optional,
                    pageId = UrlParameter.Optional,
-                   lang = UrlParameter.Optional
+                   lang = UrlParameter.Optional,
+                   deviceType = UrlParameter.Optional
                });
-
-            routes.MapRoute(
-                name: "LinkMobile",
-                url: "{affId}/{pageId}/{lang}/{deviceType}/index.html",
-                defaults:
-                new
-                {
-                    controller = "Home",
-                    action = "LinkMobile",
-                    affId = UrlParameter.Optional,
-                    pageId = UrlParameter.Optional,
-                    lang = UrlParameter.Optional,
-                    deviceType = UrlParameter.Optional
-                });
 
             routes.IgnoreRoute("go");
         }
