@@ -32,7 +32,6 @@
                 method: 'post',
                 parameters: {
                     _12BetDomainName: $('txt12betdomain').value,
-                    deviceType: $('slDevice').value,
                     ssl: $("chkSSL").hasClassName("ic-check"),
                     sta: 'Add',
                     "X-CSRF-Token": $('X-CSRF-Token').value

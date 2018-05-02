@@ -27,7 +27,6 @@
             parameters: {
                 _12BetDomainId: _12BetDomainId,
                 _12BetDomainName: $('txt12betdomain').value,
-                deviceType: $('slDevice').value,
                 ssl: $("chkSSL").hasClassName("ic-check"),
                 sta: 'Edit',
                 "X-CSRF-Token": $('X-CSRF-Token').value

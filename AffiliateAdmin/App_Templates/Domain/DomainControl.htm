@@ -23,8 +23,6 @@
                 <tr>
                     <td>{Market}</td>
                     <td>{slMarket}</td>
-                    <td>{Device}</td>
-                    <td>{slDevice}</td>
                     <td><div id="divsearch" onclick="SubmitSearchFormNew();">&nbsp;</div></td>
                 </tr>
             </tbody>
@@ -32,7 +30,7 @@
     </div>
 </form>
 
-<div class="divpageleft" style="display: inline-block;"><a class="abutton" href="javascript:AddDomainControl('{Market-value}', '{DeviceType-val}');"><span id="Span1">{AddNew}</span></a></div>
+<div class="divpageleft" style="display: inline-block;"><a class="abutton" href="javascript:AddDomainControl('{Market-value}');"><span id="Span1">{AddNew}</span></a></div>
 <!--/search form-->
     <input type="hidden" id="X-CSRF-Token" name="X-CSRF-Token" value="{XsrfTokenFormValue}" />
 <table class="aff-table" cellpadding="3" cellspacing="1" style="width: 900px;"> 
@@ -40,7 +38,6 @@
 <tr>
     <th style="width:10px">&nbsp;</th>
     <th>{Market}</th>
-    <th>{Device}</th>
     <th>{AffDomain}</th>
     <th>{RedirectDomain}</th>
     <th>{Creator}</th>
@@ -54,16 +51,15 @@
 <tr bgcolor="{color}" onmouseout="bgColor='{color}'" onmouseover="bgColor='{over}'">
     <td class="c">{no}</td>
     <td class="l">{Market-val}</td>
-    <td class="c">{Device-val}</td>
     <td>{AffDomain-val}</td>
     <td>{RedirectDomain-val}</td>
     <td class="c">{Creator-val}</td>
     <td class="c">{CreatedDate-val}</td>
     <td class="c"><span class="chk {Status-val}">&nbsp;</span></td>
-    <td class="c"><span class="icedit" onclick="DoCal('DomainControlUpd.aspx?id={ID-val}&affdomain={AffDomainId-val}&redirectdomain={RedirectDomainId-val}&market={MarketId-val}&status={Status-value}&deviceType={deviceType-val}', 'Edit Domain Control', 450, 250);">&nbsp;</span></td>
+    <td class="c"><span class="icedit" onclick="DoCal('DomainControlUpd.aspx?id={ID-val}&affdomain={AffDomainId-val}&redirectdomain={RedirectDomainId-val}&market={MarketId-val}&status={Status-value}', 'Edit Domain Control', 450, 250);">&nbsp;</span></td>
     <td class="c"><span class="icdel" onclick="DomainControlDel('{ID-val}')">&nbsp;</span></td>
 </tr>
 <!--/content-->
 </table>
-<div class="divpageleft" style="display: inline-block;"><a class="abutton" href="javascript:AddDomainControl('{Market-value}', '{DeviceType-val}');"><span id="Span2">{AddNew}</span></a></div>
+<div class="divpageleft" style="display: inline-block;"><a class="abutton" href="javascript:AddDomainControl('{Market-value}');"><span id="Span2">{AddNew}</span></a></div>
 </div>

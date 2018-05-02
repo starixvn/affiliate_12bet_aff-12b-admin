@@ -51,9 +51,9 @@ namespace AffAdmin.GenerateHTML
             return Common.GenerateDropdownHtml("slAffDomain", domains, selectedDomain);
         }
 
-        public static string Gen12BetDomainList(string deviceType, string selectedDomain, bool hasAll = false)
+        public static string Gen12BetDomainList(string selectedDomain, bool hasAll = false)
         {
-            DbResult rs = DataHandler.Domain.GetList12BetDomain(deviceType);
+            DbResult rs = DataHandler.Domain.GetList12BetDomain();
             var domains = new Dictionary<string, string>();
 
             if (rs.ResultSet.Tables[0].Rows.Count == 0)

@@ -231,7 +231,6 @@
     <Compile Include="Business\Services\EditRateService.cs" />
     <Compile Include="Business\Services\ExportExcelService.cs" />
     <Compile Include="Business\Services\FavoriteService.cs" />
-    <Compile Include="Business\Services\Get12BetDomainListService.cs" />
     <Compile Include="Business\Services\GetAffiliateListService.cs" />
     <Compile Include="Business\Services\GetClickStatisticsListService.cs" />
     <Compile Include="Business\Services\GetCommGroupService.cs" />
@@ -1736,7 +1735,6 @@
     <Content Include="Handler\EditRate.ashx" />
     <Content Include="Handler\ExportExcel.ashx" />
     <Content Include="Handler\Favorite.ashx" />
-    <Content Include="Handler\Get12BetDomainList.ashx" />
     <Content Include="Handler\GetAffiliateList.ashx" />
     <Content Include="Handler\GetClickStatisticsList.ashx" />
     <Content Include="Handler\GetCommGroup.ashx" />

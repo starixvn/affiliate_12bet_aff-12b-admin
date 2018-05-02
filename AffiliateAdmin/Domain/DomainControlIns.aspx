@@ -13,18 +13,6 @@
         CheckBox_AddEvent();
     }
 
-    function ChangeDevice() {
-        var myajax = new Ajax.Request('../Handler/Get12BetDomainList.ashx', {
-            method: 'post',
-            parameters: {
-                deviceType: $("slDevice").value
-            },
-            onComplete: function (res) {
-                $('12betdomain-region').innerHTML = res.responseText;
-            }
-        });
-    }
-
     function AddDomainControl() {
         $("errMsg").className = "";
         arrItem.clear();
@@ -66,10 +54,6 @@
         });
         return false;
     }
-
-    document.observe("dom:loaded", function () {
-        $('slDevice').observe('change', ChangeDevice);
-    });
 
 </script>
 <!--/js-->
