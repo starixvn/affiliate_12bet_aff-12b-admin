@@ -719,37 +719,18 @@ public class Common
         return opt;
     }
 
-    public static string GenListLink2Page(string id, string targetRequest, string deviceType, bool hasTextAll = false)
+    public static string GenListLink2Page(string id, string targetRequest, bool hasTextAll = false)
     {
-        const string PcLaptopDevice = "0";
-        var targetList = new List<string>();
-        if (deviceType.Equals(PcLaptopDevice, StringComparison.OrdinalIgnoreCase))
+        var targetList = new List<string>
         {
-            targetList.Add("sportsbook");
-            targetList.Add("casino");
-            targetList.Add("signup");
-            targetList.Add("promotion");
-            if (AppSettings.Session.IsCasino)
-            {
-                targetList.Add("12betcasino");
-            }
+            "home", "sportsbook", "casino", "signup", "promotion",
+            "numbergame", "keno", "virtualsports", "playtech", "livecasino",
+            "lottery", "cricket"
+        };
 
-            targetList.Add("numbergame");
-            targetList.Add("keno");
-            targetList.Add("virtualsports");
-            targetList.Add("playtech");
-            targetList.Add("livecasino");
-            targetList.Add("lottery");
-            targetList.Add("cricket");
-        }
-        else
+        if (AppSettings.Session.IsCasino)
         {
-            targetList.Add("home");
-            targetList.Add("signup");
-            targetList.Add("sportsbook");
-            targetList.Add("numbergame");
-            targetList.Add("promotion");
-            targetList.Add("cricket");
+            targetList.Add("12betcasino");
         }
 
         return GenerateDropdownTextList(id, targetList, targetRequest, hasTextAll);

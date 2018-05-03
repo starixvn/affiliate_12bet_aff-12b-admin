@@ -60,9 +60,9 @@ namespace GenerateHTML
         }
 
         public static string GetTextList(string category, string language, string currency, int pageIndex, int pagesize, ref int totalpage,
-            DataRow selectedDomain, string trackingcode, string target, string deviceType)
+            DataRow selectedDomain, string trackingcode, string target)
         {
-            var result = DataHandler.UserAff.SelAffText(category, language, currency, pageIndex, pagesize, deviceType);
+            var result = DataHandler.UserAff.SelAffText(category, language, currency, pageIndex, pagesize);
             int nRows = CastAide.AsInt32(result.Outputs["nrows"]);
             int cols = 9;
 
@@ -130,7 +130,6 @@ namespace GenerateHTML
                     string rowText = content;
                     string aSignUpLink = signUpLink;
                     TemplateHandler.Assign(ref aSignUpLink, "{/lang}", GetLanguageUri(Common.GetLangCode(dr["language"].ToString())));
-                    TemplateHandler.Assign(ref aSignUpLink, "{/DeviceType}", GetDeviceTypeUri(deviceType));
                     TemplateHandler.Assign(ref aSignUpLink, "target", target);
 
                     TemplateHandler.Assign(ref rowText, "messagevalue", Common.FormatStringHtml(dr["message"].ToString()));
@@ -147,46 +146,6 @@ namespace GenerateHTML
             return Common.NoInfo(cols);
         }
 
-        static string GenLink(string textLink, string langText, string link, string trackingCode, string linkLang, string target)
-        {
-            TemplateHandler.Assign(ref textLink, "language_val", langText);
-            TemplateHandler.Assign(ref link, "{target}", target);
-            TemplateHandler.Assign(ref link, "{custid}", AppSettings.Session.CustID.ToString());
-            TemplateHandler.Assign(ref link, "{/TrackingCode}", trackingCode.Trim());
-            if (string.IsNullOrEmpty(linkLang))
-                link = link.Replace("/{lang}", string.Empty);
-            else
-                TemplateHandler.Assign(ref link, "lang", linkLang);
-
-            TemplateHandler.Assign(ref textLink, "link_val", link);
-            return textLink;
-        }
-
-        static string GenCodeByPreferLang()
-        {
-            switch (AppSettings.Session.PreferLang.ToLower())
-            {
-                case "en-us":
-                    return "en";
-                case "en":
-                    return "eneuro";
-                case "zh-cn":
-                    return "cs";
-                case "zh-tw":
-                    return "ct";
-                case "th-th":
-                    return "th";
-                case "es-es":
-                    return "es";
-                case "vi-vn":
-                    return "vi";
-                case "id-id":
-                    return "id";
-                default:
-                    return "en";
-            }
-        }
-
         private static string GetLanguageUri(string linkLang)
         {
             if (string.IsNullOrEmpty(linkLang))
@@ -195,16 +154,6 @@ namespace GenerateHTML
             }
 
             return "/" + linkLang;
-        }
-
-        private static string GetDeviceTypeUri(string deviceType)
-        {
-            if (string.IsNullOrEmpty(deviceType) || !deviceType.Equals("1", StringComparison.OrdinalIgnoreCase))
-            {
-                return string.Empty;
-            }
-
-            return "/mobile";
         }
     }
 }

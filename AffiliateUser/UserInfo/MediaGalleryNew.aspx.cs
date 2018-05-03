@@ -2,6 +2,7 @@ using System;
 using System.Data;
 using System.Linq;
 using System.Text;
+using AffiliateUser.Helpers;
 using DNAide.Core;
 using DNAide.Web;
 using Resources;
@@ -35,14 +36,13 @@ public partial class MediaGallery : RootPageLogIn
         TemplateHandler.Assign(ref htmlContent, "AvailableDomains", Resources.Lang.AvailableDomains);
         TemplateHandler.Assign(ref htmlContent, "LinkToLabel", Resources.Lang.LinkTo);
 
-        var deviceType = Common.GetDeviceType(Request["slDevice"]);
-        string targetRequest = GetTargetRequest(Request["target"], deviceType);
+        string selectedPage = string.IsNullOrEmpty(Request["target"]) ? TargetPageHelper.TargetPageList.First() : Request["target"];
 
         string domain = string.IsNullOrEmpty(Request["slDomain"]) ? null : Request["slDomain"];
-        DataTable dtDomain = DataHandler.MediaGallery.SelAffDomains(deviceType);
+        DataTable dtDomain = DataHandler.MediaGallery.SelAffDomains();
         TemplateHandler.Assign(ref htmlContent, "slDomain", Common.GenDropDownFromTable(dtDomain, "DomainID", "DomainName", "slDomain", ref domain, false));
 
-        TemplateHandler.Assign(ref htmlContent, "target", Common.GenListLink2Page("target", targetRequest, deviceType));
+        TemplateHandler.Assign(ref htmlContent, "target", TargetPageHelper.GenerateDropdown("target", selectedPage));
 
         #region Get request information
 
@@ -98,25 +98,26 @@ public partial class MediaGallery : RootPageLogIn
         DataView dv = CacheUtil.GetBannerTypes().DefaultView;
         TemplateHandler.Assign(ref htmlContent, "slCategory", this.GetDataOptionBanner(dv, "slCategory", "CategoryMedia", category, true));
         if (hasSubCategory)
-            //    TemplateHandler.Assign(ref htmlContent, "slSubCategory", this.GetDataOptionBanner(dv, "slSubCategoryMedia", "CategoryMedia" + category, subCategory, true));
+        {
             TemplateHandler.Assign(ref htmlContent, "currentSubCategory", subCategory);
+        }
         else
+        {
             TemplateHandler.Assign(ref htmlContent, "currentSubCategory", "none");
+        }
 
         TemplateHandler.Assign(ref htmlContent, "slLanguage", this.GetDataOptionBanner(dv, "slLanguage", "Language", lang, true));
         TemplateHandler.Assign(ref htmlContent, "slCurrency", this.GetDataOptionBanner(dv, "slCurrency", "Currency", currency, true));
         TemplateHandler.Assign(ref htmlContent, "slImageType", this.GetDataOptionBanner(dv, "slImageType", "ImageType", type, true));
         TemplateHandler.Assign(ref htmlContent, "slSize", this.GetDataOptionBanner(dv, "slSize", "Size", size, true));
 
-        TemplateHandler.Assign(ref htmlContent, "Device", Resources.Lang.Device);
-        TemplateHandler.Assign(ref htmlContent, "DeviceType-val", deviceType);
-        TemplateHandler.Assign(ref htmlContent, "slDevice", Common.GenDeviceList("slDevice", deviceType));
-
         /* Generate TestLinkList */
         dv.RowFilter = "type='Language'";
         DataTable dt = dv.ToTable();
 
-        if (string.IsNullOrEmpty(domain) || string.IsNullOrEmpty(targetRequest))
+        var selectedDomain = dtDomain.AsEnumerable().FirstOrDefault(row => domain.Equals(row["DomainID"].ToString()));
+
+        if (string.IsNullOrEmpty(domain) || selectedDomain == null)
         {
             TemplateHandler.Assign(ref htmlContent, "language_val", string.Empty);
             TemplateHandler.Assign(ref htmlContent, "link_val", Lang.NoInfo);
@@ -125,18 +126,16 @@ public partial class MediaGallery : RootPageLogIn
             return;
         }
 
-        var selectedDomain = dtDomain.AsEnumerable().FirstOrDefault(row => domain.Equals(row["DomainID"].ToString()));
-
         TemplateHandler.ReplaceBlock(ref htmlContent, "TextLinkList",
-                                        GenerateHTML.Banner.GetTextLink(selectedDomain, trackingcode, dt, targetRequest, deviceType, lang));
+                                        GenerateHTML.Banner.GetTextLink(selectedDomain, trackingcode, dt, selectedPage, lang));
 
         TemplateHandler.ReplaceBlock(ref htmlContent, "Content",
                                         GenerateHTML.Banner.GetBannerList(paramCategory, isSearchByParentCategory, lang,
                                                                         type, size,
                                                                         currency, pageIndex, pageSize, ref totalpage,
-                                                                        selectedDomain, trackingcode, targetRequest,
+                                                                        selectedDomain, trackingcode, selectedPage,
                                                                         Common.NormalBanner,
-                                                                        (int)AppSettings.Session.AffType, deviceType));
+                                                                        (int)AppSettings.Session.AffType));
         TemplateHandler.Assign(ref htmlContent, "PageSize-val", pageSize);
         TemplateHandler.Assign(ref htmlContent, "page", pageIndex);
         /* Generate Banner paging*/
@@ -154,19 +153,6 @@ public partial class MediaGallery : RootPageLogIn
             TemplateHandler.Assign(ref htmlContent, "paging-top", string.Empty);
             TemplateHandler.Assign(ref htmlContent, "paging-bottom", string.Empty);
         }
-    }
-
-    private string GetTargetRequest(string target, string deviceType)
-    {
-        if (!string.IsNullOrEmpty(target))
-            return target;
-
-        if (deviceType.Equals("1", StringComparison.OrdinalIgnoreCase))
-        {
-            return "home";
-        }
-
-        return "sportsbook";
     }
 
     /// <summary>

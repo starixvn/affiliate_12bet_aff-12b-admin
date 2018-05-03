@@ -137,7 +137,7 @@ namespace DataHandler
             return DbHelper.Execute("Aff_BannerSelType", DBType.AFFILIATE_12BET).ResultSet.Tables[0];
         }
 
-        public static DbResult SelAffBanner(string category, string language, string imageType, string size, string currency, int pageIndex, int pageSize, int type, int afftype, string deviceType)
+        public static DbResult SelAffBanner(string category, string language, string imageType, string size, string currency, int pageIndex, int pageSize, int type, int afftype)
         {
             Hashtable hsParam = new Hashtable();
             if (!string.IsNullOrEmpty(category))
@@ -166,13 +166,12 @@ namespace DataHandler
             // -- Added by Frank.Ngo on IRP 671 - Jan 2012
 
             hsParam.Add("afftype", afftype);
-            hsParam.Add("devicetype", deviceType);
             hsParam.Add("pagesize", pageSize);
             hsParam.Add("pageindex", pageIndex);
             hsParam.Add("totalpages", 0);
             hsParam.Add("nrows", 0);
 
-            return DbHelper.Execute("Aff_BannerSel_1", DBType.AFFILIATE_12BET, hsParam);
+            return DbHelper.Execute("Aff_BannerSel_1_xtest", DBType.AFFILIATE_12BET, hsParam);
         }
 
         public static DbResult SelAffBannerOld(string category, string language, string imageType, string size, string currency, int pageIndex, int pageSize)
@@ -208,7 +207,7 @@ namespace DataHandler
 
         // Added by Frank.Ngo on IRP 671 - 10 Feb 2012
         // Get banners in parent category
-        public static DbResult SelAffBannerByParentCategory(string category, string language, string imageType, string size, string currency, int pageIndex, int pageSize, int type, int afftype, string deviceType)
+        public static DbResult SelAffBannerByParentCategory(string category, string language, string imageType, string size, string currency, int pageIndex, int pageSize, int type, int afftype)
         {
             Hashtable hsParam = new Hashtable();
             if (!string.IsNullOrEmpty(category))
@@ -237,14 +236,13 @@ namespace DataHandler
             // -- Added by Frank.Ngo on IRP 671 - Jan 2012
 
             hsParam.Add("afftype", afftype);
-            hsParam.Add("devicetype", byte.Parse(deviceType));
 
             hsParam.Add("pagesize", pageSize);
             hsParam.Add("pageindex", pageIndex);
             hsParam.Add("totalpages", 0);
             hsParam.Add("nrows", 0);
 
-            return DbHelper.Execute("Aff_BannerSelByParentCate", DBType.AFFILIATE_12BET, hsParam);
+            return DbHelper.Execute("Aff_BannerSelByParentCate_xtest", DBType.AFFILIATE_12BET, hsParam);
         }
 
         public static void ChangePassword(int intCustId, string strNewPass, string strOldPass, int intUserId, string strLang, ref int intErrCode)
@@ -280,7 +278,7 @@ namespace DataHandler
             return DbHelper.Execute("Aff_SportTypeSel", DBType.AFFILIATE_12BET);
         }
 
-        public static DbResult SelAffText(string category, string language, string currency, int pageIndex, int pageSize, string deviceType)
+        public static DbResult SelAffText(string category, string language, string currency, int pageIndex, int pageSize)
         {
             var hsParam = new Hashtable();
             if (!string.IsNullOrEmpty(category))
@@ -296,13 +294,12 @@ namespace DataHandler
                 hsParam.Add("currency", currency);
             }
 
-            hsParam.Add("devicetype", byte.Parse(deviceType));
             hsParam.Add("pagesize", pageSize);
             hsParam.Add("pageindex", pageIndex);
             hsParam.Add("totalpages", 0);
             hsParam.Add("nrows", 0);
 
-            return DbHelper.Execute("Aff_TextSel_1", DBType.AFFILIATE_12BET, hsParam);
+            return DbHelper.Execute("Aff_TextSel_1_xtest", DBType.AFFILIATE_12BET, hsParam);
         }
 
         public static DbResult SportTypeSelByAff(int intCustId)
