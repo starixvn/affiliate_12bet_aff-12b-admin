@@ -171,38 +171,7 @@ namespace DataHandler
             hsParam.Add("totalpages", 0);
             hsParam.Add("nrows", 0);
 
-            return DbHelper.Execute("Aff_BannerSel_1_xtest", DBType.AFFILIATE_12BET, hsParam);
-        }
-
-        public static DbResult SelAffBannerOld(string category, string language, string imageType, string size, string currency, int pageIndex, int pageSize)
-        {
-            Hashtable hsParam = new Hashtable();
-            if (!string.IsNullOrEmpty(category))
-            {
-                hsParam.Add("category", category);
-            }
-            if (!string.IsNullOrEmpty(language))
-            {
-                hsParam.Add("language", language);
-            }
-            if (!string.IsNullOrEmpty(size))
-            {
-                hsParam.Add("size", size);
-            }
-            if (!string.IsNullOrEmpty(imageType))
-            {
-                hsParam.Add("imagetype", imageType);
-            }
-            if (!string.IsNullOrEmpty(currency))
-            {
-                hsParam.Add("currency", currency);
-            }
-            hsParam.Add("pagesize", pageSize);
-            hsParam.Add("pageindex", pageIndex);
-            hsParam.Add("totalpages", 0);
-            hsParam.Add("nrows", 0);
-
-            return DbHelper.Execute("Aff_BannerSel", DBType.AFFILIATE_12BET, hsParam);
+            return DbHelper.Execute("Aff_BannerSel_1", DBType.AFFILIATE_12BET, hsParam);
         }
 
         // Added by Frank.Ngo on IRP 671 - 10 Feb 2012

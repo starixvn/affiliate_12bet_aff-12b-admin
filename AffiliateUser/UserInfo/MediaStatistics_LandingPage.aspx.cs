@@ -1,8 +1,8 @@
 ﻿using System;
-using DNAide.Web;
-using System.Text;
 using System.Data;
-using AffiliateUser;
+using System.Text;
+using AffiliateUser.Helpers;
+using DNAide.Web;
 
 public partial class UserInfo_MediaStatistics_LandingPage : RootPageLogIn
 {
@@ -26,7 +26,7 @@ public partial class UserInfo_MediaStatistics_LandingPage : RootPageLogIn
         TemplateHandler.Assign(ref statisticsContent, "{FDM}", Resources.Lang.FDM);
         TemplateHandler.Assign(ref statisticsContent, "linkto", Resources.Lang.LinkTo);
         TemplateHandler.Assign(ref statisticsContent, "Device", Resources.Lang.Device);
-        
+
         var deviceType = Common.GetDeviceType(Request["slDevice"]);
         TemplateHandler.Assign(ref statisticsContent, "DeviceType-val", deviceType);
         TemplateHandler.Assign(ref statisticsContent, "slDevice", Common.GenDeviceList("slDevice", deviceType));
@@ -42,7 +42,7 @@ public partial class UserInfo_MediaStatistics_LandingPage : RootPageLogIn
             dtmTo = now;
         }
 
-        TemplateHandler.Assign(ref statisticsContent, "slPage", Common.GenListLink2Page("sportCode", sportCode, deviceType, true));
+        TemplateHandler.Assign(ref statisticsContent, "slPage", TargetPageHelper.GenerateDropdown("sportCode", sportCode, true));
 
         DataView dv = CacheUtil.GetBannerTypes().DefaultView;
         TemplateHandler.Assign(ref statisticsContent, "slLanguage", this.GetDataOptionBanner(dv, "languageCode", "Language", languageCode, true));
