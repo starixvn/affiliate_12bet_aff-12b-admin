@@ -159,7 +159,7 @@ namespace DataHandler
             hsParam.Add("language", strLang);
             hsParam.Add("errcode", intErrCode);
             hsParam.Add("errmsg", strErrMsg);
-            DbResult dbr = DbHelper.Execute("Aff_AffiliateUpdInfo", DBType.AFFILIATE_12BET, hsParam);
+            DbResult dbr = DbHelper.Execute("Aff_AffiliateUpdInfo_xtest", DBType.AFFILIATE_12BET, hsParam);
             intErrCode = CastAide.AsInt32(dbr.Outputs["errcode"]);
             strErrMsg = dbr.Outputs["errmsg"].ToString();
         }

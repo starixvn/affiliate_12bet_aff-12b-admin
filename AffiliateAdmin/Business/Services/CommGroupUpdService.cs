@@ -74,11 +74,7 @@ namespace AffiliateAdmin.Business.Services
             {
                 DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(GroupSettingObj));
 
-                GroupSettingObj obj = (GroupSettingObj)serializer.ReadObject(memoryStream);
-
-                memoryStream.Close();
-
-                return (GroupSettingObj)obj;
+                return (GroupSettingObj)serializer.ReadObject(memoryStream);
             }
         }
     }
