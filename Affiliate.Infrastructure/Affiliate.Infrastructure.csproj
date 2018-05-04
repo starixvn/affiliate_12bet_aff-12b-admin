@@ -95,6 +95,7 @@
     <Compile Include="Helpers\CacheHelper.cs" />
     <Compile Include="Helpers\ConnectionStringHelper.cs" />
     <Compile Include="Helpers\Cryptography.cs" />
+    <Compile Include="Helpers\TargetPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
