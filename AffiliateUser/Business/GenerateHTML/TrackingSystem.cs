@@ -274,8 +274,6 @@ namespace GenerateHTML
             TemplateHandler.Assign(ref strContent, "tdate", todate);
 
             DbResult result = DataHandler.TrackingSystem.SelClickStatisticsByPage(fromdate, todate, sportCode, languageCode, deviceType);
-            int totalSignups = CastAide.AsInt32(result.Outputs["totalsignups"]);
-            int totalDeposits = CastAide.AsInt32(result.Outputs["totalfdms"]);
             int cols = 5;
 
             if (result.ResultSet.Tables.Count > 0 && result.ResultSet.Tables[0].Rows.Count > 0)
