@@ -47,7 +47,7 @@
                 new
                 {
                     controller = "Home",
-                    action = "LinkMobile",
+                    action = "OldLink",
                     affId = UrlParameter.Optional,
                     pageId = UrlParameter.Optional,
                     lang = UrlParameter.Optional,
