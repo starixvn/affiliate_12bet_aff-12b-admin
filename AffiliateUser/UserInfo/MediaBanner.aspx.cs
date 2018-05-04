@@ -108,6 +108,11 @@ public partial class MediaBanner : RootPageLogIn
         TemplateHandler.Assign(ref htmlContent, "slImageType", this.GetDataOptionBanner(dv, "slImageType", "ImageType", type, true));
         TemplateHandler.Assign(ref htmlContent, "slSize", this.GetDataOptionBanner(dv, "slSize", "Size", size, true));
 
+        var deviceType = Common.GetDeviceType(Request["slDevice"]);
+        TemplateHandler.Assign(ref htmlContent, "Device", Resources.Lang.Device);
+        TemplateHandler.Assign(ref htmlContent, "DeviceType-val", deviceType);
+        TemplateHandler.Assign(ref htmlContent, "slDevice", Common.GenDeviceList("slDevice", deviceType));
+
         /* Generate TestLinkList */
         dv.RowFilter = "type='Language'";
         DataTable dt = dv.ToTable();
@@ -130,7 +135,7 @@ public partial class MediaBanner : RootPageLogIn
                                                                        currency, pageIndex, pageSize, ref totalpage,
                                                                        selectedDomain, trackingcode, selectedPage,
                                                                        Common.NormalBanner,
-                                                                       (int)AppSettings.Session.AffType));
+                                                                       (int)AppSettings.Session.AffType, deviceType));
 
         TemplateHandler.Assign(ref htmlContent, "PageSize-val", pageSize);
         TemplateHandler.Assign(ref htmlContent, "page", pageIndex);

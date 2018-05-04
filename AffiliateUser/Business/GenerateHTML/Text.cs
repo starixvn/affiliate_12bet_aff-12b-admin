@@ -60,9 +60,9 @@ namespace GenerateHTML
         }
 
         public static string GetTextList(string category, string language, string currency, int pageIndex, int pagesize, ref int totalpage,
-            DataRow selectedDomain, string trackingcode, string target)
+            DataRow selectedDomain, string trackingcode, string target, string deviceType)
         {
-            var result = DataHandler.UserAff.SelAffText(category, language, currency, pageIndex, pagesize);
+            var result = DataHandler.UserAff.SelAffText(category, language, currency, pageIndex, pagesize, deviceType);
             int nRows = CastAide.AsInt32(result.Outputs["nrows"]);
             int cols = 9;
 

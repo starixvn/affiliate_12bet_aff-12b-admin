@@ -38,6 +38,11 @@ public partial class UserInfo_MediaText : RootPageLogIn
 
         TemplateHandler.Assign(ref htmlContent, "target", TargetPageHelper.GenerateDropdown("target", selectedPage));
 
+        var deviceType = Common.GetDeviceType(Request["slDevice"]);
+        TemplateHandler.Assign(ref htmlContent, "Device", Resources.Lang.Device);
+        TemplateHandler.Assign(ref htmlContent, "DeviceType-val", deviceType);
+        TemplateHandler.Assign(ref htmlContent, "slDevice", Common.GenDeviceList("slDevice", deviceType));
+
         #region Get request information
 
         int pageIndex = CastAide.AsInt32(Request["page"], 1);
@@ -89,7 +94,7 @@ public partial class UserInfo_MediaText : RootPageLogIn
 
         TemplateHandler.ReplaceBlock(ref htmlContent, "TextLinkList", GenerateHTML.Banner.GetTextLink(selectedDomain, trackingcode, dt, selectedPage, lang));
 
-        TemplateHandler.ReplaceBlock(ref htmlContent, "Content", GenerateHTML.Text.GetTextList(category, lang, currency, pageIndex, pageSize, ref totalpage, selectedDomain, trackingcode, selectedPage));
+        TemplateHandler.ReplaceBlock(ref htmlContent, "Content", GenerateHTML.Text.GetTextList(category, lang, currency, pageIndex, pageSize, ref totalpage, selectedDomain, trackingcode, selectedPage, deviceType));
         TemplateHandler.Assign(ref htmlContent, "PageSize-val", pageSize);
         TemplateHandler.Assign(ref htmlContent, "page", pageIndex);
         /* Generate Banner paging*/

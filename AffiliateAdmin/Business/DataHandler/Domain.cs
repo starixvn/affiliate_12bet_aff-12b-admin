@@ -25,11 +25,6 @@ namespace DataHandler
             return DbHelper.Execute("Aff_DomainAffSel", DBType.AFFILIATE_12BET);
         }
 
-        public static DbResult Domain12BetSel()
-        {
-            return DbHelper.Execute("Aff_Domain12BetSel", DBType.AFFILIATE_12BET);
-        }
-
         public static DbResult DomainControlSel(string marketId)
         {
             Hashtable hs = new Hashtable();
@@ -105,7 +100,6 @@ namespace DataHandler
             htb.Add("ip", HttpContext.Current.Request.UserHostAddress);
             htb.Add("errcode", 0);
             htb.Add("errmsg", string.Empty);
-            // htb.Add("system", "AFFILIATE");
             return DbHelper.Execute("Aff_DomainAffUpd", DBType.AFFILIATE_12BET, htb);
         }
         public static DbResult AddAffDomain(string domainName, int userID, bool isSSL)
@@ -118,7 +112,6 @@ namespace DataHandler
             htb.Add("ip", HttpContext.Current.Request.UserHostAddress);
             htb.Add("errcode", 0);
             htb.Add("errmsg", string.Empty);
-            //htb.Add("system", "AFFILIATE");
             return DbHelper.Execute("Aff_DomainAffIns", DBType.AFFILIATE_12BET, htb);
         }
         public static DbResult DelAffDomain(int domainID, string domainName, int userID)
@@ -130,7 +123,6 @@ namespace DataHandler
             htb.Add("ip", HttpContext.Current.Request.UserHostAddress);
             htb.Add("errcode", 0);
             htb.Add("errmsg", string.Empty);
-            //  htb.Add("system", "AFFILIATE");
             return DbHelper.Execute("Aff_DomainAffDel", DBType.AFFILIATE_12BET, htb);
         }
 
@@ -160,7 +152,6 @@ namespace DataHandler
             htb.Add("ip", HttpContext.Current.Request.UserHostAddress);
             htb.Add("errcode", 0);
             htb.Add("errmsg", string.Empty);
-            //htb.Add("system", "AFFILIATE");
             return DbHelper.Execute("Aff_Domain12BetIns_xtest", DBType.AFFILIATE_12BET, htb);
         }
         public static DbResult Del12BetDomain(int domainID, string domainName, int userID)
@@ -172,7 +163,6 @@ namespace DataHandler
             htb.Add("ip", HttpContext.Current.Request.UserHostAddress);
             htb.Add("errcode", 0);
             htb.Add("errmsg", string.Empty);
-            //  htb.Add("system", "AFFILIATE");
             return DbHelper.Execute("Aff_Domain12BetDel", DBType.AFFILIATE_12BET, htb);
         }
     }

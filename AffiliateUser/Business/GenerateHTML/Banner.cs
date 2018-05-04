@@ -98,14 +98,14 @@ namespace GenerateHTML
 
         public static string GetBannerList(string category, bool isSearchByParentCateogry, string language,
             string imageType, string size, string currency, int pageIndex, int pagesize, ref int totalpage,
-            DataRow selectedDomain, string trackingcode, string target, int type, int afftype)
+            DataRow selectedDomain, string trackingcode, string target, int type, int afftype, string deviceType)
         {
             string tmpLanguage = language;// (language == "English (Europe)" ? "English" : language);//English Euro use English banner
 
             int nRows = 0;
             var result = (isSearchByParentCateogry)
-                ? DataHandler.UserAff.SelAffBannerByParentCategory(category, tmpLanguage, imageType, size, currency, pageIndex, pagesize, type, afftype)
-                : DataHandler.UserAff.SelAffBanner(category, tmpLanguage, imageType, size, currency, pageIndex, pagesize, type, afftype);
+                ? DataHandler.UserAff.SelAffBannerByParentCategory(category, tmpLanguage, imageType, size, currency, pageIndex, pagesize, type, afftype, deviceType)
+                : DataHandler.UserAff.SelAffBanner(category, tmpLanguage, imageType, size, currency, pageIndex, pagesize, type, afftype, deviceType);
             nRows = CastAide.AsInt32(result.Outputs["nrows"]);
 
             int cols = 9;
