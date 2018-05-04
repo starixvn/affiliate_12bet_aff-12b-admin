@@ -29,7 +29,7 @@
 
             routes.MapRoute(
                name: "Link",
-               url: "{affId}/{pageId}/{lang}/{deviceType}/index.html",
+               url: "{affId}/{pageId}/{lang}/index.html",
                defaults:
                new
                {
@@ -37,9 +37,22 @@
                    action = "Link",
                    affId = UrlParameter.Optional,
                    pageId = UrlParameter.Optional,
-                   lang = UrlParameter.Optional,
-                   deviceType = UrlParameter.Optional
+                   lang = UrlParameter.Optional
                });
+
+            routes.MapRoute(
+                name: "OldLink",
+                url: "{affId}/{pageId}/{lang}/{deviceType}/index.html",
+                defaults:
+                new
+                {
+                    controller = "Home",
+                    action = "LinkMobile",
+                    affId = UrlParameter.Optional,
+                    pageId = UrlParameter.Optional,
+                    lang = UrlParameter.Optional,
+                    deviceType = UrlParameter.Optional
+                });
 
             routes.IgnoreRoute("go");
         }
