@@ -18,7 +18,7 @@
    {
        if ($("txt12betdomain").value.trim() == "")
         {
-            Common.alertError(top.fMenu.Msg.ErrAffDomain);
+           Common.alertError(top.fMenu.Msg.AffDomain);
             return;
         }
        
@@ -26,7 +26,7 @@
             method: 'post',
             parameters: {
                 _12BetDomainId: _12BetDomainId,
-                _12BetDomainName: $('txt12betdomain').value,
+                _12BetDomainName: $('txt12betdomain').value.trim(),
                 ssl: $("chkSSL").hasClassName("ic-check"),
                 sta: 'Edit',
                 "X-CSRF-Token": $('X-CSRF-Token').value

@@ -18,7 +18,7 @@
     }
 
     function checkinput() {
-        if ($('txtaffdomain').value == '') {
+        if ($('txtaffdomain').value.trim() == '') {
             Common.alertError(top.fMenu.Msg.AffDomain);
             $('txtaffdomain').focus();
             return false;
@@ -33,7 +33,7 @@
             var ajax = new Ajax.Request('../Handler/UpdateAffDomain.ashx', {
                 method: 'post',
                 parameters: {
-                    affDomainName: $('txtaffdomain').value, sta: 'Add',
+                    affDomainName: $('txtaffdomain').value.trim(), sta: 'Add',
                     "X-CSRF-Token": $('X-CSRF-Token').value,
                     ssl: $("chkSSL").hasClassName("ic-check")
                 },

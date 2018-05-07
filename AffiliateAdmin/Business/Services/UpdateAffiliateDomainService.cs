@@ -24,7 +24,7 @@ namespace AffiliateAdmin.Business.Services
             string action = (string.IsNullOrEmpty(context.Request.Form["sta"]) ? "Add" : context.Request.Form["sta"].ToString());
 
             int affDomainId = CastAide.AsInt32(context.Request.Form["affDomainId"]);
-            string affDomainName = CastAide.AsString(context.Request.Form["affDomainName"]);
+            string affDomainName = CastAide.AsString(context.Request.Form["affDomainName"]).Trim();
             var isSSL = CastAide.AsBoolean(context.Request.Form["ssl"], false);
             DbResult dbr = null;
 
