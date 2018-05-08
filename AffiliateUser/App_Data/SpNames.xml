@@ -1,8 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Functions>
   <Function Name="Auth">
-    <Setting Key="OIC_MessageTypeSel" SpName="OIC_MessageTypeSel" DbName="DBOIC.bodb_OIC.bodbAdminNet" />
-    <Setting Key="OIC_MessageTypeSel_view" SpName="OIC_MessageTypeSel" DbName="DBOIC.bodb_OIC.bodbAdminNet_view" />
-
   </Function>
 </Functions>
