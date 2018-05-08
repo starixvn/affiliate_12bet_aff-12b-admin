@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Data;
-using DNAide.Web;
 using AffiliateAdmin.Business.DataAccess;
+using DNAide.Web;
 
-public partial class AddBanner : IBCPage 
+public partial class AddBanner : IBCPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -38,8 +38,9 @@ public partial class AddBanner : IBCPage
 
         TemplateHandler.Assign(ref temp, "Device", Resources.Lang.Device);
         TemplateHandler.Assign(ref temp, "slDevice", AffAdmin.GenerateHTML.Domain.GenDeviceList("slDevice"));
+        TemplateHandler.Assign(ref temp, "bannerid", 0);
 
         this.HtmlContent = temp;
-        
+
     }
 }
