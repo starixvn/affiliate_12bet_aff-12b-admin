@@ -285,6 +285,10 @@
     <Content Include="www\build\js\login.min.js">
       <DependentUpon>login.js</DependentUpon>
     </Content>
+    <Content Include="www\build\js\myaccount.js" />
+    <Content Include="www\build\js\myaccount.min.js">
+      <DependentUpon>myaccount.js</DependentUpon>
+    </Content>
     <Content Include="www\build\js\site.js" />
     <Content Include="www\build\js\site.min.js">
       <DependentUpon>site.js</DependentUpon>
@@ -386,6 +390,7 @@
     <Content Include="www\source\js\pages\account-overview.js" />
     <Content Include="www\source\js\pages\daily-earning.js" />
     <Content Include="www\source\js\pages\login.js" />
+    <Content Include="www\source\js\pages\myaccount.js" />
     <Content Include="www\source\js\pages\statement-history.js" />
     <Content Include="www\source\js\pages\test.js" />
     <Content Include="www\source\js\pages\user-panel.js" />

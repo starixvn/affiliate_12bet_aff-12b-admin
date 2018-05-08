@@ -122,34 +122,36 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <label class="col-sm-3 control-label">@Lang.WebsiteURL</label>
-            <div class="col-sm-4">
-                <input class="form-control" type="text" value="@Model.SiteUrl" />
-            </div>
-            <div class="col-sm-1">
-                <button type="button" class="btn btn-submit">@Lang.AddUrl</button>
-            </div>
-        </div>
-
-        @if (Model.MoreWebsiteUrlList.Any())
-        {
-            var index = 2;
-            foreach (var item in Model.MoreWebsiteUrlList)
-            {
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">@Lang.WebsiteURL @(index)</label>
-                    <div class="col-sm-4">
-                        <input class="form-control" type="text" value="@item" />
-                    </div>
-                    <div class="col-sm-1">
-                        <button type="button" class="btn btn-submit">@Lang.Del</button>
-                    </div>
+        <div id="websiteInfo">
+            <div class="form-group">
+                <label class="col-sm-3 control-label">@Lang.WebsiteURL</label>
+                <div class="col-sm-4">
+                    <input class="form-control urlInput" type="text" value="@Model.SiteUrl" />
                 </div>
+                <div class="col-sm-1">
+                    <button type="button" id="btnAddUrl" class="btn btn-submit">@Lang.AddUrl</button>
+                </div>
+            </div>
 
-                index++;
+            @if (Model.MoreWebsiteUrlList.Any())
+            {
+                var index = 2;
+                foreach (var item in Model.MoreWebsiteUrlList)
+                {
+                    <div class="form-group websiteInput">
+                        <label class="col-sm-3 control-label moreWebsiteLabel">@Lang.WebsiteURL @(index)</label>
+                        <div class="col-sm-4">
+                            <input class="form-control urlInput" type="text" value="@item" />
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-submit btnDeleteUrl">@Lang.Del</button>
+                        </div>
+                    </div>
+
+                    index++;
+                }
             }
-        }
+        </div>
 
         <div class="form-group">
             <div class="col-sm-4">
@@ -209,3 +211,12 @@
         </div>
     </div>
 </div>
+
+<script>
+    var LangResource = {
+        websiteUrl: '@Lang.WebsiteURL',
+        deleteUrl: '@Lang.Del'
+    }
+</script>
+
+@Html.InlineScripts("~/www/build/js/myaccount.js")
