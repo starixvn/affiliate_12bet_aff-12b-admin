@@ -15,7 +15,13 @@ namespace Fanex.Affiliate.User.Core.Repository
 
         public void Dispose()
         {
-            if (DB != null)
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing && DB != null)
             {
                 DB.Dispose();
             }
