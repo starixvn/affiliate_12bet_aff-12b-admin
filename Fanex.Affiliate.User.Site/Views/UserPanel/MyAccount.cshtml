@@ -2,6 +2,8 @@
     Layout = null;
 }
 
+@model Fanex.Affiliate.User.Core.ViewModels.AccountInformationViewModel
+
 <div class="page-title">
     <span class="text">@Lang.MyAcc</span>
 </div>
@@ -15,13 +17,13 @@
         <div class="form-group">
             <label class="col-sm-3 control-label">@Lang.Username</label>
             <div class="col-sm-4">
-                <p class="form-control-static">12BETAFF001</p>
+                <p class="form-control-static">@Model.UserName</p>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-3 control-label">@Lang.Password</label>
             <div class="col-sm-4">
-                <p class="form-control-static"><a href="javascript:;">Change</a></p>
+                <p class="form-control-static"><a href="javascript:;">@Lang.Change</a></p>
             </div>
         </div>
     </div>
@@ -37,10 +39,10 @@
             <label class="col-sm-3 control-label">@Lang.Gender</label>
             <div class="col-sm-4">
                 <label class="radio-inline">
-                    <input type="radio" name="Gender" id="male" value="male"> @Lang.Male
+                    <input type="radio" name="Gender" id="male" value="male" @(Model.Gender ? "checked" : string.Empty) /> @Lang.Male
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="Gender" id="female" value="female"> @Lang.Female
+                    <input type="radio" name="Gender" id="female" value="female" @(!Model.Gender ? "checked" : string.Empty) /> @Lang.Female
                 </label>
             </div>
         </div>
@@ -48,49 +50,59 @@
         <div class="form-group">
             <label class="col-sm-3 control-label">@Lang.Address</label>
             <div class="col-sm-4">
-                <p class="form-control-static">123, SMS</p>
+                <p class="form-control-static">@Model.Address</p>
             </div>
         </div>
 
         <div class="form-group">
             <label class="col-sm-3 control-label">@Lang.City</label>
             <div class="col-sm-4">
-                <p class="form-control-static">Ho Chi Minh</p>
+                <p class="form-control-static">@Model.City</p>
             </div>
         </div>
+
+        @if (Model.IsRenderState)
+        {
+            <div class="form-group">
+                <label class="col-sm-3 control-label">@Lang.State</label>
+                <div class="col-sm-4">
+                    <p class="form-control-static">@Model.State</p>
+                </div>
+            </div>
+        }
 
         <div class="form-group">
             <label class="col-sm-3 control-label">@Lang.PostCode</label>
             <div class="col-sm-4">
-                <p class="form-control-static">123456</p>
+                <p class="form-control-static">@Model.Postal</p>
             </div>
         </div>
 
         <div class="form-group">
             <label class="col-sm-3 control-label">@Lang.Country</label>
             <div class="col-sm-4">
-                <p class="form-control-static">Việt Nam</p>
+                <p class="form-control-static">@Model.Country</p>
             </div>
         </div>
 
         <div class="form-group">
             <label class="col-sm-3 control-label">@Lang.Email</label>
             <div class="col-sm-4">
-                <p class="form-control-static">walter.tran@starixsoft.com</p>
+                <p class="form-control-static">@Model.Email</p>
             </div>
         </div>
 
         <div class="form-group">
             <label class="col-sm-3 control-label">@Lang.ContactNumber</label>
             <div class="col-sm-4">
-                <input class="form-control" type="text" value="123456" />
+                <input class="form-control" type="text" value="@Model.Phone" />
             </div>
         </div>
 
         <div class="form-group">
-            <label class="col-sm-3 control-label">MSN</label>
+            <label class="col-sm-3 control-label">@Lang.Mobile</label>
             <div class="col-sm-4">
-                <input class="form-control" type="text" value="987456" />
+                <input class="form-control" type="text" value="@Model.MobilePhone" />
             </div>
         </div>
     </div>
@@ -105,7 +117,7 @@
         <div class="form-group">
             <div class="col-sm-4">
                 <label class="radio-inline">
-                    <input type="radio" name="HasWebSite" id="hasWebSite"> @Lang.OwnWebsite
+                    <input type="radio" name="HasWebSite" id="hasWebSite" checked /> @Lang.OwnWebsite
                 </label>
             </div>
         </div>
@@ -113,21 +125,31 @@
         <div class="form-group">
             <label class="col-sm-3 control-label">@Lang.WebsiteURL</label>
             <div class="col-sm-4">
-                <input class="form-control" type="text" value="http://10.19.10.46:5005/xook.html" />
+                <input class="form-control" type="text" value="@Model.SiteUrl" />
             </div>
             <div class="col-sm-1">
                 <button type="button" class="btn btn-submit">@Lang.AddUrl</button>
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-sm-3 control-label">@Lang.WebsiteURL 2</label>
-            <div class="col-sm-4">
-                <input class="form-control" type="text" value="http://10.19.10.46:5005/xook.html0W45pz4p" />
-            </div>
-            <div class="col-sm-1">
-                <button type="button" class="btn btn-submit">@Lang.Del</button>
-            </div>
-        </div>
+
+        @if (Model.MoreWebsiteUrlList.Any())
+        {
+            var index = 2;
+            foreach (var item in Model.MoreWebsiteUrlList)
+            {
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@Lang.WebsiteURL @(index)</label>
+                    <div class="col-sm-4">
+                        <input class="form-control" type="text" value="@item" />
+                    </div>
+                    <div class="col-sm-1">
+                        <button type="button" class="btn btn-submit">@Lang.Del</button>
+                    </div>
+                </div>
+
+                index++;
+            }
+        }
 
         <div class="form-group">
             <div class="col-sm-4">
@@ -140,7 +162,7 @@
         <div class="form-group">
             <label class="col-sm-3 control-label">@Lang.DescWebsite</label>
             <div class="col-sm-4">
-                <textarea class="form-control" rows="5"></textarea>
+                <textarea class="form-control" rows="5">@Model.NoSiteDesc</textarea>
             </div>
         </div>
     </div>
@@ -154,7 +176,7 @@
         <div class="form-group">
             <label class="col-sm-3 control-label">@Lang.Language</label>
             <div class="col-sm-4">
-                <p class="form-control-static">Republic of India</p>
+                <p class="form-control-static">@Model.LanguageName</p>
             </div>
         </div>
     </div>
@@ -177,13 +199,13 @@
         <div class="form-group">
             <label class="col-sm-3 control-label">@Lang.Username</label>
             <div class="col-sm-4">
-                <p class="form-control-static">qatest01 (@Lang.NonDeposit)</p>
+                <p class="form-control-static">@Model.UserName (@Lang.NonDeposit)</p>
             </div>
         </div>
 
         <div class="col-sm-offset-3">
-            <button class="btn btn-submit" type="button">Submit</button>
-            <button class="btn btn-submit" type="button">Cancel</button>
+            <button class="btn btn-submit" type="button">@Lang.Submit</button>
+            <button class="btn btn-submit" type="button">@Lang.Cancel</button>
         </div>
     </div>
 </div>

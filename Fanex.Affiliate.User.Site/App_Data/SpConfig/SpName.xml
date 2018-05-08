@@ -14,4 +14,9 @@
     <Setting Key="Aff_CheckIn" SpName="Aff_CheckIn" DbName="affiliate_12bet" />
     <Setting Key="Aff_CheckIn_view" SpName="Aff_CheckIn" DbName="affiliate_12bet_view" />
   </Function>
+
+  <Function Name="AccountInformation">
+    <Setting Key="Aff_AffiliateSelEditInfo" SpName="Aff_AffiliateSelEditInfo_xtest" DbName="affiliate_12bet" />
+    <Setting Key="Aff_AffiliateSelEditInfo_view" SpName="Aff_AffiliateSelEditInfo_xtest" DbName="affiliate_12bet_view" />
+  </Function>
 </Functions>

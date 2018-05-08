@@ -2,17 +2,9 @@
 {
     using System;
     using System.Web.Mvc;
-    using Repository.UserPanel;
 
-    public partial class UserPanelController : Controller
+    public partial class UserPanelController
     {
-        private readonly IAccountOverviewRepository _accountOverviewRepository;
-
-        public UserPanelController()
-        {
-            _accountOverviewRepository = new AccountOverviewRepository();
-        }
-
         [HttpGet]
         public ActionResult AccountOverView()
         {

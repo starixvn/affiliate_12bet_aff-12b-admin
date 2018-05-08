@@ -8,6 +8,7 @@ using Autofac.Integration.Mvc;
 using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.Repository;
+using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Utilities;
 
 namespace Fanex.Affiliate.User.Site
@@ -75,6 +76,8 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterType<LanguageService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<AuthService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<CookieService>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<AccountOverviewRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<AccountRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
 
     }

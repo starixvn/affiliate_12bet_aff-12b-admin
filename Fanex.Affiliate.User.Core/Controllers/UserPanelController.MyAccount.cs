@@ -2,12 +2,15 @@
 {
     using System.Web.Mvc;
 
-    public partial class UserPanelController : Controller
+    public partial class UserPanelController
     {
         [HttpGet]
         public ActionResult MyAccount()
         {
-            return View();
+            var model = _accountRepository.GetAccountInfo(SessionService.UserSession.AffId);
+            model.IsRenderState = SessionService.CurrentLanguage == "zh-CN" || SessionService.CurrentLanguage == "zh-TW";
+
+            return View(model);
         }
     }
 }

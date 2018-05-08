@@ -2,7 +2,7 @@
 {
     using System.Web.Mvc;
 
-    public partial class UserPanelController : Controller
+    public partial class UserPanelController
     {
         [HttpGet]
         public ActionResult TrackingStatistics()
