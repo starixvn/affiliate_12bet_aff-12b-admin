@@ -30,7 +30,7 @@ namespace DataHandler
             Hashtable hs = new Hashtable();
             if (!string.IsNullOrEmpty(marketId))
                 hs.Add("marketid", marketId);
-            return DbHelper.Execute("Aff_DomainControlSel_xtest", DBType.AFFILIATE_12BET, hs);
+            return DbHelper.Execute("Aff_DomainControlSel", DBType.AFFILIATE_12BET, hs);
         }
 
         public static bool DomainControlIns(string marketId, string affDomainId, string redirectDomainId, bool status, ref int errCode, ref string errMsg)
@@ -45,7 +45,7 @@ namespace DataHandler
             hs.Add("userid", AppSettings.Session.CustID);
             hs.Add("errcode", 0);
             hs.Add("errmsg", string.Empty);
-            DbResult rs = DbHelper.Execute("Aff_DomainControlIns_xtest", DBType.AFFILIATE_12BET, hs);
+            DbResult rs = DbHelper.Execute("Aff_DomainControlIns", DBType.AFFILIATE_12BET, hs);
             errCode = CastAide.AsInt32(rs.Outputs["errcode"]);
             errMsg = rs.Outputs["errmsg"].ToString();
 
@@ -64,7 +64,7 @@ namespace DataHandler
             hs.Add("ip", HttpContext.Current.Request.UserHostAddress);
             hs.Add("errcode", 0);
             hs.Add("errmsg", string.Empty);
-            DbResult rs = DbHelper.Execute("Aff_DomainControlUpd_xtest", DBType.AFFILIATE_12BET, hs);
+            DbResult rs = DbHelper.Execute("Aff_DomainControlUpd", DBType.AFFILIATE_12BET, hs);
             errCode = CastAide.AsInt32(rs.Outputs["errcode"]);
             errMsg = rs.Outputs["errmsg"].ToString();
 
@@ -128,7 +128,7 @@ namespace DataHandler
 
         public static DbResult GetList12BetDomain()
         {
-            return DbHelper.Execute("Aff_Domain12BetSel_xtest", DBType.AFFILIATE_12BET);
+            return DbHelper.Execute("Aff_Domain12BetSel", DBType.AFFILIATE_12BET);
         }
         public static DbResult Update12BetDomain(int domainID, string domainName, bool ssl, int userID)
         {
@@ -140,7 +140,7 @@ namespace DataHandler
             htb.Add("ip", HttpContext.Current.Request.UserHostAddress);
             htb.Add("errcode", 0);
             htb.Add("errmsg", string.Empty);
-            return DbHelper.Execute("Aff_Domain12BetUpd_xtest", DBType.AFFILIATE_12BET, htb);
+            return DbHelper.Execute("Aff_Domain12BetUpd", DBType.AFFILIATE_12BET, htb);
         }
         public static DbResult Add12BetDomain(string domainName, bool ssl, int userID)
         {
@@ -152,7 +152,7 @@ namespace DataHandler
             htb.Add("ip", HttpContext.Current.Request.UserHostAddress);
             htb.Add("errcode", 0);
             htb.Add("errmsg", string.Empty);
-            return DbHelper.Execute("Aff_Domain12BetIns_xtest", DBType.AFFILIATE_12BET, htb);
+            return DbHelper.Execute("Aff_Domain12BetIns", DBType.AFFILIATE_12BET, htb);
         }
         public static DbResult Del12BetDomain(int domainID, string domainName, int userID)
         {
