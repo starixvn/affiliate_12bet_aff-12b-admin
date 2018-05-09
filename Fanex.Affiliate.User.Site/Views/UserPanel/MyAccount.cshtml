@@ -39,10 +39,10 @@
             <label class="col-sm-3 control-label">@Lang.Gender</label>
             <div class="col-sm-4">
                 <label class="radio-inline">
-                    <input type="radio" name="Gender" id="male" value="male" @(Model.Gender ? "checked" : string.Empty) /> @Lang.Male
+                    <input type="radio" name="Gender" id="male" value="male" @(Model.Gender ? "checked" : string.Empty) disabled /> @Lang.Male
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="Gender" id="female" value="female" @(!Model.Gender ? "checked" : string.Empty) /> @Lang.Female
+                    <input type="radio" name="Gender" id="female" value="female" @(!Model.Gender ? "checked" : string.Empty) disabled /> @Lang.Female
                 </label>
             </div>
         </div>
@@ -93,16 +93,16 @@
         </div>
 
         <div class="form-group">
-            <label class="col-sm-3 control-label">@Lang.ContactNumber</label>
+            <label class="col-sm-3 require control-label">@Lang.ContactNumber</label>
             <div class="col-sm-4">
-                <input class="form-control" type="text" value="@Model.Phone" />
+                <input id="txtContactNumber" class="form-control" type="text" value="@Model.Phone" />
             </div>
         </div>
 
         <div class="form-group">
-            <label class="col-sm-3 control-label">@Lang.Mobile</label>
+            <label class="col-sm-3 require control-label">@Lang.Mobile</label>
             <div class="col-sm-4">
-                <input class="form-control" type="text" value="@Model.MobilePhone" />
+                <input id="txtMobile" class="form-control" type="text" value="@Model.MobilePhone" />
             </div>
         </div>
     </div>
@@ -124,9 +124,9 @@
 
         <div id="websiteInfo">
             <div class="form-group">
-                <label class="col-sm-3 control-label">@Lang.WebsiteURL</label>
+                <label class="col-sm-3 control-label require">@Lang.WebsiteURL</label>
                 <div class="col-sm-4">
-                    <input class="form-control urlInput" type="text" value="@Model.SiteUrl" />
+                    <input id="txtSiteUrl" class="form-control" type="text" value="@Model.SiteUrl" />
                 </div>
                 <div class="col-sm-1">
                     <button type="button" id="btnAddUrl" class="btn btn-submit">@Lang.AddUrl</button>
@@ -139,7 +139,7 @@
                 foreach (var item in Model.MoreWebsiteUrlList)
                 {
                     <div class="form-group websiteInput">
-                        <label class="col-sm-3 control-label moreWebsiteLabel">@Lang.WebsiteURL @(index)</label>
+                        <label class="col-sm-3 control-label require moreWebsiteLabel">@Lang.WebsiteURL @(index)</label>
                         <div class="col-sm-4">
                             <input class="form-control urlInput" type="text" value="@item" />
                         </div>
@@ -162,9 +162,9 @@
         </div>
 
         <div class="form-group">
-            <label class="col-sm-3 control-label">@Lang.DescWebsite</label>
+            <label class="col-sm-3 control-label require">@Lang.DescWebsite</label>
             <div class="col-sm-4">
-                <textarea class="form-control" rows="5">@Model.NoSiteDesc</textarea>
+                <textarea id="txtNoSiteDesc" class="form-control" rows="5">@Model.NoSiteDesc</textarea>
             </div>
         </div>
     </div>
@@ -199,14 +199,21 @@
         </div>
 
         <div class="form-group">
-            <label class="col-sm-3 control-label">@Lang.Username</label>
+            <label class="col-sm-3 control-label require">@Lang.Username</label>
             <div class="col-sm-4">
-                <p class="form-control-static">@Model.UserName (@Lang.NonDeposit)</p>
+                @if (string.IsNullOrEmpty(Model.PlayerUsername))
+                {
+                    <input id="txtPlayerUserName" class="form-control" type="text" value="" />
+                }
+                else
+                {
+                    <p class="form-control-static">@Model.PlayerUsername (@Lang.NonDeposit)</p>
+                }
             </div>
         </div>
 
         <div class="col-sm-offset-3">
-            <button class="btn btn-submit" type="button">@Lang.Submit</button>
+            <button id="btnMyAccountSubmit" class="btn btn-submit" type="button">@Lang.Submit</button>
             <button class="btn btn-submit" type="button">@Lang.Cancel</button>
         </div>
     </div>
@@ -215,7 +222,12 @@
 <script>
     var LangResource = {
         websiteUrl: '@Lang.WebsiteURL',
-        deleteUrl: '@Lang.Del'
+        deleteUrl: '@Lang.Del',
+        requireContactNumber: '@Lang.errContactNumberEmpty',
+        requireMobile: '@Lang.errMobileNumberEmpty',
+        requireSiteUrl: '@Lang.WebsiteURLIsRequired',
+        requireNoWebsiteDesc: '@Lang.DescWebsite',
+        requirePlayerUserName: '@Lang.BETUserNameIsRequired'
     }
 </script>
 
