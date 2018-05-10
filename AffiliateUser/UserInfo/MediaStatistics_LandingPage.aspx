@@ -29,21 +29,5 @@
           showOthers: true,
           step: 1
       });
-
-      window.onload = function () {
-          jQ('#slDevice').change(function () {
-              var deviceType = jQ(this).val();
-
-              var ajax = new Ajax.Request("../Handler/GetPageList.ashx", {
-                  method: 'post',
-                  parameters: 'deviceType=' + deviceType + "&hasAll=True",
-                  onComplete: function (data) {
-                      var domainRegion = document.getElementById("target-domain");
-                      domainRegion.innerHTML = data.responseText;
-                      jQ('#btnSearch').removeAttr("disabled");
-                  }
-              });
-          });
-      };
     </script> 
  </asp:Content>

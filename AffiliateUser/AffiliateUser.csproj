@@ -201,9 +201,7 @@
     <Compile Include="Business\Services\GetAffiliateEarningDailyService.cs" />
     <Compile Include="Business\Services\GetClickStatisticsListService.cs" />
     <Compile Include="Business\Services\GetDataBannerService.cs" />
-    <Compile Include="Business\Services\GetDomainListService.cs" />
     <Compile Include="Business\Services\GetMessageListService.cs" />
-    <Compile Include="Business\Services\GetPageListService.cs" />
     <Compile Include="Business\Services\GetStatisticsDetailNewService.cs" />
     <Compile Include="Business\Services\GetStatisticsListDetailService.cs" />
     <Compile Include="Business\Services\GetSubCategoryService.cs" />
@@ -251,6 +249,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\TargetPageHelper.cs" />
     <Compile Include="Helpers\TrackingCodeHelper.cs" />
     <Compile Include="Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
@@ -809,9 +808,7 @@
     <Content Include="Handler\GetAffEarningDaily.ashx" />
     <Content Include="Handler\GetClickStatisticsList.ashx" />
     <Content Include="Handler\GetDataBanner.ashx" />
-    <Content Include="Handler\GetDomainList.ashx" />
     <Content Include="Handler\GetMessageList.ashx" />
-    <Content Include="Handler\GetPageList.ashx" />
     <Content Include="Handler\GetStatisticsDetail_New.ashx" />
     <Content Include="Handler\GetStatisticsListDetail.ashx" />
     <Content Include="Handler\GetSubCategory.ashx" />

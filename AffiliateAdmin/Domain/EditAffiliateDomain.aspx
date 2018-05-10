@@ -18,14 +18,14 @@
    {
        if ($("txtaffdomain").value.trim() == "")
         {
-            Common.alertError(top.fMenu.Msg.ErrAffDomain);
+           Common.alertError(top.fMenu.Msg.AffDomain);
             return;
        }
        Common.delayReloadPage1();
         var ajax = new Ajax.Request('../Handler/UpdateAffDomain.ashx', {
             method: 'post',
             parameters: {
-                affDomainId: affDomainId, affDomainName: $('txtaffdomain').value, sta: 'Edit',
+                affDomainId: affDomainId, affDomainName: $('txtaffdomain').value.trim(), sta: 'Edit',
                 "X-CSRF-Token": $('X-CSRF-Token').value,
                 ssl: $("chkSSL").hasClassName("ic-check")
             },

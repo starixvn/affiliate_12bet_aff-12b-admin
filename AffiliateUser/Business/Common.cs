@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
-using System.IO;
 using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -719,42 +717,6 @@ public class Common
         return opt;
     }
 
-    public static string GenListLink2Page(string id, string targetRequest, string deviceType, bool hasTextAll = false)
-    {
-        const string PcLaptopDevice = "0";
-        var targetList = new List<string>();
-        if (deviceType.Equals(PcLaptopDevice, StringComparison.OrdinalIgnoreCase))
-        {
-            targetList.Add("sportsbook");
-            targetList.Add("casino");
-            targetList.Add("signup");
-            targetList.Add("promotion");
-            if (AppSettings.Session.IsCasino)
-            {
-                targetList.Add("12betcasino");
-            }
-
-            targetList.Add("numbergame");
-            targetList.Add("keno");
-            targetList.Add("virtualsports");
-            targetList.Add("playtech");
-            targetList.Add("livecasino");
-            targetList.Add("lottery");
-            targetList.Add("cricket");
-        }
-        else
-        {
-            targetList.Add("home");
-            targetList.Add("signup");
-            targetList.Add("sportsbook");
-            targetList.Add("numbergame");
-            targetList.Add("promotion");
-            targetList.Add("cricket");
-        }
-
-        return GenerateDropdownTextList(id, targetList, targetRequest, hasTextAll);
-    }
-
     public static string GenDropDownFromTable(DataTable dt, string valueColumn, string nameColumn, string id, ref string activeValue, bool isGenAll)
     {
         StringBuilder result = new StringBuilder();
@@ -962,28 +924,6 @@ public class Common
     public static string GetDeviceType(string deviceType)
     {
         return string.IsNullOrEmpty(deviceType) ? "0" : deviceType;
-    }
-
-    public static T ByteArrayToObject<T>(byte[] arrBytes)
-    {
-        MemoryStream memStream = new MemoryStream();
-        BinaryFormatter binForm = new BinaryFormatter();
-        memStream.Write(arrBytes, 0, arrBytes.Length);
-        memStream.Seek(0, SeekOrigin.Begin);
-        var structuredObject = (T)binForm.Deserialize(memStream);
-
-        return structuredObject;
-    }
-
-    public static List<T> ByteArrayToListObjects<T>(byte[] arrBytes)
-    {
-        MemoryStream memStream = new MemoryStream();
-        BinaryFormatter binForm = new BinaryFormatter();
-        memStream.Write(arrBytes, 0, arrBytes.Length);
-        memStream.Seek(0, SeekOrigin.Begin);
-        var listStructuredObjects = (List<T>)binForm.Deserialize(memStream);
-
-        return listStructuredObjects;
     }
 
     public static UnderMaintenanceTime GetUnderMaintenanceTime()

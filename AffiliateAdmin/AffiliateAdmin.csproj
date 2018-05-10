@@ -231,7 +231,6 @@
     <Compile Include="Business\Services\EditRateService.cs" />
     <Compile Include="Business\Services\ExportExcelService.cs" />
     <Compile Include="Business\Services\FavoriteService.cs" />
-    <Compile Include="Business\Services\Get12BetDomainListService.cs" />
     <Compile Include="Business\Services\GetAffiliateListService.cs" />
     <Compile Include="Business\Services\GetClickStatisticsListService.cs" />
     <Compile Include="Business\Services\GetCommGroupService.cs" />
@@ -244,7 +243,6 @@
     <Compile Include="Business\Services\GetMessageListService.cs" />
     <Compile Include="Business\Services\GetMessageService.cs" />
     <Compile Include="Business\Services\GetOnlineListService.cs" />
-    <Compile Include="Business\Services\GetPageListService.cs" />
     <Compile Include="Business\Services\GetStatisticsDetailNewService.cs" />
     <Compile Include="Business\Services\GetStatisticsListDetailService.cs" />
     <Compile Include="Business\Services\GetSubCategoryService.cs" />
@@ -339,6 +337,7 @@
     <Compile Include="Header.aspx.designer.cs">
       <DependentUpon>Header.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\TargetPageHelper.cs" />
     <Compile Include="Home\Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
@@ -1697,7 +1696,6 @@
     <Content Include="AppSettings.ini">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Handler\GetPageList.ashx" />
     <Content Include="Web.12betadmin.sit.config" />
     <Content Include="BetList\BetListNewParlay.ashx" />
     <None Include="Properties\Settings.settings">
@@ -1736,7 +1734,6 @@
     <Content Include="Handler\EditRate.ashx" />
     <Content Include="Handler\ExportExcel.ashx" />
     <Content Include="Handler\Favorite.ashx" />
-    <Content Include="Handler\Get12BetDomainList.ashx" />
     <Content Include="Handler\GetAffiliateList.ashx" />
     <Content Include="Handler\GetClickStatisticsList.ashx" />
     <Content Include="Handler\GetCommGroup.ashx" />

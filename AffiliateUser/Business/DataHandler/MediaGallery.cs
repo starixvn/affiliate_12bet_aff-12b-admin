@@ -9,11 +9,10 @@ namespace DataHandler
     /// </summary>
     public class MediaGallery
     {
-        public static DataTable SelAffDomains(string deviceType)
+        public static DataTable SelAffDomains()
         {
             var ht = new Hashtable();
             ht.Add("affid", AppSettings.Session.CustID);
-            ht.Add("devicetype", byte.Parse(deviceType));
             return DbHelper.Execute("Aff_DomainAffClientSel", DBType.AFFILIATE_12BET, ht).ResultSet.Tables[0];
         }
     }

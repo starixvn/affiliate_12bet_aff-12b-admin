@@ -100,14 +100,6 @@
                 </tr>
                 <tr>
                     <td>
-                        {Device}
-                    </td>
-                    <td style="height: 25px">
-                        {slDevice}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
                     </td>
                     <td style="height: 35px; padding-left: 50px;">
                         <input type="button" class="button" value="{Search}" name="btnSearch" id="btnSearch" onclick="Common.loadData(1);" />
@@ -169,7 +161,20 @@
             </div>
             <div class="box_conts_line">
             </div>
+
+            <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                <tr>
+                    <td>
+                        {Device}
+                    </td>
+                    <td style="height: 25px">
+                        {slDevice}
+                    </td>
+                </tr>
+            </table>
+
             <br />
+
             {paging-top}
             <div id="fb-root">
             </div>

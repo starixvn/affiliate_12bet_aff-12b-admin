@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Web;
-using System;
+﻿using System;
+using System.Collections;
 using AffiliateAdmin.Business.DataAccess;
 using DNAide.Core;
 
@@ -18,7 +17,7 @@ namespace DataHandler
         {
             Hashtable hsParam = new Hashtable();
             hsParam.Add("affid", affID);
-            if (transType!=-1)
+            if (transType != -1)
                 hsParam.Add("transtype", transType);
             if (dtmFDate != null && dtmTDate != null)
             {
@@ -33,7 +32,7 @@ namespace DataHandler
                     return null;
                 }
             }
-                        
+
             hsParam.Add("pageindex", pageIndex);
             hsParam.Add("pagesize", pageSize);
             hsParam.Add("totalpages", 0);
@@ -41,6 +40,6 @@ namespace DataHandler
             totalPages = CastAide.AsInt32(rs.Outputs["totalpages"], 1);
             return rs;
         }
-       
+
     }
 }

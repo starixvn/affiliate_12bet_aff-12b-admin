@@ -104,21 +104,5 @@
         $("frmSearch").submit();
     }
 
-    window.onload = function () {
-        $('slDevice').onchange = function () {
-            Common.blockUI();
-            var deviceType = this.value;
-            
-            new Ajax.Request("../Handler/GetPageList.ashx", {
-                method: 'get',
-                parameters: 'deviceType=' + deviceType,
-                onComplete: function (data) {
-                    $("sportCode").parentNode.innerHTML = data.responseText;
-                    Common.unBlockUI();
-                }
-            });
-        };
-    };
-
 </script>
 <!--/js-->

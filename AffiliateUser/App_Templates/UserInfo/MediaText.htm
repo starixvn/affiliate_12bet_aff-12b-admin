@@ -76,14 +76,6 @@
                 </tr>
                 <tr>
                     <td>
-                        {Device}
-                    </td>
-                    <td style="height: 25px">
-                        {slDevice}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
                     </td>
                     <td style="height: 35px; padding-left: 50px;">
                         <input type="button" class="button" value="{Search}" name="btnSearch" onclick="Common.loadData(1);" />
@@ -145,6 +137,18 @@
             </div>
             <div class="box_conts_line">
             </div>
+
+            <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                <tr>
+                    <td>
+                        {Device}
+                    </td>
+                    <td style="height: 25px">
+                        {slDevice}
+                    </td>
+                </tr>
+            </table>
+
             <br />
             {paging-top}
             <div id="fb-root">
@@ -160,7 +164,7 @@
                         </tr>
                         <tr>
                             <td class='cont12oe' colspan='3'>
-                                <input type='text' style='width: 610px' onclick='this.focus();this.select()' value="&lt;a onclick='window.open(&quot;{signuplink_val}&quot;,&quot;_blank&quot;); return false;' href='{12betlink_val}' target='_blank' id=&quot;_affMediaText&quot;&gt;&lt;/a&gt;&lt;script src=&quot;{bannerurl}{textid}&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;" />
+                                <input type='text' style='width: 610px' onclick='this.focus();this.select()' value="&lt;a onclick='window.open(&quot;{signuplink_val}?ref=&quot; + encodeURIComponent(window.location.href),&quot;_blank&quot;); return false;' href='{12betlink_val}' target='_blank' id=&quot;_affMediaText&quot;&gt;&lt;/a&gt;&lt;script src=&quot;{bannerurl}{textid}&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;" />
                             </td>
                         </tr>
                         <!--/Content-->

@@ -15,7 +15,7 @@
     
    function checkinput()
    {
-       if ($('txt12betdomain').value == '')
+       if ($('txt12betdomain').value.trim() == '')
         {
             Common.alertError(top.fMenu.Msg._12BetDomain);
             $('txt12betdomain').focus();
@@ -31,8 +31,7 @@
             var ajax = new Ajax.Request('../Handler/Update12BetDomain.ashx', {
                 method: 'post',
                 parameters: {
-                    _12BetDomainName: $('txt12betdomain').value,
-                    deviceType: $('slDevice').value,
+                    _12BetDomainName: $('txt12betdomain').value.trim(),
                     ssl: $("chkSSL").hasClassName("ic-check"),
                     sta: 'Add',
                     "X-CSRF-Token": $('X-CSRF-Token').value

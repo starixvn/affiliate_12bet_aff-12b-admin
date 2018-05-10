@@ -2,6 +2,7 @@
 using System.Data;
 using System.Text;
 using AffiliateAdmin.Business.DataAccess;
+using AffiliateAdmin.Helpers;
 using DNAide.Core;
 using DNAide.Web;
 
@@ -34,7 +35,7 @@ public partial class UserInfo_MediaStatistics_LandingPage : IBCPage
         string languageCode = CastAide.AsString(Request["languageCode"]);
         var deviceType = Common.GetDeviceType(Request["slDevice"]);
 
-        TemplateHandler.Assign(ref strTpl, "slPage", Common.GeneratePagesDropdown(sportCode, deviceType));
+        TemplateHandler.Assign(ref strTpl, "slPage", TargetPageHelper.GenerateDropdown("sportCode", sportCode));
 
         DataView dv = DbHelper.Execute("Aff_BannerSelType_1", DBType.AFFILIATE_12BET).ResultSet.Tables[0].DefaultView;
         TemplateHandler.Assign(ref strTpl, "slLanguage", Common.GetDataOptionBanner(dv, "languageCode", "Language", languageCode, true));
@@ -53,8 +54,6 @@ public partial class UserInfo_MediaStatistics_LandingPage : IBCPage
         TemplateHandler.Assign(ref strTpl, "slDevice", AffAdmin.GenerateHTML.Domain.GenDeviceList("slDevice", deviceType));
 
         DbResult rs = DataHandler.TrackingSystem.SelClickStatisticsByPage(dtmFDate, dtmTDate, sportCode, GetLangCode(languageCode), deviceType);
-        int totalSignups = CastAide.AsInt32(rs.Outputs["totalsignups"]);
-        int totalDeposits = CastAide.AsInt32(rs.Outputs["totalfdms"]);
 
         DataTable dtb = new DataTable();
         if (rs.ResultSet.Tables.Count > 0)
@@ -64,9 +63,8 @@ public partial class UserInfo_MediaStatistics_LandingPage : IBCPage
         {
             int intCount = 0;
             string strRowTpl = TemplateHandler.CopyBlock(strTpl, "content");
-            string strListAffId = string.Empty;
 
-            var strListRow = new StringBuilder();
+            var rows = new StringBuilder();
 
             foreach (DataRow dr in dtb.Rows)
             {
@@ -94,10 +92,10 @@ public partial class UserInfo_MediaStatistics_LandingPage : IBCPage
                 TemplateHandler.Assign(ref strTmp, "FDM-val", CastAide.AsInt32(dr["FDM"]).ToString(Common.NumberFormatPlaceholder));
                 TemplateHandler.Assign(ref strTmp, "DeviceType-val", deviceType);
 
-                strListRow.Append(strTmp);
+                rows.Append(strTmp);
             }
 
-            TemplateHandler.ReplaceBlock(ref strTpl, "content", strListRow.ToString());
+            TemplateHandler.ReplaceBlock(ref strTpl, "content", rows.ToString());
         }
         else
         {

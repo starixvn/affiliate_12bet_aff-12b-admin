@@ -26,7 +26,7 @@
                     action = "Index",
                     id = UrlParameter.Optional
                 });
-           
+
             routes.MapRoute(
                name: "Link",
                url: "{affId}/{pageId}/{lang}/index.html",
@@ -41,13 +41,13 @@
                });
 
             routes.MapRoute(
-                name: "LinkMobile",
+                name: "OldLink",
                 url: "{affId}/{pageId}/{lang}/{deviceType}/index.html",
                 defaults:
                 new
                 {
                     controller = "Home",
-                    action = "LinkMobile",
+                    action = "OldLink",
                     affId = UrlParameter.Optional,
                     pageId = UrlParameter.Optional,
                     lang = UrlParameter.Optional,

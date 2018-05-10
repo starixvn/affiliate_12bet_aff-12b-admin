@@ -44,43 +44,6 @@ public class Common
         "SB Bonus", "Soccer", "Basketball" , "Tennis"
     };
 
-    public static string GeneratePagesDropdown(string sportCode, string deviceType)
-    {
-        var pages = new Dictionary<string, string>();
-        pages.Add(string.Empty, "All");
-        if (deviceType.Equals(DeviceMobile.ToString()))
-        {
-            pages.Add("sportsbook", "sportsbook");
-            pages.Add("casino", "casino");
-            pages.Add("signup", "signup");
-            pages.Add("promotion", "promotion");
-
-            if (AppSettings.Session.IsCasino)
-            {
-                pages.Add("12betcasino", "12betcasino");
-            }
-
-            pages.Add("numbergame", "numbergame");
-            pages.Add("keno", "keno");
-            pages.Add("virtualsports", "virtualsports");
-            pages.Add("playtech", "playtech");
-            pages.Add("livecasino", "livecasino");
-            pages.Add("lottery", "lottery");
-            pages.Add("cricket", "cricket");
-        }
-        else
-        {
-            pages.Add("home", "home");
-            pages.Add("signup", "signup");
-            pages.Add("promotion", "promotion");
-            pages.Add("sportstoday", "sportstoday");
-            pages.Add("numbergame", "numbergame");
-            pages.Add("cricket", "cricket");
-        }
-
-        return Common.GenerateDropdownHtml("sportCode", pages, sportCode);
-    }
-
     public static bool CheckHaveParentCategory(string subCategory, out string category)
     {
         foreach (string item in CategoryMediaCasino)

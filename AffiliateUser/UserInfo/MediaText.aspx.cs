@@ -2,6 +2,7 @@
 using System.Data;
 using System.Linq;
 using System.Text;
+using AffiliateUser.Helpers;
 using DNAide.Core;
 using DNAide.Web;
 using Resources;
@@ -29,18 +30,15 @@ public partial class UserInfo_MediaText : RootPageLogIn
         TemplateHandler.Assign(ref htmlContent, "LinkToLabel", Resources.Lang.LinkTo);
 
         /*Johnny:target*/
-
-        var deviceType = Common.GetDeviceType(Request["slDevice"]);
-        string targetRequest = GetTargetRequest(Request["target"], deviceType);
-
-
+        string selectedPage = string.IsNullOrEmpty(Request["target"]) ? TargetPageHelper.TargetPageList.First() : Request["target"];
 
         string domain = string.IsNullOrEmpty(Request["slDomain"]) ? null : Request["slDomain"];
-        DataTable dtDomain = DataHandler.MediaGallery.SelAffDomains(deviceType);
+        DataTable dtDomain = DataHandler.MediaGallery.SelAffDomains();
         TemplateHandler.Assign(ref htmlContent, "slDomain", Common.GenDropDownFromTable(dtDomain, "DomainID", "DomainName", "slDomain", ref domain, false));
 
-        TemplateHandler.Assign(ref htmlContent, "target", Common.GenListLink2Page("target", targetRequest, deviceType));
+        TemplateHandler.Assign(ref htmlContent, "target", TargetPageHelper.GenerateDropdown("target", selectedPage));
 
+        var deviceType = Common.GetDeviceType(Request["slDevice"]);
         TemplateHandler.Assign(ref htmlContent, "Device", Resources.Lang.Device);
         TemplateHandler.Assign(ref htmlContent, "DeviceType-val", deviceType);
         TemplateHandler.Assign(ref htmlContent, "slDevice", Common.GenDeviceList("slDevice", deviceType));
@@ -80,7 +78,12 @@ public partial class UserInfo_MediaText : RootPageLogIn
         TemplateHandler.Assign(ref htmlContent, "slLanguage", this.GetDataOptionBanner(dv, "slLanguage", "Language", lang, true));
         TemplateHandler.Assign(ref htmlContent, "slCurrency", this.GetDataOptionBanner(dv, "slCurrency", "Currency", currency, true));
 
-        if (string.IsNullOrEmpty(domain) || string.IsNullOrEmpty(targetRequest))
+        /* Generate TestLinkList */
+        dv.RowFilter = "type='Language'";
+        DataTable dt = dv.ToTable();
+        var selectedDomain = dtDomain.AsEnumerable().FirstOrDefault(row => domain.Equals(row["DomainID"].ToString()));
+
+        if (string.IsNullOrEmpty(domain) || selectedDomain == null)
         {
             TemplateHandler.Assign(ref htmlContent, "language_val", string.Empty);
             TemplateHandler.Assign(ref htmlContent, "link_val", Lang.NoInfo);
@@ -89,14 +92,9 @@ public partial class UserInfo_MediaText : RootPageLogIn
             return;
         }
 
-        /* Generate TestLinkList */
-        dv.RowFilter = "type='Language'";
-        DataTable dt = dv.ToTable();
-        var selectedDomain = dtDomain.AsEnumerable().FirstOrDefault(row => domain.Equals(row["DomainID"].ToString()));
+        TemplateHandler.ReplaceBlock(ref htmlContent, "TextLinkList", GenerateHTML.Banner.GetTextLink(selectedDomain, trackingcode, dt, selectedPage, lang));
 
-        TemplateHandler.ReplaceBlock(ref htmlContent, "TextLinkList", GenerateHTML.Banner.GetTextLink(selectedDomain, trackingcode, dt, targetRequest, deviceType, lang));
-
-        TemplateHandler.ReplaceBlock(ref htmlContent, "Content", GenerateHTML.Text.GetTextList(category, lang, currency, pageIndex, pageSize, ref totalpage, selectedDomain, trackingcode, targetRequest, deviceType));
+        TemplateHandler.ReplaceBlock(ref htmlContent, "Content", GenerateHTML.Text.GetTextList(category, lang, currency, pageIndex, pageSize, ref totalpage, selectedDomain, trackingcode, selectedPage, deviceType));
         TemplateHandler.Assign(ref htmlContent, "PageSize-val", pageSize);
         TemplateHandler.Assign(ref htmlContent, "page", pageIndex);
         /* Generate Banner paging*/
@@ -110,19 +108,6 @@ public partial class UserInfo_MediaText : RootPageLogIn
             TemplateHandler.Assign(ref htmlContent, "paging-top", string.Empty);
             TemplateHandler.Assign(ref htmlContent, "paging-bottom", string.Empty);
         }
-    }
-
-    private string GetTargetRequest(string target, string deviceType)
-    {
-        if (!string.IsNullOrEmpty(target))
-            return target;
-
-        if (deviceType.Equals("1", StringComparison.OrdinalIgnoreCase))
-        {
-            return "home";
-        }
-
-        return "sportsbook";
     }
 
     private string GetDataOptionBanner(DataView dv, string id, string type, string activeValue, bool isGenAll)

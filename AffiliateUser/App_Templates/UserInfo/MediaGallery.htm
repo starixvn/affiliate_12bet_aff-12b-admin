@@ -161,7 +161,7 @@
                         <!--ImageContent-->
                         <tr>
                             <td class='cont12oe' colspan='3'>
-                                <a onclick='window.open("{signuplink_val}","_blank"); return false;' href='{12betlink_val}'
+                                <a onclick='window.open("{signuplink_val}?ref=" + encodeURIComponent(window.location.href),"_blank"); return false;' href='{12betlink_val}'
                                     target='_blank'>
                                     <img src='{src_val}' border='0' />
                                 </a>
@@ -169,7 +169,7 @@
                         </tr>
                         <tr>
                             <td class='cont12oe' colspan='3'>
-                                <input type='text' style='width: 610px' onclick='this.focus();this.select()' value="&lt;a onclick='window.open(&quot;{signuplink_val}&quot;,&quot;_blank&quot;); return false;' href='{12betlink_val}' target='_blank'&gt;&lt;img src='{src_val}' border='0' width='{width_val}' height='{height_val}' /&gt;&lt;/a&gt;" />
+                                <input type='text' style='width: 610px' onclick='this.focus();this.select()' value="&lt;a onclick='window.open(&quot;{signuplink_val}?ref=&quot; + encodeURIComponent(window.location.href),&quot;_blank&quot;); return false;' href='{12betlink_val}' target='_blank'&gt;&lt;img src='{src_val}' border='0' width='{width_val}' height='{height_val}' /&gt;&lt;/a&gt;" />
                             </td>
                         </tr>
                         <!--/ImageContent-->

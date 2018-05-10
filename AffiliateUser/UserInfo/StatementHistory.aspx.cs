@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.Text;
-using AffiliateUser;
 using DNAide.Core;
 using DNAide.Web;
 
@@ -30,12 +29,12 @@ public partial class UserInfo_StatementHistory : RootPageLogIn
         int transType = CastAide.AsInt32(Request["transtype"], -1);
 
         var result = DataHandler.Statement.SelStatementHistory(affID, transType, null, null, intPageIndex, intPageSize, ref intTotalPage);
-        //DbResult result = DataHandler.Statement.HistorySel(strStatus, intPageIndex, ref intTotalPage);
-        if (result.ResultSet.Tables.Count > 0 && result.ResultSet.Tables[0].Rows.Count>0)
+
+        if (result.ResultSet.Tables.Count > 0 && result.ResultSet.Tables[0].Rows.Count > 0)
         {
             DataTable dtb = result.ResultSet.Tables[0];
             string strContent = TemplateHandler.CopyBlock(strTpl, "content");
-            //decimal dcTotal = 0;
+
             StringBuilder strBuild = new StringBuilder();
             int rowNo = (intPageIndex - 1) * intPageSize;
             bool isCheckAll = false;
@@ -43,13 +42,12 @@ public partial class UserInfo_StatementHistory : RootPageLogIn
             string strRowStyle = "bgcgy";//bgwhite
             string strMouseStyle = "b";//bgwhite
             foreach (DataRow dr in dtb.Rows)
-            {                
+            {
                 string strTmp = strContent;
-                //dcTotal += CastAide.AsDecimal(dr["amount"]);
                 DateTime dtmMonthDate = CastAide.AsDateTime(dr["monthdate"]);
                 int intTransType = CastAide.AsInt32(dr["transtype"]);
                 rowNo++;
-                if (intTransType == 202 || intTransType == 203|| DateTime.Compare(dtmMonthDate, AppSettings.StatementAvailableFrom) < 0)
+                if (intTransType == 202 || intTransType == 203 || DateTime.Compare(dtmMonthDate, AppSettings.StatementAvailableFrom) < 0)
                     TemplateHandler.ReplaceBlock(ref strTmp, "amount-block", Common.FormatNumber(dr["amount"]));
                 else
                     TemplateHandler.Assign(ref strTmp, "amount-block", Common.FormatNumber(dr["amount"]));
@@ -60,8 +58,6 @@ public partial class UserInfo_StatementHistory : RootPageLogIn
                 TemplateHandler.Assign(ref strTmp, "style", strRowStyle);
                 TemplateHandler.Assign(ref strTmp, "style1", strMouseStyle);
                 TemplateHandler.Assign(ref strTmp, "transid-val", dr["transid"]);
-                //TemplateHandler.Assign(ref strTmp, "monthdate-val", (intTransType == 202 || intTransType == 203) ? dtmMonthDate.ToString("dd-MMM-yyyy") : dtmMonthDate.ToString("MMM-yyyy"));
-                //TemplateHandler.Assign(ref strTmp, "month-val", CastAide.AsDateTime(dr["monthdate"]).ToString("MM/dd/yyyy"));
                 TemplateHandler.Assign(ref strTmp, "monthdate-val", (intTransType == 202 || intTransType == 203) ? Common.ConvertDateTime(dtmMonthDate, "-", true, false) : Common.ConvertDateTime(dtmMonthDate, "-", false, false));
                 TemplateHandler.Assign(ref strTmp, "month-val", Common.ConvertDateTime(dr["monthdate"], "/", true, false));
                 TemplateHandler.Assign(ref strTmp, "bettype-val", GetTransType(dr["transtype"]));
@@ -92,14 +88,14 @@ public partial class UserInfo_StatementHistory : RootPageLogIn
     string GetTransType(object intTransType)
     {
         switch (CastAide.AsInt32(intTransType))
-        {           
+        {
             case 203:
                 return Resources.Lang.Adjustment;
             case 201:
-                return Resources.Lang.MonthlyWinlost;;
+                return Resources.Lang.MonthlyWinlost; ;
             case 202:
                 return Resources.Lang.PaymentRequest;
-            default :
+            default:
                 return Resources.Lang.Transaction;
         }
     }
