@@ -6,7 +6,7 @@
   </Function>
 
   <Function Name="Affiliate - Data Services - Import">
-    <Setting Key="Aff_CasinoImportData" SpName="Aff_CasinoImportData" DbName="Affiliate" />
+    <Setting Key="Aff_CasinoImportData" SpName="Aff_CasinoImportData" DbName="Affiliate" TimeOut="300" />
     <Setting Key="Task_Aff_MemberDailyCasino_IA" SpName="Task_Aff_MemberDailyCasino_IA" DbName="IncomeAccess" />
   </Function>
 </Functions>
