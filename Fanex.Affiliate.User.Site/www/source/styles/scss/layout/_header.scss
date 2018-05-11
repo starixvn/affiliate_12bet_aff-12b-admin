@@ -29,19 +29,19 @@
     $bg-navbr: #d43131, #ab0101;
     @include background-gradient(top, $bg-navbr);
     @include border-radius(0);
-    min-height: 3.6rem;
+    min-height: 30px;
     overflow: hidden;
     margin-bottom: 0;
     border: none;
 
     ul {
         li {
-            line-height: 36px;
+            line-height: 30px;
 
             a {
                 color: #fff;
                 display: block;
-                font-size: 1.4rem;
+                font-size: 13px;
                 text-decoration: none;
                 padding: 2rem;
             }
@@ -106,7 +106,7 @@
     .menu-item {
         position: relative;
         padding: 0 15px;
-        line-height: 3.6rem;
+        line-height: 30px;
         color: #fff;
         text-transform: uppercase;
         font-weight: 600;

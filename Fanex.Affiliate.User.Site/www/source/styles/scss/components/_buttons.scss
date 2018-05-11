@@ -1,7 +1,7 @@
 ﻿.btn {
     display: inline-block;
-    padding: 0 12px;
-    height: 26px;
+    padding: 0 8px;
+    height: 25px;
     line-height: 1;
     text-transform: uppercase;
     transition: all .2s ease;
@@ -16,9 +16,9 @@
 
 .btn-signup, .btn-login, .btn-link {
     background: #fe2400;
-    font-size: 14px;
+    font-size: 13px;
     color: #fff;
-    line-height: 25px;
+    line-height: 22px;
 
     &:hover, &:focus {
         color: #fff;
@@ -39,10 +39,8 @@
 .btn-submit {
     $bg-submit: #b8491f, #ee6736;
     @include background-gradient(top, $bg-submit);
-    font-size: 14px;
+    font-size: 13px;
     color: #fff;
-    height: 30px;
-    line-height: 30px;
     text-transform: capitalize;
 
     &:hover, &:focus {
