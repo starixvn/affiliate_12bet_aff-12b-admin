@@ -10,6 +10,8 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
         bool IsValidDepositPlayer(string playerUserName);
 
-        ResultInfo UpdateAccountInformation(AccountUpdateParam accountUpdateParam);
+        ResultInfo UpdateAccountInformation(UpdateAccountParam accountUpdateParam);
+
+        ResultInfo UpdatePassword(UpdatePasswordParam updatePasswordParam);
     }
 }

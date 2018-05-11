@@ -1,6 +1,6 @@
 ﻿namespace Fanex.Affiliate.User.Core.MetalModels
 {
-    public class AccountUpdateParam
+    public class UpdateAccountParam
     {
         public int AffId { get; set; }
 

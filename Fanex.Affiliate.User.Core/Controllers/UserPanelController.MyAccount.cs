@@ -44,7 +44,7 @@
                 return Json(new ResultInfo { IsOk = false, Message = Lang.errDepositDBConnectFailed });
             }
 
-            var accountUpdateParam = new AccountUpdateParam
+            var accountUpdateParam = new UpdateAccountParam
             {
                 AffId = userSession.AffId,
                 Phone = Server.HtmlEncode(model.Phone),

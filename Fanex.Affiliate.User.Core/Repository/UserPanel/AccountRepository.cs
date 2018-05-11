@@ -39,7 +39,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             return isValid;
         }
 
-        public ResultInfo UpdateAccountInformation(AccountUpdateParam accountUpdateParam)
+        public ResultInfo UpdateAccountInformation(UpdateAccountParam accountUpdateParam)
         {
             const string uSpKey = "Aff_AffiliateUpdInfo";
 
@@ -52,6 +52,22 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             {
                 IsOk = accountUpdateParam.ErrCode == 0,
                 Message = accountUpdateParam.ErrMsg
+            };
+        }
+
+        public ResultInfo UpdatePassword(UpdatePasswordParam updatePasswordParam)
+        {
+            const string uSpKey = "Aff_AffiliateUpdPwd";
+
+            using (var objectDb = new ObjectDBBuilder(uSpKey))
+            {
+                objectDb.DB.ExecuteNonQuery(updatePasswordParam);
+            }
+
+            return new ResultInfo
+            {
+                IsOk = updatePasswordParam.ErrCode == 0,
+                Message = updatePasswordParam.ErrMsg
             };
         }
     }

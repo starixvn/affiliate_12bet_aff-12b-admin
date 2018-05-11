@@ -88,5 +88,10 @@
     "outputFile": "www/build/js/myaccount.js",
     "inputFile": "www/source/js/pages/myaccount.js",
     "sourceMap": false
+  },
+  {
+    "outputFile": "www/build/styles/css/password.css",
+    "inputFile": "www/source/styles/pages/password.scss",
+    "sourceMap": false
   }
 ]

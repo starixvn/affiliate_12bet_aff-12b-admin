@@ -169,7 +169,7 @@
     <Compile Include="Controllers\CommissionStructureController.cs" />
     <Compile Include="Controllers\ContactUsController.cs" />
     <Compile Include="Controllers\FaqController.cs" />
-    <Compile Include="Controllers\ForgetPassController.cs" />
+    <Compile Include="Controllers\PasswordController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\PromotionController.cs" />
@@ -194,11 +194,12 @@
     <Compile Include="Extensions\HtmlHelperExtension.cs" />
     <Compile Include="Extensions\NumberFormatter.cs" />
     <Compile Include="Extensions\UrlHelperExtension.cs" />
-    <Compile Include="MetalModels\AccountUpdateParam.cs" />
+    <Compile Include="MetalModels\UpdateAccountParam.cs" />
     <Compile Include="MetalModels\BaseParam.cs" />
     <Compile Include="MetalModels\InternalLoginParam.cs" />
     <Compile Include="MetalModels\LoginResultParam.cs" />
     <Compile Include="MetalModels\OnUserIdParam.cs" />
+    <Compile Include="MetalModels\UpdatePasswordParam.cs" />
     <Compile Include="MetalModels\UserLoginParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\UserPanel\AccountRepository.cs" />
