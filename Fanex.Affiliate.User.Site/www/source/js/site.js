@@ -7,6 +7,11 @@
         },
         resolveRelativeUrl: function (url) {
             return _rootUrl + url;
+        },
+        escapeHtml: function (inputString) {
+            var div = document.createElement('div');
+            div.appendChild(document.createTextNode(inputString));
+            return div.innerHTML;
         }
     };
 

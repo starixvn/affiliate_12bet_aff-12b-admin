@@ -42,10 +42,10 @@ namespace Fanex.Affiliate.User.Core.ViewModels
 
         public bool IsRenderState { get; set; }
 
-        public bool IsPlayerAccount => PreferredPayment.Equals("Player", StringComparison.OrdinalIgnoreCase);
+        public bool IsPlayerAccount => !string.IsNullOrEmpty(PreferredPayment) && PreferredPayment.Equals("Player", StringComparison.OrdinalIgnoreCase);
 
-        public IEnumerable<string> MoreWebsiteUrlList => MoreSiteUrls.Split(';');
+        public IEnumerable<string> MoreWebsiteUrlList => string.IsNullOrEmpty(MoreSiteUrls) ? new string[0] : MoreSiteUrls.Split(';');
 
-        public string LanguageName => SystemLanguage.LanguageNameByCode.ContainsKey(PreferredLanguage) ? SystemLanguage.LanguageNameByCode[PreferredLanguage] : PreferredLanguage;
+        public string LanguageName => !string.IsNullOrEmpty(PreferredLanguage) && SystemLanguage.LanguageNameByCode.ContainsKey(PreferredLanguage) ? SystemLanguage.LanguageNameByCode[PreferredLanguage] : PreferredLanguage;
     }
 }

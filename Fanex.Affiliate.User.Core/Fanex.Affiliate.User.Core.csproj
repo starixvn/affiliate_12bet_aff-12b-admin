@@ -194,6 +194,7 @@
     <Compile Include="Extensions\HtmlHelperExtension.cs" />
     <Compile Include="Extensions\NumberFormatter.cs" />
     <Compile Include="Extensions\UrlHelperExtension.cs" />
+    <Compile Include="MetalModels\AccountUpdateParam.cs" />
     <Compile Include="MetalModels\BaseParam.cs" />
     <Compile Include="MetalModels\InternalLoginParam.cs" />
     <Compile Include="MetalModels\LoginResultParam.cs" />

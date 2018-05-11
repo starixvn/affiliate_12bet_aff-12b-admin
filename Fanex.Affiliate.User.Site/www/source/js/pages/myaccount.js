@@ -33,6 +33,18 @@
 
                 var params = _me.getParams();
                 console.log(params);
+
+                $.ajax({
+                    type: "POST",
+                    url: Site.resolveRelativeUrl("UserPanel/MyAccount"),
+                    data: params,
+                    dataType: "json",
+                    cache: false,
+                    contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+                    success: function (response) {
+                        console.log(response);
+                    }
+                });
             });
         },
         addMoreUrl: function () {
@@ -136,11 +148,17 @@
 
         getParams: function () {
             var params = {
-                phone: $("#txtContactNumber").val().trim(),
-                mobilePhone: $("#txtMobile").val().trim(),
-                siteUrl: $("#txtSiteUrl").val().trim(),
-                moreSiteUrls: _me.getMoreWebsiteUrlData(),
-                noSiteDesc: $("#txtNoSiteDesc").val() ? $("#txtNoSiteDesc").val().trim() : ""
+                phone: Site.escapeHtml($("#txtContactNumber").val().trim()),
+                mobilePhone: Site.escapeHtml($("#txtMobile").val().trim())
+            }
+
+            if ($("#hasWebSite").prop("checked")) {
+                params.siteUrl = Site.escapeHtml($("#txtSiteUrl").val().trim());
+                params.moreSiteUrls = _me.getMoreWebsiteUrlData();
+            }
+            else {
+                var descContent = $("#txtNoSiteDesc").val();
+                params.noSiteDesc = descContent ? Site.escapeHtml(descContent.trim()) : ""
             }
 
             if (hasPlayerUserNameInput()) {
@@ -154,7 +172,7 @@
             var moreUrlList = [];
             $("#websiteInfo .urlInput").each(function (index, data) {
                 if (data.value) {
-                    moreUrlList.push(data.value);
+                    moreUrlList.push(Site.escapeHtml(data.value));
                 }
             });
 

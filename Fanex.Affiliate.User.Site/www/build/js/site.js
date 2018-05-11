@@ -9,6 +9,11 @@ var Site = (function ($) {
         },
         resolveRelativeUrl: function resolveRelativeUrl(url) {
             return _rootUrl + url;
+        },
+        escapeHtml: function escapeHtml(inputString) {
+            var div = document.createElement('div');
+            div.appendChild(document.createTextNode(inputString));
+            return div.innerHTML;
         }
     };
 
