@@ -658,10 +658,8 @@ input[type="checkbox"], input[type="radio"] {
 
 .carousel.slide .item .caption {
   position: absolute;
-  bottom: 20%; }
-  @media (max-width: 1400px) {
-    .carousel.slide .item .caption {
-      bottom: 10%; } }
+  top: 25%;
+  left: 5%; }
 
 .carousel.slide .item .carousel-caption {
   color: #212121; }
@@ -682,30 +680,26 @@ input[type="checkbox"], input[type="radio"] {
 
 .banner-center {
   position: relative; }
-  .banner-center .caption {
-    padding: 150px 50px 0;
-    width: 40%; }
-    @media (max-width: 1400px) {
-      .banner-center .caption {
-        width: 80%; } }
   .banner-center .caption-big {
-    font-size: 40px;
+    font-size: 25px;
     font-weight: 600;
     color: #fff;
     text-shadow: 4px 4px 2px rgba(0, 0, 0, 0.3); }
-    @media (max-width: 1400px) {
+    @media (min-width: 1500px) {
       .banner-center .caption-big {
-        width: 80%; } }
+        font-size: 35px; } }
   .banner-center .caption-small {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    font-size: 28px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    font-size: 20px;
     font-weight: 500;
     color: #fff;
-    text-shadow: 4px 4px 2px rgba(0, 0, 0, 0.3); }
-    @media (max-width: 1400px) {
+    text-shadow: 4px 4px 2px rgba(0, 0, 0, 0.3);
+    width: 40%; }
+    @media (min-width: 1500px) {
       .banner-center .caption-small {
-        width: 80%; } }
+        width: 50%;
+        font-size: 25px; } }
   .banner-center .btn-more {
     background: -ms-linear-gradient(top, #a63038 50%, #ee0001 0);
     background: -webkit-linear-gradient(top, #a63038 50%, #ee0001 0);
@@ -715,11 +709,12 @@ input[type="checkbox"], input[type="radio"] {
     border: 2px solid #c12020;
     border-radius: 0;
     color: #fff;
-    font-size: 18px;
+    font-size: 15px;
     padding: 5px 15px;
     height: auto;
     position: relative;
-    overflow: hidden; }
+    overflow: hidden;
+    margin-top: 15px; }
     .banner-center .btn-more:after {
       content: '';
       position: absolute;
