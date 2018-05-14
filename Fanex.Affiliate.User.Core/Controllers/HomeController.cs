@@ -4,6 +4,7 @@ using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.Utilities;
+using Fanex.Affiliate.User.Core.ViewModels;
 
 namespace Fanex.Affiliate.User.Core.Controllers
 {
@@ -38,7 +39,12 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 _cookieService.SetCookie(CookieName.InitializationVector, ivString);
             }
 
-            return View();
+            var viewModel = new HomeViewModel
+            {
+                IsAuthenticated = HttpContext.Request.IsAuthenticated && SessionService.UserSession != null
+            };
+
+            return View(viewModel);
         }
 
         public ActionResult CaptchaImage()

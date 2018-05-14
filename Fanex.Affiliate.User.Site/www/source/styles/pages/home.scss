@@ -4,6 +4,10 @@
 @import "../scss/vendors/animate/_bouncing-entrances/bounceInUp";
 @import "../scss/vendors/animate/_bouncing-entrances/bounceInDown";
 @import "../scss/vendors/animate/_zooming-entrances/zoomInRight";
+@import "../scss/vendors/bootstrap/variables";
+@import "../scss/vendors/bootstrap/mixins";
+@import "../scss/vendors/bootstrap/modals";
+@import "../scss/components/login-dialog";
 
 .bounceInDown {
     @include bounceInDown( $duration: 2s, $count: 1, $delay: .2s, $function: ease, $fill: both );

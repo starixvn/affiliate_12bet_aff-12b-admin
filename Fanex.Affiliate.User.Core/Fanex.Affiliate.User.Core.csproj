@@ -286,6 +286,7 @@
     <Compile Include="Utilities\UrlHelper.cs" />
     <Compile Include="ViewModels\AccountInformationViewModel.cs" />
     <Compile Include="ViewModels\EmailTemplateViewModel.cs" />
+    <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\LoginResultViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

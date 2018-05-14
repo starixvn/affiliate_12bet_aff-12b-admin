@@ -3,8 +3,14 @@
     ViewBag.Title = "Home Page";
 }
 
+@model Fanex.Affiliate.User.Core.ViewModels.HomeViewModel
+
 @section styles{
     <link href="@Url.RenderLink("~/www/build/styles/css/home.css")" rel="stylesheet" />
+}
+
+@section scripts{
+    <script src="@Url.RenderLink("~/www/build/js/home.js")"></script>
 }
 
 <div class="content home-page">
@@ -80,7 +86,7 @@
                 </div>
             </div>
         </div>
-        <div class="card">
+        <div class="card" id="affiliateNews">
             <div class="card-content">
                 <h4 class="card-title">
                     <span class="icon"><img src="~/www/build/styles/Images/icon-3.png" /></span>
@@ -89,7 +95,11 @@
                 <div class="text-content">
                     <ul class="news-content">
                         <li>
-                            <a href="javascript:;" class="nounderline">
+                            @{
+                                var mediaUrl = Url.Action("Index", "UserPanel") + "/#MediaGallery";
+                                var attributeString = Model.IsAuthenticated ? "href=" + mediaUrl : "href=javascript:; id=loginLink";
+                            }
+                            <a class="nounderline" @(attributeString)>
                                 <span class="news-title">NEW BANNER IS AVAILABLE <span class="text-red">NEW!</span></span>
                                 <span>You can now log in your affiliate account to get new banner - January 2018 version!</span>
                             </a>
@@ -106,3 +116,48 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade login-dialog" tabindex="-1" role="dialog" id="loginDialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-banner">
+                <img src="~/www/build/styles/Images/logo.png" />
+                <h1 class="logo-text">AFFILIATE PROGRAM</h1>
+            </div>
+
+            <div class="modal-main-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title">AFFILIATE LOGIN</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3 class="title-left">Not Affiliate Member Yet?</h3>
+                            <p>Sign up to affiliate program and earn up to 40% monthly commission!</p>
+                            <a href="@Url.Action("Index", "Signup")" role="button" class="btn btn-submit btn-block text-uppercase">JOIN NOW!</a>
+                            <a href="@Url.Action("Index", "Promotion")" class="link-login-popup">> Get to know 12BET affiliate program</a>
+                        </div>
+
+                        <div class="col-md-6 login-side" id="dialogUserInput">
+                            <h3 class="title-right">Welcome back!</h3>
+                            <div class="input-group">
+                                <input type="text" id="dialogtxtUsername" class="form-control" placeholder="@Lang.Username" />
+                            </div>
+                            <div class="input-group">
+                                <input type="password" id="dialogtxtPassword" class="form-control" placeholder="@Lang.Password" />
+                            </div>
+                            <div class="input-group">
+                                <input type="text" id="dialogtxtValidation" class="form-control captcha-input" placeholder="Validation" />
+                                <div class="validation-value"><img src="" alt="captcha" id="loginDialogcaptchaImg" /></div>
+                            </div>
+
+                            <button type="button" id="btnDialogLogin" class="btn btn-submit btn-block text-uppercase">@Lang.Login</button>
+                            <a href="@Url.Action("Index", "Password")" class="link-login-popup">> Forgot Login Details ?</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

@@ -93,5 +93,10 @@
     "outputFile": "www/build/styles/css/password.css",
     "inputFile": "www/source/styles/pages/password.scss",
     "sourceMap": false
+  },
+  {
+    "outputFile": "www/build/js/home.js",
+    "inputFile": "www/source/js/pages/home.js",
+    "sourceMap": false
   }
 ]

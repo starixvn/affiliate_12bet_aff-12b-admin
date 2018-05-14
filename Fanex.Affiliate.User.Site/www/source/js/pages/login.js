@@ -17,12 +17,15 @@
             });
         },
 
-        requestSignin: function () {
-            var username = $("#txtUsername").val();
-            var password = $("#txtPassword").val();
-            var validation = $("#txtValidation").val();
+        requestSignin: function (onDialog) {
+            var prefix = onDialog ? "dialog" : "";
 
-            var validationResult = _me.validate(username, password, validation);
+            var $password = $("#" + prefix + "txtPassword");
+            var username = $("#" + prefix + "txtUsername").val();
+            var password = $password.val();
+            var validation = $("#" + prefix + "txtValidation").val();
+
+            var validationResult = _me.validate(username, password, validation, onDialog);
             if (validationResult.isValid) {
                 var token = $('input[name="__RequestVerificationToken"]', $("#userLogin")).val();
                 var encryptKey = $("#KeyString").val();
@@ -30,7 +33,7 @@
 
                 var encryptedPassword = _me.encryptPassword(password, encryptKey, encryptIV);
 
-                $("#txtPassword").val(encryptedPassword);
+                $password.val(encryptedPassword);
 
                 var postData = {
                     __RequestVerificationToken: token,
@@ -70,19 +73,19 @@
             };
 
             if (username === empty) {
-                $("#txtUsername").focus();
+                $("#" + prefix + "txtUsername").focus();
                 result.message = validationMessage.enterUserName;
                 return result;
             }
 
             if (password === empty) {
-                $("#txtPassword").focus();
+                $("#" + prefix + "txtPassword").focus();
                 result.message = validationMessage.enterPassword;
                 return result;
             }
 
             if (validationCode === empty) {
-                $("#txtValidation").focus();
+                $("#" + prefix + "txtValidation").focus();
                 result.message = validationMessage.enterValidationCode;
                 return result;
             }
