@@ -2,45 +2,54 @@
     var allowedActionList = ["AccountOverView", "StatementHistory", "MyAccount", "PaymentRequest",
         "MediaGallery", "TextBox", "TrackingStatistics", "ReferrersStatistics", "LandingPageStatistics"];
 
-    function renderView() {
-        var hash = window.location.hash;
-        var action = hash.split('#')[1];
-
-        if (!hash || !action || allowedActionList.indexOf(action) === -1) {
-            action = "AccountOverView";
-        }
-
-        var url = "/UserPanel/" + action;
-
-        $.ajax({
-            type: "GET",
-            dataType: "html",
-            cache: false,
-            url: url,
-            success: function (response) {
-                $("#mainPanel").html(response);
-            }
-        });
-    }
-
-    return {
+    var _me = {
         initialize: function () {
-            renderView();
+            _me.renderView();
             UserPanel.initEvent();
         },
 
         initEvent: function () {
             $(window).on('hashchange', function () {
-                renderView();
+                _me.renderView();
             });
+        },
 
-            $("#mainMenu").on("click", ".menu-item", function () {
-                var activeClassName = "active";
-                $(".menu-item").removeClass(activeClassName);
-                $(this).addClass(activeClassName);
+        activeMenu: function (actionName) {
+            var activeClassName = "active";
+            $("#mainMenu .menu-item").removeClass(activeClassName);
+            $("#menu" + actionName).addClass(activeClassName);
+        },
+
+        renderView: function () {
+            var action = _me.getActionName();
+            _me.activeMenu(action);
+
+            var url = "/UserPanel/" + action;
+
+            $.ajax({
+                type: "GET",
+                dataType: "html",
+                cache: false,
+                url: url,
+                success: function (response) {
+                    $("#mainPanel").html(response);
+                }
             });
+        },
+
+        getActionName: function () {
+            var hash = window.location.hash;
+            var action = hash.split('#')[1];
+
+            if (!hash || !action || allowedActionList.indexOf(action) === -1) {
+                action = "AccountOverView";
+            }
+
+            return action;
         }
     };
+
+    return _me;
 })(jQuery);
 
 UserPanel.initialize();

@@ -8,10 +8,20 @@
     border-radius: 2px;
     font-weight: 500;
     vertical-align: middle;
+    margin-right: 30px;
+
+    &:focus {
+        outline: none;
+    }
+
+    &:active:focus {
+        outline: none;
+    }
 }
 
-.button-group {
-    padding-bottom: 2rem;
+.button-block {
+    padding-bottom: 20px;
+    padding-top: 20px;
 }
 
 .btn-signup, .btn-login, .btn-link {

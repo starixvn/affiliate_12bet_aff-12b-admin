@@ -68,7 +68,7 @@
     }
 
     .single-flag {
-        width: 8rem;
+        width: 7rem;
         text-align: center;
         align-self: center;
 
@@ -121,9 +121,51 @@
 }
 
 .form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-top: 10px;
     margin-right: -15px;
     margin-left: -15px;
     flex-wrap: wrap;
+
+    .form-group {
+        display: flex;
+        margin-bottom: 10px;
+        width: 100%;
+
+        @media screen and (min-width: 1480px) {
+            width: 70%;
+        }
+
+        &.button-group {
+            justify-content: flex-start;
+        }
+
+        label {
+            flex: 0 0 100px;
+            margin-top: 5px;
+        }
+
+        .field {
+            width: calc(100% - 100px);
+            height: 30px;
+            line-height: 30px;
+            padding: 10px;
+            border: 1px solid #adadad;
+            background-color: transparent;
+        }
+
+        textarea {
+            min-height: 100px;
+        }
+    }
+
+    .button-group {
+        .btn:not(:last-child) {
+            margin-right: 10px;
+        }
+    }
 
     .group {
         padding-right: 15px;
