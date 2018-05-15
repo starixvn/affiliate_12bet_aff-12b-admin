@@ -4,217 +4,221 @@
 
 @model Fanex.Affiliate.User.Core.ViewModels.AccountInformationViewModel
 
-<div class="page-title">
-    <span class="text">@Lang.MyAcc</span>
-</div>
+@Html.InlineStyles("~/www/build/styles/css/my-account.css")
 
-<div class="info-group">
-    <div class="title">
-        <span class="text">@Lang.AccInfo</span>
+<div class="account-information">
+    <div class="page-title">
+        <span class="text">@Lang.MyAcc</span>
     </div>
 
-    <div class="form-horizontal">
-        <div class="form-group">
-            <label class="col-sm-3 control-label">@Lang.Username</label>
-            <div class="col-sm-4">
-                <p class="form-control-static">@Model.UserName</p>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-3 control-label">@Lang.Password</label>
-            <div class="col-sm-4">
-                <p class="form-control-static"><a href="@Url.Action("Update", "Password")">@Lang.Change</a></p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="info-group">
-    <div class="title">
-        <span class="text">@Lang.ContactInfo</span>
-    </div>
-
-    <div class="form-horizontal">
-        <div class="form-group">
-            <label class="col-sm-3 control-label">@Lang.Gender</label>
-            <div class="col-sm-4">
-                <label class="radio-inline">
-                    <input type="radio" name="Gender" id="male" value="male" @(Model.Gender ? "checked" : string.Empty) disabled /> @Lang.Male
-                </label>
-                <label class="radio-inline">
-                    <input type="radio" name="Gender" id="female" value="female" @(!Model.Gender ? "checked" : string.Empty) disabled /> @Lang.Female
-                </label>
-            </div>
+    <div class="info-group">
+        <div class="title">
+            <span class="text">@Lang.AccInfo</span>
         </div>
 
-        <div class="form-group">
-            <label class="col-sm-3 control-label">@Lang.Address</label>
-            <div class="col-sm-4">
-                <p class="form-control-static">@Model.Address</p>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="col-sm-3 control-label">@Lang.City</label>
-            <div class="col-sm-4">
-                <p class="form-control-static">@Model.City</p>
-            </div>
-        </div>
-
-        @if (Model.IsRenderState)
-        {
+        <div class="form-horizontal">
             <div class="form-group">
-                <label class="col-sm-3 control-label">@Lang.State</label>
+                <label class="col-sm-3 control-label">@Lang.Username</label>
                 <div class="col-sm-4">
-                    <p class="form-control-static">@Model.State</p>
+                    <p class="form-control-static">@Model.UserName</p>
                 </div>
             </div>
-        }
-
-        <div class="form-group">
-            <label class="col-sm-3 control-label">@Lang.PostCode</label>
-            <div class="col-sm-4">
-                <p class="form-control-static">@Model.Postal</p>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="col-sm-3 control-label">@Lang.Country</label>
-            <div class="col-sm-4">
-                <p class="form-control-static">@Model.Country</p>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="col-sm-3 control-label">@Lang.Email</label>
-            <div class="col-sm-4">
-                <p class="form-control-static">@Model.Email</p>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="col-sm-3 require control-label">@Lang.ContactNumber</label>
-            <div class="col-sm-4">
-                <input id="txtContactNumber" class="form-control" type="text" value="@Model.Phone" />
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="col-sm-3 require control-label">@Lang.Mobile</label>
-            <div class="col-sm-4">
-                <input id="txtMobile" class="form-control" type="text" value="@Model.MobilePhone" />
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="info-group">
-    <div class="title">
-        <span class="text">@Lang.WebsiteInformat</span>
-    </div>
-
-    <div class="form-horizontal">
-        <div class="form-group">
-            <div class="col-sm-4">
-                <label class="radio-inline">
-                    <input type="radio" name="HasWebSite" id="hasWebSite" checked /> @Lang.OwnWebsite
-                </label>
-            </div>
-        </div>
-
-        <div id="websiteInfo">
             <div class="form-group">
-                <label class="col-sm-3 control-label require">@Lang.WebsiteURL</label>
+                <label class="col-sm-3 control-label">@Lang.Password</label>
                 <div class="col-sm-4">
-                    <input id="txtSiteUrl" class="form-control" type="text" value="@Model.SiteUrl" />
+                    <p class="form-control-static"><a href="@Url.Action("Update", "Password")">@Lang.Change</a></p>
                 </div>
-                <div class="col-sm-1">
-                    <button type="button" id="btnAddUrl" class="btn btn-submit">@Lang.AddUrl</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-group">
+        <div class="title">
+            <span class="text">@Lang.ContactInfo</span>
+        </div>
+
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-3 control-label">@Lang.Gender</label>
+                <div class="col-sm-4">
+                    <label class="radio-inline">
+                        <input type="radio" name="Gender" id="male" value="male" @(Model.Gender ? "checked" : string.Empty) disabled /> @Lang.Male
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="Gender" id="female" value="female" @(!Model.Gender ? "checked" : string.Empty) disabled /> @Lang.Female
+                    </label>
                 </div>
             </div>
 
-            @if (Model.MoreWebsiteUrlList.Any())
+            <div class="form-group">
+                <label class="col-sm-3 control-label">@Lang.Address</label>
+                <div class="col-sm-4">
+                    <p class="form-control-static">@Model.Address</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">@Lang.City</label>
+                <div class="col-sm-4">
+                    <p class="form-control-static">@Model.City</p>
+                </div>
+            </div>
+
+            @if (Model.IsRenderState)
+            {
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@Lang.State</label>
+                    <div class="col-sm-4">
+                        <p class="form-control-static">@Model.State</p>
+                    </div>
+                </div>
+            }
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">@Lang.PostCode</label>
+                <div class="col-sm-4">
+                    <p class="form-control-static">@Model.Postal</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">@Lang.Country</label>
+                <div class="col-sm-4">
+                    <p class="form-control-static">@Model.Country</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">@Lang.Email</label>
+                <div class="col-sm-4">
+                    <p class="form-control-static">@Model.Email</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 require control-label">@Lang.ContactNumber</label>
+                <div class="col-sm-4">
+                    <input id="txtContactNumber" class="form-control" type="text" value="@Model.Phone" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 require control-label">@Lang.Mobile</label>
+                <div class="col-sm-4">
+                    <input id="txtMobile" class="form-control" type="text" value="@Model.MobilePhone" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-group">
+        <div class="title">
+            <span class="text">@Lang.WebsiteInformat</span>
+        </div>
+
+        <div class="form-horizontal">
+            <div class="form-group">
+                <div class="col-sm-4">
+                    <label class="radio-inline">
+                        <input type="radio" name="HasWebSite" id="hasWebSite" checked /> @Lang.OwnWebsite
+                    </label>
+                </div>
+            </div>
+
+            <div id="websiteInfo">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label require">@Lang.WebsiteURL</label>
+                    <div class="col-sm-4">
+                        <input id="txtSiteUrl" class="form-control" type="text" value="@Model.SiteUrl" />
+                    </div>
+                    <div class="col-sm-1">
+                        <button type="button" id="btnAddUrl" class="btn btn-submit">@Lang.AddUrl</button>
+                    </div>
+                </div>
+
+                @if (Model.MoreWebsiteUrlList.Any())
             {
                 var index = 2;
                 foreach (var item in Model.MoreWebsiteUrlList)
                 {
-                    <div class="form-group websiteInput">
-                        <label class="col-sm-3 control-label require moreWebsiteLabel">@Lang.WebsiteURL @(index)</label>
-                        <div class="col-sm-4">
-                            <input class="form-control urlInput" type="text" value="@item" />
+                        <div class="form-group websiteInput">
+                            <label class="col-sm-3 control-label require moreWebsiteLabel">@Lang.WebsiteURL @(index)</label>
+                            <div class="col-sm-4">
+                                <input class="form-control urlInput" type="text" value="@item" />
+                            </div>
+                            <div class="col-sm-1">
+                                <button type="button" class="btn btn-submit btnDeleteUrl">@Lang.Del</button>
+                            </div>
                         </div>
-                        <div class="col-sm-1">
-                            <button type="button" class="btn btn-submit btnDeleteUrl">@Lang.Del</button>
-                        </div>
-                    </div>
 
-                    index++;
-                }
-            }
-        </div>
-
-        <div class="form-group">
-            <div class="col-sm-4">
-                <label class="radio-inline">
-                    <input type="radio" name="HasWebSite" id="hasNoWebSite"> @Lang.NoWebsite
-                </label>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="col-sm-3 control-label require">@Lang.DescWebsite</label>
-            <div class="col-sm-4">
-                <textarea id="txtNoSiteDesc" class="form-control" rows="5">@Model.NoSiteDesc</textarea>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="info-group">
-    <div class="title">
-        <span class="text">@Lang.Preference</span>
-    </div>
-    <div class="form-horizontal">
-        <div class="form-group">
-            <label class="col-sm-3 control-label">@Lang.Language</label>
-            <div class="col-sm-4">
-                <p class="form-control-static">@Model.LanguageName</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="info-group">
-    <div class="title">
-        <span class="text">@Lang.PaymentInfor</span>
-    </div>
-    <div class="form-horizontal">
-        <div class="form-group">
-            <label class="col-sm-3 control-label">@Lang.PaymentMethod</label>
-            <div class="col-sm-4">
-                <label class="radio-inline">
-                    <input type="radio" checked /> @Lang._12BETPlayerAcc
-                </label>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="col-sm-3 control-label require">@Lang.Username</label>
-            <div class="col-sm-4">
-                @if (string.IsNullOrEmpty(Model.PlayerUsername))
-                {
-                    <input id="txtPlayerUserName" class="form-control" type="text" value="" />
-                }
-                else
-                {
-                    <p class="form-control-static">@Model.PlayerUsername (@Lang.NonDeposit)</p>
+                        index++;
+                    }
                 }
             </div>
-        </div>
 
-        <div class="col-sm-offset-3 button-block">
-            <button id="btnMyAccountSubmit" class="btn btn-submit" type="button">@Lang.Submit</button>
-            <button class="btn btn-submit" type="button">@Lang.Cancel</button>
+            <div class="form-group">
+                <div class="col-sm-4">
+                    <label class="radio-inline">
+                        <input type="radio" name="HasWebSite" id="hasNoWebSite"> @Lang.NoWebsite
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label require">@Lang.DescWebsite</label>
+                <div class="col-sm-4">
+                    <textarea id="txtNoSiteDesc" class="form-control" rows="5">@Model.NoSiteDesc</textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-group">
+        <div class="title">
+            <span class="text">@Lang.Preference</span>
+        </div>
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-3 control-label">@Lang.Language</label>
+                <div class="col-sm-4">
+                    <p class="form-control-static">@Model.LanguageName</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-group">
+        <div class="title">
+            <span class="text">@Lang.PaymentInfor</span>
+        </div>
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-3 control-label">@Lang.PaymentMethod</label>
+                <div class="col-sm-4">
+                    <label class="radio-inline">
+                        <input type="radio" checked /> @Lang._12BETPlayerAcc
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label require">@Lang.Username</label>
+                <div class="col-sm-4">
+                    @if (string.IsNullOrEmpty(Model.PlayerUsername))
+                    {
+                        <input id="txtPlayerUserName" class="form-control" type="text" value="" />
+                    }
+                    else
+                    {
+                        <p class="form-control-static">@Model.PlayerUsername (@Lang.NonDeposit)</p>
+                    }
+                </div>
+            </div>
+
+            <div class="col-sm-offset-3 button-block">
+                <button id="btnMyAccountSubmit" class="btn btn-submit" type="button">@Lang.Submit</button>
+                <button class="btn btn-submit" type="button">@Lang.Cancel</button>
+            </div>
         </div>
     </div>
 </div>

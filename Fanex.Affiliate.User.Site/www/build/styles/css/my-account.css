@@ -1,13 +1,5 @@
-﻿.button-group .btn {
-  margin-left: 10px; }
-
-.info-group .item .value {
-  text-align: left; }
-
-.form-static {
+﻿.account-information .form-group {
   margin-bottom: 0; }
-  .form-static .control-label {
-    padding-top: 0;
-    padding-left: 10px;
-    font-weight: normal; }
+  .account-information .form-group .form-control {
+    margin-bottom: 10px; }
 

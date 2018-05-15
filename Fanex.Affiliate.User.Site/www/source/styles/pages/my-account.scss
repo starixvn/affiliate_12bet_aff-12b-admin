@@ -1,23 +1,9 @@
-﻿.button-group {
-    .btn {
-        margin-left: 10px;
-    }
-}
+﻿.account-information {
+    .form-group {
+        margin-bottom: 0;
 
-.info-group {
-    .item {
-        .value {
-            text-align: left;
+        .form-control {
+            margin-bottom: 10px;
         }
-    }
-}
-
-.form-static {
-    margin-bottom: 0;
-
-    .control-label {
-        padding-top: 0;
-        padding-left: 10px;
-        font-weight: normal;
     }
 }

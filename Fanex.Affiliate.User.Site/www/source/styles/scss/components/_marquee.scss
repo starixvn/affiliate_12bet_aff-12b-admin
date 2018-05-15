@@ -1,0 +1,50 @@
+﻿.marquee-container {
+    overflow: hidden;
+    position: relative;
+
+    .marquee-content {
+        /* Starting position */
+        -moz-transform: translateX(100%);
+        -webkit-transform: translateX(100%);
+        transform: translateX(100%);
+        /* Apply animation to this element */
+        -moz-animation: marqueekey 30s linear infinite;
+        -webkit-animation: marqueekey 30s linear infinite;
+        animation: marqueekey 30s linear infinite;
+    }
+}
+
+/* Move it (define the animation) */
+@-moz-keyframes marqueekey {
+    0% {
+        -moz-transform: translateX(100%);
+    }
+
+    100% {
+        -moz-transform: translateX(-100%);
+    }
+}
+
+@-webkit-keyframes marqueekey {
+    0% {
+        -webkit-transform: translateX(100%);
+    }
+
+    100% {
+        -webkit-transform: translateX(-100%);
+    }
+}
+
+@keyframes marqueekey {
+    0% {
+        -moz-transform: translateX(100%); /* Firefox bug fix */
+        -webkit-transform: translateX(100%); /* Firefox bug fix */
+        transform: translateX(100%);
+    }
+
+    100% {
+        -moz-transform: translateX(-100%); /* Firefox bug fix */
+        -webkit-transform: translateX(-100%); /* Firefox bug fix */
+        transform: translateX(-100%);
+    }
+}

@@ -72,19 +72,50 @@
             </div>
             <div class="collapse navbar-collapse menu" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav list-unstyled">
-                    <li><a class="menu-item active" href="@Url.Action("Index", "Home")">@Lang.Home</a></li>
-                    <li><a class="menu-item" href="@Url.Action("Index", "CommissionStructure")">@Lang.CommissionStructure</a></li>
-                    <li><a class="menu-item" href="@Url.Action("Index", "Product")">@Lang.Product</a></li>
-                    <li><a class="menu-item" href="@Url.Action("Index", "Promotion")">@Lang.Promotion</a></li>
-                    <li><a class="menu-item" href="@Url.Action("Index", "TermAndCondition")">@Lang.TermAndCondition</a></li>
-                    <li><a class="menu-item" href="@Url.Action("Index", "FAQ")">@Lang.Faqs</a></li>
-                    <li><a class="menu-item" href="@Url.Action("Index", "ContactUs")">@Lang.ContactUs</a></li>
+                    @{
+                        var controllerName = ViewContext.RouteData.Values["Controller"].ToString();
+                    }
+                    <li>
+                        <a class="menu-item @(controllerName == "Home" ? "active" : string.Empty)" href="@Url.Action("Index", "Home")">
+                            @Lang.Home
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu-item @(controllerName == "CommissionStructure" ? "active" : string.Empty)" href="@Url.Action("Index", "CommissionStructure")">
+                            @Lang.CommissionStructure
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu-item @(controllerName == "Product" ? "active" : string.Empty)" href="@Url.Action("Index", "Product")">
+                            @Lang.Product
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu-item @(controllerName == "Promotion" ? "active" : string.Empty)" href="@Url.Action("Index", "Promotion")">
+                            @Lang.Promotion
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu-item @(controllerName == "TermAndCondition" ? "active" : string.Empty)" href="@Url.Action("Index", "TermAndCondition")">
+                            @Lang.TermAndCondition
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu-item @(controllerName == "FAQ" ? "active" : string.Empty)" href="@Url.Action("Index", "FAQ")">
+                            @Lang.Faqs
+                        </a>
+                    </li>
+                    <li>
+                        <a class="menu-item @(controllerName == "ContactUs" ? "active" : string.Empty)" href="@Url.Action("Index", "ContactUs")">
+                            @Lang.ContactUs
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
         <div class="hot-news">
             <div class="title">@Lang.HotNews</div>
-            <div class="message">Enter your content</div>
+            <div class="message"><div class="marquee-container"><p class="marquee-content">Enter your content</p></div></div>
         </div>
     </div>
 
