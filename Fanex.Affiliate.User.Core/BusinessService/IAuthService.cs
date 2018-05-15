@@ -10,5 +10,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         int GetOnUserId(OnUserIdParam onUserIdParam);
 
         string GetSessionId(int onUserId);
+
+        bool Recheckin(int onUserId, bool isInternal);
     }
 }

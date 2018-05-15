@@ -56,6 +56,11 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return _authRepository.GetSessionId(onUserId);
         }
 
+        public bool Recheckin(int onUserId, bool isInternal)
+        {
+            return _authRepository.Recheckin(onUserId, isInternal);
+        }
+
         private LoginResultParam GetLoginResultParam(UserLoginParam userParam, AuthorizedUserInfo userInfo, bool isInternal)
         {
             var isMatchPassword = false;

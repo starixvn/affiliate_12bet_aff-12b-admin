@@ -384,7 +384,23 @@ input[type="checkbox"], input[type="radio"] {
   margin-left: 8px;
   position: relative; }
   .language-container #selectedLanguage {
-    cursor: pointer; }
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block; }
+    .language-container #selectedLanguage:hover {
+      text-decoration: none; }
+    .language-container #selectedLanguage:focus, .language-container #selectedLanguage:active {
+      outline: none; }
+      .language-container #selectedLanguage:focus + .language-list-wrapper, .language-container #selectedLanguage:active + .language-list-wrapper {
+        display: block; }
+    .language-container #selectedLanguage + .language-list-wrapper {
+      display: none; }
+      .language-container #selectedLanguage + .language-list-wrapper:hover, .language-container #selectedLanguage + .language-list-wrapper:focus {
+        display: block; }
   .language-container .language-selection {
     background: transparent;
     color: #fff;
@@ -402,9 +418,12 @@ input[type="checkbox"], input[type="radio"] {
     z-index: 100;
     width: 175px;
     padding: 5px 0;
-    font-size: 13px; }
+    font-size: 13px;
+    top: 25px;
+    left: 0; }
     .language-container .language-list-wrapper .language-list {
-      line-height: 15px; }
+      line-height: 15px;
+      text-align: left; }
       .language-container .language-list-wrapper .language-list .language-item {
         padding: 3px 20px;
         width: 100%;

@@ -16,7 +16,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600" rel="stylesheet">
     <link rel="stylesheet" href="http://cdn.materialdesignicons.com/2.1.19/css/materialdesignicons.min.css">
-    <link href="~/www/build/styles/css/bootstrap.min.css" rel="stylesheet" />   
+    <link href="~/www/build/styles/css/bootstrap.min.css" rel="stylesheet" />
     <link href="@Url.RenderLink("~/www/build/styles/css/main.css")" rel="stylesheet" />
     @RenderSection("styles", required: false)
 </head>
@@ -35,20 +35,21 @@
 
                         <div class="language-container">
                             <div class="language-selection">
-                                <p id="selectedLanguage">
+                                <button class="select-language" id="selectedLanguage">
                                     <span><i class="flag flag-@sessionService.CurrentLanguage"></i>@(languageDictionary[sessionService.CurrentLanguage])</span>
                                     <i class="caret"></i>
-                                </p>
-                            </div>
-                            <div class="language-list-wrapper" id="languageList" style="display: none;">
-                                <ul class="list-unstyled language-list">
-                                    @foreach (var language in languageDictionary)
-                                    {
-                                        <li>
-                                            <a href="javascript:;" class="language-item" data-option="@language.Key"><i class="flag flag-@language.Key"></i>@language.Value</a>
-                                        </li>
-                                    }
-                                </ul>
+                                </button>
+
+                                <div class="language-list-wrapper" id="languageList">
+                                    <ul class="list-unstyled language-list">
+                                        @foreach (var language in languageDictionary)
+                                        {
+                                            <li>
+                                                <a href="javascript:;" class="language-item" data-option="@language.Key"><i class="flag flag-@language.Key"></i>@language.Value</a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -167,8 +168,14 @@
 
     <script src="~/www/build/js/lib/jquery-3.3.1.min.js"></script>
     <script src="~/www/build/js/lib/bootstrap.min.js"></script>
-    <script src="@Url.RenderLink("~/www/build/js/layout.js")"></script>
     <script src="@Url.RenderLink("~/www/build/js/site.js")"></script>
+    <script src="@Url.RenderLink("~/www/build/js/layout.js")"></script>
+
+    @if (userSession != null)
+    {
+        <script src="@Url.RenderLink("~/www/build/js/recheckin.js")"></script>
+    }
+
     @RenderSection("scripts", required: false)
 </body>
 </html>

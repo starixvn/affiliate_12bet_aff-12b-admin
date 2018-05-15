@@ -58,5 +58,23 @@ namespace Fanex.Affiliate.User.Core.Repository
             }
 
         }
+
+        public bool Recheckin(int onUserId, bool isInternal)
+        {
+            const string spKey = "Aff_Recheckin";
+            var dbMode = isInternal ? DBMode.View : DBMode.Main;
+            var parameterSet = new
+            {
+                On_UserId = onUserId,
+                IsKickedOut = true
+            };
+
+            using (var dataBox = new ObjectDBBuilder(spKey, dbMode))
+            {
+                dataBox.DB.ExecuteNonQuery(parameterSet);
+            }
+
+            return parameterSet.IsKickedOut;
+        }
     }
 }

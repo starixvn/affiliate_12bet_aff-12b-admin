@@ -1,4 +1,4 @@
-(function ($) {
+var Layout = (function ($) {
     function initSlider() {
         var $mainBanner = $('#mainBanner');
         $mainBanner.carousel();
@@ -7,14 +7,9 @@
     var _me = {
         initialize: function () {
             initSlider();
-
             _me.initEvent();
         },
         initEvent: function () {
-            $("#selectedLanguage").on("click", function () {
-                $("#languageList").toggle();
-            });
-
             $("#languageList").on("click", ".language-item", function () {
                 var $selectedItem = $(this);
                 var selectedValue = $selectedItem.data("option");
@@ -38,5 +33,7 @@
         }
     }
 
-    _me.initialize();
+    return _me;
 })(jQuery);
+
+Layout.initialize();

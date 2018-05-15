@@ -295,6 +295,10 @@
     <Content Include="www\build\js\myaccount.min.js">
       <DependentUpon>myaccount.js</DependentUpon>
     </Content>
+    <Content Include="www\build\js\recheckin.js" />
+    <Content Include="www\build\js\recheckin.min.js">
+      <DependentUpon>recheckin.js</DependentUpon>
+    </Content>
     <Content Include="www\build\js\site.js" />
     <Content Include="www\build\js\site.min.js">
       <DependentUpon>site.js</DependentUpon>
@@ -405,6 +409,7 @@
     <Content Include="www\source\js\pages\statement-history.js" />
     <Content Include="www\source\js\pages\test.js" />
     <Content Include="www\source\js\pages\user-panel.js" />
+    <Content Include="www\source\js\recheckin.js" />
     <Content Include="www\source\js\site.js" />
     <Content Include="www\source\styles\css\bootstrap.css" />
     <Content Include="www\source\styles\css\bootstrap.min.css" />

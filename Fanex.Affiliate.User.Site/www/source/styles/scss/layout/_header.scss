@@ -145,7 +145,33 @@
     position: relative;
 
     #selectedLanguage {
+        width: 100%;
+        height: 100%;
+        border: none;
+        background: transparent;
+        color: #fff;
         cursor: pointer;
+        display: inline-block;
+
+        &:hover {
+            text-decoration: none;
+        }
+
+        &:focus, &:active {
+            outline: none;
+
+            & + .language-list-wrapper {
+                display: block;
+            }
+        }
+
+        & + .language-list-wrapper {
+            display: none;
+
+            &:hover, &:focus {
+                display: block;
+            }
+        }
     }
 
     .language-selection {
@@ -168,9 +194,12 @@
         width: 175px;
         padding: 5px 0;
         font-size: 13px;
+        top: 25px;
+        left: 0;
 
         .language-list {
             line-height: 15px;
+            text-align: left;
 
             .language-item {
                 padding: 3px 20px;

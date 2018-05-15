@@ -13,6 +13,8 @@
     <Setting Key="Aff_AffiliateLogin_LoginResultUpd_view" SpName="Aff_AffiliateLogin_LoginResultUpd" DbName="affiliate_12bet_view" />
     <Setting Key="Aff_CheckIn" SpName="Aff_CheckIn" DbName="affiliate_12bet" />
     <Setting Key="Aff_CheckIn_view" SpName="Aff_CheckIn" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_Recheckin" SpName="Aff_Recheckin" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Recheckin_view" SpName="Aff_Recheckin" DbName="affiliate_12bet_view" />  
   </Function>
 
   <Function Name="AccountInformation">

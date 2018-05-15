@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
+using System.Web.UI;
 using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.CoreService;
@@ -106,9 +107,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
         [HttpGet]
         public ActionResult SignOut()
         {
-            _cookieService.ClearAllCookies();
-            Session.Clear();
-            FormsAuthentication.SignOut();
+            DoSignOut();
 
             return RedirectToAction("Index", "Home");
         }
@@ -152,6 +151,26 @@ namespace Fanex.Affiliate.User.Core.Controllers
             return Redirect(Url.Action("Index", "UserPanel") + "/#AccountOverView");
         }
 
+        [HttpGet]
+        [AllowAnonymous]
+        [OutputCache(NoStore = true, Duration = 0, Location = OutputCacheLocation.None, VaryByParam = "*")]
+        public ActionResult ReCheckin()
+        {
+            var onUserId = SessionService.UserSession.OnUserId;
+            var isKickOut = onUserId > 0 && _authService.Recheckin(SessionService.UserSession.OnUserId, SessionService.IsInternal);
+
+            if (isKickOut)
+            {
+                DoSignOut();
+            }
+
+            return Json(new
+            {
+                IsKickOut = isKickOut,
+                Message = isKickOut ? Lang.Msgkickout : string.Empty
+            }, JsonRequestBehavior.AllowGet);
+        }
+
         private OnUserIdParam GetOnUserIdParam(int affId, string clientIpAddress, int adminId = 0)
         {
             return new OnUserIdParam
@@ -167,10 +186,10 @@ namespace Fanex.Affiliate.User.Core.Controllers
 
         private bool IsValidCaptcha(string validationKey)
         {
-            if (!AppSetting.IsProduction)
-            {
-                return true;
-            }
+            //if (!AppSetting.IsProduction)
+            //{
+            //    return true;
+            //}
 
             return validationKey.Equals(SessionService.CaptchaCode);
         }
@@ -182,6 +201,13 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 IsOk = false,
                 Message = message
             };
+        }
+
+        private void DoSignOut()
+        {
+            _cookieService.ClearAllCookies();
+            Session.Clear();
+            FormsAuthentication.SignOut();
         }
     }
 }
