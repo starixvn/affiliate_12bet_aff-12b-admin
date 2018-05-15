@@ -482,6 +482,7 @@
     <Content Include="Views\TermAndCondition\Index.cshtml" />
     <Content Include="www\source\styles\pages\password.scss" />
     <Content Include="www\source\styles\scss\components\_login-dialog.scss" />
+    <Content Include="www\source\styles\scss\components\_marquee.scss" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
