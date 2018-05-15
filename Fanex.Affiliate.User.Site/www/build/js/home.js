@@ -29,6 +29,7 @@ var Home = (function ($) {
             });
 
             $("#loginDialog").on("hide.bs.modal", function (e) {
+                $("#loginDialogcaptchaImg").attr("src", "");
                 Login.generateCaptcha();
             });
         },

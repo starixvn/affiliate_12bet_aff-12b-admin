@@ -9,5 +9,7 @@
         public int AffId { get; set; }
 
         public int OnUserId { get; set; }
+
+        public byte AffType { get; set; }
     }
 }

@@ -3,5 +3,11 @@
     public class HomeViewModel
     {
         public bool IsAuthenticated { get; set; }
+
+        public string SignUpLink { get; set; }
+
+        public string BannerLink { get; set; }
+
+        public string Promotion12BetLink { get; set; }
     }
 }

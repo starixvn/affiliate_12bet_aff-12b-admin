@@ -191,6 +191,7 @@
     <Compile Include="DTO\UserPanel\CommissionSettingDetail.cs" />
     <Compile Include="DTO\UserSession.cs" />
     <Compile Include="DTO\ResultInfo.cs" />
+    <Compile Include="Enum\AffiliateType.cs" />
     <Compile Include="Extensions\HtmlHelperExtension.cs" />
     <Compile Include="Extensions\NumberFormatter.cs" />
     <Compile Include="Extensions\UrlHelperExtension.cs" />

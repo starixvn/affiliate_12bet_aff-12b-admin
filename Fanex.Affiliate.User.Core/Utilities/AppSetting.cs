@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Linq;
+using Fanex.Affiliate.User.Core.Enum;
 
 namespace Fanex.Affiliate.User.Core.Utilities
 {
@@ -17,6 +19,10 @@ namespace Fanex.Affiliate.User.Core.Utilities
         public IEnumerable<string> AllowedAffiliateTypes => GetValue("AllowedAffType").Split(',');
 
         public string JsVersion => GetValue("JsVersion");
+
+        public string Promotion12BetLink => GetValue("Promotion12BetLink");
+
+        public bool IsEuroSite => AllowedAffiliateTypes.Any(t => Convert.ToByte(t) == (byte)AffiliateType.European);
 
         public string GetValue(string key) => ConfigurationManager.AppSettings[key];
     }

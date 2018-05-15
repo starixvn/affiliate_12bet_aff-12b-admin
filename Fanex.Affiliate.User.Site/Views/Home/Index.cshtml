@@ -52,65 +52,71 @@
         </a>
     </div>
     <div class="news">
-        <div class="card">
-            <div class="card-content">
-                <h4 class="card-title">
-                    <span class="icon"><img src="~/www/build/styles/Images/icon-1.png" /></span>
-                    <span class="text">Apply 12BET Affiliate</span>
-                </h4>
-                <a href="@Url.Action("Index", "SignUp")" class="nounderline">
-                    <div class="img-content">
-                        <img class="img" src="~/www/build/styles/Images/advertise.png" />
+        <div class="item-wrapper first">
+            <div class="card">
+                <div class="card-content">
+                    <h4 class="card-title">
+                        <span class="icon"><img src="~/www/build/styles/Images/icon-1.png" /></span>
+                        <span class="text">Apply 12BET Affiliate</span>
+                    </h4>
+                    <a href="@Model.SignUpLink" class="nounderline">
+                        <div class="img-content">
+                            <img class="img-item img-responsive" src="~/www/build/styles/Images/advertise.png" />
+                        </div>
+                        <p class="text-content">
+                            As affiliates, you will earn commission on every player you referred to 12BET  over the course of the player's account life. Your online system will be  serving  you 24/7 for your usage.
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="item-wrapper">
+            <div class="card">
+                <div class="card-content">
+                    <h4 class="card-title">
+                        <span class="icon"><img src="~/www/build/styles/Images/icon-2.png" /></span>
+                        <span class="text">Monthly Offers</span>
+                    </h4>
+                    <div class="card-body">
+                        <div class="offers-content">
+                            <p class="text-italic-big">Road to</p>
+                            <p class="text-big">World Cup 2018</p>
+                            <p class="date"><span class="text-uppercase">Russia</span> 14 Jun - 15 July</p>
+                            <p class="text-small">Boost up affiliate revenue to win free ticket and accomodation</p>
+                            <a href="@Url.Action("Index", "Promotion")" class="btn btn-join">Join Now!</a>
+                        </div>
                     </div>
+                    <p class="text-content text-uppercase">
+                        Contact us to participate the offer!
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="item-wrapper last">
+            <div class="card" id="affiliateNews">
+                <div class="card-content">
+                    <h4 class="card-title">
+                        <span class="icon"><img src="~/www/build/styles/Images/icon-3.png" /></span>
+                        <span class="text">12BET Affiliate News</span>
+                    </h4>
                     <div class="text-content">
-                        As affiliates, you will earn commission on every player you referred to 12BET  over the course of the player's account life. Your online system will be  serving  you 24/7 for your usage.
+                        <ul class="news-content">
+                            <li>
+                                <a class="nounderline" href="@Model.BannerLink" @(Model.IsAuthenticated ? "" : "id=loginLink")>
+                                    <span class="news-title">NEW BANNER IS AVAILABLE <span class="text-red">NEW!</span></span>
+                                    <span>You can now log in your affiliate account to get new banner - January 2018 version!</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Model.Promotion12BetLink" target="_blank" class="nounderline">
+                                    <span class="news-title">PREPARE FOR WORLD CUP 2018 <span class="text-red">NEW!</span></span>
+                                    <span>Get your website ready for up coming World Cup 2018, contact affiliate team for your best promoting plan today! </span>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
-                </a>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-content">
-                <h4 class="card-title">
-                    <span class="icon"><img src="~/www/build/styles/Images/icon-2.png" /></span>
-                    <span class="text">Monthly Offers</span>
-                </h4>
-                <div class="offers-content">
-                    <span class="text-italic-big">Road to</span>
-                    <span class="text-big">World Cup 2018</span>
-                    <span class="date"><span class="text-uppercase">Russia</span> 14 Jun - 15 July</span>
-                    <span class="text-small">Boost up affiliate revenue to win free ticket and accomodation</span>
-                    <a href="@Url.Action("Index", "Promotion")" class="btn btn-join">Join Now!</a>
-                </div>
-                <div class="text-content text-uppercase">
-                    Contact us to participate the offer!
-                </div>
-            </div>
-        </div>
-        <div class="card" id="affiliateNews">
-            <div class="card-content">
-                <h4 class="card-title">
-                    <span class="icon"><img src="~/www/build/styles/Images/icon-3.png" /></span>
-                    <span class="text">12BET Affiliate News</span>
-                </h4>
-                <div class="text-content">
-                    <ul class="news-content">
-                        <li>
-                            @{
-                                var mediaUrl = Url.Action("Index", "UserPanel") + "/#MediaGallery";
-                                var attributeString = Model.IsAuthenticated ? "href=" + mediaUrl : "href=javascript:; id=loginLink";
-                            }
-                            <a class="nounderline" @(attributeString)>
-                                <span class="news-title">NEW BANNER IS AVAILABLE <span class="text-red">NEW!</span></span>
-                                <span>You can now log in your affiliate account to get new banner - January 2018 version!</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:;" class="nounderline">
-                                <span class="news-title">PREPARE FOR WORLD CUP 2018 <span class="text-red">NEW!</span></span>
-                                <span>Get your website ready for up coming World Cup 2018, contact affiliate team for your best promoting plan today! </span>
-                            </a>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </div>

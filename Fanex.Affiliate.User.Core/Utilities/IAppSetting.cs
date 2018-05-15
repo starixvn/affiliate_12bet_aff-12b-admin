@@ -17,5 +17,9 @@ namespace Fanex.Affiliate.User.Core.Utilities
         int ServerId { get; }
 
         string JsVersion { get; }
+
+        string Promotion12BetLink { get; }
+
+        bool IsEuroSite { get; }
     }
 }

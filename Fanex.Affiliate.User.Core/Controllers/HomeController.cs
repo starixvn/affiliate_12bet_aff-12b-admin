@@ -28,9 +28,24 @@ namespace Fanex.Affiliate.User.Core.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            var isAuthenticated = HttpContext.Request.IsAuthenticated && SessionService.UserSession != null;
+
+            var shortedLanguageCode = SystemLanguage.ShortedDefaultCode;
+            if (AppSetting.IsEuroSite)
+            {
+                shortedLanguageCode = SystemLanguage.ShortedEuroCode;
+            }
+            else if (SystemLanguage.ShortedLanguageCode.ContainsKey(SessionService.CurrentLanguage))
+            {
+                shortedLanguageCode = SystemLanguage.ShortedLanguageCode[SessionService.CurrentLanguage];
+            }
+
             var viewModel = new HomeViewModel
             {
-                IsAuthenticated = HttpContext.Request.IsAuthenticated && SessionService.UserSession != null
+                IsAuthenticated = isAuthenticated,
+                SignUpLink = isAuthenticated ? Url.Action("Index", "UserPanel") + "/#AccountOverView" : Url.Action("Index", "SignUp"),
+                BannerLink = isAuthenticated ? Url.Action("Index", "UserPanel") + "/#MediaGallery" : "javascript:;",
+                Promotion12BetLink = AppSetting.Promotion12BetLink.Replace("{lang}", shortedLanguageCode)
             };
 
             return View(viewModel);
