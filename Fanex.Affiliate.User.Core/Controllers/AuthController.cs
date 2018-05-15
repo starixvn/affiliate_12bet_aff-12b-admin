@@ -27,6 +27,25 @@ namespace Fanex.Affiliate.User.Core.Controllers
             _cookieService = cookieService;
         }
 
+        [ChildActionOnly]
+        [HttpGet]
+        public ActionResult AuthenticationForm()
+        {
+            if (SessionService.UserSession == null)
+            {
+                var keyString = Generator.GetRandomString(32);
+                var ivString = Generator.GetRandomString(16);
+
+                ViewBag.KeyString = keyString;
+                ViewBag.IVString = ivString;
+
+                _cookieService.SetCookie(CookieName.EncryptionKey, keyString);
+                _cookieService.SetCookie(CookieName.InitializationVector, ivString);
+            }
+
+            return View();
+        }
+
         [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult SignIn(UserLoginParam userParam)

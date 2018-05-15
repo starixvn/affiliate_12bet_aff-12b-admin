@@ -52,30 +52,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="user-login" id="userLogin">
-                        @if (userSession != null)
-                        {
-                            <a href="@(Url.Action("Index", "UserPanel") + "/#MyAccount")" class="btn btn-signup"><span class="icon mdi mdi-account-circle"></span>@Lang.MyAcc @userSession.UserName</a>
-                            <a href="@Url.Action("SignOut", "Auth")" class="btn btn-login">@Lang.Logout</a>
-                        }
-                        else
-                        {
-                            <input class="text-field" id="txtUsername" type="text" placeholder="@Lang.Username" />
-                            <input class="text-field" id="txtPassword" type="password" placeholder="@Lang.Password" />
-                            <input class="text-field validation" id="txtValidation" type="text" placeholder="Validation" />
-                            <div class="validation-value"><img src="" alt="captcha" id="captchaImg" /></div>
-                            <a class="btn btn-forgot" title="@Lang.ForgetPassword" href="@Url.Action("Index", "PassWord")">
-                                <span class="mdi mdi-account-key"></span>
-                            </a>
-                            @Html.AntiForgeryToken()
-                            if (ViewBag.KeyString != null && ViewBag.IVString != null)
-                            {
-                                @Html.Hidden("KeyString", ViewBag.KeyString as string)
-                                @Html.Hidden("IVString", ViewBag.IVString as string)
-                            }
-                            <button class="btn btn-login" id="btnLogin" type="button">@Lang.Login</button>
-                        }
-                    </div>
+
+                    @{Html.RenderAction("AuthenticationForm", "Auth");}
                 </div>
             </div>
         </div>

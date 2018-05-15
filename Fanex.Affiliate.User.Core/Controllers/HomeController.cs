@@ -25,20 +25,9 @@ namespace Fanex.Affiliate.User.Core.Controllers
             _cookieService = cookieService;
         }
 
+        [HttpGet]
         public ActionResult Index()
         {
-            if (SessionService.UserSession == null)
-            {
-                var keyString = Generator.GetRandomString(32);
-                var ivString = Generator.GetRandomString(16);
-
-                ViewBag.KeyString = keyString;
-                ViewBag.IVString = ivString;
-
-                _cookieService.SetCookie(CookieName.EncryptionKey, keyString);
-                _cookieService.SetCookie(CookieName.InitializationVector, ivString);
-            }
-
             var viewModel = new HomeViewModel
             {
                 IsAuthenticated = HttpContext.Request.IsAuthenticated && SessionService.UserSession != null
@@ -47,6 +36,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
             return View(viewModel);
         }
 
+        [HttpGet]
         public ActionResult CaptchaImage()
         {
             var captcha = new Random().Next(1000, 9999).ToString();

@@ -4,7 +4,7 @@
     {
         string GetCookie(string name);
 
-        void SetCookie(string name, string value);
+        void SetCookie(string name, string value, bool httpOnly = true);
 
         void RemoveCookie(string name);
 

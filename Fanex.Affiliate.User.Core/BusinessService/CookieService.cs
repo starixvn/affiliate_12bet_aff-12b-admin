@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web;
+using System.Web.Security;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
 {
@@ -43,11 +44,18 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             }
         }
 
-        public void SetCookie(string name, string value)
+        public void SetCookie(string name, string value, bool httpOnly = true)
         {
-            var cookie = new HttpCookie(name, value);
+            var cookie = new HttpCookie(name, value)
+            {
+                HttpOnly = httpOnly
+            };
 
-            var cache = HttpContext.Current.Response.Cache;
+            var currentContext = HttpContext.Current;
+
+            cookie.Secure = FormsAuthentication.RequireSSL && currentContext.Request.IsSecureConnection;
+
+            var cache = currentContext.Response.Cache;
             cache.SetNoStore();
             cache.SetExpires(DateTime.Now.AddMinutes(-1));
             cache.SetCacheability(HttpCacheability.NoCache);

@@ -212,6 +212,7 @@
     </Content>
     <Content Include="App_Code\RazorHelper.cshtml" />
     <Content Include="Views\Password\Update.cshtml" />
+    <Content Include="Views\Auth\AuthenticationForm.cshtml" />
     <None Include="Views\Shared\Email\ForgetPassword\Content.en-GB.cshtml" />
     <None Include="Views\Shared\Email\ForgetPassword\Content.en-US.cshtml" />
     <None Include="Views\Shared\Email\ForgetPassword\Content.es-ES.cshtml" />
