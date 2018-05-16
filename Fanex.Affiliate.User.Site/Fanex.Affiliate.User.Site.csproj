@@ -201,6 +201,9 @@
     <Content Include="App_Data\SpConfig\SpName.local.xml">
       <DependentUpon>_SpName.tt</DependentUpon>
     </Content>
+    <Content Include="App_Data\SpConfig\SpName.master.xml">
+      <DependentUpon>_SpName.tt</DependentUpon>
+    </Content>
     <Content Include="App_Data\SpConfig\SpName.production.xml">
       <DependentUpon>_SpName.tt</DependentUpon>
     </Content>
@@ -228,6 +231,60 @@
     <Content Include="App_Data\SpConfig\_SpNameOriginal.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Configurations\AppSetting\AppSetting.asian.backupmnl.config">
+      <DependentUpon>AppSetting.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\AppSetting\AppSetting.asian.local.config">
+      <DependentUpon>AppSetting.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\AppSetting\AppSetting.asian.master.config">
+      <DependentUpon>AppSetting.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\AppSetting\AppSetting.asian.production.config">
+      <DependentUpon>AppSetting.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\AppSetting\AppSetting.asian.sit.config">
+      <DependentUpon>AppSetting.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\AppSetting\AppSetting.asian.uat.config">
+      <DependentUpon>AppSetting.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\AppSetting\AppSetting.euro.backupmnl.config">
+      <DependentUpon>AppSetting.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\AppSetting\AppSetting.euro.local.config">
+      <DependentUpon>AppSetting.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\AppSetting\AppSetting.euro.master.config">
+      <DependentUpon>AppSetting.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\AppSetting\AppSetting.euro.production.config">
+      <DependentUpon>AppSetting.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\AppSetting\AppSetting.euro.sit.config">
+      <DependentUpon>AppSetting.tt</DependentUpon>
+    </Content>
+    <None Include="Configurations\AppSetting\AppSetting.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AppSetting.txt</LastGenOutput>
+    </None>
+    <Content Include="Configurations\AppSetting\AppSetting.euro.uat.config">
+      <DependentUpon>AppSetting.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\AppSetting\AppSetting.txt">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppSetting.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\Web\Web.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Web.txt</LastGenOutput>
+    </Content>
+    <Content Include="Configurations\Web\Web.txt">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Web.tt</DependentUpon>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="ApplicationInsights.config">
@@ -242,6 +299,78 @@
     <Content Include="App_Code\RazorHelper.cshtml" />
     <Content Include="Views\Password\Update.cshtml" />
     <Content Include="Views\Auth\AuthenticationForm.cshtml" />
+    <Content Include="Configurations\ConnectionString\ConnectionString.asian.local.config" />
+    <Content Include="Configurations\ConnectionString\ConnectionString.asian.master.config" />
+    <Content Include="Configurations\ConnectionString\ConnectionString.asian.uat.config" />
+    <Content Include="Configurations\ConnectionString\ConnectionString.asian.sit.config" />
+    <Content Include="Configurations\ConnectionString\ConnectionString.asian.production.config" />
+    <Content Include="Configurations\ConnectionString\ConnectionString.asian.backupmnl.config" />
+    <Content Include="Configurations\ConnectionString\ConnectionString.euro.backupmnl.config" />
+    <Content Include="Configurations\ConnectionString\ConnectionString.euro.local.config" />
+    <Content Include="Configurations\ConnectionString\ConnectionString.euro.master.config" />
+    <Content Include="Configurations\ConnectionString\ConnectionString.euro.production.config" />
+    <Content Include="Configurations\ConnectionString\ConnectionString.euro.sit.config" />
+    <Content Include="Configurations\ConnectionString\ConnectionString.euro.uat.config" />
+    <Content Include="Configurations\AppSetting\Transform\asian.local.config" />
+    <Content Include="Configurations\AppSetting\Transform\asian.sit.config" />
+    <Content Include="Configurations\AppSetting\Transform\asian.uat.config" />
+    <Content Include="Configurations\AppSetting\Transform\asian.production.config" />
+    <Content Include="Configurations\AppSetting\Transform\euro.local.config" />
+    <Content Include="Configurations\AppSetting\Transform\euro.production.config" />
+    <Content Include="Configurations\AppSetting\Transform\euro.sit.config" />
+    <Content Include="Configurations\AppSetting\Transform\euro.uat.config" />
+    <Content Include="Configurations\Web\Transform\asian.local.config" />
+    <Content Include="Configurations\Web\Transform\asian.production.config" />
+    <Content Include="Configurations\Web\Transform\asian.sit.config" />
+    <Content Include="Configurations\Web\Transform\asian.uat.config" />
+    <Content Include="Configurations\Web\Transform\euro.local.config" />
+    <Content Include="Configurations\Web\Transform\euro.production.config" />
+    <Content Include="Configurations\Web\Transform\euro.sit.config" />
+    <Content Include="Configurations\Web\Transform\euro.uat.config" />
+    <Content Include="Configurations\Web\Transform\asian.master.config" />
+    <Content Include="Configurations\Web\Transform\asian.backupmnl.config" />
+    <Content Include="Configurations\Web\Transform\euro.master.config" />
+    <Content Include="Configurations\Web\Transform\euro.backupmnl.config" />
+    <Content Include="Configurations\AppSetting\Transform\asian.backupmnl.config" />
+    <Content Include="Configurations\AppSetting\Transform\asian.master.config" />
+    <Content Include="Configurations\AppSetting\Transform\euro.backupmnl.config" />
+    <Content Include="Configurations\AppSetting\Transform\euro.master.config" />
+    <None Include="Configurations\Web\Web.asian.backupmnl.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\Web\Web.asian.local.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\Web\Web.asian.master.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\Web\Web.asian.production.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\Web\Web.asian.sit.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\Web\Web.asian.uat.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\Web\Web.euro.backupmnl.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\Web\Web.euro.local.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\Web\Web.euro.master.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\Web\Web.euro.production.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\Web\Web.euro.sit.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </None>
+    <None Include="Configurations\Web\Web.euro.uat.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </None>
     <None Include="Views\Shared\Email\ForgetPassword\Content.en-GB.cshtml" />
     <None Include="Views\Shared\Email\ForgetPassword\Content.en-US.cshtml" />
     <None Include="Views\Shared\Email\ForgetPassword\Content.es-ES.cshtml" />
@@ -782,6 +911,7 @@
       <Name>Fanex.Affiliate.User.Core</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

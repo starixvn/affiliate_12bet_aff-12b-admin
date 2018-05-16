@@ -1,5 +1,8 @@
-﻿namespace Fanex.Affiliate.User.Core.DTO.Auth
+﻿using System;
+
+namespace Fanex.Affiliate.User.Core.DTO.Auth
 {
+    [Serializable]
     public class UserSession
     {
         public string PreferredLanguage { get; set; }
