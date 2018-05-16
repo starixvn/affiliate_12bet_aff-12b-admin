@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Functions SiteId="32" SiteName="12Bet">
+  <Function Name="Account Overview">
+    <Setting Key="Aff_StatisticsSel" SpName="Aff_StatisticsSel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_StatisticsSel_view" SpName="Aff_StatisticsSel" DbName="affiliate_12bet_view" />
+  </Function>
+
+  <Function Name="Authorization">
+    <Setting Key="Aff_SessionIdSel_view" SpName="Aff_SessionIdSel" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_AffiliateLogin_UserInfoSel" SpName="Aff_AffiliateLogin_UserInfoSel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_AffiliateLogin_UserInfoSel_view" SpName="Aff_AffiliateLogin_UserInfoSel" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_AffiliateLogin_LoginResultUpd" SpName="Aff_AffiliateLogin_LoginResultUpd" DbName="affiliate_12bet" />
+    <Setting Key="Aff_AffiliateLogin_LoginResultUpd_view" SpName="Aff_AffiliateLogin_LoginResultUpd" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_CheckIn" SpName="Aff_CheckIn" DbName="affiliate_12bet" />
+    <Setting Key="Aff_CheckIn_view" SpName="Aff_CheckIn" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_Recheckin" SpName="Aff_Recheckin" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Recheckin_view" SpName="Aff_Recheckin" DbName="affiliate_12bet_view" />
+  </Function>
+
+  <Function Name="AccountInformation">
+    <Setting Key="Aff_AffiliateSelEditInfo" SpName="Aff_AffiliateSelEditInfo" DbName="affiliate_12bet" />
+    <Setting Key="Aff_AffiliateSelEditInfo_view" SpName="Aff_AffiliateSelEditInfo" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_AffiliateUpdInfo" SpName="Aff_AffiliateUpdInfo" DbName="affiliate_12bet" />
+  </Function>
+
+  <Function Name="DepositInformation">
+    <Setting Key="Deposit_GetCustDataForCreateIBCACByUserName" SpName="Deposit_GetCustDataForCreateIBCACByUserName" DbName="deposit" />
+    <Setting Key="Deposit_GetCustDataForCreateIBCACByUserName_view" SpName="Deposit_GetCustDataForCreateIBCACByUserName" DbName="deposit_view" />
+  </Function>
+</Functions>
