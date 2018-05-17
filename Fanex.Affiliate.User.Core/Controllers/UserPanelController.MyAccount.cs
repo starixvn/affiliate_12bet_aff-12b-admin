@@ -52,9 +52,9 @@
                 AffId = userSession.AffId,
                 Phone = Server.HtmlEncode(model.Phone),
                 MobilePhone = Server.HtmlEncode(model.MobilePhone),
-                SiteUrl = Server.HtmlEncode(model.SiteUrl),
-                MoreSiteUrls = Server.HtmlEncode(model.MoreSiteUrls),
-                NoSiteDesc = Server.HtmlEncode(model.NoSiteDesc),
+                SiteUrl = Server.HtmlEncode(model.SiteUrl ?? string.Empty),
+                MoreSiteUrls = Server.HtmlEncode(model.MoreSiteUrls ?? string.Empty),
+                NoSiteDesc = Server.HtmlEncode(model.NoSiteDesc ?? string.Empty),
                 Player_UserName = model.PlayerUsername,
                 Ip = RequestHelper.GetClientIPAddress(),
                 Language = SessionService.CurrentLanguage

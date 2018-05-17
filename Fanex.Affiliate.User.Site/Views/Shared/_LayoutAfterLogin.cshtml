@@ -13,23 +13,23 @@
 <div class="main after-login">
     <div class="content-menu">
         <ul class="menu list-unstyled" id="mainMenu">
-            <li><a class="menu-item" id="menuAccountOverView" href="@(Url.Action("Index", "UserPanel") + "/#AccountOverView")">Account overview</a></li>
-            <li><a class="menu-item" id="menuStatementHistory" href="@(Url.Action("Index", "UserPanel") + "/#StatementHistory")">Statement history</a></li>
-            <li><a class="menu-item" id="menuMyAccount" href="@(Url.Action("Index", "UserPanel") + "/#MyAccount")">My account</a></li>
-            <li><a class="menu-item" id="menuPaymentRequest" href="@(Url.Action("Index", "UserPanel") + "/#PaymentRequest")">Payment request</a></li>
+            <li><a class="menu-item" id="menuAccountOverView" href="@(Url.Action("Index", "UserPanel") + "/#AccountOverView")">@Lang.AccOverview</a></li>
+            <li><a class="menu-item" id="menuStatementHistory" href="@(Url.Action("Index", "UserPanel") + "/#StatementHistory")">@Lang.StatementHistory</a></li>
+            <li><a class="menu-item" id="menuMyAccount" href="@(Url.Action("Index", "UserPanel") + "/#MyAccount")">@Lang.MyAcc</a></li>
+            <li><a class="menu-item" id="menuPaymentRequest" href="@(Url.Action("Index", "UserPanel") + "/#PaymentRequest")">@Lang.PaymentRequest</a></li>
             <li>
                 <a class="menu-item parent" href="javascript:;">Marketing Tools <i class="caret"></i></a>
                 <ul class="menu submenu-container list-unstyled">
-                    <li><a class="menu-item" id="menuMediaGallery" href="@(Url.Action("Index", "UserPanel") + "/#MediaGallery")">Media gallery</a></li>
-                    <li><a class="menu-item" id="menuTextBox" href="@(Url.Action("Index", "UserPanel") + "/#TextBox")">Text box</a></li>
+                    <li><a class="menu-item" id="menuMediaGallery" href="@(Url.Action("Index", "UserPanel") + "/#MediaGallery")">@Lang.Media</a></li>
+                    <li><a class="menu-item" id="menuTextBox" href="@(Url.Action("Index", "UserPanel") + "/#TextBox")">@Lang.Text</a></li>
                 </ul>
             </li>
             <li>
                 <a class="menu-item parent" href="javascript:;">Statistics <i class="caret"></i></a>
                 <ul class="menu submenu-container list-unstyled">
-                    <li><a class="menu-item" id="menuTrackingStatistics" href="@(Url.Action("Index", "UserPanel") + "/#TrackingStatistics")">Tracking statistics</a></li>
-                    <li><a class="menu-item" id="menuReferrersStatistics" href="@(Url.Action("Index", "UserPanel") + "/#ReferrersStatistics")">Referrers statistics</a></li>
-                    <li><a class="menu-item" id="menuLandingPageStatistics" href="@(Url.Action("Index", "UserPanel") + "/#LandingPageStatistics")">Landing page statistics</a></li>
+                    <li><a class="menu-item" id="menuTrackingStatistics" href="@(Url.Action("Index", "UserPanel") + "/#TrackingStatistics")">@Lang.TrackingStatistics</a></li>
+                    <li><a class="menu-item" id="menuReferrersStatistics" href="@(Url.Action("Index", "UserPanel") + "/#ReferrersStatistics")">@Lang.Referrals</a></li>
+                    <li><a class="menu-item" id="menuLandingPageStatistics" href="@(Url.Action("Index", "UserPanel") + "/#LandingPageStatistics")">@Lang.LandingPages</a></li>
                 </ul>
             </li>
         </ul>

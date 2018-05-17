@@ -9,7 +9,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
     {
         public AccountInformationViewModel GetAccountInfo(int affId)
         {
-            const string uSpKey = "Aff_AffiliateSelEditInfo";
+            const string uSpKey = "Aff_AffiliateUser_UserInfoSel";
 
             using (var objectDb = new ObjectDBBuilder(uSpKey))
             {
@@ -41,7 +41,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
         public ResultInfo UpdateAccountInformation(UpdateAccountParam accountUpdateParam)
         {
-            const string uSpKey = "Aff_AffiliateUpdInfo";
+            const string uSpKey = "Aff_AffiliateUser_UserInfoUpd";
 
             using (var objectDb = new ObjectDBBuilder(uSpKey))
             {

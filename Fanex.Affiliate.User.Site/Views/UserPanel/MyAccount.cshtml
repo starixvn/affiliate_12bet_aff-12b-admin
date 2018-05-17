@@ -120,7 +120,7 @@
             <div class="form-group">
                 <div class="col-sm-4">
                     <label class="radio-inline">
-                        <input type="radio" name="HasWebSite" id="hasWebSite" checked /> @Lang.OwnWebsite
+                        <input type="radio" name="HasWebSite" id="hasWebSite" @(string.IsNullOrEmpty(Model.SiteUrl) ? string.Empty : "checked") /> @Lang.OwnWebsite
                     </label>
                 </div>
             </div>
@@ -159,7 +159,7 @@
             <div class="form-group">
                 <div class="col-sm-4">
                     <label class="radio-inline">
-                        <input type="radio" name="HasWebSite" id="hasNoWebSite"> @Lang.NoWebsite
+                        <input type="radio" name="HasWebSite" id="hasNoWebSite" @(string.IsNullOrEmpty(Model.NoSiteDesc) ? string.Empty : "checked")> @Lang.NoWebsite
                     </label>
                 </div>
             </div>
@@ -231,7 +231,8 @@
         requireMobile: '@Lang.errMobileNumberEmpty',
         requireSiteUrl: '@Lang.WebsiteURLIsRequired',
         requireNoWebsiteDesc: '@Lang.DescWebsite',
-        requirePlayerUserName: '@Lang.BETUserNameIsRequired'
+        requirePlayerUserName: '@Lang.BETUserNameIsRequired',
+        updateSuccessfully: '@Lang.UpdateAccSuccess'
     }
 </script>
 

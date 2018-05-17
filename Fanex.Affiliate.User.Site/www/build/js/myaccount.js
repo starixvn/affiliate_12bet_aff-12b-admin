@@ -45,6 +45,12 @@ var MyAccount = (function ($) {
                     contentType: "application/x-www-form-urlencoded; charset=UTF-8",
                     success: function success(response) {
                         console.log(response);
+                        var message = response.IsOk ? LangResource.updateSuccessfully : response.Message;
+                        window.alert(message);
+
+                        if (response.IsOk) {
+                            window.location.reload();
+                        }
                     }
                 });
             });

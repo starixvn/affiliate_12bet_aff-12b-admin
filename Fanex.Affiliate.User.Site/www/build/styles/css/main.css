@@ -847,8 +847,9 @@ label.require:after {
 
 .moving-block {
   position: fixed;
-  bottom: 165px;
-  right: 145px; }
+  bottom: 15px;
+  right: 145px;
+  z-index: 1; }
 
 #mainPanel {
   padding-bottom: 15px;
