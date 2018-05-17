@@ -15,7 +15,7 @@
                 type: "GET",
                 dataType: "html",
                 cache: false,
-                url: "/UserPanel/DailyEarning",
+                url: Site.resolveRelativeUrl("UserPanel/DailyEarning"),
                 success: function (response) {
                     $("#mainPanel").html(response);
                 }

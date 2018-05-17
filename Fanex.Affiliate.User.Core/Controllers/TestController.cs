@@ -27,9 +27,16 @@
         [HttpGet]
         public ActionResult Preview(TestCriteria criteria)
         {
-            _languageService.SetCulture(criteria.Language);
-            ViewBag.Data = GetEmailContent(criteria);
-            _languageService.SetCulture("en-US");
+            try
+            {
+                _languageService.SetCulture(criteria.Language);
+                ViewBag.Data = GetEmailContent(criteria);
+                _languageService.SetCulture("en-US");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Data = ex.Message + "\n" + ex.StackTrace;
+            }
 
             return View();
         }
