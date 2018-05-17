@@ -2,10 +2,11 @@
 {
     using System.Web.Mvc;
     using CoreService;
+    using Filters;
     using Repository.UserPanel;
     using Utilities;
 
-    [Authorize]
+    [Authenticate]
     public partial class UserPanelController : BaseController
     {
         private readonly IAccountRepository _accountRepository;

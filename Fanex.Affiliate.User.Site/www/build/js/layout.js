@@ -7,6 +7,7 @@ var Layout = (function ($) {
     var _me = {
         initialize: function () {
             initSlider();
+            _me.registerAjaxHandlerError();
             _me.initEvent();
         },
         initEvent: function () {
@@ -29,6 +30,13 @@ var Layout = (function ($) {
 
             $("#moveToTop").on("click", function () {
                 $(window).scrollTop(0);
+            });
+        },
+        registerAjaxHandlerError: function () {
+            $(document).ajaxError(function (event, jqXHR) {
+                if (jqXHR.status === 401) {
+                    window.location.href = Site.resolveRelativeUrl("");
+                }
             });
         }
     }

@@ -2,10 +2,12 @@
 {
     using System;
     using System.Web.Mvc;
+    using Filters;
 
     public partial class UserPanelController
     {
         [HttpGet]
+        [AjaxOnly]
         public ActionResult AccountOverView()
         {
             var userId = 1264888;

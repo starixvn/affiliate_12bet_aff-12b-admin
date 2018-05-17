@@ -16,15 +16,19 @@
                 cache: false,
                 success: function (result) {
                     if (result.IsKickOut) {
-                        clearInterval(_handler);
-                        window.alert(result.Message);                     
-
-                        setTimeout(function () {
-                            window.location.href = Site.resolveRelativeUrl("");
-                        }, 500);
+                        _me.kickout(result.Message);
                     }
                 }
             });
+        },
+
+        kickout: function (message) {
+            clearInterval(_handler);
+            window.alert(message);
+
+            setTimeout(function () {
+                window.location.href = Site.resolveRelativeUrl("");
+            }, 500);
         }
     }
 

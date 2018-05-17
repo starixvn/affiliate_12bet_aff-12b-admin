@@ -2,6 +2,7 @@
 {
     using System.Web.Mvc;
     using DTO;
+    using Filters;
     using MetalModels;
     using Resources;
     using Utilities;
@@ -10,6 +11,7 @@
     public partial class UserPanelController
     {
         [HttpGet]
+        [AjaxOnly]
         public ActionResult MyAccount()
         {
             var model = _accountRepository.GetAccountInfo(SessionService.UserSession.AffId);
@@ -19,6 +21,7 @@
         }
 
         [HttpPost]
+        [AjaxOnly]
         public ActionResult MyAccount(AccountInformationViewModel model)
         {
             if (SessionService.IsInternal)
