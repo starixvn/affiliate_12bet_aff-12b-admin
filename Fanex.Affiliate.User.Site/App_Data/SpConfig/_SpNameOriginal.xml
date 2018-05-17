@@ -21,6 +21,7 @@
     <Setting Key="Aff_AffiliateUser_UserInfoSel" SpName="Aff_AffiliateUser_UserInfoSel" DbName="affiliate_12bet" />
     <Setting Key="Aff_AffiliateUser_UserInfoSel_view" SpName="Aff_AffiliateUser_UserInfoSel" DbName="affiliate_12bet_view" />
     <Setting Key="Aff_AffiliateUser_UserInfoUpd" SpName="Aff_AffiliateUser_UserInfoUpd" DbName="affiliate_12bet" />
+    <Setting Key="Aff_AffiliateUpdPwd" SpName="Aff_AffiliateUpdPwd" DbName="affiliate_12bet" />   
   </Function>
 
   <Function Name="DepositInformation">

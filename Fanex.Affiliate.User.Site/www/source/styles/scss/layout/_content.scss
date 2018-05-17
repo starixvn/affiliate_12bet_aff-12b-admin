@@ -112,13 +112,7 @@
         color: #2b2b2b;
         font-weight: 600;
         margin-bottom: 8px;
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
-
-        .text {
-            margin-bottom: 5px;
-        }
+        padding-bottom: 5px;
 
         .day-filter {
             margin-bottom: 0.5rem;

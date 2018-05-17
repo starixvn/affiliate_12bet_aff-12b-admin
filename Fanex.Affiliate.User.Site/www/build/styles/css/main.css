@@ -575,11 +575,7 @@ input[type="checkbox"], input[type="radio"] {
     color: #2b2b2b;
     font-weight: 600;
     margin-bottom: 8px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end; }
-    .info-group .title .text {
-      margin-bottom: 5px; }
+    padding-bottom: 5px; }
     .info-group .title .day-filter {
       margin-bottom: 0.5rem; }
       .info-group .title .day-filter .input-group {

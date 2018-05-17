@@ -1,5 +1,8 @@
-﻿namespace Fanex.Affiliate.User.Core.DTO
+﻿using System;
+
+namespace Fanex.Affiliate.User.Core.DTO
 {
+    [Serializable]
     public class ResultInfo
     {
         public bool IsOk { get; set; }

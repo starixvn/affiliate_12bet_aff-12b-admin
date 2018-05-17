@@ -395,6 +395,10 @@
     <Content Include="www\build\js\account-overview.min.js">
       <DependentUpon>account-overview.js</DependentUpon>
     </Content>
+    <Content Include="www\build\js\changepassword.js" />
+    <Content Include="www\build\js\changepassword.min.js">
+      <DependentUpon>changepassword.js</DependentUpon>
+    </Content>
     <Content Include="www\build\js\daily-earning.js" />
     <Content Include="www\build\js\daily-earning.min.js">
       <DependentUpon>daily-earning.js</DependentUpon>
@@ -528,6 +532,7 @@
     <Content Include="www\source\js\lib\pikaday.js" />
     <Content Include="www\source\js\layout.js" />
     <Content Include="www\source\js\pages\account-overview.js" />
+    <Content Include="www\source\js\pages\changepassword.js" />
     <Content Include="www\source\js\pages\daily-earning.js" />
     <Content Include="www\source\js\pages\home.js" />
     <Content Include="www\source\js\pages\login.js" />

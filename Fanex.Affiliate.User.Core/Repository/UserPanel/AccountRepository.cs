@@ -58,16 +58,27 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
         public ResultInfo UpdatePassword(UpdatePasswordParam updatePasswordParam)
         {
             const string uSpKey = "Aff_AffiliateUpdPwd";
+            var parameterSet = new
+            {
+                updatePasswordParam.AffId,
+                updatePasswordParam.UserId,
+                updatePasswordParam.Ip,
+                updatePasswordParam.Language,
+                updatePasswordParam.ErrCode,
+                updatePasswordParam.ErrMsg,
+                OldPwd = updatePasswordParam.OldPassword,
+                AffPwd = updatePasswordParam.NewPassword
+            };
 
             using (var objectDb = new ObjectDBBuilder(uSpKey))
             {
-                objectDb.DB.ExecuteNonQuery(updatePasswordParam);
+                objectDb.DB.ExecuteNonQuery(parameterSet);
             }
 
             return new ResultInfo
             {
-                IsOk = updatePasswordParam.ErrCode == 0,
-                Message = updatePasswordParam.ErrMsg
+                IsOk = parameterSet.ErrCode == 0,
+                Message = parameterSet.ErrMsg
             };
         }
     }

@@ -10,10 +10,10 @@ namespace Fanex.Affiliate.User.Core.MetalModels
 
         public int UserId => AffId;
 
-        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "OldPassandNewPass")]
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "OldPasswordisre")]
         public string OldPassword { get; set; }
 
-        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "OldPassandNewPass")]
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "NewPasswordisre")]
         public string NewPassword { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "ReenterNewPassw")]
