@@ -10,6 +10,11 @@
     "sourceMap": false
   },
   {
+    "outputFile": "www/build/styles/css/materialdesignicons.css",
+    "inputFile": "www/source/styles/scss/components/materialdesignicons.scss",
+    "sourceMap": false
+  },
+  {
     "outputFile": "www/build/styles/css/my-account.css",
     "inputFile": "www/source/styles/pages/my-account.scss",
     "sourceMap": false

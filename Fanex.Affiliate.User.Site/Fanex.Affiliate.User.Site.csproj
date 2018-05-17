@@ -19,10 +19,10 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode />
+    <IISExpressSSLPort>44390</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -335,42 +335,6 @@
     <Content Include="Configurations\AppSetting\Transform\asian.master.config" />
     <Content Include="Configurations\AppSetting\Transform\euro.backupmnl.config" />
     <Content Include="Configurations\AppSetting\Transform\euro.master.config" />
-    <None Include="Configurations\Web\Web.asian.backupmnl.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\Web\Web.asian.local.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\Web\Web.asian.master.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\Web\Web.asian.production.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\Web\Web.asian.sit.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\Web\Web.asian.uat.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\Web\Web.euro.backupmnl.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\Web\Web.euro.local.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\Web\Web.euro.master.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\Web\Web.euro.production.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\Web\Web.euro.sit.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </None>
-    <None Include="Configurations\Web\Web.euro.uat.config">
-      <DependentUpon>Web.tt</DependentUpon>
-    </None>
     <Content Include="Views\Shared\Email\ForgetPassword\Content.en-GB.cshtml" />
     <Content Include="Views\Shared\Email\ForgetPassword\Content.en-US.cshtml" />
     <Content Include="Views\Shared\Email\ForgetPassword\Content.es-ES.cshtml" />
@@ -492,6 +456,10 @@
     <Content Include="www\build\styles\css\main.css" />
     <Content Include="www\build\styles\css\main.min.css">
       <DependentUpon>main.css</DependentUpon>
+    </Content>
+    <Content Include="www\build\styles\css\materialdesignicons.css" />
+    <Content Include="www\build\styles\css\materialdesignicons.min.css">
+      <DependentUpon>materialdesignicons.css</DependentUpon>
     </Content>
     <Content Include="www\build\styles\css\media-gallery.css" />
     <Content Include="www\build\styles\css\media-gallery.min.css">
@@ -646,6 +614,11 @@
     <Content Include="www\source\styles\pages\password.scss" />
     <Content Include="www\source\styles\scss\components\_login-dialog.scss" />
     <Content Include="www\source\styles\scss\components\_marquee.scss" />
+    <Content Include="www\source\styles\fonts\materialdesignicons\materialdesignicons-webfont.woff2" />
+    <Content Include="www\source\styles\fonts\materialdesignicons\materialdesignicons-webfont.ttf" />
+    <Content Include="www\source\styles\fonts\materialdesignicons\materialdesignicons-webfont.woff" />
+    <Content Include="www\source\styles\fonts\materialdesignicons\materialdesignicons-webfont.eot" />
+    <Content Include="www\source\styles\scss\components\materialdesignicons.scss" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -657,6 +630,42 @@
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
     <Content Include="ConnectionString.config" />
+    <Content Include="Configurations\Web\Web.12betuser-asian.backupmnl.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\Web\Web.12betuser-asian.local.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\Web\Web.12betuser-asian.master.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\Web\Web.12betuser-asian.production.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\Web\Web.12betuser-asian.sit.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\Web\Web.12betuser-asian.uat.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\Web\Web.12betuser-euro.backupmnl.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\Web\Web.12betuser-euro.local.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\Web\Web.12betuser-euro.master.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\Web\Web.12betuser-euro.production.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\Web\Web.12betuser-euro.sit.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\Web\Web.12betuser-euro.uat.config">
+      <DependentUpon>Web.tt</DependentUpon>
+    </Content>
     <None Include="packages.config" />
     <Content Include="www\source\styles\fonts\font_bebas\BEBAS___.TTF" />
     <Content Include="www\source\styles\fonts\Montserrat\Montserrat-Light.ttf" />

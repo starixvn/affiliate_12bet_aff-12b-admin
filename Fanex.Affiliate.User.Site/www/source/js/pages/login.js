@@ -25,7 +25,7 @@
             var password = $password.val();
             var validation = $("#" + prefix + "txtValidation").val();
 
-            var validationResult = _me.validate(username, password, validation, onDialog);
+            var validationResult = _me.validate(username, password, validation, prefix);
             if (validationResult.isValid) {
                 var token = $('input[name="__RequestVerificationToken"]', $("#userLogin")).val();
                 var encryptKey = $("#KeyString").val();
@@ -65,7 +65,7 @@
             }
         },
 
-        validate: function (username, password, validationCode) {
+        validate: function (username, password, validationCode, prefix) {
             var empty = "";
             var result = {
                 isValid: false,

@@ -25,7 +25,7 @@ var UserPanel = (function ($) {
             var action = _me.getActionName();
             _me.activeMenu(action);
 
-            var url = Site.resolveRelativeUrl("/UserPanel/" + action);
+            var url = Site.resolveRelativeUrl("UserPanel/" + action);
 
             $.ajax({
                 type: "GET",
