@@ -128,9 +128,11 @@
 
         private object GetForgetPasswordModel()
         {
+            var domain = SiteDomainHelper.GetRootUrl(this);
+
             return new
             {
-                RecoverPwdURL = Url.Action("Recovery", "Test", null, Request.Url.Scheme),
+                RecoverPwdURL = domain + "Test/Recovery",
                 CustId = 0,
                 ValidationCode = "1234",
                 FirstName = "Walter",
