@@ -41,11 +41,27 @@
     <Reference Include="Autofac.Integration.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.Mvc5.4.0.2\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="Couchbase, Version=1.0.0.0, Culture=neutral, PublicKeyToken=81137140da4e57ef, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.Caching.1.0.404.97\lib\net40\Couchbase.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Dapper, Version=1.50.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dapper.1.50.2\lib\net451\Dapper.dll</HintPath>
     </Reference>
     <Reference Include="DNAide">
       <HintPath>..\_Dependencies\DNAide.dll</HintPath>
+    </Reference>
+    <Reference Include="Enyim.Caching, Version=2.12.0.0, Culture=neutral, PublicKeyToken=81137140da4e57ef, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.Caching.1.0.404.97\lib\net40\Enyim.Caching.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.Caching, Version=1.0.404.95, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.Caching.1.0.404.97\lib\net40\Fanex.Caching.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.Common, Version=1.0.404.97, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.Common.1.0.404.97\lib\net40\Fanex.Common.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.Data, Version=2.1.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Fanex.Data.2.1.0.1\lib\net461\Fanex.Data.dll</HintPath>
@@ -62,6 +78,10 @@
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\EnterpriseLibrary.Caching.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Caching.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\EnterpriseLibrary.Common.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
@@ -159,7 +179,11 @@
     <Compile Include="BusinessService\IAuthService.cs" />
     <Compile Include="BusinessService\ICookieService.cs" />
     <Compile Include="BusinessService\ILanguageService.cs" />
+    <Compile Include="BusinessService\IMarketingService.cs" />
     <Compile Include="BusinessService\LanguageService.cs" />
+    <Compile Include="BusinessService\MarketingService.cs" />
+    <Compile Include="Constants\BannerTypeName.cs" />
+    <Compile Include="Constants\CacheKey.cs" />
     <Compile Include="Constants\CookieName.cs" />
     <Compile Include="Constants\SystemLanguage.cs" />
     <Compile Include="Constants\TemplateString.cs" />
@@ -176,7 +200,7 @@
     <Compile Include="Controllers\SignupController.cs" />
     <Compile Include="Controllers\TermAndConditionController.cs" />
     <Compile Include="Controllers\TestController.cs" />
-    <Compile Include="Controllers\UserPanelController.MediaGallery.cs" />
+    <Compile Include="Controllers\UserPanelController.Marketing.cs" />
     <Compile Include="Controllers\UserPanelController.MyAccount.cs" />
     <Compile Include="Controllers\UserPanelController.StatementHistory.cs" />
     <Compile Include="Controllers\UserPanelController.PaymentRequest.cs" />
@@ -187,6 +211,7 @@
     <Compile Include="DTO\AuthorizedUserInfo.cs" />
     <Compile Include="DTO\DBMode.cs" />
     <Compile Include="DTO\UserPanel\AccountOverviewStatistics.cs" />
+    <Compile Include="DTO\UserPanel\BannerType.cs" />
     <Compile Include="DTO\UserPanel\CommissionSetting.cs" />
     <Compile Include="DTO\UserPanel\CommissionSettingDetail.cs" />
     <Compile Include="DTO\UserSession.cs" />
@@ -205,6 +230,7 @@
     <Compile Include="MetalModels\UpdatePasswordParam.cs" />
     <Compile Include="MetalModels\UserLoginParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\UserPanel\IMarketingRepository.cs" />
     <Compile Include="Repository\UserPanel\AccountRepository.cs" />
     <Compile Include="Repository\UserPanel\IAccountRepository.cs" />
     <Compile Include="Repository\ObjectDBBuilder.cs" />
@@ -213,6 +239,7 @@
     <Compile Include="Repository\IObjectDBBuilder.cs" />
     <Compile Include="Repository\UserPanel\AccountOverviewRepository.cs" />
     <Compile Include="Repository\UserPanel\IAccountOverviewRepository.cs" />
+    <Compile Include="Repository\UserPanel\MarketingRepository.cs" />
     <Compile Include="Resources\BetList.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -282,15 +309,19 @@
     <Compile Include="Utilities\CaptchaHelper.cs" />
     <Compile Include="Utilities\CryptographyHelper.cs" />
     <Compile Include="Utilities\Generator.cs" />
+    <Compile Include="Utilities\IMemoryCacheService.cs" />
     <Compile Include="Utilities\MailProcessor.cs" />
     <Compile Include="Utilities\IAppSetting.cs" />
     <Compile Include="Utilities\IMailProcessor.cs" />
+    <Compile Include="Utilities\MemoryCacheService.cs" />
     <Compile Include="Utilities\RequestHelper.cs" />
     <Compile Include="Utilities\UrlHelper.cs" />
     <Compile Include="ViewModels\AccountInformationViewModel.cs" />
     <Compile Include="ViewModels\EmailTemplateViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\LoginResultViewModel.cs" />
+    <Compile Include="ViewModels\UserPanel\Marketing\MarketingViewModel.cs" />
+    <Compile Include="ViewModels\UserPanel\Marketing\MediaGalleryViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DTO\BetList\" />
@@ -298,7 +329,6 @@
     <Folder Include="MetalModels\UserPanel\" />
     <Folder Include="Repository\BetList\" />
     <Folder Include="ViewModels\BetList\" />
-    <Folder Include="ViewModels\UserPanel\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Lang.resx">

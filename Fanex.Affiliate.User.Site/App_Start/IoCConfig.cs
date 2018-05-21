@@ -10,6 +10,7 @@ using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.Repository;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Utilities;
+using Fanex.Caching;
 
 namespace Fanex.Affiliate.User.Site
 {
@@ -50,8 +51,6 @@ namespace Fanex.Affiliate.User.Site
 
         private static Assembly[] GetExecutingAssembly()
         {
-
-
             Assembly[] assemblies = null;
             try
             {
@@ -64,12 +63,12 @@ namespace Fanex.Affiliate.User.Site
 
             return assemblies = assemblies.Where(x => x.FullName.StartsWith("Fanex.Affiliate.User", StringComparison.InvariantCulture))
                 .ToArray();
-
-
         }
 
         private static void RegisterRepository(ContainerBuilder builder)
         {
+            builder.RegisterInstance(CacheService.CreateInstance(CacheType.MemoryCache)).As<ICache>();
+
             builder.RegisterType<AuthRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<SessionService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<AppSetting>().AsImplementedInterfaces().InstancePerLifetimeScope();
@@ -78,7 +77,9 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterType<CookieService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<AccountOverviewRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<AccountRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<MarketingRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<MemoryCacheService>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<MarketingService>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
-
     }
 }

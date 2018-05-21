@@ -1,6 +1,7 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
     using System.Web.Mvc;
+    using BusinessService;
     using CoreService;
     using Filters;
     using Repository.UserPanel;
@@ -11,16 +12,19 @@
     {
         private readonly IAccountRepository _accountRepository;
         private readonly IAccountOverviewRepository _accountOverviewRepository;
+        private readonly IMarketingService _marketingService;
 
         public UserPanelController(
             ISessionService sessionService,
             IAppSetting appSetting,
             IAccountRepository accountRepository,
-            IAccountOverviewRepository accountOverviewRepository)
+            IAccountOverviewRepository accountOverviewRepository,
+            IMarketingService marketingService)
             : base(sessionService, appSetting)
         {
             _accountRepository = accountRepository;
             _accountOverviewRepository = accountOverviewRepository;
+            _marketingService = marketingService;
         }
 
         [HttpGet]

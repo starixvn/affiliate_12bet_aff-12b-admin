@@ -28,4 +28,9 @@
     <Setting Key="Deposit_GetCustDataForCreateIBCACByUserName" SpName="Deposit_GetCustDataForCreateIBCACByUserName" DbName="deposit" />
     <Setting Key="Deposit_GetCustDataForCreateIBCACByUserName_view" SpName="Deposit_GetCustDataForCreateIBCACByUserName" DbName="deposit_view" />
   </Function>
+
+  <Function Name="Media">
+    <Setting Key="Aff_BannerSelType_1" SpName="Aff_BannerSelType_1" DbName="affiliate_12bet" />
+    <Setting Key="Aff_BannerSelType_1_view" SpName="Aff_BannerSelType_1" DbName="affiliate_12bet_view" />
+  </Function>
 </Functions>
