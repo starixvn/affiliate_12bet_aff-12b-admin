@@ -75,7 +75,8 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam)
         {
-            var bannerList = _marketingRepository.GetBannerList(bannerParam);
+            var uSpKey = IsSearchByCategory(bannerParam.Category, bannerParam.SubCategory) ? "Aff_BannerSelByParentCate" : "Aff_BannerSel_1";
+            var bannerList = _marketingRepository.GetBannerList(bannerParam, uSpKey);
 
             foreach (var banner in bannerList)
             {
@@ -114,6 +115,12 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                                 .Replace("{lang}", shortedLanguageCode);
 
             return result;
+        }
+
+        private bool IsSearchByCategory(string category, string subCategory)
+        {
+            return (string.Compare(category, "sportsbook", true) == 0 || string.Compare(category, "casino", true) == 0) &&
+                    string.IsNullOrEmpty(subCategory);
         }
     }
 }

@@ -11,6 +11,6 @@ namespace Fanex.Affiliate.User.Core.ViewModels.UserPanel.Marketing
 
         public IDictionary<string, string> TextLinkList { get; set; }
 
-        public IEnumerable<MarketingItem> BannerList { get; set; }
+        public IEnumerable<MarketingItem> MarketingDataList { get; set; }
     }
 }

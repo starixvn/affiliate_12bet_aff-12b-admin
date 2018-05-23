@@ -41,7 +41,7 @@
                 SearchForm = searchForm,
                 LinkForm = linkForm,
                 TextLinkList = GetTextLinkList(selectedLanguage, selectedPage, selectedDomain, searchForm.LanguageList),
-                BannerList = GetBannerList(bannerParam)
+                MarketingDataList = GetBannerList(bannerParam)
             };
 
             return View(viewModel);
@@ -52,6 +52,40 @@
         public ActionResult TextBox()
         {
             return View();
+        }
+
+        [HttpGet]
+        [AjaxOnly]
+        public ActionResult GetSubCategory(string category)
+        {
+            var type = "CategoryMedia" + category;
+            var subCategoryList = _marketingService.GetBannerTypeList(SessionService.IsInternal)
+                                                    .Where(t => string.Compare(t.Type, type, true) == 0);
+
+            return Json(subCategoryList, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        [AjaxOnly]
+        public ActionResult GetBanner(MarketingBannerParam bannerParam)
+        {
+            var userSession = SessionService.UserSession;
+            var selectedDomain = _marketingService.GetDomainList(userSession.AffId, SessionService.IsInternal)
+                                                    .FirstOrDefault(d => d.DomainId == bannerParam.SelectedDomainId);
+            if (!string.IsNullOrEmpty(bannerParam.SubCategory))
+            {
+                bannerParam.Category = bannerParam.SubCategory;
+            }
+
+            bannerParam.AffId = userSession.AffId;
+            bannerParam.AffType = userSession.AffType;
+            bannerParam.SelectedDomain = selectedDomain;
+            bannerParam.TextLinkTemplate = AppSetting.TextLinkTemplate;
+            bannerParam.BannerDomain = AppSetting.BannerDomain;
+
+            var bannerList = GetBannerList(bannerParam);
+
+            return View("~/Views/UserPanel/MarketingPartial/_BannerList.cshtml", bannerList);
         }
 
         private IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam)
@@ -70,7 +104,7 @@
 
             var viewModel = new SearchFormViewModel
             {
-                CategoryList = GetDataByType(bannerTypeList, BannerTypeName.Category),
+                CategoryList = GetDataByType(bannerTypeList, BannerTypeName.CategoryMedia),
                 LanguageList = GetLanguageList(bannerTypeList),
                 CurrencyList = GetDataByType(bannerTypeList, BannerTypeName.Currency)
             };

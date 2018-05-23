@@ -10,6 +10,6 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
         IEnumerable<Domain> GetDomainList(int affId, bool isInternal);
 
-        IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam);
+        IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam, string uSpKey);
     }
 }

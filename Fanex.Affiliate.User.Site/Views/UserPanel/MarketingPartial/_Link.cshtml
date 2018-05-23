@@ -16,7 +16,7 @@
                 <div class="col-sm-4">
                     @if (Model.DomainList != null && Model.DomainList.Any())
                     {
-                        <select class="form-control">
+                        <select class="form-control" id="Domain">
                             @foreach (var item in Model.DomainList)
                             {
                                 <option value="@item.DomainId">@item.DomainName</option>
@@ -33,7 +33,7 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label">@Lang.LinkTo</label>
                 <div class="col-sm-4">
-                    <select class="form-control">
+                    <select class="form-control" id="MemberSitePage">
                         @foreach (var item in Model.MemberSitePageList)
                         {
                             <option value="@item.Value">@item.Text</option>

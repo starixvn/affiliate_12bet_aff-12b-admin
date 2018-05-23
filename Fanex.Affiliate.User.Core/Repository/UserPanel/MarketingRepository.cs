@@ -30,9 +30,8 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             }
         }
 
-        public IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam)
+        public IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam, string uSpKey)
         {
-            const string uSpKey = "Aff_BannerSel_1";
             var dbMode = bannerParam.IsInternal ? DBMode.View : DBMode.Main;
 
             using (var objectDb = new ObjectDBBuilder(uSpKey, dbMode))

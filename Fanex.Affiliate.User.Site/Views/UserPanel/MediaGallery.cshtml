@@ -10,18 +10,43 @@
     <span class="text">@Lang.Media</span>
 </div>
 
-<div id="searchForm">
+<div id="mediaGallerySearchForm">
     @{ Html.RenderPartial("~/Views/UserPanel/MarketingPartial/_Search.cshtml", Model.SearchForm); }
 </div>
 
-<div id="linkForm">
+<div id="mediaGalleryLinkForm">
     @{ Html.RenderPartial("~/Views/UserPanel/MarketingPartial/_Link.cshtml", Model.LinkForm); }
 </div>
 
-<div id="textLinkList">
+<div id="mediaGalleryTextLinkList">
     @{ Html.RenderPartial("~/Views/UserPanel/MarketingPartial/_TextLink.cshtml", Model.TextLinkList); }
 </div>
 
-<div id="bannerList">
-    @{ Html.RenderPartial("~/Views/UserPanel/MarketingPartial/_BannerList.cshtml", Model.BannerList); }
+<div id="mediaGalleryBannerList">
+    <div class="info-group">
+        <div class="title">
+            <span class="text">@Lang.Banner</span>
+        </div>
+
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">@Lang.Device</label>
+                <div class="col-sm-4">
+                    <select class="form-control" id="DeviceType">
+                        @foreach (var item in EnumHelper.GetSelectList(typeof(Fanex.Affiliate.User.Core.Enum.DeviceType)))
+                        {
+                            <option value="@item.Value">@item.Text</option>
+                        }
+                    </select>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="bannerList">
+            @{ Html.RenderPartial("~/Views/UserPanel/MarketingPartial/_BannerList.cshtml", Model.MarketingDataList); }
+        </div>
+    </div>
 </div>
+
+<script src="@Url.RenderLink("~/www/build/js/mediagallery.js")"></script>

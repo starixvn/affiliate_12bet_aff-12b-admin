@@ -108,5 +108,10 @@
     "outputFile": "www/build/js/recheckin.js",
     "inputFile": "www/source/js/recheckin.js",
     "sourceMap": false
+  },
+  {
+    "outputFile": "www/build/js/mediagallery.js",
+    "inputFile": "www/source/js/pages/mediagallery.js",
+    "sourceMap": false
   }
 ]

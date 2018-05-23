@@ -437,6 +437,10 @@
     <Content Include="www\build\js\login.min.js">
       <DependentUpon>login.js</DependentUpon>
     </Content>
+    <Content Include="www\build\js\mediagallery.js" />
+    <Content Include="www\build\js\mediagallery.min.js">
+      <DependentUpon>mediagallery.js</DependentUpon>
+    </Content>
     <Content Include="www\build\js\myaccount.js" />
     <Content Include="www\build\js\myaccount.min.js">
       <DependentUpon>myaccount.js</DependentUpon>
@@ -556,6 +560,7 @@
     <Content Include="www\source\js\pages\daily-earning.js" />
     <Content Include="www\source\js\pages\home.js" />
     <Content Include="www\source\js\pages\login.js" />
+    <Content Include="www\source\js\pages\mediagallery.js" />
     <Content Include="www\source\js\pages\myaccount.js" />
     <Content Include="www\source\js\pages\statement-history.js" />
     <Content Include="www\source\js\pages\test.js" />

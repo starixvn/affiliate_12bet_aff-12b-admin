@@ -851,6 +851,9 @@ label.require:after {
   padding-bottom: 15px;
   min-height: 500px; }
 
+.hide {
+  display: none !important; }
+
 .btn {
   display: inline-block;
   padding: 0 8px;

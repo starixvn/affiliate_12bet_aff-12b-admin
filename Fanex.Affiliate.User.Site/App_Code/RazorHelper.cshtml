@@ -7,9 +7,9 @@
     </div>
 }
 
-@helper RenderDropdownForMarketing(string id, string label, IEnumerable<System.Web.Mvc.SelectListItem> dataList, bool hasAllOption = true)
+@helper RenderDropdownForMarketing(string id, string label, IEnumerable<System.Web.Mvc.SelectListItem> dataList, bool hasAllOption = true, bool isVisible = true)
 {
-    <div class="form-group">
+    <div class="form-group @(isVisible ? string.Empty : "hide")">
         <label class="col-sm-2 control-label">@label</label>
         <div class="col-sm-4">
             <select class="form-control" id="@id">

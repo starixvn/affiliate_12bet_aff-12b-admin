@@ -13,13 +13,15 @@
         <form class="form-horizontal">
             @RazorHelper.RenderDropdownForMarketing("Category", Lang.Category, Model.CategoryList)
 
+            @RazorHelper.RenderDropdownForMarketing("SubCategory", Lang.SubCategory, new List<SelectListItem>(), true, false)
+
             @RazorHelper.RenderDropdownForMarketing("Language", Lang.Language, Model.LanguageList)
 
             @RazorHelper.RenderDropdownForMarketing("Currency", Lang.Currency, Model.CurrencyList)
 
             @if (Model.ImageTypeList != null)
             {
-                @RazorHelper.RenderDropdownForMarketing("Type", Lang.Type, Model.ImageTypeList)
+                @RazorHelper.RenderDropdownForMarketing("ImageType", Lang.Type, Model.ImageTypeList)
             }
 
             @if (Model.SizeList != null)
@@ -29,7 +31,7 @@
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-5">
-                    <button type="button" class="btn btn-submit">@Lang.Search</button>
+                    <button type="button" class="btn btn-submit" id="btnMediaGallerySearch">@Lang.Search</button>
                 </div>
             </div>
         </form>

@@ -57,7 +57,11 @@ label {
     z-index: 1;
 }
 
-#mainPanel{
+#mainPanel {
     padding-bottom: 15px;
     min-height: 500px;
+}
+
+.hide {
+    display: none !important;
 }
