@@ -16,7 +16,35 @@
         [AjaxOnly]
         public ActionResult MediaGallery()
         {
-            return View();
+            var userSession = SessionService.UserSession;
+
+            var searchForm = GetSearchFormViewModel(true);
+            var linkForm = GetLinkFormViewModel();
+
+            var selectedLanguage = userSession.PreferredLanguage;
+            var selectedDomain = linkForm.DomainList.FirstOrDefault();
+            var selectedPage = linkForm.MemberSitePageList.First().Value;
+
+            var bannerParam = new MarketingBannerParam
+            {
+                AffId = userSession.AffId,
+                Language = null,
+                AffType = userSession.AffType,
+                SelectedDomain = selectedDomain,
+                SelectedPage = selectedPage,
+                TextLinkTemplate = AppSetting.TextLinkTemplate,
+                BannerDomain = AppSetting.BannerDomain
+            };
+
+            var viewModel = new MarketingViewModel
+            {
+                SearchForm = searchForm,
+                LinkForm = linkForm,
+                TextLinkList = GetTextLinkList(selectedLanguage, selectedPage, selectedDomain, searchForm.LanguageList),
+                BannerList = GetBannerList(bannerParam)
+            };
+
+            return View(viewModel);
         }
 
         [HttpGet]
@@ -26,8 +54,17 @@
             return View();
         }
 
-        [ChildActionOnly]
-        public ActionResult SearchForm(bool isBannerPage)
+        private IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam)
+        {
+            if (bannerParam.SelectedDomain == null)
+            {
+                return new List<MarketingItem>();
+            }
+
+            return _marketingService.GetBannerList(bannerParam);
+        }
+
+        private SearchFormViewModel GetSearchFormViewModel(bool isMediaPage)
         {
             var bannerTypeList = _marketingService.GetBannerTypeList(SessionService.IsInternal);
 
@@ -38,17 +75,16 @@
                 CurrencyList = GetDataByType(bannerTypeList, BannerTypeName.Currency)
             };
 
-            if (isBannerPage)
+            if (isMediaPage)
             {
                 viewModel.ImageTypeList = GetDataByType(bannerTypeList, BannerTypeName.ImageType);
                 viewModel.SizeList = GetDataByType(bannerTypeList, BannerTypeName.Size);
             }
 
-            return PartialView("~/Views/UserPanel/MarketingPartial/_Search.cshtml", viewModel);
+            return viewModel;
         }
 
-        [ChildActionOnly]
-        public ActionResult LinkForm()
+        private LinkFormViewModel GetLinkFormViewModel()
         {
             var memberSitePage = new MemberSitePage(true);
 
@@ -58,33 +94,30 @@
                 MemberSitePageList = memberSitePage.PageList.Select(p => new SelectListItem { Value = p, Text = p })
             };
 
-            ViewBag.PreferredLanguage = SessionService.UserSession.PreferredLanguage;
-
-            return PartialView("~/Views/UserPanel/MarketingPartial/_Link.cshtml", viewModel);
+            return viewModel;
         }
 
-        [ChildActionOnly]
-        public ActionResult TextLink(string selectedLanguage, int selectedDomain, string selectedPage)
+        private IDictionary<string, string> GetTextLinkList(string selectedLanguage, string selectedPage, Domain selectedDomain, IEnumerable<SelectListItem> languageList)
         {
-            var affId = SessionService.UserSession.AffId;
-            var isInternal = SessionService.IsInternal;
+            if (selectedDomain == null)
+            {
+                return new Dictionary<string, string>();
+            }
+
+            var userSession = SessionService.UserSession;
 
             var linkGenerationParam = new LinkGenerationParam
             {
-                AffId = affId,
+                AffId = userSession.AffId,
                 TextLinkTemplate = AppSetting.TextLinkTemplate,
-                PreferredLanguage = SessionService.UserSession.PreferredLanguage,
+                PreferredLanguage = userSession.PreferredLanguage,
                 SelectedLanguage = selectedLanguage,
-                SelectedDomain = _marketingService.GetDomainList(affId, isInternal).FirstOrDefault(p => p.DomainId == selectedDomain),
-                SelectedPage = selectedPage
+                SelectedDomain = selectedDomain,
+                SelectedPage = selectedPage,
+                LanguageList = languageList
             };
 
-            var bannerTypeList = _marketingService.GetBannerTypeList(isInternal);
-            linkGenerationParam.LanguageList = bannerTypeList.Where(p => string.Compare(p.Type, BannerTypeName.Language, true) == 0);
-
-            var linkList = _marketingService.GenerateLinkList(linkGenerationParam);
-
-            return PartialView("~/Views/UserPanel/MarketingPartial/_TextLink.cshtml", linkList);
+            return _marketingService.GenerateLinkList(linkGenerationParam);
         }
 
         private IEnumerable<SelectListItem> GetDataByType(IEnumerable<BannerType> bannerTypeList, string type)

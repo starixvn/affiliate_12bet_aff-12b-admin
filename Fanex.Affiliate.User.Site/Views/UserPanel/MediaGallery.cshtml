@@ -2,39 +2,26 @@
     Layout = null;
 }
 
+@model Fanex.Affiliate.User.Core.ViewModels.UserPanel.Marketing.MarketingViewModel
+
 @Html.InlineStyles("~/www/build/styles/css/media-gallery.css")
 
 <div class="page-title">
     <span class="text">@Lang.Media</span>
 </div>
 
-@{
-    Html.RenderAction("SearchForm", "UserPanel", new { isBannerPage = true });
-    Html.RenderAction("LinkForm", "UserPanel");
-}
+<div id="searchForm">
+    @{ Html.RenderPartial("~/Views/UserPanel/MarketingPartial/_Search.cshtml", Model.SearchForm); }
+</div>
 
+<div id="linkForm">
+    @{ Html.RenderPartial("~/Views/UserPanel/MarketingPartial/_Link.cshtml", Model.LinkForm); }
+</div>
 
+<div id="textLinkList">
+    @{ Html.RenderPartial("~/Views/UserPanel/MarketingPartial/_TextLink.cshtml", Model.TextLinkList); }
+</div>
 
-<div class="info-group">
-    <div class="title">
-        <span class="text">@Lang.Banner</span>
-    </div>
-
-    <div class="list-container">
-        <ul class="list-unstyled list-content">
-            <li>
-                <a href="#">
-                    <img class="img-responsive" src="http://ha.nexdev.net:7643/12BetBanner/CategoryMedia/Casino/Baccarat/error.PNG" alt="banner" />
-                </a>
-                <input readonly class="link-text" onclick="this.focus();this.select()" value="<a onclick='window.open(&quot;http://10.18.200.209:8017/927841/sportsbook/vn/index.html&quot;,&quot;_blank&quot;); return false;' href='10.18.200.209:8017' target='_blank'><img src='http://ha.nexdev.net:7643/12BetBanner/CategoryMedia/Casino/Baccarat/error.PNG' border='0' width='1578' height='890' /></a>" type="text" />
-            </li>
-
-            <li>
-                <a href="#">
-                    <img class="img-responsive" src="http://ha.nexdev.net:7643/12BetBanner/CategoryMedia/Casino/Baccarat/error.PNG" alt="banner" />
-                </a>
-                <input readonly class="link-text" onclick="this.focus();this.select()" value="<a onclick='window.open(&quot;http://10.18.200.209:8017/927841/sportsbook/vn/index.html&quot;,&quot;_blank&quot;); return false;' href='10.18.200.209:8017' target='_blank'><img src='http://ha.nexdev.net:7643/12BetBanner/CategoryMedia/Casino/Baccarat/error.PNG' border='0' width='1578' height='890' /></a>" type="text" />
-            </li>
-        </ul>
-    </div>
+<div id="bannerList">
+    @{ Html.RenderPartial("~/Views/UserPanel/MarketingPartial/_BannerList.cshtml", Model.BannerList); }
 </div>

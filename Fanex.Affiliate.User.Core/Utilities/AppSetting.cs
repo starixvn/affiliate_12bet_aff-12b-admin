@@ -26,6 +26,8 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         public string TextLinkTemplate => GetValue("TextLinkTemplate");
 
+        public string BannerDomain => GetValue("BannerDomain");
+
         public string GetValue(string key) => ConfigurationManager.AppSettings[key];
     }
 }

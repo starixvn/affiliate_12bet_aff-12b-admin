@@ -45,19 +45,5 @@
                 </div>
             </div>
         </div>
-
-        <div id="textLinkList">
-            @if (Model.DomainList != null && Model.DomainList.Any())
-            {
-                {
-                    Html.RenderAction("TextLink", "UserPanel", new
-                    {
-                        selectedLanguage = ViewBag.PreferredLanguage,
-                        selectedDomain = Model.DomainList.First().DomainId,
-                        selectedPage = Model.MemberSitePageList.First().Value
-                    });
-                }
-            }
-        </div>
     </div>
 </div>

@@ -50,7 +50,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             {
                 foreach (var item in languageList)
                 {
-                    var language = SystemLanguage.LanguageList.FirstOrDefault(l => string.Compare(l.EnglishName, item.Value, true) == 0);
+                    var language = SystemLanguage.LanguageList.FirstOrDefault(l => string.Compare(l.Code, item.Value, true) == 0);
 
                     if (language != null)
                     {
@@ -73,7 +73,35 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return linkList;
         }
 
-        public string GenerateLink(LinkGenerationParam linkGenerationParam, string shortedLanguageCode)
+        public IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam)
+        {
+            var bannerList = _marketingRepository.GetBannerList(bannerParam);
+
+            foreach (var banner in bannerList)
+            {
+                banner.FileName = bannerParam.BannerDomain + banner.FileName;
+                banner.SelectedDomainName = bannerParam.SelectedDomain.DomainName;
+
+                var sizes = banner.Size.Split('x');
+                if (sizes.Count() == 2)
+                {
+                    banner.Width = Convert.ToInt32(sizes[0]);
+                    banner.Height = Convert.ToInt32(sizes[1]);
+                }
+
+                var language = SystemLanguage.LanguageList.FirstOrDefault(l => string.Compare(l.EnglishName, banner.Language, true) == 0);
+
+                if (language != null)
+                {
+                    banner.RedirectLink = GenerateLink(bannerParam, language.ShortedCode);
+                }
+
+            }
+
+            return bannerList;
+        }
+
+        private string GenerateLink(LinkBaseParam linkGenerationParam, string shortedLanguageCode)
         {
             var selectedDomain = linkGenerationParam.SelectedDomain;
             var template = linkGenerationParam.TextLinkTemplate;

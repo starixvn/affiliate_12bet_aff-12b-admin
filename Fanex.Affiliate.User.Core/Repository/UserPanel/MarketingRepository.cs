@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
+using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 
 namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 {
@@ -26,6 +27,17 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             using (var objectDb = new ObjectDBBuilder(uSpKey, dbMode))
             {
                 return objectDb.DB.Query<Domain>(new { AffId = affId });
+            }
+        }
+
+        public IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam)
+        {
+            const string uSpKey = "Aff_BannerSel_1";
+            var dbMode = bannerParam.IsInternal ? DBMode.View : DBMode.Main;
+
+            using (var objectDb = new ObjectDBBuilder(uSpKey, dbMode))
+            {
+                return objectDb.DB.Query<MarketingItem>(bannerParam);
             }
         }
     }

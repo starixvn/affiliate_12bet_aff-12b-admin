@@ -645,6 +645,7 @@
     <Content Include="www\source\styles\fonts\materialdesignicons\materialdesignicons-webfont.eot" />
     <Content Include="www\source\styles\scss\components\materialdesignicons.scss" />
     <Content Include="Views\UserPanel\MarketingPartial\_TextLink.cshtml" />
+    <Content Include="Views\UserPanel\MarketingPartial\_BannerList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

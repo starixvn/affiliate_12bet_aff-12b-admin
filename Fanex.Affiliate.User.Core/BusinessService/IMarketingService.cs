@@ -11,5 +11,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         IEnumerable<Domain> GetDomainList(int affId, bool isInternal);
 
         IDictionary<string, string> GenerateLinkList(LinkGenerationParam linkGenerationParam);
+
+        IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam);
     }
 }

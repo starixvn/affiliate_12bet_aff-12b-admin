@@ -8,7 +8,7 @@
 
         public string Password { get; set; }
 
-        public int AffType { get; set; }
+        public byte AffType { get; set; }
 
         public string PreferredLanguage { get; set; }
 

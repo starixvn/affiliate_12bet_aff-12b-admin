@@ -213,6 +213,7 @@
     <Compile Include="DTO\Language.cs" />
     <Compile Include="DTO\MemberSitePage.cs" />
     <Compile Include="DTO\UserPanel\AccountOverviewStatistics.cs" />
+    <Compile Include="DTO\UserPanel\MarketingItem.cs" />
     <Compile Include="DTO\UserPanel\BannerType.cs" />
     <Compile Include="DTO\UserPanel\CommissionSetting.cs" />
     <Compile Include="DTO\UserPanel\CommissionSettingDetail.cs" />
@@ -220,6 +221,7 @@
     <Compile Include="DTO\UserSession.cs" />
     <Compile Include="DTO\ResultInfo.cs" />
     <Compile Include="Enum\AffiliateType.cs" />
+    <Compile Include="Enum\DeviceType.cs" />
     <Compile Include="Extensions\HtmlHelperExtension.cs" />
     <Compile Include="Extensions\NumberFormatter.cs" />
     <Compile Include="Extensions\UrlHelperExtension.cs" />
@@ -232,7 +234,9 @@
     <Compile Include="MetalModels\OnUserIdParam.cs" />
     <Compile Include="MetalModels\UpdatePasswordParam.cs" />
     <Compile Include="MetalModels\UserLoginParam.cs" />
+    <Compile Include="MetalModels\UserPanel\LinkBaseParam.cs" />
     <Compile Include="MetalModels\UserPanel\LinkGenerationParam.cs" />
+    <Compile Include="MetalModels\UserPanel\MarketingBannerParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\UserPanel\IMarketingRepository.cs" />
     <Compile Include="Repository\UserPanel\AccountRepository.cs" />
@@ -326,6 +330,7 @@
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\LoginResultViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Marketing\LinkFormViewModel.cs" />
+    <Compile Include="ViewModels\UserPanel\Marketing\MarketingViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Marketing\SearchFormViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

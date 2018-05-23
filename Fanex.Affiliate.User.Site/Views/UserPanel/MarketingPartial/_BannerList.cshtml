@@ -1,0 +1,42 @@
+﻿@{ 
+    Layout = null;
+}
+
+@model IEnumerable<Fanex.Affiliate.User.Core.DTO.UserPanel.MarketingItem>
+
+<div class="info-group">
+    <div class="title">
+        <span class="text">@Lang.Banner</span>
+    </div>
+
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">@Lang.Device</label>
+            <div class="col-sm-4">
+                <select class="form-control">
+                    @foreach (var item in EnumHelper.GetSelectList(typeof(Fanex.Affiliate.User.Core.Enum.DeviceType)))
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
+                </select>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="list-container">
+        <ul class="list-unstyled list-content">
+            @foreach (var banner in Model)
+            {
+                var width = banner.Width > 0 ? banner.Width.ToString() : string.Empty;
+                var height = banner.Height > 0 ? banner.Height.ToString() : string.Empty;
+                <li>
+                    <a>
+                        <img class="img-responsive" src="@banner.FileName" alt="Affiliate 12Bet Banner" />
+                    </a>
+                    <input readonly class="link-text" onclick="this.focus();this.select()" value="<a onclick='window.open(&quot;@banner.RedirectLink&quot;,&quot;_blank&quot;); return false;' href='@banner.SelectedDomainName' target='_blank'><img src='@banner.FileName' border='0' width='@width' height='@height' /></a>" type="text" />
+                </li>
+            }
+        </ul>
+    </div>
+</div>

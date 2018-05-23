@@ -23,5 +23,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
         bool IsEuroSite { get; }
 
         string TextLinkTemplate { get; }
+
+        string BannerDomain { get; }
     }
 }
