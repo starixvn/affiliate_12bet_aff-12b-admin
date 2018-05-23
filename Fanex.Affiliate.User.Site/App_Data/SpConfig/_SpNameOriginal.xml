@@ -32,5 +32,7 @@
   <Function Name="Media">
     <Setting Key="Aff_BannerSelType_1" SpName="Aff_BannerSelType_1" DbName="affiliate_12bet" />
     <Setting Key="Aff_BannerSelType_1_view" SpName="Aff_BannerSelType_1" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_DomainAffClientSel" SpName="Aff_DomainAffClientSel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_DomainAffClientSel_view" SpName="Aff_DomainAffClientSel" DbName="affiliate_12bet_view" />  
   </Function>
 </Functions>

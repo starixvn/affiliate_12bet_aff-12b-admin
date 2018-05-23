@@ -6,5 +6,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
     public interface IMarketingRepository
     {
         IEnumerable<BannerType> GetBannerTypeList(bool isInternal);
+
+        IEnumerable<Domain> GetDomainList(int affId, bool isInternal);
     }
 }

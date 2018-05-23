@@ -24,6 +24,8 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         public bool IsEuroSite => AllowedAffiliateTypes.Any(t => Convert.ToByte(t) == (byte)AffiliateType.European);
 
+        public string TextLinkTemplate => GetValue("TextLinkTemplate");
+
         public string GetValue(string key) => ConfigurationManager.AppSettings[key];
     }
 }

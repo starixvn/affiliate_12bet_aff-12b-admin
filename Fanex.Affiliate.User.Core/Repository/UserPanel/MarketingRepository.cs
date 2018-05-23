@@ -16,5 +16,17 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
                 return objectDb.DB.Query<BannerType>();
             }
         }
+
+        public IEnumerable<Domain> GetDomainList(int affId, bool isInternal)
+        {
+            const string uSpKey = "Aff_DomainAffClientSel";
+
+            var dbMode = isInternal ? DBMode.View : DBMode.Main;
+
+            using (var objectDb = new ObjectDBBuilder(uSpKey, dbMode))
+            {
+                return objectDb.DB.Query<Domain>(new { AffId = affId });
+            }
+        }
     }
 }

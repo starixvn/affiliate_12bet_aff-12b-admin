@@ -21,5 +21,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
         string Promotion12BetLink { get; }
 
         bool IsEuroSite { get; }
+
+        string TextLinkTemplate { get; }
     }
 }

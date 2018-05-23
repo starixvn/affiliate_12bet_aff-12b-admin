@@ -1,0 +1,19 @@
+﻿@{
+    Layout = null;
+}
+
+@model System.Collections.Generic.IDictionary<string, string>
+
+<div class="form-horizontal" id="textLinkContainer">
+    @foreach (var item in Model)
+    {
+        <div class="form-group">
+            <label class="col-sm-2 control-label">@item.Key</label>
+            <div class="col-sm-4">
+                <p class="form-control-static">
+                    <a href="#">@item.Value</a>
+                </p>
+            </div>
+        </div>
+    }
+</div>

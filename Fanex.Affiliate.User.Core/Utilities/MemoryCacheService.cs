@@ -5,7 +5,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
 {
     public class MemoryCacheService : IMemoryCacheService
     {
-        private const int TIMEOUT = 120; // 15 minutes.
+        private const int TIMEOUT = 120; // 2 minutes.
 
         private readonly ICache _cache;
 

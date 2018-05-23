@@ -7,12 +7,10 @@
     <span class="text">@Lang.Text</span>
 </div>
 
-@{
-    Html.RenderPartial("~/Views/UserPanel/MediaGalleryPartial/_Search.cshtml", false);
-    Html.RenderPartial("~/Views/UserPanel/MediaGalleryPartial/_Link.cshtml");
+@{ 
+    Html.RenderAction("SearchForm", "UserPanel", new { isBannerPage = false });
+    Html.RenderAction("LinkForm", "UserPanel");
 }
-
-
 
 <div class="info-group">
     <div class="title">

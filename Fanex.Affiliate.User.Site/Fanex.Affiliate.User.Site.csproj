@@ -644,6 +644,7 @@
     <Content Include="www\source\styles\fonts\materialdesignicons\materialdesignicons-webfont.woff" />
     <Content Include="www\source\styles\fonts\materialdesignicons\materialdesignicons-webfont.eot" />
     <Content Include="www\source\styles\scss\components\materialdesignicons.scss" />
+    <Content Include="Views\UserPanel\MarketingPartial\_TextLink.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -925,8 +926,8 @@
     <Content Include="Views\UserPanel\MediaGallery.cshtml" />
     <Content Include="Views\UserPanel\TextBox.cshtml" />
     <Content Include="www\source\styles\pages\media-gallery.scss" />
-    <Content Include="Views\UserPanel\MediaGalleryPartial\_Search.cshtml" />
-    <Content Include="Views\UserPanel\MediaGalleryPartial\_Link.cshtml" />
+    <Content Include="Views\UserPanel\MarketingPartial\_Search.cshtml" />
+    <Content Include="Views\UserPanel\MarketingPartial\_Link.cshtml" />
     <Content Include="Views\UserPanel\TrackingStatistics.cshtml" />
     <Content Include="Views\UserPanel\ReferrersStatistics.cshtml" />
     <Content Include="Views\UserPanel\LandingPageStatistics.cshtml" />
