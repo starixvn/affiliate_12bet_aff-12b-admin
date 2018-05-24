@@ -93,6 +93,12 @@ var Login = (function ($) {
                             alert(response.Message);
                             location.reload();
                         }
+                    },
+                    beforeSend: function () {
+                        Site.showLoader();
+                    },
+                    complete: function () {
+                        Site.hideLoader();
                     }
                 });
             }

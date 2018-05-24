@@ -33,6 +33,12 @@
                 url: url,
                 success: function (response) {
                     $("#mainPanel").html(response);
+                },
+                beforeSend: function () {
+                    Site.showLoader();
+                },
+                complete: function () {
+                    Site.hideLoader();
                 }
             });
         },

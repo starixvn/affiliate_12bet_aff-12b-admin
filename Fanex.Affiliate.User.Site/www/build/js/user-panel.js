@@ -34,6 +34,12 @@ var UserPanel = (function ($) {
                 url: url,
                 success: function success(response) {
                     $("#mainPanel").html(response);
+                },
+                beforeSend: function beforeSend() {
+                    Site.showLoader();
+                },
+                complete: function complete() {
+                    Site.hideLoader();
                 }
             });
         },

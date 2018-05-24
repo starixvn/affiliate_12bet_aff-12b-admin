@@ -14,7 +14,14 @@ var Site = (function ($) {
             var div = document.createElement('div');
             div.appendChild(document.createTextNode(inputString));
             return div.innerHTML;
+        },
+        showLoader: function showLoader() {
+            $("#blocker").show();
+        },
+        hideLoader: function hideLoader() {
+            $("#blocker").hide();
         }
+
     };
 
     return _me;

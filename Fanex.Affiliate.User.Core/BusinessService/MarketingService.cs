@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
+using Fanex.Affiliate.User.Core.Extensions;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Resources;
@@ -50,7 +51,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             {
                 foreach (var item in languageList)
                 {
-                    var language = SystemLanguage.LanguageList.FirstOrDefault(l => string.Compare(l.Code, item.Value, true) == 0);
+                    var language = SystemLanguage.LanguageList.FirstOrDefault(l => l.Code.MatchWith(item.Value));
 
                     if (language != null)
                     {
@@ -58,11 +59,12 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                     }
                 }
 
-                linkList.Add(Lang.Default, GenerateLink(linkGenerationParam, linkGenerationParam.PreferredLanguage));
+                var preferredLanguage = SystemLanguage.LanguageList.FirstOrDefault(l => l.Code.MatchWith(linkGenerationParam.PreferredLanguage));
+                linkList.Add(Lang.Default, GenerateLink(linkGenerationParam, preferredLanguage.ShortedCode));
             }
             else
             {
-                var language = SystemLanguage.LanguageList.FirstOrDefault(l => string.Compare(l.Code, linkGenerationParam.SelectedLanguage, true) == 0);
+                var language = SystemLanguage.LanguageList.FirstOrDefault(l => l.Code.MatchWith(linkGenerationParam.SelectedLanguage));
 
                 if (language != null)
                 {
@@ -90,7 +92,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                     banner.Height = Convert.ToInt32(sizes[1]);
                 }
 
-                var language = SystemLanguage.LanguageList.FirstOrDefault(l => string.Compare(l.EnglishName, banner.Language, true) == 0);
+                var language = SystemLanguage.LanguageList.FirstOrDefault(l => l.EnglishName.MatchWith(banner.Language));
 
                 if (language != null)
                 {
@@ -119,7 +121,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         private bool IsSearchByCategory(string category, string subCategory)
         {
-            return (string.Compare(category, "sportsbook", true) == 0 || string.Compare(category, "casino", true) == 0) &&
+            return (category.MatchWith("sportsbook") || category.MatchWith("casino")) &&
                     string.IsNullOrEmpty(subCategory);
         }
     }

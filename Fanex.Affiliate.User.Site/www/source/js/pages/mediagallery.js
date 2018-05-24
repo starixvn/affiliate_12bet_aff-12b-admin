@@ -25,21 +25,21 @@
             });
 
             $("#btnMediaGallerySearch").on("click", function () {
-                if ($("#Domain").length === 0) {
-                    return;
-                }
+                var searchParams = _me.getSearchParam();
+                _me.getBannerList(searchParams);
 
+                var linkGenerationParams = _me.getLinkGenerationParam();
+                _me.getTextLink(linkGenerationParams);
+            });
+
+            $("#mediaGalleryBannerList").on("change", "#DeviceType", function () {
                 var params = _me.getSearchParam();
                 _me.getBannerList(params);
             });
 
-            $("#mediaGalleryBannerList").on("change", "#DeviceType", function () {
-                if ($("#Domain").length === 0) {
-                    return;
-                }
-
-                var params = _me.getSearchParam();
-                _me.getBannerList(params);
+            $("#btnGenerateLink").on("click", function () {
+                var params = _me.getLinkGenerationParam();
+                _me.getTextLink(params);
             });
         },
 
@@ -53,6 +53,12 @@
                 success: function (response) {
                     var html = _me.buildOptionList(response, "Value", "Value", true);
                     $("#SubCategory").html(html);
+                },
+                beforeSend: function () {
+                    Site.showLoader();
+                },
+                complete: function () {
+                    Site.hideLoader();
                 }
             });
         },
@@ -92,6 +98,33 @@
                 url: Site.resolveRelativeUrl("UserPanel/GetBanner"),
                 success: function (response) {
                     $("#bannerList").html(response);
+                }
+            });
+        },
+
+        getLinkGenerationParam: function () {
+            return {
+                selectedLanguage: $("#Language").val(),
+                selectedDomainId: $("#Domain").val(),
+                selectedPage: $("#MemberSitePage").val()
+            }
+        },
+
+        getTextLink: function (params) {
+            $.ajax({
+                type: "GET",
+                dataType: "html",
+                cache: false,
+                data: params,
+                url: Site.resolveRelativeUrl("UserPanel/GenerateLink"),
+                success: function (response) {
+                    $("#mediaGalleryTextLinkList").html(response);
+                },
+                beforeSend: function () {
+                    Site.showLoader();
+                },
+                complete: function () {
+                    Site.hideLoader();
                 }
             });
         }

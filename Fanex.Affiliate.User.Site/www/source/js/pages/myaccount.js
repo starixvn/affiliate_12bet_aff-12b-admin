@@ -32,7 +32,6 @@
                 }
 
                 var params = _me.getParams();
-                console.log(params);
 
                 $.ajax({
                     type: "POST",
@@ -42,13 +41,18 @@
                     cache: false,
                     contentType: "application/x-www-form-urlencoded; charset=UTF-8",
                     success: function (response) {
-                        console.log(response);
                         var message = response.IsOk ? LangResource.updateSuccessfully : response.Message;
                         window.alert(message);
 
                         if (response.IsOk) {
                             window.location.reload();
                         }
+                    },
+                    beforeSend: function () {
+                        Site.showLoader();
+                    },
+                    complete: function () {
+                        Site.hideLoader();
                     }
                 });
             });

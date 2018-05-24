@@ -224,6 +224,7 @@
     <Compile Include="Enum\DeviceType.cs" />
     <Compile Include="Extensions\HtmlHelperExtension.cs" />
     <Compile Include="Extensions\NumberFormatter.cs" />
+    <Compile Include="Extensions\StringExtension.cs" />
     <Compile Include="Extensions\UrlHelperExtension.cs" />
     <Compile Include="Filters\AjaxOnlyAttribute.cs" />
     <Compile Include="Filters\AuthenticateAttribute.cs" />

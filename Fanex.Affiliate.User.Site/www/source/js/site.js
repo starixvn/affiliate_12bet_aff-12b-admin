@@ -12,7 +12,14 @@
             var div = document.createElement('div');
             div.appendChild(document.createTextNode(inputString));
             return div.innerHTML;
+        },
+        showLoader: function () {
+            $("#blocker").show();
+        },
+        hideLoader: function () {
+            $("#blocker").hide();
         }
+
     };
 
     return _me;

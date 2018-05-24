@@ -2,7 +2,7 @@
 {
     public enum DeviceType : byte
     {
-        PcLaptop = 0,
-        Mobile = 1
+        PCDevice = 0,
+        MobileDevice = 1
     }
 }

@@ -6,6 +6,7 @@
     using Constants;
     using DTO;
     using DTO.UserPanel;
+    using Extensions;
     using Filters;
     using MetalModels.UserPanel;
     using ViewModels.UserPanel.Marketing;
@@ -28,7 +29,7 @@
             var bannerParam = new MarketingBannerParam
             {
                 AffId = userSession.AffId,
-                Language = null,
+                Language = selectedLanguage,
                 AffType = userSession.AffType,
                 SelectedDomain = selectedDomain,
                 SelectedPage = selectedPage,
@@ -60,7 +61,7 @@
         {
             var type = "CategoryMedia" + category;
             var subCategoryList = _marketingService.GetBannerTypeList(SessionService.IsInternal)
-                                                    .Where(t => string.Compare(t.Type, type, true) == 0);
+                                                    .Where(t => t.Type.MatchWith(type));
 
             return Json(subCategoryList, JsonRequestBehavior.AllowGet);
         }
@@ -86,6 +87,21 @@
             var bannerList = GetBannerList(bannerParam);
 
             return View("~/Views/UserPanel/MarketingPartial/_BannerList.cshtml", bannerList);
+        }
+
+        [HttpGet]
+        [AjaxOnly]
+        public ActionResult GenerateLink(string selectedLanguage, int selectedDomainId, string selectedPage)
+        {
+            var userSession = SessionService.UserSession;
+            var selectedDomain = _marketingService.GetDomainList(userSession.AffId, SessionService.IsInternal)
+                                                    .FirstOrDefault(d => d.DomainId == selectedDomainId);
+            var bannerTypeList = _marketingService.GetBannerTypeList(SessionService.IsInternal);
+            var languageList = GetLanguageList(bannerTypeList);
+
+            var textLinkList = GetTextLinkList(selectedLanguage, selectedPage, selectedDomain, languageList);
+
+            return View("~/Views/UserPanel/MarketingPartial/_TextLink.cshtml", textLinkList);
         }
 
         private IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam)
@@ -156,25 +172,25 @@
 
         private IEnumerable<SelectListItem> GetDataByType(IEnumerable<BannerType> bannerTypeList, string type)
         {
-            return bannerTypeList.Where(p => string.Compare(p.Type, type, true) == 0)
+            return bannerTypeList.Where(p => p.Type.MatchWith(type))
                 .Select(i => new SelectListItem { Value = i.Value, Text = i.Value });
         }
 
         private IEnumerable<SelectListItem> GetLanguageList(IEnumerable<BannerType> bannerTypeList)
         {
-            var languageByType = bannerTypeList.Where(t => string.Compare(t.Type, BannerTypeName.Language, true) == 0);
+            var languageByType = bannerTypeList.Where(t => t.Type.MatchWith(BannerTypeName.Language));
 
             var dataList = new List<SelectListItem>();
             foreach (var item in languageByType)
             {
-                var language = SystemLanguage.LanguageList.FirstOrDefault(l => string.Compare(item.Value, l.EnglishName, true) == 0);
+                var language = SystemLanguage.LanguageList.FirstOrDefault(l => l.EnglishName.MatchWith(item.Value));
                 if (language != null)
                 {
                     dataList.Add(new SelectListItem
                     {
                         Value = language.Code,
                         Text = language.NativeName,
-                        Selected = string.Compare(language.Code, SessionService.UserSession.PreferredLanguage, true) == 0
+                        Selected = language.Code.MatchWith(SessionService.UserSession.PreferredLanguage)
                     });
                 }
             }
