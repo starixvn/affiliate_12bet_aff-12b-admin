@@ -38,5 +38,12 @@
       "www/source/js/pages/login.js",
       "www/source/js/pages/changepassword.js"
     ]
+  },
+  {
+    "outputFileName": "www/build/js/mediagallery.js",
+    "inputFiles": [
+      "www/source/js/components/pager.js",
+      "www/source/js/pages/mediagallery.js"
+    ]
   }
 ]

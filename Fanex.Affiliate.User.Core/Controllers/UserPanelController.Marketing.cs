@@ -45,6 +45,8 @@
                 MarketingDataList = GetBannerList(bannerParam)
             };
 
+            ViewBag.TotalItem = 100;
+
             return View(viewModel);
         }
 

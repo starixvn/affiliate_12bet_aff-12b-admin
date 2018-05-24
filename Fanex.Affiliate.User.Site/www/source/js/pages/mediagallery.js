@@ -7,6 +7,9 @@
     var _me = {
         initialize: function () {
             _me.initEvent();
+            $("#marketingPager").pager({
+                totalItems: parseInt($("#TotalItem").val())
+            });
         },
 
         initEvent: function () {

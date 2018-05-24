@@ -110,11 +110,6 @@
     "sourceMap": false
   },
   {
-    "outputFile": "www/build/js/mediagallery.js",
-    "inputFile": "www/source/js/pages/mediagallery.js",
-    "sourceMap": false
-  },
-  {
     "outputFile": "www/build/js/textbox.js",
     "inputFile": "www/source/js/pages/textbox.js",
     "sourceMap": false

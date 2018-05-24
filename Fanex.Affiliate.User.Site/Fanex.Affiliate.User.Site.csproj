@@ -554,6 +554,7 @@
     <Content Include="www\build\styles\Images\products\ad-sb.jpg" />
     <Content Include="www\build\styles\Images\slider-1.png" />
     <Content Include="www\build\styles\Images\term-and-condition\termcondition.jpg" />
+    <Content Include="www\source\js\components\pager.js" />
     <Content Include="www\source\js\lib\aes.js" />
     <Content Include="www\source\js\lib\bootstrap.min.js" />
     <Content Include="www\source\js\lib\jquery-3.3.1.min.js" />
@@ -659,6 +660,7 @@
     <Content Include="www\source\styles\scss\components\_loader.scss" />
     <Content Include="Views\UserPanel\MarketingPartial\_BannerFilter.cshtml" />
     <Content Include="Views\UserPanel\MarketingPartial\_TextList.cshtml" />
+    <Content Include="www\source\styles\scss\components\_paging.scss" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
