@@ -14,7 +14,7 @@
                 <a class="banner-link" onclick='window.open("@(banner.RedirectLink + "?ref")" + encodeURIComponent(window.location.href),"_blank"); return false;' href="javascript:;">
                     <img class="img-responsive" src="@banner.FileName" alt="Affiliate 12Bet Banner" />
                 </a>
-                <input readonly class="link-text" onclick="this.focus();this.select()" value="<a onclick='window.open(&quot;@(banner.RedirectLink + "?ref")&quot; + encodeURIComponent(window.location.href),&quot;_blank&quot;); return false;' href='@banner.SelectedDomainName' target='_blank'><img src='@banner.FileName' border='0' width='@width' height='@height' /></a>" type="text" />
+                <input readonly class="link-text" onclick="this.focus();this.select()" value="<a onclick='window.open(&quot;@(banner.RedirectLink + "?ref")&quot; + encodeURIComponent(window.location.href),&quot;_blank&quot;); return false;' href='javascript:;' target='_blank'><img src='@banner.FileName' border='0' width='@width' height='@height' /></a>" type="text" />
             </li>
         }
     </ul>

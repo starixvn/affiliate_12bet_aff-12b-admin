@@ -238,6 +238,7 @@
     <Compile Include="MetalModels\UserPanel\LinkBaseParam.cs" />
     <Compile Include="MetalModels\UserPanel\LinkGenerationParam.cs" />
     <Compile Include="MetalModels\UserPanel\MarketingBannerParam.cs" />
+    <Compile Include="MetalModels\UserPanel\MarketingTextParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\UserPanel\IMarketingRepository.cs" />
     <Compile Include="Repository\UserPanel\AccountRepository.cs" />

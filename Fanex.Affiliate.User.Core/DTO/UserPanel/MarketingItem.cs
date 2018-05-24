@@ -29,5 +29,9 @@ namespace Fanex.Affiliate.User.Core.DTO.UserPanel
         public int Width { get; set; }
 
         public int Height { get; set; }
+
+        public string Message { get; set; }
+
+        public string ScriptSrc { get; set; }
     }
 }

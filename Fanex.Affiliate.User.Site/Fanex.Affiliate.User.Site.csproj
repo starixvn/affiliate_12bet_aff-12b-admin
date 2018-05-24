@@ -461,6 +461,10 @@
     <Content Include="www\build\js\test.min.js">
       <DependentUpon>test.js</DependentUpon>
     </Content>
+    <Content Include="www\build\js\textbox.js" />
+    <Content Include="www\build\js\textbox.min.js">
+      <DependentUpon>textbox.js</DependentUpon>
+    </Content>
     <Content Include="www\build\js\user-panel.js" />
     <Content Include="www\build\js\user-panel.min.js">
       <DependentUpon>user-panel.js</DependentUpon>
@@ -564,6 +568,7 @@
     <Content Include="www\source\js\pages\myaccount.js" />
     <Content Include="www\source\js\pages\statement-history.js" />
     <Content Include="www\source\js\pages\test.js" />
+    <Content Include="www\source\js\pages\textbox.js" />
     <Content Include="www\source\js\pages\user-panel.js" />
     <Content Include="www\source\js\recheckin.js" />
     <Content Include="www\source\js\site.js" />
@@ -653,6 +658,7 @@
     <Content Include="Views\UserPanel\MarketingPartial\_BannerList.cshtml" />
     <Content Include="www\source\styles\scss\components\_loader.scss" />
     <Content Include="Views\UserPanel\MarketingPartial\_BannerFilter.cshtml" />
+    <Content Include="Views\UserPanel\MarketingPartial\_TextList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

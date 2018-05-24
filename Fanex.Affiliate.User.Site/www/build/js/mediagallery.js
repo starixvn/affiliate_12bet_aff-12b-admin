@@ -25,7 +25,7 @@ var MediaGallery = (function ($) {
                 }
             });
 
-            $("#btnMediaGallerySearch").on("click", function () {
+            $("#btnMarketingSearch").on("click", function () {
                 var searchParams = _me.getSearchParam();
                 _me.getBannerList(searchParams);
 
@@ -33,7 +33,7 @@ var MediaGallery = (function ($) {
                 _me.getTextLink(linkGenerationParams);
             });
 
-            $("#mediaGalleryBannerList").on("change", "#DeviceType", function () {
+            $("#dataContainerList").on("change", "#DeviceType", function () {
                 var params = _me.getSearchParam();
                 _me.getBannerList(params);
             });
@@ -98,7 +98,7 @@ var MediaGallery = (function ($) {
                 data: params,
                 url: Site.resolveRelativeUrl("UserPanel/GetBanner"),
                 success: function success(response) {
-                    $("#bannerList").html(response);
+                    $("#marketingDataList").html(response);
                 }
             });
         },
@@ -119,7 +119,7 @@ var MediaGallery = (function ($) {
                 data: params,
                 url: Site.resolveRelativeUrl("UserPanel/GenerateLink"),
                 success: function success(response) {
-                    $("#mediaGalleryTextLinkList").html(response);
+                    $("#textLinkList").html(response);
                 },
                 beforeSend: function beforeSend() {
                     Site.showLoader();

@@ -10,19 +10,19 @@
     <span class="text">@Lang.Media</span>
 </div>
 
-<div id="mediaGallerySearchForm">
+<div id="searchForm">
     @{ Html.RenderPartial("~/Views/UserPanel/MarketingPartial/_Search.cshtml", Model.SearchForm); }
 </div>
 
-<div id="mediaGalleryLinkForm">
+<div id="linkForm">
     @{ Html.RenderPartial("~/Views/UserPanel/MarketingPartial/_Link.cshtml", Model.LinkForm); }
 </div>
 
-<div id="mediaGalleryTextLinkList">
+<div id="textLinkList">
     @{ Html.RenderPartial("~/Views/UserPanel/MarketingPartial/_TextLink.cshtml", Model.TextLinkList); }
 </div>
 
-<div id="mediaGalleryBannerList">
+<div id="dataContainerList">
     <div class="info-group">
         <div class="title">
             <span class="text">@Lang.Banner</span>
@@ -30,7 +30,7 @@
 
         @{ Html.RenderPartial("~/Views/UserPanel/MarketingPartial/_BannerFilter.cshtml"); }
 
-        <div id="bannerList">
+        <div id="marketingDataList">
             @{ Html.RenderPartial("~/Views/UserPanel/MarketingPartial/_BannerList.cshtml", Model.MarketingDataList); }
         </div>
     </div>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.Extensions;
@@ -104,16 +105,36 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return bannerList;
         }
 
-        private string GenerateLink(LinkBaseParam linkGenerationParam, string shortedLanguageCode)
+        public IEnumerable<MarketingItem> GetTextList(MarketingTextParam textParam)
         {
-            var selectedDomain = linkGenerationParam.SelectedDomain;
-            var template = linkGenerationParam.TextLinkTemplate;
+            var textList = _marketingRepository.GetTextList(textParam);
+
+            foreach (var text in textList)
+            {
+                text.Message = HttpContext.Current.Server.HtmlDecode(text.Message.Replace("\r\n", "<br/>"));
+                text.ScriptSrc = textParam.ScriptUrl + text.BannerId;
+                var language = SystemLanguage.LanguageList.FirstOrDefault(l => l.EnglishName.MatchWith(text.Language));
+
+                if (language != null)
+                {
+                    text.RedirectLink = GenerateLink(textParam, language.ShortedCode);
+                }
+
+            }
+
+            return textList;
+        }
+
+        private string GenerateLink(LinkBaseParam linkParam, string shortedLanguageCode)
+        {
+            var selectedDomain = linkParam.SelectedDomain;
+            var template = linkParam.TextLinkTemplate;
             var scheme = selectedDomain.IsSsl ? Uri.UriSchemeHttps : Uri.UriSchemeHttp;
 
             var result = template.Replace("{scheme}", scheme)
                                 .Replace("{domain}", selectedDomain.DomainName)
-                                .Replace("{custid}", linkGenerationParam.AffId.ToString())
-                                .Replace("{target}", linkGenerationParam.SelectedPage)
+                                .Replace("{custid}", linkParam.AffId.ToString())
+                                .Replace("{target}", linkParam.SelectedPage)
                                 .Replace("{lang}", shortedLanguageCode);
 
             return result;

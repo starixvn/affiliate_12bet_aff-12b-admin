@@ -39,5 +39,16 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
                 return objectDb.DB.Query<MarketingItem>(bannerParam);
             }
         }
+
+        public IEnumerable<MarketingItem> GetTextList(MarketingTextParam textParam)
+        {
+            const string uSpKey = "Aff_TextSel_1";
+            var dbMode = textParam.IsInternal ? DBMode.View : DBMode.Main;
+
+            using (var objectDb = new ObjectDBBuilder(uSpKey, dbMode))
+            {
+                return objectDb.DB.Query<MarketingItem>(textParam);
+            }
+        }
     }
 }

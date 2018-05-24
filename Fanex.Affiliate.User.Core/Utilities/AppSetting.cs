@@ -28,6 +28,8 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         public string BannerDomain => GetValue("BannerDomain");
 
+        public string MediaScriptUrl => GetValue("MediaScriptUrl");
+
         public string GetValue(string key) => ConfigurationManager.AppSettings[key];
     }
 }

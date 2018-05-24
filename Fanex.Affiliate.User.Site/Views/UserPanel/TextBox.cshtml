@@ -1,37 +1,38 @@
 ﻿@{
     Layout = null;
 }
+@model Fanex.Affiliate.User.Core.ViewModels.UserPanel.Marketing.MarketingViewModel
+
 @Html.InlineStyles("~/www/build/styles/css/media-gallery.css")
 
 <div class="page-title">
     <span class="text">@Lang.Text</span>
 </div>
 
-@{ 
-    Html.RenderAction("SearchForm", "UserPanel", new { isBannerPage = false });
-    Html.RenderAction("LinkForm", "UserPanel");
-}
+<div id="searchForm">
+    @{ Html.RenderPartial("~/Views/UserPanel/MarketingPartial/_Search.cshtml", Model.SearchForm); }
+</div>
 
-<div class="info-group">
-    <div class="title">
-        <span class="text">@Lang.Banner</span>
-    </div>
+<div id="linkForm">
+    @{ Html.RenderPartial("~/Views/UserPanel/MarketingPartial/_Link.cshtml", Model.LinkForm); }
+</div>
 
-    <div class="list-container">
-        <ul class="list-unstyled list-content">
-            <li>
-                <p>
-                    12BET.COM REVIEW.<br><br>12BET is licensed and regulated by Isle of Man in Europe and First Cagayan of Philippines in Asia. <br><br>12BET is highly regarded for its original  Asian Handicap Odds and variety of innovative bet products. Deposit and withdrawal services are secured, fast and convenient. Also scoring high is its efficient Chinese, Vietnamese, Thai and  Indonesian customer services on 24/7.<br>12BET currently sponsors Wigan Athletic FC in the 2011/12 season of English Premier League.<br><br>Become a member of 12BET today and you can receive a  extra 100% Deposit Bonus in cash or a 33% Cash Welcome Bonus up to MYR990 (other currencies accepted are RMB, THB, VND, and IDR) Find out more&gt;&gt;&gt;<br><br>We highly recommend this site for ALL sports and casino enthusiasts! Join now. &gt;&gt;&gt;CLICK HERE&lt;&lt;&lt;
-                </p>
-                <input readonly class="link-text" onclick="this.focus();this.select()" value="<a onclick='window.open(&quot;http://10.18.200.209:8017/927841/sportsbook/vn/index.html&quot;,&quot;_blank&quot;); return false;' href='10.18.200.209:8017' target='_blank'><img src='http://ha.nexdev.net:7643/12BetBanner/CategoryMedia/Casino/Baccarat/error.PNG' border='0' width='1578' height='890' /></a>" type="text" />
-            </li>
+<div id="textLinkList">
+    @{ Html.RenderPartial("~/Views/UserPanel/MarketingPartial/_TextLink.cshtml", Model.TextLinkList); }
+</div>
 
-            <li>
-                <p>
-                    12BET.COM REVIEW.<br><br>12BET is licensed and regulated by Isle of Man in Europe and First Cagayan of Philippines in Asia. <br><br>12BET is highly regarded for its original  Asian Handicap Odds and variety of innovative bet products. Deposit and withdrawal services are secured, fast and convenient. Also scoring high is its efficient Chinese, Vietnamese, Thai and  Indonesian customer services on 24/7.<br>12BET currently sponsors Wigan Athletic FC in the 2011/12 season of English Premier League.<br><br>Become a member of 12BET today and you can receive a  extra 100% Deposit Bonus in cash or a 33% Cash Welcome Bonus up to MYR990 (other currencies accepted are RMB, THB, VND, and IDR) Find out more&gt;&gt;&gt;<br><br>We highly recommend this site for ALL sports and casino enthusiasts! Join now. &gt;&gt;&gt;CLICK HERE&lt;&lt;&lt;
-                </p>
-                <input readonly class="link-text" onclick="this.focus();this.select()" value="<a onclick='window.open(&quot;http://10.18.200.209:8017/927841/sportsbook/vn/index.html&quot;,&quot;_blank&quot;); return false;' href='10.18.200.209:8017' target='_blank'><img src='http://ha.nexdev.net:7643/12BetBanner/CategoryMedia/Casino/Baccarat/error.PNG' border='0' width='1578' height='890' /></a>" type="text" />
-            </li>
-        </ul>
+<div id="dataContainerList">
+    <div class="info-group">
+        <div class="title">
+            <span class="text">@Lang.Banner</span>
+        </div>
+
+        @{ Html.RenderPartial("~/Views/UserPanel/MarketingPartial/_BannerFilter.cshtml"); }
+
+        <div id="marketingDataList">
+            @{ Html.RenderPartial("~/Views/UserPanel/MarketingPartial/_TextList.cshtml", Model.MarketingDataList); }
+        </div>
     </div>
 </div>
+
+<script src="@Url.RenderLink("~/www/build/js/textbox.js")"></script>

@@ -30,9 +30,6 @@ namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
         public string BannerDomain { get; set; }
 
         [SpParam(Ignored = true)]
-        public int SelectedDomainId { get; set; }
-
-        [SpParam(Ignored = true)]
         public string SubCategory { get; set; }
     }
 }

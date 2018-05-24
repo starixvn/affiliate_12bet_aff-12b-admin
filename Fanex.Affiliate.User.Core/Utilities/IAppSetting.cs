@@ -25,5 +25,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
         string TextLinkTemplate { get; }
 
         string BannerDomain { get; }
+
+        string MediaScriptUrl { get; }
     }
 }

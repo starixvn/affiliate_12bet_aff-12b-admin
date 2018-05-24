@@ -24,7 +24,7 @@
                 }
             });
 
-            $("#btnMediaGallerySearch").on("click", function () {
+            $("#btnMarketingSearch").on("click", function () {
                 var searchParams = _me.getSearchParam();
                 _me.getBannerList(searchParams);
 
@@ -32,7 +32,7 @@
                 _me.getTextLink(linkGenerationParams);
             });
 
-            $("#mediaGalleryBannerList").on("change", "#DeviceType", function () {
+            $("#dataContainerList").on("change", "#DeviceType", function () {
                 var params = _me.getSearchParam();
                 _me.getBannerList(params);
             });
@@ -97,7 +97,7 @@
                 data: params,
                 url: Site.resolveRelativeUrl("UserPanel/GetBanner"),
                 success: function (response) {
-                    $("#bannerList").html(response);
+                    $("#marketingDataList").html(response);
                 }
             });
         },
@@ -118,7 +118,7 @@
                 data: params,
                 url: Site.resolveRelativeUrl("UserPanel/GenerateLink"),
                 success: function (response) {
-                    $("#mediaGalleryTextLinkList").html(response);
+                    $("#textLinkList").html(response);
                 },
                 beforeSend: function () {
                     Site.showLoader();

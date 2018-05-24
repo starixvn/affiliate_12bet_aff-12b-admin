@@ -16,5 +16,8 @@ namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
 
         [SpParam(Ignored = true)]
         public Domain SelectedDomain { get; set; }
+
+        [SpParam(Ignored = true)]
+        public int SelectedDomainId { get; set; }
     }
 }

@@ -13,5 +13,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         IDictionary<string, string> GenerateLinkList(LinkGenerationParam linkGenerationParam);
 
         IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam);
+
+        IEnumerable<MarketingItem> GetTextList(MarketingTextParam textParam);
     }
 }
