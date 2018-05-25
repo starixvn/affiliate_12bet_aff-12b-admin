@@ -20,9 +20,10 @@
         return html.join('');
     }
 
-    function buildNextButton() {
-        var html = ['<a href="javascript:;" title="Next" class="icon glyphicon glyphicon-triangle-right page-next"></a>'];
-        html.push('<a href="javascript:;" title="Last" class="icon glyphicon glyphicon-fast-forward page-last"></a>');
+    function buildNextButton(isDisabled) {
+        var disable = isDisabled ? "disable" : "";
+        var html = ['<a href="javascript:;" title="Next" class="icon glyphicon glyphicon-triangle-right page-next ' + disable + '"></a>'];
+        html.push('<a href="javascript:;" title="Last" class="icon glyphicon glyphicon-fast-forward page-last ' + disable + '"></a>');
 
         return html.join('');
     }
@@ -61,13 +62,17 @@
         $pagerContainer.find('.page-last').toggleClass('disable', !isEnable);
     }
 
-    function resetToInitialState($pagerContainer) {
+    function resetToInitialState($pagerContainer, isDisabledNextButton) {
         togglePrevButton($pagerContainer, false);
-        toggleNextButton($pagerContainer, true);
+        toggleNextButton($pagerContainer, !isDisabledNextButton);
     }
 
     function calculateTotalPage(totalItems, pageSize) {
         return parseInt(totalItems / pageSize) + (totalItems % pageSize === 0 ? 0 : 1);
+    }
+
+    function isDisableNextButton(pageIndex, totalPage) {
+        return totalPage === 0 || pageIndex === totalPage - 1;
     }
 
     var _methods = {
@@ -91,7 +96,9 @@
 
                 var htmlPrevButton = buildPrevButton();
                 var htmlPagingInfo = buildPageInfo(totalPage);
-                var htmlNextButton = buildNextButton();
+
+                var disableNextButton = pageInfo.totalPage === 0 || pageInfo.pageIndex === pageInfo.totalPage - 1;
+                var htmlNextButton = buildNextButton(disableNextButton);
                 var htmlPageSizeList = buildPageSizeList(mainOption.pageSizeList, mainOption.pageSize);
 
                 var $pagerContainer = $('<div class="page-container"></div>');
@@ -106,7 +113,8 @@
 
                     pageInfo.pageIndex = 0;
                     updatePageInfo($pagerContainer, pageInfo.pageIndex + 1, pageInfo.totalPage);
-                    resetToInitialState($pagerContainer);
+                    var disableNextButton = isDisableNextButton(pageInfo.pageIndex, pageInfo.totalPage);
+                    resetToInitialState($pagerContainer, disableNextButton);
 
                     $self.data('pageInfo', pageInfo);
 
@@ -173,7 +181,8 @@
                     pageInfo.totalPage = totalPage;
 
                     updatePageInfo($pagerContainer, pageInfo.pageIndex + 1, pageInfo.totalPage);
-                    resetToInitialState($pagerContainer);
+                    var disableNextButton = isDisableNextButton(pageInfo.pageIndex, pageInfo.totalPage);
+                    resetToInitialState($pagerContainer, disableNextButton);
 
                     $self.data('pageInfo', pageInfo);
                     mainOption.onChange(pageInfo.pageIndex, pageInfo.pageSize);
@@ -189,7 +198,8 @@
 
             var $pagerContainer = $self.find('.page-container');
             updatePageInfo($pagerContainer, newPageInfo.pageIndex + 1, newPageInfo.totalPage);
-            resetToInitialState($pagerContainer);
+            var disableNextButton = isDisableNextButton(newPageInfo.pageIndex, newPageInfo.totalPage);
+            resetToInitialState($pagerContainer, disableNextButton);
             $self.data('pageInfo', newPageInfo);
         }
     }

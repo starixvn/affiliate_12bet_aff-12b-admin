@@ -55,6 +55,10 @@
 .banner-link {
   display: inline-block; }
 
+.text-link {
+  color: #139FEE;
+  font-weight: bold; }
+
 .marketing-text {
   color: #FF6600;
   padding: 4px 0; }

@@ -943,8 +943,8 @@
     <Content Include="Views\UserPanel\MediaGallery.cshtml" />
     <Content Include="Views\UserPanel\TextBox.cshtml" />
     <Content Include="www\source\styles\pages\media-gallery.scss" />
-    <Content Include="Views\UserPanel\MarketingPartial\_Search.cshtml" />
-    <Content Include="Views\UserPanel\MarketingPartial\_Link.cshtml" />
+    <Content Include="Views\UserPanel\MarketingPartial\_SearchForm.cshtml" />
+    <Content Include="Views\UserPanel\MarketingPartial\_LinkForm.cshtml" />
     <Content Include="Views\UserPanel\TrackingStatistics.cshtml" />
     <Content Include="Views\UserPanel\ReferrersStatistics.cshtml" />
     <Content Include="Views\UserPanel\LandingPageStatistics.cshtml" />

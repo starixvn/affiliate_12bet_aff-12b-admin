@@ -1,4 +1,5 @@
 ﻿@import "../scss/components/paging";
+
 .list-content {
     > li {
         margin-top: 10px;
@@ -14,11 +15,16 @@
     display: inline-block;
 }
 
+.text-link {
+    color: #139FEE;
+    font-weight: bold;
+}
+
 .marketing-text {
     color: #FF6600;
     padding: 4px 0;
 }
 
-#marketingPager{
+#marketingPager {
     margin-top: 15px;
 }
