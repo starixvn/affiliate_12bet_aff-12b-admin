@@ -200,11 +200,15 @@
 
         private LinkFormViewModel GetLinkFormViewModel()
         {
-            var memberSitePage = new MemberSitePage(true);
+            var userSession = SessionService.UserSession;
+            var isInternal = SessionService.IsInternal;
+
+            var userHasCasino = _accountRepository.UserHasCasino(userSession.UserName, isInternal);
+            var memberSitePage = new MemberSitePage(userHasCasino);
 
             var viewModel = new LinkFormViewModel
             {
-                DomainList = _marketingService.GetDomainList(SessionService.UserSession.AffId, SessionService.IsInternal),
+                DomainList = _marketingService.GetDomainList(userSession.AffId, isInternal),
                 MemberSitePageList = memberSitePage.PageList.Select(p => new SelectListItem { Value = p, Text = p })
             };
 

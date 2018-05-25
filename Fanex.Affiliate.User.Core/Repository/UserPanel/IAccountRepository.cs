@@ -13,5 +13,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
         ResultInfo UpdateAccountInformation(UpdateAccountParam accountUpdateParam);
 
         ResultInfo UpdatePassword(UpdatePasswordParam updatePasswordParam);
+
+        bool UserHasCasino(string userName, bool isInternal);
     }
 }

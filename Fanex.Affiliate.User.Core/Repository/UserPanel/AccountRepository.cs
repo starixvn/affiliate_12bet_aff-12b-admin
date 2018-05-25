@@ -81,5 +81,16 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
                 Message = parameterSet.ErrMsg
             };
         }
+
+        public bool UserHasCasino(string userName, bool isInternal)
+        {
+            const string uSpKey = "Aff_AffiliateUser_UserHasCasinoSel";
+            var dbMode = isInternal ? DBMode.View : DBMode.Main;
+
+            using (var objectDb = new ObjectDBBuilder(uSpKey, dbMode))
+            {
+                return Convert.ToBoolean(objectDb.DB.ExecuteScalar(new { userName }));
+            }
+        }
     }
 }
