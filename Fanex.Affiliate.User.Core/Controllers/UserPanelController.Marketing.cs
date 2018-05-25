@@ -45,7 +45,7 @@
                 MarketingDataList = GetBannerList(bannerParam)
             };
 
-            ViewBag.TotalItem = 100;
+            ViewBag.TotalItem = bannerParam.Nrows;
 
             return View(viewModel);
         }
@@ -81,6 +81,8 @@
                 MarketingDataList = GetTextList(textParam)
             };
 
+            ViewBag.TotalItem = textParam.Nrows;
+
             return View(viewModel);
         }
 
@@ -115,6 +117,7 @@
             bannerParam.Language = SystemLanguage.LanguageList.FirstOrDefault(l => l.Code.MatchWith(bannerParam.Language))?.EnglishName;
 
             var bannerList = GetBannerList(bannerParam);
+            ViewBag.TotalItem = bannerParam.Nrows;
 
             return View("~/Views/UserPanel/MarketingPartial/_BannerList.cshtml", bannerList);
         }
@@ -134,6 +137,7 @@
             textParam.Language = SystemLanguage.LanguageList.FirstOrDefault(l => l.Code.MatchWith(textParam.Language))?.EnglishName;
 
             var textList = GetTextList(textParam);
+            ViewBag.TotalItem = textParam.Nrows;
 
             return View("~/Views/UserPanel/MarketingPartial/_TextList.cshtml", textList);
         }

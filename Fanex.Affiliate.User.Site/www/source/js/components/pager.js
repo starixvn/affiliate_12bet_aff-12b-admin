@@ -5,6 +5,7 @@
         pageSize: 20,
         totalItems: 0,
         pageSizeList: DEFAULT_PAGESIZE_LIST,
+        onChange: function (pageIndex, pageSize) { },
         onClickPrev: function () { },
         onClickLastPrev: function () { },
         onClickNext: function () { },
@@ -28,16 +29,18 @@
 
     function buildPageInfo(totalPage) {
         var html = ['<div class="page-input">'];
-        html.push('<span class="text-pageInfo">Page 1 of ' + totalPage + '</span>')
+        html.push('<span class="text-pageInfo">Page 1 of ' + (totalPage || 1) + '</span>')
         html.push('</div>');
 
         return html.join('');
     }
 
-    function buildPageSizeList(pageSizeList) {
+    function buildPageSizeList(pageSizeList, selectedItem) {
         var htmlPageSize = ['<select class="pagesize-select" >'];
         for (var i = 0; i < pageSizeList.length; i++) {
-            htmlPageSize.push('<option value="' + pageSizeList[i] + '">' + pageSizeList[i] + '</option>');
+            var pageSize = pageSizeList[i];
+            var selected = pageSize === selectedItem ? "selected" : "";
+            htmlPageSize.push('<option value="' + pageSize + '" ' + selected + '>' + pageSize + '</option>');
         }
         htmlPageSize.push('</select>');
 
@@ -45,7 +48,7 @@
     }
 
     function updatePageInfo($pagerContainer, pageIndex, totalPage) {
-        $pagerContainer.find('.text-pageInfo').text('Page ' + pageIndex + ' of ' + totalPage);
+        $pagerContainer.find('.text-pageInfo').text('Page ' + pageIndex + ' of ' + (totalPage || 1));
     }
 
     function togglePrevButton($pagerContainer, isEnable) {
@@ -58,43 +61,60 @@
         $pagerContainer.find('.page-last').toggleClass('disable', !isEnable);
     }
 
+    function resetToInitialState($pagerContainer) {
+        togglePrevButton($pagerContainer, false);
+        toggleNextButton($pagerContainer, true);
+    }
+
+    function calculateTotalPage(totalItems, pageSize) {
+        return parseInt(totalItems / pageSize) + (totalItems % pageSize === 0 ? 0 : 1);
+    }
+
     var _methods = {
         init: function (option) {
             return this.each(function () {
                 var mainOption = $.extend(defaultOption, option || {});
 
                 var $self = $(this);
-                var totalPage = parseInt(mainOption.totalItems / mainOption.pageSize) + (mainOption.totalItems % mainOption.pageSize === 0 ? 0 : 1);
-                $self.pageInfo = {
+                $self.children().off();
+                $self.html("");
+
+                var totalPage = calculateTotalPage(mainOption.totalItems, mainOption.pageSize);
+                var pageInfo = {
                     pageIndex: mainOption.pageIndex,
                     pageSize: mainOption.pageSize,
                     totalItems: mainOption.totalItems,
                     totalPage: totalPage
                 }
 
+                $self.data('pageInfo', pageInfo);
+
                 var htmlPrevButton = buildPrevButton();
                 var htmlPagingInfo = buildPageInfo(totalPage);
                 var htmlNextButton = buildNextButton();
-                var htmlPageSizeList = buildPageSizeList(mainOption.pageSizeList);
+                var htmlPageSizeList = buildPageSizeList(mainOption.pageSizeList, mainOption.pageSize);
 
                 var $pagerContainer = $('<div class="page-container"></div>');
                 $pagerContainer.append(htmlPrevButton + htmlPagingInfo + htmlNextButton + htmlPageSizeList);
                 $self.append($pagerContainer);
 
                 $pagerContainer.on('click', '.page-first', function () {
-                    var pageInfo = $self.pageInfo;
+                    var pageInfo = $self.data('pageInfo');
                     if (pageInfo.pageIndex === 0) {
                         return;
                     }
-                    
+
                     pageInfo.pageIndex = 0;
                     updatePageInfo($pagerContainer, pageInfo.pageIndex + 1, pageInfo.totalPage);
-                    togglePrevButton($pagerContainer, false);
-                    toggleNextButton($pagerContainer, true);
+                    resetToInitialState($pagerContainer);
+
+                    $self.data('pageInfo', pageInfo);
+
+                    mainOption.onChange(pageInfo.pageIndex, pageInfo.pageSize);
                 });
 
                 $pagerContainer.on('click', '.page-prev', function () {
-                    var pageInfo = $self.pageInfo;
+                    var pageInfo = $self.data('pageInfo');
                     if (pageInfo.pageIndex === 0) {
                         return;
                     }
@@ -106,11 +126,13 @@
 
                     toggleNextButton($pagerContainer, true);
                     updatePageInfo($pagerContainer, pageInfo.pageIndex + 1, pageInfo.totalPage);
+
+                    $self.data('pageInfo', pageInfo);
+                    mainOption.onChange(pageInfo.pageIndex, pageInfo.pageSize);
                 });
 
                 $pagerContainer.on('click', '.page-next', function () {
-                    var pageInfo = $self.pageInfo;
-                    console.log(pageInfo);
+                    var pageInfo = $self.data('pageInfo');
                     if (pageInfo.pageIndex === pageInfo.totalPage - 1) {
                         return;
                     }
@@ -121,11 +143,14 @@
                     }
 
                     togglePrevButton($pagerContainer, true);
+                    $self.data('pageInfo', pageInfo);
                     updatePageInfo($pagerContainer, pageInfo.pageIndex + 1, pageInfo.totalPage);
+
+                    mainOption.onChange(pageInfo.pageIndex, pageInfo.pageSize);
                 });
 
                 $pagerContainer.on('click', '.page-last', function () {
-                    var pageInfo = $self.pageInfo;
+                    var pageInfo = $self.data('pageInfo');
                     if (pageInfo.pageIndex === pageInfo.totalPage - 1) {
                         return;
                     }
@@ -134,21 +159,38 @@
                     updatePageInfo($pagerContainer, pageInfo.pageIndex + 1, pageInfo.totalPage);
                     togglePrevButton($pagerContainer, true);
                     toggleNextButton($pagerContainer, false);
+
+                    $self.data('pageInfo', pageInfo);
+                    mainOption.onChange(pageInfo.pageIndex, pageInfo.pageSize);
                 });
 
                 $pagerContainer.on('change', '.pagesize-select', function () {
-                    var pageInfo = $self.pageInfo;
+                    var pageInfo = $self.data('pageInfo');
                     pageInfo.pageIndex = 0;
                     pageInfo.pageSize = parseInt($(this).val());
 
-                    var totalPage = parseInt(pageInfo.totalItems / pageInfo.pageSize) + (pageInfo.totalItems % pageInfo.pageSize === 0 ? 0 : 1);
+                    var totalPage = calculateTotalPage(pageInfo.totalItems, pageInfo.pageSize);
                     pageInfo.totalPage = totalPage;
-                    
+
                     updatePageInfo($pagerContainer, pageInfo.pageIndex + 1, pageInfo.totalPage);
-                    togglePrevButton($pagerContainer, false);
-                    toggleNextButton($pagerContainer, true);
+                    resetToInitialState($pagerContainer);
+
+                    $self.data('pageInfo', pageInfo);
+                    mainOption.onChange(pageInfo.pageIndex, pageInfo.pageSize);
                 });
             });
+        },
+
+        update: function (pageInfo) {
+            var $self = $(this);
+            var oldPageInfo = $self.data('pageInfo');
+            var newPageInfo = $.extend({}, oldPageInfo, pageInfo);
+            newPageInfo.totalPage = calculateTotalPage(newPageInfo.totalItems, newPageInfo.pageSize);
+
+            var $pagerContainer = $self.find('.page-container');
+            updatePageInfo($pagerContainer, newPageInfo.pageIndex + 1, newPageInfo.totalPage);
+            resetToInitialState($pagerContainer);
+            $self.data('pageInfo', newPageInfo);
         }
     }
 

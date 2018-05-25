@@ -43,7 +43,16 @@
     "outputFileName": "www/build/js/mediagallery.js",
     "inputFiles": [
       "www/source/js/components/pager.js",
-      "www/source/js/pages/mediagallery.js"
+      "www/source/js/pages/marketing/marketingbase.js",
+      "www/source/js/pages/marketing/mediagallery.js"
+    ]
+  },
+  {
+    "outputFileName": "www/build/js/textbox.js",
+    "inputFiles": [
+      "www/source/js/components/pager.js",
+      "www/source/js/pages/marketing/marketingbase.js",
+      "www/source/js/pages/marketing/textbox.js"
     ]
   }
 ]
