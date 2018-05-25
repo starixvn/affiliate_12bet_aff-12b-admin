@@ -64,6 +64,9 @@
                 success: function (response) {
                     $("#marketingDataList").html(response);
                     onSuccess && onSuccess();
+
+                    var totalItem = parseInt($("#TotalItem").val());
+                    $("#marketingPager").toggle(totalItem !== 0);
                 }
             });
         },
