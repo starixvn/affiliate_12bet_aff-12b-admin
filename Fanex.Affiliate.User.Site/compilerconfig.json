@@ -108,5 +108,15 @@
     "outputFile": "www/build/js/recheckin.js",
     "inputFile": "www/source/js/recheckin.js",
     "sourceMap": false
+  },
+  {
+    "outputFile": "www/build/js/trackingstatistics.js",
+    "inputFile": "www/source/js/pages/statistics/trackingstatistics.js",
+    "sourceMap": false
+  },
+  {
+    "outputFile": "www/build/styles/css/statistics.css",
+    "inputFile": "www/source/styles/pages/statistics.scss",
+    "sourceMap": false
   }
 ]

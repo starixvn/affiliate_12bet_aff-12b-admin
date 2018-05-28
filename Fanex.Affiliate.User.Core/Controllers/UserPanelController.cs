@@ -13,18 +13,21 @@
         private readonly IAccountRepository _accountRepository;
         private readonly IAccountOverviewRepository _accountOverviewRepository;
         private readonly IMarketingService _marketingService;
+        private readonly IStatisticsRepository _statisticsRepository;
 
         public UserPanelController(
             ISessionService sessionService,
             IAppSetting appSetting,
             IAccountRepository accountRepository,
             IAccountOverviewRepository accountOverviewRepository,
-            IMarketingService marketingService)
+            IMarketingService marketingService,
+            IStatisticsRepository statisticsRepository)
             : base(sessionService, appSetting)
         {
             _accountRepository = accountRepository;
             _accountOverviewRepository = accountOverviewRepository;
             _marketingService = marketingService;
+            _statisticsRepository = statisticsRepository;
         }
 
         [HttpGet]

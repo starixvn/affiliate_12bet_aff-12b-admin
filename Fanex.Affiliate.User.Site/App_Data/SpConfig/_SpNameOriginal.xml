@@ -45,4 +45,15 @@
     <Setting Key="Aff_TextSel_1" SpName="Aff_TextSel_1" DbName="affiliate_12bet" />
     <Setting Key="Aff_TextSel_1_view" SpName="Aff_TextSel_1" DbName="affiliate_12bet_view" />
   </Function>
+
+  <Function Name="Statistics">   
+    <Setting Key="Aff_AffiliateSelTrackingCode" SpName="Aff_AffiliateSelTrackingCode" DbName="affiliate_12bet" />
+    <Setting Key="Aff_AffiliateSelTrackingCode_view" SpName="Aff_AffiliateSelTrackingCode" DbName="affiliate_12bet_view" />
+    
+    <Setting Key="Aff_AffiliateSelClickStatisticsAllMonths" SpName="Aff_AffiliateSelClickStatisticsAllMonths" DbName="affiliate_12bet" />
+    <Setting Key="Aff_AffiliateSelClickStatisticsAllMonths_view" SpName="Aff_AffiliateSelClickStatisticsAllMonths" DbName="affiliate_12bet_view" />
+
+    <Setting Key="Aff_AffiliateSelClickStatisticsMonthDetail" SpName="Aff_AffiliateSelClickStatisticsMonthDetail" DbName="affiliate_12bet" />
+    <Setting Key="Aff_AffiliateSelClickStatisticsMonthDetail_view" SpName="Aff_AffiliateSelClickStatisticsMonthDetail" DbName="affiliate_12bet_view" />  
+  </Function>
 </Functions>

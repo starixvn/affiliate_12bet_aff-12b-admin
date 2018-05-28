@@ -465,6 +465,10 @@
     <Content Include="www\build\js\textbox.min.js">
       <DependentUpon>textbox.js</DependentUpon>
     </Content>
+    <Content Include="www\build\js\trackingstatistics.js" />
+    <Content Include="www\build\js\trackingstatistics.min.js">
+      <DependentUpon>trackingstatistics.js</DependentUpon>
+    </Content>
     <Content Include="www\build\js\user-panel.js" />
     <Content Include="www\build\js\user-panel.min.js">
       <DependentUpon>user-panel.js</DependentUpon>
@@ -569,6 +573,7 @@
     <Content Include="www\source\js\pages\marketing\mediagallery.js" />
     <Content Include="www\source\js\pages\myaccount.js" />
     <Content Include="www\source\js\pages\statement-history.js" />
+    <Content Include="www\source\js\pages\statistics\trackingstatistics.js" />
     <Content Include="www\source\js\pages\test.js" />
     <Content Include="www\source\js\pages\marketing\textbox.js" />
     <Content Include="www\source\js\pages\user-panel.js" />
@@ -662,6 +667,8 @@
     <Content Include="Views\UserPanel\MarketingPartial\_BannerFilter.cshtml" />
     <Content Include="Views\UserPanel\MarketingPartial\_TextList.cshtml" />
     <Content Include="www\source\styles\scss\components\_paging.scss" />
+    <Content Include="www\source\styles\pages\statistics.scss" />
+    <Content Include="Views\UserPanel\Statistics\_TrackingStatisticsContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

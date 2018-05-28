@@ -80,6 +80,7 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterType<MarketingRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<MemoryCacheService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<MarketingService>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<StatisticsRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
     }
 }
