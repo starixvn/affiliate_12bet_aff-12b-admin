@@ -54,5 +54,12 @@
       "www/source/js/pages/marketing/marketingbase.js",
       "www/source/js/pages/marketing/textbox.js"
     ]
+  },
+  {
+    "outputFileName": "www/build/js/referrerstatistics.js",
+    "inputFiles": [
+      "www/source/js/components/pager.js",
+      "www/source/js/pages/statistics/referrerstatistics.js"
+    ]
   }
 ]

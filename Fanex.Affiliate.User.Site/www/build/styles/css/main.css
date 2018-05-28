@@ -1025,7 +1025,8 @@ label.require:after {
       background: #fbe8e1; }
   .table table th,
   .table table td {
-    border: 1px solid #c1c1c1; }
+    border: 1px solid #c1c1c1;
+    word-wrap: break-word; }
   .table table th {
     font-size: 15px;
     text-transform: capitalize;

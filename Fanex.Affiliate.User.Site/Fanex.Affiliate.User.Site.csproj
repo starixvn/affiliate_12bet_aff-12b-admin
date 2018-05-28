@@ -449,6 +449,10 @@
     <Content Include="www\build\js\recheckin.min.js">
       <DependentUpon>recheckin.js</DependentUpon>
     </Content>
+    <Content Include="www\build\js\referrerstatistics.js" />
+    <Content Include="www\build\js\referrerstatistics.min.js">
+      <DependentUpon>referrerstatistics.js</DependentUpon>
+    </Content>
     <Content Include="www\build\js\site.js" />
     <Content Include="www\build\js\site.min.js">
       <DependentUpon>site.js</DependentUpon>
@@ -493,6 +497,10 @@
     <Content Include="www\build\styles\css\main.min.css">
       <DependentUpon>main.css</DependentUpon>
     </Content>
+    <Content Include="www\build\styles\css\marketing.css" />
+    <Content Include="www\build\styles\css\marketing.min.css">
+      <DependentUpon>marketing.css</DependentUpon>
+    </Content>
     <Content Include="www\build\styles\css\materialdesignicons.css" />
     <Content Include="www\build\styles\css\materialdesignicons.min.css">
       <DependentUpon>materialdesignicons.css</DependentUpon>
@@ -517,6 +525,10 @@
     <Content Include="www\build\styles\css\products.css" />
     <Content Include="www\build\styles\css\products.min.css">
       <DependentUpon>products.css</DependentUpon>
+    </Content>
+    <Content Include="www\build\styles\css\statistics.css" />
+    <Content Include="www\build\styles\css\statistics.min.css">
+      <DependentUpon>statistics.css</DependentUpon>
     </Content>
     <Content Include="www\build\styles\fonts\font_bebas\Flat-it License.txt" />
     <Content Include="www\build\styles\fonts\glypicons\glyphicons-halflings-regular.svg" />
@@ -573,6 +585,7 @@
     <Content Include="www\source\js\pages\marketing\mediagallery.js" />
     <Content Include="www\source\js\pages\myaccount.js" />
     <Content Include="www\source\js\pages\statement-history.js" />
+    <Content Include="www\source\js\pages\statistics\referrerstatistics.js" />
     <Content Include="www\source\js\pages\statistics\trackingstatistics.js" />
     <Content Include="www\source\js\pages\test.js" />
     <Content Include="www\source\js\pages\marketing\textbox.js" />
@@ -666,9 +679,10 @@
     <Content Include="www\source\styles\scss\components\_loader.scss" />
     <Content Include="Views\UserPanel\MarketingPartial\_BannerFilter.cshtml" />
     <Content Include="Views\UserPanel\MarketingPartial\_TextList.cshtml" />
-    <Content Include="www\source\styles\scss\components\_paging.scss" />
+    <Content Include="www\source\styles\scss\components\_pager.scss" />
     <Content Include="www\source\styles\pages\statistics.scss" />
     <Content Include="Views\UserPanel\Statistics\_TrackingStatisticsContent.cshtml" />
+    <Content Include="Views\UserPanel\Statistics\_ReferrersStatisticsContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -949,7 +963,7 @@
     <Content Include="www\source\styles\pages\payment-request.scss" />
     <Content Include="Views\UserPanel\MediaGallery.cshtml" />
     <Content Include="Views\UserPanel\TextBox.cshtml" />
-    <Content Include="www\source\styles\pages\media-gallery.scss" />
+    <Content Include="www\source\styles\pages\marketing.scss" />
     <Content Include="Views\UserPanel\MarketingPartial\_SearchForm.cshtml" />
     <Content Include="Views\UserPanel\MarketingPartial\_LinkForm.cshtml" />
     <Content Include="Views\UserPanel\TrackingStatistics.cshtml" />

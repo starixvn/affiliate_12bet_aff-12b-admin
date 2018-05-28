@@ -1,7 +1,18 @@
-﻿.btn-statistics {
+﻿@import "../scss/components/pager";
+
+.btn-statistics {
     margin-bottom: 5px;
 }
 
 #statisticsDetailTable {
     margin-top: 15px;
+}
+
+#statisticsDetailPager {
+    width: 70%;
+    margin-top: 30px;
+
+    & + #statisticsDetailTable {
+        margin-top: 0;
+    }
 }

@@ -59,6 +59,44 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             }
         }
 
+        public IEnumerable<ReferrerStatistics> GetReferrerStatistics(ReferrerStatisticsParam referrerStatisticsParam)
+        {
+            const string uSpkey = "Aff_ClickStatisticsSelBySite";
+            var dbMode = referrerStatisticsParam.IsInternal ? DBMode.View : DBMode.Main;
+
+            using (var objectDb = new ObjectDBBuilder(uSpkey, dbMode))
+            {
+                return objectDb.DB.Query<ReferrerStatistics>(referrerStatisticsParam);
+            }
+        }
+
+        public IEnumerable<ReferrerStatistics> GetStatisticsDetailBySite(StatisticsDetailBySiteParam statisticsDetailParam)
+        {
+            const string uSpkey = "Aff_ClickStatisticsDetailBySite";
+            var dbMode = statisticsDetailParam.IsInternal ? DBMode.View : DBMode.Main;
+            var dataList = new List<ReferrerStatistics>();
+
+            using (var objectDb = new ObjectDBBuilder(uSpkey, dbMode))
+            {
+                using (var reader = objectDb.DB.ExecuteReader(statisticsDetailParam))
+                {
+                    while (reader.Read())
+                    {
+                        dataList.Add(new ReferrerStatistics
+                        {
+                            DomainReferrer = reader["UrlReferrer"].ToString(),
+                            TotalClick = reader["TotalClick"] == DBNull.Value ? 0 : Convert.ToInt32(reader["TotalClick"]),
+                            UniqueClick = reader["UniqueClick"] == DBNull.Value ? 0 : Convert.ToInt32(reader["UniqueClick"]),
+                            SignUps = reader["Signups"] == DBNull.Value ? 0 : Convert.ToInt32(reader["Signups"]),
+                            Fdm = reader["FDM"] == DBNull.Value ? 0 : Convert.ToInt32(reader["FDM"])
+                        });
+                    }
+                }
+            }
+
+            return dataList;
+        }
+
         private TrackingStatistics BuildTrackingStatisticsItem(IDataReader reader)
         {
             return new TrackingStatistics

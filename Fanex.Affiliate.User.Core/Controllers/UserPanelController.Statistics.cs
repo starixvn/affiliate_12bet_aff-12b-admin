@@ -1,7 +1,9 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
+    using System;
     using System.Linq;
     using System.Web.Mvc;
+    using Enum;
     using Extensions;
     using Filters;
     using MetalModels.UserPanel;
@@ -62,7 +64,54 @@
         [AjaxOnly]
         public ActionResult ReferrersStatistics()
         {
-            return View();
+            var now = DateTime.Now;
+            var referrerStatisticsParam = new ReferrerStatisticsParam
+            {
+                AffId = SessionService.UserSession.AffId,
+                IsInternal = SessionService.IsInternal,
+                FromDate = new DateTime(now.Year, now.Month, 1),
+                ToDate = now,
+                DeviceType = (byte)DeviceType.PCDevice
+            };
+
+            var viewModel = new ReferrerStatisticsViewModel
+            {
+                DataList = _statisticsRepository.GetReferrerStatistics(referrerStatisticsParam)
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpGet]
+        [AjaxOnly]
+        public ActionResult GetReferrerStatistics(ReferrerStatisticsParam referrerStatisticsParam)
+        {
+            referrerStatisticsParam.AffId = SessionService.UserSession.AffId;
+            referrerStatisticsParam.IsInternal = SessionService.IsInternal;
+
+            var viewModel = new ReferrerStatisticsViewModel
+            {
+                DataList = _statisticsRepository.GetReferrerStatistics(referrerStatisticsParam)
+            };
+
+            return PartialView("~/Views/UserPanel/Statistics/_ReferrersStatisticsContent.cshtml", viewModel);
+        }
+
+        [HttpGet]
+        [AjaxOnly]
+        public ActionResult GetStatisticsDetailBySite(StatisticsDetailBySiteParam statisticsDetailParam)
+        {
+            statisticsDetailParam.AffId = SessionService.UserSession.AffId;
+            statisticsDetailParam.IsInternal = SessionService.IsInternal;
+
+            var viewModel = new ReferrerStatisticsViewModel
+            {
+                DataList = _statisticsRepository.GetStatisticsDetailBySite(statisticsDetailParam),
+                IsDetail = true,
+                RowNumber = statisticsDetailParam.NRows
+            };
+
+            return PartialView("~/Views/UserPanel/Statistics/_ReferrersStatisticsContent.cshtml", viewModel);
         }
 
         [HttpGet]
