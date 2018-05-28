@@ -63,7 +63,7 @@ var BetList = (function ($) {
             url += "&basecurrency=" + baseCurrency;
             var widthDialog = 760;
             var heightDialog = 450;
-            DoCalFull(url, 'System Parlay Detail', widthDialog, heightDialog, 150, 0);
+            DoCalFull(url, betTeam, widthDialog, heightDialog, 150, 0);
         },
 
         showNewParlayDetail: function (transId, transIndex, refNo, handicap1, handicap2, betcheck, betteam) {

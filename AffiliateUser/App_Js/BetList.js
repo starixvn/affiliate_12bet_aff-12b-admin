@@ -130,7 +130,7 @@ function showCombMPDetail(transId, refNo, betId, custId, betTeam, baseCurrency)
 
     var widthDialog = 760;
     var heightDialog = 450;
-    Common.openPopup(url, 'System Parlay Detail', widthDialog, heightDialog, 150, 290);
+    Common.openPopup(url, betTeam, widthDialog, heightDialog, 150, 290);
 }
 
 function showNewCombMP(transId, transIndex, refNo, handicap1, handicap2, betcheck, betteam) {

@@ -1,6 +1,7 @@
 ﻿using System;
-using DNAide.Web;
 using AffiliateAdmin.AffBetlistService;
+using DNAide.Web;
+using Resources;
 
 public partial class BetList_BetListParlayDetail : IBCPage
 {
@@ -9,12 +10,12 @@ public partial class BetList_BetListParlayDetail : IBCPage
     protected void Page_Load(object sender, EventArgs e)
     {
         var criteria = new BetListSystemParlayDetailCriteria
-            {
-                TransId = long.Parse(Request["transId"]),
-                RefNo = long.Parse(Request["refno"]),
-                BetId = int.Parse(Request["betId"]),
-                CustId = int.Parse(Request["custid"])
-            };
+        {
+            TransId = long.Parse(Request["transId"]),
+            RefNo = long.Parse(Request["refno"]),
+            BetId = int.Parse(Request["betId"]),
+            CustId = int.Parse(Request["custid"])
+        };
 
         var affBetlistService = new AffiliateAPI();
         affBetlistService.Timeout = AppSettings.BetListServiceTimeout;
@@ -26,6 +27,8 @@ public partial class BetList_BetListParlayDetail : IBCPage
 
         var strTemplate = TemplateHandler.LoadTemplate("UserInfo/BetListParlayDetail.htm");
         TemplateHandler.Assign(ref strTemplate, "betlistParlayDetailHtmlString", betlistParlayDetailHtmlString);
+        TemplateHandler.Assign(ref strTemplate, "note-label", Lang.Note2);
+        TemplateHandler.Assign(ref strTemplate, "note-lang", Lang.SystemParlayDetailNote);
 
         this.HtmlContent = strTemplate;
     }
