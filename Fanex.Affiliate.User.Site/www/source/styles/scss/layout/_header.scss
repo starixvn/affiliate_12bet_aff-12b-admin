@@ -1,11 +1,20 @@
 ﻿@import "../components/flag";
 
+.header-top, .navbar {
+    &-container {
+        width: calc(100% - 420px);
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
 .header-top {
     background: #000 url(../Images/header-bg.png) center top no-repeat;
 
     .logo {
-        padding: 1.7rem 0 1.7rem 3rem;
         display: inline-block;
+        padding-top: 17px;
+        padding-right: 17px;
 
         .logo-text, img {
             display: inline-block;
@@ -37,6 +46,11 @@
     overflow: hidden;
     margin-bottom: 0;
     border: none;
+
+    .navbar-collapse {
+        padding-left: 0;
+        padding-right: 0;
+    }
 
     ul {
         li {

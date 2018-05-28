@@ -279,11 +279,17 @@ input[type="checkbox"], input[type="radio"] {
   .flag-hi-IN {
     background-position: -1564px 0; }
 
+.header-top-container, .navbar-container {
+  width: calc(100% - 420px);
+  padding-left: 0;
+  padding-right: 0; }
+
 .header-top {
   background: #000 url(../../../source/styles/Images/header-bg.png) center top no-repeat; }
   .header-top .logo {
-    padding: 1.7rem 0 1.7rem 3rem;
-    display: inline-block; }
+    display: inline-block;
+    padding-top: 17px;
+    padding-right: 17px; }
     .header-top .logo .logo-text, .header-top .logo img {
       display: inline-block;
       vertical-align: bottom; }
@@ -314,6 +320,9 @@ input[type="checkbox"], input[type="radio"] {
   overflow: hidden;
   margin-bottom: 0;
   border: none; }
+  .navbar .navbar-collapse {
+    padding-left: 0;
+    padding-right: 0; }
   .navbar ul li {
     line-height: 30px; }
     .navbar ul li a {
