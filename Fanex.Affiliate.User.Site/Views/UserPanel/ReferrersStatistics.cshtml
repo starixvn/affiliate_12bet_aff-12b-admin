@@ -6,12 +6,6 @@
 
 @model Fanex.Affiliate.User.Core.ViewModels.UserPanel.Statistics.ReferrerStatisticsViewModel
 
-@{ 
-    var now = DateTime.Now;
-    var fromDate = new DateTime(now.Year, now.Month, 1).ToString("MM/dd/yyyy");
-    var toDate = now.ToString("MM/dd/yyyy");
-}
-
 <div class="info-group">
     <div class="title">
         <span class="text">@Lang.Referrals</span>
@@ -20,11 +14,11 @@
     <form class="form-inline form-filter">
         <div class="form-group">
             <label>@Lang.From:</label>
-            <input id="FromDate" class="form-control" type="text" value="@fromDate" />
+            <input id="FromDate" class="form-control" type="text" value="@Model.FromDate.ToString("MM/dd/yyyy")" />
         </div>
         <div class="form-group">
             <label>@Lang.To:</label>
-            <input id="ToDate" class="form-control" type="text" value="@toDate" />
+            <input id="ToDate" class="form-control" type="text" value="@Model.ToDate.ToString("MM/dd/yyyy")" />
         </div>
         <div class="form-group">
             <label>@Lang.Device:</label>

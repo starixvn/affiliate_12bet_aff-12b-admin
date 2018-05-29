@@ -61,5 +61,12 @@
       "www/source/js/components/pager.js",
       "www/source/js/pages/statistics/referrerstatistics.js"
     ]
+  },
+  {
+    "outputFileName": "www/build/js/landingpagestatistics.js",
+    "inputFiles": [
+      "www/source/js/components/pager.js",
+      "www/source/js/pages/statistics/landingpagestatistics.js"
+    ]
   }
 ]

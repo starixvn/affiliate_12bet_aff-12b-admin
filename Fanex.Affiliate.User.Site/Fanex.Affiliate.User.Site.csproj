@@ -427,6 +427,10 @@
     <Content Include="www\build\js\home.min.js">
       <DependentUpon>home.js</DependentUpon>
     </Content>
+    <Content Include="www\build\js\landingpagestatistics.js" />
+    <Content Include="www\build\js\landingpagestatistics.min.js">
+      <DependentUpon>landingpagestatistics.js</DependentUpon>
+    </Content>
     <Content Include="www\build\js\layout.js" />
     <Content Include="www\build\js\layout.min.js">
       <DependentUpon>layout.js</DependentUpon>
@@ -585,6 +589,7 @@
     <Content Include="www\source\js\pages\marketing\mediagallery.js" />
     <Content Include="www\source\js\pages\myaccount.js" />
     <Content Include="www\source\js\pages\statement-history.js" />
+    <Content Include="www\source\js\pages\statistics\landingpagestatistics.js" />
     <Content Include="www\source\js\pages\statistics\referrerstatistics.js" />
     <Content Include="www\source\js\pages\statistics\trackingstatistics.js" />
     <Content Include="www\source\js\pages\test.js" />
@@ -683,6 +688,7 @@
     <Content Include="www\source\styles\pages\statistics.scss" />
     <Content Include="Views\UserPanel\Statistics\_TrackingStatisticsContent.cshtml" />
     <Content Include="Views\UserPanel\Statistics\_ReferrersStatisticsContent.cshtml" />
+    <Content Include="Views\UserPanel\Statistics\_LandingPageStatisticsContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

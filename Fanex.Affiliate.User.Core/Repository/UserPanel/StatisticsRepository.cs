@@ -97,6 +97,17 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             return dataList;
         }
 
+        public IEnumerable<LandingPageStatistics> GetLandingPageStatistics(LandingPageStatisticsParam landingPageStatisticsParam)
+        {
+            const string uSpKey = "Aff_ClickStatisticsSelByPage";
+            var dbMode = landingPageStatisticsParam.IsInternal ? DBMode.View : DBMode.Main;
+
+            using (var objectDb = new ObjectDBBuilder(uSpKey, dbMode))
+            {
+                return objectDb.DB.Query<LandingPageStatistics>(landingPageStatisticsParam);
+            }
+        }
+
         private TrackingStatistics BuildTrackingStatisticsItem(IDataReader reader)
         {
             return new TrackingStatistics

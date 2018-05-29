@@ -2,6 +2,10 @@
     Layout = null;
 }
 
+@Html.InlineStyles("~/www/build/styles/css/statistics.css")
+
+@model Fanex.Affiliate.User.Core.ViewModels.UserPanel.Statistics.LandingPageStatisticsViewModel
+
 <div class="info-group">
     <div class="title">
         <span class="text">@Lang.LandingPages</span>
@@ -10,73 +14,56 @@
     <form class="form-inline form-filter">
         <div class="form-group">
             <label>@Lang.Device:</label>
-            <select class="form-control">
-                <option>PC/Laptop</option>
-                <option>Mobile</option>
+            <select id="DeviceType" class="form-control">
+                @foreach (var item in EnumHelper.GetSelectList(typeof(Fanex.Affiliate.User.Core.Enum.DeviceType)))
+                {
+                    <option value="@item.Value">@Lang.ResourceManager.GetString(item.Text)</option>
+                }
             </select>
         </div>
         <div class="form-group">
             <label>@Lang.Language:</label>
-            <select class="form-control">
-                <option>English</option>
-                <option>Indonesia</option>
-                <option>Tiếng Việt</option>
+            <select id="Language" class="form-control">
+                <option value="">@Lang.All</option>
+                @foreach (var language in Model.LanguageList)
+                {
+                    <option value="@language.Value">@language.Text</option>
+                }
             </select>
         </div>
         <div class="form-group">
             <label>@Lang.Page:</label>
-            <select class="form-control">
-                <option>Casino</option>
-                <option>Number Game</option>
-                <option>Sportsbook</option>
+            <select id="SportCode" class="form-control">
+                <option value="">@Lang.All</option>
+                @foreach (var page in Model.MemberSitePageList)
+                {
+                    <option value="@page">@page</option>
+                }
             </select>
         </div>
     </form>
 
-    <form class="form-inline  form-filter">
+    <form class="form-inline form-filter">
         <div class="form-group">
             <label>@Lang.From:</label>
-            <input class="form-control" type="text" value="03/01/2018" />
+            <input class="form-control" type="text" id="FromDate" value="@Model.FromDate.ToString("MM/dd/yyyy")" />
         </div>
         <div class="form-group">
             <label>@Lang.To:</label>
-            <input class="form-control" type="text" value="03/29/2018" />
+            <input class="form-control" type="text" id="ToDate" value="@Model.ToDate.ToString("MM/dd/yyyy")" />
         </div>
-        <button type="button" class="btn btn-submit">@Lang.Submit</button>
+        <button type="button" class="btn btn-submit btn-statistics" id="btnStatisticsSubmit">@Lang.Submit</button>
     </form>
 
     <div class="report-container">
-        <div class="table table-medium">
-            <table>
-                <thead>
-                    <tr>
-                        <th>@Lang.Page</th>
-                        <th>@Lang.Language</th>
-                        <th>@Lang.TotalClick</th>
-                        <th>@Lang.UniqueClick</th>
-                        <th>@Lang.SignUp</th>
-                        <th>@Lang.FDM</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><a href="javascript:;">Casino</a></td>
-                        <td>en-US</td>
-                        <td class="text-right">70</td>
-                        <td class="text-right">69</td>
-                        <td class="text-right">0</td>
-                        <td class="text-right">0</td>
-                    </tr>
-                    <tr>
-                        <td><a href="javascript:;">Sportsbook</a></td>
-                        <td>en-US</td>
-                        <td class="text-right">70</td>
-                        <td class="text-right">69</td>
-                        <td class="text-right">0</td>
-                        <td class="text-right">0</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="table table-medium" id="statisticsTable">
+            @{ Html.RenderPartial("~/Views/UserPanel/Statistics/_LandingPageStatisticsContent.cshtml", Model); }
+        </div>
+
+        <div id="statisticsDetailPager"></div>
+        <div class="table table-medium detail table-paging" id="statisticsDetailTable">
         </div>
     </div>
 </div>
+
+<script src="@Url.RenderLink("~/www/build/js/landingpagestatistics.js")"></script>

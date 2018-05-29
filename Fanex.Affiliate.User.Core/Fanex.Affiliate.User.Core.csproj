@@ -239,6 +239,7 @@
     <Compile Include="MetalModels\OnUserIdParam.cs" />
     <Compile Include="MetalModels\UpdatePasswordParam.cs" />
     <Compile Include="MetalModels\UserLoginParam.cs" />
+    <Compile Include="MetalModels\UserPanel\LandingPageStatisticsParam.cs" />
     <Compile Include="MetalModels\UserPanel\LinkBaseParam.cs" />
     <Compile Include="MetalModels\UserPanel\LinkGenerationParam.cs" />
     <Compile Include="MetalModels\UserPanel\MarketingBannerParam.cs" />
@@ -344,6 +345,7 @@
     <Compile Include="ViewModels\UserPanel\Marketing\LinkFormViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Marketing\MarketingViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Marketing\SearchFormViewModel.cs" />
+    <Compile Include="ViewModels\UserPanel\Statistics\LandingPageStatisticsViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Statistics\ReferrerStatisticsViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Statistics\TrackingStatisticsViewModel.cs" />
   </ItemGroup>
