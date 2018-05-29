@@ -1,6 +1,8 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
+    using System.Linq;
     using System.Web.Mvc;
+    using Constants;
     using DTO;
     using Filters;
     using MetalModels;
@@ -16,6 +18,9 @@
         {
             var model = _accountRepository.GetAccountInfo(SessionService.UserSession.AffId);
             model.IsRenderState = SessionService.CurrentLanguage == "zh-CN" || SessionService.CurrentLanguage == "zh-TW";
+
+            var preferredLanguage = model.PreferredLanguage;
+            model.LanguageName = SystemLanguage.LanguageList.FirstOrDefault(l => l.Code.Equals(preferredLanguage))?.EnglishName ?? preferredLanguage;
 
             return View(model);
         }

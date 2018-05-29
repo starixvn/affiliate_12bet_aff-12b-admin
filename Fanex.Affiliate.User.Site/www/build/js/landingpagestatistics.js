@@ -244,6 +244,7 @@ var LandingPageStatistics = (function ($) {
         new Pikaday({
             field: document.getElementById(id),
             trigger: document.getElementById(triggerId),
+            yearRange: [2000, new Date().getFullYear()],
             toString: function (date, format) {
                 var day = date.getDate();
                 var month = date.getMonth() + 1;
@@ -264,7 +265,6 @@ var LandingPageStatistics = (function ($) {
             $('#btnStatisticsSubmit').on('click', function () {
                 $('#statisticsDetailTable').html('');
                 $('#statisticsDetailPager').html('').hide();
-                console.log('click');
 
                 var params = {
                     fromDate: $('#FromDate').val(),
@@ -273,7 +273,7 @@ var LandingPageStatistics = (function ($) {
                     sportCode: $('#SportCode').val(),
                     languageCode: $('#Language').val()
                 };
-                _me.getLandingPageView(params);
+                _me.getMainView(params);
             });
 
             $('#statisticsTable').on('click', '.statisticsItem', function () {
@@ -287,7 +287,7 @@ var LandingPageStatistics = (function ($) {
             });
         },
 
-        getLandingPageView: function (params) {
+        getMainView: function (params) {
             $.ajax({
                 type: "GET",
                 dataType: "html",

@@ -27,6 +27,7 @@
         new Pikaday({
             field: document.getElementById(id),
             trigger: document.getElementById(triggerId),
+            yearRange: [2000, new Date().getFullYear()],
             toString: function (date, format) {
                 var day = date.getDate();
                 var month = date.getMonth() + 1;
@@ -47,7 +48,6 @@
             $('#btnStatisticsSubmit').on('click', function () {
                 $('#statisticsDetailTable').html('');
                 $('#statisticsDetailPager').html('').hide();
-                console.log('click');
 
                 var params = {
                     fromDate: $('#FromDate').val(),
@@ -56,7 +56,7 @@
                     sportCode: $('#SportCode').val(),
                     languageCode: $('#Language').val()
                 };
-                _me.getLandingPageView(params);
+                _me.getMainView(params);
             });
 
             $('#statisticsTable').on('click', '.statisticsItem', function () {
@@ -70,7 +70,7 @@
             });
         },
 
-        getLandingPageView: function (params) {
+        getMainView: function (params) {
             $.ajax({
                 type: "GET",
                 dataType: "html",

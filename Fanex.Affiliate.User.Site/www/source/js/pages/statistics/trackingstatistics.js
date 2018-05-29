@@ -5,25 +5,25 @@
         },
 
         initEvent: function () {
-            $('#btnTrackingSubmit').on('click', function () {
+            $('#btnStatisticsSubmit').on('click', function () {
                 $("#statisticsDetailTable").html('');
 
                 var params = {
                     trackingCode: $('#TrackingCode').val()
                 };
-                _me.getTrackingView(params);
+                _me.getMainView(params);
             });
 
-            $('#statisticsTable').on('click', '.trackingMonth', function () {
+            $('#statisticsTable').on('click', '.statisticsItem', function () {
                 var params = {
                     trackingCode: $('#TrackingCode').val(),
                     dateMonth: $(this).data('date')
                 };
-                _me.getTrackingDetailView(params);
+                _me.getDetailView(params);
             });
         },
 
-        getTrackingView: function (params) {
+        getMainView: function (params) {
             $.ajax({
                 type: "GET",
                 dataType: "html",
@@ -42,7 +42,7 @@
             });
         },
 
-        getTrackingDetailView: function (params) {
+        getDetailView: function (params) {
             $.ajax({
                 type: "GET",
                 dataType: "html",

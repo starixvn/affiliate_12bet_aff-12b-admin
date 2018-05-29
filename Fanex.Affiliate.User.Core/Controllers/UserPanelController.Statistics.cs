@@ -45,7 +45,7 @@
                 IsDetail = false
             };
 
-            return PartialView("~/Views/UserPanel/Statistics/_TrackingStatisticsContent.cshtml", viewModel);
+            return PartialView("~/Views/UserPanel/StatisticsPartial/_TrackingStatisticsContent.cshtml", viewModel);
         }
 
         [HttpGet]
@@ -61,7 +61,7 @@
                 IsDetail = true
             };
 
-            return PartialView("~/Views/UserPanel/Statistics/_TrackingStatisticsContent.cshtml", viewModel);
+            return PartialView("~/Views/UserPanel/StatisticsPartial/_TrackingStatisticsContent.cshtml", viewModel);
         }
 
         [HttpGet]
@@ -100,7 +100,7 @@
                 DataList = _statisticsRepository.GetReferrerStatistics(referrerStatisticsParam)
             };
 
-            return PartialView("~/Views/UserPanel/Statistics/_ReferrersStatisticsContent.cshtml", viewModel);
+            return PartialView("~/Views/UserPanel/StatisticsPartial/_ReferrersStatisticsContent.cshtml", viewModel);
         }
 
         [HttpGet]
@@ -117,7 +117,7 @@
                 RowNumber = statisticsDetailParam.NRows
             };
 
-            return PartialView("~/Views/UserPanel/Statistics/_ReferrersStatisticsContent.cshtml", viewModel);
+            return PartialView("~/Views/UserPanel/StatisticsPartial/_ReferrersStatisticsContent.cshtml", viewModel);
         }
 
         [HttpGet]
@@ -173,7 +173,7 @@
                 IsDetail = false
             };
 
-            return PartialView("~/Views/UserPanel/Statistics/_LandingPageStatisticsContent.cshtml", viewModel);
+            return PartialView("~/Views/UserPanel/StatisticsPartial/_LandingPageStatisticsContent.cshtml", viewModel);
         }
 
         private IEnumerable<SelectListItem> GetLanguageList()

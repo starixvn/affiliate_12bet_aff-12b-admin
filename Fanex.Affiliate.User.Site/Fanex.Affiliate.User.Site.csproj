@@ -690,9 +690,9 @@
     <Content Include="Views\UserPanel\MarketingPartial\_TextList.cshtml" />
     <Content Include="www\source\styles\scss\components\_pager.scss" />
     <Content Include="www\source\styles\pages\statistics.scss" />
-    <Content Include="Views\UserPanel\Statistics\_TrackingStatisticsContent.cshtml" />
-    <Content Include="Views\UserPanel\Statistics\_ReferrersStatisticsContent.cshtml" />
-    <Content Include="Views\UserPanel\Statistics\_LandingPageStatisticsContent.cshtml" />
+    <Content Include="Views\UserPanel\StatisticsPartial\_TrackingStatisticsContent.cshtml" />
+    <Content Include="Views\UserPanel\StatisticsPartial\_ReferrersStatisticsContent.cshtml" />
+    <Content Include="Views\UserPanel\StatisticsPartial\_LandingPageStatisticsContent.cshtml" />
     <Content Include="www\source\styles\scss\components\_pikaday.scss" />
   </ItemGroup>
   <ItemGroup>

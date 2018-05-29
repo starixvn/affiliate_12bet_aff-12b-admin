@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.Constants;
@@ -35,9 +36,10 @@ namespace Fanex.Affiliate.User.Core.Controllers
             {
                 shortedLanguageCode = SystemLanguage.ShortedEuroCode;
             }
-            else if (SystemLanguage.ShortedLanguageCode.ContainsKey(SessionService.CurrentLanguage))
+            else
             {
-                shortedLanguageCode = SystemLanguage.ShortedLanguageCode[SessionService.CurrentLanguage];
+                shortedLanguageCode = SystemLanguage.LanguageList
+                                        .FirstOrDefault(l => l.Code.Equals(SessionService.CurrentLanguage))?.ShortedCode ?? shortedLanguageCode;
             }
 
             var viewModel = new HomeViewModel

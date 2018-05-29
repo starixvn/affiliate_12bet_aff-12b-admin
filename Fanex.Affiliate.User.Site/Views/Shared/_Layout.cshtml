@@ -3,7 +3,8 @@
 @{
     var sessionService = DependencyResolver.Current.GetService<ISessionService>();
     var userSession = sessionService.UserSession;
-    var languageDictionary = SystemLanguage.LanguageNameByCode;
+    var languageList = SystemLanguage.LanguageList.Where(l => !l.Code.Equals("en-GB"));
+    var currentLanguage = languageList.FirstOrDefault(l => l.Code.Equals(sessionService.CurrentLanguage))?.NativeName;
 }
 
 <!DOCTYPE html>
@@ -34,16 +35,16 @@
                         <div class="language-container">
                             <div class="language-selection">
                                 <button class="select-language" id="selectedLanguage">
-                                    <span><i class="flag flag-@sessionService.CurrentLanguage"></i>@(languageDictionary[sessionService.CurrentLanguage])</span>
+                                    <span><i class="flag flag-@sessionService.CurrentLanguage"></i>@(currentLanguage)</span>
                                     <i class="caret"></i>
                                 </button>
 
                                 <div class="language-list-wrapper" id="languageList">
                                     <ul class="list-unstyled language-list">
-                                        @foreach (var language in languageDictionary)
+                                        @foreach (var language in languageList)
                                         {
                                             <li>
-                                                <a href="javascript:;" class="language-item" data-option="@language.Key"><i class="flag flag-@language.Key"></i>@language.Value</a>
+                                                <a href="javascript:;" class="language-item" data-option="@language.Code"><i class="flag flag-@language.Code"></i>@language.NativeName</a>
                                             </li>
                                         }
                                     </ul>

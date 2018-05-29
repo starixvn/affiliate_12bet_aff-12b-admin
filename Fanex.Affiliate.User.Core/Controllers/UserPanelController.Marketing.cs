@@ -150,7 +150,7 @@
             var selectedDomain = _marketingService.GetDomainList(userSession.AffId, SessionService.IsInternal)
                                                     .FirstOrDefault(d => d.DomainId == selectedDomainId);
             var bannerTypeList = _marketingService.GetBannerTypeList(SessionService.IsInternal);
-            var languageList = GetLanguageList(bannerTypeList);
+            var languageList = string.IsNullOrEmpty(selectedLanguage) ? GetLanguageList(bannerTypeList) : null;
 
             var textLinkList = GetTextLinkList(selectedLanguage, selectedPage, selectedDomain, languageList);
 

@@ -7,25 +7,25 @@ var TrackingStatistics = (function ($) {
         },
 
         initEvent: function initEvent() {
-            $('#btnTrackingSubmit').on('click', function () {
+            $('#btnStatisticsSubmit').on('click', function () {
                 $("#statisticsDetailTable").html('');
 
                 var params = {
                     trackingCode: $('#TrackingCode').val()
                 };
-                _me.getTrackingView(params);
+                _me.getMainView(params);
             });
 
-            $('#statisticsTable').on('click', '.trackingMonth', function () {
+            $('#statisticsTable').on('click', '.statisticsItem', function () {
                 var params = {
                     trackingCode: $('#TrackingCode').val(),
                     dateMonth: $(this).data('date')
                 };
-                _me.getTrackingDetailView(params);
+                _me.getDetailView(params);
             });
         },
 
-        getTrackingView: function getTrackingView(params) {
+        getMainView: function getMainView(params) {
             $.ajax({
                 type: "GET",
                 dataType: "html",
@@ -44,7 +44,7 @@ var TrackingStatistics = (function ($) {
             });
         },
 
-        getTrackingDetailView: function getTrackingDetailView(params) {
+        getDetailView: function getDetailView(params) {
             $.ajax({
                 type: "GET",
                 dataType: "html",

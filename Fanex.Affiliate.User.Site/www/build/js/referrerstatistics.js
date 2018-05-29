@@ -1476,7 +1476,7 @@ var ReferrerStatistics = (function ($) {
                 _pageSize = pageSize;
 
                 var params = _me.getDetailParam();
-                _me.getTrackingDetailView(params);
+                _me.getDetailView(params);
             }
         });
     }
@@ -1489,6 +1489,7 @@ var ReferrerStatistics = (function ($) {
         new Pikaday({
             field: document.getElementById(id),
             trigger: document.getElementById(triggerId),
+            yearRange: [2000, new Date().getFullYear()],
             toString: function (date, format) {
                 var day = date.getDate();
                 var month = date.getMonth() + 1;
@@ -1509,14 +1510,13 @@ var ReferrerStatistics = (function ($) {
             $('#btnStatisticsSubmit').on('click', function () {
                 $('#statisticsDetailTable').html('');
                 $('#statisticsDetailPager').html('').hide();
-                console.log('click');
 
                 var params = {
                     fromDate: $('#FromDate').val(),
                     toDate: $('#ToDate').val(),
                     deviceType: $('#DeviceType').val()
                 };
-                _me.getReferrerView(params);
+                _me.getMainView(params);
             });
 
             $('#statisticsTable').on('click', '.statisticsItem', function () {
@@ -1525,11 +1525,11 @@ var ReferrerStatistics = (function ($) {
                 var params = _me.getDetailParam();
 
                 $('#statisticsDetailPager').show();
-                _me.getTrackingDetailView(params, initPager);
+                _me.getDetailView(params, initPager);
             });
         },
 
-        getReferrerView: function (params) {
+        getMainView: function (params) {
             $.ajax({
                 type: "GET",
                 dataType: "html",
@@ -1548,7 +1548,7 @@ var ReferrerStatistics = (function ($) {
             });
         },
 
-        getTrackingDetailView: function (params, onSuccess) {
+        getDetailView: function (params, onSuccess) {
             if (!params.domain) {
                 return;
             }

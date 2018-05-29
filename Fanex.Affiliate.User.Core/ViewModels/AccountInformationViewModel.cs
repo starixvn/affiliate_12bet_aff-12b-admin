@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Fanex.Affiliate.User.Core.Constants;
 
 namespace Fanex.Affiliate.User.Core.ViewModels
 {
@@ -46,6 +45,6 @@ namespace Fanex.Affiliate.User.Core.ViewModels
 
         public IEnumerable<string> MoreWebsiteUrlList => string.IsNullOrEmpty(MoreSiteUrls) ? new string[0] : MoreSiteUrls.Split(';');
 
-        public string LanguageName => !string.IsNullOrEmpty(PreferredLanguage) && SystemLanguage.LanguageNameByCode.ContainsKey(PreferredLanguage) ? SystemLanguage.LanguageNameByCode[PreferredLanguage] : PreferredLanguage;
+        public string LanguageName { get; set; }
     }
 }
