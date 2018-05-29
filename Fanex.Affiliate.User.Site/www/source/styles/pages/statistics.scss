@@ -1,4 +1,5 @@
 ﻿@import "../scss/components/pager";
+@import "../scss/components/pikaday";
 
 .btn-statistics {
     margin-bottom: 5px;
@@ -15,4 +16,18 @@
     & + #statisticsDetailTable {
         margin-top: 0;
     }
+}
+
+.date-wrapper {
+    display: inline-block;
+}
+
+.form-filter {
+    .form-group {
+        width: 320px;
+    }
+}
+
+#TrackingCode {
+    width: 150px;
 }

@@ -236,8 +236,27 @@ var LandingPageStatistics = (function ($) {
         });
     }
 
+    function formatDateUnit(value) {
+        return value < 10 ? '0' + value : value;
+    }
+
+    function initDatePicker(id, triggerId) {
+        new Pikaday({
+            field: document.getElementById(id),
+            trigger: document.getElementById(triggerId),
+            toString: function (date, format) {
+                var day = date.getDate();
+                var month = date.getMonth() + 1;
+                var year = date.getFullYear();
+                return formatDateUnit(month) + "/" + formatDateUnit(day) + "/" + year;
+            }
+        });
+    }
+
     var _me = {
         initialize: function () {
+            initDatePicker('FromDate', 'fromPicker');
+            initDatePicker('ToDate', 'toPicker');
             _me.initEvent();
         },
 

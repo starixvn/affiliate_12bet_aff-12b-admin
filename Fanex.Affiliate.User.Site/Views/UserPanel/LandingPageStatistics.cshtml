@@ -2,7 +2,7 @@
     Layout = null;
 }
 
-@Html.InlineStyles("~/www/build/styles/css/statistics.css")
+<link href="@Url.RenderLink("~/www/build/styles/css/statistics.css")" rel="stylesheet" />
 
 @model Fanex.Affiliate.User.Core.ViewModels.UserPanel.Statistics.LandingPageStatisticsViewModel
 
@@ -46,11 +46,17 @@
     <form class="form-inline form-filter">
         <div class="form-group">
             <label>@Lang.From:</label>
-            <input class="form-control" type="text" id="FromDate" value="@Model.FromDate.ToString("MM/dd/yyyy")" />
+            <div id="fromPicker" class="date-wrapper">
+                <input readonly class="form-control" type="text" id="FromDate" value="@Model.FromDate.ToString("MM/dd/yyyy")" />
+                <span class="glyphicon glyphicon-calendar"></span>
+            </div>
         </div>
         <div class="form-group">
             <label>@Lang.To:</label>
-            <input class="form-control" type="text" id="ToDate" value="@Model.ToDate.ToString("MM/dd/yyyy")" />
+            <div id="toPicker" class="date-wrapper">
+                <input readonly class="form-control" type="text" id="ToDate" value="@Model.ToDate.ToString("MM/dd/yyyy")" />
+                <span class="glyphicon glyphicon-calendar"></span>
+            </div>
         </div>
         <button type="button" class="btn btn-submit btn-statistics" id="btnStatisticsSubmit">@Lang.Submit</button>
     </form>
