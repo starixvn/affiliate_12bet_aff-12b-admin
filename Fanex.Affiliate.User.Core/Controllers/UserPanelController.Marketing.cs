@@ -25,6 +25,7 @@
             var selectedLanguage = userSession.PreferredLanguage;
             var selectedDomain = linkForm.DomainList.FirstOrDefault();
             var selectedPage = linkForm.MemberSitePageList.First().Value;
+            var bannerSettingKey = userSession.PreferredLanguage.Replace("-", string.Empty).ToUpper();
 
             var bannerParam = new MarketingBannerParam
             {
@@ -34,7 +35,7 @@
                 SelectedDomain = selectedDomain,
                 SelectedPage = selectedPage,
                 TextLinkTemplate = AppSetting.TextLinkTemplate,
-                BannerDomain = AppSetting.BannerDomain
+                BannerDomain = AppSetting.GetValue($"BannerDomain{bannerSettingKey}") ?? AppSetting.BannerDomain
             };
 
             var viewModel = new MarketingViewModel
@@ -109,11 +110,13 @@
                 bannerParam.Category = bannerParam.SubCategory;
             }
 
+            var bannerSettingKey = userSession.PreferredLanguage.Replace("-", string.Empty).ToUpper();
+
             bannerParam.AffId = userSession.AffId;
             bannerParam.AffType = userSession.AffType;
             bannerParam.SelectedDomain = selectedDomain;
             bannerParam.TextLinkTemplate = AppSetting.TextLinkTemplate;
-            bannerParam.BannerDomain = AppSetting.BannerDomain;
+            bannerParam.BannerDomain = AppSetting.GetValue($"BannerDomain{bannerSettingKey}") ?? AppSetting.BannerDomain;
             bannerParam.Language = SystemLanguage.LanguageList.FirstOrDefault(l => l.Code.MatchWith(bannerParam.Language))?.EnglishName;
 
             var bannerList = GetBannerList(bannerParam);
