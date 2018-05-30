@@ -1,4 +1,4 @@
-﻿namespace Fanex.Affiliate.User.Core.BusinessService
+﻿namespace Fanex.Affiliate.User.Core.CoreService
 {
     public interface ICookieService
     {

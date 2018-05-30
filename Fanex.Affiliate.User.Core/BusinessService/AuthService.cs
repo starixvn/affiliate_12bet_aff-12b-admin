@@ -1,10 +1,9 @@
 ﻿using System.Web;
-using Fanex.Affiliate.User.Core.Constants;
+using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.Repository;
-using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
@@ -13,11 +12,13 @@ namespace Fanex.Affiliate.User.Core.BusinessService
     {
         private readonly IAuthRepository _authRepository;
         private readonly ICookieService _cookieService;
+        private readonly ICryptographyService _cryptographyService;
 
-        public AuthService(IAuthRepository authRepository, ICookieService cookieService)
+        public AuthService(IAuthRepository authRepository, ICookieService cookieService, ICryptographyService cryptographyService)
         {
             _authRepository = authRepository;
             _cookieService = cookieService;
+            _cryptographyService = cryptographyService;
         }
 
         public LoginResultViewModel GetLoginResult(UserLoginParam userParam, bool isInternal)
@@ -66,7 +67,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             var isMatchPassword = false;
             if (!isInternal)
             {
-                string encryptedPassword = EncryptPassword(userParam.Password);
+                string encryptedPassword = _cryptographyService.EncryptPassword(userParam.Password);
                 isMatchPassword = encryptedPassword.Equals(userInfo.Password);
             }
 
@@ -80,16 +81,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 IsSuccessful = isInternal || isMatchPassword,
                 IsInternal = userParam.IsInternal
             };
-        }
-
-        private string EncryptPassword(string inputPassword)
-        {
-            var encryptionKey = _cookieService.GetCookie(CookieName.EncryptionKey);
-            var iv = _cookieService.GetCookie(CookieName.InitializationVector);
-
-            var plainPassword = CryptographyHelper.DecryptWithAES(inputPassword, encryptionKey, iv);
-
-            return CryptographyHelper.Encrypt(plainPassword);
         }
     }
 }

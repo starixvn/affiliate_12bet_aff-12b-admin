@@ -2,7 +2,7 @@
 using System.Web;
 using System.Web.Security;
 
-namespace Fanex.Affiliate.User.Core.BusinessService
+namespace Fanex.Affiliate.User.Core.CoreService
 {
     public class CookieService : ICookieService
     {
