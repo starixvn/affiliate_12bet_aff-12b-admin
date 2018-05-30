@@ -1,16 +1,27 @@
 ﻿.marquee-container {
     overflow: hidden;
+    height: 100%;
     position: relative;
 
     .marquee-content {
+        white-space: nowrap;
+        position: absolute;
         /* Starting position */
         -moz-transform: translateX(100%);
         -webkit-transform: translateX(100%);
         transform: translateX(100%);
         /* Apply animation to this element */
-        -moz-animation: marqueekey 30s linear infinite;
-        -webkit-animation: marqueekey 30s linear infinite;
-        animation: marqueekey 30s linear infinite;
+        -moz-animation: marqueekey 50s linear infinite;
+        -webkit-animation: marqueekey 50s linear infinite;
+        animation: marqueekey 50s linear infinite;
+
+        &:hover {
+            animation-play-state: paused;
+        }
+
+        a {
+            text-decoration: none;
+        }
     }
 }
 

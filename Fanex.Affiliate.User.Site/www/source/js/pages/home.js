@@ -3,6 +3,7 @@
         initialize: function () {
             _me.initEvent();
             _me.registerLoginDialog();
+            _me.renderHotNews();
         },
 
         initEvent: function () {
@@ -19,6 +20,8 @@
                     Login.requestSignin(true);
                 }
             });
+
+            
         },
 
         registerLoginDialog: function () {
@@ -35,6 +38,18 @@
         generateCaptcha: function () {
             var captchaUrl = Site.resolveRelativeUrl("Home/CaptchaImage?_v=" + new Date().getTime());
             $("#loginDialogcaptchaImg").attr("src", captchaUrl);
+        },
+
+        renderHotNews: function () {
+            $.ajax({
+                type: "GET",
+                url: Site.resolveRelativeUrl("Home/LatestHotNews"),
+                dataType: "html",
+                cache: false,
+                success: function (response) {
+                    $("#marquee").html(response);
+                }
+            });
         }
     };
 
