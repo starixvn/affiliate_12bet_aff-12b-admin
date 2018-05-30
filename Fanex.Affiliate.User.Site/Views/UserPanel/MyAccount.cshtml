@@ -202,7 +202,7 @@
             </div>
 
             <div class="form-group">
-                <label class="col-sm-3 control-label require">@Lang.Username</label>
+                <label class="col-sm-3 control-label">@Lang.Username</label>
                 <div class="col-sm-4">
                     @if (string.IsNullOrEmpty(Model.PlayerUsername))
                     {
@@ -210,14 +210,14 @@
                     }
                     else
                     {
-                        <p class="form-control-static">@Model.PlayerUsername (@Lang.NonDeposit)</p>
+                        <p class="form-control-static">@Model.PlayerUsername</p>
                     }
                 </div>
             </div>
 
             <div class="col-sm-offset-3 button-block">
                 <button id="btnMyAccountSubmit" class="btn btn-submit" type="button">@Lang.Submit</button>
-                <button class="btn btn-submit" type="button">@Lang.Cancel</button>
+                <button id="btnCancel" class="btn btn-submit" type="button">@Lang.Cancel</button>
             </div>
         </div>
     </div>

@@ -81,6 +81,7 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterType<MemoryCacheService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<MarketingService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<StatisticsRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<CryptographyService>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
     }
 }

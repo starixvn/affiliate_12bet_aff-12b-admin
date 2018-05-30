@@ -1,7 +1,12 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = Lang.Product;
     Layout = "~/Views/Shared/_LayoutBeforeLogin.cshtml";
+}
+
+@model bool
+
+@{ 
+    var isAuthenticated = Model;
 }
 
 @section styles{
@@ -9,6 +14,10 @@
 }
 
 <div class="content">
+    <div class="page-title">
+        <span class="text">@Lang.Product</span>
+    </div>
+
     <div class="adv">
         <img class="img-responsive" src="~/www/build/styles/Images/products/ad-banner.jpg" alt="Products" />
     </div>
@@ -223,9 +232,12 @@
         </p>
     </div>
 
-    <div class="col-sm-offset-4 col-sm-5 signup-block">
-        <a href="@Url.Action("Index", "SignUp")" class="btn btn-link btn-block nounderline">SIGN UP 12BET AFFILIATE PROGRAM NOW!</a>
-    </div>
+    @if (!isAuthenticated)
+    {
+        <div class="col-sm-offset-4 col-sm-5 signup-block">
+            <a href="@Url.Action("Index", "SignUp")" class="btn btn-link btn-block nounderline">SIGN UP 12BET AFFILIATE PROGRAM NOW!</a>
+        </div>
+    }
 
     @RazorHelper.RenderMovingTopButton()
 </div>

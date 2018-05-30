@@ -20,6 +20,12 @@ var Site = (function ($) {
         },
         hideLoader: function hideLoader() {
             $("#blocker").hide();
+        },
+        redirect: function redirect(url) {
+            window.location.href = url;
+        },
+        reload: function reload() {
+            window.location.reload();
         }
 
     };

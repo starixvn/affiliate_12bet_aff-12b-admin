@@ -45,7 +45,7 @@
                         window.alert(message);
 
                         if (response.IsOk) {
-                            window.location.reload();
+                            Site.reload();
                         }
                     },
                     beforeSend: function () {
@@ -55,6 +55,10 @@
                         Site.hideLoader();
                     }
                 });
+            });
+
+            $("#btnCancel").on("click", function () {
+                Site.redirect(Site.resolveRelativeUrl("UserPanel/#AccountOverView"));
             });
         },
         addMoreUrl: function () {

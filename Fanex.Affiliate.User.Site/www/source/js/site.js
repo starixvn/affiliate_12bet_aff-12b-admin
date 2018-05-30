@@ -18,6 +18,12 @@
         },
         hideLoader: function () {
             $("#blocker").hide();
+        },
+        redirect: function(url) {
+            window.location.href = url;
+        },
+        reload: function () {
+            window.location.reload();
         }
 
     };

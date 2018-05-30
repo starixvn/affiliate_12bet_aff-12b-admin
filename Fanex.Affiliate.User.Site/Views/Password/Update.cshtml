@@ -14,17 +14,23 @@
     <link href="@Url.RenderLink("~/www/build/styles/css/password.css")" rel="stylesheet" />
 }
 
+@section scripts{
+    <script src="@Url.RenderLink("~/www/build/js/changepassword.js")"></script>
+}
+
 <div style="padding-bottom: 30px;">
     <div class="page-title">
         <span class="text">@Lang.ChangePass</span>
     </div>
 
     <div>
+        <p>@Lang.ChangePassText</p>
+
         <p class="alert @(isSuccessful ? "alert-success" : "alert-danger")" id="changePassResult" role="alert" style="visibility: @(hasResult ? "visible" : "hidden")">
             @messageResult
         </p>
 
-        @using (Html.BeginForm("Update", "Password", FormMethod.Post, new { @id = "updatePassword", @class = "form-horizontal" }))
+        @using (Html.BeginForm("Update", "Password", FormMethod.Post, new { @id = "updatePasswordForm", @class = "form-horizontal" }))
         {
             @Html.AntiForgeryToken()
             <div class="form-group">
@@ -48,10 +54,16 @@
 
             <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-5">
-                    <button type="submit" class="btn btn-submit">@Lang.Submit</button>
-                    <button type="button" class="btn btn-submit">@Lang.Cancel</button>
+                    <button type="button" id="btnSubmit" class="btn btn-submit">@Lang.Submit</button>
+                    <button type="button" id="btnCancel" class="btn btn-submit">@Lang.Cancel</button>
                 </div>
             </div>
+        }
+
+        @if (ViewBag.KeyString != null && ViewBag.IVString != null)
+        {
+            @Html.Hidden("KeyString", ViewBag.KeyString as string)
+            @Html.Hidden("IVString", ViewBag.IVString as string)
         }
     </div>
 </div>

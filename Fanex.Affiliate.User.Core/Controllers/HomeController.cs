@@ -13,8 +13,6 @@ namespace Fanex.Affiliate.User.Core.Controllers
     {
         private readonly ILanguageService _languageService;
 
-        private readonly ICookieService _cookieService;
-
         public HomeController(
             ISessionService sessionService,
             IAppSetting appSetting,
@@ -23,7 +21,6 @@ namespace Fanex.Affiliate.User.Core.Controllers
             : base(sessionService, appSetting)
         {
             _languageService = languageService;
-            _cookieService = cookieService;
         }
 
         [HttpGet]

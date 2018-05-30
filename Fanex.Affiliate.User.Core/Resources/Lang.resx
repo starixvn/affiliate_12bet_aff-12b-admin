@@ -3201,4 +3201,7 @@ One of our Affiliate Accounts Manager will be contacting you by email within 3 b
   <data name="TermAndCondition" xml:space="preserve">
     <value>Terms And Conditions</value>
   </data>
+  <data name="SignUpAffiliate" xml:space="preserve">
+    <value>SignUp Affiliate</value>
+  </data>
 </root>

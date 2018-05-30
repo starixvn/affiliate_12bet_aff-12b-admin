@@ -51,11 +51,11 @@
                     contentType: "application/x-www-form-urlencoded; charset=UTF-8",
                     success: function (response) {
                         if (response.IsOk) {
-                            location.href = Site.resolveRelativeUrl("UserPanel/#AccountOverview");
+                            Site.redirect(Site.resolveRelativeUrl("UserPanel/#AccountOverview"));
                         }
                         else {
                             alert(response.Message);
-                            location.reload();
+                            Site.reload();
                         }
                     },
                     beforeSend: function () {

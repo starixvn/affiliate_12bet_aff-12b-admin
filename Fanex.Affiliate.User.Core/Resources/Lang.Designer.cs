@@ -6919,6 +6919,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SignUp Affiliate.
+        /// </summary>
+        public static string SignUpAffiliate {
+            get {
+                return ResourceManager.GetString("SignUpAffiliate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sincerely,.
         /// </summary>
         public static string Sincerely {

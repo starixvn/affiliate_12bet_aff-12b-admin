@@ -34,109 +34,53 @@ b.keySize,b.ivSize);l.iv=d.iv;b=a.encrypt.call(this,b,c,d.key,l);b.mixIn(d);retu
 8&255]]^n[l[k&255]]},encryptBlock:function(a,b){this._doCryptBlock(a,b,this._keySchedule,t,r,w,v,l)},decryptBlock:function(a,c){var d=a[c+1];a[c+1]=a[c+3];a[c+3]=d;this._doCryptBlock(a,c,this._invKeySchedule,b,x,q,n,s);d=a[c+1];a[c+1]=a[c+3];a[c+3]=d},_doCryptBlock:function(a,b,c,d,e,j,l,f){for(var m=this._nRounds,g=a[b]^c[0],h=a[b+1]^c[1],k=a[b+2]^c[2],n=a[b+3]^c[3],p=4,r=1;r<m;r++)var q=d[g>>>24]^e[h>>>16&255]^j[k>>>8&255]^l[n&255]^c[p++],s=d[h>>>24]^e[k>>>16&255]^j[n>>>8&255]^l[g&255]^c[p++],t=
 d[k>>>24]^e[n>>>16&255]^j[g>>>8&255]^l[h&255]^c[p++],n=d[n>>>24]^e[g>>>16&255]^j[h>>>8&255]^l[k&255]^c[p++],g=q,h=s,k=t;q=(f[g>>>24]<<24|f[h>>>16&255]<<16|f[k>>>8&255]<<8|f[n&255])^c[p++];s=(f[h>>>24]<<24|f[k>>>16&255]<<16|f[n>>>8&255]<<8|f[g&255])^c[p++];t=(f[k>>>24]<<24|f[n>>>16&255]<<16|f[g>>>8&255]<<8|f[h&255])^c[p++];n=(f[n>>>24]<<24|f[g>>>16&255]<<16|f[h>>>8&255]<<8|f[k&255])^c[p++];a[b]=q;a[b+1]=s;a[b+2]=t;a[b+3]=n},keySize:8});u.AES=p._createHelper(d)})();
 
-var Login = (function ($) {
+var ChangePassword = (function ($) {
     var _me = {
         initialize: function () {
-            _me.generateCaptcha();
             _me.initEvent();
         },
 
         initEvent: function () {
-            $("#btnLogin").on("click", function () {
-                _me.requestSignin();
+            $("#btnCancel").on("click", function () {
+                Site.redirect(Site.resolveRelativeUrl("UserPanel/#MyAccount"));
             });
 
-            $("#userLogin input").on("keypress", function (e) {
+            $("#btnSubmit").on("click", function () {
+                _me.submit();
+            });
+
+            $("#updatePasswordForm input[type='password']").on("keypress", function (e) {
                 if (e.keyCode === 13) {
-                    _me.requestSignin();
+                    _me.submit();
                 }
             });
         },
 
-        requestSignin: function (onDialog) {
-            var prefix = onDialog ? "dialog" : "";
+        submit: function () {
+            var $oldPassword = $("#OldPassword");
+            var $newPassword = $("#NewPassword");
+            var $confirmedNewPassword = $("#ConfirmNewPassword");
 
-            var $password = $("#" + prefix + "txtPassword");
-            var username = $("#" + prefix + "txtUsername").val();
-            var password = $password.val();
-            var validation = $("#" + prefix + "txtValidation").val();
+            var token = $('input[name="__RequestVerificationToken"]', $("#updatePasswordForm")).val();
+            var encryptKey = $("#KeyString").val();
+            var encryptIV = $("#IVString").val();
 
-            var validationResult = _me.validate(username, password, validation, prefix);
-            if (validationResult.isValid) {
-                var token = $('input[name="__RequestVerificationToken"]', $("#userLogin")).val();
-                var encryptKey = $("#KeyString").val();
-                var encryptIV = $("#IVString").val();
+            var encryptedOldPassword = _me.encryptPassword($oldPassword.val(), encryptKey, encryptIV);
+            var encryptedNewPassword = _me.encryptPassword($newPassword.val(), encryptKey, encryptIV);
+            var confirmedNewPassword = _me.encryptPassword($confirmedNewPassword.val(), encryptKey, encryptIV);
 
-                var encryptedPassword = _me.encryptPassword(password, encryptKey, encryptIV);
+            $oldPassword.val(encryptedOldPassword);
+            $newPassword.val(encryptedNewPassword);
+            $confirmedNewPassword.val(confirmedNewPassword);
 
-                $password.val(encryptedPassword);
-
-                var postData = {
-                    __RequestVerificationToken: token,
-                    UserName: username,
-                    Password: encryptedPassword,
-                    ValidationKey: validation
-                };
-
-                $.ajax({
-                    type: "POST",
-                    url: Site.resolveRelativeUrl("Auth/SignIn"),
-                    data: postData,
-                    dataType: "json",
-                    cache: false,
-                    contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-                    success: function (response) {
-                        if (response.IsOk) {
-                            location.href = Site.resolveRelativeUrl("UserPanel/#AccountOverview");
-                        }
-                        else {
-                            alert(response.Message);
-                            location.reload();
-                        }
-                    },
-                    beforeSend: function () {
-                        Site.showLoader();
-                    },
-                    complete: function () {
-                        Site.hideLoader();
-                    }
-                });
-            }
-            else {
-                alert(validationResult.message);
-            }
-        },
-
-        validate: function (username, password, validationCode, prefix) {
-            var empty = "";
-            var result = {
-                isValid: false,
-                message: empty
-            };
-
-            if (username === empty) {
-                $("#" + prefix + "txtUsername").focus();
-                result.message = validationMessage.enterUserName;
-                return result;
-            }
-
-            if (password === empty) {
-                $("#" + prefix + "txtPassword").focus();
-                result.message = validationMessage.enterPassword;
-                return result;
-            }
-
-            if (validationCode === empty) {
-                $("#" + prefix + "txtValidation").focus();
-                result.message = validationMessage.enterValidationCode;
-                return result;
-            }
-
-            result.isValid = true;
-            return result;
+            $("#updatePasswordForm").submit();
         },
 
         encryptPassword: function (password, encryptKey, encryptIV) {
+            if (!password) {
+                return "";
+            }
+
             var key = CryptoJS.enc.Utf8.parse(encryptKey);
             var iv = CryptoJS.enc.Utf8.parse(encryptIV);
 
@@ -145,24 +89,6 @@ var Login = (function ($) {
                 mode: CryptoJS.mode.CBC,
                 padding: CryptoJS.pad.Pkcs7
             }).toString();
-        },
-
-        generateCaptcha: function () {
-            var captchaUrl = Site.resolveRelativeUrl("Home/CaptchaImage?_v=" + new Date().getTime());
-            $("#captchaImg").attr("src", captchaUrl);
-        }
-    };
-
-    return _me;
-})(jQuery);
-
-Login.initialize();
-var ChangePassword = (function ($) {
-    var _me = {
-        initialize: function () {
-        },
-
-        initEvent: function () {
         },
     };
 

@@ -176,8 +176,10 @@
   <ItemGroup>
     <Compile Include="BusinessService\AuthService.cs" />
     <Compile Include="BusinessService\CookieService.cs" />
+    <Compile Include="BusinessService\CryptographyService.cs" />
     <Compile Include="BusinessService\IAuthService.cs" />
     <Compile Include="BusinessService\ICookieService.cs" />
+    <Compile Include="BusinessService\ICryptographyService.cs" />
     <Compile Include="BusinessService\ILanguageService.cs" />
     <Compile Include="BusinessService\IMarketingService.cs" />
     <Compile Include="BusinessService\LanguageService.cs" />
