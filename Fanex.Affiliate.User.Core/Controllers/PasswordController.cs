@@ -8,6 +8,7 @@
     using DTO;
     using Filters;
     using MetalModels;
+    using MetalModels.Email;
     using Repository.UserPanel;
     using Resources;
     using Utilities;
@@ -17,24 +18,87 @@
         private readonly IAccountRepository _accountRepository;
         private readonly ICookieService _cookieService;
         private readonly ICryptographyService _cryptographyService;
+        private readonly IEmailService _mailService;
+        private readonly ILanguageService _languageService;
 
         public PasswordController(
             ISessionService sessionService,
             IAppSetting appSetting,
             IAccountRepository accountRepository,
             ICookieService cookieService,
-            ICryptographyService cryptographyService)
+            ICryptographyService cryptographyService,
+            ILanguageService languageService,
+            IEmailService mailService)
             : base(sessionService, appSetting)
         {
             _accountRepository = accountRepository;
             _cookieService = cookieService;
             _cryptographyService = cryptographyService;
+            _languageService = languageService;
+            _mailService = mailService;
         }
 
         [HttpGet]
         public ActionResult Index()
         {
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Forgot(string email)
+        {
+            if (string.IsNullOrEmpty(email))
+            {
+                TempData[TempDataKey.SendForgotPasswordEmailResult] = new ResultInfo
+                {
+                    IsOk = false,
+                    Message = Lang.ErrEmailRequire
+                };
+
+                return RedirectToAction("Index");
+            }
+
+            var code = Generator.GetRandomString(10);
+            var param = new UserInfoByEmailParam
+            {
+                Email = email.Trim(),
+                Ip = RequestHelper.GetClientIPAddress(),
+                ValidCode = code
+            };
+
+            var result = new ResultInfo
+            {
+                IsOk = true,
+                Message = $"{Lang.Yourlogindetail}<br>{Lang.Pleasecheckyour}<br>{Lang.Foranyreasonyou.Replace("{0}", Url.Action("Index", "ContactUs"))}"
+            };
+            var userInfo = _accountRepository.GetUserInfoByEmail(param);
+
+            if (param.ErrCode != 0)
+            {
+                result.IsOk = false;
+                result.Message = Common.GetErrorMessage("ForgotPassword", param.ErrCode)
+                                    .Replace("{0}", Url.Action("Index", "ContactUs"));
+            }
+            else
+            {
+                var recoverEmailParam = new RecoverPasswordEmailParam
+                {
+                    User = userInfo,
+                    MailContact = string.Empty,
+                    MailTo = param.Email,
+                    RootDomain = SiteDomainHelper.GetRootUrl(this),
+                    Code = code
+                };
+
+                _languageService.SetCulture(userInfo.PreferredLanguage ?? SystemLanguage.DefaultLanguageCode);
+                _mailService.SendRecoverPasswordEmail(recoverEmailParam);
+                _languageService.SetCulture(SessionService.CurrentLanguage);
+            }
+
+            TempData[TempDataKey.SendForgotPasswordEmailResult] = result;
+
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
@@ -55,6 +119,7 @@
 
         [HttpPost]
         [Authenticate]
+        [ValidateAntiForgeryToken]
         public ActionResult Update(UpdatePasswordParam param)
         {
             const string ResultKey = "UpdatePasswordResult";

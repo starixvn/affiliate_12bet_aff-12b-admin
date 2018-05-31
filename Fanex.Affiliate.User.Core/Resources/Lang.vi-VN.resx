@@ -967,12 +967,6 @@ Xin Cảm Ơn!</value>
   <data name="errMobileNumberEmpty" xml:space="preserve">
     <value>Bạn cần có Yahoo Messenger</value>
   </data>
-  <data name="ErrmsgEmailClose" xml:space="preserve">
-    <value>Địa chỉ email này đang được sử dụng bởi một hội viên đã không còn hoạt động hoặc đã bị đóng tài khoản. Vui lòng thử lại hoặc&lt;a href="ContactUs.aspx" class='err-msg'&gt;liên hệ với chúng tôi&lt;/a&gt;.</value>
-  </data>
-  <data name="ErrmsgEmailNotApprove" xml:space="preserve">
-    <value>Địa chỉ email này đang được sử dụng bởi một hội viên đã không còn hoạt động hoặc chưa được chấp thuận. Vui lòng thử lại hoặc&lt;a href="ContactUs.aspx" class='err-msg'&gt;liên hệ với chúng tôi&lt;/a&gt;.</value>
-  </data>
   <data name="ErrmsgEntryPassword" xml:space="preserve">
     <value>Vui lòng nhập mật khẩu.</value>
   </data>
@@ -984,9 +978,6 @@ Xin Cảm Ơn!</value>
   </data>
   <data name="ErrMsgForgetPwFail" xml:space="preserve">
     <value>Thông tin để đặt lại mật khẩu không hợp lệ, vui lòng &lt;a href='ForgetPass.aspx'&gt;thử lại&lt;/a&gt;. Trong trường hợp bạn vẫn không thể đặt lại mật khẩu của mình, vui lòng &lt;a href='ContactUs.aspx'&gt;liên hệ với chúng tôi&lt;/a&gt;</value>
-  </data>
-  <data name="ErrmsgNotExistsEmail" xml:space="preserve">
-    <value>Bạn đã không nhập địa chỉ email mà chúng tôi ghi nhận. Vui lòng thử lại hoặc&lt;a href="ContactUs.aspx" class='err-msg'&gt;liên hệ với chúng tôi&lt;/a&gt;.</value>
   </data>
   <data name="ErroroccursUpda" xml:space="preserve">
     <value>Xảy ra lỗi. Quá trình cập nhật không thành công</value>
@@ -1074,7 +1065,7 @@ Xin Cảm Ơn!</value>
     <value>cho</value>
   </data>
   <data name="Foranyreasonyou" xml:space="preserve">
-    <value>Vì bất kỳ lý do gì mà bạn không nhận được email, vui lòng &lt;a href='ContactUs.aspx'&gt;liên hệ với chúng tôi&lt;/a&gt; và chúng tôi sẽ rất sẵn lòng được trợ giúp bạn.  </value>
+    <value>Vì bất kỳ lý do gì mà bạn không nhận được email, vui lòng &lt;a href='{0}'&gt;liên hệ với chúng tôi&lt;/a&gt; và chúng tôi sẽ rất sẵn lòng được trợ giúp bạn.  </value>
   </data>
   <data name="ForgetPassword" xml:space="preserve">
     <value>Bạn quên mật khẩu?</value>
@@ -2315,7 +2306,7 @@ Một trong những người quản lý tài khoản hội viên của chúng t�
   </data>
   <data name="TitelForgetPass" xml:space="preserve">
     <value>Mật khẩu mới sẽ được gửi tới địa chỉ email mà bạn đã cung cấp.
-               &lt;br /&gt;Nếu bạn gặp thêm bất kỳ khó khăn nào, hãy &lt;a href="ContactUs.aspx"&gt;liên hệ với chúng tôi&lt;/a&gt;.</value>
+               &lt;br /&gt;Nếu bạn gặp thêm bất kỳ khó khăn nào, hãy &lt;a href="{0}"&gt;liên hệ với chúng tôi&lt;/a&gt;.</value>
   </data>
   <data name="TitleCancelledPayment" xml:space="preserve">
     <value>Hội viên 12BET - [{transid}] - Yêu cầu thanh toán của bạn đã bị hủy</value>

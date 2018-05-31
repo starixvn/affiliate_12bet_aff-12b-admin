@@ -972,16 +972,6 @@
   <data name="errMobileNumberEmpty" xml:space="preserve">
     <value>请填写正确QQ号码</value>
   </data>
-  <data name="ErrmsgEmailClose" xml:space="preserve">
-    <value>
-		此电子邮件地址对应的合作伙伴帐户失效或未被关闭。&lt;a href="ContactUs.aspx" class='err-msg'&gt;请重试或联系我们。&lt;/a&gt;. 		
-	</value>
-  </data>
-  <data name="ErrmsgEmailNotApprove" xml:space="preserve">
-    <value>
-		此电子邮件地址对应的合作伙伴帐户失效或未被关闭。&lt;a href="ContactUs.aspx" class='err-msg'&gt;请重试或联系我们。&lt;/a&gt;		
-</value>
-  </data>
   <data name="ErrmsgEntryPassword" xml:space="preserve">
     <value>请输入密码.</value>
   </data>
@@ -994,11 +984,6 @@
   <data name="ErrMsgForgetPwFail" xml:space="preserve">
     <value>        
         重新设定密码信息错误，请&lt;a href='ForgetPass.aspx'&gt;重试&lt;/a&gt;。   如您仍不能重新设定您的密码，请&lt;a href='ContactUs.aspx'&gt;联系我们&lt;/a&gt;。        
-    </value>
-  </data>
-  <data name="ErrmsgNotExistsEmail" xml:space="preserve">
-    <value>
-      您所輸入的電子郵箱地址無法識別，請重新輸入或者 &lt;a href="ContactUs.aspx" class='err-msg'&gt;联络我们&lt;/a&gt;      
     </value>
   </data>
   <data name="ErroroccursUpda" xml:space="preserve">
@@ -1087,7 +1072,7 @@
     <value>为了</value>
   </data>
   <data name="Foranyreasonyou" xml:space="preserve">
-    <value>如果您没有收到电邮，无论原因如何，&lt;a href="ContactUs.aspx"&gt;请您及时联系我们&lt;/a&gt;，我们很乐意为您提供协助。</value>
+    <value>如果您没有收到电邮，无论原因如何，&lt;a href="{0}"&gt;请您及时联系我们&lt;/a&gt;，我们很乐意为您提供协助。</value>
   </data>
   <data name="ForgetPassword" xml:space="preserve">
     <value>忘记密码？</value>
@@ -2338,9 +2323,7 @@
     <value>等级</value>
   </data>
   <data name="TitelForgetPass" xml:space="preserve">
-    <value>
-			新的密码会发到您提供的注册邮箱。&lt;br /&gt;
-			若您遇到任何困难，请 &lt;a href="ContactUs.aspx"&gt;联络我们。&lt;/a&gt;.</value>
+    <value>新的密码会发到您提供的注册邮箱。&lt;br /&gt;若您遇到任何困难，请 &lt;a href="{0}"&gt;联络我们。&lt;/a&gt;.</value>
   </data>
   <data name="TitleCancelledPayment" xml:space="preserve">
     <value>12Bet合作伙伴 - [{transid}] - 您的支付申请已经被取消 </value>

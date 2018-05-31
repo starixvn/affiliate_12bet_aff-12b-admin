@@ -977,15 +977,6 @@
   <data name="errMobileNumberEmpty" xml:space="preserve">
     <value>ติดต่อทาง MSN</value>
   </data>
-  <data name="ErrmsgEmailClose" xml:space="preserve">
-    <value>
- อีเมลล์แอดเดรสนี้ได้ถูกใช้ในการสมัครเป็นพันธมิตรกับ 12bet และได้ถูกปิดเรียบร้อยแล้ว กรุณาลองใหม่อีกครั้ง หรือคลิ๊กไปที่&lt;a href="ContactUs.aspx" class='err-msg'&gt;ติดต่อเรา&lt;/a&gt;.
-</value>
-  </data>
-  <data name="ErrmsgEmailNotApprove" xml:space="preserve">
-    <value>อีเมลล์แอดเดรสนี้ถูกใช้ในการการสมัครเป็นพันธมิตรเรียบร้อยแล้วและไม่ได้รับการอนุมัติ กรุณาลองใหม่อีกครั้งหรือ  &lt;a href="ContactUs.aspx" class='err-msg'&gt;ติดต่อเรา&lt;/a&gt;.
-</value>
-  </data>
   <data name="ErrmsgEntryPassword" xml:space="preserve">
     <value>กรุณากรอกรหัสผ่าน</value>
   </data>
@@ -997,9 +988,6 @@
   </data>
   <data name="ErrMsgForgetPwFail" xml:space="preserve">
     <value>แจ้งแก้ไขพาสเวิดไม่ถูกต้อง &lt;a href='ForgetPass.aspx'&gt;ลอง ใหม่ อีก ครั้ง&lt;/a&gt; หากพยายามอีกครั้งแล้วไม่สำเร็จ กรุณา &lt;a href='ContactUs.aspx'&gt; ติดต่อเรา&lt;/a&gt;</value>
-  </data>
-  <data name="ErrmsgNotExistsEmail" xml:space="preserve">
-    <value>คุณได้ระบุอีเมลล์ที่มีในระบบแล้ว กรุณาเปลี่ยนและลองอีกครั้ง หรือ &lt;a href="ContactUs.aspx" class='err-msg'&gt; ติดต่อเรา&lt;/a&gt;</value>
   </data>
   <data name="ErroroccursUpda" xml:space="preserve">
     <value>มีข้อผิดพลาดเกิดขึ้น</value>
@@ -1087,7 +1075,7 @@
     <value>สำหรับ</value>
   </data>
   <data name="Foranyreasonyou" xml:space="preserve">
-    <value>หากคุณไม่ได้รับอีเมลล์ กรุณา &lt;a href='ContactUs.aspx'&gt; ติดต่อเรา &lt;/a&gt; เรายินดีช่วยเหลือ คะ</value>
+    <value>หากคุณไม่ได้รับอีเมลล์ กรุณา &lt;a href='{0}'&gt; ติดต่อเรา &lt;/a&gt; เรายินดีช่วยเหลือ คะ</value>
   </data>
   <data name="ForgetPassword" xml:space="preserve">
     <value>ลืมพาสเวริ์ด</value>
@@ -2329,7 +2317,7 @@
     <value>ลำดับชั้น</value>
   </data>
   <data name="TitelForgetPass" xml:space="preserve">
-    <value>พาสเวิดใหม่จะถูกส่งไปยังอีเมลล์ของคุณ.&lt;br /&gt; หากคุณไม่รับอีเมลล์ดังกล่าว กรุณา&lt;a href="ContactUs.aspx"&gt;ติดต่อเรา&lt;/a&gt;.</value>
+    <value>พาสเวิดใหม่จะถูกส่งไปยังอีเมลล์ของคุณ.&lt;br /&gt; หากคุณไม่รับอีเมลล์ดังกล่าว กรุณา&lt;a href="{0}"&gt;ติดต่อเรา&lt;/a&gt;.</value>
   </data>
   <data name="TitleCancelledPayment" xml:space="preserve">
     <value>พันธมิตร 12BET - [{transid}] - รายการธุรกรรมการเงินของคุณถูกปฏิเสธ</value>

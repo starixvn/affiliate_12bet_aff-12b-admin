@@ -175,8 +175,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessService\AuthService.cs" />
+    <Compile Include="BusinessService\EmailService.cs" />
     <Compile Include="BusinessService\HotNewsService.cs" />
+    <Compile Include="BusinessService\IEmailService.cs" />
     <Compile Include="BusinessService\IHotNewsService.cs" />
+    <Compile Include="Constants\TempDataKey.cs" />
     <Compile Include="CoreService\CookieService.cs" />
     <Compile Include="BusinessService\CryptographyService.cs" />
     <Compile Include="BusinessService\IAuthService.cs" />
@@ -217,6 +220,7 @@
     <Compile Include="DTO\Language.cs" />
     <Compile Include="DTO\LatestHotNews.cs" />
     <Compile Include="DTO\MemberSitePage.cs" />
+    <Compile Include="DTO\UserInfo.cs" />
     <Compile Include="DTO\UserPanel\AccountOverviewStatistics.cs" />
     <Compile Include="DTO\UserPanel\LandingPageStatistics.cs" />
     <Compile Include="DTO\UserPanel\MarketingItem.cs" />
@@ -237,12 +241,15 @@
     <Compile Include="Extensions\UrlHelperExtension.cs" />
     <Compile Include="Filters\AjaxOnlyAttribute.cs" />
     <Compile Include="Filters\AuthenticateAttribute.cs" />
+    <Compile Include="MetalModels\Email\EmailBaseParam.cs" />
+    <Compile Include="MetalModels\Email\ForgotPasswordEmailParam.cs" />
     <Compile Include="MetalModels\UpdateAccountParam.cs" />
     <Compile Include="MetalModels\BaseParam.cs" />
     <Compile Include="MetalModels\InternalLoginParam.cs" />
     <Compile Include="MetalModels\LoginResultParam.cs" />
     <Compile Include="MetalModels\OnUserIdParam.cs" />
     <Compile Include="MetalModels\UpdatePasswordParam.cs" />
+    <Compile Include="MetalModels\UserInfoByEmailParam.cs" />
     <Compile Include="MetalModels\UserLoginParam.cs" />
     <Compile Include="MetalModels\UserPanel\LandingPageStatisticsParam.cs" />
     <Compile Include="MetalModels\UserPanel\LinkBaseParam.cs" />
@@ -282,6 +289,51 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Casino.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Error.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Error.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Error.ja-JP.Designer.cs">
+      <DependentUpon>Error.ja-JP.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Error.ko-KR.Designer.cs">
+      <DependentUpon>Error.ko-KR.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Error.es-ES.Designer.cs">
+      <DependentUpon>Error.es-ES.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Error.id-ID.Designer.cs">
+      <DependentUpon>Error.id-ID.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Error.vi-VN.Designer.cs">
+      <DependentUpon>Error.vi-VN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Error.th-TH.Designer.cs">
+      <DependentUpon>Error.th-TH.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Error.zh-CN.Designer.cs">
+      <DependentUpon>Error.zh-CN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Error.zh-TW.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Error.zh-TW.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\Lang.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -335,6 +387,7 @@
     </Compile>
     <Compile Include="Utilities\AppSetting.cs" />
     <Compile Include="Utilities\CaptchaHelper.cs" />
+    <Compile Include="Utilities\Common.cs" />
     <Compile Include="Utilities\CryptographyHelper.cs" />
     <Compile Include="Utilities\Generator.cs" />
     <Compile Include="Utilities\IMemoryCacheService.cs" />
@@ -363,6 +416,42 @@
     <Folder Include="ViewModels\BetList\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\Error.ja-JP.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Error.ja-JP.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Error.ko-KR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Error.ko-KR.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Error.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Error.es-ES.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Error.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Error.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Error.id-ID.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Error.id-ID.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Error.vi-VN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Error.vi-VN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Error.th-TH.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Error.th-TH.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Error.zh-CN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Error.zh-CN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Error.zh-TW.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Error.zh-TW.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Lang.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Lang.Designer.cs</LastGenOutput>

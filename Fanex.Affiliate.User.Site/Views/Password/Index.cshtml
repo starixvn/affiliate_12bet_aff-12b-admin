@@ -2,27 +2,64 @@
     ViewBag.Title = Lang.ForgetPassword;
     Layout = "~/Views/Shared/_LayoutBeforeLogin.cshtml";
 }
+@{
+    const string ResultKey = Fanex.Affiliate.User.Core.Constants.TempDataKey.SendForgotPasswordEmailResult;
+    var result = TempData[ResultKey] as Fanex.Affiliate.User.Core.DTO.ResultInfo;
+    var hasResult = result != null;
+    var messageResult = hasResult ? Html.Raw(new HtmlString(result.Message)) : new HtmlString(string.Empty);
+    var isSuccessful = hasResult && result.IsOk;
+}
 
+@section styles{
+    <link href="@Url.RenderLink("~/www/build/styles/css/password.css")" rel="stylesheet" />
+}
 <div class="content">
     <div class="page-title">
         <span class="text">@Lang.ForgetPassword</span>
     </div>
 
-    <div>
-        <p>@Html.Raw(Lang.TitelForgetPass)</p>
+    @if (isSuccessful)
+    {
+        <p class="alert alert-success" style="min-height: 50px;" id="sendEmailResult" role="alert">
+            @messageResult
+        </p>
+    }
+    else
+    {
+        <div>
+            <p>@Html.Raw(Lang.TitelForgetPass.Replace("{0}", Url.Action("Index", "ContactUs")))</p>
+            @if (hasResult && !isSuccessful)
+            {
+                <p class="alert alert-danger" style="min-height: 50px;" id="sendEmailResult" role="alert">
+                    @messageResult
+                </p>
+            }
 
-        <div class="form-horizontal">
-            <div class="form-group">
-                <label class="col-sm-2 control-label require">@Lang.YourEmail</label>
-                <div class="col-sm-4">
-                    <input class="form-control" type="text" value="abc@gmail.com" />
+            @using (Html.BeginForm("Forgot", "Password", FormMethod.Post, new { @id = "updatePasswordForm", @class = "form-horizontal", @style = "margin-top:30px;" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <label class="col-sm-2 control-label require">@Lang.YourEmail</label>
+                    <div class="col-sm-4">
+                        <input class="form-control" name="Email" id="Email" type="email" />
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-sm-offset-2">
-                <button class="btn btn-submit" type="button">@Lang.Submit</button>
-                <button class="btn btn-submit" type="button">@Lang.Reset</button>
-            </div>
+                <div class="col-sm-offset-2">
+                    <button id="btnSubmit" class="btn btn-submit" type="submit">@Lang.Submit</button>
+                    <button id="btnReset" class="btn btn-submit" type="button">@Lang.Reset</button>
+                </div>
+            }
         </div>
-    </div>
+    }
 </div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(function(){
+            $("#btnReset").on("click", function(){
+                $("#Email").val("");
+            })
+        })
+    </script>
+}

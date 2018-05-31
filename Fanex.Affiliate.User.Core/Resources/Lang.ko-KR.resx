@@ -996,12 +996,6 @@
   <data name="errMobileNumberEmpty" xml:space="preserve">
     <value>MSN이 요구 됩니다.</value>
   </data>
-  <data name="ErrmsgEmailClose" xml:space="preserve">
-    <value>이 이메일 주소는 비활성되었거나 이미 폐쇠 되었습니다. 다시 시도해 보십시오. 혹은 &lt;a href=ContactUs.aspx" class='err-msg'&gt;으로 연락 주십시오&lt;/a&gt;.</value>
-  </data>
-  <data name="ErrmsgEmailNotApprove" xml:space="preserve">
-    <value>이 이메일 주소는 비활성되었거나 아직 승인되지 않았습니다. 다시한번 시도해 보십시오. 혹은 &lt;a href=ContactUs.aspx" class='err-msg'&gt;으로 연락 주십시오&lt;/a&gt;.</value>
-  </data>
   <data name="ErrmsgEntryPassword" xml:space="preserve">
     <value>비밀번를 입력하십시오.</value>
   </data>
@@ -1013,9 +1007,6 @@
   </data>
   <data name="ErrMsgForgetPwFail" xml:space="preserve">
     <value>비밀번호 재설정 정보가 유효하지 않습니다.&lt;a href='ForgetPass.aspx'&gt;try again&lt;/a&gt;. 여전히 비밀번호를 재설정 할수 없는 경우에는  &lt;a href='ContactUs.aspx'&gt;contact us&lt;/a&gt;.</value>
-  </data>
-  <data name="ErrmsgNotExistsEmail" xml:space="preserve">
-    <value>인식할수있는 이메일 주소를 입력하지 않으셨습니다. 다시 시도해 보십시오. &lt;a href="ContactUs.aspx" class='err-msg'&gt;Contact us&lt;/a&gt;.</value>
   </data>
   <data name="ErroroccursUpda" xml:space="preserve">
     <value>에러가 발생했습니다.업데이트 프로세스가 성공적으로 완료되지 못했습니다.</value>

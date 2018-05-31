@@ -961,12 +961,6 @@
   <data name="errMobileNumberEmpty" xml:space="preserve">
     <value>MSN is required</value>
   </data>
-  <data name="ErrmsgEmailClose" xml:space="preserve">
-    <value>La dirección de correo electrónico está utilizada por un afiliado inactivo o cuya cuenta está cerrada. Vuelva a intentarlo más tarde o &lt;a href="ContactUs.aspx" class='err-msg'&gt;póngase en contacto con nosotros&lt;/a&gt;.</value>
-  </data>
-  <data name="ErrmsgEmailNotApprove" xml:space="preserve">
-    <value>La dirección de correo electrónico está utilizada por un afiliado inactivo o cuya cuenta no ha sido aprobada. Vuelva a intentarlo más tarde o &lt;a href="ContactUs.aspx" class='err-msg'&gt;póngase en contacto con nosotros&lt;/a&gt;.</value>
-  </data>
   <data name="ErrmsgEntryPassword" xml:space="preserve">
     <value>Introduzca la contraseña.</value>
   </data>
@@ -978,9 +972,6 @@
   </data>
   <data name="ErrMsgForgetPwFail" xml:space="preserve">
     <value>La información para restablecer la contraseña no es válida. &lt;a href='ForgetPass.aspx'&gt;Vuelva a intentarlo &lt;/a&gt;. Si no consigue restablecer la contraseña, &lt;a href='ContactUs.aspx'&gt;póngase en contacto con nosotros&lt;/a&gt;</value>
-  </data>
-  <data name="ErrmsgNotExistsEmail" xml:space="preserve">
-    <value>No se ha podido identificar la dirección de correo electrónico que ha proporcionado. Vuelva a intentarlo más tarde o &lt;a href="ContactUs.aspx" class='err-msg'&gt;póngase en contacto con nosotros&lt;/a&gt;.</value>
   </data>
   <data name="ErroroccursUpda" xml:space="preserve">
     <value>Se ha producido un error. No se ha podido completar el proceso de actualización</value>
@@ -1068,7 +1059,7 @@
     <value>Para</value>
   </data>
   <data name="Foranyreasonyou" xml:space="preserve">
-    <value>Si por algún motivo no recibe el correo, &lt;a href='ContactUs.aspx'&gt;póngase en contacto con nosotros&lt;/a&gt;, estaremos encantados de atenderle.</value>
+    <value>Si por algún motivo no recibe el correo, &lt;a href='{0}'&gt;póngase en contacto con nosotros&lt;/a&gt;, estaremos encantados de atenderle.</value>
   </data>
   <data name="ForgetPassword" xml:space="preserve">
     <value>¿Ha olvidado su ID o contraseña?</value>
@@ -2284,7 +2275,7 @@ Uno de nuestros administradores de cuentas de afiliados se pondrá en contacto c
   </data>
   <data name="TitelForgetPass" xml:space="preserve">
     <value>Se le enviará una nueva contraseña a la dirección de correo electrónico que ha proporcionado.
-                &lt;br /&gt;Si tiene algún problema, póngase &lt;a href="ContactUs.aspx"&gt;en contacto con nosotros&lt;/a&gt;.</value>
+                &lt;br /&gt;Si tiene algún problema, póngase &lt;a href="{0}"&gt;en contacto con nosotros&lt;/a&gt;.</value>
   </data>
   <data name="TitleCancelledPayment" xml:space="preserve">
     <value>Afiliados de 12BET - [{transid}] - Se ha cancelado la solicitud de pago</value>

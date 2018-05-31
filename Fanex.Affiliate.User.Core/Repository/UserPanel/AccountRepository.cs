@@ -92,5 +92,15 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
                 return Convert.ToBoolean(objectDb.DB.ExecuteScalar(new { userName }));
             }
         }
+
+        public UserInfo GetUserInfoByEmail(UserInfoByEmailParam userInfoParam)
+        {
+            const string uSpKey = "Aff_AffiliateInfoByEmailSel";
+
+            using (var objectDb = new ObjectDBBuilder(uSpKey))
+            {
+                return objectDb.DB.QueryEntity<UserInfo>(userInfoParam);
+            }
+        }
     }
 }

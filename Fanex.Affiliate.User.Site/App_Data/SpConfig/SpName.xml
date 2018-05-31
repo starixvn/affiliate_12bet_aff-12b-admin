@@ -73,4 +73,8 @@
     <Setting Key="Aff_HotNewsSel" SpName="Aff_HotNewsSel" DbName="affiliate_12bet" />
     <Setting Key="Aff_HotNewsSel_view" SpName="Aff_HotNewsSel" DbName="affiliate_12bet_view" />
   </Function>
+
+  <Function Name="Password">
+    <Setting Key="Aff_AffiliateInfoByEmailSel" SpName="Aff_AffiliateInfoByEmailSel" DbName="affiliate_12bet" />   
+  </Function>
 </Functions>

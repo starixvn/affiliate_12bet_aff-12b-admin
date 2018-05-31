@@ -976,12 +976,6 @@ Terima Kasih</value>
   <data name="errMobileNumberEmpty" xml:space="preserve">
     <value>Yahoo Messenger dibutuhkan</value>
   </data>
-  <data name="ErrmsgEmailClose" xml:space="preserve">
-    <value>Alamat email ini sedang digunakan oleh afiliasi yang tidak aktif atau sudah ditutup. Silakan coba lagi atau &lt;a href="ContactUs.aspx" class='err-msg'&gt;Hubungi kami&lt;/a&gt;.</value>
-  </data>
-  <data name="ErrmsgEmailNotApprove" xml:space="preserve">
-    <value>Alamat email ini sedang digunakan oleh afiliasi yang tidak aktif, atau belum disetujui. Silakan coba lagi atau  &lt;a href="ContactUs.aspx" class='err-msg'&gt;Hubungi kami&lt;/a&gt;.</value>
-  </data>
   <data name="ErrmsgEntryPassword" xml:space="preserve">
     <value>Masukkan kata sandi.</value>
   </data>
@@ -993,9 +987,6 @@ Terima Kasih</value>
   </data>
   <data name="ErrMsgForgetPwFail" xml:space="preserve">
     <value>Informasi untuk menyetel ulang kata sandi tidak valid, silakan &lt;a href='ForgetPass.aspx'&gt;coba lagi&lt;/a&gt;. Kalau Anda masih belum dapat menyetel ulang kata sandi, silakan &lt;a href='ContactUs.aspx'&gt;hubungi kami&lt;/a&gt;</value>
-  </data>
-  <data name="ErrmsgNotExistsEmail" xml:space="preserve">
-    <value>Anda belum memasukkan alamat email yang kami akui. Silakan coba lagi atau  &lt;a href="ContactUs.aspx" class='err-msg'&gt;Hubungi kami&lt;/a&gt;.</value>
   </data>
   <data name="ErroroccursUpda" xml:space="preserve">
     <value>Terjadi kesalahan. Proses pembaruan tidak berhasil</value>
@@ -1083,7 +1074,7 @@ Terima Kasih</value>
     <value>Misalnya,</value>
   </data>
   <data name="Foranyreasonyou" xml:space="preserve">
-    <value>Bila Anda tidak menerima email untuk alasan apa pun, silakan &lt;a href='ContactUs.aspx'&gt;hubungi kami&lt;/a&gt; dan kami dengan senang hati akan membantu Anda.  </value>
+    <value>Bila Anda tidak menerima email untuk alasan apa pun, silakan &lt;a href='{0}'&gt;hubungi kami&lt;/a&gt; dan kami dengan senang hati akan membantu Anda.  </value>
   </data>
   <data name="ForgetPassword" xml:space="preserve">
     <value>Lupa kata sandi Anda?</value>
@@ -2324,7 +2315,7 @@ Salah satu Manajer Rekening Afiliasi kami akan menghubungi Anda melalui email da
   </data>
   <data name="TitelForgetPass" xml:space="preserve">
     <value>Kata sandi baru akan dikirim ke alamat email yang sudah Anda berikan.
-               &lt;br /&gt;Jika Anda mengalami kesulitan lebih jauh, silakan &lt;a href="ContactUs.aspx"&gt;Hubungi kami&lt;/a&gt;.</value>
+               &lt;br /&gt;Jika Anda mengalami kesulitan lebih jauh, silakan &lt;a href="{0}"&gt;Hubungi kami&lt;/a&gt;.</value>
   </data>
   <data name="TitleCancelledPayment" xml:space="preserve">
     <value>Afiliasi 12Bet - [{transid}] - Permintaan pembayaran Anda sudah dibatalkan</value>

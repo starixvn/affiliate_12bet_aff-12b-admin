@@ -1052,14 +1052,6 @@ Thank you.</value>
   <data name="errMobileNumberEmpty" xml:space="preserve">
     <value>MSN is required</value>
   </data>
-  <data name="ErrmsgEmailClose" xml:space="preserve">
-    <value>This email address is being used by an affliliate that's inactive or has been closed. Please try again or &lt;a href="ContactUs.aspx" class='err-msg'&gt;Contact us&lt;/a&gt;.
-</value>
-  </data>
-  <data name="ErrmsgEmailNotApprove" xml:space="preserve">
-    <value>This email address is being used by an affliliate that's inactive or has not been approved. Please try again or  &lt;a href="ContactUs.aspx" class='err-msg'&gt;Contact us&lt;/a&gt;.
-</value>
-  </data>
   <data name="ErrmsgEntryPassword" xml:space="preserve">
     <value>Please enter password.</value>
   </data>
@@ -1071,9 +1063,6 @@ Thank you.</value>
   </data>
   <data name="ErrMsgForgetPwFail" xml:space="preserve">
     <value>The information to reset password is not valid, please &lt;a href='ForgetPass.aspx'&gt;try again&lt;/a&gt;. In case you still can not reset your password, please &lt;a href='ContactUs.aspx'&gt;contact us&lt;/a&gt;</value>
-  </data>
-  <data name="ErrmsgNotExistsEmail" xml:space="preserve">
-    <value>You have not entered an email address that we recognise. Please try again or  &lt;a href="ContactUs.aspx" class='err-msg'&gt;Contact us&lt;/a&gt;.</value>
   </data>
   <data name="ErroroccursUpda" xml:space="preserve">
     <value>Error occurs. Update process is unsuccessful</value>
@@ -1176,7 +1165,7 @@ Thank you.</value>
     <value>For</value>
   </data>
   <data name="Foranyreasonyou" xml:space="preserve">
-    <value>For any reason you do not receive the email, please &lt;a href='ContactUs.aspx'&gt;contact us&lt;/a&gt; and we will be glad to assist you.  </value>
+    <value>For any reason you do not receive the email, please &lt;a href='{0}'&gt;contact us&lt;/a&gt; and we will be glad to assist you.  </value>
   </data>
   <data name="ForgetPassword" xml:space="preserve">
     <value>Forgot your password?</value>
@@ -2680,7 +2669,7 @@ One of our Affiliate Accounts Manager will be contacting you by email within 3 b
   </data>
   <data name="TitelForgetPass" xml:space="preserve">
     <value>A new password will be sent to the email address that you provided.
-                &lt;br /&gt;If you are experiencing any further difficulties, please &lt;a href="ContactUs.aspx"&gt;Contact us&lt;/a&gt;.</value>
+                &lt;br /&gt;If you are experiencing any further difficulties, please &lt;a href="{0}"&gt;Contact us&lt;/a&gt;.</value>
   </data>
   <data name="TitleCancelledPayment" xml:space="preserve">
     <value>12Bet Affiliates - [{transid}] - Your payment request has been cancelled</value>

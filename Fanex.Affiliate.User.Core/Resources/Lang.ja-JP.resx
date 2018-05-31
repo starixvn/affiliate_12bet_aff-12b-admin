@@ -974,12 +974,6 @@
   <data name="errMobileNumberEmpty" xml:space="preserve">
     <value>MSNアカウントを入力して下さい</value>
   </data>
-  <data name="ErrmsgEmailClose" xml:space="preserve">
-    <value>このメールアドレスは、活動していないまたは削除されたアフィリエイトに使用されています。もう一度やり直すかお問い合わせください。</value>
-  </data>
-  <data name="ErrmsgEmailNotApprove" xml:space="preserve">
-    <value>このメールアドレスは、活動していないまたは承認されていないアフィリエイトに使用されています。もう一度やり直すか、"お問い合わせ"から連絡してください。</value>
-  </data>
   <data name="ErrmsgEntryPassword" xml:space="preserve">
     <value>パスワードを入力してください</value>
   </data>
@@ -991,9 +985,6 @@
   </data>
   <data name="ErrMsgForgetPwFail" xml:space="preserve">
     <value>パスワードをリセットする情報が無効です。もう一度やり直してください。まだリセットできな場合は"お問い合わせ"から連絡してください。</value>
-  </data>
-  <data name="ErrmsgNotExistsEmail" xml:space="preserve">
-    <value>入力されたメールアドレスを認識出来ません。もう一度やり直すか、"お問い合わせ"から連絡してください。</value>
   </data>
   <data name="ErroroccursUpda" xml:space="preserve">
     <value>エラーが発生しました。アップデートができませんでした</value>
@@ -1081,7 +1072,7 @@
     <value>For</value>
   </data>
   <data name="Foranyreasonyou" xml:space="preserve">
-    <value>何らかの理由でメールがとどかない場合、&lt;a href='ContactUs.aspx'&gt;お問い合わせ&lt;/a&gt;からご連絡ください。喜んで対応致します。</value>
+    <value>何らかの理由でメールがとどかない場合、&lt;a href='{0}'&gt;お問い合わせ&lt;/a&gt;からご連絡ください。喜んで対応致します。</value>
   </data>
   <data name="ForgetPassword" xml:space="preserve">
     <value>パスワードを忘れた？</value>

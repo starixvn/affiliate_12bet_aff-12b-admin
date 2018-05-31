@@ -15,7 +15,7 @@
             return Engine.Razor.RunCompile(templateContent, path, null, model);
         }
 
-        public void Send(string content, string mailTo, string subject, string mailBcc = "")
+        public void Send(string content, string mailTo, string subject, string mailBcc = "", string mailCc = "")
         {
             var mailItem = new MailRecord
             {
@@ -23,7 +23,8 @@
                 Subject = subject,
                 Title = subject,
                 Body = content,
-                MailBcc = mailBcc
+                MailBcc = mailBcc,
+                MailCc = mailCc
             };
 
             using (var client = new MailDeliver())

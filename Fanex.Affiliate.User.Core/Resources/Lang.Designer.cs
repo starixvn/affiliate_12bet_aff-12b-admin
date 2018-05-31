@@ -2892,26 +2892,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This email address is being used by an affliliate that&apos;s inactive or has been closed. Please try again or &lt;a href=&quot;ContactUs.aspx&quot; class=&apos;err-msg&apos;&gt;Contact us&lt;/a&gt;.
-        ///.
-        /// </summary>
-        public static string ErrmsgEmailClose {
-            get {
-                return ResourceManager.GetString("ErrmsgEmailClose", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This email address is being used by an affliliate that&apos;s inactive or has not been approved. Please try again or  &lt;a href=&quot;ContactUs.aspx&quot; class=&apos;err-msg&apos;&gt;Contact us&lt;/a&gt;.
-        ///.
-        /// </summary>
-        public static string ErrmsgEmailNotApprove {
-            get {
-                return ResourceManager.GetString("ErrmsgEmailNotApprove", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Please enter password..
         /// </summary>
         public static string ErrmsgEntryPassword {
@@ -2944,15 +2924,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string ErrMsgForgetPwFail {
             get {
                 return ResourceManager.GetString("ErrMsgForgetPwFail", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You have not entered an email address that we recognise. Please try again or  &lt;a href=&quot;ContactUs.aspx&quot; class=&apos;err-msg&apos;&gt;Contact us&lt;/a&gt;..
-        /// </summary>
-        public static string ErrmsgNotExistsEmail {
-            get {
-                return ResourceManager.GetString("ErrmsgNotExistsEmail", resourceCulture);
             }
         }
         
@@ -3252,7 +3223,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to For any reason you do not receive the email, please &lt;a href=&apos;ContactUs.aspx&apos;&gt;contact us&lt;/a&gt; and we will be glad to assist you.  .
+        ///   Looks up a localized string similar to For any reason you do not receive the email, please &lt;a href=&apos;{0}&apos;&gt;contact us&lt;/a&gt; and we will be glad to assist you.  .
         /// </summary>
         public static string Foranyreasonyou {
             get {
@@ -7795,7 +7766,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to A new password will be sent to the email address that you provided.
-        ///                &lt;br /&gt;If you are experiencing any further difficulties, please &lt;a href=&quot;ContactUs.aspx&quot;&gt;Contact us&lt;/a&gt;..
+        ///                &lt;br /&gt;If you are experiencing any further difficulties, please &lt;a href=&quot;{0}&quot;&gt;Contact us&lt;/a&gt;..
         /// </summary>
         public static string TitelForgetPass {
             get {

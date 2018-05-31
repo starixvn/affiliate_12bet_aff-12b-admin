@@ -4,6 +4,6 @@
     {
         string BuildTemplateContent(string path, object model);
 
-        void Send(string content, string mailTo, string subject, string mailBcc = "");
+        void Send(string content, string mailTo, string subject, string mailBcc = "", string mailCc = "");
     }
 }

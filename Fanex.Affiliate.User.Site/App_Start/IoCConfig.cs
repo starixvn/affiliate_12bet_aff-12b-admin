@@ -84,6 +84,8 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterType<CryptographyService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<HotNewsRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<HotNewsService>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<EmailService>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<MailProcessor>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
     }
 }
