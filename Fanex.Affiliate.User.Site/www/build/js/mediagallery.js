@@ -298,11 +298,7 @@ var MediaGallery = (function ($) {
             });
 
             $("#btnMarketingSearch").on("click", function () {
-                _pageIndex = 0;
-                var searchParams = _me.getSearchParam();
-                _me.getBannerList(searchParams, _me.updatePager);
-
-                MarketingBase.generateTextLink();
+                _me.submitSearch();
             });
 
             $("#dataContainerList").on("change", "#DeviceType", function () {
@@ -312,8 +308,16 @@ var MediaGallery = (function ($) {
             });
 
             $("#btnGenerateLink").on("click", function () {
-                MarketingBase.generateTextLink();
+                _me.submitSearch();
             });
+        },
+
+        submitSearch: function(){
+            _pageIndex = 0;
+            var searchParams = _me.getSearchParam();
+            _me.getBannerList(searchParams, _me.updatePager);
+
+            MarketingBase.generateTextLink();
         },
 
         getSubcategory: function (category) {

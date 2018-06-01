@@ -56,10 +56,13 @@ var Login = (function ($) {
         requestSignin: function (onDialog) {
             var prefix = onDialog ? "dialog" : "";
 
+            var $username = $("#" + prefix + "txtUsername");
             var $password = $("#" + prefix + "txtPassword");
-            var username = $("#" + prefix + "txtUsername").val();
+            var $validation = $("#" + prefix + "txtValidation");
+
+            var username = $username.val();
             var password = $password.val();
-            var validation = $("#" + prefix + "txtValidation").val();
+            var validation = $validation.val();
 
             var validationResult = _me.validate(username, password, validation, prefix);
             if (validationResult.isValid) {
@@ -87,11 +90,26 @@ var Login = (function ($) {
                     contentType: "application/x-www-form-urlencoded; charset=UTF-8",
                     success: function (response) {
                         if (response.IsOk) {
-                            Site.redirect(Site.resolveRelativeUrl("UserPanel/#AccountOverview"));
+                            if (onDialog) {
+                                Site.redirect(Site.resolveRelativeUrl("UserPanel/#MediaGallery"));
+                            }
+                            else {
+                                Site.redirect(Site.resolveRelativeUrl("UserPanel/#AccountOverview"));
+                            }
                         }
                         else {
                             alert(response.Message);
-                            Site.reload();
+                            if (onDialog) {
+                                $username.val("");
+                                $password.val("");
+                                $validation.val("");
+
+                                var captchaUrl = Site.resolveRelativeUrl("Home/CaptchaImage?_v=" + new Date().getTime());
+                                $("#loginDialogcaptchaImg").attr("src", captchaUrl);
+                            }
+                            else {
+                                Site.reload();
+                            }
                         }
                     },
                     beforeSend: function () {
