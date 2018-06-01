@@ -12,7 +12,7 @@
             var height = banner.Height > 0 ? banner.Height.ToString() : string.Empty;
             var isFlashFile = banner.FileName.ToLower().EndsWith(".swf");
             <li>
-                <a class="banner-link" onclick='window.open("@(banner.RedirectLink + "?ref")" + encodeURIComponent(window.location.href),"_blank"); return false;' href="javascript:;">
+                <a class="banner-link" onclick='window.open("@(banner.RedirectLink + "?ref=")" + encodeURIComponent(window.location.href),"_blank"); return false;' href="javascript:;">
                     @if (isFlashFile)
                     {
                         <embed src="@banner.FileName" width="@width" height="@height" style="pointer-events: none !important; z-index: -1 !important">
@@ -25,11 +25,11 @@
 
                 @if (isFlashFile)
                 {
-                    <input readonly class="link-text" onclick="this.focus();this.select()" value="<a onclick='window.open(&quot;@(banner.RedirectLink + "?ref")&quot; + encodeURIComponent(window.location.href),&quot;_blank&quot;); return false;' href='javascript:;' target='_blank' style='display: inline-block !important;'><embed src='@banner.FileName' width='@width' height='@height' style='pointer-events: none !important; z-index: -1 !important'></a>" type="text" />
+                    <input readonly class="link-text" onclick="this.focus();this.select()" value="<a onclick='window.open(&quot;@(banner.RedirectLink + "?ref=")&quot; + encodeURIComponent(window.location.href),&quot;_blank&quot;); return false;' href='javascript:;' target='_blank' style='display: inline-block !important;'><embed src='@banner.FileName' width='@width' height='@height' style='pointer-events: none !important; z-index: -1 !important'></a>" type="text" />
                 }
                 else
                 {
-                    <input readonly class="link-text" onclick="this.focus();this.select()" value="<a onclick='window.open(&quot;@(banner.RedirectLink + "?ref")&quot; + encodeURIComponent(window.location.href),&quot;_blank&quot;); return false;' href='javascript:;' target='_blank'><img src='@banner.FileName' border='0' width='@width' height='@height' /></a>" type="text" />
+                    <input readonly class="link-text" onclick="this.focus();this.select()" value="<a onclick='window.open(&quot;@(banner.RedirectLink + "?ref=")&quot; + encodeURIComponent(window.location.href),&quot;_blank&quot;); return false;' href='javascript:;' target='_blank'><img src='@banner.FileName' border='0' width='@width' height='@height' /></a>" type="text" />
                 }
                 
             </li>
