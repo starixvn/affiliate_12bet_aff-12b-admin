@@ -88,7 +88,7 @@
 
         var bigBannerLink = document.getElementById("big_banner_link");
         bigBannerLink.addEventListener("click", function (event) {
-            gtag('event', 'PromoWorldCup2018-<%=Common.ConvertToShortLanguageCode().ToUpper() %>', {
+            gtag('event', 'AffWorldCupPro-<%=Common.ConvertSpecialLanguageCode().ToUpper() %>', {
               'event_category': 'AFFiliatePage',
               'event_label': 'AFFBigBanner'
         });

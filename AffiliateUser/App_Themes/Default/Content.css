@@ -9,27 +9,21 @@
 }
 
     body.zh-CN {
-        background-image: url(images/bgMain_cs.jpg);
     }
 
     body.zh-TW {
-        background-image: url(images/bgMain_ch.jpg);
     }
 
     body.id-ID {
-        background-image: url(images/bgMain_id.jpg);
     }
 
     body.vi-VN {
-        background-image: url(images/bgMain_vn.jpg);
     }
 
     body.th-TH {
-        background-image: url(images/bgMain_th.jpg);
     }
 
     body.ko-KR {
-        background-image: url(images/bgMain_ko.jpg);
     }
 
 form {
