@@ -121,8 +121,9 @@ var MyAccount = (function ($) {
                 };
             }
 
-            if ($("#hasWebSite").prop("checked") && $("#txtSiteUrl").val().trim() === "") {
+            if ($("#hasWebSite").prop("checked") && $("#txtSiteUrl").val().trim() === "" || !_me.canAddUrl()) {
                 $("#txtSiteUrl").focus();
+                console.log($(".urlInput[value='']").val());
 
                 return {
                     isValid: false,
@@ -179,7 +180,7 @@ var MyAccount = (function ($) {
             var moreUrlList = [];
             $("#websiteInfo .urlInput").each(function (index, data) {
                 if (data.value) {
-                    moreUrlList.push(Site.escapeHtml(data.value));
+                    moreUrlList.push(Site.escapeHtml(data.value.trim()));
                 }
             });
 
