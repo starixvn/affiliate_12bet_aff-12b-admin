@@ -2724,4 +2724,10 @@
   <data name="_12BETUserNamei" xml:space="preserve">
     <value>12BETユーザー名が見つかりません</value>
   </data>
+  <data name="EmailTitleNewPassword" xml:space="preserve">
+    <value>「新規パスワード」 について</value>
+  </data>
+  <data name="EmailTitlePasswordRecovery" xml:space="preserve">
+    <value>「ログイン情報」　について</value>
+  </data>
 </root>

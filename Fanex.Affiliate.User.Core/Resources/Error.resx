@@ -126,4 +126,7 @@
   <data name="ForgotPassword1009" xml:space="preserve">
     <value>This email address is being used by an affliliate that's inactive or has not been approved. Please try again or  &lt;a href="{0}" class='err-msg'&gt;Contact us&lt;/a&gt;.</value>
   </data>
+  <data name="RecoverPassword1001" xml:space="preserve">
+    <value>The address that you have used to request a new password is not valid.</value>
+  </data>
 </root>

@@ -126,4 +126,7 @@
   <data name="ForgotPassword1009" xml:space="preserve">
     <value>此電子郵件地址對應的合作夥伴帳戶失效或未被關閉。&lt;a href="{0}" class='err-msg'&gt;請重試或聯繫我們。&lt;/a&gt;</value>
   </data>
+  <data name="RecoverPassword1001" xml:space="preserve">
+    <value>您用於申請新密碼的地址無效</value>
+  </data>
 </root>

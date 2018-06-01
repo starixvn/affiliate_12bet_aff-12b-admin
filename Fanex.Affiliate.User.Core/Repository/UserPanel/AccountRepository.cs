@@ -102,5 +102,15 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
                 return objectDb.DB.QueryEntity<UserInfo>(userInfoParam);
             }
         }
+
+        public UserInfo RecoverPassword(PasswordRecoveryParam passwordRecoveryParam)
+        {
+            const string uSpKey = "Aff_AffiliateRecoverPwd";
+
+            using (var objectDb = new ObjectDBBuilder(uSpKey))
+            {
+                return objectDb.DB.QueryEntity<UserInfo>(passwordRecoveryParam);
+            }
+        }
     }
 }

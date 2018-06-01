@@ -5,5 +5,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
     public interface IEmailService
     {
         void SendRecoverPasswordEmail(RecoverPasswordEmailParam emailParam);
+
+        void SendNewPasswordEmail(NewPasswordEmailParam emailParam);
     }
 }

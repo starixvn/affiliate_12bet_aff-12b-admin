@@ -86,5 +86,14 @@ namespace Fanex.Affiliate.User.Core.Resources {
                 return ResourceManager.GetString("ForgotPassword1009", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The address that you have used to request a new password is not valid..
+        /// </summary>
+        public static string RecoverPassword1001 {
+            get {
+                return ResourceManager.GetString("RecoverPassword1001", resourceCulture);
+            }
+        }
     }
 }

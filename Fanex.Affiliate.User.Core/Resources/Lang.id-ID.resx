@@ -2719,4 +2719,10 @@ Salah satu Manajer Rekening Afiliasi kami akan menghubungi Anda melalui email da
   <data name="_12BETUserNamei" xml:space="preserve">
     <value>Nama Pengguna 12BET tidak valid</value>
   </data>
+  <data name="EmailTitleNewPassword" xml:space="preserve">
+    <value>Kata sandi baru Anda</value>
+  </data>
+  <data name="EmailTitlePasswordRecovery" xml:space="preserve">
+    <value>Detil login anda</value>
+  </data>
 </root>

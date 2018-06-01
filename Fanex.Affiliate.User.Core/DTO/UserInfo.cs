@@ -8,10 +8,10 @@
 
         public string FirstName { get; set; }
 
-        public string LastName { get; set; }
-
         public string PreferredLanguage { get; set; }
 
         public bool MailOption { get; set; }
+
+        public string Email { get; set; }
     }
 }

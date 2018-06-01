@@ -30,6 +30,12 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         public string MediaScriptUrl => GetValue("MediaScriptUrl");
 
+        public string MailContact => GetValue("MailContact");
+
+        public string MailCc => GetValue("MailCc");
+
+        public string MailBcc => GetValue("MailBcc");
+
         public string GetValue(string key) => ConfigurationManager.AppSettings[key];
     }
 }

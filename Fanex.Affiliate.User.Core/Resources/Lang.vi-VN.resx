@@ -2710,4 +2710,10 @@ Một trong những người quản lý tài khoản hội viên của chúng t�
   <data name="_12BETUserNamei" xml:space="preserve">
     <value>Tên người dùng 12BET không hợp lệ</value>
   </data>
+  <data name="EmailTitleNewPassword" xml:space="preserve">
+    <value>Mật khẩu mới của bạn</value>
+  </data>
+  <data name="EmailTitlePasswordRecovery" xml:space="preserve">
+    <value>Chi tiết đăng nhập của bạn</value>
+  </data>
 </root>

@@ -242,7 +242,9 @@
     <Compile Include="Filters\AjaxOnlyAttribute.cs" />
     <Compile Include="Filters\AuthenticateAttribute.cs" />
     <Compile Include="MetalModels\Email\EmailBaseParam.cs" />
-    <Compile Include="MetalModels\Email\ForgotPasswordEmailParam.cs" />
+    <Compile Include="MetalModels\Email\RecoverPasswordEmailParam.cs" />
+    <Compile Include="MetalModels\Email\NewPasswordEmailParam.cs" />
+    <Compile Include="MetalModels\PasswordRecoveryParam.cs" />
     <Compile Include="MetalModels\UpdateAccountParam.cs" />
     <Compile Include="MetalModels\BaseParam.cs" />
     <Compile Include="MetalModels\InternalLoginParam.cs" />

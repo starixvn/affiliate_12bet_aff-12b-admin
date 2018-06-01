@@ -2388,6 +2388,24 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your new password.
+        /// </summary>
+        public static string EmailTitleNewPassword {
+            get {
+                return ResourceManager.GetString("EmailTitleNewPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your login detail.
+        /// </summary>
+        public static string EmailTitlePasswordRecovery {
+            get {
+                return ResourceManager.GetString("EmailTitlePasswordRecovery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to English.
         /// </summary>
         public static string English {

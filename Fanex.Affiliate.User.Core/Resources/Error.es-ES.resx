@@ -126,4 +126,7 @@
   <data name="ForgotPassword1009" xml:space="preserve">
     <value>La dirección de correo electrónico está utilizada por un afiliado inactivo o cuya cuenta no ha sido aprobada. Vuelva a intentarlo más tarde o &lt;a href="{0}" class='err-msg'&gt;póngase en contacto con nosotros&lt;/a&gt;.</value>
   </data>
+  <data name="RecoverPassword1001" xml:space="preserve">
+    <value>La dirección que ha utilizado para solicitar una nueva contraseña no es válida.</value>
+  </data>
 </root>

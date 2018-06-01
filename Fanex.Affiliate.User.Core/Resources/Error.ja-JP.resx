@@ -126,4 +126,7 @@
   <data name="ForgotPassword1009" xml:space="preserve">
     <value>このメールアドレスは、活動していないまたは承認されていないアフィリエイトに使用されています。もう一度やり直すか、"お問い合わせ"から連絡してください。</value>
   </data>
+  <data name="RecoverPassword1001" xml:space="preserve">
+    <value>The address that you have used to request a new password is not valid.</value>
+  </data>
 </root>

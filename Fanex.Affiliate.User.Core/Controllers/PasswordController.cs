@@ -85,7 +85,7 @@
                 var recoverEmailParam = new RecoverPasswordEmailParam
                 {
                     User = userInfo,
-                    MailContact = string.Empty,
+                    MailContact = AppSetting.MailContact,
                     MailTo = param.Email,
                     RootDomain = SiteDomainHelper.GetRootUrl(this),
                     Code = code
@@ -93,6 +93,51 @@
 
                 _languageService.SetCulture(userInfo.PreferredLanguage ?? SystemLanguage.DefaultLanguageCode);
                 _mailService.SendRecoverPasswordEmail(recoverEmailParam);
+                _languageService.SetCulture(SessionService.CurrentLanguage);
+            }
+
+            TempData[TempDataKey.SendForgotPasswordEmailResult] = result;
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult RecoverPassword(int uid, string vid)
+        {
+            var newPassword = Generator.GetRandomString(10);
+            var param = new PasswordRecoveryParam
+            {
+                AffId = uid,
+                ValidCode = vid,
+                NewPassword = CryptographyHelper.Encrypt(newPassword)
+            };
+
+            var userInfo = _accountRepository.RecoverPassword(param);
+            var result = new ResultInfo
+            {
+                IsOk = true,
+                Message = $"{Lang.Yourlogindetail}<br>{Lang.Pleasecheckyour}<br>{Lang.Foranyreasonyou.Replace("{0}", Url.Action("Index", "ContactUs"))}"
+            };
+
+            if (param.ErrCode != 0)
+            {
+                result.IsOk = false;
+                result.Message = Common.GetErrorMessage("RecoverPassword", param.ErrCode)
+                                    .Replace("{0}", Url.Action("Index", "ContactUs"));
+            }
+            else
+            {
+                var recoverEmailParam = new NewPasswordEmailParam
+                {
+                    User = userInfo,
+                    RootDomain = SiteDomainHelper.GetRootUrl(this),
+                    NewPassword = newPassword,
+                    MailTo = userInfo.Email,
+                    MailContact = AppSetting.MailContact
+                };
+
+                _languageService.SetCulture(userInfo.PreferredLanguage ?? SystemLanguage.DefaultLanguageCode);
+                _mailService.SendNewPasswordEmail(recoverEmailParam);
                 _languageService.SetCulture(SessionService.CurrentLanguage);
             }
 

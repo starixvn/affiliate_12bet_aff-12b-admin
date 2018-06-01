@@ -17,5 +17,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
         bool UserHasCasino(string userName, bool isInternal);
 
         UserInfo GetUserInfoByEmail(UserInfoByEmailParam userInfoParam);
+
+        UserInfo RecoverPassword(PasswordRecoveryParam passwordRecoveryParam);
     }
 }

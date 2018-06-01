@@ -126,4 +126,7 @@
   <data name="ForgotPassword1009" xml:space="preserve">
     <value>อีเมลล์แอดเดรสนี้ถูกใช้ในการการสมัครเป็นพันธมิตรเรียบร้อยแล้วและไม่ได้รับการอนุมัติ กรุณาลองใหม่อีกครั้งหรือ  &lt;a href="{0}" class='err-msg'&gt;ติดต่อเรา&lt;/a&gt;.</value>
   </data>
+  <data name="RecoverPassword1001" xml:space="preserve">
+    <value>ระบุที่อยู่ เพื่อแจ้งเปลี่ยนพาสเวิดไม่ถูกต้อง.</value>
+  </data>
 </root>

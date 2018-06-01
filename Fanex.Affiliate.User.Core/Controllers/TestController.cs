@@ -109,7 +109,7 @@
         {
             switch (functionName)
             {
-                case "ForgetPassword":
+                case "ForgotPassword":
                     return GetForgetPasswordModel();
 
                 case "PaymentCancel":

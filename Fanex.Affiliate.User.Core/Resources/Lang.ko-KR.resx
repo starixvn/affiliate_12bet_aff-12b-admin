@@ -2790,4 +2790,10 @@
   <data name="_12BETUserNamei" xml:space="preserve">
     <value>12BET 아이디가 유효하지 않습니다</value>
   </data>
+  <data name="EmailTitleNewPassword" xml:space="preserve">
+    <value>고객님의 새 비밀번호입니다</value>
+  </data>
+  <data name="EmailTitlePasswordRecovery" xml:space="preserve">
+    <value>고객의 로그인 정보</value>
+  </data>
 </root>

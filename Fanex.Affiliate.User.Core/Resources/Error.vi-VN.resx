@@ -126,4 +126,7 @@
   <data name="ForgotPassword1009" xml:space="preserve">
     <value>Địa chỉ email này đang được sử dụng bởi một hội viên đã không còn hoạt động hoặc chưa được chấp thuận. Vui lòng thử lại hoặc&lt;a href="{0}" class='err-msg'&gt;liên hệ với chúng tôi&lt;/a&gt;.</value>
   </data>
+  <data name="RecoverPassword1001" xml:space="preserve">
+    <value>Địa chỉ bạn đã sử dụng để yêu cầu mật khẩu mới không hợp lệ.</value>
+  </data>
 </root>

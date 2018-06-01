@@ -126,4 +126,7 @@
   <data name="ForgotPassword1009" xml:space="preserve">
     <value>이 이메일 주소는 비활성되었거나 아직 승인되지 않았습니다. 다시한번 시도해 보십시오. 혹은 &lt;a href="{0}" class='err-msg'&gt;으로 연락 주십시오&lt;/a&gt;.</value>
   </data>
+  <data name="RecoverPassword1001" xml:space="preserve">
+    <value>새비밀번호를 발급받기위한 이메일주소가 유효하지 않습니다.</value>
+  </data>
 </root>

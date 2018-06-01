@@ -2679,4 +2679,10 @@ Uno de nuestros administradores de cuentas de afiliados se pondrá en contacto c
   <data name="_12BETUserNamei" xml:space="preserve">
     <value>El nombre de usuario de 12BET no es válido</value>
   </data>
+  <data name="EmailTitleNewPassword" xml:space="preserve">
+    <value>Your new password</value>
+  </data>
+  <data name="EmailTitlePasswordRecovery" xml:space="preserve">
+    <value>Your login detail</value>
+  </data>
 </root>

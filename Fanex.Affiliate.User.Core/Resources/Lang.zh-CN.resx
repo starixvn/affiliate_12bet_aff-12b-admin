@@ -2727,4 +2727,10 @@
   <data name="_12BETUserNamei" xml:space="preserve">
     <value>12BET用户名无效</value>
   </data>
+  <data name="EmailTitleNewPassword" xml:space="preserve">
+    <value>您的新密码</value>
+  </data>
+  <data name="EmailTitlePasswordRecovery" xml:space="preserve">
+    <value>您的登录详情</value>
+  </data>
 </root>

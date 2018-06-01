@@ -2721,4 +2721,10 @@
   <data name="_12BETUserNamei" xml:space="preserve">
     <value>บัญชีที่ใช้เล่นใน 12bet ของคุณไม่ถูกต้อง</value>
   </data>
+  <data name="EmailTitleNewPassword" xml:space="preserve">
+    <value>รหัสผ่านตัวใหม่ของคุณ</value>
+  </data>
+  <data name="EmailTitlePasswordRecovery" xml:space="preserve">
+    <value>บัญชีพันธมิตร 12bet รายละเอียดการล๊อคอินของคุณ</value>
+  </data>
 </root>
