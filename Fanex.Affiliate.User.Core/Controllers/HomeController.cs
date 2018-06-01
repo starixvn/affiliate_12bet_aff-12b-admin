@@ -75,16 +75,19 @@ namespace Fanex.Affiliate.User.Core.Controllers
         public ActionResult LatestHotNews()
         {
             var userSession = SessionService.UserSession;
-            var isInternal = userSession == null ? false : SessionService.IsInternal;
+            var isInternal = (userSession != null) && SessionService.IsInternal;
 
             var hotNews = _hotNewsService.GetLatestHotNews(isInternal);
             var preferredLanguage = userSession?.PreferredLanguage ?? SystemLanguage.DefaultLanguageCode;
             var hotNewsList = hotNews.HotNewsList;
 
-            ViewBag.SelectedHotNews = hotNewsList.ContainsKey(preferredLanguage) ?
+            if (hotNewsList.Any())
+            {
+                ViewBag.SelectedHotNews = hotNewsList.ContainsKey(preferredLanguage) ?
                                     hotNewsList[preferredLanguage] :
-                                    hotNewsList["message_" + SystemLanguage.ShortedDefaultCode];
-            ViewBag.IsImportant = hotNews.IsImportant;
+                                    hotNewsList.First().Value;
+                ViewBag.IsImportant = hotNews.IsImportant;
+            }
 
             return PartialView("~/Views/Home/_LatestHotNews.cshtml");
         }

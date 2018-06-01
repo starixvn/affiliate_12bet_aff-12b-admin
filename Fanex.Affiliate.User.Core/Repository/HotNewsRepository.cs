@@ -22,14 +22,14 @@ namespace Fanex.Affiliate.User.Core.Repository
                     {
                         result.HotNewsList = new Dictionary<string, string>
                         {
-                            ["en-US"] = reader[MessagePrefix + "en"].ToString(),
-                            ["zh-CN"] = reader[MessagePrefix + "cn"].ToString(),
-                            ["zh-TW"] = reader[MessagePrefix + "tw"].ToString(),
-                            ["es-ES"] = reader[MessagePrefix + "es"].ToString(),
-                            ["th-TH"] = reader[MessagePrefix + "th"].ToString(),
-                            ["vi-VN"] = reader[MessagePrefix + "vi"].ToString(),
-                            ["id-ID"] = reader[MessagePrefix + "id"].ToString(),
-                            ["ko-KR"] = reader[MessagePrefix + "kr"].ToString()
+                            ["en-US"] = reader[MessagePrefix + "en"]?.ToString(),
+                            ["zh-CN"] = reader[MessagePrefix + "cn"]?.ToString(),
+                            ["zh-TW"] = reader[MessagePrefix + "tw"]?.ToString(),
+                            ["es-ES"] = reader[MessagePrefix + "es"]?.ToString(),
+                            ["th-TH"] = reader[MessagePrefix + "th"]?.ToString(),
+                            ["vi-VN"] = reader[MessagePrefix + "vi"]?.ToString(),
+                            ["id-ID"] = reader[MessagePrefix + "id"]?.ToString(),
+                            ["ko-KR"] = reader[MessagePrefix + "kr"]?.ToString()
                         };
 
                         result.IsImportant = Convert.ToBoolean(reader["Important"]);
