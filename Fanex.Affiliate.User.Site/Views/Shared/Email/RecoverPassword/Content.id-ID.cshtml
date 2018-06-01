@@ -1,17 +1,24 @@
-﻿<div>
-Yang terhotmat @Model.FirstName, <br /><br />
+﻿@{
+	var recoverUrl = Model.RecoverPwdURL + "?uid=" + Model.CustId + "&vid=" + Model.ValidationCode;
+}
+<div>
+Yang terhotmat @Model.FirstName,<br /><br />
 
-Seperti yang Anda minta, kami berikan kata sandi yang baru. Anda informasi account baru adalah sebagai berikut: <br /><br />
+Anda melakukan permintaan untuk mendapatkan kembali username atau password.<br />
+Jika anda tidak melakukan permintaan ini, tolong hiraukan email ini.<br />
+Sebaliknya silakan klik link berikut ini, maka password baru akan segera diemailkan kepada anda :<br /> 
+<a href='@recoverUrl'>@recoverUrl</a><br /><br />
 
--------------------------------------------------------- <br />
-Nama Pengguna: @Model.UserName <br />
-Kata Sandi: @Model.Password <br />
--------------------------------------------------------- <br /><br />
+Catatan :<br />
+* Username anda: @Model.UserName <br />
+* Untuk alasan keamanan, kami akan memberikan password baru pada anda (anda dapat mengubahnya kapan saja nanti).<br />
+* Link yang diberikan diatas akan kadaluarsa dan menjadi tidak berguna setelah 24 jam.<br /><br />
 
-Namun, Anda dapat mengunjungi @Model.Url untuk mengubah sandi Anda kapan saja <br /><br />
+Have a great day!<br /><br />
 
-Salam Sejahtera, <br /><br />
+Best regards,<br /><br />
 
-Tim di 12Bet Afiliasi<br />
+The team at 12Bet Affiliates<br />
+
 <a href="mailto:@Model.MailContact">@Model.MailContact</a>
 </div>

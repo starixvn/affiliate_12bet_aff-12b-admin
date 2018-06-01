@@ -1,14 +1,18 @@
-﻿<div>
+﻿@{
+	var recoverUrl = Model.RecoverPwdURL + "?uid=" + Model.CustId + "&vid=" + Model.ValidationCode;
+}
+<div>
 Kính gửi @Model.FirstName<br /><br />
 
-Theo yêu cầu của bạn,chúng tôi cung cấp cho bạn một mật mã mới. Thông tin tài khoản mới của bạn như sau:<br /><br />
+Bạn đã yêu cầu chúng tôi phục hồi tên tài khoản và mật mã của bạn. Xin hãy nhấp vào liên kết dưới đây, mật mã mới sẽ được gửi đến cho bạn trong thời gian sớm nhất.<br />
+<a href='@recoverUrl'>@recoverUrl</a><br /><br />
 
---------------------------------------<br />
-Tên tài khoản:@Model.UserName<br />
-Mật mã:@Model.Password<br />
---------------------------------------<br /><br />
+Xin lưu ý:<br />
+*Tên tài khoản là: @Model.UserName<br />
+*Vì lý do an toàn, chúng tôi phải cung cấp cho bạn mật mã mới (bạn có thể đổi mật mã bất cứ khi nào).<br />
+*Liên kết trên sẽ hết hạn và vô hiệu trong vòng 24 tiếng.<br /><br />
 
-Tuy nhiên, bạn có thể truy cập @Model.Url để thay đổi mật mã bất cứ lúc nào<br /><br />
+Nếu yêu cầu này không phải từ bạn, xin bỏ qua lá thư này.<br /><br />
 
 Xin chân thành cám ơn.<br /><br />
 

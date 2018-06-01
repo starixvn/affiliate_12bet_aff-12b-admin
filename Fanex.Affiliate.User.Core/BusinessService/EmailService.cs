@@ -19,7 +19,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         public void SendRecoverPasswordEmail(RecoverPasswordEmailParam emailParam)
         {
             var model = GetForgetPasswordModel(emailParam);
-            const string TemplateName = "ForgotPassword";
+            const string TemplateName = "RecoverPassword";
             var emailContent = GetEmailTextContent(TemplateName, emailParam.User.PreferredLanguage, model);
             if (!emailParam.User.MailOption)
             {
@@ -32,7 +32,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         public void SendNewPasswordEmail(NewPasswordEmailParam emailParam)
         {
             var model = GetPasswordRecoveryModel(emailParam);
-            const string TemplateName = "RecoverPassword";
+            const string TemplateName = "NewPassword";
             var emailContent = GetEmailTextContent(TemplateName, emailParam.User.PreferredLanguage, model);
             if (!emailParam.User.MailOption)
             {

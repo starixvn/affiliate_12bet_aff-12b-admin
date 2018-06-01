@@ -109,14 +109,14 @@
         {
             switch (functionName)
             {
-                case "ForgotPassword":
+                case "RecoverPassword":
                     return GetForgetPasswordModel();
 
                 case "PaymentCancel":
                 case "PaymentRequest":
                     return GetPaymentModel();
 
-                case "RecoverPassword":
+                case "NewPassword":
                     return GetRecoverPasswordModel();
 
                 case "Signup":
