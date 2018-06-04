@@ -530,6 +530,10 @@
     <Content Include="www\build\styles\css\products.min.css">
       <DependentUpon>products.css</DependentUpon>
     </Content>
+    <Content Include="www\build\styles\css\statement-history.css" />
+    <Content Include="www\build\styles\css\statement-history.min.css">
+      <DependentUpon>statement-history.css</DependentUpon>
+    </Content>
     <Content Include="www\build\styles\css\statistics.css" />
     <Content Include="www\build\styles\css\statistics.min.css">
       <DependentUpon>statistics.css</DependentUpon>
@@ -695,6 +699,9 @@
     <Content Include="Views\UserPanel\StatisticsPartial\_LandingPageStatisticsContent.cshtml" />
     <Content Include="www\source\styles\scss\components\_pikaday.scss" />
     <Content Include="Views\Home\_LatestHotNews.cshtml" />
+    <Content Include="Views\UserPanel\StatementHistoryPartial\_StatementHistoryContent.cshtml" />
+    <Content Include="www\source\styles\pages\statement-history.scss" />
+    <Content Include="Views\UserPanel\StatementHistoryPartial\_DailyEarningContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

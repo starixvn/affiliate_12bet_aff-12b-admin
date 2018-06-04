@@ -229,12 +229,14 @@
     <Compile Include="DTO\UserPanel\CommissionSettingDetail.cs" />
     <Compile Include="DTO\UserPanel\Domain.cs" />
     <Compile Include="DTO\UserPanel\ReferrerStatistics.cs" />
+    <Compile Include="DTO\UserPanel\StatementHistory.cs" />
     <Compile Include="DTO\UserPanel\StatisticsBase.cs" />
     <Compile Include="DTO\UserPanel\TrackingStatistics.cs" />
     <Compile Include="DTO\UserSession.cs" />
     <Compile Include="DTO\ResultInfo.cs" />
     <Compile Include="Enum\AffiliateType.cs" />
     <Compile Include="Enum\DeviceType.cs" />
+    <Compile Include="Enum\TransType.cs" />
     <Compile Include="Extensions\HtmlHelperExtension.cs" />
     <Compile Include="Extensions\NumberFormatter.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
@@ -245,6 +247,7 @@
     <Compile Include="MetalModels\Email\RecoverPasswordEmailParam.cs" />
     <Compile Include="MetalModels\Email\NewPasswordEmailParam.cs" />
     <Compile Include="MetalModels\PasswordRecoveryParam.cs" />
+    <Compile Include="MetalModels\UserPanel\StatementHistoryParam.cs" />
     <Compile Include="MetalModels\UpdateAccountParam.cs" />
     <Compile Include="MetalModels\BaseParam.cs" />
     <Compile Include="MetalModels\InternalLoginParam.cs" />
@@ -274,8 +277,10 @@
     <Compile Include="Repository\IObjectDBBuilder.cs" />
     <Compile Include="Repository\UserPanel\AccountOverviewRepository.cs" />
     <Compile Include="Repository\UserPanel\IAccountOverviewRepository.cs" />
+    <Compile Include="Repository\UserPanel\IStatementHistoryRepository.cs" />
     <Compile Include="Repository\UserPanel\IStatisticsRepository.cs" />
     <Compile Include="Repository\UserPanel\MarketingRepository.cs" />
+    <Compile Include="Repository\UserPanel\StatementHistoryRepository.cs" />
     <Compile Include="Repository\UserPanel\StatisticsRepository.cs" />
     <Compile Include="Resources\BetList.Designer.cs">
       <AutoGen>True</AutoGen>

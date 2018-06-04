@@ -14,6 +14,7 @@
         private readonly IAccountOverviewRepository _accountOverviewRepository;
         private readonly IMarketingService _marketingService;
         private readonly IStatisticsRepository _statisticsRepository;
+        private readonly IStatementHistoryRepository _statementHistoryRepository;
 
         public UserPanelController(
             ISessionService sessionService,
@@ -21,13 +22,15 @@
             IAccountRepository accountRepository,
             IAccountOverviewRepository accountOverviewRepository,
             IMarketingService marketingService,
-            IStatisticsRepository statisticsRepository)
+            IStatisticsRepository statisticsRepository,
+            IStatementHistoryRepository statementHistoryRepository)
             : base(sessionService, appSetting)
         {
             _accountRepository = accountRepository;
             _accountOverviewRepository = accountOverviewRepository;
             _marketingService = marketingService;
             _statisticsRepository = statisticsRepository;
+            _statementHistoryRepository = statementHistoryRepository;
         }
 
         [HttpGet]

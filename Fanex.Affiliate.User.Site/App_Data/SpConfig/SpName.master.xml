@@ -78,4 +78,8 @@
     <Setting Key="Aff_AffiliateInfoByEmailSel" SpName="Aff_AffiliateInfoByEmailSel" DbName="affiliate_12bet" />
     <Setting Key="Aff_AffiliateRecoverPwd" SpName="Aff_AffiliateRecoverPwd" DbName="affiliate_12bet" />
   </Function>
+
+  <Function Name="Statement History">
+    <Setting Key="Aff_AffiliateStatementHistorySel" SpName="Aff_AffiliateStatementHistorySel" DbName="affiliate_12bet" />
+  </Function>
 </Functions>

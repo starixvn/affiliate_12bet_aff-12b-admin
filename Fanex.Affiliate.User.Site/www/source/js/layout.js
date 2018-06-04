@@ -9,6 +9,7 @@ var Layout = (function ($) {
             initSlider();
             _me.registerAjaxHandlerError();
             _me.initEvent();
+            _me.renderHotNews();
         },
         initEvent: function () {
             $("#languageList").on("click", ".language-item", function () {
@@ -36,6 +37,17 @@ var Layout = (function ($) {
             $(document).ajaxError(function (event, jqXHR) {
                 if (jqXHR.status === 401) {
                     window.location.href = Site.resolveRelativeUrl("");
+                }
+            });
+        },
+        renderHotNews: function () {
+            $.ajax({
+                type: "GET",
+                url: Site.resolveRelativeUrl("Home/LatestHotNews"),
+                dataType: "html",
+                cache: false,
+                success: function (response) {
+                    $("#marquee").html(response);
                 }
             });
         }

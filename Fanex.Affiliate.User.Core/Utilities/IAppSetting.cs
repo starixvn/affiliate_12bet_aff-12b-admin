@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Fanex.Affiliate.User.Core.Utilities
 {
@@ -33,5 +34,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
         string MailCc { get; }
 
         string MailBcc { get; }
+
+        DateTime StatementAvailableFrom { get; }
     }
 }

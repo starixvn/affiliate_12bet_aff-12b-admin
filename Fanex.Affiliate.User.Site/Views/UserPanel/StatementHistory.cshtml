@@ -1,88 +1,19 @@
 ﻿@{
     Layout = null;
 }
+@model IEnumerable<Fanex.Affiliate.User.Core.DTO.UserPanel.StatementHistory>
+
+<link href="@Url.RenderLink("~/www/build/styles/css/statement-history.css")" rel="stylesheet" />
 
 <div class="page-title">
-    <span class="text">STATEMENT HISTORY</span>
+    <span class="text">@Lang.StatementHistory</span>
 </div>
 
 <div class="info-group">
-    <div class="title">
-        <div class="form-inline">
-            <span class="text">Page size</span>
-            <select class="form-control" id="pageSize">
-                <option>10</option>
-                <option>20</option>
-                <option>50</option>
-                <option>100</option>
-            </select>
-        </div>
-    </div>
-
-    <div class="table" id="statementContent">
-        <table>
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Date</th>
-                    <th>Type</th>
-                    <th>Amount</th>
-                    <th>Status</th>
-                    <th>Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td class="text-bold">March-2018</td>
-                    <td>Transaction</td>
-                    <td class="text-right"><a class="amountItem" href="javascript:;">$100.00</a></td>
-                    <td class="text-center">Current</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td class="text-bold">March-2018</td>
-                    <td>Transaction</td>
-                    <td class="text-right">$0.00</td>
-                    <td class="text-center">Current</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td class="text-bold">March-2018</td>
-                    <td>Transaction</td>
-                    <td class="text-right">$0.00</td>
-                    <td class="text-center">Current</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td class="text-bold">March-2018</td>
-                    <td>Transaction</td>
-                    <td class="text-right">$0.00</td>
-                    <td class="text-center">Current</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td class="text-bold">March-2018</td>
-                    <td>Transaction</td>
-                    <td class="text-right">$0.00</td>
-                    <td class="text-center">Current</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td class="text-bold">March-2018</td>
-                    <td>Transaction</td>
-                    <td class="text-right">$0.00</td>
-                    <td class="text-center">Current</td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
+    <div id="statementPager"></div>
+    <div id="statementDataList">
+        @{ Html.RenderPartial("~/Views/UserPanel/StatementHistoryPartial/_StatementHistoryContent.cshtml", Model); }
     </div>
 </div>
 
-@Html.InlineScripts("~/www/build/js/statement-history.js")
+<script src="@Url.RenderLink("~/www/build/js/statement-history.js")"></script>

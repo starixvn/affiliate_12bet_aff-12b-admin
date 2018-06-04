@@ -36,6 +36,8 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         public string MailBcc => GetValue("MailBcc");
 
+        public DateTime StatementAvailableFrom => Convert.ToDateTime(GetValue("StatementAvailableFrom"));
+
         public string GetValue(string key) => ConfigurationManager.AppSettings[key];
     }
 }

@@ -5,7 +5,6 @@ var Home = (function ($) {
         initialize: function initialize() {
             _me.initEvent();
             _me.registerLoginDialog();
-            _me.renderHotNews();
         },
 
         initEvent: function initEvent() {
@@ -38,18 +37,6 @@ var Home = (function ($) {
         generateCaptcha: function generateCaptcha() {
             var captchaUrl = Site.resolveRelativeUrl("Home/CaptchaImage?_v=" + new Date().getTime());
             $("#loginDialogcaptchaImg").attr("src", captchaUrl);
-        },
-
-        renderHotNews: function renderHotNews() {
-            $.ajax({
-                type: "GET",
-                url: Site.resolveRelativeUrl("Home/LatestHotNews"),
-                dataType: "html",
-                cache: false,
-                success: function success(response) {
-                    $("#marquee").html(response);
-                }
-            });
         }
     };
 
