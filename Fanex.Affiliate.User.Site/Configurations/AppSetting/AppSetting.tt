@@ -17,7 +17,7 @@ foreach(var environment in environments)
 			var document = new XmlDocument();
 			document.Load(projectPath + "AppSetting.config");
 			transform.Apply(document);
-			document.Save(projectPath + @"Configurations\AppSetting\AppSetting." + fileName);
+			document.Save(projectPath + @"Configurations\AppSetting\AppSetting.12betuser-" + fileName);
 		}
  }
 }

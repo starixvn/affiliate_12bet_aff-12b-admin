@@ -251,46 +251,46 @@
     <Content Include="App_Data\SpConfig\_SpNameOriginal.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Configurations\AppSetting\AppSetting.asian.backupmnl.config">
+    <Content Include="Configurations\AppSetting\AppSetting.12betuser-asian.backupmnl.config">
       <DependentUpon>AppSetting.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\AppSetting\AppSetting.asian.local.config">
+    <Content Include="Configurations\AppSetting\AppSetting.12betuser-asian.local.config">
       <DependentUpon>AppSetting.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\AppSetting\AppSetting.asian.master.config">
+    <Content Include="Configurations\AppSetting\AppSetting.12betuser-asian.master.config">
       <DependentUpon>AppSetting.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\AppSetting\AppSetting.asian.production.config">
+    <Content Include="Configurations\AppSetting\AppSetting.12betuser-asian.production.config">
       <DependentUpon>AppSetting.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\AppSetting\AppSetting.asian.sit.config">
+    <Content Include="Configurations\AppSetting\AppSetting.12betuser-asian.sit.config">
       <DependentUpon>AppSetting.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\AppSetting\AppSetting.asian.uat.config">
+    <Content Include="Configurations\AppSetting\AppSetting.12betuser-asian.uat.config">
       <DependentUpon>AppSetting.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\AppSetting\AppSetting.euro.backupmnl.config">
+    <Content Include="Configurations\AppSetting\AppSetting.12betuser-euro.backupmnl.config">
       <DependentUpon>AppSetting.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\AppSetting\AppSetting.euro.local.config">
+    <Content Include="Configurations\AppSetting\AppSetting.12betuser-euro.local.config">
       <DependentUpon>AppSetting.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\AppSetting\AppSetting.euro.master.config">
+    <Content Include="Configurations\AppSetting\AppSetting.12betuser-euro.master.config">
       <DependentUpon>AppSetting.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\AppSetting\AppSetting.euro.production.config">
+    <Content Include="Configurations\AppSetting\AppSetting.12betuser-euro.production.config">
       <DependentUpon>AppSetting.tt</DependentUpon>
     </Content>
-    <Content Include="Configurations\AppSetting\AppSetting.euro.sit.config">
+    <Content Include="Configurations\AppSetting\AppSetting.12betuser-euro.sit.config">
+      <DependentUpon>AppSetting.tt</DependentUpon>
+    </Content>
+    <Content Include="Configurations\AppSetting\AppSetting.12betuser-euro.uat.config">
       <DependentUpon>AppSetting.tt</DependentUpon>
     </Content>
     <None Include="Configurations\AppSetting\AppSetting.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AppSetting.txt</LastGenOutput>
     </None>
-    <Content Include="Configurations\AppSetting\AppSetting.euro.uat.config">
-      <DependentUpon>AppSetting.tt</DependentUpon>
-    </Content>
     <Content Include="Configurations\AppSetting\AppSetting.txt">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -319,18 +319,18 @@
     <Content Include="App_Code\RazorHelper.cshtml" />
     <Content Include="Views\Password\Update.cshtml" />
     <Content Include="Views\Auth\AuthenticationForm.cshtml" />
-    <Content Include="Configurations\ConnectionString\ConnectionString.asian.local.config" />
-    <Content Include="Configurations\ConnectionString\ConnectionString.asian.master.config" />
-    <Content Include="Configurations\ConnectionString\ConnectionString.asian.uat.config" />
-    <Content Include="Configurations\ConnectionString\ConnectionString.asian.sit.config" />
-    <Content Include="Configurations\ConnectionString\ConnectionString.asian.production.config" />
-    <Content Include="Configurations\ConnectionString\ConnectionString.asian.backupmnl.config" />
-    <Content Include="Configurations\ConnectionString\ConnectionString.euro.backupmnl.config" />
-    <Content Include="Configurations\ConnectionString\ConnectionString.euro.local.config" />
-    <Content Include="Configurations\ConnectionString\ConnectionString.euro.master.config" />
-    <Content Include="Configurations\ConnectionString\ConnectionString.euro.production.config" />
-    <Content Include="Configurations\ConnectionString\ConnectionString.euro.sit.config" />
-    <Content Include="Configurations\ConnectionString\ConnectionString.euro.uat.config" />
+    <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-asian.local.config" />
+    <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-asian.master.config" />
+    <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-asian.uat.config" />
+    <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-asian.sit.config" />
+    <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-asian.production.config" />
+    <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-asian.backupmnl.config" />
+    <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-euro.backupmnl.config" />
+    <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-euro.local.config" />
+    <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-euro.master.config" />
+    <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-euro.production.config" />
+    <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-euro.sit.config" />
+    <Content Include="Configurations\ConnectionString\ConnectionString.12betuser-euro.uat.config" />
     <Content Include="Configurations\AppSetting\Transform\asian.local.config" />
     <Content Include="Configurations\AppSetting\Transform\asian.sit.config" />
     <Content Include="Configurations\AppSetting\Transform\asian.uat.config" />
