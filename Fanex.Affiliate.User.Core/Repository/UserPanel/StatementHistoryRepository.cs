@@ -42,5 +42,16 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
             return dataList;
         }
+
+        public IEnumerable<SportType> GetSportTypeList(int affId, bool isInternal)
+        {
+            const string uSpKey = "Aff_SporttypeSelByAff";
+            var dbMode = isInternal ? DBMode.View : DBMode.Main;
+
+            using (var objectDb = new ObjectDBBuilder(uSpKey, dbMode))
+            {
+                return objectDb.DB.Query<SportType>(new { affId });
+            }
+        }
     }
 }

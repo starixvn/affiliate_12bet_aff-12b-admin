@@ -220,8 +220,10 @@
     <Compile Include="DTO\Language.cs" />
     <Compile Include="DTO\LatestHotNews.cs" />
     <Compile Include="DTO\MemberSitePage.cs" />
+    <Compile Include="DTO\SportType.cs" />
     <Compile Include="DTO\UserInfo.cs" />
     <Compile Include="DTO\UserPanel\AccountOverviewStatistics.cs" />
+    <Compile Include="DTO\UserPanel\DailyEarning.cs" />
     <Compile Include="DTO\UserPanel\LandingPageStatistics.cs" />
     <Compile Include="DTO\UserPanel\MarketingItem.cs" />
     <Compile Include="DTO\UserPanel\BannerType.cs" />
