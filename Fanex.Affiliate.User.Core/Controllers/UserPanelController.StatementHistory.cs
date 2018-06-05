@@ -1,8 +1,12 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
+    using System;
     using System.Web.Mvc;
+    using Constants;
+    using Extensions;
     using Filters;
     using MetalModels.UserPanel;
+    using ViewModels.UserPanel;
 
     public partial class UserPanelController
     {
@@ -42,9 +46,37 @@
 
         [HttpGet]
         [AjaxOnly]
-        public ActionResult DailyEarning()
+        public ActionResult DailyEarning(DateTime? monthDate)
         {
-            return View();
+            var param = new DailyEarningParam
+            {
+                AffId = SessionService.UserSession.AffId,
+                IsInternal = SessionService.IsInternal,
+                SportType = SportType.Sportsbook,
+                MonthDate = monthDate.HasValue ? monthDate.Value : DateTime.Now.AddDays(-1)
+            };
+
+            var viewModel = GetDailyEarningData(param, true);
+            ViewBag.MonthDate = param.MonthDate;
+
+            return View(viewModel);
+        }
+
+        [HttpGet]
+        [AjaxOnly]
+        public ActionResult GetDailyEarning(DateTime monthDate, byte sportType)
+        {
+            var param = new DailyEarningParam
+            {
+                AffId = SessionService.UserSession.AffId,
+                IsInternal = SessionService.IsInternal,
+                SportType = sportType,
+                MonthDate = monthDate
+            };
+
+            var viewModel = GetDailyEarningData(param, false);
+
+            return PartialView("~/Views/UserPanel/StatementHistoryPartial/_DailyEarningContent.cshtml", viewModel);
         }
 
         [HttpGet]
@@ -52,6 +84,20 @@
         public ActionResult DailyEarningDetail()
         {
             return View();
+        }
+
+        private DailyEarningViewModel GetDailyEarningData(DailyEarningParam param, bool isInitial)
+        {
+            var extraUserInfo = _statementHistoryRepository.GetExtraUserInfo(param.AffId, param.IsInternal);
+
+            return new DailyEarningViewModel
+            {
+                SportTypeList = isInitial ? _statementHistoryRepository.GetSportTypeList(param.AffId, param.IsInternal) : null,
+                Data = _statementHistoryRepository.GetDailyEarning(param),
+                SelectedSportType = param.SportType,
+                IsKoreanAgentCommGroup = extraUserInfo.GroupName.MatchWith(CommGroupName.KoreanAgentComm),
+                HasDailyDetail = extraUserInfo.HasDailyDetail
+            };
         }
     }
 }

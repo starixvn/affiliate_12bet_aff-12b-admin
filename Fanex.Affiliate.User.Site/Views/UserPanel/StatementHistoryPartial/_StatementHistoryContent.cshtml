@@ -25,7 +25,9 @@
                         <td class="text-right">
                             @if (item.IsLink)
                             {
-                                <a class="amountItem" data-transid="@item.TransId" href="javascript:;">@item.Amount.ToStringMoneyWithSymbol()</a>
+                                <a class="amountItem" data-date="@item.MonthDate.ToString("MM/dd/yyyy")" href="javascript:;">
+                                    @item.Amount.ToStringMoneyWithSymbol()
+                                </a>
                             }
                             else
                             {

@@ -1,68 +1,42 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 
+@model Fanex.Affiliate.User.Core.ViewModels.UserPanel.DailyEarningViewModel
+
+<link href="@Url.RenderLink("~/www/build/styles/css/dailyearning.css")" rel="stylesheet" />
 <div class="page-title">
     <span class="text">@Lang.DailyEarnings</span>
 </div>
 
 <div>
-    <form class="form-inline form-filter">
-        <div class="form-group">
-            <label class="w100">@Lang.SportType:</label>
-            <select class="form-control">
-                <option>[All]</option>
-                <option>Sportsbook</option>
-                <option>Casino</option>
-            </select>
+    <div class="breadcrumb-container">
+        <ol class="breadcrumb" id="dailyEarningBreadcrumb">
+            <li><a href="javascript:;" id="statementHistoryLink">@Lang.StatementHistory</a></li>
+        </ol>
+    </div>
+
+    @if (Model.SportTypeList != null && Model.SportTypeList.Count() > 1)
+    {
+        <div class="form-inline form-filter">
+            <div class="form-group">
+                <label class="w100">@Lang.SportType:</label>
+                <select class="form-control" id="SportType">
+                    <option value="0">@Lang.All</option>
+                    @foreach (var item in Model.SportTypeList)
+                    {
+                        <option value="@item.SportId" @(item.SportId == Model.SelectedSportType ? "selected" : string.Empty)>@item.SportName</option>
+                    }
+                </select>
+            </div>
         </div>
-    </form>
+    }
 
     <div class="table" id="dailyEarningContent">
-        <table>
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>@Lang.Date</th>
-                    <th>@Lang.Deposit</th>
-                    <th>@Lang.Withdrawal</th>
-                    <th>@Lang.Winlost</th>
-                    <th>@Lang.Bonus</th>
-                    <th>@Lang.Adjustment</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td class="text-center"><a class="dateItem" href="javascript:;">09/01/2017</a></td>
-                    <td class="text-right">$2,173.50</td>
-                    <td class="text-right">$2,158.79</td>
-                    <td class="text-right">-$1,998.12</td>
-                    <td class="text-right">$5.80</td>
-                    <td class="text-right">$0.00</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td class="text-center"><a class="dateItem" href="javascript:;">09/01/2017</a></td>
-                    <td class="text-right">$2,173.50</td>
-                    <td class="text-right">$2,158.79</td>
-                    <td class="text-right">-$1,998.12</td>
-                    <td class="text-right">$5.80</td>
-                    <td class="text-right">$0.00</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td class="text-center"><a class="dateItem" href="javascript:;">09/01/2017</a></td>
-                    <td class="text-right">$2,173.50</td>
-                    <td class="text-right">$2,158.79</td>
-                    <td class="text-right">-$1,998.12</td>
-                    <td class="text-right">$5.80</td>
-                    <td class="text-right">$0.00</td>
-                </tr>
-            </tbody>
-        </table>
+        @{ Html.RenderPartial("~/Views/UserPanel/StatementHistoryPartial/_DailyEarningContent.cshtml", Model); }
     </div>
 </div>
 
-@Html.InlineScripts("~/www/build/js/daily-earning.js")
+<input id="MonthDate" type="hidden" value="@ViewBag.MonthDate" />
+
+<script src="@Url.RenderLink("~/www/build/js/daily-earning.js")"></script>

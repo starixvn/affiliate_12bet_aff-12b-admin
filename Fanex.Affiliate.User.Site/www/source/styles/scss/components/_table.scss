@@ -6,6 +6,7 @@
     font-size: 13px;
 
     table {
+        table-layout: fixed;
         border: 1px solid #c1c1c1;
         border-collapse: collapse;
         margin: 0;
@@ -20,53 +21,58 @@
                 display: inline-block;
             }
         }
-    }
 
-    table caption {
-        font-size: 1.5em;
-        margin: .5em 0 .75em;
-    }
-
-    table tr {
-        background: #f5eaea;
-        padding: .35em;
-        color: #333333;
-        transition: background 0.2s ease;
-
-        &:hover {
-            background: #fbe8e1;
-        }
-    }
-
-    table th,
-    table td {
-        border: 1px solid #c1c1c1;
-        word-wrap: break-word;
-    }
-
-    table th {
-        font-size: 15px;
-        text-transform: capitalize;
-        background: #c95f4d;
-        color: #fff;
-        text-align: center;
-        padding: 4px 5px;
-        font-weight: 500;
-    }
-
-    table td {
-        border: 1px solid #cccccc;
-        padding: 4px 5px;
-        line-height: 24px;
-
-        &.bg-sportsbook {
-            background: #f8d8d1;
-            font-weight: 600;
+        caption {
+            font-size: 1.5em;
+            margin: .5em 0 .75em;
         }
 
-        &.bg-casino {
-            background: #e1e1e1;
-            font-weight: 600;
+        tr {
+            background: #f5eaea;
+            padding: .35em;
+            color: #333333;
+            transition: background 0.2s ease;
+
+            &:hover {
+                background: #fbe8e1;
+            }
+        }
+
+        th, td {
+            border: 1px solid #c1c1c1;
+            word-wrap: break-word;
+        }
+
+        th {
+            font-size: 15px;
+            text-transform: capitalize;
+            background: #c95f4d;
+            color: #fff;
+            text-align: center;
+            padding: 4px 5px;
+            font-weight: 500;
+        }
+
+        td {
+            border: 1px solid #cccccc;
+            padding: 4px 5px;
+            line-height: 24px;
+
+            &.bg-sportsbook {
+                background: #f8d8d1;
+                font-weight: 600;
+            }
+
+            &.bg-casino {
+                background: #e1e1e1;
+                font-weight: 600;
+            }
+        }
+
+        .total {
+            background: #c95f4d;
+            color: #fff;
+            font-weight: 500;
         }
     }
 }

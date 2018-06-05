@@ -243,8 +243,9 @@ var StatementHistory = (function ($) {
         },
 
         initEvent: function () {
-            $("#statementContent").on("click", ".amountItem", function () {
-                StatementHistory.renderDailyEarning();
+            $("#statementDataList").on("click", ".amountItem", function () {
+                var date = $(this).data("date");
+                StatementHistory.renderDailyEarning(date);
             });
         },
 
@@ -264,18 +265,31 @@ var StatementHistory = (function ($) {
                 url: Site.resolveRelativeUrl("UserPanel/GetStatementHistoryData"),
                 success: function (response) {
                     $("#statementDataList").html(response);
+                },
+                beforeSend: function () {
+                    Site.showLoader();
+                },
+                complete: function () {
+                    Site.hideLoader();
                 }
             });
         },
 
-        renderDailyEarning: function () {
+        renderDailyEarning: function (date) {
             $.ajax({
                 type: "GET",
+                data: { monthDate: date },
                 dataType: "html",
                 cache: false,
                 url: Site.resolveRelativeUrl("UserPanel/DailyEarning"),
                 success: function (response) {
                     $("#mainPanel").html(response);
+                },
+                beforeSend: function () {
+                    Site.showLoader();
+                },
+                complete: function () {
+                    Site.hideLoader();
                 }
             });
         }

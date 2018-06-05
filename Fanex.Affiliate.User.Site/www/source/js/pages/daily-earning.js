@@ -1,16 +1,40 @@
 ﻿var DailyEarning = (function ($) {
-    return {
+    var _me = {
         initialize: function () {
             DailyEarning.initEvent();
         },
 
         initEvent: function () {
             $("#dailyEarningContent").on("click", ".dateItem", function () {
-                DailyEarning.renderDailyEarning();
+                DailyEarning.renderDailyEarningDetail();
+            });
+
+            $("#statementHistoryLink").on("click", function () {
+                Site.reload();
+            });
+
+            $("#SportType").on("change", function () {
+                var monthDate = $("#MonthDate").val();
+                var selectedSportType = $(this).val();
+
+                _me.renderDailyEarning(monthDate, selectedSportType);
             });
         },
 
-        renderDailyEarning: function () {
+        renderDailyEarning: function (date, sportType) {
+            $.ajax({
+                type: "GET",
+                data: { monthDate: date, sportType: sportType },
+                dataType: "html",
+                cache: false,
+                url: Site.resolveRelativeUrl("UserPanel/GetDailyEarning"),
+                success: function (response) {
+                    $("#dailyEarningContent").html(response);
+                }
+            });
+        },
+
+        renderDailyEarningDetail: function () {
             $.ajax({
                 type: "GET",
                 dataType: "html",
@@ -22,6 +46,8 @@
             });
         }
     };
+
+    return _me;
 })(jQuery);
 
 DailyEarning.initialize();

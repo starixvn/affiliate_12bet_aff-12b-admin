@@ -179,6 +179,8 @@
     <Compile Include="BusinessService\HotNewsService.cs" />
     <Compile Include="BusinessService\IEmailService.cs" />
     <Compile Include="BusinessService\IHotNewsService.cs" />
+    <Compile Include="Constants\CommGroupName.cs" />
+    <Compile Include="Constants\SportType.cs" />
     <Compile Include="Constants\TempDataKey.cs" />
     <Compile Include="CoreService\CookieService.cs" />
     <Compile Include="BusinessService\CryptographyService.cs" />
@@ -217,13 +219,15 @@
     <Compile Include="CoreService\SessionService.cs" />
     <Compile Include="DTO\AuthorizedUserInfo.cs" />
     <Compile Include="DTO\DBMode.cs" />
+    <Compile Include="DTO\ExtraUserInfo.cs" />
     <Compile Include="DTO\Language.cs" />
     <Compile Include="DTO\LatestHotNews.cs" />
     <Compile Include="DTO\MemberSitePage.cs" />
-    <Compile Include="DTO\SportType.cs" />
+    <Compile Include="DTO\SportTypeItem.cs" />
     <Compile Include="DTO\UserInfo.cs" />
     <Compile Include="DTO\UserPanel\AccountOverviewStatistics.cs" />
     <Compile Include="DTO\UserPanel\DailyEarning.cs" />
+    <Compile Include="DTO\UserPanel\DailyEarningResult.cs" />
     <Compile Include="DTO\UserPanel\LandingPageStatistics.cs" />
     <Compile Include="DTO\UserPanel\MarketingItem.cs" />
     <Compile Include="DTO\UserPanel\BannerType.cs" />
@@ -249,6 +253,7 @@
     <Compile Include="MetalModels\Email\RecoverPasswordEmailParam.cs" />
     <Compile Include="MetalModels\Email\NewPasswordEmailParam.cs" />
     <Compile Include="MetalModels\PasswordRecoveryParam.cs" />
+    <Compile Include="MetalModels\UserPanel\DailyEarningParam.cs" />
     <Compile Include="MetalModels\UserPanel\StatementHistoryParam.cs" />
     <Compile Include="MetalModels\UpdateAccountParam.cs" />
     <Compile Include="MetalModels\BaseParam.cs" />
@@ -411,6 +416,7 @@
     <Compile Include="ViewModels\EmailTemplateViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\LoginResultViewModel.cs" />
+    <Compile Include="ViewModels\UserPanel\DailyEarningViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Marketing\LinkFormViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Marketing\MarketingViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Marketing\SearchFormViewModel.cs" />

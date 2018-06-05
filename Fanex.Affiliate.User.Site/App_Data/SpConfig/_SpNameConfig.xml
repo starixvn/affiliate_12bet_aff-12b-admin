@@ -8,4 +8,5 @@
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_AffiliateUser_UserHasCasinoSel" Suffix="_xtest"></item>
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_AffiliateInfoByEmailSel" Suffix="_xtest"></item>
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_AffiliateRecoverPwd" Suffix="_xtest"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_AffiliateUser_ExtraUserInfoSel" Suffix="_xtest"></item>
 </Root>

@@ -43,14 +43,72 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             return dataList;
         }
 
-        public IEnumerable<SportType> GetSportTypeList(int affId, bool isInternal)
+        public IEnumerable<SportTypeItem> GetSportTypeList(int affId, bool isInternal)
         {
             const string uSpKey = "Aff_SporttypeSelByAff";
             var dbMode = isInternal ? DBMode.View : DBMode.Main;
 
             using (var objectDb = new ObjectDBBuilder(uSpKey, dbMode))
             {
-                return objectDb.DB.Query<SportType>(new { affId });
+                return objectDb.DB.Query<SportTypeItem>(new { affId });
+            }
+        }
+
+        public DailyEarningResult GetDailyEarning(DailyEarningParam dailyEarningParam)
+        {
+            const string uSpKey = "Aff_EarningSelDaily";
+            var dbMode = dailyEarningParam.IsInternal ? DBMode.View : DBMode.Main;
+
+            var dailyEarningResult = new DailyEarningResult();
+            var dataList = new List<DailyEarning>();
+
+            using (var objectDb = new ObjectDBBuilder(uSpKey, dbMode))
+            {
+                using (var reader = objectDb.DB.ExecuteReader(dailyEarningParam))
+                {
+                    while (reader.Read())
+                    {
+                        dataList.Add(new DailyEarning
+                        {
+                            WinlostDate = Convert.ToDateTime(reader["WinlostDate"]),
+                            Deposit = Convert.ToDecimal(reader["Deposit"]),
+                            Withdrawal = Convert.ToDecimal(reader["Withdrawal"]),
+                            MemberWinLost = Convert.ToDecimal(reader["MemberWinLost"]),
+                            MemberWinLostFake = Convert.ToDecimal(reader["MemWinLostFake"]),
+                            Bonus = Convert.ToDecimal(reader["Bonus"]),
+                            Adjustment = Convert.ToDecimal(reader["Adjustment"]),
+                            Psp = Convert.ToDecimal(reader["Psp"])
+                        });
+                    }
+                    dailyEarningResult.MainDataList = dataList;
+
+                    if (reader.NextResult() && reader.Read())
+                    {
+                        dailyEarningResult.Total = new DailyEarning
+                        {
+                            Deposit = Convert.ToDecimal(reader["Deposit"]),
+                            Withdrawal = Convert.ToDecimal(reader["Withdrawal"]),
+                            MemberWinLost = Convert.ToDecimal(reader["MemberWinLost"]),
+                            MemberWinLostFake = Convert.ToDecimal(reader["MemWinLostFake"]),
+                            Bonus = Convert.ToDecimal(reader["Bonus"]),
+                            Adjustment = Convert.ToDecimal(reader["Adjustment"]),
+                            Psp = Convert.ToDecimal(reader["Psp"])
+                        };
+                    }
+                }
+            }
+
+            return dailyEarningResult;
+        }
+
+        public ExtraUserInfo GetExtraUserInfo(int affId, bool isInternal)
+        {
+            const string uSpKey = "Aff_AffiliateUser_ExtraUserInfoSel";
+            var mode = isInternal ? DBMode.View : DBMode.Main;
+
+            using (var objectDb = new ObjectDBBuilder(uSpKey, mode))
+            {
+                return objectDb.DB.QueryEntity<ExtraUserInfo>(new { affId });
             }
         }
     }

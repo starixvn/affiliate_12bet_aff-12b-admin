@@ -489,6 +489,10 @@
     <Content Include="www\build\styles\css\contact-us.min.css">
       <DependentUpon>contact-us.css</DependentUpon>
     </Content>
+    <Content Include="www\build\styles\css\dailyearning.css" />
+    <Content Include="www\build\styles\css\dailyearning.min.css">
+      <DependentUpon>dailyearning.css</DependentUpon>
+    </Content>
     <Content Include="www\build\styles\css\faq.css" />
     <Content Include="www\build\styles\css\faq.min.css">
       <DependentUpon>faq.css</DependentUpon>
@@ -702,6 +706,7 @@
     <Content Include="Views\UserPanel\StatementHistoryPartial\_StatementHistoryContent.cshtml" />
     <Content Include="www\source\styles\pages\statement-history.scss" />
     <Content Include="Views\UserPanel\StatementHistoryPartial\_DailyEarningContent.cshtml" />
+    <Content Include="www\source\styles\pages\dailyearning.scss" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

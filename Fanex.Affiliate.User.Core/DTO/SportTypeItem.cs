@@ -1,6 +1,6 @@
 ﻿namespace Fanex.Affiliate.User.Core.DTO
 {
-    public class SportType
+    public class SportTypeItem
     {
         public int SportId { get; set; }
 

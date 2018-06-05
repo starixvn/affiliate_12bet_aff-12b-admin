@@ -994,6 +994,7 @@ label.require:after {
 .table {
   font-size: 13px; }
   .table table {
+    table-layout: fixed;
     border: 1px solid #c1c1c1;
     border-collapse: collapse;
     margin: 0;
@@ -1004,38 +1005,41 @@ label.require:after {
       height: 18px;
       margin-bottom: 4px;
       display: inline-block; }
-  .table table caption {
-    font-size: 1.5em;
-    margin: .5em 0 .75em; }
-  .table table tr {
-    background: #f5eaea;
-    padding: .35em;
-    color: #333333;
-    transition: background 0.2s ease; }
-    .table table tr:hover {
-      background: #fbe8e1; }
-  .table table th,
-  .table table td {
-    border: 1px solid #c1c1c1;
-    word-wrap: break-word; }
-  .table table th {
-    font-size: 15px;
-    text-transform: capitalize;
-    background: #c95f4d;
-    color: #fff;
-    text-align: center;
-    padding: 4px 5px;
-    font-weight: 500; }
-  .table table td {
-    border: 1px solid #cccccc;
-    padding: 4px 5px;
-    line-height: 24px; }
-    .table table td.bg-sportsbook {
-      background: #f8d8d1;
-      font-weight: 600; }
-    .table table td.bg-casino {
-      background: #e1e1e1;
-      font-weight: 600; }
+    .table table caption {
+      font-size: 1.5em;
+      margin: .5em 0 .75em; }
+    .table table tr {
+      background: #f5eaea;
+      padding: .35em;
+      color: #333333;
+      transition: background 0.2s ease; }
+      .table table tr:hover {
+        background: #fbe8e1; }
+    .table table th, .table table td {
+      border: 1px solid #c1c1c1;
+      word-wrap: break-word; }
+    .table table th {
+      font-size: 15px;
+      text-transform: capitalize;
+      background: #c95f4d;
+      color: #fff;
+      text-align: center;
+      padding: 4px 5px;
+      font-weight: 500; }
+    .table table td {
+      border: 1px solid #cccccc;
+      padding: 4px 5px;
+      line-height: 24px; }
+      .table table td.bg-sportsbook {
+        background: #f8d8d1;
+        font-weight: 600; }
+      .table table td.bg-casino {
+        background: #e1e1e1;
+        font-weight: 600; }
+    .table table .total {
+      background: #c95f4d;
+      color: #fff;
+      font-weight: 500; }
 
 .table-info {
   border: 1px solid #ccc;

@@ -118,5 +118,10 @@
     "outputFile": "www/build/styles/css/statement-history.css",
     "inputFile": "www/source/styles/pages/statement-history.scss",
     "sourceMap": false
+  },
+  {
+    "outputFile": "www/build/styles/css/dailyearning.css",
+    "inputFile": "www/source/styles/pages/dailyearning.scss",
+    "sourceMap": false
   }
 ]
