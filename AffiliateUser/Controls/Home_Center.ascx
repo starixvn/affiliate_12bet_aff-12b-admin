@@ -1,7 +1,13 @@
 <%@ Control Language="C#" AutoEventWireup="true" Inherits="Controls_Home_Center" CodeBehind="Home_Center.ascx.cs" %>
 
+<%
+    var shortedLanguageCode = Common.ConvertSpecialLanguageCode();
+    var link = shortedLanguageCode.Equals("ch") ? 
+        "https://promotions.12bet.com/Promotion/index.php?lang=ch&act=worldcup" :
+        "https://promotions.12bet.com/newsletter/2018Newsletter/June/" + shortedLanguageCode + "/";
+%>
 <div id="banner_main">
-    <a id="big_banner_link" href="http://promotions.12bet.com/landing/worldcup/2018/img/<%=Common.ConvertSpecialLanguageCode() %>/affiliate-news.pdf" target="_blank">
+    <a id="big_banner_link" href="<%=link%>" target="_blank">
         <img src="<%=Common.GetBannerFlash() %>" width="646px" height="275px" />
     </a>
 </div>

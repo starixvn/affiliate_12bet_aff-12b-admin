@@ -73,7 +73,7 @@
         <div class="red_line"></div>
     </div>
 
-    <% if (AppSettings.Environment.Equals("PRODUCTION", StringComparison.OrdinalIgnoreCase))
+    <% if (AppSettings.Environment.Equals("UAT", StringComparison.OrdinalIgnoreCase) || AppSettings.Environment.Equals("PRODUCTION", StringComparison.OrdinalIgnoreCase))
        { %>
     <!-- Google Analytics -->
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -88,7 +88,7 @@
 
         var bigBannerLink = document.getElementById("big_banner_link");
         bigBannerLink.addEventListener("click", function (event) {
-            gtag('event', 'PromoWorldCup2018-<%=Common.ConvertToShortLanguageCode().ToUpper() %>', {
+            gtag('event', 'AffWorldCupPro-<%=Common.ConvertSpecialLanguageCode().ToUpper() %>', {
               'event_category': 'AFFiliatePage',
               'event_label': 'AFFBigBanner'
         });

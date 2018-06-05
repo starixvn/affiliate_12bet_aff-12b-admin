@@ -86,7 +86,7 @@ public class Common
     public static string GetBannerFlash()
     {
         string folder = AppSettings.AffTypeList.Any(t => t == AffType.European) ? AffType.European.ToString() : GetLanguage();
-        return string.Format("Content/Banner/{0}/{1}?v={2}", folder, "affiliate-russia.jpg", AppSettings.JsVersion);
+        return string.Format("Content/Banner/{0}/{1}?v={2}", folder, "main.jpg", AppSettings.JsVersion);
     }
 
     public static string ConvertSpecialLanguageCode()
