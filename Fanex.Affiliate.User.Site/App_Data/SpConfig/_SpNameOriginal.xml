@@ -88,5 +88,8 @@
     <Setting Key="Aff_EarningSelDaily_view" SpName="Aff_EarningSelDaily" DbName="affiliate_12bet_view" />
     <Setting Key="Aff_AffiliateUser_ExtraUserInfoSel" SpName="Aff_AffiliateUser_ExtraUserInfoSel" DbName="affiliate_12bet" />
     <Setting Key="Aff_AffiliateUser_ExtraUserInfoSel_view" SpName="Aff_AffiliateUser_ExtraUserInfoSel" DbName="affiliate_12bet_view" />
+
+    <Setting Key="Aff_EarningSelDetail" SpName="Aff_EarningSelDetail" DbName="affiliate_12bet" />
+    <Setting Key="Aff_EarningSelDetail_view" SpName="Aff_EarningSelDetail" DbName="affiliate_12bet_view" />   
   </Function>
 </Functions>

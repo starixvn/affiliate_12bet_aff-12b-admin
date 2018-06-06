@@ -1,67 +1,51 @@
-﻿
-@{
+﻿@{
     Layout = null;
+
+    var monthDate = Model.SelectedDate;
 }
+<link href="@Url.RenderLink("~/www/build/styles/css/dailyearning-detail.css")" rel="stylesheet" />
+
+@model Fanex.Affiliate.User.Core.ViewModels.UserPanel.DailyEarningDetailViewModel
 
 <div class="page-title">
     <span class="text">@Lang.DailyEarningDetail</span>
 </div>
 
 <div>
+    <div class="breadcrumb-container">
+        <ol class="breadcrumb" id="dailyEarningBreadcrumb">
+            <li><a href="javascript:;" id="statementHistoryLink">@Lang.StatementHistory</a></li>
+            <li><a href="javascript:;" data-date="@monthDate.ToString("MM/dd/yyyy")" id="dailyEarningLink">@monthDate.ToString("MMMM yyyy")</a></li>
+        </ol>
+    </div>
+
     <form class="form-inline form-filter">
         <div class="form-group">
             <label class="w100">@Lang.SelectDate:</label>
-            <input class="form-control" type="text" value="09/13/2017" />
+            <div id="datePicker" class="date-wrapper">
+                <input readonly id="MonthDate" class="form-control" type="text" value="@Model.SelectedDate.ToString("MM/dd/yyyy")" />
+                <span class="glyphicon glyphicon-calendar"></span>
+            </div>
         </div>
-        <div class="form-group">
-            <label class="w100">@Lang.SportType:</label>
-            <select class="form-control">
-                <option>[All]</option>
-                <option>Sportsbook</option>
-                <option>Casino</option>
-            </select>
-        </div>
-        <button type="button" class="btn btn-submit">@Lang.Submit</button>
+        @if (Model.SportTypeList != null && Model.SportTypeList.Count() > 1)
+        {
+            <div class="form-group">
+                <label class="w100">@Lang.SportType:</label>
+                <select class="form-control" id="SportType">
+                    <option value="0">@Lang.All</option>
+                    @foreach (var item in Model.SportTypeList)
+                    {
+                        <option value="@item.SportId" @(item.SportId == Model.SelectedSportType ? "selected" : string.Empty)>@item.SportName</option>
+                    }
+                </select>
+            </div>
+        }
+        <button type="button" class="btn btn-submit" id="btnEarningDetailSubmit">@Lang.Submit</button>
     </form>
 
     <div class="table" id="dailyEarningDetailContent">
-        <table>
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>@Lang.Username</th>
-                    <th>@Lang.Deposit</th>
-                    <th>@Lang.Withdrawal</th>
-                    <th>@Lang.Turnover</th>
-                    <th>@Lang.Winlost</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td class="text-center"><a class="dateItem" href="javascript:;">Walter</a></td>
-                    <td class="text-right">$2,173.50</td>
-                    <td class="text-right">$2,158.79</td>
-                    <td class="text-right">-$1,998.12</td>
-                    <td class="text-right">$5.80</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td class="text-center"><a class="dateItem" href="javascript:;">Walter</a></td>
-                    <td class="text-right">$2,173.50</td>
-                    <td class="text-right">$2,158.79</td>
-                    <td class="text-right">-$1,998.12</td>
-                    <td class="text-right">$5.80</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td class="text-center"><a class="dateItem" href="javascript:;">Walter</a></td>
-                    <td class="text-right">$2,173.50</td>
-                    <td class="text-right">$2,158.79</td>
-                    <td class="text-right">-$1,998.12</td>
-                    <td class="text-right">$5.80</td>
-                </tr>
-            </tbody>
-        </table>
+        @{ Html.RenderPartial("~/Views/UserPanel/StatementHistoryPartial/_DailyEarningDetailContent.cshtml", Model); }
     </div>
 </div>
+
+<script src="@Url.RenderLink("~/www/build/js/daily-earning-detail.js")"></script>

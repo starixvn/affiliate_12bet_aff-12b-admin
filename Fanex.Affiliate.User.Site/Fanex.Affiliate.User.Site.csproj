@@ -419,6 +419,10 @@
     <Content Include="www\build\js\changepassword.min.js">
       <DependentUpon>changepassword.js</DependentUpon>
     </Content>
+    <Content Include="www\build\js\daily-earning-detail.js" />
+    <Content Include="www\build\js\daily-earning-detail.min.js">
+      <DependentUpon>daily-earning-detail.js</DependentUpon>
+    </Content>
     <Content Include="www\build\js\daily-earning.js" />
     <Content Include="www\build\js\daily-earning.min.js">
       <DependentUpon>daily-earning.js</DependentUpon>
@@ -488,6 +492,10 @@
     <Content Include="www\build\styles\css\contact-us.css" />
     <Content Include="www\build\styles\css\contact-us.min.css">
       <DependentUpon>contact-us.css</DependentUpon>
+    </Content>
+    <Content Include="www\build\styles\css\dailyearning-detail.css" />
+    <Content Include="www\build\styles\css\dailyearning-detail.min.css">
+      <DependentUpon>dailyearning-detail.css</DependentUpon>
     </Content>
     <Content Include="www\build\styles\css\dailyearning.css" />
     <Content Include="www\build\styles\css\dailyearning.min.css">
@@ -592,6 +600,7 @@
     <Content Include="www\source\js\layout.js" />
     <Content Include="www\source\js\pages\account-overview.js" />
     <Content Include="www\source\js\pages\changepassword.js" />
+    <Content Include="www\source\js\pages\daily-earning-detail.js" />
     <Content Include="www\source\js\pages\daily-earning.js" />
     <Content Include="www\source\js\pages\home.js" />
     <Content Include="www\source\js\pages\login.js" />
@@ -707,6 +716,8 @@
     <Content Include="www\source\styles\pages\statement-history.scss" />
     <Content Include="Views\UserPanel\StatementHistoryPartial\_DailyEarningContent.cshtml" />
     <Content Include="www\source\styles\pages\dailyearning.scss" />
+    <Content Include="Views\UserPanel\StatementHistoryPartial\_DailyEarningDetailContent.cshtml" />
+    <Content Include="www\source\styles\pages\dailyearning-detail.scss" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -14,5 +14,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
         DailyEarningResult GetDailyEarning(DailyEarningParam dailyEarningParam);
 
         ExtraUserInfo GetExtraUserInfo(int affId, bool isInternal);
+
+        IEnumerable<DailyEarningDetail> GetDailyEarningDetail(DailyEarningParam earningDetailParam);
     }
 }

@@ -46,58 +46,46 @@
 
         [HttpGet]
         [AjaxOnly]
-        public ActionResult DailyEarning(DateTime? monthDate)
+        public ActionResult DailyEarning(DailyEarningParam param)
         {
-            var param = new DailyEarningParam
-            {
-                AffId = SessionService.UserSession.AffId,
-                IsInternal = SessionService.IsInternal,
-                SportType = SportType.Sportsbook,
-                MonthDate = monthDate.HasValue ? monthDate.Value : DateTime.Now.AddDays(-1)
-            };
+            param.AffId = SessionService.UserSession.AffId;
+            param.IsInternal = SessionService.IsInternal;
+            param.SportType = param.SportType.HasValue ? param.SportType.Value : SportType.Sportsbook;
+            param.MonthDate = param.MonthDate.HasValue ? param.MonthDate.Value : DateTime.Now.AddDays(-1);
 
-            var viewModel = GetDailyEarningData(param, true);
-            ViewBag.MonthDate = param.MonthDate;
-
-            return View(viewModel);
-        }
-
-        [HttpGet]
-        [AjaxOnly]
-        public ActionResult GetDailyEarning(DateTime monthDate, byte sportType)
-        {
-            var param = new DailyEarningParam
-            {
-                AffId = SessionService.UserSession.AffId,
-                IsInternal = SessionService.IsInternal,
-                SportType = sportType,
-                MonthDate = monthDate
-            };
-
-            var viewModel = GetDailyEarningData(param, false);
-
-            return PartialView("~/Views/UserPanel/StatementHistoryPartial/_DailyEarningContent.cshtml", viewModel);
-        }
-
-        [HttpGet]
-        [AjaxOnly]
-        public ActionResult DailyEarningDetail()
-        {
-            return View();
-        }
-
-        private DailyEarningViewModel GetDailyEarningData(DailyEarningParam param, bool isInitial)
-        {
             var extraUserInfo = _statementHistoryRepository.GetExtraUserInfo(param.AffId, param.IsInternal);
 
-            return new DailyEarningViewModel
+            var viewModel = new DailyEarningViewModel
             {
-                SportTypeList = isInitial ? _statementHistoryRepository.GetSportTypeList(param.AffId, param.IsInternal) : null,
+                SportTypeList = param.IsInitial ? _statementHistoryRepository.GetSportTypeList(param.AffId, param.IsInternal) : null,
                 Data = _statementHistoryRepository.GetDailyEarning(param),
-                SelectedSportType = param.SportType,
+                SelectedSportType = param.SportType.Value,
                 IsKoreanAgentCommGroup = extraUserInfo.GroupName.MatchWith(CommGroupName.KoreanAgentComm),
                 HasDailyDetail = extraUserInfo.HasDailyDetail
             };
+            ViewBag.MonthDate = param.MonthDate;
+
+            return param.IsInitial ? View(viewModel) :
+                                    View("~/Views/UserPanel/StatementHistoryPartial/_DailyEarningContent.cshtml", viewModel);
+        }
+
+        [HttpGet]
+        [AjaxOnly]
+        public ActionResult DailyEarningDetail(DailyEarningParam param)
+        {
+            param.AffId = SessionService.UserSession.AffId;
+            param.IsInternal = SessionService.IsInternal;
+
+            var viewModel = new DailyEarningDetailViewModel
+            {
+                MainData = _statementHistoryRepository.GetDailyEarningDetail(param),
+                SportTypeList = param.IsInitial ? _statementHistoryRepository.GetSportTypeList(param.AffId, param.IsInternal) : null,
+                SelectedDate = param.MonthDate.Value,
+                SelectedSportType = param.SportType.Value
+            };
+
+            return param.IsInitial ? View(viewModel) :
+                                    View("~/Views/UserPanel/StatementHistoryPartial/_DailyEarningDetailContent.cshtml", viewModel);
         }
     }
 }

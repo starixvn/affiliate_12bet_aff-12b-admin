@@ -8,7 +8,12 @@ var DailyEarning = (function ($) {
 
         initEvent: function initEvent() {
             $("#dailyEarningContent").on("click", ".dateItem", function () {
-                DailyEarning.renderDailyEarningDetail();
+                var param = {
+                    sportType: $("#SportType").val(),
+                    monthDate: $(this).data("date")
+                };
+
+                DailyEarning.renderDailyEarningDetail(param);
             });
 
             $("#statementHistoryLink").on("click", function () {
@@ -16,34 +21,50 @@ var DailyEarning = (function ($) {
             });
 
             $("#SportType").on("change", function () {
-                var monthDate = $("#MonthDate").val();
-                var selectedSportType = $(this).val();
+                var params = {
+                    monthDate: $("#MonthDate").val(),
+                    sportType: $(this).val(),
+                    isInitial: false
+                };
 
-                _me.renderDailyEarning(monthDate, selectedSportType);
+                _me.renderDailyEarning(params);
             });
         },
 
-        renderDailyEarning: function renderDailyEarning(date, sportType) {
+        renderDailyEarning: function renderDailyEarning(params) {
             $.ajax({
                 type: "GET",
-                data: { monthDate: date, sportType: sportType },
+                data: params,
                 dataType: "html",
                 cache: false,
-                url: Site.resolveRelativeUrl("UserPanel/GetDailyEarning"),
+                url: Site.resolveRelativeUrl("UserPanel/DailyEarning"),
                 success: function success(response) {
                     $("#dailyEarningContent").html(response);
+                },
+                beforeSend: function beforeSend() {
+                    Site.showLoader();
+                },
+                complete: function complete() {
+                    Site.hideLoader();
                 }
             });
         },
 
-        renderDailyEarningDetail: function renderDailyEarningDetail() {
+        renderDailyEarningDetail: function renderDailyEarningDetail(param) {
             $.ajax({
                 type: "GET",
                 dataType: "html",
+                data: param,
                 cache: false,
                 url: Site.resolveRelativeUrl("UserPanel/DailyEarningDetail"),
                 success: function success(response) {
                     $("#mainPanel").html(response);
+                },
+                beforeSend: function beforeSend() {
+                    Site.showLoader();
+                },
+                complete: function complete() {
+                    Site.hideLoader();
                 }
             });
         }

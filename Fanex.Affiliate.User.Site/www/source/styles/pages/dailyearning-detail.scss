@@ -1,0 +1,14 @@
+﻿@import "../scss/vendors/bootstrap/variables";
+@import "../scss/vendors/bootstrap/mixins";
+@import "../scss/vendors/bootstrap/breadcrumbs";
+@import "../scss/components/pikaday";
+
+.date-wrapper {
+    display: inline-block;
+}
+
+.form-filter {
+    .form-group {
+        width: 330px;
+    }
+}

@@ -6,7 +6,12 @@
 
         initEvent: function () {
             $("#dailyEarningContent").on("click", ".dateItem", function () {
-                DailyEarning.renderDailyEarningDetail();
+                var param = {
+                    sportType: $("#SportType").val(),
+                    monthDate: $(this).data("date")
+                }
+
+                DailyEarning.renderDailyEarningDetail(param);
             });
 
             $("#statementHistoryLink").on("click", function () {
@@ -14,34 +19,50 @@
             });
 
             $("#SportType").on("change", function () {
-                var monthDate = $("#MonthDate").val();
-                var selectedSportType = $(this).val();
+                var params = {
+                    monthDate: $("#MonthDate").val(),
+                    sportType: $(this).val(),
+                    isInitial: false
+                }
 
-                _me.renderDailyEarning(monthDate, selectedSportType);
+                _me.renderDailyEarning(params);
             });
         },
 
-        renderDailyEarning: function (date, sportType) {
+        renderDailyEarning: function (params) {
             $.ajax({
                 type: "GET",
-                data: { monthDate: date, sportType: sportType },
+                data: params,
                 dataType: "html",
                 cache: false,
-                url: Site.resolveRelativeUrl("UserPanel/GetDailyEarning"),
+                url: Site.resolveRelativeUrl("UserPanel/DailyEarning"),
                 success: function (response) {
                     $("#dailyEarningContent").html(response);
+                },
+                beforeSend: function () {
+                    Site.showLoader();
+                },
+                complete: function () {
+                    Site.hideLoader();
                 }
             });
         },
 
-        renderDailyEarningDetail: function () {
+        renderDailyEarningDetail: function (param) {
             $.ajax({
                 type: "GET",
                 dataType: "html",
+                data: param,
                 cache: false,
                 url: Site.resolveRelativeUrl("UserPanel/DailyEarningDetail"),
                 success: function (response) {
                     $("#mainPanel").html(response);
+                },
+                beforeSend: function () {
+                    Site.showLoader();
+                },
+                complete: function () {
+                    Site.hideLoader();
                 }
             });
         }

@@ -123,5 +123,10 @@
     "outputFile": "www/build/styles/css/dailyearning.css",
     "inputFile": "www/source/styles/pages/dailyearning.scss",
     "sourceMap": false
+  },
+  {
+    "outputFile": "www/build/styles/css/dailyearning-detail.css",
+    "inputFile": "www/source/styles/pages/dailyearning-detail.scss",
+    "sourceMap": false
   }
 ]

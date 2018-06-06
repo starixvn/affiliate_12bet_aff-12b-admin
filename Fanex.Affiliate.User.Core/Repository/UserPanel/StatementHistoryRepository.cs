@@ -111,5 +111,16 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
                 return objectDb.DB.QueryEntity<ExtraUserInfo>(new { affId });
             }
         }
+
+        public IEnumerable<DailyEarningDetail> GetDailyEarningDetail(DailyEarningParam earningDetailParam)
+        {
+            const string uSpKey = "Aff_EarningSelDetail";
+            var mode = earningDetailParam.IsInternal ? DBMode.View : DBMode.Main;
+
+            using (var objectDb = new ObjectDBBuilder(uSpKey, mode))
+            {
+                return objectDb.DB.Query<DailyEarningDetail>(earningDetailParam);
+            }
+        }
     }
 }

@@ -218,6 +218,7 @@
     <Compile Include="CoreService\ISessionService.cs" />
     <Compile Include="CoreService\SessionService.cs" />
     <Compile Include="DTO\AuthorizedUserInfo.cs" />
+    <Compile Include="DTO\DailyEarningDetail.cs" />
     <Compile Include="DTO\DBMode.cs" />
     <Compile Include="DTO\ExtraUserInfo.cs" />
     <Compile Include="DTO\Language.cs" />
@@ -416,6 +417,7 @@
     <Compile Include="ViewModels\EmailTemplateViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\LoginResultViewModel.cs" />
+    <Compile Include="ViewModels\UserPanel\DailyEarningDetailViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\DailyEarningViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Marketing\LinkFormViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Marketing\MarketingViewModel.cs" />

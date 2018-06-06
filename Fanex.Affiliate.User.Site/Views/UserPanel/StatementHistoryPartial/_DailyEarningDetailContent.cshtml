@@ -1,0 +1,46 @@
+﻿@{ 
+    Layout = null;
+
+    var hasData = Model.MainData != null && Model.MainData.Any();
+}
+
+@model Fanex.Affiliate.User.Core.ViewModels.UserPanel.DailyEarningDetailViewModel
+
+<table>
+    <thead>
+        <tr>
+            <th width="3%"></th>
+            <th width="15%">@Lang.Username</th>
+            <th width="10%">@Lang.Deposit</th>
+            <th width="10%">@Lang.Withdrawal</th>
+            <th width="10%">@Lang.Turnover</th>
+            <th width="10%">@Lang.Winlost</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            if (hasData)
+            {
+                var index = 1;
+                foreach (var item in Model.MainData)
+                {
+                    <tr>
+                        <td>@index</td>
+                        <td class="text-center"><a class="earningDetailItem" href="javascript:;">@item.UserName2</a></td>
+                        <td class="text-right">@item.Deposit.ToStringMoneyWithSymbol()</td>
+                        <td class="text-right">@item.Withdrawal.ToStringMoneyWithSymbol()</td>
+                        <td class="text-right">@item.Turnover.ToStringMoneyWithSymbol()</td>
+                        <td class="text-right">@item.WinLost.ToStringMoneyWithSymbol()</td>
+                    </tr>
+
+                    index++;
+                }
+            }
+        }
+    </tbody>
+</table>
+
+@if (!hasData)
+{
+    <p class="text-center">@Lang.NoInfo</p>
+}
