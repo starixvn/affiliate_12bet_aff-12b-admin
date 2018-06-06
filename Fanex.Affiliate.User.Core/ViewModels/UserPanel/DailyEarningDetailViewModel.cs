@@ -13,5 +13,7 @@ namespace Fanex.Affiliate.User.Core.ViewModels.UserPanel
         public int SelectedSportType { get; set; }
 
         public DateTime SelectedDate { get; set; }
+
+        public bool HasDailyDetail { get; set; }
     }
 }

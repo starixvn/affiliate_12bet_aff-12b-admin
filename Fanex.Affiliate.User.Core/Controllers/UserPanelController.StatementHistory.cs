@@ -76,14 +76,16 @@
             param.AffId = SessionService.UserSession.AffId;
             param.IsInternal = SessionService.IsInternal;
 
+            var extraUserInfo = _statementHistoryRepository.GetExtraUserInfo(param.AffId, param.IsInternal);
+
             var viewModel = new DailyEarningDetailViewModel
             {
                 MainData = _statementHistoryRepository.GetDailyEarningDetail(param),
                 SportTypeList = param.IsInitial ? _statementHistoryRepository.GetSportTypeList(param.AffId, param.IsInternal) : null,
                 SelectedDate = param.MonthDate.Value,
-                SelectedSportType = param.SportType.Value
+                SelectedSportType = param.SportType.Value,
+                HasDailyDetail = extraUserInfo.HasDailyDetail
             };
-            ViewBag.LastDateOfMonth = new DateTime(viewModel.SelectedDate.Year, viewModel.SelectedDate.Month + 1, 1).AddDays(-1);
 
             return param.IsInitial ? View(viewModel) :
                                     View("~/Views/UserPanel/StatementHistoryPartial/_DailyEarningDetailContent.cshtml", viewModel);

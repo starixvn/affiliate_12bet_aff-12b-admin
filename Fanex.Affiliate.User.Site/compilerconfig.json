@@ -128,5 +128,10 @@
     "outputFile": "www/build/styles/css/dailyearning-detail.css",
     "inputFile": "www/source/styles/pages/dailyearning-detail.scss",
     "sourceMap": false
+  },
+  {
+    "outputFile": "www/build/styles/css/betlist.css",
+    "inputFile": "www/source/styles/pages/betlist.scss",
+    "sourceMap": false
   }
 ]

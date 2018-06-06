@@ -1040,6 +1040,8 @@ label.require:after {
       background: #c95f4d;
       color: #fff;
       font-weight: 500; }
+      .table table .total:hover {
+        background: #c95f4d; }
 
 .table-info {
   border: 1px solid #ccc;

@@ -4,6 +4,7 @@
     var hasData = Model.MainData != null && Model.MainData.Any();
 }
 
+@using Fanex.Affiliate.User.Core.Constants
 @model Fanex.Affiliate.User.Core.ViewModels.UserPanel.DailyEarningDetailViewModel
 
 <table>
@@ -26,7 +27,26 @@
                 {
                     <tr>
                         <td>@index</td>
-                        <td class="text-center"><a class="earningDetailItem" href="javascript:;">@item.UserName2</a></td>
+                        <td class="text-center">
+                            @if (Model.HasDailyDetail && Model.SelectedSportType == SportType.Sportsbook && item.Turnover > 0)
+                            {
+                                var param = new
+                                {
+                                    date = Model.SelectedDate.ToString("MM/dd/yyyy"),
+                                    sportType = Model.SelectedSportType,
+                                    custId = item.CustId,
+                                    userName = item.UserName
+                                };
+
+                                <a class="earningDetailItem" href="javascript:;" data-param="@Json.Encode(param)">
+                                    @item.DisplayUserName
+                                </a>
+                            }
+                            else
+                            {
+                                @item.DisplayUserName
+                            }
+                        </td>
                         <td class="text-right">@item.Deposit.ToStringMoneyWithSymbol()</td>
                         <td class="text-right">@item.Withdrawal.ToStringMoneyWithSymbol()</td>
                         <td class="text-right">@item.Turnover.ToStringMoneyWithSymbol()</td>

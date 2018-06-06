@@ -1,7 +1,7 @@
 ﻿"use strict";
 
 var UserPanel = (function ($) {
-    var allowedActionList = ["AccountOverView", "StatementHistory", "MyAccount", "PaymentRequest", "MediaGallery", "TextBox", "TrackingStatistics", "ReferrersStatistics", "LandingPageStatistics", "DailyEarning", "DailyEarningDetail"];
+    var allowedActionList = ["AccountOverView", "StatementHistory", "MyAccount", "PaymentRequest", "MediaGallery", "TextBox", "TrackingStatistics", "ReferrersStatistics", "LandingPageStatistics", "DailyEarning", "DailyEarningDetail", "BetList"];
 
     var _me = {
         initialize: function initialize() {

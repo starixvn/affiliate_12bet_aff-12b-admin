@@ -485,6 +485,33 @@
     <Content Include="www\build\js\user-panel.min.js">
       <DependentUpon>user-panel.js</DependentUpon>
     </Content>
+    <Content Include="www\build\styles\css\betlist.css" />
+    <Content Include="www\build\styles\css\betlist.min.css">
+      <DependentUpon>betlist.css</DependentUpon>
+    </Content>
+    <Content Include="www\build\styles\css\betlist\betlist.css" />
+    <Content Include="www\build\styles\css\betlist\cashoutdetail.css" />
+    <Content Include="www\build\styles\css\betlist\fanex.result.css" />
+    <Content Include="www\build\styles\css\betlist\global.content.css" />
+    <Content Include="www\build\styles\css\betlist\images\1F.gif" />
+    <Content Include="www\build\styles\css\betlist\images\1L.gif" />
+    <Content Include="www\build\styles\css\betlist\images\bar-loader.gif" />
+    <Content Include="www\build\styles\css\betlist\images\bgHeader.jpg" />
+    <Content Include="www\build\styles\css\betlist\images\blank.gif" />
+    <Content Include="www\build\styles\css\betlist\images\firstGoal.gif" />
+    <Content Include="www\build\styles\css\betlist\images\goal-icon.png" />
+    <Content Include="www\build\styles\css\betlist\images\lastGoal.gif" />
+    <Content Include="www\build\styles\css\betlist\images\link_14x14.png" />
+    <Content Include="www\build\styles\css\betlist\images\link_16x16.png" />
+    <Content Include="www\build\styles\css\betlist\images\note.png" />
+    <Content Include="www\build\styles\css\betlist\images\plus.png" />
+    <Content Include="www\build\styles\css\betlist\images\q_Icon2_1.png" />
+    <Content Include="www\build\styles\css\betlist\images\q_Icon_2.png" />
+    <Content Include="www\build\styles\css\betlist\images\tab_topbg.gif" />
+    <Content Include="www\build\styles\css\betlist\images\undo.png" />
+    <Content Include="www\build\styles\css\betlist\images\up.png" />
+    <Content Include="www\build\styles\css\betlist\rngcasino.handhistory.css" />
+    <Content Include="www\build\styles\css\betlist\systemparlay.detail.css" />
     <Content Include="www\build\styles\css\bootstrap.css" />
     <Content Include="www\build\styles\css\bootstrap.min.css">
       <DependentUpon>bootstrap.css</DependentUpon>
@@ -599,6 +626,7 @@
     <Content Include="www\source\js\lib\pikaday.js" />
     <Content Include="www\source\js\layout.js" />
     <Content Include="www\source\js\pages\account-overview.js" />
+    <Content Include="www\source\js\pages\betlist.js" />
     <Content Include="www\source\js\pages\changepassword.js" />
     <Content Include="www\source\js\pages\daily-earning-detail.js" />
     <Content Include="www\source\js\pages\daily-earning.js" />
@@ -718,6 +746,8 @@
     <Content Include="www\source\styles\pages\dailyearning.scss" />
     <Content Include="Views\UserPanel\StatementHistoryPartial\_DailyEarningDetailContent.cshtml" />
     <Content Include="www\source\styles\pages\dailyearning-detail.scss" />
+    <Content Include="Views\BetList\Index.cshtml" />
+    <Content Include="www\source\styles\pages\betlist.scss" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -886,6 +916,29 @@
     <Content Include="www\source\styles\scss\vendors\animate\_zooming-exits\_zoomOutLeft.scss" />
     <Content Include="www\source\styles\scss\vendors\animate\_zooming-exits\_zoomOutRight.scss" />
     <Content Include="www\source\styles\scss\vendors\animate\_zooming-exits\_zoomOutUp.scss" />
+    <Content Include="www\source\styles\scss\vendors\betlist\betlist.css" />
+    <Content Include="www\source\styles\scss\vendors\betlist\cashoutdetail.css" />
+    <Content Include="www\source\styles\scss\vendors\betlist\fanex.result.css" />
+    <Content Include="www\source\styles\scss\vendors\betlist\global.content.css" />
+    <Content Include="www\source\styles\scss\vendors\betlist\images\1F.gif" />
+    <Content Include="www\source\styles\scss\vendors\betlist\images\1L.gif" />
+    <Content Include="www\source\styles\scss\vendors\betlist\images\bar-loader.gif" />
+    <Content Include="www\source\styles\scss\vendors\betlist\images\bgHeader.jpg" />
+    <Content Include="www\source\styles\scss\vendors\betlist\images\blank.gif" />
+    <Content Include="www\source\styles\scss\vendors\betlist\images\firstGoal.gif" />
+    <Content Include="www\source\styles\scss\vendors\betlist\images\goal-icon.png" />
+    <Content Include="www\source\styles\scss\vendors\betlist\images\lastGoal.gif" />
+    <Content Include="www\source\styles\scss\vendors\betlist\images\link_14x14.png" />
+    <Content Include="www\source\styles\scss\vendors\betlist\images\link_16x16.png" />
+    <Content Include="www\source\styles\scss\vendors\betlist\images\note.png" />
+    <Content Include="www\source\styles\scss\vendors\betlist\images\plus.png" />
+    <Content Include="www\source\styles\scss\vendors\betlist\images\q_Icon2_1.png" />
+    <Content Include="www\source\styles\scss\vendors\betlist\images\q_Icon_2.png" />
+    <Content Include="www\source\styles\scss\vendors\betlist\images\tab_topbg.gif" />
+    <Content Include="www\source\styles\scss\vendors\betlist\images\undo.png" />
+    <Content Include="www\source\styles\scss\vendors\betlist\images\up.png" />
+    <Content Include="www\source\styles\scss\vendors\betlist\rngcasino.handhistory.css" />
+    <Content Include="www\source\styles\scss\vendors\betlist\systemparlay.detail.css" />
     <Content Include="www\source\styles\scss\vendors\bootstrap\mixins\_alerts.scss" />
     <Content Include="www\source\styles\scss\vendors\bootstrap\mixins\_background-variant.scss" />
     <Content Include="www\source\styles\scss\vendors\bootstrap\mixins\_border-radius.scss" />
@@ -1019,7 +1072,6 @@
       <Name>Fanex.Affiliate.User.Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

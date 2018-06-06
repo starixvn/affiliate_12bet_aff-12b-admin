@@ -137,7 +137,9 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -250,6 +252,8 @@
     <Compile Include="Extensions\UrlHelperExtension.cs" />
     <Compile Include="Filters\AjaxOnlyAttribute.cs" />
     <Compile Include="Filters\AuthenticateAttribute.cs" />
+    <Compile Include="MetalModels\BetList\BetListParam.cs" />
+    <Compile Include="MetalModels\BetList\BetListValidationParam.cs" />
     <Compile Include="MetalModels\Email\EmailBaseParam.cs" />
     <Compile Include="MetalModels\Email\RecoverPasswordEmailParam.cs" />
     <Compile Include="MetalModels\Email\NewPasswordEmailParam.cs" />
@@ -274,6 +278,8 @@
     <Compile Include="MetalModels\UserPanel\StatisticsDetailBySiteParam.cs" />
     <Compile Include="MetalModels\UserPanel\TrackingStatisticsDetailParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\BetList\BetListRepository.cs" />
+    <Compile Include="Repository\BetList\IBetListRepository.cs" />
     <Compile Include="Repository\HotNewsRepository.cs" />
     <Compile Include="Repository\IHotNewsRepository.cs" />
     <Compile Include="Repository\UserPanel\IMarketingRepository.cs" />
@@ -400,6 +406,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResultLang.resx</DependentUpon>
     </Compile>
+    <Compile Include="Service References\BetListWebService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Utilities\AppSetting.cs" />
     <Compile Include="Utilities\CaptchaHelper.cs" />
     <Compile Include="Utilities\Common.cs" />
@@ -414,6 +425,7 @@
     <Compile Include="Utilities\RequestHelper.cs" />
     <Compile Include="Utilities\UrlHelper.cs" />
     <Compile Include="ViewModels\AccountInformationViewModel.cs" />
+    <Compile Include="ViewModels\BetList\MainBetListViewModel.cs" />
     <Compile Include="ViewModels\EmailTemplateViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\LoginResultViewModel.cs" />
@@ -428,9 +440,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DTO\BetList\" />
-    <Folder Include="MetalModels\BetList\" />
-    <Folder Include="Repository\BetList\" />
-    <Folder Include="ViewModels\BetList\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Error.ja-JP.resx">
@@ -520,6 +529,7 @@
       <LastGenOutput>Lang.zh-TW.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <None Include="Service References\BetListWebService\AffiliateAPI.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\BetList.resx">
@@ -534,6 +544,27 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Casino.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\BetListWebService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\BetListWebService\AffiliateAPI.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\BetListWebService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\BetListWebService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\BetListWebService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

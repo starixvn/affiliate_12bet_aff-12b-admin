@@ -20,7 +20,7 @@
 
         public decimal Adjustment { get; set; }
 
-        public string UserName2
+        public string DisplayUserName
         {
             get
             {

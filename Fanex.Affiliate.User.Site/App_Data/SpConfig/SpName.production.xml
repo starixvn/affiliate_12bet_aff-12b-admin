@@ -92,4 +92,9 @@
     <Setting Key="Aff_EarningSelDetail" SpName="Aff_EarningSelDetail" DbName="affiliate_12bet" />
     <Setting Key="Aff_EarningSelDetail_view" SpName="Aff_EarningSelDetail" DbName="affiliate_12bet_view" />   
   </Function>
+
+  <Function Name="BetList">
+    <Setting Key="Aff_BetList_CheckBelonging" SpName="Aff_BetList_CheckBelonging" DbName="affiliate_12bet" />
+    <Setting Key="Aff_BetList_CheckBelonging_view" SpName="Aff_BetList_CheckBelonging" DbName="affiliate_12bet_view" />  
+  </Function>
 </Functions>

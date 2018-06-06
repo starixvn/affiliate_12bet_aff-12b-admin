@@ -1,7 +1,7 @@
 ﻿var UserPanel = (function ($) {
     var allowedActionList = ["AccountOverView", "StatementHistory", "MyAccount", "PaymentRequest",
         "MediaGallery", "TextBox", "TrackingStatistics", "ReferrersStatistics", "LandingPageStatistics",
-        "DailyEarning", "DailyEarningDetail"];
+        "DailyEarning", "DailyEarningDetail", "BetList"];
 
     var _me = {
         initialize: function () {

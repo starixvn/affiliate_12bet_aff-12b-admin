@@ -9,7 +9,7 @@
                 var params = {
                     sportType: $("#SportType").val(),
                     monthDate: $(this).data("date")
-                }
+                };
 
                 Site.redirect(Site.resolveRelativeUrl("UserPanel/#DailyEarningDetail?" + $.param(params)));
             });
@@ -19,7 +19,7 @@
                     monthDate: $("#MonthDate").val(),
                     sportType: $(this).val(),
                     isInitial: false
-                }
+                };
 
                 _me.renderDailyEarning(params);
             });

@@ -1279,6 +1279,14 @@ var DailyEarningDetail = (function ($) {
 
                 _me.renderDailyEarningDetail(params);
             });
+
+            $("#dailyEarningDetailContent").on("click", ".earningDetailItem", function () {
+                var params = $(this).data("param");
+
+                if (params) {
+                    Site.redirect(Site.resolveRelativeUrl("BetList/Index?" + $.param(params)));
+                }
+            });
         },
 
         renderDailyEarningDetail: function (params) {
