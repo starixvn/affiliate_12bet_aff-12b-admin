@@ -83,6 +83,7 @@
                 SelectedDate = param.MonthDate.Value,
                 SelectedSportType = param.SportType.Value
             };
+            ViewBag.LastDateOfMonth = new DateTime(viewModel.SelectedDate.Year, viewModel.SelectedDate.Month + 1, 1).AddDays(-1);
 
             return param.IsInitial ? View(viewModel) :
                                     View("~/Views/UserPanel/StatementHistoryPartial/_DailyEarningDetailContent.cshtml", viewModel);

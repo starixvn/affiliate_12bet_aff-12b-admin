@@ -8,16 +8,12 @@ var DailyEarning = (function ($) {
 
         initEvent: function initEvent() {
             $("#dailyEarningContent").on("click", ".dateItem", function () {
-                var param = {
+                var params = {
                     sportType: $("#SportType").val(),
                     monthDate: $(this).data("date")
                 };
 
-                DailyEarning.renderDailyEarningDetail(param);
-            });
-
-            $("#statementHistoryLink").on("click", function () {
-                Site.reload();
+                Site.redirect(Site.resolveRelativeUrl("UserPanel/#DailyEarningDetail?" + $.param(params)));
             });
 
             $("#SportType").on("change", function () {
@@ -40,25 +36,6 @@ var DailyEarning = (function ($) {
                 url: Site.resolveRelativeUrl("UserPanel/DailyEarning"),
                 success: function success(response) {
                     $("#dailyEarningContent").html(response);
-                },
-                beforeSend: function beforeSend() {
-                    Site.showLoader();
-                },
-                complete: function complete() {
-                    Site.hideLoader();
-                }
-            });
-        },
-
-        renderDailyEarningDetail: function renderDailyEarningDetail(param) {
-            $.ajax({
-                type: "GET",
-                dataType: "html",
-                data: param,
-                cache: false,
-                url: Site.resolveRelativeUrl("UserPanel/DailyEarningDetail"),
-                success: function success(response) {
-                    $("#mainPanel").html(response);
                 },
                 beforeSend: function beforeSend() {
                     Site.showLoader();

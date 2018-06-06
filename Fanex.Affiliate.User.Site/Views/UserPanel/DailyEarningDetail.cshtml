@@ -1,7 +1,7 @@
 ﻿@{
     Layout = null;
 
-    var monthDate = Model.SelectedDate;
+    var lastDateOfMonth = (DateTime)ViewBag.LastDateOfMonth;
 }
 <link href="@Url.RenderLink("~/www/build/styles/css/dailyearning-detail.css")" rel="stylesheet" />
 
@@ -14,8 +14,12 @@
 <div>
     <div class="breadcrumb-container">
         <ol class="breadcrumb" id="dailyEarningBreadcrumb">
-            <li><a href="javascript:;" id="statementHistoryLink">@Lang.StatementHistory</a></li>
-            <li><a href="javascript:;" data-date="@monthDate.ToString("MM/dd/yyyy")" id="dailyEarningLink">@monthDate.ToString("MMMM yyyy")</a></li>
+            <li><a href="@(Url.Action("Index", "UserPanel") + "/#StatementHistory")">@Lang.StatementHistory</a></li>
+            <li>
+                <a href="@(Url.Action("Index", "UserPanel") + "/#DailyEarning?monthDate=" + lastDateOfMonth.ToString("MM/dd/yyyy"))">
+                    @Model.SelectedDate.ToString("MMMM yyyy")
+                </a>
+            </li>
         </ol>
     </div>
 

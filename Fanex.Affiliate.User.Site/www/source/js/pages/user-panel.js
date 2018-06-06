@@ -1,6 +1,7 @@
 ﻿var UserPanel = (function ($) {
     var allowedActionList = ["AccountOverView", "StatementHistory", "MyAccount", "PaymentRequest",
-        "MediaGallery", "TextBox", "TrackingStatistics", "ReferrersStatistics", "LandingPageStatistics"];
+        "MediaGallery", "TextBox", "TrackingStatistics", "ReferrersStatistics", "LandingPageStatistics",
+        "DailyEarning", "DailyEarningDetail"];
 
     var _me = {
         initialize: function () {
@@ -24,7 +25,9 @@
             var action = _me.getActionName();
             _me.activeMenu(action);
 
-            var url = Site.resolveRelativeUrl("UserPanel/" + action);
+            var queryString = _me.getQueryString();
+
+            var url = Site.resolveRelativeUrl("UserPanel/" + action + queryString);
 
             $.ajax({
                 type: "GET",
@@ -47,11 +50,27 @@
             var hash = window.location.hash;
             var action = hash.split('#')[1];
 
+            var queryStringIndexSign = action.indexOf('?');
+            if (queryStringIndexSign !== -1) {
+                action = action.substring(0, queryStringIndexSign);
+            }
+
             if (!hash || !action || allowedActionList.indexOf(action) === -1) {
                 action = "AccountOverView";
             }
 
             return action;
+        },
+
+        getQueryString: function () {
+            var url = window.location.href;
+            var hasQueryString = url.indexOf("?") !== -1;
+
+            if (hasQueryString) {
+                return "?" + url.split('?')[1];
+            }
+
+            return "";
         }
     };
 
