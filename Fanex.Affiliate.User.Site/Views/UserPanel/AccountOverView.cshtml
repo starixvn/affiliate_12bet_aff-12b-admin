@@ -2,6 +2,7 @@
 
 @{
     Layout = null;
+    var now = DateTime.Now;
 }
 
 @model Fanex.Affiliate.User.Core.DTO.UserPanel.AccountOverviewStatistics
@@ -9,7 +10,7 @@
     var statistics = Model;
 }
 
-@Html.InlineStyles("~/www/build/styles/css/pikaday.min.css")
+@Html.InlineStyles("~/www/build/styles/css/account-overview.min.css")
 
 <div class="page-title">
     <span class="text">@Lang.AccOverview</span>
@@ -17,16 +18,15 @@
 
 <div class="info-group">
     <div class="title">
-        <span class="text">@(Lang.Statistic + " " + Lang.For) January - 2018</span>
-        <div class="day-filter">
-            <div class="form-group day-filter">
-                <div class="input-group date" id="datetimepicker1">
-                    <input id="statisticsDate" type="text" class="field" />
-                    <span class="input-group-addon icon-calendar mdi mdi-calendar">
-                    </span>
-                </div>
+        <span class="text">@(Lang.Statistic + " " + Lang.For) @now.ToString("MMMM-yyyy")</span>
+        <div class="form-group">
+            <div id="monthPicker" class="form-wrapper d-inline-block">
+                <input readonly id="MonthDate" class="form-control d-inline-block" type="text" value="@now.ToString("MMM-yyyy")" />
+                <span class="glyphicon glyphicon-calendar" id="monthPickerTrigger"></span>
             </div>
-            <button class="btn btn-submit" type="button">@Lang.Submit</button>
+            <div class="d-inline-block">
+                <button class="btn btn-submit" id="statisticsSubmit" type="button">@Lang.Submit</button>
+            </div>
         </div>
     </div>
     <div class="info">

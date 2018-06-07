@@ -576,46 +576,6 @@ input[type="checkbox"], input[type="radio"] {
     font-weight: 600;
     margin-bottom: 8px;
     padding-bottom: 5px; }
-    .info-group .title .day-filter {
-      margin-bottom: 0.5rem; }
-      .info-group .title .day-filter .input-group {
-        display: inline-block; }
-      .info-group .title .day-filter .form-group {
-        display: inline-block;
-        margin-bottom: 0;
-        padding-right: 1rem; }
-      .info-group .title .day-filter .field {
-        height: 22px;
-        width: 100px;
-        padding: 0 5px;
-        font-weight: 500;
-        background: #f9f9f9;
-        border: 1px solid #dbdbdb; }
-      .info-group .title .day-filter .btn-submit {
-        height: 22px;
-        line-height: 22px;
-        background: -ms-linear-gradient(top, #b8491f, #ee6735);
-        background: -webkit-linear-gradient(top, #b8491f, #ee6735);
-        background: -moz-linear-gradient(top, #b8491f, #ee6735);
-        background: -o-linear-gradient(top, #b8491f, #ee6735);
-        background: linear-gradient(top, #b8491f, #ee6735);
-        color: #fff;
-        font-size: 14px;
-        text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.32);
-        text-transform: capitalize;
-        border-radius: 0;
-        border: 0; }
-      .info-group .title .day-filter .icon-calendar {
-        padding: 0;
-        height: 22px;
-        width: 22px;
-        display: inline-block;
-        font-size: 19px;
-        line-height: 1;
-        color: #2c9afc;
-        border: 0;
-        background: none;
-        vertical-align: middle; }
     .info-group .title:before {
       content: '';
       position: absolute;
@@ -913,6 +873,9 @@ label.require:after {
 
 .hide {
   display: none !important; }
+
+.d-inline-block {
+  display: inline-block; }
 
 .btn {
   display: inline-block;

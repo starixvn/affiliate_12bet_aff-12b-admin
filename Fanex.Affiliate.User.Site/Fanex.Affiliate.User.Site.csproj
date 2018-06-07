@@ -485,6 +485,10 @@
     <Content Include="www\build\js\user-panel.min.js">
       <DependentUpon>user-panel.js</DependentUpon>
     </Content>
+    <Content Include="www\build\styles\css\account-overview.css" />
+    <Content Include="www\build\styles\css\account-overview.min.css">
+      <DependentUpon>account-overview.css</DependentUpon>
+    </Content>
     <Content Include="www\build\styles\css\betlist.css" />
     <Content Include="www\build\styles\css\betlist.min.css">
       <DependentUpon>betlist.css</DependentUpon>
@@ -619,6 +623,7 @@
     <Content Include="www\build\styles\Images\products\ad-sb.jpg" />
     <Content Include="www\build\styles\Images\slider-1.png" />
     <Content Include="www\build\styles\Images\term-and-condition\termcondition.jpg" />
+    <Content Include="www\source\js\components\monthpicker.js" />
     <Content Include="www\source\js\components\pager.js" />
     <Content Include="www\source\js\lib\aes.js" />
     <Content Include="www\source\js\lib\bootstrap.min.js" />
@@ -748,6 +753,8 @@
     <Content Include="www\source\styles\pages\dailyearning-detail.scss" />
     <Content Include="Views\BetList\Index.cshtml" />
     <Content Include="www\source\styles\pages\betlist.scss" />
+    <Content Include="www\source\styles\scss\components\_monthpicker.scss" />
+    <Content Include="www\source\styles\pages\account-overview.scss" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

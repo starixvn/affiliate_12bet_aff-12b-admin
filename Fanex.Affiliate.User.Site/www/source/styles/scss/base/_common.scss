@@ -1,4 +1,5 @@
 ﻿@import "../components/loader";
+
 .captcha {
     .captcha-value {
         display: inline-block;
@@ -65,4 +66,8 @@ label {
 
 .hide {
     display: none !important;
+}
+
+.d-inline-block {
+    display: inline-block;
 }

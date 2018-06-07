@@ -14,7 +14,7 @@
   {
     "outputFileName": "www/build/js/account-overview.js",
     "inputFiles": [
-      "www/source/js/lib/pikaday.js",
+      "www/source/js/components/monthpicker.js",
       "www/source/js/pages/account-overview.js"
     ]
   },
