@@ -17,5 +17,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
         IEnumerable<ReferrerStatistics> GetStatisticsDetailBySite(StatisticsDetailBySiteParam statisticsDetailParam);
 
         IEnumerable<LandingPageStatistics> GetLandingPageStatistics(LandingPageStatisticsParam landingPageStatisticsParam);
+
+        AccountOverviewStatistics GetStatisticsOverview(StatisticsOverviewParam overviewParam);
     }
 }

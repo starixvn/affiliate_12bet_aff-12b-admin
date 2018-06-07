@@ -2,12 +2,14 @@
 
 @{
     Layout = null;
-    var now = DateTime.Now;
 }
 
-@model Fanex.Affiliate.User.Core.DTO.UserPanel.AccountOverviewStatistics
+@model Fanex.Affiliate.User.Core.ViewModels.UserPanel.AccountOverviewViewModel
 @{
-    var statistics = Model;
+    var selectedMonth = Model.SelectedMonth;
+    var statistics = Model.Statistics;
+    var commissionSettings = Model.CommissionSettingList;
+    var hasCommissionData = commissionSettings != null && commissionSettings.Any();
 }
 
 @Html.InlineStyles("~/www/build/styles/css/account-overview.min.css")
@@ -18,10 +20,10 @@
 
 <div class="info-group">
     <div class="title">
-        <span class="text">@(Lang.Statistic + " " + Lang.For) @now.ToString("MMMM-yyyy")</span>
+        <span class="text">@(Lang.Statistic + " " + Lang.For) @selectedMonth.ToString("MMMM-yyyy")</span>
         <div class="form-group">
             <div id="monthPicker" class="form-wrapper d-inline-block">
-                <input readonly id="MonthDate" class="form-control d-inline-block" type="text" value="@now.ToString("MMM-yyyy")" />
+                <input readonly id="MonthDate" data-original-date="@selectedMonth.ToString("MM/dd/yyyy")" class="form-control d-inline-block" type="text" value="@selectedMonth.ToString("MMM-yyyy")" />
                 <span class="glyphicon glyphicon-calendar" id="monthPickerTrigger"></span>
             </div>
             <div class="d-inline-block">
@@ -29,27 +31,44 @@
             </div>
         </div>
     </div>
-    <div class="info">
-        <p class="item">
-            <span class="text">@Lang.NewSignup:</span>
-            <span class="value">@statistics.NewSignup.ToStringNumber()</span>
-        </p>
-        <p class="item">
-            <span class="text">@Lang.TotalActive:</span>
-            <span class="value">@statistics.TotalActivePlayer.ToStringNumber()</span>
-        </p>
-        <p class="item">
-            <span class="text">@Lang.Tqacsbc:</span>
-            <span class="value">@statistics.TotalQualifiedActivePlayer.ToStringNumber()</span>
-        </p>
-        <p class="item">
-            <span class="text">@Lang.TotalDeposit:</span>
-            <span class="value">@statistics.TotalDeposit.ToStringMoneyWithSymbol()</span>
-        </p>
-        <p class="item">
-            <span class="text">@Lang.Turnover:</span>
-            <span class="value">@statistics.Turnover.ToStringMoneyWithSymbol()</span>
-        </p>
+
+    <div class="table">
+        <table class="table-statistics">
+            <thead style="visibility: hidden; height: 0; border: none;">
+                <tr>
+                    <th width="30%"></th>
+                    <th width="10%"></th>
+                    <th width="20%"></th>
+                    <th width="40%"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Lang.NewSignup:</td>
+                    <td class="text-right">@statistics.NewSignups.ToStringNumber()</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>@Lang.TotalActive:</td>
+                    <td class="text-right">@statistics.ActivePlayers.ToStringNumber()</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>@Lang.Tqacsbc:</td>
+                    <td class="text-right">@statistics.QualifiedMembers.ToStringNumber()</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>@Lang.Turnover:</td>
+                    <td class="text-right">@statistics.Turnover.ToStringMoneyWithSymbol()</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 
@@ -57,23 +76,44 @@
     <div class="title">
         <span class="text">@(Lang.Statistic + " " + Lang.UpToNow)</span>
     </div>
-    <div class="info">
-        <p class="item">
-            <span class="text">@Lang.TotalPlay:</span>
-            <span class="value">@statistics.TotalPlayerUpToNow.ToStringNumber()</span>
-        </p>
-        <p class="item">
-            <span class="text">@Lang.Turnover:</span>
-            <span class="value">@statistics.TurnoverUpToNow.ToStringMoneyWithSymbol()</span>
-        </p>
-        <p class="item">
-            <span class="text">@Lang.TotalDeposit:</span>
-            <span class="value">@statistics.TotalDepositUpToNow.ToStringMoneyWithSymbol()</span>
-        </p>
-        <p class="item">
-            <span class="text">@Lang.BalForward:</span>
-            <span class="value">@statistics.BalanceBroughtForward.ToStringMoneyWithSymbol()</span>
-        </p>
+
+    <div class="table">
+        <table class="table-statistics">
+            <thead style="visibility: hidden; height: 0;">
+                <tr>
+                    <th width="30%"></th>
+                    <th width="10%"></th>
+                    <th width="20%"></th>
+                    <th width="40%"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Lang.TotalPlay:</td>
+                    <td class="text-right">@statistics.TotalPlayers.ToStringNumber()</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>@Lang.Turnover:</td>
+                    <td class="text-right">@statistics.TurnoverUp.ToStringMoneyWithSymbol()</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>@Lang.TotalDeposit:</td>
+                    <td class="text-right">@statistics.DepositUp.ToStringMoneyWithSymbol()</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>@Lang.BalForward:</td>
+                    <td class="text-right">@statistics.BalanceBroughtForward.ToStringMoneyWithSymbol()</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 
@@ -81,58 +121,50 @@
     <div class="title">
         <span class="text">@Lang.CurrentCommissiSetting</span>
     </div>
-    <div class="table table-medium">
+    <div class="table">
         <table>
             <thead>
                 <tr>
-                    <th>@Lang.Sport</th>
-                    <th>@Lang.Tier</th>
-                    <th class="text-uppercase">@Lang.NetWinLoss</th>
-                    <th>@Lang.QualifyingMem</th>
-                    <th>@Lang.Comm</th>
+                    <th width="20%">@Lang.Product</th>
+                    <th width="5%">@Lang.Tier</th>
+                    <th width="25%" class="text-uppercase">@Lang.NetWinLoss</th>
+                    <th width="20%">@Lang.QualifyingMem</th>
+                    <th width="20%">@Lang.Comm</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td class="bg-sportsbook" rowspan="3">Sportsbook</td>
-                    <td>1</td>
-                    <td class="text-right">$1.00 - $2,99.99</td>
-                    <td class="text-right">6 - 10</td>
-                    <td class="text-right">20%</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td class="text-right">$3,000.00 - $45,000.99</td>
-                    <td class="text-right">11 - 50</td>
-                    <td class="text-right">30%</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td class="text-right">$3,000.00 - $45,000.99</td>
-                    <td class="text-right">11 - 50</td>
-                    <td class="text-right">30%</td>
-                </tr>
-                <tr>
-                    <td class="bg-casino" rowspan="3">Casino</td>
-                    <td>1</td>
-                    <td class="text-right">$1.00 - $2,99.99</td>
-                    <td class="text-right">6 - 10</td>
-                    <td class="text-right">20%</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td class="text-right">$3,000.00 - $45,000.99</td>
-                    <td class="text-right">11 - 50</td>
-                    <td class="text-right">30%</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td class="text-right">$3,000.00 - $45,000.99</td>
-                    <td class="text-right">11 - 50</td>
-                    <td class="text-right">30%</td>
-                </tr>
+                @if (hasCommissionData)
+                {
+                    var totalRow = commissionSettings.Count();
+                    var isFirstRow = true;
+                    for (var i = 0; i < totalRow; i++)
+                    {
+                        var item = commissionSettings.ElementAt(i);
+                        var isLastRow = i == totalRow - 1;
+                        var maxAmount = isLastRow ? "+" : " - " + item.MaxAmount.ToStringMoneyWithSymbol();
+                        var maxQm = isLastRow ? "+" : " - " + item.MaxQm.ToStringNumber();
+                        <tr>
+                            @if (isFirstRow)
+                            {
+                                <td class="bg-sportsbook text-center" rowspan="@totalRow">@Lang.AllProducts</td>
+                            }
+
+                            <td class="text-center">@item.TierId</td>
+                            <td class="text-right">@(item.MinAmount.ToStringMoneyWithSymbol())@maxAmount</td>
+                            <td class="text-right">@(item.MinQm.ToStringNumber())@maxQm</td>
+                            <td class="text-right">@(Convert.ToDouble(item.Commission * 100).ToString())%</td>
+                        </tr>
+
+                        isFirstRow = false;
+                    }
+                }
             </tbody>
         </table>
+
+        @if (!hasCommissionData)
+        {
+            <p class="text-center">@Lang.NoInfo</p>
+        }
     </div>
 </div>
 

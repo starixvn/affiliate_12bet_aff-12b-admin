@@ -7982,7 +7982,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Total Qualified Active Players (SB/Casino).
+        ///   Looks up a localized string similar to Total Qualified Active Players.
         /// </summary>
         public static string Tqacsbc {
             get {

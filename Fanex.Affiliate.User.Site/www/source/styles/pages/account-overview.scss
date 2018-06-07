@@ -24,3 +24,23 @@
         margin-bottom: 5px;
     }
 }
+
+.table {
+    .table-statistics {
+        border: none;
+
+        tr {
+            td, th {
+                border: none;
+            }
+        }
+
+        tr:nth-child(even) {
+            background: #f1ebeb;
+        }
+
+        tr:nth-child(odd) {
+            background: transparent;
+        }
+    }
+}

@@ -108,6 +108,17 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             }
         }
 
+        public AccountOverviewStatistics GetStatisticsOverview(StatisticsOverviewParam overviewParam)
+        {
+            const string uSpKey = "Aff_User_StatisticsSel";
+            var dbMode = overviewParam.IsInternal ? DBMode.View : DBMode.Main;
+
+            using (var objectDb = new ObjectDBBuilder(uSpKey, dbMode))
+            {
+                return objectDb.DB.QueryEntity<AccountOverviewStatistics>(overviewParam);
+            }
+        }
+
         private TrackingStatistics BuildTrackingStatisticsItem(IDataReader reader)
         {
             return new TrackingStatistics

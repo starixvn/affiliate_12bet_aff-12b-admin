@@ -68,3 +68,12 @@
     margin-left: 15px;
     margin-bottom: 5px; }
 
+.table .table-statistics {
+  border: none; }
+  .table .table-statistics tr td, .table .table-statistics tr th {
+    border: none; }
+  .table .table-statistics tr:nth-child(even) {
+    background: #f1ebeb; }
+  .table .table-statistics tr:nth-child(odd) {
+    background: transparent; }
+

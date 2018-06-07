@@ -1,10 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Functions SiteId="32" SiteName="12Bet">
-  <Function Name="Account Overview">
-    <Setting Key="Aff_StatisticsSel" SpName="Aff_StatisticsSel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_StatisticsSel_view" SpName="Aff_StatisticsSel" DbName="affiliate_12bet_view" />
-  </Function>
-
   <Function Name="Authorization">
     <Setting Key="Aff_SessionIdSel_view" SpName="Aff_SessionIdSel" DbName="affiliate_12bet_view" />
     <Setting Key="Aff_AffiliateLogin_UserInfoSel" SpName="Aff_AffiliateLogin_UserInfoSel" DbName="affiliate_12bet" />
@@ -64,6 +59,9 @@
 
     <Setting Key="Aff_ClickStatisticsSelByPage" SpName="Aff_ClickStatisticsSelByPage" DbName="affiliate_12bet" />
     <Setting Key="Aff_ClickStatisticsSelByPage_view" SpName="Aff_ClickStatisticsSelByPage" DbName="affiliate_12bet_view" />
+
+    <Setting Key="Aff_User_StatisticsSel" SpName="Aff_User_StatisticsSel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_User_StatisticsSel_view" SpName="Aff_User_StatisticsSel" DbName="affiliate_12bet_view" />
   </Function>
 
   <Function Name="HotNews">
@@ -91,6 +89,11 @@
 
     <Setting Key="Aff_EarningSelDetail" SpName="Aff_EarningSelDetail" DbName="affiliate_12bet" />
     <Setting Key="Aff_EarningSelDetail_view" SpName="Aff_EarningSelDetail" DbName="affiliate_12bet_view" />   
+  </Function>
+
+  <Function Name="Commission">
+    <Setting Key="Aff_User_CommSetting_Sel" SpName="Aff_User_CommSetting_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_User_CommSetting_Sel_view" SpName="Aff_User_CommSetting_Sel" DbName="affiliate_12bet_view" />   
   </Function>
 
   <Function Name="BetList">

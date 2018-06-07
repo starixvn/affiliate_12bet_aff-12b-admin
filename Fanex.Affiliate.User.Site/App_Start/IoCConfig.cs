@@ -76,7 +76,6 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterType<LanguageService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<AuthService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<CookieService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<AccountOverviewRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<AccountRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<MarketingRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<MemoryCacheService>().AsImplementedInterfaces().InstancePerLifetimeScope();
@@ -89,6 +88,7 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterType<MailProcessor>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<StatementHistoryRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<BetListRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<CommissionRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
     }
 }

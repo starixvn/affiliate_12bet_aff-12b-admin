@@ -2377,7 +2377,7 @@
     <comment>お客様の12BETプレーヤー・アカウントを通して</comment>
   </data>
   <data name="Tqacsbc" xml:space="preserve">
-    <value>合計アクティブ資格プレーヤー数(SB/カジノ)</value>
+    <value>合計アクティブ資格プレーヤー数</value>
   </data>
   <data name="TrackingCode" xml:space="preserve">
     <value>追跡・コード</value>

@@ -235,7 +235,6 @@
     <Compile Include="DTO\UserPanel\MarketingItem.cs" />
     <Compile Include="DTO\UserPanel\BannerType.cs" />
     <Compile Include="DTO\UserPanel\CommissionSetting.cs" />
-    <Compile Include="DTO\UserPanel\CommissionSettingDetail.cs" />
     <Compile Include="DTO\UserPanel\Domain.cs" />
     <Compile Include="DTO\UserPanel\ReferrerStatistics.cs" />
     <Compile Include="DTO\UserPanel\StatementHistory.cs" />
@@ -276,11 +275,14 @@
     <Compile Include="MetalModels\UserPanel\ReferrerStatisticsParam.cs" />
     <Compile Include="MetalModels\UserPanel\StatisticsBySiteBaseParam.cs" />
     <Compile Include="MetalModels\UserPanel\StatisticsDetailBySiteParam.cs" />
+    <Compile Include="MetalModels\UserPanel\StatisticsOverviewParam.cs" />
     <Compile Include="MetalModels\UserPanel\TrackingStatisticsDetailParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\BetList\BetListRepository.cs" />
     <Compile Include="Repository\BetList\IBetListRepository.cs" />
+    <Compile Include="Repository\CommissionRepository.cs" />
     <Compile Include="Repository\HotNewsRepository.cs" />
+    <Compile Include="Repository\ICommissionRepository.cs" />
     <Compile Include="Repository\IHotNewsRepository.cs" />
     <Compile Include="Repository\UserPanel\IMarketingRepository.cs" />
     <Compile Include="Repository\UserPanel\AccountRepository.cs" />
@@ -289,8 +291,6 @@
     <Compile Include="Repository\IAuthRepository.cs" />
     <Compile Include="Repository\AuthRepository.cs" />
     <Compile Include="Repository\IObjectDBBuilder.cs" />
-    <Compile Include="Repository\UserPanel\AccountOverviewRepository.cs" />
-    <Compile Include="Repository\UserPanel\IAccountOverviewRepository.cs" />
     <Compile Include="Repository\UserPanel\IStatementHistoryRepository.cs" />
     <Compile Include="Repository\UserPanel\IStatisticsRepository.cs" />
     <Compile Include="Repository\UserPanel\MarketingRepository.cs" />
@@ -429,6 +429,7 @@
     <Compile Include="ViewModels\EmailTemplateViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\LoginResultViewModel.cs" />
+    <Compile Include="ViewModels\UserPanel\AccountOverviewViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\DailyEarningDetailViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\DailyEarningViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Marketing\LinkFormViewModel.cs" />
