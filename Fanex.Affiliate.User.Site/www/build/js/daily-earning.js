@@ -1,6 +1,8 @@
 ﻿"use strict";
 
 var DailyEarning = (function ($) {
+    var SPORTTYPE_SPORTSBOOK = 1;
+
     var _me = {
         initialize: function initialize() {
             DailyEarning.initEvent();
@@ -9,7 +11,7 @@ var DailyEarning = (function ($) {
         initEvent: function initEvent() {
             $("#dailyEarningContent").on("click", ".dateItem", function () {
                 var params = {
-                    sportType: $("#SportType").val(),
+                    sportType: $("#SportType").length ? $("#SportType").val() : SPORTTYPE_SPORTSBOOK,
                     monthDate: $(this).data("date")
                 };
 

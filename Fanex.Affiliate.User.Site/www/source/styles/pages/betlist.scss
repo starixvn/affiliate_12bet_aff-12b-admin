@@ -1,3 +1,11 @@
 ﻿@import "../scss/vendors/bootstrap/variables";
 @import "../scss/vendors/bootstrap/mixins";
 @import "../scss/vendors/bootstrap/breadcrumbs";
+
+.table {
+    table {
+        td {
+            line-height: 20px;
+        }
+    }
+}

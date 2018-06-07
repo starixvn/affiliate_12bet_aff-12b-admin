@@ -14,3 +14,6 @@
   .breadcrumb > .active {
     color: #777777; }
 
+.table table td {
+  line-height: 20px; }
+

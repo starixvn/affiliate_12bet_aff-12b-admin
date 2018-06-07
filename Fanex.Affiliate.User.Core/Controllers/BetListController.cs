@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Text.RegularExpressions;
+using System.Web.Mvc;
 using Fanex.Affiliate.User.Core.BetListWebService;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.Filters;
@@ -40,7 +41,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 var betlistSOAP = new BetlistSOAP
                 {
                     AffiliateName = "12bet",
-                    Username = param.UserName,
+                    Username = Regex.Replace(param.UserName, @"12[Bb]et\$", string.Empty),
                     Product = "Sportsbook",
                     FromDate = param.Date,
                     ToDate = param.Date,
