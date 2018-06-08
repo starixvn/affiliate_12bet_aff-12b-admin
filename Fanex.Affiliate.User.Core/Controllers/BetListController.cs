@@ -162,6 +162,16 @@ namespace Fanex.Affiliate.User.Core.Controllers
             }
         }
 
+        [HttpGet]
+        [AjaxOnly]
+        public ActionResult OldParlay(string transId)
+        {
+            using (var webService = new AffiliateAPISoapClient())
+            {
+                return Content(webService.GetBetlistParlay(AffiliateName, transId, ExchangeRate, Language));
+            }
+        }
+
         private bool IsValidMember(string userName)
         {
             var validationParam = new BetListValidationParam

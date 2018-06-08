@@ -16,6 +16,8 @@ var BetList = (function () {
             window.showCombMPDetail = _me.showCombMPDetail;
             window.showNewCombMP = _me.showNewCombMP;
             window.ViewCashOutHistory = _me.ViewCashOutHistory;
+            window.showMP = _me.showMP;
+            window.showCombMP = _me.showCombMP;
         },
 
         getMixParlayResultUrl: function getMixParlayResultUrl(refno, winlostdate, bettype, username) {
@@ -63,63 +65,17 @@ var BetList = (function () {
         },
 
         showMP: function showMP(transId) {
-            var divEvent = document.getElementById('divEvent_' + transId);
-            divEvent.className = "mx-parlay"; //to make line-through for void-parlay-ticket
+            var $divEvent = $('#divEvent_' + transId);
+            $divEvent.addClass("mx-parlay"); //to make line-through for void-parlay-ticket
 
-            // Manage biz
-            if (divEvent.style.display === 'none') {
-                $j.ajax({
-                    method: 'post',
-                    dataType: 'text',
-                    parameters: 'transId=' + transId,
-                    onComplete: function onComplete(responseData) {
-                        divEvent.innerHTML = responseData.responseText;
-                    },
-                    type: "GET",
-                    cache: false,
-                    url: "BetListParlay.ashx?transId=" + transId,
-                    error: function error() {},
-                    success: function success(responseData) {
-                        divEvent.innerHTML = responseData;
-                        divEvent.style.display = "";
-                    },
-                    beforeSend: function beforeSend() {},
-                    complete: function complete() {}
-                });
-            } else {
-                divEvent.style.display = "none";
-                divEvent.innerHTML = "";
-            }
+            _me.showOldMixParlayDetail(transId, $divEvent);
         },
 
         showCombMP: function showCombMP(transId, index) {
-            var divEvent = document.getElementById('divEvent_' + transId + "" + index);
-            divEvent.className = "mx-parlay"; //to make line-through for void-parlay-ticket
+            var $divEvent = $('#divEvent_' + transId + "" + index);
+            $divEvent.addClass("mx-parlay"); //to make line-through for void-parlay-ticket
 
-            // Manage biz
-            if (divEvent.style.display === 'none') {
-                $j.ajax({
-                    method: 'post',
-                    parameters: 'transId=' + transId,
-                    onComplete: function onComplete(responseData) {
-                        divEvent.innerHTML = responseData.responseText;
-                    },
-                    type: "GET",
-                    dataType: "text",
-                    cache: false,
-                    url: "BetListParlay.ashx?transId=" + transId,
-                    error: function error() {},
-                    success: function success(responseData) {
-                        divEvent.innerHTML = responseData;
-                        divEvent.style.display = "";
-                    },
-                    beforeSend: function beforeSend() {},
-                    complete: function complete() {}
-                });
-            } else {
-                divEvent.style.display = "none";
-                divEvent.innerHTML = "";
-            }
+            _me.showOldMixParlayDetail(transId, $divEvent);
         },
 
         showCombMPDetail: function showCombMPDetail(transId, refNo, betId, custId, betTeam, baseCurrency) {
@@ -161,6 +117,29 @@ var BetList = (function () {
             } else {
                 $detaillDiv.hide().html("");
                 $nameDiv.show();
+            }
+        },
+
+        showOldMixParlayDetail: function showOldMixParlayDetail(transId, $divEvent) {
+            var url = Site.resolveRelativeUrl("BetList/OldParlay?transId=" + transId);
+            if ($divEvent.is(':hidden')) {
+                $.ajax({
+                    type: "GET",
+                    dataType: "html",
+                    cache: false,
+                    url: url,
+                    success: function success(response) {
+                        $divEvent.html(response).show();
+                    },
+                    beforeSend: function beforeSend() {
+                        Site.blockUI();
+                    },
+                    complete: function complete() {
+                        Site.unBlockUI();
+                    }
+                });
+            } else {
+                $divEvent.html("").hide();
             }
         },
 
