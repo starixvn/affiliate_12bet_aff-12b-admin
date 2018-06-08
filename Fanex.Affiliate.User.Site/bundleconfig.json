@@ -19,12 +19,6 @@
     ]
   },
   {
-    "outputFileName": "www/build/styles/css/pikaday.min.css",
-    "inputFiles": [
-      "www/source/styles/scss/vendors/pikaday.css"
-    ]
-  },
-  {
     "outputFileName": "www/build/js/login.js",
     "inputFiles": [
       "www/source/js/lib/aes.js",
@@ -82,6 +76,16 @@
     "inputFiles": [
       "www/source/js/lib/pikaday.js",
       "www/source/js/pages/daily-earning-detail.js"
+    ]
+  },
+  {
+    "outputFileName": "www/build/styles/css/betlist/betlist.css",
+    "inputFiles": [
+      "www/source/styles/scss/vendors/betlist/betlist.css",
+      "www/source/styles/scss/vendors/betlist/fanex.result.css",
+      "www/source/styles/scss/vendors/betlist/systemparlay.detail.css",
+      "www/source/styles/scss/vendors/betlist/cashoutdetail.css",
+      "www/source/styles/scss/vendors/betlist/rngcasino.handhistory.css"
     ]
   }
 ]

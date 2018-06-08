@@ -259,3 +259,6 @@ http://nicolasgallagher.com/micro-clearfix-hack/
 .form-filter .form-group {
   width: 330px; }
 
+.form-filter .btn-submit {
+  margin-bottom: 5px; }
+

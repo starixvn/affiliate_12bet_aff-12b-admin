@@ -1,0 +1,21 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="betlist-parlay-detail">
+    <div class="content-data">
+        @if (ViewBag.Data != null)
+        {
+            @Html.Raw(ViewBag.Data as string)
+        }
+        else
+        {
+            <p class="text-center">@Lang.NoInfo</p>
+        }
+    </div>
+
+    <div class="note-block">
+        <p class="note-content"><span class="asterisk">* </span><span class="note-title">@Lang.Note2</span></p>
+        <p class="text-content">@Lang.SystemParlayDetailNote</p>
+    </div>
+</div>

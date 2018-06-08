@@ -138,5 +138,10 @@
     "outputFile": "www/build/styles/css/account-overview.css",
     "inputFile": "www/source/styles/pages/account-overview.scss",
     "sourceMap": false
+  },
+  {
+    "outputFile": "www/build/js/betlist.js",
+    "inputFile": "www/source/js/pages/betlist.js",
+    "sourceMap": false
   }
 ]

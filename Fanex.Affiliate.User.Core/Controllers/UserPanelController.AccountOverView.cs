@@ -2,12 +2,14 @@
 {
     using System;
     using System.Web.Mvc;
+    using Filters;
     using MetalModels.UserPanel;
     using ViewModels.UserPanel;
 
     public partial class UserPanelController
     {
         [HttpGet]
+        [AjaxOnly]
         public ActionResult AccountOverview(DateTime? monthDate)
         {
             var param = new StatisticsOverviewParam

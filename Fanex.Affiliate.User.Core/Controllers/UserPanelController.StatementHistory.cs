@@ -10,6 +10,8 @@
 
     public partial class UserPanelController
     {
+        private const int DefaultPageSize = 20;
+
         [HttpGet]
         [AjaxOnly]
         public ActionResult StatementHistory()
@@ -19,7 +21,7 @@
                 AffId = SessionService.UserSession.AffId,
                 IsInternal = SessionService.IsInternal,
                 AvailableFromDate = AppSetting.StatementAvailableFrom,
-                PageSize = 20
+                PageSize = DefaultPageSize
             };
 
             var statementHistoryList = _statementHistoryRepository.GetStatementHistory(param);
@@ -36,6 +38,7 @@
             param.AffId = SessionService.UserSession.AffId;
             param.IsInternal = SessionService.IsInternal;
             param.AvailableFromDate = AppSetting.StatementAvailableFrom;
+            param.PageSize = param.PageSize ?? DefaultPageSize;
 
             var statementHistoryList = _statementHistoryRepository.GetStatementHistory(param);
             ViewBag.TotalItem = param.NRows;
@@ -82,8 +85,8 @@
             {
                 MainData = _statementHistoryRepository.GetDailyEarningDetail(param),
                 SportTypeList = param.IsInitial ? _statementHistoryRepository.GetSportTypeList(param.AffId, param.IsInternal) : null,
-                SelectedDate = param.MonthDate.Value,
-                SelectedSportType = param.SportType.Value,
+                SelectedDate = param.MonthDate.HasValue ? param.MonthDate.Value : DateTime.Now.Date,
+                SelectedSportType = param.SportType.HasValue ? param.SportType.Value : SportType.Sportsbook,
                 HasDailyDetail = extraUserInfo.HasDailyDetail
             };
 

@@ -1,0 +1,14 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="betlist-result-container">
+    @if (ViewBag.Data != null)
+    {
+        @Html.Raw(ViewBag.Data as string)
+    }
+    else
+    {
+        <p class="text-center">@Lang.NoInfo</p>
+    }
+</div>

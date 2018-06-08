@@ -415,6 +415,10 @@
     <Content Include="www\build\js\account-overview.min.js">
       <DependentUpon>account-overview.js</DependentUpon>
     </Content>
+    <Content Include="www\build\js\betlist.js" />
+    <Content Include="www\build\js\betlist.min.js">
+      <DependentUpon>betlist.js</DependentUpon>
+    </Content>
     <Content Include="www\build\js\changepassword.js" />
     <Content Include="www\build\js\changepassword.min.js">
       <DependentUpon>changepassword.js</DependentUpon>
@@ -494,9 +498,9 @@
       <DependentUpon>betlist.css</DependentUpon>
     </Content>
     <Content Include="www\build\styles\css\betlist\betlist.css" />
-    <Content Include="www\build\styles\css\betlist\cashoutdetail.css" />
-    <Content Include="www\build\styles\css\betlist\fanex.result.css" />
-    <Content Include="www\build\styles\css\betlist\global.content.css" />
+    <Content Include="www\build\styles\css\betlist\betlist.min.css">
+      <DependentUpon>betlist.css</DependentUpon>
+    </Content>
     <Content Include="www\build\styles\css\betlist\images\1F.gif" />
     <Content Include="www\build\styles\css\betlist\images\1L.gif" />
     <Content Include="www\build\styles\css\betlist\images\bar-loader.gif" />
@@ -514,8 +518,6 @@
     <Content Include="www\build\styles\css\betlist\images\tab_topbg.gif" />
     <Content Include="www\build\styles\css\betlist\images\undo.png" />
     <Content Include="www\build\styles\css\betlist\images\up.png" />
-    <Content Include="www\build\styles\css\betlist\rngcasino.handhistory.css" />
-    <Content Include="www\build\styles\css\betlist\systemparlay.detail.css" />
     <Content Include="www\build\styles\css\bootstrap.css" />
     <Content Include="www\build\styles\css\bootstrap.min.css">
       <DependentUpon>bootstrap.css</DependentUpon>
@@ -755,6 +757,8 @@
     <Content Include="www\source\styles\pages\betlist.scss" />
     <Content Include="www\source\styles\scss\components\_monthpicker.scss" />
     <Content Include="www\source\styles\pages\account-overview.scss" />
+    <Content Include="Views\BetList\Result.cshtml" />
+    <Content Include="Views\BetList\ParlayDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -251,7 +251,11 @@
     <Compile Include="Extensions\UrlHelperExtension.cs" />
     <Compile Include="Filters\AjaxOnlyAttribute.cs" />
     <Compile Include="Filters\AuthenticateAttribute.cs" />
+    <Compile Include="MetalModels\BetList\BetListCashoutDetailParam.cs" />
+    <Compile Include="MetalModels\BetList\BetListNewParlayParam.cs" />
     <Compile Include="MetalModels\BetList\BetListParam.cs" />
+    <Compile Include="MetalModels\BetList\BetListParlayDetailParam.cs" />
+    <Compile Include="MetalModels\BetList\BetListResultParam.cs" />
     <Compile Include="MetalModels\BetList\BetListValidationParam.cs" />
     <Compile Include="MetalModels\Email\EmailBaseParam.cs" />
     <Compile Include="MetalModels\Email\RecoverPasswordEmailParam.cs" />

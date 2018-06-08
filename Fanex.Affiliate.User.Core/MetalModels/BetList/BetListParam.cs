@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Fanex.Affiliate.User.Core.MetalModels.BetList
 {
@@ -6,6 +7,7 @@ namespace Fanex.Affiliate.User.Core.MetalModels.BetList
     {
         public int AffId { get; set; }
 
+        [Required]
         public string UserName { get; set; }
 
         public int SportType { get; set; }
