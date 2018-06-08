@@ -78,7 +78,9 @@ var Login = (function ($) {
                     __RequestVerificationToken: token,
                     UserName: username,
                     Password: encryptedPassword,
-                    ValidationKey: validation
+                    ValidationKey: validation,
+                    EncriptionKey: encryptKey,
+                    EncriptionIv: encryptIV
                 };
 
                 $.ajax({

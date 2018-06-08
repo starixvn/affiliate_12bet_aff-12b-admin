@@ -16,7 +16,6 @@
     public class PasswordController : BaseController
     {
         private readonly IAccountRepository _accountRepository;
-        private readonly ICookieService _cookieService;
         private readonly ICryptographyService _cryptographyService;
         private readonly IEmailService _mailService;
         private readonly ILanguageService _languageService;
@@ -25,14 +24,12 @@
             ISessionService sessionService,
             IAppSetting appSetting,
             IAccountRepository accountRepository,
-            ICookieService cookieService,
             ICryptographyService cryptographyService,
             ILanguageService languageService,
             IEmailService mailService)
             : base(sessionService, appSetting)
         {
             _accountRepository = accountRepository;
-            _cookieService = cookieService;
             _cryptographyService = cryptographyService;
             _languageService = languageService;
             _mailService = mailService;
@@ -156,9 +153,6 @@
             ViewBag.KeyString = keyString;
             ViewBag.IVString = ivString;
 
-            _cookieService.SetCookie(CookieName.EncryptionKey, keyString);
-            _cookieService.SetCookie(CookieName.InitializationVector, ivString);
-
             return View();
         }
 
@@ -167,7 +161,6 @@
         [ValidateAntiForgeryToken]
         public ActionResult Update(UpdatePasswordParam param)
         {
-            const string ResultKey = "UpdatePasswordResult";
             var resultInfo = new ResultInfo { IsOk = false };
 
             if (SessionService.IsInternal)
@@ -179,8 +172,8 @@
                 param.AffId = SessionService.UserSession.AffId;
                 param.Ip = RequestHelper.GetClientIPAddress();
                 param.Language = SessionService.CurrentLanguage;
-                param.OldPassword = _cryptographyService.EncryptPassword(param.OldPassword);
-                param.NewPassword = _cryptographyService.EncryptPassword(param.NewPassword);
+                param.OldPassword = _cryptographyService.EncryptPassword(param.OldPassword, param.EncriptionKey, param.EncriptionIv);
+                param.NewPassword = _cryptographyService.EncryptPassword(param.NewPassword, param.EncriptionKey, param.EncriptionIv);
 
                 var updateResult = _accountRepository.UpdatePassword(param);
                 resultInfo.IsOk = updateResult.IsOk;
@@ -191,7 +184,7 @@
                 resultInfo.Message = string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage));
             }
 
-            TempData[ResultKey] = resultInfo;
+            TempData[TempDataKey.UpdatePasswordResult] = resultInfo;
 
             return RedirectToAction("Update");
         }

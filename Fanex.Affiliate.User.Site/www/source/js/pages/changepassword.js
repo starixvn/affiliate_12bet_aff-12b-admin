@@ -26,8 +26,8 @@
             var $confirmedNewPassword = $("#ConfirmNewPassword");
 
             var token = $('input[name="__RequestVerificationToken"]', $("#updatePasswordForm")).val();
-            var encryptKey = $("#KeyString").val();
-            var encryptIV = $("#IVString").val();
+            var encryptKey = $("#EncriptionKey").val();
+            var encryptIV = $("#EncriptionIv").val();
 
             var encryptedOldPassword = _me.encryptPassword($oldPassword.val(), encryptKey, encryptIV);
             var encryptedNewPassword = _me.encryptPassword($newPassword.val(), encryptKey, encryptIV);

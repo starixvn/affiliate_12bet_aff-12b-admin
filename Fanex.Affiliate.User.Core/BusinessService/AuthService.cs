@@ -1,5 +1,4 @@
 ﻿using System.Web;
-using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.MetalModels;
@@ -11,13 +10,11 @@ namespace Fanex.Affiliate.User.Core.BusinessService
     public class AuthService : IAuthService
     {
         private readonly IAuthRepository _authRepository;
-        private readonly ICookieService _cookieService;
         private readonly ICryptographyService _cryptographyService;
 
-        public AuthService(IAuthRepository authRepository, ICookieService cookieService, ICryptographyService cryptographyService)
+        public AuthService(IAuthRepository authRepository, ICryptographyService cryptographyService)
         {
             _authRepository = authRepository;
-            _cookieService = cookieService;
             _cryptographyService = cryptographyService;
         }
 
@@ -67,7 +64,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             var isMatchPassword = false;
             if (!isInternal)
             {
-                string encryptedPassword = _cryptographyService.EncryptPassword(userParam.Password);
+                string encryptedPassword = _cryptographyService.EncryptPassword(userParam.Password, userParam.EncriptionKey, userParam.EncriptionIv);
                 isMatchPassword = encryptedPassword.Equals(userInfo.Password);
             }
 

@@ -3,7 +3,6 @@ using System.Web.Mvc;
 using System.Web.Security;
 using System.Web.UI;
 using Fanex.Affiliate.User.Core.BusinessService;
-using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.Filters;
@@ -19,10 +18,10 @@ namespace Fanex.Affiliate.User.Core.Controllers
         private readonly ICookieService _cookieService;
 
         public AuthController(
-            IAuthService authService,
-            ICookieService cookieService,
             ISessionService sessionService,
-            IAppSetting appSetting)
+            IAppSetting appSetting,
+            ICookieService cookieService,
+            IAuthService authService)
             : base(sessionService, appSetting)
         {
             _authService = authService;
@@ -40,9 +39,6 @@ namespace Fanex.Affiliate.User.Core.Controllers
 
                 ViewBag.KeyString = keyString;
                 ViewBag.IVString = ivString;
-
-                _cookieService.SetCookie(CookieName.EncryptionKey, keyString);
-                _cookieService.SetCookie(CookieName.InitializationVector, ivString);
             }
 
             return View();
@@ -87,9 +83,6 @@ namespace Fanex.Affiliate.User.Core.Controllers
 
                         SessionService.AssignSessions(user);
                         FormsAuthentication.SetAuthCookie(user.UserName, false);
-
-                        _cookieService.RemoveCookie(CookieName.EncryptionKey);
-                        _cookieService.RemoveCookie(CookieName.InitializationVector);
                     }
                 }
                 else

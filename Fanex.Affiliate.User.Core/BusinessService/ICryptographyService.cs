@@ -2,6 +2,6 @@
 {
     public interface ICryptographyService
     {
-        string EncryptPassword(string inputPassword);
+        string EncryptPassword(string inputPassword, string encryptionKey, string iv);
     }
 }

@@ -3,5 +3,7 @@
     public static class TempDataKey
     {
         public const string SendForgotPasswordEmailResult = "SendForgotPasswordEmailResult";
+
+        public const string UpdatePasswordResult = "UpdatePasswordResult";
     }
 }

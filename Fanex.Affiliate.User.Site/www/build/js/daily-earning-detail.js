@@ -1284,6 +1284,7 @@ var DailyEarningDetail = (function ($) {
                 var params = $(this).data("param");
 
                 if (params) {
+                    Site.showLoader();
                     Site.redirect(Site.resolveRelativeUrl("BetList/Index?" + $.param(params)));
                 }
             });

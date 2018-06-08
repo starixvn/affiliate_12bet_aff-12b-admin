@@ -28,5 +28,13 @@ namespace Fanex.Affiliate.User.Core.MetalModels
         public int ErrCode { get; set; }
 
         public string ErrMsg { get; set; }
+
+        [SpParam(Ignored = true)]
+        [Required(ErrorMessage = "Update Password failed")]
+        public string EncriptionKey { get; set; }
+
+        [SpParam(Ignored = true)]
+        [Required(ErrorMessage = "Update Password failed")]
+        public string EncriptionIv { get; set; }
     }
 }
