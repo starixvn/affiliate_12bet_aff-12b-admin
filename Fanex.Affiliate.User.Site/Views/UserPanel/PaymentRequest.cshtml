@@ -1,6 +1,59 @@
 ﻿@{
     Layout = null;
 }
+@using Fanex.Affiliate.User.Core.Constants;
+
+@model Fanex.Affiliate.User.Core.ViewModels.UserPanel.PaymentViewModel
+@{
+    var hasData = Model.PaymentList != null && Model.PaymentList.Any();
+    var paymentMethod = Model.PreferredPayment.Replace("Wire", Lang.BankTransfer);
+
+    var canRequest = Model.IsValidAmount && Model.IsValidDateRange && Model.PendingPayment == null;
+    var errorMessage = GetErrorMessage();
+
+    @functions {
+        string GetErrorMessage()
+        {
+            string method = Model.PreferredPayment.Replace("Wire", Lang.BankTransfer);
+            if (!method.MatchWith("Player"))
+            {
+                return Error.PaymentMethodInvalid.Replace("{0}", method)
+                            .Replace("{1}", Url.Action("Index", "UserPanel") + "/#MyAccount");
+            }
+
+            if (!Model.IsValidAmount)
+            {
+                return Error.PaymentBalanceInvalid;
+            }
+
+            if (!Model.IsValidDateRange)
+            {
+                return Error.PaymentPayoutTimeInvalid;
+            }
+
+            return string.Empty;
+        }
+
+        static string ConvertStatus(string status)
+        {
+            switch (status.ToLower())
+            {
+                case PaymentStatus.Pending:
+                    return Lang.Proccessing;
+                case PaymentStatus.Completed:
+                    return Lang.Approved;
+                case PaymentStatus.Cancelled:
+                    return Lang.Cancelled;
+                case PaymentStatus.Approved:
+                    return Lang.Approved;
+                case PaymentStatus.Rejected:
+                    return Lang.Rejected;
+                default:
+                    return Lang.Unknown;
+            }
+        }
+    }
+}
 
 @Html.InlineStyles("~/www/build/styles/css/payment-request.css")
 
@@ -13,35 +66,87 @@
         <span class="text">@Lang.PaymentInfor</span>
     </div>
     <div class="payment-info">
-        <p class="alert alert-success" id="message" role="alert">Well done! You successfully read this important alert message.</p>
+        @if (!string.IsNullOrEmpty(errorMessage))
+        {
+            <p class="alert alert-danger" id="errorMessage" role="alert">@Html.Raw(errorMessage)</p>
+        }
 
-        <form class="form-horizontal">
+        @using (Html.BeginForm("RequestPayout", "UserPanel", FormMethod.Post, new { @id = "requestPayoutForm", @class = "form-horizontal" }))
+        {
+            @Html.AntiForgeryToken()
+
             <div class="form-group">
                 <label class="col-sm-3 control-label">@Lang.BalForward</label>
                 <div class="col-sm-3">
-                    <p class="form-control-static">$5,000.00</p>
+                    <p class="form-control-static">@Model.BalBroughtForward.ToStringMoneyWithSymbol()</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-3 control-label">@Lang.MinWithdraw</label>
                 <div class="col-sm-3">
-                    <p class="form-control-static">$100.00</p>
+                    <p class="form-control-static">@Model.MinAmount.ToStringMoneyWithSymbol()</p>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-3 control-label">@Lang.RequestAmt</label>
                 <div class="col-sm-3">
-                    <input type="text" class="form-control" id="requestAmount" />
+                    <input type="text" class="form-control" id="requestAmount" @(canRequest ? string.Empty : "disabled") />
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-5">
-                    <button type="button" class="btn btn-submit">@Lang.RequestPayout</button>
+                    @if (canRequest)
+                    {
+                        <button id="btnRequestPayout" type="button" class="btn btn-submit">@Lang.RequestPayout</button>
+                    }
+                    else
+                    {
+                        <button type="button" class="btn btn-submit disabled" disabled>@Lang.RequestPayout</button>
+                    }
                 </div>
             </div>
-        </form>
+
+            @Html.HiddenFor(p => p.BalBroughtForward)
+            @Html.HiddenFor(p => p.MinAmount)
+        }
     </div>
 </div>
+
+@if(Model.PendingPayment != null)
+{
+    <div class="info-group">
+        <div class="title">
+            <span class="text">@Lang.PendingRequest</span>
+        </div>
+
+        <div class="table payment-history">
+            <table>
+                <thead>
+                    <tr>
+                        <th width="10%">@Lang.RefNo</th>
+                        <th width="10%">@Lang.DateRequest</th>
+                        <th width="10%">@Lang.RequestAmount</th>
+                        <th width="10%">@Lang.PaymentMethod</th>
+                        <th width="10%">@Lang.CompletedDate</th>
+                        <th width="10%">@Lang.Status</th>
+                        <th width="20%">@Lang.Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center">@Model.PendingPayment.TransDate.ToString("MM/dd/yyyy")</td>
+                        <td class="text-center">@Model.PendingPayment.Amount.ToStringMoneyWithSymbol()</td>
+                        <td class="text-right">@ConvertStatus(Model.PendingPayment.Status)</td>
+                        <td class="text-center">@paymentMethod</td>
+                        <td class="text-center">
+                            <button type="button" class="btn btn-submit" id="cancelPayment">@Lang.CancelRequest</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
 
 <div class="info-group">
     <div class="title">
@@ -52,63 +157,39 @@
         <table>
             <thead>
                 <tr>
-                    <th>@Lang.RefNo</th>
-                    <th>@Lang.DateRequest</th>
-                    <th>@Lang.RequestAmount</th>
-                    <th>@Lang.PaymentMethod</th>
-                    <th>@Lang.CompletedDate</th>
-                    <th>@Lang.Status</th>
-                    <th>@Lang.Description</th>
+                    <th width="10%">@Lang.RefNo</th>
+                    <th width="10%">@Lang.DateRequest</th>
+                    <th width="10%">@Lang.RequestAmount</th>
+                    <th width="10%">@Lang.PaymentMethod</th>
+                    <th width="10%">@Lang.CompletedDate</th>
+                    <th width="10%">@Lang.Status</th>
+                    <th width="20%">@Lang.Description</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td class="text-center">1262128703</td>
-                    <td class="text-center">10/25/2017</td>
-                    <td class="text-right">$100.00</td>
-                    <td class="text-center">Player</td>
-                    <td class="text-center">10/25/2017</td>
-                    <td class="text-center text-bold">Rejected</td>
-                    <td>testing</td>
-                </tr>
-                <tr>
-                    <td class="text-center">1262128703</td>
-                    <td class="text-center">10/25/2017</td>
-                    <td class="text-right">$100.00</td>
-                    <td class="text-center">Player</td>
-                    <td class="text-center">10/25/2017</td>
-                    <td class="text-center text-bold">Rejected</td>
-                    <td>testing</td>
-                </tr>
-                <tr>
-                    <td class="text-center">1262128703</td>
-                    <td class="text-center">10/25/2017</td>
-                    <td class="text-right">$100.00</td>
-                    <td class="text-center">Player</td>
-                    <td class="text-center">10/25/2017</td>
-                    <td class="text-center text-bold">Rejected</td>
-                    <td>testing</td>
-                </tr>
-                <tr>
-                    <td class="text-center">1262128703</td>
-                    <td class="text-center">10/25/2017</td>
-                    <td class="text-right">$100.00</td>
-                    <td class="text-center">Player</td>
-                    <td class="text-center">10/25/2017</td>
-                    <td class="text-center text-bold">Rejected</td>
-                    <td>testing</td>
-                </tr>
-                <tr>
-                    <td class="text-center">1262128703</td>
-                    <td class="text-center">10/25/2017</td>
-                    <td class="text-right">$100.00</td>
-                    <td class="text-center">Player</td>
-                    <td class="text-center">10/25/2017</td>
-                    <td class="text-center text-bold">Rejected</td>
-                    <td>testing</td>
-                </tr>
-                
+                @{
+                    if (hasData)
+                    {
+                        foreach (var item in Model.PaymentList)
+                        {
+                            <tr>
+                                <td class="text-center">@item.TransId</td>
+                                <td class="text-center">@item.TransDate.ToString("MM/dd/yyyy")</td>
+                                <td class="text-right">@item.Amount.ToStringMoneyWithSymbol()</td>
+                                <td class="text-center">@paymentMethod</td>
+                                <td class="text-center">@item.CompletedDate.ToString("MM/dd/yyyy")</td>
+                                <td class="text-center text-bold">@ConvertStatus(item.Status)</td>
+                                <td>@item.AffDesc</td>
+                            </tr>
+                        }
+                    }
+                }
             </tbody>
         </table>
+
+        @if (!hasData)
+        {
+            <p class="text-center">@Lang.NoInfo</p>
+        }
     </div>
 </div>

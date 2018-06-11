@@ -88,6 +88,33 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You cannot request payout because of insufficient balance..
+        /// </summary>
+        public static string PaymentBalanceInvalid {
+            get {
+                return ResourceManager.GetString("PaymentBalanceInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry! The payment via {0} is not available. At the moment, only &apos;12Bet Player Account&apos; method is supported. Please &lt;a href=&apos;{1}&apos;&gt;click here&lt;/a&gt; to make a change..
+        /// </summary>
+        public static string PaymentMethodInvalid {
+            get {
+                return ResourceManager.GetString("PaymentMethodInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can only request payout from 8th to 15th of the month..
+        /// </summary>
+        public static string PaymentPayoutTimeInvalid {
+            get {
+                return ResourceManager.GetString("PaymentPayoutTimeInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The address that you have used to request a new password is not valid..
         /// </summary>
         public static string RecoverPassword1001 {

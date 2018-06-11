@@ -126,6 +126,15 @@
   <data name="ForgotPassword1009" xml:space="preserve">
     <value>此电子邮件地址对应的合作伙伴帐户失效或未被关闭。&lt;a href="{0}" class='err-msg'&gt;请重试或联系我们。&lt;/a&gt;</value>
   </data>
+  <data name="PaymentBalanceInvalid" xml:space="preserve">
+    <value>您的帐户余额不足，不能要求提款</value>
+  </data>
+  <data name="PaymentMethodInvalid" xml:space="preserve">
+    <value>非常抱歉，{0}支付方式暂不可用。&lt;a href='{1}'&gt;请点击这里&lt;/a&gt;改选“12BET玩家帐户”支付。</value>
+  </data>
+  <data name="PaymentPayoutTimeInvalid" xml:space="preserve">
+    <value>每月8号至15号为申请提款时间.</value>
+  </data>
   <data name="RecoverPassword1001" xml:space="preserve">
     <value>您用于申请新密码的地址无效。</value>
   </data>

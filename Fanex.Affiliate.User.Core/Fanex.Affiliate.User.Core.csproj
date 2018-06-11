@@ -182,6 +182,7 @@
     <Compile Include="BusinessService\IEmailService.cs" />
     <Compile Include="BusinessService\IHotNewsService.cs" />
     <Compile Include="Constants\CommGroupName.cs" />
+    <Compile Include="Constants\PaymentStatus.cs" />
     <Compile Include="Constants\SportType.cs" />
     <Compile Include="Constants\TempDataKey.cs" />
     <Compile Include="CoreService\CookieService.cs" />
@@ -226,6 +227,7 @@
     <Compile Include="DTO\Language.cs" />
     <Compile Include="DTO\LatestHotNews.cs" />
     <Compile Include="DTO\MemberSitePage.cs" />
+    <Compile Include="DTO\Payment.cs" />
     <Compile Include="DTO\SportTypeItem.cs" />
     <Compile Include="DTO\UserInfo.cs" />
     <Compile Include="DTO\UserPanel\AccountOverviewStatistics.cs" />
@@ -261,6 +263,7 @@
     <Compile Include="MetalModels\Email\RecoverPasswordEmailParam.cs" />
     <Compile Include="MetalModels\Email\NewPasswordEmailParam.cs" />
     <Compile Include="MetalModels\PasswordRecoveryParam.cs" />
+    <Compile Include="MetalModels\PaymentParam.cs" />
     <Compile Include="MetalModels\UserPanel\DailyEarningParam.cs" />
     <Compile Include="MetalModels\UserPanel\StatementHistoryParam.cs" />
     <Compile Include="MetalModels\UpdateAccountParam.cs" />
@@ -288,6 +291,8 @@
     <Compile Include="Repository\HotNewsRepository.cs" />
     <Compile Include="Repository\ICommissionRepository.cs" />
     <Compile Include="Repository\IHotNewsRepository.cs" />
+    <Compile Include="Repository\IPaymentRepository.cs" />
+    <Compile Include="Repository\PaymentRepository.cs" />
     <Compile Include="Repository\UserPanel\IMarketingRepository.cs" />
     <Compile Include="Repository\UserPanel\AccountRepository.cs" />
     <Compile Include="Repository\UserPanel\IAccountRepository.cs" />
@@ -439,6 +444,7 @@
     <Compile Include="ViewModels\UserPanel\Marketing\LinkFormViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Marketing\MarketingViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Marketing\SearchFormViewModel.cs" />
+    <Compile Include="ViewModels\UserPanel\PaymentViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Statistics\LandingPageStatisticsViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Statistics\ReferrerStatisticsViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Statistics\TrackingStatisticsViewModel.cs" />

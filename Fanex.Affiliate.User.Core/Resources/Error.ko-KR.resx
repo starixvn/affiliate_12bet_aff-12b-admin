@@ -126,6 +126,15 @@
   <data name="ForgotPassword1009" xml:space="preserve">
     <value>이 이메일 주소는 비활성되었거나 아직 승인되지 않았습니다. 다시한번 시도해 보십시오. 혹은 &lt;a href="{0}" class='err-msg'&gt;으로 연락 주십시오&lt;/a&gt;.</value>
   </data>
+  <data name="PaymentBalanceInvalid" xml:space="preserve">
+    <value>부족한 잔액 때문에 출금신청을 할수가 없습니다</value>
+  </data>
+  <data name="PaymentMethodInvalid" xml:space="preserve">
+    <value>죄송합니다. {방법}을 통해하는 지불은 불가능 합니다. 현재, '12bet플러이어 계좌'를 통한 방법만 지원됩니다.</value>
+  </data>
+  <data name="PaymentPayoutTimeInvalid" xml:space="preserve">
+    <value>제휴사는 매달 8일과 15일에만 출금출금요청을 할수 있습니다.</value>
+  </data>
   <data name="RecoverPassword1001" xml:space="preserve">
     <value>새비밀번호를 발급받기위한 이메일주소가 유효하지 않습니다.</value>
   </data>

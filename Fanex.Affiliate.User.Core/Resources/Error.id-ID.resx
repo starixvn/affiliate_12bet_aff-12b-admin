@@ -126,6 +126,15 @@
   <data name="ForgotPassword1009" xml:space="preserve">
     <value>Alamat email ini sedang digunakan oleh afiliasi yang tidak aktif, atau belum disetujui. Silakan coba lagi atau  &lt;a href="{0}" class='err-msg'&gt;Hubungi kami&lt;/a&gt;.</value>
   </data>
+  <data name="PaymentBalanceInvalid" xml:space="preserve">
+    <value>Anda tidak dapat meminta pembayaran karena saldo tidak mencukupi.</value>
+  </data>
+  <data name="PaymentMethodInvalid" xml:space="preserve">
+    <value>Maaf! Pembayaran melalui {0} tidak tersedia. Pada saat ini, hanya metode 'Rekening Pemain 12Bet' yang didukung. Silakan &lt;a href='{1}'&gt;klik di sini&lt;/a&gt; untuk membuat perubahan.</value>
+  </data>
+  <data name="PaymentPayoutTimeInvalid" xml:space="preserve">
+    <value>Anda hanya bisa meminta pembayaran dari tanggal 8 - 15 dalam bulan.</value>
+  </data>
   <data name="RecoverPassword1001" xml:space="preserve">
     <value>Alamat yang Anda gunakan untuk meminta kata sandi baru, tidak valid.</value>
   </data>

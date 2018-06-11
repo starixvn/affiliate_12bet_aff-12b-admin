@@ -126,6 +126,15 @@
   <data name="ForgotPassword1009" xml:space="preserve">
     <value>このメールアドレスは、活動していないまたは承認されていないアフィリエイトに使用されています。もう一度やり直すか、"お問い合わせ"から連絡してください。</value>
   </data>
+  <data name="PaymentBalanceInvalid" xml:space="preserve">
+    <value>残高が充分でないため支払の請求ができません</value>
+  </data>
+  <data name="PaymentMethodInvalid" xml:space="preserve">
+    <value>申し訳ございません。{0}による支払はサポートしていません。現在は12BETプレーヤー・アカウント支払方法のみのサポートとなります。マイ・アカウントから支払を選択し、変更してください。</value>
+  </data>
+  <data name="PaymentPayoutTimeInvalid" xml:space="preserve">
+    <value>支払依頼が可能なのは各月の8日から15日の間です</value>
+  </data>
   <data name="RecoverPassword1001" xml:space="preserve">
     <value>The address that you have used to request a new password is not valid.</value>
   </data>

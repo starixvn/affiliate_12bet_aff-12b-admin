@@ -92,12 +92,17 @@
   </Function>
 
   <Function Name="Commission">
-    <Setting Key="Aff_User_CommSetting_Sel" SpName="Aff_User_CommSetting_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_User_CommSetting_Sel_view" SpName="Aff_User_CommSetting_Sel" DbName="affiliate_12bet_view" />   
+    <Setting Key="Aff_User_CommSetting_Sel" SpName="Aff_User_CommSetting_Sel_xtest" DbName="affiliate_12bet" />
+    <Setting Key="Aff_User_CommSetting_Sel_view" SpName="Aff_User_CommSetting_Sel_xtest" DbName="affiliate_12bet_view" />   
   </Function>
 
   <Function Name="BetList">
     <Setting Key="Aff_BetList_CheckBelonging" SpName="Aff_BetList_CheckBelonging" DbName="affiliate_12bet" />
     <Setting Key="Aff_BetList_CheckBelonging_view" SpName="Aff_BetList_CheckBelonging" DbName="affiliate_12bet_view" />  
+  </Function>
+
+  <Function>
+    <Setting Key="Aff_PaymentRequestSelInfoByAff" SpName="Aff_PaymentRequestSelInfoByAff" DbName="affiliate_12bet" />
+    <Setting Key="Aff_PaymentRequestSelInfoByAff_view" SpName="Aff_PaymentRequestSelInfoByAff" DbName="affiliate_12bet_view" />
   </Function>
 </Functions>

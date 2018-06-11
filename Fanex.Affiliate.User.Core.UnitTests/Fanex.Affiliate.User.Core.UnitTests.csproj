@@ -112,6 +112,7 @@
   <ItemGroup>
     <Compile Include="Controllers\UserPanelController.AccountOverViewTest.cs" />
     <None Include="app.config" />
+    <Compile Include="Controllers\UserPanelController.PaymentRequestTest.cs" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

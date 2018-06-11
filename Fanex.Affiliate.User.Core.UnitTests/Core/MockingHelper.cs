@@ -35,7 +35,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Core
             IMarketingService marketingService = null,
             IStatisticsRepository statisticsRepository = null,
             IStatementHistoryRepository statementHistoryRepository = null,
-            ICommissionRepository commissionRepository = null)
+            ICommissionRepository commissionRepository = null,
+            IPaymentRepository paymentRepository = null)
         {
             return new UserPanelController(
                 sessionService ?? GetSessionService(),
@@ -44,7 +45,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Core
                 marketingService ?? Mock.Of<IMarketingService>(),
                 statisticsRepository ?? Mock.Of<IStatisticsRepository>(),
                 statementHistoryRepository ?? Mock.Of<IStatementHistoryRepository>(),
-                commissionRepository ?? Mock.Of<ICommissionRepository>());
+                commissionRepository ?? Mock.Of<ICommissionRepository>(),
+                paymentRepository ?? Mock.Of<IPaymentRepository>());
         }
     }
 }

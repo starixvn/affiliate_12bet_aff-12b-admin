@@ -126,6 +126,12 @@
   <data name="ForgotPassword1009" xml:space="preserve">
     <value>La dirección de correo electrónico está utilizada por un afiliado inactivo o cuya cuenta no ha sido aprobada. Vuelva a intentarlo más tarde o &lt;a href="{0}" class='err-msg'&gt;póngase en contacto con nosotros&lt;/a&gt;.</value>
   </data>
+  <data name="PaymentBalanceInvalid" xml:space="preserve">
+    <value>No puede solicitar el pago porque no tiene saldo suficiente.</value>
+  </data>
+  <data name="PaymentMethodInvalid" xml:space="preserve">
+    <value>Lo sentimos. El pago mediante {0} no está disponible. En este momento, el único método de pago válido es mediante la cuenta de jugador de 12Bet. Haga &lt;a href='{1}'&gt;clic aquí&lt;/a&gt; para realizar cambios.</value>
+  </data>
   <data name="RecoverPassword1001" xml:space="preserve">
     <value>La dirección que ha utilizado para solicitar una nueva contraseña no es válida.</value>
   </data>
