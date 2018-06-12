@@ -1,5 +1,7 @@
 ﻿using Fanex.Affiliate.User.Core.DTO;
+using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.MetalModels;
+using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.ViewModels;
 
 namespace Fanex.Affiliate.User.Core.Repository.UserPanel
@@ -8,7 +10,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
     {
         AccountInformationViewModel GetAccountInfo(int affId);
 
-        bool IsValidDepositPlayer(string playerUserName);
+        DepositAccountInfo IsValidDepositPlayer(string playerUserName);
 
         ResultInfo UpdateAccountInformation(UpdateAccountParam accountUpdateParam);
 
@@ -21,5 +23,11 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
         UserInfo RecoverPassword(PasswordRecoveryParam passwordRecoveryParam);
 
         UserInfo GetUserInfoById(int affId, bool isInternal);
+
+        PlayerAccountCheckingResult CheckPlayerAccountIsActived(int affId, string language);
+
+        IbcPlayerAccountInsertResult InsertPlayerAccountForIbc(DepositAccountInfo accountInfo);
+
+        ResultInfo UpdatePlayerAccountStatusForDeposit(DepositPlayerAccountParam account);
     }
 }

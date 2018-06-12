@@ -88,6 +88,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid request amount.
+        /// </summary>
+        public static string PaymentAmountInvalid {
+            get {
+                return ResourceManager.GetString("PaymentAmountInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You cannot request payout because of insufficient balance..
         /// </summary>
         public static string PaymentBalanceInvalid {

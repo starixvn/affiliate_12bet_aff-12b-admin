@@ -17,6 +17,7 @@
         private readonly ICommissionRepository _commissionRepository;
         private readonly IPaymentRepository _paymentRepository;
         private readonly IEmailService _emailService;
+        private readonly IAccountService _accountService;
 
         public UserPanelController(
             ISessionService sessionService,
@@ -27,7 +28,8 @@
             IStatementHistoryRepository statementHistoryRepository,
             ICommissionRepository commissionRepository,
             IPaymentRepository paymentRepository,
-            IEmailService emailService)
+            IEmailService emailService,
+            IAccountService accountService)
             : base(sessionService, appSetting)
         {
             _accountRepository = accountRepository;
@@ -37,6 +39,7 @@
             _commissionRepository = commissionRepository;
             _paymentRepository = paymentRepository;
             _emailService = emailService;
+            _accountService = accountService;
         }
 
         [HttpGet]

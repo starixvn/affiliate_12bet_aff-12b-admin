@@ -1,4 +1,5 @@
 ﻿using System;
+using Fanex.Data;
 
 namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
 {
@@ -19,5 +20,11 @@ namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
         public int ErrCode { get; set; }
 
         public string ErrMsg { get; set; }
+
+        [SpParam(Ignored = true)]
+        public decimal MinAmount { get; set; }
+
+        [SpParam(Ignored = true)]
+        public decimal BalBroughtForward { get; set; }
     }
 }

@@ -47,11 +47,33 @@
         [ValidateAntiForgeryToken]
         public ActionResult CreatePaymentRequest(PaymentCreationParam paymentCreationParam)
         {
-            var resultInfo = new ResultInfo { IsOk = false };
+            var resultInfo = ValidatePaymentRequest(paymentCreationParam);
 
-            if (SessionService.IsInternal)
+            if (resultInfo.IsOk)
             {
-                resultInfo.Message = Lang.ErrAuthorized;
+                var affId = SessionService.UserSession.AffId;
+                var checkingResult = _accountService.CheckPlayerAccountIsActived(affId);
+                if (checkingResult.IsOk)
+                {
+                    var creationParam = new PaymentCreationParam
+                    {
+                        AffId = affId,
+                        Amount = paymentCreationParam.Amount,
+                        Language = SessionService.CurrentLanguage,
+                        Ip = Request.UserHostAddress
+                    };
+
+                    resultInfo = _paymentRepository.CreatePaymentRequest(creationParam);
+
+                    if (resultInfo.IsOk)
+                    {
+                        SendEmail(
+                            PaymentRequestType.Create,
+                            creationParam.TransId,
+                            creationParam.Amount,
+                            creationParam.TransDate);
+                    }
+                }
             }
 
             TempData[TempDataKey.PaymentResult] = resultInfo;
@@ -71,7 +93,6 @@
             }
             else
             {
-                var affId = SessionService.UserSession.AffId;
                 cancelParam.UserId = SessionService.UserSession.AffId;
                 cancelParam.Language = SessionService.CurrentLanguage;
                 cancelParam.Status = "Cancelled";
@@ -81,25 +102,11 @@
 
                 if (resultInfo.IsOk)
                 {
-                    var userInfo = _accountRepository.GetUserInfoById(affId, SessionService.IsInternal);
-                    if (!string.IsNullOrEmpty(userInfo.Email))
-                    {
-                        var emailparam = new PaymentEmailParam
-                        {
-                            User = userInfo,
-                            PaymentType = PaymentRequestType.Cancel,
-                            MailTo = userInfo.Email,
-                            MailCc = AppSetting.MailCc,
-                            MailContact = AppSetting.MailContact,
-                            MailBcc = AppSetting.MailBcc,
-                            RootDomain = SiteDomainHelper.GetRootUrl(this),
-                            TransId = cancelParam.TransId,
-                            Amount = cancelParam.Amount,
-                            RequestDate = cancelParam.RequestDate
-                        };
-
-                        _emailService.SendPaymentEmail(emailparam);
-                    }
+                    SendEmail(
+                        PaymentRequestType.Cancel,
+                        cancelParam.TransId,
+                        cancelParam.Amount,
+                        cancelParam.RequestDate);
                 }
             }
 
@@ -112,6 +119,60 @@
         {
             var currentDay = DateTime.Now.Day;
             return (currentDay >= BeginDay && currentDay <= EndDay) || AppSetting.IsLocal;
+        }
+
+        private bool IsValidAmount(PaymentCreationParam paymentCreationParam)
+        {
+            return paymentCreationParam.Amount > 0 &&
+                paymentCreationParam.Amount >= paymentCreationParam.MinAmount &&
+                paymentCreationParam.Amount <= paymentCreationParam.BalBroughtForward;
+        }
+
+        private void SendEmail(PaymentRequestType paymentType, long transId, decimal amount, DateTime transDate)
+        {
+            var userInfo = _accountRepository.GetUserInfoById(SessionService.UserSession.AffId, SessionService.IsInternal);
+            if (!string.IsNullOrEmpty(userInfo.Email))
+            {
+                var emailparam = new PaymentEmailParam
+                {
+                    User = userInfo,
+                    PaymentType = paymentType,
+                    MailTo = userInfo.Email,
+                    MailCc = AppSetting.MailCc,
+                    MailContact = AppSetting.MailContact,
+                    MailBcc = AppSetting.MailBcc,
+                    RootDomain = SiteDomainHelper.GetRootUrl(this),
+                    TransId = transId,
+                    Amount = amount,
+                    RequestDate = transDate
+                };
+
+                _emailService.SendPaymentEmail(emailparam);
+            }
+        }
+
+        private ResultInfo ValidatePaymentRequest(PaymentCreationParam paymentCreationParam)
+        {
+            var resultInfo = new ResultInfo { IsOk = false };
+
+            if (SessionService.IsInternal)
+            {
+                resultInfo.Message = Lang.ErrAuthorized;
+            }
+            else if (!IsValidDateRange())
+            {
+                resultInfo.Message = Lang.PayoutTime;
+            }
+            else if (!IsValidAmount(paymentCreationParam))
+            {
+                resultInfo.Message = Error.PaymentAmountInvalid;
+            }
+            else
+            {
+                resultInfo.IsOk = true;
+            }
+
+            return resultInfo;
         }
     }
 }

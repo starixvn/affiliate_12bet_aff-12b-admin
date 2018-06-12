@@ -1,6 +1,8 @@
 ﻿using System;
 using Fanex.Affiliate.User.Core.DTO;
+using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.MetalModels;
+using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.ViewModels;
 
 namespace Fanex.Affiliate.User.Core.Repository.UserPanel
@@ -19,24 +21,14 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             }
         }
 
-        public bool IsValidDepositPlayer(string playerUserName)
+        public DepositAccountInfo IsValidDepositPlayer(string playerUserName)
         {
             const string uSpKey = "Deposit_GetCustDataForCreateIBCACByUserName";
-            var isValid = false;
 
             using (var objectDb = new ObjectDBBuilder(uSpKey))
             {
-                var parameterSet = new { Deposit_Username = playerUserName };
-
-                var dataTable = objectDb.DB.ExecuteDataSet(parameterSet).Tables[0];
-
-                if (dataTable != null && dataTable.Rows.Count > 0)
-                {
-                    isValid = Convert.ToInt32(dataTable.Rows[0]["Success"]) == 0;
-                }
+                return objectDb.DB.QueryEntity<DepositAccountInfo>(new { Deposit_Username = playerUserName });
             }
-
-            return isValid;
         }
 
         public ResultInfo UpdateAccountInformation(UpdateAccountParam accountUpdateParam)
@@ -122,6 +114,60 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             {
                 return objectDb.DB.QueryEntity<UserInfo>(new { affId });
             }
+        }
+
+        public PlayerAccountCheckingResult CheckPlayerAccountIsActived(int affId, string language)
+        {
+            var result = new PlayerAccountCheckingResult();
+            const string uSpKey = "Aff_CustomerCheck12BetPlayerAccountActivated";
+
+            using (var objectDb = new ObjectDBBuilder(uSpKey))
+            {
+                var db = objectDb.DB;
+                db.ExecuteNonQuery(new { affId, language });
+
+                result.IsOk = (int)db.GetParameterValue("ErrCode") == 0;
+                result.Message = db.GetParameterValue("ErrMsg") as string;
+                result.PlayerUserName = db.GetParameterValue("12BetPlayerUserName") as string;
+            }
+
+            return result;
+        }
+
+        public IbcPlayerAccountInsertResult InsertPlayerAccountForIbc(DepositAccountInfo accountInfo)
+        {
+            const string uSpKey = "Dot_Dep_CustomerInsMember_Ag_Cust";
+            var result = new IbcPlayerAccountInsertResult();
+
+            using (var objectDb = new ObjectDBBuilder(uSpKey))
+            {
+                var db = objectDb.DB;
+                db.ExecuteNonQuery(accountInfo);
+
+                result.IsOk = (int)db.GetParameterValue("ErrCode") == 0;
+                result.Message = db.GetParameterValue("ErrMsg") as string;
+
+                result.CustId = (int)db.GetParameterValue("CustID");
+                result.Message = db.GetParameterValue("Username") as string;
+            }
+
+            return result;
+        }
+
+        public ResultInfo UpdatePlayerAccountStatusForDeposit(DepositPlayerAccountParam account)
+        {
+            const string uSpKey = "Deposit_MemberIBCDetail";
+
+            using (var objectDb = new ObjectDBBuilder(uSpKey))
+            {
+                objectDb.DB.ExecuteNonQuery(account);
+            }
+
+            return new ResultInfo
+            {
+                IsOk = account.ErrorCode == 0,
+                Message = account.ErrorMsg
+            };
         }
     }
 }

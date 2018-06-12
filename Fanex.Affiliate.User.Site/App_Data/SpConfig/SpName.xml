@@ -23,11 +23,16 @@
 
     <Setting Key="Aff_User_GeneralInfo_Sel" SpName="Aff_User_GeneralInfo_Sel_xtest" DbName="affiliate_12bet" />
     <Setting Key="Aff_User_GeneralInfo_Sel_view" SpName="Aff_User_GeneralInfo_Sel_xtest" DbName="affiliate_12bet_view" />
+
+    <Setting Key="Aff_CustomerCheck12BetPlayerAccountActivated" SpName="Aff_CustomerCheck12BetPlayerAccountActivated" DbName="affiliate_12bet" />
+    <Setting Key="Dot_Dep_CustomerInsMember_Ag_Cust" SpName="Dot_Dep_CustomerInsMember_Ag_Cust" DbName="main" />   
   </Function>
 
   <Function Name="DepositInformation">
     <Setting Key="Deposit_GetCustDataForCreateIBCACByUserName" SpName="Deposit_GetCustDataForCreateIBCACByUserName" DbName="deposit" />
     <Setting Key="Deposit_GetCustDataForCreateIBCACByUserName_view" SpName="Deposit_GetCustDataForCreateIBCACByUserName" DbName="deposit_view" />
+    
+    <Setting Key="Deposit_MemberIBCDetail" SpName="Deposit_MemberIBCDetail" DbName="deposit" />   
   </Function>
 
   <Function Name="Marketing">
@@ -105,8 +110,8 @@
   </Function>
 
   <Function Name="Payment">
-    <Setting Key="Aff_PaymentRequestSelInfoByAff" SpName="Aff_PaymentRequestSelInfoByAff" DbName="affiliate_12bet" />
-    <Setting Key="Aff_PaymentRequestSelInfoByAff_view" SpName="Aff_PaymentRequestSelInfoByAff" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_User_PaymentRequest_Sel" SpName="Aff_User_PaymentRequest_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_User_PaymentRequest_Sel_view" SpName="Aff_User_PaymentRequest_Sel" DbName="affiliate_12bet_view" />
     <Setting Key="Aff_User_PaymentRequest_Upd" SpName="Aff_User_PaymentRequest_Upd_xtest" DbName="affiliate_12bet" />
   </Function>
 </Functions>

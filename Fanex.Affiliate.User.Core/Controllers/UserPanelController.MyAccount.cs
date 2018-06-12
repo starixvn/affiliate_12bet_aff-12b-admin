@@ -45,9 +45,9 @@
                 model.PlayerUsername = Server.HtmlEncode(model.PlayerUsername);
             }
 
-            var isValidDepositPlayer = _accountRepository.IsValidDepositPlayer(model.PlayerUsername);
+            var depositAccount = _accountRepository.IsValidDepositPlayer(model.PlayerUsername);
 
-            if (!isValidDepositPlayer)
+            if (!depositAccount.IsValid)
             {
                 return Json(new ResultInfo { IsOk = false, Message = Lang.errDepositDBConnectFailed });
             }

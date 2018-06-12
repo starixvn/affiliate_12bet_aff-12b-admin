@@ -176,9 +176,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessService\AccountService.cs" />
     <Compile Include="BusinessService\AuthService.cs" />
     <Compile Include="BusinessService\EmailService.cs" />
     <Compile Include="BusinessService\HotNewsService.cs" />
+    <Compile Include="BusinessService\IAccountService.cs" />
     <Compile Include="BusinessService\IEmailService.cs" />
     <Compile Include="BusinessService\IHotNewsService.cs" />
     <Compile Include="Constants\CommGroupName.cs" />
@@ -233,11 +235,14 @@
     <Compile Include="DTO\UserPanel\AccountOverviewStatistics.cs" />
     <Compile Include="DTO\UserPanel\DailyEarning.cs" />
     <Compile Include="DTO\UserPanel\DailyEarningResult.cs" />
+    <Compile Include="DTO\UserPanel\DepositAccountInfo.cs" />
+    <Compile Include="DTO\UserPanel\IbcPlayerAccountInsertResult.cs" />
     <Compile Include="DTO\UserPanel\LandingPageStatistics.cs" />
     <Compile Include="DTO\UserPanel\MarketingItem.cs" />
     <Compile Include="DTO\UserPanel\BannerType.cs" />
     <Compile Include="DTO\UserPanel\CommissionSetting.cs" />
     <Compile Include="DTO\UserPanel\Domain.cs" />
+    <Compile Include="DTO\UserPanel\PlayerAccountCheckingResult.cs" />
     <Compile Include="DTO\UserPanel\ReferrerStatistics.cs" />
     <Compile Include="DTO\UserPanel\StatementHistory.cs" />
     <Compile Include="DTO\UserPanel\StatisticsBase.cs" />
@@ -265,6 +270,7 @@
     <Compile Include="MetalModels\Email\RecoverPasswordEmailParam.cs" />
     <Compile Include="MetalModels\Email\NewPasswordEmailParam.cs" />
     <Compile Include="MetalModels\PasswordRecoveryParam.cs" />
+    <Compile Include="MetalModels\UserPanel\DepositPlayerAccountParam.cs" />
     <Compile Include="MetalModels\UserPanel\PaymentCreationParam.cs" />
     <Compile Include="MetalModels\UserPanel\PaymentParam.cs" />
     <Compile Include="MetalModels\UserPanel\DailyEarningParam.cs" />
