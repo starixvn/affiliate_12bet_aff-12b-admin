@@ -2796,4 +2796,7 @@
   <data name="EmailTitlePasswordRecovery" xml:space="preserve">
     <value>고객의 로그인 정보</value>
   </data>
+  <data name="EmailTitlePayment" xml:space="preserve">
+    <value>지불요청 알림</value>
+  </data>
 </root>

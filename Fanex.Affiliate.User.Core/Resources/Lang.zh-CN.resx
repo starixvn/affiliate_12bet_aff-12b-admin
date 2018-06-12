@@ -2733,4 +2733,7 @@
   <data name="EmailTitlePasswordRecovery" xml:space="preserve">
     <value>您的登录详情</value>
   </data>
+  <data name="EmailTitlePayment" xml:space="preserve">
+    <value>支付申请通知</value>
+  </data>
 </root>

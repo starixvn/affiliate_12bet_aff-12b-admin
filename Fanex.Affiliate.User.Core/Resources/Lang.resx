@@ -3199,4 +3199,7 @@ One of our Affiliate Accounts Manager will be contacting you by email within 3 b
   <data name="EmailTitlePasswordRecovery" xml:space="preserve">
     <value>Your login detail</value>
   </data>
+  <data name="EmailTitlePayment" xml:space="preserve">
+    <value>Payment Request Notification</value>
+  </data>
 </root>

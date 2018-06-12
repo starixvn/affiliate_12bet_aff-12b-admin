@@ -7,5 +7,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         void SendRecoverPasswordEmail(RecoverPasswordEmailParam emailParam);
 
         void SendNewPasswordEmail(NewPasswordEmailParam emailParam);
+
+        void SendPaymentEmail(PaymentEmailParam emailParam);
     }
 }

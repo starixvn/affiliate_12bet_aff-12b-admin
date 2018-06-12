@@ -2,7 +2,7 @@
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
 
-namespace Fanex.Affiliate.User.Core.Repository
+namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 {
     public class CommissionRepository : ICommissionRepository
     {

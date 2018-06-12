@@ -2406,6 +2406,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Payment Request Notification.
+        /// </summary>
+        public static string EmailTitlePayment {
+            get {
+                return ResourceManager.GetString("EmailTitlePayment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to English.
         /// </summary>
         public static string English {

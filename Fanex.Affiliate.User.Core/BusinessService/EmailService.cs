@@ -1,5 +1,6 @@
 ﻿using System.Web;
 using Fanex.Affiliate.User.Core.Constants;
+using Fanex.Affiliate.User.Core.Enum;
 using Fanex.Affiliate.User.Core.MetalModels.Email;
 using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.Utilities;
@@ -40,6 +41,22 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             }
 
             _mailProcessor.Send(emailContent, emailParam.MailTo, Lang.SubjectNewPass);
+        }
+
+        public void SendPaymentEmail(PaymentEmailParam emailParam)
+        {
+            var model = GetPaymentModel(emailParam);
+            var templateName = emailParam.PaymentType == PaymentRequestType.Cancel ? "PaymentCancel" : "PaymentRequest";
+            var subject = Lang.CancelSubject.Replace("{transid}", emailParam.TransId.ToString());
+
+            var emailContent = GetEmailTextContent(templateName, emailParam.User.PreferredLanguage, model);
+
+            if (!emailParam.User.MailOption)
+            {
+                emailContent = GetEmailHtmlContent(emailContent, Lang.EmailTitlePayment, emailParam.User.PreferredLanguage, emailParam.RootDomain);
+            }
+
+            _mailProcessor.Send(emailContent, emailParam.MailTo, subject);
         }
 
         private string GetEmailTextContent(string templateName, string prefrerredLanguage, object model)
@@ -87,6 +104,18 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 UserName = emailParam.User.UserName,
                 Password = emailParam.NewPassword,
                 Url = emailParam.RootDomain
+            };
+        }
+
+        private object GetPaymentModel(PaymentEmailParam emailParam)
+        {
+            return new
+            {
+                FirstName = emailParam.User.FirstName,
+                MailContact = emailParam.MailContact,
+                TransId = emailParam.TransId,
+                Date = emailParam.RequestDate.ToString("MM/dd/yyyy"),
+                Amount = emailParam.Amount
             };
         }
     }

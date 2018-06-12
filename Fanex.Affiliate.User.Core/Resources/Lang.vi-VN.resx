@@ -2716,4 +2716,7 @@ Một trong những người quản lý tài khoản hội viên của chúng t�
   <data name="EmailTitlePasswordRecovery" xml:space="preserve">
     <value>Chi tiết đăng nhập của bạn</value>
   </data>
+  <data name="EmailTitlePayment" xml:space="preserve">
+    <value>Yêu cầu thanh toán của bạn đã bị hủy bỏ</value>
+  </data>
 </root>

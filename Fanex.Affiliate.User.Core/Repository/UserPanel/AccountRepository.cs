@@ -112,5 +112,16 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
                 return objectDb.DB.QueryEntity<UserInfo>(passwordRecoveryParam);
             }
         }
+
+        public UserInfo GetUserInfoById(int affId, bool isInternal)
+        {
+            const string uSpKey = "Aff_User_GeneralInfo_Sel";
+            var mode = isInternal ? DBMode.View : DBMode.Main;
+
+            using (var objectDb = new ObjectDBBuilder(uSpKey, mode))
+            {
+                return objectDb.DB.QueryEntity<UserInfo>(new { affId });
+            }
+        }
     }
 }

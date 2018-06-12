@@ -11,4 +11,6 @@
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_AffiliateUser_ExtraUserInfoSel" Suffix="_xtest"></item>
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_User_StatisticsSel" Suffix="_xtest"></item>
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_User_CommSetting_Sel" Suffix="_xtest"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_User_PaymentRequest_Upd" Suffix="_xtest"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_User_GeneralInfo_Sel" Suffix="_xtest"></item>
 </Root>

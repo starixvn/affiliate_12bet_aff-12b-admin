@@ -2725,4 +2725,7 @@ Salah satu Manajer Rekening Afiliasi kami akan menghubungi Anda melalui email da
   <data name="EmailTitlePasswordRecovery" xml:space="preserve">
     <value>Detil login anda</value>
   </data>
+  <data name="EmailTitlePayment" xml:space="preserve">
+    <value>Pemberitahuan Permintaan Pembayaran</value>
+  </data>
 </root>

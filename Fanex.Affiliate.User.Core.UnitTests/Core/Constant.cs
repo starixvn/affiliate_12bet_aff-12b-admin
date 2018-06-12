@@ -11,5 +11,13 @@
         public const int AffTypeEuro = 4;
 
         public const string DefaultUserName = "Aff12BetTest";
+
+        public const string DefaultMailContact = "abc@yahoo.com";
+
+        public const string DefaultMailCc = "xyz@yahoo.com";
+
+        public const string DefaultMailUser = "user@yahoo.com";
+
+        public const string DefaultRootDomain = "http://abcxyz.com";
     }
 }

@@ -1,8 +1,12 @@
-﻿using Fanex.Affiliate.User.Core.BusinessService;
+﻿using System;
+using System.Collections.Specialized;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Routing;
+using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.Controllers;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO.Auth;
-using Fanex.Affiliate.User.Core.Repository;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Utilities;
 using Moq;
@@ -36,9 +40,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Core
             IStatisticsRepository statisticsRepository = null,
             IStatementHistoryRepository statementHistoryRepository = null,
             ICommissionRepository commissionRepository = null,
-            IPaymentRepository paymentRepository = null)
+            IPaymentRepository paymentRepository = null,
+            IEmailService emailService = null)
         {
-            return new UserPanelController(
+            var controller = new UserPanelController(
                 sessionService ?? GetSessionService(),
                 appSetting ?? Mock.Of<IAppSetting>(),
                 accountRepository ?? Mock.Of<IAccountRepository>(),
@@ -46,7 +51,29 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Core
                 statisticsRepository ?? Mock.Of<IStatisticsRepository>(),
                 statementHistoryRepository ?? Mock.Of<IStatementHistoryRepository>(),
                 commissionRepository ?? Mock.Of<ICommissionRepository>(),
-                paymentRepository ?? Mock.Of<IPaymentRepository>());
+                paymentRepository ?? Mock.Of<IPaymentRepository>(),
+                emailService ?? Mock.Of<IEmailService>());
+
+            var request = GetHttpRequest();
+            controller.ControllerContext = Mock.Of<ControllerContext>(ctx =>
+                ctx.HttpContext.Request == request
+            );
+
+            var context = Mock.Of<HttpContextBase>(ctx => ctx.Request == request);
+            var requestContext = new RequestContext(context, new RouteData());
+            controller.Url = new UrlHelper(requestContext);
+
+            return controller;
+        }
+
+        public static HttpRequestBase GetHttpRequest()
+        {
+            return Mock.Of<HttpRequestBase>(req =>
+                req.ApplicationPath == "/" &&
+                req.UserHostAddress == "::1" &&
+                req.Url == new Uri(Constant.DefaultRootDomain) &&
+                req.ServerVariables == new NameValueCollection()
+            );
         }
     }
 }

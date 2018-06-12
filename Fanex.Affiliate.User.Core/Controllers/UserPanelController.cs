@@ -4,7 +4,6 @@
     using BusinessService;
     using CoreService;
     using Filters;
-    using Repository;
     using Repository.UserPanel;
     using Utilities;
 
@@ -17,6 +16,7 @@
         private readonly IStatementHistoryRepository _statementHistoryRepository;
         private readonly ICommissionRepository _commissionRepository;
         private readonly IPaymentRepository _paymentRepository;
+        private readonly IEmailService _emailService;
 
         public UserPanelController(
             ISessionService sessionService,
@@ -26,7 +26,8 @@
             IStatisticsRepository statisticsRepository,
             IStatementHistoryRepository statementHistoryRepository,
             ICommissionRepository commissionRepository,
-            IPaymentRepository paymentRepository)
+            IPaymentRepository paymentRepository,
+            IEmailService emailService)
             : base(sessionService, appSetting)
         {
             _accountRepository = accountRepository;
@@ -35,6 +36,7 @@
             _statementHistoryRepository = statementHistoryRepository;
             _commissionRepository = commissionRepository;
             _paymentRepository = paymentRepository;
+            _emailService = emailService;
         }
 
         [HttpGet]

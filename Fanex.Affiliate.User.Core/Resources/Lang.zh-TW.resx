@@ -2732,4 +2732,7 @@
   <data name="EmailTitlePasswordRecovery" xml:space="preserve">
     <value>您的登錄詳情</value>
   </data>
+  <data name="EmailTitlePayment" xml:space="preserve">
+    <value>支付申請通知</value>
+  </data>
 </root>

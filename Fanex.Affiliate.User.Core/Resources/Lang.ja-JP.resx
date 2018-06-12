@@ -2730,4 +2730,7 @@
   <data name="EmailTitlePasswordRecovery" xml:space="preserve">
     <value>「ログイン情報」　について</value>
   </data>
+  <data name="EmailTitlePayment" xml:space="preserve">
+    <value>「お引き出し申請」 について</value>
+  </data>
 </root>

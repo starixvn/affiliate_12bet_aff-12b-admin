@@ -19,5 +19,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
         UserInfo GetUserInfoByEmail(UserInfoByEmailParam userInfoParam);
 
         UserInfo RecoverPassword(PasswordRecoveryParam passwordRecoveryParam);
+
+        UserInfo GetUserInfoById(int affId, bool isInternal);
     }
 }

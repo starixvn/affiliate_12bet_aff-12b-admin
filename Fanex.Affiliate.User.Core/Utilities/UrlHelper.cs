@@ -18,7 +18,9 @@
         {
             var appSetting = DependencyResolver.Current.GetService<IAppSetting>();
 
-            return appSetting.IsProduction ? request.Url.Scheme : (IsSecure(request) ? Uri.UriSchemeHttps : Uri.UriSchemeHttp);
+            return (appSetting != null && appSetting.IsProduction) ?
+                request.Url.Scheme :
+                (IsSecure(request) ? Uri.UriSchemeHttps : Uri.UriSchemeHttp);
         }
 
         private static bool IsSecure(HttpRequestBase request)

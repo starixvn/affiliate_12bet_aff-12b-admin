@@ -2727,4 +2727,7 @@
   <data name="EmailTitlePasswordRecovery" xml:space="preserve">
     <value>บัญชีพันธมิตร 12bet รายละเอียดการล๊อคอินของคุณ</value>
   </data>
+  <data name="EmailTitlePayment" xml:space="preserve">
+    <value>จดหมายยกเลิก  เรื่อง   การแจ้งเรื่อง การขอถอนเงินในบัญชีพันธมิตร</value>
+  </data>
 </root>

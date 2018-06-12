@@ -2685,4 +2685,7 @@ Uno de nuestros administradores de cuentas de afiliados se pondrá en contacto c
   <data name="EmailTitlePasswordRecovery" xml:space="preserve">
     <value>Your login detail</value>
   </data>
+  <data name="EmailTitlePayment" xml:space="preserve">
+    <value>Solicitud de Notificación de pago</value>
+  </data>
 </root>

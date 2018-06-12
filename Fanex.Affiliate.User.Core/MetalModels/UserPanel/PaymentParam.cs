@@ -1,4 +1,4 @@
-﻿namespace Fanex.Affiliate.User.Core.MetalModels
+﻿namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
 {
     public class PaymentParam : BaseParam
     {
