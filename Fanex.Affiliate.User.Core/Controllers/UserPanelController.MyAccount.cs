@@ -45,7 +45,7 @@
                 model.PlayerUsername = Server.HtmlEncode(model.PlayerUsername);
             }
 
-            var depositAccount = _accountRepository.IsValidDepositPlayer(model.PlayerUsername);
+            var depositAccount = _accountRepository.GetDepositPlayerAccount(model.PlayerUsername);
 
             if (!depositAccount.IsValid)
             {

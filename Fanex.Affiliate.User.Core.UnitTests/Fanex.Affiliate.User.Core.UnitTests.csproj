@@ -106,6 +106,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessService\AccountServiceTest.cs" />
     <Compile Include="Core\Constant.cs" />
     <Compile Include="Core\MockingHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

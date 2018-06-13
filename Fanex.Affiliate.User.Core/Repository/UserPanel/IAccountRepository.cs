@@ -10,7 +10,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
     {
         AccountInformationViewModel GetAccountInfo(int affId);
 
-        DepositAccountInfo IsValidDepositPlayer(string playerUserName);
+        DepositAccountInfo GetDepositPlayerAccount(string playerUserName);
 
         ResultInfo UpdateAccountInformation(UpdateAccountParam accountUpdateParam);
 

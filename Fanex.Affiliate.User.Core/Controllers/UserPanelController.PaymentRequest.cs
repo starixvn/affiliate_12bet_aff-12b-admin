@@ -52,14 +52,15 @@
             if (resultInfo.IsOk)
             {
                 var affId = SessionService.UserSession.AffId;
-                var checkingResult = _accountService.CheckPlayerAccountIsActived(affId);
+                var language = SessionService.CurrentLanguage;
+                var checkingResult = _accountService.CheckPlayerAccountIsActived(affId, language);
                 if (checkingResult.IsOk)
                 {
                     var creationParam = new PaymentCreationParam
                     {
                         AffId = affId,
                         Amount = paymentCreationParam.Amount,
-                        Language = SessionService.CurrentLanguage,
+                        Language = language,
                         Ip = Request.UserHostAddress
                     };
 

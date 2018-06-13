@@ -21,7 +21,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             }
         }
 
-        public DepositAccountInfo IsValidDepositPlayer(string playerUserName)
+        public DepositAccountInfo GetDepositPlayerAccount(string playerUserName)
         {
             const string uSpKey = "Deposit_GetCustDataForCreateIBCACByUserName";
 
@@ -148,7 +148,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
                 result.Message = db.GetParameterValue("ErrMsg") as string;
 
                 result.CustId = (int)db.GetParameterValue("CustID");
-                result.Message = db.GetParameterValue("Username") as string;
+                result.UserName = db.GetParameterValue("Username") as string;
             }
 
             return result;

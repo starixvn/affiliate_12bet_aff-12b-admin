@@ -389,7 +389,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var accountRepository = GetMockAccountRepository();
             var emailService = new Mock<IEmailService>();
             var accountService = new Mock<IAccountService>();
-            accountService.Setup(ac => ac.CheckPlayerAccountIsActived(Constant.DefaultAffId))
+            accountService.Setup(ac => ac.CheckPlayerAccountIsActived(Constant.DefaultAffId, Constant.DefaultLanguage))
                 .Returns(new ResultInfo { IsOk = true });
 
             var controller = MockingHelper.GetUserPanelController(
@@ -413,7 +413,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var result = JsonConvert.SerializeObject(passedParam);
 
             // Assert
-            accountService.Verify(ac => ac.CheckPlayerAccountIsActived(Constant.DefaultAffId), Times.Once);
+            accountService.Verify(ac => ac.CheckPlayerAccountIsActived(Constant.DefaultAffId, Constant.DefaultLanguage), Times.Once);
             Assert.Equal(expectedResult, result);
         }
 
@@ -444,7 +444,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var accountRepository = GetMockAccountRepository();
 
             var accountService = new Mock<IAccountService>();
-            accountService.Setup(ac => ac.CheckPlayerAccountIsActived(Constant.DefaultAffId))
+            accountService.Setup(ac => ac.CheckPlayerAccountIsActived(Constant.DefaultAffId, Constant.DefaultLanguage))
                 .Returns(new ResultInfo { IsOk = true });
 
             var emailService = new Mock<IEmailService>();
