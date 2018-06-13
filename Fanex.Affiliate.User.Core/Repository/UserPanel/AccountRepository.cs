@@ -27,7 +27,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
             using (var objectDb = new ObjectDBBuilder(uSpKey))
             {
-                return objectDb.DB.QueryEntity<DepositAccountInfo>(new { Deposit_Username = playerUserName });
+                return objectDb.DB.QueryEntity<DepositAccountInfo>(new { deposit_username = playerUserName });
             }
         }
 
@@ -120,14 +120,23 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
         {
             var result = new PlayerAccountCheckingResult();
             const string uSpKey = "Aff_CustomerCheck12BetPlayerAccountActivated";
+            var parameterSet = new
+            {
+                AffId = affId,
+                Language = language,
+                Result = false,
+                ErrCode = 0,
+                ErrMsg = string.Empty
+            };
 
             using (var objectDb = new ObjectDBBuilder(uSpKey))
             {
                 var db = objectDb.DB;
-                db.ExecuteNonQuery(new { affId, language });
 
-                result.IsOk = (int)db.GetParameterValue("ErrCode") == 0;
-                result.Message = db.GetParameterValue("ErrMsg") as string;
+                db.ExecuteNonQuery(parameterSet);
+
+                result.IsOk = parameterSet.Result;
+                result.Message = parameterSet.ErrMsg;
                 result.PlayerUserName = db.GetParameterValue("12BetPlayerUserName") as string;
             }
 
@@ -138,17 +147,35 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
         {
             const string uSpKey = "Dot_Dep_CustomerInsMember_Ag_Cust";
             var result = new IbcPlayerAccountInsertResult();
+            var parameterSet = new
+            {
+                accountInfo.FirstName,
+                accountInfo.LastName,
+                accountInfo.Email,
+                accountInfo.DepositUserName,
+                accountInfo.DepositUserId,
+                accountInfo.Password,
+                accountInfo.OddsType,
+                accountInfo.AgentId,
+                accountInfo.AffiliateId,
+                accountInfo.BonusCode,
+                accountInfo.Country,
+                CustId = 0,
+                UserName = string.Empty,
+                ErrCode = 0,
+                ErrMsg = string.Empty
+            };
 
             using (var objectDb = new ObjectDBBuilder(uSpKey))
             {
                 var db = objectDb.DB;
-                db.ExecuteNonQuery(accountInfo);
+                db.ExecuteNonQuery(parameterSet);
 
-                result.IsOk = (int)db.GetParameterValue("ErrCode") == 0;
-                result.Message = db.GetParameterValue("ErrMsg") as string;
+                result.IsOk = parameterSet.ErrCode == 0;
+                result.Message = parameterSet.ErrMsg;
 
-                result.CustId = (int)db.GetParameterValue("CustID");
-                result.UserName = db.GetParameterValue("Username") as string;
+                result.CustId = parameterSet.CustId;
+                result.UserName = parameterSet.UserName;
             }
 
             return result;

@@ -457,6 +457,11 @@
     <Content Include="www\build\js\myaccount.min.js">
       <DependentUpon>myaccount.js</DependentUpon>
     </Content>
+    <Content Include="www\build\js\payment-request.js" />
+    <Content Include="www\build\js\payment-request.min.js">
+      <DependentUpon>payment-request.js</DependentUpon>
+    </Content>
+    <Content Include="www\source\js\pages\payment-request.js" />
     <Content Include="www\build\js\recheckin.js" />
     <Content Include="www\build\js\recheckin.min.js">
       <DependentUpon>recheckin.js</DependentUpon>

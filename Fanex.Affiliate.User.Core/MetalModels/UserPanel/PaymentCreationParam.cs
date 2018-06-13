@@ -13,7 +13,7 @@ namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
 
         public string Language { get; set; }
 
-        public DateTime TransDate { get; set; }
+        public DateTime? TransDate { get; set; }
 
         public long TransId { get; set; }
 

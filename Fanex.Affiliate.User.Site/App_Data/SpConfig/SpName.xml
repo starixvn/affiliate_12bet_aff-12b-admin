@@ -109,9 +109,12 @@
     <Setting Key="Aff_BetList_CheckBelonging_view" SpName="Aff_BetList_CheckBelonging" DbName="affiliate_12bet_view" />  
   </Function>
 
-  <Function Name="Payment">
+  <Function Name="Payment">   
+    <Setting Key="Aff_PaymentRequestSelInfoByAff" SpName="Aff_PaymentRequestSelInfoByAff" DbName="affiliate_12bet" />
+    <Setting Key="Aff_PaymentRequestSelInfoByAff_view" SpName="Aff_PaymentRequestSelInfoByAff" DbName="affiliate_12bet_view" />
     <Setting Key="Aff_User_PaymentRequest_Sel" SpName="Aff_User_PaymentRequest_Sel" DbName="affiliate_12bet" />
     <Setting Key="Aff_User_PaymentRequest_Sel_view" SpName="Aff_User_PaymentRequest_Sel" DbName="affiliate_12bet_view" />
     <Setting Key="Aff_User_PaymentRequest_Upd" SpName="Aff_User_PaymentRequest_Upd_xtest" DbName="affiliate_12bet" />
+    <Setting Key="Aff_PaymentRequestIns" SpName="Aff_PaymentRequestIns" DbName="affiliate_12bet" />  
   </Function>
 </Functions>

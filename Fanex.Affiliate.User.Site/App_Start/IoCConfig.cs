@@ -90,6 +90,7 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterType<BetListRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<CommissionRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<PaymentRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<AccountService>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
     }
 }

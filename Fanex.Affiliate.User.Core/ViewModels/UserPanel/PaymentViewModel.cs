@@ -17,7 +17,7 @@ namespace Fanex.Affiliate.User.Core.ViewModels.UserPanel
 
         public bool CanRequest { get; set; } = true;
 
-        public bool IsValidDateRange { get; set; }
+        public bool IsValidDate { get; set; }
 
         public bool IsValidAmount => BalBroughtForward > 0 && BalBroughtForward >= MinAmount;
     }

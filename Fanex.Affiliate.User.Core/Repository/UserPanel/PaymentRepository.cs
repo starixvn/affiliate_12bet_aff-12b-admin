@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 
@@ -36,7 +35,18 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
         public ResultInfo CreatePaymentRequest(PaymentCreationParam paymentCreationParam)
         {
-            throw new NotImplementedException();
+            const string uSpKey = "Aff_PaymentRequestIns";
+
+            using (var objectDb = new ObjectDBBuilder(uSpKey))
+            {
+                objectDb.DB.ExecuteNonQuery(paymentCreationParam);
+            }
+
+            return new ResultInfo
+            {
+                IsOk = paymentCreationParam.ErrCode == 0,
+                Message = paymentCreationParam.ErrMsg
+            };
         }
     }
 }

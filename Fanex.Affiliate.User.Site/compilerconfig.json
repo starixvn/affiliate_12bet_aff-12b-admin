@@ -143,5 +143,10 @@
     "outputFile": "www/build/js/betlist.js",
     "inputFile": "www/source/js/pages/betlist.js",
     "sourceMap": false
+  },
+  {
+    "outputFile": "www/build/js/payment-request.js",
+    "inputFile": "www/source/js/pages/payment-request.js",
+    "sourceMap": false
   }
 ]

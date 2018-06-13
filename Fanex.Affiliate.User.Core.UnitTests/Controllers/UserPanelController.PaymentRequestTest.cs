@@ -177,7 +177,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var result = actionResult.Model as PaymentViewModel;
 
             // Assert
-            Assert.Equal(result.IsValidDateRange, expected);
+            Assert.Equal(result.IsValidDate, expected);
         }
 
         [Fact]
@@ -373,6 +373,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         {
             // Arrange
             PaymentCreationParam passedParam = null;
+            var transDate = new DateTime(2018, 6, 13);
             var creationParam = new PaymentCreationParam()
             {
                 Amount = 100,
@@ -383,7 +384,11 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var paymentRepository = new Mock<IPaymentRepository>();
             paymentRepository.Setup(p => p.CreatePaymentRequest(It.IsAny<PaymentCreationParam>()))
                             .Returns(new ResultInfo { IsOk = true })
-                            .Callback<PaymentCreationParam>(p => passedParam = p);
+                            .Callback<PaymentCreationParam>(p =>
+                            {
+                                p.TransDate = transDate;
+                                passedParam = p;
+                            });
 
             var appSetting = GetMockAppSetting();
             var accountRepository = GetMockAccountRepository();
@@ -404,7 +409,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
                 AffId = Constant.DefaultAffId,
                 Amount = creationParam.Amount,
                 Ip = "::1",
-                Language = Constant.DefaultLanguage
+                Language = Constant.DefaultLanguage,
+                TransDate = transDate
             };
             var expectedResult = JsonConvert.SerializeObject(expectedParam);
 

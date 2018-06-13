@@ -37,7 +37,7 @@
                 MinAmount = paymentParam.MinAmount,
                 PreferredPayment = paymentParam.PreferredPayment,
                 PendingPayment = paymentList.FirstOrDefault(p => p.Status.MatchWith(PaymentStatus.Pending)),
-                IsValidDateRange = IsValidDateRange()
+                IsValidDate = IsInDateRange()
             };
 
             return View(viewModel);
@@ -68,18 +68,20 @@
 
                     if (resultInfo.IsOk)
                     {
+                        resultInfo.Message = Lang.RequestPayoutSucc;
+
                         SendEmail(
                             PaymentRequestType.Create,
                             creationParam.TransId,
                             creationParam.Amount,
-                            creationParam.TransDate);
+                            creationParam.TransDate.Value);
                     }
                 }
             }
 
             TempData[TempDataKey.PaymentResult] = resultInfo;
 
-            return RedirectToAction("PaymentRequest");
+            return new RedirectResult(Url.Action("Index", "UserPanel") + "#PaymentRequest");
         }
 
         [HttpPost]
@@ -103,6 +105,8 @@
 
                 if (resultInfo.IsOk)
                 {
+                    resultInfo.Message = Lang.CancelPayoutSucc;
+
                     SendEmail(
                         PaymentRequestType.Cancel,
                         cancelParam.TransId,
@@ -113,10 +117,10 @@
 
             TempData[TempDataKey.PaymentResult] = resultInfo;
 
-            return RedirectToAction("PaymentRequest");
+            return new RedirectResult(Url.Action("Index", "UserPanel") + "#PaymentRequest");
         }
 
-        private bool IsValidDateRange()
+        private bool IsInDateRange()
         {
             var currentDay = DateTime.Now.Day;
             return (currentDay >= BeginDay && currentDay <= EndDay) || AppSetting.IsLocal;
@@ -160,7 +164,7 @@
             {
                 resultInfo.Message = Lang.ErrAuthorized;
             }
-            else if (!IsValidDateRange())
+            else if (!IsInDateRange())
             {
                 resultInfo.Message = Lang.PayoutTime;
             }

@@ -5,11 +5,15 @@
 
 @model Fanex.Affiliate.User.Core.ViewModels.UserPanel.PaymentViewModel
 @{
+    var paymentResult = TempData[TempDataKey.PaymentResult] as Fanex.Affiliate.User.Core.DTO.ResultInfo;
+    var hasPaymentResult = paymentResult != null;
+    var paymentSuccessfully = hasPaymentResult && paymentResult.IsOk;
+
     var hasData = Model.PaymentList != null && Model.PaymentList.Any();
     var paymentMethod = Model.PreferredPayment.Replace("Wire", Lang.BankTransfer);
 
-    var canRequest = Model.IsValidAmount && Model.IsValidDateRange && Model.PendingPayment == null;
-    var errorMessage = GetErrorMessage();
+    var canRequest = Model.IsValidAmount && Model.IsValidDate && Model.PendingPayment == null;
+    var errorMessage = hasPaymentResult ? paymentResult.Message : GetErrorMessage();
 
     @functions {
         string GetErrorMessage()
@@ -26,7 +30,7 @@
                 return Error.PaymentBalanceInvalid;
             }
 
-            if (!Model.IsValidDateRange)
+            if (!Model.IsValidDate)
             {
                 return Error.PaymentPayoutTimeInvalid;
             }
@@ -66,12 +70,14 @@
         <span class="text">@Lang.PaymentInfor</span>
     </div>
     <div class="payment-info">
-        @if (!string.IsNullOrEmpty(errorMessage))
-        {
-            <p class="alert alert-danger" id="errorMessage" role="alert">@Html.Raw(errorMessage)</p>
-        }
+        <div id="errorMessage">
+            @if (!string.IsNullOrEmpty(errorMessage))
+            {
+                <p class="alert alert-@(paymentSuccessfully ? "success" : "danger")" role="alert">@Html.Raw(errorMessage)</p>
+            }
+        </div>
 
-        @using (Html.BeginForm("RequestPayout", "UserPanel", FormMethod.Post, new { @id = "requestPayoutForm", @class = "form-horizontal" }))
+        @using (Html.BeginForm("CreatePaymentRequest", "UserPanel", FormMethod.Post, new { @id = "requestPayoutForm", @class = "form-horizontal" }))
         {
             @Html.AntiForgeryToken()
 
@@ -90,7 +96,7 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label">@Lang.RequestAmt</label>
                 <div class="col-sm-3">
-                    <input type="text" class="form-control" id="requestAmount" @(canRequest ? string.Empty : "disabled") />
+                    <input type="text" class="form-control" name="Amount" id="Amount" @(canRequest ? string.Empty : "disabled") autocomplete="off" />
                 </div>
             </div>
             <div class="form-group">
@@ -135,8 +141,8 @@
                     <tbody>
                         <tr>
                             <td class="text-center">@Model.PendingPayment.TransDate.ToString("MM/dd/yyyy hh:mm:ss tt")</td>
-                            <td class="text-center">@Model.PendingPayment.Amount.ToStringMoneyWithSymbol()</td>
-                            <td class="text-right">@ConvertStatus(Model.PendingPayment.Status)</td>
+                            <td class="text-right">@Model.PendingPayment.Amount.ToStringMoneyWithSymbol()</td>
+                            <td class="text-center">@ConvertStatus(Model.PendingPayment.Status)</td>
                             <td class="text-center">
                                 <button type="button" class="btn btn-submit" id="cancelPaymentRequest" data-transid="@Model.PendingPayment.TransId">@Lang.CancelRequest</button>
                             </td>
@@ -144,6 +150,10 @@
                     </tbody>
                 </table>
             </div>
+
+            <input type="hidden" name="TransId" id="TransId" value="@Model.PendingPayment.TransId" />
+            <input type="hidden" name="Amount" id="Amount" value="@Convert.ToDouble(Model.PendingPayment.Amount)" />
+            <input type="hidden" name="RequestDate" id="RequestDate" value="@Model.PendingPayment.TransDate.ToString("MM/dd/yyyy")" />
         }
     </div>
 }
@@ -193,3 +203,12 @@
         }
     </div>
 </div>
+
+<script type="text/javascript">
+    var resourceLang = {
+        invalidRange: '@($"{Lang.AmtErr} {Model.MinAmount.ToStringMoneyWithSymbol()} {Lang.And} {Model.BalBroughtForward.ToStringMoneyWithSymbol()}")',
+        invalidAmount: '@Error.PaymentAmountInvalid'
+    }
+</script>
+
+<script src="@Url.RenderLink("~/www/build/js/payment-request.js")"></script>
