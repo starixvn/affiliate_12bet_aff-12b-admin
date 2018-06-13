@@ -1097,8 +1097,13 @@ input[type="radio"], input[type="checkbox"] {
 .marquee-container {
   overflow: hidden;
   height: 100%;
-  position: relative; }
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  white-space: nowrap; }
   .marquee-container .marquee-content {
+    padding-left: 100%;
+    text-indent: 0;
     white-space: nowrap;
     position: absolute;
     /* Starting position */
@@ -1106,9 +1111,10 @@ input[type="radio"], input[type="checkbox"] {
     -webkit-transform: translateX(100%);
     transform: translateX(100%);
     /* Apply animation to this element */
-    -moz-animation: marqueekey 50s linear infinite;
-    -webkit-animation: marqueekey 50s linear infinite;
-    animation: marqueekey 50s linear infinite; }
+    -moz-animation: marquee linear infinite;
+    -webkit-animation: marquee linear infinite;
+    animation: marqueekey linear infinite;
+    animation-delay: 0s; }
     .marquee-container .marquee-content:hover {
       animation-play-state: paused; }
     .marquee-container .marquee-content a {
@@ -1117,23 +1123,23 @@ input[type="radio"], input[type="checkbox"] {
 /* Move it (define the animation) */
 @-moz-keyframes marqueekey {
   0% {
-    -moz-transform: translateX(100%); }
+    -moz-transform: translateX(0); }
   100% {
     -moz-transform: translateX(-100%); } }
 
 @-webkit-keyframes marqueekey {
   0% {
-    -webkit-transform: translateX(100%); }
+    -webkit-transform: translateX(0); }
   100% {
     -webkit-transform: translateX(-100%); } }
 
 @keyframes marqueekey {
   0% {
-    -moz-transform: translateX(100%);
+    -moz-transform: translateX(0);
     /* Firefox bug fix */
-    -webkit-transform: translateX(100%);
+    -webkit-transform: translateX(0);
     /* Firefox bug fix */
-    transform: translateX(100%); }
+    transform: translateX(0); }
   100% {
     -moz-transform: translateX(-100%);
     /* Firefox bug fix */

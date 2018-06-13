@@ -1,4 +1,6 @@
 var Layout = (function ($) {
+    var DEFAULT_SPEED = 20;
+
     function initSlider() {
         var $mainBanner = $('#mainBanner');
         $mainBanner.carousel();
@@ -47,7 +49,13 @@ var Layout = (function ($) {
                 dataType: "html",
                 cache: false,
                 success: function (response) {
-                    $("#marquee").html(response);
+                    var $marquee = $("#marquee");
+                    $marquee.html(response);
+                    // Time = Distance/Speed
+                    var containerWith = $("#marqueeContainer").width();
+                    var timeTaken = containerWith / DEFAULT_SPEED;
+
+                    $marquee.css("animation-duration", timeTaken + "s");
                 }
             });
         }

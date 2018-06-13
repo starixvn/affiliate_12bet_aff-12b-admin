@@ -53,8 +53,8 @@
             {
                 var affId = SessionService.UserSession.AffId;
                 var language = SessionService.CurrentLanguage;
-                var checkingResult = _accountService.CheckPlayerAccountIsActived(affId, language);
-                if (checkingResult.IsOk)
+                resultInfo = _accountService.CheckPlayerAccountIsActived(affId, language);
+                if (resultInfo.IsOk)
                 {
                     var creationParam = new PaymentCreationParam
                     {

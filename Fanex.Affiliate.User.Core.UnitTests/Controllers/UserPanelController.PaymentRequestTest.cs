@@ -316,11 +316,12 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
                 emailService: emailService.Object);
 
             // Action
-            controller.CancelPaymentRequest(param);
+            var result = controller.CancelPaymentRequest(param) as RedirectResult;
 
             // Assert
             accountRepository.VerifyNoOtherCalls();
             emailService.VerifyNoOtherCalls();
+            Assert.Equal("#PaymentRequest", result.Url);
         }
 
         [Fact]
@@ -421,6 +422,110 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             // Assert
             accountService.Verify(ac => ac.CheckPlayerAccountIsActived(Constant.DefaultAffId, Constant.DefaultLanguage), Times.Once);
             Assert.Equal(expectedResult, result);
+        }
+
+        [Fact]
+        public void CreatePaymentRequest_AccountIsNotActived_ReturnCheckingResultIntermediately()
+        {
+            // Arrange
+            var creationParam = new PaymentCreationParam()
+            {
+                Amount = 100,
+                MinAmount = 100,
+                BalBroughtForward = 150
+            };
+            var checkingActiveResult = new ResultInfo
+            {
+                IsOk = false,
+                Message = "Not Actived"
+            };
+            var accountService = new Mock<IAccountService>();
+            accountService.Setup(ac => ac.CheckPlayerAccountIsActived(Constant.DefaultAffId, Constant.DefaultLanguage))
+                .Returns(checkingActiveResult);
+
+            var paymentRepository = new Mock<IPaymentRepository>();
+
+            var controller = MockingHelper.GetUserPanelController(
+                accountService: accountService.Object,
+                paymentRepository: paymentRepository.Object);
+
+            // Action
+            controller.CreatePaymentRequest(creationParam);
+            var result = controller.TempData[TempDataKey.PaymentResult] as ResultInfo;
+
+            // Assert
+            paymentRepository.Verify(p => p.CreatePaymentRequest(It.IsAny<PaymentCreationParam>()), Times.Never);
+            Assert.Equal(checkingActiveResult, result);
+        }
+
+        [Fact]
+        public void CreatePaymentRequest_AccountIsActivedButCreatePaymentRequestFailed_ReturnCreationResultIntermediately()
+        {
+            // Arrange
+            var creationParam = new PaymentCreationParam()
+            {
+                Amount = 100,
+                MinAmount = 100,
+                BalBroughtForward = 150
+            };
+
+            var accountService = new Mock<IAccountService>();
+            accountService.Setup(ac => ac.CheckPlayerAccountIsActived(Constant.DefaultAffId, Constant.DefaultLanguage))
+                .Returns(new ResultInfo { IsOk = true });
+
+            var creationResult = new ResultInfo
+            {
+                IsOk = false,
+                Message = "Create Failed"
+            };
+            var paymentRepository = new Mock<IPaymentRepository>();
+            paymentRepository.Setup(p => p.CreatePaymentRequest(It.IsAny<PaymentCreationParam>())).Returns(creationResult);
+
+            var emailService = new Mock<IEmailService>();
+
+            var controller = MockingHelper.GetUserPanelController(
+                accountService: accountService.Object,
+                paymentRepository: paymentRepository.Object,
+                emailService: emailService.Object);
+
+            // Action
+            controller.CreatePaymentRequest(creationParam);
+            var result = controller.TempData[TempDataKey.PaymentResult] as ResultInfo;
+
+            // Assert
+            emailService.Verify(p => p.SendPaymentEmail(It.IsAny<PaymentEmailParam>()), Times.Never);
+            Assert.Equal(creationResult, result);
+        }
+
+        [Fact]
+        public void CreatePaymentRequest_AccountIsNotActived_ReturnActionResultCorrectly()
+        {
+            // Arrange
+            var creationParam = new PaymentCreationParam()
+            {
+                Amount = 100,
+                MinAmount = 100,
+                BalBroughtForward = 150
+            };
+            var checkingActiveResult = new ResultInfo
+            {
+                IsOk = false,
+                Message = "Not Actived"
+            };
+            var accountService = new Mock<IAccountService>();
+            accountService.Setup(ac => ac.CheckPlayerAccountIsActived(Constant.DefaultAffId, Constant.DefaultLanguage))
+                .Returns(checkingActiveResult);
+
+            var controller = MockingHelper.GetUserPanelController(
+                accountService: accountService.Object);
+
+            const string ExpectedUrl = "#PaymentRequest";
+
+            // Action
+            var result = controller.CreatePaymentRequest(creationParam) as RedirectResult;
+
+            // Assert
+            Assert.Equal(ExpectedUrl, result.Url);
         }
 
         [Fact]

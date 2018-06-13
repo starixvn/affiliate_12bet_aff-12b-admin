@@ -17,7 +17,6 @@ var PaymentRequest = (function ($) {
         initEvent: function initEvent() {
             $("#Amount").on("keypress", function (event) {
                 var charCode = event.which ? event.which : event.keyCode;
-                console.log(charCode);
                 return isValidKey(charCode);
             });
 
