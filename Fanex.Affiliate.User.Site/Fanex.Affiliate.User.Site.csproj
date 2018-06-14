@@ -453,6 +453,10 @@
     <Content Include="www\build\js\mediagallery.min.js">
       <DependentUpon>mediagallery.js</DependentUpon>
     </Content>
+    <Content Include="www\build\js\messagehistory.js" />
+    <Content Include="www\build\js\messagehistory.min.js">
+      <DependentUpon>messagehistory.js</DependentUpon>
+    </Content>
     <Content Include="www\build\js\myaccount.js" />
     <Content Include="www\build\js\myaccount.min.js">
       <DependentUpon>myaccount.js</DependentUpon>
@@ -461,6 +465,11 @@
     <Content Include="www\build\js\payment-request.min.js">
       <DependentUpon>payment-request.js</DependentUpon>
     </Content>
+    <Content Include="www\build\styles\css\messagehistory.css" />
+    <Content Include="www\build\styles\css\messagehistory.min.css">
+      <DependentUpon>messagehistory.css</DependentUpon>
+    </Content>
+    <Content Include="www\source\js\pages\messagehistory.js" />
     <Content Include="www\source\js\pages\payment-request.js" />
     <Content Include="www\build\js\recheckin.js" />
     <Content Include="www\build\js\recheckin.min.js">
@@ -751,7 +760,7 @@
     <Content Include="Views\UserPanel\StatisticsPartial\_ReferrersStatisticsContent.cshtml" />
     <Content Include="Views\UserPanel\StatisticsPartial\_LandingPageStatisticsContent.cshtml" />
     <Content Include="www\source\styles\scss\components\_pikaday.scss" />
-    <Content Include="Views\Home\_LatestHotNews.cshtml" />
+    <Content Include="Views\UserPanel\NewsPartial\_LatestHotNews.cshtml" />
     <Content Include="Views\UserPanel\StatementHistoryPartial\_StatementHistoryContent.cshtml" />
     <Content Include="www\source\styles\pages\statement-history.scss" />
     <Content Include="Views\UserPanel\StatementHistoryPartial\_DailyEarningContent.cshtml" />
@@ -764,6 +773,9 @@
     <Content Include="www\source\styles\pages\account-overview.scss" />
     <Content Include="Views\BetList\Result.cshtml" />
     <Content Include="Views\BetList\ParlayDetail.cshtml" />
+    <Content Include="Views\UserPanel\MessageHistory.cshtml" />
+    <Content Include="Views\UserPanel\NewsPartial\_MessageContent.cshtml" />
+    <Content Include="www\source\styles\pages\messagehistory.scss" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -9,7 +9,6 @@
             onSelect: function (month, year) {
                 var date = formatDateUnit(month) + "/01/" + year;
                 $("#MonthDate").data("original-date", date);
-                console.log(date);
             }
         });
     }

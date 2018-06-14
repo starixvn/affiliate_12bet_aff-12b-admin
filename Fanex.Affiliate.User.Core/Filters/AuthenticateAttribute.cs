@@ -13,36 +13,42 @@ namespace Fanex.Affiliate.User.Core.Filters
     {
         public void OnAuthentication(AuthenticationContext filterContext)
         {
-            var sessionService = DependencyResolver.Current.GetService<ISessionService>();
-            var user = filterContext.HttpContext.User;
-            if (sessionService.UserSession == null || user == null || !user.Identity.IsAuthenticated)
+            bool skipAuthorization = filterContext.ActionDescriptor.IsDefined(typeof(AllowAnonymousAttribute), inherit: true) ||
+                                    filterContext.ActionDescriptor.ControllerDescriptor.IsDefined(typeof(AllowAnonymousAttribute), inherit: true);
+
+            if (!skipAuthorization)
             {
-                if (filterContext.HttpContext.Request.IsAjaxRequest())
+                var sessionService = DependencyResolver.Current.GetService<ISessionService>();
+                var user = filterContext.HttpContext.User;
+                if (sessionService.UserSession == null || user == null || !user.Identity.IsAuthenticated)
                 {
-                    var response = filterContext.HttpContext.Response;
-                    response.StatusCode = (int)HttpStatusCode.Unauthorized;
-                    response.ContentType = "application/json";
-                    response.SuppressFormsAuthenticationRedirect = true;
-                    response.End();
-
-                    filterContext.Result = new JsonResult
+                    if (filterContext.HttpContext.Request.IsAjaxRequest())
                     {
-                        Data = new { ErrCode = 403, ErrMsg = "Access Denied." },
-                        JsonRequestBehavior = JsonRequestBehavior.AllowGet
-                    };
-                }
-                else
-                {
-                    filterContext.HttpContext.Session.Clear();
-                    FormsAuthentication.SignOut();
+                        var response = filterContext.HttpContext.Response;
+                        response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                        response.ContentType = "application/json";
+                        response.SuppressFormsAuthenticationRedirect = true;
+                        response.End();
 
-                    var routeValue = new
+                        filterContext.Result = new JsonResult
+                        {
+                            Data = new { ErrCode = 403, ErrMsg = "Access Denied." },
+                            JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                        };
+                    }
+                    else
                     {
-                        controller = "Home",
-                        action = "Index"
-                    };
+                        filterContext.HttpContext.Session.Clear();
+                        FormsAuthentication.SignOut();
 
-                    filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(routeValue));
+                        var routeValue = new
+                        {
+                            controller = "Home",
+                            action = "Index"
+                        };
+
+                        filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(routeValue));
+                    }
                 }
             }
         }

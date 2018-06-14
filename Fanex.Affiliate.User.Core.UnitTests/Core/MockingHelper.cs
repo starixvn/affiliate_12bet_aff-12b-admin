@@ -42,7 +42,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Core
             ICommissionRepository commissionRepository = null,
             IPaymentRepository paymentRepository = null,
             IEmailService emailService = null,
-            IAccountService accountService = null)
+            IAccountService accountService = null,
+            INewsService newsService = null)
         {
             var controller = new UserPanelController(
                 sessionService ?? GetSessionService(),
@@ -54,7 +55,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Core
                 commissionRepository ?? Mock.Of<ICommissionRepository>(),
                 paymentRepository ?? Mock.Of<IPaymentRepository>(),
                 emailService ?? Mock.Of<IEmailService>(),
-                accountService ?? Mock.Of<IAccountService>());
+                accountService ?? Mock.Of<IAccountService>(),
+                newsService ?? Mock.Of<INewsService>());
 
             var request = GetHttpRequest();
             controller.ControllerContext = Mock.Of<ControllerContext>(ctx =>

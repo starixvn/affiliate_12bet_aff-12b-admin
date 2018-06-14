@@ -12,17 +12,14 @@ namespace Fanex.Affiliate.User.Core.Controllers
     public class HomeController : BaseController
     {
         private readonly ILanguageService _languageService;
-        private readonly IHotNewsService _hotNewsService;
 
         public HomeController(
             ISessionService sessionService,
             IAppSetting appSetting,
-            ILanguageService languageService,
-            IHotNewsService hotNewsService)
+            ILanguageService languageService)
             : base(sessionService, appSetting)
         {
             _languageService = languageService;
-            _hotNewsService = hotNewsService;
         }
 
         [HttpGet]
@@ -69,27 +66,6 @@ namespace Fanex.Affiliate.User.Core.Controllers
             _languageService.SetCulture(languageCode);
 
             return Json(true);
-        }
-
-        [HttpGet]
-        public ActionResult LatestHotNews()
-        {
-            var userSession = SessionService.UserSession;
-            var isInternal = (userSession != null) && SessionService.IsInternal;
-
-            var hotNews = _hotNewsService.GetLatestHotNews(isInternal);
-            var preferredLanguage = userSession?.PreferredLanguage ?? SystemLanguage.DefaultLanguageCode;
-            var hotNewsList = hotNews.HotNewsList;
-
-            if (hotNewsList.Any())
-            {
-                ViewBag.SelectedHotNews = hotNewsList.ContainsKey(preferredLanguage) ?
-                                    hotNewsList[preferredLanguage] :
-                                    hotNewsList.First().Value;
-                ViewBag.IsImportant = hotNews.IsImportant;
-            }
-
-            return PartialView("~/Views/Home/_LatestHotNews.cshtml");
         }
     }
 }

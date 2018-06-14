@@ -1,16 +1,19 @@
-﻿using Fanex.Affiliate.User.Core.Constants;
+﻿using System.Collections.Generic;
+using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.DTO;
-using Fanex.Affiliate.User.Core.Repository;
+using Fanex.Affiliate.User.Core.DTO.UserPanel;
+using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
+using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Utilities;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
 {
-    public class HotNewsService : IHotNewsService
+    public class NewsService : INewsService
     {
-        private readonly IHotNewsRepository _hotNewsRepository;
+        private readonly INewsRepository _hotNewsRepository;
         private readonly IMemoryCacheService _cacheService;
 
-        public HotNewsService(IHotNewsRepository hotNewsRepository, IMemoryCacheService cacheService)
+        public NewsService(INewsRepository hotNewsRepository, IMemoryCacheService cacheService)
         {
             _hotNewsRepository = hotNewsRepository;
             _cacheService = cacheService;
@@ -27,6 +30,11 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             _cacheService.Set(CacheKey.LatestHotNews, hotNews);
 
             return hotNews;
+        }
+
+        public IEnumerable<MessageHistory> GetMessageList(MessageHistoryParam param)
+        {
+            return _hotNewsRepository.GetMessageList(param);
         }
     }
 }

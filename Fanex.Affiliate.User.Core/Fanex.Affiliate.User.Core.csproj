@@ -179,14 +179,15 @@
     <Compile Include="BusinessService\AccountService.cs" />
     <Compile Include="BusinessService\AuthService.cs" />
     <Compile Include="BusinessService\EmailService.cs" />
-    <Compile Include="BusinessService\HotNewsService.cs" />
+    <Compile Include="BusinessService\NewsService.cs" />
     <Compile Include="BusinessService\IAccountService.cs" />
     <Compile Include="BusinessService\IEmailService.cs" />
-    <Compile Include="BusinessService\IHotNewsService.cs" />
+    <Compile Include="BusinessService\INewsService.cs" />
     <Compile Include="Constants\CommGroupName.cs" />
     <Compile Include="Constants\PaymentStatus.cs" />
     <Compile Include="Constants\SportType.cs" />
     <Compile Include="Constants\TempDataKey.cs" />
+    <Compile Include="Controllers\UserPanelController.News.cs" />
     <Compile Include="CoreService\CookieService.cs" />
     <Compile Include="BusinessService\CryptographyService.cs" />
     <Compile Include="BusinessService\IAuthService.cs" />
@@ -242,6 +243,7 @@
     <Compile Include="DTO\UserPanel\BannerType.cs" />
     <Compile Include="DTO\UserPanel\CommissionSetting.cs" />
     <Compile Include="DTO\UserPanel\Domain.cs" />
+    <Compile Include="DTO\UserPanel\MessageHistory.cs" />
     <Compile Include="DTO\UserPanel\PlayerAccountCheckingResult.cs" />
     <Compile Include="DTO\UserPanel\ReferrerStatistics.cs" />
     <Compile Include="DTO\UserPanel\StatementHistory.cs" />
@@ -271,6 +273,7 @@
     <Compile Include="MetalModels\Email\NewPasswordEmailParam.cs" />
     <Compile Include="MetalModels\PasswordRecoveryParam.cs" />
     <Compile Include="MetalModels\UserPanel\DepositPlayerAccountParam.cs" />
+    <Compile Include="MetalModels\UserPanel\MessageHistoryParam.cs" />
     <Compile Include="MetalModels\UserPanel\PaymentCreationParam.cs" />
     <Compile Include="MetalModels\UserPanel\PaymentParam.cs" />
     <Compile Include="MetalModels\UserPanel\DailyEarningParam.cs" />
@@ -298,9 +301,9 @@
     <Compile Include="Repository\BetList\BetListRepository.cs" />
     <Compile Include="Repository\BetList\IBetListRepository.cs" />
     <Compile Include="Repository\UserPanel\CommissionRepository.cs" />
-    <Compile Include="Repository\HotNewsRepository.cs" />
+    <Compile Include="Repository\UserPanel\NewsRepository.cs" />
     <Compile Include="Repository\UserPanel\ICommissionRepository.cs" />
-    <Compile Include="Repository\IHotNewsRepository.cs" />
+    <Compile Include="Repository\UserPanel\INewsRepository.cs" />
     <Compile Include="Repository\UserPanel\IPaymentRepository.cs" />
     <Compile Include="Repository\UserPanel\PaymentRepository.cs" />
     <Compile Include="Repository\UserPanel\IMarketingRepository.cs" />
@@ -451,9 +454,11 @@
     <Compile Include="ViewModels\UserPanel\AccountOverviewViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\DailyEarningDetailViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\DailyEarningViewModel.cs" />
+    <Compile Include="ViewModels\UserPanel\LatestHotNewViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Marketing\LinkFormViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Marketing\MarketingViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Marketing\SearchFormViewModel.cs" />
+    <Compile Include="ViewModels\UserPanel\MessageHistoryViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\PaymentViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Statistics\LandingPageStatisticsViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\Statistics\ReferrerStatisticsViewModel.cs" />

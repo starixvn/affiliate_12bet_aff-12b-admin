@@ -82,8 +82,8 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterType<MarketingService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<StatisticsRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<CryptographyService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<HotNewsRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<HotNewsService>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<NewsRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<NewsService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<EmailService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<MailProcessor>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<StatementHistoryRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();

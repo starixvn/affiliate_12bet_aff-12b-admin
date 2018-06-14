@@ -201,7 +201,6 @@
             var disableNextButton = isDisableNextButton(newPageInfo.pageIndex, newPageInfo.totalPage);
             resetToInitialState($pagerContainer, disableNextButton);
             $self.data('pageInfo', newPageInfo);
-            console.log(newPageInfo);
         }
     }
 
@@ -237,7 +236,6 @@ var StatementHistory = (function ($) {
 
     var _me = {
         initialize: function () {
-            console.log("statement history");
             initPager();
             StatementHistory.initEvent();
         },

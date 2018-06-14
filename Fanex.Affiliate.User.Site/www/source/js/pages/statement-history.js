@@ -19,7 +19,6 @@
 
     var _me = {
         initialize: function () {
-            console.log("statement history");
             initPager();
             StatementHistory.initEvent();
         },

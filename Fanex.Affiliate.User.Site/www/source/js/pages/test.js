@@ -17,7 +17,6 @@
                 $("#resultContent").html("");
                 
                 var url = getUrl("Preview");
-                console.log(url);
 
                 $.ajax({
                     type: "GET",
@@ -40,7 +39,6 @@
 
                 var url = getUrl("SendEmail");
                 url += "&EmailAddress=" + emailAddress;
-                console.log(url);
 
                 $.ajax({
                     type: "POST",

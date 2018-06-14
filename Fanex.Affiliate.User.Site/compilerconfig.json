@@ -148,5 +148,10 @@
     "outputFile": "www/build/js/payment-request.js",
     "inputFile": "www/source/js/pages/payment-request.js",
     "sourceMap": false
+  },
+  {
+    "outputFile": "www/build/styles/css/messagehistory.css",
+    "inputFile": "www/source/styles/pages/messagehistory.scss",
+    "sourceMap": false
   }
 ]

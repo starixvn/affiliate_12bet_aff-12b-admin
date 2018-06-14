@@ -201,7 +201,6 @@
             var disableNextButton = isDisableNextButton(newPageInfo.pageIndex, newPageInfo.totalPage);
             resetToInitialState($pagerContainer, disableNextButton);
             $self.data('pageInfo', newPageInfo);
-            console.log(newPageInfo);
         }
     }
 

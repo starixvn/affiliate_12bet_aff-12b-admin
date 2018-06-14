@@ -1,0 +1,78 @@
+﻿using System.Linq;
+using System.Web.Mvc;
+using Fanex.Affiliate.User.Core.Constants;
+using Fanex.Affiliate.User.Core.Filters;
+using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
+using Fanex.Affiliate.User.Core.ViewModels.UserPanel;
+
+namespace Fanex.Affiliate.User.Core.Controllers
+{
+    public partial class UserPanelController : BaseController
+    {
+        [HttpGet]
+        [AjaxOnly]
+        public ActionResult MessageHistory()
+        {
+            var param = new MessageHistoryParam
+            {
+                IsInternal = SessionService.IsInternal,
+                Important = null,
+                Language = SessionService.CurrentLanguage
+            };
+
+            var messageList = _newsService.GetMessageList(param);
+            var viewModel = new MessageHistoryViewModel
+            {
+                MessageList = messageList,
+                TotalItems = param.Nrows
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpGet]
+        [AjaxOnly]
+        public ActionResult GetMessageHistory(MessageHistoryParam param)
+        {
+            param.IsInternal = SessionService.IsInternal;
+            param.Language = SessionService.CurrentLanguage;
+
+            var messageList = _newsService.GetMessageList(param);
+            var viewModel = new MessageHistoryViewModel
+            {
+                MessageList = messageList,
+                TotalItems = param.Nrows
+            };
+
+            return PartialView("~/Views/UserPanel/NewsPartial/_MessageContent.cshtml", viewModel);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        [AjaxOnly]
+        public ActionResult LatestHotNews()
+        {
+            var userSession = SessionService.UserSession;
+            var isInternal = (userSession != null) && SessionService.IsInternal;
+
+            var hotNews = _newsService.GetLatestHotNews(isInternal);
+            var preferredLanguage = userSession?.PreferredLanguage ?? SystemLanguage.DefaultLanguageCode;
+            var hotNewsList = hotNews.HotNewsList;
+
+            var viewModel = new LatestHotNewViewModel
+            {
+                IsImportant = hotNews.IsImportant,
+                IsAuthenticated = HttpContext.User.Identity.IsAuthenticated && SessionService.UserSession != null
+            };
+
+            if (hotNewsList.Any())
+            {
+                viewModel.SelectedHotNews = hotNewsList.ContainsKey(preferredLanguage) ?
+                                    hotNewsList[preferredLanguage] :
+                                    hotNewsList.First().Value;
+            }
+
+            return PartialView("~/Views/UserPanel/NewsPartial/_LatestHotNews.cshtml", viewModel);
+        }
+    }
+}

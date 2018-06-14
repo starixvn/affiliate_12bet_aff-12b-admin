@@ -129,7 +129,6 @@
 
             if ($("#hasWebSite").prop("checked") && $("#txtSiteUrl").val().trim() === "" || !_me.canAddUrl()) {
                 $("#txtSiteUrl").focus();
-                console.log($(".urlInput[value='']").val());
 
                 return {
                     isValid: false,

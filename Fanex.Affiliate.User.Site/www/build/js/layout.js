@@ -45,7 +45,7 @@ var Layout = (function ($) {
         renderHotNews: function () {
             $.ajax({
                 type: "GET",
-                url: Site.resolveRelativeUrl("Home/LatestHotNews"),
+                url: Site.resolveRelativeUrl("UserPanel/LatestHotNews"),
                 dataType: "html",
                 cache: false,
                 success: function (response) {

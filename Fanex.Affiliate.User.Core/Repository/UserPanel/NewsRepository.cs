@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using Fanex.Affiliate.User.Core.DTO;
+using Fanex.Affiliate.User.Core.DTO.UserPanel;
+using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 
-namespace Fanex.Affiliate.User.Core.Repository
+namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 {
-    public class HotNewsRepository : IHotNewsRepository
+    public class NewsRepository : INewsRepository
     {
         public LatestHotNews GetLastestHotNews(bool isInternal)
         {
@@ -38,6 +40,17 @@ namespace Fanex.Affiliate.User.Core.Repository
             }
 
             return result;
+        }
+
+        public IEnumerable<MessageHistory> GetMessageList(MessageHistoryParam param)
+        {
+            const string uSpKey = "Aff_HotNewsSel";
+            var mode = param.IsInternal ? DBMode.View : DBMode.Main;
+
+            using (var objectDb = new ObjectDBBuilder(uSpKey, mode))
+            {
+                return objectDb.DB.Query<MessageHistory>(param);
+            }
         }
     }
 }
