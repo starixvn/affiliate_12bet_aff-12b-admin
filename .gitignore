@@ -38,3 +38,5 @@ Affiliate/Report.csv
 .vs/
 /Fanex.Affiliate.User.Site/Properties/PublishProfiles/
 node_modules
+CoverageReport/
+/xunitcoverage/*.UnitTests.Coverage.xml
