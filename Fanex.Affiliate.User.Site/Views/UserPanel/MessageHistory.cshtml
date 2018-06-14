@@ -5,7 +5,7 @@
 
 @model Fanex.Affiliate.User.Core.ViewModels.UserPanel.MessageHistoryViewModel
 
-<link href="@Url.RenderLink("~/www/build/styles/css/messagehistory.css")" rel="stylesheet" />
+@Html.InlineStyles("~/www/build/styles/css/messagehistory.css")
 
 <div class="page-title">
     <span class="text">@Lang.MessageHistory</span>

@@ -3,7 +3,7 @@
 
     var lastDateOfMonth = new DateTime(Model.SelectedDate.Year, Model.SelectedDate.Month + 1, 1).AddDays(-1);
 }
-<link href="@Url.RenderLink("~/www/build/styles/css/dailyearning-detail.css")" rel="stylesheet" />
+@Html.InlineStyles("~/www/build/styles/css/dailyearning-detail.css")
 
 @model Fanex.Affiliate.User.Core.ViewModels.UserPanel.DailyEarningDetailViewModel
 

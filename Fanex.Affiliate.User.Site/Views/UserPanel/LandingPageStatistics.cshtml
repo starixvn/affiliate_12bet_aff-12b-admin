@@ -2,7 +2,7 @@
     Layout = null;
 }
 
-<link href="@Url.RenderLink("~/www/build/styles/css/statistics.css")" rel="stylesheet" />
+@Html.InlineStyles("~/www/build/styles/css/statistics.css")
 
 @model Fanex.Affiliate.User.Core.ViewModels.UserPanel.Statistics.LandingPageStatisticsViewModel
 

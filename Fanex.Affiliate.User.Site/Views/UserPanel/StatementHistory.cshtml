@@ -3,7 +3,7 @@
 }
 @model IEnumerable<Fanex.Affiliate.User.Core.DTO.UserPanel.StatementHistory>
 
-<link href="@Url.RenderLink("~/www/build/styles/css/statement-history.css")" rel="stylesheet" />
+@Html.InlineStyles("~/www/build/styles/css/statement-history.css")
 
 <div class="page-title">
     <span class="text">@Lang.StatementHistory</span>
