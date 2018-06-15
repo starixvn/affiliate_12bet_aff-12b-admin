@@ -58,20 +58,19 @@ namespace Fanex.Affiliate.User.Core.Controllers
             {
                 if (IsValidCaptcha(userParam.ValidationKey))
                 {
-                    var clientIpAddress = RequestHelper.GetClientIPAddress();
-                    userParam.ServerId = AppSetting.ServerId;
-                    userParam.LoginIP = clientIpAddress;
+                    var clientIpAddress = Request.UserHostAddress;
+                    userParam.LoginIp = clientIpAddress;
                     userParam.Language = SessionService.CurrentLanguage;
 
                     const bool IsInternal = false;
                     SessionService.IsInternal = IsInternal;
                     userParam.IsInternal = IsInternal;
                     var loginResult = _authService.GetLoginResult(userParam, IsInternal);
-                    var user = loginResult.UserInfo;
                     result = loginResult.Result;
 
                     if (result.IsOk)
                     {
+                        var user = loginResult.UserInfo;
                         if (!AppSetting.AllowedAffiliateTypes.Any(t => t.Equals(user.AffType.ToString())))
                         {
                             return Json(GetErrorResult(Lang.NotAllowOnDomain));
@@ -115,12 +114,11 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 var hashedPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(adminSessionId + loginParam.ChalengeStr, "MD5");
                 if (string.CompareOrdinal(loginParam.AccKey, hashedPassword) == 0)
                 {
-                    var clientIpAddress = RequestHelper.GetClientIPAddress();
+                    var clientIpAddress = Request.UserHostAddress;
                     var userLoginParam = new UserLoginParam
                     {
                         UserName = loginParam.CustName,
-                        ServerId = AppSetting.ServerId,
-                        LoginIP = clientIpAddress,
+                        LoginIp = clientIpAddress,
                         Language = SessionService.CurrentLanguage
                     };
 

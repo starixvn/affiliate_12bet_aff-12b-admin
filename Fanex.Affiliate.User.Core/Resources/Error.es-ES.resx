@@ -126,6 +126,15 @@
   <data name="ForgotPassword1009" xml:space="preserve">
     <value>La dirección de correo electrónico está utilizada por un afiliado inactivo o cuya cuenta no ha sido aprobada. Vuelva a intentarlo más tarde o &lt;a href="{0}" class='err-msg'&gt;póngase en contacto con nosotros&lt;/a&gt;.</value>
   </data>
+  <data name="LoginClosedAccount" xml:space="preserve">
+    <value>Se ha cerrado su cuenta. Póngase en contacto con el administrador.</value>
+  </data>
+  <data name="LoginLockedAccount" xml:space="preserve">
+    <value>Se ha cerrado su cuenta. Póngase en contacto con el administrador.</value>
+  </data>
+  <data name="LoginWrongInfo" xml:space="preserve">
+    <value>El nombre de usuario o la contraseña son incorrectos</value>
+  </data>
   <data name="PaymentBalanceInvalid" xml:space="preserve">
     <value>No puede solicitar el pago porque no tiene saldo suficiente.</value>
   </data>

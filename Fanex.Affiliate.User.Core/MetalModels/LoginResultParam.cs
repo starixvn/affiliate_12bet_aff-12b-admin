@@ -6,16 +6,14 @@
 
         public string LoginIp { get; set; }
 
-        public int ServerId { get; set; }
-
         public string Language { get; set; }
 
         public bool IsSuccessful { get; set; }
 
         public string SessionId { get; set; }
 
-        public int ErrorCode { get; set; }
+        public int ErrCode { get; set; }
 
-        public string ErrorMessage { get; set; }
+        public string ErrMsg { get; set; }
     }
 }

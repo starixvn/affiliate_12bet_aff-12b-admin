@@ -17,16 +17,6 @@ namespace Fanex.Affiliate.User.Core.MetalModels
         [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "ErrmsgEntryValidCode")]
         public string ValidationKey { get; set; }
 
-        public string LoginIP { get; set; }
-
-        public int ServerId { get; set; }
-
-        public string Language { get; set; }
-
-        public int ErrorCode { get; set; }
-
-        public string ErrorMessage { get; set; }
-
         [SpParam(Ignored = true)]
         [Required(ErrorMessage = "Login failed")]
         public string EncriptionKey { get; set; }
@@ -34,5 +24,11 @@ namespace Fanex.Affiliate.User.Core.MetalModels
         [SpParam(Ignored = true)]
         [Required(ErrorMessage = "Login failed")]
         public string EncriptionIv { get; set; }
+
+        [SpParam(Ignored = true)]
+        public string LoginIp { get; set; }
+
+        [SpParam(Ignored = true)]
+        public string Language { get; set; }
     }
 }

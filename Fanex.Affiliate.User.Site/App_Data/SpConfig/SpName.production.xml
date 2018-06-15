@@ -2,10 +2,10 @@
 <Functions SiteId="32" SiteName="12Bet">
   <Function Name="Authorization">
     <Setting Key="Aff_SessionIdSel_view" SpName="Aff_SessionIdSel" DbName="affiliate_12bet_view" />
-    <Setting Key="Aff_AffiliateLogin_UserInfoSel" SpName="Aff_AffiliateLogin_UserInfoSel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_AffiliateLogin_UserInfoSel_view" SpName="Aff_AffiliateLogin_UserInfoSel" DbName="affiliate_12bet_view" />
-    <Setting Key="Aff_AffiliateLogin_LoginResultUpd" SpName="Aff_AffiliateLogin_LoginResultUpd" DbName="affiliate_12bet" />
-    <Setting Key="Aff_AffiliateLogin_LoginResultUpd_view" SpName="Aff_AffiliateLogin_LoginResultUpd" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_User_Login_UserInfoSel" SpName="Aff_User_Login_UserInfoSel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_User_Login_UserInfoSel_view" SpName="Aff_User_Login_UserInfoSel" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_User_Login_ResultUpd" SpName="Aff_User_Login_ResultUpd" DbName="affiliate_12bet" />
+    <Setting Key="Aff_User_Login_ResultUpd_view" SpName="Aff_User_Login_ResultUpd" DbName="affiliate_12bet_view" />
     <Setting Key="Aff_CheckIn" SpName="Aff_CheckIn" DbName="affiliate_12bet" />
     <Setting Key="Aff_CheckIn_view" SpName="Aff_CheckIn" DbName="affiliate_12bet_view" />
     <Setting Key="Aff_Recheckin" SpName="Aff_Recheckin" DbName="affiliate_12bet" />
@@ -109,9 +109,7 @@
     <Setting Key="Aff_BetList_CheckBelonging_view" SpName="Aff_BetList_CheckBelonging" DbName="affiliate_12bet_view" />  
   </Function>
 
-  <Function Name="Payment">   
-    <Setting Key="Aff_PaymentRequestSelInfoByAff" SpName="Aff_PaymentRequestSelInfoByAff" DbName="affiliate_12bet" />
-    <Setting Key="Aff_PaymentRequestSelInfoByAff_view" SpName="Aff_PaymentRequestSelInfoByAff" DbName="affiliate_12bet_view" />
+  <Function Name="Payment">
     <Setting Key="Aff_User_PaymentRequest_Sel" SpName="Aff_User_PaymentRequest_Sel" DbName="affiliate_12bet" />
     <Setting Key="Aff_User_PaymentRequest_Sel_view" SpName="Aff_User_PaymentRequest_Sel" DbName="affiliate_12bet_view" />
     <Setting Key="Aff_User_PaymentRequest_Upd" SpName="Aff_User_PaymentRequest_Upd" DbName="affiliate_12bet" />

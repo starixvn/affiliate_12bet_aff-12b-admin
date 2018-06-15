@@ -88,6 +88,33 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your account is closed. Please contact your administrator!.
+        /// </summary>
+        public static string LoginClosedAccount {
+            get {
+                return ResourceManager.GetString("LoginClosedAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your account is locked temporarily due to fail to log in greater than 5 times. Please try again after 10 minutes or contact your administrator!.
+        /// </summary>
+        public static string LoginLockedAccount {
+            get {
+                return ResourceManager.GetString("LoginLockedAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wrong username or password..
+        /// </summary>
+        public static string LoginWrongInfo {
+            get {
+                return ResourceManager.GetString("LoginWrongInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid request amount.
         /// </summary>
         public static string PaymentAmountInvalid {

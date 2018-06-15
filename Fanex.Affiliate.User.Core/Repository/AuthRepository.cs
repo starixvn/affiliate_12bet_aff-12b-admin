@@ -21,21 +21,18 @@ namespace Fanex.Affiliate.User.Core.Repository
 
         public AuthorizedUserInfo GetUserInfo(UserLoginParam userLoginParam)
         {
-            const string spKey = "Aff_AffiliateLogin_UserInfoSel";
+            const string spKey = "Aff_User_Login_UserInfoSel";
             var dbMode = userLoginParam.IsInternal ? DBMode.View : DBMode.Main;
-            AuthorizedUserInfo result = null;
 
             using (var dataBox = new ObjectDBBuilder(spKey, dbMode))
             {
-                result = dataBox.DB.QueryEntity<AuthorizedUserInfo>(userLoginParam);
+                return dataBox.DB.QueryEntity<AuthorizedUserInfo>(userLoginParam);
             }
-
-            return result;
         }
 
         public void UpdateLoginResult(LoginResultParam loginResultParam)
         {
-            const string spKey = "Aff_AffiliateLogin_LoginResultUpd";
+            const string spKey = "Aff_User_Login_ResultUpd";
             var dbMode = loginResultParam.IsInternal ? DBMode.View : DBMode.Main;
 
             using (var dataBox = new ObjectDBBuilder(spKey, dbMode))

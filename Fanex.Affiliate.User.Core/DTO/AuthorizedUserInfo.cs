@@ -12,6 +12,10 @@
 
         public string PreferredLanguage { get; set; }
 
+        public bool IsClosed { get; set; }
+
+        public string Status { get; set; }
+
         public int OnUserId { get; set; }
     }
 }

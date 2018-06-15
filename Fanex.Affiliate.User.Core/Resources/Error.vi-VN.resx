@@ -126,6 +126,15 @@
   <data name="ForgotPassword1009" xml:space="preserve">
     <value>Địa chỉ email này đang được sử dụng bởi một hội viên đã không còn hoạt động hoặc chưa được chấp thuận. Vui lòng thử lại hoặc&lt;a href="{0}" class='err-msg'&gt;liên hệ với chúng tôi&lt;/a&gt;.</value>
   </data>
+  <data name="LoginClosedAccount" xml:space="preserve">
+    <value>Tài khoản của bạn bị đóng. Vui lòng liên hệ với quản trị viên của bạn!</value>
+  </data>
+  <data name="LoginLockedAccount" xml:space="preserve">
+    <value>Tài khoản của bạn bị đóng. Vui lòng liên hệ với quản trị viên của bạn!</value>
+  </data>
+  <data name="LoginWrongInfo" xml:space="preserve">
+    <value>Tên truy cập hoặc mật khẩu sai.</value>
+  </data>
   <data name="PaymentBalanceInvalid" xml:space="preserve">
     <value>Bạn không thể yêu cầu thanh toán vì số dư không đủ.</value>
   </data>

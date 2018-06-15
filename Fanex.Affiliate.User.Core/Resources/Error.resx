@@ -126,6 +126,15 @@
   <data name="ForgotPassword1009" xml:space="preserve">
     <value>This email address is being used by an affliliate that's inactive or has not been approved. Please try again or  &lt;a href="{0}" class='err-msg'&gt;Contact us&lt;/a&gt;.</value>
   </data>
+  <data name="LoginClosedAccount" xml:space="preserve">
+    <value>Your account is closed. Please contact your administrator!</value>
+  </data>
+  <data name="LoginLockedAccount" xml:space="preserve">
+    <value>Your account is locked temporarily due to fail to log in greater than 5 times. Please try again after 10 minutes or contact your administrator!</value>
+  </data>
+  <data name="LoginWrongInfo" xml:space="preserve">
+    <value>Wrong username or password.</value>
+  </data>
   <data name="PaymentAmountInvalid" xml:space="preserve">
     <value>Invalid request amount</value>
   </data>

@@ -8,7 +8,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
     {
         public IEnumerable<Payment> GetPaymentList(PaymentParam paymentParam)
         {
-            const string uSpKey = "Aff_PaymentRequestSelInfoByAff";
+            const string uSpKey = "Aff_User_PaymentRequest_Sel";
             var mode = paymentParam.IsInternal ? DBMode.View : DBMode.Main;
 
             using (var objectDb = new ObjectDBBuilder(uSpKey, mode))

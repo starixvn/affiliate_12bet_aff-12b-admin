@@ -126,6 +126,12 @@
   <data name="ForgotPassword1009" xml:space="preserve">
     <value>このメールアドレスは、活動していないまたは承認されていないアフィリエイトに使用されています。もう一度やり直すか、"お問い合わせ"から連絡してください。</value>
   </data>
+  <data name="LoginClosedAccount" xml:space="preserve">
+    <value>お客様のアカウントは閉鎖されました。管理者にお問い合わせください</value>
+  </data>
+  <data name="LoginWrongInfo" xml:space="preserve">
+    <value>ユーザー名またはパスワードが間違っています</value>
+  </data>
   <data name="PaymentBalanceInvalid" xml:space="preserve">
     <value>残高が充分でないため支払の請求ができません</value>
   </data>

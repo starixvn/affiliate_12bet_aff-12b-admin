@@ -21,11 +21,12 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         public LoginResultViewModel GetLoginResult(UserLoginParam userParam, bool isInternal)
         {
             var user = _authRepository.GetUserInfo(userParam);
-            if (userParam.ErrorCode != 0)
+            if (user == null || user.IsClosed)
             {
+                var message = user == null ? Resources.Error.LoginWrongInfo : Resources.Error.LoginClosedAccount;
                 return new LoginResultViewModel
                 {
-                    Result = new ResultInfo { Message = userParam.ErrorMessage }
+                    Result = new ResultInfo { IsOk = false, Message = message }
                 };
             }
 
@@ -38,8 +39,8 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 UserInfo = user,
                 Result = new ResultInfo
                 {
-                    IsOk = loginResultParam.ErrorCode == 0,
-                    Message = loginResultParam.ErrorMessage
+                    IsOk = loginResultParam.ErrCode == 0,
+                    Message = loginResultParam.ErrMsg
                 }
             };
         }
@@ -71,8 +72,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return new LoginResultParam
             {
                 AffId = userInfo.AffId,
-                ServerId = userParam.ServerId,
-                LoginIp = userParam.LoginIP,
+                LoginIp = userParam.LoginIp,
                 SessionId = HttpContext.Current.Session.SessionID,
                 Language = userParam.Language,
                 IsSuccessful = isInternal || isMatchPassword,

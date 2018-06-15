@@ -126,6 +126,15 @@
   <data name="ForgotPassword1009" xml:space="preserve">
     <value>อีเมลล์แอดเดรสนี้ถูกใช้ในการการสมัครเป็นพันธมิตรเรียบร้อยแล้วและไม่ได้รับการอนุมัติ กรุณาลองใหม่อีกครั้งหรือ  &lt;a href="{0}" class='err-msg'&gt;ติดต่อเรา&lt;/a&gt;.</value>
   </data>
+  <data name="LoginClosedAccount" xml:space="preserve">
+    <value>บัญชีของคุณถูดปิด กรุณาติดต่อฝ่ายบริการลูกค้า!</value>
+  </data>
+  <data name="LoginLockedAccount" xml:space="preserve">
+    <value>บัญชีของคุณถูดปิด กรุณาติดต่อฝ่ายบริการลูกค้า!</value>
+  </data>
+  <data name="LoginWrongInfo" xml:space="preserve">
+    <value>ชื่อยูสเสอร์และพาสเวิดไม่ถูกต้อง.</value>
+  </data>
   <data name="PaymentBalanceInvalid" xml:space="preserve">
     <value>คุณไม่สามารถขอถอนเงินเพราะว่าคุณมียอดเงินคงเหลือไม่เพียงพอ</value>
   </data>

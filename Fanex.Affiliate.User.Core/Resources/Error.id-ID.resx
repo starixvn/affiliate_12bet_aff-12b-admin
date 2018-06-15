@@ -126,6 +126,15 @@
   <data name="ForgotPassword1009" xml:space="preserve">
     <value>Alamat email ini sedang digunakan oleh afiliasi yang tidak aktif, atau belum disetujui. Silakan coba lagi atau  &lt;a href="{0}" class='err-msg'&gt;Hubungi kami&lt;/a&gt;.</value>
   </data>
+  <data name="LoginClosedAccount" xml:space="preserve">
+    <value>Rekening Anda sudah ditutup. Harap menghubungi administrator Anda!</value>
+  </data>
+  <data name="LoginLockedAccount" xml:space="preserve">
+    <value>Rekening Anda sudah ditutup. Harap menghubungi administrator Anda!</value>
+  </data>
+  <data name="LoginWrongInfo" xml:space="preserve">
+    <value>Nama pengguna dan kata sandi salah.</value>
+  </data>
   <data name="PaymentBalanceInvalid" xml:space="preserve">
     <value>Anda tidak dapat meminta pembayaran karena saldo tidak mencukupi.</value>
   </data>

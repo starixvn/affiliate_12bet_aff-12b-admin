@@ -35,6 +35,11 @@
                 return Error.PaymentPayoutTimeInvalid;
             }
 
+            if(Model.PendingPayment != null)
+            {
+                return Lang.Err3001;
+            }
+
             return string.Empty;
         }
 

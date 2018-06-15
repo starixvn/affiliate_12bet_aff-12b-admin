@@ -126,6 +126,15 @@
   <data name="ForgotPassword1009" xml:space="preserve">
     <value>此电子邮件地址对应的合作伙伴帐户失效或未被关闭。&lt;a href="{0}" class='err-msg'&gt;请重试或联系我们。&lt;/a&gt;</value>
   </data>
+  <data name="LoginClosedAccount" xml:space="preserve">
+    <value>账号关闭，请联络管理员</value>
+  </data>
+  <data name="LoginLockedAccount" xml:space="preserve">
+    <value>账号关闭，请联络管理员</value>
+  </data>
+  <data name="LoginWrongInfo" xml:space="preserve">
+    <value>用户名或密码错误</value>
+  </data>
   <data name="PaymentBalanceInvalid" xml:space="preserve">
     <value>您的帐户余额不足，不能要求提款</value>
   </data>
