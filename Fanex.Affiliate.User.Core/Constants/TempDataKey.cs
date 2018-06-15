@@ -7,5 +7,7 @@
         public const string UpdatePasswordResult = "UpdatePasswordResult";
 
         public const string PaymentResult = "PaymentResult";
+
+        public const string SignUpResult = "SignUpResult";
     }
 }

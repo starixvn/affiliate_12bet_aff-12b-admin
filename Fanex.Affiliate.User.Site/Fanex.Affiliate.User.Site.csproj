@@ -399,6 +399,15 @@
     <Content Include="Views\Shared\Email\NewPassword\Content.vi-VN.cshtml" />
     <Content Include="Views\Shared\Email\NewPassword\Content.zh-CN.cshtml" />
     <Content Include="Views\Shared\Email\NewPassword\Content.zh-TW.cshtml" />
+    <None Include="Views\Signup\SecureQuestion\SecureQuestion_en-US.cshtml" />
+    <None Include="Views\Signup\SecureQuestion\SecureQuestion_es-ES.cshtml" />
+    <None Include="Views\Signup\SecureQuestion\SecureQuestion_id-ID.cshtml" />
+    <None Include="Views\Signup\SecureQuestion\SecureQuestion_ja-JP.cshtml" />
+    <None Include="Views\Signup\SecureQuestion\SecureQuestion_ko-KR.cshtml" />
+    <None Include="Views\Signup\SecureQuestion\SecureQuestion_th-TH.cshtml" />
+    <None Include="Views\Signup\SecureQuestion\SecureQuestion_vi-VN.cshtml" />
+    <None Include="Views\Signup\SecureQuestion\SecureQuestion_zh-CN.cshtml" />
+    <None Include="Views\Signup\SecureQuestion\SecureQuestion_zh-TW.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -465,10 +474,19 @@
     <Content Include="www\build\js\payment-request.min.js">
       <DependentUpon>payment-request.js</DependentUpon>
     </Content>
+    <Content Include="www\build\js\signup.js" />
+    <Content Include="www\build\js\signup.min.js">
+      <DependentUpon>signup.js</DependentUpon>
+    </Content>
     <Content Include="www\build\styles\css\messagehistory.css" />
     <Content Include="www\build\styles\css\messagehistory.min.css">
       <DependentUpon>messagehistory.css</DependentUpon>
     </Content>
+    <Content Include="www\build\styles\css\signup.css" />
+    <Content Include="www\build\styles\css\signup.min.css">
+      <DependentUpon>signup.css</DependentUpon>
+    </Content>
+    <Content Include="www\source\js\components\website.js" />
     <Content Include="www\source\js\pages\messagehistory.js" />
     <Content Include="www\source\js\pages\payment-request.js" />
     <Content Include="www\build\js\recheckin.js" />
@@ -656,6 +674,7 @@
     <Content Include="www\source\js\pages\marketing\marketingbase.js" />
     <Content Include="www\source\js\pages\marketing\mediagallery.js" />
     <Content Include="www\source\js\pages\myaccount.js" />
+    <Content Include="www\source\js\pages\signup.js" />
     <Content Include="www\source\js\pages\statement-history.js" />
     <Content Include="www\source\js\pages\statistics\landingpagestatistics.js" />
     <Content Include="www\source\js\pages\statistics\referrerstatistics.js" />
@@ -776,6 +795,8 @@
     <Content Include="Views\UserPanel\MessageHistory.cshtml" />
     <Content Include="Views\UserPanel\NewsPartial\_MessageContent.cshtml" />
     <Content Include="www\source\styles\pages\messagehistory.scss" />
+    <Content Include="www\source\styles\pages\signup.scss" />
+    <Content Include="Views\Signup\_CountryOption.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

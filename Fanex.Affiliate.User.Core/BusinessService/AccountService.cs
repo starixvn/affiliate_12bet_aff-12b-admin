@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Fanex.Affiliate.User.Core.DTO;
+using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Resources;
@@ -19,6 +20,11 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         public AccountService(IAccountRepository accountRepository)
         {
             _accountRepository = accountRepository;
+        }
+
+        public ResultInfo CreateAffiliate(UserSignUpParam signUpParam)
+        {
+            return new ResultInfo();
         }
 
         public ResultInfo CheckPlayerAccountIsActived(int affId, string language)

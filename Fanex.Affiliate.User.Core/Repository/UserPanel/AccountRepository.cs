@@ -196,5 +196,21 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
                 Message = account.ErrorMsg
             };
         }
+
+        public ResultInfo CreateAffiliate(UserSignUpParam signUpParam)
+        {
+            const string uSpKey = "Aff_AffiliateIns";
+
+            using (var objectDb = new ObjectDBBuilder(uSpKey))
+            {
+                objectDb.DB.ExecuteNonQuery(signUpParam);
+            }
+
+            return new ResultInfo
+            {
+                IsOk = signUpParam.ErrCode == 0,
+                Message = signUpParam.ErrMsg
+            };
+        }
     }
 }

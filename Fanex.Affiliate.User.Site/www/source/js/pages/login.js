@@ -1,7 +1,6 @@
 ﻿var Login = (function ($) {
     var _me = {
         initialize: function () {
-            _me.generateCaptcha();
             _me.initEvent();
         },
 

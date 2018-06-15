@@ -19,7 +19,7 @@
         <input class="text-field" id="txtUsername" type="text" placeholder="@Lang.Username" />
         <input class="text-field" id="txtPassword" type="password" placeholder="@Lang.Password" />
         <input class="text-field validation" id="txtValidation" type="text" placeholder="Validation" />
-        <div class="validation-value"><img src="" alt="captcha" id="captchaImg" /></div>
+        <div class="validation-value"><img src="@Url.Action("CaptchaImage", "Home")" alt="captcha" id="captchaImg" /></div>
         <a class="btn btn-forgot" title="@Lang.ForgetPassword" href="@Url.Action("Index", "Password")">
             <span class="mdi mdi-account-key"></span>
         </a>

@@ -297,6 +297,7 @@
     <Compile Include="MetalModels\UserPanel\StatisticsDetailBySiteParam.cs" />
     <Compile Include="MetalModels\UserPanel\StatisticsOverviewParam.cs" />
     <Compile Include="MetalModels\UserPanel\TrackingStatisticsDetailParam.cs" />
+    <Compile Include="MetalModels\UserSignUpParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\BetList\BetListRepository.cs" />
     <Compile Include="Repository\BetList\IBetListRepository.cs" />

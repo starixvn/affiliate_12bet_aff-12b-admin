@@ -153,5 +153,10 @@
     "outputFile": "www/build/styles/css/messagehistory.css",
     "inputFile": "www/source/styles/pages/messagehistory.scss",
     "sourceMap": false
+  },
+  {
+    "outputFile": "www/build/styles/css/signup.css",
+    "inputFile": "www/source/styles/pages/signup.scss",
+    "sourceMap": false
   }
 ]

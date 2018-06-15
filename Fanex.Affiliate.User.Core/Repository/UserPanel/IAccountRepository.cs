@@ -29,5 +29,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
         IbcPlayerAccountInsertResult InsertPlayerAccountForIbc(DepositAccountInfo accountInfo);
 
         ResultInfo UpdatePlayerAccountStatusForDeposit(DepositPlayerAccountParam account);
+
+        ResultInfo CreateAffiliate(UserSignUpParam signUpParam);
     }
 }
