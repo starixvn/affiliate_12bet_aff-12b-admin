@@ -2736,4 +2736,7 @@
   <data name="EmailTitlePayment" xml:space="preserve">
     <value>支付申请通知</value>
   </data>
+  <data name="EmailTitleSignUp" xml:space="preserve">
+    <value>您的加盟申请</value>
+  </data>
 </root>

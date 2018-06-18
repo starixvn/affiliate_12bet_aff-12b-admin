@@ -1,4 +1,5 @@
-﻿using Fanex.Affiliate.User.Core.MetalModels.Email;
+﻿using Fanex.Affiliate.User.Core.MetalModels;
+using Fanex.Affiliate.User.Core.MetalModels.Email;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
 {
@@ -9,5 +10,9 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         void SendNewPasswordEmail(NewPasswordEmailParam emailParam);
 
         void SendPaymentEmail(PaymentEmailParam emailParam);
+
+        void SendSignUpEmail(EmailBaseParam emailParam);
+
+        void SendNoticeEmailToCsd(EmailBaseParam emailParam, UserSignUpParam model);
     }
 }

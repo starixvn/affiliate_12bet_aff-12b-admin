@@ -7,6 +7,7 @@
     using Constants;
     using CoreService;
     using MetalModels;
+    using MetalModels.Email;
     using Utilities;
 
     public class SignupController : BaseController
@@ -60,10 +61,20 @@
                     EmailFormat = false,
                     AffType = Convert.ToByte(AppSetting.AllowedAffiliateTypes.FirstOrDefault()),
                     Ip = Request.UserHostAddress,
-                    Browser = Request.Browser.ToString()
+                    Browser = Request.Browser.ToString(),
+                    IsLocal = AppSetting.IsLocal
                 };
 
-                var result = _accountService.CreateAffiliate(signUpParam);
+                var emailParam = new EmailBaseParam
+                {
+                    MailCc = AppSetting.MailCc,
+                    MailContact = AppSetting.MailContact,
+                    MailBcc = AppSetting.MailBcc,
+                    RootDomain = SiteDomainHelper.GetRootUrl(this),
+                    MailTo = AppSetting.MailContact
+                };
+
+                var result = _accountService.CreateAffiliate(signUpParam, emailParam);
 
                 TempData[TempDataKey.SignUpResult] = result;
             }

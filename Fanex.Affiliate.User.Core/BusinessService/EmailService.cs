@@ -1,6 +1,7 @@
 ﻿using System.Web;
 using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.Enum;
+using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.MetalModels.Email;
 using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.Utilities;
@@ -27,7 +28,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 emailContent = GetEmailHtmlContent(emailContent, Lang.EmailTitlePasswordRecovery, emailParam.User.PreferredLanguage, emailParam.RootDomain);
             }
 
-            _mailProcessor.Send(emailContent, emailParam.MailTo, Lang.SubjectForgetPass);
+            _mailProcessor.Send(emailContent, emailParam.MailTo, Lang.SubjectForgetPass, emailParam.MailBcc, emailParam.MailCc);
         }
 
         public void SendNewPasswordEmail(NewPasswordEmailParam emailParam)
@@ -40,7 +41,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 emailContent = GetEmailHtmlContent(emailContent, Lang.EmailTitleNewPassword, emailParam.User.PreferredLanguage, emailParam.RootDomain);
             }
 
-            _mailProcessor.Send(emailContent, emailParam.MailTo, Lang.SubjectNewPass);
+            _mailProcessor.Send(emailContent, emailParam.MailTo, Lang.SubjectNewPass, emailParam.MailBcc, emailParam.MailCc);
         }
 
         public void SendPaymentEmail(PaymentEmailParam emailParam)
@@ -56,7 +57,29 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 emailContent = GetEmailHtmlContent(emailContent, Lang.EmailTitlePayment, emailParam.User.PreferredLanguage, emailParam.RootDomain);
             }
 
-            _mailProcessor.Send(emailContent, emailParam.MailTo, subject);
+            _mailProcessor.Send(emailContent, emailParam.MailTo, subject, emailParam.MailBcc, emailParam.MailCc);
+        }
+
+        public void SendSignUpEmail(EmailBaseParam emailParam)
+        {
+            var model = GetSignUpModel(emailParam);
+            const string TemplateName = "Signup";
+            var emailContent = GetEmailTextContent(TemplateName, emailParam.User.PreferredLanguage, model);
+            if (!emailParam.User.MailOption)
+            {
+                emailContent = GetEmailHtmlContent(emailContent, Lang.EmailTitleSignUp, emailParam.User.PreferredLanguage, emailParam.RootDomain);
+            }
+
+            _mailProcessor.Send(emailContent, emailParam.MailTo, Lang.RegisSubject, emailParam.MailBcc, emailParam.MailCc);
+        }
+
+        public void SendNoticeEmailToCsd(EmailBaseParam emailParam, UserSignUpParam model)
+        {
+            const string TemplateName = "Csd";
+            var emailContent = GetEmailTextContent(TemplateName, SystemLanguage.DefaultLanguageCode, model);
+
+            var subject = string.Format(Lang.CsdSubject, model.UserName);
+            _mailProcessor.Send(emailContent, emailParam.MailTo, subject, emailParam.MailBcc, emailParam.MailCc);
         }
 
         private string GetEmailTextContent(string templateName, string prefrerredLanguage, object model)
@@ -116,6 +139,15 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 TransId = emailParam.TransId,
                 Date = emailParam.RequestDate.ToString("MM/dd/yyyy"),
                 Amount = emailParam.Amount
+            };
+        }
+
+        private object GetSignUpModel(EmailBaseParam emailParam)
+        {
+            return new
+            {
+                FirstName = emailParam.User.FirstName,
+                MailContact = emailParam.MailContact
             };
         }
     }

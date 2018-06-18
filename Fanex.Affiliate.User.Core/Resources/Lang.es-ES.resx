@@ -2688,4 +2688,7 @@ Uno de nuestros administradores de cuentas de afiliados se pondrá en contacto c
   <data name="EmailTitlePayment" xml:space="preserve">
     <value>Solicitud de Notificación de pago</value>
   </data>
+  <data name="EmailTitleSignUp" xml:space="preserve">
+    <value>Su solicitud</value>
+  </data>
 </root>

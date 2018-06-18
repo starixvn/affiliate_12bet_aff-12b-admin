@@ -14,6 +14,7 @@ namespace Fanex.Affiliate.User.Core.MetalModels
         public bool Gender { get; set; }
 
         [Required]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string Email { get; set; }
 
         [Required]

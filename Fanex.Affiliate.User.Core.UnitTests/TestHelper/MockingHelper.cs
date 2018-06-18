@@ -82,6 +82,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
             return Mock.Of<HttpRequestBase>(req =>
                 req.ApplicationPath == "/" &&
                 req.UserHostAddress == "::1" &&
+                req.Browser.ToString() == Constant.Browser &&
                 req.Url == new Uri(Constant.DefaultRootDomain) &&
                 req.ServerVariables == new NameValueCollection()
             );

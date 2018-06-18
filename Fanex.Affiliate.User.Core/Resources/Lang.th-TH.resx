@@ -2730,4 +2730,7 @@
   <data name="EmailTitlePayment" xml:space="preserve">
     <value>จดหมายยกเลิก  เรื่อง   การแจ้งเรื่อง การขอถอนเงินในบัญชีพันธมิตร</value>
   </data>
+  <data name="EmailTitleSignUp" xml:space="preserve">
+    <value>เรื่อง   สถานะการสมัครของท่าน</value>
+  </data>
 </root>

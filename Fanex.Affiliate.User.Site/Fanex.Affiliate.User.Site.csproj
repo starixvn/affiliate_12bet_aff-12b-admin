@@ -399,6 +399,7 @@
     <Content Include="Views\Shared\Email\NewPassword\Content.vi-VN.cshtml" />
     <Content Include="Views\Shared\Email\NewPassword\Content.zh-CN.cshtml" />
     <Content Include="Views\Shared\Email\NewPassword\Content.zh-TW.cshtml" />
+    <Content Include="Views\Shared\Email\Csd\Content.en-US.cshtml" />
     <None Include="Views\Signup\SecureQuestion\SecureQuestion_en-US.cshtml" />
     <None Include="Views\Signup\SecureQuestion\SecureQuestion_es-ES.cshtml" />
     <None Include="Views\Signup\SecureQuestion\SecureQuestion_id-ID.cshtml" />

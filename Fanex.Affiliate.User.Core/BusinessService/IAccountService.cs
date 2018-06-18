@@ -1,5 +1,6 @@
 ﻿using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.MetalModels;
+using Fanex.Affiliate.User.Core.MetalModels.Email;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
 {
@@ -7,6 +8,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
     {
         ResultInfo CheckPlayerAccountIsActived(int affId, string language);
 
-        ResultInfo CreateAffiliate(UserSignUpParam signUpParam);
+        ResultInfo CreateAffiliate(UserSignUpParam signUpParam, EmailBaseParam emailParam);
     }
 }

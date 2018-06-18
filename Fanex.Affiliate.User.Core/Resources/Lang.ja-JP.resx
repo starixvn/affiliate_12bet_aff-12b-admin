@@ -2733,4 +2733,7 @@
   <data name="EmailTitlePayment" xml:space="preserve">
     <value>「お引き出し申請」 について</value>
   </data>
+  <data name="EmailTitleSignUp" xml:space="preserve">
+    <value>「新規ご登録」 受け付けました</value>
+  </data>
 </root>

@@ -1,0 +1,31 @@
+﻿<div>
+    Dear CSD, <br /><br />
+
+    There is a new affiliate account awaiting approval. The details are as below: <br /><br />
+
+    ----------------------------------------------------------<br />
+    Full name: @Model.FirstName @Model.LastName <br />
+    Username: @Model.UserName <br />
+
+    @if (string.IsNullOrEmpty(Model.NoSiteDesc))
+    {
+        <p>Site URL: @Model.SiteUrl</p>
+
+        if (!string.IsNullOrEmpty(Model.SiteUrl))
+        {
+            <p>More site URLs: @Model.MoreSiteUrls</p>
+        }
+    }
+    else
+    {
+        <p>I do not have a website: @Model.NoSiteDesc</p>
+    }
+    ----------------------------------------------------------<br /><br />
+
+    Please arrange to proceed. <br /><br />
+
+    Sincerely, <br /><br />
+
+    12BET Affiliates Team<br />
+    <a href="mailto:@Model.MailContact">@Model.MailContact</a>
+</div>

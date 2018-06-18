@@ -1884,7 +1884,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 12Bet Affiliate – New account awaiting approval.
+        ///   Looks up a localized string similar to 12Bet Affiliate – New account {0} awaiting approval.
         /// </summary>
         public static string CsdSubject {
             get {
@@ -2411,6 +2411,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string EmailTitlePayment {
             get {
                 return ResourceManager.GetString("EmailTitlePayment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your Application.
+        /// </summary>
+        public static string EmailTitleSignUp {
+            get {
+                return ResourceManager.GetString("EmailTitleSignUp", resourceCulture);
             }
         }
         

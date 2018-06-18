@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.MetalModels;
+using Fanex.Affiliate.User.Core.MetalModels.Email;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Resources;
@@ -11,20 +12,58 @@ namespace Fanex.Affiliate.User.Core.BusinessService
     {
         private readonly IAccountRepository _accountRepository;
 
+        private readonly IEmailService _emailService;
+
         private static readonly IDictionary<int, string> MessageByCode = new Dictionary<int, string>
         {
             [101] = Lang.errUserNotFound,
             [102] = Lang.errExistAccount
         };
 
-        public AccountService(IAccountRepository accountRepository)
+        public AccountService(IAccountRepository accountRepository, IEmailService emailService)
         {
             _accountRepository = accountRepository;
+            _emailService = emailService;
         }
 
-        public ResultInfo CreateAffiliate(UserSignUpParam signUpParam)
+        public ResultInfo CreateAffiliate(UserSignUpParam signUpParam, EmailBaseParam emailParam)
         {
-            return new ResultInfo();
+            if (!signUpParam.IsLocal)
+            {
+                var depositAccount = _accountRepository.GetDepositPlayerAccount(signUpParam.Player_UserName);
+
+                if (!depositAccount.IsValid)
+                {
+                    return new ResultInfo { IsOk = false, Message = Lang.errDepositDBConnectFailed };
+                }
+            }
+
+            var result = _accountRepository.CreateAffiliate(signUpParam);
+            if (result.IsOk)
+            {
+                var csdEmail = emailParam.MailTo;
+
+                emailParam.MailTo = signUpParam.Email;
+                emailParam.User = new UserInfo
+                {
+                    PreferredLanguage = signUpParam.PreferredLanguage,
+                    MailOption = signUpParam.EmailFormat,
+                    FirstName = signUpParam.FirstName
+                };
+
+                _emailService.SendSignUpEmail(emailParam);
+
+                var csdEmailParam = new EmailBaseParam
+                {
+                    MailTo = csdEmail,
+                    MailBcc = emailParam.MailBcc,
+                    MailCc = emailParam.MailCc
+                };
+
+                _emailService.SendNoticeEmailToCsd(csdEmailParam, signUpParam);
+            }
+
+            return result;
         }
 
         public ResultInfo CheckPlayerAccountIsActived(int affId, string language)

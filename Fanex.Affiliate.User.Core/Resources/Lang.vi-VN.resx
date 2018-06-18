@@ -2719,4 +2719,7 @@ Một trong những người quản lý tài khoản hội viên của chúng t�
   <data name="EmailTitlePayment" xml:space="preserve">
     <value>Yêu cầu thanh toán của bạn đã bị hủy bỏ</value>
   </data>
+  <data name="EmailTitleSignUp" xml:space="preserve">
+    <value>Xác nhận đơn đăng ký chương trình kết nối 12BET</value>
+  </data>
 </root>

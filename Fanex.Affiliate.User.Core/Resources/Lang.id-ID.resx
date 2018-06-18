@@ -2728,4 +2728,7 @@ Salah satu Manajer Rekening Afiliasi kami akan menghubungi Anda melalui email da
   <data name="EmailTitlePayment" xml:space="preserve">
     <value>Pemberitahuan Permintaan Pembayaran</value>
   </data>
+  <data name="EmailTitleSignUp" xml:space="preserve">
+    <value>Permohonan Anda</value>
+  </data>
 </root>

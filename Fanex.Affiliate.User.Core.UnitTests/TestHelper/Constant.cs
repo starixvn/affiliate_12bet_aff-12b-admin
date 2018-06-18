@@ -19,5 +19,7 @@
         public const string DefaultMailUser = "user@yahoo.com";
 
         public const string DefaultRootDomain = "http://abcxyz.com";
+
+        public const string Browser = "Chrome66";
     }
 }

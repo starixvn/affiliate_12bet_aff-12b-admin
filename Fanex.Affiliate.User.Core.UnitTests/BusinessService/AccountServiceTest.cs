@@ -2,6 +2,8 @@
 using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
+using Fanex.Affiliate.User.Core.MetalModels;
+using Fanex.Affiliate.User.Core.MetalModels.Email;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Resources;
@@ -22,7 +24,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var accountRepository = new Mock<IAccountRepository>();
             accountRepository.Setup(ac => ac.CheckPlayerAccountIsActived(Constant.DefaultAffId, Constant.DefaultLanguage))
                             .Returns(expectedResult);
-            var accountService = new AccountService(accountRepository.Object);
+            var accountService = CreateAccountService(accountRepository.Object);
 
             // Action
             var result = accountService.CheckPlayerAccountIsActived(Constant.DefaultAffId, Constant.DefaultLanguage);
@@ -46,7 +48,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             accountRepository.Setup(ac => ac.GetDepositPlayerAccount(Constant.DefaultUserName)).Returns(depositAccount);
             accountRepository.Setup(ac => ac.InsertPlayerAccountForIbc(depositAccount)).Returns(new IbcPlayerAccountInsertResult());
 
-            var accountService = new AccountService(accountRepository.Object);
+            var accountService = CreateAccountService(accountRepository.Object);
 
             // Action
             accountService.CheckPlayerAccountIsActived(Constant.DefaultAffId, Constant.DefaultLanguage);
@@ -67,7 +69,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var depositAccount = new DepositAccountInfo { Success = 1 };
             accountRepository.Setup(ac => ac.GetDepositPlayerAccount(Constant.DefaultUserName)).Returns(depositAccount);
 
-            var accountService = new AccountService(accountRepository.Object);
+            var accountService = CreateAccountService(accountRepository.Object);
 
             var expectedResult = new ResultInfo
             {
@@ -96,7 +98,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             accountRepository.Setup(ac => ac.GetDepositPlayerAccount(Constant.DefaultUserName)).Returns(depositAccount);
             accountRepository.Setup(ac => ac.InsertPlayerAccountForIbc(depositAccount)).Returns(new IbcPlayerAccountInsertResult());
 
-            var accountService = new AccountService(accountRepository.Object);
+            var accountService = CreateAccountService(accountRepository.Object);
 
             // Action
             accountService.CheckPlayerAccountIsActived(Constant.DefaultAffId, Constant.DefaultLanguage);
@@ -120,7 +122,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var insertingResult = new IbcPlayerAccountInsertResult { IsOk = false, Message = "Insert Failed" };
             accountRepository.Setup(ac => ac.InsertPlayerAccountForIbc(depositAccount)).Returns(insertingResult);
 
-            var accountService = new AccountService(accountRepository.Object);
+            var accountService = CreateAccountService(accountRepository.Object);
 
             // Action
             var result = accountService.CheckPlayerAccountIsActived(Constant.DefaultAffId, Constant.DefaultLanguage);
@@ -160,7 +162,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             accountRepository.Setup(ac => ac.UpdatePlayerAccountStatusForDeposit(It.IsAny<DepositPlayerAccountParam>()))
                                             .Callback<DepositPlayerAccountParam>(p => passedAccountParam = p);
 
-            var accountService = new AccountService(accountRepository.Object);
+            var accountService = CreateAccountService(accountRepository.Object);
             var expectedResult = JsonConvert.SerializeObject(depositAccountParam);
 
             // Action
@@ -196,7 +198,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             accountRepository.Setup(ac => ac.UpdatePlayerAccountStatusForDeposit(It.IsAny<DepositPlayerAccountParam>()))
                                             .Returns(expectedUpdateResult);
 
-            var accountService = new AccountService(accountRepository.Object);
+            var accountService = CreateAccountService(accountRepository.Object);
 
             // Action
             var result = accountService.CheckPlayerAccountIsActived(Constant.DefaultAffId, Constant.DefaultLanguage);
@@ -231,7 +233,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
                                             .Returns(new ResultInfo())
                                             .Callback<DepositPlayerAccountParam>(p => p.ErrorCode = errCode);
 
-            var accountService = new AccountService(accountRepository.Object);
+            var accountService = CreateAccountService(accountRepository.Object);
 
             var messageByCode = new Dictionary<int, string>
             {
@@ -246,6 +248,163 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             // Assert
             Assert.Equal(expectedUpdateResult.IsOk, result.IsOk);
             Assert.Equal(expectedUpdateResult.Message, result.Message);
+        }
+
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void CreateAffiliate_ValidDepositAccountInfo_CallRepositoryByEnvironment(bool isLocalTest)
+        {
+            // Arrange
+            var signUpParam = new UserSignUpParam { IsLocal = isLocalTest };
+            var accountRepository = new Mock<IAccountRepository>();
+            accountRepository.Setup(ac => ac.GetDepositPlayerAccount(It.IsAny<string>())).Returns(new DepositAccountInfo { Success = 0 });
+            accountRepository.Setup(ac => ac.CreateAffiliate(signUpParam)).Returns(new ResultInfo());
+
+            var accountService = CreateAccountService(accountRepository.Object);
+
+            // Action
+            accountService.CreateAffiliate(signUpParam, new EmailBaseParam());
+
+            // Assert
+            accountRepository.Verify(ac => ac.CreateAffiliate(signUpParam), Times.Once);
+
+            if (isLocalTest)
+            {
+                accountRepository.Verify(ac => ac.GetDepositPlayerAccount(It.IsAny<string>()), Times.Never);
+            }
+            else
+            {
+                accountRepository.Verify(ac => ac.GetDepositPlayerAccount(It.IsAny<string>()), Times.Once);
+            }
+        }
+
+        [Fact]
+        public void CreateAffiliate_InvalidPlayerDepositInfo_DoNotCallRepository()
+        {
+            // Arrange
+            const string PlayerUserName = "player";
+            var depositAccount = new DepositAccountInfo { Success = 1 };
+            var signUpParam = new UserSignUpParam { Player_UserName = PlayerUserName };
+            var accountRepository = new Mock<IAccountRepository>();
+            accountRepository.Setup(ac => ac.GetDepositPlayerAccount(PlayerUserName)).Returns(depositAccount);
+            accountRepository.Setup(ac => ac.CreateAffiliate(signUpParam)).Returns(new ResultInfo { IsOk = false, Message = "Failed" });
+
+            var accountService = CreateAccountService(accountRepository.Object);
+
+            // Action
+            accountService.CreateAffiliate(signUpParam, new EmailBaseParam());
+
+            // Assert
+            accountRepository.Verify(ac => ac.CreateAffiliate(signUpParam), Times.Never);
+        }
+
+        [Fact]
+        public void CreateAffiliate_InvalidPlayerDepositInfo_ReturnExpectedResult()
+        {
+            // Arrange
+            var signUpParam = new UserSignUpParam { IsLocal = false };
+            var accountRepository = new Mock<IAccountRepository>();
+            accountRepository.Setup(ac => ac.GetDepositPlayerAccount(It.IsAny<string>())).Returns(new DepositAccountInfo { Success = 1 });
+            accountRepository.Setup(ac => ac.CreateAffiliate(signUpParam)).Returns(new ResultInfo { IsOk = false, Message = "Failed" });
+
+            var accountService = CreateAccountService(accountRepository.Object);
+
+            var expectedResult = new ResultInfo { IsOk = false, Message = Lang.errDepositDBConnectFailed };
+
+            // Action
+            var result = accountService.CreateAffiliate(signUpParam, new EmailBaseParam());
+
+            // Assert
+            Assert.Equal(expectedResult.IsOk, result.IsOk);
+            Assert.Equal(expectedResult.Message, result.Message);
+        }
+
+        [Fact]
+        public void CreateAffiliate_CreateSuccessfully_ReturnCorrectResult()
+        {
+            // Arrange
+            var expectedResultInfo = new ResultInfo { IsOk = true };
+            var signUpParam = new UserSignUpParam { IsLocal = true };
+            var accountRepository = new Mock<IAccountRepository>();
+            accountRepository.Setup(ac => ac.CreateAffiliate(signUpParam)).Returns(expectedResultInfo);
+
+            var accountService = CreateAccountService(accountRepository.Object);
+
+            // Action
+            var result = accountService.CreateAffiliate(signUpParam, new EmailBaseParam());
+
+            // Assert
+            Assert.Equal(expectedResultInfo, result);
+        }
+
+        [Fact]
+        public void CreateAffiliate_CreateSuccessfully_SendEmailToUserWithCorrectParameter()
+        {
+            // Arrange
+            EmailBaseParam passedParam = null;
+
+            var signUpParam = new UserSignUpParam { IsLocal = true, Email = Constant.DefaultMailUser };
+            var accountRepository = GetMockAccountRepository(signUpParam: signUpParam);
+
+            var emailService = new Mock<IEmailService>();
+            emailService.Setup(e => e.SendSignUpEmail(It.IsAny<EmailBaseParam>())).Callback<EmailBaseParam>(p => passedParam = p);
+
+            var accountService = CreateAccountService(accountRepository, emailService.Object);
+
+            var expectedEmailParam = CreateEmailParam();
+            expectedEmailParam.MailTo = signUpParam.Email;
+            expectedEmailParam.User = new UserInfo
+            {
+                PreferredLanguage = signUpParam.PreferredLanguage,
+                MailOption = signUpParam.EmailFormat,
+                FirstName = signUpParam.FirstName
+            };
+            var expectedResult = JsonConvert.SerializeObject(expectedEmailParam);
+
+            var emailParam = CreateEmailParam();
+
+            // Action
+            accountService.CreateAffiliate(signUpParam, emailParam);
+            var result = JsonConvert.SerializeObject(passedParam);
+
+            // Assert
+            emailService.Verify(e => e.SendSignUpEmail(It.IsAny<EmailBaseParam>()), Times.Once);
+            Assert.Equal(expectedResult, result);
+        }
+
+        [Fact]
+        public void CreateAffiliate_CreateSuccessfully_SendEmailToCsdWithCorrectParameter()
+        {
+            // Arrange
+            const string ExpectedCsdEmail = "csdemail@yahoo.com";
+            EmailBaseParam passedParam = null;
+
+            var signUpParam = new UserSignUpParam { IsLocal = true, Email = Constant.DefaultMailUser };
+            var accountRepository = GetMockAccountRepository(signUpParam: signUpParam);
+
+            var emailService = new Mock<IEmailService>();
+            emailService.Setup(e => e.SendNoticeEmailToCsd(It.IsAny<EmailBaseParam>(), signUpParam))
+                            .Callback<EmailBaseParam, UserSignUpParam>((p, u) => passedParam = p);
+
+            var accountService = CreateAccountService(accountRepository, emailService.Object);
+
+            var emailParam = CreateEmailParam();
+            emailParam.MailTo = ExpectedCsdEmail;
+
+            // Action
+            accountService.CreateAffiliate(signUpParam, emailParam);
+
+            // Assert
+            emailService.Verify(e => e.SendNoticeEmailToCsd(It.IsAny<EmailBaseParam>(), signUpParam), Times.Once);
+            Assert.Equal(ExpectedCsdEmail, passedParam.MailTo);
+            Assert.Equal(Constant.DefaultAffId, signUpParam.AffId);
+            Assert.Equal(Constant.DefaultUserName, signUpParam.UserName);
+        }
+
+        private AccountService CreateAccountService(IAccountRepository repository, IEmailService emailService = null)
+        {
+            return new AccountService(repository, emailService ?? Mock.Of<IEmailService>());
         }
 
         private DepositAccountInfo GetDepositAccount()
@@ -264,6 +423,32 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
                 LastName = "test",
                 OddsType = "OddsType",
                 Password = "1234aa"
+            };
+        }
+
+        private IAccountRepository GetMockAccountRepository(UserSignUpParam signUpParam = null)
+        {
+            var accountRepository = new Mock<IAccountRepository>();
+            signUpParam = signUpParam ?? new UserSignUpParam { IsLocal = true };
+            accountRepository.Setup(ac => ac.CreateAffiliate(signUpParam))
+                    .Returns(new ResultInfo { IsOk = true })
+                    .Callback<UserSignUpParam>(p =>
+                    {
+                        p.AffId = Constant.DefaultAffId;
+                        p.UserName = Constant.DefaultUserName;
+                    });
+
+            return accountRepository.Object;
+        }
+
+        private EmailBaseParam CreateEmailParam()
+        {
+            return new EmailBaseParam
+            {
+                MailCc = Constant.DefaultMailCc,
+                MailContact = Constant.DefaultMailContact,
+                RootDomain = Constant.DefaultRootDomain,
+                MailBcc = string.Empty
             };
         }
     }

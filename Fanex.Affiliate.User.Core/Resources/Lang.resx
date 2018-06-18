@@ -717,7 +717,7 @@ Thank you.</value>
     <value>Croatia </value>
   </data>
   <data name="CsdSubject" xml:space="preserve">
-    <value>12Bet Affiliate – New account awaiting approval</value>
+    <value>12Bet Affiliate – New account {0} awaiting approval</value>
   </data>
   <data name="csresult" xml:space="preserve">
     <value>Results</value>
@@ -3201,5 +3201,8 @@ One of our Affiliate Accounts Manager will be contacting you by email within 3 b
   </data>
   <data name="EmailTitlePayment" xml:space="preserve">
     <value>Payment Request Notification</value>
+  </data>
+  <data name="EmailTitleSignUp" xml:space="preserve">
+    <value>Your Application</value>
   </data>
 </root>

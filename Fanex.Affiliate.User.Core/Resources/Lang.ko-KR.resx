@@ -2799,4 +2799,7 @@
   <data name="EmailTitlePayment" xml:space="preserve">
     <value>지불요청 알림</value>
   </data>
+  <data name="EmailTitleSignUp" xml:space="preserve">
+    <value>회원등록 신청서</value>
+  </data>
 </root>
