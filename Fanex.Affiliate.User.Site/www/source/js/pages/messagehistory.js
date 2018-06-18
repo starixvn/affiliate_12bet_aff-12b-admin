@@ -79,7 +79,7 @@
                 dataType: "html",
                 cache: false,
                 data: params,
-                url: Site.resolveRelativeUrl("UserPanel/GetMessageHistory"),
+                url: Site.resolveRelativeUrl("News/GetMessageHistory"),
                 success: function (response) {
                     $("#messageDataList").html(response);
                     onSuccess && onSuccess();

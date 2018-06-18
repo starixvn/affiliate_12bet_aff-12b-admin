@@ -189,7 +189,7 @@
     <Compile Include="Constants\PaymentStatus.cs" />
     <Compile Include="Constants\SportType.cs" />
     <Compile Include="Constants\TempDataKey.cs" />
-    <Compile Include="Controllers\UserPanelController.News.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="CoreService\CookieService.cs" />
     <Compile Include="BusinessService\CryptographyService.cs" />
     <Compile Include="BusinessService\IAuthService.cs" />

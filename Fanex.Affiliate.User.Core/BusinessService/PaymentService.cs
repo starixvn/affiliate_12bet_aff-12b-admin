@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.Enum;
 using Fanex.Affiliate.User.Core.MetalModels.Email;
@@ -28,6 +29,11 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             _accountService = accountService;
             _paymentRepository = paymentRepository;
             _emailService = emailService;
+        }
+
+        public IEnumerable<Payment> GetPaymentList(PaymentParam paymentParam)
+        {
+            return _paymentRepository.GetPaymentList(paymentParam);
         }
 
         public ResultInfo CancelPaymentRequest(PaymentCancelParam cancelParam, PaymentEmailParam emailParam)

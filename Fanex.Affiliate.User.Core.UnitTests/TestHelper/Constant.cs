@@ -1,4 +1,4 @@
-﻿namespace Fanex.Affiliate.User.Core.UnitTests.Core
+﻿namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
 {
     public static class Constant
     {

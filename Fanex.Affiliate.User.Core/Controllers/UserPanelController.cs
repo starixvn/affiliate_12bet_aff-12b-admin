@@ -15,10 +15,6 @@
         private readonly IStatisticsRepository _statisticsRepository;
         private readonly IStatementHistoryRepository _statementHistoryRepository;
         private readonly ICommissionRepository _commissionRepository;
-        private readonly IPaymentRepository _paymentRepository;
-        private readonly IEmailService _emailService;
-        private readonly IAccountService _accountService;
-        private readonly INewsService _newsService;
         private readonly IPaymentService _paymentService;
 
         public UserPanelController(
@@ -29,10 +25,6 @@
             IStatisticsRepository statisticsRepository,
             IStatementHistoryRepository statementHistoryRepository,
             ICommissionRepository commissionRepository,
-            IPaymentRepository paymentRepository,
-            IEmailService emailService,
-            IAccountService accountService,
-            INewsService newsService,
             IPaymentService paymentService)
             : base(sessionService, appSetting)
         {
@@ -41,10 +33,6 @@
             _statisticsRepository = statisticsRepository;
             _statementHistoryRepository = statementHistoryRepository;
             _commissionRepository = commissionRepository;
-            _paymentRepository = paymentRepository;
-            _emailService = emailService;
-            _accountService = accountService;
-            _newsService = newsService;
             _paymentService = paymentService;
         }
 

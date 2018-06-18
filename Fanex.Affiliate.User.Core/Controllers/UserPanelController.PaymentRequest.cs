@@ -23,7 +23,7 @@
                 AffId = SessionService.UserSession.AffId,
                 IsInternal = SessionService.IsInternal
             };
-            var paymentList = _paymentRepository.GetPaymentList(paymentParam);
+            var paymentList = _paymentService.GetPaymentList(paymentParam);
 
             var viewModel = new PaymentViewModel
             {

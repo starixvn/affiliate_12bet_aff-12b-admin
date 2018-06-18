@@ -6,7 +6,7 @@
     {
         if (Model.IsImportant)
         {
-            var url = Model.IsAuthenticated ? Url.Action("Index", "UserPanel") + "/#MessageHistory" : "javascript:;";
+            var url = Model.IsAuthenticated ? Url.Action("MessageHistory", "News") : "javascript:;";
             <a href="@url" style="color: #ff0000">@HttpUtility.HtmlDecode(selectedHotNews)</a>
         }
         else

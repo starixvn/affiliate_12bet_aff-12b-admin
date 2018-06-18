@@ -4,12 +4,14 @@ using System.Linq;
 using System.Security.Principal;
 using System.Web.Mvc;
 using Fanex.Affiliate.User.Core.BusinessService;
+using Fanex.Affiliate.User.Core.Controllers;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
-using Fanex.Affiliate.User.Core.UnitTests.Core;
+using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
+using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels.UserPanel;
 using Moq;
 using Newtonsoft.Json;
@@ -17,7 +19,7 @@ using Xunit;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
 {
-    public class UserPanelController
+    public class NewsControllerTest
     {
         [Fact]
         public void MessageHistory_WhenCall_ReturnCorrectViewModel()
@@ -30,7 +32,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
                         .Returns(messageList)
                         .Callback<MessageHistoryParam>(p => p.Nrows = TotalItem);
 
-            var controller = MockingHelper.GetUserPanelController(newsService: newsService.Object);
+            var controller = CreateController(newsService.Object);
 
             var expectedResult = JsonConvert.SerializeObject(new MessageHistoryViewModel
             {
@@ -57,7 +59,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
                         .Returns(messageList)
                         .Callback<MessageHistoryParam>(p => p.Nrows = TotalItem);
 
-            var controller = MockingHelper.GetUserPanelController(newsService: newsService.Object);
+            var controller = CreateController(newsService.Object);
 
             // Action
             var actionResult = controller.MessageHistory() as ViewResult;
@@ -83,7 +85,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var sessionService = MockingHelper.GetSessionService();
             sessionService.IsInternal = isInternal;
 
-            var controller = MockingHelper.GetUserPanelController(newsService: newsService.Object, sessionService: sessionService);
+            var controller = CreateController(newsService.Object, sessionService);
 
             var expectedResult = JsonConvert.SerializeObject(new MessageHistoryParam
             {
@@ -119,7 +121,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var principal = Mock.Of<IPrincipal>(p => p.Identity.IsAuthenticated == isLoggedIn);
             var controllerContext = Mock.Of<ControllerContext>(c => c.HttpContext.User == principal);
 
-            var controller = MockingHelper.GetUserPanelController(newsService: newsService.Object, sessionService: sessionService);
+            var controller = CreateController(newsService.Object, sessionService);
             controller.ControllerContext = controllerContext;
 
             var expectedResult = JsonConvert.SerializeObject(new LatestHotNewViewModel
@@ -150,10 +152,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var principal = Mock.Of<IPrincipal>(p => p.Identity.IsAuthenticated);
             var controllerContext = Mock.Of<ControllerContext>(c => c.HttpContext.User == principal);
 
-            var controller = MockingHelper.GetUserPanelController(newsService: newsService.Object, sessionService: sessionService);
+            var controller = CreateController(newsService.Object, sessionService);
             controller.ControllerContext = controllerContext;
 
-            const string ExpectedResult = "~/Views/UserPanel/NewsPartial/_LatestHotNews.cshtml";
+            const string ExpectedResult = "~/Views/News/_LatestHotNews.cshtml";
 
             // Action
             var actionResult = controller.LatestHotNews() as PartialViewResult;
@@ -179,7 +181,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var principal = Mock.Of<IPrincipal>(p => p.Identity.IsAuthenticated == true);
             var controllerContext = Mock.Of<ControllerContext>(c => c.HttpContext.User == principal);
 
-            var controller = MockingHelper.GetUserPanelController(newsService: newsService.Object);
+            var controller = CreateController(newsService.Object);
             controller.ControllerContext = controllerContext;
 
             var expectedResult = JsonConvert.SerializeObject(new LatestHotNewViewModel
@@ -214,7 +216,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var principal = Mock.Of<IPrincipal>(p => p.Identity.IsAuthenticated == true);
             var controllerContext = Mock.Of<ControllerContext>(c => c.HttpContext.User == principal);
 
-            var controller = MockingHelper.GetUserPanelController(newsService: newsService.Object);
+            var controller = CreateController(newsService.Object);
             controller.ControllerContext = controllerContext;
 
             var expectedResult = JsonConvert.SerializeObject(new LatestHotNewViewModel
@@ -258,7 +260,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var sessionService = MockingHelper.GetSessionService();
             sessionService.IsInternal = isInternal;
 
-            var controller = MockingHelper.GetUserPanelController(newsService: newsService.Object, sessionService: sessionService);
+            var controller = CreateController(newsService.Object, sessionService);
 
             // Action
             controller.GetMessageHistory(param);
@@ -267,6 +269,14 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             Assert.Equal(passedParam, param);
             Assert.Equal(passedParam.IsInternal, isInternal);
             Assert.Equal(passedParam.Language, Constant.DefaultLanguage);
+        }
+
+        private NewsController CreateController(INewsService service, ISessionService sessionService = null)
+        {
+            sessionService = sessionService ?? MockingHelper.GetSessionService();
+            var appSetting = Mock.Of<IAppSetting>();
+
+            return new NewsController(sessionService, appSetting, service);
         }
     }
 }

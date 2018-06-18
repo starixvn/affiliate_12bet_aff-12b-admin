@@ -9,7 +9,7 @@ using Fanex.Affiliate.User.Core.MetalModels.Email;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Resources;
-using Fanex.Affiliate.User.Core.UnitTests.Core;
+using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels.UserPanel;
 using Moq;
@@ -100,7 +100,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
 
             var param = new PaymentParam
             {
-                AffId = Core.Constant.DefaultAffId,
+                AffId = TestHelper.Constant.DefaultAffId,
                 IsInternal = isInternal
             };
             var expectedParam = JsonConvert.SerializeObject(param);

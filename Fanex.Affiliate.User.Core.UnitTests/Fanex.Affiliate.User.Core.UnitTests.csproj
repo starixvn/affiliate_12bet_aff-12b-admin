@@ -108,15 +108,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessService\AccountServiceTest.cs" />
-    <Compile Include="Core\Constant.cs" />
-    <Compile Include="Core\MockingHelper.cs" />
+    <Compile Include="TestHelper\Constant.cs" />
+    <Compile Include="TestHelper\MockingHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\UserPanelController.AccountOverViewTest.cs" />
     <None Include="app.config" />
     <Compile Include="Controllers\UserPanelController.PaymentRequestTest.cs" />
-    <Compile Include="Controllers\UserPanelController.NewsTest.cs" />
+    <Compile Include="Controllers\NewsControllerTest.cs" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

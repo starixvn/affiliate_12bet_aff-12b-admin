@@ -1,16 +1,29 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
+using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.Constants;
+using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.Filters;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
+using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels.UserPanel;
 
 namespace Fanex.Affiliate.User.Core.Controllers
 {
-    public partial class UserPanelController : BaseController
+    [Authenticate]
+    public class NewsController : BaseController
     {
+        private readonly INewsService _newsService;
+
+        public NewsController(
+            ISessionService sessionService,
+            IAppSetting appSetting,
+            INewsService newsService) : base(sessionService, appSetting)
+        {
+            _newsService = newsService;
+        }
+
         [HttpGet]
-        [AjaxOnly]
         public ActionResult MessageHistory()
         {
             var param = new MessageHistoryParam
@@ -44,7 +57,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 TotalItems = param.Nrows
             };
 
-            return PartialView("~/Views/UserPanel/NewsPartial/_MessageContent.cshtml", viewModel);
+            return PartialView("~/Views/News/_MessageContent.cshtml", viewModel);
         }
 
         [HttpGet]
@@ -72,7 +85,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
                                     hotNewsList.First().Value;
             }
 
-            return PartialView("~/Views/UserPanel/NewsPartial/_LatestHotNews.cshtml", viewModel);
+            return PartialView("~/Views/News/_LatestHotNews.cshtml", viewModel);
         }
     }
 }

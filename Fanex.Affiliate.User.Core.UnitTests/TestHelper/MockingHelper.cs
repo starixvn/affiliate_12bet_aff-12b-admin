@@ -11,7 +11,7 @@ using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Utilities;
 using Moq;
 
-namespace Fanex.Affiliate.User.Core.UnitTests.Core
+namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
 {
     public static class MockingHelper
     {
@@ -43,7 +43,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Core
             IPaymentRepository paymentRepository = null,
             IEmailService emailService = null,
             IAccountService accountService = null,
-            INewsService newsService = null,
             IPaymentService paymentService = null)
         {
             accountRepository = accountRepository ?? Mock.Of<IAccountRepository>();
@@ -64,10 +63,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Core
                 statisticsRepository ?? Mock.Of<IStatisticsRepository>(),
                 statementHistoryRepository ?? Mock.Of<IStatementHistoryRepository>(),
                 commissionRepository ?? Mock.Of<ICommissionRepository>(),
-                paymentRepository,
-                emailService,
-                accountService,
-                newsService ?? Mock.Of<INewsService>(),
                 paymentService);
 
             var request = GetHttpRequest();

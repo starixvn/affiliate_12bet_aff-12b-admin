@@ -651,8 +651,6 @@
     <Content Include="www\build\styles\Images\icon-3.png" />
     <Content Include="www\build\styles\Images\logo.png" />
     <Content Include="www\build\styles\Images\offers.png" />
-    <Content Include="www\build\styles\Images\pikaday\next.png" />
-    <Content Include="www\build\styles\Images\pikaday\prev.png" />
     <Content Include="www\build\styles\Images\products\ad-banner.jpg" />
     <Content Include="www\build\styles\Images\products\ad-sb.jpg" />
     <Content Include="www\build\styles\Images\slider-1.png" />
@@ -741,8 +739,6 @@
     <Content Include="www\source\styles\Images\icon-3.png" />
     <Content Include="www\source\styles\Images\logo.png" />
     <Content Include="www\source\styles\Images\offers.png" />
-    <Content Include="www\source\styles\Images\pikaday\next.png" />
-    <Content Include="www\source\styles\Images\pikaday\prev.png" />
     <Content Include="www\source\styles\Images\slider-1.png" />
     <Content Include="www\source\styles\scss\vendors\animate\animate.css" />
     <Content Include="www\source\styles\scss\vendors\animate\animate.min.css" />
@@ -779,7 +775,7 @@
     <Content Include="Views\UserPanel\StatisticsPartial\_ReferrersStatisticsContent.cshtml" />
     <Content Include="Views\UserPanel\StatisticsPartial\_LandingPageStatisticsContent.cshtml" />
     <Content Include="www\source\styles\scss\components\_pikaday.scss" />
-    <Content Include="Views\UserPanel\NewsPartial\_LatestHotNews.cshtml" />
+    <Content Include="Views\News\_LatestHotNews.cshtml" />
     <Content Include="Views\UserPanel\StatementHistoryPartial\_StatementHistoryContent.cshtml" />
     <Content Include="www\source\styles\pages\statement-history.scss" />
     <Content Include="Views\UserPanel\StatementHistoryPartial\_DailyEarningContent.cshtml" />
@@ -792,8 +788,8 @@
     <Content Include="www\source\styles\pages\account-overview.scss" />
     <Content Include="Views\BetList\Result.cshtml" />
     <Content Include="Views\BetList\ParlayDetail.cshtml" />
-    <Content Include="Views\UserPanel\MessageHistory.cshtml" />
-    <Content Include="Views\UserPanel\NewsPartial\_MessageContent.cshtml" />
+    <Content Include="Views\News\MessageHistory.cshtml" />
+    <Content Include="Views\News\_MessageContent.cshtml" />
     <Content Include="www\source\styles\pages\messagehistory.scss" />
     <Content Include="www\source\styles\pages\signup.scss" />
     <Content Include="Views\Signup\_CountryOption.cshtml" />
