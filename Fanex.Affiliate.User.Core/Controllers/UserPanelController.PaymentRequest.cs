@@ -1,11 +1,9 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
-    using System;
     using System.Linq;
     using System.Web.Mvc;
     using Constants;
     using DTO;
-    using Enum;
     using Extensions;
     using Filters;
     using MetalModels.Email;
@@ -16,9 +14,6 @@
 
     public partial class UserPanelController
     {
-        private const int BeginDay = 8;
-        private const int EndDay = 15;
-
         [HttpGet]
         [AjaxOnly]
         public ActionResult PaymentRequest()
@@ -37,7 +32,7 @@
                 MinAmount = paymentParam.MinAmount,
                 PreferredPayment = paymentParam.PreferredPayment,
                 PendingPayment = paymentList.FirstOrDefault(p => p.Status.MatchWith(PaymentStatus.Pending)),
-                IsValidDate = IsInDateRange()
+                IsValidDate = _paymentService.IsInDateRange() || AppSetting.IsLocal
             };
 
             return View(viewModel);
@@ -47,36 +42,31 @@
         [ValidateAntiForgeryToken]
         public ActionResult CreatePaymentRequest(PaymentCreationParam paymentCreationParam)
         {
-            var resultInfo = ValidatePaymentRequest(paymentCreationParam);
+            var resultInfo = new ResultInfo { IsOk = true };
+
+            if (SessionService.IsInternal)
+            {
+                resultInfo.IsOk = false;
+                resultInfo.Message = Lang.ErrAuthorized;
+            }
 
             if (resultInfo.IsOk)
             {
-                var affId = SessionService.UserSession.AffId;
-                var language = SessionService.CurrentLanguage;
-                resultInfo = _accountService.CheckPlayerAccountIsActived(affId, language);
-                if (resultInfo.IsOk)
+                paymentCreationParam.AffId = SessionService.UserSession.AffId;
+                paymentCreationParam.Language = SessionService.CurrentLanguage;
+                paymentCreationParam.Ip = Request.UserHostAddress;
+                paymentCreationParam.IsInternal = SessionService.IsInternal;
+                paymentCreationParam.IsLocalTest = AppSetting.IsLocal;
+
+                var emailParam = new PaymentEmailParam
                 {
-                    var creationParam = new PaymentCreationParam
-                    {
-                        AffId = affId,
-                        Amount = paymentCreationParam.Amount,
-                        Language = language,
-                        Ip = Request.UserHostAddress
-                    };
+                    MailCc = AppSetting.MailCc,
+                    MailContact = AppSetting.MailContact,
+                    MailBcc = AppSetting.MailBcc,
+                    RootDomain = SiteDomainHelper.GetRootUrl(this)
+                };
 
-                    resultInfo = _paymentRepository.CreatePaymentRequest(creationParam);
-
-                    if (resultInfo.IsOk)
-                    {
-                        resultInfo.Message = Lang.RequestPayoutSucc;
-
-                        SendEmail(
-                            PaymentRequestType.Create,
-                            creationParam.TransId,
-                            creationParam.Amount,
-                            creationParam.TransDate.Value);
-                    }
-                }
+                resultInfo = _paymentService.CreatePaymentRequest(paymentCreationParam, emailParam);
             }
 
             TempData[TempDataKey.PaymentResult] = resultInfo;
@@ -98,86 +88,25 @@
             {
                 cancelParam.UserId = SessionService.UserSession.AffId;
                 cancelParam.Language = SessionService.CurrentLanguage;
-                cancelParam.Status = "Cancelled";
                 cancelParam.Ip = Request.UserHostAddress;
 
-                resultInfo = _paymentRepository.CancelPaymentRequest(cancelParam);
-
-                if (resultInfo.IsOk)
+                var emailParam = new PaymentEmailParam
                 {
-                    resultInfo.Message = Lang.CancelPayoutSucc;
+                    MailCc = AppSetting.MailCc,
+                    MailContact = AppSetting.MailContact,
+                    MailBcc = AppSetting.MailBcc,
+                    RootDomain = SiteDomainHelper.GetRootUrl(this),
+                    Amount = cancelParam.Amount,
+                    RequestDate = cancelParam.RequestDate,
+                    TransId = cancelParam.TransId
+                };
 
-                    SendEmail(
-                        PaymentRequestType.Cancel,
-                        cancelParam.TransId,
-                        cancelParam.Amount,
-                        cancelParam.RequestDate);
-                }
+                resultInfo = _paymentService.CancelPaymentRequest(cancelParam, emailParam);
             }
 
             TempData[TempDataKey.PaymentResult] = resultInfo;
 
             return new RedirectResult(Url.Action("Index", "UserPanel") + "#PaymentRequest");
-        }
-
-        private bool IsInDateRange()
-        {
-            var currentDay = DateTime.Now.Day;
-            return (currentDay >= BeginDay && currentDay <= EndDay) || AppSetting.IsLocal;
-        }
-
-        private bool IsValidAmount(PaymentCreationParam paymentCreationParam)
-        {
-            return paymentCreationParam.Amount > 0 &&
-                paymentCreationParam.Amount >= paymentCreationParam.MinAmount &&
-                paymentCreationParam.Amount <= paymentCreationParam.BalBroughtForward;
-        }
-
-        private void SendEmail(PaymentRequestType paymentType, long transId, decimal amount, DateTime transDate)
-        {
-            var userInfo = _accountRepository.GetUserInfoById(SessionService.UserSession.AffId, SessionService.IsInternal);
-            if (!string.IsNullOrEmpty(userInfo.Email))
-            {
-                var emailparam = new PaymentEmailParam
-                {
-                    User = userInfo,
-                    PaymentType = paymentType,
-                    MailTo = userInfo.Email,
-                    MailCc = AppSetting.MailCc,
-                    MailContact = AppSetting.MailContact,
-                    MailBcc = AppSetting.MailBcc,
-                    RootDomain = SiteDomainHelper.GetRootUrl(this),
-                    TransId = transId,
-                    Amount = amount,
-                    RequestDate = transDate
-                };
-
-                _emailService.SendPaymentEmail(emailparam);
-            }
-        }
-
-        private ResultInfo ValidatePaymentRequest(PaymentCreationParam paymentCreationParam)
-        {
-            var resultInfo = new ResultInfo { IsOk = false };
-
-            if (SessionService.IsInternal)
-            {
-                resultInfo.Message = Lang.ErrAuthorized;
-            }
-            else if (!IsInDateRange())
-            {
-                resultInfo.Message = Lang.PayoutTime;
-            }
-            else if (!IsValidAmount(paymentCreationParam))
-            {
-                resultInfo.Message = Error.PaymentAmountInvalid;
-            }
-            else
-            {
-                resultInfo.IsOk = true;
-            }
-
-            return resultInfo;
         }
     }
 }

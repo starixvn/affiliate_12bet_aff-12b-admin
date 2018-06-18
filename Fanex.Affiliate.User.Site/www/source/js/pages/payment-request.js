@@ -26,24 +26,35 @@
                 }
             });
 
-            $("#btnRequestPayout").on("click", function () {
+            $("#requestPayoutForm").on("submit", function () {
+                Site.showLoader();
+
+                var pattern = /^\d+(\.\d{1,2})?$/;
                 var balance = parseFloat($("#BalBroughtForward").val());
                 var minAmount = parseFloat($("#MinAmount").val());
+
+                var amountString = $("#Amount").val();
+                var isValidNumber = pattern.test(amountString);
                 var amount = parseFloat($("#Amount").val());
 
-                if (amount >= minAmount && amount <= balance) {
-                    $("#requestPayoutForm").submit();
+                var canSubmit = isValidNumber && amount >= minAmount && amount <= balance;
+
+                if (!canSubmit) {
+                    if (isNaN(amount) || !isValidNumber) {
+                        $("#errorMessage").html(buildErrorMessage(resourceLang.invalidAmount));
+                    }
+                    else {
+                        $("#errorMessage").html(buildErrorMessage(resourceLang.invalidRange));
+                    }
+
+                    Site.hideLoader();
                 }
-                else if (isNaN(amount)) {
-                    $("#errorMessage").html(buildErrorMessage(resourceLang.invalidAmount));
-                }
-                else {
-                    $("#errorMessage").html(buildErrorMessage(resourceLang.invalidRange));
-                }
+
+                return canSubmit;
             });
 
-            $("#cancelPaymentRequest").on("click", function () {
-                $("#cancelPaymentForm").submit();
+            $("#cancelPaymentForm").on("submit", function () {
+                Site.showLoader();
             });
         }
     };

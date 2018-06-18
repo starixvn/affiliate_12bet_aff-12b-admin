@@ -43,20 +43,32 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Core
             IPaymentRepository paymentRepository = null,
             IEmailService emailService = null,
             IAccountService accountService = null,
-            INewsService newsService = null)
+            INewsService newsService = null,
+            IPaymentService paymentService = null)
         {
+            accountRepository = accountRepository ?? Mock.Of<IAccountRepository>();
+            accountService = accountService ?? Mock.Of<IAccountService>();
+            paymentRepository = paymentRepository ?? Mock.Of<IPaymentRepository>();
+            emailService = emailService ?? Mock.Of<IEmailService>();
+            paymentService = paymentService ?? new PaymentService(
+                accountRepository,
+                accountService,
+                paymentRepository,
+                emailService);
+
             var controller = new UserPanelController(
                 sessionService ?? GetSessionService(),
                 appSetting ?? Mock.Of<IAppSetting>(),
-                accountRepository ?? Mock.Of<IAccountRepository>(),
+                accountRepository,
                 marketingService ?? Mock.Of<IMarketingService>(),
                 statisticsRepository ?? Mock.Of<IStatisticsRepository>(),
                 statementHistoryRepository ?? Mock.Of<IStatementHistoryRepository>(),
                 commissionRepository ?? Mock.Of<ICommissionRepository>(),
-                paymentRepository ?? Mock.Of<IPaymentRepository>(),
-                emailService ?? Mock.Of<IEmailService>(),
-                accountService ?? Mock.Of<IAccountService>(),
-                newsService ?? Mock.Of<INewsService>());
+                paymentRepository,
+                emailService,
+                accountService,
+                newsService ?? Mock.Of<INewsService>(),
+                paymentService);
 
             var request = GetHttpRequest();
             controller.ControllerContext = Mock.Of<ControllerContext>(ctx =>

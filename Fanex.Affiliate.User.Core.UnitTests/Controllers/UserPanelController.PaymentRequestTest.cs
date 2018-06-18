@@ -260,6 +260,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             PaymentEmailParam emailParam = null;
             var param = new PaymentCancelParam
             {
+                AffId = Constant.DefaultAffId,
                 TransId = TransId,
                 Amount = 100m,
                 RequestDate = new DateTime(2018, 6, 12)
@@ -349,6 +350,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var appSetting = Mock.Of<IAppSetting>(a => a.IsLocal);
             var creationParam = new PaymentCreationParam()
             {
+                AffId = Constant.DefaultAffId,
                 Amount = 0,
                 MinAmount = 100,
                 BalBroughtForward = 150
@@ -377,6 +379,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var transDate = new DateTime(2018, 6, 13);
             var creationParam = new PaymentCreationParam()
             {
+                AffId = Constant.DefaultAffId,
                 Amount = 100,
                 MinAmount = 100,
                 BalBroughtForward = 150
@@ -411,7 +414,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
                 Amount = creationParam.Amount,
                 Ip = "::1",
                 Language = Constant.DefaultLanguage,
-                TransDate = transDate
+                TransDate = transDate,
+                MinAmount = 100m,
+                BalBroughtForward = 150m,
+                IsLocalTest = true
             };
             var expectedResult = JsonConvert.SerializeObject(expectedParam);
 
@@ -444,10 +450,12 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
                 .Returns(checkingActiveResult);
 
             var paymentRepository = new Mock<IPaymentRepository>();
+            var appSetting = Mock.Of<IAppSetting>(ap => ap.IsLocal);
 
             var controller = MockingHelper.GetUserPanelController(
                 accountService: accountService.Object,
-                paymentRepository: paymentRepository.Object);
+                paymentRepository: paymentRepository.Object,
+                appSetting: appSetting);
 
             // Action
             controller.CreatePaymentRequest(creationParam);
@@ -464,6 +472,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             // Arrange
             var creationParam = new PaymentCreationParam()
             {
+                AffId = Constant.DefaultAffId,
                 Amount = 100,
                 MinAmount = 100,
                 BalBroughtForward = 150
@@ -482,11 +491,13 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             paymentRepository.Setup(p => p.CreatePaymentRequest(It.IsAny<PaymentCreationParam>())).Returns(creationResult);
 
             var emailService = new Mock<IEmailService>();
+            var appSetting = Mock.Of<IAppSetting>(ap => ap.IsLocal);
 
             var controller = MockingHelper.GetUserPanelController(
                 accountService: accountService.Object,
                 paymentRepository: paymentRepository.Object,
-                emailService: emailService.Object);
+                emailService: emailService.Object,
+                appSetting: appSetting);
 
             // Action
             controller.CreatePaymentRequest(creationParam);

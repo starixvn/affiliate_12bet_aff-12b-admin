@@ -3,7 +3,7 @@ using Fanex.Data;
 
 namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
 {
-    public class PaymentCreationParam
+    public class PaymentCreationParam : BaseParam
     {
         public int AffId { get; set; }
 
@@ -26,5 +26,8 @@ namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
 
         [SpParam(Ignored = true)]
         public decimal BalBroughtForward { get; set; }
+
+        [SpParam(Ignored = true)]
+        public bool IsLocalTest { get; set; }
     }
 }

@@ -108,7 +108,7 @@
                 <div class="col-sm-offset-3 col-sm-5">
                     @if (canRequest)
                     {
-                        <button id="btnRequestPayout" type="button" class="btn btn-submit">@Lang.RequestPayout</button>
+                        <button id="btnRequestPayout" type="submit" class="btn btn-submit">@Lang.RequestPayout</button>
                     }
                     else
                     {
@@ -149,7 +149,7 @@
                             <td class="text-right">@Model.PendingPayment.Amount.ToStringMoneyWithSymbol()</td>
                             <td class="text-center">@ConvertStatus(Model.PendingPayment.Status)</td>
                             <td class="text-center">
-                                <button type="button" class="btn btn-submit" id="cancelPaymentRequest" data-transid="@Model.PendingPayment.TransId">@Lang.CancelRequest</button>
+                                <button type="submit" class="btn btn-submit" id="cancelPaymentRequest" data-transid="@Model.PendingPayment.TransId">@Lang.CancelRequest</button>
                             </td>
                         </tr>
                     </tbody>
