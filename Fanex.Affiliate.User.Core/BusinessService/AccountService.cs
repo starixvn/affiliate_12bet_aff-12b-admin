@@ -41,8 +41,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             var result = _accountRepository.CreateAffiliate(signUpParam);
             if (result.IsOk)
             {
-                var csdEmail = emailParam.MailTo;
-
                 emailParam.MailTo = signUpParam.Email;
                 emailParam.User = new UserInfo
                 {
@@ -55,7 +53,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
                 var csdEmailParam = new EmailBaseParam
                 {
-                    MailTo = csdEmail,
+                    MailTo = emailParam.MailContact,
                     MailBcc = emailParam.MailBcc,
                     MailCc = emailParam.MailCc
                 };

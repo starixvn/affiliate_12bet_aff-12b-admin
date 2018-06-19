@@ -4,6 +4,10 @@
 
     var sessionService = DependencyResolver.Current.GetService<ISessionService>();
     var secureQuestionPath = "~/Views/Signup/SecureQuestion/SecureQuestion_" + sessionService.CurrentLanguage + ".cshtml";
+
+    var result = TempData[TempDataKey.SignUpResult] as Fanex.Affiliate.User.Core.DTO.ResultInfo;
+    var hasResult = result != null;
+    var isSuccessful = hasResult && result.IsOk;
 }
 
 @using Fanex.Affiliate.User.Core.CoreService
@@ -32,290 +36,322 @@
         <span class="text">@Lang.RegisForm</span>
     </div>
 
-    <div>
-        <p>@Lang.CompleteForm</p>
-        <p>@Html.Raw(Lang.RequireInfo)</p>
-    </div>
-
-    @using (Html.BeginForm("Index", "Signup", FormMethod.Post, new { @id = "signUpForm", @class = "form-horizontal" }))
+    @if (hasResult)
     {
-        @Html.AntiForgeryToken()
-        <div class="info-group">
-            <div class="title">
-                <span class="text">@Lang.ContactInfo</span>
-            </div>
-
-            <div class="form-group">
-                <label class="col-sm-3 control-label require">@Lang.FName</label>
-                <div class="col-sm-4">
-                    <input class="form-control" name="FirstName" id="FirstName" type="text" />
-                </div>
-                <div class="col-sm-offset-3 col-sm-9">
-                    <span class="help-block hide">@Lang.FirstNameIsRequired</span>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="col-sm-3 control-label require">@Lang.LName</label>
-                <div class="col-sm-4">
-                    <input class="form-control" name="LastName" id="LastName" type="text" />
-                </div>
-                <div class="col-sm-offset-3 col-sm-9">
-                    <span class="help-block hide">@Lang.LastNameIsRequired</span>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="col-sm-3 control-label require">@Lang.Gender</label>
-                <div class="col-sm-4">
-                    <label class="radio-inline">
-                        <input type="radio" name="Gender" id="male" value="True" checked /> @Lang.Male
-                    </label>
-                    <label class="radio-inline">
-                        <input type="radio" name="Gender" id="female" value="False" /> @Lang.Female
-                    </label>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="col-sm-3 control-label require">@Lang.Email</label>
-                <div class="col-sm-4">
-                    <input class="form-control emailInput" name="Email" id="Email" type="text" />
-                </div>
-                <div class="col-sm-offset-3 col-sm-9">
-                    <span class="help-block hide">@Lang.EmailAddressIsRequired</span>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="col-sm-3 control-label require">@Lang.ReEmail</label>
-                <div class="col-sm-4">
-                    <input class="form-control emailInput" name="VerifyEmail" id="VerifyEmail" type="text" />
-                </div>
-                <div class="col-sm-offset-3 col-sm-9">
-                    <span class="help-block hide">@Lang.EmailAddressIsRequired</span>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="col-sm-3 control-label require">@Lang.ContactNumber</label>
-                <div class="col-sm-4">
-                    <input class="form-control" name="Phone" id="Phone" type="text" />
-                </div>
-                <div class="col-sm-offset-3 col-sm-9">
-                    <span class="help-block hide">@Lang.errContactNumberEmpty</span>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="col-sm-3 control-label require">@Lang.Mobile</label>
-                <div class="col-sm-4">
-                    <input class="form-control" name="MobilePhone" id="MobilePhone" type="text" />
-                </div>
-                <div class="col-sm-offset-3 col-sm-9">
-                    <span class="help-block hide">@Lang.errMobileNumberEmpty</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="info-group">
-            <div class="title">
-                <span class="text">@Lang.MailingInfor</span>
-            </div>
-
-            <div class="form-horizontal">
-                <div class="form-group">
-                    <label class="col-sm-3 control-label require">@Lang.Address</label>
-                    <div class="col-sm-4">
-                        <input class="form-control" name="Address" id="Address" type="text" />
-                    </div>
-                    <div class="col-sm-offset-3 col-sm-9">
-                        <span class="help-block hide">@Lang.AddressIsRequired</span>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-3 control-label require">@Lang.City</label>
-                    <div class="col-sm-4">
-                        <input class="form-control" name="City" id="City" type="text" />
-                    </div>
-                    <div class="col-sm-offset-3 col-sm-9">
-                        <span class="help-block hide">@Lang.CityIsRequired</span>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-3 control-label require">@Lang.PostCode</label>
-                    <div class="col-sm-4">
-                        <input class="form-control" name="Postal" id="Postal" type="text" />
-                    </div>
-                    <div class="col-sm-offset-3 col-sm-9">
-                        <span class="help-block hide">@Lang.PostcodeZiIsRequired</span>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-3 control-label require">@Lang.Country</label>
-                    <div class="col-sm-4">
-                        <select class="form-control" name="Country" id="Country">
-                            @{ Html.RenderPartial("~/Views/Signup/_CountryOption.cshtml"); }
-                        </select>
-                    </div>
-                    <div class="col-sm-offset-3 col-sm-9">
-                        <span class="help-block hide">@Lang.CountryErr</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="info-group">
-            <div class="title">
-                <span class="text">@Lang.WebsiteInformat</span>
-            </div>
-
-            <div class="form-horizontal">
-                <div class="form-group">
-                    <div class="col-sm-4">
-                        <label class="radio-inline">
-                            <input type="radio" name="HasWebSite" value="1" checked /> @Lang.OwnWebsite
-                        </label>
-                    </div>
-                </div>
-
-                <div id="websiteInfo">
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label require">@Lang.WebsiteURL</label>
-                        <div class="col-sm-4">
-                            <input class="form-control" name="SiteUrl" id="SiteUrl" type="text" />
-                        </div>
-                        <div class="col-sm-1">
-                            <button type="button" class="btn btn-submit" id="btnAddUrl">@Lang.AddUrl</button>
-                        </div>
-                        <div class="col-sm-offset-3 col-sm-9">
-                            <span class="help-block hide">@Lang.WebsiteURLIsRequired</span>
-                        </div>
-                    </div>
-
-                    <input type="hidden" name="MoreSiteUrls" id="MoreSiteUrls" />
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-4">
-                        <label class="radio-inline">
-                            <input type="radio" name="HasWebSite" value="0" /> @Lang.NoWebsite
-                        </label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-3 control-label require">@Lang.DescWebsite</label>
-                    <div class="col-sm-4">
-                        <textarea class="form-control" name="NoSiteDesc" id="NoSiteDesc" rows="5" disabled></textarea>
-                    </div>
-                    <div class="col-sm-offset-3 col-sm-9">
-                        <span class="help-block hide">@Lang.DescWebsite</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="info-group">
-            <div class="title">
-                <span class="text">@Lang.Preference</span>
-            </div>
-            <div class="form-horizontal">
-                <div class="form-group">
-                    <label class="col-sm-3 control-label require">@Lang.Language</label>
-                    <div class="col-sm-4">
-                        <select class="form-control" name="PreferredLanguage" id="PreferredLanguage">
-                            <option value="">@Lang.SelectOne</option>
-                            @foreach (var item in SystemLanguage.LanguageList)
-                            {
-                                <option value="@item.Code">@item.NativeName</option>
-                            }
-                        </select>
-                    </div>
-                    <div class="col-sm-offset-3 col-sm-9">
-                        <span class="help-block hide">@Lang.PreferLangErr</span>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-3 control-label require">@Lang.lblSecureQuestion</label>
-                    <div class="col-sm-4">
-                        <select class="form-control" name="Question" id="Question">
-                            <option value="">@Lang.SelectOne</option>
-                            @{ Html.RenderPartial(secureQuestionPath); }
-                        </select>
-                    </div>
-                    <div class="col-sm-offset-3 col-sm-9">
-                        <span class="help-block hide">@Lang.errSecQuestionEmpty</span>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-3 control-label require">@Lang.lblYourAnswer</label>
-                    <div class="col-sm-4">
-                        <input class="form-control" name="Answer" id="Answer" type="text" />
-                    </div>
-                    <div class="col-sm-offset-3 col-sm-9">
-                        <span class="help-block hide">@Lang.errYourAnswer</span>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-3 control-label require">@Lang.Validation</label>
-                    <div class="col-sm-4">
-                        <input class="form-control" name="Captcha" id="Captcha" type="text" />
-                    </div>
-
-                    <div class="col-sm-2 captcha">
-                        <div class="validation-value"><img src="@Url.Action("CaptchaImage", "Home")" alt="captcha" /></div>
-                    </div>
-                    <div class="col-sm-offset-3 col-sm-9">
-                        <span class="help-block hide">@Lang.ErrmsgEntryValidCode</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="info-group">
-            <div class="title">
-                <span class="text">@Lang.PaymentInfor</span>
-            </div>
-            <div class="form-horizontal">
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">@Lang.PaymentMethod</label>
-                    <div class="col-sm-3">
-                        <label class="radio-inline">
-                            <input type="radio" checked /> @Lang._12BETPlayerAcc
-                        </label>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label require">@Lang.Username</label>
-                        <div class="col-sm-3">
-                            <input class="form-control" name="Player_UserName" id="Player_UserName" type="text" />
-                        </div>
-                        <div class="col-sm-offset-8 col-sm-4">
-                            <span class="help-block hide">@Lang.BETUserNameIsRequired</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="checkbox col-sm-offset-3 chk-agree">
-                        <label>
-                            <input type="checkbox" id="chkAgree" /> @Lang.IagreetotheTerm
-                        </label>
-                    </div>
-                </div>
-
-                <div class="col-sm-offset-3">
-                    <button class="btn btn-submit" id="btnSubmit" type="submit" disabled>@Lang.Submit</button>
-                    <button class="btn btn-submit" id="btnReset" type="button">@Lang.Reset</button>
-                </div>
-            </div>
+        <div class="alert alert-@(result.IsOk ? "success" : "danger")" role="alert">
+            @if (result.IsOk)
+            {
+                <p class="text-center">@Html.Raw(Lang.UnderReview)</p>
+                @Html.Raw(Lang.RegisSuccess)
+            }
+            else
+            {
+                @Html.Raw(result.Message)
+            }
         </div>
     }
+    else
+    {
+        <div>
+            <p>@Lang.CompleteForm</p>
+            <p>@Html.Raw(Lang.RequireInfo)</p>
+        </div>
+
+        using (Html.BeginForm("Index", "Signup", FormMethod.Post, new { @id = "signUpForm", @class = "form-horizontal" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="info-group">
+                <div class="title">
+                    <span class="text">@Lang.ContactInfo</span>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label require">@Lang.FName</label>
+                    <div class="col-sm-4">
+                        <input class="form-control" name="FirstName" id="FirstName" type="text" />
+                    </div>
+                    <div class="col-sm-offset-3 col-sm-9">
+                        <span class="help-block hide">@Lang.FirstNameIsRequired</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label require">@Lang.LName</label>
+                    <div class="col-sm-4">
+                        <input class="form-control" name="LastName" id="LastName" type="text" />
+                    </div>
+                    <div class="col-sm-offset-3 col-sm-9">
+                        <span class="help-block hide">@Lang.LastNameIsRequired</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label require">@Lang.Gender</label>
+                    <div class="col-sm-4">
+                        <label class="radio-inline">
+                            <input type="radio" name="Gender" id="male" value="True" checked /> @Lang.Male
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="Gender" id="female" value="False" /> @Lang.Female
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label require">@Lang.Email</label>
+                    <div class="col-sm-4">
+                        <input class="form-control emailInput" name="Email" id="Email" type="text" />
+                    </div>
+                    <div class="col-sm-offset-3 col-sm-9">
+                        <span class="help-block hide">@Lang.EmailAddressIsRequired</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label require">@Lang.ReEmail</label>
+                    <div class="col-sm-4">
+                        <input class="form-control emailInput" name="VerifyEmail" id="VerifyEmail" type="text" />
+                    </div>
+                    <div class="col-sm-offset-3 col-sm-9">
+                        <span class="help-block hide">@Lang.EmailAddressIsRequired</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label require">@Lang.ContactNumber</label>
+                    <div class="col-sm-4">
+                        <input class="form-control" name="Phone" id="Phone" type="text" />
+                    </div>
+                    <div class="col-sm-offset-3 col-sm-9">
+                        <span class="help-block hide">@Lang.errContactNumberEmpty</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label require">@Lang.Mobile</label>
+                    <div class="col-sm-4">
+                        <input class="form-control" name="MobilePhone" id="MobilePhone" type="text" />
+                    </div>
+                    <div class="col-sm-offset-3 col-sm-9">
+                        <span class="help-block hide">@Lang.errMobileNumberEmpty</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-group">
+                <div class="title">
+                    <span class="text">@Lang.MailingInfor</span>
+                </div>
+
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label require">@Lang.Address</label>
+                        <div class="col-sm-4">
+                            <input class="form-control" name="Address" id="Address" type="text" />
+                        </div>
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <span class="help-block hide">@Lang.AddressIsRequired</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label require">@Lang.City</label>
+                        <div class="col-sm-4">
+                            <input class="form-control" name="City" id="City" type="text" />
+                        </div>
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <span class="help-block hide">@Lang.CityIsRequired</span>
+                        </div>
+                    </div>
+
+                    @if (sessionService.CurrentLanguage.Equals("zh-CN") || sessionService.CurrentLanguage.Equals("zh-TW"))
+                    {
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label require">@Lang.State</label>
+                            <div class="col-sm-4">
+                                <input class="form-control" name="State" id="State" type="text" />
+                            </div>
+                            <div class="col-sm-offset-3 col-sm-9">
+                                <span class="help-block hide">@Lang.StateIsRequired</span>
+                            </div>
+                        </div>
+                    }
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label require">@Lang.PostCode</label>
+                        <div class="col-sm-4">
+                            <input class="form-control" name="Postal" id="Postal" type="text" />
+                        </div>
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <span class="help-block hide">@Lang.PostcodeZiIsRequired</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label require">@Lang.Country</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" name="Country" id="Country">
+                                @{ Html.RenderPartial("~/Views/Signup/_CountryOption.cshtml"); }
+                            </select>
+                        </div>
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <span class="help-block hide">@Lang.CountryErr</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-group">
+                <div class="title">
+                    <span class="text">@Lang.WebsiteInformat</span>
+                </div>
+
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-sm-4">
+                            <label class="radio-inline">
+                                <input type="radio" name="HasWebSite" value="1" checked /> @Lang.OwnWebsite
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="websiteInfo">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label require">@Lang.WebsiteURL</label>
+                            <div class="col-sm-4">
+                                <input class="form-control" name="SiteUrl" id="SiteUrl" type="text" />
+                            </div>
+                            <div class="col-sm-1">
+                                <button type="button" class="btn btn-submit" id="btnAddUrl">@Lang.AddUrl</button>
+                            </div>
+                            <div class="col-sm-offset-3 col-sm-9">
+                                <span class="help-block hide">@Lang.WebsiteURLIsRequired</span>
+                            </div>
+                        </div>
+
+                        <input type="hidden" name="MoreSiteUrls" id="MoreSiteUrls" />
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-4">
+                            <label class="radio-inline">
+                                <input type="radio" name="HasWebSite" value="0" /> @Lang.NoWebsite
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label require">@Lang.DescWebsite</label>
+                        <div class="col-sm-4">
+                            <textarea class="form-control" name="NoSiteDesc" id="NoSiteDesc" rows="5" disabled></textarea>
+                        </div>
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <span class="help-block hide">@Lang.DescWebsite</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-group">
+                <div class="title">
+                    <span class="text">@Lang.Preference</span>
+                </div>
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label require">@Lang.Language</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" name="PreferredLanguage" id="PreferredLanguage">
+                                <option value="">@Lang.SelectOne</option>
+                                @foreach (var item in SystemLanguage.LanguageList)
+                                {
+                                <option value="@item.Code">@item.NativeName</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <span class="help-block hide">@Lang.PreferLangErr</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label require">@Lang.lblSecureQuestion</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" name="Question" id="Question">
+                                <option value="">@Lang.SelectOne</option>
+                                @{ Html.RenderPartial(secureQuestionPath); }
+                            </select>
+                        </div>
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <span class="help-block hide">@Lang.errSecQuestionEmpty</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label require">@Lang.lblYourAnswer</label>
+                        <div class="col-sm-4">
+                            <input class="form-control" name="Answer" id="Answer" type="text" />
+                        </div>
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <span class="help-block hide">@Lang.errYourAnswer</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label require">@Lang.Validation</label>
+                        <div class="col-sm-4">
+                            <input class="form-control" name="Captcha" id="Captcha" type="text" />
+                        </div>
+
+                        <div class="col-sm-2 captcha">
+                            <div class="validation-value"><img src="@Url.Action("CaptchaImage", "Home")" alt="captcha" /></div>
+                        </div>
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <span class="help-block hide">@Lang.ErrmsgEntryValidCode</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-group">
+                <div class="title">
+                    <span class="text">@Lang.PaymentInfor</span>
+                </div>
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">@Lang.PaymentMethod</label>
+                        <div class="col-sm-3">
+                            <label class="radio-inline">
+                                <input type="radio" checked /> @Lang._12BETPlayerAcc
+                            </label>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label require">@Lang.Username</label>
+                            <div class="col-sm-3">
+                                <input class="form-control" name="Player_UserName" id="Player_UserName" type="text" />
+                            </div>
+                            <div class="col-sm-offset-8 col-sm-4">
+                                <span class="help-block hide">@Lang.BETUserNameIsRequired</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="checkbox col-sm-offset-3 chk-agree">
+                            <label>
+                                <input type="checkbox" id="chkAgree" /> @Lang.IagreetotheTerm
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-offset-3">
+                        <button class="btn btn-submit" id="btnSubmit" type="submit" disabled>@Lang.Submit</button>
+                        <button class="btn btn-submit" id="btnReset" type="button">@Lang.Reset</button>
+                    </div>
+                </div>
+            </div>
+                                        }
+                                    }
+
+
 </div>

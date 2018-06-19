@@ -377,7 +377,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         public void CreateAffiliate_CreateSuccessfully_SendEmailToCsdWithCorrectParameter()
         {
             // Arrange
-            const string ExpectedCsdEmail = "csdemail@yahoo.com";
+            const string ExpectedCsdEmail = Constant.DefaultMailContact;
             EmailBaseParam passedParam = null;
 
             var signUpParam = new UserSignUpParam { IsLocal = true, Email = Constant.DefaultMailUser };
@@ -390,7 +390,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             var accountService = CreateAccountService(accountRepository, emailService.Object);
 
             var emailParam = CreateEmailParam();
-            emailParam.MailTo = ExpectedCsdEmail;
 
             // Action
             accountService.CreateAffiliate(signUpParam, emailParam);

@@ -76,7 +76,18 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         public void SendNoticeEmailToCsd(EmailBaseParam emailParam, UserSignUpParam model)
         {
             const string TemplateName = "Csd";
-            var emailContent = GetEmailTextContent(TemplateName, SystemLanguage.DefaultLanguageCode, model);
+            var viewModel = new
+            {
+                model.FirstName,
+                model.LastName,
+                model.UserName,
+                model.SiteUrl,
+                model.MoreSiteUrls,
+                model.NoSiteDesc,
+                MailContact = emailParam.MailContact
+            };
+
+            var emailContent = GetEmailTextContent(TemplateName, SystemLanguage.DefaultLanguageCode, viewModel);
 
             var subject = string.Format(Lang.CsdSubject, model.UserName);
             _mailProcessor.Send(emailContent, emailParam.MailTo, subject, emailParam.MailBcc, emailParam.MailCc);

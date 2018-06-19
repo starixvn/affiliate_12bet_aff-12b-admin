@@ -1,4 +1,7 @@
-﻿.chk-agree {
+﻿@import "../scss/vendors/bootstrap/variables";
+@import "../scss/vendors/bootstrap/mixins";
+@import "../scss/vendors/bootstrap/alerts";
+.chk-agree {
     padding-left: 15px;
 }
 

@@ -9,6 +9,7 @@ using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.MetalModels.Email;
+using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.User.Core.Utilities;
 using Moq;
@@ -67,6 +68,42 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         }
 
         [Fact]
+        public void Index_WhenCallWithPost_CaptchaIsInvalid_SetResultCorrectly()
+        {
+            // Arrange
+            var accountService = new Mock<IAccountService>();
+            var controller = CreateController(accountService.Object);
+            var signUpParam = new UserSignUpParam { Captcha = "Invalid" };
+
+            var expectedResult = new ResultInfo { IsOk = false, Message = Lang.ValidationCode };
+
+            // Action
+            controller.Index(signUpParam);
+            var result = controller.TempData[TempDataKey.SignUpResult] as ResultInfo;
+
+            // Assert
+            Assert.Equal(expectedResult.IsOk, result.IsOk);
+            Assert.Equal(expectedResult.Message, result.Message);
+        }
+
+        [Fact]
+        public void Index_WhenCallWithPost_CaptchaIsInvalidButModelIsInvalid_ResultTempDataIsNull()
+        {
+            // Arrange
+            var accountService = new Mock<IAccountService>();
+            var controller = CreateController(accountService.Object);
+            controller.ModelState.AddModelError("Error", "Error");
+            var signUpParam = new UserSignUpParam { Captcha = "1234" };
+
+            // Action
+            controller.Index(signUpParam);
+            var result = controller.TempData[TempDataKey.SignUpResult] as ResultInfo;
+
+            // Assert
+            Assert.Null(result);
+        }
+
+        [Fact]
         public void Index_WhenCallWithPost_ModelStateIsValid_CallServiceWithCorrectParam()
         {
             // Arrange
@@ -82,6 +119,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var controller = CreateController(accountService.Object, appSetting: appSetting);
 
             var signUpParam = CreateParam();
+            signUpParam.Captcha = Constant.Captcha;
 
             var expectedPassedParam = JsonConvert.SerializeObject(CreateExpectedParam());
 
@@ -107,10 +145,51 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             controller.TempData = new TempDataDictionary();
 
             var signUpParam = CreateParam();
+            signUpParam.Captcha = Constant.Captcha;
 
             // Action
             controller.Index(signUpParam);
             var result = controller.TempData[TempDataKey.SignUpResult] as ResultInfo;
+
+            // Assert
+            Assert.Equal(expectedResult, result);
+        }
+
+        [Fact]
+        public void Index_WhenCallWithPost_ModelStateIsValid_CallServiceWithCorrectEmailParam()
+        {
+            // Arrange
+            EmailBaseParam passedEmailParam = null;
+            var resultInfo = new ResultInfo { IsOk = true, Message = string.Empty };
+            var accountService = new Mock<IAccountService>();
+            accountService.Setup(p => p.CreateAffiliate(It.IsAny<UserSignUpParam>(), It.IsAny<EmailBaseParam>()))
+                                .Returns(resultInfo)
+                                .Callback<UserSignUpParam, EmailBaseParam>((u, e) => passedEmailParam = e);
+
+            var appSetting = Mock.Of<IAppSetting>(ap =>
+            ap.AllowedAffiliateTypes == new List<string> { Constant.AffTypeAsian.ToString() } &&
+            ap.MailContact == Constant.DefaultMailContact &&
+            ap.MailCc == Constant.DefaultMailCc &&
+            ap.MailBcc == string.Empty);
+
+            var controller = CreateController(accountService.Object, appSetting: appSetting);
+            controller.TempData = new TempDataDictionary();
+
+            var signUpParam = CreateParam();
+            signUpParam.Captcha = Constant.Captcha;
+
+            var expectedResult = JsonConvert.SerializeObject(new EmailBaseParam
+            {
+                MailContact = Constant.DefaultMailContact,
+                MailCc = Constant.DefaultMailCc,
+                MailBcc = string.Empty,
+                MailTo = Constant.DefaultMailContact,
+                RootDomain = Constant.DefaultRootDomain + "/"
+            });
+
+            // Action
+            controller.Index(signUpParam);
+            var result = JsonConvert.SerializeObject(passedEmailParam);
 
             // Assert
             Assert.Equal(expectedResult, result);
@@ -171,7 +250,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             passedParam.AffMaster = "12BETAFF";
             passedParam.Language = Constant.DefaultLanguage;
             passedParam.AffType = Constant.AffTypeAsian;
-            passedParam.Browser = Constant.Browser;
             passedParam.Ip = "::1";
             passedParam.IsLocal = true;
 

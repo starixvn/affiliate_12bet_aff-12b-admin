@@ -6,8 +6,10 @@
     using BusinessService;
     using Constants;
     using CoreService;
+    using DTO;
     using MetalModels;
     using MetalModels.Email;
+    using Resources;
     using Utilities;
 
     public class SignupController : BaseController
@@ -34,7 +36,11 @@
         [ValidateAntiForgeryToken]
         public ActionResult Index(UserSignUpParam param)
         {
-            if (ModelState.IsValid)
+            if (!SessionService.CaptchaCode.Equals(param.Captcha))
+            {
+                TempData[TempDataKey.SignUpResult] = new ResultInfo { IsOk = false, Message = Lang.ValidationCode };
+            }
+            else if (ModelState.IsValid)
             {
                 var signUpParam = new UserSignUpParam
                 {
@@ -61,7 +67,6 @@
                     EmailFormat = false,
                     AffType = Convert.ToByte(AppSetting.AllowedAffiliateTypes.FirstOrDefault()),
                     Ip = Request.UserHostAddress,
-                    Browser = Request.Browser.ToString(),
                     IsLocal = AppSetting.IsLocal
                 };
 

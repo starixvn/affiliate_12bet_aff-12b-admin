@@ -18,7 +18,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
         public static ISessionService GetSessionService()
         {
             return Mock.Of<ISessionService>(ss =>
-                ss.CaptchaCode == "1234" &&
+                ss.CaptchaCode == Constant.Captcha &&
                 ss.CurrentLanguage == Constant.DefaultLanguage &&
                 !ss.IsInternal &&
                 ss.UserSession == new UserSession
@@ -82,7 +82,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
             return Mock.Of<HttpRequestBase>(req =>
                 req.ApplicationPath == "/" &&
                 req.UserHostAddress == "::1" &&
-                req.Browser.ToString() == Constant.Browser &&
                 req.Url == new Uri(Constant.DefaultRootDomain) &&
                 req.ServerVariables == new NameValueCollection()
             );

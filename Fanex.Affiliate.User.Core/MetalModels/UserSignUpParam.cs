@@ -29,7 +29,7 @@ namespace Fanex.Affiliate.User.Core.MetalModels
         [Required]
         public string City { get; set; }
 
-        public string State { get; set; }
+        public string State { get; set; } = string.Empty;
 
         [Required]
         public string Postal { get; set; }
@@ -39,7 +39,7 @@ namespace Fanex.Affiliate.User.Core.MetalModels
 
         public bool EmailFormat { get; set; }
 
-        public string SiteUrl { get; set; }
+        public string SiteUrl { get; set; } = string.Empty;
 
         public string MoreSiteUrls { get; set; }
 
@@ -60,8 +60,6 @@ namespace Fanex.Affiliate.User.Core.MetalModels
         public string Answer { get; set; }
 
         public string Ip { get; set; }
-
-        public string Browser { get; set; }
 
         public string Language { get; set; }
 
