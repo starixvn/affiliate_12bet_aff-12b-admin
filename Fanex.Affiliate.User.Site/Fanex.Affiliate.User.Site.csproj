@@ -402,6 +402,8 @@
     <Content Include="Views\Shared\Email\Csd\Content.en-US.cshtml" />
     <Content Include="Views\Member\Index.cshtml" />
     <Content Include="Views\Member\_DataContent.cshtml" />
+    <Content Include="Views\CommissionStructure\_Content.cshtml" />
+    <Content Include="Views\Faq\_Content.cshtml" />
     <None Include="Views\Signup\SecureQuestion\SecureQuestion_en-US.cshtml" />
     <None Include="Views\Signup\SecureQuestion\SecureQuestion_es-ES.cshtml" />
     <None Include="Views\Signup\SecureQuestion\SecureQuestion_id-ID.cshtml" />
@@ -806,6 +808,7 @@
     <Content Include="www\source\styles\pages\signup.scss" />
     <Content Include="Views\Signup\_CountryOption.cshtml" />
     <Content Include="www\source\styles\pages\member.scss" />
+    <Content Include="Views\TermAndCondition\_Content.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -1,0 +1,105 @@
+﻿<div class="content">
+    <div class="page-title">
+        <span class="text">@Lang.CommissionStructure</span>
+    </div>
+
+    <div class="info-group">
+        <div class="img-ads text-center">
+            <img src="~/www/build/styles/Images/ads-1.jpg" alt="Commission structure" />
+        </div>
+
+        <p class="text">
+            As a 12BET Affiliates you will be paid commission on every player you referred to 12BET over the course of the player's account life. Our online reporting system will be available 24 hours a day 7 days a week for your usage. How much you earn will depend on how much traffic you can send over from your website. It is our job to guide them through the registration process, having them make their first deposit, and retain their business with our attractive bonuses and offerings.
+        </p>
+    </div>
+
+    <div class="info-group">
+        <div class="title">
+            <span class="text">@Lang.TC_RevenueShareModel</span>
+        </div>
+        <p class="text">
+            The revenue share model is split in each 12BET product components. The calculation of each of which product is described below. The total revenue share payable to the affiliate shall be the sum of all components of the revenue share model.
+        </p>
+        <p class="text">
+            12BET offers a revenue share model in all 12BET products.This is a cumulative model based on the number of active players referred per calendar month in relation to each product revenue.
+        </p>
+
+        <div class="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th width="20%">@Lang.RevenueShare</th>
+                        <th width="8%">@Lang.Tier</th>
+                        <th width="20%">@Lang.NetWinLoss</th>
+                        <th width="20%">@Lang.QualifyingMem</th>
+                        <th width="20%">@Lang.Comm</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="3" class="text-center">
+                            <p>@Lang.AllProducts</p>
+                            <p><a class="more-detail" href="@Url.Action("Index", "Product")">> @Lang.MoreDetailProduct</a></p>
+                        </td>
+                        <td class="text-center">1</td>
+                        <td class="text-center">$1 - $2,999</td>
+                        <td class="text-center">6 - 10</td>
+                        <td class="text-center">20%</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">2</td>
+                        <td class="text-center">$3,000.00 - $45,000</td>
+                        <td class="text-center">11 - 50</td>
+                        <td class="text-center">30%</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">3</td>
+                        <td class="text-center">$45,000+</td>
+                        <td class="text-center">51+</td>
+                        <td class="text-center">40%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p class="text" style="margin-top: 15px;">
+            For the purposes of the table above, "Net Revenue" shall mean the amount of stakes placed by Players in the relevant calendar month exclude (i) returned  winnings; (ii) any bonuses paid; (iii) Chargebacks; and (iv) any other revenue returns, credits, compensations or refunds given to Players.
+        </p>
+    </div>
+
+    <div class="info-group">
+        <div class="title">
+            <span class="text">@Lang.NegativeBalance</span>
+        </div>
+        <p class="text">
+            Any negative balance for a given month will be carried forward to the next. For example if for the month of January your affiliate account ends with -$2,555, this amount will be carried forward to February. If at the end of February your affiliate account earns $3,400, the total balance will be $845 ($3,400 deduct -$2,555). However if your account is still making a loss at the end of February, for example -$1,600, then it will be added to the previous negative balance and be carried forward to March resulting in your March balance brought forward to be -$4,155. The commission earned shall then be paid according to the tier scale.
+        </p>
+    </div>
+
+    <div class="info-group">
+        <div class="title">
+            <span class="text">@Lang.CommissionPayment</span>
+        </div>
+        <p class="text">
+            You can request payout in other currencies other than USD. The currencies offered are  RMB and MYR, THB, VND, IDR, INR and KRW. Respective exchange rate on the payout date will be applied.
+        </p>
+
+        <p class="text">
+            We offer several methods of withdrawal:
+
+            <ol>
+                <li>Through your 12BET player account</li>
+                <li>Moneybookers *</li>
+                <li>Neteller *</li>
+                <li>Wire Transfer *</li>
+            </ol>
+        </p>
+
+        <p class="text">
+            * Affiliates are only allowed to have one withdrawal request for each calendar month. Should the Affiliates intend to request for a second withdrawal in any month, such request shall be subject to Affiliate Manager's approval. While we offer free withdrawal request however we will not be held responsible if the receiving financial institution or electronic wallets impose a fee of any kind at their end.
+            The minimum amount of withdrawal request is USD$100.
+        </p>
+    </div>
+
+    @RazorHelper.RenderMovingTopButton()
+</div>
