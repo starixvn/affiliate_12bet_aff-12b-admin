@@ -102,5 +102,13 @@
       "www/source/js/components/website.js",
       "www/source/js/pages/signup.js"
     ]
+  },
+  {
+    "outputFileName": "www/build/js/member.js",
+    "inputFiles": [
+      "www/source/js/lib/pikaday.js",
+      "www/source/js/components/pager.js",
+      "www/source/js/pages/member.js"
+    ]
   }
 ]

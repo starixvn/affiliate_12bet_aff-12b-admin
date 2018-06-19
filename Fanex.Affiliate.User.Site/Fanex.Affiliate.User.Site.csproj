@@ -400,6 +400,8 @@
     <Content Include="Views\Shared\Email\NewPassword\Content.zh-CN.cshtml" />
     <Content Include="Views\Shared\Email\NewPassword\Content.zh-TW.cshtml" />
     <Content Include="Views\Shared\Email\Csd\Content.en-US.cshtml" />
+    <Content Include="Views\Member\Index.cshtml" />
+    <Content Include="Views\Member\_DataContent.cshtml" />
     <None Include="Views\Signup\SecureQuestion\SecureQuestion_en-US.cshtml" />
     <None Include="Views\Signup\SecureQuestion\SecureQuestion_es-ES.cshtml" />
     <None Include="Views\Signup\SecureQuestion\SecureQuestion_id-ID.cshtml" />
@@ -463,6 +465,10 @@
     <Content Include="www\build\js\mediagallery.min.js">
       <DependentUpon>mediagallery.js</DependentUpon>
     </Content>
+    <Content Include="www\build\js\member.js" />
+    <Content Include="www\build\js\member.min.js">
+      <DependentUpon>member.js</DependentUpon>
+    </Content>
     <Content Include="www\build\js\messagehistory.js" />
     <Content Include="www\build\js\messagehistory.min.js">
       <DependentUpon>messagehistory.js</DependentUpon>
@@ -479,6 +485,10 @@
     <Content Include="www\build\js\signup.min.js">
       <DependentUpon>signup.js</DependentUpon>
     </Content>
+    <Content Include="www\build\styles\css\member.css" />
+    <Content Include="www\build\styles\css\member.min.css">
+      <DependentUpon>member.css</DependentUpon>
+    </Content>
     <Content Include="www\build\styles\css\messagehistory.css" />
     <Content Include="www\build\styles\css\messagehistory.min.css">
       <DependentUpon>messagehistory.css</DependentUpon>
@@ -488,6 +498,7 @@
       <DependentUpon>signup.css</DependentUpon>
     </Content>
     <Content Include="www\source\js\components\website.js" />
+    <Content Include="www\source\js\pages\member.js" />
     <Content Include="www\source\js\pages\messagehistory.js" />
     <Content Include="www\source\js\pages\payment-request.js" />
     <Content Include="www\build\js\recheckin.js" />
@@ -794,6 +805,7 @@
     <Content Include="www\source\styles\pages\messagehistory.scss" />
     <Content Include="www\source\styles\pages\signup.scss" />
     <Content Include="Views\Signup\_CountryOption.cshtml" />
+    <Content Include="www\source\styles\pages\member.scss" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

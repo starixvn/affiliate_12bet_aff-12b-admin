@@ -119,4 +119,9 @@
   <Function Name="SignUp">
     <Setting Key="Aff_AffiliateIns" SpName="Aff_AffiliateIns" DbName="affiliate_12bet" />
   </Function>
+
+  <Function Name="Member">
+    <Setting Key="Aff_MemberList_Sel" SpName="Aff_MemberList_Sel_xtest" DbName="affiliate_12bet" />
+    <Setting Key="Aff_MemberList_Sel_view" SpName="Aff_MemberList_Sel_xtest" DbName="affiliate_12bet_view" />
+  </Function>
 </Functions>

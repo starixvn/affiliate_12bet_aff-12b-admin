@@ -158,5 +158,10 @@
     "outputFile": "www/build/styles/css/signup.css",
     "inputFile": "www/source/styles/pages/signup.scss",
     "sourceMap": false
+  },
+  {
+    "outputFile": "www/build/styles/css/member.css",
+    "inputFile": "www/source/styles/pages/member.scss",
+    "sourceMap": false
   }
 ]

@@ -189,6 +189,7 @@
     <Compile Include="Constants\PaymentStatus.cs" />
     <Compile Include="Constants\SportType.cs" />
     <Compile Include="Constants\TempDataKey.cs" />
+    <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="CoreService\CookieService.cs" />
     <Compile Include="BusinessService\CryptographyService.cs" />
@@ -245,6 +246,7 @@
     <Compile Include="DTO\UserPanel\BannerType.cs" />
     <Compile Include="DTO\UserPanel\CommissionSetting.cs" />
     <Compile Include="DTO\UserPanel\Domain.cs" />
+    <Compile Include="DTO\UserPanel\Member.cs" />
     <Compile Include="DTO\UserPanel\MessageHistory.cs" />
     <Compile Include="DTO\UserPanel\PlayerAccountCheckingResult.cs" />
     <Compile Include="DTO\UserPanel\ReferrerStatistics.cs" />
@@ -255,6 +257,7 @@
     <Compile Include="DTO\ResultInfo.cs" />
     <Compile Include="Enum\AffiliateType.cs" />
     <Compile Include="Enum\DeviceType.cs" />
+    <Compile Include="Enum\MemberType.cs" />
     <Compile Include="Enum\PaymentRequestType.cs" />
     <Compile Include="Enum\TransType.cs" />
     <Compile Include="Extensions\HtmlHelperExtension.cs" />
@@ -274,6 +277,7 @@
     <Compile Include="MetalModels\Email\RecoverPasswordEmailParam.cs" />
     <Compile Include="MetalModels\Email\NewPasswordEmailParam.cs" />
     <Compile Include="MetalModels\PasswordRecoveryParam.cs" />
+    <Compile Include="MetalModels\UserPanel\MemberParam.cs" />
     <Compile Include="MetalModels\UserPanel\DepositPlayerAccountParam.cs" />
     <Compile Include="MetalModels\UserPanel\MessageHistoryParam.cs" />
     <Compile Include="MetalModels\UserPanel\PaymentCreationParam.cs" />
@@ -304,6 +308,8 @@
     <Compile Include="Repository\BetList\BetListRepository.cs" />
     <Compile Include="Repository\BetList\IBetListRepository.cs" />
     <Compile Include="Repository\UserPanel\CommissionRepository.cs" />
+    <Compile Include="Repository\UserPanel\MemberRepository.cs" />
+    <Compile Include="Repository\UserPanel\IMemberRepository.cs" />
     <Compile Include="Repository\UserPanel\NewsRepository.cs" />
     <Compile Include="Repository\UserPanel\ICommissionRepository.cs" />
     <Compile Include="Repository\UserPanel\INewsRepository.cs" />
