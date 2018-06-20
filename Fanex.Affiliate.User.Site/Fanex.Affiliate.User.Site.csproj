@@ -404,6 +404,7 @@
     <Content Include="Views\Member\_DataContent.cshtml" />
     <Content Include="Views\CommissionStructure\_Content.cshtml" />
     <Content Include="Views\Faq\_Content.cshtml" />
+    <Content Include="Views\Shared\Email\ContactUs\Content.en-US.cshtml" />
     <None Include="Views\Signup\SecureQuestion\SecureQuestion_en-US.cshtml" />
     <None Include="Views\Signup\SecureQuestion\SecureQuestion_es-ES.cshtml" />
     <None Include="Views\Signup\SecureQuestion\SecureQuestion_id-ID.cshtml" />
@@ -436,6 +437,10 @@
     <Content Include="www\build\js\changepassword.js" />
     <Content Include="www\build\js\changepassword.min.js">
       <DependentUpon>changepassword.js</DependentUpon>
+    </Content>
+    <Content Include="www\build\js\contactus.js" />
+    <Content Include="www\build\js\contactus.min.js">
+      <DependentUpon>contactus.js</DependentUpon>
     </Content>
     <Content Include="www\build\js\daily-earning-detail.js" />
     <Content Include="www\build\js\daily-earning-detail.min.js">
@@ -500,6 +505,7 @@
       <DependentUpon>signup.css</DependentUpon>
     </Content>
     <Content Include="www\source\js\components\website.js" />
+    <Content Include="www\source\js\pages\contactus.js" />
     <Content Include="www\source\js\pages\member.js" />
     <Content Include="www\source\js\pages\messagehistory.js" />
     <Content Include="www\source\js\pages\payment-request.js" />

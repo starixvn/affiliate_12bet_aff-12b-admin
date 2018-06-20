@@ -9,5 +9,7 @@
         public const string PaymentResult = "PaymentResult";
 
         public const string SignUpResult = "SignUpResult";
+
+        public const string SendRequestResult = "SendRequestResult";
     }
 }

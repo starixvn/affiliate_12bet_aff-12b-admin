@@ -21,5 +21,7 @@
         public const string DefaultRootDomain = "http://abcxyz.com";
 
         public const string Captcha = "1234";
+
+        public const string Browser = "Chrome";
     }
 }

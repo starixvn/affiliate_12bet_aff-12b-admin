@@ -1,15 +1,32 @@
 ﻿@{
     Layout = "~/Views/Shared/_LayoutBeforeLogin.cshtml";
-    ViewBag.Title = Lang.ContactUs;
+    ViewBag.Title = "12BET Affiliate Program | Contact Us";
+}
+
+@model Fanex.Affiliate.User.Core.DTO.UserInfo
+
+@using Fanex.Affiliate.User.Core.Constants
+@{
+    var result = TempData[TempDataKey.SendRequestResult] as Fanex.Affiliate.User.Core.DTO.ResultInfo;
+    var hasResult = result != null;
+    var isSuccessful = hasResult && result.IsOk;
+
+    var name = $"{Model?.FirstName} {Model?.LastName}";
+    var affiliate = Model?.UserName;
+    var email = Model?.Email;
 }
 
 @section styles{
     @Html.InlineStyles("~/www/build/styles/css/contact-us.css")
 }
 
+@section scripts{
+    @Html.InlineScripts("~/www/build/js/contactus.js")
+}
+
 <div class="content">
     <div class="page-title">
-        <span class="text text-uppercase">@Lang.ContactUs</span>
+        <span class="text">@Lang.ContactUs</span>
     </div>
 
     <div class="container-fluid">
@@ -35,9 +52,9 @@
                             </div>
                             <div class="info">
                                 <p class="language">English Support</p>
-                                <a class="skype-info" href="#">
+                                <a class="skype-info" href="mailto:aff12b_eng@hotmail.com">
                                     <img class="skype-icon" src="~/www/build/styles/Images/contact-us/skype_icon.png" />
-                                    <span>affiliate12bet</span>
+                                    <span>aff12b_eng@hotmail.com</span>
                                 </a>
                             </div>
                         </div>
@@ -82,9 +99,9 @@
                             </div>
                             <div class="info">
                                 <p class="language">Thailand Support</p>
-                                <a class="skype-info" href="#">
+                                <a class="skype-info" href="mailto:csd12bthai_affiliate@hotmail.com">
                                     <img class="skype-icon" src="~/www/build/styles/Images/contact-us/skype_icon.png" />
-                                    <span>th.affiliate12bet</span>
+                                    <span>csd12bthai_affiliate@hotmail.com</span>
                                 </a>
                             </div>
                         </div>
@@ -99,7 +116,7 @@
                             </div>
                             <div class="info">
                                 <p class="language">Vietnam Support</p>
-                                <a class="skype-info" href="#">
+                                <a class="skype-info" href="mailto:aff12b_viet@yahoo.com">
                                     <img class="skype-icon" src="~/www/build/styles/Images/contact-us/skype_icon.png" />
                                     <span>aff12b_viet@yahoo.com</span>
                                 </a>
@@ -127,48 +144,82 @@
     </div>
 
     <div class="contact-form">
-        <p class="intro">Please direct any comments or questions to <a href="mailto:affiliate@12csd.com">affiliate@12csd.com</a>, or using the form below.</p>
-        <form class="form">
-            <div class="form-group">
-                <div class="group group-small">
-                    <label class="require" for="name">Name</label>
-                    <input class="field" type="text" name="name">
-                </div>
-                <div class="group group-small">
-                    <label for="affiliate">Affiliate</label>
-                    <input class="field" type="text" name="affiliate">
-                </div>
+        @if (isSuccessful)
+        {
+            <div class="alert alert-success" role="alert">
+                @Html.Raw(Lang.MessageSentReview.Replace("{br}", "<br>"))
             </div>
-            <div class="form-group">
-                <div class="group group-small">
-                    <label class="require" for="name">Subject</label>
-                    <input class="field" type="text" name="subject">
+        }
+        else
+        {
+            if (hasResult)
+            {
+                <div class="alert alert-danger" role="alert">
+                    @Html.Raw(result.Message)
                 </div>
-                <div class="group group-small">
-                    <label class="require" for="email">Email</label>
-                    <input class="field" type="text" name="email">
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="group group-full">
-                    <label class="require" for="comment">Comment</label>
-                    <textarea class="field" name="comment"></textarea>
-                </div>
-            </div>
-            <div class="form-group captcha">
-                <div class="group group-small">
-                    <label class="require" for="name">Validation</label>
-                    <input class="field" type="text" name="name">
-                </div>
-                <div class="validation-value"><img src="@Url.Action("CaptchaImage", "ContactUs")" alt="captcha" /></div>
-            </div>
+            }
 
-            <div class="form-group button-block col-sm-offset-1">
-                <div class="group">
-                    <button class="btn btn-submit" type="button">Submit</button>
-                    <button class="btn btn-submit" type="button">Reset</button>
+            <p class="intro">Please direct any comments or questions to <a href="mailto:affiliate@12csd.com">affiliate@12csd.com</a>, or using the form below.</p>
+            using (Html.BeginForm("Index", "ContactUs", FormMethod.Post, new { @id = "contactForm", @class = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <div class="group group-small">
+                        <label class="require" for="Sender">@Lang.Name</label>
+                        <input class="field" type="text" name="Sender" id="Sender" value="@name" />
+                        <div class="validation-input">
+                            <span class="help-block hide">@Lang.NameIsInvalid</span>
+                        </div>
+                    </div>
+                    <div class="group group-small">
+                        <label for="Affiliate">@Lang.Affiliate</label>
+                        <input class="field" type="text" name="Affiliate" id="Affiliate" value="@affiliate" />
+                    </div>
                 </div>
-            </div>
-        </form>
+                <div class="form-group">
+                    <div class="group group-small">
+                        <label class="require" for="Subject">@Lang.Subject</label>
+                        <input class="field" type="text" name="Subject" id="Subject" />
+                        <div class="validation-input">
+                            <span class="help-block hide">@Lang.SubjectIsInvalid</span>
+                        </div>
+                    </div>
+                    <div class="group group-small">
+                        <label class="require" for="Email">@Lang.Email1</label>
+                        <input class="field emailInput" type="text" name="Email" id="Email" value="@email" />
+                        <div class="validation-input">
+                            <span class="help-block hide">@Lang.EmailAddressIsInvalid</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="group group-full">
+                        <label class="require" for="Content">@Lang.Comment</label>
+                        <textarea class="field" name="Content" id="Content"></textarea>
+                        <div class="validation-input">
+                            <span class="help-block hide">@Lang.CommentsIsInvalid</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="group group-small captcha">
+                        <label class="require" for="Captcha">@Lang.Validation</label>
+                        <input class="field" type="text" name="Captcha" id="Captcha" autocomplete="off" />
+                        <div class="validation-input">
+                            <span class="help-block hide">@Lang.ErrmsgEntryValidCode</span>
+                        </div>
+                    </div>
+                    <div class="validation-value"><img src="@Url.Action("CaptchaImage", "Home")" alt="captcha" /></div>
+                </div>
+
+                <div class="form-group">
+                    <div class="group">
+                        <label></label>
+                        <button class="btn btn-submit" type="submit">@Lang.Submit</button>
+                        <button class="btn btn-submit" type="button" id="btnReset">@Lang.Reset</button>
+                    </div>
+                </div>
+            }
+        }
     </div>
 </div>

@@ -93,6 +93,8 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterType<AccountService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<PaymentService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<MemberRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<EmailHistoryRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<ContactService>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
     }
 }

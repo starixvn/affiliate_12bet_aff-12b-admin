@@ -48,7 +48,7 @@ namespace Fanex.Affiliate.User.Core.CoreService
 
         public bool IsInternal
         {
-            get { return (bool)HttpContext.Current.Session[IsInternalKey]; }
+            get { return (bool)(HttpContext.Current.Session[IsInternalKey] ?? false); }
             set { HttpContext.Current.Session[IsInternalKey] = value; }
         }
 

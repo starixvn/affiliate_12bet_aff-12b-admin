@@ -124,4 +124,8 @@
     <Setting Key="Aff_MemberList_Sel" SpName="Aff_MemberList_Sel" DbName="affiliate_12bet" />
     <Setting Key="Aff_MemberList_Sel_view" SpName="Aff_MemberList_Sel" DbName="affiliate_12bet_view" />
   </Function>
+
+  <Function Name="ContactUs">
+    <Setting Key="Aff_EmailHistoryIns" SpName="Aff_EmailHistoryIns" DbName="affiliate_12bet" />  
+  </Function>
 </Functions>

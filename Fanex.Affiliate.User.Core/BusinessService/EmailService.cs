@@ -93,6 +93,23 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             _mailProcessor.Send(emailContent, emailParam.MailTo, subject, emailParam.MailBcc, emailParam.MailCc);
         }
 
+        public void SendContactUsEmail(EmailBaseParam emailParam, ContactUsParam model)
+        {
+            const string TemplateName = "ContactUs";
+            var viewModel = new
+            {
+                Name = model.Sender,
+                Affiliate = model.Affiliate,
+                Email = model.Email,
+                Content = model.Content
+            };
+
+            var emailContent = GetEmailTextContent(TemplateName, SystemLanguage.DefaultLanguageCode, viewModel);
+
+            var subject = $"12Bet Affiliates - Contact Us - {model.Subject}";
+            _mailProcessor.Send(emailContent, emailParam.MailTo, subject, emailParam.MailBcc, emailParam.MailCc);
+        }
+
         private string GetEmailTextContent(string templateName, string prefrerredLanguage, object model)
         {
             var viewPath = string.Format(TemplateString.EmailTemplatePath, templateName, prefrerredLanguage);

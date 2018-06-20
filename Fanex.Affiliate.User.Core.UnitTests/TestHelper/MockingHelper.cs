@@ -83,7 +83,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
                 req.ApplicationPath == "/" &&
                 req.UserHostAddress == "::1" &&
                 req.Url == new Uri(Constant.DefaultRootDomain) &&
-                req.ServerVariables == new NameValueCollection()
+                req.ServerVariables == new NameValueCollection() &&
+                req.Browser.Browser == Constant.Browser
             );
         }
     }

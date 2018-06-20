@@ -1,31 +1,84 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
-    using System;
     using System.Web.Mvc;
+    using BusinessService;
+    using Constants;
     using CoreService;
+    using DTO;
+    using MetalModels;
+    using MetalModels.Email;
+    using Repository.UserPanel;
+    using Resources;
     using Utilities;
 
     public class ContactUsController : BaseController
     {
+        private readonly IContactService _contactService;
+
+        private readonly IAccountRepository _accountRepository;
+
         public ContactUsController(
             ISessionService sessionService,
-            IAppSetting appSetting)
+            IAppSetting appSetting,
+            IContactService contactService,
+            IAccountRepository accountRepository)
             : base(sessionService, appSetting)
         {
+            _contactService = contactService;
+            _accountRepository = accountRepository;
         }
 
         [HttpGet]
         public ActionResult Index()
         {
-            return View();
+            if (SessionService.UserSession == null)
+            {
+                return View();
+            }
+
+            var userInfo = _accountRepository.GetUserInfoById(SessionService.UserSession.AffId, SessionService.IsInternal);
+
+            return View(userInfo);
         }
 
-        [HttpGet]
-        public ActionResult CaptchaImage()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index(ContactUsParam param)
         {
-            var captcha = new Random().Next(1000, 9999).ToString();
+            var result = new ResultInfo { IsOk = false };
 
-            return File(CaptchaHelper.GenerateImageBuffer(captcha, 65, 26), "image/Jpeg");
+            if (SessionService != null && SessionService.IsInternal)
+            {
+                result.Message = Lang.ErrAuthorized;
+            }
+            else if (!string.Equals(SessionService.CaptchaCode, param.Captcha))
+            {
+                result.Message = Lang.ValidationCode;
+            }
+            else if (ModelState.IsValid)
+            {
+                param.Sender = Server.HtmlEncode(param.Sender);
+                param.Email = Server.HtmlEncode(param.Email);
+                param.Affiliate = Server.HtmlEncode(param.Affiliate);
+                param.Subject = Server.HtmlEncode(param.Subject);
+                param.Content = Server.HtmlEncode(param.Content);
+                param.Creator = SessionService.UserSession == null ? -1 : SessionService.UserSession.AffId;
+                param.Ip = Request.UserHostAddress;
+                param.SessionId = Session.SessionID;
+                param.Browser = Request.Browser.Browser;
+
+                var emailParam = new EmailBaseParam
+                {
+                    MailTo = AppSetting.MailContact,
+                    MailCc = AppSetting.MailCc
+                };
+
+                result = _contactService.SendRequest(param, emailParam);
+            }
+
+            TempData[TempDataKey.SendRequestResult] = result;
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }

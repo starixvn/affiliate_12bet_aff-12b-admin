@@ -178,7 +178,9 @@
   <ItemGroup>
     <Compile Include="BusinessService\AccountService.cs" />
     <Compile Include="BusinessService\AuthService.cs" />
+    <Compile Include="BusinessService\ContactService.cs" />
     <Compile Include="BusinessService\EmailService.cs" />
+    <Compile Include="BusinessService\IContactService.cs" />
     <Compile Include="BusinessService\IPaymentService.cs" />
     <Compile Include="BusinessService\NewsService.cs" />
     <Compile Include="BusinessService\IAccountService.cs" />
@@ -272,6 +274,7 @@
     <Compile Include="MetalModels\BetList\BetListParlayDetailParam.cs" />
     <Compile Include="MetalModels\BetList\BetListResultParam.cs" />
     <Compile Include="MetalModels\BetList\BetListValidationParam.cs" />
+    <Compile Include="MetalModels\ContactUsParam.cs" />
     <Compile Include="MetalModels\Email\EmailBaseParam.cs" />
     <Compile Include="MetalModels\Email\PaymentEmailParam.cs" />
     <Compile Include="MetalModels\Email\RecoverPasswordEmailParam.cs" />
@@ -307,6 +310,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\BetList\BetListRepository.cs" />
     <Compile Include="Repository\BetList\IBetListRepository.cs" />
+    <Compile Include="Repository\EmailHistoryRepository.cs" />
+    <Compile Include="Repository\IEmailHistoryRepository.cs" />
     <Compile Include="Repository\UserPanel\CommissionRepository.cs" />
     <Compile Include="Repository\UserPanel\MemberRepository.cs" />
     <Compile Include="Repository\UserPanel\IMemberRepository.cs" />
