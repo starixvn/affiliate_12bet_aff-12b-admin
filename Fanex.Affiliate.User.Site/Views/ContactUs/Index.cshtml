@@ -11,7 +11,7 @@
     var hasResult = result != null;
     var isSuccessful = hasResult && result.IsOk;
 
-    var name = $"{Model?.FirstName} {Model?.LastName}";
+    var name = Model != null ? $"{Model?.FirstName} {Model?.LastName}" : string.Empty;
     var affiliate = Model?.UserName;
     var email = Model?.Email;
 }
