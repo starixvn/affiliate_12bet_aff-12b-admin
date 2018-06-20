@@ -1843,7 +1843,7 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
     <value>Netherlands </value>
   </data>
   <data name="NetWinLoss" xml:space="preserve">
-    <value>COMPANY NET WIN FOR THE MONTH (CNW)($)</value>
+    <value>Company Net Win For The Month (CNW)($)</value>
   </data>
   <data name="New" xml:space="preserve">
     <value>New</value>

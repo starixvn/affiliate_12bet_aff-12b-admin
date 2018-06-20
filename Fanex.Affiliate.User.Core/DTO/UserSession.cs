@@ -14,5 +14,7 @@ namespace Fanex.Affiliate.User.Core.DTO.Auth
         public int OnUserId { get; set; }
 
         public byte AffType { get; set; }
+
+        public string GroupName { get; set; }
     }
 }

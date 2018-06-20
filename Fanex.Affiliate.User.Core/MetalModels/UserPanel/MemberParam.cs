@@ -6,9 +6,9 @@ namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
     {
         public int AffId { get; set; }
 
-        public DateTime FromDate { get; set; }
+        public DateTime? FromDate { get; set; }
 
-        public DateTime ToDate { get; set; }
+        public DateTime? ToDate { get; set; }
 
         public bool IsGetAll { get; set; }
 

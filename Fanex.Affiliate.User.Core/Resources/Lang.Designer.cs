@@ -5295,7 +5295,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to COMPANY NET WIN FOR THE MONTH (CNW)($).
+        ///   Looks up a localized string similar to Company Net Win For The Month (CNW)($).
         /// </summary>
         public static string NetWinLoss {
             get {
