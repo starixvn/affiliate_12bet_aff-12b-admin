@@ -405,15 +405,15 @@
     <Content Include="Views\CommissionStructure\_Content.cshtml" />
     <Content Include="Views\Faq\_Content.cshtml" />
     <Content Include="Views\Shared\Email\ContactUs\Content.en-US.cshtml" />
-    <None Include="Views\Signup\SecureQuestion\SecureQuestion_en-US.cshtml" />
-    <None Include="Views\Signup\SecureQuestion\SecureQuestion_es-ES.cshtml" />
-    <None Include="Views\Signup\SecureQuestion\SecureQuestion_id-ID.cshtml" />
-    <None Include="Views\Signup\SecureQuestion\SecureQuestion_ja-JP.cshtml" />
-    <None Include="Views\Signup\SecureQuestion\SecureQuestion_ko-KR.cshtml" />
-    <None Include="Views\Signup\SecureQuestion\SecureQuestion_th-TH.cshtml" />
-    <None Include="Views\Signup\SecureQuestion\SecureQuestion_vi-VN.cshtml" />
-    <None Include="Views\Signup\SecureQuestion\SecureQuestion_zh-CN.cshtml" />
-    <None Include="Views\Signup\SecureQuestion\SecureQuestion_zh-TW.cshtml" />
+    <Content Include="Views\Signup\SecureQuestion\SecureQuestion_en-US.cshtml" />
+    <Content Include="Views\Signup\SecureQuestion\SecureQuestion_es-ES.cshtml" />
+    <Content Include="Views\Signup\SecureQuestion\SecureQuestion_id-ID.cshtml" />
+    <Content Include="Views\Signup\SecureQuestion\SecureQuestion_ja-JP.cshtml" />
+    <Content Include="Views\Signup\SecureQuestion\SecureQuestion_ko-KR.cshtml" />
+    <Content Include="Views\Signup\SecureQuestion\SecureQuestion_th-TH.cshtml" />
+    <Content Include="Views\Signup\SecureQuestion\SecureQuestion_vi-VN.cshtml" />
+    <Content Include="Views\Signup\SecureQuestion\SecureQuestion_zh-CN.cshtml" />
+    <Content Include="Views\Signup\SecureQuestion\SecureQuestion_zh-TW.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
