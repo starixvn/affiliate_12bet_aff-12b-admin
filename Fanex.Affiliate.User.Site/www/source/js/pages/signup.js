@@ -1,4 +1,8 @@
 ﻿var SignUp = (function ($) {
+    function setFocusForLastInput() {
+        $("#websiteInfo .urlInput").last().focus();
+    }
+
     var _me = {
         initialize: function () {
             _me.initEvent();
@@ -67,7 +71,10 @@
         },
 
         clickAddUrl: function () {
-            if (_me.hasWebSite()) {
+            var hasWebSite = _me.hasWebSite();
+            _me.resetWebSiteGroup(hasWebSite);
+
+            if (hasWebSite) {
                 var $mainUrlInput = $("#SiteUrl");
                 var mainUrlHasValue = !!$mainUrlInput.val();
 
@@ -77,6 +84,20 @@
                 if (mainUrlHasValue) {
                     _me.addMoreUrl();
                 }
+                else {
+                    $mainUrlInput.focus();
+                }
+            }
+        },
+
+        addMoreUrl: function () {
+            var canAddMoreWebSite = WebSite.canAddMoreUrl();
+
+            if (canAddMoreWebSite) {
+                var currentItemCount = $("#websiteInfo .urlInput").length + 2;
+                var errorMessage = resourceLanguage.requiredMoreWebSiteUrl.replace("{i}", currentItemCount);
+                WebSite.addMoreUrl(resourceLanguage.webSiteUrl, "Delete", errorMessage);
+                setFocusForLastInput();
             }
         },
 
@@ -147,18 +168,13 @@
             var $excludeWebSiteInfo = hasWebSite ? $("#NoSiteDesc") : $("#SiteUrl");
             var $container = $excludeWebSiteInfo.closest(".form-group");
             _me.toggleErrorMessage($container, true);
-        },
 
-        addMoreUrl: function () {
-            var canAddMoreWebSite = WebSite.canAddMoreUrl();
-
-            var $container = $("#websiteInfo .urlInput").last().closest(".form-group");
-            _me.toggleErrorMessage($container, canAddMoreWebSite);
-
-            if (canAddMoreWebSite) {
-                var currentItemCount = $("#websiteInfo .urlInput").length + 2;
-                var errorMessage = resourceLanguage.requiredMoreWebSiteUrl.replace("{i}", currentItemCount);
-                WebSite.addMoreUrl(resourceLanguage.webSiteUrl, "Delete", errorMessage);
+            var inputList = $("#websiteInfo .urlInput");
+            for (var i = 0; i < inputList.length; i++) {
+                var $urlInput = $(inputList[i]);
+                var hasValue = !!$urlInput.val().trim();
+                var $container = $urlInput.closest(".form-group");
+                _me.toggleErrorMessage($container, hasValue);
             }
         },
 

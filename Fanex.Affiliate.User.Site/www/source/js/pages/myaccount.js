@@ -13,150 +13,135 @@
         },
         initEvent: function () {
             $("#btnAddUrl").on("click", function () {
-                if (_me.canAddUrl()) {
-                    _me.addMoreUrl();
-                }
-                setFocusForLastInput();
+                _me.clickAddUrl();
             });
 
             $("#websiteInfo").on("click", ".btnDeleteUrl", function () {
                 var $this = $(this);
-                _me.deleteWebsiteUrl($this);
+                WebSite.deleteWebsiteUrl($this);
+                WebSite.reoderInputUrl(LangResource.websiteUrl);
+            });
+
+            $("#accountInfoForm").on("change", "input[name=HasWebSite][type=radio]", function () {
+                var hasWebSite = this.value === "1";
+                _me.changeWebsiteOption(hasWebSite);
             });
 
             $("#btnMyAccountSubmit").on("click", function () {
-                var validationResult = _me.validateInputData();
-                if (!validationResult.isValid) {
-                    alert(validationResult.message);
-                    return;
-                }
+                var isValid = _me.checkRequiredInput();
+                console.log("submit", true);
 
-                var params = _me.getParams();
+                if (isValid) {
+                    var params = _me.getParams();
 
-                $.ajax({
-                    type: "POST",
-                    url: Site.resolveRelativeUrl("UserPanel/MyAccount"),
-                    data: params,
-                    dataType: "json",
-                    cache: false,
-                    contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-                    success: function (response) {
-                        var message = response.IsOk ? LangResource.updateSuccessfully : response.Message;
-                        window.alert(message);
+                    $.ajax({
+                        type: "POST",
+                        url: Site.resolveRelativeUrl("UserPanel/MyAccount"),
+                        data: params,
+                        dataType: "json",
+                        cache: false,
+                        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+                        success: function (response) {
+                            var message = response.IsOk ? LangResource.updateSuccessfully : response.Message;
+                            window.alert(message);
 
-                        if (response.IsOk) {
-                            Site.reload();
+                            if (response.IsOk) {
+                                Site.reload();
+                            }
+                        },
+                        beforeSend: function () {
+                            Site.showLoader();
+                        },
+                        complete: function () {
+                            Site.hideLoader();
                         }
-                    },
-                    beforeSend: function () {
-                        Site.showLoader();
-                    },
-                    complete: function () {
-                        Site.hideLoader();
-                    }
-                });
+                    });
+                }
             });
 
             $("#btnCancel").on("click", function () {
                 Site.redirect(Site.resolveRelativeUrl("UserPanel/#AccountOverView"));
             });
         },
+
+        clickAddUrl: function () {
+            var hasWebSite = _me.hasWebSite();
+            _me.resetWebSiteGroup(hasWebSite);
+
+            if (hasWebSite) {
+                var $mainUrlInput = $("#txtSiteUrl");
+                var mainUrlHasValue = !!$mainUrlInput.val();
+
+                var $container = $mainUrlInput.closest(".form-group");
+                _me.toggleErrorMessage($container, mainUrlHasValue);
+
+                if (mainUrlHasValue) {
+                    _me.addMoreUrl();
+                }
+                else {
+                    $mainUrlInput.focus();
+                }
+            }
+        },
+
         addMoreUrl: function () {
-            var currentItemCount = $("#websiteInfo .urlInput").length + 1;
-            var inputItem = '<div class="form-group websiteInput">' +
-                    '<label class="col-sm-3 control-label require moreWebsiteLabel">' + LangResource.websiteUrl + ' ' + currentItemCount + '</label>' +
-                    '<div class="col-sm-4">' +
-                        '<input class="form-control urlInput" type="text" value="" />' +
-                    '</div>' +
-                    '<div class="col-sm-1">' +
-                        '<button type="button" class="btn btn-submit btnDeleteUrl">' + LangResource.deleteUrl + '</button>' +
-                    '</div>' +
-                '</div>';
+            var canAddMoreWebSite = WebSite.canAddMoreUrl();
 
-            $("#websiteInfo").append(inputItem);
-            _me.reoderInputUrl();
+            if (canAddMoreWebSite) {
+                var currentItemCount = $("#websiteInfo .urlInput").length + 2;
+                var errorMessage = LangResource.requiredMoreWebSiteUrl.replace("{i}", currentItemCount);
+                WebSite.addMoreUrl(LangResource.websiteUrl, "Delete", errorMessage);
+                setFocusForLastInput();
+            }
         },
-        canAddUrl: function () {
-            if ($("#txtSiteUrl").val().trim() === "") {
-                $("#txtSiteUrl").focus();
 
-                return false;
-            }
+        changeWebsiteOption: function (hasWebSite) {
+            var $mainUrlInput = $("#txtSiteUrl");
+            $mainUrlInput.prop("disabled", !hasWebSite);
+            $(".websiteInput").toggle(hasWebSite);
+            $("#btnAddUrl").prop("disabled", !hasWebSite);
 
-            var $inputList = $("#websiteInfo .urlInput");
-            for (var i = 0; i < $inputList.length; i++) {
-                if ($inputList[i].value.trim() === "") {
-                    return false;
-                }
-            }
-
-            return true;
+            var $noSiteDesc = $("#txtNoSiteDesc");
+            $noSiteDesc.prop("disabled", hasWebSite);
         },
-        deleteWebsiteUrl: function ($currentItem) {
-            var $container = $currentItem.closest(".websiteInput");
-            $container.remove();
 
-            _me.reoderInputUrl();
+        checkRequiredInput: function () {
+            var hasWebSite = _me.hasWebSite();
+            _me.resetWebSiteGroup(hasWebSite);
+
+            var selector = hasWebSite ? "input[type=text]" : "input[type=text]:not('#websiteInfo input'), textarea";
+            var requiredInputList = $(selector, $("#accountInfoForm"));
+            var isValid = true;
+
+            for (var i = 0; i < requiredInputList.length; i++) {
+                var element = requiredInputList[i];
+
+                var $element = $(element);
+                var hasValue = !!$element.val();
+
+                var $container = $element.closest(".form-group");
+                _me.toggleErrorMessage($container, hasValue);
+
+                if (isValid && !hasValue) {
+                    isValid = false;
+                    $element.focus();
+                }
+            }
+
+            return isValid;
         },
-        reoderInputUrl: function () {
-            var index = 2;
-            $(".moreWebsiteLabel").each(function (i, item) {
-                var $item = $(item);
-                var labelText = LangResource.websiteUrl + ' ' + index;
-                $item.text(labelText);
 
-                index++;
-            });
-        },
-        validateInputData: function () {
-            if ($("#txtContactNumber").val().trim() === "") {
-                $("#txtContactNumber").focus();
+        resetWebSiteGroup: function (hasWebSite) {
+            var $excludeWebSiteInfo = hasWebSite ? $("#txtNoSiteDesc") : $("#txtSiteUrl");
+            var $container = $excludeWebSiteInfo.closest(".form-group");
+            _me.toggleErrorMessage($container, true);
 
-                return {
-                    isValid: false,
-                    message: LangResource.requireContactNumber
-                }
-            }
-
-            if ($("#txtMobile").val().trim() === "") {
-                $("#txtMobile").focus();
-
-                return {
-                    isValid: false,
-                    message: LangResource.requireMobile
-                }
-            }
-
-            if ($("#hasWebSite").prop("checked") && $("#txtSiteUrl").val().trim() === "" || !_me.canAddUrl()) {
-                $("#txtSiteUrl").focus();
-
-                return {
-                    isValid: false,
-                    message: LangResource.requireSiteUrl
-                }
-            }
-
-            if ($("#hasNoWebSite").prop("checked") && $("#txtNoSiteDesc").val().trim() === "") {
-                $("#txtNoSiteDesc").focus();
-
-                return {
-                    isValid: false,
-                    message: LangResource.requireNoWebsiteDesc
-                }
-            }
-
-            if (hasPlayerUserNameInput() && $("#txtPlayerUserName").val().trim() === "") {
-                $("#txtPlayerUserName").focus();
-
-                return {
-                    isValid: false,
-                    message: LangResource.requirePlayerUserName
-                }
-            }
-
-            return {
-                isValid: true,
-                message: ""
+            var inputList = $("#websiteInfo .urlInput");
+            for (var i = 0; i < inputList.length; i++) {
+                var $urlInput = $(inputList[i]);
+                var hasValue = !!$urlInput.val().trim();
+                var $container = $urlInput.closest(".form-group");
+                _me.toggleErrorMessage($container, hasValue);
             }
         },
 
@@ -166,9 +151,9 @@
                 mobilePhone: Site.escapeHtml($("#txtMobile").val().trim())
             }
 
-            if ($("#hasWebSite").prop("checked")) {
+            if (_me.hasWebSite()) {
                 params.siteUrl = Site.escapeHtml($("#txtSiteUrl").val().trim());
-                params.moreSiteUrls = _me.getMoreWebsiteUrlData();
+                params.moreSiteUrls = WebSite.getMoreWebsiteUrlData();
             }
             else {
                 var descContent = $("#txtNoSiteDesc").val();
@@ -182,15 +167,13 @@
             return params;
         },
 
-        getMoreWebsiteUrlData: function () {
-            var moreUrlList = [];
-            $("#websiteInfo .urlInput").each(function (index, data) {
-                if (data.value) {
-                    moreUrlList.push(Site.escapeHtml(data.value.trim()));
-                }
-            });
+        toggleErrorMessage: function ($container, isValid) {
+            $container.toggleClass("has-error", !isValid);
+            $container.find(".help-block").toggleClass("hide", isValid);
+        },
 
-            return moreUrlList.join(";");
+        hasWebSite: function () {
+            return $("#hasWebSite").prop("checked");
         }
     };
 

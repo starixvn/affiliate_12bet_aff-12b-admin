@@ -110,5 +110,12 @@
       "www/source/js/components/pager.js",
       "www/source/js/pages/member.js"
     ]
+  },
+  {
+    "outputFileName": "www/build/js/myaccount.js",
+    "inputFiles": [
+      "www/source/js/components/website.js",
+      "www/source/js/pages/myaccount.js"
+    ]
   }
 ]
