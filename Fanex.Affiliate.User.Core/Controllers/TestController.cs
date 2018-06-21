@@ -4,9 +4,11 @@
     using System.Web.Mvc;
     using BusinessService;
     using Constants;
+    using ONEbook.UM.Filters;
     using Utilities;
     using ViewModels;
 
+    [CheckUMFilter]
     public class TestController : Controller
     {
         private readonly IMailProcessor _mailProcessor;

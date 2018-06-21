@@ -12,6 +12,7 @@ using Fanex.Affiliate.User.Core.Repository.BetList;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Caching;
+using ONEbook.UM.Services.Impl;
 
 namespace Fanex.Affiliate.User.Site
 {
@@ -68,6 +69,7 @@ namespace Fanex.Affiliate.User.Site
 
         private static void RegisterRepository(ContainerBuilder builder)
         {
+            builder.RegisterType<MaintenanceService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterInstance(CacheService.CreateInstance(CacheType.MemoryCache)).As<ICache>();
 
             builder.RegisterType<AuthRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();

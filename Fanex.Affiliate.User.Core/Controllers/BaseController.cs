@@ -1,9 +1,11 @@
 ﻿using System.Web.Mvc;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.Utilities;
+using ONEbook.UM.Filters;
 
 namespace Fanex.Affiliate.User.Core.Controllers
 {
+    [CheckUMFilter]
     public class BaseController : Controller
     {
         private readonly ISessionService _sessionService;

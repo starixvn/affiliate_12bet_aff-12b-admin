@@ -1,7 +1,9 @@
 ﻿using System.Web.Mvc;
+using ONEbook.UM.Filters;
 
 namespace Fanex.Affiliate.User.Core.Controllers
 {
+    [CheckUMFilter]
     public class TermAndConditionController : Controller
     {
         [HttpGet]

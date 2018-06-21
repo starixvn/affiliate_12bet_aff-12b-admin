@@ -163,5 +163,10 @@
     "outputFile": "www/build/js/contactus.js",
     "inputFile": "www/source/js/pages/contactus.js",
     "sourceMap": false
+  },
+  {
+    "outputFile": "www/build/styles/css/notify.css",
+    "inputFile": "www/source/styles/pages/notify.scss",
+    "sourceMap": false
   }
 ]

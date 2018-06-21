@@ -38,10 +38,13 @@
             @using (Html.BeginForm("Forgot", "Password", FormMethod.Post, new { @id = "updatePasswordForm", @class = "form-horizontal", @style = "margin-top:30px;" }))
             {
                 @Html.AntiForgeryToken()
-                <div class="form-group">
+                <div class="form-group" id="emailInputGroup">
                     <label class="col-sm-2 control-label require">@Lang.YourEmail</label>
                     <div class="col-sm-4">
                         <input class="form-control" name="Email" id="Email" type="email" autocomplete="off" />
+                    </div>
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <span class="help-block hide">@Lang.EmailAddressIsInvalid</span>
                     </div>
                 </div>
 
@@ -60,9 +63,18 @@
 @section scripts{
     <script type="text/javascript">
         $(function () {
-            $("#btnSubmit").on("click", function () {
+            $("#updatePasswordForm").on("submit", function () {
                 Site.showLoader();
-                $("#updatePasswordForm").submit();
+                var pattern = /^\w+([\.-]?\w+)*@@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+                var isValid = pattern.test($("#Email").val());
+                $("#emailInputGroup").toggleClass("has-error", !isValid).find(".help-block").toggleClass("hide", isValid);
+
+                if (!isValid) {
+                    Site.hideLoader();
+                }
+
+                return isValid;
             })
 
             $("#btnReset").on("click", function(){

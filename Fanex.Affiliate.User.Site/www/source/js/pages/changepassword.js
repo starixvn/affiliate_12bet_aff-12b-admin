@@ -21,8 +21,13 @@
         },
 
         submit: function () {
-            var $oldPassword = $("#OldPassword");
             var $newPassword = $("#NewPassword");
+            if (!_me.isValidPasswordRule($newPassword.val())) {
+                _me.showErrorMessageForRule();
+                return false;
+            }
+
+            var $oldPassword = $("#OldPassword");
             var $confirmedNewPassword = $("#ConfirmNewPassword");
 
             var token = $('input[name="__RequestVerificationToken"]', $("#updatePasswordForm")).val();
@@ -38,6 +43,22 @@
             $confirmedNewPassword.val(confirmedNewPassword);
 
             $("#updatePasswordForm").submit();
+        },
+
+        isValidPasswordRule: function (password) {
+            var pattern = /^(?=.*\d+.*\d+)(?=.*[a-zA-Z].*[a-zA-Z]).{6,}$/;
+
+            return pattern.test(password);
+        },
+
+        showErrorMessageForRule: function () {
+            var $container = $("#NewPassword").closest(".form-group");
+            _me.toggleErrorMessage($container, false);
+        },
+
+        toggleErrorMessage: function ($container, isValid) {
+            $container.toggleClass("has-error", !isValid);
+            $container.find(".help-block").toggleClass("hide", isValid);
         },
 
         encryptPassword: function (password, encryptKey, encryptIV) {
