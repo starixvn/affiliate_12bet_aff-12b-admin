@@ -66,3 +66,13 @@
 .help-block {
   margin-top: 0; }
 
+#websiteInfo .btn-submit {
+  font-size: 10px;
+  height: 20px;
+  width: 20px;
+  padding: 5px;
+  margin-top: 3px; }
+  #websiteInfo .btn-submit .glyphicon {
+    top: -1px;
+    left: -1px; }
+

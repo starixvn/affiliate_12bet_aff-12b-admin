@@ -126,6 +126,9 @@
   <data name="ForgotPassword1009" xml:space="preserve">
     <value>This email address is being used by an affliliate that's inactive or has not been approved. Please try again or  &lt;a href="{0}" class='err-msg'&gt;Contact us&lt;/a&gt;.</value>
   </data>
+  <data name="General" xml:space="preserve">
+    <value>An error occurred while processing your request</value>
+  </data>
   <data name="LoginClosedAccount" xml:space="preserve">
     <value>Your account is closed. Please contact your administrator!</value>
   </data>

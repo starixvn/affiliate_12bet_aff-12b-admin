@@ -26,6 +26,10 @@ var Site = (function ($) {
         },
         reload: function reload() {
             window.location.reload();
+        },
+        refreshCaptcha: function refreshCaptcha() {
+            var captchaUrl = Site.resolveRelativeUrl("Home/CaptchaImage?_v=" + new Date().getTime());
+            $(".validation-value img").attr("src", captchaUrl);
         }
 
     };

@@ -397,7 +397,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             // Assert
             emailService.Verify(e => e.SendNoticeEmailToCsd(It.IsAny<EmailBaseParam>(), signUpParam), Times.Once);
             Assert.Equal(ExpectedCsdEmail, passedParam.MailTo);
-            Assert.Equal(Constant.DefaultAffId, signUpParam.AffId);
             Assert.Equal(Constant.DefaultUserName, signUpParam.UserName);
         }
 
@@ -433,7 +432,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
                     .Returns(new ResultInfo { IsOk = true })
                     .Callback<UserSignUpParam>(p =>
                     {
-                        p.AffId = Constant.DefaultAffId;
                         p.UserName = Constant.DefaultUserName;
                     });
 

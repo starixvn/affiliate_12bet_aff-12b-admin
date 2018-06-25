@@ -4,7 +4,6 @@
     using System.Linq;
     using System.Web.Mvc;
     using BusinessService;
-    using Constants;
     using CoreService;
     using DTO;
     using MetalModels;
@@ -14,8 +13,6 @@
 
     public class SignupController : BaseController
     {
-        private const string AffPrefix = "12BETAFF";
-
         private readonly IAccountService _accountService;
 
         public SignupController(
@@ -29,22 +26,22 @@
         [HttpGet]
         public ActionResult Index()
         {
-            return View();
+            return View(new UserSignUpParam());
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Index(UserSignUpParam param)
         {
+            var result = new ResultInfo { IsOk = false };
             if (!SessionService.CaptchaCode.Equals(param.Captcha))
             {
-                TempData[TempDataKey.SignUpResult] = new ResultInfo { IsOk = false, Message = Lang.ValidationCode };
+                result.Message = Lang.ValidationCode;
             }
             else if (ModelState.IsValid)
             {
                 var signUpParam = new UserSignUpParam
                 {
-                    AffMaster = AffPrefix,
                     FirstName = Server.HtmlEncode(param.FirstName),
                     LastName = Server.HtmlEncode(param.LastName),
                     Email = Server.HtmlEncode(param.Email),
@@ -79,12 +76,10 @@
                     MailTo = AppSetting.MailContact
                 };
 
-                var result = _accountService.CreateAffiliate(signUpParam, emailParam);
-
-                TempData[TempDataKey.SignUpResult] = result;
+                result = _accountService.CreateAffiliate(signUpParam, emailParam);
             }
 
-            return RedirectToAction(nameof(Index));
+            return Json(result);
         }
     }
 }

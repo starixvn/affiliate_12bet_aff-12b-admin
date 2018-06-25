@@ -60,11 +60,6 @@
     "sourceMap": false
   },
   {
-    "outputFile": "www/build/js/lib/jquery-3.3.1.min.js",
-    "inputFile": "www/source/js/lib/jquery-3.3.1.min.js",
-    "sourceMap": false
-  },
-  {
     "outputFile": "www/build/js/daily-earning.js",
     "inputFile": "www/source/js/pages/daily-earning.js",
     "sourceMap": false

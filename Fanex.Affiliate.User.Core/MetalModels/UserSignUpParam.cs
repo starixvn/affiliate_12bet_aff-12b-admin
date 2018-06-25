@@ -1,62 +1,66 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Fanex.Affiliate.User.Core.MetalModels.Attributes;
+using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Data;
 
 namespace Fanex.Affiliate.User.Core.MetalModels
 {
     public class UserSignUpParam
     {
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "FirstNameIsRequired")]
         public string FirstName { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "LastNameIsRequired")]
         public string LastName { get; set; }
 
         public bool Gender { get; set; }
 
-        [Required]
-        [EmailAddress(ErrorMessage = "Invalid Email Address")]
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "EmailAddressIsRequired")]
+        [EmailAddress(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "EmailAddressIsInvalid")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "errContactNumberEmpty")]
         public string Phone { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "errMobileNumberEmpty")]
         public string MobilePhone { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "AddressIsRequired")]
         public string Address { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "CityIsRequired")]
         public string City { get; set; }
 
         public string State { get; set; } = string.Empty;
 
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "PostcodeZiIsRequired")]
         public string Postal { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "CountryErr")]
         public string Country { get; set; }
 
         public bool EmailFormat { get; set; }
 
+        [RequiredByChecked(DependentPropertyName = "HasWebSite", IsChecked = true, ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "WebsiteURLIsRequired")]
         public string SiteUrl { get; set; } = string.Empty;
 
         public string MoreSiteUrls { get; set; }
 
+        [RequiredByChecked(DependentPropertyName = "HasWebSite", IsChecked = false, ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "DescWebsite")]
         public string NoSiteDesc { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "PreferLangErr")]
         public string PreferredLanguage { get; set; }
 
         public string PreferredPayment => "Player";
 
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "BETUserNameIsRequired")]
         public string Player_UserName { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "errSecQuestionEmpty")]
         public string Question { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "errYourAnswer")]
         public string Answer { get; set; }
 
         public string Ip { get; set; }
@@ -65,20 +69,25 @@ namespace Fanex.Affiliate.User.Core.MetalModels
 
         public string UserName { get; set; }
 
-        public string AffMaster { get; set; }
-
         public byte AffType { get; set; }
-
-        public int AffId { get; set; }
 
         public int ErrCode { get; set; }
 
         public string ErrMsg { get; set; }
 
         [SpParam(Ignored = true)]
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "EmailAddressIsRequired")]
+        [Compare("Email", ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "Emailaddressest")]
+        public string VerifyEmail { get; set; }
+
+        [SpParam(Ignored = true)]
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "ErrmsgEntryValidCode")]
         public string Captcha { get; set; }
 
         [SpParam(Ignored = true)]
         public bool IsLocal { get; set; }
+
+        [SpParam(Ignored = true)]
+        public bool HasWebSite { get; set; } = true;
     }
 }

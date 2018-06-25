@@ -485,6 +485,10 @@
     <Content Include="www\build\js\signup.min.js">
       <DependentUpon>signup.js</DependentUpon>
     </Content>
+    <Content Include="www\build\js\validation.js" />
+    <Content Include="www\build\js\validation.min.js">
+      <DependentUpon>validation.js</DependentUpon>
+    </Content>
     <Content Include="www\build\styles\css\member.css" />
     <Content Include="www\build\styles\css\member.min.css">
       <DependentUpon>member.css</DependentUpon>
@@ -508,7 +512,11 @@
     <Content Include="www\build\styles\Images\notify\note_icon.gif" />
     <Content Include="www\build\styles\Images\notify\sry.png" />
     <Content Include="www\build\styles\Images\notify\srynf.png" />
+    <Content Include="www\source\js\components\jquery.extension.js" />
+    <Content Include="www\source\js\components\validation.custom.js" />
     <Content Include="www\source\js\components\website.js" />
+    <Content Include="www\source\js\lib\jquery.validate.min.js" />
+    <Content Include="www\source\js\lib\jquery.validate.unobtrusive.min.js" />
     <Content Include="www\source\js\pages\contactus.js" />
     <Content Include="www\source\js\pages\member.js" />
     <Content Include="www\source\js\pages\messagehistory.js" />

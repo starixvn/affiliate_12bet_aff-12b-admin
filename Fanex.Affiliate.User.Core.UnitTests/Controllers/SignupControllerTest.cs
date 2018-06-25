@@ -35,24 +35,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         }
 
         [Fact]
-        public void Index_WhenCallWithPost_RedirectToActionCorrectly()
-        {
-            // Arrange
-            var accountService = new Mock<IAccountService>();
-            var controller = CreateController(accountService.Object);
-            controller.ModelState.AddModelError("Error", "Error");
-
-            const string ExpectedActionName = "Index";
-
-            // Action
-            var actionResult = controller.Index(new UserSignUpParam()) as RedirectToRouteResult;
-            var result = actionResult.RouteValues["action"] as string;
-
-            // Assert
-            Assert.Equal(ExpectedActionName, result);
-        }
-
-        [Fact]
         public void Index_WhenCallWithPost_ModelStateIsInvalid_DoNotCallService()
         {
             // Arrange
@@ -78,8 +60,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var expectedResult = new ResultInfo { IsOk = false, Message = Lang.ValidationCode };
 
             // Action
-            controller.Index(signUpParam);
-            var result = controller.TempData[TempDataKey.SignUpResult] as ResultInfo;
+            var actionResult = controller.Index(signUpParam) as JsonResult;
+            var result = actionResult.Data as ResultInfo;
 
             // Assert
             Assert.Equal(expectedResult.IsOk, result.IsOk);
@@ -132,10 +114,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         }
 
         [Fact]
-        public void Index_WhenCallWithPost_ModelStateIsValid_AssignTempDataCorrectly()
+        public void Index_WhenCallWithPost_ModelStateIsValid_ReturnResultCorrectly()
         {
             // Arrange
-            var expectedResult = new ResultInfo { IsOk = true, Message = string.Empty };
+            var expectedResult = new ResultInfo { IsOk = true };
             var accountService = new Mock<IAccountService>();
             accountService.Setup(p => p.CreateAffiliate(It.IsAny<UserSignUpParam>(), It.IsAny<EmailBaseParam>())).Returns(expectedResult);
 
@@ -148,8 +130,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             signUpParam.Captcha = Constant.Captcha;
 
             // Action
-            controller.Index(signUpParam);
-            var result = controller.TempData[TempDataKey.SignUpResult] as ResultInfo;
+            var actionResult = controller.Index(signUpParam) as JsonResult;
+            var result = actionResult.Data as ResultInfo;
 
             // Assert
             Assert.Equal(expectedResult, result);
@@ -247,7 +229,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         {
             var passedParam = CreateParam();
 
-            passedParam.AffMaster = "12BETAFF";
             passedParam.Language = Constant.DefaultLanguage;
             passedParam.AffType = Constant.AffTypeAsian;
             passedParam.Ip = "::1";

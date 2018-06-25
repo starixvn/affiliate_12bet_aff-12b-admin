@@ -24,6 +24,10 @@
         },
         reload: function () {
             window.location.reload();
+        },
+        refreshCaptcha: function () {
+            var captchaUrl = Site.resolveRelativeUrl("Home/CaptchaImage?_v=" + new Date().getTime());
+            $(".validation-value img").attr("src", captchaUrl);
         }
 
     };
