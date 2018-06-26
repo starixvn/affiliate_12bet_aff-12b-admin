@@ -1,4 +1,8 @@
-﻿.account-information {
+﻿@import "../scss/vendors/bootstrap/variables";
+@import "../scss/vendors/bootstrap/mixins";
+@import "../scss/vendors/bootstrap/alerts";
+
+.account-information {
     .form-group {
         margin-bottom: 0;
 
@@ -10,7 +14,16 @@
 
 #websiteInfo {
     .btn-submit {
-        width: 68px;
+        font-size: 10px;
+        height: 20px;
+        width: 20px;
+        padding: 5px;
+        margin-top: 3px;
+
+        .glyphicon {
+            top: -1px;
+            left: -1px;
+        }
     }
 }
 

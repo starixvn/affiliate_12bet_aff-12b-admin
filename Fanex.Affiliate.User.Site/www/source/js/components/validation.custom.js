@@ -31,6 +31,7 @@
             if (isChecked === params.checked && $.trim(value).length === 0) {
                 isValid = false;
             }
+
             return isValid;
         }
     );

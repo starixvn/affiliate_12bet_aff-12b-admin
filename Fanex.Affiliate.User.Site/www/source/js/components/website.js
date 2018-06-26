@@ -1,4 +1,8 @@
 ﻿var WebSite = (function ($) {
+    function setFocusForLastInput() {
+        $("#websiteInfo .urlInput").last().focus();
+    }
+
     var _me = {
         getMoreWebsiteUrlData: function () {
             var moreUrlList = [];
@@ -27,7 +31,7 @@
             $container.remove();
         },
 
-        addMoreUrl: function (webSiteLabel, deleteLabel, errorMessage) {
+        buildUrlInput: function (webSiteLabel, deleteLabel, errorMessage) {
             var currentItemCount = $("#websiteInfo .urlInput").length + 2;
             var name = "MoreUrlInput" + currentItemCount;
             var inputItem = '<div class="form-group websiteInput">' +
@@ -43,6 +47,81 @@
 
             $("#websiteInfo").append(inputItem);
             _me.reoderInputUrl(webSiteLabel);
+        },
+
+        handleAddingUrl: function (lang) {
+            var hasWebSite = _me.hasWebSite();
+            var isValid = _me.validateWebSiteGroup();
+
+            if (hasWebSite && isValid) {
+                _me.addMoreUrl(lang);
+            }
+        },
+
+        addMoreUrl: function (lang) {
+            var currentItemCount = $("#websiteInfo .urlInput").length + 2;
+            var errorMessage = lang.requiredMoreWebSiteUrl.replace("{i}", currentItemCount);
+            _me.buildUrlInput(lang.webSiteUrl, lang.deleteLabel, errorMessage);
+            setFocusForLastInput();
+
+            _me.refreshFormValidation();
+        },
+
+        refreshFormValidation: function () {
+            var $form = $("#accountForm");
+            $form.removeData("validator").removeData("unobtrusiveValidation");
+            $.validator.unobtrusive.parse($form);
+        },
+
+        validateWebSiteGroup: function () {
+            var validator = _me.getValidator();
+            var isValidMainInfo = validator.element("#SiteUrl") && validator.element("#NoSiteDesc");
+            console.log(validator.element("#SiteUrl"), validator.element("#NoSiteDesc"));
+
+            var isValidMoreUrl = true;
+            var moreInputUrl = $(".urlInput");
+            for (var i = 0; i < moreInputUrl.length; i++) {
+                var item = moreInputUrl[i];
+                isValidMoreUrl = isValidMoreUrl && validator.element(item);
+            }
+
+            return isValidMainInfo && isValidMoreUrl;
+        },
+
+        changeWebsiteOption: function (hasWebSite) {
+            _me.validateWebSiteGroup();
+            var $mainUrlInput = $("#SiteUrl");
+            $mainUrlInput.prop("disabled", !hasWebSite);
+            $(".websiteInput").toggle(hasWebSite);
+            $("#btnAddUrl").prop("disabled", !hasWebSite);
+
+            var $noSiteDesc = $("#NoSiteDesc");
+            $noSiteDesc.prop("disabled", hasWebSite);
+        },
+
+        assignValueForWebSite: function () {
+            var $siteUrl = $("#SiteUrl");
+            var $moreSiteUrl = $("#MoreSiteUrls");
+            var $noSiteDesc = $("#NoSiteDesc");
+
+            if (_me.hasWebSite()) {
+                var moreWebSiteUrl = _me.getMoreWebsiteUrlData();
+                $moreSiteUrl.val(moreWebSiteUrl);
+
+                $noSiteDesc.val("");
+            }
+            else {
+                $siteUrl.val("");
+                $moreSiteUrl.val("");
+            }
+        },
+
+        getValidator: function () {
+            return $("#accountForm").validate();
+        },
+
+        hasWebSite: function () {
+            return $("input[name=HasWebSite][type=radio]:checked").val() === "True";
         }
     }
 

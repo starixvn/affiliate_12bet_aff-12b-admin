@@ -28,6 +28,14 @@
         refreshCaptcha: function () {
             var captchaUrl = Site.resolveRelativeUrl("Home/CaptchaImage?_v=" + new Date().getTime());
             $(".validation-value img").attr("src", captchaUrl);
+        },
+        displayResult: function (isSuccess, message, selector) {
+            selector = selector || "#messageResult";
+            var $result = $(selector);
+            $result.toggleClass("alert-success", isSuccess);
+            $result.toggleClass("alert-danger", !isSuccess);
+            $result.html(message);
+            $result.show();
         }
 
     };

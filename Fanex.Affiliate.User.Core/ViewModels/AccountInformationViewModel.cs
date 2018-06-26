@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using Fanex.Affiliate.User.Core.MetalModels.Attributes;
+using Fanex.Affiliate.User.Core.Resources;
 
 namespace Fanex.Affiliate.User.Core.ViewModels
 {
@@ -21,14 +24,18 @@ namespace Fanex.Affiliate.User.Core.ViewModels
 
         public string Email { get; set; }
 
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "errContactNumberEmpty")]
         public string Phone { get; set; }
 
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "errMobileNumberEmpty")]
         public string MobilePhone { get; set; }
 
+        [RequiredByChecked(DependentPropertyName = "HasWebSite", IsChecked = true, ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "WebsiteURLIsRequired")]
         public string SiteUrl { get; set; }
 
         public string MoreSiteUrls { get; set; }
 
+        [RequiredByChecked(DependentPropertyName = "HasWebSite", IsChecked = false, ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "DescWebsite")]
         public string NoSiteDesc { get; set; }
 
         public string PreferredLanguage { get; set; }
@@ -46,5 +53,7 @@ namespace Fanex.Affiliate.User.Core.ViewModels
         public IEnumerable<string> MoreWebsiteUrlList => string.IsNullOrEmpty(MoreSiteUrls) ? new string[0] : MoreSiteUrls.Split(';');
 
         public string LanguageName { get; set; }
+
+        public bool HasWebSite { get; set; }
     }
 }

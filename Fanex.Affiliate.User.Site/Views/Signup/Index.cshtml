@@ -4,10 +4,6 @@
 
     var sessionService = DependencyResolver.Current.GetService<ISessionService>();
     var secureQuestionPath = "~/Views/Signup/SecureQuestion/SecureQuestion_" + sessionService.CurrentLanguage + ".cshtml";
-
-    var result = TempData[TempDataKey.SignUpResult] as Fanex.Affiliate.User.Core.DTO.ResultInfo;
-    var hasResult = result != null;
-    var isSuccessful = hasResult && result.IsOk;
 }
 
 @using Fanex.Affiliate.User.Core.CoreService
@@ -50,7 +46,7 @@
             <p>@Html.Raw(Lang.RequireInfo)</p>
         </div>
 
-        @using (Html.BeginForm("Index", "Signup", FormMethod.Post, new { @id = "signUpForm", @class = "form-horizontal" }))
+        @using (Html.BeginForm("Index", "Signup", FormMethod.Post, new { @id = "accountForm", @class = "form-horizontal" }))
         {
             @Html.AntiForgeryToken()
             <div class="info-group">
@@ -218,7 +214,7 @@
                                 <button type="button" class="btn btn-submit" id="btnAddUrl" title="@Lang.AddUrl"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
                             </div>
                             <div class="col-sm-offset-3 col-sm-9">
-                                <span class="help-block hide">@Lang.WebsiteURLIsRequired</span>
+                                @Html.ValidationMessageFor(p => p.SiteUrl, string.Empty, new { @class = "help-block hide" })
                             </div>
                         </div>
 
@@ -239,7 +235,7 @@
                             @Html.TextAreaFor(p => p.NoSiteDesc, new { @class = "form-control", @rows = 5, @disabled = "disabled" })
                         </div>
                         <div class="col-sm-offset-3 col-sm-9">
-                            <span class="help-block hide">@Lang.DescWebsite</span>
+                            @Html.ValidationMessageFor(p => p.NoSiteDesc, string.Empty, new { @class = "help-block hide" })
                         </div>
                     </div>
                 </div>

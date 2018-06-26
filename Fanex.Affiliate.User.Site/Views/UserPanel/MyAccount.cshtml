@@ -6,250 +6,287 @@
 
 @Html.InlineStyles("~/www/build/styles/css/my-account.css")
 
-<div class="account-information" id="accountInfoForm">
+<div class="account-information">
     <div class="page-title">
         <span class="text">@Lang.MyAcc</span>
     </div>
 
-    <div class="info-group">
-        <div class="title">
-            <span class="text">@Lang.AccInfo</span>
-        </div>
+    <div class="alert" role="alert" id="messageResult" style="display: none"></div>
 
-        <div class="form-horizontal">
-            <div class="form-group">
-                <label class="col-sm-3 control-label">@Lang.Username</label>
-                <div class="col-sm-4">
-                    <p class="form-control-static">@Model.UserName</p>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label">@Lang.Password</label>
-                <div class="col-sm-4">
-                    <p class="form-control-static"><a href="@Url.Action("Update", "Password")">@Lang.Change</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="info-group">
-        <div class="title">
-            <span class="text">@Lang.ContactInfo</span>
-        </div>
-
-        <div class="form-horizontal">
-            <div class="form-group">
-                <label class="col-sm-3 control-label">@Lang.Gender</label>
-                <div class="col-sm-4">
-                    <label class="radio-inline">
-                        <input type="radio" name="Gender" id="male" value="male" @(Model.Gender ? "checked" : string.Empty) disabled /> @Lang.Male
-                    </label>
-                    <label class="radio-inline">
-                        <input type="radio" name="Gender" id="female" value="female" @(!Model.Gender ? "checked" : string.Empty) disabled /> @Lang.Female
-                    </label>
-                </div>
+    <form id="accountForm">
+        <div class="info-group">
+            <div class="title">
+                <span class="text">@Lang.AccInfo</span>
             </div>
 
-            <div class="form-group">
-                <label class="col-sm-3 control-label">@Lang.Address</label>
-                <div class="col-sm-4">
-                    <p class="form-control-static">@Model.Address</p>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="col-sm-3 control-label">@Lang.City</label>
-                <div class="col-sm-4">
-                    <p class="form-control-static">@Model.City</p>
-                </div>
-            </div>
-
-            @if (Model.IsRenderState)
-            {
+            <div class="form-horizontal">
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">@Lang.State</label>
+                    <label class="col-sm-3 control-label">@Lang.Username</label>
                     <div class="col-sm-4">
-                        <p class="form-control-static">@Model.State</p>
+                        <p class="form-control-static">@Model.UserName</p>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@Lang.Password</label>
+                    <div class="col-sm-4">
+                        <p class="form-control-static"><a href="@Url.Action("Update", "Password")">@Lang.Change</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-group">
+            <div class="title">
+                <span class="text">@Lang.ContactInfo</span>
+            </div>
+
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@Lang.Gender</label>
+                    <div class="col-sm-4">
+                        <label class="radio-inline">
+                            <input type="radio" name="Gender" id="male" value="True" @(Model.Gender ? "checked" : string.Empty) disabled /> @Lang.Male
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="Gender" id="female" value="False" @(!Model.Gender ? "checked" : string.Empty) disabled /> @Lang.Female
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@Lang.Address</label>
+                    <div class="col-sm-4">
+                        <p class="form-control-static">@Model.Address</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@Lang.City</label>
+                    <div class="col-sm-4">
+                        <p class="form-control-static">@Model.City</p>
+                    </div>
+                </div>
+
+                @if (Model.IsRenderState)
+            {
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">@Lang.State</label>
+                        <div class="col-sm-4">
+                            <p class="form-control-static">@Model.State</p>
+                        </div>
+                    </div>
             }
 
-            <div class="form-group">
-                <label class="col-sm-3 control-label">@Lang.PostCode</label>
-                <div class="col-sm-4">
-                    <p class="form-control-static">@Model.Postal</p>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="col-sm-3 control-label">@Lang.Country</label>
-                <div class="col-sm-4">
-                    <p class="form-control-static">@Model.Country</p>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="col-sm-3 control-label">@Lang.Email</label>
-                <div class="col-sm-4">
-                    <p class="form-control-static">@Model.Email</p>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="col-sm-3 require control-label">@Lang.ContactNumber</label>
-                <div class="col-sm-4">
-                    <input id="txtContactNumber" class="form-control" type="text" value="@Model.Phone" />
-                </div>
-                <div class="col-sm-offset-3 col-sm-9">
-                    <span class="help-block hide">@Lang.errContactNumberEmpty</span>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="col-sm-3 require control-label">@Lang.Mobile</label>
-                <div class="col-sm-4">
-                    <input id="txtMobile" class="form-control" type="text" value="@Model.MobilePhone" />
-                </div>
-                <div class="col-sm-offset-3 col-sm-9">
-                    <span class="help-block hide">@Lang.errMobileNumberEmpty</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="info-group">
-        <div class="title">
-            <span class="text">@Lang.WebsiteInformat</span>
-        </div>
-
-        <div class="form-horizontal">
-            <div class="form-group">
-                <div class="col-sm-4">
-                    <label class="radio-inline">
-                        <input type="radio" name="HasWebSite" id="hasWebSite" value="1" @(string.IsNullOrEmpty(Model.SiteUrl) ? string.Empty : "checked") /> @Lang.OwnWebsite
-                    </label>
-                </div>
-            </div>
-
-            <div id="websiteInfo">
                 <div class="form-group">
-                    <label class="col-sm-3 control-label require">@Lang.WebsiteURL</label>
+                    <label class="col-sm-3 control-label">@Lang.PostCode</label>
                     <div class="col-sm-4">
-                        <input id="txtSiteUrl" class="form-control" type="text" value="@Model.SiteUrl" @(string.IsNullOrEmpty(Model.SiteUrl) ? "disabled" : string.Empty) />
-                    </div>
-                    <div class="col-sm-1">
-                        <button type="button" id="btnAddUrl" class="btn btn-submit" @(string.IsNullOrEmpty(Model.SiteUrl) ? "disabled" : string.Empty)>@Lang.AddUrl</button>
-                    </div>
-
-                    <div class="col-sm-offset-3 col-sm-9">
-                        <span class="help-block hide">@Lang.WebsiteURLIsRequired</span>
+                        <p class="form-control-static">@Model.Postal</p>
                     </div>
                 </div>
 
-                @if (Model.MoreWebsiteUrlList.Any())
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@Lang.Country</label>
+                    <div class="col-sm-4">
+                        <p class="form-control-static">@Model.Country</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@Lang.Email</label>
+                    <div class="col-sm-4">
+                        <p class="form-control-static">@Model.Email</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 require control-label">@Lang.ContactNumber</label>
+                    <div class="col-sm-4">
+                        @Html.TextBoxFor(p => p.Phone, new { @class = "form-control" })
+                    </div>
+                    <div class="col-sm-offset-3 col-sm-9">
+                        @Html.ValidationMessageFor(x => x.Phone, string.Empty, new { @class = "help-block hide" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 require control-label">@Lang.Mobile</label>
+                    <div class="col-sm-4">
+                        @Html.TextBoxFor(p => p.MobilePhone, new { @class = "form-control" })
+                    </div>
+                    <div class="col-sm-offset-3 col-sm-9">
+                        @Html.ValidationMessageFor(x => x.MobilePhone, string.Empty, new { @class = "help-block hide" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-group">
+            <div class="title">
+                <span class="text">@Lang.WebsiteInformat</span>
+            </div>
+
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-sm-4">
+                        <label class="radio-inline">
+                            <input type="radio" name="HasWebSite" id="hasWebSite" value="True" @(string.IsNullOrEmpty(Model.SiteUrl) ? string.Empty : "checked") /> @Lang.OwnWebsite
+                        </label>
+                    </div>
+                </div>
+
+                <div id="websiteInfo">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label require">@Lang.WebsiteURL</label>
+                        <div class="col-sm-4">
+                            @{
+                            var attributes = new Dictionary<string, object>
+                            {
+                                ["class"] = "form-control"
+                            };
+
+                            if (string.IsNullOrEmpty(Model.SiteUrl))
+                            {
+                                attributes.Add("disabled", "disabled");
+                            }
+                            }
+                            @Html.TextBoxFor(p => p.SiteUrl, attributes)
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn-submit" id="btnAddUrl" title="@Lang.AddUrl" @(string.IsNullOrEmpty(Model.SiteUrl) ? "disabled=\"disabled\"" : string.Empty)>
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                            </button>
+                        </div>
+
+                        <div class="col-sm-offset-3 col-sm-9">
+                            @Html.ValidationMessageFor(p => p.SiteUrl, string.Empty, new { @class = "help-block hide" })
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="MoreSiteUrls" id="MoreSiteUrls" />
+
+                    @if (Model.MoreWebsiteUrlList.Any())
                 {
                     var index = 2;
                     foreach (var item in Model.MoreWebsiteUrlList)
                     {
+                        var name = $"MoreUrlInput{index}";
                             <div class="form-group websiteInput" style="display: @(string.IsNullOrEmpty(Model.SiteUrl) ? "none" : "block")">
                                 <label class="col-sm-3 control-label require moreWebsiteLabel">@Lang.WebsiteURL @(index)</label>
                                 <div class="col-sm-4">
-                                    <input class="form-control urlInput" type="text" value="@item" />
+                                    <input class="form-control urlInput" name="@name"
+                                           data-val="true" data-val-required="@Lang.WebsiteUrli.Replace("{i}", index.ToString())"
+                                           type="text" value="@item" />
                                 </div>
                                 <div class="col-sm-1">
-                                    <button type="button" class="btn btn-submit btnDeleteUrl">@Lang.Del</button>
+                                    <button type="button" class="btn btn-submit btnDeleteUrl" title="@Lang.Del">
+                                        <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                                    </button>
                                 </div>
                                 <div class="col-sm-offset-3 col-sm-9">
-                                    <span class="help-block hide">@Lang.WebsiteUrli.Replace("{i}", index.ToString())</span>
+                                    <span class="field-validation-valid help-block hide" data-valmsg-for="@name" data-valmsg-replace="true"></span>
                                 </div>
                             </div>
 
-                            index++;
+                        index++;
                     }
                 }
-            </div>
-
-            <div class="form-group">
-                <div class="col-sm-4">
-                    <label class="radio-inline">
-                        <input type="radio" name="HasWebSite" id="hasNoWebSite" value="0" @(string.IsNullOrEmpty(Model.SiteUrl) ? "checked" : string.Empty)> @Lang.NoWebsite
-                    </label>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <label class="col-sm-3 control-label require">@Lang.DescWebsite</label>
-                <div class="col-sm-4">
-                    <textarea id="txtNoSiteDesc" class="form-control" rows="5" @(string.IsNullOrEmpty(Model.SiteUrl) ? string.Empty : "disabled")>@Model.NoSiteDesc</textarea>
+                <div class="form-group">
+                    <div class="col-sm-4">
+                        <label class="radio-inline">
+                            <input type="radio" name="HasWebSite" id="hasNoWebSite" value="False" @(string.IsNullOrEmpty(Model.SiteUrl) ? "checked" : string.Empty)> @Lang.NoWebsite
+                        </label>
+                    </div>
                 </div>
-                <div class="col-sm-offset-3 col-sm-9">
-                    <span class="help-block hide">@Lang.DescWebsite</span>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label require">@Lang.DescWebsite</label>
+                    <div class="col-sm-4">
+                        @{
+                        var textareaAttributes = new Dictionary<string, object>
+                        {
+                            ["class"] = "form-control",
+                            ["rows"] = 5
+                        };
+
+                        if (!string.IsNullOrEmpty(Model.SiteUrl))
+                        {
+                            textareaAttributes.Add("disabled", "disabled");
+                        }
+                        }
+                        @Html.TextAreaFor(p => p.NoSiteDesc, textareaAttributes)
+                    </div>
+                    <div class="col-sm-offset-3 col-sm-9">
+                        @Html.ValidationMessageFor(p => p.NoSiteDesc, string.Empty, new { @class = "help-block hide" })
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="info-group">
-        <div class="title">
-            <span class="text">@Lang.Preference</span>
-        </div>
-        <div class="form-horizontal">
-            <div class="form-group">
-                <label class="col-sm-3 control-label">@Lang.Language</label>
-                <div class="col-sm-4">
-                    <p class="form-control-static">@Model.LanguageName</p>
+        <div class="info-group">
+            <div class="title">
+                <span class="text">@Lang.Preference</span>
+            </div>
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@Lang.Language</label>
+                    <div class="col-sm-4">
+                        <p class="form-control-static">@Model.LanguageName</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="info-group">
-        <div class="title">
-            <span class="text">@Lang.PaymentInfor</span>
-        </div>
-        <div class="form-horizontal">
-            <div class="form-group">
-                <label class="col-sm-3 control-label">@Lang.PaymentMethod</label>
-                <div class="col-sm-4">
-                    <label class="radio-inline">
-                        <input type="radio" checked /> @Lang._12BETPlayerAcc
-                    </label>
-                </div>
+        <div class="info-group">
+            <div class="title">
+                <span class="text">@Lang.PaymentInfor</span>
             </div>
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">@Lang.PaymentMethod</label>
+                    <div class="col-sm-4">
+                        <label class="radio-inline">
+                            <input type="radio" checked /> @Lang._12BETPlayerAcc
+                        </label>
+                    </div>
+                </div>
 
-            <div class="form-group">
-                <label class="col-sm-3 control-label @(string.IsNullOrEmpty(Model.PlayerUsername) ? "require" : string.Empty)">@Lang.Username</label>
-                <div class="col-sm-4">
-                    @if (string.IsNullOrEmpty(Model.PlayerUsername))
+                <div class="form-group">
+                    <label class="col-sm-3 control-label @(string.IsNullOrEmpty(Model.PlayerUsername) ? "require" : string.Empty)">@Lang.Username</label>
+                    <div class="col-sm-4">
+                        @if (string.IsNullOrEmpty(Model.PlayerUsername))
                     {
-                        <input id="txtPlayerUserName" class="form-control" type="text" value="" />
+                            <input id="PlayerUsername" name="PlayerUsername" class="form-control" type="text" value=""
+                                   data-val="true" data-val-required="@Lang.BETUserNameIsRequired" />
                     }
                     else
                     {
-                        <p class="form-control-static">@Model.PlayerUsername</p>
+                            <p class="form-control-static">@Model.PlayerUsername</p>
                     }
+                    </div>
+                    <div class="col-sm-offset-3 col-sm-9">
+                        <span class="field-validation-valid help-block hide" data-valmsg-for="PlayerUsername" data-valmsg-replace="true"></span>
+                    </div>
                 </div>
-                <div class="col-sm-offset-3 col-sm-9">
-                    <span class="help-block hide">@Lang.BETUserNameIsRequired</span>
-                </div>
-            </div>
 
-            <div class="col-sm-offset-3 button-block">
-                <button id="btnMyAccountSubmit" class="btn btn-submit" type="button">@Lang.Submit</button>
-                <button id="btnCancel" class="btn btn-submit" type="button">@Lang.Cancel</button>
+                <div class="col-sm-offset-3 button-block">
+                    <button id="btnMyAccountSubmit" class="btn btn-submit" type="button">@Lang.Submit</button>
+                    <button id="btnCancel" class="btn btn-submit" type="button">@Lang.Cancel</button>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
 </div>
 
 <script>
-    var LangResource = {
-        websiteUrl: '@Lang.WebsiteURL',
-        deleteUrl: '@Lang.Del',
-        requireSiteUrl: '@Lang.WebsiteURLIsRequired',
+    var resourceLanguage = {
+        webSiteUrl: '@Lang.WebsiteURL',
+        deleteLabel: '@Lang.Del',
         requiredMoreWebSiteUrl: '@Lang.WebsiteUrli',
         updateSuccessfully: '@Lang.UpdateAccSuccess'
     }
 </script>
 
+<script src="@Url.RenderLink("~/www/build/js/validation.js")"></script>
 @Html.InlineScripts("~/www/build/js/myaccount.js")
