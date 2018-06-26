@@ -1,20 +1,15 @@
 ﻿@{
     Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
 }
-@using Fanex.Affiliate.User.Core.Constants
-@{
-    var result = TempData[TempDataKey.UpdatePasswordResult] as Fanex.Affiliate.User.Core.DTO.ResultInfo;
-    var hasResult = result != null;
-    var messageResult = hasResult ? Html.Raw(new HtmlString(result.Message)) : new HtmlString(string.Empty);
-    var isSuccessful = hasResult && result.IsOk;
-}
+@model Fanex.Affiliate.User.Core.MetalModels.UpdatePasswordParam
 
 @section styles{
     <link href="@Url.RenderLink("~/www/build/styles/css/password.css")" rel="stylesheet" />
 }
 
 @section scripts{
-    <script src="@Url.RenderLink("~/www/build/js/changepassword.js")"></script>
+    <script src="@Url.RenderLink("~/www/build/js/validation.js")"></script>
+    @Html.InlineScripts("~/www/build/js/changepassword.js")
 }
 
 <div style="padding-bottom: 30px;">
@@ -24,48 +19,53 @@
 
     <div>
         <p>@Lang.ChangePassText</p>
+        <div class="alert" role="alert" id="messageResult" style="display: none"></div>
 
-        <p class="alert @(isSuccessful ? "alert-success" : "alert-danger")" id="changePassResult" role="alert" style="visibility: @(hasResult ? "visible" : "hidden")">
-            @messageResult
-        </p>
-
-        @using (Html.BeginForm("Update", "Password", FormMethod.Post, new { @id = "updatePasswordForm", @class = "form-horizontal" }))
-        {
+        <form id="updatePasswordForm" class="form-horizontal">
             @Html.AntiForgeryToken()
             <div class="form-group">
                 <label class="col-sm-3 control-label require">@Lang.OldPass</label>
                 <div class="col-sm-3">
-                    <input type="password" name="OldPassword" class="form-control" id="OldPassword" />
+                    @Html.PasswordFor(p => p.OldPassword, new { @class = "form-control", @autocomplete = "off" })
+                </div>
+                <div class="col-sm-offset-3 col-sm-9">
+                    @Html.ValidationMessageFor(p => p.OldPassword, string.Empty, new { @class = "help-block hide" })
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-3 control-label require">@Lang.NewPass</label>
                 <div class="col-sm-3">
-                    <input type="password" name="NewPassword" class="form-control" id="NewPassword" />
+                    <input autocomplete="off" class="form-control" 
+                           data-val="true" 
+                           data-val-regex="@Lang.PassCheck" data-val-regex-pattern="^(?=.*\d+.*\d+)(?=.*[a-zA-Z].*[a-zA-Z]).{6,}$" 
+                           data-val-required="@Lang.NewPasswordisre" id="NewPassword" name="NewPassword" type="password" />
                 </div>
                 <div class="col-sm-offset-3 col-sm-9">
-                    <span class="help-block hide">@Lang.PassCheck</span>
+                    @Html.ValidationMessageFor(p => p.NewPassword, string.Empty, new { @class = "help-block hide" })
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-3 control-label require">@Lang.RePass</label>
                 <div class="col-sm-3">
-                    <input type="password" name="ConfirmNewPassword" class="form-control" id="ConfirmNewPassword" />
+                    @Html.PasswordFor(p => p.ConfirmNewPassword, new { @class = "form-control", @autocomplete = "off" })
+                </div>
+                <div class="col-sm-offset-3 col-sm-9">
+                    @Html.ValidationMessageFor(p => p.ConfirmNewPassword, string.Empty, new { @class = "help-block hide" })
                 </div>
             </div>
 
-            <div class="form-group">
-                <div class="col-sm-offset-3 col-sm-5">
-                    <button type="button" id="btnSubmit" class="btn btn-submit">@Lang.Submit</button>
-                    <button type="button" id="btnCancel" class="btn btn-submit">@Lang.Cancel</button>
-                </div>
-            </div>
-
-            if (ViewBag.KeyString != null && ViewBag.IVString != null)
+            @if (ViewBag.KeyString != null && ViewBag.IVString != null)
             {
                 @Html.Hidden("EncriptionKey", ViewBag.KeyString as string)
                 @Html.Hidden("EncriptionIv", ViewBag.IVString as string)
             }
-        }
+
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-5">
+                    <button type="submit" id="btnSubmit" class="btn btn-submit">@Lang.Submit</button>
+                    <button type="button" id="btnCancel" class="btn btn-submit">@Lang.Cancel</button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>

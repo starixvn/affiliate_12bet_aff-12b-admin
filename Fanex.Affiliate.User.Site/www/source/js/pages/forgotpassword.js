@@ -6,7 +6,6 @@
 
         initEvent: function () {
             $("#forgotPasswordForm").on("submit", function (e) {
-                console.log("submit");
                 _me.submit($(this));
                 return false;
             })

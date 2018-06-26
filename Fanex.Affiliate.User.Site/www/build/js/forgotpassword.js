@@ -8,7 +8,6 @@ var ForgotPassword = (function ($) {
 
         initEvent: function initEvent() {
             $("#forgotPasswordForm").on("submit", function (e) {
-                console.log("submit");
                 _me.submit($(this));
                 return false;
             });

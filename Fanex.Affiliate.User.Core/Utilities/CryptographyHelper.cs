@@ -64,7 +64,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
             var textBuilder = new StringBuilder();
             for (int k = 1; k <= num3String.Length; k++)
             {
-                var length = k + 3 > num3String.Length ? num3String.Length - k : 3;
+                var length = k + 3 > num3String.Length ? num3String.Length - k + 1 : 3;
                 textBuilder.Append(CfsCode(num3String.Substring(k - 1, length)));
             }
 
@@ -85,9 +85,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
                 text.Append(Convert.ToInt32(Convert.ToChar(nWord.Substring(i - 1, 1))));
             }
 
-            var byteArray = Encoding.Default.GetBytes(text.ToString());
-
-            return BitConverter.ToString(byteArray).Replace("-", "");
+            return Convert.ToInt64(text.ToString()).ToString("X");
         }
     }
 }

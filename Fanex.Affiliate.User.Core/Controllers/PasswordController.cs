@@ -147,7 +147,7 @@
             ViewBag.KeyString = keyString;
             ViewBag.IVString = ivString;
 
-            return View();
+            return View(new UpdatePasswordParam());
         }
 
         [HttpPost]
@@ -175,12 +175,10 @@
             }
             else
             {
-                resultInfo.Message = string.Join("<br />", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage));
+                resultInfo.Message = string.Join("<br>", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage));
             }
 
-            TempData[TempDataKey.UpdatePasswordResult] = resultInfo;
-
-            return RedirectToAction("Update");
+            return Json(resultInfo);
         }
     }
 }

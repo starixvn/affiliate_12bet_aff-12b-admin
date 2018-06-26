@@ -3,6 +3,7 @@ using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.Repository;
+using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.ViewModels;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
@@ -23,7 +24,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             var user = _authRepository.GetUserInfo(userParam);
             if (user == null || user.IsClosed)
             {
-                var message = user == null ? Resources.Error.LoginWrongInfo : Resources.Error.LoginClosedAccount;
+                var message = user == null ? Error.LoginWrongInfo : Error.LoginClosedAccount;
                 return new LoginResultViewModel
                 {
                     Result = new ResultInfo { IsOk = false, Message = message }
@@ -39,8 +40,8 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 UserInfo = user,
                 Result = new ResultInfo
                 {
-                    IsOk = loginResultParam.ErrCode == 0,
-                    Message = loginResultParam.ErrMsg
+                    IsOk = loginResultParam.IsSuccessful && loginResultParam.ErrCode == 0,
+                    Message = loginResultParam.IsSuccessful ? loginResultParam.ErrMsg : Error.LoginWrongInfo
                 }
             };
         }
