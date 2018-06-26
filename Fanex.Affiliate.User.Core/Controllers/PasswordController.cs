@@ -47,13 +47,11 @@
         {
             if (string.IsNullOrEmpty(email))
             {
-                TempData[TempDataKey.SendForgotPasswordEmailResult] = new ResultInfo
+                return Json(new ResultInfo
                 {
                     IsOk = false,
                     Message = Lang.ErrEmailRequire
-                };
-
-                return RedirectToAction("Index");
+                });
             }
 
             var code = Generator.GetRandomString(10);
@@ -93,9 +91,7 @@
                 _languageService.SetCulture(SessionService.CurrentLanguage);
             }
 
-            TempData[TempDataKey.SendForgotPasswordEmailResult] = result;
-
-            return RedirectToAction("Index");
+            return Json(result);
         }
 
         [HttpGet]
@@ -138,9 +134,7 @@
                 _languageService.SetCulture(SessionService.CurrentLanguage);
             }
 
-            TempData[TempDataKey.SendForgotPasswordEmailResult] = result;
-
-            return RedirectToAction("Index");
+            return View(result);
         }
 
         [HttpGet]

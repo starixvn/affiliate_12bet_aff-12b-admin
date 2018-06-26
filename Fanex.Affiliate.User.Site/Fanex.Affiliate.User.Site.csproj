@@ -443,6 +443,10 @@
     <Content Include="www\build\js\daily-earning.min.js">
       <DependentUpon>daily-earning.js</DependentUpon>
     </Content>
+    <Content Include="www\build\js\forgotpassword.js" />
+    <Content Include="www\build\js\forgotpassword.min.js">
+      <DependentUpon>forgotpassword.js</DependentUpon>
+    </Content>
     <Content Include="www\build\js\home.js" />
     <Content Include="www\build\js\home.min.js">
       <DependentUpon>home.js</DependentUpon>
@@ -518,6 +522,7 @@
     <Content Include="www\source\js\lib\jquery.validate.min.js" />
     <Content Include="www\source\js\lib\jquery.validate.unobtrusive.min.js" />
     <Content Include="www\source\js\pages\contactus.js" />
+    <Content Include="www\source\js\pages\forgotpassword.js" />
     <Content Include="www\source\js\pages\member.js" />
     <Content Include="www\source\js\pages\messagehistory.js" />
     <Content Include="www\source\js\pages\payment-request.js" />
@@ -839,6 +844,7 @@
     <Content Include="www\source\styles\pages\notify.scss" />
     <Content Include="Views\Notify\PageNotFound.cshtml" />
     <Content Include="Views\Notify\UnderMaintenance.cshtml" />
+    <Content Include="Views\Password\RecoverPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

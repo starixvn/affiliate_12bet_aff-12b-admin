@@ -27,6 +27,7 @@
 
         [HttpPost]
         [AjaxOnly]
+        [ValidateAntiForgeryToken]
         public ActionResult MyAccount(AccountInformationViewModel model)
         {
             if (SessionService.IsInternal)

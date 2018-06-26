@@ -163,5 +163,10 @@
     "outputFile": "www/build/styles/css/notify.css",
     "inputFile": "www/source/styles/pages/notify.scss",
     "sourceMap": false
+  },
+  {
+    "outputFile": "www/build/js/forgotpassword.js",
+    "inputFile": "www/source/js/pages/forgotpassword.js",
+    "sourceMap": false
   }
 ]
