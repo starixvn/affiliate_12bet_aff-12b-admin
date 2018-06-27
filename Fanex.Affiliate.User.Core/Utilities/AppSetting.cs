@@ -22,7 +22,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         public string Promotion12BetLink => GetValue("Promotion12BetLink");
 
-        public bool IsEuroSite => AllowedAffiliateTypes.Any(t => Convert.ToByte(t) == (byte)AffiliateType.European);
+        public bool IsEuroSite => AllowedAffiliateTypes.Any(t => t == AffiliateType.European.ToString("D"));
 
         public string TextLinkTemplate => GetValue("TextLinkTemplate");
 

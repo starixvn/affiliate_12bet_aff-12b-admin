@@ -62,22 +62,18 @@ namespace Fanex.Affiliate.User.Core.Controllers
                     userParam.LoginIp = clientIpAddress;
                     userParam.Language = SessionService.CurrentLanguage;
 
-                    const bool IsInternal = false;
-                    SessionService.IsInternal = IsInternal;
-                    userParam.IsInternal = IsInternal;
-                    var loginResult = _authService.GetLoginResult(userParam, IsInternal);
+                    var loginResult = _authService.GetLoginResult(userParam, false);
                     result = loginResult.Result;
 
                     if (result.IsOk)
                     {
                         var user = loginResult.UserInfo;
-                        if (!AppSetting.AllowedAffiliateTypes.Any(t => t.Equals(user.AffType.ToString())))
+                        if (!AppSetting.AllowedAffiliateTypes.Any(t => t.Equals(user.AffType)))
                         {
                             return Json(GetErrorResult(Lang.NotAllowOnDomain));
                         }
 
-                        const int AdminId = 0;
-                        var onUserIdParam = GetOnUserIdParam(user.AffId, clientIpAddress, AdminId);
+                        var onUserIdParam = GetOnUserIdParam(user.AffId, clientIpAddress);
                         user.OnUserId = _authService.GetOnUserId(onUserIdParam);
 
                         SessionService.AssignSessions(user);
@@ -122,13 +118,12 @@ namespace Fanex.Affiliate.User.Core.Controllers
                         Language = SessionService.CurrentLanguage
                     };
 
-                    const bool IsInternal = true;
-                    SessionService.IsInternal = IsInternal;
-                    userLoginParam.IsInternal = IsInternal;
-                    var loginResult = _authService.GetLoginResult(userLoginParam, IsInternal);
+                    SessionService.IsInternal = true;
+                    userLoginParam.IsInternal = true;
+                    var loginResult = _authService.GetLoginResult(userLoginParam, true);
                     var user = loginResult.UserInfo;
 
-                    if (loginResult.Result.IsOk && AppSetting.AllowedAffiliateTypes.Any(t => t.Equals(user.AffType.ToString())))
+                    if (loginResult.Result.IsOk && AppSetting.AllowedAffiliateTypes.Any(t => t.Equals(user.AffType))
                     {
                         var adminId = loginParam.AccId * -1;
                         var onUserIdParam = GetOnUserIdParam(user.AffId, clientIpAddress, adminId);
