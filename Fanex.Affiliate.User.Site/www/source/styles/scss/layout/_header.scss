@@ -185,6 +185,14 @@
         border-radius: 2px;
         white-space: nowrap;
         overflow: hidden;
+
+        &:hover {
+            border-color: #b4acac;
+
+            #selectedLanguage {
+                color: #b4acac;
+            }
+        }
     }
 
     .language-list-wrapper {

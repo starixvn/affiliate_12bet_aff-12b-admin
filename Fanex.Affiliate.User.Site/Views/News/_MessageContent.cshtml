@@ -7,7 +7,7 @@
     <table>
         <thead>
             <tr>
-                <th width="5%"></th>
+                <th width="3%"></th>
                 <th width="10%">@Lang.ID</th>
                 <th width="30%">@Lang.PostDate</th>
                 <th width="50%">@Lang.Message</th>
@@ -16,15 +16,15 @@
         <tbody>
             @if (hasData)
             {
-                var index = 1;
+                var index = (int)ViewBag.StartRowNumber;
 
                 foreach (var item in Model.MessageList)
                 {
                     <tr>
-                        <td></td>
+                        <td class="text-center">@index</td>
                         <td class="text-center">@item.MsgId</td>
                         <td class="text-center">@item.PostedDate.ToString("MM/dd/yyyy hh:mm:ss")</td>
-                        <td class="text-left @(item.Important ? "text-warning" : string.Empty)">@item.Message</td>
+                        <td class="text-left" @(item.Important ? "style=color:red;" : string.Empty)>@item.Message</td>
                     </tr>
 
                     index++;

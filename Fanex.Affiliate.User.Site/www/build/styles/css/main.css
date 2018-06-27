@@ -412,6 +412,10 @@ input[type="checkbox"], input[type="radio"] {
     border-radius: 2px;
     white-space: nowrap;
     overflow: hidden; }
+    .language-container .language-selection:hover {
+      border-color: #b4acac; }
+      .language-container .language-selection:hover #selectedLanguage {
+        color: #b4acac; }
   .language-container .language-list-wrapper {
     position: absolute;
     background: #fff;

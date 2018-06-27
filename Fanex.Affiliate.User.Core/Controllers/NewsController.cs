@@ -40,6 +40,8 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 TotalItems = param.Nrows
             };
 
+            ViewBag.StartRowNumber = 1;
+
             return View(viewModel);
         }
 
@@ -56,6 +58,8 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 MessageList = messageList,
                 TotalItems = param.Nrows
             };
+
+            ViewBag.StartRowNumber = (param.PageIndex - 1) * param.PageSize + 1;
 
             return PartialView("~/Views/News/_MessageContent.cshtml", viewModel);
         }
