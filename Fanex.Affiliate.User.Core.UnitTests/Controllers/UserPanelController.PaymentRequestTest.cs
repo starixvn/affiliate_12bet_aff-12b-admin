@@ -190,8 +190,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var controller = MockingHelper.GetUserPanelController(sessionService: sessionService);
 
             // Action
-            controller.CancelPaymentRequest(new PaymentCancelParam());
-            var result = controller.TempData[TempDataKey.PaymentResult] as ResultInfo;
+            var actionResult = controller.CancelPaymentRequest(new PaymentCancelParam()) as JsonResult;
+            var result = actionResult.Data as ResultInfo;
 
             // Assert
             Assert.False(result.IsOk);
@@ -231,7 +231,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         }
 
         [Fact]
-        public void CancelPaymentRequest_CallRepository_ReturnResultWithTempDataCorrectly()
+        public void CancelPaymentRequest_CallRepository_ReturnResultCorrectly()
         {
             // Arrange
             const long TransId = 1;
@@ -245,8 +245,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var controller = MockingHelper.GetUserPanelController(paymentRepository: paymentRepository.Object);
 
             // Action
-            controller.CancelPaymentRequest(param);
-            var result = controller.TempData[TempDataKey.PaymentResult] as ResultInfo;
+            var actionResult = controller.CancelPaymentRequest(param) as JsonResult;
+            var result = actionResult.Data as ResultInfo;
 
             // Assert
             Assert.Equal(expectedResult, result);
@@ -317,12 +317,11 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
                 emailService: emailService.Object);
 
             // Action
-            var result = controller.CancelPaymentRequest(param) as RedirectResult;
+            controller.CancelPaymentRequest(param);
 
             // Assert
             accountRepository.VerifyNoOtherCalls();
             emailService.VerifyNoOtherCalls();
-            Assert.Equal("#PaymentRequest", result.Url);
         }
 
         [Fact]
@@ -335,8 +334,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var controller = MockingHelper.GetUserPanelController(sessionService: sessionService);
 
             // Action
-            controller.CreatePaymentRequest(new PaymentCreationParam());
-            var result = controller.TempData[TempDataKey.PaymentResult] as ResultInfo;
+            var actionResult = controller.CreatePaymentRequest(new PaymentCreationParam()) as JsonResult;
+            var result = actionResult.Data as ResultInfo;
 
             // Assert
             Assert.False(result.IsOk);
@@ -363,8 +362,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             };
 
             // Action
-            controller.CreatePaymentRequest(creationParam);
-            var result = controller.TempData[TempDataKey.PaymentResult] as ResultInfo;
+            var actionResult = controller.CreatePaymentRequest(creationParam) as JsonResult;
+            var result = actionResult.Data as ResultInfo;
 
             // Assert
             Assert.Equal(expectedResult.IsOk, result.IsOk);
@@ -458,8 +457,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
                 appSetting: appSetting);
 
             // Action
-            controller.CreatePaymentRequest(creationParam);
-            var result = controller.TempData[TempDataKey.PaymentResult] as ResultInfo;
+            var actionResult = controller.CreatePaymentRequest(creationParam) as JsonResult;
+            var result = actionResult.Data as ResultInfo;
 
             // Assert
             paymentRepository.Verify(p => p.CreatePaymentRequest(It.IsAny<PaymentCreationParam>()), Times.Never);
@@ -500,43 +499,12 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
                 appSetting: appSetting);
 
             // Action
-            controller.CreatePaymentRequest(creationParam);
-            var result = controller.TempData[TempDataKey.PaymentResult] as ResultInfo;
+            var actionResult = controller.CreatePaymentRequest(creationParam) as JsonResult;
+            var result = actionResult.Data as ResultInfo;
 
             // Assert
             emailService.Verify(p => p.SendPaymentEmail(It.IsAny<PaymentEmailParam>()), Times.Never);
             Assert.Equal(creationResult, result);
-        }
-
-        [Fact]
-        public void CreatePaymentRequest_AccountIsNotActived_ReturnActionResultCorrectly()
-        {
-            // Arrange
-            var creationParam = new PaymentCreationParam()
-            {
-                Amount = 100,
-                MinAmount = 100,
-                BalBroughtForward = 150
-            };
-            var checkingActiveResult = new ResultInfo
-            {
-                IsOk = false,
-                Message = "Not Actived"
-            };
-            var accountService = new Mock<IAccountService>();
-            accountService.Setup(ac => ac.CheckPlayerAccountIsActived(Constant.DefaultAffId, Constant.DefaultLanguage))
-                .Returns(checkingActiveResult);
-
-            var controller = MockingHelper.GetUserPanelController(
-                accountService: accountService.Object);
-
-            const string ExpectedUrl = "#PaymentRequest";
-
-            // Action
-            var result = controller.CreatePaymentRequest(creationParam) as RedirectResult;
-
-            // Assert
-            Assert.Equal(ExpectedUrl, result.Url);
         }
 
         [Fact]

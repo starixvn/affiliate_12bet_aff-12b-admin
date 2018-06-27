@@ -845,6 +845,10 @@
     <Content Include="Views\Notify\PageNotFound.cshtml" />
     <Content Include="Views\Notify\UnderMaintenance.cshtml" />
     <Content Include="Views\Password\RecoverPassword.cshtml" />
+    <Content Include="Views\UserPanel\PaymentPartial\_Main.cshtml" />
+    <Content Include="Views\UserPanel\PaymentPartial\_PaymentPending.cshtml" />
+    <Content Include="Views\UserPanel\PaymentPartial\_PaymentList.cshtml" />
+    <Content Include="Views\UserPanel\PaymentPartial\_RequestPayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

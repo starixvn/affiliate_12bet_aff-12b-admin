@@ -1,61 +1,106 @@
-﻿'use strict';
+﻿"use strict";
 
 var PaymentRequest = (function ($) {
     function isValidKey(charCode) {
         return !(charCode > 31 && (charCode < 48 || charCode > 57)) || charCode === 46;
     }
 
-    function buildErrorMessage(message) {
-        return '<p class="alert alert-danger" role="alert">' + message + '</p>';
+    function buildMessage(message, isSuccess) {
+        var className = isSuccess ? "alert-success" : "alert-danger";
+        return '<p class="alert ' + className + '" role="alert">' + message + '</p>';
     }
 
     var _me = {
         initialize: function initialize() {
+            console.log($("#paymentRequest"));
             _me.initEvent();
         },
 
         initEvent: function initEvent() {
-            $("#Amount").on("keypress", function (event) {
+            $("#paymentRequest").on("keypress", "#Amount", function (event) {
                 var charCode = event.which ? event.which : event.keyCode;
                 return isValidKey(charCode);
             });
 
-            $("#Amount").on("input propertychange paste", function () {
+            $("#paymentRequest").on("input propertychange paste", "#Amount", function () {
                 var reg = /^0+/gi;
                 if (this.value.match(reg)) {
                     this.value = this.value.replace(reg, '');
                 }
             });
 
-            $("#requestPayoutForm").on("submit", function () {
-                Site.showLoader();
+            $("#paymentRequest").on("submit", "#requestPayoutForm", function (e) {
+                e.preventDefault();
+                var isValid = _me.validatePayoutForm();
+                if (isValid) {
+                    _me.submitForm($(this), "CreatePaymentRequest");
+                }
+                return false;
+            });
 
-                var pattern = /^\d+(\.\d{1,2})?$/;
-                var balance = parseFloat($("#BalBroughtForward").val());
-                var minAmount = parseFloat($("#MinAmount").val());
+            $("#paymentRequest").on("submit", "#cancelPaymentForm", function (e) {
+                e.preventDefault();
+                _me.submitForm($(this), "CancelPaymentRequest");
+                return false;
+            });
+        },
 
-                var amountString = $("#Amount").val();
-                var isValidNumber = pattern.test(amountString);
-                var amount = parseFloat($("#Amount").val());
+        validatePayoutForm: function validatePayoutForm() {
+            var pattern = /^\d+(\.\d{1,2})?$/;
+            var balance = parseFloat($("#BalBroughtForward").val());
+            var minAmount = parseFloat($("#MinAmount").val());
 
-                var canSubmit = isValidNumber && amount >= minAmount && amount <= balance;
+            var amountString = $("#Amount").val();
+            var isValidNumber = pattern.test(amountString);
+            var amount = parseFloat($("#Amount").val());
 
-                if (!canSubmit) {
-                    if (isNaN(amount) || !isValidNumber) {
-                        $("#errorMessage").html(buildErrorMessage(resourceLang.invalidAmount));
-                    } else {
-                        $("#errorMessage").html(buildErrorMessage(resourceLang.invalidRange));
-                    }
+            var canSubmit = isValidNumber && amount >= minAmount && amount <= balance;
 
+            if (!canSubmit) {
+                if (isNaN(amount) || !isValidNumber) {
+                    $("#resultMessage").html(buildMessage(resourceLang.invalidAmount, false));
+                } else {
+                    $("#resultMessage").html(buildMessage(resourceLang.invalidRange, false));
+                }
+            }
+
+            return canSubmit;
+        },
+
+        submitForm: function submitForm($form, action) {
+            var postData = $form.serializeObject();
+            $.ajax({
+                type: "POST",
+                url: Site.resolveRelativeUrl("UserPanel/" + action),
+                data: postData,
+                dataType: "json",
+                cache: false,
+                contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+                success: function success(response) {
+                    _me.refreshPage(response);
+                },
+                beforeSend: function beforeSend() {
+                    Site.showLoader();
+                },
+                complete: function complete() {
                     Site.hideLoader();
                 }
-
-                return canSubmit;
             });
+        },
 
-            $("#cancelPaymentForm").on("submit", function () {
-                Site.showLoader();
-            });
+        refreshPage: function refreshPage(result) {
+            if (result.IsOk) {
+                $.ajax({
+                    type: "GET",
+                    url: Site.resolveRelativeUrl("UserPanel/PaymentRequest"),
+                    dataType: "html",
+                    cache: false,
+                    success: function success(response) {
+                        $("#paymentRequest").html(response);
+                        $("#resultMessage").html(buildMessage(result.Message, result.IsOk));
+                    }
+                });
+            }
         }
     };
 

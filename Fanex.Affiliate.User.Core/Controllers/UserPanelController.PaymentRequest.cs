@@ -18,24 +18,7 @@
         [AjaxOnly]
         public ActionResult PaymentRequest()
         {
-            var paymentParam = new PaymentParam
-            {
-                AffId = SessionService.UserSession.AffId,
-                IsInternal = SessionService.IsInternal
-            };
-            var paymentList = _paymentService.GetPaymentList(paymentParam);
-
-            var viewModel = new PaymentViewModel
-            {
-                PaymentList = paymentList,
-                BalBroughtForward = paymentParam.BalBroughtForward,
-                MinAmount = paymentParam.MinAmount,
-                PreferredPayment = paymentParam.PreferredPayment,
-                PendingPayment = paymentList.FirstOrDefault(p => p.Status.MatchWith(PaymentStatus.Pending)),
-                IsValidDate = _paymentService.IsInDateRange() || AppSetting.IsLocal
-            };
-
-            return View(viewModel);
+            return View(GetViewModel());
         }
 
         [HttpPost]
@@ -69,9 +52,7 @@
                 resultInfo = _paymentService.CreatePaymentRequest(paymentCreationParam, emailParam);
             }
 
-            TempData[TempDataKey.PaymentResult] = resultInfo;
-
-            return new RedirectResult(Url.Action("Index", "UserPanel") + "#PaymentRequest");
+            return Json(resultInfo);
         }
 
         [HttpPost]
@@ -104,9 +85,29 @@
                 resultInfo = _paymentService.CancelPaymentRequest(cancelParam, emailParam);
             }
 
-            TempData[TempDataKey.PaymentResult] = resultInfo;
+            return Json(resultInfo);
+        }
 
-            return new RedirectResult(Url.Action("Index", "UserPanel") + "#PaymentRequest");
+        private PaymentViewModel GetViewModel()
+        {
+            var paymentParam = new PaymentParam
+            {
+                AffId = SessionService.UserSession.AffId,
+                IsInternal = SessionService.IsInternal
+            };
+            var paymentList = _paymentService.GetPaymentList(paymentParam);
+
+            var viewModel = new PaymentViewModel
+            {
+                PaymentList = paymentList,
+                BalBroughtForward = paymentParam.BalBroughtForward,
+                MinAmount = paymentParam.MinAmount,
+                PreferredPayment = paymentParam.PreferredPayment,
+                PendingPayment = paymentList.FirstOrDefault(p => p.Status.MatchWith(PaymentStatus.Pending)),
+                IsValidDate = _paymentService.IsInDateRange() || AppSetting.IsLocal
+            };
+
+            return viewModel;
         }
     }
 }

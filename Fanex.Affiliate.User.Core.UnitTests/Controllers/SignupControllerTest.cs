@@ -3,7 +3,6 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Fanex.Affiliate.User.Core.BusinessService;
-using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.Controllers;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO;
@@ -66,23 +65,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             // Assert
             Assert.Equal(expectedResult.IsOk, result.IsOk);
             Assert.Equal(expectedResult.Message, result.Message);
-        }
-
-        [Fact]
-        public void Index_WhenCallWithPost_CaptchaIsInvalidButModelIsInvalid_ResultTempDataIsNull()
-        {
-            // Arrange
-            var accountService = new Mock<IAccountService>();
-            var controller = CreateController(accountService.Object);
-            controller.ModelState.AddModelError("Error", "Error");
-            var signUpParam = new UserSignUpParam { Captcha = "1234" };
-
-            // Action
-            controller.Index(signUpParam);
-            var result = controller.TempData[TempDataKey.SignUpResult] as ResultInfo;
-
-            // Assert
-            Assert.Null(result);
         }
 
         [Fact]

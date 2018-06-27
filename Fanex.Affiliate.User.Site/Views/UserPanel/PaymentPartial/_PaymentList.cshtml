@@ -1,0 +1,78 @@
+﻿@{
+    Layout = null;
+}
+@using Fanex.Affiliate.User.Core.Constants;
+@model IEnumerable<Fanex.Affiliate.User.Core.DTO.Payment>
+
+@{
+    var hasData = Model != null && Model.Any();
+    var preferredPayment = ViewData.ContainsKey("PreferredPayment") ? ViewData["PreferredPayment"].ToString() : string.Empty;
+    var paymentMethod = preferredPayment.Replace("Wire", Lang.BankTransfer);
+}
+
+@functions {
+    static string ConvertStatus(string status)
+    {
+        switch (status.ToLower())
+        {
+            case PaymentStatus.Pending:
+                return Lang.Proccessing;
+            case PaymentStatus.Completed:
+                return Lang.Approved;
+            case PaymentStatus.Cancelled:
+                return Lang.Cancelled;
+            case PaymentStatus.Approved:
+                return Lang.Approved;
+            case PaymentStatus.Rejected:
+                return Lang.Rejected;
+            default:
+                return Lang.Unknown;
+        }
+    }
+}
+
+<div class="info-group">
+    <div class="title">
+        <span class="text">@Lang.RecentPayment</span>
+    </div>
+
+    <div class="payment-history table">
+        <table>
+            <thead>
+                <tr>
+                    <th width="10%">@Lang.RefNo</th>
+                    <th width="10%">@Lang.DateRequest</th>
+                    <th width="10%">@Lang.RequestAmount</th>
+                    <th width="10%">@Lang.PaymentMethod</th>
+                    <th width="10%">@Lang.CompletedDate</th>
+                    <th width="10%">@Lang.Status</th>
+                    <th width="20%">@Lang.Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    if (hasData)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="text-center">@item.TransId</td>
+                                <td class="text-center">@item.TransDate.ToString("MM/dd/yyyy")</td>
+                                <td class="text-right">@item.Amount.ToStringMoneyWithSymbol()</td>
+                                <td class="text-center">@paymentMethod</td>
+                                <td class="text-center">@item.CompletedDate.ToString("MM/dd/yyyy")</td>
+                                <td class="text-center text-bold">@ConvertStatus(item.Status)</td>
+                                <td>@item.AffDesc</td>
+                            </tr>
+                        }
+                    }
+                }
+            </tbody>
+        </table>
+
+        @if (!hasData)
+        {
+            <p class="text-center">@Lang.NoInfo</p>
+        }
+    </div>
+</div>

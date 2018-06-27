@@ -38,14 +38,17 @@ var Layout = (function ($) {
         registerAjaxHandlerError: function () {
             $(document).ajaxError(function (event, jqXHR) {
                 var status = jqXHR.status;
-                if (status === 401) {
-                    window.location.href = Site.resolveRelativeUrl("");
-                }
-                else if (status === 404) {
-                    window.location.href = Site.resolveRelativeUrl("Notify/PageNotFound");
-                }
-                else {
-                    window.location.href = Site.resolveRelativeUrl("Notify/Error");
+
+                if (status !== 200) {
+                    if (status === 401) {
+                        window.location.href = Site.resolveRelativeUrl("");
+                    }
+                    else if (status === 404) {
+                        window.location.href = Site.resolveRelativeUrl("Notify/PageNotFound");
+                    }
+                    else {
+                        alert("An error occurred while processing your request");
+                    }
                 }
             });
         },
