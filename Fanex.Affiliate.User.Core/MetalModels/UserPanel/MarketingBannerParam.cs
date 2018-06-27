@@ -14,7 +14,7 @@ namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
 
         public string Currency { get; set; }
 
-        public byte AffType { get; set; }
+        public string AffType { get; set; }
 
         public int? PageSize { get; set; }
 

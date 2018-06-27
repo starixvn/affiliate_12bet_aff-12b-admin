@@ -4,13 +4,7 @@
 }
 
 @model Fanex.Affiliate.User.Core.DTO.UserInfo
-
-@using Fanex.Affiliate.User.Core.Constants
 @{
-    var result = TempData[TempDataKey.SendRequestResult] as Fanex.Affiliate.User.Core.DTO.ResultInfo;
-    var hasResult = result != null;
-    var isSuccessful = hasResult && result.IsOk;
-
     var name = Model != null ? $"{Model?.FirstName} {Model?.LastName}" : string.Empty;
     var affiliate = Model?.UserName;
     var email = Model?.Email;
@@ -21,6 +15,11 @@
 }
 
 @section scripts{
+    <script>
+        var resourceLanguage = {
+            generalError: '@Error.General'
+        }
+    </script>
     @Html.InlineScripts("~/www/build/js/contactus.js")
 }
 
@@ -144,24 +143,15 @@
     </div>
 
     <div class="contact-form">
-        @if (isSuccessful)
-        {
-            <div class="alert alert-success" role="alert">
-                @Html.Raw(Lang.MessageSentReview.Replace("{br}", "<br>"))
-            </div>
-        }
-        else
-        {
-            if (hasResult)
-            {
-                <div class="alert alert-danger" role="alert">
-                    @Html.Raw(result.Message)
-                </div>
-            }
+        <div class="alert alert-success" role="alert" id="messageSuccess" style="display: none;">
+            @Html.Raw(Lang.MessageSentReview.Replace("{br}", "<br>"))
+        </div>
 
+        <div class="alert alert-danger" role="alert" id="messageError" style="display: none"></div>
+
+        <div id="mainContent">
             <p class="intro">Please direct any comments or questions to <a href="mailto:affiliate@12csd.com">affiliate@12csd.com</a>, or using the form below.</p>
-            using (Html.BeginForm("Index", "ContactUs", FormMethod.Post, new { @id = "contactForm", @class = "form" }))
-            {
+            <form id="contactForm" class="form">
                 @Html.AntiForgeryToken()
                 <div class="form-group">
                     <div class="group group-small">
@@ -219,7 +209,7 @@
                         <button class="btn btn-submit" type="button" id="btnReset">@Lang.Reset</button>
                     </div>
                 </div>
-            }
-        }
+            </form>
+        </div>
     </div>
 </div>

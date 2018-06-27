@@ -1,6 +1,5 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
-    using System;
     using System.Linq;
     using System.Web.Mvc;
     using BusinessService;
@@ -62,7 +61,7 @@
                     State = param.State,
                     Language = SessionService.CurrentLanguage,
                     EmailFormat = false,
-                    AffType = Convert.ToByte(AppSetting.AllowedAffiliateTypes.FirstOrDefault()),
+                    AffType = AppSetting.AllowedAffiliateTypes.FirstOrDefault(),
                     Ip = Request.UserHostAddress,
                     IsLocal = AppSetting.IsLocal
                 };

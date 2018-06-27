@@ -9,7 +9,8 @@ var ContactUs = (function ($) {
 
         initEvent: function initEvent() {
             $("#contactForm").on("submit", function () {
-                return _me.submit();
+                _me.submit($(this));
+                return false;
             });
 
             $("#btnReset").on("click", function () {
@@ -26,8 +27,38 @@ var ContactUs = (function ($) {
             }
         },
 
-        submit: function submit() {
-            return _me.checkRequiredInput() && _me.checkValidEmail();
+        submit: function submit($form) {
+            var isValid = _me.checkRequiredInput() && _me.checkValidEmail();
+
+            if (isValid) {
+                var postData = $form.serializeObject();
+                $.ajax({
+                    type: "POST",
+                    url: Site.resolveRelativeUrl("ContactUs/Index"),
+                    data: postData,
+                    dataType: "json",
+                    cache: false,
+                    contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+                    success: function success(response) {
+                        _me.handleResponseResult(response);
+                    },
+                    beforeSend: function beforeSend() {
+                        Site.showLoader();
+                    },
+                    complete: function complete() {
+                        Site.hideLoader();
+                    }
+                });
+            }
+        },
+
+        handleResponseResult: function handleResponseResult(response) {
+            _me.refreshCaptcha();
+            $("#messageSuccess").toggle(response.IsOk);
+            $("#messageError").toggle(!response.IsOk).html(response.Message || resourceLanguage.generalError);
+            if (response.IsOk) {
+                $("#mainContent").remove();
+            }
         },
 
         checkRequiredInput: function checkRequiredInput() {
@@ -37,7 +68,6 @@ var ContactUs = (function ($) {
             for (var i = 0; i < requiredInputList.length; i++) {
                 var element = requiredInputList[i];
                 if (element.name !== "Affiliate") {
-
                     var $element = $(element);
                     var hasValue = !!$element.val();
 
@@ -68,6 +98,11 @@ var ContactUs = (function ($) {
         toggleErrorMessage: function toggleErrorMessage($container, isValid) {
             $container.toggleClass("has-error", !isValid);
             $container.find(".help-block").toggleClass("hide", isValid);
+        },
+
+        refreshCaptcha: function refreshCaptcha() {
+            var captchaUrl = Site.resolveRelativeUrl("Home/CaptchaImage?_v=" + new Date().getTime());
+            $(".validation-value img").attr("src", captchaUrl);
         }
     };
 

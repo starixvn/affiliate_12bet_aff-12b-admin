@@ -123,7 +123,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
                     var loginResult = _authService.GetLoginResult(userLoginParam, true);
                     var user = loginResult.UserInfo;
 
-                    if (loginResult.Result.IsOk && AppSetting.AllowedAffiliateTypes.Any(t => t.Equals(user.AffType))
+                    if (loginResult.Result.IsOk && AppSetting.AllowedAffiliateTypes.Any(t => t.Equals(user.AffType)))
                     {
                         var adminId = loginParam.AccId * -1;
                         var onUserIdParam = GetOnUserIdParam(user.AffId, clientIpAddress, adminId);

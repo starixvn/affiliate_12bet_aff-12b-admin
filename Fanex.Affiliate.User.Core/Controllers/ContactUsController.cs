@@ -2,7 +2,6 @@
 {
     using System.Web.Mvc;
     using BusinessService;
-    using Constants;
     using CoreService;
     using DTO;
     using MetalModels;
@@ -76,9 +75,7 @@
                 result = _contactService.SendRequest(param, emailParam);
             }
 
-            TempData[TempDataKey.SendRequestResult] = result;
-
-            return RedirectToAction(nameof(Index));
+            return Json(result);
         }
     }
 }

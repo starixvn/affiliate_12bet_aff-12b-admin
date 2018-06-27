@@ -71,7 +71,7 @@
         },
 
         handleResponseResult: function (response) {
-            Site.refreshCaptcha();
+            _me.refreshCaptcha();
             $("#messageSuccess").toggle(response.IsOk);
             $("#messageError").toggle(!response.IsOk).html(response.Message || resourceLanguage.generalError);
             if (response.IsOk) {
@@ -111,6 +111,11 @@
             }
 
             WebSite.handleAddingUrl(lang);
+        },
+
+        refreshCaptcha: function () {
+            var captchaUrl = Site.resolveRelativeUrl("Home/CaptchaImage?_v=" + new Date().getTime());
+            $(".validation-value img").attr("src", captchaUrl);
         }
     };
 

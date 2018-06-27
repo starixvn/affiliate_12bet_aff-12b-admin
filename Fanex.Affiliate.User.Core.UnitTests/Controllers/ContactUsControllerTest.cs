@@ -80,22 +80,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         }
 
         [Fact]
-        public void Index_WhenCallWithPost_RedirectToCorrectAction()
-        {
-            // Arrange
-            var controller = CreateController();
-            const string ExpectedAction = "Index";
-
-            // Action
-            var actionResult = controller.Index(new ContactUsParam()) as RedirectToRouteResult;
-            var result = actionResult.RouteValues["action"] as string;
-
-            // Assert
-            Assert.Equal(ExpectedAction, result);
-        }
-
-        [Fact]
-        public void Index_IsInternal_SetTempDataCorrectly()
+        public void Index_IsInternal_ReturnJsonResultCorrectly()
         {
             // Arrange
             var sessionService = MockingHelper.GetSessionService();
@@ -105,8 +90,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var expectedResult = new ResultInfo { IsOk = false, Message = Lang.ErrAuthorized };
 
             // Action
-            controller.Index(new ContactUsParam());
-            var result = controller.TempData[Constants.TempDataKey.SendRequestResult] as ResultInfo;
+            var actionResult = controller.Index(new ContactUsParam()) as JsonResult;
+            var result = actionResult.Data as ResultInfo;
 
             // Assert
             Assert.Equal(expectedResult.IsOk, result.IsOk);
@@ -114,7 +99,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         }
 
         [Fact]
-        public void Index_CaptchaIsNotValid_SetTempDataCorrectly()
+        public void Index_CaptchaIsNotValid_ReturnJsonResultCorrectly()
         {
             // Arrange
             var controller = CreateController();
@@ -123,8 +108,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var expectedResult = new ResultInfo { IsOk = false, Message = Lang.ValidationCode };
 
             // Action
-            controller.Index(param);
-            var result = controller.TempData[Constants.TempDataKey.SendRequestResult] as ResultInfo;
+            var actionResult = controller.Index(param) as JsonResult;
+            var result = actionResult.Data as ResultInfo;
 
             // Assert
             Assert.Equal(expectedResult.IsOk, result.IsOk);
@@ -148,8 +133,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var expectedParam = JsonConvert.SerializeObject(CreateExpectedParam());
 
             // Action
-            controller.Index(param);
-            var result = controller.TempData[Constants.TempDataKey.SendRequestResult] as ResultInfo;
+            var actionResult = controller.Index(param) as JsonResult;
+            var result = actionResult.Data as ResultInfo;
             var paramResult = JsonConvert.SerializeObject(passedParam);
 
             // Assert

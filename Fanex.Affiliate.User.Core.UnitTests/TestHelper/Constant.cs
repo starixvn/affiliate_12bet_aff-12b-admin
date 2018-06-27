@@ -6,9 +6,9 @@
 
         public const int DefaultAffId = 123;
 
-        public const int AffTypeAsian = 2;
+        public const string AffTypeAsian = "2";
 
-        public const int AffTypeEuro = 4;
+        public const string AffTypeEuro = "4";
 
         public const string DefaultUserName = "Aff12BetTest";
 

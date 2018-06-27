@@ -69,7 +69,7 @@ namespace Fanex.Affiliate.User.Core.MetalModels
 
         public string UserName { get; set; }
 
-        public byte AffType { get; set; }
+        public string AffType { get; set; }
 
         public int ErrCode { get; set; }
 
