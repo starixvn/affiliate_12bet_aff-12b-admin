@@ -220,8 +220,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
                 Answer = "Answer",
                 Player_UserName = "Player_UserName",
                 Gender = true,
-                State = "State",
-                EmailFormat = false
+                State = "State"
             };
         }
 

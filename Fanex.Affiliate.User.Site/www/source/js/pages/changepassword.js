@@ -38,6 +38,7 @@
 
                 var postData = $form.serializeObject();
                 $("input[type=password]", $form).val("");
+                validator.resetForm();
 
                 $.ajax({
                     type: "POST",

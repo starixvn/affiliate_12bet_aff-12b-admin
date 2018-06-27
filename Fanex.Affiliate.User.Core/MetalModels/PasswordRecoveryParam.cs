@@ -9,5 +9,9 @@
         public string NewPassword { get; set; }
 
         public int ErrCode { get; set; }
+
+        public string Ip { get; set; }
+
+        public string Language { get; set; }
     }
 }

@@ -1,23 +1,22 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
-using Fanex.Affiliate.User.Core.Utilities;
 
 namespace Fanex.Affiliate.User.Core.Extensions
 {
     public static class HtmlHelperExtension
     {
-        private static IAppSetting appSetting = DependencyResolver.Current.GetService<IAppSetting>();
+        //private static IAppSetting appSetting = DependencyResolver.Current.GetService<IAppSetting>();
 
         private const string ScriptTag = "script";
         private const string StyleTag = "style";
 
         public static IHtmlString InlineScripts(this HtmlHelper htmlHelper, string bundleVirtualPath)
         {
-            if (appSetting.IsLocal)
-            {
-                return Scripts.Render(bundleVirtualPath);
-            }
+            //if (appSetting.IsLocal)
+            //{
+            //    return Scripts.Render(bundleVirtualPath);
+            //}
 
             return htmlHelper.InlineBundle(bundleVirtualPath, htmlTagName: ScriptTag);
         }

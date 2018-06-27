@@ -87,7 +87,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
         public UserInfo GetUserInfoByEmail(UserInfoByEmailParam userInfoParam)
         {
-            const string uSpKey = "Aff_AffiliateInfoByEmailSel";
+            const string uSpKey = "Aff_User_ForgotPassword";
 
             using (var objectDb = new ObjectDBBuilder(uSpKey))
             {
@@ -97,7 +97,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
         public UserInfo RecoverPassword(PasswordRecoveryParam passwordRecoveryParam)
         {
-            const string uSpKey = "Aff_AffiliateRecoverPwd";
+            const string uSpKey = "Aff_User_RecoverPassWord";
 
             using (var objectDb = new ObjectDBBuilder(uSpKey))
             {
@@ -199,7 +199,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
         public ResultInfo CreateAffiliate(UserSignUpParam signUpParam)
         {
-            const string uSpKey = "Aff_AffiliateIns";
+            const string uSpKey = "Aff_User_Affiliate_Ins";
 
             using (var objectDb = new ObjectDBBuilder(uSpKey))
             {

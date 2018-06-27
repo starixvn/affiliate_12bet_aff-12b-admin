@@ -39,8 +39,6 @@ namespace Fanex.Affiliate.User.Core.MetalModels
         [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "CountryErr")]
         public string Country { get; set; }
 
-        public bool EmailFormat { get; set; }
-
         [RequiredByChecked(DependentPropertyName = "HasWebSite", IsChecked = true, ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "WebsiteURLIsRequired")]
         public string SiteUrl { get; set; } = string.Empty;
 

@@ -59,7 +59,8 @@
             {
                 Email = email.Trim(),
                 Ip = RequestHelper.GetClientIPAddress(),
-                ValidCode = code
+                ValidCode = code,
+                Language = SessionService.CurrentLanguage
             };
 
             var result = new ResultInfo
@@ -102,7 +103,9 @@
             {
                 AffId = uid,
                 ValidCode = vid,
-                NewPassword = CryptographyHelper.Encrypt(newPassword)
+                NewPassword = CryptographyHelper.Encrypt(newPassword),
+                Ip = Request.UserHostAddress,
+                Language = SessionService.CurrentLanguage
             };
 
             var userInfo = _accountRepository.RecoverPassword(param);

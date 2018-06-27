@@ -60,7 +60,6 @@
                     Gender = param.Gender,
                     State = param.State,
                     Language = SessionService.CurrentLanguage,
-                    EmailFormat = false,
                     AffType = AppSetting.AllowedAffiliateTypes.FirstOrDefault(),
                     Ip = Request.UserHostAddress,
                     IsLocal = AppSetting.IsLocal

@@ -357,7 +357,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             expectedEmailParam.User = new UserInfo
             {
                 PreferredLanguage = signUpParam.PreferredLanguage,
-                MailOption = signUpParam.EmailFormat,
                 FirstName = signUpParam.FirstName
             };
             var expectedResult = JsonConvert.SerializeObject(expectedEmailParam);

@@ -45,7 +45,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 emailParam.User = new UserInfo
                 {
                     PreferredLanguage = signUpParam.PreferredLanguage,
-                    MailOption = signUpParam.EmailFormat,
                     FirstName = signUpParam.FirstName
                 };
 

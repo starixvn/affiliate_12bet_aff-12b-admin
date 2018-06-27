@@ -37,8 +37,15 @@ var Layout = (function ($) {
         },
         registerAjaxHandlerError: function () {
             $(document).ajaxError(function (event, jqXHR) {
-                if (jqXHR.status === 401) {
+                var status = jqXHR.status;
+                if (status === 401) {
                     window.location.href = Site.resolveRelativeUrl("");
+                }
+                else if (status === 404) {
+                    window.location.href = Site.resolveRelativeUrl("Notify/PageNotFound");
+                }
+                else {
+                    window.location.href = Site.resolveRelativeUrl("Notify/Error");
                 }
             });
         },
