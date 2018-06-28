@@ -63,6 +63,10 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return result;
         }
 
+        /// <summary>
+        /// CodeReview:
+        /// clean code
+        /// </summary>
         public ResultInfo CheckPlayerAccountIsActived(int affId, string language)
         {
             var checkingResult = _accountRepository.CheckPlayerAccountIsActived(affId, language);

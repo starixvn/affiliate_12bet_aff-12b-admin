@@ -131,6 +131,8 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
             using (var objectDb = new ObjectDBBuilder(uSpKey))
             {
+                /*code review*/
+                /*Remove redundant variable*/
                 var db = objectDb.DB;
 
                 db.ExecuteNonQuery(parameterSet);
@@ -142,6 +144,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
             return result;
         }
+
 
         public IbcPlayerAccountInsertResult InsertPlayerAccountForIbc(DepositAccountInfo accountInfo)
         {
@@ -168,6 +171,9 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
             using (var objectDb = new ObjectDBBuilder(uSpKey))
             {
+                /*code review*/
+                /*Remove redundant variable*/
+                /*Fanex.Data 2.0 automatically update output value on input parameter ?*/
                 var db = objectDb.DB;
                 db.ExecuteNonQuery(parameterSet);
 

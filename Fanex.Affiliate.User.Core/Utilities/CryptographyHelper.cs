@@ -17,8 +17,8 @@ namespace Fanex.Affiliate.User.Core.Utilities
             var plaintext = string.Empty;
             try
             {
-                var key = System.Text.Encoding.UTF8.GetBytes(keyString);
-                var iv = System.Text.Encoding.UTF8.GetBytes(ivString);
+                var key = Encoding.UTF8.GetBytes(keyString);
+                var iv = Encoding.UTF8.GetBytes(ivString);
 
                 var encryptedBytes = Convert.FromBase64String(encryptedString);
 

@@ -101,6 +101,10 @@ namespace Fanex.Affiliate.User.Core.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        /// <summary>
+        /// CodeReview:
+        /// dont use "HashPasswordForStoringInConfigFile" method anymore
+        /// </summary>
         [HttpGet]
         public ActionResult AdminLogin(InternalLoginParam loginParam)
         {

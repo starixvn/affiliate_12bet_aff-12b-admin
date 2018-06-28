@@ -41,6 +41,10 @@ namespace Fanex.Affiliate.User.Core.Repository
             }
         }
 
+        /// <summary>
+        /// CodeReview:
+        /// Remove redundant parameter "var objectDb = dataBox.DB;"
+        /// </summary>
         public string GetSessionId(int onUserId)
         {
             const string spKey = "Aff_SessionIdSel";

@@ -18,7 +18,10 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             _hotNewsRepository = hotNewsRepository;
             _cacheService = cacheService;
         }
-
+        /// <summary>
+        /// CodeReview:
+        /// Dont set null value into cache
+        /// </summary>
         public LatestHotNews GetLatestHotNews(bool isInternal)
         {
             var hotNews = _cacheService.Get<LatestHotNews>(CacheKey.LatestHotNews);

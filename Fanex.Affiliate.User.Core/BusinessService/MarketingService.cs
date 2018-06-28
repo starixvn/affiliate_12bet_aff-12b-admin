@@ -24,6 +24,10 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             _cacheService = cacheService;
         }
 
+        /// <summary>
+        /// CodeReview:
+        /// Dont set null value into cache
+        /// </summary>
         public IEnumerable<BannerType> GetBannerTypeList(bool isInternal)
         {
             var bannerTypeList = _cacheService.Get<IEnumerable<BannerType>>(CacheKey.BannerTypeList);

@@ -52,6 +52,10 @@ namespace Fanex.Affiliate.User.Core.MetalModels
 
         public string PreferredPayment => "Player";
 
+        /// <summary>
+        /// CodeReview:
+        /// Remove underscore
+        /// </summary>
         [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "BETUserNameIsRequired")]
         public string Player_UserName { get; set; }
 

@@ -3,6 +3,10 @@ using Fanex.Affiliate.User.Core.DTO;
 
 namespace Fanex.Affiliate.User.Core.Constants
 {
+    /// <summary>
+    /// CodeReview:
+    /// dont need to use private field "_languageList"
+    /// </summary>
     public static class SystemLanguage
     {
         public const string DefaultLanguageCode = "en-US";

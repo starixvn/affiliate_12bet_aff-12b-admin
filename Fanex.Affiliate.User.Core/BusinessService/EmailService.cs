@@ -11,6 +11,12 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 {
     public class EmailService : IEmailService
     {
+        /// <summary>
+        /// CodeReview:
+        /// 1.should not use common "object" for razor viewmodel
+        /// ex: instead of generating new object GetForgetPasswordModel(emailParam) =>
+        /// why dont use RecoverPasswordEmailParam
+        /// </summary>
         private readonly IMailProcessor _mailProcessor;
 
         public EmailService(IMailProcessor mailProcessor)
@@ -84,7 +90,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 model.SiteUrl,
                 model.MoreSiteUrls,
                 model.NoSiteDesc,
-                MailContact = emailParam.MailContact
+                emailParam.MailContact
             };
 
             var emailContent = GetEmailTextContent(TemplateName, SystemLanguage.DefaultLanguageCode, viewModel);
@@ -99,9 +105,9 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             var viewModel = new
             {
                 Name = model.Sender,
-                Affiliate = model.Affiliate,
-                Email = model.Email,
-                Content = model.Content
+                model.Affiliate,
+                model.Email,
+                model.Content
             };
 
             var emailContent = GetEmailTextContent(TemplateName, SystemLanguage.DefaultLanguageCode, viewModel);
@@ -120,6 +126,10 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         private string GetEmailHtmlContent(string content, string title, string language, string domain)
         {
+            /// <summary>
+            /// CodeReview:
+            /// use :us
+            /// </summary>
             var viewModel = new EmailTemplateViewModel
             {
                 RootUrl = domain,
@@ -140,9 +150,9 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 RecoverPwdURL = emailParam.RootDomain + "Password/RecoverPassword",
                 CustId = emailParam.User.AffId,
                 ValidationCode = emailParam.Code,
-                FirstName = emailParam.User.FirstName,
-                UserName = emailParam.User.UserName,
-                MailContact = emailParam.MailContact
+                emailParam.User.FirstName,
+                emailParam.User.UserName,
+                emailParam.MailContact
             };
         }
 
@@ -150,9 +160,9 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         {
             return new
             {
-                FirstName = emailParam.User.FirstName,
-                MailContact = emailParam.MailContact,
-                UserName = emailParam.User.UserName,
+                emailParam.User.FirstName,
+                emailParam.MailContact,
+                emailParam.User.UserName,
                 Password = emailParam.NewPassword,
                 Url = emailParam.RootDomain
             };
@@ -162,11 +172,11 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         {
             return new
             {
-                FirstName = emailParam.User.FirstName,
-                MailContact = emailParam.MailContact,
-                TransId = emailParam.TransId,
+                emailParam.User.FirstName,
+                emailParam.MailContact,
+                emailParam.TransId,
                 Date = emailParam.RequestDate.ToString("MM/dd/yyyy"),
-                Amount = emailParam.Amount
+                emailParam.Amount
             };
         }
 
@@ -174,8 +184,8 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         {
             return new
             {
-                FirstName = emailParam.User.FirstName,
-                MailContact = emailParam.MailContact
+                emailParam.User.FirstName,
+                emailParam.MailContact
             };
         }
     }

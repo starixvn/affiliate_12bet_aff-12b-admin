@@ -31,6 +31,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
             _betlistRepository = betlistRepository;
         }
 
+       
         [HttpGet]
         public ActionResult Index(BetListParam param)
         {
@@ -75,6 +76,10 @@ namespace Fanex.Affiliate.User.Core.Controllers
 
         [HttpGet]
         [AjaxOnly]
+        /// <summary>
+        /// CodeReview:
+        /// return string as viewmodel, dont need to use viewbag
+        /// </summary>
         public ActionResult Result(BetListResultParam resultParam)
         {
             var isValidMember = IsValidMember($"12bet${resultParam.UserName}");
@@ -102,7 +107,10 @@ namespace Fanex.Affiliate.User.Core.Controllers
 
             return View();
         }
-
+        /// <summary>
+        /// CodeReview:
+        /// return string as viewmodel, dont need to use viewbag
+        /// </summary>
         [HttpGet]
         [AjaxOnly]
         public ActionResult ParlayDetail(BetListParlayDetailParam parlayDetailParam)
