@@ -13,6 +13,12 @@ namespace Fanex.Affiliate.User.Core.Controllers
         }
 
         [HttpGet]
+        public ActionResult Popup()
+        {
+            return View();
+        }
+
+        [HttpGet]
         [ChildActionOnly]
         [OutputCache(Duration = 86400, VaryByParam = "none")]
         public ActionResult Content()

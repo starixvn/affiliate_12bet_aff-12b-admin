@@ -21,7 +21,7 @@
             $("#chkAgree").on("click", function () {
                 $("#btnSubmit").prop("disabled", !this.checked);
                 if (this.checked) {
-                    window.open(Site.resolveRelativeUrl("TermAndCondition"), '', 'scrollbars=yes,resizable=yes,width=1280,height=800');
+                    window.open(Site.resolveRelativeUrl("TermAndCondition/Popup"), '', 'scrollbars=yes,resizable=yes,width=1280,height=800');
                 }
             });
 

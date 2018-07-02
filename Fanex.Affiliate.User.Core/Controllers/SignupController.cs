@@ -76,6 +76,11 @@
 
                 result = _accountService.CreateAffiliate(signUpParam, emailParam);
             }
+            else
+            {
+                var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
+                result.Message = string.Join("<br>", errors);
+            }
 
             return Json(result);
         }

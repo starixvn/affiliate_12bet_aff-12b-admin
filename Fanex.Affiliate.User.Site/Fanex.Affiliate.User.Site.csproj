@@ -849,6 +849,7 @@
     <Content Include="Views\UserPanel\PaymentPartial\_PaymentPending.cshtml" />
     <Content Include="Views\UserPanel\PaymentPartial\_PaymentList.cshtml" />
     <Content Include="Views\UserPanel\PaymentPartial\_RequestPayout.cshtml" />
+    <Content Include="Views\TermAndCondition\Popup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
