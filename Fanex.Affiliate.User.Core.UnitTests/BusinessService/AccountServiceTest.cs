@@ -377,14 +377,14 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
         {
             // Arrange
             const string ExpectedCsdEmail = Constant.DefaultMailContact;
-            EmailBaseParam passedParam = null;
+            NoticeEmailParam passedParam = null;
 
             var signUpParam = new UserSignUpParam { IsLocal = true, Email = Constant.DefaultMailUser };
             var accountRepository = GetMockAccountRepository(signUpParam: signUpParam);
 
             var emailService = new Mock<IEmailService>();
-            emailService.Setup(e => e.SendNoticeEmailToCsd(It.IsAny<EmailBaseParam>(), signUpParam))
-                            .Callback<EmailBaseParam, UserSignUpParam>((p, u) => passedParam = p);
+            emailService.Setup(e => e.SendNoticeEmailToCsd(It.IsAny<NoticeEmailParam>()))
+                            .Callback<NoticeEmailParam>(p => passedParam = p);
 
             var accountService = CreateAccountService(accountRepository, emailService.Object);
 
@@ -394,9 +394,9 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             accountService.CreateAffiliate(signUpParam, emailParam);
 
             // Assert
-            emailService.Verify(e => e.SendNoticeEmailToCsd(It.IsAny<EmailBaseParam>(), signUpParam), Times.Once);
+            emailService.Verify(e => e.SendNoticeEmailToCsd(It.IsAny<NoticeEmailParam>()), Times.Once);
             Assert.Equal(ExpectedCsdEmail, passedParam.MailTo);
-            Assert.Equal(Constant.DefaultUserName, signUpParam.UserName);
+            Assert.Equal(Constant.DefaultUserName, passedParam.UserName);
         }
 
         private AccountService CreateAccountService(IAccountRepository repository, IEmailService emailService = null)

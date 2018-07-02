@@ -50,14 +50,21 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
                 _emailService.SendSignUpEmail(emailParam);
 
-                var csdEmailParam = new EmailBaseParam
+                var csdEmailParam = new NoticeEmailParam
                 {
                     MailTo = emailParam.MailContact,
                     MailBcc = emailParam.MailBcc,
-                    MailCc = emailParam.MailCc
+                    MailCc = emailParam.MailCc,
+                    MailContact = emailParam.MailContact,
+                    FirstName = signUpParam.FirstName,
+                    LastName = signUpParam.LastName,
+                    UserName = signUpParam.UserName,
+                    SiteUrl = signUpParam.SiteUrl,
+                    MoreSiteUrls = signUpParam.MoreSiteUrls,
+                    NoSiteDesc = signUpParam.NoSiteDesc
                 };
 
-                _emailService.SendNoticeEmailToCsd(csdEmailParam, signUpParam);
+                _emailService.SendNoticeEmailToCsd(csdEmailParam);
             }
 
             return result;

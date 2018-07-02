@@ -274,6 +274,7 @@
     <Compile Include="MetalModels\BetList\BetListValidationParam.cs" />
     <Compile Include="MetalModels\ContactUsParam.cs" />
     <Compile Include="MetalModels\Email\EmailBaseParam.cs" />
+    <Compile Include="MetalModels\Email\NoticeEmailParam.cs" />
     <Compile Include="MetalModels\Email\PaymentEmailParam.cs" />
     <Compile Include="MetalModels\Email\RecoverPasswordEmailParam.cs" />
     <Compile Include="MetalModels\Email\NewPasswordEmailParam.cs" />

@@ -11,12 +11,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 {
     public class EmailService : IEmailService
     {
-        /// <summary>
-        /// CodeReview:
-        /// 1.should not use common "object" for razor viewmodel
-        /// ex: instead of generating new object GetForgetPasswordModel(emailParam) =>
-        /// why dont use RecoverPasswordEmailParam
-        /// </summary>
         private readonly IMailProcessor _mailProcessor;
 
         public EmailService(IMailProcessor mailProcessor)
@@ -65,9 +59,8 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public void SendSignUpEmail(EmailBaseParam emailParam)
         {
-            var model = GetSignUpModel(emailParam);
             const string TemplateName = "Signup";
-            var emailContent = GetEmailTextContent(TemplateName, emailParam.User.PreferredLanguage, model);
+            var emailContent = GetEmailTextContent(TemplateName, emailParam.User.PreferredLanguage, emailParam);
             if (!emailParam.User.MailOption)
             {
                 emailContent = GetEmailHtmlContent(emailContent, Lang.EmailTitleSignUp, emailParam.User.PreferredLanguage, emailParam.RootDomain);
@@ -76,38 +69,19 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             _mailProcessor.Send(emailContent, emailParam.MailTo, Lang.RegisSubject, emailParam.MailBcc, emailParam.MailCc);
         }
 
-        public void SendNoticeEmailToCsd(EmailBaseParam emailParam, UserSignUpParam model)
+        public void SendNoticeEmailToCsd(NoticeEmailParam emailParam)
         {
             const string TemplateName = "Csd";
-            var viewModel = new
-            {
-                model.FirstName,
-                model.LastName,
-                model.UserName,
-                model.SiteUrl,
-                model.MoreSiteUrls,
-                model.NoSiteDesc,
-                emailParam.MailContact
-            };
+            var emailContent = GetEmailTextContent(TemplateName, SystemLanguage.DefaultLanguageCode, emailParam);
 
-            var emailContent = GetEmailTextContent(TemplateName, SystemLanguage.DefaultLanguageCode, viewModel);
-
-            var subject = string.Format(Lang.CsdSubject, model.UserName);
+            var subject = string.Format(Lang.CsdSubject, emailParam.UserName);
             _mailProcessor.Send(emailContent, emailParam.MailTo, subject, emailParam.MailBcc, emailParam.MailCc);
         }
 
         public void SendContactUsEmail(EmailBaseParam emailParam, ContactUsParam model)
         {
             const string TemplateName = "ContactUs";
-            var viewModel = new
-            {
-                Name = model.Sender,
-                model.Affiliate,
-                model.Email,
-                model.Content
-            };
-
-            var emailContent = GetEmailTextContent(TemplateName, SystemLanguage.DefaultLanguageCode, viewModel);
+            var emailContent = GetEmailTextContent(TemplateName, SystemLanguage.DefaultLanguageCode, model);
 
             var subject = $"12Bet Affiliates - Contact Us - {model.Subject}";
             _mailProcessor.Send(emailContent, emailParam.MailTo, subject, emailParam.MailBcc, emailParam.MailCc);
@@ -123,10 +97,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         private string GetEmailHtmlContent(string content, string title, string language, string domain)
         {
-            /// <summary>
-            /// CodeReview:
-            /// use :us
-            /// </summary>
             var viewModel = new EmailTemplateViewModel
             {
                 RootUrl = domain,
@@ -138,27 +108,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             var viewPath = HttpContext.Current.Server.MapPath("~/Views/Shared/Email/CommonLayout.cshtml");
 
             return _mailProcessor.BuildTemplateContent(viewPath, viewModel);
-        }
-
-        private object GetPaymentModel(PaymentEmailParam emailParam)
-        {
-            return new
-            {
-                emailParam.User.FirstName,
-                emailParam.MailContact,
-                emailParam.TransId,
-                Date = emailParam.RequestDate.ToString("MM/dd/yyyy"),
-                emailParam.Amount
-            };
-        }
-
-        private object GetSignUpModel(EmailBaseParam emailParam)
-        {
-            return new
-            {
-                emailParam.User.FirstName,
-                emailParam.MailContact
-            };
         }
     }
 }
