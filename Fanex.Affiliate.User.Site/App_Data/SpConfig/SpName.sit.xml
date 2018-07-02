@@ -13,9 +13,9 @@
   </Function>
 
   <Function Name="AccountInformation">
-    <Setting Key="Aff_AffiliateUser_UserInfoSel" SpName="Aff_AffiliateUser_UserInfoSel_xtest" DbName="affiliate_12bet" />
-    <Setting Key="Aff_AffiliateUser_UserInfoSel_view" SpName="Aff_AffiliateUser_UserInfoSel_xtest" DbName="affiliate_12bet_view" />
-    <Setting Key="Aff_AffiliateUser_UserInfoUpd" SpName="Aff_AffiliateUser_UserInfoUpd_xtest" DbName="affiliate_12bet" />
+    <Setting Key="Aff_User_UserInfoSel" SpName="Aff_User_UserInfoSel_xtest" DbName="affiliate_12bet" />
+    <Setting Key="Aff_User_UserInfoSel_view" SpName="Aff_User_UserInfoSel_xtest" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_User_UserInfoUpd" SpName="Aff_User_UserInfoUpd_xtest" DbName="affiliate_12bet" />
     <Setting Key="Aff_AffiliateUpdPwd" SpName="Aff_AffiliateUpdPwd" DbName="affiliate_12bet" />
 
     <Setting Key="Aff_AffiliateUser_UserHasCasinoSel" SpName="Aff_AffiliateUser_UserHasCasinoSel_xtest" DbName="affiliate_12bet" />
