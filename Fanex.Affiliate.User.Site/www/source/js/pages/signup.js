@@ -95,6 +95,7 @@
 
             $("#male").prop("checked", true);
             $("#chkAgree").prop("checked", false);
+            $("#btnSubmit").prop("disabled", true);
             _me.resetWebSiteGroup();
         },
 

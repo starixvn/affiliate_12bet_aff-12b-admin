@@ -131,15 +131,11 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
             using (var objectDb = new ObjectDBBuilder(uSpKey))
             {
-                /*code review*/
-                /*Remove redundant variable*/
-                var db = objectDb.DB;
-
-                db.ExecuteNonQuery(parameterSet);
+                objectDb.DB.ExecuteNonQuery(parameterSet);
 
                 result.IsOk = parameterSet.Result;
                 result.Message = parameterSet.ErrMsg;
-                result.PlayerUserName = db.GetParameterValue("12BetPlayerUserName") as string;
+                result.PlayerUserName = objectDb.DB.GetParameterValue("12BetPlayerUserName") as string;
             }
 
             return result;
@@ -171,11 +167,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
             using (var objectDb = new ObjectDBBuilder(uSpKey))
             {
-                /*code review*/
-                /*Remove redundant variable*/
-                /*Fanex.Data 2.0 automatically update output value on input parameter ?*/
-                var db = objectDb.DB;
-                db.ExecuteNonQuery(parameterSet);
+                objectDb.DB.ExecuteNonQuery(parameterSet);
 
                 result.IsOk = parameterSet.ErrCode == 0;
                 result.Message = parameterSet.ErrMsg;

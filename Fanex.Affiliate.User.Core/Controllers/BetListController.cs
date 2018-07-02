@@ -31,7 +31,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
             _betlistRepository = betlistRepository;
         }
 
-       
+
         [HttpGet]
         public ActionResult Index(BetListParam param)
         {
@@ -76,12 +76,9 @@ namespace Fanex.Affiliate.User.Core.Controllers
 
         [HttpGet]
         [AjaxOnly]
-        /// <summary>
-        /// CodeReview:
-        /// return string as viewmodel, dont need to use viewbag
-        /// </summary>
         public ActionResult Result(BetListResultParam resultParam)
         {
+            var result = string.Empty;
             var isValidMember = IsValidMember($"12bet${resultParam.UserName}");
             if (isValidMember)
             {
@@ -101,20 +98,18 @@ namespace Fanex.Affiliate.User.Core.Controllers
 
                 using (var webService = new AffiliateAPISoapClient())
                 {
-                    ViewBag.Data = webService.GetBetlistResults(AffiliateName, Language, criteria);
+                    result = webService.GetBetlistResults(AffiliateName, Language, criteria);
                 }
             }
 
-            return View();
+            return View(result);
         }
-        /// <summary>
-        /// CodeReview:
-        /// return string as viewmodel, dont need to use viewbag
-        /// </summary>
+
         [HttpGet]
         [AjaxOnly]
         public ActionResult ParlayDetail(BetListParlayDetailParam parlayDetailParam)
         {
+            var result = string.Empty;
             var criteria = new BetListSystemParlayDetailCriteria
             {
                 TransId = parlayDetailParam.TransId,
@@ -125,10 +120,10 @@ namespace Fanex.Affiliate.User.Core.Controllers
 
             using (var webService = new AffiliateAPISoapClient())
             {
-                ViewBag.Data = webService.GetBetlistSystemParlay(AffiliateName, ExchangeRate, criteria, Language);
+                result = webService.GetBetlistSystemParlay(AffiliateName, ExchangeRate, criteria, Language);
             }
 
-            return View();
+            return View(result);
         }
 
         [HttpGet]

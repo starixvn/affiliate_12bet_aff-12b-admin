@@ -1,16 +1,17 @@
 ﻿@{
     Layout = null;
 }
+@model string
 
 <div class="betlist-parlay-detail">
     <div class="content-data">
-        @if (ViewBag.Data != null)
+        @if (string.IsNullOrEmpty(Model))
         {
-            @Html.Raw(ViewBag.Data as string)
+            <p class="text-center">@Lang.NoInfo</p>
         }
         else
         {
-            <p class="text-center">@Lang.NoInfo</p>
+            @Html.Raw(Model)
         }
     </div>
 

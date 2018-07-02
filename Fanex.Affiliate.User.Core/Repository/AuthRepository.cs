@@ -11,9 +11,9 @@ namespace Fanex.Affiliate.User.Core.Repository
             const string spKey = "Aff_CheckIn";
             var dbMode = onUserIdParam.IsInternal ? DBMode.View : DBMode.Main;
 
-            using (var dataBox = new ObjectDBBuilder(spKey, dbMode))
+            using (var objectDb = new ObjectDBBuilder(spKey, dbMode))
             {
-                dataBox.DB.ExecuteNonQuery(onUserIdParam);
+                objectDb.DB.ExecuteNonQuery(onUserIdParam);
             }
 
             return onUserIdParam.On_UserId;
@@ -24,9 +24,9 @@ namespace Fanex.Affiliate.User.Core.Repository
             const string spKey = "Aff_User_Login_UserInfoSel";
             var dbMode = userLoginParam.IsInternal ? DBMode.View : DBMode.Main;
 
-            using (var dataBox = new ObjectDBBuilder(spKey, dbMode))
+            using (var objectDb = new ObjectDBBuilder(spKey, dbMode))
             {
-                return dataBox.DB.QueryEntity<AuthorizedUserInfo>(userLoginParam);
+                return objectDb.DB.QueryEntity<AuthorizedUserInfo>(userLoginParam);
             }
         }
 
@@ -35,27 +35,21 @@ namespace Fanex.Affiliate.User.Core.Repository
             const string spKey = "Aff_User_Login_ResultUpd";
             var dbMode = loginResultParam.IsInternal ? DBMode.View : DBMode.Main;
 
-            using (var dataBox = new ObjectDBBuilder(spKey, dbMode))
+            using (var objectDb = new ObjectDBBuilder(spKey, dbMode))
             {
-                dataBox.DB.ExecuteNonQuery(loginResultParam);
+                objectDb.DB.ExecuteNonQuery(loginResultParam);
             }
         }
 
-        /// <summary>
-        /// CodeReview:
-        /// Remove redundant parameter "var objectDb = dataBox.DB;"
-        /// </summary>
         public string GetSessionId(int onUserId)
         {
             const string spKey = "Aff_SessionIdSel";
 
-            using (var dataBox = new ObjectDBBuilder(spKey, DBMode.View))
+            using (var objectDb = new ObjectDBBuilder(spKey, DBMode.View))
             {
-                var objectDb = dataBox.DB;
+                objectDb.DB.AddInParameter("OnUserId", System.Data.SqlDbType.Int, onUserId);
 
-                objectDb.AddInParameter("OnUserId", System.Data.SqlDbType.Int, onUserId);
-
-                return objectDb.ExecuteScalar() as string;
+                return objectDb.DB.ExecuteScalar() as string;
             }
 
         }
@@ -70,9 +64,9 @@ namespace Fanex.Affiliate.User.Core.Repository
                 IsKickedOut = true
             };
 
-            using (var dataBox = new ObjectDBBuilder(spKey, dbMode))
+            using (var objectDb = new ObjectDBBuilder(spKey, dbMode))
             {
-                dataBox.DB.ExecuteNonQuery(parameterSet);
+                objectDb.DB.ExecuteNonQuery(parameterSet);
             }
 
             return parameterSet.IsKickedOut;

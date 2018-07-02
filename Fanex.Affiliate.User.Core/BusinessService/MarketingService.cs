@@ -24,10 +24,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             _cacheService = cacheService;
         }
 
-        /// <summary>
-        /// CodeReview:
-        /// Dont set null value into cache
-        /// </summary>
         public IEnumerable<BannerType> GetBannerTypeList(bool isInternal)
         {
             var bannerTypeList = _cacheService.Get<IEnumerable<BannerType>>(CacheKey.BannerTypeList);
@@ -36,9 +32,12 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 bannerTypeList = _marketingRepository.GetBannerTypeList(isInternal);
             }
 
-            _cacheService.Set(CacheKey.BannerTypeList, bannerTypeList);
+            if (bannerTypeList != null)
+            {
+                _cacheService.Set(CacheKey.BannerTypeList, bannerTypeList);
+            }
 
-            return bannerTypeList;
+            return bannerTypeList ?? new List<BannerType>();
         }
 
         public IEnumerable<Domain> GetDomainList(int affId, bool isInternal)

@@ -18,10 +18,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             _hotNewsRepository = hotNewsRepository;
             _cacheService = cacheService;
         }
-        /// <summary>
-        /// CodeReview:
-        /// Dont set null value into cache
-        /// </summary>
+
         public LatestHotNews GetLatestHotNews(bool isInternal)
         {
             var hotNews = _cacheService.Get<LatestHotNews>(CacheKey.LatestHotNews);
@@ -30,9 +27,12 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 hotNews = _hotNewsRepository.GetLastestHotNews(isInternal);
             }
 
-            _cacheService.Set(CacheKey.LatestHotNews, hotNews);
+            if (hotNews != null)
+            {
+                _cacheService.Set(CacheKey.LatestHotNews, hotNews);
+            }
 
-            return hotNews;
+            return hotNews ?? new LatestHotNews { HotNewsList = new Dictionary<string, string>() };
         }
 
         public IEnumerable<MessageHistory> GetMessageList(MessageHistoryParam param)

@@ -3,10 +3,6 @@ using Fanex.Affiliate.User.Core.DTO;
 
 namespace Fanex.Affiliate.User.Core.Constants
 {
-    /// <summary>
-    /// CodeReview:
-    /// dont need to use private field "_languageList"
-    /// </summary>
     public static class SystemLanguage
     {
         public const string DefaultLanguageCode = "en-US";
@@ -15,7 +11,7 @@ namespace Fanex.Affiliate.User.Core.Constants
 
         public const string ShortedEuroCode = "eneuro";
 
-        private static IEnumerable<Language> _languageList = new List<Language>
+        public static IEnumerable<Language> LanguageList => new List<Language>
         {
             new Language { Code = "en-US", NativeName = "English", DisplayName = "English", EnglishName = "English", ShortedCode = "en"},
             new Language { Code = "zh-CN", NativeName = "中文简体", DisplayName = "Chinese Simplified", EnglishName = "Chinese Simplified", ShortedCode = "cs"},
@@ -29,8 +25,6 @@ namespace Fanex.Affiliate.User.Core.Constants
             new Language { Code = "hi-IN", NativeName = "Republic of India", DisplayName = "Republic of India", EnglishName = "Republic of India", ShortedCode = "hien"},
             new Language { Code = "en-GB", NativeName = "English (Europe)", DisplayName = "English (Europe)", EnglishName = "English (Europe)", ShortedCode = "eneuro"}
         };
-
-        public static IEnumerable<Language> LanguageList => _languageList;
 
         public static string GetDisplayText(string value)
         {
