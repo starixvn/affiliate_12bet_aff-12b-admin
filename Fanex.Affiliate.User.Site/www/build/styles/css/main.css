@@ -436,7 +436,7 @@ input[type="checkbox"], input[type="radio"] {
         .language-container .language-list-wrapper .language-list .language-item:hover {
           color: #262626;
           text-decoration: none;
-          background: #fbefef; }
+          background: #e4dede; }
 
 .user-login {
   float: right;

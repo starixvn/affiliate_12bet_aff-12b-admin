@@ -11,7 +11,6 @@
 
     var _me = {
         initialize: function () {
-            console.log($("#paymentRequest"));
             _me.initEvent();
         },
 
@@ -89,18 +88,16 @@
         },
 
         refreshPage: function (result) {
-            if (result.IsOk) {
-                $.ajax({
-                    type: "GET",
-                    url: Site.resolveRelativeUrl("UserPanel/PaymentRequest"),
-                    dataType: "html",
-                    cache: false,
-                    success: function (response) {
-                        $("#paymentRequest").html(response);
-                        $("#resultMessage").html(buildMessage(result.Message, result.IsOk));
-                    }
-                });
-            }
+            $.ajax({
+                type: "GET",
+                url: Site.resolveRelativeUrl("UserPanel/PaymentRequest"),
+                dataType: "html",
+                cache: false,
+                success: function (response) {
+                    $("#paymentRequest").html(response);
+                    $("#resultMessage").html(buildMessage(result.Message, result.IsOk));
+                }
+            });
         }
     };
 

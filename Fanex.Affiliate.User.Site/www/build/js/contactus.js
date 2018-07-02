@@ -3,7 +3,6 @@
 var ContactUs = (function ($) {
     var _me = {
         initialize: function initialize() {
-            console.log("COntactUs");
             _me.initEvent();
         },
 

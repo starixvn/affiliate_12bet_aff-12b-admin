@@ -1,7 +1,6 @@
 ﻿var ContactUs = (function ($) {
     var _me = {
         initialize: function () {
-            console.log("COntactUs");
             _me.initEvent();
         },
 

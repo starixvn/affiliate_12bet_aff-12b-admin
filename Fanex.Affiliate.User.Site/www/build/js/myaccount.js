@@ -76,7 +76,6 @@ var WebSite = (function ($) {
         validateWebSiteGroup: function () {
             var validator = _me.getValidator();
             var isValidMainInfo = validator.element("#SiteUrl") && validator.element("#NoSiteDesc");
-            console.log(validator.element("#SiteUrl"), validator.element("#NoSiteDesc"));
 
             var isValidMoreUrl = true;
             var moreInputUrl = $(".urlInput");

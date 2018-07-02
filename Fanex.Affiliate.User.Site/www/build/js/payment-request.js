@@ -12,7 +12,6 @@ var PaymentRequest = (function ($) {
 
     var _me = {
         initialize: function initialize() {
-            console.log($("#paymentRequest"));
             _me.initEvent();
         },
 
@@ -89,18 +88,16 @@ var PaymentRequest = (function ($) {
         },
 
         refreshPage: function refreshPage(result) {
-            if (result.IsOk) {
-                $.ajax({
-                    type: "GET",
-                    url: Site.resolveRelativeUrl("UserPanel/PaymentRequest"),
-                    dataType: "html",
-                    cache: false,
-                    success: function success(response) {
-                        $("#paymentRequest").html(response);
-                        $("#resultMessage").html(buildMessage(result.Message, result.IsOk));
-                    }
-                });
-            }
+            $.ajax({
+                type: "GET",
+                url: Site.resolveRelativeUrl("UserPanel/PaymentRequest"),
+                dataType: "html",
+                cache: false,
+                success: function success(response) {
+                    $("#paymentRequest").html(response);
+                    $("#resultMessage").html(buildMessage(result.Message, result.IsOk));
+                }
+            });
         }
     };
 

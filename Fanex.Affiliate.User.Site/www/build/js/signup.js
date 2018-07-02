@@ -76,7 +76,6 @@ var WebSite = (function ($) {
         validateWebSiteGroup: function () {
             var validator = _me.getValidator();
             var isValidMainInfo = validator.element("#SiteUrl") && validator.element("#NoSiteDesc");
-            console.log(validator.element("#SiteUrl"), validator.element("#NoSiteDesc"));
 
             var isValidMoreUrl = true;
             var moreInputUrl = $(".urlInput");
@@ -135,8 +134,6 @@ var SignUp = (function ($) {
     var _me = {
         initialize: function () {
             _me.initEvent();
-
-            console.log("Validate");
         },
 
         initEvent: function () {
@@ -151,6 +148,9 @@ var SignUp = (function ($) {
 
             $("#chkAgree").on("click", function () {
                 $("#btnSubmit").prop("disabled", !this.checked);
+                if (this.checked) {
+                    window.open(Site.resolveRelativeUrl("TermAndCondition"), '', 'scrollbars=yes,resizable=yes,width=1280,height=800');
+                }
             });
 
             $("#btnAddUrl").on("click", function () {
@@ -222,6 +222,7 @@ var SignUp = (function ($) {
             validator.resetForm();
 
             $("#male").prop("checked", true);
+            $("#chkAgree").prop("checked", false);
             _me.resetWebSiteGroup();
         },
 
@@ -229,6 +230,7 @@ var SignUp = (function ($) {
             $("#hasWebSite").prop("checked", true);
             $("#NoSiteDesc").prop("disabled", true);
             $("#SiteUrl").prop("disabled", false);
+            $("#btnAddUrl").prop("disabled", false);
             $(".websiteInput").remove();
         },
 

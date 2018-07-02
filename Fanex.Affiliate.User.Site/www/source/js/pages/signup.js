@@ -6,8 +6,6 @@
     var _me = {
         initialize: function () {
             _me.initEvent();
-
-            console.log("Validate");
         },
 
         initEvent: function () {
@@ -22,6 +20,9 @@
 
             $("#chkAgree").on("click", function () {
                 $("#btnSubmit").prop("disabled", !this.checked);
+                if (this.checked) {
+                    window.open(Site.resolveRelativeUrl("TermAndCondition"), '', 'scrollbars=yes,resizable=yes,width=1280,height=800');
+                }
             });
 
             $("#btnAddUrl").on("click", function () {
@@ -93,6 +94,7 @@
             validator.resetForm();
 
             $("#male").prop("checked", true);
+            $("#chkAgree").prop("checked", false);
             _me.resetWebSiteGroup();
         },
 
@@ -100,6 +102,7 @@
             $("#hasWebSite").prop("checked", true);
             $("#NoSiteDesc").prop("disabled", true);
             $("#SiteUrl").prop("disabled", false);
+            $("#btnAddUrl").prop("disabled", false);
             $(".websiteInput").remove();
         },
 

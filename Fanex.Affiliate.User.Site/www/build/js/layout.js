@@ -1,5 +1,5 @@
 var Layout = (function ($) {
-    var DEFAULT_SPEED = 20;
+    var DEFAULT_SPEED = 5;
 
     function initSlider() {
         var $mainBanner = $('#mainBanner');
