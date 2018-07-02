@@ -1,8 +1,9 @@
-﻿<div>
-@(Model.FirstName)様、,<br /><br />
+﻿@model Fanex.Affiliate.User.Core.MetalModels.Email.PaymentEmailParam
+<div>
+@(Model.User.FirstName)様、,<br /><br />
 
 いつも格別のご協力をいただき、ありがとうございます。<br />
-お客様ののお引き出し申請、受付申請番号　@Model.TransId, 受付日時：@Model.Date<br /><br />
+お客様ののお引き出し申請、受付申請番号　@Model.TransId, 受付日時：@Model.RequestDate.ToString("MM/dd/yyyy")<br /><br />
  
 申請金額：$@Model.Amount はキャンセルとなりました。<br /><br />
  

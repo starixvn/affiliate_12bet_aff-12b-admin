@@ -1,14 +1,18 @@
-﻿<div>
-@(Model.FirstName)様、<br /><br />
+﻿@model Fanex.Affiliate.User.Core.MetalModels.Email.NewPasswordEmailParam
+@{
+    var userInfo = Model.User;
+}
+<div>
+@(userInfo.FirstName)様、<br /><br />
 
 先程、ご申請されました件に関しまして、新規パスワードを発行しました、詳細は以下の通りです。<br /><br />
 
 --------------------------------------------------------<br />
-ユーザー名: @Model.UserName<br />
-パスワード: @Model.Password<br />
+ユーザー名: @userInfo.UserName<br />
+パスワード: @Model.NewPassword<br />
 --------------------------------------------------------<br /><br />
 
-また、パスワードを変更される際には、以下の <a href="@Model.Url">@Model.Url</a> からいつでも変更ができます。<br /><br />
+また、パスワードを変更される際には、以下の <a href="@Model.RootDomain">@Model.RootDomain</a> からいつでも変更ができます。<br /><br />
 
 また、何かご不明な点等ございましたら、お気軽に12BETまでお問い合わせ願います。<br /><br />
 

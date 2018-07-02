@@ -1,7 +1,8 @@
-﻿<div>
-Kính gửi @Model.FirstName<br /><br />
+﻿@model Fanex.Affiliate.User.Core.MetalModels.Email.PaymentEmailParam
+<div>
+Kính gửi @Model.User.FirstName<br /><br />
 
-Chúng tôi đã nhận được yêu cầu thanh toán của bạn vào ngày @Model.Date với số tiền $@Model.Amount.<br />
+Chúng tôi đã nhận được yêu cầu thanh toán của bạn vào ngày @Model.RequestDate.ToString("MM/dd/yyyy") với số tiền $@Model.Amount.<br />
 Yêu cầu thanh toán mang số @Model.TransId.<br /><br />
  
 Yêu cầu này sẽ được xử lý trong vòng 7 ngày làm việc theo thứ tự mà chúng tôi nhận được.<br /><br />

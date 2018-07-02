@@ -46,6 +46,7 @@ var ChangePassword = (function ($) {
             });
 
             $("#updatePasswordForm").on("submit", function (e) {
+                e.preventDefault();
                 _me.submit();
                 return false;
             });
@@ -73,8 +74,6 @@ var ChangePassword = (function ($) {
                 $confirmedNewPassword.val(confirmedNewPassword);
 
                 var postData = $form.serializeObject();
-                $("input[type=password]", $form).val("");
-                validator.resetForm();
 
                 $.ajax({
                     type: "POST",
@@ -84,13 +83,14 @@ var ChangePassword = (function ($) {
                     cache: false,
                     contentType: "application/x-www-form-urlencoded; charset=UTF-8",
                     success: function (response) {
+                        $form[0].reset();
+                        validator.resetForm();
                         Site.displayResult(response.IsOk, response.Message);
                     },
                     beforeSend: function () {
                         Site.showLoader();
                     },
                     complete: function () {
-                        validator.resetForm();
                         Site.hideLoader();
                     }
                 });

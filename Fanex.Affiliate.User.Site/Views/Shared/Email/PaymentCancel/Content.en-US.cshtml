@@ -1,7 +1,8 @@
-﻿<div> 
-Dear @Model.FirstName,<br /><br />
+﻿@model Fanex.Affiliate.User.Core.MetalModels.Email.PaymentEmailParam
+<div> 
+Dear @Model.User.FirstName,<br /><br />
  
-Request reference number is @Model.TransId, dated @Model.Date .<br /><br />
+Request reference number is @Model.TransId, dated @Model.RequestDate.ToString("MM/dd/yyyy") .<br /><br />
  
 Your payment request amount of $@Model.Amount has been cancelled.<br /><br />
  

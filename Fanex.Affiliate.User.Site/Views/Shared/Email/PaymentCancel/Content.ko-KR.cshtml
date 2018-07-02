@@ -1,7 +1,8 @@
-﻿<div>
-@(Model.FirstName)고객님,<br /><br />
+﻿@model Fanex.Affiliate.User.Core.MetalModels.Email.PaymentEmailParam
+<div>
+@(Model.User.FirstName)고객님,<br /><br />
 
-요청 확인 번호는  @(Model.TransId)이며  @(Model.Date)에 요청하셨습니다.<br /><br />
+요청 확인 번호는  @(Model.TransId)이며  @(Model.RequestDate.ToString("MM/dd/yyyy"))에 요청하셨습니다.<br /><br />
  
 고객님의  요청하신   @(Model.Amount) $의 지불 요청은 취소되었습니다.<br /><br />
  

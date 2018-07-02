@@ -1,8 +1,10 @@
-﻿@{
-	var recoverUrl = Model.RecoverPwdURL + "?uid=" + Model.CustId + "&vid=" + Model.ValidationCode;
+﻿@model Fanex.Affiliate.User.Core.MetalModels.Email.RecoverPasswordEmailParam
+@{
+    var userInfo = Model.User;
+    var recoverUrl = Model.RootDomain + "Password/RecoverPassword?uid=" + userInfo.AffId + "&vid=" + Model.Code;
 }
 <div>
-Yang terhotmat @Model.FirstName,<br /><br />
+Yang terhotmat @userInfo.FirstName,<br /><br />
 
 Anda melakukan permintaan untuk mendapatkan kembali username atau password.<br />
 Jika anda tidak melakukan permintaan ini, tolong hiraukan email ini.<br />
@@ -10,7 +12,7 @@ Sebaliknya silakan klik link berikut ini, maka password baru akan segera diemail
 <a href='@recoverUrl'>@recoverUrl</a><br /><br />
 
 Catatan :<br />
-* Username anda: @Model.UserName <br />
+* Username anda: @userInfo.UserName <br />
 * Untuk alasan keamanan, kami akan memberikan password baru pada anda (anda dapat mengubahnya kapan saja nanti).<br />
 * Link yang diberikan diatas akan kadaluarsa dan menjadi tidak berguna setelah 24 jam.<br /><br />
 

@@ -1,7 +1,8 @@
-﻿<div>
-Kính gửi @Model.FirstName<br /><br />
+﻿@model Fanex.Affiliate.User.Core.MetalModels.Email.PaymentEmailParam
+<div>
+Kính gửi @Model.User.FirstName<br /><br />
 
-Bạn đã gửi cho chúng tôi yêu cầu thanh toán số @Model.TransId vào ngày @Model.Date<br /><br />
+Bạn đã gửi cho chúng tôi yêu cầu thanh toán số @Model.TransId vào ngày @Model.RequestDate.ToString("MM/dd/yyyy")<br /><br />
  
 Chúng tôi xin thông báo yêu cầu thanh toán của bạn với số tiền $@Model.Amount đã bị hủy bỏ.<br /><br />
  

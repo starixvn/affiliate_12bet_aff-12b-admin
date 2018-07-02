@@ -1,7 +1,8 @@
-﻿<div> 
-Estimado/a Sr./Sra. @Model.FirstName,<br /><br />
+﻿@model Fanex.Affiliate.User.Core.MetalModels.Email.PaymentEmailParam
+<div> 
+Estimado/a Sr./Sra. @Model.User.FirstName,<br /><br />
  
-Gracias por su solicitud de pago de fecha @Model.Date por la cantidad de @Model.Amount dólares.<br />
+Gracias por su solicitud de pago de fecha @Model.RequestDate.ToString("MM/dd/yyyy") por la cantidad de @Model.Amount dólares.<br />
 Su solicitud es el número de referencia @Model.TransId .<br /><br />
  	
 Su solicitud de pago será el proceso dentro de los 7 días hábiles. Todas las solicitudes son examinadas en el orden en que se hayan recibido.<br /><br />

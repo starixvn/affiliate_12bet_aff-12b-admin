@@ -21,6 +21,13 @@
             return View(GetViewModel());
         }
 
+        [HttpGet]
+        [AjaxOnly]
+        public ActionResult PaymentRequestPartial()
+        {
+            return PartialView("~/Views/UserPanel/PaymentPartial/_Main.cshtml", GetViewModel());
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CreatePaymentRequest(PaymentCreationParam paymentCreationParam)

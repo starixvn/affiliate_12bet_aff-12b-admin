@@ -1,7 +1,8 @@
-﻿<div>
-เรียน คุณ  Mr./Mrs. @Model.FirstName<br /><br />
+﻿@model Fanex.Affiliate.User.Core.MetalModels.Email.PaymentEmailParam
+<div>
+เรียน คุณ  Mr./Mrs. @Model.User.FirstName<br /><br />
 
-ขอบคุณที่ได้ทำการแจ้งถอนเงินเข้ามา วันที่ @Model.Date จำนวนเงิน @(Model.Amount)บาท<br /><br />
+ขอบคุณที่ได้ทำการแจ้งถอนเงินเข้ามา วันที่ @Model.RequestDate.ToString("MM/dd/yyyy") จำนวนเงิน @(Model.Amount)บาท<br /><br />
 หมายเลขอ้างอิงการถอนเงิน คือ @Model.TransId .<br /><br />
  
 การทำรายการถอนเงินคุณจะได้รับการดำเนินการภายใน 7 วัน ซึ่งทุกรายการถอนเงินจะต้องได้รับการตรวจสอบก่อนทุกครั้งเพื่อป้องการการผิดพลาด<br /><br />

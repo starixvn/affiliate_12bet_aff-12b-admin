@@ -13,6 +13,7 @@ var PaymentRequest = (function ($) {
     var _me = {
         initialize: function initialize() {
             _me.initEvent();
+            $("#resultMessage").show();
         },
 
         initEvent: function initEvent() {
@@ -90,12 +91,12 @@ var PaymentRequest = (function ($) {
         refreshPage: function refreshPage(result) {
             $.ajax({
                 type: "GET",
-                url: Site.resolveRelativeUrl("UserPanel/PaymentRequest"),
+                url: Site.resolveRelativeUrl("UserPanel/PaymentRequestPartial"),
                 dataType: "html",
                 cache: false,
                 success: function success(response) {
                     $("#paymentRequest").html(response);
-                    $("#resultMessage").html(buildMessage(result.Message, result.IsOk));
+                    $("#resultMessage").html(buildMessage(result.Message, result.IsOk)).show();
                 }
             });
         }

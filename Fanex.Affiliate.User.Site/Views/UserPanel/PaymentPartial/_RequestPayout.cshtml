@@ -2,7 +2,6 @@
     Layout = null;
 }
 
-@using Fanex.Affiliate.User.Core.DTO;
 @model Fanex.Affiliate.User.Core.ViewModels.UserPanel.PaymentViewModel
 @{
     var canRequest = Model.IsValidAmount && Model.IsValidDate && Model.PendingPayment == null;
@@ -44,7 +43,7 @@
         <span class="text">@Lang.PaymentInfor</span>
     </div>
     <div class="payment-info">
-        <div id="resultMessage">
+        <div id="resultMessage" style="display: none">
             @if (!string.IsNullOrEmpty(messageResult))
             {
                 <p class="alert alert-danger" role="alert">@Html.Raw(messageResult)</p>

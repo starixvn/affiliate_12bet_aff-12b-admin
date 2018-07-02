@@ -1,7 +1,8 @@
-﻿<div>
-Yang terhormat @Model.FirstName,<br /><br />
+﻿@model Fanex.Affiliate.User.Core.MetalModels.Email.PaymentEmailParam
+<div>
+Yang terhormat @Model.User.FirstName,<br /><br />
  
-Terima kasih atas permintaan pembayaran Anda tanggal @Model.Date untuk jumlah $@Model.Amount<br />
+Terima kasih atas permintaan pembayaran Anda tanggal @Model.RequestDate.ToString("MM/dd/yyyy") untuk jumlah $@Model.Amount<br />
 
 Permintaan Anda nombor referensi adalah  @Model.TransId .<br /><br />
  

@@ -26,9 +26,8 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public void SendRecoverPasswordEmail(RecoverPasswordEmailParam emailParam)
         {
-            var model = GetForgetPasswordModel(emailParam);
             const string TemplateName = "RecoverPassword";
-            var emailContent = GetEmailTextContent(TemplateName, emailParam.User.PreferredLanguage, model);
+            var emailContent = GetEmailTextContent(TemplateName, emailParam.User.PreferredLanguage, emailParam);
             if (!emailParam.User.MailOption)
             {
                 emailContent = GetEmailHtmlContent(emailContent, Lang.EmailTitlePasswordRecovery, emailParam.User.PreferredLanguage, emailParam.RootDomain);
@@ -39,9 +38,8 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public void SendNewPasswordEmail(NewPasswordEmailParam emailParam)
         {
-            var model = GetPasswordRecoveryModel(emailParam);
             const string TemplateName = "NewPassword";
-            var emailContent = GetEmailTextContent(TemplateName, emailParam.User.PreferredLanguage, model);
+            var emailContent = GetEmailTextContent(TemplateName, emailParam.User.PreferredLanguage, emailParam);
             if (!emailParam.User.MailOption)
             {
                 emailContent = GetEmailHtmlContent(emailContent, Lang.EmailTitleNewPassword, emailParam.User.PreferredLanguage, emailParam.RootDomain);
@@ -52,11 +50,10 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public void SendPaymentEmail(PaymentEmailParam emailParam)
         {
-            var model = GetPaymentModel(emailParam);
             var templateName = emailParam.PaymentType == PaymentRequestType.Cancel ? "PaymentCancel" : "PaymentRequest";
             var subject = Lang.CancelSubject.Replace("{transid}", emailParam.TransId.ToString());
 
-            var emailContent = GetEmailTextContent(templateName, emailParam.User.PreferredLanguage, model);
+            var emailContent = GetEmailTextContent(templateName, emailParam.User.PreferredLanguage, emailParam);
 
             if (!emailParam.User.MailOption)
             {
@@ -141,31 +138,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             var viewPath = HttpContext.Current.Server.MapPath("~/Views/Shared/Email/CommonLayout.cshtml");
 
             return _mailProcessor.BuildTemplateContent(viewPath, viewModel);
-        }
-
-        private object GetForgetPasswordModel(RecoverPasswordEmailParam emailParam)
-        {
-            return new
-            {
-                RecoverPwdURL = emailParam.RootDomain + "Password/RecoverPassword",
-                CustId = emailParam.User.AffId,
-                ValidationCode = emailParam.Code,
-                emailParam.User.FirstName,
-                emailParam.User.UserName,
-                emailParam.MailContact
-            };
-        }
-
-        private object GetPasswordRecoveryModel(NewPasswordEmailParam emailParam)
-        {
-            return new
-            {
-                emailParam.User.FirstName,
-                emailParam.MailContact,
-                emailParam.User.UserName,
-                Password = emailParam.NewPassword,
-                Url = emailParam.RootDomain
-            };
         }
 
         private object GetPaymentModel(PaymentEmailParam emailParam)

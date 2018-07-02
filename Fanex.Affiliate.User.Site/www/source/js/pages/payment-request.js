@@ -12,6 +12,7 @@
     var _me = {
         initialize: function () {
             _me.initEvent();
+            $("#resultMessage").show();
         },
 
         initEvent: function () {
@@ -90,12 +91,12 @@
         refreshPage: function (result) {
             $.ajax({
                 type: "GET",
-                url: Site.resolveRelativeUrl("UserPanel/PaymentRequest"),
+                url: Site.resolveRelativeUrl("UserPanel/PaymentRequestPartial"),
                 dataType: "html",
                 cache: false,
                 success: function (response) {
                     $("#paymentRequest").html(response);
-                    $("#resultMessage").html(buildMessage(result.Message, result.IsOk));
+                    $("#resultMessage").html(buildMessage(result.Message, result.IsOk)).show();
                 }
             });
         }
