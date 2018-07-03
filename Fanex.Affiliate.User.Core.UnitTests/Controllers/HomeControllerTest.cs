@@ -13,7 +13,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
 {
     public class HomeControllerTest
     {
-        const string PromotionTemplate = "https://promotions.{0}.com?lang={1}&act=sports";
+        const string PromotionTemplate = "https://promotions.{0}.com?lang=en&act=sports";
 
         [Theory]
         [InlineData(false, "/SignUp/Index", "javascript:;")]
@@ -38,59 +38,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             Assert.Equal(expectedResult.IsAuthenticated, result.IsAuthenticated);
             Assert.Equal(expectedResult.SignUpLink, result.SignUpLink);
             Assert.Equal(expectedResult.BannerLink, result.BannerLink);
-        }
-
-        [Fact]
-        public void Index_IsEuroSite_ReturnCorrectPromotionLink()
-        {
-            // Arrange
-            var appSetting = Mock.Of<IAppSetting>(ap => ap.IsEuroSite && ap.Promotion12BetLink == PromotionTemplate);
-            var controller = CreateController(isAuthenticated: false, appSetting: appSetting);
-
-            var expectedResult = "https://promotions.abcxyz.com?lang=eneuro&act=sports";
-
-            // Action
-            var actionResult = controller.Index() as ViewResult;
-            var result = actionResult.Model as HomeViewModel;
-
-            // Assert
-            Assert.Equal(expectedResult, result.Promotion12BetLink);
-        }
-
-        [Fact]
-        public void Index_UnknownLanguageCode_ReturnCorrectPromotionLinkWithDefaultShortedLangCode()
-        {
-            // Arrange
-            var sessionService = MockingHelper.GetSessionService();
-            sessionService.CurrentLanguage = "abc";
-            var controller = CreateController(sessionService: sessionService);
-
-            var expectedResult = "https://promotions.abcxyz.com?lang=en&act=sports";
-
-            // Action
-            var actionResult = controller.Index() as ViewResult;
-            var result = actionResult.Model as HomeViewModel;
-
-            // Assert
-            Assert.Equal(expectedResult, result.Promotion12BetLink);
-        }
-
-        [Fact]
-        public void Index_WhenCallWithCorrectLanguageCode_ReturnCorrectPromotionLink()
-        {
-            // Arrange
-            var sessionService = MockingHelper.GetSessionService();
-            sessionService.CurrentLanguage = "vi-VN";
-            var controller = CreateController(sessionService: sessionService);
-
-            var expectedResult = "https://promotions.abcxyz.com?lang=vn&act=sports";
-
-            // Action
-            var actionResult = controller.Index() as ViewResult;
-            var result = actionResult.Model as HomeViewModel;
-
-            // Assert
-            Assert.Equal(expectedResult, result.Promotion12BetLink);
         }
 
         [Fact]

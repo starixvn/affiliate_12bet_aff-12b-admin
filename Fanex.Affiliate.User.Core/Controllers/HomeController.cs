@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Web.Mvc;
 using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.Constants;
@@ -59,21 +58,10 @@ namespace Fanex.Affiliate.User.Core.Controllers
 
         private string GetPromotionLink()
         {
-            var shortedLanguageCode = SystemLanguage.ShortedDefaultCode;
-            if (AppSetting.IsEuroSite)
-            {
-                shortedLanguageCode = SystemLanguage.ShortedEuroCode;
-            }
-            else
-            {
-                shortedLanguageCode = SystemLanguage.LanguageList
-                                        .FirstOrDefault(l => l.Code.Equals(SessionService.CurrentLanguage))?.ShortedCode ?? shortedLanguageCode;
-            }
-
             var segments = Request.Url.Host.Split('.');
             var domainName = segments.Length > 1 ? segments[segments.Length - 2] : string.Empty;
 
-            return string.Format(AppSetting.Promotion12BetLink, domainName, shortedLanguageCode).Replace("..", ".");
+            return string.Format(AppSetting.Promotion12BetLink, domainName).Replace("..", ".");
         }
     }
 }
