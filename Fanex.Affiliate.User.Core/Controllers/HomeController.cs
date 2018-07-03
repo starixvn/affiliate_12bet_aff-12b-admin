@@ -25,25 +25,14 @@ namespace Fanex.Affiliate.User.Core.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var isAuthenticated = HttpContext.Request.IsAuthenticated && SessionService.UserSession != null;
-
-            var shortedLanguageCode = SystemLanguage.ShortedDefaultCode;
-            if (AppSetting.IsEuroSite)
-            {
-                shortedLanguageCode = SystemLanguage.ShortedEuroCode;
-            }
-            else
-            {
-                shortedLanguageCode = SystemLanguage.LanguageList
-                                        .FirstOrDefault(l => l.Code.Equals(SessionService.CurrentLanguage))?.ShortedCode ?? shortedLanguageCode;
-            }
+            var isAuthenticated = Request.IsAuthenticated && SessionService.UserSession != null;
 
             var viewModel = new HomeViewModel
             {
                 IsAuthenticated = isAuthenticated,
                 SignUpLink = isAuthenticated ? Url.Action("Index", "UserPanel") + "/#AccountOverView" : Url.Action("Index", "SignUp"),
                 BannerLink = isAuthenticated ? Url.Action("Index", "UserPanel") + "/#MediaGallery" : "javascript:;",
-                Promotion12BetLink = AppSetting.Promotion12BetLink.Replace("{lang}", shortedLanguageCode)
+                Promotion12BetLink = GetPromotionLink()
             };
 
             return View(viewModel);
@@ -66,6 +55,25 @@ namespace Fanex.Affiliate.User.Core.Controllers
             _languageService.SetCulture(languageCode);
 
             return Json(true);
+        }
+
+        private string GetPromotionLink()
+        {
+            var shortedLanguageCode = SystemLanguage.ShortedDefaultCode;
+            if (AppSetting.IsEuroSite)
+            {
+                shortedLanguageCode = SystemLanguage.ShortedEuroCode;
+            }
+            else
+            {
+                shortedLanguageCode = SystemLanguage.LanguageList
+                                        .FirstOrDefault(l => l.Code.Equals(SessionService.CurrentLanguage))?.ShortedCode ?? shortedLanguageCode;
+            }
+
+            var segments = Request.Url.Host.Split('.');
+            var domainName = segments.Length > 1 ? segments[segments.Length - 2] : string.Empty;
+
+            return string.Format(AppSetting.Promotion12BetLink, domainName, shortedLanguageCode).Replace("..", ".");
         }
     }
 }
