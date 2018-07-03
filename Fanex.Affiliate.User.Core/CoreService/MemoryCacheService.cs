@@ -1,13 +1,8 @@
 ﻿using Fanex.Caching;
 using Newtonsoft.Json;
 
-namespace Fanex.Affiliate.User.Core.Utilities
+namespace Fanex.Affiliate.User.Core.CoreService
 {
-    /// <summary>
-    /// CodeReview:
-    /// This service should not be placed in utilities group
-    /// Too many utility function
-    /// </summary>
     public class MemoryCacheService : IMemoryCacheService
     {
         private const int TIMEOUT = 120; // 2 minutes.

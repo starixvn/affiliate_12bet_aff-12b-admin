@@ -176,8 +176,12 @@
     <Compile Include="BusinessService\AccountService.cs" />
     <Compile Include="BusinessService\AuthService.cs" />
     <Compile Include="BusinessService\ContactService.cs" />
+    <Compile Include="BusinessService\MemberTransactionService.cs" />
+    <Compile Include="BusinessService\MemberInfoServiceWrapper.cs" />
     <Compile Include="BusinessService\EmailService.cs" />
     <Compile Include="BusinessService\IContactService.cs" />
+    <Compile Include="BusinessService\IMemberTransactionService.cs" />
+    <Compile Include="BusinessService\IMemberInfoServiceWrapper.cs" />
     <Compile Include="BusinessService\IPaymentService.cs" />
     <Compile Include="BusinessService\NewsService.cs" />
     <Compile Include="BusinessService\IAccountService.cs" />
@@ -187,6 +191,7 @@
     <Compile Include="Constants\CommGroupName.cs" />
     <Compile Include="Constants\PaymentStatus.cs" />
     <Compile Include="Constants\SportType.cs" />
+    <Compile Include="Controllers\MemberTransactionController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\NotifyController.cs" />
@@ -234,6 +239,7 @@
     <Compile Include="DTO\MemberSitePage.cs" />
     <Compile Include="DTO\Payment.cs" />
     <Compile Include="DTO\SportTypeItem.cs" />
+    <Compile Include="DTO\Transaction.cs" />
     <Compile Include="DTO\UserInfo.cs" />
     <Compile Include="DTO\UserPanel\AccountOverviewStatistics.cs" />
     <Compile Include="DTO\UserPanel\DailyEarning.cs" />
@@ -273,6 +279,7 @@
     <Compile Include="MetalModels\BetList\BetListResultParam.cs" />
     <Compile Include="MetalModels\BetList\BetListValidationParam.cs" />
     <Compile Include="MetalModels\ContactUsParam.cs" />
+    <Compile Include="MetalModels\MemberTransactionParam.cs" />
     <Compile Include="MetalModels\Email\EmailBaseParam.cs" />
     <Compile Include="MetalModels\Email\NoticeEmailParam.cs" />
     <Compile Include="MetalModels\Email\PaymentEmailParam.cs" />
@@ -446,17 +453,22 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\MemberInfoWebService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Utilities\AppSetting.cs" />
     <Compile Include="Utilities\CaptchaHelper.cs" />
     <Compile Include="Utilities\Common.cs" />
     <Compile Include="Utilities\CryptographyHelper.cs" />
     <Compile Include="Utilities\Generator.cs" />
-    <Compile Include="Utilities\IMemoryCacheService.cs" />
+    <Compile Include="CoreService\IMemoryCacheService.cs" />
     <Compile Include="Utilities\MailProcessor.cs" />
     <Compile Include="Utilities\IAppSetting.cs" />
     <Compile Include="Utilities\IMailProcessor.cs" />
     <Compile Include="Utilities\MemberSitePageHelper.cs" />
-    <Compile Include="Utilities\MemoryCacheService.cs" />
+    <Compile Include="CoreService\MemoryCacheService.cs" />
     <Compile Include="Utilities\RequestHelper.cs" />
     <Compile Include="Utilities\UrlHelper.cs" />
     <Compile Include="ViewModels\AccountInformationViewModel.cs" />
@@ -464,6 +476,7 @@
     <Compile Include="ViewModels\EmailTemplateViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\LoginResultViewModel.cs" />
+    <Compile Include="ViewModels\MemberTransactionViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\AccountOverviewViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\DailyEarningDetailViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\DailyEarningViewModel.cs" />
@@ -568,7 +581,9 @@
       <LastGenOutput>Lang.zh-TW.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\System.Xml.XmlNode.datasource" />
     <None Include="Service References\BetListWebService\AffiliateAPI.wsdl" />
+    <None Include="Service References\MemberInfoWebService\Service.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\BetList.resx">
@@ -589,6 +604,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\BetListWebService\" />
+    <WCFMetadataStorage Include="Service References\MemberInfoWebService\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\BetListWebService\AffiliateAPI.disco" />
@@ -601,6 +617,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\BetListWebService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MemberInfoWebService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MemberInfoWebService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MemberInfoWebService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

@@ -1,4 +1,4 @@
-﻿namespace Fanex.Affiliate.User.Core.Utilities
+﻿namespace Fanex.Affiliate.User.Core.CoreService
 {
     public interface IMemoryCacheService
     {

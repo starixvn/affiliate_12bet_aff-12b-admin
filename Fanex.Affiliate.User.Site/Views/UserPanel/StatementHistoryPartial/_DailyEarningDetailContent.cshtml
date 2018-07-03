@@ -47,8 +47,30 @@
                                 @item.DisplayUserName
                             }
                         </td>
-                        <td class="text-right">@item.Deposit.ToStringMoneyWithSymbol()</td>
-                        <td class="text-right">@item.Withdrawal.ToStringMoneyWithSymbol()</td>
+                        <td class="text-right">
+                            @if (item.Deposit > 0)
+                            {
+                                <a class="transactionItem" href="javascript:;" data-username="@item.UserName" data-date="@Model.SelectedDate.ToString("MM/dd/yyyy")" data-isdeposit="true">
+                                    @item.Deposit.ToStringMoneyWithSymbol()
+                                </a>
+                            }
+                            else
+                            {
+                                @item.Deposit.ToStringMoneyWithSymbol()
+                            }
+                        </td>
+                        <td class="text-right">
+                            @if (item.Withdrawal > 0)
+                            {
+                                <a class="transactionItem" href="javascript:;" data-username="@item.UserName" data-date="@Model.SelectedDate.ToString("MM/dd/yyyy")" data-isdeposit="false">
+                                    @item.Withdrawal.ToStringMoneyWithSymbol()
+                                </a>
+                            }
+                            else
+                            {
+                                @item.Withdrawal.ToStringMoneyWithSymbol()
+                            }
+                        </td>
                         <td class="text-right">@item.Turnover.ToStringMoneyWithSymbol()</td>
                         <td class="text-right">@item.WinLost.ToStringMoneyWithSymbol()</td>
                     </tr>

@@ -42,6 +42,20 @@
                     Site.redirect(Site.resolveRelativeUrl("BetList/Index?" + $.param(params)));
                 }
             });
+
+            $("#dailyEarningDetailContent").on("click", ".transactionItem", function () {
+                var params = {
+                    username: $(this).data("username"),
+                    date: $(this).data("date"),
+                    isdeposit: $(this).data("isdeposit")
+                }
+
+                if (params.username) {
+                    var url = Site.resolveRelativeUrl("MemberTransaction/Index");
+                    var title = (params.isdeposit ? dialogTitle.titleDeposit : dialogTitle.titleWithdrawal) + " " + params.date;
+                    _me.showTransactionInfo(url, params, title);
+                }
+            });
         },
 
         renderDailyEarningDetail: function (params) {
@@ -56,6 +70,28 @@
                 },
                 beforeSend: function () {
                     Site.showLoader();
+                },
+                complete: function () {
+                    Site.hideLoader();
+                }
+            });
+        },
+
+        showTransactionInfo: function (url, params, title) {
+            $.ajax({
+                type: "GET",
+                dataType: "html",
+                cache: false,
+                url: url,
+                data: params,
+                success: function (response) {
+                    $("#transactionDisalogTitle").html(title || "");
+                    $("#transactionDialogContent").html(response);
+                    $("#transactionDialog").modal("show");
+                },
+                beforeSend: function () {
+                    Site.showLoader();
+                    $("#transactionDialogContent").html("");
                 },
                 complete: function () {
                     Site.hideLoader();

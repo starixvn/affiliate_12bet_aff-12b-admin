@@ -2,6 +2,9 @@
 @import "../scss/vendors/bootstrap/mixins";
 @import "../scss/vendors/bootstrap/breadcrumbs";
 @import "../scss/components/pikaday";
+@import "../scss/vendors/bootstrap/close";
+@import "../scss/vendors/bootstrap/modals";
+@import "../scss/components/modal";
 
 .date-wrapper {
     display: inline-block;

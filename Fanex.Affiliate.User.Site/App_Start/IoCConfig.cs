@@ -7,6 +7,7 @@ using Autofac;
 using Autofac.Integration.Mvc;
 using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.CoreService;
+using Fanex.Affiliate.User.Core.MemberInfoWebService;
 using Fanex.Affiliate.User.Core.Repository;
 using Fanex.Affiliate.User.Core.Repository.BetList;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
@@ -97,6 +98,9 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterType<MemberRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<EmailHistoryRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<ContactService>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<ServiceSoapClient>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<MemberInfoServiceWrapper>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<MemberTransactionService>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
     }
 }
