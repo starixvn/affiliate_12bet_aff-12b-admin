@@ -34,18 +34,26 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         }
 
         [Fact]
-        public void Index_WhenCallWithPost_ModelStateIsInvalid_DoNotCallService()
+        public void Index_WhenCallWithPost_ModelStateIsInvalid_ReturnCorrectResult()
         {
             // Arrange
+            const string ErrorMessage1 = "ErrorMessage1";
+            const string ErrorMessage2 = "ErrorMessage2";
             var accountService = new Mock<IAccountService>();
             var controller = CreateController(accountService.Object);
-            controller.ModelState.AddModelError("Error", "Error");
+            controller.ModelState.AddModelError("Error1", ErrorMessage1);
+            controller.ModelState.AddModelError("Error2", ErrorMessage2);
+
+            var expectedResult = new ResultInfo { IsOk = false, Message = $"{ErrorMessage1}<br>{ErrorMessage2}" };
 
             // Action
-            controller.Index(new UserSignUpParam());
+            var actionResult = controller.Index(new UserSignUpParam { Captcha = Constant.Captcha }) as JsonResult;
+            var result = actionResult.Data as ResultInfo;
 
             // Assert
             accountService.Verify(p => p.CreateAffiliate(It.IsAny<UserSignUpParam>(), It.IsAny<EmailBaseParam>()), Times.Never);
+            Assert.Equal(expectedResult.IsOk, result.IsOk);
+            Assert.Equal(expectedResult.Message, result.Message);
         }
 
         [Fact]

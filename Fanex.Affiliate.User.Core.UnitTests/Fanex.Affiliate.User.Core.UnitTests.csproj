@@ -109,8 +109,11 @@
   <ItemGroup>
     <Compile Include="BusinessService\AccountServiceTest.cs" />
     <Compile Include="BusinessService\ContactServiceTest.cs" />
+    <Compile Include="BusinessService\MemberInfoServiceWrapperTest.cs" />
+    <Compile Include="BusinessService\MemberTransactionServiceTest.cs" />
     <Compile Include="Controllers\ContactUsControllerTest.cs" />
     <Compile Include="Controllers\MemberControllerTest.cs" />
+    <Compile Include="Controllers\MemberTransactionControllerTest.cs" />
     <Compile Include="Controllers\SignupControllerTest.cs" />
     <Compile Include="TestHelper\Constant.cs" />
     <Compile Include="TestHelper\MockingHelper.cs" />
