@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Functions SiteId="32" SiteName="12Bet">
   <Function Name="Authorization">
-    <Setting Key="Aff_SessionIdSel_view" SpName="Aff_SessionIdSel_xtest" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_SessionIdSel" SpName="Aff_SessionIdSel_xtest" DbName="affiliate_12bet_view" />
     <Setting Key="Aff_User_Login_UserInfoSel" SpName="Aff_User_Login_UserInfoSel_xtest" DbName="affiliate_12bet" />
     <Setting Key="Aff_User_Login_UserInfoSel_view" SpName="Aff_User_Login_UserInfoSel_xtest" DbName="affiliate_12bet_view" />
     <Setting Key="Aff_User_Login_ResultUpd" SpName="Aff_User_Login_ResultUpd_xtest" DbName="affiliate_12bet" />

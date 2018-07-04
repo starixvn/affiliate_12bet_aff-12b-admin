@@ -45,7 +45,7 @@ namespace Fanex.Affiliate.User.Core.Repository
         {
             const string spKey = "Aff_SessionIdSel";
 
-            using (var objectDb = new ObjectDBBuilder(spKey, DBMode.View))
+            using (var objectDb = new ObjectDBBuilder(spKey))
             {
                 objectDb.DB.AddInParameter("OnUserId", System.Data.SqlDbType.Int, onUserId);
 
