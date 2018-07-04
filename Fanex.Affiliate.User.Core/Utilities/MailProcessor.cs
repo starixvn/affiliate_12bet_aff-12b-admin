@@ -11,11 +11,6 @@
         public string BuildTemplateContent(string path, object model)
         {
             var templateContent = File.ReadAllText(path);
-            /// <summary>
-            /// CodeReview:
-            /// Must to pass template key 
-            /// read more at https://antaris.github.io/RazorEngine/
-            /// </summary>
             return Engine.Razor.RunCompile(templateContent, path, null, model);
         }
 

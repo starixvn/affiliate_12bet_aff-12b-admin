@@ -101,17 +101,13 @@ namespace Fanex.Affiliate.User.Core.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        /// <summary>
-        /// CodeReview:
-        /// dont use "HashPasswordForStoringInConfigFile" method anymore
-        /// </summary>
         [HttpGet]
         public ActionResult AdminLogin(InternalLoginParam loginParam)
         {
             if (ModelState.IsValid)
             {
                 var adminSessionId = _authService.GetSessionId(loginParam.AccOnId);
-                var hashedPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(adminSessionId + loginParam.ChalengeStr, "MD5");
+                var hashedPassword = Generator.GenerateSHA512String(adminSessionId + loginParam.ChalengeStr);
                 if (string.CompareOrdinal(loginParam.AccKey, hashedPassword) == 0)
                 {
                     var clientIpAddress = Request.UserHostAddress;
@@ -136,6 +132,10 @@ namespace Fanex.Affiliate.User.Core.Controllers
                         SessionService.AssignSessions(user);
                         FormsAuthentication.SetAuthCookie(user.UserName, false);
                     }
+                }
+                else
+                {
+                    return Redirect(Url.Action("PageNotFound", "Notify"));
                 }
             }
 

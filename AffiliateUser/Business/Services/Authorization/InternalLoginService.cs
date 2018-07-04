@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.Security;
 using Affiliate;
@@ -32,7 +34,7 @@ namespace AffiliateUser.Business.Services.Authorization
                 AppSettings.Session.IsInternalSite = true;
                 var dr = Auth.GetAdminNetSessionID(_accOnId, context);
                 string _accNetSessionID = dr.Outputs["netsessionid"].ToString();
-                if (string.Compare(_accKey, FormsAuthentication.HashPasswordForStoringInConfigFile(_accNetSessionID + _chalengeStr, "MD5"), false) != 0)
+                if (string.Compare(_accKey, GenerateSHA512String(_accNetSessionID + _chalengeStr), false) != 0)
                     throw new IBCException("Can not authenticate log-in, invalid ticket!");
 
                 var dr2 = Auth.LoginAuthentication(CastAide.AsInt32(_accId), _custName, context);
@@ -83,6 +85,26 @@ namespace AffiliateUser.Business.Services.Authorization
 #endif
             }
             context.Response.Redirect(FormsAuthentication.DefaultUrl);
+        }
+
+        public static string GenerateSHA512String(string inputString)
+        {
+            var sha512 = SHA512.Create();
+            var bytes = Encoding.UTF8.GetBytes(inputString);
+            var hash = sha512.ComputeHash(bytes);
+
+            return GetStringFromHash(hash);
+        }
+
+        private static string GetStringFromHash(byte[] hash)
+        {
+            var result = new StringBuilder();
+            for (var i = 0; i < hash.Length; i++)
+            {
+                result.Append(hash[i].ToString("X2"));
+            }
+
+            return result.ToString();
         }
     }
 }

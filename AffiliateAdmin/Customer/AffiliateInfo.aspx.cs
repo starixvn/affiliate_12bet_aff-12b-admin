@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
+using System.Security.Cryptography;
 using System.Text;
-using System.Web.Security;
 using AffiliateAdmin.Business.DataAccess;
 using DNAide.Core;
 using DNAide.Utils;
@@ -212,7 +212,7 @@ public partial class Customer_AffiliateInfo : IBCPage
     private string GerUrl(string custName)
     {
         string rndStr = Encryption.RandomString(6);
-        string accKey = FormsAuthentication.HashPasswordForStoringInConfigFile(Session.SessionID + rndStr, "MD5");
+        string accKey = GenerateSHA512String(Session.SessionID + rndStr);
         string accID = AppSettings.Session.CustID.ToString();
         string accOnId = AppSettings.Session.OnUser.ToString();
         string _url = AppSettings.Session.AffType == AffType.European ? AppSettings.InternalEuropeanAffiliateURL : AppSettings.InternalAsianAffiliateURL;
@@ -227,5 +227,25 @@ public partial class Customer_AffiliateInfo : IBCPage
     private string cutLongText(string val, int maxLength)
     {
         return (val.Length <= maxLength) ? val : "<span title='" + Server.HtmlEncode(val) + "'>" + val.Substring(0, maxLength - 3) + "...</span>";
+    }
+
+    public static string GenerateSHA512String(string inputString)
+    {
+        var sha512 = SHA512.Create();
+        var bytes = Encoding.UTF8.GetBytes(inputString);
+        var hash = sha512.ComputeHash(bytes);
+
+        return GetStringFromHash(hash);
+    }
+
+    private static string GetStringFromHash(byte[] hash)
+    {
+        var result = new StringBuilder();
+        for (var i = 0; i < hash.Length; i++)
+        {
+            result.Append(hash[i].ToString("X2"));
+        }
+
+        return result.ToString();
     }
 }

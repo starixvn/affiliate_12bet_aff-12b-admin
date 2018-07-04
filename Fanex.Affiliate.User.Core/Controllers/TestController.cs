@@ -4,6 +4,9 @@
     using System.Web.Mvc;
     using BusinessService;
     using Constants;
+    using DTO;
+    using Enum;
+    using MetalModels.Email;
     using ONEbook.UM.Filters;
     using Utilities;
     using ViewModels;
@@ -13,6 +16,8 @@
     {
         private readonly IMailProcessor _mailProcessor;
         private readonly ILanguageService _languageService;
+
+        private const string MailContact = "walter.tran@starixsoft.com";
 
         public TestController(ILanguageService languageService)
         {
@@ -115,8 +120,10 @@
                     return GetForgetPasswordModel();
 
                 case "PaymentCancel":
+                    return GetPaymentModel(PaymentRequestType.Cancel);
+
                 case "PaymentRequest":
-                    return GetPaymentModel();
+                    return GetPaymentModel(PaymentRequestType.Create);
 
                 case "NewPassword":
                     return GetRecoverPasswordModel();
@@ -130,49 +137,63 @@
 
         private object GetForgetPasswordModel()
         {
-            var domain = SiteDomainHelper.GetRootUrl(this);
-
-            return new
+            return new RecoverPasswordEmailParam
             {
-                RecoverPwdURL = domain + "Test/Recovery",
-                CustId = 0,
-                ValidationCode = "1234",
-                FirstName = "Walter",
-                UserName = "aawalter",
-                MailContact = "mailcontact@gmail.com"
+                User = GetUserInfo(),
+                MailContact = MailContact,
+                Code = "12345",
+                RootDomain = SiteDomainHelper.GetRootUrl(this),
+                MailTo = MailContact
             };
         }
 
-        private object GetPaymentModel()
+        private object GetPaymentModel(PaymentRequestType type)
         {
-            return new
+            return new PaymentEmailParam
             {
-                FirstName = "Walter",
-                MailContact = "mailcontact@gmail.com",
+                User = GetUserInfo(),
+                MailContact = MailContact,
                 TransId = 10008751L,
-                Date = DateTime.Now.Date.ToString("MM/dd/yyyy"),
-                Amount = 989
+                RequestDate = DateTime.Now.Date,
+                Amount = 989,
+                RootDomain = SiteDomainHelper.GetRootUrl(this),
+                MailTo = MailContact,
+                PaymentType = type
             };
         }
 
         private object GetRecoverPasswordModel()
         {
-            return new
+            return new NewPasswordEmailParam
             {
-                FirstName = "Walter",
+                User = GetUserInfo(),
                 MailContact = "mailcontact@gmail.com",
-                UserName = "12BET1001",
-                Password = "1234aa",
-                Url = "http://affiliate.12ying.com/"
+                NewPassword = "1234aa",
+                RootDomain = "http://affiliate.12ying.com/",
+                MailTo = MailContact,
             };
         }
 
         private object GetSignupModel()
         {
-            return new
+            return new EmailBaseParam
             {
-                FirstName = "Walter",
+                User = GetUserInfo(),
                 MailContact = "mailcontact@gmail.com"
+            };
+        }
+
+        private UserInfo GetUserInfo()
+        {
+            return new UserInfo
+            {
+                AffId = 1,
+                FirstName = "walter fisrt name",
+                UserName = "walter",
+                Email = "walter.tran@starixsoft.com",
+                LastName = "walter last name",
+                MailOption = false,
+                PreferredLanguage = "en-US"
             };
         }
     }
