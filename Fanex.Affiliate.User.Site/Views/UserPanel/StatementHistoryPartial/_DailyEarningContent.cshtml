@@ -18,7 +18,7 @@
             <th width="10%">@Lang.Winlost</th>
             <th width="10%">@Lang.Bonus</th>
 
-            @if (Model.SelectedSportType != SportType.Casino)
+            @if (Model.SelectedProduct != Product.Casino)
             {
                 <th width="10%">@Lang.Adjustment</th>
             }
@@ -35,7 +35,7 @@
                     <td class="text-center">
                         @if (Model.HasDailyDetail)
                         {
-                            <a class="dateItem" data-date="@date" data-sporttype="@Model.SelectedSportType" href="javascript:;">
+                            <a class="dateItem" data-date="@date" data-sporttype="@Model.SelectedProduct" href="javascript:;">
                                 @date
                             </a>
                         }
@@ -62,7 +62,7 @@
                         }
                     </td>
                     <td class="text-right">@item.Bonus.ToStringMoneyWithSymbol()</td>
-                    @if (Model.SelectedSportType != SportType.Casino)
+                    @if (Model.SelectedProduct != Product.Casino)
                     {
                         <td class="text-right">@item.Adjustment.ToStringMoneyWithSymbol()</td>
                     }
@@ -95,7 +95,7 @@
                     }
                 </td>
                 <td class="text-right">@total.Bonus.ToStringMoneyWithSymbol()</td>
-                @if (Model.SelectedSportType != SportType.Casino)
+                @if (Model.SelectedProduct != Product.Casino)
                 {
                     <td class="text-right">@total.Adjustment.ToStringMoneyWithSymbol()</td>
                 }

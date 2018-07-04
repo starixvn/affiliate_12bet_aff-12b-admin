@@ -28,12 +28,12 @@
                     <tr>
                         <td>@index</td>
                         <td class="text-center">
-                            @if (Model.HasDailyDetail && Model.SelectedSportType == SportType.Sportsbook && item.Turnover > 0)
+                            @if (Model.HasDailyDetail && Model.SelectedProduct == Product.Sportsbook && item.Turnover > 0)
                             {
                                 var param = new
                                 {
                                     date = Model.SelectedDate.ToString("MM/dd/yyyy"),
-                                    sportType = Model.SelectedSportType,
+                                    sportType = Model.SelectedProduct,
                                     custId = item.CustId,
                                     userName = item.UserName
                                 };

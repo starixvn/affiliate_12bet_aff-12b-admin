@@ -9,7 +9,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
     {
         IEnumerable<StatementHistory> GetStatementHistory(StatementHistoryParam statementHistoryParam);
 
-        IEnumerable<SportTypeItem> GetSportTypeList(int affId, bool isInternal);
+        IEnumerable<ProductItem> GetProductList(bool isInternal);
 
         DailyEarningResult GetDailyEarning(DailyEarningParam dailyEarningParam);
 

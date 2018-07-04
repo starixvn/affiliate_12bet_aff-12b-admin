@@ -29,7 +29,6 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
                             MonthDate = monthDate,
                             TransType = transType,
                             Amount = reader["Amount"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["Amount"]),
-                            Creator = Convert.ToString(reader["Creator"]),
                             Description = transType == (byte)Enum.TransType.Payment ? Convert.ToString(reader["Description"]) : string.Empty,
                             Status = Convert.ToString(reader["Status"]),
                             IsLink = transType != (byte)Enum.TransType.Payment &&
@@ -43,14 +42,14 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             return dataList;
         }
 
-        public IEnumerable<SportTypeItem> GetSportTypeList(int affId, bool isInternal)
+        public IEnumerable<ProductItem> GetProductList(bool isInternal)
         {
-            const string uSpKey = "Aff_SporttypeSelByAff";
+            const string uSpKey = "Aff_ProductList_Sel";
             var dbMode = isInternal ? DBMode.View : DBMode.Main;
 
             using (var objectDb = new ObjectDBBuilder(uSpKey, dbMode))
             {
-                return objectDb.DB.Query<SportTypeItem>(new { affId });
+                return objectDb.DB.Query<ProductItem>();
             }
         }
 

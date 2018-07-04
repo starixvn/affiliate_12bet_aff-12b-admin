@@ -1,6 +1,6 @@
 ﻿namespace Fanex.Affiliate.User.Core.Constants
 {
-    public static class SportType
+    public static class Product
     {
         public const byte All = 0;
 

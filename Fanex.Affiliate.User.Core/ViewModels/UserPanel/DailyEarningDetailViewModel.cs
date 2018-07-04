@@ -6,11 +6,11 @@ namespace Fanex.Affiliate.User.Core.ViewModels.UserPanel
 {
     public class DailyEarningDetailViewModel
     {
-        public IEnumerable<SportTypeItem> SportTypeList { get; set; }
+        public IEnumerable<ProductItem> ProductList { get; set; }
 
         public IEnumerable<DailyEarningDetail> MainData { get; set; }
 
-        public int SelectedSportType { get; set; }
+        public int SelectedProduct { get; set; }
 
         public DateTime SelectedDate { get; set; }
 

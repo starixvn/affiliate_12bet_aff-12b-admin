@@ -53,16 +53,16 @@
         {
             param.AffId = SessionService.UserSession.AffId;
             param.IsInternal = SessionService.IsInternal;
-            param.SportType = param.SportType.HasValue ? param.SportType.Value : SportType.Sportsbook;
+            param.SportType = param.SportType.HasValue ? param.SportType.Value : Product.Sportsbook;
             param.MonthDate = param.MonthDate.HasValue ? param.MonthDate.Value : DateTime.Now.AddDays(-1);
 
             var extraUserInfo = _statementHistoryRepository.GetExtraUserInfo(param.AffId, param.IsInternal);
 
             var viewModel = new DailyEarningViewModel
             {
-                SportTypeList = param.IsInitial ? _statementHistoryRepository.GetSportTypeList(param.AffId, param.IsInternal) : null,
+                ProductList = param.IsInitial ? _statementHistoryRepository.GetProductList(param.IsInternal) : null,
                 Data = _statementHistoryRepository.GetDailyEarning(param),
-                SelectedSportType = param.SportType.Value,
+                SelectedProduct = param.SportType.Value,
                 IsKoreanAgentCommGroup = extraUserInfo.GroupName.MatchWith(CommGroupName.KoreanAgentComm),
                 HasDailyDetail = extraUserInfo.HasDailyDetail
             };
@@ -84,9 +84,9 @@
             var viewModel = new DailyEarningDetailViewModel
             {
                 MainData = _statementHistoryRepository.GetDailyEarningDetail(param),
-                SportTypeList = param.IsInitial ? _statementHistoryRepository.GetSportTypeList(param.AffId, param.IsInternal) : null,
+                ProductList = param.IsInitial ? _statementHistoryRepository.GetProductList(param.IsInternal) : null,
                 SelectedDate = param.MonthDate.HasValue ? param.MonthDate.Value : DateTime.Now.Date,
-                SelectedSportType = param.SportType.HasValue ? param.SportType.Value : SportType.Sportsbook,
+                SelectedProduct = param.SportType.HasValue ? param.SportType.Value : Product.Sportsbook,
                 HasDailyDetail = extraUserInfo.HasDailyDetail
             };
 

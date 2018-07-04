@@ -31,19 +31,20 @@
                 <span class="glyphicon glyphicon-calendar"></span>
             </div>
         </div>
-        @if (Model.SportTypeList != null && Model.SportTypeList.Count() > 1)
-        {
-            <div class="form-group">
-                <label class="w100">@Lang.SportType:</label>
-                <select class="form-control" id="SportType">
-                    <option value="0">@Lang.All</option>
-                    @foreach (var item in Model.SportTypeList)
+
+        <div class="form-group">
+            <label class="w100">@Lang.SportType:</label>
+            <select class="form-control" id="SportType">
+                <option value="0">@Lang.All</option>
+                @if (Model.ProductList != null && Model.ProductList.Any())
+                {
+                    foreach (var item in Model.ProductList)
                     {
-                        <option value="@item.SportId" @(item.SportId == Model.SelectedSportType ? "selected" : string.Empty)>@item.SportName</option>
+                        <option value="@item.ProductId" @(item.ProductId == Model.SelectedProduct ? "selected" : string.Empty)>@item.ProductName</option>
                     }
-                </select>
-            </div>
-        }
+                }
+            </select>
+        </div>
         <button type="button" class="btn btn-submit" id="btnEarningDetailSubmit">@Lang.Submit</button>
     </form>
 

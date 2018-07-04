@@ -190,7 +190,7 @@
     <Compile Include="BusinessService\PaymentService.cs" />
     <Compile Include="Constants\CommGroupName.cs" />
     <Compile Include="Constants\PaymentStatus.cs" />
-    <Compile Include="Constants\SportType.cs" />
+    <Compile Include="Constants\Product.cs" />
     <Compile Include="Controllers\MemberTransactionController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
@@ -238,7 +238,7 @@
     <Compile Include="DTO\LatestHotNews.cs" />
     <Compile Include="DTO\MemberSitePage.cs" />
     <Compile Include="DTO\Payment.cs" />
-    <Compile Include="DTO\SportTypeItem.cs" />
+    <Compile Include="DTO\ProductItem.cs" />
     <Compile Include="DTO\Transaction.cs" />
     <Compile Include="DTO\UserInfo.cs" />
     <Compile Include="DTO\UserPanel\AccountOverviewStatistics.cs" />

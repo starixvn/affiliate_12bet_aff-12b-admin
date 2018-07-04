@@ -88,8 +88,8 @@
   <Function Name="Statement History">
     <Setting Key="Aff_AffiliateStatementHistorySel" SpName="Aff_AffiliateStatementHistorySel" DbName="affiliate_12bet" />
     <Setting Key="Aff_AffiliateStatementHistorySel_view" SpName="Aff_AffiliateStatementHistorySel" DbName="affiliate_12bet_view" />
-    <Setting Key="Aff_SporttypeSelByAff" SpName="Aff_SporttypeSelByAff" DbName="affiliate_12bet" />
-    <Setting Key="Aff_SporttypeSelByAff_view" SpName="Aff_SporttypeSelByAff" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_ProductList_Sel" SpName="Aff_ProductList_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_ProductList_Sel_view" SpName="Aff_ProductList_Sel" DbName="affiliate_12bet_view" />
     <Setting Key="Aff_EarningSelDaily" SpName="Aff_EarningSelDaily" DbName="affiliate_12bet" />
     <Setting Key="Aff_EarningSelDaily_view" SpName="Aff_EarningSelDaily" DbName="affiliate_12bet_view" />
     <Setting Key="Aff_AffiliateUser_ExtraUserInfoSel" SpName="Aff_AffiliateUser_ExtraUserInfoSel" DbName="affiliate_12bet" />
