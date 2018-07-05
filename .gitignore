@@ -40,3 +40,4 @@ Affiliate/Report.csv
 node_modules
 CoverageReport/
 /xunitcoverage/*.UnitTests.Coverage.xml
+/AffiliateAdmin/Areas/NewSite/www/node_modules
