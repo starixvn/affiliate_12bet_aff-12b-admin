@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web;
-using System.Web.Security;
-using System.Web.SessionState;
-using System.Data.SqlClient;
+using System.Web.Mvc;
 
 namespace AffiliateAdmin
 {
@@ -16,6 +13,8 @@ namespace AffiliateAdmin
             Sunplus.Agent.Configurations.AppSettings.Configuration.Load();
             // Code that runs on application startup
             Fanex.Data.Configuration.DbSettingProviderManager.Current.Start();
+
+            AreaRegistration.RegisterAllAreas();
         }
 
         void Application_End(object sender, EventArgs e)
