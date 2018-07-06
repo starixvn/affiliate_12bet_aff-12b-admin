@@ -1,5 +1,60 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["common"],{
 
+/***/ "./node_modules/react-dom/index.js":
+/*!**************************************************************************************************!*\
+  !*** delegated ./node_modules/react-dom/index.js from dll-reference vendor_53facc8c81a5717418b5 ***!
+  \**************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__(/*! dll-reference vendor_53facc8c81a5717418b5 */ "dll-reference vendor_53facc8c81a5717418b5"))("./node_modules/react-dom/index.js");
+
+/***/ }),
+
+/***/ "./node_modules/react-redux/es/index.js":
+/*!*******************************************************************************************************!*\
+  !*** delegated ./node_modules/react-redux/es/index.js from dll-reference vendor_53facc8c81a5717418b5 ***!
+  \*******************************************************************************************************/
+/*! exports provided: Provider, createProvider, connectAdvanced, connect */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__(/*! dll-reference vendor_53facc8c81a5717418b5 */ "dll-reference vendor_53facc8c81a5717418b5"))("./node_modules/react-redux/es/index.js");
+
+/***/ }),
+
+/***/ "./node_modules/react/index.js":
+/*!**********************************************************************************************!*\
+  !*** delegated ./node_modules/react/index.js from dll-reference vendor_53facc8c81a5717418b5 ***!
+  \**********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__(/*! dll-reference vendor_53facc8c81a5717418b5 */ "dll-reference vendor_53facc8c81a5717418b5"))("./node_modules/react/index.js");
+
+/***/ }),
+
+/***/ "./node_modules/redux-thunk/es/index.js":
+/*!*******************************************************************************************************!*\
+  !*** delegated ./node_modules/redux-thunk/es/index.js from dll-reference vendor_53facc8c81a5717418b5 ***!
+  \*******************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__(/*! dll-reference vendor_53facc8c81a5717418b5 */ "dll-reference vendor_53facc8c81a5717418b5"))("./node_modules/redux-thunk/es/index.js");
+
+/***/ }),
+
+/***/ "./node_modules/redux/es/redux.js":
+/*!*************************************************************************************************!*\
+  !*** delegated ./node_modules/redux/es/redux.js from dll-reference vendor_53facc8c81a5717418b5 ***!
+  \*************************************************************************************************/
+/*! exports provided: createStore, combineReducers, bindActionCreators, applyMiddleware, compose, __DO_NOT_USE__ActionTypes */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__(/*! dll-reference vendor_53facc8c81a5717418b5 */ "dll-reference vendor_53facc8c81a5717418b5"))("./node_modules/redux/es/redux.js");
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/lib/addStyles.js":
 /*!****************************************************!*\
   !*** ./node_modules/style-loader/lib/addStyles.js ***!
@@ -488,6 +543,65 @@ module.exports = function (css) {
 	return fixedCss;
 };
 
+
+/***/ }),
+
+/***/ "./source/js/layouts/AppLayout.jsx":
+/*!*****************************************!*\
+  !*** ./source/js/layouts/AppLayout.jsx ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var AppLayout = function (_Component) {
+  _inherits(AppLayout, _Component);
+
+  function AppLayout(props) {
+    _classCallCheck(this, AppLayout);
+
+    return _possibleConstructorReturn(this, (AppLayout.__proto__ || Object.getPrototypeOf(AppLayout)).call(this, props));
+  }
+
+  _createClass(AppLayout, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { id: 'container', className: 'container main-container' },
+        this.props.children
+      );
+    }
+  }]);
+
+  return AppLayout;
+}(_react.Component);
+
+exports.default = AppLayout;
 
 /***/ })
 

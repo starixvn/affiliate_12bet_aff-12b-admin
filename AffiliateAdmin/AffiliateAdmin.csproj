@@ -1601,6 +1601,8 @@
     <Content Include="App_Themes\Default\Images\x5.gif" />
     <Content Include="App_Themes\Default\jquery.ui.css" />
     <Content Include="App_Themes\error2.png" />
+    <Content Include="Areas\Portal\www\dist\common.js" />
+    <Content Include="Areas\Portal\www\dist\js\commission.js" />
     <Content Include="Areas\Portal\www\dist\js\sample.js" />
     <Content Include="Areas\Portal\www\dist\style\assets\glyphicons-halflings-regular.svg" />
     <Content Include="Areas\Portal\www\dist\style\assets\img2.jpg" />
@@ -1768,18 +1770,9 @@
     <Content Include="Areas\Portal\www\source\js\pages\sample\components\index.jsx" />
     <Content Include="Areas\Portal\www\source\style\abstracts\_variables.scss" />
     <Content Include="Areas\Portal\www\source\style\base\_base.scss" />
-    <Content Include="Areas\Portal\www\source\style\components\_button.scss" />
-    <Content Include="Areas\Portal\www\source\style\components\_input.scss" />
     <Content Include="Areas\Portal\www\source\style\components\_table.scss" />
-    <Content Include="Areas\Portal\www\source\style\layout\_footer.scss" />
-    <Content Include="Areas\Portal\www\source\style\layout\_forms.scss" />
-    <Content Include="Areas\Portal\www\source\style\layout\_header.scss" />
-    <Content Include="Areas\Portal\www\source\style\layout\_navigation.scss" />
-    <Content Include="Areas\Portal\www\source\style\layout\_sidebar.scss" />
     <Content Include="Areas\Portal\www\source\style\main.scss" />
-    <Content Include="Areas\Portal\www\source\style\pages\_home.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\_sample.scss" />
-    <Content Include="Areas\Portal\www\source\style\pages\_signin.scss" />
     <Content Include="Areas\Portal\www\source\style\vendors\_bootstrap.scss" />
     <Content Include="Areas\Portal\www\source\style\vendors\bootstrap\_alerts.scss" />
     <Content Include="Areas\Portal\www\source\style\vendors\bootstrap\_badges.scss" />
@@ -1867,6 +1860,8 @@
     <Content Include="Areas\Portal\www\dist\style\sample.js.map" />
     <Content Include="Areas\Portal\www\dist\vendor-manifest.json" />
     <Content Include="Areas\Portal\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Portal\www\dist\js\commission.js.map" />
+    <Content Include="Areas\Portal\www\dist\common.js.map" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -2005,7 +2000,9 @@
       <CachedSettingsPropName>AffiliateAdmin_AffBetlistService_AffiliateAPI</CachedSettingsPropName>
     </WebReferenceUrl>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Areas\Portal\www\source\style\layout\" />
+  </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\Google.Protobuf.dll" />
     <Analyzer Include="..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\SonarAnalyzer.CSharp.dll" />

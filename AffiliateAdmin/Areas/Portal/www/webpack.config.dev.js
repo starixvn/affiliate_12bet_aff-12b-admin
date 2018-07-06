@@ -7,10 +7,10 @@ const config = require("./webpack.config");
 
 const devConfig = config(environment.development)[0];
 devConfig.devServer = {
-  port: 9000,
-  hot: true,
-  watchContentBase: true,
-  publicPath: "/dist/js/"
+    port: 9000,
+    hot: true,
+    watchContentBase: true,
+    publicPath: "/dist/"
 };
 
 

@@ -8,7 +8,7 @@ export default class AppLayout extends Component {
 
   render() {
     return (
-      <div id="container" className="container main-container">
+      <div id="container" className="main-container">
         {this.props.children}
       </div>
     );

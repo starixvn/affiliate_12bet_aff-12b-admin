@@ -8,7 +8,9 @@ const styleDist = "style";
 
 module.exports = {
     [`${jsDist}/sample`]: "./source/js/pages/sample/components/index.jsx",
+    [`${jsDist}/commission`]: "./source/js/pages/commission/index.jsx",
 
     [`${styleDist}/bootstrap`]: "./source/style/vendors/_bootstrap.scss",
+    [`${styleDist}/portalmain`]: "./source/style/main.scss",
     [`${styleDist}/sample`]: "./source/style/pages/_sample.scss"
 };
