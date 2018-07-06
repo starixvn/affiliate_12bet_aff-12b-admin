@@ -1,22 +1,22 @@
 ﻿using System.Web.Mvc;
 
-namespace AffiliateAdmin.Areas.NewSite
+namespace AffiliateAdmin.Areas.Portal
 {
-    public class NewSiteAreaRegistration : AreaRegistration
+    public class PortalAreaRegistration : AreaRegistration
     {
         public override string AreaName
         {
             get
             {
-                return "NewSite";
+                return "Portal";
             }
         }
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
-                name: "NewSite",
-                url: "NewSite/{controller}/{action}"
+                name: "Portal",
+                url: "Portal/{controller}/{action}"
             );
         }
     }

@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace AffiliateAdmin.Areas.NewSite.Controllers
+namespace AffiliateAdmin.Areas.Portal.Controllers
 {
     public class CommissionController : Controller
     {
