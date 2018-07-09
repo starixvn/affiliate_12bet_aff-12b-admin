@@ -10,7 +10,10 @@ devConfig.devServer = {
     port: 9000,
     hot: true,
     watchContentBase: true,
-    publicPath: "/dist/"
+    publicPath: "/dist/",
+    proxy: {
+        '/api': 'http://localhost:65181'
+    }
 };
 
 

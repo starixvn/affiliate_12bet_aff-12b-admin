@@ -1,24 +1,14 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@(string.IsNullOrEmpty(ViewBag.Title) ? "12Bet Affiliate" : ViewBag.Title)</title>
-    <meta name="keywords" content="12Bet Affiliate System" />
-    <meta name="description" content="12Bet Affiliate System" />
-    <link href="~/Areas/NewSite/www/dist/style/bootstrap.css" rel="stylesheet" />
+﻿<div class="main-container">
+    <link href="~/Areas/Portal/www/dist/style/bootstrap.css" rel="stylesheet" />
+    <link href="~/Areas/Portal/www/dist/style/portalmain.css" rel="stylesheet" />
 
     @RenderSection("styles", required: false)
-</head>
-<body>
-    <div class="main-container">
-        @RenderBody()
-    </div>
+
+    @RenderBody()
 
     <input type="hidden" id="RootUrl" value="@Url.Content("~")" />
 
-    <script src="~/Areas/NewSite/www/dist/vendor.js"></script>
+    <script type="text/javascript" src="~/Areas/Portal/www/dist/vendor.js"></script>
+    <script type="text/javascript" src="~/Areas/Portal/www/dist/common.js"></script>
     @RenderSection("scripts", required: false)
-</body>
-</html>
+</div>

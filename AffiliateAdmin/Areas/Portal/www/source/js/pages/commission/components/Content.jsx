@@ -52,7 +52,10 @@ class Content extends Component {
                             <td rowSpan="6">0.02</td>
                             <td rowSpan="6">Yes</td>
                             <td rowSpan="6">100.00</td>
-                            <td rowSpan="6"><a>Add</a> | <a>Delete</a></td>
+                            <td rowSpan="6">
+                                <a href="javascript:;"><span className="icedit"></span></a>{' '}
+                                <a href="javascript:;"><span className="icdelete1"></span></a>
+                            </td>
                         </tr>
                         <tr>
                             <td>2</td>

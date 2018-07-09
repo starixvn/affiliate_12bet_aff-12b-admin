@@ -1,17 +1,7 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Text;
-using System.Data;
-using System.Configuration;
-using System.Linq;
-using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.HtmlControls;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using DNAide.Web;
-using System.Collections.Generic;
 using AffiliateAdmin.Business.Constants;
+using DNAide.Web;
 
 /// <summary>
 /// Summary description for SubMenu
@@ -19,8 +9,8 @@ using AffiliateAdmin.Business.Constants;
 public class SubMenu
 {
     public static string[] AffLink = new string[] { "../UserInfo/AffiliateList.aspx?status=approved&favor=1&isclk=1", "../UserInfo/AffiliateList.aspx?status=approved", "../UserInfo/AffiliateList.aspx?status=pending", "../UserInfo/AffiliateList.aspx?status=disapproved",
-                                                    "../UserInfo/AffiliateList.aspx?status=approved&isClosed=true", "../Payment/PaymentRequest.aspx", "../GroupSetting/GroupSetting.aspx", "../Others/EmailHistory.aspx" };
-    public static string[] AffText = new string[] { Resources.Lang.MyFavorite, Resources.Lang.Approved, Resources.Lang.Pending, Resources.Lang.Disapproved, Resources.Lang.Closed, Resources.Lang.PaymentRequest, Resources.Lang.CommGroup, Resources.Lang.EmailHistory };
+                                                    "../UserInfo/AffiliateList.aspx?status=approved&isClosed=true", "../Payment/PaymentRequest.aspx", "../GroupSetting/GroupSetting.aspx", "../Others/EmailHistory.aspx", "javascript:Portal.handleClickMenu('Portal/Commission/Index');" };
+    public static string[] AffText = new string[] { Resources.Lang.MyFavorite, Resources.Lang.Approved, Resources.Lang.Pending, Resources.Lang.Disapproved, Resources.Lang.Closed, Resources.Lang.PaymentRequest, Resources.Lang.CommGroup, Resources.Lang.EmailHistory, "New Commission" };
 
     public static string[] MediaAffLink = new string[] { "../UserInfo/MediaAffList.aspx?favor=1&isclk=1", "../UserInfo/MediaAffList.aspx", "../UserInfo/MediaAffList.aspx?isClosed=true", "../Report/MediaReportDetail.aspx",
                                                     "../Report/AffiliateReport.aspx?type=2", "../Report/MemberStatisticsReport.aspx?type=2", "../Report/SignUpActive.aspx?type=2", "../Report/Commission.aspx?type=2" };
@@ -40,12 +30,12 @@ public class SubMenu
 
     public static string[] ReportLink = new string[]
         {
-            "../Report/MemberReport.aspx", 
-            "../Report/AffiliateReport.aspx", 
-            "../Report/MemberStatisticsReport.aspx", 
-            "../Report/AffiliateQMReport.aspx", 
-            "../Report/SignUpActive.aspx", 
-            "../Report/Commission.aspx", 
+            "../Report/MemberReport.aspx",
+            "../Report/AffiliateReport.aspx",
+            "../Report/MemberStatisticsReport.aspx",
+            "../Report/AffiliateQMReport.aspx",
+            "../Report/SignUpActive.aspx",
+            "../Report/Commission.aspx",
             "../Report/Performance.aspx",
             "../Report/SBPlayerTurnoverReport.aspx",
             "../Report/CasinoPlayerTurnoverReport.aspx"
@@ -53,12 +43,12 @@ public class SubMenu
 
     public static string[] ReportText = new string[]
         {
-            Resources.Lang.ReportDetails, 
-            Resources.Lang.AffiliateReport, 
-            Resources.Lang.MemberStatistics, 
-            Resources.Lang.QMReport, 
-            Resources.Lang.SignUpActive, 
-            Resources.Lang.Commission, 
+            Resources.Lang.ReportDetails,
+            Resources.Lang.AffiliateReport,
+            Resources.Lang.MemberStatistics,
+            Resources.Lang.QMReport,
+            Resources.Lang.SignUpActive,
+            Resources.Lang.Commission,
             Resources.Lang.Performance,
             Resources.Lang.SBPlayerTurnoverReport,
             Resources.Lang.CasinoPlayerTurnoverReport

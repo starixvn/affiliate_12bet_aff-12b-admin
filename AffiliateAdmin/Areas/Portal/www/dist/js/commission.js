@@ -154,6 +154,28 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./node_modules/invariant/browser.js":
+/*!****************************************************************************************************!*\
+  !*** delegated ./node_modules/invariant/browser.js from dll-reference vendor_53facc8c81a5717418b5 ***!
+  \****************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__(/*! dll-reference vendor_53facc8c81a5717418b5 */ "dll-reference vendor_53facc8c81a5717418b5"))("./node_modules/invariant/browser.js");
+
+/***/ }),
+
+/***/ "./node_modules/prop-types/index.js":
+/*!***************************************************************************************************!*\
+  !*** delegated ./node_modules/prop-types/index.js from dll-reference vendor_53facc8c81a5717418b5 ***!
+  \***************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__(/*! dll-reference vendor_53facc8c81a5717418b5 */ "dll-reference vendor_53facc8c81a5717418b5"))("./node_modules/prop-types/index.js");
+
+/***/ }),
+
 /***/ "./source/js/pages/commission/components/AppContainer.jsx":
 /*!****************************************************************!*\
   !*** ./source/js/pages/commission/components/AppContainer.jsx ***!
@@ -180,6 +202,10 @@ var _AppLayout = __webpack_require__(/*! ../../../layouts/AppLayout */ "./source
 
 var _AppLayout2 = _interopRequireDefault(_AppLayout);
 
+var _Filter = __webpack_require__(/*! ./Filter */ "./source/js/pages/commission/components/Filter.jsx");
+
+var _Filter2 = _interopRequireDefault(_Filter);
+
 var _Content = __webpack_require__(/*! ./Content */ "./source/js/pages/commission/components/Content.jsx");
 
 var _Content2 = _interopRequireDefault(_Content);
@@ -191,8 +217,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-//import Filter from "./Filter";
-
 
 var AppContainer = function (_Component) {
     _inherits(AppContainer, _Component);
@@ -209,6 +233,7 @@ var AppContainer = function (_Component) {
             return _react2.default.createElement(
                 _AppLayout2.default,
                 null,
+                _react2.default.createElement(_Filter2.default, null),
                 _react2.default.createElement(_Content2.default, null)
             );
         }
@@ -265,17 +290,17 @@ var Content = function (_Component) {
         value: function render() {
             return _react2.default.createElement(
                 "div",
-                { className: "content-container" },
+                { className: "content-container table-responsive" },
                 _react2.default.createElement(
                     "table",
-                    { className: "aff-table", cellspacing: "1", cellpadding: "3", width: "100%", style: { tableLayout: "fixed" } },
+                    { className: "aff-table table table-bordered", cellSpacing: "1", cellPadding: "3", width: "100%", style: { tableLayout: "fixed" } },
                     _react2.default.createElement(
                         "thead",
                         null,
                         _react2.default.createElement(
                             "tr",
                             null,
-                            _react2.default.createElement("th", { rowSpan: "2" }),
+                            _react2.default.createElement("th", { rowSpan: "2", width: "3%" }),
                             _react2.default.createElement(
                                 "th",
                                 { rowSpan: "2" },
@@ -448,6 +473,21 @@ var Content = function (_Component) {
                                 "td",
                                 { rowSpan: "6" },
                                 "100.00"
+                            ),
+                            _react2.default.createElement(
+                                "td",
+                                { rowSpan: "6" },
+                                _react2.default.createElement(
+                                    "a",
+                                    { href: "javascript:;" },
+                                    _react2.default.createElement("span", { className: "icedit" })
+                                ),
+                                ' ',
+                                _react2.default.createElement(
+                                    "a",
+                                    { href: "javascript:;" },
+                                    _react2.default.createElement("span", { className: "icdelete1" })
+                                )
                             )
                         ),
                         _react2.default.createElement(
@@ -598,6 +638,92 @@ exports.default = (0, _reactRedux.connect)()(Content);
 
 /***/ }),
 
+/***/ "./source/js/pages/commission/components/Filter.jsx":
+/*!**********************************************************!*\
+  !*** ./source/js/pages/commission/components/Filter.jsx ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+var _reactBootstrap = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/es/index.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Filter = function (_Component) {
+    _inherits(Filter, _Component);
+
+    function Filter(props) {
+        _classCallCheck(this, Filter);
+
+        var _this = _possibleConstructorReturn(this, (Filter.__proto__ || Object.getPrototypeOf(Filter)).call(this, props));
+
+        _this.handleClick = function (event) {
+            event.preventDefault();
+            console.log("submit");
+        };
+
+        return _this;
+    }
+
+    _createClass(Filter, [{
+        key: "render",
+        value: function render() {
+            return _react2.default.createElement(
+                "div",
+                { className: "filter-container" },
+                _react2.default.createElement(
+                    _reactBootstrap.Form,
+                    { inline: true, onSubmit: this.handleClick, style: { backgroundColor: 'transparent' } },
+                    _react2.default.createElement(
+                        _reactBootstrap.FormGroup,
+                        null,
+                        _react2.default.createElement(
+                            _reactBootstrap.ControlLabel,
+                            null,
+                            "Group Name"
+                        ),
+                        ' ',
+                        _react2.default.createElement(_reactBootstrap.FormControl, { type: "text", bsClass: "search-box" })
+                    ),
+                    ' ',
+                    _react2.default.createElement(
+                        _reactBootstrap.Button,
+                        { type: "submit" },
+                        _react2.default.createElement("span", { id: "divsearch" })
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Filter;
+}(_react.Component);
+
+exports.default = (0, _reactRedux.connect)()(Filter);
+
+/***/ }),
+
 /***/ "./source/js/pages/commission/index.jsx":
 /*!**********************************************!*\
   !*** ./source/js/pages/commission/index.jsx ***!
@@ -630,6 +756,10 @@ var _reduxThunk = __webpack_require__(/*! redux-thunk */ "./node_modules/redux-t
 
 var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
+var _reducers = __webpack_require__(/*! ./reducers */ "./source/js/pages/commission/reducers/index.js");
+
+var _reducers2 = _interopRequireDefault(_reducers);
+
 var _AppContainer = __webpack_require__(/*! ./components/AppContainer */ "./source/js/pages/commission/components/AppContainer.jsx");
 
 var _AppContainer2 = _interopRequireDefault(_AppContainer);
@@ -646,11 +776,10 @@ function configureStore(initialState) {
   var enhancer = (0, _redux.compose)((0, _redux.applyMiddleware)(_reduxThunk2.default // lets us dispatch() functions
   ));
 
-  return (0, _redux.createStore)({}, initialState, enhancer);
+  return (0, _redux.createStore)(_reducers2.default, initialState, enhancer);
 }
 
-var store = configureStore();
-console.log(store);
+var store = configureStore({});
 
 var App = function (_React$Component) {
   _inherits(App, _React$Component);
@@ -679,7 +808,27 @@ var App = function (_React$Component) {
 exports.default = App;
 
 
-_reactDom2.default.render(_react2.default.createElement(App, null), document.getElementById("rootApp"));
+_reactDom2.default.render(_react2.default.createElement(App, null), document.getElementById("root"));
+
+/***/ }),
+
+/***/ "./source/js/pages/commission/reducers/index.js":
+/*!******************************************************!*\
+  !*** ./source/js/pages/commission/reducers/index.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _redux = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+
+exports.default = (0, _redux.combineReducers)({});
 
 /***/ }),
 

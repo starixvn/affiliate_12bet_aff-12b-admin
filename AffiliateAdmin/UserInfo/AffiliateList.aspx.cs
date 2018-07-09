@@ -1,12 +1,15 @@
 ﻿using System;
-using System.Data;
-using Criterias;
-using DNAide.Web;
-using DNAide.Core;
 using AffiliateAdmin.Business.DataAccess;
+using AffiliateAdmin.Portal;
+using Criterias;
+using DNAide.Core;
+using DNAide.Web;
 
-public partial class AffiliateList : IBCPage
+public partial class AffiliateList : BasePage
 {
+    protected string _htmlContent = string.Empty;
+    protected string _htmlSubmenuContent = string.Empty;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         string strTemplate = TemplateHandler.LoadTemplate("UserInfo/AffList.htm");
@@ -27,7 +30,7 @@ public partial class AffiliateList : IBCPage
                 TemplateHandler.RemoveBlock(ref strTemplate, "GroupNameSearch");
                 TemplateHandler.RemoveBlock(ref strTemplate, "total");
                 TemplateHandler.RemoveBlock(ref strTemplate, "pass");
-                TemplateHandler.RemoveBlock(ref strTemplate, "approved1"); 
+                TemplateHandler.RemoveBlock(ref strTemplate, "approved1");
                 TemplateHandler.Assign(ref strTemplate, "tabpending", string.Empty);
                 TemplateHandler.Assign(ref strTemplate, "userdate", Resources.Lang.registerdate);
                 TemplateHandler.ReplaceBlock(ref strTemplate, "pending", Resources.Lang.Pending + " [<span id='nummem'>{nummem-val}</span>]");
@@ -50,7 +53,7 @@ public partial class AffiliateList : IBCPage
                 TemplateHandler.RemoveBlock(ref strTemplate, "GroupNameSearch");
                 TemplateHandler.RemoveBlock(ref strTemplate, "total");
                 TemplateHandler.RemoveBlock(ref strTemplate, "pass");
-                TemplateHandler.RemoveBlock(ref strTemplate, "approved1"); 
+                TemplateHandler.RemoveBlock(ref strTemplate, "approved1");
                 TemplateHandler.Assign(ref strTemplate, "tabdisapproved", string.Empty);
                 TemplateHandler.Assign(ref strTemplate, "userdate", Resources.Lang.disapprovaldate);
                 TemplateHandler.ReplaceBlock(ref strTemplate, "disapproved", Resources.Lang.Disapproved + " [<span id='nummem'>{nummem-val}</span>]");
@@ -114,7 +117,7 @@ public partial class AffiliateList : IBCPage
 
         var commGroupTbl = DbHelper.Execute("Aff_CommGroupSelListNormal", DBType.AFFILIATE_12BET).ResultSet.Tables[0];
         var languageTbl = DbHelper.Execute("Aff_MarketSel", DBType.AFFILIATE_12BET).ResultSet.Tables[0];
-        
+
         TemplateHandler.Assign(ref strTemplate, "SearchBy", Resources.Lang.SearchBy);
         TemplateHandler.Assign(ref strTemplate, "optioncommgroup", Common.GenDropDownFromTable2(commGroupTbl, "GroupId", "GroupName", "slCommGroup", ref selectedCommGroup, true, Resources.Lang.AllCommGroup));
         TemplateHandler.Assign(ref strTemplate, "optionlanguage", Common.GenDropDownFromTable2(languageTbl, "MarketId", "MarketName", "slLanguage", ref slLanguage, true, Resources.Lang.AllLanguage));
@@ -127,22 +130,22 @@ public partial class AffiliateList : IBCPage
         groupName = ((string.Compare(groupName, Resources.Lang.GroupName, true) == 0 ? string.Empty : groupName));
 
         var criteria = new AffiliateListCriteria
-            {
-                GroupId = slCommGroup,
-                Username = strUserName,
-                Email = strEmail,
-                AffId = intID,
-                Status = strStatus,
-                IsClosed = isClosed,
-                PageIndex = intPage,
-                PageSize = intPageSize,
-                IsFavorite = isFavor,
-                Language = string.IsNullOrEmpty(slLanguage) ? null : slLanguage,
-            };
+        {
+            GroupId = slCommGroup,
+            Username = strUserName,
+            Email = strEmail,
+            AffId = intID,
+            Status = strStatus,
+            IsClosed = isClosed,
+            PageIndex = intPage,
+            PageSize = intPageSize,
+            IsFavorite = isFavor,
+            Language = string.IsNullOrEmpty(slLanguage) ? null : slLanguage,
+        };
 
         string strContent = AffAdmin.GenerateHTML.AffiliateList.GetAffList(criteria);
 
-        if (string.Compare(strStatus,"approved",true)==0)
+        if (string.Compare(strStatus, "approved", true) == 0)
         {
             TemplateHandler.Assign(ref strTemplate, "groupname-val", groupName);
             TemplateHandler.Assign(ref strTemplate, "paging-top", Common.GenPaging(criteria.TotalPages, criteria.PageIndex, criteria.PageSize, criteria.NRows, "aPageTop", "txtPageTop", null, null, width, isSelectAll, true, false, false));
@@ -157,7 +160,7 @@ public partial class AffiliateList : IBCPage
         {
             TemplateHandler.Assign(ref strTemplate, "pagingcss", "hide");
             TemplateHandler.RemoveBlock(ref strTemplate, "bottombtn");
-            
+
             if (isFavor)//for favorite
             {
                 if (Request["isclk"] == "1")//is click on menu header
@@ -170,10 +173,6 @@ public partial class AffiliateList : IBCPage
             }
         }
 
-        //Sub menu        
-        TemplateHandler.Assign(ref strTemplate, "submenu", SubMenu.GenSubMenu(SubMenu.AffLink, SubMenu.AffText, currTab, criteria.NRows, Resources.Lang.AffList,"i_affiliateslist.png"));
-        
-
         TemplateHandler.Assign(ref strTemplate, "timer-val", string.IsNullOrEmpty(Request["slTime"]) ? "0" : Request["slTime"]);
         TemplateHandler.Assign(ref strTemplate, "status-val", criteria.Status.ToLower());
         TemplateHandler.Assign(ref strTemplate, "page", criteria.PageIndex);
@@ -183,11 +182,9 @@ public partial class AffiliateList : IBCPage
         TemplateHandler.Assign(ref strTemplate, "isclosed-val", criteria.IsClosed);
 
         TemplateHandler.ReplaceBlock(ref strTemplate, "content", strContent);
-        this.HtmlContent = strTemplate;
-        
-    }
-    string RefreshIcon(string strStatus)
-    {
-        return "&nbsp;&nbsp;<span class=\"refresh\" title=\"refresh\" onclick=\"Refresh('AffiliateList.aspx?status=" + strStatus + "')\">&nbsp;</span>";
+
+        _htmlSubmenuContent = SubMenu.GenSubMenu(SubMenu.AffLink, SubMenu.AffText, currTab, criteria.NRows, Resources.Lang.AffList, "i_affiliateslist.png");
+        _htmlContent = strTemplate;
+
     }
 }

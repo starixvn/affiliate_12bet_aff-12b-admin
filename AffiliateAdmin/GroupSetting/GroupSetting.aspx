@@ -1,11 +1,17 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" Inherits="GroupSetting" Codebehind="GroupSetting.aspx.cs" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Portal/Layout.Master" AutoEventWireup="true" Inherits="GroupSetting" Codebehind="GroupSetting.aspx.cs" %>
 
-<!--js-->   
-   <link rel="stylesheet" type="text/css" href="../App_Js/GroupSetting.css" media="all"/>   
-    <script type="text/javascript" src="../App_Js/prototype.js"></script>
-    <script type="text/javascript" src="../App_Js/common.js"></script>  
-    <script type="text/javascript" src="../App_Js/RefreshTime.js"></script>  
-    <script type="text/javascript" src="../App_Js/IBCWnd/IBCWnd.js"></script>
+<asp:Content ContentPlaceHolderID="head" runat="server">
+    <link rel="stylesheet" type="text/css" href="../App_Js/GroupSetting.css" media="all"/>
+</asp:Content>
+
+<asp:Content ContentPlaceHolderID="script" runat="server">
     <script type="text/javascript" src="../App_Js/GroupSetting.js"></script>
+</asp:Content>
 
-<!--/js-->
+<asp:Content ContentPlaceHolderID="subMenu" runat="server">
+    <%=_htmlSubmenuContent %>
+</asp:Content>
+
+<asp:Content ContentPlaceHolderID="masterContent" runat="server" ID="mainContent">
+    <%=_htmlContent %>
+</asp:Content>

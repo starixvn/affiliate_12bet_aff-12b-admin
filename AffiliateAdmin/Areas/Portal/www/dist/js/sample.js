@@ -630,7 +630,6 @@ function configureStore(initialState) {
 }
 
 var store = configureStore(defaultState);
-console.log(store);
 
 var App = function (_React$Component) {
   _inherits(App, _React$Component);

@@ -1,10 +1,18 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" Inherits="AffiliateList" Codebehind="AffiliateList.aspx.cs" %>
-<!--js-->
-<script type="text/javascript" src="../App_Js/prototype.js"></script>
-<script type="text/javascript" src="../App_Js/RefreshTime.js"></script>
-<script src="../App_Js/Common.js" type="text/javascript"></script>
-<script type="text/javascript" src="../App_Js/IBCWnd/IBCWnd.js"></script>
-<script type="text/javascript">
+﻿<%@ Page Language="C#" MasterPageFile="~/Portal/Layout.Master" AutoEventWireup="true" Inherits="AffiliateList" Codebehind="AffiliateList.aspx.cs" %>
+
+<asp:Content ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+
+<asp:Content ContentPlaceHolderID="subMenu" runat="server">
+    <%=_htmlSubmenuContent %>
+</asp:Content>
+
+<asp:Content ContentPlaceHolderID="masterContent" runat="server" ID="mainContent">
+    <%=_htmlContent %>
+</asp:Content>
+
+<asp:Content ContentPlaceHolderID="script" runat="server">
+    <script type="text/javascript">
     window.onload = MyFocus;
     var time = 0;//set Timeout for clock refresh
     var timer = null;//set Timeout for choose refresh time
@@ -184,4 +192,4 @@
         ele.innerHTML = "<iframe src='" + url + "' style='display:none;'></iframe>";
     }
 </script>
-<!--/js-->
+</asp:Content>

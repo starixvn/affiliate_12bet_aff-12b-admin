@@ -2,11 +2,15 @@
 using System.Data;
 using System.Text;
 using AffiliateAdmin.Business.DataAccess;
+using AffiliateAdmin.Portal;
 using DNAide.Core;
 using DNAide.Web;
 
-public partial class PaymentRequest : IBCPage
+public partial class PaymentRequest : BasePage
 {
+    protected string _htmlContent = string.Empty;
+    protected string _htmlSubmenuContent = string.Empty;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         string strTpl = TemplateHandler.LoadTemplate("Payment/PaymentRequest.htm");
@@ -45,8 +49,6 @@ public partial class PaymentRequest : IBCPage
         #endregion assign text
 
         string strSearchBy = string.Empty;
-        string strFrom = string.Empty;
-        string strTo = string.Empty;
         string strUsername = string.Empty;
         bool isGetAll = false;
         string strStatus = string.Empty;
@@ -54,7 +56,7 @@ public partial class PaymentRequest : IBCPage
         int iPagesize = string.IsNullOrEmpty(Request["slPageSize"]) ? 20 : CastAide.AsInt32(Request["slPageSize"], 1);
 
         strSearchBy = string.IsNullOrEmpty(Request["slSearch"]) ? "0" : Request["slSearch"];
-        isGetAll = Request["chkGetAll"] == "on" ? true : false;
+        isGetAll = Request["chkGetAll"] == "on";
         strUsername = Request["txtUsername"];
         strStatus = Request["slStatus"];
         DateTime dtmNow = DateTime.Now;
@@ -74,13 +76,12 @@ public partial class PaymentRequest : IBCPage
         TemplateHandler.Assign(ref strTpl, "fdate", dtmFrom.ToString("MM/dd/yyyy"));
         TemplateHandler.Assign(ref strTpl, "tdate", dtmTo.ToString("MM/dd/yyyy"));
         TemplateHandler.Assign(ref strTpl, "curStatus", strStatus);//get current status selected
-                                                                   //Response.Write("<script type='text/javascript'>alert('" + isGetAll.ToString() + "');</script>");
+
         DbResult rs = DataHandler.PaymentRequest.PaymentRequestList(strSearchBy, strUsername, strStatus, dtmFrom, dtmTo, isGetAll, page, iPagesize);
 
         int intMaxPage = CastAide.AsInt32(rs.Outputs["totalpages"]);
         int intNumRows = CastAide.AsInt32(rs.Outputs["nrows"]);
         int intPageId = page;
-        TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.AffLink, SubMenu.AffText, 5, intNumRows, Resources.Lang.PaymentRequest, "i_pay_re.png"));
 
         if (intNumRows > 0)
         {
@@ -124,25 +125,27 @@ public partial class PaymentRequest : IBCPage
             TemplateHandler.ReplaceBlock(ref strTpl, "content", Common.NoInfo(8));
         }
         TemplateHandler.Assign(ref strTpl, "nummem", intNumRows);
-        this.HtmlContent = strTpl;
+
+        _htmlSubmenuContent = SubMenu.GenSubMenu(SubMenu.AffLink, SubMenu.AffText, 5, intNumRows, Resources.Lang.PaymentRequest, "i_pay_re.png");
+        _htmlContent = strTpl;
     }
 
-    private DateTime GenStartOfDate(DateTime dtmDate)
+    private static DateTime GenStartOfDate(DateTime dtmDate)
     {
         return CastAide.AsDateTime(dtmDate.ToString("MM/dd/yyyy"), dtmDate);
     }
 
-    private string GetRowStyle(string strStatus)
+    private static string GetRowStyle(string strStatus)
     {
         switch (strStatus.ToLower())
         {
             case "cancelled":
             case "rejected":
-                return Common.RowBgClosed;//return "Closed";
+                return Common.RowBgClosed;
             case "approved":
-                return Common.RowBgOdd;// return "Approved";
+                return Common.RowBgOdd;
             case "pending":
-                return Common.RowBgPending;//return "Pending";
+                return Common.RowBgPending;
             default:
                 return Common.RowBgPending;
         }

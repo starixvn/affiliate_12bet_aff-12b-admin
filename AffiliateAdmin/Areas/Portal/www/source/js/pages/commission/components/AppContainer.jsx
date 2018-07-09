@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import AppLayout from "../../../layouts/AppLayout";
-//import Filter from "./Filter";
+import Filter from "./Filter";
 import Content from "./Content";
 
 class AppContainer extends Component {
@@ -13,6 +13,7 @@ class AppContainer extends Component {
     render() {
         return (
             <AppLayout>
+                <Filter />
                 <Content />
             </AppLayout>
         );

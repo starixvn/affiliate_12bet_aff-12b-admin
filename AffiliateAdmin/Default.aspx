@@ -8,13 +8,22 @@
     <![if ! IE]>
     <link runat="server" id="IconPNG" rel="shortcut icon"/>
     <![endif]>
+
+    <style>
+        html, body{
+            height: 100%;
+            margin: 0;
+        }
+
+        #fMain{
+            height: calc(100% - 80px)
+        }
+    </style>
 </head>
-<frameset rows="60, *, 25" frameborder="no" framespacing="0">
-    <frame id="fMenu" name="fMenu" frameborder="0" noresize="noresize" scrolling="no" src="Header.aspx" height="60px" />
-    <frame id="fMain" name="fMain" noresize="noresize" frameborder="0" scrolling="auto" src="Home/Home.aspx" />        
-    <frame id="fFooter" name="fFooter" frameborder="0" noresize="noresize" scrolling="no" src="Footer.htm" height="20px" />
-    <noframes>
-        <body><h3>Sorry, Your browser does not handle frames!</h3></body>
-    </noframes>
-</frameset>
+    
+<body>
+    <iframe id="fMenu" name="fMenu" frameborder="0" noresize="noresize" scrolling="no" src="Header.aspx" height="60px" width="100%"></iframe>
+    <iframe id="fMain" name="fMain" noresize="noresize" frameborder="0" scrolling="auto" src="Home/Home.aspx" width="100%"></iframe>
+    <iframe id="fFooter" name="fFooter" frameborder="0" noresize="noresize" scrolling="no" src="Footer.htm" height="20px" width="100%"></iframe>
+</body>
 </html>
