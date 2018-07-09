@@ -10,11 +10,14 @@
 
 // Reset and dependencies
 @import "bootstrap/normalize";
+@import "bootstrap/scaffolding";
+@import "bootstrap/type";
+@import "bootstrap/utilities";
 @import "bootstrap/print";
 @import "bootstrap/glyphicons";
+@import "bootstrap/component-animations";
 
 // Core CSS
-@import "bootstrap/scaffolding";
 @import "bootstrap/type";
 @import "bootstrap/grid";
 @import "bootstrap/tables";

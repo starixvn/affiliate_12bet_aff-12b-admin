@@ -1628,6 +1628,8 @@
     <Content Include="Areas\Portal\www\source\js\actions\sampleAction.js" />
     <Content Include="Areas\Portal\www\source\js\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\modules\createReducer.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission\reducers\filterReducer.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\sample\actions\filterAction.js" />
     <Content Include="Areas\Portal\www\source\js\pages\sample\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\sample\actions\types.js" />
@@ -1635,6 +1637,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\sample\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\reducers\sampleReducer.js" />
     <Content Include="Areas\Portal\www\source\style\assets\bg_search01.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\icon_head.png" />
     <Content Include="Areas\Portal\www\source\style\assets\img2.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\sprite.gif" />
     <Content Include="Areas\Portal\www\source\style\fonts\bootstrap\glyphicons-halflings-regular.svg" />
@@ -1774,7 +1777,6 @@
     <Content Include="AffiliateAdmin.ruleset" />
     <Content Include="Areas\Portal\www\.babelrc" />
     <Content Include="Areas\Portal\www\package.json" />
-    <Content Include="Areas\Portal\www\source\js\components\Home.jsx" />
     <Content Include="Areas\Portal\www\source\js\layouts\AppLayout.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\sample\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\sample\components\Content.jsx" />
@@ -1878,6 +1880,13 @@
     <Content Include="Areas\Portal\www\source\style\pages\commission.scss" />
     <Content Include="Areas\Portal\www\source\style\base\_common.scss" />
     <Content Include="Portal\Layout.Master" />
+    <Content Include="Areas\Portal\www\source\style\components\_modal.scss" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission\components\GridData.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission\components\PopupContent.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission\index.jsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -2017,6 +2026,7 @@
     </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Areas\Portal\www\source\js\components\" />
     <Folder Include="Areas\Portal\www\source\style\layout\" />
   </ItemGroup>
   <ItemGroup>

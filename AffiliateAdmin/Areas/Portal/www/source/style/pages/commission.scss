@@ -1,1 +1,81 @@
-﻿
+﻿@import "../components/modal";
+
+.comm-popup-container {
+    font-size: 12px;
+
+    fieldset {
+        margin-bottom: 10px;
+    }
+
+    .text-desc {
+        width: 500px;
+    }
+
+    .inline {
+        > * {
+            display: inline-block;
+            margin: 5px;
+        }
+
+        > .label {
+            width: 170px;
+            font-weight: bold;
+        }
+
+        .unit-name {
+            width: 150px;
+        }
+
+        .sign {
+            width: 7px;
+        }
+
+        .select-percent {
+            width: 70px;
+        }
+
+        .select-product {
+            width: 130px;
+        }
+    }
+
+    .platformfee-group {
+        .btn-action {
+            font-weight: bold;
+            width: 20px;
+            padding: 4px;
+            line-height: 7px;
+            margin-left: -35px;
+            font-size: 14px;
+        }
+    }
+
+    .input-tier {
+        width: 100%;
+
+        &.max {
+            width: calc(100% - 30px);
+        }
+    }
+
+    .btn-addTier {
+        line-height: 14px;
+    }
+
+    .tier-setting-table {
+        tr {
+            td {
+                .chk-infinity {
+                    position: relative;
+                    top: 3px;
+                    margin-left: 4px;
+                    margin-right: 4px;
+                }
+
+                .select-comm {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
