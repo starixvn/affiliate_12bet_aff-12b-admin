@@ -26,7 +26,9 @@ class Content extends Component {
         return (
             <div className="data-content">
                 <div>
-                    <a href="javascript:;" className="abutton" onClick={this.handleAddNewGroup}><span>Add New Group</span></a>
+                    <a href="javascript:;" onClick={this.handleAddNewGroup} className="btn-add-comm">
+                        Add New Group <span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>
+                    </a>
                 </div>
                 <div className="clearfix"></div>
                 <div className="content-container table-responsive">
@@ -39,7 +41,7 @@ class Content extends Component {
                     </Modal.Header>
                     <Modal.Body>
                         <div className="modal-body-wrapper">
-                            <PopupContent/>
+                            <PopupContent />
                         </div>
                     </Modal.Body>
                 </Modal>
