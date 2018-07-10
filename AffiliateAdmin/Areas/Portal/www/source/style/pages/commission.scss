@@ -1,4 +1,6 @@
 ﻿@import "../components/modal";
+@import "../components/multiple-select";
+@import "../components/paging";
 
 .comm-popup-container {
     font-size: 12px;
@@ -7,7 +9,11 @@
         margin-bottom: 10px;
     }
 
-    .text-desc {
+    .input-groupname {
+        width: 300px;
+    }
+
+    .input-desc {
         width: 500px;
     }
 
@@ -18,7 +24,7 @@
         }
 
         > .label {
-            width: 170px;
+            width: 240px;
             font-weight: bold;
         }
 
@@ -35,7 +41,7 @@
         }
 
         .select-product {
-            width: 130px;
+            width: 200px;
         }
     }
 
@@ -80,13 +86,13 @@
     }
 }
 
-.btn-add-comm{
+.btn-add-comm {
     color: #333;
     border: 1px solid #d4d4d4;
     background: #ecf5fe;
     margin-top: 10px;
 
-    &:hover{
+    &:hover {
         color: #000 !important;
         background: #dee4ea;
         opacity: 0.8;

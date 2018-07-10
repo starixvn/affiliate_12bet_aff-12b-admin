@@ -246,6 +246,112 @@ exports.default = (0, _reactRedux.connect)()(AppContainer);
 
 /***/ }),
 
+/***/ "./source/js/pages/commission/components/CommGroupInfo.jsx":
+/*!*****************************************************************!*\
+  !*** ./source/js/pages/commission/components/CommGroupInfo.jsx ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var CommGroupInfo = function (_Component) {
+    _inherits(CommGroupInfo, _Component);
+
+    function CommGroupInfo(props) {
+        _classCallCheck(this, CommGroupInfo);
+
+        return _possibleConstructorReturn(this, (CommGroupInfo.__proto__ || Object.getPrototypeOf(CommGroupInfo)).call(this, props));
+    }
+
+    _createClass(CommGroupInfo, [{
+        key: "render",
+        value: function render() {
+            return _react2.default.createElement(
+                "table",
+                { style: { tableLayout: "fixed" } },
+                _react2.default.createElement(
+                    "tbody",
+                    null,
+                    _react2.default.createElement(
+                        "tr",
+                        { className: "row-form" },
+                        _react2.default.createElement(
+                            "td",
+                            { width: "90" },
+                            "Group Name: "
+                        ),
+                        _react2.default.createElement(
+                            "td",
+                            null,
+                            _react2.default.createElement("input", { type: "text" }),
+                            " ",
+                            _react2.default.createElement(
+                                "span",
+                                { className: "text-danger" },
+                                "*"
+                            )
+                        )
+                    ),
+                    _react2.default.createElement(
+                        "tr",
+                        { className: "row-form" },
+                        _react2.default.createElement(
+                            "td",
+                            null,
+                            "Description: "
+                        ),
+                        _react2.default.createElement(
+                            "td",
+                            null,
+                            _react2.default.createElement("input", { type: "text", className: "text-desc" })
+                        )
+                    ),
+                    _react2.default.createElement(
+                        "tr",
+                        { className: "row-form" },
+                        _react2.default.createElement(
+                            "td",
+                            null,
+                            "Active All: "
+                        ),
+                        _react2.default.createElement(
+                            "td",
+                            null,
+                            _react2.default.createElement("input", { type: "checkbox" })
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return CommGroupInfo;
+}(_react.Component);
+
+exports.default = CommGroupInfo;
+
+/***/ }),
+
 /***/ "./source/js/pages/commission/components/Content.jsx":
 /*!***********************************************************!*\
   !*** ./source/js/pages/commission/components/Content.jsx ***!
@@ -268,6 +374,16 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 
+var _reactBootstrap = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/es/index.js");
+
+var _GridData = __webpack_require__(/*! ./GridData */ "./source/js/pages/commission/components/GridData.jsx");
+
+var _GridData2 = _interopRequireDefault(_GridData);
+
+var _PopupContent = __webpack_require__(/*! ./PopupContent */ "./source/js/pages/commission/components/PopupContent.jsx");
+
+var _PopupContent2 = _interopRequireDefault(_PopupContent);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -282,7 +398,20 @@ var Content = function (_Component) {
     function Content(props) {
         _classCallCheck(this, Content);
 
-        return _possibleConstructorReturn(this, (Content.__proto__ || Object.getPrototypeOf(Content)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (Content.__proto__ || Object.getPrototypeOf(Content)).call(this, props));
+
+        _this.handleAddNewGroup = function () {
+            _this.setState({ showPopup: true });
+        };
+
+        _this.handleHide = function () {
+            _this.setState({ showPopup: false });
+        };
+
+        _this.state = {
+            showPopup: false
+        };
+        return _this;
     }
 
     _createClass(Content, [{
@@ -290,340 +419,43 @@ var Content = function (_Component) {
         value: function render() {
             return _react2.default.createElement(
                 "div",
-                { className: "content-container table-responsive" },
+                { className: "data-content" },
                 _react2.default.createElement(
-                    "table",
-                    { className: "aff-table table table-bordered", cellSpacing: "1", cellPadding: "3", width: "100%", style: { tableLayout: "fixed" } },
+                    "div",
+                    null,
                     _react2.default.createElement(
-                        "thead",
-                        null,
+                        "a",
+                        { href: "javascript:;", onClick: this.handleAddNewGroup, className: "btn-add-comm" },
+                        "Add New Group ",
+                        _react2.default.createElement("span", { "class": "glyphicon glyphicon-triangle-left", "aria-hidden": "true" })
+                    )
+                ),
+                _react2.default.createElement("div", { className: "clearfix" }),
+                _react2.default.createElement(
+                    "div",
+                    { className: "content-container table-responsive" },
+                    _react2.default.createElement(_GridData2.default, null)
+                ),
+                _react2.default.createElement(
+                    _reactBootstrap.Modal,
+                    { show: this.state.showPopup, onHide: this.handleHide, bsSize: "large", backdrop: "static" },
+                    _react2.default.createElement(
+                        _reactBootstrap.Modal.Header,
+                        { closeButton: true },
                         _react2.default.createElement(
-                            "tr",
+                            _reactBootstrap.Modal.Title,
                             null,
-                            _react2.default.createElement("th", { rowSpan: "2", width: "3%" }),
-                            _react2.default.createElement(
-                                "th",
-                                { rowSpan: "2" },
-                                "Name"
-                            ),
-                            _react2.default.createElement(
-                                "th",
-                                { rowSpan: "2" },
-                                "No.Aff"
-                            ),
-                            _react2.default.createElement(
-                                "th",
-                                { rowSpan: "2" },
-                                "Description"
-                            ),
-                            _react2.default.createElement(
-                                "th",
-                                { rowSpan: "2" },
-                                "Creation"
-                            ),
-                            _react2.default.createElement(
-                                "th",
-                                { colSpan: "11" },
-                                "Policy"
-                            ),
-                            _react2.default.createElement(
-                                "th",
-                                { rowSpan: "2" },
-                                "Action"
-                            )
-                        ),
-                        _react2.default.createElement(
-                            "tr",
-                            null,
-                            _react2.default.createElement("th", null),
-                            _react2.default.createElement(
-                                "th",
-                                null,
-                                "Tier"
-                            ),
-                            _react2.default.createElement(
-                                "th",
-                                { title: "Minimum all members' winlost amount" },
-                                "Min AM($)"
-                            ),
-                            _react2.default.createElement(
-                                "th",
-                                { title: "Maximum all members' winlost amount" },
-                                "Max AM($)"
-                            ),
-                            _react2.default.createElement(
-                                "th",
-                                { title: "Minimum number of qualified members" },
-                                "Min QM"
-                            ),
-                            _react2.default.createElement(
-                                "th",
-                                { title: "Maximum number of qualified members" },
-                                "Max QM"
-                            ),
-                            _react2.default.createElement(
-                                "th",
-                                null,
-                                "Comm Rate"
-                            ),
-                            _react2.default.createElement(
-                                "th",
-                                null,
-                                "Operational Fee"
-                            ),
-                            _react2.default.createElement(
-                                "th",
-                                null,
-                                "Banking Fee"
-                            ),
-                            _react2.default.createElement(
-                                "th",
-                                null,
-                                "Adjustment"
-                            ),
-                            _react2.default.createElement(
-                                "th",
-                                null,
-                                "Qm Turnover"
-                            )
+                            _react2.default.createElement("span", { className: "iconpopup" }),
+                            "Add a Commission Group"
                         )
                     ),
                     _react2.default.createElement(
-                        "tbody",
+                        _reactBootstrap.Modal.Body,
                         null,
                         _react2.default.createElement(
-                            "tr",
-                            null,
-                            _react2.default.createElement(
-                                "td",
-                                { rowSpan: "6" },
-                                "1"
-                            ),
-                            _react2.default.createElement(
-                                "td",
-                                { rowSpan: "6" },
-                                "Default"
-                            ),
-                            _react2.default.createElement(
-                                "td",
-                                { rowSpan: "6" },
-                                "1,507"
-                            ),
-                            _react2.default.createElement(
-                                "td",
-                                { rowSpan: "6" },
-                                "Default System Commission Group"
-                            ),
-                            _react2.default.createElement(
-                                "td",
-                                { rowSpan: "6" },
-                                "pgmDung 12/25/2009 01:10:51"
-                            ),
-                            _react2.default.createElement(
-                                "td",
-                                { rowSpan: "4" },
-                                "Tier Setting"
-                            ),
-                            _react2.default.createElement(
-                                "td",
-                                null,
-                                "1"
-                            ),
-                            _react2.default.createElement(
-                                "td",
-                                null,
-                                "0"
-                            ),
-                            _react2.default.createElement(
-                                "td",
-                                null,
-                                "0"
-                            ),
-                            _react2.default.createElement(
-                                "td",
-                                null,
-                                "0"
-                            ),
-                            _react2.default.createElement(
-                                "td",
-                                null,
-                                "5"
-                            ),
-                            _react2.default.createElement(
-                                "td",
-                                null,
-                                "0.00"
-                            ),
-                            _react2.default.createElement(
-                                "td",
-                                { rowSpan: "6" },
-                                "0.07"
-                            ),
-                            _react2.default.createElement(
-                                "td",
-                                { rowSpan: "6" },
-                                "0.02"
-                            ),
-                            _react2.default.createElement(
-                                "td",
-                                { rowSpan: "6" },
-                                "Yes"
-                            ),
-                            _react2.default.createElement(
-                                "td",
-                                { rowSpan: "6" },
-                                "100.00"
-                            ),
-                            _react2.default.createElement(
-                                "td",
-                                { rowSpan: "6" },
-                                _react2.default.createElement(
-                                    "a",
-                                    { href: "javascript:;" },
-                                    _react2.default.createElement("span", { className: "icedit" })
-                                ),
-                                ' ',
-                                _react2.default.createElement(
-                                    "a",
-                                    { href: "javascript:;" },
-                                    _react2.default.createElement("span", { className: "icdelete1" })
-                                )
-                            )
-                        ),
-                        _react2.default.createElement(
-                            "tr",
-                            null,
-                            _react2.default.createElement(
-                                "td",
-                                null,
-                                "2"
-                            ),
-                            _react2.default.createElement(
-                                "td",
-                                null,
-                                "1"
-                            ),
-                            _react2.default.createElement(
-                                "td",
-                                null,
-                                "2,999"
-                            ),
-                            _react2.default.createElement(
-                                "td",
-                                null,
-                                "6"
-                            ),
-                            _react2.default.createElement(
-                                "td",
-                                null,
-                                "10"
-                            ),
-                            _react2.default.createElement(
-                                "td",
-                                null,
-                                "0.20"
-                            )
-                        ),
-                        _react2.default.createElement(
-                            "tr",
-                            null,
-                            _react2.default.createElement(
-                                "td",
-                                null,
-                                "3"
-                            ),
-                            _react2.default.createElement(
-                                "td",
-                                null,
-                                "3,000"
-                            ),
-                            _react2.default.createElement(
-                                "td",
-                                null,
-                                "45,000"
-                            ),
-                            _react2.default.createElement(
-                                "td",
-                                null,
-                                "11"
-                            ),
-                            _react2.default.createElement(
-                                "td",
-                                null,
-                                "50"
-                            ),
-                            _react2.default.createElement(
-                                "td",
-                                null,
-                                "0.30"
-                            )
-                        ),
-                        _react2.default.createElement(
-                            "tr",
-                            null,
-                            _react2.default.createElement(
-                                "td",
-                                null,
-                                "4"
-                            ),
-                            _react2.default.createElement(
-                                "td",
-                                null,
-                                "45,001"
-                            ),
-                            _react2.default.createElement(
-                                "td",
-                                null,
-                                "\u221E"
-                            ),
-                            _react2.default.createElement(
-                                "td",
-                                null,
-                                "51"
-                            ),
-                            _react2.default.createElement(
-                                "td",
-                                null,
-                                "\u221E"
-                            ),
-                            _react2.default.createElement(
-                                "td",
-                                null,
-                                "0.40"
-                            )
-                        ),
-                        _react2.default.createElement(
-                            "tr",
-                            null,
-                            _react2.default.createElement(
-                                "td",
-                                { rowSpan: "2" },
-                                "Platform Fee"
-                            ),
-                            _react2.default.createElement(
-                                "td",
-                                { colSpan: "5" },
-                                "Sportsbook, Number Game, Virtual Sports, Keno, ColossusBets, Fishing World, Cashout, Lottery, Exchange, Lb Keno"
-                            ),
-                            _react2.default.createElement(
-                                "td",
-                                null,
-                                "0.17"
-                            )
-                        ),
-                        _react2.default.createElement(
-                            "tr",
-                            null,
-                            _react2.default.createElement(
-                                "td",
-                                { colSpan: "5" },
-                                "Sportsbook, Number Game, Virtual Sports, Keno, ColossusBets, Fishing World, Cashout, Lottery, Exchange, Lb Keno"
-                            ),
-                            _react2.default.createElement(
-                                "td",
-                                null,
-                                "0.12"
-                            )
+                            "div",
+                            { className: "modal-body-wrapper" },
+                            _react2.default.createElement(_PopupContent2.default, null)
                         )
                     )
                 )
@@ -635,6 +467,226 @@ var Content = function (_Component) {
 }(_react.Component);
 
 exports.default = (0, _reactRedux.connect)()(Content);
+
+/***/ }),
+
+/***/ "./source/js/pages/commission/components/DeductionSetting.jsx":
+/*!********************************************************************!*\
+  !*** ./source/js/pages/commission/components/DeductionSetting.jsx ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var DeductionSetting = function (_Component) {
+    _inherits(DeductionSetting, _Component);
+
+    function DeductionSetting(props) {
+        _classCallCheck(this, DeductionSetting);
+
+        return _possibleConstructorReturn(this, (DeductionSetting.__proto__ || Object.getPrototypeOf(DeductionSetting)).call(this, props));
+    }
+
+    _createClass(DeductionSetting, [{
+        key: "render",
+        value: function render() {
+            return _react2.default.createElement(
+                "fieldset",
+                null,
+                _react2.default.createElement(
+                    "legend",
+                    null,
+                    _react2.default.createElement(
+                        "h4",
+                        { className: "text-bold" },
+                        "Deductions"
+                    )
+                ),
+                _react2.default.createElement(
+                    "p",
+                    { className: "text-bold" },
+                    "Platform Fee %"
+                ),
+                _react2.default.createElement(
+                    "ul",
+                    { className: "platformfee-group" },
+                    _react2.default.createElement(
+                        "li",
+                        { className: "inline" },
+                        _react2.default.createElement(
+                            "select",
+                            { className: "select-product" },
+                            _react2.default.createElement(
+                                "option",
+                                null,
+                                "1"
+                            )
+                        ),
+                        _react2.default.createElement(
+                            "select",
+                            { className: "select-percent" },
+                            _react2.default.createElement(
+                                "option",
+                                null,
+                                "0.17"
+                            )
+                        ),
+                        _react2.default.createElement(
+                            "span",
+                            { className: "sign" },
+                            "x"
+                        ),
+                        _react2.default.createElement(
+                            "span",
+                            { className: "unit-name" },
+                            "|Gross Win Loss|"
+                        ),
+                        _react2.default.createElement(
+                            "span",
+                            null,
+                            _react2.default.createElement(
+                                "button",
+                                { type: "button", className: "btn-action" },
+                                "+"
+                            )
+                        )
+                    ),
+                    _react2.default.createElement(
+                        "li",
+                        { className: "inline" },
+                        _react2.default.createElement(
+                            "select",
+                            { className: "select-product" },
+                            _react2.default.createElement(
+                                "option",
+                                null,
+                                "1"
+                            )
+                        ),
+                        _react2.default.createElement(
+                            "select",
+                            { className: "select-percent" },
+                            _react2.default.createElement(
+                                "option",
+                                null,
+                                "0.17"
+                            )
+                        ),
+                        _react2.default.createElement(
+                            "span",
+                            { className: "sign" },
+                            "x"
+                        ),
+                        _react2.default.createElement(
+                            "span",
+                            { className: "unit-name" },
+                            "|Gross Win Loss|"
+                        ),
+                        _react2.default.createElement(
+                            "span",
+                            null,
+                            _react2.default.createElement(
+                                "button",
+                                { type: "button", className: "btn-action" },
+                                "-"
+                            )
+                        )
+                    )
+                ),
+                _react2.default.createElement(
+                    "div",
+                    { className: "inline" },
+                    _react2.default.createElement(
+                        "span",
+                        { className: "label" },
+                        "Operational Fee%"
+                    ),
+                    _react2.default.createElement(
+                        "select",
+                        { className: "select-percent" },
+                        _react2.default.createElement(
+                            "option",
+                            null,
+                            "0.07"
+                        )
+                    ),
+                    _react2.default.createElement(
+                        "span",
+                        { className: "sign" },
+                        "x"
+                    ),
+                    _react2.default.createElement(
+                        "span",
+                        { className: "unit-name" },
+                        "|Gross Win Loss|"
+                    )
+                ),
+                _react2.default.createElement(
+                    "div",
+                    { className: "inline" },
+                    _react2.default.createElement(
+                        "span",
+                        { className: "label" },
+                        "Banking Fee%"
+                    ),
+                    _react2.default.createElement(
+                        "select",
+                        { className: "select-percent" },
+                        _react2.default.createElement(
+                            "option",
+                            null,
+                            "0.02"
+                        )
+                    ),
+                    _react2.default.createElement(
+                        "span",
+                        { className: "sign" },
+                        "x"
+                    ),
+                    _react2.default.createElement(
+                        "span",
+                        { className: "unit-name" },
+                        "(Deposit + Withdrawal)"
+                    )
+                ),
+                _react2.default.createElement(
+                    "div",
+                    { className: "inline" },
+                    _react2.default.createElement(
+                        "span",
+                        { className: "label" },
+                        "Adjustment"
+                    ),
+                    _react2.default.createElement("input", { type: "checkbox", className: "checkbox" })
+                )
+            );
+        }
+    }]);
+
+    return DeductionSetting;
+}(_react.Component);
+
+exports.default = DeductionSetting;
 
 /***/ }),
 
@@ -721,6 +773,727 @@ var Filter = function (_Component) {
 }(_react.Component);
 
 exports.default = (0, _reactRedux.connect)()(Filter);
+
+/***/ }),
+
+/***/ "./source/js/pages/commission/components/GridData.jsx":
+/*!************************************************************!*\
+  !*** ./source/js/pages/commission/components/GridData.jsx ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var GridData = function (_Component) {
+    _inherits(GridData, _Component);
+
+    function GridData(props) {
+        _classCallCheck(this, GridData);
+
+        return _possibleConstructorReturn(this, (GridData.__proto__ || Object.getPrototypeOf(GridData)).call(this, props));
+    }
+
+    _createClass(GridData, [{
+        key: "render",
+        value: function render() {
+            return _react2.default.createElement(
+                "table",
+                { className: "aff-table table table-bordered", cellSpacing: "1", cellPadding: "3", width: "100%", style: { tableLayout: "fixed" } },
+                _react2.default.createElement(
+                    "thead",
+                    null,
+                    _react2.default.createElement(
+                        "tr",
+                        null,
+                        _react2.default.createElement("th", { rowSpan: "2", width: "3%" }),
+                        _react2.default.createElement(
+                            "th",
+                            { rowSpan: "2" },
+                            "Name"
+                        ),
+                        _react2.default.createElement(
+                            "th",
+                            { rowSpan: "2" },
+                            "No.Aff"
+                        ),
+                        _react2.default.createElement(
+                            "th",
+                            { rowSpan: "2" },
+                            "Description"
+                        ),
+                        _react2.default.createElement(
+                            "th",
+                            { rowSpan: "2" },
+                            "Creation"
+                        ),
+                        _react2.default.createElement(
+                            "th",
+                            { colSpan: "11" },
+                            "Policy"
+                        ),
+                        _react2.default.createElement(
+                            "th",
+                            { rowSpan: "2" },
+                            "Action"
+                        )
+                    ),
+                    _react2.default.createElement(
+                        "tr",
+                        null,
+                        _react2.default.createElement("th", null),
+                        _react2.default.createElement(
+                            "th",
+                            null,
+                            "Tier"
+                        ),
+                        _react2.default.createElement(
+                            "th",
+                            { title: "Minimum all members' winlost amount" },
+                            "Min AM($)"
+                        ),
+                        _react2.default.createElement(
+                            "th",
+                            { title: "Maximum all members' winlost amount" },
+                            "Max AM($)"
+                        ),
+                        _react2.default.createElement(
+                            "th",
+                            { title: "Minimum number of qualified members" },
+                            "Min QM"
+                        ),
+                        _react2.default.createElement(
+                            "th",
+                            { title: "Maximum number of qualified members" },
+                            "Max QM"
+                        ),
+                        _react2.default.createElement(
+                            "th",
+                            null,
+                            "Comm Rate"
+                        ),
+                        _react2.default.createElement(
+                            "th",
+                            null,
+                            "Operational Fee"
+                        ),
+                        _react2.default.createElement(
+                            "th",
+                            null,
+                            "Banking Fee"
+                        ),
+                        _react2.default.createElement(
+                            "th",
+                            null,
+                            "Adjustment"
+                        ),
+                        _react2.default.createElement(
+                            "th",
+                            null,
+                            "Qm Turnover"
+                        )
+                    )
+                ),
+                _react2.default.createElement(
+                    "tbody",
+                    null,
+                    _react2.default.createElement(
+                        "tr",
+                        null,
+                        _react2.default.createElement(
+                            "td",
+                            { rowSpan: "6" },
+                            "1"
+                        ),
+                        _react2.default.createElement(
+                            "td",
+                            { rowSpan: "6" },
+                            "Default"
+                        ),
+                        _react2.default.createElement(
+                            "td",
+                            { rowSpan: "6" },
+                            "1,507"
+                        ),
+                        _react2.default.createElement(
+                            "td",
+                            { rowSpan: "6" },
+                            "Default System Commission Group"
+                        ),
+                        _react2.default.createElement(
+                            "td",
+                            { rowSpan: "6" },
+                            "pgmDung 12/25/2009 01:10:51"
+                        ),
+                        _react2.default.createElement(
+                            "td",
+                            { rowSpan: "4" },
+                            "Tier Setting"
+                        ),
+                        _react2.default.createElement(
+                            "td",
+                            null,
+                            "1"
+                        ),
+                        _react2.default.createElement(
+                            "td",
+                            null,
+                            "0"
+                        ),
+                        _react2.default.createElement(
+                            "td",
+                            null,
+                            "0"
+                        ),
+                        _react2.default.createElement(
+                            "td",
+                            null,
+                            "0"
+                        ),
+                        _react2.default.createElement(
+                            "td",
+                            null,
+                            "5"
+                        ),
+                        _react2.default.createElement(
+                            "td",
+                            null,
+                            "0.00"
+                        ),
+                        _react2.default.createElement(
+                            "td",
+                            { rowSpan: "6" },
+                            "0.07"
+                        ),
+                        _react2.default.createElement(
+                            "td",
+                            { rowSpan: "6" },
+                            "0.02"
+                        ),
+                        _react2.default.createElement(
+                            "td",
+                            { rowSpan: "6" },
+                            "Yes"
+                        ),
+                        _react2.default.createElement(
+                            "td",
+                            { rowSpan: "6" },
+                            "100.00"
+                        ),
+                        _react2.default.createElement(
+                            "td",
+                            { rowSpan: "6" },
+                            _react2.default.createElement(
+                                "a",
+                                { href: "javascript:;" },
+                                _react2.default.createElement("span", { className: "icedit" })
+                            ),
+                            ' ',
+                            _react2.default.createElement(
+                                "a",
+                                { href: "javascript:;" },
+                                _react2.default.createElement("span", { className: "icdelete1" })
+                            )
+                        )
+                    ),
+                    _react2.default.createElement(
+                        "tr",
+                        null,
+                        _react2.default.createElement(
+                            "td",
+                            null,
+                            "2"
+                        ),
+                        _react2.default.createElement(
+                            "td",
+                            null,
+                            "1"
+                        ),
+                        _react2.default.createElement(
+                            "td",
+                            null,
+                            "2,999"
+                        ),
+                        _react2.default.createElement(
+                            "td",
+                            null,
+                            "6"
+                        ),
+                        _react2.default.createElement(
+                            "td",
+                            null,
+                            "10"
+                        ),
+                        _react2.default.createElement(
+                            "td",
+                            null,
+                            "0.20"
+                        )
+                    ),
+                    _react2.default.createElement(
+                        "tr",
+                        null,
+                        _react2.default.createElement(
+                            "td",
+                            null,
+                            "3"
+                        ),
+                        _react2.default.createElement(
+                            "td",
+                            null,
+                            "3,000"
+                        ),
+                        _react2.default.createElement(
+                            "td",
+                            null,
+                            "45,000"
+                        ),
+                        _react2.default.createElement(
+                            "td",
+                            null,
+                            "11"
+                        ),
+                        _react2.default.createElement(
+                            "td",
+                            null,
+                            "50"
+                        ),
+                        _react2.default.createElement(
+                            "td",
+                            null,
+                            "0.30"
+                        )
+                    ),
+                    _react2.default.createElement(
+                        "tr",
+                        null,
+                        _react2.default.createElement(
+                            "td",
+                            null,
+                            "4"
+                        ),
+                        _react2.default.createElement(
+                            "td",
+                            null,
+                            "45,001"
+                        ),
+                        _react2.default.createElement(
+                            "td",
+                            null,
+                            "\u221E"
+                        ),
+                        _react2.default.createElement(
+                            "td",
+                            null,
+                            "51"
+                        ),
+                        _react2.default.createElement(
+                            "td",
+                            null,
+                            "\u221E"
+                        ),
+                        _react2.default.createElement(
+                            "td",
+                            null,
+                            "0.40"
+                        )
+                    ),
+                    _react2.default.createElement(
+                        "tr",
+                        null,
+                        _react2.default.createElement(
+                            "td",
+                            { rowSpan: "2" },
+                            "Platform Fee"
+                        ),
+                        _react2.default.createElement(
+                            "td",
+                            { colSpan: "5" },
+                            "Sportsbook, Number Game, Virtual Sports, Keno, ColossusBets, Fishing World, Cashout, Lottery, Exchange, Lb Keno"
+                        ),
+                        _react2.default.createElement(
+                            "td",
+                            null,
+                            "0.17"
+                        )
+                    ),
+                    _react2.default.createElement(
+                        "tr",
+                        null,
+                        _react2.default.createElement(
+                            "td",
+                            { colSpan: "5" },
+                            "Sportsbook, Number Game, Virtual Sports, Keno, ColossusBets, Fishing World, Cashout, Lottery, Exchange, Lb Keno"
+                        ),
+                        _react2.default.createElement(
+                            "td",
+                            null,
+                            "0.12"
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return GridData;
+}(_react.Component);
+
+exports.default = GridData;
+
+/***/ }),
+
+/***/ "./source/js/pages/commission/components/PopupContent.jsx":
+/*!****************************************************************!*\
+  !*** ./source/js/pages/commission/components/PopupContent.jsx ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _DeductionSetting = __webpack_require__(/*! ./DeductionSetting */ "./source/js/pages/commission/components/DeductionSetting.jsx");
+
+var _DeductionSetting2 = _interopRequireDefault(_DeductionSetting);
+
+var _QmTurnOverSetting = __webpack_require__(/*! ./QmTurnOverSetting */ "./source/js/pages/commission/components/QmTurnOverSetting.jsx");
+
+var _QmTurnOverSetting2 = _interopRequireDefault(_QmTurnOverSetting);
+
+var _TierSetting = __webpack_require__(/*! ./TierSetting */ "./source/js/pages/commission/components/TierSetting.jsx");
+
+var _TierSetting2 = _interopRequireDefault(_TierSetting);
+
+var _CommGroupInfo = __webpack_require__(/*! ./CommGroupInfo */ "./source/js/pages/commission/components/CommGroupInfo.jsx");
+
+var _CommGroupInfo2 = _interopRequireDefault(_CommGroupInfo);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var PopupContent = function (_Component) {
+    _inherits(PopupContent, _Component);
+
+    function PopupContent(props) {
+        _classCallCheck(this, PopupContent);
+
+        return _possibleConstructorReturn(this, (PopupContent.__proto__ || Object.getPrototypeOf(PopupContent)).call(this, props));
+    }
+
+    _createClass(PopupContent, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                { className: 'comm-popup-container' },
+                _react2.default.createElement(_CommGroupInfo2.default, null),
+                _react2.default.createElement(_DeductionSetting2.default, null),
+                _react2.default.createElement(_QmTurnOverSetting2.default, null),
+                _react2.default.createElement(_TierSetting2.default, null),
+                _react2.default.createElement(
+                    'button',
+                    { type: 'button' },
+                    'SAVE'
+                )
+            );
+        }
+    }]);
+
+    return PopupContent;
+}(_react.Component);
+
+exports.default = PopupContent;
+
+/***/ }),
+
+/***/ "./source/js/pages/commission/components/QmTurnOverSetting.jsx":
+/*!*********************************************************************!*\
+  !*** ./source/js/pages/commission/components/QmTurnOverSetting.jsx ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var QmTurnOverSetting = function (_Component) {
+    _inherits(QmTurnOverSetting, _Component);
+
+    function QmTurnOverSetting(props) {
+        _classCallCheck(this, QmTurnOverSetting);
+
+        return _possibleConstructorReturn(this, (QmTurnOverSetting.__proto__ || Object.getPrototypeOf(QmTurnOverSetting)).call(this, props));
+    }
+
+    _createClass(QmTurnOverSetting, [{
+        key: "render",
+        value: function render() {
+            return _react2.default.createElement(
+                "fieldset",
+                null,
+                _react2.default.createElement(
+                    "legend",
+                    null,
+                    _react2.default.createElement(
+                        "h4",
+                        { className: "text-bold" },
+                        "QM Turnover"
+                    )
+                ),
+                _react2.default.createElement(
+                    "p",
+                    null,
+                    "A member is considered a Qualified Member (QM) when his/her turnover in a month is equivalent to"
+                ),
+                _react2.default.createElement(
+                    "p",
+                    null,
+                    "USD ",
+                    _react2.default.createElement(
+                        "span",
+                        null,
+                        _react2.default.createElement("input", { type: "text", value: 100 })
+                    )
+                )
+            );
+        }
+    }]);
+
+    return QmTurnOverSetting;
+}(_react.Component);
+
+exports.default = QmTurnOverSetting;
+
+/***/ }),
+
+/***/ "./source/js/pages/commission/components/TierSetting.jsx":
+/*!***************************************************************!*\
+  !*** ./source/js/pages/commission/components/TierSetting.jsx ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var TierSetting = function (_Component) {
+    _inherits(TierSetting, _Component);
+
+    function TierSetting(props) {
+        _classCallCheck(this, TierSetting);
+
+        return _possibleConstructorReturn(this, (TierSetting.__proto__ || Object.getPrototypeOf(TierSetting)).call(this, props));
+    }
+
+    _createClass(TierSetting, [{
+        key: "render",
+        value: function render() {
+            return _react2.default.createElement(
+                "fieldset",
+                null,
+                _react2.default.createElement(
+                    "legend",
+                    null,
+                    _react2.default.createElement(
+                        "h4",
+                        { className: "text-bold" },
+                        "Tier Setting"
+                    )
+                ),
+                _react2.default.createElement(
+                    "table",
+                    { className: "table table-bordered tier-setting-table", style: { tableLayout: "fixed" } },
+                    _react2.default.createElement(
+                        "thead",
+                        null,
+                        _react2.default.createElement(
+                            "tr",
+                            null,
+                            _react2.default.createElement(
+                                "th",
+                                { width: "40" },
+                                "Tier"
+                            ),
+                            _react2.default.createElement(
+                                "th",
+                                null,
+                                "Min AM"
+                            ),
+                            _react2.default.createElement(
+                                "th",
+                                null,
+                                "Max AM"
+                            ),
+                            _react2.default.createElement(
+                                "th",
+                                null,
+                                "Min QM"
+                            ),
+                            _react2.default.createElement(
+                                "th",
+                                null,
+                                "Max QM"
+                            ),
+                            _react2.default.createElement(
+                                "th",
+                                { width: "100" },
+                                "Commission"
+                            ),
+                            _react2.default.createElement(
+                                "th",
+                                { width: "50" },
+                                "Action"
+                            )
+                        )
+                    ),
+                    _react2.default.createElement(
+                        "tbody",
+                        null,
+                        _react2.default.createElement(
+                            "tr",
+                            null,
+                            _react2.default.createElement(
+                                "td",
+                                { className: "text-center" },
+                                "1"
+                            ),
+                            _react2.default.createElement(
+                                "td",
+                                null,
+                                _react2.default.createElement("input", { type: "text", className: "input-tier", value: "0" })
+                            ),
+                            _react2.default.createElement(
+                                "td",
+                                null,
+                                _react2.default.createElement("input", { type: "text", className: "input-tier max", value: "0" }),
+                                _react2.default.createElement("input", { className: "chk-infinity", type: "checkbox" }),
+                                "\u221E"
+                            ),
+                            _react2.default.createElement(
+                                "td",
+                                null,
+                                _react2.default.createElement("input", { type: "text", className: "input-tier", value: "0" })
+                            ),
+                            _react2.default.createElement(
+                                "td",
+                                null,
+                                _react2.default.createElement("input", { type: "text", className: "input-tier max", value: "5" }),
+                                _react2.default.createElement("input", { className: "chk-infinity", type: "checkbox", disabled: true }),
+                                "\u221E"
+                            ),
+                            _react2.default.createElement(
+                                "td",
+                                null,
+                                _react2.default.createElement(
+                                    "select",
+                                    { className: "select-comm" },
+                                    _react2.default.createElement(
+                                        "option",
+                                        null,
+                                        "0.00"
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                "td",
+                                { className: "text-center" },
+                                _react2.default.createElement(
+                                    "a",
+                                    { href: "javascript:;" },
+                                    _react2.default.createElement("span", { className: "icdelete1" })
+                                )
+                            )
+                        )
+                    )
+                ),
+                _react2.default.createElement(
+                    "div",
+                    null,
+                    _react2.default.createElement(
+                        "button",
+                        { type: "button", className: "btn-addTier" },
+                        "Add Tier"
+                    )
+                )
+            );
+        }
+    }]);
+
+    return TierSetting;
+}(_react.Component);
+
+exports.default = TierSetting;
 
 /***/ }),
 

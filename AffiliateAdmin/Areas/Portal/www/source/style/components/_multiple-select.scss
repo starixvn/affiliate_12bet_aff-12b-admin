@@ -1,0 +1,19 @@
+﻿@import "../vendors/multiple-select";
+
+.multiple-select {
+    &-options-container {
+        top: 17px;
+    }
+
+    &-label {
+        height: 18px;
+        padding: 0 20px 0 6px;
+        background-color: #fff;
+        border: 1px solid #d0c5c5;
+
+        .caret {
+            right: 4px;
+            top: calc(50% - 2px);
+        }
+    }
+}

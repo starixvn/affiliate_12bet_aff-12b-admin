@@ -24,10 +24,10 @@ export default class TierSetting extends Component {
                     <tbody>
                         <tr>
                             <td className="text-center">1</td>
-                            <td><input type="text" className="input-tier" value="0" /></td>
-                            <td><input type="text" className="input-tier max" value="0" /><input className="chk-infinity" type="checkbox" />∞</td>
-                            <td><input type="text" className="input-tier" value="0" /></td>
-                            <td><input type="text" className="input-tier max" value="5" /><input className="chk-infinity" type="checkbox" disabled />∞</td>
+                            <td><input type="text" className="input-tier" defaultValue="0" /></td>
+                            <td><input type="text" className="input-tier max" defaultValue="0" /><input className="chk-infinity" type="checkbox" />∞</td>
+                            <td><input type="text" className="input-tier" defaultValue="0" /></td>
+                            <td><input type="text" className="input-tier max" defaultValue="5" /><input className="chk-infinity" type="checkbox" disabled />∞</td>
                             <td>
                                 <select className="select-comm">
                                     <option>0.00</option>

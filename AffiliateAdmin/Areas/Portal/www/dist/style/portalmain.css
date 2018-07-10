@@ -13,6 +13,9 @@
     outline: none !important;
     height: 18px; }
 
+.text-bold {
+  font-weight: bold; }
+
 .table > tbody > tr > th, .table > tbody > tr > td, .table > thead > tr > th, .table > thead > tr > td {
   vertical-align: middle;
   padding: 5px; }
@@ -21,6 +24,9 @@
   display: inline-block;
   margin-bottom: 0;
   vertical-align: middle; }
+
+.row-form td {
+  padding: 5px; }
 
 
 /*# sourceMappingURL=portalmain.css.map*/

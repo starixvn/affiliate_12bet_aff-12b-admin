@@ -1887,6 +1887,16 @@
     <Content Include="Areas\Portal\www\source\js\pages\commission\components\GridData.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission\components\PopupContent.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\components\multiple-select\components\MultipleSelect.jsx" />
+    <Content Include="Areas\Portal\www\source\js\components\multiple-select\components\MultipleSelectLabel.jsx" />
+    <Content Include="Areas\Portal\www\source\js\components\multiple-select\components\MultipleSelectOptionList.jsx" />
+    <Content Include="Areas\Portal\www\source\js\components\multiple-select\components\Option.jsx" />
+    <Content Include="Areas\Portal\www\source\js\components\multiple-select\components\OptionAll.jsx" />
+    <Content Include="Areas\Portal\www\source\js\components\multiple-select\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\components\Pager.jsx" />
+    <Content Include="Areas\Portal\www\source\style\components\_multiple-select.scss" />
+    <Content Include="Areas\Portal\www\source\style\vendors\multiple-select.scss" />
+    <Content Include="Areas\Portal\www\source\style\components\_paging.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -2026,7 +2036,6 @@
     </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Portal\www\source\js\components\" />
     <Folder Include="Areas\Portal\www\source\style\layout\" />
   </ItemGroup>
   <ItemGroup>
