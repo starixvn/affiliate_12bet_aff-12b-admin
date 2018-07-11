@@ -156,7 +156,7 @@ export default class MultipleSelect extends Component {
 
                 <div className="multiple-select-default multiple-select-options-container"
                     style={{ display: this.state.showOptionList ? "block" : "none" }}>
-                    {hasAllOption && this._renderOptionAll()}
+                    {hasAllOption && this._renderOptionAll(dataSource)}
 
                     <MultipleSelectOptionList id={this.id}
                         dataSource={dataSource}

@@ -110,23 +110,27 @@
     <Compile Include="DTO\Commission\CommissionSetting.cs" />
     <Compile Include="DTO\Commission\DeductionSetting.cs" />
     <Compile Include="DTO\Commission\TierSetting.cs" />
+    <Compile Include="DTO\Product.cs" />
     <Compile Include="MetaModels\CommissionSettingParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\BaseRepository.cs" />
     <Compile Include="Repository\CommissionRepository.cs" />
     <Compile Include="Repository\ICommissionRepository.cs" />
     <Compile Include="Configurations\IoCConfig.cs" />
+    <Compile Include="Repository\IProductRepository.cs" />
+    <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="Services\CommissionService.cs" />
     <Compile Include="Services\ICommissionService.cs" />
+    <Compile Include="Services\IProductService.cs" />
+    <Compile Include="Services\ProductService.cs" />
+    <Compile Include="ViewModels\CommissionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Fanex.Affiliate.Admin.Core.ruleset" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Analyzer Include="..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\Google.Protobuf.dll" />
     <Analyzer Include="..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\SonarAnalyzer.CSharp.dll" />
