@@ -32,14 +32,14 @@ class Content extends Component {
     onPaging = (pageIndex, pageSize) => {
         console.log(pageIndex, pageSize);
 
-        const pageOption = Object.assign({}, this.state.pageOption, {PageIndex: pageIndex, PageSize: pageSize});
-        this.setState({pageOption});
+        const pageOption = Object.assign({}, this.state.pageOption, { PageIndex: pageIndex, PageSize: pageSize });
+        this.setState({ pageOption });
     }
 
     render() {
         return (
             <div className="data-content">
-                <div>
+                <div className="action-wrapper">
                     <a href="javascript:;" onClick={this.handleAddNewGroup} className="btn-add-comm">
                         Add New Group <span className="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>
                     </a>

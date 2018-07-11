@@ -86,16 +86,20 @@
     }
 }
 
-.btn-add-comm {
-    color: #333;
-    border: 1px solid #d4d4d4;
-    background: #ecf5fe;
-    margin-top: 10px;
+.action-wrapper {
+    margin: 10px 0;
 
-    &:hover {
-        color: #000 !important;
-        background: #dee4ea;
-        opacity: 0.8;
-        text-decoration: none;
+    .btn-add-comm {
+        color: #333;
+        border: 1px solid #d4d4d4;
+        background: #ecf5fe;
+        margin-top: 10px;
+
+        &:hover {
+            color: #000 !important;
+            background: #dee4ea;
+            opacity: 0.8;
+            text-decoration: none;
+        }
     }
 }

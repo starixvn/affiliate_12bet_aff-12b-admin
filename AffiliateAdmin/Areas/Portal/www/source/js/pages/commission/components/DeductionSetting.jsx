@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import PlatformFeeItem from "./PlatformFeeItem";
+import { deepClone } from "../../../modules/utils";
 
 const productList = [
     { code: "SB", name: "Sportsbook", checked: true },
@@ -38,7 +39,7 @@ export default class DeductionSetting extends Component {
     }
 
     handleRemove = (index) => {
-        const platformFeeSettings = JSON.parse(JSON.stringify(this.state.platformFeeSettings));
+        const platformFeeSettings = deepClone(this.state.platformFeeSettings);
 
         const rootProductList = platformFeeSettings[0].productList;
         const checkedProductList = platformFeeSettings[index].productList.filter(p => p.checked);
@@ -54,14 +55,12 @@ export default class DeductionSetting extends Component {
 
         platformFeeSettings.splice(index, 1);
 
-        this.setState({
-            platformFeeSettings: [...platformFeeSettings]
-        });
+        this.setState({ platformFeeSettings });
     }
 
     handleSelect = (index, selectedItem, newDataSource) => {
         const isChecked = selectedItem.checked;
-        const platformFeeSettings = JSON.parse(JSON.stringify(this.state.platformFeeSettings));
+        const platformFeeSettings = deepClone(this.state.platformFeeSettings);
         const settingCount = platformFeeSettings.length;
 
         if (settingCount > 1) {
@@ -77,6 +76,7 @@ export default class DeductionSetting extends Component {
 
                         if (productItem) {
                             productItem.checked = !isChecked;
+                            break;
                         }
                     }
                 }
