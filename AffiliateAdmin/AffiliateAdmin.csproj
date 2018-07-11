@@ -999,6 +999,39 @@
   <ItemGroup>
     <Content Include="AccessDenied.aspx" />
     <Content Include="Alert.aspx" />
+    <Content Include="App_Data\SpConfig\SpName.local.xml">
+      <DependentUpon>_SpName.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SpConfig\SpName.master.xml">
+      <DependentUpon>_SpName.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SpConfig\SpName.production.xml">
+      <DependentUpon>_SpName.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SpConfig\SpName.sit.xml">
+      <DependentUpon>_SpName.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SpConfig\SpName.uat.xml">
+      <DependentUpon>_SpName.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SpConfig\SpName.xml">
+      <DependentUpon>_SpName.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SpConfig\_SpName.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>_SpName.txt</LastGenOutput>
+    </Content>
+    <Content Include="App_Data\SpConfig\_SpName.txt">
+      <DependentUpon>_SpName.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Content>
+    <Content Include="App_Data\SpConfig\_SpNameConfig.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Data\SpConfig\_SpNameOriginal.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_Js\AutoComplete\autocomplete.js" />
     <Content Include="App_Js\AutoComplete\shadow.png" />
     <Content Include="App_Js\AutoComplete\styles.css" />
@@ -2050,6 +2083,9 @@
     <Analyzer Include="..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\Google.Protobuf.dll" />
     <Analyzer Include="..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\SonarAnalyzer.CSharp.dll" />
     <Analyzer Include="..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\SonarAnalyzer.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

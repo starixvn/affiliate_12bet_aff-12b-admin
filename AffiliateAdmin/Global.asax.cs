@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
+using Fanex.Affiliate.Admin.Core.Configurations;
 
 namespace AffiliateAdmin
 {
@@ -9,6 +10,7 @@ namespace AffiliateAdmin
     {
         void Application_Start(object sender, EventArgs e)
         {
+            IoCConfig.Register();
             // Code that runs on application startup
             Sunplus.Agent.Configurations.AppSettings.Configuration.Load();
             // Code that runs on application startup
