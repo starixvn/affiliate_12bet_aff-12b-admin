@@ -30,7 +30,7 @@ $colorBorderPaging: #d1dae1;
             outline: none;
         }
 
-        &:hover {
+        &:hover, &:focus {
             text-decoration: none;
         }
     }
@@ -38,6 +38,7 @@ $colorBorderPaging: #d1dae1;
     .disable {
         color: $colorDisabledPgButton;
         cursor: default;
+        pointer-events: none;
     }
 
     .page-first {

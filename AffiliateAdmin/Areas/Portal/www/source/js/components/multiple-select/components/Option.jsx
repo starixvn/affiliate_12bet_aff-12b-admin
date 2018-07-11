@@ -1,23 +1,12 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-export default class Option extends Component {
-    constructor(props) {
-        super(props);
-    }
+const Option = (props) => {
+    const { itemData, onChange, id } = props;
 
-    static propTypes = {
-        itemData: PropTypes.object.isRequired,
-        id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-        onChange: PropTypes.func
-    }
-
-    onChange = (event) => {
+    const handleChange = (event) => {
         event.stopPropagation();
-        
-        const { itemData, onChange } = this.props;
-        
+
         const newItemData = {
             key: itemData.key,
             value: itemData.value,
@@ -26,22 +15,26 @@ export default class Option extends Component {
         onChange && onChange(newItemData);
     }
 
-    render() {
-        const { itemData, id } = this.props;
-
-        return (
-            <li className="multiple-select-item">
-                <input
-                    id={id}
-                    type="checkbox"
-                    className="option-checkbox"
-                    checked={itemData.checked}
-                    onChange={this.onChange}
-                />
-                <label className="option-label" htmlFor={id}>
-                    {itemData.value}
-                </label>
-            </li>
-        );
-    }
+    return (
+        <li className="multiple-select-item">
+            <input
+                id={id}
+                type="checkbox"
+                className="option-checkbox"
+                checked={itemData.checked}
+                onChange={handleChange}
+            />
+            <label className="option-label" htmlFor={id}>
+                {itemData.value}
+            </label>
+        </li>
+    );
 }
+
+Option.propTypes = {
+    itemData: PropTypes.object.isRequired,
+    id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+    onChange: PropTypes.func
+}
+
+export default Option;
