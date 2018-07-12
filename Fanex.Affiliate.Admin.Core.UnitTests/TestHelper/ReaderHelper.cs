@@ -12,18 +12,17 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.TestHelper
         public static void MapReaderData(Mock<IDataReader> mockReader, object readerDataMapping)
         {
             var func = CreateMappingFunc(readerDataMapping);
-            mockReader.Setup(r => r[It.IsAny<string>()]).Returns<string>(func);
+            mockReader.Setup(r => r[It.IsAny<string>()]).Returns(func);
         }
 
-        private static Func<string, object> CreateMappingFunc(object mappingData)
+        public static Func<string, object> CreateMappingFunc(object mappingData)
         {
             var dictionary = ToDictionary(mappingData);
             return x =>
             {
-                var paramName = x;
-                if (dictionary.ContainsKey(paramName))
+                if (dictionary.ContainsKey(x))
                 {
-                    return dictionary[paramName];
+                    return dictionary[x];
                 }
 
                 return string.Empty;
@@ -34,7 +33,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.TestHelper
         {
             if (data is IDictionary)
             {
-                return (IDictionary<string, object>)data;
+                return data as IDictionary<string, object>;
             }
 
             var type = data.GetType();

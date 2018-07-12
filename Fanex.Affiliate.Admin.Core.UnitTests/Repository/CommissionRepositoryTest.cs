@@ -31,14 +31,86 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
             var result = repository.Object.GetCommissionSettingList(new CommissionSettingParam());
 
             // Assert
-            Assert.NotNull(result.CommGroupList);
+            Assert.Single(result.CommGroupList);
+            Assert.Empty(result.TierSettingList);
+            Assert.Empty(result.DeductionSettingList);
+        }
+
+        [Fact]
+        public void GetCommissionSettingList_WhenCall_ReturnCorrectTierSetting()
+        {
+            // Arrange
+            var repository = new Mock<CommissionRepository> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+            var dataReader = new Mock<IDataReader>();
+            dataReader.SetupSequence(d => d.Read()).Returns(false).Returns(true);
+            dataReader.SetupSequence(d => d.NextResult()).Returns(true).Returns(false);
+
+            ReaderHelper.MapReaderData(dataReader, GetExpectedTierSetting());
+            objectDb.Setup(obj => obj.ExecuteReader(It.IsAny<CommissionSettingParam>())).Returns(dataReader.Object);
+            repository.Setup(re => re.GetObjectDb(SpKey, 120)).Returns(objectDb.Object);
+
+            // Action
+            var result = repository.Object.GetCommissionSettingList(new CommissionSettingParam());
+
+            // Assert
+            Assert.Empty(result.CommGroupList);
+            Assert.Single(result.TierSettingList);
+            Assert.Empty(result.DeductionSettingList);
+        }
+
+        [Fact]
+        public void GetCommissionSettingList_WhenCall_ReturnCorrectDeductionSetting()
+        {
+            // Arrange
+            var repository = new Mock<CommissionRepository> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+            var dataReader = new Mock<IDataReader>();
+            dataReader.SetupSequence(d => d.Read()).Returns(false).Returns(false).Returns(true);
+            dataReader.SetupSequence(d => d.NextResult()).Returns(true).Returns(true).Returns(false);
+
+            ReaderHelper.MapReaderData(dataReader, GetExpectedDeductionSetting());
+            objectDb.Setup(obj => obj.ExecuteReader(It.IsAny<CommissionSettingParam>())).Returns(dataReader.Object);
+            repository.Setup(re => re.GetObjectDb(SpKey, 120)).Returns(objectDb.Object);
+
+            // Action
+            var result = repository.Object.GetCommissionSettingList(new CommissionSettingParam());
+
+            // Assert
+            Assert.Empty(result.CommGroupList);
+            Assert.Empty(result.TierSettingList);
+            Assert.Single(result.DeductionSettingList);
+        }
+
+        [Fact]
+        public void GetCommissionSettingList_WhenCall_ExecuteWithCorrectParam()
+        {
+            // Arrange
+            var repository = new Mock<CommissionRepository> { CallBase = true };
+            var objectDb = new Mock<IObjectDb>();
+            var dataReader = new Mock<IDataReader>();
+            dataReader.SetupSequence(d => d.Read()).Returns(false);
+            dataReader.SetupSequence(d => d.NextResult()).Returns(false);
+
+            CommissionSettingParam passedParam = null;
+            var param = new CommissionSettingParam();
+            objectDb.Setup(obj => obj.ExecuteReader(param))
+                .Returns(dataReader.Object)
+                .Callback<CommissionSettingParam>(p => passedParam = p);
+            repository.Setup(re => re.GetObjectDb(SpKey, 120)).Returns(objectDb.Object);
+
+            // Action
+            var result = repository.Object.GetCommissionSettingList(param);
+
+            // Assert
+            Assert.Equal(passedParam, param);
         }
 
         private IDictionary<string, object> GetExpectedCommGroup()
         {
-            return new Dictionary<string, object>
+            return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
             {
-                ["RowIDX"] = 1,
+                ["RowIdx"] = 1,
                 ["GroupId"] = 101,
                 ["GroupName"] = "Default",
                 ["CreatedDate"] = new DateTime(2018, 7, 11),
@@ -46,6 +118,33 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
                 ["Description"] = "Description",
                 ["QMTurnover"] = 100.50m,
                 ["IsAdjustment"] = true
+            };
+        }
+
+        private IDictionary<string, object> GetExpectedTierSetting()
+        {
+            return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["GroupId"] = 101,
+                ["TierId"] = 1,
+                ["MinAmount"] = 0m,
+                ["MaxAmount"] = 100m,
+                ["MinQm"] = 0,
+                ["MaxQm"] = 50,
+                ["Commission"] = 0.2m
+            };
+        }
+
+        private IDictionary<string, object> GetExpectedDeductionSetting()
+        {
+            return new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
+            {
+                ["GroupId"] = 101,
+                ["DeductionId"] = 1,
+                ["DeductionName"] = "DeductionName",
+                ["ProductIds"] = "1,2,3",
+                ["DeductedPercentage"] = 0.7m,
+                ["NextDeductedPercentage"] = 0.5m
             };
         }
     }
