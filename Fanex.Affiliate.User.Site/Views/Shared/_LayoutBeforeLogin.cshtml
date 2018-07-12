@@ -6,6 +6,14 @@
     @RenderSection("styles", required: false)
 }
 
+@section classNav{
+    page-container
+}
+
+@section classHotNews{
+    page-container
+}
+
 @section scripts{
     <script>
         var validationMessage = {
@@ -20,13 +28,13 @@
 }
 
 <div class="main">
-    <div class="banner-left">
+    <div class="banner-side banner-left">
         <img src="@Url.Content("~/www/build/styles/Images/banner-red.png")">
     </div>
 
     @RenderBody()
 
-    <div class="banner-right">
+    <div class="banner-side banner-right">
         <img src="@Url.Content("~/www/build/styles/Images/banner-blue.png")">
     </div>
 </div>

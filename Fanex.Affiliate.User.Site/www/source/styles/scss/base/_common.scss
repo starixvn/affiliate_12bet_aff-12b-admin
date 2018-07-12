@@ -78,3 +78,12 @@ label {
     pointer-events: none !important;
     border: none !important;
 }
+
+.page-container {
+    width: calc(100% - 420px);
+    margin: auto;
+}
+
+.banner-side {
+    margin-top: -30px;
+}

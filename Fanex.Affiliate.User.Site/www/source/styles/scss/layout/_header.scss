@@ -66,31 +66,13 @@
         outline: none;
     }
 
-    .search-box {
-        position: relative;
-        margin-top: 1.5rem;
-        margin-right: 0;
-
-        .txt {
-            width: 25rem;
-            padding: .5rem;
-            font-size: 1.3rem;
-        }
-
-        .mdi.mdi-magnify {
-            position: absolute;
-            right: 1.7rem;
-            bottom: 1rem;
-            font-size: 1.9rem;
-        }
-    }
-
-    .navbar-toggle .icon-bar {
-        background: #fff;
-    }
-
     .navbar-toggle {
-        float: left;
+        padding-top: 0;
+        padding-bottom: 0;
+
+        .icon-bar {
+            background: #fff;
+        }
     }
 
     &.navbar-default .navbar-toggle {
@@ -107,9 +89,12 @@
 }
 
 .menu {
+    padding-left: 0;
+    padding-right: 0;
+
     .menu-item {
         position: relative;
-        padding: 0 15px;
+        padding: 0 10px;
         line-height: 30px;
         color: #eb9b9b;
         text-transform: uppercase;
@@ -180,15 +165,12 @@
         font-weight: 500;
         height: 26px;
         padding: 3px 5px;
-        border: 1px solid #fff;
         text-align: center;
         border-radius: 2px;
         white-space: nowrap;
         overflow: hidden;
 
         &:hover {
-            border-color: #b4acac;
-
             #selectedLanguage {
                 color: #b4acac;
             }
@@ -265,7 +247,6 @@
         color: #fff;
         font-size: 16px;
         padding: 0 6px;
-        border: 1px solid #fff;
         line-height: 25px;
 
         &:hover {
@@ -279,4 +260,10 @@
     display: inline-block;
     vertical-align: middle;
     margin-right: 8px;
+}
+
+@media (max-width: 992px) {
+    .sign-up, .text-field, .validation-value, .btn-forgot, .btn-login, .language-container {
+        margin-bottom: 10px;
+    }
 }

@@ -330,23 +330,11 @@ input[type="checkbox"], input[type="radio"] {
     background: transparent;
     color: #fe2400;
     outline: none; }
-  .navbar .search-box {
-    position: relative;
-    margin-top: 1.5rem;
-    margin-right: 0; }
-    .navbar .search-box .txt {
-      width: 25rem;
-      padding: .5rem;
-      font-size: 1.3rem; }
-    .navbar .search-box .mdi.mdi-magnify {
-      position: absolute;
-      right: 1.7rem;
-      bottom: 1rem;
-      font-size: 1.9rem; }
-  .navbar .navbar-toggle .icon-bar {
-    background: #fff; }
   .navbar .navbar-toggle {
-    float: left; }
+    padding-top: 0;
+    padding-bottom: 0; }
+    .navbar .navbar-toggle .icon-bar {
+      background: #fff; }
   .navbar.navbar-default .navbar-toggle {
     border-color: transparent; }
     .navbar.navbar-default .navbar-toggle:hover, .navbar.navbar-default .navbar-toggle:focus {
@@ -354,15 +342,18 @@ input[type="checkbox"], input[type="radio"] {
   .navbar.navbar-default .navbar-collapse {
     border-color: transparent; }
 
-.menu .menu-item {
-  position: relative;
-  padding: 0 15px;
-  line-height: 30px;
-  color: #eb9b9b;
-  text-transform: uppercase;
-  font-weight: 600; }
-  .menu .menu-item:hover, .menu .menu-item:focus, .menu .menu-item.active {
-    color: #fff; }
+.menu {
+  padding-left: 0;
+  padding-right: 0; }
+  .menu .menu-item {
+    position: relative;
+    padding: 0 10px;
+    line-height: 30px;
+    color: #eb9b9b;
+    text-transform: uppercase;
+    font-weight: 600; }
+    .menu .menu-item:hover, .menu .menu-item:focus, .menu .menu-item.active {
+      color: #fff; }
 
 .user-signup {
   text-align: right;
@@ -407,15 +398,12 @@ input[type="checkbox"], input[type="radio"] {
     font-weight: 500;
     height: 26px;
     padding: 3px 5px;
-    border: 1px solid #fff;
     text-align: center;
     border-radius: 2px;
     white-space: nowrap;
     overflow: hidden; }
-    .language-container .language-selection:hover {
-      border-color: #b4acac; }
-      .language-container .language-selection:hover #selectedLanguage {
-        color: #b4acac; }
+    .language-container .language-selection:hover #selectedLanguage {
+      color: #b4acac; }
   .language-container .language-list-wrapper {
     position: absolute;
     background: #fff;
@@ -468,7 +456,6 @@ input[type="checkbox"], input[type="radio"] {
     color: #fff;
     font-size: 16px;
     padding: 0 6px;
-    border: 1px solid #fff;
     line-height: 25px; }
     .user-login .btn-forgot:hover {
       background: rgba(255, 255, 255, 0.2);
@@ -478,6 +465,10 @@ input[type="checkbox"], input[type="radio"] {
   display: inline-block;
   vertical-align: middle;
   margin-right: 8px; }
+
+@media (max-width: 992px) {
+  .sign-up, .text-field, .validation-value, .btn-forgot, .btn-login, .language-container {
+    margin-bottom: 10px; } }
 
 .main {
   background: -ms-linear-gradient(left, #500001, #020518);
@@ -887,6 +878,13 @@ label.require:after {
   cursor: not-allowed;
   pointer-events: none !important;
   border: none !important; }
+
+.page-container {
+  width: calc(100% - 420px);
+  margin: auto; }
+
+.banner-side {
+  margin-top: -30px; }
 
 .btn {
   display: inline-block;
