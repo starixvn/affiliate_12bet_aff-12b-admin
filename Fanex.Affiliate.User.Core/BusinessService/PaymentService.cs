@@ -111,7 +111,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return resultInfo;
         }
 
-        private bool IsValidAmount(PaymentCreationParam paymentCreationParam)
+        private static bool IsValidAmount(PaymentCreationParam paymentCreationParam)
         {
             return paymentCreationParam.Amount > 0 &&
                 paymentCreationParam.Amount >= paymentCreationParam.MinAmount &&

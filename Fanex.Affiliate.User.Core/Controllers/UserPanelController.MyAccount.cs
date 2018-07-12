@@ -37,14 +37,9 @@
 
             var userSession = SessionService.UserSession;
             var userAccount = _accountRepository.GetAccountInfo(userSession.AffId);
-            if (!string.IsNullOrEmpty(userAccount.PlayerUsername))
-            {
-                model.PlayerUsername = userAccount.PlayerUsername;
-            }
-            else
-            {
-                model.PlayerUsername = Server.HtmlEncode(model.PlayerUsername);
-            }
+            model.PlayerUsername = !string.IsNullOrEmpty(userAccount?.PlayerUsername) ?
+                userAccount.PlayerUsername :
+                Server.HtmlEncode(model.PlayerUsername);
 
             var depositAccount = _accountRepository.GetDepositPlayerAccount(model.PlayerUsername);
 

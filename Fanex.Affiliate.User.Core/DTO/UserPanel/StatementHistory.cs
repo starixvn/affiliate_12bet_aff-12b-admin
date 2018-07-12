@@ -32,7 +32,7 @@ namespace Fanex.Affiliate.User.Core.DTO.UserPanel
         {
             get
             {
-                switch (Status.ToLower())
+                switch (Status.ToLowerInvariant())
                 {
                     case "running":
                     case "pending":
@@ -54,7 +54,7 @@ namespace Fanex.Affiliate.User.Core.DTO.UserPanel
                         return Resources.Lang.Current;
 
                     default:
-                        return Status.ToString();
+                        return Status;
                 }
             }
         }

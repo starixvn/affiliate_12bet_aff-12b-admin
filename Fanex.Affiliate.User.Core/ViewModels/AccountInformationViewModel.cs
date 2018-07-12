@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using Fanex.Affiliate.User.Core.MetalModels.Attributes;
 using Fanex.Affiliate.User.Core.Resources;
 
@@ -31,6 +32,7 @@ namespace Fanex.Affiliate.User.Core.ViewModels
         public string MobilePhone { get; set; }
 
         [RequiredByChecked(DependentPropertyName = "HasWebSite", IsChecked = true, ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "WebsiteURLIsRequired")]
+        [SuppressMessage("Sonar Code Smell", "S3996:UriPropertiesShouldNotBeStrings", Justification = "Reviewed. Suppression is OK here.")]
         public string SiteUrl { get; set; }
 
         public string MoreSiteUrls { get; set; }

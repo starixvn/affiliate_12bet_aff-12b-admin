@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 
 namespace Fanex.Affiliate.User.Core.Filters
 {
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true)]
     public class GlobalErrorHandlerAttribute : FilterAttribute, IExceptionFilter
     {
         public void OnException(ExceptionContext filterContext)
@@ -52,7 +53,7 @@ namespace Fanex.Affiliate.User.Core.Filters
             }
         }
 
-        private StringBuilder BuildErrorMessage(Exception exception, HttpContextBase httpContext)
+        private static StringBuilder BuildErrorMessage(Exception exception, HttpContextBase httpContext)
         {
             var sessionService = DependencyResolver.Current.GetService<ISessionService>();
 
@@ -96,11 +97,7 @@ namespace Fanex.Affiliate.User.Core.Filters
                     foreach (var key in cookies.AllKeys)
                     {
                         var cookie = cookies.Get(key);
-
-                        if (cookie != null)
-                        {
-                            message.AppendLine($"CookieKey:{key} && CookieValue={cookie.Value}");
-                        }
+                        message.AppendLine($"CookieKey:{key} && CookieValue={cookie?.Value}");
                     }
                 }
             }

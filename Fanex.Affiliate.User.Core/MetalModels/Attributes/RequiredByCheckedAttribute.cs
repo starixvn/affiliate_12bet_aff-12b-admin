@@ -5,6 +5,7 @@ using System.Web.Mvc;
 
 namespace Fanex.Affiliate.User.Core.MetalModels.Attributes
 {
+    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
     public class RequiredByCheckedAttribute : ValidationAttribute, IClientValidatable
     {
         private const string DefaultErrorMessage = "{0} field is required";
@@ -20,15 +21,13 @@ namespace Fanex.Affiliate.User.Core.MetalModels.Attributes
             var dependentProperty = validationContext.ObjectInstance.GetType().GetProperty(DependentPropertyName);
             var dependentPropertyValue = Convert.ToString(dependentProperty.GetValue(validationContext.ObjectInstance, null));
 
-            if (bool.TryParse(dependentPropertyValue, out isChecked))
+            if (bool.TryParse(dependentPropertyValue, out isChecked) &&
+                isChecked == IsChecked && string.IsNullOrEmpty(Convert.ToString(value)))
             {
                 //Validation should fail if the checkbox is selected but the main field is empty
-                if (isChecked == IsChecked && string.IsNullOrEmpty(Convert.ToString(value)))
-                {
-                    return new ValidationResult(string.IsNullOrEmpty(FormatErrorMessage(validationContext.DisplayName)) ?
+                return new ValidationResult(string.IsNullOrEmpty(FormatErrorMessage(validationContext.DisplayName)) ?
                         string.Format(DefaultErrorMessage, validationContext.DisplayName) :
                         FormatErrorMessage(validationContext.DisplayName));
-                }
             }
 
             return ValidationResult.Success;

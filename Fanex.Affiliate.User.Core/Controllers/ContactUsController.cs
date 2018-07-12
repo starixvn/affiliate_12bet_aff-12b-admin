@@ -1,5 +1,6 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
+    using System.Linq;
     using System.Web.Mvc;
     using BusinessService;
     using CoreService;
@@ -73,6 +74,11 @@
                 };
 
                 result = _contactService.SendRequest(param, emailParam);
+            }
+            else
+            {
+                var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
+                result.Message = string.Join("<br>", errors);
             }
 
             return Json(result);

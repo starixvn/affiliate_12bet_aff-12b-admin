@@ -28,7 +28,7 @@ namespace Fanex.Affiliate.User.Core.Constants
 
         public static string GetDisplayText(string value)
         {
-            switch (value.ToLower())
+            switch (value.ToLowerInvariant())
             {
                 case "bonus": return Resources.Lang.Bonus;
                 case "tennis": return Resources.Lang.Tennis;

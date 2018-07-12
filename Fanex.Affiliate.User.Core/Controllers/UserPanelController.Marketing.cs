@@ -25,7 +25,7 @@
             var selectedLanguage = userSession.PreferredLanguage;
             var selectedDomain = linkForm.DomainList.FirstOrDefault();
             var selectedPage = linkForm.MemberSitePageList.First().Value;
-            var bannerSettingKey = userSession.PreferredLanguage.Replace("-", string.Empty).ToUpper();
+            var bannerSettingKey = userSession.PreferredLanguage.Replace("-", string.Empty).ToUpperInvariant();
 
             var bannerParam = new MarketingBannerParam
             {
@@ -110,7 +110,7 @@
                 bannerParam.Category = bannerParam.SubCategory;
             }
 
-            var bannerSettingKey = userSession.PreferredLanguage.Replace("-", string.Empty).ToUpper();
+            var bannerSettingKey = userSession.PreferredLanguage.Replace("-", string.Empty).ToUpperInvariant();
 
             bannerParam.AffId = userSession.AffId;
             bannerParam.AffType = userSession.AffType;

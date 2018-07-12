@@ -1,11 +1,13 @@
 ﻿namespace Fanex.Affiliate.User.Core.Utilities
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Web;
     using System.Web.Mvc;
 
     public static class SiteDomainHelper
     {
+        [SuppressMessage("Sonar Code Smell", "S3995:UriReturnValuesShouldNotBeStrings", Justification = "Reviewed. Suppression is OK here.")]
         public static string GetRootUrl(Controller controller)
         {
             var requestUrl = controller.Request.Url;

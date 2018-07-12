@@ -24,7 +24,7 @@
         {
             get
             {
-                return UserName.ToLower().StartsWith("12bet$") ? UserName.Substring(6, UserName.Length - 6) : UserName;
+                return UserName.ToLowerInvariant().StartsWith("12bet$") ? UserName.Substring(6, UserName.Length - 6) : UserName;
             }
         }
     }

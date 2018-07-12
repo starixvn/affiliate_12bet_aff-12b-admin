@@ -7,7 +7,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 {
     public class MemberTransactionService : IMemberTransactionService
     {
-        public readonly IMemberInfoServiceWrapper _serviceWrapper;
+        private readonly IMemberInfoServiceWrapper _serviceWrapper;
 
         public MemberTransactionService(IMemberInfoServiceWrapper serviceWrapper)
         {

@@ -1,4 +1,5 @@
-﻿using Fanex.Data;
+﻿using System.Diagnostics.CodeAnalysis;
+using Fanex.Data;
 
 namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
 {
@@ -21,6 +22,7 @@ namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
         public int Nrows { get; set; }
 
         [SpParam(Ignored = true)]
+        [SuppressMessage("Sonar Code Smell", "S3996:UriPropertiesShouldNotBeStrings", Justification = "Reviewed. Suppression is OK here.")]
         public string ScriptUrl { get; set; }
     }
 }

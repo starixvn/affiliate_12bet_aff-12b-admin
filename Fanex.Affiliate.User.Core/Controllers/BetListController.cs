@@ -17,8 +17,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
         private const string Language = "en-US";
         private const string ExchangeRate = "1";
 
-        private static readonly Product[] supportedProducts = new Product[2]
-        {
+        private static readonly Product[] supportedProducts = new[] {
             new Product { ProductId = 1, ProductName = "Sportsbook" },
             new Product { ProductId = 5, ProductName = "Playtech Casino" }
         };

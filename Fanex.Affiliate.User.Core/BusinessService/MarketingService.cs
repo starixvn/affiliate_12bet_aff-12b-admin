@@ -128,7 +128,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return textList;
         }
 
-        private string GenerateLink(LinkBaseParam linkParam, string shortedLanguageCode)
+        private static string GenerateLink(LinkBaseParam linkParam, string shortedLanguageCode)
         {
             var selectedDomain = linkParam.SelectedDomain;
             var template = linkParam.TextLinkTemplate;
@@ -143,7 +143,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return result;
         }
 
-        private bool IsSearchByCategory(string category, string subCategory)
+        private static bool IsSearchByCategory(string category, string subCategory)
         {
             return (category.MatchWith("sportsbook") || category.MatchWith("casino")) &&
                     string.IsNullOrEmpty(subCategory);

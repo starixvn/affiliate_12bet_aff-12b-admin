@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
@@ -60,7 +61,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
                 int num4 = num + Convert.ToInt32(Convert.ToChar(codeString.Substring(j - 1, 1))) * j;
                 num3 *= num4;
             }
-            var num3String = num3.ToString();
+            var num3String = num3.ToString(CultureInfo.InvariantCulture);
             var textBuilder = new StringBuilder();
             for (int k = 1; k <= num3String.Length; k++)
             {

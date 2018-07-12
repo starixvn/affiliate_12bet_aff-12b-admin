@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using Fanex.Affiliate.User.Core.MetalModels.Attributes;
 using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Data;
@@ -40,6 +41,7 @@ namespace Fanex.Affiliate.User.Core.MetalModels
         public string Country { get; set; }
 
         [RequiredByChecked(DependentPropertyName = "HasWebSite", IsChecked = true, ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "WebsiteURLIsRequired")]
+        [SuppressMessage("Sonar Code Smell", "S3996:UriPropertiesShouldNotBeStrings", Justification = "Reviewed. Suppression is OK here.")]
         public string SiteUrl { get; set; } = string.Empty;
 
         public string MoreSiteUrls { get; set; }
@@ -50,12 +52,8 @@ namespace Fanex.Affiliate.User.Core.MetalModels
         [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "PreferLangErr")]
         public string PreferredLanguage { get; set; }
 
-        public string PreferredPayment => "Player";
+        public static string PreferredPayment => "Player";
 
-        /// <summary>
-        /// CodeReview:
-        /// Remove underscore
-        /// </summary>
         [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "BETUserNameIsRequired")]
         public string Player_UserName { get; set; }
 

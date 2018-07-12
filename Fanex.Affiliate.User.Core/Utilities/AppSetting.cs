@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Fanex.Affiliate.User.Core.Enum;
 
@@ -28,6 +29,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         public string BannerDomain => GetValue("BannerDomain");
 
+        [SuppressMessage("Sonar Code Smell", "S3996:UriPropertiesShouldNotBeStrings", Justification = "Reviewed. Suppression is OK here.")]
         public string MediaScriptUrl => GetValue("MediaScriptUrl");
 
         public string MailContact => GetValue("MailContact");

@@ -130,9 +130,10 @@
 
                 case "Signup":
                     return GetSignupModel();
-            }
 
-            return null;
+                default:
+                    return null;
+            }
         }
 
         private object GetForgetPasswordModel()

@@ -177,11 +177,6 @@ namespace Fanex.Affiliate.User.Core.Controllers
 
         private bool IsValidCaptcha(string validationKey)
         {
-            //if (!AppSetting.IsProduction)
-            //{
-            //    return true;
-            //}
-
             return validationKey.Equals(SessionService.CaptchaCode);
         }
 

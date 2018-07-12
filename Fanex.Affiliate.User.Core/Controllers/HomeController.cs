@@ -49,9 +49,9 @@ namespace Fanex.Affiliate.User.Core.Controllers
         [HttpPost]
         public ActionResult ChangeLanguage(string languageCode)
         {
-            languageCode = string.IsNullOrEmpty(languageCode) ? SystemLanguage.DefaultLanguageCode : languageCode;
-            SessionService.CurrentLanguage = languageCode;
-            _languageService.SetCulture(languageCode);
+            var code = string.IsNullOrEmpty(languageCode) ? SystemLanguage.DefaultLanguageCode : languageCode;
+            SessionService.CurrentLanguage = code;
+            _languageService.SetCulture(code);
 
             return Json(true);
         }
