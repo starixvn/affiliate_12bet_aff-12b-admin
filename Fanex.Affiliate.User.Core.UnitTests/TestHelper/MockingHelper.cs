@@ -66,8 +66,12 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
                 paymentService);
 
             var request = GetHttpRequest();
+            var server = new Mock<HttpServerUtilityBase>();
+            server.Setup(s => s.HtmlEncode(It.IsAny<string>())).Returns<string>(s => $"Encoded{s}");
+
             controller.ControllerContext = Mock.Of<ControllerContext>(ctx =>
-                ctx.HttpContext.Request == request
+                ctx.HttpContext.Request == request &&
+                ctx.HttpContext.Server == server.Object
             );
 
             var context = Mock.Of<HttpContextBase>(ctx => ctx.Request == request);

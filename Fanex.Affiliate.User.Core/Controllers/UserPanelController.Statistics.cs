@@ -190,7 +190,7 @@
                     dataList.Add(new SelectListItem
                     {
                         Value = language.Code,
-                        Text = SystemLanguage.GetDisplayText(item.Value),
+                        Text = SystemLanguage.GetLanguageText(item.Value),
                         Selected = language.Code.MatchWith(SessionService.UserSession.PreferredLanguage)
                     });
                 }

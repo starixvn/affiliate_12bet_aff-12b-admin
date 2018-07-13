@@ -7,7 +7,6 @@
     using Filters;
     using MetalModels;
     using Resources;
-    using Utilities;
     using ViewModels;
 
     public partial class UserPanelController
@@ -57,7 +56,7 @@
                 MoreSiteUrls = Server.HtmlEncode(model.MoreSiteUrls ?? string.Empty),
                 NoSiteDesc = Server.HtmlEncode(model.NoSiteDesc ?? string.Empty),
                 Player_UserName = model.PlayerUsername,
-                Ip = RequestHelper.GetClientIPAddress(),
+                Ip = Request.UserHostAddress,
                 Language = SessionService.CurrentLanguage
             };
 

@@ -36,16 +36,6 @@ namespace Fanex.Affiliate.User.Core.Constants
                 case "poker": return Resources.Lang.Poker;
                 case "image": return Resources.Lang.Image;
                 case "flash": return Resources.Lang.Flash;
-                case "english": return Resources.Lang.English;
-                case "chinese traditional": return Resources.Lang.ChineseTraditio;
-                case "chinese simplified": return Resources.Lang.ChineseSimplifi;
-                case "thai": return Resources.Lang.Thai;
-                case "spanish": return Resources.Lang.Spanish;
-                case "indonesian": return Resources.Lang.Indonesian;
-                case "vietnamese": return Resources.Lang.Vietnamese;
-                case "english (europe)": return Resources.Lang.EnglishEU;
-                case "korean": return Resources.Lang.Korean;
-                case "japanese": return Resources.Lang.Japanese;
                 case "casino": return Resources.Lang.Casino;
                 case "basketball": return Resources.Lang.Basketball;
                 case "tennins": return Resources.Lang.Tennis;
@@ -68,6 +58,26 @@ namespace Fanex.Affiliate.User.Core.Constants
                 case "slot": return Resources.Lang.Slot;
                 case "roulette": return Resources.Lang.Roulette;
                 case "sic bo": return Resources.Lang.Sicbo;
+
+                default:
+                    return value;
+            }
+        }
+
+        public static string GetLanguageText(string value)
+        {
+            switch (value.ToLowerInvariant())
+            {
+                case "english": return Resources.Lang.English;
+                case "chinese traditional": return Resources.Lang.ChineseTraditio;
+                case "chinese simplified": return Resources.Lang.ChineseSimplifi;
+                case "thai": return Resources.Lang.Thai;
+                case "spanish": return Resources.Lang.Spanish;
+                case "indonesian": return Resources.Lang.Indonesian;
+                case "vietnamese": return Resources.Lang.Vietnamese;
+                case "english (europe)": return Resources.Lang.EnglishEU;
+                case "korean": return Resources.Lang.Korean;
+                case "japanese": return Resources.Lang.Japanese;
 
                 default:
                     return value;
