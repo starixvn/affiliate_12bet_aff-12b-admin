@@ -6,13 +6,9 @@
     @RenderSection("styles", required: false)
 }
 
-@section classNav{
-    page-container
-}
+@section classNav{page-container}
 
-@section classHotNews{
-    page-container
-}
+@section classHotNews{page-container}
 
 @section scripts{
     <script>
@@ -32,7 +28,9 @@
         <img src="@Url.Content("~/www/build/styles/Images/banner-red.png")">
     </div>
 
-    @RenderBody()
+    <div class="page-container">
+        @RenderBody()
+    </div>
 
     <div class="banner-side banner-right">
         <img src="@Url.Content("~/www/build/styles/Images/banner-blue.png")">

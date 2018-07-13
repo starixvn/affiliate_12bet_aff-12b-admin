@@ -8,7 +8,7 @@ var Home = (function ($) {
         },
 
         initEvent: function initEvent() {
-            $("#loginLink").on("click", function () {
+            $(".loginLink").on("click", function () {
                 $("#loginDialog").modal({ backdrop: "static" });
             });
 

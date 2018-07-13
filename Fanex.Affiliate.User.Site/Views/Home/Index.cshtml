@@ -17,29 +17,15 @@
     <div id="mainBanner" class="carousel slide banner-center" data-ride="carousel">
         <div class="carousel-inner" role="listbox">
             <div class="item active">
-                <img src="~/www/build/styles/Images/slider-1.png" alt="...">
-                <div class="caption">
-                    <div class="caption-big bounceInDown">
-                        ROAD TO <br />  WORLD CUP 2018
-                    </div>
-                    <div class="caption-small bounceInUp">
-                        BOOST YOUR AFFILIATE REVENUE TO WIN FREE TICKET TO RUSSIA
-                    </div>
-                    <a href="@Url.Action("Index", "Promotion")" class="btn btn-more zoomInRight">More details</a>
-                </div>
+                <a class="nounderline" href="javascript:;">
+                    <img src="~/www/build/styles/Images/main-banner-1.jpg" alt="sign up affiliate" />
+                </a>
             </div>
 
             <div class="item">
-                <img src="~/www/build/styles/Images/slider-1.png" alt="...">
-                <div class="caption">
-                    <div class="caption-big bounceInDown">
-                        ROAD TO <br />  WORLD CUP 2018
-                    </div>
-                    <div class="caption-small bounceInUp">
-                        BOOST YOUR AFFILIATE REVENUE TO WIN FREE TICKET TO RUSSIA
-                    </div>
-                    <a href="@Url.Action("Index", "Promotion")" class="btn btn-more zoomInRight">More details</a>
-                </div>
+                <a class="nounderline @(Model.IsAuthenticated ? string.Empty : "loginLink")" href="@Model.BannerLink">
+                    <img src="~/www/build/styles/Images/main-banner-2.jpg" alt="media gallery" />
+                </a>
             </div>
         </div>
         <a class="left carousel-control" href="#mainBanner" role="button" data-slide="prev">
@@ -79,12 +65,10 @@
                         <span class="text">What's New in Affiliate</span>
                     </h4>
                     <div class="card-body">
-                        <div class="offers-content">
-                            <p class="text-italic-big">Road to</p>
-                            <p class="text-big">World Cup 2018</p>
-                            <p class="date"><span class="text-uppercase">Russia</span> 14 Jun - 15 July</p>
-                            <p class="text-small">Boost up affiliate revenue to win free ticket and accomodation</p>
-                            <a href="@Url.Action("Index", "Promotion")" class="btn btn-join">Join Now!</a>
+                        <div style="padding: 10px;">
+                            <a href="@Url.Action("Index", "ContactUs")">
+                                <img class="img-responsive" src="~/www/build/styles/Images/adv_contact.jpg" />
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -101,7 +85,7 @@
                     <div class="text-content">
                         <ul class="news-content">
                             <li>
-                                <a class="nounderline" href="@Model.BannerLink" @(Model.IsAuthenticated ? "" : "id=loginLink")>
+                                <a class="nounderline @(Model.IsAuthenticated ? string.Empty : "loginLink")" href="@Model.BannerLink">
                                     <span class="news-title">NEW BANNER IS AVAILABLE <span class="text-red" style="text-decoration:underline;">NEW!</span></span>
                                     <span>You can now log in your affiliate account to  get new banners to promote in you website.</span>
                                 </a>

@@ -1,5 +1,5 @@
 ﻿@charset "UTF-8";
-.page-container {
+.pager-container {
   text-align: center;
   padding: 3px;
   font-size: 12px;
@@ -7,7 +7,7 @@
   border-left: 1px solid #d1dae1;
   border-right: 1px solid #d1dae1;
   border-bottom: 1px solid #d1dae1; }
-  .page-container .icon {
+  .pager-container .icon {
     speak: none;
     font-style: normal;
     font-weight: normal;
@@ -20,30 +20,30 @@
     cursor: pointer;
     margin-left: 5px;
     margin-right: 5px; }
-  .page-container .disable {
+  .pager-container .disable {
     color: #d1dae1;
     cursor: default;
     pointer-events: none; }
-  .page-container .page-input {
+  .pager-container .page-input {
     display: inline-block; }
-    .page-container .page-input .text-pageInfo {
+    .pager-container .page-input .text-pageInfo {
       display: inline-block;
       min-width: 120px; }
-    .page-container .page-input:after, .page-container .page-input:before {
+    .pager-container .page-input:after, .pager-container .page-input:before {
       content: "";
       border: 1px solid #ccc; }
-    .page-container .page-input:after {
+    .pager-container .page-input:after {
       margin-left: 5px; }
-    .page-container .page-input:before {
+    .pager-container .page-input:before {
       margin-right: 5px; }
-  .page-container .pagesize-select {
+  .pager-container .pagesize-select {
     height: auto;
     font-size: inherit;
     padding: 2px;
     min-width: 65px;
     border: 1px solid #e2d6d6;
     margin-left: 5px; }
-  .page-container .page-info {
+  .pager-container .page-info {
     float: right;
     padding: 3px; }
 

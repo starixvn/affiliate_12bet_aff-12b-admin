@@ -124,10 +124,12 @@
             </div>
         </div>
 
-        <div class="hot-news @RenderSection("classHotNews", required: false)">
-            <div class="title">@Lang.HotNews</div>
-            <div class="message">
-                <div class="marquee-container" id="marqueeContainer"><p class="marquee-content" id="marquee"></p></div>
+        <div class="@RenderSection("classHotNews", required: false)">
+            <div class="hot-news">
+                <div class="title">@Lang.HotNews</div>
+                <div class="message">
+                    <div class="marquee-container" id="marqueeContainer"><p class="marquee-content" id="marquee"></p></div>
+                </div>
             </div>
         </div>
     </div>
@@ -142,7 +144,7 @@
                 <div class="col-sm-12 footer-img">
                     <div class="img-top">
                         <a class="item">
-                            <img src="@Url.Content("~/www/build/styles/Images/footer/cr-rank-sponsors.png")" alt="cr-rank-sponsors-logo" />
+                            <img src="~/www/build/styles/Images/footer/cr-rank-sponsors.png" alt="sponsors" />
                         </a>
                     </div>
                     <div class="img-bottom">

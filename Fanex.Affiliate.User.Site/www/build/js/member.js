@@ -1347,7 +1347,7 @@
                 var htmlNextButton = buildNextButton(disableNextButton);
                 var htmlPageSizeList = buildPageSizeList(mainOption.pageSizeList, mainOption.pageSize);
 
-                var $pagerContainer = $('<div class="page-container"></div>');
+                var $pagerContainer = $('<div class="pager-container"></div>');
                 $pagerContainer.append(htmlPrevButton + htmlPagingInfo + htmlNextButton + htmlPageSizeList);
                 $self.append($pagerContainer);
 

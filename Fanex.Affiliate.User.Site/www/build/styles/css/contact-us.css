@@ -73,6 +73,8 @@
   color: #fff;
   padding: 10px;
   font-size: 13px; }
+  .date-time-info > p {
+    font-size: 12px; }
 
 .languages-item {
   display: flex;

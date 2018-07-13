@@ -1,25 +1,9 @@
 ﻿@import "../scss/abstracts/variables";
 @import "../scss/abstracts/mixins";
-@import "../scss/vendors/animate/properties";
-@import "../scss/vendors/animate/_bouncing-entrances/bounceInUp";
-@import "../scss/vendors/animate/_bouncing-entrances/bounceInDown";
-@import "../scss/vendors/animate/_zooming-entrances/zoomInRight";
 @import "../scss/vendors/bootstrap/variables";
 @import "../scss/vendors/bootstrap/mixins";
 @import "../scss/vendors/bootstrap/modals";
 @import "../scss/components/login-dialog";
-
-.bounceInDown {
-    @include bounceInDown( $duration: 2s, $count: 1, $delay: .2s, $function: ease, $fill: both );
-}
-
-.bounceInUp {
-    @include bounceInUp( $duration: 2s, $count: 1, $delay: .4s, $function: ease, $fill: both );
-}
-
-.zoomInRight {
-    @include zoomInRight( $duration: 2s, $count: 1, $delay: .6s, $function: ease, $fill: both );
-}
 
 .main {
     .home-page {
@@ -106,102 +90,6 @@
             margin-right: auto;
         }
     }
-
-    .offers-content {
-        background-image: url(../Images/bg-offers.png);
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-        margin-top: 15px;
-        margin-bottom: 15px;
-        min-height: 200px;
-        color: #fff;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        max-width: 100%;
-        padding: 15px 10px;
-
-        @media only screen and (min-width: 1400px) {
-            padding-right: 80px;
-        }
-
-        .text-italic-big {
-            display: block;
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 15px;
-            text-transform: uppercase;
-            line-height: 1;
-            font-style: italic;
-        }
-
-        .text-big {
-            display: block;
-            font-size: 15px;
-            text-transform: uppercase;
-            font-weight: 600;
-            line-height: 1;
-        }
-
-        .date {
-            display: block;
-            font-size: 13px;
-
-            &:after {
-                content: '';
-                display: block;
-                margin: 5px 0 10px 3px;
-                width: 130px;
-                height: 2px;
-                background: #ffff00;
-            }
-        }
-
-        .text-small {
-            display: block;
-            font-size: 13px;
-        }
-
-        .btn-join {
-            $bg-btn-join: #dfa982 0%, #f4eccd 50%, #c09f84 100%;
-            @include background-gradient(top, $bg-btn-join);
-            position: relative;
-            margin: 10px 0;
-            border-radius: 8px;
-            padding: 5px 10px;
-            height: auto;
-            color: #ce0000;
-            font-weight: 600;
-            font-style: italic;
-            overflow: hidden;
-            border: 1px solid #dab078;
-            font-size: 13px;
-
-            &:after {
-                content: '';
-                position: absolute;
-                width: 100%;
-                height: 0;
-                top: 50%;
-                left: 50%;
-                background: rgba(255,255,255,.2);
-                opacity: 0;
-                z-index: -1;
-                @include css3-prefix(transform, translateX(-50%) translateY(-50%) rotate(45deg));
-                @include css3-prefix(transition, all .3s);
-            }
-
-            &:hover:after {
-                height: 260%;
-                opacity: 1;
-                z-index: 1;
-            }
-
-            &:focus {
-                outline: none;
-            }
-        }
-    }
 }
 
 .news-content {
@@ -224,5 +112,22 @@
         display: block;
         font-weight: 600;
         padding-bottom: 5px;
+    }
+}
+
+.carousel-inner {
+    height: 400px;
+
+    @media(max-width: 1200px) {
+        height: 300px;
+    }
+
+    > .item {
+        height: 100%;
+
+        > a > img {
+            width: 100%;
+            height: 100%;
+        }
     }
 }
