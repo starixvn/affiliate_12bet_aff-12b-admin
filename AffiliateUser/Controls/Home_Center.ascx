@@ -1,15 +1,27 @@
 <%@ Control Language="C#" AutoEventWireup="true" Inherits="Controls_Home_Center" CodeBehind="Home_Center.ascx.cs" %>
-
+<link href="../Content/_banner.min.css" rel="stylesheet" />
 <%
     var shortedLanguageCode = Common.ConvertSpecialLanguageCode();
-    var link = shortedLanguageCode.Equals("ch") ? 
+    var link = shortedLanguageCode.Equals("ch") ?
         "https://promotions.12bet.com/Promotion/index.php?lang=ch&act=worldcup" :
         "https://promotions.12bet.com/newsletter/2018Newsletter/June/" + shortedLanguageCode + "/";
 %>
 <div id="banner_main">
-    <a id="big_banner_link" href="<%=link%>" target="_blank">
-        <img src="<%=Common.GetBannerFlash() %>" width="646px" height="275px" />
-    </a>
+    <!-- Slideshow container -->
+    <div class="slideshow-container">
+        <!-- Full-width images with number and caption text -->
+        <div class="mySlides fade" onmouseover="Banner.handleMouseOver()" onmouseout="Banner.handleMouseOut()">
+            <img src="<%=Common.GetBannerFlash(1) %>" style="width: 100%">
+        </div>
+
+        <div class="mySlides fade" onmouseover="Banner.handleMouseOver()" onmouseout="Banner.handleMouseOut()">
+            <img src="<%=Common.GetBannerFlash(2) %>" style="width: 100%">
+        </div>
+
+        <!-- Next and previous buttons -->
+        <a class="prev" onclick="Banner.plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="Banner.plusSlides(1)">&#10095;</a>
+    </div>
 </div>
 <div id="contents">
     <table width="100%" cellspacing="0" cellpadding="0" border="0">
@@ -105,3 +117,5 @@
         </tr>
     </table>
 </div>
+
+<script src="../App_Js/banner.js"></script>

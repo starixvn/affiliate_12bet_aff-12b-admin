@@ -83,10 +83,10 @@ public class Common
         }
     }
 
-    public static string GetBannerFlash()
+    public static string GetBannerFlash(int index)
     {
         string folder = AppSettings.AffTypeList.Any(t => t == AffType.European) ? AffType.European.ToString() : GetLanguage();
-        return string.Format("Content/Banner/{0}/{1}?v={2}", folder, "main.jpg", AppSettings.JsVersion);
+        return string.Format("Content/Banner/{0}/{1}.jpg?v={2}", folder, index, AppSettings.JsVersion);
     }
 
     public static string ConvertSpecialLanguageCode()
