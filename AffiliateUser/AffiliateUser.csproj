@@ -1149,7 +1149,7 @@
     <Content Include="App_Templates\UserInfo\ViewDaily.htm" />
     <Content Include="App_Themes\Aff12bet.ico" />
     <Content Include="App_Themes\Aff12bet.png" />
-    <Content Include="App_Themes\Default\Content.css" />
+    <Content Include="App_Themes\Default\Contentv10.css" />
     <Content Include="App_Themes\Default\Images1\banner.png" />
     <Content Include="App_Themes\Default\Images1\banner_en-GB.jpg" />
     <Content Include="App_Themes\Default\Images1\banner_en-US.jpg" />

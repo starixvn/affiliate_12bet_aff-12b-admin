@@ -1,5 +1,5 @@
 <%@ Control Language="C#" AutoEventWireup="true" Inherits="Controls_Home_Center" CodeBehind="Home_Center.ascx.cs" %>
-<link href="../Content/_banner.min.css" rel="stylesheet" />
+<link href="Content/_banner.min.css" rel="stylesheet" />
 
 <div id="banner_main">
     <!-- Slideshow container -->
@@ -117,4 +117,4 @@
     </table>
 </div>
 
-<script src="../App_Js/banner.js"></script>
+<script src="App_Js/banner.js"></script>
