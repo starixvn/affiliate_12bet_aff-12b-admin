@@ -91,12 +91,6 @@ public class Common
 
     public static string ConvertSpecialLanguageCode()
     {
-        var languageCode = AppSettings.Session.Language.ToLower();
-        if (languageCode == "hi-in" && !IsEuroSite())
-        {
-            return "hien";
-        }
-
         return ConvertToShortLanguageCode();
     }
 
@@ -129,6 +123,9 @@ public class Common
 
             case "hi-in":
                 return "hi";
+
+            case "ko-kr":
+                return "ko";
 
             default:
                 return "en";

@@ -11,6 +11,7 @@ public class RootPageLogIn : RootPage
     {
         if (!AppSettings.Session.IsAuthenticated)
         {
+            //Response.Redirect(ResolveUrl("~") + "?url=" + Server.UrlEncode(Request.Url.AbsolutePath));
             HttpContext.Current.Response.Redirect(Common.RootURL());
         }
         if (!IsSessionValid())
@@ -37,7 +38,7 @@ public class RootPageLogIn : RootPage
 
     protected override void InitializeCulture()
     {
-        
+
 
         AffHandler.InitializeCulture(HttpContext.Current);
     }

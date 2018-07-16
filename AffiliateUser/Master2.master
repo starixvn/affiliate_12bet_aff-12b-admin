@@ -74,24 +74,42 @@
     </div>
 
     <% if (AppSettings.Environment.Equals("UAT", StringComparison.OrdinalIgnoreCase) || AppSettings.Environment.Equals("PRODUCTION", StringComparison.OrdinalIgnoreCase))
-       { %>
+        { %>
     <!-- Google Analytics -->
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-5160706-44"></script>
     <script type="text/javascript">
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-       gtag('js', new Date());
-   
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
         gtag('config', 'UA-5160706-44');
 
-        var bigBannerLink = document.getElementById("big_banner_link");
-        bigBannerLink.addEventListener("click", function (event) {
-            gtag('event', 'AffWorldCupPro-<%=Common.ConvertSpecialLanguageCode().ToUpper() %>', {
-              'event_category': 'AFFiliatePage',
-              'event_label': 'AFFBigBanner'
+        var bannerSignup = document.getElementById("bannerSignup");
+        bannerSignup.addEventListener("click", function (event) {
+            event.preventDefault();
+            gtag('event', 'AffJoinJuly40Com-<%=Common.ConvertSpecialLanguageCode().ToUpper() %>', {
+                'event_category': 'AFFiliatePage',
+                'event_label': 'AFFBigBanner'
+            });
+
+            setTimeout(function () {
+                window.location.href = '<%=ResolveUrl("Signup.aspx")%>';
+            }, 10);
         });
+
+        var bannerMedia = document.getElementById("bannerMedia");
+        bannerMedia.addEventListener("click", function (event) {
+            event.preventDefault();
+
+            gtag('event', 'AffNewSeasonMedia-<%=Common.ConvertSpecialLanguageCode().ToUpper() %>', {
+                'event_category': 'AFFiliatePage',
+                'event_label': 'AFFBigBanner'
+            });
+
+            setTimeout(function () {
+                window.location.href = '<%=ResolveUrl("UserInfo/MediaGalleryNew.aspx")%>';
+            }, 10);
         });
     </script>
     <!-- End Google Analytics -->

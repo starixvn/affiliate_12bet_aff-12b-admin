@@ -44,10 +44,6 @@ namespace AffiliateUser.Business.Services.Authorization
                     if (string.IsNullOrEmpty(dr.Outputs["errmsg"].ToString()))
                     {
                         var afftype = (AffType)DNAide.Core.CastAide.AsInt32(dr.Outputs["afftype"], 2);
-
-                        var currentDomain = HttpContextAnalysis.GetDomain(context);
-                        var port = HttpContextAnalysis.GetPort(context);
-
                         bool isValidLogin = AppSettings.AffTypeList.Any(t => t == afftype);
 
                         if (!isValidLogin)

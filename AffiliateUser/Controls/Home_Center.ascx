@@ -1,21 +1,20 @@
 <%@ Control Language="C#" AutoEventWireup="true" Inherits="Controls_Home_Center" CodeBehind="Home_Center.ascx.cs" %>
 <link href="../Content/_banner.min.css" rel="stylesheet" />
-<%
-    var shortedLanguageCode = Common.ConvertSpecialLanguageCode();
-    var link = shortedLanguageCode.Equals("ch") ?
-        "https://promotions.12bet.com/Promotion/index.php?lang=ch&act=worldcup" :
-        "https://promotions.12bet.com/newsletter/2018Newsletter/June/" + shortedLanguageCode + "/";
-%>
+
 <div id="banner_main">
     <!-- Slideshow container -->
     <div class="slideshow-container">
         <!-- Full-width images with number and caption text -->
         <div class="mySlides fade" onmouseover="Banner.handleMouseOver()" onmouseout="Banner.handleMouseOut()">
-            <img src="<%=Common.GetBannerFlash(1) %>" style="width: 100%">
+            <a href="javacript:;" id="bannerSignup">
+                <img src="<%=Common.GetBannerFlash(1) %>" style="width: 100%">
+            </a>
         </div>
 
         <div class="mySlides fade" onmouseover="Banner.handleMouseOver()" onmouseout="Banner.handleMouseOut()">
-            <img src="<%=Common.GetBannerFlash(2) %>" style="width: 100%">
+            <a href="javascript:;" id="bannerMedia">
+                <img src="<%=Common.GetBannerFlash(2) %>" style="width: 100%">
+            </a>
         </div>
 
         <!-- Next and previous buttons -->
