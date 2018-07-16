@@ -4,6 +4,7 @@
 
     var sessionService = DependencyResolver.Current.GetService<ISessionService>();
     var secureQuestionPath = "~/Views/Signup/SecureQuestion/SecureQuestion_" + sessionService.CurrentLanguage + ".cshtml";
+    var currentLanguage = sessionService.CurrentLanguage;
 }
 
 @using Fanex.Affiliate.User.Core.CoreService
@@ -116,15 +117,7 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label class="col-sm-3 control-label require">@Lang.Mobile</label>
-                    <div class="col-sm-4">
-                        @Html.TextBoxFor(p => p.MobilePhone, new { @class = "form-control" })
-                    </div>
-                    <div class="col-sm-offset-3 col-sm-9">
-                        @Html.ValidationMessageFor(x => x.MobilePhone, string.Empty, new { @class = "help-block hide" })
-                    </div>
-                </div>
+                @RazorHelper.RenderAppContact(currentLanguage)
             </div>
 
             <div class="info-group">
@@ -153,8 +146,8 @@
                         </div>
                     </div>
 
-                    @if (sessionService.CurrentLanguage.Equals("zh-CN") || sessionService.CurrentLanguage.Equals("zh-TW"))
-                {
+                    @if (currentLanguage.Equals("zh-CN") || currentLanguage.Equals("zh-TW"))
+                    {
                         <div class="form-group">
                             <label class="col-sm-3 control-label require">@Lang.State</label>
                             <div class="col-sm-4">

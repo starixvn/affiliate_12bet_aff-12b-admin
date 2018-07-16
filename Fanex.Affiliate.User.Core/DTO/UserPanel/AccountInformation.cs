@@ -5,9 +5,9 @@ using System.Diagnostics.CodeAnalysis;
 using Fanex.Affiliate.User.Core.MetalModels.Attributes;
 using Fanex.Affiliate.User.Core.Resources;
 
-namespace Fanex.Affiliate.User.Core.ViewModels
+namespace Fanex.Affiliate.User.Core.DTO.UserPanel
 {
-    public class AccountInformationViewModel
+    public class AccountInformation
     {
         public int AffId { get; set; }
 
@@ -27,9 +27,6 @@ namespace Fanex.Affiliate.User.Core.ViewModels
 
         [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "errContactNumberEmpty")]
         public string Phone { get; set; }
-
-        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "errMobileNumberEmpty")]
-        public string MobilePhone { get; set; }
 
         [RequiredByChecked(DependentPropertyName = "HasWebSite", IsChecked = true, ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "WebsiteURLIsRequired")]
         [SuppressMessage("Sonar Code Smell", "S3996:UriPropertiesShouldNotBeStrings", Justification = "Reviewed. Suppression is OK here.")]
@@ -57,5 +54,9 @@ namespace Fanex.Affiliate.User.Core.ViewModels
         public string LanguageName { get; set; }
 
         public bool HasWebSite { get; set; }
+
+        public string ContactApps { get; set; }
+
+        public IEnumerable<ContactApp> ContactAppList { get; set; }
     }
 }

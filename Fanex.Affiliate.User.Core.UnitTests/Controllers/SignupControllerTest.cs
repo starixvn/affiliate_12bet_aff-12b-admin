@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -175,7 +176,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var controller = new SignupController(sessionService, appSetting, service);
             var request = MockingHelper.GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();
-            server.Setup(s => s.HtmlEncode(It.IsAny<string>())).Returns<string>(s => s);
+            server.Setup(s => s.HtmlEncode(It.IsAny<string>())).Returns<string>(s => $"Encoded{s}");
 
             controller.ControllerContext = Mock.Of<ControllerContext>(ctx =>
                 ctx.HttpContext.Request == request &&
@@ -197,7 +198,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
                 LastName = "LastName",
                 Email = "Email",
                 Phone = "Phone",
-                MobilePhone = "MobilePhone",
                 Address = "Address",
                 City = "City",
                 Postal = "Postal",
@@ -210,20 +210,64 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
                 Answer = "Answer",
                 Player_UserName = "Player_UserName",
                 Gender = true,
-                State = "State"
+                State = "State",
+                ContactApps = "ContactApps",
+                ContactAppList = CreateAppContactList()
             };
         }
 
         private UserSignUpParam CreateExpectedParam()
         {
-            var passedParam = CreateParam();
+            var appContactList = CreateAppContactList().Select(p => new ContactApp
+            {
+                Name = $"Encoded{p.Name}",
+                Value = $"Encoded{p.Value}",
+                Order = p.Order
+            });
 
-            passedParam.Language = Constant.DefaultLanguage;
-            passedParam.AffType = Constant.AffTypeAsian;
-            passedParam.Ip = "::1";
-            passedParam.IsLocal = true;
+            return new UserSignUpParam
+            {
+                FirstName = "EncodedFirstName",
+                LastName = "EncodedLastName",
+                Email = "EncodedEmail",
+                Phone = "EncodedPhone",
+                Address = "EncodedAddress",
+                City = "EncodedCity",
+                Postal = "EncodedPostal",
+                Country = "EncodedCountry",
+                SiteUrl = "EncodedSiteUrl",
+                MoreSiteUrls = "EncodedMoreSiteUrls",
+                NoSiteDesc = "EncodedNoSiteDesc",
+                PreferredLanguage = "EncodedPreferredLanguage",
+                Question = "EncodedQuestion",
+                Answer = "EncodedAnswer",
+                Player_UserName = "EncodedPlayer_UserName",
+                Gender = true,
+                State = "EncodedState",
+                Language = Constant.DefaultLanguage,
+                AffType = Constant.AffTypeAsian,
+                Ip = "::1",
+                IsLocal = true,
+                ContactApps = JsonConvert.SerializeObject(appContactList)
+            };
+        }
 
-            return passedParam;
+        private static List<ContactApp> CreateAppContactList()
+        {
+            return new List<ContactApp> {
+                    new ContactApp
+                    {
+                        Name = "Skype",
+                        Value = "skyper",
+                        Order = 0
+                    },
+                    new ContactApp
+                    {
+                        Name = "Zalo",
+                        Value = "Zalor",
+                        Order = 1
+                    }
+                };
         }
     }
 }

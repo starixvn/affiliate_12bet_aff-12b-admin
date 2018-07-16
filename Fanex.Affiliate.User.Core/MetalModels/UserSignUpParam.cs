@@ -1,5 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
+using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.MetalModels.Attributes;
 using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Data;
@@ -22,9 +24,6 @@ namespace Fanex.Affiliate.User.Core.MetalModels
 
         [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "errContactNumberEmpty")]
         public string Phone { get; set; }
-
-        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "errMobileNumberEmpty")]
-        public string MobilePhone { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "AddressIsRequired")]
         public string Address { get; set; }
@@ -63,6 +62,8 @@ namespace Fanex.Affiliate.User.Core.MetalModels
         [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "errYourAnswer")]
         public string Answer { get; set; }
 
+        public string ContactApps { get; set; }
+
         public string Ip { get; set; }
 
         public string Language { get; set; }
@@ -74,6 +75,9 @@ namespace Fanex.Affiliate.User.Core.MetalModels
         public int ErrCode { get; set; }
 
         public string ErrMsg { get; set; }
+
+        [SpParam(Ignored = true)]
+        public IEnumerable<ContactApp> ContactAppList { get; set; }
 
         [SpParam(Ignored = true)]
         [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "EmailAddressIsRequired")]

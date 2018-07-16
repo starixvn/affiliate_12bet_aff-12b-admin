@@ -10,8 +10,6 @@ namespace Fanex.Affiliate.User.Core.MetalModels
 
         public string Phone { get; set; }
 
-        public string MobilePhone { get; set; }
-
         [SuppressMessage("Sonar Code Smell", "S3996:UriPropertiesShouldNotBeStrings", Justification = "Reviewed. Suppression is OK here.")]
         public string SiteUrl { get; set; }
 
@@ -24,6 +22,8 @@ namespace Fanex.Affiliate.User.Core.MetalModels
         public string Ip { get; set; }
 
         public string Language { get; set; }
+
+        public string ContactApps { get; set; }
 
         public int ErrCode { get; set; }
 

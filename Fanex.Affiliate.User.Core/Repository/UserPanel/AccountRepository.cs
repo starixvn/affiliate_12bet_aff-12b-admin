@@ -9,7 +9,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 {
     public class AccountRepository : IAccountRepository
     {
-        public AccountInformationViewModel GetAccountInfo(int affId)
+        public AccountInformation GetAccountInfo(int affId)
         {
             const string uSpKey = "Aff_User_UserInfoSel";
 
@@ -17,7 +17,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             {
                 var parameterSet = new { affId };
 
-                return objectDb.DB.QueryEntity<AccountInformationViewModel>(parameterSet);
+                return objectDb.DB.QueryEntity<AccountInformation>(parameterSet);
             }
         }
 

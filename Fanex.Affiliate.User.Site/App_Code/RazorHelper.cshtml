@@ -26,3 +26,38 @@
         </div>
     </div>
 }
+
+@helper RenderAppContact(string language)
+{
+var firstAppName = language.Equals("zh-CN") || language.Equals("zh-TW") ? "QQ" : "Skype";
+var secondAppContactList = new Dictionary<string, string>
+{
+    ["vi-VN"] = "Zalo",
+    ["th-TH"] = "Line ID",
+    ["id-ID"] = "What'sApp",
+    ["hi-IN"] = "What'sApp",
+    ["ko-KR"] = "Telegram",
+};
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label">@firstAppName</label>
+        <div class="col-sm-4">
+            <input type="text" name="ContactAppList[0].Value" id="ContactAppList[0].Value" class="form-control" value="" />
+        </div>
+        <input type="hidden" name="ContactAppList[0].Name" value="@firstAppName" />
+        <input type="hidden" name="ContactAppList[0].Order" value="0" />
+    </div>
+
+if (secondAppContactList.ContainsKey(language))
+{
+    var secondAppName = secondAppContactList[language];
+        <div class="form-group">
+            <label class="col-sm-3 control-label">@secondAppName</label>
+            <div class="col-sm-4">
+                <input type="text" name="ContactAppList[1].Value" id="ContactAppList[1].Value" class="form-control" value="" />
+            </div>
+            <input type="hidden" name="ContactAppList[1].Name" value="@secondAppName" />
+            <input type="hidden" name="ContactAppList[1].Order" value="1" />
+        </div>
+    }
+}

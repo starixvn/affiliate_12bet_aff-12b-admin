@@ -8,7 +8,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 {
     public interface IAccountRepository
     {
-        AccountInformationViewModel GetAccountInfo(int affId);
+        AccountInformation GetAccountInfo(int affId);
 
         DepositAccountInfo GetDepositPlayerAccount(string playerUserName);
 

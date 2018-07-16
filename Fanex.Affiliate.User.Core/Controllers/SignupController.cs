@@ -7,6 +7,7 @@
     using DTO;
     using MetalModels;
     using MetalModels.Email;
+    using Newtonsoft.Json;
     using Resources;
     using Utilities;
 
@@ -45,7 +46,6 @@
                     LastName = Server.HtmlEncode(param.LastName),
                     Email = Server.HtmlEncode(param.Email),
                     Phone = Server.HtmlEncode(param.Phone),
-                    MobilePhone = Server.HtmlEncode(param.MobilePhone),
                     Address = Server.HtmlEncode(param.Address),
                     City = Server.HtmlEncode(param.City),
                     Postal = Server.HtmlEncode(param.Postal),
@@ -57,8 +57,14 @@
                     Question = Server.HtmlEncode(param.Question),
                     Answer = Server.HtmlEncode(param.Answer),
                     Player_UserName = Server.HtmlEncode(param.Player_UserName),
+                    ContactApps = JsonConvert.SerializeObject(param.ContactAppList.Select(p => new ContactApp
+                    {
+                        Name = Server.HtmlEncode(p.Name),
+                        Value = Server.HtmlEncode(p.Value),
+                        Order = p.Order
+                    })),
                     Gender = param.Gender,
-                    State = param.State,
+                    State = Server.HtmlEncode(param.State),
                     Language = SessionService.CurrentLanguage,
                     AffType = AppSetting.AllowedAffiliateTypes.FirstOrDefault(),
                     Ip = Request.UserHostAddress,

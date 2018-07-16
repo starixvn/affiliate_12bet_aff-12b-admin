@@ -485,7 +485,8 @@ input[type="checkbox"], input[type="radio"] {
     background: #f5f5f5;
     padding-left: 1rem;
     padding-right: 1rem;
-    padding-bottom: 15px; }
+    padding-bottom: 15px;
+    height: 100%; }
 
 .hot-news {
   display: flex;
@@ -883,7 +884,7 @@ label.require:after {
 
 .page-container {
   width: calc(100% - 420px);
-  margin: auto; }
+  margin: 0 auto; }
 
 .banner-side {
   margin-top: -30px; }
