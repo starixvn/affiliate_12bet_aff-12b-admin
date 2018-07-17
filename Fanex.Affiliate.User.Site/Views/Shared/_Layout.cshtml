@@ -38,7 +38,7 @@
                         @if (!HttpContext.Current.User.Identity.IsAuthenticated || userSession == null)
                         {
                         <div class="sign-up">
-                            <a href="@Url.Action("Index", "Signup")" class="btn btn-signup"><span class="icon mdi mdi-pencil"></span>@Lang.SignUpAffiliate</a>
+                            <a href="@Url.Action("Index", "Signup")" class="btn btn-signup"><span class="icon glyphicon glyphicon-pencil"></span>@Lang.SignUpAffiliate</a>
                         </div>
                         }
 
