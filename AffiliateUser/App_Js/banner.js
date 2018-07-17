@@ -1,4 +1,5 @@
 ﻿var Banner = (function () {
+    var INTERVAL_SLIDE = 5000;
     var sliderTimeout = null;
     var slideIndex = 1;
     showSlides(slideIndex);
@@ -10,7 +11,7 @@
             slideIndex = 1;
         }
         else if (n < 1) {
-            slideIndex = slides.length
+            slideIndex = slides.length;
         }
         else {
             slideIndex = n;
@@ -22,7 +23,7 @@
         slides[slideIndex - 1].style.display = "block";
 
         clearTimeout(sliderTimeout);
-        sliderTimeout = setTimeout(function () { showSlides(slideIndex + 1); }, 7000);
+        sliderTimeout = setTimeout(function () { showSlides(slideIndex + 1); }, INTERVAL_SLIDE);
     }
 
     var _me = {
@@ -30,13 +31,13 @@
             clearTimeout(sliderTimeout);
         },
         handleMouseOut: function () {
-            sliderTimeout = setTimeout(function () { showSlides(slideIndex + 1); }, 7000);
+            sliderTimeout = setTimeout(function () { showSlides(slideIndex + 1); }, INTERVAL_SLIDE);
         },
         // Next/previous controls
         plusSlides: function (n) {
             showSlides(slideIndex += n);
         }
-    }
+    };
 
     return _me;
-})()
+})();

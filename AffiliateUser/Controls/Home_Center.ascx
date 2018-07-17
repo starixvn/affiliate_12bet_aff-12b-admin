@@ -117,4 +117,4 @@
     </table>
 </div>
 
-<script src="App_Js/banner.js"></script>
+<script src="App_Js/banner.min.js"></script>

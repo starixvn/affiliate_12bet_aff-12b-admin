@@ -721,6 +721,9 @@
     </Compile>
     <Content Include="App_Data\SpNames.xml" />
     <Content Include="App_Js\banner.js" />
+    <Content Include="App_Js\banner.min.js">
+      <DependentUpon>banner.js</DependentUpon>
+    </Content>
     <Content Include="App_Js\libs\jquery-ui\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="App_Js\libs\jquery-ui\images\ui-bg_glass_65_ffffff_1x400.png" />
     <Content Include="App_Js\libs\jquery-ui\images\ui-bg_glass_75_e6e6e6_1x400.png" />
@@ -777,6 +780,10 @@
     </Content>
     <Content Include="BetList\BetListNewParlay.ashx" />
     <Content Include="Content\_banner.scss" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
