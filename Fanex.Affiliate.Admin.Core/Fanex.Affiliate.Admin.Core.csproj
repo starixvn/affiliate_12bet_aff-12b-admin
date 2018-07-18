@@ -106,12 +106,15 @@
   <ItemGroup>
     <Compile Include="Controllers\AffiliateController.cs" />
     <Compile Include="Controllers\CommissionController.cs" />
+    <Compile Include="DTO\Affiliate\AffInformation.cs" />
+    <Compile Include="DTO\Affiliate\OnlineInfo.cs" />
     <Compile Include="DTO\Commission\CommGroup.cs" />
     <Compile Include="DTO\Commission\CommissionResultEntity.cs" />
     <Compile Include="DTO\Commission\CommissionSetting.cs" />
     <Compile Include="DTO\Commission\DeductionSetting.cs" />
     <Compile Include="DTO\Commission\TierSetting.cs" />
     <Compile Include="DTO\Product.cs" />
+    <Compile Include="Enum\AffType.cs" />
     <Compile Include="MetaModels\CommissionSettingParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\BaseRepository.cs" />
@@ -121,6 +124,8 @@
     <Compile Include="Repository\IProductRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="Services\CommissionService.cs" />
+    <Compile Include="Services\Core\ISessionService.cs" />
+    <Compile Include="Services\Core\SessionService.cs" />
     <Compile Include="Services\ICommissionService.cs" />
     <Compile Include="Services\IProductService.cs" />
     <Compile Include="Services\ProductService.cs" />
