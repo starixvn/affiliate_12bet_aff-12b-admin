@@ -1938,6 +1938,8 @@
     <Content Include="Areas\Portal\www\source\js\pages\commission\components\QmTurnOverSetting.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission\components\TierSetting.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission\components\TierSettingItem.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-information\index.jsx" />
+    <Content Include="Areas\Portal\Views\Affiliate\Information.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -2077,6 +2079,7 @@
     </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Areas\Portal\www\source\js\pages\affiliate-information\components\" />
     <Folder Include="Areas\Portal\www\source\style\layout\" />
   </ItemGroup>
   <ItemGroup>

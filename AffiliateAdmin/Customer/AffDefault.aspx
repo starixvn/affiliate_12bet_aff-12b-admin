@@ -10,7 +10,7 @@
      <script type="text/javascript" src="../App_Js/IBCWnd/IBCWnd.js"></script>
 </head>
     <frameset  cols="266,*" frameborder="no" framespacing="0" name="fCustomer" id="fCustomer">
-        <frame id="fInfo" name="fInfo" frameborder="0" noresize="noresize" scrolling="auto" src="AffiliateInfo.aspx?username=<%=strUsername%>&pageid=<%=Pageid %>" />
+        <frame id="fInfo" name="fInfo" frameborder="0" noresize="noresize" scrolling="auto" src="<%=ResolveClientUrl("/Portal/Affiliate/Information") %>"?username=<%=strUsername%>&pageid=<%=Pageid %>" />
         <frameset rows="210,*" frameborder="no" framespacing="0" id="fRightContent" name="fRightContent">
             <frame id="fStatistics" name="fStatistics" noresize="noresize" frameborder="0" scrolling="no" src="" />        
             <frame id="fContent" name="fContent" noresize="noresize" frameborder="0" scrolling="auto" src="" />        

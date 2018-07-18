@@ -725,7 +725,6 @@
     <Content Include="www\source\styles\fonts\font_bebas\Flat-it License.txt" />
     <Content Include="www\source\styles\Images\ads-1.jpg" />
     <Content Include="www\source\styles\Images\advertise.png" />
-    <Content Include="www\source\styles\Images\adv_contact.jpg" />
     <Content Include="www\source\styles\Images\banner-blue.png" />
     <Content Include="www\source\styles\Images\banner-red.png" />
     <Content Include="www\source\styles\Images\bootstrap-formhelpers-countries.flags.png" />
@@ -781,6 +780,7 @@
     <Content Include="www\source\styles\Images\products\ad-banner.jpg" />
     <Content Include="www\source\styles\Images\products\ad-sb.jpg" />
     <Content Include="www\source\styles\Images\term-and-condition\termcondition.jpg" />
+    <Content Include="www\source\styles\Images\adv_contact.jpg" />
     <Content Include="www\source\styles\scss\vendors\animate\animate.css" />
     <Content Include="www\source\styles\scss\vendors\animate\animate.min.css" />
     <Content Include="Views\Shared\Email\Signup\Content.en-GB.cshtml" />
