@@ -1,5 +1,5 @@
 ﻿.main {
-    $bg-main: #500001, #020518;
+    $bg-main: #660000, #00008e;
     @include background-gradient(left, $bg-main);
     display: flex;
     justify-content: center;

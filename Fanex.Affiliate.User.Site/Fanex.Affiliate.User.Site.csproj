@@ -511,6 +511,8 @@
     <Content Include="www\build\styles\css\signup.min.css">
       <DependentUpon>signup.css</DependentUpon>
     </Content>
+    <Content Include="www\build\styles\Images\bgLeft.jpg" />
+    <Content Include="www\build\styles\Images\bgRight.jpg" />
     <Content Include="www\build\styles\Images\FAQ_banner.png" />
     <Content Include="www\build\styles\Images\main-banner-2.jpg" />
     <Content Include="www\build\styles\Images\main-banner-1.jpg" />

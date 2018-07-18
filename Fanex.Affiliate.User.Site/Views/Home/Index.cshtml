@@ -17,7 +17,7 @@
     <div id="mainBanner" class="carousel slide banner-center" data-ride="carousel">
         <div class="carousel-inner" role="listbox">
             <div class="item active">
-                <a class="nounderline" href="javascript:;">
+                <a class="nounderline" href="@Url.Action("Index", "Signup")">
                     <img src="~/www/build/styles/Images/main-banner-1.jpg" alt="sign up affiliate" />
                 </a>
             </div>
@@ -84,8 +84,8 @@
                         <ul class="news-content">
                             <li>
                                 <a class="nounderline @(Model.IsAuthenticated ? string.Empty : "loginLink")" href="@Model.BannerLink">
-                                    <span class="news-title">NEW BANNER IS AVAILABLE <span class="text-red" style="text-decoration:underline;">NEW!</span></span>
-                                    <span>You can now log in your affiliate account to  get new banners to promote in you website.</span>
+                                    <span class="news-title">New  banner is now available! <span class="text-red" style="text-decoration:underline;">NEW!</span></span>
+                                    <span>You can now log in your affiliate account to  get new banners to promote in your website. </span>
                                 </a>
                             </li>
                             <li>

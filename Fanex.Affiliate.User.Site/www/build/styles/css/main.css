@@ -492,11 +492,11 @@ input[type="checkbox"], input[type="radio"] {
     margin-bottom: 10px; } }
 
 .main {
-  background: -ms-linear-gradient(left, #500001, #020518);
-  background: -webkit-linear-gradient(left, #500001, #020518);
-  background: -moz-linear-gradient(left, #500001, #020518);
-  background: -o-linear-gradient(left, #500001, #020518);
-  background: linear-gradient(left, #500001, #020518);
+  background: -ms-linear-gradient(left, #660000, #00008e);
+  background: -webkit-linear-gradient(left, #660000, #00008e);
+  background: -moz-linear-gradient(left, #660000, #00008e);
+  background: -o-linear-gradient(left, #660000, #00008e);
+  background: linear-gradient(left, #660000, #00008e);
   display: flex;
   justify-content: center; }
   .main.after-login {
@@ -836,7 +836,7 @@ label.require:after {
   border: none !important; }
 
 .page-container {
-  width: calc(100% - 420px);
+  width: calc(100% - 416px);
   margin: 0 auto; }
 
 .banner-side {
