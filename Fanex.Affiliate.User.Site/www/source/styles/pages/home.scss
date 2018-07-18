@@ -25,7 +25,8 @@
     .item-wrapper {
         padding-left: 5px;
         padding-right: 5px;
-        flex: 1;
+        flex: 1 1 33.33333%;
+        max-width: 33.33333%;
 
         &.first {
             padding-left: 10px;

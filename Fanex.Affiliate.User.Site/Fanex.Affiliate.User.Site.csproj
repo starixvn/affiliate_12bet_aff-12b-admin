@@ -665,8 +665,6 @@
     <Content Include="www\build\styles\fonts\glypicons\glyphicons-halflings-regular.svg" />
     <Content Include="www\build\styles\Images\ads-1.jpg" />
     <Content Include="www\build\styles\Images\advertise.png" />
-    <Content Include="www\build\styles\Images\banner-blue.png" />
-    <Content Include="www\build\styles\Images\banner-red.png" />
     <Content Include="www\build\styles\Images\bootstrap-formhelpers-countries.flags.png" />
     <Content Include="www\build\styles\Images\contact-us\China_lang.png" />
     <Content Include="www\build\styles\Images\contact-us\english_lang.png" />
@@ -727,8 +725,8 @@
     <Content Include="www\source\styles\fonts\font_bebas\Flat-it License.txt" />
     <Content Include="www\source\styles\Images\ads-1.jpg" />
     <Content Include="www\source\styles\Images\advertise.png" />
-    <Content Include="www\source\styles\Images\banner-blue.png" />
-    <Content Include="www\source\styles\Images\banner-red.png" />
+    <Content Include="www\source\styles\Images\bgLeft.jpg" />
+    <Content Include="www\source\styles\Images\bgRight.jpg" />
     <Content Include="www\source\styles\Images\bootstrap-formhelpers-countries.flags.png" />
     <Content Include="www\source\styles\Images\contact-us\China_lang.png" />
     <Content Include="www\source\styles\Images\contact-us\english_lang.png" />
