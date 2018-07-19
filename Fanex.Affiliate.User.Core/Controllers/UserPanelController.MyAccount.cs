@@ -40,6 +40,11 @@
                 return Json(new ResultInfo { IsOk = false, Message = Lang.ErrAuthorized });
             }
 
+            if (!IsValidAppContactList(model.ContactAppList))
+            {
+                return Json(new ResultInfo { IsOk = false, Message = Error.RequireIMAccount });
+            }
+
             var userSession = SessionService.UserSession;
             var userAccount = _accountRepository.GetAccountInfo(userSession.AffId);
             model.PlayerUsername = !string.IsNullOrEmpty(userAccount?.PlayerUsername) ?
@@ -74,6 +79,11 @@
             var updatingResult = _accountRepository.UpdateAccountInformation(accountUpdateParam);
 
             return Json(updatingResult);
+        }
+
+        private static bool IsValidAppContactList(IEnumerable<ContactApp> contactAppList)
+        {
+            return contactAppList != null && contactAppList.All(c => !string.IsNullOrEmpty(c.Value));
         }
     }
 }

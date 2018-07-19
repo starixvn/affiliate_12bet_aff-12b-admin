@@ -25,9 +25,10 @@ namespace Fanex.Affiliate.User.Core.MetalModels.Attributes
                 isChecked == IsChecked && string.IsNullOrEmpty(Convert.ToString(value)))
             {
                 //Validation should fail if the checkbox is selected but the main field is empty
-                return new ValidationResult(string.IsNullOrEmpty(FormatErrorMessage(validationContext.DisplayName)) ?
+                var errorMessage = FormatErrorMessage(validationContext.DisplayName);
+                return new ValidationResult(string.IsNullOrEmpty(errorMessage) ?
                         string.Format(DefaultErrorMessage, validationContext.DisplayName) :
-                        FormatErrorMessage(validationContext.DisplayName));
+                        errorMessage);
             }
 
             return ValidationResult.Success;

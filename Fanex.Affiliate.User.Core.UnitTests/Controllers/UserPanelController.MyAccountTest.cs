@@ -41,7 +41,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         public void GetMyAccount_WhenCall_ReturnCorrectContactAppList()
         {
             // Arrange
-            var contactApps = CreateAppContactList();
+            var contactApps = CreateContactAppList();
             var expectedResult = JsonConvert.SerializeObject(contactApps);
             var expectedAccount = new AccountInformation
             {
@@ -101,6 +101,23 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         }
 
         [Fact]
+        public void PostMyAccount_InvalidContactApp_ReturnCorrectResult()
+        {
+            // Arrange
+            var controller = MockingHelper.GetUserPanelController();
+            var contactAppList = CreateContactAppList();
+            contactAppList.ForEach(item => item.Value = null);
+
+            // Action
+            var actionResult = controller.MyAccount(new AccountInformation { ContactAppList = contactAppList }) as JsonResult;
+            var result = actionResult.Data as ResultInfo;
+
+            // Assert
+            Assert.False(result.IsOk);
+            Assert.Equal(Error.RequireIMAccount, result.Message);
+        }
+
+        [Fact]
         public void PostMyAccount_DepositAccountIsNotValid_ReturnCorrectResult()
         {
             // Arrange
@@ -110,7 +127,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var controller = MockingHelper.GetUserPanelController(accountRepository: accountRepository.Object);
 
             // Action
-            var actionResult = controller.MyAccount(new AccountInformation()) as JsonResult;
+            var actionResult = controller.MyAccount(new AccountInformation { ContactAppList = CreateContactAppList() }) as JsonResult;
             var result = actionResult.Data as ResultInfo;
 
             // Assert
@@ -129,7 +146,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var controller = MockingHelper.GetUserPanelController(accountRepository: accountRepository.Object);
 
             // Action
-            var actionResult = controller.MyAccount(new AccountInformation { ContactAppList = new List<ContactApp>() }) as JsonResult;
+            var actionResult = controller.MyAccount(new AccountInformation { ContactAppList = CreateContactAppList() }) as JsonResult;
             var result = actionResult.Data as ResultInfo;
 
             // Assert
@@ -169,13 +186,13 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
                 MoreSiteUrls = "MoreSiteUrls",
                 NoSiteDesc = "NoSiteDesc",
                 PlayerUsername = PlayerUserName,
-                ContactAppList = CreateAppContactList()
+                ContactAppList = CreateContactAppList()
             };
         }
 
         private UpdateAccountParam CreateExpectedParam()
         {
-            var appContactList = CreateAppContactList().Select(p => new ContactApp
+            var appContactList = CreateContactAppList().Select(p => new ContactApp
             {
                 Name = $"Encoded{p.Name}",
                 Value = $"Encoded{p.Value}",
@@ -196,7 +213,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             };
         }
 
-        private static List<ContactApp> CreateAppContactList()
+        private static List<ContactApp> CreateContactAppList()
         {
             return new List<ContactApp> {
                     new ContactApp

@@ -43,4 +43,31 @@
             return isValid;
         }
     );
+
+    $.validator.unobtrusive.adapters.add("requiredifnullorempty", ["dependentprop"],
+    function (options) {
+        options.rules["requiredifnullorempty"] = {
+            dependentprop: options.params.dependentprop
+        };
+        options.messages["requiredifnullorempty"] = options.message;
+    });
+
+    $.validator.addMethod("requiredifnullorempty",
+        function (value, element, params) {
+            var isValid = true;
+
+            var dependenPropList = params.dependentprop.split(',').filter(p => !!p);
+
+            for (var i = 0; i < dependenPropList.length; i++) {
+                var propName = dependenPropList[i];
+                var dependentValue = $("[name='" + propName + "']").val().trim();
+                console.log(propName, dependentValue, value);
+                if (!$.trim(value) && !$.trim(dependentValue)) {
+                    return false;
+                }
+            }
+
+            return isValid;
+        }
+    );
 })(jQuery)

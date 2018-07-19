@@ -34,15 +34,32 @@ var secondAppContactList = new Dictionary<string, string>
 {
     ["vi-VN"] = "Zalo",
     ["th-TH"] = "Line ID",
-    ["id-ID"] = "What'sApp",
-    ["hi-IN"] = "What'sApp",
+    ["id-ID"] = "WhatsApp",
+    ["hi-IN"] = "WhatsApp",
     ["ko-KR"] = "Telegram",
 };
+var hasTwoContactApp = secondAppContactList.ContainsKey(language);
 
     <div class="form-group">
         <label class="col-sm-3 control-label">@firstAppName</label>
-        <div class="col-sm-4">
-            <input type="text" name="ContactAppList[0].Value" id="ContactAppList[0].Value" class="form-control" value="" />
+        @if (hasTwoContactApp)
+        {
+            <div class="col-sm-4">
+                <input type="text" name="ContactAppList[0].Value" id="ContactAppList[0].Value" class="form-control" value=""
+                       data-val="true" data-val-requiredifnullorempty-dependentprop="ContactAppList[1].Value"
+                        data-val-requiredifnullorempty="@Fanex.Affiliate.User.Core.Resources.Error.RequireIMAccount" />
+            </div>
+        }
+        else
+        {
+            <div class="col-sm-4">
+                <input type="text" name="ContactAppList[0].Value" id="ContactAppList[0].Value" class="form-control" value=""
+                       data-val="true" data-val-required="@Fanex.Affiliate.User.Core.Resources.Error.RequireIMAccount" />
+            </div>
+        }
+        <div class="col-sm-offset-3 col-sm-9">
+            <span class="field-validation-valid help-block hide" 
+                  data-valmsg-for="ContactAppList[@(hasTwoContactApp ? 1 : 0)].Value" data-valmsg-replace="true"></span>
         </div>
         <input type="hidden" name="ContactAppList[0].Name" value="@firstAppName" />
         <input type="hidden" name="ContactAppList[0].Order" value="0" />
@@ -54,10 +71,16 @@ if (secondAppContactList.ContainsKey(language))
         <div class="form-group">
             <label class="col-sm-3 control-label">@secondAppName</label>
             <div class="col-sm-4">
-                <input type="text" name="ContactAppList[1].Value" id="ContactAppList[1].Value" class="form-control" value="" />
+                <input type="text" name="ContactAppList[1].Value" id="ContactAppList[1].Value" class="form-control" value=""
+                       data-val="true" data-val-requiredifnullorempty-dependentprop="ContactAppList[0].Value"
+                        data-val-requiredifnullorempty="@Fanex.Affiliate.User.Core.Resources.Error.RequireIMAccount" />
+            </div>
+            <div class="col-sm-offset-3 col-sm-9">
+                <span class="field-validation-valid help-block hide"
+                      data-valmsg-for="ContactAppList[0].Value" data-valmsg-replace="true"></span>
             </div>
             <input type="hidden" name="ContactAppList[1].Name" value="@secondAppName" />
             <input type="hidden" name="ContactAppList[1].Order" value="1" />
         </div>
-    }
+}
 }

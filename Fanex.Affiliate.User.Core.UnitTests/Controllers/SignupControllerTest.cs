@@ -45,16 +45,40 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             controller.ModelState.AddModelError("Error1", ErrorMessage1);
             controller.ModelState.AddModelError("Error2", ErrorMessage2);
 
+            var contactAppList = CreateAppContactList();
             var expectedResult = new ResultInfo { IsOk = false, Message = $"{ErrorMessage1}<br>{ErrorMessage2}" };
 
             // Action
-            var actionResult = controller.Index(new UserSignUpParam { Captcha = Constant.Captcha }) as JsonResult;
+            var actionResult = controller.Index(new UserSignUpParam
+            {
+                Captcha = Constant.Captcha,
+                ContactAppList = contactAppList
+            }) as JsonResult;
             var result = actionResult.Data as ResultInfo;
 
             // Assert
             accountService.Verify(p => p.CreateAffiliate(It.IsAny<UserSignUpParam>(), It.IsAny<EmailBaseParam>()), Times.Never);
             Assert.Equal(expectedResult.IsOk, result.IsOk);
             Assert.Equal(expectedResult.Message, result.Message);
+        }
+
+        [Fact]
+        public void Index_WhenCallWithPost_ContactAppListIsInvalid_ReturnCorrectResult()
+        {
+            // Arrange
+            var accountService = new Mock<IAccountService>();
+            var controller = CreateController(accountService.Object);
+            var contactAppList = CreateAppContactList();
+            contactAppList.ForEach(item => item.Value = null);
+
+            // Action
+            var actionResult = controller.Index(new UserSignUpParam { Captcha = Constant.Captcha, ContactAppList = contactAppList }) as JsonResult;
+            var result = actionResult.Data as ResultInfo;
+
+            // Assert
+            accountService.Verify(p => p.CreateAffiliate(It.IsAny<UserSignUpParam>(), It.IsAny<EmailBaseParam>()), Times.Never);
+            Assert.False(result.IsOk);
+            Assert.Equal(Error.RequireIMAccount, result.Message);
         }
 
         [Fact]

@@ -167,5 +167,14 @@ namespace Fanex.Affiliate.User.Core.Resources {
                 return ResourceManager.GetString("RecoverPassword1001", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to At least one IM account is required.
+        /// </summary>
+        public static string RequireIMAccount {
+            get {
+                return ResourceManager.GetString("RequireIMAccount", resourceCulture);
+            }
+        }
     }
 }
