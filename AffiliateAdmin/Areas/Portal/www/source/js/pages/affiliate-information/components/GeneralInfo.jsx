@@ -45,7 +45,7 @@ const GeneralInfo = (props) => {
                     language}
                     </td>
                 <td className='line_table r'>
-                    <select style={{ display: 'none' }}>
+                    <select style={{ display: 'none' }} defaultValue='en-US'>
                         <option value='en-US'>English</option>
                         <option value='en-GB'>English_Euro</option>
                         <option value='zh-TW'>Chinese Traditional</option>

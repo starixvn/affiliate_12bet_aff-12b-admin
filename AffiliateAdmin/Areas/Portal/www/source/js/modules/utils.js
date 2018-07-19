@@ -1,3 +1,5 @@
+const _rootUrl = document.getElementById('RootUrl').value;
+
 const setItem = (index, dataList, newValue) => {
     return dataList.map((item, i) => {
         if (i === index) {
@@ -18,8 +20,13 @@ const deepClone = (data) => {
     return JSON.parse(JSON.stringify(data));
 }
 
+const resolveClientUrl = (relativeUrl) => {
+    return _rootUrl + relativeUrl;
+}
+
 export {
     setItem,
     removeItem,
-    deepClone
+    deepClone,
+    resolveClientUrl
 }

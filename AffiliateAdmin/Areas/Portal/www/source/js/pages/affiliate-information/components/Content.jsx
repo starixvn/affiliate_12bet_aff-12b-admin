@@ -13,6 +13,7 @@ class Content extends Component {
     }
 
     render() {
+        console.log(this.props.leftMenuData);
         return (
             <div className='data-content'>
                 <form>
@@ -42,4 +43,9 @@ class Content extends Component {
     }
 }
 
-export default connect()(Content);
+function mapStateToProps(state) {
+    const { leftMenuData } = state;
+    return { leftMenuData };
+};
+
+export default connect(mapStateToProps)(Content);
