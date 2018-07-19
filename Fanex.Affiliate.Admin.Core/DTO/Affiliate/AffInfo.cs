@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
 {
-    public class AffInformation
+    public class AffInfo
     {
         public int AffId { get; set; }
 
@@ -24,7 +25,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
 
         public string LastName { get; set; }
 
-        public string Gender { get; set; }
+        public bool Gender { get; set; }
 
         public string Email { get; set; }
 
@@ -79,5 +80,9 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
         public string WireAccountName { get; set; }
 
         public string WireAccountNo { get; set; }
+
+        public byte AffType { get; set; }
+
+        public IEnumerable<ContactApp> ContactAppList { get; set; }
     }
 }

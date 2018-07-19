@@ -19,7 +19,7 @@ module.exports = env => {
         resolve: { extensions: [".js", ".jsx"] },
         output: {
             filename: "[name].js",
-            publicPath: `dist/` // Webpack dev middleware, if enabled, handles requests for this URL prefix
+            publicPath: '/dist/' // Webpack dev middleware, if enabled, handles requests for this URL prefix
         },
         module: {
             rules: [{
@@ -70,12 +70,6 @@ module.exports = env => {
                 manifest: require(`${clientBundleOutputDir}/${vendorFileName}`)
             })
         ].concat(!isDevBuild ? [new OptimizeCSSAssetsPlugin()] : []),
-        optimization: {
-            splitChunks: {
-                chunks: 'all',
-                name: 'common',
-            }
-        },
         devtool: isDevBuild ? "source-map" : undefined
     });
 

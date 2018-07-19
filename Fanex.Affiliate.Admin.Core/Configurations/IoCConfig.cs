@@ -7,6 +7,7 @@ using Autofac;
 using Autofac.Integration.Mvc;
 using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Services;
+using Fanex.Affiliate.Admin.Core.Services.Core;
 
 namespace Fanex.Affiliate.Admin.Core.Configurations
 {
@@ -47,13 +48,18 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
                 assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(i => !i.IsDynamic).ToArray();
             }
 
-            return assemblies.Where(x => x.FullName.StartsWith("AffiliateAdmin.Areas.Portal.Controllers", StringComparison.InvariantCulture)).ToArray();
+            return assemblies.Where(x => x.FullName.StartsWith("Fanex.Affiliate.Admin", StringComparison.InvariantCulture)).ToArray();
         }
 
         private static void RegisterDependencies(ContainerBuilder builder)
         {
+            builder.RegisterType<SessionService>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<ProductRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<ProductService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<CommissionRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<CommissionService>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<AffiliateRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<AffiliateService>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
     }
 }
