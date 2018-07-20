@@ -117,7 +117,7 @@
                     {
                         var dependentField = $"ContactAppList[{(index == 0 ? 1 : 0)}].Value";
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">@item.Name</label>
+                            <label class="col-sm-3 control-label @(contactAppCount == 1 ? "require" : string.Empty)">@item.Name</label>
                             @if (contactAppCount == 2)
                             {
                                 <div class="col-sm-4">

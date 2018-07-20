@@ -41,7 +41,7 @@ var secondAppContactList = new Dictionary<string, string>
 var hasTwoContactApp = secondAppContactList.ContainsKey(language);
 
     <div class="form-group">
-        <label class="col-sm-3 control-label">@firstAppName</label>
+        <label class="col-sm-3 control-label @(hasTwoContactApp ? string.Empty : "require")">@firstAppName</label>
         @if (hasTwoContactApp)
         {
             <div class="col-sm-4">
