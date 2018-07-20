@@ -82,6 +82,23 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         }
 
         [Fact]
+        public void Index_WhenCallWithPost_ContactAppListHasAtLeastOneValue_CallServiceSuccessfully()
+        {
+            // Arrange
+            var accountService = new Mock<IAccountService>();
+            var controller = CreateController(accountService.Object);
+            var contactAppList = CreateAppContactList();
+            contactAppList[0].Value = null;
+
+            // Action
+            var actionResult = controller.Index(new UserSignUpParam { Captcha = Constant.Captcha, ContactAppList = contactAppList }) as JsonResult;
+            var result = actionResult.Data as ResultInfo;
+
+            // Assert
+            accountService.Verify(p => p.CreateAffiliate(It.IsAny<UserSignUpParam>(), It.IsAny<EmailBaseParam>()), Times.Once);
+        }
+
+        [Fact]
         public void Index_WhenCallWithPost_CaptchaIsInvalid_SetResultCorrectly()
         {
             // Arrange

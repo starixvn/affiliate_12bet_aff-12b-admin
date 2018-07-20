@@ -118,6 +118,25 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         }
 
         [Fact]
+        public void PostMyAccount_ContactAppListHasAtLeastOneValue_CallGetAccountInfo()
+        {
+            // Arrange
+            var accountRepository = new Mock<IAccountRepository>();
+            accountRepository.Setup(ac => ac.GetAccountInfo(Constant.DefaultAffId)).Returns(new AccountInformation { PlayerUsername = PlayerUserName });
+            accountRepository.Setup(ac => ac.GetDepositPlayerAccount(PlayerUserName)).Returns(new DepositAccountInfo { Success = 1 });
+            var controller = MockingHelper.GetUserPanelController(accountRepository: accountRepository.Object);
+            var contactAppList = CreateContactAppList();
+            contactAppList[0].Value = null;
+
+            // Action
+            var actionResult = controller.MyAccount(new AccountInformation { ContactAppList = contactAppList }) as JsonResult;
+            var result = actionResult.Data as ResultInfo;
+
+            // Assert
+            accountRepository.Verify(ac => ac.GetAccountInfo(Constant.DefaultAffId), Times.Once);
+        }
+
+        [Fact]
         public void PostMyAccount_DepositAccountIsNotValid_ReturnCorrectResult()
         {
             // Arrange

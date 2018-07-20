@@ -98,7 +98,7 @@
 
         private static bool IsValidAppContactList(IEnumerable<ContactApp> contactAppList)
         {
-            return contactAppList != null && contactAppList.All(c => !string.IsNullOrEmpty(c.Value));
+            return contactAppList != null && !contactAppList.All(c => string.IsNullOrEmpty(c.Value));
         }
     }
 }
