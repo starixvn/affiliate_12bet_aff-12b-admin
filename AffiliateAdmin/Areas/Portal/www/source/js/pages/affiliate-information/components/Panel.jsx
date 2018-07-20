@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Panel = (props) => {
-    const { heading, children, ...attributes } = props;
+    const { heading, children, style, ...attributes } = props;
     return (
         <div id='Bleft_Parent02' {...attributes}>
             <div id='left_submenu'>
@@ -12,7 +12,7 @@ const Panel = (props) => {
                 </div>
                 <div id='clear'>
                 </div>
-                <div id='Bleft_Sub0'>
+                <div id='Bleft_Sub0' style={{...style}}>
                     <table className='ltable' width='100%' border='0' cellSpacing='0' cellPadding='0'>
                         <tbody>
                             {children}

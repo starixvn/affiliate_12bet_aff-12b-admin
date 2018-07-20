@@ -7,9 +7,6 @@ import MainInfo from './MainInfo';
 class Content extends Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-        }
     }
 
     render() {
@@ -25,7 +22,7 @@ class Content extends Component {
                                     <td id='left_paneC'>
                                         <div id='contens_left'>
                                             <SearchBox />
-                                            {hasData ? <MainInfo /> : (<p>{window.resource.noUser}</p>)}
+                                            {hasData && <MainInfo />}
                                         </div>
                                         <div id="arrow_left" style={{ display: hasData ? 'block' : 'none' }}></div>
                                     </td>

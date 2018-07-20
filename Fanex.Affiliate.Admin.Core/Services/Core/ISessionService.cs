@@ -13,5 +13,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Core
         int CustId { get; set; }
 
         int OnUserId { get; set; }
+
+        string SessionId { get; }
     }
 }

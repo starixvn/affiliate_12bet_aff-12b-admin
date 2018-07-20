@@ -53,6 +53,7 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
 
         private static void RegisterDependencies(ContainerBuilder builder)
         {
+            builder.RegisterType<AppSetting>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<SessionService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<ProductRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<ProductService>().AsImplementedInterfaces().InstancePerLifetimeScope();

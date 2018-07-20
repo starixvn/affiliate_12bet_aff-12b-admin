@@ -7,7 +7,11 @@ export class SearchBox extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { userName: '12BETAFF2233' };
+        this.state = {
+            userName: '12BETAFF2233'
+        };
+
+        this.currentUserName = '';
     }
 
     componentDidMount() {
@@ -16,24 +20,31 @@ export class SearchBox extends React.Component {
     }
 
     handleChange = (event) => {
-        this.setState({ userName: event.target.value });
+        this.setState({ userName: event.target.value.trim() });
     }
 
     handleClick = (event) => {
         event.preventDefault();
         const userName = this.state.userName;
+        this.currentUserName = userName;
         this.props.getLeftMenuInfo(userName);
     }
 
     render() {
+        const { userName } = this.state;
+        const { hasData } = this.props;
         return (
             <table cellSpacing='0' cellPadding='0' width='98%'>
                 <tbody>
                     <tr>
                         <td style={{ verticalAlign: 'top' }}>
-                            <input className='text_f' style={{ width: 130 }} onChange={this.handleChange} value={this.state.userName} />
+                            <input className='text_f' style={{ width: 130 }} onChange={this.handleChange} value={userName} />
                             <a id='b_button' href='javacript:;' onClick={this.handleClick}>&nbsp;</a>
                         </td>
+                    </tr>
+
+                    <tr>
+                        <td colSpan='2'>{!hasData && this.currentUserName !== '' && window.resource.noUser}</td>
                     </tr>
                 </tbody>
             </table>
@@ -41,8 +52,13 @@ export class SearchBox extends React.Component {
     }
 }
 
+function mapStateToProps(state) {
+    const { leftMenuData: { GeneralInfo: generalInfo } } = state;
+    return { hasData: !!generalInfo };
+};
+
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({ getLeftMenuInfo }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(SearchBox);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBox);

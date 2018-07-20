@@ -35,13 +35,13 @@ namespace Fanex.Affiliate.Admin.Core.Repository
                 Status = Convert.ToString(reader["Status"]),
                 Closed = Convert.ToBoolean(reader["Closed"]),
                 IsLocked = Convert.ToBoolean(reader["IsLocked"]),
-                LastLoginDate = Convert.ToDateTime(reader["LastLoginDate"]),
+                LastLoginDate = reader["LastLoginDate"] == DBNull.Value ? null : (DateTime?)reader["LastLoginDate"],
                 LastLoginIP = Convert.ToString(reader["LastLoginIP"]),
                 UserName = Convert.ToString(reader["UserName"]),
                 UserName2 = Convert.ToString(reader["UserName2"]),
                 FirstName = Convert.ToString(reader["FirstName"]),
                 LastName = Convert.ToString(reader["LastName"]),
-                Gender = Convert.ToBoolean(reader["Gender"]),
+                Gender = reader["Gender"] == DBNull.Value ? null : (bool?)reader["Gender"],
                 Email = Convert.ToString(reader["Email"]),
                 Phone = Convert.ToString(reader["Phone"]),
                 ContactApps = Convert.ToString(reader["ContactApps"]),
@@ -69,7 +69,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository
                 WireSwiftCode = Convert.ToString(reader["BankSwiftCode"]),
                 WireAccountName = Convert.ToString(reader["BankAccountName"]),
                 WireAccountNo = Convert.ToString(reader["BankAccountNo"]),
-                AffType = 2/*Convert.ToByte(reader["AffType"])*/
+                AffType = Convert.ToByte(reader["AffType"])
             };
         }
 

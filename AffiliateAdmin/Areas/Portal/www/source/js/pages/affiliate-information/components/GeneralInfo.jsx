@@ -9,12 +9,16 @@ export class GeneralInfo extends React.Component {
         super(props);
     }
 
+    handleChangeLanguage = (event) => {
+        console.log(event.target.value);
+    }
+
     render() {
         const { resource } = window;
-        const { Status, Closed, UserName, AffId, FirstName, LastName,
-            Gender, Phone, PreferredLanguage, SiteUrl, LastLoginDate, LastLoginIP } = this.props;
+        const { Status, Closed, UserName, AffId, FirstName, LastName, Gender, Phone, 
+            PreferredLanguage, SiteUrl, LastLoginDate, LastLoginIP, InternalUrl } = this.props;
 
-        const isShowLinkUserName = Status.toLowerCase() === status.Approved.toLowerCase() && !Closed;
+        const isApproved = Status.toLowerCase() === status.Approved;
         const siteUrl = SiteUrl.indexOf('http://') === -1 ? 'http://' + SiteUrl : SiteUrl;
 
         return (
@@ -25,11 +29,12 @@ export class GeneralInfo extends React.Component {
                     </td>
                     <td style={{ width: '55%' }} className='r'>
                         {
-                            isShowLinkUserName ?
-                                (<a href='javacript:;' className='upper b'>{UserName}</a>) :
-                                (<React.Fragment><span>{UserName}</span><span> [{AffId}]</span></React.Fragment>)
+                            isApproved && !Closed ?
+                                (<a href={InternalUrl} className='upper b' target='_blank'>{UserName}</a>) :
+                                (<span>{UserName}</span>)
                         }
-                        </td>
+                        <span> [{AffId}]</span>
+                    </td>
                 </tr>
                 <tr>
                     <td className='line_table'>{resource.firstname}</td>
@@ -41,7 +46,7 @@ export class GeneralInfo extends React.Component {
                 </tr>
                 <tr>
                     <td className='line_table'>{resource.gender}</td>
-                    <td className='line_table r'>{Gender ? resource.male : resource.female}</td>
+                    <td className='line_table r'>{Gender === null ? '' : (Gender === true ? resource.male : resource.female)}</td>
                 </tr>
                 <tr>
                     <td className='line_table'>{resource.contactNumber}</td>
@@ -50,18 +55,12 @@ export class GeneralInfo extends React.Component {
                 <tr>
                     <td className='line_table'>{resource.language}</td>
                     <td className='line_table r'>
-                        <select style={{ display: 'none' }} defaultValue='en-US'>
-                            <option value='en-US'>English</option>
-                            <option value='en-GB'>English_Euro</option>
-                            <option value='zh-TW'>Chinese Traditional</option>
-                            <option value='zh-CN'>Chinese Simplified</option>
-                            <option value='th-TH'>Thai</option>
-                            <option value='es-ES'>Spanish</option>
-                            <option value='vi-VN'>Vietnamese</option>
-                            <option value='id-ID'>Indonesian</option>
-                            <option value='ko-KR'>Korean</option>
-                            <option value='ja-JP'>Japanese</option>
-                            <option value='hi-IN'>Republic of India</option>
+                        <select style={{ display: 'none' }} defaultValue={PreferredLanguage} onChange={this.handleChangeLanguage}>
+                            {
+                                Object.keys(language).map((item, index) => {
+                                    return (<option value={item} key={`affinfo-lang-${index}`}>{language[item]}</option>)
+                                })
+                            }
                         </select>
                         <span className='popup'>{language[PreferredLanguage]}</span>
                     </td>
@@ -86,29 +85,39 @@ export class GeneralInfo extends React.Component {
                         </a>
                     </td>
                 </tr>
-                <tr style={{ height: 22 }}>
-                    <td className='line_table'>{resource.password}</td>
-                    <td className='r line_table'>
-                        <span className='popup'>[change]</span>
-                    </td>
-                </tr>
-                <tr style={{ height: 22 }}>
-                    <td colSpan='2'>
-                        <a href='../UserInfo/MemberListAll.aspx?txtAffUsername={username}' target='fMain'>{resource.memList}</a>
-                    </td>
-                </tr>
+                {
+                    isApproved &&
+                    (
+                        <React.Fragment>
+                            <tr style={{ height: 22 }}>
+                                <td className='line_table'>{resource.password}</td>
+                                <td className='r line_table'>
+                                    <span className='popup'>[change]</span>
+                                </td>
+                            </tr>
+                            <tr style={{ height: 22 }}>
+                                <td colSpan='2'>
+                                    <a href='../UserInfo/MemberListAll.aspx?txtAffUsername={username}' target='fMain'>{resource.memList}</a>
+                                </td>
+                            </tr>
+                        </React.Fragment>
+                    )
+                }
             </React.Fragment>
         )
     }
 }
 
 function mapStateToProps(state) {
-    const { leftMenuData: { GeneralInfo: generalInfo } } = state;
+    const generalInfo = state.leftMenuData.GeneralInfo;
 
-    const { Status, Closed, UserName, AffId, FirstName, LastName,
-        Gender, Phone, PreferredLanguage, SiteUrl, LastLoginDate, LastLoginIP } = generalInfo;
+    const { Status, Closed, UserName, AffId, FirstName, LastName, Gender, Phone, 
+        PreferredLanguage, SiteUrl, LastLoginDate, LastLoginIP, InternalUrl } = generalInfo;
 
-    return { Status, Closed, UserName, AffId, FirstName, LastName, Gender, Phone, PreferredLanguage, SiteUrl, LastLoginDate, LastLoginIP };
+    return { 
+        Status, Closed, UserName, AffId, FirstName, LastName, Gender, Phone, 
+        PreferredLanguage, SiteUrl, LastLoginDate, LastLoginIP, InternalUrl 
+    };
 };
 
 export default connect(mapStateToProps)(GeneralInfo);

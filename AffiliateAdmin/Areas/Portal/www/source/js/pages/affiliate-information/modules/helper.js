@@ -1,5 +1,7 @@
 export const status = {
-    Approved: 'Approved'
+    Approved: 'approved',
+    Disapproved: 'disapproved',
+    Pending: 'pending'
 }
 
 export const language = {
@@ -14,4 +16,10 @@ export const language = {
     'ko-KR': 'Korean',
     'ja-JP': 'Japanese',
     'hi-IN': 'Republic of India'
+}
+
+export const affType = {
+    2: 'Asian',
+    3: 'Media',
+    4: 'European'
 }

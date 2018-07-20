@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Fanex.Affiliate.Admin.Core.Configurations;
+using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 using Fanex.Affiliate.Admin.Core.Enum;
 using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Services.Core;
-using Newtonsoft.Json;
+using Fanex.Affiliate.Admin.Core.Utilities;
 
 namespace Fanex.Affiliate.Admin.Core.Services
 {
@@ -13,9 +14,12 @@ namespace Fanex.Affiliate.Admin.Core.Services
 
         private readonly ISessionService _sessionService;
 
-        public AffiliateService(ISessionService sessionService, IAffiliateRepository affRepository)
+        private readonly IAppSetting _appSetting;
+
+        public AffiliateService(ISessionService sessionService, IAppSetting appSetting, IAffiliateRepository affRepository)
         {
             _sessionService = sessionService;
+            _appSetting = appSetting;
             _affRepository = affRepository;
         }
 
@@ -26,12 +30,12 @@ namespace Fanex.Affiliate.Admin.Core.Services
 
             if (generalInfo != null)
             {
-                if (!string.IsNullOrEmpty(generalInfo.ContactApps))
-                {
-                    generalInfo.ContactAppList = JsonConvert.DeserializeObject<IEnumerable<ContactApp>>(generalInfo.ContactApps);
-                }
-
                 AssignSession(generalInfo);
+
+                if (generalInfo.Status.ToLowerInvariant() == AffStatus.Approved && !generalInfo.Closed)
+                {
+                    generalInfo.InternalUrl = GenerateInternalUrl(username, _sessionService.SelectedAffType);
+                }
             }
 
             return leftPanelInfo;
@@ -42,6 +46,17 @@ namespace Fanex.Affiliate.Admin.Core.Services
             _sessionService.SelectedAffId = affInfo.AffId;
             _sessionService.SelectedAffUserName = affInfo.UserName;
             _sessionService.SelectedAffType = (AffType)affInfo.AffType;
+        }
+
+        private string GenerateInternalUrl(string affUserName, AffType type)
+        {
+            var randomString = Generator.GetRandomString(10);
+            var encryptedKey = Generator.GenerateSHA512String(_sessionService.SessionId + randomString);
+            var custId = _sessionService.CustId;
+            var onUserId = _sessionService.OnUserId;
+            var internalUrl = type == AffType.European ? _appSetting.InternalEuropeanAffiliateUrl : _appSetting.InternalAsianAffiliateUrl;
+
+            return $"{internalUrl}?chalengeStr={randomString}&accKey={encryptedKey}&custName={affUserName}&accId={custId}&accOnId={onUserId}";
         }
     }
 }

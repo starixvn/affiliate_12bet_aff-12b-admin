@@ -13,7 +13,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
 
         public bool IsLocked { get; set; }
 
-        public DateTime LastLoginDate { get; set; }
+        public DateTime? LastLoginDate { get; set; }
 
         public string LastLoginIP { get; set; }
 
@@ -25,7 +25,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
 
         public string LastName { get; set; }
 
-        public bool Gender { get; set; }
+        public bool? Gender { get; set; }
 
         public string Email { get; set; }
 
@@ -84,5 +84,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
         public byte AffType { get; set; }
 
         public IEnumerable<ContactApp> ContactAppList { get; set; }
+
+        public string InternalUrl { get; set; }
     }
 }

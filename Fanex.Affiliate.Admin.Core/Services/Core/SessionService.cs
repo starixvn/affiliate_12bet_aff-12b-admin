@@ -65,5 +65,13 @@ namespace Fanex.Affiliate.Admin.Core.Services.Core
                 HttpContext.Current.Session["AffUsername"] = value;
             }
         }
+
+        public string SessionId
+        {
+            get
+            {
+                return HttpContext.Current.Session.SessionID;
+            }
+        }
     }
 }

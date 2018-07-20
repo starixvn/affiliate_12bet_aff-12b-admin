@@ -108,6 +108,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configurations\AppSetting.cs" />
+    <Compile Include="Configurations\IAppSetting.cs" />
+    <Compile Include="Constants\AffStatus.cs" />
     <Compile Include="Controllers\AffiliateController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CommissionController.cs" />
@@ -140,6 +143,7 @@
     <Compile Include="Services\ICommissionService.cs" />
     <Compile Include="Services\IProductService.cs" />
     <Compile Include="Services\ProductService.cs" />
+    <Compile Include="Utilities\Generator.cs" />
     <Compile Include="ViewModels\CommissionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
