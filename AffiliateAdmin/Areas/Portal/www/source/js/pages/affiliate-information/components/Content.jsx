@@ -13,7 +13,7 @@ class Content extends Component {
     }
 
     render() {
-        console.log(this.props.leftMenuData);
+        const { hasData } = this.props;
         return (
             <div className='data-content'>
                 <form>
@@ -25,9 +25,9 @@ class Content extends Component {
                                     <td id='left_paneC'>
                                         <div id='contens_left'>
                                             <SearchBox />
-                                            <MainInfo />
+                                            {hasData ? <MainInfo /> : (<p>{window.resource.noUser}</p>)}
                                         </div>
-                                        <div id="arrow_left" style={{ display: 'block' }}></div>
+                                        <div id="arrow_left" style={{ display: hasData ? 'block' : 'none' }}></div>
                                     </td>
                                 </tr>
                                 <tr>
@@ -44,8 +44,8 @@ class Content extends Component {
 }
 
 function mapStateToProps(state) {
-    const { leftMenuData } = state;
-    return { leftMenuData };
+    const { leftMenuData: { GeneralInfo: generalInfo } } = state;
+    return { hasData: !!generalInfo };
 };
 
 export default connect(mapStateToProps)(Content);

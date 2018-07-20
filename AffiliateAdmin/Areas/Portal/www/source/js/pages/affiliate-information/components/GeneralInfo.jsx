@@ -1,107 +1,114 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-const GeneralInfo = (props) => {
-    return (
-        <React.Fragment>
-            <tr>
-                <td style={{ width: '45%', height: 35 }}>
-                    <span className='text_bold'>affiliate }</span>
-                </td>
-                <td style={{ width: '55%' }} className='r'>
-                    <a href='javacript:;' style={{ display: 'block' }} className='upper b'>12BETAFF001</a>
-                    <span style={{ display: 'none' }}>12BETAFF001</span>&nbsp;[<span>123456</span>]
+import { status, language } from '../modules/helper';
+import { formatDateTime, parseDateTime } from '../../../modules/utils';
+
+export class GeneralInfo extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        const { resource } = window;
+        const { Status, Closed, UserName, AffId, FirstName, LastName,
+            Gender, Phone, PreferredLanguage, SiteUrl, LastLoginDate, LastLoginIP } = this.props;
+
+        const isShowLinkUserName = Status.toLowerCase() === status.Approved.toLowerCase() && !Closed;
+        const siteUrl = SiteUrl.indexOf('http://') === -1 ? 'http://' + SiteUrl : SiteUrl;
+
+        return (
+            <React.Fragment>
+                <tr>
+                    <td style={{ width: '45%', height: 35 }}>
+                        <span className='text_bold'>{resource.affiliate}</span>
                     </td>
-            </tr>
-            <tr>
-                <td className='line_table'>fname</td>
-                <td className='line_table r'>&nbsp;fnametext - val</td>
-            </tr>
-            <tr>
-                <td className='line_table'>lname</td>
-                <td className='line_table r'>&nbsp;lname - val</td>
-            </tr>
-            <tr>
-                <td className='line_table'>gender</td>
-                <td className='line_table r'>&nbsp;gender - val</td>
-            </tr>
-            <tr>
-                <td className='line_table'>
-                    number
+                    <td style={{ width: '55%' }} className='r'>
+                        {
+                            isShowLinkUserName ?
+                                (<a href='javacript:;' className='upper b'>{UserName}</a>) :
+                                (<React.Fragment><span>{UserName}</span><span> [{AffId}]</span></React.Fragment>)
+                        }
+                        </td>
+                </tr>
+                <tr>
+                    <td className='line_table'>{resource.firstname}</td>
+                    <td className='line_table r'>{FirstName}</td>
+                </tr>
+                <tr>
+                    <td className='line_table'>{resource.lastname}</td>
+                    <td className='line_table r'>{LastName}</td>
+                </tr>
+                <tr>
+                    <td className='line_table'>{resource.gender}</td>
+                    <td className='line_table r'>{Gender ? resource.male : resource.female}</td>
+                </tr>
+                <tr>
+                    <td className='line_table'>{resource.contactNumber}</td>
+                    <td className='line_table r'>{Phone}</td>
+                </tr>
+                <tr>
+                    <td className='line_table'>{resource.language}</td>
+                    <td className='line_table r'>
+                        <select style={{ display: 'none' }} defaultValue='en-US'>
+                            <option value='en-US'>English</option>
+                            <option value='en-GB'>English_Euro</option>
+                            <option value='zh-TW'>Chinese Traditional</option>
+                            <option value='zh-CN'>Chinese Simplified</option>
+                            <option value='th-TH'>Thai</option>
+                            <option value='es-ES'>Spanish</option>
+                            <option value='vi-VN'>Vietnamese</option>
+                            <option value='id-ID'>Indonesian</option>
+                            <option value='ko-KR'>Korean</option>
+                            <option value='ja-JP'>Japanese</option>
+                            <option value='hi-IN'>Republic of India</option>
+                        </select>
+                        <span className='popup'>{language[PreferredLanguage]}</span>
                     </td>
-                <td className='line_table r'>
-                    &nbsp;number - val
+                </tr>
+                <tr>
+                    <td className='line_table'>{resource.siteUrl}</td>
+                    <td className='line_table r'>
+                        <a target='_blank' title={siteUrl} href={`http://anonym.to/?${siteUrl}`}>
+                            {SiteUrl.replace('http://', '').replace('www.', '')}
+                        </a>
                     </td>
-            </tr>
-            <tr>
-                <td className='line_table'>
-                    mobile
+                </tr>
+                <tr>
+                    <td className='line_table'>{resource.lastLogin}</td>
+                    <td className='line_table r'>{formatDateTime(parseDateTime(LastLoginDate), 'MM/dd/yyyy HH:mm:ss')}</td>
+                </tr>
+                <tr>
+                    <td className='line_table'>{resource.lastLoginIp}</td>
+                    <td className='line_table r'>
+                        <a target='_blank' href={`http://anonym.to/?http://legacytools.dnsstuff.com/tools/ipall.ch?tool_id=67&token=&toolhandler_redirect=0&ip=${LastLoginIP}&j=1`}>
+                            {LastLoginIP}
+                        </a>
                     </td>
-                <td className='line_table r'>
-                    &nbsp;mobile - val
+                </tr>
+                <tr style={{ height: 22 }}>
+                    <td className='line_table'>{resource.password}</td>
+                    <td className='r line_table'>
+                        <span className='popup'>[change]</span>
                     </td>
-            </tr>
-            <tr>
-                <td className='line_table'>
-                    language}
+                </tr>
+                <tr style={{ height: 22 }}>
+                    <td colSpan='2'>
+                        <a href='../UserInfo/MemberListAll.aspx?txtAffUsername={username}' target='fMain'>{resource.memList}</a>
                     </td>
-                <td className='line_table r'>
-                    <select style={{ display: 'none' }} defaultValue='en-US'>
-                        <option value='en-US'>English</option>
-                        <option value='en-GB'>English_Euro</option>
-                        <option value='zh-TW'>Chinese Traditional</option>
-                        <option value='zh-CN'>Chinese Simplified</option>
-                        <option value='th-TH'>Thai</option>
-                        <option value='es-ES'>Spanish</option>
-                        <option value='vi-VN'>Vietnamese</option>
-                        <option value='id-ID'>Indonesian</option>
-                        <option value='ko-KR'>Korean</option>
-                        <option value='ja-JP'>Japanese</option>
-                        <option value='hi-IN'>Republic of India</option>
-                    </select>
-                    <span className='popup'>language - val}</span>
-                </td>
-            </tr>
-            <tr>
-                <td className='line_table'>
-                    siteurl}
-                            </td>
-                <td className='line_table r'>
-                    &nbsp;<a target='_blank' title='{siteurl-val}' href='{WebsiteCheckerURL-val}'>siteurlorg-val}</a>
-                </td>
-            </tr>
-            <tr>
-                <td className='line_table'>
-                    lastlogin}
-                    </td>
-                <td className='line_table r'>
-                    &nbsp;lastlogin - val}
-                    </td>
-            </tr>
-            <tr>
-                <td className='line_table'>
-                    lastloginip}
-                    </td>
-                <td className='line_table r'>
-                    <a target='_blank' href='{LastLoginIPCheckerURL-val}'>
-                        &nbsp;lastloginip - val}</a>
-                </td>
-            </tr>
-            <tr style={{ height: 22 }}>
-                <td className='line_table'>
-                    pass}
-                    </td>
-                <td className='r line_table'>
-                    <span className='popup'>
-                        [change}]</span>
-                </td>
-            </tr>
-            <tr style={{ height: 22 }}>
-                <td colSpan='2'>
-                    <a href='../UserInfo/MemberListAll.aspx?txtAffUsername={username}' target='fMain'>memberlist}</a>
-                </td>
-            </tr>
-        </React.Fragment>
-    )
+                </tr>
+            </React.Fragment>
+        )
+    }
 }
 
-export default GeneralInfo;
+function mapStateToProps(state) {
+    const { leftMenuData: { GeneralInfo: generalInfo } } = state;
+
+    const { Status, Closed, UserName, AffId, FirstName, LastName,
+        Gender, Phone, PreferredLanguage, SiteUrl, LastLoginDate, LastLoginIP } = generalInfo;
+
+    return { Status, Closed, UserName, AffId, FirstName, LastName, Gender, Phone, PreferredLanguage, SiteUrl, LastLoginDate, LastLoginIP };
+};
+
+export default connect(mapStateToProps)(GeneralInfo);

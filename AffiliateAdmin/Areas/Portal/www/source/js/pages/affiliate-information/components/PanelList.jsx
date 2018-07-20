@@ -25,7 +25,7 @@ const PanelList = (props) => {
                     <td>Affiliate Type</td>
                     <td className="r">
                         <select style={{ display: 'none' }}>
-                            <option value="2" selected>Asian</option>
+                            <option value="2">Asian</option>
                             <option value="3">Media</option>
                             <option value="4">European</option>
                         </select>
@@ -38,7 +38,7 @@ const PanelList = (props) => {
                         <select style={{ display: 'none' }}>
                             <option value="Approved">Approved</option>
                             <option value="Disapproved">Disapproved</option>
-                            <option value="Pending" selected>Pending</option>
+                            <option value="Pending">Pending</option>
                         </select>
                         <span className="popup">Approved</span>
                     </td>

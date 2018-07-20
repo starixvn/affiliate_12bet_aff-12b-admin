@@ -7,7 +7,12 @@ export class SearchBox extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = { userName: '' };
+        this.state = { userName: '12BETAFF2233' };
+    }
+
+    componentDidMount() {
+        const userName = this.state.userName;
+        this.props.getLeftMenuInfo(userName);
     }
 
     handleChange = (event) => {
@@ -26,7 +31,7 @@ export class SearchBox extends React.Component {
                 <tbody>
                     <tr>
                         <td style={{ verticalAlign: 'top' }}>
-                            <input className='text_f' style={{ width: 130 }} onChange={this.handleChange} />
+                            <input className='text_f' style={{ width: 130 }} onChange={this.handleChange} value={this.state.userName} />
                             <a id='b_button' href='javacript:;' onClick={this.handleClick}>&nbsp;</a>
                         </td>
                     </tr>
