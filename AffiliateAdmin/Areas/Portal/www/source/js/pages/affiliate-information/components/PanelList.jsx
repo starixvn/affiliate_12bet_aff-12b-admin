@@ -1,7 +1,9 @@
 import React from 'react';
-import Panel from './Panel';
-
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import Panel from './Panel';
+import { updateGeneralInfo, setClosedStatus } from '../actions';
 
 import { affType, status } from '../modules/helper';
 import { formatDecimal } from '../../../modules/numberFormat';
@@ -11,8 +13,42 @@ export class PanelList extends React.Component {
     constructor(props) {
         super(props);
 
+        this.affTypeDropdown = React.createRef();
+        this.affStatusDropdown = React.createRef();
+
         this.state = {
-            isChangingAffType: false
+            isChangingAffType: false,
+            isChangingAffStatus: false
+        }
+    }
+
+    toggleChangingAffType(isChanging) {
+        this.setState({ isChangingAffType: isChanging }, () => isChanging && this.affTypeDropdown.current.focus());
+    }
+
+    toggleChangingAffStatus(isChanging) {
+        this.setState({ isChangingAffStatus: isChanging }, () => isChanging && this.affStatusDropdown.current.focus());
+    }
+
+    handleChangeStatus = (event) => {
+        console.log(event.target.value);
+    }
+
+    handleChangeClosedStatus = async () => {
+        const { Closed } = this.props;
+        const nextStatus = !Closed;
+        const isConfirmed = confirm('Are you sure you want to ' + (nextStatus ? 'close' : 'open') + ' this affiliate?');
+        if (isConfirmed) {
+            const param = { Close: nextStatus };
+            const response = await this.props.updateGeneralInfo(param);
+
+            if (response.data.IsSuccessful) {
+                this.props.setClosedStatus(nextStatus);
+                window.alert(window.resource.updateStatusSuccessfully);
+            }
+            else {
+                window.alert(response.data.Message);
+            }
         }
     }
 
@@ -44,21 +80,23 @@ export class PanelList extends React.Component {
     _renderSettingPanel(isApproved) {
         const { resource } = window;
         const { AffType, Status, Closed } = this.props;
-        const { isChangingAffType } = this.state;
+        const { isChangingAffType, isChangingAffStatus } = this.state;
 
         return (
             <Panel heading={resource.setting}>
                 <tr>
                     <td>{resource.affiliateType}</td>
                     <td className="text-right">
-                        <select style={{display: `${isChangingAffType ? 'inline-block' : 'none'}`}} defaultValue={AffType}>
+                        <select style={{ display: isChangingAffType ? 'inline-block' : 'none' }} defaultValue={AffType}
+                            onBlur={this.toggleChangingAffType.bind(this, false)} ref={this.affTypeDropdown}>
                             {
                                 Object.keys(affType).map((key, index) => {
                                     return (<option value={key} key={`affinfo-type-${index}`}>{affType[key]}</option>)
                                 })
                             }
                         </select>
-                        <span className="popup">{affType[AffType]}</span>
+                        <span className="popup" style={{ display: isChangingAffType ? 'none' : 'block' }}
+                            onClick={this.toggleChangingAffType.bind(this, true)}>{affType[AffType]}</span>
                     </td>
                 </tr>
                 <tr>
@@ -69,12 +107,15 @@ export class PanelList extends React.Component {
                                 Status :
                                 (
                                     <div>
-                                        <select style={{display: 'none'}}>
+                                        <select style={{ display: isChangingAffStatus ? 'inline-block' : 'none' }} defaultValue={Status}
+                                            onBlur={this.toggleChangingAffStatus.bind(this, false)}
+                                            onChange={this.handleChangeStatus} ref={this.affStatusDropdown}>
                                             <option value="Approved">Approved</option>
                                             <option value="Disapproved">Disapproved</option>
                                             <option value="Pending">Pending</option>
                                         </select>
-                                        <span className="popup">{Status}</span>
+                                        <span className="popup" style={{ display: isChangingAffStatus ? 'none' : 'block' }}
+                                            onClick={this.toggleChangingAffStatus.bind(this, true)}>{Status}</span>
                                     </div>
                                 )
 
@@ -86,7 +127,7 @@ export class PanelList extends React.Component {
                     <tr>
                         <td>{resource.closed}</td>
                         <td className="text-right">
-                            <a className="text_box">{Closed ? resource.yes : resource.no}</a>
+                            <a className="text_box" onClick={this.handleChangeClosedStatus}>{Closed ? resource.yes : resource.no}</a>
                         </td>
                     </tr>
                 }
@@ -146,4 +187,8 @@ function mapStateToProps(state) {
     return { GroupName, BalBroughtForward, AffType, Status, Closed, OnlineInfoList };
 };
 
-export default connect(mapStateToProps)(PanelList);
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ updateGeneralInfo, setClosedStatus }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PanelList);

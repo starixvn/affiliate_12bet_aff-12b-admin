@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { updateLanguage, setLanguage } from '../actions';
+import { updateGeneralInfo, setLanguage } from '../actions';
 
 import { status, language } from '../modules/helper';
 import { formatDateTime, parseDateTime } from '../../../modules/utils';
@@ -19,13 +19,14 @@ export class GeneralInfo extends React.Component {
     handleChangeLanguage = async (event) => {
         const isConfirmed = window.confirm("Are you sure you want to change language for this affiliate?");
         if (isConfirmed) {
-            const language = event.target.value;
-            const response = await this.props.updateLanguage(language);
+            const preferredLanguage = event.target.value;
+            const param = { preferredLanguage };
+            const response = await this.props.updateGeneralInfo(param);
 
             if (response.data.IsSuccessful) {
-                this.props.setLanguage(language);
+                this.props.setLanguage(preferredLanguage);
             }
-            else{
+            else {
                 window.alert(response.data.Message);
             }
         }
@@ -137,7 +138,7 @@ export class GeneralInfo extends React.Component {
                             <tr style={{ height: 22 }}>
                                 <td className='line_table'>{resource.password}</td>
                                 <td className='r line_table'>
-                                    <span className='popup'  onClick={this.handleChangePassword}>[change]</span>
+                                    <span className='popup' onClick={this.handleChangePassword}>[change]</span>
                                 </td>
                             </tr>
                             <tr style={{ height: 22 }}>
@@ -166,7 +167,7 @@ function mapStateToProps(state) {
 };
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ updateLanguage, setLanguage }, dispatch);
+    return bindActionCreators({ updateGeneralInfo, setLanguage }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GeneralInfo);

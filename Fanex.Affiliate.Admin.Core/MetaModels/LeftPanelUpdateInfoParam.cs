@@ -8,6 +8,8 @@
 
         public string PreferredLanguage { get; set; }
 
+        public bool? Close { get; set; }
+
         public string Ip { get; set; }
 
         public int ErrCode { get; set; }

@@ -1,6 +1,7 @@
 import {
     LEFTPANEL_RECEIVE_AFFINFO,
-    LEFTPANEL_UPDATE_LANGUAGE_SUCCESS
+    LEFTPANEL_UPDATE_LANGUAGE_SUCCESS,
+    LEFTPANEL_UPDATE_CLOSED_SUCCESS
 } from './types';
 import axios from 'axios';
 
@@ -22,17 +23,21 @@ export const setLanguage = (data) => {
     }
 }
 
+export const setClosedStatus = (data) => {
+    return {
+        type: LEFTPANEL_UPDATE_CLOSED_SUCCESS,
+        data
+    }
+}
+
 export const getLeftMenuInfo = userName => async dispatch => {
     const url = resolveClientUrl('Portal/Affiliate/GetInfo?username=' + userName);
     const response = await axios.get(url);
     dispatch(receiveLeftMenuInfo(response.data));
 }
 
-export const updateLanguage = preferredLanguage => {
-    const url = resolveClientUrl('Portal/Affiliate/UpdateInfo')
-    const param = {
-        preferredLanguage
-    }
+export const updateGeneralInfo = param => {
+    const url = resolveClientUrl('Portal/Affiliate/UpdateInfo');
 
     return () => axios.post(url, param);
 }

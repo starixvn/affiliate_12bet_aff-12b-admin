@@ -1,5 +1,4 @@
 ﻿using Fanex.Affiliate.Admin.Core.Configurations;
-using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 using Fanex.Affiliate.Admin.Core.Enum;
@@ -39,10 +38,7 @@ namespace Fanex.Affiliate.Admin.Core.Services
             {
                 AssignSession(generalInfo);
 
-                if (generalInfo.Status.ToLowerInvariant() == AffStatus.Approved && !generalInfo.Closed)
-                {
-                    generalInfo.InternalUrl = GenerateInternalUrl(username, _sessionService.SelectedAffType);
-                }
+                generalInfo.InternalUrl = GenerateInternalUrl(username, _sessionService.SelectedAffType);
             }
 
             return leftPanelInfo;
