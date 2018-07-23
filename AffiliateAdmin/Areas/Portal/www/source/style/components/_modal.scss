@@ -1,6 +1,7 @@
-﻿@import "../vendors/bootstrap/variables";
+﻿@import "../vendors/bootstrap/functions";
+@import "../vendors/bootstrap/variables";
 @import "../vendors/bootstrap/mixins";
-@import "../vendors/bootstrap/modals";
+@import "../vendors/bootstrap/modal";
 @import "../vendors/bootstrap/close";
 
 .modal-header, .modal-body {
