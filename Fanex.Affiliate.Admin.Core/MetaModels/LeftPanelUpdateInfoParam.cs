@@ -10,6 +10,8 @@
 
         public bool? Close { get; set; }
 
+        public byte? AffType { get; set; }
+
         public string Ip { get; set; }
 
         public int ErrCode { get; set; }

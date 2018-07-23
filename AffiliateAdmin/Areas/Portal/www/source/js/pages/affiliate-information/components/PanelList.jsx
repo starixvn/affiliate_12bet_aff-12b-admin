@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import Panel from './Panel';
-import { updateGeneralInfo, setClosedStatus } from '../actions';
+import { updateGeneralInfo, setClosedStatus, setAffType } from '../actions';
 
 import { affType, status } from '../modules/helper';
 import { formatDecimal } from '../../../modules/numberFormat';
@@ -52,6 +52,17 @@ export class PanelList extends React.Component {
         }
     }
 
+    handleChangeAffType = async (event) => {
+        const affType = event.target.value;
+        const param = { affType };
+        const response = await this.props.updateGeneralInfo(param);
+
+        if (response.data.IsSuccessful) {
+            this.props.setAffType(affType);
+            this.toggleChangingAffType(false);
+        }
+    }
+
     _renderCommissionPanel() {
         const { resource } = window;
         const { Closed, GroupName, BalBroughtForward } = this.props;
@@ -88,7 +99,8 @@ export class PanelList extends React.Component {
                     <td>{resource.affiliateType}</td>
                     <td className="text-right">
                         <select style={{ display: isChangingAffType ? 'inline-block' : 'none' }} defaultValue={AffType}
-                            onBlur={this.toggleChangingAffType.bind(this, false)} ref={this.affTypeDropdown}>
+                            onBlur={this.toggleChangingAffType.bind(this, false)} ref={this.affTypeDropdown}
+                            onChange={this.handleChangeAffType}>
                             {
                                 Object.keys(affType).map((key, index) => {
                                     return (<option value={key} key={`affinfo-type-${index}`}>{affType[key]}</option>)
@@ -188,7 +200,7 @@ function mapStateToProps(state) {
 };
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ updateGeneralInfo, setClosedStatus }, dispatch);
+    return bindActionCreators({ updateGeneralInfo, setClosedStatus, setAffType }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PanelList);

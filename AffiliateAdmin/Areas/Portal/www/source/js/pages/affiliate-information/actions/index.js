@@ -1,7 +1,8 @@
 import {
     LEFTPANEL_RECEIVE_AFFINFO,
     LEFTPANEL_UPDATE_LANGUAGE_SUCCESS,
-    LEFTPANEL_UPDATE_CLOSED_SUCCESS
+    LEFTPANEL_UPDATE_CLOSED_SUCCESS,
+    LEFTPANEL_UPDATE_AFFTYPE_SUCCESS
 } from './types';
 import axios from 'axios';
 
@@ -26,6 +27,13 @@ export const setLanguage = (data) => {
 export const setClosedStatus = (data) => {
     return {
         type: LEFTPANEL_UPDATE_CLOSED_SUCCESS,
+        data
+    }
+}
+
+export const setAffType = (data) => {
+    return {
+        type: LEFTPANEL_UPDATE_AFFTYPE_SUCCESS,
         data
     }
 }

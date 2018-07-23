@@ -6,7 +6,8 @@ import createReducer from '../../../modules/createReducer';
 import {
     LEFTPANEL_RECEIVE_AFFINFO,
     LEFTPANEL_UPDATE_LANGUAGE_SUCCESS,
-    LEFTPANEL_UPDATE_CLOSED_SUCCESS
+    LEFTPANEL_UPDATE_CLOSED_SUCCESS,
+    LEFTPANEL_UPDATE_AFFTYPE_SUCCESS
 } from '../actions/types';
 
 const leftMenuData = createReducer({}, {
@@ -19,6 +20,10 @@ const leftMenuData = createReducer({}, {
     },
     [LEFTPANEL_UPDATE_CLOSED_SUCCESS](state, { data }) {
         const generalInfo = Object.assign({}, state.GeneralInfo, { Closed: data });
+        return Object.assign({}, state, { GeneralInfo: generalInfo });
+    },
+    [LEFTPANEL_UPDATE_AFFTYPE_SUCCESS](state, { data }) {
+        const generalInfo = Object.assign({}, state.GeneralInfo, { AffType: data });
         return Object.assign({}, state, { GeneralInfo: generalInfo });
     }
 });
