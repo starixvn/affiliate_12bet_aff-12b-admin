@@ -4,12 +4,17 @@ import {
 import createReducer from '../../../modules/createReducer';
 
 import {
-    RECEIVE_LEFTMENU_INFO
+    LEFTPANEL_RECEIVE_AFFINFO,
+    LEFTPANEL_UPDATE_LANGUAGE_SUCCESS
 } from '../actions/types';
 
 const leftMenuData = createReducer({}, {
-    [RECEIVE_LEFTMENU_INFO](state, { data }) {
+    [LEFTPANEL_RECEIVE_AFFINFO](state, { data }) {
         return data;
+    },
+    [LEFTPANEL_UPDATE_LANGUAGE_SUCCESS](state, { data }) {
+        const generalInfo = Object.assign({}, state.GeneralInfo, { PreferredLanguage: data });
+        return Object.assign({}, state, { GeneralInfo: generalInfo });
     }
 });
 

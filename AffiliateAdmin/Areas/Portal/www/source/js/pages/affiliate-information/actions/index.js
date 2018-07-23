@@ -1,5 +1,6 @@
 import {
-    RECEIVE_LEFTMENU_INFO
+    LEFTPANEL_RECEIVE_AFFINFO,
+    LEFTPANEL_UPDATE_LANGUAGE_SUCCESS
 } from './types';
 import axios from 'axios';
 
@@ -9,7 +10,14 @@ import {
 
 const receiveLeftMenuInfo = (data) => {
     return {
-        type: RECEIVE_LEFTMENU_INFO,
+        type: LEFTPANEL_RECEIVE_AFFINFO,
+        data
+    }
+}
+
+export const setLanguage = (data) => {
+    return {
+        type: LEFTPANEL_UPDATE_LANGUAGE_SUCCESS,
         data
     }
 }
@@ -20,6 +28,11 @@ export const getLeftMenuInfo = userName => async dispatch => {
     dispatch(receiveLeftMenuInfo(response.data));
 }
 
-export default {
-    receiveLeftMenuInfo
+export const updateLanguage = preferredLanguage => {
+    const url = resolveClientUrl('Portal/Affiliate/UpdateInfo')
+    const param = {
+        preferredLanguage
+    }
+
+    return () => axios.post(url, param);
 }

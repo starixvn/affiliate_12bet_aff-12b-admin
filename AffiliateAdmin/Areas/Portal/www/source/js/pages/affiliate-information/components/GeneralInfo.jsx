@@ -1,5 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { updateLanguage, setLanguage } from '../actions';
 
 import { status, language } from '../modules/helper';
 import { formatDateTime, parseDateTime } from '../../../modules/utils';
@@ -7,16 +10,65 @@ import { formatDateTime, parseDateTime } from '../../../modules/utils';
 export class GeneralInfo extends React.Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            isChangingLanguage: false
+        }
     }
 
-    handleChangeLanguage = (event) => {
-        console.log(event.target.value);
+    handleChangeLanguage = async (event) => {
+        const isConfirmed = window.confirm("Are you sure you want to change language for this affiliate?");
+        if (isConfirmed) {
+            const language = event.target.value;
+            const response = await this.props.updateLanguage(language);
+
+            if (response.data.IsSuccessful) {
+                this.props.setLanguage(language);
+            }
+            else{
+                window.alert(response.data.Message);
+            }
+        }
+    }
+
+    clickChangeLanguage = () => {
+        this.setState({ isChangingLanguage: true });
+    }
+
+    handleBlurLanguage = () => {
+        this.setState({ isChangingLanguage: false });
+    }
+
+    handleChangePassword = () => {
+        window.parent.fContent.ibcWnd.open(url, 'Change Password', 150, 50, 350, 175, 'class1', 'class2');
+    }
+
+    _renderLanguage() {
+        const { isChangingLanguage } = this.state;
+        const { PreferredLanguage } = this.props;
+
+        return (
+            <React.Fragment>
+                <select style={{ display: isChangingLanguage ? 'inline-block' : 'none' }}
+                    defaultValue={PreferredLanguage} onChange={this.handleChangeLanguage} onBlur={this.handleBlurLanguage}>
+                    {
+                        Object.keys(language).map((key, index) => {
+                            return (<option value={key} key={`affinfo-lang-${index}`}>{language[key]}</option>)
+                        })
+                    }
+                </select>
+                <span className='popup' style={{ display: isChangingLanguage ? 'none' : 'block' }}
+                    onClick={this.clickChangeLanguage}>
+                    {language[PreferredLanguage]}
+                </span>
+            </React.Fragment>
+        )
     }
 
     render() {
         const { resource } = window;
-        const { Status, Closed, UserName, AffId, FirstName, LastName, Gender, Phone, 
-            PreferredLanguage, SiteUrl, LastLoginDate, LastLoginIP, InternalUrl } = this.props;
+        const { Status, Closed, UserName, AffId, FirstName, LastName, Gender, Phone,
+            SiteUrl, LastLoginDate, LastLoginIP, InternalUrl } = this.props;
 
         const isApproved = Status.toLowerCase() === status.Approved;
         const siteUrl = SiteUrl.indexOf('http://') === -1 ? 'http://' + SiteUrl : SiteUrl;
@@ -55,14 +107,7 @@ export class GeneralInfo extends React.Component {
                 <tr>
                     <td className='line_table'>{resource.language}</td>
                     <td className='line_table r'>
-                        <select style={{ display: 'none' }} defaultValue={PreferredLanguage} onChange={this.handleChangeLanguage}>
-                            {
-                                Object.keys(language).map((item, index) => {
-                                    return (<option value={item} key={`affinfo-lang-${index}`}>{language[item]}</option>)
-                                })
-                            }
-                        </select>
-                        <span className='popup'>{language[PreferredLanguage]}</span>
+                        {this._renderLanguage()}
                     </td>
                 </tr>
                 <tr>
@@ -92,12 +137,12 @@ export class GeneralInfo extends React.Component {
                             <tr style={{ height: 22 }}>
                                 <td className='line_table'>{resource.password}</td>
                                 <td className='r line_table'>
-                                    <span className='popup'>[change]</span>
+                                    <span className='popup'  onClick={this.handleChangePassword}>[change]</span>
                                 </td>
                             </tr>
                             <tr style={{ height: 22 }}>
                                 <td colSpan='2'>
-                                    <a href='../UserInfo/MemberListAll.aspx?txtAffUsername={username}' target='fMain'>{resource.memList}</a>
+                                    <a href={`../UserInfo/MemberListAll.aspx?txtAffUsername=${UserName}`} target='fMain'>{resource.memList}</a>
                                 </td>
                             </tr>
                         </React.Fragment>
@@ -111,13 +156,17 @@ export class GeneralInfo extends React.Component {
 function mapStateToProps(state) {
     const generalInfo = state.leftMenuData.GeneralInfo;
 
-    const { Status, Closed, UserName, AffId, FirstName, LastName, Gender, Phone, 
+    const { Status, Closed, UserName, AffId, FirstName, LastName, Gender, Phone,
         PreferredLanguage, SiteUrl, LastLoginDate, LastLoginIP, InternalUrl } = generalInfo;
 
-    return { 
-        Status, Closed, UserName, AffId, FirstName, LastName, Gender, Phone, 
-        PreferredLanguage, SiteUrl, LastLoginDate, LastLoginIP, InternalUrl 
+    return {
+        Status, Closed, UserName, AffId, FirstName, LastName, Gender, Phone,
+        PreferredLanguage, SiteUrl, LastLoginDate, LastLoginIP, InternalUrl
     };
 };
 
-export default connect(mapStateToProps)(GeneralInfo);
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ updateLanguage, setLanguage }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(GeneralInfo);

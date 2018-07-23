@@ -1,12 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
+using Fanex.Affiliate.Admin.Core.MetaModels;
 
 namespace Fanex.Affiliate.Admin.Core.Repository
 {
     public class AffiliateRepository : BaseRepository, IAffiliateRepository
     {
+        public ResultInfo UpdateInfo(LeftPanelUpdateInfoParam param)
+        {
+            const string SpKey = "Aff_Admin_AffiliateInfo_Upd";
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                objectDb.ExecuteNonQuery(param);
+            }
+
+            return new ResultInfo
+            {
+                Code = param.ErrCode,
+                Message = param.ErrMsg
+            };
+        }
+
         public AffLeftPanelInfo GetInfo(string username)
         {
             var result = new AffLeftPanelInfo();
