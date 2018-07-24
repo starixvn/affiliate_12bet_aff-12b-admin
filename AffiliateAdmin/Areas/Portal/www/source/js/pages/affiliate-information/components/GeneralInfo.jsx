@@ -107,8 +107,8 @@ export class GeneralInfo extends React.Component {
 
     render() {
         const { resource } = window;
-        const { Status, Closed, UserName, AffId, FirstName, LastName, Gender, Phone,
-            SiteUrl, LastLoginDate, LastLoginIP, InternalUrl } = this.props;
+        const { Status, Closed, UserName, AffId, FirstName, LastName, Gender, Phone, Email, PlayerUsername,
+            SiteUrl, LastLoginDate, LastLoginIP, InternalUrl, PreferredLanguage, PreferredPayment } = this.props;
 
         const isApproved = Status.toLowerCase() === status.Approved;
         const siteUrl = SiteUrl.indexOf('http://') === -1 ? 'http://' + SiteUrl : SiteUrl;
@@ -124,8 +124,15 @@ export class GeneralInfo extends React.Component {
                             isApproved && !Closed ?
                                 (<a href={InternalUrl} className='upper b' target='_blank'>{UserName}</a>) :
                                 (<span>{UserName}</span>)
-                        }
-                        <span> [{AffId}]</span>
+                        }{' '}
+                        [<span id="affID">{AffId}</span>]
+
+                        <input type="hidden" id="hdFname" value={FirstName} />
+                        <input type="hidden" id="hdPreferLang" value={PreferredLanguage} />
+                        <input type="hidden" id="hdPreferredPayment" value={PreferredPayment} />
+                        <input type="hidden" id="hdEmail" value={Email} />
+                        <input type="hidden" id="hdPlayer_Username" value={PlayerUsername} />
+                        
                     </td>
                 </tr>
                 <tr>
@@ -181,12 +188,12 @@ export class GeneralInfo extends React.Component {
 function mapStateToProps(state) {
     const generalInfo = state.leftMenuData.GeneralInfo;
 
-    const { Status, Closed, UserName, AffId, FirstName, LastName, Gender, Phone,
-        PreferredLanguage, SiteUrl, LastLoginDate, LastLoginIP, InternalUrl } = generalInfo;
+    const { Status, Closed, UserName, AffId, FirstName, LastName, Gender, Phone, Email, PlayerUsername,
+        PreferredLanguage, SiteUrl, LastLoginDate, LastLoginIP, InternalUrl, PreferredPayment } = generalInfo;
 
     return {
-        Status, Closed, UserName, AffId, FirstName, LastName, Gender, Phone,
-        PreferredLanguage, SiteUrl, LastLoginDate, LastLoginIP, InternalUrl
+        Status, Closed, UserName, AffId, FirstName, LastName, Gender, Phone, Email, PlayerUsername,
+        PreferredLanguage, SiteUrl, LastLoginDate, LastLoginIP, InternalUrl, PreferredPayment
     };
 };
 

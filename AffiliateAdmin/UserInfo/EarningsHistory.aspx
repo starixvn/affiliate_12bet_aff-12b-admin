@@ -11,24 +11,8 @@
 <script src="../App_Js/Calendar2/calendar-setup.js" type="text/javascript"></script>
 <script type="text/javascript">
     window.onload=function(){getAll();};
-        var test = "123";
-    
-    function UpdSucc()
-    {
-        ibcWnd.close();
-        Common.delayReloadPage1();
-        setTimeout("ReloadPage();", 1000);
-    }
-    function ReloadPage()
-    {
-        var fInfo = parent.fInfo;
-        if(fInfo)
-        {
-            fInfo.$("isReload").value = "3";
-            fInfo.$("frmSearch").submit();
-        }
-        location.href = "EarningsHistory.aspx";
-    }
+    var test = "123";
+
     function getAll() {
         listChk = $$("div .chk");
         if ($("getAll").value != "True") {

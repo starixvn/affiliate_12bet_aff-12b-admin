@@ -2,12 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import { Modal, ModalHeader, ModalBody } from 'reactstrap';
+
 import Panel from './Panel';
 import { updateGeneralInfo, setClosedStatus, setAffType } from '../actions';
 
 import { affType, status } from '../modules/helper';
 import { formatDecimal } from '../../../modules/numberFormat';
-import { formatDateTime, parseDateTime } from '../../../modules/utils';
+import { formatDateTime, parseDateTime, resolveClientUrl } from '../../../modules/utils';
 
 export class PanelList extends React.Component {
     constructor(props) {
@@ -18,7 +20,8 @@ export class PanelList extends React.Component {
 
         this.state = {
             isChangingAffType: false,
-            isChangingAffStatus: false
+            isChangingAffStatus: false,
+            isChangingCommissionGroup: false
         }
     }
 
@@ -63,9 +66,16 @@ export class PanelList extends React.Component {
         }
     }
 
+    toggleEditingCommissionPopup = (isChanging) => {
+        this.setState({ isChangingCommissionGroup: isChanging })
+    }
+
     _renderCommissionPanel() {
+        const { isChangingCommissionGroup } = this.state;
         const { resource } = window;
-        const { Closed, GroupName, BalBroughtForward } = this.props;
+        const { Closed, GroupName, BalBroughtForward, AffId, UserName } = this.props;
+        const url = resolveClientUrl('GroupSetting/AssignGroup.aspx') + `?affid=${AffId}&affName=${UserName}`;
+        const title = 'Change Commission Group For \"' + UserName + '\"';
 
         return (
             <Panel heading={resource.comm}>
@@ -73,8 +83,20 @@ export class PanelList extends React.Component {
                     <td>{resource.commGroup}</td>
                     <td className='text-right'>
                         {
-                            Closed ? GroupName : (<span className='popup'>{GroupName}</span>)
+                            Closed ? GroupName : 
+                            (<span className='popup' onClick={() => this.toggleEditingCommissionPopup(true)}>{GroupName}</span>)
                         }
+
+                        <Modal isOpen={isChangingCommissionGroup} backdrop='static' style={{maxWidth: 570}}>
+                            <ModalHeader toggle={() => this.toggleEditingCommissionPopup(false)}>
+                                <span className="iconpopup"></span>{title}
+                            </ModalHeader>
+                            <ModalBody>
+                                <div className="modal-body-wrapper" style={{height: 283, padding: 0}}>
+                                    <iframe src={url} width="100%" height="100%" frameBorder="0"></iframe>
+                                </div>
+                            </ModalBody>
+                        </Modal>
                     </td>
                 </tr>
                 <tr>
@@ -194,9 +216,9 @@ export class PanelList extends React.Component {
 function mapStateToProps(state) {
     const { GeneralInfo, OnlineInfoList } = state.leftMenuData;
 
-    const { GroupName, BalBroughtForward, AffType, Status, Closed } = GeneralInfo;
+    const { GroupName, BalBroughtForward, AffType, Status, Closed, AffId, UserName } = GeneralInfo;
 
-    return { GroupName, BalBroughtForward, AffType, Status, Closed, OnlineInfoList };
+    return { GroupName, BalBroughtForward, AffType, Status, Closed, AffId, UserName, OnlineInfoList };
 };
 
 function mapDispatchToProps(dispatch) {

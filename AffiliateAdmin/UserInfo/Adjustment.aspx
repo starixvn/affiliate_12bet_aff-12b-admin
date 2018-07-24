@@ -49,9 +49,7 @@
                 if (result[0] == '0') {
                     //reload this page and lef panel
                     $("errMsg").className = "done";
-                    Common.alertSuccess(result[1]);                   
-                    parent.fInfo.$("isReload").value = "4";
-                    setTimeout("parent.fInfo.$('frmSearch').submit();", 1500);
+                    Common.alertSuccess(result[1]);
                 }
                 else {
                     Common.alertError(result[1]);

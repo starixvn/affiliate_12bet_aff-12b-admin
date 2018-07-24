@@ -44,17 +44,17 @@
             if(isUsePrivateGroup){        
                 var groupid;
                 if(IsApproved){
-                   groupid=parent.parent.fInfo.$("affID").innerHTML;                   
-                   parent.ibcWnd.open("../GroupSetting/AddGroup.aspx?groupid=" + groupid + "&IsApproved=" + IsApproved + '&fname=' + encodeURIComponent(parent.parent.fInfo.$("hdFname").value) + '&username=' +  $('listAff').innerHTML + '&lang=' + encodeURIComponent(parent.parent.fInfo.$("hdPreferLang").value) + '&email=' + encodeURIComponent(parent.parent.fInfo.$("hdEmail").value), 'Approve affiliate ' + $('listAff').innerHTML  + ' with a private commission group', 150, 50, 755, 529, 'class1', 'class2');
+                   groupid=parent.$("affID").innerHTML;                   
+                   parent.ibcWnd.open("../GroupSetting/AddGroup.aspx?groupid=" + groupid + "&IsApproved=" + IsApproved + '&fname=' + encodeURIComponent(parent.$("hdFname").value) + '&username=' +  $('listAff').innerHTML + '&lang=' + encodeURIComponent(parent.$("hdPreferLang").value) + '&email=' + encodeURIComponent(parent.$("hdEmail").value), 'Approve affiliate ' + $('listAff').innerHTML  + ' with a private commission group', 150, 50, 755, 529, 'class1', 'class2');
                  }
                 else{
-                  groupid= parent.parent.fInfo.$("affID").innerHTML;
+                  groupid= parent.$("affID").innerHTML;
                   parent.ibcWnd.open("../GroupSetting/AddGroup.aspx?groupid=" + groupid , 'Change commission group for ' + $('listAff').innerHTML + ' (private group)' , 150, 50, 755, 529, 'class1', 'class2');
                   }                     
             }
             else{
                 if(IsApproved){
-                    var params = 'func=0&status=approved&fname=' + encodeURIComponent(parent.parent.fInfo.$("hdFname").value) + '&username=' + $('listAff').innerHTML + '&lang=' + encodeURIComponent(parent.parent.fInfo.$("hdPreferLang").value) + '&hdPreferredPayment=' + encodeURIComponent(parent.parent.fInfo.$("hdPreferredPayment").value) + '&hdPlayer_Username=' + encodeURIComponent(parent.parent.fInfo.$("hdPlayer_Username").value) + '&email=' + encodeURIComponent(parent.parent.fInfo.$("hdEmail").value) + '&groupid=' + $("slCommGroup").value + '&mailoption={mailoption}' +
+                    var params = 'func=0&status=approved&fname=' + encodeURIComponent(parent.$("hdFname").value) + '&username=' + $('listAff').innerHTML + '&lang=' + encodeURIComponent(parent.$("hdPreferLang").value) + '&hdPreferredPayment=' + encodeURIComponent(parent.$("hdPreferredPayment").value) + '&hdPlayer_Username=' + encodeURIComponent(parent.$("hdPlayer_Username").value) + '&email=' + encodeURIComponent(parent.$("hdEmail").value) + '&groupid=' + $("slCommGroup").value + '&mailoption={mailoption}' +
                         "&X-CSRF-Token=" + $('X-CSRF-Token').value;
                     var ajax = new Ajax.Request("../Handler/UpdAffInfo.ashx?" , {
                     method: 'post',

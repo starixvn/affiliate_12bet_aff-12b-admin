@@ -14,6 +14,22 @@ devConfig.devServer = {
         '/Portal': {
             target: 'http://localhost:65181/Portal',
             pathRewrite: { '^/Portal': '' }
+        },
+        '/GroupSetting': {
+            target: 'http://localhost:65181/GroupSetting',
+            pathRewrite: { '^/GroupSetting': '' }
+        },
+        '/App_Js': {
+            target: 'http://localhost:65181/App_Js',
+            pathRewrite: { '^/App_Js': '' }
+        },
+        '/Handler': {
+            target: 'http://localhost:65181/Handler',
+            pathRewrite: { '^/Handler': '' }
+        },
+        '/App_Themes': {
+            target: 'http://localhost:65181/App_Themes',
+            pathRewrite: { '^/App_Themes': '' }
         }
     }
 };
