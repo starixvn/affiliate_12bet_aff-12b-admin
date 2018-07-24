@@ -2,7 +2,6 @@
     var INTERVAL_SLIDE = 5000;
     var sliderTimeout = null;
     var slideIndex = 1;
-    showSlides(slideIndex);
 
     function showSlides(n) {
         var i;
@@ -27,6 +26,17 @@
     }
 
     var _me = {
+        initialize: function(){
+            showSlides(slideIndex);
+            _me.initEvent();
+        },
+        initEvent: function(){
+            var bannerMedia = document.getElementById("bannerMedia");
+            bannerMedia.addEventListener("click", function () {
+                document.getElementById("isCLickedBanner").value = 1;
+                window.alert(resource.LoginNotification);
+            });
+        },
         handleMouseOver: function () {
             clearTimeout(sliderTimeout);
         },
@@ -41,3 +51,5 @@
 
     return _me;
 })();
+
+Banner.initialize();

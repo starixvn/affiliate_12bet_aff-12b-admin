@@ -1,5 +1,14 @@
 <%@ Control Language="C#" AutoEventWireup="true" Inherits="Controls_Home_Center" CodeBehind="Home_Center.ascx.cs" %>
 <link href="Content/_banner.min.css" rel="stylesheet" />
+<% 
+    var mediaGalleryUrl = (AppSettings.Session.CommGroupName == "Media" ? "~/UserInfo/MediaBanner.aspx" : "~/UserInfo/MediaGalleryNew.aspx");
+    var bannerRedirectUrl = AppSettings.Session.IsAuthenticated ? "~/UserInfo/Account_Overview.aspx" :
+        (AppSettings.Session.CommGroupName == "Media" ? "~/UserInfo/MediaBanner.aspx" : "~/UserInfo/MediaGalleryNew.aspx");
+%>
+
+<input type="hidden" id="accountOverviewUrl" value="<%=ResolveClientUrl("~/UserInfo/Account_Overview.aspx") %>" />
+<input type="hidden" id="mediaGalleryUrl" value="<%=ResolveClientUrl(mediaGalleryUrl) %>" />
+<input type="hidden" id="isCLickedBanner" value="0" />
 
 <div id="banner_main">
     <!-- Slideshow container -->
@@ -117,4 +126,9 @@
     </table>
 </div>
 
-<script src="App_Js/banner.min.js"></script>
+<script type="text/javascript">
+    var resource = {
+        LoginNotification: '<%=Resources.Lang.LoginNotification%>'
+    }
+</script>
+<script src="<%=ResolveClientUrl("~/App_Js/banner.min.js?v=") + AppSettings.JsVersion %>"></script>

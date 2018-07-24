@@ -4515,6 +4515,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Kindly log-in your affiliate account first.
+        /// </summary>
+        internal static string LoginNotification {
+            get {
+                return ResourceManager.GetString("LoginNotification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Logout.
         /// </summary>
         internal static string Logout {

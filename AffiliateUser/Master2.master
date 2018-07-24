@@ -73,6 +73,7 @@
         <div class="red_line"></div>
     </div>
 
+    <input type="hidden" id="actionMedia" value="'AffNewSeasonMedia-<%=Common.ConvertSpecialLanguageCode().ToUpper() %>'" />
     <% if (AppSettings.Environment.Equals("UAT", StringComparison.OrdinalIgnoreCase) || AppSettings.Environment.Equals("PRODUCTION", StringComparison.OrdinalIgnoreCase))
         { %>
     <!-- Google Analytics -->
@@ -84,35 +85,28 @@
         gtag('js', new Date());
 
         gtag('config', 'UA-5160706-44');
-
-        var bannerSignup = document.getElementById("bannerSignup");
-        bannerSignup.addEventListener("click", function (event) {
-            event.preventDefault();
-            gtag('event', 'AffJoinJuly40Com-<%=Common.ConvertSpecialLanguageCode().ToUpper() %>', {
-                'event_category': 'AFFiliatePage',
-                'event_label': 'AFFBigBanner'
-            });
-
-            setTimeout(function () {
-                window.location.href = '<%=ResolveUrl("Signup.aspx")%>';
-            }, 10);
-        });
-
-        var bannerMedia = document.getElementById("bannerMedia");
-        bannerMedia.addEventListener("click", function (event) {
-            event.preventDefault();
-
-            gtag('event', 'AffNewSeasonMedia-<%=Common.ConvertSpecialLanguageCode().ToUpper() %>', {
-                'event_category': 'AFFiliatePage',
-                'event_label': 'AFFBigBanner'
-            });
-
-            setTimeout(function () {
-                window.location.href = '<%=ResolveUrl("UserInfo/MediaGalleryNew.aspx")%>';
-            }, 10);
-        });
     </script>
     <!-- End Google Analytics -->
     <% } %>
+
+    <script type="text/javascript">
+        var bannerSignup = document.getElementById("bannerSignup");
+        if (bannerSignup) {
+            bannerSignup.addEventListener("click", function (event) {
+                event.preventDefault();
+                if (window.gtag) {
+                    window.gtag('event', 'AffJoinJuly40Com-<%=Common.ConvertSpecialLanguageCode().ToUpper() %>', {
+                        'event_category': 'AFFiliatePage',
+                        'event_label': 'AFFBigBanner'
+                    });
+                }
+
+                setTimeout(function () {
+                    window.location.href = '<%=ResolveUrl("~/Signup.aspx")%>';
+                }, 10);
+            });
+        }
+    </script>
+    <script type="text/javascript" src="<%=ResolveClientUrl("~/App_Js/login.js?v=") + AppSettings.JsVersion %>"></script>
 </body>
 </html>
