@@ -2728,4 +2728,7 @@ Pelacakan data telah ditingkatkan dalam teks afiliasi dan spanduk link terbaru. 
  &lt;br/&gt;&lt;br/&gt;
 Terima Kasih</value>
   </data>
+  <data name="LoginNotification" xml:space="preserve">
+    <value>Mohon masuk ke akun Afiliasi Anda terlebih dahulu</value>
+  </data>
 </root>

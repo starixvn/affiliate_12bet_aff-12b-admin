@@ -2719,4 +2719,7 @@ Xin Cảm Ơn!</value>
   <data name="AnnouncementHeader" xml:space="preserve">
     <value>Nâng Cấp Kỹ Thuật Theo Dõi</value>
   </data>
+  <data name="LoginNotification" xml:space="preserve">
+    <value>Vui lòng Đăng nhập Tài khoản Đại lý 12BET của bạn</value>
+  </data>
 </root>
