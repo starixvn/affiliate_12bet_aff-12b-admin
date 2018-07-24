@@ -1,18 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 
-import { updateGeneralInfo, setLanguage } from '../actions';
+import { updateGeneralInfo, setLanguage, changePassword } from '../actions';
 
 import { status, language } from '../modules/helper';
 import { formatDateTime, parseDateTime } from '../../../modules/utils';
+import ChangePasswordForm from './ChangePasswordForm';
 
 export class GeneralInfo extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            isChangingLanguage: false
+            isChangingLanguage: false,
+            isChangingPassword: false
         }
     }
 
@@ -40,8 +43,8 @@ export class GeneralInfo extends React.Component {
         this.setState({ isChangingLanguage: false });
     }
 
-    handleChangePassword = () => {
-        window.parent.fContent.ibcWnd.open(url, 'Change Password', 150, 50, 350, 175, 'class1', 'class2');
+    toggleChangingPassword = (isChanging) => {
+        this.setState({ isChangingPassword: isChanging })
     }
 
     _renderLanguage() {
@@ -62,6 +65,42 @@ export class GeneralInfo extends React.Component {
                     onClick={this.clickChangeLanguage}>
                     {language[PreferredLanguage]}
                 </span>
+            </React.Fragment>
+        )
+    }
+
+    _renderApprovedStatusInfo() {
+        const { resource } = window;
+        const { isChangingPassword } = this.state;
+        const { UserName, changePassword } = this.props;
+        return (
+            <React.Fragment>
+                <tr style={{ height: 22 }}>
+                    <td className='line_table'>{resource.password}</td>
+                    <td className='r line_table'>
+                        <span className='popup' onClick={() => this.toggleChangingPassword(true)}>[change]</span>
+
+                        <Modal isOpen={isChangingPassword} backdrop='static'>
+                            <ModalHeader toggle={() => this.toggleChangingPassword(false)}>
+                                <span className="iconpopup"></span>Change Password
+                            </ModalHeader>
+                            <ModalBody>
+                                <div className="modal-body-wrapper">
+                                    {
+                                        isChangingPassword && 
+                                        <ChangePasswordForm onClose={() => this.toggleChangingPassword(false)}
+                                            onSubmit={changePassword} />
+                                    }
+                                </div>
+                            </ModalBody>
+                        </Modal>
+                    </td>
+                </tr>
+                <tr style={{ height: 22 }}>
+                    <td colSpan='2'>
+                        <a href={`../UserInfo/MemberListAll.aspx?txtAffUsername=${UserName}`} target='fMain'>{resource.memList}</a>
+                    </td>
+                </tr>
             </React.Fragment>
         )
     }
@@ -132,22 +171,7 @@ export class GeneralInfo extends React.Component {
                     </td>
                 </tr>
                 {
-                    isApproved &&
-                    (
-                        <React.Fragment>
-                            <tr style={{ height: 22 }}>
-                                <td className='line_table'>{resource.password}</td>
-                                <td className='r line_table'>
-                                    <span className='popup' onClick={this.handleChangePassword}>[change]</span>
-                                </td>
-                            </tr>
-                            <tr style={{ height: 22 }}>
-                                <td colSpan='2'>
-                                    <a href={`../UserInfo/MemberListAll.aspx?txtAffUsername=${UserName}`} target='fMain'>{resource.memList}</a>
-                                </td>
-                            </tr>
-                        </React.Fragment>
-                    )
+                    isApproved && this._renderApprovedStatusInfo()                   
                 }
             </React.Fragment>
         )
@@ -167,7 +191,7 @@ function mapStateToProps(state) {
 };
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ updateGeneralInfo, setLanguage }, dispatch);
+    return bindActionCreators({ updateGeneralInfo, setLanguage, changePassword }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GeneralInfo);

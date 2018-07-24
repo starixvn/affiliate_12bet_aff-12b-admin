@@ -73,6 +73,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -126,6 +127,7 @@
     <Compile Include="DTO\Product.cs" />
     <Compile Include="DTO\ResultInfo.cs" />
     <Compile Include="Enum\AffType.cs" />
+    <Compile Include="MetaModels\ChangePasswordParam.cs" />
     <Compile Include="MetaModels\CommissionSettingParam.cs" />
     <Compile Include="MetaModels\LeftPanelUpdateInfoParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -145,6 +147,7 @@
     <Compile Include="Services\ICommissionService.cs" />
     <Compile Include="Services\IProductService.cs" />
     <Compile Include="Services\ProductService.cs" />
+    <Compile Include="Utilities\CryptographyHelper.cs" />
     <Compile Include="Utilities\Generator.cs" />
     <Compile Include="ViewModels\CommissionViewModel.cs" />
   </ItemGroup>

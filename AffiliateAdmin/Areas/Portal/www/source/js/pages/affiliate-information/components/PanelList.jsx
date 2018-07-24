@@ -39,7 +39,7 @@ export class PanelList extends React.Component {
         const nextStatus = !Closed;
         const isConfirmed = confirm('Are you sure you want to ' + (nextStatus ? 'close' : 'open') + ' this affiliate?');
         if (isConfirmed) {
-            const param = { Close: nextStatus };
+            const param = { Closed: nextStatus };
             const response = await this.props.updateGeneralInfo(param);
 
             if (response.data.IsSuccessful) {

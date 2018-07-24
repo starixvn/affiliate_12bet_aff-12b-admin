@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
+using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Core;
@@ -36,6 +38,35 @@ namespace AffiliateAdmin.Areas.Portal.Controllers
             var result = _affService.UpdateInfo(param);
 
             return Json(result);
+        }
+
+        [HttpPost]
+        public ActionResult ChangePassword(ChangePasswordParam param)
+        {
+            if (ModelState.IsValid)
+            {
+                var updateParam = new LeftPanelUpdateInfoParam
+                {
+                    UserId = SessionService.CustId,
+                    AffId = SessionService.SelectedAffId,
+                    Ip = Request.UserHostAddress,
+                    Password = param.Password
+                };
+
+                var result = _affService.ChangePassword(updateParam);
+
+                return Json(result);
+            }
+            else
+            {
+                var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
+
+                return Json(new ResultInfo
+                {
+                    Code = -1,
+                    Message = string.Join(",", errors)
+                });
+            }
         }
     }
 }

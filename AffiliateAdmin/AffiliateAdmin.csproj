@@ -1948,6 +1948,7 @@
     <Content Include="Areas\Portal\www\source\style\vendors\bootstrap\utilities\_spacing.scss" />
     <Content Include="Areas\Portal\www\source\style\vendors\bootstrap\utilities\_text.scss" />
     <Content Include="Areas\Portal\www\source\style\vendors\bootstrap\utilities\_visibility.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\affiliate-information.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

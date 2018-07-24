@@ -14,5 +14,6 @@ module.exports = {
     [`${styleDist}/bootstrap`]: "./source/style/vendors/_bootstrap.scss",
     [`${styleDist}/portalmain`]: "./source/style/main.scss",
     [`${styleDist}/commission`]: "./source/style/pages/commission.scss",
+    [`${styleDist}/affiliate-information`]: "./source/style/pages/affiliate-information.scss",
     [`${styleDist}/sample`]: "./source/style/pages/_sample.scss"
 };

@@ -9,5 +9,7 @@ namespace Fanex.Affiliate.Admin.Core.Services
         AffLeftPanelInfo GetInfo(string username);
 
         ResultInfo UpdateInfo(LeftPanelUpdateInfoParam param);
+
+        ResultInfo ChangePassword(LeftPanelUpdateInfoParam param);
     }
 }

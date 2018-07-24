@@ -49,3 +49,9 @@ export const updateGeneralInfo = param => {
 
     return () => axios.post(url, param);
 }
+
+export const changePassword = param => {
+    const url = resolveClientUrl('Portal/Affiliate/ChangePassword');
+
+    return () => axios.post(url, param);
+}

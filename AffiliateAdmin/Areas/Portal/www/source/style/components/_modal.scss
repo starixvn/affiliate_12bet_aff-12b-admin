@@ -19,7 +19,7 @@
 
 .modal-header {
     height: 27px;
-    padding: 5px;
+    padding: 3px 5px;
     border-radius: 5px;
 
     .modal-title {
@@ -30,15 +30,17 @@
     button.close {
         border: 1px solid #685b5b;
         border-radius: 3px;
-        line-height: 16px;
-        width: 16px;
-        font-size: 18px;
+        line-height: 15px;
+        width: 15px;
+        font-size: 15px;
         color: #685b5b;
         opacity: 1;
+        padding: 0;
+        margin: 0;
 
         &:hover{
             background: #f81515;
-            color: #fff;
+            color: #fff !important;
         }
     }
 }

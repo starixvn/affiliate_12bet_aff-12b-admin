@@ -29,6 +29,13 @@ namespace Fanex.Affiliate.Admin.Core.Services
             return _affRepository.UpdateInfo(param);
         }
 
+        public ResultInfo ChangePassword(LeftPanelUpdateInfoParam param)
+        {
+            param.Password = CryptographyHelper.Encrypt(param.Password);
+
+            return _affRepository.UpdateInfo(param);
+        }
+
         public AffLeftPanelInfo GetInfo(string username)
         {
             var leftPanelInfo = _affRepository.GetInfo(username);
