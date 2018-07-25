@@ -91,15 +91,6 @@ var Common = (function () {
         document.body.appendChild(window.divMaskLoading);
     }
 
-    function reloadMainFrame() {
-        var fMenu = top.document.getElementById('fMenu');
-
-        var fInfo = top.document.getElementById("fInfo");
-        var currentMenu = fMenu.contentWindow.document.getElementById("current");
-        var link = currentMenu.childNodes[0];
-        link.click();
-    }
-
     return {
         blockUI: function () {
             Common.delayReloadPage1();
@@ -254,10 +245,6 @@ var Common = (function () {
                 $("fdateTrigger").onclick = "";
                 $("tdateTrigger").onclick = "";
             }
-        },
-
-        reloadMainFrame: function () {
-            reloadMainFrame();
         }
     };
 }());

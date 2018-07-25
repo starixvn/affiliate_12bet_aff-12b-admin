@@ -46,6 +46,15 @@
         $("errMsg").className = "done";
         setTimeout("parent.Common.delayReloadPage1();parent.location.href = parent.location.href.replace(/#/, '')", 2000); 
     }
+    function ReloadPage(msg)
+    {
+        var fInfo = top.document.getElementById("fInfo");
+        if(fInfo)
+        {
+            fInfo.$("isReload").value = "3";
+            fInfo.$("frmSearch").submit();
+        }        
+    }
     function UpdateErr(msg)
     {
         Common.alertError(msg);

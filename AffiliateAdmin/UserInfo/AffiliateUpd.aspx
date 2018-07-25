@@ -49,21 +49,24 @@
     }
     function UpdateSuccess(msg, url, intReload) {
         Common.hideLoading();
-        arrError.clear();
-        arrItem.clear();
-        arrError.push(msg);
-        $('errMsg').className = "done";
-        $('errMsg').show();
-        arrItem.push("error_item");
-        Common.showError(arrError, arrItem, "error_item");
+        if (parent.fInfo) {
+            arrError.clear();
+            arrItem.clear();
+            arrError.push(msg);
+            $('errMsg').className = "done";
+            $('errMsg').show();
+            arrItem.push("error_item");
+            Common.showError(arrError, arrItem, "error_item");
+            //var tmp = "";
+            parent.fInfo.$("isReload").value = "2";
 
-        if (parent === window) {
-            location.href = url;
+            setTimeout(function () {
+                parent.fInfo.$("isReload").value = "0";
+            }, 2000);
+
         }
         else {
-            setTimeout(function () {
-                Common.reloadMainFrame();
-            }, 2000);
+            location.href = url;
         }
     }
     function UpdateErr(msg, itemFocus) {
