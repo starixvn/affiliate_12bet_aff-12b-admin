@@ -2800,6 +2800,6 @@
     <value> 향상된 트래킹 기술력</value>
   </data>
   <data name="LoginNotification" xml:space="preserve">
-    <value>Kindly log-in your affiliate account first</value>
+    <value>제휴 계정 로그인 후 이용가능합니다.</value>
   </data>
 </root>
