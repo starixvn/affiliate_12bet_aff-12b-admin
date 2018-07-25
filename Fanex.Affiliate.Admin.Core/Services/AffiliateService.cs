@@ -1,4 +1,5 @@
 ﻿using Fanex.Affiliate.Admin.Core.Configurations;
+using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 using Fanex.Affiliate.Admin.Core.Enum;
@@ -12,6 +13,8 @@ namespace Fanex.Affiliate.Admin.Core.Services
     public class AffiliateService : IAffiliateService
     {
         private readonly IAffiliateRepository _affRepository;
+
+        private readonly IAccountRepository _accountRepository;
 
         private readonly ISessionService _sessionService;
 
@@ -49,6 +52,32 @@ namespace Fanex.Affiliate.Admin.Core.Services
             }
 
             return leftPanelInfo;
+        }
+
+        public ResultInfo UpdateStatus(AffInfo param)
+        {
+            var isApprovedStatus = string.Equals(param.Status, AffStatus.Approved);
+            string password = null;
+            if (_appSetting.IsTesting && isApprovedStatus && string.Equals(param.PreferredPayment, "Player"))
+            {
+                var depositAccount = _accountRepository.GetDepositPlayerAccount(param.PlayerUsername);
+
+                if (depositAccount.IsValid)
+                {
+                    return new ResultInfo
+                    {
+                        Code = -1,
+                        Message = "errDepositDBConnectFailed"
+                    };
+                }
+            }
+
+            if (isApprovedStatus || string.Equals(param.Status, AffStatus.Disapproved))
+            {
+                password = CryptographyHelper.Encrypt(Generator.GetRandomString(6));
+            }
+
+            return new ResultInfo();
         }
 
         private void AssignSession(AffInfo affInfo)

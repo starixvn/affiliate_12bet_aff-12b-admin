@@ -11,5 +11,7 @@ namespace Fanex.Affiliate.Admin.Core.Services
         ResultInfo UpdateInfo(LeftPanelUpdateInfoParam param);
 
         ResultInfo ChangePassword(LeftPanelUpdateInfoParam param);
+
+        ResultInfo UpdateStatus(AffInfo param);
     }
 }

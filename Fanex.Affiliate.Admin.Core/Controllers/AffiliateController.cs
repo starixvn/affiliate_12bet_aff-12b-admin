@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Core;
@@ -67,6 +68,12 @@ namespace AffiliateAdmin.Areas.Portal.Controllers
                     Message = string.Join(",", errors)
                 });
             }
+        }
+
+        [HttpPost]
+        public ActionResult UpdateStatus(AffInfo param)
+        {
+            return Json(null);
         }
     }
 }

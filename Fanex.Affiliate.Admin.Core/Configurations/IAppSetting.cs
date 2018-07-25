@@ -7,5 +7,7 @@
         string InternalEuropeanAffiliateUrl { get; }
 
         string InternalAsianAffiliateUrl { get; }
+
+        bool IsTesting { get; }
     }
 }
