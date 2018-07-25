@@ -1,15 +1,35 @@
 <%@ Control Language="C#" AutoEventWireup="true" Inherits="Controls_Home_Center" CodeBehind="Home_Center.ascx.cs" %>
-
-<%
-    var shortedLanguageCode = Common.ConvertSpecialLanguageCode();
-    var link = shortedLanguageCode.Equals("ch") ? 
-        "https://promotions.12bet.com/Promotion/index.php?lang=ch&act=worldcup" :
-        "https://promotions.12bet.com/newsletter/2018Newsletter/June/" + shortedLanguageCode + "/";
+<link href="Content/_banner.min.css" rel="stylesheet" />
+<% 
+    var mediaGalleryUrl = (AppSettings.Session.CommGroupName == "Media" ? "~/UserInfo/MediaBanner.aspx" : "~/UserInfo/MediaGalleryNew.aspx");
+    var bannerRedirectUrl = AppSettings.Session.IsAuthenticated ? "~/UserInfo/Account_Overview.aspx" :
+        (AppSettings.Session.CommGroupName == "Media" ? "~/UserInfo/MediaBanner.aspx" : "~/UserInfo/MediaGalleryNew.aspx");
 %>
+
+<input type="hidden" id="accountOverviewUrl" value="<%=ResolveClientUrl("~/UserInfo/Account_Overview.aspx") %>" />
+<input type="hidden" id="mediaGalleryUrl" value="<%=ResolveClientUrl(mediaGalleryUrl) %>" />
+<input type="hidden" id="isCLickedBanner" value="0" />
+
 <div id="banner_main">
-    <a id="big_banner_link" href="<%=link%>" target="_blank">
-        <img src="<%=Common.GetBannerFlash() %>" width="646px" height="275px" />
-    </a>
+    <!-- Slideshow container -->
+    <div class="slideshow-container">
+        <!-- Full-width images with number and caption text -->
+        <div class="mySlides fade" onmouseover="Banner.handleMouseOver()" onmouseout="Banner.handleMouseOut()">
+            <a href="javacript:;" id="bannerSignup">
+                <img src="<%=Common.GetBannerFlash(1) %>" style="width: 100%">
+            </a>
+        </div>
+
+        <div class="mySlides fade" onmouseover="Banner.handleMouseOver()" onmouseout="Banner.handleMouseOut()">
+            <a href="javascript:;" id="bannerMedia">
+                <img src="<%=Common.GetBannerFlash(2) %>" style="width: 100%">
+            </a>
+        </div>
+
+        <!-- Next and previous buttons -->
+        <a class="prev" onclick="Banner.plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="Banner.plusSlides(1)">&#10095;</a>
+    </div>
 </div>
 <div id="contents">
     <table width="100%" cellspacing="0" cellpadding="0" border="0">
@@ -105,3 +125,10 @@
         </tr>
     </table>
 </div>
+
+<script type="text/javascript">
+    var resource = {
+        LoginNotification: '<%=Resources.Lang.LoginNotification%>'
+    }
+</script>
+<script src="<%=ResolveClientUrl("~/App_Js/banner.min.js?v=") + AppSettings.JsVersion %>"></script>

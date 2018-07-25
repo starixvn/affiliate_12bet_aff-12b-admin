@@ -57,7 +57,19 @@ function Login(rs) {
 
     switch (err[0]) {
         case '100':
-            parent.location.href = 'UserInfo/Account_Overview.aspx';
+            var isCLickedMediaBanner = document.getElementById("isCLickedBanner").value === "1";
+
+            if (window.gtag && isCLickedMediaBanner) {
+                var actionTracking = document.getElementById("actionMedia").value;
+                if (actionTracking) {
+                    window.gtag('event', actionTracking, {
+                        'event_category': 'AFFiliatePage',
+                        'event_label': 'AFFBigBanner'
+                    });
+                }
+            }
+            parent.location.href = isCLickedMediaBanner ? document.getElementById("mediaGalleryUrl").value :
+                                                            document.getElementById("accountOverviewUrl").value;
             break;
         case '99':
             parent.location.href = 'Welcome.aspx';

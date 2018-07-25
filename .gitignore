@@ -37,3 +37,4 @@ Affiliate/Report.csv
 *StyleCop.Cache
 .vs/
 /Fanex.Affiliate.User.Site/Properties/PublishProfiles/
+node_modules

@@ -1,0 +1,10 @@
+﻿[
+  {
+    "outputFile": "Content/_banner.css",
+    "inputFile": "Content/_banner.scss"
+  },
+  {
+    "outputFile": "App_Js/banner.min.js",
+    "inputFile": "App_Js/banner.js"
+  }
+]

@@ -720,6 +720,10 @@
       <DependentUpon>Welcome.aspx</DependentUpon>
     </Compile>
     <Content Include="App_Data\SpNames.xml" />
+    <Content Include="App_Js\banner.js" />
+    <Content Include="App_Js\banner.min.js">
+      <DependentUpon>banner.js</DependentUpon>
+    </Content>
     <Content Include="App_Js\libs\jquery-ui\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="App_Js\libs\jquery-ui\images\ui-bg_glass_65_ffffff_1x400.png" />
     <Content Include="App_Js\libs\jquery-ui\images\ui-bg_glass_75_e6e6e6_1x400.png" />
@@ -736,19 +740,36 @@
     <Content Include="App_Templates\Email\SignupMail\SignupMail_hi-IN.htm" />
     <Content Include="App_Templates\Email\SignupMail\SignupMail_hi-IN_html.htm" />
     <Content Include="App_Themes\Default\Images1\banner_hi-IN.jpg" />
+    <Content Include="App_Themes\Default\Images\bgMain2.jpg" />
     <Content Include="App_Themes\Default\Images\fIndia.png" />
     <Content Include="BetList\BetListCashOutDetail.aspx" />
-    <Content Include="Content\Banner\English\main.jpg" />
-    <Content Include="Content\Banner\European\main.jpg" />
-    <Content Include="Content\Banner\Indonesian\main.jpg" />
-    <Content Include="Content\Banner\Japan\main.jpg" />
-    <Content Include="Content\Banner\Korean\main.jpg" />
-    <Content Include="Content\Banner\Simplified\main.jpg" />
-    <Content Include="Content\Banner\Spanish\main.jpg" />
-    <Content Include="Content\Banner\Thai\main.jpg" />
-    <Content Include="Content\Banner\Tradition\main.jpg" />
-    <Content Include="Content\Banner\Vietnamese\main.jpg" />
+    <Content Include="Content\Banner\English\1.jpg" />
+    <Content Include="Content\Banner\English\2.jpg" />
+    <Content Include="Content\Banner\European\1.jpg" />
+    <Content Include="Content\Banner\European\2.jpg" />
+    <Content Include="Content\Banner\Indonesian\1.jpg" />
+    <Content Include="Content\Banner\Indonesian\2.jpg" />
+    <Content Include="Content\Banner\Japan\1.jpg" />
+    <Content Include="Content\Banner\Japan\2.jpg" />
+    <Content Include="Content\Banner\Korean\1.jpg" />
+    <Content Include="Content\Banner\Korean\2.jpg" />
+    <Content Include="Content\Banner\Simplified\1.jpg" />
+    <Content Include="Content\Banner\Simplified\2.jpg" />
+    <Content Include="Content\Banner\Spanish\1.jpg" />
+    <Content Include="Content\Banner\Spanish\2.jpg" />
+    <Content Include="Content\Banner\Thai\1.jpg" />
+    <Content Include="Content\Banner\Thai\2.jpg" />
+    <Content Include="Content\Banner\Tradition\1.jpg" />
+    <Content Include="Content\Banner\Tradition\2.jpg" />
+    <Content Include="Content\Banner\Vietnamese\1.jpg" />
+    <Content Include="Content\Banner\Vietnamese\2.jpg" />
     <Content Include="Content\betlist\cashoutdetail.css" />
+    <Content Include="Content\_banner.css">
+      <DependentUpon>_banner.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\_banner.min.css">
+      <DependentUpon>_banner.scss</DependentUpon>
+    </Content>
     <Content Include="Global.asax" />
     <Content Include="packages.config" />
     <Content Include="DeployConfig\Web.12betuser-asian.sit.config">
@@ -758,6 +779,11 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="BetList\BetListNewParlay.ashx" />
+    <Content Include="Content\_banner.scss" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -784,8 +810,6 @@
     <None Include="App_Data\Fanex.Result\VSHRacing.xls" />
     <None Include="App_Data\Fanex.Result\VSSpeedWay.xls" />
     <None Include="App_Data\Fanex.Result\VSTennis.xls" />
-    <None Include="App_GlobalResources\Lang.ko-KR.resx.orig" />
-    <None Include="App_GlobalResources\Lang.resx.orig" />
     <Content Include="Authorization\LoginCaptcha.ashx" />
     <Content Include="Authorization\LogOut.ashx" />
     <Content Include="Authorization\ProcessLogin.ashx" />
@@ -1130,7 +1154,7 @@
     <Content Include="App_Templates\UserInfo\ViewDaily.htm" />
     <Content Include="App_Themes\Aff12bet.ico" />
     <Content Include="App_Themes\Aff12bet.png" />
-    <Content Include="App_Themes\Default\Content.css" />
+    <Content Include="App_Themes\Default\Contentv10.css" />
     <Content Include="App_Themes\Default\Images1\banner.png" />
     <Content Include="App_Themes\Default\Images1\banner_en-GB.jpg" />
     <Content Include="App_Themes\Default\Images1\banner_en-US.jpg" />
@@ -1185,7 +1209,6 @@
     <Content Include="App_Themes\Default\Images\bghotNewsContent.png" />
     <Content Include="App_Themes\Default\Images\bgLogoutL.jpg" />
     <Content Include="App_Themes\Default\Images\bgLogoutR.jpg" />
-    <Content Include="App_Themes\Default\Images\bgMain.jpg" />
     <Content Include="App_Themes\Default\Images\bgPopup.jpg" />
     <Content Include="App_Themes\Default\Images\bgTableHeader.jpg" />
     <Content Include="App_Themes\Default\Images\bg_bottom.jpg" />
@@ -1374,25 +1397,15 @@
     <Content Include="BetList\BetListResults.aspx" />
     <Content Include="Condition.aspx" />
     <Content Include="ContactUs.aspx" />
-    <Content Include="Content\Banner\English\bigbanner.gif" />
     <Content Include="Content\Banner\English\smallbanner.gif" />
-    <Content Include="Content\Banner\European\bigbanner.gif" />
     <Content Include="Content\Banner\European\smallbanner.gif" />
-    <Content Include="Content\Banner\Indonesian\bigbanner.gif" />
     <Content Include="Content\Banner\Indonesian\smallbanner.gif" />
-    <Content Include="Content\Banner\Japan\bigbanner.gif" />
     <Content Include="Content\Banner\Japan\smallbanner.gif" />
-    <Content Include="Content\Banner\Korean\bigbanner.gif" />
     <Content Include="Content\Banner\Korean\smallbanner.gif" />
-    <Content Include="Content\Banner\Simplified\bigbanner.gif" />
     <Content Include="Content\Banner\Simplified\smallbanner.gif" />
-    <Content Include="Content\Banner\Spanish\bigbanner.gif" />
     <Content Include="Content\Banner\Spanish\smallbanner.gif" />
-    <Content Include="Content\Banner\Thai\bigbanner.gif" />
     <Content Include="Content\Banner\Thai\smallbanner.gif" />
-    <Content Include="Content\Banner\Tradition\bigbanner.gif" />
     <Content Include="Content\Banner\Tradition\smallbanner.gif" />
-    <Content Include="Content\Banner\Vietnamese\bigbanner.gif" />
     <Content Include="Content\Banner\Vietnamese\smallbanner.gif" />
     <Content Include="Content\betlist\betlist.css" />
     <Content Include="Content\betlist\fanex.result.css" />

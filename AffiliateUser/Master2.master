@@ -73,28 +73,40 @@
         <div class="red_line"></div>
     </div>
 
+    <input type="hidden" id="actionMedia" value="'AffNewSeasonMedia-<%=Common.ConvertSpecialLanguageCode().ToUpper() %>'" />
     <% if (AppSettings.Environment.Equals("UAT", StringComparison.OrdinalIgnoreCase) || AppSettings.Environment.Equals("PRODUCTION", StringComparison.OrdinalIgnoreCase))
-       { %>
+        { %>
     <!-- Google Analytics -->
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-5160706-44"></script>
     <script type="text/javascript">
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-       gtag('js', new Date());
-   
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
         gtag('config', 'UA-5160706-44');
-
-        var bigBannerLink = document.getElementById("big_banner_link");
-        bigBannerLink.addEventListener("click", function (event) {
-            gtag('event', 'AffWorldCupPro-<%=Common.ConvertSpecialLanguageCode().ToUpper() %>', {
-              'event_category': 'AFFiliatePage',
-              'event_label': 'AFFBigBanner'
-        });
-        });
     </script>
     <!-- End Google Analytics -->
     <% } %>
+
+    <script type="text/javascript">
+        var bannerSignup = document.getElementById("bannerSignup");
+        if (bannerSignup) {
+            bannerSignup.addEventListener("click", function (event) {
+                event.preventDefault();
+                if (window.gtag) {
+                    window.gtag('event', 'AffJoinJuly40Com-<%=Common.ConvertSpecialLanguageCode().ToUpper() %>', {
+                        'event_category': 'AFFiliatePage',
+                        'event_label': 'AFFBigBanner'
+                    });
+                }
+
+                setTimeout(function () {
+                    window.location.href = '<%=ResolveUrl("~/Signup.aspx")%>';
+                }, 10);
+            });
+        }
+    </script>
+    <script type="text/javascript" src="<%=ResolveClientUrl("~/App_Js/login.js?v=") + AppSettings.JsVersion %>"></script>
 </body>
 </html>

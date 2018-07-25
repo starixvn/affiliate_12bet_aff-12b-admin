@@ -2799,4 +2799,7 @@
   <data name="AnnouncementHeader" xml:space="preserve">
     <value> 향상된 트래킹 기술력</value>
   </data>
+  <data name="LoginNotification" xml:space="preserve">
+    <value>제휴 계정 로그인 후 이용가능합니다.</value>
+  </data>
 </root>
