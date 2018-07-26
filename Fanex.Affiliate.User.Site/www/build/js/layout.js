@@ -30,10 +30,6 @@ var Layout = (function ($) {
                     }
                 });
             });
-
-            $("#moveToTop").on("click", function () {
-                $(window).scrollTop(0);
-            });
         },
         registerAjaxHandlerError: function () {
             $(document).ajaxError(function (event, jqXHR) {

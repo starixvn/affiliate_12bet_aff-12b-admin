@@ -127,6 +127,7 @@ var WebSite = (function ($) {
     return _me;
 })(jQuery);
 var SignUp = (function ($) {
+    var _isReadTermAndCondition = false;
     function setFocusForLastInput() {
         $("#websiteInfo .urlInput").last().focus();
     }
@@ -148,7 +149,8 @@ var SignUp = (function ($) {
 
             $("#chkAgree").on("click", function () {
                 $("#btnSubmit").prop("disabled", !this.checked);
-                if (this.checked) {
+                if (this.checked && !_isReadTermAndCondition) {
+                    _isReadTermAndCondition = true;
                     window.open(Site.resolveRelativeUrl("TermAndCondition/Popup"), '', 'scrollbars=yes,resizable=yes,width=1280,height=800');
                 }
             });

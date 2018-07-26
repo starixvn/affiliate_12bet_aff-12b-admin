@@ -1,7 +1,7 @@
 ﻿@helper RenderMovingTopButton()
 {
     <div class="moving-block">
-        <button type="button" class="btn btn-circle btn-move-top" id="moveToTop">
+        <button type="button" class="btn btn-circle btn-move-top" id="moveToTop" onclick="(function () { window.scrollTo(0, 0); })();">
             <i class="glyphicon glyphicon-chevron-up"></i>
         </button>
     </div>
@@ -39,14 +39,18 @@
 
 @helper RenderAppContact(string language)
 {
-var firstAppName = language.Equals("zh-CN") || language.Equals("zh-TW") ? "QQ" : "Skype";
+const string firstAppName = "Skype";
 var secondAppContactList = new Dictionary<string, string>
 {
+    ["en-US"] = "Facebook",
+    ["zh-CN"] = "QQ",
+    ["zh-TW"] = "QQ",
     ["vi-VN"] = "Zalo",
-    ["th-TH"] = "Line ID",
+    ["th-TH"] = "Line",
     ["id-ID"] = "WhatsApp",
     ["hi-IN"] = "WhatsApp",
     ["ko-KR"] = "Telegram",
+    ["ja-JP"] = "Facebook"
 };
 var hasTwoContactApp = secondAppContactList.ContainsKey(language);
 
@@ -69,10 +73,10 @@ var hasTwoContactApp = secondAppContactList.ContainsKey(language);
         }
         <div class="col-sm-offset-3 col-sm-9">
             <span class="field-validation-valid help-block hide" 
-                  data-valmsg-for="ContactAppList[@(hasTwoContactApp ? 1 : 0)].Value" data-valmsg-replace="true"></span>
+                  data-valmsg-for="ContactAppList[@(hasTwoContactApp ? 0 : 1)].Value" data-valmsg-replace="true"></span>
         </div>
         <input type="hidden" name="ContactAppList[0].Name" value="@firstAppName" />
-        <input type="hidden" name="ContactAppList[0].Order" value="0" />
+        <input type="hidden" name="ContactAppList[0].Order" value="1" />
     </div>
 
 if (secondAppContactList.ContainsKey(language))
@@ -87,10 +91,10 @@ if (secondAppContactList.ContainsKey(language))
             </div>
             <div class="col-sm-offset-3 col-sm-9">
                 <span class="field-validation-valid help-block hide"
-                      data-valmsg-for="ContactAppList[0].Value" data-valmsg-replace="true"></span>
+                      data-valmsg-for="ContactAppList[1].Value" data-valmsg-replace="true"></span>
             </div>
             <input type="hidden" name="ContactAppList[1].Name" value="@secondAppName" />
-            <input type="hidden" name="ContactAppList[1].Order" value="1" />
+            <input type="hidden" name="ContactAppList[1].Order" value="2" />
         </div>
 }
 }

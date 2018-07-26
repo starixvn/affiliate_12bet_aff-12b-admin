@@ -23,11 +23,13 @@
                 height: 100%;
             }
         }
-    }
 
-    @media(min-width: 1300px) {
-        .carousel-inner {
+        @media(min-width: 1300px) {
             height: 350px;
+        }
+
+        @media(min-width: 1600px) {
+            height: 400px;
         }
     }
 }

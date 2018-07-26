@@ -50,24 +50,27 @@
             dependentprop: options.params.dependentprop
         };
         options.messages["requiredifnullorempty"] = options.message;
+        console.log(options.message);
     });
 
     $.validator.addMethod("requiredifnullorempty",
         function (value, element, params) {
-            var isValid = true;
-
             var dependenPropList = params.dependentprop.split(',').filter(p => !!p);
 
-            for (var i = 0; i < dependenPropList.length; i++) {
+            var invalidPropCount = 0;
+            var dependentPropCount = dependenPropList.length;
+            for (var i = 0; i < dependentPropCount; i++) {
                 var propName = dependenPropList[i];
                 var dependentValue = $("[name='" + propName + "']").val().trim();
-                console.log(propName, dependentValue, value);
-                if (!$.trim(value) && !$.trim(dependentValue)) {
-                    return false;
+                if (!$.trim(dependentValue)) {
+                    invalidPropCount++;
                 }
             }
 
-            return isValid;
+            console.log(params, dependenPropList);
+            console.log("invalidPropCount", invalidPropCount);
+
+            return !!$.trim(value) || invalidPropCount < dependentPropCount;
         }
     );
 })(jQuery)

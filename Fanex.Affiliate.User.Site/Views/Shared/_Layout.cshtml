@@ -3,7 +3,7 @@
 @{
     var sessionService = DependencyResolver.Current.GetService<ISessionService>();
     var userSession = sessionService.UserSession;
-    var languageList = SystemLanguage.LanguageList.Where(l => !l.Code.Equals("en-GB"));
+    var languageList = SystemLanguage.LanguageList.Where(l => !l.Code.Equals("en-GB") && !l.Code.Equals("es-ES"));
     var currentLanguage = languageList.FirstOrDefault(l => l.Code.Equals(sessionService.CurrentLanguage))?.NativeName;
 }
 
