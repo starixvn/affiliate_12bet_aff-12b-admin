@@ -17,6 +17,7 @@
 }
 
 <div class="main after-login">
+    @RazorHelper.RenderHotNews()
     <div class="content-menu">
         <ul class="menu list-unstyled" id="mainMenu">
             <li><a class="menu-item" id="menuAccountOverView" href="@(Url.Action("Index", "UserPanel") + "/#AccountOverView")">@Lang.AccOverview</a></li>

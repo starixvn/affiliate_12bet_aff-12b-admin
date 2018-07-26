@@ -851,6 +851,7 @@
     <Content Include="www\source\styles\scss\components\_modal.scss" />
     <Content Include="Views\Signup\SecureQuestion\SecureQuestion_hi-IN.cshtml" />
     <Content Include="www\source\styles\scss\base\_pureicon.scss" />
+    <Content Include="www\source\styles\scss\layout\_footer.scss" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

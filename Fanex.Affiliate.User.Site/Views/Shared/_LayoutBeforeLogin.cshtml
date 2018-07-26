@@ -8,8 +8,6 @@
 
 @section classNav{page-container}
 
-@section classHotNews{page-container}
-
 @section scripts{
     <script>
         var validationMessage = {
@@ -25,14 +23,15 @@
 
 <div class="main">
     <div class="banner-side banner-left">
-        <img src="~/www/build/styles/Images/bgLeft.jpg" />
+        <img src="~/www/build/styles/Images/bgLeft.jpg?v=100" />
     </div>
 
     <div class="page-container">
+        @RazorHelper.RenderHotNews()
         @RenderBody()
     </div>
 
     <div class="banner-side banner-right">
-        <img src="~/www/build/styles/Images/bgRight.jpg" />
+        <img src="~/www/build/styles/Images/bgRight.jpg?v=100" />
     </div>
 </div>
