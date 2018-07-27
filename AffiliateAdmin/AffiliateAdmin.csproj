@@ -1646,15 +1646,6 @@
     <Content Include="App_Themes\Default\Images\x5.gif" />
     <Content Include="App_Themes\Default\jquery.ui.css" />
     <Content Include="App_Themes\error2.png" />
-    <Content Include="Areas\Portal\www\dist\common.js" />
-    <Content Include="Areas\Portal\www\dist\js\commission.js" />
-    <Content Include="Areas\Portal\www\dist\js\sample.js" />
-    <Content Include="Areas\Portal\www\dist\style\assets\glyphicons-halflings-regular.svg" />
-    <Content Include="Areas\Portal\www\dist\style\assets\img2.jpg" />
-    <Content Include="Areas\Portal\www\dist\style\bootstrap.css" />
-    <Content Include="Areas\Portal\www\dist\style\bootstrap.js" />
-    <Content Include="Areas\Portal\www\dist\style\sample.css" />
-    <Content Include="Areas\Portal\www\dist\style\sample.js" />
     <Content Include="Areas\Portal\www\dist\vendor.js" />
     <Content Include="Areas\Portal\www\index.html" />
     <Content Include="Areas\Portal\www\parts\constant.js" />
@@ -1829,19 +1820,8 @@
     <Content Include="Areas\Portal\www\source\style\pages\_sample.scss" />
     <Content Include="Areas\Portal\www\source\style\vendors\_bootstrap.scss" />
     <Content Include="Areas\Portal\www\package-lock.json" />
-    <Content Include="Areas\Portal\www\dist\js\sample.js.map" />
-    <Content Include="Areas\Portal\www\dist\style\assets\glyphicons-halflings-regular.eot" />
-    <Content Include="Areas\Portal\www\dist\style\assets\glyphicons-halflings-regular.ttf" />
-    <Content Include="Areas\Portal\www\dist\style\assets\glyphicons-halflings-regular.woff" />
-    <Content Include="Areas\Portal\www\dist\style\assets\glyphicons-halflings-regular.woff2" />
-    <Content Include="Areas\Portal\www\dist\style\bootstrap.css.map" />
-    <Content Include="Areas\Portal\www\dist\style\bootstrap.js.map" />
-    <Content Include="Areas\Portal\www\dist\style\sample.css.map" />
-    <Content Include="Areas\Portal\www\dist\style\sample.js.map" />
     <Content Include="Areas\Portal\www\dist\vendor-manifest.json" />
     <Content Include="Areas\Portal\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Portal\www\dist\js\commission.js.map" />
-    <Content Include="Areas\Portal\www\dist\common.js.map" />
     <Content Include="Areas\Portal\www\source\style\components\_form.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\commission.scss" />
     <Content Include="Areas\Portal\www\source\style\base\_common.scss" />
@@ -2089,6 +2069,8 @@
     </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Areas\Portal\www\dist\js\" />
+    <Folder Include="Areas\Portal\www\dist\style\assets\" />
     <Folder Include="Areas\Portal\www\source\js\pages\affiliate-information\components\" />
     <Folder Include="Areas\Portal\www\source\style\fonts\" />
     <Folder Include="Areas\Portal\www\source\style\layout\" />
