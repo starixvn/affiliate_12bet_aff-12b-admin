@@ -101,11 +101,7 @@
             arrError.push(top.fMenu.Msg.City);
             arrItem.push("txtCity");
         }
-        //        if(isEmpty($('txtState').value))
-        //        {
-        //            arrError.push(top.fMenu.Msg.State);
-        //            arrItem.push("txtState");
-        //        }
+
         if (Common.isEmpty($('txtPost').value)) {
             arrError.push(top.fMenu.Msg.PostCode);
             arrItem.push("txtPost");
@@ -122,14 +118,20 @@
             arrError.push(top.fMenu.Msg.ContactNumber);
             arrItem.push("txtNumber");
         }
-        if (Common.isEmpty($('txtMobile').value)) {
-            arrError.push(top.fMenu.Msg.MobileNumber);
-            arrItem.push("txtMobile");
-        }
 
         if (Common.isEmpty($("txtSiteUrl").value) && isEmpty($("txtNoWebsite").value)) {
             arrError.push(top.fMenu.Msg.SiteUrl);
             arrItem.push("txtSiteUrl");
+        }
+
+        var contactApp1Id = 'ContactApp[0].Value';
+        var contactApp1 = $(contactApp1Id);
+        var contactApp2 = $('ContactApp[1].Value');
+        var hasManyContactApp = contactApp2 !== null;
+        if (hasManyContactApp && Common.isEmpty(contactApp1.value) && Common.isEmpty(contactApp2.value) ||
+            contactApp1 && Common.isEmpty(contactApp1.value)) {
+            arrError.push(top.fMenu.Msg.ContactApp);
+            arrItem.push(contactApp1Id);
         }
 
         var listSites = $$(".sites");
@@ -168,6 +170,7 @@
             Common.showError(arrError, arrItem, "error_item");
             return false;
         }
+
         return true;
     }
     function check12Bet() {
@@ -275,6 +278,7 @@
         $("siteUrl").deleteRow(rowNum);
         reorderRows(rowNum);
     }
+    
     function reorderRows(starting) {
         var tbl = $("siteUrl");
         if (tbl.tBodies[0].rows[starting]) {

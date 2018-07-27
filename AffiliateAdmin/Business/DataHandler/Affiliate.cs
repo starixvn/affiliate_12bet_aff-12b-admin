@@ -97,7 +97,7 @@ namespace DataHandler
             hsParam.Add("aff_mincheque", "0");
             hsParam.Add("aff_minmoneybookers", "0");
             hsParam.Add("aff_minplayer", "0");
-            DbResult result = DbHelper.Execute("Aff_AffiliateSelEditInfo", DBType.AFFILIATE_12BET, hsParam);
+            DbResult result = DbHelper.Execute("Aff_AffiliateSelEditInfo_xtest", DBType.AFFILIATE_12BET, hsParam);
             strMinCheque = NumberFormat.DecFormat(result.Outputs["aff_mincheque"], 0);
             strMinMoneyBooker = NumberFormat.DecFormat(result.Outputs["aff_minmoneybookers"], 0);
             strMinNetteller = NumberFormat.DecFormat(result.Outputs["aff_minneteller"], 0);
@@ -111,10 +111,15 @@ namespace DataHandler
             Hashtable hsParam = new Hashtable();
             hsParam.Add("username", strUsername);
             hsParam.Add("iscasino", 0);
-            return DbHelper.Execute("Aff_AffiliateSelGeneralInfo", DBType.AFFILIATE_12BET, hsParam);
+            return DbHelper.Execute("Aff_AffiliateSelGeneralInfo_xtest", DBType.AFFILIATE_12BET, hsParam);
         }
 
-        public static void UpdateUser(int intAffId, int intUserId, string strFname, string strLname, string strGender, string strCountry, string strEmail, string strPhone, string strMobile, string strAddress, string strCity, string strState, string strPostal, string strLang, string strUrl, string strMoreUrl, string strNoSiteDesc, string strPlayerUserName, string strPayment, string strNetellerId, string strMoneyBookerEmail, string strBankName, string strBankAddress, string strSwiftCode, string strAccName, string strAccNo, string strCheque_FullName, string strCheque_Address, string strCheque_City, string strCheque_State, string strCheque_Postal, string strCheque_Country, string strEmailFormat, ref int intErrCode, ref string strErrMsg)
+        public static void UpdateUser(int intAffId, int intUserId, string strFname, string strLname, string strGender, string strCountry,
+            string strEmail, string strPhone, string strAddress, string strCity, string strState, string strPostal,
+            string strLang, string strUrl, string strMoreUrl, string strNoSiteDesc, string strPlayerUserName, string strPayment,
+            string strNetellerId, string strMoneyBookerEmail, string strBankName, string strBankAddress, string strSwiftCode, string strAccName,
+            string strAccNo, string strCheque_FullName, string strCheque_Address, string strCheque_City, string strCheque_State,
+            string strCheque_Postal, string strCheque_Country, string strEmailFormat, string contactApps, ref int intErrCode, ref string strErrMsg)
         {
             Hashtable hsParam = new Hashtable();
             hsParam.Add("affid", intAffId);
@@ -127,7 +132,6 @@ namespace DataHandler
             hsParam.Add("country", HttpContext.Current.Server.HtmlEncode(strCountry));
             hsParam.Add("email", HttpContext.Current.Server.HtmlEncode(strEmail));
             hsParam.Add("phone", HttpContext.Current.Server.HtmlEncode(strPhone));
-            hsParam.Add("mobilephone", HttpContext.Current.Server.HtmlEncode(strMobile));
             hsParam.Add("address", HttpContext.Current.Server.HtmlEncode(strAddress));
             hsParam.Add("city", HttpContext.Current.Server.HtmlEncode(strCity));
             hsParam.Add("state", HttpContext.Current.Server.HtmlEncode(strState));
@@ -135,6 +139,7 @@ namespace DataHandler
             hsParam.Add("siteurl", HttpContext.Current.Server.HtmlEncode(strUrl));
             hsParam.Add("moresiteurls", HttpContext.Current.Server.HtmlEncode(strMoreUrl.Trim()));
             hsParam.Add("nositedesc", HttpContext.Current.Server.HtmlEncode(strNoSiteDesc.Trim()));
+            hsParam.Add("ContactApps", contactApps);
 
             //combine
             hsParam.Add("preferredpayment", HttpContext.Current.Server.HtmlEncode(strPayment));
@@ -159,7 +164,7 @@ namespace DataHandler
             hsParam.Add("language", strLang);
             hsParam.Add("errcode", intErrCode);
             hsParam.Add("errmsg", strErrMsg);
-            DbResult dbr = DbHelper.Execute("Aff_AffiliateUpdInfo", DBType.AFFILIATE_12BET, hsParam);
+            DbResult dbr = DbHelper.Execute("Aff_AffiliateUpdInfo_xtest", DBType.AFFILIATE_12BET, hsParam);
             intErrCode = CastAide.AsInt32(dbr.Outputs["errcode"]);
             strErrMsg = dbr.Outputs["errmsg"].ToString();
         }

@@ -5566,6 +5566,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to At least one IM account is required.
+        /// </summary>
+        internal static string RequireIMAccount {
+            get {
+                return ResourceManager.GetString("RequireIMAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reset.
         /// </summary>
         internal static string Reset {

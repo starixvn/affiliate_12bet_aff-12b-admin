@@ -344,6 +344,7 @@
     <Compile Include="Domain\EditAffiliateDomain.aspx.designer.cs">
       <DependentUpon>EditAffiliateDomain.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DTO\ContactApp.cs" />
     <Compile Include="Exchange\AffEditRate.aspx.designer.cs">
       <DependentUpon>AffEditRate.aspx</DependentUpon>
     </Compile>

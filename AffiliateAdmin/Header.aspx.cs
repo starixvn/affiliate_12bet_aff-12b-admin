@@ -23,15 +23,15 @@ public partial class Header : IBCPage
         TemplateHandler.Assign(ref temp, "member", Resources.Lang.Member);
         TemplateHandler.Assign(ref temp, "Payment", Resources.Lang.PaymentRequest);
         TemplateHandler.Assign(ref temp, "MediaGallery", Resources.Lang.MediaGallery);
-        TemplateHandler.Assign(ref temp, "User", Resources.Lang.Administrator); 
+        TemplateHandler.Assign(ref temp, "User", Resources.Lang.Administrator);
         TemplateHandler.Assign(ref temp, "exchangerate", Resources.Lang.ExchangeRate);
         TemplateHandler.Assign(ref temp, "report", Resources.Lang.Report);
         TemplateHandler.Assign(ref temp, "Message", Resources.Lang.Message);
         TemplateHandler.Assign(ref temp, "EmailHistory", Resources.Lang.EmailHistory);
-        TemplateHandler.Assign(ref temp, "Theme_Dir",AppSettings.ThemeDir);
+        TemplateHandler.Assign(ref temp, "Theme_Dir", AppSettings.ThemeDir);
         TemplateHandler.Assign(ref temp, "Welcome", Resources.Lang.Welcome);
         TemplateHandler.Assign(ref temp, "CommGroup", Resources.Lang.CommGroup);
-        TemplateHandler.Assign(ref temp, "Domain", Resources.Lang.Domain); 
+        TemplateHandler.Assign(ref temp, "Domain", Resources.Lang.Domain);
         string gmt;
         DateTime dt = DataHandler.ServerDateTime.GetCurrentDBTime(out gmt);
         TemplateHandler.Assign(ref temp, "gmt_offset", gmt);
@@ -55,7 +55,7 @@ public partial class Header : IBCPage
         {
             TemplateHandler.Assign(ref temp, "username", AppSettings.Session.UserName);
         }
-        this.HtmlContent  = temp + GerScriptMsg();
+        this.HtmlContent = temp + GerScriptMsg();
     }
     string GerScriptMsg()
     {
@@ -64,7 +64,7 @@ public partial class Header : IBCPage
         strScript.AppendLine("var Msg = {");
         strScript.AppendLine("CreateAgent:\"" + Resources.Lang.Err100 + "\",");
         strScript.AppendLine("ContactNumber:\"" + Resources.Lang.ErrContactNumber + "\",");
-        strScript.AppendLine("MobileNumber:\"" + Resources.Lang.ErrMobileNumber + "\",");
+        strScript.AppendLine("ContactApp:\"" + Resources.Lang.RequireIMAccount + "\",");
         strScript.AppendLine("FName:\"" + Resources.Lang.ErrFName + "\",");
         strScript.AppendLine("LName:\"" + Resources.Lang.ErrLName + "\",");
         strScript.AppendLine("ErrGender:\"" + Resources.Lang.ErrGender + "\",");

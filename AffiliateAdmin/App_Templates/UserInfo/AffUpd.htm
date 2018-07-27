@@ -94,17 +94,19 @@
                   <input name="txtNumber" id="txtNumber" class="inputbox" value="{number-val}" size="30" type="text" />
                 </td>
               </tr>
-              <tr>
-                <td>
-                  {mobile}
-                </td>
-                <td class="cont12oe">
-                  *
-                </td>
-                <td>
-                  <input name="txtMobile" id="txtMobile" class="inputbox" value="{mobile-val}" size="30" type="text" />
-                </td>
-              </tr>
+                <!--ContactApp-->
+                <tr>
+                    <td>
+                        {appname}
+                    </td>
+                    <td>
+                    <td>
+                        <input name="ContactApps[{i}].Value" id="ContactApp[{i}].Value" class="inputbox" value="{appvalue}" size="30" type="text" />
+                        <input type="hidden" name="ContactApps[{i}].Name" id="ContactApp[{i}].Name" value="{appname}" />
+                        <input type="hidden" name="ContactApps[{i}].Order" id="ContactApp[{i}].Order" value="{order}" />
+                    </td>
+                </tr>
+                <!--/ContactApp-->
             </table>
           </div>
         </td>
