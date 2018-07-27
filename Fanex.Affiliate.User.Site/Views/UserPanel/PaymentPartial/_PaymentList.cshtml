@@ -6,7 +6,9 @@
 
 @{
     var hasData = Model != null && Model.Any();
-    var preferredPayment = ViewData.ContainsKey("PreferredPayment") ? ViewData["PreferredPayment"].ToString() : string.Empty;
+    var preferredPayment = ViewData.ContainsKey("PreferredPayment") && ViewData["PreferredPayment"] != null ? 
+        ViewData["PreferredPayment"].ToString() : 
+        string.Empty;
     var paymentMethod = preferredPayment.Replace("Wire", Lang.BankTransfer);
 }
 

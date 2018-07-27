@@ -11,7 +11,7 @@
     @functions {
         string GetErrorMessage()
         {
-            string method = Model.PreferredPayment.Replace("Wire", Lang.BankTransfer);
+            string method = string.IsNullOrEmpty(Model.PreferredPayment) ? string.Empty : Model.PreferredPayment.Replace("Wire", Lang.BankTransfer);
             if (!method.MatchWith("Player"))
             {
                 return Error.PaymentMethodInvalid.Replace("{0}", method)
