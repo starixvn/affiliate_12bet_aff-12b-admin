@@ -305,34 +305,6 @@ namespace DataHandler
             return DbHelper.Execute("Aff_AffiliateReportDetail", DBType.AFFILIATE_12BET, hsParam, 180);
         }
 
-        //@Vinh 20091209
-        public static DbResult SelAffiliateStatistics(MemberStatisticsReportCriteria criteria)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("username", criteria.Username);
-            if (!string.IsNullOrEmpty(criteria.PreferredLanguage))
-                hsParam.Add("preferredlanguage", criteria.PreferredLanguage);
-            hsParam.Add("fromdate", criteria.DtmFDate);
-            hsParam.Add("todate", criteria.DtmTDate);
-            hsParam.Add("isgetall", criteria.IsGetAll);
-            hsParam.Add("pageindex", criteria.PageIndex);
-            hsParam.Add("pagesize", criteria.PageSize);
-            hsParam.Add("sortby", criteria.SortBy);
-            hsParam.Add("nrows", 0);
-            return DbHelper.Execute(criteria.SpName, DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
-        }
-
-        //@Vinh 20091212
-        public static DbResult SelAffiliateStatisticsDetail(int intAffId, DateTime dtmFDate, DateTime dtmTDate, bool isGetAll)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("affid", intAffId);
-            hsParam.Add("fromdate", dtmFDate);
-            hsParam.Add("todate", dtmTDate);
-            hsParam.Add("isgetall", isGetAll);
-            return DbHelper.Execute("Aff_AffiliateStatisticsDetail", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
-        }
-
         //@Vinh
         public static DbResult SelPlayersDetail(int CustId, int sporttype, string strMonth, int pageIndex, int pageSize, ref int totalPages)
         {
@@ -536,57 +508,6 @@ namespace DataHandler
         public static DbResult SportTypeSel()
         {
             return DbHelper.Execute("Aff_SportTypeSel", DBType.AFFILIATE_12BET);
-        }
-
-        //Bryan@20091212
-        public static DbResult SelAffiliateQMReport(QMReportCriteria criteria)
-        {
-            Hashtable hsParam = new Hashtable();
-            if (!string.IsNullOrEmpty(criteria.Username) && String.Compare(criteria.Username, ("[" + Resources.Lang.All + "]"), true) != 0)
-                hsParam.Add("affname", criteria.Username);
-            if (!string.IsNullOrEmpty(criteria.PreferredLanguage))
-                hsParam.Add("preferredlanguage", criteria.PreferredLanguage);
-            hsParam.Add("month", criteria.Month);
-            hsParam.Add("year", criteria.Year);
-            hsParam.Add("pagesize", criteria.PageSize);
-            hsParam.Add("pageindex", criteria.PageIndex);
-            hsParam.Add("sortby", criteria.SortBy);
-            hsParam.Add("nrows", 0);
-            return DbHelper.Execute(criteria.SpName, DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
-        }
-
-        //Bryan20091212
-        public static DbResult SelAffiliateQMReportDetail(int affid, int month, int year, int intPage, int intPageSize)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("affid", affid);
-            hsParam.Add("month", month);
-            hsParam.Add("year", year);
-            hsParam.Add("pagesize", intPageSize);
-            hsParam.Add("pageindex", intPage);
-            hsParam.Add("nrows", 0);
-            hsParam.Add("totalpages", 0);
-            return DbHelper.Execute("Aff_ReportQMDetail", DBType.AFFILIATE_12BET, hsParam);
-        }
-
-        //Pete20110110
-        public static DbResult SelAffiliateCommissionReport(CommissionReportCriteria criteria)
-        {
-            Hashtable hsParam = new Hashtable();
-            if (!string.IsNullOrEmpty(criteria.Username) && String.Compare(criteria.Username, ("[" + Resources.Lang.All + "]"), true) != 0)
-                hsParam.Add("username", criteria.Username);
-            if (!string.IsNullOrEmpty(criteria.PreferredLanguage))
-                hsParam.Add("preferredlanguage", criteria.PreferredLanguage);
-            DateTime d = new DateTime(criteria.Year, criteria.Month, 1);
-            hsParam.Add("monthdate", d);
-            if (criteria.Sport > 0)
-                hsParam.Add("sportid", criteria.Sport);
-            hsParam.Add("pagesize", criteria.PageSize);
-            hsParam.Add("pageindex", criteria.PageIndex);
-            hsParam.Add("sortby", criteria.SortBy);
-            hsParam.Add("isdesc", criteria.IsDesc);
-            hsParam.Add("nrows", 0);
-            return DbHelper.Execute(criteria.SpName, DBType.AFFILIATE_12BET, hsParam);
         }
 
         //Johnny20100109
@@ -797,56 +718,6 @@ namespace DataHandler
             hsParam.Add("todate", dtmTDate);
             hsParam.Add("isgetall", isGetAll);
             return DbHelper.Execute("DEP_SignUpMembersReport", DBType.DEPOSIT, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
-        }
-
-        //@Smith 20101223
-        public static DbResult ActiveMemberReport(SignUpActiveCriteria criteria)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("fromdate", criteria.DtmFDate.Date);
-            hsParam.Add("todate", criteria.DtmTDate.Date);
-            hsParam.Add("isgetall", criteria.IsGetAll);
-            hsParam.Add("username", criteria.Username);
-            if (!string.IsNullOrEmpty(criteria.PreferredLanguage))
-                hsParam.Add("preferredlanguage", criteria.PreferredLanguage);
-
-            hsParam.Add("pagesize", criteria.PageSize);
-            hsParam.Add("pageindex", criteria.PageIndex);
-            hsParam.Add("nrows", 0);
-            hsParam.Add("sortby", criteria.SortBy);
-            DbResult result = DbHelper.Execute(criteria.SpName, DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
-            return result;
-        }
-
-        //@smith
-        public static DbResult PerformanceReport(PerformanceCriteria criteria)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("username", criteria.Username);
-            if (criteria.Sport > 0)
-                hsParam.Add("sportid", criteria.Sport);
-            hsParam.Add("language", criteria.Language);
-            hsParam.Add("fromdate", criteria.FromDate);
-            hsParam.Add("todate", criteria.ToDate);
-            hsParam.Add("sortby", criteria.SortBy);
-            hsParam.Add("pagesize", criteria.PageSize);
-            hsParam.Add("pageindex", criteria.PageIndex);
-            hsParam.Add("nrows", 0);
-            hsParam.Add("isdesc", criteria.IsDesc);
-
-            return DbHelper.Execute(criteria.SpName, DBType.AFFILIATE_12BET, hsParam,
-                DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
-        }
-
-        //@smith
-        public static DbResult PerformanceReportByAffiliate(int sportID, int affId)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("affid", affId);
-            hsParam.Add("sportid", sportID);
-
-            return DbHelper.Execute("Aff_PerformanceReportByAff", DBType.AFFILIATE_12BET, hsParam,
-                DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
         }
 
         public static bool ValidatePermission(ValidationCriteria criteria)

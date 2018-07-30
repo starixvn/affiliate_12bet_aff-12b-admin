@@ -403,13 +403,6 @@
     <Compile Include="Business\Common.cs" />
     <Compile Include="Business\Criterias\AffiliateListCriteria.cs" />
     <Compile Include="Business\Criterias\AffiliateReportCriteria.cs" />
-    <Compile Include="Business\Criterias\CasinoPlayerTurnoverReportCriteria.cs" />
-    <Compile Include="Business\Criterias\CommissionReportCriteria.cs" />
-    <Compile Include="Business\Criterias\MemberStatisticsReportCriteria.cs" />
-    <Compile Include="Business\Criterias\PerformanceCriteria.cs" />
-    <Compile Include="Business\Criterias\QMReportCriteria.cs" />
-    <Compile Include="Business\Criterias\SBPlayerTurnoverReportCriteria.cs" />
-    <Compile Include="Business\Criterias\SignUpActiveCriteria.cs" />
     <Compile Include="Business\Criterias\ValidationCriteria.cs" />
     <Compile Include="Business\DataHandler\Account.cs" />
     <Compile Include="Business\DataHandler\Active12BetAccount.cs" />
@@ -425,7 +418,6 @@
     <Compile Include="Business\DataHandler\Login.cs" />
     <Compile Include="Business\DataHandler\Member.cs" />
     <Compile Include="Business\DataHandler\PaymentRequest.cs" />
-    <Compile Include="Business\DataHandler\Report.cs" />
     <Compile Include="Business\DataHandler\ServerDateTime.cs" />
     <Compile Include="Business\DataHandler\Statement.cs" />
     <Compile Include="Business\DataHandler\Text.cs" />
@@ -674,20 +666,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Report\AffiliateQMReport.aspx.cs">
-      <DependentUpon>AffiliateQMReport.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Report\AffiliateQMReport.aspx.designer.cs">
-      <DependentUpon>AffiliateQMReport.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Report\AffiliateQMReportDetail.aspx.cs">
-      <DependentUpon>AffiliateQMReportDetail.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Report\AffiliateQMReportDetail.aspx.designer.cs">
-      <DependentUpon>AffiliateQMReportDetail.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Report\AffiliateReport.aspx.cs">
       <DependentUpon>AffiliateReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -702,68 +680,12 @@
     <Compile Include="Report\AffiliateReportDetail.aspx.designer.cs">
       <DependentUpon>AffiliateReportDetail.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Report\CasinoPlayerTurnoverReport.aspx.cs">
-      <DependentUpon>CasinoPlayerTurnoverReport.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Report\CasinoPlayerTurnoverReport.aspx.designer.cs">
-      <DependentUpon>CasinoPlayerTurnoverReport.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Report\Commission.aspx.cs">
-      <DependentUpon>Commission.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Report\Commission.aspx.designer.cs">
-      <DependentUpon>Commission.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Report\MemberReport.aspx.cs">
       <DependentUpon>MemberReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Report\MemberReport.aspx.designer.cs">
       <DependentUpon>MemberReport.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Report\MemberStatisticsReport.aspx.cs">
-      <DependentUpon>MemberStatisticsReport.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Report\MemberStatisticsReport.aspx.designer.cs">
-      <DependentUpon>MemberStatisticsReport.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Report\MemberStatisticsReportDetail.aspx.cs">
-      <DependentUpon>MemberStatisticsReportDetail.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Report\MemberStatisticsReportDetail.aspx.designer.cs">
-      <DependentUpon>MemberStatisticsReportDetail.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Report\Performance.aspx.cs">
-      <DependentUpon>Performance.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Report\Performance.aspx.designer.cs">
-      <DependentUpon>Performance.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Report\PerformanceReportByAffiliate.aspx.cs">
-      <DependentUpon>PerformanceReportByAffiliate.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Report\PerformanceReportByAffiliate.aspx.designer.cs">
-      <DependentUpon>PerformanceReportByAffiliate.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Report\SBPlayerTurnoverReport.aspx.cs">
-      <DependentUpon>SBPlayerTurnoverReport.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Report\SBPlayerTurnoverReport.aspx.designer.cs">
-      <DependentUpon>SBPlayerTurnoverReport.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Report\SignUpActive.aspx.cs">
-      <DependentUpon>SignUpActive.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Report\SignUpActive.aspx.designer.cs">
-      <DependentUpon>SignUpActive.aspx</DependentUpon>
     </Compile>
     <Compile Include="SignIn.aspx.cs">
       <DependentUpon>SignIn.aspx</DependentUpon>
@@ -1328,19 +1250,9 @@
     <Content Include="App_Templates\Payment\PaymentCanEmail_zh-TW.htm" />
     <Content Include="App_Templates\Payment\PaymentRequest.htm" />
     <Content Include="App_Templates\Payment\PaymentUpdate.htm" />
-    <Content Include="App_Templates\Report\AffiliateQMReport.htm" />
-    <Content Include="App_Templates\Report\AffiliateQMReportDetail.htm" />
     <Content Include="App_Templates\Report\AffiliateReport.htm" />
     <Content Include="App_Templates\Report\AffiliateReportDetail.htm" />
-    <Content Include="App_Templates\Report\CasinoPlayerTurnoverReport.htm" />
-    <Content Include="App_Templates\Report\Commission.htm" />
     <Content Include="App_Templates\Report\MemberReport.htm" />
-    <Content Include="App_Templates\Report\MemberStatisticsReport.htm" />
-    <Content Include="App_Templates\Report\MemberStatisticsReportDetail.htm" />
-    <Content Include="App_Templates\Report\Performance.htm" />
-    <Content Include="App_Templates\Report\PerformanceReportByAffiliate.htm" />
-    <Content Include="App_Templates\Report\SBPlayerTurnoverReport.htm" />
-    <Content Include="App_Templates\Report\SignUpActiveReport.htm" />
     <Content Include="App_Templates\SubMenu.htm" />
     <Content Include="App_Templates\SubMenu1.htm" />
     <Content Include="App_Templates\SubPage.htm" />
@@ -1750,19 +1662,9 @@
     <Content Include="Payment\PaymentRequest.aspx" />
     <Content Include="Payment\PaymentUpdate.aspx" />
     <Content Include="Release Note.txt" />
-    <Content Include="Report\AffiliateQMReport.aspx" />
-    <Content Include="Report\AffiliateQMReportDetail.aspx" />
     <Content Include="Report\AffiliateReport.aspx" />
     <Content Include="Report\AffiliateReportDetail.aspx" />
-    <Content Include="Report\CasinoPlayerTurnoverReport.aspx" />
-    <Content Include="Report\Commission.aspx" />
     <Content Include="Report\MemberReport.aspx" />
-    <Content Include="Report\MemberStatisticsReport.aspx" />
-    <Content Include="Report\MemberStatisticsReportDetail.aspx" />
-    <Content Include="Report\Performance.aspx" />
-    <Content Include="Report\PerformanceReportByAffiliate.aspx" />
-    <Content Include="Report\SBPlayerTurnoverReport.aspx" />
-    <Content Include="Report\SignUpActive.aspx" />
     <Content Include="SignIn.aspx" />
     <Content Include="SpNames.xml">
       <SubType>Designer</SubType>
