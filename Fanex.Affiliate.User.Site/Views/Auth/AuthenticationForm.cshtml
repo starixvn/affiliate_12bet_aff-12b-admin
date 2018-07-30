@@ -9,7 +9,7 @@
 }
 
 <div class="user-login" id="userLogin">
-    @if (userSession != null)
+    @if (HttpContext.Current.User.Identity.IsAuthenticated &&  userSession != null)
     {
         <a href="@(Url.Action("Index", "UserPanel") + "/#AccountOverview")" class="btn btn-signup"><span class="icon glyphicon glyphicon-user"></span>@Lang.MyAcc @userSession.UserName</a>
                             <a href="@Url.Action("SignOut", "Auth")" class="btn btn-login">@Lang.Logout</a>

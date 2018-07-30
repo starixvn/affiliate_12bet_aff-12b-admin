@@ -7,7 +7,7 @@ using Autofac;
 using Autofac.Integration.Mvc;
 using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Services;
-using Fanex.Affiliate.Admin.Core.Services.Core;
+using Fanex.Affiliate.Admin.Core.Services.Common;
 
 namespace Fanex.Affiliate.Admin.Core.Configurations
 {
@@ -60,7 +60,6 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
             builder.RegisterType<CommissionRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<CommissionService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<AffiliateRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<AffiliateService>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
     }
 }

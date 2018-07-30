@@ -13,6 +13,7 @@
     using Resources;
     using Utilities;
 
+    [CustomAuthorize]
     public class PasswordController : BaseController
     {
         private readonly IAccountRepository _accountRepository;
@@ -141,7 +142,6 @@
         }
 
         [HttpGet]
-        [Authenticate]
         public ActionResult Update()
         {
             var keyString = Generator.GetRandomString(32);
@@ -154,7 +154,6 @@
         }
 
         [HttpPost]
-        [Authenticate]
         [ValidateAntiForgeryToken]
         public ActionResult Update(UpdatePasswordParam param)
         {

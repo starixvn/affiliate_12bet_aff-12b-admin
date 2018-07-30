@@ -7,7 +7,7 @@
     using Repository.UserPanel;
     using Utilities;
 
-    [Authenticate]
+    [CustomAuthorize]
     public partial class UserPanelController : BaseController
     {
         private readonly IAccountRepository _accountRepository;

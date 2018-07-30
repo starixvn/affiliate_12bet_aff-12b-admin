@@ -10,7 +10,7 @@ using Fanex.Affiliate.User.Core.ViewModels.UserPanel;
 
 namespace Fanex.Affiliate.User.Core.Controllers
 {
-    [Authenticate]
+    [CustomAuthorize]
     public class NewsController : BaseController
     {
         private readonly INewsService _newsService;

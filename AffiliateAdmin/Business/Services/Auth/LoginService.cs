@@ -73,7 +73,7 @@ namespace AffiliateAdmin.Business.Services.Auth
                     return;
                 }
 
-                context.Response.Write(ex.Message.ToString());
+                context.Response.Write(ex.Message);
             }
         }
     }

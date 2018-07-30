@@ -9,8 +9,8 @@ using ONEbook.UM.Filters;
 
 namespace Fanex.Affiliate.User.Core.Controllers
 {
-    [Authenticate]
     [CheckUMFilter]
+    [CustomAuthorize]
     public class MemberTransactionController : Controller
     {
         private readonly IMemberTransactionService _memberTransactionService;

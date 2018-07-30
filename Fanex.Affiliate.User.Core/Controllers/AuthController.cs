@@ -68,7 +68,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
                     if (result.IsOk)
                     {
                         var user = loginResult.UserInfo;
-                        if (!AppSetting.AllowedAffiliateTypes.Any(t => t.Equals(user.AffType)))
+                        if(!AppSetting.AllowedAffiliateTypes.Any(t => t.Equals(user.AffType)))
                         {
                             return Json(GetErrorResult(Lang.NotAllowOnDomain));
                         }
@@ -143,8 +143,8 @@ namespace Fanex.Affiliate.User.Core.Controllers
         }
 
         [HttpGet]
-        [Authenticate]
         [OutputCache(NoStore = true, Duration = 0, Location = OutputCacheLocation.None, VaryByParam = "*")]
+        [CustomAuthorize]
         public ActionResult ReCheckin()
         {
             var onUserId = SessionService.UserSession.OnUserId;

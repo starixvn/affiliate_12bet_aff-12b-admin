@@ -1,30 +1,18 @@
 ﻿using System;
 using System.Net;
+using System.Reflection;
 using System.Web.Mvc;
-using Fanex.Logging;
+using Fanex.Affiliate.User.Core.CoreService;
 
 namespace Fanex.Affiliate.User.Core.Filters
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, Inherited = false, AllowMultiple = true)]
-    public sealed class AjaxOnlyAttribute : AuthorizeAttribute
+    public sealed class AjaxOnlyAttribute : ActionMethodSelectorAttribute
     {
-        public override void OnAuthorization(AuthorizationContext filterContext)
+        public override bool IsValidForRequest(ControllerContext controllerContext, MethodInfo methodInfo)
         {
-            base.OnAuthorization(filterContext);
-            try
-            {
-                if (!filterContext.HttpContext.Request.IsAjaxRequest())
-                {
-                    var response = filterContext.HttpContext.Response;
-                    response.StatusCode = (int)HttpStatusCode.Unauthorized;
-                    response.End();
-                }
-            }
-            catch (Exception exception)
-            {
-                LogService.Error(exception.Message, exception);
-                throw;
-            }
+            return controllerContext.HttpContext.Request.IsAjaxRequest();
         }
+
     }
 }

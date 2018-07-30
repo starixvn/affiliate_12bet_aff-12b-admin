@@ -1,11 +1,11 @@
 ﻿using System.Web.Mvc;
-using Fanex.Affiliate.Admin.Core.Services.Core;
+using Fanex.Affiliate.Admin.Core.Services.Common;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
+    [Authorize]
     public class BaseController : Controller
     {
-
         private readonly ISessionService _sessionService;
      
         protected BaseController(ISessionService sessionService)

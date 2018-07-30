@@ -8,6 +8,7 @@ using Fanex.Affiliate.User.Core.Utilities;
 
 namespace Fanex.Affiliate.User.Core.Controllers
 {
+    [CustomAuthorize]
     public class MemberController : BaseController
     {
         private readonly IMemberRepository _memberRepository;

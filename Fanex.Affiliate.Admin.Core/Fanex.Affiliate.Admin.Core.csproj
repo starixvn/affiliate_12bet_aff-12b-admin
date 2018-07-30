@@ -109,12 +109,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\FunctionAuthorizeAttribute.cs" />
     <Compile Include="Configurations\AppSetting.cs" />
     <Compile Include="Configurations\IAppSetting.cs" />
     <Compile Include="Constants\AffStatus.cs" />
-    <Compile Include="Controllers\AffiliateController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CommissionController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\DomainController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DTO\Affiliate\AffInfo.cs" />
     <Compile Include="DTO\Affiliate\AffLeftPanelInfo.cs" />
@@ -128,6 +130,7 @@
     <Compile Include="DTO\DepositAccountInfo.cs" />
     <Compile Include="DTO\Product.cs" />
     <Compile Include="DTO\ResultInfo.cs" />
+    <Compile Include="DTO\SubMenu.cs" />
     <Compile Include="Enum\AffType.cs" />
     <Compile Include="MetaModels\ChangePasswordParam.cs" />
     <Compile Include="MetaModels\CommissionSettingParam.cs" />
@@ -144,11 +147,10 @@
     <Compile Include="Configurations\IoCConfig.cs" />
     <Compile Include="Repository\IProductRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
-    <Compile Include="Services\AffiliateService.cs" />
     <Compile Include="Services\CommissionService.cs" />
-    <Compile Include="Services\Core\ISessionService.cs" />
-    <Compile Include="Services\Core\SessionService.cs" />
-    <Compile Include="Services\IAffiliateService.cs" />
+    <Compile Include="Services\Common\ISessionService.cs" />
+    <Compile Include="DTO\Common\UserPermission.cs" />
+    <Compile Include="Services\Common\SessionService.cs" />
     <Compile Include="Services\ICommissionService.cs" />
     <Compile Include="Services\IProductService.cs" />
     <Compile Include="Services\ProductService.cs" />

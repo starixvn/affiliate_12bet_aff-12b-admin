@@ -11,6 +11,7 @@
     using Resources;
     using Utilities;
 
+
     public class ContactUsController : BaseController
     {
         private readonly IContactService _contactService;

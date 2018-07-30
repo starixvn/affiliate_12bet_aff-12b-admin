@@ -10,7 +10,7 @@ using Fanex.Affiliate.User.Core.ViewModels.BetList;
 
 namespace Fanex.Affiliate.User.Core.Controllers
 {
-    [Authenticate]
+    [CustomAuthorize]
     public class BetListController : BaseController
     {
         private const string AffiliateName = "12bet";

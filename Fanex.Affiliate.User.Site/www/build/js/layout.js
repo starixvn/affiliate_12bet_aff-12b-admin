@@ -36,7 +36,7 @@ var Layout = (function ($) {
                 var status = jqXHR.status;
 
                 if (status !== 200) {
-                    if (status === 401) {
+                    if (status === 401 || status == 403) {
                         window.location.href = Site.resolveRelativeUrl("");
                     }
                     else if (status === 404) {
