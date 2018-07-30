@@ -1,12 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Web.Mvc;
+using Fanex.Affiliate.Admin.Core.Services.Common;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
-    class CustomerController
+    public class CustomerController : BaseController
     {
+        public CustomerController(ISessionService sessionService) : base(sessionService)
+        {
+        }
+
+        public ActionResult Index()
+        {
+            return View();
+        }
     }
 }

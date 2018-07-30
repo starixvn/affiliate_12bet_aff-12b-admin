@@ -1,11 +1,14 @@
 ﻿
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Areas/Portal/Views/Shared/_Layout.cshtml";
+}
+@model IEnumerable<Fanex.Affiliate.Admin.Core.DTO.SubMenu>
+
+@{
+    Html.RenderPartial("~/Areas/Portal/Views/Shared/_SubMenu.cshtml", Model);
 }
 
-@*Render submenu*@
-<h2>Index</h2>
-
-<iframe src="">
-
-</iframe>
+<div class="mainFrameWrapper">
+    <iframe frameborder="0" name="mainFrame" id="mainFrame" src="@Url.Content("~/Home/Home.aspx")"></iframe>
+</div>

@@ -18,7 +18,7 @@ namespace AffiliateAdmin.Areas.Portal
             context.MapRoute(
                 name: "Portal",
                 url: "Portal/{controller}/{action}/{id}",
-                   defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
                 namespaces: new[] { "Fanex.Affiliate.Admin.Core.Controllers" }
             );
         }

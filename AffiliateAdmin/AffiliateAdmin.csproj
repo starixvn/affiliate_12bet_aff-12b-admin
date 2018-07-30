@@ -1575,16 +1575,13 @@
     <Content Include="Areas\Portal\www\source\js\pages\commission\components\PopupContent.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission\reducers\filterReducer.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission\reducers\index.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\sample\actions\filterAction.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\sample\actions\index.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\sample\actions\types.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\sample\reducers\filterReducer.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\sample\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\reducers\sampleReducer.js" />
+    <Content Include="Areas\Portal\www\source\style\assets\banner_top.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\bg_menu.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\bg_search01.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\bg_top.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\icon_head.png" />
-    <Content Include="Areas\Portal\www\source\style\assets\img2.jpg" />
-    <Content Include="Areas\Portal\www\source\style\assets\sprite.gif" />
+    <Content Include="Areas\Portal\www\source\style\assets\icon_top.png" />
     <Content Include="Areas\Portal\www\webpack.config.dev.js" />
     <Content Include="Areas\Portal\www\webpack.config.js" />
     <Content Include="Areas\Portal\www\webpack.config.vendor.js" />
@@ -1712,15 +1709,10 @@
     <Content Include="Areas\Portal\www\.babelrc" />
     <Content Include="Areas\Portal\www\package.json" />
     <Content Include="Areas\Portal\www\source\js\layouts\AppLayout.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\sample\components\AppContainer.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\sample\components\Content.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\sample\components\Filter.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\sample\components\index.jsx" />
     <Content Include="Areas\Portal\www\source\style\abstracts\_variables.scss" />
     <Content Include="Areas\Portal\www\source\style\base\_base.scss" />
     <Content Include="Areas\Portal\www\source\style\components\_table.scss" />
     <Content Include="Areas\Portal\www\source\style\main.scss" />
-    <Content Include="Areas\Portal\www\source\style\pages\_sample.scss" />
     <Content Include="Areas\Portal\www\source\style\vendors\_bootstrap.scss" />
     <Content Include="Areas\Portal\www\package-lock.json" />
     <Content Include="Areas\Portal\www\dist\vendor-manifest.json" />
@@ -1833,11 +1825,23 @@
     <Content Include="Areas\Portal\www\source\style\vendors\bootstrap\utilities\_text.scss" />
     <Content Include="Areas\Portal\www\source\style\vendors\bootstrap\utilities\_visibility.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\affiliate-information.scss" />
-    <Content Include="Areas\Portal\Views\Shared\_header.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\_Header.cshtml" />
     <Content Include="Areas\Portal\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Portal\Views\Shared\_singlePageLayout.cshtml" />
-    <Content Include="Areas\Portal\Views\Shared\_subMenu.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\_SinglePageLayout.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\_SubMenu.cshtml" />
     <Content Include="Areas\Portal\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Portal\www\source\style\layout\_header.scss" />
+    <Content Include="Areas\Portal\www\source\style\layout\main-layout.scss" />
+    <Content Include="Areas\Portal\www\source\style\layout\_main-menu.scss" />
+    <Content Include="Areas\Portal\Views\Customer\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\Member\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\Report\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\Marketing\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\Message\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\ExchangeRate\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\Administrator\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\Domain\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\Affiliate\Index.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -1981,7 +1985,6 @@
     <Folder Include="Areas\Portal\www\dist\style\assets\" />
     <Folder Include="Areas\Portal\www\source\js\pages\affiliate-information\components\" />
     <Folder Include="Areas\Portal\www\source\style\fonts\" />
-    <Folder Include="Areas\Portal\www\source\style\layout\" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\Google.Protobuf.dll" />

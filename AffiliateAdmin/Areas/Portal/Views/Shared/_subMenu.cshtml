@@ -1,1 +1,10 @@
 ﻿
+@model IEnumerable<Fanex.Affiliate.Admin.Core.DTO.SubMenu>
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>
+            <a href="@item.Url" target="mainFrame">@item.Name</a>
+        </li>
+    }
+</ul>

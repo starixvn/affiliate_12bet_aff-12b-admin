@@ -1,16 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Fanex.Affiliate.Admin.Core.Attributes;
+using Fanex.Affiliate.Admin.Core.Services.Common;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
-    [FunctionAuthorize(FunctionName= "[Domain]")]
-    public class DomainController:Controller
+    [FunctionAuthorize(FunctionName = "[Domain]")]
+    public class DomainController : BaseController
     {
+        public DomainController(ISessionService sessionService) : base(sessionService)
+        {
+        }
 
+        public ActionResult Index()
+        {
+            return View();
+        }
     }
 }
