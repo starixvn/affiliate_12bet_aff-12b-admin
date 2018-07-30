@@ -61,7 +61,7 @@
             parent.fInfo.$("isReload").value = "2";
 
             setTimeout(function () {
-                parent.fInfo.$("isReload").value = "0";
+                parent.fInfo.$('frmSearch').submit();
             }, 2000);
 
         }
@@ -129,7 +129,7 @@
         var contactApp2 = $('ContactApp[1].Value');
         var hasManyContactApp = contactApp2 !== null;
         if (hasManyContactApp && Common.isEmpty(contactApp1.value) && Common.isEmpty(contactApp2.value) ||
-            contactApp1 && Common.isEmpty(contactApp1.value)) {
+            !hasManyContactApp && contactApp1 && Common.isEmpty(contactApp1.value)) {
             arrError.push(top.fMenu.Msg.ContactApp);
             arrItem.push(contactApp1Id);
         }
