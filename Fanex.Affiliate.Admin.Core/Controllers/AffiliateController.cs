@@ -6,7 +6,7 @@ using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Core;
 
-namespace AffiliateAdmin.Areas.Portal.Controllers
+namespace Fanex.Affiliate.Admin.Core.Controllers
 {
     public class AffiliateController : BaseController
     {

@@ -31,6 +31,7 @@
     <TargetFrameworkProfile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -1930,6 +1931,11 @@
     <Content Include="Areas\Portal\www\source\style\vendors\bootstrap\utilities\_text.scss" />
     <Content Include="Areas\Portal\www\source\style\vendors\bootstrap\utilities\_visibility.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\affiliate-information.scss" />
+    <Content Include="Areas\Portal\Views\Shared\_header.cshtml" />
+    <Content Include="Areas\Portal\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\_singlePageLayout.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\_subMenu.cshtml" />
+    <Content Include="Areas\Portal\Views\Home\Index.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

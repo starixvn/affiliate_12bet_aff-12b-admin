@@ -115,6 +115,7 @@
     <Compile Include="Controllers\AffiliateController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CommissionController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DTO\Affiliate\AffInfo.cs" />
     <Compile Include="DTO\Affiliate\AffLeftPanelInfo.cs" />
     <Compile Include="DTO\Affiliate\ContactApp.cs" />

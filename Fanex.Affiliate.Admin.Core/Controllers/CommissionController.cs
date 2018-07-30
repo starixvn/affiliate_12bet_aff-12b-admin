@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 
-namespace AffiliateAdmin.Areas.Portal.Controllers
+namespace Fanex.Affiliate.Admin.Core.Controllers
 {
     public class CommissionController : Controller
     {
