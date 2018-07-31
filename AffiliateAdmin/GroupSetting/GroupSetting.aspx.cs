@@ -84,7 +84,6 @@ public partial class GroupSetting : BasePage
             TemplateHandler.Assign(ref content, "paging-bottom", "");
         }
 
-        _htmlSubmenuContent = SubMenu.GenSubMenu(SubMenu.AffLink, SubMenu.AffText, 6, totalRows, Resources.Lang.CommissionGroup, "i_commg.png");
         _htmlContent = content;
     }
 

@@ -8,10 +8,6 @@
     <script src="../App_Js/Calendar2/calendar-setup.js" type="text/javascript"></script>
 </asp:Content>
 
-<asp:Content ContentPlaceHolderID="subMenu" runat="server">
-    <%=_htmlSubmenuContent %>
-</asp:Content>
-
 <asp:Content ContentPlaceHolderID="masterContent" runat="server" ID="mainContent">
     <%=_htmlContent %>
 </asp:Content>
@@ -23,8 +19,6 @@
         var arrItem = new Array();
         var arrError = new Array();
         window.onload = function () {
-            parent.frames['fMenu'].ActiveMenu('menu3');
-
             if($("hdStatus").value == "")
                 $("slStatus").options[0].selected = true;
             else

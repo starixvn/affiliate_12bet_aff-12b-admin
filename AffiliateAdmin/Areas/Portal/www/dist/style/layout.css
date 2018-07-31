@@ -108,17 +108,21 @@
       .main-menu-container .menu-list .nav-link.active {
         background: #0272c6; }
 
-.sub-menu-container .nav-link {
-  font-size: 11px;
-  color: #333333;
-  font-weight: bold;
-  padding: 0 13px 0 5px;
-  border: 1px solid #d4d4d4;
-  margin-right: 1px; }
-  .sub-menu-container .nav-link:hover {
-    color: #FF6600; }
-  .sub-menu-container .nav-link.active {
-    color: #990000; }
+.sub-menu-container {
+  padding: 10px 0 0 10px; }
+  .sub-menu-container .nav-link {
+    font-size: 11px;
+    color: #333333;
+    font-weight: bold;
+    padding: 0 13px 0 5px;
+    border: 1px solid #d4d4d4;
+    margin-right: 1px; }
+    .sub-menu-container .nav-link:hover {
+      color: #FF6600; }
+    .sub-menu-container .nav-link.active {
+      color: #990000; }
+  .sub-menu-container + .mainFrameWrapper #mainFrame {
+    top: 110px; }
 
 
 /*# sourceMappingURL=layout.css.map*/

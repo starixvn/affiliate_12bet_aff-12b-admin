@@ -20,9 +20,6 @@
 </head>
 <body>
     <div class="padl0">
-        <asp:ContentPlaceHolder ID="subMenu" runat="server">
-        </asp:ContentPlaceHolder>
-
         <div id="portalContainer">
             <asp:ContentPlaceHolder ID="masterContent" runat="server">
             </asp:ContentPlaceHolder>
@@ -35,7 +32,6 @@
     <script>
         var rootUrl = '<%=ResolveUrl("~")%>';
     </script>
-    <script src="../App_Js/Portal.js"></script>
     <asp:ContentPlaceHolder ID="script" runat="server">
     </asp:ContentPlaceHolder>
 </body>

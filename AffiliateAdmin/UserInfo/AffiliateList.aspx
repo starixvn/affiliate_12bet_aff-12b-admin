@@ -3,10 +3,6 @@
 <asp:Content ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 
-<asp:Content ContentPlaceHolderID="subMenu" runat="server">
-    <%=_htmlSubmenuContent %>
-</asp:Content>
-
 <asp:Content ContentPlaceHolderID="masterContent" runat="server" ID="mainContent">
     <%=_htmlContent %>
 </asp:Content>
@@ -17,9 +13,7 @@
     var time = 0;//set Timeout for clock refresh
     var timer = null;//set Timeout for choose refresh time
     var timePage = "";//set Timeout for go to page
-    function MyFocus() {
-        parent.frames['fMenu'].ActiveMenu('menu3');
-        
+    function MyFocus() {        
         //$("slPageSize").value = $("pagesize").value;
         $("slTime").value = $("timer").value;
         if($("slTime").value != "0")

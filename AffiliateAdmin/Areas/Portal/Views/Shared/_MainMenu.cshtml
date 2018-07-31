@@ -1,0 +1,35 @@
+﻿@{
+    var controllerName = ViewContext.RouteData.Values["Controller"].ToString();
+}
+<ul class="nav menu-list">
+    <li class="nav-item">
+        <a class="nav-link @(controllerName == "Home" ? "active" : string.Empty)" href="@Url.Content("~/Portal/Home")">Home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @(controllerName == "Customer" ? "active" : string.Empty)" href="@Url.Action("Index", "Customer", new { Area = "Portal" })">Customer</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @(controllerName == "Affiliate" ? "active" : string.Empty)" href="@Url.Action("Index", "Affiliate", new { Area = "Portal" })">Affiliate</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @(controllerName == "Member" ? "active" : string.Empty)" href="@Url.Action("Index", "Member", new { Area = "Portal" })">Member</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @(controllerName == "Report" ? "active" : string.Empty)" href="@Url.Action("Index", "Report", new { Area = "Portal" })">Report</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @(controllerName == "Marketing" ? "active" : string.Empty)" href="@Url.Action("Index", "Marketing", new { Area = "Portal" })">Media Gallery</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @(controllerName == "Message" ? "active" : string.Empty)" href="@Url.Action("Index", "Message", new { Area = "Portal" })">Message</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @(controllerName == "ExchangeRate" ? "active" : string.Empty)" href="@Url.Action("Index", "ExchangeRate", new { Area = "Portal" })">Ex.Rate</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @(controllerName == "Administrator" ? "active" : string.Empty)" href="@Url.Action("Index", "Administrator", new { Area = "Portal" })">Administrator</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @(controllerName == "Domain" ? "active" : string.Empty)" href="@Url.Action("Index", "Domain", new { Area = "Portal" })">Domain</a>
+    </li>
+</ul>

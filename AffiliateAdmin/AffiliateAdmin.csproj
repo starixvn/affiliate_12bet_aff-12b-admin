@@ -1562,11 +1562,11 @@
     <Content Include="Areas\Portal\www\dist\imgs\i_admin.png" />
     <Content Include="Areas\Portal\www\dist\imgs\i_affiliateslist.png" />
     <Content Include="Areas\Portal\www\dist\imgs\i_domain.jpg" />
-    <Content Include="Areas\Portal\www\dist\imgs\i_ex_rate.png" />
     <Content Include="Areas\Portal\www\dist\imgs\i_media1.png" />
     <Content Include="Areas\Portal\www\dist\imgs\i_member.png" />
-    <Content Include="Areas\Portal\www\dist\imgs\i_message.png" />
     <Content Include="Areas\Portal\www\dist\imgs\i_report.png" />
+    <Content Include="Areas\Portal\www\dist\jquery-3.3.1.min.js" />
+    <Content Include="Areas\Portal\www\dist\pagelayout.min.js" />
     <Content Include="Areas\Portal\www\dist\vendor.js" />
     <Content Include="Areas\Portal\www\index.html" />
     <Content Include="Areas\Portal\www\parts\constant.js" />
@@ -1576,6 +1576,7 @@
     <Content Include="Areas\Portal\www\source\js\modules\createReducer.js" />
     <Content Include="Areas\Portal\www\source\js\modules\numberFormat.js" />
     <Content Include="Areas\Portal\www\source\js\modules\utils.js" />
+    <Content Include="Areas\Portal\www\source\js\pagelayout\pagelayout.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission\components\Filter.jsx" />
@@ -1584,6 +1585,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\commission\reducers\filterReducer.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\reducers\sampleReducer.js" />
+    <Content Include="Areas\Portal\www\source\js\pagelayout\vendors\jquery-3.3.1.min.js" />
     <Content Include="Areas\Portal\www\source\style\assets\banner_top.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\bg_menu.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\bg_search01.jpg" />
@@ -1850,6 +1852,8 @@
     <Content Include="Areas\Portal\Views\Administrator\Index.cshtml" />
     <Content Include="Areas\Portal\Views\Domain\Index.cshtml" />
     <Content Include="Areas\Portal\Views\Affiliate\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\_MainMenu.cshtml" />
+    <None Include="bundleconfig.json" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

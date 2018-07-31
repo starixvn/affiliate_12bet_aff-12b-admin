@@ -17,8 +17,6 @@
     }
 
     function MyFocus() {
-        parent.frames['fMenu'].ActiveMenu('menu4');
-
         $('txtAffUsername').focus();
         $("slTime").value = $("timer").value;
         if($("slTime").value != "0")

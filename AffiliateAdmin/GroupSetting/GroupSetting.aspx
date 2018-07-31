@@ -8,10 +8,6 @@
     <script type="text/javascript" src="../App_Js/GroupSetting.js"></script>
 </asp:Content>
 
-<asp:Content ContentPlaceHolderID="subMenu" runat="server">
-    <%=_htmlSubmenuContent %>
-</asp:Content>
-
 <asp:Content ContentPlaceHolderID="masterContent" runat="server" ID="mainContent">
     <%=_htmlContent %>
 </asp:Content>

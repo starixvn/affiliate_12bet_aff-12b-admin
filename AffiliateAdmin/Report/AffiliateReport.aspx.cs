@@ -126,8 +126,6 @@ public partial class Report_AffiliateReport : IBCPage
                 dcTotalSignup = 0, dcTotalFDM = 0,
                 dcTotalActiveMember = 0, dcTotalQM = 0;
 
-            TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.ReportLink, SubMenu.ReportText, 1, dtb.Rows.Count, SubMenu.ReportText[1], "i_report.png"));
-
             strListRow = new StringBuilder();
             decimal trackingRate;
             decimal newTrackingRate;
@@ -239,7 +237,6 @@ public partial class Report_AffiliateReport : IBCPage
         else
         {
             TemplateHandler.ReplaceBlock(ref strTpl, "nodata", Common.NoInfo(11));
-            TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.ReportLink, SubMenu.ReportText, 1, 0, SubMenu.ReportText[1], "i_report.png"));
         }
 
         TemplateHandler.Assign(ref strTpl, "paging-top", Common.GenPaging(criteria.TotalPages, criteria.PageIndex, criteria.PageSize, criteria.NRows, "aPageTop", "txtPageTop", string.Empty, false, true));

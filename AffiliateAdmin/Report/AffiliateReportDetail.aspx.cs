@@ -14,8 +14,6 @@ public partial class Report_AffiliateReportDetail : IBCPage
     {
         strTpl = TemplateHandler.LoadTemplate("Report/AffiliateReportDetail.htm");
 
-        TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.ReportLink, SubMenu.ReportText, 1, 0, SubMenu.ReportText[1], "i_report.png"));
-
         AssignHeader();
         GenerateHTML();
 
@@ -35,7 +33,6 @@ public partial class Report_AffiliateReportDetail : IBCPage
         TemplateHandler.Assign(ref strTpl, "fdate", dtmFDate.ToString("MM/dd/yyyy"));
         TemplateHandler.Assign(ref strTpl, "tdate", dtmTDate.ToString("MM/dd/yyyy"));
         TemplateHandler.Assign(ref strTpl, "cssgetall", isGetAll ? "ic-check" : "ic-uncheck");
-        //TemplateHandler.Assign(ref strTpl, "turnover-total", NumberFormat.DecFormat(dcTotalTurnover, 2));
 
         //TemplateHandler.Assign(ref strTpl, "affid", intAffId);
 

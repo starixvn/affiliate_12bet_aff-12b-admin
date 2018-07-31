@@ -183,7 +183,6 @@ public partial class AffiliateList : BasePage
 
         TemplateHandler.ReplaceBlock(ref strTemplate, "content", strContent);
 
-        _htmlSubmenuContent = SubMenu.GenSubMenu(SubMenu.AffLink, SubMenu.AffText, currTab, criteria.NRows, Resources.Lang.AffList, "i_affiliateslist.png");
         _htmlContent = strTemplate;
 
     }

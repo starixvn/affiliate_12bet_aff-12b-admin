@@ -1,0 +1,8 @@
+[
+  {
+    "outputFileName": "Areas/Portal/www/dist/pagelayout.min.js",
+    "inputFiles": [
+      "Areas/Portal/www/source/js/pagelayout/pagelayout.js"
+    ]
+  }
+]

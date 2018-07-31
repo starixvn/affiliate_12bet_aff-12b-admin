@@ -109,7 +109,6 @@ public partial class Others_EmailHistory : BasePage
             TemplateHandler.Assign(ref content, "paging-bottom", "");
         }
 
-        _htmlSubmenuContent = SubMenu.GenSubMenu(SubMenu.AffLink, SubMenu.AffText, 7, totalEmail, Resources.Lang.EmailHistory, "i_email_history.png");
         _htmlContent = content;
     }
 }

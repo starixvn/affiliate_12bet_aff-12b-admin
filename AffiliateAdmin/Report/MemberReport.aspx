@@ -13,10 +13,6 @@
     var timer = null; //set Timeout for choose refresh time
     var timePage = ""; //set Timeout for go to page
 
-    window.onload = function () {
-        parent.frames['fMenu'].ActiveMenu('menu5');
-    };
-
     function CloseDiv() {
         $('divChangePass').style.display ='none';
     }

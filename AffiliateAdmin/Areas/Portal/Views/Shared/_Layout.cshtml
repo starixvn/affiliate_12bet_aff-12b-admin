@@ -15,42 +15,13 @@
             @{ Html.RenderPartial("~/Areas/Portal/Views/Shared/_Header.cshtml"); }
         </header>
         <div class="main-menu-container">
-            <ul class="nav menu-list">
-                <li class="nav-item">
-                    <a class="nav-link active" href="@Url.Content("~/Portal/Home")">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Index", "Customer", new { Area = "Portal" })">Customer</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Index", "Affiliate", new { Area = "Portal" })">Affiliate</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Index", "Member", new { Area = "Portal" })">Member</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Index", "Report", new { Area = "Portal" })">Report</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Index", "Marketing", new { Area = "Portal" })">Media Gallery</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Index", "Message", new { Area = "Portal" })">Message</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Index", "ExchangeRate", new { Area = "Portal" })">Ex.Rate</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Index", "Administrator", new { Area = "Portal" })">Administrator</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="@Url.Action("Index", "Domain", new { Area = "Portal" })">Domain</a>
-                </li>
-            </ul>
+            @{ Html.RenderPartial("~/Areas/Portal/Views/Shared/_MainMenu.cshtml"); }
         </div>
         <div class="main-container">
             @RenderBody()
         </div>
     </div>
+    <script src="~/Areas/Portal/www/dist/jquery-3.3.1.min.js"></script>
+    <script src="~/Areas/Portal/www/dist/pagelayout.min.js"></script>
 </body>
 </html>

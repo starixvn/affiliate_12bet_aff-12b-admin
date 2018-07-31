@@ -126,7 +126,6 @@ public partial class PaymentRequest : BasePage
         }
         TemplateHandler.Assign(ref strTpl, "nummem", intNumRows);
 
-        _htmlSubmenuContent = SubMenu.GenSubMenu(SubMenu.AffLink, SubMenu.AffText, 5, intNumRows, Resources.Lang.PaymentRequest, "i_pay_re.png");
         _htmlContent = strTpl;
     }
 

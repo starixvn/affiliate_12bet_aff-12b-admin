@@ -1,6 +1,6 @@
 ﻿using System;
-using DNAide.Web;
 using DNAide.Core;
+using DNAide.Web;
 
 public partial class Others_HotNews : IBCPage
 {
@@ -25,7 +25,7 @@ public partial class Others_HotNews : IBCPage
         TemplateHandler.Assign(ref hotNewsContent, "AddNewMessage", Resources.Lang.Add);
         TemplateHandler.Assign(ref hotNewsContent, "AddEmptyMessError", Resources.Lang.AddEmptyMessError);
         TemplateHandler.Assign(ref hotNewsContent, "Update", Resources.Lang.Update);
-       // TemplateHandler.Assign(ref hotNewsContent, "View", Resources.Lang.View);    
+        // TemplateHandler.Assign(ref hotNewsContent, "View", Resources.Lang.View);    
         TemplateHandler.Assign(ref hotNewsContent, "Edit", Resources.Lang.Edit);
         TemplateHandler.Assign(ref hotNewsContent, "Cancel", Resources.Lang.Cancel);
         TemplateHandler.Assign(ref hotNewsContent, "UpdateDate", Resources.Lang.UpdateDate);
@@ -40,10 +40,10 @@ public partial class Others_HotNews : IBCPage
         TemplateHandler.Assign(ref hotNewsContent, "ConfirmUpdateMessage", Resources.Lang.ConfirmUpdateMessage);
         TemplateHandler.Assign(ref hotNewsContent, "NoEmailSelected", Resources.Lang.NoMessSelected);
         TemplateHandler.Assign(ref hotNewsContent, "timer-val", string.IsNullOrEmpty(Request["slTime"]) ? "0" : Request["slTime"]);
-        
-        int minNo=0, maxNo=0, totalMess = 0;
+
+        int minNo = 0, maxNo = 0, totalMess = 0;
         int intPage = CastAide.AsInt32(Request["page"], 1);
-        int iPageSize = CastAide.AsInt32(Request["pagesize"],20);
+        int iPageSize = CastAide.AsInt32(Request["pagesize"], 20);
         int iTotalPage = 0;
         string hasDate = CastAide.AsString(Request["hdchkDate"], string.Empty);
         int severity = CastAide.AsInt32(Request["slSearchOption"], -1);
@@ -60,7 +60,6 @@ public partial class Others_HotNews : IBCPage
 
         //set top and bottom paging
         TemplateHandler.Assign(ref hotNewsContent, "hdchkDate-val", hasDate);
-        TemplateHandler.Assign(ref hotNewsContent, "submenu", SubMenu.GenSubMenu(new string[] { "Message.aspx" }, new string[] { Resources.Lang.MessageHistory }, 0, totalMess, Resources.Lang.Message,"i_message.png"));
         if (totalMess != 0)
         {
             TemplateHandler.Assign(ref hotNewsContent, "paging-top", Common.GenPaging(iTotalPage, intPage, iPageSize, maxNo, "aPageTop", "txtPageTop", new string[] { "Delete", "Add", "Current Message" }, new string[] { "DeleteSelectedMessage();", "DoCal('ViewMessDetails.aspx?id=','Add new message', 600, 500)", "DoCal('ViewMessDetails.aspx?id=-1','Current Message Detail', 600, 500)" }, 1100, true, true, true, false));
@@ -78,7 +77,7 @@ public partial class Others_HotNews : IBCPage
         TemplateHandler.Assign(ref hotNewsContent, "hdfDate-val", fDate.ToString("MM/dd/yyyy"));
         TemplateHandler.Assign(ref hotNewsContent, "hdtDate-val", tDate.ToString("MM/dd/yyyy"));
         TemplateHandler.Assign(ref hotNewsContent, "hdTotalMess-val", totalMess.ToString());
-        TemplateHandler.Assign(ref hotNewsContent, "minNo",minNo.ToString());
+        TemplateHandler.Assign(ref hotNewsContent, "minNo", minNo.ToString());
         TemplateHandler.Assign(ref hotNewsContent, "maxNo", maxNo.ToString());
         this.HtmlContent = hotNewsContent;
     }
