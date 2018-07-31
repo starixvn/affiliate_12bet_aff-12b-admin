@@ -22,7 +22,7 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Lang {
+    public class Lang {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Fanex.Affiliate.Admin.Core.Resources.Lang", typeof(Lang).Assembly);
@@ -51,7 +51,7 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,11 +61,200 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Active member.
+        /// </summary>
+        public static string ActiveMember {
+            get {
+                return ResourceManager.GetString("ActiveMember", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Admin List.
+        /// </summary>
+        public static string AdminList {
+            get {
+                return ResourceManager.GetString("AdminList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Affiliate Domain.
+        /// </summary>
+        public static string AffiliateDomain {
+            get {
+                return ResourceManager.GetString("AffiliateDomain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Affiliate Report.
+        /// </summary>
+        public static string AffiliateReport {
+            get {
+                return ResourceManager.GetString("AffiliateReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Approved.
+        /// </summary>
+        public static string Approved {
+            get {
+                return ResourceManager.GetString("Approved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Banner List.
+        /// </summary>
+        public static string BannerList {
+            get {
+                return ResourceManager.GetString("BannerList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Closed.
+        /// </summary>
+        public static string Closed {
+            get {
+                return ResourceManager.GetString("Closed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Comm Group.
+        /// </summary>
+        public static string CommGroup {
+            get {
+                return ResourceManager.GetString("CommGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dept List.
+        /// </summary>
+        public static string DeptList {
+            get {
+                return ResourceManager.GetString("DeptList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disapproved.
+        /// </summary>
+        public static string Disapproved {
+            get {
+                return ResourceManager.GetString("Disapproved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Domain Control.
+        /// </summary>
+        public static string DomainControl {
+            get {
+                return ResourceManager.GetString("DomainControl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email History.
+        /// </summary>
+        public static string EmailHistory {
+            get {
+                return ResourceManager.GetString("EmailHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ex.Rate.
+        /// </summary>
+        public static string ExRate {
+            get {
+                return ResourceManager.GetString("ExRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Home.
         /// </summary>
-        internal static string Home {
+        public static string Home {
             get {
                 return ResourceManager.GetString("Home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Member.
+        /// </summary>
+        public static string Member {
+            get {
+                return ResourceManager.GetString("Member", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Message History.
+        /// </summary>
+        public static string MessageHistory {
+            get {
+                return ResourceManager.GetString("MessageHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to My Favorite.
+        /// </summary>
+        public static string MyFavorite {
+            get {
+                return ResourceManager.GetString("MyFavorite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment Request.
+        /// </summary>
+        public static string PaymentRequest {
+            get {
+                return ResourceManager.GetString("PaymentRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pending.
+        /// </summary>
+        public static string Pending {
+            get {
+                return ResourceManager.GetString("Pending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Report Details.
+        /// </summary>
+        public static string ReportDetails {
+            get {
+                return ResourceManager.GetString("ReportDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12Bet Domains.
+        /// </summary>
+        public static string Text12BetDomains {
+            get {
+                return ResourceManager.GetString("Text12BetDomains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text List.
+        /// </summary>
+        public static string TextList {
+            get {
+                return ResourceManager.GetString("TextList", resourceCulture);
             }
         }
     }

@@ -89,22 +89,36 @@
 .main-menu-container {
   font-size: 11px;
   height: 24px;
-  background: url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAZABkAAD/7AARRHVja3kAAQAEAAAAUAAA/+4ADkFkb2JlAGTAAAAAAf/bAIQAAgICAgICAgICAgMCAgIDBAMCAgMEBQQEBAQEBQYFBQUFBQUGBgcHCAcHBgkJCgoJCQwMDAwMDAwMDAwMDAwMDAEDAwMFBAUJBgYJDQsJCw0PDg4ODg8PDAwMDAwPDwwMDAwMDA8MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM/8AAEQgAFgABAwERAAIRAQMRAf/EAGUAAQEAAAAAAAAAAAAAAAAAAAcJAQADAQAAAAAAAAAAAAAAAAABAgYDEAAAAggHAAAAAAAAAAAAAAAABAGR0QIDBRVWk9NU1JUGFhEAAwACAwAAAAAAAAAAAAAAAAERUZHwYRL/2gAMAwEAAhEDEQA/AKQ0/rFuyfjyuULzy8vbImIN/QwNS6tDRvBaDFXPWtNMQjuw8WeaBej/2Q==) repeat-x; }
+  background: #b5d7fa;
+  background: linear-gradient(#b5d7fa, #86a9d3); }
   .main-menu-container .menu-list {
     margin-left: 1px; }
     .main-menu-container .menu-list .nav-link {
-      padding: 2px 12px 2px 12px;
+      padding: 4px 12px 2px 12px;
       color: #fff;
-      background: #51a6e0;
+      background: #89c1f2;
+      background: linear-gradient(#89c1f2, #3872b2);
       font-weight: bold;
       border-left: 1px solid #0f83d2;
       border-right: 1px solid #0f83d2;
       margin-right: 1px;
       border-radius: 2px; }
       .main-menu-container .menu-list .nav-link:hover {
-        background: #0f83d2; }
+        background: #0272c6; }
       .main-menu-container .menu-list .nav-link.active {
-        background: #0f83d2; }
+        background: #0272c6; }
+
+.sub-menu-container .nav-link {
+  font-size: 11px;
+  color: #333333;
+  font-weight: bold;
+  padding: 0 13px 0 5px;
+  border: 1px solid #d4d4d4;
+  margin-right: 1px; }
+  .sub-menu-container .nav-link:hover {
+    color: #FF6600; }
+  .sub-menu-container .nav-link.active {
+    color: #990000; }
 
 
 /*# sourceMappingURL=layout.css.map*/

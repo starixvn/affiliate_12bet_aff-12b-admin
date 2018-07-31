@@ -91,9 +91,9 @@
   !*** ./node_modules/mini-css-extract-plugin/dist/loader.js!./node_modules/css-loader!./node_modules/sass-loader/lib/loader.js!./source/style/layout/main-layout.scss ***!
   \***********************************************************************************************************************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):\nModuleBuildError: Module build failed (from ./node_modules/sass-loader/lib/loader.js):\nError: ENOENT: no such file or directory, open 'D:\\Projects\\affiliate-12bet\\AffiliateAdmin\\Areas\\Portal\\www\\source\\style\\layout\\main-layout.scss'\n    at runLoaders (D:\\Projects\\affiliate-12bet\\AffiliateAdmin\\Areas\\Portal\\www\\node_modules\\webpack\\lib\\NormalModule.js:284:20)\n    at D:\\Projects\\affiliate-12bet\\AffiliateAdmin\\Areas\\Portal\\www\\node_modules\\loader-runner\\lib\\LoaderRunner.js:364:11\n    at D:\\Projects\\affiliate-12bet\\AffiliateAdmin\\Areas\\Portal\\www\\node_modules\\loader-runner\\lib\\LoaderRunner.js:200:19\n    at process.nextTick (D:\\Projects\\affiliate-12bet\\AffiliateAdmin\\Areas\\Portal\\www\\node_modules\\enhanced-resolve\\lib\\CachedInputFileSystem.js:73:15)\n    at _combinedTickCallback (internal/process/next_tick.js:131:7)\n    at process._tickCallback (internal/process/next_tick.js:180:9)");
+// extracted by mini-css-extract-plugin
 
 /***/ }),
 

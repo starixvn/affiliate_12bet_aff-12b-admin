@@ -117,7 +117,70 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ActiveMember" xml:space="preserve">
+    <value>Active member</value>
+  </data>
+  <data name="AdminList" xml:space="preserve">
+    <value>Admin List</value>
+  </data>
+  <data name="AffiliateDomain" xml:space="preserve">
+    <value>Affiliate Domain</value>
+  </data>
+  <data name="AffiliateReport" xml:space="preserve">
+    <value>Affiliate Report</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>Approved</value>
+  </data>
+  <data name="BannerList" xml:space="preserve">
+    <value>Banner List</value>
+  </data>
+  <data name="Closed" xml:space="preserve">
+    <value>Closed</value>
+  </data>
+  <data name="CommGroup" xml:space="preserve">
+    <value>Comm Group</value>
+  </data>
+  <data name="DeptList" xml:space="preserve">
+    <value>Dept List</value>
+  </data>
+  <data name="Disapproved" xml:space="preserve">
+    <value>Disapproved</value>
+  </data>
+  <data name="DomainControl" xml:space="preserve">
+    <value>Domain Control</value>
+  </data>
+  <data name="EmailHistory" xml:space="preserve">
+    <value>Email History</value>
+  </data>
+  <data name="ExRate" xml:space="preserve">
+    <value>Ex.Rate</value>
+  </data>
   <data name="Home" xml:space="preserve">
     <value>Home</value>
+  </data>
+  <data name="Member" xml:space="preserve">
+    <value>Member</value>
+  </data>
+  <data name="MessageHistory" xml:space="preserve">
+    <value>Message History</value>
+  </data>
+  <data name="MyFavorite" xml:space="preserve">
+    <value>My Favorite</value>
+  </data>
+  <data name="PaymentRequest" xml:space="preserve">
+    <value>Payment Request</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>Pending</value>
+  </data>
+  <data name="ReportDetails" xml:space="preserve">
+    <value>Report Details</value>
+  </data>
+  <data name="Text12BetDomains" xml:space="preserve">
+    <value>12Bet Domains</value>
+  </data>
+  <data name="TextList" xml:space="preserve">
+    <value>Text List</value>
   </data>
 </root>

@@ -1559,6 +1559,14 @@
     <Content Include="App_Themes\Default\Images\x5.gif" />
     <Content Include="App_Themes\Default\jquery.ui.css" />
     <Content Include="App_Themes\error2.png" />
+    <Content Include="Areas\Portal\www\dist\imgs\i_admin.png" />
+    <Content Include="Areas\Portal\www\dist\imgs\i_affiliateslist.png" />
+    <Content Include="Areas\Portal\www\dist\imgs\i_domain.jpg" />
+    <Content Include="Areas\Portal\www\dist\imgs\i_ex_rate.png" />
+    <Content Include="Areas\Portal\www\dist\imgs\i_media1.png" />
+    <Content Include="Areas\Portal\www\dist\imgs\i_member.png" />
+    <Content Include="Areas\Portal\www\dist\imgs\i_message.png" />
+    <Content Include="Areas\Portal\www\dist\imgs\i_report.png" />
     <Content Include="Areas\Portal\www\dist\vendor.js" />
     <Content Include="Areas\Portal\www\index.html" />
     <Content Include="Areas\Portal\www\parts\constant.js" />
@@ -1832,7 +1840,7 @@
     <Content Include="Areas\Portal\Views\Home\Index.cshtml" />
     <Content Include="Areas\Portal\www\source\style\layout\_header.scss" />
     <Content Include="Areas\Portal\www\source\style\layout\main-layout.scss" />
-    <Content Include="Areas\Portal\www\source\style\layout\_main-menu.scss" />
+    <Content Include="Areas\Portal\www\source\style\layout\_menu.scss" />
     <Content Include="Areas\Portal\Views\Customer\Index.cshtml" />
     <Content Include="Areas\Portal\Views\Member\Index.cshtml" />
     <Content Include="Areas\Portal\Views\Report\Index.cshtml" />

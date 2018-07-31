@@ -1,10 +1,13 @@
 ﻿
 @model IEnumerable<Fanex.Affiliate.Admin.Core.DTO.SubMenu>
-<ul>
+<ul class="nav">
+    @{ var isFirst = true; }
     @foreach (var item in Model)
     {
-        <li>
-            <a href="@item.Url" target="mainFrame">@item.Name</a>
+        <li class="nav-item">
+            <a class="nav-link @(isFirst? "active" : string.Empty)" href="@item.Url" target="mainFrame">@item.Name</a>
         </li>
+
+        isFirst = false;
     }
 </ul>
