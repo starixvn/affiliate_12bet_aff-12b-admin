@@ -1,35 +1,57 @@
-﻿@{
+﻿@using Fanex.Affiliate.Admin.Core.Constants;
+@using Fanex.Affiliate.Admin.Core.Services.Common;
+@using System.Collections.Generic;
+@using Fanex.Affiliate.Admin.Core.Constants;
+
+@{
     var controllerName = ViewContext.RouteData.Values["Controller"].ToString();
+    var sessionService = DependencyResolver.Current.GetService<ISessionService>();
+    var permission = sessionService.UserPerissionList;
+    var menus = new Dictionary<string, string>
+                {
+                { "Home",Function.AffReport },
+                  {"Customer",Function.Affiliate },
+                  {"Affiliate",Function.Affiliate },
+                  {"Member",Function.Affiliate },
+                  {"Report",Function.AffReport },
+                  {"Marketing",Function.Media },
+                  {"Message",Function.HotNews },
+                  {"ExchangeRate",Function.AffExRate },
+                  {"Administrator",Function.UserControl },
+                  {"Domain",Function.Domain }
+                };
+    var result = from n in menus
+                 join p in permission
+                 on n.Value equals p.FunctionName
+                 select n;
+}
+
+@functions{
+    public string GetMenuName(string menuKey)
+    {
+        if (menuKey == "Marketing")
+        {
+            return "Media Gallery";
+        }
+        else if (menuKey == "ExchangeRate")
+        {
+            return "Ex.Rate";
+        }
+        else
+        {
+            return menuKey;
+        }
+    }
 }
 <ul class="nav menu-list">
-    <li class="nav-item">
-        <a class="nav-link @(controllerName == "Home" ? "active" : string.Empty)" href="@Url.Content("~/Portal/Home")">Home</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link @(controllerName == "Customer" ? "active" : string.Empty)" href="@Url.Action("Index", "Customer", new { Area = "Portal" })">Customer</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link @(controllerName == "Affiliate" ? "active" : string.Empty)" href="@Url.Action("Index", "Affiliate", new { Area = "Portal" })">Affiliate</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link @(controllerName == "Member" ? "active" : string.Empty)" href="@Url.Action("Index", "Member", new { Area = "Portal" })">Member</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link @(controllerName == "Report" ? "active" : string.Empty)" href="@Url.Action("Index", "Report", new { Area = "Portal" })">Report</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link @(controllerName == "Marketing" ? "active" : string.Empty)" href="@Url.Action("Index", "Marketing", new { Area = "Portal" })">Media Gallery</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link @(controllerName == "Message" ? "active" : string.Empty)" href="@Url.Action("Index", "Message", new { Area = "Portal" })">Message</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link @(controllerName == "ExchangeRate" ? "active" : string.Empty)" href="@Url.Action("Index", "ExchangeRate", new { Area = "Portal" })">Ex.Rate</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link @(controllerName == "Administrator" ? "active" : string.Empty)" href="@Url.Action("Index", "Administrator", new { Area = "Portal" })">Administrator</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link @(controllerName == "Domain" ? "active" : string.Empty)" href="@Url.Action("Index", "Domain", new { Area = "Portal" })">Domain</a>
-    </li>
+
+    @foreach (var item in result)
+    {
+        var active = "nav-link " + (controllerName == item.Key ? "active" : string.Empty);
+        <li class="nav-item">
+            <a class="@active" href="@Url.Content("~/Portal/"+item.Key)">
+                @GetMenuName(item.Key)
+            </a>
+        </li>
+    }
 </ul>

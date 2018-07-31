@@ -261,7 +261,7 @@ namespace DataHandler
             hsParam.Add("affid", intCustId);
             hsParam.Add("fromdate", dtmFDate);
             hsParam.Add("todate", dtmTDate);
-            return DbHelper.Execute("Aff_ReportDetailSelByAff", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
+            return DbHelper.Execute("Aff_Admin_ReportDetail_Sel_xtest", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
         }
 
         //@Vinh
@@ -315,7 +315,7 @@ namespace DataHandler
             p.Add("pageindex", pageIndex);
             p.Add("pagesize", pageSize); // hardcode pagesize for member/player list
             p.Add("totalpages", 0);
-            DbResult rs = DbHelper.Execute("Aff_PlayersSelDetail", DBType.AFFILIATE_12BET, p);
+            DbResult rs = DbHelper.Execute("Aff_Admin_PlayersDetail_Sel_xtest", DBType.AFFILIATE_12BET, p);
             totalPages = CastAide.AsInt32(rs.Outputs["totalpages"], 1);
             return rs;
         }

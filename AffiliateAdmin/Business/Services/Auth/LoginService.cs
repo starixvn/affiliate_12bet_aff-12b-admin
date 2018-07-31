@@ -2,6 +2,8 @@
 using System.Web;
 using System.Web.Security;
 using Affiliate.Infrastructure.Helpers;
+using Fanex.Affiliate.Admin.Core.Repository;
+using Fanex.Affiliate.Admin.Core.Services.Common;
 
 namespace AffiliateAdmin.Business.Services.Auth
 {
@@ -53,6 +55,10 @@ namespace AffiliateAdmin.Business.Services.Auth
                     AppSettings.Session.RoleID = roleid;
                     AppSettings.Session.UserName = _username;
                     AppSettings.Session.RoleAccess = DataHandler.Login.AssignRoles(custid);
+
+                    var authRepository = new AuthRepository();
+                    ISessionService sessionService = new SessionService();
+                    sessionService.UserPerissionList = authRepository.GetPermissionList(custid);
                     isok = "OK";
                     context.Response.SetCookie(cookie);
                 }

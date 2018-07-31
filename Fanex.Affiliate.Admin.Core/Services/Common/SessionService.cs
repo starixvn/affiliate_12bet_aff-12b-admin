@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Web;
 using Fanex.Affiliate.Admin.Core.DTO.Common;
 
@@ -7,7 +6,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
 {
     public class SessionService : ISessionService
     {
-        private const string UserPermissionSessionKey = "__UserPermissionSessinKey";
+        private const string UserPermissionSessionKey = "__UserPermissionSessionKey";
 
         IList<UserPermission> ISessionService.UserPerissionList
         {
@@ -22,5 +21,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
                 HttpContext.Current.Session[UserPermissionSessionKey] = value;
             }
         }
+
     }
 }
