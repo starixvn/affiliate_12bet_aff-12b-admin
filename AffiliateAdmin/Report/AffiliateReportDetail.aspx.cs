@@ -34,8 +34,6 @@ public partial class Report_AffiliateReportDetail : IBCPage
         TemplateHandler.Assign(ref strTpl, "tdate", dtmTDate.ToString("MM/dd/yyyy"));
         TemplateHandler.Assign(ref strTpl, "cssgetall", isGetAll ? "ic-check" : "ic-uncheck");
 
-        //TemplateHandler.Assign(ref strTpl, "affid", intAffId);
-
         DataTable dtb = new DataTable();
         DbResult rs = null;
         rs = DataHandler.Affiliate.SelAffiliateReportByAff(strAffName, dtmFDate, dtmTDate, intSportId, isGetAll);
@@ -198,7 +196,6 @@ public partial class Report_AffiliateReportDetail : IBCPage
         TemplateHandler.Assign(ref strTpl, "err-msg", Resources.Lang.InvalidAffiliate);
         //Assign color
         TemplateHandler.Assign(ref strTpl, "over", Common.RowBgOver);
-        //TemplateHandler.Assign(ref strTpl, "color", Common.RowBgOdd);
         TemplateHandler.Assign(ref strTpl, "colormonthly", Common.RowBgPending);
 
         //Hung added

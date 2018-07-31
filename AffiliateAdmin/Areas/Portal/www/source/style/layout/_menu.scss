@@ -51,7 +51,8 @@
 
     & + .mainFrameWrapper {
         #mainFrame {
-            top: 110px;
+            top: 115px;
+            height: calc(100% - 130px);
         }
     }
 }

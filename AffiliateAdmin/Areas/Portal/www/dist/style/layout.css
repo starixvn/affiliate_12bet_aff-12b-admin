@@ -122,7 +122,8 @@
     .sub-menu-container .nav-link.active {
       color: #990000; }
   .sub-menu-container + .mainFrameWrapper #mainFrame {
-    top: 110px; }
+    top: 115px;
+    height: calc(100% - 130px); }
 
 
 /*# sourceMappingURL=layout.css.map*/

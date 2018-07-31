@@ -270,7 +270,7 @@ namespace DataHandler
             Hashtable hsParam = new Hashtable();
             hsParam.Add("fromdate", dtmFDate);
             hsParam.Add("todate", dtmTDate);
-            return DbHelper.Execute("Aff_ReportDetailSelAll", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
+            return DbHelper.Execute("Aff_Admin_ReportDetail_Sel_xtest", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
         }
 
         //@Vinh
@@ -302,7 +302,7 @@ namespace DataHandler
             hsParam.Add("todate", dtmTDate);
             hsParam.Add("isgetall", isGetAll);
             hsParam.Add("affid", 0);
-            return DbHelper.Execute("Aff_AffiliateReportDetail", DBType.AFFILIATE_12BET, hsParam, 180);
+            return DbHelper.Execute("Aff_Admin_AffiliateReport_Detail_Sel_xtest", DBType.AFFILIATE_12BET, hsParam, 180);
         }
 
         //@Vinh
