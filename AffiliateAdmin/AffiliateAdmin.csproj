@@ -1567,6 +1567,9 @@
     <Content Include="Areas\Portal\www\dist\imgs\i_report.png" />
     <Content Include="Areas\Portal\www\dist\jquery-3.3.1.min.js" />
     <Content Include="Areas\Portal\www\dist\pagelayout.min.js" />
+    <Content Include="Areas\Portal\www\dist\style\bootstrap.css" />
+    <Content Include="Areas\Portal\www\dist\style\layout.css" />
+    <Content Include="Areas\Portal\www\dist\style\portalmain.css" />
     <Content Include="Areas\Portal\www\dist\vendor.js" />
     <Content Include="Areas\Portal\www\index.html" />
     <Content Include="Areas\Portal\www\parts\constant.js" />
