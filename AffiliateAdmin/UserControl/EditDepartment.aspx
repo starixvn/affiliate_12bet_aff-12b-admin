@@ -9,7 +9,7 @@
    {   
         if($("txtdep").value.trim() == "")
         {
-            Common.alertError(top.fMenu.Msg.ErrDepartment);
+            Common.alertError(MsgResource.requireDepartmentName);
             return;
         }
         var ajax = new Ajax.Request('../Handler/UpdateDepartment.ashx', {
@@ -19,7 +19,7 @@
                 if (strdata.responseText == 'Ok') {
                     isUpdate = true;
                     $("errMsg").className = "done";
-                    Common.alertSuccess(top.fMenu.Msg.UpdateSucc);
+                    Common.alertSuccess(MsgResource.updateSuccess);
                     setTimeout("parent.ibcWnd.close();", 2000);
                 }
                 else {

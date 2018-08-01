@@ -21,6 +21,9 @@ public partial class Edit12BetDomain : IBCPage
         TemplateHandler.Assign(ref list, "12BetDomainName", _12BetDomainName);
         TemplateHandler.Assign(ref list, "ic-ssl", CastAide.AsBoolean(Request["ssl"]) ? "ic-check" : "ic-uncheck");
 
+        TemplateHandler.Assign(ref list, "requireDomain", Resources.Lang.ErrAffDomain);
+        TemplateHandler.Assign(ref list, "updateSuccess", Resources.Lang.ErrUpdateSucc);
+
         this.HtmlContent = list;
     }
 }

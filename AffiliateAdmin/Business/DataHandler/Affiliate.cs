@@ -85,20 +85,15 @@ namespace DataHandler
             return DbHelper.Execute(criteria.SpName, DBType.AFFILIATE_12BET, hsParam);
         }
 
-        public static DataTable SelAffInfo(int intCustId, ref string strMinCheque, ref string strMinMoneyBooker, ref string strMinNetteller, ref string strMinWire, ref string strMinPlayer)
+        public static DataTable SelAffInfo(int intCustId, ref string strMinMoneyBooker, ref string strMinNetteller, ref string strMinWire, ref string strMinPlayer)
         {
-            //Hashtable hsParam = new Hashtable();
-            //hsParam.Add("custid", intCustId);
-            //return DbHelper.Execute("Aff_CustomerSelEditAffiliate", hsParam, DBType.MAIN).ResultSet.Tables[0];
             Hashtable hsParam = new Hashtable();
             hsParam.Add("affid", intCustId);
             hsParam.Add("aff_minwire", "0");
             hsParam.Add("aff_minneteller", "0");
-            hsParam.Add("aff_mincheque", "0");
             hsParam.Add("aff_minmoneybookers", "0");
             hsParam.Add("aff_minplayer", "0");
             DbResult result = DbHelper.Execute("Aff_AffiliateSelEditInfo_xtest", DBType.AFFILIATE_12BET, hsParam);
-            strMinCheque = NumberFormat.DecFormat(result.Outputs["aff_mincheque"], 0);
             strMinMoneyBooker = NumberFormat.DecFormat(result.Outputs["aff_minmoneybookers"], 0);
             strMinNetteller = NumberFormat.DecFormat(result.Outputs["aff_minneteller"], 0);
             strMinWire = NumberFormat.DecFormat(result.Outputs["aff_minwire"], 0);
@@ -118,8 +113,7 @@ namespace DataHandler
             string strEmail, string strPhone, string strAddress, string strCity, string strState, string strPostal,
             string strLang, string strUrl, string strMoreUrl, string strNoSiteDesc, string strPlayerUserName, string strPayment,
             string strNetellerId, string strMoneyBookerEmail, string strBankName, string strBankAddress, string strSwiftCode, string strAccName,
-            string strAccNo, string strCheque_FullName, string strCheque_Address, string strCheque_City, string strCheque_State,
-            string strCheque_Postal, string strCheque_Country, string strEmailFormat, string contactApps, ref int intErrCode, ref string strErrMsg)
+            string strAccNo, string strEmailFormat, string contactApps, ref int intErrCode, ref string strErrMsg)
         {
             Hashtable hsParam = new Hashtable();
             hsParam.Add("affid", intAffId);
@@ -151,12 +145,6 @@ namespace DataHandler
             hsParam.Add("wire_swiftcode", HttpContext.Current.Server.HtmlEncode(strSwiftCode));
             hsParam.Add("wire_accountname", HttpContext.Current.Server.HtmlEncode(strAccName));
             hsParam.Add("wire_accountno", HttpContext.Current.Server.HtmlEncode(strAccNo));
-            hsParam.Add("cheque_fullname", HttpContext.Current.Server.HtmlEncode(strCheque_FullName));
-            hsParam.Add("cheque_address", HttpContext.Current.Server.HtmlEncode(strCheque_Address));
-            hsParam.Add("cheque_city", HttpContext.Current.Server.HtmlEncode(strCheque_City));
-            hsParam.Add("cheque_state", HttpContext.Current.Server.HtmlEncode(strCheque_State));
-            hsParam.Add("cheque_postal", HttpContext.Current.Server.HtmlEncode(strCheque_Postal));
-            hsParam.Add("cheque_country", HttpContext.Current.Server.HtmlEncode(strCheque_Country));
             if (strEmailFormat == "0" || strEmailFormat == "1")
                 hsParam.Add("emailformat", strEmailFormat == "0" ? false : true);
             //endcombine

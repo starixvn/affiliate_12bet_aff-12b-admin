@@ -46,7 +46,7 @@
             arrItem.clear();            
             if($('chkGetAll').checked == false && ($("fdate").value == "" || $("tdate").value == ""))
             {               
-               arrError.push(top.fMenu.Msg.ErrDate);                           
+                arrError.push(MsgResource.errDate);
                Common.alertError(arrError);
                return false;
            }

@@ -15,8 +15,8 @@
     var arrItem = new Array();
     var arrError = new Array();
     function ShowMethod() {
-        var divs = $('divPlayer', 'divNeteller', 'divMoneybookers', 'divWire', 'divCheque');
-        var spans = $('spPlayer', 'spNeteller', 'spMoneybookers', 'spWire', 'spCheque');
+        var divs = $('divPlayer', 'divNeteller', 'divMoneybookers', 'divWire');
+        var spans = $('spPlayer', 'spNeteller', 'spMoneybookers', 'spWire');
         for (i = 0; i < 4; i++) {
             divs[i].hide();
             spans[i].className = "hide";
@@ -80,47 +80,47 @@
     }
     function CheckSuccess() {
         if (Common.isEmpty($('txtFName').value)) {
-            arrError.push(top.fMenu.Msg.FName);
+            arrError.push(MsgResource.FName);
             arrItem.push("txtFName");
         }
         if (Common.isEmpty($('txtLName').value)) {
-            arrError.push(top.fMenu.Msg.LName);
+            arrError.push(MsgResource.LName);
             arrItem.push("txtLName");
         }
         if (!document.getElementsByName("rdGender")[0].checked) {
             if (!document.getElementsByName("rdGender")[1].checked) {
                 arrItem.push("rdGender");
-                arrError.push(top.fMenu.Msg.ErrGender);
+                arrError.push(MsgResource.ErrGender);
             }
         }
         if (Common.isEmpty($('txtAddress').value)) {
-            arrError.push(top.fMenu.Msg.Address);
+            arrError.push(MsgResource.Address);
             arrItem.push("txtAddress");
         }
         if (Common.isEmpty($('txtCity').value)) {
-            arrError.push(top.fMenu.Msg.City);
+            arrError.push(MsgResource.City);
             arrItem.push("txtCity");
         }
 
         if (Common.isEmpty($('txtPost').value)) {
-            arrError.push(top.fMenu.Msg.PostCode);
+            arrError.push(MsgResource.PostCode);
             arrItem.push("txtPost");
         }
         if (Common.isEmpty($('selCountry').value)) {
-            arrError.push(top.fMenu.Msg.Country);
+            arrError.push(MsgResource.Country);
             arrItem.push("selCountry");
         }
         if (!Common.checkMail($('txtEmail').value)) {
-            arrError.push(top.fMenu.Msg.EmailValid);
+            arrError.push(MsgResource.EmailValid);
             arrItem.push("txtEmail");
         }
         if (Common.isEmpty($('txtNumber').value)) {
-            arrError.push(top.fMenu.Msg.ContactNumber);
+            arrError.push(MsgResource.ContactNumber);
             arrItem.push("txtNumber");
         }
 
         if (Common.isEmpty($("txtSiteUrl").value) && isEmpty($("txtNoWebsite").value)) {
-            arrError.push(top.fMenu.Msg.SiteUrl);
+            arrError.push(MsgResource.SiteUrl);
             arrItem.push("txtSiteUrl");
         }
 
@@ -130,7 +130,7 @@
         var hasManyContactApp = contactApp2 !== null;
         if (hasManyContactApp && Common.isEmpty(contactApp1.value) && Common.isEmpty(contactApp2.value) ||
             !hasManyContactApp && contactApp1 && Common.isEmpty(contactApp1.value)) {
-            arrError.push(top.fMenu.Msg.ContactApp);
+            arrError.push(MsgResource.ContactApp);
             arrItem.push(contactApp1Id);
         }
 
@@ -158,9 +158,6 @@
             case "Wire":
                 checkWire();
                 break;
-            case "Cheque":
-                checkCheque();
-                break;
             default:
                 check12Bet();
                 break;
@@ -175,66 +172,44 @@
     }
     function check12Bet() {
         if (Common.isEmpty($('txtBet12UserName').value)) {
-            arrError.push(top.fMenu.Msg.UserName12Bet);
+            arrError.push(MsgResource.UserName12Bet);
             arrItem.push("txtBet12UserName");
         }
     }
     function checkNeteller() {
         if (Common.isEmpty($('txtNetellerAccId').value)) {
-            arrError.push(top.fMenu.Msg.Neteller);
+            arrError.push(MsgResource.Neteller);
             arrItem.push("txtNetellerAccId");
         }
     }
     function checkMoneyBooker() {
         if (Common.isEmpty($('txtMoneyBookerEmail').value)) {
-            arrError.push(top.fMenu.Msg.Moneybooker);
+            arrError.push(MsgResource.Moneybooker);
             arrItem.push("txtMoneyBookerEmail");
         }
         else {
             if (!Common.checkMail($('txtMoneyBookerEmail').value)) {
-                arrError.push(top.fMenu.Msg.MoneybookerValid);
+                arrError.push(MsgResource.MoneybookerValid);
                 arrItem.push("txtMoneyBookerEmail");
             }
         }
     }
     function checkWire() {
         if (Common.isEmpty($('txtBankName').value)) {
-            arrError.push(top.fMenu.Msg.BankName);
+            arrError.push(MsgResource.BankName);
             arrItem.push("txtBankName");
         }
         if (Common.isEmpty($('txtBankAddress').value)) {
-            arrError.push(top.fMenu.Msg.BankAddress);
+            arrError.push(MsgResource.BankAddress);
             arrItem.push("txtBankAddress");
         }
         if (Common.isEmpty($('txtBankAccName').value)) {
-            arrError.push(top.fMenu.Msg.BankAccName);
+            arrError.push(MsgResource.BankAccName);
             arrItem.push("txtBankAccName");
         }
         if (Common.isEmpty($('txtBankAccNumber').value)) {
-            arrError.push(top.fMenu.Msg.BankAccNumber);
+            arrError.push(MsgResource.BankAccNumber);
             arrItem.push("txtBankAccNumber");
-        }
-    }
-    function checkCheque() {
-        if (Common.isEmpty($('txtChequeFullName').value)) {
-            arrError.push(top.fMenu.Msg.ChequeFullname);
-            arrItem.push("txtChequeFullName");
-        }
-        if (Common.isEmpty($('txtChequeAddress').value)) {
-            arrError.push(top.fMenu.Msg.ChequeAddress);
-            arrItem.push("txtChequeAddress");
-        }
-        if (Common.isEmpty($('txtChequeCity').value)) {
-            arrError.push(top.fMenu.Msg.ChequeCity);
-            arrItem.push("txtChequeCity");
-        }
-        if (Common.isEmpty($('txtChequeState').value)) {
-            arrError.push(top.fMenu.Msg.ChequeState);
-            arrItem.push("txtChequeState");
-        }
-        if (Common.isEmpty($('txtChequePostcode').value)) {
-            arrError.push(top.fMenu.Msg.ChequePostcode);
-            arrItem.push("txtChequePostcode");
         }
     }
     function CloseClick() {

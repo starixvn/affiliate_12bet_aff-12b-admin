@@ -46,6 +46,8 @@ public partial class PaymentRequest : BasePage
         TemplateHandler.Assign(ref strTpl, "searchby", Resources.Lang.SearchBy);
         TemplateHandler.Assign(ref strTpl, "others", Resources.Lang.Others);
 
+        TemplateHandler.Assign(ref strTpl, "errDate", Resources.Lang.ErrDate);
+
         #endregion assign text
 
         string strSearchBy = string.Empty;

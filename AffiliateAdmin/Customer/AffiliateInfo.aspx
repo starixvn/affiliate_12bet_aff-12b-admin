@@ -10,10 +10,6 @@
     var minHeight = 510;
     window.onresize = function () { setHeight(); };
     window.onload = function () {
-        if (parent.top.frames['fMenu'] !== undefined) {
-            parent.top.frames['fMenu'].ActiveMenu('menu2');
-        }
-
         if ($("hdNoInfo").value == "1")
             window.onresize = "";
         else {

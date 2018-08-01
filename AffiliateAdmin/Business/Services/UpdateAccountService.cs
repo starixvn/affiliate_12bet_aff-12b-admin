@@ -40,14 +40,12 @@ namespace AffiliateAdmin.Business.Services
                 //Check 12BetUsername Correct or not
                 string strPayment = context.Request.Form["slPayment"];
                 string strPlayerUserName = context.Request.Form["txtBet12UserName"];
-                string errMsg = string.Empty;
 
                 if (!AppSettings.LocalTest && strPayment.Equals("Player", StringComparison.OrdinalIgnoreCase))
                 {
                     DepositCustomerInfo customer = DataHandler.Affiliate.Get12BetPlayerDepositInfo(strPlayerUserName);
                     if (customer.Success != 0)
-                    { /* There was an error when get customer info in Deposit DB */
-                      //  strErrorMsg = "There was an error when get customer info in Deposit DB";
+                    {
                         context.Response.Write("<script type='text/javascript'>parent.UpdateErr(\"" + Resources.Lang.errDepositDBConnectFailed + "\", \"txtBet12UserName\");</script>");
                         return;
                     }
@@ -73,12 +71,6 @@ namespace AffiliateAdmin.Business.Services
                 string strSwiftCode = context.Request.Form["txtBankCode"];
                 string strAccName = context.Request.Form["txtBankAccName"];
                 string strAccNo = context.Request.Form["txtBankAccNumber"];
-                string strCheque_FullName = context.Request.Form["txtChequeFullName"];
-                string strCheque_Address = context.Request.Form["txtChequeAddress"];
-                string strCheque_City = context.Request.Form["txtChequeCity"];
-                string strCheque_State = context.Request.Form["txtChequeState"];
-                string strCheque_Postal = context.Request.Form["txtChequePostcode"];
-                string strCheque_Country = context.Request.Form["txtChequeCountry"];
                 //Remove Prefer language and set to default English
                 string strUsername = context.Request.Form["hdUsername"];
                 string strFname = context.Request.Form["txtFName"];
@@ -91,8 +83,7 @@ namespace AffiliateAdmin.Business.Services
                 DataHandler.Affiliate.UpdateUser(intCustId, AppSettings.Session.CustID, strFname, strLname, strGender, strCountry,
                     strEmail, strPhone, strAddress, strCity, strState, strPostCode, Common.GetLangChar(),
                     strURL, strMoreUrl, strNoSiteDesc, strPlayerUserName, strPayment, strNetellerAccId, strMoneyBookerEmail,
-                    strBankName, strBankAddress, strSwiftCode, strAccName, strAccNo, strCheque_FullName, strCheque_Address,
-                    strCheque_City, strCheque_State, strCheque_Postal, strCheque_Country, strEmailFormat, contactAppJson,
+                    strBankName, strBankAddress, strSwiftCode, strAccName, strAccNo, strEmailFormat, contactAppJson,
                     ref intErrCode, ref strErrMsg);
                 if (intErrCode != 0)
                 {

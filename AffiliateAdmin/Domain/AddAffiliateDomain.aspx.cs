@@ -14,7 +14,9 @@ public partial class AddAffiliateDomain : IBCPage
         TemplateHandler.Assign(ref list, "Status", Resources.Lang.Status);
         TemplateHandler.Assign(ref list, "submit", Resources.Lang.Add);
         TemplateHandler.Assign(ref list, "cancel", Resources.Lang.Cancel);
-        this.HtmlContent = list;
 
+        TemplateHandler.Assign(ref list, "requireDomain", Resources.Lang.ErrAffDomain);
+
+        this.HtmlContent = list;
     }
 }

@@ -17,7 +17,7 @@
    {
        if ($('txt12betdomain').value.trim() == '')
         {
-            Common.alertError(top.fMenu.Msg._12BetDomain);
+           Common.alertError(MsgResource.requireDomain);
             $('txt12betdomain').focus();
             return false;
         }

@@ -18,7 +18,7 @@
    {
        if ($("txtaffdomain").value.trim() == "")
         {
-           Common.alertError(top.fMenu.Msg.AffDomain);
+           Common.alertError(MsgResource.requireDomain);
             return;
        }
        Common.delayReloadPage1();
@@ -34,8 +34,7 @@
                 if (strdata.responseText == 'Ok') {
                     isUpdate = true;
                     $("errMsg").className = "done";
-                    console.log(top.fMenu);
-                    Common.alertSuccess(top.fMenu.Msg.UpdateSucc);
+                    Common.alertSuccess(MsgResource.updateSuccess);
                     setTimeout("parent.ibcWnd.close();", 2000);
                 }
                 else {

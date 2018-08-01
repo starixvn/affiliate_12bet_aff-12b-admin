@@ -19,7 +19,7 @@
 
     function checkinput() {
         if ($('txtaffdomain').value.trim() == '') {
-            Common.alertError(top.fMenu.Msg.AffDomain);
+            Common.alertError(MsgResource.requireDomain);
             $('txtaffdomain').focus();
             return false;
         }

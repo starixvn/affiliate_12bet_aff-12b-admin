@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web;
-using DNAide.Web;
 using AffiliateAdmin.Business.DataAccess;
+using DNAide.Web;
 public partial class EditDepartment : IBCPage
 {
     protected void Page_Load(object sender, EventArgs e)
@@ -14,13 +14,16 @@ public partial class EditDepartment : IBCPage
         TemplateHandler.Assign(ref list, "submit", Resources.Lang.Submit);
         TemplateHandler.Assign(ref list, "cancel", Resources.Lang.Cancel);
         TemplateHandler.Assign(ref list, "depid", depid);
-        
+
+        TemplateHandler.Assign(ref list, "requireDepartmentName", depid);
+        TemplateHandler.Assign(ref list, "updateSuccess", depid);
+
         DbResult dbr = null;
         dbr = DataHandler.UserControl.GetListDepartment(depid);
         if (dbr.ResultSet.Tables[0].Rows.Count > 0)
         {
             TemplateHandler.Assign(ref list, "DepartmentName", dbr.ResultSet.Tables[0].Rows[0]["groupname"]);
-            TemplateHandler.Assign(ref list, "DesciptionName", dbr.ResultSet.Tables[0].Rows[0]["groupdesc"]);             
+            TemplateHandler.Assign(ref list, "DesciptionName", dbr.ResultSet.Tables[0].Rows[0]["groupdesc"]);
         }
         this.HtmlContent = list;
     }

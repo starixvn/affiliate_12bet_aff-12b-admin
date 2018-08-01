@@ -24,6 +24,9 @@ public partial class EditAffiliateDomain : IBCPage
         TemplateHandler.Assign(ref list, "ic-status", CastAide.AsBoolean(Request["status"]) ? "ic-check" : "ic-uncheck");
         TemplateHandler.Assign(ref list, "ic-ssl", CastAide.AsBoolean(Request["ssl"]) ? "ic-check" : "ic-uncheck");
 
+        TemplateHandler.Assign(ref list, "requireDomain", Resources.Lang.ErrAffDomain);
+        TemplateHandler.Assign(ref list, "updateSuccess", Resources.Lang.ErrUpdateSucc);
+
         this.HtmlContent = list;
     }
 }
