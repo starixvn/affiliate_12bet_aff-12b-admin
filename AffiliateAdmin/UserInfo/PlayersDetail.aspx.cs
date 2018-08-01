@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Text;
 using System.Data;
-using DNAide.Web;
+using System.Text;
 using AffiliateAdmin.Business.DataAccess;
 using DNAide.Core;
-using DataHandler;
+using DNAide.Web;
 
 public partial class PlayersDetail : IBCPage
 {
@@ -37,19 +36,20 @@ public partial class PlayersDetail : IBCPage
         TemplateHandler.Assign(ref strTpl, "month-val", strMonth);
         TemplateHandler.Assign(ref strTpl, "slSports", Common.GenListSportType(sporttype));
 
-        int pageIndex = 1, totalPages = 0, pageSize = 0;
+        int pageIndex = 1, pageSize = 0, totalRows = 0;
         pageIndex = CastAide.AsInt32(Request["page"], 1);
         pageSize = CastAide.AsInt32(Request["pagesize"], 200);
         TemplateHandler.Assign(ref strTpl, "page-val", pageIndex);
         TemplateHandler.Assign(ref strTpl, "pagesize", pageSize);
         TemplateHandler.Assign(ref strTpl, "width", width);
 
-        DbResult result = DataHandler.Affiliate.SelPlayersDetail(intCustId, sporttype, strMonth, pageIndex, pageSize, ref totalPages);
-        
+        DbResult result = DataHandler.Affiliate.SelPlayersDetail(intCustId, sporttype, strMonth, pageIndex, pageSize, ref totalRows);
+        var totalPages = (totalRows / pageSize) + (totalRows % pageSize == 0 ? 0 : 1);
+
         StringBuilder strBuild = new StringBuilder();
-        if (result.ResultSet.Tables.Count>0 && result.ResultSet.Tables[0].Rows.Count > 0)
+        if (result.ResultSet.Tables.Count > 0 && result.ResultSet.Tables[0].Rows.Count > 0)
         {
-	    DataTable dtb = result.ResultSet.Tables[0];	
+            DataTable dtb = result.ResultSet.Tables[0];
             //Assign row content
             string strContent = TemplateHandler.CopyBlock(strTpl, "content");
             //  decimal dcTurnover = 0, dcWinlost = 0, dcDeposit = 0;
@@ -86,8 +86,8 @@ public partial class PlayersDetail : IBCPage
             strBuild.Append(Common.NoInfo(6));
         }
 
-        TemplateHandler.ReplaceBlock(ref strTpl, "content", strBuild.ToString());       
-       
+        TemplateHandler.ReplaceBlock(ref strTpl, "content", strBuild.ToString());
+
         #region Load SubPage
         TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.AffApprovedLink, SubMenu.AffApprovedText, 3, string.IsNullOrEmpty(Request["month"]) ? Resources.Lang.All : CastAide.AsDateTime(Request["month"]).ToString("MMMM yyyy"), Resources.Lang.PlayersDetail, "i_customer.png"));
         #endregion

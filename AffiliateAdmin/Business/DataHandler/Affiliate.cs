@@ -306,7 +306,7 @@ namespace DataHandler
         }
 
         //@Vinh
-        public static DbResult SelPlayersDetail(int CustId, int sporttype, string strMonth, int pageIndex, int pageSize, ref int totalPages)
+        public static DbResult SelPlayersDetail(int CustId, int sporttype, string strMonth, int pageIndex, int pageSize, ref int totalRows)
         {
             Hashtable p = new Hashtable();
             p.Add("affid", CustId);
@@ -314,9 +314,9 @@ namespace DataHandler
             if (!string.IsNullOrEmpty(strMonth)) p.Add("monthdate", CastAide.AsDateTime(strMonth));
             p.Add("pageindex", pageIndex);
             p.Add("pagesize", pageSize); // hardcode pagesize for member/player list
-            p.Add("totalpages", 0);
+            p.Add("NRows", 0);
             DbResult rs = DbHelper.Execute("Aff_Admin_PlayersDetail_Sel_xtest", DBType.AFFILIATE_12BET, p);
-            totalPages = CastAide.AsInt32(rs.Outputs["totalpages"], 1);
+            totalRows = CastAide.AsInt32(rs.Outputs["NRows"], 1);
             return rs;
         }
 
