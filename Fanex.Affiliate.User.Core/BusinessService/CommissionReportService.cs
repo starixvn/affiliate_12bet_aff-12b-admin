@@ -24,7 +24,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             {
                 return string.Empty;
             }
-            return type.Value == 0 ? $"({Lang.Temporary})" : $"({Lang.Uncalculated})";
+            return type.Value == 0 ? $" ({Lang.Temporary})" : $" ({Lang.Uncalculated})";
         }
         public CommissionReportViewModel GenerateCommissionReportData(int affId, DateTime winlostdate)
         {
@@ -33,12 +33,12 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             var byMonth =
                     (from n in rawData
                      group n by n.MonthDate into g
-                     orderby g.Key
+                     orderby g.Key descending
                      select new AffiliateCommisionByMonth
                      {
                          Month = g.Key.Month,
                          DiplayMonth = g.Key.ToString("MMM-yyyy") + GetCalculatedNote(g.FirstOrDefault()?.CalculatedType),
-                         Data = g.FirstOrDefault(),
+                         Data = g.FirstOrDefault(i => i.ProductId == 0),
                          ProductData = g.Where(i => i.ProductId > 0).ToList()
 
                      }).ToList();

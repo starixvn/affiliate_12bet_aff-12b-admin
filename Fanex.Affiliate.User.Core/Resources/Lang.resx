@@ -3217,4 +3217,19 @@ One of our Affiliate Accounts Manager will be contacting you by email within 3 b
   <data name="Uncalculated" xml:space="preserve">
     <value>Uncalculated</value>
   </data>
+  <data name="BankingFees" xml:space="preserve">
+    <value>Banking Fees</value>
+  </data>
+  <data name="CommRate" xml:space="preserve">
+    <value>Comm. Rate</value>
+  </data>
+  <data name="GrossWinLoss" xml:space="preserve">
+    <value>Gross Win Loss</value>
+  </data>
+  <data name="OperationalFee" xml:space="preserve">
+    <value>Operational Fee</value>
+  </data>
+  <data name="PlatformFee" xml:space="preserve">
+    <value>Platform Fee</value>
+  </data>
 </root>

@@ -864,6 +864,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Banking Fees.
+        /// </summary>
+        public static string BankingFees {
+            get {
+                return ResourceManager.GetString("BankingFees", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bank Name.
         /// </summary>
         public static string BankName {
@@ -1715,6 +1724,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string CommPercent {
             get {
                 return ResourceManager.GetString("CommPercent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Comm. Rate.
+        /// </summary>
+        public static string CommRate {
+            get {
+                return ResourceManager.GetString("CommRate", resourceCulture);
             }
         }
         
@@ -3471,6 +3489,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string GrossEarnings {
             get {
                 return ResourceManager.GetString("GrossEarnings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gross Win Loss.
+        /// </summary>
+        public static string GrossWinLoss {
+            get {
+                return ResourceManager.GetString("GrossWinLoss", resourceCulture);
             }
         }
         
@@ -5729,6 +5756,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Operational Fee.
+        /// </summary>
+        public static string OperationalFee {
+            get {
+                return ResourceManager.GetString("OperationalFee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Original.
         /// </summary>
         public static string Original {
@@ -6121,6 +6157,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string PlainText {
             get {
                 return ResourceManager.GetString("PlainText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Platform Fee.
+        /// </summary>
+        public static string PlatformFee {
+            get {
+                return ResourceManager.GetString("PlatformFee", resourceCulture);
             }
         }
         
