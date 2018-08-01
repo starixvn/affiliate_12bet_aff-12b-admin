@@ -132,5 +132,11 @@
       "www/source/js/lib/jquery-3.3.1.min.js",
       "www/source/js/components/jquery.extension.js"
     ]
+  },
+  {
+    "outputFileName": "www/build/styles/css/pages/commissionreport.min.css",
+    "inputFiles": [
+      "www/build/styles/css/pages/commissionreport.css"
+    ]
   }
 ]

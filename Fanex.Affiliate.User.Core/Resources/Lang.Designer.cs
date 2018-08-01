@@ -19,7 +19,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Lang {
@@ -1215,6 +1215,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Calculated.
+        /// </summary>
+        public static string Calculated {
+            get {
+                return ResourceManager.GetString("Calculated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cambodia .
         /// </summary>
         public static string Cambodia {
@@ -1679,6 +1688,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string CommissionPayment {
             get {
                 return ResourceManager.GetString("CommissionPayment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Commission Report.
+        /// </summary>
+        public static string CommissionReport {
+            get {
+                return ResourceManager.GetString("CommissionReport", resourceCulture);
             }
         }
         
@@ -7503,6 +7521,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Temporary.
+        /// </summary>
+        public static string Temporary {
+            get {
+                return ResourceManager.GetString("Temporary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tennis.
         /// </summary>
         public static string Tennis {
@@ -8131,6 +8158,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Ukraine {
             get {
                 return ResourceManager.GetString("Ukraine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uncalculated.
+        /// </summary>
+        public static string Uncalculated {
+            get {
+                return ResourceManager.GetString("Uncalculated", resourceCulture);
             }
         }
         

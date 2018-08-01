@@ -64,7 +64,7 @@ namespace Fanex.Affiliate.User.Site
                 assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(i => !i.IsDynamic).ToArray();
             }
 
-            return assemblies = assemblies.Where(x => x.FullName.StartsWith("Fanex.Affiliate.User", StringComparison.InvariantCulture))
+            return  assemblies.Where(x => x.FullName.StartsWith("Fanex.Affiliate.User", StringComparison.InvariantCulture))
                 .ToArray();
         }
 
@@ -91,7 +91,6 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterType<MailProcessor>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<StatementHistoryRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<BetListRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<CommissionRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<PaymentRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<AccountService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<PaymentService>().AsImplementedInterfaces().InstancePerLifetimeScope();
@@ -101,6 +100,8 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterType<ServiceSoapClient>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<MemberInfoServiceWrapper>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<MemberTransactionService>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<CommissionReportRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<CommissionReportService>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
     }
 }

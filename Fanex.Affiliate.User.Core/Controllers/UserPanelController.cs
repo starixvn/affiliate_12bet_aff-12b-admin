@@ -14,9 +14,9 @@
         private readonly IMarketingService _marketingService;
         private readonly IStatisticsRepository _statisticsRepository;
         private readonly IStatementHistoryRepository _statementHistoryRepository;
-        private readonly ICommissionRepository _commissionRepository;
         private readonly IPaymentService _paymentService;
-
+        private readonly ICommissionReportService _commissionReportService;
+           
         public UserPanelController(
             ISessionService sessionService,
             IAppSetting appSetting,
@@ -24,16 +24,17 @@
             IMarketingService marketingService,
             IStatisticsRepository statisticsRepository,
             IStatementHistoryRepository statementHistoryRepository,
-            ICommissionRepository commissionRepository,
-            IPaymentService paymentService)
+            IPaymentService paymentService,
+            ICommissionReportService commissionReportService
+            )
             : base(sessionService, appSetting)
         {
             _accountRepository = accountRepository;
             _marketingService = marketingService;
             _statisticsRepository = statisticsRepository;
             _statementHistoryRepository = statementHistoryRepository;
-            _commissionRepository = commissionRepository;
             _paymentService = paymentService;
+            _commissionReportService = commissionReportService;
         }
 
         [HttpGet]

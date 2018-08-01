@@ -50,6 +50,7 @@
     "sourceMap": false
   },
   {
+
     "outputFile": "www/build/js/user-panel.js",
     "inputFile": "www/source/js/pages/user-panel.js",
     "sourceMap": false
@@ -130,6 +131,18 @@
     "sourceMap": false
   },
   {
+    "outputFile": "www/build/styles/css/pages/commissionreport.css",
+    "inputFile": "www/source/styles/pages/commissionreport.scss",
+    "sourceMap": false
+  },
+  //end css
+  //js
+  {
+    "outputFile": "www/build/js/pages/commission-report.js",
+    "inputFile": "www/source/js/pages/commission-report.js",
+    "sourceMap": false
+  },
+  {
     "outputFile": "www/build/js/betlist.js",
     "inputFile": "www/source/js/pages/betlist.js",
     "sourceMap": false
@@ -169,4 +182,5 @@
     "inputFile": "www/source/js/pages/forgotpassword.js",
     "sourceMap": false
   }
+
 ]

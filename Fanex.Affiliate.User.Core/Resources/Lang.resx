@@ -3205,4 +3205,16 @@ One of our Affiliate Accounts Manager will be contacting you by email within 3 b
   <data name="EmailTitleSignUp" xml:space="preserve">
     <value>Your Application</value>
   </data>
+  <data name="CommissionReport" xml:space="preserve">
+    <value>Commission Report</value>
+  </data>
+  <data name="Calculated" xml:space="preserve">
+    <value>Calculated</value>
+  </data>
+  <data name="Temporary" xml:space="preserve">
+    <value>Temporary</value>
+  </data>
+  <data name="Uncalculated" xml:space="preserve">
+    <value>Uncalculated</value>
+  </data>
 </root>

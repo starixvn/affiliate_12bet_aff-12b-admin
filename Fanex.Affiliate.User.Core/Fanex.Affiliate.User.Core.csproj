@@ -177,7 +177,9 @@
   <ItemGroup>
     <Compile Include="BusinessService\AccountService.cs" />
     <Compile Include="BusinessService\AuthService.cs" />
+    <Compile Include="BusinessService\CommissionReportService.cs" />
     <Compile Include="BusinessService\ContactService.cs" />
+    <Compile Include="BusinessService\ICommissionReportService.cs" />
     <Compile Include="BusinessService\MemberTransactionService.cs" />
     <Compile Include="BusinessService\MemberInfoServiceWrapper.cs" />
     <Compile Include="BusinessService\EmailService.cs" />
@@ -197,6 +199,7 @@
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\NotifyController.cs" />
+    <Compile Include="Controllers\UserPanelController.CommissionReport.cs" />
     <Compile Include="CoreService\CookieService.cs" />
     <Compile Include="BusinessService\CryptographyService.cs" />
     <Compile Include="BusinessService\IAuthService.cs" />
@@ -244,6 +247,8 @@
     <Compile Include="DTO\Transaction.cs" />
     <Compile Include="DTO\UserInfo.cs" />
     <Compile Include="DTO\UserPanel\AccountOverviewStatistics.cs" />
+    <Compile Include="DTO\UserPanel\AffiliateCommisionByMonth.cs" />
+    <Compile Include="DTO\UserPanel\AffiliateCommission.cs" />
     <Compile Include="DTO\UserPanel\DailyEarning.cs" />
     <Compile Include="DTO\UserPanel\DailyEarningResult.cs" />
     <Compile Include="DTO\UserPanel\DepositAccountInfo.cs" />
@@ -321,11 +326,11 @@
     <Compile Include="Repository\BetList\IBetListRepository.cs" />
     <Compile Include="Repository\EmailHistoryRepository.cs" />
     <Compile Include="Repository\IEmailHistoryRepository.cs" />
-    <Compile Include="Repository\UserPanel\CommissionRepository.cs" />
+    <Compile Include="Repository\UserPanel\CommissionReportRepository.cs" />
+    <Compile Include="Repository\UserPanel\ICommissionReportRepository.cs" />
     <Compile Include="Repository\UserPanel\MemberRepository.cs" />
     <Compile Include="Repository\UserPanel\IMemberRepository.cs" />
     <Compile Include="Repository\UserPanel\NewsRepository.cs" />
-    <Compile Include="Repository\UserPanel\ICommissionRepository.cs" />
     <Compile Include="Repository\UserPanel\INewsRepository.cs" />
     <Compile Include="Repository\UserPanel\IPaymentRepository.cs" />
     <Compile Include="Repository\UserPanel\PaymentRepository.cs" />
@@ -481,6 +486,7 @@
     <Compile Include="ViewModels\LoginResultViewModel.cs" />
     <Compile Include="ViewModels\MemberTransactionViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\AccountOverviewViewModel.cs" />
+    <Compile Include="ViewModels\UserPanel\CommissionReportViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\DailyEarningDetailViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\DailyEarningViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\LatestHotNewViewModel.cs" />

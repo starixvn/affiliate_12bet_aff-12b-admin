@@ -22,7 +22,7 @@
             var viewModel = new AccountOverviewViewModel
             {
                 Statistics = _statisticsRepository.GetStatisticsOverview(param),
-                CommissionSettingList = _commissionRepository.GetCommissionSettingList(param.AffId, param.IsInternal),
+                CommissionSettingList = _accountRepository.GetCommissionSettingList(param.AffId, param.IsInternal),
                 SelectedMonth = param.MonthDate
             };
 

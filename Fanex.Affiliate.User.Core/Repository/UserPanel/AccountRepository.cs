@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.MetalModels;
@@ -210,5 +211,17 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
                 Message = signUpParam.ErrMsg
             };
         }
+
+        public IEnumerable<CommissionSetting> GetCommissionSettingList(int affId, bool isInternal)
+        {
+            const string uSpKey = "Aff_User_CommSetting_Sel";
+            var mode = isInternal ? DBMode.View : DBMode.Main;
+
+            using (var objectDb = new ObjectDBBuilder(uSpKey, mode))
+            {
+                return objectDb.DB.Query<CommissionSetting>(new { affId });
+            }
+        }
+
     }
 }

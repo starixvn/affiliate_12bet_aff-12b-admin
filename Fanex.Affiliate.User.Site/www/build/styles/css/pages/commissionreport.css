@@ -1,0 +1,17 @@
+﻿.custom-panel {
+  background-color: #F5F5F5;
+  border: 1px solid #A6A6A6;
+  border-radius: 0px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05); }
+  .custom-panel .panel-body {
+    padding: 8px; }
+  .custom-panel .form-inline {
+    margin-bottom: 0; }
+    .custom-panel .form-inline .form-control {
+      margin-bottom: 0; }
+
+.form-filter .form-group label {
+  display: inline;
+  margin-right: 2px; }
+

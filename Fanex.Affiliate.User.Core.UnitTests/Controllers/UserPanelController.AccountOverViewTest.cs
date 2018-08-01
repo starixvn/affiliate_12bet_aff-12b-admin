@@ -32,12 +32,13 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             statisticsRepository.Setup(s => s.GetStatisticsOverview(It.IsAny<StatisticsOverviewParam>()))
                                 .Returns(new AccountOverviewStatistics());
 
-            var commissionRepository = new Mock<ICommissionRepository>();
-            commissionRepository.Setup(c => c.GetCommissionSettingList(Constant.DefaultAffId, false))
+            var accountOverViewRepository = new Mock<IAccountRepository>();
+            accountOverViewRepository.Setup(c => c.GetCommissionSettingList(Constant.DefaultAffId, false))
                                 .Returns(new List<CommissionSetting>());
+
             var controller = MockingHelper.GetUserPanelController(
                 statisticsRepository: statisticsRepository.Object,
-                commissionRepository: commissionRepository.Object);
+                accountRepository: accountOverViewRepository.Object);
 
             var expectedResult = JsonConvert.SerializeObject(viewModel);
 

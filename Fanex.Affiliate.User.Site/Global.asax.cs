@@ -17,14 +17,12 @@ namespace Fanex.Affiliate.User.Site
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             DbSettingProviderManager
               .StartNewSession()
               .Use(new OldConnectionStringProvider())
               .UseDefaultDbSettingProvider(
                 resourcePath: @"~\App_Data\SpConfig\SpName.xml",
-                ignoreRedundantParameters: false,
                 enableWatching: true)
               .Run();
         }

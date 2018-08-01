@@ -6,7 +6,7 @@ var ReCheckIn = (function ($) {
 
     var _me = {
         initialize: function initialize() {
-            _handler = setInterval(_me.reCheckin, 30000);
+            _handler = setInterval(_me.reCheckin, 3000);
         },
 
         reCheckin: function reCheckin() {

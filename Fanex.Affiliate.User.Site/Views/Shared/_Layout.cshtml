@@ -1,7 +1,9 @@
 ﻿@using Fanex.Affiliate.User.Core.CoreService
 @using Fanex.Affiliate.User.Core.Constants
+@using Fanex.Affiliate.User.Core.Utilities
 @{
     var sessionService = DependencyResolver.Current.GetService<ISessionService>();
+    var settingService = DependencyResolver.Current.GetService<IAppSetting>();
     var userSession = sessionService.UserSession;
     var languageList = SystemLanguage.LanguageList.Where(l => !l.Code.Equals("en-GB") && !l.Code.Equals("es-ES"));
     var currentLanguage = languageList.FirstOrDefault(l => l.Code.Equals(sessionService.CurrentLanguage))?.NativeName;
@@ -22,7 +24,7 @@
     <meta name="robots" content="index,follow,archive" />
 
     <link href="~/www/build/styles/css/materialdesignicons.min.css" rel="stylesheet" />
-    <link href="~/www/build/styles/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="@Url.RenderLink("~/www/build/styles/css/main.css")" rel="stylesheet" />
     @RenderSection("styles", required: false)
 </head>
@@ -37,9 +39,9 @@
                     <div class="user-signup">
                         @if (!HttpContext.Current.User.Identity.IsAuthenticated || userSession == null)
                         {
-                        <div class="sign-up">
-                            <a href="@Url.Action("Index", "Signup")" class="btn btn-signup"><span class="icon glyphicon glyphicon-pencil"></span>@Lang.SignUpAffiliate</a>
-                        </div>
+                            <div class="sign-up">
+                                <a href="@Url.Action("Index", "Signup")" class="btn btn-signup"><span class="icon glyphicon glyphicon-pencil"></span>@Lang.SignUpAffiliate</a>
+                            </div>
                         }
 
                         <div class="language-container">
@@ -53,9 +55,9 @@
                                     <ul class="list-unstyled language-list">
                                         @foreach (var language in languageList)
                                         {
-                                        <li>
-                                            <a href="javascript:;" class="language-item" data-option="@language.Code"><i class="flag flag-@language.Code"></i>@language.NativeName</a>
-                                        </li>
+                                            <li>
+                                                <a href="javascript:;" class="language-item" data-option="@language.Code"><i class="flag flag-@language.Code"></i>@language.NativeName</a>
+                                            </li>
                                         }
                                     </ul>
                                 </div>
@@ -181,12 +183,14 @@
 
     <input type="hidden" id="RootUrl" value="@Url.Content("~")" />
 
-    <script src="~/www/build/js/lib/jquery-3.3.1.min.js"></script>
-    <script src="~/www/build/js/lib/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="@Url.RenderLink("~/www/build/js/site.js")"></script>
     <script src="@Url.RenderLink("~/www/build/js/layout.js")"></script>
 
-    @if (userSession != null)
+    @if (userSession != null && settingService.IsProduction)
     {
         <script src="@Url.RenderLink("~/www/build/js/recheckin.js")"></script>
     }

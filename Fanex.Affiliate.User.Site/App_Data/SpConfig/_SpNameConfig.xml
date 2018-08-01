@@ -17,4 +17,6 @@
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_MemberList_Sel" Suffix="_xtest"></item>
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_User_Affiliate_Ins" Suffix="_xtest"></item>
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_ProductList_Sel" Suffix="_xtest"></item>
+    <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_User_Rpt_Commission" Suffix="_xtest"></item>
+
 </Root>

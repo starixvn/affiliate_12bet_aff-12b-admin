@@ -39,11 +39,13 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
             IMarketingService marketingService = null,
             IStatisticsRepository statisticsRepository = null,
             IStatementHistoryRepository statementHistoryRepository = null,
-            ICommissionRepository commissionRepository = null,
             IPaymentRepository paymentRepository = null,
             IEmailService emailService = null,
             IAccountService accountService = null,
-            IPaymentService paymentService = null)
+            IPaymentService paymentService = null,
+            ICommissionReportService commissionReportService = null
+
+            )
         {
             accountRepository = accountRepository ?? Mock.Of<IAccountRepository>();
             accountService = accountService ?? Mock.Of<IAccountService>();
@@ -62,8 +64,9 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
                 marketingService ?? Mock.Of<IMarketingService>(),
                 statisticsRepository ?? Mock.Of<IStatisticsRepository>(),
                 statementHistoryRepository ?? Mock.Of<IStatementHistoryRepository>(),
-                commissionRepository ?? Mock.Of<ICommissionRepository>(),
-                paymentService);
+                paymentService,
+                commissionReportService ?? Mock.Of<ICommissionReportService>()
+                );
 
             var request = GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();

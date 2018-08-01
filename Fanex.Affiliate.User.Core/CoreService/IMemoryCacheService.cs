@@ -10,6 +10,6 @@
 
         T Get<T>(string key);
 
-        void Set<T>(string key, T value, int seconds = 900);
+        void Set<T>(string key, T value, int seconds = 120);
     }
 }
