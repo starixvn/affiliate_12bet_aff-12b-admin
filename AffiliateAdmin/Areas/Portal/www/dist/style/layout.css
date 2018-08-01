@@ -113,14 +113,14 @@
   .sub-menu-container .nav-link {
     font-size: 11px;
     color: #333333;
-    font-weight: bold;
     padding: 0 13px 0 5px;
     border: 1px solid #d4d4d4;
     margin-right: 1px; }
     .sub-menu-container .nav-link:hover {
       color: #FF6600; }
     .sub-menu-container .nav-link.active {
-      color: #990000; }
+      color: #990000;
+      font-weight: bold; }
   .sub-menu-container + .mainFrameWrapper #mainFrame {
     top: 115px;
     height: calc(100% - 130px); }

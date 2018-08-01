@@ -8,22 +8,22 @@
     var sessionService = DependencyResolver.Current.GetService<ISessionService>();
     var permission = sessionService.UserPerissionList;
     var menus = new Dictionary<string, string>
-                {
-                { "Home",Function.AffReport },
-                  {"Customer",Function.Affiliate },
-                  {"Affiliate",Function.Affiliate },
-                  {"Member",Function.Affiliate },
-                  {"Report",Function.AffReport },
-                  {"Marketing",Function.Media },
-                  {"Message",Function.HotNews },
-                  {"ExchangeRate",Function.AffExRate },
-                  {"Administrator",Function.UserControl },
-                  {"Domain",Function.Domain }
-                };
+    {
+        {"Home",Function.AffReport },
+        {"Customer",Function.Affiliate },
+        {"Affiliate",Function.Affiliate },
+        {"Member",Function.Affiliate },
+        {"Report",Function.AffReport },
+        {"Marketing",Function.Media },
+        {"Message",Function.HotNews },
+        {"ExchangeRate",Function.AffExRate },
+        {"Administrator",Function.UserControl },
+        {"Domain",Function.Domain }
+    };
     var result = from n in menus
                  join p in permission
                  on n.Value equals p.FunctionName
-                 select n;
+                 select n.Key;
 }
 
 @functions{
@@ -47,10 +47,10 @@
 
     @foreach (var item in result)
     {
-        var active = "nav-link " + (controllerName == item.Key ? "active" : string.Empty);
+        var active = "nav-link " + (controllerName == item ? "active" : string.Empty);
         <li class="nav-item">
-            <a class="@active" href="@Url.Content("~/Portal/"+item.Key)">
-                @GetMenuName(item.Key)
+            <a class="@active" href="@Url.Content("~/Portal/"+item)">
+                @GetMenuName(item)
             </a>
         </li>
     }
