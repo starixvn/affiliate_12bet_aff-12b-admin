@@ -3,6 +3,11 @@
 }
 @model IEnumerable<Fanex.Affiliate.Admin.Core.DTO.SubMenu>
 
+@{
+    var queryString = Request.QueryString.ToString();
+    var defaultRelativeUrl = "~/UserInfo/MemberListAll.aspx?" + queryString;
+}
+
 <div class="sub-menu-container">
     <div class="d-inline-block">
         <img src="~/Areas/Portal/www/dist/imgs/i_member.png" />
@@ -15,5 +20,5 @@
 </div>
 
 <div class="mainFrameWrapper">
-    <iframe frameborder="0" name="mainFrame" id="mainFrame" src="@Url.Content("~/UserInfo/MemberListAll.aspx")"></iframe>
+    <iframe frameborder="0" name="mainFrame" id="mainFrame" src="@Url.Content(defaultRelativeUrl)"></iframe>
 </div>

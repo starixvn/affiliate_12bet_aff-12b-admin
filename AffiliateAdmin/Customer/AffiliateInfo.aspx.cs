@@ -58,6 +58,11 @@ public partial class Customer_AffiliateInfo : IBCPage
             return;
         }
 
+        var memberListUrl = ResolveClientUrl("~/Portal/Member?txtAffUsername=" + AppSettings.Session.AffUsername);
+        var memberReportUrl = ResolveClientUrl("~/Portal/Report?isaff=1");
+
+        TemplateHandler.Assign(ref strTpl, "memberListUrl", memberListUrl);
+        TemplateHandler.Assign(ref strTpl, "memberReportUrl", memberReportUrl);
         TemplateHandler.Assign(ref strTpl, "username", AppSettings.Session.AffUsername);
         TemplateHandler.Assign(ref strTpl, "pageid-val", Request["pageid"]);
 

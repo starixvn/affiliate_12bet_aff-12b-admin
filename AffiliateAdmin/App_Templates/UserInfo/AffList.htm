@@ -67,7 +67,7 @@
                     <a href="AffiliateUpd.aspx?custid={custid}">{Edit}</a>
                 </td>-->
                 <td>
-                    <a style="float:left;" href="../Customer/AffDefault.aspx?custid={custid}&user={username-val}"><span id='u{custid}'>{username-val}</span></a>
+                    <a style="float:left;" href="{customerUrl}" target="_top"><span id='u{custid}'>{username-val}</span></a>
                     <!--approved1--><div class="favor {favorcss}" id="{custid}"></div><!--/approved1-->
                 </td>
                 <td>{fname-val}</td>
@@ -88,7 +88,7 @@
                 <td class="c">
                     <!--nummem-->
                     <!--<a href="../Customer/AffDefault.aspx?user={username-val}&pageid=2">{member-val}</a>-->
-                    <a href="MemberListAll.aspx?txtAffUsername={username-val}">{member-val}</a>
+                    <a href="{memberUrl}" target="_top">{member-val}</a>
                     <!--/nummem-->
                 </td>
                 <td class="c">
@@ -96,7 +96,7 @@
                     <span class="icedit" onclick="DoCal('../ChangePass.aspx?custid={custid}&username={username-val}&isAdmin={isAdmin}');">&nbsp;</span>
                     <!--/no-pass-->
                 </td>
-                <td class="c"><a class="icsearch" href="../Report/MemberReport.aspx?custid={custid}&username={username-val}&isaff=1">&nbsp;</a></td>
+                <td class="c"><a class="icsearch" href="{memberReportUrl}" target="_top">&nbsp;</a></td>
                 <!--/approved1-->
             </tr>
             <!--/content-->

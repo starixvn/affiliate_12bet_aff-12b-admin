@@ -2024,7 +2024,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>65181</DevelopmentServerPort>
           <DevelopmentServerVPath>/V1</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44331/</IISUrl>
+          <IISUrl>http://localhost:65181/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
