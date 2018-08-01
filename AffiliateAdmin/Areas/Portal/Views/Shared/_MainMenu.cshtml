@@ -9,7 +9,6 @@
     var permission = sessionService.UserPerissionList;
     var menus = new Dictionary<string, string>
     {
-        {"Home",Function.AffReport },
         {"Customer",Function.Affiliate },
         {"Affiliate",Function.Affiliate },
         {"Member",Function.Affiliate },
@@ -44,6 +43,9 @@
     }
 }
 <ul class="nav menu-list">
+    <li class="nav-item">
+        <a class="nav-link @(controllerName == "Home" ? "active" : string.Empty)" href="@Url.Content("~/Portal/Home")">Home</a>
+    </li>
 
     @foreach (var item in result)
     {
