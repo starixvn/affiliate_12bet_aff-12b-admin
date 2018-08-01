@@ -119,7 +119,7 @@
             arrItem.push("txtNumber");
         }
 
-        if (Common.isEmpty($("txtSiteUrl").value) && isEmpty($("txtNoWebsite").value)) {
+        if (Common.isEmpty($("txtSiteUrl").value) && Common.isEmpty($("txtNoWebsite").value)) {
             arrError.push(MsgResource.SiteUrl);
             arrItem.push("txtSiteUrl");
         }
