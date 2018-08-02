@@ -156,7 +156,7 @@ var MyAccount = (function ($) {
             });
 
             $("#btnCancel").on("click", function () {
-                Site.redirect(Site.resolveRelativeUrl("UserPanel/#AccountOverView"));
+                Site.redirect(Site.resolveRelativeUrl("UserPanel/Main/#AccountOverView"));
             });
         },
 

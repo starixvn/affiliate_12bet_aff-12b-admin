@@ -558,6 +558,12 @@
     <Content Include="www\source\js\pages\forgotpassword.js" />
     <Content Include="www\source\js\pages\member.js" />
     <Content Include="www\source\js\pages\messagehistory.js" />
+    <Content Include="www\source\js\pages\myaccount.es5.js">
+      <DependentUpon>myaccount.js</DependentUpon>
+    </Content>
+    <Content Include="www\source\js\pages\myaccount.es5.min.js">
+      <DependentUpon>myaccount.es5.js</DependentUpon>
+    </Content>
     <Content Include="www\source\js\pages\payment-request.js" />
     <Content Include="www\build\js\recheckin.js" />
     <Content Include="www\build\js\recheckin.min.js">
@@ -1162,7 +1168,7 @@
     <Content Include="www\source\styles\scss\layout\_menu.scss" />
     <Content Include="Views\Shared\_LayoutBeforeLogin.cshtml" />
     <Content Include="Views\UserPanel\StatementHistory.cshtml" />
-    <Content Include="Views\UserPanel\MyAccount.cshtml" />
+    <Content Include="Views\UserPanel\MyAccount\Index.cshtml" />
     <Content Include="www\source\styles\scss\components\_form-control.scss" />
     <Content Include="www\source\styles\pages\home.scss" />
     <Content Include="www\source\styles\pages\faq.scss" />

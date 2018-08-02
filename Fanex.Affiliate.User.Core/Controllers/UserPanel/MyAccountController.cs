@@ -6,19 +6,33 @@
     using Constants;
     using DTO;
     using DTO.UserPanel;
+    using Fanex.Affiliate.User.Core.CoreService;
+    using Fanex.Affiliate.User.Core.Repository.UserPanel;
     using Filters;
     using MetalModels;
     using Newtonsoft.Json;
+    using ONEbook.UM.Filters;
     using Resources;
 
-    public partial class UserPanelController
+    [CheckUMFilter]
+    [CustomAuthorize]
+    public class MyAccountController : Controller
     {
+        private const string SimplifiedChineseCode = "zh-CN";
+        private const string TraditionalChineseCode = "zh-TW";
+        private readonly ISessionService _sessionService;
+        private readonly IAccountRepository _accountRepository;
+        public MyAccountController(ISessionService sessionService, IAccountRepository accountRepository)
+        {
+            _sessionService = sessionService;
+            _accountRepository = accountRepository;
+        }
         [HttpGet]
         [AjaxOnly]
-        public ActionResult MyAccount()
+        public ActionResult Index()
         {
-            var model = _accountRepository.GetAccountInfo(SessionService.UserSession.AffId);
-            model.IsRenderState = SessionService.CurrentLanguage == "zh-CN" || SessionService.CurrentLanguage == "zh-TW";
+            var model = _accountRepository.GetAccountInfo(_sessionService.UserSession.AffId);
+            model.IsRenderState = _sessionService.CurrentLanguage == SimplifiedChineseCode || _sessionService.CurrentLanguage == TraditionalChineseCode;
             if (!string.IsNullOrEmpty(model.ContactApps))
             {
                 model.ContactAppList = JsonConvert.DeserializeObject<IEnumerable<ContactApp>>(model.ContactApps).OrderBy(p => p.Order);
@@ -27,15 +41,15 @@
             var preferredLanguage = model.PreferredLanguage;
             model.LanguageName = SystemLanguage.LanguageList.FirstOrDefault(l => l.Code.Equals(preferredLanguage))?.EnglishName ?? preferredLanguage;
 
-            return View(model);
+            return View("~/Views/UserPanel/MyAccount/index.cshtml", model);
         }
 
         [HttpPost]
         [AjaxOnly]
         [ValidateAntiForgeryToken]
-        public ActionResult MyAccount(AccountInformation model)
+        public ActionResult Index(AccountInformation model)
         {
-            if (SessionService.IsInternal)
+            if (_sessionService.IsInternal)
             {
                 return Json(new ResultInfo { IsOk = false, Message = Lang.ErrAuthorized });
             }
@@ -45,7 +59,7 @@
                 return Json(new ResultInfo { IsOk = false, Message = Error.RequireIMAccount });
             }
 
-            var userSession = SessionService.UserSession;
+            var userSession = _sessionService.UserSession;
             var userAccount = _accountRepository.GetAccountInfo(userSession.AffId);
             model.PlayerUsername = !string.IsNullOrEmpty(userAccount?.PlayerUsername) ?
                 userAccount.PlayerUsername :
@@ -67,7 +81,7 @@
                 NoSiteDesc = Server.HtmlEncode(model.NoSiteDesc ?? string.Empty),
                 Player_UserName = model.PlayerUsername,
                 Ip = Request.UserHostAddress,
-                Language = SessionService.CurrentLanguage,
+                Language = _sessionService.CurrentLanguage,
                 ContactApps = JsonConvert.SerializeObject(model.ContactAppList.Select(p => new ContactApp
                 {
                     Name = Server.HtmlEncode(p.Name),
