@@ -125,7 +125,7 @@
     <None Include="app.config" />
     <None Include="Controllers\UserPanelController.PaymentRequestTest.cs.bk" />
     <Compile Include="Controllers\NewsControllerTest.cs" />
-    <None Include="Controllers\UserPanelController.MyAccountTest.cs.bk" />
+    <Compile Include="Controllers\UserPanel\MyAccountControllerTest.cs" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

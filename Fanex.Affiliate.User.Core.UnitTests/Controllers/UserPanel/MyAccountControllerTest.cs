@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using Fanex.Affiliate.User.Core.Controllers;
+using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.MetalModels;
@@ -11,12 +13,18 @@ using Moq;
 using Newtonsoft.Json;
 using Xunit;
 
-namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
+namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
 {
-    public class MyAccountTest
+    public class MyAccountControllerTest
     {
         private const string PlayerUserName = "player";
-
+        private MyAccountController FakeAccountController(ISessionService sessionService, IAccountRepository accountRepository)
+        {
+            var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
+            var fakeAccountRepository = accountRepository ?? (new Mock<IAccountRepository>()).Object;
+            var controller = new MyAccountController(fakeSessionService, fakeAccountRepository);
+            return MockingHelper.FakeController(controller) as MyAccountController;
+        }
         [Fact]
         public void GetMyAccount_WhenCall_ReturnCorrectModel()
         {
@@ -24,10 +32,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var expectedAccount = new AccountInformation { PreferredLanguage = Constant.DefaultLanguage };
             var accountRepository = new Mock<IAccountRepository>();
             accountRepository.Setup(ac => ac.GetAccountInfo(Constant.DefaultAffId)).Returns(expectedAccount);
-            var controller = MockingHelper.GetUserPanelController(accountRepository: accountRepository.Object);
+            var controller = FakeAccountController(null, accountRepository: accountRepository.Object);
 
             // Action
-            var actionResult = controller.MyAccount() as ViewResult;
+            var actionResult = controller.Index() as ViewResult;
             var result = actionResult.Model as AccountInformation;
 
             // Assert
@@ -50,10 +58,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             };
             var accountRepository = new Mock<IAccountRepository>();
             accountRepository.Setup(ac => ac.GetAccountInfo(Constant.DefaultAffId)).Returns(expectedAccount);
-            var controller = MockingHelper.GetUserPanelController(accountRepository: accountRepository.Object);
+            var controller = FakeAccountController(null, accountRepository: accountRepository.Object);
 
             // Action
-            var actionResult = controller.MyAccount() as ViewResult;
+            var actionResult = controller.Index() as ViewResult;
             var result = actionResult.Model as AccountInformation;
 
             // Assert
@@ -71,10 +79,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             sessionService.CurrentLanguage = "zh-TW";
             var accountRepository = new Mock<IAccountRepository>();
             accountRepository.Setup(ac => ac.GetAccountInfo(Constant.DefaultAffId)).Returns(expectedAccount);
-            var controller = MockingHelper.GetUserPanelController(accountRepository: accountRepository.Object, sessionService: sessionService);
+            var controller = FakeAccountController(accountRepository: accountRepository.Object, sessionService: sessionService);
 
             // Action
-            var actionResult = controller.MyAccount() as ViewResult;
+            var actionResult = controller.Index() as ViewResult;
             var result = actionResult.Model as AccountInformation;
 
             // Assert
@@ -89,10 +97,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var sessionService = MockingHelper.GetSessionService();
             sessionService.IsInternal = true;
 
-            var controller = MockingHelper.GetUserPanelController(sessionService: sessionService);
+            var controller = FakeAccountController(sessionService, null);
 
             // Action
-            var actionResult = controller.MyAccount(new AccountInformation()) as JsonResult;
+            var actionResult = controller.Index(new AccountInformation()) as JsonResult;
             var result = actionResult.Data as ResultInfo;
 
             // Assert
@@ -104,12 +112,12 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         public void PostMyAccount_InvalidContactApp_ReturnCorrectResult()
         {
             // Arrange
-            var controller = MockingHelper.GetUserPanelController();
+            var controller = FakeAccountController(null, null);
             var contactAppList = CreateContactAppList();
             contactAppList.ForEach(item => item.Value = null);
 
             // Action
-            var actionResult = controller.MyAccount(new AccountInformation { ContactAppList = contactAppList }) as JsonResult;
+            var actionResult = controller.Index(new AccountInformation { ContactAppList = contactAppList }) as JsonResult;
             var result = actionResult.Data as ResultInfo;
 
             // Assert
@@ -124,12 +132,12 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var accountRepository = new Mock<IAccountRepository>();
             accountRepository.Setup(ac => ac.GetAccountInfo(Constant.DefaultAffId)).Returns(new AccountInformation { PlayerUsername = PlayerUserName });
             accountRepository.Setup(ac => ac.GetDepositPlayerAccount(PlayerUserName)).Returns(new DepositAccountInfo { Success = 1 });
-            var controller = MockingHelper.GetUserPanelController(accountRepository: accountRepository.Object);
+            var controller = FakeAccountController(null,accountRepository.Object);
             var contactAppList = CreateContactAppList();
             contactAppList[0].Value = null;
 
             // Action
-            var actionResult = controller.MyAccount(new AccountInformation { ContactAppList = contactAppList }) as JsonResult;
+            var actionResult = controller.Index(new AccountInformation { ContactAppList = contactAppList }) as JsonResult;
             var result = actionResult.Data as ResultInfo;
 
             // Assert
@@ -143,10 +151,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var accountRepository = new Mock<IAccountRepository>();
             accountRepository.Setup(ac => ac.GetAccountInfo(Constant.DefaultAffId)).Returns(new AccountInformation { PlayerUsername = PlayerUserName });
             accountRepository.Setup(ac => ac.GetDepositPlayerAccount(PlayerUserName)).Returns(new DepositAccountInfo { Success = 1 });
-            var controller = MockingHelper.GetUserPanelController(accountRepository: accountRepository.Object);
+            var controller = FakeAccountController(null, accountRepository.Object);
 
             // Action
-            var actionResult = controller.MyAccount(new AccountInformation { ContactAppList = CreateContactAppList() }) as JsonResult;
+            var actionResult = controller.Index(new AccountInformation { ContactAppList = CreateContactAppList() }) as JsonResult;
             var result = actionResult.Data as ResultInfo;
 
             // Assert
@@ -162,10 +170,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             accountRepository.Setup(ac => ac.GetAccountInfo(Constant.DefaultAffId)).Returns(new AccountInformation { PlayerUsername = PlayerUserName });
             accountRepository.Setup(ac => ac.GetDepositPlayerAccount(PlayerUserName)).Returns(new DepositAccountInfo { Success = 0 });
             accountRepository.Setup(ac => ac.UpdateAccountInformation(It.IsAny<UpdateAccountParam>())).Returns(new ResultInfo { IsOk = true });
-            var controller = MockingHelper.GetUserPanelController(accountRepository: accountRepository.Object);
+            var controller = FakeAccountController(null,accountRepository.Object);
 
             // Action
-            var actionResult = controller.MyAccount(new AccountInformation { ContactAppList = CreateContactAppList() }) as JsonResult;
+            var actionResult = controller.Index(new AccountInformation { ContactAppList = CreateContactAppList() }) as JsonResult;
             var result = actionResult.Data as ResultInfo;
 
             // Assert
@@ -184,12 +192,12 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             accountRepository.Setup(ac => ac.UpdateAccountInformation(It.IsAny<UpdateAccountParam>()))
                 .Returns(new ResultInfo { IsOk = true })
                 .Callback<UpdateAccountParam>(p => passedParam = p);
-            var controller = MockingHelper.GetUserPanelController(accountRepository: accountRepository.Object);
+            var controller = FakeAccountController(null, accountRepository.Object);
 
             var expectedResult = JsonConvert.SerializeObject(CreateExpectedParam());
 
             // Action
-            var actionResult = controller.MyAccount(param);
+            var actionResult = controller.Index(param);
             var result = JsonConvert.SerializeObject(passedParam);
 
             // Assert
