@@ -71,7 +71,7 @@
             var postData = $form.serializeObject();
             $.ajax({
                 type: "POST",
-                url: Site.resolveRelativeUrl("UserPanel/" + action),
+                url: Site.resolveRelativeUrl("UserPanel/PaymentRequest/" + action),
                 data: postData,
                 dataType: "json",
                 cache: false,
@@ -91,7 +91,7 @@
         refreshPage: function (result) {
             $.ajax({
                 type: "GET",
-                url: Site.resolveRelativeUrl("UserPanel/PaymentRequestPartial"),
+                url: Site.resolveRelativeUrl("UserPanel/PaymentRequest/PaymentRequestPartial"),
                 dataType: "html",
                 cache: false,
                 success: function (response) {

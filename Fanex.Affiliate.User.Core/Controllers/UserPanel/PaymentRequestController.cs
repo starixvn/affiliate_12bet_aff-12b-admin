@@ -5,27 +5,43 @@
     using Constants;
     using DTO;
     using Extensions;
+    using Fanex.Affiliate.User.Core.BusinessService;
+    using Fanex.Affiliate.User.Core.CoreService;
     using Filters;
     using MetalModels.Email;
     using MetalModels.UserPanel;
+    using ONEbook.UM.Filters;
     using Resources;
     using Utilities;
     using ViewModels.UserPanel;
 
-    public partial class UserPanelController
+    [CheckUMFilter]
+    [CustomAuthorize]
+    public class PaymentRequestController : Controller
     {
+        private readonly ISessionService _sessionService;
+        private readonly IPaymentService _paymentService;
+        private readonly IAppSetting _appSetting;
+        public PaymentRequestController(ISessionService sessionService,
+            IAppSetting appSetting,
+            IPaymentService paymentService)
+        {
+            _sessionService = sessionService;
+            _paymentService = paymentService;
+            _appSetting = appSetting;
+        }
         [HttpGet]
         [AjaxOnly]
-        public ActionResult PaymentRequest()
+        public ActionResult Index()
         {
-            return View(GetViewModel());
+            return View("~/Views/UserPanel/PaymentRequest/Index.cshtml",GetViewModel());
         }
 
         [HttpGet]
         [AjaxOnly]
         public ActionResult PaymentRequestPartial()
         {
-            return PartialView("~/Views/UserPanel/PaymentPartial/_Main.cshtml", GetViewModel());
+            return PartialView("~/Views/UserPanel/PaymentRequest/PaymentPartial/_Main.cshtml", GetViewModel());
         }
 
         [HttpPost]
@@ -34,7 +50,7 @@
         {
             var resultInfo = new ResultInfo { IsOk = true };
 
-            if (SessionService.IsInternal)
+            if (_sessionService.IsInternal)
             {
                 resultInfo.IsOk = false;
                 resultInfo.Message = Lang.ErrAuthorized;
@@ -42,17 +58,17 @@
 
             if (resultInfo.IsOk)
             {
-                paymentCreationParam.AffId = SessionService.UserSession.AffId;
-                paymentCreationParam.Language = SessionService.CurrentLanguage;
+                paymentCreationParam.AffId = _sessionService.UserSession.AffId;
+                paymentCreationParam.Language = _sessionService.CurrentLanguage;
                 paymentCreationParam.Ip = Request.UserHostAddress;
-                paymentCreationParam.IsInternal = SessionService.IsInternal;
-                paymentCreationParam.IsLocalTest = !AppSetting.IsProduction;
+                paymentCreationParam.IsInternal = _sessionService.IsInternal;
+                paymentCreationParam.IsLocalTest = !_appSetting.IsProduction;
 
                 var emailParam = new PaymentEmailParam
                 {
-                    MailCc = AppSetting.MailCc,
-                    MailContact = AppSetting.MailContact,
-                    MailBcc = AppSetting.MailBcc,
+                    MailCc = _appSetting.MailCc,
+                    MailContact = _appSetting.MailContact,
+                    MailBcc = _appSetting.MailBcc,
                     RootDomain = SiteDomainHelper.GetRootUrl(this)
                 };
 
@@ -68,21 +84,21 @@
         {
             var resultInfo = new ResultInfo { IsOk = false };
 
-            if (SessionService.IsInternal)
+            if (_sessionService.IsInternal)
             {
                 resultInfo.Message = Lang.ErrAuthorized;
             }
             else
             {
-                cancelParam.UserId = SessionService.UserSession.AffId;
-                cancelParam.Language = SessionService.CurrentLanguage;
+                cancelParam.UserId = _sessionService.UserSession.AffId;
+                cancelParam.Language = _sessionService.CurrentLanguage;
                 cancelParam.Ip = Request.UserHostAddress;
 
                 var emailParam = new PaymentEmailParam
                 {
-                    MailCc = AppSetting.MailCc,
-                    MailContact = AppSetting.MailContact,
-                    MailBcc = AppSetting.MailBcc,
+                    MailCc = _appSetting.MailCc,
+                    MailContact = _appSetting.MailContact,
+                    MailBcc = _appSetting.MailBcc,
                     RootDomain = SiteDomainHelper.GetRootUrl(this),
                     Amount = cancelParam.Amount,
                     RequestDate = cancelParam.RequestDate,
@@ -99,8 +115,8 @@
         {
             var paymentParam = new PaymentParam
             {
-                AffId = SessionService.UserSession.AffId,
-                IsInternal = SessionService.IsInternal
+                AffId = _sessionService.UserSession.AffId,
+                IsInternal = _sessionService.IsInternal
             };
             var paymentList = _paymentService.GetPaymentList(paymentParam);
 
@@ -111,7 +127,7 @@
                 MinAmount = paymentParam.MinAmount,
                 PreferredPayment = paymentParam.PreferredPayment,
                 PendingPayment = paymentList.FirstOrDefault(p => p.Status.MatchWith(PaymentStatus.Pending)),
-                IsValidDate = _paymentService.IsInDateRange() || !AppSetting.IsProduction
+                IsValidDate = _paymentService.IsInDateRange() || !_appSetting.IsProduction
             };
 
             return viewModel;

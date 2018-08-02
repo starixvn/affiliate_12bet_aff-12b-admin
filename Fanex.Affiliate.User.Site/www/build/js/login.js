@@ -92,10 +92,10 @@ var Login = (function ($) {
                     success: function (response) {
                         if (response.IsOk) {
                             if (onDialog) {
-                                Site.redirect(Site.resolveRelativeUrl("UserPanel/#MediaGallery"));
+                                Site.redirect(Site.resolveRelativeUrl("UserPanel/Main/#MediaGallery"));
                             }
                             else {
-                                Site.redirect(Site.resolveRelativeUrl("UserPanel/#AccountOverview"));
+                                Site.redirect(Site.resolveRelativeUrl("UserPanel/Main/#AccountOverview"));
                             }
                         }
                         else {

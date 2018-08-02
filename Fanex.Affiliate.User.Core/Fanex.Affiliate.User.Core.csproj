@@ -232,7 +232,7 @@
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\UserPanel\MyAccountController.cs" />
     <None Include="Controllers\UserPanel\UserPanelController.StatementHistory.cs.bk" />
-    <None Include="Controllers\UserPanel\UserPanelController.PaymentRequest.cs.bk" />
+    <Compile Include="Controllers\UserPanel\PaymentRequestController.cs" />
     <Compile Include="Controllers\UserPanel\MainController.cs" />
     <None Include="Controllers\UserPanel\UserPanelController.Statistics.cs.bk" />
     <Compile Include="CoreService\ISessionService.cs" />

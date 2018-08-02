@@ -123,7 +123,7 @@
   <ItemGroup>
     <Compile Include="Controllers\UserPanel\AccountOverViewControllerTest.cs" />
     <None Include="app.config" />
-    <None Include="Controllers\UserPanelController.PaymentRequestTest.cs.bk" />
+    <Compile Include="Controllers\UserPanel\PaymentRequestControllerTest.cs" />
     <Compile Include="Controllers\NewsControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\MyAccountControllerTest.cs" />
     <None Include="packages.config" />

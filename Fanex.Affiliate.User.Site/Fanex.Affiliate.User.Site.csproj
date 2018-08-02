@@ -868,10 +868,10 @@
     <Content Include="Views\Notify\PageNotFound.cshtml" />
     <Content Include="Views\Notify\UnderMaintenance.cshtml" />
     <Content Include="Views\Password\RecoverPassword.cshtml" />
-    <Content Include="Views\UserPanel\PaymentPartial\_Main.cshtml" />
-    <Content Include="Views\UserPanel\PaymentPartial\_PaymentPending.cshtml" />
-    <Content Include="Views\UserPanel\PaymentPartial\_PaymentList.cshtml" />
-    <Content Include="Views\UserPanel\PaymentPartial\_RequestPayout.cshtml" />
+    <Content Include="Views\UserPanel\PaymentRequest\PaymentPartial\_Main.cshtml" />
+    <Content Include="Views\UserPanel\PaymentRequest\PaymentPartial\_PaymentPending.cshtml" />
+    <Content Include="Views\UserPanel\PaymentRequest\PaymentPartial\_PaymentList.cshtml" />
+    <Content Include="Views\UserPanel\PaymentRequest\PaymentPartial\_RequestPayout.cshtml" />
     <Content Include="Views\TermAndCondition\Popup.cshtml" />
     <Content Include="Views\MemberTransaction\Index.cshtml" />
     <Content Include="www\source\styles\scss\components\_modal.scss" />
@@ -1180,7 +1180,7 @@
     <Content Include="www\source\styles\fonts\bootstrap\glyphicons-halflings-regular.woff2" />
     <Content Include="Views\ContactUs\Index.cshtml" />
     <Content Include="Views\Faq\Index.cshtml" />
-    <Content Include="Views\UserPanel\PaymentRequest.cshtml" />
+    <Content Include="Views\UserPanel\PaymentRequest\Index.cshtml" />
     <Content Include="www\source\styles\pages\payment-request.scss" />
     <Content Include="Views\UserPanel\Marketing\MediaGallery\Index.cshtml" />
     <Content Include="Views\UserPanel\Marketing\TextBox\Index.cshtml" />

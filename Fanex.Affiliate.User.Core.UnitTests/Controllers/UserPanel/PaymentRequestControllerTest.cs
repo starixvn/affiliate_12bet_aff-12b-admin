@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.Constants;
+using Fanex.Affiliate.User.Core.Controllers;
+using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.Enum;
 using Fanex.Affiliate.User.Core.MetalModels.Email;
@@ -18,22 +20,34 @@ using Xunit;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
 {
-    public class PaymentRequestTest
+    public class PaymentRequestControllerTest
     {
+        private PaymentRequestController FakeAccountController(ISessionService sessionService,
+            IAppSetting appSetting,
+            IPaymentService paymentServic)
+        {
+            var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
+            var fakePaymentService = paymentServic ?? (new Mock<IPaymentService>()).Object;
+            var fakeAppsetting = appSetting ?? (new Mock<IAppSetting>()).Object;
+            var controller = new PaymentRequestController(fakeSessionService, fakeAppsetting, fakePaymentService);
+
+            return MockingHelper.FakeController(controller) as PaymentRequestController;
+        }
+
         [Fact]
         public void PaymentRequest_GetPaymentList_ReturnPaymentListCorrectly()
         {
             // Arrange
             var paymentList = new List<Payment> { new Payment() };
-            var paymentRepository = new Mock<IPaymentRepository>();
-            paymentRepository.Setup(p => p.GetPaymentList(It.IsAny<PaymentParam>())).Returns(paymentList);
+            var paymentService = new Mock<IPaymentService>();
+            paymentService.Setup(p => p.GetPaymentList(It.IsAny<PaymentParam>())).Returns(paymentList);
 
-            var controller = MockingHelper.GetUserPanelController(paymentRepository: paymentRepository.Object);
+            var controller = FakeAccountController(null, null, paymentService.Object);
 
             var expectedResult = new PaymentViewModel { PaymentList = paymentList };
 
             // Action
-            var actionResult = controller.PaymentRequest() as ViewResult;
+            var actionResult = controller.Index() as ViewResult;
             var result = actionResult.Model as PaymentViewModel;
 
             // Assert
@@ -47,8 +61,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             const decimal expectedBalBroughtForward = 100m, expectedMinAmount = 10m;
             const string expectedPreferredPayment = "PlayerAccount";
 
-            var paymentRepository = new Mock<IPaymentRepository>();
-            paymentRepository.Setup(p => p.GetPaymentList(It.IsAny<PaymentParam>()))
+            var paymentService = new Mock<IPaymentService>();
+            paymentService.Setup(p => p.GetPaymentList(It.IsAny<PaymentParam>()))
                 .Returns(new List<Payment>())
                 .Callback<PaymentParam>(p =>
                 {
@@ -57,7 +71,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
                     p.PreferredPayment = expectedPreferredPayment;
                 });
 
-            var controller = MockingHelper.GetUserPanelController(paymentRepository: paymentRepository.Object);
+            var controller = FakeAccountController(null, null, paymentService.Object);
 
             var expectedResult = new PaymentViewModel
             {
@@ -67,7 +81,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             };
 
             // Action
-            var actionResult = controller.PaymentRequest() as ViewResult;
+            var actionResult = controller.Index() as ViewResult;
             var result = actionResult.Model as PaymentViewModel;
 
             // Assert
@@ -83,8 +97,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         {
             // Arrange
             PaymentParam passedParam = null;
-            var paymentRepository = new Mock<IPaymentRepository>();
-            paymentRepository.Setup(p => p.GetPaymentList(It.IsAny<PaymentParam>()))
+            var paymentService = new Mock<IPaymentService>();
+            paymentService.Setup(p => p.GetPaymentList(It.IsAny<PaymentParam>()))
                 .Returns(new List<Payment>())
                 .Callback<PaymentParam>(p =>
                 {
@@ -94,9 +108,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var sessionService = MockingHelper.GetSessionService();
             sessionService.IsInternal = isInternal;
 
-            var controller = MockingHelper.GetUserPanelController(
-                sessionService: sessionService,
-                paymentRepository: paymentRepository.Object);
+            var controller = FakeAccountController(sessionService, null, paymentService.Object);
 
             var param = new PaymentParam
             {
@@ -106,7 +118,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var expectedParam = JsonConvert.SerializeObject(param);
 
             // Action
-            controller.PaymentRequest();
+            controller.Index();
             var result = JsonConvert.SerializeObject(passedParam);
 
             // Assert
@@ -118,15 +130,14 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         public void PaymentRequest_CheckPendingPaymentInPaymentList_PendingPaymentHasCorrectValue(IEnumerable<Payment> paymentList, bool expected)
         {
             // Arrange
-            var paymentRepository = new Mock<IPaymentRepository>();
-            paymentRepository.Setup(p => p.GetPaymentList(It.IsAny<PaymentParam>()))
+            var paymentService = new Mock<IPaymentService>();
+            paymentService.Setup(p => p.GetPaymentList(It.IsAny<PaymentParam>()))
                 .Returns(paymentList);
 
-            var controller = MockingHelper.GetUserPanelController(
-                paymentRepository: paymentRepository.Object);
+            var controller = FakeAccountController(null, null, paymentService.Object);
 
             // Action
-            var actionResult = controller.PaymentRequest() as ViewResult;
+            var actionResult = controller.Index() as ViewResult;
             var result = actionResult.Model as PaymentViewModel;
 
             // Assert
@@ -143,8 +154,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         {
             // Arrange
             PaymentParam passedParam = null;
-            var paymentRepository = new Mock<IPaymentRepository>();
-            paymentRepository.Setup(p => p.GetPaymentList(It.IsAny<PaymentParam>()))
+            var paymentService = new Mock<IPaymentService>();
+            paymentService.Setup(p => p.GetPaymentList(It.IsAny<PaymentParam>()))
                 .Returns(new List<Payment>())
                 .Callback<PaymentParam>(p =>
                 {
@@ -153,11 +164,9 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
                     passedParam = p;
                 });
 
-            var controller = MockingHelper.GetUserPanelController(
-                paymentRepository: paymentRepository.Object);
-
+            var controller = FakeAccountController(null, null, paymentService.Object);
             // Action
-            var actionResult = controller.PaymentRequest() as ViewResult;
+            var actionResult = controller.Index() as ViewResult;
             var result = actionResult.Model as PaymentViewModel;
 
             // Assert
@@ -170,10 +179,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         {
             // Arrange
             var appSetting = Mock.Of<IAppSetting>(s => s.IsLocal == isLocal);
-            var controller = MockingHelper.GetUserPanelController(appSetting: appSetting);
+            var controller = FakeAccountController(null, appSetting, null);
 
             // Action
-            var actionResult = controller.PaymentRequest() as ViewResult;
+            var actionResult = controller.Index() as ViewResult;
             var result = actionResult.Model as PaymentViewModel;
 
             // Assert
@@ -187,7 +196,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var sessionService = MockingHelper.GetSessionService();
             sessionService.IsInternal = true;
 
-            var controller = MockingHelper.GetUserPanelController(sessionService: sessionService);
+            var controller = FakeAccountController(sessionService, null, null);
 
             // Action
             var actionResult = controller.CancelPaymentRequest(new PaymentCancelParam()) as JsonResult;
@@ -206,12 +215,12 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var param = new PaymentCancelParam { TransId = TransId };
             PaymentCancelParam passedParam = null;
 
-            var paymentRepository = new Mock<IPaymentRepository>();
-            paymentRepository.Setup(p => p.CancelPaymentRequest(It.IsAny<PaymentCancelParam>()))
+            var paymentService = new Mock<IPaymentService>();
+            paymentService.Setup(p => p.CancelPaymentRequest(It.IsAny<PaymentCancelParam>(), It.IsAny<PaymentEmailParam>()))
                             .Returns(new ResultInfo())
                             .Callback<PaymentCancelParam>(p => passedParam = p);
 
-            var controller = MockingHelper.GetUserPanelController(paymentRepository: paymentRepository.Object);
+            var controller = FakeAccountController(null, null, paymentService.Object);
 
             var expectedResult = JsonConvert.SerializeObject(new PaymentCancelParam
             {
@@ -238,11 +247,11 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var param = new PaymentCancelParam { TransId = TransId };
             var expectedResult = new ResultInfo { IsOk = false, Message = "Failed" };
 
-            var paymentRepository = new Mock<IPaymentRepository>();
-            paymentRepository.Setup(p => p.CancelPaymentRequest(It.IsAny<PaymentCancelParam>()))
+            var paymentService = new Mock<IPaymentService>();
+            paymentService.Setup(p => p.CancelPaymentRequest(It.IsAny<PaymentCancelParam>(), It.IsAny<PaymentEmailParam>()))
                             .Returns(expectedResult);
 
-            var controller = MockingHelper.GetUserPanelController(paymentRepository: paymentRepository.Object);
+            var controller = FakeAccountController(null, null, paymentService.Object);
 
             // Action
             var actionResult = controller.CancelPaymentRequest(param) as JsonResult;
@@ -266,21 +275,15 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
                 RequestDate = new DateTime(2018, 6, 12)
             };
 
-            var paymentRepository = new Mock<IPaymentRepository>();
-            paymentRepository.Setup(p => p.CancelPaymentRequest(It.IsAny<PaymentCancelParam>()))
+            var paymentService = new Mock<IPaymentService>();
+            paymentService.Setup(p => p.CancelPaymentRequest(It.IsAny<PaymentCancelParam>(), It.IsAny<PaymentEmailParam>()))
                             .Returns(new ResultInfo { IsOk = true });
 
             var appSetting = GetMockAppSetting();
             var accountRepository = GetMockAccountRepository();
-            var emailService = new Mock<IEmailService>();
-            emailService.Setup(e => e.SendPaymentEmail(It.IsAny<PaymentEmailParam>()))
-                .Callback<PaymentEmailParam>(p => emailParam = p);
 
-            var controller = MockingHelper.GetUserPanelController(
-                appSetting: appSetting,
-                accountRepository: accountRepository,
-                paymentRepository: paymentRepository.Object,
-                emailService: emailService.Object);
+            var controller = FakeAccountController(null, appSetting, paymentService.Object);
+
 
             var expectedResult = JsonConvert.SerializeObject(GetExpectedEmailParam(PaymentRequestType.Cancel));
 
@@ -305,23 +308,15 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             };
             var resultInfo = new ResultInfo { IsOk = false };
 
-            var paymentRepository = new Mock<IPaymentRepository>();
-            paymentRepository.Setup(p => p.CancelPaymentRequest(It.IsAny<PaymentCancelParam>()))
+            var paymentService = new Mock<IPaymentService>();
+            paymentService.Setup(p => p.CancelPaymentRequest(It.IsAny<PaymentCancelParam>(), It.IsAny<PaymentEmailParam>()))
                             .Returns(resultInfo);
-            var accountRepository = new Mock<IAccountRepository>();
-            var emailService = new Mock<IEmailService>();
 
-            var controller = MockingHelper.GetUserPanelController(
-                accountRepository: accountRepository.Object,
-                paymentRepository: paymentRepository.Object,
-                emailService: emailService.Object);
+            var controller = FakeAccountController(null, null, paymentService.Object);
 
             // Action
             controller.CancelPaymentRequest(param);
 
-            // Assert
-            accountRepository.VerifyNoOtherCalls();
-            emailService.VerifyNoOtherCalls();
         }
 
         [Fact]
@@ -331,7 +326,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var sessionService = MockingHelper.GetSessionService();
             sessionService.IsInternal = true;
 
-            var controller = MockingHelper.GetUserPanelController(sessionService: sessionService);
+            var controller = FakeAccountController(sessionService, null, null);
 
             // Action
             var actionResult = controller.CreatePaymentRequest(new PaymentCreationParam()) as JsonResult;
@@ -354,7 +349,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
                 MinAmount = 100,
                 BalBroughtForward = 150
             };
-            var controller = MockingHelper.GetUserPanelController(appSetting: appSetting);
+            var controller = FakeAccountController(null, appSetting, null);
             var expectedResult = new ResultInfo
             {
                 IsOk = false,
@@ -384,8 +379,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
                 BalBroughtForward = 150
             };
 
-            var paymentRepository = new Mock<IPaymentRepository>();
-            paymentRepository.Setup(p => p.CreatePaymentRequest(It.IsAny<PaymentCreationParam>()))
+            var paymentService = new Mock<IPaymentService>();
+            paymentService.Setup(p => p.CancelPaymentRequest(It.IsAny<PaymentCancelParam>(), It.IsAny<PaymentEmailParam>()))
                             .Returns(new ResultInfo { IsOk = true })
                             .Callback<PaymentCreationParam>(p =>
                             {
@@ -394,18 +389,9 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
                             });
 
             var appSetting = GetMockAppSetting();
-            var accountRepository = GetMockAccountRepository();
-            var emailService = new Mock<IEmailService>();
-            var accountService = new Mock<IAccountService>();
-            accountService.Setup(ac => ac.CheckPlayerAccountIsActived(Constant.DefaultAffId, Constant.DefaultLanguage))
-                .Returns(new ResultInfo { IsOk = true });
 
-            var controller = MockingHelper.GetUserPanelController(
-                appSetting: appSetting,
-                accountRepository: accountRepository,
-                paymentRepository: paymentRepository.Object,
-                emailService: emailService.Object,
-                accountService: accountService.Object);
+
+            var controller = FakeAccountController(null, appSetting, paymentService.Object);
 
             var expectedParam = new PaymentCreationParam
             {
@@ -425,7 +411,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var result = JsonConvert.SerializeObject(passedParam);
 
             // Assert
-            accountService.Verify(ac => ac.CheckPlayerAccountIsActived(Constant.DefaultAffId, Constant.DefaultLanguage), Times.Once);
             Assert.Equal(expectedResult, result);
         }
 
@@ -444,24 +429,17 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
                 IsOk = false,
                 Message = "Not Actived"
             };
-            var accountService = new Mock<IAccountService>();
-            accountService.Setup(ac => ac.CheckPlayerAccountIsActived(Constant.DefaultAffId, Constant.DefaultLanguage))
-                .Returns(checkingActiveResult);
-
-            var paymentRepository = new Mock<IPaymentRepository>();
+          
+            var paymentService = new Mock<IPaymentService>();
             var appSetting = Mock.Of<IAppSetting>(ap => ap.IsLocal);
 
-            var controller = MockingHelper.GetUserPanelController(
-                accountService: accountService.Object,
-                paymentRepository: paymentRepository.Object,
-                appSetting: appSetting);
+            var controller = FakeAccountController(null, appSetting, paymentService.Object);
 
             // Action
             var actionResult = controller.CreatePaymentRequest(creationParam) as JsonResult;
             var result = actionResult.Data as ResultInfo;
 
             // Assert
-            paymentRepository.Verify(p => p.CreatePaymentRequest(It.IsAny<PaymentCreationParam>()), Times.Never);
             Assert.Equal(checkingActiveResult, result);
         }
 
@@ -477,33 +455,22 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
                 BalBroughtForward = 150
             };
 
-            var accountService = new Mock<IAccountService>();
-            accountService.Setup(ac => ac.CheckPlayerAccountIsActived(Constant.DefaultAffId, Constant.DefaultLanguage))
-                .Returns(new ResultInfo { IsOk = true });
-
             var creationResult = new ResultInfo
             {
                 IsOk = false,
                 Message = "Create Failed"
             };
-            var paymentRepository = new Mock<IPaymentRepository>();
-            paymentRepository.Setup(p => p.CreatePaymentRequest(It.IsAny<PaymentCreationParam>())).Returns(creationResult);
+            var paymentService = new Mock<IPaymentService>();
+            paymentService.Setup(p => p.CreatePaymentRequest(It.IsAny<PaymentCreationParam>(),It.IsAny<PaymentEmailParam>())).Returns(creationResult);
 
-            var emailService = new Mock<IEmailService>();
             var appSetting = Mock.Of<IAppSetting>(ap => ap.IsLocal);
 
-            var controller = MockingHelper.GetUserPanelController(
-                accountService: accountService.Object,
-                paymentRepository: paymentRepository.Object,
-                emailService: emailService.Object,
-                appSetting: appSetting);
+            var controller = FakeAccountController(null, appSetting, paymentService.Object);
 
             // Action
             var actionResult = controller.CreatePaymentRequest(creationParam) as JsonResult;
             var result = actionResult.Data as ResultInfo;
 
-            // Assert
-            emailService.Verify(p => p.SendPaymentEmail(It.IsAny<PaymentEmailParam>()), Times.Never);
             Assert.Equal(creationResult, result);
         }
 
@@ -521,8 +488,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
                 BalBroughtForward = 150
             };
 
-            var paymentRepository = new Mock<IPaymentRepository>();
-            paymentRepository.Setup(p => p.CreatePaymentRequest(It.IsAny<PaymentCreationParam>()))
+            var paymentService = new Mock<IPaymentService>();
+            paymentService.Setup(p => p.CreatePaymentRequest(It.IsAny<PaymentCreationParam>(), It.IsAny<PaymentEmailParam>()))
                             .Returns(new ResultInfo { IsOk = true })
                             .Callback<PaymentCreationParam>(p =>
                             {
@@ -531,22 +498,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
                             });
 
             var appSetting = GetMockAppSetting();
-            var accountRepository = GetMockAccountRepository();
+          
 
-            var accountService = new Mock<IAccountService>();
-            accountService.Setup(ac => ac.CheckPlayerAccountIsActived(Constant.DefaultAffId, Constant.DefaultLanguage))
-                .Returns(new ResultInfo { IsOk = true });
+            var controller = FakeAccountController(null, appSetting, paymentService.Object);
 
-            var emailService = new Mock<IEmailService>();
-            emailService.Setup(e => e.SendPaymentEmail(It.IsAny<PaymentEmailParam>()))
-                .Callback<PaymentEmailParam>(p => emailParam = p);
-
-            var controller = MockingHelper.GetUserPanelController(
-                appSetting: appSetting,
-                accountRepository: accountRepository,
-                paymentRepository: paymentRepository.Object,
-                emailService: emailService.Object,
-                accountService: accountService.Object);
 
             var expectedEmailParam = GetExpectedEmailParam(PaymentRequestType.Create);
             expectedEmailParam.TransId = TransId;
@@ -556,10 +511,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             // Action
             controller.CreatePaymentRequest(creationParam);
             var result = JsonConvert.SerializeObject(emailParam);
-            var mockAccountRepository = Mock.Get(accountRepository);
 
             // Assert
-            mockAccountRepository.Verify(ac => ac.GetUserInfoById(Constant.DefaultAffId, false), Times.Once);
             Assert.Equal(expectedResult, result);
         }
 

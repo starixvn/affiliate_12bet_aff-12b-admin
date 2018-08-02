@@ -5,18 +5,18 @@
 @model Fanex.Affiliate.User.Core.ViewModels.UserPanel.PaymentViewModel
 
 <div id="requestPayout">
-    @{ Html.RenderPartial("~/Views/UserPanel/PaymentPartial/_RequestPayout.cshtml", Model); }
+    @{ Html.RenderPartial("~/Views/UserPanel/PaymentRequest/PaymentPartial/_RequestPayout.cshtml", Model); }
 </div>
 
 <div id="pendingPayment">
     @if (Model.PendingPayment != null)
     {
-        Html.RenderPartial("~/Views/UserPanel/PaymentPartial/_PaymentPending.cshtml", Model.PendingPayment);
+        Html.RenderPartial("~/Views/UserPanel/PaymentRequest/PaymentPartial/_PaymentPending.cshtml", Model.PendingPayment);
     }
 </div>
 
 <div id="paymentList">
-    @{ Html.RenderPartial("~/Views/UserPanel/PaymentPartial/_PaymentList.cshtml", Model.PaymentList, new ViewDataDictionary { ["PreferredPayment"] = Model.PreferredPayment }); }
+    @{ Html.RenderPartial("~/Views/UserPanel/PaymentRequest/PaymentPartial/_PaymentList.cshtml", Model.PaymentList, new ViewDataDictionary { ["PreferredPayment"] = Model.PreferredPayment }); }
 </div>
 
 <script type="text/javascript">

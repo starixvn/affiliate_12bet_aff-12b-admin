@@ -139,7 +139,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 }
             }
 
-            return Redirect(Url.Action("Index", "UserPanel") + "/#AccountOverView");
+            return Redirect(Url.Content("~/UserPanel/Main/#AccountOverView"));
         }
 
         [HttpGet]

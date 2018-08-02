@@ -15,7 +15,7 @@
             if (!method.MatchWith("Player"))
             {
                 return Error.PaymentMethodInvalid.Replace("{0}", method)
-                            .Replace("{1}", Url.Action("Index", "UserPanel") + "/#MyAccount");
+                            .Replace("{1}", Url.Content("~/UserPanel/Main/#MyAccount"));
             }
 
             if (!Model.IsValidAmount)
