@@ -21,8 +21,57 @@
 .form-filter {
     .form-group {
         label {
-            display:inline;
-            margin-right:2px;
+            display: inline;
+            margin-right: 2px;
+        }
+    }
+}
+
+.table {
+    .th {
+        cursor: pointer;
+    }
+
+    tr {
+        > td {
+            background: #fff;
+
+            &.title-cell {
+                position: relative;
+
+                .chevron {
+                    cursor: pointer;
+                    position: absolute;
+                    top: 6px;
+                    right: 5px;
+                    width: 20px;
+                    height: 20px;
+                    line-height: 12px;
+                    text-align: center;
+
+                    &.left {
+                        top: 8px;
+                    }
+                }
+            }
+        }
+
+        &.sumrow {
+            > td {
+                background: #F5EAEA;
+            }
+        }
+
+        &.total {
+            > td {
+                background: #F8D8D1;
+                color: #333;
+                font-weight: bold;
+            }
+        }
+
+        &:not(.sumrow){
+            display: none;
         }
     }
 }

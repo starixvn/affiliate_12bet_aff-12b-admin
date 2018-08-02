@@ -49,9 +49,19 @@ var commissionReport = (function ($) {
                 }
             });
 
-            $("#btnSubmit").click(function (e) {
+            $('#btnSubmit').click(function (e) {
                 e.preventDefault();
                 _me.submit();
+            });
+
+            $('#dataTable').on('click', '.toggleDetailRow', function () {
+                var $this = $(this);
+                var isExpanding = $this.hasClass('bottom');
+
+                $this.toggleClass('bottom', !isExpanding);
+                $this.toggleClass('left', isExpanding);
+                $('.sumrow').removeClass('active');
+                $this.closest('.sumrow').toggleClass('active', !isExpanding);
             });
         },
 
@@ -111,7 +121,9 @@ var commissionReport = (function ($) {
         },
 
         buildRow: function buildRow(dataRow, isSummaryRow, index, title) {
-            return '<tr>' + '<td class="text-center">' + (isSummaryRow ? index + 1 : '') + '</td>' + '<td>' + (isSummaryRow ? title : dataRow.ProductName) + '</td>' + _me.buildCell(formatDecimal(dataRow.TurnOver)) + _me.buildCell(formatDecimal(dataRow.WinLoss)) + _me.buildCell(formatDecimal(dataRow.PlatformFee)) + _me.buildCell(formatDecimal(dataRow.OperationalFee)) + _me.buildCell(formatDecimal(dataRow.BankingFee)) + _me.buildCell(formatDecimal(dataRow.Bonus)) + _me.buildCell(dataRow.CommissionRate * 100 + '%') + _me.buildCell(formatDecimal(dataRow.Commission)) + '</tr>';
+            var activeClass = index === 0 ? ' active' : '';
+            var className = isSummaryRow ? ' class="sumrow' + activeClass + '"' : '';
+            return '<tr' + className + '>' + '<td class="text-center">' + (isSummaryRow ? index + 1 : '') + '</td>' + '<td class="title-cell">' + (isSummaryRow ? title + '<span class="chevron bottom toggleDetailRow" aria-hidden="true"></span>' : dataRow.ProductName) + '</td>' + _me.buildCell(formatDecimal(dataRow.TurnOver)) + _me.buildCell(formatDecimal(dataRow.WinLoss)) + _me.buildCell(formatDecimal(dataRow.PlatformFee)) + _me.buildCell(formatDecimal(dataRow.OperationalFee)) + _me.buildCell(formatDecimal(dataRow.BankingFee)) + _me.buildCell(formatDecimal(dataRow.Bonus)) + _me.buildCell(dataRow.CommissionRate * 100 + '%') + _me.buildCell(formatDecimal(dataRow.Commission)) + '</tr>';
         },
 
         buildTotalRow: function buildTotalRow() {
