@@ -25,7 +25,7 @@
                     monthDate: $("#MonthDate").data("original-date")
                 }
 
-                Site.redirect(Site.resolveRelativeUrl("UserPanel/#AccountOverView?") + $.param(params));
+                Site.redirect(Site.resolveRelativeUrl("UserPanel/Main/#AccountOverView?") + $.param(params));
             });
         }
     };

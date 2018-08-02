@@ -32,44 +32,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
             );
         }
 
-        public static UserPanelController GetUserPanelController(
-            ISessionService sessionService = null,
-            IAppSetting appSetting = null,
-            IAccountRepository accountRepository = null,
-            IMarketingService marketingService = null,
-            IStatisticsRepository statisticsRepository = null,
-            IStatementHistoryRepository statementHistoryRepository = null,
-            IPaymentRepository paymentRepository = null,
-            IEmailService emailService = null,
-            IAccountService accountService = null,
-            IPaymentService paymentService = null,
-            ICommissionReportService commissionReportService = null
-
-            )
-        {
-            accountRepository = accountRepository ?? Mock.Of<IAccountRepository>();
-            accountService = accountService ?? Mock.Of<IAccountService>();
-            paymentRepository = paymentRepository ?? Mock.Of<IPaymentRepository>();
-            emailService = emailService ?? Mock.Of<IEmailService>();
-            paymentService = paymentService ?? new PaymentService(
-                accountRepository,
-                accountService,
-                paymentRepository,
-                emailService);
-
-            var controller = new UserPanelController(
-                sessionService ?? GetSessionService(),
-                appSetting ?? Mock.Of<IAppSetting>(),
-                accountRepository,
-                marketingService ?? Mock.Of<IMarketingService>(),
-                statisticsRepository ?? Mock.Of<IStatisticsRepository>(),
-                statementHistoryRepository ?? Mock.Of<IStatementHistoryRepository>(),
-                paymentService,
-                commissionReportService ?? Mock.Of<ICommissionReportService>()
-                );
-
-            return MockingHelper.FakeController(controller) as UserPanelController;
-        }
+       
+        
 
         public static Controller FakeController(Controller controller)
         {

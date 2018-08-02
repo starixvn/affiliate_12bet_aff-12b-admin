@@ -20,28 +20,28 @@
     @RazorHelper.RenderHotNews()
     <div class="content-menu">
         <ul class="menu list-unstyled" id="mainMenu">
-            <li><a class="menu-item" id="menuAccountOverView" href="@(Url.Action("Index", "UserPanel") + "/#AccountOverView")">@Lang.AccOverview</a></li>
+            <li><a class="menu-item" id="menuAccountOverView" href="@Url.Content("~/UserPanel/Main/#AccountOverView")">@Lang.AccOverview</a></li>
             @if (string.Equals(groupName, CommGroupName.KoreanAgentComm))
             {
                 <li><a class="menu-item @(ViewContext.RouteData.Values["Controller"].ToString() == "Member" ? "active" : string.Empty)" id="menuYourCustomer" href="@(Url.Action("Index", "Member"))">@Lang.YourCustomers</a></li>
             }
-            <li><a class="menu-item" id="menuStatementHistory" href="@(Url.Action("Index", "UserPanel") + "/#StatementHistory")">@Lang.StatementHistory</a></li>
-            <li><a class="menu-item" id="menuMyAccount" href="@(Url.Action("Index", "UserPanel") + "/#MyAccount")">@Lang.MyAcc</a></li>
-            <li><a class="menu-item" id="menuPaymentRequest" href="@(Url.Action("Index", "UserPanel") + "/#PaymentRequest")">@Lang.PaymentRequest</a></li>
+            <li><a class="menu-item" id="menuStatementHistory" href="@Url.Content("~/UserPanel/Main/#StatementHistory")">@Lang.StatementHistory</a></li>
+            <li><a class="menu-item" id="menuMyAccount" href="@Url.Content("~/UserPanel/Main/#MyAccount")">@Lang.MyAcc</a></li>
+            <li><a class="menu-item" id="menuPaymentRequest" href="@Url.Content("~/UserPanel/Main/#PaymentRequest")">@Lang.PaymentRequest</a></li>
             <li>
                 <a class="menu-item parent" href="javascript:;">Marketing Tools <i class="caret"></i></a>
                 <ul class="menu submenu-container list-unstyled">
-                    <li><a class="menu-item" id="menuMediaGallery" href="@(Url.Action("Index", "UserPanel") + "/#MediaGallery")">@Lang.Media</a></li>
-                    <li><a class="menu-item" id="menuTextBox" href="@(Url.Action("Index", "UserPanel") + "/#TextBox")">@Lang.Text</a></li>
+                    <li><a class="menu-item" id="menuMediaGallery" href="@Url.Content("~/UserPanel/Main/#MediaGallery")">@Lang.Media</a></li>
+                    <li><a class="menu-item" id="menuTextBox" href="@Url.Content("~/UserPanel/Main/#TextBox")">@Lang.Text</a></li>
                 </ul>
             </li>
-            <li><a class="menu-item" id="menuCommissionReport" href="@(Url.Action("Index", "UserPanel") + "/#CommissionReport")">@Lang.CommissionReport</a></li>
+            <li><a class="menu-item" id="menuCommissionReport" href="@Url.Content("~/UserPanel/Main/#CommissionReport")">@Lang.CommissionReport</a></li>
             <li>
                 <a class="menu-item parent" href="javascript:;">Statistics <i class="caret"></i></a>
                 <ul class="menu submenu-container list-unstyled">
-                    <li><a class="menu-item" id="menuTrackingStatistics" href="@(Url.Action("Index", "UserPanel") + "/#TrackingStatistics")">@Lang.TrackingStatistics</a></li>
-                    <li><a class="menu-item" id="menuReferrersStatistics" href="@(Url.Action("Index", "UserPanel") + "/#ReferrersStatistics")">@Lang.Referrals</a></li>
-                    <li><a class="menu-item" id="menuLandingPageStatistics" href="@(Url.Action("Index", "UserPanel") + "/#LandingPageStatistics")">@Lang.LandingPages</a></li>
+                    <li><a class="menu-item" id="menuTrackingStatistics" href="@Url.Content("~/UserPanel/Main/#TrackingStatistics")">@Lang.TrackingStatistics</a></li>
+                    <li><a class="menu-item" id="menuReferrersStatistics" href="@Url.Content("~/UserPanel/Main/#ReferrersStatistics")">@Lang.Referrals</a></li>
+                    <li><a class="menu-item" id="menuLandingPageStatistics" href="@Url.Content("~/UserPanel/Main/#LandingPageStatistics")">@Lang.LandingPages</a></li>
                 </ul>
             </li>
         </ul>

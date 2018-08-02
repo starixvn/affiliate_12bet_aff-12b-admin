@@ -19,10 +19,14 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44390</IISExpressSSLPort>
-    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
-    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
-    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>
+    </IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>
+    </IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>
+    </IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -821,11 +825,11 @@
     <Content Include="www\source\styles\fonts\materialdesignicons\materialdesignicons-webfont.woff" />
     <Content Include="www\source\styles\fonts\materialdesignicons\materialdesignicons-webfont.eot" />
     <Content Include="www\source\styles\scss\components\materialdesignicons.scss" />
-    <Content Include="Views\UserPanel\MarketingPartial\_TextLink.cshtml" />
-    <Content Include="Views\UserPanel\MarketingPartial\_BannerList.cshtml" />
+    <Content Include="Views\UserPanel\Marketing\MarketingPartial\_TextLink.cshtml" />
+    <Content Include="Views\UserPanel\Marketing\MarketingPartial\_BannerList.cshtml" />
     <Content Include="www\source\styles\scss\components\_loader.scss" />
-    <Content Include="Views\UserPanel\MarketingPartial\_BannerFilter.cshtml" />
-    <Content Include="Views\UserPanel\MarketingPartial\_TextList.cshtml" />
+    <Content Include="Views\UserPanel\Marketing\MarketingPartial\_BannerFilter.cshtml" />
+    <Content Include="Views\UserPanel\Marketing\MarketingPartial\_TextList.cshtml" />
     <Content Include="www\source\styles\scss\components\_pager.scss" />
     <Content Include="www\source\styles\pages\statistics.scss" />
     <Content Include="Views\UserPanel\StatisticsPartial\_TrackingStatisticsContent.cshtml" />
@@ -1163,7 +1167,7 @@
     <Content Include="www\source\styles\pages\home.scss" />
     <Content Include="www\source\styles\pages\faq.scss" />
     <Content Include="www\source\styles\pages\contact-us.scss" />
-    <Content Include="Views\UserPanel\Index.cshtml" />
+    <Content Include="Views\UserPanel\Main\Index.cshtml" />
     <Content Include="www\source\styles\fonts\bootstrap\glyphicons-halflings-regular.eot" />
     <Content Include="www\source\styles\fonts\bootstrap\glyphicons-halflings-regular.ttf" />
     <Content Include="www\source\styles\fonts\bootstrap\glyphicons-halflings-regular.woff" />
@@ -1172,11 +1176,11 @@
     <Content Include="Views\Faq\Index.cshtml" />
     <Content Include="Views\UserPanel\PaymentRequest.cshtml" />
     <Content Include="www\source\styles\pages\payment-request.scss" />
-    <Content Include="Views\UserPanel\MediaGallery.cshtml" />
-    <Content Include="Views\UserPanel\TextBox.cshtml" />
+    <Content Include="Views\UserPanel\Marketing\MediaGallery\Index.cshtml" />
+    <Content Include="Views\UserPanel\Marketing\TextBox\Index.cshtml" />
     <Content Include="www\source\styles\pages\marketing.scss" />
-    <Content Include="Views\UserPanel\MarketingPartial\_SearchForm.cshtml" />
-    <Content Include="Views\UserPanel\MarketingPartial\_LinkForm.cshtml" />
+    <Content Include="Views\UserPanel\Marketing\MarketingPartial\_SearchForm.cshtml" />
+    <Content Include="Views\UserPanel\Marketing\MarketingPartial\_LinkForm.cshtml" />
     <Content Include="Views\UserPanel\TrackingStatistics.cshtml" />
     <Content Include="Views\UserPanel\ReferrersStatistics.cshtml" />
     <Content Include="Views\UserPanel\LandingPageStatistics.cshtml" />

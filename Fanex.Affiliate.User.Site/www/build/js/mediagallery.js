@@ -236,7 +236,7 @@ var MarketingBase = (function ($) {
                 dataType: "html",
                 cache: false,
                 data: params,
-                url: Site.resolveRelativeUrl("UserPanel/GenerateLink"),
+                url: Site.resolveRelativeUrl("UserPanel/Marketing/GenerateLink"),
                 success: function (response) {
                     $("#textLinkList").html(response);
                 },
@@ -326,7 +326,7 @@ var MediaGallery = (function ($) {
                 dataType: "json",
                 cache: false,
                 data: { category: category },
-                url: Site.resolveRelativeUrl("UserPanel/GetSubCategory"),
+                url: Site.resolveRelativeUrl("UserPanel/Marketing/GetSubCategory"),
                 success: function (response) {
                     var html = _me.buildOptionList(response, "Value", "Value", true);
                     $("#SubCategory").html(html);
@@ -374,7 +374,7 @@ var MediaGallery = (function ($) {
                 dataType: "html",
                 cache: false,
                 data: params,
-                url: Site.resolveRelativeUrl("UserPanel/GetBanner"),
+                url: Site.resolveRelativeUrl("UserPanel/Marketing/GetBanner"),
                 success: function (response) {
                     $("#marketingDataList").html(response);
                     onSuccess && onSuccess();

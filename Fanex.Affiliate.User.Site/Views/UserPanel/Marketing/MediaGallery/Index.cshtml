@@ -11,15 +11,15 @@
 </div>
 
 <div id="searchForm">
-    @{ Html.RenderPartial("~/Views/UserPanel/MarketingPartial/_SearchForm.cshtml", Model.SearchForm); }
+    @{ Html.RenderPartial("~/Views/UserPanel/Marketing/MarketingPartial/_SearchForm.cshtml", Model.SearchForm); }
 </div>
 
 <div id="linkForm">
-    @{ Html.RenderPartial("~/Views/UserPanel/MarketingPartial/_LinkForm.cshtml", Model.LinkForm); }
+    @{ Html.RenderPartial("~/Views/UserPanel/Marketing/MarketingPartial/_LinkForm.cshtml", Model.LinkForm); }
 </div>
 
 <div id="textLinkList">
-    @{ Html.RenderPartial("~/Views/UserPanel/MarketingPartial/_TextLink.cshtml", Model.TextLinkList); }
+    @{ Html.RenderPartial("~/Views/UserPanel/Marketing/MarketingPartial/_TextLink.cshtml", Model.TextLinkList); }
 </div>
 
 <div id="dataContainerList">
@@ -28,11 +28,11 @@
             <span class="text">@Lang.Banner</span>
         </div>
 
-        @{ Html.RenderPartial("~/Views/UserPanel/MarketingPartial/_BannerFilter.cshtml"); }
+        @{ Html.RenderPartial("~/Views/UserPanel/Marketing/MarketingPartial/_BannerFilter.cshtml"); }
 
         <div id="marketingPager"></div>
         <div id="marketingDataList">
-            @{ Html.RenderPartial("~/Views/UserPanel/MarketingPartial/_BannerList.cshtml", Model.MarketingDataList); }
+            @{ Html.RenderPartial("~/Views/UserPanel/Marketing/MarketingPartial/_BannerList.cshtml", Model.MarketingDataList); }
         </div>
     </div>
 </div>
