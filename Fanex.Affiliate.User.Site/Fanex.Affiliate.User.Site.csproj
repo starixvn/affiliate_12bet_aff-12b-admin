@@ -868,7 +868,7 @@
     <Content Include="Views\Signup\SecureQuestion\SecureQuestion_hi-IN.cshtml" />
     <Content Include="www\source\styles\scss\base\_pureicon.scss" />
     <Content Include="www\source\styles\scss\layout\_footer.scss" />
-    <Content Include="Views\UserPanel\CommissionReport.cshtml" />
+    <Content Include="Views\UserPanel\CommissionReport\Index.cshtml" />
     <Content Include="www\source\styles\pages\commissionreport.scss" />
   </ItemGroup>
   <ItemGroup>

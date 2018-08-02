@@ -121,7 +121,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\UserPanel\.AccountOverViewControllerTest.cs" />
+    <Compile Include="Controllers\UserPanel\AccountOverViewControllerTest.cs" />
     <None Include="app.config" />
     <Compile Include="Controllers\UserPanelController.PaymentRequestTest.cs" />
     <Compile Include="Controllers\NewsControllerTest.cs" />
