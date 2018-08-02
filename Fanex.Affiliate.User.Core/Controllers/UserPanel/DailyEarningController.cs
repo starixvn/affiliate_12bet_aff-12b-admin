@@ -1,0 +1,58 @@
+﻿namespace Fanex.Affiliate.User.Core.Controllers
+{
+    using System;
+    using System.Web.Mvc;
+    using Constants;
+    using Extensions;
+    using Fanex.Affiliate.User.Core.CoreService;
+    using Fanex.Affiliate.User.Core.Repository.UserPanel;
+    using Fanex.Affiliate.User.Core.Utilities;
+    using Filters;
+    using MetalModels.UserPanel;
+    using ONEbook.UM.Filters;
+    using ViewModels.UserPanel;
+
+    [CheckUMFilter]
+    [CustomAuthorize]
+    public class DailyEarningController : Controller
+    {
+        private readonly ISessionService _sessionService;
+        private readonly IStatementHistoryRepository _statementHistoryRepository;
+
+        public DailyEarningController(ISessionService sessionService,
+            IStatementHistoryRepository statementHistoryRepository
+
+            )
+        {
+            _sessionService = sessionService;
+            _statementHistoryRepository = statementHistoryRepository;
+        }
+
+        [AjaxOnly]
+        public ActionResult Index(DailyEarningParam param)
+        {
+            param.AffId = _sessionService.UserSession.AffId;
+            param.IsInternal = _sessionService.IsInternal;
+            param.SportType = param.SportType.HasValue ? param.SportType.Value : Product.Sportsbook;
+            param.MonthDate = param.MonthDate.HasValue ? param.MonthDate.Value : DateTime.Now.AddDays(-1);
+
+            var extraUserInfo = _statementHistoryRepository.GetExtraUserInfo(param.AffId, param.IsInternal);
+
+            var viewModel = new DailyEarningViewModel
+            {
+                ProductList = param.IsOnlyContent ? null : _statementHistoryRepository.GetProductList(param.IsInternal),
+                Data = _statementHistoryRepository.GetDailyEarning(param),
+                SelectedProduct = param.SportType.Value,
+                IsKoreanAgentCommGroup = extraUserInfo.GroupName.MatchWith(CommGroupName.KoreanAgentComm),
+                HasDailyDetail = extraUserInfo.HasDailyDetail
+            };
+            ViewBag.MonthDate = param.MonthDate;
+            var viewPath = param.IsOnlyContent ? "~/Views/UserPanel/StatementHistory/StatementHistoryPartial/_DailyEarningContent.cshtml" :
+                "~/Views/UserPanel/StatementHistory/DailyEarning.cshtml";
+
+            return View(viewPath, viewModel);
+
+        }
+
+    }
+}

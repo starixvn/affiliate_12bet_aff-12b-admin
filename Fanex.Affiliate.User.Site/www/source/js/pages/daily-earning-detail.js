@@ -28,7 +28,7 @@
                 var params = {
                     sportType: $("#SportType").val(),
                     monthDate: $("#MonthDate").val(),
-                    isInitial: false
+                    IsOnlyContent: true
                 }
 
                 _me.renderDailyEarningDetail(params);
@@ -39,7 +39,7 @@
 
                 if (params) {
                     Site.showLoader();
-                    Site.redirect(Site.resolveRelativeUrl("BetList/Index?" + $.param(params)));
+                    Site.redirect(Site.resolveRelativeUrl("UserPanel/BetList/Index?" + $.param(params)));
                 }
             });
 
@@ -51,7 +51,7 @@
                 }
 
                 if (params.username) {
-                    var url = Site.resolveRelativeUrl("MemberTransaction/Index");
+                    var url = Site.resolveRelativeUrl("UserPanel/MemberTransaction/Index");
                     var title = (params.isdeposit ? dialogTitle.titleDeposit : dialogTitle.titleWithdrawal) + " " + params.date;
                     _me.showTransactionInfo(url, params, title);
                 }
@@ -60,10 +60,12 @@
 
         renderDailyEarningDetail: function (params) {
             $.ajax({
-                type: "GET",
+                type: "POST",
                 dataType: "html",
-                data: params,
+                data: JSON.stringify(params),
                 cache: false,
+                contentType: "application/json; charset=UTF-8",
+
                 url: Site.resolveRelativeUrl("UserPanel/DailyEarningDetail"),
                 success: function (response) {
                     $("#dailyEarningDetailContent").html(response);

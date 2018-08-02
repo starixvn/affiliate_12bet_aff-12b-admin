@@ -34,6 +34,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
         [HttpGet]
         public ActionResult Index(BetListParam param)
         {
+            var viewPath = "~/Views/UserPanel/BetList/Index.cshtml";
             if (ModelState.IsValid)
             {
                 param.AffId = SessionService.UserSession.AffId;
@@ -65,12 +66,12 @@ namespace Fanex.Affiliate.User.Core.Controllers
                             UserName = param.UserName
                         };
 
-                        return View(viewModel);
+                        return View(viewPath, viewModel);
                     }
                 }
             }
 
-            return View(new MainBetListViewModel());
+            return View(viewPath, new MainBetListViewModel());
         }
 
         [HttpGet]
@@ -101,7 +102,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 }
             }
 
-            return View(result);
+            return View("~/Views/UserPanel/BetList/Result.cshtml", result);
         }
 
         [HttpGet]
@@ -122,7 +123,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 result = webService.GetBetlistSystemParlay(AffiliateName, ExchangeRate, criteria, Language);
             }
 
-            return View(result);
+            return View("~/Views/UserPanel/BetList/ParlayDetail.cshtml", result);
         }
 
         [HttpGet]

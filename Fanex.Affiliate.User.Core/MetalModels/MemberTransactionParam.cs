@@ -2,6 +2,7 @@
 
 namespace Fanex.Affiliate.User.Core.MetalModels
 {
+    [Serializable]
     public class MemberTransactionParam
     {
         public string UserName { get; set; }

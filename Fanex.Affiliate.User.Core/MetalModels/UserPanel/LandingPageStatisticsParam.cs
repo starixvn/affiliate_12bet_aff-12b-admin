@@ -1,5 +1,8 @@
-﻿namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
+﻿using System;
+
+namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
 {
+    [Serializable]
     public class LandingPageStatisticsParam : StatisticsBySiteBaseParam
     {
         public string SportCode { get; set; }

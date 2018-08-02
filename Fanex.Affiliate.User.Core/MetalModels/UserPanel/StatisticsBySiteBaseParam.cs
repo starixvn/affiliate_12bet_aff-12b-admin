@@ -2,6 +2,8 @@
 
 namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
 {
+    [Serializable]
+
     public class StatisticsBySiteBaseParam : BaseParam
     {
         public int AffId { get; set; }

@@ -6,7 +6,7 @@
 
         initEvent: function () {
             $("#btnCancel").on("click", function () {
-                Site.redirect(Site.resolveRelativeUrl("UserPanel/#MyAccount"));
+                Site.redirect(Site.resolveRelativeUrl("UserPanel/Main/#MyAccount"));
             });
 
             $("#updatePasswordForm").on("submit", function (e) {

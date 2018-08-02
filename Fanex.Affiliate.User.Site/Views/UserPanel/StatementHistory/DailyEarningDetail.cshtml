@@ -14,9 +14,9 @@
 <div>
     <div class="breadcrumb-container">
         <ol class="breadcrumb" id="dailyEarningBreadcrumb">
-            <li><a href="@(Url.Action("Index", "UserPanel") + "/#StatementHistory")">@Lang.StatementHistory</a></li>
+            <li><a href="@Url.Content("~/UserPanel/Main/#StatementHistory")">@Lang.StatementHistory</a></li>
             <li>
-                <a href="@(Url.Action("Index", "UserPanel") + "/#DailyEarning?monthDate=" + HttpUtility.UrlEncode(lastDateOfMonth.ToString("MM/dd/yyyy")))">
+                <a href="@Url.Content("~/UserPanel/Main/#DailyEarning?monthDate=" + HttpUtility.UrlEncode(lastDateOfMonth.ToString("MM/dd/yyyy")))">
                     @Model.SelectedDate.ToString("MMMM yyyy")
                 </a>
             </li>
@@ -49,7 +49,7 @@
     </form>
 
     <div class="table" id="dailyEarningDetailContent">
-        @{ Html.RenderPartial("~/Views/UserPanel/StatementHistoryPartial/_DailyEarningDetailContent.cshtml", Model); }
+        @{ Html.RenderPartial("~/Views/UserPanel/StatementHistory/StatementHistoryPartial/_DailyEarningDetailContent.cshtml", Model); }
     </div>
 </div>
 

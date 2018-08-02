@@ -69,11 +69,12 @@
 
         getMainView: function (params) {
             $.ajax({
-                type: "GET",
+                type: "POST",
                 dataType: "html",
                 cache: false,
-                data: params,
-                url: Site.resolveRelativeUrl("UserPanel/GetReferrerStatistics"),
+                data: JSON.stringify(params),
+                url: Site.resolveRelativeUrl("UserPanel/ReferrersStatistics"),
+                contentType: "application/json; charset=UTF-8",
                 success: function (response) {
                     $("#statisticsTable").html(response);
                 },
@@ -92,11 +93,12 @@
             }
 
             $.ajax({
-                type: "GET",
+                type: "POST",
                 dataType: "html",
                 cache: false,
-                data: params,
-                url: Site.resolveRelativeUrl("UserPanel/GetStatisticsDetailBySite"),
+                data: JSON.stringify(params),
+                url: Site.resolveRelativeUrl("UserPanel/Statistics/StatisticsDetailBySite"),
+                contentType: "application/json; charset=UTF-8",
                 success: function (response) {
                     $("#statisticsDetailTable").html(response);
                     onSuccess && onSuccess();

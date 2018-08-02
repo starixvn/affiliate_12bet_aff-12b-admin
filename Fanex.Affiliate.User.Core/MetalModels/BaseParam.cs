@@ -1,7 +1,9 @@
-﻿using Fanex.Data;
+﻿using System;
+using Fanex.Data;
 
 namespace Fanex.Affiliate.User.Core.MetalModels
 {
+    [Serializable]
     public class BaseParam
     {
         [SpParam(Ignored = true)]

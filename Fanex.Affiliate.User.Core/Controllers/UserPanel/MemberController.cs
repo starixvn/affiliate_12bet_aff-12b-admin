@@ -6,7 +6,7 @@ using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Utilities;
 
-namespace Fanex.Affiliate.User.Core.Controllers
+namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
 {
     [CustomAuthorize]
     public class MemberController : BaseController
@@ -38,7 +38,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
             ViewBag.TotalItem = memberParam.NRows;
             ViewBag.StartRowNumber = 1;
 
-            return View(model);
+            return View("~/Views/UserPanel/Member/Index.cshtml", model);
         }
 
         [HttpGet]
@@ -52,7 +52,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
             ViewBag.TotalItem = memberParam.NRows;
             ViewBag.StartRowNumber = (memberParam.PageIndex - 1) * memberParam.PageSize + 1;
 
-            return PartialView("~/Views/Member/_DataContent.cshtml", memberList);
+            return PartialView("~/Views/UserPanel/Member/_DataContent.cshtml", memberList);
         }
     }
 }

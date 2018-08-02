@@ -25,11 +25,12 @@
 
         getMainView: function (params) {
             $.ajax({
-                type: "GET",
+                type: "POST",
                 dataType: "html",
                 cache: false,
-                data: params,
-                url: Site.resolveRelativeUrl("UserPanel/GetTrackingStatistics"),
+                data: JSON.stringify(params),
+                url: Site.resolveRelativeUrl("UserPanel/TrackingStatistics/Index"),
+                contentType: "application/json; charset=UTF-8",
                 success: function (response) {
                     $("#statisticsTable").html(response);
                 },
@@ -44,11 +45,13 @@
 
         getDetailView: function (params) {
             $.ajax({
-                type: "GET",
+                type: "POST",
                 dataType: "html",
                 cache: false,
-                data: params,
-                url: Site.resolveRelativeUrl("UserPanel/GetTrackingStatisticsDetail"),
+                data: JSON.stringify(params),
+                url: Site.resolveRelativeUrl("UserPanel/TrackingStatistics/TrackingStatisticsDetail"),
+                contentType: "application/json; charset=UTF-8",
+
                 success: function (response) {
                     $("#statisticsDetailTable").html(response);
                 },

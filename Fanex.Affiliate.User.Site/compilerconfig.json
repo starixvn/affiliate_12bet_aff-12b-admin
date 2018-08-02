@@ -150,5 +150,9 @@
   {
     "outputFile": "www/source/js/pages/myaccount.es5.js",
     "inputFile": "www/source/js/pages/myaccount.js"
+  },
+  {
+    "outputFile": "www/source/js/pages/daily-earning-detail.es5.js",
+    "inputFile": "www/source/js/pages/daily-earning-detail.js"
   }
 ]

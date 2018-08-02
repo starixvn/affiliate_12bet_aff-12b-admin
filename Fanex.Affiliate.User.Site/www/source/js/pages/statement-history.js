@@ -42,11 +42,12 @@
 
         renderStatementHistory: function (params) {
             $.ajax({
-                type: "GET",
+                type: "POST",
                 dataType: "html",
                 cache: false,
-                data: params,
-                url: Site.resolveRelativeUrl("UserPanel/StatementHistory/GetStatementHistoryData"),
+                data: JSON.stringify(params),
+                contentType: "application/json; charset=UTF-8",
+                url: Site.resolveRelativeUrl("UserPanel/StatementHistory"),
                 success: function (response) {
                     $("#statementDataList").html(response);
                 },

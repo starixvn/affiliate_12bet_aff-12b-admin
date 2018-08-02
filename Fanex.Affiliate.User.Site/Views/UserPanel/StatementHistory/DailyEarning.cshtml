@@ -12,7 +12,7 @@
 <div>
     <div class="breadcrumb-container">
         <ol class="breadcrumb" id="dailyEarningBreadcrumb">
-            <li><a href="@(Url.Action("Index", "UserPanel") + "/#StatementHistory")">@Lang.StatementHistory</a></li>
+            <li><a href="@Url.Content("~/UserPanel/Main/#StatementHistory")">@Lang.StatementHistory</a></li>
         </ol>
     </div>
 
@@ -34,7 +34,7 @@
     </div>
 
     <div class="table" id="dailyEarningContent">
-        @{ Html.RenderPartial("~/Views/UserPanel/StatementHistoryPartial/_DailyEarningContent.cshtml", Model); }
+        @{ Html.RenderPartial("~/Views/UserPanel/StatementHistory/StatementHistoryPartial/_DailyEarningContent.cshtml", Model); }
     </div>
 </div>
 

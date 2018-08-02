@@ -20,7 +20,7 @@
 
         getMixParlayResultUrl: function (refno, winlostdate, bettype, username) {
             var queryString = "refno=" + refno + "&winlossdate=" + winlostdate + "&bettype=" + bettype + "&matchid=" + 1 + "&username=" + username;
-            return Site.resolveRelativeUrl("BetList/Result?" + queryString);
+            return Site.resolveRelativeUrl("UserPanel/BetList/Result?" + queryString);
         },
 
         getSportBookResultUrl: function (matchid, bettype, raceNo, sporttype, league, isOutright, username, betidOrHdp1, hdp2) {
@@ -31,7 +31,7 @@
                 queryString += "&handicap2=" + hdp2;
             }
 
-            return Site.resolveRelativeUrl("BetList/Result?" + queryString);
+            return Site.resolveRelativeUrl("UserPanel/BetList/Result?" + queryString);
         },
 
         ViewResult: function (matchid, raceNo, bettype, sporttype, refno, username, winlostdate, refnoMixParlay, league, isOutright, betidOrHdp1, hdp2) {
@@ -85,7 +85,7 @@
             }
 
             var queryString = "transId" + transId + "&refno=" + refNo + "&betid=" + betId + "&custid=" + custId + "&betteam=" + betTeam + "&basecurrency=" + baseCurrency;
-            var url = Site.resolveRelativeUrl("BetList/ParlayDetail?" + queryString);
+            var url = Site.resolveRelativeUrl("UserPanel/BetList/ParlayDetail?" + queryString);
 
             _me.showPopup(url, betTeam);
         },
@@ -98,7 +98,7 @@
             if ($detaillDiv.is(':hidden')) {
                 var queryString = "transId=" + transId + "&refno=" + refNo + "&handicap1=" + handicap1 + "&handicap2=" + handicap2 +
                                     "&betcheck=" + betcheck + "&betteam=" + betteam;
-                var url = Site.resolveRelativeUrl("BetList/NewParlay?" + queryString);
+                var url = Site.resolveRelativeUrl("UserPanel/BetList/NewParlay?" + queryString);
 
                 $.ajax({
                     type: "GET",
@@ -124,7 +124,7 @@
         },
 
         showOldMixParlayDetail: function (transId, $divEvent) {
-            var url = Site.resolveRelativeUrl("BetList/OldParlay?transId=" + transId);
+            var url = Site.resolveRelativeUrl("UserPanel/BetList/OldParlay?transId=" + transId);
             if ($divEvent.is(':hidden')) {
                 $.ajax({
                     type: "GET",
@@ -151,7 +151,7 @@
             var isCashOut = betType === BETTYPE_CASHOUT || (betdaqId < 1 && betType !== BETTYPE_BOUGHT);
 
             var queryString = "transId=" + transId + "&refno=" + refNo + "&betType=" + betType + "&betdaqId=" + betdaqId + "&isCashOut=" + isCashOut;
-            var url = Site.resolveRelativeUrl("BetList/CashOutDetail?" + queryString);
+            var url = Site.resolveRelativeUrl("UserPanel/BetList/CashOutDetail?" + queryString);
 
             _me.showPopup(url, isCashOut ? 'Cash Out Details' : 'Bought Details');
         }

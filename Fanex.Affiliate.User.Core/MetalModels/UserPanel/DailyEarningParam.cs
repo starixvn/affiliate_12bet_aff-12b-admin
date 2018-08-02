@@ -3,6 +3,7 @@ using Fanex.Data;
 
 namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
 {
+    [Serializable]
     public class DailyEarningParam : BaseParam
     {
         public int AffId { get; set; }
@@ -12,6 +13,6 @@ namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
         public DateTime? MonthDate { get; set; }
 
         [SpParam(Ignored = true)]
-        public bool IsInitial { get; set; } = true;
+        public bool IsOnlyContent { get; set; }
     }
 }

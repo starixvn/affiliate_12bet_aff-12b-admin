@@ -405,8 +405,8 @@
     <Content Include="Views\Shared\Email\NewPassword\Content.zh-CN.cshtml" />
     <Content Include="Views\Shared\Email\NewPassword\Content.zh-TW.cshtml" />
     <Content Include="Views\Shared\Email\Csd\Content.en-US.cshtml" />
-    <Content Include="Views\Member\Index.cshtml" />
-    <Content Include="Views\Member\_DataContent.cshtml" />
+    <Content Include="Views\UserPanel\Member\Index.cshtml" />
+    <Content Include="Views\UserPanel\Member\_DataContent.cshtml" />
     <Content Include="Views\CommissionStructure\_Content.cshtml" />
     <Content Include="Views\Faq\_Content.cshtml" />
     <Content Include="Views\Shared\Email\ContactUs\Content.en-US.cshtml" />
@@ -555,6 +555,12 @@
     <Content Include="www\source\js\lib\jquery.validate.unobtrusive.min.js" />
     <Content Include="www\source\js\pages\commission-report.js" />
     <Content Include="www\source\js\pages\contactus.js" />
+    <Content Include="www\source\js\pages\daily-earning-detail.es5.js">
+      <DependentUpon>daily-earning-detail.js</DependentUpon>
+    </Content>
+    <Content Include="www\source\js\pages\daily-earning-detail.es5.min.js">
+      <DependentUpon>daily-earning-detail.es5.js</DependentUpon>
+    </Content>
     <Content Include="www\source\js\pages\forgotpassword.js" />
     <Content Include="www\source\js\pages\member.js" />
     <Content Include="www\source\js\pages\messagehistory.js" />
@@ -838,9 +844,9 @@
     <Content Include="Views\UserPanel\Marketing\MarketingPartial\_TextList.cshtml" />
     <Content Include="www\source\styles\scss\components\_pager.scss" />
     <Content Include="www\source\styles\pages\statistics.scss" />
-    <Content Include="Views\UserPanel\StatisticsPartial\_TrackingStatisticsContent.cshtml" />
-    <Content Include="Views\UserPanel\StatisticsPartial\_ReferrersStatisticsContent.cshtml" />
-    <Content Include="Views\UserPanel\StatisticsPartial\_LandingPageStatisticsContent.cshtml" />
+    <Content Include="Views\UserPanel\Statistics\StatisticsPartial\_TrackingStatisticsContent.cshtml" />
+    <Content Include="Views\UserPanel\Statistics\StatisticsPartial\_ReferrersStatisticsContent.cshtml" />
+    <Content Include="Views\UserPanel\Statistics\StatisticsPartial\_LandingPageStatisticsContent.cshtml" />
     <Content Include="www\source\styles\scss\components\_pikaday.scss" />
     <Content Include="Views\News\_LatestHotNews.cshtml" />
     <Content Include="Views\UserPanel\StatementHistory\StatementHistoryPartial\_StatementHistoryContent.cshtml" />
@@ -849,12 +855,12 @@
     <Content Include="www\source\styles\pages\dailyearning.scss" />
     <Content Include="Views\UserPanel\StatementHistory\StatementHistoryPartial\_DailyEarningDetailContent.cshtml" />
     <Content Include="www\source\styles\pages\dailyearning-detail.scss" />
-    <Content Include="Views\BetList\Index.cshtml" />
+    <Content Include="Views\UserPanel\BetList\Index.cshtml" />
     <Content Include="www\source\styles\pages\betlist.scss" />
     <Content Include="www\source\styles\scss\components\_monthpicker.scss" />
     <Content Include="www\source\styles\pages\account-overview.scss" />
-    <Content Include="Views\BetList\Result.cshtml" />
-    <Content Include="Views\BetList\ParlayDetail.cshtml" />
+    <Content Include="Views\UserPanel\BetList\Result.cshtml" />
+    <Content Include="Views\UserPanel\BetList\ParlayDetail.cshtml" />
     <Content Include="Views\News\MessageHistory.cshtml" />
     <Content Include="Views\News\_MessageContent.cshtml" />
     <Content Include="www\source\styles\pages\messagehistory.scss" />
@@ -873,7 +879,7 @@
     <Content Include="Views\UserPanel\PaymentRequest\PaymentPartial\_PaymentList.cshtml" />
     <Content Include="Views\UserPanel\PaymentRequest\PaymentPartial\_RequestPayout.cshtml" />
     <Content Include="Views\TermAndCondition\Popup.cshtml" />
-    <Content Include="Views\MemberTransaction\Index.cshtml" />
+    <Content Include="Views\UserPanel\MemberTransaction\Index.cshtml" />
     <Content Include="www\source\styles\scss\components\_modal.scss" />
     <Content Include="Views\Signup\SecureQuestion\SecureQuestion_hi-IN.cshtml" />
     <Content Include="www\source\styles\scss\base\_pureicon.scss" />
@@ -1187,14 +1193,14 @@
     <Content Include="www\source\styles\pages\marketing.scss" />
     <Content Include="Views\UserPanel\Marketing\MarketingPartial\_SearchForm.cshtml" />
     <Content Include="Views\UserPanel\Marketing\MarketingPartial\_LinkForm.cshtml" />
-    <Content Include="Views\UserPanel\TrackingStatistics.cshtml" />
-    <Content Include="Views\UserPanel\ReferrersStatistics.cshtml" />
-    <Content Include="Views\UserPanel\LandingPageStatistics.cshtml" />
+    <Content Include="Views\UserPanel\Statistics\TrackingStatistics\Index.cshtml" />
+    <Content Include="Views\UserPanel\Statistics\ReferrersStatistics\Index.cshtml" />
+    <Content Include="Views\UserPanel\Statistics\LandingPageStatistics\Index.cshtml" />
     <Content Include="Views\Signup\Index.cshtml" />
     <Content Include="www\source\styles\scss\base\_common.scss" />
     <Content Include="Views\Password\Index.cshtml" />
-    <Content Include="Views\UserPanel\DailyEarning.cshtml" />
-    <Content Include="Views\UserPanel\DailyEarningDetail.cshtml" />
+    <Content Include="Views\UserPanel\StatementHistory\DailyEarning.cshtml" />
+    <Content Include="Views\UserPanel\StatementHistory\DailyEarningDetail.cshtml" />
     <Content Include="Views\Test\Preview.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Shared\Email\CommonLayout.cshtml" />

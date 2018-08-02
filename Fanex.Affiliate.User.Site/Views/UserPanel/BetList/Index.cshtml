@@ -29,14 +29,14 @@
     <div>
         <div class="breadcrumb-container">
             <ol class="breadcrumb" id="dailyEarningBreadcrumb">
-                <li><a href="@(Url.Action("Index", "UserPanel") + "/#StatementHistory")">@Lang.StatementHistory (@lastDateOfMonth.ToString("MMM yyyy"))</a></li>
+                <li><a href="@Url.Content("~/UserPanel/Main/#StatementHistory")">@Lang.StatementHistory (@lastDateOfMonth.ToString("MMM yyyy"))</a></li>
                 <li>
-                    <a href="@(Url.Action("Index", "UserPanel") + "/#DailyEarning?monthDate=" + HttpUtility.UrlEncode(lastDateOfMonth.ToString("MM/dd/yyyy")))">
+                    <a href="@Url.Content("~/UserPanel/Main/#DailyEarning?monthDate=" + HttpUtility.UrlEncode(lastDateOfMonth.ToString("MM/dd/yyyy")))">
                         @lastDateOfMonth.ToString("MMMM yyyy")
                     </a>
                 </li>
                 <li>
-                    <a href="@(Url.Action("Index", "UserPanel") + "/#DailyEarningDetail?monthDate=" + HttpUtility.UrlEncode(Model.SelectedDate.ToString("MM/dd/yyyy")) + "&sportType=" + Model.SelectedSportType)">
+                    <a href="@Url.Content("~/UserPanel/Main/#DailyEarningDetail?monthDate=" + HttpUtility.UrlEncode(Model.SelectedDate.ToString("MM/dd/yyyy")) + "&sportType=" + Model.SelectedSportType)">
                         @Model.SelectedDate.ToString("dd MMMM yyyy")
                     </a>
                 </li>

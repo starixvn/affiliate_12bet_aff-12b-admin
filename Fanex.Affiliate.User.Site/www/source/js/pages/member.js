@@ -79,7 +79,7 @@
                 dataType: "html",
                 cache: false,
                 data: params,
-                url: Site.resolveRelativeUrl("Member/GetMemberList"),
+                url: Site.resolveRelativeUrl("UserPanel/Member/GetMemberList"),
                 success: function (response) {
                     $("#dataList").html(response);
                     onSuccess && onSuccess();

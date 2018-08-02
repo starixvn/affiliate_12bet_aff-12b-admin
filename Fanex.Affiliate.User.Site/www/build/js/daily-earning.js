@@ -15,14 +15,14 @@ var DailyEarning = (function ($) {
                     monthDate: $(this).data("date")
                 };
 
-                Site.redirect(Site.resolveRelativeUrl("UserPanel/#DailyEarningDetail?" + $.param(params)));
+                Site.redirect(Site.resolveRelativeUrl("UserPanel/Main/#DailyEarningDetail?" + $.param(params)));
             });
 
             $("#SportType").on("change", function () {
                 var params = {
                     monthDate: $("#MonthDate").val(),
                     sportType: $(this).val(),
-                    isInitial: false
+                    IsOnlyContent: true
                 };
 
                 _me.renderDailyEarning(params);
@@ -31,9 +31,10 @@ var DailyEarning = (function ($) {
 
         renderDailyEarning: function renderDailyEarning(params) {
             $.ajax({
-                type: "GET",
-                data: params,
+                type: "POST",
+                data: JSON.stringify(params),
                 dataType: "html",
+                contentType: "application/json; charset=UTF-8",
                 cache: false,
                 url: Site.resolveRelativeUrl("UserPanel/DailyEarning"),
                 success: function success(response) {

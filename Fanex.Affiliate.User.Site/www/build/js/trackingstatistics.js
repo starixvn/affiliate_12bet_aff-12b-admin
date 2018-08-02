@@ -27,11 +27,12 @@ var TrackingStatistics = (function ($) {
 
         getMainView: function getMainView(params) {
             $.ajax({
-                type: "GET",
+                type: "POST",
                 dataType: "html",
                 cache: false,
-                data: params,
-                url: Site.resolveRelativeUrl("UserPanel/GetTrackingStatistics"),
+                data: JSON.stringify(params),
+                url: Site.resolveRelativeUrl("UserPanel/TrackingStatistics/Index"),
+                contentType: "application/json; charset=UTF-8",
                 success: function success(response) {
                     $("#statisticsTable").html(response);
                 },
@@ -46,11 +47,13 @@ var TrackingStatistics = (function ($) {
 
         getDetailView: function getDetailView(params) {
             $.ajax({
-                type: "GET",
+                type: "POST",
                 dataType: "html",
                 cache: false,
-                data: params,
-                url: Site.resolveRelativeUrl("UserPanel/GetTrackingStatisticsDetail"),
+                data: JSON.stringify(params),
+                url: Site.resolveRelativeUrl("UserPanel/TrackingStatistics/TrackingStatisticsDetail"),
+                contentType: "application/json; charset=UTF-8",
+
                 success: function success(response) {
                     $("#statisticsDetailTable").html(response);
                 },

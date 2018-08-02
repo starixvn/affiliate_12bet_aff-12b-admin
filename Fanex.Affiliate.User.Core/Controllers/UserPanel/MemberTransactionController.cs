@@ -7,7 +7,7 @@ using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.ViewModels;
 using ONEbook.UM.Filters;
 
-namespace Fanex.Affiliate.User.Core.Controllers
+namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
 {
     [CheckUMFilter]
     [CustomAuthorize]
@@ -35,7 +35,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 Total = transactionList.Sum(t => t.Amount)
             };
 
-            return View(viewModel);
+            return View("~/Views/UserPanel/MemberTransaction/Index.cshtml", viewModel);
         }
     }
 }
