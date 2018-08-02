@@ -26,9 +26,9 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             }
             return type.Value == 0 ? $" ({Lang.Temporary})" : $" ({Lang.Uncalculated})";
         }
-        public CommissionReportViewModel GenerateCommissionReportData(int affId, DateTime winlostdate)
+        public CommissionReportViewModel GenerateCommissionReportData(int affId, DateTime winlostDate)
         {
-            var rawData = _commissionReportRepository.GetAffiliateCommission(affId, winlostdate);
+            var rawData = _commissionReportRepository.GetAffiliateCommission(affId, winlostDate);
 
             var byMonth =
                     (from n in rawData

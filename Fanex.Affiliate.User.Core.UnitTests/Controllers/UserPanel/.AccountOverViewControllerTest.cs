@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using Fanex.Affiliate.User.Core.Controllers.UserPanel;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
@@ -10,9 +11,9 @@ using Moq;
 using Newtonsoft.Json;
 using Xunit;
 
-namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
+namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
 {
-    public class AccountOverviewTest
+    public class AccountOverViewControllerTest
     {
         [Theory]
         [InlineData(null)]
@@ -28,6 +29,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
                 SelectedMonth = monthDate.Value
             };
 
+            var sessionService = MockingHelper.GetSessionService();
+
             var statisticsRepository = new Mock<IStatisticsRepository>();
             statisticsRepository.Setup(s => s.GetStatisticsOverview(It.IsAny<StatisticsOverviewParam>()))
                                 .Returns(new AccountOverviewStatistics());
@@ -36,14 +39,16 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             accountOverViewRepository.Setup(c => c.GetCommissionSettingList(Constant.DefaultAffId, false))
                                 .Returns(new List<CommissionSetting>());
 
-            var controller = MockingHelper.GetUserPanelController(
-                statisticsRepository: statisticsRepository.Object,
-                accountRepository: accountOverViewRepository.Object);
+            var controller = MockingHelper.FakeController(
+                new AccountOverviewController(sessionService:sessionService, statisticsRepository:
+                statisticsRepository.Object, accountRepository: accountOverViewRepository.Object)
+                ) as AccountOverviewController;
+             
 
             var expectedResult = JsonConvert.SerializeObject(viewModel);
 
             // Action
-            var viewResult = (ViewResult)controller.AccountOverview(monthDate);
+            var viewResult = (ViewResult)controller.Index(monthDate);
             var result = JsonConvert.SerializeObject(viewResult.Model);
 
             // Assert
@@ -65,9 +70,14 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             statisticsRepository.Setup(s => s.GetStatisticsOverview(It.IsAny<StatisticsOverviewParam>()))
                                 .Callback<StatisticsOverviewParam>(param => passedParam = param);
 
-            var controller = MockingHelper.GetUserPanelController(
-                sessionService: sessionService,
-                statisticsRepository: statisticsRepository.Object);
+            var accountOverViewRepository = new Mock<IAccountRepository>();
+            accountOverViewRepository.Setup(c => c.GetCommissionSettingList(Constant.DefaultAffId, false))
+                                .Returns(new List<CommissionSetting>());
+
+            var controller = MockingHelper.FakeController(
+                new AccountOverviewController(sessionService: sessionService, statisticsRepository:
+                statisticsRepository.Object, accountRepository: accountOverViewRepository.Object)
+                ) as AccountOverviewController;
 
             var expectedParam = new StatisticsOverviewParam
             {
@@ -79,7 +89,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var expectedParamJson = JsonConvert.SerializeObject(expectedParam);
 
             // Action
-            controller.AccountOverview(monthDate);
+            controller.Index(monthDate);
             var result = JsonConvert.SerializeObject(passedParam);
 
             // Assert

@@ -1154,7 +1154,7 @@
     <Content Include="www\build\styles\fonts\Montserrat\Montserrat-SemiBold.woff2" />
     <Content Include="www\source\styles\pages\my-account.scss" />
     <Content Include="Views\Shared\_LayoutAfterLogin.cshtml" />
-    <Content Include="Views\UserPanel\AccountOverView.cshtml" />
+    <Content Include="Views\UserPanel\AccountOverView\Index.cshtml" />
     <Content Include="www\source\styles\scss\layout\_menu.scss" />
     <Content Include="Views\Shared\_LayoutBeforeLogin.cshtml" />
     <Content Include="Views\UserPanel\StatementHistory.cshtml" />

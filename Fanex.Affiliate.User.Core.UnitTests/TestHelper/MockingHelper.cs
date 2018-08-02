@@ -68,6 +68,11 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
                 commissionReportService ?? Mock.Of<ICommissionReportService>()
                 );
 
+            return MockingHelper.FakeController(controller) as UserPanelController;
+        }
+
+        public static Controller FakeController(Controller controller)
+        {
             var request = GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();
             server.Setup(s => s.HtmlEncode(It.IsAny<string>())).Returns<string>(s => $"Encoded{s}");

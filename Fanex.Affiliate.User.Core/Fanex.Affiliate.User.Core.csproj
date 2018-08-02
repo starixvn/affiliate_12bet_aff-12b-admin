@@ -546,7 +546,7 @@
       <LastGenOutput>ResultLang.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
-    <Compile Include="Controllers\UserPanelController.AccountOverView.cs" />
+    <Compile Include="Controllers\UserPanel\AccountOverViewController.cs" />
     <None Include="Fanex.Affiliate.User.Core.ruleset" />
     <None Include="packages.config" />
     <EmbeddedResource Include="Resources\Lang.es-ES.resx">
