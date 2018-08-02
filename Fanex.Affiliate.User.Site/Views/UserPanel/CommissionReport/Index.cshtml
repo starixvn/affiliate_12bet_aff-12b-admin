@@ -30,50 +30,34 @@
 
 
     <div class="report-container">
-        <div class="table table-medium" id="data">
-            <table style="table-layout: fixed">
+        <div class="table">
+            <table style="table-layout: fixed" id="dataTable">
                 <thead>
                     <tr>
-                        <th width="10%">#</th>
-                        <th width="30%">@Lang.Month</th>
-                        <th width="30%">@Lang.Turnover</th>
-                        <th width="30%">@Lang.GrossWinLoss</th>
-                        <th width="30%">@Lang.PlatformFee</th>
-                        <th width="30%">@Lang.OperationalFee</th>
-                        <th width="30%">@Lang.BankingFees</th>
-                        <th width="30%">@Lang.Bonus</th>
-                        <th width="30%">@Lang.CommRate</th>
-                        <th width="30%">@Lang.Comm</th>
+                        <th class="th" width="3%">#</th>
+                        <th class="th" data-name="Month" width="27%">@Lang.Month</th>
+                        <th class="th" data-name="TurnOver" width="11%">@Lang.Turnover</th>
+                        <th class="th" data-name="WinLoss" width="11%">@Lang.GrossWinLoss</th>
+                        <th class="th" data-name="PlatformFee" width="8%">@Lang.PlatformFee</th>
+                        <th class="th" data-name="OperationalFee" width="8%">@Lang.OperationalFee</th>
+                        <th class="th" data-name="BankingFee" width="8%">@Lang.BankingFees</th>
+                        <th class="th" data-name="Bonus" width="8%">@Lang.Bonus</th>
+                        <th class="th" data-name="CommissionRate" width="8%">@Lang.CommRate</th>
+                        <th class="th" data-name="Commission" width="8%">@Lang.Comm</th>
 
                     </tr>
                 </thead>
-                <tbody>
-
-                    <tr>
-                        <td class="text-center"></td>
-                        <td class="text-center"></td>
-                        <td class="text-right"></td>
-                        <td class="text-center"></td>
-                        <td class="text-right"></td>
-                        <td class="text-center"></td>
-                        <td class="text-right"></td>
-                        <td class="text-center"></td>
-                        <td class="text-right"></td>
-                        <td class="text-center"></td>
-                        <td class="text-right"></td>
-                        <td class="text-center"></td>
-                    </tr>
-
-
-                    <tr>
-                        <td class="text-center" colspan="12"></td>
-                    </tr>
-
-                    
+                <tbody id="reportData">                  
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+
+<script>
+    var langResource = {
+        noInfo: '@Lang.NoInfo'
+    }
+</script>
 
 <script src="@Url.RenderLink("~/www/build/js/pages/commission-report.js")"></script>

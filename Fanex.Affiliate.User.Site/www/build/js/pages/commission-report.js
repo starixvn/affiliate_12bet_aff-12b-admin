@@ -1,32 +1,139 @@
 ﻿"use strict";
 
 var commissionReport = (function ($) {
+    var _reportData = null;
+    var _sortingColumn = 'Month';
+    var _isSortingAsc = false;
+
+    function formatDecimal(value) {
+        return format(value, 2);
+    }
+
+    function format(value, digits) {
+        if (typeof value !== "number" || isNaN(value)) {
+            return "";
+        }
+
+        var roundedValue = round(value, digits);
+
+        return roundedValue.toFixed(digits).replace(/(\d)(?=(\d{3})+(\.|$))/g, "$1,");
+    }
+
+    function round(value, digits) {
+        var sign = value < 0 ? -1 : 1;
+        var absoluteValue = Math.abs(value);
+        var rounded = Number(Math.round(absoluteValue + 'e' + digits) + 'e-' + digits);
+
+        return sign * rounded;
+    }
 
     var _me = {
         initialize: function initialize() {
+            _me.initEvent();
+        },
+
+        initEvent: function initEvent() {
+            $('#dataTable').on('click', '.th', function () {
+                if (_reportData && _reportData.Data && _reportData.Data.length) {
+                    var columnName = $(this).data('name');
+                    if (columnName === _sortingColumn) {
+                        _isSortingAsc = !_isSortingAsc;
+                    } else {
+                        _isSortingAsc = true;
+                        _sortingColumn = columnName;
+                    }
+
+                    _me.sort(columnName, _isSortingAsc);
+                    console.log(columnName, _isSortingAsc, _reportData);
+                    _me.renderData();
+                }
+            });
+
             $("#btnSubmit").click(function (e) {
                 e.preventDefault();
-                var year = $("#year").val();
-                $.ajax({
-                    type: "POST",
-                    url: Site.resolveRelativeUrl("UserPanel/CommissionReport"),
-                    data: JSON.stringify({ "year": year }),
-                    dataType: "json",
-                    cache: false,
-                    contentType: "application/json; charset=UTF-8",
-                    success: function success(response) {
-                        console.log(response);
-                    },
-                    beforeSend: function beforeSend() {
-                        Site.showLoader();
-                    },
-                    complete: function complete() {
-                        Site.hideLoader();
+                _me.submit();
+            });
+        },
+
+        submit: function submit() {
+            var year = $("#year").val();
+            $.ajax({
+                type: "POST",
+                url: Site.resolveRelativeUrl("UserPanel/CommissionReport"),
+                data: JSON.stringify({ "year": year }),
+                dataType: "json",
+                cache: false,
+                contentType: "application/json; charset=UTF-8",
+                success: function success(response) {
+                    console.log(response);
+                    _reportData = response;
+                    if (_reportData) {
+                        _me.renderData();
                     }
-                });
+                },
+                beforeSend: function beforeSend() {
+                    Site.showLoader();
+                },
+                complete: function complete() {
+                    Site.hideLoader();
+                }
+            });
+        },
+
+        renderData: function renderData() {
+            if (_reportData.Data && _reportData.Data.length && _reportData.Total) {
+                var bodyHtml = _me.buildDataTable();
+                $('#reportData').html(bodyHtml);
+            } else {
+                $('#reportData').html('<tr><td class="text-center" colspan="10">' + langResource.noInfo + '</td></tr>');
+            }
+        },
+
+        buildDataTable: function buildDataTable() {
+            var mainData = _reportData.Data;
+            var htmlRowList = [];
+
+            for (var i = 0; i < mainData.length; i++) {
+                var dataItem = mainData[i];
+                var summaryDataRow = dataItem.Data;
+                htmlRowList.push(_me.buildRow(summaryDataRow, true, i, dataItem.DiplayMonth));
+
+                var detailRowList = dataItem.ProductData;
+                for (var j = 0; j < detailRowList.length; j++) {
+                    var productRow = detailRowList[j];
+                    htmlRowList.push(_me.buildRow(productRow, false));
+                }
+            }
+
+            htmlRowList.push(_me.buildTotalRow());
+
+            return htmlRowList.join("");
+        },
+
+        buildRow: function buildRow(dataRow, isSummaryRow, index, title) {
+            return '<tr>' + '<td class="text-center">' + (isSummaryRow ? index + 1 : '') + '</td>' + '<td>' + (isSummaryRow ? title : dataRow.ProductName) + '</td>' + _me.buildCell(formatDecimal(dataRow.TurnOver)) + _me.buildCell(formatDecimal(dataRow.WinLoss)) + _me.buildCell(formatDecimal(dataRow.PlatformFee)) + _me.buildCell(formatDecimal(dataRow.OperationalFee)) + _me.buildCell(formatDecimal(dataRow.BankingFee)) + _me.buildCell(formatDecimal(dataRow.Bonus)) + _me.buildCell(dataRow.CommissionRate * 100 + '%') + _me.buildCell(formatDecimal(dataRow.Commission)) + '</tr>';
+        },
+
+        buildTotalRow: function buildTotalRow() {
+            var dataRow = _reportData.Total;
+            return '<tr class="total">' + '<td class="text-right" colspan="2">' + 'Total' + '</td>' + _me.buildCell(formatDecimal(dataRow.TurnOver)) + _me.buildCell(formatDecimal(dataRow.WinLoss)) + _me.buildCell(formatDecimal(dataRow.PlatformFee)) + _me.buildCell(formatDecimal(dataRow.OperationalFee)) + _me.buildCell(formatDecimal(dataRow.BankingFee)) + _me.buildCell(formatDecimal(dataRow.Bonus)) + _me.buildCell('') + _me.buildCell(formatDecimal(dataRow.Commission)) + '</tr>';
+        },
+
+        buildCell: function buildCell(cellData) {
+            return '<td class="text-right">' + cellData + '</td>';
+        },
+
+        sort: function sort(columnName, isAsc) {
+            var mainDataList = _reportData.Data;
+
+            mainDataList.sort(function (item, nextItem) {
+                if (columnName === 'Month') {
+                    return isAsc ? item.Month - nextItem.Month : -(item.Month - nextItem.Month);
+                } else {
+                    return isAsc ? item.Data[columnName] - nextItem.Data[columnName] : -(item.Data[columnName] - nextItem.Data[columnName]);
+                }
             });
         }
-
     };
     return _me;
 })(jQuery);
