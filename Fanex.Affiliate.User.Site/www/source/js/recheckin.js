@@ -4,7 +4,7 @@
 
     var _me = {
         initialize: function () {
-            _handler = setInterval(_me.reCheckin, 3000);
+            _handler = setInterval(_me.reCheckin, 30000);
         },
 
         reCheckin: function () {

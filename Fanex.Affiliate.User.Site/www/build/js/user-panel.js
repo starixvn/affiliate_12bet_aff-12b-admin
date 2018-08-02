@@ -1,7 +1,6 @@
 ﻿"use strict";
 
 var UserPanel = (function ($) {
-
     var allowedActionList = ["AccountOverView", "StatementHistory", "MyAccount", "PaymentRequest", "MediaGallery", "TextBox", "TrackingStatistics", "ReferrersStatistics", "LandingPageStatistics", "DailyEarning", "DailyEarningDetail", "BetList", "MessageHistory", "CommissionReport"];
 
     var _me = {
@@ -24,15 +23,7 @@ var UserPanel = (function ($) {
         },
 
         renderView: function renderView() {
-            if (_me.datepicker) {
-                for (var i = 0; i < _me.datepicker.length; i++) {
-                    if (_me.datepicker[i]) {
-
-                        _me.datepicker[i].destroy();
-                    }
-                }
-                _me.datepicker = [];
-            }
+            _me.clearEventListener();
             var action = _me.getActionName();
             _me.activeMenu(action);
 
@@ -55,6 +46,18 @@ var UserPanel = (function ($) {
                     Site.hideLoader();
                 }
             });
+        },
+
+        clearEventListener: function clearEventListener() {
+            $("#mainPanel *").off();
+            if (_me.datepicker) {
+                for (var i = 0; i < _me.datepicker.length; i++) {
+                    if (_me.datepicker[i]) {
+                        _me.datepicker[i].destroy();
+                    }
+                }
+                _me.datepicker = [];
+            }
         },
 
         getActionName: function getActionName() {

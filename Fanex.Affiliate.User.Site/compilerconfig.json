@@ -181,6 +181,11 @@
     "outputFile": "www/build/js/forgotpassword.js",
     "inputFile": "www/source/js/pages/forgotpassword.js",
     "sourceMap": false
+  },
+  {
+    "outputFile": "www/build/js/jquery.extension.js",
+    "inputFile": "www/source/js/components/jquery.extension.js",
+    "sourceMap": false
   }
 
 ]

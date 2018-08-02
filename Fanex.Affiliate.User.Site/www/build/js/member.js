@@ -1327,7 +1327,7 @@
                 var mainOption = $.extend(defaultOption, option || {});
 
                 var $self = $(this);
-                $self.children().off();
+                $self.find("*").off();
                 $self.html("");
 
                 var totalPage = calculateTotalPage(mainOption.totalItems, mainOption.pageSize);
@@ -1457,7 +1457,7 @@
             // Default to "init"
             return _methods.init.apply(this, arguments);
         } else {
-            $.error('Method ' + methodOrOptions + ' does not exist on jQuery.flatPopup');
+            $.error('Method ' + methodOrOptions + ' does not exist on jQuery.pager');
         }
     };
 })(jQuery)
@@ -1485,7 +1485,7 @@ var Member = (function ($) {
     }
 
     function initDatePicker(id, triggerId) {
-        new Pikaday({
+        UserPanel.datepicker.push(new Pikaday({
             field: document.getElementById(id),
             trigger: document.getElementById(triggerId),
             yearRange: [2000, new Date().getFullYear()],
@@ -1500,7 +1500,7 @@ var Member = (function ($) {
                     this.hide();
                 }
             }
-        });
+        }));
     }
 
     var _me = {

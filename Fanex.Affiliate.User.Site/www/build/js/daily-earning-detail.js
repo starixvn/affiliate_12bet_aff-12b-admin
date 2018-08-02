@@ -1250,7 +1250,7 @@ var DailyEarningDetail = (function ($) {
     }
 
     function initDatePicker() {
-        new Pikaday({
+        UserPanel.datepicker.push(new Pikaday({
             field: document.getElementById("MonthDate"),
             trigger: document.getElementById("datePicker"),
             yearRange: [2000, new Date().getFullYear()],
@@ -1260,7 +1260,7 @@ var DailyEarningDetail = (function ($) {
                 var year = date.getFullYear();
                 return formatDateUnit(month) + "/" + formatDateUnit(day) + "/" + year;
             }
-        });
+        }));
     }
 
     var _me = {

@@ -59,9 +59,6 @@
                 }
             }
 
-            console.log(params, dependenPropList);
-            console.log("invalidPropCount", invalidPropCount);
-
             return !!$.trim(value) || invalidPropCount < dependentPropCount;
         }
     );
