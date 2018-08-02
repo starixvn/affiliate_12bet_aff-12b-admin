@@ -246,7 +246,7 @@ var StatementHistory = (function ($) {
                     monthDate: $(this).data("date")
                 };
 
-                Site.redirect(Site.resolveRelativeUrl("UserPanel/#DailyEarning?" + $.param(params)));
+                Site.redirect(Site.resolveRelativeUrl("UserPanel/Main/#DailyEarning?" + $.param(params)));
             });
         },
 
@@ -263,7 +263,7 @@ var StatementHistory = (function ($) {
                 dataType: "html",
                 cache: false,
                 data: params,
-                url: Site.resolveRelativeUrl("UserPanel/GetStatementHistoryData"),
+                url: Site.resolveRelativeUrl("UserPanel/StatementHistory/GetStatementHistoryData"),
                 success: function (response) {
                     $("#statementDataList").html(response);
                 },

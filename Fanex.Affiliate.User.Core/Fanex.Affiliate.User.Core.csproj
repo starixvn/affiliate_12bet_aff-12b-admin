@@ -231,7 +231,7 @@
     <Compile Include="Controllers\TermAndConditionController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\UserPanel\MyAccountController.cs" />
-    <None Include="Controllers\UserPanel\UserPanelController.StatementHistory.cs.bk" />
+    <Compile Include="Controllers\UserPanel\StatementHistoryController.cs" />
     <Compile Include="Controllers\UserPanel\PaymentRequestController.cs" />
     <Compile Include="Controllers\UserPanel\MainController.cs" />
     <None Include="Controllers\UserPanel\UserPanelController.Statistics.cs.bk" />

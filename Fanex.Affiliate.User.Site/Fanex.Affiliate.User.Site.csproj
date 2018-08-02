@@ -843,11 +843,11 @@
     <Content Include="Views\UserPanel\StatisticsPartial\_LandingPageStatisticsContent.cshtml" />
     <Content Include="www\source\styles\scss\components\_pikaday.scss" />
     <Content Include="Views\News\_LatestHotNews.cshtml" />
-    <Content Include="Views\UserPanel\StatementHistoryPartial\_StatementHistoryContent.cshtml" />
+    <Content Include="Views\UserPanel\StatementHistory\StatementHistoryPartial\_StatementHistoryContent.cshtml" />
     <Content Include="www\source\styles\pages\statement-history.scss" />
-    <Content Include="Views\UserPanel\StatementHistoryPartial\_DailyEarningContent.cshtml" />
+    <Content Include="Views\UserPanel\StatementHistory\StatementHistoryPartial\_DailyEarningContent.cshtml" />
     <Content Include="www\source\styles\pages\dailyearning.scss" />
-    <Content Include="Views\UserPanel\StatementHistoryPartial\_DailyEarningDetailContent.cshtml" />
+    <Content Include="Views\UserPanel\StatementHistory\StatementHistoryPartial\_DailyEarningDetailContent.cshtml" />
     <Content Include="www\source\styles\pages\dailyearning-detail.scss" />
     <Content Include="Views\BetList\Index.cshtml" />
     <Content Include="www\source\styles\pages\betlist.scss" />
@@ -1167,7 +1167,7 @@
     <Content Include="Views\UserPanel\AccountOverView\Index.cshtml" />
     <Content Include="www\source\styles\scss\layout\_menu.scss" />
     <Content Include="Views\Shared\_LayoutBeforeLogin.cshtml" />
-    <Content Include="Views\UserPanel\StatementHistory.cshtml" />
+    <Content Include="Views\UserPanel\StatementHistory\Index.cshtml" />
     <Content Include="Views\UserPanel\MyAccount\Index.cshtml" />
     <Content Include="www\source\styles\scss\components\_form-control.scss" />
     <Content Include="www\source\styles\pages\home.scss" />

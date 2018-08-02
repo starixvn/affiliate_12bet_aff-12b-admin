@@ -4,23 +4,42 @@
     using System.Web.Mvc;
     using Constants;
     using Extensions;
+    using Fanex.Affiliate.User.Core.CoreService;
+    using Fanex.Affiliate.User.Core.Repository.UserPanel;
+    using Fanex.Affiliate.User.Core.Utilities;
     using Filters;
     using MetalModels.UserPanel;
+    using ONEbook.UM.Filters;
     using ViewModels.UserPanel;
 
-    public partial class UserPanelController
+    [CheckUMFilter]
+    [CustomAuthorize]
+    public class StatementHistoryController : Controller
     {
         private const int DefaultPageSize = 20;
+        private readonly ISessionService _sessionService;
+        private readonly IAppSetting _appSetting;
+        private readonly IStatementHistoryRepository _statementHistoryRepository;
 
+        public StatementHistoryController(ISessionService sessionService,
+            IAppSetting appSetting,
+            IStatementHistoryRepository statementHistoryRepository
+
+            )
+        {
+            _sessionService = sessionService;
+            _appSetting = appSetting;
+            _statementHistoryRepository = statementHistoryRepository;
+        }
         [HttpGet]
         [AjaxOnly]
-        public ActionResult StatementHistory()
+        public ActionResult Index()
         {
             var param = new StatementHistoryParam
             {
-                AffId = SessionService.UserSession.AffId,
-                IsInternal = SessionService.IsInternal,
-                AvailableFromDate = AppSetting.StatementAvailableFrom,
+                AffId = _sessionService.UserSession.AffId,
+                IsInternal = _sessionService.IsInternal,
+                AvailableFromDate = _appSetting.StatementAvailableFrom,
                 PageSize = DefaultPageSize
             };
 
@@ -28,31 +47,31 @@
             ViewBag.TotalItem = param.NRows;
             ViewBag.StartRowNumber = 1;
 
-            return View(statementHistoryList);
+            return View("~/Views/UserPanel/StatementHistory/Index.cshtml",statementHistoryList);
         }
 
         [HttpGet]
         [AjaxOnly]
         public ActionResult GetStatementHistoryData(StatementHistoryParam param)
         {
-            param.AffId = SessionService.UserSession.AffId;
-            param.IsInternal = SessionService.IsInternal;
-            param.AvailableFromDate = AppSetting.StatementAvailableFrom;
+            param.AffId = _sessionService.UserSession.AffId;
+            param.IsInternal = _sessionService.IsInternal;
+            param.AvailableFromDate = _appSetting.StatementAvailableFrom;
             param.PageSize = param.PageSize ?? DefaultPageSize;
 
             var statementHistoryList = _statementHistoryRepository.GetStatementHistory(param);
             ViewBag.TotalItem = param.NRows;
             ViewBag.StartRowNumber = (param.PageIndex - 1) * param.PageSize + 1;
 
-            return PartialView("~/Views/UserPanel/StatementHistoryPartial/_StatementHistoryContent.cshtml", statementHistoryList);
+            return PartialView("~/Views/UserPanel/StatementHistory/StatementHistoryPartial/_StatementHistoryContent.cshtml", statementHistoryList);
         }
 
         [HttpGet]
         [AjaxOnly]
         public ActionResult DailyEarning(DailyEarningParam param)
         {
-            param.AffId = SessionService.UserSession.AffId;
-            param.IsInternal = SessionService.IsInternal;
+            param.AffId = _sessionService.UserSession.AffId;
+            param.IsInternal = _sessionService.IsInternal;
             param.SportType = param.SportType.HasValue ? param.SportType.Value : Product.Sportsbook;
             param.MonthDate = param.MonthDate.HasValue ? param.MonthDate.Value : DateTime.Now.AddDays(-1);
 
@@ -69,15 +88,15 @@
             ViewBag.MonthDate = param.MonthDate;
 
             return param.IsInitial ? View(viewModel) :
-                                    View("~/Views/UserPanel/StatementHistoryPartial/_DailyEarningContent.cshtml", viewModel);
+                                    View("~/Views/UserPanel/StatementHistory/StatementHistoryPartial/_DailyEarningContent.cshtml", viewModel);
         }
 
         [HttpGet]
         [AjaxOnly]
         public ActionResult DailyEarningDetail(DailyEarningParam param)
         {
-            param.AffId = SessionService.UserSession.AffId;
-            param.IsInternal = SessionService.IsInternal;
+            param.AffId = _sessionService.UserSession.AffId;
+            param.IsInternal = _sessionService.IsInternal;
 
             var extraUserInfo = _statementHistoryRepository.GetExtraUserInfo(param.AffId, param.IsInternal);
 
@@ -91,7 +110,7 @@
             };
 
             return param.IsInitial ? View(viewModel) :
-                                    View("~/Views/UserPanel/StatementHistoryPartial/_DailyEarningDetailContent.cshtml", viewModel);
+                                    View("~/Views/UserPanel/StatementHistory/StatementHistoryPartial/_DailyEarningDetailContent.cshtml", viewModel);
         }
     }
 }
