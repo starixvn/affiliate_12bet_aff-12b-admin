@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using Fanex.Affiliate.User.Core.Controllers;
+using Fanex.Affiliate.User.Core.Controllers.UserPanel;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.Enum;
@@ -12,7 +12,7 @@ using Moq;
 using Newtonsoft.Json;
 using Xunit;
 
-namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
+namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
 {
     public class MemberControllerTest
     {

@@ -59,8 +59,10 @@
 
                 $this.toggleClass('bottom', !isExpanding);
                 $this.toggleClass('left', isExpanding);
-                $('.sumrow').removeClass('active');
+
+                $('.sumrow.active').nextUntil('.sumrow').removeClass('expanded');
                 $this.closest('.sumrow').toggleClass('active', !isExpanding);
+                $('.sumrow.active').nextUntil('.sumrow').addClass('expanded');
             });
         },
 
@@ -93,6 +95,7 @@
             if (_reportData.Data && _reportData.Data.length && _reportData.Total) {
                 var bodyHtml = _me.buildDataTable();
                 $('#reportData').html(bodyHtml);
+                $('.sumrow.active').nextUntil('.sumrow').addClass('expanded');
             }
             else {
                 $('#reportData').html('<tr><td class="text-center" colspan="10">' + langResource.noInfo + '</td></tr>');
@@ -121,11 +124,16 @@
         },
 
         buildRow: function (dataRow, isSummaryRow, index, title) {
-            var activeClass = index === 0 ? ' active' : '';
+            var isFirstSumRow = index === 0;
+            var activeClass = isFirstSumRow ? ' active' : '';
+            var toggleIconClass = isFirstSumRow ? 'bottom' : 'left';
             var className = isSummaryRow ? ' class="sumrow' + activeClass + '"' : '';
+
+            var iconHtml = '<span class="chevron toggleDetailRow ' + toggleIconClass + '" aria-hidden="true"></span>';
+            
             return '<tr' + className + '>' +
                 '<td class="text-center">' + (isSummaryRow ? index + 1 : '') + '</td>' +
-                '<td class="title-cell">' + (isSummaryRow ? title + '<span class="chevron bottom toggleDetailRow" aria-hidden="true"></span>' : dataRow.ProductName) + '</td>' +
+                '<td class="title-cell">' + (isSummaryRow ? title + iconHtml : dataRow.ProductName) + '</td>' +
                 _me.buildCell(formatDecimal(dataRow.TurnOver)) +
                 _me.buildCell(formatDecimal(dataRow.WinLoss)) +
                 _me.buildCell(formatDecimal(dataRow.PlatformFee)) +
