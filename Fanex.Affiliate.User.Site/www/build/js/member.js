@@ -1485,7 +1485,7 @@ var Member = (function ($) {
     }
 
     function initDatePicker(id, triggerId) {
-        UserPanel.datepicker.push(new Pikaday({
+        new Pikaday({
             field: document.getElementById(id),
             trigger: document.getElementById(triggerId),
             yearRange: [2000, new Date().getFullYear()],
@@ -1500,7 +1500,7 @@ var Member = (function ($) {
                     this.hide();
                 }
             }
-        }));
+        });
     }
 
     var _me = {
