@@ -16,47 +16,50 @@
   margin-right: 2px; }
 
 .table .th {
+  cursor: pointer; }
+
+.table .th-wrapper {
   position: relative;
-  padding-right: 25px; }
-  .table .th .icon-container {
+  padding-right: 25px;
+  font-size: 14px; }
+  .table .th-wrapper .icon-container {
     position: absolute;
     display: inline-block;
     width: 15px;
     height: 15px;
     top: calc(50% - 8px);
     right: 5px; }
-    .table .th .icon-container .caret {
+    .table .th-wrapper .icon-container .caret {
       display: block;
-      border-width: 5px;
-      cursor: pointer; }
-      .table .th .icon-container .caret:hover, .table .th .icon-container .caret.current {
+      border-width: 5px; }
+      .table .th-wrapper .icon-container .caret.current {
         border-top-color: #FD0302; }
-    .table .th .icon-container > .asc {
+    .table .th-wrapper .icon-container > .asc {
       transform: rotate(180deg);
       margin-bottom: 3px; }
-  .table .th.col-comm .info-container {
+  .table .th-wrapper.col-comm .info-container {
     position: absolute;
     display: inline-block;
     top: calc(50% - 10px);
     right: 23px; }
-    .table .th.col-comm .info-container > .glyphicon-info-sign {
+    .table .th-wrapper.col-comm .info-container > .glyphicon-info-sign {
       cursor: pointer; }
 
 .table tbody tr > td {
   background: #fff; }
-  .table tbody tr > td.title-cell {
+  .table tbody tr > td .row-wrapper {
     position: relative; }
-    .table tbody tr > td.title-cell .chevron {
+    .table tbody tr > td .row-wrapper .chevron {
       cursor: pointer;
       position: absolute;
-      top: 6px;
-      right: 5px;
+      top: 3px;
+      right: 2px;
       width: 20px;
       height: 20px;
-      line-height: 12px;
+      line-height: 11px;
       text-align: center; }
-      .table tbody tr > td.title-cell .chevron.left {
-        top: 8px; }
+      .table tbody tr > td .row-wrapper .chevron.left {
+        top: 5px; }
 
 .table tbody tr.sumrow > td {
   background: #F5EAEA; }

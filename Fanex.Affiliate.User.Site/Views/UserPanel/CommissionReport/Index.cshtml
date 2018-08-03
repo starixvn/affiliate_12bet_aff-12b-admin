@@ -28,7 +28,6 @@
         </div>
     </div>
 
-
     <div class="report-container">
         <div class="table">
             <table style="table-layout: fixed" id="dataTable">
@@ -36,76 +35,92 @@
                     <tr>
                         <th class="th" width="3%">#</th>
                         <th class="th" data-name="Month" width="27%">
-                            @Lang.Month
-                            <div class="icon-container">
-                                <span class="caret asc"></span>
-                                <span id="defaultSorting" class="caret desc"></span>
+                            <div class="th-wrapper">
+                                <span>@Lang.Month</span>
+                                <div class="icon-container">
+                                    <span class="caret asc"></span>
+                                    <span id="defaultSorting" class="caret desc"></span>
+                                </div>
                             </div>
                         </th>
                         <th class="th" data-name="TurnOver" width="10%">
-                            @Lang.Turnover
-                            <div class="icon-container">
-                                <span class="caret asc"></span>
-                                <span class="caret desc"></span>
+                            <div class="th-wrapper">
+                                <span>@Lang.Turnover</span>
+                                <div class="icon-container">
+                                    <span class="caret asc"></span>
+                                    <span class="caret desc"></span>
+                                </div>
                             </div>
                         </th>
                         <th class="th" data-name="WinLoss" width="10%">
-                            @Lang.GrossWinLoss
-                            <div class="icon-container">
-                                <span class="caret asc"></span>
-                                <span class="caret desc"></span>
+                            <div class="th-wrapper">
+                                <span>@Lang.GrossWinLoss</span>
+                                <div class="icon-container">
+                                    <span class="caret asc"></span>
+                                    <span class="caret desc"></span>
+                                </div>
                             </div>
                         </th>
                         <th class="th" data-name="PlatformFee" width="8%">
-                            @Lang.PlatformFee
-                            <div class="icon-container">
-                                <span class="caret asc"></span>
-                                <span class="caret desc"></span>
+                            <div class="th-wrapper">
+                                <span>@Lang.PlatformFee</span>
+                                <div class="icon-container">
+                                    <span class="caret asc"></span>
+                                    <span class="caret desc"></span>
+                                </div>
                             </div>
                         </th>
                         <th class="th" data-name="OperationalFee" width="9%">
-                            @Lang.OperationalFee
-                            <div class="icon-container">
-                                <span class="caret asc"></span>
-                                <span class="caret desc"></span>
+                            <div class="th-wrapper">
+                                <span>@Lang.OperationalFee</span>
+                                <div class="icon-container">
+                                    <span class="caret asc"></span>
+                                    <span class="caret desc"></span>
+                                </div>
                             </div>
                         </th>
                         <th class="th" data-name="BankingFee" width="8%">
-                            @Lang.BankingFees
-                            <div class="icon-container">
-                                <span class="caret asc"></span>
-                                <span class="caret desc"></span>
+                            <div class="th-wrapper">
+                                <span>@Lang.BankingFees</span>
+                                <div class="icon-container">
+                                    <span class="caret asc"></span>
+                                    <span class="caret desc"></span>
+                                </div>
                             </div>
                         </th>
                         <th class="th" data-name="Bonus" width="8%">
-                            @Lang.Bonus
-                            <div class="icon-container">
-                                <span class="caret asc"></span>
-                                <span class="caret desc"></span>
+                            <div class="th-wrapper">
+                                <span>@Lang.Bonus</span>
+                                <div class="icon-container">
+                                    <span class="caret asc"></span>
+                                    <span class="caret desc"></span>
+                                </div>
                             </div>
                         </th>
                         <th class="th" data-name="CommissionRate" width="8%">
-                            @Lang.CommRate
-                            <div class="icon-container">
-                                <span class="caret asc"></span>
-                                <span class="caret desc"></span>
+                            <div class="th-wrapper">
+                                <span>@Lang.CommRate</span>
+                                <div class="icon-container">
+                                    <span class="caret asc"></span>
+                                    <span class="caret desc"></span>
+                                </div>
                             </div>
                         </th>
-                        <th class="th col-comm" data-name="Commission" width="10%">
-                            @(Lang.CommShorted).
-                            <div class="info-container">
-                                <span title="@Lang.NoteCommissionCalculation" class="glyphicon glyphicon-info-sign"></span>
-                            </div>
-                            <div class="icon-container">
-                                <span class="caret asc"></span>
-                                <span class="caret desc"></span>
+                        <th class="th" data-name="Commission" width="10%">
+                            <div class="th-wrapper col-comm">
+                                <span>@(Lang.CommShorted).</span>
+                                <div class="info-container">
+                                    <span title="@Lang.NoteCommissionCalculation" class="glyphicon glyphicon-info-sign"></span>
+                                </div>
+                                <div class="icon-container">
+                                    <span class="caret asc"></span>
+                                    <span class="caret desc"></span>
+                                </div>
                             </div>
                         </th>
-
                     </tr>
                 </thead>
-                <tbody id="reportData">                  
-                </tbody>
+                <tbody id="reportData"></tbody>
             </table>
         </div>
     </div>
