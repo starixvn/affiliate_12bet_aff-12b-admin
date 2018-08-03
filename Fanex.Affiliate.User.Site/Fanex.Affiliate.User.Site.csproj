@@ -19,14 +19,10 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>
-    </IISExpressSSLPort>
-    <IISExpressAnonymousAuthentication>
-    </IISExpressAnonymousAuthentication>
-    <IISExpressWindowsAuthentication>
-    </IISExpressWindowsAuthentication>
-    <IISExpressUseClassicPipelineMode>
-    </IISExpressUseClassicPipelineMode>
+    <IISExpressSSLPort>44390</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -671,14 +667,6 @@
     <Content Include="www\build\styles\css\my-account.css" />
     <Content Include="www\build\styles\css\my-account.min.css">
       <DependentUpon>my-account.css</DependentUpon>
-    </Content>
-    <Content Include="www\build\styles\css\password.css" />
-    <Content Include="www\build\styles\css\password.min.css">
-      <DependentUpon>password.css</DependentUpon>
-    </Content>
-    <Content Include="www\build\styles\css\payment-request.css" />
-    <Content Include="www\build\styles\css\payment-request.min.css">
-      <DependentUpon>payment-request.css</DependentUpon>
     </Content>
     <Content Include="www\build\styles\css\pikaday.min.css" />
     <Content Include="www\build\styles\css\products.css" />

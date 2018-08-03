@@ -28,10 +28,6 @@
     "inputFile": "www/source/styles/pages/contact-us.scss"
   },
   {
-    "outputFile": "www/build/styles/css/payment-request.css",
-    "inputFile": "www/source/styles/pages/payment-request.scss"
-  },
-  {
     "outputFile": "www/build/styles/css/marketing.css",
     "inputFile": "www/source/styles/pages/marketing.scss"
   },
@@ -64,10 +60,6 @@
     "inputFile": "www/source/js/site.js"
   },
   {
-    "outputFile": "www/build/styles/css/password.css",
-    "inputFile": "www/source/styles/pages/password.scss"
-  },
-  {
     "outputFile": "www/build/js/home.js",
     "inputFile": "www/source/js/pages/home.js"
   },
@@ -86,10 +78,6 @@
   {
     "outputFile": "www/build/styles/css/statement-history.css",
     "inputFile": "www/source/styles/pages/statement-history.scss"
-  },
-  {
-    "outputFile": "www/build/styles/css/dailyearning.css",
-    "inputFile": "www/source/styles/pages/dailyearning.scss"
   },
   {
     "outputFile": "www/build/styles/css/dailyearning-detail.css",

@@ -3,10 +3,6 @@
     Layout = "~/Views/Shared/_LayoutBeforeLogin.cshtml";
 }
 
-@section styles{
-    @Html.InlineStyles("~/www/build/styles/css/password.css")
-}
-
 @section scripts{
     <script src="@Url.RenderLink("~/www/build/js/validation.js")"></script>
     @Html.InlineScripts("~/www/build/js/forgotpassword.js")

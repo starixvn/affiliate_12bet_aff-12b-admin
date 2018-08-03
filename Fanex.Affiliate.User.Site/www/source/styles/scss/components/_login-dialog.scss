@@ -47,6 +47,13 @@
                 cursor: pointer;
                 border: 0;
                 color: #000;
+                background-color: buttonface;
+                opacity: 1;
+                padding: 1px 6px;
+
+                &:hover {
+                    opacity: 0.8;
+                }
 
                 &:focus {
                     outline: none;
