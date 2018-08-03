@@ -29,8 +29,8 @@ namespace Fanex.Affiliate.User.Core.Controllers
             var viewModel = new HomeViewModel
             {
                 IsAuthenticated = isAuthenticated,
-                SignUpLink = isAuthenticated ? Url.Action("Index", "UserPanel") + "/#AccountOverView" : Url.Action("Index", "SignUp"),
-                BannerLink = isAuthenticated ? Url.Action("Index", "UserPanel") + "/#MediaGallery" : "javascript:;",
+                SignUpLink = isAuthenticated ? Url.Content("~/UserPanel/Main/#AccountOverView") : Url.Action("Index", "SignUp"),
+                BannerLink = isAuthenticated ? Url.Content("~/UserPanel/Main/#MediaGallery") : "javascript:;",
                 Promotion12BetLink = GetPromotionLink()
             };
 

@@ -22,7 +22,6 @@ var UserPanel = (function ($) {
         },
 
         renderView: function renderView() {
-
             _me.clearEventListener();
             $("#mainPanel").html("");
             var action = _me.getActionName();

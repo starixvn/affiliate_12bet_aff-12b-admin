@@ -13,7 +13,6 @@
     using Resources;
     using Utilities;
 
-    [CustomAuthorize]
     public class PasswordController : BaseController
     {
         private readonly IAccountRepository _accountRepository;
@@ -141,6 +140,7 @@
             return View(result);
         }
 
+        [CustomAuthorize]
         [HttpGet]
         public ActionResult Update()
         {
@@ -153,6 +153,7 @@
             return View(new UpdatePasswordParam());
         }
 
+        [CustomAuthorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Update(UpdatePasswordParam param)
