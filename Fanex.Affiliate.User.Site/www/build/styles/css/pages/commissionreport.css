@@ -16,7 +16,24 @@
   margin-right: 2px; }
 
 .table .th {
-  cursor: pointer; }
+  position: relative;
+  padding-right: 25px; }
+  .table .th .icon-container {
+    position: absolute;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    top: calc(50% - 8px);
+    right: 5px; }
+    .table .th .icon-container .caret {
+      display: block;
+      border-width: 5px;
+      cursor: pointer; }
+      .table .th .icon-container .caret:hover, .table .th .icon-container .caret.current {
+        border-top-color: #FD0302; }
+    .table .th .icon-container > .asc {
+      transform: rotate(180deg);
+      margin-bottom: 3px; }
 
 .table tbody tr > td {
   background: #fff; }
@@ -37,13 +54,15 @@
 .table tbody tr.sumrow > td {
   background: #F5EAEA; }
 
-.table tbody tr.total > td {
-  background: #F8D8D1;
-  color: #333;
-  font-weight: bold; }
-
 .table tbody tr:not(.sumrow) {
   display: none; }
   .table tbody tr:not(.sumrow).expanded {
     display: table-row; }
+
+.table tbody tr.total {
+  display: table-row; }
+  .table tbody tr.total > td {
+    background: #F8D8D1;
+    color: #333;
+    font-weight: bold; }
 

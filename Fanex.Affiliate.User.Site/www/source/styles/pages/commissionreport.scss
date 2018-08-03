@@ -29,7 +29,32 @@
 
 .table {
     .th {
-        cursor: pointer;
+        position: relative;
+        padding-right: 25px;
+
+        .icon-container {
+            position: absolute;
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            top: calc(50% - 8px);
+            right: 5px;
+
+            .caret {
+                display: block;
+                border-width: 5px;
+                cursor: pointer;
+
+                &:hover, &.current {
+                    border-top-color: #FD0302;
+                }
+            }
+
+            > .asc {
+                transform: rotate(180deg);
+                margin-bottom: 3px;
+            }
+        }
     }
 
     tbody {
@@ -63,19 +88,21 @@
                 }
             }
 
-            &.total {
-                > td {
-                    background: #F8D8D1;
-                    color: #333;
-                    font-weight: bold;
-                }
-            }
-
             &:not(.sumrow) {
                 display: none;
 
                 &.expanded {
                     display: table-row;
+                }
+            }
+
+            &.total {
+                display: table-row;
+
+                > td {
+                    background: #F8D8D1;
+                    color: #333;
+                    font-weight: bold;
                 }
             }
         }

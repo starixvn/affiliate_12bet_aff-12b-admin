@@ -33,20 +33,14 @@ var commissionReport = (function ($) {
         },
 
         initEvent: function initEvent() {
-            $('#dataTable').on('click', '.th', function () {
-                if (_reportData && _reportData.Data && _reportData.Data.length) {
-                    var columnName = $(this).data('name');
-                    if (columnName === _sortingColumn) {
-                        _isSortingAsc = !_isSortingAsc;
-                    } else {
-                        _isSortingAsc = true;
-                        _sortingColumn = columnName;
-                    }
+            $('#dataTable').on('click', '.th .asc', function () {
+                var $this = $(this);
+                _me.processSorting($this, true);
+            });
 
-                    _me.sort(columnName, _isSortingAsc);
-                    console.log(columnName, _isSortingAsc, _reportData);
-                    _me.renderData();
-                }
+            $('#dataTable').on('click', '.th .desc', function () {
+                var $this = $(this);
+                _me.processSorting($this, false);
             });
 
             $('#btnSubmit').click(function (e) {
@@ -61,8 +55,7 @@ var commissionReport = (function ($) {
                 $this.toggleClass('bottom', !isExpanding);
                 $this.toggleClass('left', isExpanding);
 
-                $('.sumrow.active').nextUntil('.sumrow').removeClass('expanded');
-                $this.closest('.sumrow').toggleClass('active', !isExpanding);
+                $this.closest('.sumrow').toggleClass('active', !isExpanding).nextUntil('.sumrow').toggleClass('expanded', !isExpanding);
                 $('.sumrow.active').nextUntil('.sumrow').addClass('expanded');
             });
         },
@@ -81,6 +74,7 @@ var commissionReport = (function ($) {
                     _reportData = response;
                     if (_reportData) {
                         _me.renderData();
+                        _me.activeSortIcon($('#defaultSorting'));
                     }
                 },
                 beforeSend: function beforeSend() {
@@ -143,14 +137,35 @@ var commissionReport = (function ($) {
             return '<td class="text-right">' + cellData + '</td>';
         },
 
-        sort: function sort(columnName, isAsc) {
+        processSorting: function processSorting($element, isSortingAsc) {
+            var columnName = $element.closest('.th').data('name');
+            if (_reportData && _reportData.Data && _reportData.Data.length) {
+                if (_isSortingAsc === isSortingAsc && columnName === _sortingColumn) {
+                    return;
+                }
+
+                _me.activeSortIcon($element);
+                _isSortingAsc = isSortingAsc;
+                _sortingColumn = columnName;
+                _me.sort();
+                console.log(_sortingColumn, _isSortingAsc, _reportData);
+                _me.renderData();
+            }
+        },
+
+        activeSortIcon: function activeSortIcon($element) {
+            $('.th').find('.caret.current').removeClass('current');
+            $element.addClass('current');
+        },
+
+        sort: function sort() {
             var mainDataList = _reportData.Data;
 
             mainDataList.sort(function (item, nextItem) {
-                if (columnName === 'Month') {
-                    return isAsc ? item.Month - nextItem.Month : -(item.Month - nextItem.Month);
+                if (_sortingColumn === 'Month') {
+                    return _isSortingAsc ? item.Month - nextItem.Month : -(item.Month - nextItem.Month);
                 } else {
-                    return isAsc ? item.Data[columnName] - nextItem.Data[columnName] : -(item.Data[columnName] - nextItem.Data[columnName]);
+                    return _isSortingAsc ? item.Data[_sortingColumn] - nextItem.Data[_sortingColumn] : -(item.Data[_sortingColumn] - nextItem.Data[_sortingColumn]);
                 }
             });
         }
