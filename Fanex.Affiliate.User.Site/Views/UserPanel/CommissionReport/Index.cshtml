@@ -42,14 +42,14 @@
                                 <span id="defaultSorting" class="caret desc"></span>
                             </div>
                         </th>
-                        <th class="th" data-name="TurnOver" width="11%">
+                        <th class="th" data-name="TurnOver" width="10%">
                             @Lang.Turnover
                             <div class="icon-container">
                                 <span class="caret asc"></span>
                                 <span class="caret desc"></span>
                             </div>
                         </th>
-                        <th class="th" data-name="WinLoss" width="11%">
+                        <th class="th" data-name="WinLoss" width="10%">
                             @Lang.GrossWinLoss
                             <div class="icon-container">
                                 <span class="caret asc"></span>
@@ -91,8 +91,11 @@
                                 <span class="caret desc"></span>
                             </div>
                         </th>
-                        <th class="th" data-name="Commission" width="8%">
-                            @Lang.Comm
+                        <th class="th col-comm" data-name="Commission" width="10%">
+                            @(Lang.CommShorted).
+                            <div class="info-container">
+                                <span title="@Lang.NoteCommissionCalculation" class="glyphicon glyphicon-info-sign"></span>
+                            </div>
                             <div class="icon-container">
                                 <span class="caret asc"></span>
                                 <span class="caret desc"></span>

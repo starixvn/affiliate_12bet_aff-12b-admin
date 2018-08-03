@@ -69,7 +69,6 @@
                 cache: false,
                 contentType: "application/json; charset=UTF-8",
                 success: function (response) {
-                    console.log(response);
                     _reportData = response;
                     if (_reportData) {
                         _me.renderData();
@@ -86,13 +85,14 @@
         },
 
         renderData: function () {
-            if (_reportData.Data && _reportData.Data.length && _reportData.Total) {
+            console.log(_reportData.Data);
+            if (_reportData.Data && _reportData.Data.length) {
                 var bodyHtml = _me.buildDataTable();
                 $('#reportData').html(bodyHtml);
                 $('.sumrow.active').nextUntil('.sumrow').addClass('expanded');
             }
             else {
-                $('#reportData').html('<tr><td class="text-center" colspan="10">' + langResource.noInfo + '</td></tr>');
+                $('#reportData').html('<tr class="noInfo"><td class="text-center" colspan="10">' + langResource.noInfo + '</td></tr>');
             }
         },
 
@@ -141,17 +141,21 @@
 
         buildTotalRow: function () {
             var dataRow = _reportData.Total;
-            return '<tr class="total">' +
-                '<td class="text-right" colspan="2">' + 'Total' + '</td>' +
-                _me.buildCell(formatDecimal(dataRow.TurnOver)) +
-                _me.buildCell(formatDecimal(dataRow.WinLoss)) +
-                _me.buildCell(formatDecimal(dataRow.PlatformFee)) +
-                _me.buildCell(formatDecimal(dataRow.OperationalFee)) +
-                _me.buildCell(formatDecimal(dataRow.BankingFee)) +
-                _me.buildCell(formatDecimal(dataRow.Bonus)) +
-                _me.buildCell('') +
-                _me.buildCell(formatDecimal(dataRow.Commission)) +
-                '</tr>';
+            if (dataRow) {
+                return '<tr class="total">' +
+                    '<td class="text-right" colspan="2">' + 'Total' + '</td>' +
+                    _me.buildCell(formatDecimal(dataRow.TurnOver)) +
+                    _me.buildCell(formatDecimal(dataRow.WinLoss)) +
+                    _me.buildCell(formatDecimal(dataRow.PlatformFee)) +
+                    _me.buildCell(formatDecimal(dataRow.OperationalFee)) +
+                    _me.buildCell(formatDecimal(dataRow.BankingFee)) +
+                    _me.buildCell(formatDecimal(dataRow.Bonus)) +
+                    _me.buildCell('') +
+                    _me.buildCell(formatDecimal(dataRow.Commission)) +
+                    '</tr>';
+            }
+
+            return '';
         },
 
         buildCell: function (cellData) {

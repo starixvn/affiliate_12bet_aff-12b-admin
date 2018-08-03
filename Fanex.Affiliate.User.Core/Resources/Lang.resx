@@ -632,8 +632,8 @@ Thank you.</value>
   <data name="Comm" xml:space="preserve">
     <value>Commission</value>
   </data>
-  <data name="Comm1" xml:space="preserve">
-    <value>Commission</value>
+  <data name="CommShorted" xml:space="preserve">
+    <value>Comm</value>
   </data>
   <data name="CommCurr" xml:space="preserve">
     <value>Current Commission Earning</value>
@@ -3231,5 +3231,8 @@ One of our Affiliate Accounts Manager will be contacting you by email within 3 b
   </data>
   <data name="PlatformFee" xml:space="preserve">
     <value>Platform Fee</value>
+  </data>
+  <data name="NoteCommissionCalculation" xml:space="preserve">
+    <value>Commission = (Gross Win Loss - Platform Fee - Marketing Fee - Baning Fee - Bonus) x Comm. Rate</value>
   </data>
 </root>

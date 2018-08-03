@@ -19,7 +19,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Lang {
@@ -1638,15 +1638,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Commission.
-        /// </summary>
-        public static string Comm1 {
-            get {
-                return ResourceManager.GetString("Comm1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Current Commission Earning.
         /// </summary>
         public static string CommCurr {
@@ -1733,6 +1724,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string CommRate {
             get {
                 return ResourceManager.GetString("CommRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Comm.
+        /// </summary>
+        public static string CommShorted {
+            get {
+                return ResourceManager.GetString("CommShorted", resourceCulture);
             }
         }
         
@@ -5561,6 +5561,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Note2 {
             get {
                 return ResourceManager.GetString("Note2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Commission = (Gross Win Loss - Platform Fee - Marketing Fee - Baning Fee - Bonus) x Comm. Rate.
+        /// </summary>
+        public static string NoteCommissionCalculation {
+            get {
+                return ResourceManager.GetString("NoteCommissionCalculation", resourceCulture);
             }
         }
         
