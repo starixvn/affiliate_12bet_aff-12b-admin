@@ -1572,8 +1572,8 @@
     <Content Include="Areas\Portal\www\dist\style\portalmain.css" />
     <Content Include="Areas\Portal\www\dist\vendor.js" />
     <Content Include="Areas\Portal\www\index.html" />
-    <Content Include="Areas\Portal\www\parts\constant.js" />
-    <Content Include="Areas\Portal\www\parts\entry.js" />
+    <Content Include="Areas\Portal\www\config-utils\constant.js" />
+    <Content Include="Areas\Portal\www\config-utils\entry.js" />
     <Content Include="Areas\Portal\www\source\js\actions\sampleAction.js" />
     <Content Include="Areas\Portal\www\source\js\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\modules\createReducer.js" />
@@ -1595,6 +1595,7 @@
     <Content Include="Areas\Portal\www\source\style\assets\bg_top.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\icon_head.png" />
     <Content Include="Areas\Portal\www\source\style\assets\icon_top.png" />
+    <Content Include="Areas\Portal\www\source\style\fonts\open-iconic.svg" />
     <Content Include="Areas\Portal\www\webpack.config.dev.js" />
     <Content Include="Areas\Portal\www\webpack.config.js" />
     <Content Include="Areas\Portal\www\webpack.config.vendor.js" />
@@ -1726,7 +1727,6 @@
     <Content Include="Areas\Portal\www\source\style\base\_base.scss" />
     <Content Include="Areas\Portal\www\source\style\components\_table.scss" />
     <Content Include="Areas\Portal\www\source\style\main.scss" />
-    <Content Include="Areas\Portal\www\source\style\vendors\_bootstrap.scss" />
     <Content Include="Areas\Portal\www\package-lock.json" />
     <Content Include="Areas\Portal\www\dist\vendor-manifest.json" />
     <Content Include="Areas\Portal\Views\Shared\_Layout.cshtml" />
@@ -1856,6 +1856,11 @@
     <Content Include="Areas\Portal\Views\Domain\Index.cshtml" />
     <Content Include="Areas\Portal\Views\Affiliate\Index.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\_MainMenu.cshtml" />
+    <Content Include="Areas\Portal\www\source\style\components\open-iconic-bootstrap.scss" />
+    <Content Include="Areas\Portal\www\source\style\fonts\open-iconic.eot" />
+    <Content Include="Areas\Portal\www\source\style\fonts\open-iconic.otf" />
+    <Content Include="Areas\Portal\www\source\style\fonts\open-iconic.ttf" />
+    <Content Include="Areas\Portal\www\source\style\fonts\open-iconic.woff" />
     <None Include="bundleconfig.json" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -1999,7 +2004,6 @@
     <Folder Include="Areas\Portal\www\dist\js\" />
     <Folder Include="Areas\Portal\www\dist\style\assets\" />
     <Folder Include="Areas\Portal\www\source\js\pages\affiliate-information\components\" />
-    <Folder Include="Areas\Portal\www\source\style\fonts\" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\Google.Protobuf.dll" />

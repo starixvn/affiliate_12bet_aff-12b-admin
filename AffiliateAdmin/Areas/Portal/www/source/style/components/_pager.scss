@@ -43,25 +43,25 @@ $colorBorderPaging: #d1dae1;
 
     .page-first {
         &:before {
-            content: "\e070";
+            content: "\e097";
         }
     }
 
     .page-prev {
         &:before {
-            content: "\e251";
+            content: "\e02e";
         }
     }
 
     .page-next {
         &:before {
-            content: "\e250";
+            content: "\e02f";
         }
     }
 
     .page-last {
         &:before {
-            content: "\e076";
+            content: "\e098";
         }
     }
 

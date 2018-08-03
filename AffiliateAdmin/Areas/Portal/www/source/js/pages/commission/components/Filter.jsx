@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { Button, Form, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
+import { Button, Form, FormGroup, Input, Label } from 'reactstrap';
 
 class Filter extends Component {
     constructor(props) {
@@ -18,10 +18,10 @@ class Filter extends Component {
             <div className="filter-container">
                 <Form inline onSubmit={this.handleClick} style={{ backgroundColor: 'transparent' }}>
                     <FormGroup>
-                        <ControlLabel>Group Name</ControlLabel>{' '}
-                        <FormControl type="text" bsClass="search-box" />
+                        <Label>Group Name</Label>{' '}
+                        <Input type="text" className="search-box" />
                     </FormGroup>{' '}
-                    <Button type="submit"><span id="divsearch"></span></Button>
+                    <Button outline type="submit" size="sm">Search</Button>
                 </Form>
             </div>
         );

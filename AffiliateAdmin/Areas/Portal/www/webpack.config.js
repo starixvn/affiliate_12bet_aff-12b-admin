@@ -4,8 +4,8 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const merge = require("webpack-merge");
 
-const { environment, projectPath } = require("./parts/constant");
-const entry = require("./parts/entry");
+const { environment, projectPath } = require("./config-utils/constant");
+const entry = require("./config-utils/entry");
 
 const vendorFileName = "vendor-manifest.json";
 
