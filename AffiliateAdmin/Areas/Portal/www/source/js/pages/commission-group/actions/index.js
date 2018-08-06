@@ -4,7 +4,7 @@ import { resolveClientUrl } from '../../../modules/utils';
 import { SET_GRIDDATA, SET_SELECTEDGROUP } from './types';
 
 export const fetchGroupSettingData = () => {
-    const url = resolveClientUrl('Portal/Commission/GetCommissionSettingList');
+    const url = resolveClientUrl('Portal/CommissionGroup/GetCommissionSettingList');
 
     return () => axios.post(url);
 }

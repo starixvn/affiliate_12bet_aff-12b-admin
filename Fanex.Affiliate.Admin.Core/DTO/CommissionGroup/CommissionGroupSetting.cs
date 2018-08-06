@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace Fanex.Affiliate.Admin.Core.DTO.Commission
+namespace Fanex.Affiliate.Admin.Core.DTO.CommissionGroup
 {
-    public class CommissionSetting : CommGroup
+    public class CommissionGroupSetting : CommGroup
     {
         public IEnumerable<TierSetting> TierSettingList { get; set; }
 

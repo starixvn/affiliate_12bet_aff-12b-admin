@@ -21,7 +21,7 @@ export class GridData extends Component {
     async _getData() {
         const response = await this.props.fetchGroupSettingData();
 
-        this.props.setGridData(response.data);
+        this.props.setGridData(response.data.CommissionSettingList);
     }
 
     _renderGroupData() {
@@ -73,8 +73,8 @@ export class GridData extends Component {
 
                         {isFirstItem && (
                             <td className="text-center" rowSpan={rowSpan}>
-                                <a href="javacript:;"><span class="oi oi-pencil"></span></a>
-                                <a href="javacript:;"><span class="oi oi-x"></span></a>
+                                <a href="javacript:;"><span className="oi oi-pencil"></span></a>
+                                <a href="javacript:;"><span className="oi oi-x"></span></a>
                             </td>)
                         }
                     </tr>)

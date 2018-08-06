@@ -81,15 +81,15 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./source/style/pages/commission.scss");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./source/style/pages/commission-group.scss");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./node_modules/mini-css-extract-plugin/dist/loader.js!./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./source/style/pages/commission.scss":
-/*!*********************************************************************************************************************************************************************!*\
-  !*** ./node_modules/mini-css-extract-plugin/dist/loader.js!./node_modules/css-loader!./node_modules/sass-loader/lib/loader.js!./source/style/pages/commission.scss ***!
-  \*********************************************************************************************************************************************************************/
+/***/ "./node_modules/mini-css-extract-plugin/dist/loader.js!./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./source/style/pages/commission-group.scss":
+/*!***************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/mini-css-extract-plugin/dist/loader.js!./node_modules/css-loader!./node_modules/sass-loader/lib/loader.js!./source/style/pages/commission-group.scss ***!
+  \***************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -588,15 +588,15 @@ module.exports = function (css) {
 
 /***/ }),
 
-/***/ "./source/style/pages/commission.scss":
-/*!********************************************!*\
-  !*** ./source/style/pages/commission.scss ***!
-  \********************************************/
+/***/ "./source/style/pages/commission-group.scss":
+/*!**************************************************!*\
+  !*** ./source/style/pages/commission-group.scss ***!
+  \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../../node_modules/mini-css-extract-plugin/dist/loader.js!../../../node_modules/css-loader!../../../node_modules/sass-loader/lib/loader.js!./commission.scss */ "./node_modules/mini-css-extract-plugin/dist/loader.js!./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./source/style/pages/commission.scss");
+var content = __webpack_require__(/*! !../../../node_modules/mini-css-extract-plugin/dist/loader.js!../../../node_modules/css-loader!../../../node_modules/sass-loader/lib/loader.js!./commission-group.scss */ "./node_modules/mini-css-extract-plugin/dist/loader.js!./node_modules/css-loader/index.js!./node_modules/sass-loader/lib/loader.js!./source/style/pages/commission-group.scss");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -619,4 +619,4 @@ if(false) {}
 /***/ })
 
 /******/ });
-//# sourceMappingURL=commission.js.map
+//# sourceMappingURL=commission-group.js.map

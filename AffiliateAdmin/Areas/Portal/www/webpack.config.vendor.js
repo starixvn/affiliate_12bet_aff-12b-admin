@@ -11,7 +11,7 @@ let pathsToClean = ["dist/js/**/*.*", "dist/style/**/*.*"];
 
 let cleanOptions = {
     root: path.resolve(__dirname, "."),
-    exclude: ["bootstrap.css"],
+    exclude: ["vendor"],
     verbose: true,
     dry: false
 };
@@ -36,10 +36,10 @@ module.exports = env => {
             }]
         },
         entry: {
-            vendor: ["react", "react-dom", "react-redux", "redux", "redux-thunk"]
+            vendor: ["react", "react-dom", "react-redux", "redux", "redux-thunk", "./source/style/vendors/bootstrap/bootstrap.scss"]
         },
         output: {
-            publicPath: "dist",
+            publicPath: "dist/vendor",
             filename: "[name].js",
             library: "[name]_[hash]"
         },
@@ -53,7 +53,7 @@ module.exports = env => {
     };
 
     const clientBundleConfig = merge(sharedConfig, {
-        output: { path: relativeOutputRootPath },
+        output: { path: `${relativeOutputRootPath}/vendor` },
         module: {
             rules: [{
                 test: /\.s?[ac]ss$/,
@@ -65,7 +65,7 @@ module.exports = env => {
                 filename: "[name].css"
             }),
             new webpack.DllPlugin({
-                path: path.join(relativeOutputRootPath, "[name]-manifest.json"),
+                path: path.join(relativeOutputRootPath, "vendor", "[name]-manifest.json"),
                 name: "[name]_[hash]"
             })
         ]

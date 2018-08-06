@@ -1,5 +1,5 @@
 ﻿<div class="main-container">
-    <link href="~/Areas/Portal/www/dist/style/bootstrap.css" rel="stylesheet" />
+    <link href="~/Areas/Portal/www/dist/vendor/vendor.css" rel="stylesheet" />
     <link href="~/Areas/Portal/www/dist/style/portalmain.css" rel="stylesheet" />
 
     @RenderSection("styles", required: false)
@@ -8,6 +8,6 @@
 
     <input type="hidden" id="RootUrl" value="@Url.Content("~")" />
 
-    <script type="text/javascript" src="~/Areas/Portal/www/dist/vendor.js"></script>
+    <script type="text/javascript" src="~/Areas/Portal/www/dist/vendor/vendor.js"></script>
     @RenderSection("scripts", required: false)
 </div>

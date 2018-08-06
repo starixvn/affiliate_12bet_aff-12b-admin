@@ -18,17 +18,17 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
         public void GetCommissionSettingList_WhenCall_ReturnCorrectCommGroupData()
         {
             // Arrange
-            var repository = new Mock<CommissionRepository> { CallBase = true };
+            var repository = new Mock<CommissionGroupRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             var dataReader = new Mock<IDataReader>();
             dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
 
             ReaderHelper.MapReaderData(dataReader, GetExpectedCommGroup());
-            objectDb.Setup(obj => obj.ExecuteReader(It.IsAny<CommissionSettingParam>())).Returns(dataReader.Object);
+            objectDb.Setup(obj => obj.ExecuteReader(It.IsAny<CommissionGroupParam>())).Returns(dataReader.Object);
             repository.Setup(re => re.GetObjectDb(SpKey, 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.GetCommissionSettingList(new CommissionSettingParam());
+            var result = repository.Object.GetCommissionGroupList(new CommissionGroupParam());
 
             // Assert
             Assert.Single(result.CommGroupList);
@@ -40,18 +40,18 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
         public void GetCommissionSettingList_WhenCall_ReturnCorrectTierSetting()
         {
             // Arrange
-            var repository = new Mock<CommissionRepository> { CallBase = true };
+            var repository = new Mock<CommissionGroupRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             var dataReader = new Mock<IDataReader>();
             dataReader.SetupSequence(d => d.Read()).Returns(false).Returns(true);
             dataReader.SetupSequence(d => d.NextResult()).Returns(true).Returns(false);
 
             ReaderHelper.MapReaderData(dataReader, GetExpectedTierSetting());
-            objectDb.Setup(obj => obj.ExecuteReader(It.IsAny<CommissionSettingParam>())).Returns(dataReader.Object);
+            objectDb.Setup(obj => obj.ExecuteReader(It.IsAny<CommissionGroupParam>())).Returns(dataReader.Object);
             repository.Setup(re => re.GetObjectDb(SpKey, 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.GetCommissionSettingList(new CommissionSettingParam());
+            var result = repository.Object.GetCommissionGroupList(new CommissionGroupParam());
 
             // Assert
             Assert.Empty(result.CommGroupList);
@@ -63,18 +63,18 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
         public void GetCommissionSettingList_WhenCall_ReturnCorrectDeductionSetting()
         {
             // Arrange
-            var repository = new Mock<CommissionRepository> { CallBase = true };
+            var repository = new Mock<CommissionGroupRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             var dataReader = new Mock<IDataReader>();
             dataReader.SetupSequence(d => d.Read()).Returns(false).Returns(false).Returns(true);
             dataReader.SetupSequence(d => d.NextResult()).Returns(true).Returns(true).Returns(false);
 
             ReaderHelper.MapReaderData(dataReader, GetExpectedDeductionSetting());
-            objectDb.Setup(obj => obj.ExecuteReader(It.IsAny<CommissionSettingParam>())).Returns(dataReader.Object);
+            objectDb.Setup(obj => obj.ExecuteReader(It.IsAny<CommissionGroupParam>())).Returns(dataReader.Object);
             repository.Setup(re => re.GetObjectDb(SpKey, 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.GetCommissionSettingList(new CommissionSettingParam());
+            var result = repository.Object.GetCommissionGroupList(new CommissionGroupParam());
 
             // Assert
             Assert.Empty(result.CommGroupList);
@@ -86,21 +86,21 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
         public void GetCommissionSettingList_WhenCall_ExecuteWithCorrectParam()
         {
             // Arrange
-            var repository = new Mock<CommissionRepository> { CallBase = true };
+            var repository = new Mock<CommissionGroupRepository> { CallBase = true };
             var objectDb = new Mock<IObjectDb>();
             var dataReader = new Mock<IDataReader>();
             dataReader.SetupSequence(d => d.Read()).Returns(false);
             dataReader.SetupSequence(d => d.NextResult()).Returns(false);
 
-            CommissionSettingParam passedParam = null;
-            var param = new CommissionSettingParam();
+            CommissionGroupParam passedParam = null;
+            var param = new CommissionGroupParam();
             objectDb.Setup(obj => obj.ExecuteReader(param))
                 .Returns(dataReader.Object)
-                .Callback<CommissionSettingParam>(p => passedParam = p);
+                .Callback<CommissionGroupParam>(p => passedParam = p);
             repository.Setup(re => re.GetObjectDb(SpKey, 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.GetCommissionSettingList(param);
+            var result = repository.Object.GetCommissionGroupList(param);
 
             // Assert
             Assert.Equal(passedParam, param);

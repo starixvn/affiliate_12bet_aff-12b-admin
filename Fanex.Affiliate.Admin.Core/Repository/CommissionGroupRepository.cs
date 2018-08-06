@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using Fanex.Affiliate.Admin.Core.DTO.Commission;
+using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 
 namespace Fanex.Affiliate.Admin.Core.Repository
 {
-    public class CommissionRepository : BaseRepository, ICommissionRepository
+    public class CommissionGroupRepository : BaseRepository, ICommissionGroupRepository
     {
-        public CommissionResultEntity GetCommissionSettingList(CommissionSettingParam param)
+        public CommissionGroupResultEntity GetCommissionGroupList(CommissionGroupParam param)
         {
             const string SpKey = "Aff_Admin_CommGroup_Sel";
 
-            var result = new CommissionResultEntity();
+            var result = new CommissionGroupResultEntity();
 
             using (var objectDb = GetObjectDb(SpKey))
             {

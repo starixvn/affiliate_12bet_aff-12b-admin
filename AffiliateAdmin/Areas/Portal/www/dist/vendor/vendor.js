@@ -1,4 +1,4 @@
-var vendor_53facc8c81a5717418b5 =
+var vendor_b4b14fd174666a2a319d =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -78,7 +78,7 @@ var vendor_53facc8c81a5717418b5 =
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "dist";
+/******/ 	__webpack_require__.p = "dist/vendor";
 /******/
 /******/
 /******/ 	// Load entry module and return exports
@@ -809,6 +809,18 @@ eval("var g;\r\n\r\n// This works in non-strict mode\r\ng = (function() {\r\n\tr
 /***/ (function(module, exports) {
 
 eval("module.exports = function(originalModule) {\r\n\tif (!originalModule.webpackPolyfill) {\r\n\t\tvar module = Object.create(originalModule);\r\n\t\t// module.parent = undefined by default\r\n\t\tif (!module.children) module.children = [];\r\n\t\tObject.defineProperty(module, \"loaded\", {\r\n\t\t\tenumerable: true,\r\n\t\t\tget: function() {\r\n\t\t\t\treturn module.l;\r\n\t\t\t}\r\n\t\t});\r\n\t\tObject.defineProperty(module, \"id\", {\r\n\t\t\tenumerable: true,\r\n\t\t\tget: function() {\r\n\t\t\t\treturn module.i;\r\n\t\t\t}\r\n\t\t});\r\n\t\tObject.defineProperty(module, \"exports\", {\r\n\t\t\tenumerable: true\r\n\t\t});\r\n\t\tmodule.webpackPolyfill = 1;\r\n\t}\r\n\treturn module;\r\n};\r\n\n\n//# sourceURL=webpack://%5Bname%5D_%5Bhash%5D/(webpack)/buildin/harmony-module.js?");
+
+/***/ }),
+
+/***/ "./source/style/vendors/bootstrap/bootstrap.scss":
+/*!*******************************************************!*\
+  !*** ./source/style/vendors/bootstrap/bootstrap.scss ***!
+  \*******************************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack://%5Bname%5D_%5Bhash%5D/./source/style/vendors/bootstrap/bootstrap.scss?");
 
 /***/ }),
 

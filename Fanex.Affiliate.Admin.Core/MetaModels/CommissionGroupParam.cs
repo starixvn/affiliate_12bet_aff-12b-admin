@@ -1,6 +1,6 @@
 ﻿namespace Fanex.Affiliate.Admin.Core.MetaModels
 {
-    public class CommissionSettingParam
+    public class CommissionGroupParam
     {
         public int GroupId { get; set; }
 

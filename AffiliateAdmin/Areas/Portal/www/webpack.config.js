@@ -67,7 +67,7 @@ module.exports = env => {
             }),
             new webpack.DllReferencePlugin({
                 context: __dirname,
-                manifest: require(`${clientBundleOutputDir}/${vendorFileName}`)
+                manifest: require(`${clientBundleOutputDir}/vendor/${vendorFileName}`)
             })
         ].concat(!isDevBuild ? [new OptimizeCSSAssetsPlugin()] : []),
         devtool: isDevBuild ? "source-map" : undefined

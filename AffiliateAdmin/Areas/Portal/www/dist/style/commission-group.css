@@ -278,13 +278,13 @@ button.close {
     cursor: default;
     pointer-events: none; }
   .page-container .page-first:before {
-    content: "\E070"; }
+    content: "\E097"; }
   .page-container .page-prev:before {
-    content: "\E251"; }
+    content: "\E02E"; }
   .page-container .page-next:before {
-    content: "\E250"; }
+    content: "\E02F"; }
   .page-container .page-last:before {
-    content: "\E076"; }
+    content: "\E098"; }
   .page-container .page-form {
     width: auto;
     height: auto;
@@ -373,4 +373,4 @@ button.close {
       text-decoration: none; }
 
 
-/*# sourceMappingURL=commission.css.map*/
+/*# sourceMappingURL=commission-group.css.map*/

@@ -117,7 +117,7 @@
     <Compile Include="Controllers\AdministratorController.cs" />
     <Compile Include="Controllers\AffiliateController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Controllers\CommissionController.cs" />
+    <Compile Include="Controllers\CommissionGroupController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\DomainController.cs" />
     <Compile Include="Controllers\ExchangeRateController.cs" />
@@ -130,18 +130,18 @@
     <Compile Include="DTO\Affiliate\AffLeftPanelInfo.cs" />
     <Compile Include="DTO\Affiliate\ContactApp.cs" />
     <Compile Include="DTO\Affiliate\OnlineInfo.cs" />
-    <Compile Include="DTO\Commission\CommGroup.cs" />
-    <Compile Include="DTO\Commission\CommissionResultEntity.cs" />
-    <Compile Include="DTO\Commission\CommissionSetting.cs" />
-    <Compile Include="DTO\Commission\DeductionSetting.cs" />
-    <Compile Include="DTO\Commission\TierSetting.cs" />
+    <Compile Include="DTO\CommissionGroup\CommGroup.cs" />
+    <Compile Include="DTO\CommissionGroup\CommissionGroupResultEntity.cs" />
+    <Compile Include="DTO\CommissionGroup\CommissionGroupSetting.cs" />
+    <Compile Include="DTO\CommissionGroup\DeductionSetting.cs" />
+    <Compile Include="DTO\CommissionGroup\TierSetting.cs" />
     <Compile Include="DTO\DepositAccountInfo.cs" />
     <Compile Include="DTO\Product.cs" />
     <Compile Include="DTO\ResultInfo.cs" />
     <Compile Include="DTO\SubMenu.cs" />
     <Compile Include="Enum\AffType.cs" />
     <Compile Include="MetaModels\ChangePasswordParam.cs" />
-    <Compile Include="MetaModels\CommissionSettingParam.cs" />
+    <Compile Include="MetaModels\CommissionGroupParam.cs" />
     <Compile Include="MetaModels\LeftPanelUpdateInfoParam.cs" />
     <Compile Include="MetaModels\UpdateStatusParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -149,11 +149,11 @@
     <Compile Include="Repository\AffiliateRepository.cs" />
     <Compile Include="Repository\AuthRepository.cs" />
     <Compile Include="Repository\BaseRepository.cs" />
-    <Compile Include="Repository\CommissionRepository.cs" />
+    <Compile Include="Repository\CommissionGroupRepository.cs" />
     <Compile Include="Repository\IAccountRepository.cs" />
     <Compile Include="Repository\IAffiliateRepository.cs" />
     <Compile Include="Repository\IAuthRepository.cs" />
-    <Compile Include="Repository\ICommissionRepository.cs" />
+    <Compile Include="Repository\ICommissionGroupRepository.cs" />
     <Compile Include="Configurations\IoCConfig.cs" />
     <Compile Include="Repository\IProductRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
@@ -171,7 +171,7 @@
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Utilities\CryptographyHelper.cs" />
     <Compile Include="Utilities\Generator.cs" />
-    <Compile Include="ViewModels\CommissionViewModel.cs" />
+    <Compile Include="ViewModels\CommissionGroupViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
