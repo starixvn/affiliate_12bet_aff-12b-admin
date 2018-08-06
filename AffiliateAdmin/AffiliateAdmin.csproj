@@ -1867,6 +1867,8 @@
     <Content Include="Areas\Portal\www\dist\style\assets\open-iconic.eot" />
     <Content Include="Areas\Portal\www\dist\style\assets\open-iconic.ttf" />
     <Content Include="Areas\Portal\www\dist\style\assets\open-iconic.woff" />
+    <Content Include="Areas\Portal\www\source\style\components\_button.scss" />
+    <Content Include="Areas\Portal\www\source\style\layout\_filter.scss" />
     <None Include="bundleconfig.json" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -22,6 +22,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository
                     result.TierSettingList = GetTierSettingList(reader);
                     result.DeductionSettingList = GetDeductionSettingList(reader);
                 }
+
+                param.Nrows = Convert.ToInt32(objectDb.GetParameterValue("Nrows"));
             }
 
             return result;

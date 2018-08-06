@@ -1,22 +1,21 @@
 import React, { Component } from "react";
 
-import { Modal, ModalHeader, ModalBody } from 'reactstrap';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { Modal, ModalHeader, ModalBody, Button } from 'reactstrap';
 import GridData from './GridData';
 import PopupContent from './PopupContent';
 import Pager from '../../../components/Pager';
 
-export default class Content extends Component {
+import { getGroupSettingList } from '../actions';
+
+export class Content extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            showPopup: false,
-            pageOption: {
-                PageIndex: 1,
-                PageSize: 20,
-                TotalItem: 100,
-                PageList: [10, 20, 50, 100, 500]
-            }
+            showPopup: false
         }
     }
 
@@ -30,22 +29,19 @@ export default class Content extends Component {
 
     onPaging = (pageIndex, pageSize) => {
         console.log(pageIndex, pageSize);
-
-        const pageOption = Object.assign({}, this.state.pageOption, { PageIndex: pageIndex, PageSize: pageSize });
-        this.setState({ pageOption });
+        this.props.getGroupSettingList({ PageIndex: pageIndex, PageSize: pageSize });
     }
 
     render() {
+        console.log(this.props.pagingOption);
         return (
             <div className="data-content">
-                <div className="action-wrapper">
-                    <a href="javascript:;" onClick={this.handleAddNewGroup} className="btn-add-comm">
-                        Add New Group <span className="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>
-                    </a>
+                <div className="mx-2 my-2">
+                    <Button outline type="button" onClick={this.handleAddNewGroup}>Add New Group</Button>
                 </div>
-                <div className="clearfix"></div>
-                <Pager pageOption={this.state.pageOption} onPaging={this.onPaging} />
-                <div className="content-container table-responsive">
+                
+                <Pager pageOption={this.props.pagingOption} onPaging={this.onPaging} />
+                <div className="my-1">
                     <GridData />
                 </div>
 
@@ -61,3 +57,13 @@ export default class Content extends Component {
         );
     }
 }
+
+function mapStateToProps({ pagingOption }) {
+    return Object.assign({}, { pagingOption });
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ getGroupSettingList }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Content);

@@ -88,18 +88,34 @@
 
 .action-wrapper {
     margin: 10px 0;
+}
 
-    .btn-add-comm {
-        color: #333;
-        border: 1px solid #d4d4d4;
-        background: #ecf5fe;
-        margin-top: 10px;
+.filter-container {
+    .search-box {
+        width: 15rem;
+    }
+}
 
-        &:hover {
-            color: #000 !important;
-            background: #dee4ea;
-            opacity: 0.8;
-            text-decoration: none;
+.table-group-setting {
+    tr {
+        .cell-tier {
+            background: #ECF3DD;
         }
+
+        .cell-platform {
+            background: #E3E5F6;
+        }
+    }
+
+    .th-smallest {
+        width: 3%;
+    }
+
+    .th-small {
+        width: 5%;
+    }
+
+    .th-medium {
+        width: 12%;
     }
 }

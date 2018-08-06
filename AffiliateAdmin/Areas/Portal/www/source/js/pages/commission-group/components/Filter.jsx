@@ -21,11 +21,11 @@ class Filter extends Component {
         return (
             <div className="filter-container">
                 <Form inline onSubmit={this.handleClick} style={{ backgroundColor: 'transparent' }}>
-                    <FormGroup>
-                        <Label>Group Name</Label>{' '}
-                        <Input type="text" className="search-box" />
-                    </FormGroup>{' '}
-                    <Button outline type="submit" size="sm">Search</Button>
+                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                        <Label className="mr-sm-2">Group Name</Label>{' '}
+                        <Input type="text" className="mr-sm-2 search-box" />
+                    </FormGroup>
+                    <Button outline color="primary" type="button"><span className="oi oi-magnifying-glass"></span> Search</Button>
                 </Form>
             </div>
         );

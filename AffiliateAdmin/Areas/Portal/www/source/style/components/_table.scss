@@ -3,6 +3,8 @@
 
     thead {
         tr {
+            background: #e5f2fd;
+
             th {
                 text-align: center;
             }
@@ -14,7 +16,14 @@
             > th, > td {
                 vertical-align: middle;
                 padding: 5px;
+                word-wrap: break-word;
             }
         }
+    }
+}
+
+.table-bordered {
+    th, td {
+        border-color: #cccaca;
     }
 }
