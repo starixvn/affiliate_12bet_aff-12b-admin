@@ -13,10 +13,10 @@ namespace AffiliateAdmin.Business.DataAccess
     public class DbHelper
     {
         // used for timeout of report-oriented SP execution.
-        public static int MAX_EXEC_TIME_LENGTH_RPTSP = 30000;
+        public static int MAX_EXEC_TIME_LENGTH_RPTSP = 300;
 
         // used for timeout of non report-oriented SP execution.
-        public static int MAX_EXEC_TIME_LENGTH_NONRPTSP = 3000;
+        public static int MAX_EXEC_TIME_LENGTH_NONRPTSP = 240;
 
         public static DbResult Execute(string pSPName, string pDB, Hashtable pHsParam = null, int pTimeOut = 120)
         {
@@ -42,7 +42,7 @@ namespace AffiliateAdmin.Business.DataAccess
             {
                 foreach (DictionaryEntry Item in pHsParam)
                 {
-                    strDoing.Append(Item.Key.ToString() + " = " + CastAide.AsString(Item.Value) + ", ");
+                    strDoing.Append(Item.Key + " = " + CastAide.AsString(Item.Value) + ", ");
                 }
             }
 

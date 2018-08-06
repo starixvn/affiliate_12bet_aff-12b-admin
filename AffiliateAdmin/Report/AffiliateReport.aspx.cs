@@ -67,7 +67,7 @@ public partial class Report_AffiliateReport : IBCPage
         TemplateHandler.Assign(ref strTpl, "timer-val", string.IsNullOrEmpty(Request["slTime"]) ? "0" : Request["slTime"]);
     }
 
-    void GenerateHTML()
+    private void GenerateHTML()
     {
         var dtmFirstOfMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
         DateTime dtmFDate = CastAide.AsDateTime(Request["fdate"], dtmFirstOfMonth);
@@ -111,7 +111,9 @@ public partial class Report_AffiliateReport : IBCPage
         rs = DataHandler.Affiliate.SelAffiliateReport(criteria);
 
         if (rs.ResultSet.Tables.Count > 0)
+        {
             dtb = rs.ResultSet.Tables[0];
+        }
 
         criteria.NRows = CastAide.AsInt32(rs.Outputs["nrows"]);
 
