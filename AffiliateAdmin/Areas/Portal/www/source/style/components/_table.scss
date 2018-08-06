@@ -1,4 +1,14 @@
 .table {
+    table-layout: fixed;
+
+    thead {
+        tr {
+            th {
+                text-align: center;
+            }
+        }
+    }
+
     > tbody, > thead {
         > tr {
             > th, > td {

@@ -7,7 +7,7 @@ const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 const { environment, projectPath } = require("./config-utils/constant");
 
-let pathsToClean = ["dist/**/*.*"];
+let pathsToClean = ["dist/js/**/*.*", "dist/style/**/*.*"];
 
 let cleanOptions = {
     root: path.resolve(__dirname, "."),

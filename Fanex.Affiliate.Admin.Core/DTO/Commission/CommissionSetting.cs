@@ -6,10 +6,8 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Commission
     {
         public IEnumerable<TierSetting> TierSettingList { get; set; }
 
-        public IEnumerable<DeductionSetting> PlatformFee { get; set; }
+        public IEnumerable<DeductionSetting> PlatformFeeList { get; set; }
 
-        public DeductionSetting OperationalFee { get; set; }
-
-        public DeductionSetting BankingFee { get; set; }
+        public IEnumerable<DeductionSetting> RemainingFeeList { get; set; }
     }
 }

@@ -41,7 +41,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository
                     Creator = reader["Creator"].ToString(),
                     Description = reader["Description"].ToString(),
                     QmTurnover = Convert.ToDecimal(reader["QMTurnover"]),
-                    IsAdjustment = Convert.ToBoolean(reader["IsAdjustment"])
+                    IsAdjustment = Convert.ToBoolean(reader["IsAdjustment"]),
+                    NoAffs = Convert.ToInt32(reader["NoAffs"])
                 });
             }
 
@@ -84,8 +85,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository
                         DeductionId = Convert.ToInt32(reader["DeductionId"]),
                         DeductionName = reader["DeductionName"].ToString(),
                         ProductIds = reader["ProductIds"].ToString(),
-                        DeductedPercentage = Convert.ToDecimal(reader["DeductedPercentage"]),
-                        NextDeductedPercentage = Convert.ToDecimal(reader["NextDeductedPercentage"])
+                        DeductedPercentage = reader["DeductedPercentage"] == DBNull.Value ? default(decimal) : Convert.ToDecimal(reader["DeductedPercentage"]),
+                        NextDeductedPercentage = reader["NextDeductedPercentage"] == DBNull.Value ? default(decimal) : Convert.ToDecimal(reader["NextDeductedPercentage"])
                     });
                 }
             }

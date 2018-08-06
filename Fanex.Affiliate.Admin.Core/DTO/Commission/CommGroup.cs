@@ -19,5 +19,9 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Commission
         public decimal QmTurnover { get; set; }
 
         public bool IsAdjustment { get; set; }
+
+        public int NoAffs { get; set; }
+
+        public string CreatedDateText => CreatedDate.ToString("MM/dd/yyyy HH:mm:ss");
     }
 }

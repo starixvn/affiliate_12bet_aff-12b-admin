@@ -1,0 +1,2 @@
+export const SET_GRIDDATA = 'SET_GRIDDATA';
+export const SET_SELECTEDGROUP = 'SET_SELECTEDGROUP';

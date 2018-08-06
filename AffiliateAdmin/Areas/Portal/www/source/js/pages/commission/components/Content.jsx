@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import GridData from './GridData';
 import PopupContent from './PopupContent';
 import Pager from '../../../components/Pager';
 
-class Content extends Component {
+export default class Content extends Component {
     constructor(props) {
         super(props);
 
@@ -62,5 +61,3 @@ class Content extends Component {
         );
     }
 }
-
-export default connect()(Content);
