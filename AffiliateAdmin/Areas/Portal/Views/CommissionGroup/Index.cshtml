@@ -1,12 +1,18 @@
 ﻿@{
     Layout = "~/Areas/Portal/Views/Shared/_SinglePageLayout.cshtml";
 }
+@model IEnumerable<Fanex.Affiliate.Admin.Core.DTO.Product>
 
 @section styles{
     <link href="~/Areas/Portal/www/dist/style/commission-group.css" rel="stylesheet" />
 }
 
 @section scripts{
+    <script type="text/javascript">
+        window.initialState = {
+            productList: @Html.Raw(Json.Encode(Model))
+        }
+    </script>
     <script type="text/javascript" src="~/Areas/Portal/www/dist/js/commission-group.js"></script>
 }
 

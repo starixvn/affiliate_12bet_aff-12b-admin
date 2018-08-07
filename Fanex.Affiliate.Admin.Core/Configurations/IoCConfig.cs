@@ -56,7 +56,6 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
             builder.RegisterType<AppSetting>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<SessionService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<ProductRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<ProductService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<CommissionGroupRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<CommissionService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<AffiliateRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();

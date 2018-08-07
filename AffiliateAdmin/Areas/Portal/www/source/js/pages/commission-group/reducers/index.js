@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 
-import { SET_GRIDDATA, SET_SELECTEDGROUP, SET_PAGING_OPTION } from '../actions/types';
+import { SET_GRIDDATA, SET_SELECTEDGROUP, SET_PAGING_OPTION, GET_PRODUCT_LIST } from '../actions/types';
 import createReducer from '../../../modules/createReducer';
 import { defaultPagingOption } from '../modules/constant';
 
@@ -22,4 +22,6 @@ const pagingOption = createReducer(defaultPagingOption, {
     }
 })
 
-export default combineReducers({ gridData, selectedGroup, pagingOption });
+const productList = createReducer([], {});
+
+export default combineReducers({ gridData, selectedGroup, pagingOption, productList });

@@ -167,8 +167,6 @@
     <Compile Include="DTO\Common\UserPermission.cs" />
     <Compile Include="Services\Common\SessionService.cs" />
     <Compile Include="Services\ICommissionService.cs" />
-    <Compile Include="Services\IProductService.cs" />
-    <Compile Include="Services\ProductService.cs" />
     <Compile Include="Utilities\CryptographyHelper.cs" />
     <Compile Include="Utilities\Generator.cs" />
     <Compile Include="ViewModels\CommissionGroupViewModel.cs" />

@@ -28,12 +28,10 @@ export class Content extends Component {
     }
 
     onPaging = (pageIndex, pageSize) => {
-        console.log(pageIndex, pageSize);
         this.props.getGroupSettingList({ PageIndex: pageIndex, PageSize: pageSize });
     }
 
     render() {
-        console.log(this.props.pagingOption);
         return (
             <div className="data-content">
                 <div className="mx-2 my-2">

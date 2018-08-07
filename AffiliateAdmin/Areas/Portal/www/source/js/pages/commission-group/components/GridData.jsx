@@ -15,6 +15,23 @@ function rawHtml(content) {
 export class GridData extends Component {
     constructor(props) {
         super(props);
+
+        const { productList } = this.props;
+        this.products = {};
+        for (let i = 0; i < productList.length; i++) {
+            this.products[productList[i].ProductId] = productList[i].ProductName;
+        }
+    }
+
+    _convertToProductNameText(productIdList) {
+        return productIdList.split(',').reduce((accumulator, currentItem) => {
+            const productName = this.products[currentItem.trim()];
+            if (productName) {
+                accumulator.push(productName);
+            }
+
+            return accumulator;
+        }, []).join(',');
     }
 
     _renderGroupData() {
@@ -80,7 +97,7 @@ export class GridData extends Component {
                 rows.push(
                     (<tr key={`row-platform-${index}-${iPlatformFee}`}>
                         {isFirstItem && (<td className="text-center text-bold cell-platform" rowSpan={platformFeeRowSpan}>Platform Fee</td>)}
-                        <td className="cell-platform" colSpan="5">{platformFee.ProductIds}</td>
+                        <td className="cell-platform" colSpan="5">{this._convertToProductNameText(platformFee.ProductIds)}</td>
                         <td className="text-right cell-platform">{formatDecimal(platformFee.DeductedPercentage)}</td>
                     </tr>)
                 );
@@ -127,8 +144,8 @@ export class GridData extends Component {
     }
 }
 
-function mapStateToProps({ gridData }) {
-    return Object.assign({}, { gridData });
+function mapStateToProps({ gridData, productList }) {
+    return Object.assign({}, { gridData, productList });
 }
 
 function mapDispatchToProps(dispatch) {
