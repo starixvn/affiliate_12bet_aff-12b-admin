@@ -1,5 +1,7 @@
 import React from "react";
 
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+
 const INFINITY = "∞";
 
 const TierSettingItem = (props) => {
@@ -19,22 +21,36 @@ const TierSettingItem = (props) => {
     return (
         <tr>
             <td className="text-center">{index + 1}</td>
-            <td><input type="text" className="input-tier" name="minAm" value={data.minAm} onChange={handleChange} /></td>
             <td>
-                <input type="text" className="input-tier max" name="maxAm"
-                    disabled={isDisabled} value={isDisabled ? INFINITY : data.maxAm} onChange={handleChange} />
-                <input className="chk-infinity" type="checkbox" name="infinityAm"
-                    checked={isDisabled} onChange={handleChange} />{INFINITY}
-            </td>
-            <td><input type="text" className="input-tier" name="minQm" value={data.minQm} onChange={handleChange} /></td>
-            <td>
-                <input type="text" className="input-tier max" name="maxQm"
-                    disabled={isDisabled} value={isDisabled ? INFINITY : data.maxQm} onChange={handleChange} />
-                <input className="chk-infinity" type="checkbox" name="infinityQm"
-                    checked={isDisabled} onChange={handleChange} />{INFINITY}
+                <Input type="text" name="minAm" id="minAm" value={data.minAm} onChange={handleChange} />
             </td>
             <td>
-                <select className="select-comm" name="commission" onChange={handleChange} value={data.commission.toString()}>
+                <Form inline>
+                    <Input type="text" name="maxAm" id="maxAm" className="form-max"
+                        disabled={isDisabled} value={isDisabled ? INFINITY : data.maxAm} onChange={handleChange} />
+                    <FormGroup check className="ml-sm-1">
+                        <Label check>
+                            <Input type="checkbox" name="infinityAm" checked={isDisabled} onChange={handleChange} />{INFINITY}
+                        </Label>
+                    </FormGroup>
+                </Form>
+            </td>
+            <td>
+                <Input type="text" name="minQm" id="minQm" value={data.minQm} onChange={handleChange} />
+            </td>
+            <td>
+                <Form inline>
+                    <Input type="text" name="maxQm" id="maxQm" className="form-max"
+                        disabled={isDisabled} value={isDisabled ? INFINITY : data.maxQm} onChange={handleChange} />
+                    <FormGroup check className="ml-sm-1">
+                        <Label check>
+                            <Input type="checkbox" name="infinityQm" checked={isDisabled} onChange={handleChange} />{INFINITY}
+                        </Label>
+                    </FormGroup>
+                </Form>
+            </td>
+            <td>
+                <select className="form-control" name="commission" onChange={handleChange} value={data.commission.toString()}>
                     {
                         commissionList.map((item, i) => {
                             return (<option key={`comm-${index}-${i}`} value={item}>{item}</option>);
@@ -42,7 +58,9 @@ const TierSettingItem = (props) => {
                     }
                 </select>
             </td>
-            <td className="text-center"><a href="javascript:;" onClick={onRemove}><span className="icdelete1"></span></a></td>
+            <td className="text-center">
+                <a href="javacript:;" onClick={onRemove}><span className="oi oi-x text-danger"></span></a>
+            </td>
         </tr>
     )
 }

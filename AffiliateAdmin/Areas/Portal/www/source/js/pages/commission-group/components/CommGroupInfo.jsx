@@ -1,23 +1,36 @@
 import React from "react";
+import { Col, Button, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 const CommGroupInfo = (props) => {
     return (
-        <table style={{ tableLayout: "fixed" }}>
-            <tbody>
-                <tr className="row-form">
-                    <td width="90">Group Name: </td>
-                    <td><input type="text" className="input-groupname" /> <span className="text-danger">*</span></td>
-                </tr>
-                <tr className="row-form">
-                    <td>Description: </td>
-                    <td><input type="text" className="input-desc" /></td>
-                </tr>
-                <tr className="row-form">
-                    <td>Active All: </td>
-                    <td><input type="checkbox" /></td>
-                </tr>
-            </tbody>
-        </table>
+        <div>
+            <FormGroup row>
+                <Label for="GroupName" sm={2}>Group Name: </Label>
+                <Col sm={8}>
+                    <Input type="text" name="GroupName" id="GroupName" />
+                </Col>
+                <Col sm={2}>
+                    <p className="text-danger required">*</p>
+                </Col>
+            </FormGroup>
+            <FormGroup row>
+                <Label for="Description" sm={2}>Description: </Label>
+                <Col sm={10}>
+                    <Input type="text" name="Description" id="Description" />
+                </Col>
+            </FormGroup>
+            <FormGroup row>
+                <Label for="ActiveAll" sm={2}>ActiveAll: </Label>
+                <Col sm={{ size: 10 }}>
+                    <FormGroup check>
+                        <Label check>
+                            <Input type="checkbox" id="ActiveAll" />
+                            &nbsp;
+                        </Label>
+                    </FormGroup>
+                </Col>
+            </FormGroup>
+        </div>
     )
 }
 

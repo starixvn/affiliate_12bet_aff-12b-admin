@@ -10,7 +10,7 @@ const gridData = createReducer([], {
     }
 })
 
-const selectedGroup = createReducer({}, {
+const selectedGroup = createReducer(null, {
     [SET_SELECTEDGROUP](state, action) {
         return action.data;
     }

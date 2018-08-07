@@ -5,84 +5,52 @@
 .comm-popup-container {
     font-size: 12px;
 
+    .required {
+        margin: 0 0 0 -1.5rem;
+        font-size: 1rem;
+    }
+
+    legend {
+        width: auto;
+        padding: 10px;
+        margin-bottom: 0;
+    }
+
     fieldset {
-        margin-bottom: 10px;
-    }
-
-    .input-groupname {
-        width: 300px;
-    }
-
-    .input-desc {
-        width: 500px;
-    }
-
-    .inline {
-        > * {
-            display: inline-block;
-            margin: 5px;
-        }
-
-        > .label {
-            width: 240px;
-            font-weight: bold;
-        }
-
-        .unit-name {
-            width: 150px;
-        }
-
-        .sign {
-            width: 7px;
-        }
-
-        .select-percent {
-            width: 70px;
-        }
-
-        .select-product {
-            width: 200px;
-        }
+        padding: 10px;
+        border: 1px solid #a7a6a6;
     }
 
     .platformfee-group {
+        margin-bottom: 0.5rem;
+
+        .bullet {
+            font-size: 1rem;
+            margin-bottom: 0;
+        }
+
         .btn-action {
             font-weight: bold;
             width: 20px;
             padding: 4px;
-            line-height: 7px;
-            margin-left: -35px;
             font-size: 14px;
+            margin-top: 0.375rem;
+            margin-bottom: 0.375rem;
+            border: 1px solid #7b7c7d;
+            background-color: #ecf6ff;
+
+            &:hover {
+                background-color: #d8d8d8;
+            }
         }
     }
 
-    .input-tier {
-        width: 100%;
-
-        &.max {
-            width: calc(100% - 30px);
-        }
+    .form-max {
+        width: calc(100% - 32px);
     }
 
     .btn-addTier {
         line-height: 14px;
-    }
-
-    .tier-setting-table {
-        tr {
-            td {
-                .chk-infinity {
-                    position: relative;
-                    top: 3px;
-                    margin-left: 4px;
-                    margin-right: 4px;
-                }
-
-                .select-comm {
-                    width: 100%;
-                }
-            }
-        }
     }
 }
 

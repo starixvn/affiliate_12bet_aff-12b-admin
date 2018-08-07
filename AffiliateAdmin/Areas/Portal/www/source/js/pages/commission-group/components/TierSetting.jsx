@@ -53,7 +53,7 @@ export default class TierSetting extends Component {
 
         return (
             <fieldset>
-                <legend><h4 className="text-bold">Tier Setting</h4></legend>
+                <legend><h6 className="font-weight-bold">Tier Setting</h6></legend>
                 <table className="table table-bordered tier-setting-table" style={{ tableLayout: "fixed" }}>
                     <thead>
                         <tr>

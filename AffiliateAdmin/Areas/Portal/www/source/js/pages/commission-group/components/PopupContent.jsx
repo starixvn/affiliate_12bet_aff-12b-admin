@@ -18,7 +18,7 @@ export default class PopupContent extends Component {
                 <QmTurnOverSetting />
                 <TierSetting />
 
-                <button type="button">SAVE</button>
+                <button type="button" className="my-2">SAVE</button>
             </div>
         )
     }

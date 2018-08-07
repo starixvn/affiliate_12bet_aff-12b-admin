@@ -58,7 +58,7 @@ export class GridData extends Component {
                         {isFirstItem && (<td className="text-center" rowSpan={rowSpan}>{rawHtml(group.Description)}</td>)}
                         {isFirstItem && (<td className="text-center" rowSpan={rowSpan}><p>{group.Creator}</p><p>{group.CreatedDateText}</p></td>)}
 
-                        {isFirstItem && (<td className="text-center text-bold cell-tier" rowSpan={tierSettingRowSpan}>Tier Setting</td>)}
+                        {isFirstItem && (<td className="text-center font-weight-bold cell-tier" rowSpan={tierSettingRowSpan}>Tier Setting</td>)}
                         <td className="text-center cell-tier">{tierSetting.TierId}</td>
                         <td className="text-right cell-tier">{format(tierSetting.MinAmount)}</td>
                         <td className="text-right cell-tier">{tierSetting.MaxAmount === INFINITY_AM ? htmlInfinity : format(tierSetting.MaxAmount)}</td>
@@ -82,8 +82,8 @@ export class GridData extends Component {
 
                         {isFirstItem && (
                             <td className="text-center" rowSpan={rowSpan}>
-                                <a href="javacript:;" className="mr-2"><span className="oi oi-pencil"></span></a>
-                                <a href="javacript:;"><span className="oi oi-x"></span></a>
+                                <a href="javacript:;" className="mr-2"><span className="oi oi-pencil text-secondary"></span></a>
+                                <a href="javacript:;"><span className="oi oi-x text-danger"></span></a>
                             </td>)
                         }
                     </tr>)
@@ -96,7 +96,7 @@ export class GridData extends Component {
 
                 rows.push(
                     (<tr key={`row-platform-${index}-${iPlatformFee}`}>
-                        {isFirstItem && (<td className="text-center text-bold cell-platform" rowSpan={platformFeeRowSpan}>Platform Fee</td>)}
+                        {isFirstItem && (<td className="text-center font-weight-bold cell-platform" rowSpan={platformFeeRowSpan}>Platform Fee</td>)}
                         <td className="cell-platform" colSpan="5">{this._convertToProductNameText(platformFee.ProductIds)}</td>
                         <td className="text-right cell-platform">{formatDecimal(platformFee.DeductedPercentage)}</td>
                     </tr>)
