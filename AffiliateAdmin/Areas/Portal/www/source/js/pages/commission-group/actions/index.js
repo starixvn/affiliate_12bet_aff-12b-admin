@@ -18,14 +18,15 @@ const setGridData = (data) => {
 
 export const getGroupSettingList = (param = {}) => async(dispatch) => {
     const response = await fetchGroupSettingData(param);
+    const { CommissionSettingList, TotalRows } = response.data;
 
-    dispatch(setGridData(response.data.CommissionSettingList));
+    dispatch(setGridData(CommissionSettingList));
 
     const { PageIndex, PageSize } = param;
     const pagingOption = {
         PageIndex,
         PageSize,
-        TotalItem: response.data.TotalRows
+        TotalItem: TotalRows
     };
     dispatch(setPagingOption(pagingOption));
 }

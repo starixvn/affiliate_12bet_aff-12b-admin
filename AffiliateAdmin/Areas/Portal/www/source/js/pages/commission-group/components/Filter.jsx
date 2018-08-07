@@ -1,20 +1,35 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { setSelectedGroup } from '../actions';
-
 import { Button, Form, FormGroup, Input, Label } from 'reactstrap';
+
+import { getGroupSettingList } from '../actions';
+import { defaultPagingOption } from '../modules/constant';
 
 class Filter extends Component {
     constructor(props) {
         super(props);
+
+        this.groupName = '';
+    }
+
+    componentDidMount() {
+        this._submit();
     }
 
     handleClick = (event) => {
         event.preventDefault();
-        console.log("submit");
+        this._submit();
+    }
+
+    handleChange = (event) => {
+        this.groupName = event.target.value;
+    }
+
+    _submit() {
+        const param = Object.assign({}, defaultPagingOption, { GroupName: this.groupName });
+        this.props.getGroupSettingList(param);
     }
 
     render() {
@@ -23,21 +38,17 @@ class Filter extends Component {
                 <Form inline onSubmit={this.handleClick} style={{ backgroundColor: 'transparent' }}>
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                         <Label className="mr-sm-2">Group Name</Label>{' '}
-                        <Input type="text" className="mr-sm-2 search-box" />
+                        <Input type="text" className="mr-sm-2 search-box" onChange={this.handleChange} />
                     </FormGroup>
-                    <Button outline color="primary" type="button"><span className="oi oi-magnifying-glass"></span> Search</Button>
+                    <Button outline color="primary" type="button" onClick={this.handleClick}><span className="oi oi-magnifying-glass"></span> Search</Button>
                 </Form>
             </div>
         );
     }
 }
 
-function mapStateToProps({ gridData }) {
-    return Object.assign({}, { gridData });
-}
-
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setSelectedGroup }, dispatch);
+    return bindActionCreators({ getGroupSettingList }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Filter);
+export default connect(null, mapDispatchToProps)(Filter);

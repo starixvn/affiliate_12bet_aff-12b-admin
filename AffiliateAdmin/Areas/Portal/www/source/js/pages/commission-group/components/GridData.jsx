@@ -3,25 +3,22 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { getGroupSettingList } from '../actions';
 import { INFINITY_AM, INFINITY_QM, INFINITY_SYMBOL } from '../modules/constant';
 import { format, formatDecimal } from '../../../modules/numberFormat';
-import { defaultPagingOption } from '../modules/constant';
 
-const htmlInfinity = (<span dangerouslySetInnerHTML={{ __html: INFINITY_SYMBOL }} />);
+const htmlInfinity = (<span dangerouslySetInnerHTML={{ __html: INFINITY_SYMBOL }}></span>);
+
+function rawHtml(content) {
+    return (<p dangerouslySetInnerHTML={{ __html: content }}></p>);
+}
 
 export class GridData extends Component {
     constructor(props) {
         super(props);
     }
 
-    componentDidMount() {
-        this.props.getGroupSettingList(defaultPagingOption);
-    }
-
     _renderGroupData() {
         const { gridData } = this.props;
-        console.log("GridData render", gridData);
         const rows = [];
 
         for (let index = 0; index < gridData.length; index++) {
@@ -39,9 +36,9 @@ export class GridData extends Component {
                 rows.push(
                     (<tr key={`row-${index}-${iTier}`}>
                         {isFirstItem && (<td className="text-center" rowSpan={rowSpan}>{group.RowIdx}</td>)}
-                        {isFirstItem && (<td className="text-center" rowSpan={rowSpan}>{group.GroupName}</td>)}
+                        {isFirstItem && (<td className="text-center" rowSpan={rowSpan}>{rawHtml(group.GroupName)}</td>)}
                         {isFirstItem && (<td className="text-center" rowSpan={rowSpan}>{group.NoAffs}</td>)}
-                        {isFirstItem && (<td className="text-center" rowSpan={rowSpan}>{group.Description}</td>)}
+                        {isFirstItem && (<td className="text-center" rowSpan={rowSpan}>{rawHtml(group.Description)}</td>)}
                         {isFirstItem && (<td className="text-center" rowSpan={rowSpan}><p>{group.Creator}</p><p>{group.CreatedDateText}</p></td>)}
 
                         {isFirstItem && (<td className="text-center text-bold cell-tier" rowSpan={tierSettingRowSpan}>Tier Setting</td>)}
@@ -135,7 +132,7 @@ function mapStateToProps({ gridData }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ getGroupSettingList }, dispatch);
+    return bindActionCreators({}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GridData);
