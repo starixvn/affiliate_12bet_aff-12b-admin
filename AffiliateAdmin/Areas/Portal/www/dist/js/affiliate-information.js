@@ -16103,7 +16103,11 @@ function round(value, digits) {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.parseDateTime = exports.formatDateTime = exports.resolveClientUrl = exports.deepClone = exports.removeItem = exports.setItem = undefined;
+exports.updateObjectInArray = exports.parseDateTime = exports.formatDateTime = exports.resolveClientUrl = exports.deepClone = exports.removeItem = exports.setItem = undefined;
+
+var _extends2 = __webpack_require__(/*! babel-runtime/helpers/extends */ "./node_modules/babel-runtime/helpers/extends.js");
+
+var _extends3 = _interopRequireDefault(_extends2);
 
 var _stringify = __webpack_require__(/*! babel-runtime/core-js/json/stringify */ "./node_modules/babel-runtime/core-js/json/stringify.js");
 
@@ -16188,12 +16192,22 @@ var parseDateTime = function parseDateTime(value) {
     return value;
 };
 
+var updateObjectInArray = function updateObjectInArray(array, indexItem, updatedItem) {
+    return array.map(function (item, index) {
+        if (index !== indexItem) {
+            return item;
+        }
+        return (0, _extends3.default)({}, item, updatedItem);
+    });
+};
+
 exports.setItem = setItem;
 exports.removeItem = removeItem;
 exports.deepClone = deepClone;
 exports.resolveClientUrl = resolveClientUrl;
 exports.formatDateTime = formatDateTime;
 exports.parseDateTime = parseDateTime;
+exports.updateObjectInArray = updateObjectInArray;
 
 /***/ }),
 

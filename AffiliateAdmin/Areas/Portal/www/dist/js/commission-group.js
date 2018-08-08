@@ -2006,6 +2006,40 @@ exports.default = function (obj, key, value) {
 
 /***/ }),
 
+/***/ "./node_modules/babel-runtime/helpers/extends.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/babel-runtime/helpers/extends.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+
+var _assign = __webpack_require__(/*! ../core-js/object/assign */ "./node_modules/babel-runtime/core-js/object/assign.js");
+
+var _assign2 = _interopRequireDefault(_assign);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _assign2.default || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
+
+    for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }
+
+  return target;
+};
+
+/***/ }),
+
 /***/ "./node_modules/babel-runtime/helpers/inherits.js":
 /*!********************************************************!*\
   !*** ./node_modules/babel-runtime/helpers/inherits.js ***!
@@ -16972,7 +17006,11 @@ function round(value, digits) {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.parseDateTime = exports.formatDateTime = exports.resolveClientUrl = exports.deepClone = exports.removeItem = exports.setItem = undefined;
+exports.updateObjectInArray = exports.parseDateTime = exports.formatDateTime = exports.resolveClientUrl = exports.deepClone = exports.removeItem = exports.setItem = undefined;
+
+var _extends2 = __webpack_require__(/*! babel-runtime/helpers/extends */ "./node_modules/babel-runtime/helpers/extends.js");
+
+var _extends3 = _interopRequireDefault(_extends2);
 
 var _stringify = __webpack_require__(/*! babel-runtime/core-js/json/stringify */ "./node_modules/babel-runtime/core-js/json/stringify.js");
 
@@ -17057,12 +17095,22 @@ var parseDateTime = function parseDateTime(value) {
     return value;
 };
 
+var updateObjectInArray = function updateObjectInArray(array, indexItem, updatedItem) {
+    return array.map(function (item, index) {
+        if (index !== indexItem) {
+            return item;
+        }
+        return (0, _extends3.default)({}, item, updatedItem);
+    });
+};
+
 exports.setItem = setItem;
 exports.removeItem = removeItem;
 exports.deepClone = deepClone;
 exports.resolveClientUrl = resolveClientUrl;
 exports.formatDateTime = formatDateTime;
 exports.parseDateTime = parseDateTime;
+exports.updateObjectInArray = updateObjectInArray;
 
 /***/ }),
 
@@ -17079,7 +17127,15 @@ exports.parseDateTime = parseDateTime;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.setSelectedGroup = exports.setGridData = exports.fetchGroupSettingData = undefined;
+exports.setCommGroupAfterInserting = exports.insertCommissionGroup = exports.setPagingOption = exports.setSelectedGroup = exports.getGroupSettingList = undefined;
+
+var _regenerator = __webpack_require__(/*! babel-runtime/regenerator */ "./node_modules/babel-runtime/regenerator/index.js");
+
+var _regenerator2 = _interopRequireDefault(_regenerator);
+
+var _asyncToGenerator2 = __webpack_require__(/*! babel-runtime/helpers/asyncToGenerator */ "./node_modules/babel-runtime/helpers/asyncToGenerator.js");
+
+var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
 
 var _axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
@@ -17091,24 +17147,86 @@ var _types = __webpack_require__(/*! ./types */ "./source/js/pages/commission-gr
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var fetchGroupSettingData = exports.fetchGroupSettingData = function fetchGroupSettingData() {
+var fetchGroupSettingData = function fetchGroupSettingData(param) {
     var url = (0, _utils.resolveClientUrl)('Portal/CommissionGroup/GetCommissionSettingList');
 
-    return function () {
-        return _axios2.default.post(url);
-    };
+    return _axios2.default.post(url, param);
 };
 
-var setGridData = exports.setGridData = function setGridData(data) {
+var setGridData = function setGridData(data) {
     return {
         type: _types.SET_GRIDDATA,
         data: data
     };
 };
 
+var getGroupSettingList = exports.getGroupSettingList = function getGroupSettingList(param) {
+    return function () {
+        var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(dispatch) {
+            var response, _response$data, CommissionSettingList, TotalRows, PageIndex, PageSize, pagingOption;
+
+            return _regenerator2.default.wrap(function _callee$(_context) {
+                while (1) {
+                    switch (_context.prev = _context.next) {
+                        case 0:
+                            _context.next = 2;
+                            return fetchGroupSettingData(param);
+
+                        case 2:
+                            response = _context.sent;
+                            _response$data = response.data, CommissionSettingList = _response$data.CommissionSettingList, TotalRows = _response$data.TotalRows;
+
+
+                            dispatch(setGridData(CommissionSettingList));
+
+                            PageIndex = param.PageIndex, PageSize = param.PageSize;
+                            pagingOption = {
+                                PageIndex: PageIndex,
+                                PageSize: PageSize,
+                                TotalItem: TotalRows
+                            };
+
+                            dispatch(setPagingOption(pagingOption));
+
+                        case 8:
+                        case 'end':
+                            return _context.stop();
+                    }
+                }
+            }, _callee, undefined);
+        }));
+
+        return function (_x) {
+            return _ref.apply(this, arguments);
+        };
+    }();
+};
+
 var setSelectedGroup = exports.setSelectedGroup = function setSelectedGroup(data) {
     return {
         type: _types.SET_SELECTEDGROUP,
+        data: data
+    };
+};
+
+var setPagingOption = exports.setPagingOption = function setPagingOption(data) {
+    return {
+        type: _types.SET_PAGING_OPTION,
+        data: data
+    };
+};
+
+var insertCommissionGroup = exports.insertCommissionGroup = function insertCommissionGroup(param) {
+    var url = (0, _utils.resolveClientUrl)('Portal/CommissionGroup/InsertCommissionGroup');
+
+    return function () {
+        return _axios2.default.post(url, param);
+    };
+};
+
+var setCommGroupAfterInserting = exports.setCommGroupAfterInserting = function setCommGroupAfterInserting(data) {
+    return {
+        type: _types.INSERT_COMM_GROUP_SUCCESS,
         data: data
     };
 };
@@ -17130,6 +17248,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 var SET_GRIDDATA = exports.SET_GRIDDATA = 'SET_GRIDDATA';
 var SET_SELECTEDGROUP = exports.SET_SELECTEDGROUP = 'SET_SELECTEDGROUP';
+
+var SET_PAGING_OPTION = exports.SET_PAGING_OPTION = 'SET_PAGING_OPTION';
+
+var INSERT_COMM_GROUP_SUCCESS = exports.INSERT_COMM_GROUP_SUCCESS = 'INSERT_COMM_GROUP_SUCCESS';
 
 /***/ }),
 
@@ -17225,92 +17347,9 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var _defineProperty2 = __webpack_require__(/*! babel-runtime/helpers/defineProperty */ "./node_modules/babel-runtime/helpers/defineProperty.js");
 
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var CommGroupInfo = function CommGroupInfo(props) {
-    return _react2.default.createElement(
-        "table",
-        { style: { tableLayout: "fixed" } },
-        _react2.default.createElement(
-            "tbody",
-            null,
-            _react2.default.createElement(
-                "tr",
-                { className: "row-form" },
-                _react2.default.createElement(
-                    "td",
-                    { width: "90" },
-                    "Group Name: "
-                ),
-                _react2.default.createElement(
-                    "td",
-                    null,
-                    _react2.default.createElement("input", { type: "text", className: "input-groupname" }),
-                    " ",
-                    _react2.default.createElement(
-                        "span",
-                        { className: "text-danger" },
-                        "*"
-                    )
-                )
-            ),
-            _react2.default.createElement(
-                "tr",
-                { className: "row-form" },
-                _react2.default.createElement(
-                    "td",
-                    null,
-                    "Description: "
-                ),
-                _react2.default.createElement(
-                    "td",
-                    null,
-                    _react2.default.createElement("input", { type: "text", className: "input-desc" })
-                )
-            ),
-            _react2.default.createElement(
-                "tr",
-                { className: "row-form" },
-                _react2.default.createElement(
-                    "td",
-                    null,
-                    "Active All: "
-                ),
-                _react2.default.createElement(
-                    "td",
-                    null,
-                    _react2.default.createElement("input", { type: "checkbox" })
-                )
-            )
-        )
-    );
-};
-
-exports.default = CommGroupInfo;
-
-/***/ }),
-
-/***/ "./source/js/pages/commission-group/components/Content.jsx":
-/*!*****************************************************************!*\
-  !*** ./source/js/pages/commission-group/components/Content.jsx ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _assign = __webpack_require__(/*! babel-runtime/core-js/object/assign */ "./node_modules/babel-runtime/core-js/object/assign.js");
-
-var _assign2 = _interopRequireDefault(_assign);
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
 var _getPrototypeOf = __webpack_require__(/*! babel-runtime/core-js/object/get-prototype-of */ "./node_modules/babel-runtime/core-js/object/get-prototype-of.js");
 
@@ -17338,111 +17377,118 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactstrap = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/dist/reactstrap.es.js");
 
-var _GridData = __webpack_require__(/*! ./GridData */ "./source/js/pages/commission-group/components/GridData.jsx");
-
-var _GridData2 = _interopRequireDefault(_GridData);
-
-var _PopupContent = __webpack_require__(/*! ./PopupContent */ "./source/js/pages/commission-group/components/PopupContent.jsx");
-
-var _PopupContent2 = _interopRequireDefault(_PopupContent);
-
-var _Pager = __webpack_require__(/*! ../../../components/Pager */ "./source/js/components/Pager.jsx");
-
-var _Pager2 = _interopRequireDefault(_Pager);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Content = function (_Component) {
-    (0, _inherits3.default)(Content, _Component);
+var CommGroupInfo = function (_React$Component) {
+    (0, _inherits3.default)(CommGroupInfo, _React$Component);
 
-    function Content(props) {
-        (0, _classCallCheck3.default)(this, Content);
+    function CommGroupInfo(props) {
+        (0, _classCallCheck3.default)(this, CommGroupInfo);
 
-        var _this = (0, _possibleConstructorReturn3.default)(this, (Content.__proto__ || (0, _getPrototypeOf2.default)(Content)).call(this, props));
+        var _this = (0, _possibleConstructorReturn3.default)(this, (CommGroupInfo.__proto__ || (0, _getPrototypeOf2.default)(CommGroupInfo)).call(this, props));
 
-        _this.handleAddNewGroup = function () {
-            _this.setState({ showPopup: true });
-        };
+        _this.handleChange = function (event) {
+            var _event$target = event.target,
+                name = _event$target.name,
+                value = _event$target.value;
 
-        _this.handleHide = function () {
-            _this.setState({ showPopup: false });
-        };
 
-        _this.onPaging = function (pageIndex, pageSize) {
-            console.log(pageIndex, pageSize);
-
-            var pageOption = (0, _assign2.default)({}, _this.state.pageOption, { PageIndex: pageIndex, PageSize: pageSize });
-            _this.setState({ pageOption: pageOption });
+            var newState = (0, _defineProperty3.default)({}, name, value);
+            _this.setState(newState);
+            _this.props.onChange && _this.props.onChange(name, value);
         };
 
         _this.state = {
-            showPopup: false,
-            pageOption: {
-                PageIndex: 1,
-                PageSize: 20,
-                TotalItem: 100,
-                PageList: [10, 20, 50, 100, 500]
-            }
+            GroupName: '',
+            Description: ''
         };
         return _this;
     }
 
-    (0, _createClass3.default)(Content, [{
+    (0, _createClass3.default)(CommGroupInfo, [{
         key: 'render',
         value: function render() {
+            var _state = this.state,
+                GroupName = _state.GroupName,
+                Description = _state.Description;
+
             return _react2.default.createElement(
                 'div',
-                { className: 'data-content' },
+                null,
                 _react2.default.createElement(
-                    'div',
-                    { className: 'action-wrapper' },
+                    _reactstrap.FormGroup,
+                    { row: true },
                     _react2.default.createElement(
-                        'a',
-                        { href: 'javascript:;', onClick: this.handleAddNewGroup, className: 'btn-add-comm' },
-                        'Add New Group ',
-                        _react2.default.createElement('span', { className: 'glyphicon glyphicon-triangle-left', 'aria-hidden': 'true' })
-                    )
-                ),
-                _react2.default.createElement('div', { className: 'clearfix' }),
-                _react2.default.createElement(_Pager2.default, { pageOption: this.state.pageOption, onPaging: this.onPaging }),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'content-container table-responsive' },
-                    _react2.default.createElement(_GridData2.default, null)
-                ),
-                _react2.default.createElement(
-                    _reactstrap.Modal,
-                    { isOpen: this.state.showPopup, toggle: this.handleHide, size: 'lg', backdrop: 'static' },
-                    _react2.default.createElement(
-                        _reactstrap.ModalHeader,
-                        { toggle: this.handleHide },
-                        _react2.default.createElement('span', { className: 'iconpopup' }),
-                        'Add a Commission Group'
+                        _reactstrap.Label,
+                        { 'for': 'GroupName', sm: 2 },
+                        'Group Name: '
                     ),
                     _react2.default.createElement(
-                        _reactstrap.ModalBody,
-                        null,
+                        _reactstrap.Col,
+                        { sm: 8 },
+                        _react2.default.createElement(_reactstrap.Input, { type: 'text', name: 'GroupName', id: 'GroupName', value: GroupName, onChange: this.handleChange })
+                    ),
+                    _react2.default.createElement(
+                        _reactstrap.Col,
+                        { sm: 2 },
                         _react2.default.createElement(
-                            'div',
-                            { className: 'modal-body-wrapper' },
-                            _react2.default.createElement(_PopupContent2.default, null)
+                            'p',
+                            { className: 'text-danger required' },
+                            '*'
+                        )
+                    )
+                ),
+                _react2.default.createElement(
+                    _reactstrap.FormGroup,
+                    { row: true },
+                    _react2.default.createElement(
+                        _reactstrap.Label,
+                        { 'for': 'Description', sm: 2 },
+                        'Description: '
+                    ),
+                    _react2.default.createElement(
+                        _reactstrap.Col,
+                        { sm: 10 },
+                        _react2.default.createElement(_reactstrap.Input, { type: 'text', name: 'Description', id: 'Description', value: Description, onChange: this.handleChange })
+                    )
+                ),
+                _react2.default.createElement(
+                    _reactstrap.FormGroup,
+                    { row: true },
+                    _react2.default.createElement(
+                        _reactstrap.Label,
+                        { 'for': 'ActiveAll', sm: 2 },
+                        'ActiveAll: '
+                    ),
+                    _react2.default.createElement(
+                        _reactstrap.Col,
+                        { sm: { size: 10 } },
+                        _react2.default.createElement(
+                            _reactstrap.FormGroup,
+                            { check: true },
+                            _react2.default.createElement(
+                                _reactstrap.Label,
+                                { check: true },
+                                _react2.default.createElement(_reactstrap.Input, { type: 'checkbox', id: 'ActiveAll' }),
+                                '\xA0'
+                            )
                         )
                     )
                 )
             );
         }
     }]);
-    return Content;
-}(_react.Component);
+    return CommGroupInfo;
+}(_react2.default.Component);
 
-exports.default = Content;
+exports.default = CommGroupInfo;
 
 /***/ }),
 
-/***/ "./source/js/pages/commission-group/components/DeductionSetting.jsx":
-/*!**************************************************************************!*\
-  !*** ./source/js/pages/commission-group/components/DeductionSetting.jsx ***!
-  \**************************************************************************/
+/***/ "./source/js/pages/commission-group/components/Content.jsx":
+/*!*****************************************************************!*\
+  !*** ./source/js/pages/commission-group/components/Content.jsx ***!
+  \*****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17452,10 +17498,7 @@ exports.default = Content;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-
-var _toConsumableArray2 = __webpack_require__(/*! babel-runtime/helpers/toConsumableArray */ "./node_modules/babel-runtime/helpers/toConsumableArray.js");
-
-var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
+exports.Content = undefined;
 
 var _assign = __webpack_require__(/*! babel-runtime/core-js/object/assign */ "./node_modules/babel-runtime/core-js/object/assign.js");
 
@@ -17485,22 +17528,175 @@ var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _PlatformFeeItem = __webpack_require__(/*! ./PlatformFeeItem */ "./source/js/pages/commission-group/components/PlatformFeeItem.jsx");
+var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 
-var _PlatformFeeItem2 = _interopRequireDefault(_PlatformFeeItem);
+var _redux = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 
-var _utils = __webpack_require__(/*! ../../../modules/utils */ "./source/js/modules/utils.js");
+var _reactstrap = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/dist/reactstrap.es.js");
+
+var _GridData = __webpack_require__(/*! ./GridData */ "./source/js/pages/commission-group/components/GridData.jsx");
+
+var _GridData2 = _interopRequireDefault(_GridData);
+
+var _PopupContent = __webpack_require__(/*! ./PopupContent */ "./source/js/pages/commission-group/components/PopupContent.jsx");
+
+var _PopupContent2 = _interopRequireDefault(_PopupContent);
+
+var _Pager = __webpack_require__(/*! ../../../components/Pager */ "./source/js/components/Pager.jsx");
+
+var _Pager2 = _interopRequireDefault(_Pager);
+
+var _service = __webpack_require__(/*! ../modules/service */ "./source/js/pages/commission-group/modules/service.js");
+
+var _actions = __webpack_require__(/*! ../actions */ "./source/js/pages/commission-group/actions/index.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var productList = [{ code: "SB", name: "Sportsbook", checked: true }, { code: "CS", name: "Playtech Casino", checked: true }, { code: "FW", name: "Fishing World", checked: true }, { code: "MGC", name: "Microgaming - Live Casino", checked: true }, { code: "AB", name: "Allbet", checked: true }];
+var Content = exports.Content = function (_Component) {
+    (0, _inherits3.default)(Content, _Component);
 
-var platformFeeSettings = [{
-    productList: [].concat(productList),
-    commission: 0.17
-}];
+    function Content(props) {
+        (0, _classCallCheck3.default)(this, Content);
 
-var DeductionSetting = function (_Component) {
+        var _this = (0, _possibleConstructorReturn3.default)(this, (Content.__proto__ || (0, _getPrototypeOf2.default)(Content)).call(this, props));
+
+        _this.handleAddNewGroup = function () {
+            var commGroup = (0, _service.createEmptyCommGroup)();
+            _this.props.setSelectedGroup(commGroup);
+        };
+
+        _this.handleHide = function () {
+            _this.props.setSelectedGroup(null);
+        };
+
+        _this.onPaging = function (pageIndex, pageSize) {
+            _this.props.getGroupSettingList({ PageIndex: pageIndex, PageSize: pageSize });
+        };
+
+        return _this;
+    }
+
+    (0, _createClass3.default)(Content, [{
+        key: 'render',
+        value: function render() {
+            var showPopup = !!this.props.selectedGroup;
+
+            return _react2.default.createElement(
+                'div',
+                { className: 'data-content' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'mx-2 my-2' },
+                    _react2.default.createElement(
+                        _reactstrap.Button,
+                        { outline: true, type: 'button', onClick: this.handleAddNewGroup },
+                        'Add New Group'
+                    )
+                ),
+                _react2.default.createElement(_Pager2.default, { pageOption: this.props.pagingOption, onPaging: this.onPaging }),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'my-1' },
+                    _react2.default.createElement(_GridData2.default, null)
+                ),
+                _react2.default.createElement(
+                    _reactstrap.Modal,
+                    { isOpen: showPopup, toggle: this.handleHide, size: 'lg', backdrop: 'static' },
+                    _react2.default.createElement(
+                        _reactstrap.ModalHeader,
+                        { toggle: this.handleHide },
+                        _react2.default.createElement('span', { className: 'iconpopup' }),
+                        'Add a Commission Group'
+                    ),
+                    _react2.default.createElement(
+                        _reactstrap.ModalBody,
+                        null,
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'modal-body-wrapper' },
+                            _react2.default.createElement(_PopupContent2.default, null)
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+    return Content;
+}(_react.Component);
+
+function mapStateToProps(_ref) {
+    var pagingOption = _ref.pagingOption,
+        selectedGroup = _ref.selectedGroup;
+
+    return (0, _assign2.default)({}, { pagingOption: pagingOption, selectedGroup: selectedGroup });
+}
+
+function mapDispatchToProps(dispatch) {
+    return (0, _redux.bindActionCreators)({ getGroupSettingList: _actions.getGroupSettingList, setSelectedGroup: _actions.setSelectedGroup }, dispatch);
+}
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Content);
+
+/***/ }),
+
+/***/ "./source/js/pages/commission-group/components/DeductionSetting.jsx":
+/*!**************************************************************************!*\
+  !*** ./source/js/pages/commission-group/components/DeductionSetting.jsx ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.DeductionSetting = undefined;
+
+var _assign = __webpack_require__(/*! babel-runtime/core-js/object/assign */ "./node_modules/babel-runtime/core-js/object/assign.js");
+
+var _assign2 = _interopRequireDefault(_assign);
+
+var _getPrototypeOf = __webpack_require__(/*! babel-runtime/core-js/object/get-prototype-of */ "./node_modules/babel-runtime/core-js/object/get-prototype-of.js");
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__(/*! babel-runtime/helpers/classCallCheck */ "./node_modules/babel-runtime/helpers/classCallCheck.js");
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(/*! babel-runtime/helpers/createClass */ "./node_modules/babel-runtime/helpers/createClass.js");
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(/*! babel-runtime/helpers/possibleConstructorReturn */ "./node_modules/babel-runtime/helpers/possibleConstructorReturn.js");
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(/*! babel-runtime/helpers/inherits */ "./node_modules/babel-runtime/helpers/inherits.js");
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+var _redux = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+
+var _reactstrap = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/dist/reactstrap.es.js");
+
+var _PlatformFeeSetting = __webpack_require__(/*! ./PlatformFeeSetting */ "./source/js/pages/commission-group/components/PlatformFeeSetting.jsx");
+
+var _PlatformFeeSetting2 = _interopRequireDefault(_PlatformFeeSetting);
+
+var _constant = __webpack_require__(/*! ../modules/constant */ "./source/js/pages/commission-group/modules/constant.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var DeductionSetting = exports.DeductionSetting = function (_Component) {
     (0, _inherits3.default)(DeductionSetting, _Component);
 
     function DeductionSetting(props) {
@@ -17508,210 +17704,141 @@ var DeductionSetting = function (_Component) {
 
         var _this = (0, _possibleConstructorReturn3.default)(this, (DeductionSetting.__proto__ || (0, _getPrototypeOf2.default)(DeductionSetting)).call(this, props));
 
-        _this.handleAdd = function () {
-            var platformFeeSettings = _this.state.platformFeeSettings;
-            var newProductList = productList.map(function (item) {
-                return (0, _assign2.default)({}, item, { checked: !item.checked });
-            });
-
-            _this.setState({
-                platformFeeSettings: [].concat((0, _toConsumableArray3.default)(platformFeeSettings), [{ productList: newProductList, commission: 0.17 }])
-            });
+        _this.handleSelectPlatformfee = function (platformFeeSettingList) {
+            console.log(platformFeeSettingList);
+            _this.platformFeeList = platformFeeSettingList;
         };
 
-        _this.handleRemove = function (index) {
-            var platformFeeSettings = (0, _utils.deepClone)(_this.state.platformFeeSettings);
-
-            var rootProductList = platformFeeSettings[0].productList;
-            var checkedProductList = platformFeeSettings[index].productList.filter(function (p) {
-                return p.checked;
-            });
-
-            var _loop = function _loop(i) {
-                var code = checkedProductList[i].code;
-                var rootProductItem = rootProductList.find(function (p) {
-                    return p.code === code;
-                });
-
-                if (rootProductItem) {
-                    rootProductItem.checked = true;
-                }
+        _this.handleSelectOperationalFee = function (event) {
+            _this.operationalFee = {
+                deductionId: 2,
+                productIds: 0,
+                deductedPercentage: Number(event.target.value)
             };
 
-            for (var i = 0; i < checkedProductList.length; i++) {
-                _loop(i);
-            }
-
-            platformFeeSettings.splice(index, 1);
-
-            _this.setState({ platformFeeSettings: platformFeeSettings });
+            console.log(_this.operationalFee);
         };
 
-        _this.handleSelect = function (index, selectedItem, newDataSource) {
-            var isChecked = selectedItem.checked;
-            var platformFeeSettings = (0, _utils.deepClone)(_this.state.platformFeeSettings);
-            var settingCount = platformFeeSettings.length;
-
-            if (settingCount > 1) {
-                var currentproductList = platformFeeSettings[index].productList;
-                var currentProductItem = currentproductList.find(function (p) {
-                    return p.code === selectedItem.code;
-                });
-                currentProductItem.checked = isChecked;
-
-                if (isChecked) {
-                    for (var i = 0; i < platformFeeSettings.length; i++) {
-                        if (i !== index) {
-                            var _productList = platformFeeSettings[i].productList;
-                            var productItem = _productList.find(function (p) {
-                                return p.code === selectedItem.code && p.checked === isChecked;
-                            });
-
-                            if (productItem) {
-                                productItem.checked = !isChecked;
-                                break;
-                            }
-                        }
-                    }
-                } else {
-                    var _productList2 = platformFeeSettings[0].productList;
-                    var _productItem = _productList2.find(function (p) {
-                        return p.code === selectedItem.code;
-                    });
-                    _productItem.checked = !isChecked;
-                }
-            }
-
-            _this.setState({ platformFeeSettings: platformFeeSettings });
+        _this.handleSelectBankingFee = function (event) {
+            _this.bankingFee = {
+                deductionId: 3,
+                productIds: 0,
+                deductedPercentage: Number(event.target.value)
+            };
+            console.log(_this.bankingFee);
         };
 
-        _this.state = {
-            platformFeeSettings: platformFeeSettings
-        };
+        _this.operationalFee = null;
+        _this.bankingFee = null;
+        _this.platformFeeList = [];
+        _this.remainingFeeList = [];
         return _this;
     }
 
     (0, _createClass3.default)(DeductionSetting, [{
-        key: "render",
+        key: 'render',
         value: function render() {
-            var _this2 = this;
-
             return _react2.default.createElement(
-                "fieldset",
+                'fieldset',
                 null,
                 _react2.default.createElement(
-                    "legend",
+                    'legend',
                     null,
                     _react2.default.createElement(
-                        "h4",
-                        { className: "text-bold" },
-                        "Deductions"
+                        'h6',
+                        { className: 'font-weight-bold' },
+                        'Deductions'
                     )
                 ),
                 _react2.default.createElement(
-                    "p",
-                    { className: "text-bold" },
-                    "Platform Fee %"
+                    'p',
+                    { className: 'font-weight-bold' },
+                    'Platform Fee %'
                 ),
+                _react2.default.createElement(_PlatformFeeSetting2.default, { onSelect: this.handleSelectPlatformfee }),
                 _react2.default.createElement(
-                    "ul",
-                    { className: "platformfee-group" },
-                    this.state.platformFeeSettings.map(function (item, i) {
-                        var isFirst = i === 0;
-
-                        return _react2.default.createElement(
-                            _PlatformFeeItem2.default,
-                            { data: item, key: "fee-" + i,
-                                onSelect: function onSelect(selectedItem, newDataSource) {
-                                    return _this2.handleSelect(i, selectedItem, newDataSource);
-                                } },
-                            isFirst ? _react2.default.createElement(
-                                "span",
-                                null,
-                                _react2.default.createElement(
-                                    "button",
-                                    { type: "button", className: "btn-action", onClick: _this2.handleAdd },
-                                    "+"
-                                )
-                            ) : _react2.default.createElement(
-                                "span",
-                                null,
-                                _react2.default.createElement(
-                                    "button",
-                                    { type: "button", className: "btn-action", onClick: function onClick() {
-                                            return _this2.handleRemove(i);
-                                        } },
-                                    "-"
-                                )
-                            )
-                        );
-                    })
-                ),
-                _react2.default.createElement(
-                    "div",
-                    { className: "inline" },
+                    _reactstrap.FormGroup,
+                    { row: true },
                     _react2.default.createElement(
-                        "span",
-                        { className: "label" },
-                        "Operational Fee%"
+                        _reactstrap.Label,
+                        { sm: 4, className: 'font-weight-bold' },
+                        'Operational Fee%'
                     ),
                     _react2.default.createElement(
-                        "select",
-                        { className: "select-percent" },
+                        _reactstrap.Col,
+                        { sm: { size: 2, offset: 1 } },
                         _react2.default.createElement(
-                            "option",
-                            null,
-                            "0.07"
+                            'select',
+                            { className: 'form-control', onChange: this.handleSelectOperationalFee },
+                            _constant.commissionValueList.map(function (item, i) {
+                                return _react2.default.createElement(
+                                    'option',
+                                    { key: 'operationalfee-comm-' + i, value: item },
+                                    item
+                                );
+                            })
                         )
                     ),
                     _react2.default.createElement(
-                        "span",
-                        { className: "sign" },
-                        "x"
-                    ),
-                    _react2.default.createElement(
-                        "span",
-                        { className: "unit-name" },
-                        "| Gross Win Loss |"
-                    )
-                ),
-                _react2.default.createElement(
-                    "div",
-                    { className: "inline" },
-                    _react2.default.createElement(
-                        "span",
-                        { className: "label" },
-                        "Banking Fee%"
-                    ),
-                    _react2.default.createElement(
-                        "select",
-                        { className: "select-percent" },
+                        _reactstrap.Col,
+                        { sm: 1 },
                         _react2.default.createElement(
-                            "option",
-                            null,
-                            "0.02"
+                            _reactstrap.Input,
+                            { plaintext: true },
+                            'x'
                         )
                     ),
                     _react2.default.createElement(
-                        "span",
-                        { className: "sign" },
-                        "x"
-                    ),
-                    _react2.default.createElement(
-                        "span",
-                        { className: "unit-name" },
-                        "(Deposit + Withdrawal)"
+                        _reactstrap.Col,
+                        { sm: 3 },
+                        _react2.default.createElement(
+                            _reactstrap.Input,
+                            { plaintext: true },
+                            '| Gross Win Loss |'
+                        )
                     )
                 ),
                 _react2.default.createElement(
-                    "div",
-                    { className: "inline" },
+                    _reactstrap.FormGroup,
+                    { row: true },
                     _react2.default.createElement(
-                        "span",
-                        { className: "label" },
-                        "Adjustment"
+                        _reactstrap.Label,
+                        { sm: 4, className: 'font-weight-bold' },
+                        'Banking Fee%'
                     ),
-                    _react2.default.createElement("input", { type: "checkbox", className: "checkbox" })
+                    _react2.default.createElement(
+                        _reactstrap.Col,
+                        { sm: { size: 2, offset: 1 } },
+                        _react2.default.createElement(
+                            'select',
+                            { className: 'form-control', onChange: this.handleSelectBankingFee },
+                            _constant.commissionValueList.map(function (item, i) {
+                                return _react2.default.createElement(
+                                    'option',
+                                    { key: 'bankingfee-comm-' + i, value: item },
+                                    item
+                                );
+                            })
+                        )
+                    ),
+                    _react2.default.createElement(
+                        _reactstrap.Col,
+                        { sm: 1 },
+                        _react2.default.createElement(
+                            _reactstrap.Input,
+                            { plaintext: true },
+                            'x'
+                        )
+                    ),
+                    _react2.default.createElement(
+                        _reactstrap.Col,
+                        { sm: 3 },
+                        _react2.default.createElement(
+                            _reactstrap.Input,
+                            { plaintext: true },
+                            '(Deposit + Withdrawal)'
+                        )
+                    )
                 )
             );
         }
@@ -17719,7 +17846,17 @@ var DeductionSetting = function (_Component) {
     return DeductionSetting;
 }(_react.Component);
 
-exports.default = DeductionSetting;
+function mapStateToProps(_ref) {
+    var productList = _ref.productList;
+
+    return (0, _assign2.default)({}, { productList: productList });
+}
+
+function mapDispatchToProps(dispatch) {
+    return (0, _redux.bindActionCreators)({}, dispatch);
+}
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(DeductionSetting);
 
 /***/ }),
 
@@ -17769,9 +17906,11 @@ var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-r
 
 var _redux = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 
+var _reactstrap = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/dist/reactstrap.es.js");
+
 var _actions = __webpack_require__(/*! ../actions */ "./source/js/pages/commission-group/actions/index.js");
 
-var _reactstrap = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/dist/reactstrap.es.js");
+var _constant = __webpack_require__(/*! ../modules/constant */ "./source/js/pages/commission-group/modules/constant.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -17785,37 +17924,53 @@ var Filter = function (_Component) {
 
         _this.handleClick = function (event) {
             event.preventDefault();
-            console.log("submit");
+            _this._submit();
         };
 
+        _this.handleChange = function (event) {
+            _this.groupName = event.target.value;
+        };
+
+        _this.groupName = '';
         return _this;
     }
 
     (0, _createClass3.default)(Filter, [{
-        key: "render",
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this._submit();
+        }
+    }, {
+        key: '_submit',
+        value: function _submit() {
+            var param = (0, _assign2.default)({}, _constant.defaultPagingOption, { GroupName: this.groupName });
+            this.props.getGroupSettingList(param);
+        }
+    }, {
+        key: 'render',
         value: function render() {
             return _react2.default.createElement(
-                "div",
-                { className: "filter-container" },
+                'div',
+                { className: 'filter-container' },
                 _react2.default.createElement(
                     _reactstrap.Form,
                     { inline: true, onSubmit: this.handleClick, style: { backgroundColor: 'transparent' } },
                     _react2.default.createElement(
                         _reactstrap.FormGroup,
-                        null,
+                        { className: 'mb-2 mr-sm-2 mb-sm-0' },
                         _react2.default.createElement(
                             _reactstrap.Label,
-                            null,
-                            "Group Name"
+                            { className: 'mr-sm-2' },
+                            'Group Name'
                         ),
                         ' ',
-                        _react2.default.createElement(_reactstrap.Input, { type: "text", className: "search-box" })
+                        _react2.default.createElement(_reactstrap.Input, { type: 'text', className: 'mr-sm-2 search-box', onChange: this.handleChange })
                     ),
-                    ' ',
                     _react2.default.createElement(
                         _reactstrap.Button,
-                        { outline: true, type: "submit", size: "sm" },
-                        "Search"
+                        { outline: true, color: 'primary', type: 'button', onClick: this.handleClick },
+                        _react2.default.createElement('span', { className: 'oi oi-magnifying-glass' }),
+                        ' Search'
                     )
                 )
             );
@@ -17824,17 +17979,11 @@ var Filter = function (_Component) {
     return Filter;
 }(_react.Component);
 
-function mapStateToProps(_ref) {
-    var gridData = _ref.gridData;
-
-    return (0, _assign2.default)({}, { gridData: gridData });
-}
-
 function mapDispatchToProps(dispatch) {
-    return (0, _redux.bindActionCreators)({ setSelectedGroup: _actions.setSelectedGroup }, dispatch);
+    return (0, _redux.bindActionCreators)({ getGroupSettingList: _actions.getGroupSettingList }, dispatch);
 }
 
-exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Filter);
+exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(Filter);
 
 /***/ }),
 
@@ -17860,14 +18009,6 @@ var _assign2 = _interopRequireDefault(_assign);
 var _objectWithoutProperties2 = __webpack_require__(/*! babel-runtime/helpers/objectWithoutProperties */ "./node_modules/babel-runtime/helpers/objectWithoutProperties.js");
 
 var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-
-var _regenerator = __webpack_require__(/*! babel-runtime/regenerator */ "./node_modules/babel-runtime/regenerator/index.js");
-
-var _regenerator2 = _interopRequireDefault(_regenerator);
-
-var _asyncToGenerator2 = __webpack_require__(/*! babel-runtime/helpers/asyncToGenerator */ "./node_modules/babel-runtime/helpers/asyncToGenerator.js");
-
-var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
 
 var _getPrototypeOf = __webpack_require__(/*! babel-runtime/core-js/object/get-prototype-of */ "./node_modules/babel-runtime/core-js/object/get-prototype-of.js");
 
@@ -17897,67 +18038,54 @@ var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-r
 
 var _redux = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 
-var _actions = __webpack_require__(/*! ../actions */ "./source/js/pages/commission-group/actions/index.js");
-
 var _constant = __webpack_require__(/*! ../modules/constant */ "./source/js/pages/commission-group/modules/constant.js");
 
 var _numberFormat = __webpack_require__(/*! ../../../modules/numberFormat */ "./source/js/modules/numberFormat.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var htmlInfinity = _react2.default.createElement('span', { dangerouslySetInnerHTML: { __html: _constant.INFINITY_SYMBOL } });
+function rawHtml(content) {
+    return _react2.default.createElement('p', { dangerouslySetInnerHTML: { __html: content } });
+}
 
 var GridData = exports.GridData = function (_Component) {
     (0, _inherits3.default)(GridData, _Component);
 
     function GridData(props) {
         (0, _classCallCheck3.default)(this, GridData);
-        return (0, _possibleConstructorReturn3.default)(this, (GridData.__proto__ || (0, _getPrototypeOf2.default)(GridData)).call(this, props));
+
+        var _this = (0, _possibleConstructorReturn3.default)(this, (GridData.__proto__ || (0, _getPrototypeOf2.default)(GridData)).call(this, props));
+
+        var productList = _this.props.productList;
+
+        _this.products = {};
+        for (var i = 0; i < productList.length; i++) {
+            _this.products[productList[i].ProductId] = productList[i].ProductName;
+        }
+        return _this;
     }
 
     (0, _createClass3.default)(GridData, [{
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-            this._getData();
+        key: '_convertToProductNameText',
+        value: function _convertToProductNameText(productIdList) {
+            var _this2 = this;
+
+            return productIdList.split(',').reduce(function (accumulator, currentItem) {
+                var productName = _this2.products[currentItem.trim()];
+                if (productName) {
+                    accumulator.push(productName);
+                }
+
+                return accumulator;
+            }, []).join(',');
         }
-    }, {
-        key: '_getData',
-        value: function () {
-            var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
-                var response;
-                return _regenerator2.default.wrap(function _callee$(_context) {
-                    while (1) {
-                        switch (_context.prev = _context.next) {
-                            case 0:
-                                _context.next = 2;
-                                return this.props.fetchGroupSettingData();
-
-                            case 2:
-                                response = _context.sent;
-
-
-                                this.props.setGridData(response.data.CommissionSettingList);
-
-                            case 4:
-                            case 'end':
-                                return _context.stop();
-                        }
-                    }
-                }, _callee, this);
-            }));
-
-            function _getData() {
-                return _ref.apply(this, arguments);
-            }
-
-            return _getData;
-        }()
     }, {
         key: '_renderGroupData',
         value: function _renderGroupData() {
+            var _this3 = this;
+
             var gridData = this.props.gridData;
 
-            console.log(gridData);
             var rows = [];
 
             var _loop = function _loop(index) {
@@ -17987,7 +18115,7 @@ var GridData = exports.GridData = function (_Component) {
                         isFirstItem && _react2.default.createElement(
                             'td',
                             { className: 'text-center', rowSpan: rowSpan },
-                            group.GroupName
+                            rawHtml(group.GroupName)
                         ),
                         isFirstItem && _react2.default.createElement(
                             'td',
@@ -17997,7 +18125,7 @@ var GridData = exports.GridData = function (_Component) {
                         isFirstItem && _react2.default.createElement(
                             'td',
                             { className: 'text-center', rowSpan: rowSpan },
-                            group.Description
+                            rawHtml(group.Description)
                         ),
                         isFirstItem && _react2.default.createElement(
                             'td',
@@ -18015,37 +18143,37 @@ var GridData = exports.GridData = function (_Component) {
                         ),
                         isFirstItem && _react2.default.createElement(
                             'td',
-                            { className: 'text-center text-bold', rowSpan: tierSettingRowSpan },
+                            { className: 'text-center font-weight-bold cell-tier', rowSpan: tierSettingRowSpan },
                             'Tier Setting'
                         ),
                         _react2.default.createElement(
                             'td',
-                            { className: 'text-center' },
+                            { className: 'text-center cell-tier' },
                             tierSetting.TierId
                         ),
                         _react2.default.createElement(
                             'td',
-                            { className: 'text-right' },
+                            { className: 'text-right cell-tier' },
                             (0, _numberFormat.format)(tierSetting.MinAmount)
                         ),
                         _react2.default.createElement(
                             'td',
-                            { className: 'text-right' },
-                            tierSetting.MaxAmount === _constant.INFINITY_AM ? htmlInfinity : (0, _numberFormat.format)(tierSetting.MaxAmount)
+                            { className: 'text-right cell-tier' },
+                            tierSetting.MaxAmount === _constant.INFINITY_AM ? _constant.INFINITY_SYMBOL : (0, _numberFormat.format)(tierSetting.MaxAmount)
                         ),
                         _react2.default.createElement(
                             'td',
-                            { className: 'text-right' },
+                            { className: 'text-right cell-tier' },
                             (0, _numberFormat.format)(tierSetting.MinQm)
                         ),
                         _react2.default.createElement(
                             'td',
-                            { className: 'text-right' },
-                            tierSetting.MaxQm === _constant.INFINITY_QM ? htmlInfinity : (0, _numberFormat.format)(tierSetting.MaxQm)
+                            { className: 'text-right cell-tier' },
+                            tierSetting.MaxQm === _constant.INFINITY_QM ? _constant.INFINITY_SYMBOL : (0, _numberFormat.format)(tierSetting.MaxQm)
                         ),
                         _react2.default.createElement(
                             'td',
-                            { className: 'text-right' },
+                            { className: 'text-right cell-tier' },
                             (0, _numberFormat.formatDecimal)(tierSetting.Commission)
                         ),
                         isFirstItem && (RemainingFeeList.length === 2 ? RemainingFeeList.map(function (fee, i) {
@@ -18070,13 +18198,13 @@ var GridData = exports.GridData = function (_Component) {
                             { className: 'text-center', rowSpan: rowSpan },
                             _react2.default.createElement(
                                 'a',
-                                { href: 'javacript:;' },
-                                _react2.default.createElement('span', { className: 'oi oi-pencil' })
+                                { href: 'javacript:;', className: 'mr-2' },
+                                _react2.default.createElement('span', { className: 'oi oi-pencil text-secondary' })
                             ),
                             _react2.default.createElement(
                                 'a',
                                 { href: 'javacript:;' },
-                                _react2.default.createElement('span', { className: 'oi oi-x' })
+                                _react2.default.createElement('span', { className: 'oi oi-x text-danger' })
                             )
                         )
                     ));
@@ -18091,17 +18219,17 @@ var GridData = exports.GridData = function (_Component) {
                         { key: 'row-platform-' + index + '-' + iPlatformFee },
                         _isFirstItem && _react2.default.createElement(
                             'td',
-                            { className: 'text-center text-bold', rowSpan: platformFeeRowSpan },
+                            { className: 'text-center font-weight-bold cell-platform', rowSpan: platformFeeRowSpan },
                             'Platform Fee'
                         ),
                         _react2.default.createElement(
                             'td',
-                            { colSpan: '5' },
-                            platformFee.ProductIds
+                            { className: 'cell-platform', colSpan: '5' },
+                            _this3._convertToProductNameText(platformFee.ProductIds)
                         ),
                         _react2.default.createElement(
                             'td',
-                            { className: 'text-right' },
+                            { className: 'text-right cell-platform' },
                             (0, _numberFormat.formatDecimal)(platformFee.DeductedPercentage)
                         )
                     ));
@@ -18119,7 +18247,7 @@ var GridData = exports.GridData = function (_Component) {
         value: function render() {
             return _react2.default.createElement(
                 'div',
-                { className: 'table-responsive group-setting' },
+                { className: 'table-responsive table-group-setting' },
                 _react2.default.createElement(
                     'table',
                     { className: 'table table-bordered table-hover table-sm', style: { tableLayout: "fixed" } },
@@ -18129,20 +18257,20 @@ var GridData = exports.GridData = function (_Component) {
                         _react2.default.createElement(
                             'tr',
                             null,
-                            _react2.default.createElement('th', { rowSpan: '2', width: '3%' }),
+                            _react2.default.createElement('th', { rowSpan: '2', className: 'th-smallest' }),
                             _react2.default.createElement(
                                 'th',
-                                { rowSpan: '2' },
+                                { rowSpan: '2', className: 'th-medium' },
                                 'Name'
                             ),
                             _react2.default.createElement(
                                 'th',
-                                { rowSpan: '2' },
+                                { rowSpan: '2', className: 'th-small' },
                                 'No.Aff'
                             ),
                             _react2.default.createElement(
                                 'th',
-                                { rowSpan: '2' },
+                                { rowSpan: '2', className: 'th-medium' },
                                 'Description'
                             ),
                             _react2.default.createElement(
@@ -18157,42 +18285,42 @@ var GridData = exports.GridData = function (_Component) {
                             ),
                             _react2.default.createElement(
                                 'th',
-                                { rowSpan: '2' },
+                                { rowSpan: '2', className: 'th-small' },
                                 'Action'
                             )
                         ),
                         _react2.default.createElement(
                             'tr',
                             null,
-                            _react2.default.createElement('th', null),
+                            _react2.default.createElement('th', { className: 'cell-tier' }),
                             _react2.default.createElement(
                                 'th',
-                                { width: '2%' },
+                                { className: 'cell-tier th-smallest' },
                                 'Tier'
                             ),
                             _react2.default.createElement(
                                 'th',
-                                { title: 'Minimum all members\' winlost amount' },
+                                { className: 'cell-tier', title: 'Minimum all members\' winlost amount' },
                                 'Min AM($)'
                             ),
                             _react2.default.createElement(
                                 'th',
-                                { title: 'Maximum all members\' winlost amount' },
+                                { className: 'cell-tier', title: 'Maximum all members\' winlost amount' },
                                 'Max AM($)'
                             ),
                             _react2.default.createElement(
                                 'th',
-                                { title: 'Minimum number of qualified members' },
+                                { className: 'cell-tier', title: 'Minimum number of qualified members' },
                                 'Min QM'
                             ),
                             _react2.default.createElement(
                                 'th',
-                                { title: 'Maximum number of qualified members' },
+                                { className: 'cell-tier', title: 'Maximum number of qualified members' },
                                 'Max QM'
                             ),
                             _react2.default.createElement(
                                 'th',
-                                null,
+                                { className: 'cell-tier' },
                                 'Comm Rate'
                             ),
                             _react2.default.createElement(
@@ -18224,14 +18352,15 @@ var GridData = exports.GridData = function (_Component) {
     return GridData;
 }(_react.Component);
 
-function mapStateToProps(_ref2) {
-    var gridData = _ref2.gridData;
+function mapStateToProps(_ref) {
+    var gridData = _ref.gridData,
+        productList = _ref.productList;
 
-    return (0, _assign2.default)({}, { gridData: gridData });
+    return (0, _assign2.default)({}, { gridData: gridData, productList: productList });
 }
 
 function mapDispatchToProps(dispatch) {
-    return (0, _redux.bindActionCreators)({ fetchGroupSettingData: _actions.fetchGroupSettingData, setGridData: _actions.setGridData }, dispatch);
+    return (0, _redux.bindActionCreators)({}, dispatch);
 }
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(GridData);
@@ -18252,6 +18381,26 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _getPrototypeOf = __webpack_require__(/*! babel-runtime/core-js/object/get-prototype-of */ "./node_modules/babel-runtime/core-js/object/get-prototype-of.js");
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__(/*! babel-runtime/helpers/classCallCheck */ "./node_modules/babel-runtime/helpers/classCallCheck.js");
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(/*! babel-runtime/helpers/createClass */ "./node_modules/babel-runtime/helpers/createClass.js");
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(/*! babel-runtime/helpers/possibleConstructorReturn */ "./node_modules/babel-runtime/helpers/possibleConstructorReturn.js");
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(/*! babel-runtime/helpers/inherits */ "./node_modules/babel-runtime/helpers/inherits.js");
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
 var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
@@ -18260,62 +18409,370 @@ var _multipleSelect = __webpack_require__(/*! ../../../components/multiple-selec
 
 var _multipleSelect2 = _interopRequireDefault(_multipleSelect);
 
+var _reactstrap = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/dist/reactstrap.es.js");
+
+var _constant = __webpack_require__(/*! ../modules/constant */ "./source/js/pages/commission-group/modules/constant.js");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var PlatformFeeItem = function PlatformFeeItem(props) {
-    var onSelect = props.onSelect,
-        data = props.data,
-        children = props.children;
+var PlatformFeeItem = function (_React$Component) {
+    (0, _inherits3.default)(PlatformFeeItem, _React$Component);
 
+    function PlatformFeeItem(props) {
+        (0, _classCallCheck3.default)(this, PlatformFeeItem);
 
-    var handleChange = function handleChange(selectedItem, newDataSource) {
-        selectedItem && onSelect && onSelect(selectedItem, newDataSource);
-    };
+        var _this = (0, _possibleConstructorReturn3.default)(this, (PlatformFeeItem.__proto__ || (0, _getPrototypeOf2.default)(PlatformFeeItem)).call(this, props));
 
-    var productList = data.productList,
-        commission = data.commission;
+        _this.handleChange = function (selectedItem, newDataSource) {
+            var onSelectProduct = _this.props.onSelectProduct;
 
+            selectedItem && onSelectProduct && onSelectProduct(selectedItem);
+        };
 
-    return _react2.default.createElement(
-        "li",
-        { className: "inline" },
-        _react2.default.createElement(
-            "div",
-            { className: "select-product" },
-            _react2.default.createElement(_multipleSelect2.default, {
-                dataSource: productList,
-                keyField: "code",
-                valueField: "name",
-                statusField: "checked",
-                hasAllOption: false,
-                maxDisplayItemCount: 1,
-                noneSelectedLabel: "Please Select",
-                onChange: handleChange })
-        ),
-        _react2.default.createElement(
-            "select",
-            { className: "select-percent" },
-            _react2.default.createElement(
-                "option",
-                null,
-                commission
-            )
-        ),
-        _react2.default.createElement(
-            "span",
-            { className: "sign" },
-            "x"
-        ),
-        _react2.default.createElement(
-            "span",
-            { className: "unit-name" },
-            "| Gross Win Loss |"
-        ),
-        children
-    );
-};
+        _this.handleChangeComm = function (event) {
+            _this.selectedCommission = event.target.value;
+            _this.props.onChangeCommission(Number(_this.selectedCommission));
+        };
+
+        _this.selectedCommission = '0.00';
+        return _this;
+    }
+
+    (0, _createClass3.default)(PlatformFeeItem, [{
+        key: "render",
+        value: function render() {
+            var _props = this.props,
+                data = _props.data,
+                handleClick = _props.handleClick,
+                btnText = _props.btnText;
+            var productList = data.productList;
+
+            return _react2.default.createElement(
+                _reactstrap.FormGroup,
+                { row: true },
+                _react2.default.createElement(
+                    _reactstrap.Col,
+                    { sm: 1 },
+                    _react2.default.createElement(
+                        "p",
+                        { className: "text-right bullet" },
+                        _react2.default.createElement(
+                            "span",
+                            null,
+                            "\u2022"
+                        )
+                    )
+                ),
+                _react2.default.createElement(
+                    _reactstrap.Col,
+                    { sm: 4 },
+                    _react2.default.createElement(
+                        "div",
+                        { className: "select-product" },
+                        _react2.default.createElement(_multipleSelect2.default, {
+                            dataSource: productList,
+                            keyField: "productId",
+                            valueField: "productName",
+                            statusField: "checked",
+                            hasAllOption: false,
+                            maxDisplayItemCount: 1,
+                            noneSelectedLabel: "Please Select",
+                            onChange: this.handleChange })
+                    )
+                ),
+                _react2.default.createElement(
+                    _reactstrap.Col,
+                    { sm: 2 },
+                    _react2.default.createElement(
+                        "select",
+                        { className: "form-control select-percent", value: this.selectedCommission,
+                            onChange: this.handleChangeComm },
+                        _constant.commissionValueList.map(function (item, i) {
+                            return _react2.default.createElement(
+                                "option",
+                                { key: "platformfee-comm-" + i, value: item },
+                                item
+                            );
+                        })
+                    )
+                ),
+                _react2.default.createElement(
+                    _reactstrap.Col,
+                    { sm: 1 },
+                    _react2.default.createElement(
+                        _reactstrap.Input,
+                        { plaintext: true },
+                        "x"
+                    )
+                ),
+                _react2.default.createElement(
+                    _reactstrap.Col,
+                    { sm: 3 },
+                    _react2.default.createElement(
+                        _reactstrap.Input,
+                        { plaintext: true },
+                        "| Gross Win Loss |"
+                    )
+                ),
+                _react2.default.createElement(
+                    _reactstrap.Col,
+                    { sm: 1 },
+                    _react2.default.createElement(
+                        "button",
+                        { type: "button", className: "btn btn-action", onClick: handleClick },
+                        btnText
+                    )
+                )
+            );
+        }
+    }]);
+    return PlatformFeeItem;
+}(_react2.default.Component);
 
 exports.default = PlatformFeeItem;
+
+/***/ }),
+
+/***/ "./source/js/pages/commission-group/components/PlatformFeeSetting.jsx":
+/*!****************************************************************************!*\
+  !*** ./source/js/pages/commission-group/components/PlatformFeeSetting.jsx ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.PlatformFeeSetting = undefined;
+
+var _toConsumableArray2 = __webpack_require__(/*! babel-runtime/helpers/toConsumableArray */ "./node_modules/babel-runtime/helpers/toConsumableArray.js");
+
+var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
+
+var _assign = __webpack_require__(/*! babel-runtime/core-js/object/assign */ "./node_modules/babel-runtime/core-js/object/assign.js");
+
+var _assign2 = _interopRequireDefault(_assign);
+
+var _getPrototypeOf = __webpack_require__(/*! babel-runtime/core-js/object/get-prototype-of */ "./node_modules/babel-runtime/core-js/object/get-prototype-of.js");
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__(/*! babel-runtime/helpers/classCallCheck */ "./node_modules/babel-runtime/helpers/classCallCheck.js");
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(/*! babel-runtime/helpers/createClass */ "./node_modules/babel-runtime/helpers/createClass.js");
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(/*! babel-runtime/helpers/possibleConstructorReturn */ "./node_modules/babel-runtime/helpers/possibleConstructorReturn.js");
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(/*! babel-runtime/helpers/inherits */ "./node_modules/babel-runtime/helpers/inherits.js");
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+var _redux = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+
+var _PlatformFeeItem = __webpack_require__(/*! ./PlatformFeeItem */ "./source/js/pages/commission-group/components/PlatformFeeItem.jsx");
+
+var _PlatformFeeItem2 = _interopRequireDefault(_PlatformFeeItem);
+
+var _utils = __webpack_require__(/*! ../../../modules/utils */ "./source/js/modules/utils.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var PlatformFeeSetting = exports.PlatformFeeSetting = function (_Component) {
+    (0, _inherits3.default)(PlatformFeeSetting, _Component);
+
+    function PlatformFeeSetting(props) {
+        (0, _classCallCheck3.default)(this, PlatformFeeSetting);
+
+        var _this = (0, _possibleConstructorReturn3.default)(this, (PlatformFeeSetting.__proto__ || (0, _getPrototypeOf2.default)(PlatformFeeSetting)).call(this, props));
+
+        _this.handleAdd = function () {
+            var platformFeeSettings = _this.state.platformFeeSettings;
+            var _this$defaultPlatform = _this.defaultPlatformSetting,
+                productList = _this$defaultPlatform.productList,
+                commission = _this$defaultPlatform.commission;
+
+            var newProductList = productList.map(function (item) {
+                return (0, _assign2.default)({}, item, { checked: false });
+            });
+
+            _this.setState({
+                platformFeeSettings: [].concat((0, _toConsumableArray3.default)(platformFeeSettings), [{ productList: newProductList, commission: commission }])
+            });
+        };
+
+        _this.handleRemove = function (index) {
+            var platformFeeSettings = (0, _utils.deepClone)(_this.state.platformFeeSettings);
+
+            var rootProductList = platformFeeSettings[0].productList;
+            var checkedProductList = platformFeeSettings[index].productList.filter(function (p) {
+                return p.checked;
+            });
+
+            var _loop = function _loop(i) {
+                var productId = checkedProductList[i].productId;
+                var rootProductItem = rootProductList.find(function (p) {
+                    return p.productId === productId;
+                });
+
+                if (rootProductItem) {
+                    rootProductItem.checked = true;
+                }
+            };
+
+            for (var i = 0; i < checkedProductList.length; i++) {
+                _loop(i);
+            }
+
+            platformFeeSettings.splice(index, 1);
+
+            _this.setState({ platformFeeSettings: platformFeeSettings });
+        };
+
+        _this.handleSelect = function (index, selectedItem) {
+            var isChecked = selectedItem.checked;
+            var platformFeeSettings = (0, _utils.deepClone)(_this.state.platformFeeSettings);
+            var settingCount = platformFeeSettings.length;
+
+            if (settingCount > 1) {
+                var currentproductList = platformFeeSettings[index].productList;
+                var currentProductItem = currentproductList.find(function (p) {
+                    return p.productId === selectedItem.productId;
+                });
+                currentProductItem.checked = isChecked;
+
+                if (isChecked) {
+                    for (var i = 0; i < platformFeeSettings.length; i++) {
+                        if (i !== index) {
+                            var productList = platformFeeSettings[i].productList;
+                            var productItem = productList.find(function (p) {
+                                return p.productId === selectedItem.productId && p.checked === isChecked;
+                            });
+
+                            if (productItem) {
+                                productItem.checked = !isChecked;
+                                break;
+                            }
+                        }
+                    }
+                } else {
+                    var _productList = platformFeeSettings[0].productList;
+                    var _productItem = _productList.find(function (p) {
+                        return p.productId === selectedItem.productId;
+                    });
+                    _productItem.checked = !isChecked;
+                }
+            }
+            console.log(platformFeeSettings);
+
+            _this.setState({ platformFeeSettings: platformFeeSettings });
+            _this._callbackToParent(platformFeeSettings);
+        };
+
+        _this.handleChangeCommission = function (index, value) {
+            var platformFeeSettings = _this.state.platformFeeSettings;
+
+            var currentSetting = (0, _assign2.default)({}, platformFeeSettings[index]);
+            currentSetting.commission = value;
+
+            var newState = (0, _utils.updateObjectInArray)(platformFeeSettings, index, currentSetting);
+            _this.setState({ platformFeeSettings: newState });
+            _this._callbackToParent(newState);
+        };
+
+        _this.defaultPlatformSetting = { productList: _this._convertToPlatformSettingList(), commission: 0.00 };
+        _this.state = {
+            platformFeeSettings: [_this.defaultPlatformSetting]
+        };
+        return _this;
+    }
+
+    (0, _createClass3.default)(PlatformFeeSetting, [{
+        key: '_convertToPlatformSettingList',
+        value: function _convertToPlatformSettingList() {
+            var productList = this.props.productList;
+
+
+            return productList.map(function (item) {
+                return {
+                    productId: item.ProductId,
+                    productName: item.ProductName,
+                    checked: true
+                };
+            });
+        }
+    }, {
+        key: '_callbackToParent',
+        value: function _callbackToParent(dataList) {
+            var settingList = dataList.map(function (item) {
+                return {
+                    deductionId: 1,
+                    productIds: item.productList.filter(function (p) {
+                        return p.checked;
+                    }).map(function (p) {
+                        return p.productId;
+                    }).join(','),
+                    deductedPercentage: item.commission
+                };
+            });
+
+            this.props.onSelect(settingList);
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
+
+            return _react2.default.createElement(
+                'div',
+                { className: 'platformfee-group' },
+                this.state.platformFeeSettings.map(function (item, i) {
+                    var isFirst = i === 0;
+                    var handleClick = isFirst ? _this2.handleAdd : function () {
+                        return _this2.handleRemove(i);
+                    };
+
+                    return _react2.default.createElement(_PlatformFeeItem2.default, { data: item, key: 'platformfee-' + i,
+                        onSelectProduct: function onSelectProduct(selectedItem) {
+                            return _this2.handleSelect(i, selectedItem);
+                        },
+                        onChangeCommission: function onChangeCommission(value) {
+                            return _this2.handleChangeCommission(i, value);
+                        },
+                        handleClick: handleClick,
+                        btnText: isFirst ? '+' : '-' });
+                })
+            );
+        }
+    }]);
+    return PlatformFeeSetting;
+}(_react.Component);
+
+function mapStateToProps(_ref) {
+    var productList = _ref.productList;
+
+    return (0, _assign2.default)({}, { productList: productList });
+}
+
+function mapDispatchToProps(dispatch) {
+    return (0, _redux.bindActionCreators)({}, dispatch);
+}
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(PlatformFeeSetting);
 
 /***/ }),
 
@@ -18332,6 +18789,10 @@ exports.default = PlatformFeeItem;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+
+var _assign = __webpack_require__(/*! babel-runtime/core-js/object/assign */ "./node_modules/babel-runtime/core-js/object/assign.js");
+
+var _assign2 = _interopRequireDefault(_assign);
 
 var _getPrototypeOf = __webpack_require__(/*! babel-runtime/core-js/object/get-prototype-of */ "./node_modules/babel-runtime/core-js/object/get-prototype-of.js");
 
@@ -18380,7 +18841,34 @@ var PopupContent = function (_Component) {
 
     function PopupContent(props) {
         (0, _classCallCheck3.default)(this, PopupContent);
-        return (0, _possibleConstructorReturn3.default)(this, (PopupContent.__proto__ || (0, _getPrototypeOf2.default)(PopupContent)).call(this, props));
+
+        var _this = (0, _possibleConstructorReturn3.default)(this, (PopupContent.__proto__ || (0, _getPrototypeOf2.default)(PopupContent)).call(this, props));
+
+        _this.handleChangeInput = function (name, value) {
+            _this.commGroupInfo[name] = value;
+        };
+
+        _this.handleSelectDeduction = function (name, value) {
+            _this.deductionSettings[name] = value;
+        };
+
+        _this.handleChangeInputQmTurnover = function (value) {
+            _this.qmTurnover = value;
+        };
+
+        _this.handleChangeInputTier = function (index, field, value) {};
+
+        _this.handleSave = function () {
+            var param = (0, _assign2.default)({}, _this.commGroupInfo, _this.deductionSettings, _this.qmTurnover, _this.tierSetting);
+
+            console.log(param);
+        };
+
+        _this.commGroupInfo = {};
+        _this.deductionSettings = {};
+        _this.qmTurnover = 0;
+        _this.tierSetting = [];
+        return _this;
     }
 
     (0, _createClass3.default)(PopupContent, [{
@@ -18389,13 +18877,13 @@ var PopupContent = function (_Component) {
             return _react2.default.createElement(
                 'div',
                 { className: 'comm-popup-container' },
-                _react2.default.createElement(_CommGroupInfo2.default, null),
-                _react2.default.createElement(_DeductionSetting2.default, null),
-                _react2.default.createElement(_QmTurnOverSetting2.default, null),
-                _react2.default.createElement(_TierSetting2.default, null),
+                _react2.default.createElement(_CommGroupInfo2.default, { onChange: this.handleChangeInput }),
+                _react2.default.createElement(_DeductionSetting2.default, { onSelect: this.handleSelectDeduction }),
+                _react2.default.createElement(_QmTurnOverSetting2.default, { onChange: this.handleChangeInputQmTurnover }),
+                _react2.default.createElement(_TierSetting2.default, { onChange: this.handleChangeInputTier }),
                 _react2.default.createElement(
                     'button',
-                    { type: 'button' },
+                    { type: 'button', className: 'my-2', onClick: this.handleSave },
                     'SAVE'
                 )
             );
@@ -18426,34 +18914,44 @@ var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactstrap = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/dist/reactstrap.es.js");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var QmTurnOverSetting = function QmTurnOverSetting(props) {
+    var handleChange = function handleChange(event) {
+        undefined.props.handleChange(Number(event.target.value));
+    };
+
     return _react2.default.createElement(
-        "fieldset",
+        'fieldset',
         null,
         _react2.default.createElement(
-            "legend",
+            'legend',
             null,
             _react2.default.createElement(
-                "h4",
-                { className: "text-bold" },
-                "QM Turnover"
+                'h6',
+                { className: 'font-weight-bold' },
+                'QM Turnover'
             )
         ),
         _react2.default.createElement(
-            "p",
+            'p',
             null,
-            "A member is considered a Qualified Member (QM) when his/her turnover in a month is equivalent to"
+            'A member is considered a Qualified Member (QM) when his/her turnover in a month is equivalent to'
         ),
         _react2.default.createElement(
-            "p",
-            null,
-            "USD ",
+            _reactstrap.Form,
+            { inline: true },
             _react2.default.createElement(
-                "span",
-                null,
-                _react2.default.createElement("input", { type: "text", defaultValue: "100" })
+                _reactstrap.FormGroup,
+                { className: 'mb-2 mr-sm-2 mb-sm-0' },
+                _react2.default.createElement(
+                    _reactstrap.Label,
+                    { 'for': 'QmTurnover', className: 'mr-sm-2' },
+                    'USD'
+                ),
+                _react2.default.createElement(_reactstrap.Input, { name: 'QmTurnover', id: 'QmTurnover', defaultValue: '', onChange: handleChange })
             )
         )
     );
@@ -18509,13 +19007,13 @@ var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _numberFormat = __webpack_require__(/*! ../../../modules/numberFormat */ "./source/js/modules/numberFormat.js");
-
 var _TierSettingItem = __webpack_require__(/*! ./TierSettingItem */ "./source/js/pages/commission-group/components/TierSettingItem.jsx");
 
 var _TierSettingItem2 = _interopRequireDefault(_TierSettingItem);
 
 var _utils = __webpack_require__(/*! ../../../modules/utils */ "./source/js/modules/utils.js");
+
+var _constant = __webpack_require__(/*! ../modules/constant */ "./source/js/pages/commission-group/modules/constant.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -18550,26 +19048,12 @@ var TierSetting = function (_Component) {
 
         _this.state = {
             tierSettingList: [(0, _assign2.default)({}, defaultTierSetting)],
-            commissionList: _this._getCommissionList()
+            commissionList: _constant.commissionValueList
         };
         return _this;
     }
 
     (0, _createClass3.default)(TierSetting, [{
-        key: "_getCommissionList",
-        value: function _getCommissionList() {
-            var min = 0,
-                max = 0.99;
-            var commissionList = [];
-
-            while (min < max) {
-                min = min + 0.01;
-                commissionList.push((0, _numberFormat.formatDecimal)(min));
-            }
-
-            return commissionList;
-        }
-    }, {
         key: "render",
         value: function render() {
             var _this2 = this;
@@ -18586,8 +19070,8 @@ var TierSetting = function (_Component) {
                     "legend",
                     null,
                     _react2.default.createElement(
-                        "h4",
-                        { className: "text-bold" },
+                        "h6",
+                        { className: "font-weight-bold" },
                         "Tier Setting"
                     )
                 ),
@@ -18691,9 +19175,11 @@ var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _reactstrap = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/dist/reactstrap.es.js");
 
-var INFINITY = "∞";
+var _constant = __webpack_require__(/*! ../modules/constant */ "./source/js/pages/commission-group/modules/constant.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var TierSettingItem = function TierSettingItem(props) {
     var handleChange = function handleChange(e) {
@@ -18716,63 +19202,85 @@ var TierSettingItem = function TierSettingItem(props) {
     var isDisabled = data.infinityAm || data.infinityQm;
 
     return _react2.default.createElement(
-        "tr",
+        'tr',
         null,
         _react2.default.createElement(
-            "td",
-            { className: "text-center" },
+            'td',
+            { className: 'text-center' },
             index + 1
         ),
         _react2.default.createElement(
-            "td",
+            'td',
             null,
-            _react2.default.createElement("input", { type: "text", className: "input-tier", name: "minAm", value: data.minAm, onChange: handleChange })
+            _react2.default.createElement(_reactstrap.Input, { type: 'text', name: 'minAm', id: 'minAm', value: data.minAm, onChange: handleChange })
         ),
         _react2.default.createElement(
-            "td",
-            null,
-            _react2.default.createElement("input", { type: "text", className: "input-tier max", name: "maxAm",
-                disabled: isDisabled, value: isDisabled ? INFINITY : data.maxAm, onChange: handleChange }),
-            _react2.default.createElement("input", { className: "chk-infinity", type: "checkbox", name: "infinityAm",
-                checked: isDisabled, onChange: handleChange }),
-            INFINITY
-        ),
-        _react2.default.createElement(
-            "td",
-            null,
-            _react2.default.createElement("input", { type: "text", className: "input-tier", name: "minQm", value: data.minQm, onChange: handleChange })
-        ),
-        _react2.default.createElement(
-            "td",
-            null,
-            _react2.default.createElement("input", { type: "text", className: "input-tier max", name: "maxQm",
-                disabled: isDisabled, value: isDisabled ? INFINITY : data.maxQm, onChange: handleChange }),
-            _react2.default.createElement("input", { className: "chk-infinity", type: "checkbox", name: "infinityQm",
-                checked: isDisabled, onChange: handleChange }),
-            INFINITY
-        ),
-        _react2.default.createElement(
-            "td",
+            'td',
             null,
             _react2.default.createElement(
-                "select",
-                { className: "select-comm", name: "commission", onChange: handleChange, value: data.commission.toString() },
+                _reactstrap.Form,
+                { inline: true },
+                _react2.default.createElement(_reactstrap.Input, { type: 'text', name: 'maxAm', id: 'maxAm', className: 'form-max',
+                    disabled: isDisabled, value: isDisabled ? _constant.INFINITY_SYMBOL : data.maxAm, onChange: handleChange }),
+                _react2.default.createElement(
+                    _reactstrap.FormGroup,
+                    { check: true, className: 'ml-sm-1' },
+                    _react2.default.createElement(
+                        _reactstrap.Label,
+                        { check: true },
+                        _react2.default.createElement(_reactstrap.Input, { type: 'checkbox', name: 'infinityAm', checked: isDisabled, onChange: handleChange }),
+                        _constant.INFINITY_SYMBOL
+                    )
+                )
+            )
+        ),
+        _react2.default.createElement(
+            'td',
+            null,
+            _react2.default.createElement(_reactstrap.Input, { type: 'text', name: 'minQm', id: 'minQm', value: data.minQm, onChange: handleChange })
+        ),
+        _react2.default.createElement(
+            'td',
+            null,
+            _react2.default.createElement(
+                _reactstrap.Form,
+                { inline: true },
+                _react2.default.createElement(_reactstrap.Input, { type: 'text', name: 'maxQm', id: 'maxQm', className: 'form-max',
+                    disabled: isDisabled, value: isDisabled ? _constant.INFINITY_SYMBOL : data.maxQm, onChange: handleChange }),
+                _react2.default.createElement(
+                    _reactstrap.FormGroup,
+                    { check: true, className: 'ml-sm-1' },
+                    _react2.default.createElement(
+                        _reactstrap.Label,
+                        { check: true },
+                        _react2.default.createElement(_reactstrap.Input, { type: 'checkbox', name: 'infinityQm', checked: isDisabled, onChange: handleChange }),
+                        _constant.INFINITY_SYMBOL
+                    )
+                )
+            )
+        ),
+        _react2.default.createElement(
+            'td',
+            null,
+            _react2.default.createElement(
+                'select',
+                { className: 'form-control', name: 'commission', onChange: handleChange, value: data.commission.toString() },
                 commissionList.map(function (item, i) {
                     return _react2.default.createElement(
-                        "option",
-                        { key: "comm-" + index + "-" + i, value: item },
+                        'option',
+                        { key: 'comm-' + index + '-' + i, value: item },
                         item
                     );
                 })
             )
         ),
         _react2.default.createElement(
-            "td",
-            { className: "text-center" },
+            'td',
+            { className: 'text-center' },
             _react2.default.createElement(
-                "a",
-                { href: "javascript:;", onClick: onRemove },
-                _react2.default.createElement("span", { className: "icdelete1" })
+                'a',
+                { href: 'javacript:;', onClick: onRemove },
+                _react2.default.createElement('span', { className: 'oi oi-x text-danger' })
             )
         )
     );
@@ -18849,7 +19357,7 @@ function configureStore(initialState) {
   return (0, _redux.createStore)(_reducers2.default, initialState, enhancer);
 }
 
-var store = configureStore();
+var store = configureStore(window.initialState);
 
 var App = function (_React$Component) {
   (0, _inherits3.default)(App, _React$Component);
@@ -18890,11 +19398,65 @@ _reactDom2.default.render(_react2.default.createElement(App, null), document.get
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
+exports.commissionValueList = exports.defaultPagingOption = exports.INFINITY_SYMBOL = exports.INFINITY_QM = exports.INFINITY_AM = undefined;
+
+var _numberFormat = __webpack_require__(/*! ../../../modules/numberFormat */ "./source/js/modules/numberFormat.js");
+
 var INFINITY_AM = exports.INFINITY_AM = 100000000000000;
 var INFINITY_QM = exports.INFINITY_QM = 1000000000;
-var INFINITY_SYMBOL = exports.INFINITY_SYMBOL = '&infin;';
+var INFINITY_SYMBOL = exports.INFINITY_SYMBOL = '∞';
+
+var defaultPagingOption = exports.defaultPagingOption = {
+    PageIndex: 1,
+    PageSize: 20,
+    TotalItem: 0,
+    PageList: [10, 20, 50, 100, 500]
+};
+
+function generateCommissionValues() {
+    var min = 0,
+        max = 1;
+    var commissionList = ['0.00'];
+
+    while (min < max) {
+        min = min + 0.01;
+        commissionList.push((0, _numberFormat.formatDecimal)(min));
+    }
+
+    return commissionList;
+}
+var _commValueList = generateCommissionValues();
+
+var commissionValueList = exports.commissionValueList = _commValueList;
+
+/***/ }),
+
+/***/ "./source/js/pages/commission-group/modules/service.js":
+/*!*************************************************************!*\
+  !*** ./source/js/pages/commission-group/modules/service.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var createEmptyCommGroup = exports.createEmptyCommGroup = function createEmptyCommGroup() {
+    return {
+        groupId: 0,
+        groupName: '',
+        description: '',
+        qmTurnover: 0,
+        tierSettingList: [],
+        platformFeeList: [],
+        remainingFeeList: []
+    };
+};
 
 /***/ }),
 
@@ -18912,29 +19474,49 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _assign = __webpack_require__(/*! babel-runtime/core-js/object/assign */ "./node_modules/babel-runtime/core-js/object/assign.js");
+
+var _assign2 = _interopRequireDefault(_assign);
+
 var _defineProperty2 = __webpack_require__(/*! babel-runtime/helpers/defineProperty */ "./node_modules/babel-runtime/helpers/defineProperty.js");
 
 var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+var _toConsumableArray2 = __webpack_require__(/*! babel-runtime/helpers/toConsumableArray */ "./node_modules/babel-runtime/helpers/toConsumableArray.js");
+
+var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
+
+var _createReducer;
 
 var _redux = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 
 var _types = __webpack_require__(/*! ../actions/types */ "./source/js/pages/commission-group/actions/types.js");
 
-var _createReducer3 = __webpack_require__(/*! ../../../modules/createReducer */ "./source/js/modules/createReducer.js");
+var _createReducer4 = __webpack_require__(/*! ../../../modules/createReducer */ "./source/js/modules/createReducer.js");
 
-var _createReducer4 = _interopRequireDefault(_createReducer3);
+var _createReducer5 = _interopRequireDefault(_createReducer4);
+
+var _constant = __webpack_require__(/*! ../modules/constant */ "./source/js/pages/commission-group/modules/constant.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var gridData = (0, _createReducer4.default)([], (0, _defineProperty3.default)({}, _types.SET_GRIDDATA, function (state, action) {
+var gridData = (0, _createReducer5.default)([], (_createReducer = {}, (0, _defineProperty3.default)(_createReducer, _types.SET_GRIDDATA, function (prevState, action) {
+    return action.data;
+}), (0, _defineProperty3.default)(_createReducer, _types.INSERT_COMM_GROUP_SUCCESS, function (prevState, action) {
+    return [].concat((0, _toConsumableArray3.default)(prevState), [action.data]);
+}), _createReducer));
+
+var selectedGroup = (0, _createReducer5.default)(null, (0, _defineProperty3.default)({}, _types.SET_SELECTEDGROUP, function (prevState, action) {
     return action.data;
 }));
 
-var selectedGroup = (0, _createReducer4.default)({}, (0, _defineProperty3.default)({}, _types.SET_SELECTEDGROUP, function (state, action) {
-    return action.data;
+var pagingOption = (0, _createReducer5.default)(_constant.defaultPagingOption, (0, _defineProperty3.default)({}, _types.SET_PAGING_OPTION, function (prevState, action) {
+    return (0, _assign2.default)({}, prevState, action.data);
 }));
 
-exports.default = (0, _redux.combineReducers)({ gridData: gridData, selectedGroup: selectedGroup });
+var productList = (0, _createReducer5.default)([], {});
+
+exports.default = (0, _redux.combineReducers)({ gridData: gridData, selectedGroup: selectedGroup, pagingOption: pagingOption, productList: productList });
 
 /***/ }),
 

@@ -9,23 +9,8 @@
   width: 100%;
   height: calc(100% - 80px); }
 
-.filter-container {
-  background: #DAE2EB url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAZABkAAD/7AARRHVja3kAAQAEAAAAZAAA/+4ADkFkb2JlAGTAAAAAAf/bAIQAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQICAgICAgICAgICAwMDAwMDAwMDAwEBAQEBAQECAQECAgIBAgIDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMD/8AAEQgAFQABAwERAAIRAQMRAf/EAGQAAQEAAAAAAAAAAAAAAAAAAAYKAQACAwAAAAAAAAAAAAAAAAABBgIDBBAAAAQFBQAAAAAAAAAAAAAAAAHRAvARUZGi4hNTJBURAQAABwEAAAAAAAAAAAAAAADwEUFRYQISIv/aAAwDAQACEQMRAD8AuP3WxNA0SLnIX7D+UsUGrnWyn1kB71CvpAiqb//Z) repeat-x scroll center top;
-  border: 2px solid #CEDBEA;
-  height: 32px;
-  margin-top: 4px;
-  padding: 3px 5px 0 5px; }
-  .filter-container .search-box {
-    width: auto;
-    height: 16px; }
-  .filter-container .btn-default {
-    border: none;
-    background: transparent;
-    outline: none !important;
-    height: 18px; }
-
-.text-bold {
-  font-weight: bold; }
+body {
+  font-size: 0.75rem; }
 
 /* Bootstrap */
 /* Override Bootstrap default variable */
@@ -738,21 +723,43 @@
 .oi-zoom-out:before {
   content: '\E0DE'; }
 
+.filter-container {
+  background: #ECF3FB;
+  border: 1px solid #e8dfdf;
+  margin-top: 4px;
+  padding: 0.5rem; }
+
+.btn {
+  font-size: 0.7rem;
+  line-height: 0.7rem;
+  padding: 0.3rem 0.5rem;
+  border-radius: 0.15rem; }
+
 .table {
   table-layout: fixed; }
-  .table thead tr th {
-    text-align: center; }
+  .table thead tr {
+    background: #e5f2fd; }
+    .table thead tr th {
+      text-align: center; }
   .table > tbody > tr > th, .table > tbody > tr > td, .table > thead > tr > th, .table > thead > tr > td {
     vertical-align: middle;
-    padding: 5px; }
+    padding: 5px;
+    word-wrap: break-word; }
 
-.form-inline .form-group {
-  display: inline-block;
-  margin-bottom: 0;
-  vertical-align: middle; }
+.table-bordered th, .table-bordered td {
+  border-color: #cccaca; }
 
-.row-form td {
-  padding: 5px; }
+.form-control {
+  padding: 0.3rem;
+  font-size: 0.7rem;
+  line-height: 0.8rem;
+  border-radius: 0.15rem; }
+
+.form-group {
+  margin-bottom: 0.1rem; }
+
+select.form-control:not([size]):not([multiple]) {
+  height: calc(1.5rem + 2px); }
 
 
 /*# sourceMappingURL=portalmain.css.map*/
