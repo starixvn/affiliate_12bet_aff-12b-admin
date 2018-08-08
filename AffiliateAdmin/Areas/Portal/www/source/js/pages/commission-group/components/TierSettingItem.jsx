@@ -1,32 +1,35 @@
 import React from "react";
 
 import { Form, FormGroup, Label, Input } from 'reactstrap';
-import { INFINITY_SYMBOL } from '../modules/constant';
+import { INFINITY_SYMBOL, commissionValueList } from '../modules/constant';
+import { formatDecimal } from '../../../modules/numberFormat';
 
 const TierSettingItem = (props) => {
     const handleChange = (e) => {
         const target = e.target;
-        const value = target.type === 'checkbox' ? target.checked : Number(target.value);
+        const isCheckbox = target.type === 'checkbox';
+        const value = isCheckbox ? target.checked : Number(target.value);
         const name = target.name;
         const { index, onChange } = props;
 
-        const newItem = { [name]: value };
+        const newItem = isCheckbox ? { 'infinityAm': value, 'infinityQm': value } : { [name]: value };
+
         onChange && onChange(index, newItem);
     }
 
-    const { data, index, commissionList, onRemove } = props;
+    const { data, index, onRemove } = props;
     const isDisabled = data.infinityAm || data.infinityQm;
 
     return (
         <tr>
             <td className="text-center">{index + 1}</td>
             <td>
-                <Input type="text" name="minAm" id="minAm" value={data.minAm} onChange={handleChange} />
+                <Input type="text" name="minAmount" id="minAmount" value={data.minAmount} onChange={handleChange} />
             </td>
             <td>
                 <Form inline>
-                    <Input type="text" name="maxAm" id="maxAm" className="form-max"
-                        disabled={isDisabled} value={isDisabled ? INFINITY_SYMBOL : data.maxAm} onChange={handleChange} />
+                    <Input type="text" name="maxAmount" id="maxAmount" className="form-max"
+                        disabled={isDisabled} value={isDisabled ? INFINITY_SYMBOL : data.maxAmount} onChange={handleChange} />
                     <FormGroup check className="ml-sm-1">
                         <Label check>
                             <Input type="checkbox" name="infinityAm" checked={isDisabled} onChange={handleChange} />{INFINITY_SYMBOL}
@@ -49,9 +52,9 @@ const TierSettingItem = (props) => {
                 </Form>
             </td>
             <td>
-                <select className="form-control" name="commission" onChange={handleChange} value={data.commission.toString()}>
+                <select className="form-control" name="commission" onChange={handleChange} value={formatDecimal(data.commission)}>
                     {
-                        commissionList.map((item, i) => {
+                        commissionValueList.map((item, i) => {
                             return (<option key={`comm-${index}-${i}`} value={item}>{item}</option>);
                         })
                     }

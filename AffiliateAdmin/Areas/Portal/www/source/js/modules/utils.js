@@ -1,26 +1,6 @@
 const _rootUrl = document.getElementById('RootUrl').value;
 
-const setItem = (index, dataList, newValue) => {
-    return dataList.map((item, i) => {
-        if (i === index) {
-            return Object.assign({}, dataList[index], newValue);
-        }
-
-        return Object.assign({}, item);;
-    });
-}
-
-const removeItem = (index, dataList) => {
-    return dataList.filter((item, i) => {
-        return i !== index;
-    })
-}
-
-const deepClone = (data) => {
-    return JSON.parse(JSON.stringify(data));
-}
-
-const resolveClientUrl = (relativeUrl) => {
+export const resolveClientUrl = (relativeUrl) => {
     return _rootUrl + relativeUrl;
 }
 
@@ -28,7 +8,7 @@ function formatUnit(value) {
     return value < 10 ? '0' + value : value;
 }
 
-const formatDateTime = (dateTimeValue, format) => {
+export const formatDateTime = (dateTimeValue, format) => {
     if (!dateTimeValue) {
         return "";
     }
@@ -61,7 +41,7 @@ const formatDateTime = (dateTimeValue, format) => {
     return result;
 }
 
-const parseDateTime = (value) => {
+export const parseDateTime = (value) => {
     var reISO = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*))(?:Z|(\+|-)([\d|:]*))?$/;
     var reMsAjax = /^\/Date\((d|-|.*)\)[\/|\\]$/;
 
@@ -77,26 +57,4 @@ const parseDateTime = (value) => {
     }
 
     return value;
-}
-
-const updateObjectInArray = (array, indexItem, updatedItem) => {
-    return array.map((item, index) => {
-        if (index !== indexItem) {
-            return item;
-        }
-        return {
-            ...item,
-            ...updatedItem
-        };
-    });
-}
-
-export {
-    setItem,
-    removeItem,
-    deepClone,
-    resolveClientUrl,
-    formatDateTime,
-    parseDateTime,
-    updateObjectInArray
 }

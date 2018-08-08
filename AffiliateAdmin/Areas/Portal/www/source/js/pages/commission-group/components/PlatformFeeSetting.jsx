@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import PlatformFeeItem from "./PlatformFeeItem";
-import { deepClone, updateObjectInArray } from "../../../modules/utils";
+import { deepClone, updateObjectInArray } from "../../../modules/dataHandler";
 
 export class PlatformFeeSetting extends Component {
     constructor(props) {
