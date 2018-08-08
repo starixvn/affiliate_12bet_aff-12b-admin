@@ -57,6 +57,16 @@ namespace Fanex.Affiliate.Admin.Core.Repository
             }
         }
 
+        public IEnumerable<Deduction> GetDeductionList()
+        {
+            const string SpKey = "Aff_Admin_CommGroup_Deductions_Sel";
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                return objectDb.Query<Deduction>();
+            }
+        }
+
         private static IEnumerable<CommGroup> GetCommGroupList(IDataReader reader)
         {
             var commGroupList = new List<CommGroup>();

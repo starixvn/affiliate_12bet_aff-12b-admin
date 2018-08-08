@@ -65,11 +65,11 @@ export class PopupContent extends Component {
             isValid = false;
             messageList.push(messages.requireInfinity);
         }
-        else if(this.tierSetting.filter(item => item.minAmount > item.maxAmount).length > 0){
+        else if (this.tierSetting.filter(item => item.minAmount > item.maxAmount).length > 0) {
             isValid = false;
             messageList.push(messages.amountConstrain);
         }
-        else if(this.tierSetting.filter(item => item.minQm > item.maxQm).length > 0){
+        else if (this.tierSetting.filter(item => item.minQm > item.maxQm).length > 0) {
             isValid = false;
             messageList.push(messages.qmConstrain);
         }
@@ -114,6 +114,13 @@ export class PopupContent extends Component {
                 const gettingParam = Object.assign({}, defaultPagingOption);
                 this.props.getGroupSettingList(gettingParam);
             }
+            else {
+                this.setState({
+                    isShowMessage: true,
+                    isSuccess: false,
+                    message: result.Message
+                });
+            }
         }
     }
 
@@ -125,7 +132,7 @@ export class PopupContent extends Component {
                     <div dangerouslySetInnerHTML={{ __html: message.join('<br>') }}></div>
                 </Alert>
                 <CommGroupInfo onChange={this.handleChangeInput} />
-                <DeductionSetting onSelect={this.handleSelectDeduction} />
+                <DeductionSetting onSelect={this.handleSelectDeduction} deductionList={this.props.deductionList} />
                 <QmTurnOverSetting onChange={this.handleChangeInputQmTurnover} />
                 <TierSetting onChange={this.handleChangeInputTier} />
 
@@ -135,8 +142,12 @@ export class PopupContent extends Component {
     }
 }
 
+function mapStateToProp({ deductionList }) {
+    return { deductionList };
+}
+
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({ insertCommissionGroup, setCommGroupAfterInserting, getGroupSettingList, setSelectedGroup }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(PopupContent);
+export default connect(mapStateToProp, mapDispatchToProps)(PopupContent);

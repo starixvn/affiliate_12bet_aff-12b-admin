@@ -2,12 +2,13 @@ import React from "react";
 import MultipleSelect from "../../../components/multiple-select";
 import { Col, FormGroup, Input } from 'reactstrap';
 import { commissionValueList } from '../modules/constant';
+import { formatDecimal } from '../../../modules/numberFormat';
 
 export default class PlatformFeeItem extends React.Component {
     constructor(props) {
         super(props);
 
-        this.selectedCommission = '0.00';
+        this.selectedCommission = this.props.data.commission;
     }
 
     handleChange = (selectedItem, newDataSource) => {
@@ -16,8 +17,8 @@ export default class PlatformFeeItem extends React.Component {
     }
 
     handleChangeComm = (event) => {
-        this.selectedCommission = event.target.value;
-        this.props.onChangeCommission(Number(this.selectedCommission));
+        this.selectedCommission = Number(event.target.value);
+        this.props.onChangeCommission(this.selectedCommission);
     }
 
     render() {
@@ -41,7 +42,7 @@ export default class PlatformFeeItem extends React.Component {
                     </div>
                 </Col>
                 <Col sm={2}>
-                    <select className="form-control select-percent" value={this.selectedCommission}
+                    <select className="form-control select-percent" value={formatDecimal(this.selectedCommission)}
                         onChange={this.handleChangeComm}>
                         {
                             commissionValueList.map((item, i) => {

@@ -35,3 +35,9 @@ export const messages = {
     amountConstrain: 'Max Amount must be greater than or equal to Min Amount',
     qmConstrain: 'Max QM must be greater than or equal to Min QM'
 }
+
+export const deductionNameList = {
+    platformFee: 'Platform Fee',
+    operationalFee: 'Operational Fee',
+    bankingFee: 'Banking Fee'
+}

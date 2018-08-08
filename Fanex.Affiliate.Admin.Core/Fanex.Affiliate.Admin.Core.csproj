@@ -133,6 +133,7 @@
     <Compile Include="DTO\CommissionGroup\CommGroup.cs" />
     <Compile Include="DTO\CommissionGroup\CommissionGroupResultEntity.cs" />
     <Compile Include="DTO\CommissionGroup\CommissionGroupSetting.cs" />
+    <Compile Include="DTO\CommissionGroup\Deduction.cs" />
     <Compile Include="DTO\CommissionGroup\DeductionSetting.cs" />
     <Compile Include="DTO\CommissionGroup\TierSetting.cs" />
     <Compile Include="DTO\DepositAccountInfo.cs" />
@@ -171,6 +172,7 @@
     <Compile Include="Utilities\CryptographyHelper.cs" />
     <Compile Include="Utilities\Generator.cs" />
     <Compile Include="ViewModels\CommissionGroupViewModel.cs" />
+    <Compile Include="ViewModels\GetCommissionGroupViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

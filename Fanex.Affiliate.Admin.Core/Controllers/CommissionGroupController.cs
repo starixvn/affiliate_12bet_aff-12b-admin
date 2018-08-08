@@ -30,15 +30,19 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var productList = _productRepository.GetProductList();
+            var viewModel = new CommissionGroupViewModel
+            {
+                ProductList = _productRepository.GetProductList(),
+                DeductionList = _commissionGroupService.GetDeductionList()
+            };
 
-            return View("~/Areas/Portal/Views/CommissionGroup/Index.cshtml", productList);
+            return View("~/Areas/Portal/Views/CommissionGroup/Index.cshtml", viewModel);
         }
 
         [HttpPost]
         public ActionResult GetCommissionSettingList(CommissionGroupParam param)
         {
-            var viewModel = new CommissionGroupViewModel
+            var viewModel = new GetCommissionGroupViewModel
             {
                 CommissionSettingList = _commissionGroupService.GetCommissionSettingList(param),
                 TotalRows = param.Nrows

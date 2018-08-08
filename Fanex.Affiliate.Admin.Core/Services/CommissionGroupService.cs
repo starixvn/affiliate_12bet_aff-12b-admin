@@ -57,6 +57,11 @@ namespace Fanex.Affiliate.Admin.Core.Services
             return _commGroupRepository.InsertCommissionGroup(param);
         }
 
+        public IEnumerable<Deduction> GetDeductionList()
+        {
+            return _commGroupRepository.GetDeductionList();
+        }
+
         private static bool IsPlatformFee(string productIdList)
         {
             return productIdList != "0";

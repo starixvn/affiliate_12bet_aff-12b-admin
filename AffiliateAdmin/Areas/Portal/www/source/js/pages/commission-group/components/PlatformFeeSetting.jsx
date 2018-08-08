@@ -5,26 +5,14 @@ import { bindActionCreators } from 'redux';
 import PlatformFeeItem from "./PlatformFeeItem";
 import { deepClone, updateObjectInArray } from "../../../modules/dataHandler";
 
-export class PlatformFeeSetting extends Component {
+export default class PlatformFeeSetting extends Component {
     constructor(props) {
         super(props);
 
-        this.defaultPlatformSetting = { productList: this._convertToPlatformSettingList(), commission: 0.00 };
+        this.defaultPlatformSetting = this.props.defaultSettingItem;
         this.state = {
             platformFeeSettings: [this.defaultPlatformSetting]
         }
-    }
-
-    _convertToPlatformSettingList() {
-        const { productList } = this.props;
-
-        return productList.map(item => {
-            return {
-                productId: item.ProductId,
-                productName: item.ProductName,
-                checked: true
-            }
-        })
     }
 
     handleAdd = () => {
@@ -88,7 +76,6 @@ export class PlatformFeeSetting extends Component {
                 productItem.checked = !isChecked;
             }
         }
-        console.log(platformFeeSettings);
 
         this.setState({ platformFeeSettings });
         this._callbackToParent(platformFeeSettings);
@@ -107,7 +94,7 @@ export class PlatformFeeSetting extends Component {
     _callbackToParent(dataList) {
         const settingList = dataList.map(item => {
             return {
-                deductionId: 1,
+                deductionId: this.props.deductionId,
                 productIds: item.productList.filter(p => p.checked).map(p => p.productId).join(','),
                 deductedPercentage: item.commission
             }
@@ -138,13 +125,3 @@ export class PlatformFeeSetting extends Component {
         )
     }
 }
-
-function mapStateToProps({ productList }) {
-    return Object.assign({}, { productList });
-}
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({}, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(PlatformFeeSetting);

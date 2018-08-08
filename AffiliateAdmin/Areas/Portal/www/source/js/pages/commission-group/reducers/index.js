@@ -26,5 +26,6 @@ const pagingOption = createReducer(defaultPagingOption, {
 })
 
 const productList = createReducer([], {});
+const deductionList = createReducer([], {});
 
-export default combineReducers({ gridData, selectedGroup, pagingOption, productList });
+export default combineReducers({ gridData, selectedGroup, pagingOption, productList, deductionList });
