@@ -58,3 +58,8 @@ export const parseDateTime = (value) => {
 
     return value;
 }
+
+export const isValidNumber = (inputValue) => {
+    const regex = /^\d*$/;
+    return regex.test(inputValue);
+}

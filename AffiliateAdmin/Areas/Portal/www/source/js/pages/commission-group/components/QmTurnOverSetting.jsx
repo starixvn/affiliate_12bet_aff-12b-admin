@@ -1,14 +1,27 @@
 import React from 'react';
 
 import { Form, FormGroup, Label, Input } from 'reactstrap';
+import { format } from '../../../modules/numberFormat';
+import { isValidNumber } from '../../../modules/utils';
 
 export default class QmTurnOverSetting extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
+
+        this.state = {
+            qmTurnover: 0
+        }
     }
 
     handleChange = (event) => {
-        this.props.onChange(Number(event.target.value));
+        const value = event.target.value.replace(/,/g, '');
+        const isValid = isValidNumber(value);
+        const qmTurnover = Number(value);
+
+        if (isValid) {
+            this.setState({ qmTurnover });
+            this.props.onChange(qmTurnover);
+        }
     }
 
     render() {
@@ -19,7 +32,7 @@ export default class QmTurnOverSetting extends React.Component {
                 <Form inline>
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                         <Label for="QmTurnover" className="mr-sm-2">USD</Label>
-                        <Input name="QmTurnover" id="QmTurnover" defaultValue="" onChange={this.handleChange} />
+                        <Input name="QmTurnover" id="QmTurnover" value={format(this.state.qmTurnover)} onChange={this.handleChange} />
                     </FormGroup>
                 </Form>
             </fieldset>
