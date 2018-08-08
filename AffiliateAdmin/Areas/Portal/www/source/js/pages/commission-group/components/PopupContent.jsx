@@ -19,8 +19,8 @@ export default class PopupContent extends Component {
         this.commGroupInfo[name] = value;
     }
 
-    handleSelectDeduction = (name, value) => {
-        this.deductionSettings[name] = value;
+    handleSelectDeduction = (deductionSettingList) => {
+        this.deductionSettings = deductionSettingList;
     }
 
     handleChangeInputQmTurnover = (value) => {
@@ -35,7 +35,7 @@ export default class PopupContent extends Component {
         const param = Object.assign({},
             this.commGroupInfo,
             this.deductionSettings,
-            this.qmTurnover,
+            { qmTurnover: this.qmTurnover },
             this.tierSetting);
 
         console.log(param);

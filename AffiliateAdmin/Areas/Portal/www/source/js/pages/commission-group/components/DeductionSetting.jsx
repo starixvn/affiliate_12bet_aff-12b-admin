@@ -13,12 +13,24 @@ export class DeductionSetting extends Component {
         this.operationalFee = null;
         this.bankingFee = null;
         this.platformFeeList = [];
-        this.remainingFeeList = [];
+    }
+
+    _callbackToParent() {
+        const remainingFeeList = [];
+        this.operationalFee && remainingFeeList.push(this.operationalFee);
+        this.bankingFee && remainingFeeList.push(this.bankingFee);
+
+        const setting = Object.assign({},
+            { platformFeeList: this.platformFeeList },
+            { remainingFeeList });
+
+        this.props.onSelect(setting);
     }
 
     handleSelectPlatformfee = (platformFeeSettingList) => {
         console.log(platformFeeSettingList);
         this.platformFeeList = platformFeeSettingList;
+        this._callbackToParent();
     }
 
     handleSelectOperationalFee = (event) => {
@@ -29,6 +41,7 @@ export class DeductionSetting extends Component {
         }
 
         console.log(this.operationalFee);
+        this._callbackToParent();
     }
 
     handleSelectBankingFee = (event) => {
@@ -38,6 +51,7 @@ export class DeductionSetting extends Component {
             deductedPercentage: Number(event.target.value)
         }
         console.log(this.bankingFee);
+        this._callbackToParent();
     }
 
     render() {
