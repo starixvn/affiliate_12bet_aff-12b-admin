@@ -40,7 +40,7 @@
                         @if (!HttpContext.Current.User.Identity.IsAuthenticated || userSession == null)
                         {
                             <div class="sign-up">
-                                <a href="@Url.Action("Index", "Signup")" class="btn btn-signup"><span class="icon glyphicon glyphicon-pencil"></span>@Lang.SignUpAffiliate</a>
+                                <a href="@Url.Content("~/Signup/Index")" class="btn btn-signup"><span class="icon glyphicon glyphicon-pencil"></span>@Lang.SignUpAffiliate</a>
                             </div>
                         }
 
@@ -90,32 +90,32 @@
                                     var controllerName = ViewContext.RouteData.Values["Controller"].ToString();
                                 }
                                 <li>
-                                    <a class="menu-item @(controllerName == "Home" ? "active" : string.Empty)" href="@Url.Action("Index", "Home")">
+                                    <a class="menu-item @(controllerName == "Home" ? "active" : string.Empty)" href="@Url.Content("~/Home/Index")">
                                         @Lang.Home
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="menu-item @(controllerName == "CommissionStructure" ? "active" : string.Empty)" href="@Url.Action("Index", "CommissionStructure")">
+                                    <a class="menu-item @(controllerName == "CommissionStructure" ? "active" : string.Empty)" href="@Url.Content("~/CommissionStructure/Index")">
                                         @Lang.CommissionStructure
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="menu-item @(controllerName == "Product" ? "active" : string.Empty)" href="@Url.Action("Index", "Product")">
+                                    <a class="menu-item @(controllerName == "Product" ? "active" : string.Empty)" href="@Url.Content("~/Product/Index")">
                                         @Lang.Product
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="menu-item @(controllerName == "TermAndCondition" ? "active" : string.Empty)" href="@Url.Action("Index", "TermAndCondition")">
+                                    <a class="menu-item @(controllerName == "TermAndCondition" ? "active" : string.Empty)" href="@Url.Content("~/TermAndCondition/Index")">
                                         @Lang.TermAndCondition
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="menu-item @(controllerName == "FAQ" ? "active" : string.Empty)" href="@Url.Action("Index", "FAQ")">
+                                    <a class="menu-item @(controllerName == "FAQ" ? "active" : string.Empty)" href="@Url.Content("~/FAQ/Index")">
                                         @Lang.Faqs
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="menu-item @(controllerName == "ContactUs" ? "active" : string.Empty)" href="@Url.Action("Index", "ContactUs")">
+                                    <a class="menu-item @(controllerName == "ContactUs" ? "active" : string.Empty)" href="@Url.Content("~/ContactUs/Index")">
                                         @Lang.ContactUs
                                     </a>
                                 </li>
