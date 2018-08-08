@@ -6,8 +6,6 @@ import { bindActionCreators } from 'redux';
 import { INFINITY_AM, INFINITY_QM, INFINITY_SYMBOL } from '../modules/constant';
 import { format, formatDecimal } from '../../../modules/numberFormat';
 
-const htmlInfinity = (<span dangerouslySetInnerHTML={{ __html: INFINITY_SYMBOL }}></span>);
-
 function rawHtml(content) {
     return (<p dangerouslySetInnerHTML={{ __html: content }}></p>);
 }
@@ -61,9 +59,9 @@ export class GridData extends Component {
                         {isFirstItem && (<td className="text-center font-weight-bold cell-tier" rowSpan={tierSettingRowSpan}>Tier Setting</td>)}
                         <td className="text-center cell-tier">{tierSetting.TierId}</td>
                         <td className="text-right cell-tier">{format(tierSetting.MinAmount)}</td>
-                        <td className="text-right cell-tier">{tierSetting.MaxAmount === INFINITY_AM ? htmlInfinity : format(tierSetting.MaxAmount)}</td>
+                        <td className="text-right cell-tier">{tierSetting.MaxAmount === INFINITY_AM ? INFINITY_SYMBOL : format(tierSetting.MaxAmount)}</td>
                         <td className="text-right cell-tier">{format(tierSetting.MinQm)}</td>
-                        <td className="text-right cell-tier">{tierSetting.MaxQm === INFINITY_QM ? htmlInfinity : format(tierSetting.MaxQm)}</td>
+                        <td className="text-right cell-tier">{tierSetting.MaxQm === INFINITY_QM ? INFINITY_SYMBOL : format(tierSetting.MaxQm)}</td>
                         <td className="text-right cell-tier">{formatDecimal(tierSetting.Commission)}</td>
 
                         {

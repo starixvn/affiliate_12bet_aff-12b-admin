@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Services;
@@ -36,6 +37,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             };
 
             return Json(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult InsertCommissionGroup(CommissionGroupSetting param)
+        {
+            return Json(param);
         }
     }
 }

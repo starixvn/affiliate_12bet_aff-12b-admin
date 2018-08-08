@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 
-import { formatDecimal } from "../../../modules/numberFormat";
 import TierSettingItem from "./TierSettingItem";
 
 import { setItem, removeItem } from "../../../modules/utils";
+import { commissionValueList } from '../modules/constant';
 
 const defaultTierSetting = { minAm: 0, maxAm: 0, minQm: 0, maxQm: 0, commission: 0.01, infinityAm: false, infinityQm: false };
 
@@ -14,20 +14,8 @@ export default class TierSetting extends Component {
             tierSettingList: [
                 Object.assign({}, defaultTierSetting)
             ],
-            commissionList: this._getCommissionList()
+            commissionList: commissionValueList
         }
-    }
-
-    _getCommissionList() {
-        let min = 0, max = 0.99;
-        const commissionList = [];
-
-        while (min < max) {
-            min = min + 0.01;
-            commissionList.push(formatDecimal(min));
-        }
-
-        return commissionList;
     }
 
     handleAdd = () => {

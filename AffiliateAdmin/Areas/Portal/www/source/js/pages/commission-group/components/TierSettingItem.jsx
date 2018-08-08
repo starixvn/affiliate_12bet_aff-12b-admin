@@ -1,8 +1,7 @@
 import React from "react";
 
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-
-const INFINITY = "∞";
+import { Form, FormGroup, Label, Input } from 'reactstrap';
+import { INFINITY_SYMBOL } from '../modules/constant';
 
 const TierSettingItem = (props) => {
     const handleChange = (e) => {
@@ -27,10 +26,10 @@ const TierSettingItem = (props) => {
             <td>
                 <Form inline>
                     <Input type="text" name="maxAm" id="maxAm" className="form-max"
-                        disabled={isDisabled} value={isDisabled ? INFINITY : data.maxAm} onChange={handleChange} />
+                        disabled={isDisabled} value={isDisabled ? INFINITY_SYMBOL : data.maxAm} onChange={handleChange} />
                     <FormGroup check className="ml-sm-1">
                         <Label check>
-                            <Input type="checkbox" name="infinityAm" checked={isDisabled} onChange={handleChange} />{INFINITY}
+                            <Input type="checkbox" name="infinityAm" checked={isDisabled} onChange={handleChange} />{INFINITY_SYMBOL}
                         </Label>
                     </FormGroup>
                 </Form>
@@ -41,10 +40,10 @@ const TierSettingItem = (props) => {
             <td>
                 <Form inline>
                     <Input type="text" name="maxQm" id="maxQm" className="form-max"
-                        disabled={isDisabled} value={isDisabled ? INFINITY : data.maxQm} onChange={handleChange} />
+                        disabled={isDisabled} value={isDisabled ? INFINITY_SYMBOL : data.maxQm} onChange={handleChange} />
                     <FormGroup check className="ml-sm-1">
                         <Label check>
-                            <Input type="checkbox" name="infinityQm" checked={isDisabled} onChange={handleChange} />{INFINITY}
+                            <Input type="checkbox" name="infinityQm" checked={isDisabled} onChange={handleChange} />{INFINITY_SYMBOL}
                         </Label>
                     </FormGroup>
                 </Form>

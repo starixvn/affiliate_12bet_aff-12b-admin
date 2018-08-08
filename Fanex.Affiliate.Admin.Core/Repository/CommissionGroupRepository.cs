@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.MetaModels;
+using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
 
 namespace Fanex.Affiliate.Admin.Core.Repository
 {
@@ -27,6 +29,22 @@ namespace Fanex.Affiliate.Admin.Core.Repository
             }
 
             return result;
+        }
+
+        public ResultInfo InsertCommissionGroup(InsertConmissionGroupParam param)
+        {
+            const string SpKey = "Aff_Admin_CommGroup_Ins";
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                objectDb.ExecuteNonQuery(param);
+            }
+
+            return new ResultInfo
+            {
+                Code = param.ErrCode,
+                Message = param.ErrMsg
+            };
         }
 
         private static IEnumerable<CommGroup> GetCommGroupList(IDataReader reader)

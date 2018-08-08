@@ -1,95 +1,43 @@
 import React, { Component } from "react";
-import { Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Col, FormGroup, Label, Input } from 'reactstrap';
 
-import PlatformFeeItem from "./PlatformFeeItem";
-import { deepClone } from "../../../modules/utils";
+import PlatformFeeSetting from './PlatformFeeSetting';
+import { commissionValueList } from '../modules/constant';
 
-const productList = [
-    { code: "SB", name: "Sportsbook", checked: true },
-    { code: "CS", name: "Playtech Casino", checked: true },
-    { code: "FW", name: "Fishing World", checked: true },
-    { code: "MGC", name: "Microgaming - Live Casino", checked: true },
-    { code: "AB", name: "Allbet", checked: true }
-];
-
-const platformFeeSettings = [
-    {
-        productList: [...productList],
-        commission: 0.17
-    }
-];
-
-export default class DeductionSetting extends Component {
+export class DeductionSetting extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            platformFeeSettings: platformFeeSettings
-        }
+        this.operationalFee = null;
+        this.bankingFee = null;
+        this.platformFeeList = [];
+        this.remainingFeeList = [];
     }
 
-    handleAdd = () => {
-        const platformFeeSettings = this.state.platformFeeSettings;
-        const newProductList = productList.map(item => {
-            return Object.assign({}, item, { checked: !item.checked });
-        });
-
-        this.setState({
-            platformFeeSettings: [...platformFeeSettings, { productList: newProductList, commission: 0.17 }]
-        });
+    handleSelectPlatformfee = (platformFeeSettingList) => {
+        console.log(platformFeeSettingList);
+        this.platformFeeList = platformFeeSettingList;
     }
 
-    handleRemove = (index) => {
-        const platformFeeSettings = deepClone(this.state.platformFeeSettings);
-
-        const rootProductList = platformFeeSettings[0].productList;
-        const checkedProductList = platformFeeSettings[index].productList.filter(p => p.checked);
-
-        for (let i = 0; i < checkedProductList.length; i++) {
-            const code = checkedProductList[i].code;
-            const rootProductItem = rootProductList.find(p => p.code === code);
-
-            if (rootProductItem) {
-                rootProductItem.checked = true;
-            }
+    handleSelectOperationalFee = (event) => {
+        this.operationalFee = {
+            deductionId: 2,
+            productIds: 0,
+            deductedPercentage: Number(event.target.value)
         }
 
-        platformFeeSettings.splice(index, 1);
-
-        this.setState({ platformFeeSettings });
+        console.log(this.operationalFee);
     }
 
-    handleSelect = (index, selectedItem, newDataSource) => {
-        const isChecked = selectedItem.checked;
-        const platformFeeSettings = deepClone(this.state.platformFeeSettings);
-        const settingCount = platformFeeSettings.length;
-
-        if (settingCount > 1) {
-            const currentproductList = platformFeeSettings[index].productList;
-            const currentProductItem = currentproductList.find(p => p.code === selectedItem.code);
-            currentProductItem.checked = isChecked;
-
-            if (isChecked) {
-                for (let i = 0; i < platformFeeSettings.length; i++) {
-                    if (i !== index) {
-                        const productList = platformFeeSettings[i].productList;
-                        const productItem = productList.find(p => p.code === selectedItem.code && p.checked === isChecked);
-
-                        if (productItem) {
-                            productItem.checked = !isChecked;
-                            break;
-                        }
-                    }
-                }
-            }
-            else {
-                const productList = platformFeeSettings[0].productList;
-                const productItem = productList.find(p => p.code === selectedItem.code);
-                productItem.checked = !isChecked;
-            }
+    handleSelectBankingFee = (event) => {
+        this.bankingFee = {
+            deductionId: 3,
+            productIds: 0,
+            deductedPercentage: Number(event.target.value)
         }
-
-        this.setState({ platformFeeSettings });
+        console.log(this.bankingFee);
     }
 
     render() {
@@ -97,29 +45,18 @@ export default class DeductionSetting extends Component {
             <fieldset>
                 <legend><h6 className="font-weight-bold">Deductions</h6></legend>
                 <p className="font-weight-bold">Platform Fee %</p>
-                <div className="platformfee-group">
-                    {
-                        this.state.platformFeeSettings.map((item, i) => {
-                            const isFirst = i === 0;
-                            const handleClick = isFirst ? this.handleAdd : () => this.handleRemove(i);
-
-                            return (
-                                <PlatformFeeItem data={item} key={`fee-${i}`}
-                                    onSelect={(selectedItem, newDataSource) => this.handleSelect(i, selectedItem, newDataSource)}
-                                    handleClick={handleClick}
-                                    btnText={isFirst ? '+' : '-'}>
-                                </PlatformFeeItem>
-                            )
-                        })
-                    }
-                </div>
+                <PlatformFeeSetting onSelect={this.handleSelectPlatformfee} />
 
                 <FormGroup row>
                     <Label sm={4} className="font-weight-bold">Operational Fee%</Label>
-                  
+
                     <Col sm={{ size: 2, offset: 1 }}>
-                        <select className="form-control">
-                            <option>0.07</option>
+                        <select className="form-control" onChange={this.handleSelectOperationalFee}>
+                            {
+                                commissionValueList.map((item, i) => {
+                                    return (<option key={`operationalfee-comm-${i}`} value={item}>{item}</option>);
+                                })
+                            }
                         </select>
                     </Col>
                     <Col sm={1}>
@@ -132,10 +69,14 @@ export default class DeductionSetting extends Component {
 
                 <FormGroup row>
                     <Label sm={4} className="font-weight-bold">Banking Fee%</Label>
-                  
+
                     <Col sm={{ size: 2, offset: 1 }}>
-                        <select className="form-control">
-                            <option>0.02</option>
+                        <select className="form-control" onChange={this.handleSelectBankingFee}>
+                            {
+                                commissionValueList.map((item, i) => {
+                                    return (<option key={`bankingfee-comm-${i}`} value={item}>{item}</option>);
+                                })
+                            }
                         </select>
                     </Col>
                     <Col sm={1}>
@@ -149,3 +90,13 @@ export default class DeductionSetting extends Component {
         )
     }
 }
+
+function mapStateToProps({ productList }) {
+    return Object.assign({}, { productList });
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DeductionSetting);

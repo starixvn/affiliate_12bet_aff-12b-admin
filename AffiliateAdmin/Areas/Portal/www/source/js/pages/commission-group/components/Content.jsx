@@ -7,6 +7,7 @@ import { Modal, ModalHeader, ModalBody, Button } from 'reactstrap';
 import GridData from './GridData';
 import PopupContent from './PopupContent';
 import Pager from '../../../components/Pager';
+import { createEmptyCommGroup } from '../modules/service';
 
 import { getGroupSettingList, setSelectedGroup } from '../actions';
 
@@ -16,7 +17,8 @@ export class Content extends Component {
     }
 
     handleAddNewGroup = () => {
-        this.props.setSelectedGroup({});
+        const commGroup = createEmptyCommGroup();
+        this.props.setSelectedGroup(commGroup);
     }
 
     handleHide = () => {

@@ -79,11 +79,24 @@ const parseDateTime = (value) => {
     return value;
 }
 
+const updateObjectInArray = (array, indexItem, updatedItem) => {
+    return array.map((item, index) => {
+        if (index !== indexItem) {
+            return item;
+        }
+        return {
+            ...item,
+            ...updatedItem
+        };
+    });
+}
+
 export {
     setItem,
     removeItem,
     deepClone,
     resolveClientUrl,
     formatDateTime,
-    parseDateTime
+    parseDateTime,
+    updateObjectInArray
 }
