@@ -1,4 +1,6 @@
 ﻿using System.Web.Mvc;
+using Fanex.Affiliate.Admin.Core.Attributes;
+using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.Repository;
@@ -7,6 +9,7 @@ using Fanex.Affiliate.Admin.Core.ViewModels;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
+    [FunctionAuthorize(FunctionName = Function.CommissionGroup)]
     public class CommissionGroupController : Controller
     {
         private readonly ICommissionService _commissionService;

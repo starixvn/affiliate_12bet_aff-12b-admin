@@ -1,11 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
+using Fanex.Affiliate.Admin.Core.Attributes;
+using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
+    [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class MemberController : BaseController
     {
         public MemberController(ISessionService sessionService) : base(sessionService)

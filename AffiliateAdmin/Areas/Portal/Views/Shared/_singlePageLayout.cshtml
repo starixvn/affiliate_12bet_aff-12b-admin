@@ -1,13 +1,20 @@
-﻿<div class="main-container">
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="~/Areas/Portal/www/dist/vendor/vendor.css" rel="stylesheet" />
     <link href="~/Areas/Portal/www/dist/style/portalmain.css" rel="stylesheet" />
-
     @RenderSection("styles", required: false)
+</head>
+<body>
+    <div class="main-container">
+        @RenderBody()
+        <input type="hidden" id="RootUrl" value="@Url.Content("~")" />
 
-    @RenderBody()
-
-    <input type="hidden" id="RootUrl" value="@Url.Content("~")" />
-
-    <script type="text/javascript" src="~/Areas/Portal/www/dist/vendor/vendor.js"></script>
-    @RenderSection("scripts", required: false)
-</div>
+        <script type="text/javascript" src="~/Areas/Portal/www/dist/vendor/vendor.js"></script>
+        @RenderSection("scripts", required: false)
+    </div>
+</body>
+</html>

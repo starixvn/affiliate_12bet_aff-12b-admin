@@ -22,7 +22,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 new SubMenu { Name = Lang.Disapproved, Url = Url.Content("~/UserInfo/AffiliateList.aspx?status=disapproved") },
                 new SubMenu { Name = Lang.Closed, Url = Url.Content("~/UserInfo/AffiliateList.aspx?status=approved&isClosed=true") },
                 new SubMenu { Name = Lang.PaymentRequest, Url = Url.Content("~/Payment/PaymentRequest.aspx") },
-                new SubMenu { Name = Lang.CommGroup, Url = Url.Content("~/GroupSetting/GroupSetting.aspx") },
+                new SubMenu { Name = Lang.CommGroup, Url = Url.Content("~/Portal/CommissionGroup") },
                 new SubMenu { Name = Lang.EmailHistory, Url = Url.Content("~/Others/EmailHistory.aspx") }
             };
 

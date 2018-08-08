@@ -1583,12 +1583,15 @@
     <Content Include="Areas\Portal\www\source\js\modules\numberFormat.js" />
     <Content Include="Areas\Portal\www\source\js\modules\utils.js" />
     <Content Include="Areas\Portal\www\source\js\pagelayout\pagelayout.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\GridData.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\PopupContent.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\commission-group\reducers\filterReducer.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\modules\constant.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\modules\service.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\reducers\sampleReducer.js" />
     <Content Include="Areas\Portal\www\source\js\pagelayout\vendors\jquery-3.3.1.min.js" />
