@@ -23,7 +23,7 @@
             <li><a class="menu-item" id="menuAccountOverView" href="@Url.Content("~/UserPanel/Main/#AccountOverView")">@Lang.AccOverview</a></li>
             @if (string.Equals(groupName, CommGroupName.KoreanAgentComm))
             {
-                <li><a class="menu-item @(ViewContext.RouteData.Values["Controller"].ToString() == "Member" ? "active" : string.Empty)" id="menuYourCustomer" href="@(Url.Action("Index", "Member"))">@Lang.YourCustomers</a></li>
+                <li><a class="menu-item @(ViewContext.RouteData.Values["Controller"].ToString() == "Member" ? "active" : string.Empty)" id="menuYourCustomer" href="@(Url.Content("~/UserPanel/Member/Index"))">@Lang.YourCustomers</a></li>
             }
             <li><a class="menu-item" id="menuStatementHistory" href="@Url.Content("~/UserPanel/Main/#StatementHistory")">@Lang.StatementHistory</a></li>
             <li><a class="menu-item" id="menuMyAccount" href="@Url.Content("~/UserPanel/Main/#MyAccount")">@Lang.MyAcc</a></li>

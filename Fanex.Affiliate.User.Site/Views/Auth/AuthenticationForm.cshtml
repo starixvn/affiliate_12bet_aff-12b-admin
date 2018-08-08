@@ -12,14 +12,14 @@
     @if (HttpContext.Current.User.Identity.IsAuthenticated &&  userSession != null)
     {
         <a href="@Url.Content("~/UserPanel/Main#AccountOverview")" class="btn btn-signup"><span class="icon glyphicon glyphicon-user"></span>@Lang.MyAcc @userSession.UserName</a>
-                            <a href="@Url.Action("SignOut", "Auth")" class="btn btn-login">@Lang.Logout</a>
+                            <a href="@Url.Content("~/Auth/SignOut/")" class="btn btn-login">@Lang.Logout</a>
     }
     else
     {
         <input class="text-field" id="txtUsername" type="text" placeholder="@Lang.Username" />
         <input class="text-field" id="txtPassword" type="password" placeholder="@Lang.Password" />
         <input class="text-field validation" id="txtValidation" type="text" placeholder="Validation" />
-        <div class="validation-value"><img src="@Url.Action("CaptchaImage", "Home")" alt="captcha" id="captchaImg" /></div>
+        <div class="validation-value"><img src="@Url.Content("~/Home/CaptchaImage")" alt="captcha" id="captchaImg" /></div>
         <a class="btn btn-forgot" title="@Lang.ForgetPassword" href="@Url.Content("~/Password")">
             <span class="mdi mdi-account-key"></span>
         </a>
