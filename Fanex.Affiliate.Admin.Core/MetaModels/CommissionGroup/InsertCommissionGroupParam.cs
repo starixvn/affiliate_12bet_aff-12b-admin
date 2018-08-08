@@ -1,6 +1,9 @@
-﻿namespace Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup
+﻿using System.Collections.Generic;
+using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
+
+namespace Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup
 {
-    public class InsertConmissionGroupParam
+    public class InsertCommissionGroupParam
     {
         public int UserId { get; set; }
 
@@ -16,10 +19,14 @@
 
         public string Ip { get; set; }
 
-        public string Language { get; set; }
-
         public int ErrCode { get; set; }
 
         public string ErrMsg { get; set; }
+
+        public IEnumerable<TierSetting> TierSettingList { get; set; }
+
+        public IEnumerable<DeductionSetting> PlatformFeeList { get; set; }
+
+        public IEnumerable<DeductionSetting> RemainingFeeList { get; set; }
     }
 }

@@ -39,6 +39,7 @@ export class PopupContent extends Component {
     handleSave = async () => {
         const tierSettingList = this.tierSetting.map(item => {
             return {
+                tierId: item.tierId,
                 minAmount: item.minAmount,
                 maxAmount: item.infinityAm ? INFINITY_AM : item.maxAmount,
                 minQm: item.minQm,

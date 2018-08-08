@@ -38,17 +38,6 @@ export default class CommGroupInfo extends React.Component {
                         <Input type="text" name="Description" id="Description" value={Description} onChange={this.handleChange} />
                     </Col>
                 </FormGroup>
-                <FormGroup row>
-                    <Label for="ActiveAll" sm={2}>ActiveAll: </Label>
-                    <Col sm={{ size: 10 }}>
-                        <FormGroup check>
-                            <Label check>
-                                <Input type="checkbox" id="ActiveAll" />
-                                &nbsp;
-                            </Label>
-                        </FormGroup>
-                    </Col>
-                </FormGroup>
             </div>
         )
     }

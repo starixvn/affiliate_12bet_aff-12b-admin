@@ -31,20 +31,30 @@ namespace Fanex.Affiliate.Admin.Core.Repository
             return result;
         }
 
-        public ResultInfo InsertCommissionGroup(InsertConmissionGroupParam param)
+        public ResultInfo InsertCommissionGroup(InsertCommissionGroupParam param)
         {
             const string SpKey = "Aff_Admin_CommGroup_Ins";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.ExecuteNonQuery(param);
-            }
+                objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
+                objectDb.AddInParameter("GroupName", DbType.String, param.GroupName);
+                objectDb.AddInParameter("Description", DbType.String, param.Description);
+                objectDb.AddInParameter("DeductionList", DbType.Xml, param.DeductionList);
+                objectDb.AddInParameter("TierList", DbType.Xml, param.TierList);
+                objectDb.AddInParameter("QMTurnover", DbType.Decimal, param.QmTurnover);
+                objectDb.AddInParameter("IP", DbType.String, param.Ip);
+                objectDb.AddOutParameter("ErrCode", DbType.Int32, 4);
+                objectDb.AddOutParameter("ErrMsg", DbType.String, 2000);
 
-            return new ResultInfo
-            {
-                Code = param.ErrCode,
-                Message = param.ErrMsg
-            };
+                objectDb.ExecuteNonQuery();
+
+                return new ResultInfo
+                {
+                    Code = Convert.ToInt32(objectDb.GetParameterValue("ErrCode")),
+                    Message = objectDb.GetParameterValue("ErrMsg").ToString()
+                };
+            }
         }
 
         private static IEnumerable<CommGroup> GetCommGroupList(IDataReader reader)

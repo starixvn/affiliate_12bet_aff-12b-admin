@@ -142,7 +142,7 @@
     <Compile Include="Enum\AffType.cs" />
     <Compile Include="MetaModels\ChangePasswordParam.cs" />
     <Compile Include="MetaModels\CommissionGroupParam.cs" />
-    <Compile Include="MetaModels\CommissionGroup\InsertConmissionGroupParam.cs" />
+    <Compile Include="MetaModels\CommissionGroup\InsertCommissionGroupParam.cs" />
     <Compile Include="MetaModels\LeftPanelUpdateInfoParam.cs" />
     <Compile Include="MetaModels\UpdateStatusParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -163,11 +163,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Lang.resx</DependentUpon>
     </Compile>
-    <Compile Include="Services\CommissionService.cs" />
+    <Compile Include="Services\CommissionGroupService.cs" />
     <Compile Include="Services\Common\ISessionService.cs" />
     <Compile Include="DTO\Common\UserPermission.cs" />
     <Compile Include="Services\Common\SessionService.cs" />
-    <Compile Include="Services\ICommissionService.cs" />
+    <Compile Include="Services\ICommissionGroupService.cs" />
     <Compile Include="Utilities\CryptographyHelper.cs" />
     <Compile Include="Utilities\Generator.cs" />
     <Compile Include="ViewModels\CommissionGroupViewModel.cs" />

@@ -8,6 +8,20 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
     {
         private const string UserPermissionSessionKey = "__UserPermissionSessionKey";
 
+        private const string UserIdKey = "CustID";
+
+        public int UserId
+        {
+            get
+            {
+                return (int)HttpContext.Current.Session[UserIdKey];
+            }
+            set
+            {
+                HttpContext.Current.Session[UserIdKey] = value;
+            }
+        }
+
         IList<UserPermission> ISessionService.UserPerissionList
         {
 

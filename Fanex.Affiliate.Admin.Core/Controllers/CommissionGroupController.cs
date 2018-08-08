@@ -3,22 +3,27 @@ using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.MetaModels;
+using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Services;
+using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.ViewModels;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
     [FunctionAuthorize(FunctionName = Function.CommissionGroup)]
-    public class CommissionGroupController : Controller
+    public class CommissionGroupController : BaseController
     {
-        private readonly ICommissionService _commissionService;
+        private readonly ICommissionGroupService _commissionGroupService;
 
         private readonly IProductRepository _productRepository;
 
-        public CommissionGroupController(ICommissionService commissionService, IProductRepository productRepository)
+        public CommissionGroupController(
+            ISessionService sessionService,
+            ICommissionGroupService commissionService,
+            IProductRepository productRepository) : base(sessionService)
         {
-            _commissionService = commissionService;
+            _commissionGroupService = commissionService;
             _productRepository = productRepository;
         }
 
@@ -35,7 +40,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         {
             var viewModel = new CommissionGroupViewModel
             {
-                CommissionSettingList = _commissionService.GetCommissionSettingList(param),
+                CommissionSettingList = _commissionGroupService.GetCommissionSettingList(param),
                 TotalRows = param.Nrows
             };
 
@@ -43,9 +48,23 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [HttpPost]
-        public ActionResult InsertCommissionGroup(CommissionGroupSetting param)
+        public ActionResult InsertCommissionGroup(CommissionGroupSetting commGroup)
         {
-            return Json(param);
+            var insertParam = new InsertCommissionGroupParam
+            {
+                UserId = SessionService.UserId,
+                Ip = Request.UserHostAddress,
+                GroupName = commGroup.GroupName,
+                Description = commGroup.Description,
+                QmTurnover = commGroup.QmTurnover,
+                TierSettingList = commGroup.TierSettingList,
+                PlatformFeeList = commGroup.PlatformFeeList,
+                RemainingFeeList = commGroup.RemainingFeeList
+            };
+
+            var result = _commissionGroupService.InsertCommissionGroup(insertParam);
+
+            return Json(result);
         }
     }
 }

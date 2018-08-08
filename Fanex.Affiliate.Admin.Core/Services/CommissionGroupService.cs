@@ -1,0 +1,97 @@
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
+using Fanex.Affiliate.Admin.Core.MetaModels;
+using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
+using Fanex.Affiliate.Admin.Core.Repository;
+
+namespace Fanex.Affiliate.Admin.Core.Services
+{
+    public class CommissionGroupService : ICommissionGroupService
+    {
+        private readonly ICommissionGroupRepository _commGroupRepository;
+
+        public CommissionGroupService(ICommissionGroupRepository commGroupRepository)
+        {
+            _commGroupRepository = commGroupRepository;
+        }
+
+        public IEnumerable<CommissionGroupSetting> GetCommissionSettingList(CommissionGroupParam param)
+        {
+            var rawData = _commGroupRepository.GetCommissionGroupList(param);
+
+            var commGroupList = rawData.CommGroupList;
+            var tierSettingList = rawData.TierSettingList;
+            var deductionSettingList = rawData.DeductionSettingList;
+
+            var result = from c in commGroupList
+                         join t in tierSettingList on c.GroupId equals t.GroupId into groupTierSetting
+                         join d in deductionSettingList on c.GroupId equals d.GroupId into groupDeduction
+                         select new CommissionGroupSetting
+                         {
+                             RowIdx = c.RowIdx,
+                             GroupId = c.GroupId,
+                             GroupName = c.GroupName,
+                             CreatedDate = c.CreatedDate,
+                             Creator = c.Creator,
+                             Description = c.Description,
+                             QmTurnover = c.QmTurnover,
+                             IsAdjustment = c.IsAdjustment,
+                             NoAffs = c.NoAffs,
+                             TierSettingList = groupTierSetting,
+                             PlatformFeeList = groupDeduction.Where(p => IsPlatformFee(p.ProductIds)),
+                             RemainingFeeList = groupDeduction.Where(p => !IsPlatformFee(p.ProductIds))
+                         };
+
+            return result;
+        }
+
+        public ResultInfo InsertCommissionGroup(InsertCommissionGroupParam param)
+        {
+            var deductionSettingList = param.PlatformFeeList.Concat(param.RemainingFeeList);
+            param.TierList = BuildTierSettingXml(param.TierSettingList);
+            param.DeductionList = BuildDeductionSettingXml(deductionSettingList);
+
+            return _commGroupRepository.InsertCommissionGroup(param);
+        }
+
+        private static bool IsPlatformFee(string productIdList)
+        {
+            return productIdList != "0";
+        }
+
+        private static string BuildTierSettingXml(IEnumerable<TierSetting> tierSettingList)
+        {
+            var result = new StringBuilder();
+            result.Append("<root>");
+
+            foreach (var item in tierSettingList)
+            {
+                var row = $"<row id=\"{item.TierId}\" minamount=\"{item.MinAmount}\" maxamount=\"{item.MaxAmount}\" minqm=\"{item.MinQm}\" maxqm=\"{item.MaxQm}\" commission=\"{item.Commission}\" />";
+                result.Append(row);
+            }
+
+            result.Append("</root>");
+
+            return result.ToString();
+        }
+
+        private static string BuildDeductionSettingXml(IEnumerable<DeductionSetting> deductionSettingList)
+        {
+            var result = new StringBuilder();
+            result.Append("<root>");
+
+            foreach (var item in deductionSettingList)
+            {
+                var row = $"<row id=\"{item.DeductionId}\" productids=\"{item.ProductIds}\" percent=\"{item.DeductedPercentage}\" />";
+                result.Append(row);
+            }
+
+            result.Append("</root>");
+
+            return result.ToString();
+        }
+    }
+}

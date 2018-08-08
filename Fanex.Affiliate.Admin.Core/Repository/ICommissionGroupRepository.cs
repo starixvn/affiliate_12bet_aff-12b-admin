@@ -9,6 +9,6 @@ namespace Fanex.Affiliate.Admin.Core.Repository
     {
         CommissionGroupResultEntity GetCommissionGroupList(CommissionGroupParam param);
 
-        ResultInfo InsertCommissionGroup(InsertConmissionGroupParam param);
+        ResultInfo InsertCommissionGroup(InsertCommissionGroupParam param);
     }
 }
