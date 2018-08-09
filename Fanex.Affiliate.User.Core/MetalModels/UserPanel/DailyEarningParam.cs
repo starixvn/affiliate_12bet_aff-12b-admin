@@ -8,7 +8,7 @@ namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
     {
         public int AffId { get; set; }
 
-        public byte? SportType { get; set; }
+        public byte? ProductId { get; set; }
 
         public DateTime? MonthDate { get; set; }
 

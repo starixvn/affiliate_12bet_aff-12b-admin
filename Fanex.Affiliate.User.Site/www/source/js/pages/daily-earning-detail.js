@@ -26,7 +26,7 @@
         initEvent: function () {
             $("#btnEarningDetailSubmit").on("click", function () {
                 var params = {
-                    sportType: $("#SportType").val(),
+                    productId: $("#productId").val(),
                     monthDate: $("#MonthDate").val(),
                     IsOnlyContent: true
                 }

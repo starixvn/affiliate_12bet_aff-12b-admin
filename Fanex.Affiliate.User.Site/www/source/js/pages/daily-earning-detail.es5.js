@@ -28,7 +28,7 @@ var DailyEarningDetail = (function ($) {
         initEvent: function initEvent() {
             $("#btnEarningDetailSubmit").on("click", function () {
                 var params = {
-                    sportType: $("#SportType").val(),
+                    productId: $("#productId").val(),
                     monthDate: $("#MonthDate").val(),
                     IsOnlyContent: true
                 };

@@ -54,7 +54,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
         public DailyEarningResult GetDailyEarning(DailyEarningParam dailyEarningParam)
         {
-            const string uSpKey = "Aff_EarningSelDaily";
+            const string uSpKey = "Aff_DailyEarning_Sel";
             var dbMode = dailyEarningParam.IsInternal ? DBMode.View : DBMode.Main;
 
             var dailyEarningResult = new DailyEarningResult();
@@ -112,7 +112,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
         public IEnumerable<DailyEarningDetail> GetDailyEarningDetail(DailyEarningParam earningDetailParam)
         {
-            const string uSpKey = "Aff_EarningSelDetail";
+            const string uSpKey = "Aff_DailyEarning_Detail_Sel";
             var mode = earningDetailParam.IsInternal ? DBMode.View : DBMode.Main;
 
             using (var objectDb = new ObjectDBBuilder(uSpKey, mode))

@@ -11,7 +11,7 @@ var DailyEarning = (function ($) {
         initEvent: function initEvent() {
             $("#dailyEarningContent").on("click", ".dateItem", function () {
                 var params = {
-                    sportType: $("#SportType").length ? $("#SportType").val() : SPORTTYPE_SPORTSBOOK,
+                    productId: $("#productid").length ? $("#productid").val() : SPORTTYPE_SPORTSBOOK,
                     monthDate: $(this).data("date")
                 };
 
@@ -21,7 +21,7 @@ var DailyEarning = (function ($) {
             $("#SportType").on("change", function () {
                 var params = {
                     monthDate: $("#MonthDate").val(),
-                    sportType: $(this).val(),
+                    productId: $(this).val(),
                     IsOnlyContent: true
                 };
 

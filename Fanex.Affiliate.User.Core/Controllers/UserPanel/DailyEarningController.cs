@@ -33,7 +33,7 @@
         {
             param.AffId = _sessionService.UserSession.AffId;
             param.IsInternal = _sessionService.IsInternal;
-            param.SportType = param.SportType.HasValue ? param.SportType.Value : Product.Sportsbook;
+            param.ProductId = param.ProductId.HasValue ? param.ProductId.Value : Product.Sportsbook;
             param.MonthDate = param.MonthDate.HasValue ? param.MonthDate.Value : DateTime.Now.AddDays(-1);
 
             var extraUserInfo = _statementHistoryRepository.GetExtraUserInfo(param.AffId, param.IsInternal);
@@ -42,7 +42,7 @@
             {
                 ProductList = param.IsOnlyContent ? null : _statementHistoryRepository.GetProductList(param.IsInternal),
                 Data = _statementHistoryRepository.GetDailyEarning(param),
-                SelectedProduct = param.SportType.Value,
+                SelectedProduct = param.ProductId.Value,
                 IsKoreanAgentCommGroup = extraUserInfo.GroupName.MatchWith(CommGroupName.KoreanAgentComm),
                 HasDailyDetail = extraUserInfo.HasDailyDetail
             };

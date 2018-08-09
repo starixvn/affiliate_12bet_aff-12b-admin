@@ -43,7 +43,7 @@
                 ProductList = param.IsOnlyContent ? null :
                 _statementHistoryRepository.GetProductList(param.IsInternal),
                 SelectedDate = param.MonthDate.HasValue ? param.MonthDate.Value : DateTime.Now.Date,
-                SelectedProduct = param.SportType.HasValue ? param.SportType.Value : Product.Sportsbook,
+                SelectedProduct = param.ProductId.HasValue ? param.ProductId.Value : Product.Sportsbook,
                 HasDailyDetail = extraUserInfo.HasDailyDetail
             };
 
