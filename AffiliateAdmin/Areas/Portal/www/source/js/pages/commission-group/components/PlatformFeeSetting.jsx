@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 import PlatformFeeItem from "./PlatformFeeItem";
 import { deepClone, updateObjectInArray } from "../../../modules/dataHandler";
@@ -106,6 +104,7 @@ export default class PlatformFeeSetting extends Component {
     render() {
         return (
             <div className="platformfee-group">
+                <p className="font-weight-bold">Platform Fee %</p>
                 {
                     this.state.platformFeeSettings.map((item, i) => {
                         const isFirst = i === 0;

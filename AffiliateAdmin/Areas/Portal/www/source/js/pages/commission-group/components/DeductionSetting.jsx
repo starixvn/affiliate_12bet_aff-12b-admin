@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Col, FormGroup, Label, Input } from 'reactstrap';
 
 import PlatformFeeSetting from './PlatformFeeSetting';
-import { commissionValueList, deductionNameList } from '../modules/constant';
-import { formatDecimal } from '../../../modules/numberFormat';
+import { deductionNameList } from '../modules/constant';
+import FeeSettingItem from './FeeSettingItem';
 
 export class DeductionSetting extends Component {
     constructor(props) {
@@ -95,52 +94,15 @@ export class DeductionSetting extends Component {
         return (
             <fieldset>
                 <legend><h6 className="font-weight-bold">Deductions</h6></legend>
-                <p className="font-weight-bold">Platform Fee %</p>
                 <PlatformFeeSetting onSelect={this.handleSelectPlatformfee}
                     deductionId={this.platformFeeDeductionSetting.DeductionId}
                     defaultSettingItem={this.defaultPlatformSetting} />
 
-                <FormGroup row>
-                    <Label sm={4} className="font-weight-bold">Operational Fee%</Label>
+                <FeeSettingItem label="Operational Fee%" selectedComm={this.operationalFeeDeductionSetting.DeductedPercentage}
+                   basedValueName="| Gross Win Loss |" onChange={this.handleSelectOperationalFee} />
 
-                    <Col sm={{ size: 2, offset: 1 }}>
-                        <select className="form-control" onChange={this.handleSelectOperationalFee}
-                            defaultValue={formatDecimal(this.operationalFeeDeductionSetting.DeductedPercentage)}>
-                            {
-                                commissionValueList.map((item, i) => {
-                                    return (<option key={`operationalfee-comm-${i}`} value={item}>{item}</option>);
-                                })
-                            }
-                        </select>
-                    </Col>
-                    <Col sm={1}>
-                        <Input plaintext>x</Input>
-                    </Col>
-                    <Col sm={3}>
-                        <Input plaintext>| Gross Win Loss |</Input>
-                    </Col>
-                </FormGroup>
-
-                <FormGroup row>
-                    <Label sm={4} className="font-weight-bold">Banking Fee%</Label>
-
-                    <Col sm={{ size: 2, offset: 1 }}>
-                        <select className="form-control" onChange={this.handleSelectBankingFee}
-                            defaultValue={formatDecimal(this.bankingFeeFeeDeductionSetting.DeductedPercentage)}>
-                            {
-                                commissionValueList.map((item, i) => {
-                                    return (<option key={`bankingfee-comm-${i}`} value={item}>{item}</option>);
-                                })
-                            }
-                        </select>
-                    </Col>
-                    <Col sm={1}>
-                        <Input plaintext>x</Input>
-                    </Col>
-                    <Col sm={3}>
-                        <Input plaintext>(Deposit + Withdrawal)</Input>
-                    </Col>
-                </FormGroup>
+                <FeeSettingItem label="Banking Fee%" selectedComm={this.bankingFeeFeeDeductionSetting.DeductedPercentage}
+                   basedValueName="(Deposit + Withdrawal)" onChange={this.handleSelectBankingFee} />
             </fieldset>
         )
     }

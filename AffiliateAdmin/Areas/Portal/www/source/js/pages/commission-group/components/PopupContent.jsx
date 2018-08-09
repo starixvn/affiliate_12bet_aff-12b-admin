@@ -136,7 +136,7 @@ export class PopupContent extends Component {
                 <QmTurnOverSetting onChange={this.handleChangeInputQmTurnover} />
                 <TierSetting onChange={this.handleChangeInputTier} />
 
-                <button type="button" className="my-2" onClick={this.handleSave}>SAVE</button>
+                <button type="button" className="my-2 btn btn-success btn-save" onClick={this.handleSave}>SAVE</button>
             </div>
         )
     }

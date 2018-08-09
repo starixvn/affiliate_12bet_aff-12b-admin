@@ -97,7 +97,9 @@ export default class TierSetting extends Component {
                 </table>
 
                 <div>
-                    <button type="button" className="btn-addTier" onClick={this.handleAdd} disabled={canAddTier}>Add Tier</button>
+                    <button type="button" className="btn btn-addTier btn-secondary" onClick={this.handleAdd} disabled={canAddTier}>
+                        <span class="oi oi-plus"></span> Add Tier
+                    </button>
                 </div>
             </fieldset>
         )
