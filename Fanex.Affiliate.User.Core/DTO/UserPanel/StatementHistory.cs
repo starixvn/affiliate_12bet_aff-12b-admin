@@ -4,8 +4,6 @@ namespace Fanex.Affiliate.User.Core.DTO.UserPanel
 {
     public class StatementHistory
     {
-        public long TransId { get; set; }
-
         public DateTime MonthDate { get; set; }
 
         public byte TransType { get; set; }

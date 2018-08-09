@@ -25,7 +25,6 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
                         dataList.Add(new StatementHistory
                         {
-                            TransId = Convert.ToInt64(reader["TransId"]),
                             MonthDate = monthDate,
                             TransType = transType,
                             Amount = reader["Amount"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["Amount"]),
