@@ -10,14 +10,14 @@ export default class FeeSettingItem extends React.Component {
     }
 
     render() {
-        const { label, selectedComm, basedValueName, onChange } = this.props;
+        const { label, data, basedValueName, onChange } = this.props;
         return (
             <FormGroup row>
                 <Label sm={4} className="font-weight-bold">{label}</Label>
 
                 <Col sm={{ size: 2, offset: 1 }}>
                     <select className="form-control" onChange={onChange}
-                        defaultValue={formatDecimal(selectedComm)}>
+                        defaultValue={formatDecimal(data.DeductedPercentage)}>
                         {
                             commissionValueList.map((item, i) => {
                                 return (<option key={`feecomm-${i}`} value={item}>{item}</option>);

@@ -25,6 +25,7 @@ export class Content extends Component {
     }
 
     handleEditGroup = (itemId) => {
+        console.log(itemId);
         this.setState({ Popup: <EditGroup onClose={this.handleHide} itemId={itemId} /> });
     }
 
@@ -48,7 +49,7 @@ export class Content extends Component {
 
                 <Pager pageOption={this.props.pagingOption} onPaging={this.onPaging} />
                 <div className="my-1">
-                    <GridData />
+                    <GridData onEdit={this.handleEditGroup} />
                 </div>
 
                 <Modal isOpen={showPopup} toggle={this.handleHide} size="lg" backdrop='static'>

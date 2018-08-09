@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { resolveClientUrl } from '../../../modules/utils';
 
-import { SET_GRIDDATA, SET_SELECTEDGROUP, SET_PAGING_OPTION } from './types';
+import { SET_GRIDDATA, SET_PAGING_OPTION } from './types';
 
-const fetchGroupSettingData = (param) => {
+export const fetchGroupSettingData = (param) => {
     const url = resolveClientUrl('Portal/CommissionGroup/GetCommissionSettingList');
 
     return axios.post(url, param);
@@ -29,13 +29,6 @@ export const getGroupSettingList = (param) => async(dispatch) => {
         TotalItem: TotalRows
     };
     dispatch(setPagingOption(pagingOption));
-}
-
-export const setSelectedGroup = (data) => {
-    return {
-        type: SET_SELECTEDGROUP,
-        data: data
-    }
 }
 
 export const setPagingOption = (data) => {

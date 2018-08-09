@@ -27,7 +27,7 @@ const _commValueList = generateCommissionValues();
 
 export const commissionValueList = _commValueList;
 
-export const messages = {
+const _validationMessage = {
     requireGroupName: 'Group Name cannot be empty. Please check!',
     requireTier: 'Tier Setting must have at least 1 tier',
     requireInfinity: 'Last Tier Setting must have maximum value=∞',
@@ -35,9 +35,11 @@ export const messages = {
     amountConstrain: 'Max Amount must be greater than or equal to Min Amount',
     qmConstrain: 'Max QM must be greater than or equal to Min QM'
 }
+export const messages = _validationMessage;
 
-export const deductionNameList = {
+const _deductionNameList = {
     platformFee: 'Platform Fee',
     operationalFee: 'Operational Fee',
     bankingFee: 'Banking Fee'
 }
+export const deductionNameList = _deductionNameList;

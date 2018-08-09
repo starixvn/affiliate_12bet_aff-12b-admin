@@ -54,7 +54,7 @@ export default class PlatformFeeItem extends React.Component {
                 <Col sm={1}>
                     <Input plaintext>x</Input>
                 </Col>
-                <Col sm={3}>
+                <Col sm={2}>
                     <Input plaintext>| Gross Win Loss |</Input>
                 </Col>
                 <Col sm={1}>

@@ -64,7 +64,7 @@ export default class DeductionSetting extends Component {
             return {
                 ProductId: item.ProductId,
                 ProductName: item.ProductName,
-                Checked: isCheckAll || idList.filter(i => i === item.ProductId).length > 0
+                Checked: isCheckAll || idList.filter(i => Number(i) === item.ProductId).length > 0
             }
         })
     }
@@ -110,12 +110,12 @@ export default class DeductionSetting extends Component {
                     defaultSettingItem={this.defaultPlatformSetting}
                     data={platformFeeData} />
 
-                <FeeSettingItem label="Operational Fee%" selectedComm={this.operationalFeeSetting.DeductedPercentage}
-                    basedValueName="| Gross Win Loss |" onChange={this.handleSelectOperationalFee}
+                <FeeSettingItem label="Operational Fee%" basedValueName="| Gross Win Loss |" 
+                    onChange={this.handleSelectOperationalFee}
                     data={this.operationalFee} />
 
-                <FeeSettingItem label="Banking Fee%" selectedComm={this.bankingFeeSetting.DeductedPercentage}
-                    basedValueName="(Deposit + Withdrawal)" onChange={this.handleSelectBankingFee}
+                <FeeSettingItem label="Banking Fee%" basedValueName="(Deposit + Withdrawal)" 
+                    onChange={this.handleSelectBankingFee}
                     data={this.bankingFee} />
             </fieldset>
         )

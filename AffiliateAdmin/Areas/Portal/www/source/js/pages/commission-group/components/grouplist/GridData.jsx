@@ -80,7 +80,9 @@ export class GridData extends Component {
 
                         {isFirstItem && (
                             <td className="text-center" rowSpan={rowSpan}>
-                                <a href="javacript:;" className="mr-2"><span className="oi oi-pencil text-secondary"></span></a>
+                                <a href="javacript:;" className="mr-2" onClick={() => this.props.onEdit(item.GroupId)}>
+                                    <span className="oi oi-pencil text-secondary"></span>
+                                </a>
                                 <a href="javacript:;"><span className="oi oi-x text-danger"></span></a>
                             </td>)
                         }

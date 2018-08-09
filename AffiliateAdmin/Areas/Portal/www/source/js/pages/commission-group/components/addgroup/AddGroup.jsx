@@ -19,7 +19,6 @@ const emptyCommGroup = {
 export class AddGroup extends React.Component {
     constructor(props) {
         super(props);
-        console.log("Add Group");
     }
 
     handleSave = () => {
