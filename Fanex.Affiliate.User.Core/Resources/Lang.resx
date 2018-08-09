@@ -3233,6 +3233,6 @@ One of our Affiliate Accounts Manager will be contacting you by email within 3 b
     <value>Platform Fee</value>
   </data>
   <data name="NoteCommissionCalculation" xml:space="preserve">
-    <value>Commission = (Gross Win Loss - Platform Fee - Marketing Fee - Baning Fee - Bonus) x Comm. Rate</value>
+    <value>Commission = (Gross Win Loss - Platform Fee - Operational Fee - Baning Fee - Bonus) x Comm. Rate</value>
   </data>
 </root>

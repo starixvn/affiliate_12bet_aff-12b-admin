@@ -125,6 +125,7 @@ export class PopupContent extends Component {
     }
 
     render() {
+        
         const { isShowMessage, isSuccess, message } = this.state;
         return (
             <div className="comm-popup-container">

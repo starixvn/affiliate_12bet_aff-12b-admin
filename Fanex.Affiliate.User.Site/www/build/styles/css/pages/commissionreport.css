@@ -46,7 +46,8 @@
       cursor: pointer; }
 
 .table tbody tr > td {
-  background: #fff; }
+  background: #fff;
+  color: #000; }
   .table tbody tr > td .row-wrapper {
     position: relative; }
     .table tbody tr > td .row-wrapper .chevron {
@@ -73,7 +74,7 @@
   display: table-row; }
   .table tbody tr.total > td {
     background: #F8D8D1;
-    color: #333;
+    color: #000;
     font-weight: bold; }
 
 .table tbody tr.noInfo {

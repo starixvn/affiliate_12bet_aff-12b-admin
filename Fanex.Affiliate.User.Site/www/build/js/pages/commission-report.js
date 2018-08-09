@@ -118,8 +118,27 @@ var commissionReport = (function ($) {
             var className = isSummaryRow ? ' class="sumrow' + activeClass + '"' : '';
 
             var iconHtml = '<span class="chevron toggleDetailRow ' + toggleIconClass + '" aria-hidden="true"></span>';
+            var rowItems = [];
+            rowItems.push('<tr' + className + '>');
+            rowItems.push('<td class="text-center">' + (isSummaryRow ? index + 1 : '') + '</td>');
+            rowItems.push('<td class="title-cell"><div class="row-wrapper">' + (isSummaryRow ? title + iconHtml : dataRow.ProductName) + '</div></td>');
+            rowItems.push(_me.buildCell(formatDecimal(dataRow.TurnOver)));
+            rowItems.push(_me.buildCell(formatDecimal(dataRow.WinLoss)));
+            rowItems.push(_me.buildCell(formatDecimal(dataRow.PlatformFee)));
+            if (isSummaryRow) {
+                rowItems.push(_me.buildCell(formatDecimal(dataRow.OperationalFee)));
+                rowItems.push(_me.buildCell(formatDecimal(dataRow.BankingFee)));
+                rowItems.push(_me.buildCell(formatDecimal(dataRow.Bonus)));
+                rowItems.push(_me.buildCell(dataRow.CommissionRate * 100 + '%'));
+                rowItems.push(_me.buildCell(formatDecimal(dataRow.Commission)));
+            } else {
+                for (var i = 0; i < 5; i++) {
+                    rowItems.push(_me.buildCell(""));
+                }
+            }
+            rowItems.push('</tr>');
 
-            return '<tr' + className + '>' + '<td class="text-center">' + (isSummaryRow ? index + 1 : '') + '</td>' + '<td class="title-cell"><div class="row-wrapper">' + (isSummaryRow ? title + iconHtml : dataRow.ProductName) + '</div></td>' + _me.buildCell(formatDecimal(dataRow.TurnOver)) + _me.buildCell(formatDecimal(dataRow.WinLoss)) + _me.buildCell(formatDecimal(dataRow.PlatformFee)) + _me.buildCell(formatDecimal(dataRow.OperationalFee)) + _me.buildCell(formatDecimal(dataRow.BankingFee)) + _me.buildCell(formatDecimal(dataRow.Bonus)) + _me.buildCell(dataRow.CommissionRate * 100 + '%') + _me.buildCell(formatDecimal(dataRow.Commission)) + '</tr>';
+            return rowItems.join("");
         },
 
         buildTotalRow: function buildTotalRow() {
