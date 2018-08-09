@@ -5565,7 +5565,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Commission = (Gross Win Loss - Platform Fee - Operational Fee - Baning Fees - Bonus) x Comm. Rate.
+        ///   Looks up a localized string similar to Commission = (Gross Win Loss - Platform Fee - Operational Fee - Banking Fees - Bonus) x Comm. Rate.
         /// </summary>
         public static string NoteCommissionCalculation {
             get {
