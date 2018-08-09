@@ -1,23 +1,28 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { Alert } from 'reactstrap';
 
 import DeductionSetting from './deduction';
 import QmTurnOverSetting from './QmTurnOverSetting';
 import TierSetting from './tiersetting';
 import CommGroupInfo from './CommGroupInfo';
-import { insertCommissionGroup, setCommGroupAfterInserting, getGroupSettingList, setSelectedGroup } from '../../actions';
-import { INFINITY_AM, INFINITY_QM, defaultPagingOption, messages } from '../../modules/constant';
+import { INFINITY_AM, INFINITY_QM, messages } from '../../modules/constant';
 
-export class PopupContent extends Component {
+export default class PopupContent extends Component {
     constructor(props) {
         super(props);
 
-        this.commGroupInfo = {};
-        this.deductionSettings = {};
-        this.qmTurnover = 0;
-        this.tierSetting = [];
+        const dataItem = this.props.commGroupItem;
+        this.commGroupInfo = {
+            GroupId: dataItem.GroupId,
+            GroupName: dataItem.GroupName,
+            Description: dataItem.Description
+        };
+        this.deductionSettings = {
+            PlatformFeeList: dataItem.PlatformFeeList,
+            RemainingFeeList: dataItem.RemainingFeeList
+        };
+        this.qmTurnover = dataItem.QmTurnover;
+        this.tierSettingList = dataItem.TierSettingList;
 
         this.state = {
             isShowMessage: false,
@@ -40,7 +45,7 @@ export class PopupContent extends Component {
     }
 
     handleChangeInputTier = (tierSettingList) => {
-        this.tierSetting = tierSettingList;
+        this.tierSettingList = tierSettingList;
     }
 
     _isValid() {
@@ -57,19 +62,19 @@ export class PopupContent extends Component {
             messageList.push(messages.requireQmTurnover);
         }
 
-        if (this.tierSetting.length === 0) {
+        if (this.tierSettingList.length === 0) {
             isValid = false;
             messageList.push(messages.requireTier);
         }
-        else if (this.tierSetting.filter(item => item.infinityAm && item.infinityQm).length === 0) {
+        else if (this.tierSettingList.filter(item => item.InfinityAm && item.InfinityQm).length === 0) {
             isValid = false;
             messageList.push(messages.requireInfinity);
         }
-        else if (this.tierSetting.filter(item => item.minAmount > item.maxAmount).length > 0) {
+        else if (this.tierSettingList.filter(item => item.MinAmount > item.MaxAmount).length > 0) {
             isValid = false;
             messageList.push(messages.amountConstrain);
         }
-        else if (this.tierSetting.filter(item => item.minQm > item.maxQm).length > 0) {
+        else if (this.tierSettingList.filter(item => item.MinQm > item.MaxQm).length > 0) {
             isValid = false;
             messageList.push(messages.qmConstrain);
         }
@@ -88,67 +93,79 @@ export class PopupContent extends Component {
             });
         }
         else {
-            const tierSettingList = this.tierSetting.map(item => {
+            const tierSettingList = this.tierSettingList.map(item => {
                 return {
-                    tierId: item.tierId,
-                    minAmount: item.minAmount,
-                    maxAmount: item.infinityAm ? INFINITY_AM : item.maxAmount,
-                    minQm: item.minQm,
-                    maxQm: item.infinityQm ? INFINITY_QM : item.maxQm,
-                    commission: item.commission
+                    TierId: item.TierId,
+                    MinAmount: item.MinAmount,
+                    MaxAmount: item.InfinityAm ? INFINITY_AM : item.MaxAmount,
+                    MinQm: item.MinQm,
+                    MaxQm: item.InfinityQm ? INFINITY_QM : item.MaxQm,
+                    Commission: item.Commission
                 }
             })
 
-            const param = Object.assign({},
-                this.commGroupInfo,
-                this.deductionSettings,
-                { qmTurnover: this.qmTurnover },
-                { tierSettingList });
+            const param = {
+                GroupId: this.commGroupInfo.GroupId,
+                GroupName: this.commGroupInfo.GroupName,
+                Description: this.commGroupInfo.Description,
+                QmTurnover: this.qmTurnover,
+                TierSettingList: tierSettingList,
+                PlatformFeeList: this.deductionSettings.PlatformFeeList,
+                RemainingFeeList: this.deductionSettings.RemainingFeeList
+            }
 
             console.log(param);
-            const response = await this.props.insertCommissionGroup(param);
+
+            const { onSave, onSuccess } = this.props;
+            const response = await onSave(param);
             const result = response.data;
             console.log(result);
             if (result.IsSuccessful) {
-                this.props.setSelectedGroup(null);
-                const gettingParam = Object.assign({}, defaultPagingOption);
-                this.props.getGroupSettingList(gettingParam);
+                onSuccess();
             }
-            else {
-                this.setState({
-                    isShowMessage: true,
-                    isSuccess: false,
-                    message: result.Message
-                });
-            }
+
+            this.setState({
+                isShowMessage: true,
+                isSuccess: result.IsSuccessful,
+                message: [result.IsSuccessful ? 'Add Commission Group Successfully' : result.Message]
+            });
         }
     }
 
     render() {
         
         const { isShowMessage, isSuccess, message } = this.state;
+        const { deductionList, productList } = this.props;
+
+        const tierSettingData = this.tierSettingList.map(item => {
+            const { MinAmount, MaxAmount, MinQm, MaxQm, Commission } = item;
+
+            return {
+                MinAmount,
+                MaxAmount,
+                MinQm,
+                MaxQm,
+                Commission,
+                InfinityAm: MaxAmount === INFINITY_AM,
+                InfinityQm: MaxQm === INFINITY_QM
+            }
+        })
+
         return (
             <div className="comm-popup-container">
                 <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
                     <div dangerouslySetInnerHTML={{ __html: message.join('<br>') }}></div>
                 </Alert>
-                <CommGroupInfo onChange={this.handleChangeInput} />
-                <DeductionSetting onSelect={this.handleSelectDeduction} deductionList={this.props.deductionList} />
-                <QmTurnOverSetting onChange={this.handleChangeInputQmTurnover} />
-                <TierSetting onChange={this.handleChangeInputTier} />
+                <CommGroupInfo onChange={this.handleChangeInput} data={this.commGroupInfo} />
+                <DeductionSetting onSelect={this.handleSelectDeduction}
+                    deductionList={deductionList}
+                    productList={productList}
+                    data={this.deductionSettings} />
+                <QmTurnOverSetting onChange={this.handleChangeInputQmTurnover} data={this.qmTurnover} />
+                <TierSetting onChange={this.handleChangeInputTier} data={tierSettingData} />
 
                 <button type="button" className="my-2 btn btn-success btn-save" onClick={this.handleSave}>SAVE</button>
             </div>
         )
     }
 }
-
-function mapStateToProp({ deductionList }) {
-    return { deductionList };
-}
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ insertCommissionGroup, setCommGroupAfterInserting, getGroupSettingList, setSelectedGroup }, dispatch);
-}
-
-export default connect(mapStateToProp, mapDispatchToProps)(PopupContent);

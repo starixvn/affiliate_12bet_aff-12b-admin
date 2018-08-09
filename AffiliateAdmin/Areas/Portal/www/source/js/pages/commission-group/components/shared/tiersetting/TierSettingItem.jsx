@@ -16,52 +16,54 @@ export default class TierSettingItem extends React.Component {
         const name = target.name;
         const { index, onChange } = this.props;
 
-        const newItem = isCheckbox ? { 'infinityAm': value, 'infinityQm': value } : { [name]: value || 0 };
+        const newItem = isCheckbox ? { 'InfinityAm': value, 'InfinityQm': value } : { [name]: value || 0 };
 
         onChange && onChange(index, newItem);
     }
 
     render() {
         const { data, index, onRemove, isDisabledInfinity } = this.props;
-        const isDisabled = data.infinityAm || data.infinityQm;
+        const { MinAmount, MaxAmount, MinQm, MaxQm, Commission, InfinityAm, InfinityQm } = data;
+        const isDisabled = InfinityAm || InfinityQm;
         const isDisabledMinAmount = index > 0;
-
+        
         return (
             <tr>
                 <td className="text-center">{index + 1}</td>
                 <td>
-                    <Input type="text" name="minAmount" id="minAmount" disabled={isDisabledMinAmount} 
-                        value={format(data.minAmount)} onChange={this.handleChange} />
+                    <Input type="text" name="MinAmount" id="MinAmount" disabled={isDisabledMinAmount}
+                        value={format(MinAmount)} onChange={this.handleChange} />
                 </td>
                 <td>
                     <Form inline>
-                        <Input type="text" name="maxAmount" id="maxAmount" className="form-max" disabled={isDisabled} 
-                            value={isDisabled ? INFINITY_SYMBOL : format(data.maxAmount)} onChange={this.handleChange} />
+                        <Input type="text" name="MaxAmount" id="MaxAmount" className="form-max" disabled={isDisabled}
+                            value={isDisabled ? INFINITY_SYMBOL : format(MaxAmount)} onChange={this.handleChange} />
                         <FormGroup check className="ml-sm-1">
                             <Label check>
-                                <Input type="checkbox" name="infinityAm" checked={isDisabled} 
+                                <Input type="checkbox" name="InfinityAm" checked={isDisabled}
                                     onChange={this.handleChange} disabled={isDisabledInfinity} />{INFINITY_SYMBOL}
                             </Label>
                         </FormGroup>
                     </Form>
                 </td>
                 <td>
-                    <Input type="text" name="minQm" id="minQm" value={format(data.minQm)} onChange={this.handleChange} />
+                    <Input type="text" name="MinQm" id="MinQm" value={format(MinQm)} onChange={this.handleChange} />
                 </td>
                 <td>
                     <Form inline>
-                        <Input type="text" name="maxQm" id="maxQm" className="form-max" disabled={isDisabled} 
-                            value={isDisabled ? INFINITY_SYMBOL : format(data.maxQm)} onChange={this.handleChange} />
+                        <Input type="text" name="MaxQm" id="MaxQm" className="form-max" disabled={isDisabled}
+                            value={isDisabled ? INFINITY_SYMBOL : format(MaxQm)} onChange={this.handleChange} />
                         <FormGroup check className="ml-sm-1">
                             <Label check>
-                                <Input type="checkbox" name="infinityQm" checked={isDisabled} 
+                                <Input type="checkbox" name="InfinityQm" checked={isDisabled}
                                     onChange={this.handleChange} disabled={isDisabledInfinity} />{INFINITY_SYMBOL}
                             </Label>
                         </FormGroup>
                     </Form>
                 </td>
                 <td>
-                    <select className="form-control" name="commission" onChange={this.handleChange} value={formatDecimal(data.commission)}>
+                    <select className="form-control" name="Commission" 
+                        onChange={this.handleChange} value={formatDecimal(Commission)}>
                         {
                             commissionValueList.map((item, i) => {
                                 return (<option key={`comm-${index}-${i}`} value={item}>{item}</option>);

@@ -9,7 +9,7 @@ export default class QmTurnOverSetting extends React.Component {
         super(props);
 
         this.state = {
-            qmTurnover: 0
+            qmTurnover: this.props.data
         }
     }
 

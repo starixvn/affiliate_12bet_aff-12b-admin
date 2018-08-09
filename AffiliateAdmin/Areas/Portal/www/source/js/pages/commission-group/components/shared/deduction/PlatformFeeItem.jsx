@@ -11,7 +11,7 @@ export default class PlatformFeeItem extends React.Component {
         this.selectedCommission = this.props.data.commission;
     }
 
-    handleChange = (selectedItem, newDataSource) => {
+    handleChange = (selectedItem) => {
         const { onSelectProduct } = this.props;
         selectedItem && onSelectProduct && onSelectProduct(selectedItem);
     }
@@ -32,9 +32,9 @@ export default class PlatformFeeItem extends React.Component {
                     <div className="select-product">
                         <MultipleSelect
                             dataSource={productList}
-                            keyField="productId"
-                            valueField="productName"
-                            statusField="checked"
+                            keyField="ProductId"
+                            valueField="ProductName"
+                            statusField="Checked"
                             hasAllOption={false}
                             maxDisplayItemCount={1}
                             noneSelectedLabel="Please Select"

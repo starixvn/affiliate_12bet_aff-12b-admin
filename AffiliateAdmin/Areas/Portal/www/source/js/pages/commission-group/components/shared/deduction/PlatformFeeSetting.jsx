@@ -8,8 +8,9 @@ export default class PlatformFeeSetting extends Component {
         super(props);
 
         this.defaultPlatformSetting = this.props.defaultSettingItem;
+
         this.state = {
-            platformFeeSettings: [this.defaultPlatformSetting]
+            platformFeeSettings: this.props.data
         }
     }
 
@@ -17,7 +18,7 @@ export default class PlatformFeeSetting extends Component {
         const platformFeeSettings = this.state.platformFeeSettings;
         const { productList, commission } = this.defaultPlatformSetting;
         const newProductList = productList.map(item => {
-            return Object.assign({}, item, { checked: false });
+            return Object.assign({}, item, { Checked: false });
         });
 
         this.setState({
@@ -29,14 +30,14 @@ export default class PlatformFeeSetting extends Component {
         const platformFeeSettings = deepClone(this.state.platformFeeSettings);
 
         const rootProductList = platformFeeSettings[0].productList;
-        const checkedProductList = platformFeeSettings[index].productList.filter(p => p.checked);
+        const checkedProductList = platformFeeSettings[index].productList.filter(p => p.Checked);
 
         for (let i = 0; i < checkedProductList.length; i++) {
-            const productId = checkedProductList[i].productId;
-            const rootProductItem = rootProductList.find(p => p.productId === productId);
+            const productId = checkedProductList[i].ProductId;
+            const rootProductItem = rootProductList.find(p => p.ProductId === productId);
 
             if (rootProductItem) {
-                rootProductItem.checked = true;
+                rootProductItem.Checked = true;
             }
         }
 
@@ -46,23 +47,23 @@ export default class PlatformFeeSetting extends Component {
     }
 
     handleSelect = (index, selectedItem) => {
-        const isChecked = selectedItem.checked;
+        const isChecked = selectedItem.Checked;
         const platformFeeSettings = deepClone(this.state.platformFeeSettings);
         const settingCount = platformFeeSettings.length;
 
         if (settingCount > 1) {
             const currentproductList = platformFeeSettings[index].productList;
-            const currentProductItem = currentproductList.find(p => p.productId === selectedItem.productId);
-            currentProductItem.checked = isChecked;
+            const currentProductItem = currentproductList.find(p => p.ProductId === selectedItem.ProductId);
+            currentProductItem.Checked = isChecked;
 
             if (isChecked) {
                 for (let i = 0; i < platformFeeSettings.length; i++) {
                     if (i !== index) {
                         const productList = platformFeeSettings[i].productList;
-                        const productItem = productList.find(p => p.productId === selectedItem.productId && p.checked === isChecked);
+                        const productItem = productList.find(p => p.ProductId === selectedItem.ProductId && p.Checked === isChecked);
 
                         if (productItem) {
-                            productItem.checked = !isChecked;
+                            productItem.Checked = !isChecked;
                             break;
                         }
                     }
@@ -70,8 +71,8 @@ export default class PlatformFeeSetting extends Component {
             }
             else {
                 const productList = platformFeeSettings[0].productList;
-                const productItem = productList.find(p => p.productId === selectedItem.productId);
-                productItem.checked = !isChecked;
+                const productItem = productList.find(p => p.ProductId === selectedItem.ProductId);
+                productItem.Checked = !isChecked;
             }
         }
 
@@ -92,9 +93,9 @@ export default class PlatformFeeSetting extends Component {
     _callbackToParent(dataList) {
         const settingList = dataList.map(item => {
             return {
-                deductionId: this.props.deductionId,
-                productIds: item.productList.filter(p => p.checked).map(p => p.productId).join(','),
-                deductedPercentage: item.commission
+                DeductionId: this.props.deductionId,
+                ProductIds: item.productList.filter(p => p.Checked).map(p => p.ProductId).join(','),
+                DeductedPercentage: item.commission
             }
         });
 

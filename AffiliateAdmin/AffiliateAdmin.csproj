@@ -1591,7 +1591,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\grouplist\GridData.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\PopupContent.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\modules\constant.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\commission-group\modules\service.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\reducers\sampleReducer.js" />
     <Content Include="Areas\Portal\www\source\js\pagelayout\vendors\jquery-3.3.1.min.js" />

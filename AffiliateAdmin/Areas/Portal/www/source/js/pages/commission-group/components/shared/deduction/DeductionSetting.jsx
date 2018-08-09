@@ -1,41 +1,45 @@
 import React, { Component } from "react";
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 import PlatformFeeSetting from './PlatformFeeSetting';
 import { deductionNameList } from '../../../modules/constant';
 import FeeSettingItem from './FeeSettingItem';
 
-export class DeductionSetting extends Component {
+export default class DeductionSetting extends Component {
     constructor(props) {
         super(props);
 
+        const { PlatformFeeList, RemainingFeeList } = this.props.data;
+
         const deductionList = this._convertDeductionList();
 
-        this.platformFeeDeductionSetting = deductionList[deductionNameList.platformFee];
-        this.operationalFeeDeductionSetting = deductionList[deductionNameList.operationalFee];
-        this.bankingFeeFeeDeductionSetting = deductionList[deductionNameList.bankingFee];
+        this.platformFeeSetting = deductionList[deductionNameList.platformFee];
+        this.operationalFeeSetting = deductionList[deductionNameList.operationalFee];
+        this.bankingFeeSetting = deductionList[deductionNameList.bankingFee];
 
-        this.operationalFee = {
-            deductionId: this.operationalFeeDeductionSetting.DeductionId,
-            productIds: 0,
-            deductedPercentage: this.operationalFeeDeductionSetting.DeductedPercentage
-        };
-        this.bankingFee = {
-            deductionId: this.bankingFeeFeeDeductionSetting.DeductionId,
-            productIds: 0,
-            deductedPercentage: this.bankingFeeFeeDeductionSetting.DeductedPercentage
+        const operationalFee = RemainingFeeList.filter(item => item.DeductionId === this.operationalFeeSetting.DeductionId);
+        this.operationalFee = operationalFee.length ? operationalFee[0] : {
+            DeductionId: this.operationalFeeSetting.DeductionId,
+            ProductIds: 0,
+            DeductedPercentage: this.operationalFeeSetting.DeductedPercentage
         };
 
-        const productList = this._convertToPlatformSettingList();
+        const bankingFee = RemainingFeeList.filter(item => item.DeductionId === this.bankingFeeSetting.DeductionId);
+        this.bankingFee = bankingFee.length ? bankingFee[0] : {
+            DeductionId: this.bankingFeeSetting.DeductionId,
+            ProductIds: 0,
+            DeductedPercentage: this.bankingFeeSetting.DeductedPercentage
+        };
+
+        const productList = this._convertProductList();
         this.defaultPlatformSetting = {
             productList: productList,
-            commission: this.platformFeeDeductionSetting.DeductedPercentage
+            commission: this.platformFeeSetting.DeductedPercentage
         };
-        this.platformFeeList = [{
-            deductionId: this.platformFeeDeductionSetting.DeductionId,
-            productIds: productList.map(p => p.productId).join(','),
-            deductedPercentage: this.platformFeeDeductionSetting.DeductedPercentage
+
+        this.platformFeeList = PlatformFeeList.length ? PlatformFeeList : [{
+            DeductionId: this.platformFeeSetting.DeductionId,
+            ProductIds: productList.map(p => p.ProductId).join(','),
+            DeductedPercentage: this.platformFeeSetting.DeductedPercentage
         }];
 
         this._callbackToParent();
@@ -51,26 +55,26 @@ export class DeductionSetting extends Component {
         return deductions;
     }
 
-    _convertToPlatformSettingList() {
+    _convertProductList(productIds) {
         const { productList } = this.props;
+        const idList = productIds ? productIds.split(',') : '';
+        const isCheckAll = !productIds || idList.length === productList.length;
 
         return productList.map(item => {
             return {
-                productId: item.ProductId,
-                productName: item.ProductName,
-                checked: true
+                ProductId: item.ProductId,
+                ProductName: item.ProductName,
+                Checked: isCheckAll || idList.filter(i => i === item.ProductId).length > 0
             }
         })
     }
 
     _callbackToParent() {
-        const remainingFeeList = [];
-        this.operationalFee && remainingFeeList.push(this.operationalFee);
-        this.bankingFee && remainingFeeList.push(this.bankingFee);
+        const remainingFeeList = [this.operationalFee, this.bankingFee];
 
         const setting = Object.assign({},
-            { platformFeeList: this.platformFeeList },
-            { remainingFeeList });
+            { PlatformFeeList: this.platformFeeList },
+            { RemainingFeeList: remainingFeeList });
 
         this.props.onSelect(setting);
     }
@@ -81,39 +85,39 @@ export class DeductionSetting extends Component {
     }
 
     handleSelectOperationalFee = (event) => {
-        this.operationalFee = Object.assign({}, this.operationalFee, { deductedPercentage: Number(event.target.value) });
+        this.operationalFee = Object.assign({}, this.operationalFee, { DeductedPercentage: Number(event.target.value) });
         this._callbackToParent();
     }
 
     handleSelectBankingFee = (event) => {
-        this.bankingFee = Object.assign({}, this.bankingFee, { deductedPercentage: Number(event.target.value) });
+        this.bankingFee = Object.assign({}, this.bankingFee, { DeductedPercentage: Number(event.target.value) });
         this._callbackToParent();
     }
 
     render() {
+        const platformFeeData = this.platformFeeList.map(item => {
+            return {
+                productList: this._convertProductList(item.ProductIds),
+                commission: item.DeductedPercentage
+            }
+        })
+
         return (
             <fieldset>
                 <legend><h6 className="font-weight-bold">Deductions</h6></legend>
                 <PlatformFeeSetting onSelect={this.handleSelectPlatformfee}
-                    deductionId={this.platformFeeDeductionSetting.DeductionId}
-                    defaultSettingItem={this.defaultPlatformSetting} />
+                    deductionId={this.platformFeeSetting.DeductionId}
+                    defaultSettingItem={this.defaultPlatformSetting}
+                    data={platformFeeData} />
 
-                <FeeSettingItem label="Operational Fee%" selectedComm={this.operationalFeeDeductionSetting.DeductedPercentage}
-                   basedValueName="| Gross Win Loss |" onChange={this.handleSelectOperationalFee} />
+                <FeeSettingItem label="Operational Fee%" selectedComm={this.operationalFeeSetting.DeductedPercentage}
+                    basedValueName="| Gross Win Loss |" onChange={this.handleSelectOperationalFee}
+                    data={this.operationalFee} />
 
-                <FeeSettingItem label="Banking Fee%" selectedComm={this.bankingFeeFeeDeductionSetting.DeductedPercentage}
-                   basedValueName="(Deposit + Withdrawal)" onChange={this.handleSelectBankingFee} />
+                <FeeSettingItem label="Banking Fee%" selectedComm={this.bankingFeeSetting.DeductedPercentage}
+                    basedValueName="(Deposit + Withdrawal)" onChange={this.handleSelectBankingFee}
+                    data={this.bankingFee} />
             </fieldset>
         )
     }
 }
-
-function mapStateToProps({ productList }) {
-    return Object.assign({}, { productList });
-}
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({}, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(DeductionSetting);

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { resolveClientUrl } from '../../../modules/utils';
 
-import { SET_GRIDDATA, SET_SELECTEDGROUP, SET_PAGING_OPTION, INSERT_COMM_GROUP_SUCCESS } from './types';
+import { SET_GRIDDATA, SET_SELECTEDGROUP, SET_PAGING_OPTION } from './types';
 
 const fetchGroupSettingData = (param) => {
     const url = resolveClientUrl('Portal/CommissionGroup/GetCommissionSettingList');
@@ -49,11 +49,4 @@ export const insertCommissionGroup = (param) => {
     const url = resolveClientUrl('Portal/CommissionGroup/InsertCommissionGroup');
 
     return () => axios.post(url, param);
-}
-
-export const setCommGroupAfterInserting = (data) => {
-    return {
-        type: INSERT_COMM_GROUP_SUCCESS,
-        data
-    }
 }

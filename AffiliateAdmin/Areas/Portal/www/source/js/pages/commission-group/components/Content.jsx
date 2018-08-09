@@ -5,24 +5,31 @@ import { bindActionCreators } from 'redux';
 
 import { Modal, ModalHeader, ModalBody, Button } from 'reactstrap';
 import GridData from './grouplist/GridData';
-import PopupContent from './shared/PopupContent';
 import Pager from '../../../components/Pager';
-import { createEmptyCommGroup } from '../modules/service';
+import AddGroup from './addgroup';
+import EditGroup from './editgroup';
 
-import { getGroupSettingList, setSelectedGroup } from '../actions';
+import { getGroupSettingList } from '../actions';
 
 export class Content extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            Popup: null
+        }
     }
 
     handleAddNewGroup = () => {
-        const commGroup = createEmptyCommGroup();
-        this.props.setSelectedGroup(commGroup);
+        this.setState({ Popup: (<AddGroup onClose={this.handleHide} />) });
+    }
+
+    handleEditGroup = (itemId) => {
+        this.setState({ Popup: <EditGroup onClose={this.handleHide} itemId={itemId} /> });
     }
 
     handleHide = () => {
-        this.props.setSelectedGroup(null);
+        this.setState({ Popup: null });
     }
 
     onPaging = (pageIndex, pageSize) => {
@@ -30,14 +37,15 @@ export class Content extends Component {
     }
 
     render() {
-        const showPopup = !!this.props.selectedGroup;
+        const { Popup } = this.state;
+        const showPopup = Popup !== null;
 
         return (
             <div className="data-content">
                 <div className="mx-2 my-2">
                     <Button outline type="button" onClick={this.handleAddNewGroup}>Add New Group</Button>
                 </div>
-                
+
                 <Pager pageOption={this.props.pagingOption} onPaging={this.onPaging} />
                 <div className="my-1">
                     <GridData />
@@ -47,7 +55,7 @@ export class Content extends Component {
                     <ModalHeader toggle={this.handleHide}><span className="iconpopup"></span>Add a Commission Group</ModalHeader>
                     <ModalBody>
                         <div className="modal-body-wrapper">
-                            <PopupContent />
+                            {Popup}
                         </div>
                     </ModalBody>
                 </Modal>
@@ -56,12 +64,12 @@ export class Content extends Component {
     }
 }
 
-function mapStateToProps({ pagingOption, selectedGroup }) {
-    return Object.assign({}, { pagingOption, selectedGroup });
+function mapStateToProps({ pagingOption }) {
+    return Object.assign({}, { pagingOption });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ getGroupSettingList, setSelectedGroup }, dispatch);
+    return bindActionCreators({ getGroupSettingList }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

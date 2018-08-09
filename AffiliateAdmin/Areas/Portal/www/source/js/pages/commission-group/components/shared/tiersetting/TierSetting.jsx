@@ -4,13 +4,13 @@ import TierSettingItem from './TierSettingItem';
 import { updateObjectInArray, removeItem } from '../../../../../modules/dataHandler';
 import { isValidNumber } from '../../../../../modules/utils';
 
-const defaultTierSetting = { minAmount: 0, maxAmount: 0, minQm: 0, maxQm: 0, commission: 0, infinityAm: false, infinityQm: false };
+const defaultTierSetting = { MinAmount: 0, MaxAmount: 0, MinQm: 0, MaxQm: 0, Commission: 0, InfinityAm: false, InfinityQm: false};
 
 export default class TierSetting extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            tierSettingList: []
+            tierSettingList: this.props.data
         }
     }
 
@@ -26,16 +26,16 @@ export default class TierSetting extends Component {
         const itemCount = tierSettingList.length;
         if (itemCount > 0) {
             const lastItem = tierSettingList[itemCount - 1];
-            defaultMinAmount = lastItem.maxAmount + 1;
-            defaultMinQm = lastItem.maxQm + 1;
+            defaultMinAmount = lastItem.MaxAmount + 1;
+            defaultMinQm = lastItem.MaxQm + 1;
         }
 
         const newTierSetting = Object.assign({}, defaultTierSetting, {
-            tierId: itemCount + 1,
-            minAmount: defaultMinAmount,
-            maxAmount: defaultMinAmount,
-            minQm: defaultMinQm,
-            maxQm: defaultMinQm
+            TierId: itemCount + 1,
+            MinAmount: defaultMinAmount,
+            MaxAmount: defaultMinAmount,
+            MinQm: defaultMinQm,
+            MaxQm: defaultMinQm
         });
         const newTierSettingList = [...tierSettingList, newTierSetting];
 
@@ -50,11 +50,11 @@ export default class TierSetting extends Component {
     }
 
     handleChangeInput = (index, settingValue) => {
-        const { minAmount, maxAmount, minQm, maxQm } = settingValue;
-        if ((!minAmount || isValidNumber(minAmount)) && 
-            (!maxAmount || isValidNumber(maxAmount)) && 
-            (!minQm || isValidNumber(minQm)) && 
-            (!maxQm || isValidNumber(maxQm))) {
+        const { MinAmount, MaxAmount, MinQm, MaxQm } = settingValue;
+        if ((!MinAmount || isValidNumber(MinAmount)) &&
+            (!MaxAmount || isValidNumber(MaxAmount)) &&
+            (!MinQm || isValidNumber(MinQm)) &&
+            (!MaxQm || isValidNumber(MaxQm))) {
             const tierSettingList = updateObjectInArray(this.state.tierSettingList, index, settingValue);
 
             this.setState({ tierSettingList });
@@ -64,7 +64,7 @@ export default class TierSetting extends Component {
 
     render() {
         const { tierSettingList } = this.state;
-        const canAddTier = tierSettingList.filter(item => item.infinityAm).length > 0;
+        const canAddTier = tierSettingList.filter(item => item.InfinityAm).length > 0;
 
         return (
             <fieldset>
@@ -97,7 +97,7 @@ export default class TierSetting extends Component {
 
                 <div>
                     <button type="button" className="btn btn-addTier btn-secondary" onClick={this.handleAdd} disabled={canAddTier}>
-                        <span class="oi oi-plus"></span> Add Tier
+                        <span className="oi oi-plus"></span> Add Tier
                     </button>
                 </div>
             </fieldset>

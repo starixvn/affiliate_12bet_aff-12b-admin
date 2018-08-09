@@ -5,9 +5,10 @@ export default class CommGroupInfo extends React.Component {
     constructor(props) {
         super(props);
 
+        const { data } = this.props;
         this.state = {
-            GroupName: '',
-            Description: ''
+            GroupName: data.GroupName,
+            Description: data.Description
         }
     }
 
