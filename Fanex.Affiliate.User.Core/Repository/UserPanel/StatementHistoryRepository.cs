@@ -10,7 +10,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
     {
         public IEnumerable<StatementHistory> GetStatementHistory(StatementHistoryParam statementHistoryParam)
         {
-            const string uSpKey = "Aff_AffiliateStatementHistorySel";
+            const string uSpKey = "Aff_StatementHistory_Sel";
             var dbMode = statementHistoryParam.IsInternal ? DBMode.View : DBMode.Main;
             var dataList = new List<StatementHistory>();
 
