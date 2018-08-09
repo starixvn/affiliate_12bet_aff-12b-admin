@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Alert } from 'reactstrap';
 
-import DeductionSetting from './DeductionSetting';
+import DeductionSetting from './deduction';
 import QmTurnOverSetting from './QmTurnOverSetting';
-import TierSetting from './TierSetting';
+import TierSetting from './tiersetting';
 import CommGroupInfo from './CommGroupInfo';
-import { insertCommissionGroup, setCommGroupAfterInserting, getGroupSettingList, setSelectedGroup } from '../actions';
-import { INFINITY_AM, INFINITY_QM, defaultPagingOption, messages } from '../modules/constant';
+import { insertCommissionGroup, setCommGroupAfterInserting, getGroupSettingList, setSelectedGroup } from '../../actions';
+import { INFINITY_AM, INFINITY_QM, defaultPagingOption, messages } from '../../modules/constant';
 
 export class PopupContent extends Component {
     constructor(props) {

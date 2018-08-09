@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import PlatformFeeSetting from './PlatformFeeSetting';
-import { deductionNameList } from '../modules/constant';
+import { deductionNameList } from '../../../modules/constant';
 import FeeSettingItem from './FeeSettingItem';
 
 export class DeductionSetting extends Component {

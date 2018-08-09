@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { INFINITY_AM, INFINITY_QM, INFINITY_SYMBOL } from '../modules/constant';
-import { format, formatDecimal } from '../../../modules/numberFormat';
+import { INFINITY_AM, INFINITY_QM, INFINITY_SYMBOL } from '../../modules/constant';
+import { format, formatDecimal } from '../../../../modules/numberFormat';
 
 function rawHtml(content) {
     return (<p dangerouslySetInnerHTML={{ __html: content }}></p>);

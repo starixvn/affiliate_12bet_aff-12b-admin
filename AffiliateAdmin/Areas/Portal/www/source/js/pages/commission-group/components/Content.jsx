@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Modal, ModalHeader, ModalBody, Button } from 'reactstrap';
-import GridData from './GridData';
-import PopupContent from './PopupContent';
+import GridData from './grouplist/GridData';
+import PopupContent from './shared/PopupContent';
 import Pager from '../../../components/Pager';
 import { createEmptyCommGroup } from '../modules/service';
 

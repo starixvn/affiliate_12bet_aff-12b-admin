@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { Form, FormGroup, Label, Input } from 'reactstrap';
-import { format } from '../../../modules/numberFormat';
-import { isValidNumber } from '../../../modules/utils';
+import { format } from '../../../../modules/numberFormat';
+import { isValidNumber } from '../../../../modules/utils';
 
 export default class QmTurnOverSetting extends React.Component {
     constructor(props) {

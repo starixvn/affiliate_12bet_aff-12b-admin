@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { Col, FormGroup, Label, Input } from 'reactstrap';
-import { formatDecimal } from '../../../modules/numberFormat';
-import { commissionValueList } from '../modules/constant';
+import { formatDecimal } from '../../../../../modules/numberFormat';
+import { commissionValueList } from '../../../modules/constant';
 
 export default class FeeSettingItem extends React.Component {
     constructor(props) {

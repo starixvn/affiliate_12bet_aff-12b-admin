@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 import TierSettingItem from './TierSettingItem';
-import { updateObjectInArray, removeItem } from '../../../modules/dataHandler';
-import { isValidNumber } from '../../../modules/utils';
+import { updateObjectInArray, removeItem } from '../../../../../modules/dataHandler';
+import { isValidNumber } from '../../../../../modules/utils';
 
 const defaultTierSetting = { minAmount: 0, maxAmount: 0, minQm: 0, maxQm: 0, commission: 0, infinityAm: false, infinityQm: false };
 
@@ -10,8 +10,7 @@ export default class TierSetting extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            tierSettingList: [
-            ]
+            tierSettingList: []
         }
     }
 

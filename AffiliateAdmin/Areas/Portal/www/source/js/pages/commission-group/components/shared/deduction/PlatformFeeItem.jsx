@@ -1,8 +1,8 @@
 import React from "react";
-import MultipleSelect from "../../../components/multiple-select";
+import MultipleSelect from "../../../../../components/multiple-select";
 import { Col, FormGroup, Input } from 'reactstrap';
-import { commissionValueList } from '../modules/constant';
-import { formatDecimal } from '../../../modules/numberFormat';
+import { commissionValueList } from '../../../modules/constant';
+import { formatDecimal } from '../../../../../modules/numberFormat';
 
 export default class PlatformFeeItem extends React.Component {
     constructor(props) {

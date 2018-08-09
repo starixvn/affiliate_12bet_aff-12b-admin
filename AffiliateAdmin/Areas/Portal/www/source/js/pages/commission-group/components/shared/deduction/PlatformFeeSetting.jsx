@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import PlatformFeeItem from "./PlatformFeeItem";
-import { deepClone, updateObjectInArray } from "../../../modules/dataHandler";
+import { deepClone, updateObjectInArray } from "../../../../../modules/dataHandler";
 
 export default class PlatformFeeSetting extends Component {
     constructor(props) {

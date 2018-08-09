@@ -1588,8 +1588,8 @@
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\Filter.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\GridData.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\PopupContent.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\grouplist\GridData.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\PopupContent.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\modules\constant.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\modules\service.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\reducers\index.js" />
@@ -1751,12 +1751,12 @@
     <Content Include="Areas\Portal\www\source\style\components\_multiple-select.scss" />
     <Content Include="Areas\Portal\www\source\style\vendors\multiple-select.scss" />
     <Content Include="Areas\Portal\www\source\style\components\_pager.scss" />
-    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\CommGroupInfo.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\DeductionSetting.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\PlatformFeeItem.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\QmTurnOverSetting.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\TierSetting.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\TierSettingItem.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\CommGroupInfo.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\deduction\DeductionSetting.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\deduction\PlatformFeeItem.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\QmTurnOverSetting.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\tiersetting\TierSetting.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\tiersetting\TierSettingItem.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-information\index.jsx" />
     <Content Include="Areas\Portal\Views\Affiliate\Information.cshtml" />
     <Content Include="Areas\Portal\www\source\style\vendors\bootstrap\bootstrap-grid.scss" />
@@ -1872,6 +1872,10 @@
     <Content Include="Areas\Portal\www\dist\style\assets\open-iconic.woff" />
     <Content Include="Areas\Portal\www\source\style\components\_button.scss" />
     <Content Include="Areas\Portal\www\source\style\layout\_filter.scss" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\deduction\FeeSettingItem.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\deduction\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\deduction\PlatformFeeSetting.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\tiersetting\index.jsx" />
     <None Include="bundleconfig.json" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -2013,6 +2017,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Portal\www\source\js\pages\affiliate-information\components\" />
+    <Folder Include="Areas\Portal\www\source\js\pages\commission-group\components\addgroup\" />
+    <Folder Include="Areas\Portal\www\source\js\pages\commission-group\components\editgroup\" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\Google.Protobuf.dll" />
