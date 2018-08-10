@@ -188,6 +188,8 @@ public partial class Report_AffiliateReportDetail : IBCPage
         TemplateHandler.Assign(ref strTpl, "datelimit", Resources.Lang.AffiliateReportDetail + " [" + Request["affname"] + "]");
         TemplateHandler.Assign(ref strTpl, "affstatistics", Resources.Lang.AffiliateStatistics);
         TemplateHandler.Assign(ref strTpl, "err-msg", Resources.Lang.InvalidAffiliate);
+        TemplateHandler.Assign(ref strTpl, "original", Resources.Lang.Original);
+        TemplateHandler.Assign(ref strTpl, "usdeqv", Resources.Lang.UsdEqv);
         //Assign color
         TemplateHandler.Assign(ref strTpl, "over", Common.RowBgOver);
         TemplateHandler.Assign(ref strTpl, "colormonthly", Common.RowBgPending);
