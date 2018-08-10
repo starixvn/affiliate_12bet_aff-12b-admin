@@ -1,62 +1,91 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Alert } from 'reactstrap';
 
-import PopupContent from '../shared/PopupContent';
+import { getSelectedCommGroup, getGroupSettingList, setSelectedGroup, updateCommissionGroup } from '../../actions';
+
+import DeductionSetting from '../shared/deduction';
+import QmTurnOverSetting from '../shared/QmTurnOverSetting';
+import TierSetting from '../shared/tiersetting';
+import CommGroupInfo from '../shared/CommGroupInfo';
 import { defaultPagingOption } from '../../modules/constant';
-import { fetchGroupSettingData, getGroupSettingList } from '../../actions';
+import { validate } from '../../modules/service';
 
 export class EditGroup extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            selectedGroup: null
+            isShowMessage: false,
+            isSuccess: true,
+            message: []
         }
     }
 
     componentDidMount() {
-        this._getSelectedGroup();
+        this.props.getSelectedCommGroup({ GroupId: this.props.itemId });
     }
 
-    _getSelectedGroup = async () => {
-        const { itemId } = this.props;
-        const response = await fetchGroupSettingData({ GroupId: itemId });
-        const data = response.data;
-        if (data.CommissionSettingList.length) {
-            this.setState({ selectedGroup: data.CommissionSettingList[0] })
+    handleSave = async () => {
+        const { selectedGroup } = this.props;
+        const validationResult = validate(selectedGroup);
+
+        if (!validationResult.isValid) {
+            this.setState({
+                isShowMessage: !validationResult.isValid,
+                isSuccess: validationResult.isValid,
+                message: validationResult.messageList
+            });
         }
         else {
-            this.props.onClose();
-        }
-    }
+            const platformFeeList = selectedGroup.PlatformFeeList.filter(item => !!item.ProductIds);
 
-    handleSave = () => {
-        window.setTimeout(this.props.onClose, 3000);
-        const gettingParam = Object.assign({}, defaultPagingOption);
-        this.props.getGroupSettingList(gettingParam);
+            const param = { ...selectedGroup, PlatformFeeList: platformFeeList };
+            console.log(param);
+
+            const response = await this.props.updateCommissionGroup(param);
+            const result = response.data;
+            console.log(result);
+            if (result.IsSuccessful) {
+                window.setTimeout(this.props.onClose, 3000);
+                const gettingParam = Object.assign({}, defaultPagingOption);
+                this.props.getGroupSettingList(gettingParam);
+            }
+
+            this.setState({
+                isShowMessage: true,
+                isSuccess: result.IsSuccessful,
+                message: [result.IsSuccessful ? 'Update Commission Group Successfully' : result.Message]
+            });
+        }
     }
 
     render() {
-        const { deductionList, productList } = this.props;
-        const { selectedGroup } = this.state;
+        const { isShowMessage, isSuccess, message } = this.state;
 
-        return selectedGroup && (
-            <PopupContent deductionList={deductionList}
-                onSave={() => { }}
-                onSuccess={this.handleSave}
-                commGroupItem={selectedGroup}
-                productList={productList} />
+        return this.props.selectedGroup && (
+            <div className="comm-popup-container">
+                <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
+                    <div dangerouslySetInnerHTML={{ __html: message.join('<br>') }}></div>
+                </Alert>
+                <CommGroupInfo />
+                <DeductionSetting />
+                <QmTurnOverSetting />
+                <TierSetting />
+
+                <button type="button" className="my-2 btn btn-success btn-save" onClick={this.handleSave}>SAVE</button>
+            </div>
         )
     }
 }
 
-function mapStateToProp({ deductionList, productList }) {
-    return { deductionList, productList };
+function mapStateToProp({ selectedGroup }) {
+    return { selectedGroup };
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ getGroupSettingList }, dispatch);
+    return bindActionCreators({ getSelectedCommGroup, getGroupSettingList, setSelectedGroup }, dispatch);
 }
 
 export default connect(mapStateToProp, mapDispatchToProps)(EditGroup);

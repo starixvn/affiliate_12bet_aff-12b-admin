@@ -54,9 +54,18 @@ namespace Fanex.Affiliate.Admin.Core.Services
         {
             var deductionSettingList = param.PlatformFeeList.Concat(new[] { param.OperationalFee, param.BankingFee });
             param.TierList = BuildTierSettingXml(param.TierSettingList);
-            param.DeductionList = BuildDeductionSettingXml(deductionSettingList);
+            param.DeductionList = BuildDeductionSettingXml(deductionSettingList, true);
 
             return _commGroupRepository.InsertCommissionGroup(param);
+        }
+
+        public ResultInfo UpdateCommissionGroup(InsertCommissionGroupParam param)
+        {
+            var deductionSettingList = param.PlatformFeeList.Concat(new[] { param.OperationalFee, param.BankingFee });
+            param.TierList = BuildTierSettingXml(param.TierSettingList);
+            param.DeductionList = BuildDeductionSettingXml(deductionSettingList, false);
+
+            return _commGroupRepository.UpdateCommissionGroup(param);
         }
 
         public IEnumerable<Deduction> GetDeductionList()
@@ -85,14 +94,15 @@ namespace Fanex.Affiliate.Admin.Core.Services
             return result.ToString();
         }
 
-        private static string BuildDeductionSettingXml(IEnumerable<DeductionSetting> deductionSettingList)
+        private static string BuildDeductionSettingXml(IEnumerable<DeductionSetting> deductionSettingList, bool isInsert)
         {
             var result = new StringBuilder();
             result.Append("<root>");
 
             foreach (var item in deductionSettingList)
             {
-                var row = $"<row id=\"{item.DeductionId}\" productids=\"{item.ProductIds}\" percent=\"{item.DeductedPercentage}\" />";
+                var percent = isInsert ? item.DeductedPercentage : item.NextDeductedPercentage;
+                var row = $"<row id=\"{item.DeductionId}\" productids=\"{item.ProductIds}\" percent=\"{percent}\" />";
                 result.Append(row);
             }
 

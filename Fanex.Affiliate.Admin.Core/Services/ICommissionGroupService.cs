@@ -12,6 +12,8 @@ namespace Fanex.Affiliate.Admin.Core.Services
 
         ResultInfo InsertCommissionGroup(InsertCommissionGroupParam param);
 
+        ResultInfo UpdateCommissionGroup(InsertCommissionGroupParam param);
+
         IEnumerable<Deduction> GetDeductionList();
     }
 }

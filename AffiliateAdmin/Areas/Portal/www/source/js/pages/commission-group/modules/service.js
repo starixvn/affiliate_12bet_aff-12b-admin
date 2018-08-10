@@ -1,4 +1,4 @@
-import { deductionNameList } from '../modules/constant';
+import { deductionNameList, messages, INFINITY_AM, INFINITY_QM } from '../modules/constant';
 
 const emptyCommGroup = {
     GroupId: 0,
@@ -98,4 +98,35 @@ export const convertProductList = (productList, productIds = '') => {
             Checked: isCheckAll || idList.filter(i => Number(i) === item.ProductId).length > 0
         }
     })
+}
+
+export const validate = (selectedGroup) => {
+    let isValid = true;
+    const messageList = [];
+
+    if (!selectedGroup.GroupName) {
+        isValid = false;
+        messageList.push(messages.requireGroupName);
+    }
+
+    if (isNaN(selectedGroup.QmTurnover) || typeof selectedGroup.QmTurnover !== 'number') {
+        isValid = false;
+        messageList.push(messages.requireQmTurnover);
+    }
+
+    if (selectedGroup.TierSettingList.length === 0) {
+        isValid = false;
+        messageList.push(messages.requireTier);
+    } else if (selectedGroup.TierSettingList.filter(item => item.MaxAmount === INFINITY_AM && item.MaxQm === INFINITY_QM).length === 0) {
+        isValid = false;
+        messageList.push(messages.requireInfinity);
+    } else if (selectedGroup.TierSettingList.filter(item => item.MinAmount > item.MaxAmount).length > 0) {
+        isValid = false;
+        messageList.push(messages.amountConstrain);
+    } else if (selectedGroup.TierSettingList.filter(item => item.MinQm > item.MaxQm).length > 0) {
+        isValid = false;
+        messageList.push(messages.qmConstrain);
+    }
+
+    return { isValid, messageList };
 }

@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
 using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
@@ -52,6 +53,14 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [HttpPost]
+        public ActionResult GetCommissionGroup(CommissionGroupParam param)
+        {
+            var commGroup = _commissionGroupService.GetCommissionSettingList(param).FirstOrDefault();
+
+            return Json(commGroup);
+        }
+
+        [HttpPost]
         public ActionResult InsertCommissionGroup(CommissionGroupSetting commGroup)
         {
             var insertParam = new InsertCommissionGroupParam
@@ -68,6 +77,27 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             };
 
             var result = _commissionGroupService.InsertCommissionGroup(insertParam);
+
+            return Json(result);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateCommissionGroup(CommissionGroupSetting commGroup)
+        {
+            var insertParam = new InsertCommissionGroupParam
+            {
+                UserId = SessionService.UserId,
+                GroupId = commGroup.GroupId,
+                Ip = Request.UserHostAddress,
+                Description = commGroup.Description,
+                QmTurnover = commGroup.QmTurnover,
+                TierSettingList = commGroup.TierSettingList,
+                PlatformFeeList = commGroup.PlatformFeeList,
+                OperationalFee = commGroup.OperationalFee,
+                BankingFee = commGroup.BankingFee
+            };
+
+            var result = _commissionGroupService.UpdateCommissionGroup(insertParam);
 
             return Json(result);
         }

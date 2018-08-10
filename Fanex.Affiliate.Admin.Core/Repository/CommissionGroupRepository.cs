@@ -57,6 +57,32 @@ namespace Fanex.Affiliate.Admin.Core.Repository
             }
         }
 
+        public ResultInfo UpdateCommissionGroup(InsertCommissionGroupParam param)
+        {
+            const string SpKey = "Aff_Admin_CommGroup_Upd";
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
+                objectDb.AddInParameter("GroupId", DbType.String, param.GroupId);
+                objectDb.AddInParameter("Description", DbType.String, param.Description);
+                objectDb.AddInParameter("DeductionList", DbType.Xml, param.DeductionList);
+                objectDb.AddInParameter("TierList", DbType.Xml, param.TierList);
+                objectDb.AddInParameter("QMTurnover", DbType.Decimal, param.QmTurnover);
+                objectDb.AddInParameter("IP", DbType.String, param.Ip);
+                objectDb.AddOutParameter("ErrCode", DbType.Int32, 4);
+                objectDb.AddOutParameter("ErrMsg", DbType.String, 2000);
+
+                objectDb.ExecuteNonQuery();
+
+                return new ResultInfo
+                {
+                    Code = Convert.ToInt32(objectDb.GetParameterValue("ErrCode")),
+                    Message = objectDb.GetParameterValue("ErrMsg").ToString()
+                };
+            }
+        }
+
         public IEnumerable<Deduction> GetDeductionList()
         {
             const string SpKey = "Aff_Admin_CommGroup_Deductions_Sel";

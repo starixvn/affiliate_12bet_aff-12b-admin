@@ -14,19 +14,29 @@ export class PlatformFeeSetting extends Component {
 
         const { deductionList, productList } = this.props;
         const deductionSetting = getDeductionSetting(deductionList);
-        this.defaultPlatformSetting = createDefaultPlatformfee(productList, deductionSetting.platformFeeSetting);
+        const defaultPlatformSetting = createDefaultPlatformfee(productList, deductionSetting.platformFeeSetting);
+
+        this.defaultItem = {
+            DeductionId: defaultPlatformSetting.deductionId,
+            ProductIds: '',
+            DeductedPercentage: defaultPlatformSetting.commission
+        }
+    }
+
+    componentDidMount() {
+        const { PlatformFeeList } = this.props.selectedGroup;
+        if (!PlatformFeeList || !PlatformFeeList.length) {
+            const { PlatformFeeList } = this.props.selectedGroup;
+            const ProductIds = this.props.productList.map(p => p.ProductId).join(',');
+
+            const platformFeeList = [...PlatformFeeList, { ...this.defaultItem, ProductIds }];
+            this.props.setSelectedGroup({ PlatformFeeList: platformFeeList });
+        }
     }
 
     handleAdd = () => {
         const { PlatformFeeList } = this.props.selectedGroup;
-
-        const newItem = {
-            DeductionId: this.defaultPlatformSetting.deductionId,
-            ProductIds: '',
-            DeductedPercentage: this.defaultPlatformSetting.commission
-        }
-
-        const platformFeeList = [...PlatformFeeList, newItem];
+        const platformFeeList = [...PlatformFeeList, { ...this.defaultItem }];
 
         console.log(platformFeeList);
         this.props.setSelectedGroup({ PlatformFeeList: platformFeeList });
@@ -75,8 +85,8 @@ export class PlatformFeeSetting extends Component {
             }
             else {
                 platformFeeList[index].ProductIds = platformFeeList[index].ProductIds.split(',')
-                                                .filter(p => p && p !== selectedItem.ProductId.toString())
-                                                .join(',');
+                    .filter(p => p && p !== selectedItem.ProductId.toString())
+                    .join(',');
 
                 const firstItemProductIds = platformFeeList[0].ProductIds.split(',').filter(p => !!p);
                 firstItemProductIds.push(selectedItem.ProductId.toString());
