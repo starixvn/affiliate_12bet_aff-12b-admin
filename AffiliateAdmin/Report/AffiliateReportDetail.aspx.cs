@@ -190,6 +190,7 @@ public partial class Report_AffiliateReportDetail : IBCPage
         TemplateHandler.Assign(ref strTpl, "err-msg", Resources.Lang.InvalidAffiliate);
         TemplateHandler.Assign(ref strTpl, "original", Resources.Lang.Original);
         TemplateHandler.Assign(ref strTpl, "usdeqv", Resources.Lang.UsdEqv);
+        TemplateHandler.Assign(ref strTpl, "adjustment", Resources.Lang.Adjustment);
         //Assign color
         TemplateHandler.Assign(ref strTpl, "over", Common.RowBgOver);
         TemplateHandler.Assign(ref strTpl, "colormonthly", Common.RowBgPending);
