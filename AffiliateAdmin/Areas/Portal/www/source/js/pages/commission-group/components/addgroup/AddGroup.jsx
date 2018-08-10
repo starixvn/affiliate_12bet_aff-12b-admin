@@ -30,6 +30,10 @@ export class AddGroup extends React.Component {
         this.props.setSelectedGroup(commGroup);
     }
 
+    componentWillUnmount() {
+        this.props.setSelectedGroup(null);
+    }
+
     handleSave = async () => {
         const { selectedGroup } = this.props;
         const validationResult = validate(selectedGroup);

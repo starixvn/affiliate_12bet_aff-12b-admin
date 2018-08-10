@@ -32,7 +32,8 @@ export class DeductionSetting extends Component {
     }
 
     render() {
-        const { OperationalFee, BankingFee } = this.props.selectedGroup;
+        const { OperationalFee, BankingFee, GroupId } = this.props.selectedGroup;
+        const isInserting = GroupId === 0;
 
         return (
             <fieldset>
@@ -41,11 +42,13 @@ export class DeductionSetting extends Component {
 
                 <FeeSettingItem label="Operational Fee%" basedValueName="| Gross Win Loss |"
                     onChange={this.handleSelectOperationalFee}
-                    data={OperationalFee} />
+                    data={OperationalFee}
+                    isInserting={isInserting} />
 
                 <FeeSettingItem label="Banking Fee%" basedValueName="(Deposit + Withdrawal)"
                     onChange={this.handleSelectBankingFee}
-                    data={BankingFee} />
+                    data={BankingFee}
+                    isInserting={isInserting} />
             </fieldset>
         )
     }

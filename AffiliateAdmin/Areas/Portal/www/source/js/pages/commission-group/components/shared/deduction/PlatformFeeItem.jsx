@@ -1,14 +1,12 @@
 import React from "react";
 import MultipleSelect from "../../../../../components/multiple-select";
-import { Col, FormGroup, Input } from 'reactstrap';
+import { Col, FormGroup, Input, Label, Form } from 'reactstrap';
 import { commissionValueList } from '../../../modules/constant';
 import { formatDecimal } from '../../../../../modules/numberFormat';
 
 export default class PlatformFeeItem extends React.Component {
     constructor(props) {
         super(props);
-
-        this.selectedCommission = this.props.data.commission;
     }
 
     handleChange = (selectedItem) => {
@@ -17,17 +15,18 @@ export default class PlatformFeeItem extends React.Component {
     }
 
     handleChangeComm = (event) => {
-        this.selectedCommission = Number(event.target.value);
-        this.props.onChangeCommission(this.selectedCommission);
+        this.props.onChangeCommission(Number(event.target.value));
     }
 
     render() {
-        const { data, handleClick, btnText } = this.props;
+        const { data, handleClick, btnText, isInserting } = this.props;
 
-        const { productList } = data;
+        const { productList, commission } = data;
+        console.log(this.props);
+
         return (
             <FormGroup row>
-                <Col sm={3}>
+                <Col sm={4}>
                     <div className="select-product">
                         <MultipleSelect
                             dataSource={productList}
@@ -40,16 +39,40 @@ export default class PlatformFeeItem extends React.Component {
                             onChange={this.handleChange} />
                     </div>
                 </Col>
-                <Col sm={2} className="select-comm">
-                    <select className="form-control" value={formatDecimal(this.selectedCommission)}
-                        onChange={this.handleChangeComm}>
-                        {
-                            commissionValueList.map((item, i) => {
-                                return (<option key={`platformfee-comm-${i}`} value={item}>{item}</option>);
-                            })
-                        }
-                    </select>
-                </Col>
+                {
+                    isInserting ? (
+                        <Col sm={2} className="select-comm">
+                            <select className="form-control" value={formatDecimal(commission)}
+                                onChange={this.handleChangeComm}>
+                                {
+                                    commissionValueList.map((item, i) => {
+                                        return (<option key={`platformfee-comm-${i}`} value={item}>{item}</option>);
+                                    })
+                                }
+                            </select>
+                        </Col>
+                    ) :
+                        (
+                            <Col sm={5} className="select-comm">
+                                <Form inline>
+                                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                                        <Label className="mr-sm-2">Current: {formatDecimal(commission || 0)} | Next month: </Label>
+                                    </FormGroup>
+                                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                                        <select className="form-control" value={formatDecimal(commission)}
+                                            onChange={this.handleChangeComm} style={{width: 60}}>
+                                            {
+                                                commissionValueList.map((item, i) => {
+                                                    return (<option key={`platformfee-nextmonth-comm-${i}`} value={item}>{item}</option>);
+                                                })
+                                            }
+                                        </select>
+                                    </FormGroup>
+                                </Form>
+                            </Col>
+                        )
+                }
+
                 <Col sm={2}>
                     <Input plaintext>| Gross Win Loss |</Input>
                 </Col>

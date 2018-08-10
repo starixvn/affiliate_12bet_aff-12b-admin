@@ -24,17 +24,34 @@ export class QmTurnOverSetting extends React.Component {
     }
 
     render() {
+        const { QmTurnover, GroupId } = this.props.selectedGroup;
+        const isInserting = GroupId === 0;
+
         return (
             <fieldset>
                 <legend><h6 className="font-weight-bold">QM Turnover</h6></legend>
                 <p>A member is considered a Qualified Member (QM) when his/her turnover in a month is equivalent to</p>
-                <Form inline>
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                        <Label for="QmTurnover" className="mr-sm-2">USD</Label>
-                        <Input name="QmTurnover" id="QmTurnover" value={format(this.props.selectedGroup.QmTurnover)}
-                            onChange={this.handleChange} />
-                    </FormGroup>
-                </Form>
+                {
+                    isInserting ? (
+                        <Form inline>
+                            <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                                <Label for="QmTurnover" className="mr-sm-2">USD</Label>
+                                <Input name="QmTurnover" id="QmTurnover" value={format(QmTurnover)}
+                                    onChange={this.handleChange} />
+                            </FormGroup>
+                        </Form>) : (
+                            <Form inline>
+                                <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                                    <Label className="mr-sm-2">Current: {format(QmTurnover || 0)} | Next month: </Label>
+                                </FormGroup>
+                                <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                                    <Label for="QmTurnover" className="mr-sm-2">USD</Label>
+                                    <Input name="QmTurnover" id="QmTurnover" value={format(QmTurnover)}
+                                        onChange={this.handleChange} />
+                                </FormGroup>
+                            </Form>)
+                }
+
             </fieldset>
         )
     }

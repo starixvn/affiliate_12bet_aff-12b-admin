@@ -23,17 +23,6 @@ export class PlatformFeeSetting extends Component {
         }
     }
 
-    componentDidMount() {
-        const { PlatformFeeList } = this.props.selectedGroup;
-        if (!PlatformFeeList || !PlatformFeeList.length) {
-            const { PlatformFeeList } = this.props.selectedGroup;
-            const ProductIds = this.props.productList.map(p => p.ProductId).join(',');
-
-            const platformFeeList = [...PlatformFeeList, { ...this.defaultItem, ProductIds }];
-            this.props.setSelectedGroup({ PlatformFeeList: platformFeeList });
-        }
-    }
-
     handleAdd = () => {
         const { PlatformFeeList } = this.props.selectedGroup;
         const platformFeeList = [...PlatformFeeList, { ...this.defaultItem }];
@@ -111,8 +100,9 @@ export class PlatformFeeSetting extends Component {
     }
 
     render() {
-        const { productList } = this.props;
-        const { PlatformFeeList } = this.props.selectedGroup;
+        console.log("render", this.props.selectedGroup);
+        const { productList, selectedGroup } = this.props;
+        const { PlatformFeeList, GroupId } = selectedGroup;
         const platformFeeData = PlatformFeeList.map(item => {
             return {
                 productList: convertProductList(productList, item.ProductIds),
@@ -126,6 +116,7 @@ export class PlatformFeeSetting extends Component {
                 {
                     platformFeeData.map((item, i) => {
                         const isFirst = i === 0;
+                        const isInserting = GroupId === 0;
                         const handleClick = isFirst ? this.handleAdd : () => this.handleRemove(i);
 
                         return (
@@ -133,7 +124,8 @@ export class PlatformFeeSetting extends Component {
                                 onSelectProduct={(selectedItem) => this.handleSelect(i, selectedItem)}
                                 onChangeCommission={(value) => this.handleChangeCommission(i, value)}
                                 handleClick={handleClick}
-                                btnText={isFirst ? '+' : '-'}>
+                                btnText={isFirst ? '+' : '-'}
+                                isInserting={isInserting}>
                             </PlatformFeeItem>
                         )
                     })

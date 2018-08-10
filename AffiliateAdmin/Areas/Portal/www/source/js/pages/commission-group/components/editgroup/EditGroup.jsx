@@ -21,10 +21,16 @@ export class EditGroup extends React.Component {
             isSuccess: true,
             message: []
         }
+
+        this.props.getSelectedCommGroup({ GroupId: this.props.itemId });
     }
 
     componentDidMount() {
-        this.props.getSelectedCommGroup({ GroupId: this.props.itemId });
+        //this.props.getSelectedCommGroup({ GroupId: this.props.itemId });
+    }
+
+    componentWillUnmount() {
+        this.props.setSelectedGroup(null);
     }
 
     handleSave = async () => {
