@@ -1116,9 +1116,9 @@ input[type="radio"], input[type="checkbox"] {
     display: none; }
   .page-container {
     width: 100%; }
-  /*.info-group .img-ads img {
-        width: 100%;
-    }*/ }
+  .news .item-wrapper {
+    flex-basis: 100%;
+    max-width: 100%; } }
 
 @media (max-width: 768px) {
   .banner-side.banner-left, .banner-side.banner-right {

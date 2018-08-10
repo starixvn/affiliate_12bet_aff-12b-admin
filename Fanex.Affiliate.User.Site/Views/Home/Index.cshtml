@@ -6,7 +6,7 @@
 @model Fanex.Affiliate.User.Core.ViewModels.HomeViewModel
 
 @section styles{
-    <link href="@Url.RenderLink("~/www/build/styles/fonts/Montserrat/font.css")" rel="preload" as="style" onload="this.rel='stylesheet'" />
+    <link href="@Url.RenderLink("~/www/build/styles/fonts/Montserrat/font.css")" rel="stylesheet"/>
     <link href="@Url.RenderLink("~/www/build/styles/css/home.css")" rel="stylesheet" />
 }
 
@@ -78,7 +78,7 @@
                         <span class="text">What's New in Affiliate</span>
                     </h4>
                     <div class="card-body">
-                        <a href="@Url.Action("Index", "ContactUs")">                            
+                        <a href="@Url.Action("Index", "ContactUs")" class="img-content">                            
                             <picture>
                                 <source srcset="~/www/build/styles/Images/adv_contact.webp" type="image/webp" />
                                 <source srcset="~/www/build/styles/Images/adv_contact.jpg" type="image/jpeg" />

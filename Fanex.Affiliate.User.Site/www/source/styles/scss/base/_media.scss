@@ -28,9 +28,12 @@ $desktop: "(min-width: 1024px)";
         width: 100%;
     }
 
-    /*.info-group .img-ads img {
-        width: 100%;
-    }*/
+    .news {
+        .item-wrapper {
+            flex-basis: 100%;
+            max-width: 100%;
+        }
+    }
 }
 
 @media #{$phone} {
