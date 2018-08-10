@@ -19,7 +19,6 @@ public partial class PlayersDetail : IBCPage
         TemplateHandler.Assign(ref strTpl, "total", Resources.Lang.Total);
         TemplateHandler.Assign(ref strTpl, "playersdetail", Resources.Lang.PlayersDetail);
         TemplateHandler.Assign(ref strTpl, "bonus", Resources.Lang.Bonus);
-        TemplateHandler.Assign(ref strTpl, "adjustment", Resources.Lang.Adjustment);
         TemplateHandler.Assign(ref strTpl, "psp", Resources.Lang.PSP);
         #endregion        
 
@@ -70,7 +69,6 @@ public partial class PlayersDetail : IBCPage
                 TemplateHandler.Assign(ref strTmp, "winlost-val", Common.FormatNumber(dr["winlost"]));
                 TemplateHandler.Assign(ref strTmp, "deposit-val", Common.FormatNumber(dr["deposit"]));
                 TemplateHandler.Assign(ref strTmp, "bonus-val", Common.FormatNumber(dr["bonus"]));
-                TemplateHandler.Assign(ref strTmp, "adjustment-val", Common.FormatNumber(dr["adjustment"]));
                 TemplateHandler.Assign(ref strTmp, "psp-val", Common.FormatNumber(dr["psp"]));
                 strBuild.Append(strTmp);
             }
@@ -83,7 +81,7 @@ public partial class PlayersDetail : IBCPage
             TemplateHandler.Assign(ref strTpl, "pagingcss", "hide");
             TemplateHandler.Assign(ref strTpl, "paging-top", string.Empty);
             TemplateHandler.Assign(ref strTpl, "paging-bottom", string.Empty);
-            strBuild.Append(Common.NoInfo(6));
+            strBuild.Append(Common.NoInfo(5));
         }
 
         TemplateHandler.ReplaceBlock(ref strTpl, "content", strBuild.ToString());

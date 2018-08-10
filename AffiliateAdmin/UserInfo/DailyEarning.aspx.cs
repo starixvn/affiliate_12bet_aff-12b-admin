@@ -18,7 +18,6 @@ public partial class DailyEarning : IBCPage
         TemplateHandler.Assign(ref strTemplate, "bonus", Resources.Lang.Bonus);
         TemplateHandler.Assign(ref strTemplate, "deposit", Resources.Lang.Deposit);
         TemplateHandler.Assign(ref strTemplate, "withdrawal", Resources.Lang.Withdrawal);
-        TemplateHandler.Assign(ref strTemplate, "adjustment", Resources.Lang.Adjustment);
         TemplateHandler.Assign(ref strTemplate, "psp", Resources.Lang.PSP);
         TemplateHandler.Assign(ref strTemplate, "total", Resources.Lang.Total);
         TemplateHandler.Assign(ref strTemplate, "back", Resources.Lang.Back);
@@ -99,7 +98,6 @@ public partial class DailyEarning : IBCPage
                 TemplateHandler.Assign(ref strTmp, "deposit-val", Common.FormatNumber(dr["deposit"]));
                 TemplateHandler.Assign(ref strTmp, "withdrawal-val", Common.FormatNumber(dr["withdrawal"]));
                 TemplateHandler.Assign(ref strTmp, "bonus-val", Common.FormatNumber(dr["bonus"]));
-                TemplateHandler.Assign(ref strTmp, "adjustment-val", Common.FormatNumber(dr["adjustment"]));
                 TemplateHandler.Assign(ref strTmp, "psp-val", Common.FormatNumber(dr["psp"]));
                 TemplateHandler.Assign(ref strTmp, "custid", custID.ToString());
                 TemplateHandler.Assign(ref strTmp, "monthdate-val", CastAide.AsDateTime(dr["winlostdate"]).ToShortDateString());
@@ -121,12 +119,11 @@ public partial class DailyEarning : IBCPage
             TemplateHandler.Assign(ref strTemplate, "totaldeposit", Common.FormatNumber(dcDeposit));
             TemplateHandler.Assign(ref strTemplate, "totalwithdrawal", Common.FormatNumber(dcWithdrawal));
             TemplateHandler.Assign(ref strTemplate, "totalbonus", Common.FormatNumber(dcBonus));
-            TemplateHandler.Assign(ref strTemplate, "totaladjustment", Common.FormatNumber(dcAdjust));
             TemplateHandler.Assign(ref strTemplate, "totalpsp", Common.FormatNumber(dcPSP));
         }
         else
         {
-            TemplateHandler.ReplaceBlock(ref strTemplate, "content", Common.NoInfo(7));
+            TemplateHandler.ReplaceBlock(ref strTemplate, "content", Common.NoInfo(6));
             TemplateHandler.RemoveBlock(ref strTemplate, "total");
         }
 

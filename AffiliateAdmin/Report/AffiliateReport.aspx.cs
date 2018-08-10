@@ -148,7 +148,6 @@ public partial class Report_AffiliateReport : IBCPage
                 dcWinloss = CastAide.AsDecimal(dr["winlost"]);
                 dcBonus = CastAide.AsDecimal(dr["bonus"]);
                 dcPsp = CastAide.AsDecimal(dr["psp"]);
-                dcAdjustment = CastAide.AsDecimal(dr["adjustment"]);
                 dcAffAdjustment = CastAide.AsDecimal(dr["affadjustment"]);
                 dcAffWithdrawal = CastAide.AsDecimal(dr["affwithdrawal"]);
                 dcAffBF = CastAide.AsDecimal(dr["affbf"]);
@@ -176,7 +175,6 @@ public partial class Report_AffiliateReport : IBCPage
                 TemplateHandler.Assign(ref strTmp, "winlost-val", NumberFormat.DecFormat(dcWinloss, 2));
                 TemplateHandler.Assign(ref strTmp, "bonus-val", NumberFormat.DecFormat(dcBonus, 2));
                 TemplateHandler.Assign(ref strTmp, "psp-val", NumberFormat.DecFormat(dcPsp, 2));
-                TemplateHandler.Assign(ref strTmp, "adjustment-val", NumberFormat.DecFormat(dcAdjustment, 2));
                 TemplateHandler.Assign(ref strTmp, "affadjustment-val", NumberFormat.DecFormat(dcAffAdjustment, 2));
                 TemplateHandler.Assign(ref strTmp, "affwithdrawal-val", NumberFormat.DecFormat(dcAffWithdrawal, 2));
                 //TemplateHandler.Assign(ref strTmp, "affcomm-val", NumberFormat.DecFormat(affcomm, 2));
@@ -220,7 +218,6 @@ public partial class Report_AffiliateReport : IBCPage
             TemplateHandler.Assign(ref strTpl, "winlost-total", NumberFormat.DecFormat(dcTotalWinloss, 2));
             TemplateHandler.Assign(ref strTpl, "bonus-total", NumberFormat.DecFormat(dcTotalBonus, 2));
             TemplateHandler.Assign(ref strTpl, "psp-total", NumberFormat.DecFormat(dcTotalPsp, 2));
-            TemplateHandler.Assign(ref strTpl, "adjustment-total", NumberFormat.DecFormat(dcTotalAdjustment, 2));
             TemplateHandler.Assign(ref strTpl, "affadjustment-total", NumberFormat.DecFormat(dcTotalAffAdjustment, 2));
             TemplateHandler.Assign(ref strTpl, "affwithdrawal-total", NumberFormat.DecFormat(dcTotalAffWithdrawal, 2));
             //TemplateHandler.Assign(ref strTpl, "affcomm-total", NumberFormat.DecFormat(dcTotalAffComm, 2));
@@ -238,7 +235,7 @@ public partial class Report_AffiliateReport : IBCPage
         }
         else
         {
-            TemplateHandler.ReplaceBlock(ref strTpl, "nodata", Common.NoInfo(11));
+            TemplateHandler.ReplaceBlock(ref strTpl, "nodata", Common.NoInfo(10));
         }
 
         TemplateHandler.Assign(ref strTpl, "paging-top", Common.GenPaging(criteria.TotalPages, criteria.PageIndex, criteria.PageSize, criteria.NRows, "aPageTop", "txtPageTop", string.Empty, false, true));

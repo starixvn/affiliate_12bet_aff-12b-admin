@@ -27,7 +27,6 @@ public partial class Home : IBCPage
         TemplateHandler.Assign(ref content, "TotalWinlost", Resources.Lang.TotalWinlost);
         TemplateHandler.Assign(ref content, "TotalBonus", Resources.Lang.TotalBonus);
         TemplateHandler.Assign(ref content, "TotalPSPFees", Resources.Lang.TotalPSPFees);
-        TemplateHandler.Assign(ref content, "TotalAdjustment", Resources.Lang.Adjustment);
         TemplateHandler.Assign(ref content, "TotalNetWinlost", Resources.Lang.TotalNetWinlost);
         TemplateHandler.Assign(ref content, "MemInAffPro", Resources.Lang.MemInAffPro);
         TemplateHandler.Assign(ref content, "BannerStatc", Resources.Lang.BannerStatc);
@@ -65,7 +64,6 @@ public partial class Home : IBCPage
         TemplateHandler.Assign(ref content, "TotalWinlostAll-val", Common.FormatNumber(dr["WinlostAll"]));
         TemplateHandler.Assign(ref content, "TotalBonusAll-val", Common.FormatNumber(dr["BonusAll"]));
         TemplateHandler.Assign(ref content, "TotalPSPFeesAll-val", Common.FormatNumber(dcPSPAll + dcPSPToday));
-        TemplateHandler.Assign(ref content, "TotalAdjustmentAll-val", Common.FormatNumber(dr["AdjustmentAll"]));
         TemplateHandler.Assign(ref content, "TotalNetWinlostAll-val", Common.FormatNumber(dr["NetWinlostAll"]));
 
         TemplateHandler.Assign(ref content, "BannerInPro-val", CastAide.AsInt32(dr["BannerNum"], 0).ToString(Common.NumberFormatPlaceholder));
@@ -84,13 +82,13 @@ public partial class Home : IBCPage
         TemplateHandler.Assign(ref content, "TotalWinlostMonth-val", Common.FormatNumber(dr["WinlostMonth"]));
         TemplateHandler.Assign(ref content, "TotalBonusMonth-val", Common.FormatNumber(dr["BonusMonth"]));
         TemplateHandler.Assign(ref content, "TotalPSPFeesMonth-val", Common.FormatNumber(dcPSPMonth + dcPSPToday));
-        TemplateHandler.Assign(ref content, "TotalAdjustmentMonth-val", Common.FormatNumber(dr["AdjustmentMonth"]));
         TemplateHandler.Assign(ref content, "TotalNetWinlostMonth-val", Common.FormatNumber(dr["NetWinlostMonth"]));
 
         DbResult rs1 = DataHandler.Home.GetGenInforFromDeposit();
         DataTable dtb1 = rs1.ResultSet.Tables[0];
         DataRow dr1 = dtb1.Rows[0];
-        int nonDepositMemAllNum, NonDepositMemMonthNum;
+        int nonDepositMemAllNum;
+        int NonDepositMemMonthNum;
         nonDepositMemAllNum = CastAide.AsInt32(dr1["MemInProAllNum"], 0) - CastAide.AsInt32(dr["DepositMemAllNum"], 0);
         NonDepositMemMonthNum = CastAide.AsInt32(dr1["MemInProMonthNum"], 0) - CastAide.AsInt32(dr["DepositMemMonthNum"], 0);
 
@@ -102,7 +100,8 @@ public partial class Home : IBCPage
 
         int pagesize = CastAide.AsInt32(Request["pagesize"], 20);
         int page = CastAide.AsInt32(Request["page"], 1);
-        int Nrows = 0, totalpages = 0;
+        int Nrows = 0;
+        int totalpages = 0;
         int NrowOnCurPage = 0;
         DbResult result;
         DataTable oldtb = new DataTable();

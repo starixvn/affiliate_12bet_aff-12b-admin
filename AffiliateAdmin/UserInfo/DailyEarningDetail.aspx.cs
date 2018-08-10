@@ -45,7 +45,6 @@ public partial class DailyEarningDetail : IBCPage
         TemplateHandler.Assign(ref strTemplate, "withdrawal", Resources.Lang.Withdrawal);
         TemplateHandler.Assign(ref strTemplate, "bonus", Resources.Lang.Bonus);
         TemplateHandler.Assign(ref strTemplate, "winlost", Resources.Lang.Winlost);
-        TemplateHandler.Assign(ref strTemplate, "adjustment", Resources.Lang.Adjustment);
         TemplateHandler.Assign(ref strTemplate, "psp", Resources.Lang.PSP);
         TemplateHandler.Assign(ref strTemplate, "total", Resources.Lang.Total);
         TemplateHandler.Assign(ref strTemplate, "back", Resources.Lang.Back);
@@ -102,7 +101,6 @@ public partial class DailyEarningDetail : IBCPage
                 TemplateHandler.Assign(ref strTmp, "withdrawal-val", Common.FormatNumber(dr["withdrawal"]));
                 TemplateHandler.Assign(ref strTmp, "winlost-val", Common.FormatNumber(dr["winlost"]));
                 TemplateHandler.Assign(ref strTmp, "bonus-val", Common.FormatNumber(dr["bonus"]));
-                TemplateHandler.Assign(ref strTmp, "adjustment-val", Common.FormatNumber(dr["adjustment"]));
                 TemplateHandler.Assign(ref strTmp, "psp-val", Common.FormatNumber(dr["psp"]));
 
                 if (sporttype != 0 && sporttype != 3) // not ALL && not Casino
@@ -147,12 +145,11 @@ public partial class DailyEarningDetail : IBCPage
             TemplateHandler.Assign(ref strTemplate, "totalwithdrawal", Common.FormatNumber(dcWithdrawal));
             TemplateHandler.Assign(ref strTemplate, "totalwinlost", Common.FormatNumber(dcWinlost));
             TemplateHandler.Assign(ref strTemplate, "totalbonus", Common.FormatNumber(dcBonus));
-            TemplateHandler.Assign(ref strTemplate, "totaladjustment", Common.FormatNumber(dcAdjustment));
             TemplateHandler.Assign(ref strTemplate, "totalpsp", Common.FormatNumber(dcPSP));
         }
         else
         {
-            TemplateHandler.ReplaceBlock(ref strTemplate, "content", Common.NoInfo(8));
+            TemplateHandler.ReplaceBlock(ref strTemplate, "content", Common.NoInfo(7));
             TemplateHandler.RemoveBlock(ref strTemplate, "total");
         }
 

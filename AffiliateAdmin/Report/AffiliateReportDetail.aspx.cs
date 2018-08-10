@@ -87,7 +87,6 @@ public partial class Report_AffiliateReportDetail : IBCPage
                 TemplateHandler.Assign(ref strTmp, "memwinloss-val", NumberFormat.DecFormat(dcWinloss, 2));
                 TemplateHandler.Assign(ref strTmp, "bonus-val", NumberFormat.DecFormat(dcBonus, 2));
                 TemplateHandler.Assign(ref strTmp, "psp-val", NumberFormat.DecFormat(dcPsp, 2));
-                TemplateHandler.Assign(ref strTmp, "adjustment-val", NumberFormat.DecFormat(dcAdjustment, 2));
                 TemplateHandler.Assign(ref strTmp, "affadjustment-val", NumberFormat.DecFormat(dcAffAdjustment, 2));
                 TemplateHandler.Assign(ref strTmp, "affwithdrawal-val", NumberFormat.DecFormat(dcAffWithdrawal, 2));
                 TemplateHandler.Assign(ref strTmp, "affbf-val", NumberFormat.DecFormat(dcAffBF, 2));
@@ -98,7 +97,6 @@ public partial class Report_AffiliateReportDetail : IBCPage
                 TemplateHandler.Assign(ref strTmp, "memwinlosseqv-val", NumberFormat.DecFormat(dcWinloss * dcAffExRate, 2));
                 TemplateHandler.Assign(ref strTmp, "bonuseqv-val", NumberFormat.DecFormat(dcBonus * dcAffExRate, 2));
                 TemplateHandler.Assign(ref strTmp, "pspeqv-val", NumberFormat.DecFormat(dcPsp * dcAffExRate, 2));
-                TemplateHandler.Assign(ref strTmp, "adjustmenteqv-val", NumberFormat.DecFormat(dcAdjustment * dcAffExRate, 2));
                 TemplateHandler.Assign(ref strTmp, "affadjustmenteqv-val", NumberFormat.DecFormat(dcAffAdjustment * dcAffExRate, 2));
                 TemplateHandler.Assign(ref strTmp, "affwithdrawaleqv-val", NumberFormat.DecFormat(dcAffWithdrawal * dcAffExRate, 2));
                 TemplateHandler.Assign(ref strTmp, "affbfeqv-val", NumberFormat.DecFormat(dcAffBF * dcAffExRate, 2));
@@ -158,14 +156,13 @@ public partial class Report_AffiliateReportDetail : IBCPage
             TemplateHandler.Assign(ref strTpl, "memwinloss-total", NumberFormat.DecFormat(dcTotalWinloss, 2));
             TemplateHandler.Assign(ref strTpl, "bonus-total", NumberFormat.DecFormat(dcTotalBonus, 2));
             TemplateHandler.Assign(ref strTpl, "psp-total", NumberFormat.DecFormat(dcTotalPsp, 2));
-            TemplateHandler.Assign(ref strTpl, "adjustment-total", NumberFormat.DecFormat(dcTotalAdjustment, 2));
             TemplateHandler.Assign(ref strTpl, "affadjustment-total", NumberFormat.DecFormat(dcTotalAffAdjustment, 2));
             TemplateHandler.Assign(ref strTpl, "affwithdrawal-total", NumberFormat.DecFormat(dcTotalAffWithdrawal, 2));
             TemplateHandler.Assign(ref strTpl, "affbf-total", NumberFormat.DecFormat(dcTotalAffBF, 2));
         }
         else
         {
-            TemplateHandler.ReplaceBlock(ref strTpl, "nodata", Common.NoInfo(21));
+            TemplateHandler.ReplaceBlock(ref strTpl, "nodata", Common.NoInfo(19));
         }
     }
 
@@ -184,11 +181,8 @@ public partial class Report_AffiliateReportDetail : IBCPage
         TemplateHandler.Assign(ref strTpl, "turnover", Resources.Lang.Turnover);
         TemplateHandler.Assign(ref strTpl, "bonus", Resources.Lang.Bonus);
         TemplateHandler.Assign(ref strTpl, "withdrawal", Resources.Lang.Withdrawal);
-        TemplateHandler.Assign(ref strTpl, "adjustment", Resources.Lang.Adjustment);
         TemplateHandler.Assign(ref strTpl, "affbf", Resources.Lang.BFComm);
         TemplateHandler.Assign(ref strTpl, "winlost", Resources.Lang.Winlost);
-        TemplateHandler.Assign(ref strTpl, "original", Resources.Lang.Original);
-        TemplateHandler.Assign(ref strTpl, "usdeqv", Resources.Lang.UsdEqv);
         TemplateHandler.Assign(ref strTpl, "psp", Resources.Lang.PSP);
         TemplateHandler.Assign(ref strTpl, "total", Resources.Lang.Total);
         TemplateHandler.Assign(ref strTpl, "datelimit", Resources.Lang.AffiliateReportDetail + " [" + Request["affname"] + "]");

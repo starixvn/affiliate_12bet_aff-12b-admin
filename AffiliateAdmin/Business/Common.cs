@@ -185,16 +185,10 @@ public class Common
 
     public static string FormatNumber(object Number)
     {
-        decimal decimalNumber = decimal.Round(CastAide.AsDecimal(Number), 2);
-        if (decimalNumber >= 0)
-        {
-            return "$" + decimalNumber.ToString("N");
-        }
-        else
-        {
-            decimalNumber = decimalNumber * -1;
-            return "-$" + decimalNumber.ToString("N");
-        }
+        decimal decimalNumber = CastAide.AsDecimal(Number, 0m);
+
+        return (decimalNumber >= 0 ? "$" : "-$") + Math.Abs(decimalNumber).ToString("N2");
+
     }
 
     public static string FormatNumber1(object Number, bool isMoneyAmount)
