@@ -16,8 +16,5 @@ namespace Fanex.Affiliate.User.Core.DTO.UserPanel
 
         public decimal Bonus { get; set; }
 
-        public decimal Adjustment { get; set; }
-
-        public decimal Psp { get; set; }
     }
 }

@@ -230,7 +230,7 @@ namespace DataHandler
             hsParam.Add("affid", intAffID);
             hsParam.Add("sporttype", SportType);
             hsParam.Add("monthdate", dtmMonthDate);
-            return DbHelper.Execute("Aff_EarningSelDaily", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP).ResultSet.Tables[0]; ;
+            return DbHelper.Execute("Aff_EarningSelDaily_xtest", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP).ResultSet.Tables[0]; ;
         }
 
         public static DataTable SelAffEarningDetail(int intAffId, int SportType, DateTime dtmMonthDate)
@@ -239,7 +239,7 @@ namespace DataHandler
             hsParam.Add("affid", intAffId);
             hsParam.Add("sporttype", SportType);
             hsParam.Add("monthdate", dtmMonthDate);
-            return DbHelper.Execute("Aff_EarningSelDetail", DBType.AFFILIATE_12BET, hsParam).ResultSet.Tables[0]; ;
+            return DbHelper.Execute("Aff_EarningSelDetail_xtest", DBType.AFFILIATE_12BET, hsParam).ResultSet.Tables[0]; ;
         }
 
         //@Vinh

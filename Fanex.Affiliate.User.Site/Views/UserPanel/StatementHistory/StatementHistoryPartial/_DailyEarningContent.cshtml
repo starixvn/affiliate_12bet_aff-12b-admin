@@ -17,11 +17,6 @@
             }
             <th width="10%">@Lang.Winlost</th>
             <th width="10%">@Lang.Bonus</th>
-
-            @if (Model.SelectedProduct != Product.Casino)
-            {
-                <th width="10%">@Lang.Adjustment</th>
-            }
         </tr>
     </thead>
     <tbody>
@@ -62,10 +57,7 @@
                         }
                     </td>
                     <td class="text-right">@item.Bonus.ToStringMoneyWithSymbol()</td>
-                    @if (Model.SelectedProduct != Product.Casino)
-                    {
-                        <td class="text-right">@item.Adjustment.ToStringMoneyWithSymbol()</td>
-                    }
+                  
                 </tr>
 
                 index++;
@@ -95,10 +87,7 @@
                     }
                 </td>
                 <td class="text-right">@total.Bonus.ToStringMoneyWithSymbol()</td>
-                @if (Model.SelectedProduct != Product.Casino)
-                {
-                    <td class="text-right">@total.Adjustment.ToStringMoneyWithSymbol()</td>
-                }
+              
             </tr>
         }
     </tbody>

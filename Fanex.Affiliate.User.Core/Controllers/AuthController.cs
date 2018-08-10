@@ -53,44 +53,46 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 return Json(GetErrorResult(Lang.ErrAuthorized));
             }
 
-            var result = new ResultInfo();
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                if (IsValidCaptcha(userParam.ValidationKey))
+                return Json(new ResultInfo
                 {
-                    var clientIpAddress = Request.UserHostAddress;
-                    userParam.LoginIp = clientIpAddress;
-                    userParam.Language = SessionService.CurrentLanguage;
+                    IsOk = false,
+                    Message = string.Join(", ", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
 
-                    var loginResult = _authService.GetLoginResult(userParam, false);
-                    result = loginResult.Result;
-
-                    if (result.IsOk)
-                    {
-                        var user = loginResult.UserInfo;
-                        if (!AppSetting.AllowedAffiliateTypes.Any(t => t.Equals(user.AffType)))
-                        {
-                            return Json(GetErrorResult(Lang.NotAllowOnDomain));
-                        }
-
-                        var onUserIdParam = GetOnUserIdParam(user.AffId, clientIpAddress);
-                        user.OnUserId = _authService.GetOnUserId(onUserIdParam);
-
-                        SessionService.AssignSessions(user);
-                        FormsAuthentication.SetAuthCookie(user.UserName, false);
-                    }
-                }
-                else
-                {
-                    result.Message = Lang.ValidationCode;
-                }
-            }
-            else
-            {
-                result.Message = string.Join(", ", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage));
+                });
             }
 
-            return Json(result);
+            if (!IsValidCaptcha(userParam.ValidationKey))
+            {
+                return Json(new ResultInfo
+                {
+                    IsOk = false,
+                    Message = Lang.ValidationCode
+
+                });
+            }
+            userParam.LoginIp = Request.UserHostAddress;
+            userParam.Language = SessionService.CurrentLanguage;
+            var loginResult = _authService.GetLoginResult(userParam, false);
+
+            if (loginResult.UserInfo != null &&
+                        !AppSetting.AllowedAffiliateTypes.Any(t => t.Equals(loginResult.UserInfo.AffType)))
+            {
+                return Json(GetErrorResult(Lang.NotAllowOnDomain));
+            }
+
+            if (loginResult.Result.IsOk)
+            {
+                var user = loginResult.UserInfo;
+                var onUserIdParam = GetOnUserIdParam(user.AffId, userParam.LoginIp);
+                user.OnUserId = _authService.GetOnUserId(onUserIdParam);
+
+                SessionService.AssignSessions(user);
+                FormsAuthentication.SetAuthCookie(user.UserName, false);
+            }
+
+            return Json(loginResult.Result);
         }
 
         [HttpGet]

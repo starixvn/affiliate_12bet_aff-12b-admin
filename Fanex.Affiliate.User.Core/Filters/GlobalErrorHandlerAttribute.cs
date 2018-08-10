@@ -55,7 +55,6 @@ namespace Fanex.Affiliate.User.Core.Filters
 
         private static StringBuilder BuildErrorMessage(Exception exception, HttpContextBase httpContext)
         {
-            var sessionService = DependencyResolver.Current.GetService<ISessionService>();
 
             var httpRequest = httpContext.Request;
             var message = new StringBuilder()
@@ -69,38 +68,6 @@ namespace Fanex.Affiliate.User.Core.Filters
                             .AppendLine($"Agent:{httpRequest.UserAgent}")
                             .AppendLine($"Source:{exception.Source}")
                             .AppendLine($"TargetSite:{exception.TargetSite}");
-            if (sessionService.UserSession != null)
-            {
-                message.AppendLine(JsonConvert.SerializeObject(sessionService.UserSession));
-            }
-            else
-            {
-                message.AppendLine($"IdentityName: {httpContext?.User?.Identity?.Name}");
-
-                var session = httpContext?.Session;
-
-                if (session != null)
-                {
-                    message.AppendLine($"SessionId: {session.SessionID}");
-
-                    var sessionKeyList = new List<string>();
-                    foreach (var key in session.Keys)
-                    {
-                        sessionKeyList.Add(key.ToString());
-                    }
-                    message.AppendLine($"SessionKey: {string.Join(",", sessionKeyList)}");
-                }
-
-                var cookies = httpRequest.Cookies;
-                if (cookies != null)
-                {
-                    foreach (var key in cookies.AllKeys)
-                    {
-                        var cookie = cookies.Get(key);
-                        message.AppendLine($"CookieKey:{key} && CookieValue={cookie?.Value}");
-                    }
-                }
-            }
 
             var sqlException = exception as SqlException;
             if (sqlException != null)

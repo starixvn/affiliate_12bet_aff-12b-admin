@@ -72,10 +72,8 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
                             Deposit = Convert.ToDecimal(reader["Deposit"]),
                             Withdrawal = Convert.ToDecimal(reader["Withdrawal"]),
                             MemberWinLost = Convert.ToDecimal(reader["MemberWinLost"]),
-                            MemberWinLostFake = Convert.ToDecimal(reader["MemWinLostFake"]),
+                            MemberWinLostFake = Convert.ToDecimal(reader["MemberWinLostFake"]),
                             Bonus = Convert.ToDecimal(reader["Bonus"]),
-                            Adjustment = Convert.ToDecimal(reader["Adjustment"]),
-                            Psp = Convert.ToDecimal(reader["Psp"])
                         });
                     }
                     dailyEarningResult.MainDataList = dataList;
@@ -87,10 +85,8 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
                             Deposit = Convert.ToDecimal(reader["Deposit"]),
                             Withdrawal = Convert.ToDecimal(reader["Withdrawal"]),
                             MemberWinLost = Convert.ToDecimal(reader["MemberWinLost"]),
-                            MemberWinLostFake = Convert.ToDecimal(reader["MemWinLostFake"]),
+                            MemberWinLostFake = Convert.ToDecimal(reader["MemberWinLostFake"]),
                             Bonus = Convert.ToDecimal(reader["Bonus"]),
-                            Adjustment = Convert.ToDecimal(reader["Adjustment"]),
-                            Psp = Convert.ToDecimal(reader["Psp"])
                         };
                     }
                 }

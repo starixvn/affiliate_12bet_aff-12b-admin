@@ -11,14 +11,14 @@ var DailyEarning = (function ($) {
         initEvent: function initEvent() {
             $("#dailyEarningContent").on("click", ".dateItem", function () {
                 var params = {
-                    productId: $("#productid").length ? $("#productid").val() : SPORTTYPE_SPORTSBOOK,
+                    productId: $("#ProductId").length ? $("#ProductId").val() : SPORTTYPE_SPORTSBOOK,
                     monthDate: $(this).data("date")
                 };
 
                 Site.redirect(Site.resolveRelativeUrl("UserPanel/Main/#DailyEarningDetail?" + $.param(params)));
             });
 
-            $("#SportType").on("change", function () {
+            $("#ProductId").on("change", function () {
                 var params = {
                     monthDate: $("#MonthDate").val(),
                     productId: $(this).val(),
