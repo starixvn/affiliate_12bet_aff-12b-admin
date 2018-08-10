@@ -602,13 +602,13 @@ Thank you.</value>
   <data name="ChinaPeoplesRep" xml:space="preserve">
     <value>China (People's Rep) </value>
   </data>
-  <data name="ChineseSimplifi" xml:space="preserve">
+  <data name="ChineseSimplified" xml:space="preserve">
     <value>简体中文</value>
   </data>
   <data name="ChineseSupport" xml:space="preserve">
     <value>Chinese Support</value>
   </data>
-  <data name="ChineseTraditio" xml:space="preserve">
+  <data name="ChineseTraditional" xml:space="preserve">
     <value>繁體中文</value>
   </data>
   <data name="City" xml:space="preserve">

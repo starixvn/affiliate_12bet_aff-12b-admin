@@ -1550,9 +1550,9 @@ namespace Fanex.Affiliate.User.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to 简体中文.
         /// </summary>
-        public static string ChineseSimplifi {
+        public static string ChineseSimplified {
             get {
-                return ResourceManager.GetString("ChineseSimplifi", resourceCulture);
+                return ResourceManager.GetString("ChineseSimplified", resourceCulture);
             }
         }
         
@@ -1568,9 +1568,9 @@ namespace Fanex.Affiliate.User.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to 繁體中文.
         /// </summary>
-        public static string ChineseTraditio {
+        public static string ChineseTraditional {
             get {
-                return ResourceManager.GetString("ChineseTraditio", resourceCulture);
+                return ResourceManager.GetString("ChineseTraditional", resourceCulture);
             }
         }
         

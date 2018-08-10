@@ -11,7 +11,7 @@ using Fanex.Affiliate.User.Core.CoreService;
 namespace Fanex.Affiliate.User.Core.Filters
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, Inherited = false, AllowMultiple = true)]
-    public sealed class CustomAuthorizeAttribute: AuthorizeAttribute
+    public sealed class CustomAuthorizeAttribute : AuthorizeAttribute
     {
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
@@ -20,13 +20,13 @@ namespace Fanex.Affiliate.User.Core.Filters
             var skipAuthorization = filterContext.ActionDescriptor.IsDefined(typeof(AllowAnonymousAttribute), true)
             || filterContext.ActionDescriptor.ControllerDescriptor.IsDefined(typeof(AllowAnonymousAttribute), true);
             var context = filterContext.RequestContext.HttpContext;
-
+            base.OnAuthorization(filterContext);
             if (!skipAuthorization)
             {
                 var authorized = sessionService.UserSession != null && context.Request.IsAuthenticated
                     && context.User.Identity.IsAuthenticated;
 
-                if(!authorized)
+                if (!authorized)
                 {
                     if (context.Request.IsAjaxRequest())
                     {
@@ -37,7 +37,8 @@ namespace Fanex.Affiliate.User.Core.Filters
                             Data = new { ErrCode = HttpStatusCode.Forbidden, ErrMsg = "UnAuthorized" },
                             JsonRequestBehavior = JsonRequestBehavior.AllowGet
                         };
-                    }else
+                    }
+                    else
                     {
                         var routeValue = new
                         {
@@ -52,12 +53,9 @@ namespace Fanex.Affiliate.User.Core.Filters
                     context.Response.Cookies.Clear();
 
                 }
-                else
-                {
-                    base.OnAuthorization(filterContext);
-                }
             }
-           
+
+
         }
     }
 }

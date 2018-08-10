@@ -9,6 +9,7 @@ using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.Extensions;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
+using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels.UserPanel.Marketing;
 
@@ -93,7 +94,7 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
         protected IEnumerable<SelectListItem> GetDataByType(IEnumerable<BannerType> bannerTypeList, string type)
         {
             return bannerTypeList.Where(p => p.Type.MatchWith(type))
-                .Select(i => new SelectListItem { Value = i.Value, Text = SystemLanguage.GetDisplayText(i.Value) });
+                .Select(i => new SelectListItem { Value = i.Value, Text = Lang.ResourceManager.GetString(i.Value.Trim()) ?? i.Value });
         }
 
         protected IDictionary<string, string> GetTextLinkList(string selectedLanguage, string selectedPage,
