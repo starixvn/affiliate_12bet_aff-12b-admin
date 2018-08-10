@@ -13,9 +13,9 @@ export default class FeeSettingItem extends React.Component {
         const { label, data, basedValueName, onChange } = this.props;
         return (
             <FormGroup row>
-                <Label sm={4} className="font-weight-bold">{label}</Label>
+                <Label sm={3} className="font-weight-bold">{label}</Label>
 
-                <Col sm={{ size: 2, offset: 1 }}>
+                <Col sm={2} className="select-comm">
                     <select className="form-control" onChange={onChange}
                         defaultValue={formatDecimal(data.DeductedPercentage)}>
                         {
@@ -24,9 +24,6 @@ export default class FeeSettingItem extends React.Component {
                             })
                         }
                     </select>
-                </Col>
-                <Col sm={1}>
-                    <Input plaintext>x</Input>
                 </Col>
                 <Col sm={3}>
                     <Input plaintext>{basedValueName}</Input>

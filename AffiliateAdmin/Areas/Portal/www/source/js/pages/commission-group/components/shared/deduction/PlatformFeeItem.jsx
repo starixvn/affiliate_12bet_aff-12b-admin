@@ -27,8 +27,7 @@ export default class PlatformFeeItem extends React.Component {
         const { productList } = data;
         return (
             <FormGroup row>
-                <Col sm={1}><p className="text-right bullet"><span>&bull;</span></p></Col>
-                <Col sm={4}>
+                <Col sm={3}>
                     <div className="select-product">
                         <MultipleSelect
                             dataSource={productList}
@@ -41,8 +40,8 @@ export default class PlatformFeeItem extends React.Component {
                             onChange={this.handleChange} />
                     </div>
                 </Col>
-                <Col sm={2}>
-                    <select className="form-control select-percent" value={formatDecimal(this.selectedCommission)}
+                <Col sm={2} className="select-comm">
+                    <select className="form-control" value={formatDecimal(this.selectedCommission)}
                         onChange={this.handleChangeComm}>
                         {
                             commissionValueList.map((item, i) => {
@@ -50,9 +49,6 @@ export default class PlatformFeeItem extends React.Component {
                             })
                         }
                     </select>
-                </Col>
-                <Col sm={1}>
-                    <Input plaintext>x</Input>
                 </Col>
                 <Col sm={2}>
                     <Input plaintext>| Gross Win Loss |</Input>

@@ -32,6 +32,29 @@
                 background-color: #d8d8d8;
             }
         }
+
+        .select-product {
+            margin-left: 20px;
+
+            &::before {
+                content: '•';
+                display: inline-block;
+                position: absolute;
+                left: 20px;
+                top: -3px;
+                font-size: 20px;
+            }
+        }
+    }
+
+    .select-comm {
+        &::after {
+            content: 'x';
+            display: inline-block;
+            position: absolute;
+            right: -5px;
+            top: 7px;
+        }
     }
 
     .form-max {
