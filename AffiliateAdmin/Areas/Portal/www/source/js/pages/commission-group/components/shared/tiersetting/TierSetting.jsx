@@ -1,70 +1,82 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { setSelectedGroup } from '../../../actions';
 
 import TierSettingItem from './TierSettingItem';
 import { updateObjectInArray, removeItem } from '../../../../../modules/dataHandler';
 import { isValidNumber } from '../../../../../modules/utils';
+import { INFINITY_AM, INFINITY_QM } from '../../../modules/constant';
 
-const defaultTierSetting = { MinAmount: 0, MaxAmount: 0, MinQm: 0, MaxQm: 0, Commission: 0, InfinityAm: false, InfinityQm: false};
-
-export default class TierSetting extends Component {
+export class TierSetting extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            tierSettingList: this.props.data
-        }
-    }
-
-    _callbackToParent(tierSettingList) {
-        this.props.onChange(tierSettingList);
     }
 
     handleAdd = () => {
-        const { tierSettingList } = this.state;
+        const { TierSettingList } = this.props.selectedGroup;
         let defaultMinAmount = 0;
         let defaultMinQm = 0;
 
-        const itemCount = tierSettingList.length;
+        const itemCount = TierSettingList.length;
         if (itemCount > 0) {
-            const lastItem = tierSettingList[itemCount - 1];
+            const lastItem = TierSettingList[itemCount - 1];
             defaultMinAmount = lastItem.MaxAmount + 1;
             defaultMinQm = lastItem.MaxQm + 1;
         }
 
-        const newTierSetting = Object.assign({}, defaultTierSetting, {
+        const newTierSetting = {
             TierId: itemCount + 1,
             MinAmount: defaultMinAmount,
             MaxAmount: defaultMinAmount,
             MinQm: defaultMinQm,
-            MaxQm: defaultMinQm
-        });
-        const newTierSettingList = [...tierSettingList, newTierSetting];
+            MaxQm: defaultMinQm,
+            Commission: 0
+        };
 
-        this.setState({ tierSettingList: newTierSettingList });
-        this._callbackToParent(newTierSettingList);
+        this.props.setSelectedGroup({ TierSettingList: [...TierSettingList, newTierSetting] });
     }
 
     handleRemove = (index) => {
-        const tierSettingList = removeItem(index, this.state.tierSettingList);
-        this.setState({ tierSettingList });
-        this._callbackToParent(tierSettingList);
+        const { TierSettingList } = this.props.selectedGroup;
+        const tierSettingList = removeItem(index, TierSettingList).map((item, index) => {
+            return {
+                ...item,
+                TierId: index + 1
+            }
+        });
+
+        this.props.setSelectedGroup({ TierSettingList: tierSettingList });
     }
 
-    handleChangeInput = (index, settingValue) => {
-        const { MinAmount, MaxAmount, MinQm, MaxQm } = settingValue;
+    handleChangeInput = (tierId, tierItemValue) => {
+        console.log(tierItemValue);
+        const { MinAmount, MaxAmount, MinQm, MaxQm } = tierItemValue;
         if ((!MinAmount || isValidNumber(MinAmount)) &&
             (!MaxAmount || isValidNumber(MaxAmount)) &&
             (!MinQm || isValidNumber(MinQm)) &&
             (!MaxQm || isValidNumber(MaxQm))) {
-            const tierSettingList = updateObjectInArray(this.state.tierSettingList, index, settingValue);
+            const { TierSettingList } = this.props.selectedGroup;
 
-            this.setState({ tierSettingList });
-            this._callbackToParent(tierSettingList);
+            const tierSettingList = TierSettingList.map(item => {
+                if (item.TierId === tierId) {
+                    return {
+                        ...item,
+                        ...tierItemValue
+                    };
+                }
+
+                return item;
+            });
+
+            this.props.setSelectedGroup({ TierSettingList: tierSettingList });
         }
     }
 
     render() {
-        const { tierSettingList } = this.state;
-        const canAddTier = tierSettingList.filter(item => item.InfinityAm).length > 0;
+        const { TierSettingList } = this.props.selectedGroup;
+        const canAddTier = TierSettingList.filter(item => item.MaxAmount === INFINITY_AM || item.MaxQm === INFINITY_QM).length > 0;
 
         return (
             <fieldset>
@@ -83,10 +95,10 @@ export default class TierSetting extends Component {
                     </thead>
                     <tbody>
                         {
-                            tierSettingList.length ?
-                                tierSettingList.map((item, i) => {
-                                    return (<TierSettingItem index={i} data={item} key={`tier-${i}`}
-                                        isDisabledInfinity={i < tierSettingList.length - 1}
+                            TierSettingList.length ?
+                                TierSettingList.map((item, i) => {
+                                    return (<TierSettingItem data={item} key={`tier-${i}`}
+                                        isDisabledInfinity={i < TierSettingList.length - 1}
                                         onRemove={() => this.handleRemove(i)}
                                         onChange={this.handleChangeInput} />);
                                 }) :
@@ -104,3 +116,13 @@ export default class TierSetting extends Component {
         )
     }
 }
+
+function mapStateToProp({ selectedGroup }) {
+    return { selectedGroup };
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ setSelectedGroup }, dispatch);
+}
+
+export default connect(mapStateToProp, mapDispatchToProps)(TierSetting);

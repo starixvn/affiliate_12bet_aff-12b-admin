@@ -12,11 +12,7 @@ export default class PopupContent extends Component {
         super(props);
 
         const dataItem = this.props.commGroupItem;
-        this.commGroupInfo = {
-            GroupId: dataItem.GroupId,
-            GroupName: dataItem.GroupName,
-            Description: dataItem.Description
-        };
+
         this.deductionSettings = {
             PlatformFeeList: dataItem.PlatformFeeList,
             RemainingFeeList: dataItem.RemainingFeeList
@@ -29,11 +25,11 @@ export default class PopupContent extends Component {
             isSuccess: true,
             message: []
         }
-    }
 
-    handleChangeInput = (name, value) => {
-        this.commGroupInfo[name] = value;
-
+        this.groupInfoRef = React.createRef();
+        this.deductionRef = React.createRef();
+        this.qmTurnoverRef = React.createRef();
+        this.tierSettingRef = React.createRef();
     }
 
     handleSelectDeduction = (deductionSettingList) => {
@@ -83,6 +79,12 @@ export default class PopupContent extends Component {
     }
 
     handleSave = async () => {
+        const commGroupInfo = this.groupInfoRef.current.getValue();
+        const deductions = this.deductionRef.current.getValue();
+        console.log(commGroupInfo);
+        console.log(deductions);
+        return;
+
         const validationResult = this._isValid();
 
         if (!validationResult.isValid) {
@@ -132,10 +134,20 @@ export default class PopupContent extends Component {
         }
     }
 
-    render() {
-        
+    render() {       
         const { isShowMessage, isSuccess, message } = this.state;
-        const { deductionList, productList } = this.props;
+        const { deductionList, productList, commGroupItem } = this.props;
+
+        const commGroupInfo = {
+            GroupId: commGroupItem.GroupId,
+            GroupName: commGroupItem.GroupName,
+            Description: commGroupItem.Description
+        };
+
+        const deductionSettings = {
+            PlatformFeeList: commGroupItem.PlatformFeeList,
+            RemainingFeeList: commGroupItem.RemainingFeeList
+        };
 
         const tierSettingData = this.tierSettingList.map(item => {
             const { MinAmount, MaxAmount, MinQm, MaxQm, Commission } = item;
@@ -156,11 +168,11 @@ export default class PopupContent extends Component {
                 <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
                     <div dangerouslySetInnerHTML={{ __html: message.join('<br>') }}></div>
                 </Alert>
-                <CommGroupInfo onChange={this.handleChangeInput} data={this.commGroupInfo} />
-                <DeductionSetting onSelect={this.handleSelectDeduction}
+                <CommGroupInfo ref={this.groupInfoRef} data={commGroupInfo} />
+                <DeductionSetting ref={this.deductionRef} onSelect={this.handleSelectDeduction}
                     deductionList={deductionList}
                     productList={productList}
-                    data={this.deductionSettings} />
+                    data={deductionSettings} />
                 <QmTurnOverSetting onChange={this.handleChangeInputQmTurnover} data={this.qmTurnover} />
                 <TierSetting onChange={this.handleChangeInputTier} data={tierSettingData} />
 

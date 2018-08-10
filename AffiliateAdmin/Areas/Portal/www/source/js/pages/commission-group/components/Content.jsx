@@ -8,7 +8,6 @@ import GridData from './grouplist/GridData';
 import Pager from '../../../components/Pager';
 import AddGroup from './addgroup';
 import EditGroup from './editgroup';
-
 import { getGroupSettingList } from '../actions';
 
 export class Content extends Component {

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Form, FormGroup, Label, Input } from 'reactstrap';
-import { INFINITY_SYMBOL, commissionValueList } from '../../../modules/constant';
+import { INFINITY_SYMBOL, INFINITY_AM, INFINITY_QM, commissionValueList } from '../../../modules/constant';
 import { formatDecimal, format } from '../../../../../modules/numberFormat';
 
 export default class TierSettingItem extends React.Component {
@@ -11,27 +11,36 @@ export default class TierSettingItem extends React.Component {
 
     handleChange = (event) => {
         const target = event.target;
-        const isCheckbox = target.type === 'checkbox';
-        const value = isCheckbox ? target.checked : Number(target.value.replace(/,/g, ''));
+        const value = Number(target.value.replace(/,/g, ''));
         const name = target.name;
-        const { index, onChange } = this.props;
+        const { data, onChange } = this.props;
 
-        const newItem = isCheckbox ? { 'InfinityAm': value, 'InfinityQm': value } : { [name]: value || 0 };
+        const newItem = { [name]: value || 0 };
 
-        onChange && onChange(index, newItem);
+        onChange && onChange(data.TierId, newItem);
+    }
+
+    handleCheck = (event) => {
+        const isChecked = event.target.checked;
+        const { data, onChange } = this.props;
+
+        const newState = isChecked ?
+            Object.assign({}, data, { MaxAmount: INFINITY_AM, MaxQm: INFINITY_QM }) :
+            Object.assign({}, data, { MaxAmount: data.MinAmount, MaxQm: data.MinQm });
+
+        onChange && onChange(data.TierId, newState);
     }
 
     render() {
-        const { data, index, onRemove, isDisabledInfinity } = this.props;
-        const { MinAmount, MaxAmount, MinQm, MaxQm, Commission, InfinityAm, InfinityQm } = data;
-        const isDisabled = InfinityAm || InfinityQm;
-        const isDisabledMinAmount = index > 0;
-        
+        const { data, onRemove, isDisabledInfinity } = this.props;
+        const { TierId, MinAmount, MaxAmount, MinQm, MaxQm, Commission } = data;
+        const isDisabled = MaxAmount === INFINITY_AM || MaxQm === INFINITY_QM;
+
         return (
             <tr>
-                <td className="text-center">{index + 1}</td>
+                <td className="text-center">{TierId}</td>
                 <td>
-                    <Input type="text" name="MinAmount" id="MinAmount" disabled={isDisabledMinAmount}
+                    <Input type="text" name="MinAmount" id="MinAmount"
                         value={format(MinAmount)} onChange={this.handleChange} />
                 </td>
                 <td>
@@ -40,8 +49,8 @@ export default class TierSettingItem extends React.Component {
                             value={isDisabled ? INFINITY_SYMBOL : format(MaxAmount)} onChange={this.handleChange} />
                         <FormGroup check className="ml-sm-1">
                             <Label check>
-                                <Input type="checkbox" name="InfinityAm" checked={isDisabled}
-                                    onChange={this.handleChange} disabled={isDisabledInfinity} />{INFINITY_SYMBOL}
+                                <Input type="checkbox" checked={isDisabled}
+                                    onChange={this.handleCheck} disabled={isDisabledInfinity} />{INFINITY_SYMBOL}
                             </Label>
                         </FormGroup>
                     </Form>
@@ -55,18 +64,18 @@ export default class TierSettingItem extends React.Component {
                             value={isDisabled ? INFINITY_SYMBOL : format(MaxQm)} onChange={this.handleChange} />
                         <FormGroup check className="ml-sm-1">
                             <Label check>
-                                <Input type="checkbox" name="InfinityQm" checked={isDisabled}
-                                    onChange={this.handleChange} disabled={isDisabledInfinity} />{INFINITY_SYMBOL}
+                                <Input type="checkbox" checked={isDisabled}
+                                    onChange={this.handleCheck} disabled={isDisabledInfinity} />{INFINITY_SYMBOL}
                             </Label>
                         </FormGroup>
                     </Form>
                 </td>
                 <td>
-                    <select className="form-control" name="Commission" 
+                    <select className="form-control" name="Commission"
                         onChange={this.handleChange} value={formatDecimal(Commission)}>
                         {
                             commissionValueList.map((item, i) => {
-                                return (<option key={`comm-${index}-${i}`} value={item}>{item}</option>);
+                                return (<option key={`comm-${TierId}-${i}`} value={item}>{item}</option>);
                             })
                         }
                     </select>

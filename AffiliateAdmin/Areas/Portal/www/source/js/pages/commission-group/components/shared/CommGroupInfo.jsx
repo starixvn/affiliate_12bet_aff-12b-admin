@@ -1,27 +1,24 @@
-import React from "react";
+import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { setSelectedGroup } from '../../actions';
+
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 
-export default class CommGroupInfo extends React.Component {
+export class CommGroupInfo extends React.Component {
     constructor(props) {
         super(props);
-
-        const { data } = this.props;
-        this.state = {
-            GroupName: data.GroupName,
-            Description: data.Description
-        }
     }
 
     handleChange = (event) => {
-        const { name, value } = event.target;
-
-        const newState = { [name]: value };
-        this.setState(newState);
-        this.props.onChange && this.props.onChange(name, value);
+        const { name, value } = event.target;        
+        this.props.setSelectedGroup({ [name]: value })
     }
 
     render() {
-        const { GroupName, Description } = this.state;
+        const { GroupName, Description } = this.props.selectedGroup;
+
         return (
             <div>
                 <FormGroup row>
@@ -43,3 +40,13 @@ export default class CommGroupInfo extends React.Component {
         )
     }
 }
+
+function mapStateToProp({ selectedGroup }) {
+    return { selectedGroup };
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ setSelectedGroup }, dispatch);
+}
+
+export default connect(mapStateToProp, mapDispatchToProps)(CommGroupInfo);

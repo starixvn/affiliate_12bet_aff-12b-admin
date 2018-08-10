@@ -1,113 +1,120 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { setSelectedGroup } from '../../../actions';
 
 import PlatformFeeItem from "./PlatformFeeItem";
 import { deepClone, updateObjectInArray } from "../../../../../modules/dataHandler";
+import { convertProductList, createDefaultPlatformfee, getDeductionSetting } from '../../../modules/service';
 
-export default class PlatformFeeSetting extends Component {
+export class PlatformFeeSetting extends Component {
     constructor(props) {
         super(props);
 
-        this.defaultPlatformSetting = this.props.defaultSettingItem;
-
-        this.state = {
-            platformFeeSettings: this.props.data
-        }
+        const { deductionList, productList } = this.props;
+        const deductionSetting = getDeductionSetting(deductionList);
+        this.defaultPlatformSetting = createDefaultPlatformfee(productList, deductionSetting.platformFeeSetting);
     }
 
     handleAdd = () => {
-        const platformFeeSettings = this.state.platformFeeSettings;
-        const { productList, commission } = this.defaultPlatformSetting;
-        const newProductList = productList.map(item => {
-            return Object.assign({}, item, { Checked: false });
-        });
+        const { PlatformFeeList } = this.props.selectedGroup;
 
-        this.setState({
-            platformFeeSettings: [...platformFeeSettings, { productList: newProductList, commission }]
-        });
+        const newItem = {
+            DeductionId: this.defaultPlatformSetting.deductionId,
+            ProductIds: '',
+            DeductedPercentage: this.defaultPlatformSetting.commission
+        }
+
+        const platformFeeList = [...PlatformFeeList, newItem];
+
+        console.log(platformFeeList);
+        this.props.setSelectedGroup({ PlatformFeeList: platformFeeList });
     }
 
     handleRemove = (index) => {
-        const platformFeeSettings = deepClone(this.state.platformFeeSettings);
+        const { PlatformFeeList } = this.props.selectedGroup;
+        const platformFeeList = deepClone(PlatformFeeList);
 
-        const rootProductList = platformFeeSettings[0].productList;
-        const checkedProductList = platformFeeSettings[index].productList.filter(p => p.Checked);
+        const rootProductIds = platformFeeList[0].ProductIds.split(',').filter(p => !!p);
+        const checkedProductIds = platformFeeList[index].ProductIds.split(',').filter(p => !!p);
 
-        for (let i = 0; i < checkedProductList.length; i++) {
-            const productId = checkedProductList[i].ProductId;
-            const rootProductItem = rootProductList.find(p => p.ProductId === productId);
+        for (let i = 0; i < checkedProductIds.length; i++) {
+            const productId = checkedProductIds[i];
 
-            if (rootProductItem) {
-                rootProductItem.Checked = true;
-            }
+            rootProductIds.push(productId);
         }
 
-        platformFeeSettings.splice(index, 1);
+        platformFeeList[0].ProductIds = rootProductIds.join(',');
 
-        this.setState({ platformFeeSettings });
+        platformFeeList.splice(index, 1);
+
+        console.log(platformFeeList);
+        this.props.setSelectedGroup({ PlatformFeeList: platformFeeList });
     }
 
     handleSelect = (index, selectedItem) => {
+        const { PlatformFeeList } = this.props.selectedGroup;
         const isChecked = selectedItem.Checked;
-        const platformFeeSettings = deepClone(this.state.platformFeeSettings);
-        const settingCount = platformFeeSettings.length;
+        const platformFeeList = deepClone(PlatformFeeList);
+        const settingCount = platformFeeList.length;
 
         if (settingCount > 1) {
-            const currentproductList = platformFeeSettings[index].productList;
-            const currentProductItem = currentproductList.find(p => p.ProductId === selectedItem.ProductId);
-            currentProductItem.Checked = isChecked;
-
             if (isChecked) {
-                for (let i = 0; i < platformFeeSettings.length; i++) {
-                    if (i !== index) {
-                        const productList = platformFeeSettings[i].productList;
-                        const productItem = productList.find(p => p.ProductId === selectedItem.ProductId && p.Checked === isChecked);
+                const currentProductIds = platformFeeList[index].ProductIds.split(',').filter(p => !!p);
+                currentProductIds.push(selectedItem.ProductId.toString());
+                platformFeeList[index].ProductIds = currentProductIds.join(',');
 
-                        if (productItem) {
-                            productItem.Checked = !isChecked;
-                            break;
-                        }
+                for (let i = 0; i < platformFeeList.length; i++) {
+                    if (i !== index) {
+                        platformFeeList[i].ProductIds = platformFeeList[i].ProductIds.split(',')
+                            .filter(p => p && p !== selectedItem.ProductId.toString())
+                            .join(',');
                     }
                 }
             }
             else {
-                const productList = platformFeeSettings[0].productList;
-                const productItem = productList.find(p => p.ProductId === selectedItem.ProductId);
-                productItem.Checked = !isChecked;
+                platformFeeList[index].ProductIds = platformFeeList[index].ProductIds.split(',')
+                                                .filter(p => p && p !== selectedItem.ProductId.toString())
+                                                .join(',');
+
+                const firstItemProductIds = platformFeeList[0].ProductIds.split(',').filter(p => !!p);
+                firstItemProductIds.push(selectedItem.ProductId.toString());
+
+                platformFeeList[0].ProductIds = firstItemProductIds.join(',');
             }
         }
 
-        this.setState({ platformFeeSettings });
-        this._callbackToParent(platformFeeSettings);
+        console.log(platformFeeList);
+        this.props.setSelectedGroup({ PlatformFeeList: platformFeeList });
     }
 
     handleChangeCommission = (index, value) => {
-        const { platformFeeSettings } = this.state;
-        const currentSetting = Object.assign({}, platformFeeSettings[index]);
-        currentSetting.commission = value;
+        const { PlatformFeeList } = this.props.selectedGroup;
+        const currentSetting = Object.assign({}, PlatformFeeList[index]);
+        currentSetting.DeductedPercentage = value;
 
-        const newState = updateObjectInArray(platformFeeSettings, index, currentSetting);
-        this.setState({ platformFeeSettings: newState });
-        this._callbackToParent(newState);
-    }
+        const platformFeeList = updateObjectInArray(PlatformFeeList, index, currentSetting);
 
-    _callbackToParent(dataList) {
-        const settingList = dataList.map(item => {
-            return {
-                DeductionId: this.props.deductionId,
-                ProductIds: item.productList.filter(p => p.Checked).map(p => p.ProductId).join(','),
-                DeductedPercentage: item.commission
-            }
-        });
-
-        this.props.onSelect(settingList);
+        console.log(platformFeeList);
+        this.props.setSelectedGroup({ PlatformFeeList: platformFeeList });
     }
 
     render() {
+        const { productList } = this.props;
+        const { PlatformFeeList } = this.props.selectedGroup;
+        const platformFeeData = PlatformFeeList.map(item => {
+            return {
+                productList: convertProductList(productList, item.ProductIds),
+                commission: item.DeductedPercentage
+            }
+        });
+
         return (
             <div className="platformfee-group">
                 <p className="font-weight-bold">Platform Fee %</p>
                 {
-                    this.state.platformFeeSettings.map((item, i) => {
+                    platformFeeData.map((item, i) => {
                         const isFirst = i === 0;
                         const handleClick = isFirst ? this.handleAdd : () => this.handleRemove(i);
 
@@ -125,3 +132,13 @@ export default class PlatformFeeSetting extends Component {
         )
     }
 }
+
+function mapStateToProp({ deductionList, productList, selectedGroup }) {
+    return { deductionList, productList, selectedGroup };
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ setSelectedGroup }, dispatch);
+}
+
+export default connect(mapStateToProp, mapDispatchToProps)(PlatformFeeSetting);
