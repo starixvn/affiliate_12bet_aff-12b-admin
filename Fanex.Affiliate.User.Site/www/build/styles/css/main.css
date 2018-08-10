@@ -22,24 +22,6 @@ ul, ol {
 p {
   margin-bottom: 5px; }
 
-@font-face {
-  font-family: 'Montserrat';
-  src: url("../../../source/styles/fonts/Montserrat/Montserrat-Regular.eot");
-  src: url("../../../source/styles/fonts/Montserrat/Montserrat-Regular.woff2") format("woff2"), url("../../../source/styles/fonts/Montserrat/Montserrat-Regular.woff") format("woff"), url("../../../source/styles/fonts/Montserrat/Montserrat-Regular.ttf") format("truetype");
-  font-weight: 400; }
-
-@font-face {
-  font-family: 'Montserrat';
-  src: url("../../../source/styles/fonts/Montserrat/Montserrat-Medium.eot");
-  src: url("../../../source/styles/fonts/Montserrat/Montserrat-Medium.woff2") format("woff2"), url("../../../source/styles/fonts/Montserrat/Montserrat-Medium.woff") format("woff"), url("../../../source/styles/fonts/Montserrat/Montserrat-Medium.ttf") format("truetype");
-  font-weight: 500; }
-
-@font-face {
-  font-family: 'Montserrat';
-  src: url("../../../source/styles/fonts/Montserrat/Montserrat-SemiBold.eot");
-  src: url("../../../source/styles/fonts/Montserrat/Montserrat-SemiBold.woff2") format("woff2"), url("../../../source/styles/fonts/Montserrat/Montserrat-SemiBold.woff") format("woff"), url("../../../source/styles/fonts/Montserrat/Montserrat-SemiBold.ttf") format("truetype");
-  font-weight: 600; }
-
 article,
 aside,
 details,
@@ -350,7 +332,8 @@ input[type="checkbox"], input[type="radio"] {
     outline: none; }
   .navbar .navbar-toggle {
     padding-top: 0;
-    padding-bottom: 0; }
+    padding-bottom: 0;
+    float: left; }
     .navbar .navbar-toggle .icon-bar {
       background: #fff; }
   .navbar.navbar-default .navbar-toggle {
@@ -359,6 +342,8 @@ input[type="checkbox"], input[type="radio"] {
       background: transparent; }
   .navbar.navbar-default .navbar-collapse {
     border-color: transparent; }
+  .navbar .navbar-nav {
+    margin: 0; }
 
 .menu {
   padding-left: 0;
@@ -609,7 +594,7 @@ input[type="checkbox"], input[type="radio"] {
   height: 300px; }
   .carousel.slide .carousel-inner > .item {
     height: 100%; }
-    .carousel.slide .carousel-inner > .item > a > img {
+    .carousel.slide .carousel-inner > .item > a .img-responsive {
       width: 100%;
       height: 100%; }
   @media (min-width: 1300px) {
@@ -1116,4 +1101,30 @@ input[type="radio"], input[type="checkbox"] {
     -webkit-transform: translateX(-100%);
     /* Firefox bug fix */
     transform: translateX(-100%); } }
+
+@media (min-width: 1024px) {
+  .news .item-wrapper {
+    flex-basis: 33.333%;
+    max-width: 33.333%; }
+    .news .item-wrapper.first {
+      padding-left: 10px; }
+    .news .item-wrapper.last {
+      padding-right: 10px; } }
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .banner-side.banner-left, .banner-side.banner-right {
+    display: none; }
+  .page-container {
+    width: 100%; }
+  /*.info-group .img-ads img {
+        width: 100%;
+    }*/ }
+
+@media (max-width: 768px) {
+  .banner-side.banner-left, .banner-side.banner-right {
+    display: none; }
+  .page-container {
+    width: 100%; }
+  .info-group .img-ads img {
+    width: 100%; } }
 

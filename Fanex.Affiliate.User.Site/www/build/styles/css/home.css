@@ -80,16 +80,13 @@
 .news {
   padding-top: 10px;
   padding-bottom: 10px;
-  display: flex; }
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap; }
   .news .item-wrapper {
     padding-left: 5px;
     padding-right: 5px;
-    flex: 1 1 33.33333%;
-    max-width: 33.33333%; }
-    .news .item-wrapper.first {
-      padding-left: 10px; }
-    .news .item-wrapper.last {
-      padding-right: 10px; }
+    margin-bottom: 5px; }
   .news .card, .news .card-content {
     height: 100%; }
 

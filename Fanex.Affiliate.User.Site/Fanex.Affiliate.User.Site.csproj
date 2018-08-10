@@ -530,6 +530,11 @@
     <Content Include="www\build\styles\css\signup.min.css">
       <DependentUpon>signup.css</DependentUpon>
     </Content>
+    <Content Include="www\build\styles\fonts\Montserrat\font.css" />
+    <Content Include="www\build\styles\Images\ads-1\ads-1_200.jpg" />
+    <Content Include="www\build\styles\Images\ads-1\ads-1_392.jpg" />
+    <Content Include="www\build\styles\Images\ads-1\ads-1_559.jpg" />
+    <Content Include="www\build\styles\Images\ads-1\ads-1_644.jpg" />
     <Content Include="www\build\styles\Images\bgLeft.jpg" />
     <Content Include="www\build\styles\Images\bgRight.jpg" />
     <Content Include="www\build\styles\Images\FAQ_banner.png" />
@@ -743,6 +748,7 @@
     <Content Include="www\source\styles\css\main.min.css" />
     <Content Include="www\source\styles\fonts\bootstrap\glyphicons-halflings-regular.svg" />
     <Content Include="www\source\styles\fonts\font_bebas\Flat-it License.txt" />
+    <Content Include="www\source\styles\fonts\Montserrat\font.css" />
     <Content Include="www\source\styles\Images\ads-1.jpg" />
     <Content Include="www\source\styles\Images\advertise.png" />
     <Content Include="www\source\styles\Images\bgLeft.jpg" />
@@ -874,6 +880,16 @@
     <Content Include="www\source\styles\scss\layout\_footer.scss" />
     <Content Include="Views\UserPanel\CommissionReport\Index.cshtml" />
     <Content Include="www\source\styles\pages\commissionreport.scss" />
+    <Content Include="www\source\styles\scss\base\_media.scss" />
+    <Content Include="www\build\styles\Images\products\ad-banner.webp" />
+    <Content Include="www\build\styles\Images\products\ad-sb.webp" />
+    <Content Include="www\build\styles\Images\adv_contact.webp" />
+    <Content Include="www\build\styles\Images\advertise.webp" />
+    <Content Include="www\build\styles\Images\bgLeft.webp" />
+    <Content Include="www\build\styles\Images\bgRight.webp" />
+    <Content Include="www\build\styles\Images\main-banner-1.webp" />
+    <Content Include="www\build\styles\Images\main-banner-2.webp" />
+    <Content Include="www\build\styles\Images\offers.webp" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

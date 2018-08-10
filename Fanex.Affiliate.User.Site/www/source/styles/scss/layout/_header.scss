@@ -69,6 +69,7 @@
     .navbar-toggle {
         padding-top: 0;
         padding-bottom: 0;
+        float: left;
 
         .icon-bar {
             background: #fff;
@@ -86,7 +87,13 @@
     &.navbar-default .navbar-collapse {
         border-color: transparent;
     }
+
+    .navbar-nav {
+        margin: 0;
+    }
 }
+
+
 
 .menu {
     padding-left: 0;

@@ -22,8 +22,12 @@
 }
 
 <div class="main">
-    <div class="banner-side banner-left">
-        <img src="~/www/build/styles/Images/bgLeft.jpg?v=100" />
+    <div class="banner-side banner-left">        
+        <picture>
+            <source srcset="~/www/build/styles/Images/bgLeft.webp" type="image/webp" />
+            <source srcset="~/www/build/styles/Images/bgLeft.jpg" type="image/jpeg" />
+            <img src="~/www/build/styles/Images/bgLeft.jpg" alt="banner-left" />
+        </picture>
     </div>
 
     <div class="page-container">
@@ -32,6 +36,10 @@
     </div>
 
     <div class="banner-side banner-right">
-        <img src="~/www/build/styles/Images/bgRight.jpg?v=100" />
+        <picture>
+            <source srcset="~/www/build/styles/Images/bgRight.webp" type="image/webp" />
+            <source srcset="~/www/build/styles/Images/bgRight.jpg" type="image/jpeg" />
+            <img src="~/www/build/styles/Images/bgRight.jpg" alt="banner-right" />
+        </picture>
     </div>
 </div>

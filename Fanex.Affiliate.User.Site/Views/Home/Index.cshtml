@@ -6,6 +6,7 @@
 @model Fanex.Affiliate.User.Core.ViewModels.HomeViewModel
 
 @section styles{
+    <link href="@Url.RenderLink("~/www/build/styles/fonts/Montserrat/font.css")" rel="preload" as="style" onload="this.rel='stylesheet'" />
     <link href="@Url.RenderLink("~/www/build/styles/css/home.css")" rel="stylesheet" />
 }
 
@@ -17,14 +18,22 @@
     <div id="mainBanner" class="carousel slide banner-center" data-ride="carousel">
         <div class="carousel-inner" role="listbox">
             <div class="item active">
-                <a class="nounderline" href="@Url.Action("Index", "Signup")">
-                    <img src="~/www/build/styles/Images/main-banner-1.jpg" alt="sign up affiliate" />
+                <a class="nounderline" href="@Url.Action("Index", "Signup")">                    
+                    <picture>
+                        <source srcset="~/www/build/styles/Images/main-banner-1.webp" type="image/webp" />
+                        <source srcset="~/www/build/styles/Images/main-banner-1.jpg" type="image/jpeg" />
+                        <img class="img-responsive" src="~/www/build/styles/Images/main-banner-1.jpg" alt="sign up affiliate" />
+                    </picture>
                 </a>
             </div>
 
             <div class="item">
-                <a class="nounderline @(Model.IsAuthenticated ? string.Empty : "loginLink")" href="@Model.BannerLink">
-                    <img src="~/www/build/styles/Images/main-banner-2.jpg" alt="media gallery" />
+                <a class="nounderline @(Model.IsAuthenticated ? string.Empty : "loginLink")" href="@Model.BannerLink">                    
+                    <picture>
+                        <source srcset="~/www/build/styles/Images/main-banner-2.webp" type="image/webp" />
+                        <source srcset="~/www/build/styles/Images/main-banner-2.jpg" type="image/jpeg" />
+                        <img class="img-responsive" src="~/www/build/styles/Images/main-banner-2.jpg" alt="media gallery" />
+                    </picture>
                 </a>
             </div>
         </div>
@@ -42,12 +51,16 @@
             <div class="card">
                 <div class="card-content">
                     <h4 class="card-title">
-                        <span class="icon"><img src="~/www/build/styles/Images/icon-1.png" /></span>
+                        <span class="icon"><img src="~/www/build/styles/Images/icon-1.png" alt="icon-1" /></span>
                         <span class="text">Apply 12BET Affiliate</span>
                     </h4>
                     <a href="@Model.SignUpLink" class="nounderline">
-                        <div class="img-content">
-                            <img class="img-item img-responsive" src="~/www/build/styles/Images/advertise.png" />
+                        <div class="img-content">                            
+                            <picture>
+                                <source srcset="~/www/build/styles/Images/advertise.webp" type="image/webp" />
+                                <source srcset="~/www/build/styles/Images/advertise.png" type="image/jpeg" />
+                                <img class="img-item img-responsive" src="~/www/build/styles/Images/advertise.png" alt="ads" />
+                            </picture>
                         </div>
                         <p class="text-content">
                             As affiliates, you will earn commission on every player you referred to 12BET  over the course of the player's account life. Your online system will be  serving  you 24/7 for your usage.
@@ -61,12 +74,16 @@
             <div class="card">
                 <div class="card-content">
                     <h4 class="card-title">
-                        <span class="icon"><img src="~/www/build/styles/Images/icon-2.png" /></span>
+                        <span class="icon"><img src="~/www/build/styles/Images/icon-2.png" alt="icon-2" /></span>
                         <span class="text">What's New in Affiliate</span>
                     </h4>
                     <div class="card-body">
-                        <a href="@Url.Action("Index", "ContactUs")">
-                            <img class="img-responsive" src="~/www/build/styles/Images/adv_contact.jpg" style="margin: 0 auto" />
+                        <a href="@Url.Action("Index", "ContactUs")">                            
+                            <picture>
+                                <source srcset="~/www/build/styles/Images/adv_contact.webp" type="image/webp" />
+                                <source srcset="~/www/build/styles/Images/adv_contact.jpg" type="image/jpeg" />
+                                <img class="img-item img-responsive" src="~/www/build/styles/Images/adv_contact.jpg" alt="contact" />
+                            </picture>
                         </a>
                     </div>
                 </div>
@@ -77,7 +94,7 @@
             <div class="card" id="affiliateNews">
                 <div class="card-content">
                     <h4 class="card-title">
-                        <span class="icon"><img src="~/www/build/styles/Images/icon-3.png" /></span>
+                        <span class="icon"><img src="~/www/build/styles/Images/icon-3.png" alt="icon-3" /></span>
                         <span class="text">12BET Affiliate News</span>
                     </h4>
                     <div class="text-content">
@@ -106,7 +123,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-banner">
-                <img src="~/www/build/styles/Images/logo.png" />
+                <img src="~/www/build/styles/Images/logo.png" alt="logo" />
                 <h1 class="logo-text">AFFILIATE PROGRAM</h1>
             </div>
 
