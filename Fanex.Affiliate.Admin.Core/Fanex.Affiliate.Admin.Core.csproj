@@ -113,6 +113,7 @@
     <Compile Include="Configurations\AppSetting.cs" />
     <Compile Include="Configurations\IAppSetting.cs" />
     <Compile Include="Constants\AffStatus.cs" />
+    <Compile Include="Constants\DeductionName.cs" />
     <Compile Include="Constants\Function.cs" />
     <Compile Include="Controllers\AdministratorController.cs" />
     <Compile Include="Controllers\AffiliateController.cs" />

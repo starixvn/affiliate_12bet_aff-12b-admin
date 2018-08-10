@@ -76,10 +76,12 @@ export class AddGroup extends React.Component {
         else {
             const { selectedGroup } = this.props;
 
-            const param = {...selectedGroup};
+            const platformFeeList = selectedGroup.PlatformFeeList.filter(item => !!item.ProductIds);
+
+            const param = { ...selectedGroup, PlatformFeeList: platformFeeList };
             console.log(param);
 
-            const response = await insertCommissionGroup(param);
+            const response = await this.props.insertCommissionGroup(param);
             const result = response.data;
             console.log(result);
             if (result.IsSuccessful) {

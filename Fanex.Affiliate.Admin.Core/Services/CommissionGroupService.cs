@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.MetaModels;
@@ -42,7 +43,8 @@ namespace Fanex.Affiliate.Admin.Core.Services
                              NoAffs = c.NoAffs,
                              TierSettingList = groupTierSetting,
                              PlatformFeeList = groupDeduction.Where(p => IsPlatformFee(p.ProductIds)),
-                             RemainingFeeList = groupDeduction.Where(p => !IsPlatformFee(p.ProductIds))
+                             OperationalFee = groupDeduction.FirstOrDefault(p => p.DeductionName == DeductionName.OperationalFee),
+                             BankingFee = groupDeduction.FirstOrDefault(p => p.DeductionName == DeductionName.BankingFee)
                          };
 
             return result;
@@ -50,7 +52,7 @@ namespace Fanex.Affiliate.Admin.Core.Services
 
         public ResultInfo InsertCommissionGroup(InsertCommissionGroupParam param)
         {
-            var deductionSettingList = param.PlatformFeeList.Concat(param.RemainingFeeList);
+            var deductionSettingList = param.PlatformFeeList.Concat(new[] { param.OperationalFee, param.BankingFee });
             param.TierList = BuildTierSettingXml(param.TierSettingList);
             param.DeductionList = BuildDeductionSettingXml(deductionSettingList);
 

@@ -6,19 +6,17 @@ import { setSelectedGroup } from '../../../actions';
 
 import PlatformFeeSetting from './PlatformFeeSetting';
 import FeeSettingItem from './FeeSettingItem';
-import { getDeductionSetting, convertRemainingDeduction } from '../../../modules/service';
+import { getDeductionSetting, createDefaultOperationalSetting, createDefaultBankingSetting } from '../../../modules/service';
 
 export class DeductionSetting extends Component {
     constructor(props) {
         super(props);
 
-        const { deductionList, selectedGroup } = this.props;
+        const { deductionList } = this.props;
         const deductionSetting = getDeductionSetting(deductionList);
-        
-        const remainingFee = convertRemainingDeduction([selectedGroup.OperationalFee, selectedGroup.BankingFee], deductionSetting);
 
-        this.operationalFeeSetting = remainingFee.OperationalFee;
-        this.bankingFeeSetting = remainingFee.BankingFee;
+        this.operationalFeeSetting = createDefaultOperationalSetting(deductionSetting.operationalFeeSetting);
+        this.bankingFeeSetting = createDefaultBankingSetting(deductionSetting.bankingFeeSetting);
     }
 
     handleSelectOperationalFee = (event) => {

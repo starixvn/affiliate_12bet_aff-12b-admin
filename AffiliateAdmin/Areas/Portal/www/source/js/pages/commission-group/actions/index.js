@@ -12,7 +12,7 @@ export const fetchGroupSettingData = (param) => {
 const setGridData = (data) => {
     return {
         type: SET_GRIDDATA,
-        data: data
+        data
     }
 }
 
@@ -34,7 +34,7 @@ export const getGroupSettingList = (param) => async(dispatch) => {
 export const setPagingOption = (data) => {
     return {
         type: SET_PAGING_OPTION,
-        data: data
+        data
     }
 }
 

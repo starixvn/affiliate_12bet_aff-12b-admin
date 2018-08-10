@@ -13,12 +13,18 @@ const emptyCommGroup = {
 
 export const buildDefaultCommGroup = (deductionList, productList) => {
     const deductionSetting = getDeductionSetting(deductionList);
-    const remainingDeduction = convertRemainingDeduction([], deductionSetting);
 
     const platformFeeParam = { productList, deductionSetting, platformFeeList: [] };
     const platformFeeList = buildPlatformFeeList(platformFeeParam);
 
-    return Object.assign({}, emptyCommGroup, remainingDeduction, { PlatformFeeList: platformFeeList });
+    const operationalFee = createDefaultOperationalSetting(deductionSetting.operationalFeeSetting);
+    const bankingFee = createDefaultBankingSetting(deductionSetting.bankingFeeSetting);
+
+    return Object.assign({}, emptyCommGroup, {
+        PlatformFeeList: platformFeeList,
+        OperationalFee: operationalFee,
+        BankingFee: bankingFee
+    });
 }
 
 export const getDeductionSetting = (deductionList) => {
@@ -34,26 +40,19 @@ export const getDeductionSetting = (deductionList) => {
     }
 }
 
-export const convertRemainingDeduction = (RemainingFeeList, deductionSetting) => {
-    const { operationalFeeSetting, bankingFeeSetting } = deductionSetting;
-
-    const operationalFeeItem = RemainingFeeList.filter(item => item.DeductionId === operationalFeeSetting.DeductionId);
-    const OperationalFee = operationalFeeItem.length ? operationalFeeItem[0] : {
+export const createDefaultOperationalSetting = (operationalFeeSetting) => {
+    return {
         DeductionId: operationalFeeSetting.DeductionId,
         ProductIds: 0,
         DeductedPercentage: operationalFeeSetting.DeductedPercentage
-    };
+    }
+}
 
-    const bankingFeeItem = RemainingFeeList.filter(item => item.DeductionId === bankingFeeSetting.DeductionId);
-    const BankingFee = bankingFeeItem.length ? bankingFeeItem[0] : {
+export const createDefaultBankingSetting = (bankingFeeSetting) => {
+    return {
         DeductionId: bankingFeeSetting.DeductionId,
         ProductIds: 0,
         DeductedPercentage: bankingFeeSetting.DeductedPercentage
-    };
-
-    return {
-        OperationalFee,
-        BankingFee
     }
 }
 

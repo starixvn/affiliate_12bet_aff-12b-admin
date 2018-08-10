@@ -39,7 +39,7 @@ export class GridData extends Component {
         for (let index = 0; index < gridData.length; index++) {
             const item = gridData[index];
 
-            const { TierSettingList, PlatformFeeList, RemainingFeeList, ...group } = item;
+            const { TierSettingList, PlatformFeeList, OperationalFee, BankingFee, ...group } = item;
             const tierSettingRowSpan = TierSettingList.length;
             const platformFeeRowSpan = PlatformFeeList.length;
             const rowSpan = tierSettingRowSpan + platformFeeRowSpan;
@@ -64,18 +64,10 @@ export class GridData extends Component {
                         <td className="text-right cell-tier">{tierSetting.MaxQm === INFINITY_QM ? INFINITY_SYMBOL : format(tierSetting.MaxQm)}</td>
                         <td className="text-right cell-tier">{formatDecimal(tierSetting.Commission)}</td>
 
-                        {
-                            isFirstItem && (RemainingFeeList.length === 2 ?
-                                RemainingFeeList.map((fee, i) => (
-                                    <td key={`fee-${index}-${i}`} rowSpan={rowSpan} className="text-right">{fee.DeductedPercentage}</td>
-                                )) :
-                                (
-                                    <React.Fragment>
-                                        <td rowSpan={rowSpan}></td>
-                                        <td rowSpan={rowSpan}></td>
-                                    </React.Fragment>
-                                ))
-                        }
+                        {isFirstItem && (<td className="text-right" rowSpan={rowSpan}>
+                            {OperationalFee && formatDecimal(OperationalFee.DeductedPercentage)}</td>)}
+                        {isFirstItem && (<td className="text-right" rowSpan={rowSpan}>
+                            {BankingFee && formatDecimal(BankingFee.DeductedPercentage)}</td>)}
                         {isFirstItem && (<td className="text-right" rowSpan={rowSpan}>{formatDecimal(group.QmTurnover)}</td>)}
 
                         {isFirstItem && (

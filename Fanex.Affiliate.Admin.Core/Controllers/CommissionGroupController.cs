@@ -63,7 +63,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 QmTurnover = commGroup.QmTurnover,
                 TierSettingList = commGroup.TierSettingList,
                 PlatformFeeList = commGroup.PlatformFeeList,
-                RemainingFeeList = commGroup.RemainingFeeList
+                OperationalFee = commGroup.OperationalFee,
+                BankingFee = commGroup.BankingFee
             };
 
             var result = _commissionGroupService.InsertCommissionGroup(insertParam);
