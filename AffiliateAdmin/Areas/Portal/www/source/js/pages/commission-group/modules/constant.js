@@ -33,7 +33,8 @@ const _validationMessage = {
     requireInfinity: 'Last Tier Setting must have maximum value=∞',
     requireQmTurnover: 'QM Turnover value is required',
     amountConstrain: 'Max Amount must be greater than or equal to Min Amount',
-    qmConstrain: 'Max QM must be greater than or equal to Min QM'
+    qmConstrain: 'Max QM must be greater than or equal to Min QM',
+    requireSelectedProduct: 'At least 1 product must be selected per group'
 }
 export const messages = _validationMessage;
 

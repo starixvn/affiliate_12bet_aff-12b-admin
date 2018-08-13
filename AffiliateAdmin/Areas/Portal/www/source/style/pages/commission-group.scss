@@ -44,6 +44,16 @@
                 top: -3px;
                 font-size: 20px;
             }
+
+            &.is-invalid {
+                .multiple-select-label {
+                    border-color: #dc3545;
+                }
+
+                .invalid-feedback {
+                    display: block;
+                }
+            }
         }
     }
 

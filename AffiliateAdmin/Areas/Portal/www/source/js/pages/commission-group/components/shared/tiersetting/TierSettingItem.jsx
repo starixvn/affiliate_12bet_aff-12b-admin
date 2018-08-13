@@ -81,7 +81,7 @@ export default class TierSettingItem extends React.Component {
                     </select>
                 </td>
                 <td className="text-center">
-                    <a href="javacript:;" onClick={onRemove}><span className="oi oi-x text-danger"></span></a>
+                    <button className="btn btn-link" onClick={onRemove}><span className="oi oi-x text-danger"></span></button>
                 </td>
             </tr>
         )

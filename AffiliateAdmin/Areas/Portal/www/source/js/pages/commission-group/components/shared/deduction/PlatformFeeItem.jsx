@@ -1,6 +1,6 @@
 import React from "react";
 import MultipleSelect from "../../../../../components/multiple-select";
-import { Col, FormGroup, Input, Label, Form } from 'reactstrap';
+import { Col, FormGroup, Input, Label, Form, FormFeedback } from 'reactstrap';
 import { commissionValueList } from '../../../modules/constant';
 import { formatDecimal } from '../../../../../modules/numberFormat';
 
@@ -23,11 +23,13 @@ export default class PlatformFeeItem extends React.Component {
         const { data, handleClick, btnText, isInserting } = this.props;
 
         const { productList, commission, nextCommission } = data;
+        const isValid = productList.filter(p => !p.Checked).length < productList.length;
+        console.log(isValid);
 
         return (
             <FormGroup row>
                 <Col sm={4}>
-                    <div className="select-product">
+                    <div className={`select-product ${isValid ? "" : "is-invalid"}`}>
                         <MultipleSelect
                             dataSource={productList}
                             keyField="ProductId"
@@ -37,6 +39,7 @@ export default class PlatformFeeItem extends React.Component {
                             maxDisplayItemCount={1}
                             noneSelectedLabel="Please Select"
                             onChange={this.handleChange} />
+                        <FormFeedback>At least 1 product must be selected per group</FormFeedback>
                     </div>
                 </Col>
                 {

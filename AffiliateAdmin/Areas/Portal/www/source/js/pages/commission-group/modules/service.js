@@ -104,28 +104,35 @@ export const validate = (selectedGroup) => {
     let isValid = true;
     const messageList = [];
 
-    if (!selectedGroup.GroupName) {
+    const { GroupName, QmTurnover, TierSettingList, PlatformFeeList } = selectedGroup;
+
+    if (!GroupName) {
         isValid = false;
         messageList.push(messages.requireGroupName);
     }
 
-    if (isNaN(selectedGroup.QmTurnover) || typeof selectedGroup.QmTurnover !== 'number') {
+    if (isNaN(QmTurnover) || typeof QmTurnover !== 'number') {
         isValid = false;
         messageList.push(messages.requireQmTurnover);
     }
 
-    if (selectedGroup.TierSettingList.length === 0) {
+    if (TierSettingList.length === 0) {
         isValid = false;
         messageList.push(messages.requireTier);
-    } else if (selectedGroup.TierSettingList.filter(item => item.MaxAmount === INFINITY_AM && item.MaxQm === INFINITY_QM).length === 0) {
+    } else if (TierSettingList.filter(item => item.MaxAmount === INFINITY_AM && item.MaxQm === INFINITY_QM).length === 0) {
         isValid = false;
         messageList.push(messages.requireInfinity);
-    } else if (selectedGroup.TierSettingList.filter(item => item.MinAmount > item.MaxAmount).length > 0) {
+    } else if (TierSettingList.filter(item => item.MinAmount > item.MaxAmount).length > 0) {
         isValid = false;
         messageList.push(messages.amountConstrain);
-    } else if (selectedGroup.TierSettingList.filter(item => item.MinQm > item.MaxQm).length > 0) {
+    } else if (TierSettingList.filter(item => item.MinQm > item.MaxQm).length > 0) {
         isValid = false;
         messageList.push(messages.qmConstrain);
+    }
+
+    if (PlatformFeeList.filter(item => !item.ProductIds).length > 0) {
+        isValid = false;
+        messageList.push(messages.requireSelectedProduct);
     }
 
     return { isValid, messageList };
