@@ -24,7 +24,7 @@
     padding-top: 20px;
 }
 
-.btn-signup, .btn-login, .btn-link {
+.btn-signup, .btn-login, .btn-link, .btn-login-mobile {
     background: #fe2400;
     font-size: 13px;
     color: #fff;
@@ -89,5 +89,14 @@
 
     &:focus {
         outline: none;
+    }
+}
+
+.btn-login-mobile {
+    display: inline-block;
+    margin-right: 8px !important;
+
+    @media (min-width: 992px) {
+        display: none;
     }
 }

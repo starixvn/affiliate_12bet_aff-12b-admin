@@ -13,6 +13,9 @@
     background-color: #ded5d5;
     border: 3px solid #fff;
     width: 200px; }
+    @media (max-width: 1023px) {
+      .table .game-list tr .game-name {
+        width: 100px; } }
 
 .table .casino-table tbody > tr:nth-of-type(even) {
   background-color: #f9f4f4; }

@@ -363,7 +363,9 @@ input[type="checkbox"], input[type="radio"] {
   margin-top: 14px; }
   @media (max-width: 992px) {
     .user-signup {
-      text-align: right; } }
+      text-align: right; }
+      .user-signup > * {
+        margin-bottom: 4px; } }
 
 .sign-up {
   display: inline-block;
@@ -401,7 +403,7 @@ input[type="checkbox"], input[type="radio"] {
     background: transparent;
     color: #fff;
     font-weight: 500;
-    height: 26px;
+    height: 25px;
     text-align: center;
     border-radius: 2px;
     white-space: nowrap;
@@ -436,8 +438,12 @@ input[type="checkbox"], input[type="radio"] {
   margin-bottom: 12px; }
   @media (max-width: 992px) {
     .user-login {
-      float: none;
-      text-align: right; } }
+      margin-top: 0;
+      margin-bottom: 0; }
+      .user-login .login-before {
+        display: none; } }
+  .user-login .login-after {
+    display: block; }
   .user-login .text-field {
     background: #fff;
     border-radius: 2px;
@@ -476,11 +482,8 @@ input[type="checkbox"], input[type="radio"] {
   margin-left: 8px; }
 
 @media (max-width: 992px) {
-  .text-field, .validation-value {
-    margin-bottom: 8px; }
-  /*.text-field[type="password"] {
-        width: 90px;
-    }*/ }
+  .login .text-field, .login .validation-value {
+    margin-bottom: 8px; } }
 
 .content-menu .menu {
   background: #ad6b2e;
@@ -520,15 +523,18 @@ input[type="checkbox"], input[type="radio"] {
 
 .content-menu .submenu-container {
   position: absolute;
-  top: 30px;
-  left: 0;
+  top: 31px;
+  right: -1px;
   flex-direction: column;
   z-index: 2;
   width: 200px;
   background: #ad6b2e; }
   .content-menu .submenu-container li {
-    border-right: none;
+    border-right: 1px solid #f9f9f9;
     border-bottom: 1px solid #f9f9f9; }
+  @media (max-width: 912px) {
+    .content-menu .submenu-container {
+      top: 61px; } }
 
 .main {
   display: flex;
@@ -869,17 +875,17 @@ label.require:after {
   padding-bottom: 20px;
   padding-top: 20px; }
 
-.btn-signup, .btn-login, .btn-link {
+.btn-signup, .btn-login, .btn-link, .btn-login-mobile {
   background: #fe2400;
   font-size: 13px;
   color: #fff;
   line-height: 22px; }
-  .btn-signup:hover, .btn-signup:focus, .btn-login:hover, .btn-login:focus, .btn-link:hover, .btn-link:focus {
+  .btn-signup:hover, .btn-signup:focus, .btn-login:hover, .btn-login:focus, .btn-link:hover, .btn-link:focus, .btn-login-mobile:hover, .btn-login-mobile:focus {
     color: #fff;
     background: #e52000; }
-  .btn-signup:focus, .btn-login:focus, .btn-link:focus {
+  .btn-signup:focus, .btn-login:focus, .btn-link:focus, .btn-login-mobile:focus {
     outline: none; }
-  .btn-signup .icon, .btn-login .icon, .btn-link .icon {
+  .btn-signup .icon, .btn-login .icon, .btn-link .icon, .btn-login-mobile .icon {
     color: #fff;
     line-height: 1;
     padding-right: 6px; }
@@ -922,6 +928,13 @@ label.require:after {
     background: #fbfb07; }
   .btn-move-top:focus {
     outline: none; }
+
+.btn-login-mobile {
+  display: inline-block;
+  margin-right: 8px !important; }
+  @media (min-width: 992px) {
+    .btn-login-mobile {
+      display: none; } }
 
 .table-medium {
   width: 70%; }
@@ -1032,6 +1045,20 @@ table + .button-group {
 .form-horizontal .control-label, .form-horizontal .radio-inline {
   padding-top: 5px;
   padding-bottom: 5px; }
+
+.form-horizontal .preference-validation .form-control {
+  display: inline-block;
+  width: calc(100% - 80px);
+  vertical-align: middle;
+  margin: 0; }
+
+.form-horizontal .preference-validation .captcha {
+  display: inline-block;
+  width: 70px;
+  text-align: right;
+  vertical-align: middle; }
+  .form-horizontal .preference-validation .captcha .validation-value {
+    margin: 0; }
 
 .form-control {
   border: 1px solid #adadad;
@@ -1146,9 +1173,11 @@ input[type="radio"], input[type="checkbox"] {
     flex-basis: 100%; }
   .news .item-wrapper {
     flex-basis: 100%;
-    max-width: 100%; } }
+    max-width: 100%; }
+  .user-signup {
+    margin-top: 30px; } }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .banner-side.banner-left, .banner-side.banner-right {
     display: none; }
   .page-container {
@@ -1158,5 +1187,17 @@ input[type="radio"], input[type="checkbox"] {
     flex-basis: 100%;
     max-width: 100%; }
   .info-group .img-ads img {
-    width: 100%; } }
+    width: 100%; }
+  .header-top .login {
+    padding: 0;
+    text-align: center;
+    padding-bottom: 8px; }
+    .header-top .login .user-signup {
+      text-align: center; }
+  .modal-dialog {
+    margin: 30px; }
+  .table .game-list tr .game-name {
+    width: 100px; }
+  .carousel.slide .carousel-inner {
+    height: 200px; } }
 

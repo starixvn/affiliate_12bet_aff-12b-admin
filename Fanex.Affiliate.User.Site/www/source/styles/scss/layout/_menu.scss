@@ -49,22 +49,26 @@
                 background: #985b22;
                 color: #fff;
                 text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.32);
-            }
+            }            
         }
     }
 
     .submenu-container {
         position: absolute;
-        top: 30px;
-        left: 0;
+        top: 31px;
+        right: -1px;
         flex-direction: column;
         z-index: 2;
         width: 200px;
         background: $bg-menu;
 
         li {
-            border-right: none;
+            border-right: 1px solid #f9f9f9;
             border-bottom: 1px solid #f9f9f9;
+        }
+
+        @media (max-width: 912px) {
+            top: 61px;
         }
     }
 }

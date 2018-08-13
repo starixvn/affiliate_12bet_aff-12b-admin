@@ -21,6 +21,10 @@
                 background-color: #ded5d5;
                 border: 3px solid #fff;
                 width: 200px;
+
+                @media (max-width: 1023px) {
+                    width: 100px;
+                }
             }
         }
     }

@@ -1,4 +1,4 @@
-﻿$phone: "(max-width: 768px)";
+﻿$phone: "(max-width: 767px)";
 $tablet: "(min-width: 768px) and (max-width: 1023px)";
 $tablet-horizontal: "(min-width: 1024px) and (max-width: 1199px)";
 $desktop: "(min-width: 1024px)";
@@ -52,6 +52,10 @@ $desktop: "(min-width: 1024px)";
             max-width: 100%;
         }
     }
+
+    .user-signup {
+        margin-top: 30px;
+    }
 }
 
 @media #{$phone} {
@@ -73,5 +77,27 @@ $desktop: "(min-width: 1024px)";
 
     .info-group .img-ads img {
         width: 100%;
+    }
+
+    .header-top .login {
+        padding: 0;
+        text-align: center;
+        padding-bottom: 8px;
+
+        .user-signup {
+            text-align: center;
+        }
+    }
+
+    .modal-dialog {
+        margin: 30px;
+    }
+
+    .table .game-list tr .game-name {
+        width: 100px;
+    }
+
+    .carousel.slide .carousel-inner {
+        height: 200px;
     }
 }

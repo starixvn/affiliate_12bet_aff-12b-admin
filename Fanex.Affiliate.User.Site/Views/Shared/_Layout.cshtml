@@ -36,12 +36,12 @@
                 <div class="col-xs-12 col-sm-5 col-md-5 logo">
                     <a href="@Url.Content("~")"><img src="~/www/build/styles/Images/logo.png" alt="logo" /><span class="logo-text">@Lang.Affiliate</span></a>
                 </div>
-                <div class="col-xs-12 col-sm-7 col-md-7">
+                <div class="col-xs-12 col-sm-7 col-md-7 login">
                     <div class="user-signup">
                         @if (!HttpContext.Current.User.Identity.IsAuthenticated || userSession == null)
                         {
-                            <a class="btn btn-login-mobile">
-                                <span class="mdi mdi-account"></span><span>@Lang.Login</span>
+                            <a class="btn btn-login-mobile loginLink">
+                                <span>@Lang.Login</span>
                             </a>
                             <div class="sign-up">
                                 <a href="@Url.Content("~/Signup/Index")" class="btn btn-signup"><span class="icon glyphicon glyphicon-pencil"></span>@Lang.SignUpAffiliate</a>

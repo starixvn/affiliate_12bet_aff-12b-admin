@@ -3,6 +3,26 @@
         padding-top: 5px;
         padding-bottom: 5px;
     }
+
+    .preference-validation {
+        .form-control {
+            display: inline-block;
+            width: calc(100% - 80px);
+            vertical-align: middle;
+            margin: 0;
+        }
+
+        .captcha {
+            display: inline-block;
+            width: 70px;
+            text-align: right;
+            vertical-align: middle;
+
+            .validation-value {
+                margin: 0;
+            }
+        }
+    }
 }
 
 .form-control {

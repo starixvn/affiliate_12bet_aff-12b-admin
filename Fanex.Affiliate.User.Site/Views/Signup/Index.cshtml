@@ -280,13 +280,12 @@
 
                     <div class="form-group">
                         <label class="col-sm-3 control-label require">@Lang.Validation</label>
-                        <div class="col-sm-4">
+                        <div class="col-sm-4 preference-validation">
                             @Html.TextBoxFor(p => p.Captcha, new { @class = "form-control", @autocomplete = "off" })
-                        </div>
-
-                        <div class="col-sm-2 captcha">
-                            <div class="validation-value"><img src="@Url.Action("CaptchaImage", "Home")" alt="captcha" /></div>
-                        </div>
+                            <div class="captcha">
+                                <div class="validation-value"><img src="@Url.Action("CaptchaImage", "Home")" alt="captcha" /></div>
+                            </div>
+                        </div>                        
                         <div class="col-sm-offset-3 col-sm-9">
                             @Html.ValidationMessageFor(x => x.Captcha, string.Empty, new { @class = "help-block hide" })
                         </div>
@@ -301,21 +300,20 @@
                 <div class="form-horizontal">
                     <div class="form-group">
                         <label class="col-sm-3 control-label">@Lang.PaymentMethod</label>
-                        <div class="col-sm-3">
+                        <div class="col-sm-4">
                             <label class="radio-inline">
                                 <input type="radio" name="Method" checked /> @Lang._12BETPlayerAcc
                             </label>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label require">@Lang.Username</label>
-                            <div class="col-sm-3">
-                                @Html.TextBoxFor(p => p.Player_UserName, new { @class = "form-control", @autocomplete = "off" })
+                            <div class="form-group col-sm-12">
+                                <label class="control-label require">@Lang.Username</label>
+                                <div class="">
+                                    @Html.TextBoxFor(p => p.Player_UserName, new { @class = "form-control", @autocomplete = "off" })
+                                </div>
+                                <div class="">
+                                    @Html.ValidationMessageFor(x => x.Player_UserName, string.Empty, new { @class = "help-block hide" })
+                                </div>
                             </div>
-                            <div class="col-sm-offset-8 col-sm-4">
-                                @Html.ValidationMessageFor(x => x.Player_UserName, string.Empty, new { @class = "help-block hide" })
-                            </div>
-                        </div>
+                        </div>                        
                     </div>
 
                     <div class="form-group">
