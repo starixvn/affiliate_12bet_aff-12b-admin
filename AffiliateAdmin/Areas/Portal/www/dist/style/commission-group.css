@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .modal-open {
   overflow: hidden; }
 
@@ -320,13 +321,6 @@ button.close {
   .comm-popup-container .required {
     margin: 0 0 0 -1.5rem;
     font-size: 1rem; }
-  .comm-popup-container legend {
-    width: auto;
-    padding: 10px;
-    margin-bottom: 0; }
-  .comm-popup-container fieldset {
-    padding: 10px;
-    border: 1px solid #a7a6a6; }
   .comm-popup-container .platformfee-group {
     margin-bottom: 0.5rem; }
     .comm-popup-container .platformfee-group .bullet {
@@ -343,10 +337,26 @@ button.close {
       background-color: #ecf6ff; }
       .comm-popup-container .platformfee-group .btn-action:hover {
         background-color: #d8d8d8; }
+    .comm-popup-container .platformfee-group .select-product {
+      margin-left: 20px; }
+      .comm-popup-container .platformfee-group .select-product::before {
+        content: '\2022';
+        display: inline-block;
+        position: absolute;
+        left: 20px;
+        top: -3px;
+        font-size: 20px; }
+  .comm-popup-container .select-comm::after {
+    content: 'x';
+    display: inline-block;
+    position: absolute;
+    right: -5px;
+    top: 7px; }
   .comm-popup-container .form-max {
     width: calc(100% - 32px); }
-  .comm-popup-container .btn-addTier {
-    line-height: 14px; }
+  .comm-popup-container .btn-save {
+    width: 4rem;
+    padding: 0.4rem; }
 
 .action-wrapper {
   margin: 10px 0; }

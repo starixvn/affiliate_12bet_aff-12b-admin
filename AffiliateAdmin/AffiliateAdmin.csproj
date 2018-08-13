@@ -1568,31 +1568,37 @@
     <Content Include="Areas\Portal\www\dist\jquery-3.3.1.min.js" />
     <Content Include="Areas\Portal\www\dist\js\commission-group.js" />
     <Content Include="Areas\Portal\www\dist\pagelayout.min.js" />
+    <Content Include="Areas\Portal\www\dist\style\assets\banner_top.jpg" />
     <Content Include="Areas\Portal\www\dist\style\assets\open-iconic.svg" />
     <Content Include="Areas\Portal\www\dist\style\commission-group.css" />
     <Content Include="Areas\Portal\www\dist\style\layout.css" />
     <Content Include="Areas\Portal\www\dist\style\portalmain.css" />
-    <Content Include="Areas\Portal\www\dist\vendor\vendor.css" />
-    <Content Include="Areas\Portal\www\dist\vendor\vendor.js" />
+    <Content Include="Areas\Portal\www\dist\vendors\bootstrap.css" />
+    <Content Include="Areas\Portal\www\dist\vendors\bootstrap.js" />
+    <Content Include="Areas\Portal\www\dist\vendors\react.js" />
+    <Content Include="Areas\Portal\www\dist\vendors\reactstrap.js" />
     <Content Include="Areas\Portal\www\index.html" />
     <Content Include="Areas\Portal\www\config-utils\constant.js" />
     <Content Include="Areas\Portal\www\config-utils\entry.js" />
-    <Content Include="Areas\Portal\www\source\js\actions\sampleAction.js" />
-    <Content Include="Areas\Portal\www\source\js\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\modules\ajaxRequest.js" />
     <Content Include="Areas\Portal\www\source\js\modules\createReducer.js" />
+    <Content Include="Areas\Portal\www\source\js\modules\dataHandler.js" />
     <Content Include="Areas\Portal\www\source\js\modules\numberFormat.js" />
     <Content Include="Areas\Portal\www\source\js\modules\utils.js" />
     <Content Include="Areas\Portal\www\source\js\pagelayout\pagelayout.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-information\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-information\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-information\modules\helper.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-information\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\grouplist\GridData.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\PopupContent.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\modules\constant.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\modules\service.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\reducers\index.js" />
-    <Content Include="Areas\Portal\www\source\js\reducers\sampleReducer.js" />
     <Content Include="Areas\Portal\www\source\js\pagelayout\vendors\jquery-3.3.1.min.js" />
     <Content Include="Areas\Portal\www\source\style\assets\banner_top.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\bg_menu.jpg" />
@@ -1865,7 +1871,6 @@
     <Content Include="Areas\Portal\www\source\style\fonts\open-iconic.otf" />
     <Content Include="Areas\Portal\www\source\style\fonts\open-iconic.ttf" />
     <Content Include="Areas\Portal\www\source\style\fonts\open-iconic.woff" />
-    <Content Include="Areas\Portal\www\dist\vendor\vendor-manifest.json" />
     <Content Include="Areas\Portal\www\dist\style\assets\open-iconic.eot" />
     <Content Include="Areas\Portal\www\dist\style\assets\open-iconic.ttf" />
     <Content Include="Areas\Portal\www\dist\style\assets\open-iconic.woff" />
@@ -1875,6 +1880,13 @@
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\deduction\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\deduction\PlatformFeeSetting.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\tiersetting\index.jsx" />
+    <Content Include="Areas\Portal\www\dist\vendors\bootstrap-manifest.json" />
+    <Content Include="Areas\Portal\www\dist\vendors\react-manifest.json" />
+    <Content Include="Areas\Portal\www\dist\vendors\reactstrap-manifest.json" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\addgroup\AddGroup.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\addgroup\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\editgroup\EditGroup.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\editgroup\index.jsx" />
     <None Include="bundleconfig.json" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -2015,9 +2027,9 @@
     </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Areas\Portal\www\source\js\actions\" />
     <Folder Include="Areas\Portal\www\source\js\pages\affiliate-information\components\" />
-    <Folder Include="Areas\Portal\www\source\js\pages\commission-group\components\addgroup\" />
-    <Folder Include="Areas\Portal\www\source\js\pages\commission-group\components\editgroup\" />
+    <Folder Include="Areas\Portal\www\source\js\reducers\" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\Google.Protobuf.dll" />

@@ -3,11 +3,18 @@ const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const merge = require("webpack-merge");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 const { environment, projectPath } = require("./config-utils/constant");
 const entry = require("./config-utils/entry");
 
-const vendorFileName = "vendor-manifest.json";
+let pathsToClean = ["dist/js/**/*.*", "dist/style/**/*.*"];
+
+let cleanOptions = {
+    root: path.resolve(__dirname, "."),
+    verbose: true,
+    dry: false
+};
 
 module.exports = env => {
     env = environment[env] || environment.development;
@@ -19,7 +26,7 @@ module.exports = env => {
         resolve: { extensions: [".js", ".jsx"] },
         output: {
             filename: "[name].js",
-            publicPath: '/dist/' // Webpack dev middleware, if enabled, handles requests for this URL prefix
+            publicPath: '/dist/'
         },
         module: {
             rules: [{
@@ -32,7 +39,7 @@ module.exports = env => {
                     use: [{
                         loader: "url-loader",
                         options: {
-                            limit: 8192,
+                            limit: 4096,
                             name: "[name].[ext]",
                             outputPath: "style/assets/",
                             publicPath: "assets/"
@@ -61,15 +68,17 @@ module.exports = env => {
         output: { path: clientBundleOutputDir },
         plugins: [
             new MiniCssExtractPlugin({
-                // Options similar to the same options in webpackOptions.output
-                // both options are optional
                 filename: "[name].css"
             }),
             new webpack.DllReferencePlugin({
                 context: __dirname,
-                manifest: require(`${clientBundleOutputDir}/vendor/${vendorFileName}`)
+                manifest: require(`${clientBundleOutputDir}/vendors/react-manifest.json`)
+            }),
+            new webpack.DllReferencePlugin({
+                context: __dirname,
+                manifest: require(`${clientBundleOutputDir}/vendors/reactstrap-manifest.json`)
             })
-        ].concat(!isDevBuild ? [new OptimizeCSSAssetsPlugin()] : []),
+        ].concat(isDevBuild ? [] : [new OptimizeCSSAssetsPlugin(), new CleanWebpackPlugin(pathsToClean, cleanOptions), ]),
         devtool: isDevBuild ? "source-map" : undefined
     });
 

@@ -92,12 +92,12 @@ export class GridData extends Component {
 
                         {isFirstItem && (
                             <td className="text-center" rowSpan={rowSpan}>
-                                <a href="javacript:;" className="mr-2" onClick={() => this.props.onEdit(item.GroupId)}>
+                                <button className="btn btn-link" onClick={(e) => this.props.onEdit(item.GroupId)}>
                                     <span className="oi oi-pencil text-secondary"></span>
-                                </a>
-                                <a href="javacript:;" onClick={() => this.handleDelete(item.GroupId, item.GroupName)}>
+                                </button>
+                                <button className="btn btn-link" onClick={() => this.handleDelete(item.GroupId, item.GroupName)}>
                                     <span className="oi oi-x text-danger"></span>
-                                </a>
+                                </button>
                             </td>)
                         }
                     </tr>)
