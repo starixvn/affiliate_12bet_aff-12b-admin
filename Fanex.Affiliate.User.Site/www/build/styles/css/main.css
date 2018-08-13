@@ -363,14 +363,13 @@ input[type="checkbox"], input[type="radio"] {
   margin-top: 14px; }
   @media (max-width: 992px) {
     .user-signup {
-      text-align: center; } }
+      text-align: right; } }
 
 .sign-up {
   display: inline-block;
   vertical-align: middle; }
 
 .language-container {
-  width: 175px;
   display: inline-block;
   vertical-align: middle;
   text-align: left;
@@ -378,13 +377,16 @@ input[type="checkbox"], input[type="radio"] {
   margin-left: 8px;
   position: relative; }
   .language-container #selectedLanguage {
-    width: 100%;
     height: 100%;
+    padding: 0 8px;
     border: none;
     background: transparent;
     color: #fff;
     cursor: pointer;
-    display: inline-block; }
+    display: inline-block;
+    text-align: right;
+    border: 1px solid #fff;
+    border-radius: 3px; }
     .language-container #selectedLanguage:hover {
       text-decoration: none; }
     .language-container #selectedLanguage:focus, .language-container #selectedLanguage:active {
@@ -400,7 +402,6 @@ input[type="checkbox"], input[type="radio"] {
     color: #fff;
     font-weight: 500;
     height: 26px;
-    padding: 3px 5px;
     text-align: center;
     border-radius: 2px;
     white-space: nowrap;
@@ -415,7 +416,7 @@ input[type="checkbox"], input[type="radio"] {
     padding: 5px 0;
     font-size: 13px;
     top: 25px;
-    left: 0; }
+    right: 0; }
     .language-container .language-list-wrapper .language-list {
       line-height: 15px;
       text-align: left; }
@@ -436,7 +437,7 @@ input[type="checkbox"], input[type="radio"] {
   @media (max-width: 992px) {
     .user-login {
       float: none;
-      text-align: center; } }
+      text-align: right; } }
   .user-login .text-field {
     background: #fff;
     border-radius: 2px;
@@ -444,14 +445,19 @@ input[type="checkbox"], input[type="radio"] {
     height: 26px;
     border: 1px solid #fff;
     vertical-align: middle;
-    margin-right: 8px;
+    margin-left: 8px;
     padding-left: 5px;
     color: #000; }
+    .user-login .text-field:first-child {
+      margin-left: 0; }
     .user-login .text-field.validation {
       width: 80px; }
     .user-login .text-field:focus {
       outline: none;
       border-color: #3ea4bd; }
+    @media (max-width: 992px) {
+      .user-login .text-field {
+        width: 110px; } }
   .user-login .btn:last-child {
     margin-left: 6px; }
   .user-login .btn-forgot {
@@ -467,11 +473,14 @@ input[type="checkbox"], input[type="radio"] {
 .validation-value {
   display: inline-block;
   vertical-align: middle;
-  margin-right: 8px; }
+  margin-left: 8px; }
 
 @media (max-width: 992px) {
-  .sign-up, .text-field, .validation-value, .btn-forgot, .btn-login, .language-container {
-    margin-bottom: 10px; } }
+  .text-field, .validation-value {
+    margin-bottom: 8px; }
+  /*.text-field[type="password"] {
+        width: 90px;
+    }*/ }
 
 .content-menu .menu {
   background: #ad6b2e;
@@ -521,13 +530,14 @@ input[type="checkbox"], input[type="radio"] {
     border-right: none;
     border-bottom: 1px solid #f9f9f9; }
 
-.main-container, .main {
+.main {
   display: flex;
   flex: 1 1 auto;
   min-height: 1px; }
 
 .page-container {
-  width: calc(100% - 416px);
+  max-width: calc(100% - 400px);
+  flex-basis: calc(100% - 400px);
   margin: 0 auto; }
 
 .main.after-login {
@@ -537,7 +547,14 @@ input[type="checkbox"], input[type="radio"] {
 .main .content {
   padding-left: 1rem;
   padding-right: 1rem;
-  padding-bottom: 15px; }
+  padding-bottom: 15px;
+  margin-top: 5px; }
+
+.main .banner-side {
+  flex-basis: 200px;
+  max-width: 200px; }
+  .main .banner-side img {
+    width: 100%; }
 
 .hot-news {
   display: flex;
@@ -1111,11 +1128,22 @@ input[type="radio"], input[type="checkbox"] {
     .news .item-wrapper.last {
       padding-right: 10px; } }
 
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .main .banner-side {
+    flex-basis: 150px;
+    max-width: 18%; }
+    .main .banner-side img {
+      width: 150px; }
+  .page-container {
+    max-width: calc(100% - 300px);
+    flex-basis: calc(100% - 300px); } }
+
 @media (min-width: 768px) and (max-width: 1023px) {
   .banner-side.banner-left, .banner-side.banner-right {
     display: none; }
   .page-container {
-    width: 100%; }
+    max-width: 100%;
+    flex-basis: 100%; }
   .news .item-wrapper {
     flex-basis: 100%;
     max-width: 100%; } }
@@ -1124,7 +1152,11 @@ input[type="radio"], input[type="checkbox"] {
   .banner-side.banner-left, .banner-side.banner-right {
     display: none; }
   .page-container {
-    width: 100%; }
+    max-width: 100%;
+    flex-basis: 100%; }
+  .news .item-wrapper {
+    flex-basis: 100%;
+    max-width: 100%; }
   .info-group .img-ads img {
     width: 100%; } }
 

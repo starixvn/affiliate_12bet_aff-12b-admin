@@ -75,7 +75,8 @@
   background: #a3a3a3; }
 
 .main .content {
-  padding-bottom: 0; }
+  padding-bottom: 0;
+  margin-top: 0; }
 
 .news {
   padding-top: 10px;

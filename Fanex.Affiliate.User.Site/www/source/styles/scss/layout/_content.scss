@@ -1,11 +1,12 @@
-﻿.main-container, .main {
+﻿.main {
     display: flex;
     flex: 1 1 auto;
     min-height: 1px;
 }
 
 .page-container {
-    width: calc(100% - 416px);
+    max-width: calc(100% - 400px);
+    flex-basis: calc(100% - 400px);
     margin: 0 auto;
 }
 
@@ -21,6 +22,16 @@
         padding-left: 1rem;
         padding-right: 1rem;
         padding-bottom: 15px;
+        margin-top: 5px;
+    }
+
+    .banner-side {
+        flex-basis: 200px;
+        max-width: 200px;
+
+        img {
+            width: 100%;
+        }
     }
 }
 

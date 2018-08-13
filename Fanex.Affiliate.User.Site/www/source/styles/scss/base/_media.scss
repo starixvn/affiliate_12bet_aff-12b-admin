@@ -1,5 +1,6 @@
 ﻿$phone: "(max-width: 768px)";
 $tablet: "(min-width: 768px) and (max-width: 1023px)";
+$tablet-horizontal: "(min-width: 1024px) and (max-width: 1199px)";
 $desktop: "(min-width: 1024px)";
 
 @media #{$desktop} {
@@ -19,13 +20,30 @@ $desktop: "(min-width: 1024px)";
     }
 }
 
+@media #{$tablet-horizontal} {
+    .main .banner-side {
+        flex-basis: 150px;
+        max-width: 18%;
+
+        img {
+            width: 150px;
+        }
+    }
+
+    .page-container {
+        max-width: calc(100% - 300px);
+        flex-basis: calc(100% - 300px);
+    }
+}
+
 @media #{$tablet} {
     .banner-side.banner-left, .banner-side.banner-right {
         display: none;
     }
 
     .page-container {
-        width: 100%;
+        max-width: 100%;
+        flex-basis: 100%;
     }
 
     .news {
@@ -42,7 +60,15 @@ $desktop: "(min-width: 1024px)";
     }
 
     .page-container {
-        width: 100%;
+        max-width: 100%;
+        flex-basis: 100%;
+    }
+
+    .news {
+        .item-wrapper {
+            flex-basis: 100%;
+            max-width: 100%;
+        }
     }
 
     .info-group .img-ads img {
