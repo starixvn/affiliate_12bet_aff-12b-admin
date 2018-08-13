@@ -19,7 +19,8 @@ export class PlatformFeeSetting extends Component {
         this.defaultItem = {
             DeductionId: defaultPlatformSetting.deductionId,
             ProductIds: '',
-            DeductedPercentage: defaultPlatformSetting.commission
+            DeductedPercentage: defaultPlatformSetting.commission,
+            NextDeductedPercentage: defaultPlatformSetting.commission
         }
     }
 
@@ -27,7 +28,6 @@ export class PlatformFeeSetting extends Component {
         const { PlatformFeeList } = this.props.selectedGroup;
         const platformFeeList = [...PlatformFeeList, { ...this.defaultItem }];
 
-        console.log(platformFeeList);
         this.props.setSelectedGroup({ PlatformFeeList: platformFeeList });
     }
 
@@ -48,7 +48,6 @@ export class PlatformFeeSetting extends Component {
 
         platformFeeList.splice(index, 1);
 
-        console.log(platformFeeList);
         this.props.setSelectedGroup({ PlatformFeeList: platformFeeList });
     }
 
@@ -84,29 +83,26 @@ export class PlatformFeeSetting extends Component {
             }
         }
 
-        console.log(platformFeeList);
         this.props.setSelectedGroup({ PlatformFeeList: platformFeeList });
     }
 
     handleChangeCommission = (index, value) => {
         const { PlatformFeeList } = this.props.selectedGroup;
-        const currentSetting = Object.assign({}, PlatformFeeList[index]);
-        currentSetting.DeductedPercentage = value;
+        const newCommissionSetting = Object.assign({}, PlatformFeeList[index], value);
 
-        const platformFeeList = updateObjectInArray(PlatformFeeList, index, currentSetting);
+        const platformFeeList = updateObjectInArray(PlatformFeeList, index, newCommissionSetting);
 
-        console.log(platformFeeList);
         this.props.setSelectedGroup({ PlatformFeeList: platformFeeList });
     }
 
     render() {
-        console.log("render", this.props.selectedGroup);
         const { productList, selectedGroup } = this.props;
         const { PlatformFeeList, GroupId } = selectedGroup;
         const platformFeeData = PlatformFeeList.map(item => {
             return {
                 productList: convertProductList(productList, item.ProductIds),
-                commission: item.DeductedPercentage
+                commission: item.DeductedPercentage,
+                nextCommission: item.NextDeductedPercentage
             }
         });
 

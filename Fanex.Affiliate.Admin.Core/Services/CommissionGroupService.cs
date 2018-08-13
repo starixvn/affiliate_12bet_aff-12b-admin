@@ -39,6 +39,7 @@ namespace Fanex.Affiliate.Admin.Core.Services
                              Creator = c.Creator,
                              Description = c.Description,
                              QmTurnover = c.QmTurnover,
+                             NextQmTurnover = c.NextQmTurnover,
                              IsAdjustment = c.IsAdjustment,
                              NoAffs = c.NoAffs,
                              TierSettingList = groupTierSetting,

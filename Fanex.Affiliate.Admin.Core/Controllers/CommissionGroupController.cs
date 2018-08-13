@@ -90,7 +90,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 GroupId = commGroup.GroupId,
                 Ip = Request.UserHostAddress,
                 Description = commGroup.Description,
-                QmTurnover = commGroup.QmTurnover,
+                QmTurnover = commGroup.NextQmTurnover,
                 TierSettingList = commGroup.TierSettingList,
                 PlatformFeeList = commGroup.PlatformFeeList,
                 OperationalFee = commGroup.OperationalFee,

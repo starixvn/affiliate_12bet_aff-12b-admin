@@ -21,12 +21,10 @@ export class EditGroup extends React.Component {
             isSuccess: true,
             message: []
         }
-
-        this.props.getSelectedCommGroup({ GroupId: this.props.itemId });
     }
 
     componentDidMount() {
-        //this.props.getSelectedCommGroup({ GroupId: this.props.itemId });
+        this.props.getSelectedCommGroup({ GroupId: this.props.itemId });
     }
 
     componentWillUnmount() {
@@ -91,7 +89,7 @@ function mapStateToProp({ selectedGroup }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ getSelectedCommGroup, getGroupSettingList, setSelectedGroup }, dispatch);
+    return bindActionCreators({ getSelectedCommGroup, getGroupSettingList, setSelectedGroup, updateCommissionGroup }, dispatch);
 }
 
 export default connect(mapStateToProp, mapDispatchToProps)(EditGroup);

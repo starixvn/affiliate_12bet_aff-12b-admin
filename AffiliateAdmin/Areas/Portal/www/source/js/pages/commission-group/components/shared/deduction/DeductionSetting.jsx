@@ -11,29 +11,25 @@ import { getDeductionSetting, createDefaultOperationalSetting, createDefaultBank
 export class DeductionSetting extends Component {
     constructor(props) {
         super(props);
-
-        const { deductionList } = this.props;
-        const deductionSetting = getDeductionSetting(deductionList);
-
-        this.operationalFeeSetting = createDefaultOperationalSetting(deductionSetting.operationalFeeSetting);
-        this.bankingFeeSetting = createDefaultBankingSetting(deductionSetting.bankingFeeSetting);
     }
 
-    handleSelectOperationalFee = (event) => {
-        this.props.setSelectedGroup({ 
-            OperationalFee: { ...this.operationalFeeSetting, DeductedPercentage: Number(event.target.value) } 
+    handleSelectOperationalFee = (value) => {
+        const { OperationalFee } = this.props.selectedGroup;
+        this.props.setSelectedGroup({
+            OperationalFee: Object.assign({}, OperationalFee, value)
         });
     }
 
-    handleSelectBankingFee = (event) => {
-        this.props.setSelectedGroup({ 
-            BankingFee: { ...this.bankingFeeSetting, DeductedPercentage: Number(event.target.value) } 
+    handleSelectBankingFee = (value) => {
+        const { BankingFee } = this.props.selectedGroup;
+        this.props.setSelectedGroup({
+            BankingFee: Object.assign({}, BankingFee, value)
         });
     }
 
     render() {
         const { OperationalFee, BankingFee, GroupId } = this.props.selectedGroup;
-        const isInserting = GroupId === 0;
+        const isCreating = GroupId === 0;
 
         return (
             <fieldset>
@@ -41,21 +37,21 @@ export class DeductionSetting extends Component {
                 <PlatformFeeSetting />
 
                 <FeeSettingItem label="Operational Fee%" basedValueName="| Gross Win Loss |"
-                    onChange={this.handleSelectOperationalFee}
+                    onChangeCommission={this.handleSelectOperationalFee}
                     data={OperationalFee}
-                    isInserting={isInserting} />
+                    isCreating={isCreating} />
 
                 <FeeSettingItem label="Banking Fee%" basedValueName="(Deposit + Withdrawal)"
-                    onChange={this.handleSelectBankingFee}
+                    onChangeCommission={this.handleSelectBankingFee}
                     data={BankingFee}
-                    isInserting={isInserting} />
+                    isCreating={isCreating} />
             </fieldset>
         )
     }
 }
 
-function mapStateToProp({ selectedGroup, deductionList }) {
-    return { selectedGroup, deductionList };
+function mapStateToProp({ selectedGroup }) {
+    return { selectedGroup };
 }
 
 function mapDispatchToProps(dispatch) {

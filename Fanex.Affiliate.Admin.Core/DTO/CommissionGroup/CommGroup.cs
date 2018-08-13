@@ -18,6 +18,8 @@ namespace Fanex.Affiliate.Admin.Core.DTO.CommissionGroup
 
         public decimal QmTurnover { get; set; }
 
+        public decimal NextQmTurnover { get; set; }
+
         public bool IsAdjustment { get; set; }
 
         public int NoAffs { get; set; }

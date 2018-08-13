@@ -14,25 +14,25 @@ export class QmTurnOverSetting extends React.Component {
     }
 
     handleChange = (event) => {
-        const value = event.target.value.replace(/,/g, '');
-        const isValid = isValidNumber(value);
-        const QmTurnover = Number(value);
+        const { name, value } = event.target;
+        const actualValue = value.replace(/,/g, '');
+        const isValid = isValidNumber(actualValue);
 
         if (isValid) {
-            this.props.setSelectedGroup({ QmTurnover });
+            this.props.setSelectedGroup({ [name]: Number(actualValue) });
         }
     }
 
     render() {
-        const { QmTurnover, GroupId } = this.props.selectedGroup;
-        const isInserting = GroupId === 0;
+        const { QmTurnover, NextQmTurnover, GroupId } = this.props.selectedGroup;
+        const isCreating = GroupId === 0;
 
         return (
             <fieldset>
                 <legend><h6 className="font-weight-bold">QM Turnover</h6></legend>
                 <p>A member is considered a Qualified Member (QM) when his/her turnover in a month is equivalent to</p>
                 {
-                    isInserting ? (
+                    isCreating ? (
                         <Form inline>
                             <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                                 <Label for="QmTurnover" className="mr-sm-2">USD</Label>
@@ -45,8 +45,8 @@ export class QmTurnOverSetting extends React.Component {
                                     <Label className="mr-sm-2">Current: {format(QmTurnover || 0)} | Next month: </Label>
                                 </FormGroup>
                                 <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                                    <Label for="QmTurnover" className="mr-sm-2">USD</Label>
-                                    <Input name="QmTurnover" id="QmTurnover" value={format(QmTurnover)}
+                                    <Label for="NextQmTurnover" className="mr-sm-2">USD</Label>
+                                    <Input name="NextQmTurnover" id="NextQmTurnover" value={format(NextQmTurnover || 0)}
                                         onChange={this.handleChange} />
                                 </FormGroup>
                             </Form>)

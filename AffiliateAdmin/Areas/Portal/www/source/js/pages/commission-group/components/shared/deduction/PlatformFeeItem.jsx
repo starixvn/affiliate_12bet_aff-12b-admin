@@ -15,14 +15,14 @@ export default class PlatformFeeItem extends React.Component {
     }
 
     handleChangeComm = (event) => {
-        this.props.onChangeCommission(Number(event.target.value));
+        const { name, value } = event.target;
+        this.props.onChangeCommission({ [name]: Number(value) });
     }
 
     render() {
         const { data, handleClick, btnText, isInserting } = this.props;
 
-        const { productList, commission } = data;
-        console.log(this.props);
+        const { productList, commission, nextCommission } = data;
 
         return (
             <FormGroup row>
@@ -42,7 +42,7 @@ export default class PlatformFeeItem extends React.Component {
                 {
                     isInserting ? (
                         <Col sm={2} className="select-comm">
-                            <select className="form-control" value={formatDecimal(commission)}
+                            <select name="DeductedPercentage" className="form-control" value={formatDecimal(commission)}
                                 onChange={this.handleChangeComm}>
                                 {
                                     commissionValueList.map((item, i) => {
@@ -59,8 +59,9 @@ export default class PlatformFeeItem extends React.Component {
                                         <Label className="mr-sm-2">Current: {formatDecimal(commission || 0)} | Next month: </Label>
                                     </FormGroup>
                                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                                        <select className="form-control" value={formatDecimal(commission)}
-                                            onChange={this.handleChangeComm} style={{width: 60}}>
+                                        <select name="NextDeductedPercentage" className="form-control"
+                                            value={formatDecimal(nextCommission || 0)}
+                                            onChange={this.handleChangeComm} style={{ width: 60 }}>
                                             {
                                                 commissionValueList.map((item, i) => {
                                                     return (<option key={`platformfee-nextmonth-comm-${i}`} value={item}>{item}</option>);
