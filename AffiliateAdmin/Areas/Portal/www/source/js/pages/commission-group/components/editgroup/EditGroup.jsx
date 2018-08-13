@@ -46,11 +46,9 @@ export class EditGroup extends React.Component {
             const platformFeeList = selectedGroup.PlatformFeeList.filter(item => !!item.ProductIds);
 
             const param = { ...selectedGroup, PlatformFeeList: platformFeeList };
-            console.log(param);
-
             const response = await this.props.updateCommissionGroup(param);
             const result = response.data;
-            console.log(result);
+
             if (result.IsSuccessful) {
                 window.setTimeout(this.props.onClose, 3000);
                 const gettingParam = Object.assign({}, defaultPagingOption);

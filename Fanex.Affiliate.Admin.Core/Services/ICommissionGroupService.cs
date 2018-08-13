@@ -8,11 +8,11 @@ namespace Fanex.Affiliate.Admin.Core.Services
 {
     public interface ICommissionGroupService
     {
-        IEnumerable<CommissionGroupSetting> GetCommissionSettingList(CommissionGroupParam param);
+        IEnumerable<CommissionGroupSetting> GetCommissionGroupList(GetCommissionGroupParam param);
 
-        ResultInfo InsertCommissionGroup(InsertCommissionGroupParam param);
+        ResultInfo CreateCommissionGroup(CreateUpdateCommissionGroupParam param);
 
-        ResultInfo UpdateCommissionGroup(InsertCommissionGroupParam param);
+        ResultInfo UpdateCommissionGroup(CreateUpdateCommissionGroupParam param);
 
         ResultInfo DeleteCommissionGroup(DeleteCommissionGroupParam param);
 

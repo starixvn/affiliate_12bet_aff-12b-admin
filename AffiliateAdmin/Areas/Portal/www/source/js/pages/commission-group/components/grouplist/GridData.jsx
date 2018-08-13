@@ -137,13 +137,13 @@ export class GridData extends Component {
                             <th rowSpan="2" className="th-small">Action</th>
                         </tr>
                         <tr>
-                            <th className="cell-tier"></th>
-                            <th className="cell-tier th-smallest">Tier</th>
-                            <th className="cell-tier" title="Minimum all members' winlost amount">Min AM($)</th>
-                            <th className="cell-tier" title="Maximum all members' winlost amount">Max AM($)</th>
-                            <th className="cell-tier" title="Minimum number of qualified members">Min QM</th>
-                            <th className="cell-tier" title="Maximum number of qualified members">Max QM</th>
-                            <th className="cell-tier">Comm Rate</th>
+                            <th></th>
+                            <th className="th-smallest">Tier</th>
+                            <th title="Minimum all members' winlost amount">Min AM($)</th>
+                            <th title="Maximum all members' winlost amount">Max AM($)</th>
+                            <th title="Minimum number of qualified members">Min QM</th>
+                            <th title="Maximum number of qualified members">Max QM</th>
+                            <th>Comm Rate</th>
                             <th>Operational Fee</th>
                             <th>Banking Fee</th>
                             <th>Qm Turnover</th>

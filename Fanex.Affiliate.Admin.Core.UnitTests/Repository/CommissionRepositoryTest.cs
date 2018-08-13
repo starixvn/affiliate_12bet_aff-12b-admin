@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using Fanex.Affiliate.Admin.Core.MetaModels;
+using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.UnitTests.TestHelper;
 using Fanex.Data;
@@ -24,11 +24,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
             dataReader.SetupSequence(d => d.Read()).Returns(true).Returns(false);
 
             ReaderHelper.MapReaderData(dataReader, GetExpectedCommGroup());
-            objectDb.Setup(obj => obj.ExecuteReader(It.IsAny<CommissionGroupParam>())).Returns(dataReader.Object);
+            objectDb.Setup(obj => obj.ExecuteReader(It.IsAny<GetCommissionGroupParam>())).Returns(dataReader.Object);
             repository.Setup(re => re.GetObjectDb(SpKey, 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.GetCommissionGroupList(new CommissionGroupParam());
+            var result = repository.Object.GetCommissionGroupList(new GetCommissionGroupParam());
 
             // Assert
             Assert.Single(result.CommGroupList);
@@ -47,11 +47,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
             dataReader.SetupSequence(d => d.NextResult()).Returns(true).Returns(false);
 
             ReaderHelper.MapReaderData(dataReader, GetExpectedTierSetting());
-            objectDb.Setup(obj => obj.ExecuteReader(It.IsAny<CommissionGroupParam>())).Returns(dataReader.Object);
+            objectDb.Setup(obj => obj.ExecuteReader(It.IsAny<GetCommissionGroupParam>())).Returns(dataReader.Object);
             repository.Setup(re => re.GetObjectDb(SpKey, 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.GetCommissionGroupList(new CommissionGroupParam());
+            var result = repository.Object.GetCommissionGroupList(new GetCommissionGroupParam());
 
             // Assert
             Assert.Empty(result.CommGroupList);
@@ -70,11 +70,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
             dataReader.SetupSequence(d => d.NextResult()).Returns(true).Returns(true).Returns(false);
 
             ReaderHelper.MapReaderData(dataReader, GetExpectedDeductionSetting());
-            objectDb.Setup(obj => obj.ExecuteReader(It.IsAny<CommissionGroupParam>())).Returns(dataReader.Object);
+            objectDb.Setup(obj => obj.ExecuteReader(It.IsAny<GetCommissionGroupParam>())).Returns(dataReader.Object);
             repository.Setup(re => re.GetObjectDb(SpKey, 120)).Returns(objectDb.Object);
 
             // Action
-            var result = repository.Object.GetCommissionGroupList(new CommissionGroupParam());
+            var result = repository.Object.GetCommissionGroupList(new GetCommissionGroupParam());
 
             // Assert
             Assert.Empty(result.CommGroupList);
@@ -92,11 +92,11 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
             dataReader.SetupSequence(d => d.Read()).Returns(false);
             dataReader.SetupSequence(d => d.NextResult()).Returns(false);
 
-            CommissionGroupParam passedParam = null;
-            var param = new CommissionGroupParam();
+            GetCommissionGroupParam passedParam = null;
+            var param = new GetCommissionGroupParam();
             objectDb.Setup(obj => obj.ExecuteReader(param))
                 .Returns(dataReader.Object)
-                .Callback<CommissionGroupParam>(p => passedParam = p);
+                .Callback<GetCommissionGroupParam>(p => passedParam = p);
             repository.Setup(re => re.GetObjectDb(SpKey, 120)).Returns(objectDb.Object);
 
             // Action

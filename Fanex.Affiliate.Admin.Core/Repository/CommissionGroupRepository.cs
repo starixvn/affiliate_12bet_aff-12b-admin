@@ -10,7 +10,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository
 {
     public class CommissionGroupRepository : BaseRepository, ICommissionGroupRepository
     {
-        public CommissionGroupResultEntity GetCommissionGroupList(CommissionGroupParam param)
+        public CommissionGroupResultEntity GetCommissionGroupList(GetCommissionGroupParam param)
         {
             const string SpKey = "Aff_Admin_CommGroup_Sel";
 
@@ -31,7 +31,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository
             return result;
         }
 
-        public ResultInfo InsertCommissionGroup(InsertCommissionGroupParam param)
+        public ResultInfo CreateCommissionGroup(CreateUpdateCommissionGroupParam param)
         {
             const string SpKey = "Aff_Admin_CommGroup_Ins";
 
@@ -57,7 +57,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository
             }
         }
 
-        public ResultInfo UpdateCommissionGroup(InsertCommissionGroupParam param)
+        public ResultInfo UpdateCommissionGroup(CreateUpdateCommissionGroupParam param)
         {
             const string SpKey = "Aff_Admin_CommGroup_Upd";
 

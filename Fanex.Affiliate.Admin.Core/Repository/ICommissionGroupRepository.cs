@@ -8,11 +8,11 @@ namespace Fanex.Affiliate.Admin.Core.Repository
 {
     public interface ICommissionGroupRepository
     {
-        CommissionGroupResultEntity GetCommissionGroupList(CommissionGroupParam param);
+        CommissionGroupResultEntity GetCommissionGroupList(GetCommissionGroupParam param);
 
-        ResultInfo InsertCommissionGroup(InsertCommissionGroupParam param);
+        ResultInfo CreateCommissionGroup(CreateUpdateCommissionGroupParam param);
 
-        ResultInfo UpdateCommissionGroup(InsertCommissionGroupParam param);
+        ResultInfo UpdateCommissionGroup(CreateUpdateCommissionGroupParam param);
 
         ResultInfo DeleteCommissionGroup(DeleteCommissionGroupParam param);
 

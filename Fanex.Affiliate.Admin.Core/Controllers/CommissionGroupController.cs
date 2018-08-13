@@ -3,7 +3,6 @@ using System.Web.Mvc;
 using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
-using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Services;
@@ -42,11 +41,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetCommissionSettingList(CommissionGroupParam param)
+        public ActionResult GetCommissionGroupList(GetCommissionGroupParam param)
         {
             var viewModel = new GetCommissionGroupViewModel
             {
-                CommissionSettingList = _commissionGroupService.GetCommissionSettingList(param),
+                CommissionSettingList = _commissionGroupService.GetCommissionGroupList(param),
                 TotalRows = param.Nrows
             };
 
@@ -55,18 +54,18 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult GetCommissionGroup(CommissionGroupParam param)
+        public ActionResult GetCommissionGroup(GetCommissionGroupParam param)
         {
-            var commGroup = _commissionGroupService.GetCommissionSettingList(param).FirstOrDefault();
+            var commGroup = _commissionGroupService.GetCommissionGroupList(param).FirstOrDefault();
 
             return Json(commGroup);
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult InsertCommissionGroup(CommissionGroupSetting commGroup)
+        public ActionResult CreateCommissionGroup(CommissionGroupSetting commGroup)
         {
-            var insertParam = new InsertCommissionGroupParam
+            var createParam = new CreateUpdateCommissionGroupParam
             {
                 UserId = SessionService.UserId,
                 Ip = Request.UserHostAddress,
@@ -79,7 +78,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 BankingFee = commGroup.BankingFee
             };
 
-            var result = _commissionGroupService.InsertCommissionGroup(insertParam);
+            var result = _commissionGroupService.CreateCommissionGroup(createParam);
 
             return Json(result);
         }
@@ -88,7 +87,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [ValidateAntiForgeryHeader]
         public ActionResult UpdateCommissionGroup(CommissionGroupSetting commGroup)
         {
-            var insertParam = new InsertCommissionGroupParam
+            var updateParam = new CreateUpdateCommissionGroupParam
             {
                 UserId = SessionService.UserId,
                 GroupId = commGroup.GroupId,
@@ -101,7 +100,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 BankingFee = commGroup.BankingFee
             };
 
-            var result = _commissionGroupService.UpdateCommissionGroup(insertParam);
+            var result = _commissionGroupService.UpdateCommissionGroup(updateParam);
 
             return Json(result);
         }

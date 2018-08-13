@@ -3,7 +3,7 @@ import { post } from '../../../modules/ajaxRequest';
 import { SET_GRIDDATA, SET_PAGING_OPTION, SET_SELECTED_GROUP } from './types';
 
 const fetchGroupSettingData = (param) => {
-    const url = 'Portal/CommissionGroup/GetCommissionSettingList';
+    const url = 'Portal/CommissionGroup/GetCommissionGroupList';
 
     return post(url, param);
 }
@@ -45,7 +45,7 @@ export const setSelectedGroup = (data) => {
 }
 
 export const insertCommissionGroup = (param) => {
-    const url = 'Portal/CommissionGroup/InsertCommissionGroup';
+    const url = 'Portal/CommissionGroup/CreateCommissionGroup';
 
     return () => post(url, param);
 }

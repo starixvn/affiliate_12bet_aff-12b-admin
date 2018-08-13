@@ -3,7 +3,7 @@ using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup
 {
-    public class InsertCommissionGroupParam
+    public class CreateUpdateCommissionGroupParam
     {
         public int UserId { get; set; }
 

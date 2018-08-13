@@ -6,7 +6,6 @@ import { setSelectedGroup } from '../../../actions';
 
 import PlatformFeeSetting from './PlatformFeeSetting';
 import FeeSettingItem from './FeeSettingItem';
-import { getDeductionSetting, createDefaultOperationalSetting, createDefaultBankingSetting } from '../../../modules/service';
 
 export class DeductionSetting extends Component {
     constructor(props) {

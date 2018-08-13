@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Input, Label } from 'reactstrap';
 
 import { getGroupSettingList } from '../actions';
-import { defaultPagingOption } from '../modules/constant';
 
 class Filter extends Component {
     constructor(props) {
@@ -28,7 +27,8 @@ class Filter extends Component {
     }
 
     _submit() {
-        const param = Object.assign({}, defaultPagingOption, { GroupName: this.groupName });
+        const { pagingOption } = this.props;
+        const param = Object.assign({}, { PageIndex: 1, PageSize: pagingOption.PageSize }, { GroupName: this.groupName });
         this.props.getGroupSettingList(param);
     }
 
@@ -47,8 +47,12 @@ class Filter extends Component {
     }
 }
 
+function mapStateToProps({ pagingOption }) {
+    return Object.assign({}, { pagingOption });
+}
+
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({ getGroupSettingList }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(Filter);
+export default connect(mapStateToProps, mapDispatchToProps)(Filter);

@@ -17,14 +17,15 @@ export class CommGroupInfo extends React.Component {
     }
 
     render() {
-        const { GroupName, Description } = this.props.selectedGroup;
+        const { GroupName, Description, GroupId } = this.props.selectedGroup;
+        const isCreating = GroupId === 0;
 
         return (
             <div>
                 <FormGroup row>
                     <Label for="GroupName" sm={2}>Group Name: </Label>
                     <Col sm={8}>
-                        <Input type="text" name="GroupName" id="GroupName" value={GroupName} onChange={this.handleChange} />
+                        <Input type="text" name="GroupName" id="GroupName" disabled={!isCreating} value={GroupName} onChange={this.handleChange} />
                     </Col>
                     <Col sm={2}>
                         <p className="text-danger required">*</p>

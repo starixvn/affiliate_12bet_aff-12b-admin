@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { setSelectedGroup } from '../../../actions';
 
 import TierSettingItem from './TierSettingItem';
-import { updateObjectInArray, removeItem } from '../../../../../modules/dataHandler';
+import { removeItem } from '../../../../../modules/dataHandler';
 import { isValidNumber } from '../../../../../modules/utils';
 import { INFINITY_AM, INFINITY_QM } from '../../../modules/constant';
 
@@ -51,7 +51,6 @@ export class TierSetting extends Component {
     }
 
     handleChangeInput = (tierId, tierItemValue) => {
-        console.log(tierItemValue);
         const { MinAmount, MaxAmount, MinQm, MaxQm } = tierItemValue;
         if ((!MinAmount || isValidNumber(MinAmount)) &&
             (!MaxAmount || isValidNumber(MaxAmount)) &&

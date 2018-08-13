@@ -4,7 +4,6 @@ using System.Text;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
-using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.Repository;
 
@@ -19,7 +18,7 @@ namespace Fanex.Affiliate.Admin.Core.Services
             _commGroupRepository = commGroupRepository;
         }
 
-        public IEnumerable<CommissionGroupSetting> GetCommissionSettingList(CommissionGroupParam param)
+        public IEnumerable<CommissionGroupSetting> GetCommissionGroupList(GetCommissionGroupParam param)
         {
             var rawData = _commGroupRepository.GetCommissionGroupList(param);
 
@@ -51,16 +50,16 @@ namespace Fanex.Affiliate.Admin.Core.Services
             return result;
         }
 
-        public ResultInfo InsertCommissionGroup(InsertCommissionGroupParam param)
+        public ResultInfo CreateCommissionGroup(CreateUpdateCommissionGroupParam param)
         {
             var deductionSettingList = param.PlatformFeeList.Concat(new[] { param.OperationalFee, param.BankingFee });
             param.TierList = BuildTierSettingXml(param.TierSettingList);
             param.DeductionList = BuildDeductionSettingXml(deductionSettingList, true);
 
-            return _commGroupRepository.InsertCommissionGroup(param);
+            return _commGroupRepository.CreateCommissionGroup(param);
         }
 
-        public ResultInfo UpdateCommissionGroup(InsertCommissionGroupParam param)
+        public ResultInfo UpdateCommissionGroup(CreateUpdateCommissionGroupParam param)
         {
             var deductionSettingList = param.PlatformFeeList.Concat(new[] { param.OperationalFee, param.BankingFee });
             param.TierList = BuildTierSettingXml(param.TierSettingList);
