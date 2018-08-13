@@ -1,12 +1,11 @@
-import axios from 'axios';
-import { resolveClientUrl } from '../../../modules/utils';
+import { post } from '../../../modules/ajaxRequest';
 
 import { SET_GRIDDATA, SET_PAGING_OPTION, SET_SELECTED_GROUP } from './types';
 
 const fetchGroupSettingData = (param) => {
-    const url = resolveClientUrl('Portal/CommissionGroup/GetCommissionSettingList');
+    const url = 'Portal/CommissionGroup/GetCommissionSettingList';
 
-    return axios.post(url, param);
+    return post(url, param);
 }
 
 const setGridData = (data) => {
@@ -46,27 +45,27 @@ export const setSelectedGroup = (data) => {
 }
 
 export const insertCommissionGroup = (param) => {
-    const url = resolveClientUrl('Portal/CommissionGroup/InsertCommissionGroup');
+    const url = 'Portal/CommissionGroup/InsertCommissionGroup';
 
-    return () => axios.post(url, param);
+    return () => post(url, param);
 }
 
 export const updateCommissionGroup = (param) => {
-    const url = resolveClientUrl('Portal/CommissionGroup/UpdateCommissionGroup');
+    const url = 'Portal/CommissionGroup/UpdateCommissionGroup';
 
-    return () => axios.post(url, param);
+    return () => post(url, param);
 }
 
 export const getSelectedCommGroup = (param) => async(dispatch) => {
-    const url = resolveClientUrl('Portal/CommissionGroup/GetCommissionGroup');
+    const url = 'Portal/CommissionGroup/GetCommissionGroup';
 
-    const response = await axios.post(url, param);
+    const response = await post(url, param);
 
     dispatch(setSelectedGroup(response.data))
 }
 
 export const deleteCommGroup = (param) => {
-    const url = resolveClientUrl('Portal/CommissionGroup/DeleteCommissionGroup');
+    const url = 'Portal/CommissionGroup/DeleteCommissionGroup';
 
-    return () => axios.post(url, param);
+    return () => post(url, param);
 }

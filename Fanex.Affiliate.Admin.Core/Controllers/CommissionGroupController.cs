@@ -41,6 +41,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryHeader]
         public ActionResult GetCommissionSettingList(CommissionGroupParam param)
         {
             var viewModel = new GetCommissionGroupViewModel
@@ -53,6 +54,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryHeader]
         public ActionResult GetCommissionGroup(CommissionGroupParam param)
         {
             var commGroup = _commissionGroupService.GetCommissionSettingList(param).FirstOrDefault();
@@ -61,6 +63,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryHeader]
         public ActionResult InsertCommissionGroup(CommissionGroupSetting commGroup)
         {
             var insertParam = new InsertCommissionGroupParam
@@ -82,6 +85,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryHeader]
         public ActionResult UpdateCommissionGroup(CommissionGroupSetting commGroup)
         {
             var insertParam = new InsertCommissionGroupParam
@@ -103,6 +107,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryHeader]
         public ActionResult DeleteCommissionGroup(DeleteCommissionGroupParam param)
         {
             param.UserId = SessionService.UserId;
