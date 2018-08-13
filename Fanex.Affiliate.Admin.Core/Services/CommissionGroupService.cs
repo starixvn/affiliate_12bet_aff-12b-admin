@@ -69,6 +69,11 @@ namespace Fanex.Affiliate.Admin.Core.Services
             return _commGroupRepository.UpdateCommissionGroup(param);
         }
 
+        public ResultInfo DeleteCommissionGroup(DeleteCommissionGroupParam param)
+        {
+            return _commGroupRepository.DeleteCommissionGroup(param);
+        }
+
         public IEnumerable<Deduction> GetDeductionList()
         {
             return _commGroupRepository.GetDeductionList();

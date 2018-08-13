@@ -24,7 +24,6 @@ export class Content extends Component {
     }
 
     handleEditGroup = (itemId) => {
-        console.log(itemId);
         this.setState({ Popup: <EditGroup onClose={this.handleHide} itemId={itemId} /> });
     }
 

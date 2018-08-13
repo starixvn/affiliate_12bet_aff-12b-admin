@@ -14,6 +14,8 @@ namespace Fanex.Affiliate.Admin.Core.Services
 
         ResultInfo UpdateCommissionGroup(InsertCommissionGroupParam param);
 
+        ResultInfo DeleteCommissionGroup(DeleteCommissionGroupParam param);
+
         IEnumerable<Deduction> GetDeductionList();
     }
 }

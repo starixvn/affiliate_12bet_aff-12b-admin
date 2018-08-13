@@ -64,3 +64,9 @@ export const getSelectedCommGroup = (param) => async(dispatch) => {
 
     dispatch(setSelectedGroup(response.data))
 }
+
+export const deleteCommGroup = (param) => {
+    const url = resolveClientUrl('Portal/CommissionGroup/DeleteCommissionGroup');
+
+    return () => axios.post(url, param);
+}

@@ -5,6 +5,8 @@ import { bindActionCreators } from 'redux';
 
 import { INFINITY_AM, INFINITY_QM, INFINITY_SYMBOL } from '../../modules/constant';
 import { format, formatDecimal } from '../../../../modules/numberFormat';
+import { defaultPagingOption } from '../../modules/constant';
+import { deleteCommGroup, getGroupSettingList } from '../../actions';
 
 function rawHtml(content) {
     return (<p dangerouslySetInnerHTML={{ __html: content }}></p>);
@@ -30,6 +32,24 @@ export class GridData extends Component {
 
             return accumulator;
         }, []).join(',');
+    }
+
+    handleDelete = async (groupId, groupName) => {
+        const isConfirmed = window.confirm('Are you sure you want to delete the commission group ' + groupName + ' ?');
+        if (isConfirmed) {
+            const response = await this.props.deleteCommGroup({ groupId });
+            const result = response.data;
+
+            if (result.IsSuccessful) {
+                const gettingParam = Object.assign({}, defaultPagingOption);
+                this.props.getGroupSettingList(gettingParam);
+
+                window.alert("Delete Commission Group Successfully");
+            }
+            else {
+                window.alert(result.Message);
+            }
+        }
     }
 
     _renderGroupData() {
@@ -75,7 +95,9 @@ export class GridData extends Component {
                                 <a href="javacript:;" className="mr-2" onClick={() => this.props.onEdit(item.GroupId)}>
                                     <span className="oi oi-pencil text-secondary"></span>
                                 </a>
-                                <a href="javacript:;"><span className="oi oi-x text-danger"></span></a>
+                                <a href="javacript:;" onClick={() => this.handleDelete(item.GroupId, item.GroupName)}>
+                                    <span className="oi oi-x text-danger"></span>
+                                </a>
                             </td>)
                         }
                     </tr>)
@@ -141,7 +163,7 @@ function mapStateToProps({ gridData, productList }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({}, dispatch);
+    return bindActionCreators({ deleteCommGroup, getGroupSettingList }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GridData);

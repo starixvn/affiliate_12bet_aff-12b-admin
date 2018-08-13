@@ -101,5 +101,16 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
             return Json(result);
         }
+
+        [HttpPost]
+        public ActionResult DeleteCommissionGroup(DeleteCommissionGroupParam param)
+        {
+            param.UserId = SessionService.UserId;
+            param.Ip = Request.UserHostAddress;
+
+            var result = _commissionGroupService.DeleteCommissionGroup(param);
+
+            return Json(result);
+        }
     }
 }

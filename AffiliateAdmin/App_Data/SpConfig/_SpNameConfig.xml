@@ -7,4 +7,5 @@
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_CommGroup_Ins" Suffix="_xtest"></item>
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_CommGroup_Deductions_Sel" Suffix="_xtest"></item>
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_CommGroup_Upd" Suffix="_xtest"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_CommGroup_Del" Suffix="_xtest"></item>
 </Root>

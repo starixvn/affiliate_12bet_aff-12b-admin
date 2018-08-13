@@ -144,6 +144,7 @@
     <Compile Include="Enum\AffType.cs" />
     <Compile Include="MetaModels\ChangePasswordParam.cs" />
     <Compile Include="MetaModels\CommissionGroupParam.cs" />
+    <Compile Include="MetaModels\CommissionGroup\DeleteCommissionGroupParam.cs" />
     <Compile Include="MetaModels\CommissionGroup\InsertCommissionGroupParam.cs" />
     <Compile Include="MetaModels\LeftPanelUpdateInfoParam.cs" />
     <Compile Include="MetaModels\UpdateStatusParam.cs" />
