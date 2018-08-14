@@ -142,5 +142,9 @@
   {
     "outputFile": "www/source/js/pages/daily-earning-detail.es5.js",
     "inputFile": "www/source/js/pages/daily-earning-detail.js"
+  },
+  {
+    "outputFile": "www/source/js/layout.es5.js",
+    "inputFile": "www/source/js/layout.js"
   }
 ]

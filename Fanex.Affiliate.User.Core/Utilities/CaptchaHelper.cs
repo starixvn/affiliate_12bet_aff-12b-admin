@@ -34,8 +34,7 @@
                     bitmap.SetPixel(x, y, Color.FromArgb(random.Next()));
                 }
 
-                // Render as JPEG
-                bitmap.Save(memoryStream, ImageFormat.Jpeg);
+                bitmap.Save(memoryStream, ImageFormat.Png);
 
                 buffer = memoryStream.GetBuffer();
             }

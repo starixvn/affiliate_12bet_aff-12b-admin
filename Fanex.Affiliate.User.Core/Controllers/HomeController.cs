@@ -43,7 +43,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
             var captcha = new Random().Next(1000, 9999).ToString();
             SessionService.CaptchaCode = captcha;
 
-            return File(CaptchaHelper.GenerateImageBuffer(captcha, 65, 26), "image/Jpeg");
+            return File(CaptchaHelper.GenerateImageBuffer(captcha, 65, 26), "image/png");
         }
 
         [HttpPost]

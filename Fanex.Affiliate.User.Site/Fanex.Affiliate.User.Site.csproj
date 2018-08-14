@@ -19,10 +19,14 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44390</IISExpressSSLPort>
-    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
-    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
-    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>
+    </IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>
+    </IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>
+    </IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -552,6 +556,12 @@
     <Content Include="www\source\js\components\jquery.extension.js" />
     <Content Include="www\source\js\components\validation.custom.js" />
     <Content Include="www\source\js\components\website.js" />
+    <Content Include="www\source\js\layout.es5.js">
+      <DependentUpon>layout.js</DependentUpon>
+    </Content>
+    <Content Include="www\source\js\layout.es5.min.js">
+      <DependentUpon>layout.es5.js</DependentUpon>
+    </Content>
     <Content Include="www\source\js\lib\jquery.validate.min.js" />
     <Content Include="www\source\js\lib\jquery.validate.unobtrusive.min.js" />
     <Content Include="www\source\js\pages\commission-report.js" />

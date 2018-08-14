@@ -1,9 +1,36 @@
 ﻿var Login = (function ($) {
     var _me = {
         initialize: function () {
+            _me.registerLoginDialog();
             _me.initEvent();
+            _me.initLoginDialogEvent();
         },
+        registerLoginDialog: function () {
+            $("#loginDialog").on("show.bs.modal", function (e) {
+                _me.generateDialogCaptcha();
+            })
 
+            $("#loginDialog").on("hide.bs.modal", function (e) {
+                $("#loginDialogcaptchaImg").attr("src", "");
+                _me.generateCaptcha();
+            })
+
+        },
+        initLoginDialogEvent() {
+            $(".loginLink").on("click", function () {
+                $("#loginDialog").modal({ backdrop: "static" });
+            });
+
+            $("#btnDialogLogin").on("click", function () {
+                _me.requestSignin(true);
+            });
+
+            $("#dialogUserInput input").on("keypress", function (e) {
+                if (e.keyCode === 13) {
+                    _me.requestSignin(true);
+                }
+            });
+        },
         initEvent: function () {
             $("#btnLogin").on("click", function () {
                 _me.requestSignin();
@@ -14,6 +41,7 @@
                     _me.requestSignin();
                 }
             });
+            
         },
 
         requestSignin: function (onDialog) {
@@ -129,7 +157,10 @@
                 padding: CryptoJS.pad.Pkcs7
             }).toString();
         },
-
+        generateDialogCaptcha: function () {
+            var captchaUrl = Site.resolveRelativeUrl("Home/CaptchaImage?_v=" + new Date().getTime());
+            $("#loginDialogcaptchaImg").attr("src", captchaUrl);
+        },
         generateCaptcha: function () {
             var captchaUrl = Site.resolveRelativeUrl("Home/CaptchaImage?_v=" + new Date().getTime());
             $("#captchaImg").attr("src", captchaUrl);
