@@ -52,7 +52,7 @@
             {
                 result.Message = Lang.ErrAuthorized;
             }
-            else if (!string.Equals(SessionService.CaptchaCode, param.Captcha))
+            else if (!string.Equals(SessionService.SignUpCaptchaCode, param.Captcha))
             {
                 result.Message = Lang.ValidationCode;
             }
