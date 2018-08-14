@@ -23,6 +23,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository
                     {
                         result = new AffiliateBasicInfo
                         {
+                            AffId = Convert.ToInt32(reader["AffId"]),
+                            GroupId = Convert.ToInt32(reader["GroupId"]),
                             UserName = Convert.ToString(reader["UserName"]),
                             FirstName = Convert.ToString(reader["FirstName"]),
                             Email = Convert.ToString(reader["Email"]),
@@ -45,8 +47,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository
             {
                 objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
                 objectDb.AddInParameter("AffId", DbType.Int32, param.AffId);
-                objectDb.AddInParameter("Password", DbType.Int32, param.Password);
-                objectDb.AddInParameter("Status", DbType.Int32, param.Status);
+                objectDb.AddInParameter("Password", DbType.String, param.Password);
+                objectDb.AddInParameter("Status", DbType.String, param.Status);
                 objectDb.AddInParameter("Ip", DbType.String, param.Ip);
                 objectDb.AddOutParameter("ErrCode", DbType.Int32, 4);
                 objectDb.AddOutParameter("ErrMsg", DbType.String, 2000);

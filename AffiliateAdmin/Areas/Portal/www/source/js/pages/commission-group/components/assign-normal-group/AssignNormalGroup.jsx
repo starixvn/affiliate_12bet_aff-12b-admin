@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { post } from '../../../../modules/ajaxRequest';
 import { Col, FormGroup, Label, Button, Input } from 'reactstrap';
 import { resolveClientUrl } from '../../../../modules/utils';
 
@@ -6,7 +7,11 @@ export default class AssignNormalGroup extends Component {
     constructor(props) {
         super(props);
 
-        this.state = Object.assign({}, window.initialState, { isPrivateGroup: false });
+        let { commGroupList, selectedGroup, affInfo } = window.initialState;
+        if (selectedGroup === 0) {
+            selectedGroup = commGroupList.length ? Number(commGroupList[0].Id) : 0
+        }
+        this.state = Object.assign({}, { commGroupList, selectedGroup, affInfo }, { isPrivateGroup: false });
     }
 
     handleChange = (event) => {
@@ -19,32 +24,47 @@ export default class AssignNormalGroup extends Component {
         this.setState({ isPrivateGroup: checked });
     }
 
-    handleSave = () => {
+    handleSave = async () => {
         console.log(this.state);
-        const { isPrivateGroup } = this.state;
+        const { isPrivateGroup, affInfo, selectedGroup } = this.state;
         if (isPrivateGroup) {
-            window.location.href = resolveClientUrl('Portal/CommissionGroup/AssignPrivateGroup');
+            const keyValuePairList = Object.keys(affInfo).map(key => {
+                return `${key}=${affInfo[key]}`;
+            })
+
+            const queryString = keyValuePairList.join('&');
+
+            window.location.href = resolveClientUrl('Portal/CommissionGroup/AssignPrivateGroup') + '?' + queryString;
         }
         else {
-
+            const url = 'Portal/CommissionGroup/AssignGroup';
+            const params = {
+                param: {
+                    groupId: selectedGroup
+                },
+                affInfo
+            }
+            const response = await post(url, params);
+            const result = response.data;
+            console.log(result);
         }
     }
 
     render() {
-        const { commGroupList, selectedGroup, affName, isPrivateGroup } = this.state;
+        const { commGroupList, selectedGroup, affInfo, isPrivateGroup } = this.state;
         return (
-            <div className="assign-normal-group">
+            <div className="assign-normal-group" style={{ padding: 10 }}>
                 <fieldset>
                     <legend><h6 className="font-weight-bold">Assignee</h6></legend>
-                    <p>{affName}</p>
+                    <p>{affInfo.UserName}</p>
                 </fieldset>
                 <fieldset>
                     <legend><h6 className="font-weight-bold">Comm Group</h6></legend>
                     <FormGroup row>
-                        <Label sm={3} className="font-weight-bold">New Comm Group: </Label>
+                        <Label xs="4" className="font-weight-bold">New Comm Group: </Label>
 
-                        <Col sm={5} className="select-comm">
-                            <select name="SelectedGroup" className="form-control" onChange={this.handleChange} value={selectedGroup}>
+                        <Col xs="5" className="select-comm">
+                            <select name="SelectedGroup" className="form-control" onChange={this.handleChange} value={selectedGroup.toString()}>
                                 {
                                     commGroupList && commGroupList.map((item, index) => {
                                         return (<option key={`commgroup-${index}`} value={item.Id}>{item.Name}</option>)
@@ -54,11 +74,12 @@ export default class AssignNormalGroup extends Component {
                         </Col>
                     </FormGroup>
                     <FormGroup row>
-                        <Label className="font-weight-bold" for="isPrivateGroup" sm={3}>Use private group: </Label>
-                        <Col sm={5}>
+                        <Label className="font-weight-bold" for="isPrivateGroup" xs="4">Use private group: </Label>
+                        <Col xs="5">
                             <FormGroup check>
                                 <Label check>
-                                    <Input type="checkbox" id="isPrivateGroup" onChange={this.handleCheck} checked={isPrivateGroup} />
+                                    <Input type="checkbox" id="isPrivateGroup" style={{marginTop: -5}}
+                                        onChange={this.handleCheck} checked={isPrivateGroup} />
                                 </Label>
                             </FormGroup>
                         </Col>

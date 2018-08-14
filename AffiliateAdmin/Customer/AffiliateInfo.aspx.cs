@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Web;
 using System.Web.Script.Serialization;
 using AffiliateAdmin.Business.DataAccess;
 using AffiliateAdmin.DTO;
@@ -42,6 +43,7 @@ public partial class Customer_AffiliateInfo : IBCPage
         TemplateHandler.Assign(ref strTpl, "memberlist", Resources.Lang.MemList);
 
         TemplateHandler.Assign(ref strTpl, "afftype", Resources.Lang.AffiliateType);
+        TemplateHandler.Assign(ref strTpl, "relativeRootUrl-val", VirtualPathUtility.ToAbsolute("~/"));
 
         string strUsername = Server.UrlEncode(Request["username"]);
         if (!string.IsNullOrEmpty(strUsername))

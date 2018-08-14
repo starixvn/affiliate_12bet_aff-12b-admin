@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 
 namespace Fanex.Affiliate.Admin.Core.ViewModels
 {
@@ -9,6 +10,6 @@ namespace Fanex.Affiliate.Admin.Core.ViewModels
 
         public int SelectedGroup { get; set; }
 
-        public string AffName { get; set; }
+        public AffiliateBasicInfo AffInfo { get; set; }
     }
 }

@@ -229,7 +229,8 @@
 
             var status = $('slStatus').value;
             if (status == "Approved") {
-                parent.fContent.ibcWnd.open("../GroupSetting/AssignGroup.aspx?IsApproved=true&affID=" + $("affID").innerHTML + "&affName=" + $("spUN").innerHTML + '&mailoption=' + $("hdMailOption").value, 'Assign Commission Group For New Affiliate', 150, 50, 585, 310, 'class1', 'class2');
+                var url = document.getElementById("relativeRootUrl").value + 'Portal/CommissionGroup/AssignGroup?affId=' + $("affID").innerHTML;
+                parent.fContent.ibcWnd.open(url, 'Assign Commission Group For New Affiliate', 150, 50, 585, 310, 'class1', 'class2');
             }
             else {
                 var ajax = new Ajax.Request("../Handler/UpdAffInfo.ashx", {
@@ -304,7 +305,8 @@
         }
     }
     function ChangeGroup(affid, username) {
-        parent.fContent.ibcWnd.open('../GroupSetting/AssignGroup.aspx?affid=' + affid + '&affName=' + username, 'Change Commission Group For \"' + username + '\"', 150, 50, 585, 310, 'class1', 'class2');
+        var url = document.getElementById("relativeRootUrl").value + 'Portal/CommissionGroup/AssignGroup?affId=' + affid;
+        parent.fContent.ibcWnd.open(url, 'Change Commission Group For \"' + username + '\"', 150, 50, 585, 310, 'class1', 'class2');
     }
 </script>
 <!--/js-->

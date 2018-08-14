@@ -2,6 +2,10 @@
 {
     public class AffiliateBasicInfo
     {
+        public int AffId { get; set; }
+
+        public int GroupId { get; set; }
+
         public string UserName { get; set; }
 
         public string FirstName { get; set; }

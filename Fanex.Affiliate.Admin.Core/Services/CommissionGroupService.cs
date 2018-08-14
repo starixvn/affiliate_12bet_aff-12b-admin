@@ -3,9 +3,12 @@ using System.Linq;
 using System.Text;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
+using Fanex.Affiliate.Admin.Core.MetaModels.Affiliate;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.Repository;
+using Fanex.Affiliate.Admin.Core.Utilities;
 
 namespace Fanex.Affiliate.Admin.Core.Services
 {
@@ -13,9 +16,18 @@ namespace Fanex.Affiliate.Admin.Core.Services
     {
         private readonly ICommissionGroupRepository _commGroupRepository;
 
-        public CommissionGroupService(ICommissionGroupRepository commGroupRepository)
+        private readonly IAffiliateService _affiliateService;
+
+        private readonly IEmailService _emailService;
+
+        public CommissionGroupService(
+            ICommissionGroupRepository commGroupRepository,
+            IAffiliateService affiliateService,
+            IEmailService emailService)
         {
             _commGroupRepository = commGroupRepository;
+            _affiliateService = affiliateService;
+            _emailService = emailService;
         }
 
         public IEnumerable<CommissionGroupSetting> GetCommissionGroupList(GetCommissionGroupParam param)
@@ -81,6 +93,64 @@ namespace Fanex.Affiliate.Admin.Core.Services
         public IEnumerable<SelectItem> GetNormalCommGroupList(GetGroupListParam param)
         {
             return _commGroupRepository.GetNormalCommGroupList(param);
+        }
+
+        public ResultInfo AssignGroup(AssignGroupParam param, AffiliateBasicInfo affInfo)
+        {
+            var result = _commGroupRepository.AssignGroup(param);
+            var isApproved = affInfo.GroupId == 0;
+            if (isApproved && result.IsSuccessful)
+            {
+                var password = Generator.GetRandomString(10);
+                result = ApproveAffiliate(param.UserId, param.AffId, param.Ip, password);
+
+                if (result.IsSuccessful)
+                {
+                    _emailService.SendApprovedEmail();
+                }
+            }
+
+            return result;
+        }
+
+        public ResultInfo AssignPrivateGroup(CreateUpdateCommissionGroupParam param, AffiliateBasicInfo affInfo)
+        {
+            var isApproved = affInfo.GroupId == 0;
+            ResultInfo result;
+            if (isApproved)
+            {
+                result = CreateCommissionGroup(param);
+
+                if (result.IsSuccessful)
+                {
+                    var password = Generator.GetRandomString(10);
+                    result = ApproveAffiliate(param.UserId, affInfo.AffId, param.Ip, password);
+
+                    if (result.IsSuccessful)
+                    {
+                        _emailService.SendApprovedEmail();
+                    }
+                }
+            }
+            else
+            {
+                result = UpdateCommissionGroup(param);
+            }
+
+            return result;
+        }
+
+        private ResultInfo ApproveAffiliate(int userId, int affId, string ip, string password)
+        {
+            var approveParam = new ApproveAffiliateParam
+            {
+                UserId = userId,
+                AffId = affId,
+                Password = CryptographyHelper.Encrypt(password),
+                Ip = ip
+            };
+
+            return _affiliateService.ApproveAffiliate(approveParam);
         }
 
         private static bool IsPlatformFee(string productIdList)

@@ -59,6 +59,8 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
             builder.RegisterType<CommissionGroupRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<CommissionGroupService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<AffiliateRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<AffiliateService>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<EmailService>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
     }
 }

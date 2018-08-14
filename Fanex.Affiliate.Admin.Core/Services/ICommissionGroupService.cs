@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
 
@@ -18,5 +19,9 @@ namespace Fanex.Affiliate.Admin.Core.Services
         IEnumerable<Deduction> GetDeductionList();
 
         IEnumerable<SelectItem> GetNormalCommGroupList(GetGroupListParam param);
+
+        ResultInfo AssignGroup(AssignGroupParam param, AffiliateBasicInfo affInfo);
+
+        ResultInfo AssignPrivateGroup(CreateUpdateCommissionGroupParam param, AffiliateBasicInfo affInfo);
     }
 }

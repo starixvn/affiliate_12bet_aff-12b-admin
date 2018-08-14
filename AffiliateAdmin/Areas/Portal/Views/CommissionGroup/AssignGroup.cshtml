@@ -13,7 +13,7 @@
         window.initialState = {
             commGroupList: @Html.Raw(Json.Encode(Model.CommGroupList)),
             selectedGroup: @Model.SelectedGroup,
-            affName: '@Model.AffName'
+            affInfo: @Html.Raw(Json.Encode(Model.AffInfo))
         }
     </script>
     <script type="text/javascript" src="~/Areas/Portal/www/dist/js/assign-normal-group.js"></script>
