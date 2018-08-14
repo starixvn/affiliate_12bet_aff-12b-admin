@@ -35,17 +35,21 @@ var Layout = (function ($) {
             $(document).ajaxError(function (event, jqXHR) {
                 var status = jqXHR.status;
 
-                if (status !== 200) {
-                    if (status === 401 || status == 403) {
+                switch (status) {
+                    case 401:
+                    case 403:
                         window.location.href = Site.resolveRelativeUrl("");
-                    }
-                    else if (status === 404) {
+                        break;
+                    case 404:
                         window.location.href = Site.resolveRelativeUrl("Notify/PageNotFound");
-                    }
-                    else {
-                        alert("An error occurred while processing your request");
-                    }
+                        break;
+                    case 500:
+                        alert(window.Lang.ServerError);
+                        break;
+                    default:
+                        break;
                 }
+
             });
         },
         renderHotNews: function () {

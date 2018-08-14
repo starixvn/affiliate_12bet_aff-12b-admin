@@ -3235,4 +3235,7 @@ One of our Affiliate Accounts Manager will be contacting you by email within 3 b
   <data name="NoteCommissionCalculation" xml:space="preserve">
     <value>Commission = (Gross Win Loss - Platform Fee - Operational Fee - Banking Fees - Bonus) x Comm. Rate</value>
   </data>
+  <data name="ServerError" xml:space="preserve">
+    <value>An error occurred while processing your request! Please contact Administrator</value>
+  </data>
 </root>
