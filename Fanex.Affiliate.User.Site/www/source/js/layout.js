@@ -66,7 +66,6 @@ var Layout = (function ($) {
                     default:
                         break;
                 }
-
             });
         },
         renderHotNews: function () {
