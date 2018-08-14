@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Net;
+using System.Web.Helpers;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Attributes
@@ -7,30 +7,29 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true)]
     public class ValidateAntiForgeryHeaderAttribute : FilterAttribute, IAuthorizationFilter
     {
-        private const string KeyName = "__RequestVerificationToken";
+        private const string KEYNAME = "__RequestVerificationToken";
 
         public void OnAuthorization(AuthorizationContext filterContext)
         {
-            string clientToken = filterContext.RequestContext.HttpContext.Request.Headers.Get(KeyName);
+            var request = filterContext.RequestContext.HttpContext.Request;
+            string clientToken = null;
+
+            clientToken = request.IsAjaxRequest() ? request.Headers.Get(KEYNAME) : request.Form[KEYNAME];
+
             if (clientToken == null)
             {
-                UnauthorizeAccessHandler(filterContext);
-                return;
+                throw new HttpAntiForgeryException($"Header/Form does not contain {KEYNAME}");
             }
 
-            string serverToken = filterContext.HttpContext.Request.Cookies.Get(KeyName).Value;
-            if (serverToken == null)
+            var serverTokenCookie = request.Cookies.Get(AntiForgeryConfig.CookieName);
+            if (serverTokenCookie == null || serverTokenCookie.Value == null)
             {
-                UnauthorizeAccessHandler(filterContext);
-                return;
+                throw new HttpAntiForgeryException($"Cookies does not contain {KEYNAME}");
             }
 
-            System.Web.Helpers.AntiForgery.Validate(serverToken, clientToken);
+            AntiForgery.Validate(serverTokenCookie.Value, clientToken);
         }
 
-        private static void UnauthorizeAccessHandler(AuthorizationContext context)
-        {
-            context.Result = new HttpStatusCodeResult(HttpStatusCode.Forbidden, "Access Denied");
-        }
+       
     }
 }
