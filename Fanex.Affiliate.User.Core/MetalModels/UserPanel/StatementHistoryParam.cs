@@ -12,8 +12,5 @@ namespace Fanex.Affiliate.User.Core.MetalModels.UserPanel
         public int? PageIndex { get; set; }
 
         public int NRows { get; set; }
-
-        [SpParam(Ignored = true)]
-        public DateTime AvailableFromDate { get; set; }
     }
 }

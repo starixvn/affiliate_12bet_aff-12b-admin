@@ -39,14 +39,13 @@
             {
                 AffId = _sessionService.UserSession.AffId,
                 IsInternal = _sessionService.IsInternal,
-                AvailableFromDate = _appSetting.StatementAvailableFrom,
                 PageSize = DefaultPageSize
             };
 
             var statementHistoryList = _statementHistoryRepository.GetStatementHistory(param);
             ViewBag.TotalItem = param.NRows;
             ViewBag.StartRowNumber = 1;
-            ViewBag.AvailableFromDate = param.AvailableFromDate;
+            ViewBag.AvailableFromDate = _appSetting.StatementAvailableFrom;
             return View("~/Views/UserPanel/StatementHistory/Index.cshtml", statementHistoryList);
         }
 
@@ -56,14 +55,12 @@
         {
             param.AffId = _sessionService.UserSession.AffId;
             param.IsInternal = _sessionService.IsInternal;
-            param.AvailableFromDate = _appSetting.StatementAvailableFrom;
             param.PageSize = param.PageSize ?? DefaultPageSize;
 
             var statementHistoryList = _statementHistoryRepository.GetStatementHistory(param);
             ViewBag.TotalItem = param.NRows;
             ViewBag.StartRowNumber = (param.PageIndex - 1) * param.PageSize + 1;
-            ViewBag.AvailableFromDate = param.AvailableFromDate;
-
+            ViewBag.AvailableFromDate = _appSetting.StatementAvailableFrom;
             return PartialView("~/Views/UserPanel/StatementHistory/StatementHistoryPartial/_StatementHistoryContent.cshtml", statementHistoryList);
         }
 
