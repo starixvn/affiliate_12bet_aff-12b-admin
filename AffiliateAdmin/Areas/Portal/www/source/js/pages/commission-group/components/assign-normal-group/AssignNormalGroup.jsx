@@ -25,7 +25,6 @@ export default class AssignNormalGroup extends Component {
     }
 
     handleSave = async () => {
-        console.log(this.state);
         const { isPrivateGroup, affInfo, selectedGroup } = this.state;
         if (isPrivateGroup) {
             const keyValuePairList = Object.keys(affInfo).map(key => {
@@ -34,7 +33,8 @@ export default class AssignNormalGroup extends Component {
 
             const queryString = keyValuePairList.join('&');
 
-            window.location.href = resolveClientUrl('Portal/CommissionGroup/AssignPrivateGroup') + '?' + queryString;
+            const url = resolveClientUrl('Portal/CommissionGroup/AssignPrivateGroup') + '?' + queryString;
+            parent.ibcWnd.open(url, 'Approve affiliate with a private commission group', 150, 50, 800, 529, 'class1', 'class2');
         }
         else {
             const url = 'Portal/CommissionGroup/AssignGroup';

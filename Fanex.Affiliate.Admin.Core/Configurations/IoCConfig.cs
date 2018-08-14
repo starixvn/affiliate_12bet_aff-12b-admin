@@ -8,6 +8,7 @@ using Autofac.Integration.Mvc;
 using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
+using Fanex.Affiliate.Admin.Core.Utilities;
 
 namespace Fanex.Affiliate.Admin.Core.Configurations
 {
@@ -61,6 +62,7 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
             builder.RegisterType<AffiliateRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<AffiliateService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<EmailService>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<MailProcessor>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
     }
 }
