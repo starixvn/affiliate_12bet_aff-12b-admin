@@ -229,9 +229,15 @@
     @media (max-width: 992px) {
         margin-top: 0;
         margin-bottom: 0;
+        float: none;
+        text-align: right;
 
-        .login-before {
+        &.login-before {
             display: none;
+        }
+
+        &.login-after {
+            margin-bottom: 5px;
         }
     }
 

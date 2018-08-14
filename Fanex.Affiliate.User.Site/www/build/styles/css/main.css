@@ -439,9 +439,13 @@ input[type="checkbox"], input[type="radio"] {
   @media (max-width: 992px) {
     .user-login {
       margin-top: 0;
-      margin-bottom: 0; }
-      .user-login .login-before {
-        display: none; } }
+      margin-bottom: 0;
+      float: none;
+      text-align: right; }
+      .user-login.login-before {
+        display: none; }
+      .user-login.login-after {
+        margin-bottom: 5px; } }
   .user-login .login-after {
     display: block; }
   .user-login .text-field {
@@ -1199,7 +1203,20 @@ input[type="radio"], input[type="checkbox"] {
   .table .game-list tr .game-name {
     width: 100px; }
   .carousel.slide .carousel-inner {
-    height: 200px; } }
+    height: 200px; }
+  .user-login {
+    text-align: center; }
+  .content-menu .menu {
+    white-space: nowrap;
+    /* [1] */
+    overflow-x: auto;
+    /* [2] */
+    -webkit-overflow-scrolling: touch;
+    /* [3] */
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    /* [4] */ }
+    .content-menu .menu::-webkit-scrollbar {
+      display: none; } }
 
 .login-dialog .modal-content {
   background-color: #000;
