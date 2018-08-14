@@ -18,12 +18,16 @@
 
                 foreach (var item in Model)
                 {
+                    var isLink =  item.TransType != (byte)Fanex.Affiliate.User.Core.Enum.TransType.Payment &&
+                                        item.TransType != (byte)Fanex.Affiliate.User.Core.Enum.TransType.Adjustment &&
+                                        DateTime.Compare(item.MonthDate, ViewBag.AvailableFromDate) > 0;
+       
                     <tr>
                         <td>@index</td>
                         <td class="text-bold">@item.DateString</td>
                         <td>@item.TransTypeString</td>
                         <td class="text-right">
-                            @if (item.IsLink)
+                            @if (isLink)
                             {
                                 <a class="amountItem" data-date="@item.MonthDate.ToString("MM/dd/yyyy")" href="javascript:;">
                                     @item.Amount.ToStringMoneyWithSymbol()

@@ -46,7 +46,7 @@
             var statementHistoryList = _statementHistoryRepository.GetStatementHistory(param);
             ViewBag.TotalItem = param.NRows;
             ViewBag.StartRowNumber = 1;
-
+            ViewBag.AvailableFromDate = param.AvailableFromDate;
             return View("~/Views/UserPanel/StatementHistory/Index.cshtml", statementHistoryList);
         }
 
@@ -62,6 +62,7 @@
             var statementHistoryList = _statementHistoryRepository.GetStatementHistory(param);
             ViewBag.TotalItem = param.NRows;
             ViewBag.StartRowNumber = (param.PageIndex - 1) * param.PageSize + 1;
+            ViewBag.AvailableFromDate = param.AvailableFromDate;
 
             return PartialView("~/Views/UserPanel/StatementHistory/StatementHistoryPartial/_StatementHistoryContent.cshtml", statementHistoryList);
         }

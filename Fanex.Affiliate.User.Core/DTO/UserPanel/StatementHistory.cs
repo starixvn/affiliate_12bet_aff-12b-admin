@@ -14,8 +14,6 @@ namespace Fanex.Affiliate.User.Core.DTO.UserPanel
 
         public string Description { get; set; }
 
-        public bool IsLink { get; set; }
-
         public string DateString
         {
             get

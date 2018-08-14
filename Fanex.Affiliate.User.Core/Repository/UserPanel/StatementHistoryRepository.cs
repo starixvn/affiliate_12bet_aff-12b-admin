@@ -30,9 +30,6 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
                             Amount = reader["Amount"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["Amount"]),
                             Description = Convert.ToString(reader["Description"]),
                             Status = Convert.ToString(reader["Status"]),
-                            IsLink = transType != (byte)Enum.TransType.Payment &&
-                                        transType != (byte)Enum.TransType.Adjustment &&
-                                        DateTime.Compare(monthDate, statementHistoryParam.AvailableFromDate) > 0
                         });
                     }
                 }
