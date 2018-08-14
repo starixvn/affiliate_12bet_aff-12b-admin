@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Functions SiteId="32" SiteName="12Bet Admin">
   <Function Name="AffiliateInformation">
+    <Setting Key="Aff_Admin_Affiliate_Approved" SpName="Aff_Admin_Affiliate_Approved" DbName="affiliate_12bet" />
     <Setting Key="Aff_Admin_AffiliateInfo_Sel" SpName="Aff_Admin_AffiliateInfo_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Admin_AffiliateInfo_Upd" SpName="Aff_Admin_AffiliateInfo_Upd" DbName="affiliate_12bet" /> 
   </Function>
   <Function Name="Commission">
     <Setting Key="Aff_ProductList_Sel" SpName="Aff_ProductList_Sel" DbName="affiliate_12bet" />
@@ -11,6 +11,8 @@
     <Setting Key="Aff_Admin_CommGroup_Ins" SpName="Aff_Admin_CommGroup_Ins" DbName="affiliate_12bet" />
     <Setting Key="Aff_Admin_CommGroup_Upd" SpName="Aff_Admin_CommGroup_Upd" DbName="affiliate_12bet" />
     <Setting Key="Aff_Admin_CommGroup_Del" SpName="Aff_Admin_CommGroup_Del" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_CommGroupNormal_Sel" SpName="Aff_Admin_CommGroupNormal_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_CommGroup_Assign" SpName="Aff_Admin_CommGroup_Assign" DbName="affiliate_12bet" />
   </Function>
   <Function Name="DepositInformation">
     <Setting Key="Deposit_GetCustDataForCreateIBCACByUserName" SpName="Deposit_GetCustDataForCreateIBCACByUserName" DbName="deposit" />

@@ -1,11 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root>
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_CommGroup_Sel" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_AffiliateInfo_Sel" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_AffiliateInfo_Upd" Suffix="_xtest"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_Affiliate_Approved" Suffix="_xtest"></item>
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_PolicySel" Suffix="_xtest"></item>
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_CommGroup_Ins" Suffix="_xtest"></item>
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_CommGroup_Deductions_Sel" Suffix="_xtest"></item>
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_CommGroup_Upd" Suffix="_xtest"></item>
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_CommGroup_Del" Suffix="_xtest"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_CommGroupNormal_Sel" Suffix="_xtest"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_AffiliateInfo_Sel" Suffix="_xtest"></item>
 </Root>

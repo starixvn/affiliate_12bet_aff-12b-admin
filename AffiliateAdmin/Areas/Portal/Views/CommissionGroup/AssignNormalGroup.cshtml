@@ -1,0 +1,22 @@
+﻿@{
+    Layout = "~/Areas/Portal/Views/Shared/_SinglePageLayout.cshtml";
+}
+
+@model Fanex.Affiliate.Admin.Core.ViewModels.AssignNormalGroupViewModel
+
+@section styles{
+    @*<link href="~/Areas/Portal/www/dist/style/commission-group.css" rel="stylesheet" />*@
+}
+
+@section scripts{
+    <script type="text/javascript">
+        window.initialState = {
+            commGroupList: @Html.Raw(Json.Encode(Model.CommGroupList)),
+            selectedGroup: @Model.SelectedGroup,
+            affName: '@Model.AffName'
+        }
+    </script>
+    <script type="text/javascript" src="~/Areas/Portal/www/dist/js/assign-normal-group.js"></script>
+}
+
+<div id="root"></div>

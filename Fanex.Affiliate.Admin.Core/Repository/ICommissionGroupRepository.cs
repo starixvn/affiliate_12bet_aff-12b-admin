@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
-using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
 
 namespace Fanex.Affiliate.Admin.Core.Repository
@@ -17,5 +16,9 @@ namespace Fanex.Affiliate.Admin.Core.Repository
         ResultInfo DeleteCommissionGroup(DeleteCommissionGroupParam param);
 
         IEnumerable<Deduction> GetDeductionList();
+
+        IEnumerable<SelectItem> GetNormalCommGroupList(GetGroupListParam param);
+
+        ResultInfo AssignGroup(AssignGroupParam param);
     }
 }

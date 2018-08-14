@@ -1,13 +1,13 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
-using Fanex.Affiliate.Admin.Core.MetaModels;
+using Fanex.Affiliate.Admin.Core.MetaModels.Affiliate;
 
 namespace Fanex.Affiliate.Admin.Core.Repository
 {
     public interface IAffiliateRepository
     {
-        AffLeftPanelInfo GetInfo(string username);
+        AffiliateBasicInfo GetAffiliateBasicInfo(int affId);
 
-        ResultInfo UpdateInfo(LeftPanelUpdateInfoParam param);
+        ResultInfo ApproveAffiliate(ApproveAffiliateParam param);
     }
 }

@@ -1,0 +1,21 @@
+﻿@{
+    Layout = "~/Areas/Portal/Views/Shared/_SinglePageLayout.cshtml";
+}
+
+@model Fanex.Affiliate.Admin.Core.ViewModels.CommissionGroupViewModel
+
+@section styles{
+    <link href="~/Areas/Portal/www/dist/style/commission-group.css" rel="stylesheet" />
+}
+
+@section scripts{
+    <script type="text/javascript">
+        window.initialState = {
+            productList: @Html.Raw(Json.Encode(Model.ProductList)),
+            deductionList: @Html.Raw(Json.Encode(Model.DeductionList))
+        }
+    </script>
+    <script type="text/javascript" src="~/Areas/Portal/www/dist/js/assign-private-group.js"></script>
+}
+
+<div id="root"></div>

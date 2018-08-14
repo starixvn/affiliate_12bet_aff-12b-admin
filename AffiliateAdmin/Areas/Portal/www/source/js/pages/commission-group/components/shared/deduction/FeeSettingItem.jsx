@@ -23,7 +23,7 @@ export default class FeeSettingItem extends React.Component {
                 {
                     isCreating ? (
                         <Col sm={2} className="select-comm">
-                            <select name="DeductedPercentage" className="form-control" onChange={onChange}
+                            <select name="DeductedPercentage" className="form-control" onChange={this.handleChangeComm}
                                 defaultValue={formatDecimal(data && data.DeductedPercentage)}>
                                 {
                                     commissionValueList.map((item, i) => {

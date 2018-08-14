@@ -7,9 +7,5 @@
         public int GroupId { get; set; }
 
         public string Ip { get; set; }
-
-        public int ErrCode { get; set; }
-
-        public string ErrMsg { get; set; }
     }
 }

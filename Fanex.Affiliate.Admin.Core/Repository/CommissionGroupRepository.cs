@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
-using Fanex.Affiliate.Admin.Core.MetaModels;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
 
 namespace Fanex.Affiliate.Admin.Core.Repository
@@ -112,6 +111,56 @@ namespace Fanex.Affiliate.Admin.Core.Repository
             using (var objectDb = GetObjectDb(SpKey))
             {
                 return objectDb.Query<Deduction>();
+            }
+        }
+
+        public IEnumerable<SelectItem> GetNormalCommGroupList(GetGroupListParam param)
+        {
+            const string SpKey = "Aff_Admin_CommGroupNormal_Sel";
+            var result = new List<SelectItem>();
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                objectDb.AddInParameter("AffId", DbType.Int32, param.AffId);
+                objectDb.AddOutParameter("GroupId", DbType.Int32, 4);
+
+                using (var reader = objectDb.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        result.Add(new SelectItem
+                        {
+                            Id = reader["GroupId"].ToString(),
+                            Name = reader["GroupName"].ToString()
+                        });
+                    }
+                }
+                param.GroupId = Convert.ToInt32(objectDb.GetParameterValue("GroupId"));
+            }
+
+            return result;
+        }
+
+        public ResultInfo AssignGroup(AssignGroupParam param)
+        {
+            const string SpKey = "Aff_Admin_CommGroup_Assign";
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
+                objectDb.AddInParameter("AffId", DbType.Int32, param.AffId);
+                objectDb.AddInParameter("GroupId", DbType.Int32, param.GroupId);
+                objectDb.AddInParameter("Ip", DbType.String, param.Ip);
+                objectDb.AddOutParameter("ErrCode", DbType.Int32, 4);
+                objectDb.AddOutParameter("ErrMsg", DbType.String, 2000);
+
+                objectDb.ExecuteNonQuery();
+
+                return new ResultInfo
+                {
+                    Code = Convert.ToInt32(objectDb.GetParameterValue("ErrCode")),
+                    Message = objectDb.GetParameterValue("ErrMsg").ToString()
+                };
             }
         }
 

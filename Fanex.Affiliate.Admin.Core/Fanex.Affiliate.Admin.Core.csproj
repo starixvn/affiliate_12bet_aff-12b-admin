@@ -128,10 +128,7 @@
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
-    <Compile Include="DTO\Affiliate\AffInfo.cs" />
-    <Compile Include="DTO\Affiliate\AffLeftPanelInfo.cs" />
-    <Compile Include="DTO\Affiliate\ContactApp.cs" />
-    <Compile Include="DTO\Affiliate\OnlineInfo.cs" />
+    <Compile Include="DTO\Affiliate\AffiliateBasicInfo.cs" />
     <Compile Include="DTO\CommissionGroup\CommGroup.cs" />
     <Compile Include="DTO\CommissionGroup\CommissionGroupResultEntity.cs" />
     <Compile Include="DTO\CommissionGroup\CommissionGroupSetting.cs" />
@@ -141,14 +138,15 @@
     <Compile Include="DTO\DepositAccountInfo.cs" />
     <Compile Include="DTO\Product.cs" />
     <Compile Include="DTO\ResultInfo.cs" />
+    <Compile Include="DTO\SelectItem.cs" />
     <Compile Include="DTO\SubMenu.cs" />
     <Compile Include="Enum\AffType.cs" />
-    <Compile Include="MetaModels\ChangePasswordParam.cs" />
+    <Compile Include="MetaModels\Affiliate\ApproveAffiliateParam.cs" />
+    <Compile Include="MetaModels\CommissionGroup\AssignGroupParam.cs" />
     <Compile Include="MetaModels\CommissionGroup\GetCommissionGroupParam.cs" />
     <Compile Include="MetaModels\CommissionGroup\DeleteCommissionGroupParam.cs" />
     <Compile Include="MetaModels\CommissionGroup\CreateUpdateCommissionGroupParam.cs" />
-    <Compile Include="MetaModels\LeftPanelUpdateInfoParam.cs" />
-    <Compile Include="MetaModels\UpdateStatusParam.cs" />
+    <Compile Include="MetaModels\CommissionGroup\GetGroupListParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\AccountRepository.cs" />
     <Compile Include="Repository\AffiliateRepository.cs" />
@@ -171,9 +169,12 @@
     <Compile Include="Services\Common\ISessionService.cs" />
     <Compile Include="DTO\Common\UserPermission.cs" />
     <Compile Include="Services\Common\SessionService.cs" />
+    <Compile Include="Services\EmailService.cs" />
     <Compile Include="Services\ICommissionGroupService.cs" />
+    <Compile Include="Services\IEmailService.cs" />
     <Compile Include="Utilities\CryptographyHelper.cs" />
     <Compile Include="Utilities\Generator.cs" />
+    <Compile Include="ViewModels\AssignNormalGroupViewModel.cs" />
     <Compile Include="ViewModels\CommissionGroupViewModel.cs" />
     <Compile Include="ViewModels\GetCommissionGroupViewModel.cs" />
   </ItemGroup>
@@ -193,6 +194,7 @@
     <Analyzer Include="..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\SonarAnalyzer.CSharp.dll" />
     <Analyzer Include="..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\SonarAnalyzer.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

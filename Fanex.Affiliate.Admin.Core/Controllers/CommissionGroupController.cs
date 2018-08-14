@@ -116,5 +116,38 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
             return Json(result);
         }
+
+        [HttpGet]
+        public ActionResult AssignNormalGroup(int affId, string affName)
+        {
+            var param = new GetGroupListParam { AffId = affId };
+            var commGroupList = _commissionGroupService.GetNormalCommGroupList(param);
+            var viewModel = new AssignNormalGroupViewModel
+            {
+                CommGroupList = commGroupList,
+                SelectedGroup = param.GroupId.HasValue ? param.GroupId.Value : -1,
+                AffName = affName
+            };
+
+            return View("~/Areas/Portal/Views/CommissionGroup/AssignNormalGroup.cshtml", viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult AssignNormalGroup()
+        {
+            return Json(new { });
+        }
+
+        [HttpGet]
+        public ActionResult AssignPrivateGroup()
+        {
+            var viewModel = new CommissionGroupViewModel
+            {
+                ProductList = _productRepository.GetProductList(),
+                DeductionList = _commissionGroupService.GetDeductionList()
+            };
+
+            return View("~/Areas/Portal/Views/CommissionGroup/AssignPrivateGroup.cshtml", viewModel);
+        }
     }
 }

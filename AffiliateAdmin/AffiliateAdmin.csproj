@@ -1887,6 +1887,8 @@
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\addgroup\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\editgroup\EditGroup.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\editgroup\index.jsx" />
+    <Content Include="Areas\Portal\Views\CommissionGroup\AssignNormalGroup.cshtml" />
+    <Content Include="Areas\Portal\Views\CommissionGroup\AssignPrivateGroup.cshtml" />
     <None Include="bundleconfig.json" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

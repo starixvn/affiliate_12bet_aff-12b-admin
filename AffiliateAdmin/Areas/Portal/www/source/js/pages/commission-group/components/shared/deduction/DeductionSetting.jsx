@@ -13,6 +13,7 @@ export class DeductionSetting extends Component {
     }
 
     handleSelectOperationalFee = (value) => {
+        console.log(value);
         const { OperationalFee } = this.props.selectedGroup;
         this.props.setSelectedGroup({
             OperationalFee: Object.assign({}, OperationalFee, value)
@@ -20,6 +21,7 @@ export class DeductionSetting extends Component {
     }
 
     handleSelectBankingFee = (value) => {
+        console.log(value);
         const { BankingFee } = this.props.selectedGroup;
         this.props.setSelectedGroup({
             BankingFee: Object.assign({}, BankingFee, value)

@@ -1,43 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
-using Fanex.Affiliate.Admin.Core.MetaModels;
+using Fanex.Affiliate.Admin.Core.MetaModels.Affiliate;
 
 namespace Fanex.Affiliate.Admin.Core.Repository
 {
     public class AffiliateRepository : BaseRepository, IAffiliateRepository
     {
-        public ResultInfo UpdateInfo(LeftPanelUpdateInfoParam param)
+        public AffiliateBasicInfo GetAffiliateBasicInfo(int affId)
         {
-            const string SpKey = "Aff_Admin_AffiliateInfo_Upd";
-
-            using (var objectDb = GetObjectDb(SpKey))
-            {
-                objectDb.ExecuteNonQuery(param);
-            }
-
-            return new ResultInfo
-            {
-                Code = param.ErrCode,
-                Message = param.ErrMsg
-            };
-        }
-
-        public AffLeftPanelInfo GetInfo(string username)
-        {
-            var result = new AffLeftPanelInfo();
             const string SpKey = "Aff_Admin_AffiliateInfo_Sel";
+            AffiliateBasicInfo result = null;
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                using (var reader = objectDb.ExecuteReader(new { username }))
+                objectDb.AddInParameter("AffId", DbType.Int32, affId);
+
+                using (var reader = objectDb.ExecuteReader())
                 {
                     if (reader.Read())
                     {
-                        result.GeneralInfo = GetGeneralInfo(reader);
-                        result.OnlineInfoList = GetOnlineInfoList(reader);
+                        result = new AffiliateBasicInfo
+                        {
+                            UserName = Convert.ToString(reader["UserName"]),
+                            FirstName = Convert.ToString(reader["FirstName"]),
+                            Email = Convert.ToString(reader["Email"]),
+                            MailOption = Convert.ToBoolean(reader["MailOption"]),
+                            PreferredLanguage = Convert.ToString(reader["PreferredLanguage"]),
+                            PlayerUsername = Convert.ToString(reader["PlayerUsername"])
+                        };
                     }
                 }
             }
@@ -45,68 +37,28 @@ namespace Fanex.Affiliate.Admin.Core.Repository
             return result;
         }
 
-        private static AffInfo GetGeneralInfo(IDataReader reader)
+        public ResultInfo ApproveAffiliate(ApproveAffiliateParam param)
         {
-            return new AffInfo
-            {
-                AffId = Convert.ToInt32(reader["AffId"]),
-                Status = Convert.ToString(reader["Status"]),
-                Closed = Convert.ToBoolean(reader["Closed"]),
-                IsLocked = Convert.ToBoolean(reader["IsLocked"]),
-                LastLoginDate = reader["LastLoginDate"] == DBNull.Value ? null : (DateTime?)reader["LastLoginDate"],
-                LastLoginIP = Convert.ToString(reader["LastLoginIP"]),
-                UserName = Convert.ToString(reader["UserName"]),
-                UserName2 = Convert.ToString(reader["UserName2"]),
-                FirstName = Convert.ToString(reader["FirstName"]),
-                LastName = Convert.ToString(reader["LastName"]),
-                Gender = reader["Gender"] == DBNull.Value ? null : (bool?)reader["Gender"],
-                Email = Convert.ToString(reader["Email"]),
-                Phone = Convert.ToString(reader["Phone"]),
-                ContactApps = Convert.ToString(reader["ContactApps"]),
-                Address = Convert.ToString(reader["Address"]),
-                City = Convert.ToString(reader["City"]),
-                State = Convert.ToString(reader["State"]),
-                Postal = Convert.ToString(reader["Postal"]),
-                Country = Convert.ToString(reader["Country"]),
-                Question = Convert.ToString(reader["Question"]),
-                Answer = Convert.ToString(reader["Answer"]),
-                MailOption = Convert.ToBoolean(reader["MailOption"]),
-                SiteUrl = Convert.ToString(reader["SiteURL"]),
-                MoreSiteUrls = Convert.ToString(reader["MoreSiteURLs"]),
-                NoSiteDesc = Convert.ToString(reader["NoSiteDesc"]),
-                GroupId = Convert.ToInt32(reader["GroupId"]),
-                GroupName = Convert.ToString(reader["GroupName"]),
-                BalBroughtForward = Convert.ToDecimal(reader["BalBroughtForward"]),
-                PreferredLanguage = Convert.ToString(reader["PreferredLanguage"]),
-                PreferredPayment = Convert.ToString(reader["PreferredPayment"]),
-                PlayerUsername = Convert.ToString(reader["PlayerUsername"]),
-                NetellerAccountId = Convert.ToString(reader["NetellerAccountId"]),
-                MoneybookersEmail = Convert.ToString(reader["MoneybookersEmail"]),
-                WireBankName = Convert.ToString(reader["BankName"]),
-                WireBankAddress = Convert.ToString(reader["BankAddress"]),
-                WireSwiftCode = Convert.ToString(reader["BankSwiftCode"]),
-                WireAccountName = Convert.ToString(reader["BankAccountName"]),
-                WireAccountNo = Convert.ToString(reader["BankAccountNo"]),
-                AffType = Convert.ToByte(reader["AffType"])
-            };
-        }
+            const string SpKey = "Aff_Admin_Affiliate_Approved";
 
-        private static IEnumerable<OnlineInfo> GetOnlineInfoList(IDataReader reader)
-        {
-            var result = new List<OnlineInfo>();
-            if (reader.NextResult())
+            using (var objectDb = GetObjectDb(SpKey))
             {
-                while (reader.Read())
+                objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
+                objectDb.AddInParameter("AffId", DbType.Int32, param.AffId);
+                objectDb.AddInParameter("Password", DbType.Int32, param.Password);
+                objectDb.AddInParameter("Status", DbType.Int32, param.Status);
+                objectDb.AddInParameter("Ip", DbType.String, param.Ip);
+                objectDb.AddOutParameter("ErrCode", DbType.Int32, 4);
+                objectDb.AddOutParameter("ErrMsg", DbType.String, 2000);
+
+                objectDb.ExecuteNonQuery();
+
+                return new ResultInfo
                 {
-                    result.Add(new OnlineInfo
-                    {
-                        Ip = Convert.ToString(reader["Ip"]),
-                        ReloadTime = Convert.ToDateTime(reader["ReloadTime"])
-                    });
-                }
+                    Code = Convert.ToInt32(objectDb.GetParameterValue("ErrCode")),
+                    Message = objectDb.GetParameterValue("ErrMsg").ToString()
+                };
             }
-
-            return result;
         }
     }
 }

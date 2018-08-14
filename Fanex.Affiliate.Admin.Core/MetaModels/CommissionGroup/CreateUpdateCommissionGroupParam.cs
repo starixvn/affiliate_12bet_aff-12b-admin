@@ -21,10 +21,6 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup
 
         public string Ip { get; set; }
 
-        public int ErrCode { get; set; }
-
-        public string ErrMsg { get; set; }
-
         public IEnumerable<TierSetting> TierSettingList { get; set; }
 
         public IEnumerable<DeductionSetting> PlatformFeeList { get; set; }
