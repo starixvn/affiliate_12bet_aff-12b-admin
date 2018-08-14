@@ -135,6 +135,7 @@ var SignUp = (function ($) {
     var _me = {
         initialize: function () {
             _me.initEvent();
+            _me.refreshCaptcha();
         },
 
         initEvent: function () {
@@ -248,8 +249,8 @@ var SignUp = (function ($) {
         },
 
         refreshCaptcha: function () {
-            var captchaUrl = Site.resolveRelativeUrl("Home/CaptchaImage?_v=" + new Date().getTime());
-            $(".validation-value img").attr("src", captchaUrl);
+            var captchaUrl = Site.resolveRelativeUrl("Home/CaptchaImage?type=1&_v=" + new Date().getTime());
+            $("#validation-captcha").attr("src", captchaUrl);
         }
     };
 

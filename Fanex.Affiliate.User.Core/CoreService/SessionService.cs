@@ -8,6 +8,8 @@ namespace Fanex.Affiliate.User.Core.CoreService
     {
         private const string UserSessionKey = "Affiliate12Bet.UserSessionKey";
         private const string CaptchaCodeKey = "Affiliate12Bet.CaptchaCodeKey";
+        private const string SingUpCaptchaCodeKey = "Affiliate12Bet.SingUpCaptchaCodeKey";
+
         private const string CurrentLanguageKey = "Affiliate12Bet.CurrentLanguageKey";
         private const string IsInternalKey = "Affiliate12Bet.IsInternalKey";
 
@@ -50,6 +52,12 @@ namespace Fanex.Affiliate.User.Core.CoreService
         {
             get { return (bool)(HttpContext.Current.Session[IsInternalKey] ?? false); }
             set { HttpContext.Current.Session[IsInternalKey] = value; }
+        }
+
+        public string SignUpCaptchaCode {
+
+            get { return HttpContext.Current.Session[SingUpCaptchaCodeKey] as string; }
+            set { HttpContext.Current.Session[SingUpCaptchaCodeKey] = value; }
         }
 
         public void AssignSessions(AuthorizedUserInfo authorizedUser)

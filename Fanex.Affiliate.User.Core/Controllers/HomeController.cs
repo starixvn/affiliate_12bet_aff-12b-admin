@@ -38,10 +38,17 @@ namespace Fanex.Affiliate.User.Core.Controllers
         }
 
         [HttpGet]
-        public ActionResult CaptchaImage()
+        public ActionResult CaptchaImage(byte type = 0)
         {
             var captcha = new Random().Next(1000, 9999).ToString();
-            SessionService.CaptchaCode = captcha;
+            if (type == 0)
+            {
+                SessionService.CaptchaCode = captcha;
+            }
+            else
+            {
+                SessionService.SignUpCaptchaCode = captcha;
+            }
 
             return File(CaptchaHelper.GenerateImageBuffer(captcha, 65, 26), "image/png");
         }

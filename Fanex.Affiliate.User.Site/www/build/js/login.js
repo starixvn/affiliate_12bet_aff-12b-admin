@@ -52,7 +52,7 @@ var Login = (function ($) {
             })
 
         },
-        initLoginDialogEvent() {
+        initLoginDialogEvent: function () {
             $(".loginLink").on("click", function () {
                 $("#loginDialog").modal({ backdrop: "static" });
             });
@@ -132,9 +132,6 @@ var Login = (function ($) {
                                 $username.val("");
                                 $password.val("");
                                 $validation.val("");
-
-                                var captchaUrl = Site.resolveRelativeUrl("Home/CaptchaImage?_v=" + new Date().getTime());
-                                $("#loginDialogcaptchaImg").attr("src", captchaUrl);
                             }
                             else {
                                 Site.reload();

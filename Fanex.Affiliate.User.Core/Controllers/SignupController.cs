@@ -35,7 +35,7 @@
         public ActionResult Index(UserSignUpParam param)
         {
             var result = new ResultInfo { IsOk = false };
-            if (!SessionService.CaptchaCode.Equals(param.Captcha))
+            if (!SessionService.SignUpCaptchaCode.Equals(param.Captcha))
             {
                 result.Message = Lang.ValidationCode;
             }

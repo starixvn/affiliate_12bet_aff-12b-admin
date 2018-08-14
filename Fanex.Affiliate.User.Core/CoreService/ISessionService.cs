@@ -11,6 +11,7 @@ namespace Fanex.Affiliate.User.Core.CoreService
         string CurrentLanguage { get; set; }
 
         bool IsInternal { get; set; }
+        string SignUpCaptchaCode { get; set; }
 
         void AssignSessions(AuthorizedUserInfo authorizedUser);
     }
