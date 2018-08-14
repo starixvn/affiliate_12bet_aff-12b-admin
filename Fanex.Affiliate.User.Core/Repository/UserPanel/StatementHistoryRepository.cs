@@ -28,7 +28,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
                             MonthDate = monthDate,
                             TransType = transType,
                             Amount = reader["Amount"] == DBNull.Value ? 0 : Convert.ToDecimal(reader["Amount"]),
-                            Description = transType == (byte)Enum.TransType.Payment ? Convert.ToString(reader["Description"]) : string.Empty,
+                            Description = Convert.ToString(reader["Description"]),
                             Status = Convert.ToString(reader["Status"]),
                             IsLink = transType != (byte)Enum.TransType.Payment &&
                                         transType != (byte)Enum.TransType.Adjustment &&

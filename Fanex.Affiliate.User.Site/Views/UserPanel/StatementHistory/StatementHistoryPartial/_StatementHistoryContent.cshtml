@@ -35,7 +35,12 @@
                             }
                         </td>
                         <td class="text-center">@item.DisplayStatus</td>
-                        <td>@item.Description</td>
+                        <td>
+                            @if (item.TransType == (byte)Fanex.Affiliate.User.Core.Enum.TransType.Payment)
+                            {
+                                @item.Description
+                            }
+                        </td>
                     </tr>
 
                     index++;
