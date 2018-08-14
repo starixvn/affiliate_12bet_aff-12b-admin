@@ -56,6 +56,17 @@ $desktop: "(min-width: 1024px)";
     .user-signup {
         margin-top: 30px;
     }
+
+    .content-menu #mainMenu {
+        white-space: nowrap; /* [1] */
+        overflow-x: auto; /* [2] */
+        -webkit-overflow-scrolling: touch; /* [3] */
+        -ms-overflow-style: -ms-autohiding-scrollbar; /* [4] */
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
 }
 
 @media #{$phone} {
@@ -105,7 +116,7 @@ $desktop: "(min-width: 1024px)";
         text-align: center;
     }
 
-    .content-menu .menu {
+    .content-menu #mainMenu {
         white-space: nowrap; /* [1] */
         overflow-x: auto; /* [2] */
         -webkit-overflow-scrolling: touch; /* [3] */
@@ -114,5 +125,5 @@ $desktop: "(min-width: 1024px)";
         &::-webkit-scrollbar {
             display: none;
         }
-    }
+    }    
 }

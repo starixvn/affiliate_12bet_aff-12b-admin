@@ -114,4 +114,13 @@
     margin-bottom: 0; }
   .form #Affiliate {
     border-color: #adadad !important; }
+  @media (max-width: 767px) {
+    .form .form-group {
+      flex-wrap: wrap; }
+      .form .form-group label {
+        flex: 0 0 100%; }
+      .form .form-group .field {
+        width: 100%; }
+      .form .form-group .validation-value {
+        align-self: flex-end; } }
 

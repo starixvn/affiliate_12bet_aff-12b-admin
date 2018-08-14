@@ -491,9 +491,10 @@ input[type="checkbox"], input[type="radio"] {
 
 .content-menu .menu {
   background: #ad6b2e;
-  display: flex; }
-  .content-menu .menu li {
-    position: relative; }
+  display: flex;
+  /*li {
+            position: relative;
+        }*/ }
   .content-menu .menu li:not(:last-child) {
     border-right: 1px solid #f9f9f9; }
   .content-menu .menu .menu-item {
@@ -527,8 +528,6 @@ input[type="checkbox"], input[type="radio"] {
 
 .content-menu .submenu-container {
   position: absolute;
-  top: 31px;
-  right: -1px;
   flex-direction: column;
   z-index: 2;
   width: 200px;
@@ -624,6 +623,10 @@ input[type="checkbox"], input[type="radio"] {
     .carousel.slide .carousel-inner > .item > a .img-responsive {
       width: 100%;
       height: 100%; }
+      @media (min-width: 1600px) {
+        .carousel.slide .carousel-inner > .item > a .img-responsive {
+          width: auto;
+          margin: 0 auto; } }
   @media (min-width: 1300px) {
     .carousel.slide .carousel-inner {
       height: 350px; } }
@@ -1179,7 +1182,18 @@ input[type="radio"], input[type="checkbox"] {
     flex-basis: 100%;
     max-width: 100%; }
   .user-signup {
-    margin-top: 30px; } }
+    margin-top: 30px; }
+  .content-menu #mainMenu {
+    white-space: nowrap;
+    /* [1] */
+    overflow-x: auto;
+    /* [2] */
+    -webkit-overflow-scrolling: touch;
+    /* [3] */
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    /* [4] */ }
+    .content-menu #mainMenu::-webkit-scrollbar {
+      display: none; } }
 
 @media (max-width: 767px) {
   .banner-side.banner-left, .banner-side.banner-right {
@@ -1206,7 +1220,7 @@ input[type="radio"], input[type="checkbox"] {
     height: 200px; }
   .user-login {
     text-align: center; }
-  .content-menu .menu {
+  .content-menu #mainMenu {
     white-space: nowrap;
     /* [1] */
     overflow-x: auto;
@@ -1215,7 +1229,7 @@ input[type="radio"], input[type="checkbox"] {
     /* [3] */
     -ms-overflow-style: -ms-autohiding-scrollbar;
     /* [4] */ }
-    .content-menu .menu::-webkit-scrollbar {
+    .content-menu #mainMenu::-webkit-scrollbar {
       display: none; } }
 
 .login-dialog .modal-content {

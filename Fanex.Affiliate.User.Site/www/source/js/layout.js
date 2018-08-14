@@ -30,6 +30,23 @@ var Layout = (function ($) {
                     }
                 });
             });
+
+            $('li.parent').on('mouseover', function () {
+                var $menuItem = $(this),
+                    $submenuWrapper = $('> .submenu-container', $menuItem);
+
+                // grab the menu item's position relative to its positioned parent
+                var menuItemPos = $menuItem.position();
+                var withMenu = $menuItem.outerWidth();
+                var heightMenu = $menuItem.outerHeight();
+
+                // place the submenu in the correct position relevant to the menu item
+                $submenuWrapper.css({
+                    top: menuItemPos.top + heightMenu,
+                    left: menuItemPos.left + withMenu - 200
+                });
+
+            });
         },
         registerAjaxHandlerError: function () {
             $(document).ajaxError(function (event, jqXHR) {

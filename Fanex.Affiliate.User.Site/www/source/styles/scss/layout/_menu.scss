@@ -5,9 +5,9 @@
         background: $bg-menu;
         display: flex;        
 
-        li {
+        /*li {
             position: relative;
-        }
+        }*/
 
         li:not(:last-child) {
             border-right: 1px solid #f9f9f9;
@@ -55,8 +55,8 @@
 
     .submenu-container {
         position: absolute;
-        top: 31px;
-        right: -1px;
+        //top: 31px;
+        //right: -1px;
         flex-direction: column;
         z-index: 2;
         width: 200px;

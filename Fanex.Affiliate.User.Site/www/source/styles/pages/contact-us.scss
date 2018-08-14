@@ -165,4 +165,22 @@
     #Affiliate {
         border-color: #adadad !important;
     }
+
+    @media (max-width: 767px) {
+        .form-group {
+            flex-wrap: wrap;
+
+            label {
+                flex: 0 0 100%;
+            }
+
+            .field {
+                width: 100%;
+            }
+
+            .validation-value {
+                align-self: flex-end;
+            }
+        }
+    }
 }
