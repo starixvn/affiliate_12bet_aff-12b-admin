@@ -62,7 +62,6 @@ $desktop: "(min-width: 1024px)";
         overflow-x: auto; /* [2] */
         -webkit-overflow-scrolling: touch; /* [3] */
         -ms-overflow-style: -ms-autohiding-scrollbar; /* [4] */
-
         &::-webkit-scrollbar {
             display: none;
         }
@@ -121,9 +120,10 @@ $desktop: "(min-width: 1024px)";
         overflow-x: auto; /* [2] */
         -webkit-overflow-scrolling: touch; /* [3] */
         -ms-overflow-style: -ms-autohiding-scrollbar; /* [4] */
+        
 
-        &::-webkit-scrollbar {
+        /*&::-webkit-scrollbar {
             display: none;
-        }
-    }    
+        }*/
+    }
 }

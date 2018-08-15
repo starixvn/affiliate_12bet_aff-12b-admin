@@ -13,7 +13,13 @@
         margin-bottom: 0;
 
         .form-control {
+            width: 150px;
             margin-bottom: 0;
+            display: inline-block;
+        }
+
+        .btn {
+            margin-right: 0;
         }
     }
 }
@@ -27,6 +33,22 @@
     }
 }
 
+.commission-report {
+    @media screen and (max-width: 1023px) {
+        width: 100%;
+        margin-bottom: 15px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+        border: 1px solid #ddd;
+
+        table {
+            table-layout: auto;
+        }
+    }
+}
+
 .table {
     .th {
         cursor: pointer;
@@ -34,20 +56,20 @@
 
     .th-wrapper {
         position: relative;
-        padding-right: 25px;
-        font-size: 14px;
+        padding-right: 15px;
+        font-size: 13px;
 
         .icon-container {
             position: absolute;
             display: inline-block;
             width: 15px;
             height: 15px;
-            top: calc(50% - 8px);
-            right: 5px;
+            top: calc(50% - 5px);
+            right: -6px;
 
             .caret {
                 display: block;
-                border-width: 5px;
+                border-width: 4px;
 
                 &.current {
                     border-top-color: #FD0302;
@@ -64,8 +86,8 @@
             .info-container {
                 position: absolute;
                 display: inline-block;
-                top: calc(50% - 10px);
-                right: 23px;
+                top: calc(50% - 8px);
+                right: 11px;
 
                 > .glyphicon-info-sign {
                     cursor: pointer;
@@ -78,7 +100,8 @@
         tr {
             > td {
                 background: #fff;
-                color:#000;
+                color: #000;
+
                 .row-wrapper {
                     position: relative;
 

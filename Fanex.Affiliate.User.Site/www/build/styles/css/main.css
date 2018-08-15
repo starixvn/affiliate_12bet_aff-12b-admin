@@ -948,6 +948,8 @@ label.require:after {
 
 .table {
   font-size: 13px; }
+  .table .numberId {
+    width: 80px; }
   .table table {
     table-layout: fixed;
     border: 1px solid #c1c1c1;
@@ -1228,9 +1230,10 @@ input[type="radio"], input[type="checkbox"] {
     -webkit-overflow-scrolling: touch;
     /* [3] */
     -ms-overflow-style: -ms-autohiding-scrollbar;
-    /* [4] */ }
-    .content-menu #mainMenu::-webkit-scrollbar {
-      display: none; } }
+    /* [4] */
+    /*&::-webkit-scrollbar {
+            display: none;
+        }*/ } }
 
 .login-dialog .modal-content {
   background-color: #000;
