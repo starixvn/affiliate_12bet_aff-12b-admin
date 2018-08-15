@@ -58,7 +58,7 @@ namespace AffiliateAdmin.Business.Services.Auth
 
                     var authRepository = new AuthRepository();
                     ISessionService sessionService = new SessionService();
-                    sessionService.UserPerissionList = authRepository.GetPermissionList(custid);
+                    sessionService.UserPermissionList = authRepository.GetPermissionList(custid);
                     isok = "OK";
                     context.Response.SetCookie(cookie);
                 }

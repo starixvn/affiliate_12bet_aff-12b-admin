@@ -7,6 +7,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
     {
         int UserId { get; set; }
 
-        IList<UserPermission> UserPerissionList { get; set; }
+        IList<UserPermission> UserPermissionList { get; set; }
     }
 }

@@ -22,7 +22,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
             }
         }
 
-        IList<UserPermission> ISessionService.UserPerissionList
+        IList<UserPermission> ISessionService.UserPermissionList
         {
 
             get

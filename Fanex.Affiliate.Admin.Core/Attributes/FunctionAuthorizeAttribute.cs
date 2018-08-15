@@ -20,7 +20,7 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
             if (!string.IsNullOrEmpty(FunctionName))
             {
                 var sessionService = DependencyResolver.Current.GetService<ISessionService>();
-                var permissionList = sessionService.UserPerissionList;
+                var permissionList = sessionService.UserPermissionList;
                 var hasPerimission = permissionList.Any(i =>
                 i.FunctionName.Equals(this.FunctionName, StringComparison.OrdinalIgnoreCase)
                 && (i.IsHost || i.IsHost == IsHost)
