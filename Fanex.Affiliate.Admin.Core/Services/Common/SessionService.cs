@@ -14,7 +14,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
         {
             get
             {
-                return (int)HttpContext.Current.Session[UserIdKey];
+                var value = HttpContext.Current.Session[UserIdKey];
+                return value != null ? (int)value : 0;
             }
             set
             {
