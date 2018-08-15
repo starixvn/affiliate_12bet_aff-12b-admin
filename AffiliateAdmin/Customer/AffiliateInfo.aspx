@@ -73,10 +73,8 @@
         }
     }
     function ViewGroup(groupID, groupName) {
-        if (groupID > 1000)
-            parent.fContent.ibcWnd.open("../GroupSetting/EditGroup.aspx?groupid=" + groupID, 'Edit Commission Group for ' + $("spUN").innerHTML, 150, 50, 755, 529, 'class1', 'class2');
-        else
-            parent.fContent.ibcWnd.open("../GroupSetting/EditGroup.aspx?groupid=" + groupID, 'Edit Commission Group', 150, 50, 755, 529, 'class1', 'class2');
+        var url = document.getElementById("relativeRootUrl").value + 'Portal/CommissionGroup/AssignPrivateGroup?affId=' + $("affID").innerHTML;
+        parent.fContent.ibcWnd.open(url, 'Edit Commission Group for ' + $("spUN").innerHTML, 150, 50, 800, 529, 'class1', 'class2');
     }
     function setHeight() {
         var height = 0;

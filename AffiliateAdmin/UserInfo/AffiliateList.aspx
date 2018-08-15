@@ -40,11 +40,9 @@
             $('txtUsername').focus();
         }      
     }
-    function ViewGroup(groupid) {
-        if (groupid > 1000)
-            ibcWnd.open("../GroupSetting/EditGroup.aspx?groupid=" + groupid, 'Edit Commission Group for ' + $("u"+groupid).innerHTML, 150, 50, 755, 529, 'class1', 'class2');
-        else
-            ibcWnd.open("../GroupSetting/EditGroup.aspx?groupid=" + groupid, 'Edit Commission Group', 150, 50, 755, 529, 'class1', 'class2');
+    function ViewGroup(groupid, custId) {
+        var url = '<%=VirtualPathUtility.ToAbsolute("~/")%>' + 'Portal/CommissionGroup/AssignPrivateGroup?affId=' + custId;
+        ibcWnd.open(url, 'Edit Commission Group for ' + $("u" + groupid).innerHTML, 150, 50, 800, 529, 'class1', 'class2');
             
     }
     //Start favorite 

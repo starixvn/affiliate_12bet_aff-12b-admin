@@ -141,25 +141,25 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [HttpPost]
-        public ActionResult AssignGroup(AssignGroupParam param, AffiliateBasicInfo affInfo)
+        public ActionResult AssignGroup(AssignGroupParam assignParam, AffiliateBasicInfo affInfo)
         {
-            param.UserId = SessionService.UserId;
-            param.Ip = Request.UserHostAddress;
-            param.AffId = affInfo.AffId;
+            assignParam.UserId = SessionService.UserId;
+            assignParam.Ip = Request.UserHostAddress;
+            assignParam.AffId = affInfo.AffId;
 
-            var result = _commissionGroupService.AssignGroup(param, affInfo);
+            var result = _commissionGroupService.AssignGroup(assignParam, affInfo);
 
-            return Json(new { param, affInfo, result });
+            return Json(new { assignParam, affInfo, result });
         }
 
         [HttpGet]
-        public ActionResult AssignPrivateGroup(AffiliateBasicInfo affInfo)
+        public ActionResult AssignPrivateGroup(int affId)
         {
             var viewModel = new AssignPrivateGroupViewModel
             {
                 ProductList = _productRepository.GetProductList(),
                 DeductionList = _commissionGroupService.GetDeductionList(),
-                AffInfo = affInfo
+                AffInfo = _affiliateService.GetAffiliateBasicInfo(affId)
             };
 
             return View("~/Areas/Portal/Views/CommissionGroup/AssignPrivateGroup.cshtml", viewModel);

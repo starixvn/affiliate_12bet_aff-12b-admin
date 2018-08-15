@@ -116,25 +116,19 @@ namespace Fanex.Affiliate.Admin.Core.Services
         public ResultInfo AssignPrivateGroup(CreateUpdateCommissionGroupParam param, AffiliateBasicInfo affInfo)
         {
             var isApproved = affInfo.GroupId == 0;
-            ResultInfo result;
-            if (isApproved)
+            var isCreateNewPrivateGroup = isApproved || param.GroupId != affInfo.GroupId;
+
+            var result = isCreateNewPrivateGroup ? CreateCommissionGroup(param) : UpdateCommissionGroup(param);
+
+            if (isApproved && result.IsSuccessful)
             {
-                result = CreateCommissionGroup(param);
+                var password = Generator.GetRandomString(10);
+                result = ApproveAffiliate(param.UserId, affInfo.AffId, param.Ip, password);
 
                 if (result.IsSuccessful)
                 {
-                    var password = Generator.GetRandomString(10);
-                    result = ApproveAffiliate(param.UserId, affInfo.AffId, param.Ip, password);
-
-                    if (result.IsSuccessful)
-                    {
-                        _emailService.SendApprovedEmail();
-                    }
+                    _emailService.SendApprovedEmail();
                 }
-            }
-            else
-            {
-                result = UpdateCommissionGroup(param);
             }
 
             return result;
