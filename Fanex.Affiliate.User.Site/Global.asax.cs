@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Web;
 using System.Web.Mvc;
-using System.Web.Optimization;
 using System.Web.Routing;
 using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.CoreService;
@@ -26,6 +26,14 @@ namespace Fanex.Affiliate.User.Site
                 resourcePath: @"~\App_Data\SpConfig\SpName.xml",
                 enableWatching: true)
               .Run();
+        }
+        protected void Application_BeginRequest(object sender, EventArgs e)
+        {
+            var application = sender as HttpApplication;
+            if (application != null && application.Context != null)
+            {
+                application.Context.Response.Headers.Remove("Server");
+            }
         }
 
         protected void Application_AcquireRequestState(object sender, EventArgs e)
