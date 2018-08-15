@@ -3,6 +3,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 
 namespace Fanex.Affiliate.Admin.Core.Attributes
@@ -23,6 +24,7 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
         }
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
         {
+            FormsAuthentication.SignOut();
             filterContext.Result = new RedirectResult("~/SignIn.aspx");
         }
     }
