@@ -13,7 +13,11 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
             var sessionService = DependencyResolver.Current.GetService<ISessionService>();
-            return base.AuthorizeCore(httpContext) && sessionService.UserId > 0
+            var isAuthorized = base.AuthorizeCore(httpContext)
+                && httpContext.Request.IsAuthenticated
+                && httpContext.User.Identity.IsAuthenticated;
+            return isAuthorized
+                && sessionService.UserId > 0
                 && sessionService.UserPermissionList != null
                 && sessionService.UserPermissionList.Any();
         }
