@@ -156,7 +156,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
             var result = _commissionGroupService.AssignGroup(assignParam, affInfo, emailParam);
 
-            return Json(new { assignParam, affInfo, result });
+            return Json(result);
         }
 
         [HttpGet]
@@ -196,7 +196,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
             var result = _commissionGroupService.AssignPrivateGroup(assignParam, affInfo, emailParam);
 
-            return Json(new { assignParam, affInfo, result });
+            return Json(result);
         }
     }
 }

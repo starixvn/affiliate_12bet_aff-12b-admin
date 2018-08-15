@@ -11,6 +11,7 @@ export default class AssignNormalGroup extends Component {
         if (selectedGroup === 0) {
             selectedGroup = commGroupList.length ? Number(commGroupList[0].Id) : 0
         }
+
         this.state = Object.assign({}, { commGroupList, selectedGroup, affInfo }, { isPrivateGroup: false });
     }
 
@@ -40,7 +41,19 @@ export default class AssignNormalGroup extends Component {
             }
             const response = await post(url, params);
             const result = response.data;
-            console.log(result);
+
+            if (result.IsSuccessful) {
+                const mainFrame = top.frames["mainFrame"];
+                if (mainFrame) {
+                    mainFrame.location.reload();
+                }
+                else {
+                    window.location.reload();
+                }
+            }
+            else {
+                window.alert(result.Message);
+            }
         }
     }
 
@@ -72,7 +85,7 @@ export default class AssignNormalGroup extends Component {
                         <Col xs="5">
                             <FormGroup check>
                                 <Label check>
-                                    <Input type="checkbox" id="isPrivateGroup" style={{marginTop: -5}}
+                                    <Input type="checkbox" id="isPrivateGroup" style={{ marginTop: -5 }}
                                         onChange={this.handleCheck} checked={isPrivateGroup} />
                                 </Label>
                             </FormGroup>

@@ -34,7 +34,6 @@ export class PanelList extends React.Component {
     }
 
     handleChangeStatus = (event) => {
-        console.log(event.target.value);
     }
 
     handleChangeClosedStatus = async () => {

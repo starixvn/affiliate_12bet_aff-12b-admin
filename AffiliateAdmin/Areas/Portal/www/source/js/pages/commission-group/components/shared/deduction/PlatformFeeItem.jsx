@@ -24,7 +24,6 @@ export default class PlatformFeeItem extends React.Component {
 
         const { productList, commission, nextCommission } = data;
         const isValid = productList.filter(p => !p.Checked).length < productList.length;
-        console.log(isValid);
 
         return (
             <FormGroup row>

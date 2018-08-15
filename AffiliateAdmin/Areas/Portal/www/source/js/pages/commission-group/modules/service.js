@@ -101,36 +101,72 @@ export const convertProductList = (productList, productIds = '') => {
 }
 
 export const validate = (selectedGroup) => {
+    const { GroupName, QmTurnover, TierSettingList, PlatformFeeList } = selectedGroup;
+
+    const groupNameValidation = validateGroupName(GroupName);
+    const qmTurnoverValidation = validateQmTurnover(QmTurnover);
+    const tierSettingValidation = validateTierSettingList(TierSettingList);
+    const platformFeeListValidation = validatePlatformFeeList(PlatformFeeList);
+
+    const isValid = groupNameValidation.isValid && qmTurnoverValidation.isValid &&
+        tierSettingValidation.isValid && platformFeeListValidation.isValid;
+    const messageList = [...groupNameValidation.messageList, ...qmTurnoverValidation.messageList,
+        ...tierSettingValidation.messageList, ...platformFeeListValidation.messageList
+    ];
+
+    return { isValid, messageList };
+}
+
+export const validateGroupName = (groupName) => {
     let isValid = true;
     const messageList = [];
 
-    const { GroupName, QmTurnover, TierSettingList, PlatformFeeList } = selectedGroup;
-
-    if (!GroupName) {
+    if (!groupName) {
         isValid = false;
         messageList.push(messages.requireGroupName);
     }
 
-    if (isNaN(QmTurnover) || typeof QmTurnover !== 'number') {
+    return { isValid, messageList };
+}
+
+export const validateQmTurnover = (qmTurnover) => {
+    let isValid = true;
+    const messageList = [];
+
+    if (isNaN(qmTurnover) || typeof qmTurnover !== 'number') {
         isValid = false;
         messageList.push(messages.requireQmTurnover);
     }
 
-    if (TierSettingList.length === 0) {
+    return { isValid, messageList };
+}
+
+export const validateTierSettingList = (tierSettingList) => {
+    let isValid = true;
+    const messageList = [];
+
+    if (tierSettingList.length === 0) {
         isValid = false;
         messageList.push(messages.requireTier);
-    } else if (TierSettingList.filter(item => item.MaxAmount === INFINITY_AM && item.MaxQm === INFINITY_QM).length === 0) {
+    } else if (tierSettingList.filter(item => item.MaxAmount === INFINITY_AM && item.MaxQm === INFINITY_QM).length === 0) {
         isValid = false;
         messageList.push(messages.requireInfinity);
-    } else if (TierSettingList.filter(item => item.MinAmount > item.MaxAmount).length > 0) {
+    } else if (tierSettingList.filter(item => item.MinAmount > item.MaxAmount).length > 0) {
         isValid = false;
         messageList.push(messages.amountConstrain);
-    } else if (TierSettingList.filter(item => item.MinQm > item.MaxQm).length > 0) {
+    } else if (tierSettingList.filter(item => item.MinQm > item.MaxQm).length > 0) {
         isValid = false;
         messageList.push(messages.qmConstrain);
     }
 
-    if (PlatformFeeList.filter(item => !item.ProductIds).length > 0) {
+    return { isValid, messageList };
+}
+
+export const validatePlatformFeeList = (platformFeeList) => {
+    let isValid = true;
+    const messageList = [];
+
+    if (platformFeeList.filter(item => !item.ProductIds).length > 0) {
         isValid = false;
         messageList.push(messages.requireSelectedProduct);
     }

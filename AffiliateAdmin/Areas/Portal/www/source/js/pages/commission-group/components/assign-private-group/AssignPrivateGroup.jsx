@@ -4,13 +4,12 @@ import { bindActionCreators } from 'redux';
 import { Alert } from 'reactstrap';
 
 import { getSelectedCommGroup, setSelectedGroup } from '../../actions';
-import { buildDefaultCommGroup, validate } from '../../modules/service';
+import { buildDefaultCommGroup, validateQmTurnover, validateTierSettingList, validatePlatformFeeList } from '../../modules/service';
 
 import DeductionSetting from '../shared/deduction';
 import QmTurnOverSetting from '../shared/QmTurnOverSetting';
 import TierSetting from '../shared/tiersetting';
 import { post } from '../../../../modules/ajaxRequest';
-import { resolveClientUrl } from '../../../../modules/utils';
 
 export class AssignPrivateGroup extends React.Component {
     constructor(props) {
@@ -27,7 +26,7 @@ export class AssignPrivateGroup extends React.Component {
         const { deductionList, productList, affInfo } = this.props;
         const { GroupId } = affInfo;
 
-        if (GroupId === 0) {
+        if (GroupId === 0 || GroupId !== affInfo.AffId) {
             const commGroup = buildDefaultCommGroup(deductionList, productList);
             this.props.setSelectedGroup(commGroup);
         }
@@ -41,53 +40,57 @@ export class AssignPrivateGroup extends React.Component {
     }
 
     handleSave = async () => {
-        const { selectedGroup, affInfo } = this.props;
-        console.log(selectedGroup, affInfo);
+        const validationResult = this._validate();
 
-        const platformFeeList = selectedGroup.PlatformFeeList.filter(item => !!item.ProductIds);
-        const commGroup = { ...selectedGroup, PlatformFeeList: platformFeeList };
-        const param = {
-            commGroup, affInfo
+        if (!validationResult.isValid) {
+            this.setState({
+                isShowMessage: !validationResult.isValid,
+                isSuccess: validationResult.isValid,
+                message: validationResult.messageList
+            });
         }
+        else {
+            const { selectedGroup, affInfo } = this.props;
 
-        const response = await post('Portal/CommissionGroup/AssignPrivateGroup', param);
-        const result = response.data;
-        console.log(result);
-        // const validationResult = validate(selectedGroup);
+            const platformFeeList = selectedGroup.PlatformFeeList.filter(item => !!item.ProductIds);
+            const commGroup = { ...selectedGroup, PlatformFeeList: platformFeeList };
+            const param = { commGroup, affInfo };
 
-        // if (!validationResult.isValid) {
-        //     this.setState({
-        //         isShowMessage: !validationResult.isValid,
-        //         isSuccess: validationResult.isValid,
-        //         message: validationResult.messageList
-        //     });
-        // }
-        // else {
-        //     const platformFeeList = selectedGroup.PlatformFeeList.filter(item => !!item.ProductIds);
+            const response = await post('Portal/CommissionGroup/AssignPrivateGroup', param);
+            const result = response.data;
 
-        //     const param = { ...selectedGroup, PlatformFeeList: platformFeeList };
-        //     const response = await this.props.insertCommissionGroup(param);
-        //     const result = response.data;
-        //     if (result.IsSuccessful) {
-        //         window.setTimeout(this.props.onClose, 3000);
-        //         const gettingParam = Object.assign({}, defaultPagingOption);
-        //         this.props.getGroupSettingList(gettingParam);
-        //     }
+            if (result.IsSuccessful) {
+                parent.location.reload();
+            }
+            else {
+                this.setState({
+                    isShowMessage: true,
+                    isSuccess: false,
+                    message: [result.Message]
+                });
+            }
+        }
+    }
 
-        //     this.setState({
-        //         isShowMessage: true,
-        //         isSuccess: result.IsSuccessful,
-        //         message: [result.IsSuccessful ? 'Add Commission Group Successfully' : result.Message]
-        //     });
-        // }
+    _validate() {
+        const { QmTurnover, TierSettingList, PlatformFeeList } = this.props.selectedGroup;
+        const qmTurnoverValidation = validateQmTurnover(QmTurnover);
+        const tierSettingValidation = validateTierSettingList(TierSettingList);
+        const platformFeeListValidation = validatePlatformFeeList(PlatformFeeList);
+
+        const isValid = qmTurnoverValidation.isValid && tierSettingValidation.isValid && platformFeeListValidation.isValid;
+        const messageList = [...qmTurnoverValidation.messageList, ...tierSettingValidation.messageList,
+        ...platformFeeListValidation.messageList
+        ];
+
+        return { isValid, messageList };
     }
 
     render() {
         const { isShowMessage, isSuccess, message } = this.state;
-        console.log(this.props.selectedGroup);
 
         return this.props.selectedGroup && (
-            <div className="comm-popup-container" style={{padding: 10}}>
+            <div className="comm-popup-container" style={{ padding: 10 }}>
                 <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
                     <div dangerouslySetInnerHTML={{ __html: message.join('<br>') }}></div>
                 </Alert>
