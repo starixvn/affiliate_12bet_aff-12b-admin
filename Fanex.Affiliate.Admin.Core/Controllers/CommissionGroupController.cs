@@ -4,10 +4,12 @@ using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
+using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
+using Fanex.Affiliate.Admin.Core.Utilities;
 using Fanex.Affiliate.Admin.Core.ViewModels;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
@@ -147,7 +149,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             assignParam.Ip = Request.UserHostAddress;
             assignParam.AffId = affInfo.AffId;
 
-            var result = _commissionGroupService.AssignGroup(assignParam, affInfo);
+            var emailParam = new AffInformationEmail
+            {
+                RootUrl = SiteDomainHelper.GetRootUrl(this)
+            };
+
+            var result = _commissionGroupService.AssignGroup(assignParam, affInfo, emailParam);
 
             return Json(new { assignParam, affInfo, result });
         }
@@ -182,7 +189,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 Ip = Request.UserHostAddress
             };
 
-            var result = _commissionGroupService.AssignPrivateGroup(assignParam, affInfo);
+            var emailParam = new AffInformationEmail
+            {
+                RootUrl = SiteDomainHelper.GetRootUrl(this)
+            };
+
+            var result = _commissionGroupService.AssignPrivateGroup(assignParam, affInfo, emailParam);
 
             return Json(new { assignParam, affInfo, result });
         }

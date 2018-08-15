@@ -123,6 +123,9 @@
   <data name="AdminList" xml:space="preserve">
     <value>Admin List</value>
   </data>
+  <data name="Affiliate" xml:space="preserve">
+    <value>Affiliate</value>
+  </data>
   <data name="AffiliateDomain" xml:space="preserve">
     <value>Affiliate Domain</value>
   </data>
@@ -150,8 +153,29 @@
   <data name="DomainControl" xml:space="preserve">
     <value>Domain Control</value>
   </data>
+  <data name="EmailAutoNotification" xml:space="preserve">
+    <value>This is a system auto generated email, please do not reply to this email directly.</value>
+  </data>
   <data name="EmailHistory" xml:space="preserve">
     <value>Email History</value>
+  </data>
+  <data name="EmailSubjectAffApproved" xml:space="preserve">
+    <value>12Bet Affiliates - Affiliate Notification</value>
+  </data>
+  <data name="EmailSubjectAffInfor" xml:space="preserve">
+    <value>12Bet Affiliates - Your Affiliate Information</value>
+  </data>
+  <data name="EmailSubjectWithdrawalGuidance" xml:space="preserve">
+    <value>Affiliate Withdrawal Guidance</value>
+  </data>
+  <data name="EmailTitleAffApproved" xml:space="preserve">
+    <value>Affiliate Notification</value>
+  </data>
+  <data name="EmailTitleAffInfor" xml:space="preserve">
+    <value>Your Affiliate Information</value>
+  </data>
+  <data name="EmailTitleWithdrawalGuidance" xml:space="preserve">
+    <value>Affiliate Withdrawal Guidance</value>
   </data>
   <data name="ExRate" xml:space="preserve">
     <value>Ex.Rate</value>

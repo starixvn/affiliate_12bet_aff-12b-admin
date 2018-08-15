@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 
 namespace Fanex.Affiliate.Admin.Core.Configurations
 {
@@ -9,6 +10,20 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
         public string InternalEuropeanAffiliateUrl => GetValue("internalEuropeanAffiliateURL");
 
         public bool IsTesting => GetValue("IsTesting") == "1";
+
+        public string Environment => GetValue("Environment");
+
+        public bool IsProduction => Environment.Equals("PRODUCTION", StringComparison.OrdinalIgnoreCase);
+
+        public string CcMail => GetValue("ccMail");
+
+        public string BccMail => GetValue("bccMail");
+
+        public string EuropeanAffSiteUrl => GetValue("EuropeanAffiliateURL");
+
+        public string AsianAffSiteUrl => GetValue("AsianAffiliateURL");
+
+        public string MailContact => GetValue("MailContact");
 
         public string GetValue(string key) => ConfigurationManager.AppSettings[key];
     }

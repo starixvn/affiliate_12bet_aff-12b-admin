@@ -122,8 +122,10 @@
     <Compile Include="Configurations\AppSetting.cs" />
     <Compile Include="Configurations\IAppSetting.cs" />
     <Compile Include="Constants\AffStatus.cs" />
+    <Compile Include="Constants\AffType.cs" />
     <Compile Include="Constants\DeductionName.cs" />
     <Compile Include="Constants\Function.cs" />
+    <Compile Include="Constants\LanguageSystem.cs" />
     <Compile Include="Constants\TemplateString.cs" />
     <Compile Include="Controllers\AdministratorController.cs" />
     <Compile Include="Controllers\AffiliateController.cs" />
@@ -131,6 +133,7 @@
     <Compile Include="Controllers\CommissionGroupController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\DomainController.cs" />
+    <Compile Include="Controllers\EmailTestingController.cs" />
     <Compile Include="Controllers\ExchangeRateController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MarketingController.cs" />
@@ -145,11 +148,13 @@
     <Compile Include="DTO\CommissionGroup\DeductionSetting.cs" />
     <Compile Include="DTO\CommissionGroup\TierSetting.cs" />
     <Compile Include="DTO\DepositAccountInfo.cs" />
+    <Compile Include="DTO\Email\AffInformationEmail.cs" />
+    <Compile Include="DTO\Email\EmailBase.cs" />
+    <Compile Include="DTO\Email\WithdrawalEmail.cs" />
     <Compile Include="DTO\Product.cs" />
     <Compile Include="DTO\ResultInfo.cs" />
     <Compile Include="DTO\SelectItem.cs" />
     <Compile Include="DTO\SubMenu.cs" />
-    <Compile Include="Enum\AffType.cs" />
     <Compile Include="MetaModels\Affiliate\ApproveAffiliateParam.cs" />
     <Compile Include="MetaModels\CommissionGroup\AssignGroupParam.cs" />
     <Compile Include="MetaModels\CommissionGroup\GetCommissionGroupParam.cs" />
@@ -169,6 +174,51 @@
     <Compile Include="Configurations\IoCConfig.cs" />
     <Compile Include="Repository\IProductRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
+    <Compile Include="Resources\Lang.zh-TW.Designer.cs">
+      <DependentUpon>Lang.zh-TW.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Lang.zh-CN.Designer.cs">
+      <DependentUpon>Lang.zh-CN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Lang.vi-VN.Designer.cs">
+      <DependentUpon>Lang.vi-VN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Lang.th-TH.Designer.cs">
+      <DependentUpon>Lang.th-TH.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Lang.ko-KR.Designer.cs">
+      <DependentUpon>Lang.ko-KR.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Lang.ja-JP.Designer.cs">
+      <DependentUpon>Lang.ja-JP.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Lang.id-ID.Designer.cs">
+      <DependentUpon>Lang.id-ID.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Lang.hi-IN.Designer.cs">
+      <DependentUpon>Lang.hi-IN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Lang.es-ES.Designer.cs">
+      <DependentUpon>Lang.es-ES.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Resources\Lang.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -183,10 +233,13 @@
     <Compile Include="Services\IAffiliateService.cs" />
     <Compile Include="Services\ICommissionGroupService.cs" />
     <Compile Include="Services\IEmailService.cs" />
+    <Compile Include="Services\ILanguageService.cs" />
+    <Compile Include="Services\LanguageService.cs" />
     <Compile Include="Utilities\CryptographyHelper.cs" />
     <Compile Include="Utilities\Generator.cs" />
     <Compile Include="Utilities\IMailProcessor.cs" />
     <Compile Include="Utilities\MailProcessor.cs" />
+    <Compile Include="Utilities\SiteDomainHelper.cs" />
     <Compile Include="ViewModels\AssignNormalGroupViewModel.cs" />
     <Compile Include="ViewModels\AssignPrivateGroupViewModel.cs" />
     <Compile Include="ViewModels\CommissionGroupViewModel.cs" />
@@ -199,6 +252,42 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\Lang.zh-TW.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Lang.zh-TW.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Lang.zh-CN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Lang.zh-CN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Lang.vi-VN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Lang.vi-VN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Lang.th-TH.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Lang.th-TH.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Lang.ko-KR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Lang.ko-KR.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Lang.ja-JP.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Lang.ja-JP.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Lang.id-ID.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Lang.id-ID.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Lang.hi-IN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Lang.hi-IN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Lang.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Lang.es-ES.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Lang.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Lang.Designer.cs</LastGenOutput>

@@ -8,6 +8,20 @@
 
         string InternalAsianAffiliateUrl { get; }
 
+        string EuropeanAffSiteUrl { get; }
+
+        string AsianAffSiteUrl { get; }
+
         bool IsTesting { get; }
+
+        string Environment { get; }
+
+        bool IsProduction { get; }
+
+        string CcMail { get; }
+
+        string BccMail { get; }
+
+        string MailContact { get; }
     }
 }

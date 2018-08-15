@@ -79,6 +79,15 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Affiliate.
+        /// </summary>
+        public static string Affiliate {
+            get {
+                return ResourceManager.GetString("Affiliate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Affiliate Domain.
         /// </summary>
         public static string AffiliateDomain {
@@ -160,11 +169,74 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This is a system auto generated email, please do not reply to this email directly..
+        /// </summary>
+        public static string EmailAutoNotification {
+            get {
+                return ResourceManager.GetString("EmailAutoNotification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email History.
         /// </summary>
         public static string EmailHistory {
             get {
                 return ResourceManager.GetString("EmailHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12Bet Affiliates - Affiliate Notification.
+        /// </summary>
+        public static string EmailSubjectAffApproved {
+            get {
+                return ResourceManager.GetString("EmailSubjectAffApproved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12Bet Affiliates - Your Affiliate Information.
+        /// </summary>
+        public static string EmailSubjectAffInfor {
+            get {
+                return ResourceManager.GetString("EmailSubjectAffInfor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Affiliate Withdrawal Guidance.
+        /// </summary>
+        public static string EmailSubjectWithdrawalGuidance {
+            get {
+                return ResourceManager.GetString("EmailSubjectWithdrawalGuidance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Affiliate Notification.
+        /// </summary>
+        public static string EmailTitleAffApproved {
+            get {
+                return ResourceManager.GetString("EmailTitleAffApproved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your Affiliate Information.
+        /// </summary>
+        public static string EmailTitleAffInfor {
+            get {
+                return ResourceManager.GetString("EmailTitleAffInfor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Affiliate Withdrawal Guidance.
+        /// </summary>
+        public static string EmailTitleWithdrawalGuidance {
+            get {
+                return ResourceManager.GetString("EmailTitleWithdrawalGuidance", resourceCulture);
             }
         }
         

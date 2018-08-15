@@ -5,6 +5,7 @@ using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 using Fanex.Affiliate.Admin.Core.DTO.CommissionGroup;
+using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.MetaModels.Affiliate;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.Repository;
@@ -95,43 +96,45 @@ namespace Fanex.Affiliate.Admin.Core.Services
             return _commGroupRepository.GetNormalCommGroupList(param);
         }
 
-        public ResultInfo AssignGroup(AssignGroupParam param, AffiliateBasicInfo affInfo)
+        public ResultInfo AssignGroup(AssignGroupParam param, AffiliateBasicInfo affInfo, AffInformationEmail emailParam)
         {
-            var result = _commGroupRepository.AssignGroup(param);
-            var isApproved = affInfo.GroupId == 0;
-            if (isApproved && result.IsSuccessful)
+            var assignResult = _commGroupRepository.AssignGroup(param);
+            var isApproved = affInfo.GroupId != 0;
+            if (!isApproved && assignResult.IsSuccessful)
             {
                 var password = Generator.GetRandomString(10);
-                result = ApproveAffiliate(param.UserId, param.AffId, param.Ip, password);
+                var approvedResult = ApproveAffiliate(param.UserId, param.AffId, param.Ip, password);
 
-                if (result.IsSuccessful)
+                if (approvedResult.IsSuccessful)
                 {
-                    _emailService.SendApprovedEmail();
+                    SendEmailApprove(emailParam, affInfo, password);
                 }
             }
 
-            return result;
+            return assignResult;
         }
 
-        public ResultInfo AssignPrivateGroup(CreateUpdateCommissionGroupParam param, AffiliateBasicInfo affInfo)
+        public ResultInfo AssignPrivateGroup(CreateUpdateCommissionGroupParam param, AffiliateBasicInfo affInfo, AffInformationEmail emailParam)
         {
-            var isApproved = affInfo.GroupId == 0;
-            var isCreateNewPrivateGroup = isApproved || param.GroupId != affInfo.GroupId;
+            var isApproved = affInfo.GroupId != 0;
+            var isCreateNewPrivateGroup = !isApproved || param.GroupId != affInfo.GroupId;
 
-            var result = isCreateNewPrivateGroup ? CreateCommissionGroup(param) : UpdateCommissionGroup(param);
+            var commGroupResult = isCreateNewPrivateGroup ? CreateCommissionGroup(param) : UpdateCommissionGroup(param);
 
-            if (isApproved && result.IsSuccessful)
+            if (isApproved && commGroupResult.IsSuccessful)
             {
-                var password = Generator.GetRandomString(10);
-                result = ApproveAffiliate(param.UserId, affInfo.AffId, param.Ip, password);
-
-                if (result.IsSuccessful)
+                var assignparam = new AssignGroupParam
                 {
-                    _emailService.SendApprovedEmail();
-                }
+                    UserId = param.UserId,
+                    AffId = affInfo.AffId,
+                    GroupId = param.GroupId,
+                    Ip = param.Ip
+                };
+
+                return AssignGroup(assignparam, affInfo, emailParam);
             }
 
-            return result;
+            return commGroupResult;
         }
 
         private ResultInfo ApproveAffiliate(int userId, int affId, string ip, string password)
@@ -145,6 +148,19 @@ namespace Fanex.Affiliate.Admin.Core.Services
             };
 
             return _affiliateService.ApproveAffiliate(approveParam);
+        }
+
+        private void SendEmailApprove(AffInformationEmail emailParam, AffiliateBasicInfo affInfo, string password)
+        {
+            emailParam.UserSiteUrl = SiteDomainHelper.GetUserSiteUrl(affInfo.AffType);
+            emailParam.Language = affInfo.PreferredLanguage ?? LanguageSystem.DefaultLanguage;
+            emailParam.FirstName = affInfo.FirstName;
+            emailParam.UserName = affInfo.UserName;
+            emailParam.MailTo = affInfo.Email;
+            emailParam.IsHtml = !affInfo.MailOption;
+            emailParam.Password = password;
+
+            _emailService.SendApprovedEmail(emailParam);
         }
 
         private static bool IsPlatformFee(string productIdList)

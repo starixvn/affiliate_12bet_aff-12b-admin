@@ -30,7 +30,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository
                             Email = Convert.ToString(reader["Email"]),
                             MailOption = Convert.ToBoolean(reader["MailOption"]),
                             PreferredLanguage = Convert.ToString(reader["PreferredLanguage"]),
-                            PlayerUsername = Convert.ToString(reader["PlayerUsername"])
+                            PlayerUsername = Convert.ToString(reader["PlayerUsername"]),
+                            AffType = Convert.ToByte(reader["AffType"])
                         };
                     }
                 }
