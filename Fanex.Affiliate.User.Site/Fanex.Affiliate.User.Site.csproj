@@ -19,14 +19,10 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>
-    </IISExpressSSLPort>
-    <IISExpressAnonymousAuthentication>
-    </IISExpressAnonymousAuthentication>
-    <IISExpressWindowsAuthentication>
-    </IISExpressWindowsAuthentication>
-    <IISExpressUseClassicPipelineMode>
-    </IISExpressUseClassicPipelineMode>
+    <IISExpressSSLPort>44390</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -553,6 +549,46 @@
     <Content Include="www\build\styles\Images\notify\note_icon.gif" />
     <Content Include="www\build\styles\Images\notify\sry.png" />
     <Content Include="www\build\styles\Images\notify\srynf.png" />
+    <Content Include="www\build\styles\Images\slide-1\slide-1_sa98xt_c_scale_w_1500.png" />
+    <Content Include="www\build\styles\Images\slide-1\slide-1_sa98xt_c_scale_w_1003.png" />
+    <Content Include="www\build\styles\Images\slide-1\slide-1_sa98xt_c_scale_w_1054.png" />
+    <Content Include="www\build\styles\Images\slide-1\slide-1_sa98xt_c_scale_w_1104.png" />
+    <Content Include="www\build\styles\Images\slide-1\slide-1_sa98xt_c_scale_w_1150.png" />
+    <Content Include="www\build\styles\Images\slide-1\slide-1_sa98xt_c_scale_w_1202.png" />
+    <Content Include="www\build\styles\Images\slide-1\slide-1_sa98xt_c_scale_w_1252.png" />
+    <Content Include="www\build\styles\Images\slide-1\slide-1_sa98xt_c_scale_w_1294.png" />
+    <Content Include="www\build\styles\Images\slide-1\slide-1_sa98xt_c_scale_w_1342.png" />
+    <Content Include="www\build\styles\Images\slide-1\slide-1_sa98xt_c_scale_w_1387.png" />
+    <Content Include="www\build\styles\Images\slide-1\slide-1_sa98xt_c_scale_w_375.png" />
+    <Content Include="www\build\styles\Images\slide-1\slide-1_sa98xt_c_scale_w_458.png" />
+    <Content Include="www\build\styles\Images\slide-1\slide-1_sa98xt_c_scale_w_533.png" />
+    <Content Include="www\build\styles\Images\slide-1\slide-1_sa98xt_c_scale_w_600.png" />
+    <Content Include="www\build\styles\Images\slide-1\slide-1_sa98xt_c_scale_w_663.png" />
+    <Content Include="www\build\styles\Images\slide-1\slide-1_sa98xt_c_scale_w_724.png" />
+    <Content Include="www\build\styles\Images\slide-1\slide-1_sa98xt_c_scale_w_784.png" />
+    <Content Include="www\build\styles\Images\slide-1\slide-1_sa98xt_c_scale_w_840.png" />
+    <Content Include="www\build\styles\Images\slide-1\slide-1_sa98xt_c_scale_w_895.png" />
+    <Content Include="www\build\styles\Images\slide-1\slide-1_sa98xt_c_scale_w_955.png" />
+    <Content Include="www\build\styles\Images\slide-2\slide-2_kb17xl_c_scale,w_1006.png" />
+    <Content Include="www\build\styles\Images\slide-2\slide-2_kb17xl_c_scale,w_1060.png" />
+    <Content Include="www\build\styles\Images\slide-2\slide-2_kb17xl_c_scale,w_1112.png" />
+    <Content Include="www\build\styles\Images\slide-2\slide-2_kb17xl_c_scale,w_1163.png" />
+    <Content Include="www\build\styles\Images\slide-2\slide-2_kb17xl_c_scale,w_1212.png" />
+    <Content Include="www\build\styles\Images\slide-2\slide-2_kb17xl_c_scale,w_1262.png" />
+    <Content Include="www\build\styles\Images\slide-2\slide-2_kb17xl_c_scale,w_1309.png" />
+    <Content Include="www\build\styles\Images\slide-2\slide-2_kb17xl_c_scale,w_1360.png" />
+    <Content Include="www\build\styles\Images\slide-2\slide-2_kb17xl_c_scale,w_1407.png" />
+    <Content Include="www\build\styles\Images\slide-2\slide-2_kb17xl_c_scale,w_1453.png" />
+    <Content Include="www\build\styles\Images\slide-2\slide-2_kb17xl_c_scale,w_1500.png" />
+    <Content Include="www\build\styles\Images\slide-2\slide-2_kb17xl_c_scale,w_375.png" />
+    <Content Include="www\build\styles\Images\slide-2\slide-2_kb17xl_c_scale,w_470.png" />
+    <Content Include="www\build\styles\Images\slide-2\slide-2_kb17xl_c_scale,w_554.png" />
+    <Content Include="www\build\styles\Images\slide-2\slide-2_kb17xl_c_scale,w_631.png" />
+    <Content Include="www\build\styles\Images\slide-2\slide-2_kb17xl_c_scale,w_701.png" />
+    <Content Include="www\build\styles\Images\slide-2\slide-2_kb17xl_c_scale,w_768.png" />
+    <Content Include="www\build\styles\Images\slide-2\slide-2_kb17xl_c_scale,w_833.png" />
+    <Content Include="www\build\styles\Images\slide-2\slide-2_kb17xl_c_scale,w_892.png" />
+    <Content Include="www\build\styles\Images\slide-2\slide-2_kb17xl_c_scale,w_951.png" />
     <Content Include="www\source\js\components\jquery.extension.js" />
     <Content Include="www\source\js\components\validation.custom.js" />
     <Content Include="www\source\js\components\website.js" />
