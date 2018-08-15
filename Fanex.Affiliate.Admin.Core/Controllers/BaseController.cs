@@ -4,7 +4,7 @@ using Fanex.Affiliate.Admin.Core.Services.Common;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
-    [FunctionAuthorize]
+    [CustomAuthorize]
     public class BaseController : Controller
     {
         private readonly ISessionService _sessionService;
