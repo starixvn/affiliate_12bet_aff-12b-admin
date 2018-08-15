@@ -6,7 +6,7 @@
 @{
     var controllerName = ViewContext.RouteData.Values["Controller"].ToString();
     var sessionService = DependencyResolver.Current.GetService<ISessionService>();
-    var permission = sessionService.UserPerissionList;
+    var permission = sessionService.UserPermissionList;
     var menus = new Dictionary<string, string>
     {
         {"Customer",Function.Affiliate },
