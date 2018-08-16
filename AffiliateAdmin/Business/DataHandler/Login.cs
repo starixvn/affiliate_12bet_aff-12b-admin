@@ -66,16 +66,6 @@ namespace DataHandler
                 throw;
             }
         }
-
-        public static bool ReCheckin(HttpContext hc)
-        {
-            var htb = new Hashtable();
-            htb.Add("on_userid", AppSettings.Session.OnUser);
-            htb.Add("iskickedout", 0);
-            DbResult dbr = DbHelper.Execute("Aff_Recheckin", DBType.AFFILIATE_12BET, htb);
-            return CastAide.AsBoolean(dbr.Outputs["iskickedout"]);
-        }
-
         public static void Logout(HttpContext hc)
         {
             Hashtable htb = new Hashtable();
