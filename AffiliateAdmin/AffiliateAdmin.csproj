@@ -1937,10 +1937,10 @@
     <Content Include="Areas\Portal\Views\EmailTesting\Index.cshtml" />
     <Content Include="Areas\Portal\Views\EmailTesting\Preview.cshtml" />
     <Content Include="Areas\Portal\Views\Auth\RecheckIn.cshtml" />
-    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-group\AssignGroup.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-group\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-private-group\AssignPrivateGroup.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-private-group\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-group\AssignGroup.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-group\index.jsx" />
     <None Include="bundleconfig.json" />
     <Content Include="package.json" />
     <None Include="Properties\Settings.settings">

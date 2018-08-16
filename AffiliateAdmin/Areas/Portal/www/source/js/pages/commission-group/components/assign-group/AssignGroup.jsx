@@ -3,7 +3,7 @@ import { post } from '../../../../modules/ajaxRequest';
 import { Col, FormGroup, Label, Button, Input } from 'reactstrap';
 import { resolveClientUrl } from '../../../../modules/utils';
 
-export default class AssignNormalGroup extends Component {
+export default class AssignGroup extends Component {
     constructor(props) {
         super(props);
 

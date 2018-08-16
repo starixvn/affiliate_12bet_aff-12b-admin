@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 import AppLayout from "../../../../layouts/AppLayout";
-import AssignNormalGroup from './AssignNormalGroup';
+import AssignGroup from './AssignGroup';
 
 class App extends Component {
     constructor(props) {
@@ -12,7 +12,7 @@ class App extends Component {
     render() {
         return (
             <AppLayout>
-                <AssignNormalGroup />
+                <AssignGroup />
             </AppLayout>
         );
     }
