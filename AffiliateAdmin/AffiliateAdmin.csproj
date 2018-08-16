@@ -1604,6 +1604,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-private-group\reducer.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\grouplist\GridData.jsx" />
@@ -1936,7 +1937,12 @@
     <Content Include="Areas\Portal\Views\EmailTesting\Index.cshtml" />
     <Content Include="Areas\Portal\Views\EmailTesting\Preview.cshtml" />
     <Content Include="Areas\Portal\Views\Auth\RecheckIn.cshtml" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-group\AssignGroup.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-group\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-private-group\AssignPrivateGroup.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-private-group\index.jsx" />
     <None Include="bundleconfig.json" />
+    <Content Include="package.json" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
