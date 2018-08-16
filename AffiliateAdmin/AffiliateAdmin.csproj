@@ -366,9 +366,6 @@
     <Compile Include="GroupSetting\GroupSetting.aspx.designer.cs">
       <DependentUpon>GroupSetting.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Header.aspx.designer.cs">
-      <DependentUpon>Header.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Helpers\TargetPageHelper.cs" />
     <Compile Include="Home\Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
@@ -577,10 +574,6 @@
     </Compile>
     <Compile Include="GroupSetting\GroupSetting.aspx.cs">
       <DependentUpon>GroupSetting.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Header.aspx.cs">
-      <DependentUpon>Header.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Home\Home.aspx.cs">
@@ -993,7 +986,6 @@
     <Content Include="App_Js\GroupSetting.css" />
     <Content Include="App_Js\GroupSetting.js" />
     <Content Include="App_Js\GroupSettingEdit.js" />
-    <Content Include="App_Js\Header.js" />
     <Content Include="App_Js\IBCWnd\blank.html" />
     <Content Include="App_Js\IBCWnd\IBCWnd.css" />
     <Content Include="App_Js\IBCWnd\IBCWnd.js" />
@@ -1683,13 +1675,11 @@
     <Content Include="Error.aspx" />
     <Content Include="Exchange\AffEditRate.aspx" />
     <Content Include="Exchange\AffRate.aspx" />
-    <Content Include="Footer.htm" />
     <Content Include="Global.asax" />
     <Content Include="GroupSetting\AddGroup.aspx" />
     <Content Include="GroupSetting\AssignGroup.aspx" />
     <Content Include="GroupSetting\EditGroup.aspx" />
     <Content Include="GroupSetting\GroupSetting.aspx" />
-    <Content Include="Header.aspx" />
     <Content Include="Home\Home.aspx" />
     <Content Include="Media\AddBanner.aspx" />
     <Content Include="Media\AddText.aspx" />
@@ -1956,7 +1946,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Auth\ProcessLogin.ashx" />
-    <Content Include="Auth\ReCheckIn.ashx" />
     <Content Include="BetList\BetListParlay.ashx" />
     <None Include="Content\Fanex.Result\fanex.result.less" />
     <Content Include="Deployment.ignore" />
