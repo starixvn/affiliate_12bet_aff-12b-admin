@@ -98,7 +98,7 @@
         },
 
         refreshCaptcha: function () {
-            var captchaUrl = Site.resolveRelativeUrl("Home/CaptchaImage?_v=" + new Date().getTime());
+            var captchaUrl = Site.resolveRelativeUrl("Auth/CaptchaImage?_v=" + new Date().getTime());
             $(".validation-value img").attr("src", captchaUrl);
         }
     };
