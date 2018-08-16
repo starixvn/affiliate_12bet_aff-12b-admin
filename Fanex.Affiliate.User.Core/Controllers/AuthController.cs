@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
 using System.Web.UI;
@@ -153,7 +154,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
         }
 
         [HttpGet]
-        [OutputCache(NoStore = true, Duration = 0, Location = OutputCacheLocation.None, VaryByParam = "*")]
+        [OutputCache(NoStore = true, Duration = 0, Location = OutputCacheLocation.None)]
         [CustomAuthorize]
         public ActionResult ReCheckin()
         {
@@ -170,6 +171,23 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 IsKickOut = isKickOut,
                 Message = isKickOut ? Lang.Msgkickout : string.Empty
             }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        [OutputCache(NoStore = true, Duration = 0, Location = OutputCacheLocation.None, VaryByParam = "*")]
+        public ActionResult CaptchaImage(byte type = 0)
+        {
+            var captcha = new Random().Next(1000, 9999).ToString();
+            if (type == 0)
+            {
+                _sessionService.CaptchaCode = captcha;
+            }
+            else
+            {
+                _sessionService.SignUpCaptchaCode = captcha;
+            }
+
+            return File(CaptchaHelper.GenerateImageBuffer(captcha, 65, 26), "image/png");
         }
 
         private OnUserIdParam GetOnUserIdParam(int affId, string clientIpAddress, int adminId = 0)

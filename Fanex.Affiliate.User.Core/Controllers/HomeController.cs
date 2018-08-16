@@ -1,30 +1,35 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels;
+using ONEbook.UM.Filters;
 
 namespace Fanex.Affiliate.User.Core.Controllers
 {
-    public class HomeController : BaseController
+    [CheckUMFilter]
+    public class HomeController : Controller
     {
         private readonly ILanguageService _languageService;
+        private readonly ISessionService _sessionService;
+        private readonly IAppSetting _appSetting;
 
         public HomeController(
             ISessionService sessionService,
             IAppSetting appSetting,
             ILanguageService languageService)
-            : base(sessionService, appSetting)
+
         {
             _languageService = languageService;
+            _sessionService = sessionService;
+            _appSetting = appSetting;
         }
 
         [HttpGet]
         public ActionResult Index()
         {
-            var isAuthenticated = Request.IsAuthenticated && SessionService.UserSession != null;
+            var isAuthenticated = Request.IsAuthenticated && _sessionService.UserSession != null;
 
             var viewModel = new HomeViewModel
             {
@@ -37,27 +42,12 @@ namespace Fanex.Affiliate.User.Core.Controllers
             return View(viewModel);
         }
 
-        [HttpGet]
-        public ActionResult CaptchaImage(byte type = 0)
-        {
-            var captcha = new Random().Next(1000, 9999).ToString();
-            if (type == 0)
-            {
-                SessionService.CaptchaCode = captcha;
-            }
-            else
-            {
-                SessionService.SignUpCaptchaCode = captcha;
-            }
-
-            return File(CaptchaHelper.GenerateImageBuffer(captcha, 65, 26), "image/png");
-        }
 
         [HttpPost]
         public ActionResult ChangeLanguage(string languageCode)
         {
             var code = string.IsNullOrEmpty(languageCode) ? SystemLanguage.DefaultLanguageCode : languageCode;
-            SessionService.CurrentLanguage = code;
+            _sessionService.CurrentLanguage = code;
             _languageService.SetCulture(code);
 
             return Json(true);
@@ -68,7 +58,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
             var segments = Request.Url.Host.Split('.');
             var domainName = segments.Length > 1 ? segments[segments.Length - 2] : string.Empty;
 
-            return string.Format(AppSetting.Promotion12BetLink, domainName).Replace("..", ".");
+            return string.Format(_appSetting.Promotion12BetLink, domainName).Replace("..", ".");
         }
     }
 }

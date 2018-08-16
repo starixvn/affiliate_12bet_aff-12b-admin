@@ -60,10 +60,6 @@
     "inputFile": "www/source/js/site.js"
   },
   {
-    "outputFile": "www/build/js/home.js",
-    "inputFile": "www/source/js/pages/home.js"
-  },
-  {
     "outputFile": "www/build/js/recheckin.js",
     "inputFile": "www/source/js/recheckin.js"
   },

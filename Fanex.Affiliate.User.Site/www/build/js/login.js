@@ -43,10 +43,12 @@ var Login = (function ($) {
         },
         registerLoginDialog: function () {
             $("#loginDialog").on("show.bs.modal", function (e) {
+                console.log("run");
                 _me.generateDialogCaptcha();
             })
 
             $("#loginDialog").on("hide.bs.modal", function (e) {
+                console.log("run-close");
                 $("#loginDialogcaptchaImg").attr("src", "");
                 _me.generateCaptcha();
             })
@@ -191,11 +193,12 @@ var Login = (function ($) {
             }).toString();
         },
         generateDialogCaptcha: function () {
-            var captchaUrl = Site.resolveRelativeUrl("Home/CaptchaImage?_v=" + new Date().getTime());
+          
+            var captchaUrl = Site.resolveRelativeUrl("Auth/CaptchaImage?_v=" + new Date().getTime());
             $("#loginDialogcaptchaImg").attr("src", captchaUrl);
         },
         generateCaptcha: function () {
-            var captchaUrl = Site.resolveRelativeUrl("Home/CaptchaImage?_v=" + new Date().getTime());
+            var captchaUrl = Site.resolveRelativeUrl("Auth/CaptchaImage?_v=" + new Date().getTime());
             $("#captchaImg").attr("src", captchaUrl);
         }
     };

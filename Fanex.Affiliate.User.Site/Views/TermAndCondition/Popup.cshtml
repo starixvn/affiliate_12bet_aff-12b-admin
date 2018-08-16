@@ -19,7 +19,11 @@
             <div class="banner-side banner-left">
                 <img src="~/www/build/styles/Images/bgLeft.jpg" alt="aff background" />
             </div>
-            @{ Html.RenderAction("Content", "TermAndCondition"); }
+
+            <div class="page-container">
+                @{ Html.RenderAction("Content", "TermAndCondition"); }
+            </div>
+            
             <div class="banner-side banner-right">
                 <img src="~/www/build/styles/Images/bgRight.jpg" alt="aff background" />
             </div>

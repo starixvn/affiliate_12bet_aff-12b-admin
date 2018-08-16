@@ -1,12 +1,13 @@
 ﻿"use strict";
 
 var ReCheckIn = (function ($) {
+    var _timeInterval = 30000;
     var _handler;
     var _url = Site.resolveRelativeUrl("Auth/ReCheckin");
 
     var _me = {
         initialize: function initialize() {
-            _handler = setInterval(_me.reCheckin, 30000);
+            _handler = setTimeout(_me.reCheckin, _timeInterval);
         },
 
         reCheckin: function reCheckin() {
@@ -20,12 +21,18 @@ var ReCheckIn = (function ($) {
                     if (result.IsKickOut) {
                         _me.kickout(result.Message);
                     }
+                    if (result.ErrCode > 0) {
+                        window.location.href = Site.resolveRelativeUrl("");
+                    }
+
+                    clearTimeout(_handler);
+                    _handler = setTimeout(_me.reCheckin, _timeInterval);
                 }
             });
         },
 
         kickout: function kickout(message) {
-            clearInterval(_handler);
+            clearTimeout(_handler);
             window.alert(message);
 
             setTimeout(function () {

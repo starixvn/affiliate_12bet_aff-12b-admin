@@ -121,7 +121,7 @@
         },
 
         refreshCaptcha: function () {
-            var captchaUrl = Site.resolveRelativeUrl("Home/CaptchaImage?type=1&_v=" + new Date().getTime());
+            var captchaUrl = Site.resolveRelativeUrl("Auth/CaptchaImage?type=1&_v=" + new Date().getTime());
             $("#validation-captcha").attr("src", captchaUrl);
         }
     };

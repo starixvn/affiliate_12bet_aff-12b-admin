@@ -1,10 +1,11 @@
 ﻿var ReCheckIn = (function ($) {
+    var _timeInterval = 30000;
     var _handler;
     var _url = Site.resolveRelativeUrl("Auth/ReCheckin");
 
     var _me = {
         initialize: function () {
-            _handler = setInterval(_me.reCheckin, 30000);
+            _handler = setTimeout(_me.reCheckin, _timeInterval);
         },
 
         reCheckin: function () {
@@ -21,12 +22,15 @@
                     if (result.ErrCode > 0) {
                         window.location.href = Site.resolveRelativeUrl("");
                     }
+
+                    clearTimeout(_handler);
+                    _handler = setTimeout(_me.reCheckin, _timeInterval);
                 }
             });
         },
 
         kickout: function (message) {
-            clearInterval(_handler);
+            clearTimeout(_handler);
             window.alert(message);
 
             setTimeout(function () {
