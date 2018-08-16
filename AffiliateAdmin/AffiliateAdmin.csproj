@@ -1585,6 +1585,7 @@
     <Content Include="Areas\Portal\www\dist\js\assign-normal-group.js" />
     <Content Include="Areas\Portal\www\dist\js\assign-private-group.js" />
     <Content Include="Areas\Portal\www\dist\js\commission-group.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\Recheckin\recheckin.js" />
     <Content Include="Areas\Portal\www\dist\pagelayout.min.js" />
     <Content Include="Areas\Portal\www\dist\style\assets\banner_top.jpg" />
     <Content Include="Areas\Portal\www\dist\style\assets\open-iconic.svg" />
@@ -1944,7 +1945,7 @@
     <Content Include="Areas\Portal\Views\Shared\Email\WithdrawalGuidance\Content.zh-TW.cshtml" />
     <Content Include="Areas\Portal\Views\EmailTesting\Index.cshtml" />
     <Content Include="Areas\Portal\Views\EmailTesting\Preview.cshtml" />
-    <Content Include="Areas\Portal\Views\Auth\RecheckIn\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\Auth\RecheckIn.cshtml" />
     <None Include="bundleconfig.json" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
