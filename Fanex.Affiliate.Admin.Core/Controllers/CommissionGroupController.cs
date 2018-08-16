@@ -100,6 +100,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             {
                 UserId = SessionService.UserId,
                 GroupId = commGroup.GroupId,
+                GroupName = commGroup.GroupName,
                 Ip = Request.UserHostAddress,
                 Description = commGroup.Description,
                 QmTurnover = commGroup.NextQmTurnover,
@@ -179,7 +180,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             {
                 UserId = SessionService.UserId,
                 GroupId = affInfo.AffId,
-                GroupName = PrivateGroupName,
+                GroupName = affInfo.UserName,
                 Description = PrivateGroupName,
                 QmTurnover = commGroup.QmTurnover,
                 TierSettingList = commGroup.TierSettingList,

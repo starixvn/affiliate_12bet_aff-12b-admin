@@ -36,6 +36,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository
 
             using (var objectDb = GetObjectDb(SpKey))
             {
+                objectDb.AddInParameter("GroupId", DbType.Int32, param.GroupId);
                 objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
                 objectDb.AddInParameter("GroupName", DbType.String, param.GroupName);
                 objectDb.AddInParameter("Description", DbType.String, param.Description);
@@ -48,9 +49,11 @@ namespace Fanex.Affiliate.Admin.Core.Repository
 
                 objectDb.ExecuteNonQuery();
 
+                var code = objectDb.GetParameterValue("ErrCode");
+
                 return new ResultInfo
                 {
-                    Code = Convert.ToInt32(objectDb.GetParameterValue("ErrCode")),
+                    Code = code == DBNull.Value ? 0 : Convert.ToInt32(code),
                     Message = objectDb.GetParameterValue("ErrMsg").ToString()
                 };
             }
@@ -64,6 +67,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository
             {
                 objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
                 objectDb.AddInParameter("GroupId", DbType.Int32, param.GroupId);
+                objectDb.AddInParameter("GroupName", DbType.String, param.GroupName);
                 objectDb.AddInParameter("Description", DbType.String, param.Description);
                 objectDb.AddInParameter("DeductionList", DbType.Xml, param.DeductionList);
                 objectDb.AddInParameter("TierList", DbType.Xml, param.TierList);
@@ -74,9 +78,11 @@ namespace Fanex.Affiliate.Admin.Core.Repository
 
                 objectDb.ExecuteNonQuery();
 
+                var code = objectDb.GetParameterValue("ErrCode");
+
                 return new ResultInfo
                 {
-                    Code = Convert.ToInt32(objectDb.GetParameterValue("ErrCode")),
+                    Code = code == DBNull.Value ? 0 : Convert.ToInt32(code),
                     Message = objectDb.GetParameterValue("ErrMsg").ToString()
                 };
             }
@@ -96,9 +102,11 @@ namespace Fanex.Affiliate.Admin.Core.Repository
 
                 objectDb.ExecuteNonQuery();
 
+                var code = objectDb.GetParameterValue("ErrCode");
+
                 return new ResultInfo
                 {
-                    Code = Convert.ToInt32(objectDb.GetParameterValue("ErrCode")),
+                    Code = code == DBNull.Value ? 0 : Convert.ToInt32(code),
                     Message = objectDb.GetParameterValue("ErrMsg").ToString()
                 };
             }
@@ -156,9 +164,11 @@ namespace Fanex.Affiliate.Admin.Core.Repository
 
                 objectDb.ExecuteNonQuery();
 
+                var code = objectDb.GetParameterValue("ErrCode");
+
                 return new ResultInfo
                 {
-                    Code = Convert.ToInt32(objectDb.GetParameterValue("ErrCode")),
+                    Code = code == DBNull.Value ? 0 : Convert.ToInt32(code),
                     Message = objectDb.GetParameterValue("ErrMsg").ToString()
                 };
             }

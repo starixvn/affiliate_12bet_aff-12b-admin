@@ -31,7 +31,7 @@ export class AssignPrivateGroup extends React.Component {
             this.props.setSelectedGroup(commGroup);
         }
         else {
-            this.props.getSelectedCommGroup(GroupId);
+            this.props.getSelectedCommGroup({GroupId});
         }
     }
 
