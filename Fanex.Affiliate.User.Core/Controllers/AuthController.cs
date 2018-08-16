@@ -14,7 +14,6 @@ using ONEbook.UM.Filters;
 namespace Fanex.Affiliate.User.Core.Controllers
 {
     [CheckUMFilter]
-
     public class AuthController : Controller
     {
         private readonly IAuthService _authService;
@@ -158,8 +157,9 @@ namespace Fanex.Affiliate.User.Core.Controllers
         [CustomAuthorize]
         public ActionResult ReCheckin()
         {
-            var onUserId = SessionService.UserSession.OnUserId;
-            var isKickOut = onUserId > 0 && _authService.Recheckin(_sessionService.UserSession.OnUserId, SessionService.IsInternal);
+            var onUserId = _sessionService.UserSession.OnUserId;
+            var isKickOut = onUserId > 0 && _authService.Recheckin(_sessionService.UserSession.OnUserId, 
+                _sessionService.IsInternal);
 
             if (isKickOut)
             {
