@@ -25,7 +25,19 @@ namespace Fanex.Affiliate.Admin.Core.Attributes
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
         {
             FormsAuthentication.SignOut();
-            filterContext.Result = new RedirectResult("~/SignIn.aspx");
+            if (filterContext.HttpContext.Request.IsAjaxRequest())
+            {
+                filterContext.HttpContext.Response.StatusCode = (int)HttpStatusCode.Forbidden;
+                filterContext.HttpContext.Response.ContentType = "application/json";
+                filterContext.Result = new JsonResult
+                {
+                    Data = new { ErrCode = 401, ErrMsg = "Your session was expired! Please login again." },
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
+            }else
+            {
+                filterContext.Result = new RedirectResult("~/SignIn.aspx");
+            }
         }
     }
 }

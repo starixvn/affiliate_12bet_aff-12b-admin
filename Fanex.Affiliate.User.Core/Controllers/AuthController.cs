@@ -9,30 +9,38 @@ using Fanex.Affiliate.User.Core.Filters;
 using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.Utilities;
+using ONEbook.UM.Filters;
 
 namespace Fanex.Affiliate.User.Core.Controllers
 {
-    public class AuthController : BaseController
+    [CheckUMFilter]
+
+    public class AuthController : Controller
     {
         private readonly IAuthService _authService;
         private readonly ICookieService _cookieService;
+        private readonly ISessionService _sessionService;
+        private readonly IAppSetting _appSetting;
 
         public AuthController(
             ISessionService sessionService,
             IAppSetting appSetting,
             ICookieService cookieService,
             IAuthService authService)
-            : base(sessionService, appSetting)
+
         {
             _authService = authService;
             _cookieService = cookieService;
+            _sessionService = sessionService;
+            _appSetting = appSetting;
         }
 
         [ChildActionOnly]
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult AuthenticationForm()
         {
-            if (SessionService.UserSession == null)
+            if (_sessionService.UserSession == null)
             {
                 var keyString = Generator.GetRandomString(32);
                 var ivString = Generator.GetRandomString(16);
@@ -46,6 +54,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
 
         [ValidateAntiForgeryToken]
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult SignIn(UserLoginParam userParam)
         {
             if (!Request.IsAjaxRequest())
@@ -73,11 +82,11 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 });
             }
             userParam.LoginIp = Request.UserHostAddress;
-            userParam.Language = SessionService.CurrentLanguage;
+            userParam.Language = _sessionService.CurrentLanguage;
             var loginResult = _authService.GetLoginResult(userParam, false);
 
             if (loginResult.UserInfo != null &&
-                        !AppSetting.AllowedAffiliateTypes.Any(t => t.Equals(loginResult.UserInfo.AffType)))
+                        !_appSetting.AllowedAffiliateTypes.Any(t => t.Equals(loginResult.UserInfo.AffType)))
             {
                 return Json(GetErrorResult(Lang.NotAllowOnDomain));
             }
@@ -88,7 +97,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 var onUserIdParam = GetOnUserIdParam(user.AffId, userParam.LoginIp);
                 user.OnUserId = _authService.GetOnUserId(onUserIdParam);
 
-                SessionService.AssignSessions(user);
+                _sessionService.AssignSessions(user);
                 FormsAuthentication.SetAuthCookie(user.UserName, false);
             }
 
@@ -117,21 +126,21 @@ namespace Fanex.Affiliate.User.Core.Controllers
                     {
                         UserName = loginParam.CustName,
                         LoginIp = clientIpAddress,
-                        Language = SessionService.CurrentLanguage
+                        Language = _sessionService.CurrentLanguage
                     };
 
-                    SessionService.IsInternal = true;
+                    _sessionService.IsInternal = true;
                     userLoginParam.IsInternal = true;
                     var loginResult = _authService.GetLoginResult(userLoginParam, true);
                     var user = loginResult.UserInfo;
 
-                    if (loginResult.Result.IsOk && AppSetting.AllowedAffiliateTypes.Any(t => t.Equals(user.AffType)))
+                    if (loginResult.Result.IsOk && _appSetting.AllowedAffiliateTypes.Any(t => t.Equals(user.AffType)))
                     {
                         var adminId = loginParam.AccId * -1;
                         var onUserIdParam = GetOnUserIdParam(user.AffId, clientIpAddress, adminId);
                         user.OnUserId = _authService.GetOnUserId(onUserIdParam);
 
-                        SessionService.AssignSessions(user);
+                        _sessionService.AssignSessions(user);
                         FormsAuthentication.SetAuthCookie(user.UserName, false);
                     }
                 }
@@ -150,7 +159,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
         public ActionResult ReCheckin()
         {
             var onUserId = SessionService.UserSession.OnUserId;
-            var isKickOut = onUserId > 0 && _authService.Recheckin(SessionService.UserSession.OnUserId, SessionService.IsInternal);
+            var isKickOut = onUserId > 0 && _authService.Recheckin(_sessionService.UserSession.OnUserId, SessionService.IsInternal);
 
             if (isKickOut)
             {
@@ -169,17 +178,17 @@ namespace Fanex.Affiliate.User.Core.Controllers
             return new OnUserIdParam
             {
                 CustId = affId,
-                ServerId = AppSetting.ServerId,
+                ServerId = _appSetting.ServerId,
                 Ip = clientIpAddress,
                 NetSessionId = HttpContext.Session.SessionID,
                 SubAccId = adminId,
-                IsInternal = SessionService.IsInternal
+                IsInternal = _sessionService.IsInternal
             };
         }
 
         private bool IsValidCaptcha(string validationKey)
         {
-            return validationKey.Equals(SessionService.CaptchaCode);
+            return validationKey.Equals(_sessionService.CaptchaCode);
         }
 
         private ResultInfo GetErrorResult(string message)
