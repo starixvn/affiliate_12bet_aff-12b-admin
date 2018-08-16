@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Mvc;
-using Fanex.Affiliate.Admin.Core.Attributes;
+﻿using System.Web.Mvc;
 using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using ONEbook.UM.Filters;
@@ -22,16 +16,14 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             _sessionService = sessionService;
         }
         [HttpGet]
-        [CustomAuthorize]
         public ActionResult RecheckIn()
         {
-            return View("~/Areas/Portal/View/Auth/RecheckIn.cshtml");
+            return View("~/Areas/Portal/Views/Auth/RecheckIn.cshtml");
         }
 
         [HttpGet]
         [OutputCache(NoStore = true, Duration = 0)]
-        [CustomAuthorize]
-        public ActionResult RecheckIn(DateTime time)
+        public ActionResult Ping(long time)
         {
             var isKickedOut = true;
             if (_sessionService.OnUserId > 0 && _sessionService.UserId > 0)

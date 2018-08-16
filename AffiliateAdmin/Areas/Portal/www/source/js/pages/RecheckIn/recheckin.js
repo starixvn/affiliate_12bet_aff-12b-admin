@@ -2,11 +2,11 @@
     var _handler;
     var _me = {
         initialize: function () {
-            _handler = setInterval(_me.reCheckin, 30000);
+            _handler = setTimeout(_me.reCheckin, 3000);
         },
 
         reCheckin: function () {
-            var url = $("#recheckinUrl").val() + new Date().getTime();
+            var url = $("#recheckinUrl").val() + "?time=" + new Date().getTime();
             $.ajax({
                 url: url,
                 async: true,
@@ -14,15 +14,33 @@
                 dataType: "json",
                 cache: false,
                 success: function (result) {
+                   
                     if (result.IsKickedOut) {
                         _me.kickout(result.Message);
                     }
+                    _handler = setTimeout(_me.reCheckin, 8000);
+                },
+                statusCode: {
+                    500: function (xhr) {
+                        if (window.console) console.log(xhr.responseText);
+                    },
+                    403: function (xhr) {
+                        alert("Your session was expired!")
+                        parent.location.reload();
+                    },
+                    401: function (xhr) {
+                        alert("Your session was expired!")
+                        parent.location.reload();
+                    }
+
+
                 }
+
             });
         },
 
         kickout: function (message) {
-            clearInterval(_handler);
+            clearTimeout(_handler);
             window.alert(message);
             setTimeout(function () {
                 parent.location.reload();

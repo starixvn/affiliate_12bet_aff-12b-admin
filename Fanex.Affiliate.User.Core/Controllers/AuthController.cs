@@ -158,8 +158,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
         public ActionResult ReCheckin()
         {
             var onUserId = _sessionService.UserSession.OnUserId;
-            var isKickOut = onUserId > 0 && _authService.Recheckin(_sessionService.UserSession.OnUserId, 
-                _sessionService.IsInternal);
+            var isKickOut = onUserId > 0 && _authService.Recheckin(_sessionService.UserSession.OnUserId, _sessionService.IsInternal);
 
             if (isKickOut)
             {

@@ -57,20 +57,22 @@ namespace AffiliateAdmin.Business.Services.Auth
                             Domain = FormsAuthentication.CookieDomain,
                             Expires = authTicket.Expiration
                         };
-
+                        var onUserId = DataHandler.Login.LoginOnUser(context);
                         AppSettings.Session.CustID = custid;
-                        AppSettings.Session.OnUser = DataHandler.Login.LoginOnUser(context);
+                        AppSettings.Session.OnUser = onUserId;
                         AppSettings.Session.RoleID = roleid;
                         AppSettings.Session.UserName = _username;
                         AppSettings.Session.RoleAccess = DataHandler.Login.AssignRoles(custid);
                         sessionService.UserPermissionList = permissionList;
+                        sessionService.UserId = custid;
+                        sessionService.OnUserId = onUserId;
 
                         isok = "OK";
                         context.Response.SetCookie(cookie);
                     }
                     else
                     {
-                        errmsg = "Your account is not configured to access any functions! Please contact your administrator";
+                        isok = "Your account is not configured to access any functions! Please contact your administrator";
                     }
                 }
                 else

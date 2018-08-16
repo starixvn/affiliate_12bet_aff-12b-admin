@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Services.Common;
+using ONEbook.UM.Filters;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
@@ -9,7 +10,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
     public class BaseController : Controller
     {
         private readonly ISessionService _sessionService;
-     
+
         protected BaseController(ISessionService sessionService)
         {
             _sessionService = sessionService;
