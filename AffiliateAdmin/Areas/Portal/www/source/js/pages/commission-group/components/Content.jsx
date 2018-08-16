@@ -18,18 +18,20 @@ export class Content extends Component {
             Popup: null,
             popupTitle: ''
         }
+
+        this.modalRef = React.createRef();
     }
 
     handleAddNewGroup = () => {
         this.setState({ 
-            Popup: (<AddGroup onClose={this.handleHide} />), 
+            Popup: (<AddGroup onClose={this.handleHide} onSave={this.handleSave} />), 
             popupTitle: 'Add a Commission Group' 
         });
     }
 
     handleEditGroup = (itemId) => {
         this.setState({ 
-            Popup: (<EditGroup onClose={this.handleHide} itemId={itemId} />),
+            Popup: (<EditGroup onClose={this.handleHide} itemId={itemId} onSave={this.handleSave} />),
             popupTitle: 'Edit Commission Group'
             
         });
@@ -37,6 +39,10 @@ export class Content extends Component {
 
     handleHide = () => {
         this.setState({ Popup: null });
+    }
+
+    handleSave = () => {
+        this.modalRef.current.scrollTo({top: 0, behavior: "smooth"});
     }
 
     onPaging = (pageIndex, pageSize) => {
@@ -58,7 +64,7 @@ export class Content extends Component {
                     <GridData onEdit={this.handleEditGroup} />
                 </div>
 
-                <Modal isOpen={showPopup} toggle={this.handleHide} size="lg" backdrop='static'>
+                <Modal isOpen={showPopup} toggle={this.handleHide} size="lg" backdrop='static' innerRef={this.modalRef}>
                     <ModalHeader toggle={this.handleHide}><span className="iconpopup"></span>{popupTitle}</ModalHeader>
                     <ModalBody>
                         <div className="modal-body-wrapper">

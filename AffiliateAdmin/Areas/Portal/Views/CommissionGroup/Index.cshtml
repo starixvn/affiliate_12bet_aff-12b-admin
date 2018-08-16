@@ -4,7 +4,7 @@
 @model Fanex.Affiliate.Admin.Core.ViewModels.CommissionGroupViewModel
 
 @section styles{
-    <link href="~/Areas/Portal/www/dist/style/commission-group.css" rel="stylesheet" />
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/commission-group.css")" rel="stylesheet" />
 }
 
 @section scripts{
@@ -14,7 +14,7 @@
             deductionList: @Html.Raw(Json.Encode(Model.DeductionList))
         }
     </script>
-    <script type="text/javascript" src="~/Areas/Portal/www/dist/js/commission-group.js"></script>
+    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/commission-group.js")"></script>
 }
 
 <div id="root"></div>

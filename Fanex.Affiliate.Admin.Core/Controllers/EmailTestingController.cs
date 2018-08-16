@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
+using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Configurations;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
@@ -10,7 +11,7 @@ using Fanex.Affiliate.Admin.Core.ViewModels;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
-    [Authorize]
+    [FunctionAuthorize(FunctionName = Function.UserControl)]
     public class EmailTestingController : BaseController
     {
         private readonly IMailProcessor _mailProcessor;

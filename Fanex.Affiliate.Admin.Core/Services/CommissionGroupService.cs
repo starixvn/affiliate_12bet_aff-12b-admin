@@ -98,30 +98,16 @@ namespace Fanex.Affiliate.Admin.Core.Services
 
         public ResultInfo AssignGroup(AssignGroupParam param, AffiliateBasicInfo affInfo, AffInformationEmail emailParam)
         {
-            var assignResult = _commGroupRepository.AssignGroup(param);
-            var isApproved = affInfo.GroupId != 0;
-            if (!isApproved && assignResult.IsSuccessful)
-            {
-                var password = Generator.GetRandomString(10);
-                var approvedResult = ApproveAffiliate(param.UserId, param.AffId, param.Ip, password);
-
-                if (approvedResult.IsSuccessful)
-                {
-                    SendEmailApprove(emailParam, affInfo, password);
-                }
-            }
-
-            return assignResult;
+            return ProcessAssignGroup(param, affInfo, emailParam);
         }
 
         public ResultInfo AssignPrivateGroup(CreateUpdateCommissionGroupParam param, AffiliateBasicInfo affInfo, AffInformationEmail emailParam)
         {
-            var isApproved = affInfo.GroupId != 0;
-            var isCreateNewPrivateGroup = !isApproved || param.GroupId != affInfo.GroupId;
+            var isCreateNewPrivateGroup = affInfo.GroupId == 0 || param.GroupId != affInfo.GroupId;
 
             var commGroupResult = isCreateNewPrivateGroup ? CreateCommissionGroup(param) : UpdateCommissionGroup(param);
 
-            if (isApproved && commGroupResult.IsSuccessful)
+            if (commGroupResult.IsSuccessful)
             {
                 var assignparam = new AssignGroupParam
                 {
@@ -131,10 +117,35 @@ namespace Fanex.Affiliate.Admin.Core.Services
                     Ip = param.Ip
                 };
 
-                return AssignGroup(assignparam, affInfo, emailParam);
+                return ProcessAssignGroup(assignparam, affInfo, emailParam);
             }
 
             return commGroupResult;
+        }
+
+        private ResultInfo ProcessAssignGroup(AssignGroupParam param, AffiliateBasicInfo affInfo, AffInformationEmail emailParam)
+        {
+            var assignResult = _commGroupRepository.AssignGroup(param);
+            var isApproved = affInfo.GroupId != 0;
+            if (!isApproved && assignResult.IsSuccessful)
+            {
+                return ProcessApproveAffiliate(param, affInfo, emailParam);
+            }
+
+            return assignResult;
+        }
+
+        private ResultInfo ProcessApproveAffiliate(AssignGroupParam param, AffiliateBasicInfo affInfo, AffInformationEmail emailParam)
+        {
+            var password = Generator.GetRandomString(10);
+            var approvedResult = ApproveAffiliate(param.UserId, param.AffId, param.Ip, password);
+
+            if (approvedResult.IsSuccessful)
+            {
+                SendEmailApprove(emailParam, affInfo, password);
+            }
+
+            return approvedResult;
         }
 
         private ResultInfo ApproveAffiliate(int userId, int affId, string ip, string password)

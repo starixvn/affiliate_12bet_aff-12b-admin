@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import { resolveClientUrl } from '../../../../modules/utils';
 import { INFINITY_AM, INFINITY_QM, INFINITY_SYMBOL } from '../../modules/constant';
 import { format, formatDecimal } from '../../../../modules/numberFormat';
 import { defaultPagingOption } from '../../modules/constant';
@@ -67,12 +68,17 @@ export class GridData extends Component {
             for (let iTier = 0; iTier < TierSettingList.length; iTier++) {
                 const tierSetting = TierSettingList[iTier];
                 const isFirstItem = iTier === 0;
+                const isPrivateGroup = group.GroupId > 1000;
 
                 rows.push(
-                    (<tr key={`row-${index}-${iTier}`}>
+                    (<tr key={`row-${index}-${iTier}`} className={isPrivateGroup ? "private" : ""}>
                         {isFirstItem && (<td className="text-center" rowSpan={rowSpan}>{group.RowIdx}</td>)}
                         {isFirstItem && (<td className="text-center" rowSpan={rowSpan}>{rawHtml(group.GroupName)}</td>)}
-                        {isFirstItem && (<td className="text-center" rowSpan={rowSpan}>{group.NoAffs}</td>)}
+                        {isFirstItem && (
+                            <td className="text-center" rowSpan={rowSpan}>
+                                <a href={resolveClientUrl("UserInfo/AffiliateList.aspx?status=approved")}>{group.NoAffs}</a>
+                            </td>
+                        )}
                         {isFirstItem && (<td className="text-center" rowSpan={rowSpan}>{rawHtml(group.Description)}</td>)}
                         {isFirstItem && (<td className="text-center" rowSpan={rowSpan}><p>{group.Creator}</p><p>{group.CreatedDateText}</p></td>)}
 
@@ -95,9 +101,13 @@ export class GridData extends Component {
                                 <button className="btn btn-link" onClick={(e) => this.props.onEdit(item.GroupId)}>
                                     <span className="oi oi-pencil text-secondary"></span>
                                 </button>
-                                <button className="btn btn-link" onClick={() => this.handleDelete(item.GroupId, item.GroupName)}>
-                                    <span className="oi oi-x text-danger"></span>
-                                </button>
+
+                                {
+                                    group.NoAffs === 0 && (
+                                    <button className="btn btn-link" onClick={() => this.handleDelete(item.GroupId, item.GroupName)}>
+                                        <span className="oi oi-x text-danger"></span>
+                                    </button>)
+                                }
                             </td>)
                         }
                     </tr>)

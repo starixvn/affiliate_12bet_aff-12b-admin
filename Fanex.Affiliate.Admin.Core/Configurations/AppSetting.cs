@@ -25,6 +25,8 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
 
         public string MailContact => GetValue("MailContact");
 
+        public string JsVersion => GetValue("JsVersion");
+
         public string GetValue(string key) => ConfigurationManager.AppSettings[key];
     }
 }

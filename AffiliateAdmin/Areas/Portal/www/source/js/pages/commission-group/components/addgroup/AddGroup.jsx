@@ -57,6 +57,7 @@ export class AddGroup extends React.Component {
                 this.props.getGroupSettingList(gettingParam);
             }
 
+            this.props.onSave && this.props.onSave();
             this.setState({
                 isShowMessage: true,
                 isSuccess: result.IsSuccessful,

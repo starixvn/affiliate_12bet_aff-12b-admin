@@ -169,6 +169,7 @@
     <Compile Include="DTO\ResultInfo.cs" />
     <Compile Include="DTO\SelectItem.cs" />
     <Compile Include="DTO\SubMenu.cs" />
+    <Compile Include="Extensions\UrlHelperExtension.cs" />
     <Compile Include="MetaModels\Affiliate\ApproveAffiliateParam.cs" />
     <Compile Include="MetaModels\CommissionGroup\AssignGroupParam.cs" />
     <Compile Include="MetaModels\CommissionGroup\GetCommissionGroupParam.cs" />

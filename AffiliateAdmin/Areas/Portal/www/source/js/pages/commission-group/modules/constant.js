@@ -6,7 +6,7 @@ export const INFINITY_SYMBOL = '∞';
 
 export const defaultPagingOption = {
     PageIndex: 1,
-    PageSize: 20,
+    PageSize: 10,
     TotalItem: 0,
     PageList: [10, 20, 50, 100, 500]
 };

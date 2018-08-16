@@ -60,9 +60,16 @@ export class AssignPrivateGroup extends React.Component {
             const result = response.data;
 
             if (result.IsSuccessful) {
-                parent.location.reload();
+                const mainFrame = top.frames["mainFrame"];
+                if (mainFrame) {
+                    mainFrame.location.reload();
+                }
+                else {
+                    window.location.reload();
+                }
             }
             else {
+                window.scrollTo({top: 0, behavior: "smooth"});
                 this.setState({
                     isShowMessage: true,
                     isSuccess: false,

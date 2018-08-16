@@ -23,5 +23,7 @@
         string BccMail { get; }
 
         string MailContact { get; }
+
+        string JsVersion { get; }
     }
 }
