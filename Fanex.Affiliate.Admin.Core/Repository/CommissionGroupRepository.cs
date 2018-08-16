@@ -179,7 +179,6 @@ namespace Fanex.Affiliate.Admin.Core.Repository
                     Description = reader["Description"].ToString(),
                     QmTurnover = Convert.ToDecimal(reader["QMTurnover"]),
                     NextQmTurnover = Convert.ToDecimal(reader["NextQMTurnover"]),
-                    IsAdjustment = Convert.ToBoolean(reader["IsAdjustment"]),
                     NoAffs = Convert.ToInt32(reader["NoAffs"])
                 });
             }

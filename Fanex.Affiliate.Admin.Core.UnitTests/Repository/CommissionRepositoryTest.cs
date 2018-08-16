@@ -116,8 +116,7 @@ namespace Fanex.Affiliate.Admin.Core.UnitTests.Repository
                 ["CreatedDate"] = new DateTime(2018, 7, 11),
                 ["Creator"] = "Admin",
                 ["Description"] = "Description",
-                ["QMTurnover"] = 100.50m,
-                ["IsAdjustment"] = true
+                ["QMTurnover"] = 100.50m
             };
         }
 

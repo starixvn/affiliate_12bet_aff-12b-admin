@@ -52,7 +52,6 @@ namespace Fanex.Affiliate.Admin.Core.Services
                              Description = c.Description,
                              QmTurnover = c.QmTurnover,
                              NextQmTurnover = c.NextQmTurnover,
-                             IsAdjustment = c.IsAdjustment,
                              NoAffs = c.NoAffs,
                              TierSettingList = groupTierSetting,
                              PlatformFeeList = groupDeduction.Where(p => IsPlatformFee(p.ProductIds)),
