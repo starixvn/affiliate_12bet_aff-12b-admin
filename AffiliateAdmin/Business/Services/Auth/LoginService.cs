@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 using System.Web.Security;
 using Affiliate.Infrastructure.Helpers;
+using Fanex.Affiliate.Admin.Core.DTO.Common;
 using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 
@@ -37,30 +40,38 @@ namespace AffiliateAdmin.Business.Services.Auth
             try
             {
                 int errcode = DataHandler.Login.ExecLogin(ref _username, _password, ref errmsg, context, ref custid, ref roleid, lang);
-                if (errcode == 0)
+                var authRepository = new AuthRepository();
+                ISessionService sessionService = new SessionService();
+                var permissionList = custid > 0 ? authRepository.GetPermissionList(custid) : new List<UserPermission>();
+                if (errcode == 0 && custid > 0)
                 {
-                    var authTicket = new FormsAuthenticationTicket(_username, true, 20);
-                    var encryptedTicket = FormsAuthentication.Encrypt(authTicket);
-                    var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket)
+                    if (permissionList.Any())
                     {
-                        HttpOnly = true,
-                        Secure = FormsAuthentication.RequireSSL,
-                        Path = FormsAuthentication.FormsCookiePath,
-                        Domain = FormsAuthentication.CookieDomain,
-                        Expires = authTicket.Expiration
-                    };
+                        var authTicket = new FormsAuthenticationTicket(_username, true, 20);
+                        var encryptedTicket = FormsAuthentication.Encrypt(authTicket);
+                        var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket)
+                        {
+                            HttpOnly = true,
+                            Secure = FormsAuthentication.RequireSSL,
+                            Path = FormsAuthentication.FormsCookiePath,
+                            Domain = FormsAuthentication.CookieDomain,
+                            Expires = authTicket.Expiration
+                        };
 
-                    AppSettings.Session.CustID = custid;
-                    AppSettings.Session.OnUser = DataHandler.Login.LoginOnUser(context);
-                    AppSettings.Session.RoleID = roleid;
-                    AppSettings.Session.UserName = _username;
-                    AppSettings.Session.RoleAccess = DataHandler.Login.AssignRoles(custid);
+                        AppSettings.Session.CustID = custid;
+                        AppSettings.Session.OnUser = DataHandler.Login.LoginOnUser(context);
+                        AppSettings.Session.RoleID = roleid;
+                        AppSettings.Session.UserName = _username;
+                        AppSettings.Session.RoleAccess = DataHandler.Login.AssignRoles(custid);
+                        sessionService.UserPermissionList = permissionList;
 
-                    var authRepository = new AuthRepository();
-                    ISessionService sessionService = new SessionService();
-                    sessionService.UserPermissionList = authRepository.GetPermissionList(custid);
-                    isok = "OK";
-                    context.Response.SetCookie(cookie);
+                        isok = "OK";
+                        context.Response.SetCookie(cookie);
+                    }
+                    else
+                    {
+                        errmsg = "Your account is not configured to access any functions! Please contact your administrator";
+                    }
                 }
                 else
                 {
