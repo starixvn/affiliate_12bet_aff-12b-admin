@@ -18,6 +18,9 @@
                     if (result.IsKickOut) {
                         _me.kickout(result.Message);
                     }
+                    if (result.ErrCode > 0) {
+                        window.location.href = Site.resolveRelativeUrl("");
+                    }
                 }
             });
         },
@@ -30,7 +33,7 @@
                 window.location.href = Site.resolveRelativeUrl("");
             }, 500);
         }
-    }
+    };
 
     return _me;
 })(jQuery);

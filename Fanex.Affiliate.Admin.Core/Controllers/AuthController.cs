@@ -26,7 +26,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         public ActionResult Ping(long time)
         {
             var isKickedOut = true;
-            if (_sessionService.OnUserId > 0 && _sessionService.UserId > 0)
+            var isAuthorized = this.HttpContext.Request.IsAuthenticated && this.HttpContext.User.Identity.IsAuthenticated;
+            if (isAuthorized && _sessionService.OnUserId > 0 && _sessionService.UserId > 0)
             {
                 isKickedOut = _authRepository.ReCheckin(_sessionService.OnUserId);
             }

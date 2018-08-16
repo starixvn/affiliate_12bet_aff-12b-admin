@@ -45,7 +45,7 @@
         },
 
         processUnauthorized: function () {
-            alert("Your session was expired!")
+            alert("Your session was expired!");
             parent.location.reload();
         }
     };
