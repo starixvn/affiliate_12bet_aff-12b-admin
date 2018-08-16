@@ -100,8 +100,8 @@ var ContactUs = (function ($) {
         },
 
         refreshCaptcha: function refreshCaptcha() {
-            var captchaUrl = Site.resolveRelativeUrl("Auth/CaptchaImage?_v=" + new Date().getTime());
-            $(".validation-value img").attr("src", captchaUrl);
+            var captchaUrl = Site.resolveRelativeUrl("Auth/CaptchaImage?type=1&_v=" + new Date().getTime());
+            $("#captchaContactUs").attr("src", captchaUrl);
         }
     };
 
