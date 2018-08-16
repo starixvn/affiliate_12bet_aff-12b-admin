@@ -1,8 +1,9 @@
 ﻿var ReCheckIn = (function ($) {
+    var _timeInterval = 30000;
     var _handler;
     var _me = {
         initialize: function () {
-            _handler = setTimeout(_me.reCheckin, 3000);
+            _handler = setTimeout(_me.reCheckin, _timeInterval);
         },
 
         reCheckin: function () {
@@ -14,28 +15,24 @@
                 dataType: "json",
                 cache: false,
                 success: function (result) {
-                   
                     if (result.IsKickedOut) {
                         _me.kickout(result.Message);
                     }
-                    _handler = setTimeout(_me.reCheckin, 8000);
+
+                    clearTimeout(_handler);
+                    _handler = setTimeout(_me.reCheckin, _timeInterval);
                 },
                 statusCode: {
                     500: function (xhr) {
                         if (window.console) console.log(xhr.responseText);
                     },
                     403: function (xhr) {
-                        alert("Your session was expired!")
-                        parent.location.reload();
+                        _me.processUnauthorized();
                     },
                     401: function (xhr) {
-                        alert("Your session was expired!")
-                        parent.location.reload();
+                        _me.processUnauthorized();
                     }
-
-
                 }
-
             });
         },
 
@@ -45,6 +42,11 @@
             setTimeout(function () {
                 parent.location.reload();
             }, 500);
+        },
+
+        processUnauthorized: function () {
+            alert("Your session was expired!")
+            parent.location.reload();
         }
     };
     return _me;
