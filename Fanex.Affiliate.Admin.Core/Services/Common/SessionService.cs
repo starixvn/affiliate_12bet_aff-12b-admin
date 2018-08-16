@@ -8,8 +8,8 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
     {
         private const string UserPermissionSessionKey = "__UserPermissionSessionKey";
 
-        private const string UserIdKey = "CustID";
-
+        private const string UserIdKey = "__CustID";
+        private const string OnUserIDKey = "__OnUserIDKey";
         public int UserId
         {
             get
@@ -20,6 +20,19 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
             set
             {
                 HttpContext.Current.Session[UserIdKey] = value;
+            }
+        }
+
+        public int OnUserId
+        {
+            get
+            {
+                var value = HttpContext.Current.Session[OnUserIDKey];
+                return value != null ? (int)value : 0;
+            }
+            set
+            {
+                HttpContext.Current.Session[OnUserIDKey] = value;
             }
         }
 

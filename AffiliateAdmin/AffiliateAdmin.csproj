@@ -1618,6 +1618,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\modules\service.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pagelayout\vendors\jquery-3.3.1.min.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\RecheckIn\recheckin.js" />
     <Content Include="Areas\Portal\www\source\style\assets\banner_top.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\bg_menu.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\bg_search01.jpg" />
@@ -1943,6 +1944,7 @@
     <Content Include="Areas\Portal\Views\Shared\Email\WithdrawalGuidance\Content.zh-TW.cshtml" />
     <Content Include="Areas\Portal\Views\EmailTesting\Index.cshtml" />
     <Content Include="Areas\Portal\Views\EmailTesting\Preview.cshtml" />
+    <Content Include="Areas\Portal\Views\Auth\RecheckIn\Index.cshtml" />
     <None Include="bundleconfig.json" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

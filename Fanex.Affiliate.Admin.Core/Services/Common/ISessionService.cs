@@ -6,7 +6,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Common
     public interface ISessionService
     {
         int UserId { get; set; }
-
+        int OnUserId { get; set; }
         IList<UserPermission> UserPermissionList { get; set; }
     }
 }

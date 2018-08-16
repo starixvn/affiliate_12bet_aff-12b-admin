@@ -6,5 +6,6 @@ namespace Fanex.Affiliate.Admin.Core.Repository
     public interface IAuthRepository
     {
         IList<UserPermission> GetPermissionList(int userId);
+        bool ReCheckin(int onUserId);
     }
 }

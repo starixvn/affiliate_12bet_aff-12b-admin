@@ -9,6 +9,7 @@ module.exports = {
     [`${jsDist}/assign-normal-group`]: "./source/js/pages/commission-group/components/assign-normal-group/index.jsx",
     [`${jsDist}/assign-private-group`]: "./source/js/pages/commission-group/components/assign-private-group/index.jsx",
     //[`${jsDist}/affiliate-information`]: "./source/js/pages/affiliate-information/index.jsx",
+    [`${jsDist}/pages/Recheckin/recheckin`]: "./source/js/pages/RecheckIn/recheckin",
 
     [`${styleDist}/portalmain`]: "./source/style/main.scss",
     [`${styleDist}/layout`]: "./source/style/layout/main-layout.scss",

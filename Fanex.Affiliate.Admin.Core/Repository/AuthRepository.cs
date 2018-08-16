@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using Fanex.Affiliate.Admin.Core.DTO.Common;
 
 namespace Fanex.Affiliate.Admin.Core.Repository
@@ -27,6 +28,19 @@ namespace Fanex.Affiliate.Admin.Core.Repository
             }
 
             return result;
+        }
+
+        public bool ReCheckin(int onUserId)
+        {
+            var spKey = "Aff_Recheckin";
+
+            using (var objectDb = GetObjectDb(spKey))
+            {
+                objectDb.AddInParameter("on_userid", DbType.Int32, onUserId);
+                objectDb.AddOutParameter("iskickedout", DbType.Int32, 4);
+                return Convert.ToBoolean(objectDb.GetParameterValue("iskickedout"));
+                
+            }
         }
     }
 }
