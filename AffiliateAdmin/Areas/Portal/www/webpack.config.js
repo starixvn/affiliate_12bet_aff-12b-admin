@@ -21,6 +21,7 @@ module.exports = env => {
     const isDevBuild = !(env === environment.production);
 
     const sharedConfig = () => ({
+        context: path.resolve(__dirname, "./"),
         mode: env,
         stats: { modules: false },
         resolve: { extensions: [".js", ".jsx"] },

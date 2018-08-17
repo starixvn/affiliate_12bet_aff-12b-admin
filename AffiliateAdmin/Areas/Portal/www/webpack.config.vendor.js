@@ -21,6 +21,7 @@ module.exports = env => {
     const relativeOutputRootPath = projectPath.clientOutputPath;
 
     const sharedConfig = {
+        context: path.resolve(__dirname, "./"),
         mode: env,
         stats: { modules: false },
         module: {
@@ -29,7 +30,8 @@ module.exports = env => {
                 use: [{
                     loader: "url-loader",
                     options: {
-                        limit: 4096
+                        limit: 4096,
+                        name: "[name].[ext]"
                     }
                 }]
             }]

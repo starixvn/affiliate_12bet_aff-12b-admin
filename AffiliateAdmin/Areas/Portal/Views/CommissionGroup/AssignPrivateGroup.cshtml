@@ -5,7 +5,7 @@
 @model Fanex.Affiliate.Admin.Core.ViewModels.AssignPrivateGroupViewModel
 
 @section styles{
-    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/commission-group.css")" rel="stylesheet" />
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/commission-group.css")" rel="stylesheet" />
 }
 
 @section scripts{
@@ -16,7 +16,7 @@
             affInfo: @Html.Raw(Json.Encode(Model.AffInfo))
         }
     </script>
-    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/assign-private-group.js")"></script>
+    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/commission/assign-private-group.js")"></script>
 }
 
 <div id="root"></div>
