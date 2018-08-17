@@ -1577,8 +1577,8 @@
     <Content Include="Areas\Portal\www\dist\js\pages\commission\assign-group.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\commission\assign-private-group.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\commission\commission-group.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\layout\pagelayout.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\Recheckin\recheckin.js" />
-    <Content Include="Areas\Portal\www\dist\pagelayout.min.js" />
     <Content Include="Areas\Portal\www\dist\style\assets\banner_top.jpg" />
     <Content Include="Areas\Portal\www\dist\style\assets\open-iconic.svg" />
     <Content Include="Areas\Portal\www\dist\style\layout.css" />
@@ -1597,6 +1597,7 @@
     <Content Include="Areas\Portal\www\source\js\modules\dataHandler.js" />
     <Content Include="Areas\Portal\www\source\js\modules\numberFormat.js" />
     <Content Include="Areas\Portal\www\source\js\modules\utils.js" />
+    <Content Include="Areas\Portal\www\source\js\pagelayout\lib\jquery.jclock.js" />
     <Content Include="Areas\Portal\www\source\js\pagelayout\pagelayout.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-information\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-information\actions\types.js" />
@@ -1943,7 +1944,6 @@
     <Content Include="Areas\Portal\www\package.json" />
     <Content Include="Areas\Portal\www\package-lock.json" />
     <Content Include="Areas\Portal\Views\Password\ChangePassword.cshtml" />
-    <None Include="bundleconfig.json" />
     <Content Include="package.json" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -37,4 +37,16 @@
             }
         }
     }
+
+    .clock-container {
+        padding: 10px;
+        color: #131111;
+        margin-right: 20px;
+
+        .oi-clock {
+            margin-right: 10px;
+            font-size: 15px;
+            color: #b79c28;
+        }
+    }
 }

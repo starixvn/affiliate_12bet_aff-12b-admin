@@ -7,4 +7,8 @@
         <a class="text-redlink" href="@Url.Content("~/Portal/Password/ChangePassword")" target="_top">[Change Password]</a>
         <a class="text-redlink" href="@Url.Content("~/Handler/Logout.ashx")" target="mainFrame">[Logout]</a>
     </div>
+
+    <div class="float-right clock-container">
+        <span class="oi oi-clock"></span><span id="clock"></span>@DateTime.Now.ToString("%z")
+    </div>
 </div>

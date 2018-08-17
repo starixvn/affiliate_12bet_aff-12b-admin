@@ -1,7 +1,10 @@
-﻿var PageLayout = (function ($) {
+﻿import './lib/jquery.jclock';
+
+var PageLayout = (function ($) {
     var _me = {
         initialize: function () {
             _me.initEvent();
+            _me.initClock();
         },
 
         initEvent: function () {
@@ -10,6 +13,14 @@
                 var $container = $this.parent().parent();
                 $container.find('.nav-link').removeClass('active');
                 $this.addClass('active');
+            });
+        },
+
+        initClock: function(){
+            $('#clock').jclock({
+                utc: true,
+                utcOffset: -4,
+                format: '%H:%M:%S %b %d, %Y GMT'
             });
         }
     };
