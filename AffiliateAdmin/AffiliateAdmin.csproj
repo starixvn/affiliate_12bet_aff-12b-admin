@@ -1942,6 +1942,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-group\index.jsx" />
     <Content Include="Areas\Portal\www\package.json" />
     <Content Include="Areas\Portal\www\package-lock.json" />
+    <Content Include="Areas\Portal\Views\Password\ChangePassword.cshtml" />
     <None Include="bundleconfig.json" />
     <Content Include="package.json" />
     <None Include="Properties\Settings.settings">

@@ -2208,6 +2208,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You are not authorized on this function.
+        /// </summary>
+        internal static string Err501 {
+            get {
+                return ResourceManager.GetString("Err501", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create Affiliate Info failed. Please try again.
         /// </summary>
         internal static string Err999 {

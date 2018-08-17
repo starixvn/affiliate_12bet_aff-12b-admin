@@ -4,7 +4,7 @@
         <span class="font-weight-bold icon-top">
             Welcome, @(HttpContext.Current.User.Identity.Name)
         </span>
-        <a class="text-redlink" href="@Url.Content("~/ChangeAdminPass.aspx")" target="mainFrame">[Change Password]</a>
+        <a class="text-redlink" href="@Url.Content("~/Portal/Password/ChangePassword")" target="_top">[Change Password]</a>
         <a class="text-redlink" href="@Url.Content("~/Handler/Logout.ashx")" target="mainFrame">[Logout]</a>
     </div>
 </div>
