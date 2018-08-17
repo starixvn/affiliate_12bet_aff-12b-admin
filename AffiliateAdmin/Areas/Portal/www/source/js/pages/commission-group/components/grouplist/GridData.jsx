@@ -76,7 +76,7 @@ export class GridData extends Component {
                         {isFirstItem && (<td className="text-center" rowSpan={rowSpan}>{rawHtml(group.GroupName)}</td>)}
                         {isFirstItem && (
                             <td className="text-center" rowSpan={rowSpan}>
-                                <a href={resolveClientUrl("UserInfo/AffiliateList.aspx?status=approved")}>{group.NoAffs}</a>
+                                <a href={resolveClientUrl("Portal/Affiliate?current=1&slCommGroup=") + group.GroupId} target="_top">{group.NoAffs}</a>
                             </td>
                         )}
                         {isFirstItem && (<td className="text-center" rowSpan={rowSpan}>{rawHtml(group.Description)}</td>)}
@@ -156,7 +156,7 @@ export class GridData extends Component {
                             <th>Comm Rate</th>
                             <th>Operational Fee</th>
                             <th>Banking Fee</th>
-                            <th>Qm Turnover</th>
+                            <th>QM Turnover</th>
                         </tr>
                     </thead>
                     <tbody>

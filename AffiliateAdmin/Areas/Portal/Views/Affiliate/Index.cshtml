@@ -3,6 +3,18 @@
 }
 @model IEnumerable<Fanex.Affiliate.Admin.Core.DTO.SubMenu>
 
+@{ 
+    var activeMenu = Model.FirstOrDefault(p => p.IsActive) ?? Model.First();
+    if(activeMenu.Url.IndexOf('?') == -1)
+    {
+        activeMenu.Url = activeMenu.Url + "?" + Request.QueryString.ToString();
+    }
+    else
+    {
+        activeMenu.Url = activeMenu.Url + "&" + Request.QueryString.ToString();
+    }
+}
+
 <div class="sub-menu-container">
     <div class="d-inline-block">
         <img src="~/Areas/Portal/www/dist/imgs/i_affiliateslist.png" />
@@ -15,5 +27,5 @@
 </div>
 
 <div class="mainFrameWrapper">
-    <iframe frameborder="0" name="mainFrame" id="mainFrame" src="@Url.Content("~/UserInfo/AffiliateList.aspx?status=approved&favor=1")"></iframe>
+    <iframe frameborder="0" name="mainFrame" id="mainFrame" src="@activeMenu.Url"></iframe>
 </div>

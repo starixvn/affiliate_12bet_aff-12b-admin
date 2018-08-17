@@ -42,6 +42,21 @@ public partial class Home : IBCPage
         TemplateHandler.Assign(ref content, "themepath", AppSettings.ThemeDir);
         TemplateHandler.Assign(ref content, "WeHave", Resources.Lang.WeHave);
 
+        // links
+        var rootRelativeUrl = ResolveUrl("~/");
+        var affLink = rootRelativeUrl + "Portal/Affiliate";
+        TemplateHandler.Assign(ref content, "affpendinglink", affLink + "?status=pending&current=2");
+        TemplateHandler.Assign(ref content, "paymentlink", rootRelativeUrl + "Portal/Affiliate?current=5&slSearch=1&slStatus=Pending&fdate=01/01/2008");
+
+        TemplateHandler.Assign(ref content, "affapprovedlink", affLink + "?current=1&status=approved");
+        TemplateHandler.Assign(ref content, "affdisapprovedlink", affLink + "?current=3&status=disapproved");
+        TemplateHandler.Assign(ref content, "affclosedlink", affLink + "?current=4&status=approved&isClosed=true");
+
+        var bannerLink = rootRelativeUrl + "Portal/Marketing";
+        TemplateHandler.Assign(ref content, "bannerlink", bannerLink);
+        TemplateHandler.Assign(ref content, "bannerimglink", bannerLink + "?typeoption=Image");
+        TemplateHandler.Assign(ref content, "bannerflashlink", bannerLink + "?typeoption=Flash");
+
         //dynamic data render
         Decimal dcPSPToday = DataHandler.Member.GetPSPToday();
         DbResult rs = DataHandler.Home.GetGenInforFromAff();
@@ -139,7 +154,8 @@ public partial class Home : IBCPage
             }
             else
             {
-                TemplateHandler.Assign(ref temp, "Username-val", "<a href=\"../Customer/AffDefault.aspx?user=" + r["username"].ToString() + "\"> " + r["username"].ToString() + "</a>");
+                var customerLink = ResolveUrl("~/Portal/Customer?user=" + r["username"]);
+                TemplateHandler.Assign(ref temp, "Username-val", "<a href=\"" + customerLink + "\" target=\"_top\"> " + r["username"] + "</a>");
                 TemplateHandler.Assign(ref temp, "Type-val", Resources.Lang.Affiliate);
             }
             if ((No % 2) == 0)

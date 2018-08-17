@@ -4,7 +4,7 @@ const emptyCommGroup = {
     GroupId: 0,
     GroupName: '',
     Description: '',
-    QmTurnover: 0,
+    QmTurnover: 100,
     TierSettingList: [],
     PlatformFeeList: [],
     OperationalFee: {},

@@ -1940,6 +1940,8 @@
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-private-group\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-group\AssignGroup.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-group\index.jsx" />
+    <Content Include="Areas\Portal\www\package.json" />
+    <Content Include="Areas\Portal\www\package-lock.json" />
     <None Include="bundleconfig.json" />
     <Content Include="package.json" />
     <None Include="Properties\Settings.settings">

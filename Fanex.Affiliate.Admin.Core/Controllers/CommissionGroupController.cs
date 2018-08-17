@@ -78,8 +78,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             {
                 UserId = SessionService.UserId,
                 Ip = Request.UserHostAddress,
-                GroupName = commGroup.GroupName,
-                Description = commGroup.Description,
+                GroupName = commGroup.GroupName.Trim(),
+                Description = commGroup.Description.Trim(),
                 QmTurnover = commGroup.QmTurnover,
                 TierSettingList = commGroup.TierSettingList,
                 PlatformFeeList = commGroup.PlatformFeeList,
@@ -100,9 +100,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             {
                 UserId = SessionService.UserId,
                 GroupId = commGroup.GroupId,
-                GroupName = commGroup.GroupName,
+                GroupName = commGroup.GroupName.Trim(),
                 Ip = Request.UserHostAddress,
-                Description = commGroup.Description,
+                Description = commGroup.Description.Trim(),
                 QmTurnover = commGroup.NextQmTurnover,
                 TierSettingList = commGroup.TierSettingList,
                 PlatformFeeList = commGroup.PlatformFeeList,

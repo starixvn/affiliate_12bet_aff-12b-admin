@@ -12,7 +12,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         {
         }
 
-        public ActionResult Index()
+        public ActionResult Index(int current = 0)
         {
             var subMenu = new List<SubMenu>
             {
@@ -25,6 +25,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 new SubMenu { Name = Lang.CommGroup, Url = Url.Content("~/Portal/CommissionGroup") },
                 new SubMenu { Name = Lang.EmailHistory, Url = Url.Content("~/Others/EmailHistory.aspx") }
             };
+
+            var activeIndex = current > subMenu.Count - 1 ? 0 : current;
+            subMenu[activeIndex].IsActive = true;
 
             return View(subMenu);
         }

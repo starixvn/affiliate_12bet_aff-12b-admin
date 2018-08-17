@@ -6,14 +6,19 @@ import { setSelectedGroup } from '../../actions';
 
 import { Col, FormGroup, Label, Input } from 'reactstrap';
 
+const MAX_LENGTH = 100;
+
 export class CommGroupInfo extends React.Component {
     constructor(props) {
         super(props);
     }
 
     handleChange = (event) => {
-        const { name, value } = event.target;        
-        this.props.setSelectedGroup({ [name]: value })
+        const { name, value } = event.target;
+
+        if (value.length <= MAX_LENGTH) {
+            this.props.setSelectedGroup({ [name]: value });
+        }
     }
 
     render() {

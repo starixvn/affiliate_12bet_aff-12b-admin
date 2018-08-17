@@ -15,7 +15,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         {
         }
 
-        public ActionResult Index()
+        public ActionResult Index(int current = 0)
         {
             var subMenu = new List<SubMenu>
             {
@@ -23,6 +23,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 new SubMenu { Name = Lang.Text12BetDomains, Url = Url.Content("~/Domain/12BetDomain.aspx") },
                 new SubMenu { Name = Lang.DomainControl, Url = Url.Content("~/Domain/DomainControl.aspx") }
             };
+
+            var activeIndex = current > subMenu.Count - 1 ? 0 : current;
+            subMenu[activeIndex].IsActive = true;
 
             return View(subMenu);
         }

@@ -15,11 +15,12 @@ export class QmTurnOverSetting extends React.Component {
 
     handleChange = (event) => {
         const { name, value } = event.target;
-        const actualValue = value.replace(/,/g, '');
-        const isValid = isValidNumber(actualValue);
+        const textValue = value.replace(/,/g, '');
+        const numberValue = Number(textValue);
+        const isValid = isValidNumber(numberValue);
 
-        if (isValid) {
-            this.props.setSelectedGroup({ [name]: Number(actualValue) });
+        if (isValid && numberValue <= Number.MAX_SAFE_INTEGER) {
+            this.props.setSelectedGroup({ [name]: numberValue });
         }
     }
 

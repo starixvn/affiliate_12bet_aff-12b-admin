@@ -28,9 +28,13 @@
         }
 
         .text-redlink {
-            color: #FF0000 !important;
+            color: #FF0000;
             padding-left: 5px;
             text-decoration: none;
+
+            &:hover {
+                color: #007bff;
+            }
         }
     }
 }

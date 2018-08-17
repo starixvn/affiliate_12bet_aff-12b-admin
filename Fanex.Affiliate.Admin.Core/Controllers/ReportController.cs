@@ -15,13 +15,16 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         {
         }
 
-        public ActionResult Index()
+        public ActionResult Index(int current = 0)
         {
             var subMenu = new List<SubMenu>
             {
                 new SubMenu { Name = Lang.ReportDetails, Url = Url.Content("~/Report/MemberReport.aspx") },
                 new SubMenu { Name = Lang.AffiliateReport, Url = Url.Content("~/Report/AffiliateReport.aspx") }
             };
+
+            var activeIndex = current > subMenu.Count - 1 ? 0 : current;
+            subMenu[activeIndex].IsActive = true;
 
             return View(subMenu);
         }
