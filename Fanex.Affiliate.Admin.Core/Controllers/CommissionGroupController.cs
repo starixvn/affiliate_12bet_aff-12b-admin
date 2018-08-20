@@ -70,6 +70,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             return Json(commGroup);
         }
 
+        [FunctionAuthorize(FunctionName = Function.CommissionGroup, IsHost = true)]
         [HttpPost]
         [ValidateAntiForgeryHeader]
         public ActionResult CreateCommissionGroup(CommissionGroupSetting commGroup)
@@ -92,6 +93,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             return Json(result);
         }
 
+        [FunctionAuthorize(FunctionName = Function.CommissionGroup, IsHost = true)]
         [HttpPost]
         [ValidateAntiForgeryHeader]
         public ActionResult UpdateCommissionGroup(CommissionGroupSetting commGroup)
@@ -115,6 +117,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             return Json(result);
         }
 
+        [FunctionAuthorize(FunctionName = Function.CommissionGroup, IsHost = true)]
         [HttpPost]
         [ValidateAntiForgeryHeader]
         public ActionResult DeleteCommissionGroup(DeleteCommissionGroupParam param)
@@ -143,7 +146,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             return View("~/Areas/Portal/Views/CommissionGroup/AssignGroup.cshtml", viewModel);
         }
 
+        [FunctionAuthorize(FunctionName = Function.CommissionGroup, IsHost = true)]
         [HttpPost]
+        [ValidateAntiForgeryHeader]
         public ActionResult AssignGroup(AssignGroupParam assignParam, AffiliateBasicInfo affInfo)
         {
             assignParam.UserId = SessionService.UserId;
@@ -173,7 +178,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             return View("~/Areas/Portal/Views/CommissionGroup/AssignPrivateGroup.cshtml", viewModel);
         }
 
+        [FunctionAuthorize(FunctionName = Function.CommissionGroup, IsHost = true)]
         [HttpPost]
+        [ValidateAntiForgeryHeader]
         public ActionResult AssignPrivateGroup(CommissionGroupSetting commGroup, AffiliateBasicInfo affInfo)
         {
             var assignParam = new CreateUpdateCommissionGroupParam
