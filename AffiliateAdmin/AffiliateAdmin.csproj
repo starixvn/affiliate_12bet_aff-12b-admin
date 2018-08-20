@@ -1013,7 +1013,6 @@
     <Content Include="App_Js\MonthPicker\month-picker.css" />
     <Content Include="App_Js\NoScroll.js" />
     <Content Include="App_Js\popup.css" />
-    <Content Include="App_Js\Portal.js" />
     <Content Include="App_Js\prototype-full.js" />
     <Content Include="App_Js\prototype.js" />
     <Content Include="App_Js\RefreshTime.js" />
