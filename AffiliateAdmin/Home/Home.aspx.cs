@@ -45,12 +45,12 @@ public partial class Home : IBCPage
         // links
         var rootRelativeUrl = ResolveUrl("~/");
         var affLink = rootRelativeUrl + "Portal/Affiliate";
-        TemplateHandler.Assign(ref content, "affpendinglink", affLink + "?status=pending&current=2");
+        TemplateHandler.Assign(ref content, "affpendinglink", affLink + "?current=2");
         TemplateHandler.Assign(ref content, "paymentlink", rootRelativeUrl + "Portal/Affiliate?current=5&slSearch=1&slStatus=Pending&fdate=01/01/2008");
 
-        TemplateHandler.Assign(ref content, "affapprovedlink", affLink + "?current=1&status=approved");
-        TemplateHandler.Assign(ref content, "affdisapprovedlink", affLink + "?current=3&status=disapproved");
-        TemplateHandler.Assign(ref content, "affclosedlink", affLink + "?current=4&status=approved&isClosed=true");
+        TemplateHandler.Assign(ref content, "affapprovedlink", affLink + "?current=1");
+        TemplateHandler.Assign(ref content, "affdisapprovedlink", affLink + "?current=3");
+        TemplateHandler.Assign(ref content, "affclosedlink", affLink + "?current=4");
 
         var bannerLink = rootRelativeUrl + "Portal/Marketing";
         TemplateHandler.Assign(ref content, "bannerlink", bannerLink);
@@ -154,8 +154,9 @@ public partial class Home : IBCPage
             }
             else
             {
-                var customerLink = ResolveUrl("~/Portal/Customer?user=" + r["username"]);
-                TemplateHandler.Assign(ref temp, "Username-val", "<a href=\"" + customerLink + "\" target=\"_top\"> " + r["username"] + "</a>");
+                var userName = r["username"];
+                var customerLink = ResolveUrl("~/Portal/Customer?user=" + userName);
+                TemplateHandler.Assign(ref temp, "Username-val", "<a href=\"" + customerLink + "\" target=\"_top\"> " + userName + "</a>");
                 TemplateHandler.Assign(ref temp, "Type-val", Resources.Lang.Affiliate);
             }
             if ((No % 2) == 0)
