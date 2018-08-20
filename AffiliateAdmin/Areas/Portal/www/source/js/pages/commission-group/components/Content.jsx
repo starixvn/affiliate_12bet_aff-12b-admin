@@ -23,17 +23,17 @@ export class Content extends Component {
     }
 
     handleAddNewGroup = () => {
-        this.setState({ 
-            Popup: (<AddGroup onClose={this.handleHide} onSave={this.handleSave} />), 
-            popupTitle: 'Add a Commission Group' 
+        this.setState({
+            Popup: (<AddGroup onClose={this.handleHide} onSave={this.handleSave} />),
+            popupTitle: 'Add a Commission Group'
         });
     }
 
     handleEditGroup = (itemId) => {
-        this.setState({ 
+        this.setState({
             Popup: (<EditGroup onClose={this.handleHide} itemId={itemId} onSave={this.handleSave} />),
             popupTitle: 'Edit Commission Group'
-            
+
         });
     }
 
@@ -42,11 +42,13 @@ export class Content extends Component {
     }
 
     handleSave = () => {
-        this.modalRef.current.scrollTo({top: 0, behavior: "smooth"});
+        this.modalRef.current.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     onPaging = (pageIndex, pageSize) => {
-        this.props.getGroupSettingList({ PageIndex: pageIndex, PageSize: pageSize });
+        const { searchedGroupName } = this.props;
+        const param = Object.assign({}, { PageIndex: pageIndex, PageSize: pageSize }, { GroupName: searchedGroupName });
+        this.props.getGroupSettingList(param);
     }
 
     render() {
@@ -77,8 +79,8 @@ export class Content extends Component {
     }
 }
 
-function mapStateToProps({ pagingOption }) {
-    return Object.assign({}, { pagingOption });
+function mapStateToProps({ pagingOption, searchedGroupName }) {
+    return Object.assign({}, { pagingOption, searchedGroupName });
 }
 
 function mapDispatchToProps(dispatch) {

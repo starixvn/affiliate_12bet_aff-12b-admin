@@ -4,13 +4,11 @@ import { bindActionCreators } from 'redux';
 
 import { Button, Form, FormGroup, Input, Label } from 'reactstrap';
 
-import { getGroupSettingList } from '../actions';
+import { getGroupSettingList, setSearchedGroupName } from '../actions';
 
 class Filter extends Component {
     constructor(props) {
         super(props);
-
-        this.groupName = '';
     }
 
     componentDidMount() {
@@ -23,12 +21,12 @@ class Filter extends Component {
     }
 
     handleChange = (event) => {
-        this.groupName = event.target.value;
+        this.props.setSearchedGroupName(event.target.value);
     }
 
     _submit() {
-        const { pagingOption } = this.props;
-        const param = Object.assign({}, { PageIndex: 1, PageSize: pagingOption.PageSize }, { GroupName: this.groupName });
+        const { pagingOption, searchedGroupName } = this.props;
+        const param = Object.assign({}, { PageIndex: 1, PageSize: pagingOption.PageSize }, { GroupName: searchedGroupName });
         this.props.getGroupSettingList(param);
     }
 
@@ -47,12 +45,12 @@ class Filter extends Component {
     }
 }
 
-function mapStateToProps({ pagingOption }) {
-    return Object.assign({}, { pagingOption });
+function mapStateToProps({ pagingOption, searchedGroupName }) {
+    return Object.assign({}, { pagingOption, searchedGroupName });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ getGroupSettingList }, dispatch);
+    return bindActionCreators({ getGroupSettingList, setSearchedGroupName }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);

@@ -1,6 +1,6 @@
 import { post } from '../../../modules/ajaxRequest';
 
-import { SET_GRIDDATA, SET_PAGING_OPTION, SET_SELECTED_GROUP } from './types';
+import { SET_GRIDDATA, SET_PAGING_OPTION, SET_SELECTED_GROUP, SET_SEARCHED_GROUPNAME } from './types';
 
 const fetchGroupSettingData = (param) => {
     const url = 'Portal/CommissionGroup/GetCommissionGroupList';
@@ -40,6 +40,13 @@ export const setPagingOption = (data) => {
 export const setSelectedGroup = (data) => {
     return {
         type: SET_SELECTED_GROUP,
+        data
+    }
+}
+
+export const setSearchedGroupName = (data) => {
+    return {
+        type: SET_SEARCHED_GROUPNAME,
         data
     }
 }
