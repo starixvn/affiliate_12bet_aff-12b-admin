@@ -9,8 +9,6 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
 
         public string InternalEuropeanAffiliateUrl => GetValue("internalEuropeanAffiliateURL");
 
-        public bool IsTesting => GetValue("IsTesting") == "1";
-
         public string Environment => GetValue("Environment");
 
         public bool IsProduction => Environment.Equals("PRODUCTION", StringComparison.OrdinalIgnoreCase);
@@ -26,6 +24,8 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
         public string MailContact => GetValue("MailContact");
 
         public string JsVersion => GetValue("JsVersion");
+
+        public bool IsLocal => Environment.Equals("LOCAL", StringComparison.OrdinalIgnoreCase);
 
         public string GetValue(string key) => ConfigurationManager.AppSettings[key];
     }

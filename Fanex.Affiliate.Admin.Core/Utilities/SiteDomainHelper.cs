@@ -12,10 +12,11 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
         [SuppressMessage("Sonar Code Smell", "S3995:UriReturnValuesShouldNotBeStrings", Justification = "Reviewed. Suppression is OK here.")]
         public static string GetRootUrl(Controller controller)
         {
+            var appSetting = DependencyResolver.Current.GetService<IAppSetting>();
             var requestUrl = controller.Request.Url;
 
             return GetScheme(controller.Request) + Uri.SchemeDelimiter + requestUrl.Host +
-                (requestUrl.IsDefaultPort ? string.Empty : ":" + requestUrl.Port) + controller.Url.Content("~/");
+                (requestUrl.IsDefaultPort || !appSetting.IsLocal ? string.Empty : ":" + requestUrl.Port) + controller.Url.Content("~/");
         }
 
         [SuppressMessage("Sonar Code Smell", "S3995:UriReturnValuesShouldNotBeStrings", Justification = "Reviewed. Suppression is OK here.")]

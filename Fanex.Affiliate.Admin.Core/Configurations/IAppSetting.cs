@@ -12,11 +12,11 @@
 
         string AsianAffSiteUrl { get; }
 
-        bool IsTesting { get; }
-
         string Environment { get; }
 
         bool IsProduction { get; }
+
+        bool IsLocal { get; }
 
         string CcMail { get; }
 
