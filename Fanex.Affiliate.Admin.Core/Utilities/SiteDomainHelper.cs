@@ -14,9 +14,10 @@ namespace Fanex.Affiliate.Admin.Core.Utilities
         {
             var appSetting = DependencyResolver.Current.GetService<IAppSetting>();
             var requestUrl = controller.Request.Url;
+            var isUatOrProEnv = string.Equals("UAT", appSetting.Environment, StringComparison.OrdinalIgnoreCase) || appSetting.IsProduction;
 
             return GetScheme(controller.Request) + Uri.SchemeDelimiter + requestUrl.Host +
-                (requestUrl.IsDefaultPort || !appSetting.IsLocal ? string.Empty : ":" + requestUrl.Port) + controller.Url.Content("~/");
+                (requestUrl.IsDefaultPort || isUatOrProEnv ? string.Empty : ":" + requestUrl.Port) + controller.Url.Content("~/");
         }
 
         [SuppressMessage("Sonar Code Smell", "S3995:UriReturnValuesShouldNotBeStrings", Justification = "Reviewed. Suppression is OK here.")]
