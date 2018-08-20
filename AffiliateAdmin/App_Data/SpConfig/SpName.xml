@@ -5,7 +5,7 @@
     <Setting Key="Aff_Admin_AffiliateInfo_Sel" SpName="Aff_Admin_AffiliateInfo_Sel_xtest" DbName="affiliate_12bet" />
   </Function>
   <Function Name="Commission">
-    <Setting Key="Aff_ProductList_Sel" SpName="Aff_ProductList_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_ProductList_Sel" SpName="Aff_ProductList_Sel_xtest" DbName="affiliate_12bet" />
     <Setting Key="Aff_Admin_CommGroup_Deductions_Sel" SpName="Aff_Admin_CommGroup_Deductions_Sel_xtest" DbName="affiliate_12bet" />
     <Setting Key="Aff_Admin_CommGroup_Sel" SpName="Aff_Admin_CommGroup_Sel_xtest" DbName="affiliate_12bet" />
     <Setting Key="Aff_Admin_CommGroup_Ins" SpName="Aff_Admin_CommGroup_Ins_xtest" DbName="affiliate_12bet" />
