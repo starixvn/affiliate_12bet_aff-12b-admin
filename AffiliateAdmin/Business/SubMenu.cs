@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Text;
-using AffiliateAdmin.Business.Constants;
+﻿using System.Text;
 using DNAide.Web;
 
 /// <summary>
@@ -8,25 +6,11 @@ using DNAide.Web;
 /// </summary>
 public class SubMenu
 {
-    public static string[] AffLink = new string[] { "../UserInfo/AffiliateList.aspx?status=approved&favor=1&isclk=1", "../UserInfo/AffiliateList.aspx?status=approved", "../UserInfo/AffiliateList.aspx?status=pending", "../UserInfo/AffiliateList.aspx?status=disapproved",
-                                                    "../UserInfo/AffiliateList.aspx?status=approved&isClosed=true", "../Payment/PaymentRequest.aspx", "../GroupSetting/GroupSetting.aspx", "../Others/EmailHistory.aspx", "javascript:Portal.handleClickMenu('Portal/Commission/Index');" };
-    public static string[] AffText = new string[] { Resources.Lang.MyFavorite, Resources.Lang.Approved, Resources.Lang.Pending, Resources.Lang.Disapproved, Resources.Lang.Closed, Resources.Lang.PaymentRequest, Resources.Lang.CommGroup, Resources.Lang.EmailHistory, "New Commission" };
-
-    public static string[] MediaAffLink = new string[] { "../UserInfo/MediaAffList.aspx?favor=1&isclk=1", "../UserInfo/MediaAffList.aspx", "../UserInfo/MediaAffList.aspx?isClosed=true", "../Report/MediaReportDetail.aspx",
-                                                    "../Report/AffiliateReport.aspx?type=2", "../Report/MemberStatisticsReport.aspx?type=2", "../Report/SignUpActive.aspx?type=2", "../Report/Commission.aspx?type=2" };
-    public static string[] MediaAffText = new string[] { Resources.Lang.MyFavorite, Resources.Lang.MediaAff, Resources.Lang.Closed, Resources.Lang.ReportDetails, Resources.Lang.AffiliateReport, Resources.Lang.MemberStatistics };
-
     public static string[] AffApprovedLink = new string[] { "../UserInfo/EarningsHistory.aspx", "../UserInfo/AffiliateUpd.aspx", "../UserInfo/note.aspx", "../UserInfo/PlayersDetail.aspx", "../UserInfo/Adjustment.aspx", "../UserInfo/MediaStatistics.aspx", "../UserInfo/MemberList.aspx", "../UserInfo/UserLog.aspx", "../UserInfo/MediaStatistics_New.aspx" };
     public static string[] AffApprovedText = new string[] { Resources.Lang.StatementHistory, Resources.Lang.Edit, Resources.Lang.Note, Resources.Lang.PlayersDetail, Resources.Lang.Adjustment, Resources.Lang.TrackingStatistics, Resources.Lang.Member, Resources.Lang.ViewLog, "Click statis New" };
 
     public static string[] AffPendingLink = new string[] { "AffiliateUpd.aspx?approved=0", "note.aspx?approved=0" };
     public static string[] AffPendingText = new string[] { Resources.Lang.Edit, Resources.Lang.Note };
-
-    public static string[] MediaCustomerLink = new string[] { "../UserInfo/EarningsHistory.aspx", "../UserInfo/AffiliateUpd.aspx", "../UserInfo/note.aspx", "../UserInfo/PlayersDetail.aspx", "../UserInfo/MediaGallery.aspx", "../UserInfo/MediaStatistics.aspx", "../UserInfo/MemberList.aspx", "../UserInfo/UserLog.aspx" };
-    public static string[] MediaCustomerText = new string[] { Resources.Lang.StatementHistory, Resources.Lang.Edit, Resources.Lang.Note, Resources.Lang.PlayersDetail, Resources.Lang.MediaGallery, Resources.Lang.TrackingStatistics, Resources.Lang.Member, Resources.Lang.ViewLog };
-
-    public static string[] AdminLink = new string[] { "ListUser.aspx", "ListDepartment.aspx" };
-    public static string[] AdminText = new string[] { Resources.Lang.AdministratorList, Resources.Lang.DepartmentList };
 
     public static string[] ReportLink = new string[]
         {
@@ -39,37 +23,6 @@ public class SubMenu
             Resources.Lang.ReportDetails,
             Resources.Lang.AffiliateReport
         };
-
-    public static string[] MemberLink
-    {
-        get
-        {
-            var links = new List<string> { "MemberListAll.aspx" };
-            if (Common.HasReadPermission(PermissionNames.ActiveMembers))
-            {
-                links.Add("MemberActiveList.aspx");
-            }
-
-            return links.ToArray();
-        }
-    }
-
-    public static string[] MemberText
-    {
-        get
-        {
-            var texts = new List<string> { Resources.Lang.Member };
-            if (Common.HasReadPermission(PermissionNames.ActiveMembers))
-            {
-                texts.Add(Resources.Lang.ActiveMember);
-            }
-
-            return texts.ToArray();
-        }
-    }
-
-    public static string[] DomainLink = new string[] { "AffiliateDomain.aspx", "12BetDomain.aspx", "DomainControl.aspx" };
-    public static string[] DomainText = new string[] { "Affiliate Domains", "12Bet Domains", "Domain Control" };
 
     //@VinhTrinh
     public static string GenSubMenu(string[] arrUrl, string[] arrText, int currMenu, int numRows, string strPageName, string iconFilePath)

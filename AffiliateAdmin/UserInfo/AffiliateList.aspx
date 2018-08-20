@@ -86,33 +86,8 @@
         }
         element.readOnly = false;
     }
-    //End favorite     
-    function ChangeGroup()
-    {
-        listChk = $$("div .chk");  
-        var i = 0;
-        var listAffID = "";
-        var count = 0;
-        var affid = 0;
-        for(i = 0; i < listChk.length; i++)
-        {
-            if (listChk[i].hasClassName("ic-check")) {
-                affid = listChk[i].id;
-                count++;
-            }
-        }
-        if (count == 1) {
-            ibcWnd.open("../GroupSetting/AssignGroup.aspx?affid=" + affid, 'Change Commission Group', 150, 50, 585, 270, 'class1', 'class2');
-        }
-        else if (count > 1) {
-            ibcWnd.open("../GroupSetting/AssignGroup.aspx", 'Change Commission Group', 150, 50, 585, 270, 'class1', 'class2');
-        }
-        else {
-            alert('Please select Affiliate(s) to change group!');
-        }
-            
-    }
-    //End change group block
+    //End favorite
+
     function CloseDiv() {
         $('divChangePass').style.display ='none';
     }
