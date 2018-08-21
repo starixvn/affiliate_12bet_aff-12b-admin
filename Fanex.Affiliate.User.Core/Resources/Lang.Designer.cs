@@ -1314,6 +1314,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Can I request for currency other than USD when withdrawing?.
+        /// </summary>
+        public static string CanIRequestForCurrency {
+            get {
+                return ResourceManager.GetString("CanIRequestForCurrency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot send mail.Please try again..
         /// </summary>
         public static string CannotSendmail {
@@ -2181,6 +2190,78 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 12BET Affiliate Program is a partnership program where you will earn commissions based on the wagering activity of players that you refer to 12BET.com from your Website via online or offline via referrals..
+        /// </summary>
+        public static string Desc12BetAffiliateProgram {
+            get {
+                return ResourceManager.GetString("Desc12BetAffiliateProgram", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes, the currencies offered are GBP, EUR, RMB, MYR, THB, IDR and VND. Respective exchange rate on payout date will be applied..
+        /// </summary>
+        public static string DescCanIRequestForCurrency {
+            get {
+                return ResourceManager.GetString("DescCanIRequestForCurrency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes, we rollover negative commission balances. In the event that you carry a negative commission balance at the end of a month, it will rollover until you have enough positive earnings to zero that balance out..
+        /// </summary>
+        public static string DescDoesNegativeBalance {
+            get {
+                return ResourceManager.GetString("DescDoesNegativeBalance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The cookies are overwritten to benefit the Last Affiliate when a Customer is referred..
+        /// </summary>
+        public static string DescDoYouRewardTheFirstAffiliate {
+            get {
+                return ResourceManager.GetString("DescDoYouRewardTheFirstAffiliate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can login to your 12BET affiliate account to check your commission stats in real-time which is available to you 24 hours a day, 7 days a week and 365 days per year..
+        /// </summary>
+        public static string DescHowCanICheck {
+            get {
+                return ResourceManager.GetString("DescHowCanICheck", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We employs state-of-the-art technology in our tracking system to ensure you receive credit for 100% of the traffic you send 12BET.com. Affiliates refer players by using their unique URL that is provided in the Media Gallery area. Through the use of cookies, visitors that click through an affiliate unique URL (banner, text link, email message etc) are tracked and credit is automatically given to the affiliate for players referred..
+        /// </summary>
+        public static string DescHowDoesTheSystemKeepTrack {
+            get {
+                return ResourceManager.GetString("DescHowDoesTheSystemKeepTrack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The 12BET Affiliate Program is free to join. Simply fill out our application form and you will be contacted within 3 business days regarding your acceptance into the program. If your application is accepted, you will receive an email containing your unique affiliate ID, giving you access to banners, text links, and other content and marketing tools to add to your website..
+        /// </summary>
+        public static string DescHowDoISignUp {
+            get {
+                return ResourceManager.GetString("DescHowDoISignUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A maximum of one withdrawal request can be made for each calendar month. Affiliates can request for a second settlement in a month subject to Affiliate Manager&apos;s approval. While we offer free withdrawal request however we will not be held responsible if the receiving financial institution or electronic wallets impose a fee of any kind at their end..
+        /// </summary>
+        public static string DescHowOftenCanIRequest {
+            get {
+                return ResourceManager.GetString("DescHowOftenCanIRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Description.
         /// </summary>
         public static string Description {
@@ -2195,6 +2276,69 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string DescWebsite {
             get {
                 return ResourceManager.GetString("DescWebsite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can request for a withdrawal through Moneybookers, Neteller, Wire Transfer or directly into your 12BET player account..
+        /// </summary>
+        public static string DescWhatAreTheWithdrawalMethods {
+            get {
+                return ResourceManager.GetString("DescWhatAreTheWithdrawalMethods", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes, now you can! If you think you have the contacts, you can easily create your own personalized page on our special Affiliate section and upload on it any of the approved marketing ideas or sports messages. Once done, you can immediately send the page link to any of your friends or contacts that are interested in sports or sports betting and when they click on the link, they become your referred members! For more details, please write to us at affiliates@12csd.com..
+        /// </summary>
+        public static string DescWhatIfDontHaveWebsite {
+            get {
+                return ResourceManager.GetString("DescWhatIfDontHaveWebsite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We do not tolerate spamming of any kind by our affiliate partners. If spamming by an affiliate is brought to our attention we will give the affiliate one warning (if judged to be a minor case). If the spamming does not stop the affiliate partner will be permanently banned from our 12BET Affiliate Program..
+        /// </summary>
+        public static string DescWhatIfYourPolicy {
+            get {
+                return ResourceManager.GetString("DescWhatIfYourPolicy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cookies are a general mechanism which server-side connections can use to both store and retrieve information on the client side of the connection. More specifically, they are small data files placed on the computers of visitors to 12BET.com from affiliated websites. These data files contain information 12BET.com use to track and credit its affiliates accurately for the traffic they send. Tracking via cookies can include, but is not limited to, lists of pages visited as well as date and time when certain pag [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string DescWhatIsACookie {
+            get {
+                return ResourceManager.GetString("DescWhatIsACookie", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The minimum amount of withdrawal request is USD$100..
+        /// </summary>
+        public static string DescWhatIsTheMinimumWithdrawal {
+            get {
+                return ResourceManager.GetString("DescWhatIsTheMinimumWithdrawal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to By accessing our Media Gallery section you will be available to choose your preferred banners as well as text link for your Website..
+        /// </summary>
+        public static string DescWhereDoIGetBannersAndContent {
+            get {
+                return ResourceManager.GetString("DescWhereDoIGetBannersAndContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes. We are able to track visitors from our affiliate&apos;s website that don&apos;t sign up right away but, return to 12BET.com at a later date &amp; sign-up. We set our protection period for 90 days to cover the first referring affiliate. The technology used to manage this is based on cookies..
+        /// </summary>
+        public static string DescWillYouTrackAndGiveMeCredit {
+            get {
+                return ResourceManager.GetString("DescWillYouTrackAndGiveMeCredit", resourceCulture);
             }
         }
         
@@ -3673,6 +3817,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to How does the system keep track of my players?.
+        /// </summary>
+        public static string HowDoesTheSystemKeepTrack {
+            get {
+                return ResourceManager.GetString("HowDoesTheSystemKeepTrack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to How do I sign up with 12BET Affiliate Program?.
         /// </summary>
         public static string HowDoISignUp {
@@ -4879,6 +5032,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Marketing {
             get {
                 return ResourceManager.GetString("Marketing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Marketing &amp; Tracking.
+        /// </summary>
+        public static string MarketingAndTracking {
+            get {
+                return ResourceManager.GetString("MarketingAndTracking", resourceCulture);
             }
         }
         
@@ -9017,11 +9179,47 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to What are the withdrawal methods available to me?.
+        /// </summary>
+        public static string WhatAreTheWithdrawalMethods {
+            get {
+                return ResourceManager.GetString("WhatAreTheWithdrawalMethods", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What if I don&apos;t have a Website, can I still join?.
+        /// </summary>
+        public static string WhatIfDontHaveWebsite {
+            get {
+                return ResourceManager.GetString("WhatIfDontHaveWebsite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to What if I don&apos;t have a Website, can I still join?.
         /// </summary>
         public static string WhatIfIDontHave {
             get {
                 return ResourceManager.GetString("WhatIfIDontHave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What is your policy on spamming?.
+        /// </summary>
+        public static string WhatIfYourPolicy {
+            get {
+                return ResourceManager.GetString("WhatIfYourPolicy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What is 12BET Affiliate Program?.
+        /// </summary>
+        public static string WhatIs12BETAffiliateProgram {
+            get {
+                return ResourceManager.GetString("WhatIs12BETAffiliateProgram", resourceCulture);
             }
         }
         
@@ -9076,6 +9274,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string WhereDoIGetBanners {
             get {
                 return ResourceManager.GetString("WhereDoIGetBanners", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Where do I get banners and content?.
+        /// </summary>
+        public static string WhereDoIGetBannersAndContent {
+            get {
+                return ResourceManager.GetString("WhereDoIGetBannersAndContent", resourceCulture);
             }
         }
         

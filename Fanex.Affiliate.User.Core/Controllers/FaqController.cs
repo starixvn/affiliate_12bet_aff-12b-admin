@@ -14,7 +14,7 @@
 
         [HttpGet]
         [ChildActionOnly]
-        [OutputCache(Duration = 86400, VaryByParam = "none")]
+        [OutputCache(Duration = 86400, VaryByParam = "none", VaryByCustom = "language")]
         public ActionResult Content()
         {
             return PartialView("~/Views/Faq/_Content.cshtml");

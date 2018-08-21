@@ -749,7 +749,7 @@ Xin Cảm Ơn!</value>
     <value>12. Tuyên bố miễn trừ trách nhiệm</value>
   </data>
   <data name="DoesNegativeBalance" xml:space="preserve">
-    <value>Số dư bằng âm sẽ chuyển tiếp không?</value>
+    <value>Số dư bằng âm sẽ chuyển tiếp không? </value>
   </data>
   <data name="DominicaCommonwealthof" xml:space="preserve">
     <value>Liên bang Dominica </value>
@@ -770,7 +770,7 @@ Xin Cảm Ơn!</value>
     <value>Bạn có câu hỏi nào không?</value>
   </data>
   <data name="DoYouRewardTheFirstAffiliate" xml:space="preserve">
-    <value>Bạn có tặng thưởng cho hội viên đầu tiên hay hội viên cuối cùng vì đã giới thiệu khách hàng không?</value>
+    <value>Bạn có tặng thưởng cho hội viên đầu tiên hay hội viên cuối cùng vì đã giới thiệu khách hàng không? </value>
   </data>
   <data name="Duetosecurityr" xml:space="preserve">
     <value>Vì lý do bảo mật, chúng tôi phải cung cấp cho bạn mật khẩu mới (bạn có thể thay đổi mật khẩu này vào bất kỳ lúc nào sau đó).</value>
@@ -1167,7 +1167,7 @@ Xin Cảm Ơn!</value>
     <value>Là hội viên của 12Bet.com, tất cả những gì bạn cần làm là dẫn khách truy cập của bạn tới trang web của chúng tôi sử dụng đoạn mã theo dõi đặc biệt mà bạn có thể đặt vào trang web của mình</value>
   </data>
   <data name="HowCanICheck" xml:space="preserve">
-    <value>Làm thế nào tôi có thể kiểm tra số tiền mình đã kiếm được?</value>
+    <value>Làm thế nào tôi có thể kiểm tra số tiền mình đã kiếm được? </value>
   </data>
   <data name="HowDoesItWork" xml:space="preserve">
     <value>Cách thức hoạt động? Ví dụ:</value>
@@ -1176,7 +1176,7 @@ Xin Cảm Ơn!</value>
     <value>Hệ thống theo dõi người chơi của tôi như thế nào?</value>
   </data>
   <data name="HowDoISignUp" xml:space="preserve">
-    <value>Tôi làm cách nào để đăng ký chương trình hội viên 12BET?</value>
+    <value>Tôi làm cách nào để đăng ký chương trình Đại lý 12BET?</value>
   </data>
   <data name="Howeveryoucanvisit" xml:space="preserve">
     <value>Tuy nhiên, bạn có thể truy cập {url} để thay đổi mật khẩu bất cứ lúc nào</value>
@@ -1185,7 +1185,7 @@ Xin Cảm Ơn!</value>
     <value>Số tiền bạn kiếm được tùy thuộc vào lượng lưu lượng bạn có thể gửi tới từ trang web của mình. Công việc của chúng tôi là hướng dẫn họ qua quá trình đăng ký, để họ thực hiện lần gửi tiền đầu tiên và duy trì việc hợp tác của họ với những khoản tiền thưởng và tiền tặng hấp dẫn. </value>
   </data>
   <data name="HowOftenCanIRequest" xml:space="preserve">
-    <value>Tôi có thể bao lâu rút tiền một lần?</value>
+    <value>Tôi có thể bao lâu rút tiền một lần? </value>
   </data>
   <data name="HowToBet" xml:space="preserve">
     <value>Cách đặt cược</value>
@@ -2543,7 +2543,7 @@ Một trong những người quản lý tài khoản hội viên của chúng t�
     <value>Cookie là gì?</value>
   </data>
   <data name="WhatIsTheMinimumWithdrawal" xml:space="preserve">
-    <value>Mức hoa hồng thấp nhất có thể rút là bao nhiêu?</value>
+    <value>Mức hoa hồng thấp nhất có thể rút là bao nhiêu? </value>
   </data>
   <data name="WhatIsYourPolicy" xml:space="preserve">
     <value>Chính sách gửi thư rác của bạn là như thế nào?</value>
@@ -2808,5 +2808,77 @@ Một trong những người quản lý tài khoản hội viên của chúng t�
   </data>
   <data name="ValidationCodeLabel" xml:space="preserve">
     <value>Mã Xác Thực</value>
+  </data>
+  <data name="WhatIs12BETAffiliateProgram" xml:space="preserve">
+    <value>Chương trình Đại lý 12BET là gì? </value>
+  </data>
+  <data name="Desc12BetAffiliateProgram" xml:space="preserve">
+    <value>Chương trình Đại lý 12BET là một chương trình cộng tác nơi bạn có thể kiếm được hoa hồng dựa trên hoạt động cá cược của người chơi mà bạn giới thiệu tới 12Bet.com từ trang web của bạn thông qua hình thức giới thiệu trực tuyến hoặc ngoại tuyến.</value>
+  </data>
+  <data name="DescHowDoISignUp" xml:space="preserve">
+    <value>Miễn phí khi tham gia chương trình đại lý 12BET. Chỉ cần điền vào mẫu đơn của chúng tôi bạn sẽ được liên hệ để chấp nhận tham gia chương trình trong vòng 3 ngày làm việc. Nếu đơn của bạn được chấp nhận, bạn sẽ nhận được một email có chứa ID hội viên duy nhất cho phép bạn truy cập vào các biểu ngữ, liên kết văn bản và nội dung khác cũng như công cụ tiếp thị để thêm vào trang web của bạn.</value>
+  </data>
+  <data name="WhatIfDontHaveWebsite" xml:space="preserve">
+    <value>Nếu tôi không có trang web, tôi có thể tham gia không? </value>
+  </data>
+  <data name="DescWhatIfDontHaveWebsite" xml:space="preserve">
+    <value>Vâng bạn có thể tham gia, nếu bạn nghĩ rằng bạn có khách hàng, bạn có thể dễ dàng tạo ra trang web cá nhân ở trang liên kết đặc biệt của chúng tôi và tải lên bất cứ ý tưởng tiếp thị hoặc tin tức thể thao. Sau khi thực hiện, bạn ngay lập tức có thể gửi trang liên kết cho bạn bè hoặc địa chỉ liên lạc bất kỳ quan tâm đến thể thao hoặc cá cược thể thao và khi họ nhấp vào đường link liên kết, họ sẽ trở thành thành viên của bạn! Hãy gửi email tới affiliates@12csd.com để biết thêm chi tiết khác.</value>
+  </data>
+  <data name="MarketingAndTracking" xml:space="preserve">
+    <value>Tiếp thị &amp; Theo dõi</value>
+  </data>
+  <data name="WhereDoIGetBannersAndContent" xml:space="preserve">
+    <value>Tôi lấy biểu ngữ và nội dung ở đâu? </value>
+  </data>
+  <data name="DescWhereDoIGetBannersAndContent" xml:space="preserve">
+    <value>Bằng cách truy cập phần "Thư viện media" của chúng tôi, bạn sẽ có thể lựa chọn biểu ngữ mà bạn thích cũng như các liên kết văn bản cho trang web của mình.</value>
+  </data>
+  <data name="HowDoesTheSystemKeepTrack" xml:space="preserve">
+    <value>Hệ thống theo dõi người chơi của tôi như thế nào? </value>
+  </data>
+  <data name="DescHowDoesTheSystemKeepTrack" xml:space="preserve">
+    <value>Chúng tôi sử dụng hệ thống theo dõi với công nghệ tiên tiến để đảm bảo bạn nhận được tín dụng cho 100% lưu lượng truy cập bạn gửi tới 12Bet.com. Các hội viên sử dụng URL duy nhất của mình được cung cấp trong khu vực "Thư viện media" để chỉ dẫn cho người chơi. Thông qua sử dụng cookie, khách truy cập nhấp vào URL duy nhất của một hội viên (biểu ngữ, liên kết văn bản, thông báo email, v.v...) được theo dõi và tín dụng tự động được cung cấp cho hội viên đó vì đã giới thiệu người chơi.</value>
+  </data>
+  <data name="DescWillYouTrackAndGiveMeCredit" xml:space="preserve">
+    <value>Đúng. Chúng tôi có thể theo dõi khách truy cập không đăng ký ngay nhưng sau đó trở lại 12Bet.com &amp; đăng ký từ trang web hội viên của chúng tôi. Chúng tôi đặt giai đoạn bảo vệ là 90 ngày để bảo vệ hội viên giới thiệu đầu tiên. Công nghệ được sử dụng để quản lý việc này dựa trên các cookie.</value>
+  </data>
+  <data name="DescWhatIsACookie" xml:space="preserve">
+    <value>Cookie là một cơ chế chung mà các kết nối về phía máy chủ có thể sử dụng để lưu trữ và truy xuất thông tin từ các kết nối về phía khách hàng. Cụ thể hơn, chúng là những tệp dữ liệu nhỏ được đặt trên máy tính của khách truy cập 12BET.com từ các trang web được liên kết. Các tệp dữ liệu này chứa thông tin mà 12BET.com sử dụng để theo dõi và ghi có cho các hội viên của mình một cách chính xác cho lưu lượng mà họ gửi tới. Việc theo dõi thông qua cookie có thể bao gồm, nhưng không giới hạn đối với các trang được truy cập cũng như ngày và giờ mà các trang cụ thể đó được truy cập.</value>
+  </data>
+  <data name="DescDoYouRewardTheFirstAffiliate" xml:space="preserve">
+    <value>Các cookie được ghi đè để làm lợi cho hội viên cuối cùng khi một khách hàng được giới thiệu.</value>
+  </data>
+  <data name="DescHowCanICheck" xml:space="preserve">
+    <value>Bạn có thể đăng nhập vào tài khoản hội viên 12BET để kiểm tra số liệu thống kê tiền hoa hồng theo thời gian thực hiện khả dụng với bạn trong vòng 24 giờ một ngày, 7 ngày một tuần và 365 ngày một năm.</value>
+  </data>
+  <data name="WhatIfYourPolicy" xml:space="preserve">
+    <value>Chính sách gửi thư rác của bạn là như thế nào? </value>
+  </data>
+  <data name="DescWhatIfYourPolicy" xml:space="preserve">
+    <value>Chúng tôi không cho phép các hội viên của mình gửi thư rác dưới bất kỳ hình thức nào. Nếu chúng tôi phát hiện ra một hội viên gửi thư rác, chúng tôi sẽ cảnh cáo hội viên đó (nếu xét thấy đó là trường hợp nhẹ). Nếu việc gửi thư rác vẫn tiếp tục, hội viên đó sẽ bị cấm tham gia chương trình đại lý 12BET của chúng tôi vĩnh viễn.</value>
+  </data>
+  <data name="CommissionPayment" xml:space="preserve">
+    <value>Rút tiền hoa hồng</value>
+  </data>
+  <data name="WhatAreTheWithdrawalMethods" xml:space="preserve">
+    <value>Tôi có thể sử dụng những phương thức nào rút tiền? </value>
+  </data>
+  <data name="DescWhatAreTheWithdrawalMethods" xml:space="preserve">
+    <value>Bạn có thể thông qua Moneybookers, Neteller, Wire Transfer để rút tiền,hoặc có thể trực tiếp chuyển tiền hoa hồng vào tài khoản cá cược 12BET.</value>
+  </data>
+  <data name="CanIRequestForCurrency" xml:space="preserve">
+    <value>Ngoài USD ra, tôi có thể yêu cầu rút tiền bằng tiền tệ khác không? </value>
+  </data>
+  <data name="DescCanIRequestForCurrency" xml:space="preserve">
+    <value>Vâng. Chúng tôi có cung cấp tiền tệ như GBP, EUR, RMB, MYR,THB, IDR, VND. Tỷ lệ tiền tệ sẽ được quy đổi căn cứ vào tỷ lệ ngoại tệ ngày mà bạn rút tiền.</value>
+  </data>
+  <data name="DescWhatIsTheMinimumWithdrawal" xml:space="preserve">
+    <value>Số tiền yêu cầu rút tối thiểu là 100USD.</value>
+  </data>
+  <data name="DescDoesNegativeBalance" xml:space="preserve">
+    <value>Vâng ,chúng tôi sẽ chuyển tiếp số dư bằng âm đã tổng kết. Ví dụ đến cuối tháng tổng kết số dư trong tài khoản của bạn là số âm, số tiền này sẽ chuyển tiếp đến tháng sau, cho đến khi tiền hoa hồng bạn kiếm được là số dương có thể làm cho số âm đó thành 0.</value>
+  </data>
+  <data name="DescHowOftenCanIRequest" xml:space="preserve">
+    <value>Hội viên chỉ có thể thực hiện rút tiền một lần vào mỗi tháng. Nhưng nếu được sự chấp thuận của giám đốc bộ phận Đại lý 12BET, bạn cũng có thể trong vòng một tháng rút hai lần tiền hoa hồng. Hiện tại phục vụ rút tiền của chúng tôi hoàn toàn miễn phí, nhưng chúng tôi sẽ không chi trả bất kỳ phí thủ tục hoặc phí phát sinh nào khác.</value>
   </data>
 </root>
