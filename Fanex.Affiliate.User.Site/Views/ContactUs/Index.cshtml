@@ -36,9 +36,7 @@
                         <img class="img-responsive" src="~/www/build/styles/Images/contact-us/Support_girl.png" />
                     </div>
                     <div class="date-time-info">
-                        <p class="text-center">Monday - Saturday</p>
-                        <p class="text-center">09:00 am - 06:00 pm</p>
-                        <p class="text-center">(GMT +8)</p>
+                        <p class="text-center">@Html.Raw(Lang.SupportTime)</p>
                     </div>
                 </div>
             </div>
@@ -51,7 +49,7 @@
                                 <img src="~/www/build/styles/Images/contact-us/english_lang.png" />
                             </div>
                             <div class="info">
-                                <p class="language">English Support</p>
+                                <p class="language">@Lang.EnglishSupport</p>
                                 <a class="skype-info" href="skype:affiliate12bet">
                                     <img class="skype-icon" src="~/www/build/styles/Images/contact-us/skype_icon.png" />
                                     <span>affiliate12bet</span>
@@ -66,7 +64,7 @@
                                 <img src="~/www/build/styles/Images/contact-us/China_lang.png" />
                             </div>
                             <div class="info">
-                                <p class="language">China Support</p>
+                                <p class="language">@Lang.ChinaSupport</p>
                                 <a class="skype-info" href="skype:18064120343">
                                     <img class="skype-icon" src="~/www/build/styles/Images/contact-us/skype_icon.png" />
                                     <span>18064120343</span>
@@ -83,7 +81,7 @@
                                 <img src="~/www/build/styles/Images/contact-us/indonesian_lang.png" />
                             </div>
                             <div class="info">
-                                <p class="language">Indonesia Support</p>
+                                <p class="language">@Lang.IndonesiaSupport</p>
                                 <a class="skype-info" href="live:aff.12betindo">
                                     <img class="skype-icon" src="~/www/build/styles/Images/contact-us/skype_icon.png" />
                                     <span>live:aff.12betindo</span>
@@ -98,7 +96,7 @@
                                 <img src="~/www/build/styles/Images/contact-us/thailand_lang.png" />
                             </div>
                             <div class="info">
-                                <p class="language">Thailand Support</p>
+                                <p class="language">@Lang.ThailandSupport</p>
                                 <a class="skype-info" href="skype:th.affiliate12bet">
                                     <img class="skype-icon" src="~/www/build/styles/Images/contact-us/skype_icon.png" />
                                     <span>th.affiliate12bet</span>
@@ -115,7 +113,7 @@
                                 <img src="~/www/build/styles/Images/contact-us/vietnam_lang.png" />
                             </div>
                             <div class="info">
-                                <p class="language">Vietnam Support</p>
+                                <p class="language">@Lang.VietnamSupport</p>
                                 <a class="skype-info" href="skype:crmsupport.1">
                                     <img class="skype-icon" src="~/www/build/styles/Images/contact-us/skype_icon.png" />
                                     <span>crmsupport.1</span>
@@ -130,7 +128,7 @@
                                 <img src="~/www/build/styles/Images/contact-us/india_lang.png" />
                             </div>
                             <div class="info">
-                                <p class="language">Indian Support</p>
+                                <p class="language">@Lang.IndianSupport</p>
                                 <a class="skype-info" href="skype:aff12csdindia">
                                     <img class="skype-icon" src="~/www/build/styles/Images/contact-us/skype_icon.png" />
                                     <span>aff12csdindia</span>
@@ -151,7 +149,7 @@
         <div class="alert alert-danger" role="alert" id="messageError" style="display: none"></div>
 
         <div id="mainContent">
-            <p class="intro">Please direct any comments or questions to <a href="mailto:affiliate@12csd.com">affiliate@12csd.com</a>, or using the form below.</p>
+            <p class="intro">@Html.Raw(string.Format(Lang.PleaseDirectAnyComment, "<a href=\"mailto: affiliate@12csd.com\">affiliate@12csd.com</a>"))</p>
             <form id="contactForm" class="form">
                 @Html.AntiForgeryToken()
                 <div class="form-group">
@@ -163,7 +161,7 @@
                         </div>
                     </div>
                     <div class="group group-small">
-                        <label for="Affiliate">@Lang.Affiliate</label>
+                        <label for="Affiliate">@Lang.AffiliateID</label>
                         <input class="field" type="text" name="Affiliate" id="Affiliate" value="@affiliate" />
                     </div>
                 </div>
@@ -194,7 +192,7 @@
                 </div>
                 <div class="form-group">
                     <div class="group group-small captcha">
-                        <label class="require" for="Captcha">@Lang.Validation</label>
+                        <label class="require" for="Captcha">@Lang.ValidationCodeLabel</label>
                         <input class="field" type="text" name="Captcha" id="Captcha" autocomplete="off" />
                         <div class="validation-input">
                             <span class="help-block hide">@Lang.ErrmsgEntryValidCode</span>

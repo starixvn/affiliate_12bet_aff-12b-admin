@@ -1557,6 +1557,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to China Support.
+        /// </summary>
+        public static string ChinaSupport {
+            get {
+                return ResourceManager.GetString("ChinaSupport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 简体中文.
         /// </summary>
         public static string ChineseSimplified {
@@ -3891,6 +3900,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Indian Support.
+        /// </summary>
+        public static string IndianSupport {
+            get {
+                return ResourceManager.GetString("IndianSupport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Indonesia .
         /// </summary>
         public static string Indonesia {
@@ -3905,6 +3923,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Indonesian {
             get {
                 return ResourceManager.GetString("Indonesian", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Indonesia Support.
+        /// </summary>
+        public static string IndonesiaSupport {
+            get {
+                return ResourceManager.GetString("IndonesiaSupport", resourceCulture);
             }
         }
         
@@ -6215,6 +6242,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please direct any comments or questions to {0}, or using the form below..
+        /// </summary>
+        public static string PleaseDirectAnyComment {
+            get {
+                return ResourceManager.GetString("PleaseDirectAnyComment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please note.
         /// </summary>
         public static string PleaseNote {
@@ -7574,6 +7610,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Monday - Saturday&lt;br&gt;09:00 am - 06:00 pm&lt;br&gt;(GMT +8).
+        /// </summary>
+        public static string SupportTime {
+            get {
+                return ResourceManager.GetString("SupportTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Suriname .
         /// </summary>
         public static string Suriname {
@@ -7823,6 +7868,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Thailand {
             get {
                 return ResourceManager.GetString("Thailand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thailand Support.
+        /// </summary>
+        public static string ThailandSupport {
+            get {
+                return ResourceManager.GetString("ThailandSupport", resourceCulture);
             }
         }
         
@@ -8576,6 +8630,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Validation Code.
+        /// </summary>
+        public static string ValidationCodeLabel {
+            get {
+                return ResourceManager.GetString("ValidationCodeLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Venezuela .
         /// </summary>
         public static string Venezuela {
@@ -8617,6 +8680,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string VietnameseSupport {
             get {
                 return ResourceManager.GetString("VietnameseSupport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vietnam Support.
+        /// </summary>
+        public static string VietnamSupport {
+            get {
+                return ResourceManager.GetString("VietnamSupport", resourceCulture);
             }
         }
         

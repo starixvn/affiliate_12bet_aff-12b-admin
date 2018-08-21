@@ -3294,4 +3294,28 @@ One of our Affiliate Accounts Manager will be contacting you by email within 3 b
   <data name="Product12AMBER" xml:space="preserve">
     <value>12AMBER (BETSOFT)</value>
   </data>
+  <data name="SupportTime" xml:space="preserve">
+    <value>Monday - Saturday&lt;br&gt;09:00 am - 06:00 pm&lt;br&gt;(GMT +8)</value>
+  </data>
+  <data name="ChinaSupport" xml:space="preserve">
+    <value>China Support</value>
+  </data>
+  <data name="IndonesiaSupport" xml:space="preserve">
+    <value>Indonesia Support</value>
+  </data>
+  <data name="ThailandSupport" xml:space="preserve">
+    <value>Thailand Support</value>
+  </data>
+  <data name="VietnamSupport" xml:space="preserve">
+    <value>Vietnam Support</value>
+  </data>
+  <data name="IndianSupport" xml:space="preserve">
+    <value>Indian Support</value>
+  </data>
+  <data name="PleaseDirectAnyComment" xml:space="preserve">
+    <value>Please direct any comments or questions to {0}, or using the form below.</value>
+  </data>
+  <data name="ValidationCodeLabel" xml:space="preserve">
+    <value>Validation Code</value>
+  </data>
 </root>

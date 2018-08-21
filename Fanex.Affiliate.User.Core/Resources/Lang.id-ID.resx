@@ -803,7 +803,7 @@ Terima Kasih</value>
     <value>Alamat Email</value>
   </data>
   <data name="Email1" xml:space="preserve">
-    <value>Email</value>
+    <value>Alamat Email</value>
   </data>
   <data name="Emailaddressest" xml:space="preserve">
     <value>Alamat Email yang Anda masukkan tidak cocok.</value>
@@ -830,7 +830,7 @@ Terima Kasih</value>
     <value>English_Euro</value>
   </data>
   <data name="EnglishSupport" xml:space="preserve">
-    <value>Inggris</value>
+    <value>Bantuan Dalam Bahasa Inggris</value>
   </data>
   <data name="Eritrea" xml:space="preserve">
     <value>Eritrea </value>
@@ -1623,7 +1623,7 @@ Terima Kasih</value>
     <value>Belanda </value>
   </data>
   <data name="NetWinLoss" xml:space="preserve">
-    <value>Kemenangan bersih perusahaan sebulan (CNW)($)</value>
+    <value>Pendapatan Bersih Perusahaan Dalam Satu Bulan (CNW)($)</value>
   </data>
   <data name="NewCaledonia" xml:space="preserve">
     <value>Kaledonia Baru </value>
@@ -1904,8 +1904,7 @@ Terima Kasih</value>
     <value>{num} anggota layak.</value>
   </data>
   <data name="QualifyingMem" xml:space="preserve">
-    <value>Anggota yang
-Memenuhi syarat</value>
+    <value>Member Yang Memenuhi Syarat</value>
   </data>
   <data name="Racebook" xml:space="preserve">
     <value>Buku balapan</value>
@@ -1968,7 +1967,7 @@ Memenuhi syarat</value>
     <value>Bidang bertanda &lt;font color="red"&gt;*&lt;/font&gt; harus diisi</value>
   </data>
   <data name="Reset" xml:space="preserve">
-    <value>Setel Ulang</value>
+    <value>Reset</value>
   </data>
   <data name="ResponOfTheAff" xml:space="preserve">
     <value>1. Tanggung Jawab Afiliasi</value>
@@ -2175,7 +2174,7 @@ Memenuhi syarat</value>
     <value>Afiliasi 12Bet - Kata sandi baru Anda</value>
   </data>
   <data name="Submit" xml:space="preserve">
-    <value>Ajukan</value>
+    <value>Kirim</value>
   </data>
   <data name="Sudan" xml:space="preserve">
     <value>Sudan </value>
@@ -2784,5 +2783,38 @@ Salah satu Manajer Rekening Afiliasi kami akan menghubungi Anda melalui email da
   </data>
   <data name="Product12AMBER" xml:space="preserve">
     <value>12AMBER (BETSOFT)</value>
+  </data>
+  <data name="RevenueShare" xml:space="preserve">
+    <value>Pembagian Hasil</value>
+  </data>
+  <data name="AllProducts" xml:space="preserve">
+    <value>Semua Produk</value>
+  </data>
+  <data name="MoreDetailProduct" xml:space="preserve">
+    <value>Info Lengkap Mengenai Produk 12BET</value>
+  </data>
+  <data name="SupportTime" xml:space="preserve">
+    <value>Senin - Sabtu&lt;br&gt;8:00 - 17:00 WIB</value>
+  </data>
+  <data name="ChinaSupport" xml:space="preserve">
+    <value>Bantuan Dalam Bahasa Cina</value>
+  </data>
+  <data name="IndonesiaSupport" xml:space="preserve">
+    <value>Bantuan Dalam Bahasa Indonesia</value>
+  </data>
+  <data name="ThailandSupport" xml:space="preserve">
+    <value>Bantuan Dalam Bahasa Thailand</value>
+  </data>
+  <data name="VietnamSupport" xml:space="preserve">
+    <value>Bantuan Dalam Bahasa Vietnam</value>
+  </data>
+  <data name="IndianSupport" xml:space="preserve">
+    <value>Bantuan Dalam Bahasa India</value>
+  </data>
+  <data name="PleaseDirectAnyComment" xml:space="preserve">
+    <value>Silakan kirimkan komentar atau pertanyaan Anda ke alamat email {0} atau dengan mengisi form di bawah ini.</value>
+  </data>
+  <data name="ValidationCodeLabel" xml:space="preserve">
+    <value>Validasi</value>
   </data>
 </root>

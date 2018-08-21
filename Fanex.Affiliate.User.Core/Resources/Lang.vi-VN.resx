@@ -163,7 +163,7 @@
     <value>Mức thu nhập của hội viên</value>
   </data>
   <data name="AffiliateID" xml:space="preserve">
-    <value>Mã hội viên</value>
+    <value>Mã Số Đại Lý </value>
   </data>
   <data name="Affiliatemustensure" xml:space="preserve">
     <value>6. Hội viên phải đảm bảo rằng mọi tài liệu được đăng trên trang web của họ đều hợp pháp và không vi phạm bản quyền hay bất kỳ quyền nào khác.</value>
@@ -821,7 +821,7 @@ Xin Cảm Ơn!</value>
     <value>English_Euro</value>
   </data>
   <data name="EnglishSupport" xml:space="preserve">
-    <value>Tiếng Anh</value>
+    <value>Hỗ trợ tiếng Anh</value>
   </data>
   <data name="Eritrea" xml:space="preserve">
     <value>Eritrea </value>
@@ -1581,7 +1581,7 @@ Xin Cảm Ơn!</value>
     <value>MYR (Đồng Ringgit của Malaysia)</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Tên</value>
+    <value>Họ Tên</value>
   </data>
   <data name="NameIsInvalid" xml:space="preserve">
     <value>Tên không hợp lệ</value>
@@ -1614,7 +1614,7 @@ Xin Cảm Ơn!</value>
     <value>Hà Lan </value>
   </data>
   <data name="NetWinLoss" xml:space="preserve">
-    <value>Tổng lợi nhuận thực trong tháng (CNW)($)</value>
+    <value>Lợi Nhuận Ròng Mỗi Tháng (CNW)($)</value>
   </data>
   <data name="NewCaledonia" xml:space="preserve">
     <value>New Caledonia </value>
@@ -1895,7 +1895,7 @@ Xin Cảm Ơn!</value>
     <value>{num} thành viên đủ tiêu chuẩn.</value>
   </data>
   <data name="QualifyingMem" xml:space="preserve">
-    <value>Thành viên hợp lệ</value>
+    <value>Thành Viên Hợp Lệ Mỗi Tháng / Sản Phẩm</value>
   </data>
   <data name="Racebook" xml:space="preserve">
     <value>Đua Ngựa</value>
@@ -1958,7 +1958,7 @@ Xin Cảm Ơn!</value>
     <value>Các trường có dấu &lt;font color="red"&gt;*&lt;/font&gt; phải được hoàn tất</value>
   </data>
   <data name="Reset" xml:space="preserve">
-    <value>Nhập lại</value>
+    <value>Xóa</value>
   </data>
   <data name="ResponOfTheAff" xml:space="preserve">
     <value>1. Trách nhiệm của hội viên</value>
@@ -2153,7 +2153,7 @@ Xin Cảm Ơn!</value>
     <value>Trạng thái</value>
   </data>
   <data name="Subject" xml:space="preserve">
-    <value>Tiêu đề</value>
+    <value>Tiêu Đề</value>
   </data>
   <data name="SubjectForgetPass" xml:space="preserve">
     <value>Hội viên 12BET - Chi tiết đăng nhập của bạn</value>
@@ -2165,7 +2165,7 @@ Xin Cảm Ơn!</value>
     <value>Hội viên 12BET - Mật khẩu mới của bạn</value>
   </data>
   <data name="Submit" xml:space="preserve">
-    <value>Thực hiện</value>
+    <value>Gửi</value>
   </data>
   <data name="Sudan" xml:space="preserve">
     <value>Sudan </value>
@@ -2302,7 +2302,7 @@ Một trong những người quản lý tài khoản hội viên của chúng t�
     <value>Tên người dùng này không khả dụng</value>
   </data>
   <data name="Tier" xml:space="preserve">
-    <value>Cấp</value>
+    <value>Cấp Bậc</value>
   </data>
   <data name="TitelForgetPass" xml:space="preserve">
     <value>Mật khẩu mới sẽ được gửi tới địa chỉ email mà bạn đã cung cấp.
@@ -2775,5 +2775,38 @@ Một trong những người quản lý tài khoản hội viên của chúng t�
   </data>
   <data name="Product12AMBER" xml:space="preserve">
     <value>12AMBER (BETSOFT)</value>
+  </data>
+  <data name="RevenueShare" xml:space="preserve">
+    <value>Doanh Thu Thuần</value>
+  </data>
+  <data name="AllProducts" xml:space="preserve">
+    <value>Tất Cả Sản Phẩm</value>
+  </data>
+  <data name="MoreDetailProduct" xml:space="preserve">
+    <value>Xem Danh Sách Sản Phẩm 12BET</value>
+  </data>
+  <data name="SupportTime" xml:space="preserve">
+    <value>09:00 - 18:00 (GMT+8)&lt;br&gt;Thứ Hai - Thứ Bảy</value>
+  </data>
+  <data name="ChinaSupport" xml:space="preserve">
+    <value>Hỗ trợ tiếng Trung</value>
+  </data>
+  <data name="IndonesiaSupport" xml:space="preserve">
+    <value>Hỗ trợ tiếng Bahasa - Indo</value>
+  </data>
+  <data name="ThailandSupport" xml:space="preserve">
+    <value>Hỗ trợ tiếng Thái</value>
+  </data>
+  <data name="VietnamSupport" xml:space="preserve">
+    <value>Hỗ trợ tiếng Việt</value>
+  </data>
+  <data name="IndianSupport" xml:space="preserve">
+    <value>Hỗ trợ tiếng Ấn Độ</value>
+  </data>
+  <data name="PleaseDirectAnyComment" xml:space="preserve">
+    <value>Mọi thắc mắc về chương trình đại lý 12BET, vui lòng gửi về {0} hoặc điền chi tiết vào hộp thư bên dưới:</value>
+  </data>
+  <data name="ValidationCodeLabel" xml:space="preserve">
+    <value>Mã Xác Thực</value>
   </data>
 </root>

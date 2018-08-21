@@ -163,7 +163,7 @@
     <value>合作夥伴收入</value>
   </data>
   <data name="AffiliateID" xml:space="preserve">
-    <value>合作夥伴用戶名</value>
+    <value>合作夥伴號碼</value>
   </data>
   <data name="Affiliatemustensure" xml:space="preserve">
     <value>6.加盟商必須確保任何出現在他們網站的素材是合法的，並且不會侵犯版權或破壞其他權利。</value>
@@ -622,7 +622,7 @@
     <value>如有任何意見或問題，請直接發電郵到{email}或填寫以下的表格。</value>
   </data>
   <data name="ContactUs" xml:space="preserve">
-    <value>聯絡我們</value>
+    <value>聯繫我們</value>
   </data>
   <data name="ContactusComment" xml:space="preserve">
     <value>如您有任何問題或建議，歡迎隨時發送郵件至</value>
@@ -823,7 +823,7 @@
     <value>English_Euro</value>
   </data>
   <data name="EnglishSupport" xml:space="preserve">
-    <value>英語</value>
+    <value>英文</value>
   </data>
   <data name="Eritrea" xml:space="preserve">
     <value>厄利垂亞</value>
@@ -1591,7 +1591,7 @@
     <value>马币</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>名字</value>
+    <value>姓名</value>
   </data>
   <data name="NameIsInvalid" xml:space="preserve">
     <value>姓名無效</value>
@@ -1624,7 +1624,7 @@
     <value>荷蘭</value>
   </data>
   <data name="NetWinLoss" xml:space="preserve">
-    <value>每月盈虧總額(CNW)($)</value>
+    <value>每月盈虧總額 (CNW)($)</value>
   </data>
   <data name="NewCaledonia" xml:space="preserve">
     <value>新喀里多尼亞</value>
@@ -2167,7 +2167,7 @@
     <value>狀態</value>
   </data>
   <data name="Subject" xml:space="preserve">
-    <value>主題</value>
+    <value>主旨</value>
   </data>
   <data name="SubjectForgetPass" xml:space="preserve">
     <value>12BET合作夥伴—您的登錄詳情</value>
@@ -2791,5 +2791,38 @@
   </data>
   <data name="Product12AMBER" xml:space="preserve">
     <value>琥珀廳</value>
+  </data>
+  <data name="RevenueShare" xml:space="preserve">
+    <value>佣金分成</value>
+  </data>
+  <data name="AllProducts" xml:space="preserve">
+    <value>所有產品</value>
+  </data>
+  <data name="MoreDetailProduct" xml:space="preserve">
+    <value>更多有關12BET產品訊息</value>
+  </data>
+  <data name="SupportTime" xml:space="preserve">
+    <value>週一至週六上午9點至下午6點(GMT +8)</value>
+  </data>
+  <data name="ChinaSupport" xml:space="preserve">
+    <value>中文</value>
+  </data>
+  <data name="IndonesiaSupport" xml:space="preserve">
+    <value>印尼文</value>
+  </data>
+  <data name="ThailandSupport" xml:space="preserve">
+    <value>泰文</value>
+  </data>
+  <data name="VietnamSupport" xml:space="preserve">
+    <value>越南文</value>
+  </data>
+  <data name="IndianSupport" xml:space="preserve">
+    <value>印地語</value>
+  </data>
+  <data name="PleaseDirectAnyComment" xml:space="preserve">
+    <value>如有任何意見或問題，歡迎發郵件至{0}，或填寫以下的表格。</value>
+  </data>
+  <data name="ValidationCodeLabel" xml:space="preserve">
+    <value>驗證碼</value>
   </data>
 </root>

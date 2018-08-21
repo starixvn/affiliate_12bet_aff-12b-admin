@@ -18,7 +18,7 @@ namespace Fanex.Affiliate.User.Site
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             MvcHandler.DisableMvcResponseHeader = true;
-            
+
             DbSettingProviderManager
               .StartNewSession()
               .Use(new OldConnectionStringProvider())
@@ -27,6 +27,7 @@ namespace Fanex.Affiliate.User.Site
                 enableWatching: true)
               .Run();
         }
+
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
             var application = sender as HttpApplication;
@@ -42,6 +43,17 @@ namespace Fanex.Affiliate.User.Site
             var sessionService = DependencyResolver.Current.GetService<ISessionService>();
 
             languageService.SetCulture(sessionService.CurrentLanguage);
+        }
+
+        public override string GetVaryByCustomString(HttpContext context, string custom)
+        {
+            if (custom.ToLowerInvariant() == "language")
+            {
+                var sessionService = DependencyResolver.Current.GetService<ISessionService>();
+
+                return sessionService.CurrentLanguage;
+            }
+            return base.GetVaryByCustomString(context, custom);
         }
     }
 }
