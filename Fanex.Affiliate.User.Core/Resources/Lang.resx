@@ -3238,4 +3238,76 @@ One of our Affiliate Accounts Manager will be contacting you by email within 3 b
   <data name="ServerError" xml:space="preserve">
     <value>An error occurred while processing your request! Please contact Administrator</value>
   </data>
+  <data name="CasinoClubs" xml:space="preserve">
+    <value>12BET CASINO CLUBS</value>
+    <comment>87923</comment>
+  </data>
+  <data name="LiveGames" xml:space="preserve">
+    <value>Live Games</value>
+    <comment>87923</comment>
+  </data>
+  <data name="SlotGames" xml:space="preserve">
+    <value>Slot Games</value>
+    <comment>87923</comment>
+  </data>
+  <data name="ProgressiveGames" xml:space="preserve">
+    <value>Progressive Games</value>
+    <comment>87923</comment>
+  </data>
+  <data name="TableCardGames" xml:space="preserve">
+    <value>Table/Card Games</value>
+    <comment>87923</comment>
+  </data>
+  <data name="ScratchArcadeGames" xml:space="preserve">
+    <value>Scratch/Arcade Games</value>
+    <comment>87923</comment>
+  </data>
+  <data name="VideoPokerGames" xml:space="preserve">
+    <value>Video Poker Games</value>
+    <comment>87923</comment>
+  </data>
+  <data name="Product12EMERALD" xml:space="preserve">
+    <value>12EMERALD (PLAYTECH)</value>
+    <comment>87923</comment>
+  </data>
+  <data name="Product12RUBY" xml:space="preserve">
+    <value>12RUBY (12BET)</value>
+    <comment>87923</comment>
+  </data>
+  <data name="Product12DIAMOND" xml:space="preserve">
+    <value>12DIAMOND (OPUS &amp; PRAGMATIC PLAY)</value>
+    <comment>87923</comment>
+  </data>
+  <data name="Product12PEARL" xml:space="preserve">
+    <value>12PEARL (ASIA GAMING) </value>
+    <comment>87923</comment>
+  </data>
+  <data name="Product12TOPAZ" xml:space="preserve">
+    <value>12TOPAZ (MICRO GAMING, NETENT, FLOW GAMING)</value>
+    <comment>87923</comment>
+  </data>
+  <data name="Product12CRYSTAL" xml:space="preserve">
+    <value>12CRYSTAL (GAME PLAY INTERACTIVE)</value>
+    <comment>87923</comment>
+  </data>
+  <data name="Product12OPAL" xml:space="preserve">
+    <value>12OPAL (EBET)</value>
+    <comment>87923</comment>
+  </data>
+  <data name="Product12AMETHYST" xml:space="preserve">
+    <value>12AMETHYST (GOLD DELUXE)</value>
+    <comment>87923</comment>
+  </data>
+  <data name="Product12ONYX" xml:space="preserve">
+    <value>12ONYX (ALLBET)</value>
+    <comment>87923</comment>
+  </data>
+  <data name="Product12QUARZT" xml:space="preserve">
+    <value>12QUARZT (ISOFTBET)</value>
+    <comment>87923</comment>
+  </data>
+  <data name="Product12AMBER" xml:space="preserve">
+    <value>12AMBER (BETSOFT)</value>
+    <comment>87923</comment>
+  </data>
 </root>

@@ -2802,4 +2802,58 @@
   <data name="EmailTitleSignUp" xml:space="preserve">
     <value>회원등록 신청서</value>
   </data>
+  <data name="CasinoClubs" xml:space="preserve">
+    <value>12BET 카지노 클럽</value>
+  </data>
+  <data name="LiveGames" xml:space="preserve">
+    <value>라이브 게임</value>
+  </data>
+  <data name="SlotGames" xml:space="preserve">
+    <value>슬롯게임</value>
+  </data>
+  <data name="ProgressiveGames" xml:space="preserve">
+    <value>프로그래시브 게임</value>
+  </data>
+  <data name="TableCardGames" xml:space="preserve">
+    <value>테이블/카드 게임</value>
+  </data>
+  <data name="ScratchArcadeGames" xml:space="preserve">
+    <value>스크래치/아케이드 게임</value>
+  </data>
+  <data name="VideoPokerGames" xml:space="preserve">
+    <value>비디오 포커 게임</value>
+  </data>
+  <data name="Product12EMERALD" xml:space="preserve">
+    <value>12에메랄드 (플레이텍,PLAYTECH)</value>
+  </data>
+  <data name="Product12RUBY" xml:space="preserve">
+    <value>12루비 (12BET, 맥스카지노)</value>
+  </data>
+  <data name="Product12DIAMOND" xml:space="preserve">
+    <value>12다이아몬드 (오푸스&amp; 프라그매틱플레이)</value>
+  </data>
+  <data name="Product12PEARL" xml:space="preserve">
+    <value>12펄 (아시안 게이밍) </value>
+  </data>
+  <data name="Product12TOPAZ" xml:space="preserve">
+    <value>12토파즈 (마이크로 게이밍)</value>
+  </data>
+  <data name="Product12CRYSTAL" xml:space="preserve">
+    <value>12크리스탈 (게임플레이 인터랙티브)</value>
+  </data>
+  <data name="Product12OPAL" xml:space="preserve">
+    <value>12OPAL (E벳)</value>
+  </data>
+  <data name="Product12AMETHYST" xml:space="preserve">
+    <value>12에머시스트 (골드 디럭스)</value>
+  </data>
+  <data name="Product12ONYX" xml:space="preserve">
+    <value>12오닉스(올벳)</value>
+  </data>
+  <data name="Product12QUARZT" xml:space="preserve">
+    <value>12쿼즈 (아이소프트벳)</value>
+  </data>
+  <data name="Product12AMBER" xml:space="preserve">
+    <value>12엠버 (벳소프트)</value>
+  </data>
 </root>

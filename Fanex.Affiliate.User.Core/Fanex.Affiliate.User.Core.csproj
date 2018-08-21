@@ -414,6 +414,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Error.zh-TW.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Lang.hi-IN.Designer.cs">
+      <DependentUpon>Lang.hi-IN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Resources\Lang.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -544,6 +549,10 @@
     <EmbeddedResource Include="Resources\Error.zh-TW.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Error.zh-TW.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Lang.hi-IN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Lang.hi-IN.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Lang.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

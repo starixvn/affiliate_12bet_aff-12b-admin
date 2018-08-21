@@ -2731,4 +2731,58 @@ Salah satu Manajer Rekening Afiliasi kami akan menghubungi Anda melalui email da
   <data name="EmailTitleSignUp" xml:space="preserve">
     <value>Permohonan Anda</value>
   </data>
+  <data name="CasinoClubs" xml:space="preserve">
+    <value>KLUB KASINO 12BET</value>
+  </data>
+  <data name="LiveGames" xml:space="preserve">
+    <value>Live Games</value>
+  </data>
+  <data name="SlotGames" xml:space="preserve">
+    <value>Slot Games</value>
+  </data>
+  <data name="ProgressiveGames" xml:space="preserve">
+    <value>Progressive Games</value>
+  </data>
+  <data name="TableCardGames" xml:space="preserve">
+    <value>Table/Card Games</value>
+  </data>
+  <data name="ScratchArcadeGames" xml:space="preserve">
+    <value>Scratch/Arcade Games</value>
+  </data>
+  <data name="VideoPokerGames" xml:space="preserve">
+    <value>Video Poker Games</value>
+  </data>
+  <data name="Product12EMERALD" xml:space="preserve">
+    <value>12EMERALD (PLAYTECH)</value>
+  </data>
+  <data name="Product12RUBY" xml:space="preserve">
+    <value>12RUBY (12BET)</value>
+  </data>
+  <data name="Product12DIAMOND" xml:space="preserve">
+    <value>12DIAMOND (OPUS &amp; PRAGMATIC PLAY)</value>
+  </data>
+  <data name="Product12PEARL" xml:space="preserve">
+    <value>12PEARL (ASIA GAMING) </value>
+  </data>
+  <data name="Product12TOPAZ" xml:space="preserve">
+    <value>12TOPAZ (MICRO GAMING, NETENT, FLOW GAMING)</value>
+  </data>
+  <data name="Product12CRYSTAL" xml:space="preserve">
+    <value>12CRYSTAL (GAME PLAY INTERACTIVE)</value>
+  </data>
+  <data name="Product12OPAL" xml:space="preserve">
+    <value>12OPAL (EBET)</value>
+  </data>
+  <data name="Product12AMETHYST" xml:space="preserve">
+    <value>12AMETHYST (GOLD DELUXE)</value>
+  </data>
+  <data name="Product12ONYX" xml:space="preserve">
+    <value>12ONYX (ALLBET)</value>
+  </data>
+  <data name="Product12QUARZT" xml:space="preserve">
+    <value>12QUARZT (ISOFTBET)</value>
+  </data>
+  <data name="Product12AMBER" xml:space="preserve">
+    <value>12AMBER (BETSOFT)</value>
+  </data>
 </root>

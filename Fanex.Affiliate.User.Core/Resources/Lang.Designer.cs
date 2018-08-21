@@ -19,7 +19,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Lang {
@@ -1346,6 +1346,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string CasinoBonus {
             get {
                 return ResourceManager.GetString("CasinoBonus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12BET CASINO CLUBS.
+        /// </summary>
+        public static string CasinoClubs {
+            get {
+                return ResourceManager.GetString("CasinoClubs", resourceCulture);
             }
         }
         
@@ -4639,6 +4648,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Live Games.
+        /// </summary>
+        public static string LiveGames {
+            get {
+                return ResourceManager.GetString("LiveGames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Last Name .
         /// </summary>
         public static string LName {
@@ -6359,11 +6377,119 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 12AMBER (BETSOFT).
+        /// </summary>
+        public static string Product12AMBER {
+            get {
+                return ResourceManager.GetString("Product12AMBER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12AMETHYST (GOLD DELUXE).
+        /// </summary>
+        public static string Product12AMETHYST {
+            get {
+                return ResourceManager.GetString("Product12AMETHYST", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12CRYSTAL (GAME PLAY INTERACTIVE).
+        /// </summary>
+        public static string Product12CRYSTAL {
+            get {
+                return ResourceManager.GetString("Product12CRYSTAL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12DIAMOND (OPUS &amp; PRAGMATIC PLAY).
+        /// </summary>
+        public static string Product12DIAMOND {
+            get {
+                return ResourceManager.GetString("Product12DIAMOND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12EMERALD (PLAYTECH).
+        /// </summary>
+        public static string Product12EMERALD {
+            get {
+                return ResourceManager.GetString("Product12EMERALD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12ONYX (ALLBET).
+        /// </summary>
+        public static string Product12ONYX {
+            get {
+                return ResourceManager.GetString("Product12ONYX", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12OPAL (EBET).
+        /// </summary>
+        public static string Product12OPAL {
+            get {
+                return ResourceManager.GetString("Product12OPAL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12PEARL (ASIA GAMING) .
+        /// </summary>
+        public static string Product12PEARL {
+            get {
+                return ResourceManager.GetString("Product12PEARL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12QUARZT (ISOFTBET).
+        /// </summary>
+        public static string Product12QUARZT {
+            get {
+                return ResourceManager.GetString("Product12QUARZT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12RUBY (12BET).
+        /// </summary>
+        public static string Product12RUBY {
+            get {
+                return ResourceManager.GetString("Product12RUBY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12TOPAZ (MICRO GAMING, NETENT, FLOW GAMING).
+        /// </summary>
+        public static string Product12TOPAZ {
+            get {
+                return ResourceManager.GetString("Product12TOPAZ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Program Details.
         /// </summary>
         public static string ProgDetails {
             get {
                 return ResourceManager.GetString("ProgDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Progressive Games.
+        /// </summary>
+        public static string ProgressiveGames {
+            get {
+                return ResourceManager.GetString("ProgressiveGames", resourceCulture);
             }
         }
         
@@ -6827,6 +6953,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Scratch/Arcade Games.
+        /// </summary>
+        public static string ScratchArcadeGames {
+            get {
+                return ResourceManager.GetString("ScratchArcadeGames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search.
         /// </summary>
         public static string Search {
@@ -7066,6 +7201,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Slot {
             get {
                 return ResourceManager.GetString("Slot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Slot Games.
+        /// </summary>
+        public static string SlotGames {
+            get {
+                return ResourceManager.GetString("SlotGames", resourceCulture);
             }
         }
         
@@ -7489,6 +7633,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string SystemParlayDetailNote {
             get {
                 return ResourceManager.GetString("SystemParlayDetailNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Table/Card Games.
+        /// </summary>
+        public static string TableCardGames {
+            get {
+                return ResourceManager.GetString("TableCardGames", resourceCulture);
             }
         }
         
@@ -8428,6 +8581,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Venezuela {
             get {
                 return ResourceManager.GetString("Venezuela", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Video Poker Games.
+        /// </summary>
+        public static string VideoPokerGames {
+            get {
+                return ResourceManager.GetString("VideoPokerGames", resourceCulture);
             }
         }
         

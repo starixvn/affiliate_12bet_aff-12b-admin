@@ -2733,4 +2733,58 @@
   <data name="EmailTitleSignUp" xml:space="preserve">
     <value>เรื่อง   สถานะการสมัครของท่าน</value>
   </data>
+  <data name="CasinoClubs" xml:space="preserve">
+    <value>คาสิโนคลับต่างๆใน12BET</value>
+  </data>
+  <data name="LiveGames" xml:space="preserve">
+    <value>คาสิโนสด</value>
+  </data>
+  <data name="SlotGames" xml:space="preserve">
+    <value>เกมส์สล็อต</value>
+  </data>
+  <data name="ProgressiveGames" xml:space="preserve">
+    <value>เกมส์โปรเกรสซีฟ</value>
+  </data>
+  <data name="TableCardGames" xml:space="preserve">
+    <value>เกมส์โต๊ะ/เกมส์ไพ่</value>
+  </data>
+  <data name="ScratchArcadeGames" xml:space="preserve">
+    <value>เกมส์ขูดการ์ด/เกมส์ตู้</value>
+  </data>
+  <data name="VideoPokerGames" xml:space="preserve">
+    <value>เกมส์วิดีโอโป๊กเกอร์</value>
+  </data>
+  <data name="Product12EMERALD" xml:space="preserve">
+    <value>12EMERALD (PLAYTECH)</value>
+  </data>
+  <data name="Product12RUBY" xml:space="preserve">
+    <value>12RUBY (12BET)</value>
+  </data>
+  <data name="Product12DIAMOND" xml:space="preserve">
+    <value>12DIAMOND (OPUS &amp; PRAGMATIC PLAY)</value>
+  </data>
+  <data name="Product12PEARL" xml:space="preserve">
+    <value>12PEARL (ASIA GAMING) </value>
+  </data>
+  <data name="Product12TOPAZ" xml:space="preserve">
+    <value>12TOPAZ (MICRO GAMING, NETENT, FLOW GAMING)</value>
+  </data>
+  <data name="Product12CRYSTAL" xml:space="preserve">
+    <value>12CRYSTAL (GAME PLAY INTERACTIVE)</value>
+  </data>
+  <data name="Product12OPAL" xml:space="preserve">
+    <value>12OPAL (EBET)</value>
+  </data>
+  <data name="Product12AMETHYST" xml:space="preserve">
+    <value>12AMETHYST (GOLD DELUXE)</value>
+  </data>
+  <data name="Product12ONYX" xml:space="preserve">
+    <value>12ONYX (ALLBET)</value>
+  </data>
+  <data name="Product12QUARZT" xml:space="preserve">
+    <value>12QUARZT (ISOFTBET)</value>
+  </data>
+  <data name="Product12AMBER" xml:space="preserve">
+    <value>12AMBER (BETSOFT)</value>
+  </data>
 </root>

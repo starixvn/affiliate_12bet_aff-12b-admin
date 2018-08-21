@@ -2739,4 +2739,58 @@
   <data name="EmailTitleSignUp" xml:space="preserve">
     <value>您的加盟申请</value>
   </data>
+  <data name="CasinoClubs" xml:space="preserve">
+    <value>12BET 娱乐城</value>
+  </data>
+  <data name="LiveGames" xml:space="preserve">
+    <value>真人荷官</value>
+  </data>
+  <data name="SlotGames" xml:space="preserve">
+    <value>老虎机游戏</value>
+  </data>
+  <data name="ProgressiveGames" xml:space="preserve">
+    <value>累积游戏</value>
+  </data>
+  <data name="TableCardGames" xml:space="preserve">
+    <value>桌面/纸牌游戏</value>
+  </data>
+  <data name="ScratchArcadeGames" xml:space="preserve">
+    <value>刮刮乐/大型电游</value>
+  </data>
+  <data name="VideoPokerGames" xml:space="preserve">
+    <value>视频扑克</value>
+  </data>
+  <data name="Product12EMERALD" xml:space="preserve">
+    <value>PT翡翠厅</value>
+  </data>
+  <data name="Product12RUBY" xml:space="preserve">
+    <value>红宝厅</value>
+  </data>
+  <data name="Product12DIAMOND" xml:space="preserve">
+    <value>鑽石廳</value>
+  </data>
+  <data name="Product12PEARL" xml:space="preserve">
+    <value>珍珠厅</value>
+  </data>
+  <data name="Product12TOPAZ" xml:space="preserve">
+    <value>黄玉厅</value>
+  </data>
+  <data name="Product12CRYSTAL" xml:space="preserve">
+    <value>水晶厅</value>
+  </data>
+  <data name="Product12OPAL" xml:space="preserve">
+    <value>欧泊厅</value>
+  </data>
+  <data name="Product12AMETHYST" xml:space="preserve">
+    <value>紫晶厅</value>
+  </data>
+  <data name="Product12ONYX" xml:space="preserve">
+    <value>玛瑙厅</value>
+  </data>
+  <data name="Product12QUARZT" xml:space="preserve">
+    <value>石英厅</value>
+  </data>
+  <data name="Product12AMBER" xml:space="preserve">
+    <value>琥珀厅</value>
+  </data>
 </root>
