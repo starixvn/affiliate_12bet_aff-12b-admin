@@ -531,6 +531,13 @@
       <DependentUpon>signup.css</DependentUpon>
     </Content>
     <Content Include="www\build\styles\fonts\Montserrat\font.css" />
+    <Content Include="www\build\styles\fonts\Montserrat\font.min.css">
+      <DependentUpon>font.css</DependentUpon>
+    </Content>
+    <Content Include="www\build\styles\fonts\tahoma\font.css" />
+    <Content Include="www\build\styles\fonts\tahoma\font.min.css">
+      <DependentUpon>font.css</DependentUpon>
+    </Content>
     <Content Include="www\build\styles\Images\ads-1\ads-1_200.jpg" />
     <Content Include="www\build\styles\Images\ads-1\ads-1_392.jpg" />
     <Content Include="www\build\styles\Images\ads-1\ads-1_559.jpg" />
@@ -985,6 +992,7 @@
     <Content Include="www\source\styles\Images\products\ad-sb.webp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="www\source\styles\fonts\tahoma\font.css" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

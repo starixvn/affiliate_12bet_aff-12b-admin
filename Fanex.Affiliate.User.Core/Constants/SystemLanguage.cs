@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Resources;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.Resources;
 
@@ -8,6 +7,8 @@ namespace Fanex.Affiliate.User.Core.Constants
     public static class SystemLanguage
     {
         public const string DefaultLanguageCode = "en-US";
+
+        public const string VietNamLanguageCode = "vi-VN";
 
         public const string ShortedDefaultCode = "en";
 

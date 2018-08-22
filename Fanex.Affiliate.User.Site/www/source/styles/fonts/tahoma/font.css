@@ -1,0 +1,26 @@
+﻿@font-face {
+  font-family: 'tahoma';
+  src: url('../../../../build/styles/fonts/tahoma/tahoma-Regular.eot');                                     
+  src: url('../../../../build/styles/fonts/tahoma/tahoma-Regular.woff2') format('woff2'),                   
+       url('../../../../build/styles/fonts/tahoma/tahoma-Regular.woff') format('woff'),                     
+       url('../../../../build/styles/fonts/tahoma/tahoma-Regular.ttf') format('truetype');  
+  font-weight: 400;                
+}
+
+@font-face {
+  font-family: 'tahoma';
+  src: url('../../../../build/styles/fonts/tahoma/tahoma-Medium.eot');                                     
+  src: url('../../../../build/styles/fonts/tahoma/tahoma-Medium.woff2') format('woff2'),                   
+       url('../../../../build/styles/fonts/tahoma/tahoma-Medium.woff') format('woff'),                     
+       url('../../../../build/styles/fonts/tahoma/tahoma-Medium.ttf') format('truetype');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'tahoma';
+ src: url('../../../../build/styles/fonts/tahoma/tahoma-SemiBold.eot');                                     
+  src: url('../../../../build/styles/fonts/tahoma/tahoma-SemiBold.woff2') format('woff2'),                   
+       url('../../../../build/styles/fonts/tahoma/tahoma-SemiBold.woff') format('woff'),                     
+       url('../../../../build/styles/fonts/tahoma/tahoma-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+}
