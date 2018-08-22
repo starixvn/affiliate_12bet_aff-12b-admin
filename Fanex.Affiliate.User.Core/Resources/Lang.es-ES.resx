@@ -165,10 +165,10 @@
   <data name="AffiliateID" xml:space="preserve">
     <value>Affiliate ID</value>
   </data>
-  <data name="Affiliatemustensure" xml:space="preserve">
+  <data name="AffiliateMustEnsure" xml:space="preserve">
     <value>6. Los afiliados deben garantizar que cualquier material publicado en su sitio es legal y no infringe los derechos de copyright ni incumplen ningún otro derecho.</value>
   </data>
-  <data name="Affiliatesareprohibited" xml:space="preserve">
+  <data name="AffiliatesAreProhibited" xml:space="preserve">
     <value>9. Los afiliados tienen prohibido jugar en ninguna de las agendas deportivas promovidas por 12BET a través de su propio enlace de afiliado o desde el enlace de afiliado de un miembro que comparta la totalidad o parte de la comisión con el afiliado o terceros. Del mismo modo, se incluyen todas las personas o grupos de juego de los cuales el afiliado reciba una compensación o remuneración de cualquier tipo. En el caso de incumplimiento de esta sección, 12BET y el respectivo sitio Web con el que se ha jugado tendrán derecho a anular todos los juegos y eliminar cualquier comisión ganada aplicable de dicho juego, así como eliminar al afiliado de nuestro programa de afiliados terminando, de este modo, el presente acuerdo y evitando cualquier juego futuro en 12BET.</value>
   </data>
   <data name="AffiliatesWillNotEarn" xml:space="preserve">
@@ -180,7 +180,7 @@
   <data name="AffiliationGuidelines" xml:space="preserve">
     <value>2. Directrices de afiliación</value>
   </data>
-  <data name="AfterChargeback" xml:space="preserve">
+  <data name="DetailedChargeBack" xml:space="preserve">
     <value>&lt;p&gt;Las “ganancias brutas de 12bet” son el total de todas las cantidades apostadas por al menos cinco (5) miembros de apuestas activos de su cuenta de afiliado en un mes natural, menos todas las cantidades ganadas por o pagadas a dichos miembros. &lt;/p&gt;
 &lt;p&gt;Las “devoluciones de cargos” son las cantidades deducidas cuando un cliente que es titular de una tarjeta de crédito o débito descubre que se han realizado cargos irregulares no autorizados en su tarjeta, y solicita al banco que devuelva dichos cargos. Las devoluciones de cargos se relacionan, entre otros, con el uso fraudulento por terceros del número de tarjeta o la tarjeta de crédito del titular. &lt;/p&gt;
 &lt;p&gt;En caso de que el jugador procese una devolución de cargos, los ingresos devueltos o en disputa se retendrán y, por lo tanto, se deducirán del balance total que se le debe pagar en el mes actual. En caso de que esta deducción de los ingresos acumulados supere su actual cantidad pendiente, su balance pasará a balance negativo y tendrá que obtener ingresos para cubrir la devolución de cargos antes de volver a ganar ingresos. &lt;/p&gt;
@@ -199,7 +199,7 @@
   <data name="All" xml:space="preserve">
     <value>Todo</value>
   </data>
-  <data name="Allrightsandlicenses" xml:space="preserve">
+  <data name="AllRightAndLicensee" xml:space="preserve">
     <value>b. Todos los derechos y licencias proporcionados en este acuerdo terminarán inmediatamente.</value>
   </data>
   <data name="AMaximumOfOneWithdrawal" xml:space="preserve">
@@ -353,7 +353,7 @@
   <data name="Banner" xml:space="preserve">
     <value>Cartel</value>
   </data>
-  <data name="Bannersandlinks" xml:space="preserve">
+  <data name="BannersAndLinks" xml:space="preserve">
     <value>4. Los carteles y enlaces no se podrán utilizar en correos electrónico no solicitados, mensajes de grupos de noticias no autorizados, salas de chat o mediante el uso de "bots".</value>
   </data>
   <data name="Barbados" xml:space="preserve">
@@ -431,13 +431,13 @@
   <data name="ByAccessingOurMediaGallery" xml:space="preserve">
     <value>Al acceder a nuestra sección de Galería de medios podrá elegir sus carteles preferidos, así como el enlace de texto para su sitio Web.</value>
   </data>
-  <data name="Byagreeingtoparticipate" xml:space="preserve">
+  <data name="ByAgreeingToParticipate" xml:space="preserve">
     <value>3. Al aceptar su participación en el programa de afiliados de 12BET, está de acuerdo en descargar los carteles, textos o materiales promocionales y colocarlos en su sitio, o bien utilizarlos en el correo electrónico o marketing directo empleando medios impresos o su dirección URL de afiliado. Estos son los únicos métodos aprobados por los que podrá anunciar los productos y servicios de 12BET.</value>
   </data>
-  <data name="Byhavingread" xml:space="preserve">
+  <data name="ByHavingRead" xml:space="preserve">
     <value>Leídos los términos y condiciones, y la confirmación de los mismos en el formulario de registro de afiliados, acepta todos los términos y condiciones contenidos en el presente documento. 12BET se reserva el derecho a retener el pago de cualquier afiliado que incumpla cualquiera de los términos y condiciones contenidos en este documento.</value>
   </data>
-  <data name="Byopeninganaccount" xml:space="preserve">
+  <data name="ByOpeningAnAccountWithACustomer" xml:space="preserve">
     <value>2. Al abrir una cuenta con un cliente, dicha persona o entidad se convertirán en nuestros clientes y, en consecuencia, se le aplicarán todas las reglas, políticas y procedimientos de funcionamiento para clientes.</value>
   </data>
   <data name="BythisAgreement" xml:space="preserve">
@@ -512,7 +512,7 @@
   <data name="Changepassworde" xml:space="preserve">
     <value>Se ha producido un error al cambiar de contraseña</value>
   </data>
-  <data name="Chargeback" xml:space="preserve">
+  <data name="ChargeBack" xml:space="preserve">
     <value>a. Devolución de cargos: el titular de una tarjeta de crédito descubre transacciones irregulares realizadas con su tarjeta de crédito/débito que no ha autorizado. El titular de la tarjeta de crédito solicita a su banco la devolución de estos cargos. Las devoluciones de cargos se relacionan con el uso fraudulento por terceros del número de tarjeta o la tarjeta de crédito del titular.</value>
   </data>
   <data name="Cheque" xml:space="preserve">
@@ -578,7 +578,7 @@
   <data name="CommentsIsInvalid" xml:space="preserve">
     <value>El comentario no es válido</value>
   </data>
-  <data name="Commissionableearnings" xml:space="preserve">
+  <data name="CommissionableEarningsWillBeSubject" xml:space="preserve">
     <value>5. Las ganancias comisionables estarán sujetas a las comisiones calculadas mediante la estructura de comisiones del programa de afiliados de 12BET aplicada ocasionalmente.</value>
   </data>
   <data name="CommissionableEarningsAreCalculated" xml:space="preserve">
@@ -763,7 +763,7 @@
   <data name="Duetosecurityr" xml:space="preserve">
     <value>Por motivos de seguridad debemos proporcionarle una nueva contraseña (podrá cambiarla posteriormente).</value>
   </data>
-  <data name="Duringtheterm" xml:space="preserve">
+  <data name="DuringTheTermOfThisAgreement" xml:space="preserve">
     <value>3. Durante la vigencia de este acuerdo, es posible que se le revele información confidencial relativa a los negocios, operaciones o tecnología subyacente de nuestro programa de afiliados (incluidas, por ejemplo, las tarifas por invitados que ha ganado en el marco del programa). Se compromete a no divulgar o utilizar la información confidencial con terceras partes a menos que cuente con nuestro consentimiento previo por escrito, y a utilizar la información confidencial sólo a los efectos necesarios para promover los objetivos del presente acuerdo. Sus obligaciones con respecto a la información confidencial deberán perdurar a la terminación del presente acuerdo.</value>
   </data>
   <data name="Earn30" xml:space="preserve">
@@ -1109,7 +1109,7 @@
   <data name="Gibraltar" xml:space="preserve">
     <value>Gibraltar </value>
   </data>
-  <data name="GoverningLawandArbitration" xml:space="preserve">
+  <data name="GoverningLawAndArbitration" xml:space="preserve">
     <value>15. Arbitraje y leyes aplicables</value>
   </data>
   <data name="Greece" xml:space="preserve">
@@ -1201,7 +1201,7 @@
   <data name="ID" xml:space="preserve">
     <value>ID</value>
   </data>
-  <data name="Ifwecontinue" xml:space="preserve">
+  <data name="IfWeContinueToPermitActivity" xml:space="preserve">
     <value>f. Si continuamos permitiendo la actividad (generación de ingresos) de los clientes después de la terminación, no constituirá una continuación o renovación del presente acuerdo o una renuncia a la terminación.</value>
   </data>
   <data name="Ifyouareexperie" xml:space="preserve">
@@ -1216,7 +1216,7 @@
   <data name="IfYouHaveAnyQuestions" xml:space="preserve">
     <value>Si usted tiene ninguna preguntas referente a la ganancia del afiliado no vacilan por favor entrarnos en contacto con en {mail}.</value>
   </data>
-  <data name="Ifyouhavefailed" xml:space="preserve">
+  <data name="IfYouHaveFailed" xml:space="preserve">
     <value>d. Si no ha cumplido sus obligaciones y responsabilidades no se le pagarán las tarifas por invitados pendientes con la terminación.</value>
   </data>
   <data name="IfYourTotal" xml:space="preserve">
@@ -1252,7 +1252,7 @@
   <data name="Inserttransacti" xml:space="preserve">
     <value>No se ha podido completar la transacción.</value>
   </data>
-  <data name="Intheeventoftermination" xml:space="preserve">
+  <data name="InTheEventOfTermination" xml:space="preserve">
     <value>2. En caso de terminación de este acuerdo:</value>
   </data>
   <data name="Invalidaffiliat" xml:space="preserve">
@@ -1273,7 +1273,7 @@
   <data name="Invaliduserinfo" xml:space="preserve">
     <value>La información de usuario no es válida. No se ha podido completar el proceso de actualización</value>
   </data>
-  <data name="INWITNESSWHEREOF" xml:space="preserve">
+  <data name="InWitnessWhereOf" xml:space="preserve">
     <value>16. EN TESTIMONIO DE LO CUAL</value>
   </data>
   <data name="IP" xml:space="preserve">
@@ -1300,7 +1300,7 @@
   <data name="Italy" xml:space="preserve">
     <value>Italy </value>
   </data>
-  <data name="Itistheaffiliates" xml:space="preserve">
+  <data name="ItIsTheAffiliate" xml:space="preserve">
     <value>4. Es responsabilidad del afiliado seguir el procedimiento de enlace y etiquetado correcto para garantizar el seguimiento de los nuevos clientes y el pago.</value>
   </data>
   <data name="Jamaica" xml:space="preserve">
@@ -1591,7 +1591,7 @@
   <data name="NegativeBalance" xml:space="preserve">
     <value>Equilibrio negativo</value>
   </data>
-  <data name="Negativeearningsarecarried" xml:space="preserve">
+  <data name="NegativeEarningsAreCarried" xml:space="preserve">
     <value>6. Los ingresos negativos se transfieren al siguiente mes. En caso de que el afiliado cierre el mes con un balance positivo, se emitirá el pago si reúne los requisitos mínimos y las comisiones se pagarán sobre el balance positivo.</value>
   </data>
   <data name="Nepal" xml:space="preserve">
@@ -1690,10 +1690,10 @@
   <data name="Oman" xml:space="preserve">
     <value>Oman </value>
   </data>
-  <data name="OneTwoBETassumeownership" xml:space="preserve">
+  <data name="OneTwoBetAssumeOwnerShip" xml:space="preserve">
     <value>1. 12BET asume la propiedad del cliente desde el momento del primer contacto con el mismo. Como afiliado, actúa como un agente que invita a clientes a 12BET. Nos reservamos el derecho a rechazar clientes (o cerrar sus cuentas), si fuera necesario, para cumplir con las estipulaciones que podamos establecer periódicamente.</value>
   </data>
-  <data name="OneTwoBETwillpayout" xml:space="preserve">
+  <data name="OneTwoBETWillPayout" xml:space="preserve">
     <value>1. 12BET pagara una parte del redito en las ganancias de Comision generadas por cada cliente, segun lo definido por la estructura de la comision del programa de los afiliados 12BET, a condicion de que usted mantiene en su cuenta como afiliado, por lo menos seis (6) miembros activos de apuestas en cualquier mes civil dado. &lt;p&gt;However, 12BET will reserves the right to withhold an affiliate commission payout in any particular month whether in part or in full, regardless of the 6 qualified active members , if  the affiliate is found not to make an effort to promote 12BET  more than 2 months as reflected in no NEW wagering members brought in; lack of 12BET banners on the affiliate website; and or lack of any other online and offline promotional activities seen. The commission shall be withhold until there are new wagering members seen in the affiliate account where 12BET shall have the sole discretion to release either a full or a partial of the withheld commission to the affiliate. Any commission that has been withheld for a period exceeding 6 months may be voided at the discretion of 12BET.&lt;/p&gt;</value>
   </data>
   <data name="Onlinebettingsp" xml:space="preserve">
@@ -1710,7 +1710,7 @@
   <data name="OnlyApprovedAndProperly" xml:space="preserve">
     <value>1. Sólo se podrán utilizar los materiales creativos etiquetados aprobados y designados correctamente, que proporcionamos de forma ocasional para promover 12BET. Se permiten publirreportajes y promociones personales, pero todos los materiales que no estén diseñados por 12BET se deben aprobar por escrito; dicha aprobación no se negará sin motivo.</value>
   </data>
-  <data name="Onlyproperlytaggedcustomers" xml:space="preserve">
+  <data name="OnlyProperlyTagged" xml:space="preserve">
     <value>2. Sólo los clientes etiquetados correctamente se podrán asignar a los afiliados. En caso de que una etiqueta de afiliado se inserte incorrectamente en el sitio del afiliado o el servidor Web de 12BET no la reciba correctamente, el consiguiente registro y compras del cliente no se asignarán al afiliado. Por lo tanto, es responsabilidad del afiliado asegurarse de que todos los enlaces se han etiquetado correctamente.</value>
   </data>
   <data name="Otherwiseplease" xml:space="preserve">
@@ -1722,10 +1722,10 @@
   <data name="Ourrightsandremedies" xml:space="preserve">
     <value>a. Nuestros derechos y acciones que se muestran a continuación no se excluyen mutuamente, es decir, el cumplimiento de una o varias disposiciones del presente acuerdo no excluye el cumplimiento de cualquier otra disposición. Usted reconoce, confirma y acepta qué perjuicios pueden ser inadecuados para una incumplimiento o una amenaza de incumplimiento de este acuerdo, y en el caso de un incumplimiento o una amenaza de incumplimiento de cualquier disposición de este acuerdo, los respectivos derechos y obligaciones de las partes pueden ser exigibles por ley, mediante una acción específica, un mandato judicial u otro recurso de equidad. Ningún contenido de este acuerdo limitará o afectará a ninguno de nuestros derechos por ley, o en caso de incumplimiento o amenaza de incumplimiento de cualquier disposición de este acuerdo; esta disposición aclara que nuestros derechos y obligaciones respectivos serán exigibles por equidad así como ante la ley o de otro modo.</value>
   </data>
-  <data name="Ownershipandcontent" xml:space="preserve">
+  <data name="OwnerShipAndContent" xml:space="preserve">
     <value>1. La propiedad y el contenido de nuestros sitios nos pertenecen en exclusiva y no se considerarán en ningún momento como transferidos al afiliado mediante cualquier acto u omisión en relación con el acuerdo de afiliación.</value>
   </data>
-  <data name="Ownershipcontentandliability" xml:space="preserve">
+  <data name="OwnerShipContentAndLiability" xml:space="preserve">
     <value>2. La propiedad, contenido y obligaciones de los sitios del afiliado son responsabilidad única del afiliado. Será el único responsable del desarrollo, funcionamiento y mantenimiento de su sitio y de todos los materiales que aparecen en el mismo, y de igual modo será responsable de los gastos.</value>
   </data>
   <data name="OwnWebsite" xml:space="preserve">
@@ -1833,7 +1833,7 @@
   <data name="Poland" xml:space="preserve">
     <value>Poland </value>
   </data>
-  <data name="PoliciesConfidentiality" xml:space="preserve">
+  <data name="PoliciesAndConfidentiality" xml:space="preserve">
     <value>5. Políticas y confidencialidad</value>
   </data>
   <data name="Portugal" xml:space="preserve">
@@ -1860,7 +1860,7 @@
   <data name="Preferredpaymen" xml:space="preserve">
     <value>Método de pago preferido</value>
   </data>
-  <data name="Presentationofourbanners" xml:space="preserve">
+  <data name="PresentationOfOurBanners" xml:space="preserve">
     <value>5. La presentación de nuestros carteles y contenido en el sitio del afiliado es responsabilidad del afiliado. El afiliado debe asegurarse de que nuestro contenido se presenta conforme a nuestras prescripciones.</value>
   </data>
   <data name="Proccessing" xml:space="preserve">
@@ -1953,7 +1953,7 @@
   <data name="ResponOfTheAff" xml:space="preserve">
     <value>1. Responsabilidades del afiliado</value>
   </data>
-  <data name="RevenueSharing" xml:space="preserve">
+  <data name="RevenueSharingAndPayment" xml:space="preserve">
     <value>4. Pago y participación de los ingresos</value>
   </data>
   <data name="RMB" xml:space="preserve">
@@ -2022,7 +2022,7 @@
   <data name="Shouldthisdeduction" xml:space="preserve">
     <value>c. En caso de que esta deducción de los ingresos acumulados supere su actual cantidad pendiente, su balance pasará a balance negativo y tendrá que obtener ingresos para cubrir la devolución de cargos antes de volver a ganar ingresos.</value>
   </data>
-  <data name="ShouldYouFailToBe" xml:space="preserve">
+  <data name="ShouldYouFailToBeEntitled" xml:space="preserve">
     <value>4. Si usted no puede ser dado derecho a las ganancias de Comision de acuerdo con las clousulas 4.1, 4.2, y 4.3 arriba para que la falta mantenga por lo menos a seis (6) miembros activos de apuestas en un mes dado, usted puede ser dado (en la unica discrecion 12Bet) un periodo de gracia de dos (2) meses dentro de los cuales conformarse. Sobre conformidad, consolidaran a su comision para el periodo sujeto que no excede tres (3) meses consecutivos para constituir sus ganancias de Comision para el mismo período. (en la unica discrecion 12Bet) </value>
   </data>
   <data name="SierraLeone" xml:space="preserve">
@@ -2085,7 +2085,7 @@
   <data name="Spain" xml:space="preserve">
     <value>Spain </value>
   </data>
-  <data name="SpamWedonot" xml:space="preserve">
+  <data name="SpamWeDoNotCondone" xml:space="preserve">
     <value>8. Correo no deseado: no aprobamos el correo no deseado.</value>
   </data>
   <data name="Spanish" xml:space="preserve">
@@ -2237,19 +2237,19 @@ Uno de nuestros administradores de cuentas de afiliados se pondrá en contacto c
   <data name="TheMinimumWithdrawal" xml:space="preserve">
     <value>La peticion minima de la retirada $100.</value>
   </data>
-  <data name="Thenetrevenueplan" xml:space="preserve">
+  <data name="TheCommissionableEarningsOfTheAffiliate" xml:space="preserve">
     <value>7. Las ganancias de Comision del afiliado calculaban basado en la comision que la estructura sera ganada en todas las transacciones que el cliente emprenda con el comerciante, mientras el afiliado siga siendo un miembro de este programa del afiliado. </value>
   </data>
   <data name="Theteamat_12Bet" xml:space="preserve">
     <value>El equipo de afiliados de 12BET</value>
   </data>
-  <data name="ThetermofthisAgreement" xml:space="preserve">
+  <data name="TheTermOfThisAgreement" xml:space="preserve">
     <value>1. La vigencia de este acuerdo se inicia en el momento en el que se descargue el código de enlace y lo vincule a nuestro sitio, y tendrá continuidad a menos que una de las partes notifique a la otra por escrito su deseo de finalizar el acuerdo, en cuyo caso se finalizará el presente acuerdo de inmediato. LA TERMINACIÓN SERÁ VOLUNTARIA, POR CUALQUIER MOTIVO, POR CUALQUIERA DE LAS PARTES. A los efectos de la notificación de dicha terminación, la comunicación mediante correo electrónico se considera una forma inmediata y por escrito de notificación.</value>
   </data>
   <data name="ThisAgreementDetailsAll" xml:space="preserve">
     <value>Como política, 12BET no acepta solicitudes de registro en línea como afiliado si se anuncia con direcciones de protocolo Internet (IP) situadas o con origen en la jurisdicción geográfica del Reino Unido.</value>
   </data>
-  <data name="ThisAgreementshallbegoverned" xml:space="preserve">
+  <data name="ThisAgreementShallBeGoverned" xml:space="preserve">
     <value>El presente acuerdo se regirá e interpretará de conformidad con el derecho inglés. Cualquier disputa, controversia o reclamación que se derive o esté en conexión con este acuerdo se dirigirá y se determinará por un tribunal que incluirá un árbitro designado por el centro de arbitraje. La sede del arbitraje será Londres, Reino Unido; la ubicación quedará determinada por el centro de arbitraje, el idioma del arbitraje será inglés y las regulaciones establecidas por el centro de arbitraje regirán el proceso. El tribunal de arbitraje tendrá derecho a emitir interdictos, y su decisión será definitiva y estrictamente obligatoria para ambas partes que, a su vez, renuncian a cualquier otra jurisdicción que se pueda aplicar y aceptan acatar la decisión arbitral renunciando a apelaciones de cualquier tipo.</value>
   </data>
   <data name="Thisemailaddres" xml:space="preserve">
@@ -2261,7 +2261,7 @@ Uno de nuestros administradores de cuentas de afiliados se pondrá en contacto c
   <data name="Thisisasystemau" xml:space="preserve">
     <value>Este es un sistema de correo electrónico generado de forma automática; no responda a este correo electrónico directamente.</value>
   </data>
-  <data name="Thislicensecannot" xml:space="preserve">
+  <data name="ThisLicenseCannotBeSubLicensed" xml:space="preserve">
     <value>3. No puede sublicenciar, asignar o transferir esta licencia. Su derecho a utilizar las marcas se limita exclusivamente según esta licencia al uso de los carteles. En ningún caso podrá declarar la invalidez, la inaplicabilidad o la impugnación de la propiedad de las marcas en ninguna acción o procedimiento de la naturaleza que sea, ni deberá iniciar acción alguna que pueda perjudicar nuestros derechos o los de nuestros concedentes de licencia sobre las marcas, volverlas genéricas o disminuir su validez o la buena fe asociada.</value>
   </data>
   <data name="Thistransaction" xml:space="preserve">
@@ -2460,19 +2460,19 @@ Uno de nuestros administradores de cuentas de afiliados se pondrá en contacto c
   <data name="WeEmploys" xml:space="preserve">
     <value>Utilizamos la última tecnología en nuestro sistema de seguimiento para garantizar que recibe el crédito del 100% del tráfico enviado a 12BET.com. Los afiliados dirigen a los jugadores mediante su URL exclusiva que se proporciona en el área de Galería de medios. Mediante el uso de cookies, a los visitantes que hagan clic a través de la URL exclusiva de un afiliado (cartel, enlace de texto, mensaje de correo electrónico, etc.) se les realiza un seguimiento, y el crédito se proporciona de forma automática al afiliado por los jugadores enviados.</value>
   </data>
-  <data name="Weherebygrant" xml:space="preserve">
+  <data name="WeHerebyGrantToYou" xml:space="preserve">
     <value>1. Por la presente le otorgamos una licencia personal, no exclusiva, intransferible y limitada durante la vigencia del presente acuerdo, para utilizar nuestras marcas comerciales (para las que hemos sido autorizados por su propietario) únicamente en lo que respecta a la presentación de los carteles en su sitio.</value>
   </data>
-  <data name="Wemakenoexpress" xml:space="preserve">
+  <data name="WeMakeNoExpress" xml:space="preserve">
     <value>No ofrecemos garantías o representaciones de ningún tipo, ya sea de forma expresa o implícita, con respecto a los acuerdos del programa de invitados o pagos de las tarifas por invitados (incluyendo, sin limitación, sus funciones y garantías de adecuación, comercialización, legalidad, no vulneración o cualquier garantía implícita que se derive del curso de sus actuaciones, métodos o usos comerciales). Además, no garantizamos que el funcionamiento de nuestro sitio se interrumpa o esté libre de errores y no seremos responsables de las consecuencias de cualquier interrupción o error.</value>
   </data>
-  <data name="Wemaymodify" xml:space="preserve">
+  <data name="WeMayModifyAnyOfTheTerm" xml:space="preserve">
     <value>7. Podemos modificar términos y condiciones contenidos en el presente acuerdo, en cualquier momento y a nuestra entera discreción, mediante la publicación de un aviso del cambio o un nuevo acuerdo en nuestro sitio. Las modificaciones pueden incluir, por ejemplo, cambios en las tarifas por invitados disponibles, planificaciones de tarifas, procedimientos de pago y reglas del programa de invitados. SI NO CONSIDERA ACEPTABLE ALGUNA DE LAS MODIFICACIONES, EL ÚNICO RECURSO ES DAR POR TERMINADO ESTE ACUERDO. SI CONTINUA PARTICIPANDO EN EL PROGRAMA DESPUÉS DE NUESTRO AVISO DE CAMBIO O NUEVO ACUERDO EN NUESTRO SITIO, SE ENTENDERÁ COMO UNA ACEPTACIÓN VINCULANTE DEL CAMBIO.</value>
   </data>
-  <data name="WEMAYTERMINATE" xml:space="preserve">
+  <data name="WeMayTerminateThisAgreement" xml:space="preserve">
     <value>i. PODEMOS TERMINAR ESTE ACUERDO SI SE DETERMINA (A NUESTRA ENTERA DISCRECCIÓN) QUE SU SITO NO ES ADECUADO. Entre los sitios inadecuados se incluyen aquellos que están dirigidos a niños, promueven materiales sexualmente explícitos, promueven la violencia, promueven la discriminación basada en motivos de raza, sexo, religión, nacionalidad, discapacidad, orientación sexual o edad, promueven actividades ilegales o violan los derechos de propiedad intelectual.</value>
   </data>
-  <data name="Wemaywithhold" xml:space="preserve">
+  <data name="WeMayWithhold" xml:space="preserve">
     <value>e. Podemos retener su pago final durante un tiempo razonable para garantizar que se paga la cantidad correcta.</value>
   </data>
   <data name="WeOfferSeveralMethods" xml:space="preserve">
@@ -2481,7 +2481,7 @@ Uno de nuestros administradores de cuentas de afiliados se pondrá en contacto c
   <data name="WeReserveTheRight" xml:space="preserve">
     <value>Nos reservamos el derecho a finalizar este acuerdo si determinamos que su sitio no es adecuado. Entre los sitios inadecuados se incluyen aquellos que promueven materiales sexualmente explícitos, están dirigidos a niños o menores, promueven la violencia, promueven la discriminación basada en motivos de raza, sexo, religión, nacionalidad, discapacidad u orientación sexual, promueven actividades ilegales o violan los derechos de propiedad intelectual ("Derechos de propiedad intelectual").</value>
   </data>
-  <data name="Wereservetherighttorevoke" xml:space="preserve">
+  <data name="WeReserveTheRightToRevoke" xml:space="preserve">
     <value>4. Nos reservamos el derecho a revocar esta licencia en cualquier momento, licencia que también se revocará a la terminación del presente acuerdo, por cualquier motivo.</value>
   </data>
   <data name="WeRolloverNegative" xml:space="preserve">
@@ -2493,10 +2493,10 @@ Uno de nuestros administradores de cuentas de afiliados se pondrá en contacto c
   <data name="Weunderstandthat" xml:space="preserve">
     <value>e. Entendemos que esto puede ser frustrante para los afiliados, pero tiene que quedar claro que 12BET sólo puede pagar un porcentaje de sus beneficios, no de los ingresos fraudulentos.</value>
   </data>
-  <data name="Wewillnotbeliable" xml:space="preserve">
+  <data name="WeWillNotBeLiable" xml:space="preserve">
     <value>No seremos responsables de daños indirectos, especiales o derivados (o pérdidas de ingresos, beneficios o datos) que se originen en relación con este acuerdo o el programa de invitados, incluso si hemos recibido aviso de la posibilidad de dichos daños. Además, nuestra responsabilidad total que se derive con respecto a este acuerdo y programa no excederá el total de las comisiones pagadas o por pagar al cliente en virtud del presente acuerdo. Ninguna disposición del presente acuerdo se interpretará con el sentido de proporcionar derechos, recursos o beneficios a cualquier persona o entidad que no forme parte del presente acuerdo. Nuestras obligaciones en virtud del presente acuerdo no constituyen obligaciones personales de nuestros directores, gerentes o accionistas. Cualquier responsabilidad que se derive del presente acuerdo será satisfecha únicamente con las tarifas generadas por invitados y se limita a los daños directos.</value>
   </data>
-  <data name="WewillterminatethisAgreement" xml:space="preserve">
+  <data name="WeWillTerminateThisAgreement" xml:space="preserve">
     <value>5. Este acuerdo terminará inmediatamente si se detecta algún tipo de correo no deseado en su nombre o si desacredita 12BET mediante publicidad falsa, palabras escritas o pronunciadas.</value>
   </data>
   <data name="WhatAreTheWithdrawal" xml:space="preserve">
@@ -2538,7 +2538,7 @@ Uno de nuestros administradores de cuentas de afiliados se pondrá en contacto c
   <data name="Within5dayswesh" xml:space="preserve">
     <value>Debería recibir la respuesta a su solicitud en un plazo de 5 días. Si se aprueba, podrá disfrutar de acceso completo a nuestro programa de afiliados.</value>
   </data>
-  <data name="Withoutourpriorwritten" xml:space="preserve">
+  <data name="WithoutOurPriorWritten" xml:space="preserve">
     <value>7. Sin nuestra previa autorización por escrito, sólo utilizará nuestros carteles y enlaces aprobados y no modificará su apariencia ni se hará referencia a la empresa en ningún material promocional. Diseñamos y designamos la apariencia y texto de los enlaces de transferencia de hipertexto, que constituyen la única representación autorizada y permitida de 12BET.</value>
   </data>
   <data name="WrongMinbet_Max" xml:space="preserve">
@@ -2550,16 +2550,16 @@ Uno de nuestros administradores de cuentas de afiliados se pondrá en contacto c
   <data name="Yemen" xml:space="preserve">
     <value>Yemen </value>
   </data>
-  <data name="YOUACKNOWLEDGETHATYOUHAVEREAD" xml:space="preserve">
+  <data name="YouAcknowledge" xml:space="preserve">
     <value>CONFIRMA QUE HA LEÍDO ESTE ACUERDO Y ACEPTA TODOS SUS TÉRMINOS Y CONDICIONES. ACEPTA QUE PODREMOS EN CUALQUIER MOMENTO (DIRECTA O INDIRECTAMENTE) SOLICITAR REFERENCIAS DEL CLIENTE EN TÉRMINOS DIFERENTES DE LOS INCLUIDOS EN ESTE ACUERDO U OPERAR EN SITIOS WEB QUE SEAN SIMILARES O COMPITAN CON SU SITIO WEB. RECONOCE QUE HA EVALUADO INDEPENDIENTEMENTE LA CONVENIENCIA DE PARTICIPAR EN ESTE PROGRAMA DE AFILIADOS Y NO SE BASA EN NINGUNA REPRESENTACIÓN, GARANTÍA O DECLARACIÓN DISTINTAS DE LAS ESTABLECIDAS EN EL PRESENTE ACUERDO</value>
   </data>
-  <data name="Youandweareindependent" xml:space="preserve">
+  <data name="YouAndWeAreIndependent" xml:space="preserve">
     <value>Somos contratistas independientes y nada de lo estipulado en el presente acuerdo creará ninguna asociación, empresa conjunta, agencia, franquicia, representación de ventas o relación de trabajo entre las partes. No tendrá autoridad para realizar o aceptar ninguna oferta o representación en nuestro nombre. No realizará ninguna declaración, ya sea en su sitio o en cualquier otro lugar, que contradiga razonablemente lo expuesto en el presente párrafo.</value>
   </data>
-  <data name="Youandweareindependentcontractors" xml:space="preserve">
+  <data name="YouAndWeAreIndependentContractors" xml:space="preserve">
     <value>Somos contratistas independientes y nada de lo estipulado en el presente acuerdo creará ninguna asociación, empresa conjunta, agencia, franquicia, representación de ventas o relación de trabajo entre las partes. No tendrá autoridad para realizar o aceptar ninguna oferta o representación en nuestro nombre. No realizará ninguna declaración, ya sea en su sitio o en cualquier otro lugar, que contradiga lo expuesto en el presente párrafo o que se considere razonablemente que contradice este párrafo.</value>
   </data>
-  <data name="Youandwewill" xml:space="preserve">
+  <data name="YouAndWeWillBeReleased" xml:space="preserve">
     <value>h. Ambas partes quedan libres de todas las obligaciones y responsabilidades entre sí que se produzcan o que se deriven después de la fecha de dicha terminación, excepto con respecto a las obligaciones que por su naturaleza, están diseñadas para perdurar tras la terminación, tal como se establece en el presente acuerdo. La terminación no le exime de cualquier responsabilidad derivada de cualquier incumplimiento de este acuerdo producido antes de la terminación.</value>
   </data>
   <data name="YouAreNotAllowed" xml:space="preserve">
@@ -2568,7 +2568,7 @@ Uno de nuestros administradores de cuentas de afiliados se pondrá en contacto c
   <data name="Youarenotauthor" xml:space="preserve">
     <value>You are not authorized to create/edit this information</value>
   </data>
-  <data name="Youareonlyresponsible" xml:space="preserve">
+  <data name="YouAreOnlyResponsible" xml:space="preserve">
     <value>1. Usted es el único responsable de dirigir a los clientes al sitio Web de 12BET.</value>
   </data>
   <data name="YouCanLoginToYour12BET" xml:space="preserve">
@@ -2586,22 +2586,19 @@ Uno de nuestros administradores de cuentas de afiliados se pondrá en contacto c
   <data name="Youhaverequeste" xml:space="preserve">
     <value>Ha solicitado recuperar el nombre de usuario o la contraseña. Si no lo ha solicitado, ignore este correo electrónico.</value>
   </data>
-  <data name="Youherebyagreetoindemnify" xml:space="preserve">
+  <data name="YouHerebyAgreeToIndemnify" xml:space="preserve">
     <value>Por la presente acepta indemnizar y eximir de toda responsabilidad a 12BET, las entidades a las que representa y sus afiliados, directores, gerentes, empleados, agentes, accionistas, socios, miembros y otros propietarios de 12BET, ante reclamaciones, acciones, demandas, obligaciones, pérdidas, daños y perjuicios, sentencias, acuerdos, gastos (incluyendo los honorarios razonables de abogados), así como los costos (cualquiera o todos los actos mencionados anteriormente, en lo sucesivo denominados "Pérdidas"), en la medida en que tales Pérdidas (u otras acciones relacionadas) resulten de o se basen en (i) cualquier reclamación de que el uso por nuestra parte de las marcas comerciales de afiliado infringe cualquier marca comercial, nombre comercial, marca de servicio, derecho de autor, licencia, propiedad intelectual, o cualquier otro derecho de propiedad de terceros, (ii) cualquier declaración falsa de una representación o garantía o incumplimiento de un pacto y acuerdo realizado por usted según la presente, (iii) el desarrollo, funcionamiento, mantenimiento y contenido de su sitio y los productos y servicios ofrecidos desde su sitio, o (iv) cualquier reclamación relacionada con su sitio, incluyendo, sin limitación, el contenido no imputable a nosotros.</value>
   </data>
   <data name="Youinputtedanin" xml:space="preserve">
     <value>You placed an invalid code.</value>
   </data>
-  <data name="Youmaynotassign" xml:space="preserve">
-    <value>a. No puede asignar este acuerdo, conforme a ninguna ley u otra norma jurídica, sin nuestro previo consentimiento por escrito. Con sujeción a esta restricción, el presente acuerdo será en beneficio y de cumplimiento obligatorio para las partes y nuestros respectivos sucesores y personas asignadas.</value>
-  </data>
-  <data name="Youmaynotmodify" xml:space="preserve">
+  <data name="YouMayNotModify" xml:space="preserve">
     <value>2. No puede modificar o utilizar para cualquier otro propósito ningún derecho de propiedad intelectual, carteles u otros materiales creativos proporcionados por la empresa sin el consentimiento previo por escrito de 12BET. Todos los avisos de copyright o derechos de propiedad intelectual de cualquier material proporcionado o aprobado por 12BET se deben mantener y no se podrán modificar ni eliminar.</value>
   </data>
   <data name="YoumustagreeTer" xml:space="preserve">
     <value>You must agree Terms &amp; Conditions to proceed!</value>
   </data>
-  <data name="Youmustremove12BET" xml:space="preserve">
+  <data name="YouMustRemoveBanners" xml:space="preserve">
     <value>a. Debe eliminar los carteles de 12BET de su sitio y desactivar todos los enlaces de su sitio a 12BET.</value>
   </data>
   <data name="Youraccountinfo" xml:space="preserve">
@@ -2631,28 +2628,28 @@ Uno de nuestros administradores de cuentas de afiliados se pondrá en contacto c
   <data name="Yourwebsitesand" xml:space="preserve">
     <value>Gracias por enviar su solicitud.&lt;br/&gt;&lt;br/&gt;El equipo de afiliados de 12BET revisará la información de su solicitud y sus sitios Web con el fin de garantizar que el contenido es adecuado para promocionar nuestros productos.</value>
   </data>
-  <data name="Youshallnotmake" xml:space="preserve">
+  <data name="YouShallNotMakeAnyClaims" xml:space="preserve">
     <value>6. En este caso, no podrá realizar ningún tipo de reclamación, representación o garantía en relación a 12BET, ni tendrá autoridad para vincular a 12BET a obligación alguna.</value>
   </data>
   <data name="YouWillAgreeToRegister" xml:space="preserve">
     <value>2. Se compromete a registrar y mantener la información de contacto correcta y veraz con 12BET.</value>
   </data>
-  <data name="Youwillbeentitled" xml:space="preserve">
+  <data name="YouWillBeEntitled" xml:space="preserve">
     <value>c. Sólo tendrá derecho a las tarifas por invitados pendientes de pago, si las hay, obtenidas antes o durante la fecha de terminación, salvo en caso de que la terminación sea consecuencia de su incumplimiento de los términos del presente acuerdo, según se detalla a continuación en 9.2.d. Podemos retener su pago final durante un tiempo razonable para garantizar que se paga la cantidad correcta.</value>
   </data>
   <data name="YouWillBeSolelyResponsible" xml:space="preserve">
     <value>4. Será el único responsable del desarrollo, funcionamiento y mantenimiento de su sitio y de todos los materiales que aparecen en el mismo, y de igual modo será responsable de los gastos. Por ejemplo, será el único responsable de garantizar que los materiales publicados en su sitio Web no son difamatorios, ilegales o que infrinjan los derechos de propiedad intelectual de terceros. Debido a que no tenemos control sobre su propio sitio, renunciamos a toda responsabilidad por estos asuntos. Además, nos indemnizará y renunciará a nuestra responsabilidad por cualquier reclamación, daño y gasto (incluyendo, sin limitación, honorarios de abogados) relacionados con el desarrollo, funcionamiento, mantenimiento y el contenido de su sitio. Esta disposición sobre la indemnización se entenderá sin perjuicio de nuestra acción o reclamación independiente contra el cliente en virtud de las leyes aplicables.</value>
   </data>
-  <data name="Youwillindemnify" xml:space="preserve">
+  <data name="YouWillIndemnify" xml:space="preserve">
     <value>3. Además, nos indemnizará y eximirá de toda responsabilidad por cualquier reclamación, daño o gasto (incluyendo, sin limitación, los honorarios de abogados) relacionados con el desarrollo, funcionamiento, mantenimiento y contenido de su sitio. Esta disposición sobre la indemnización se entenderá sin perjuicio de nuestra acción o reclamación independiente contra el cliente en virtud de las leyes aplicables.</value>
   </data>
-  <data name="Youwillnotknowingly" xml:space="preserve">
+  <data name="YouWillNotKnowingly" xml:space="preserve">
     <value>8. No se beneficiará conscientemente del tráfico conocido o sospechoso que no se ha generado de buena fe, tanto si causa o no daños a 12BET. En caso de se produzca una actividad fraudulenta por parte de una persona dirigida a un sitio mediante su enlace, nos reservamos el derecho de retractar las comisiones pagadas en cualquier momento. Nuestra decisión a este respecto será final y no se aceptará ninguna contestación. Nos reservamos el derecho a retener todas las cantidades pendientes en virtud del presente acuerdo si tenemos motivos razonables para creer que dicho tráfico se ha realizado con su conocimiento. Incluso en el caso de que no haya generado dicho tráfico con conocimiento, nos reservamos el derecho a retener las comisiones de afiliado con respecto al mismo.</value>
   </data>
   <data name="YouWillPresentOnlyContent" xml:space="preserve">
     <value>3. Presentará sólo el contenido y los temas de su sitio aprobados previamente por escrito por 12BET. El contenido que se considere inadecuado, a la entera discreción de 12BET, dará lugar a la finalización del acuerdo de afiliado inmediatamente.</value>
   </data>
-  <data name="Youwillreturn" xml:space="preserve">
+  <data name="YouWillReturnToUs" xml:space="preserve">
     <value>g. Nos devolverá la información confidencial y todas las copias en su poder, custodia y control, y cesarán todos los usos de nombres comerciales, marcas comerciales, marcas de servicio, logotipos y otras designaciones de los comerciantes.</value>
   </data>
   <data name="Yugoslavia" xml:space="preserve">

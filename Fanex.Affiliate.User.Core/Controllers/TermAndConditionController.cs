@@ -20,7 +20,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
 
         [HttpGet]
         [ChildActionOnly]
-        [OutputCache(Duration = 86400, VaryByParam = "none")]
+        [OutputCache(Duration = 86400, VaryByParam = "none", VaryByCustom = "language")]
         public ActionResult Content()
         {
             return PartialView("~/Views/TermAndCondition/_Content.cshtml");

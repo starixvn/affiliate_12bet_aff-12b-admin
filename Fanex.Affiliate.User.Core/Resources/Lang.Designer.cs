@@ -250,6 +250,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 2. Affiliation Guidelines.
+        /// </summary>
+        public static string AffiliateGuidelines {
+            get {
+                return ResourceManager.GetString("AffiliateGuidelines", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Affiliate ID.
         /// </summary>
         public static string AffiliateID {
@@ -261,18 +270,18 @@ namespace Fanex.Affiliate.User.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to 6. Affiliate must ensure that any material posted on their site is legal and does not infringe copyright or violate any rights..
         /// </summary>
-        public static string Affiliatemustensure {
+        public static string AffiliateMustEnsure {
             get {
-                return ResourceManager.GetString("Affiliatemustensure", resourceCulture);
+                return ResourceManager.GetString("AffiliateMustEnsure", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to 9. Affiliates are prohibited from playing at any of the sportsbooks promoted by 12BET through their own affiliate link or from the affiliate link of an associate who shares all or part of the commission with the affiliate or a third party. This shall include any individuals or playing groups from which an Affiliate receives compensation or remuneration from of any kind. In the event of violation of this section, 12BET and the respective website that has been played with shall have the right to void all play [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string Affiliatesareprohibited {
+        public static string AffiliatesAreProhibited {
             get {
-                return ResourceManager.GetString("Affiliatesareprohibited", resourceCulture);
+                return ResourceManager.GetString("AffiliatesAreProhibited", resourceCulture);
             }
         }
         
@@ -300,17 +309,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string AffiliationGuidelines {
             get {
                 return ResourceManager.GetString("AffiliationGuidelines", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &lt;p&gt;“12bet Gross Win” is the total of all amounts bet by at least six(6) Active Wagering Members under your affiliate account in a calendar month, minus all amounts won by or paid to your Active Wagering Members. &lt;/p&gt;
-        ///
-        ///&lt;p&gt;“Charge-backs” are amounts deducted when a customer that is a credit card holder discovers irregular unauthorized charge-backs made on the customer’s Credit/Debit Card, and the credit card holder requests the bank to reverse these charges. Charge-backs may relate to, but are not limited t [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string AfterChargeback {
-            get {
-                return ResourceManager.GetString("AfterChargeback", resourceCulture);
             }
         }
         
@@ -380,9 +378,9 @@ namespace Fanex.Affiliate.User.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to b. All rights and licenses given to you in this Agreement shall immediately terminate..
         /// </summary>
-        public static string Allrightsandlicenses {
+        public static string AllRightAndLicensee {
             get {
-                return ResourceManager.GetString("Allrightsandlicenses", resourceCulture);
+                return ResourceManager.GetString("AllRightAndLicensee", resourceCulture);
             }
         }
         
@@ -612,7 +610,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1. Assign-ability and Inurement.
+        ///   Looks up a localized string similar to 1. Assign-ability and Inurement a. You may not assign this Agreement, by operation of law or otherwise, without our prior written consent. Subject to that restriction, this Agreement will be binding on, inure to the benefit of, and enforceable against you and us and our respective successors and assigns..
         /// </summary>
         public static string Assignability {
             get {
@@ -920,9 +918,9 @@ namespace Fanex.Affiliate.User.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to 4. Banners and links may not be placed within unsolicited e-mail, unauthorized newsgroup postings, or chat rooms or through the use of &quot;bots&quot;. Traffic generated illegally will not be counted and may result in the termination of your affiliate account with us..
         /// </summary>
-        public static string Bannersandlinks {
+        public static string BannersAndLinks {
             get {
-                return ResourceManager.GetString("Bannersandlinks", resourceCulture);
+                return ResourceManager.GetString("BannersAndLinks", resourceCulture);
             }
         }
         
@@ -1190,27 +1188,27 @@ namespace Fanex.Affiliate.User.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to 3. By agreeing to participate in the 12BET Affiliate Program, you are agreeing to download banners, text or promotional material and place it on your site, utilize it within e-mail, direct marketing using your affiliate URL or print. These methods are the only approved methods by which you may advertise 12BET&apos;s products and services..
         /// </summary>
-        public static string Byagreeingtoparticipate {
+        public static string ByAgreeingToParticipate {
             get {
-                return ResourceManager.GetString("Byagreeingtoparticipate", resourceCulture);
+                return ResourceManager.GetString("ByAgreeingToParticipate", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to By having read, the terms and conditions, and acknowledging such in the affiliate sign-up form you agree to all the terms and conditions contained herein. 12BET reserves the right to withhold payment from any affiliate that violates any of the terms and conditions contained herein.
         /// </summary>
-        public static string Byhavingread {
+        public static string ByHavingRead {
             get {
-                return ResourceManager.GetString("Byhavingread", resourceCulture);
+                return ResourceManager.GetString("ByHavingRead", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to 2. By opening an account with a customer, that person or entity will become our Customers and, accordingly, all Client rules, policies, and operating procedures will apply to them..
         /// </summary>
-        public static string Byopeninganaccount {
+        public static string ByOpeningAnAccountWithACustomer {
             get {
-                return ResourceManager.GetString("Byopeninganaccount", resourceCulture);
+                return ResourceManager.GetString("ByOpeningAnAccountWithACustomer", resourceCulture);
             }
         }
         
@@ -1469,9 +1467,9 @@ namespace Fanex.Affiliate.User.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to a. Charge-back: A credit card holder discovers irregular transactions made on his/her Credit/Debit Card, which was not authorized by him/her. The credit card holder then requests his/her bank to reverse these charges. Charge backs relate to fraudulent use by a third party of the credit card holder&apos;s card or card number..
         /// </summary>
-        public static string Chargeback {
+        public static string ChargeBack {
             get {
-                return ResourceManager.GetString("Chargeback", resourceCulture);
+                return ResourceManager.GetString("ChargeBack", resourceCulture);
             }
         }
         
@@ -1692,20 +1690,20 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 5. Commissionable earnings will be subject to commissions as calculated using the 12BET Affiliate Program commission structure in force from time to time..
-        /// </summary>
-        public static string Commissionableearnings {
-            get {
-                return ResourceManager.GetString("Commissionableearnings", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 3. Commissionable Earnings are calculated as 12BET profit, less charge-back, complimentary money, free money offers and other incentives offered to the customer, derived from at least six(6)  Active Wagering Members in a calendar month..
+        ///   Looks up a localized string similar to 3. Commissionable Earnings are calculated as 12BET profit, less charge-back, complimentary money, free money offers and other incentives offered to the customer, derived from at least six(6) Active Wagering Members in a calendar month..
         /// </summary>
         public static string CommissionableEarningsAreCalculated {
             get {
                 return ResourceManager.GetString("CommissionableEarningsAreCalculated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 5. Commissionable earnings will be subject to commissions as calculated using the 12BET Affiliate Program commission structure in force from time to time..
+        /// </summary>
+        public static string CommissionableEarningsWillBeSubject {
+            get {
+                return ResourceManager.GetString("CommissionableEarningsWillBeSubject", resourceCulture);
             }
         }
         
@@ -2343,6 +2341,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;p class=&quot;text text-block&quot;&gt; &quot;12bet Gross Win&quot; is the total of all amounts bet by at least six(6) Active Wagering Members under your affiliate account in a calendar month, minus all amounts won by or paid to your Active Wagering Members. &lt;/p&gt; &lt;p class=&quot;text text-block&quot;&gt; &quot;Charge-backs&quot; are amounts deducted when a customer that is a credit card holder discovers irregular unauthorized charge-backs made on the customer’s Credit/Debit Card, and the credit card holder requests the bank to reverse these charges. Ch [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string DetailedChargeBack {
+            get {
+                return ResourceManager.GetString("DetailedChargeBack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Detailed stats tracking system.
         /// </summary>
         public static string DetailedStas {
@@ -2462,9 +2469,9 @@ namespace Fanex.Affiliate.User.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to 3. During the term of this Agreement, you may be entrusted with confidential information relating to the business, operations, or underlying technology of our affiliate program (including, for example, referral fees earned by you under the program). You agree not to disclose or use the confidential information to third persons or outside parties unless you have our prior written consent and that you will use the confidential information only for purposes necessary to further the purposes of this Agreement.  [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string Duringtheterm {
+        public static string DuringTheTermOfThisAgreement {
             get {
-                return ResourceManager.GetString("Duringtheterm", resourceCulture);
+                return ResourceManager.GetString("DuringTheTermOfThisAgreement", resourceCulture);
             }
         }
         
@@ -3612,9 +3619,9 @@ namespace Fanex.Affiliate.User.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to 15. Governing Law and Arbitration.
         /// </summary>
-        public static string GoverningLawandArbitration {
+        public static string GoverningLawAndArbitration {
             get {
-                return ResourceManager.GetString("GoverningLawandArbitration", resourceCulture);
+                return ResourceManager.GetString("GoverningLawAndArbitration", resourceCulture);
             }
         }
         
@@ -3929,9 +3936,9 @@ namespace Fanex.Affiliate.User.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to f. If we continue to permit activity (generation of revenue) from customers after termination, this will not constitute a continuation or renewal of this Agreement or a waiver of termination..
         /// </summary>
-        public static string Ifwecontinue {
+        public static string IfWeContinueToPermitActivity {
             get {
-                return ResourceManager.GetString("Ifwecontinue", resourceCulture);
+                return ResourceManager.GetString("IfWeContinueToPermitActivity", resourceCulture);
             }
         }
         
@@ -3974,9 +3981,9 @@ namespace Fanex.Affiliate.User.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to d. If you have failed to fulfill your obligations and responsibilities, we will not pay you the referral fees otherwise owing to you on termination..
         /// </summary>
-        public static string Ifyouhavefailed {
+        public static string IfYouHaveFailed {
             get {
-                return ResourceManager.GetString("Ifyouhavefailed", resourceCulture);
+                return ResourceManager.GetString("IfYouHaveFailed", resourceCulture);
             }
         }
         
@@ -4107,11 +4114,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 2. In the event of termination of this Agreement.
+        ///   Looks up a localized string similar to 2. In the event of termination of this Agreement:.
         /// </summary>
-        public static string Intheeventoftermination {
+        public static string InTheEventOfTermination {
             get {
-                return ResourceManager.GetString("Intheeventoftermination", resourceCulture);
+                return ResourceManager.GetString("InTheEventOfTermination", resourceCulture);
             }
         }
         
@@ -4172,9 +4179,9 @@ namespace Fanex.Affiliate.User.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to 16. IN WITNESS WHEREOF.
         /// </summary>
-        public static string INWITNESSWHEREOF {
+        public static string InWitnessWhereOf {
             get {
-                return ResourceManager.GetString("INWITNESSWHEREOF", resourceCulture);
+                return ResourceManager.GetString("InWitnessWhereOf", resourceCulture);
             }
         }
         
@@ -4272,9 +4279,9 @@ namespace Fanex.Affiliate.User.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to 4. It is the affiliates&apos; responsibility to follow the correct linking and tagging procedure to ensure new customer tracking and payment..
         /// </summary>
-        public static string Itistheaffiliates {
+        public static string ItIsTheAffiliate {
             get {
-                return ResourceManager.GetString("Itistheaffiliates", resourceCulture);
+                return ResourceManager.GetString("ItIsTheAffiliate", resourceCulture);
             }
         }
         
@@ -5495,9 +5502,9 @@ namespace Fanex.Affiliate.User.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to 6. Negative earnings are carried forward to the next month. Should the affiliate close the month with a positive balance, payment will be issued if it meets the minimum requirements and commissions will be paid on the positive balance..
         /// </summary>
-        public static string Negativeearningsarecarried {
+        public static string NegativeEarningsAreCarried {
             get {
-                return ResourceManager.GetString("Negativeearningsarecarried", resourceCulture);
+                return ResourceManager.GetString("NegativeEarningsAreCarried", resourceCulture);
             }
         }
         
@@ -5718,7 +5725,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 2. Non-Waiver.
+        ///   Looks up a localized string similar to 2. Non-Waiver a. Our failure to enforce your strict performance of any provision of this Agreement will not constitute a waiver of our right to subsequently enforce such provision or any other provision of this Agreement. NO MODIFICATIONS, ADDITIONS, DELETIONS OR INTERLINEATIONS OF THIS AGREEMENT ARE PERMITTED OR WILL BE RECOGNIZED BY US. None of our employees, officers or agents may verbally alter, modify or waive any provision of this Agreement..
         /// </summary>
         public static string NonWaiver {
             get {
@@ -5909,18 +5916,18 @@ namespace Fanex.Affiliate.User.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to 1. 12BET assume ownership of the customer at point of first contact with the customer. You, as affiliate, act as a referring agent for 12BET. We reserve the right to refuse customers (or to close their accounts) if necessary to comply with any requirements we may periodically establish..
         /// </summary>
-        public static string OneTwoBETassumeownership {
+        public static string OneTwoBetAssumeOwnerShip {
             get {
-                return ResourceManager.GetString("OneTwoBETassumeownership", resourceCulture);
+                return ResourceManager.GetString("OneTwoBetAssumeOwnerShip", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1. 12BET will pay out a revenue share on the Commissionable Earnings generated by each customer, as defined by 12BET Affiliate Program commission structure, provided that you maintain in your account as an affiliate, at least six(6) Active Wagering Members in any given calendar month.&lt;p&gt;However, 12BET will reserves the right to withhold an affiliate commission payout in any particular month whether in part or in full, regardless of the 6 qualified active members , if  the affiliate is found not to make an e [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to 1. 12BET will pay out a revenue share on the Commissionable Earnings generated by each customer, as defined by 12BET Affiliate Program commission structure, provided that you maintain in your account as an affiliate, at least six(6) Active Wagering Members in any given calendar month.However, 12BET will reserves the right to withhold an affiliate commission payout in any particular month whether in part or in full, regardless of the 6 qualified active members , if  the affiliate is found not to make an effo [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string OneTwoBETwillpayout {
+        public static string OneTwoBETWillPayout {
             get {
-                return ResourceManager.GetString("OneTwoBETwillpayout", resourceCulture);
+                return ResourceManager.GetString("OneTwoBETWillPayout", resourceCulture);
             }
         }
         
@@ -5965,9 +5972,9 @@ namespace Fanex.Affiliate.User.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to 2. Only properly tagged customers can be assigned to an affiliate. Should an affiliate tag be improperly inserted into the affiliate site or not properly received by the 12BET web server the resulting customer registration and purchases will not be assigned to the affiliate. Therefore it is the responsibility of the affiliate to ensure that all links are properly tagged..
         /// </summary>
-        public static string Onlyproperlytaggedcustomers {
+        public static string OnlyProperlyTagged {
             get {
-                return ResourceManager.GetString("Onlyproperlytaggedcustomers", resourceCulture);
+                return ResourceManager.GetString("OnlyProperlyTagged", resourceCulture);
             }
         }
         
@@ -6037,18 +6044,18 @@ namespace Fanex.Affiliate.User.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to 1. Ownership and content of our sites remain our respective properties and shall not be deemed to have been transferred to the affiliate through any act or omission in respect of the affiliation Agreement..
         /// </summary>
-        public static string Ownershipandcontent {
+        public static string OwnerShipAndContent {
             get {
-                return ResourceManager.GetString("Ownershipandcontent", resourceCulture);
+                return ResourceManager.GetString("OwnerShipAndContent", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to 2. Ownership, content and liability for affiliate sites are the sole responsibility of the affiliate. You will be solely responsible for the development, operation, and maintenance of your site and for all materials that appear on your site and at your own cost..
         /// </summary>
-        public static string Ownershipcontentandliability {
+        public static string OwnerShipContentAndLiability {
             get {
-                return ResourceManager.GetString("Ownershipcontentandliability", resourceCulture);
+                return ResourceManager.GetString("OwnerShipContentAndLiability", resourceCulture);
             }
         }
         
@@ -6460,9 +6467,9 @@ namespace Fanex.Affiliate.User.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to 5. Policies &amp; Confidentiality.
         /// </summary>
-        public static string PoliciesConfidentiality {
+        public static string PoliciesAndConfidentiality {
             get {
-                return ResourceManager.GetString("PoliciesConfidentiality", resourceCulture);
+                return ResourceManager.GetString("PoliciesAndConfidentiality", resourceCulture);
             }
         }
         
@@ -6550,9 +6557,9 @@ namespace Fanex.Affiliate.User.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to 5. Presentation of our banners &amp; content on affiliate&apos;s site is the responsibility of affiliate. The affiliate must ensure that our content is presented in accordance with our prescriptions..
         /// </summary>
-        public static string Presentationofourbanners {
+        public static string PresentationOfOurBanners {
             get {
-                return ResourceManager.GetString("Presentationofourbanners", resourceCulture);
+                return ResourceManager.GetString("PresentationOfOurBanners", resourceCulture);
             }
         }
         
@@ -6872,7 +6879,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 3. Remedies.
+        ///   Looks up a localized string similar to 3. Remedies a. Our rights and remedies hereunder shall not be mutually exclusive, i.e., the exercise of one or more of the provisions of this Agreement shall not preclude the exercise of any other provision. You acknowledge, confirm, and agree that damages may be inadequate for a breach or a threatened breach of this Agreement and, in the event of a breach or threatened breach of any provision of this Agreement, the respective rights and obligations of the parties may be enforceable by specific performance, [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Remedies {
             get {
@@ -6971,6 +6978,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 1. Responsibilities of the Affiliate.
+        /// </summary>
+        public static string ResponsibilitiesOfTheAffiliate {
+            get {
+                return ResourceManager.GetString("ResponsibilitiesOfTheAffiliate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Results.
         /// </summary>
         public static string result {
@@ -6991,9 +7007,9 @@ namespace Fanex.Affiliate.User.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to 4. Revenue Sharing &amp; Payment.
         /// </summary>
-        public static string RevenueSharing {
+        public static string RevenueSharingAndPayment {
             get {
-                return ResourceManager.GetString("RevenueSharing", resourceCulture);
+                return ResourceManager.GetString("RevenueSharingAndPayment", resourceCulture);
             }
         }
         
@@ -7259,7 +7275,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 4. Severability / Waiver.
+        ///   Looks up a localized string similar to 4. Severability / Waiver a. Whenever possible, each provision of this Agreement shall be interpreted in such a manner as to be effective and valid under applicable law but, if any provision of this Agreement is held to be invalid, illegal or unenforceable in any respect, such provision will be ineffective only to the extent of such invalidity, or unenforceability, without invalidating the remainder of this Agreement or any provision hereof. No waiver will be implied from conduct or failure to enforce any ri [rest of string was truncated]&quot;;.
         /// </summary>
         public static string SeverabilityWaiver {
             get {
@@ -7306,9 +7322,9 @@ namespace Fanex.Affiliate.User.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to 4. Should you fail to be entitled to the Commissionable Earnings in accordance with Clauses 4.1, 4.2, and 4.3 above for failure to maintain at least six(6) Active Wagering Members in a given month, you will not generate any commission in the month and the related member&apos;s lost will not be brought forward to the following months..
         /// </summary>
-        public static string ShouldYouFailToBe {
+        public static string ShouldYouFailToBeEntitled {
             get {
-                return ResourceManager.GetString("ShouldYouFailToBe", resourceCulture);
+                return ResourceManager.GetString("ShouldYouFailToBeEntitled", resourceCulture);
             }
         }
         
@@ -7538,11 +7554,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 8. Spam - We do not condone Spam..
+        ///   Looks up a localized string similar to 8. Spam - We do not condone Spam.&lt;br&gt;a. Any form of Spam will result in your account being placed under review and all funds due being withheld pending an investigation into your account. You need to be aware that our clients are liable to incur expenses in dealing with Spam generated mail and these same expenses will be deducted from your account should our client seek recourse. In this instance the amount determined by the relative client will be fair and deemed final and acceptable based on good faith an [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string SpamWedonot {
+        public static string SpamWeDoNotCondone {
             get {
-                return ResourceManager.GetString("SpamWedonot", resourceCulture);
+                return ResourceManager.GetString("SpamWeDoNotCondone", resourceCulture);
             }
         }
         
@@ -8116,6 +8132,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 7. The Commissionable Earnings of the affiliate calculated based on commission structure will be earned on all transactions that the customer undertakes with the merchant, as long as the affiliate remains a member of this affiliate program..
+        /// </summary>
+        public static string TheCommissionableEarningsOfTheAffiliate {
+            get {
+                return ResourceManager.GetString("TheCommissionableEarningsOfTheAffiliate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The cookies are overwritten to benefit the Last Affiliate when a Customer is referred..
         /// </summary>
         public static string TheCookiesAreOverwritten {
@@ -8152,15 +8177,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 7. The Commissionable Earnings of the affiliate calculated based on commission structure will be earned on all transactions that the customer undertakes with the merchant, as long as the affiliate remains a member of this affiliate program..
-        /// </summary>
-        public static string Thenetrevenueplan {
-            get {
-                return ResourceManager.GetString("Thenetrevenueplan", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The team at 12Bet Affiliates.
         /// </summary>
         public static string Theteamat_12Bet {
@@ -8172,9 +8188,9 @@ namespace Fanex.Affiliate.User.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to 1. The term of this Agreement will begin when you download linking code and link it to our site and will be continuous unless and until either party notifies the other in writing that it wishes to terminate the Agreement, in which case this Agreement may be terminated immediately. TERMINATION IS AT WILL, FOR ANY REASON, BY EITHER PARTY. For purposes of notification of termination, delivery via e-mail is considered a written and immediate form of notification..
         /// </summary>
-        public static string ThetermofthisAgreement {
+        public static string TheTermOfThisAgreement {
             get {
-                return ResourceManager.GetString("ThetermofthisAgreement", resourceCulture);
+                return ResourceManager.GetString("TheTermOfThisAgreement", resourceCulture);
             }
         }
         
@@ -8190,9 +8206,9 @@ namespace Fanex.Affiliate.User.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to This Agreement shall be governed by and construed in accordance with English law. Any dispute, controversy or claim arising out of or in connection with this Agreement shall be referred to and determined by a tribunal comprised of one arbitrator to be appointed by the Arbitration Centre. The seat of arbitration will be London, United Kingdom, the location determined by the Arbitration Centre, the language of the arbitration will be English and the regulations established by the Arbitration Centre shall gove [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string ThisAgreementshallbegoverned {
+        public static string ThisAgreementShallBeGoverned {
             get {
-                return ResourceManager.GetString("ThisAgreementshallbegoverned", resourceCulture);
+                return ResourceManager.GetString("ThisAgreementShallBeGoverned", resourceCulture);
             }
         }
         
@@ -8226,9 +8242,9 @@ namespace Fanex.Affiliate.User.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to 3. This license cannot be sub-licensed, assigned or otherwise transferred by you. Your right to use the trademarks is limited to and arises only out of this license to use the banners. You shall not assert the invalidity, unenforceability, or contest the ownership of the trademarks in any action or proceeding of whatever kind or nature, and shall not take any action that may prejudice our or our licensor&apos;s rights in the trademarks, render the same generic, or otherwise weaken their validity or diminish thei [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string Thislicensecannot {
+        public static string ThisLicenseCannotBeSubLicensed {
             get {
-                return ResourceManager.GetString("Thislicensecannot", resourceCulture);
+                return ResourceManager.GetString("ThisLicenseCannotBeSubLicensed", resourceCulture);
             }
         }
         
@@ -8302,6 +8318,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string ToBecomeAnAff {
             get {
                 return ResourceManager.GetString("ToBecomeAnAff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To become an affiliate of the 12BET Affiliate Program you must register as an affiliate by completing the online form. By registering as an affiliate of the 12BET Affiliate Program or downloading banner code and placing it on your website or websites, email messages or other formats, you are deemed to have agreed to be bound by all the terms and conditions set out in this agreement..
+        /// </summary>
+        public static string ToBecomeAnAffiliate {
+            get {
+                return ResourceManager.GetString("ToBecomeAnAffiliate", resourceCulture);
             }
         }
         
@@ -9037,9 +9062,9 @@ namespace Fanex.Affiliate.User.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to 1. We hereby grant to you a personal, non-exclusive, non-transferable limited license, during the term of this Agreement, to use our trademarks (licensed, in turn by us, from their owner) solely in connection with the display of the banners on your site..
         /// </summary>
-        public static string Weherebygrant {
+        public static string WeHerebyGrantToYou {
             get {
-                return ResourceManager.GetString("Weherebygrant", resourceCulture);
+                return ResourceManager.GetString("WeHerebyGrantToYou", resourceCulture);
             }
         }
         
@@ -9064,36 +9089,36 @@ namespace Fanex.Affiliate.User.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to We make no express or implied warranties or representations with respect to the referral program or referral fee payment arrangements (including, without limitation, their functionality, warranties of fitness, merchantability, legality, non-infringement, or any implied warranties arising out of a course of performance, dealing, or trade usage). In addition, we make no representation that the operation of our site will be uninterrupted or error-free and will not be liable for the consequences of any interrup [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string Wemakenoexpress {
+        public static string WeMakeNoExpress {
             get {
-                return ResourceManager.GetString("Wemakenoexpress", resourceCulture);
+                return ResourceManager.GetString("WeMakeNoExpress", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to 7. We may modify any of the terms and conditions contained in this Agreement, at any time and in our sole discretion, by posting a change notice or a new agreement on our site. Modifications may include, for example, changes in the scope of available referral fees, fee schedules, payment procedures, and referral program rules. IF ANY MODIFICATION IS UNACCEPTABLE TO YOU, YOUR ONLY RECOURSE IS TO TERMINATE THIS AGREEMENT. YOUR CONTINUED PARTICIPATION IN THE PROGRAM FOLLOWING OUR POSTING OF A CHANGE NOTICE OR  [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string Wemaymodify {
+        public static string WeMayModifyAnyOfTheTerm {
             get {
-                return ResourceManager.GetString("Wemaymodify", resourceCulture);
+                return ResourceManager.GetString("WeMayModifyAnyOfTheTerm", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to i. WE MAY TERMINATE THIS AGREEMENT IF WE DETERMINE (IN OUR SOLE DISCRETION) THAT YOUR SITE IS UNSUITABLE. Unsuitable sites may include those that: are aimed at children, promote sexually explicit materials, promote violence, promote discrimination based on race, sex, religion, nationality, disability, sexual orientation, or age, promote illegal activities, or violate intellectual property rights..
         /// </summary>
-        public static string WEMAYTERMINATE {
+        public static string WeMayTerminateThisAgreement {
             get {
-                return ResourceManager.GetString("WEMAYTERMINATE", resourceCulture);
+                return ResourceManager.GetString("WeMayTerminateThisAgreement", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to e. We may withhold your final payment for a reasonable time to ensure that the correct amount is paid..
         /// </summary>
-        public static string Wemaywithhold {
+        public static string WeMayWithhold {
             get {
-                return ResourceManager.GetString("Wemaywithhold", resourceCulture);
+                return ResourceManager.GetString("WeMayWithhold", resourceCulture);
             }
         }
         
@@ -9118,9 +9143,9 @@ namespace Fanex.Affiliate.User.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to 4. We reserve the right to revoke this license at any time and it shall have been deemed revoked at the termination of this Agreement, for whatsoever reason..
         /// </summary>
-        public static string Wereservetherighttorevoke {
+        public static string WeReserveTheRightToRevoke {
             get {
-                return ResourceManager.GetString("Wereservetherighttorevoke", resourceCulture);
+                return ResourceManager.GetString("WeReserveTheRightToRevoke", resourceCulture);
             }
         }
         
@@ -9154,18 +9179,18 @@ namespace Fanex.Affiliate.User.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to We will not be liable for indirect, special, or consequential damages (or any loss of revenue, profits, or data) arising in connection with this Agreement or the referral program, even if we have been advised of the possibility of such damages. Further, our aggregate liability arising with respect to this Agreement and the Program will not exceed the total commissions paid or payable to you under this Agreement. Nothing in this Agreement shall be construed to provide any rights, remedies or benefits to any  [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string Wewillnotbeliable {
+        public static string WeWillNotBeLiable {
             get {
-                return ResourceManager.GetString("Wewillnotbeliable", resourceCulture);
+                return ResourceManager.GetString("WeWillNotBeLiable", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to 5. We will terminate this Agreement immediately if there is any form of spamming on your behalf or if you discredit 12BET through false advertising, written or uttered words..
         /// </summary>
-        public static string WewillterminatethisAgreement {
+        public static string WeWillTerminateThisAgreement {
             get {
-                return ResourceManager.GetString("WewillterminatethisAgreement", resourceCulture);
+                return ResourceManager.GetString("WeWillTerminateThisAgreement", resourceCulture);
             }
         }
         
@@ -9352,9 +9377,9 @@ namespace Fanex.Affiliate.User.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to 7. Without our prior written approval, you will only use our approved banners and links and will not alter their appearance nor refer to us in any promotional materials. The appearance and syntax of the hypertext transfer links are designed and designated by us and constitute the only authorized and permitted representation of 12BET..
         /// </summary>
-        public static string Withoutourpriorwritten {
+        public static string WithoutOurPriorWritten {
             get {
-                return ResourceManager.GetString("Withoutourpriorwritten", resourceCulture);
+                return ResourceManager.GetString("WithoutOurPriorWritten", resourceCulture);
             }
         }
         
@@ -9413,43 +9438,43 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to YOU ACKNOWLEDGE THAT YOU HAVE READ THIS AGREEMENT AND AGREE TO ALL ITS TERMS AND CONDITIONS. YOU UNDERSTAND THAT WE MAY AT ANY TIME (DIRECTLY OR INDIRECTLY) SOLICIT CUSTOMER REFERRALS ON TERMS THAT MAY DIFFER FROM THOSE CONTAINED IN THIS AGREEMENT OR OPERATE WEB SITES THAT ARE SIMILAR TO OR COMPETE WITH YOUR WEB SITE. YOU HAVE INDEPENDENTLY EVALUATED THE DESIRABILITY OF PARTICIPATING IN THIS AFFILIATE PROGRAM AND ARE NOT RELYING ON ANY REPRESENTATION, GUARANTEE, OR STATEMENT OTHER THAN AS SET FORTH IN THIS  [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to You acknowledge that you have read this agreement and agree to all its terms and conditions. You understand that we may at any time (directly or indirectly) solicit customer referrals on terms that may differ from those contained in this agreement or operate web sites that are similar to or compete with your web site. You have independently evaluated the desirability of participating in this affiliate program and are not relying on any representation, guarantee, or statement other than as set forth in this  [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string YOUACKNOWLEDGETHATYOUHAVEREAD {
+        public static string YouAcknowledge {
             get {
-                return ResourceManager.GetString("YOUACKNOWLEDGETHATYOUHAVEREAD", resourceCulture);
+                return ResourceManager.GetString("YouAcknowledge", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to 9. You and we are independent contractors, and nothing in this Agreement will create any partnership, joint venture, agency, franchise, sales representative, or employment relationship between the parties. You will have no authority to make or accept any offers or representations on our behalf. You will not make any statement, whether on your site or otherwise, that reasonably would contradict anything in this paragraph..
         /// </summary>
-        public static string Youandweareindependent {
+        public static string YouAndWeAreIndependent {
             get {
-                return ResourceManager.GetString("Youandweareindependent", resourceCulture);
+                return ResourceManager.GetString("YouAndWeAreIndependent", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to You and we are independent contractors, and nothing in this agreement will create any partnership, joint venture, agency, franchise, sales representative, or employment relationship between the parties. You will have no authority to make or accept any offers or representations on our behalf. You will not make any statement, whether on your site or otherwise, to contradict anything in this paragraph or be reasonably deemed to contradict this paragraph..
         /// </summary>
-        public static string Youandweareindependentcontractors {
+        public static string YouAndWeAreIndependentContractors {
             get {
-                return ResourceManager.GetString("Youandweareindependentcontractors", resourceCulture);
+                return ResourceManager.GetString("YouAndWeAreIndependentContractors", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to h. You and we will be released from all obligations and liabilities to each other occurring or arising after the date of such termination, except with respect to those obligations that by their nature are designed to survive termination, as set out in this Agreement. Termination will not relieve you from any liability arising from any breach of this Agreement, which occurred prior to termination..
         /// </summary>
-        public static string Youandwewill {
+        public static string YouAndWeWillBeReleased {
             get {
-                return ResourceManager.GetString("Youandwewill", resourceCulture);
+                return ResourceManager.GetString("YouAndWeWillBeReleased", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 10. You are not allowed to concurrently maintain both affiliate and referral relationships with 12BET.  Violation of this provision grants 12BET the right to unilaterally terminate either or both affiliate and/or referral relationships.  A referral relationship refers to a relationship with 12BET pursuant to 12BET’s Refer-A-Friend Program (as setout and available in the Website). .
+        ///   Looks up a localized string similar to 10. You are not allowed to concurrently maintain both affiliate and referral relationships with 12BET. Violation of this provision grants 12BET the right to unilaterally terminate either or both affiliate and/or referral relationships. A referral relationship refers to a relationship with 12BET pursuant to 12BET’s Refer-A-Friend Program (as setout and available in the Website)..
         /// </summary>
         public static string YouAreNotAllowed {
             get {
@@ -9469,9 +9494,9 @@ namespace Fanex.Affiliate.User.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to 1. You are only responsible for directing customers to the 12BET website..
         /// </summary>
-        public static string Youareonlyresponsible {
+        public static string YouAreOnlyResponsible {
             get {
-                return ResourceManager.GetString("Youareonlyresponsible", resourceCulture);
+                return ResourceManager.GetString("YouAreOnlyResponsible", resourceCulture);
             }
         }
         
@@ -9523,9 +9548,9 @@ namespace Fanex.Affiliate.User.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to You hereby agree to indemnify and hold harmless 12BET , the entities it represents and affiliates, and 12BET directors, officers, employees, agents, shareholders, partners, members and other owners, against any and all claims, actions, demands, liabilities, losses, damages, judgments, settlements, expenses (including reasonable attorneys&apos; fees), and costs (any or all of the foregoing hereinafter referred to as &quot;Losses&quot;) insofar as such Losses (or actions in respect thereof) arise out of or are based on (i)  [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string Youherebyagreetoindemnify {
+        public static string YouHerebyAgreeToIndemnify {
             get {
-                return ResourceManager.GetString("Youherebyagreetoindemnify", resourceCulture);
+                return ResourceManager.GetString("YouHerebyAgreeToIndemnify", resourceCulture);
             }
         }
         
@@ -9539,20 +9564,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to a. You may not assign this Agreement, by operation of law or otherwise, without our prior written consent. Subject to that restriction, this Agreement will be binding on, inure to the benefit of, and enforceable against you and us and our respective successors and assigns..
-        /// </summary>
-        public static string Youmaynotassign {
-            get {
-                return ResourceManager.GetString("Youmaynotassign", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 2. You may not modify or use for any other purpose any IP rights, banners or other creative material supplied by us without the written prior consent of 12BET. All copyright or IP rights notices on any material supplied or approved by 12BET must remain and not be modified or eliminated..
         /// </summary>
-        public static string Youmaynotmodify {
+        public static string YouMayNotModify {
             get {
-                return ResourceManager.GetString("Youmaynotmodify", resourceCulture);
+                return ResourceManager.GetString("YouMayNotModify", resourceCulture);
             }
         }
         
@@ -9568,9 +9584,9 @@ namespace Fanex.Affiliate.User.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to a. You must remove 12BET&apos;s banner/s from your site and disable any links from your site to 12BET..
         /// </summary>
-        public static string Youmustremove12BET {
+        public static string YouMustRemoveBanners {
             get {
-                return ResourceManager.GetString("Youmustremove12BET", resourceCulture);
+                return ResourceManager.GetString("YouMustRemoveBanners", resourceCulture);
             }
         }
         
@@ -9667,9 +9683,9 @@ namespace Fanex.Affiliate.User.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to 6. You shall not make any claims, representations, or warranties in connection with 12BET and you shall have no authority to and shall not bind 12BET to any obligations..
         /// </summary>
-        public static string Youshallnotmake {
+        public static string YouShallNotMakeAnyClaims {
             get {
-                return ResourceManager.GetString("Youshallnotmake", resourceCulture);
+                return ResourceManager.GetString("YouShallNotMakeAnyClaims", resourceCulture);
             }
         }
         
@@ -9685,9 +9701,9 @@ namespace Fanex.Affiliate.User.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to c. You will be entitled only to those unpaid referral fees if any earned by You on or prior to the date of termination, save where termination is as a result of Your breach of terms of this Agreement, as detailed at 9.2.d below. We may withhold your final payment for a reasonable time to ensure that the correct amount is paid..
         /// </summary>
-        public static string Youwillbeentitled {
+        public static string YouWillBeEntitled {
             get {
-                return ResourceManager.GetString("Youwillbeentitled", resourceCulture);
+                return ResourceManager.GetString("YouWillBeEntitled", resourceCulture);
             }
         }
         
@@ -9703,18 +9719,18 @@ namespace Fanex.Affiliate.User.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to 3. You will indemnify and hold us harmless from all claims, damages, and expenses (including, without limitation, attorneys&apos; fees) relating to the development, operation, maintenance, and contents of your site. This provision on indemnification is without prejudice to our separate action or claim against you under applicable laws..
         /// </summary>
-        public static string Youwillindemnify {
+        public static string YouWillIndemnify {
             get {
-                return ResourceManager.GetString("Youwillindemnify", resourceCulture);
+                return ResourceManager.GetString("YouWillIndemnify", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to 8. You will not knowingly benefit from known or suspected traffic not generated in good faith whether or not it actually causes 12BET damage. Should fraudulent activity arise through a person directed to a site via your link, we retain the right to retract the commissions paid to you at any time. Our decision in this regard will be final and no correspondence will be entered into. We reserve the right to retain all amounts due to you under this Agreement if we have reasonable cause to believe that such traf [rest of string was truncated]&quot;;.
         /// </summary>
-        public static string Youwillnotknowingly {
+        public static string YouWillNotKnowingly {
             get {
-                return ResourceManager.GetString("Youwillnotknowingly", resourceCulture);
+                return ResourceManager.GetString("YouWillNotKnowingly", resourceCulture);
             }
         }
         
@@ -9730,9 +9746,9 @@ namespace Fanex.Affiliate.User.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to g. You will return to us any confidential information and all copies of it in your possession, custody and control and will cease all uses of any trade names, trademarks, service marks, logos and other designations of the merchants..
         /// </summary>
-        public static string Youwillreturn {
+        public static string YouWillReturnToUs {
             get {
-                return ResourceManager.GetString("Youwillreturn", resourceCulture);
+                return ResourceManager.GetString("YouWillReturnToUs", resourceCulture);
             }
         }
         

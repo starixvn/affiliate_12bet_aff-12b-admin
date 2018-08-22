@@ -139,7 +139,7 @@
     <value>郵件將包含一個鏈接。您需要點擊這個鏈接，來激活您的帳戶和確認您的電子郵件地址並最終完成您的註冊申請。</value>
   </data>
   <data name="ActiveWageringMembersRefers" xml:space="preserve">
-    <value> 2.	 活躍投注會員標準為：每个會員在單月中累積投注在100美金（或等值其他國家貨幣）以上。</value>
+    <value>2. 活躍投注會員標準為：每个會員在單月中累積投注在100美金（或等值其他國家貨幣）以上。</value>
   </data>
   <data name="Address" xml:space="preserve">
     <value>地址</value>
@@ -165,23 +165,23 @@
   <data name="AffiliateID" xml:space="preserve">
     <value>合作夥伴號碼</value>
   </data>
-  <data name="Affiliatemustensure" xml:space="preserve">
+  <data name="AffiliateMustEnsure" xml:space="preserve">
     <value>6.加盟商必須確保任何出現在他們網站的素材是合法的，並且不會侵犯版權或破壞其他權利。</value>
   </data>
-  <data name="Affiliatesareprohibited" xml:space="preserve">
-    <value>9. 加盟代理商被禁止通過自己的加盟代理連接或會分享全部或部分傭金的代理商或第三方的連接來玩任何形式的12BET體育博彩推廣活動。這包括任何加盟商收取任何形式的津貼或傭金的獨立的個體或群體。如果違反這部分規定，12BET和各自的有被投注過的網站有權取消所有相應的投注，並刪減任何通過這樣的活動而獲得的傭金，以及將此加盟代理商從我們的加盟代理計畫中刪除並終止此協議，並且令將來任何在12BET的投注失效。</value>
+  <data name="AffiliatesAreProhibited" xml:space="preserve">
+    <value>9.合作夥伴被禁止通過自己的專屬代理連結，分享所有或部分佣金給會員或第三方，參加任何12BET體育博彩行銷。這包括任何合作夥伴，從​​中獲得任何形式的津貼或佣金的獨立個體或群體。如果違反這部分規定，12BET和各自的有被投注過的網站有權取消所有相應的投注，並刪減任何通過這樣的活動而獲得的佣金，以及將此合作夥伴從計劃中刪除並終止此協議，並且令將來任何在12BET的投注失效。</value>
   </data>
   <data name="AffiliatesWillNotEarn" xml:space="preserve">
     <value>8. 合作夥伴將不能從其下線會員在12BET賽馬和娛樂場產品中的投注及輸贏中獲得佣金。</value>
   </data>
   <data name="AffiliateTagging" xml:space="preserve">
-    <value>3. 加盟代理標籤</value>
+    <value>3. 合作夥伴標籤</value>
   </data>
   <data name="AffiliationGuidelines" xml:space="preserve">
     <value>2. 加盟代理指引</value>
   </data>
-  <data name="AfterChargeback" xml:space="preserve">
-    <value> </value>
+  <data name="DetailedChargeBack" xml:space="preserve">
+    <value>&lt;span&gt;&lt;/span&gt;</value>
   </data>
   <data name="AgreeTermNCondition" xml:space="preserve">
     <value>我同意12BET合作夥伴的規則與條款</value>
@@ -195,8 +195,8 @@
   <data name="All" xml:space="preserve">
     <value>全部</value>
   </data>
-  <data name="Allrightsandlicenses" xml:space="preserve">
-    <value>b. 在此協議中授予您的所有權利和授權應該即時終止。</value>
+  <data name="AllRightAndLicensee" xml:space="preserve">
+    <value>b. 在此協議中授予您的所有權利和授權應該即時終止。 </value>
   </data>
   <data name="AMaximumOfOneWithdrawal" xml:space="preserve">
     <value>合夥人每月最多可以作出一次提款申請。如果得到會員介紹合作計劃的經理批准，你也可以在同一個月內做出第二次提款申請。目前我們給予大家的提款申請服務是免費的，但我們並不會負擔任何轉帳時的手續費或電子轉帳所需服務費用。</value>
@@ -259,16 +259,17 @@
 	</value>
   </data>
   <data name="AsAnAffiliate" xml:space="preserve">
-    <value>1. 作為加盟代理，您有責任將廣告橫幅和相應的追蹤連接擺放在您的網站、電子郵件和其他通訊方式來推廣宣傳12BET。</value>
+    <value>1. 作為合作夥伴，您有責任將橫幅廣告和相應的追蹤連結，置放在您的網站、電子郵件和其他通訊方式，來推廣宣傳12BET。</value>
   </data>
   <data name="AsaPolicy12BETShallNo" xml:space="preserve">
-    <value>根據條例，12BET無法接受您成為合作夥伴的申請，如果您是由或通過英國管轄區的互聯網地址 (IP)來進行宣傳。</value>
+    <value>根據協議，如果您是由或通過英國管轄區的互聯網地址（IP）來進行宣傳，12BET無法接受您申請成為合作夥伴。</value>
   </data>
   <data name="Asa_12BetcomAff" xml:space="preserve">
     <value>作為12BET.com的合作夥伴，您需要引導您的網站訪問者通過使用放置在您網站的特殊的流量代碼來登陸我們網站。</value>
   </data>
   <data name="Assignability" xml:space="preserve">
-    <value>1. 分派能力和適用性</value>
+    <value>1. 分派能力和適用性&lt;br&gt;
+a. 在我們事先書面同意之前您不能通過法律行動或其他方式將此協定分派給他人。出於此規限，此協議將對您和我們以及我們各自的繼承人和受讓人約束、利益生效和可強制執行。</value>
   </data>
   <data name="Asyouhaverequested" xml:space="preserve">
     <value>根據您的要求，我們為您提供一個新的密碼。您的新賬號信息如下：</value>
@@ -357,8 +358,8 @@
   <data name="Banner" xml:space="preserve">
     <value>廣告橫額</value>
   </data>
-  <data name="Bannersandlinks" xml:space="preserve">
-    <value>4. 橫幅廣告和連接不可以置放於募集電郵、非授權新聞組、聊天室或利用“機器人”發送。產生的非法流量將不會被計算，並會導致您與我們的加盟代理合作終止。</value>
+  <data name="BannersAndLinks" xml:space="preserve">
+    <value>4.橫幅廣告和連結不可以放於未經請求的電子郵件，未經授權的新聞發帖或聊天室，也不可利用「虛擬機器人」發送。非法產生的流量不會被計算在內，並會導致您的合作夥伴帳戶被終止。</value>
   </data>
   <data name="Barbados" xml:space="preserve">
     <value>巴貝多</value>
@@ -438,17 +439,17 @@
   <data name="ByAccessingOurMediaGallery" xml:space="preserve">
     <value>透過我們的媒體冊，您可以選取你偏愛的廣告橫額或者文字連接放到您的網站。</value>
   </data>
-  <data name="Byagreeingtoparticipate" xml:space="preserve">
-    <value>3. 一經同意加入12BET加盟代理計畫，你就同意了下載廣告橫幅、文字或推廣素材，並將其置放在您的網站、電子郵件，利用您的加盟代理連接或印刷品進行直接市場推廣。您只能利用這些被12BET審核通過的方式來宣傳12BET的產品和服務。</value>
+  <data name="ByAgreeingToParticipate" xml:space="preserve">
+    <value>3.一經同意加入12BET合作夥伴計劃，即表示你同意下載橫幅廣告、文字或推廣素材，並將其放在您的網站、電子郵件中使用，利用您的合作夥伴專屬連結或印刷品，直接進行市場推廣。您只能利用這些被12BET審核通過的方式，來宣傳12BET的產品和服務。</value>
   </data>
-  <data name="Byhavingread" xml:space="preserve">
+  <data name="ByHavingRead" xml:space="preserve">
     <value>閱讀過條款和條件，並知道這樣的簽名表格後，您同意所有此協議中包含的條款和條件。12BET保留權利暫時停止向違反此協議中任何條件和條款的任何加盟代理商付款的權利。</value>
   </data>
-  <data name="Byopeninganaccount" xml:space="preserve">
-    <value>2. 通過開設帳戶,個人或組織就將成為我們的客戶，而相應地，客戶規則、政策和操作流程將會適用。</value>
+  <data name="ByOpeningAnAccountWithACustomer" xml:space="preserve">
+    <value>2.通過開設帳戶，個人或組織將成為我們的客戶，故所有客戶規則、政策和操作流程將同時適用。</value>
   </data>
   <data name="BythisAgreement" xml:space="preserve">
-    <value>2．通過此協定，我們授予您在符合此協議條款及條件下非獨家的權利指引客戶來使用我們的網站和服務。此協定並不授予您提供介紹客戶的服務的獨家或優先權，同時我們保留在任何時候收回或協助我們其他合作方提供與您相同或相似的服務的權利。您不能通過您以外的其他個人或組織索償與此業務有關的介紹費用或補償。</value>
+    <value>2.根據此協議，我們授予您在符合此協議條款及條件下非獨家的權利，指引客戶來使用12BET的網站和服務。此協議並不授予您提供介紹客戶的獨家或優先權，同時我們保留在任何時候收回，或協助我們其他合作方，提供與您相同或相似的服務權利。您不能通過您以外的其他個人或組織，索償與此業務有關的介紹費用或補償。</value>
   </data>
   <data name="Cambodia" xml:space="preserve">
     <value>柬埔寨</value>
@@ -522,7 +523,7 @@
   <data name="Changepassworde" xml:space="preserve">
     <value>更改密碼出錯</value>
   </data>
-  <data name="Chargeback" xml:space="preserve">
+  <data name="ChargeBack" xml:space="preserve">
     <value>a. 索回：未經信用卡持卡人授權就產生的他/她的信用卡/借記卡的非常規消費。信用卡持卡人要求發卡銀行退回這些收費。索回費用是由於第三方欺騙性地使用信用卡持卡人的信用卡或信用卡號而產生的。</value>
   </data>
   <data name="Cheque" xml:space="preserve">
@@ -588,11 +589,11 @@
   <data name="CommentsIsInvalid" xml:space="preserve">
     <value>意見填寫無效</value>
   </data>
-  <data name="Commissionableearnings" xml:space="preserve">
+  <data name="CommissionableEarningsWillBeSubject" xml:space="preserve">
     <value>5. 可計算傭金的贏利額將會使用12BET加盟代理程式傭金結構來不斷計算傭金。</value>
   </data>
   <data name="CommissionableEarningsAreCalculated" xml:space="preserve">
-    <value>3.	可用於佣金結算的有效盈利為：6個或以上活躍投注會員在一個結算月內為12BET貢獻的盈利再減去各項支付費用，優惠支出，紅利發放或其他促銷開支</value>
+    <value>3. 可用於佣金結算的有效盈利為：6個或以上活躍投注會員在一個結算月內為12BET貢獻的盈利再減去各項支付費用，優惠支出，紅利發放或其他促銷開支 </value>
   </data>
   <data name="CommPercent" xml:space="preserve">
     <value>佣金%</value>
@@ -774,8 +775,8 @@
   <data name="Duetosecurityr" xml:space="preserve">
     <value>出於安全考量，我們必須提供一個新密碼給您（此後您可以在任意時間自行更改）</value>
   </data>
-  <data name="Duringtheterm" xml:space="preserve">
-    <value>3. 在此協議有效期內，您要確保與此業務、操作或相關的加盟代理程式技術（包括，例如，根據你在此程式下取得的介紹費用）有關的資訊保密。您同意不會將此保密資訊披露或用於第三方個人或外部方面，除非您得到了我們事前書面的批准，您將只將此保密資訊用於此協定下必要的更多用途。您有責任尊重此保密資訊，否則此協定將會被終止。</value>
+  <data name="DuringTheTermOfThisAgreement" xml:space="preserve">
+    <value>3.在此協議有效期內，您會接觸到有關的業務、操作或其他相關程序技術的機密訊息（例如，根據你在此程序下取得的介紹費用）。您同意不會向第三方或外部各方披露機密訊息，除非您事先獲得我們的書面同意，並且您僅將本機密訊息用於促進本協議目的之用。您的保密義務在本協議終止後繼續有效。</value>
   </data>
   <data name="Earn30" xml:space="preserve">
     <value>永久賺取玩家淨輸金額的40%</value>
@@ -1122,7 +1123,7 @@
   <data name="Gibraltar" xml:space="preserve">
     <value>直布羅陀</value>
   </data>
-  <data name="GoverningLawandArbitration" xml:space="preserve">
+  <data name="GoverningLawAndArbitration" xml:space="preserve">
     <value>15. 法律監督和仲裁</value>
   </data>
   <data name="Greece" xml:space="preserve">
@@ -1214,14 +1215,14 @@
   <data name="ID" xml:space="preserve">
     <value>代碼</value>
   </data>
-  <data name="Ifwecontinue" xml:space="preserve">
-    <value>f. 如果我們允許客戶在終止協定之後繼續活動（產生營業收入），這並不構成我們續約或繼續執行此協定，或放棄終止協定。</value>
+  <data name="IfWeContinueToPermitActivity" xml:space="preserve">
+    <value>f. 如果我們允許客戶在終止協定之後繼續活動（產生營業收入），這並不構成我們續約或繼續執行此協定，或放棄終止協定。 </value>
   </data>
   <data name="Ifyouareexperie" xml:space="preserve">
     <value>若您遇到任何困難，請聯絡我們。</value>
   </data>
   <data name="IfYouDecide" xml:space="preserve">
-    <value>如果您決定不接受本協議所有的條件和條款，請不要下載廣告橫幅代碼、文字連接代碼、推廣內容或其他任何與12BET相關的資訊。</value>
+    <value>如果您決定不接受本協議所有的條款與規則，請不要下載橫幅廣告代碼、文字鏈接代碼、優惠內容，或其他任何與12BET相關的信息。</value>
   </data>
   <data name="Ifyouhaveanyque" xml:space="preserve">
     <value>如有任何疑問，歡迎隨時聯繫我們.</value>
@@ -1229,8 +1230,8 @@
   <data name="IfYouHaveAnyQuestions" xml:space="preserve">
     <value>如對上述合作夥伴佣金計算方式有任何疑問，歡迎隨時電郵至{mail}聯繫我們。</value>
   </data>
-  <data name="Ifyouhavefailed" xml:space="preserve">
-    <value>d. 如果您沒有完成您的義務和責任，我們將不會在您終止協議時支付介紹費。</value>
+  <data name="IfYouHaveFailed" xml:space="preserve">
+    <value>d. 如果您沒有完成您的義務和責任，我們將不會在您終止協議時支付介紹費。 </value>
   </data>
   <data name="IfYourTotal" xml:space="preserve">
     <value>若您介绍的客户于一月贡献的总净利润为$3,500，那么您可以在该月赚取总净利润的30%作为佣金。</value>
@@ -1265,8 +1266,8 @@
   <data name="Inserttransacti" xml:space="preserve">
     <value>插入交易失敗</value>
   </data>
-  <data name="Intheeventoftermination" xml:space="preserve">
-    <value>2．終止本協議的事件中：</value>
+  <data name="InTheEventOfTermination" xml:space="preserve">
+    <value>2．終止本協議的事件中：: </value>
   </data>
   <data name="Invalidaffiliat" xml:space="preserve">
     <value>無效合作信息</value>
@@ -1286,7 +1287,7 @@
   <data name="Invaliduserinfo" xml:space="preserve">
     <value>用戶信息無效。更新處理失敗。</value>
   </data>
-  <data name="INWITNESSWHEREOF" xml:space="preserve">
+  <data name="InWitnessWhereOf" xml:space="preserve">
     <value>16. 以資證明</value>
   </data>
   <data name="IP" xml:space="preserve">
@@ -1313,7 +1314,7 @@
   <data name="Italy" xml:space="preserve">
     <value>意大利</value>
   </data>
-  <data name="Itistheaffiliates" xml:space="preserve">
+  <data name="ItIsTheAffiliate" xml:space="preserve">
     <value>4. 加盟商有責任依照正確的連接和標籤處理確保新客戶的追蹤和付款。</value>
   </data>
   <data name="Jamaica" xml:space="preserve">
@@ -1401,7 +1402,7 @@
     <value>13. 責任範圍</value>
   </data>
   <data name="LimitedLicense" xml:space="preserve">
-    <value>6. 有限授權</value>
+    <value>6. 有限許可</value>
   </data>
   <data name="LinkTo" xml:space="preserve">
     <value>鏈接</value>
@@ -1605,7 +1606,7 @@
   <data name="NegativeBalance" xml:space="preserve">
     <value>負餘額</value>
   </data>
-  <data name="Negativeearningsarecarried" xml:space="preserve">
+  <data name="NegativeEarningsAreCarried" xml:space="preserve">
     <value>6. 負贏利將會帶入下一個月。一個加盟商以正數結束一個月的結餘，如果最低的要求滿足的話，傭金將會按照正數的結餘額計算並支付。</value>
   </data>
   <data name="Nepal" xml:space="preserve">
@@ -1660,7 +1661,8 @@
     <value>None</value>
   </data>
   <data name="NonWaiver" xml:space="preserve">
-    <value>2. 不可撤銷</value>
+    <value>2. 不可撤銷&lt;br&gt;
+a. 我們沒有強制您嚴格履行此協議的任何條款，並不構成我們放棄以後強制執行此協議的其他條款。此協議被修改、增加、刪減或加插內容都不被我們允許，也不會被認可。我們的任何雇員、官員或代理都不能口頭替換、修改或撤銷此協議中任何條款。</value>
   </data>
   <data name="Normal" xml:space="preserve">
     <value>普通</value>
@@ -1707,11 +1709,11 @@
   <data name="Oman" xml:space="preserve">
     <value>阿曼</value>
   </data>
-  <data name="OneTwoBETassumeownership" xml:space="preserve">
-    <value>1. 12BET以第一次接觸到客戶的那一刻作為取得客戶的標準。您，作為加盟代理，為12BET做推介代理。如果有需要適應我們不同時期的要求，我們保留拒絕客戶（或關閉客戶帳戶）的權利。</value>
+  <data name="OneTwoBetAssumeOwnerShip" xml:space="preserve">
+    <value>1. 12BET在首次與客戶聯繫時，承擔客戶的所有權。您作為合作夥伴，為12BET做推薦代理。如有必要，我們保留拒絕客戶（或關閉其帳戶）的權利，以遵守建立的要求。</value>
   </data>
-  <data name="OneTwoBETwillpayout" xml:space="preserve">
-    <value>1. 12BET會將您旗下會員貢獻的淨利潤依照12BET合作夥伴計劃中規定的比例作為佣金支付進您的12BET合作夥伴帳戶，每個結算月您需至少保有6個或以上的活躍投注會員。&lt;p&gt;如果我們發現您超過2個月沒有進行任何活動推廣12BET，例如招徠新存款會員、沒有在代理12BET的網站掛上我們的廣告橫幅、和其它在線或離線宣傳活動，12BET保留所有權力在特定月份拒絕您的全部或部分佣金提取申請，即使您符合6個活躍投注會員要求。相關佣金將被暫時扣留直到您招徠新存款會員，12BET全權決定按照具體狀況發放全部或部分被扣留的佣金。 12BET全權決定是否作廢已被扣留超過6個月的佣金。&lt;/p&gt;</value>
+  <data name="OneTwoBETWillPayout" xml:space="preserve">
+    <value>1. 12BET會將您旗下會員貢獻的淨利潤依照12BET合作夥伴計劃中規定的比例作為佣金支付進您的12BET合作夥伴帳戶，每個結算月您需至少保有6個或以上的活躍投注會員。如果我們發現您超過2個月沒有進行任何活動推廣12BET，例如招徠新存款會員、沒有在代理12BET的網站掛上我們的廣告橫幅、和其它在線或離線宣傳活動，12BET保留所有權力在特定月份拒絕您的全部或部分佣金提取申請，即使您符合6個活躍投注會員要求。相關佣金將被暫時扣留直到您招徠新存款會員，12BET全權決定按照具體狀況發放全部或部分被扣留的佣金。 12BET全權決定是否作廢已被扣留超過6個月的佣金。</value>
   </data>
   <data name="Onlinebettingsp" xml:space="preserve">
     <value>在線投注、體育博彩、足球投注盡在12BET.com</value>
@@ -1723,10 +1725,10 @@
     <value>我們極富經驗的合作夥伴客服團隊24小時在線為您提供各種支持，小到橫幅定制，大到如何增進您收入的市場營銷建議。 在完善的內部競爭，交流和獎勵機制下，我們的客服人員致力於助您永駐行業最前端。</value>
   </data>
   <data name="OnlyApprovedAndProperly" xml:space="preserve">
-    <value>1. 只有由我們不斷提供的、經過審核並認為是適合的創作素材，才可以用於推廣12BET。廣告或個人代言是被允許的，但所有的非12BET創作的素材需要由12BET審核撰寫；這些審核不應被無理由地阻止。</value>
+    <value>1.只有由12BET持續提供，經過審核並認為是適合的創作素材，才可以用於宣傳12BET。廣告或個人代言是被允許的，但所有的非12BET創作的素材需要由12BET審核撰寫;不得無禮拒絕此類批准。</value>
   </data>
-  <data name="Onlyproperlytaggedcustomers" xml:space="preserve">
-    <value>2．只有正確被標識的客戶才能被分派為某個加盟代理下的客戶。如果加盟商的標籤沒有正確地插入到加盟商的網站，或沒有被12BET的網站伺服器正確地接收，那麼就會導致註冊和購買了產品服務的客戶不能被正確地分派成為某個加盟代理商的客戶。因此加盟代理商有責任確保所有連接被正確地標記。</value>
+  <data name="OnlyProperlyTagged" xml:space="preserve">
+    <value>2.只有正確被標識的客戶，才能被分配為某個合作夥伴的下線客戶。如果合作夥伴的標籤沒有正確地放入其網站，或沒有被12BET網站伺服器正確接收，則所產生的客戶註冊和消費，將不會分配給合作夥伴會員。因此合作夥伴有責任確保所有鏈接被正確地標記。</value>
   </data>
   <data name="Otherwiseplease" xml:space="preserve">
     <value>若確認的話請訪問以下鏈接，您的新密碼將很快通過電郵發送給您。</value>
@@ -1737,10 +1739,10 @@
   <data name="Ourrightsandremedies" xml:space="preserve">
     <value>a. 我們在下文的權利和補救措施不會彼此矛盾，例如，我們在此協議中的一部分或更多的條款並不會妨礙其他條款的實行。您瞭解、確認並同意，對於違反或被迫違反此協議，賠償金並不會充分，同時，在違反或被迫違反此協定的情況下，各方各自的權利和義務由各自特定的履行情況、裁定執行或其他公平的補救方案強制執行。本協定中所包含的內容，不應因為違反或被迫違反本協議的任何條款而限制或影響我們的法律或其他權利。這表示此條款清楚的表明了我們各自的權利和義務應該在法律上或其他方面公正地執行。</value>
   </data>
-  <data name="Ownershipandcontent" xml:space="preserve">
+  <data name="OwnerShipAndContent" xml:space="preserve">
     <value>1．我們網站的所有權和內容仍為我們各自的資產，並不應認為會通過任何此加盟代理協定的行為或疏忽而被轉移到加盟商。</value>
   </data>
-  <data name="Ownershipcontentandliability" xml:space="preserve">
+  <data name="OwnerShipContentAndLiability" xml:space="preserve">
     <value>2．加盟商網站的所有權、內容和可靠性由加盟商獨立負責。您將獨立負責您的網站所有的發展、運營以及維護，所有出現在您網站的素材都將由您自行負擔成本。</value>
   </data>
   <data name="OwnWebsite" xml:space="preserve">
@@ -1848,8 +1850,8 @@
   <data name="Poland" xml:space="preserve">
     <value>波蘭</value>
   </data>
-  <data name="PoliciesConfidentiality" xml:space="preserve">
-    <value>5. 政策與機密</value>
+  <data name="PoliciesAndConfidentiality" xml:space="preserve">
+    <value>5. 政策與保密</value>
   </data>
   <data name="Portugal" xml:space="preserve">
     <value>葡萄牙</value>
@@ -1875,7 +1877,7 @@
   <data name="Preferredpaymen" xml:space="preserve">
     <value>首選支付方式</value>
   </data>
-  <data name="Presentationofourbanners" xml:space="preserve">
+  <data name="PresentationOfOurBanners" xml:space="preserve">
     <value>5. 在加盟商的網站呈現我們的廣告橫幅和內容是加盟商的責任。加盟商必須確保我們的內容按照我們的規定被正確地呈現。</value>
   </data>
   <data name="Proccessing" xml:space="preserve">
@@ -1945,7 +1947,8 @@
     <value>10. 雙方關係</value>
   </data>
   <data name="Remedies" xml:space="preserve">
-    <value>3. 補救措施</value>
+    <value>3. 補救措施&lt;br&gt;
+a. 我們在下文的權利和補救措施不會彼此矛盾，例如，我們在此協議中的一部分或更多的條款並不會妨礙其他條款的實行。您瞭解、確認並同意，對於違反或被迫違反此協議，賠償金並不會充分，同時，在違反或被迫違反此協定的情況下，各方各自的權利和義務由各自特定的履行情況、裁定執行或其他公平的補救方案強制執行。本協定中所包含的內容，不應因為違反或被迫違反本協議的任何條款而限制或影響我們的法律或其他權利。這表示此條款清楚的表明了我們各自的權利和義務應該在法律上或其他方面公正地執行。</value>
   </data>
   <data name="RePass" xml:space="preserve">
     <value>再次輸入新密碼</value>
@@ -1977,7 +1980,7 @@
   <data name="ResponOfTheAff" xml:space="preserve">
     <value>1. 加盟代理的責任</value>
   </data>
-  <data name="RevenueSharing" xml:space="preserve">
+  <data name="RevenueSharingAndPayment" xml:space="preserve">
     <value>4．營業收入分成和支付</value>
   </data>
   <data name="RMB" xml:space="preserve">
@@ -2038,7 +2041,8 @@
     <value>九月</value>
   </data>
   <data name="SeverabilityWaiver" xml:space="preserve">
-    <value>4．可分割性 / 棄權</value>
+    <value>4．可分割性 / 棄權&lt;br&gt;
+a. 無論何時，此協議的每一個條款都應該被適用的法律有效地詮釋，但是，如果此協議中任何一個條款失效、非法或不在任何方面不可執行，這樣的條款僅僅本身無效或無法執行，並不會使本協議其他條款無效。在處理或無法行使任何權利的時候，不會包含任何隱含的放棄， 只有書面的棄權處理才生效。</value>
   </data>
   <data name="Seychelles" xml:space="preserve">
     <value>塞席爾</value>
@@ -2052,7 +2056,7 @@
   <data name="Shouldthisdeduction" xml:space="preserve">
     <value>c. 如果這個累積的扣減額超過了你當前的總額，你的總計算額就會成為負數，你必須獲得更多的贏利彌補這個因為索回而造成的負數，才能繼續開始計算贏利。</value>
   </data>
-  <data name="ShouldYouFailToBe" xml:space="preserve">
+  <data name="ShouldYouFailToBeEntitled" xml:space="preserve">
     <value>4. 如果某一結算月未達到條款4.1,4.2及4.3中規定的單月至少六個或以上個活躍投注會員要求，您的代理賬戶將不會有任何佣金結算，所有旗下會員貢獻的盈利將 不會累積到下一個結算月。</value>
   </data>
   <data name="Sicbo" xml:space="preserve">
@@ -2124,8 +2128,10 @@
   <data name="Spain" xml:space="preserve">
     <value>西班牙</value>
   </data>
-  <data name="SpamWedonot" xml:space="preserve">
-    <value>8. 垃圾郵件——我們不會接受垃圾郵件</value>
+  <data name="SpamWeDoNotCondone" xml:space="preserve">
+    <value>8. 垃圾郵件——我們不會接受垃圾郵件&lt;br&gt;
+a. 任何形式的垃圾郵件將會導致您的帳戶被處理為審核狀態，所有的資金被凍結，直到對您的帳戶調查處理完成。你需要知道我們的客戶可能會因為處理您的濫發所產生的郵件而導致費用產生，如果我們的客戶尋求追索權，所有這些相同的費用將會從您的帳戶上進行扣減。在此情形下，由於您同意註冊成為12BET的加盟商，由相關客戶決定的費用金額將會被誠實地認為是最終及可接受的，這些費用金額是根據法律上收取的，並公平地被您接受。 &lt;br&gt;
+b. 如果這些費用不能由您帳戶上的資金所彌補，我們保留調查其他替代方法來獲得賠付的權利，例如：如果您的代理帳戶下產生了消費帳戶，我們將會截留這些帳戶傭金的支付直到這個帳戶造成的損失完全消除。如果您的帳戶尚未啟動或通過傭金支付產生利潤，我們保留要求帳戶持有人賠付的權利。</value>
   </data>
   <data name="Spanish" xml:space="preserve">
     <value>Español</value>
@@ -2285,19 +2291,19 @@
   <data name="TheMinimumWithdrawal" xml:space="preserve">
     <value>最低佣金提取要求是100美元。</value>
   </data>
-  <data name="Thenetrevenueplan" xml:space="preserve">
+  <data name="TheCommissionableEarningsOfTheAffiliate" xml:space="preserve">
     <value>7. 用於佣金結算的盈利是基於下線會員同商家的每筆交易中的貢獻的利潤按照一定的分成比例計算，只要加盟代理商一直保持作為此加盟代理協議的會員，那麼所有這個客戶發生的交易都會一直計算下去。</value>
   </data>
   <data name="Theteamat_12Bet" xml:space="preserve">
     <value>12Bet合作夥伴團隊</value>
   </data>
-  <data name="ThetermofthisAgreement" xml:space="preserve">
+  <data name="TheTermOfThisAgreement" xml:space="preserve">
     <value>1．本協議的條款自您從我們的網站下載連接代碼和連接時開始一直有效，除非直到其中一方書面通知另外一方終止本協定，在那樣的情況下本協定將會即時終止。終止協議是其中任何一方以任何理由任意地終止的。以電子郵件發送終止協定的通知被認可為書面及即時的通知形式。</value>
   </data>
   <data name="ThisAgreementDetailsAll" xml:space="preserve">
-    <value>本協議詳盡地列明所有的12BET加盟代理會員的條款和條件。“您”，“加盟代理”指的是您、獨立自然人、群體或公司組織，在本協定下註冊成為我們的加盟商，並應該同時被認為包括任何雇員、官員、行政管理人員、股東、企業所有者、實際控制方以及加盟代理的自然人和組織（“您的”則有相對應的含義）。</value>
+    <value>本協議詳盡地列明了所有的12BET合作夥伴的條款與規則。「您」，「合作夥伴」指的是您，作為合作夥伴註冊的獨立自然人、團體或公司組織，在本協議下註冊成為我們的合作夥伴，應被視為包括任何僱員、高級職員、董事、股東、企業所有者、實際控制方以及附屬的自然人和組織（以及「您的」則有相對應的含義）。</value>
   </data>
-  <data name="ThisAgreementshallbegoverned" xml:space="preserve">
+  <data name="ThisAgreementShallBeGoverned" xml:space="preserve">
     <value>此協議應受英國法律監督並可理解為符合英國法律。任何與此協議有關聯的訴訟、爭議或索償都應由包括仲裁中心指派的仲裁官在內的法官席裁決。仲裁席將在英國倫敦，地點由仲裁中心決定，仲裁語言為英語，仲裁中心建立的規章將監督此過程。仲裁法庭將有權簽署判決，它的決定將是強制性的、最終的並嚴格地強制協議方放棄任何其他可能適用司法管轄區域或審判地，並同意因此仲裁決定放棄其他任何形式的上訴。</value>
   </data>
   <data name="Thisemailaddres" xml:space="preserve">
@@ -2309,8 +2315,8 @@
   <data name="Thisisasystemau" xml:space="preserve">
     <value>這是一封由系統自動發送的電子郵件，請勿直接回复此電子郵件。</value>
   </data>
-  <data name="Thislicensecannot" xml:space="preserve">
-    <value>3. 此授權不能有其他分支、分配或被您轉讓。您使用此商標的權利是有限制的，並且只能通過使用橫幅廣告而使用此授權。您不應以任何行為或處理方式聲稱此廣告商標無效、無強制性或爭奪其所有權。同時您不應採取任何行動阻止我們或我們的授權人在此商標上的權利、表達相同的統稱、或其他可能減弱它們的有效性或降低他們附帶的信譽。</value>
+  <data name="ThisLicenseCannotBeSubLicensed" xml:space="preserve">
+    <value>3.此授權不能有其他次許可、轉讓或以其他方式轉讓。您使用此商標的權利僅限於橫幅廣告。您不可以任何行為或處理方式聲稱此廣告商標無效，無強制性或爭奪其所有權。同時您不可以採取任何可能損害我們或我們的授權人在商標中的權利行為，使其具有相同的通用性，或其他可能減弱它們的有效性或降低他們附帶的信譽。</value>
   </data>
   <data name="Thistransaction" xml:space="preserve">
     <value>此交易已被取消。</value>
@@ -2507,29 +2513,29 @@
   <data name="WeEmploys" xml:space="preserve">
     <value>我們在追蹤系統上利用了最先進的科技確保了從您網站過來12BET.COM的瀏覽量100%正確。玩家介紹會員將根據媒體中心提供的網路地址識別。通過使用cookies識別，訪客經由指定網路地址連結(廣告橫幅、文本連接、電子郵件等) 點擊成為會員，成功介紹會員的玩家將被自動追蹤及獎勵。</value>
   </data>
-  <data name="Weherebygrant" xml:space="preserve">
-    <value>1. 我們在此授予您一份個人、非獨家、不可轉讓的有限授權，在此協議有效期內，使用我們的品牌（我們從它們的所有人處得到的授權）並唯一連接到在您的網站上展示的廣告橫幅。</value>
+  <data name="WeHerebyGrantToYou" xml:space="preserve">
+    <value>1.我們在此授予您在此協議有效期內，個人、非獨占、不可轉讓的有限許可，僅使用我們的商標（我們從其所有人獲得的授權），僅與您網站上展示的橫幅廣告有關。</value>
   </data>
-  <data name="Wemakenoexpress" xml:space="preserve">
+  <data name="WeMakeNoExpress" xml:space="preserve">
     <value>我們不會明白或隱晦地發表涉及此客戶介紹計畫或介紹費支付安排的承諾或表述（包括並不只限於，它們功能，可用性、商業性、合法性、非侵權的保證，或其他由於履行、處理或交易過程引起的隱含的保證。）此外，我們不會聲明我們網站的運作不會中斷或無誤，我們將不會對任何中斷或錯誤的後果負責。</value>
   </data>
-  <data name="Wemaymodify" xml:space="preserve">
+  <data name="WeMayModifyAnyOfTheTerm" xml:space="preserve">
     <value>7. 我們可能在任何時候通過在我們的網站張貼通告或新的協定，來修改此協定中任何條款。修改內容可能包括，例如，有效介紹費範圍的更改，費用日程表，付款處理，以及介紹費程式規則。如果有任何修改是不可接受的，您唯一的追索權是終止此協議。您繼續遵照我們的更改通告或新的協議參與此計畫，將會構成一起接受這些變更。</value>
   </data>
-  <data name="WEMAYTERMINATE" xml:space="preserve">
+  <data name="WeMayTerminateThisAgreement" xml:space="preserve">
     <value>i. 如果我們認定您的網站為不適合網站，我們將保留獨家決定權終止此協議。不適合的網站包含以下內容：面向兒童；宣揚色情內容；宣揚暴力；宣揚種族歧視、性別歧視、宗教歧視、國別歧視、殘障歧視、性歧視或年齡歧視；宣揚非法活動或者侵犯知識產權。</value>
   </data>
-  <data name="Wemaywithhold" xml:space="preserve">
-    <value>e. 我們可能會保留向您支付的最後一筆款項一段合理的時間，以確保正確的金額被支付。</value>
+  <data name="WeMayWithhold" xml:space="preserve">
+    <value>e. 我們可能會保留向您支付的最後一筆款項一段合理的時間，以確保正確的金額被支付。 </value>
   </data>
   <data name="WeOfferSeveralMethods" xml:space="preserve">
     <value>我們提供以下幾種提款方法:</value>
   </data>
   <data name="WeReserveTheRight" xml:space="preserve">
-    <value>如果我們覺得您的網站並不適合成為我們的加盟代理，我們保留終止此協議的權利。不適合的網站包括：針對兒童或未成年人明確地宣傳色情的網站，宣傳暴力，宣傳種族、性別、宗教、國籍、殘疾人歧視、性取向等歧視的網站，宣傳非法活動或破壞知識產權的網站。</value>
+    <value>如果我們認為您的網站並不適合成為我們的合作夥伴，我們保留終止此協議的權利。不適合的網站包括：相關兒童或未成年人的色情網站，宣傳暴力、種族、性別、宗教、國籍、殘疾人歧視、性取向等歧視網站，宣傳非法活動或侵犯知識財產權的網站。</value>
   </data>
-  <data name="Wereservetherighttorevoke" xml:space="preserve">
-    <value>4. 我們保留在任何時候以任何理由撤銷此授權並同時撤銷此協議的權利。</value>
+  <data name="WeReserveTheRightToRevoke" xml:space="preserve">
+    <value>4.我們保留在任何時候，以任何理由，撤銷此許可並同時終止此協議的權利。</value>
   </data>
   <data name="WeRolloverNegative" xml:space="preserve">
     <value>會的，我們會累積計算負數佣金結存。假如到月底結算日你的戶口有負數佣金結存，有關帳目將被帶帳到下期帳單結算，直至你賺取的正數佣金金額把有關負數帳目結存變回零。</value>
@@ -2540,11 +2546,11 @@
   <data name="Weunderstandthat" xml:space="preserve">
     <value>e. 我們明白這可能會令加盟代理商很憤怒，但必須清楚的是，12BET只會為利潤按百分比支付分成，而不是對欺詐的收入進行計算。</value>
   </data>
-  <data name="Wewillnotbeliable" xml:space="preserve">
+  <data name="WeWillNotBeLiable" xml:space="preserve">
     <value>我們不會對於此協定或介紹計畫有關而導致的間接、特別的或後果性的損害（或任何收入、利潤、資料的損失）負有責任，即使我們曾被告知這些損害可能會出現。而且，我們在此協議和計畫所導致的的責任總計將不會超過在此協議下已經支付或可支付給您的的傭金總額。此協定中沒有任何部分可以理解為向非本協議方的任何個人或組織提供任何權利、義務或利益。我們在此協議下的義務並不會構成任何我們的行政人員、官員或股東個人的義務。任何由此協議產生的義務將只滿足於所產生的介紹費，並且只限於直接賠償。</value>
   </data>
-  <data name="WewillterminatethisAgreement" xml:space="preserve">
-    <value>5. 如果你通過任何濫發資訊的行為或通過錯誤的廣告詞語令12BET聲譽受損,我們將會即時終止此協議。</value>
+  <data name="WeWillTerminateThisAgreement" xml:space="preserve">
+    <value>5.如果你濫發垃圾郵件，或使用錯誤的廣告詞語，令12BET聲譽受損，我們將會終止此協議。</value>
   </data>
   <data name="WhatAreTheWithdrawal" xml:space="preserve">
     <value>我可以透過哪幾種方法提取佣金？</value>
@@ -2585,8 +2591,8 @@
   <data name="Within5dayswesh" xml:space="preserve">
     <value>我們將在5天內回复您的申請。一旦您的申請被核准，您將立即獲得全權參與進入我們的合作夥伴項目。</value>
   </data>
-  <data name="Withoutourpriorwritten" xml:space="preserve">
-    <value>7. 沒有我們事先書面同意，您將只能使用我們審核通過的廣告橫幅、連接，以及不但不應將他們的外觀進行替代，也不應讓其在任何推廣素材中不與我們相關聯。這些轉發連接的外觀和參數是由我們設計並命名的，並且只被授權允許代表12BET。</value>
+  <data name="WithoutOurPriorWritten" xml:space="preserve">
+    <value>7.沒有我們事先書面同意，您只能使用我們審核通過的橫幅廣告、鏈接。不能改變其外觀，也不能讓其在任何推廣素材中，不與我們相關聯。這些超連結的外觀和語法，是由我們設計並指定的，並且只被授權允許代表12BET。</value>
   </data>
   <data name="WrongMinbet_Max" xml:space="preserve">
     <value>錯誤的最小投注/最大投注/單場最大投注/信用額度/主代理名稱/用戶群</value>
@@ -2597,26 +2603,26 @@
   <data name="Yemen" xml:space="preserve">
     <value>葉門</value>
   </data>
-  <data name="YOUACKNOWLEDGETHATYOUHAVEREAD" xml:space="preserve">
+  <data name="YouAcknowledge" xml:space="preserve">
     <value>您知道您已經閱讀過此協議並同意所有條款和條件。您明白我們會在任何時候（直接或間接）按照有可能與您的協議有所不同的條款在與您的網站相似或有競爭的網站上徵集客戶介紹。您已經獨立地評估過參與此加盟計畫的有利因素，並且不會依賴此協議上文提到以外的任何表述、承諾或聲明。</value>
   </data>
-  <data name="Youandweareindependent" xml:space="preserve">
+  <data name="YouAndWeAreIndependent" xml:space="preserve">
     <value>9. 您和我們都是獨立的契約方，此協定並不在各方之間造成任何合作、合資、代理、特許經銷、銷售代表或雇傭關係。您無權代表我們發出或接受任何要約。無論是在您的網站還是其他地方，您不能發表任何與本段文字有任何抵觸的聲明。</value>
   </data>
-  <data name="Youandweareindependentcontractors" xml:space="preserve">
+  <data name="YouAndWeAreIndependentContractors" xml:space="preserve">
     <value>您和我們都是獨立的契約方，此協定並不在各方之間造成任何合作、合資、代理、特許經銷、銷售代表或雇傭關係。您無權代表我們發出或接受任何要約。無論是在您的網站還是其他地方，您不能發表任何與本段文字有任何抵觸的聲明。</value>
   </data>
-  <data name="Youandwewill" xml:space="preserve">
-    <value>h. 您和我們自此協議終止之日起，除了協議中列明的各自在協議終止中自然產生的責任外，將不再對彼此有任何責任和義務。終止協定並不會解除您要承擔在終止協議之前就產生的侵害的義務。如果我們判定（我們對此擁有唯一決定權）您的網站是不合適的，我們可能終止此協議。不合適的網站包括：針對兒童推廣色情素材，宣傳暴力，宣傳種族、性別、宗教、國籍、殘疾人、性取向或年齡等歧視，宣傳非法行為或破壞知識產權。</value>
+  <data name="YouAndWeWillBeReleased" xml:space="preserve">
+    <value>h. 您和我們自此協議終止之日起，除了協議中列明的各自在協議終止中自然產生的責任外，將不再對彼此有任何責任和義務。終止協定並不會解除您要承擔在終止協議之前就產生的侵害的義務。如果我們判定（我們對此擁有唯一決定權）您的網站是不合適的，我們可能終止此協議。不合適的網站包括：針對兒童推廣色情素材，宣傳暴力，宣傳種族、性別、宗教、國籍、殘疾人、性取向或年齡等歧視，宣傳非法行為或破壞知識產權。 </value>
   </data>
   <data name="YouAreNotAllowed" xml:space="preserve">
-    <value>10. 嚴禁同時與12BET保有加盟合做夥伴關係和推薦會員合作關係。若有違反，12BET有權單方面終止其中一類合作關係。推薦會員合作關係請參考12BET的“介紹朋友計劃”（如有推出）</value>
+    <value>10.嚴禁同時與12BET保有合作夥伴關係，和推薦會員合作關係。若有違反，12BET有權單方面終止其中一方合作關係。推薦關係是指根據12BET的推薦朋友計劃（作為網站上提供的內容）與12BET的關係。</value>
   </data>
   <data name="Youarenotauthor" xml:space="preserve">
     <value>您無權建立/編輯此信息。</value>
   </data>
-  <data name="Youareonlyresponsible" xml:space="preserve">
-    <value>1．您只負責引導客戶到12BET網站。</value>
+  <data name="YouAreOnlyResponsible" xml:space="preserve">
+    <value>1.您只負責引導客戶到12BET網站。</value>
   </data>
   <data name="YouCanLoginToYour12BET" xml:space="preserve">
     <value>你可以登入你在12BET.COM的合作夥伴會員戶口，查核你所賺取所得的回佣金額。12BET為您提供全年7X24小時查核服務。</value>
@@ -2633,23 +2639,20 @@
   <data name="Youhaverequeste" xml:space="preserve">
     <value>您申請找回用戶名或密碼。如果您未提出此申請，請忽略此郵件。</value>
   </data>
-  <data name="Youherebyagreetoindemnify" xml:space="preserve">
+  <data name="YouHerebyAgreeToIndemnify" xml:space="preserve">
     <value>在此您同意保障及令12BET、它代表的組織和加盟商、12BET的管理人員、官員、雇員、代理、股東、合作方、會員或其他所有人免於受損，免於任何和所有索償、行動、要求、義務、損失、賠償、法庭判決、清算、花費（包括合理的律師費），在這些範圍的損失（或涉及的行動）所導致的成本（前述部分或全部以下稱為“損失”）或基於以下而產生的成本：（i）關於使用我們的加盟代理商標而侵害了任何商標、商標名、服務標誌、版權、許可權、知識產權或其他第三方的權利，（ii）由您造成的表述、承諾或契約和協定終止的錯誤表述，（iii）您的網站發展、運營、維護、內容，以及您網站提供的產品和服務，或（iv）任何與您的網站有關的索賠，包括但不只限於，非我們的內容。</value>
   </data>
   <data name="Youinputtedanin" xml:space="preserve">
     <value>驗證碼無效！</value>
   </data>
-  <data name="Youmaynotassign" xml:space="preserve">
-    <value>a. 在我們事先書面同意之前您不能通過法律行動或其他方式將此協定分派給他人。出於此規限，此協議將對您和我們以及我們各自的繼承人和受讓人約束、利益生效和可強制執行。</value>
-  </data>
-  <data name="Youmaynotmodify" xml:space="preserve">
-    <value>2．您不能將我們提供的有任何知識產權的產品、廣告橫幅或其他創作素材，未經12BET的書面許可就進行修改或用於其他用途。所有在12BET提供或審核的素材上的版權或知識產權聲明都必須保留，且不能被修改或刪減。</value>
+  <data name="YouMayNotModify" xml:space="preserve">
+    <value>2.未經12BET的書面同意，您不得修改或使用任何12BET知識產權品、橫幅廣告或其他創作素材，用於其他用途。12BET提供或批准的任何素材，所有版權或知識產權聲明必須保留，不得修改或刪除。</value>
   </data>
   <data name="YoumustagreeTer" xml:space="preserve">
     <value>沒有同意條款及規則，請查看！</value>
   </data>
-  <data name="Youmustremove12BET" xml:space="preserve">
-    <value>a. 您必須從您的網站中移走12BET的廣告橫幅，並使任何到12BET的連接失效。</value>
+  <data name="YouMustRemoveBanners" xml:space="preserve">
+    <value>a. 您必須從您的網站中移走12BET的廣告橫幅，並使任何到12BET的連接失效。 </value>
   </data>
   <data name="Youraccountinfo" xml:space="preserve">
     <value>您的帳戶資料已成功更新</value>
@@ -2678,29 +2681,29 @@
   <data name="Yourwebsitesand" xml:space="preserve">
     <value>我們12Bet合作夥伴團隊將會就您的網站和申請詳情進行審核，以確認相關內容是否適合推廣我們的產品。</value>
   </data>
-  <data name="Youshallnotmake" xml:space="preserve">
-    <value>6. 您不應提出任何與12BET有關的索償、代表或承諾，並且您無權也不應將12BET與任何法律責任相關聯。</value>
+  <data name="YouShallNotMakeAnyClaims" xml:space="preserve">
+    <value>6.您不應提出任何與12BET有關的索賠、代表或承諾，並且您無權也不應對12BET承擔任何義務。</value>
   </data>
   <data name="YouWillAgreeToRegister" xml:space="preserve">
-    <value>2. 您同意在12BET登記並保持正確、真實的聯絡資訊。</value>
+    <value>2.您同意在12BET登記並保持正確、真實的聯絡訊息。</value>
   </data>
-  <data name="Youwillbeentitled" xml:space="preserve">
-    <value>c. 您將只能獲得那些到協議終止日或之前的有贏利而未付的介紹費，餘下的作為您終止此協議的結果進行處理，詳細請見下文9.2.d。我們會保留向您支付的最後一筆款項一段合理的時間，以確保正確的金額被支付。</value>
+  <data name="YouWillBeEntitled" xml:space="preserve">
+    <value>c. 您將只能獲得那些到協議終止日或之前的有贏利而未付的介紹費，餘下的作為您終止此協議的結果進行處理，詳細請見下文9.2.d。我們會保留向您支付的最後一筆款項一段合理的時間，以確保正確的金額被支付。 </value>
   </data>
   <data name="YouWillBeSolelyResponsible" xml:space="preserve">
-    <value>4．您將要獨立負責您的網站的發展、運營和維護，以及所有素材的成本。例如，您將要獨立負責確保所有張貼在您的網站的素材不會含有誹謗文字或其他非法內容，或侵犯第三方的知識產權。因為我們並不會控制您的網站，我們不會承認這些素材的可靠性。而且，您將有義務保障我們免於受這些與您的網站發展、運營、維護和內容有關的索償、賠償、花費（包括但不限於律師費用等）所帶來的損害。這些保障條款對於我們在適用的法律條款下對您採取的獨立行動或索償不能有所衝突。</value>
+    <value>4.您將全權負責您網站的開發、運營和維護，以及所有素材的成本。例如，您將要全權負責，確保所有張貼在網站的素材，不含有誹謗文字或其他非法內容，或侵犯第三方的知識產權。由於我們無法主張您的網站，我們不會承擔任何責任。此外，您將有義務保障我們免於承受，由於您的網站開發，運營，維護和內容相關的索償，損害賠償與費用（包括但不限於律師費等）所帶來的損害。這些保障條款不影響我們根據適用的法律，所提出對您的訴訟或索賠。</value>
   </data>
-  <data name="Youwillindemnify" xml:space="preserve">
+  <data name="YouWillIndemnify" xml:space="preserve">
     <value>3. 您要保障並令我們免於所有與您的網站發展、運營、維護以及內容方面有關的索償、賠償以及花費（包括，並不只限於，律師費用）。此保障條款並不會對我們在適當的法律條款下對您採取的另外的行動或索償有所衝突。</value>
   </data>
-  <data name="Youwillnotknowingly" xml:space="preserve">
-    <value>8. 您將不能從任何已知或被懷疑不是真實產生的流量中獲利，無論它是否令12BET受損害。如果通過您的連接直接來到網站的某人發生了欺騙行為，我們保留在任何時候收回已經支付給您的傭金的權利。我們在這方面的決定是最終的，並且不會進行任何這方面的討論。如果我們確信這樣的流量是在您知情的情況下發生的，我們保留收回您在此協定下所獲得的全部金額的傭金的權利。即使您對此產生的流量並不知情，如果我們有所懷疑，我們保留截留您的傭金的權利。</value>
+  <data name="YouWillNotKnowingly" xml:space="preserve">
+    <value>8.您將不能從任何已知或被懷疑不是真實產生的流量中獲利，無論它是否令12BET受損害。如果透過您的連結來到本網站的某人，發生了欺騙行為，我們保留在任何時候收回已經支付給您的佣金的權利。我們在這方面的決定是最終的，並且不會進行任何這方面的討論。如果我們確信這樣的流量是在您知情的情況下發生的，我們保留收回您在此協議下所獲得的全部金額的佣金的權利。即使您對此產生的流量並不知情，如果我們有所懷疑，我們有權保留您的佣金。</value>
   </data>
   <data name="YouWillPresentOnlyContent" xml:space="preserve">
-    <value>3. 您將只發表經過由12BET撰寫並預先審核過的內容和主題在您的網站上。未經12BET獨立斟酌的內容將被認為是不適當的，並將會導致加盟代理條款即時終止。</value>
+    <value>3.您只能在您的網站上，發表經由12BET撰寫並預先審核過的內容和主題。未經12BET審核的內容，將被視為是不恰當的，並會導致合作夥伴協議立即終止。</value>
   </data>
-  <data name="Youwillreturn" xml:space="preserve">
-    <value>g. 您將要歸還我們所有保密資訊和所有在您處理、保管和控制的副本，並停止使用所有商標名、商標、服務標誌、標識以及其他與此業務有關的稱號。</value>
+  <data name="YouWillReturnToUs" xml:space="preserve">
+    <value>g. 您將要歸還我們所有保密資訊和所有在您處理、保管和控制的副本，並停止使用所有商標名、商標、服務標誌、標識以及其他與此業務有關的稱號。 </value>
   </data>
   <data name="Yugoslavia" xml:space="preserve">
     <value>南斯拉夫</value>
@@ -2896,5 +2899,17 @@
   </data>
   <data name="DescHowOftenCanIRequest" xml:space="preserve">
     <value>每個月最多可以提出一次提款申請，假如得到會員介紹合作計劃的經理批准，就可以在同一個月內做出第二次提款申請。目前我們給予大家的提款申請服務是免費的，但我們並不負擔任何轉帳時的手續費或電子轉帳所需服務費用。</value>
+  </data>
+  <data name="TermAndCondition" xml:space="preserve">
+    <value>條款與規則</value>
+  </data>
+  <data name="ToBecomeAnAffiliate" xml:space="preserve">
+    <value>欲成為12BET合作夥伴會員，您必須填寫線上加盟表單註冊成為會員。通過12BET的登記程序註冊成為合作夥伴，或下載橫幅廣告代碼並放在您的網站、電郵訊息或其他方式宣傳，您就被視為已經了解並接受此協議所有的條款與規則。</value>
+  </data>
+  <data name="ResponsibilitiesOfTheAffiliate" xml:space="preserve">
+    <value>1. 合作夥伴的責任</value>
+  </data>
+  <data name="AffiliateGuidelines" xml:space="preserve">
+    <value>2. 合作夥伴指南</value>
   </data>
 </root>
