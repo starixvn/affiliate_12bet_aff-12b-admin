@@ -1164,7 +1164,6 @@
     <Content Include="App_Templates\Exchange\AffEditRate.htm" />
     <Content Include="App_Templates\Exchange\ExchangeRate.htm" />
     <Content Include="App_Templates\GotoPage.html" />
-    <Content Include="App_Templates\Header.htm" />
     <Content Include="App_Templates\Home.htm" />
     <Content Include="App_Templates\Login.htm" />
     <Content Include="App_Templates\Media\BannerDetail.htm" />
