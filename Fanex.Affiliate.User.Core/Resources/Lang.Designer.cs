@@ -507,6 +507,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Apply 12BET Affiliate.
+        /// </summary>
+        public static string ApplyOneTwoBetAffiliate {
+            get {
+                return ResourceManager.GetString("ApplyOneTwoBetAffiliate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Approval Date.
         /// </summary>
         public static string approvaldate {
@@ -606,6 +615,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string AsAOneTwoBetAffiliates {
             get {
                 return ResourceManager.GetString("AsAOneTwoBetAffiliates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to As affiliates, you will earn commission on every player you referred to 12BET  over the course of the player&apos;s account life. Your online system will be  serving  you 24/7 for your usage..
+        /// </summary>
+        public static string AsAOneTwoBetYouWillEarnCommission {
+            get {
+                return ResourceManager.GetString("AsAOneTwoBetYouWillEarnCommission", resourceCulture);
             }
         }
         
@@ -1882,7 +1900,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to © Copyright {now} Pacific Sea Invests.
+        ///   Looks up a localized string similar to © Copyright 2018. All Rights Reserved. Designed and Powered by.
         /// </summary>
         public static string Copyright {
             get {
@@ -3631,6 +3649,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string GettingPaid {
             get {
                 return ResourceManager.GetString("GettingPaid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get to know hot promotions this month. Post them in your websites and social channels to gain more customers and commission!.
+        /// </summary>
+        public static string GetToKnowHotPromotion {
+            get {
+                return ResourceManager.GetString("GetToKnowHotPromotion", resourceCulture);
             }
         }
         
@@ -5608,11 +5635,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New.
+        ///   Looks up a localized string similar to New  banner is now available! .
         /// </summary>
-        public static string New {
+        public static string NewBannerIsNowAvailable {
             get {
-                return ResourceManager.GetString("New", resourceCulture);
+                return ResourceManager.GetString("NewBannerIsNowAvailable", resourceCulture);
             }
         }
         
@@ -5658,6 +5685,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string NewTrackingCode {
             get {
                 return ResourceManager.GetString("NewTrackingCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NEW!.
+        /// </summary>
+        public static string NewWithExclamationPoint {
+            get {
+                return ResourceManager.GetString("NewWithExclamationPoint", resourceCulture);
             }
         }
         
@@ -5973,6 +6009,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string OneDotSportsbook {
             get {
                 return ResourceManager.GetString("OneDotSportsbook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12BET Affiliate News.
+        /// </summary>
+        public static string OneTwoBetAffiliateNews {
+            get {
+                return ResourceManager.GetString("OneTwoBetAffiliateNews", resourceCulture);
             }
         }
         
@@ -9455,6 +9500,24 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to What&apos;s New in Affiliate.
+        /// </summary>
+        public static string WhatNewInAffiliate {
+            get {
+                return ResourceManager.GetString("WhatNewInAffiliate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What&apos;s New in 12BET Promotion ! .
+        /// </summary>
+        public static string WhatNewInOneTwoBetPromotion {
+            get {
+                return ResourceManager.GetString("WhatNewInOneTwoBetPromotion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to a. Whenever possible, each provision of this Agreement shall be interpreted in such a manner as to be effective and valid under applicable law but, if any provision of this Agreement is held to be invalid, illegal or unenforceable in any respect, such provision will be ineffective only to the extent of such invalidity, or unenforceability, without invalidating the remainder of this Agreement or any provision hereof. No waiver will be implied from conduct or failure to enforce any rights and must be in writi [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Wheneverpossible {
@@ -9667,6 +9730,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string YouCanLoginToYour12BET {
             get {
                 return ResourceManager.GetString("YouCanLoginToYour12BET", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can now log in your affiliate account to  get new banners to promote in your website. .
+        /// </summary>
+        public static string YouCanNowLogInYourAffiliateAccount {
+            get {
+                return ResourceManager.GetString("YouCanNowLogInYourAffiliateAccount", resourceCulture);
             }
         }
         

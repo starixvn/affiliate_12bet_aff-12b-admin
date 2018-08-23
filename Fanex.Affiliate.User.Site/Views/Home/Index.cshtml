@@ -1,6 +1,6 @@
 ﻿@{
     Layout = "~/Views/Shared/_LayoutBeforeLogin.cshtml";
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = Lang.Home;
 }
 
 @model Fanex.Affiliate.User.Core.ViewModels.HomeViewModel
@@ -93,7 +93,7 @@
                 <div class="card-content">
                     <h4 class="card-title">
                         <span class="icon"><img src="~/www/build/styles/Images/icon-1.png" alt="icon-1" /></span>
-                        <span class="text">Apply 12BET Affiliate</span>
+                        <span class="text">@Lang.ApplyOneTwoBetAffiliate</span>
                     </h4>
                     <a href="@Model.SignUpLink" class="nounderline">
                         <div class="img-content">                            
@@ -104,7 +104,7 @@
                             </picture>
                         </div>
                         <p class="text-content">
-                            As affiliates, you will earn commission on every player you referred to 12BET  over the course of the player's account life. Your online system will be  serving  you 24/7 for your usage.
+                            @Lang.AsAOneTwoBetYouWillEarnCommission
                         </p>
                     </a>
                 </div>
@@ -116,7 +116,7 @@
                 <div class="card-content">
                     <h4 class="card-title">
                         <span class="icon"><img src="~/www/build/styles/Images/icon-2.png" alt="icon-2" /></span>
-                        <span class="text">What's New in Affiliate</span>
+                        <span class="text">@Lang.WhatNewInAffiliate</span>
                     </h4>
                     <div class="card-body">
                         <a href="@Url.Action("Index", "ContactUs")" class="img-content">                            
@@ -136,20 +136,20 @@
                 <div class="card-content">
                     <h4 class="card-title">
                         <span class="icon"><img src="~/www/build/styles/Images/icon-3.png" alt="icon-3" /></span>
-                        <span class="text">12BET Affiliate News</span>
+                        <span class="text">@Lang.OneTwoBetAffiliateNews</span>
                     </h4>
                     <div class="text-content">
                         <ul class="news-content">
                             <li>
                                 <a class="nounderline @(Model.IsAuthenticated ? string.Empty : "loginLink")" href="@Model.BannerLink">
-                                    <span class="news-title">New  banner is now available! <span class="text-red" style="text-decoration:underline;">NEW!</span></span>
-                                    <span>You can now log in your affiliate account to  get new banners to promote in your website. </span>
+                                    <span class="news-title">@Lang.NewBannerIsNowAvailable <span class="text-red" style="text-decoration:underline;">@Lang.NewWithExclamationPoint</span></span>
+                                    <span>@Lang.YouCanNowLogInYourAffiliateAccount </span>
                                 </a>
                             </li>
                             <li>
                                 <a href="@Model.Promotion12BetLink" target="_blank" class="nounderline">
-                                    <span class="news-title">What's New in 12BET Promotion ! <span class="text-red" style="text-decoration:underline;">NEW!</span></span>
-                                    <span>Get to know hot promotions this month. Post them in your websites and social channels to gain more customers and commission!</span>
+                                    <span class="news-title">@Lang.WhatNewInOneTwoBetPromotion <span class="text-red" style="text-decoration:underline;">@Lang.NewWithExclamationPoint</span></span>
+                                    <span>@Lang.GetToKnowHotPromotion</span>
                                 </a>
                             </li>
                         </ul>

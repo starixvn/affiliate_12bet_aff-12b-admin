@@ -163,6 +163,7 @@
   </data>
   <data name="Affiliate" xml:space="preserve">
     <value>Affiliate</value>
+    <comment>87923</comment>
   </data>
   <data name="AffiliateEarnings" xml:space="preserve">
     <value> Affiliate Earning</value>
@@ -708,7 +709,8 @@ Thank you.</value>
     <value>Cook Islands </value>
   </data>
   <data name="Copyright" xml:space="preserve">
-    <value>© Copyright {now} Pacific Sea Invests</value>
+    <value>© Copyright 2018. All Rights Reserved. Designed and Powered by</value>
+    <comment>87923</comment>
   </data>
   <data name="CostaRica" xml:space="preserve">
     <value>Costa Rica </value>
@@ -1191,6 +1193,7 @@ Thank you.</value>
   </data>
   <data name="ForgetPassword" xml:space="preserve">
     <value>Forgot your password?</value>
+    <comment>87923</comment>
   </data>
   <data name="France" xml:space="preserve">
     <value>France</value>
@@ -1290,6 +1293,7 @@ Thank you.</value>
   </data>
   <data name="HotNews" xml:space="preserve">
     <value>Hot News</value>
+    <comment>87923</comment>
   </data>
   <data name="HowAffilliateTitle" xml:space="preserve">
     <value>How does it work?</value>
@@ -1650,6 +1654,7 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
   </data>
   <data name="Login" xml:space="preserve">
     <value>Login</value>
+    <comment>87923</comment>
   </data>
   <data name="Logout" xml:space="preserve">
     <value>Logout</value>
@@ -1889,8 +1894,9 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
     <value>Company Net Win For The Month (CNW)($)</value>
     <comment>87923</comment>
   </data>
-  <data name="New" xml:space="preserve">
-    <value>New</value>
+  <data name="NewWithExclamationPoint" xml:space="preserve">
+    <value>NEW!</value>
+    <comment>87923</comment>
   </data>
   <data name="NewCaledonia" xml:space="preserve">
     <value>New Caledonia </value>
@@ -2097,6 +2103,7 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
   </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
+    <comment>87923</comment>
   </data>
   <data name="PasswordAndConfirmPasswordDontMatch" xml:space="preserve">
     <value>Your password and confirmation password do not match.</value>
@@ -2901,12 +2908,14 @@ One of our Affiliate Accounts Manager will be contacting you by email within 3 b
   </data>
   <data name="Username" xml:space="preserve">
     <value>User Name</value>
+    <comment>87923</comment>
   </data>
   <data name="Usethisformtoch" xml:space="preserve">
     <value>Use this form to change your password. Once changed, your new password will be in effect next time you login.</value>
   </data>
   <data name="Validation" xml:space="preserve">
     <value>Validation</value>
+    <comment>87923</comment>
   </data>
   <data name="ValidationCode" xml:space="preserve">
     <value>You placed an invalid code.</value>
@@ -3302,6 +3311,7 @@ One of our Affiliate Accounts Manager will be contacting you by email within 3 b
   </data>
   <data name="SignUpAffiliate" xml:space="preserve">
     <value>Sign Up Affiliate</value>
+    <comment>87923</comment>
   </data>
   <data name="EmailTitleNewPassword" xml:space="preserve">
     <value>Your new password</value>
@@ -3630,6 +3640,38 @@ One of our Affiliate Accounts Manager will be contacting you by email within 3 b
   </data>
   <data name="OneTwoBetOffersARevenueShareModel" xml:space="preserve">
     <value>12BET offers a revenue share model in all 12BET products.This is a cumulative model based on the number of active players referred per calendar month in relation to each product revenue.</value>
+    <comment>87923</comment>
+  </data>
+  <data name="ApplyOneTwoBetAffiliate" xml:space="preserve">
+    <value>Apply 12BET Affiliate</value>
+    <comment>87923</comment>
+  </data>
+  <data name="AsAOneTwoBetYouWillEarnCommission" xml:space="preserve">
+    <value>As affiliates, you will earn commission on every player you referred to 12BET  over the course of the player's account life. Your online system will be  serving  you 24/7 for your usage.</value>
+    <comment>87923</comment>
+  </data>
+  <data name="WhatNewInAffiliate" xml:space="preserve">
+    <value>What's New in Affiliate</value>
+    <comment>87923</comment>
+  </data>
+  <data name="OneTwoBetAffiliateNews" xml:space="preserve">
+    <value>12BET Affiliate News</value>
+    <comment>87923</comment>
+  </data>
+  <data name="NewBannerIsNowAvailable" xml:space="preserve">
+    <value>New  banner is now available! </value>
+    <comment>87923</comment>
+  </data>
+  <data name="YouCanNowLogInYourAffiliateAccount" xml:space="preserve">
+    <value>You can now log in your affiliate account to  get new banners to promote in your website. </value>
+    <comment>87923</comment>
+  </data>
+  <data name="WhatNewInOneTwoBetPromotion" xml:space="preserve">
+    <value>What's New in 12BET Promotion ! </value>
+    <comment>87923</comment>
+  </data>
+  <data name="GetToKnowHotPromotion" xml:space="preserve">
+    <value>Get to know hot promotions this month. Post them in your websites and social channels to gain more customers and commission!</value>
     <comment>87923</comment>
   </data>
 </root>

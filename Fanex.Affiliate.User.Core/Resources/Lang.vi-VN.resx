@@ -157,7 +157,7 @@
     <value>* Mỗi tháng Đại lý 12BET chỉ có thể rút tiền 1 lần duy nhất. Nếu yêu cầu rút tiền nhiều hơn 1 lần trong tháng của bạn được 12BET chấp thuận, bạn cũng có thể yêu cầu rút 2 lần/ tháng. Hiện tại 12BET không tính phí giao dịch rút tiền hoa hồng mỗi tháng của Đại lý, nhưng chúng tôi sẽ không chi trả bất kỳ phí thủ tục hoặc phí phát sinh nào khác.&lt;br&gt;Số tiền yêu cầu rút tối thiểu là 100USD.</value>
   </data>
   <data name="Affiliate" xml:space="preserve">
-    <value>Hội viên</value>
+    <value>CHƯƠNG TRÌNH ĐẠI LÝ</value>
   </data>
   <data name="AffiliateEarnings" xml:space="preserve">
     <value>Mức thu nhập của hội viên</value>
@@ -638,7 +638,7 @@ a. Bạn không thể ấn định thỏa thuận này bằng hiệu lực của
     <value>Quần đảo Cook </value>
   </data>
   <data name="Copyright" xml:space="preserve">
-    <value>© Bản quyền {now} Pacific Sea Invests</value>
+    <value>© Copyright 2018. All Rights Reserved. Designed and Powered by</value>
   </data>
   <data name="CostaRica" xml:space="preserve">
     <value>Costa Rica </value>
@@ -1065,7 +1065,7 @@ a. Bạn không thể ấn định thỏa thuận này bằng hiệu lực của
     <value>Vì bất kỳ lý do gì mà bạn không nhận được email, vui lòng &lt;a href='{0}'&gt;liên hệ với chúng tôi&lt;/a&gt; và chúng tôi sẽ rất sẵn lòng được trợ giúp bạn.  </value>
   </data>
   <data name="ForgetPassword" xml:space="preserve">
-    <value>Bạn quên mật khẩu?</value>
+    <value>Quên Mật Khẩu?</value>
   </data>
   <data name="France" xml:space="preserve">
     <value>Pháp</value>
@@ -2439,13 +2439,13 @@ Một trong những người quản lý tài khoản hội viên của chúng t�
     <value>USD (Đô la Mỹ)</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>Tên truy cập</value>
+    <value>Mã Số Đại Lý</value>
   </data>
   <data name="Usethisformtoch" xml:space="preserve">
     <value>Sử dụng mẫu này để đổi mật khẩu của bạn. Sau khi đã thay đổi, mật khẩu mới sẽ có hiệu lực vào lần đăng nhập tiếp theo của bạn.</value>
   </data>
   <data name="Validation" xml:space="preserve">
-    <value>Xác thực</value>
+    <value>Xác Thực</value>
   </data>
   <data name="ValidationCode" xml:space="preserve">
     <value>Bạn đã nhập một mã xác thực không hợp lệ!</value>
@@ -2962,5 +2962,37 @@ Một trong những người quản lý tài khoản hội viên của chúng t�
   </data>
   <data name="OneTwoBetOffersARevenueShareModel" xml:space="preserve">
     <value>12Bet cung cấp một mô hình chia sẻ doanh thu của tất cả sản phẩm. Đây là một mô hình tích lũy dựa trên số lượng các thành viên hoạt động mỗi tháng, mang đến doanh thu cược của từng loại sản phẩm. </value>
+  </data>
+  <data name="SignUpAffiliate" xml:space="preserve">
+    <value>ĐĂNG KÝ ĐẠI LÝ</value>
+  </data>
+  <data name="ApplyOneTwoBetAffiliate" xml:space="preserve">
+    <value>Tham Gia Chương Trình
+ Đại Lý 12BET</value>
+  </data>
+  <data name="AsAOneTwoBetYouWillEarnCommission" xml:space="preserve">
+    <value>Mỗi tháng, Đại lý 12BET sẽ nhận Hoa hồng dựa trên số lượng Thành viên mới tham gia chơi tại 12BET do bạn giới thiệu,  mỗi đại lý có thể theo dõi báo cáo cập nhật liên tục trong ngày.</value>
+  </data>
+  <data name="WhatNewInAffiliate" xml:space="preserve">
+    <value>Đại Lý 12BET
+Cập Nhật Mới Nhất</value>
+  </data>
+  <data name="OneTwoBetAffiliateNews" xml:space="preserve">
+    <value>Bản Tin Đại Lý 12BET</value>
+  </data>
+  <data name="NewWithExclamationPoint" xml:space="preserve">
+    <value>MỚI! </value>
+  </data>
+  <data name="NewBannerIsNowAvailable" xml:space="preserve">
+    <value>CẬP NHẬT BANNER </value>
+  </data>
+  <data name="YouCanNowLogInYourAffiliateAccount" xml:space="preserve">
+    <value>Đăng nhập tài khoản đại lý của mình và cập nhật banner mới nhất để tăng sức hấp dẫn cho trang web của bạn!</value>
+  </data>
+  <data name="WhatNewInOneTwoBetPromotion" xml:space="preserve">
+    <value>KHUYẾN MÃI ĐẶC BIỆT</value>
+  </data>
+  <data name="GetToKnowHotPromotion" xml:space="preserve">
+    <value>Nhiều ưu đãi độc quyền tại 12BET mỗi tháng. Bạn tham khảo &amp; giới thiệu đến các Thành viên của mình thúc đẩy doanh thu, tăng thưởng hoa hồng ngay!</value>
   </data>
 </root>

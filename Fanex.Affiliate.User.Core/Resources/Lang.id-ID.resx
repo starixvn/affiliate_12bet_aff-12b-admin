@@ -640,7 +640,7 @@ a. Anda tidak boleh menetapkan Perjanjian ini, melalui tindakan hukum atau lainn
     <value>Kep. Cook </value>
   </data>
   <data name="Copyright" xml:space="preserve">
-    <value>© Hak Cipta {now} Pacific Sea Invests</value>
+    <value>© Copyright 2018. Semua Hak Cipta Dilindungi. Persembahan dari</value>
   </data>
   <data name="CostaRica" xml:space="preserve">
     <value>Kosta Rika </value>
@@ -1070,7 +1070,7 @@ a. Anda tidak boleh menetapkan Perjanjian ini, melalui tindakan hukum atau lainn
     <value>Bila Anda tidak menerima email untuk alasan apa pun, silakan &lt;a href='{0}'&gt;hubungi kami&lt;/a&gt; dan kami dengan senang hati akan membantu Anda.  </value>
   </data>
   <data name="ForgetPassword" xml:space="preserve">
-    <value>Lupa kata sandi Anda?</value>
+    <value>Lupa Password Anda?</value>
   </data>
   <data name="France" xml:space="preserve">
     <value>Prancis</value>
@@ -1160,7 +1160,7 @@ a. Anda tidak boleh menetapkan Perjanjian ini, melalui tindakan hukum atau lainn
     <value>Taruhan online, taruhan olahraga dan taruhan sepakbola di 12BET.com</value>
   </data>
   <data name="HotNews" xml:space="preserve">
-    <value>Berita Hangat</value>
+    <value>BERITA HANGAT</value>
   </data>
   <data name="HowAffilliateTitle" xml:space="preserve">
     <value>Bagaimana cara kerjanya?</value>
@@ -1406,7 +1406,7 @@ a. Anda tidak boleh menetapkan Perjanjian ini, melalui tindakan hukum atau lainn
     <value>Nama Belakang </value>
   </data>
   <data name="Login" xml:space="preserve">
-    <value>Login</value>
+    <value>MASUK</value>
   </data>
   <data name="Logout" xml:space="preserve">
     <value>Logout</value>
@@ -1763,7 +1763,7 @@ a. Kegagalan kami untuk mewajibkan Anda mematuhi secara ketat setiap ketetapan P
     <value>Kata sandi harus minimal 6 karakter, mencakup sekurangnya 2 huruf dan 2 angka. (mis.:pass22)</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>Kata Sandi</value>
+    <value>Password</value>
   </data>
   <data name="Passwordchanged" xml:space="preserve">
     <value>Kata sandi berhasil diubah</value>
@@ -2444,7 +2444,7 @@ Salah satu Manajer Rekening Afiliasi kami akan menghubungi Anda melalui email da
     <value>USD (Dollar Amerika Serikat)</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>Nama Pengguna</value>
+    <value>User Name</value>
   </data>
   <data name="Usethisformtoch" xml:space="preserve">
     <value>Gunakan formulir ini untuk mengubah kata sandi Anda. Setelah diubah, kata sandi baru Anda akan berlaku pada waktu berikutnya Anda login.</value>
@@ -2964,5 +2964,35 @@ Salah satu Manajer Rekening Afiliasi kami akan menghubungi Anda melalui email da
   </data>
   <data name="OneTwoBetOffersARevenueShareModel" xml:space="preserve">
     <value>12BET menawarkan model bagi hasil yang menghitung semua pendapatan dari semua produk yang kami tawarkan. Model kumulatif ini akan didasarkan juga pada jumlah pemain aktif yang berhasil Anda rujukkan dalam waktu satu bulan kalender.</value>
+  </data>
+  <data name="SignUpAffiliate" xml:space="preserve">
+    <value>PENDAFTARAN AFILIASI</value>
+  </data>
+  <data name="ApplyOneTwoBetAffiliate" xml:space="preserve">
+    <value>Pendaftaran Afiliasi 12BET</value>
+  </data>
+  <data name="AsAOneTwoBetYouWillEarnCommission" xml:space="preserve">
+    <value>Sebagai afiliasi, Anda akan menerima komisi atas setiap pemain yang Anda datangkan ke 12BET, selama akun pemain tersebut masih aktif. Sistem online kami bisa diakses kapan saja selama 24 jam.</value>
+  </data>
+  <data name="WhatNewInAffiliate" xml:space="preserve">
+    <value>Yang Baru di Program Afiliasi</value>
+  </data>
+  <data name="OneTwoBetAffiliateNews" xml:space="preserve">
+    <value>Berita Afiliasi 12BET</value>
+  </data>
+  <data name="NewWithExclamationPoint" xml:space="preserve">
+    <value>BARU!</value>
+  </data>
+  <data name="NewBannerIsNowAvailable" xml:space="preserve">
+    <value>Banner baru sudah tersedia!</value>
+  </data>
+  <data name="YouCanNowLogInYourAffiliateAccount" xml:space="preserve">
+    <value>Silakan masuk ke akun afiliasi Anda untuk mendapatkan banner terbaru dan mulai mempromosikan 12BET di website Anda.</value>
+  </data>
+  <data name="WhatNewInOneTwoBetPromotion" xml:space="preserve">
+    <value>Promo Terbaru 12BET!</value>
+  </data>
+  <data name="GetToKnowHotPromotion" xml:space="preserve">
+    <value>Dapatkan informasi promo terbaru bulan ini! Silakan post tentang promo 12BET di websute Anda dan mulai dapatkan keuntungan bulanan!</value>
   </data>
 </root>

@@ -635,7 +635,7 @@ a. 在我們事先書面同意之前您不能通過法律行動或其他方式�
     <value>科克群島</value>
   </data>
   <data name="Copyright" xml:space="preserve">
-    <value>© 版權所有{now} Pacific Sea Invest</value>
+    <value>© Copyright 2018. All Rights Reserved. Designed and Powered by</value>
   </data>
   <data name="CostaRica" xml:space="preserve">
     <value>哥斯達黎加</value>
@@ -2466,7 +2466,7 @@ b. 如果這些費用不能由您帳戶上的資金所彌補，我們保留調�
     <value>使用這個表格來更改您的密碼。一旦更改，您需要使用新密碼來登陸您的帳戶。</value>
   </data>
   <data name="Validation" xml:space="preserve">
-    <value>驗証碼</value>
+    <value>驗證碼</value>
   </data>
   <data name="ValidationCode" xml:space="preserve">
     <value>驗證碼無效！</value>
@@ -2983,5 +2983,35 @@ b. 如果這些費用不能由您帳戶上的資金所彌補，我們保留調�
   </data>
   <data name="OneTwoBetOffersARevenueShareModel" xml:space="preserve">
     <value>12BET提供所有產品的佣金分成。這是一個累積的模式，每月根據合作夥伴所推薦的玩家，在12BET的投注活躍程度去賺取。</value>
+  </data>
+  <data name="SignUpAffiliate" xml:space="preserve">
+    <value>立即註冊</value>
+  </data>
+  <data name="ApplyOneTwoBetAffiliate" xml:space="preserve">
+    <value>申請12BET合作夥伴</value>
+  </data>
+  <data name="AsAOneTwoBetYouWillEarnCommission" xml:space="preserve">
+    <value>成為12BET合作夥伴後，由您推薦到12BET的每位玩家，只要使用帳戶就可以為您帶來即時的佣金。我們的線上匯報系統會7×24小時服務。</value>
+  </data>
+  <data name="WhatNewInAffiliate" xml:space="preserve">
+    <value>合作夥伴計劃有什麼新功能？</value>
+  </data>
+  <data name="OneTwoBetAffiliateNews" xml:space="preserve">
+    <value>12BET合作夥伴資訊</value>
+  </data>
+  <data name="NewWithExclamationPoint" xml:space="preserve">
+    <value>全新！</value>
+  </data>
+  <data name="NewBannerIsNowAvailable" xml:space="preserve">
+    <value>新橫幅廣告上線</value>
+  </data>
+  <data name="YouCanNowLogInYourAffiliateAccount" xml:space="preserve">
+    <value>您可以登陸合作夥伴帳戶，以獲取網站上的橫幅廣告作使用。</value>
+  </data>
+  <data name="WhatNewInOneTwoBetPromotion" xml:space="preserve">
+    <value>12BET最新優惠活動！</value>
+  </data>
+  <data name="GetToKnowHotPromotion" xml:space="preserve">
+    <value>了解本月最新優惠活動，將信息發布至合夥人的網站與社交媒體，以獲取更多的顧客及佣金。</value>
   </data>
 </root>

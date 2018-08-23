@@ -685,7 +685,7 @@ Thank you.</value>
     <value>Cook Islands </value>
   </data>
   <data name="Copyright" xml:space="preserve">
-    <value>© Copyright {now} Pacific Sea Invests</value>
+    <value>© Copyright 2018. All Rights Reserved. Designed and Powered by</value>
   </data>
   <data name="CostaRica" xml:space="preserve">
     <value>Costa Rica </value>
@@ -1837,8 +1837,8 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
   <data name="NetWinLoss" xml:space="preserve">
     <value>Company Net Win For The Month (CNW)($)</value>
   </data>
-  <data name="New" xml:space="preserve">
-    <value>New</value>
+  <data name="NewWithExclamationPoint" xml:space="preserve">
+    <value>NEW!</value>
   </data>
   <data name="NewCaledonia" xml:space="preserve">
     <value>New Caledonia </value>
@@ -3437,5 +3437,29 @@ One of our Affiliate Accounts Manager will be contacting you by email within 3 b
   </data>
   <data name="OneTwoBetOffersARevenueShareModel" xml:space="preserve">
     <value>12BET offers a revenue share model in all 12BET products.This is a cumulative model based on the number of active players referred per calendar month in relation to each product revenue.</value>
+  </data>
+  <data name="ApplyOneTwoBetAffiliate" xml:space="preserve">
+    <value>Apply 12BET Affiliate</value>
+  </data>
+  <data name="AsAOneTwoBetYouWillEarnCommission" xml:space="preserve">
+    <value>As affiliates, you will earn commission on every player you referred to 12BET  over the course of the player's account life. Your online system will be  serving  you 24/7 for your usage.</value>
+  </data>
+  <data name="WhatNewInAffiliate" xml:space="preserve">
+    <value>What's New in Affiliate</value>
+  </data>
+  <data name="OneTwoBetAffiliateNews" xml:space="preserve">
+    <value>12BET Affiliate News</value>
+  </data>
+  <data name="NewBannerIsNowAvailable" xml:space="preserve">
+    <value>New  banner is now available! </value>
+  </data>
+  <data name="YouCanNowLogInYourAffiliateAccount" xml:space="preserve">
+    <value>You can now log in your affiliate account to  get new banners to promote in your website. </value>
+  </data>
+  <data name="WhatNewInOneTwoBetPromotion" xml:space="preserve">
+    <value>What's New in 12BET Promotion ! </value>
+  </data>
+  <data name="GetToKnowHotPromotion" xml:space="preserve">
+    <value>Get to know hot promotions this month. Post them in your websites and social channels to gain more customers and commission!</value>
   </data>
 </root>

@@ -635,7 +635,7 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
     <value>库克群岛</value>
   </data>
   <data name="Copyright" xml:space="preserve">
-    <value>© 版权所有{now} Pacific Sea Invests</value>
+    <value>© Copyright 2018. All Rights Reserved. Designed and Powered by</value>
   </data>
   <data name="CostaRica" xml:space="preserve">
     <value>哥斯达黎加</value>
@@ -2985,5 +2985,35 @@ b. 如果这些费用不能由您帐户上的资金所弥补，我们保留调�
   </data>
   <data name="OneTwoBetOffersARevenueShareModel" xml:space="preserve">
     <value>12BET提供所有产品的佣金分成。这是一个累积的模式，每月根据合作伙伴所推荐的玩家，在12BET的投注活跃程度去赚取。 </value>
+  </data>
+  <data name="SignUpAffiliate" xml:space="preserve">
+    <value>立即注册</value>
+  </data>
+  <data name="ApplyOneTwoBetAffiliate" xml:space="preserve">
+    <value>申请12BET合作伙伴</value>
+  </data>
+  <data name="AsAOneTwoBetYouWillEarnCommission" xml:space="preserve">
+    <value>成为12BET合作伙伴后，由您推荐到12BET的每位玩家，只要使用账户就可以为您带来即时的佣金。我们的在线汇报系统会7×24小时服务。</value>
+  </data>
+  <data name="WhatNewInAffiliate" xml:space="preserve">
+    <value>合作伙伴计划有什么新功能？</value>
+  </data>
+  <data name="OneTwoBetAffiliateNews" xml:space="preserve">
+    <value>12BET合作伙伴资讯</value>
+  </data>
+  <data name="NewWithExclamationPoint" xml:space="preserve">
+    <value>全新！</value>
+  </data>
+  <data name="NewBannerIsNowAvailable" xml:space="preserve">
+    <value>新横幅广告上线</value>
+  </data>
+  <data name="YouCanNowLogInYourAffiliateAccount" xml:space="preserve">
+    <value>您可以登陆合作伙伴帐户，以获取网站上的横幅广告作使用。</value>
+  </data>
+  <data name="WhatNewInOneTwoBetPromotion" xml:space="preserve">
+    <value>12BET最新优惠活动！</value>
+  </data>
+  <data name="GetToKnowHotPromotion" xml:space="preserve">
+    <value>了解本月最新优惠活动，将信息发布至合伙人的网站与社交媒体，以获取更多的顾客及佣金。</value>
   </data>
 </root>

@@ -639,7 +639,7 @@ a. คุณอาจจะไม่ต้องปฏิบัติตาม�
     <value>เกาะ คุ๊ก</value>
   </data>
   <data name="Copyright" xml:space="preserve">
-    <value>© ลิขสิทธิ์ {now} แปซิฟิคซี อินเว</value>
+    <value>© สงวนลิขสิทธิ์ 2018 โดย</value>
   </data>
   <data name="CostaRica" xml:space="preserve">
     <value>คอสตาริกา</value>
@@ -1075,7 +1075,7 @@ a. คุณอาจจะไม่ต้องปฏิบัติตาม�
     <value>หากคุณไม่ได้รับอีเมลล์ กรุณา &lt;a href='{0}'&gt; ติดต่อเรา &lt;/a&gt; เรายินดีช่วยเหลือ คะ</value>
   </data>
   <data name="ForgetPassword" xml:space="preserve">
-    <value>ลืมพาสเวริ์ด</value>
+    <value>ลืมไอดี/รหัสผ่าน?</value>
   </data>
   <data name="France" xml:space="preserve">
     <value>ฝรั่งเศส</value>
@@ -1411,7 +1411,7 @@ a. คุณอาจจะไม่ต้องปฏิบัติตาม�
     <value>นามสกุล</value>
   </data>
   <data name="Login" xml:space="preserve">
-    <value>ล๊อคอิน</value>
+    <value>ล็อคอิน</value>
   </data>
   <data name="Logout" xml:space="preserve">
     <value>ล๊อคเอ๊าท์</value>
@@ -2451,13 +2451,13 @@ b. ค่าใช้จ่ายเหล่านี้จะไม่ได�
     <value>USD (United States Dollar)</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>ชื่อที่ใช้เข้าระบบ</value>
+    <value>ไอดีพันธมิตร</value>
   </data>
   <data name="Usethisformtoch" xml:space="preserve">
     <value>ใช้แบบฟอร์มนี้เพื่อเปลี่ยนรหัสผ่านของคุณ  เมื่อคุณเปลี่ยนแล้ว พาสเวริ์ดใหม่ของคุณจะสามารถใช้ได้ในการล๊อกอินครั้งต่อไป</value>
   </data>
   <data name="Validation" xml:space="preserve">
-    <value>หมายเลขตรวจสอบ</value>
+    <value>รหัสตรวจสอบ</value>
   </data>
   <data name="ValidationCode" xml:space="preserve">
     <value>คุณกรอกหมายเลขตรวจสอบที่ไม่ถูกต้อง</value>
@@ -2974,5 +2974,35 @@ b. ค่าใช้จ่ายเหล่านี้จะไม่ได�
   </data>
   <data name="OneTwoBetOffersARevenueShareModel" xml:space="preserve">
     <value>12BET เสนอค่าตอบแทนพันธมิตรครอบคลุมในทุกประเภทเดิมพันโดยนับจากการสะสมจำนวนผู้เล่นที่เดิมพันในแต่ละเดือนอ้างอิงรายได้จากทุกประเภทการเดิมพัน.</value>
+  </data>
+  <data name="SignUpAffiliate" xml:space="preserve">
+    <value>สมัครร่วมเป็นพันธมิตร</value>
+  </data>
+  <data name="ApplyOneTwoBetAffiliate" xml:space="preserve">
+    <value>สมัครพันธมิตร12BET</value>
+  </data>
+  <data name="AsAOneTwoBetYouWillEarnCommission" xml:space="preserve">
+    <value>การเป็นพันธมิตรกับเรา คุณจะมีรายได้ค่าคอมมิชชั่นจากสมาชิกที่คุณโปรโมทให้พวกเขารู้จัก12BET ตลอดการเดิมพันในบัญชีของสมาชิกนั้นๆ ระบบล็อคอินพันธมิตรของเราให้บริการข้อมูลสถิติตลอด27ชั่วโมงให้การโปรโมทของคุณสัมฤทธิ์ผล</value>
+  </data>
+  <data name="WhatNewInAffiliate" xml:space="preserve">
+    <value>มีอะไรใหม่ในพันธมิตร</value>
+  </data>
+  <data name="OneTwoBetAffiliateNews" xml:space="preserve">
+    <value>ข่าวอัพเดทพันธมิตร12BET</value>
+  </data>
+  <data name="NewWithExclamationPoint" xml:space="preserve">
+    <value>ใหม่!</value>
+  </data>
+  <data name="NewBannerIsNowAvailable" xml:space="preserve">
+    <value>แบนเนอร์พันธมิตรเวอร์ชั่นใหม่ออกแล้ว!</value>
+  </data>
+  <data name="YouCanNowLogInYourAffiliateAccount" xml:space="preserve">
+    <value>คุณสามารถล็อคอินบัญชีพันธมิตรเพื่อรับแบนเนอร์โปรโมทล่าสุดนำไปอัพโหลดในเว็บไซต์ของคุณได้แล้ว</value>
+  </data>
+  <data name="WhatNewInOneTwoBetPromotion" xml:space="preserve">
+    <value>12BETมีโปรโมชั่นใหม่อัพเดทให้สมาชิกของคุณ!</value>
+  </data>
+  <data name="GetToKnowHotPromotion" xml:space="preserve">
+    <value>ดูข้อมูลโปรโมชั่นเดือนนี้ที่ทางเว็บไซต์ได้อัพเดทใหม่ พยายามโปรโมทโปรโมชั่นใหม่ๆ นี้ในเว็บไซต์และโซเชียลมีเดียของคุณเพื่อดึงดูดสมาชิกส่งผลให้ค่าคอมฯเพิ่มด้วย!</value>
   </data>
 </root>

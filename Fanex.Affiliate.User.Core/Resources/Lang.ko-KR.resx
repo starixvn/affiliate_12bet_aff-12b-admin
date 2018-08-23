@@ -651,7 +651,7 @@
     <value>쿡 제도</value>
   </data>
   <data name="Copyright" xml:space="preserve">
-    <value>저작권Pacific Sea Invests</value>
+    <value>© Copyright 2018. All Rights Reserved. Designed and Powered by</value>
   </data>
   <data name="CostaRica" xml:space="preserve">
     <value>코스타리카</value>
@@ -1090,7 +1090,7 @@
     <value>어떠한 이유로 이메일을 받지 못했다면, 고객센터로 문의하시기 바랍니다.</value>
   </data>
   <data name="ForgetPassword" xml:space="preserve">
-    <value>비밀번호를 분실하셨나요?</value>
+    <value>비밀번호 찾기</value>
   </data>
   <data name="France" xml:space="preserve">
     <value>프랑스</value>
@@ -1180,7 +1180,7 @@
     <value>12bet의 온라인 베팅 ,스포츠배팅 및 축구 배팅</value>
   </data>
   <data name="HotNews" xml:space="preserve">
-    <value>핫뉴스</value>
+    <value>HOT 뉴스 </value>
   </data>
   <data name="HowAffilliateTitle" xml:space="preserve">
     <value>어떤 시스템으로 운영되나요 ?</value>
@@ -1642,8 +1642,8 @@
   <data name="NetWinLoss" xml:space="preserve">
     <value>이달 회사의 넷 이익 (CNW)($)</value>
   </data>
-  <data name="New" xml:space="preserve">
-    <value>새로운(새것)</value>
+  <data name="NewWithExclamationPoint" xml:space="preserve">
+    <value>NEW!</value>
   </data>
   <data name="NewCaledonia" xml:space="preserve">
     <value>뉴 칼레도니아</value>
@@ -1797,7 +1797,7 @@ a. 본 사가 귀하의 엄격한 계약이행 종용에 실패했다하더라�
     <value>비밀번호는 최소 6자리이며 ,최소 2 문자와 2숫자를 포함해야 합니다.</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>비밀번호</value>
+    <value>비밀번호 </value>
   </data>
   <data name="Passwordchanged" xml:space="preserve">
     <value>비밀번호 변경성공</value>
@@ -2496,13 +2496,13 @@ b.이러한 비용은 귀하의 계정으로 금액을 지불할수없으며 본
     <value>USD 이퀴</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>아이디</value>
+    <value>아이디 </value>
   </data>
   <data name="Usethisformtoch" xml:space="preserve">
     <value>이 양식을 사용해서 비밀번호를 변경 할수 있으며 다음 로그인시 변경된 비밀번호를 이용해 로그인하시기 바랍니다.</value>
   </data>
   <data name="Validation" xml:space="preserve">
-    <value>인증</value>
+    <value>확인 코드</value>
   </data>
   <data name="ValidationCode" xml:space="preserve">
     <value>잘못된 인증번호를 입력하셨습니다.</value>
@@ -3031,5 +3031,32 @@ b.이러한 비용은 귀하의 계정으로 금액을 지불할수없으며 본
   </data>
   <data name="OneTwoBetOffersARevenueShareModel" xml:space="preserve">
     <value>저희 12BET은 스포츠북을 위한 수익분배를 제공해드리고 있습니다. 이 구조는 매 달 마다 스포츠북에 참여하고 있는 플레이어들의 수만큼 누적되는 구조 입니다. </value>
+  </data>
+  <data name="SignUpAffiliate" xml:space="preserve">
+    <value>제휴사 가입</value>
+  </data>
+  <data name="ApplyOneTwoBetAffiliate" xml:space="preserve">
+    <value>12BET 제휴사 등록 방법</value>
+  </data>
+  <data name="AsAOneTwoBetYouWillEarnCommission" xml:space="preserve">
+    <value>12BET의 제휴 프로그램은 제휴자가 제공한 회원들이 12BET.COM에서 하는 배팅액수에 따라서 커미션을 받는 프로그램 입니다. 12BET.COM의 리포트 시스템은 24시간 매일 이용가능 합니다.</value>
+  </data>
+  <data name="WhatNewInAffiliate" xml:space="preserve">
+    <value>새로운 12BET 제휴 프로그램</value>
+  </data>
+  <data name="OneTwoBetAffiliateNews" xml:space="preserve">
+    <value>12BET 제휴 소식</value>
+  </data>
+  <data name="NewBannerIsNowAvailable" xml:space="preserve">
+    <value>새로운 배너!</value>
+  </data>
+  <data name="YouCanNowLogInYourAffiliateAccount" xml:space="preserve">
+    <value>지금 로그인 하셔서 새로운 배너와 이벤트를 귀하의 웹사이트에 업데이트하세요!</value>
+  </data>
+  <data name="WhatNewInOneTwoBetPromotion" xml:space="preserve">
+    <value>새로운 이벤트!</value>
+  </data>
+  <data name="GetToKnowHotPromotion" xml:space="preserve">
+    <value>이번달의 HOT한  이벤트를 귀하의 소셜채널과 SNS홍보물로 활용하시고  제휴 커미션을  늘리세요!</value>
   </data>
 </root>

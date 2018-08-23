@@ -1624,7 +1624,7 @@
   <data name="NetWinLoss" xml:space="preserve">
     <value>今月の当社のネット利益 (CNW)($)</value>
   </data>
-  <data name="New" xml:space="preserve">
+  <data name="NewWithExclamationPoint" xml:space="preserve">
     <value>New</value>
   </data>
   <data name="NewCaledonia" xml:space="preserve">
