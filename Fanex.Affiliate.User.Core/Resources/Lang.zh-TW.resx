@@ -154,7 +154,7 @@
     <value>Adjustment</value>
   </data>
   <data name="AffilatesAreOnlyAllowed" xml:space="preserve">
-    <value>合夥人每月最多可以作出一次提款申請。如果得到合作夥伴部門經理的批准，你也可以在同一個月內做出第二次提款申請。目前我們給予大家的提款申請服務是免費的，但我們並不會負擔任何轉帳手續費或電子轉帳所需服務費用。</value>
+    <value>*合夥人每月最多可以申請一次提款，如果得到合作夥伴部門經理的批准，也可以在同一個月內申請第二次。目前我們給予大家的提款申請服務是免費的，但我們並不會負擔任何轉帳手續費或電子轉帳所需服務費用。&lt;br&gt;最低佣金提領要求是100美金</value>
   </data>
   <data name="Affiliate" xml:space="preserve">
     <value>合作夥伴</value>
@@ -230,7 +230,7 @@
     <value>a. 任何形式的垃圾郵件將會導致您的帳戶被處理為審核狀態，所有的資金被凍結，直到對您的帳戶調查處理完成。你需要知道我們的客戶可能會因為處理您的濫發所產生的郵件而導致費用產生，如果我們的客戶尋求追索權，所有這些相同的費用將會從您的帳戶上進行扣減。在此情形下，由於您同意註冊成為12BET的加盟商，由相關客戶決定的費用金額將會被誠實地認為是最終及可接受的，這些費用金額是根據法律上收取的，並公平地被您接受。</value>
   </data>
   <data name="AnyNegativeBalance" xml:space="preserve">
-    <value>在其中一個月的任何負餘額均會帶到下一個月。例如若您在1月合作夥件的戶口最終結餘為-$2,555，這個餘額將會帶到二月。若您在2月合作夥件的戶口最終結餘為$3,400，那麼您的戶口總結餘將為$845 ($3,400減$2,555)。不過若您的戶口在2月依然是負數，例如-$1,600，這將會繼續累積之前的負結餘帶落下一個月，那麼帶到3月的結餘將會是-$4,155。佣金收入將按相應的級別比例支付給合作夥伴。</value>
+    <value>在其中某個月的任何負餘額，均會帶到下一個月。例如若您在1月合作夥件的戶口最終結餘為 -$2,555，這個餘額將會帶到二月。若您在2月合作 夥件的戶口最終結餘為$3,400，那麼您的戶口總結餘將為$ 845（$ 3,400扣掉$2,555）。不過若您的戶口在2月依然是負數，例如 - $1,600，這將會繼續累積之前的負結餘到下一個月，那麼帶到3月的結餘將會是 - $4,155。佣金收入將按相應的級別比例支付給合作夥伴。</value>
   </data>
   <data name="ApplicationUnde" xml:space="preserve">
     <value>申請在審核中</value>
@@ -1555,8 +1555,8 @@ a. 在我們事先書面同意之前您不能通過法律行動或其他方式�
   <data name="MoneyBooker" xml:space="preserve">
     <value>Moneybookers</value>
   </data>
-  <data name="Moneybookers" xml:space="preserve">
-    <value>Moneybookers</value>
+  <data name="TwoDotMoneybookers" xml:space="preserve">
+    <value>2. Moneybookers</value>
   </data>
   <data name="MoneybookersEma" xml:space="preserve">
     <value>Moneybookers電子郵件地址無效</value>
@@ -1615,8 +1615,8 @@ a. 在我們事先書面同意之前您不能通過法律行動或其他方式�
   <data name="NetEarnings" xml:space="preserve">
     <value>淨收入</value>
   </data>
-  <data name="Neteller" xml:space="preserve">
-    <value>Neteller</value>
+  <data name="ThreeDotNeteller" xml:space="preserve">
+    <value>3. Neteller </value>
   </data>
   <data name="NetellerAccount" xml:space="preserve">
     <value>請填寫Neteller帳戶號碼</value>
@@ -2218,14 +2218,11 @@ b. 如果這些費用不能由您帳戶上的資金所彌補，我們保留調�
   <data name="TC_Casino_Content1" xml:space="preserve">
     <value>12BET提供娛樂城的佣金分成模式。這是一個累積的模式，每月根據合作夥伴所推薦的玩家，在娛樂城相關的投注活躍程度去賺取佣金。</value>
   </data>
-  <data name="TC_Casino_Content2" xml:space="preserve">
-    <value>就上表中所述，“淨收入”是指在相關月份中下線會員的總投注額刪減: (i)盈利；(ii)已領取的紅利數額；(iii)扣款和(iv)其他任何相關費用如補償或退款給會員。</value>
+  <data name="ForThePurposesOfTheTable" xml:space="preserve">
+    <value>就上表中所述，“淨收入”是指在相關月份中，下線會員的總投注額增減：(i)盈利；(ii)已領取的紅利數額；(iii)扣款和(iv)其他任何相關費用如補償或退款給會員。 </value>
   </data>
-  <data name="TC_RevenueShareModel" xml:space="preserve">
-    <value>佣金分成模式</value>
-  </data>
-  <data name="TC_RevenueShareModel_Content" xml:space="preserve">
-    <value>佣金分成模式由2個部分組成：體育博彩和娛樂城，具體的佣金計算如下所述。合作夥伴的收入是由以下兩個部分的佣金總和組成。</value>
+  <data name="RevenueShareModel" xml:space="preserve">
+    <value>佣金分成模式 </value>
   </data>
   <data name="TC_Sportbook_Content" xml:space="preserve">
     <value>12BET提供體育博彩的佣金分成模式。這是一個累積的模式，每月根據合作夥伴所推薦的玩家，在體育博彩相關的投注活躍程度去賺取佣金。</value>
@@ -2381,8 +2378,8 @@ b. 如果這些費用不能由您帳戶上的資金所彌補，我們保留調�
   <data name="TotalUniqueClickByDate" xml:space="preserve">
     <value>Total Unique Clicks By Date</value>
   </data>
-  <data name="ToYour12BET" xml:space="preserve">
-    <value>通過您的12BET玩家帳戶</value>
+  <data name="ThroughYourOneTwoBetPlayerAccount" xml:space="preserve">
+    <value>1.通過您的12BET玩家賬戶</value>
   </data>
   <data name="Tqacsbc" xml:space="preserve">
     <value>總計活躍合格會員</value>
@@ -2529,7 +2526,7 @@ b. 如果這些費用不能由您帳戶上的資金所彌補，我們保留調�
     <value>e. 我們可能會保留向您支付的最後一筆款項一段合理的時間，以確保正確的金額被支付。 </value>
   </data>
   <data name="WeOfferSeveralMethods" xml:space="preserve">
-    <value>我們提供以下幾種提款方法:</value>
+    <value>我們提供以下幾種提款方法：</value>
   </data>
   <data name="WeReserveTheRight" xml:space="preserve">
     <value>如果我們認為您的網站並不適合成為我們的合作夥伴，我們保留終止此協議的權利。不適合的網站包括：相關兒童或未成年人的色情網站，宣傳暴力、種族、性別、宗教、國籍、殘疾人歧視、性取向等歧視網站，宣傳非法活動或侵犯知識財產權的網站。</value>
@@ -2585,8 +2582,8 @@ b. 如果這些費用不能由您帳戶上的資金所彌補，我們保留調�
   <data name="Winlost" xml:space="preserve">
     <value>輸贏</value>
   </data>
-  <data name="WireTransfer" xml:space="preserve">
-    <value>Wire Transfer</value>
+  <data name="FourDotWireTransfer" xml:space="preserve">
+    <value>4. 電匯</value>
   </data>
   <data name="Within5dayswesh" xml:space="preserve">
     <value>我們將在5天內回复您的申請。一旦您的申請被核准，您將立即獲得全權參與進入我們的合作夥伴項目。</value>
@@ -2631,7 +2628,7 @@ b. 如果這些費用不能由您帳戶上的資金所彌補，我們保留調�
     <value>你可以透過Moneybookers, Neteller, Wire Transfer提出佣金，也可以直接將佣金轉入您的12BET玩家帳號。 </value>
   </data>
   <data name="YouCanRequestPayout" xml:space="preserve">
-    <value>您可以要求提取美金之外的其他貨幣，例如英鎊、歐元、人民幣、馬來西亞林吉特，泰銖或印尼盾。相關匯率將會以支出當日為準</value>
+    <value>您可以要求提取美金之外的其他貨幣，例如英鎊、歐元、人民幣、馬幣、泰銖或印尼盾。相關匯率將會以支出當日為準。</value>
   </data>
   <data name="Youhaveapending" xml:space="preserve">
     <value>你有一項申請在“待處理”狀態，要設置一項新要求，請先取消這暫停而未完成的操作，或等待這次操作完成為止。</value>
@@ -2877,7 +2874,7 @@ b. 如果這些費用不能由您帳戶上的資金所彌補，我們保留調�
     <value>我們不容許合作夥伴做出任何形式的濫發廣告行為，如果發現任何合作夥伴的濫發行為，我們會發出一次警告（如果只是較小的問題）；如果該合作夥伴仍然不停止其濫發行為，12BET.COM的會員介紹系統，會立即终止該名的會員介紹合夥關係。</value>
   </data>
   <data name="CommissionPayment" xml:space="preserve">
-    <value>佣金支付</value>
+    <value>提領佣金</value>
   </data>
   <data name="WhatAreTheWithdrawalMethods" xml:space="preserve">
     <value>我可以透過哪幾種方法提取佣金？</value>
@@ -2977,5 +2974,14 @@ b. 如果這些費用不能由您帳戶上的資金所彌補，我們保留調�
   </data>
   <data name="SignUpAffiliateProgramNow" xml:space="preserve">
     <value>立即註冊為合作夥伴！</value>
+  </data>
+  <data name="AsAOneTwoBetAffiliates" xml:space="preserve">
+    <value>成為12BET合作夥伴後，由您推薦到12BET的每位玩家，只要使用帳戶就可以為您帶來即時的佣金。我們的線上匯報系統會7×24小時服務。&lt;br&gt;賺取的利潤多少，取決於合夥人的網站引導帶來的顧客瀏覽量，我們的任務是指導他們完成註冊和首存，用我們誘人的紅利和優惠留住他們。</value>
+  </data>
+  <data name="TheRevenueShareModelIsSplit" xml:space="preserve">
+    <value>佣金分成模式根據不同的產品計算，具體的佣金計算如下所述。合作夥伴的總收入，是由所有產品佣金分成的組合。</value>
+  </data>
+  <data name="OneTwoBetOffersARevenueShareModel" xml:space="preserve">
+    <value>12BET提供所有產品的佣金分成。這是一個累積的模式，每月根據合作夥伴所推薦的玩家，在12BET的投注活躍程度去賺取。</value>
   </data>
 </root>

@@ -1540,7 +1540,7 @@
   <data name="MoneyBooker" xml:space="preserve">
     <value>Moneybookers</value>
   </data>
-  <data name="Moneybookers" xml:space="preserve">
+  <data name="TwoDotMoneybookers" xml:space="preserve">
     <value>Moneybookers</value>
   </data>
   <data name="MoneybookersEma" xml:space="preserve">
@@ -1600,7 +1600,7 @@
   <data name="NetEarnings" xml:space="preserve">
     <value>Ganancias netas</value>
   </data>
-  <data name="Neteller" xml:space="preserve">
+  <data name="ThreeDotNeteller" xml:space="preserve">
     <value>Neteller</value>
   </data>
   <data name="NetellerAccount" xml:space="preserve">
@@ -2163,15 +2163,11 @@
   <data name="TC_Casino_Content1" xml:space="preserve">
     <value>12Bet offers revenue share model for the casino. This is a cumulative model based on the number of new active players referred per calendar month in relation to the casino.</value>
   </data>
-  <data name="TC_Casino_Content2" xml:space="preserve">
+  <data name="ForThePurposesOfTheTable" xml:space="preserve">
     <value>For the purposes of the table above, "Net Revenue" shall mean the amount of stakes placed by Players in the relevant calendar month less: (i) returns (winnings); (ii) any bonuses paid; (iii) Chargebacks; and (iv) any other revenue returns, credits, compensations or refunds given to Players.</value>
   </data>
-  <data name="TC_RevenueShareModel" xml:space="preserve">
+  <data name="RevenueShareModel" xml:space="preserve">
     <value>Revenue share model</value>
-  </data>
-  <data name="TC_RevenueShareModel_Content" xml:space="preserve">
-    <value>The revenue share model is split into 2 components: A revenue share from the Casino and a revenue share from the Sportsbook, the calculation of each of which is described below.
-The total revenue share payable to the affiliate shall be the sum of both components of the revenue share model.</value>
   </data>
   <data name="TC_Sportbook_Content" xml:space="preserve">
     <value>12Bet offers a revenue share model for the Sportsbook. This is a cumulative model based on the number of active players referred per calendar month in relation to the Sportsbook.</value>
@@ -2328,7 +2324,7 @@ Uno de nuestros administradores de cuentas de afiliados se pondrá en contacto c
   <data name="TotalUniqueClickByDate" xml:space="preserve">
     <value>Total de clics directos desde el anuncio según fecha</value>
   </data>
-  <data name="ToYour12BET" xml:space="preserve">
+  <data name="ThroughYourOneTwoBetPlayerAccount" xml:space="preserve">
     <value>Con su cuenta del jugador 12BET</value>
   </data>
   <data name="Tqacsbc" xml:space="preserve">
@@ -2532,7 +2528,7 @@ Uno de nuestros administradores de cuentas de afiliados se pondrá en contacto c
   <data name="Winlost" xml:space="preserve">
     <value>Winlost</value>
   </data>
-  <data name="WireTransfer" xml:space="preserve">
+  <data name="FourDotWireTransfer" xml:space="preserve">
     <value>Transferencia electrónica</value>
   </data>
   <data name="Within5dayswesh" xml:space="preserve">

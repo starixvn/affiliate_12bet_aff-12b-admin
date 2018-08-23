@@ -154,7 +154,7 @@
     <value>Adjustment</value>
   </data>
   <data name="AffilatesAreOnlyAllowed" xml:space="preserve">
-    <value>Afiliasi hanya diperbolehkan untuk memiliki satu permohonan penarikan setiap bulan. Untuk penarikan kedua di bulan yang sama, maka permohonan ini harus disetujui oleh Manager Afiliasi. Walaupun kami menawarkan permohonan penarikan gratis namun kami tidak bertanggungjawab akan adanya potongan dari institusi keuangan atau dompet elektronik pada akun anda.</value>
+    <value>* Afiliasi hanya diperbolehkan untuk memiliki satu permohonan penarikan setiap bulan. Untuk penarikan kedua di bulan yang sama, maka permohonan ini harus disetujui oleh Manager Afiliasi. Walaupun kami menawarkan permohonan penarikan gratis namun kami tidak bertanggungjawab akan adanya potongan dari institusi keuangan atau dompet elektronik pada akun anda. &lt;br&gt;Jumlah minimum permohonan penarikan adalah USD$100.</value>
   </data>
   <data name="Affiliate" xml:space="preserve">
     <value>Afiliasi</value>
@@ -1546,8 +1546,8 @@ a. Anda tidak boleh menetapkan Perjanjian ini, melalui tindakan hukum atau lainn
   <data name="MoneyBooker" xml:space="preserve">
     <value>Moneybookers</value>
   </data>
-  <data name="Moneybookers" xml:space="preserve">
-    <value>Moneybookers</value>
+  <data name="TwoDotMoneybookers" xml:space="preserve">
+    <value>2. Moneybookers</value>
   </data>
   <data name="MoneybookersEma" xml:space="preserve">
     <value>Email Moneybookers tidak valid</value>
@@ -1606,8 +1606,8 @@ a. Anda tidak boleh menetapkan Perjanjian ini, melalui tindakan hukum atau lainn
   <data name="NetEarnings" xml:space="preserve">
     <value>Perolehan Netto</value>
   </data>
-  <data name="Neteller" xml:space="preserve">
-    <value>Neteller</value>
+  <data name="ThreeDotNeteller" xml:space="preserve">
+    <value>3. Neteller </value>
   </data>
   <data name="NetellerAccount" xml:space="preserve">
     <value>ID Rekening Neteller diperlukan</value>
@@ -2201,14 +2201,11 @@ b. Jika pengeluaran ini tidak tercakup oleh dana dalam rekening Anda, kami berha
   <data name="TC_Casino_Content1" xml:space="preserve">
     <value>12BET menawarkan pembagian hasil untuk casino. Model kumulatif ini berdasarkan pada jumlah pemain aktif per satu bulan kalender berhubungan dengan casino.</value>
   </data>
-  <data name="TC_Casino_Content2" xml:space="preserve">
-    <value>Untuk tujuan dari tabel diatas “ Keuntungan bersih” berarti jumlah taruhan yang ditempatkan oleh pemain pada calendar bulanan dikurangi : (i) hasil (kemenangan) ; (ii) bonus yang dibayarkan, (iii) Chargebacks dan (iv) jenis pengembalian keuntungan yang dikreditkan, kompensasi atau pengembalian yang diberikan kepada pemain.</value>
+  <data name="ForThePurposesOfTheTable" xml:space="preserve">
+    <value>Untuk tujuan dari tabel diatas “ Keuntungan bersih” berarti jumlah taruhan yang ditempatkan oleh pemain pada calendar bulanan dikurangi : (i) hasil (kemenangan) ; (ii) bonus yang dibayarkan, (iii) Chargebacks dan (iv) jenis pengembalian keuntungan yang dikreditkan, kompensasi atau pengembalian yang diberikan kepada pemain. </value>
   </data>
-  <data name="TC_RevenueShareModel" xml:space="preserve">
-    <value>Model Pembagian Hasil</value>
-  </data>
-  <data name="TC_RevenueShareModel_Content" xml:space="preserve">
-    <value>Model pembagian hasil dibagi menjadi 2 komponen. Pembagian hasil dari Casino dan pembagian hasil dari Permainan olahraga, perhitungan dijelaskan dengan dibawah ini.  Total pembagian keuntungan yang dibayarkan kepada affiliasi merupakan jumlah dari kedua komponen  model keuntungan.</value>
+  <data name="RevenueShareModel" xml:space="preserve">
+    <value>Model Pembagian Hasil </value>
   </data>
   <data name="TC_Sportbook_Content" xml:space="preserve">
     <value>12BET menawarkan model pembagian keuntungan untuk permainan olahraga. Ini merupakan model kumulatif berdasarkan dari jumlah pemain aktif yang direferensikan setiap bulan yang bermain di permainan olahraga.</value>
@@ -2365,8 +2362,8 @@ Salah satu Manajer Rekening Afiliasi kami akan menghubungi Anda melalui email da
   <data name="TotalUniqueClickByDate" xml:space="preserve">
     <value>Total Klik Unik Menurut Tanggal</value>
   </data>
-  <data name="ToYour12BET" xml:space="preserve">
-    <value>Melalui 12BET account anda</value>
+  <data name="ThroughYourOneTwoBetPlayerAccount" xml:space="preserve">
+    <value>1. Melalui 12BET account anda</value>
   </data>
   <data name="Tqacsbc" xml:space="preserve">
     <value>Total Pemain Aktif Yang Layak</value>
@@ -2513,7 +2510,7 @@ Salah satu Manajer Rekening Afiliasi kami akan menghubungi Anda melalui email da
     <value>e. Kami dapat menahan pembayaran final kepada Anda selama waktu yang wajar untuk memastikan bahwa jumlah yang dibayarkan benar. </value>
   </data>
   <data name="WeOfferSeveralMethods" xml:space="preserve">
-    <value>Kami menawarkan beberapa metode penarikan:</value>
+    <value>Kami menawarkan beberapa metode penarikan: </value>
   </data>
   <data name="WeReserveTheRight" xml:space="preserve">
     <value>Kami berhak mengakhiri Perjanjian ini jika kami memutuskan bahwa situs Anda tidak sesuai. Situs yang tidak sesuai dapat mencakup hal yang mempromosikan materi yang secara eksplisit bersifat seksual, ditargetkan kepada anak-anak atau di bawah usia, mempromosikan kekerasan, diskriminasi berdasarkan suku bangsa, jenis kelamin, agama, kebangsaan, kecacatan, orientasi seksual, mempromosikan aktivitas ilegal, atau melanggar hak kekayaan intelektual ("Hak IP").</value>
@@ -2569,8 +2566,8 @@ Salah satu Manajer Rekening Afiliasi kami akan menghubungi Anda melalui email da
   <data name="Winlost" xml:space="preserve">
     <value>Winlost</value>
   </data>
-  <data name="WireTransfer" xml:space="preserve">
-    <value>Transfer Bank</value>
+  <data name="FourDotWireTransfer" xml:space="preserve">
+    <value>4. Transfer Bank</value>
   </data>
   <data name="Within5dayswesh" xml:space="preserve">
     <value>Dalam 5 hari, kami seyogianya dapat memberitahukan kepada Anda mengenai keputusan yang berkenaan dengan permohonan Anda. Jika Anda disetujui, Anda akan dapat menikmati akses penuh ke program afiliasi kami.</value>
@@ -2615,7 +2612,7 @@ Salah satu Manajer Rekening Afiliasi kami akan menghubungi Anda melalui email da
     <value>Anda dapat mengajukan permintaan untuk penarikan dana melalui Moneybookers, Neteller, Transfer Bank, atau secara langsung ke rekening pemain 12BET Anda.</value>
   </data>
   <data name="YouCanRequestPayout" xml:space="preserve">
-    <value>Anda dapat meminta pembayaran dengan jenis mata uang asing lain selain USD. Mata uang asing yang tersedia adalah GBP, EUR, RMB, MYR, THB, IDR  dan VND. Rate pertukaran mata uang asing pada hari penarikan akan berlaku. </value>
+    <value>Anda dapat meminta pembayaran dengan jenis mata uang asing lain selain USD. Mata uang asing yang tersedia adalah GBP, EUR, RMB, MYR, THB, IDR dan VND. Rate pertukaran mata uang asing pada hari penarikan akan berlaku.</value>
   </data>
   <data name="Youhaveapending" xml:space="preserve">
     <value>Ada permintaan Anda yang tertunda. Agar dapat membuat permintaan baru, harap batalkan permintaan yang tertunda, atau tunggu sampai pemrosesan selesai.</value>
@@ -2861,7 +2858,7 @@ Salah satu Manajer Rekening Afiliasi kami akan menghubungi Anda melalui email da
     <value>Kami tidak mentolerir spamming jenis apa pun oleh mitra afiliasi Anda. Jika spamming yang dilakukan afiliasi disampaikan kepada kami, kami akan memberikan peringatan kepada afiliasi itu (jika dinilai sebagai kasus ringan). Jika spamming tidak berhenti, mitra afiliasi itu akan selamanya dikeluarkan dari Program Afiliasi 12BET kami.</value>
   </data>
   <data name="CommissionPayment" xml:space="preserve">
-    <value>Pembayaran Komisi</value>
+    <value>Pemberian Bayaran</value>
   </data>
   <data name="WhatAreTheWithdrawalMethods" xml:space="preserve">
     <value>Metode penarikan apa saja yang tersedia untuk saya? </value>
@@ -2958,5 +2955,14 @@ Salah satu Manajer Rekening Afiliasi kami akan menghubungi Anda melalui email da
   </data>
   <data name="SignUpAffiliateProgramNow" xml:space="preserve">
     <value>DAFTAR PROGRAM AFILIASI 12BET SEKARANG!</value>
+  </data>
+  <data name="AsAOneTwoBetAffiliates" xml:space="preserve">
+    <value>Sebagai Afiliasi 12BET, Anda akan memperoleh komisi atas setiap pemain yang Anda datangkan ke 12BET, selama akun pemain tersebut masih aktif. Untuk kemudahan Anda, sistem online kami bisa diakses kapan saja selama 24 jam.&lt;br&gt;Pendapatan yang Anda terima akan bergantung pada berapa member yang bisa Anda datangkan dari situs Anda ke website 12BET. Kami juga akan membantu untuk memastikan pendapatan Anda dengan memandu member melalui proses pendaftaran, melakukan deposit pertama serta memberikan bonus serta penawaran eksklusif untuk memastikan member terus bermain.</value>
+  </data>
+  <data name="TheRevenueShareModelIsSplit" xml:space="preserve">
+    <value>Model pembagian hasil dibagi menjadi 2 komponen yaitu Model bagi hasil dibagi berdasarkan setiap komponen produk 12BET. Perhitungan untuk masing-masing produk dipaparkan dalam penjelasan di bawah. Total pendapatan yang dibayarkan kepada afiliasi adalah jumlah semua komponen tersebut.</value>
+  </data>
+  <data name="OneTwoBetOffersARevenueShareModel" xml:space="preserve">
+    <value>12BET menawarkan model bagi hasil yang menghitung semua pendapatan dari semua produk yang kami tawarkan. Model kumulatif ini akan didasarkan juga pada jumlah pemain aktif yang berhasil Anda rujukkan dalam waktu satu bulan kalender.</value>
   </data>
 </root>

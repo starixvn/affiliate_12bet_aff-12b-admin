@@ -1552,7 +1552,7 @@
   <data name="MoneyBooker" xml:space="preserve">
     <value>マネーブッカーズ</value>
   </data>
-  <data name="Moneybookers" xml:space="preserve">
+  <data name="TwoDotMoneybookers" xml:space="preserve">
     <value>マネーブッカーズ</value>
   </data>
   <data name="MoneybookersEma" xml:space="preserve">
@@ -1612,7 +1612,7 @@
   <data name="NetEarnings" xml:space="preserve">
     <value>ネット利益</value>
   </data>
-  <data name="Neteller" xml:space="preserve">
+  <data name="ThreeDotNeteller" xml:space="preserve">
     <value>ネッテラー</value>
   </data>
   <data name="NetellerAccount" xml:space="preserve">
@@ -2209,14 +2209,11 @@
   <data name="TC_Casino_Content1" xml:space="preserve">
     <value>12BETは売上共有モデルをカジノに対して提供します。月毎に新規のアクティブメンバー数に基づく累積的モデルです。</value>
   </data>
-  <data name="TC_Casino_Content2" xml:space="preserve">
+  <data name="ForThePurposesOfTheTable" xml:space="preserve">
     <value>上記の表「純収益」とは、月毎に関連したプレイヤーが行ったベット額を表わします。： (i) 収益（賞金）(ii) 支払われたボーナス (iii) チャージバック（iv）他に残高、補償または払い戻しがプレイヤーに与えられます。</value>
   </data>
-  <data name="TC_RevenueShareModel" xml:space="preserve">
+  <data name="RevenueShareModel" xml:space="preserve">
     <value>収益分配モデル</value>
-  </data>
-  <data name="TC_RevenueShareModel_Content" xml:space="preserve">
-    <value>収益分配モデルは2つの構成に分割されています。カジノから収益割当と収益はスポーツブックから分担します。それぞれの計算内容は以下の通りです。アフィリエイトに支払われる総収益は収益分配モデル両方の構成要素の合計です。</value>
   </data>
   <data name="TC_Sportbook_Content" xml:space="preserve">
     <value>12BETは、収益分配モデルをスポーツブックに対し分配します。毎月のアクティブメンバー数に基づく累積モデルであります。</value>
@@ -2372,7 +2369,7 @@
   <data name="TotalUniqueClickByDate" xml:space="preserve">
     <value>合計日次ユニーククリック数</value>
   </data>
-  <data name="ToYour12BET" xml:space="preserve">
+  <data name="ThroughYourOneTwoBetPlayerAccount" xml:space="preserve">
     <value>12BETアカウントから</value>
     <comment>お客様の12BETプレーヤー・アカウントを通して</comment>
   </data>
@@ -2577,7 +2574,7 @@
   <data name="Winlost" xml:space="preserve">
     <value>勝敗</value>
   </data>
-  <data name="WireTransfer" xml:space="preserve">
+  <data name="FourDotWireTransfer" xml:space="preserve">
     <value>ワイヤートランスフファー</value>
   </data>
   <data name="Within5dayswesh" xml:space="preserve">

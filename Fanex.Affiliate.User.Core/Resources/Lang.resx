@@ -158,7 +158,8 @@
     <value>Adjustment</value>
   </data>
   <data name="AffilatesAreOnlyAllowed" xml:space="preserve">
-    <value>Affiliates are only allowed to have one withdrawal request for each calendar month. Should the Affiliates intend to request for a second withdrawal in any  month, such request shall be subject to Affiliate Manager's approval.  While we offer free withdrawal request however we will not be held responsible if the receiving financial institution or electronic wallets impose a fee of any kind at their end. </value>
+    <value>* Affiliates are only allowed to have one withdrawal request for each calendar month. Should the Affiliates intend to request for a second withdrawal in any month, such request shall be subject to Affiliate Manager's approval. While we offer free withdrawal request however we will not be held responsible if the receiving financial institution or electronic wallets impose a fee of any kind at their end. The minimum amount of withdrawal request is USD$100.</value>
+    <comment>87923</comment>
   </data>
   <data name="Affiliate" xml:space="preserve">
     <value>Affiliate</value>
@@ -255,6 +256,7 @@ Thank you.</value>
   </data>
   <data name="AnyNegativeBalance" xml:space="preserve">
     <value>Any negative balance for a given month will be carried forward to the next. For example if for the month of January your affiliate account ends with -$2,555, this amount will be carried forward to February. If at the end of February your affiliate account earns $3,400, the total balance will be $845 ($3,400 deduct -$2,555). However if your account is still making a loss at the end of February, for example -$1,600, then it will be added to the previous negative balance and be carried forward to March resulting in your March balance brought forward to be -$4,155. The commission earned shall then be paid according to the tier scale.</value>
+    <comment>87923</comment>
   </data>
   <data name="ApplicationUnde" xml:space="preserve">
     <value>Application Under Review</value>
@@ -1806,8 +1808,9 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
   <data name="MoneyBooker" xml:space="preserve">
     <value>Moneybookers</value>
   </data>
-  <data name="Moneybookers" xml:space="preserve">
+  <data name="TwoDotMoneybookers" xml:space="preserve">
     <value>Moneybookers</value>
+    <comment>87923</comment>
   </data>
   <data name="MoneybookersEma" xml:space="preserve">
     <value>Moneybookers Email is invalid</value>
@@ -1860,6 +1863,7 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
   </data>
   <data name="NegativeBalance" xml:space="preserve">
     <value>Negative Balance</value>
+    <comment>87923</comment>
   </data>
   <data name="NegativeEarningsAreCarried" xml:space="preserve">
     <value>6. Negative earnings are carried forward to the next month. Should the affiliate close the month with a positive balance, payment will be issued if it meets the minimum requirements and commissions will be paid on the positive balance.</value>
@@ -1871,8 +1875,9 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
   <data name="NetEarnings" xml:space="preserve">
     <value>Net Earnings</value>
   </data>
-  <data name="Neteller" xml:space="preserve">
+  <data name="ThreeDotNeteller" xml:space="preserve">
     <value>Neteller</value>
+    <comment>87923</comment>
   </data>
   <data name="NetellerAccount" xml:space="preserve">
     <value>Neteller Account ID is required</value>
@@ -2615,15 +2620,13 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
   <data name="TC_Casino_Content1" xml:space="preserve">
     <value>12Bet offers revenue share model for the casino. This is a cumulative model based on the number of new active players referred per calendar month in relation to the casino.</value>
   </data>
-  <data name="TC_Casino_Content2" xml:space="preserve">
-    <value>For the purposes of the table above, "Net Revenue" shall mean the amount of stakes placed by Players in the relevant calendar month less: (i) returns (winnings); (ii) any bonuses paid; (iii) Chargebacks; and (iv) any other revenue returns, credits, compensations or refunds given to Players.</value>
+  <data name="ForThePurposesOfTheTable" xml:space="preserve">
+    <value>For the purposes of the table above, "Net Revenue" shall mean the amount of stakes placed by Players in the relevant calendar month exclude (i) returned winnings; (ii) any bonuses paid; (iii) Chargebacks; and (iv) any other revenue returns, credits, compensations or refunds given to Players.</value>
+    <comment>87923</comment>
   </data>
-  <data name="TC_RevenueShareModel" xml:space="preserve">
+  <data name="RevenueShareModel" xml:space="preserve">
     <value>Revenue share model</value>
-  </data>
-  <data name="TC_RevenueShareModel_Content" xml:space="preserve">
-    <value>The revenue share model is split into 2 components: A revenue share from the Casino and a revenue share from the Sportsbook, the calculation of each of which is described below.
-The total revenue share payable to the affiliate shall be the sum of both components of the revenue share model.</value>
+    <comment>87923</comment>
   </data>
   <data name="TC_Sportbook_Content" xml:space="preserve">
     <value>12Bet offers a revenue share model for the Sportsbook. This is a cumulative model based on the number of active players referred per calendar month in relation to the Sportsbook.</value>
@@ -2796,8 +2799,9 @@ One of our Affiliate Accounts Manager will be contacting you by email within 3 b
   <data name="tournamentid" xml:space="preserve">
     <value>Tournament (ID)</value>
   </data>
-  <data name="ToYour12BET" xml:space="preserve">
+  <data name="ThroughYourOneTwoBetPlayerAccount" xml:space="preserve">
     <value>Through your 12BET player account</value>
+    <comment>87923</comment>
   </data>
   <data name="Tqacsbc" xml:space="preserve">
     <value>Total Qualified Active Players</value>
@@ -3008,6 +3012,7 @@ One of our Affiliate Accounts Manager will be contacting you by email within 3 b
   </data>
   <data name="WeOfferSeveralMethods" xml:space="preserve">
     <value>We offer several methods of withdrawal:</value>
+    <comment>87923</comment>
   </data>
   <data name="WeReserveTheRight" xml:space="preserve">
     <value>We reserve the right to terminate this Agreement if we determine that your site is unsuitable. Unsuitable sites may include those that: promote sexually explicit materials, are targeted towards children or minors, promote violence, promote discrimination based on race, sex, religion, nationality, disability, sexual orientation, promote illegal activities, or violate intellectual property rights ("IP rights").</value>
@@ -3073,8 +3078,9 @@ One of our Affiliate Accounts Manager will be contacting you by email within 3 b
   <data name="Winlost" xml:space="preserve">
     <value>Winlost</value>
   </data>
-  <data name="WireTransfer" xml:space="preserve">
+  <data name="FourDotWireTransfer" xml:space="preserve">
     <value>Wire Transfer</value>
+    <comment>87923</comment>
   </data>
   <data name="Withdrawal" xml:space="preserve">
     <value>Withdrawal</value>
@@ -3138,7 +3144,8 @@ One of our Affiliate Accounts Manager will be contacting you by email within 3 b
     <value>You can request for a withdrawal through Moneybookers, Neteller, Wire Transfer or directly into your 12BET player account.</value>
   </data>
   <data name="YouCanRequestPayout" xml:space="preserve">
-    <value>You can request payout in other currencies other than USD. The currencies offered are GBP, EUR, RMB and MYR, THB, IDR. Respective exchange rate on the payout date will be applied. </value>
+    <value>You can request payout in other currencies other than USD. The currencies offered are RMB and MYR, THB, VND, IDR, INR and KRW. Respective exchange rate on the payout date will be applied.</value>
+    <comment>87923</comment>
   </data>
   <data name="Youhaveapending" xml:space="preserve">
     <value>You have a pending request. In order to create a new request, please cancel the pending one or wait till the processing gets completed.</value>
@@ -3611,6 +3618,18 @@ One of our Affiliate Accounts Manager will be contacting you by email within 3 b
   </data>
   <data name="SignUpAffiliateProgramNow" xml:space="preserve">
     <value>SIGN UP 12BET AFFILIATE PROGRAM NOW!</value>
+    <comment>87923</comment>
+  </data>
+  <data name="AsAOneTwoBetAffiliates" xml:space="preserve">
+    <value>As a 12BET Affiliates you will be paid commission on every player you referred to 12BET over the course of the player's account life. Our online reporting system will be available 24 hours a day 7 days a week for your usage. &lt;br&gt;How much you earn will depend on how much traffic you can send over from your website. It is our job to guide them through the registration process, having them make their first deposit, and retain their business with our attractive bonuses and offerings.</value>
+    <comment>87923</comment>
+  </data>
+  <data name="TheRevenueShareModelIsSplit" xml:space="preserve">
+    <value>The revenue share model is split in each 12BET product components. The calculation of each of which product is described below. The total revenue share payable to the affiliate shall be the sum of all components of the revenue share model.</value>
+    <comment>87923</comment>
+  </data>
+  <data name="OneTwoBetOffersARevenueShareModel" xml:space="preserve">
+    <value>12BET offers a revenue share model in all 12BET products.This is a cumulative model based on the number of active players referred per calendar month in relation to each product revenue.</value>
     <comment>87923</comment>
   </data>
 </root>

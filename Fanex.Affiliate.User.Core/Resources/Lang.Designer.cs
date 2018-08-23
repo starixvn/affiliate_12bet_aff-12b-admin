@@ -223,7 +223,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Affiliates are only allowed to have one withdrawal request for each calendar month. Should the Affiliates intend to request for a second withdrawal in any  month, such request shall be subject to Affiliate Manager&apos;s approval.  While we offer free withdrawal request however we will not be held responsible if the receiving financial institution or electronic wallets impose a fee of any kind at their end. .
+        ///   Looks up a localized string similar to * Affiliates are only allowed to have one withdrawal request for each calendar month. Should the Affiliates intend to request for a second withdrawal in any month, such request shall be subject to Affiliate Manager&apos;s approval. While we offer free withdrawal request however we will not be held responsible if the receiving financial institution or electronic wallets impose a fee of any kind at their end. The minimum amount of withdrawal request is USD$100..
         /// </summary>
         public static string AffilatesAreOnlyAllowed {
             get {
@@ -597,6 +597,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string AsAnAffiliate {
             get {
                 return ResourceManager.GetString("AsAnAffiliate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to As a 12BET Affiliates you will be paid commission on every player you referred to 12BET over the course of the player&apos;s account life. Our online reporting system will be available 24 hours a day 7 days a week for your usage. &lt;br&gt;How much you earn will depend on how much traffic you can send over from your website. It is our job to guide them through the registration process, having them make their first deposit, and retain their business with our attractive bonuses and offerings..
+        /// </summary>
+        public static string AsAOneTwoBetAffiliates {
+            get {
+                return ResourceManager.GetString("AsAOneTwoBetAffiliates", resourceCulture);
             }
         }
         
@@ -3491,6 +3500,24 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to For the purposes of the table above, &quot;Net Revenue&quot; shall mean the amount of stakes placed by Players in the relevant calendar month exclude (i) returned winnings; (ii) any bonuses paid; (iii) Chargebacks; and (iv) any other revenue returns, credits, compensations or refunds given to Players..
+        /// </summary>
+        public static string ForThePurposesOfTheTable {
+            get {
+                return ResourceManager.GetString("ForThePurposesOfTheTable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wire Transfer.
+        /// </summary>
+        public static string FourDotWireTransfer {
+            get {
+                return ResourceManager.GetString("FourDotWireTransfer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to France.
         /// </summary>
         public static string France {
@@ -5365,15 +5392,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Moneybookers.
-        /// </summary>
-        public static string Moneybookers {
-            get {
-                return ResourceManager.GetString("Moneybookers", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Moneybookers Email is invalid.
         /// </summary>
         public static string MoneybookersEma {
@@ -5559,15 +5577,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string NetEarnings {
             get {
                 return ResourceManager.GetString("NetEarnings", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Neteller.
-        /// </summary>
-        public static string Neteller {
-            get {
-                return ResourceManager.GetString("Neteller", resourceCulture);
             }
         }
         
@@ -5991,6 +6000,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string OneTwoBetIsFavored {
             get {
                 return ResourceManager.GetString("OneTwoBetIsFavored", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12BET offers a revenue share model in all 12BET products.This is a cumulative model based on the number of active players referred per calendar month in relation to each product revenue..
+        /// </summary>
+        public static string OneTwoBetOffersARevenueShareModel {
+            get {
+                return ResourceManager.GetString("OneTwoBetOffersARevenueShareModel", resourceCulture);
             }
         }
         
@@ -7104,6 +7122,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Revenue share model.
+        /// </summary>
+        public static string RevenueShareModel {
+            get {
+                return ResourceManager.GetString("RevenueShareModel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 4. Revenue Sharing &amp; Payment.
         /// </summary>
         public static string RevenueSharingAndPayment {
@@ -8031,34 +8058,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to For the purposes of the table above, &quot;Net Revenue&quot; shall mean the amount of stakes placed by Players in the relevant calendar month less: (i) returns (winnings); (ii) any bonuses paid; (iii) Chargebacks; and (iv) any other revenue returns, credits, compensations or refunds given to Players..
-        /// </summary>
-        public static string TC_Casino_Content2 {
-            get {
-                return ResourceManager.GetString("TC_Casino_Content2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Revenue share model.
-        /// </summary>
-        public static string TC_RevenueShareModel {
-            get {
-                return ResourceManager.GetString("TC_RevenueShareModel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The revenue share model is split into 2 components: A revenue share from the Casino and a revenue share from the Sportsbook, the calculation of each of which is described below.
-        ///The total revenue share payable to the affiliate shall be the sum of both components of the revenue share model..
-        /// </summary>
-        public static string TC_RevenueShareModel_Content {
-            get {
-                return ResourceManager.GetString("TC_RevenueShareModel_Content", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 12Bet offers a revenue share model for the Sportsbook. This is a cumulative model based on the number of active players referred per calendar month in relation to the Sportsbook..
         /// </summary>
         public static string TC_Sportbook_Content {
@@ -8285,6 +8284,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The revenue share model is split in each 12BET product components. The calculation of each of which product is described below. The total revenue share payable to the affiliate shall be the sum of all components of the revenue share model..
+        /// </summary>
+        public static string TheRevenueShareModelIsSplit {
+            get {
+                return ResourceManager.GetString("TheRevenueShareModelIsSplit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The team at 12Bet Affiliates.
         /// </summary>
         public static string Theteamat_12Bet {
@@ -8371,6 +8379,24 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Thisusernameisn {
             get {
                 return ResourceManager.GetString("Thisusernameisn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Neteller.
+        /// </summary>
+        public static string ThreeDotNeteller {
+            get {
+                return ResourceManager.GetString("ThreeDotNeteller", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Through your 12BET player account.
+        /// </summary>
+        public static string ThroughYourOneTwoBetPlayerAccount {
+            get {
+                return ResourceManager.GetString("ThroughYourOneTwoBetPlayerAccount", resourceCulture);
             }
         }
         
@@ -8583,15 +8609,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Through your 12BET player account.
-        /// </summary>
-        public static string ToYour12BET {
-            get {
-                return ResourceManager.GetString("ToYour12BET", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Total Qualified Active Players.
         /// </summary>
         public static string Tqacsbc {
@@ -8696,6 +8713,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string TwoDotCasino {
             get {
                 return ResourceManager.GetString("TwoDotCasino", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Moneybookers.
+        /// </summary>
+        public static string TwoDotMoneybookers {
+            get {
+                return ResourceManager.GetString("TwoDotMoneybookers", resourceCulture);
             }
         }
         
@@ -9492,15 +9518,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wire Transfer.
-        /// </summary>
-        public static string WireTransfer {
-            get {
-                return ResourceManager.GetString("WireTransfer", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Withdrawal.
         /// </summary>
         public static string Withdrawal {
@@ -9663,7 +9680,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You can request payout in other currencies other than USD. The currencies offered are GBP, EUR, RMB and MYR, THB, IDR. Respective exchange rate on the payout date will be applied. .
+        ///   Looks up a localized string similar to You can request payout in other currencies other than USD. The currencies offered are RMB and MYR, THB, VND, IDR, INR and KRW. Respective exchange rate on the payout date will be applied..
         /// </summary>
         public static string YouCanRequestPayout {
             get {
