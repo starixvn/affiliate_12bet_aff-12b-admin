@@ -2881,7 +2881,7 @@ Một trong những người quản lý tài khoản hội viên của chúng t�
     <value>Hội viên chỉ có thể thực hiện rút tiền một lần vào mỗi tháng. Nhưng nếu được sự chấp thuận của giám đốc bộ phận Đại lý 12BET, bạn cũng có thể trong vòng một tháng rút hai lần tiền hoa hồng. Hiện tại phục vụ rút tiền của chúng tôi hoàn toàn miễn phí, nhưng chúng tôi sẽ không chi trả bất kỳ phí thủ tục hoặc phí phát sinh nào khác.</value>
   </data>
   <data name="TermAndCondition" xml:space="preserve">
-    <value>Điều khoản &amp; điều kiện</value>
+    <value>ĐIỀU KHOẢN &amp; ĐIỀU KIỆN</value>
   </data>
   <data name="ToBecomeAnAffiliate" xml:space="preserve">
     <value>Để trở thành hội viên của chương trình Đại lý 12BET, bạn cần điền thông tin chính xác, chi tiết vào đơn đăng ký để tham gia. Khi đăng ký làm hội viên của chương trình Đại lý 12BET hoặc sao chép đường link banner quảng cáo trên các trang web, email hoặc các hình thức khác của bạn, bạn được coi là đồng ý bị ràng buộc bởi toàn bộ điều khoản và điều kiện được nêu trong thỏa thuận này.</value>
@@ -2891,5 +2891,71 @@ Một trong những người quản lý tài khoản hội viên của chúng t�
   </data>
   <data name="AffiliateGuidelines" xml:space="preserve">
     <value>2. Nguyên tắc dành cho hội viên</value>
+  </data>
+  <data name="CommissionStructure" xml:space="preserve">
+    <value>Hoa Hồng Đại Lý</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>SẢN PHẨM</value>
+  </data>
+  <data name="OneTwoBetOneOfTheWorld" xml:space="preserve">
+    <value>12BET nhà cái uy tín nhất Châu Á, cung cấp tỷ lệ cược cạnh tranh, được bình chọn và xếp hạng 17 TOP Nhà Điều Hành Trò Chơi Trực Tuyến Tốt Nhất  Thế Giới.</value>
+  </data>
+  <data name="OneTwoBetIsAReowned" xml:space="preserve">
+    <value>12BET cung cấp các sản phẩm cá cược trực tuyến được yêu thích như Thể Thao, Sòng bạc Trực Tuyến, game slot (game máy xèng), Pool Betting (Cược Xâu), Number Game, Keno,  Xổ Số, ESports và game bắn cá. Trong số đó, casino trực tuyến và game máy xèng sẽ đem đến doanh thu lý tưởng cho Đại lý. 12BET luôn mang đến những trải nghiệm mới cho người chơi, cung cấp các trò chơi trực tuyến với thiết kế độc đáo và đầy sáng tạo nhằm thỏa mãn nhu cầu giải trí ngày càng cao của người dùng. </value>
+  </data>
+  <data name="WeWillBeVeryPleased" xml:space="preserve">
+    <value>Do vậy, cơ hội kiếm tiền nhanh và bền vững dành cho bạn khi đăng ký tham gia chương trình Đại lý 12BET.</value>
+  </data>
+  <data name="OneDotSportsbook" xml:space="preserve">
+    <value>Thể Thao</value>
+  </data>
+  <data name="OneTwoBetIsFavored" xml:space="preserve">
+    <value>12BET được biết đến là nhà cung cấp cá cược bóng đá với tỷ lệ cược cao, đa dạng về loại cược, Thành viên có thể lựa chọn nhiều môn thể thao yêu thích và đặt cược dễ dàng. </value>
+  </data>
+  <data name="UponSuccessfulRegistration" xml:space="preserve">
+    <value>Ngay khi đăng ký tài khoản 12BET thành công thông qua link đại lý 12BET, Thành viên có thể đặt cược tất cả  sự kiện đang diễn ra như bóng đá, bóng bàn, quần vợt, bóng rổ, golf, boxing, bóng chuyền, đua xe, bơi lội, v.v. Tất cả doanh thu cược tại sản phẩm Thể Thao 12BET cung cấp sẽ mang lại hoa hồng cho Đại lý.</value>
+  </data>
+  <data name="OneTwoBetOffersTheMostInDemandGames" xml:space="preserve">
+    <value>&lt;span&gt;&lt;/span&gt;</value>
+  </data>
+  <data name="VirtualSports" xml:space="preserve">
+    <value>Thể Thao Ảo</value>
+  </data>
+  <data name="VirtualSportsAreEgames" xml:space="preserve">
+    <value>Đây là môn Thể Thao trực tuyến, với những giải đấu thực của bóng đá, đua ngựa, đua chó, đua xe và quần vợt.  Sức hấp dẫn người chơi là tất cả game chỉ diễn ra trong 3-5 phút, có kết quả tức thì.</value>
+  </data>
+  <data name="ESports" xml:space="preserve">
+    <value>Esports</value>
+  </data>
+  <data name="EsportsBettingIsOneOfTheFastestGrowing" xml:space="preserve">
+    <value>Cược Thể Thao trực tuyến là xu hướng mới; các trận đấu, tin tức sự kiện mới cập nhật liên tục khi bạn chơi CS:GO – ESEA Open, CS:GO – ESL Pro League, Dota 2, và Overwatch tại 12BET. Rất đơn giản, khi người chơi chọn lựa kiểu cược và đặt ngay ủng hộ đội mình yêu thích. </value>
+  </data>
+  <data name="NumberGameIsAVeryAttractive" xml:space="preserve">
+    <value>Trò chơi Quay số siêu tốc chỉ trong một nốt nhạc hấp dẫn người chơi. Đây là gaem dễ chơi, dễ trúng dành cho dân săn bạch thủ. Đồng thời Number Game hấp dẫn bởi hình ảnh thực, người chơi vừa cược, vừa thưởng thức điệu nhảy sôi động của các người đẹp; có thể xem trực tiếp (live stream) các quả bóng sẽ ra để dự đoán bóng tiếp theo qua các góc máy quay hình thật rõ ràng. </value>
+  </data>
+  <data name="Keno" xml:space="preserve">
+    <value>KENO</value>
+  </data>
+  <data name="KenoIsPlayedWith" xml:space="preserve">
+    <value>Một trò chơi cổ truyền khởi nguồn ở Trung Quốc. Keno là một trò chơi dự đoán nhanh 20 hoặc 10 số chỉ trong 1 phút hơn. Tất cả có 80 con số ở 1 game, Thành viên 12BET có thể dự đoán, ngoài ra cũng có thể đặt cược cho các kiểu chẵn/ lẻ. Hiện Keno là game rất được yêu thích tại 12BET.</value>
+  </data>
+  <data name="Lottery" xml:space="preserve">
+    <value>XỔ SỐ</value>
+  </data>
+  <data name="LotteryIsAPopularFormOfOnlineBetting" xml:space="preserve">
+    <value>Sản phẩm Xổ Số của 12BET là một game trò chơi quay số nhanh với các game 3D/5D, 11x5 và lắc xí ngầu. Mỗi loại cược Lớn/Nhỏ, Lẻ/Chẵn, Màu Sắc... ở từng game sẽ có tỷ lệ khác nhau. </value>
+  </data>
+  <data name="TwoDotCasino" xml:space="preserve">
+    <value>CASINO</value>
+  </data>
+  <data name="OnOneTwoBetCasinoGamesAreGrouped" xml:space="preserve">
+    <value>12BET Casino là nơi hội tụ của các Slot thủ cũng như các Thần bài trực tuyến với tỷ lệ thanh toán cao, nhanh chóng. Casino có nền tảng trò chơi hiện đại, hình ảnh và âm thanh sống động, trò chơi độc đáo được thiết kế bởi các nhà cung cấp game trực tuyến hàng đầu thế giới, 12BET có các game casino đặc sắc như game máy xèng (game slot), video poker, RNG game v.v.. Và, đặc biệt, các sảnh cược Casino trực tuyến đẳng cấp quốc tế,  người đẹp chia bài cào, bài xì dzách, roulette chuyên nghiệp, </value>
+  </data>
+  <data name="GetToKnowMoreCasinoGames" xml:space="preserve">
+    <value>&lt;span&gt;&lt;/span&gt;</value>
+  </data>
+  <data name="SignUpAffiliateProgramNow" xml:space="preserve">
+    <value>Đăng Ký Tham Gia Chương Trình Đại Lý 12BET</value>
   </data>
 </root>

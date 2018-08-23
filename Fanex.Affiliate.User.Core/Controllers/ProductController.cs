@@ -17,5 +17,13 @@
             var isAuthenticated = HttpContext.Request.IsAuthenticated && SessionService.UserSession != null;
             return View(isAuthenticated);
         }
+
+        [HttpGet]
+        [ChildActionOnly]
+        [OutputCache(Duration = 86400, VaryByParam = "none", VaryByCustom = "language")]
+        public ActionResult Content()
+        {
+            return PartialView("~/Views/Product/_Content.cshtml");
+        }
     }
 }

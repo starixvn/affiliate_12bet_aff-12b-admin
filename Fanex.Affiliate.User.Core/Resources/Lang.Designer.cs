@@ -3250,6 +3250,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to E-Sports betting is one of the fastest growing video game product of 12BET which offers popular esports titles such as CS:GO – ESEA Open, CS:GO – ESL Pro League, Dota 2, and Overwatch. These games are widely popular amongst millennials across the globe..
+        /// </summary>
+        public static string EsportsBettingIsOneOfTheFastestGrowing {
+            get {
+                return ResourceManager.GetString("EsportsBettingIsOneOfTheFastestGrowing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Estonia .
         /// </summary>
         public static string Estonia {
@@ -3595,6 +3604,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string GettingPaid {
             get {
                 return ResourceManager.GetString("GettingPaid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;p class=&quot;text-block&quot;&gt; Get to know more casino games and high-end platform technology that 12BET features. &lt;/p&gt;.
+        /// </summary>
+        public static string GetToKnowMoreCasinoGames {
+            get {
+                return ResourceManager.GetString("GetToKnowMoreCasinoGames", resourceCulture);
             }
         }
         
@@ -4394,6 +4412,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Keno is played with 20 balls drawn randomly resulting from 80 numbered balls (01 to 80). The combination of these 20 numbers is divided and There are several ways to win and several ways of betting types such as Big/Small, Odd/Even, Dragon/Tiger, and more. Not only one game to play but more than 10 seasons/states to play at same time. All are fast-payout game as a minute to win..
+        /// </summary>
+        public static string KenoIsPlayedWith {
+            get {
+                return ResourceManager.GetString("KenoIsPlayedWith", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Kenya .
         /// </summary>
         public static string Kenya {
@@ -4876,6 +4903,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Lottery {
             get {
                 return ResourceManager.GetString("Lottery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lottery is a popular form of online betting in which players have the option on what type of Lottery play—3D/5D lottery, 11x5 lottery and Dice lottery. And with that, each lottery type has distinct betting type could be Big/Small, Odd/Even, Color Range, and so on..
+        /// </summary>
+        public static string LotteryIsAPopularFormOfOnlineBetting {
+            get {
+                return ResourceManager.GetString("LotteryIsAPopularFormOfOnlineBetting", resourceCulture);
             }
         }
         
@@ -5824,6 +5860,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number Game is a very attractive to play with. It is like a lottery inspired from bingo game where all players are required to place their bets on the number drawn in the machine. The most famous thing is the pretty girls in real-time Live Streaming will entertain players while waiting balls to be drawn..
+        /// </summary>
+        public static string NumberGameIsAVeryAttractive {
+            get {
+                return ResourceManager.GetString("NumberGameIsAVeryAttractive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Oct.
         /// </summary>
         public static string Oct {
@@ -5914,11 +5959,56 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 1. SPORTSBOOK.
+        /// </summary>
+        public static string OneDotSportsbook {
+            get {
+                return ResourceManager.GetString("OneDotSportsbook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 1. 12BET assume ownership of the customer at point of first contact with the customer. You, as affiliate, act as a referring agent for 12BET. We reserve the right to refuse customers (or to close their accounts) if necessary to comply with any requirements we may periodically establish..
         /// </summary>
         public static string OneTwoBetAssumeOwnerShip {
             get {
                 return ResourceManager.GetString("OneTwoBetAssumeOwnerShip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12BET is a renowned provider of dynamic online products ranging from Sports Betting, Live Casino, Slots, Pool Betting, Number Game, and Keno. Above all, this online casino is highly geared to offer safe and secured gambling venue. Each game interface provides visually satisfying aesthetics and unique design elements that immerse players into the revolutionized gameplay..
+        /// </summary>
+        public static string OneTwoBetIsAReowned {
+            get {
+                return ResourceManager.GetString("OneTwoBetIsAReowned", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12BET is favored by millions of betting players from all over the world, because it provides a wide variety of options. Customers can easily search for any type of sport and conveniently place wager on it..
+        /// </summary>
+        public static string OneTwoBetIsFavored {
+            get {
+                return ResourceManager.GetString("OneTwoBetIsFavored", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;p class=&quot;text-block&quot;&gt;12BET offers the most in demand games in Asia.&lt;/p&gt;.
+        /// </summary>
+        public static string OneTwoBetOffersTheMostInDemandGames {
+            get {
+                return ResourceManager.GetString("OneTwoBetOffersTheMostInDemandGames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12BET, one of the world&apos;s leading gambling websites, established itself as a global market leader in Asia. Known for offering the best competitive odds, it&apos;s ranked 17th Best Online Gaming Operator in the world..
+        /// </summary>
+        public static string OneTwoBetOneOfTheWorld {
+            get {
+                return ResourceManager.GetString("OneTwoBetOneOfTheWorld", resourceCulture);
             }
         }
         
@@ -5975,6 +6065,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string OnlyProperlyTagged {
             get {
                 return ResourceManager.GetString("OnlyProperlyTagged", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to On 12BET, casino games are grouped according to its software and are all respectively housed in different 12BET Clubs. For instance, all Playtech are stored in 12Emerald Club, Pragmatic Play are in 12Diamond Club, etc. Hundreds of live casino, table games, video poker games, RNG games, slot games are compiled in here for customer&apos;s best gaming experience..
+        /// </summary>
+        public static string OnOneTwoBetCasinoGamesAreGrouped {
+            get {
+                return ResourceManager.GetString("OnOneTwoBetCasinoGamesAreGrouped", resourceCulture);
             }
         }
         
@@ -7365,6 +7464,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SIGN UP 12BET AFFILIATE PROGRAM NOW!.
+        /// </summary>
+        public static string SignUpAffiliateProgramNow {
+            get {
+                return ResourceManager.GetString("SignUpAffiliateProgramNow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sincerely,.
         /// </summary>
         public static string Sincerely {
@@ -8583,6 +8691,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 2. CASINO.
+        /// </summary>
+        public static string TwoDotCasino {
+            get {
+                return ResourceManager.GetString("TwoDotCasino", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Type.
         /// </summary>
         public static string Type {
@@ -8732,6 +8849,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string UpdateSecurityQuestionRemind {
             get {
                 return ResourceManager.GetString("UpdateSecurityQuestionRemind", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upon successful registration on the website through affiliate advertising, gamers are given complete access to the following: soccer, table tennis, basketball, golf, boxing, volleyball, motorsports, ice hockey, baseball, handball, water polo, rugby, darts, swimming, snooker, and cricket. The wager of members is partly accounted as affiliate commission..
+        /// </summary>
+        public static string UponSuccessfulRegistration {
+            get {
+                return ResourceManager.GetString("UponSuccessfulRegistration", resourceCulture);
             }
         }
         
@@ -8921,6 +9047,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string VirtualSports {
             get {
                 return ResourceManager.GetString("VirtualSports", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Virtual Sports are e-games inspired by real sports such as soccer, horse racing, greyhounds, speedway, motorsports, cycling and tennis. But unlike the actual games, the Virtual Sports start and end in as three to five minutes, which gives players immediate match results..
+        /// </summary>
+        public static string VirtualSportsAreEgames {
+            get {
+                return ResourceManager.GetString("VirtualSportsAreEgames", resourceCulture);
             }
         }
         
@@ -9173,6 +9308,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Weunderstandthat {
             get {
                 return ResourceManager.GetString("Weunderstandthat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We will be very pleased to welcome everyone to join through 12BET affiliate program. Earn as much commission as you can from all 12BET products..
+        /// </summary>
+        public static string WeWillBeVeryPleased {
+            get {
+                return ResourceManager.GetString("WeWillBeVeryPleased", resourceCulture);
             }
         }
         

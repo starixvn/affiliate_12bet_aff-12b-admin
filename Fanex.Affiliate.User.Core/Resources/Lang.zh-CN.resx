@@ -2913,4 +2913,70 @@ b. 如果这些费用不能由您帐户上的资金所弥补，我们保留调�
   <data name="AffiliateGuidelines" xml:space="preserve">
     <value>2. 合作伙伴指南</value>
   </data>
+  <data name="CommissionStructure" xml:space="preserve">
+    <value>佣金结构</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>产品</value>
+  </data>
+  <data name="OneTwoBetOneOfTheWorld" xml:space="preserve">
+    <value>12BET是全球领先的博彩网站之一，已成为亚洲领导品牌。提供市场最具竞争力的赔率而闻名，而且获得17强全球顶级营运商的殊荣。</value>
+  </data>
+  <data name="OneTwoBetIsAReowned" xml:space="preserve">
+    <value>12BET是知名的在线博彩品牌，提供体育博彩、真人娱乐城、老虎机游戏、体育彩池、百练赛与快乐彩。最重要的是，12BET提供安全与保障的在线博彩环境，而且所有游戏界面在视觉上，都符合美学与独特设计元素，让玩家拥有丰富多彩的游戏体验。</value>
+  </data>
+  <data name="WeWillBeVeryPleased" xml:space="preserve">
+    <value>我们欢迎大家加入12BET合作伙伴计划，尽可能地利用12BET的产品，赚取代理佣金。</value>
+  </data>
+  <data name="OneDotSportsbook" xml:space="preserve">
+    <value>1.体育博彩</value>
+  </data>
+  <data name="OneTwoBetIsFavored" xml:space="preserve">
+    <value>12BET受到来自世界各地的数百万博彩玩家的青睐，因为我们提供了多种选择。客户可以轻松搜索任何类型的运动并轻松地投注。</value>
+  </data>
+  <data name="UponSuccessfulRegistration" xml:space="preserve">
+    <value>透过合作伙伴在网站注册为会员后，玩家完全可以造访以下任何运动：足球、篮球、高尔夫、拳击、赛车、棒球、橄榄球等，玩家的投注会被计算入合作伙伴。</value>
+  </data>
+  <data name="OneTwoBetOffersTheMostInDemandGames" xml:space="preserve">
+    <value>&lt;p class="text-block"&gt;12BET提供亚洲最受欢迎的游戏。&lt;/p&gt;</value>
+  </data>
+  <data name="VirtualSports" xml:space="preserve">
+    <value>虚拟运动</value>
+  </data>
+  <data name="VirtualSportsAreEgames" xml:space="preserve">
+    <value>虚拟运动是受实际运动启发的电子游戏，有足球、赛马、赛车、网球等。不同的是，虚拟运动全程只有3~5分钟，为玩家提供了即使比赛结果。</value>
+  </data>
+  <data name="ESports" xml:space="preserve">
+    <value>电子竞技</value>
+  </data>
+  <data name="EsportsBettingIsOneOfTheFastestGrowing" xml:space="preserve">
+    <value>电子竞技是12BET成长迅速的产品之一，提供最热门的电子竞技锦标赛，例如：CS:CO、刀塔2、守望先锋。这些游戏在全球千禧时代，广受欢迎。</value>
+  </data>
+  <data name="NumberGameIsAVeryAttractive" xml:space="preserve">
+    <value>百练赛是个非常吸引人的游戏，就像是个从宾果游戏获得启发的彩票，玩家需要投注在宾果机的数字。最有名的是即时视频，由美女在机器边，等待中奖数字出现。</value>
+  </data>
+  <data name="Keno" xml:space="preserve">
+    <value>快乐彩</value>
+  </data>
+  <data name="KenoIsPlayedWith" xml:space="preserve">
+    <value>从80个球（01至80）中随机选择20个球，这20个数字是各别分开的，投注方式有：大/小、单/双、龙/虎等。</value>
+  </data>
+  <data name="Lottery" xml:space="preserve">
+    <value>彩票</value>
+  </data>
+  <data name="LotteryIsAPopularFormOfOnlineBetting" xml:space="preserve">
+    <value>彩票是颇为流行的在线投注，玩家可以选择3D / 5D 彩票、11x5彩票与骰子彩票。每种彩票有不同的投注类型，例如：大/小、单/双、颜色范围等。</value>
+  </data>
+  <data name="TwoDotCasino" xml:space="preserve">
+    <value>2.娱乐城</value>
+  </data>
+  <data name="OnOneTwoBetCasinoGamesAreGrouped" xml:space="preserve">
+    <value>12BET根据不同的游戏供应商作区别，所有Playtech都属于翡翠厅，Pragmatic Play归在钻石厅等。无数真人荷官、桌面游戏、视频扑克、虚拟游戏、老虎机游戏等，都集中在娱乐城，带给顾客最佳的游戏体验。</value>
+  </data>
+  <data name="GetToKnowMoreCasinoGames" xml:space="preserve">
+    <value>&lt;p class="text-block"&gt; 想了解更多娱乐城游戏和高端平台技术吗？ &lt;/p&gt;</value>
+  </data>
+  <data name="SignUpAffiliateProgramNow" xml:space="preserve">
+    <value>立即注册为合作伙伴！</value>
+  </data>
 </root>

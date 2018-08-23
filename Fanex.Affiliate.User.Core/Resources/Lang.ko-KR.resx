@@ -1170,7 +1170,7 @@
     <value>이메일 전송에 문제가 생겼습니다. 본 사로 연락 바랍니다.</value>
   </data>
   <data name="Home" xml:space="preserve">
-    <value>홈</value>
+    <value>Home</value>
   </data>
   <data name="Honduras" xml:space="preserve">
     <value>온두라스</value>
@@ -1704,7 +1704,7 @@ a. 본 사가 귀하의 엄격한 계약이행 종용에 실패했다하더라�
     <value>웹사이트가 없습니다.</value>
   </data>
   <data name="NumberGame" xml:space="preserve">
-    <value>넘버 게임</value>
+    <value>라이브 빙고 </value>
   </data>
   <data name="Oct" xml:space="preserve">
     <value>10월</value>
@@ -2959,5 +2959,73 @@ b.이러한 비용은 귀하의 계정으로 금액을 지불할수없으며 본
   </data>
   <data name="AffiliateGuidelines" xml:space="preserve">
     <value>2. 제휴 가이드라인</value>
+  </data>
+  <data name="CommissionStructure" xml:space="preserve">
+    <value>커미션 지급</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>제공중인 게임사</value>
+  </data>
+  <data name="OneTwoBetOneOfTheWorld" xml:space="preserve">
+    <value>12BET 은 스포츠 베팅 제품과 서비스를 유럽및 아시아 시장에 제공하는 원격 갬블링 브랜드입니다. 최고의 배당을 제공하고 있으며 게이밍 오퍼레이션 17위로 이름을 올렸습니다. </value>
+  </data>
+  <data name="OneTwoBetIsAReowned" xml:space="preserve">
+    <value>12BET은 스포츠베팅,라이브카지노,슬롯, POOL 베팅,라이브빙고 및 키노게임 온라인으로 즐기실 수 있습니다. 그리고 실제 카지노장에 입장한 듯 한 시각적인 디자인 및 우수한 기술,인터페이스로  플레이어가 게임에 몰입할 수 있도록 설계되어있습니다. </value>
+  </data>
+  <data name="WeWillBeVeryPleased" xml:space="preserve">
+    <value>12BET 제휴프로그램에 방문해주셔서 대단히 감사합니다. 지금 제휴 신청하시고  더 높은 커미션을 받아가시기 바랍니다. </value>
+  </data>
+  <data name="OneDotSportsbook" xml:space="preserve">
+    <value>1.스포츠</value>
+  </data>
+  <data name="OneTwoBetIsFavored" xml:space="preserve">
+    <value>12BET은 전세계 수백만명의 베터들이 선호하는 배당을 가지고 있으며 모든 유형의 스포츠를 쉽고 빠르게 검색하여 편리하게 베팅하실 수 있습니다.</value>
+  </data>
+  <data name="UponSuccessfulRegistration" xml:space="preserve">
+    <value>제휴사 등록 후 귀하의 웹사이트에 등록이 되면 제휴자는 아래의 경기를 엑세스할 수 있습니다. 
+축구, 탁구, 농구, 골프, 복싱, 배구, 모터 스포츠, 아이스 하키, 야구, 핸드볼, 워터 폴로, 럭비, 다트, 수영,스누커, 크리켓등  다양한 경기를 제공되며  회원의 베팅에 따라서 제휴수수료가 부분적으로 처리됩니다.</value>
+  </data>
+  <data name="OneTwoBetOffersTheMostInDemandGames" xml:space="preserve">
+    <value>&lt;p class="text-block"&gt;12BET은 아시아에서 가장 수요가 많은  게임사를 제공하고 있습니다.&lt;/p&gt;</value>
+  </data>
+  <data name="VirtualSports" xml:space="preserve">
+    <value>가상 스포츠 </value>
+  </data>
+  <data name="VirtualSportsAreEgames" xml:space="preserve">
+    <value>가상 스포츠는 축구, 경마, 그레이하운드, 스피드 웨이, 모터 스포츠, 사이클링,테니스와 같은 실제 스포츠에서 영감을 얻은 가상게임입니다. 
+실제 경기와는 달리 가상 스포츠 는 3-5 분 안에 시작하여 끝납니다. 그리고 플레이어는 즉시 결과처러를 확인하실 수 있습니다.</value>
+  </data>
+  <data name="ESports" xml:space="preserve">
+    <value>E스포츠 </value>
+  </data>
+  <data name="EsportsBettingIsOneOfTheFastestGrowing" xml:space="preserve">
+    <value>E스포츠는 전세계적으로 수백만명이 즐기는 인벤게임으로 CS : GO - ESEA Open, CS : GO - ESL 프로 리그, 도타 2 ,오버워치 등 현재 12BET에 빠르게 성장 중인 인기있는 게임제품 중 하나입니다</value>
+  </data>
+  <data name="NumberGameIsAVeryAttractive" xml:space="preserve">
+    <value>라이브 빙고는 빙고게임에서 영감을 얻은 로또게임으로 아주 매력적인 게임입니다. 베팅이 이루어지는동안 실시간 스트리밍을 통해 아름다운 소녀들이 플레이어들의 눈과 귀를 즐겁게해드릴것입니다. </value>
+  </data>
+  <data name="Keno" xml:space="preserve">
+    <value>키노</value>
+  </data>
+  <data name="KenoIsPlayedWith" xml:space="preserve">
+    <value>키노는 번호가 새겨진 80개의 볼(1~80)중 무작위로 뽑힌20개의 공으로 숫자와 빅/스몰,홀/짝,드래곤/타이거 등 베팅을 조합하여 우승을 가리는 게임입니다.</value>
+  </data>
+  <data name="Lottery" xml:space="preserve">
+    <value>로또</value>
+  </data>
+  <data name="LotteryIsAPopularFormOfOnlineBetting" xml:space="preserve">
+    <value>로또는 온라인 베팅에서 가장 인기있는 게임으로 플레이어는 3D/5D, 11X5, 주사위 로또를 즐기실 수 있습니다. 그리고  빅/스몰,홀/짝, 컬러 등 다양한 방식으로 베팅에 참여하실 수 있습니다.</value>
+  </data>
+  <data name="TwoDotCasino" xml:space="preserve">
+    <value>2.카지노</value>
+  </data>
+  <data name="OnOneTwoBetCasinoGamesAreGrouped" xml:space="preserve">
+    <value>12BET 온라인 카지노는 플레이텍(PT),GPI게임,아시아게이밍 등  제공사를  클럽별로 나누어 편리하게 입장하실 수 있도록 구성하였습니다.수백개의 라이브카지노,테이블게임,비디오포커게임,RNG게임,슬롯게임 등 즐기실 수 있습니다.</value>
+  </data>
+  <data name="GetToKnowMoreCasinoGames" xml:space="preserve">
+    <value>&lt;p class="text-block"&gt; 12BET의 높은 기술력과 최고의 온라인 카지노 게임을 경험하세요. &lt;/p&gt;</value>
+  </data>
+  <data name="SignUpAffiliateProgramNow" xml:space="preserve">
+    <value>12BET 제휴 프로그램 가입!</value>
   </data>
 </root>
