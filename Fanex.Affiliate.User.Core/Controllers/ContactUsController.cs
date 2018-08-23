@@ -18,15 +18,19 @@
 
         private readonly IAccountRepository _accountRepository;
 
+        private readonly ICaptchaService _captchaService;
+
         public ContactUsController(
             ISessionService sessionService,
             IAppSetting appSetting,
             IContactService contactService,
-            IAccountRepository accountRepository)
+            IAccountRepository accountRepository,
+            ICaptchaService captchaService)
             : base(sessionService, appSetting)
         {
             _contactService = contactService;
             _accountRepository = accountRepository;
+            _captchaService = captchaService;
         }
 
         [HttpGet]
@@ -52,7 +56,7 @@
             {
                 result.Message = Lang.ErrAuthorized;
             }
-            else if (!string.Equals(SessionService.SignUpCaptchaCode, param.Captcha))
+            else if (!_captchaService.IsValid(param.Captcha, SessionService.SignUpCaptchaCode, Request.UserHostAddress))
             {
                 result.Message = Lang.ValidationCode;
             }

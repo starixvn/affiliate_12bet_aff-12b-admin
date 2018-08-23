@@ -21,18 +21,21 @@ namespace Fanex.Affiliate.User.Core.Controllers
         private readonly ICookieService _cookieService;
         private readonly ISessionService _sessionService;
         private readonly IAppSetting _appSetting;
+        private readonly ICaptchaService _captchaService;
 
         public AuthController(
             ISessionService sessionService,
             IAppSetting appSetting,
             ICookieService cookieService,
-            IAuthService authService)
+            IAuthService authService,
+            ICaptchaService captchaService)
 
         {
             _authService = authService;
             _cookieService = cookieService;
             _sessionService = sessionService;
             _appSetting = appSetting;
+            _captchaService = captchaService;
         }
 
         [ChildActionOnly]
@@ -72,7 +75,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 });
             }
 
-            if (!IsValidCaptcha(userParam.ValidationKey))
+            if (!_captchaService.IsValid(userParam.ValidationKey, _sessionService.CaptchaCode, Request.UserHostAddress))
             {
                 return Json(new ResultInfo
                 {
@@ -187,7 +190,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 _sessionService.SignUpCaptchaCode = captcha;
             }
 
-            return File(CaptchaHelper.GenerateImageBuffer(captcha, 65, 26), "image/png");
+            return File(_captchaService.GenerateImageBuffer(captcha, 65, 26), "image/png");
         }
 
         private OnUserIdParam GetOnUserIdParam(int affId, string clientIpAddress, int adminId = 0)
@@ -201,11 +204,6 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 SubAccId = adminId,
                 IsInternal = _sessionService.IsInternal
             };
-        }
-
-        private bool IsValidCaptcha(string validationKey)
-        {
-            return validationKey.Equals(_sessionService.CaptchaCode);
         }
 
         private ResultInfo GetErrorResult(string message)

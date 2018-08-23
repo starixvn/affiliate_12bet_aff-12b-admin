@@ -177,8 +177,10 @@
   <ItemGroup>
     <Compile Include="BusinessService\AccountService.cs" />
     <Compile Include="BusinessService\AuthService.cs" />
+    <Compile Include="BusinessService\CaptchaService.cs" />
     <Compile Include="BusinessService\CommissionReportService.cs" />
     <Compile Include="BusinessService\ContactService.cs" />
+    <Compile Include="BusinessService\ICaptchaService.cs" />
     <Compile Include="BusinessService\ICommissionReportService.cs" />
     <Compile Include="BusinessService\MemberTransactionService.cs" />
     <Compile Include="BusinessService\MemberInfoServiceWrapper.cs" />
@@ -480,7 +482,6 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Utilities\AppSetting.cs" />
-    <Compile Include="Utilities\CaptchaHelper.cs" />
     <Compile Include="Utilities\Common.cs" />
     <Compile Include="Utilities\CryptographyHelper.cs" />
     <Compile Include="Utilities\Generator.cs" />

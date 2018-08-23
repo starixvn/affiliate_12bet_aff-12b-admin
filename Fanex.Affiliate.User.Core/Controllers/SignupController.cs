@@ -16,12 +16,16 @@
     {
         private readonly IAccountService _accountService;
 
+        private readonly ICaptchaService _captchaService;
+
         public SignupController(
             ISessionService sessionService,
             IAppSetting appSetting,
-            IAccountService accountService) : base(sessionService, appSetting)
+            IAccountService accountService,
+            ICaptchaService captchaService) : base(sessionService, appSetting)
         {
             _accountService = accountService;
+            _captchaService = captchaService;
         }
 
         [HttpGet]
@@ -35,7 +39,7 @@
         public ActionResult Index(UserSignUpParam param)
         {
             var result = new ResultInfo { IsOk = false };
-            if (!SessionService.SignUpCaptchaCode.Equals(param.Captcha))
+            if (!_captchaService.IsValid(param.Captcha, SessionService.SignUpCaptchaCode, Request.UserHostAddress))
             {
                 result.Message = Lang.ValidationCode;
             }

@@ -64,7 +64,7 @@ namespace Fanex.Affiliate.User.Site
                 assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(i => !i.IsDynamic).ToArray();
             }
 
-            return  assemblies.Where(x => x.FullName.StartsWith("Fanex.Affiliate.User", StringComparison.InvariantCulture))
+            return assemblies.Where(x => x.FullName.StartsWith("Fanex.Affiliate.User", StringComparison.InvariantCulture))
                 .ToArray();
         }
 
@@ -102,6 +102,7 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterType<MemberTransactionService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<CommissionReportRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<CommissionReportService>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<CaptchaService>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
     }
 }
