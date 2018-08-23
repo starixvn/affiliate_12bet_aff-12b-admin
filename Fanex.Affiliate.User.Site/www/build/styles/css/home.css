@@ -47,12 +47,9 @@
     color: #212121;
     line-height: 2.4rem;
     padding: 0 16px 16px; }
-  .card-content .img-content {
-    text-align: center;
-    padding: 10px 0; }
-    .card-content .img-content .img-item {
-      margin-left: auto;
-      margin-right: auto; }
+  .card-content .img-content .img-item {
+    margin-left: auto;
+    margin-right: auto; }
 
 .news-content {
   padding: 0; }
