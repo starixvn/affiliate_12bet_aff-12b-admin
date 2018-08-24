@@ -38,7 +38,7 @@ module.exports = env => {
         },
         entry: {
             react: ["react", "react-dom", "react-redux", "redux", "redux-thunk"],
-            bootstrap: ["./source/style/vendors/bootstrap/bootstrap.scss"],
+            bootstrap: ["bootstrap/dist/css/bootstrap.css"],
             reactstrap: ["reactstrap"]
         },
         output: {

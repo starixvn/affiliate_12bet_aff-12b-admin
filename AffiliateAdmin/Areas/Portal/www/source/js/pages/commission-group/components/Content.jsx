@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 
 import { Modal, ModalHeader, ModalBody, Button } from 'reactstrap';
 import GridData from './grouplist/GridData';
-import Pager from '../../../components/Pager';
+import { Pager } from '@9softstudio/react-fixed-table-header';
 import AddGroup from './addgroup';
 import EditGroup from './editgroup';
 import { getGroupSettingList } from '../actions';
