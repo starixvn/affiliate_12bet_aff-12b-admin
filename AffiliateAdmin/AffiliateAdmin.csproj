@@ -1581,6 +1581,7 @@
     <Content Include="Areas\Portal\www\source\style\assets\icon_head.png" />
     <Content Include="Areas\Portal\www\source\style\assets\icon_top.png" />
     <Content Include="Areas\Portal\www\source\style\fonts\open-iconic.svg" />
+    <Content Include="Areas\Portal\www\source\style\vendors\fixedtable\style.css" />
     <Content Include="Areas\Portal\www\webpack.config.dev.js" />
     <Content Include="Areas\Portal\www\webpack.config.js" />
     <Content Include="Areas\Portal\www\webpack.config.vendor.js" />

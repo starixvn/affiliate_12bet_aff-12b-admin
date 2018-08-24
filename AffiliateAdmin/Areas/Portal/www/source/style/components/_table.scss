@@ -1,11 +1,12 @@
+@import '../vendors/fixedtable/style';
+
 .table {
-    table-layout: fixed;
+    margin-bottom: 0;
 
     thead {
         tr {
-            background: #92b1da;
-
             th {
+                background: #92b1da;
                 text-align: center;
             }
         }

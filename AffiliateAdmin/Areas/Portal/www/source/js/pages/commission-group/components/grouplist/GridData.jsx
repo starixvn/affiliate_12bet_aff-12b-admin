@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
 import { resolveClientUrl } from '../../../../modules/utils';
 import { INFINITY_AM, INFINITY_QM, INFINITY_SYMBOL } from '../../modules/constant';
@@ -53,6 +54,32 @@ export class GridData extends Component {
         }
     }
 
+    _renderHeader() {
+        return [
+            <Row>
+                <Cell header={true} colWidth={40} rowSpan="2"></Cell>
+                <Cell header={true} colWidth={160} rowSpan="2">Name</Cell>
+                <Cell header={true} colWidth={50} rowSpan="2" className="th-small">No.Aff</Cell>
+                <Cell header={true} colWidth={200} rowSpan="2" className="th-medium">Description</Cell>
+                <Cell header={true} colWidth={100} rowSpan="2">Creation</Cell>
+                <Cell header={true} colSpan="10">Policy</Cell>
+                <Cell header={true} colWidth={70} rowSpan="2" className="th-small">Action</Cell>
+            </Row>,
+            <Row>
+                <Cell header={true} colWidth={80}></Cell>
+                <Cell header={true} colWidth={80} className="th-smallest">Tier</Cell>
+                <Cell header={true} colWidth={80} title="Minimum all members' winlost amount">Min AM($)</Cell>
+                <Cell header={true} colWidth={80} title="Maximum all members' winlost amount">Max AM($)</Cell>
+                <Cell header={true} colWidth={80} title="Minimum number of qualified members">Min QM</Cell>
+                <Cell header={true} colWidth={80} title="Maximum number of qualified members">Max QM</Cell>
+                <Cell header={true} colWidth={80}>Comm Rate</Cell>
+                <Cell header={true} colWidth={80}>Operational Fee</Cell>
+                <Cell header={true} colWidth={80}>Banking Fee</Cell>
+                <Cell header={true} colWidth={80}>QM Turnover</Cell>
+            </Row>
+        ];
+    }
+
     _renderGroupData() {
         const { gridData } = this.props;
         const rows = [];
@@ -71,46 +98,46 @@ export class GridData extends Component {
                 const isPrivateGroup = group.GroupId > 1000;
 
                 rows.push(
-                    (<tr key={`row-${index}-${iTier}`} className={isPrivateGroup ? "private" : ""}>
-                        {isFirstItem && (<td className="text-center" rowSpan={rowSpan}>{group.RowIdx}</td>)}
-                        {isFirstItem && (<td className="text-center" rowSpan={rowSpan}>{rawHtml(group.GroupName)}</td>)}
+                    (<Row key={`row-${index}-${iTier}`} className={isPrivateGroup ? "private" : ""}>
+                        {isFirstItem && (<Cell className="text-center" rowSpan={rowSpan}>{group.RowIdx}</Cell>)}
+                        {isFirstItem && (<Cell className="text-center" rowSpan={rowSpan}>{rawHtml(group.GroupName)}</Cell>)}
                         {isFirstItem && (
-                            <td className="text-center" rowSpan={rowSpan}>
+                            <Cell className="text-center" rowSpan={rowSpan}>
                                 <a href={resolveClientUrl("Portal/Affiliate?current=1&slCommGroup=") + group.GroupId} target="_top">{group.NoAffs}</a>
-                            </td>
+                            </Cell>
                         )}
-                        {isFirstItem && (<td className="text-center" rowSpan={rowSpan}>{rawHtml(group.Description)}</td>)}
-                        {isFirstItem && (<td className="text-center" rowSpan={rowSpan}><p>{group.Creator}</p><p>{group.CreatedDateText}</p></td>)}
+                        {isFirstItem && (<Cell className="text-center" rowSpan={rowSpan}>{rawHtml(group.Description)}</Cell>)}
+                        {isFirstItem && (<Cell className="text-center" rowSpan={rowSpan}><p>{group.Creator}</p><p>{group.CreatedDateText}</p></Cell>)}
 
-                        {isFirstItem && (<td className="text-center font-weight-bold cell-tier" rowSpan={tierSettingRowSpan}>Tier Setting</td>)}
-                        <td className="text-center cell-tier">{tierSetting.TierId}</td>
-                        <td className="text-right cell-tier">{format(tierSetting.MinAmount)}</td>
-                        <td className="text-right cell-tier">{tierSetting.MaxAmount === INFINITY_AM ? INFINITY_SYMBOL : format(tierSetting.MaxAmount)}</td>
-                        <td className="text-right cell-tier">{format(tierSetting.MinQm)}</td>
-                        <td className="text-right cell-tier">{tierSetting.MaxQm === INFINITY_QM ? INFINITY_SYMBOL : format(tierSetting.MaxQm)}</td>
-                        <td className="text-right cell-tier">{formatDecimal(tierSetting.Commission)}</td>
+                        {isFirstItem && (<Cell className="text-center font-weight-bold cell-tier" rowSpan={tierSettingRowSpan}>Tier Setting</Cell>)}
+                        <Cell className="text-center cell-tier">{tierSetting.TierId}</Cell>
+                        <Cell className="text-right cell-tier">{format(tierSetting.MinAmount)}</Cell>
+                        <Cell className="text-right cell-tier">{tierSetting.MaxAmount === INFINITY_AM ? INFINITY_SYMBOL : format(tierSetting.MaxAmount)}</Cell>
+                        <Cell className="text-right cell-tier">{format(tierSetting.MinQm)}</Cell>
+                        <Cell className="text-right cell-tier">{tierSetting.MaxQm === INFINITY_QM ? INFINITY_SYMBOL : format(tierSetting.MaxQm)}</Cell>
+                        <Cell className="text-right cell-tier">{formatDecimal(tierSetting.Commission)}</Cell>
 
-                        {isFirstItem && (<td className="text-right" rowSpan={rowSpan}>
-                            {OperationalFee && formatDecimal(OperationalFee.DeductedPercentage)}</td>)}
-                        {isFirstItem && (<td className="text-right" rowSpan={rowSpan}>
-                            {BankingFee && formatDecimal(BankingFee.DeductedPercentage)}</td>)}
-                        {isFirstItem && (<td className="text-right" rowSpan={rowSpan}>{formatDecimal(group.QmTurnover)}</td>)}
+                        {isFirstItem && (<Cell className="text-right" rowSpan={rowSpan}>
+                            {OperationalFee && formatDecimal(OperationalFee.DeductedPercentage)}</Cell>)}
+                        {isFirstItem && (<Cell className="text-right" rowSpan={rowSpan}>
+                            {BankingFee && formatDecimal(BankingFee.DeductedPercentage)}</Cell>)}
+                        {isFirstItem && (<Cell className="text-right" rowSpan={rowSpan}>{formatDecimal(group.QmTurnover)}</Cell>)}
 
                         {isFirstItem && (
-                            <td className="text-center" rowSpan={rowSpan}>
+                            <Cell className="text-center" rowSpan={rowSpan}>
                                 <button className="btn btn-link" onClick={(e) => this.props.onEdit(item.GroupId)}>
                                     <span className="oi oi-pencil text-secondary"></span>
                                 </button>
 
                                 {
                                     group.NoAffs === 0 && (
-                                    <button className="btn btn-link" onClick={() => this.handleDelete(item.GroupId, item.GroupName)}>
-                                        <span className="oi oi-x text-danger"></span>
-                                    </button>)
+                                        <button className="btn btn-link" onClick={() => this.handleDelete(item.GroupId, item.GroupName)}>
+                                            <span className="oi oi-x text-danger"></span>
+                                        </button>)
                                 }
-                            </td>)
+                            </Cell>)
                         }
-                    </tr>)
+                    </Row>)
                 );
             }
 
@@ -119,11 +146,11 @@ export class GridData extends Component {
                 const isFirstItem = iPlatformFee === 0;
 
                 rows.push(
-                    (<tr key={`row-platform-${index}-${iPlatformFee}`}>
-                        {isFirstItem && (<td className="text-center font-weight-bold cell-platform" rowSpan={platformFeeRowSpan}>Platform Fee</td>)}
-                        <td className="cell-platform" colSpan="5">{this._convertToProductNameText(platformFee.ProductIds)}</td>
-                        <td className="text-right cell-platform">{formatDecimal(platformFee.DeductedPercentage)}</td>
-                    </tr>)
+                    (<Row key={`row-platform-${index}-${iPlatformFee}`}>
+                        {isFirstItem && (<Cell className="text-center font-weight-bold cell-platform" rowSpan={platformFeeRowSpan}>Platform Fee</Cell>)}
+                        <Cell className="cell-platform" colSpan="5">{this._convertToProductNameText(platformFee.ProductIds)}</Cell>
+                        <Cell className="text-right cell-platform">{formatDecimal(platformFee.DeductedPercentage)}</Cell>
+                    </Row>)
                 );
             }
 
@@ -135,34 +162,13 @@ export class GridData extends Component {
     render() {
         return (
             <div className="table-responsive table-group-setting">
-                <table className="table table-bordered table-hover table-sm" style={{ tableLayout: "fixed" }}>
-                    <thead>
-                        <tr>
-                            <th rowSpan="2" className="th-smallest"></th>
-                            <th rowSpan="2" className="th-medium">Name</th>
-                            <th rowSpan="2" className="th-small">No.Aff</th>
-                            <th rowSpan="2" className="th-medium">Description</th>
-                            <th rowSpan="2">Creation</th>
-                            <th colSpan="10">Policy</th>
-                            <th rowSpan="2" className="th-small">Action</th>
-                        </tr>
-                        <tr>
-                            <th></th>
-                            <th className="th-smallest">Tier</th>
-                            <th title="Minimum all members' winlost amount">Min AM($)</th>
-                            <th title="Maximum all members' winlost amount">Max AM($)</th>
-                            <th title="Minimum number of qualified members">Min QM</th>
-                            <th title="Maximum number of qualified members">Max QM</th>
-                            <th>Comm Rate</th>
-                            <th>Operational Fee</th>
-                            <th>Banking Fee</th>
-                            <th>QM Turnover</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this._renderGroupData()}
-                    </tbody>
-                </table>
+                <Table
+                    minWidth={1000}
+                    autoWidth={true}
+                    bodyHeight={300}
+                    header={this._renderHeader()}
+                    body={this._renderGroupData()}
+                />
             </div>
         );
     }
