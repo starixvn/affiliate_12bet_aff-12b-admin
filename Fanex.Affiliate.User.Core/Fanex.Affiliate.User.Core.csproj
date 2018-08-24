@@ -492,7 +492,7 @@
     <Compile Include="Utilities\MemberSitePageHelper.cs" />
     <Compile Include="CoreService\MemoryCacheService.cs" />
     <Compile Include="Utilities\RequestHelper.cs" />
-    <Compile Include="Utilities\UrlHelper.cs" />
+    <Compile Include="Utilities\SiteDomainHelper.cs" />
     <Compile Include="DTO\UserPanel\AccountInformation.cs" />
     <Compile Include="ViewModels\BetList\MainBetListViewModel.cs" />
     <Compile Include="ViewModels\EmailTemplateViewModel.cs" />
