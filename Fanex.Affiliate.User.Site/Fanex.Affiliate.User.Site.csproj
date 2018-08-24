@@ -1018,6 +1018,14 @@
     <Content Include="Views\Product\_Content.ko-KR.cshtml" />
     <Content Include="Views\Product\_Content.th-TH.cshtml" />
     <Content Include="Views\Product\_Content.vi-VN.cshtml" />
+    <Content Include="www\source\styles\fonts\tahoma\Tahoma-Regular.ttf" />
+    <Content Include="www\source\styles\fonts\tahoma\Tahoma-Bold.TTF" />
+    <Content Include="www\source\styles\fonts\tahoma\TAHOMABD.TTF" />
+    <Content Include="www\source\styles\fonts\tahoma\TAHOMA_0.TTF" />
+    <Content Include="www\build\styles\fonts\tahoma\Tahoma-Regular.ttf" />
+    <Content Include="www\build\styles\fonts\tahoma\Tahoma-Bold.TTF" />
+    <Content Include="www\build\styles\fonts\tahoma\TAHOMABD.TTF" />
+    <Content Include="www\build\styles\fonts\tahoma\TAHOMA_0.TTF" />
     <Content Include="Views\Product\_Content.zh-CN.cshtml" />
     <Content Include="Views\Product\_Content.zh-TW.cshtml" />
     <Content Include="Views\CommissionStructure\_Content.en-US.cshtml" />

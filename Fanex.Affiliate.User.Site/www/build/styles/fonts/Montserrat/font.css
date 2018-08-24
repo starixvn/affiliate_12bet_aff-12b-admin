@@ -24,3 +24,7 @@
        url('Montserrat-SemiBold.ttf') format('truetype');
   font-weight: 600;
 }
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
