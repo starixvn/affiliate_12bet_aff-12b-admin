@@ -3,4 +3,16 @@
     Layout = "~/Views/Shared/_LayoutBeforeLogin.cshtml";
 }
 
-@{ Html.RenderAction("Content", "TermAndCondition"); }
+<div class="content">
+    <div class="page-title">
+        <span class="text">@Lang.TermAndCondition</span>
+    </div>
+
+    <div class="adv">
+        <img class="img-responsive" src="~/www/build/styles/Images/term-and-condition/termcondition.jpg" alt="Terms and Conditions" />
+    </div>
+
+    @{ Html.RenderAction("Content", "TermAndCondition"); }
+
+    @RazorHelper.RenderMovingTopButton()
+</div>

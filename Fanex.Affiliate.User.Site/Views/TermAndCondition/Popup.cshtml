@@ -21,9 +21,21 @@
             </div>
 
             <div class="page-container">
-                @{ Html.RenderAction("Content", "TermAndCondition"); }
+                <div class="content">
+                    <div class="page-title">
+                        <span class="text">@Lang.TermAndCondition</span>
+                    </div>
+
+                    <div class="adv">
+                        <img class="img-responsive" src="~/www/build/styles/Images/term-and-condition/termcondition.jpg" alt="Terms and Conditions" />
+                    </div>
+
+                    @{ Html.RenderAction("Content", "TermAndCondition"); }
+
+                    @RazorHelper.RenderMovingTopButton()
+                </div>
             </div>
-            
+
             <div class="banner-side banner-right">
                 <img src="~/www/build/styles/Images/bgRight.jpg" alt="aff background" />
             </div>
@@ -31,4 +43,3 @@
     </div>
 </body>
 </html>
-
