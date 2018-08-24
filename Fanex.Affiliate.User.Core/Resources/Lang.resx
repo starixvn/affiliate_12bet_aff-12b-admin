@@ -3674,4 +3674,16 @@ One of our Affiliate Accounts Manager will be contacting you by email within 3 b
     <value>Get to know hot promotions this month. Post them in your websites and social channels to gain more customers and commission!</value>
     <comment>87923</comment>
   </data>
+  <data name="CannotGetEnough" xml:space="preserve">
+    <value>Can't Get Enough!</value>
+  </data>
+  <data name="YourCurrentCommision" xml:space="preserve">
+    <value>YOUR CURRENT COMMISSION?</value>
+  </data>
+  <data name="ContactYourAffilliateSupportTeam" xml:space="preserve">
+    <value>Contact your affiliates support team for exclusive commission rate to growth bigger revenue in your monthly earning</value>
+  </data>
+  <data name="ContactNow" xml:space="preserve">
+    <value>CONTACT NOW!</value>
+  </data>
 </root>

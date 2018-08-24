@@ -623,11 +623,11 @@ input[type="checkbox"], input[type="radio"] {
   @media only screen and (min-width: 1600px) {
     .adv-contact {
       background-position: right center;
-      padding: 5px 130px 5px 20px; } }
+      padding: 5px 115px 5px 20px; } }
   .adv-contact .text-1 {
     margin-bottom: 0;
     margin-top: 10px;
-    font-size: 25px;
+    font-size: 23px;
     text-transform: capitalize;
     font-style: italic;
     line-height: 1; }

@@ -143,5 +143,11 @@
     "inputFiles": [
       "www/source/styles/fonts/tahoma/font.css"
     ]
+  },
+  {
+    "outputFileName": "www/build/styles/fonts/myriadPro/font.css",
+    "inputFiles": [
+      "www/source/styles/fonts/myriadPro/font.css"
+    ]
   }
 ]

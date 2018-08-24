@@ -2995,4 +2995,16 @@ Cập Nhật Mới Nhất</value>
   <data name="GetToKnowHotPromotion" xml:space="preserve">
     <value>Nhiều ưu đãi độc quyền tại 12BET mỗi tháng. Bạn tham khảo &amp; giới thiệu đến các Thành viên của mình thúc đẩy doanh thu, tăng thưởng hoa hồng ngay!</value>
   </data>
+  <data name="CannotGetEnough" xml:space="preserve">
+    <value>Bạn muốn kiếm tiền nhiều hơn,</value>
+  </data>
+  <data name="YourCurrentCommision" xml:space="preserve">
+    <value>NHẬN HOA HỒNG CAO HƠN? </value>
+  </data>
+  <data name="ContactYourAffilliateSupportTeam" xml:space="preserve">
+    <value>Liên hệ ngay Bộ phận Hỗ Trợ Đại Lý nếu có thắc mắc về hoa hồng đại lý mỗi tháng của mình!</value>
+  </data>
+  <data name="ContactNow" xml:space="preserve">
+    <value>LIÊN HỆ</value>
+  </data>
 </root>

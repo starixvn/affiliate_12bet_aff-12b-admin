@@ -3005,4 +3005,16 @@ b. ค่าใช้จ่ายเหล่านี้จะไม่ได�
   <data name="GetToKnowHotPromotion" xml:space="preserve">
     <value>ดูข้อมูลโปรโมชั่นเดือนนี้ที่ทางเว็บไซต์ได้อัพเดทใหม่ พยายามโปรโมทโปรโมชั่นใหม่ๆ นี้ในเว็บไซต์และโซเชียลมีเดียของคุณเพื่อดึงดูดสมาชิกส่งผลให้ค่าคอมฯเพิ่มด้วย!</value>
   </data>
+  <data name="CannotGetEnough" xml:space="preserve">
+    <value>หากคุณคิดว่า!</value>
+  </data>
+  <data name="YourCurrentCommision" xml:space="preserve">
+    <value>เรทคอมมิชชั่นปัจจุบันยังน้อยไป?</value>
+  </data>
+  <data name="ContactYourAffilliateSupportTeam" xml:space="preserve">
+    <value>โปรดติดต่อทีมงานพันธมิตรของคุณเพื่อขอเพิ่มเรทเปอร์เซ็นต์ค่าคอมมิชชั่นให้คุณเพิ่มรายได้สูงขึ้นในแต่ละเดือน</value>
+  </data>
+  <data name="ContactNow" xml:space="preserve">
+    <value>ติดต่อเราสิคะ!</value>
+  </data>
 </root>

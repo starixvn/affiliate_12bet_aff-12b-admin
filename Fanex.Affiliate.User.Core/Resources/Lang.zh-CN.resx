@@ -3016,4 +3016,16 @@ b. 如果这些费用不能由您帐户上的资金所弥补，我们保留调�
   <data name="GetToKnowHotPromotion" xml:space="preserve">
     <value>了解本月最新优惠活动，将信息发布至合伙人的网站与社交媒体，以获取更多的顾客及佣金。</value>
   </data>
+  <data name="CannotGetEnough" xml:space="preserve">
+    <value>赚取的佣金</value>
+  </data>
+  <data name="YourCurrentCommision" xml:space="preserve">
+    <value>觉得太少了吗？</value>
+  </data>
+  <data name="ContactYourAffilliateSupportTeam" xml:space="preserve">
+    <value>联系您的合作伙伴支援团队，赚取独家佣金，以增加您每个月的收入。</value>
+  </data>
+  <data name="ContactNow" xml:space="preserve">
+    <value>联系我们！</value>
+  </data>
 </root>

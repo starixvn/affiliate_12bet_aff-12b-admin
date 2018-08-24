@@ -1348,6 +1348,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t Get Enough!.
+        /// </summary>
+        public static string CannotGetEnough {
+            get {
+                return ResourceManager.GetString("CannotGetEnough", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot send mail.Please try again..
         /// </summary>
         public static string CannotSendmail {
@@ -1843,6 +1852,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to CONTACT NOW!.
+        /// </summary>
+        public static string ContactNow {
+            get {
+                return ResourceManager.GetString("ContactNow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contact Number.
         /// </summary>
         public static string ContactNumber {
@@ -1878,6 +1896,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string ContactusComment {
             get {
                 return ResourceManager.GetString("ContactusComment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contact your affiliates support team for exclusive commission rate to growth bigger revenue in your monthly earning.
+        /// </summary>
+        public static string ContactYourAffilliateSupportTeam {
+            get {
+                return ResourceManager.GetString("ContactYourAffilliateSupportTeam", resourceCulture);
             }
         }
         
@@ -9829,6 +9856,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Youraccountinfo {
             get {
                 return ResourceManager.GetString("Youraccountinfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to YOUR CURRENT COMMISSION?.
+        /// </summary>
+        public static string YourCurrentCommision {
+            get {
+                return ResourceManager.GetString("YourCurrentCommision", resourceCulture);
             }
         }
         

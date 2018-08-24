@@ -532,6 +532,10 @@
     <Content Include="www\build\styles\fonts\Montserrat\font.min.css">
       <DependentUpon>font.css</DependentUpon>
     </Content>
+    <Content Include="www\build\styles\fonts\myriadPro\font.css" />
+    <Content Include="www\build\styles\fonts\myriadPro\font.min.css">
+      <DependentUpon>font.css</DependentUpon>
+    </Content>
     <Content Include="www\build\styles\fonts\tahoma\font.css" />
     <Content Include="www\build\styles\fonts\tahoma\font.min.css">
       <DependentUpon>font.css</DependentUpon>
@@ -801,6 +805,7 @@
     <Content Include="www\source\styles\fonts\bootstrap\glyphicons-halflings-regular.svg" />
     <Content Include="www\source\styles\fonts\font_bebas\Flat-it License.txt" />
     <Content Include="www\source\styles\fonts\Montserrat\font.css" />
+    <Content Include="www\source\styles\fonts\myriadPro\font.css" />
     <Content Include="www\source\styles\Images\ads-1.jpg" />
     <Content Include="www\source\styles\Images\ads-1\ads-1_200.jpg" />
     <Content Include="www\source\styles\Images\ads-1\ads-1_392.jpg" />
@@ -1038,6 +1043,16 @@
     <Content Include="Views\CommissionStructure\_Content.zh-CN.cshtml" />
     <Content Include="Views\CommissionStructure\_Content.zh-TW.cshtml" />
     <Content Include="Views\CommissionStructure\_RevenueShareTable.cshtml" />
+    <Content Include="www\build\styles\fonts\myriadPro\MYRIADPROREGULAR.eot" />
+    <Content Include="www\build\styles\fonts\myriadPro\MYRIADPROREGULAR.ttf" />
+    <Content Include="www\build\styles\fonts\myriadPro\MYRIADPROREGULAR.woff" />
+    <Content Include="www\source\styles\fonts\myriadPro\MYRIADPROREGULAR.eot" />
+    <Content Include="www\source\styles\fonts\myriadPro\MYRIADPROREGULAR.ttf" />
+    <Content Include="www\source\styles\fonts\myriadPro\MYRIADPROREGULAR.woff" />
+    <Content Include="www\build\styles\fonts\myriadPro\Myriad-Pro-Bold.ttf" />
+    <Content Include="www\source\styles\fonts\myriadPro\Myriad-Pro-Bold.ttf" />
+    <Content Include="www\build\styles\fonts\myriadPro\Myriad-Pro-Italic.ttf" />
+    <Content Include="www\source\styles\fonts\myriadPro\Myriad-Pro-Italic.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

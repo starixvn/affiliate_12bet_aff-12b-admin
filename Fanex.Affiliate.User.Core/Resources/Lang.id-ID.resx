@@ -2995,4 +2995,16 @@ Salah satu Manajer Rekening Afiliasi kami akan menghubungi Anda melalui email da
   <data name="GetToKnowHotPromotion" xml:space="preserve">
     <value>Dapatkan informasi promo terbaru bulan ini! Silakan post tentang promo 12BET di websute Anda dan mulai dapatkan keuntungan bulanan!</value>
   </data>
+  <data name="CannotGetEnough" xml:space="preserve">
+    <value>Gandakan Keuntungan!</value>
+  </data>
+  <data name="YourCurrentCommision" xml:space="preserve">
+    <value>KOMISI ANDA SAAT INI!</value>
+  </data>
+  <data name="ContactYourAffilliateSupportTeam" xml:space="preserve">
+    <value>Hubungi tim dukungan Afiliasi Anda untuk mendapatkan persentase komisi lebih dan dapatkan penghasilanan bulanan yang lebih besar.</value>
+  </data>
+  <data name="ContactNow" xml:space="preserve">
+    <value>HUBUNGI SEKARANG!</value>
+  </data>
 </root>
