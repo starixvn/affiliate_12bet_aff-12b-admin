@@ -1,11 +1,19 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
     using System.Web.Mvc;
+    using CoreService;
     using ONEbook.UM.Filters;
 
     [CheckUMFilter]
     public class FaqController : Controller
     {
+        private readonly ISessionService _sessionService;
+
+        public FaqController(ISessionService sessionService)
+        {
+            _sessionService = sessionService;
+        }
+
         [HttpGet]
         public ActionResult Index()
         {
@@ -17,7 +25,9 @@
         [OutputCache(Duration = 86400, VaryByParam = "none", VaryByCustom = "language")]
         public ActionResult Content()
         {
-            return PartialView("~/Views/Faq/_Content.cshtml");
+            var viewName = $"~/Views/Faq/_Content.{_sessionService.CurrentLanguage}.cshtml";
+
+            return PartialView(viewName);
         }
     }
 }
