@@ -14,6 +14,10 @@
 }
 
 <div class="content">
+    <div class="page-title">
+        <span class="text">@Lang.Product</span>
+    </div>
+
     @{ Html.RenderAction("Content", "Product"); }
 
     @if (!isAuthenticated)
@@ -22,5 +26,6 @@
             <a href="@Url.Action("Index", "SignUp")" class="btn btn-link btn-block nounderline">@Lang.SignUpAffiliateProgramNow</a>
         </div>
     }
+    @RazorHelper.RenderMovingTopButton()
 </div>
 

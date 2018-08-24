@@ -23,7 +23,9 @@
         [OutputCache(Duration = 86400, VaryByParam = "none", VaryByCustom = "language")]
         public ActionResult Content()
         {
-            return PartialView("~/Views/Product/_Content.cshtml");
+            var viewName = $"~/Views/Product/_Content.{SessionService.CurrentLanguage}.cshtml";
+
+            return PartialView(viewName);
         }
     }
 }

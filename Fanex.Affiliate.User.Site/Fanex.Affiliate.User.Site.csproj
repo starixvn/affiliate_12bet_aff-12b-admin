@@ -993,7 +993,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="www\source\styles\fonts\tahoma\font.css" />
-    <Content Include="Views\Product\_Content.cshtml" />
     <Content Include="Views\Faq\_Content.en-US.cshtml" />
     <Content Include="Views\Faq\_Content.zh-CN.cshtml" />
     <Content Include="Views\Faq\_Content.zh-TW.cshtml" />
@@ -1012,6 +1011,16 @@
     <Content Include="Views\TermAndCondition\_Content.vi-VN.cshtml" />
     <Content Include="Views\TermAndCondition\_Content.zh-CN.cshtml" />
     <Content Include="Views\TermAndCondition\_Content.zh-TW.cshtml" />
+    <Content Include="Views\Product\_CasinoProductTable.cshtml" />
+    <Content Include="Views\Product\_Content.en-US.cshtml" />
+    <Content Include="Views\Product\_Content.hi-IN.cshtml" />
+    <Content Include="Views\Product\_Content.id-ID.cshtml" />
+    <Content Include="Views\Product\_Content.ja-JP.cshtml" />
+    <Content Include="Views\Product\_Content.ko-KR.cshtml" />
+    <Content Include="Views\Product\_Content.th-TH.cshtml" />
+    <Content Include="Views\Product\_Content.vi-VN.cshtml" />
+    <Content Include="Views\Product\_Content.zh-CN.cshtml" />
+    <Content Include="Views\Product\_Content.zh-TW.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
