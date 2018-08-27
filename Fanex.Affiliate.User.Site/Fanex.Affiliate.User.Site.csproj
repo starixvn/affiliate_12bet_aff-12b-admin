@@ -545,6 +545,8 @@
     <Content Include="www\build\styles\Images\ads-1\ads-1_559.jpg" />
     <Content Include="www\build\styles\Images\ads-1\ads-1_644.jpg" />
     <Content Include="www\build\styles\Images\bg-adv_contact.png" />
+    <Content Include="www\build\styles\Images\bg-banner-signup.png" />
+    <Content Include="www\build\styles\Images\bg-get-banner.png" />
     <Content Include="www\build\styles\Images\bgLeft.jpg" />
     <Content Include="www\build\styles\Images\bgRight.jpg" />
     <Content Include="www\build\styles\Images\FAQ_banner.png" />
@@ -813,6 +815,8 @@
     <Content Include="www\source\styles\Images\ads-1\ads-1_644.jpg" />
     <Content Include="www\source\styles\Images\advertise.png" />
     <Content Include="www\source\styles\Images\bg-adv_contact.png" />
+    <Content Include="www\source\styles\Images\bg-banner-signup.png" />
+    <Content Include="www\source\styles\Images\bg-get-banner.png" />
     <Content Include="www\source\styles\Images\bgLeft.jpg" />
     <Content Include="www\source\styles\Images\bgRight.jpg" />
     <Content Include="www\source\styles\Images\bootstrap-formhelpers-countries.flags.png" />

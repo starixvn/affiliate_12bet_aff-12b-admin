@@ -1,4 +1,8 @@
-﻿.carousel.slide {
+﻿@mixin textBorder($color, $size) {
+    text-shadow: -#{$size}px -#{$size}px 0 $color, #{$size}px -#{$size}px 0 $color, -#{$size}px #{$size}px 0 $color, #{$size}px #{$size}px 0 $color;
+}
+
+.carousel.slide {
     .carousel-control {
         width: 2.5rem;
         background: transparent;
@@ -24,12 +28,18 @@
             }
         }
 
-        @media (min-width: 1300px) {
-            height: 350px;
-        }
+
 
         @media (min-width: 1600px) {
             height: 500px;
+        }
+
+        @media (min-width: 1300px) and (max-width: 1599px) {
+            height: 400px;
+        }
+
+        @media (min-width: 993px) and (max-width: 1299px) {
+            height: 300px;
         }
 
         @media (min-width: 768px) and (max-width: 992px) {
@@ -57,5 +67,161 @@
 
     &.banner-right {
         background: #00008e;
+    }
+}
+
+.get-banner, .banner-signup {
+    font-family: "Myriad Pro", sans-serif;
+    display: block;
+    max-width: 1500px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 5px 15px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    color: #fff;
+
+    &:hover, &:focus {
+        text-decoration: none;
+        color: #fff;
+    }
+
+    .btn {
+        $bg-btn-join: #f30303 0%, #c70000 100%;
+        @include background-gradient(top, $bg-btn-join);
+        position: relative;
+        margin-top: 20px;
+        border-radius: 6px;
+        padding: 8px 20px;
+        height: auto;
+        color: #fff;
+        font-weight: 600;
+        font-size: 30px;
+        overflow: hidden;
+        border: 1px solid #fc1515;
+
+        &:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 0;
+            top: 50%;
+            left: 50%;
+            background: rgba(255,255,255,.2);
+            opacity: 0;
+            z-index: -1;
+            @include css3-prefix(transform, translateX(-50%) translateY(-50%) rotate(45deg));
+            @include css3-prefix(transition, all .3s);
+        }
+
+        &:hover:after {
+            height: 260%;
+            opacity: 1;
+            z-index: 1;
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+}
+
+.banner-signup {
+    background-image: url("../../../../www/build/styles/Images/bg-banner-signup.png");
+    padding-left: 80px;
+
+    .upto {
+        position: relative;
+
+        > span {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .upto-text {
+            position: relative;
+            width: 60px;
+            height: 100px;
+            font-size: 50px;
+            color: #fff;
+            line-height: 1;
+            font-weight: 600;
+            text-transform: uppercase;
+            text-shadow: rgb(83, 58, 9) 2px 0px 0px, rgb(83, 58, 9) 1.75517px 0.958851px 0px, rgb(83, 58, 9) 1.0806px 1.68294px 0px, rgb(83, 58, 9) 0.141474px 1.99499px 0px, rgb(83, 58, 9) -0.832294px 1.81859px 0px, rgb(83, 58, 9) -1.60229px 1.19694px 0px, rgb(83, 58, 9) -1.97998px 0.28224px 0px, rgb(83, 58, 9) -1.87291px -0.701566px 0px, rgb(83, 58, 9) -1.30729px -1.5136px 0px, rgb(83, 58, 9) -0.421592px -1.95506px 0px, rgb(83, 58, 9) 0.567324px -1.91785px 0px, rgb(83, 58, 9) 1.41734px -1.41108px 0px, rgb(83, 58, 9) 1.92034px -0.558831px 0px;
+
+            span:first-child {
+                position: absolute;
+                top: 0;
+                border-bottom: 3px solid #fff;
+            }
+
+            span:last-child {
+                position: absolute;
+                bottom: 0;
+            }
+        }
+
+        .value {
+            font-size: 115px;
+            color: #ffb50c;
+            font-weight: 600;
+            line-height: 1;
+            text-shadow: rgb(83, 58, 9) 3px 0px 0px, rgb(83, 58, 9) 2.83487px 0.981584px 0px, rgb(83, 58, 9) 2.35766px 1.85511px 0px, rgb(83, 58, 9) 1.62091px 2.52441px 0px, rgb(83, 58, 9) 0.705713px 2.91581px 0px, rgb(83, 58, 9) -0.287171px 2.98622px 0px, rgb(83, 58, 9) -1.24844px 2.72789px 0px, rgb(83, 58, 9) -2.07227px 2.16926px 0px, rgb(83, 58, 9) -2.66798px 1.37182px 0px, rgb(83, 58, 9) -2.96998px 0.42336px 0px, rgb(83, 58, 9) -2.94502px -0.571704px 0px, rgb(83, 58, 9) -2.59586px -1.50383px 0px, rgb(83, 58, 9) -1.96093px -2.27041px 0px, rgb(83, 58, 9) -1.11013px -2.78704px 0px, rgb(83, 58, 9) -0.137119px -2.99686px 0px, rgb(83, 58, 9) 0.850987px -2.87677px 0px, rgb(83, 58, 9) 1.74541px -2.43999px 0px, rgb(83, 58, 9) 2.44769px -1.73459px 0px, rgb(83, 58, 9) 2.88051px -0.838247px 0px;
+        }
+    }
+
+    .text-big-white {
+        margin: 0;
+        font-size: 70px;
+        font-weight: 600;
+        line-height: 1;
+        text-shadow: rgb(83, 58, 9) 3px 0px 0px, rgb(83, 58, 9) 2.83487px 0.981584px 0px, rgb(83, 58, 9) 2.35766px 1.85511px 0px, rgb(83, 58, 9) 1.62091px 2.52441px 0px, rgb(83, 58, 9) 0.705713px 2.91581px 0px, rgb(83, 58, 9) -0.287171px 2.98622px 0px, rgb(83, 58, 9) -1.24844px 2.72789px 0px, rgb(83, 58, 9) -2.07227px 2.16926px 0px, rgb(83, 58, 9) -2.66798px 1.37182px 0px, rgb(83, 58, 9) -2.96998px 0.42336px 0px, rgb(83, 58, 9) -2.94502px -0.571704px 0px, rgb(83, 58, 9) -2.59586px -1.50383px 0px, rgb(83, 58, 9) -1.96093px -2.27041px 0px, rgb(83, 58, 9) -1.11013px -2.78704px 0px, rgb(83, 58, 9) -0.137119px -2.99686px 0px, rgb(83, 58, 9) 0.850987px -2.87677px 0px, rgb(83, 58, 9) 1.74541px -2.43999px 0px, rgb(83, 58, 9) 2.44769px -1.73459px 0px, rgb(83, 58, 9) 2.88051px -0.838247px 0px;
+    }
+
+    .text-yellow {
+        font-size: 40px;
+        font-weight: 600;
+        color: #ffb50c;
+        line-height: 1;
+        text-shadow: rgb(83, 58, 9) 2px 0px 0px, rgb(83, 58, 9) 1.75517px 0.958851px 0px, rgb(83, 58, 9) 1.0806px 1.68294px 0px, rgb(83, 58, 9) 0.141474px 1.99499px 0px, rgb(83, 58, 9) -0.832294px 1.81859px 0px, rgb(83, 58, 9) -1.60229px 1.19694px 0px, rgb(83, 58, 9) -1.97998px 0.28224px 0px, rgb(83, 58, 9) -1.87291px -0.701566px 0px, rgb(83, 58, 9) -1.30729px -1.5136px 0px, rgb(83, 58, 9) -0.421592px -1.95506px 0px, rgb(83, 58, 9) 0.567324px -1.91785px 0px, rgb(83, 58, 9) 1.41734px -1.41108px 0px, rgb(83, 58, 9) 1.92034px -0.558831px 0px;
+    }
+
+    .text-white {
+        margin: 0;
+        font-size: 48px;
+        font-weight: 600;
+        line-height: 1;
+        text-shadow: rgb(83, 58, 9) 2px 0px 0px, rgb(83, 58, 9) 1.75517px 0.958851px 0px, rgb(83, 58, 9) 1.0806px 1.68294px 0px, rgb(83, 58, 9) 0.141474px 1.99499px 0px, rgb(83, 58, 9) -0.832294px 1.81859px 0px, rgb(83, 58, 9) -1.60229px 1.19694px 0px, rgb(83, 58, 9) -1.97998px 0.28224px 0px, rgb(83, 58, 9) -1.87291px -0.701566px 0px, rgb(83, 58, 9) -1.30729px -1.5136px 0px, rgb(83, 58, 9) -0.421592px -1.95506px 0px, rgb(83, 58, 9) 0.567324px -1.91785px 0px, rgb(83, 58, 9) 1.41734px -1.41108px 0px, rgb(83, 58, 9) 1.92034px -0.558831px 0px;
+    }
+
+    .text-red {
+        color: #ef0202;
+    }
+
+}
+
+.get-banner {
+    background-image: url("../../../../www/build/styles/Images/bg-get-banner.png");
+    text-align: center;
+
+    .text-1 {
+        margin-top: 30px;
+        font-size: 40px;
+        text-transform: uppercase;
+        font-style: italic;
+        font-weight: 600;
+        color: #fff;
+        line-height: 1;
+        text-shadow: rgb(143, 106, 6) 2px 0px 0px, rgb(143, 106, 6) 1.75517px 0.958851px 0px, rgb(143, 106, 6) 1.0806px 1.68294px 0px, rgb(143, 106, 6) 0.141474px 1.99499px 0px, rgb(143, 106, 6) -0.832294px 1.81859px 0px, rgb(143, 106, 6) -1.60229px 1.19694px 0px, rgb(143, 106, 6) -1.97998px 0.28224px 0px, rgb(143, 106, 6) -1.87291px -0.701566px 0px, rgb(143, 106, 6) -1.30729px -1.5136px 0px, rgb(143, 106, 6) -0.421592px -1.95506px 0px, rgb(143, 106, 6) 0.567324px -1.91785px 0px, rgb(143, 106, 6) 1.41734px -1.41108px 0px, rgb(143, 106, 6) 1.92034px -0.558831px 0px;
+    }
+
+    .text-2 {
+        margin-top: 20px;
+        color: #fc9e0a;
+        font-size: 34px;
+        font-style: italic;
+        line-height: 1;
+        text-shadow: rgb(83, 27, 6) 2px 0px 0px, rgb(83, 27, 6) 1.75517px 0.958851px 0px, rgb(83, 27, 6) 1.0806px 1.68294px 0px, rgb(83, 27, 6) 0.141474px 1.99499px 0px, rgb(83, 27, 6) -0.832294px 1.81859px 0px, rgb(83, 27, 6) -1.60229px 1.19694px 0px, rgb(83, 27, 6) -1.97998px 0.28224px 0px, rgb(83, 27, 6) -1.87291px -0.701566px 0px, rgb(83, 27, 6) -1.30729px -1.5136px 0px, rgb(83, 27, 6) -0.421592px -1.95506px 0px, rgb(83, 27, 6) 0.567324px -1.91785px 0px, rgb(83, 27, 6) 1.41734px -1.41108px 0px, rgb(83, 27, 6) 1.92034px -0.558831px 0px;
     }
 }
