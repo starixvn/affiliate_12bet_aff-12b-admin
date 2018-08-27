@@ -127,6 +127,9 @@ var WebSite = (function ($) {
     return _me;
 })(jQuery);
 var SignUp = (function ($) {
+    var REFRESH_CAPTCHA_INTERVAL_TIME = 600000;
+    var _timeoutId = null;
+
     var _isReadTermAndCondition = false;
     function setFocusForLastInput() {
         $("#websiteInfo .urlInput").last().focus();
@@ -136,6 +139,7 @@ var SignUp = (function ($) {
         initialize: function () {
             _me.initEvent();
             _me.refreshCaptcha();
+            _timeoutId = setTimeout(_me.refreshCaptchaInterval, REFRESH_CAPTCHA_INTERVAL_TIME);
         },
 
         initEvent: function () {
@@ -170,6 +174,17 @@ var SignUp = (function ($) {
                 var hasWebSite = this.value === "True";
                 WebSite.changeWebsiteOption(hasWebSite);
             });
+
+            $("#signupCaptcha").on("click", function () {
+                _me.refreshCaptchaInterval();
+            })
+        },
+
+        refreshCaptchaInterval: function () {
+            _me.refreshCaptcha();
+
+            clearTimeout(_timeoutId);
+            _timeoutId = setTimeout(_me.refreshCaptchaInterval, REFRESH_CAPTCHA_INTERVAL_TIME);
         },
 
         submit: function () {
@@ -250,7 +265,7 @@ var SignUp = (function ($) {
 
         refreshCaptcha: function () {
             var captchaUrl = Site.resolveRelativeUrl("Auth/CaptchaImage?type=1&_v=" + new Date().getTime());
-            $("#validation-captcha").attr("src", captchaUrl);
+            $("#signupCaptcha").attr("src", captchaUrl);
         }
     };
 

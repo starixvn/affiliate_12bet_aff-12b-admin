@@ -1,22 +1,38 @@
 ﻿var Login = (function ($) {
+    var REFRESH_CAPTCHA_INTERVAL_TIME = 600000;
+    var _timeoutId = null;
+
     var _me = {
         initialize: function () {
             _me.registerLoginDialog();
             _me.initEvent();
             _me.initLoginDialogEvent();
+            _timeoutId = setTimeout(_me.refreshCaptchaInterval, REFRESH_CAPTCHA_INTERVAL_TIME);
+        },
+        refreshCaptchaInterval: function () {
+            if ($("#loginDialogcaptchaImg").attr("src") === "") {
+                _me.generateCaptcha();
+            }
+            else {
+                _me.generateDialogCaptcha();
+            }
+
+            clearTimeout(_timeoutId);
+            _timeoutId = setTimeout(_me.refreshCaptchaInterval, REFRESH_CAPTCHA_INTERVAL_TIME);
         },
         registerLoginDialog: function () {
             $("#loginDialog").on("show.bs.modal", function (e) {
-                console.log("run");
                 _me.generateDialogCaptcha();
+                clearTimeout(_timeoutId);
+                _timeoutId = setTimeout(_me.refreshCaptchaInterval, REFRESH_CAPTCHA_INTERVAL_TIME);
             })
 
             $("#loginDialog").on("hide.bs.modal", function (e) {
-                console.log("run-close");
                 $("#loginDialogcaptchaImg").attr("src", "");
                 _me.generateCaptcha();
+                clearTimeout(_timeoutId);
+                _timeoutId = setTimeout(_me.refreshCaptchaInterval, REFRESH_CAPTCHA_INTERVAL_TIME);
             })
-
         },
         initLoginDialogEvent: function () {
             $(".loginLink").on("click", function () {
@@ -32,6 +48,12 @@
                     _me.requestSignin(true);
                 }
             });
+
+            $("#loginDialogcaptchaImg").on("click", function () {
+                _me.generateDialogCaptcha();
+                clearTimeout(_timeoutId);
+                _timeoutId = setTimeout(_me.refreshCaptchaInterval, REFRESH_CAPTCHA_INTERVAL_TIME);
+            });
         },
         initEvent: function () {
             $("#btnLogin").on("click", function () {
@@ -43,7 +65,12 @@
                     _me.requestSignin();
                 }
             });
-            
+
+            $("#captchaImg").on("click", function () {
+                _me.generateCaptcha();
+                clearTimeout(_timeoutId);
+                _timeoutId = setTimeout(_me.refreshCaptchaInterval, REFRESH_CAPTCHA_INTERVAL_TIME);
+            });
         },
 
         requestSignin: function (onDialog) {
@@ -157,7 +184,6 @@
             }).toString();
         },
         generateDialogCaptcha: function () {
-          
             var captchaUrl = Site.resolveRelativeUrl("Auth/CaptchaImage?_v=" + new Date().getTime());
             $("#loginDialogcaptchaImg").attr("src", captchaUrl);
         },
