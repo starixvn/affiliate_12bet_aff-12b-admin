@@ -3,6 +3,11 @@
     Layout = "~/Views/Shared/_LayoutBeforeLogin.cshtml";
 }
 
+@model string
+@{ 
+    var viewName = "~/Views/TermAndCondition/_Content." + Model + ".cshtml";
+}
+
 <div class="content">
     <div class="page-title">
         <span class="text">@Lang.TermAndCondition</span>
@@ -12,7 +17,7 @@
         <img class="img-responsive" src="~/www/build/styles/Images/term-and-condition/termcondition.jpg" alt="Terms and Conditions" />
     </div>
 
-    @{ Html.RenderAction("Content", "TermAndCondition"); }
+    @{ Html.RenderPartial(viewName); }
 
     @RazorHelper.RenderMovingTopButton()
 </div>

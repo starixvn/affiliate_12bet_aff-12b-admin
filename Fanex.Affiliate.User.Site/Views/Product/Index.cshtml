@@ -3,10 +3,10 @@
     Layout = "~/Views/Shared/_LayoutBeforeLogin.cshtml";
 }
 
-@model bool
+@model Fanex.Affiliate.User.Core.ViewModels.ProductPageViewModel
 
 @{ 
-    var isAuthenticated = Model;
+    var viewName = "~/Views/Product/_Content." + Model.CurrentLanguage + ".cshtml";
 }
 
 @section styles{
@@ -18,9 +18,9 @@
         <span class="text">@Lang.Product</span>
     </div>
 
-    @{ Html.RenderAction("Content", "Product"); }
+    @{ Html.RenderPartial(viewName); }
 
-    @if (!isAuthenticated)
+    @if (!Model.IsAuthenticated)
     {
         <div class="col-sm-offset-4 col-sm-5 signup-block">
             <a href="@Url.Action("Index", "SignUp")" class="btn btn-link btn-block nounderline">@Lang.SignUpAffiliateProgramNow</a>

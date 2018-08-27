@@ -17,23 +17,13 @@ namespace Fanex.Affiliate.User.Core.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return View();
+            return View("~/Views/TermAndCondition/Index.cshtml", model: _sessionService.CurrentLanguage);
         }
 
         [HttpGet]
         public ActionResult Popup()
         {
-            return View();
-        }
-
-        [HttpGet]
-        [ChildActionOnly]
-        [OutputCache(Duration = 86400, VaryByParam = "none", VaryByCustom = "language")]
-        public ActionResult Content()
-        {
-            var viewName = $"~/Views/TermAndCondition/_Content.{_sessionService.CurrentLanguage}.cshtml";
-
-            return PartialView(viewName);
+            return View("~/Views/TermAndCondition/Popup.cshtml", model: _sessionService.CurrentLanguage);
         }
     }
 }

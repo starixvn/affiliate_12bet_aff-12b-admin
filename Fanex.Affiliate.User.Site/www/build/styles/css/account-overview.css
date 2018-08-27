@@ -10,7 +10,8 @@
   background: #fff;
   border: 1px solid #ccc;
   border-bottom-color: #bbb;
-  z-index: 10; }
+  z-index: 10;
+  right: 0; }
   .mp-container * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;

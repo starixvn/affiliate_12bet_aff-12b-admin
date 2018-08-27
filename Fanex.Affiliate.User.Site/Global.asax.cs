@@ -44,16 +44,5 @@ namespace Fanex.Affiliate.User.Site
 
             languageService.SetCulture(sessionService.CurrentLanguage);
         }
-
-        public override string GetVaryByCustomString(HttpContext context, string custom)
-        {
-            if (custom.ToLowerInvariant() == "language")
-            {
-                var sessionService = DependencyResolver.Current.GetService<ISessionService>();
-
-                return sessionService.CurrentLanguage;
-            }
-            return base.GetVaryByCustomString(context, custom);
-        }
     }
 }

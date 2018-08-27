@@ -2,6 +2,11 @@
     Layout = null;
 }
 
+@model string
+@{
+    var viewName = "~/Views/TermAndCondition/_Content." + Model + ".cshtml";
+}
+
 <!DOCTYPE html>
 
 <html>
@@ -30,7 +35,7 @@
                         <img class="img-responsive" src="~/www/build/styles/Images/term-and-condition/termcondition.jpg" alt="Terms and Conditions" />
                     </div>
 
-                    @{ Html.RenderAction("Content", "TermAndCondition"); }
+                    @{ Html.RenderPartial(viewName); }
 
                     @RazorHelper.RenderMovingTopButton()
                 </div>

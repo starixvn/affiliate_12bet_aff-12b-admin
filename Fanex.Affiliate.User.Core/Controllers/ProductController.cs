@@ -3,6 +3,7 @@
     using System.Web.Mvc;
     using CoreService;
     using Utilities;
+    using ViewModels;
 
     public class ProductController : BaseController
     {
@@ -14,18 +15,13 @@
         [HttpGet]
         public ActionResult Index()
         {
-            var isAuthenticated = HttpContext.Request.IsAuthenticated && SessionService.UserSession != null;
-            return View(isAuthenticated);
-        }
+            var viewModel = new ProductPageViewModel
+            {
+                CurrentLanguage = SessionService.CurrentLanguage,
+                IsAuthenticated = HttpContext.Request.IsAuthenticated && SessionService.UserSession != null
+            };
 
-        [HttpGet]
-        [ChildActionOnly]
-        [OutputCache(Duration = 86400, VaryByParam = "none", VaryByCustom = "language")]
-        public ActionResult Content()
-        {
-            var viewName = $"~/Views/Product/_Content.{SessionService.CurrentLanguage}.cshtml";
-
-            return PartialView(viewName);
+            return View("~/Views/Product/Index.cshtml", viewModel);
         }
     }
 }

@@ -2,6 +2,10 @@
     ViewBag.Title = Lang.CommissionStructure;
     Layout = "~/Views/Shared/_LayoutBeforeLogin.cshtml";
 }
+@model string
+@{ 
+    var viewName = "~/Views/CommissionStructure/_Content." + Model + ".cshtml";
+}
 
 <div class="content">
     <div class="page-title">
@@ -19,6 +23,6 @@
                  alt="Commission Structure">
         </picture>
     </div>
-    @{ Html.RenderAction("Content", "CommissionStructure"); }
+    @{ Html.RenderPartial(viewName); }
     @RazorHelper.RenderMovingTopButton()
 </div>

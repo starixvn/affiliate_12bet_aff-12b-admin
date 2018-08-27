@@ -17,17 +17,7 @@
         [HttpGet]
         public ActionResult Index()
         {
-            return View();
-        }
-
-        [HttpGet]
-        [ChildActionOnly]
-        [OutputCache(Duration = 86400, VaryByParam = "none", VaryByCustom = "language")]
-        public ActionResult Content()
-        {
-            var viewName = $"~/Views/CommissionStructure/_Content.{_sessionService.CurrentLanguage}.cshtml";
-
-            return PartialView(viewName);
+            return View("~/Views/CommissionStructure/Index.cshtml", model: _sessionService.CurrentLanguage);
         }
     }
 }
