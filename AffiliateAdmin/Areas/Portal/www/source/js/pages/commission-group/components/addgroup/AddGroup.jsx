@@ -10,7 +10,7 @@ import DeductionSetting from '../shared/deduction';
 import QmTurnOverSetting from '../shared/QmTurnOverSetting';
 import TierSetting from '../shared/tiersetting';
 import CommGroupInfo from '../shared/CommGroupInfo';
-import { defaultPagingOption } from '../../modules/constant';
+import { defaultPagingOption, messages } from '../../modules/constant';
 
 export class AddGroup extends React.Component {
     constructor(props) {
@@ -61,7 +61,7 @@ export class AddGroup extends React.Component {
             this.setState({
                 isShowMessage: true,
                 isSuccess: result.IsSuccessful,
-                message: [result.IsSuccessful ? 'Add Commission Group Successfully' : result.Message]
+                message: [result.IsSuccessful ? messages.addGroupSuccessfully : result.Message]
             });
         }
     }

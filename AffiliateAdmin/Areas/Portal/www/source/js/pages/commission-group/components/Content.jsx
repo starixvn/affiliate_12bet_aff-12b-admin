@@ -61,10 +61,10 @@ export class Content extends Component {
                     <Button outline type="button" onClick={this.handleAddNewGroup}>Add New Group</Button>
                 </div>
 
-                <Pager pageOption={this.props.pagingOption} onPaging={this.onPaging} />
                 <div className="my-1">
                     <GridData onEdit={this.handleEditGroup} />
                 </div>
+                <Pager pageOption={this.props.pagingOption} onPaging={this.onPaging} />
 
                 <Modal isOpen={showPopup} toggle={this.handleHide} size="lg" backdrop='static' innerRef={this.modalRef}>
                     <ModalHeader toggle={this.handleHide}><span className="iconpopup"></span>{popupTitle}</ModalHeader>

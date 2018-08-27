@@ -9,7 +9,7 @@ import DeductionSetting from '../shared/deduction';
 import QmTurnOverSetting from '../shared/QmTurnOverSetting';
 import TierSetting from '../shared/tiersetting';
 import CommGroupInfo from '../shared/CommGroupInfo';
-import { defaultPagingOption } from '../../modules/constant';
+import { defaultPagingOption, messages } from '../../modules/constant';
 import { validate } from '../../modules/service';
 
 export class EditGroup extends React.Component {
@@ -59,7 +59,7 @@ export class EditGroup extends React.Component {
             this.setState({
                 isShowMessage: true,
                 isSuccess: result.IsSuccessful,
-                message: [result.IsSuccessful ? 'Update Commission Group Successfully' : result.Message]
+                message: [result.IsSuccessful ? messages.updateGroupSuccessfully : result.Message]
             });
         }
     }

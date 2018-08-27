@@ -34,7 +34,12 @@ const _validationMessage = {
     requireQmTurnover: 'QM Turnover value is required',
     amountConstrain: 'Max Amount must be greater than or equal to Min Amount',
     qmConstrain: 'Max QM must be greater than or equal to Min QM',
-    requireSelectedProduct: 'At least 1 product must be selected per group'
+    requireSelectedProduct: 'At least 1 product must be selected per group',
+    confirmChangeGroup: 'Are you sure you want to change the commission group for affiliate: {0}',
+    choseAnotherGroup: 'Please choose another group (not old group)!',
+    assignGroupSuccessfully: 'Assign affiliate to commission group successfully',
+    addGroupSuccessfully: 'Add Commission Group Successfully',
+    updateGroupSuccessfully: 'Update Commission Group Successfully'
 }
 export const messages = _validationMessage;
 

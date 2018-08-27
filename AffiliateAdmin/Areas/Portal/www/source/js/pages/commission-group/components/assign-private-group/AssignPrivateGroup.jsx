@@ -5,6 +5,7 @@ import { Alert } from 'reactstrap';
 
 import { getSelectedCommGroup, setSelectedGroup } from '../../actions';
 import { buildDefaultCommGroup, validateQmTurnover, validateTierSettingList, validatePlatformFeeList } from '../../modules/service';
+import { messages } from '../../modules/constant';
 
 import DeductionSetting from '../shared/deduction';
 import QmTurnOverSetting from '../shared/QmTurnOverSetting';
@@ -31,7 +32,7 @@ export class AssignPrivateGroup extends React.Component {
             this.props.setSelectedGroup(commGroup);
         }
         else {
-            this.props.getSelectedCommGroup({GroupId});
+            this.props.getSelectedCommGroup({ GroupId });
         }
     }
 
@@ -59,22 +60,27 @@ export class AssignPrivateGroup extends React.Component {
             const response = await post('Portal/CommissionGroup/AssignPrivateGroup', param);
             const result = response.data;
 
+            const resultMessage = result.IsSuccessful ?
+                (affInfo.GroupId > 0 ? messages.updateGroupSuccessfully : messages.assignGroupSuccessfully) :
+                result.Message;
+
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            this.setState({
+                isShowMessage: true,
+                isSuccess: result.IsSuccessful,
+                message: [resultMessage]
+            });
+
             if (result.IsSuccessful) {
                 const mainFrame = top.frames["mainFrame"];
-                if (mainFrame) {
-                    mainFrame.location.reload();
-                }
-                else {
-                    window.location.reload();
-                }
-            }
-            else {
-                window.scrollTo({top: 0, behavior: "smooth"});
-                this.setState({
-                    isShowMessage: true,
-                    isSuccess: false,
-                    message: [result.Message]
-                });
+                window.setTimeout(() => {
+                    if (mainFrame) {
+                        mainFrame.location.reload();
+                    }
+                    else {
+                        window.location.reload();
+                    }
+                }, 2000)
             }
         }
     }

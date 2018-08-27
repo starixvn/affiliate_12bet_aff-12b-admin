@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { post } from '../../../../modules/ajaxRequest';
 import { Col, FormGroup, Label, Button, Input } from 'reactstrap';
 import { resolveClientUrl } from '../../../../modules/utils';
+import { messages } from '../../modules/constant';
 
 export default class AssignGroup extends Component {
     constructor(props) {
@@ -17,7 +18,7 @@ export default class AssignGroup extends Component {
 
     handleChange = (event) => {
         const { value } = event.target;
-        this.setState({ selectedGroup: value });
+        this.setState({ selectedGroup: Number(value) });
     }
 
     handleCheck = (event) => {
@@ -32,27 +33,35 @@ export default class AssignGroup extends Component {
             parent.ibcWnd.open(url, `Approve affiliate ${affInfo.UserName} with a private commission group`, 150, 50, 800, 529, 'class1', 'class2');
         }
         else {
-            const url = 'Portal/CommissionGroup/AssignGroup';
-            const params = {
-                assignParam: {
-                    groupId: selectedGroup
-                },
-                affInfo
+            if(affInfo.GroupId > 0 && affInfo.GroupId === selectedGroup){
+                window.alert(messages.choseAnotherGroup);
+                return;
             }
-            const response = await post(url, params);
-            const result = response.data;
 
-            if (result.IsSuccessful) {
-                const mainFrame = top.frames["mainFrame"];
-                if (mainFrame) {
-                    mainFrame.location.reload();
+            if (confirm(messages.confirmChangeGroup.replace('{0}', affInfo.UserName))) {
+                const url = 'Portal/CommissionGroup/AssignGroup';
+                const params = {
+                    assignParam: {
+                        groupId: selectedGroup
+                    },
+                    affInfo
+                }
+                const response = await post(url, params);
+                const result = response.data;
+
+                if (result.IsSuccessful) {
+                    window.alert(messages.assignGroupSuccessfully);
+                    const mainFrame = top.frames["mainFrame"];
+                    if (mainFrame) {
+                        mainFrame.location.reload();
+                    }
+                    else {
+                        window.location.reload();
+                    }
                 }
                 else {
-                    window.location.reload();
+                    window.alert(result.Message);
                 }
-            }
-            else {
-                window.alert(result.Message);
             }
         }
     }
