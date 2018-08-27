@@ -133,33 +133,15 @@
 
     .upto {
         position: relative;
+        text-shadow: rgb(83, 58, 9) 2px 0px 0px, rgb(83, 58, 9) 1.75517px 0.958851px 0px, rgb(83, 58, 9) 1.0806px 1.68294px 0px, rgb(83, 58, 9) 0.141474px 1.99499px 0px, rgb(83, 58, 9) -0.832294px 1.81859px 0px, rgb(83, 58, 9) -1.60229px 1.19694px 0px, rgb(83, 58, 9) -1.97998px 0.28224px 0px, rgb(83, 58, 9) -1.87291px -0.701566px 0px, rgb(83, 58, 9) -1.30729px -1.5136px 0px, rgb(83, 58, 9) -0.421592px -1.95506px 0px, rgb(83, 58, 9) 0.567324px -1.91785px 0px, rgb(83, 58, 9) 1.41734px -1.41108px 0px, rgb(83, 58, 9) 1.92034px -0.558831px 0px;
+        color: #fff;
+        line-height: 1;
+        font-weight: 600;
+        text-transform: uppercase;
 
         > span {
             display: inline-block;
             vertical-align: middle;
-        }
-
-        .upto-text {
-            position: relative;
-            width: 60px;
-            height: 100px;
-            font-size: 50px;
-            color: #fff;
-            line-height: 1;
-            font-weight: 600;
-            text-transform: uppercase;
-            text-shadow: rgb(83, 58, 9) 2px 0px 0px, rgb(83, 58, 9) 1.75517px 0.958851px 0px, rgb(83, 58, 9) 1.0806px 1.68294px 0px, rgb(83, 58, 9) 0.141474px 1.99499px 0px, rgb(83, 58, 9) -0.832294px 1.81859px 0px, rgb(83, 58, 9) -1.60229px 1.19694px 0px, rgb(83, 58, 9) -1.97998px 0.28224px 0px, rgb(83, 58, 9) -1.87291px -0.701566px 0px, rgb(83, 58, 9) -1.30729px -1.5136px 0px, rgb(83, 58, 9) -0.421592px -1.95506px 0px, rgb(83, 58, 9) 0.567324px -1.91785px 0px, rgb(83, 58, 9) 1.41734px -1.41108px 0px, rgb(83, 58, 9) 1.92034px -0.558831px 0px;
-
-            span:first-child {
-                position: absolute;
-                top: 0;
-                border-bottom: 3px solid #fff;
-            }
-
-            span:last-child {
-                position: absolute;
-                bottom: 0;
-            }
         }
 
         .value {
@@ -171,28 +153,25 @@
         }
     }
 
+    .text-border {
+        line-height: 1;
+        text-shadow: rgb(83, 58, 9) 2px 0px 0px, rgb(83, 58, 9) 1.75517px 0.958851px 0px, rgb(83, 58, 9) 1.0806px 1.68294px 0px, rgb(83, 58, 9) 0.141474px 1.99499px 0px, rgb(83, 58, 9) -0.832294px 1.81859px 0px, rgb(83, 58, 9) -1.60229px 1.19694px 0px, rgb(83, 58, 9) -1.97998px 0.28224px 0px, rgb(83, 58, 9) -1.87291px -0.701566px 0px, rgb(83, 58, 9) -1.30729px -1.5136px 0px, rgb(83, 58, 9) -0.421592px -1.95506px 0px, rgb(83, 58, 9) 0.567324px -1.91785px 0px, rgb(83, 58, 9) 1.41734px -1.41108px 0px, rgb(83, 58, 9) 1.92034px -0.558831px 0px;
+        font-weight: 600;
+    }
+
     .text-big-white {
         margin: 0;
-        font-size: 70px;
-        font-weight: 600;
-        line-height: 1;
-        text-shadow: rgb(83, 58, 9) 3px 0px 0px, rgb(83, 58, 9) 2.83487px 0.981584px 0px, rgb(83, 58, 9) 2.35766px 1.85511px 0px, rgb(83, 58, 9) 1.62091px 2.52441px 0px, rgb(83, 58, 9) 0.705713px 2.91581px 0px, rgb(83, 58, 9) -0.287171px 2.98622px 0px, rgb(83, 58, 9) -1.24844px 2.72789px 0px, rgb(83, 58, 9) -2.07227px 2.16926px 0px, rgb(83, 58, 9) -2.66798px 1.37182px 0px, rgb(83, 58, 9) -2.96998px 0.42336px 0px, rgb(83, 58, 9) -2.94502px -0.571704px 0px, rgb(83, 58, 9) -2.59586px -1.50383px 0px, rgb(83, 58, 9) -1.96093px -2.27041px 0px, rgb(83, 58, 9) -1.11013px -2.78704px 0px, rgb(83, 58, 9) -0.137119px -2.99686px 0px, rgb(83, 58, 9) 0.850987px -2.87677px 0px, rgb(83, 58, 9) 1.74541px -2.43999px 0px, rgb(83, 58, 9) 2.44769px -1.73459px 0px, rgb(83, 58, 9) 2.88051px -0.838247px 0px;
+        font-size: 70px;        
     }
 
     .text-yellow {
-        font-size: 40px;
-        font-weight: 600;
-        color: #ffb50c;
-        line-height: 1;
-        text-shadow: rgb(83, 58, 9) 2px 0px 0px, rgb(83, 58, 9) 1.75517px 0.958851px 0px, rgb(83, 58, 9) 1.0806px 1.68294px 0px, rgb(83, 58, 9) 0.141474px 1.99499px 0px, rgb(83, 58, 9) -0.832294px 1.81859px 0px, rgb(83, 58, 9) -1.60229px 1.19694px 0px, rgb(83, 58, 9) -1.97998px 0.28224px 0px, rgb(83, 58, 9) -1.87291px -0.701566px 0px, rgb(83, 58, 9) -1.30729px -1.5136px 0px, rgb(83, 58, 9) -0.421592px -1.95506px 0px, rgb(83, 58, 9) 0.567324px -1.91785px 0px, rgb(83, 58, 9) 1.41734px -1.41108px 0px, rgb(83, 58, 9) 1.92034px -0.558831px 0px;
+        font-size: 40px;        
+        color: #ffb50c;        
     }
 
     .text-white {
         margin: 0;
-        font-size: 48px;
-        font-weight: 600;
-        line-height: 1;
-        text-shadow: rgb(83, 58, 9) 2px 0px 0px, rgb(83, 58, 9) 1.75517px 0.958851px 0px, rgb(83, 58, 9) 1.0806px 1.68294px 0px, rgb(83, 58, 9) 0.141474px 1.99499px 0px, rgb(83, 58, 9) -0.832294px 1.81859px 0px, rgb(83, 58, 9) -1.60229px 1.19694px 0px, rgb(83, 58, 9) -1.97998px 0.28224px 0px, rgb(83, 58, 9) -1.87291px -0.701566px 0px, rgb(83, 58, 9) -1.30729px -1.5136px 0px, rgb(83, 58, 9) -0.421592px -1.95506px 0px, rgb(83, 58, 9) 0.567324px -1.91785px 0px, rgb(83, 58, 9) 1.41734px -1.41108px 0px, rgb(83, 58, 9) 1.92034px -0.558831px 0px;
+        font-size: 48px;        
     }
 
     .text-red {

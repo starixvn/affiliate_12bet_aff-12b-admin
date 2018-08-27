@@ -3026,4 +3026,40 @@ b. 如果這些費用不能由您帳戶上的資金所彌補，我們保留調�
   <data name="ContactNow" xml:space="preserve">
     <value>聯繫我們！</value>
   </data>
+  <data name="OptimizeYourWebsite" xml:space="preserve">
+    <value>優化您的網站</value>
+  </data>
+  <data name="AndSocialChannels" xml:space="preserve">
+    <value>與社交媒體</value>
+  </data>
+  <data name="ThroughSoccerSeason2018" xml:space="preserve">
+    <value>透過二千零十九分之二千零十八新賽季</value>
+  </data>
+  <data name="Update12BetBannersfromYourMediaGallery" xml:space="preserve">
+    <value>在媒體中心取得最新廣告資源</value>
+  </data>
+  <data name="AndPostPromotionsInYourWebsite" xml:space="preserve">
+    <value>並且公告優惠活動</value>
+  </data>
+  <data name="ToBeatTheBestCommission" xml:space="preserve">
+    <value>以獲取最高佣金！</value>
+  </data>
+  <data name="GetBannerNow" xml:space="preserve">
+    <value>立即領取廣告！</value>
+  </data>
+  <data name="UpTo" xml:space="preserve">
+    <value>&lt;span style="font-size: 50px;"&gt;高達&lt;/span&gt;</value>
+  </data>
+  <data name="MonthlyComission" xml:space="preserve">
+    <value>&lt;p class="text-white"&gt;&lt;span class="text-red"&gt;體育博彩 &amp; 娛樂城&lt;/span&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="OnSportandCasino" xml:space="preserve">
+    <value>&lt;p class="text-white"&gt;每月佣金！&lt;/p&gt;</value>
+  </data>
+  <data name="YouAreNotAffiliateYet" xml:space="preserve">
+    <value>還不是合作夥伴？</value>
+  </data>
+  <data name="SignUpAffiliatesNow" xml:space="preserve">
+    <value>立即註冊！</value>
+  </data>
 </root>

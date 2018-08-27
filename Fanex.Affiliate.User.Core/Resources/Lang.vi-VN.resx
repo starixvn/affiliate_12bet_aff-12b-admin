@@ -3007,4 +3007,40 @@ Cập Nhật Mới Nhất</value>
   <data name="ContactNow" xml:space="preserve">
     <value>LIÊN HỆ</value>
   </data>
+  <data name="OptimizeYourWebsite" xml:space="preserve">
+    <value>BẠN ĐÃ SẴN SÀNG CHO MÙA BÓNG LỚN 2018/19?</value>
+  </data>
+  <data name="AndSocialChannels" xml:space="preserve">
+    <value>KIẾM TIỀN HIỆU QUẢ HƠN VỚI CÁC KÊNH</value>
+  </data>
+  <data name="ThroughSoccerSeason2018" xml:space="preserve">
+    <value>MẠNG XÃ HỘI &amp; TRANG WEB RIÊNG CỦA MÌNH!</value>
+  </data>
+  <data name="Update12BetBannersfromYourMediaGallery" xml:space="preserve">
+    <value>Cập Nhật 12BET Banner Tại Thư Viện Ảnh</value>
+  </data>
+  <data name="AndPostPromotionsInYourWebsite" xml:space="preserve">
+    <value>Để Tăng Sức Hấp Dẫn Riêng</value>
+  </data>
+  <data name="ToBeatTheBestCommission" xml:space="preserve">
+    <value>Cho Đại Lý Của Bạn!</value>
+  </data>
+  <data name="GetBannerNow" xml:space="preserve">
+    <value>ĐĂNG NHẬP!</value>
+  </data>
+  <data name="UpTo" xml:space="preserve">
+    <value>&lt;span  style="position: relative; width: 60px; height: 100px; font-size: 50px;"&gt;&lt;span style="position: absolute; top: 0; border-bottom: 3px solid white;"&gt;Up&lt;/span&gt;&lt;span style="position: absolute; bottom: 0;"&gt;To&lt;/span&gt;&lt;/span&gt;</value>
+  </data>
+  <data name="MonthlyComission" xml:space="preserve">
+    <value>&lt;p class="text-big-white"&gt;THƯỞNG MỖI THÁNG DỰA TRÊN &lt;/p&gt;</value>
+  </data>
+  <data name="OnSportandCasino" xml:space="preserve">
+    <value>&lt;p class="text-white"&gt;DOANH THU CỦA&lt;span class="text-red"&gt; TẤT CẢ SẢN PHẨM&lt;/span&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="YouAreNotAffiliateYet" xml:space="preserve">
+    <value>BẠN CHƯA LÀ ĐẠI LÝ 12BET?</value>
+  </data>
+  <data name="SignUpAffiliatesNow" xml:space="preserve">
+    <value>ĐĂNG KÝ NGAY!</value>
+  </data>
 </root>

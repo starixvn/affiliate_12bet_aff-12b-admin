@@ -16,36 +16,33 @@
     <div id="mainBanner" class="carousel slide banner-center" data-ride="carousel">
         <div class="carousel-inner" role="listbox">
             <div class="item active">
-                <a class="nounderline banner-signup" href="@Url.Action("Index", "Signup")">  
-                    <div class="upto">
-                        <span class="upto-text">
-                            <span>up</span>
-                            <span>to</span>
-                        </span>                        
+                <a class="nounderline banner-signup" href="@Url.Action("Index", "Signup")">
+                    <div class="upto">                        
+                        @Html.Raw(@Lang.UpTo)                        
                         <span class="value">40%</span>
                     </div>
-                    <div>
-                        <p class="text-big-white">MONTHLY COMISSION!</p>
-                        <p class="text-white">ON<span class="text-red">SPORTS</span>& <span class="text-red">CASINO</span> REVENUE</p>
-                        <p class="text-yellow">YOU'RE NOT AFFILIATE YET?</p>
+                    <div class="text-border">
+                        @Html.Raw(@Lang.MonthlyComission)
+                        @Html.Raw(@Lang.OnSportandCasino)
+                        <p class="text-yellow">@Lang.YouAreNotAffiliateYet</p>
                     </div>
-                    <span class="btn">SIGN UP AFFILIATES NOW!</span>
+                    <span class="btn">@Lang.SignUpAffiliatesNow</span>
                 </a>
             </div>
 
             <div class="item">
-                <a class="nounderline get-banner @(Model.IsAuthenticated ? string.Empty : "loginLink")" href="@Model.BannerLink">   
+                <a class="nounderline get-banner @(Model.IsAuthenticated ? string.Empty : "loginLink")" href="@Model.BannerLink">
                     <div class="text-1">
-                        <p>OPTIMIZE YOUR WEBSTIE</p>
-                        <p>AND SOCIAL CHANNELS</p>
-                        <p>THROUGH SOCCER SEASON 2018/2019</p>
+                        <p>@Lang.OptimizeYourWebsite</p>
+                        <p>@Lang.AndSocialChannels</p>
+                        <p>@Lang.ThroughSoccerSeason2018</p>
                     </div>
                     <div class="text-2">
-                        <p>Update 12BET Banners from your Media Gallery</p>
-                        <p>And Post Promotions in Your Websites</p>
-                        <p>to Beat The Best Comission!</p>
+                        <p>@Lang.Update12BetBannersfromYourMediaGallery</p>
+                        <p>@Lang.AndPostPromotionsInYourWebsite</p>
+                        <p>@Lang.ToBeatTheBestCommission</p>
                     </div>
-                    <span class="btn">GET BANNER NOW!</span>
+                    <span class="btn">@Lang.GetBannerNow</span>
                 </a>
             </div>
         </div>
@@ -67,7 +64,7 @@
                         <span class="text">@Lang.ApplyOneTwoBetAffiliate</span>
                     </h4>
                     <a href="@Model.SignUpLink" class="nounderline">
-                        <div class="img-content">                            
+                        <div class="img-content">
                             <picture>
                                 <source srcset="~/www/build/styles/Images/advertise.webp" type="image/webp" />
                                 <source srcset="~/www/build/styles/Images/advertise.png" type="image/jpeg" />
@@ -90,7 +87,7 @@
                         <span class="text">@Lang.WhatNewInAffiliate</span>
                     </h4>
                     <div class="card-body">
-                        <a href="@Url.Action("Index", "ContactUs")" class="img-content adv-contact"> 
+                        <a href="@Url.Action("Index", "ContactUs")" class="img-content adv-contact">
                             <p class="text-1">@Lang.CannotGetEnough</p>
                             <p class="text-2">@Lang.YourCurrentCommision</p>
                             <span class="line"></span>

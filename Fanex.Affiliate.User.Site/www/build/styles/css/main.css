@@ -797,51 +797,34 @@ input[type="checkbox"], input[type="radio"] {
   background-image: url("../Images/bg-banner-signup.png");
   padding-left: 80px; }
   .banner-signup .upto {
-    position: relative; }
+    position: relative;
+    text-shadow: #533a09 2px 0px 0px, #533a09 1.75517px 0.95885px 0px, #533a09 1.0806px 1.68294px 0px, #533a09 0.14147px 1.99499px 0px, #533a09 -0.83229px 1.81859px 0px, #533a09 -1.60229px 1.19694px 0px, #533a09 -1.97998px 0.28224px 0px, #533a09 -1.87291px -0.70157px 0px, #533a09 -1.30729px -1.5136px 0px, #533a09 -0.42159px -1.95506px 0px, #533a09 0.56732px -1.91785px 0px, #533a09 1.41734px -1.41108px 0px, #533a09 1.92034px -0.55883px 0px;
+    color: #fff;
+    line-height: 1;
+    font-weight: 600;
+    text-transform: uppercase; }
     .banner-signup .upto > span {
       display: inline-block;
       vertical-align: middle; }
-    .banner-signup .upto .upto-text {
-      position: relative;
-      width: 60px;
-      height: 100px;
-      font-size: 50px;
-      color: #fff;
-      line-height: 1;
-      font-weight: 600;
-      text-transform: uppercase;
-      text-shadow: #533a09 2px 0px 0px, #533a09 1.75517px 0.95885px 0px, #533a09 1.0806px 1.68294px 0px, #533a09 0.14147px 1.99499px 0px, #533a09 -0.83229px 1.81859px 0px, #533a09 -1.60229px 1.19694px 0px, #533a09 -1.97998px 0.28224px 0px, #533a09 -1.87291px -0.70157px 0px, #533a09 -1.30729px -1.5136px 0px, #533a09 -0.42159px -1.95506px 0px, #533a09 0.56732px -1.91785px 0px, #533a09 1.41734px -1.41108px 0px, #533a09 1.92034px -0.55883px 0px; }
-      .banner-signup .upto .upto-text span:first-child {
-        position: absolute;
-        top: 0;
-        border-bottom: 3px solid #fff; }
-      .banner-signup .upto .upto-text span:last-child {
-        position: absolute;
-        bottom: 0; }
     .banner-signup .upto .value {
       font-size: 115px;
       color: #ffb50c;
       font-weight: 600;
       line-height: 1;
       text-shadow: #533a09 3px 0px 0px, #533a09 2.83487px 0.98158px 0px, #533a09 2.35766px 1.85511px 0px, #533a09 1.62091px 2.52441px 0px, #533a09 0.70571px 2.91581px 0px, #533a09 -0.28717px 2.98622px 0px, #533a09 -1.24844px 2.72789px 0px, #533a09 -2.07227px 2.16926px 0px, #533a09 -2.66798px 1.37182px 0px, #533a09 -2.96998px 0.42336px 0px, #533a09 -2.94502px -0.5717px 0px, #533a09 -2.59586px -1.50383px 0px, #533a09 -1.96093px -2.27041px 0px, #533a09 -1.11013px -2.78704px 0px, #533a09 -0.13712px -2.99686px 0px, #533a09 0.85099px -2.87677px 0px, #533a09 1.74541px -2.43999px 0px, #533a09 2.44769px -1.73459px 0px, #533a09 2.88051px -0.83825px 0px; }
+  .banner-signup .text-border {
+    line-height: 1;
+    text-shadow: #533a09 2px 0px 0px, #533a09 1.75517px 0.95885px 0px, #533a09 1.0806px 1.68294px 0px, #533a09 0.14147px 1.99499px 0px, #533a09 -0.83229px 1.81859px 0px, #533a09 -1.60229px 1.19694px 0px, #533a09 -1.97998px 0.28224px 0px, #533a09 -1.87291px -0.70157px 0px, #533a09 -1.30729px -1.5136px 0px, #533a09 -0.42159px -1.95506px 0px, #533a09 0.56732px -1.91785px 0px, #533a09 1.41734px -1.41108px 0px, #533a09 1.92034px -0.55883px 0px;
+    font-weight: 600; }
   .banner-signup .text-big-white {
     margin: 0;
-    font-size: 70px;
-    font-weight: 600;
-    line-height: 1;
-    text-shadow: #533a09 3px 0px 0px, #533a09 2.83487px 0.98158px 0px, #533a09 2.35766px 1.85511px 0px, #533a09 1.62091px 2.52441px 0px, #533a09 0.70571px 2.91581px 0px, #533a09 -0.28717px 2.98622px 0px, #533a09 -1.24844px 2.72789px 0px, #533a09 -2.07227px 2.16926px 0px, #533a09 -2.66798px 1.37182px 0px, #533a09 -2.96998px 0.42336px 0px, #533a09 -2.94502px -0.5717px 0px, #533a09 -2.59586px -1.50383px 0px, #533a09 -1.96093px -2.27041px 0px, #533a09 -1.11013px -2.78704px 0px, #533a09 -0.13712px -2.99686px 0px, #533a09 0.85099px -2.87677px 0px, #533a09 1.74541px -2.43999px 0px, #533a09 2.44769px -1.73459px 0px, #533a09 2.88051px -0.83825px 0px; }
+    font-size: 70px; }
   .banner-signup .text-yellow {
     font-size: 40px;
-    font-weight: 600;
-    color: #ffb50c;
-    line-height: 1;
-    text-shadow: #533a09 2px 0px 0px, #533a09 1.75517px 0.95885px 0px, #533a09 1.0806px 1.68294px 0px, #533a09 0.14147px 1.99499px 0px, #533a09 -0.83229px 1.81859px 0px, #533a09 -1.60229px 1.19694px 0px, #533a09 -1.97998px 0.28224px 0px, #533a09 -1.87291px -0.70157px 0px, #533a09 -1.30729px -1.5136px 0px, #533a09 -0.42159px -1.95506px 0px, #533a09 0.56732px -1.91785px 0px, #533a09 1.41734px -1.41108px 0px, #533a09 1.92034px -0.55883px 0px; }
+    color: #ffb50c; }
   .banner-signup .text-white {
     margin: 0;
-    font-size: 48px;
-    font-weight: 600;
-    line-height: 1;
-    text-shadow: #533a09 2px 0px 0px, #533a09 1.75517px 0.95885px 0px, #533a09 1.0806px 1.68294px 0px, #533a09 0.14147px 1.99499px 0px, #533a09 -0.83229px 1.81859px 0px, #533a09 -1.60229px 1.19694px 0px, #533a09 -1.97998px 0.28224px 0px, #533a09 -1.87291px -0.70157px 0px, #533a09 -1.30729px -1.5136px 0px, #533a09 -0.42159px -1.95506px 0px, #533a09 0.56732px -1.91785px 0px, #533a09 1.41734px -1.41108px 0px, #533a09 1.92034px -0.55883px 0px; }
+    font-size: 48px; }
   .banner-signup .text-red {
     color: #ef0202; }
 

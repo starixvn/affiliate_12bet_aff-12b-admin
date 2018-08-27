@@ -3071,4 +3071,40 @@ b.이러한 비용은 귀하의 계정으로 금액을 지불할수없으며 본
   <data name="ContactNow" xml:space="preserve">
     <value>지금 연결하세요!</value>
   </data>
+  <data name="OptimizeYourWebsite" xml:space="preserve">
+    <value>귀하의 웹사이트와 SNS에</value>
+  </data>
+  <data name="AndSocialChannels" xml:space="preserve">
+    <value>12BET 광고로 활용하시면서</value>
+  </data>
+  <data name="ThroughSoccerSeason2018" xml:space="preserve">
+    <value>2018/19 축구시즌을 준비하십시오.</value>
+  </data>
+  <data name="Update12BetBannersfromYourMediaGallery" xml:space="preserve">
+    <value>12BET미디어 갤러리에서 제공되는 배너와</value>
+  </data>
+  <data name="AndPostPromotionsInYourWebsite" xml:space="preserve">
+    <value>진행중인 이벤트를 업데이트하시고 </value>
+  </data>
+  <data name="ToBeatTheBestCommission" xml:space="preserve">
+    <value>제휴커미션을 늘려가십시오!</value>
+  </data>
+  <data name="GetBannerNow" xml:space="preserve">
+    <value>지금 갤러리 접속!</value>
+  </data>
+  <data name="UpTo" xml:space="preserve">
+    <value>&lt;span style="font-size: 50px;"&gt;최대&lt;/span&gt;</value>
+  </data>
+  <data name="MonthlyComission" xml:space="preserve">
+    <value>&lt;p class="text-big-white"&gt;월간 커미션 지급!&lt;/p&gt;</value>
+  </data>
+  <data name="OnSportandCasino" xml:space="preserve">
+    <value>&lt;p class="text-white"&gt;스포츠 &amp; &lt;span class="text-red"&gt; 카지노 &lt;/span&gt;수익&lt;/p&gt;</value>
+  </data>
+  <data name="YouAreNotAffiliateYet" xml:space="preserve">
+    <value>제휴사가 아니신가요?</value>
+  </data>
+  <data name="SignUpAffiliatesNow" xml:space="preserve">
+    <value>제휴 가입!</value>
+  </data>
 </root>

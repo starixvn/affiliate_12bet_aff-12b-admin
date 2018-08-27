@@ -3007,4 +3007,40 @@ Salah satu Manajer Rekening Afiliasi kami akan menghubungi Anda melalui email da
   <data name="ContactNow" xml:space="preserve">
     <value>HUBUNGI SEKARANG!</value>
   </data>
+  <data name="OptimizeYourWebsite" xml:space="preserve">
+    <value>OPTIMALKAN PENDAPATAN WEBSITE</value>
+  </data>
+  <data name="AndSocialChannels" xml:space="preserve">
+    <value>DAN AKUN SOSIAL MEDIA ANDA</value>
+  </data>
+  <data name="ThroughSoccerSeason2018" xml:space="preserve">
+    <value>SEPANJANG MUSIM KOMPETISI 2018/19</value>
+  </data>
+  <data name="Update12BetBannersfromYourMediaGallery" xml:space="preserve">
+    <value>Update Banner 12BET dan</value>
+  </data>
+  <data name="AndPostPromotionsInYourWebsite" xml:space="preserve">
+    <value>Post Promosi 12BET di Website Anda</value>
+  </data>
+  <data name="ToBeatTheBestCommission" xml:space="preserve">
+    <value>Untuk Dapat Komisi Terbaik!</value>
+  </data>
+  <data name="GetBannerNow" xml:space="preserve">
+    <value>LIHAT BANNER SEKARANG!</value>
+  </data>
+  <data name="UpTo" xml:space="preserve">
+    <value>&lt;span style="position: relative; width: 408px; height: 100px; font-size: 50px;"&gt;&lt;span style="position: absolute; top: 0; border-bottom: 3px solid #fff;"&gt;KOMISI BULANAN&lt;/span&gt;&lt;span style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);"&gt;HINGGA&lt;/span&gt;&lt;/span&gt;</value>
+  </data>
+  <data name="MonthlyComission" xml:space="preserve">
+    <value>&lt;p&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="OnSportandCasino" xml:space="preserve">
+    <value>&lt;p class="text-white"&gt;DARI PENDAPATAN&lt;span class="text-red"&gt; OLAHRAGA&lt;/span&gt; &amp; &lt;span class="text-red"&gt;KASINO&lt;/span&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="YouAreNotAffiliateYet" xml:space="preserve">
+    <value>BELUM MENJADI AFILIASI?</value>
+  </data>
+  <data name="SignUpAffiliatesNow" xml:space="preserve">
+    <value>DAFTAR JADI AFILIASI SEKARANG JUGA!</value>
+  </data>
 </root>
