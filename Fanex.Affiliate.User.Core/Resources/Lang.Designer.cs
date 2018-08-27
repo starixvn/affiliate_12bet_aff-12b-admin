@@ -6204,7 +6204,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to &lt;p class=&quot;text-white&quot;&gt;ON&lt;span class=&quot;text-red&quot;&gt;SPORTS&lt;/span&gt;&amp; &lt;span class=&quot;text-red&quot;&gt;CASINO&lt;/span&gt; REVENUE&lt;/p&gt;.
         /// </summary>
         public static string OnSportandCasino {
             get {
@@ -7626,6 +7626,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SIGN UP AFFILIATES NOW!.
+        /// </summary>
+        public static string SignUpAffiliatesNow {
+            get {
+                return ResourceManager.GetString("SignUpAffiliatesNow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sincerely,.
         /// </summary>
         public static string Sincerely {
@@ -9041,9 +9050,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;span  style=&quot;position: relative; width: 60px; height: 100px; font-size: 50px;&quot;&gt;  
-        ///                            &lt;span style=&quot;position: absolute; top: 0; border-bottom: 3px solid #fff;&quot;&gt;Up&lt;/span&gt;&lt;span style=&quot;position: absolute; bottom: 0;&quot;&gt;To&lt;/span&gt;
-        ///                        &lt;/span&gt;.
+        ///   Looks up a localized string similar to &lt;span  style=&quot;position: relative; width: 60px; height: 100px; font-size: 50px;&quot;&gt;&lt;span style=&quot;position: absolute; top: 0; border-bottom: 3px solid white;&quot;&gt;Up&lt;/span&gt;&lt;span style=&quot;position: absolute; bottom: 0;&quot;&gt;To&lt;/span&gt;&lt;/span&gt;.
         /// </summary>
         public static string UpTo {
             get {
@@ -9813,6 +9820,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string YouAndWeWillBeReleased {
             get {
                 return ResourceManager.GetString("YouAndWeWillBeReleased", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to YOU&apos;RE NOT AFFILIATE YET?.
+        /// </summary>
+        public static string YouAreNotAffiliateYet {
+            get {
+                return ResourceManager.GetString("YouAreNotAffiliateYet", resourceCulture);
             }
         }
         
