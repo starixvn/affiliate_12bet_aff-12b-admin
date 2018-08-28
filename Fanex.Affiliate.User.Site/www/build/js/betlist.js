@@ -21,32 +21,48 @@ var BetList = (function () {
         },
 
         getMixParlayResultUrl: function getMixParlayResultUrl(refno, winlostdate, bettype, username) {
-            var queryString = "refno=" + refno + "&winlossdate=" + winlostdate + "&bettype=" + bettype + "&matchid=" + 1 + "&username=" + username;
-            return Site.resolveRelativeUrl("UserPanel/BetList/Result?" + queryString);
+            return {
+                refno: refno,
+                winlossdate: winlostdate,
+                bettype: bettype,
+                matchid: 1,
+                username: username
+            };
         },
 
         getSportBookResultUrl: function getSportBookResultUrl(matchid, bettype, raceNo, sporttype, league, isOutright, username, betidOrHdp1, hdp2) {
-            var queryString = "matchid=" + matchid + "&bettype=" + bettype + "&raceno=" + raceNo + "&sporttype=" + sporttype + "&isoutright=" + isOutright + "&username=" + username + "&betid=" + betidOrHdp1;
+            var params = {
+                matchid: matchid,
+                bettype: bettype,
+                raceno: raceNo,
+                sporttype: sporttype,
+                isoutright: isOutright,
+                username: username,
+                betid: betidOrHdp1
+            };
 
             if (hdp2) {
-                queryString += "&handicap2=" + hdp2;
+                params.handicap2 = hdp2;
             }
 
-            return Site.resolveRelativeUrl("UserPanel/BetList/Result?" + queryString);
+            return params;
         },
 
         ViewResult: function ViewResult(matchid, raceNo, bettype, sporttype, refno, username, winlostdate, refnoMixParlay, league, isOutright, betidOrHdp1, hdp2) {
-            var url = isMixParlay(bettype) ? _me.getMixParlayResultUrl(refnoMixParlay, winlostdate, bettype, username) : _me.getSportBookResultUrl(matchid, bettype, raceNo, sporttype, league, isOutright, username, betidOrHdp1, hdp2);
+            var url = Site.resolveRelativeUrl("UserPanel/BetList/Result");
+            var params = isMixParlay(bettype) ? _me.getMixParlayResultUrl(refnoMixParlay, winlostdate, bettype, username) : _me.getSportBookResultUrl(matchid, bettype, raceNo, sporttype, league, isOutright, username, betidOrHdp1, hdp2);
 
-            _me.showPopup(url, resourceLang.result);
+            _me.showPopup(url, params, resourceLang.result);
         },
 
-        showPopup: function showPopup(url, title, onSuccess) {
+        showPopup: function showPopup(url, params, title, onSuccess) {
             $.ajax({
-                type: "GET",
+                type: "POST",
                 dataType: "html",
+                contentType: "application/json; charset=UTF-8",
                 cache: false,
                 url: url,
+                data: JSON.stringify(params),
                 success: function success(response) {
                     $("#betListDisalogTitle").html(title || "");
                     $("#betlistDialogContent").html(response);
@@ -83,10 +99,17 @@ var BetList = (function () {
                 return;
             }
 
-            var queryString = "transId" + transId + "&refno=" + refNo + "&betid=" + betId + "&custid=" + custId + "&betteam=" + betTeam + "&basecurrency=" + baseCurrency;
-            var url = Site.resolveRelativeUrl("UserPanel/BetList/ParlayDetail?" + queryString);
+            var url = Site.resolveRelativeUrl("UserPanel/BetList/ParlayDetail");
+            var params = {
+                transId: transId,
+                refno: refNo,
+                betid: betId,
+                custid: custId,
+                betteam: betTeam,
+                basecurrency: baseCurrency
+            };
 
-            _me.showPopup(url, betTeam);
+            _me.showPopup(url, params, betTeam);
         },
 
         showNewCombMP: function showNewCombMP(transId, transIndex, refNo, handicap1, handicap2, betcheck, betteam) {
@@ -95,14 +118,23 @@ var BetList = (function () {
             $detaillDiv.addClass("mx-parlay"); //to make line-through for void-parlay-ticket
 
             if ($detaillDiv.is(':hidden')) {
-                var queryString = "transId=" + transId + "&refno=" + refNo + "&handicap1=" + handicap1 + "&handicap2=" + handicap2 + "&betcheck=" + betcheck + "&betteam=" + betteam;
-                var url = Site.resolveRelativeUrl("UserPanel/BetList/NewParlay?" + queryString);
+                var url = Site.resolveRelativeUrl("UserPanel/BetList/NewParlay");
+                var params = {
+                    transId: transId,
+                    refno: refNo,
+                    handicap1: handicap1,
+                    handicap2: handicap2,
+                    betcheck: betcheck,
+                    betteam: betteam
+                };
 
                 $.ajax({
-                    type: "GET",
+                    type: "POST",
                     dataType: "html",
+                    contentType: "application/json; charset=UTF-8",
                     cache: false,
                     url: url,
+                    data: JSON.stringify(params),
                     success: function success(response) {
                         $detaillDiv.html(response).show();
                         $nameDiv.hide();
@@ -121,13 +153,14 @@ var BetList = (function () {
         },
 
         showOldMixParlayDetail: function showOldMixParlayDetail(transId, $divEvent) {
-            var url = Site.resolveRelativeUrl("UserPanel/BetList/OldParlay?transId=" + transId);
+            var url = Site.resolveRelativeUrl("UserPanel/BetList/OldParlay");
             if ($divEvent.is(':hidden')) {
                 $.ajax({
-                    type: "GET",
+                    type: "POST",
                     dataType: "html",
                     cache: false,
                     url: url,
+                    data: { transId: transId },
                     success: function success(response) {
                         $divEvent.html(response).show();
                     },
@@ -146,10 +179,16 @@ var BetList = (function () {
         ViewCashOutHistory: function ViewCashOutHistory(transId, refNo, betType, betdaqId) {
             var isCashOut = betType === BETTYPE_CASHOUT || betdaqId < 1 && betType !== BETTYPE_BOUGHT;
 
-            var queryString = "transId=" + transId + "&refno=" + refNo + "&betType=" + betType + "&betdaqId=" + betdaqId + "&isCashOut=" + isCashOut;
-            var url = Site.resolveRelativeUrl("UserPanel/BetList/CashOutDetail?" + queryString);
+            var url = Site.resolveRelativeUrl("UserPanel/BetList/CashOutDetail");
+            var params = {
+                transId: transId,
+                refno: refNo,
+                betType: betType,
+                betdaqId: betdaqId,
+                isCashOut: isCashOut
+            };
 
-            _me.showPopup(url, isCashOut ? 'Cash Out Details' : 'Bought Details');
+            _me.showPopup(url, params, isCashOut ? 'Cash Out Details' : 'Bought Details');
         }
     };
 

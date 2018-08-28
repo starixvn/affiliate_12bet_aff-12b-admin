@@ -74,7 +74,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
             return View(viewPath, new MainBetListViewModel());
         }
 
-        [HttpGet]
+        [HttpPost]
         [AjaxOnly]
         public ActionResult Result(BetListResultParam resultParam)
         {
@@ -105,7 +105,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
             return View("~/Views/UserPanel/BetList/Result.cshtml", model: result);
         }
 
-        [HttpGet]
+        [HttpPost]
         [AjaxOnly]
         public ActionResult ParlayDetail(BetListParlayDetailParam parlayDetailParam)
         {
@@ -126,7 +126,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
             return View("~/Views/UserPanel/BetList/ParlayDetail.cshtml", model: result);
         }
 
-        [HttpGet]
+        [HttpPost]
         [AjaxOnly]
         public ActionResult NewParlay(BetListNewParlayParam newParlayParam)
         {
@@ -146,7 +146,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpPost]
         [AjaxOnly]
         public ActionResult CashOutDetail(BetListCashoutDetailParam cashoutDetailParam)
         {
@@ -165,7 +165,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpPost]
         [AjaxOnly]
         public ActionResult OldParlay(string transId)
         {
