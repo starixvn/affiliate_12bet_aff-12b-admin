@@ -102,7 +102,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 }
             }
 
-            return View("~/Views/UserPanel/BetList/Result.cshtml", result);
+            return View("~/Views/UserPanel/BetList/Result.cshtml", model: result);
         }
 
         [HttpGet]
@@ -123,7 +123,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 result = webService.GetBetlistSystemParlay(AffiliateName, ExchangeRate, criteria, Language);
             }
 
-            return View("~/Views/UserPanel/BetList/ParlayDetail.cshtml", result);
+            return View("~/Views/UserPanel/BetList/ParlayDetail.cshtml", model: result);
         }
 
         [HttpGet]
