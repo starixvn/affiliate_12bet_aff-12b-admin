@@ -6,7 +6,6 @@
     using Extensions;
     using Fanex.Affiliate.User.Core.CoreService;
     using Fanex.Affiliate.User.Core.Repository.UserPanel;
-    using Fanex.Affiliate.User.Core.Utilities;
     using Filters;
     using MetalModels.UserPanel;
     using ONEbook.UM.Filters;
@@ -43,7 +42,7 @@
                 ProductList = param.IsOnlyContent ? null : _statementHistoryRepository.GetProductList(param.IsInternal),
                 Data = _statementHistoryRepository.GetDailyEarning(param),
                 SelectedProduct = param.ProductId.Value,
-                IsKoreanAgentCommGroup = extraUserInfo.GroupName.MatchWith(CommGroupName.KoreanAgentComm),
+                IsKoreanAgentCommGroup = !string.IsNullOrEmpty(extraUserInfo.GroupName) && extraUserInfo.GroupName.MatchWith(CommGroupName.KoreanAgentComm),
                 HasDailyDetail = extraUserInfo.HasDailyDetail
             };
             ViewBag.MonthDate = param.MonthDate;

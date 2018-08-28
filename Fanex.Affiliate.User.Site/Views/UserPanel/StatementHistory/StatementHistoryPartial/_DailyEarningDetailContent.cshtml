@@ -25,6 +25,9 @@
                 var index = 1;
                 foreach (var item in Model.MainData)
                 {
+                    var userName = item.UserName.ToLowerInvariant().StartsWith("12bet$") ?
+                        item.UserName.Substring(6, item.UserName.Length - 6) :
+                        item.UserName;
                     <tr>
                         <td>@index</td>
                         <td class="text-center">
@@ -39,12 +42,12 @@
                                 };
 
                                 <a class="earningDetailItem" href="javascript:;" data-param="@Json.Encode(param)">
-                                    @item.DisplayUserName
+                                    @userName
                                 </a>
                             }
                             else
                             {
-                                @item.DisplayUserName
+                                @userName
                             }
                         </td>
                         <td class="text-right">
@@ -80,6 +83,8 @@
             }
         }
     </tbody>
+
+
 </table>
 
 @if (!hasData)

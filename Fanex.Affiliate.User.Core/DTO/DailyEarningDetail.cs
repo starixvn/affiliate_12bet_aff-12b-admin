@@ -13,13 +13,5 @@
         public decimal Turnover { get; set; }
 
         public decimal Deposit { get; set; }
-
-        public string DisplayUserName
-        {
-            get
-            {
-                return UserName.ToLowerInvariant().StartsWith("12bet$") ? UserName.Substring(6, UserName.Length - 6) : UserName;
-            }
-        }
     }
 }

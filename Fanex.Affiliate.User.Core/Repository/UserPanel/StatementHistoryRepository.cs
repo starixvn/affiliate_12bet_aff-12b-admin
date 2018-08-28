@@ -96,22 +96,51 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
         {
             const string uSpKey = "Aff_AffiliateUser_ExtraUserInfoSel";
             var mode = isInternal ? DBMode.View : DBMode.Main;
+            var result = new ExtraUserInfo();
 
             using (var objectDb = new ObjectDBBuilder(uSpKey, mode))
             {
-                return objectDb.DB.QueryEntity<ExtraUserInfo>(new { affId });
+                objectDb.DB.AddInParameter("AffId", System.Data.SqlDbType.Int, affId);
+
+                using (var reader = objectDb.DB.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        result.GroupName = Convert.ToString(reader["GroupName"]);
+                        result.HasDailyDetail = Convert.ToBoolean(reader["HasDailyDetail"]);
+                    }
+                }
             }
+
+            return result;
         }
 
         public IEnumerable<DailyEarningDetail> GetDailyEarningDetail(DailyEarningParam earningDetailParam)
         {
             const string uSpKey = "Aff_DailyEarning_Detail_Sel";
             var mode = earningDetailParam.IsInternal ? DBMode.View : DBMode.Main;
+            var result = new List<DailyEarningDetail>();
 
             using (var objectDb = new ObjectDBBuilder(uSpKey, mode))
             {
-                return objectDb.DB.Query<DailyEarningDetail>(earningDetailParam);
+                using (var reader = objectDb.DB.ExecuteReader(earningDetailParam))
+                {
+                    while (reader.Read())
+                    {
+                        result.Add(new DailyEarningDetail
+                        {
+                            CustId = Convert.ToInt32(reader["CustId"]),
+                            UserName = Convert.ToString(reader["UserName"]),
+                            Deposit = Convert.ToDecimal(reader["Deposit"]),
+                            Withdrawal = Convert.ToDecimal(reader["Withdrawal"]),
+                            Turnover = Convert.ToDecimal(reader["Turnover"]),
+                            WinLost = Convert.ToDecimal(reader["Winlost"])
+                        });
+                    }
+                }
             }
+
+            return result;
         }
     }
 }
