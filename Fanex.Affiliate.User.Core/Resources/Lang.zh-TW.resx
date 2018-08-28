@@ -3048,7 +3048,7 @@ b. 如果這些費用不能由您帳戶上的資金所彌補，我們保留調�
     <value>立即領取廣告！</value>
   </data>
   <data name="UpTo" xml:space="preserve">
-    <value>&lt;span style="font-size: 50px;"&gt;高達&lt;/span&gt;</value>
+    <value>&lt;span class="text-white"&gt;高達&lt;/span&gt;</value>
   </data>
   <data name="MonthlyComission" xml:space="preserve">
     <value>&lt;p class="text-white"&gt;&lt;span class="text-red"&gt;體育博彩 &amp; 娛樂城&lt;/span&gt;&lt;/p&gt;</value>

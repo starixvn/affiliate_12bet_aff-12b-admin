@@ -39,19 +39,15 @@
         }
 
         @media (min-width: 993px) and (max-width: 1299px) {
-            height: 300px;
+            height: 350px;
         }
 
-        @media (min-width: 768px) and (max-width: 992px) {
+        /*@media (min-width: 768px) and (max-width: 992px) {
             height: 250px;
-        }
+        }*/
 
-        @media (min-width: 501px) and (max-width: 767px) {
-            height: 200px;
-        }
-
-        @media (max-width: 500px) {
-            height: 125px;
+        @media (max-width: 767px) {
+            height: 250px;
         }
     }
 }
@@ -79,7 +75,7 @@
     padding: 5px 15px;
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: left bottom;
+    background-position: center bottom;
     color: #fff;
 
     &:hover, &:focus {
@@ -125,6 +121,18 @@
             outline: none;
         }
     }
+
+    @media screen and (max-width: 1299px) {
+        .btn {
+            font-size: 25px;
+            margin-top: 10px;
+            padding: 5px 15px;
+        }
+    }
+
+    @media (min-width: 1600px) {
+        padding-top: 50px;
+    }
 }
 
 .banner-signup {
@@ -144,12 +152,47 @@
             vertical-align: middle;
         }
 
+        .up-to-group {
+            position: relative; 
+            width: 60px; 
+            height: 100px; 
+            margin-top: 20px;
+            font-size: 50px;
+
+            .up {
+                position: absolute; 
+                top: 0; 
+                border-bottom: 3px solid white;
+            }
+
+            .to {
+                position: absolute; bottom: 0;
+            }
+        }
+
+        .up-to-group-indo {
+            width: 408px;
+
+            .to {
+                left: 50%; 
+                transform: translateX(-50%);
+            }
+        }
+
+        .up-to-group-vn {
+            width: 100px; height: 110px;
+        }
+
         .value {
             font-size: 115px;
             color: #ffb50c;
             font-weight: 600;
             line-height: 1;
             text-shadow: rgb(83, 58, 9) 3px 0px 0px, rgb(83, 58, 9) 2.83487px 0.981584px 0px, rgb(83, 58, 9) 2.35766px 1.85511px 0px, rgb(83, 58, 9) 1.62091px 2.52441px 0px, rgb(83, 58, 9) 0.705713px 2.91581px 0px, rgb(83, 58, 9) -0.287171px 2.98622px 0px, rgb(83, 58, 9) -1.24844px 2.72789px 0px, rgb(83, 58, 9) -2.07227px 2.16926px 0px, rgb(83, 58, 9) -2.66798px 1.37182px 0px, rgb(83, 58, 9) -2.96998px 0.42336px 0px, rgb(83, 58, 9) -2.94502px -0.571704px 0px, rgb(83, 58, 9) -2.59586px -1.50383px 0px, rgb(83, 58, 9) -1.96093px -2.27041px 0px, rgb(83, 58, 9) -1.11013px -2.78704px 0px, rgb(83, 58, 9) -0.137119px -2.99686px 0px, rgb(83, 58, 9) 0.850987px -2.87677px 0px, rgb(83, 58, 9) 1.74541px -2.43999px 0px, rgb(83, 58, 9) 2.44769px -1.73459px 0px, rgb(83, 58, 9) 2.88051px -0.838247px 0px;
+        }
+
+        .text-white {
+            font-size: 50px;
         }
     }
 
@@ -159,8 +202,7 @@
         font-weight: 600;
     }
 
-    .text-big-white {
-        margin: 0;
+    .text-big-white {        
         font-size: 70px;        
     }
 
@@ -176,8 +218,43 @@
 
     .text-red {
         color: #ef0202;
+    }   
+
+    @media screen and (max-width: 1299px) {
+        .upto .value {
+            font-size: 90px;
+        }
+
+        .text-big-white {
+            font-size: 40px;
+        }
+
+        .text-yellow {
+            font-size: 30px;
+        }
+
+        .text-white {
+            font-size: 35px;
+        }
     }
 
+    @media (min-width: 768px) and (max-width: 992px) {
+        .upto .value {
+            font-size: 80px;
+        }
+
+        .text-big-white {
+            font-size: 35px;
+        }
+
+        .text-yellow {
+            font-size: 30px;  
+        }
+
+        .text-white {
+            font-size: 25px;
+        }
+    }
 }
 
 .get-banner {
@@ -202,5 +279,26 @@
         font-style: italic;
         line-height: 1;
         text-shadow: rgb(83, 27, 6) 2px 0px 0px, rgb(83, 27, 6) 1.75517px 0.958851px 0px, rgb(83, 27, 6) 1.0806px 1.68294px 0px, rgb(83, 27, 6) 0.141474px 1.99499px 0px, rgb(83, 27, 6) -0.832294px 1.81859px 0px, rgb(83, 27, 6) -1.60229px 1.19694px 0px, rgb(83, 27, 6) -1.97998px 0.28224px 0px, rgb(83, 27, 6) -1.87291px -0.701566px 0px, rgb(83, 27, 6) -1.30729px -1.5136px 0px, rgb(83, 27, 6) -0.421592px -1.95506px 0px, rgb(83, 27, 6) 0.567324px -1.91785px 0px, rgb(83, 27, 6) 1.41734px -1.41108px 0px, rgb(83, 27, 6) 1.92034px -0.558831px 0px;
+    }
+
+    @media screen and (max-width: 1299px) {
+        .text-1 {
+            font-size: 35px;
+        }
+
+        .text-2 {
+            font-size: 28px;
+        }        
+    }
+
+    @media (min-width: 768px) and (max-width: 992px) {
+        .text-1 {
+            font-size: 30px;
+        }
+
+        .text-2 {
+            font-size: 20px;
+            margin-top: 10px;
+        }
     }
 }

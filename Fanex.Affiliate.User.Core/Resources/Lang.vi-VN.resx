@@ -3029,7 +3029,7 @@ Cập Nhật Mới Nhất</value>
     <value>ĐĂNG NHẬP!</value>
   </data>
   <data name="UpTo" xml:space="preserve">
-    <value>&lt;span  style="position: relative; width: 100px; height: 110px; font-size: 50px;"&gt;&lt;span style="position: absolute; top: 0; border-bottom: 3px solid white;"&gt;LÊN&lt;/span&gt;&lt;span style="position: absolute; bottom: 0;"&gt;ĐẾN&lt;/span&gt;&lt;/span&gt;</value>
+    <value>&lt;span class="up-to-group up-to-group-vn"&gt;&lt;span class="up"&gt;LÊN&lt;/span&gt;&lt;span class="to"&gt;ĐẾN&lt;/span&gt;&lt;/span&gt;</value>
   </data>
   <data name="MonthlyComission" xml:space="preserve">
     <value>&lt;p class="text-big-white"&gt;THƯỞNG MỖI THÁNG DỰA TRÊN &lt;/p&gt;</value>

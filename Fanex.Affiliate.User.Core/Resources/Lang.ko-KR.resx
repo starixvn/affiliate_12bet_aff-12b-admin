@@ -3093,7 +3093,7 @@ b.이러한 비용은 귀하의 계정으로 금액을 지불할수없으며 본
     <value>지금 갤러리 접속!</value>
   </data>
   <data name="UpTo" xml:space="preserve">
-    <value>&lt;span style="font-size: 50px;"&gt;최대&lt;/span&gt;</value>
+    <value>&lt;span class="text-white"&gt;최대&lt;/span&gt;</value>
   </data>
   <data name="MonthlyComission" xml:space="preserve">
     <value>&lt;p class="text-big-white"&gt;월간 커미션 지급!&lt;/p&gt;</value>

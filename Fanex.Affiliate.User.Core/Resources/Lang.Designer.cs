@@ -9050,7 +9050,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;span  style=&quot;position: relative; width: 60px; height: 100px; font-size: 50px;&quot;&gt;&lt;span style=&quot;position: absolute; top: 0; border-bottom: 3px solid white;&quot;&gt;Up&lt;/span&gt;&lt;span style=&quot;position: absolute; bottom: 0;&quot;&gt;To&lt;/span&gt;&lt;/span&gt;.
+        ///   Looks up a localized string similar to &lt;span class=&quot;up-to-group&quot;&gt;&lt;span class=&quot;up&quot;&gt;Up&lt;/span&gt;&lt;span class=&quot;to&quot;&gt;To&lt;/span&gt;&lt;/span&gt;.
         /// </summary>
         public static string UpTo {
             get {
