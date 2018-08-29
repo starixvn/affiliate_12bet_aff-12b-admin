@@ -43,7 +43,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
         [AllowAnonymous]
         public ActionResult AuthenticationForm()
         {
-            if (_sessionService.UserSession == null)
+            if (!User.Identity.IsAuthenticated || _sessionService.UserSession == null)
             {
                 var keyString = Generator.GetRandomString(32);
                 var ivString = Generator.GetRandomString(16);

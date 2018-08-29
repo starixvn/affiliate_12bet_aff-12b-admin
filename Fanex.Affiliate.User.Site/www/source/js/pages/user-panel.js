@@ -2,6 +2,9 @@
     var allowedActionList = ["AccountOverView", "StatementHistory", "MyAccount", "PaymentRequest",
         "MediaGallery", "TextBox", "TrackingStatistics", "ReferrersStatistics", "LandingPageStatistics",
         "DailyEarning", "DailyEarningDetail", "BetList", "MessageHistory", "CommissionReport"];
+
+    var _ajaxRequest = null;
+
     var _me = {
         datepicker: [],
         initialize: function () {
@@ -10,8 +13,18 @@
         },
 
         initEvent: function () {
-            $(window).on('hashchange', function () {
+            $(window).on('hashchange', function (event) {
+                event.stopPropagation();
                 _me.renderView();
+            });
+
+            $("#mainMenu").on("click", ".menu-item", function (event) {
+                event.stopPropagation();
+                var currentPathWithHash = window.location.pathname + window.location.hash;
+                var hrefMenu = $(this).attr("href");
+                if (currentPathWithHash === hrefMenu) {
+                    _me.renderView();
+                }
             });
         },
 
@@ -31,7 +44,11 @@
 
             var url = Site.resolveRelativeUrl("UserPanel/" + action + queryString);
 
-            $.ajax({
+            if (_ajaxRequest != null) {
+                _ajaxRequest.abort();
+            }
+
+            _ajaxRequest = $.ajax({
                 type: "GET",
                 dataType: "html",
                 cache: false,
