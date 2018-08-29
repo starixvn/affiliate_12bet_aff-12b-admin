@@ -70,24 +70,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 12BET Affiliates Team.
-        /// </summary>
-        public static string _12BETAffiliatesTeam {
-            get {
-                return ResourceManager.GetString("_12BETAffiliatesTeam", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 12Bet Affiliates - Your Application.
-        /// </summary>
-        public static string _12BetAffiliatesYourApplication {
-            get {
-                return ResourceManager.GetString("_12BetAffiliatesYourApplication", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 12BET Player Account.
         /// </summary>
         public static string _12BETPlayerAcc {
@@ -97,29 +79,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 12BET User Name is invalid.
-        /// </summary>
-        public static string _12BETUserNamei {
-            get {
-                return ResourceManager.GetString("_12BETUserNamei", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to About Us.
         /// </summary>
         public static string AboutUs {
             get {
                 return ResourceManager.GetString("AboutUs", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Account ID.
-        /// </summary>
-        public static string AccId {
-            get {
-                return ResourceManager.GetString("AccId", resourceCulture);
             }
         }
         
@@ -169,24 +133,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This e-mail will include a link, which you need to click on. to activate your account and confirm your e-mail address and conclude your registration..
-        /// </summary>
-        public static string ActiveAcc {
-            get {
-                return ResourceManager.GetString("ActiveAcc", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 2. Active Wagering Members refers to customers that reach a minimum wagering turnover amount equivalent to One Hundred Dollars (USD100.00) each in any given calendar month..
-        /// </summary>
-        public static string ActiveWageringMembersRefers {
-            get {
-                return ResourceManager.GetString("ActiveWageringMembersRefers", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Address.
         /// </summary>
         public static string Address {
@@ -223,15 +169,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to * Affiliates are only allowed to have one withdrawal request for each calendar month. Should the Affiliates intend to request for a second withdrawal in any month, such request shall be subject to Affiliate Manager&apos;s approval. While we offer free withdrawal request however we will not be held responsible if the receiving financial institution or electronic wallets impose a fee of any kind at their end. The minimum amount of withdrawal request is USD$100..
-        /// </summary>
-        public static string AffilatesAreOnlyAllowed {
-            get {
-                return ResourceManager.GetString("AffilatesAreOnlyAllowed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Affiliate.
         /// </summary>
         public static string Affiliate {
@@ -241,74 +178,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  Affiliate Earning.
-        /// </summary>
-        public static string AffiliateEarnings {
-            get {
-                return ResourceManager.GetString("AffiliateEarnings", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 2. Affiliation Guidelines.
-        /// </summary>
-        public static string AffiliateGuidelines {
-            get {
-                return ResourceManager.GetString("AffiliateGuidelines", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Affiliate ID.
         /// </summary>
         public static string AffiliateID {
             get {
                 return ResourceManager.GetString("AffiliateID", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 6. Affiliate must ensure that any material posted on their site is legal and does not infringe copyright or violate any rights..
-        /// </summary>
-        public static string AffiliateMustEnsure {
-            get {
-                return ResourceManager.GetString("AffiliateMustEnsure", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 9. Affiliates are prohibited from playing at any of the sportsbooks promoted by 12BET through their own affiliate link or from the affiliate link of an associate who shares all or part of the commission with the affiliate or a third party. This shall include any individuals or playing groups from which an Affiliate receives compensation or remuneration from of any kind. In the event of violation of this section, 12BET and the respective website that has been played with shall have the right to void all play [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string AffiliatesAreProhibited {
-            get {
-                return ResourceManager.GetString("AffiliatesAreProhibited", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 8. Affiliates will not earn any commission from a member’s turnover or win/loss resulting from or connected with any horse racing and casino wagers using the 12BET website..
-        /// </summary>
-        public static string AffiliatesWillNotEarn {
-            get {
-                return ResourceManager.GetString("AffiliatesWillNotEarn", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 3. Affiliate Tagging.
-        /// </summary>
-        public static string AffiliateTagging {
-            get {
-                return ResourceManager.GetString("AffiliateTagging", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 2. Affiliation Guidelines.
-        /// </summary>
-        public static string AffiliationGuidelines {
-            get {
-                return ResourceManager.GetString("AffiliationGuidelines", resourceCulture);
             }
         }
         
@@ -349,47 +223,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to All Agent.
-        /// </summary>
-        public static string allagent {
-            get {
-                return ResourceManager.GetString("allagent", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to All Member.
-        /// </summary>
-        public static string allmember {
-            get {
-                return ResourceManager.GetString("allmember", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to All Products.
         /// </summary>
         public static string AllProducts {
             get {
                 return ResourceManager.GetString("AllProducts", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to b. All rights and licenses given to you in this Agreement shall immediately terminate..
-        /// </summary>
-        public static string AllRightAndLicensee {
-            get {
-                return ResourceManager.GetString("AllRightAndLicensee", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A maximum of one withdrawal request can be made for each calendar month. Affiliates can request for a second settlement in a month subject to Affiliate Manager&apos;s approval. While we offer free withdrawal request however we will not be held responsible if the receiving financial institution or electronic wallets impose a fee of any kind at their end. .
-        /// </summary>
-        public static string AMaximumOfOneWithdrawal {
-            get {
-                return ResourceManager.GetString("AMaximumOfOneWithdrawal", resourceCulture);
             }
         }
         
@@ -439,15 +277,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A new password will be sent to the email address that you provided. .
-        /// </summary>
-        public static string Anewpasswordwil {
-            get {
-                return ResourceManager.GetString("Anewpasswordwil", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Angola .
         /// </summary>
         public static string Angola {
@@ -466,61 +295,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Good news!
-        ///&lt;br/&gt;
-        ///Traffic tracking has been enhanced in your latest affiliate text and banner links. Please access 
-        ///&lt;a href=&quot;javascript:void(0)&quot; id=&quot;media_gallery_link&quot;&gt;Media Gallery&lt;/a&gt; to get them now!
-        ///&lt;br/&gt;&lt;br/&gt;
-        ///Thank you..
-        /// </summary>
-        public static string AnnouncementBody {
-            get {
-                return ResourceManager.GetString("AnnouncementBody", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Enhanced Tracking Technology.
-        /// </summary>
-        public static string AnnouncementHeader {
-            get {
-                return ResourceManager.GetString("AnnouncementHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Answer.
         /// </summary>
         public static string answer {
             get {
                 return ResourceManager.GetString("answer", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to a. Any form of Spam will result in your account being placed under review and all funds due being withheld pending an investigation into your account. You need to be aware that our clients are liable to incur expenses in dealing with Spam generated mail and these same expenses will be deducted from your account should our client seek recourse. In this instance the amount determined by the relative client will be fair and deemed final and acceptable based on good faith and such amount will be collectable by  [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string AnyformofSpam {
-            get {
-                return ResourceManager.GetString("AnyformofSpam", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Any negative balance for a given month will be carried forward to the next. For example if for the month of January your affiliate account ends with -$2,555, this amount will be carried forward to February. If at the end of February your affiliate account earns $3,400, the total balance will be $845 ($3,400 deduct -$2,555). However if your account is still making a loss at the end of February, for example -$1,600, then it will be added to the previous negative balance and be carried forward to March resulti [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string AnyNegativeBalance {
-            get {
-                return ResourceManager.GetString("AnyNegativeBalance", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Application Under Review.
-        /// </summary>
-        public static string ApplicationUnde {
-            get {
-                return ResourceManager.GetString("ApplicationUnde", resourceCulture);
             }
         }
         
@@ -548,15 +327,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Approved {
             get {
                 return ResourceManager.GetString("Approved", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Apr.
-        /// </summary>
-        public static string Apr {
-            get {
-                return ResourceManager.GetString("Apr", resourceCulture);
             }
         }
         
@@ -597,46 +367,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 
-        ///		As a 12BET Affiliates you will be paid commission on every player you referred to
-        ///        12BET over the course of the player&apos;s account life. Our online reporting system
-        ///        will be available 24 hours a day 7 days a week for your usage.
-        ///	.
-        /// </summary>
-        public static string As12BETAffiliates {
-            get {
-                return ResourceManager.GetString("As12BETAffiliates", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to As a 12Bet.com Affiliate, all you have to do is direct your visitors to our website using special tracking code that you can place on your website.
-        /// </summary>
-        public static string Asa_12BetcomAff {
-            get {
-                return ResourceManager.GetString("Asa_12BetcomAff", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 1. As an Affiliate you are responsible for promoting 12BET by implementing the advertising, banners and tracking URL&apos;s on your websites, e-mails or other communications..
-        /// </summary>
-        public static string AsAnAffiliate {
-            get {
-                return ResourceManager.GetString("AsAnAffiliate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to As a 12BET Affiliates you will be paid commission on every player you referred to 12BET over the course of the player&apos;s account life. Our online reporting system will be available 24 hours a day 7 days a week for your usage. &lt;br&gt;How much you earn will depend on how much traffic you can send over from your website. It is our job to guide them through the registration process, having them make their first deposit, and retain their business with our attractive bonuses and offerings..
-        /// </summary>
-        public static string AsAOneTwoBetAffiliates {
-            get {
-                return ResourceManager.GetString("AsAOneTwoBetAffiliates", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to As affiliates, you will earn commission on every player you referred to 12BET  over the course of the player&apos;s account life. Your online system will be  serving  you 24/7 for your usage..
         /// </summary>
         public static string AsAOneTwoBetYouWillEarnCommission {
@@ -646,47 +376,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to As a policy, 12BET shall not accept an online application for registration as an affiliate if you advertise with Internet Protocol (IP) addresses located in or originating from within the geographical jurisdiction of the United Kingdom..
-        /// </summary>
-        public static string AsaPolicy12BETShallNo {
-            get {
-                return ResourceManager.GetString("AsaPolicy12BETShallNo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 1. Assign-ability and Inurement a. You may not assign this Agreement, by operation of law or otherwise, without our prior written consent. Subject to that restriction, this Agreement will be binding on, inure to the benefit of, and enforceable against you and us and our respective successors and assigns..
-        /// </summary>
-        public static string Assignability {
-            get {
-                return ResourceManager.GetString("Assignability", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to As you have requested, we provide you a new password. You new account information is as below:.
-        /// </summary>
-        public static string Asyouhaverequested {
-            get {
-                return ResourceManager.GetString("Asyouhaverequested", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to AUD (Australia Dollar).
         /// </summary>
         public static string AUD {
             get {
                 return ResourceManager.GetString("AUD", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Aug.
-        /// </summary>
-        public static string Aug {
-            get {
-                return ResourceManager.GetString("Aug", resourceCulture);
             }
         }
         
@@ -772,15 +466,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You cannot request payout because of insufficient balance..
-        /// </summary>
-        public static string Balance0 {
-            get {
-                return ResourceManager.GetString("Balance0", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Balance Brought Forward.
         /// </summary>
         public static string BalForward {
@@ -795,15 +480,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Bangladesh {
             get {
                 return ResourceManager.GetString("Bangladesh", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Bank ABA/Swift/Sort Code.
-        /// </summary>
-        public static string BankABA_Swift_S {
-            get {
-                return ResourceManager.GetString("BankABA_Swift_S", resourceCulture);
             }
         }
         
@@ -826,29 +502,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bank Account Name.
-        /// </summary>
-        public static string BankAccountName {
-            get {
-                return ResourceManager.GetString("BankAccountName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Bank Account Name is required.
         /// </summary>
         public static string BankAccountNameIsRequired {
             get {
                 return ResourceManager.GetString("BankAccountNameIsRequired", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Bank Account Number.
-        /// </summary>
-        public static string BankAccountNumb {
-            get {
-                return ResourceManager.GetString("BankAccountNumb", resourceCulture);
             }
         }
         
@@ -885,15 +543,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string BankCity {
             get {
                 return ResourceManager.GetString("BankCity", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Bank ABA/Swift/Sort Code.
-        /// </summary>
-        public static string BankCode {
-            get {
-                return ResourceManager.GetString("BankCode", resourceCulture);
             }
         }
         
@@ -948,24 +597,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Banner {
             get {
                 return ResourceManager.GetString("Banner", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Banner.
-        /// </summary>
-        public static string banners {
-            get {
-                return ResourceManager.GetString("banners", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 4. Banners and links may not be placed within unsolicited e-mail, unauthorized newsgroup postings, or chat rooms or through the use of &quot;bots&quot;. Traffic generated illegally will not be counted and may result in the termination of your affiliate account with us..
-        /// </summary>
-        public static string BannersAndLinks {
-            get {
-                return ResourceManager.GetString("BannersAndLinks", resourceCulture);
             }
         }
         
@@ -1033,83 +664,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Best regards,.
-        /// </summary>
-        public static string BestRegards {
-            get {
-                return ResourceManager.GetString("BestRegards", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Best view in.
-        /// </summary>
-        public static string BestView {
-            get {
-                return ResourceManager.GetString("BestView", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Bet.
-        /// </summary>
-        public static string Bet {
-            get {
-                return ResourceManager.GetString("Bet", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 12BET.
-        /// </summary>
-        public static string Bet12 {
-            get {
-                return ResourceManager.GetString("Bet12", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 12BET User Name.
         /// </summary>
         public static string Bet12Username {
             get {
                 return ResourceManager.GetString("Bet12Username", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 12BET Affiliate Program is a partnership program where you will earn commissions based on the wagering activity of players that you refer to 12BET.com from your Website via online or offline via referrals. .
-        /// </summary>
-        public static string BETAffiliatesProgram {
-            get {
-                return ResourceManager.GetString("BETAffiliatesProgram", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 12Bet Affiliates - [{transid}] - Payment Request Notification  .
-        /// </summary>
-        public static string BetAffNotification {
-            get {
-                return ResourceManager.GetString("BetAffNotification", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Bet Per Line.
-        /// </summary>
-        public static string betperline {
-            get {
-                return ResourceManager.GetString("betperline", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Bet Summary.
-        /// </summary>
-        public static string betsummary {
-            get {
-                return ResourceManager.GetString("betsummary", resourceCulture);
             }
         }
         
@@ -1222,60 +781,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to By accessing our Media Gallery section you will be available to choose your preferred banners as well as text link for your Website..
-        /// </summary>
-        public static string ByAccessingOurMediaGallery {
-            get {
-                return ResourceManager.GetString("ByAccessingOurMediaGallery", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 3. By agreeing to participate in the 12BET Affiliate Program, you are agreeing to download banners, text or promotional material and place it on your site, utilize it within e-mail, direct marketing using your affiliate URL or print. These methods are the only approved methods by which you may advertise 12BET&apos;s products and services..
-        /// </summary>
-        public static string ByAgreeingToParticipate {
-            get {
-                return ResourceManager.GetString("ByAgreeingToParticipate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to By having read, the terms and conditions, and acknowledging such in the affiliate sign-up form you agree to all the terms and conditions contained herein. 12BET reserves the right to withhold payment from any affiliate that violates any of the terms and conditions contained herein.
-        /// </summary>
-        public static string ByHavingRead {
-            get {
-                return ResourceManager.GetString("ByHavingRead", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 2. By opening an account with a customer, that person or entity will become our Customers and, accordingly, all Client rules, policies, and operating procedures will apply to them..
-        /// </summary>
-        public static string ByOpeningAnAccountWithACustomer {
-            get {
-                return ResourceManager.GetString("ByOpeningAnAccountWithACustomer", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 2. By this Agreement, we grant you the non-exclusive right to direct customers to our sites and services, in accordance with the terms and conditions of this Agreement. This Agreement does not grant you an exclusive right or privilege to assist us in the provision of services arising from your referrals, and we reserve the right to contract with and obtain the assistance from other parties at any time to perform services of the same or similar nature as yours. You shall have no claims to referral fees or ot [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string BythisAgreement {
-            get {
-                return ResourceManager.GetString("BythisAgreement", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Calculated.
-        /// </summary>
-        public static string Calculated {
-            get {
-                return ResourceManager.GetString("Calculated", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Cambodia .
         /// </summary>
         public static string Cambodia {
@@ -1348,38 +853,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Can I request for currency other than USD when withdrawing? .
-        /// </summary>
-        public static string CanIRequest {
-            get {
-                return ResourceManager.GetString("CanIRequest", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Can I request for currency other than USD when withdrawing?.
-        /// </summary>
-        public static string CanIRequestForCurrency {
-            get {
-                return ResourceManager.GetString("CanIRequestForCurrency", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Can&apos;t Get Enough!.
         /// </summary>
         public static string CannotGetEnough {
             get {
                 return ResourceManager.GetString("CannotGetEnough", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cannot send mail.Please try again..
-        /// </summary>
-        public static string CannotSendmail {
-            get {
-                return ResourceManager.GetString("CannotSendmail", resourceCulture);
             }
         }
         
@@ -1416,15 +894,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string CasinoClubs {
             get {
                 return ResourceManager.GetString("CasinoClubs", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Casino.
-        /// </summary>
-        public static string CasinoExtension {
-            get {
-                return ResourceManager.GetString("CasinoExtension", resourceCulture);
             }
         }
         
@@ -1506,24 +975,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string ChangePassword {
             get {
                 return ResourceManager.GetString("ChangePassword", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Change password error.
-        /// </summary>
-        public static string Changepassworde {
-            get {
-                return ResourceManager.GetString("Changepassworde", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to a. Charge-back: A credit card holder discovers irregular transactions made on his/her Credit/Debit Card, which was not authorized by him/her. The credit card holder then requests his/her bank to reverse these charges. Charge backs relate to fraudulent use by a third party of the credit card holder&apos;s card or card number..
-        /// </summary>
-        public static string ChargeBack {
-            get {
-                return ResourceManager.GetString("ChargeBack", resourceCulture);
             }
         }
         
@@ -1636,15 +1087,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Chinese Support.
-        /// </summary>
-        public static string ChineseSupport {
-            get {
-                return ResourceManager.GetString("ChineseSupport", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 繁體中文.
         /// </summary>
         public static string ChineseTraditional {
@@ -1668,24 +1110,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string CityIsRequired {
             get {
                 return ResourceManager.GetString("CityIsRequired", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Clicks Count.
-        /// </summary>
-        public static string ClicksCount {
-            get {
-                return ResourceManager.GetString("ClicksCount", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Coin Size.
-        /// </summary>
-        public static string coinsize {
-            get {
-                return ResourceManager.GetString("coinsize", resourceCulture);
             }
         }
         
@@ -1717,15 +1141,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Current Commission Earning.
-        /// </summary>
-        public static string CommCurr {
-            get {
-                return ResourceManager.GetString("CommCurr", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Comment.
         /// </summary>
         public static string Comment {
@@ -1740,33 +1155,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string CommentsIsInvalid {
             get {
                 return ResourceManager.GetString("CommentsIsInvalid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 3. Commissionable Earnings are calculated as 12BET profit, less charge-back, complimentary money, free money offers and other incentives offered to the customer, derived from at least six(6) Active Wagering Members in a calendar month..
-        /// </summary>
-        public static string CommissionableEarningsAreCalculated {
-            get {
-                return ResourceManager.GetString("CommissionableEarningsAreCalculated", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 5. Commissionable earnings will be subject to commissions as calculated using the 12BET Affiliate Program commission structure in force from time to time..
-        /// </summary>
-        public static string CommissionableEarningsWillBeSubject {
-            get {
-                return ResourceManager.GetString("CommissionableEarningsWillBeSubject", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Commission Payment.
-        /// </summary>
-        public static string CommissionPayment {
-            get {
-                return ResourceManager.GetString("CommissionPayment", resourceCulture);
             }
         }
         
@@ -1834,29 +1222,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to f. Complimentary Money, Free Money and Other incentives refer to those amounts credited to the account of customers. As they have not purchased these amounts 12BET cannot pay commissions on these amounts..
-        /// </summary>
-        public static string ComplimentaryMoney {
-            get {
-                return ResourceManager.GetString("ComplimentaryMoney", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Congo(Rep) .
         /// </summary>
         public static string CongoRep {
             get {
                 return ResourceManager.GetString("CongoRep", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Contact Us.
-        /// </summary>
-        public static string Contact {
-            get {
-                return ResourceManager.GetString("Contact", resourceCulture);
             }
         }
         
@@ -1909,29 +1279,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Do not hesitate to contact us if you have any questions or comments at.
-        /// </summary>
-        public static string ContactusComment {
-            get {
-                return ResourceManager.GetString("ContactusComment", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Contact your affiliates support team for exclusive commission rate to growth bigger revenue in your monthly earning.
         /// </summary>
         public static string ContactYourAffilliateSupportTeam {
             get {
                 return ResourceManager.GetString("ContactYourAffilliateSupportTeam", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cookies are a general mechanism which server-side connections can use to both store and retrieve information on the client side of the connection. More specifically, they are small data files placed on the computers of visitors to 12BET.com from affiliated websites. These data files contain information 12BET.com use to track and credit its affiliates accurately for the traffic they send. Tracking via cookies can include, but is not limited to, lists of pages visited as well as date and time when certain pag [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string CookiesAreAGeneralMechanism {
-            get {
-                return ResourceManager.GetString("CookiesAreAGeneralMechanism", resourceCulture);
             }
         }
         
@@ -1990,15 +1342,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create customer failed. Please try again.
-        /// </summary>
-        public static string Createcustomerf {
-            get {
-                return ResourceManager.GetString("Createcustomerf", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Creator.
         /// </summary>
         public static string Creator {
@@ -2026,24 +1369,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Results.
-        /// </summary>
-        public static string csresult {
-            get {
-                return ResourceManager.GetString("csresult", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Current Balance.
-        /// </summary>
-        public static string CurrBal {
-            get {
-                return ResourceManager.GetString("CurrBal", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Currency.
         /// </summary>
         public static string Currency {
@@ -2062,29 +1387,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Current Commission Earning.
-        /// </summary>
-        public static string CurrentCommissi {
-            get {
-                return ResourceManager.GetString("CurrentCommissi", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Current Commission Setting.
         /// </summary>
         public static string CurrentCommissiSetting {
             get {
                 return ResourceManager.GetString("CurrentCommissiSetting", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Customized Banners.
-        /// </summary>
-        public static string Customized {
-            get {
-                return ResourceManager.GetString("Customized", resourceCulture);
             }
         }
         
@@ -2125,29 +1432,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Daily Statement.
-        /// </summary>
-        public static string dailystatement {
-            get {
-                return ResourceManager.GetString("dailystatement", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Date.
         /// </summary>
         public static string Date {
             get {
                 return ResourceManager.GetString("Date", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &quot;From date&quot; must be less than or equal to &quot;end date&quot;..
-        /// </summary>
-        public static string DateRangeValid {
-            get {
-                return ResourceManager.GetString("DateRangeValid", resourceCulture);
             }
         }
         
@@ -2161,56 +1450,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dear.
-        /// </summary>
-        public static string Dear {
-            get {
-                return ResourceManager.GetString("Dear", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Dear Firstname LastName,.
-        /// </summary>
-        public static string DearFirstnameLa {
-            get {
-                return ResourceManager.GetString("DearFirstnameLa", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Dear {fname} {lname},.
-        /// </summary>
-        public static string DearName {
-            get {
-                return ResourceManager.GetString("DearName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Dec.
-        /// </summary>
-        public static string Dec {
-            get {
-                return ResourceManager.GetString("Dec", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to December.
         /// </summary>
         public static string December {
             get {
                 return ResourceManager.GetString("December", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Deductions.
-        /// </summary>
-        public static string Deductions {
-            get {
-                return ResourceManager.GetString("Deductions", resourceCulture);
             }
         }
         
@@ -2260,78 +1504,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 12BET Affiliate Program is a partnership program where you will earn commissions based on the wagering activity of players that you refer to 12BET.com from your Website via online or offline via referrals..
-        /// </summary>
-        public static string Desc12BetAffiliateProgram {
-            get {
-                return ResourceManager.GetString("Desc12BetAffiliateProgram", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Yes, the currencies offered are GBP, EUR, RMB, MYR, THB, IDR and VND. Respective exchange rate on payout date will be applied..
-        /// </summary>
-        public static string DescCanIRequestForCurrency {
-            get {
-                return ResourceManager.GetString("DescCanIRequestForCurrency", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Yes, we rollover negative commission balances. In the event that you carry a negative commission balance at the end of a month, it will rollover until you have enough positive earnings to zero that balance out..
-        /// </summary>
-        public static string DescDoesNegativeBalance {
-            get {
-                return ResourceManager.GetString("DescDoesNegativeBalance", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The cookies are overwritten to benefit the Last Affiliate when a Customer is referred..
-        /// </summary>
-        public static string DescDoYouRewardTheFirstAffiliate {
-            get {
-                return ResourceManager.GetString("DescDoYouRewardTheFirstAffiliate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You can login to your 12BET affiliate account to check your commission stats in real-time which is available to you 24 hours a day, 7 days a week and 365 days per year..
-        /// </summary>
-        public static string DescHowCanICheck {
-            get {
-                return ResourceManager.GetString("DescHowCanICheck", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to We employs state-of-the-art technology in our tracking system to ensure you receive credit for 100% of the traffic you send 12BET.com. Affiliates refer players by using their unique URL that is provided in the Media Gallery area. Through the use of cookies, visitors that click through an affiliate unique URL (banner, text link, email message etc) are tracked and credit is automatically given to the affiliate for players referred..
-        /// </summary>
-        public static string DescHowDoesTheSystemKeepTrack {
-            get {
-                return ResourceManager.GetString("DescHowDoesTheSystemKeepTrack", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The 12BET Affiliate Program is free to join. Simply fill out our application form and you will be contacted within 3 business days regarding your acceptance into the program. If your application is accepted, you will receive an email containing your unique affiliate ID, giving you access to banners, text links, and other content and marketing tools to add to your website..
-        /// </summary>
-        public static string DescHowDoISignUp {
-            get {
-                return ResourceManager.GetString("DescHowDoISignUp", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A maximum of one withdrawal request can be made for each calendar month. Affiliates can request for a second settlement in a month subject to Affiliate Manager&apos;s approval. While we offer free withdrawal request however we will not be held responsible if the receiving financial institution or electronic wallets impose a fee of any kind at their end..
-        /// </summary>
-        public static string DescHowOftenCanIRequest {
-            get {
-                return ResourceManager.GetString("DescHowOftenCanIRequest", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Description.
         /// </summary>
         public static string Description {
@@ -2350,110 +1522,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You can request for a withdrawal through Moneybookers, Neteller, Wire Transfer or directly into your 12BET player account..
-        /// </summary>
-        public static string DescWhatAreTheWithdrawalMethods {
-            get {
-                return ResourceManager.GetString("DescWhatAreTheWithdrawalMethods", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Yes, now you can! If you think you have the contacts, you can easily create your own personalized page on our special Affiliate section and upload on it any of the approved marketing ideas or sports messages. Once done, you can immediately send the page link to any of your friends or contacts that are interested in sports or sports betting and when they click on the link, they become your referred members! For more details, please write to us at affiliates@12csd.com..
-        /// </summary>
-        public static string DescWhatIfDontHaveWebsite {
-            get {
-                return ResourceManager.GetString("DescWhatIfDontHaveWebsite", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to We do not tolerate spamming of any kind by our affiliate partners. If spamming by an affiliate is brought to our attention we will give the affiliate one warning (if judged to be a minor case). If the spamming does not stop the affiliate partner will be permanently banned from our 12BET Affiliate Program..
-        /// </summary>
-        public static string DescWhatIfYourPolicy {
-            get {
-                return ResourceManager.GetString("DescWhatIfYourPolicy", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cookies are a general mechanism which server-side connections can use to both store and retrieve information on the client side of the connection. More specifically, they are small data files placed on the computers of visitors to 12BET.com from affiliated websites. These data files contain information 12BET.com use to track and credit its affiliates accurately for the traffic they send. Tracking via cookies can include, but is not limited to, lists of pages visited as well as date and time when certain pag [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string DescWhatIsACookie {
-            get {
-                return ResourceManager.GetString("DescWhatIsACookie", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The minimum amount of withdrawal request is USD$100..
-        /// </summary>
-        public static string DescWhatIsTheMinimumWithdrawal {
-            get {
-                return ResourceManager.GetString("DescWhatIsTheMinimumWithdrawal", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to By accessing our Media Gallery section you will be available to choose your preferred banners as well as text link for your Website..
-        /// </summary>
-        public static string DescWhereDoIGetBannersAndContent {
-            get {
-                return ResourceManager.GetString("DescWhereDoIGetBannersAndContent", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Yes. We are able to track visitors from our affiliate&apos;s website that don&apos;t sign up right away but, return to 12BET.com at a later date &amp; sign-up. We set our protection period for 90 days to cover the first referring affiliate. The technology used to manage this is based on cookies..
-        /// </summary>
-        public static string DescWillYouTrackAndGiveMeCredit {
-            get {
-                return ResourceManager.GetString("DescWillYouTrackAndGiveMeCredit", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &lt;p class=&quot;text text-block&quot;&gt; &quot;12bet Gross Win&quot; is the total of all amounts bet by at least six(6) Active Wagering Members under your affiliate account in a calendar month, minus all amounts won by or paid to your Active Wagering Members. &lt;/p&gt; &lt;p class=&quot;text text-block&quot;&gt; &quot;Charge-backs&quot; are amounts deducted when a customer that is a credit card holder discovers irregular unauthorized charge-backs made on the customer’s Credit/Debit Card, and the credit card holder requests the bank to reverse these charges. Ch [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string DetailedChargeBack {
-            get {
-                return ResourceManager.GetString("DetailedChargeBack", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Detailed stats tracking system.
-        /// </summary>
-        public static string DetailedStas {
-            get {
-                return ResourceManager.GetString("DetailedStas", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Device.
         /// </summary>
         public static string Device {
             get {
                 return ResourceManager.GetString("Device", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 12. Disclaimers.
-        /// </summary>
-        public static string Disclaimers {
-            get {
-                return ResourceManager.GetString("Disclaimers", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Does negative balance carry over?.
-        /// </summary>
-        public static string DoesNegativeBalance {
-            get {
-                return ResourceManager.GetString("DoesNegativeBalance", resourceCulture);
             }
         }
         
@@ -2472,87 +1545,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string DominicanRep {
             get {
                 return ResourceManager.GetString("DominicanRep", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Do not hesitate to contact us if you have any questions or comments at Affiliates@12BET.com..
-        /// </summary>
-        public static string Donothesitateto {
-            get {
-                return ResourceManager.GetString("Donothesitateto", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Don&apos;t settle for second best, start earning up to 40% of the net losses of your customers..
-        /// </summary>
-        public static string DontSettleFor2ndBest {
-            get {
-                return ResourceManager.GetString("DontSettleFor2ndBest", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Don&apos;t show it again..
-        /// </summary>
-        public static string Dontshowit {
-            get {
-                return ResourceManager.GetString("Dontshowit", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Don&apos;t show this message again..
-        /// </summary>
-        public static string DontShowMessageAgain {
-            get {
-                return ResourceManager.GetString("DontShowMessageAgain", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Do you have any question?.
-        /// </summary>
-        public static string Doyouhaveanyque {
-            get {
-                return ResourceManager.GetString("Doyouhaveanyque", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Do you reward the First Affiliate or Last Affiliate for referring a customer?.
-        /// </summary>
-        public static string DoYouRewardTheFirstAffiliate {
-            get {
-                return ResourceManager.GetString("DoYouRewardTheFirstAffiliate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Due to security reason, we must provide you a new password (you can change this at anytime later)..
-        /// </summary>
-        public static string Duetosecurityr {
-            get {
-                return ResourceManager.GetString("Duetosecurityr", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 3. During the term of this Agreement, you may be entrusted with confidential information relating to the business, operations, or underlying technology of our affiliate program (including, for example, referral fees earned by you under the program). You agree not to disclose or use the confidential information to third persons or outside parties unless you have our prior written consent and that you will use the confidential information only for purposes necessary to further the purposes of this Agreement.  [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string DuringTheTermOfThisAgreement {
-            get {
-                return ResourceManager.GetString("DuringTheTermOfThisAgreement", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Earn as high as 40% of players net losses for life.
-        /// </summary>
-        public static string Earn30 {
-            get {
-                return ResourceManager.GetString("Earn30", resourceCulture);
             }
         }
         
@@ -2625,33 +1617,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string EmailAddressIsRequired {
             get {
                 return ResourceManager.GetString("EmailAddressIsRequired", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Email Format.
-        /// </summary>
-        public static string EmailFormat {
-            get {
-                return ResourceManager.GetString("EmailFormat", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your use email is invalid, please try again..
-        /// </summary>
-        public static string EmailInvalid {
-            get {
-                return ResourceManager.GetString("EmailInvalid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Email addresses that you entered do not match..
-        /// </summary>
-        public static string EmailMatch {
-            get {
-                return ResourceManager.GetString("EmailMatch", resourceCulture);
             }
         }
         
@@ -3016,15 +1981,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sorry, amount is invalid..
-        /// </summary>
-        public static string Err3007 {
-            get {
-                return ResourceManager.GetString("Err3007", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Wrong position taking (min/max set by company).
         /// </summary>
         public static string Err4 {
@@ -3106,24 +2062,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Request amount must be less than current balance.
-        /// </summary>
-        public static string ErrBalance {
-            get {
-                return ResourceManager.GetString("ErrBalance", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Request amount must be less than or equal to balance brought forward.
-        /// </summary>
-        public static string ErrBalanceForward {
-            get {
-                return ResourceManager.GetString("ErrBalanceForward", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Contact Number is required.
         /// </summary>
         public static string errContactNumberEmpty {
@@ -3187,15 +2125,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Request amount must be greater than or equal to minimum withdrawal amount.
-        /// </summary>
-        public static string ErrMinAmt {
-            get {
-                return ResourceManager.GetString("ErrMinAmt", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to MSN is required.
         /// </summary>
         public static string errMobileNumberEmpty {
@@ -3241,33 +2170,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error occurs. Update process is unsuccessful.
-        /// </summary>
-        public static string ErroroccursUpda {
-            get {
-                return ResourceManager.GetString("ErroroccursUpda", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Error of sending mail.
-        /// </summary>
-        public static string Errorofsendingm {
-            get {
-                return ResourceManager.GetString("Errorofsendingm", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Error of send mail.
-        /// </summary>
-        public static string Errorofsendmail {
-            get {
-                return ResourceManager.GetString("Errorofsendmail", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Sorry! The payment via {method} is not available. At the moment, only &apos;12Bet Player Account&apos; method is supported. Please &lt;a href=&apos;MyAccount.aspx?ispay=1#payment&apos;&gt;click here&lt;/a&gt; to make a change..
         /// </summary>
         public static string ErrPaymentMethod {
@@ -3282,15 +2184,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string errSecQuestionEmpty {
             get {
                 return ResourceManager.GetString("errSecQuestionEmpty", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Error of send mail.
-        /// </summary>
-        public static string ErrSendMail {
-            get {
-                return ResourceManager.GetString("ErrSendMail", resourceCulture);
             }
         }
         
@@ -3322,15 +2215,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E-Sports betting is one of the fastest growing video game product of 12BET which offers popular esports titles such as CS:GO – ESEA Open, CS:GO – ESL Pro League, Dota 2, and Overwatch. These games are widely popular amongst millennials across the globe..
-        /// </summary>
-        public static string EsportsBettingIsOneOfTheFastestGrowing {
-            get {
-                return ResourceManager.GetString("EsportsBettingIsOneOfTheFastestGrowing", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Estonia .
         /// </summary>
         public static string Estonia {
@@ -3358,67 +2242,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Even.
-        /// </summary>
-        public static string even {
-            get {
-                return ResourceManager.GetString("even", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Event.
-        /// </summary>
-        public static string events {
-            get {
-                return ResourceManager.GetString("events", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Excellent players conversion and retention rates.
-        /// </summary>
-        public static string ExcellentPlayers {
-            get {
-                return ResourceManager.GetString("ExcellentPlayers", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &lt;ul&gt;
-        ///        &lt;li&gt;Earn 30% of players net losses for life &lt;/li&gt;
-        ///        &lt;li&gt;Detailed stats tracking system&lt;/li&gt;
-        ///        &lt;li&gt;Excellent players conversion and retention rates&lt;/li&gt;
-        ///        &lt;li&gt;Prompt monthly payouts&lt;/li&gt;
-        ///        &lt;li&gt;Wide range of payment methods&lt;/li&gt;
-        ///        &lt;li&gt;1.24/7 online support for you and your players&lt;/li&gt;
-        ///	&lt;/ul&gt;.
-        /// </summary>
-        public static string ExpectList {
-            get {
-                return ResourceManager.GetString("ExpectList", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to What we offer?.
-        /// </summary>
-        public static string ExpectTitle {
-            get {
-                return ResourceManager.GetString("ExpectTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Export to Excel.
-        /// </summary>
-        public static string exporttoexcel {
-            get {
-                return ResourceManager.GetString("exporttoexcel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
         public static string ExtraTextForKorean {
@@ -3442,15 +2265,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string FDM {
             get {
                 return ResourceManager.GetString("FDM", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Feb.
-        /// </summary>
-        public static string Feb {
-            get {
-                return ResourceManager.GetString("Feb", resourceCulture);
             }
         }
         
@@ -3563,24 +2377,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to For the purposes of the table above, &quot;Net Revenue&quot; shall mean the amount of stakes placed by Players in the relevant calendar month exclude (i) returned winnings; (ii) any bonuses paid; (iii) Chargebacks; and (iv) any other revenue returns, credits, compensations or refunds given to Players..
-        /// </summary>
-        public static string ForThePurposesOfTheTable {
-            get {
-                return ResourceManager.GetString("ForThePurposesOfTheTable", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Wire Transfer.
-        /// </summary>
-        public static string FourDotWireTransfer {
-            get {
-                return ResourceManager.GetString("FourDotWireTransfer", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to France.
         /// </summary>
         public static string France {
@@ -3599,29 +2395,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Frequently Asked Questions.
-        /// </summary>
-        public static string FrequentlyAskedQuestions {
-            get {
-                return ResourceManager.GetString("FrequentlyAskedQuestions", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to From.
         /// </summary>
         public static string From {
             get {
                 return ResourceManager.GetString("From", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Full Name.
-        /// </summary>
-        public static string Fullname {
-            get {
-                return ResourceManager.GetString("Fullname", resourceCulture);
             }
         }
         
@@ -3649,15 +2427,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Gender {
             get {
                 return ResourceManager.GetString("Gender", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to General.
-        /// </summary>
-        public static string General {
-            get {
-                return ResourceManager.GetString("General", resourceCulture);
             }
         }
         
@@ -3698,29 +2467,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Getting Paid.
-        /// </summary>
-        public static string GettingPaid {
-            get {
-                return ResourceManager.GetString("GettingPaid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Get to know hot promotions this month. Post them in your websites and social channels to gain more customers and commission!.
         /// </summary>
         public static string GetToKnowHotPromotion {
             get {
                 return ResourceManager.GetString("GetToKnowHotPromotion", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &lt;p class=&quot;text-block&quot;&gt; Get to know more casino games and high-end platform technology that 12BET features. &lt;/p&gt;.
-        /// </summary>
-        public static string GetToKnowMoreCasinoGames {
-            get {
-                return ResourceManager.GetString("GetToKnowMoreCasinoGames", resourceCulture);
             }
         }
         
@@ -3743,15 +2494,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 15. Governing Law and Arbitration.
-        /// </summary>
-        public static string GoverningLawAndArbitration {
-            get {
-                return ResourceManager.GetString("GoverningLawAndArbitration", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Greece .
         /// </summary>
         public static string Greece {
@@ -3766,24 +2508,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Grenada {
             get {
                 return ResourceManager.GetString("Grenada", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Gross Comm.
-        /// </summary>
-        public static string grosscomm {
-            get {
-                return ResourceManager.GetString("grosscomm", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Gross Earnings.
-        /// </summary>
-        public static string GrossEarnings {
-            get {
-                return ResourceManager.GetString("GrossEarnings", resourceCulture);
             }
         }
         
@@ -3833,33 +2557,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hand History Detail.
-        /// </summary>
-        public static string handhistorydetail {
-            get {
-                return ResourceManager.GetString("handhistorydetail", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Have a great day!.
-        /// </summary>
-        public static string Haveagreatday {
-            get {
-                return ResourceManager.GetString("Haveagreatday", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Have problem while sending email. Please contact us later..
-        /// </summary>
-        public static string Haveproblemwhil {
-            get {
-                return ResourceManager.GetString("Haveproblemwhil", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Home.
         /// </summary>
         public static string Home {
@@ -3887,121 +2584,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Online betting, sport betting and football betting at 12BET.com.
-        /// </summary>
-        public static string hotnew {
-            get {
-                return ResourceManager.GetString("hotnew", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Hot News.
         /// </summary>
         public static string HotNews {
             get {
                 return ResourceManager.GetString("HotNews", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to How does it work?.
-        /// </summary>
-        public static string HowAffilliateTitle {
-            get {
-                return ResourceManager.GetString("HowAffilliateTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to As a 12Bet.com Affiliate, all you have to do is direct your visitors to our website using special tracking code that you can place on your website.
-        /// </summary>
-        public static string HowAffilliateWork {
-            get {
-                return ResourceManager.GetString("HowAffilliateWork", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to How can I check how much I have earned?.
-        /// </summary>
-        public static string HowCanICheck {
-            get {
-                return ResourceManager.GetString("HowCanICheck", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to How does it work?.
-        /// </summary>
-        public static string HowDoesItWork {
-            get {
-                return ResourceManager.GetString("HowDoesItWork", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to How does the system keep track of my players?.
-        /// </summary>
-        public static string HowDoesTheSystem {
-            get {
-                return ResourceManager.GetString("HowDoesTheSystem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to How does the system keep track of my players?.
-        /// </summary>
-        public static string HowDoesTheSystemKeepTrack {
-            get {
-                return ResourceManager.GetString("HowDoesTheSystemKeepTrack", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to How do I sign up with 12BET Affiliate Program?.
-        /// </summary>
-        public static string HowDoISignUp {
-            get {
-                return ResourceManager.GetString("HowDoISignUp", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to However, you can visit {url} to change your password at anytime.
-        /// </summary>
-        public static string Howeveryoucanvisit {
-            get {
-                return ResourceManager.GetString("Howeveryoucanvisit", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 
-        ///		How much you earn will depend on how much traffic you can send over from your website. It is our job to guide them through the registration process, having them make their first deposit, and retain their business with our attractive bonuses and offerings. 
-        ///	.
-        /// </summary>
-        public static string HowMuchYouEarn {
-            get {
-                return ResourceManager.GetString("HowMuchYouEarn", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to How often can I request for withdrawal?.
-        /// </summary>
-        public static string HowOftenCanIRequest {
-            get {
-                return ResourceManager.GetString("HowOftenCanIRequest", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to How to bet.
-        /// </summary>
-        public static string HowToBet {
-            get {
-                return ResourceManager.GetString("HowToBet", resourceCulture);
             }
         }
         
@@ -4060,69 +2647,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to f. If we continue to permit activity (generation of revenue) from customers after termination, this will not constitute a continuation or renewal of this Agreement or a waiver of termination..
-        /// </summary>
-        public static string IfWeContinueToPermitActivity {
-            get {
-                return ResourceManager.GetString("IfWeContinueToPermitActivity", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to If you are experiencing any further difficulties, please Contact us. .
-        /// </summary>
-        public static string Ifyouareexperie {
-            get {
-                return ResourceManager.GetString("Ifyouareexperie", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to IF YOU DECIDE NOT TO ACCEPT ALL OF THE TERMS AND CONDITIONS OF THIS AGREEMENT, PLEASE DO NOT DOWNLOAD BANNER CODE, TEXT LINK CODE, PROMOTIONAL COPY OR ANY INFORMATION PERTAINING TO 12BET..
-        /// </summary>
-        public static string IfYouDecide {
-            get {
-                return ResourceManager.GetString("IfYouDecide", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to If you have any questions and require any help please do not hesitate to contact me..
-        /// </summary>
-        public static string Ifyouhaveanyque {
-            get {
-                return ResourceManager.GetString("Ifyouhaveanyque", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to If you have any questions concerning affiliate earning please do not hesitate to contact us at {mail} .
-        /// </summary>
-        public static string IfYouHaveAnyQuestions {
-            get {
-                return ResourceManager.GetString("IfYouHaveAnyQuestions", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to d. If you have failed to fulfill your obligations and responsibilities, we will not pay you the referral fees otherwise owing to you on termination..
-        /// </summary>
-        public static string IfYouHaveFailed {
-            get {
-                return ResourceManager.GetString("IfYouHaveFailed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to If your total net revenue for January is $3,500, you will earn 30% of your total net revenue for that month. .
-        /// </summary>
-        public static string IfYourTotal {
-            get {
-                return ResourceManager.GetString("IfYourTotal", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Image.
         /// </summary>
         public static string Image {
@@ -4146,24 +2670,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Important {
             get {
                 return ResourceManager.GetString("Important", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 11. Indemnity.
-        /// </summary>
-        public static string Indemnity {
-            get {
-                return ResourceManager.GetString("Indemnity", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 14. Independent Investigation.
-        /// </summary>
-        public static string IndependentInvestigation {
-            get {
-                return ResourceManager.GetString("IndependentInvestigation", resourceCulture);
             }
         }
         
@@ -4222,111 +2728,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Input Request Amount (USD).
-        /// </summary>
-        public static string InputRequestAmo {
-            get {
-                return ResourceManager.GetString("InputRequestAmo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Insert transaction failed..
-        /// </summary>
-        public static string Inserttransacti {
-            get {
-                return ResourceManager.GetString("Inserttransacti", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 2. In the event of termination of this Agreement:.
-        /// </summary>
-        public static string InTheEventOfTermination {
-            get {
-                return ResourceManager.GetString("InTheEventOfTermination", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Invalid affiliate information.
-        /// </summary>
-        public static string Invalidaffiliat {
-            get {
-                return ResourceManager.GetString("Invalidaffiliat", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Invalid balance account or either the currency or payment method is not supported..
-        /// </summary>
-        public static string Invalidbalancea {
-            get {
-                return ResourceManager.GetString("Invalidbalancea", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Invalid CustID..
-        /// </summary>
-        public static string InvalidCustID {
-            get {
-                return ResourceManager.GetString("InvalidCustID", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Invalid request amount! Amount must be between .
-        /// </summary>
-        public static string Invalidrequesta {
-            get {
-                return ResourceManager.GetString("Invalidrequesta", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Invalid Role ID..
-        /// </summary>
-        public static string InvalidRoleID {
-            get {
-                return ResourceManager.GetString("InvalidRoleID", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Invalid user information. Update process is unsuccessful.
-        /// </summary>
-        public static string Invaliduserinfo {
-            get {
-                return ResourceManager.GetString("Invaliduserinfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 16. IN WITNESS WHEREOF.
-        /// </summary>
-        public static string InWitnessWhereOf {
-            get {
-                return ResourceManager.GetString("InWitnessWhereOf", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to IP.
         /// </summary>
         public static string IP {
             get {
                 return ResourceManager.GetString("IP", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Additional info at DNSstuff:&lt;a href=&quot;{0}&quot; target=&quot;_blank&quot;&gt; click here&lt;/a&gt;.
-        ///Note: Country and city information is provided by IP2Location™ and DNSstuff which might only serve as a reference, with no warranty. Please consult other reliable sources for the current and accurate information, if required..
-        /// </summary>
-        public static string ipnote {
-            get {
-                return ResourceManager.GetString("ipnote", resourceCulture);
             }
         }
         
@@ -4367,15 +2773,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  (N).
-        /// </summary>
-        public static string IsNeutral {
-            get {
-                return ResourceManager.GetString("IsNeutral", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Israel .
         /// </summary>
         public static string Israel {
@@ -4403,29 +2800,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 4. It is the affiliates&apos; responsibility to follow the correct linking and tagging procedure to ensure new customer tracking and payment..
-        /// </summary>
-        public static string ItIsTheAffiliate {
-            get {
-                return ResourceManager.GetString("ItIsTheAffiliate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Jamaica .
         /// </summary>
         public static string Jamaica {
             get {
                 return ResourceManager.GetString("Jamaica", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Jan.
-        /// </summary>
-        public static string Jan {
-            get {
-                return ResourceManager.GetString("Jan", resourceCulture);
             }
         }
         
@@ -4457,15 +2836,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Join the 12Bet Affiliate Program.
-        /// </summary>
-        public static string JoinThe12BetAffiliate {
-            get {
-                return ResourceManager.GetString("JoinThe12BetAffiliate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Jordan .
         /// </summary>
         public static string Jordan {
@@ -4475,29 +2845,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Jul.
-        /// </summary>
-        public static string Jul {
-            get {
-                return ResourceManager.GetString("Jul", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to July.
         /// </summary>
         public static string July {
             get {
                 return ResourceManager.GetString("July", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Jun.
-        /// </summary>
-        public static string Jun {
-            get {
-                return ResourceManager.GetString("Jun", resourceCulture);
             }
         }
         
@@ -4516,15 +2868,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Keno {
             get {
                 return ResourceManager.GetString("Keno", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Keno is played with 20 balls drawn randomly resulting from 80 numbered balls (01 to 80). The combination of these 20 numbers is divided and There are several ways to win and several ways of betting types such as Big/Small, Odd/Even, Dragon/Tiger, and more. Not only one game to play but more than 10 seasons/states to play at same time. All are fast-payout game as a minute to win..
-        /// </summary>
-        public static string KenoIsPlayedWith {
-            get {
-                return ResourceManager.GetString("KenoIsPlayedWith", resourceCulture);
             }
         }
         
@@ -4601,15 +2944,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Last 6 Months Earnings.
-        /// </summary>
-        public static string Last6MonthsEarn {
-            get {
-                return ResourceManager.GetString("Last6MonthsEarn", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Last Name is required.
         /// </summary>
         public static string LastNameIsRequired {
@@ -4628,218 +2962,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1st Ball.
-        /// </summary>
-        public static string lbl1stBall {
-            get {
-                return ResourceManager.GetString("lbl1stBall", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Back.
-        /// </summary>
-        public static string lblBack {
-            get {
-                return ResourceManager.GetString("lblBack", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Bet.
-        /// </summary>
-        public static string lblBet {
-            get {
-                return ResourceManager.GetString("lblBet", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Bet List (Running).
-        /// </summary>
-        public static string lblBetListRunning {
-            get {
-                return ResourceManager.GetString("lblBetListRunning", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Bet List.
         /// </summary>
         public static string lblBetLists {
             get {
                 return ResourceManager.GetString("lblBetLists", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Bingo Traditional Hand History.
-        /// </summary>
-        public static string lblBingoTraditionalHandHistory {
-            get {
-                return ResourceManager.GetString("lblBingoTraditionalHandHistory", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Bingo Traditional Hand History.
-        /// </summary>
-        public static string lblBingoTraditionalHandHistory1 {
-            get {
-                return ResourceManager.GetString("lblBingoTraditionalHandHistory1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Date&amp;Time.
-        /// </summary>
-        public static string lblDateAndTime {
-            get {
-                return ResourceManager.GetString("lblDateAndTime", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Game Group.
-        /// </summary>
-        public static string lblGameGroup {
-            get {
-                return ResourceManager.GetString("lblGameGroup", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Game ID.
-        /// </summary>
-        public static string lblGameID {
-            get {
-                return ResourceManager.GetString("lblGameID", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Game Type.
-        /// </summary>
-        public static string lblGameType {
-            get {
-                return ResourceManager.GetString("lblGameType", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to HT Score.
-        /// </summary>
-        public static string lblHTScore {
-            get {
-                return ResourceManager.GetString("lblHTScore", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Mix Parlay.
-        /// </summary>
-        public static string lblMixParlay {
-            get {
-                return ResourceManager.GetString("lblMixParlay", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Normal.
-        /// </summary>
-        public static string lblNormal {
-            get {
-                return ResourceManager.GetString("lblNormal", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Odd.
-        /// </summary>
-        public static string lblOdd {
-            get {
-                return ResourceManager.GetString("lblOdd", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to O/E.
-        /// </summary>
-        public static string lblOE {
-            get {
-                return ResourceManager.GetString("lblOE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to O/E FT.
-        /// </summary>
-        public static string lblOEFT {
-            get {
-                return ResourceManager.GetString("lblOEFT", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Odd Even/1st Hdp/Over Under.
-        /// </summary>
-        public static string lblOEH {
-            get {
-                return ResourceManager.GetString("lblOEH", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Outright.
-        /// </summary>
-        public static string lblOutRight {
-            get {
-                return ResourceManager.GetString("lblOutRight", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Outright Results.
-        /// </summary>
-        public static string lblOutrightResult {
-            get {
-                return ResourceManager.GetString("lblOutrightResult", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Player History No.
-        /// </summary>
-        public static string lblPlayerHistoryNo {
-            get {
-                return ResourceManager.GetString("lblPlayerHistoryNo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Race .
-        /// </summary>
-        public static string lblRace {
-            get {
-                return ResourceManager.GetString("lblRace", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Rolling Comm.
-        /// </summary>
-        public static string lblRollingComm {
-            get {
-                return ResourceManager.GetString("lblRollingComm", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Score.
-        /// </summary>
-        public static string lblScore {
-            get {
-                return ResourceManager.GetString("lblScore", resourceCulture);
             }
         }
         
@@ -4853,47 +2980,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to System Parlay.
-        /// </summary>
-        public static string lblSystemParlay {
-            get {
-                return ResourceManager.GetString("lblSystemParlay", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Team.
-        /// </summary>
-        public static string lblTeam {
-            get {
-                return ResourceManager.GetString("lblTeam", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Win Loss.
-        /// </summary>
-        public static string lblWinLoss {
-            get {
-                return ResourceManager.GetString("lblWinLoss", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Your Answer.
         /// </summary>
         public static string lblYourAnswer {
             get {
                 return ResourceManager.GetString("lblYourAnswer", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 7. Legal Responsibility.
-        /// </summary>
-        public static string LegalResponsibility {
-            get {
-                return ResourceManager.GetString("LegalResponsibility", resourceCulture);
             }
         }
         
@@ -4916,33 +3007,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 13. Limitation of Liability.
-        /// </summary>
-        public static string LimitationofLiability {
-            get {
-                return ResourceManager.GetString("LimitationofLiability", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 6. Limited License.
-        /// </summary>
-        public static string LimitedLicense {
-            get {
-                return ResourceManager.GetString("LimitedLicense", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Line No.
-        /// </summary>
-        public static string lineno {
-            get {
-                return ResourceManager.GetString("lineno", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Link to.
         /// </summary>
         public static string LinkTo {
@@ -4957,15 +3021,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Lithuania {
             get {
                 return ResourceManager.GetString("Lithuania", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Live Casino.
-        /// </summary>
-        public static string LiveCasino {
-            get {
-                return ResourceManager.GetString("LiveCasino", resourceCulture);
             }
         }
         
@@ -5011,15 +3066,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Lottery {
             get {
                 return ResourceManager.GetString("Lottery", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Lottery is a popular form of online betting in which players have the option on what type of Lottery play—3D/5D lottery, 11x5 lottery and Dice lottery. And with that, each lottery type has distinct betting type could be Big/Small, Odd/Even, Color Range, and so on..
-        /// </summary>
-        public static string LotteryIsAPopularFormOfOnlineBetting {
-            get {
-                return ResourceManager.GetString("LotteryIsAPopularFormOfOnlineBetting", resourceCulture);
             }
         }
         
@@ -5078,25 +3124,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to MAKE YOUR TRAFFIC PAY!.
-        /// </summary>
-        public static string MakeYourTrafficDay {
-            get {
-                return ResourceManager.GetString("MakeYourTrafficDay", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 
-        ///      Receive lifetime commission on every player you refer to 12BET. Enjoy the best player conversion and retention in the market today thanks to our competitive point spread. .
-        /// </summary>
-        public static string MakeYourTrafficDayContent {
-            get {
-                return ResourceManager.GetString("MakeYourTrafficDayContent", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Malawi .
         /// </summary>
         public static string Malawi {
@@ -5151,56 +3178,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Manage Account.
-        /// </summary>
-        public static string ManageAccount {
-            get {
-                return ResourceManager.GetString("ManageAccount", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Mar.
-        /// </summary>
-        public static string Mar {
-            get {
-                return ResourceManager.GetString("Mar", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to March.
         /// </summary>
         public static string March {
             get {
                 return ResourceManager.GetString("March", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Marketing.
-        /// </summary>
-        public static string Marketing {
-            get {
-                return ResourceManager.GetString("Marketing", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Marketing &amp; Tracking.
-        /// </summary>
-        public static string MarketingAndTracking {
-            get {
-                return ResourceManager.GetString("MarketingAndTracking", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Marketing &amp;amp; Tracking.
-        /// </summary>
-        public static string MarketingTracking {
-            get {
-                return ResourceManager.GetString("MarketingTracking", resourceCulture);
             }
         }
         
@@ -5223,56 +3205,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Max Amount.
-        /// </summary>
-        public static string MaxAmt {
-            get {
-                return ResourceManager.GetString("MaxAmt", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Maximum total member&apos;s net lost.
-        /// </summary>
-        public static string MaxAmt_explain {
-            get {
-                return ResourceManager.GetString("MaxAmt_explain", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Max QM.
-        /// </summary>
-        public static string MaxQM {
-            get {
-                return ResourceManager.GetString("MaxQM", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Maximum Qualified members.
-        /// </summary>
-        public static string MaxQM_explain {
-            get {
-                return ResourceManager.GetString("MaxQM_explain", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to May.
         /// </summary>
         public static string May {
             get {
                 return ResourceManager.GetString("May", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to May.
-        /// </summary>
-        public static string May_short {
-            get {
-                return ResourceManager.GetString("May_short", resourceCulture);
             }
         }
         
@@ -5322,33 +3259,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Message Sent.
-        /// </summary>
-        public static string MessageSent {
-            get {
-                return ResourceManager.GetString("MessageSent", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Message sent fail.
-        /// </summary>
-        public static string MessageSentFail {
-            get {
-                return ResourceManager.GetString("MessageSentFail", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Have problem while sending email. {br} Please contact us later..
-        /// </summary>
-        public static string MessageSentFailContent {
-            get {
-                return ResourceManager.GetString("MessageSentFailContent", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 
         ///        Thank you for contacting us. {br}
         ///        Your message has been sent. We will respond to your request as soon as possible. {br}
@@ -5374,29 +3284,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Min Amount.
-        /// </summary>
-        public static string MinAmt {
-            get {
-                return ResourceManager.GetString("MinAmt", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Minimum total member&apos;s net lost.
         /// </summary>
         public static string MinAmt_explain {
             get {
                 return ResourceManager.GetString("MinAmt_explain", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Min QM.
-        /// </summary>
-        public static string MinQM {
-            get {
-                return ResourceManager.GetString("MinQM", resourceCulture);
             }
         }
         
@@ -5415,15 +3307,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string MinWithdraw {
             get {
                 return ResourceManager.GetString("MinWithdraw", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 8. Miscellaneous.
-        /// </summary>
-        public static string Miscellaneous {
-            get {
-                return ResourceManager.GetString("Miscellaneous", resourceCulture);
             }
         }
         
@@ -5518,15 +3401,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to More.
-        /// </summary>
-        public static string More {
-            get {
-                return ResourceManager.GetString("More", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to More details about 12BET products.
         /// </summary>
         public static string MoreDetailProduct {
@@ -5554,15 +3428,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Multiplier.
-        /// </summary>
-        public static string multiplier {
-            get {
-                return ResourceManager.GetString("multiplier", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to My Account.
         /// </summary>
         public static string MyAcc {
@@ -5577,15 +3442,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Myanmar {
             get {
                 return ResourceManager.GetString("Myanmar", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to My Home.
-        /// </summary>
-        public static string MyHome {
-            get {
-                return ResourceManager.GetString("MyHome", resourceCulture);
             }
         }
         
@@ -5635,38 +3491,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Negative Balance.
-        /// </summary>
-        public static string NegativeBalance {
-            get {
-                return ResourceManager.GetString("NegativeBalance", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 6. Negative earnings are carried forward to the next month. Should the affiliate close the month with a positive balance, payment will be issued if it meets the minimum requirements and commissions will be paid on the positive balance..
-        /// </summary>
-        public static string NegativeEarningsAreCarried {
-            get {
-                return ResourceManager.GetString("NegativeEarningsAreCarried", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Nepal .
         /// </summary>
         public static string Nepal {
             get {
                 return ResourceManager.GetString("Nepal", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Net Earnings.
-        /// </summary>
-        public static string NetEarnings {
-            get {
-                return ResourceManager.GetString("NetEarnings", resourceCulture);
             }
         }
         
@@ -5788,51 +3617,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1st.
-        /// </summary>
-        public static string No1 {
-            get {
-                return ResourceManager.GetString("No1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 2nd.
-        /// </summary>
-        public static string No2 {
-            get {
-                return ResourceManager.GetString("No2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 3rd.
-        /// </summary>
-        public static string No3 {
-            get {
-                return ResourceManager.GetString("No3", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 4th.
-        /// </summary>
-        public static string No4 {
-            get {
-                return ResourceManager.GetString("No4", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 5th.
-        /// </summary>
-        public static string No5 {
-            get {
-                return ResourceManager.GetString("No5", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to No information is available.
         /// </summary>
         public static string NoInfo {
@@ -5865,24 +3649,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string none {
             get {
                 return ResourceManager.GetString("none", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 2. Non-Waiver a. Our failure to enforce your strict performance of any provision of this Agreement will not constitute a waiver of our right to subsequently enforce such provision or any other provision of this Agreement. NO MODIFICATIONS, ADDITIONS, DELETIONS OR INTERLINEATIONS OF THIS AGREEMENT ARE PERMITTED OR WILL BE RECOGNIZED BY US. None of our employees, officers or agents may verbally alter, modify or waive any provision of this Agreement..
-        /// </summary>
-        public static string NonWaiver {
-            get {
-                return ResourceManager.GetString("NonWaiver", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to th.
-        /// </summary>
-        public static string noothers {
-            get {
-                return ResourceManager.GetString("noothers", resourceCulture);
             }
         }
         
@@ -5932,15 +3698,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nov.
-        /// </summary>
-        public static string Nov {
-            get {
-                return ResourceManager.GetString("Nov", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to November.
         /// </summary>
         public static string November {
@@ -5968,38 +3725,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Number Game is a very attractive to play with. It is like a lottery inspired from bingo game where all players are required to place their bets on the number drawn in the machine. The most famous thing is the pretty girls in real-time Live Streaming will entertain players while waiting balls to be drawn..
-        /// </summary>
-        public static string NumberGameIsAVeryAttractive {
-            get {
-                return ResourceManager.GetString("NumberGameIsAVeryAttractive", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Oct.
-        /// </summary>
-        public static string Oct {
-            get {
-                return ResourceManager.GetString("Oct", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to October.
         /// </summary>
         public static string October {
             get {
                 return ResourceManager.GetString("October", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Odds.
-        /// </summary>
-        public static string odds {
-            get {
-                return ResourceManager.GetString("odds", resourceCulture);
             }
         }
         
@@ -6040,15 +3770,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Old password and new password are required!.
-        /// </summary>
-        public static string Oldpasswordandn {
-            get {
-                return ResourceManager.GetString("Oldpasswordandn", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Old Password is required.
         /// </summary>
         public static string OldPasswordisre {
@@ -6067,139 +3788,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1. SPORTSBOOK.
-        /// </summary>
-        public static string OneDotSportsbook {
-            get {
-                return ResourceManager.GetString("OneDotSportsbook", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 12BET Affiliate News.
         /// </summary>
         public static string OneTwoBetAffiliateNews {
             get {
                 return ResourceManager.GetString("OneTwoBetAffiliateNews", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 1. 12BET assume ownership of the customer at point of first contact with the customer. You, as affiliate, act as a referring agent for 12BET. We reserve the right to refuse customers (or to close their accounts) if necessary to comply with any requirements we may periodically establish..
-        /// </summary>
-        public static string OneTwoBetAssumeOwnerShip {
-            get {
-                return ResourceManager.GetString("OneTwoBetAssumeOwnerShip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 12BET is a renowned provider of dynamic online products ranging from Sports Betting, Live Casino, Slots, Pool Betting, Number Game, and Keno. Above all, this online casino is highly geared to offer safe and secured gambling venue. Each game interface provides visually satisfying aesthetics and unique design elements that immerse players into the revolutionized gameplay..
-        /// </summary>
-        public static string OneTwoBetIsAReowned {
-            get {
-                return ResourceManager.GetString("OneTwoBetIsAReowned", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 12BET is favored by millions of betting players from all over the world, because it provides a wide variety of options. Customers can easily search for any type of sport and conveniently place wager on it..
-        /// </summary>
-        public static string OneTwoBetIsFavored {
-            get {
-                return ResourceManager.GetString("OneTwoBetIsFavored", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 12BET offers a revenue share model in all 12BET products.This is a cumulative model based on the number of active players referred per calendar month in relation to each product revenue..
-        /// </summary>
-        public static string OneTwoBetOffersARevenueShareModel {
-            get {
-                return ResourceManager.GetString("OneTwoBetOffersARevenueShareModel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &lt;p class=&quot;text-block&quot;&gt;12BET offers the most in demand games in Asia.&lt;/p&gt;.
-        /// </summary>
-        public static string OneTwoBetOffersTheMostInDemandGames {
-            get {
-                return ResourceManager.GetString("OneTwoBetOffersTheMostInDemandGames", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 12BET, one of the world&apos;s leading gambling websites, established itself as a global market leader in Asia. Known for offering the best competitive odds, it&apos;s ranked 17th Best Online Gaming Operator in the world..
-        /// </summary>
-        public static string OneTwoBetOneOfTheWorld {
-            get {
-                return ResourceManager.GetString("OneTwoBetOneOfTheWorld", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 1. 12BET will pay out a revenue share on the Commissionable Earnings generated by each customer, as defined by 12BET Affiliate Program commission structure, provided that you maintain in your account as an affiliate, at least six(6) Active Wagering Members in any given calendar month.However, 12BET will reserves the right to withhold an affiliate commission payout in any particular month whether in part or in full, regardless of the 6 qualified active members , if  the affiliate is found not to make an effo [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string OneTwoBETWillPayout {
-            get {
-                return ResourceManager.GetString("OneTwoBETWillPayout", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Online betting, sport betting and football betting at 12BET.com.
-        /// </summary>
-        public static string Onlinebettingsp {
-            get {
-                return ResourceManager.GetString("Onlinebettingsp", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 24/7 online support for you and your players .
-        /// </summary>
-        public static string OnlineSupport {
-            get {
-                return ResourceManager.GetString("OnlineSupport", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to We have a team of experienced affiliate managers on call (almost) 24/7 to support all your needs from banner queries through to marketing tips and advice on how to maximize your earnings.
-        ///      &lt;p&gt;With intra-affiliate competitions, networking events and incentives, they&apos;re committed to helping you stay ahead of the game.&lt;/p&gt;
-        ///    .
-        /// </summary>
-        public static string OnlineSupportDetail {
-            get {
-                return ResourceManager.GetString("OnlineSupportDetail", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 1. Only approved and properly tagged creative materials, supplied by us from time to time, may be used to promote 12BET. Advertorials and personal endorsements are allowed but all materials not designed by 12BET need to be approved in writing; such approval shall not be unreasonably withheld..
-        /// </summary>
-        public static string OnlyApprovedAndProperly {
-            get {
-                return ResourceManager.GetString("OnlyApprovedAndProperly", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 2. Only properly tagged customers can be assigned to an affiliate. Should an affiliate tag be improperly inserted into the affiliate site or not properly received by the 12BET web server the resulting customer registration and purchases will not be assigned to the affiliate. Therefore it is the responsibility of the affiliate to ensure that all links are properly tagged..
-        /// </summary>
-        public static string OnlyProperlyTagged {
-            get {
-                return ResourceManager.GetString("OnlyProperlyTagged", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to On 12BET, casino games are grouped according to its software and are all respectively housed in different 12BET Clubs. For instance, all Playtech are stored in 12Emerald Club, Pragmatic Play are in 12Diamond Club, etc. Hundreds of live casino, table games, video poker games, RNG games, slot games are compiled in here for customer&apos;s best gaming experience..
-        /// </summary>
-        public static string OnOneTwoBetCasinoGamesAreGrouped {
-            get {
-                return ResourceManager.GetString("OnOneTwoBetCasinoGamesAreGrouped", resourceCulture);
             }
         }
         
@@ -6240,110 +3833,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Otherwise please visit the following link, then your new password will be emailed to you shortly:.
-        /// </summary>
-        public static string Otherwiseplease {
-            get {
-                return ResourceManager.GetString("Otherwiseplease", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to a. Our failure to enforce your strict performance of any provision of this Agreement will not constitute a waiver of our right to subsequently enforce such provision or any other provision of this Agreement. NO MODIFICATIONS, ADDITIONS, DELETIONS OR INTERLINEATIONS OF THIS AGREEMENT ARE PERMITTED OR WILL BE RECOGNIZED BY US. None of our employees, officers or agents may verbally alter, modify or waive any provision of this Agreement..
-        /// </summary>
-        public static string Ourfailuretoenforce {
-            get {
-                return ResourceManager.GetString("Ourfailuretoenforce", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to a. Our rights and remedies hereunder shall not be mutually exclusive, i.e., the exercise of one or more of the provisions of this Agreement shall not preclude the exercise of any other provision. You acknowledge, confirm, and agree that damages may be inadequate for a breach or a threatened breach of this Agreement and, in the event of a breach or threatened breach of any provision of this Agreement, the respective rights and obligations of the parties may be enforceable by specific performance, injunction, [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string Ourrightsandremedies {
-            get {
-                return ResourceManager.GetString("Ourrightsandremedies", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Outstanding.
-        /// </summary>
-        public static string outstanding {
-            get {
-                return ResourceManager.GetString("outstanding", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Over.
-        /// </summary>
-        public static string over {
-            get {
-                return ResourceManager.GetString("over", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 1. Ownership and content of our sites remain our respective properties and shall not be deemed to have been transferred to the affiliate through any act or omission in respect of the affiliation Agreement..
-        /// </summary>
-        public static string OwnerShipAndContent {
-            get {
-                return ResourceManager.GetString("OwnerShipAndContent", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 2. Ownership, content and liability for affiliate sites are the sole responsibility of the affiliate. You will be solely responsible for the development, operation, and maintenance of your site and for all materials that appear on your site and at your own cost..
-        /// </summary>
-        public static string OwnerShipContentAndLiability {
-            get {
-                return ResourceManager.GetString("OwnerShipContentAndLiability", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to I have my own website.
         /// </summary>
         public static string OwnWebsite {
             get {
                 return ResourceManager.GetString("OwnWebsite", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 1P.
-        /// </summary>
-        public static string P1 {
-            get {
-                return ResourceManager.GetString("P1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 2P.
-        /// </summary>
-        public static string P2 {
-            get {
-                return ResourceManager.GetString("P2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Poker Table Session.
-        /// </summary>
-        public static string p2ptablesession {
-            get {
-                return ResourceManager.GetString("p2ptablesession", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 3P.
-        /// </summary>
-        public static string P3 {
-            get {
-                return ResourceManager.GetString("P3", resourceCulture);
             }
         }
         
@@ -6474,15 +3968,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sorry, amount must be equal to or greater than .
-        /// </summary>
-        public static string PaymentErr1005 {
-            get {
-                return ResourceManager.GetString("PaymentErr1005", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Insert transaction failed..
         /// </summary>
         public static string PaymentErr1006 {
@@ -6582,24 +4067,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Per Line Win.
-        /// </summary>
-        public static string perLineWin {
-            get {
-                return ResourceManager.GetString("perLineWin", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Personalized Site.
-        /// </summary>
-        public static string PersonalizedSite {
-            get {
-                return ResourceManager.GetString("PersonalizedSite", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Peru .
         /// </summary>
         public static string Peru {
@@ -6636,15 +4103,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Player.
-        /// </summary>
-        public static string player {
-            get {
-                return ResourceManager.GetString("player", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Please check your email address to find out your username and details about your password..
         /// </summary>
         public static string Pleasecheckyour {
@@ -6663,33 +4121,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please note.
-        /// </summary>
-        public static string PleaseNote {
-            get {
-                return ResourceManager.GetString("PleaseNote", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Please select country.
-        /// </summary>
-        public static string Pleaseselectcou {
-            get {
-                return ResourceManager.GetString("Pleaseselectcou", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Please select preferred language.
-        /// </summary>
-        public static string Pleaseselectpre {
-            get {
-                return ResourceManager.GetString("Pleaseselectpre", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Poker.
         /// </summary>
         public static string Poker {
@@ -6704,15 +4135,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Poland {
             get {
                 return ResourceManager.GetString("Poland", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 5. Policies &amp; Confidentiality.
-        /// </summary>
-        public static string PoliciesAndConfidentiality {
-            get {
-                return ResourceManager.GetString("PoliciesAndConfidentiality", resourceCulture);
             }
         }
         
@@ -6753,15 +4175,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Postponed.
-        /// </summary>
-        public static string postponed {
-            get {
-                return ResourceManager.GetString("postponed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Preference.
         /// </summary>
         public static string Preference {
@@ -6785,24 +4198,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string PreferLangErr {
             get {
                 return ResourceManager.GetString("PreferLangErr", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Preferred payment method.
-        /// </summary>
-        public static string Preferredpaymen {
-            get {
-                return ResourceManager.GetString("Preferredpaymen", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 5. Presentation of our banners &amp; content on affiliate&apos;s site is the responsibility of affiliate. The affiliate must ensure that our content is presented in accordance with our prescriptions..
-        /// </summary>
-        public static string PresentationOfOurBanners {
-            get {
-                return ResourceManager.GetString("PresentationOfOurBanners", resourceCulture);
             }
         }
         
@@ -6942,33 +4337,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Promotion.
-        /// </summary>
-        public static string Promotion {
-            get {
-                return ResourceManager.GetString("Promotion", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Promotional Descriptions.
-        /// </summary>
-        public static string Promotional {
-            get {
-                return ResourceManager.GetString("Promotional", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Prompt monthly payouts.
-        /// </summary>
-        public static string PromptMonthly {
-            get {
-                return ResourceManager.GetString("PromptMonthly", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to PSP.
         /// </summary>
         public static string PSP {
@@ -6992,15 +4360,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Qatar {
             get {
                 return ResourceManager.GetString("Qatar", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {num} qualified member(s)..
-        /// </summary>
-        public static string QualifiedMember {
-            get {
-                return ResourceManager.GetString("QualifiedMember", resourceCulture);
             }
         }
         
@@ -7113,24 +4472,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 10. Relationship of Parties.
-        /// </summary>
-        public static string RelationshipofParties {
-            get {
-                return ResourceManager.GetString("RelationshipofParties", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 3. Remedies a. Our rights and remedies hereunder shall not be mutually exclusive, i.e., the exercise of one or more of the provisions of this Agreement shall not preclude the exercise of any other provision. You acknowledge, confirm, and agree that damages may be inadequate for a breach or a threatened breach of this Agreement and, in the event of a breach or threatened breach of any provision of this Agreement, the respective rights and obligations of the parties may be enforceable by specific performance, [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string Remedies {
-            get {
-                return ResourceManager.GetString("Remedies", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Re-enter New Password.
         /// </summary>
         public static string RePass {
@@ -7145,15 +4486,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string RequestAmount {
             get {
                 return ResourceManager.GetString("RequestAmount", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Request amount must be greater than minimum withdraw amount.
-        /// </summary>
-        public static string Requestamountmu {
-            get {
-                return ResourceManager.GetString("Requestamountmu", resourceCulture);
             }
         }
         
@@ -7185,15 +4517,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Request reference number is {transid}, dated {date}..
-        /// </summary>
-        public static string Requestreferenc {
-            get {
-                return ResourceManager.GetString("Requestreferenc", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Fields marked &lt;font color=&quot;red&quot;&gt;*&lt;/font&gt; must be completed.
         /// </summary>
         public static string RequireInfo {
@@ -7212,24 +4535,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1. Responsibilities of the Affiliate.
-        /// </summary>
-        public static string ResponOfTheAff {
-            get {
-                return ResourceManager.GetString("ResponOfTheAff", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 1. Responsibilities of the Affiliate.
-        /// </summary>
-        public static string ResponsibilitiesOfTheAffiliate {
-            get {
-                return ResourceManager.GetString("ResponsibilitiesOfTheAffiliate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Results.
         /// </summary>
         public static string result {
@@ -7244,24 +4549,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string RevenueShare {
             get {
                 return ResourceManager.GetString("RevenueShare", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Revenue share model.
-        /// </summary>
-        public static string RevenueShareModel {
-            get {
-                return ResourceManager.GetString("RevenueShareModel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 4. Revenue Sharing &amp; Payment.
-        /// </summary>
-        public static string RevenueSharingAndPayment {
-            get {
-                return ResourceManager.GetString("RevenueSharingAndPayment", resourceCulture);
             }
         }
         
@@ -7293,15 +4580,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Running.
-        /// </summary>
-        public static string running {
-            get {
-                return ResourceManager.GetString("running", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Russian Federation .
         /// </summary>
         public static string RussianFederation {
@@ -7316,51 +4594,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Rwanda {
             get {
                 return ResourceManager.GetString("Rwanda", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 1S.
-        /// </summary>
-        public static string S1 {
-            get {
-                return ResourceManager.GetString("S1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 2S.
-        /// </summary>
-        public static string S2 {
-            get {
-                return ResourceManager.GetString("S2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 3S.
-        /// </summary>
-        public static string S3 {
-            get {
-                return ResourceManager.GetString("S3", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 4S.
-        /// </summary>
-        public static string S4 {
-            get {
-                return ResourceManager.GetString("S4", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 5S.
-        /// </summary>
-        public static string S5 {
-            get {
-                return ResourceManager.GetString("S5", resourceCulture);
             }
         }
         
@@ -7437,15 +4670,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ※Security question and answer is used to verify your identity..
-        /// </summary>
-        public static string SecureQuestionGuide {
-            get {
-                return ResourceManager.GetString("SecureQuestionGuide", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Your security question and answer have been updated!.
         /// </summary>
         public static string SecurityQuestionUpdated {
@@ -7491,15 +4715,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sept.
-        /// </summary>
-        public static string Sept {
-            get {
-                return ResourceManager.GetString("Sept", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to September.
         /// </summary>
         public static string September {
@@ -7518,65 +4733,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Session ID.
-        /// </summary>
-        public static string sessionID {
-            get {
-                return ResourceManager.GetString("sessionID", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 4. Severability / Waiver a. Whenever possible, each provision of this Agreement shall be interpreted in such a manner as to be effective and valid under applicable law but, if any provision of this Agreement is held to be invalid, illegal or unenforceable in any respect, such provision will be ineffective only to the extent of such invalidity, or unenforceability, without invalidating the remainder of this Agreement or any provision hereof. No waiver will be implied from conduct or failure to enforce any ri [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string SeverabilityWaiver {
-            get {
-                return ResourceManager.GetString("SeverabilityWaiver", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Seychelles .
         /// </summary>
         public static string Seychelles {
             get {
                 return ResourceManager.GetString("Seychelles", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to b. Should the player process a charge back, the disputed or charged-back revenue generated by yourself will be forfeited and therefore deducted from the total balance due to you for the current month..
-        /// </summary>
-        public static string Shouldtheplayer {
-            get {
-                return ResourceManager.GetString("Shouldtheplayer", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to b. Should these expenses not be covered by funds in your account we reserve the right to investigate other alternative means for obtaining payment for example: should your account have generated purchasing accounts we will hold payment of commission for these accounts until such a time as the account for damages has been cleared. Should your account not be active and be generating profit through commission payments we reserve the right to demand payment from the account holder..
-        /// </summary>
-        public static string Shouldtheseexpenses {
-            get {
-                return ResourceManager.GetString("Shouldtheseexpenses", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to c. Should this deduction of the accumulated revenue exceed your current amount due, your balance will then revert to a negative balance, and you will have to earn revenue to cover the charge-back before you can start earning revenue again..
-        /// </summary>
-        public static string Shouldthisdeduction {
-            get {
-                return ResourceManager.GetString("Shouldthisdeduction", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 4. Should you fail to be entitled to the Commissionable Earnings in accordance with Clauses 4.1, 4.2, and 4.3 above for failure to maintain at least six(6) Active Wagering Members in a given month, you will not generate any commission in the month and the related member&apos;s lost will not be brought forward to the following months..
-        /// </summary>
-        public static string ShouldYouFailToBeEntitled {
-            get {
-                return ResourceManager.GetString("ShouldYouFailToBeEntitled", resourceCulture);
             }
         }
         
@@ -7631,15 +4792,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string SignUpAffiliatesNow {
             get {
                 return ResourceManager.GetString("SignUpAffiliatesNow", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Sincerely,.
-        /// </summary>
-        public static string Sincerely {
-            get {
-                return ResourceManager.GetString("Sincerely", resourceCulture);
             }
         }
         
@@ -7743,69 +4895,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sorry, amount is invalid..
-        /// </summary>
-        public static string Sorryamountisin {
-            get {
-                return ResourceManager.GetString("Sorryamountisin", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Sorry, amount must be equal to or greater than .
-        /// </summary>
-        public static string Sorryamountmust {
-            get {
-                return ResourceManager.GetString("Sorryamountmust", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Sorry, cannot create agent.
-        /// </summary>
-        public static string Sorrycannotcrea {
-            get {
-                return ResourceManager.GetString("Sorrycannotcrea", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Sorry, credit update is not successful, You have exceeded your master credit.
-        /// </summary>
-        public static string Sorrycreditupda {
-            get {
-                return ResourceManager.GetString("Sorrycreditupda", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Sorry, Max Per Match must be equal to or less than master agent Max Per Match.
-        /// </summary>
-        public static string SorryMaxPerMatc {
-            get {
-                return ResourceManager.GetString("SorryMaxPerMatc", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Sorry, min bet must be equal to or greater than master agent min bet.
-        /// </summary>
-        public static string Sorryminbetmust {
-            get {
-                return ResourceManager.GetString("Sorryminbetmust", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Sorry, this Affiliate does not have enough money to withdraw..
-        /// </summary>
-        public static string SorrythisAffili {
-            get {
-                return ResourceManager.GetString("SorrythisAffili", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to South Africa .
         /// </summary>
         public static string SouthAfrica {
@@ -7824,29 +4913,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 8. Spam - We do not condone Spam.&lt;br&gt;a. Any form of Spam will result in your account being placed under review and all funds due being withheld pending an investigation into your account. You need to be aware that our clients are liable to incur expenses in dealing with Spam generated mail and these same expenses will be deducted from your account should our client seek recourse. In this instance the amount determined by the relative client will be fair and deemed final and acceptable based on good faith an [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string SpamWeDoNotCondone {
-            get {
-                return ResourceManager.GetString("SpamWeDoNotCondone", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Español.
         /// </summary>
         public static string Spanish {
             get {
                 return ResourceManager.GetString("Spanish", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to SPORTSBOOK COMMISSION STRUCTURE.
-        /// </summary>
-        public static string SpCommStruct {
-            get {
-                return ResourceManager.GetString("SpCommStruct", resourceCulture);
             }
         }
         
@@ -7869,24 +4940,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sportbook.
-        /// </summary>
-        public static string SportbookExtension {
-            get {
-                return ResourceManager.GetString("SportbookExtension", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Sportsbook - Racing - Number Game.
-        /// </summary>
-        public static string SportHorseNumberGame {
-            get {
-                return ResourceManager.GetString("SportHorseNumberGame", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Sport Type.
         /// </summary>
         public static string SportType {
@@ -7901,15 +4954,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string SriLanka {
             get {
                 return ResourceManager.GetString("SriLanka", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Stake.
-        /// </summary>
-        public static string stake {
-            get {
-                return ResourceManager.GetString("stake", resourceCulture);
             }
         }
         
@@ -7950,29 +4994,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Statistics Detail.
-        /// </summary>
-        public static string StatisticsDetail {
-            get {
-                return ResourceManager.GetString("StatisticsDetail", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Status.
         /// </summary>
         public static string Status {
             get {
                 return ResourceManager.GetString("Status", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Sorry, You don&apos;t have permission to access this page..
-        /// </summary>
-        public static string strNotAccessPage {
-            get {
-                return ResourceManager.GetString("strNotAccessPage", resourceCulture);
             }
         }
         
@@ -8049,15 +5075,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Summary Performance for.
-        /// </summary>
-        public static string SumPerform {
-            get {
-                return ResourceManager.GetString("SumPerform", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Monday - Saturday&lt;br&gt;09:00 am - 06:00 pm&lt;br&gt;(GMT +8).
         /// </summary>
         public static string SupportTime {
@@ -8103,24 +5120,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Symbol.
-        /// </summary>
-        public static string symbol {
-            get {
-                return ResourceManager.GetString("symbol", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Symbol.
-        /// </summary>
-        public static string symbol1 {
-            get {
-                return ResourceManager.GetString("symbol1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Win Loss is rounded for reference only. Therefore, Sub Total amount may be different from the sum of Win Loss when it sums all the actual Win Loss amounts..
         /// </summary>
         public static string SystemParlayDetailNote {
@@ -8139,33 +5138,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Table currency.
-        /// </summary>
-        public static string tablecurrency {
-            get {
-                return ResourceManager.GetString("tablecurrency", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Table (ID).
-        /// </summary>
-        public static string tableid {
-            get {
-                return ResourceManager.GetString("tableid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Table (ID).
-        /// </summary>
-        public static string tableid1 {
-            get {
-                return ResourceManager.GetString("tableid1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Taiwan .
         /// </summary>
         public static string Taiwan {
@@ -8180,24 +5152,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Tanzania {
             get {
                 return ResourceManager.GetString("Tanzania", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 12Bet offers revenue share model for the casino. This is a cumulative model based on the number of new active players referred per calendar month in relation to the casino..
-        /// </summary>
-        public static string TC_Casino_Content1 {
-            get {
-                return ResourceManager.GetString("TC_Casino_Content1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 12Bet offers a revenue share model for the Sportsbook. This is a cumulative model based on the number of active players referred per calendar month in relation to the Sportsbook..
-        /// </summary>
-        public static string TC_Sportbook_Content {
-            get {
-                return ResourceManager.GetString("TC_Sportbook_Content", resourceCulture);
             }
         }
         
@@ -8247,15 +5201,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 9. Term &amp; Termination.
-        /// </summary>
-        public static string TermTermination {
-            get {
-                return ResourceManager.GetString("TermTermination", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Text Box.
         /// </summary>
         public static string Text {
@@ -8301,183 +5246,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Thai Support.
-        /// </summary>
-        public static string ThaiSupport {
-            get {
-                return ResourceManager.GetString("ThaiSupport", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Thanks for your registration!.
-        /// </summary>
-        public static string Thanksforyourre {
-            get {
-                return ResourceManager.GetString("Thanksforyourre", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Thank you for your payment request dated {winlostdate} for the amount of ${amount}..
-        /// </summary>
-        public static string ThanksPayment {
-            get {
-                return ResourceManager.GetString("ThanksPayment", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Thank you for applying to become a 12BET affiliate! &lt;br /&gt;&lt;br /&gt;
-        ///One of our Affiliate Accounts Manager will be contacting you by email within 3 business days to determine the status of your application..
-        /// </summary>
-        public static string Thankyouforappl {
-            get {
-                return ResourceManager.GetString("Thankyouforappl", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Thank you for submitting your application..
-        /// </summary>
-        public static string Thankyouforsubm {
-            get {
-                return ResourceManager.GetString("Thankyouforsubm", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to THB (Thai Baht).
         /// </summary>
         public static string THB {
             get {
                 return ResourceManager.GetString("THB", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The 12BET Affiliate Program is free to join. Simply fill out our {AppForm} and you will be contacted within 3 business days regarding your acceptance into the program. If your application is accepted, you will receive an email containing your unique affiliate ID, giving you access to banners, text links, and other content and marketing tools to add to your website.
-        /// </summary>
-        public static string The12BETAffiliates {
-            get {
-                return ResourceManager.GetString("The12BETAffiliates", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The above link will be expired and become useless in 24 hour time..
-        /// </summary>
-        public static string Theabovelinkwi {
-            get {
-                return ResourceManager.GetString("Theabovelinkwi", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 7. The Commissionable Earnings of the affiliate calculated based on commission structure will be earned on all transactions that the customer undertakes with the merchant, as long as the affiliate remains a member of this affiliate program..
-        /// </summary>
-        public static string TheCommissionableEarningsOfTheAffiliate {
-            get {
-                return ResourceManager.GetString("TheCommissionableEarningsOfTheAffiliate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The cookies are overwritten to benefit the Last Affiliate when a Customer is referred..
-        /// </summary>
-        public static string TheCookiesAreOverwritten {
-            get {
-                return ResourceManager.GetString("TheCookiesAreOverwritten", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Yes, the currencies offered are GBP, EUR, RMB, MYR, THB, IDR and VND. Respective exchange rate on payout date will be applied..
-        /// </summary>
-        public static string TheCurrenciesOfferedAre {
-            get {
-                return ResourceManager.GetString("TheCurrenciesOfferedAre", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The email address you&apos;ve typed had been used to register account. Please choose another one!.
-        /// </summary>
-        public static string Theemailaddress {
-            get {
-                return ResourceManager.GetString("Theemailaddress", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The minimum amount of withdrawal request is USD$100. .
-        /// </summary>
-        public static string TheMinimumWithdrawal {
-            get {
-                return ResourceManager.GetString("TheMinimumWithdrawal", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The revenue share model is split in each 12BET product components. The calculation of each of which product is described below. The total revenue share payable to the affiliate shall be the sum of all components of the revenue share model..
-        /// </summary>
-        public static string TheRevenueShareModelIsSplit {
-            get {
-                return ResourceManager.GetString("TheRevenueShareModelIsSplit", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The team at 12Bet Affiliates.
-        /// </summary>
-        public static string Theteamat_12Bet {
-            get {
-                return ResourceManager.GetString("Theteamat_12Bet", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 1. The term of this Agreement will begin when you download linking code and link it to our site and will be continuous unless and until either party notifies the other in writing that it wishes to terminate the Agreement, in which case this Agreement may be terminated immediately. TERMINATION IS AT WILL, FOR ANY REASON, BY EITHER PARTY. For purposes of notification of termination, delivery via e-mail is considered a written and immediate form of notification..
-        /// </summary>
-        public static string TheTermOfThisAgreement {
-            get {
-                return ResourceManager.GetString("TheTermOfThisAgreement", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This Agreement details all the terms and conditions of membership to the 12BET Affiliate Program. &quot;You&quot;, the &quot;affiliate&quot; refers to you, the individual, group or corporate entity registering with us as an affiliate under this Agreement, and shall be deemed to include any employees, officers, directors, shareholders, owners, controlling parties and affiliated individuals and entities (and &quot;your&quot; has a corresponding meaning)..
-        /// </summary>
-        public static string ThisAgreementDetailsAll {
-            get {
-                return ResourceManager.GetString("ThisAgreementDetailsAll", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This Agreement shall be governed by and construed in accordance with English law. Any dispute, controversy or claim arising out of or in connection with this Agreement shall be referred to and determined by a tribunal comprised of one arbitrator to be appointed by the Arbitration Centre. The seat of arbitration will be London, United Kingdom, the location determined by the Arbitration Centre, the language of the arbitration will be English and the regulations established by the Arbitration Centre shall gove [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string ThisAgreementShallBeGoverned {
-            get {
-                return ResourceManager.GetString("ThisAgreementShallBeGoverned", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This email address is being used by an affliliate that&apos;s inactive or has been closed. Please try again or  Contact us..
-        /// </summary>
-        public static string Thisemailaddres {
-            get {
-                return ResourceManager.GetString("Thisemailaddres", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This e-mail will include a link, which you need to click on. to activate your account and confirm your e-mail address and conclude your registration..
-        /// </summary>
-        public static string Thisemailwillin {
-            get {
-                return ResourceManager.GetString("Thisemailwillin", resourceCulture);
             }
         }
         
@@ -8491,56 +5264,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 3. This license cannot be sub-licensed, assigned or otherwise transferred by you. Your right to use the trademarks is limited to and arises only out of this license to use the banners. You shall not assert the invalidity, unenforceability, or contest the ownership of the trademarks in any action or proceeding of whatever kind or nature, and shall not take any action that may prejudice our or our licensor&apos;s rights in the trademarks, render the same generic, or otherwise weaken their validity or diminish thei [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string ThisLicenseCannotBeSubLicensed {
-            get {
-                return ResourceManager.GetString("ThisLicenseCannotBeSubLicensed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This transaction has been cancelled before..
-        /// </summary>
-        public static string Thistransaction {
-            get {
-                return ResourceManager.GetString("Thistransaction", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This username is not available.
-        /// </summary>
-        public static string Thisusernameisn {
-            get {
-                return ResourceManager.GetString("Thisusernameisn", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Neteller.
-        /// </summary>
-        public static string ThreeDotNeteller {
-            get {
-                return ResourceManager.GetString("ThreeDotNeteller", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to THROUGH SOCCER SEASON 2018/2019.
         /// </summary>
         public static string ThroughSoccerSeason2018 {
             get {
                 return ResourceManager.GetString("ThroughSoccerSeason2018", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Through your 12BET player account.
-        /// </summary>
-        public static string ThroughYourOneTwoBetPlayerAccount {
-            get {
-                return ResourceManager.GetString("ThroughYourOneTwoBetPlayerAccount", resourceCulture);
             }
         }
         
@@ -8560,15 +5288,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string TitelForgetPass {
             get {
                 return ResourceManager.GetString("TitelForgetPass", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 12Bet Affiliates - [{transid}] - Your payment request has been cancelled.
-        /// </summary>
-        public static string TitleCancelledPayment {
-            get {
-                return ResourceManager.GetString("TitleCancelledPayment", resourceCulture);
             }
         }
         
@@ -8600,65 +5319,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To become an affiliate of the 12BET Affiliate Program you must register as an affiliate by completing the online form. By registering as an affiliate of the 12BET Affiliate Program or downloading banner code and placing it on your website or websites, email messages or other formats, you are deemed to have agreed to be bound by all the terms and conditions set out in this agreement..
-        /// </summary>
-        public static string ToBecomeAnAff {
-            get {
-                return ResourceManager.GetString("ToBecomeAnAff", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to To become an affiliate of the 12BET Affiliate Program you must register as an affiliate by completing the online form. By registering as an affiliate of the 12BET Affiliate Program or downloading banner code and placing it on your website or websites, email messages or other formats, you are deemed to have agreed to be bound by all the terms and conditions set out in this agreement..
-        /// </summary>
-        public static string ToBecomeAnAffiliate {
-            get {
-                return ResourceManager.GetString("ToBecomeAnAffiliate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Togo .
         /// </summary>
         public static string Togo {
             get {
                 return ResourceManager.GetString("Togo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Contactable phone number is required for approval.
-        /// </summary>
-        public static string TooltipContactNumber {
-            get {
-                return ResourceManager.GetString("TooltipContactNumber", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Real email is required to receive password.
-        /// </summary>
-        public static string TooltipEmailAddess {
-            get {
-                return ResourceManager.GetString("TooltipEmailAddess", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Top .
-        /// </summary>
-        public static string Top {
-            get {
-                return ResourceManager.GetString("Top", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Yes, now you can! If you think you have the contacts, you can easily create your own personalized page on our special Affiliate section and upload on it any of the approved marketing ideas or sports messages.  Once done, you can immediately send the page link to any of your friends or contacts that are interested in sports or sports betting and when they click on the link, they become your referred members! For more details, please write to us at &lt;a href=&quot;mailto:affiliates@12csd.com&quot;&gt;affiliates@12csd.com&lt;/a [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string ToParticipateIn12BET {
-            get {
-                return ResourceManager.GetString("ToParticipateIn12BET", resourceCulture);
             }
         }
         
@@ -8699,15 +5364,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Total IPs.
-        /// </summary>
-        public static string TotalIP {
-            get {
-                return ResourceManager.GetString("TotalIP", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Total Players.
         /// </summary>
         public static string TotalPlay {
@@ -8722,42 +5378,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string TotalQualifiedMembers {
             get {
                 return ResourceManager.GetString("TotalQualifiedMembers", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Total Set.
-        /// </summary>
-        public static string totalset {
-            get {
-                return ResourceManager.GetString("totalset", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Total Set.
-        /// </summary>
-        public static string totalset1 {
-            get {
-                return ResourceManager.GetString("totalset1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Total Unique Clicks By Date.
-        /// </summary>
-        public static string TotalUniqueClickByDate {
-            get {
-                return ResourceManager.GetString("TotalUniqueClickByDate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Tournament (ID).
-        /// </summary>
-        public static string tournamentid {
-            get {
-                return ResourceManager.GetString("tournamentid", resourceCulture);
             }
         }
         
@@ -8843,15 +5463,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Minimum turnover amount of a qualified member.
-        /// </summary>
-        public static string Turnover_explain {
-            get {
-                return ResourceManager.GetString("Turnover_explain", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Turnover.
         /// </summary>
         public static string TurnoverUpToNow {
@@ -8861,38 +5472,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 2. CASINO.
-        /// </summary>
-        public static string TwoDotCasino {
-            get {
-                return ResourceManager.GetString("TwoDotCasino", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Moneybookers.
-        /// </summary>
-        public static string TwoDotMoneybookers {
-            get {
-                return ResourceManager.GetString("TwoDotMoneybookers", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Type.
         /// </summary>
         public static string Type {
             get {
                 return ResourceManager.GetString("Type", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Type.
-        /// </summary>
-        public static string type1 {
-            get {
-                return ResourceManager.GetString("type1", resourceCulture);
             }
         }
         
@@ -8920,15 +5504,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Uncalculated {
             get {
                 return ResourceManager.GetString("Uncalculated", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Under.
-        /// </summary>
-        public static string under {
-            get {
-                return ResourceManager.GetString("under", resourceCulture);
             }
         }
         
@@ -8987,24 +5562,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unknown Error!.
-        /// </summary>
-        public static string UnknownError {
-            get {
-                return ResourceManager.GetString("UnknownError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to d. Unlike with a player making a big winning, which only lasts one month, a charge back will stay due untill the revenue generated by your other players has covered the amount due..
-        /// </summary>
-        public static string Unlikewithaplayer {
-            get {
-                return ResourceManager.GetString("Unlikewithaplayer", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Update 12BET Banners from your Media Gallery.
         /// </summary>
         public static string Update12BetBannersfromYourMediaGallery {
@@ -9028,24 +5585,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string UpdateSecurityQuestion {
             get {
                 return ResourceManager.GetString("UpdateSecurityQuestion", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to For security reason, you are required to select a security question and provide your answer. You&apos;ll be asked this question for authentication in case you forget your password, or need to contact us for sensitive information..
-        /// </summary>
-        public static string UpdateSecurityQuestionRemind {
-            get {
-                return ResourceManager.GetString("UpdateSecurityQuestionRemind", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Upon successful registration on the website through affiliate advertising, gamers are given complete access to the following: soccer, table tennis, basketball, golf, boxing, volleyball, motorsports, ice hockey, baseball, handball, water polo, rugby, darts, swimming, snooker, and cricket. The wager of members is partly accounted as affiliate commission..
-        /// </summary>
-        public static string UponSuccessfulRegistration {
-            get {
-                return ResourceManager.GetString("UponSuccessfulRegistration", resourceCulture);
             }
         }
         
@@ -9095,29 +5634,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User currency.
-        /// </summary>
-        public static string usercurrency {
-            get {
-                return ResourceManager.GetString("usercurrency", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to User Name.
         /// </summary>
         public static string Username {
             get {
                 return ResourceManager.GetString("Username", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Use this form to change your password. Once changed, your new password will be in effect next time you login..
-        /// </summary>
-        public static string Usethisformtoch {
-            get {
-                return ResourceManager.GetString("Usethisformtoch", resourceCulture);
             }
         }
         
@@ -9185,15 +5706,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vietnamese Support.
-        /// </summary>
-        public static string VietnameseSupport {
-            get {
-                return ResourceManager.GetString("VietnameseSupport", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Vietnam Support.
         /// </summary>
         public static string VietnamSupport {
@@ -9203,128 +5715,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You can see the report data up to 3 months. For more historic data, please click to {viewhistory}.
-        /// </summary>
-        public static string ViewHistoryReport1 {
-            get {
-                return ResourceManager.GetString("ViewHistoryReport1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to View History Report.
-        /// </summary>
-        public static string ViewHistoryReport2 {
-            get {
-                return ResourceManager.GetString("ViewHistoryReport2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to View more.
-        /// </summary>
-        public static string ViewMore {
-            get {
-                return ResourceManager.GetString("ViewMore", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Virtual Soccer.
-        /// </summary>
-        public static string VirtualSoccer {
-            get {
-                return ResourceManager.GetString("VirtualSoccer", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Virtual Sports.
         /// </summary>
         public static string VirtualSports {
             get {
                 return ResourceManager.GetString("VirtualSports", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Virtual Sports are e-games inspired by real sports such as soccer, horse racing, greyhounds, speedway, motorsports, cycling and tennis. But unlike the actual games, the Virtual Sports start and end in as three to five minutes, which gives players immediate match results..
-        /// </summary>
-        public static string VirtualSportsAreEgames {
-            get {
-                return ResourceManager.GetString("VirtualSportsAreEgames", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Void/Rejected Bet List (Last 3 days).
-        /// </summary>
-        public static string voidandreject {
-            get {
-                return ResourceManager.GetString("voidandreject", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Warrior.
-        /// </summary>
-        public static string warrior {
-            get {
-                return ResourceManager.GetString("warrior", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Warrior.
-        /// </summary>
-        public static string warrior1 {
-            get {
-                return ResourceManager.GetString("warrior1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 2nd ball win.
-        /// </summary>
-        public static string warrior2ndBall {
-            get {
-                return ResourceManager.GetString("warrior2ndBall", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 2nd ball win.
-        /// </summary>
-        public static string warrior2ndBall1 {
-            get {
-                return ResourceManager.GetString("warrior2ndBall1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 3rd ball win.
-        /// </summary>
-        public static string warrior3rdBall {
-            get {
-                return ResourceManager.GetString("warrior3rdBall", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 3rd ball win.
-        /// </summary>
-        public static string warrior3rdBall1 {
-            get {
-                return ResourceManager.GetString("warrior3rdBall1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Yes. We are able to track visitors from our affiliate&apos;s website that don&apos;t sign up right away but, return to 12BET.com at a later date &amp;amp; sign-up. We set our protection period for 90 days to cover the first referring affiliate. The technology used to manage this is based on cookies..
-        /// </summary>
-        public static string WeAreAbleToTrackVisitors {
-            get {
-                return ResourceManager.GetString("WeAreAbleToTrackVisitors", resourceCulture);
             }
         }
         
@@ -9365,42 +5760,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Website URLs.
-        /// </summary>
-        public static string WebsiteURLs {
-            get {
-                return ResourceManager.GetString("WebsiteURLs", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to We do not tolerate spamming of any kind by our affiliate partners. If spamming by an affiliate is brought to our attention we will give the affiliate one warning (if judged to be a minor case). If the spamming does not stop the affiliate partner will be permanently banned from our 12BET Affiliate Program. .
-        /// </summary>
-        public static string WeDoNotTolerateSpamming {
-            get {
-                return ResourceManager.GetString("WeDoNotTolerateSpamming", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to We employs state-of-the-art technology in our tracking system to ensure you receive credit for 100% of the traffic you send 12BET.com. Affiliates refer players by using their unique URL that is provided in the Media Gallery area. Through the use of cookies, visitors that click through an affiliate unique URL (banner, text link, email message etc) are tracked and credit is automatically given to the affiliate for players referred..
-        /// </summary>
-        public static string WeEmploys {
-            get {
-                return ResourceManager.GetString("WeEmploys", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 1. We hereby grant to you a personal, non-exclusive, non-transferable limited license, during the term of this Agreement, to use our trademarks (licensed, in turn by us, from their owner) solely in connection with the display of the banners on your site..
-        /// </summary>
-        public static string WeHerebyGrantToYou {
-            get {
-                return ResourceManager.GetString("WeHerebyGrantToYou", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Welcome.
         /// </summary>
         public static string Welcome {
@@ -9410,218 +5769,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Welcome to 12BET Affiliate Program. You are required to change your password and accept our Terms &amp; Conditions..
-        /// </summary>
-        public static string WelcomeResettingNewPassword {
-            get {
-                return ResourceManager.GetString("WelcomeResettingNewPassword", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to We make no express or implied warranties or representations with respect to the referral program or referral fee payment arrangements (including, without limitation, their functionality, warranties of fitness, merchantability, legality, non-infringement, or any implied warranties arising out of a course of performance, dealing, or trade usage). In addition, we make no representation that the operation of our site will be uninterrupted or error-free and will not be liable for the consequences of any interrup [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string WeMakeNoExpress {
-            get {
-                return ResourceManager.GetString("WeMakeNoExpress", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 7. We may modify any of the terms and conditions contained in this Agreement, at any time and in our sole discretion, by posting a change notice or a new agreement on our site. Modifications may include, for example, changes in the scope of available referral fees, fee schedules, payment procedures, and referral program rules. IF ANY MODIFICATION IS UNACCEPTABLE TO YOU, YOUR ONLY RECOURSE IS TO TERMINATE THIS AGREEMENT. YOUR CONTINUED PARTICIPATION IN THE PROGRAM FOLLOWING OUR POSTING OF A CHANGE NOTICE OR  [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string WeMayModifyAnyOfTheTerm {
-            get {
-                return ResourceManager.GetString("WeMayModifyAnyOfTheTerm", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to i. WE MAY TERMINATE THIS AGREEMENT IF WE DETERMINE (IN OUR SOLE DISCRETION) THAT YOUR SITE IS UNSUITABLE. Unsuitable sites may include those that: are aimed at children, promote sexually explicit materials, promote violence, promote discrimination based on race, sex, religion, nationality, disability, sexual orientation, or age, promote illegal activities, or violate intellectual property rights..
-        /// </summary>
-        public static string WeMayTerminateThisAgreement {
-            get {
-                return ResourceManager.GetString("WeMayTerminateThisAgreement", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to e. We may withhold your final payment for a reasonable time to ensure that the correct amount is paid..
-        /// </summary>
-        public static string WeMayWithhold {
-            get {
-                return ResourceManager.GetString("WeMayWithhold", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to We offer several methods of withdrawal:.
-        /// </summary>
-        public static string WeOfferSeveralMethods {
-            get {
-                return ResourceManager.GetString("WeOfferSeveralMethods", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to We reserve the right to terminate this Agreement if we determine that your site is unsuitable. Unsuitable sites may include those that: promote sexually explicit materials, are targeted towards children or minors, promote violence, promote discrimination based on race, sex, religion, nationality, disability, sexual orientation, promote illegal activities, or violate intellectual property rights (&quot;IP rights&quot;)..
-        /// </summary>
-        public static string WeReserveTheRight {
-            get {
-                return ResourceManager.GetString("WeReserveTheRight", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 4. We reserve the right to revoke this license at any time and it shall have been deemed revoked at the termination of this Agreement, for whatsoever reason..
-        /// </summary>
-        public static string WeReserveTheRightToRevoke {
-            get {
-                return ResourceManager.GetString("WeReserveTheRightToRevoke", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Yes, we rollover negative commission balances. In the event that you carry a negative commission balance at the end of a month, it will rollover until you have enough positive earnings to zero that balance out..
-        /// </summary>
-        public static string WeRolloverNegative {
-            get {
-                return ResourceManager.GetString("WeRolloverNegative", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Western Samoa .
         /// </summary>
         public static string WesternSamoa {
             get {
                 return ResourceManager.GetString("WesternSamoa", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to e. We understand that this might be frustrating to the affiliates, but it has to be made clear that 12BET can only pay out a percentage of their profits, not fraudulent revenue..
-        /// </summary>
-        public static string Weunderstandthat {
-            get {
-                return ResourceManager.GetString("Weunderstandthat", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to We will be very pleased to welcome everyone to join through 12BET affiliate program. Earn as much commission as you can from all 12BET products..
-        /// </summary>
-        public static string WeWillBeVeryPleased {
-            get {
-                return ResourceManager.GetString("WeWillBeVeryPleased", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to We will not be liable for indirect, special, or consequential damages (or any loss of revenue, profits, or data) arising in connection with this Agreement or the referral program, even if we have been advised of the possibility of such damages. Further, our aggregate liability arising with respect to this Agreement and the Program will not exceed the total commissions paid or payable to you under this Agreement. Nothing in this Agreement shall be construed to provide any rights, remedies or benefits to any  [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string WeWillNotBeLiable {
-            get {
-                return ResourceManager.GetString("WeWillNotBeLiable", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 5. We will terminate this Agreement immediately if there is any form of spamming on your behalf or if you discredit 12BET through false advertising, written or uttered words..
-        /// </summary>
-        public static string WeWillTerminateThisAgreement {
-            get {
-                return ResourceManager.GetString("WeWillTerminateThisAgreement", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to What are the withdrawal methods available to me? .
-        /// </summary>
-        public static string WhatAreTheWithdrawal {
-            get {
-                return ResourceManager.GetString("WhatAreTheWithdrawal", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to What are the withdrawal methods available to me?.
-        /// </summary>
-        public static string WhatAreTheWithdrawalMethods {
-            get {
-                return ResourceManager.GetString("WhatAreTheWithdrawalMethods", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to What if I don&apos;t have a Website, can I still join?.
-        /// </summary>
-        public static string WhatIfDontHaveWebsite {
-            get {
-                return ResourceManager.GetString("WhatIfDontHaveWebsite", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to What if I don&apos;t have a Website, can I still join?.
-        /// </summary>
-        public static string WhatIfIDontHave {
-            get {
-                return ResourceManager.GetString("WhatIfIDontHave", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to What is your policy on spamming?.
-        /// </summary>
-        public static string WhatIfYourPolicy {
-            get {
-                return ResourceManager.GetString("WhatIfYourPolicy", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to What is 12BET Affiliate Program?.
-        /// </summary>
-        public static string WhatIs12BETAffiliateProgram {
-            get {
-                return ResourceManager.GetString("WhatIs12BETAffiliateProgram", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to What is 12BET Affiliate Program?.
-        /// </summary>
-        public static string WhatIs12BETAffiliates {
-            get {
-                return ResourceManager.GetString("WhatIs12BETAffiliates", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to What is a cookie?.
-        /// </summary>
-        public static string WhatIsACookie {
-            get {
-                return ResourceManager.GetString("WhatIsACookie", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to What is the minimum withdrawal request amount?.
-        /// </summary>
-        public static string WhatIsTheMinimumWithdrawal {
-            get {
-                return ResourceManager.GetString("WhatIsTheMinimumWithdrawal", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to What is your policy on spamming?.
-        /// </summary>
-        public static string WhatIsYourPolicy {
-            get {
-                return ResourceManager.GetString("WhatIsYourPolicy", resourceCulture);
             }
         }
         
@@ -9644,60 +5796,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to a. Whenever possible, each provision of this Agreement shall be interpreted in such a manner as to be effective and valid under applicable law but, if any provision of this Agreement is held to be invalid, illegal or unenforceable in any respect, such provision will be ineffective only to the extent of such invalidity, or unenforceability, without invalidating the remainder of this Agreement or any provision hereof. No waiver will be implied from conduct or failure to enforce any rights and must be in writi [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string Wheneverpossible {
-            get {
-                return ResourceManager.GetString("Wheneverpossible", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Where do I get banners and content?.
-        /// </summary>
-        public static string WhereDoIGetBanners {
-            get {
-                return ResourceManager.GetString("WhereDoIGetBanners", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Where do I get banners and content?.
-        /// </summary>
-        public static string WhereDoIGetBannersAndContent {
-            get {
-                return ResourceManager.GetString("WhereDoIGetBannersAndContent", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Wide range of payment methods.
-        /// </summary>
-        public static string WideRange {
-            get {
-                return ResourceManager.GetString("WideRange", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Will you track and give me credit for non-members that did not sign up on the first visit through my affiliate link but return to 12BET.com later and become a member?.
-        /// </summary>
-        public static string WillYouTrackAndGiveMeCredit {
-            get {
-                return ResourceManager.GetString("WillYouTrackAndGiveMeCredit", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Win/Loss.
-        /// </summary>
-        public static string win {
-            get {
-                return ResourceManager.GetString("win", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Winlost.
         /// </summary>
         public static string Winlost {
@@ -9712,60 +5810,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Withdrawal {
             get {
                 return ResourceManager.GetString("Withdrawal", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Within 5 days we should be able to provide you with a decision in regard to your application. If you are approved, you will be able to enjoy full access to our affiliate program..
-        /// </summary>
-        public static string Within5dayswesh {
-            get {
-                return ResourceManager.GetString("Within5dayswesh", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 7. Without our prior written approval, you will only use our approved banners and links and will not alter their appearance nor refer to us in any promotional materials. The appearance and syntax of the hypertext transfer links are designed and designated by us and constitute the only authorized and permitted representation of 12BET..
-        /// </summary>
-        public static string WithoutOurPriorWritten {
-            get {
-                return ResourceManager.GetString("WithoutOurPriorWritten", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Results with pictures.
-        /// </summary>
-        public static string withPictures {
-            get {
-                return ResourceManager.GetString("withPictures", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Won.
-        /// </summary>
-        public static string won {
-            get {
-                return ResourceManager.GetString("won", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Wrong Min bet/ Max bet/ Max per match/ Credit/ Master Agent name/ user group.
-        /// </summary>
-        public static string WrongMinbet_Max {
-            get {
-                return ResourceManager.GetString("WrongMinbet_Max", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to XRate.
-        /// </summary>
-        public static string xrate {
-            get {
-                return ResourceManager.GetString("xrate", resourceCulture);
             }
         }
         
@@ -9788,42 +5832,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You acknowledge that you have read this agreement and agree to all its terms and conditions. You understand that we may at any time (directly or indirectly) solicit customer referrals on terms that may differ from those contained in this agreement or operate web sites that are similar to or compete with your web site. You have independently evaluated the desirability of participating in this affiliate program and are not relying on any representation, guarantee, or statement other than as set forth in this  [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string YouAcknowledge {
-            get {
-                return ResourceManager.GetString("YouAcknowledge", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 9. You and we are independent contractors, and nothing in this Agreement will create any partnership, joint venture, agency, franchise, sales representative, or employment relationship between the parties. You will have no authority to make or accept any offers or representations on our behalf. You will not make any statement, whether on your site or otherwise, that reasonably would contradict anything in this paragraph..
-        /// </summary>
-        public static string YouAndWeAreIndependent {
-            get {
-                return ResourceManager.GetString("YouAndWeAreIndependent", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You and we are independent contractors, and nothing in this agreement will create any partnership, joint venture, agency, franchise, sales representative, or employment relationship between the parties. You will have no authority to make or accept any offers or representations on our behalf. You will not make any statement, whether on your site or otherwise, to contradict anything in this paragraph or be reasonably deemed to contradict this paragraph..
-        /// </summary>
-        public static string YouAndWeAreIndependentContractors {
-            get {
-                return ResourceManager.GetString("YouAndWeAreIndependentContractors", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to h. You and we will be released from all obligations and liabilities to each other occurring or arising after the date of such termination, except with respect to those obligations that by their nature are designed to survive termination, as set out in this Agreement. Termination will not relieve you from any liability arising from any breach of this Agreement, which occurred prior to termination..
-        /// </summary>
-        public static string YouAndWeWillBeReleased {
-            get {
-                return ResourceManager.GetString("YouAndWeWillBeReleased", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to YOU&apos;RE NOT AFFILIATE YET?.
         /// </summary>
         public static string YouAreNotAffiliateYet {
@@ -9833,137 +5841,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 10. You are not allowed to concurrently maintain both affiliate and referral relationships with 12BET. Violation of this provision grants 12BET the right to unilaterally terminate either or both affiliate and/or referral relationships. A referral relationship refers to a relationship with 12BET pursuant to 12BET’s Refer-A-Friend Program (as setout and available in the Website)..
-        /// </summary>
-        public static string YouAreNotAllowed {
-            get {
-                return ResourceManager.GetString("YouAreNotAllowed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You are not authorized to create/edit this information.
-        /// </summary>
-        public static string Youarenotauthor {
-            get {
-                return ResourceManager.GetString("Youarenotauthor", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 1. You are only responsible for directing customers to the 12BET website..
-        /// </summary>
-        public static string YouAreOnlyResponsible {
-            get {
-                return ResourceManager.GetString("YouAreOnlyResponsible", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You can login to your 12BET affiliate account to check your commission stats in real-time which is available to you 24 hours a day, 7 days a week and 365 days per year..
-        /// </summary>
-        public static string YouCanLoginToYour12BET {
-            get {
-                return ResourceManager.GetString("YouCanLoginToYour12BET", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to You can now log in your affiliate account to  get new banners to promote in your website. .
         /// </summary>
         public static string YouCanNowLogInYourAffiliateAccount {
             get {
                 return ResourceManager.GetString("YouCanNowLogInYourAffiliateAccount", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You can request for a withdrawal through Moneybookers, Neteller, Wire Transfer or directly into your 12BET player account..
-        /// </summary>
-        public static string YouCanRequestForAWithdrawal {
-            get {
-                return ResourceManager.GetString("YouCanRequestForAWithdrawal", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You can request payout in other currencies other than USD. The currencies offered are RMB and MYR, THB, VND, IDR, INR and KRW. Respective exchange rate on the payout date will be applied..
-        /// </summary>
-        public static string YouCanRequestPayout {
-            get {
-                return ResourceManager.GetString("YouCanRequestPayout", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You have a pending request. In order to create a new request, please cancel the pending one or wait till the processing gets completed..
-        /// </summary>
-        public static string Youhaveapending {
-            get {
-                return ResourceManager.GetString("Youhaveapending", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You have requested to recover your username or password. If you did not request it, please ignore this email..
-        /// </summary>
-        public static string Youhaverequeste {
-            get {
-                return ResourceManager.GetString("Youhaverequeste", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You hereby agree to indemnify and hold harmless 12BET , the entities it represents and affiliates, and 12BET directors, officers, employees, agents, shareholders, partners, members and other owners, against any and all claims, actions, demands, liabilities, losses, damages, judgments, settlements, expenses (including reasonable attorneys&apos; fees), and costs (any or all of the foregoing hereinafter referred to as &quot;Losses&quot;) insofar as such Losses (or actions in respect thereof) arise out of or are based on (i)  [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string YouHerebyAgreeToIndemnify {
-            get {
-                return ResourceManager.GetString("YouHerebyAgreeToIndemnify", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You placed an invalid code..
-        /// </summary>
-        public static string Youinputtedanin {
-            get {
-                return ResourceManager.GetString("Youinputtedanin", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 2. You may not modify or use for any other purpose any IP rights, banners or other creative material supplied by us without the written prior consent of 12BET. All copyright or IP rights notices on any material supplied or approved by 12BET must remain and not be modified or eliminated..
-        /// </summary>
-        public static string YouMayNotModify {
-            get {
-                return ResourceManager.GetString("YouMayNotModify", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You must agree Terms &amp; Conditions to proceed!.
-        /// </summary>
-        public static string YoumustagreeTer {
-            get {
-                return ResourceManager.GetString("YoumustagreeTer", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to a. You must remove 12BET&apos;s banner/s from your site and disable any links from your site to 12BET..
-        /// </summary>
-        public static string YouMustRemoveBanners {
-            get {
-                return ResourceManager.GetString("YouMustRemoveBanners", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your account information has been updated successfully..
-        /// </summary>
-        public static string Youraccountinfo {
-            get {
-                return ResourceManager.GetString("Youraccountinfo", resourceCulture);
             }
         }
         
@@ -10000,132 +5882,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Yourlogindetail {
             get {
                 return ResourceManager.GetString("Yourlogindetail", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your payment request will be reviewed in the next 24 hours. All requests are reviewed in the order in which they are received..
-        /// </summary>
-        public static string YourPayment {
-            get {
-                return ResourceManager.GetString("YourPayment", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your payment request amount of ${amount} has been cancelled..
-        /// </summary>
-        public static string Yourpaymentrequ {
-            get {
-                return ResourceManager.GetString("Yourpaymentrequ", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your request reference number is {transid}..
-        /// </summary>
-        public static string Yourrequestrefe {
-            get {
-                return ResourceManager.GetString("Yourrequestrefe", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your use email is invalid, please try again..
-        /// </summary>
-        public static string Youruseemailisi {
-            get {
-                return ResourceManager.GetString("Youruseemailisi", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your username is.
-        /// </summary>
-        public static string Yourusernameis {
-            get {
-                return ResourceManager.GetString("Yourusernameis", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Your websites and application details will be reviewed by the team at 12Bet Affiliates to ensure that content is suitable for promoting our products..
-        /// </summary>
-        public static string Yourwebsitesand {
-            get {
-                return ResourceManager.GetString("Yourwebsitesand", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 6. You shall not make any claims, representations, or warranties in connection with 12BET and you shall have no authority to and shall not bind 12BET to any obligations..
-        /// </summary>
-        public static string YouShallNotMakeAnyClaims {
-            get {
-                return ResourceManager.GetString("YouShallNotMakeAnyClaims", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 2. You will agree to register and maintain correct and truthful contact information with 12BET..
-        /// </summary>
-        public static string YouWillAgreeToRegister {
-            get {
-                return ResourceManager.GetString("YouWillAgreeToRegister", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to c. You will be entitled only to those unpaid referral fees if any earned by You on or prior to the date of termination, save where termination is as a result of Your breach of terms of this Agreement, as detailed at 9.2.d below. We may withhold your final payment for a reasonable time to ensure that the correct amount is paid..
-        /// </summary>
-        public static string YouWillBeEntitled {
-            get {
-                return ResourceManager.GetString("YouWillBeEntitled", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 4. You will be solely responsible for the development, operation, and maintenance of your site and for all materials that appear on your site and at your own cost. For example, you will be solely responsible for ensuring that materials posted on your site are not libelous or otherwise illegal or shall infringe the IP rights of third parties. Since we do not have control over your own site, we disclaim all liability for these matters. Further, you will indemnify and hold us harmless from all claims, damages, [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string YouWillBeSolelyResponsible {
-            get {
-                return ResourceManager.GetString("YouWillBeSolelyResponsible", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 3. You will indemnify and hold us harmless from all claims, damages, and expenses (including, without limitation, attorneys&apos; fees) relating to the development, operation, maintenance, and contents of your site. This provision on indemnification is without prejudice to our separate action or claim against you under applicable laws..
-        /// </summary>
-        public static string YouWillIndemnify {
-            get {
-                return ResourceManager.GetString("YouWillIndemnify", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 8. You will not knowingly benefit from known or suspected traffic not generated in good faith whether or not it actually causes 12BET damage. Should fraudulent activity arise through a person directed to a site via your link, we retain the right to retract the commissions paid to you at any time. Our decision in this regard will be final and no correspondence will be entered into. We reserve the right to retain all amounts due to you under this Agreement if we have reasonable cause to believe that such traf [rest of string was truncated]&quot;;.
-        /// </summary>
-        public static string YouWillNotKnowingly {
-            get {
-                return ResourceManager.GetString("YouWillNotKnowingly", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 3. You will present only content and topics on your site which are pre-approved in writing by 12BET. Content that is deemed unsuitable in 12BET&apos;s sole discretion will result in the affiliate Agreement being terminated immediately..
-        /// </summary>
-        public static string YouWillPresentOnlyContent {
-            get {
-                return ResourceManager.GetString("YouWillPresentOnlyContent", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to g. You will return to us any confidential information and all copies of it in your possession, custody and control and will cease all uses of any trade names, trademarks, service marks, logos and other designations of the merchants..
-        /// </summary>
-        public static string YouWillReturnToUs {
-            get {
-                return ResourceManager.GetString("YouWillReturnToUs", resourceCulture);
             }
         }
         

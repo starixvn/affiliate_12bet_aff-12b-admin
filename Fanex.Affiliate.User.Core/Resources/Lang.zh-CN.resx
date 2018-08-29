@@ -120,9 +120,6 @@
   <data name="AboutUs" xml:space="preserve">
     <value>关于我们</value>
   </data>
-  <data name="AccId" xml:space="preserve">
-    <value>帐户号码</value>
-  </data>
   <data name="AccInfo" xml:space="preserve">
     <value>帐户资料</value>
   </data>
@@ -134,12 +131,6 @@
   </data>
   <data name="ActivatedTrackingCode" xml:space="preserve">
     <value>已有</value>
-  </data>
-  <data name="ActiveAcc" xml:space="preserve">
-    <value>邮件将包含一个链接。您需要点击这个链接，来激活您的帐户和确认您的电子邮件地址并最终完成您的注册申请。</value>
-  </data>
-  <data name="ActiveWageringMembersRefers" xml:space="preserve">
-    <value>2. 活跃投注会员标准为：每个会员在单月中累积投注在100美金（或等值其他国家货币）以上。</value>
   </data>
   <data name="Address" xml:space="preserve">
     <value>地址</value>
@@ -153,35 +144,11 @@
   <data name="Adjustment" xml:space="preserve">
     <value>Adjustment</value>
   </data>
-  <data name="AffilatesAreOnlyAllowed" xml:space="preserve">
-    <value>*合伙人每月最多可以申请一次提款，如果得到合作伙伴部门经理的批准，也可以在同一个月内申请第二次。目前我们给予大家的提款申请服务是免费的，但我们并不会负担任何转帐手续费或电子转帐所需服务费用。 &lt;br&gt;最低佣金提领要求是100美金。</value>
-  </data>
   <data name="Affiliate" xml:space="preserve">
     <value>合作伙伴</value>
   </data>
-  <data name="AffiliateEarnings" xml:space="preserve">
-    <value>合作伙伴收入</value>
-  </data>
   <data name="AffiliateID" xml:space="preserve">
     <value>合作伙伴号码</value>
-  </data>
-  <data name="AffiliateMustEnsure" xml:space="preserve">
-    <value>6. 加盟商必须确保任何出现在他们网站的素材是合法的，并且不会侵犯版权或破坏其他权利。</value>
-  </data>
-  <data name="AffiliatesAreProhibited" xml:space="preserve">
-    <value>9.合作伙伴被禁止通过自己的专属代理链接，分享所有或部分佣金给会员或第三方，参加任何12BET体育博彩推广。这包括任何合作伙伴，从中获得任何形式的津贴或佣金的独立个体或群体。如果违反这部分规定，12BET和各自的有被投注过的网站有权取消所有相应的投注，并删减任何通过这样的活动而获得的佣金，以及将此合作伙伴从计划中删除并终止此协议，并且令将来任何在12BET的投注失效。</value>
-  </data>
-  <data name="AffiliatesWillNotEarn" xml:space="preserve">
-    <value>8. 合作伙伴将不能从其下线会员在12BET赛马和娱乐场产品中的投注及输赢中获得佣金。</value>
-  </data>
-  <data name="AffiliateTagging" xml:space="preserve">
-    <value>3. 合作伙伴标签</value>
-  </data>
-  <data name="AffiliationGuidelines" xml:space="preserve">
-    <value>2. 加盟代理指引</value>
-  </data>
-  <data name="DetailedChargeBack" xml:space="preserve">
-    <value>&lt;span&gt;&lt;/span&gt;</value>
   </data>
   <data name="AgreeTermNCondition" xml:space="preserve">
     <value>我同意12BET合作伙伴的规则与条款</value>
@@ -195,12 +162,6 @@
   <data name="All" xml:space="preserve">
     <value>全部</value>
   </data>
-  <data name="AllRightAndLicensee" xml:space="preserve">
-    <value>b. 在此协议中授予您的所有权利和授权应该即时终止。 </value>
-  </data>
-  <data name="AMaximumOfOneWithdrawal" xml:space="preserve">
-    <value>合伙人每月最多可以作出一次提款申请。如果得到会员介绍合作计划的经理批准，你也可以在同一个月内做出第二次提款申请。目前我们给予大家的提款申请服务是免费的，但我们并不会负担任何转帐时的手续费或电子转帐所需服务费用。</value>
-  </data>
   <data name="Amount" xml:space="preserve">
     <value>金额</value>
   </data>
@@ -210,36 +171,14 @@
   <data name="And" xml:space="preserve">
     <value>和</value>
   </data>
-  <data name="Anewpasswordwil" xml:space="preserve">
-    <value>新的密码会发到您提供的注册邮箱。</value>
-  </data>
   <data name="Angola" xml:space="preserve">
     <value>安哥拉 </value>
   </data>
   <data name="Anguilla" xml:space="preserve">
     <value>安圭拉 </value>
   </data>
-  <data name="AnnouncementBody" xml:space="preserve">
-    <value>好消息！&lt;br/&gt;
-图片和文字链接的流量追踪技术已经加强了！立即访问 &lt;a href="javascript:void(0)" id="media_gallery_link"&gt;媒体册&lt;/a&gt; 获取以更新吧！</value>
-  </data>
-  <data name="AnnouncementHeader" xml:space="preserve">
-    <value>追踪技术加强版</value>
-  </data>
-  <data name="AnyformofSpam" xml:space="preserve">
-    <value>a. 任何形式的垃圾邮件将会导致您的帐户被处理为审核状态，所有的资金被冻结，直到对您的帐户调查处理完成。你需要知道我们的客户可能会因为处理您的滥发所产生的邮件而导致费用产生，如果我们的客户寻求追索权，所有这些相同的费用将会从您的帐户上进行扣减。在此情形下，由于您同意注册成为12BET的加盟商，由相关客户决定的费用金额将会被诚实地认为是最终及可接受的，这些费用金额是根据法律上收取的，并公平地被您接受。</value>
-  </data>
-  <data name="AnyNegativeBalance" xml:space="preserve">
-    <value>在其中某个月的任何负余额，均会带到下一个月。例如若您在1月合作伙件的户口最终结余为-$2,555，这个余额将会带到二月。若您在2月合作伙件的户口最终结余为$3,400，那么您的户口总结余将为$845 ($3,400扣掉$2,555)。不过若您的户口在2月依然是负数，例如-$1,600，这将会继续累积之前的负结余到下一个月，那么带到3月的结余将会是-$4,155。 佣金收入将按相应的级别比例支付给合作伙伴。</value>
-  </data>
-  <data name="ApplicationUnde" xml:space="preserve">
-    <value>申请在审核中</value>
-  </data>
   <data name="Approved" xml:space="preserve">
     <value>核准</value>
-  </data>
-  <data name="Apr" xml:space="preserve">
-    <value>四月</value>
   </data>
   <data name="April" xml:space="preserve">
     <value>四月</value>
@@ -253,32 +192,8 @@
   <data name="Aruba" xml:space="preserve">
     <value>阿鲁巴 </value>
   </data>
-  <data name="As12BETAffiliates" xml:space="preserve">
-    <value>
-		成为12BET合作伙件后，由您推荐到12BET的每位玩家只要使用账户就可以为您带来即时的佣金。我们的线上汇报系统会7×24小时供您查阅。
-	</value>
-  </data>
-  <data name="AsAnAffiliate" xml:space="preserve">
-    <value>1. 作为合作伙伴，您有责任将横幅广告和相应的追踪链接，置放在您的网站、电邮和其他通讯方式，来推广宣传12BET。</value>
-  </data>
-  <data name="AsaPolicy12BETShallNo" xml:space="preserve">
-    <value>根据协议，如果您是由或通过英国管辖区的互联网地址(IP)来进行宣传，12BET无法接受您申请成为合作伙伴。</value>
-  </data>
-  <data name="Asa_12BetcomAff" xml:space="preserve">
-    <value>作为12BET.com的合作伙伴，您需要引导您的网站访问者通过使用放置在您网站的特殊的流量代码来登陆我们网站。</value>
-  </data>
-  <data name="Assignability" xml:space="preserve">
-    <value>1. 分派能力和适用性&lt;br&gt;
-a. 在我们事先书面同意之前您不能通过法律行动或其他方式将此协议分派给他人。出于此规限，此协议将对您和我们以及我们各自的继承人和受让人约束、利益生效和可强制执行。</value>
-  </data>
-  <data name="Asyouhaverequested" xml:space="preserve">
-    <value>根据您的要求，我们为您提供一个新的密码。您的新账号信息如下：</value>
-  </data>
   <data name="AUD" xml:space="preserve">
     <value>澳幣</value>
-  </data>
-  <data name="Aug" xml:space="preserve">
-    <value>八月</value>
   </data>
   <data name="August" xml:space="preserve">
     <value>八月</value>
@@ -307,17 +222,11 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
   <data name="Bahrain" xml:space="preserve">
     <value>巴林</value>
   </data>
-  <data name="Balance0" xml:space="preserve">
-    <value>您的帐户余额不足，不能要求提款</value>
-  </data>
   <data name="BalForward" xml:space="preserve">
     <value>转入下月余额</value>
   </data>
   <data name="Bangladesh" xml:space="preserve">
     <value>孟加拉</value>
-  </data>
-  <data name="BankABA_Swift_S" xml:space="preserve">
-    <value>请填写银行ABA/Swift/Sort Code信息</value>
   </data>
   <data name="BankABA_Swift_SIsRequired" xml:space="preserve">
     <value>请填写银行ABA/Swift/Sort Code信息</value>
@@ -325,14 +234,8 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
   <data name="BankAccnumber" xml:space="preserve">
     <value>银行帐户号码</value>
   </data>
-  <data name="BankAccountName" xml:space="preserve">
-    <value>银行帐户名</value>
-  </data>
   <data name="BankAccountNameIsRequired" xml:space="preserve">
     <value>请填写银行账户姓名</value>
-  </data>
-  <data name="BankAccountNumb" xml:space="preserve">
-    <value>银行帐户号码</value>
   </data>
   <data name="BankAccountNumbIsRequired" xml:space="preserve">
     <value>请填写银行账户号码</value>
@@ -342,9 +245,6 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
   </data>
   <data name="BankAddressisre" xml:space="preserve">
     <value>请填写银行地址</value>
-  </data>
-  <data name="BankCode" xml:space="preserve">
-    <value>银行ABA/Swift/Sort 代码</value>
   </data>
   <data name="BankName" xml:space="preserve">
     <value>银行名</value>
@@ -357,9 +257,6 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
   </data>
   <data name="Banner" xml:space="preserve">
     <value>用您的瀏覽量賺錢!</value>
-  </data>
-  <data name="BannersAndLinks" xml:space="preserve">
-    <value>4. 横幅广告和链接不可以放于未经请求的电邮、未经授权的新闻发帖或聊天室，也不可利用“虚拟机器人”发送。非法产生的流量不会被计算在内，并会导致您的合作伙伴账户被终止。</value>
   </data>
   <data name="Barbados" xml:space="preserve">
     <value>巴巴多斯</value>
@@ -382,23 +279,8 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
   <data name="Bermuda" xml:space="preserve">
     <value>百幕大</value>
   </data>
-  <data name="BestRegards" xml:space="preserve">
-    <value>致以敬意，</value>
-  </data>
-  <data name="BestView" xml:space="preserve">
-    <value>推荐使用</value>
-  </data>
-  <data name="Bet12" xml:space="preserve">
-    <value>12BET</value>
-  </data>
   <data name="Bet12Username" xml:space="preserve">
     <value>12BET 用户名</value>
-  </data>
-  <data name="BETAffiliatesProgram" xml:space="preserve">
-    <value>12BET合作伙伴计划是一个合作关系计划，从你的网站线上或线下带到12BET.COM的玩家，您可以依靠他的投注活跃程度去赚取佣金。</value>
-  </data>
-  <data name="BetAffNotification" xml:space="preserve">
-    <value>12Bet合作伙伴 - [{transid}] - 支付申请通知 </value>
   </data>
   <data name="BETUserNameIsRequired" xml:space="preserve">
     <value>请填写12BET用户名</value>
@@ -436,21 +318,6 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
   <data name="Burundi" xml:space="preserve">
     <value>布隆迪</value>
   </data>
-  <data name="ByAccessingOurMediaGallery" xml:space="preserve">
-    <value>透过我们的媒体册，您可以选取你偏爱的广告横额或者文字连接放到您的网站。</value>
-  </data>
-  <data name="ByAgreeingToParticipate" xml:space="preserve">
-    <value>3. 一经同意加入12BET合作伙伴计划，即表示你同意下载横幅广告、文字或推广素材，并将其放在您的网站、电子邮件中使用，利用您的合作伙伴专属链接或印刷品，直接进行市场推广。您只能利用这些被12BET审核通过的方式，来宣传12BET的产品和服务。</value>
-  </data>
-  <data name="ByHavingRead" xml:space="preserve">
-    <value>阅读过条款和条件，并知道这样的签名表格后，您同意所有此协议中包含的条款和条件。12BET保留权利暂时停止向违反此协议中任何条件和条款的任何加盟代理商付款的权利。</value>
-  </data>
-  <data name="ByOpeningAnAccountWithACustomer" xml:space="preserve">
-    <value>2. 通过开设账户，个人或组织将成为我们的客户，故所有客户规则、政策和操作流程将同时适用。</value>
-  </data>
-  <data name="BythisAgreement" xml:space="preserve">
-    <value>2. 根据此协议，我们授予您在符合此协议条款及条件下非独家的权利，指引客户来使用12BET的网站和服务。此协议并不授予您提供介绍客户的独家或优先权，同时我们保留在任何时候收回，或协助我们其他合作方，提供与您相同或相似的服务权利。您不能通过您以外的其他个人或组织，索偿与此业务有关的介绍费用或补偿。</value>
-  </data>
   <data name="Cambodia" xml:space="preserve">
     <value>柬埔寨</value>
   </data>
@@ -475,12 +342,6 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
   <data name="CancelSubject" xml:space="preserve">
     <value>12Bet合作伙伴 - [{transid}] - 支付申请通知</value>
   </data>
-  <data name="CanIRequest" xml:space="preserve">
-    <value>除了美元以外，我可以要求以其他货币形式提取佣金吗？</value>
-  </data>
-  <data name="CannotSendmail" xml:space="preserve">
-    <value>无法发送邮件。请重新尝试。</value>
-  </data>
   <data name="CapeVerde" xml:space="preserve">
     <value>维德角岛</value>
   </data>
@@ -489,9 +350,6 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
   </data>
   <data name="CasinoBonus" xml:space="preserve">
     <value>娱乐城红利</value>
-  </data>
-  <data name="CasinoExtension" xml:space="preserve">
-    <value>娱乐城</value>
   </data>
   <data name="Category" xml:space="preserve">
     <value>种类</value>
@@ -519,12 +377,6 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
   </data>
   <data name="ChangePassword" xml:space="preserve">
     <value>更改密码</value>
-  </data>
-  <data name="Changepassworde" xml:space="preserve">
-    <value>更改密码出错</value>
-  </data>
-  <data name="ChargeBack" xml:space="preserve">
-    <value>a. 索回：未经信用卡持卡人授权就产生的他/她的信用卡/借记卡的非常规消费。信用卡持卡人要求发卡银行退回这些收费。索回费用是由于第三方欺骗性地使用信用卡持卡人的信用卡或信用卡号而产生的。</value>
   </data>
   <data name="Cheque" xml:space="preserve">
     <value>支票</value>
@@ -559,9 +411,6 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
   <data name="ChineseSimplifi" xml:space="preserve">
     <value>简体中文</value>
   </data>
-  <data name="ChineseSupport" xml:space="preserve">
-    <value>中文繁体</value>
-  </data>
   <data name="ChineseTraditio" xml:space="preserve">
     <value>繁體中文</value>
   </data>
@@ -571,29 +420,17 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
   <data name="CityIsRequired" xml:space="preserve">
     <value>请填写城市</value>
   </data>
-  <data name="ClicksCount" xml:space="preserve">
-    <value>Clicks Count</value>
-  </data>
   <data name="Colombia" xml:space="preserve">
     <value>哥伦比亚</value>
   </data>
   <data name="Comm" xml:space="preserve">
     <value>佣金比例</value>
   </data>
-  <data name="CommCurr" xml:space="preserve">
-    <value>目前佣金收入</value>
-  </data>
   <data name="Comment" xml:space="preserve">
     <value>意见</value>
   </data>
   <data name="CommentsIsInvalid" xml:space="preserve">
     <value>意见填写无效</value>
-  </data>
-  <data name="CommissionableEarningsWillBeSubject" xml:space="preserve">
-    <value>5. 可计算佣金的赢利额将会使用12BET加盟代理程序佣金结构来不断计算佣金。</value>
-  </data>
-  <data name="CommissionableEarningsAreCalculated" xml:space="preserve">
-    <value>3. 可用于佣金结算的有效盈利为：六个或以上的活跃投注会员在一个结算月内为12BET贡献的盈利再减去各项支付费用，优惠支出，红利发放或其他促销开支。 </value>
   </data>
   <data name="CommPercent" xml:space="preserve">
     <value>佣金%</value>
@@ -604,14 +441,8 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
   <data name="CompleteForm" xml:space="preserve">
     <value>请完整填写此页注册表，以确保成功注册12BET合作伙伴账号</value>
   </data>
-  <data name="ComplimentaryMoney" xml:space="preserve">
-    <value>f. 馈赠金、免费投注金和其他鼓励措施，是指不经现金付款而添加到玩家帐户上的金额。因为他们并没有为此金额付费，所以12BET不能为此金额计算佣金。</value>
-  </data>
   <data name="CongoRep" xml:space="preserve">
     <value>刚果共和国</value>
-  </data>
-  <data name="Contact" xml:space="preserve">
-    <value>联络我们</value>
   </data>
   <data name="ContactInfo" xml:space="preserve">
     <value>联络方式</value>
@@ -624,12 +455,6 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
   </data>
   <data name="ContactUs" xml:space="preserve">
     <value>联系我们</value>
-  </data>
-  <data name="ContactusComment" xml:space="preserve">
-    <value>如您有任何问题或建议，欢迎随时发送邮件至</value>
-  </data>
-  <data name="CookiesAreAGeneralMechanism" xml:space="preserve">
-    <value>Cookies是伺服器连接的常用配置，可以用作从客户端储存及提取资料。更特别是，透过会员介绍连接到访12BET.COM的访客，他们的电脑都会保存很多细小的资料档案，这些档案包括协助12BET.COM追踪及发放会员介绍奖励时的所需资料，以确保有关往来资讯准确无误。Cookies包含追踪功能，但不会被限制，当某些网页被浏览过，它可以查找出被浏览的页面、浏览日期及时间。</value>
   </data>
   <data name="CookIslands" xml:space="preserve">
     <value>库克群岛</value>
@@ -649,9 +474,6 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
   <data name="CountryErr" xml:space="preserve">
     <value>请选择国家</value>
   </data>
-  <data name="Createcustomerf" xml:space="preserve">
-    <value>客户设立失败。请重试</value>
-  </data>
   <data name="Creator" xml:space="preserve">
     <value>建立者</value>
   </data>
@@ -661,26 +483,14 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
   <data name="CsdSubject" xml:space="preserve">
     <value>12BET合作伙伴 — 新帐户等待核准</value>
   </data>
-  <data name="CurrBal" xml:space="preserve">
-    <value>目前余额</value>
-  </data>
   <data name="Currency" xml:space="preserve">
     <value>外匯</value>
   </data>
   <data name="Current" xml:space="preserve">
     <value>当前的</value>
   </data>
-  <data name="CurrentCommissi" xml:space="preserve">
-    <value>目前佣金收入</value>
-  </data>
   <data name="CurrentCommissiSetting" xml:space="preserve">
     <value>目前佣金设定</value>
-  </data>
-  <data name="CurrentCommissiSetting1" xml:space="preserve">
-    <value>目前佣金设定</value>
-  </data>
-  <data name="Customized" xml:space="preserve">
-    <value>广告定制</value>
   </data>
   <data name="Cyprus" xml:space="preserve">
     <value>塞浦路斯</value>
@@ -700,23 +510,8 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
   <data name="DateRequest" xml:space="preserve">
     <value>提款日期</value>
   </data>
-  <data name="Dear" xml:space="preserve">
-    <value>尊敬的</value>
-  </data>
-  <data name="DearFirstnameLa" xml:space="preserve">
-    <value>尊敬的 姓 名，</value>
-  </data>
-  <data name="DearName" xml:space="preserve">
-    <value>尊敬的 {fname} {lname},</value>
-  </data>
-  <data name="Dec" xml:space="preserve">
-    <value>十二月</value>
-  </data>
   <data name="December" xml:space="preserve">
     <value>十二月</value>
-  </data>
-  <data name="Deductions" xml:space="preserve">
-    <value>扣除</value>
   </data>
   <data name="Default" xml:space="preserve">
     <value>默认</value>
@@ -739,47 +534,11 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
   <data name="DescWebsite" xml:space="preserve">
     <value>如您没有网站，请详细描述 您将如何推广壹贰博网站。</value>
   </data>
-  <data name="DetailedStas" xml:space="preserve">
-    <value>详细的数据统计追踪系统</value>
-  </data>
-  <data name="Disclaimers" xml:space="preserve">
-    <value>12. 免责声明</value>
-  </data>
-  <data name="DoesNegativeBalance" xml:space="preserve">
-    <value>负结余会带账滚存吗？ </value>
-  </data>
   <data name="DominicaCommonwealthof" xml:space="preserve">
     <value>多米尼克</value>
   </data>
   <data name="DominicanRep" xml:space="preserve">
     <value>多明尼加</value>
-  </data>
-  <data name="Donothesitateto" xml:space="preserve">
-    <value>如您有任何问题或建议，欢迎随时发送邮件至Affiliates@12BET.com。</value>
-  </data>
-  <data name="DonShowPopup" xml:space="preserve">
-    <value>不再显示</value>
-  </data>
-  <data name="DontSettleFor2ndBest" xml:space="preserve">
-    <value>千万不要满足于现状，赶快开始赚取属于您的顾客净亏40%高额佣金吧。</value>
-  </data>
-  <data name="Dontshowit" xml:space="preserve">
-    <value>不再显示</value>
-  </data>
-  <data name="Doyouhaveanyque" xml:space="preserve">
-    <value>请问有什么问题可以帮到您的？</value>
-  </data>
-  <data name="DoYouRewardTheFirstAffiliate" xml:space="preserve">
-    <value>会员介绍奖励会给予最初介绍链接的合作伙伴，还是最后那位？ </value>
-  </data>
-  <data name="Duetosecurityr" xml:space="preserve">
-    <value>出于安全考量，我们必须提供一个新密码给您（此后您可以在任意时间自行更改）</value>
-  </data>
-  <data name="DuringTheTermOfThisAgreement" xml:space="preserve">
-    <value>3. 在此协议有效期内，您会接触到有关的业务、操作或其他相关程序技术的机密信息（例如，根据你在此程序下取得的介绍费用）。您同意不会向第三方或外部各方披露机密信息，除非您事先获得我们的书面同意，并且您仅将本机密信息用于促进本协议目的之用。您的保密义务在本协议终止后继续有效。</value>
-  </data>
-  <data name="Earn30" xml:space="preserve">
-    <value>永久赚取玩家净输金额的40%</value>
   </data>
   <data name="Ecuador" xml:space="preserve">
     <value>厄瓜多尔</value>
@@ -804,15 +563,6 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
   </data>
   <data name="EmailAddressIsRequired" xml:space="preserve">
     <value>请填写电子邮件地址</value>
-  </data>
-  <data name="EmailFormat" xml:space="preserve">
-    <value>邮件格式</value>
-  </data>
-  <data name="EmailInvalid" xml:space="preserve">
-    <value>您使用的电子邮件地址无效，请重试。</value>
-  </data>
-  <data name="EmailMatch" xml:space="preserve">
-    <value>您输入的电子邮件地址不符。</value>
   </data>
   <data name="EmailRequire" xml:space="preserve">
     <value>请填写电子邮件地址</value>
@@ -910,9 +660,6 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
   <data name="Err3006" xml:space="preserve">
     <value>插入交易失败</value>
   </data>
-  <data name="Err3007" xml:space="preserve">
-    <value>非常抱歉，金额无效</value>
-  </data>
   <data name="Err4" xml:space="preserve">
     <value>占成数不正确(公司设给最低/高占成).</value>
   </data>
@@ -940,12 +687,6 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
   <data name="ErrAuthorized" xml:space="preserve">
     <value>您無權進行此操作</value>
   </data>
-  <data name="ErrBalance" xml:space="preserve">
-    <value>申请金额必须少于目前余额</value>
-  </data>
-  <data name="ErrBalanceForward" xml:space="preserve">
-    <value>要求数额必须小于结转余额</value>
-  </data>
   <data name="errContactNumberEmpty" xml:space="preserve">
     <value>聯絡電話號碼 未输入请确认!</value>
   </data>
@@ -967,9 +708,6 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
   <data name="ErrGender" xml:space="preserve">
     <value>性別 未输入请确认!</value>
   </data>
-  <data name="ErrMinAmt" xml:space="preserve">
-    <value>申请金额必须大于最小提款金额</value>
-  </data>
   <data name="errMobileNumberEmpty" xml:space="preserve">
     <value>请填写正确QQ号码</value>
   </data>
@@ -987,23 +725,11 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
         重新设定密码信息错误，请&lt;a href='ForgetPass.aspx'&gt;重试&lt;/a&gt;。   如您仍不能重新设定您的密码，请&lt;a href='ContactUs.aspx'&gt;联系我们&lt;/a&gt;。        
     </value>
   </data>
-  <data name="ErroroccursUpda" xml:space="preserve">
-    <value>出现错误。更新处理失败</value>
-  </data>
-  <data name="Errorofsendingm" xml:space="preserve">
-    <value>发送邮件错误</value>
-  </data>
-  <data name="Errorofsendmail" xml:space="preserve">
-    <value>发送邮件错误</value>
-  </data>
   <data name="ErrPaymentMethod" xml:space="preserve">
     <value>非常抱歉，{method}支付方式暂不可用。&lt;a href='MyAccount.aspx?ispay=1#payment'&gt;请点击这里&lt;/a&gt;改选“12BET玩家帐户”支付。</value>
   </data>
   <data name="errSecQuestionEmpty" xml:space="preserve">
     <value>安全提问 未输入请确认!</value>
-  </data>
-  <data name="ErrSendMail" xml:space="preserve">
-    <value>发送邮件错误</value>
   </data>
   <data name="errUserNotFound" xml:space="preserve">
     <value>无法查找用户</value>
@@ -1020,30 +746,11 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
   <data name="EUR" xml:space="preserve">
     <value>歐元</value>
   </data>
-  <data name="ExcellentPlayers" xml:space="preserve">
-    <value>最佳的客戶加入及保留率</value>
-  </data>
-  <data name="ExpectList" xml:space="preserve">
-    <value>&lt;ul&gt;
-        &lt;li&gt;永久赚取玩家净输金额的30% &lt;/li&gt;
-        &lt;li&gt;详细的数据统计追踪系统&lt;/li&gt;
-        &lt;li&gt;最佳的客戶加入及保留率&lt;/li&gt;
-        &lt;li&gt;月度代理佣金及时支付&lt;/li&gt;
-        &lt;li&gt;多种付费途径&lt;/li&gt;
-        &lt;li&gt;为您的玩家提供7*24小时在线服务&lt;/li&gt;
-&lt;/ul&gt;</value>
-  </data>
-  <data name="ExpectTitle" xml:space="preserve">
-    <value>我们提供甚么？</value>
-  </data>
   <data name="Faqs" xml:space="preserve">
     <value>常见问题</value>
   </data>
   <data name="FDM" xml:space="preserve">
     <value>FDM</value>
-  </data>
-  <data name="Feb" xml:space="preserve">
-    <value>二月</value>
   </data>
   <data name="February" xml:space="preserve">
     <value>二月</value>
@@ -1084,14 +791,8 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
   <data name="FrenchPolynesia" xml:space="preserve">
     <value>法属玻里尼西亚</value>
   </data>
-  <data name="FrequentlyAskedQuestions" xml:space="preserve">
-    <value>常见问题</value>
-  </data>
   <data name="From" xml:space="preserve">
     <value>从</value>
-  </data>
-  <data name="Fullname" xml:space="preserve">
-    <value>全名</value>
   </data>
   <data name="Gabon" xml:space="preserve">
     <value>加彭</value>
@@ -1102,9 +803,6 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
   <data name="Gender" xml:space="preserve">
     <value>性別</value>
   </data>
-  <data name="General" xml:space="preserve">
-    <value>一般</value>
-  </data>
   <data name="GenerateLink" xml:space="preserve">
     <value>啟用新鏈接</value>
   </data>
@@ -1114,26 +812,17 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
   <data name="Germany" xml:space="preserve">
     <value>德国</value>
   </data>
-  <data name="GettingPaid" xml:space="preserve">
-    <value>佣金提取</value>
-  </data>
   <data name="Ghana" xml:space="preserve">
     <value>加纳</value>
   </data>
   <data name="Gibraltar" xml:space="preserve">
     <value>直布罗陀</value>
   </data>
-  <data name="GoverningLawAndArbitration" xml:space="preserve">
-    <value>15. 法律监督和仲裁</value>
-  </data>
   <data name="Greece" xml:space="preserve">
     <value>希腊</value>
   </data>
   <data name="Grenada" xml:space="preserve">
     <value>格林纳达</value>
-  </data>
-  <data name="GrossEarnings" xml:space="preserve">
-    <value>毛收入</value>
   </data>
   <data name="Guatemala" xml:space="preserve">
     <value>瓜地马拉</value>
@@ -1147,12 +836,6 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
   <data name="Haiti" xml:space="preserve">
     <value>海地</value>
   </data>
-  <data name="Haveagreatday" xml:space="preserve">
-    <value>祝您好运！</value>
-  </data>
-  <data name="Haveproblemwhil" xml:space="preserve">
-    <value>发送邮件出现问题。请稍后联系我们。</value>
-  </data>
   <data name="Home" xml:space="preserve">
     <value>主页</value>
   </data>
@@ -1162,43 +845,8 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
   <data name="HongKong" xml:space="preserve">
     <value>香港</value>
   </data>
-  <data name="hotnew" xml:space="preserve">
-    <value>在线投注、体育博彩、足球投注尽在12BET.com</value>
-  </data>
   <data name="HotNews" xml:space="preserve">
     <value>最新消息</value>
-  </data>
-  <data name="HowAffilliateTitle" xml:space="preserve">
-    <value>怎样运作？例子</value>
-  </data>
-  <data name="HowAffilliateWork" xml:space="preserve">
-    <value>作为12BET.com的合作伙伴，您需要引导您的网站访问者通过使用放置在您网站的特殊的流量代码来登陆我们网站。</value>
-  </data>
-  <data name="HowCanICheck" xml:space="preserve">
-    <value>如何得知自己赚取了多少奖额？ </value>
-  </data>
-  <data name="HowDoesItWork" xml:space="preserve">
-    <value>怎样运作？例子：</value>
-  </data>
-  <data name="HowDoesTheSystem" xml:space="preserve">
-    <value>系统怎样去追踪我的玩家？</value>
-  </data>
-  <data name="HowDoISignUp" xml:space="preserve">
-    <value>如何加入12BET合作伙伴计划？ </value>
-  </data>
-  <data name="Howeveryoucanvisit" xml:space="preserve">
-    <value>您可以在任何时候登陆 {url} ，来更改您的密码。</value>
-  </data>
-  <data name="HowMuchYouEarn" xml:space="preserve">
-    <value>
-		您赚取的利润多少取决于您的网站引导带来的顾客浏览量，我们的任务是指导他们完成注册和首存，并用我们诱人的红利和水位留住他们。
-	</value>
-  </data>
-  <data name="HowOftenCanIRequest" xml:space="preserve">
-    <value>每隔多久可以提出提款申请？ </value>
-  </data>
-  <data name="HowToBet" xml:space="preserve">
-    <value>怎样投注</value>
   </data>
   <data name="HtmlFormat" xml:space="preserve">
     <value>Html格式</value>
@@ -1215,27 +863,6 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
   <data name="ID" xml:space="preserve">
     <value>代码</value>
   </data>
-  <data name="IfWeContinueToPermitActivity" xml:space="preserve">
-    <value>f. 如果我们允许客户在终止协议之后继续活动（产生营业收入），这并不构成我们续约或继续执行此协议，或放弃终止协议。 </value>
-  </data>
-  <data name="Ifyouareexperie" xml:space="preserve">
-    <value>若您遇到任何困难，请联络我们。</value>
-  </data>
-  <data name="IfYouDecide" xml:space="preserve">
-    <value>如果您决定不接受本协议所有的条款与规则，请不要下载横幅广告代码、文字链接代码、优惠内容，或其他任何与12BET相关的信息。</value>
-  </data>
-  <data name="Ifyouhaveanyque" xml:space="preserve">
-    <value>如有任何疑问，欢迎随时联系我们.</value>
-  </data>
-  <data name="IfYouHaveAnyQuestions" xml:space="preserve">
-    <value>如对上述合作伙伴佣金计算方式有任何疑问，欢迎随时电邮至{mail}联系我们。</value>
-  </data>
-  <data name="IfYouHaveFailed" xml:space="preserve">
-    <value>d. 如果您没有完成您的义务和责任，我们将不会在您终止协议时支付介绍费。 </value>
-  </data>
-  <data name="IfYourTotal" xml:space="preserve">
-    <value>若您介绍的客户于一月贡献的总净利润为$3,500，那么您可以在该月赚取总净利润的30%作为佣金。</value>
-  </data>
   <data name="Image" xml:space="preserve">
     <value>图像</value>
   </data>
@@ -1245,12 +872,6 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
   <data name="Important" xml:space="preserve">
     <value>重要</value>
   </data>
-  <data name="Indemnity" xml:space="preserve">
-    <value>11. 保障赔偿</value>
-  </data>
-  <data name="IndependentInvestigation" xml:space="preserve">
-    <value>14. 独立调查</value>
-  </data>
   <data name="India" xml:space="preserve">
     <value>印度</value>
   </data>
@@ -1259,36 +880,6 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
   </data>
   <data name="Indonesian" xml:space="preserve">
     <value>Indonesian</value>
-  </data>
-  <data name="InputRequestAmo" xml:space="preserve">
-    <value>输入要求的金额 ($美金)</value>
-  </data>
-  <data name="Inserttransacti" xml:space="preserve">
-    <value>插入交易失败</value>
-  </data>
-  <data name="InTheEventOfTermination" xml:space="preserve">
-    <value>2. 终止本协议的事件中: </value>
-  </data>
-  <data name="Invalidaffiliat" xml:space="preserve">
-    <value>无效合作信息</value>
-  </data>
-  <data name="Invalidbalancea" xml:space="preserve">
-    <value>账号余额无效或者不支持此币种或支付方式。</value>
-  </data>
-  <data name="InvalidCustID" xml:space="preserve">
-    <value>CustID无效。</value>
-  </data>
-  <data name="Invalidrequesta" xml:space="preserve">
-    <value>无效的申请金额！金额必须在……之间</value>
-  </data>
-  <data name="InvalidRoleID" xml:space="preserve">
-    <value>无效Role ID。</value>
-  </data>
-  <data name="Invaliduserinfo" xml:space="preserve">
-    <value>用户信息无效。更新处理失败。</value>
-  </data>
-  <data name="InWitnessWhereOf" xml:space="preserve">
-    <value>16. 以资证明</value>
   </data>
   <data name="IP" xml:space="preserve">
     <value>IP</value>
@@ -1314,14 +905,8 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
   <data name="Italy" xml:space="preserve">
     <value>意大利</value>
   </data>
-  <data name="ItIsTheAffiliate" xml:space="preserve">
-    <value>4. 加盟商有责任依照正确的连接和标签处理确保新客户的追踪和付款。</value>
-  </data>
   <data name="Jamaica" xml:space="preserve">
     <value>牙买加</value>
-  </data>
-  <data name="Jan" xml:space="preserve">
-    <value>一月</value>
   </data>
   <data name="January" xml:space="preserve">
     <value>一月</value>
@@ -1332,20 +917,11 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
   <data name="Japanese" xml:space="preserve">
     <value>日本</value>
   </data>
-  <data name="JoinThe12BetAffiliate" xml:space="preserve">
-    <value>加入12BET会员介绍合作计划</value>
-  </data>
   <data name="Jordan" xml:space="preserve">
     <value>约旦</value>
   </data>
-  <data name="Jul" xml:space="preserve">
-    <value>七月</value>
-  </data>
   <data name="July" xml:space="preserve">
     <value>七月</value>
-  </data>
-  <data name="Jun" xml:space="preserve">
-    <value>六月</value>
   </data>
   <data name="June" xml:space="preserve">
     <value>六月</value>
@@ -1374,9 +950,6 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
   <data name="Last6Month" xml:space="preserve">
     <value>对上六个月的收入</value>
   </data>
-  <data name="Last6MonthsEarn" xml:space="preserve">
-    <value>对上六个月的收入</value>
-  </data>
   <data name="LastNameIsRequired" xml:space="preserve">
     <value>请填写您的姓</value>
   </data>
@@ -1389,20 +962,11 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
   <data name="lblYourAnswer" xml:space="preserve">
     <value>答案</value>
   </data>
-  <data name="LegalResponsibility" xml:space="preserve">
-    <value>7. 法律责任</value>
-  </data>
   <data name="Lesotho" xml:space="preserve">
     <value>莱索托</value>
   </data>
   <data name="Liechtenstein" xml:space="preserve">
     <value>列支敦士登</value>
-  </data>
-  <data name="LimitationofLiability" xml:space="preserve">
-    <value>13. 责任范围</value>
-  </data>
-  <data name="LimitedLicense" xml:space="preserve">
-    <value>6. 有限许可</value>
   </data>
   <data name="LinkTo" xml:space="preserve">
     <value>链接</value>
@@ -1434,13 +998,6 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
   <data name="MailingInfor" xml:space="preserve">
     <value>邮递资料</value>
   </data>
-  <data name="MakeYourTrafficDay" xml:space="preserve">
-    <value>用您的浏览量赚钱!</value>
-  </data>
-  <data name="MakeYourTrafficDayContent" xml:space="preserve">
-    <value>
-      由您介绍到12BET的每位玩家都可令您即时收取到佣金。依靠我们极富竞争力的产品和服务，尽情享受由市场最佳客户转入及保留率带来的丰厚回报！</value>
-  </data>
   <data name="Malawi" xml:space="preserve">
     <value>马拉威</value>
   </data>
@@ -1459,20 +1016,8 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
   <data name="Malta" xml:space="preserve">
     <value>马尔他</value>
   </data>
-  <data name="ManageAccount" xml:space="preserve">
-    <value>管理帐户</value>
-  </data>
-  <data name="Mar" xml:space="preserve">
-    <value>三月</value>
-  </data>
   <data name="March" xml:space="preserve">
     <value>三月</value>
-  </data>
-  <data name="Marketing" xml:space="preserve">
-    <value>市场营销</value>
-  </data>
-  <data name="MarketingTracking" xml:space="preserve">
-    <value>市场推广及追踪</value>
   </data>
   <data name="Mauritania" xml:space="preserve">
     <value>茅利塔尼亚</value>
@@ -1480,22 +1025,7 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
   <data name="Mauritius" xml:space="preserve">
     <value>毛里求斯</value>
   </data>
-  <data name="MaxAmt" xml:space="preserve">
-    <value>最高金额</value>
-  </data>
-  <data name="MaxAmt_explain" xml:space="preserve">
-    <value>最高总会员净输金额</value>
-  </data>
-  <data name="MaxQM" xml:space="preserve">
-    <value>最多合格会员人数</value>
-  </data>
-  <data name="MaxQM_explain" xml:space="preserve">
-    <value>最多合格会员人数</value>
-  </data>
   <data name="May" xml:space="preserve">
-    <value>五月</value>
-  </data>
-  <data name="May_short" xml:space="preserve">
     <value>五月</value>
   </data>
   <data name="Media" xml:space="preserve">
@@ -1506,15 +1036,6 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
   </data>
   <data name="MessageHistory" xml:space="preserve">
     <value>最新消息</value>
-  </data>
-  <data name="MessageSent" xml:space="preserve">
-    <value>发送信息</value>
-  </data>
-  <data name="MessageSentFail" xml:space="preserve">
-    <value>发送信息失败</value>
-  </data>
-  <data name="MessageSentFailContent" xml:space="preserve">
-    <value>发送邮件出现问题。 {br} 请稍后联系我们。</value>
   </data>
   <data name="MessageSentReview" xml:space="preserve">
     <value>
@@ -1529,23 +1050,14 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
   <data name="Mexico" xml:space="preserve">
     <value>墨西哥</value>
   </data>
-  <data name="MinAmt" xml:space="preserve">
-    <value>最低金额</value>
-  </data>
   <data name="MinAmt_explain" xml:space="preserve">
     <value>最低总会员净输金额</value>
-  </data>
-  <data name="MinQM" xml:space="preserve">
-    <value>最少合格会员人数</value>
   </data>
   <data name="MinQM_explain" xml:space="preserve">
     <value>最少合格会员人数</value>
   </data>
   <data name="MinWithdraw" xml:space="preserve">
     <value>最低提款金额为</value>
-  </data>
-  <data name="Miscellaneous" xml:space="preserve">
-    <value>8. 其他约定</value>
   </data>
   <data name="Mobile" xml:space="preserve">
     <value>QQ</value>
@@ -1555,9 +1067,6 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
   </data>
   <data name="MoneyBooker" xml:space="preserve">
     <value>Moneybookers</value>
-  </data>
-  <data name="TwoDotMoneybookers" xml:space="preserve">
-    <value>2. Moneybookers</value>
   </data>
   <data name="MoneybookersEma" xml:space="preserve">
     <value>Moneybookers电子邮件地址无效</value>
@@ -1571,9 +1080,6 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
   <data name="MonthlyWinlost" xml:space="preserve">
     <value>每月盈利</value>
   </data>
-  <data name="More" xml:space="preserve">
-    <value>更多</value>
-  </data>
   <data name="Morocco" xml:space="preserve">
     <value>摩洛哥</value>
   </data>
@@ -1585,9 +1091,6 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
   </data>
   <data name="Myanmar" xml:space="preserve">
     <value>缅甸</value>
-  </data>
-  <data name="MyHome" xml:space="preserve">
-    <value>我的主页</value>
   </data>
   <data name="MYR" xml:space="preserve">
     <value>馬幣</value>
@@ -1604,20 +1107,8 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
   <data name="Nauru" xml:space="preserve">
     <value>瑙鲁</value>
   </data>
-  <data name="NegativeBalance" xml:space="preserve">
-    <value>负余额</value>
-  </data>
-  <data name="NegativeEarningsAreCarried" xml:space="preserve">
-    <value>6. 负赢利将会带入下一个月。一个加盟商以正数结束一个月的结余，如果最低的要求满足的话，佣金将会按照正数的结余额计算并支付。</value>
-  </data>
   <data name="Nepal" xml:space="preserve">
     <value>尼泊尔</value>
-  </data>
-  <data name="NetEarnings" xml:space="preserve">
-    <value>净收入</value>
-  </data>
-  <data name="ThreeDotNeteller" xml:space="preserve">
-    <value>3. Neteller </value>
   </data>
   <data name="NetellerAccount" xml:space="preserve">
     <value>请填写Neteller帐户号码</value>
@@ -1661,18 +1152,11 @@ a. 在我们事先书面同意之前您不能通过法律行动或其他方式�
   <data name="none" xml:space="preserve">
     <value>无</value>
   </data>
-  <data name="NonWaiver" xml:space="preserve">
-    <value>2. 不可撤销&lt;br&gt;
-a. 我们没有强制您严格履行此协议的任何条款，并不构成我们放弃以后强制执行此协议的其他条款。此协议被修改、增加、删减或加插内容都不被我们允许，也不会被认可。我们的任何雇员、官员或代理都不能口头替换、修改或撤销此协议中任何条款。</value>
-  </data>
   <data name="Normal" xml:space="preserve">
     <value>普通</value>
   </data>
   <data name="Norway" xml:space="preserve">
     <value>挪威</value>
-  </data>
-  <data name="Nov" xml:space="preserve">
-    <value>十一月</value>
   </data>
   <data name="November" xml:space="preserve">
     <value>十一月</value>
@@ -1682,9 +1166,6 @@ a. 我们没有强制您严格履行此协议的任何条款，并不构成我�
   </data>
   <data name="NumberGame" xml:space="preserve">
     <value>百练赛</value>
-  </data>
-  <data name="Oct" xml:space="preserve">
-    <value>十月</value>
   </data>
   <data name="October" xml:space="preserve">
     <value>十月</value>
@@ -1701,50 +1182,11 @@ a. 我们没有强制您严格履行此协议的任何条款，并不构成我�
   <data name="OldPassErr" xml:space="preserve">
     <value>旧密码错误</value>
   </data>
-  <data name="Oldpasswordandn" xml:space="preserve">
-    <value>请填写旧密码和新密码</value>
-  </data>
   <data name="OldPasswordisre" xml:space="preserve">
     <value>请填写旧密码</value>
   </data>
   <data name="Oman" xml:space="preserve">
     <value>阿曼</value>
-  </data>
-  <data name="OneTwoBetAssumeOwnerShip" xml:space="preserve">
-    <value>1. 12BET在首次与客户联系时，承担客户的所有权。您作为合作伙伴，为12BET做推介代理。如有必要，我们保留拒绝客户（或关闭其账户）的权利，以遵守建立的要求。</value>
-  </data>
-  <data name="OneTwoBETWillPayout" xml:space="preserve">
-    <value>1. 12BET会将您旗下会员贡献的净利润依照12BET合作伙伴计划中规定的比例作为佣金支付进您的12BET合作伙伴帐户，每个结算月您需至少保有六个或以上的活跃投注会员。如果我们发现您超过2个月没有进行任何活动推广12BET，例如招徕新存款会员、没有在代理12BET的网站挂上我们的广告横幅、和其它在线或离线宣传活动，12BET保留所有权力在特定月份拒绝您的全部或部分佣金提取申请，即使您符合6个活跃投注会员要求。相关佣金将被暂时扣留直到您招徕新存款会员，12BET全权决定按照具体状况发放全部或部分被扣留的佣金。12BET全权决定是否作废已被扣留超过6个月的佣金。</value>
-  </data>
-  <data name="Onlinebettingsp" xml:space="preserve">
-    <value>在线投注、体育博彩、足球投注尽在12BET.com</value>
-  </data>
-  <data name="OnlineSupport" xml:space="preserve">
-    <value>为您和您的玩家提供7*24小时在线服务</value>
-  </data>
-  <data name="OnlineSupportDetail" xml:space="preserve">
-    <value>我们极富经验的合作伙伴客服团队24小时在线为您提供各种支持，小到横幅定制，大到如何增进您收入的市场营销建议。在完善的内部竞争，交流和奖励机制下，我们的客服人员致力于助您永驻行业最前端。</value>
-  </data>
-  <data name="OnlyApprovedAndProperly" xml:space="preserve">
-    <value>1. 只有由12BET持续提供、经过审核并认为是适合的创作素材，才可以用于推广12BET。广告或个人代言是被允许的，但所有的非12BET创作的素材需要由12BET审核撰写；不得无礼拒绝此类批准。</value>
-  </data>
-  <data name="OnlyProperlyTagged" xml:space="preserve">
-    <value>2. 只有正确被标识的客户，才能被分配为某个合作伙伴的下线客户。如果合作伙伴的标签没有正确地放入其网站，或没有被12BET网站服务器正确接收，则所产生的客户注册和消费，将不会分配给合作伙伴会员。因此合作伙伴有责任确保所有链接被正确地标记。</value>
-  </data>
-  <data name="Otherwiseplease" xml:space="preserve">
-    <value>若确认的话请访问以下链接，您的新密码将很快通过电邮发送给您。</value>
-  </data>
-  <data name="Ourfailuretoenforce" xml:space="preserve">
-    <value>a. 我们没有强制您严格履行此协议的任何条款，并不构成我们放弃以后强制执行此协议的其他条款。此协议被修改、增加、删减或加插内容都不被我们允许，也不会被认可。我们的任何雇员、官员或代理都不能口头替换、修改或撤销此协议中任何条款。</value>
-  </data>
-  <data name="Ourrightsandremedies" xml:space="preserve">
-    <value>a. 我们在下文的权利和补救措施不会彼此矛盾，例如，我们在此协议中的一部分或更多的条款并不会妨碍其他条款的实行。您了解、确认并同意，对于违反或被迫违反此协议，赔偿金并不会充分，同时，在违反或被迫违反此协定的情况下，各方各自的权利和义务由各自特定的履行情况、裁定执行或其他公平的补救方案强制执行。本协定中所包含的内容，不应因为违反或被迫违反本协议的任何条款而限制或影响我们的法律或其他权利。这表示此条款清楚的表明了我们各自的权利和义务应该在法律上或其他方面公正地执行。</value>
-  </data>
-  <data name="OwnerShipAndContent" xml:space="preserve">
-    <value>1. 我们网站的所有权和内容仍为我们各自的资产，并不应认为会通过任何此加盟代理协议的行为或疏忽而被转移到加盟商。</value>
-  </data>
-  <data name="OwnerShipContentAndLiability" xml:space="preserve">
-    <value>2. 加盟商网站的所有权、内容和可靠性由加盟商独立负责。您将独立负责您的网站所有的发展、运营以及维护，所有出现在您网站的素材都将由您自行负担成本。</value>
   </data>
   <data name="OwnWebsite" xml:space="preserve">
     <value>我有网站</value>
@@ -1788,9 +1230,6 @@ a. 我们没有强制您严格履行此协议的任何条款，并不构成我�
   <data name="PaymentErr1004" xml:space="preserve">
     <value>账号余额无效或者不支持此币种或支付方式。</value>
   </data>
-  <data name="PaymentErr1005" xml:space="preserve">
-    <value>非常抱歉，金额必须等于或者大于 </value>
-  </data>
   <data name="PaymentErr1006" xml:space="preserve">
     <value>插入交易失败。</value>
   </data>
@@ -1821,9 +1260,6 @@ a. 我们没有强制您严格履行此协议的任何条款，并不构成我�
   <data name="PendingRequest" xml:space="preserve">
     <value>待处理申请</value>
   </data>
-  <data name="PersonalizedSite" xml:space="preserve">
-    <value>個性化網站</value>
-  </data>
   <data name="Peru" xml:space="preserve">
     <value>秘鲁</value>
   </data>
@@ -1836,23 +1272,11 @@ a. 我们没有强制您严格履行此协议的任何条款，并不构成我�
   <data name="Pleasecheckyour" xml:space="preserve">
     <value>请登录您的电子邮箱查找您的用户名以及密码等信息。</value>
   </data>
-  <data name="PleaseNote" xml:space="preserve">
-    <value>请注意</value>
-  </data>
-  <data name="Pleaseselectcou" xml:space="preserve">
-    <value>请选择国家</value>
-  </data>
-  <data name="Pleaseselectpre" xml:space="preserve">
-    <value>请选择语言</value>
-  </data>
   <data name="Poker" xml:space="preserve">
     <value>扑克</value>
   </data>
   <data name="Poland" xml:space="preserve">
     <value>波兰</value>
-  </data>
-  <data name="PoliciesAndConfidentiality" xml:space="preserve">
-    <value>5. 政策与保密</value>
   </data>
   <data name="Portugal" xml:space="preserve">
     <value>葡萄牙</value>
@@ -1875,23 +1299,11 @@ a. 我们没有强制您严格履行此协议的任何条款，并不构成我�
   <data name="PreferLangErr" xml:space="preserve">
     <value>请选择语言</value>
   </data>
-  <data name="Preferredpaymen" xml:space="preserve">
-    <value>首选支付方式</value>
-  </data>
-  <data name="PresentationOfOurBanners" xml:space="preserve">
-    <value>5. 在加盟商的网站呈现我们的广告横幅和内容是加盟商的责任。加盟商必须确保我们的内容按照我们的规定被正确地呈现。</value>
-  </data>
   <data name="Proccessing" xml:space="preserve">
     <value>处理中</value>
   </data>
   <data name="ProgDetails" xml:space="preserve">
     <value>计划详情</value>
-  </data>
-  <data name="Promotional" xml:space="preserve">
-    <value>促销说明</value>
-  </data>
-  <data name="PromptMonthly" xml:space="preserve">
-    <value>月度代理佣金及时支付</value>
   </data>
   <data name="PSP" xml:space="preserve">
     <value>PSP</value>
@@ -1901,9 +1313,6 @@ a. 我们没有强制您严格履行此协议的任何条款，并不构成我�
   </data>
   <data name="Qatar" xml:space="preserve">
     <value>卡塔尔</value>
-  </data>
-  <data name="QualifiedMember" xml:space="preserve">
-    <value>{num}名合格会员</value>
   </data>
   <data name="QualifyingMem" xml:space="preserve">
     <value>合格会员数</value>
@@ -1944,21 +1353,11 @@ a. 我们没有强制您严格履行此协议的任何条款，并不构成我�
   <data name="Rejected" xml:space="preserve">
     <value>拒绝</value>
   </data>
-  <data name="RelationshipofParties" xml:space="preserve">
-    <value>10. 双方关系</value>
-  </data>
-  <data name="Remedies" xml:space="preserve">
-    <value>3. 补救措施&lt;br&gt;
-a. 我们在下文的权利和补救措施不会彼此矛盾，例如，我们在此协议中的一部分或更多的条款并不会妨碍其他条款的实行。您了解、确认并同意，对于违反或被迫违反此协议，赔偿金并不会充分，同时，在违反或被迫违反此协定的情况下，各方各自的权利和义务由各自特定的履行情况、裁定执行或其他公平的补救方案强制执行。本协定中所包含的内容，不应因为违反或被迫违反本协议的任何条款而限制或影响我们的法律或其他权利。这表示此条款清楚的表明了我们各自的权利和义务应该在法律上或其他方面公正地执行。</value>
-  </data>
   <data name="RePass" xml:space="preserve">
     <value>再次输入新密码</value>
   </data>
   <data name="RequestAmount" xml:space="preserve">
     <value>提款金额</value>
-  </data>
-  <data name="Requestamountmu" xml:space="preserve">
-    <value>申请金额必须大于最小提款金额</value>
   </data>
   <data name="RequestAmt" xml:space="preserve">
     <value>输入要求的金额 ($美金)</value>
@@ -1969,20 +1368,11 @@ a. 我们在下文的权利和补救措施不会彼此矛盾，例如，我们�
   <data name="RequestPayoutSucc" xml:space="preserve">
     <value>提款成功!</value>
   </data>
-  <data name="Requestreferenc" xml:space="preserve">
-    <value>申请单号为：{transid}，日期 {date}。</value>
-  </data>
   <data name="RequireInfo" xml:space="preserve">
     <value>有&lt;font color="red"&gt;*&lt;/font&gt;标记的栏目为必填选项</value>
   </data>
   <data name="Reset" xml:space="preserve">
     <value>重设</value>
-  </data>
-  <data name="ResponOfTheAff" xml:space="preserve">
-    <value>1. 加盟代理的责任</value>
-  </data>
-  <data name="RevenueSharingAndPayment" xml:space="preserve">
-    <value>4. 营业收入分成和支付</value>
   </data>
   <data name="RMB" xml:space="preserve">
     <value>人民幣</value>
@@ -2020,9 +1410,6 @@ a. 我们在下文的权利和补救措施不会彼此矛盾，例如，我们�
   <data name="Search" xml:space="preserve">
     <value>搜索</value>
   </data>
-  <data name="SecureQuestionGuide" xml:space="preserve">
-    <value>※安全提问及答案将用来核对您的身份</value>
-  </data>
   <data name="SecurityQuestionUpdated" xml:space="preserve">
     <value>安全问答设置成功！</value>
   </data>
@@ -2035,30 +1422,11 @@ a. 我们在下文的权利和补救措施不会彼此矛盾，例如，我们�
   <data name="Senegal" xml:space="preserve">
     <value>塞内加尔</value>
   </data>
-  <data name="Sept" xml:space="preserve">
-    <value>九月</value>
-  </data>
   <data name="September" xml:space="preserve">
     <value>九月</value>
   </data>
-  <data name="SeverabilityWaiver" xml:space="preserve">
-    <value>4. 可分割性 / 弃权&lt;br&gt;
-a. 无论何时，此协议的每一个条款都应该被适用的法律有效地诠释，但是，如果此协议中任何一个条款失效、非法或不在任何方面不可执行，这样的条款仅仅本身无效或无法执行，并不会使本协议其他条款无效。在处理或无法行使任何权利的时候，不会包含任何隐含的放弃， 只有书面的弃权处理才生效。</value>
-  </data>
   <data name="Seychelles" xml:space="preserve">
     <value>塞舌尔</value>
-  </data>
-  <data name="Shouldtheplayer" xml:space="preserve">
-    <value>b. 如果一个玩家要求索回，那么在您这里产生的有争议或索回的营业收入将被没收，并将从您当前这个月的总金额中进行扣减。</value>
-  </data>
-  <data name="Shouldtheseexpenses" xml:space="preserve">
-    <value>b. 如果这些费用不能由您帐户上的资金所弥补，我们保留调查其他替代方法来获得赔付的权利，例如：如果您的代理帐户下产生了消费帐户，我们将会截留这些帐户佣金的支付直到这个帐户造成的损失完全消除。如果您的帐户尚未激活或通过佣金支付产生利润，我们保留要求帐户持有人赔付的权利。</value>
-  </data>
-  <data name="Shouldthisdeduction" xml:space="preserve">
-    <value>c. 如果这个累积的扣减额超过了你当前的总额，你的总计算额就会成为负数，你必须获得更多的赢利弥补这个因为索回而造成的负数，才能继续开始计算赢利。</value>
-  </data>
-  <data name="ShouldYouFailToBeEntitled" xml:space="preserve">
-    <value>4. 如果某一结算月未达到条款4.1,4.2及4.3中规定的单月至少六个或以上个活跃投注会员要求，您的代理账户将不会有任何佣金结算，所有旗下会员贡献的盈利将不会累积到下一个结算月。</value>
   </data>
   <data name="Sicbo" xml:space="preserve">
     <value>骰宝</value>
@@ -2068,9 +1436,6 @@ a. 无论何时，此协议的每一个条款都应该被适用的法律有效�
   </data>
   <data name="SignUp" xml:space="preserve">
     <value>注册</value>
-  </data>
-  <data name="Sincerely" xml:space="preserve">
-    <value>诚挚的,</value>
   </data>
   <data name="Singapore" xml:space="preserve">
     <value>新加坡</value>
@@ -2102,51 +1467,19 @@ a. 无论何时，此协议的每一个条款都应该被适用的法律有效�
   <data name="Somalia" xml:space="preserve">
     <value>索马里</value>
   </data>
-  <data name="Sorryamountisin" xml:space="preserve">
-    <value>非常抱歉，金额无效</value>
-  </data>
-  <data name="Sorryamountmust" xml:space="preserve">
-    <value>非常抱歉，金额必须等于或者大于</value>
-  </data>
-  <data name="Sorrycannotcrea" xml:space="preserve">
-    <value>非常抱歉，无法设立代理人</value>
-  </data>
-  <data name="Sorrycreditupda" xml:space="preserve">
-    <value>非常抱歉，信用额度更新失败，您已经超出您的原始信用额度</value>
-  </data>
-  <data name="SorryMaxPerMatc" xml:space="preserve">
-    <value>非常抱歉，单场最大投注额必须等于或小于主代理的单场最大投注额</value>
-  </data>
-  <data name="Sorryminbetmust" xml:space="preserve">
-    <value>非常抱歉，最小投注额必须等于或大于主代理的最小投注额。</value>
-  </data>
-  <data name="SorrythisAffili" xml:space="preserve">
-    <value>非常抱歉，此代理人没有足够金额进行提款。</value>
-  </data>
   <data name="SouthAfrica" xml:space="preserve">
     <value>南非</value>
   </data>
   <data name="Spain" xml:space="preserve">
     <value>西班牙</value>
   </data>
-  <data name="SpamWeDoNotCondone" xml:space="preserve">
-    <value>8. 垃圾邮件——我们不会接受垃圾邮件&lt;br&gt;
-a. 任何形式的垃圾邮件将会导致您的帐户被处理为审核状态，所有的资金被冻结，直到对您的帐户调查处理完成。你需要知道我们的客户可能会因为处理您的滥发所产生的邮件而导致费用产生，如果我们的客户寻求追索权，所有这些相同的费用将会从您的帐户上进行扣减。在此情形下，由于您同意注册成为12BET的加盟商，由相关客户决定的费用金额将会被诚实地认为是最终及可接受的，这些费用金额是根据法律上收取的，并公平地被您接受。 &lt;br&gt;
-b. 如果这些费用不能由您帐户上的资金所弥补，我们保留调查其他替代方法来获得赔付的权利，例如：如果您的代理帐户下产生了消费帐户，我们将会截留这些帐户佣金的支付直到这个帐户造成的损失完全消除。如果您的帐户尚未激活或通过佣金支付产生利润，我们保留要求帐户持有人赔付的权利。</value>
-  </data>
   <data name="Spanish" xml:space="preserve">
     <value>Español</value>
-  </data>
-  <data name="SpCommStruct" xml:space="preserve">
-    <value>体育博彩佣金计算</value>
   </data>
   <data name="Sport" xml:space="preserve">
     <value>体育</value>
   </data>
   <data name="Sportbook" xml:space="preserve">
-    <value>体育博彩</value>
-  </data>
-  <data name="SportbookExtension" xml:space="preserve">
     <value>体育博彩</value>
   </data>
   <data name="SportType" xml:space="preserve">
@@ -2166,9 +1499,6 @@ b. 如果这些费用不能由您帐户上的资金所弥补，我们保留调�
   </data>
   <data name="Statistic" xml:space="preserve">
     <value>统计</value>
-  </data>
-  <data name="StatisticsDetail" xml:space="preserve">
-    <value>Statistics Detail</value>
   </data>
   <data name="Status" xml:space="preserve">
     <value>状态</value>
@@ -2190,9 +1520,6 @@ b. 如果这些费用不能由您帐户上的资金所弥补，我们保留调�
   </data>
   <data name="Sudan" xml:space="preserve">
     <value>苏丹</value>
-  </data>
-  <data name="SumPerform" xml:space="preserve">
-    <value>表现一览</value>
   </data>
   <data name="Suriname" xml:space="preserve">
     <value>苏里南</value>
@@ -2216,18 +1543,6 @@ b. 如果这些费用不能由您帐户上的资金所弥补，我们保留调�
   <data name="Tanzania" xml:space="preserve">
     <value>坦桑尼亚</value>
   </data>
-  <data name="TC_Casino_Content1" xml:space="preserve">
-    <value>12BET提供娱乐城的佣金分成模式。这是一个累积的模式，每月根据合作伙伴所推荐的玩家，在娱乐城相关的投注活跃程度去赚取佣金。</value>
-  </data>
-  <data name="ForThePurposesOfTheTable" xml:space="preserve">
-    <value>就上表中所述，“净收入”是指在相关月份中，下线会员的总投注额增减：(1)盈利；(2)已领取的红利数额；(3)扣款；和(4) 其他任何相关费用如补偿或退款给会员。 </value>
-  </data>
-  <data name="RevenueShareModel" xml:space="preserve">
-    <value>佣金分成模式 </value>
-  </data>
-  <data name="TC_Sportbook_Content" xml:space="preserve">
-    <value>12BET提供体育博彩的佣金分成模式。这是一个累积的模式，每月根据合作伙伴所推荐的玩家，在体育博彩相关的投注活跃程度去赚取佣金。</value>
-  </data>
   <data name="Tennis" xml:space="preserve">
     <value>网球</value>
   </data>
@@ -2236,9 +1551,6 @@ b. 如果这些费用不能由您帐户上的资金所弥补，我们保留调�
   </data>
   <data name="TermErr" xml:space="preserve">
     <value>没有同意条款及规则，请查看！</value>
-  </data>
-  <data name="TermTermination" xml:space="preserve">
-    <value>9. 期限和终止</value>
   </data>
   <data name="Text" xml:space="preserve">
     <value>文本冊</value>
@@ -2252,75 +1564,11 @@ b. 如果这些费用不能由您帐户上的资金所弥补，我们保留调�
   <data name="Thailand" xml:space="preserve">
     <value>泰国</value>
   </data>
-  <data name="ThaiSupport" xml:space="preserve">
-    <value>泰文</value>
-  </data>
-  <data name="Thanksforyourre" xml:space="preserve">
-    <value>感谢您的注册！</value>
-  </data>
-  <data name="ThanksPayment" xml:space="preserve">
-    <value>感谢您的支付申请，日期 {winlostdate} 金额${amount}.</value>
-  </data>
-  <data name="Thankyouforappl" xml:space="preserve">
-    <value>感谢您申请加盟12BET合作伙伴计划! &lt;br / &gt;&lt;br /&gt;
-我们合作伙伴部门经理将在三个工作日内电邮答复您的加盟申请。</value>
-  </data>
-  <data name="Thankyouforsubm" xml:space="preserve">
-    <value>感谢您提交申请。</value>
-  </data>
   <data name="THB" xml:space="preserve">
     <value>泰珠</value>
   </data>
-  <data name="The12BETAffiliates" xml:space="preserve">
-    <value>12BET合作伙伴计划是免费参加的。简单来说只要填好{AppForm}，我们将会在三个工作天内审核您的申请。若你的申请被接纳的话，您会收到电邮通知包括您的独有的合作伙伴号码，令您可以在您的网站上加上广告横额、文字连接及其他内容与及市场推广工具等。</value>
-  </data>
-  <data name="Theabovelinkwi" xml:space="preserve">
-    <value>以上链接将会在24小时后失效。</value>
-  </data>
-  <data name="TheCookiesAreOverwritten" xml:space="preserve">
-    <value>Cookies会不断更新，所以我们会向最后介绍链接的提供者给予奖励。</value>
-  </data>
-  <data name="TheCurrenciesOfferedAre" xml:space="preserve">
-    <value>可以。我们提供英镑，欧元，人民币，马币，泰铢及印尼盾等货币提款服务。有关的汇率计算将根据付款操作当日的汇率而定。</value>
-  </data>
-  <data name="Theemailaddress" xml:space="preserve">
-    <value>您输入的电邮地址已被使用，请选择另外一个！</value>
-  </data>
-  <data name="TheMinimumWithdrawal" xml:space="preserve">
-    <value>最低佣金提取要求是100美元。</value>
-  </data>
-  <data name="TheCommissionableEarningsOfTheAffiliate" xml:space="preserve">
-    <value>7. 用于佣金结算的盈利是基于下线会员同商家的每笔交易中的贡献的利润按照一定的分成比例计算，只要加盟代理商一直保持作为此加盟代理协议的会员，那么所有这个客户发生的交易都会一直计算下去。</value>
-  </data>
-  <data name="Theteamat_12Bet" xml:space="preserve">
-    <value>12Bet合作伙伴团队</value>
-  </data>
-  <data name="TheTermOfThisAgreement" xml:space="preserve">
-    <value>1. 本协议的条款自您从我们的网站下载连接代码和连接时开始一直有效，除非直到其中一方书面通知另外一方终止本协议，在那样的情况下本协议将会即时终止。终止协议是其中任何一方以任何理由任意地终止的。以电子邮件发送终止协议的通知被认可为书面及即时的通知形式。</value>
-  </data>
-  <data name="ThisAgreementDetailsAll" xml:space="preserve">
-    <value>本协议详尽地列明了所有的12BET合作伙伴的条款与规则。“您”，“合作伙伴”指的是您，作为合作伙伴注册的独立自然人、团体或公司组织，在本协议下注册成为我们的合作伙伴，应被视为包括任何雇员、高级职员、董事、股东、企业所有者、实际控制方以及附属的自然人和组织（以及“您的”则有相对应的含义）。</value>
-  </data>
-  <data name="ThisAgreementShallBeGoverned" xml:space="preserve">
-    <value>此协议应受英国法律监督并可理解为符合英国法律。任何与此协议有关联的诉讼、争议或索偿都应由包括仲裁中心指派的仲裁官在内的法官席裁决。仲裁席将在英国伦敦，地点由仲裁中心决定，仲裁语言为英语，仲裁中心建立的规章将监督此过程。仲裁法庭将有权签署判决，它的决定将是强制性的、最终的并严格地强制协议方放弃任何其他可能适用司法管辖区域或审判地，并同意因此仲裁决定放弃其他任何形式的上诉。</value>
-  </data>
-  <data name="Thisemailaddres" xml:space="preserve">
-    <value>此电子邮件地址对应的合作伙伴帐户失效或未被关闭。请重试或联系我们。</value>
-  </data>
-  <data name="Thisemailwillin" xml:space="preserve">
-    <value>邮件将包含一个链接。您需要点击这个链接，来激活您的帐户和确认您的电子邮件地址并最终完成您的注册申请。</value>
-  </data>
   <data name="Thisisasystemau" xml:space="preserve">
     <value>这是一封由系统自动发送的电子邮件，请勿直接回复此电子邮件。</value>
-  </data>
-  <data name="ThisLicenseCannotBeSubLicensed" xml:space="preserve">
-    <value>3. 此授权不能有其他次许可、转让或以其他方式转让。您使用此商标的权利仅限于横幅广告。您不可以任何行为或处理方式声称此广告商标无效、无强制性或争夺其所有权。同时您不可以采取任何可能损害我们或我们的授权人在商标中的权利行为，使其具有相同的通用性，或其他可能减弱它们的有效性或降低他们附带的信誉。</value>
-  </data>
-  <data name="Thistransaction" xml:space="preserve">
-    <value>此交易已被取消。</value>
-  </data>
-  <data name="Thisusernameisn" xml:space="preserve">
-    <value>此用户名不可用</value>
   </data>
   <data name="Tier" xml:space="preserve">
     <value>等级 </value>
@@ -2328,32 +1576,14 @@ b. 如果这些费用不能由您帐户上的资金所弥补，我们保留调�
   <data name="TitelForgetPass" xml:space="preserve">
     <value>新的密码会发到您提供的注册邮箱。&lt;br /&gt;若您遇到任何困难，请 &lt;a href="{0}"&gt;联络我们。&lt;/a&gt;.</value>
   </data>
-  <data name="TitleCancelledPayment" xml:space="preserve">
-    <value>12Bet合作伙伴 - [{transid}] - 您的支付申请已经被取消 </value>
-  </data>
   <data name="TitleLogin" xml:space="preserve">
     <value>合作伙伴登入</value>
   </data>
   <data name="To" xml:space="preserve">
     <value>到</value>
   </data>
-  <data name="ToBecomeAnAff" xml:space="preserve">
-    <value>欲成为12BET加盟代理，您必须首先填写在线加盟表格单注册成为加盟商。通过12BET的加盟代理登记程序注册成为加盟商，或下载横幅广告代码并摆放在您的网站、电邮信息或其他方式，您就被认为已经了解并接受此协议所有的条件和条款。</value>
-  </data>
   <data name="Togo" xml:space="preserve">
     <value>多哥</value>
-  </data>
-  <data name="TooltipContactNumber" xml:space="preserve">
-    <value>请输入正确手机号码以便核实资料</value>
-  </data>
-  <data name="TooltipEmailAddess" xml:space="preserve">
-    <value>请输入正确邮箱地址以便接收密码</value>
-  </data>
-  <data name="Top" xml:space="preserve">
-    <value>回到最顶</value>
-  </data>
-  <data name="ToParticipateIn12BET" xml:space="preserve">
-    <value>是的，现在可以！如果您认为您有联络方式，您可以在我们合作伙伴特色专栏里很容易的建立属于您的个性化页面并且上传任何核准的营销思路或体育信息。一旦做了，您可以立即发送页面链接给对体育或体育博彩有兴趣的任何朋友或联络人，当他们点击链接，他们就成为您的下线会员。欲知更多详情，请发邮件到 &lt;a href="mailto:affiliates@12csd.com"&gt;affiliates@12csd.com&lt;/a&gt;。</value>
   </data>
   <data name="Total" xml:space="preserve">
     <value>总计</value>
@@ -2367,20 +1597,11 @@ b. 如果这些费用不能由您帐户上的资金所弥补，我们保留调�
   <data name="TotalDeposit" xml:space="preserve">
     <value>存款总额</value>
   </data>
-  <data name="TotalIP" xml:space="preserve">
-    <value>Total IPs</value>
-  </data>
   <data name="TotalPlay" xml:space="preserve">
     <value>玩家总数</value>
   </data>
   <data name="TotalQualifiedMembers" xml:space="preserve">
     <value>总计活跃合格会员</value>
-  </data>
-  <data name="TotalUniqueClickByDate" xml:space="preserve">
-    <value>Total Unique Clicks By Date</value>
-  </data>
-  <data name="ThroughYourOneTwoBetPlayerAccount" xml:space="preserve">
-    <value>1. 通过您的12BET玩家账户</value>
   </data>
   <data name="Tqacsbc" xml:space="preserve">
     <value>总计活跃合格会员</value>
@@ -2405,9 +1626,6 @@ b. 如果这些费用不能由您帐户上的资金所弥补，我们保留调�
   </data>
   <data name="Turnover" xml:space="preserve">
     <value>投注额</value>
-  </data>
-  <data name="Turnover_explain" xml:space="preserve">
-    <value>最低合格会员总投注额</value>
   </data>
   <data name="Type" xml:space="preserve">
     <value>形式</value>
@@ -2436,20 +1654,11 @@ b. 如果这些费用不能由您帐户上的资金所弥补，我们保留调�
   <data name="Unknown" xml:space="preserve">
     <value>未知</value>
   </data>
-  <data name="UnknownError" xml:space="preserve">
-    <value>未知错误！</value>
-  </data>
-  <data name="Unlikewithaplayer" xml:space="preserve">
-    <value>d. 和某个玩家赢得大量利润不同，那种情况下只会持续一个月，索回发生之后，会一直保留，直到你的其他玩家所产生的收入足以弥补这笔金额为止。</value>
-  </data>
   <data name="UpdateAccSuccess" xml:space="preserve">
     <value> 您的帐户资料已成功更新</value>
   </data>
   <data name="UpdateSecurityQuestion" xml:space="preserve">
     <value>补设安全提问</value>
-  </data>
-  <data name="UpdateSecurityQuestionRemind" xml:space="preserve">
-    <value>您需选择一个安全提问并填写相应的答案。若您今后忘记密码或需咨询敏感信息，我们将要求您提供此安全问答，以确认您的会员身份和确保您的账户安全。</value>
   </data>
   <data name="UpToNow" xml:space="preserve">
     <value>到目前为止</value>
@@ -2462,9 +1671,6 @@ b. 如果这些费用不能由您帐户上的资金所弥补，我们保留调�
   </data>
   <data name="Username" xml:space="preserve">
     <value>用户名</value>
-  </data>
-  <data name="Usethisformtoch" xml:space="preserve">
-    <value>使用这个表格来更改您的密码。一旦更改，您需要使用新密码来登陆您的帐户。</value>
   </data>
   <data name="Validation" xml:space="preserve">
     <value>验证码</value>
@@ -2481,15 +1687,6 @@ b. 如果这些费用不能由您帐户上的资金所弥补，我们保留调�
   <data name="Vietnamese" xml:space="preserve">
     <value>Tiếng Việt</value>
   </data>
-  <data name="VietnameseSupport" xml:space="preserve">
-    <value>越文</value>
-  </data>
-  <data name="ViewMore" xml:space="preserve">
-    <value>了解更多</value>
-  </data>
-  <data name="WeAreAbleToTrackVisitors" xml:space="preserve">
-    <value>会的，我们可以追踪到那些首次浏览是未有登记、但后来登记成为会员的会员介绍连接地址。我们将有关介绍连接地址追踪的复盖时效设定为90天，以cookies技术识别会员来访途径。</value>
-  </data>
   <data name="WebsiteInformat" xml:space="preserve">
     <value>网站资料</value>
   </data>
@@ -2502,98 +1699,11 @@ b. 如果这些费用不能由您帐户上的资金所弥补，我们保留调�
   <data name="WebsiteURLIsRequired" xml:space="preserve">
     <value>请填写网站链接地址</value>
   </data>
-  <data name="WebsiteURLs" xml:space="preserve">
-    <value>更多网站链接</value>
-  </data>
-  <data name="WeDoNotTolerateSpamming" xml:space="preserve">
-    <value>我们不容忍会员介绍合伙人作出任何形式的滥发广告行为。如果有关合伙人的滥发行为被我们发现到，我们会向该合伙人发出一次警告(如果只是较小型问题的话)；如果合伙人仍然不停止有关滥发行为，12BET.COM的会员介绍系统会立即封停该合伙人的会员介绍合伙关系。</value>
-  </data>
-  <data name="WeEmploys" xml:space="preserve">
-    <value>我们在追踪系统上利用了最先进的科技确保了从您网站过来12BET.COM的浏览量100%正确。玩家介绍会员将根据媒体中心提供的网路地址识别。通过使用cookies识别，访客经由指定网路地址连结(广告横幅、文本连接、电子邮件等) 点击成为会员，成功介绍会员的玩家将被自动追踪及奖励。</value>
-  </data>
-  <data name="WeHerebyGrantToYou" xml:space="preserve">
-    <value>1. 我们在此授予您在此协议有效期内，个人、非独占、不可转让的有限许可，仅使用我们的商标（我们从其所有人获得的授权），仅与您网站上展示的横幅广告有关。</value>
-  </data>
-  <data name="WeMakeNoExpress" xml:space="preserve">
-    <value>我们不会明白或隐晦地发表涉及此客户介绍计划或介绍费支付安排的承诺或表述（包括并不只限于，它们功能，可用性、商业性、合法性、非侵权的保证，或其他由于履行、处理或交易过程引起的隐含的保证。）此外，我们不会声明我们网站的运作不会中断或无误，我们将不会对任何中断或错误的后果负责。</value>
-  </data>
-  <data name="WeMayModifyAnyOfTheTerm" xml:space="preserve">
-    <value>7. 我们可能在任何时候通过在我们的网站张贴通告或新的协议，来修改此协议中任何条款。修改内容可能包括，例如，有效介绍费范围的更改，费用日程表，付款处理，以及介绍费程序规则。如果有任何修改是不可接受的，您唯一的追索权是终止此协议。您继续遵照我们的更改通告或新的协议参与此计划，将会构成一起接受这些变更。</value>
-  </data>
-  <data name="WeMayTerminateThisAgreement" xml:space="preserve">
-    <value>i. 如果我们认定您的网站为不适合网站，我们将保留独家决定权终止此协议。不适合的网站包含以下内容：面向儿童；宣扬色情内容；宣扬暴力；宣扬种族歧视、性别歧视、宗教歧视、国别歧视、残障歧视、性歧视或年龄歧视；宣扬非法活动或者侵犯知识产权。</value>
-  </data>
-  <data name="WeMayWithhold" xml:space="preserve">
-    <value>e. 我们可能会保留向您支付的最后一笔款项一段合理的时间，以确保正确的金额被支付。 </value>
-  </data>
-  <data name="WeOfferSeveralMethods" xml:space="preserve">
-    <value>我们提供以下几种提款方法：</value>
-  </data>
-  <data name="WeReserveTheRight" xml:space="preserve">
-    <value>如果我们认为您的网站并不适合成为我们的合作伙伴，我们保留终止此协议的权利。不适合的网站包括：相关儿童或未成年人的色情网站，宣传暴力、种族、性别、宗教、国籍、残疾人歧视、性取向等歧视网站，宣传非法活动或侵犯知识财产权的网站。</value>
-  </data>
-  <data name="WeReserveTheRightToRevoke" xml:space="preserve">
-    <value>4. 我们保留在任何时候、以任何理由，撤销此许可并同时终止此协议的权利。</value>
-  </data>
-  <data name="WeRolloverNegative" xml:space="preserve">
-    <value>会的，我们会累积计算负数佣金结存。假如到月底结算日你的户口有负数佣金结存，有关帐目将被带帐到下期帐单结算，直至你赚取的正数佣金金额把有关负数帐目结存变回零。</value>
-  </data>
   <data name="WesternSamoa" xml:space="preserve">
     <value>西萨摩亚</value>
   </data>
-  <data name="Weunderstandthat" xml:space="preserve">
-    <value>e. 我们明白这可能会令加盟代理商很愤怒，但必须清楚的是，12BET只会为利润按百分比支付分成，而不是对欺诈的收入进行计算。</value>
-  </data>
-  <data name="WeWillNotBeLiable" xml:space="preserve">
-    <value>我们不会对于此协议或介绍计划有关而导致的间接、特别的或后果性的损害（或任何收入、利润、数据的损失）负有责任，即使我们曾被告知这些损害可能会出现。而且，我们在此协议和计划所导致的的责任总计将不会超过在此协议下已经支付或可支付给您的的佣金总额。此协议中没有任何部分可以理解为向非本协议方的任何个人或组织提供任何权利、义务或利益。我们在此协议下的义务并不会构成任何我们的行政人员、官员或股东个人的义务。任何由此协议产生的义务将只满足于所产生的介绍费，并且只限于直接赔偿。</value>
-  </data>
-  <data name="WeWillTerminateThisAgreement" xml:space="preserve">
-    <value>5. 如果你滥发垃圾邮件，或使用错误的广告词语，令12BET声誉受损，我们将会终止此协议。</value>
-  </data>
-  <data name="WhatAreTheWithdrawal" xml:space="preserve">
-    <value>我可以透过哪几种方法提取佣金？</value>
-  </data>
-  <data name="WhatIfIDontHave" xml:space="preserve">
-    <value>若我没有网站，仍然可以加入吗？</value>
-  </data>
-  <data name="WhatIs12BETAffiliates" xml:space="preserve">
-    <value>12BET合作伙伴计划是甚么？</value>
-  </data>
-  <data name="WhatIsACookie" xml:space="preserve">
-    <value>什么是cookies? </value>
-  </data>
-  <data name="WhatIsTheMinimumWithdrawal" xml:space="preserve">
-    <value>最低的佣金提取金额是多少？ </value>
-  </data>
-  <data name="WhatIsYourPolicy" xml:space="preserve">
-    <value>你们的滥发广告政策定义是甚么？</value>
-  </data>
-  <data name="Wheneverpossible" xml:space="preserve">
-    <value>a. 无论何时，此协议的每一个条款都应该被适用的法律有效地诠释，但是，如果此协议中任何一个条款失效、非法或不在任何方面不可执行，这样的条款仅仅本身无效或无法执行，并不会使本协议其他条款无效。在处理或无法行使任何权利的时候，不会包含任何隐含的放弃， 只有书面的弃权处理才生效。</value>
-  </data>
-  <data name="WhereDoIGetBanners" xml:space="preserve">
-    <value>我怎样得到广告横额与及内容？</value>
-  </data>
-  <data name="WideRange" xml:space="preserve">
-    <value>多种付费途径</value>
-  </data>
-  <data name="WillYouTrackAndGiveMeCredit" xml:space="preserve">
-    <value>如果有会员首次浏览时是未注册的非会员，之后才透过我提供的会员链接到12BET.COM注册，是否会追踪到并发放奖励给我吗？ </value>
-  </data>
   <data name="Winlost" xml:space="preserve">
     <value>輸贏</value>
-  </data>
-  <data name="FourDotWireTransfer" xml:space="preserve">
-    <value>4. 电汇 </value>
-  </data>
-  <data name="Within5dayswesh" xml:space="preserve">
-    <value>我们将在5天内回复您的申请。一旦您的申请被核准，您将立即获得全权参与进入我们的合作伙伴项目。</value>
-  </data>
-  <data name="WithoutOurPriorWritten" xml:space="preserve">
-    <value>7. 没有我们事先书面同意，您只能使用我们审核通过的横幅广告、链接。不能改变其外观，也不能让其在任何推广素材中，不与我们相关联。这些超链接的外观和语法，是由我们设计并指定的，并且只被授权允许代表12BET。</value>
-  </data>
-  <data name="WrongMinbet_Max" xml:space="preserve">
-    <value>错误的最小投注/最大投注/单场最大投注/信用额度/主代理名称/用户群</value>
   </data>
   <data name="Year" xml:space="preserve">
     <value>Year</value>
@@ -2601,107 +1711,11 @@ b. 如果这些费用不能由您帐户上的资金所弥补，我们保留调�
   <data name="Yemen" xml:space="preserve">
     <value>也门</value>
   </data>
-  <data name="YouAcknowledge" xml:space="preserve">
-    <value>您知道您已经阅读过此协议并同意所有条款和条件。您明白我们会在任何时候（直接或间接）按照有可能与您的协议有所不同的条款在与您的网站相似或有竞争的网站上征集客户介绍。您已经独立地评估过参与此加盟计划的有利因素，并且不会依赖此协议上文提到以外的任何表述、承诺或声明。</value>
-  </data>
-  <data name="YouAndWeAreIndependent" xml:space="preserve">
-    <value>9. 您和我们都是独立的契约方，此协议并不在各方之间造成任何合作、合资、代理、特许经销、销售代表或雇佣关系。您无权代表我们发出或接受任何要约。无论是在您的网站还是其他地方，您不能发表任何与本段文字有任何抵触的声明。</value>
-  </data>
-  <data name="YouAndWeAreIndependentContractors" xml:space="preserve">
-    <value>您和我们都是独立的契约方，此协议并不在各方之间造成任何合作、合资、代理、特许经销、销售代表或雇佣关系。您无权代表我们发出或接受任何要约。无论是在您的网站还是其他地方，您不能发表任何与本段文字有任何抵触的声明。</value>
-  </data>
-  <data name="YouAndWeWillBeReleased" xml:space="preserve">
-    <value>h. 您和我们自此协议终止之日起，除了协议中列明的各自在协议终止中自然产生的责任外，将不再对彼此有任何责任和义务。终止协议并不会解除您要承担在终止协议之前就产生的侵害的义务。如果我们判定（我们对此拥有唯一决定权）您的网站是不合适的，我们可能终止此协议。不合适的网站包括：针对儿童推广色情素材，宣传暴力，宣传种族、性别、宗教、国籍、残疾人、性取向或年龄等歧视，宣传非法行为或破坏知识产权。 </value>
-  </data>
-  <data name="YouAreNotAllowed" xml:space="preserve">
-    <value>10. 严禁同时与12BET保有加盟合做伙伴关系和推荐会员合作关系。若有违反，12BET有权单方面终止其中一类合作关系。推荐关系是指根据12BET的推荐朋友计划（作为网站上提供的内容）与12BET的关系。</value>
-  </data>
-  <data name="Youarenotauthor" xml:space="preserve">
-    <value>您无权建立/编辑此信息。</value>
-  </data>
-  <data name="YouAreOnlyResponsible" xml:space="preserve">
-    <value>1. 您只负责引导客户到12BET网站。</value>
-  </data>
-  <data name="YouCanLoginToYour12BET" xml:space="preserve">
-    <value>你可以登入你在12BET.COM的合作伙伴会员户口，查核你所赚取所得的回佣金额。12BET为您提供全年7X24小时查核服务。</value>
-  </data>
-  <data name="YouCanRequestForAWithdrawal" xml:space="preserve">
-    <value>你可以透过Moneybookers, Neteller, Wire Transfer提出佣金，也可以直接将佣金转入您的12BET玩家帐号</value>
-  </data>
-  <data name="YouCanRequestPayout" xml:space="preserve">
-    <value>您可以要求提取美金之外的其他货币，例如英镑、欧元、人民币、马币、泰铢或印尼盾。相关汇率将会以支出当日为准。</value>
-  </data>
-  <data name="Youhaveapending" xml:space="preserve">
-    <value>你有一项申请在“待处理”状态，要设置一项新要求，请先取消这暂停而未完成的操作，或等待这次操作完成为止。</value>
-  </data>
-  <data name="Youhaverequeste" xml:space="preserve">
-    <value>您申请找回用户名或密码。如果您未提出此申请，请忽略此邮件。</value>
-  </data>
-  <data name="YouHerebyAgreeToIndemnify" xml:space="preserve">
-    <value>在此您同意保障及令12BET、它代表的组织和加盟商、12BET的管理人员、官员、雇员、代理、股东、合作方、会员或其他所有人免于受损，免于任何和所有索偿、行动、要求、义务、损失、赔偿、法庭判决、清算、花费（包括合理的律师费），在这些范围的损失（或涉及的行动）所导致的成本（前述部分或全部以下称为“损失”）或基于以下而产生的成本：（i）关于使用我们的加盟代理商标而侵害了任何商标、商标名、服务标志、版权、许可权、知识产权或其他第三方的权利，（ii）由您造成的表述、承诺或契约和协议终止的错误表述，（iii）您的网站发展、运营、维护、内容，以及您网站提供的产品和服务，或（iv）任何与您的网站有关的索赔，包括但不只限于，非我们的内容。</value>
-  </data>
-  <data name="Youinputtedanin" xml:space="preserve">
-    <value>验证码无效！</value>
-  </data>
-  <data name="YouMayNotModify" xml:space="preserve">
-    <value>2. 未经12BET的书面同意，您不得修改或使用任何12BET知识产权品、横幅广告或其他创作素材，用于其他用途。12BET提供或批准的任何素材，所有版权或知识产权声明必须保留，不得修改或删除。</value>
-  </data>
-  <data name="YoumustagreeTer" xml:space="preserve">
-    <value>没有同意条款及规则，请查看！</value>
-  </data>
-  <data name="YouMustRemoveBanners" xml:space="preserve">
-    <value>a. 您必须从您的网站中移走12BET的广告横幅，并使任何到12BET的连接失效。 </value>
-  </data>
-  <data name="Youraccountinfo" xml:space="preserve">
-    <value>您的帐户资料已成功更新</value>
-  </data>
   <data name="YourEmail" xml:space="preserve">
     <value>您的电邮:</value>
   </data>
   <data name="Yourlogindetail" xml:space="preserve">
     <value>您的登入资料已送出</value>
-  </data>
-  <data name="YourPayment" xml:space="preserve">
-    <value>您的支付申请将会在24小时内审核。所有的申请将会按收到的时间顺序依次审核处理。</value>
-  </data>
-  <data name="Yourpaymentrequ" xml:space="preserve">
-    <value>您的金额为$100的支付申请已经被取消。</value>
-  </data>
-  <data name="Yourrequestrefe" xml:space="preserve">
-    <value>您的申请单号为{transid}</value>
-  </data>
-  <data name="Youruseemailisi" xml:space="preserve">
-    <value>您使用的电子邮件地址无效，请重试。</value>
-  </data>
-  <data name="Yourusernameis" xml:space="preserve">
-    <value>您的用户名是</value>
-  </data>
-  <data name="Yourwebsitesand" xml:space="preserve">
-    <value>我们12Bet合作伙伴团队将会就您的网站和申请详情进行审核，以确认相关内容是否适合推广我们的产品。</value>
-  </data>
-  <data name="YouShallNotMakeAnyClaims" xml:space="preserve">
-    <value>6. 您不应提出任何与12BET有关的索偿、代表或承诺，并且您无权也不应对12BET承担任何义务。</value>
-  </data>
-  <data name="YouWillAgreeToRegister" xml:space="preserve">
-    <value>2. 您同意在12BET登记并保持正确、真实的联络信息。</value>
-  </data>
-  <data name="YouWillBeEntitled" xml:space="preserve">
-    <value>c. 您将只能获得那些到协议终止日或之前的有赢利而未付的介绍费，余下的作为您终止此协议的结果进行处理，详细请见下文9.2.d。我们会保留向您支付的最后一笔款项一段合理的时间，以确保正确的金额被支付。 </value>
-  </data>
-  <data name="YouWillBeSolelyResponsible" xml:space="preserve">
-    <value>4.您将全权负责您网站的开发、运营和维护，以及所有素材的成本。例如，您将要全权负责，确保所有张贴在网站的素材，不含有诽谤文字或其他非法内容，或侵犯第三方的知识产权。由于我们无法主张您的网站，我们不会承担任何责任。此外，您将有义务保障我们免于承受，由于您的网站开发、运营、维护和内容相关的索偿、损害赔偿与费用（包括但不限于律师费等）所带来的损害。这些保障条款不影响我们根据适用的法律，所提出对您的诉讼或索赔。</value>
-  </data>
-  <data name="YouWillIndemnify" xml:space="preserve">
-    <value>3. 您要保障并令我们免于所有与您的网站发展、运营、维护以及内容方面有关的索偿、赔偿以及花费（包括，并不只限于，律师费用）。此保障条款并不会对我们在适当的法律条款下对您采取的另外的行动或索偿有所冲突。</value>
-  </data>
-  <data name="YouWillNotKnowingly" xml:space="preserve">
-    <value>8. 您将不能从任何已知或被怀疑不是真实产生的流量中获利，无论它是否令12BET受损害。如果通过您的链接来到本网站的某人，发生了欺骗行为，我们保留在任何时候收回已经支付给您的佣金的权利。我们在这方面的决定是最终的，并且不会进行任何这方面的讨论。如果我们确信这样的流量是在您知情的情况下发生的，我们保留收回您在此协议下所获得的全部金额的佣金的权利。即使您对此产生的流量并不知情，如果我们有所怀疑，我们有权保留您的佣金。</value>
-  </data>
-  <data name="YouWillPresentOnlyContent" xml:space="preserve">
-    <value>3. 您只能在您的网站上，发表经由12BET撰写并预先审核过的内容和主题。未经12BET审核的内容，将被视为是不恰当的，并会导致合作伙伴协议立即终止。</value>
-  </data>
-  <data name="YouWillReturnToUs" xml:space="preserve">
-    <value>g. 您将要归还我们所有保密信息和所有在您处理、保管和控制的副本，并停止使用所有商标名、商标、服务标志、标识以及其他与此业务有关的称号。 </value>
   </data>
   <data name="Yugoslavia" xml:space="preserve">
     <value>南斯拉夫</value>
@@ -2715,17 +1729,8 @@ b. 如果这些费用不能由您帐户上的资金所弥补，我们保留调�
   <data name="_12BET" xml:space="preserve">
     <value>12BET</value>
   </data>
-  <data name="_12BETAffiliatesTeam" xml:space="preserve">
-    <value>12BET合作伙伴团队,</value>
-  </data>
-  <data name="_12BetAffiliatesYourApplication" xml:space="preserve">
-    <value>12Bet 合作伙伴 – 您的加盟申请</value>
-  </data>
   <data name="_12BETPlayerAcc" xml:space="preserve">
     <value>12BET玩家帐户</value>
-  </data>
-  <data name="_12BETUserNamei" xml:space="preserve">
-    <value>12BET用户名无效</value>
   </data>
   <data name="EmailTitleNewPassword" xml:space="preserve">
     <value>您的新密码</value>
@@ -2826,89 +1831,8 @@ b. 如果这些费用不能由您帐户上的资金所弥补，我们保留调�
   <data name="ValidationCodeLabel" xml:space="preserve">
     <value>验证码</value>
   </data>
-  <data name="WhatIs12BETAffiliateProgram" xml:space="preserve">
-    <value>12BET合作伙伴计划是甚么？ </value>
-  </data>
-  <data name="Desc12BetAffiliateProgram" xml:space="preserve">
-    <value>12BET合作伙伴计划是一项合作关系计划，从您的网站线上或线下推荐到12BET.COM的玩家，您可以根据他的投注活跃程度来赚取佣金。</value>
-  </data>
-  <data name="DescHowDoISignUp" xml:space="preserve">
-    <value>12BET合作伙伴计划是免费参加的。简单来说只要填好申请表格，我们将会在三个工作天内审核您的申请。若申请通过的话，您将会收到电邮通知，包括独有的合作伙伴号码，让您可以在自己的网站上加上横幅广告、文字连接及其他内容与市场推广工具等。</value>
-  </data>
-  <data name="WhatIfDontHaveWebsite" xml:space="preserve">
-    <value>若我没有网站，仍然可以加入吗？ </value>
-  </data>
-  <data name="DescWhatIfDontHaveWebsite" xml:space="preserve">
-    <value>是的可以！如果您认为您有宣传对象，您可以在我们合作伙伴特色专栏里，轻易建立您的个性化网页，并且上传任何核实的营销思路或体育信息。一旦完成，您可以立即发送网页链接，给对体育或体育博彩有兴趣的任何朋友或联络人，当他们点击链接，他们就成为您的推荐会员。欲知更多详情，请电邮至 affiliates@12csd.com。</value>
-  </data>
-  <data name="MarketingAndTracking" xml:space="preserve">
-    <value>市场营销与追踪</value>
-  </data>
-  <data name="WhereDoIGetBannersAndContent" xml:space="preserve">
-    <value>如何取得横幅广告与及内容？</value>
-  </data>
-  <data name="DescWhereDoIGetBannersAndContent" xml:space="preserve">
-    <value>透过我们的媒体中心，您可以选取你偏爱的横幅广告，或者文字链接到您的网站。</value>
-  </data>
-  <data name="HowDoesTheSystemKeepTrack" xml:space="preserve">
-    <value>系统如何追踪我的下线玩家？ </value>
-  </data>
-  <data name="DescHowDoesTheSystemKeepTrack" xml:space="preserve">
-    <value>我们在追踪系统上使用最先进的技术，确保从您网站过来12BET.COM的浏览量100%正确。合作伙伴所介绍的会员，会根据媒体中心提供的网址识别。访客通过cookies的使用、经由指定网址链接(横幅广告、文字链接、电子邮件等) 而成为会员，奖励将会自动给予。</value>
-  </data>
-  <data name="DescWillYouTrackAndGiveMeCredit" xml:space="preserve">
-    <value>是的，我们可以追踪来自合作伙伴的访客，即使没有立即注册、之后才注册的会员。我们将有关介绍链接网址追踪的复盖时效设定为90天，使用cookies技术来识别会员来访途径。</value>
-  </data>
-  <data name="DescWhatIsACookie" xml:space="preserve">
-    <value>Cookies的服务器储存，可以用作从客户端储存及检索信息。更具体地说，会员通过合作伙伴链接到12BET.COM的访客，他们的电脑都会保存很多小数据档案，这些档案包括协助12BET.COM追踪及发放会员介绍奖励时的所需资料，以确保有关往来信息准确无误。Cookies包含追踪功能，但不会被限制，当某些网页有浏览历史记录，它可以查找出被浏览的网页、日期及时间。</value>
-  </data>
-  <data name="DescDoYouRewardTheFirstAffiliate" xml:space="preserve">
-    <value>Cookies会不断更新，所以我们会向最后介绍链接的合作伙伴给予奖励。</value>
-  </data>
-  <data name="DescHowCanICheck" xml:space="preserve">
-    <value>可以登录12BET.COM的合作伙伴账户，查核所赚取的回佣金额。12BET提供全年7X24小时查核服务。</value>
-  </data>
-  <data name="WhatIfYourPolicy" xml:space="preserve">
-    <value>你们的滥发广告政策定义是甚么？ </value>
-  </data>
-  <data name="DescWhatIfYourPolicy" xml:space="preserve">
-    <value>我们不容许合作伙伴做出任何形式的滥发广告行为，如果发现任何合作伙伴的滥发行为，我们会发出一次警告（如果只是较小的问题）；如果该合作伙伴仍然不停止其滥发行为，12BET.COM的会员介绍系统，会立即封停该名的会员介绍合伙关系。</value>
-  </data>
-  <data name="CommissionPayment" xml:space="preserve">
-    <value>提领佣金</value>
-  </data>
-  <data name="WhatAreTheWithdrawalMethods" xml:space="preserve">
-    <value>我可以透过哪几种方法提取佣金？ </value>
-  </data>
-  <data name="DescWhatAreTheWithdrawalMethods" xml:space="preserve">
-    <value>你可以透过Moneybookers、Neteller, Wire Transfer提领佣金，也可以直接将佣金转入您的12BET玩家账号。</value>
-  </data>
-  <data name="CanIRequestForCurrency" xml:space="preserve">
-    <value>可以申请美元以外的货币提领佣金吗？ </value>
-  </data>
-  <data name="DescCanIRequestForCurrency" xml:space="preserve">
-    <value>我们提供英镑、欧元、人民币、马币、泰铢及印尼盾等货币提款服务。有关的汇率计算，将根据付款操作当日的汇率而定。</value>
-  </data>
-  <data name="DescWhatIsTheMinimumWithdrawal" xml:space="preserve">
-    <value>最低佣金提取要求是100美元。</value>
-  </data>
-  <data name="DescDoesNegativeBalance" xml:space="preserve">
-    <value>我们会累积计算负数佣金结存。假如到月底结算有负佣金结余，有关账目将被带账到下期账单结算，直至你有足够的正收益，把负结余结存为零。</value>
-  </data>
-  <data name="DescHowOftenCanIRequest" xml:space="preserve">
-    <value>每个月最多可以提出一次提款申请，假如得到会员介绍合作计划的经理批准，就可以在同一个月内做出第二次提款申请。目前我们给予大家的提款申请服务是免费的，但我们并不负担任何转帐时的手续费或电子转帐所需服务费用。</value>
-  </data>
   <data name="TermAndCondition" xml:space="preserve">
     <value>条款与规则</value>
-  </data>
-  <data name="ToBecomeAnAffiliate" xml:space="preserve">
-    <value>欲成为12BET合作伙伴会员，您必须填写在线加盟表单注册成为会员。通过12BET的登记程序注册成为合作伙伴，或下载横幅广告代码并放在您的网站、电邮信息或其他方式宣传，您就被视为已经了解并接受此协议所有的条款与规则。</value>
-  </data>
-  <data name="ResponsibilitiesOfTheAffiliate" xml:space="preserve">
-    <value>1. 合作伙伴的责任</value>
-  </data>
-  <data name="AffiliateGuidelines" xml:space="preserve">
-    <value>2. 合作伙伴指南</value>
   </data>
   <data name="CommissionStructure" xml:space="preserve">
     <value>佣金结构</value>
@@ -2916,75 +1840,20 @@ b. 如果这些费用不能由您帐户上的资金所弥补，我们保留调�
   <data name="Product" xml:space="preserve">
     <value>产品</value>
   </data>
-  <data name="OneTwoBetOneOfTheWorld" xml:space="preserve">
-    <value>12BET是全球领先的博彩网站之一，已成为亚洲领导品牌。提供市场最具竞争力的赔率而闻名，而且获得17强全球顶级营运商的殊荣。</value>
-  </data>
-  <data name="OneTwoBetIsAReowned" xml:space="preserve">
-    <value>12BET是知名的在线博彩品牌，提供体育博彩、真人娱乐城、老虎机游戏、体育彩池、百练赛与快乐彩。最重要的是，12BET提供安全与保障的在线博彩环境，而且所有游戏界面在视觉上，都符合美学与独特设计元素，让玩家拥有丰富多彩的游戏体验。</value>
-  </data>
-  <data name="WeWillBeVeryPleased" xml:space="preserve">
-    <value>我们欢迎大家加入12BET合作伙伴计划，尽可能地利用12BET的产品，赚取代理佣金。</value>
-  </data>
-  <data name="OneDotSportsbook" xml:space="preserve">
-    <value>1.体育博彩</value>
-  </data>
-  <data name="OneTwoBetIsFavored" xml:space="preserve">
-    <value>12BET受到来自世界各地的数百万博彩玩家的青睐，因为我们提供了多种选择。客户可以轻松搜索任何类型的运动并轻松地投注。</value>
-  </data>
-  <data name="UponSuccessfulRegistration" xml:space="preserve">
-    <value>透过合作伙伴在网站注册为会员后，玩家完全可以造访以下任何运动：足球、篮球、高尔夫、拳击、赛车、棒球、橄榄球等，玩家的投注会被计算入合作伙伴。</value>
-  </data>
-  <data name="OneTwoBetOffersTheMostInDemandGames" xml:space="preserve">
-    <value>&lt;p class="text-block"&gt;12BET提供亚洲最受欢迎的游戏。&lt;/p&gt;</value>
-  </data>
   <data name="VirtualSports" xml:space="preserve">
     <value>虚拟运动</value>
-  </data>
-  <data name="VirtualSportsAreEgames" xml:space="preserve">
-    <value>虚拟运动是受实际运动启发的电子游戏，有足球、赛马、赛车、网球等。不同的是，虚拟运动全程只有3~5分钟，为玩家提供了即使比赛结果。</value>
   </data>
   <data name="ESports" xml:space="preserve">
     <value>电子竞技</value>
   </data>
-  <data name="EsportsBettingIsOneOfTheFastestGrowing" xml:space="preserve">
-    <value>电子竞技是12BET成长迅速的产品之一，提供最热门的电子竞技锦标赛，例如：CS:CO、刀塔2、守望先锋。这些游戏在全球千禧时代，广受欢迎。</value>
-  </data>
-  <data name="NumberGameIsAVeryAttractive" xml:space="preserve">
-    <value>百练赛是个非常吸引人的游戏，就像是个从宾果游戏获得启发的彩票，玩家需要投注在宾果机的数字。最有名的是即时视频，由美女在机器边，等待中奖数字出现。</value>
-  </data>
   <data name="Keno" xml:space="preserve">
     <value>快乐彩</value>
-  </data>
-  <data name="KenoIsPlayedWith" xml:space="preserve">
-    <value>从80个球（01至80）中随机选择20个球，这20个数字是各别分开的，投注方式有：大/小、单/双、龙/虎等。</value>
   </data>
   <data name="Lottery" xml:space="preserve">
     <value>彩票</value>
   </data>
-  <data name="LotteryIsAPopularFormOfOnlineBetting" xml:space="preserve">
-    <value>彩票是颇为流行的在线投注，玩家可以选择3D / 5D 彩票、11x5彩票与骰子彩票。每种彩票有不同的投注类型，例如：大/小、单/双、颜色范围等。</value>
-  </data>
-  <data name="TwoDotCasino" xml:space="preserve">
-    <value>2.娱乐城</value>
-  </data>
-  <data name="OnOneTwoBetCasinoGamesAreGrouped" xml:space="preserve">
-    <value>12BET根据不同的游戏供应商作区别，所有Playtech都属于翡翠厅，Pragmatic Play归在钻石厅等。无数真人荷官、桌面游戏、视频扑克、虚拟游戏、老虎机游戏等，都集中在娱乐城，带给顾客最佳的游戏体验。</value>
-  </data>
-  <data name="GetToKnowMoreCasinoGames" xml:space="preserve">
-    <value>&lt;p class="text-block"&gt; 想了解更多娱乐城游戏和高端平台技术吗？ &lt;/p&gt;</value>
-  </data>
   <data name="SignUpAffiliateProgramNow" xml:space="preserve">
     <value>立即注册为合作伙伴！</value>
-  </data>
-  <data name="AsAOneTwoBetAffiliates" xml:space="preserve">
-    <value>成为12BET合作伙伴后，由您推荐到12BET的每位玩家，只要使用账户就可以为您带来即时的佣金。我们的在线汇报系统会7×24小时服务。
-赚取的利润多少，取决于合伙人的网站引导带来的顾客浏览量，我们的任务是指导他们完成注册和首存，并用我们诱人的红利和优惠留住他们。</value>
-  </data>
-  <data name="TheRevenueShareModelIsSplit" xml:space="preserve">
-    <value>佣金分成模式根据不同的产品计算，具体的佣金计算如下所述。合作伙伴的总收入，是由所有产品佣金分成的组合。 </value>
-  </data>
-  <data name="OneTwoBetOffersARevenueShareModel" xml:space="preserve">
-    <value>12BET提供所有产品的佣金分成。这是一个累积的模式，每月根据合作伙伴所推荐的玩家，在12BET的投注活跃程度去赚取。 </value>
   </data>
   <data name="SignUpAffiliate" xml:space="preserve">
     <value>立即注册</value>
