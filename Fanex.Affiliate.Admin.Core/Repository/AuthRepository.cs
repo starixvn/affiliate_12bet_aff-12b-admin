@@ -38,9 +38,10 @@ namespace Fanex.Affiliate.Admin.Core.Repository
             {
                 objectDb.AddInParameter("on_userid", DbType.Int32, onUserId);
                 objectDb.AddOutParameter("iskickedout", DbType.Int32, 4);
+                objectDb.ExecuteNonQuery();
                 var isKickedOut = objectDb.GetParameterValue("iskickedout");
-                return Convert.ToBoolean(isKickedOut == DBNull.Value ? 0 : isKickedOut);
 
+                return Convert.ToBoolean(isKickedOut == DBNull.Value ? 0 : isKickedOut);
             }
         }
     }
