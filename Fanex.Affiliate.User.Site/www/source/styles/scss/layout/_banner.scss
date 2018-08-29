@@ -41,11 +41,9 @@
         @media (min-width: 993px) and (max-width: 1299px) {
             height: 350px;
         }
-
         /*@media (min-width: 768px) and (max-width: 992px) {
             height: 250px;
         }*/
-
         @media (max-width: 767px) {
             height: 250px;
         }
@@ -88,6 +86,7 @@
         @include background-gradient(top, $bg-btn-join);
         position: relative;
         margin-top: 20px;
+        margin-right: 0;
         border-radius: 6px;
         padding: 8px 20px;
         height: auto;
@@ -133,6 +132,12 @@
     @media (min-width: 1600px) {
         padding-top: 50px;
     }
+
+    @media (max-width: 767px) {
+        .btn {
+            font-size: 15px;
+        }
+    }
 }
 
 .banner-signup {
@@ -141,6 +146,7 @@
 
     .upto {
         position: relative;
+        margin-top: 20px;
         text-shadow: rgb(83, 58, 9) 2px 0px 0px, rgb(83, 58, 9) 1.75517px 0.958851px 0px, rgb(83, 58, 9) 1.0806px 1.68294px 0px, rgb(83, 58, 9) 0.141474px 1.99499px 0px, rgb(83, 58, 9) -0.832294px 1.81859px 0px, rgb(83, 58, 9) -1.60229px 1.19694px 0px, rgb(83, 58, 9) -1.97998px 0.28224px 0px, rgb(83, 58, 9) -1.87291px -0.701566px 0px, rgb(83, 58, 9) -1.30729px -1.5136px 0px, rgb(83, 58, 9) -0.421592px -1.95506px 0px, rgb(83, 58, 9) 0.567324px -1.91785px 0px, rgb(83, 58, 9) 1.41734px -1.41108px 0px, rgb(83, 58, 9) 1.92034px -0.558831px 0px;
         color: #fff;
         line-height: 1;
@@ -153,20 +159,21 @@
         }
 
         .up-to-group {
-            position: relative; 
-            width: 60px; 
-            height: 100px; 
-            margin-top: 20px;
+            position: relative;
+            width: 60px;
+            height: 100px;
             font-size: 50px;
 
             .up {
-                position: absolute; 
-                top: 0; 
-                border-bottom: 3px solid white;
+                position: absolute;
+                top: 0;
+                //border-bottom: 3px solid white;
+                line-height: 1;
             }
 
             .to {
-                position: absolute; bottom: 0;
+                position: absolute;
+                bottom: 0;
             }
         }
 
@@ -174,13 +181,14 @@
             width: 408px;
 
             .to {
-                left: 50%; 
+                left: 50%;
                 transform: translateX(-50%);
             }
         }
 
         .up-to-group-vn {
-            width: 100px; height: 110px;
+            width: 100px;
+            height: 110px;
         }
 
         .value {
@@ -202,23 +210,23 @@
         font-weight: 600;
     }
 
-    .text-big-white {        
-        font-size: 70px;        
+    .text-big-white {
+        font-size: 70px;
     }
 
     .text-yellow {
-        font-size: 40px;        
-        color: #ffb50c;        
+        font-size: 40px;
+        color: #ffb50c;
     }
 
     .text-white {
         margin: 0;
-        font-size: 48px;        
+        font-size: 48px;
     }
 
     .text-red {
         color: #ef0202;
-    }   
+    }
 
     @media screen and (max-width: 1299px) {
         .upto .value {
@@ -248,11 +256,59 @@
         }
 
         .text-yellow {
-            font-size: 30px;  
+            font-size: 30px;
         }
 
         .text-white {
             font-size: 25px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        padding-left: 20px;
+        background-position: center bottom;
+
+        .upto {
+            margin-bottom: 10px;
+
+            .up-to-group {
+                font-size: 30px;
+                width: 40px;
+                height: 60px;
+
+                &.up-to-group-indo {
+                    font-size: 25px;
+                    width: 200px;
+                    height: 50px;
+                }
+
+                &.up-to-group-vn {
+                    font-size: 25px;
+                    width: 55px;
+                    height: 54px;
+                }
+            }
+
+            .value {
+                font-size: 50px;
+            }
+
+            .text-white {
+                font-size: 35px;
+            }
+        }
+
+        .text-big-white {
+            font-size: 25px;
+        }
+
+        .text-white {
+            font-size: 20px;
+        }
+
+        .text-yellow {
+            font-size: 20px;
+            margin-top: 10px;
         }
     }
 }
@@ -288,7 +344,7 @@
 
         .text-2 {
             font-size: 28px;
-        }        
+        }
     }
 
     @media (min-width: 768px) and (max-width: 992px) {
@@ -299,6 +355,16 @@
         .text-2 {
             font-size: 20px;
             margin-top: 10px;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .text-1 {
+            font-size: 20px;
+        }
+
+        .text-2 {
+            font-size: 18px;
         }
     }
 }

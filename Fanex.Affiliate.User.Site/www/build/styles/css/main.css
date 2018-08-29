@@ -638,7 +638,7 @@ input[type="checkbox"], input[type="radio"] {
   .adv-contact .line {
     display: block;
     height: 3px;
-    width: 200px;
+    width: 150px;
     border-radius: 2px;
     background: #ffff00;
     margin: 10px 0; }
@@ -753,6 +753,7 @@ input[type="checkbox"], input[type="radio"] {
     background: linear-gradient(top, #f30303 0%, #c70000 100%);
     position: relative;
     margin-top: 20px;
+    margin-right: 0;
     border-radius: 6px;
     padding: 8px 20px;
     height: auto;
@@ -797,12 +798,16 @@ input[type="checkbox"], input[type="radio"] {
   @media (min-width: 1600px) {
     .get-banner, .banner-signup {
       padding-top: 50px; } }
+  @media (max-width: 767px) {
+    .get-banner .btn, .banner-signup .btn {
+      font-size: 15px; } }
 
 .banner-signup {
   background-image: url("../Images/bg-banner-signup.png");
   padding-left: 80px; }
   .banner-signup .upto {
     position: relative;
+    margin-top: 20px;
     text-shadow: #533a09 2px 0px 0px, #533a09 1.75517px 0.95885px 0px, #533a09 1.0806px 1.68294px 0px, #533a09 0.14147px 1.99499px 0px, #533a09 -0.83229px 1.81859px 0px, #533a09 -1.60229px 1.19694px 0px, #533a09 -1.97998px 0.28224px 0px, #533a09 -1.87291px -0.70157px 0px, #533a09 -1.30729px -1.5136px 0px, #533a09 -0.42159px -1.95506px 0px, #533a09 0.56732px -1.91785px 0px, #533a09 1.41734px -1.41108px 0px, #533a09 1.92034px -0.55883px 0px;
     color: #fff;
     line-height: 1;
@@ -815,12 +820,11 @@ input[type="checkbox"], input[type="radio"] {
       position: relative;
       width: 60px;
       height: 100px;
-      margin-top: 20px;
       font-size: 50px; }
       .banner-signup .upto .up-to-group .up {
         position: absolute;
         top: 0;
-        border-bottom: 3px solid white; }
+        line-height: 1; }
       .banner-signup .upto .up-to-group .to {
         position: absolute;
         bottom: 0; }
@@ -872,6 +876,35 @@ input[type="checkbox"], input[type="radio"] {
       font-size: 30px; }
     .banner-signup .text-white {
       font-size: 25px; } }
+  @media (max-width: 767px) {
+    .banner-signup {
+      padding-left: 20px;
+      background-position: center bottom; }
+      .banner-signup .upto {
+        margin-bottom: 10px; }
+        .banner-signup .upto .up-to-group {
+          font-size: 30px;
+          width: 40px;
+          height: 60px; }
+          .banner-signup .upto .up-to-group.up-to-group-indo {
+            font-size: 25px;
+            width: 200px;
+            height: 50px; }
+          .banner-signup .upto .up-to-group.up-to-group-vn {
+            font-size: 25px;
+            width: 55px;
+            height: 54px; }
+        .banner-signup .upto .value {
+          font-size: 50px; }
+        .banner-signup .upto .text-white {
+          font-size: 35px; }
+      .banner-signup .text-big-white {
+        font-size: 25px; }
+      .banner-signup .text-white {
+        font-size: 20px; }
+      .banner-signup .text-yellow {
+        font-size: 20px;
+        margin-top: 10px; } }
 
 .get-banner {
   background-image: url("../Images/bg-get-banner.png");
@@ -903,6 +936,11 @@ input[type="checkbox"], input[type="radio"] {
     .get-banner .text-2 {
       font-size: 20px;
       margin-top: 10px; } }
+  @media (max-width: 767px) {
+    .get-banner .text-1 {
+      font-size: 20px; }
+    .get-banner .text-2 {
+      font-size: 18px; } }
 
 .footer {
   background: #000;
