@@ -167,7 +167,7 @@ public partial class AffiliateList : BasePage
                 var affListLink = VirtualPathUtility.ToAbsolute("~/") + "Portal/Affiliate?current=1";
                 if (Request["isclk"] == "1")//is click on menu header
                 {
-                    Response.Write("<script type='text/javascript'>alert('My favorite list is empty. You will be redirected to the Approved Page.');top.location.href='" + affListLink + "';</script>");
+                    Response.Write("<script type='text/javascript'>top.location.href='" + affListLink + "';</script>");
                     return;
                 }
                 if (string.IsNullOrEmpty(groupName) && string.IsNullOrEmpty(strUserName) && string.IsNullOrEmpty(strEmail) && intID == -1)//no info and no search
