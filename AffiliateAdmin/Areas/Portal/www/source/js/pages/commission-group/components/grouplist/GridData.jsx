@@ -100,7 +100,11 @@ export class GridData extends Component {
                 rows.push(
                     (<Row key={`row-${index}-${iTier}`} className={isPrivateGroup ? "private" : ""}>
                         {isFirstItem && (<Cell className="text-center" rowSpan={rowSpan}>{group.RowIdx}</Cell>)}
-                        {isFirstItem && (<Cell className="text-center" rowSpan={rowSpan}>{rawHtml(group.GroupName)}</Cell>)}
+                        {isFirstItem && (
+                            <Cell className="text-center" rowSpan={rowSpan} title={isPrivateGroup && "Private Group"}>
+                                {isPrivateGroup && (<span className="oi oi-person"></span>)}{rawHtml(group.GroupName)}
+                            </Cell>
+                        )}
                         {isFirstItem && (
                             <Cell className="text-center" rowSpan={rowSpan}>
                                 <a href={resolveClientUrl("Portal/Affiliate?current=1&slCommGroup=") + group.GroupId} target="_top">{group.NoAffs}</a>
