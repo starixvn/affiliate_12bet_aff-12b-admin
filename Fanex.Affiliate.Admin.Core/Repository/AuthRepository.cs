@@ -41,7 +41,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository
                 objectDb.ExecuteNonQuery();
                 var isKickedOut = objectDb.GetParameterValue("iskickedout");
 
-                return Convert.ToBoolean(isKickedOut == DBNull.Value ? 0 : isKickedOut);
+                return (isKickedOut != DBNull.Value) && Convert.ToBoolean(isKickedOut);
             }
         }
     }

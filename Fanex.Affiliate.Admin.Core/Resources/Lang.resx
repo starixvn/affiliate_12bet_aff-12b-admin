@@ -189,6 +189,9 @@
   <data name="MessageHistory" xml:space="preserve">
     <value>Message History</value>
   </data>
+  <data name="MsgKickout" xml:space="preserve">
+    <value>Another session has logged in or your session is expired. Forced to logout!</value>
+  </data>
   <data name="MyFavorite" xml:space="preserve">
     <value>My Favorite</value>
   </data>

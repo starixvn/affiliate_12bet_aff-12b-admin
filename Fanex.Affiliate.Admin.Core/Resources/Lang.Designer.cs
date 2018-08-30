@@ -277,6 +277,15 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Another session has logged in or your session is expired. Forced to logout!.
+        /// </summary>
+        public static string MsgKickout {
+            get {
+                return ResourceManager.GetString("MsgKickout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to My Favorite.
         /// </summary>
         public static string MyFavorite {

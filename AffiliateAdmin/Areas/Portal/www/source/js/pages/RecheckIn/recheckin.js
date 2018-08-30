@@ -38,9 +38,9 @@
 
         kickout: function (message) {
             clearTimeout(_handler);
-            window.alert(message);
+            message && window.alert(message);
             setTimeout(function () {
-                parent.location.reload();
+                parent.location.href = $("#logoutUrl").val();
             }, 500);
         },
 

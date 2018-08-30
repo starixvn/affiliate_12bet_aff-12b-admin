@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using Fanex.Affiliate.Admin.Core.Repository;
+using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using ONEbook.UM.Filters;
 
@@ -26,12 +27,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         public ActionResult Ping(long time)
         {
             var isKickedOut = true;
-            var isAuthorized = this.HttpContext.Request.IsAuthenticated && this.HttpContext.User.Identity.IsAuthenticated;
+            var isAuthorized = HttpContext.Request.IsAuthenticated && HttpContext.User.Identity.IsAuthenticated;
             if (isAuthorized && _sessionService.OnUserId > 0 && _sessionService.UserId > 0)
             {
                 isKickedOut = _authRepository.ReCheckin(_sessionService.OnUserId);
             }
-            return Json(new { IsKickedOut = isKickedOut }, JsonRequestBehavior.AllowGet);
+            return Json(new { IsKickedOut = isKickedOut, Message = isKickedOut ? Lang.MsgKickout : string.Empty }, JsonRequestBehavior.AllowGet);
         }
     }
 }
