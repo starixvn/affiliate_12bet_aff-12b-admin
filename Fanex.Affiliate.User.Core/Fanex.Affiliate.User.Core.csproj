@@ -347,21 +347,6 @@
     <Compile Include="Repository\UserPanel\MarketingRepository.cs" />
     <Compile Include="Repository\UserPanel\StatementHistoryRepository.cs" />
     <Compile Include="Repository\UserPanel\StatisticsRepository.cs" />
-    <Compile Include="Resources\BetList.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BetList.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Bingo.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Bingo.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Casino.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Casino.resx</DependentUpon>
-    </Compile>
     <Compile Include="Resources\Error.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -457,11 +442,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Lang.zh-TW.resx</DependentUpon>
     </Compile>
-    <Compile Include="Resources\ResultLang.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ResultLang.resx</DependentUpon>
-    </Compile>
     <Compile Include="Service References\BetListWebService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -551,10 +531,6 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Lang.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\ResultLang.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ResultLang.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <None Include="app.config" />
     <Compile Include="Controllers\UserPanel\AccountOverViewController.cs" />
     <None Include="Fanex.Affiliate.User.Core.ruleset" />
@@ -602,20 +578,6 @@
     <None Include="Properties\DataSources\System.Xml.XmlNode.datasource" />
     <None Include="Service References\BetListWebService\AffiliateAPI.wsdl" />
     <None Include="Service References\MemberInfoWebService\Service.wsdl" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\BetList.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>BetList.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Bingo.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Bingo.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Casino.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Casino.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
