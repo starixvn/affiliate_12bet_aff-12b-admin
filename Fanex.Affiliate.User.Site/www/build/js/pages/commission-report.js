@@ -124,15 +124,15 @@ var commissionReport = (function ($) {
             rowItems.push('<td class="title-cell"><div class="row-wrapper">' + (isSummaryRow ? title + iconHtml : dataRow.ProductName) + '</div></td>');
             rowItems.push(_me.buildCell(formatDecimal(dataRow.TurnOver)));
             rowItems.push(_me.buildCell(formatDecimal(dataRow.WinLoss)));
-            rowItems.push(_me.buildCell(formatDecimal(dataRow.PlatformFee)));
             if (isSummaryRow) {
+                rowItems.push(_me.buildCell(formatDecimal(dataRow.PlatformFee)));
                 rowItems.push(_me.buildCell(formatDecimal(dataRow.OperationalFee)));
                 rowItems.push(_me.buildCell(formatDecimal(dataRow.BankingFee)));
                 rowItems.push(_me.buildCell(formatDecimal(dataRow.Bonus)));
                 rowItems.push(_me.buildCell(dataRow.CommissionRate * 100 + '%'));
                 rowItems.push(_me.buildCell(formatDecimal(dataRow.Commission)));
             } else {
-                for (var i = 0; i < 5; i++) {
+                for (var i = 0; i < 6; i++) {
                     rowItems.push(_me.buildCell(""));
                 }
             }
