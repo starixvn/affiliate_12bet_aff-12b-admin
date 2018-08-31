@@ -942,6 +942,12 @@ input[type="checkbox"], input[type="radio"] {
     .get-banner .text-2 {
       font-size: 18px; } }
 
+.no-webp .banner-commission-structure {
+  background-image: url("../Images/bg-Commission-Structure_Banner.png"); }
+
+.webp .banner-commission-structure {
+  background-image: url("../Images/bg-Commission-Structure_Banner.web"); }
+
 .banner-commission-structure {
   display: block;
   max-width: 600px;
@@ -949,7 +955,6 @@ input[type="checkbox"], input[type="radio"] {
   margin: 0 auto;
   padding: 30px 20px 70px 30px;
   font-family: "Myriad Pro", sans-serif;
-  background-image: url("../Images/bg-Commission-Structure_Banner.png");
   background-position: center center;
   background-repeat: no-repeat;
   text-align: left; }
@@ -957,6 +962,8 @@ input[type="checkbox"], input[type="radio"] {
     font-weight: 600;
     line-height: 1;
     transform: rotate(-5deg); }
+    .banner-commission-structure .text-content.cn .text-small {
+      margin-left: 0; }
     .banner-commission-structure .text-content .text-big-yellow {
       position: relative;
       display: inline-block;
@@ -1002,6 +1009,17 @@ input[type="checkbox"], input[type="radio"] {
       text-shadow: none;
       font-weight: 600;
       font-style: normal; }
+  @media screen and (max-width: 767px) {
+    .banner-commission-structure {
+      padding-left: 15px; }
+      .banner-commission-structure .text-content .text-big-yellow {
+        font-size: 40px; }
+      .banner-commission-structure .text-content .text-big-white {
+        font-size: 18px; }
+      .banner-commission-structure .text-content .text-small-white {
+        font-size: 15px; }
+      .banner-commission-structure .text-content .text-yellow {
+        font-size: 30px; } }
 
 .banner-product {
   display: flex;

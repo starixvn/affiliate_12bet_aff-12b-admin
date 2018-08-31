@@ -1065,6 +1065,20 @@
     <Content Include="www\source\styles\fonts\myriadPro\Myriad-Pro-Bold.ttf" />
     <Content Include="www\build\styles\fonts\myriadPro\Myriad-Pro-Italic.ttf" />
     <Content Include="www\source\styles\fonts\myriadPro\Myriad-Pro-Italic.ttf" />
+    <Content Include="www\source\styles\Images\bg-adv_contact.webp" />
+    <Content Include="www\source\styles\Images\bg-banner-signup.webp" />
+    <Content Include="www\source\styles\Images\bg-Commission-Structure_Banner.webp" />
+    <Content Include="www\source\styles\Images\bg-FAQ_banner.webp" />
+    <Content Include="www\source\styles\Images\bg-get-banner.webp" />
+    <Content Include="www\source\styles\Images\bg-Sports_products.webp" />
+    <Content Include="www\source\styles\Images\bg-Terms_&amp;_conditions_banner.webp" />
+    <Content Include="www\build\styles\Images\bg-adv_contact.webp" />
+    <Content Include="www\build\styles\Images\bg-banner-signup.webp" />
+    <Content Include="www\build\styles\Images\bg-Commission-Structure_Banner.webp" />
+    <Content Include="www\build\styles\Images\bg-FAQ_banner.webp" />
+    <Content Include="www\build\styles\Images\bg-get-banner.webp" />
+    <Content Include="www\build\styles\Images\bg-Sports_products.webp" />
+    <Content Include="www\build\styles\Images\bg-Terms_&amp;_conditions_banner.webp" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

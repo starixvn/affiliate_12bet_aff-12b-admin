@@ -369,6 +369,14 @@
     }
 }
 
+.no-webp .banner-commission-structure {
+  background-image: url("../../../../www/build/styles/Images/bg-Commission-Structure_Banner.png");
+}
+
+.webp .banner-commission-structure {
+  background-image: url("../../../../www/build/styles/Images/bg-Commission-Structure_Banner.web");
+}
+
 .banner-commission-structure {
     display: block;
     max-width: 600px;
@@ -376,7 +384,6 @@
     margin: 0 auto;
     padding: 30px 20px 70px 30px;
     font-family: "Myriad Pro", sans-serif;
-    background-image: url("../../../../www/build/styles/Images/bg-Commission-Structure_Banner.png");
     background-position: center center;
     background-repeat: no-repeat;
     text-align: left;
@@ -385,6 +392,12 @@
         font-weight: 600;
         line-height: 1;
         transform: rotate(-5deg);
+
+        &.cn {
+            .text-small {
+                margin-left: 0;
+            }
+        }
 
         .text-big-yellow {
             position: relative;
@@ -443,6 +456,29 @@
 
         }
     }
+
+     @media screen and (max-width: 767px) {
+         padding-left: 15px;
+
+         .text-content {
+            .text-big-yellow {
+                font-size: 40px;
+            }
+
+            .text-big-white {
+                font-size: 18px;
+            }
+
+            .text-small-white {
+                font-size: 15px;
+            }
+
+            .text-yellow {
+                font-size: 30px;
+            }
+         }
+              
+     }
 }
 
 
