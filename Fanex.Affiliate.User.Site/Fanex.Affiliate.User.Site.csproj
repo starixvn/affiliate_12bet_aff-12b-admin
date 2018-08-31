@@ -464,6 +464,10 @@
     </Content>
     <Content Include="www\build\js\lib\bootstrap.min.js" />
     <Content Include="www\build\js\lib\jquery-3.3.1.min.js" />
+    <Content Include="www\build\js\lib\modernizr-webp.js" />
+    <Content Include="www\build\js\lib\modernizr-webp.min.js">
+      <DependentUpon>modernizr-webp.js</DependentUpon>
+    </Content>
     <Content Include="www\build\js\login.js" />
     <Content Include="www\build\js\login.min.js">
       <DependentUpon>login.js</DependentUpon>
@@ -608,31 +612,14 @@
     <Content Include="www\source\js\components\jquery.extension.js" />
     <Content Include="www\source\js\components\validation.custom.js" />
     <Content Include="www\source\js\components\website.js" />
-    <Content Include="www\source\js\layout.es5.js">
-      <DependentUpon>layout.js</DependentUpon>
-    </Content>
-    <Content Include="www\source\js\layout.es5.min.js">
-      <DependentUpon>layout.es5.js</DependentUpon>
-    </Content>
     <Content Include="www\source\js\lib\jquery.validate.min.js" />
     <Content Include="www\source\js\lib\jquery.validate.unobtrusive.min.js" />
+    <Content Include="www\source\js\lib\modernizr-webp.js" />
     <Content Include="www\source\js\pages\commission-report.js" />
     <Content Include="www\source\js\pages\contactus.js" />
-    <Content Include="www\source\js\pages\daily-earning-detail.es5.js">
-      <DependentUpon>daily-earning-detail.js</DependentUpon>
-    </Content>
-    <Content Include="www\source\js\pages\daily-earning-detail.es5.min.js">
-      <DependentUpon>daily-earning-detail.es5.js</DependentUpon>
-    </Content>
     <Content Include="www\source\js\pages\forgotpassword.js" />
     <Content Include="www\source\js\pages\member.js" />
     <Content Include="www\source\js\pages\messagehistory.js" />
-    <Content Include="www\source\js\pages\myaccount.es5.js">
-      <DependentUpon>myaccount.js</DependentUpon>
-    </Content>
-    <Content Include="www\source\js\pages\myaccount.es5.min.js">
-      <DependentUpon>myaccount.es5.js</DependentUpon>
-    </Content>
     <Content Include="www\source\js\pages\payment-request.js" />
     <Content Include="www\build\js\recheckin.js" />
     <Content Include="www\build\js\recheckin.min.js">

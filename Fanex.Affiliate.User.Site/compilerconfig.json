@@ -132,15 +132,7 @@
     "inputFile": "www/source/js/components/jquery.extension.js"
   },
   {
-    "outputFile": "www/source/js/pages/myaccount.es5.js",
-    "inputFile": "www/source/js/pages/myaccount.js"
-  },
-  {
-    "outputFile": "www/source/js/pages/daily-earning-detail.es5.js",
-    "inputFile": "www/source/js/pages/daily-earning-detail.js"
-  },
-  {
-    "outputFile": "www/source/js/layout.es5.js",
-    "inputFile": "www/source/js/layout.js"
+    "outputFile": "www/build/js/lib/modernizr-webp.js",
+    "inputFile": "www/source/js/lib/modernizr-webp.js"
   }
 ]
