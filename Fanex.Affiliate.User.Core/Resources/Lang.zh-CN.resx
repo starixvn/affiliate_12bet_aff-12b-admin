@@ -408,12 +408,6 @@
   <data name="ChinaPeoplesRep" xml:space="preserve">
     <value>中国大陆</value>
   </data>
-  <data name="ChineseSimplifi" xml:space="preserve">
-    <value>简体中文</value>
-  </data>
-  <data name="ChineseTraditio" xml:space="preserve">
-    <value>繁體中文</value>
-  </data>
   <data name="City" xml:space="preserve">
     <value>城市</value>
   </data>
@@ -622,9 +616,6 @@
     <value>非常抱歉，单场最大投注额必须等于或小于主代理的单场最大投注额</value>
   </data>
   <data name="Err111" xml:space="preserve">
-    <value>客户设立失败。请重试</value>
-  </data>
-  <data name="Err112" xml:space="preserve">
     <value>客户设立失败。请重试</value>
   </data>
   <data name="Err113" xml:space="preserve">
@@ -892,9 +883,6 @@
   </data>
   <data name="Ireland" xml:space="preserve">
     <value>爱尔兰</value>
-  </data>
-  <data name="IsInvalid" xml:space="preserve">
-    <value>是无效的</value>
   </data>
   <data name="Israel" xml:space="preserve">
     <value>以色列</value>

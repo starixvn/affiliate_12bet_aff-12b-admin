@@ -408,12 +408,6 @@
   <data name="ChinaPeoplesRep" xml:space="preserve">
     <value>China (Rep. Rakyat) </value>
   </data>
-  <data name="ChineseSimplifi" xml:space="preserve">
-    <value>简体中文</value>
-  </data>
-  <data name="ChineseTraditio" xml:space="preserve">
-    <value>繁體中文</value>
-  </data>
   <data name="City" xml:space="preserve">
     <value>Kota</value>
   </data>
@@ -887,9 +881,6 @@
   </data>
   <data name="Ireland" xml:space="preserve">
     <value>Irlandia </value>
-  </data>
-  <data name="IsInvalid" xml:space="preserve">
-    <value>tidak valid</value>
   </data>
   <data name="Israel" xml:space="preserve">
     <value>Israel </value>

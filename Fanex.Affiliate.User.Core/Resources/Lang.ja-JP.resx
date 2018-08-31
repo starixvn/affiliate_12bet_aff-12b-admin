@@ -408,12 +408,6 @@
   <data name="ChinaPeoplesRep" xml:space="preserve">
     <value>中国（中華人民共和国）</value>
   </data>
-  <data name="ChineseSimplifi" xml:space="preserve">
-    <value>简体中文</value>
-  </data>
-  <data name="ChineseTraditio" xml:space="preserve">
-    <value>繁體中文</value>
-  </data>
   <data name="City" xml:space="preserve">
     <value>市区町村-建物名</value>
   </data>
@@ -624,9 +618,6 @@
     <value>申し訳ございません。マッチごとの最高額はマッチごとのマスターエージェントの最高以下でないと行けません。</value>
   </data>
   <data name="Err111" xml:space="preserve">
-    <value>顧客作成出来ませんでした。もう一度やり直してください。</value>
-  </data>
-  <data name="Err112" xml:space="preserve">
     <value>顧客作成出来ませんでした。もう一度やり直してください。</value>
   </data>
   <data name="Err113" xml:space="preserve">
@@ -892,9 +883,6 @@
   </data>
   <data name="Ireland" xml:space="preserve">
     <value>アイルランド</value>
-  </data>
-  <data name="IsInvalid" xml:space="preserve">
-    <value>が無効です</value>
   </data>
   <data name="Israel" xml:space="preserve">
     <value>イスラエル</value>

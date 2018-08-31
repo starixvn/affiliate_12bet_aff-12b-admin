@@ -182,12 +182,6 @@
   <data name="Anguilla" xml:space="preserve">
     <value>Anguilla </value>
   </data>
-  <data name="answer" xml:space="preserve">
-    <value>Answer</value>
-  </data>
-  <data name="approvaldate" xml:space="preserve">
-    <value>Approval Date</value>
-  </data>
   <data name="Approved" xml:space="preserve">
     <value>Approved</value>
   </data>
@@ -440,9 +434,6 @@
   <data name="Colombia" xml:space="preserve">
     <value>Colombia</value>
   </data>
-  <data name="Com" xml:space="preserve">
-    <value>Commission</value>
-  </data>
   <data name="Comm" xml:space="preserve">
     <value>Commission</value>
     <comment>87923</comment>
@@ -659,9 +650,6 @@
   <data name="Err111" xml:space="preserve">
     <value>Create customer failed. Please try again</value>
   </data>
-  <data name="Err112" xml:space="preserve">
-    <value>Create customer failed. Please try again</value>
-  </data>
   <data name="Err113" xml:space="preserve">
     <value>Create customer failed. Please try again</value>
   </data>
@@ -676,18 +664,6 @@
   </data>
   <data name="Err2" xml:space="preserve">
     <value>Wrong Min bet/ Max bet/ Max per match/ Credit/ Master Agent name/ user group</value>
-  </data>
-  <data name="Err201" xml:space="preserve">
-    <value>This username is invalid.</value>
-  </data>
-  <data name="Err202" xml:space="preserve">
-    <value>This username didn't exist.</value>
-  </data>
-  <data name="Err203" xml:space="preserve">
-    <value>Old password is incorrect.</value>
-  </data>
-  <data name="Err204" xml:space="preserve">
-    <value>Your current password don't need to change.</value>
   </data>
   <data name="Err3" xml:space="preserve">
     <value>Wrong position taking</value>
@@ -790,9 +766,6 @@
   </data>
   <data name="EUR" xml:space="preserve">
     <value>EUR (Euro)</value>
-  </data>
-  <data name="ExtraTextForKorean" xml:space="preserve">
-    <value />
   </data>
   <data name="Faqs" xml:space="preserve">
     <value>FAQs</value>
@@ -903,9 +876,6 @@
     <value>Hot News</value>
     <comment>87923</comment>
   </data>
-  <data name="HR" xml:space="preserve">
-    <value>HR</value>
-  </data>
   <data name="HtmlFormat" xml:space="preserve">
     <value>Html Format</value>
   </data>
@@ -933,9 +903,6 @@
   <data name="India" xml:space="preserve">
     <value>India </value>
   </data>
-  <data name="Indian" xml:space="preserve">
-    <value>Republic of India</value>
-  </data>
   <data name="Indonesia" xml:space="preserve">
     <value>Indonesia </value>
   </data>
@@ -953,9 +920,6 @@
   </data>
   <data name="Ireland" xml:space="preserve">
     <value>Ireland </value>
-  </data>
-  <data name="IsInvalid" xml:space="preserve">
-    <value>is invalid</value>
   </data>
   <data name="Israel" xml:space="preserve">
     <value>Israel </value>
@@ -1063,10 +1027,6 @@
   <data name="MailingInfor" xml:space="preserve">
     <value>Mailing Information</value>
   </data>
-  <data name="MailServerNotAvailable" xml:space="preserve">
-    <value>We are sorry! The mail server is not available at the moment. Please &lt;a href="/ContactUs.aspx"&gt;contact administrator&lt;/a&gt; or try again later.</value>
-    <comment>#40516</comment>
-  </data>
   <data name="Malawi" xml:space="preserve">
     <value>Malawi </value>
   </data>
@@ -1136,9 +1096,6 @@
   </data>
   <data name="Mobile" xml:space="preserve">
     <value>MSN</value>
-  </data>
-  <data name="MobileDevice" xml:space="preserve">
-    <value>Mobile</value>
   </data>
   <data name="MobileNumber" xml:space="preserve">
     <value>Mobile Numbers</value>
@@ -1317,9 +1274,6 @@
     <value>Password</value>
     <comment>87923</comment>
   </data>
-  <data name="PasswordAndConfirmPasswordDontMatch" xml:space="preserve">
-    <value>Your password and confirmation password do not match.</value>
-  </data>
   <data name="Passwordchanged" xml:space="preserve">
     <value>Password changed successfully</value>
   </data>
@@ -1355,9 +1309,6 @@
   </data>
   <data name="PayoutTime" xml:space="preserve">
     <value>You can only request payout from 8th to 15th of the month.</value>
-  </data>
-  <data name="PCDevice" xml:space="preserve">
-    <value>PC / Laptop</value>
   </data>
   <data name="Pending" xml:space="preserve">
     <value>Pending</value>
@@ -1636,9 +1587,6 @@
     <value>Submit</value>
     <comment>87923</comment>
   </data>
-  <data name="SubTotal" xml:space="preserve">
-    <value>Sub-Total</value>
-  </data>
   <data name="Sudan" xml:space="preserve">
     <value>Sudan </value>
   </data>
@@ -1753,9 +1701,6 @@
   <data name="Turnover" xml:space="preserve">
     <value>Turnover</value>
   </data>
-  <data name="TurnoverUpToNow" xml:space="preserve">
-    <value>Turnover</value>
-  </data>
   <data name="Type" xml:space="preserve">
     <value>Type</value>
   </data>
@@ -1836,9 +1781,6 @@
   </data>
   <data name="WebsiteURLIsRequired" xml:space="preserve">
     <value>Website URL is required</value>
-  </data>
-  <data name="Welcome" xml:space="preserve">
-    <value>Welcome</value>
   </data>
   <data name="WesternSamoa" xml:space="preserve">
     <value>Western Samoa </value>
@@ -2151,5 +2093,11 @@
   <data name="SignUpAffiliatesNow" xml:space="preserve">
     <value>SIGN UP AFFILIATES NOW!</value>
     <comment>87923</comment>
+  </data>
+  <data name="PCDevice" xml:space="preserve">
+    <value>PC / Laptop</value>
+  </data>
+  <data name="MobileDevice" xml:space="preserve">
+    <value>Mobile</value>
   </data>
 </root>
