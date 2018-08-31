@@ -88,13 +88,20 @@ $height-hotnew: 26px;
 }
 
 // --------------------------------- image responsive ------------------- //
+.no-webp .adv-contact {
+  background-image: url("../../../../www/build/styles/Images/bg-adv_contact.png");
+}
+
+.webp .adv-contact {
+  background-image: url("../../../../www/build/styles/Images/bg-adv_contact.webp");
+}
+
 .adv-contact {
     display: block;
     max-width: 500px;
     min-height: 250px;
     margin: 0 auto;
     padding: 5px 15px;
-    background-image: url(../../../../www/build/styles/Images/bg-adv_contact.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: left bottom;

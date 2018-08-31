@@ -140,8 +140,15 @@
     }
 }
 
+.no-webp .banner-signup {
+  background-image: url("../../../../www/build/styles/Images/bg-banner-signup.png");
+}
+
+.webp .banner-signup {
+  background-image: url("../../../../www/build/styles/Images/bg-banner-signup.webp");
+}
+
 .banner-signup {
-    background-image: url("../../../../www/build/styles/Images/bg-banner-signup.png");
     padding-left: 80px;
 
     .upto {
@@ -313,8 +320,15 @@
     }
 }
 
+.no-webp .get-banner {
+  background-image: url("../../../../www/build/styles/Images/bg-get-banner.png");
+}
+
+.webp .get-banner {
+  background-image: url("../../../../www/build/styles/Images/bg-get-banner.webp");
+}
+
 .get-banner {
-    background-image: url("../../../../www/build/styles/Images/bg-get-banner.png");
     text-align: center;
 
     .text-1 {
@@ -482,6 +496,15 @@
 }
 
 
+
+.no-webp .banner-product {
+  background-image: url("../../../../www/build/styles/Images/bg-Sports_products.png");
+}
+
+.webp .banner-product {
+  background-image: url("../../../../www/build/styles/Images/bg-Sports_products.webp");
+}
+
 .banner-product {
     display: flex;
     flex-direction: column;
@@ -491,7 +514,6 @@
     margin: 0 auto;
     padding: 50px 10px;
     font-family: Tahoma, sans-serif;
-    background-image: url("../../../../www/build/styles/Images/bg-Sports_products.png");
     background-position: right center;
     background-repeat: no-repeat;
     text-align: left;
@@ -530,5 +552,59 @@
             width: 130px;
             font-size: 15px;
         }
+    }
+}
+
+.no-webp .banner-terms-condition {
+  background-image: url("../../../../www/build/styles/Images/bg-Terms_&_conditions_banner.png");
+}
+
+.webp .banner-terms-condition {
+  background-image: url("../../../../www/build/styles/Images/bg-Terms_&_conditions_banner.webp");
+}
+
+.no-webp .banner-faqs {
+  background-image: url("../../../../www/build/styles/Images/bg-FAQ_banner.png");
+}
+
+.webp .banner-faqs {
+  background-image: url("../../../../www/build/styles/Images/bg-FAQ_banner.webp");
+}
+
+.banner-terms-condition, .banner-faqs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 560px;
+    height: 95px;
+    margin: 0 auto;
+    padding-left: 108px;
+    background-repeat: no-repeat;
+    background-size:contain;
+
+    p {
+        margin: 0;
+        font-size: 22px;
+        font-weight: 600;
+        line-height: 1;
+    }
+
+    @media screen and (max-width: 767px) {
+        padding-left: 70px;
+        height: 65px;
+        width: 350px;
+
+        p {
+            font-size: 13px;
+        }
+    }
+}
+
+.banner-faqs {
+    padding-left: 130px;
+
+    @media screen and (max-width: 767px) {
+        width: 330px;
+        padding-left: 80px;        
     }
 }

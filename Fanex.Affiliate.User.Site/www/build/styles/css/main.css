@@ -605,13 +605,18 @@ input[type="checkbox"], input[type="radio"] {
       left: -10px;
       border-color: #fff #fff #fff transparent; }
 
+.no-webp .adv-contact {
+  background-image: url("../Images/bg-adv_contact.png"); }
+
+.webp .adv-contact {
+  background-image: url("../Images/bg-adv_contact.webp"); }
+
 .adv-contact {
   display: block;
   max-width: 500px;
   min-height: 250px;
   margin: 0 auto;
   padding: 5px 15px;
-  background-image: url(../Images/bg-adv_contact.png);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: left bottom;
@@ -802,8 +807,13 @@ input[type="checkbox"], input[type="radio"] {
     .get-banner .btn, .banner-signup .btn {
       font-size: 15px; } }
 
+.no-webp .banner-signup {
+  background-image: url("../Images/bg-banner-signup.png"); }
+
+.webp .banner-signup {
+  background-image: url("../Images/bg-banner-signup.webp"); }
+
 .banner-signup {
-  background-image: url("../Images/bg-banner-signup.png");
   padding-left: 80px; }
   .banner-signup .upto {
     position: relative;
@@ -906,8 +916,13 @@ input[type="checkbox"], input[type="radio"] {
         font-size: 20px;
         margin-top: 10px; } }
 
+.no-webp .get-banner {
+  background-image: url("../Images/bg-get-banner.png"); }
+
+.webp .get-banner {
+  background-image: url("../Images/bg-get-banner.webp"); }
+
 .get-banner {
-  background-image: url("../Images/bg-get-banner.png");
   text-align: center; }
   .get-banner .text-1 {
     margin-top: 30px;
@@ -1021,6 +1036,12 @@ input[type="checkbox"], input[type="radio"] {
       .banner-commission-structure .text-content .text-yellow {
         font-size: 30px; } }
 
+.no-webp .banner-product {
+  background-image: url("../Images/bg-Sports_products.png"); }
+
+.webp .banner-product {
+  background-image: url("../Images/bg-Sports_products.webp"); }
+
 .banner-product {
   display: flex;
   flex-direction: column;
@@ -1030,7 +1051,6 @@ input[type="checkbox"], input[type="radio"] {
   margin: 0 auto;
   padding: 50px 10px;
   font-family: Tahoma, sans-serif;
-  background-image: url("../Images/bg-Sports_products.png");
   background-position: right center;
   background-repeat: no-repeat;
   text-align: left;
@@ -1060,6 +1080,48 @@ input[type="checkbox"], input[type="radio"] {
       .banner-product.cn .text-red {
         width: 130px;
         font-size: 15px; } }
+
+.no-webp .banner-terms-condition {
+  background-image: url("../Images/bg-Terms_&_conditions_banner.png"); }
+
+.webp .banner-terms-condition {
+  background-image: url("../Images/bg-Terms_&_conditions_banner.webp"); }
+
+.no-webp .banner-faqs {
+  background-image: url("../Images/bg-FAQ_banner.png"); }
+
+.webp .banner-faqs {
+  background-image: url("../Images/bg-FAQ_banner.webp"); }
+
+.banner-terms-condition, .banner-faqs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 560px;
+  height: 95px;
+  margin: 0 auto;
+  padding-left: 108px;
+  background-repeat: no-repeat;
+  background-size: contain; }
+  .banner-terms-condition p, .banner-faqs p {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1; }
+  @media screen and (max-width: 767px) {
+    .banner-terms-condition, .banner-faqs {
+      padding-left: 70px;
+      height: 65px;
+      width: 350px; }
+      .banner-terms-condition p, .banner-faqs p {
+        font-size: 13px; } }
+
+.banner-faqs {
+  padding-left: 130px; }
+  @media screen and (max-width: 767px) {
+    .banner-faqs {
+      width: 330px;
+      padding-left: 80px; } }
 
 .footer {
   background: #000;
