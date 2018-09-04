@@ -1549,6 +1549,8 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-information\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-information\modules\helper.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-information\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\AppContainer.jsx" />
@@ -1569,6 +1571,7 @@
     <Content Include="Areas\Portal\www\source\style\assets\icon_top.png" />
     <Content Include="Areas\Portal\www\source\style\fonts\open-iconic.svg" />
     <Content Include="Areas\Portal\www\source\style\vendors\fixedtable\style.css" />
+    <Content Include="Areas\Portal\www\source\style\vendors\reactmonthpicker.css" />
     <Content Include="Areas\Portal\www\webpack.config.dev.js" />
     <Content Include="Areas\Portal\www\webpack.config.js" />
     <Content Include="Areas\Portal\www\webpack.config.vendor.js" />
@@ -1804,6 +1807,13 @@
     <Content Include="Areas\Portal\www\package-lock.json" />
     <Content Include="Areas\Portal\Views\Password\ChangePassword.cshtml" />
     <Content Include="package.json" />
+    <Content Include="Areas\Portal\Views\AffiliateReport\Index.cshtml" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\index.jsx" />
+    <Content Include="Areas\Portal\www\source\style\components\monthpicker.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\affiliate-report.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

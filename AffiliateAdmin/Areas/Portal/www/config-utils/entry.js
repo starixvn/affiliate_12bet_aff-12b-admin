@@ -10,8 +10,10 @@ module.exports = {
     [`${jsDist}/pages/commission/assign-private-group`]: "./source/js/pages/commission-group/components/assign-private-group/index.jsx",
     [`${jsDist}/pages/Recheckin/recheckin`]: "./source/js/pages/RecheckIn/recheckin",
     [`${jsDist}/pages/layout/pagelayout`]: "./source/js/pagelayout/pagelayout.js",
+    [`${jsDist}/pages/report/affiliate-report`]: "./source/js/pages/affiliate-report/index.jsx",
 
     [`${styleDist}/portalmain`]: "./source/style/main.scss",
     [`${styleDist}/layout`]: "./source/style/layout/main-layout.scss",
-    [`${styleDist}/pages/commission-group`]: "./source/style/pages/commission-group.scss"
+    [`${styleDist}/pages/commission-group`]: "./source/style/pages/commission-group.scss",
+    [`${styleDist}/pages/affiliate-report`]: "./source/style/pages/affiliate-report.scss"
 };

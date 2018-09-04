@@ -142,6 +142,7 @@
     <Compile Include="Constants\TemplateString.cs" />
     <Compile Include="Controllers\AdministratorController.cs" />
     <Compile Include="Controllers\AffiliateController.cs" />
+    <Compile Include="Controllers\AffiliateReportController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CommissionGroupController.cs" />
@@ -167,6 +168,7 @@
     <Compile Include="DTO\Email\EmailBase.cs" />
     <Compile Include="DTO\Email\WithdrawalEmail.cs" />
     <Compile Include="DTO\Product.cs" />
+    <Compile Include="DTO\Report\AffiliateReportMain.cs" />
     <Compile Include="DTO\ResultInfo.cs" />
     <Compile Include="DTO\SelectItem.cs" />
     <Compile Include="DTO\SubMenu.cs" />
@@ -177,11 +179,14 @@
     <Compile Include="MetaModels\CommissionGroup\DeleteCommissionGroupParam.cs" />
     <Compile Include="MetaModels\CommissionGroup\CreateUpdateCommissionGroupParam.cs" />
     <Compile Include="MetaModels\CommissionGroup\GetGroupListParam.cs" />
+    <Compile Include="MetaModels\Report\AffiliateReportMainParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\AffiliateReportRepository.cs" />
     <Compile Include="Repository\AffiliateRepository.cs" />
     <Compile Include="Repository\AuthRepository.cs" />
     <Compile Include="Repository\BaseRepository.cs" />
     <Compile Include="Repository\CommissionGroupRepository.cs" />
+    <Compile Include="Repository\IAffiliateReportRepository.cs" />
     <Compile Include="Repository\IAffiliateRepository.cs" />
     <Compile Include="Repository\IAuthRepository.cs" />
     <Compile Include="Repository\ICommissionGroupRepository.cs" />
@@ -249,11 +254,15 @@
     <Compile Include="Services\IEmailService.cs" />
     <Compile Include="Services\ILanguageService.cs" />
     <Compile Include="Services\LanguageService.cs" />
+    <Compile Include="Services\Report\AffiliateReportService.cs" />
+    <Compile Include="Services\Report\IAffiliateReportService.cs" />
     <Compile Include="Utilities\CryptographyHelper.cs" />
     <Compile Include="Utilities\Generator.cs" />
     <Compile Include="Utilities\IMailProcessor.cs" />
     <Compile Include="Utilities\MailProcessor.cs" />
     <Compile Include="Utilities\SiteDomainHelper.cs" />
+    <Compile Include="ViewModels\AffiliateReportMainDataViewModel.cs" />
+    <Compile Include="ViewModels\AffiliateReportViewModel.cs" />
     <Compile Include="ViewModels\AssignNormalGroupViewModel.cs" />
     <Compile Include="ViewModels\AssignPrivateGroupViewModel.cs" />
     <Compile Include="ViewModels\CommissionGroupViewModel.cs" />

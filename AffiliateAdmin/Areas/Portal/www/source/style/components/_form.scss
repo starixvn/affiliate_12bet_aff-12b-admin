@@ -1,5 +1,5 @@
 ﻿.form-control {
-    padding: 0.3rem;
+    padding: 0.1rem 0.3rem;
     font-size: 0.7rem;
     line-height: 0.8rem;
     border-radius: 0.15rem;
@@ -11,5 +11,5 @@
 }
 
 select.form-control:not([size]):not([multiple]) {
-    height: calc(1.5rem + 2px);
+    height: calc(1.35rem + 2px);
 }

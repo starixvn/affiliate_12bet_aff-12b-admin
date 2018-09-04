@@ -1,0 +1,74 @@
+﻿import { combineReducers } from 'redux';
+
+import createReducer from '../../../modules/createReducer';
+import * as actionTypes from '../actions/types';
+
+import { sortByValues } from '../modules/constants';
+
+const affiliate = createReducer('', {
+    [actionTypes.SET_SEARCHED_AFFILIATE](prevState, action) {
+        return action.data
+    }
+})
+
+const selectedLanguage = createReducer('', {
+    [actionTypes.SET_SELECTED_LANGUAGE](prevState, action) {
+        return action.data;
+    }
+})
+
+const now = new Date();
+const defaultMonth = { month: now.getMonth() + 1, year: now.getFullYear() };
+const fromMonth = createReducer(defaultMonth, {
+    [actionTypes.SET_FROM_MONTH](prevState, action) {
+        return action.data;
+    }
+})
+
+const toMonth = createReducer(defaultMonth, {
+    [actionTypes.SET_TO_MONTH](prevState, action) {
+        return action.data;
+    }
+})
+
+const isGetAll = createReducer(false, {
+    [actionTypes.SET_CHECKED_GETALL](prevState) {
+        return !prevState;
+    }
+})
+
+const sortBy = createReducer(sortByValues.Affiliate, {
+    [actionTypes.SET_SORTBY](prevState, action) {
+        return action.data;
+    }
+})
+
+const isSortAscending = createReducer(true, {
+    [actionTypes.SET_CHECKED_SORT_ASC](prevState, action) {
+        return !prevState;
+    }
+})
+
+const gridData = createReducer({}, {
+    [actionTypes.SET_GRID_DATA](prevState, action) {
+        return action.data;
+    }
+})
+
+const productList = createReducer([], {
+    [actionTypes.SET_PRODUCTLIST](prevState, action) {
+        return action.data;
+    }
+});
+
+export default combineReducers({
+    affiliate,
+    selectedLanguage,
+    fromMonth,
+    toMonth,
+    isGetAll,
+    sortBy,
+    isSortAscending,
+    productList,
+    gridData
+});
