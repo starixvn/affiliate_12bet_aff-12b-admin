@@ -6,7 +6,7 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import MultipleSelect from '../../../components/multiple-select';
 import MonthPicker from '@9softstudio/react-monthpicker';
 import { sortByValues, allProduct, languageList } from '../modules/constants';
-import * as actionCreator from '../actions';
+import {setReportTitle, setParam, getGridData} from '../actions';
 import { formatUnit } from '../../../modules/utils';
 
 class Filter extends Component {
@@ -14,6 +14,19 @@ class Filter extends Component {
         super(props);
 
         this.searchedAffiliate = '';
+
+        const now = new Date();
+        const defaultMonth = { month: now.getMonth() + 1, year: now.getFullYear() };
+
+        this.state = {
+            selectedLanguage: '',
+            fromMonth: defaultMonth,
+            toMonth: defaultMonth,
+            isGetAll: false,
+            sortBy: sortByValues.Affiliate,
+            isSortAscending: true,
+            selectedProductList: allProduct
+        }
     }
 
     handleChangeAffiliate = (event) => {
@@ -21,38 +34,42 @@ class Filter extends Component {
     }
 
     handleChangeLanguage = (event) => {
-        this.props.setSelectedLanguage(event.target.value);
+        this.setState({ selectedLanguage: event.target.value });
     }
 
     handleSelectFromMonth = (month, year) => {
-        this.props.setFromMonth({ month, year });
+        this.setState({ fromMonth: { month, year } });
     }
 
     handleSelectToMonth = (month, year) => {
-        this.props.setToMonth({ month, year });
+        this.setState({ toMonth: { month, year } });
     }
 
     handleChangeProduct = (item, selectedProductList) => {
-        this.props.setSelectedProductList(selectedProductList);
+        this.setState({ selectedProductList: selectedProductList });
     }
 
     handleChangeGetAll = () => {
-        this.props.toggleCheckedGetAll();
+        this.setState((prevState) => ({
+            isGetAll: !prevState.isGetAll
+        }))
     }
 
     handleChangeSortAscending = () => {
-        this.props.toggleSortAscending();
+        this.setState((prevState) => ({
+            isSortAscending: !prevState.isSortAscending
+        }))
     }
 
     handleChangeSortBy = (event) => {
-        this.props.setSortBy(Number(event.target.value));
+        this.setState({ sortBy: Number(event.target.value) });
     }
 
     handleClickSearch = () => {
-        const { productList, selectedProductList, selectedLanguage, fromMonth, toMonth, isGetAll, sortBy, isSortAscending, pagingOption } = this.props;
+        const { selectedProductList, selectedLanguage, fromMonth, toMonth, isGetAll, sortBy, isSortAscending } = this.state;
+        const { productList, pagingOption } = this.props;
 
         const reportTitle = this._buildReportTitle(this.searchedAffiliate, selectedLanguage, fromMonth, toMonth);
-        this.props.setSearchedAffiliate(this.searchedAffiliate);
         this.props.setReportTitle(reportTitle);
 
         const isCheckedAllProduct = selectedProductList === allProduct || selectedProductList.split(',').length === productList.length;
@@ -63,7 +80,7 @@ class Filter extends Component {
             ToDate: `${toMonth.month}/1/${toMonth.year}`,
             IsGetAll: isGetAll,
             PreferredLanguage: selectedLanguage,
-            ProductIds:  isCheckedAllProduct ? allProduct : selectedProductList,
+            ProductIds: isCheckedAllProduct ? allProduct : selectedProductList,
             SortType: sortBy,
             SortDirectionType: isSortAscending ? 0 : 1,
             PageIndex: 1,
@@ -75,18 +92,19 @@ class Filter extends Component {
         this.props.getGridData(param);
     }
 
-    _buildReportTitle(username, selectedLanguage, fromMonth, toMonth){
+    _buildReportTitle(username, selectedLanguage, fromMonth, toMonth) {
         const language = languageList[selectedLanguage] || 'All languages';
         const from = `${formatUnit(fromMonth.month)}/${fromMonth.year}`;
         const to = `${formatUnit(toMonth.month)}/${toMonth.year}`;
         const productList = this._getProductDataSource();
         const productName = productList.filter(p => p.Checked).map(p => p.ProductName).join(',');
 
-        return `AFFILIATE REPORT ${username && '- USERNAME ' + username} - ${language} ${productName && '- ' + productName} - FROM ${from} TO ${to}`;
+        return `AFFILIATE REPORT ${username && '- USERNAME \'' + username + '\''} - ${language} ${productName && '- ' + productName} - FROM ${from} TO ${to}`;
     }
 
     _getProductDataSource = () => {
-        const { productList, selectedProductList } = this.props;
+        const { productList } = this.props;
+        const { selectedProductList } = this.state;
         if (selectedProductList === allProduct) {
             return productList.slice();
         }
@@ -99,7 +117,7 @@ class Filter extends Component {
     }
 
     render() {
-        const { affiliate, selectedLanguage, fromMonth, toMonth, isGetAll, sortBy, isSortAscending } = this.props;
+        const { selectedLanguage, fromMonth, toMonth, isGetAll, sortBy, isSortAscending } = this.state;
 
         const productDataSource = this._getProductDataSource();
 
@@ -108,14 +126,14 @@ class Filter extends Component {
                 <Form inline tag="div">
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                         <Label for="Affiliate" className="mr-sm-2">Affiliate</Label>
-                        <Input type="text" name="Affiliate" id="Affiliate" onChange={this.handleChangeAffiliate} defaultValue={affiliate} />
+                        <Input type="text" name="Affiliate" id="Affiliate" onChange={this.handleChangeAffiliate} defaultValue={this.searchedAffiliate} />
                     </FormGroup>
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                         <Input type="select" name="Language" id="Language" value={selectedLanguage} onChange={this.handleChangeLanguage}>
                             <option value="">All Language</option>
                             {
                                 Object.keys(languageList).map(lang => {
-                                    return(<option value={lang}>{languageList[lang]}</option>)
+                                    return (<option value={lang}>{languageList[lang]}</option>)
                                 })
                             }
                         </Input>
@@ -169,23 +187,12 @@ class Filter extends Component {
     }
 }
 
-function mapStateToProps({ productList, affiliate, selectedLanguage, fromMonth, toMonth, isGetAll, sortBy, isSortAscending, pagingOption, selectedProductList }) {
-    return Object.assign({}, {
-        productList,
-        affiliate,
-        selectedLanguage,
-        fromMonth,
-        toMonth,
-        isGetAll,
-        sortBy,
-        isSortAscending,
-        pagingOption,
-        selectedProductList
-    });
+function mapStateToProps({ productList, pagingOption }) {
+    return Object.assign({}, { productList, pagingOption });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ ...actionCreator }, dispatch);
+    return bindActionCreators({ setReportTitle, setParam, getGridData }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);

@@ -6,7 +6,7 @@
     thead {
         tr {
             th {
-                background: #92b1da;
+                background: #e0e0e0;
                 text-align: center;
             }
         }
@@ -21,10 +21,40 @@
             }
         }
     }
+
+    > tbody {
+        tr {
+            &:hover {
+                td {
+                    background: #fff4c2;
+                }
+            }
+        }
+    }
 }
 
 .table-bordered {
     th, td {
-        border-color: #cccaca;
+        border-color: #ccc;
+    }
+}
+
+.body-content, .footer-content, .header-content {
+    border-color: #ccc;
+}
+
+.header-content {
+    .table {
+        > thead {
+            > tr {
+                > th {
+                    border-left: 1px solid #ccc;
+                }
+
+                &:nth-child(n + 3) {
+                    border-top: 1px solid #ccc;
+                }
+            }
+        }
     }
 }
