@@ -1,9 +1,11 @@
 ﻿import { combineReducers } from 'redux';
 
+import { pagingOption } from '../../../reducers/pagingReducer';
+
 import createReducer from '../../../modules/createReducer';
 import * as actionTypes from '../actions/types';
 
-import { sortByValues } from '../modules/constants';
+import { sortByValues, allProduct } from '../modules/constants';
 
 const affiliate = createReducer('', {
     [actionTypes.SET_SEARCHED_AFFILIATE](prevState, action) {
@@ -49,17 +51,19 @@ const isSortAscending = createReducer(true, {
     }
 })
 
-const gridData = createReducer({}, {
+const gridData = createReducer(null, {
     [actionTypes.SET_GRID_DATA](prevState, action) {
         return action.data;
     }
 })
 
-const productList = createReducer([], {
-    [actionTypes.SET_PRODUCTLIST](prevState, action) {
+const selectedProductList = createReducer(allProduct, {
+    [actionTypes.SET_SELECTED_PRODUCTLIST](prevState, action) {
         return action.data;
     }
 });
+
+const productList = createReducer([], {});
 
 export default combineReducers({
     affiliate,
@@ -70,5 +74,7 @@ export default combineReducers({
     sortBy,
     isSortAscending,
     productList,
-    gridData
+    selectedProductList,
+    gridData,
+    pagingOption
 });

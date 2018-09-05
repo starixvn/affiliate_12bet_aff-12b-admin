@@ -1,4 +1,8 @@
 ﻿import * as actionTypes from './types';
+import { post } from '../../../modules/ajaxRequest';
+
+export { setPagingOption }
+from '../../../actions/pagingAction';
 
 export const setSearchedAffiliate = (data) => {
     return {
@@ -14,9 +18,9 @@ export const setSelectedLanguage = (data) => {
     }
 }
 
-export const setProductList = (data) => {
+export const setSelectedProductList = (data) => {
     return {
-        type: actionTypes.SET_PRODUCTLIST,
+        type: actionTypes.SET_SELECTED_PRODUCTLIST,
         data
     }
 }
@@ -52,4 +56,19 @@ export const toggleSortAscending = () => {
     return {
         type: actionTypes.SET_CHECKED_SORT_ASC
     }
+}
+
+const setGridData = (data) => {
+    return {
+        type: actionTypes.SET_GRID_DATA,
+        data
+    }
+}
+
+export const getGridData = (param) => async(dispatch) => {
+    const url = 'Portal/AffiliateReport/GetMainData';
+    const response = await post(url, param);
+    const { MainData, TotalRow } = response.data;
+
+    dispatch(setGridData(MainData));
 }

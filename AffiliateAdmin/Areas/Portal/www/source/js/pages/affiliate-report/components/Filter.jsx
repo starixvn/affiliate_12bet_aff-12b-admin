@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import MultipleSelect from '../../../components/multiple-select';
 import MonthPicker from '@9softstudio/react-monthpicker';
-import { sortByValues } from '../modules/constants';
+import { sortByValues, allProduct } from '../modules/constants';
 import * as actionCreator from '../actions'
 
 class Filter extends Component {
@@ -24,23 +24,15 @@ class Filter extends Component {
     }
 
     handleSelectFromMonth = (month, year) => {
-        this.props.setFromMonth({month, year});
+        this.props.setFromMonth({ month, year });
     }
 
     handleSelectToMonth = (month, year) => {
-        this.props.setToMonth({month, year});
+        this.props.setToMonth({ month, year });
     }
 
-    handleChangeProduct = (item) => {
-        const newProductList = this.props.productList.map(p => {
-            if(p.ProductId === item.ProductId){
-                return Object.assign({}, p, item);
-            }
-
-            return p;
-        })
-
-        this.props.setProductList(newProductList);
+    handleChangeProduct = (item, selectedProductList) => {
+        this.props.setSelectedProductList(selectedProductList);
     }
 
     handleChangeGetAll = () => {
@@ -56,28 +48,47 @@ class Filter extends Component {
     }
 
     handleClickSearch = () => {
-        const { productList, selectedLanguage, fromMonth, toMonth, isGetAll, sortBy, isSortAscending } = this.props;
+        const { productList, selectedProductList, selectedLanguage, fromMonth, toMonth, isGetAll, sortBy, isSortAscending, pagingOption } = this.props;
 
         this.props.setSearchedAffiliate(this.searchedAffiliate);
-        
+
+        const isCheckedAllProduct = selectedProductList === allProduct || selectedProductList.split(',').length === productList.length;
+
         const param = {
             UserName: this.searchedAffiliate,
             FromDate: `${fromMonth.month}/1/${fromMonth.year}`,
             ToDate: `${toMonth.month}/1/${toMonth.year}`,
             IsGetAll: isGetAll,
             PreferredLanguage: selectedLanguage,
-            ProductIds: productList.filter(p => p.Checked).map(p => p.ProductId).join(","),
+            ProductIds:  isCheckedAllProduct ? allProduct : selectedProductList,
             SortType: sortBy,
             SortDirectionType: isSortAscending ? 0 : 1,
             PageIndex: 1,
-            PageSize: 20
+            PageSize: pagingOption.PageSize
         }
 
         console.log(param);
+        this.props.getGridData(param);
+    }
+
+    _getProductDataSource = () => {
+        const { productList, selectedProductList } = this.props;
+        if (selectedProductList === allProduct) {
+            return productList.slice();
+        }
+
+        const selectedProductIdList = selectedProductList.split(',');
+
+        return productList.map(p => {
+            return Object.assign({}, p, { Checked: selectedProductIdList.indexOf(p.ProductId.toString()) !== -1 })
+        })
     }
 
     render() {
-        const { productList, affiliate, selectedLanguage, fromMonth, toMonth, isGetAll, sortBy, isSortAscending } = this.props;
+        const { affiliate, selectedLanguage, fromMonth, toMonth, isGetAll, sortBy, isSortAscending } = this.props;
+
+        const productDataSource = this._getProductDataSource();
+
         return (
             <div className="filter-container">
                 <Form inline tag="div">
@@ -103,7 +114,7 @@ class Filter extends Component {
                     </FormGroup>
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0" style={{ width: 200 }}>
                         <MultipleSelect
-                            dataSource={productList}
+                            dataSource={productDataSource}
                             keyField="ProductId"
                             valueField="ProductName"
                             statusField="Checked"
@@ -150,12 +161,23 @@ class Filter extends Component {
     }
 }
 
-function mapStateToProps({ productList, affiliate, selectedLanguage, fromMonth, toMonth, isGetAll, sortBy, isSortAscending }) {
-    return Object.assign({}, { productList, affiliate, selectedLanguage, fromMonth, toMonth, isGetAll, sortBy, isSortAscending });
+function mapStateToProps({ productList, affiliate, selectedLanguage, fromMonth, toMonth, isGetAll, sortBy, isSortAscending, pagingOption, selectedProductList }) {
+    return Object.assign({}, {
+        productList,
+        affiliate,
+        selectedLanguage,
+        fromMonth,
+        toMonth,
+        isGetAll,
+        sortBy,
+        isSortAscending,
+        pagingOption,
+        selectedProductList
+    });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({...actionCreator}, dispatch);
+    return bindActionCreators({ ...actionCreator }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);

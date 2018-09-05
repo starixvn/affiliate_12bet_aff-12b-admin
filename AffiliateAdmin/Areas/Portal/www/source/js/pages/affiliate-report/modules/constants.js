@@ -4,3 +4,5 @@ export const sortByValues = {
     Winloss: 3,
     Earning: 4
 }
+
+export const allProduct = '0';

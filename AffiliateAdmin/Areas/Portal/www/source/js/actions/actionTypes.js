@@ -1,0 +1,1 @@
+export const SET_PAGING_OPTION = 'SET_PAGING_OPTION';

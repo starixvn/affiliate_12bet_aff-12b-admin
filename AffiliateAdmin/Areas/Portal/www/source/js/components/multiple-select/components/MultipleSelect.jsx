@@ -65,9 +65,9 @@ export default class MultipleSelect extends Component {
             }
 
             return {
-                [KEY_NAME]: item[keyField],
-                [VALUE_NAME]: item[valueField],
-                [STATUS_NAME]: item[statusField]
+                [KEY_NAME]: newItem[keyField],
+                [VALUE_NAME]: newItem[valueField],
+                [STATUS_NAME]: newItem[statusField]
             }
         });
 
