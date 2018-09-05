@@ -5,8 +5,9 @@ import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import MultipleSelect from '../../../components/multiple-select';
 import MonthPicker from '@9softstudio/react-monthpicker';
-import { sortByValues, allProduct } from '../modules/constants';
-import * as actionCreator from '../actions'
+import { sortByValues, allProduct, languageList } from '../modules/constants';
+import * as actionCreator from '../actions';
+import { formatUnit } from '../../../modules/utils';
 
 class Filter extends Component {
     constructor(props) {
@@ -50,7 +51,9 @@ class Filter extends Component {
     handleClickSearch = () => {
         const { productList, selectedProductList, selectedLanguage, fromMonth, toMonth, isGetAll, sortBy, isSortAscending, pagingOption } = this.props;
 
+        const reportTitle = this._buildReportTitle(this.searchedAffiliate, selectedLanguage, fromMonth, toMonth);
         this.props.setSearchedAffiliate(this.searchedAffiliate);
+        this.props.setReportTitle(reportTitle);
 
         const isCheckedAllProduct = selectedProductList === allProduct || selectedProductList.split(',').length === productList.length;
 
@@ -68,7 +71,18 @@ class Filter extends Component {
         }
 
         console.log(param);
+        this.props.setParam(param);
         this.props.getGridData(param);
+    }
+
+    _buildReportTitle(username, selectedLanguage, fromMonth, toMonth){
+        const language = languageList[selectedLanguage] || 'All languages';
+        const from = `${formatUnit(fromMonth.month)}/${fromMonth.year}`;
+        const to = `${formatUnit(toMonth.month)}/${toMonth.year}`;
+        const productList = this._getProductDataSource();
+        const productName = productList.filter(p => p.Checked).map(p => p.ProductName).join(',');
+
+        return `AFFILIATE REPORT ${username && '- USERNAME ' + username} - ${language} ${productName && '- ' + productName} - FROM ${from} TO ${to}`;
     }
 
     _getProductDataSource = () => {
@@ -99,17 +113,11 @@ class Filter extends Component {
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                         <Input type="select" name="Language" id="Language" value={selectedLanguage} onChange={this.handleChangeLanguage}>
                             <option value="">All Language</option>
-                            <option value="en-US">English</option>
-                            <option value="en-GB">English_Euro</option>
-                            <option value="zh-TW">Chinese Traditional</option>
-                            <option value="zh-CN">Chinese Simplified</option>
-                            <option value="th-TH">Thai</option>
-                            <option value="es-ES">Spanish</option>
-                            <option value="vi-VN">Vietnamese</option>
-                            <option value="id-ID">Indonesian</option>
-                            <option value="ko-KR">Korean</option>
-                            <option value="ja-JP">Japanese</option>
-                            <option value="hi-IN">Republic of India</option>
+                            {
+                                Object.keys(languageList).map(lang => {
+                                    return(<option value={lang}>{languageList[lang]}</option>)
+                                })
+                            }
                         </Input>
                     </FormGroup>
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0" style={{ width: 200 }}>

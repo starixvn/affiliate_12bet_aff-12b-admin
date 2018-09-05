@@ -1,8 +1,8 @@
 ﻿import * as actionTypes from './types';
 import { post } from '../../../modules/ajaxRequest';
+import { setPagingOption } from '../../../actions/pagingAction';
 
-export { setPagingOption }
-from '../../../actions/pagingAction';
+export { setPagingOption };
 
 export const setSearchedAffiliate = (data) => {
     return {
@@ -58,6 +58,20 @@ export const toggleSortAscending = () => {
     }
 }
 
+export const setReportTitle = (data) => {
+    return {
+        type: actionTypes.SET_REPORT_TITLE,
+        data
+    }
+}
+
+export const setParam = (data) => {
+    return {
+        type: actionTypes.SET_PARAM,
+        data
+    }
+}
+
 const setGridData = (data) => {
     return {
         type: actionTypes.SET_GRID_DATA,
@@ -70,5 +84,6 @@ export const getGridData = (param) => async(dispatch) => {
     const response = await post(url, param);
     const { MainData, TotalRow } = response.data;
 
+    dispatch(setPagingOption({ TotalItem: TotalRow }));
     dispatch(setGridData(MainData));
 }

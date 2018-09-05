@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
 import { format, formatDecimal } from '../../../modules/numberFormat';
-import { setPagingOption } from '../actions';
+import { setPagingOption, getGridData } from '../actions';
 
 export class GridData extends Component {
     constructor(props) {
@@ -49,32 +49,32 @@ export class GridData extends Component {
         const { gridData } = this.props;
         const dataRows = [];
 
-        for(let i = 0; i < gridData.length; i++){
+        for (let i = 0; i < gridData.length; i++) {
             const dataItem = gridData[i];
             dataRows.push(
-            <Row>
-                <Cell>{dataItem.UserName}</Cell>
-                <Cell className="text-right">{format(dataItem.TotalClick)}</Cell>
-                <Cell className="text-right">{format(dataItem.UniqueClick)}</Cell>
-                <Cell className="text-right">{format(dataItem.Signup)}</Cell>
-                <Cell className="text-right">{format(dataItem.Fdm)}</Cell>
-                <Cell className="text-right">{format(dataItem.ActiveMember)}</Cell>
-                <Cell className="text-right">{format(dataItem.QualifiedMember)}</Cell>
-                <Cell className="text-right">{formatDecimal(dataItem.Deposit)}</Cell>
-                <Cell className="text-right">{formatDecimal(dataItem.Withdrawal)}</Cell>
-                <Cell className="text-right">{formatDecimal(dataItem.Turnover)}</Cell>
-                <Cell className="text-right">{formatDecimal(dataItem.Winlost)}</Cell>
-                <Cell className="text-right">{formatDecimal(dataItem.Bonus)}</Cell>
-                <Cell className="text-right">{formatDecimal(dataItem.PlatformFee)}</Cell>
-                <Cell className="text-right">{formatDecimal(dataItem.OperationalFee)}</Cell>
-                <Cell className="text-right">{formatDecimal(dataItem.BankingFee)}</Cell>
-                <Cell className="text-right">{formatDecimal(dataItem.TotalFee)}</Cell>
-                <Cell className="text-right">{formatDecimal(dataItem.CommissionRate / 100)}</Cell>
-                <Cell className="text-right">{formatDecimal(dataItem.Earning)}</Cell>
-                <Cell className="text-right">{formatDecimal(dataItem.AffWithdrawal)}</Cell>
-                <Cell className="text-right">{formatDecimal(dataItem.BalanceBf)}</Cell>
-                <Cell className="text-center">View</Cell>
-            </Row>);
+                <Row>
+                    <Cell>{dataItem.UserName}</Cell>
+                    <Cell className="text-right">{format(dataItem.TotalClick)}</Cell>
+                    <Cell className="text-right">{format(dataItem.UniqueClick)}</Cell>
+                    <Cell className="text-right">{format(dataItem.Signup)}</Cell>
+                    <Cell className="text-right">{format(dataItem.Fdm)}</Cell>
+                    <Cell className="text-right">{format(dataItem.ActiveMember)}</Cell>
+                    <Cell className="text-right">{format(dataItem.QualifiedMember)}</Cell>
+                    <Cell className="text-right">{formatDecimal(dataItem.Deposit)}</Cell>
+                    <Cell className="text-right">{formatDecimal(dataItem.Withdrawal)}</Cell>
+                    <Cell className="text-right">{formatDecimal(dataItem.Turnover)}</Cell>
+                    <Cell className="text-right">{formatDecimal(dataItem.Winlost)}</Cell>
+                    <Cell className="text-right">{formatDecimal(dataItem.Bonus)}</Cell>
+                    <Cell className="text-right">{formatDecimal(dataItem.PlatformFee)}</Cell>
+                    <Cell className="text-right">{formatDecimal(dataItem.OperationalFee)}</Cell>
+                    <Cell className="text-right">{formatDecimal(dataItem.BankingFee)}</Cell>
+                    <Cell className="text-right">{formatDecimal(dataItem.TotalFee)}</Cell>
+                    <Cell className="text-right">{formatDecimal(dataItem.CommissionRate / 100)}</Cell>
+                    <Cell className="text-right">{formatDecimal(dataItem.Earning)}</Cell>
+                    <Cell className="text-right">{formatDecimal(dataItem.AffWithdrawal)}</Cell>
+                    <Cell className="text-right">{formatDecimal(dataItem.BalanceBf)}</Cell>
+                    <Cell className="text-center">View</Cell>
+                </Row>);
         }
 
         return dataRows;
@@ -84,9 +84,11 @@ export class GridData extends Component {
         const newPaging = {
             PageIndex: index,
             PageSize: size
-        }
-
+        };
         this.props.setPagingOption(newPaging);
+
+        const newParam = Object.assign({}, this.props.param, newPaging);
+        this.props.getGridData(newParam);
     }
 
     render() {
@@ -99,6 +101,7 @@ export class GridData extends Component {
                     header={this._renderHeader()}
                     body={this._renderBody()}
                     containerPadding={0}
+                    isPaging={true}
                     pageOption={this.props.pagingOption}
                     onPaging={this.handlePaging}
                 />
@@ -107,12 +110,12 @@ export class GridData extends Component {
     }
 }
 
-function mapStateToProps({ gridData, pagingOption }) {
-    return Object.assign({}, { gridData, pagingOption });
+function mapStateToProps({ gridData, pagingOption, param }) {
+    return Object.assign({}, { gridData, pagingOption, param });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({setPagingOption}, dispatch);
+    return bindActionCreators({ setPagingOption, getGridData }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GridData);

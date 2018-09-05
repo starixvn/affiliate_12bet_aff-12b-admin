@@ -4,7 +4,7 @@ export const resolveClientUrl = (relativeUrl) => {
     return _rootUrl + relativeUrl;
 }
 
-function formatUnit(value) {
+export const formatUnit = (value) => {
     return value < 10 ? '0' + value : value;
 }
 

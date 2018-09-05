@@ -65,6 +65,18 @@ const selectedProductList = createReducer(allProduct, {
 
 const productList = createReducer([], {});
 
+const reportTitle = createReducer('', {
+    [actionTypes.SET_REPORT_TITLE](prevState, action) {
+        return action.data;
+    }
+})
+
+const param = createReducer(null, {
+    [actionTypes.SET_PARAM](prevState, action) {
+        return Object.assign({}, prevState, action.data);
+    }
+})
+
 export default combineReducers({
     affiliate,
     selectedLanguage,
@@ -76,5 +88,7 @@ export default combineReducers({
     productList,
     selectedProductList,
     gridData,
-    pagingOption
+    pagingOption,
+    reportTitle,
+    param
 });
