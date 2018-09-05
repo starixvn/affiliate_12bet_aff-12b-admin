@@ -57,8 +57,9 @@ namespace AffiliateAdmin.Business.Services.Auth
                             Domain = FormsAuthentication.CookieDomain,
                             Expires = authTicket.Expiration
                         };
-                        var onUserId = DataHandler.Login.LoginOnUser(context);
+
                         AppSettings.Session.CustID = custid;
+                        var onUserId = DataHandler.Login.LoginOnUser(context);
                         AppSettings.Session.OnUser = onUserId;
                         AppSettings.Session.RoleID = roleid;
                         AppSettings.Session.UserName = _username;
