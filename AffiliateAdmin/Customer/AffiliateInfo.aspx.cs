@@ -39,7 +39,6 @@ public partial class Customer_AffiliateInfo : IBCPage
         TemplateHandler.Assign(ref strTpl, "currlist", Resources.Lang.CurrOnlineList);
         TemplateHandler.Assign(ref strTpl, "ip", Resources.Lang.IP);
         TemplateHandler.Assign(ref strTpl, "lastcheckin", Resources.Lang.LastCheckIn);
-        TemplateHandler.Assign(ref strTpl, "reportdetail", Resources.Lang.ReportDetails);
         TemplateHandler.Assign(ref strTpl, "memberlist", Resources.Lang.MemList);
 
         TemplateHandler.Assign(ref strTpl, "afftype", Resources.Lang.AffiliateType);
@@ -61,10 +60,8 @@ public partial class Customer_AffiliateInfo : IBCPage
         }
 
         var memberListUrl = ResolveClientUrl("~/Portal/Member?txtAffUsername=" + AppSettings.Session.AffUsername);
-        var memberReportUrl = ResolveClientUrl("~/Portal/Report?isaff=1");
 
         TemplateHandler.Assign(ref strTpl, "memberListUrl", memberListUrl);
-        TemplateHandler.Assign(ref strTpl, "memberReportUrl", memberReportUrl);
         TemplateHandler.Assign(ref strTpl, "username", AppSettings.Session.AffUsername);
         TemplateHandler.Assign(ref strTpl, "pageid-val", Request["pageid"]);
 

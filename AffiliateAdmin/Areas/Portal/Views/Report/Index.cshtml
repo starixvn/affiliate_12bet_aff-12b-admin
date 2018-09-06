@@ -5,7 +5,7 @@
 
 @{ 
     var queryString = Request.QueryString.ToString();
-    var defaultRelativeUrl = "~/Report/MemberReport.aspx?" + queryString;
+    var defaultRelativeUrl = Url.Content("~/Portal/AffiliateReport/Index") + queryString;
 }
 
 <div class="sub-menu-container">

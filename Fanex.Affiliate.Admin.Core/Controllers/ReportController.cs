@@ -19,8 +19,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         {
             var subMenu = new List<SubMenu>
             {
-                new SubMenu { Name = Lang.ReportDetails, Url = Url.Content("~/Report/MemberReport.aspx") },
-                new SubMenu { Name = Lang.AffiliateReport, Url = Url.Content("~/Report/AffiliateReport.aspx") }
+                new SubMenu { Name = Lang.AffiliateReport, Url = Url.Content("~/Portal/AffiliateReport/Index") }
             };
 
             var activeIndex = current > subMenu.Count - 1 ? 0 : current;

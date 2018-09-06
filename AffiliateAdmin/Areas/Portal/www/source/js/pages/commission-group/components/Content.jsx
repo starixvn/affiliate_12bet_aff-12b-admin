@@ -57,13 +57,11 @@ export class Content extends Component {
 
         return (
             <div className="data-content">
-                <div className="mx-2 my-2">
+                <div className="my-2">
                     <Button outline type="button" onClick={this.handleAddNewGroup}>Add New Group</Button>
                 </div>
 
-                <div className="my-1">
-                    <GridData onEdit={this.handleEditGroup} />
-                </div>
+                <GridData onEdit={this.handleEditGroup} />
                 <Pager pageOption={this.props.pagingOption} onPaging={this.onPaging} />
 
                 <Modal isOpen={showPopup} toggle={this.handleHide} size="lg" backdrop='static' innerRef={this.modalRef}>

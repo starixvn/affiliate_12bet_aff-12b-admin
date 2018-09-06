@@ -5,7 +5,7 @@
 @model Fanex.Affiliate.Admin.Core.ViewModels.AffiliateReportViewModel
 
 @section styles{
-    @*<link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/commission-group.css")" rel="stylesheet" />*@
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/affiliate-report.css")" rel="stylesheet" />
 }
 
 @section scripts{
@@ -14,7 +14,7 @@
             productList: @Html.Raw(Json.Encode(Model.ProductList))
         }
     </script>
-    @*<script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/commission/commission-group.js")"></script>*@
+    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/report/affiliate-report.js")"></script>
 }
 
 <div id="root"></div>

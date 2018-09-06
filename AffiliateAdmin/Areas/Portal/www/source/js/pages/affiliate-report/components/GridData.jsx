@@ -27,7 +27,7 @@ export class GridData extends Component {
     }
 
     async fetchData(param) {
-        const url = resolveClientUrl('Portal/AffiliateReport/GetMainData');
+        const url = 'Portal/AffiliateReport/GetMainData';
         const response = await post(url, param);
         const { MainData, Total, TotalItem } = response.data;
         Total.UserName = 'Total (all pages)';
@@ -135,7 +135,7 @@ export class GridData extends Component {
                     header={this._renderHeader()}
                     body={this._renderDataSection(this.state.gridData)}
                     footer={this._renderDataSection([this.state.total])}
-                    containerPadding={0}
+                    containerPadding={40}
                     isPaging={true}
                     pageOption={this.props.pagingOption}
                     onPaging={this.handlePaging}

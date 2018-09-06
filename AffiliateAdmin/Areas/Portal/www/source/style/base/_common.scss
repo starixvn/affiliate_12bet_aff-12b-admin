@@ -1,4 +1,9 @@
-﻿.report-title-container{
+﻿.main-container{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.report-title-container{
     background: #cdd3d9;
     padding: 4px 15px;
     color: #333;
@@ -6,6 +11,7 @@
 
     .report-title {
         margin: 0;
+        font-weight: bold;
     }
 }
 
