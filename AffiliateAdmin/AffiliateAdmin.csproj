@@ -1525,11 +1525,12 @@
     <Content Include="Areas\Portal\www\dist\js\pages\commission\commission-group.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\layout\pagelayout.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\Recheckin\recheckin.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\report\affiliate-report.js" />
     <Content Include="Areas\Portal\www\dist\style\assets\banner_top.jpg" />
     <Content Include="Areas\Portal\www\dist\style\assets\open-iconic.svg" />
     <Content Include="Areas\Portal\www\dist\style\layout.css" />
+    <Content Include="Areas\Portal\www\dist\style\pages\affiliate-report.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\commission-group.css" />
-    <Content Include="Areas\Portal\www\dist\style\pages\commission-group.js" />
     <Content Include="Areas\Portal\www\dist\style\portalmain.css" />
     <Content Include="Areas\Portal\www\dist\vendors\bootstrap.css" />
     <Content Include="Areas\Portal\www\dist\vendors\bootstrap.js" />
