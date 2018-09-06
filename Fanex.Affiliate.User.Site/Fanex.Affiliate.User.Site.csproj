@@ -548,6 +548,15 @@
     <Content Include="www\build\styles\Images\ads-1\ads-1_392.jpg" />
     <Content Include="www\build\styles\Images\ads-1\ads-1_559.jpg" />
     <Content Include="www\build\styles\Images\ads-1\ads-1_644.jpg" />
+    <Content Include="www\build\styles\Images\apply12bet\3step.hi-IN.png" />
+    <Content Include="www\build\styles\Images\apply12bet\3step.ja-JP.png" />
+    <Content Include="www\build\styles\Images\apply12bet\3step.en-US.png" />
+    <Content Include="www\build\styles\Images\apply12bet\3step.id-ID.png" />
+    <Content Include="www\build\styles\Images\apply12bet\3step.ko-KR.png" />
+    <Content Include="www\build\styles\Images\apply12bet\3step.th-TH.png" />
+    <Content Include="www\build\styles\Images\apply12bet\3step.vi-VN.png" />
+    <Content Include="www\build\styles\Images\apply12bet\3step.zh-CN.png" />
+    <Content Include="www\build\styles\Images\apply12bet\3step.zh-TW.png" />
     <Content Include="www\build\styles\Images\bg-adv_contact.png" />
     <Content Include="www\build\styles\Images\bg-banner-signup.png" />
     <Content Include="www\build\styles\Images\bg-Commission-Structure_Banner.png" />
@@ -569,6 +578,15 @@
     <Content Include="www\build\styles\Images\notify\note_icon.gif" />
     <Content Include="www\build\styles\Images\notify\sry.png" />
     <Content Include="www\build\styles\Images\notify\srynf.png" />
+    <Content Include="www\build\styles\Images\products\ad-banner.jpg" />
+    <Content Include="www\build\styles\Images\products\game.en-US.jpg" />
+    <Content Include="www\build\styles\Images\products\game.hi-IN.jpg" />
+    <Content Include="www\build\styles\Images\products\game.id-ID.jpg" />
+    <Content Include="www\build\styles\Images\products\game.ko-KR.jpg" />
+    <Content Include="www\build\styles\Images\products\game.th-TH.jpg" />
+    <Content Include="www\build\styles\Images\products\game.vi-VN.jpg" />
+    <Content Include="www\build\styles\Images\products\game.zh-CN.jpg" />
+    <Content Include="www\build\styles\Images\products\game.zh-TW.jpg" />
     <Content Include="www\build\styles\Images\slide-1\slide-1_sa98xt_c_scale_w_1500.png" />
     <Content Include="www\build\styles\Images\slide-1\slide-1_sa98xt_c_scale_w_1003.png" />
     <Content Include="www\build\styles\Images\slide-1\slide-1_sa98xt_c_scale_w_1054.png" />
@@ -738,7 +756,6 @@
     <Content Include="www\build\styles\fonts\font_bebas\Flat-it License.txt" />
     <Content Include="www\build\styles\fonts\glypicons\glyphicons-halflings-regular.svg" />
     <Content Include="www\build\styles\Images\ads-1.jpg" />
-    <Content Include="www\build\styles\Images\advertise.png" />
     <Content Include="www\build\styles\Images\bootstrap-formhelpers-countries.flags.png" />
     <Content Include="www\build\styles\Images\contact-us\China_lang.png" />
     <Content Include="www\build\styles\Images\contact-us\english_lang.png" />
@@ -761,8 +778,6 @@
     <Content Include="www\build\styles\Images\icon-3.png" />
     <Content Include="www\build\styles\Images\logo.png" />
     <Content Include="www\build\styles\Images\offers.png" />
-    <Content Include="www\build\styles\Images\products\ad-banner.jpg" />
-    <Content Include="www\build\styles\Images\products\ad-sb.jpg" />
     <Content Include="www\build\styles\Images\term-and-condition\termcondition.jpg" />
     <Content Include="www\source\js\components\monthpicker.js" />
     <Content Include="www\source\js\components\pager.js" />
@@ -804,7 +819,13 @@
     <Content Include="www\source\styles\Images\ads-1\ads-1_392.jpg" />
     <Content Include="www\source\styles\Images\ads-1\ads-1_559.jpg" />
     <Content Include="www\source\styles\Images\ads-1\ads-1_644.jpg" />
-    <Content Include="www\source\styles\Images\advertise.png" />
+    <Content Include="www\source\styles\Images\apply12bet\3step.zh-CN.png" />
+    <Content Include="www\source\styles\Images\apply12bet\3step.en-US.png" />
+    <Content Include="www\source\styles\Images\apply12bet\3step.id-ID.png" />
+    <Content Include="www\source\styles\Images\apply12bet\3step.ko-KR.png" />
+    <Content Include="www\source\styles\Images\apply12bet\3step.th-TH.png" />
+    <Content Include="www\source\styles\Images\apply12bet\3step.zh-TW.png" />
+    <Content Include="www\source\styles\Images\apply12bet\3step.vi-VN.png" />
     <Content Include="www\source\styles\Images\bg-adv_contact.png" />
     <Content Include="www\source\styles\Images\bg-banner-signup.png" />
     <Content Include="www\source\styles\Images\bg-Commission-Structure_Banner.png" />
@@ -865,7 +886,14 @@
     <Content Include="www\source\styles\Images\notify\srynf.png" />
     <Content Include="www\source\styles\Images\offers.png" />
     <Content Include="www\source\styles\Images\products\ad-banner.jpg" />
-    <Content Include="www\source\styles\Images\products\ad-sb.jpg" />
+    <Content Include="www\source\styles\Images\products\game.zh-TW.jpg" />
+    <Content Include="www\source\styles\Images\products\game.zh-CN.jpg" />
+    <Content Include="www\source\styles\Images\products\game.en-US.jpg" />
+    <Content Include="www\source\styles\Images\products\game.hi-IN.jpg" />
+    <Content Include="www\source\styles\Images\products\game.id-ID.jpg" />
+    <Content Include="www\source\styles\Images\products\game.ko-KR.jpg" />
+    <Content Include="www\source\styles\Images\products\game.th-TH.jpg" />
+    <Content Include="www\source\styles\Images\products\game.vi-VN.jpg" />
     <Content Include="www\source\styles\Images\term-and-condition\termcondition.jpg" />
     <Content Include="www\source\styles\Images\adv_contact.jpg" />
     <Content Include="www\source\styles\scss\vendors\animate\animate.css" />
@@ -941,16 +969,7 @@
     <Content Include="Views\UserPanel\CommissionReport\Index.cshtml" />
     <Content Include="www\source\styles\pages\commissionreport.scss" />
     <Content Include="www\source\styles\scss\base\_media.scss" />
-    <Content Include="www\build\styles\Images\products\ad-banner.webp">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="www\build\styles\Images\products\ad-sb.webp">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="www\build\styles\Images\adv_contact.webp">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="www\build\styles\Images\advertise.webp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="www\build\styles\Images\bgLeft.webp">
@@ -971,9 +990,6 @@
     <Content Include="www\source\styles\Images\adv_contact.webp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="www\source\styles\Images\advertise.webp">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="www\source\styles\Images\bgLeft.webp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -990,9 +1006,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="www\source\styles\Images\products\ad-banner.webp">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="www\source\styles\Images\products\ad-sb.webp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="www\source\styles\fonts\tahoma\font.css" />
@@ -1066,6 +1079,41 @@
     <Content Include="www\build\styles\Images\bg-get-banner.webp" />
     <Content Include="www\build\styles\Images\bg-Sports_products.webp" />
     <Content Include="www\build\styles\Images\bg-Terms_&amp;_conditions_banner.webp" />
+    <Content Include="www\source\styles\Images\apply12bet\3step.zh-CN.webp" />
+    <Content Include="www\source\styles\Images\apply12bet\3step.en-US.webp" />
+    <Content Include="www\source\styles\Images\apply12bet\3step.id-ID.webp" />
+    <Content Include="www\source\styles\Images\apply12bet\3step.ko-KR.webp" />
+    <Content Include="www\source\styles\Images\apply12bet\3step.th-TH.webp" />
+    <Content Include="www\source\styles\Images\apply12bet\3step.zh-TW.webp" />
+    <Content Include="www\source\styles\Images\apply12bet\3step.vi-VN.webp" />
+    <Content Include="www\source\styles\Images\products\game.zh-TW.webp" />
+    <Content Include="www\source\styles\Images\products\game.zh-CN.webp" />
+    <Content Include="www\source\styles\Images\products\game.en-US.webp" />
+    <Content Include="www\source\styles\Images\products\game.hi-IN.webp" />
+    <Content Include="www\source\styles\Images\products\game.id-ID.webp" />
+    <Content Include="www\source\styles\Images\products\game.ko-KR.webp" />
+    <Content Include="www\source\styles\Images\products\game.th-TH.webp" />
+    <Content Include="www\source\styles\Images\products\game.vi-VN.webp" />
+    <Content Include="www\build\styles\Images\apply12bet\3step.en-US.webp" />
+    <Content Include="www\build\styles\Images\apply12bet\3step.id-ID.webp" />
+    <Content Include="www\build\styles\Images\apply12bet\3step.ko-KR.webp" />
+    <Content Include="www\build\styles\Images\apply12bet\3step.th-TH.webp" />
+    <Content Include="www\build\styles\Images\apply12bet\3step.vi-VN.webp" />
+    <Content Include="www\build\styles\Images\apply12bet\3step.zh-CN.webp" />
+    <Content Include="www\build\styles\Images\apply12bet\3step.zh-TW.webp" />
+    <Content Include="www\build\styles\Images\apply12bet\3step.ja-JP.webp" />
+    <Content Include="www\build\styles\Images\apply12bet\3step.hi-IN.webp" />
+    <Content Include="www\build\styles\Images\products\ad-banner.webp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="www\build\styles\Images\products\game.en-US.webp" />
+    <Content Include="www\build\styles\Images\products\game.hi-IN.webp" />
+    <Content Include="www\build\styles\Images\products\game.id-ID.webp" />
+    <Content Include="www\build\styles\Images\products\game.ko-KR.webp" />
+    <Content Include="www\build\styles\Images\products\game.th-TH.webp" />
+    <Content Include="www\build\styles\Images\products\game.vi-VN.webp" />
+    <Content Include="www\build\styles\Images\products\game.zh-CN.webp" />
+    <Content Include="www\build\styles\Images\products\game.zh-TW.webp" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

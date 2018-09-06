@@ -17,8 +17,8 @@
         <div class="carousel-inner" role="listbox">
             <div class="item active">
                 <a class="nounderline banner-signup" href="@Url.Action("Index", "Signup")">
-                    <div class="upto">                        
-                        @Html.Raw(@Lang.UpTo)                        
+                    <div class="upto">
+                        @Html.Raw(@Lang.UpTo)
                         <span class="value">40%</span>
                     </div>
                     <div class="text-border">
@@ -65,10 +65,13 @@
                     </h4>
                     <a href="@Model.SignUpLink" class="nounderline">
                         <div class="img-content">
+                            @{
+                                var advFileName = Url.Content("~/www/build/styles/Images/apply12bet/3step." + Model.Language);
+                            }
                             <picture>
-                                <source srcset="~/www/build/styles/Images/advertise.webp" type="image/webp" />
-                                <source srcset="~/www/build/styles/Images/advertise.png" type="image/jpeg" />
-                                <img class="img-item img-responsive" src="~/www/build/styles/Images/advertise.png" alt="ads" />
+                                <source srcset="@(advFileName + ".webp")" type="image/webp" />
+                                <source srcset="@(advFileName + ".png")" type="image/jpeg" />
+                                <img class="img-item img-responsive" src="@(advFileName + ".png")" alt="ads" />
                             </picture>
                         </div>
                         <p class="text-content">
