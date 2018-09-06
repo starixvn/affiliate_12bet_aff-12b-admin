@@ -5,11 +5,33 @@ import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
 import { format, formatDecimal } from '../../../modules/numberFormat';
-import { setPagingOption, getGridData } from '../actions';
+import { setPagingOption } from '../actions';
+import { post } from '../../../modules/ajaxRequest';
+import { resolveClientUrl } from '../../../modules/utils';
 
 export class GridData extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            gridData: null
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.param !== prevProps.param) {
+            this.fetchData(this.props.param);
+        }
+    }
+
+    async fetchData(param) {
+        //const url = resolveClientUrl('Portal/AffiliateReport/GetMainData');
+        const url = 'Portal/AffiliateReport/GetMainData';
+        const response = await post(url, param);
+        const { MainData, TotalRow } = response.data;
+
+        this.setState({ gridData: MainData });
+        this.props.setPagingOption({ TotalItem: TotalRow });
     }
 
     _renderHeader() {
@@ -46,7 +68,7 @@ export class GridData extends Component {
     }
 
     _renderBody() {
-        const { gridData } = this.props;
+        const { gridData } = this.state;
         const dataRows = [];
 
         for (let i = 0; i < gridData.length; i++) {
@@ -88,11 +110,11 @@ export class GridData extends Component {
         this.props.setPagingOption(newPaging);
 
         const newParam = Object.assign({}, this.props.param, newPaging);
-        this.props.getGridData(newParam);
+        this.fetchData(newParam);
     }
 
     render() {
-        return this.props.gridData && (
+        return this.state.gridData && (
             <div className="table-responsive table-group-setting">
                 <Table
                     minWidth={1000}
@@ -110,12 +132,12 @@ export class GridData extends Component {
     }
 }
 
-function mapStateToProps({ gridData, pagingOption, param }) {
-    return Object.assign({}, { gridData, pagingOption, param });
+function mapStateToProps({ pagingOption, param }) {
+    return Object.assign({}, { pagingOption, param });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setPagingOption, getGridData }, dispatch);
+    return bindActionCreators({ setPagingOption }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GridData);
