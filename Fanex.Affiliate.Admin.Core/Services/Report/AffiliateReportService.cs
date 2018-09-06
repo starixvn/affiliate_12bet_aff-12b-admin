@@ -1,6 +1,6 @@
-﻿using Fanex.Affiliate.Admin.Core.MetaModels.Report;
+﻿using Fanex.Affiliate.Admin.Core.DTO.Report;
+using Fanex.Affiliate.Admin.Core.MetaModels.Report;
 using Fanex.Affiliate.Admin.Core.Repository;
-using Fanex.Affiliate.Admin.Core.ViewModels;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Report
 {
@@ -13,15 +13,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.Report
             _affiliateReportRepository = affiliateReportRepository;
         }
 
-        public AffiliateReportMainDataViewModel GetMainReportData(AffiliateReportMainParam param)
+        public AffiliateReportMainEntityResult GetMainReportData(AffiliateReportMainParam param)
         {
-            var dataList = _affiliateReportRepository.GetMainReportData(param);
-
-            return new AffiliateReportMainDataViewModel
-            {
-                MainData = dataList,
-                TotalRow = param.Nrows
-            };
+            return _affiliateReportRepository.GetMainReportData(param);
         }
     }
 }

@@ -15,7 +15,8 @@ export class GridData extends Component {
         super(props);
 
         this.state = {
-            gridData: null
+            gridData: null,
+            total: null
         }
     }
 
@@ -28,10 +29,11 @@ export class GridData extends Component {
     async fetchData(param) {
         const url = resolveClientUrl('Portal/AffiliateReport/GetMainData');
         const response = await post(url, param);
-        const { MainData, TotalRow } = response.data;
+        const { MainData, Total, TotalItem } = response.data;
+        Total.UserName = 'Total (all pages)';
 
-        this.setState({ gridData: MainData });
-        this.props.setPagingOption({ TotalItem: TotalRow });
+        this.setState({ gridData: MainData, total: Total });
+        this.props.setPagingOption({ TotalItem });
     }
 
     _renderHeader() {
@@ -67,42 +69,47 @@ export class GridData extends Component {
         ];
     }
 
-    _renderBody() {
-        const { gridData } = this.state;
+    _renderDataSection(dataList) {
         const { param } = this.props;
 
-        const isHighlighProductColumn = param.ProductIds === allProduct || param.ProductIds === "";
+        const isAllProductIdentical = param.ProductIds === allProduct || param.ProductIds === "";
+        const productColumnClassName = isAllProductIdentical ? 'text-right' : 'text-right highlight';
         const dataRows = [];
 
-        for (let i = 0; i < gridData.length; i++) {
-            const dataItem = gridData[i];
-            dataRows.push(
-                <Row>
-                    <Cell>{dataItem.UserName}</Cell>
-                    <Cell className="text-right">{format(dataItem.TotalClick)}</Cell>
-                    <Cell className="text-right">{format(dataItem.UniqueClick)}</Cell>
-                    <Cell className="text-right">{format(dataItem.Signup)}</Cell>
-                    <Cell className="text-right">{format(dataItem.Fdm)}</Cell>
-                    <Cell className="text-right">{format(dataItem.ActiveMember)}</Cell>
-                    <Cell className="text-right">{format(dataItem.QualifiedMember)}</Cell>
-                    <Cell className="text-right">{formatDecimal(dataItem.Deposit)}</Cell>
-                    <Cell className="text-right">{formatDecimal(dataItem.Withdrawal)}</Cell>
-                    <Cell className={`text-right ${isHighlighProductColumn ? '' : 'highlight'}`}>{formatDecimal(dataItem.Turnover)}</Cell>
-                    <Cell className={`text-right ${isHighlighProductColumn ? '' : 'highlight'}`}>{formatDecimal(dataItem.Winlost)}</Cell>
-                    <Cell className="text-right">{formatDecimal(dataItem.Bonus)}</Cell>
-                    <Cell className="text-right">{formatDecimal(dataItem.PlatformFee)}</Cell>
-                    <Cell className="text-right">{formatDecimal(dataItem.OperationalFee)}</Cell>
-                    <Cell className="text-right">{formatDecimal(dataItem.BankingFee)}</Cell>
-                    <Cell className="text-right">{formatDecimal(dataItem.TotalFee)}</Cell>
-                    <Cell className="text-right">{formatDecimal(dataItem.CommissionRate / 100)}</Cell>
-                    <Cell className="text-right">{formatDecimal(dataItem.Earning)}</Cell>
-                    <Cell className="text-right">{formatDecimal(dataItem.AffWithdrawal)}</Cell>
-                    <Cell className="text-right">{formatDecimal(dataItem.BalanceBf)}</Cell>
-                    <Cell className="text-center">View</Cell>
-                </Row>);
+        for (let i = 0; i < dataList.length; i++) {
+            const dataItem = dataList[i];
+            dataRows.push(this._buildDataRow(dataItem, productColumnClassName));
         }
 
         return dataRows;
+    }
+
+    _buildDataRow(dataItem, productColumnClassName) {
+        return (
+            <Row>
+                <Cell>{dataItem.UserName}</Cell>
+                <Cell className="text-right">{format(dataItem.TotalClick)}</Cell>
+                <Cell className="text-right">{format(dataItem.UniqueClick)}</Cell>
+                <Cell className="text-right">{format(dataItem.Signup)}</Cell>
+                <Cell className="text-right">{format(dataItem.Fdm)}</Cell>
+                <Cell className="text-right">{format(dataItem.ActiveMember)}</Cell>
+                <Cell className="text-right">{format(dataItem.QualifiedMember)}</Cell>
+                <Cell className="text-right">{formatDecimal(dataItem.Deposit)}</Cell>
+                <Cell className="text-right">{formatDecimal(dataItem.Withdrawal)}</Cell>
+                <Cell className={productColumnClassName}>{formatDecimal(dataItem.Turnover)}</Cell>
+                <Cell className={productColumnClassName}>{formatDecimal(dataItem.Winlost)}</Cell>
+                <Cell className="text-right">{formatDecimal(dataItem.Bonus)}</Cell>
+                <Cell className="text-right">{formatDecimal(dataItem.PlatformFee)}</Cell>
+                <Cell className="text-right">{formatDecimal(dataItem.OperationalFee)}</Cell>
+                <Cell className="text-right">{formatDecimal(dataItem.BankingFee)}</Cell>
+                <Cell className="text-right">{formatDecimal(dataItem.TotalFee)}</Cell>
+                <Cell className="text-right">{formatDecimal(dataItem.CommissionRate / 100)}</Cell>
+                <Cell className="text-right">{formatDecimal(dataItem.Earning)}</Cell>
+                <Cell className="text-right">{formatDecimal(dataItem.AffWithdrawal)}</Cell>
+                <Cell className="text-right">{formatDecimal(dataItem.BalanceBf)}</Cell>
+                <Cell className="text-center">{dataItem.AffId > 0 ? 'View' : ''}</Cell>
+            </Row>
+        )
     }
 
     handlePaging = (index, size) => {
@@ -117,14 +124,17 @@ export class GridData extends Component {
     }
 
     render() {
-        return this.state.gridData && (
+        const { gridData, total } = this.state;
+
+        return gridData && total && (
             <div className="table-responsive table-striped">
                 <Table
                     minWidth={1000}
                     autoWidth={true}
                     bodyHeight={300}
                     header={this._renderHeader()}
-                    body={this._renderBody()}
+                    body={this._renderDataSection(this.state.gridData)}
+                    footer={this._renderDataSection([this.state.total])}
                     containerPadding={0}
                     isPaging={true}
                     pageOption={this.props.pagingOption}

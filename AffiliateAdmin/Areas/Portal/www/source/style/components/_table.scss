@@ -78,3 +78,15 @@
         }
     }
 }
+
+.footer-content {
+    .table {
+        > tbody {
+            tr {
+                td {
+                    background: #eae4e4;
+                }
+            }
+        }
+    }
+}

@@ -1,10 +1,10 @@
-﻿using Fanex.Affiliate.Admin.Core.MetaModels.Report;
-using Fanex.Affiliate.Admin.Core.ViewModels;
+﻿using Fanex.Affiliate.Admin.Core.DTO.Report;
+using Fanex.Affiliate.Admin.Core.MetaModels.Report;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Report
 {
     public interface IAffiliateReportService
     {
-        AffiliateReportMainDataViewModel GetMainReportData(AffiliateReportMainParam param);
+        AffiliateReportMainEntityResult GetMainReportData(AffiliateReportMainParam param);
     }
 }

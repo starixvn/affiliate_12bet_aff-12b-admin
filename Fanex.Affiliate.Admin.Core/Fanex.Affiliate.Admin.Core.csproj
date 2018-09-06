@@ -169,9 +169,11 @@
     <Compile Include="DTO\Email\WithdrawalEmail.cs" />
     <Compile Include="DTO\Product.cs" />
     <Compile Include="DTO\Report\AffiliateReportMain.cs" />
+    <Compile Include="DTO\Report\AffiliateReportMainEntityResult.cs" />
     <Compile Include="DTO\ResultInfo.cs" />
     <Compile Include="DTO\SelectItem.cs" />
     <Compile Include="DTO\SubMenu.cs" />
+    <Compile Include="Extensions\DataReaderExtension.cs" />
     <Compile Include="Extensions\UrlHelperExtension.cs" />
     <Compile Include="MetaModels\Affiliate\ApproveAffiliateParam.cs" />
     <Compile Include="MetaModels\CommissionGroup\AssignGroupParam.cs" />
@@ -261,7 +263,6 @@
     <Compile Include="Utilities\IMailProcessor.cs" />
     <Compile Include="Utilities\MailProcessor.cs" />
     <Compile Include="Utilities\SiteDomainHelper.cs" />
-    <Compile Include="ViewModels\AffiliateReportMainDataViewModel.cs" />
     <Compile Include="ViewModels\AffiliateReportViewModel.cs" />
     <Compile Include="ViewModels\AssignNormalGroupViewModel.cs" />
     <Compile Include="ViewModels\AssignPrivateGroupViewModel.cs" />

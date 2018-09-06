@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using Fanex.Affiliate.Admin.Core.DTO.Report;
+using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Report;
 using Fanex.Data;
 
@@ -9,10 +10,11 @@ namespace Fanex.Affiliate.Admin.Core.Repository
 {
     public class AffiliateReportRepository : BaseRepository, IAffiliateReportRepository
     {
-        public IEnumerable<AffiliateReportMain> GetMainReportData(AffiliateReportMainParam param)
+        public AffiliateReportMainEntityResult GetMainReportData(AffiliateReportMainParam param)
         {
             const string SpKey = "Aff_Admin_AffiliateReport_Sel";
-            var result = new List<AffiliateReportMain>();
+            var result = new AffiliateReportMainEntityResult();
+            var dataList = new List<AffiliateReportMain>();
 
             using (var objectDb = GetObjectDb(SpKey))
             {
@@ -22,12 +24,18 @@ namespace Fanex.Affiliate.Admin.Core.Repository
                 {
                     while (reader.Read())
                     {
-                        result.Add(BuildReportMainItem(reader));
+                        dataList.Add(BuildReportMainItem(reader));
+                    }
+
+                    if (reader.NextResult() && reader.Read())
+                    {
+                        result.Total = BuildReportMainItem(reader);
                     }
                 }
 
+                result.MainData = dataList;
                 var totalRow = objectDb.GetParameterValue("NRows");
-                param.Nrows = totalRow == DBNull.Value ? 0 : Convert.ToInt32(totalRow);
+                result.TotalItem = totalRow == DBNull.Value ? 0 : Convert.ToInt32(totalRow);
             }
 
             return result;
@@ -53,8 +61,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository
         {
             return new AffiliateReportMain
             {
-                AffId = Convert.ToInt32(reader["AffId"]),
-                UserName = Convert.ToString(reader["Username"]),
+                AffId = reader.HasColumn("AffId") ? Convert.ToInt32(reader["AffId"]) : 0,
+                UserName = reader.HasColumn("Username") ? Convert.ToString(reader["Username"]) : string.Empty,
                 TotalClick = Convert.ToInt32(reader["TotalClick"]),
                 UniqueClick = Convert.ToInt32(reader["UniqueClick"]),
                 Signup = Convert.ToInt32(reader["Signup"]),
