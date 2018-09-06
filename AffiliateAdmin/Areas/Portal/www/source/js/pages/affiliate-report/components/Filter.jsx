@@ -147,14 +147,23 @@ class Filter extends Component {
                             maxDisplayItemCount={1}
                             noneSelectedLabel="Please Select"
                             onChange={this.handleChangeProduct} />
+                        <div className="mx-1 rounded-circle note-info" title="Filtering product affects only to Turnover and Winloss columns. Others always show value for all products">
+                            <span className="oi oi-info"></span>
+                        </div>
                     </FormGroup>
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                         <Label className="mr-sm-2">From</Label>
-                        <MonthPicker displayedYear={fromMonth.year} selectedMonth={fromMonth.month} onSelect={this.handleSelectFromMonth} />
+                        <MonthPicker selectedDropdownYear={fromMonth.year} 
+                            selectedMonth={fromMonth.month} 
+                            onSelect={this.handleSelectFromMonth}
+                            iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)} />
                     </FormGroup>
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                         <Label className="mr-sm-2">To</Label>
-                        <MonthPicker displayedYear={toMonth.year} selectedMonth={toMonth.month} onSelect={this.handleSelectToMonth} />
+                        <MonthPicker selectedDropdownYear={toMonth.year} 
+                            selectedMonth={toMonth.month} 
+                            onSelect={this.handleSelectToMonth}
+                            iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)} />
                     </FormGroup>
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                         <Label check>
