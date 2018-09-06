@@ -1005,7 +1005,6 @@ input[type="checkbox"], input[type="radio"] {
       font-size: 40px;
       color: #FFFF28;
       text-shadow: #5b450a 1px 0px 0px, #5b450a 0.5403px 0.84147px 0px, #5b450a -0.41615px 0.9093px 0px, #5b450a -0.98999px 0.14112px 0px, #5b450a -0.65364px -0.7568px 0px, #5b450a 0.28366px -0.95892px 0px, #5b450a 0.96017px -0.27942px 0px;
-      text-shadow: none;
       font-weight: 600;
       font-style: normal; }
   @media screen and (max-width: 767px) {
