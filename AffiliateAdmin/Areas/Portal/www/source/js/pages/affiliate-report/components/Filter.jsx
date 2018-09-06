@@ -5,8 +5,8 @@ import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import MultipleSelect from '../../../components/multiple-select';
 import MonthPicker from '@9softstudio/react-monthpicker';
-import { sortByValues, allProduct, languageList } from '../modules/constants';
-import {setReportTitle, setParam, getGridData} from '../actions';
+import { sortByValues, allProduct, languageList, minMonthRange } from '../modules/constants';
+import {setReportTitle, setParam } from '../actions';
 import { formatUnit } from '../../../modules/utils';
 
 class Filter extends Component {
@@ -87,9 +87,7 @@ class Filter extends Component {
             PageSize: pagingOption.PageSize
         }
 
-        console.log(param);
         this.props.setParam(param);
-        this.props.getGridData(param);
     }
 
     _buildReportTitle(username, selectedLanguage, fromMonth, toMonth) {
@@ -153,14 +151,16 @@ class Filter extends Component {
                     </FormGroup>
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                         <Label className="mr-sm-2">From</Label>
-                        <MonthPicker selectedDropdownYear={fromMonth.year} 
+                        <MonthPicker minMonth={minMonthRange.month} minYear={minMonthRange.year} enable={!isGetAll}
+                            selectedDropdownYear={fromMonth.year} 
                             selectedMonth={fromMonth.month} 
                             onSelect={this.handleSelectFromMonth}
                             iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)} />
                     </FormGroup>
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                         <Label className="mr-sm-2">To</Label>
-                        <MonthPicker selectedDropdownYear={toMonth.year} 
+                        <MonthPicker minMonth={minMonthRange.month} minYear={minMonthRange.year} enable={!isGetAll}
+                            selectedDropdownYear={toMonth.year} 
                             selectedMonth={toMonth.month} 
                             onSelect={this.handleSelectToMonth}
                             iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)} />
@@ -201,7 +201,7 @@ function mapStateToProps({ productList, pagingOption }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setReportTitle, setParam, getGridData }, dispatch);
+    return bindActionCreators({ setReportTitle, setParam }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);

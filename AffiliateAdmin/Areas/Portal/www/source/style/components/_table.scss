@@ -19,6 +19,12 @@
                 padding: 5px;
                 word-wrap: break-word;
             }
+
+            > td {
+                &.highlight {
+                    background: #fdfcdf !important;
+                }
+            }
         }
     }
 
@@ -36,6 +42,20 @@
 .table-bordered {
     th, td {
         border-color: #ccc;
+    }
+}
+
+.table-striped {
+    .body-content {
+        tbody {
+            tr {
+                &:nth-of-type(odd) {
+                    td {
+                        background-color: #fafafa;
+                    }
+                }
+            }
+        }
     }
 }
 

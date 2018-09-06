@@ -7,6 +7,7 @@ import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { format, formatDecimal } from '../../../modules/numberFormat';
 import { setPagingOption } from '../actions';
 import { post } from '../../../modules/ajaxRequest';
+import { allProduct } from '../modules/constants';
 import { resolveClientUrl } from '../../../modules/utils';
 
 export class GridData extends Component {
@@ -25,8 +26,7 @@ export class GridData extends Component {
     }
 
     async fetchData(param) {
-        //const url = resolveClientUrl('Portal/AffiliateReport/GetMainData');
-        const url = 'Portal/AffiliateReport/GetMainData';
+        const url = resolveClientUrl('Portal/AffiliateReport/GetMainData');
         const response = await post(url, param);
         const { MainData, TotalRow } = response.data;
 
@@ -69,6 +69,9 @@ export class GridData extends Component {
 
     _renderBody() {
         const { gridData } = this.state;
+        const { param } = this.props;
+
+        const isHighlighProductColumn = param.ProductIds === allProduct || param.ProductIds === "";
         const dataRows = [];
 
         for (let i = 0; i < gridData.length; i++) {
@@ -84,8 +87,8 @@ export class GridData extends Component {
                     <Cell className="text-right">{format(dataItem.QualifiedMember)}</Cell>
                     <Cell className="text-right">{formatDecimal(dataItem.Deposit)}</Cell>
                     <Cell className="text-right">{formatDecimal(dataItem.Withdrawal)}</Cell>
-                    <Cell className="text-right">{formatDecimal(dataItem.Turnover)}</Cell>
-                    <Cell className="text-right">{formatDecimal(dataItem.Winlost)}</Cell>
+                    <Cell className={`text-right ${isHighlighProductColumn ? '' : 'highlight'}`}>{formatDecimal(dataItem.Turnover)}</Cell>
+                    <Cell className={`text-right ${isHighlighProductColumn ? '' : 'highlight'}`}>{formatDecimal(dataItem.Winlost)}</Cell>
                     <Cell className="text-right">{formatDecimal(dataItem.Bonus)}</Cell>
                     <Cell className="text-right">{formatDecimal(dataItem.PlatformFee)}</Cell>
                     <Cell className="text-right">{formatDecimal(dataItem.OperationalFee)}</Cell>
@@ -115,7 +118,7 @@ export class GridData extends Component {
 
     render() {
         return this.state.gridData && (
-            <div className="table-responsive table-group-setting">
+            <div className="table-responsive table-striped">
                 <Table
                     minWidth={1000}
                     autoWidth={true}

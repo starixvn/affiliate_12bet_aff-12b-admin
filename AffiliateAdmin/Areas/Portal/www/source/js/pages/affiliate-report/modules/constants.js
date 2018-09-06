@@ -20,3 +20,5 @@ export const languageList = {
     'ja-JP': 'Japanese',
     'hi-IN': 'Republic of India'
 }
+
+export const minMonthRange = { month: 12, year: 2009 };
