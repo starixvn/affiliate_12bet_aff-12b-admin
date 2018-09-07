@@ -59,15 +59,15 @@ export class GridData extends Component {
             <Row>
                 <Cell header={true} colWidth={40} rowSpan="2"></Cell>
                 <Cell header={true} colWidth={160} rowSpan="2">Name</Cell>
-                <Cell header={true} colWidth={50} rowSpan="2" className="th-small">No.Aff</Cell>
-                <Cell header={true} colWidth={200} rowSpan="2" className="th-medium">Description</Cell>
+                <Cell header={true} colWidth={50} rowSpan="2">No.Aff</Cell>
+                <Cell header={true} colWidth={200} rowSpan="2">Description</Cell>
                 <Cell header={true} colWidth={100} rowSpan="2">Creation</Cell>
                 <Cell header={true} colSpan="10">Policy</Cell>
-                <Cell header={true} colWidth={70} rowSpan="2" className="th-small">Action</Cell>
+                <Cell header={true} colWidth={70} rowSpan="2">Action</Cell>
             </Row>,
             <Row>
                 <Cell header={true} colWidth={80}></Cell>
-                <Cell header={true} colWidth={80} className="th-smallest">Tier</Cell>
+                <Cell header={true} colWidth={80}>Tier</Cell>
                 <Cell header={true} colWidth={80} title="Minimum all members' winlost amount">Min AM($)</Cell>
                 <Cell header={true} colWidth={80} title="Maximum all members' winlost amount">Max AM($)</Cell>
                 <Cell header={true} colWidth={80} title="Minimum number of qualified members">Min QM</Cell>

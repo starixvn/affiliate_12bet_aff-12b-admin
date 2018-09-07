@@ -96,16 +96,16 @@
             background: #def6fc;
         }
     }
+}
 
-    .th-smallest {
-        width: 3%;
-    }
+.table > tbody tr:hover {
+    td {
+        &.cell-tier {
+            background: #fff4ed;
+        }
 
-    .th-small {
-        width: 5%;
-    }
-
-    .th-medium {
-        width: 12%;
+        &.cell-platform {
+            background: #def6fc;
+        }
     }
 }
