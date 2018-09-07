@@ -128,6 +128,7 @@
   </data>
   <data name="AccountNumber" xml:space="preserve">
     <value>Account Number</value>
+    <comment>87923</comment>
   </data>
   <data name="AccOverview" xml:space="preserve">
     <value>Account Overview</value>
@@ -253,9 +254,11 @@
   </data>
   <data name="BankCity" xml:space="preserve">
     <value>Bank City</value>
+    <comment>87923</comment>
   </data>
   <data name="BankCountry" xml:space="preserve">
     <value>Bank Country</value>
+    <comment>87923</comment>
   </data>
   <data name="BankName" xml:space="preserve">
     <value>Bank Name</value>
@@ -307,6 +310,7 @@
   </data>
   <data name="Bonus" xml:space="preserve">
     <value>Bonus</value>
+    <comment>87923</comment>
   </data>
   <data name="BosniaandHerzegovina" xml:space="preserve">
     <value>Bosnia and Herzegovina </value>
@@ -439,7 +443,8 @@
     <comment>87923</comment>
   </data>
   <data name="CommShorted" xml:space="preserve">
-    <value>Comm</value>
+    <value>Comm.</value>
+    <comment>87923</comment>
   </data>
   <data name="Comment" xml:space="preserve">
     <value>Comment</value>
@@ -557,6 +562,7 @@
   </data>
   <data name="Device" xml:space="preserve">
     <value>Device</value>
+    <comment>87923</comment>
   </data>
   <data name="DominicaCommonwealthof" xml:space="preserve">
     <value>Dominica (Commonwealth of) </value>
@@ -588,9 +594,7 @@
   </data>
   <data name="EmailAddressIsRequired" xml:space="preserve">
     <value>Email Address is required</value>
-  </data>
-  <data name="EmailRequire" xml:space="preserve">
-    <value>Email Address is required</value>
+    <comment>87923</comment>
   </data>
   <data name="English" xml:space="preserve">
     <value>English</value>
@@ -788,6 +792,7 @@
   </data>
   <data name="FirstDepositDate" xml:space="preserve">
     <value>First Deposit Date</value>
+    <comment>87923</comment>
   </data>
   <data name="FirstNameIsRequired" xml:space="preserve">
     <value>First Name is required</value>
@@ -983,6 +988,7 @@
   </data>
   <data name="lblBetLists" xml:space="preserve">
     <value>Bet List</value>
+    <comment>87923</comment>
   </data>
   <data name="lblSecureQuestion" xml:space="preserve">
     <value>Security Question</value>
@@ -1062,9 +1068,11 @@
   </data>
   <data name="MemberWithdrawalInfo" xml:space="preserve">
     <value>Member withdrawal information</value>
+    <comment>87923</comment>
   </data>
   <data name="MemDepositInfo" xml:space="preserve">
     <value>Member deposit information</value>
+    <comment>87923</comment>
   </data>
   <data name="Message" xml:space="preserve">
     <value>Message</value>
@@ -1099,6 +1107,7 @@
   </data>
   <data name="MobileNumber" xml:space="preserve">
     <value>Mobile Numbers</value>
+    <comment>87923</comment>
   </data>
   <data name="Moldova" xml:space="preserve">
     <value>Moldova </value>
@@ -1114,6 +1123,7 @@
   </data>
   <data name="Month" xml:space="preserve">
     <value>Month</value>
+    <comment>87923</comment>
   </data>
   <data name="MonthlyWinlost" xml:space="preserve">
     <value>Monthly Winlost</value>
@@ -1198,6 +1208,7 @@
   </data>
   <data name="Non_Deposit" xml:space="preserve">
     <value>Non-Deposit</value>
+    <comment>87923</comment>
   </data>
   <data name="Normal" xml:space="preserve">
     <value>Normal</value>
@@ -1207,6 +1218,7 @@
   </data>
   <data name="NotAllowOnDomain" xml:space="preserve">
     <value>Sorry! You are not allowed to login on this domain.</value>
+    <comment>87923</comment>
   </data>
   <data name="Note2" xml:space="preserve">
     <value>Note</value>
@@ -1245,6 +1257,7 @@
   </data>
   <data name="Original" xml:space="preserve">
     <value>Original</value>
+    <comment>87923</comment>
   </data>
   <data name="OwnWebsite" xml:space="preserve">
     <value>I have my own website</value>
@@ -1406,6 +1419,7 @@
   </data>
   <data name="RegisteredDate" xml:space="preserve">
     <value>Registered Date</value>
+    <comment>87923</comment>
   </data>
   <data name="Rejected" xml:space="preserve">
     <value>Rejected</value>
@@ -1434,6 +1448,7 @@
   </data>
   <data name="result" xml:space="preserve">
     <value>Results</value>
+    <comment>87923</comment>
   </data>
   <data name="RMB" xml:space="preserve">
     <value>RMB (Ren Min Bi)</value>
@@ -1479,6 +1494,7 @@
   </data>
   <data name="SelectDate" xml:space="preserve">
     <value>Select Date</value>
+    <comment>87923</comment>
   </data>
   <data name="SelectOne" xml:space="preserve">
     <value>Select One</value>
@@ -1569,6 +1585,7 @@
   </data>
   <data name="SubCategory" xml:space="preserve">
     <value>Sub Category</value>
+    <comment>87923</comment>
   </data>
   <data name="Subject" xml:space="preserve">
     <value>Subject</value>
@@ -1658,6 +1675,7 @@
   </data>
   <data name="Total" xml:space="preserve">
     <value>Total</value>
+    <comment>87923</comment>
   </data>
   <data name="TotalActive" xml:space="preserve">
     <value>Total Active Players</value>
@@ -1688,6 +1706,7 @@
   </data>
   <data name="TransactionID" xml:space="preserve">
     <value>Transaction ID</value>
+    <comment>87923</comment>
   </data>
   <data name="TrinidadandTobago" xml:space="preserve">
     <value>Trinidad and Tobago </value>
@@ -1700,6 +1719,7 @@
   </data>
   <data name="Turnover" xml:space="preserve">
     <value>Turnover</value>
+    <comment>87923</comment>
   </data>
   <data name="Type" xml:space="preserve">
     <value>Type</value>
@@ -1745,6 +1765,7 @@
   </data>
   <data name="USDEqv" xml:space="preserve">
     <value>USD Eqv</value>
+    <comment>87923</comment>
   </data>
   <data name="Username" xml:space="preserve">
     <value>User Name</value>
@@ -1793,12 +1814,14 @@
   </data>
   <data name="Year" xml:space="preserve">
     <value>Year</value>
+    <comment>87923</comment>
   </data>
   <data name="Yemen" xml:space="preserve">
     <value>Yemen </value>
   </data>
   <data name="YourCustomers" xml:space="preserve">
     <value>Your Customers</value>
+    <comment>87923</comment>
   </data>
   <data name="YourEmail" xml:space="preserve">
     <value>Your Email:</value>
@@ -1875,33 +1898,43 @@
   </data>
   <data name="CommissionReport" xml:space="preserve">
     <value>Commission Report</value>
+    <comment>87923</comment>
   </data>
   <data name="Temporary" xml:space="preserve">
     <value>Temporary</value>
+    <comment>87923</comment>
   </data>
   <data name="Uncalculated" xml:space="preserve">
     <value>Uncalculated</value>
+    <comment>87923</comment>
   </data>
   <data name="BankingFees" xml:space="preserve">
     <value>Banking Fees</value>
+    <comment>87923</comment>
   </data>
   <data name="CommRate" xml:space="preserve">
     <value>Comm. Rate</value>
+    <comment>87923</comment>
   </data>
   <data name="GrossWinLoss" xml:space="preserve">
     <value>Gross Win Loss</value>
+    <comment>87923</comment>
   </data>
   <data name="OperationalFee" xml:space="preserve">
     <value>Operational Fee</value>
+    <comment>87923</comment>
   </data>
   <data name="PlatformFee" xml:space="preserve">
     <value>Platform Fee</value>
+    <comment>87923</comment>
   </data>
   <data name="NoteCommissionCalculation" xml:space="preserve">
     <value>Commission = (Gross Win Loss - Platform Fee - Operational Fee - Banking Fees - Bonus) x Comm. Rate</value>
+    <comment>87923</comment>
   </data>
   <data name="ServerError" xml:space="preserve">
-    <value>An error occurred while processing your request! Please contact Administrator</value>
+    <value>An error occurred while processing your request! Please contact Administrator.</value>
+    <comment>87923</comment>
   </data>
   <data name="CasinoClubs" xml:space="preserve">
     <value>12BET CASINO CLUBS</value>
@@ -2096,8 +2129,45 @@
   </data>
   <data name="PCDevice" xml:space="preserve">
     <value>PC / Laptop</value>
+    <comment>87923</comment>
   </data>
   <data name="MobileDevice" xml:space="preserve">
     <value>Mobile</value>
+  </data>
+  <data name="MarketingTools" xml:space="preserve">
+    <value>Marketing Tools</value>
+    <comment>87923</comment>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>Statistics</value>
+    <comment>87923</comment>
+  </data>
+  <data name="AffiliateProgram" xml:space="preserve">
+    <value>AFFILIATE PROGRAM</value>
+    <comment>87923</comment>
+  </data>
+  <data name="AffiliateLogin" xml:space="preserve">
+    <value>AFFILIATE LOGIN</value>
+    <comment>87923</comment>
+  </data>
+  <data name="NotAffiliateMemberYet" xml:space="preserve">
+    <value>Not Affiliate Member Yet?</value>
+    <comment>87923</comment>
+  </data>
+  <data name="SignUpToAffiliateProgram" xml:space="preserve">
+    <value>Sign up to affiliate program and earn up to 40% monthly commission!</value>
+    <comment>87923</comment>
+  </data>
+  <data name="JoinNow" xml:space="preserve">
+    <value>JOIN NOW!</value>
+    <comment>87923</comment>
+  </data>
+  <data name="WelcomeBack" xml:space="preserve">
+    <value>Welcome back!</value>
+    <comment>87923</comment>
+  </data>
+  <data name="ForgotLoginDetail" xml:space="preserve">
+    <value>Forgot Login Details?</value>
+    <comment>87923</comment>
   </data>
 </root>

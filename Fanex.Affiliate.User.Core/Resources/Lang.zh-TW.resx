@@ -553,10 +553,7 @@
     <value>電子郵件地址無效</value>
   </data>
   <data name="EmailAddressIsRequired" xml:space="preserve">
-    <value>請填寫電子郵件地址</value>
-  </data>
-  <data name="EmailRequire" xml:space="preserve">
-    <value>請填寫電子郵件地址</value>
+    <value>請填寫電郵地址</value>
   </data>
   <data name="English" xml:space="preserve">
     <value>English</value>
@@ -1519,7 +1516,7 @@
     <value>瑞士</value>
   </data>
   <data name="SystemParlayDetailNote" xml:space="preserve">
-    <value>輸贏的進位值僅供參考。因此，所有輸贏相加的總計有可能和小計有差數。</value>
+    <value>盈虧金額計算四捨五入僅供參考，當總計所有實際損失金額時，小計金額可能與盈虧總和有差異。</value>
     <comment>78976</comment>
   </data>
   <data name="Taiwan" xml:space="preserve">
@@ -1571,7 +1568,7 @@
     <value>多哥</value>
   </data>
   <data name="Total" xml:space="preserve">
-    <value>總計</value>
+    <value>總數</value>
   </data>
   <data name="TotalActive" xml:space="preserve">
     <value>活躍玩家總數</value>
@@ -1691,7 +1688,7 @@
     <value>輸贏</value>
   </data>
   <data name="Year" xml:space="preserve">
-    <value>Year</value>
+    <value>年</value>
   </data>
   <data name="Yemen" xml:space="preserve">
     <value>葉門</value>
@@ -1917,5 +1914,128 @@
   </data>
   <data name="SignUpAffiliatesNow" xml:space="preserve">
     <value>立即註冊！</value>
+  </data>
+  <data name="CommissionReport" xml:space="preserve">
+    <value>傭金報表</value>
+  </data>
+  <data name="GrossWinLoss" xml:space="preserve">
+    <value>總盈虧</value>
+  </data>
+  <data name="PlatformFee" xml:space="preserve">
+    <value>平台費</value>
+  </data>
+  <data name="OperationalFee" xml:space="preserve">
+    <value>營運費</value>
+  </data>
+  <data name="BankingFees" xml:space="preserve">
+    <value>銀行手續費</value>
+  </data>
+  <data name="CommRate" xml:space="preserve">
+    <value>傭金比例</value>
+  </data>
+  <data name="CommShorted" xml:space="preserve">
+    <value>傭金</value>
+  </data>
+  <data name="NoteCommissionCalculation" xml:space="preserve">
+    <value>傭金=（總盈虧 — 平台費 — 營運費 — 銀行手續費 — 紅利）x 傭金比例</value>
+  </data>
+  <data name="Temporary" xml:space="preserve">
+    <value>暫時</value>
+  </data>
+  <data name="Uncalculated" xml:space="preserve">
+    <value>尚未計算</value>
+  </data>
+  <data name="ServerError" xml:space="preserve">
+    <value>處理您的請求時發生錯誤！ 請聯繫管理員。</value>
+  </data>
+  <data name="MemDepositInfo" xml:space="preserve">
+    <value>會員存款訊息</value>
+  </data>
+  <data name="AccountNumber" xml:space="preserve">
+    <value>銀行帳號</value>
+  </data>
+  <data name="BankCity" xml:space="preserve">
+    <value>城市／鄉鎮</value>
+  </data>
+  <data name="BankCountry" xml:space="preserve">
+    <value>州</value>
+  </data>
+  <data name="TransactionID" xml:space="preserve">
+    <value>交易代碼</value>
+  </data>
+  <data name="Original" xml:space="preserve">
+    <value>最初</value>
+  </data>
+  <data name="USDEqv" xml:space="preserve">
+    <value>USD價值</value>
+  </data>
+  <data name="MemberWithdrawalInfo" xml:space="preserve">
+    <value>會員提款訊息</value>
+  </data>
+  <data name="SelectDate" xml:space="preserve">
+    <value>選擇日期</value>
+  </data>
+  <data name="Device" xml:space="preserve">
+    <value>設備</value>
+  </data>
+  <data name="PCDevice" xml:space="preserve">
+    <value>桌上型電腦／筆記型電腦</value>
+  </data>
+  <data name="YourCustomers" xml:space="preserve">
+    <value>客戶訊息</value>
+  </data>
+  <data name="FirstDepositDate" xml:space="preserve">
+    <value>首次註冊日期</value>
+  </data>
+  <data name="MobileNumber" xml:space="preserve">
+    <value>手機號碼</value>
+  </data>
+  <data name="RegisteredDate" xml:space="preserve">
+    <value>註冊日期</value>
+  </data>
+  <data name="Non_Deposit" xml:space="preserve">
+    <value>無存款紀錄</value>
+  </data>
+  <data name="lblBetLists" xml:space="preserve">
+    <value>投注歷史</value>
+  </data>
+  <data name="result" xml:space="preserve">
+    <value>投注結果</value>
+  </data>
+  <data name="SubCategory" xml:space="preserve">
+    <value>附屬分類</value>
+  </data>
+  <data name="Note2" xml:space="preserve">
+    <value>注意事項</value>
+  </data>
+  <data name="NotAllowOnDomain" xml:space="preserve">
+    <value>很抱歉！您無法在此網域登錄。</value>
+  </data>
+  <data name="MarketingTools" xml:space="preserve">
+    <value>行銷工具</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>統計數據</value>
+  </data>
+  <data name="AffiliateProgram" xml:space="preserve">
+    <value>合作夥伴計劃</value>
+  </data>
+  <data name="AffiliateLogin" xml:space="preserve">
+    <value>合作夥伴登入</value>
+  </data>
+  <data name="NotAffiliateMemberYet" xml:space="preserve">
+    <value>還不是我們的合作夥伴？</value>
+  </data>
+  <data name="SignUpToAffiliateProgram" xml:space="preserve">
+    <value>註冊合作夥伴計劃，賺取每月高達40％的傭金！</value>
+  </data>
+  <data name="JoinNow" xml:space="preserve">
+    <value>立即加入！</value>
+  </data>
+  <data name="WelcomeBack" xml:space="preserve">
+    <value>很高興再次見到你！</value>
+  </data>
+  <data name="ForgotLoginDetail" xml:space="preserve">
+    <value>忘記登入訊息？</value>
   </data>
 </root>

@@ -147,4 +147,7 @@
   <data name="RecoverPassword1001" xml:space="preserve">
     <value>ระบุที่อยู่ เพื่อแจ้งเปลี่ยนพาสเวิดไม่ถูกต้อง.</value>
   </data>
+  <data name="RequireIMAccount" xml:space="preserve">
+    <value>อย่างน้อยคุณต้องระบุบัญชีแอพฯแชทออนไลน์หนึ่งบัญชีค่ะ</value>
+  </data>
 </root>

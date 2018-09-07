@@ -556,10 +556,7 @@
     <value>อีเมลล์แอดเดรสไม่ถูกต้อง</value>
   </data>
   <data name="EmailAddressIsRequired" xml:space="preserve">
-    <value>จำเป็นต้องมีอีเมลล์แอดเดรส</value>
-  </data>
-  <data name="EmailRequire" xml:space="preserve">
-    <value>จำเป็นต้องมีอีเมลล์แอดเดรส</value>
+    <value>ต้องระบุอีเมล์แอดเดรสค่ะ</value>
   </data>
   <data name="English" xml:space="preserve">
     <value>English</value>
@@ -1514,7 +1511,7 @@
     <value>สวิสเซอร์แลนด์</value>
   </data>
   <data name="SystemParlayDetailNote" xml:space="preserve">
-    <value>ยอดได้เสียปัดเศษใช้เป็นข้อมูลอ้างอิงเท่านั้น ดังนั้น ผลรวมยอดได้เสียทั้งหมดที่เกิดขึ้นจริงอาจจะแตกจากจำนวนยอดปัดเศษ</value>
+    <value>ยอดแพ้/ชนะที่อ้างอิงจะมีการปัดเศษให้เต็มจำนวนไว้ ดังนั้นยอดรวมที่แสดงในระบบอาจแตกต่างจากบ้าง เมื่อทำการคำนวณยอดแพ้/ชนะตามยอดเป็นจริง</value>
     <comment>78976</comment>
   </data>
   <data name="Taiwan" xml:space="preserve">
@@ -1605,7 +1602,7 @@
     <value>ตุรกี</value>
   </data>
   <data name="Turnover" xml:space="preserve">
-    <value>เทรินโอเวอร์</value>
+    <value>เทิร์นโอเวอร์</value>
   </data>
   <data name="Type" xml:space="preserve">
     <value>ชนิด</value>
@@ -1686,7 +1683,7 @@
     <value>ได้เสีย</value>
   </data>
   <data name="Year" xml:space="preserve">
-    <value>Year</value>
+    <value>ปี</value>
   </data>
   <data name="Yemen" xml:space="preserve">
     <value>เยเมน</value>
@@ -1912,5 +1909,128 @@
   </data>
   <data name="SignUpAffiliatesNow" xml:space="preserve">
     <value>สมัครได้เลยตอนนี้!</value>
+  </data>
+  <data name="CommissionReport" xml:space="preserve">
+    <value>รายงานค่าคอมมิชชั่น</value>
+  </data>
+  <data name="GrossWinLoss" xml:space="preserve">
+    <value>ยอดรวมแพ้/ชนะ</value>
+  </data>
+  <data name="PlatformFee" xml:space="preserve">
+    <value>ค่าธรรมเนียมแพลตฟอร์ม</value>
+  </data>
+  <data name="OperationalFee" xml:space="preserve">
+    <value>ค่าธรรมเนียมดำเนินการ</value>
+  </data>
+  <data name="BankingFees" xml:space="preserve">
+    <value>ค่าธรรมเนียมธุรกรรม</value>
+  </data>
+  <data name="CommRate" xml:space="preserve">
+    <value>เรทคอมมิชชั่น</value>
+  </data>
+  <data name="CommShorted" xml:space="preserve">
+    <value>ค่าคอมมิชชั่น</value>
+  </data>
+  <data name="NoteCommissionCalculation" xml:space="preserve">
+    <value>ค่าคอมมิชชั่น = (ยอดรวมแพ้/ชนะ - ค่าธรรมเนียมแพลตฟอร์ม - ค่าธรรมเนียมดำเนินการ - ค่าธรรมเนียมธุรกรรม - โบนัส) x เรทคอมมิชชั่น</value>
+  </data>
+  <data name="Temporary" xml:space="preserve">
+    <value>ยอดชั่วคราว</value>
+  </data>
+  <data name="Uncalculated" xml:space="preserve">
+    <value>ยังไม่สรุปยอด</value>
+  </data>
+  <data name="ServerError" xml:space="preserve">
+    <value>เกิดข้อผิดพลาดขณะดำเนินการคำขอของคุณ! กรุณาติดต่อเจ้าหน้าที่พันธมิตร</value>
+  </data>
+  <data name="MemDepositInfo" xml:space="preserve">
+    <value>ข้อมูลฝากเงินของสมาชิก</value>
+  </data>
+  <data name="AccountNumber" xml:space="preserve">
+    <value>หมายเลขบัญชี</value>
+  </data>
+  <data name="BankCity" xml:space="preserve">
+    <value>สาขาธนาคาร</value>
+  </data>
+  <data name="BankCountry" xml:space="preserve">
+    <value>ธนาคารประเทศ</value>
+  </data>
+  <data name="TransactionID" xml:space="preserve">
+    <value>หมายเลขธุรกรรม</value>
+  </data>
+  <data name="Original" xml:space="preserve">
+    <value>Original</value>
+  </data>
+  <data name="USDEqv" xml:space="preserve">
+    <value>เทียบเท่าUSD</value>
+  </data>
+  <data name="MemberWithdrawalInfo" xml:space="preserve">
+    <value>ข้อมูลถอนเงินของสมาชิก</value>
+  </data>
+  <data name="SelectDate" xml:space="preserve">
+    <value>วันที่เลือก</value>
+  </data>
+  <data name="Device" xml:space="preserve">
+    <value>อุปกรณ์ที่ใช้</value>
+  </data>
+  <data name="PCDevice" xml:space="preserve">
+    <value>PC / Laptop</value>
+  </data>
+  <data name="YourCustomers" xml:space="preserve">
+    <value>ลูกค้าของคุณ</value>
+  </data>
+  <data name="FirstDepositDate" xml:space="preserve">
+    <value>วันฝากเงินครั้งแรก</value>
+  </data>
+  <data name="MobileNumber" xml:space="preserve">
+    <value>เบอร์มือถือ</value>
+  </data>
+  <data name="RegisteredDate" xml:space="preserve">
+    <value>วันที่สมัครใช้งาน</value>
+  </data>
+  <data name="Non_Deposit" xml:space="preserve">
+    <value>Non-Deposit</value>
+  </data>
+  <data name="lblBetLists" xml:space="preserve">
+    <value>รายการเดิมพัน</value>
+  </data>
+  <data name="result" xml:space="preserve">
+    <value>ผลเดิมพัน</value>
+  </data>
+  <data name="SubCategory" xml:space="preserve">
+    <value>ประเภท</value>
+  </data>
+  <data name="Note2" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="NotAllowOnDomain" xml:space="preserve">
+    <value>ขออภัยค่ะ! คุณไม่สามารถเข้าสู่ระบบจากโดเมนนี้</value>
+  </data>
+  <data name="MarketingTools" xml:space="preserve">
+    <value>เครื่องมือการตลาด</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>สถิติเว็บไซต์</value>
+  </data>
+  <data name="AffiliateProgram" xml:space="preserve">
+    <value>โปรแกรมพันธมิตร</value>
+  </data>
+  <data name="AffiliateLogin" xml:space="preserve">
+    <value>เข้าสู่ระบบพันธมิตร</value>
+  </data>
+  <data name="NotAffiliateMemberYet" xml:space="preserve">
+    <value>ยังไม่ได้สมัครพันธมิตรหรอคะ?</value>
+  </data>
+  <data name="SignUpToAffiliateProgram" xml:space="preserve">
+    <value>สมัครเข้าร่วมโปรแกรมพันธมิตร โปรโมทและรับรายได้สูงสุด 40% ทุกเดือน!</value>
+  </data>
+  <data name="JoinNow" xml:space="preserve">
+    <value>สมัครตอนนี้!</value>
+  </data>
+  <data name="WelcomeBack" xml:space="preserve">
+    <value>ยินดีต้อนรับเข้าสู่โปรแกรมพันธมิตรค่ะ!</value>
+  </data>
+  <data name="ForgotLoginDetail" xml:space="preserve">
+    <value>ลืมยูสเซอร์และรหัสผ่าน?</value>
   </data>
 </root>

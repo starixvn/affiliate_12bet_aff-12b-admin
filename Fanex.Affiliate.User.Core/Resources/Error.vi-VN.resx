@@ -147,4 +147,7 @@
   <data name="RecoverPassword1001" xml:space="preserve">
     <value>Địa chỉ bạn đã sử dụng để yêu cầu mật khẩu mới không hợp lệ.</value>
   </data>
+  <data name="RequireIMAccount" xml:space="preserve">
+    <value>Bạn cần có ít nhất 1 tài khoản IM.</value>
+  </data>
 </root>

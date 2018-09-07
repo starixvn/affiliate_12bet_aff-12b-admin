@@ -551,9 +551,6 @@
   <data name="EmailAddressIsRequired" xml:space="preserve">
     <value>La dirección de correo electrónico es obligatoria</value>
   </data>
-  <data name="EmailRequire" xml:space="preserve">
-    <value>La dirección de correo electrónico es obligatoria</value>
-  </data>
   <data name="English" xml:space="preserve">
     <value>English</value>
   </data>

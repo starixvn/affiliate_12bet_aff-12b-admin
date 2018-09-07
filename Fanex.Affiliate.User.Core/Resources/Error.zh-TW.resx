@@ -147,4 +147,7 @@
   <data name="RecoverPassword1001" xml:space="preserve">
     <value>您用於申請新密碼的地址無效</value>
   </data>
+  <data name="RequireIMAccount" xml:space="preserve">
+    <value>請填寫Line帳號</value>
+  </data>
 </root>

@@ -295,7 +295,7 @@
     <value>Bolivia </value>
   </data>
   <data name="Bonus" xml:space="preserve">
-    <value>Tiền thưởng</value>
+    <value>Thưởng</value>
   </data>
   <data name="BosniaandHerzegovina" xml:space="preserve">
     <value>Bosnia và Herzegovina </value>
@@ -559,7 +559,7 @@
     <value>Địa chỉ email không hợp lệ</value>
   </data>
   <data name="EmailAddressIsRequired" xml:space="preserve">
-    <value>Địa chỉ email là bắt buộc</value>
+    <value>Bạn cần điền Địa chỉ eMail.</value>
   </data>
   <data name="English" xml:space="preserve">
     <value>English</value>
@@ -1562,7 +1562,7 @@
     <value>Togo </value>
   </data>
   <data name="Total" xml:space="preserve">
-    <value>Tổng cộng</value>
+    <value>Tổng Cộng</value>
   </data>
   <data name="TotalActive" xml:space="preserve">
     <value>Tổng số người chơi có giao dịch</value>
@@ -1601,7 +1601,7 @@
     <value>Thổ Nhĩ Kỳ </value>
   </data>
   <data name="Turnover" xml:space="preserve">
-    <value>Tổng tiền đặt cược</value>
+    <value>Doanh Thu</value>
   </data>
   <data name="Type" xml:space="preserve">
     <value>Loại giao dịch</value>
@@ -1910,5 +1910,131 @@ Cập Nhật Mới Nhất</value>
   </data>
   <data name="SignUpAffiliatesNow" xml:space="preserve">
     <value>ĐĂNG KÝ NGAY!</value>
+  </data>
+  <data name="CommissionReport" xml:space="preserve">
+    <value>Báo Cáo Hoa Hồng Đại Lý</value>
+  </data>
+  <data name="GrossWinLoss" xml:space="preserve">
+    <value>Tổng Thắng Thua</value>
+  </data>
+  <data name="PlatformFee" xml:space="preserve">
+    <value>Chi Phí Nền Tảng</value>
+  </data>
+  <data name="OperationalFee" xml:space="preserve">
+    <value>Chi Phí Vận Hành</value>
+  </data>
+  <data name="BankingFees" xml:space="preserve">
+    <value>Chi Phí Ngân Hàng</value>
+  </data>
+  <data name="CommRate" xml:space="preserve">
+    <value>% Hoa Hồng</value>
+  </data>
+  <data name="CommShorted" xml:space="preserve">
+    <value>Hoa Hồng Đại Lý</value>
+  </data>
+  <data name="NoteCommissionCalculation" xml:space="preserve">
+    <value>Hoa Hồng Đại Lý = (Tổng Thắng Thua - Chi Phí Nền Tảng - Chi Phí Vận Hành - Chi Phí Ngân Hàng - Thưởng) x % Hoa Hồng</value>
+  </data>
+  <data name="Temporary" xml:space="preserve">
+    <value>Tạm Thời</value>
+  </data>
+  <data name="Uncalculated" xml:space="preserve">
+    <value>Đang Chờ Tính</value>
+  </data>
+  <data name="ServerError" xml:space="preserve">
+    <value>Lỗi xảy ra khi bạn gửi yêu cầu. Vui lòng liên hệ Bộ phận hỗ trợ.</value>
+  </data>
+  <data name="MemDepositInfo" xml:space="preserve">
+    <value>Thông tin Gửi tiền của Thành viên</value>
+  </data>
+  <data name="AccountNumber" xml:space="preserve">
+    <value>Số tài khoản (Acc. No.)</value>
+  </data>
+  <data name="BankCity" xml:space="preserve">
+    <value>Thành phố (Bank City)</value>
+  </data>
+  <data name="BankCountry" xml:space="preserve">
+    <value>Quốc Gia (Bank Country)</value>
+  </data>
+  <data name="TransactionID" xml:space="preserve">
+    <value>Mã số giao dịch (Transaction ID)</value>
+  </data>
+  <data name="Original" xml:space="preserve">
+    <value>Số tiền gốc</value>
+  </data>
+  <data name="USDEqv" xml:space="preserve">
+    <value>Quy đổi USD</value>
+  </data>
+  <data name="MemberWithdrawalInfo" xml:space="preserve">
+    <value>Thông Tin Rút Tiền của Thành viên</value>
+  </data>
+  <data name="SelectDate" xml:space="preserve">
+    <value>Chọn Ngày</value>
+  </data>
+  <data name="Device" xml:space="preserve">
+    <value>Thiết bị</value>
+  </data>
+  <data name="PCDevice" xml:space="preserve">
+    <value>PC / Laptop</value>
+  </data>
+  <data name="YourCustomers" xml:space="preserve">
+    <value>Khách Hàng</value>
+  </data>
+  <data name="FirstDepositDate" xml:space="preserve">
+    <value>Ngày Gửi Tiền Lần Đầu</value>
+  </data>
+  <data name="MobileNumber" xml:space="preserve">
+    <value>Số Di Động</value>
+  </data>
+  <data name="RegisteredDate" xml:space="preserve">
+    <value>Ngày Đăng Ký</value>
+  </data>
+  <data name="Non_Deposit" xml:space="preserve">
+    <value>Chưa Gửi Tiền</value>
+  </data>
+  <data name="lblBetLists" xml:space="preserve">
+    <value>Danh Sách Vé Cược</value>
+  </data>
+  <data name="result" xml:space="preserve">
+    <value>Kết Quả</value>
+  </data>
+  <data name="SubCategory" xml:space="preserve">
+    <value>Loại</value>
+  </data>
+  <data name="Note2" xml:space="preserve">
+    <value>Ghi Chú</value>
+  </data>
+  <data name="SystemParlayDetailNote" xml:space="preserve">
+    <value>Thắng Thua là số nguyên chỉ mang tính tham khảo. Do đó, số tiền thực có thể sẽ khác với Tổng Thắng Thua khi hệ thống tính Tổng Thắng Thua thực.</value>
+  </data>
+  <data name="NotAllowOnDomain" xml:space="preserve">
+    <value>Xin lỗi. Bạn không thể đăng nhập tài khoản này.</value>
+  </data>
+  <data name="MarketingTools" xml:space="preserve">
+    <value>Công Cụ Marketing</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>Thống Kê</value>
+  </data>
+  <data name="AffiliateProgram" xml:space="preserve">
+    <value>Chương Trình Đại Lý</value>
+  </data>
+  <data name="AffiliateLogin" xml:space="preserve">
+    <value>ĐĂNG NHẬP TÀI KHOẢN ĐẠI LÝ</value>
+  </data>
+  <data name="NotAffiliateMemberYet" xml:space="preserve">
+    <value>Chưa là Hội Viên?</value>
+  </data>
+  <data name="SignUpToAffiliateProgram" xml:space="preserve">
+    <value>Đăng ký tham gia Đại lý 12BET để nhận thưởng 40% Hoa Hồng Mỗi Tháng!</value>
+  </data>
+  <data name="JoinNow" xml:space="preserve">
+    <value>ĐĂNG KÝ</value>
+  </data>
+  <data name="WelcomeBack" xml:space="preserve">
+    <value>Chào Mừng Bạn Đã Trở Lại !</value>
+  </data>
+  <data name="ForgotLoginDetail" xml:space="preserve">
+    <value>Quên thông tin đăng nhập?</value>
   </data>
 </root>

@@ -187,6 +187,24 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AFFILIATE LOGIN.
+        /// </summary>
+        public static string AffiliateLogin {
+            get {
+                return ResourceManager.GetString("AffiliateLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AFFILIATE PROGRAM.
+        /// </summary>
+        public static string AffiliateProgram {
+            get {
+                return ResourceManager.GetString("AffiliateProgram", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to I agree to the Terms &amp; Conditions of 12BET Affiliate..
         /// </summary>
         public static string AgreeTermNCondition {
@@ -1168,7 +1186,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Comm.
+        ///   Looks up a localized string similar to Comm..
         /// </summary>
         public static string CommShorted {
             get {
@@ -1590,15 +1608,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string EmailAddressIsRequired {
             get {
                 return ResourceManager.GetString("EmailAddressIsRequired", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Email Address is required.
-        /// </summary>
-        public static string EmailRequire {
-            get {
-                return ResourceManager.GetString("EmailRequire", resourceCulture);
             }
         }
         
@@ -2296,6 +2305,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Forgot Login Details?.
+        /// </summary>
+        public static string ForgotLoginDetail {
+            get {
+                return ResourceManager.GetString("ForgotLoginDetail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to France.
         /// </summary>
         public static string France {
@@ -2728,6 +2746,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to JOIN NOW!.
+        /// </summary>
+        public static string JoinNow {
+            get {
+                return ResourceManager.GetString("JoinNow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Jordan .
         /// </summary>
         public static string Jordan {
@@ -3066,6 +3093,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string March {
             get {
                 return ResourceManager.GetString("March", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Marketing Tools.
+        /// </summary>
+        public static string MarketingTools {
+            get {
+                return ResourceManager.GetString("MarketingTools", resourceCulture);
             }
         }
         
@@ -3550,6 +3586,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Norway {
             get {
                 return ResourceManager.GetString("Norway", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not Affiliate Member Yet?.
+        /// </summary>
+        public static string NotAffiliateMemberYet {
+            get {
+                return ResourceManager.GetString("NotAffiliateMemberYet", resourceCulture);
             }
         }
         
@@ -4598,7 +4643,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occurred while processing your request! Please contact Administrator.
+        ///   Looks up a localized string similar to An error occurred while processing your request! Please contact Administrator..
         /// </summary>
         public static string ServerError {
             get {
@@ -4666,6 +4711,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string SignUpAffiliatesNow {
             get {
                 return ResourceManager.GetString("SignUpAffiliatesNow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign up to affiliate program and earn up to 40% monthly commission!.
+        /// </summary>
+        public static string SignUpToAffiliateProgram {
+            get {
+                return ResourceManager.GetString("SignUpToAffiliateProgram", resourceCulture);
             }
         }
         
@@ -4864,6 +4918,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Statistic {
             get {
                 return ResourceManager.GetString("Statistic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Statistics.
+        /// </summary>
+        public static string Statistics {
+            get {
+                return ResourceManager.GetString("Statistics", resourceCulture);
             }
         }
         
@@ -5612,6 +5675,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string WebsiteURLIsRequired {
             get {
                 return ResourceManager.GetString("WebsiteURLIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome back!.
+        /// </summary>
+        public static string WelcomeBack {
+            get {
+                return ResourceManager.GetString("WelcomeBack", resourceCulture);
             }
         }
         

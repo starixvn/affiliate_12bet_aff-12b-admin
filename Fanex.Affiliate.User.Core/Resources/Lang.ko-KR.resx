@@ -127,7 +127,7 @@
     <value>12BET 플레이어 계좌</value>
   </data>
   <data name="AccountNumber" xml:space="preserve">
-    <value>어카운트넘버</value>
+    <value>계좌 번호</value>
   </data>
   <data name="AccOverview" xml:space="preserve">
     <value>계정개요</value>
@@ -250,10 +250,10 @@
     <value>은행 주소가 필요합니다.</value>
   </data>
   <data name="BankCity" xml:space="preserve">
-    <value>시티 뱅크</value>
+    <value>지점</value>
   </data>
   <data name="BankCountry" xml:space="preserve">
-    <value>컨츄리 뱅크</value>
+    <value>국가</value>
   </data>
   <data name="BankName" xml:space="preserve">
     <value>은행명</value>
@@ -566,10 +566,7 @@
     <value>이메일 주소가 잘못되었습니다.</value>
   </data>
   <data name="EmailAddressIsRequired" xml:space="preserve">
-    <value>이메일 주소가 필요합니다.</value>
-  </data>
-  <data name="EmailRequire" xml:space="preserve">
-    <value>이메일 주소가 필요합니다.</value>
+    <value>이메일 주소 입력</value>
   </data>
   <data name="English" xml:space="preserve">
     <value>English</value>
@@ -764,7 +761,7 @@
     <value>핀란드</value>
   </data>
   <data name="FirstDepositDate" xml:space="preserve">
-    <value>1st 디파짓</value>
+    <value>첫입금 날짜</value>
   </data>
   <data name="FirstNameIsRequired" xml:space="preserve">
     <value>이름이 요구됩니다</value>
@@ -1034,7 +1031,7 @@
     <value>회원 탈퇴 정보</value>
   </data>
   <data name="MemDepositInfo" xml:space="preserve">
-    <value>디파짓인포메이션멤버</value>
+    <value>회원 입금 정보</value>
   </data>
   <data name="Message" xml:space="preserve">
     <value>메세지</value>
@@ -1061,7 +1058,7 @@
     <value>MSN</value>
   </data>
   <data name="MobileNumber" xml:space="preserve">
-    <value>핸드폰</value>
+    <value>전화번호</value>
   </data>
   <data name="Moldova" xml:space="preserve">
     <value>몰도바</value>
@@ -1076,7 +1073,7 @@
     <value>몽골</value>
   </data>
   <data name="Month" xml:space="preserve">
-    <value>달</value>
+    <value>월</value>
   </data>
   <data name="MonthlyWinlost" xml:space="preserve">
     <value>이달의 총 이기고진금액</value>
@@ -1157,7 +1154,7 @@
     <value>없음</value>
   </data>
   <data name="Non_Deposit" xml:space="preserve">
-    <value>비 예금</value>
+    <value>미입금</value>
   </data>
   <data name="Normal" xml:space="preserve">
     <value>표준</value>
@@ -1196,7 +1193,7 @@
     <value>오만</value>
   </data>
   <data name="Original" xml:space="preserve">
-    <value>오리지널</value>
+    <value>원본</value>
   </data>
   <data name="OwnWebsite" xml:space="preserve">
     <value>웹사이트가 있습니다.</value>
@@ -1355,7 +1352,7 @@
     <value>신청를 잘 접수되었습니다.  &lt;br/&gt;&lt;br/&gt; 귀하의 웹사이트와 자세한 신청서는 12bet제휴팀에 의해 재 검토됩니다.</value>
   </data>
   <data name="RegisteredDate" xml:space="preserve">
-    <value>레지스트레이션</value>
+    <value>가입일</value>
   </data>
   <data name="Rejected" xml:space="preserve">
     <value>거부되었습니다.</value>
@@ -1514,7 +1511,7 @@
     <value>현황</value>
   </data>
   <data name="SubCategory" xml:space="preserve">
-    <value>분류</value>
+    <value>카테고리 분류</value>
   </data>
   <data name="Subject" xml:space="preserve">
     <value>제목</value>
@@ -1622,7 +1619,7 @@
     <value>거래,이체</value>
   </data>
   <data name="TransactionID" xml:space="preserve">
-    <value>트랜잭션 ID</value>
+    <value>거래 ID</value>
   </data>
   <data name="TrinidadandTobago" xml:space="preserve">
     <value>트리니다드 토바고</value>
@@ -1634,7 +1631,7 @@
     <value>터키</value>
   </data>
   <data name="Turnover" xml:space="preserve">
-    <value>베팅금액</value>
+    <value>턴오버</value>
   </data>
   <data name="Type" xml:space="preserve">
     <value>유형</value>
@@ -1727,7 +1724,7 @@
     <value>예멘</value>
   </data>
   <data name="YourCustomers" xml:space="preserve">
-    <value>멤버유어</value>
+    <value>회원</value>
   </data>
   <data name="YourEmail" xml:space="preserve">
     <value>귀하의 이메일:</value>
@@ -1950,5 +1947,86 @@
   </data>
   <data name="SignUpAffiliatesNow" xml:space="preserve">
     <value>제휴 가입!</value>
+  </data>
+  <data name="CommissionReport" xml:space="preserve">
+    <value>커미션 리포트</value>
+  </data>
+  <data name="GrossWinLoss" xml:space="preserve">
+    <value>총 윈/로스</value>
+  </data>
+  <data name="PlatformFee" xml:space="preserve">
+    <value>플랫폼비용</value>
+  </data>
+  <data name="OperationalFee" xml:space="preserve">
+    <value>운영비</value>
+  </data>
+  <data name="BankingFees" xml:space="preserve">
+    <value>뱅킹수수료</value>
+  </data>
+  <data name="CommRate" xml:space="preserve">
+    <value>커미션(%)</value>
+  </data>
+  <data name="CommShorted" xml:space="preserve">
+    <value>커미션</value>
+  </data>
+  <data name="NoteCommissionCalculation" xml:space="preserve">
+    <value>총 커미션 = (총 윈/로스 - 플랫폼사용료 - 운영비 -뱅킹수수료 - 보너스 x 커미션(%)</value>
+  </data>
+  <data name="Temporary" xml:space="preserve">
+    <value>임시</value>
+  </data>
+  <data name="Uncalculated" xml:space="preserve">
+    <value>미정산</value>
+  </data>
+  <data name="ServerError" xml:space="preserve">
+    <value>요청 오류! 관리자에게 문의하세요.</value>
+  </data>
+  <data name="Device" xml:space="preserve">
+    <value>디바이스</value>
+  </data>
+  <data name="PCDevice" xml:space="preserve">
+    <value>PC / 랜탑</value>
+  </data>
+  <data name="lblBetLists" xml:space="preserve">
+    <value>베팅 내역</value>
+  </data>
+  <data name="result" xml:space="preserve">
+    <value>결과</value>
+  </data>
+  <data name="Note2" xml:space="preserve">
+    <value>비고</value>
+  </data>
+  <data name="SystemParlayDetailNote" xml:space="preserve">
+    <value>참고용으로 윈/로스를 반올림하였습니다. 실제 윈/로스의 합산에 따라서 총 금액이 다를 수 있습니다.</value>
+  </data>
+  <data name="NotAllowOnDomain" xml:space="preserve">
+    <value>죄송합니다! 현재 도메인을 이용할 수 없습니다.</value>
+  </data>
+  <data name="MarketingTools" xml:space="preserve">
+    <value>마케팅 도구</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>통계</value>
+  </data>
+  <data name="AffiliateProgram" xml:space="preserve">
+    <value>제휴 프로그램</value>
+  </data>
+  <data name="AffiliateLogin" xml:space="preserve">
+    <value>제휴 로그인</value>
+  </data>
+  <data name="NotAffiliateMemberYet" xml:space="preserve">
+    <value>제휴 가입 전이신가요?</value>
+  </data>
+  <data name="SignUpToAffiliateProgram" xml:space="preserve">
+    <value>제휴 프로그램에 가입하시고 최대 40% 커미션을 받으세요!</value>
+  </data>
+  <data name="JoinNow" xml:space="preserve">
+    <value>제휴 가입!</value>
+  </data>
+  <data name="WelcomeBack" xml:space="preserve">
+    <value>반갑습니다!</value>
+  </data>
+  <data name="ForgotLoginDetail" xml:space="preserve">
+    <value> 로그인 정보 찾기</value>
   </data>
 </root>

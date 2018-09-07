@@ -560,9 +560,6 @@
   <data name="EmailAddressIsRequired" xml:space="preserve">
     <value>Eメールアドレスが無効です</value>
   </data>
-  <data name="EmailRequire" xml:space="preserve">
-    <value>メールアドレスが必要です</value>
-  </data>
   <data name="English" xml:space="preserve">
     <value>English</value>
   </data>

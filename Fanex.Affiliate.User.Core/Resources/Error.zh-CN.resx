@@ -147,4 +147,7 @@
   <data name="RecoverPassword1001" xml:space="preserve">
     <value>您用于申请新密码的地址无效。</value>
   </data>
+  <data name="RequireIMAccount" xml:space="preserve">
+    <value>请填写QQ或微信账号</value>
+  </data>
 </root>

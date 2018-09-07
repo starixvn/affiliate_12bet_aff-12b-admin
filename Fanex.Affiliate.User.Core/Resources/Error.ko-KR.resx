@@ -147,4 +147,7 @@
   <data name="RecoverPassword1001" xml:space="preserve">
     <value>새비밀번호를 발급받기위한 이메일주소가 유효하지 않습니다.</value>
   </data>
+  <data name="RequireIMAccount" xml:space="preserve">
+    <value>최소 한개 이상의 IM계정이 필요합니다.</value>
+  </data>
 </root>
