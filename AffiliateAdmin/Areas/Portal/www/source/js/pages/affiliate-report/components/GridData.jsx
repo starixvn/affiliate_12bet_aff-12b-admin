@@ -39,8 +39,8 @@ export class GridData extends Component {
         return [
             <Row>
                 <Cell header={true} colWidth={100} rowSpan="2">Affiliate</Cell>
-                <Cell header={true} colWidth={50} rowSpan="2">Total Click</Cell>
-                <Cell header={true} colWidth={50} rowSpan="2">Unique Click</Cell>
+                <Cell header={true} colWidth={70} rowSpan="2">Total Click</Cell>
+                <Cell header={true} colWidth={70} rowSpan="2">Unique Click</Cell>
                 <Cell header={true} colWidth={50} rowSpan="2">Signup</Cell>
                 <Cell header={true} colWidth={50} rowSpan="2">FDM</Cell>
                 <Cell header={true} colWidth={50} rowSpan="2">Active Member</Cell>
@@ -50,8 +50,8 @@ export class GridData extends Component {
                 <Cell header={true} colWidth={60} rowSpan="2">Month on Month</Cell>
             </Row>,
             <Row>
-                <Cell header={true} colWidth={70}>Deposit</Cell>
-                <Cell header={true} colWidth={70}>Withdrawal</Cell>
+                <Cell header={true} colWidth={60}>Deposit</Cell>
+                <Cell header={true} colWidth={60}>Withdrawal</Cell>
                 <Cell header={true} colWidth={100}>Turnover</Cell>
                 <Cell header={true} colWidth={100}>WinLoss</Cell>
                 <Cell header={true} colWidth={70}>Bonus</Cell>
