@@ -8,7 +8,6 @@ import { format, formatDecimal } from '../../../modules/numberFormat';
 import { setPagingOption } from '../actions';
 import { post } from '../../../modules/ajaxRequest';
 import { allProduct } from '../modules/constants';
-import { resolveClientUrl } from '../../../modules/utils';
 
 export class GridData extends Component {
     constructor(props) {

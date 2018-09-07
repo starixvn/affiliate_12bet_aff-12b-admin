@@ -11,7 +11,8 @@
 @section scripts{
     <script type="text/javascript">
         window.initialState = {
-            productList: @Html.Raw(Json.Encode(Model.ProductList))
+            productList: @Html.Raw(Json.Encode(Model.ProductList)),
+            languageList: @Html.Raw(Json.Encode(Model.LanguageList))
         }
     </script>
     <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/report/affiliate-report.js")"></script>

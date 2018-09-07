@@ -7,6 +7,8 @@ import { SET_REPORT_TITLE, SET_PARAM } from '../actions/types';
 
 const productList = createReducer([], {});
 
+const languageList = createReducer({}, {});
+
 const reportTitle = createReducer('', {
     [SET_REPORT_TITLE](prevState, action) {
         return action.data;
@@ -23,5 +25,6 @@ export default combineReducers({
     productList,
     pagingOption,
     reportTitle,
-    param
+    param,
+    languageList
 });

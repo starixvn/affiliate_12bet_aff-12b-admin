@@ -1712,7 +1712,6 @@
     <Content Include="Areas\Portal\www\source\js\components\multiple-select\index.jsx" />
     <Content Include="Areas\Portal\www\source\style\components\_multiple-select.scss" />
     <Content Include="Areas\Portal\www\source\style\vendors\multiple-select.scss" />
-    <Content Include="Areas\Portal\www\source\style\components\_pager.scss" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\CommGroupInfo.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\deduction\DeductionSetting.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\deduction\PlatformFeeItem.jsx" />

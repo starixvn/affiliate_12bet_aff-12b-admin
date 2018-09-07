@@ -5,8 +5,8 @@ import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import MultipleSelect from '../../../components/multiple-select';
 import MonthPicker from '@9softstudio/react-monthpicker';
-import { sortByValues, allProduct, languageList, minMonthRange } from '../modules/constants';
-import {setReportTitle, setParam } from '../actions';
+import { sortByValues, allProduct, minMonthRange } from '../modules/constants';
+import { setReportTitle, setParam } from '../actions';
 import { formatUnit } from '../../../modules/utils';
 
 class Filter extends Component {
@@ -26,6 +26,16 @@ class Filter extends Component {
             sortBy: sortByValues.Affiliate,
             isSortAscending: true,
             selectedProductList: allProduct
+        }
+    }
+
+    componentDidMount() {
+        this.handleClickSearch();
+    }
+
+    handlePressEnter = (event) => {
+        if(event.charCode === 13){
+            this.handleClickSearch();
         }
     }
 
@@ -69,10 +79,9 @@ class Filter extends Component {
         const { selectedProductList, selectedLanguage, fromMonth, toMonth, isGetAll, sortBy, isSortAscending } = this.state;
         const { productList, pagingOption } = this.props;
 
-        const reportTitle = this._buildReportTitle(this.searchedAffiliate, selectedLanguage, fromMonth, toMonth);
-        this.props.setReportTitle(reportTitle);
-
         const isCheckedAllProduct = selectedProductList === allProduct || selectedProductList.split(',').length === productList.length;
+        const reportTitle = this._buildReportTitle(isCheckedAllProduct);
+        this.props.setReportTitle(reportTitle);
 
         const param = {
             UserName: this.searchedAffiliate,
@@ -90,14 +99,21 @@ class Filter extends Component {
         this.props.setParam(param);
     }
 
-    _buildReportTitle(username, selectedLanguage, fromMonth, toMonth) {
-        const language = languageList[selectedLanguage] || 'All languages';
-        const from = `${formatUnit(fromMonth.month)}/${fromMonth.year}`;
-        const to = `${formatUnit(toMonth.month)}/${toMonth.year}`;
-        const productList = this._getProductDataSource();
-        const productName = productList.filter(p => p.Checked).map(p => p.ProductName).join(',');
+    _buildReportTitle(isCheckedAllProduct) {
+        const { languageList } = this.props;
+        const { selectedLanguage, fromMonth, toMonth, isGetAll } = this.state;
 
-        return `AFFILIATE REPORT ${username && '- USERNAME \'' + username + '\''} - ${language} ${productName && '- ' + productName} - FROM ${from} TO ${to}`;
+        const userNameTitle = `${this.searchedAffiliate && '- USERNAME \'' + this.searchedAffiliate + '\''}`;
+        const language = languageList[selectedLanguage] || 'All languages';
+
+        const productList = this._getProductDataSource();
+        const productName = isCheckedAllProduct ? 'All Products' : productList.filter(p => p.Checked).map(p => p.ProductName).join(',');
+
+        const fromToTitle = isGetAll ?
+            'Get All Dates' :
+            `FROM ${formatUnit(fromMonth.month)}/${fromMonth.year} TO ${formatUnit(toMonth.month)}/${toMonth.year}`;
+
+        return `AFFILIATE REPORT ${userNameTitle} - ${language} ${productName && '- ' + productName} - ${fromToTitle}`;
     }
 
     _getProductDataSource = () => {
@@ -116,6 +132,7 @@ class Filter extends Component {
 
     render() {
         const { selectedLanguage, fromMonth, toMonth, isGetAll, sortBy, isSortAscending } = this.state;
+        const { languageList } = this.props;
 
         const productDataSource = this._getProductDataSource();
 
@@ -124,7 +141,10 @@ class Filter extends Component {
                 <Form inline tag="div">
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                         <Label for="Affiliate" className="mr-sm-2">Affiliate</Label>
-                        <Input type="text" name="Affiliate" id="Affiliate" onChange={this.handleChangeAffiliate} defaultValue={this.searchedAffiliate} />
+                        <Input type="text" name="Affiliate" id="Affiliate"
+                            onKeyPress={this.handlePressEnter}
+                            onChange={this.handleChangeAffiliate}
+                            defaultValue={this.searchedAffiliate} />
                     </FormGroup>
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                         <Input type="select" name="Language" id="Language" value={selectedLanguage} onChange={this.handleChangeLanguage}>
@@ -152,16 +172,16 @@ class Filter extends Component {
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                         <Label className="mr-sm-2">From</Label>
                         <MonthPicker minMonth={minMonthRange.month} minYear={minMonthRange.year} enable={!isGetAll}
-                            selectedDropdownYear={fromMonth.year} 
-                            selectedMonth={fromMonth.month} 
+                            selectedDropdownYear={fromMonth.year}
+                            selectedMonth={fromMonth.month}
                             onSelect={this.handleSelectFromMonth}
                             iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)} />
                     </FormGroup>
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                         <Label className="mr-sm-2">To</Label>
                         <MonthPicker minMonth={minMonthRange.month} minYear={minMonthRange.year} enable={!isGetAll}
-                            selectedDropdownYear={toMonth.year} 
-                            selectedMonth={toMonth.month} 
+                            selectedDropdownYear={toMonth.year}
+                            selectedMonth={toMonth.month}
                             onSelect={this.handleSelectToMonth}
                             iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)} />
                     </FormGroup>
@@ -196,8 +216,8 @@ class Filter extends Component {
     }
 }
 
-function mapStateToProps({ productList, pagingOption }) {
-    return Object.assign({}, { productList, pagingOption });
+function mapStateToProps({ productList, pagingOption, languageList }) {
+    return Object.assign({}, { productList, pagingOption, languageList });
 }
 
 function mapDispatchToProps(dispatch) {

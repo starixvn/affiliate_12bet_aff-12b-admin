@@ -1,10 +1,25 @@
-﻿using System.Globalization;
+﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Threading;
+using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.Repository;
 
 namespace Fanex.Affiliate.Admin.Core.Services
 {
     public class LanguageService : ILanguageService
     {
+        private readonly ILanguageRepository _languageRepository;
+
+        public LanguageService(ILanguageRepository languageRepository)
+        {
+            _languageRepository = languageRepository;
+        }
+
+        public IEnumerable<Language> GetLanguageList()
+        {
+            return _languageRepository.GetLanguageList();
+        }
+
         public void SetCulture(string languageCode)
         {
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(languageCode);

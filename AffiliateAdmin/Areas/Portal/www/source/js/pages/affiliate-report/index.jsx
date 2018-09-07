@@ -20,7 +20,15 @@ function configureStore(initialState) {
 const productList = window.initialState.productList.map(p => {
     return Object.assign({}, p, { Checked: true });
 })
-const store = configureStore({ productList });
+
+const languageList = [...window.initialState.languageList];
+const language = {};
+for(let i = 0; i < languageList.length; i++){
+    const languageItem = languageList[i];
+    language[languageItem.LanguageCode] = languageItem.LanguageName;
+}
+
+const store = configureStore({ productList, languageList: language });
 
 export default class App extends React.Component {
     constructor(props) {

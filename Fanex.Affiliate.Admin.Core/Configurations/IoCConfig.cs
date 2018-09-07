@@ -64,6 +64,7 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
             builder.RegisterType<AffiliateService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<EmailService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<MailProcessor>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<LanguageRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<LanguageService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<AuthRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<AffiliateReportRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();

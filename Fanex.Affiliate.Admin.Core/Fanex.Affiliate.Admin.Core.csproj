@@ -167,6 +167,7 @@
     <Compile Include="DTO\Email\AffInformationEmail.cs" />
     <Compile Include="DTO\Email\EmailBase.cs" />
     <Compile Include="DTO\Email\WithdrawalEmail.cs" />
+    <Compile Include="DTO\Language.cs" />
     <Compile Include="DTO\Product.cs" />
     <Compile Include="DTO\Report\AffiliateReportMain.cs" />
     <Compile Include="DTO\Report\AffiliateReportMainEntityResult.cs" />
@@ -193,7 +194,9 @@
     <Compile Include="Repository\IAuthRepository.cs" />
     <Compile Include="Repository\ICommissionGroupRepository.cs" />
     <Compile Include="Configurations\IoCConfig.cs" />
+    <Compile Include="Repository\ILanguageRepository.cs" />
     <Compile Include="Repository\IProductRepository.cs" />
+    <Compile Include="Repository\LanguageRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="Resources\Lang.zh-TW.Designer.cs">
       <DependentUpon>Lang.zh-TW.resx</DependentUpon>
