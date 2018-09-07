@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web;
 using Affiliate.Infrastructure.Helpers;
+using AffiliateUser.Business;
 
 public class RootPage : System.Web.UI.Page
 {
@@ -20,9 +21,14 @@ public class RootPage : System.Web.UI.Page
 
     protected override void InitializeCulture()
     {
-        if (Request.Cookies["afffavoritelang"] != null && string.IsNullOrEmpty(AppSettings.Session.Language))
+
+        if (Request.Cookies["afffavoritelang"] != null)
         {
             string lang = Request.Cookies["afffavoritelang"].Value;
+            if(!SystemLangCode.IsValid(lang))
+            {
+                Response.Redirect("~/iknewu.html");
+            }
             AppSettings.Session.Flag = lang;
             AppSettings.Session.Language = lang;
         }

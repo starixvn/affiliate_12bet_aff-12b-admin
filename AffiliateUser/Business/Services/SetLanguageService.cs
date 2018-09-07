@@ -11,8 +11,11 @@ namespace AffiliateUser.Business.Services
             try
             {
                 string strLang = context.Request["lang"];
-                AppSettings.Session.Flag = strLang;
-                AppSettings.Session.Language = strLang;
+                if(SystemLangCode.IsValid(strLang))
+                {
+                    AppSettings.Session.Flag = strLang;
+                    AppSettings.Session.Language = strLang;
+                }
                 context.Response.Write(strLang);
             }
             catch (Exception ex)
