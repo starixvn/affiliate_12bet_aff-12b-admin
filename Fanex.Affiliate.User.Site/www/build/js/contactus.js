@@ -1,13 +1,9 @@
 ﻿"use strict";
 
 var ContactUs = (function ($) {
-    var REFRESH_CAPTCHA_INTERVAL_TIME = 600000;
-    var _timeoutId = null;
-
     var _me = {
         initialize: function initialize() {
             _me.initEvent();
-            _timeoutId = setTimeout(_me.refreshCaptchaInterval, REFRESH_CAPTCHA_INTERVAL_TIME);
         },
 
         initEvent: function initEvent() {
@@ -21,15 +17,8 @@ var ContactUs = (function ($) {
             });
 
             $("#captchaContactUs").on("click", function () {
-                _me.refreshCaptchaInterval();
+                _me.refreshCaptcha();
             });
-        },
-
-        refreshCaptchaInterval: function refreshCaptchaInterval() {
-            _me.refreshCaptcha();
-
-            clearTimeout(_timeoutId);
-            _timeoutId = setTimeout(_me.refreshCaptchaInterval, REFRESH_CAPTCHA_INTERVAL_TIME);
         },
 
         reset: function reset() {

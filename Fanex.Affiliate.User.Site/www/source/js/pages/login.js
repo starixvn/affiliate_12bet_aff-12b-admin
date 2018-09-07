@@ -1,37 +1,18 @@
 ﻿var Login = (function ($) {
-    var REFRESH_CAPTCHA_INTERVAL_TIME = 600000;
-    var _timeoutId = null;
-
     var _me = {
         initialize: function () {
             _me.registerLoginDialog();
             _me.initEvent();
             _me.initLoginDialogEvent();
-            _timeoutId = setTimeout(_me.refreshCaptchaInterval, REFRESH_CAPTCHA_INTERVAL_TIME);
-        },
-        refreshCaptchaInterval: function () {
-            if ($("#loginDialogcaptchaImg").attr("src") === "") {
-                _me.generateCaptcha();
-            }
-            else {
-                _me.generateDialogCaptcha();
-            }
-
-            clearTimeout(_timeoutId);
-            _timeoutId = setTimeout(_me.refreshCaptchaInterval, REFRESH_CAPTCHA_INTERVAL_TIME);
         },
         registerLoginDialog: function () {
             $("#loginDialog").on("show.bs.modal", function (e) {
                 _me.generateDialogCaptcha();
-                clearTimeout(_timeoutId);
-                _timeoutId = setTimeout(_me.refreshCaptchaInterval, REFRESH_CAPTCHA_INTERVAL_TIME);
             })
 
             $("#loginDialog").on("hide.bs.modal", function (e) {
                 $("#loginDialogcaptchaImg").attr("src", "");
                 _me.generateCaptcha();
-                clearTimeout(_timeoutId);
-                _timeoutId = setTimeout(_me.refreshCaptchaInterval, REFRESH_CAPTCHA_INTERVAL_TIME);
             })
         },
         initLoginDialogEvent: function () {
@@ -51,8 +32,6 @@
 
             $("#loginDialogcaptchaImg").on("click", function () {
                 _me.generateDialogCaptcha();
-                clearTimeout(_timeoutId);
-                _timeoutId = setTimeout(_me.refreshCaptchaInterval, REFRESH_CAPTCHA_INTERVAL_TIME);
             });
         },
         initEvent: function () {
@@ -68,8 +47,6 @@
 
             $("#captchaImg").on("click", function () {
                 _me.generateCaptcha();
-                clearTimeout(_timeoutId);
-                _timeoutId = setTimeout(_me.refreshCaptchaInterval, REFRESH_CAPTCHA_INTERVAL_TIME);
             });
         },
 

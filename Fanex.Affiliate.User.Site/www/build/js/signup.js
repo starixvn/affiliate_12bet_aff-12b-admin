@@ -127,9 +127,6 @@ var WebSite = (function ($) {
     return _me;
 })(jQuery);
 var SignUp = (function ($) {
-    var REFRESH_CAPTCHA_INTERVAL_TIME = 600000;
-    var _timeoutId = null;
-
     var _isReadTermAndCondition = false;
     function setFocusForLastInput() {
         $("#websiteInfo .urlInput").last().focus();
@@ -139,7 +136,6 @@ var SignUp = (function ($) {
         initialize: function () {
             _me.initEvent();
             _me.refreshCaptcha();
-            _timeoutId = setTimeout(_me.refreshCaptchaInterval, REFRESH_CAPTCHA_INTERVAL_TIME);
         },
 
         initEvent: function () {
@@ -176,15 +172,8 @@ var SignUp = (function ($) {
             });
 
             $("#signupCaptcha").on("click", function () {
-                _me.refreshCaptchaInterval();
+                _me.refreshCaptcha();
             })
-        },
-
-        refreshCaptchaInterval: function () {
-            _me.refreshCaptcha();
-
-            clearTimeout(_timeoutId);
-            _timeoutId = setTimeout(_me.refreshCaptchaInterval, REFRESH_CAPTCHA_INTERVAL_TIME);
         },
 
         submit: function () {
