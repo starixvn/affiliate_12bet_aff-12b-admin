@@ -1060,6 +1060,24 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 简体中文.
+        /// </summary>
+        public static string ChineseSimplified {
+            get {
+                return ResourceManager.GetString("ChineseSimplified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 繁體中文.
+        /// </summary>
+        public static string ChineseTraditional {
+            get {
+                return ResourceManager.GetString("ChineseTraditional", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to City.
         /// </summary>
         public static string City {
@@ -3662,7 +3680,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;p class=&quot;text-white&quot;&gt;ON&lt;span class=&quot;text-red&quot;&gt;SPORTS&lt;/span&gt;&amp; &lt;span class=&quot;text-red&quot;&gt;CASINO&lt;/span&gt; REVENUE&lt;/p&gt;.
+        ///   Looks up a localized string similar to &lt;p class=&quot;text-white&quot;&gt;ON &lt;span class=&quot;text-red&quot;&gt;SPORTS &lt;/span&gt;&amp; &lt;span class=&quot;text-red&quot;&gt;CASINO&lt;/span&gt; REVENUE&lt;/p&gt;.
         /// </summary>
         public static string OnSportandCasino {
             get {

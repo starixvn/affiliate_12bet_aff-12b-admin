@@ -129,7 +129,7 @@
                 rowItems.push(_me.buildCell(formatDecimal(dataRow.OperationalFee)));
                 rowItems.push(_me.buildCell(formatDecimal(dataRow.BankingFee)));
                 rowItems.push(_me.buildCell(formatDecimal(dataRow.Bonus)));
-                rowItems.push(_me.buildCell(dataRow.CommissionRate * 100 + '%'));
+                rowItems.push(_me.buildCell(dataRow.CommissionRate + '%'));
                 rowItems.push(_me.buildCell(formatDecimal(dataRow.Commission)));
             } else {
                 for (var i = 0; i < 6; i++) {

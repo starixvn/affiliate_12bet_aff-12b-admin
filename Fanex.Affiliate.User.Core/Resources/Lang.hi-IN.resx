@@ -2008,7 +2008,7 @@
     <value> &lt;p class="text-big-white"&gt;MONTHLY COMISSION!&lt;/p&gt;</value>
   </data>
   <data name="OnSportandCasino" xml:space="preserve">
-    <value>&lt;p class="text-white"&gt;ON&lt;span class="text-red"&gt;SPORTS&lt;/span&gt;&amp; &lt;span class="text-red"&gt;CASINO&lt;/span&gt; REVENUE&lt;/p&gt;</value>
+    <value>&lt;p class="text-white"&gt;ON &lt;span class="text-red"&gt;SPORTS &lt;/span&gt;&amp; &lt;span class="text-red"&gt;CASINO&lt;/span&gt; REVENUE&lt;/p&gt;</value>
   </data>
   <data name="YouAreNotAffiliateYet" xml:space="preserve">
     <value>YOU'RE NOT AFFILIATE YET?</value>
