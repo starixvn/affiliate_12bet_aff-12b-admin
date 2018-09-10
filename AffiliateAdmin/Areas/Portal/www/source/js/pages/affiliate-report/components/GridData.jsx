@@ -34,7 +34,7 @@ export class GridData extends Component {
         Total.UserName = 'Total (all pages)';
 
         this.setState({ gridData: MainData, total: Total });
-        this.props.setPagingOption({ TotalItem });
+        this.props.setPagingOption({ TotalItem, PageIndex: param.PageIndex });
         this.props.toggleLoader(false);
     }
 
