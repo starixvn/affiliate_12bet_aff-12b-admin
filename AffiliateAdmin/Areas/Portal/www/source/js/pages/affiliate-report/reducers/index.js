@@ -1,6 +1,7 @@
 ﻿import { combineReducers } from 'redux';
 
 import { pagingOption } from '../../../reducers/pagingReducer';
+import { isShowLoader } from '../../../reducers/loaderReducer';
 
 import createReducer from '../../../modules/createReducer';
 import { SET_REPORT_TITLE, SET_PARAM } from '../actions/types';
@@ -26,5 +27,6 @@ export default combineReducers({
     pagingOption,
     reportTitle,
     param,
-    languageList
+    languageList,
+    isShowLoader
 });
