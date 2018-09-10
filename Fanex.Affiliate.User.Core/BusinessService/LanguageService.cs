@@ -1,5 +1,6 @@
 ﻿using System.Globalization;
 using System.Threading;
+using Fanex.Affiliate.User.Core.Constants;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
 {
@@ -7,11 +8,14 @@ namespace Fanex.Affiliate.User.Core.BusinessService
     {
         public void SetCulture(string languageCode)
         {
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo(languageCode);
-            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(languageCode);
+            if (SystemLanguage.IsValid(languageCode))
+            {
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(languageCode);
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(languageCode);
 
-            Thread.CurrentThread.CurrentCulture.DateTimeFormat = CultureInfo.CreateSpecificCulture("en-US").DateTimeFormat;
-            Thread.CurrentThread.CurrentCulture.NumberFormat = CultureInfo.CreateSpecificCulture("en-US").NumberFormat;
+                Thread.CurrentThread.CurrentCulture.DateTimeFormat = CultureInfo.CreateSpecificCulture("en-US").DateTimeFormat;
+                Thread.CurrentThread.CurrentCulture.NumberFormat = CultureInfo.CreateSpecificCulture("en-US").NumberFormat;
+            }
         }
     }
 }

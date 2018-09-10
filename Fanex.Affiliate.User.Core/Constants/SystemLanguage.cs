@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.Resources;
 
@@ -34,6 +35,11 @@ namespace Fanex.Affiliate.User.Core.Constants
             return value.Equals("english (europe)", System.StringComparison.OrdinalIgnoreCase) ? Lang.EnglishEU
                   : Lang.ResourceManager.GetString(value.Replace(" ", "")) ?? value;
 
+        }
+
+        public static bool IsValid(string languageCode)
+        {
+            return !string.IsNullOrEmpty(languageCode) && LanguageList.Any(l => Equals(l.Code, languageCode));
         }
     }
 }
