@@ -10,6 +10,7 @@ import { messages } from '../../modules/constant';
 import DeductionSetting from '../shared/deduction';
 import QmTurnOverSetting from '../shared/QmTurnOverSetting';
 import TierSetting from '../shared/tiersetting';
+import Loader from '../../../../components/Loader';
 import { post } from '../../../../modules/ajaxRequest';
 
 export class AssignPrivateGroup extends React.Component {
@@ -17,6 +18,7 @@ export class AssignPrivateGroup extends React.Component {
         super(props);
 
         this.state = {
+            isShowLoader: false,
             isShowMessage: false,
             isSuccess: true,
             message: []
@@ -24,6 +26,7 @@ export class AssignPrivateGroup extends React.Component {
     }
 
     componentDidMount() {
+        this.setState({ isShowLoader: true });
         const { deductionList, productList, affInfo } = this.props;
         const { GroupId } = affInfo;
 
@@ -34,6 +37,7 @@ export class AssignPrivateGroup extends React.Component {
         else {
             this.props.getSelectedCommGroup({ GroupId });
         }
+        this.setState({ isShowLoader: false });
     }
 
     componentWillUnmount() {
@@ -51,6 +55,7 @@ export class AssignPrivateGroup extends React.Component {
             });
         }
         else {
+            this.setState({ isShowLoader: true });
             const { selectedGroup, affInfo } = this.props;
 
             const platformFeeList = selectedGroup.PlatformFeeList.filter(item => !!item.ProductIds);
@@ -68,7 +73,8 @@ export class AssignPrivateGroup extends React.Component {
             this.setState({
                 isShowMessage: true,
                 isSuccess: result.IsSuccessful,
-                message: [resultMessage]
+                message: [resultMessage],
+                isShowLoader: false
             });
 
             if (result.IsSuccessful) {
@@ -100,10 +106,11 @@ export class AssignPrivateGroup extends React.Component {
     }
 
     render() {
-        const { isShowMessage, isSuccess, message } = this.state;
+        const { isShowMessage, isSuccess, message, isShowLoader } = this.state;
 
         return this.props.selectedGroup && (
             <div className="comm-popup-container" style={{ padding: 10 }}>
+                <Loader show={isShowLoader} />
                 <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
                     <div dangerouslySetInnerHTML={{ __html: message.join('<br>') }}></div>
                 </Alert>

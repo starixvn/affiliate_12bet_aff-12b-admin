@@ -3,6 +3,7 @@ import { combineReducers } from "redux";
 import { SET_GRIDDATA, SET_PAGING_OPTION, SET_SELECTED_GROUP, SET_SEARCHED_GROUPNAME } from '../actions/types';
 import createReducer from '../../../modules/createReducer';
 import { defaultPagingOption } from '../modules/constant';
+import { isShowLoader } from '../../../reducers/loaderReducer';
 
 const gridData = createReducer([], {
     [SET_GRIDDATA](prevState, action) {
@@ -31,4 +32,4 @@ export const selectedGroup = createReducer(null, {
 export const productList = createReducer([], {});
 export const deductionList = createReducer([], {});
 
-export default combineReducers({ gridData, pagingOption, productList, deductionList, selectedGroup, searchedGroupName });
+export default combineReducers({ gridData, pagingOption, productList, deductionList, selectedGroup, searchedGroupName, isShowLoader });

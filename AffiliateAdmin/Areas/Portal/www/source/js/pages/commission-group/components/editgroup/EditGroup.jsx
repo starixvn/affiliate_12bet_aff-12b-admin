@@ -11,6 +11,7 @@ import TierSetting from '../shared/tiersetting';
 import CommGroupInfo from '../shared/CommGroupInfo';
 import { defaultPagingOption, messages } from '../../modules/constant';
 import { validate } from '../../modules/service';
+import { toggleLoader } from '../../../../actions/loaderAction';
 
 export class EditGroup extends React.Component {
     constructor(props) {
@@ -43,6 +44,7 @@ export class EditGroup extends React.Component {
             });
         }
         else {
+            this.props.toggleLoader(true);
             const platformFeeList = selectedGroup.PlatformFeeList.filter(item => !!item.ProductIds);
 
             const param = { ...selectedGroup, PlatformFeeList: platformFeeList };
@@ -61,6 +63,7 @@ export class EditGroup extends React.Component {
                 isSuccess: result.IsSuccessful,
                 message: [result.IsSuccessful ? messages.updateGroupSuccessfully : result.Message]
             });
+            this.props.toggleLoader(false);
         }
     }
 
@@ -88,7 +91,7 @@ function mapStateToProp({ selectedGroup }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ getSelectedCommGroup, getGroupSettingList, setSelectedGroup, updateCommissionGroup }, dispatch);
+    return bindActionCreators({ getSelectedCommGroup, getGroupSettingList, setSelectedGroup, updateCommissionGroup, toggleLoader }, dispatch);
 }
 
 export default connect(mapStateToProp, mapDispatchToProps)(EditGroup);

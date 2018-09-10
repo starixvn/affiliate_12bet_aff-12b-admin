@@ -11,6 +11,7 @@ import QmTurnOverSetting from '../shared/QmTurnOverSetting';
 import TierSetting from '../shared/tiersetting';
 import CommGroupInfo from '../shared/CommGroupInfo';
 import { defaultPagingOption, messages } from '../../modules/constant';
+import { toggleLoader } from '../../../../actions/loaderAction';
 
 export class AddGroup extends React.Component {
     constructor(props) {
@@ -46,6 +47,7 @@ export class AddGroup extends React.Component {
             });
         }
         else {
+            this.props.toggleLoader(true);
             const platformFeeList = selectedGroup.PlatformFeeList.filter(item => !!item.ProductIds);
 
             const param = { ...selectedGroup, PlatformFeeList: platformFeeList };
@@ -63,6 +65,7 @@ export class AddGroup extends React.Component {
                 isSuccess: result.IsSuccessful,
                 message: [result.IsSuccessful ? messages.addGroupSuccessfully : result.Message]
             });
+            this.props.toggleLoader(false);
         }
     }
 
@@ -90,7 +93,7 @@ function mapStateToProp({ deductionList, productList, selectedGroup }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ insertCommissionGroup, getGroupSettingList, setSelectedGroup }, dispatch);
+    return bindActionCreators({ insertCommissionGroup, getGroupSettingList, setSelectedGroup, toggleLoader }, dispatch);
 }
 
 export default connect(mapStateToProp, mapDispatchToProps)(AddGroup);

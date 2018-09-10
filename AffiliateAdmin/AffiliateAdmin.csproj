@@ -1814,6 +1814,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\index.jsx" />
     <Content Include="Areas\Portal\www\source\style\components\monthpicker.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\affiliate-report.scss" />
+    <Content Include="Areas\Portal\www\source\style\components\_spinner.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

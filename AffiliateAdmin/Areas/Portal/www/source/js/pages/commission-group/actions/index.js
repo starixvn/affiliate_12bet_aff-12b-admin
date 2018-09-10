@@ -1,4 +1,5 @@
 import { post } from '../../../modules/ajaxRequest';
+import { toggleLoader } from '../../../actions/loaderAction';
 
 import { SET_GRIDDATA, SET_PAGING_OPTION, SET_SELECTED_GROUP, SET_SEARCHED_GROUPNAME } from './types';
 
@@ -16,6 +17,7 @@ const setGridData = (data) => {
 }
 
 export const getGroupSettingList = (param) => async(dispatch) => {
+    dispatch(toggleLoader(true));
     const response = await fetchGroupSettingData(param);
     const { CommissionSettingList, TotalRows } = response.data;
 
@@ -28,6 +30,7 @@ export const getGroupSettingList = (param) => async(dispatch) => {
         TotalItem: TotalRows
     };
     dispatch(setPagingOption(pagingOption));
+    dispatch(toggleLoader(false));
 }
 
 export const setPagingOption = (data) => {

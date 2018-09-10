@@ -3,6 +3,7 @@ import { post } from '../../../../modules/ajaxRequest';
 import { Col, FormGroup, Label, Button, Input } from 'reactstrap';
 import { resolveClientUrl } from '../../../../modules/utils';
 import { messages } from '../../modules/constant';
+import Loader from '../../../../components/Loader';
 
 export default class AssignGroup extends Component {
     constructor(props) {
@@ -13,7 +14,7 @@ export default class AssignGroup extends Component {
             selectedGroup = commGroupList.length ? Number(commGroupList[0].Id) : 0
         }
 
-        this.state = Object.assign({}, { commGroupList, selectedGroup, affInfo }, { isPrivateGroup: false });
+        this.state = Object.assign({}, { commGroupList, selectedGroup, affInfo }, { isPrivateGroup: false, isShowLoader: false });
     }
 
     handleChange = (event) => {
@@ -33,12 +34,13 @@ export default class AssignGroup extends Component {
             parent.ibcWnd.open(url, `Approve affiliate ${affInfo.UserName} with a private commission group`, 150, 50, 800, 529, 'class1', 'class2');
         }
         else {
-            if(affInfo.GroupId > 0 && affInfo.GroupId === selectedGroup){
+            if (affInfo.GroupId > 0 && affInfo.GroupId === selectedGroup) {
                 window.alert(messages.choseAnotherGroup);
                 return;
             }
 
             if (confirm(messages.confirmChangeGroup.replace('{0}', affInfo.UserName))) {
+                this.setState({ isShowLoader: true });
                 const url = 'Portal/CommissionGroup/AssignGroup';
                 const params = {
                     assignParam: {
@@ -62,14 +64,17 @@ export default class AssignGroup extends Component {
                 else {
                     window.alert(result.Message);
                 }
+
+                this.setState({ isShowLoader: false });
             }
         }
     }
 
     render() {
-        const { commGroupList, selectedGroup, affInfo, isPrivateGroup } = this.state;
+        const { commGroupList, selectedGroup, affInfo, isPrivateGroup, isShowLoader } = this.state;
         return (
             <div className="assign-normal-group" style={{ padding: 10 }}>
+                <Loader show={isShowLoader} />
                 <fieldset>
                     <legend><h6 className="font-weight-bold">Assignee</h6></legend>
                     <p>{affInfo.UserName}</p>
