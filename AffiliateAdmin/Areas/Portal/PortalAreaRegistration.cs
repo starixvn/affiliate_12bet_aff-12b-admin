@@ -16,6 +16,13 @@ namespace AffiliateAdmin.Areas.Portal
         {
             context.Routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             context.MapRoute(
+                name: "PortalUserPanel",
+                url: "Portal/UserPanel/{controller}/{action}/{id}",
+                defaults: new { id = UrlParameter.Optional },
+                namespaces: new[] { "Fanex.Affiliate.Admin.Core.Controllers.UserPanel" }
+            );
+
+            context.MapRoute(
                 name: "Portal",
                 url: "Portal/{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },

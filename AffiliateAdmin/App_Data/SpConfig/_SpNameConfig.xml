@@ -13,4 +13,6 @@
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_ProductList_Sel" Suffix="_xtest"></item>
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_AffiliateReport_Sel" Suffix="_xtest"></item>
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Market_Sel" Suffix="_xtest"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_DailyEarning_Detail_Sel" Suffix="_xtest"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_DailyEarning_Sel" Suffix="_xtest"></item>
 </Root>

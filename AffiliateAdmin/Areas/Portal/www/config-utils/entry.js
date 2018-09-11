@@ -11,9 +11,11 @@ module.exports = {
     [`${jsDist}/pages/Recheckin/recheckin`]: "./source/js/pages/RecheckIn/recheckin",
     [`${jsDist}/pages/layout/pagelayout`]: "./source/js/pagelayout/pagelayout.js",
     [`${jsDist}/pages/report/affiliate-report`]: "./source/js/pages/affiliate-report/index.jsx",
+    [`${jsDist}/pages/report/daily-earning`]: "./source/js/pages/user-panel/daily-earning/index.jsx",
 
     [`${styleDist}/portalmain`]: "./source/style/main.scss",
     [`${styleDist}/layout`]: "./source/style/layout/main-layout.scss",
+    [`${styleDist}/user-panel-layout`]: "./source/style/layout/user-panel-layout.scss",
     [`${styleDist}/pages/commission-group`]: "./source/style/pages/commission-group.scss",
     [`${styleDist}/pages/affiliate-report`]: "./source/style/pages/affiliate-report.scss"
 };

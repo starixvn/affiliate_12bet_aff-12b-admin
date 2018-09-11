@@ -27,4 +27,8 @@
   <Function Name="Report">
     <Setting Key="Aff_Admin_AffiliateReport_Sel" SpName="Aff_Admin_AffiliateReport_Sel_xtest" DbName="affiliate_12bet" />
   </Function>
+  <Function Name="StatementHistory">
+    <Setting Key="Aff_DailyEarning_Sel" SpName="Aff_DailyEarning_Sel_xtest" DbName="affiliate_12bet" />
+    <Setting Key="Aff_DailyEarning_Detail_Sel" SpName="Aff_DailyEarning_Detail_Sel_xtest" DbName="affiliate_12bet" />
+  </Function>
 </Functions>

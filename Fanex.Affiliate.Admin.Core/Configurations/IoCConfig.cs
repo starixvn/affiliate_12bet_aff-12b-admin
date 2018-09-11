@@ -6,9 +6,11 @@ using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
 using Fanex.Affiliate.Admin.Core.Repository;
+using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Report;
+using Fanex.Affiliate.Admin.Core.Services.UserPanel;
 using Fanex.Affiliate.Admin.Core.Utilities;
 
 namespace Fanex.Affiliate.Admin.Core.Configurations
@@ -69,6 +71,8 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
             builder.RegisterType<AuthRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<AffiliateReportRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<AffiliateReportService>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<StatementHistoryRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<StatementHistoryService>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
     }
 }
