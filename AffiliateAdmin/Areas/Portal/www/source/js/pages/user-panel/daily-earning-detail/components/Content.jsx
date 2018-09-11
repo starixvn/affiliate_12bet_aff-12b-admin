@@ -20,7 +20,6 @@ export default class Content extends Component{
                 <Cell header={true} colWidth={100} title="Deposit">Deposit</Cell>
                 <Cell header={true} colWidth={100} title="Withdrawal">Withdrawal</Cell>
                 <Cell header={true} colWidth={100} title="Bonus">Bonus</Cell>
-                <Cell header={true} colWidth={100} title="Adjustment">Adjustment</Cell>
                 <Cell header={true} colWidth={100} title="Banking Fee">Banking Fee</Cell>
             </Row>
         )
@@ -47,7 +46,6 @@ export default class Content extends Component{
         const deposit = formatDecimal(dataItem.Deposit);
         const withdrawal = formatDecimal(dataItem.Withdrawal);
         const bonus = formatDecimal(dataItem.Bonus);
-        const adjustment = formatDecimal(dataItem.Adjustment);
         const bankingFee = formatDecimal(dataItem.BankingFee);
 
         return (
@@ -59,7 +57,6 @@ export default class Content extends Component{
                 <Cell className="text-right" title={deposit}>{deposit}</Cell>
                 <Cell className="text-right" title={withdrawal}>{withdrawal}</Cell>
                 <Cell className="text-right" title={bonus}>{bonus}</Cell>
-                <Cell className="text-right" title={adjustment}>{adjustment}</Cell>
                 <Cell className="text-right" title={bankingFee}>{bankingFee}</Cell>
             </Row>
         )
