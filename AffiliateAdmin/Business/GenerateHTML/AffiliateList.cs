@@ -76,10 +76,8 @@ namespace AffAdmin.GenerateHTML
 
                     var customerUrl = VirtualPathUtility.ToAbsolute($"~/Portal/Customer?custid={custId}&user={userName}");
                     var memberUrl = VirtualPathUtility.ToAbsolute($"~/Portal/Member?txtAffUsername={userName}");
-                    var memberReportUrl = VirtualPathUtility.ToAbsolute($"~/Portal/Report?custid={custId}&username={userName}&isaff=1");
                     TemplateHandler.Assign(ref strTmp, "customerUrl", customerUrl);
                     TemplateHandler.Assign(ref strTmp, "memberUrl", memberUrl);
-                    TemplateHandler.Assign(ref strTmp, "memberReportUrl", memberReportUrl);
 
                     TemplateHandler.Assign(ref strTmp, "custid", custId);
                     TemplateHandler.Assign(ref strTmp, "username-val", userName);
