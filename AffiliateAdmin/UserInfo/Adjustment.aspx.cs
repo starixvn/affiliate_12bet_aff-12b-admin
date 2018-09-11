@@ -1,8 +1,8 @@
 ﻿using System;
-using DNAide.Web;
+using AffiliateAdmin.Business.DataAccess;
 using DNAide.Core;
 using DNAide.Utils;
-using AffiliateAdmin.Business.DataAccess;
+using DNAide.Web;
 
 public partial class UserInfo_Adjustment : IBCPage
 {
@@ -30,7 +30,7 @@ public partial class UserInfo_Adjustment : IBCPage
             TemplateHandler.Assign(ref strTpl, "balforward-val", Common.FormatNumber(dcBF));
             TemplateHandler.Assign(ref strTpl, "bf-val", NumberFormat.DecFormat(dcBF, 2));
             #region Load SubPage
-            TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.AffApprovedLink, SubMenu.AffApprovedText, 4, 0, Resources.Lang.Adjustment, "i_customer.png"));
+            TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.AffApprovedLink, SubMenu.AffApprovedText, 3, 0, Resources.Lang.Adjustment, "i_customer.png"));
             #endregion
 
             this.HtmlContent = strTpl;

@@ -4,7 +4,6 @@ using System.Text;
 using AffiliateAdmin.Business.DataAccess;
 using DNAide.Core;
 using DNAide.Web;
-using GenerateHTML;
 
 public partial class Report_MediaStatistics_New : IBCPage
 {
@@ -32,7 +31,7 @@ public partial class Report_MediaStatistics_New : IBCPage
         DateTime now = DateTime.Now;
         DateTime dtmFDate = CastAide.AsDateTime(Request["fdate"], new DateTime(now.Year, now.Month, 1));
         DateTime dtmTDate = CastAide.AsDateTime(Request["tdate"], DateTime.Now);
-        if(dtmTDate > DateTime.Now)
+        if (dtmTDate > DateTime.Now)
         {
             dtmTDate = DateTime.Now;
         }
@@ -93,6 +92,6 @@ public partial class Report_MediaStatistics_New : IBCPage
             TemplateHandler.ReplaceBlock(ref strTpl, "nodata", Common.NoInfo(4));
         }
         //Assign Paging template
-        TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.AffApprovedLink, SubMenu.AffApprovedText, 8, 0, SubMenu.AffApprovedText[7], "i_report.png"));
+        TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.AffApprovedLink, SubMenu.AffApprovedText, 7, 0, SubMenu.AffApprovedText[7], "i_report.png"));
     }
 }

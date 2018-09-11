@@ -843,13 +843,6 @@
     <Compile Include="UserInfo\Note.aspx.designer.cs">
       <DependentUpon>Note.aspx</DependentUpon>
     </Compile>
-    <Compile Include="UserInfo\PlayersDetail.aspx.cs">
-      <DependentUpon>PlayersDetail.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserInfo\PlayersDetail.aspx.designer.cs">
-      <DependentUpon>PlayersDetail.aspx</DependentUpon>
-    </Compile>
     <Compile Include="UserInfo\UserLog.aspx.cs">
       <DependentUpon>UserLog.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1192,7 +1185,6 @@
     <Content Include="App_Templates\Report\MemberReport.htm" />
     <Content Include="App_Templates\SubMenu.htm" />
     <Content Include="App_Templates\SubMenu1.htm" />
-    <Content Include="App_Templates\SubPage.htm" />
     <Content Include="App_Templates\UserControl\AddDepartment.html" />
     <Content Include="App_Templates\UserControl\AddUser.html" />
     <Content Include="App_Templates\UserControl\AddUserExist.html" />
@@ -1242,7 +1234,6 @@
     <Content Include="App_Templates\UserInfo\MemList.htm" />
     <Content Include="App_Templates\UserInfo\MemListAll.htm" />
     <Content Include="App_Templates\UserInfo\NoteList.htm" />
-    <Content Include="App_Templates\UserInfo\PlayersDetail.htm" />
     <Content Include="App_Templates\UserInfo\UserLog.htm" />
     <Content Include="App_Templates\UserInfo\ViewDaily.htm" />
     <Content Include="App_Templates\UserInfo\ViewDailyDetail.htm" />
@@ -1689,7 +1680,6 @@
     <Content Include="UserInfo\MemberList.aspx" />
     <Content Include="UserInfo\MemberListAll.aspx" />
     <Content Include="UserInfo\Note.aspx" />
-    <Content Include="UserInfo\PlayersDetail.aspx" />
     <Content Include="UserInfo\UserLog.aspx" />
     <Content Include="AppSettings.ini">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

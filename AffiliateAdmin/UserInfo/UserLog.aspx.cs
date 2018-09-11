@@ -1,8 +1,6 @@
-﻿using DNAide.Web;
+﻿using System;
 using DNAide.Core;
-using DNAide.Utils;
-using AffiliateAdmin.Business.DataAccess;
-using System;
+using DNAide.Web;
 
 public partial class UserInfo_UserLog : IBCPage
 {
@@ -27,7 +25,7 @@ public partial class UserInfo_UserLog : IBCPage
         TemplateHandler.Assign(ref strTpl, "tdate-val", dateTo.ToString("MM/dd/yyyy"));
         TemplateHandler.Assign(ref strTpl, "search", Resources.Lang.Search);
         TemplateHandler.Assign(ref strTpl, "UpdateBy", Resources.Lang.UpdatedBy);
-        
+
         TemplateHandler.Assign(ref strTpl, "id", Resources.Lang.ID);
         TemplateHandler.Assign(ref strTpl, "date", Resources.Lang.Date);
         TemplateHandler.Assign(ref strTpl, "username", Resources.Lang.Username);
@@ -54,7 +52,7 @@ public partial class UserInfo_UserLog : IBCPage
         TemplateHandler.Assign(ref strTpl, "page-val}", pageIndex);
 
         #region Load SubPage
-        TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.AffApprovedLink, SubMenu.AffApprovedText, 7, 0, SubMenu.AffApprovedText[7], "i_customer.png"));
+        TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.AffApprovedLink, SubMenu.AffApprovedText, 6, 0, SubMenu.AffApprovedText[7], "i_customer.png"));
         #endregion
 
         this.HtmlContent = strTpl;

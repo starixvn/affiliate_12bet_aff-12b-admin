@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections;
-using System.Text;
 using System.Data;
-using System.Collections.Generic;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using DNAide.Web;
+using System.Text;
 using DNAide.Core;
-using DNAide.Utils;
+using DNAide.Web;
 
 public partial class UserInfo_MemberList : IBCPage
 {
@@ -20,7 +15,7 @@ public partial class UserInfo_MemberList : IBCPage
         AssignText();
 
         //Search content
-        DateTime dtmTmp = DateTime.Now.AddDays(-(DateTime.Now.Day -1));
+        DateTime dtmTmp = DateTime.Now.AddDays(-(DateTime.Now.Day - 1));
         DateTime dtmFDate = CastAide.AsDateTime(Request["fdate"], dtmTmp);
         DateTime dtmTDate = CastAide.AsDateTime(Request["tdate"], DateTime.Now);
         int intMemberType = CastAide.AsInt32(Request["slType"], 0);
@@ -33,7 +28,7 @@ public partial class UserInfo_MemberList : IBCPage
 
         LoadData(dtmFDate, dtmTDate, intMemberType, isGetAll);
         //Load submenu
-        TemplateHandler.Assign(ref strTemplate, "submenu", SubMenu.GenSubMenu(SubMenu.AffApprovedLink, SubMenu.AffApprovedText, 6, 0, SubMenu.AffApprovedText[6], "i_customer.png"));
+        TemplateHandler.Assign(ref strTemplate, "submenu", SubMenu.GenSubMenu(SubMenu.AffApprovedLink, SubMenu.AffApprovedText, 5, 0, SubMenu.AffApprovedText[6], "i_customer.png"));
 
         this.HtmlContent = strTemplate;
     }
