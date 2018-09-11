@@ -1,8 +1,30 @@
-﻿
-@{
-    ViewBag.Title = "DailyEarningDetail";
-    Layout = "~/Areas/Portal/Views/Shared/_SinglePageLayout.cshtml";
+﻿@{
+    Layout = "~/Areas/Portal/Views/Shared/_UserPanelLayout.cshtml";
+}
+@using Fanex.Affiliate.Admin.Core.Constants
+
+@model Fanex.Affiliate.Admin.Core.ViewModels.UserPanel.DailyEarningViewModel
+
+@section styles{
 }
 
-<h2>DailyEarningDetail</h2>
+@section scripts{
+    <script type="text/javascript">
+        window.initialState = {
+            productList: @Html.Raw(Json.Encode(Model.ProductList)),
+            param: {AffId: @Model.Param.AffId, ProductId: @Model.Param.ProductId, MonthDate: '@Model.Param.MonthDate.ToString("MM/dd/yyyy")'}
+        }
+    </script>
+    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/report/daily-earning-detail.js")"></script>
+}
+
+@section menu{
+    @{
+        var menuList = UserPanelConstant.UserPanelMenuList;
+        menuList.ElementAt(0).IsActive = true;
+        Html.RenderPartial("~/Areas/Portal/Views/Shared/_UserPanelMenu.cshtml", menuList);
+    }
+}
+
+<div id="root"></div>
 

@@ -7,10 +7,11 @@ import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { formatDecimal } from '../../../../modules/numberFormat';
 import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
+import { resolveClientUrl } from '../../../../modules/utils';
 
 const totalText = 'Total';
 
-export class Content extends Component{
+export class Content extends Component {
     constructor(props) {
         super(props);
 
@@ -37,7 +38,7 @@ export class Content extends Component{
         this.props.toggleLoader(false);
     }
 
-    _renderHeader(){
+    _renderHeader() {
         return (
             <Row>
                 <Cell header={true} colWidth={30}></Cell>
@@ -70,12 +71,16 @@ export class Content extends Component{
         const bonus = formatDecimal(dataItem.Bonus);
         const bankingFee = formatDecimal(dataItem.BankingFee);
 
-        const isTotalRow = !rowNumber;
+        const { param } = this.props;
+        const queryString = `AffId=${param.AffId}&ProductId=${param.ProductId}&MonthDate=${dataItem.Date}`;
+        const dateLink = resolveClientUrl('Portal/UserPanel/StatementHistory/DailyEarningDetail') + '?' + queryString;
 
         return (
             <Row>
                 {rowNumber && <Cell className="text-center" title={rowNumber}>{rowNumber}</Cell>}
-                <Cell className={!rowNumber && "text-center"} title={dataItem.Date} colSpan={!rowNumber && 2}>{dataItem.Date}</Cell>
+                <Cell className="text-center" title={dataItem.Date} colSpan={!rowNumber && 2}>
+                    {rowNumber ? (<a href={dateLink}>{dataItem.Date}</a>) : dataItem.Date}
+                </Cell>
                 <Cell className="text-right" title={winlost}>{winlost}</Cell>
                 <Cell className="text-right" title={deposit}>{deposit}</Cell>
                 <Cell className="text-right" title={withdrawal}>{withdrawal}</Cell>
@@ -97,7 +102,7 @@ export class Content extends Component{
                     header={this._renderHeader()}
                     body={this._renderDataSection(this.state.gridData)}
                     footer={this._renderDataSection([this.state.total])}
-                    containerPadding={40}
+                    containerPadding={10}
                 />
             </div>
         );

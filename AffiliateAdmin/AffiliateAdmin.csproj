@@ -1829,6 +1829,7 @@
     <Content Include="Areas\Portal\Views\Shared\_UserPanelLayout.cshtml" />
     <Content Include="Areas\Portal\www\source\style\layout\user-panel-layout.scss" />
     <Content Include="Areas\Portal\Views\Shared\_UserPanelMenu.cshtml" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning-detail\index.jsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -1966,6 +1967,7 @@
   <ItemGroup>
     <Folder Include="Areas\Portal\www\source\js\actions\" />
     <Folder Include="Areas\Portal\www\source\js\pages\affiliate-information\components\" />
+    <Folder Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning-detail\components\" />
     <Folder Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\components\" />
     <Folder Include="Areas\Portal\www\source\js\reducers\" />
   </ItemGroup>

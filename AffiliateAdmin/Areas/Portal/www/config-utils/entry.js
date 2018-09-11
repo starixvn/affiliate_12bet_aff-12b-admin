@@ -12,6 +12,7 @@ module.exports = {
     [`${jsDist}/pages/layout/pagelayout`]: "./source/js/pagelayout/pagelayout.js",
     [`${jsDist}/pages/report/affiliate-report`]: "./source/js/pages/affiliate-report/index.jsx",
     [`${jsDist}/pages/report/daily-earning`]: "./source/js/pages/user-panel/daily-earning/index.jsx",
+    [`${jsDist}/pages/report/daily-earning-detail`]: "./source/js/pages/user-panel/daily-earning-detail/index.jsx",
 
     [`${styleDist}/portalmain`]: "./source/style/main.scss",
     [`${styleDist}/layout`]: "./source/style/layout/main-layout.scss",

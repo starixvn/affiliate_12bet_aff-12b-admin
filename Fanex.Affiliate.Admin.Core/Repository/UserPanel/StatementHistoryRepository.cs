@@ -48,8 +48,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
             using (var objectDb = GetObjectDb(SpKey))
             {
                 objectDb.AddInParameter("AffId", DbType.Int32, param.AffId);
-                objectDb.AddInParameter("ProductId", DbType.Int32, param.ProductId);
-                objectDb.AddInParameter("MonthDate", DbType.Int32, param.MonthDate);
+                objectDb.AddInParameter("ProductId", DbType.Int16, param.ProductId);
+                objectDb.AddInParameter("MonthDate", DbType.DateTime, param.MonthDate);
 
                 using (var reader = objectDb.ExecuteReader())
                 {

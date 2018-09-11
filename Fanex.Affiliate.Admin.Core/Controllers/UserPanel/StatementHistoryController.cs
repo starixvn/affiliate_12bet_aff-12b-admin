@@ -45,13 +45,13 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
                 Param = param
             };
 
-            return View(viewModel);
+            return View("~/Areas/Portal/Views/UserPanel/StatementHistory/DailyEarningDetail.cshtml", viewModel);
         }
 
         [HttpPost]
         public ActionResult GetDailyEarningDetail(DailyEarningParam param)
         {
-            return Json(_statementHistoryService.GetDailyEarning(param));
+            return Json(_statementHistoryService.GetDailyEarningDetail(param));
         }
     }
 }
