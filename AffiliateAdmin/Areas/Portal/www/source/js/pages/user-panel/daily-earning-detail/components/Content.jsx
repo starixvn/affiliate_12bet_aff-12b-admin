@@ -27,10 +27,10 @@ export default class Content extends Component{
 
     _renderDataSection(dataList) {
         const dataRows = [];
-        const isTotalRow = dataList.length === 1 && !dataList[0].UserName;
+        const isTotalRow = dataList.length === 1 && !dataList[0].IbcUserName;
 
         if(isTotalRow){
-            dataList[0].UserName = totalText;
+            dataList[0].IbcUserName = totalText;
         }
 
         for (let i = 0; i < dataList.length; i++) {
@@ -52,7 +52,7 @@ export default class Content extends Component{
             <Row>
                 {rowNumber && <Cell className="text-center" title={rowNumber}>{rowNumber}</Cell>}
                 {rowNumber && <Cell className="text-center" title={dataItem.UserName}>{dataItem.UserName}</Cell>}
-                <Cell className="text-center" title={dataItem.UserName} colSpan={!rowNumber && 3}>{dataItem.UserName}</Cell>
+                <Cell className="text-center" title={dataItem.IbcUserName} colSpan={!rowNumber && 3}>{dataItem.IbcUserName}</Cell>
                 <Cell className="text-right" title={winlost}>{winlost}</Cell>
                 <Cell className="text-right" title={deposit}>{deposit}</Cell>
                 <Cell className="text-right" title={withdrawal}>{withdrawal}</Cell>

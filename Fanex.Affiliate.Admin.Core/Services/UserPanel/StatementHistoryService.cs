@@ -26,11 +26,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 
             foreach (var item in rawData)
             {
+                total.WinLost += item.WinLost;
                 total.Deposit += item.Deposit;
                 total.Withdrawal += item.Withdrawal;
-                total.Turnover += item.Turnover;
-                total.WinLost += item.WinLost;
                 total.Bonus += item.Bonus;
+                total.BankingFee += item.BankingFee;
             }
 
             return new DailyEarningDetailResult

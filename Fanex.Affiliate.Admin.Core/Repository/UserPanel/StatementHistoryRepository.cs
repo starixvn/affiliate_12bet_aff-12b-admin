@@ -59,10 +59,10 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
                         {
                             CustId = Convert.ToInt32(reader["CustId"]),
                             UserName = Convert.ToString(reader["UserName"]),
+                            IbcUserName = Convert.ToString(reader["IBCUsername"]),
+                            WinLost = Convert.ToDecimal(reader["Winlost"]),
                             Deposit = Convert.ToDecimal(reader["Deposit"]),
                             Withdrawal = Convert.ToDecimal(reader["Withdrawal"]),
-                            Turnover = Convert.ToDecimal(reader["Turnover"]),
-                            WinLost = Convert.ToDecimal(reader["Winlost"]),
                             Bonus = Convert.ToDecimal(reader["Bonus"]),
                             BankingFee = Convert.ToDecimal(reader["BankingFee"])
                         });
