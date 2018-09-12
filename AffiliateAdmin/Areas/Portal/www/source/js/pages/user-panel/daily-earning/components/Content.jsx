@@ -32,8 +32,7 @@ export class Content extends Component {
         const url = 'Portal/UserPanel/StatementHistory/GetDailyEarning';
         const response = await post(url, param);
         const { MainData, Total } = response.data;
-        Total.Date = totalText;
-
+        
         this.setState({ gridData: MainData, total: Total });
         this.props.toggleLoader(false);
     }
@@ -54,7 +53,11 @@ export class Content extends Component {
 
     _renderDataSection(dataList) {
         const dataRows = [];
-        const isTotalRow = dataList.length === 1 && dataList[0].Date === totalText;
+        const isTotalRow = dataList.length === 1 && !dataList[0].Date;
+
+        if (isTotalRow) {
+            dataList[0].Date = totalText;
+        }
 
         for (let i = 0; i < dataList.length; i++) {
             const dataItem = dataList[i];
@@ -100,8 +103,8 @@ export class Content extends Component {
                     autoWidth={true}
                     bodyHeight={300}
                     header={this._renderHeader()}
-                    body={this._renderDataSection(this.state.gridData)}
-                    footer={this._renderDataSection([this.state.total])}
+                    body={this._renderDataSection(gridData)}
+                    footer={this._renderDataSection([total])}
                     containerPadding={10}
                 />
             </div>
