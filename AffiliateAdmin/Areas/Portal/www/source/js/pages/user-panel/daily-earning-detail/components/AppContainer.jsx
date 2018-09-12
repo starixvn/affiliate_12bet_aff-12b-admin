@@ -45,11 +45,11 @@ export default class AppContainer extends Component {
     }
 
     render() {
-        const { selectedProduct, data } = this.state;
+        const { selectedProduct, data, isShowLoader } = this.state;
 
         return (
             <AppLayout>
-                <Loader show={this.props.isShowLoader} />
+                <Loader show={isShowLoader} />
                 <Filter onChangeProduct={this.handleChangeProduct} productList={this.productList} selectedProduct={selectedProduct} />
                 <Content data={data} />
             </AppLayout>
