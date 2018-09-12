@@ -1520,6 +1520,7 @@
     <Content Include="Areas\Portal\www\dist\js\pages\userpanel\daily-earning-detail.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\userpanel\daily-earning.js" />
     <Content Include="Areas\Portal\www\dist\style\assets\banner_top.jpg" />
+    <Content Include="Areas\Portal\www\dist\style\assets\i_customer.png" />
     <Content Include="Areas\Portal\www\dist\style\assets\open-iconic.svg" />
     <Content Include="Areas\Portal\www\dist\style\layout.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\affiliate-report.css" />
