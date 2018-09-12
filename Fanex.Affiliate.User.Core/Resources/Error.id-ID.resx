@@ -148,6 +148,6 @@
     <value>Alamat yang Anda gunakan untuk meminta kata sandi baru, tidak valid.</value>
   </data>
   <data name="RequireIMAccount" xml:space="preserve">
-    <value>Setidaknya 1 akun IM diperlukan.</value>
+    <value>Setidaknya 1 akun IM diperlukan</value>
   </data>
 </root>

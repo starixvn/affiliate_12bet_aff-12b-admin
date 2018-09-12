@@ -169,7 +169,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to At least one IM account is required..
+        ///   Looks up a localized string similar to At least one IM account is required.
         /// </summary>
         public static string RequireIMAccount {
             get {

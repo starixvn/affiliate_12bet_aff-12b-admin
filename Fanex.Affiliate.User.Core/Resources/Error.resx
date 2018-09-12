@@ -154,6 +154,6 @@
     <value>The address that you have used to request a new password is not valid.</value>
   </data>
   <data name="RequireIMAccount" xml:space="preserve">
-    <value>At least one IM account is required.</value>
+    <value>At least one IM account is required</value>
   </data>
 </root>
