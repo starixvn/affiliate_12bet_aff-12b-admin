@@ -52,7 +52,12 @@ var Login = (function ($) {
             })
         },
         initLoginDialogEvent: function () {
-            $(".loginLink").on("click", function () {
+            $('#mobileLogin').on('click', function () {
+                $("#loginDialog").modal({ backdrop: "static" });
+            });
+
+            $(".mediaLoginLink").on("click", function () {
+                $('#isCLickedBannerLink').val("1");
                 $("#loginDialog").modal({ backdrop: "static" });
             });
 
@@ -125,8 +130,13 @@ var Login = (function ($) {
                     contentType: "application/x-www-form-urlencoded; charset=UTF-8",
                     success: function (response) {
                         if (response.IsOk) {
-                            if (onDialog) {
-                                Site.redirect(Site.resolveRelativeUrl("UserPanel/Main/#MediaGallery"));
+                            var isRedirectToMediaPage = $('#isCLickedBannerLink').val() === "1";
+                            if (onDialog && isRedirectToMediaPage) {
+                                PageTracking.addTrackingForMediaPage();
+
+                                setTimeout(function () {
+                                    Site.redirect(Site.resolveRelativeUrl("UserPanel/Main/#MediaGallery"));
+                                }, 10);
                             }
                             else {
                                 Site.redirect(Site.resolveRelativeUrl("UserPanel/Main/#AccountOverview"));

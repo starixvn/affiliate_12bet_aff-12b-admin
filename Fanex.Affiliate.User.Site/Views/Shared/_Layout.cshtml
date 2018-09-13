@@ -48,7 +48,7 @@
                     <div class="user-signup">
                         @if (!HttpContext.Current.User.Identity.IsAuthenticated || userSession == null)
                         {
-                            <a class="btn btn-login-mobile loginLink">
+                            <a class="btn btn-login-mobile" id="mobileLogin">
                                 <span>@Lang.Login</span>
                             </a>
                             <div class="sign-up">

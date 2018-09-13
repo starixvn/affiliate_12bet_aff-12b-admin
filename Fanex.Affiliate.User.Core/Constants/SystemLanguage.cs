@@ -7,6 +7,18 @@ namespace Fanex.Affiliate.User.Core.Constants
 {
     public static class SystemLanguage
     {
+        private static IDictionary<string, string> _supportedLanguageForGoogleAnalytics = new Dictionary<string, string>
+        {
+            ["en-US"] = "en",
+            ["zh-CN"] = "cs",
+            ["zh-TW"] = "ch",
+            ["th-TH"] = "th",
+            ["vi-VN"] = "vn",
+            ["id-ID"] = "id",
+            ["hi-IN"] = "hi",
+            ["ko-KR"] = "ko"
+        };
+
         public const string DefaultLanguageCode = "en-US";
 
         public const string VietNamLanguageCode = "vi-VN";
@@ -29,6 +41,17 @@ namespace Fanex.Affiliate.User.Core.Constants
             new Language { Code = "hi-IN", NativeName = "Republic of India", DisplayName = "Republic of India", EnglishName = "Republic of India", ShortedCode = "hien"},
             new Language { Code = "en-GB", NativeName = "English (Europe)", DisplayName = "English (Europe)", EnglishName = "English (Europe)", ShortedCode = "eneuro"}
         };
+
+        public static string GetShortedCodeForTracking(string currentLanguage)
+        {
+            string result = string.Empty;
+            if (_supportedLanguageForGoogleAnalytics.TryGetValue(currentLanguage, out result) && !string.IsNullOrEmpty(result))
+            {
+                return result.ToUpperInvariant();
+            }
+
+            return ShortedDefaultCode.ToUpperInvariant();
+        }
 
         public static string GetLanguageText(string value)
         {

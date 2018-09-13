@@ -42,7 +42,6 @@
             dependentprop: options.params.dependentprop
         };
         options.messages["requiredifnullorempty"] = options.message;
-        console.log(options.message);
     });
 
     $.validator.addMethod("requiredifnullorempty",

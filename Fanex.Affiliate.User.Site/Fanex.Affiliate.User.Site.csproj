@@ -446,10 +446,6 @@
     <Content Include="www\build\js\forgotpassword.min.js">
       <DependentUpon>forgotpassword.js</DependentUpon>
     </Content>
-    <Content Include="www\build\js\home.js" />
-    <Content Include="www\build\js\home.min.js">
-      <DependentUpon>home.js</DependentUpon>
-    </Content>
     <Content Include="www\build\js\jquery.extension.js" />
     <Content Include="www\build\js\jquery.extension.min.js">
       <DependentUpon>jquery.extension.js</DependentUpon>
@@ -491,6 +487,14 @@
     <Content Include="www\build\js\pages\commission-report.js" />
     <Content Include="www\build\js\pages\commission-report.min.js">
       <DependentUpon>commission-report.js</DependentUpon>
+    </Content>
+    <Content Include="www\build\js\pages\home.js" />
+    <Content Include="www\build\js\pages\home.min.js">
+      <DependentUpon>home.js</DependentUpon>
+    </Content>
+    <Content Include="www\build\js\pagetracking.js" />
+    <Content Include="www\build\js\pagetracking.min.js">
+      <DependentUpon>pagetracking.js</DependentUpon>
     </Content>
     <Content Include="www\build\js\payment-request.js" />
     <Content Include="www\build\js\payment-request.min.js">
@@ -628,6 +632,7 @@
     <Content Include="www\build\styles\Images\slide-2\slide-2_kb17xl_c_scale,w_892.png" />
     <Content Include="www\build\styles\Images\slide-2\slide-2_kb17xl_c_scale,w_951.png" />
     <Content Include="www\source\js\components\jquery.extension.js" />
+    <Content Include="www\source\js\components\pagetracking.js" />
     <Content Include="www\source\js\components\validation.custom.js" />
     <Content Include="www\source\js\components\website.js" />
     <Content Include="www\source\js\lib\jquery.validate.min.js" />

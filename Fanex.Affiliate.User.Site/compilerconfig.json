@@ -134,5 +134,13 @@
   {
     "outputFile": "www/build/js/lib/modernizr-webp.js",
     "inputFile": "www/source/js/lib/modernizr-webp.js"
+  },
+  {
+    "outputFile": "www/build/js/pages/home.js",
+    "inputFile": "www/source/js/pages/home.js"
+  },
+  {
+    "outputFile": "www/build/js/pagetracking.js",
+    "inputFile": "www/source/js/components/pagetracking.js"
   }
 ]

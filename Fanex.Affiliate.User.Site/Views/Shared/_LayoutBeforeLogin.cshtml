@@ -2,6 +2,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@using Fanex.Affiliate.User.Core.Utilities
+
+
+@{
+    var settingService = DependencyResolver.Current.GetService<IAppSetting>();
+}
+
 @section styles{
     @RenderSection("styles", required: false)
 }
@@ -9,6 +16,24 @@
 @section classNav{page-container}
 
 @section scripts{
+
+    @if (settingService.Environment.Equals("UAT", StringComparison.OrdinalIgnoreCase) || settingService.IsProduction)
+    {
+        <!-- Google Analytics -->
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-5160706-44"></script>
+            <script type="text/javascript">
+                window.dataLayer = window.dataLayer || [];
+                function gtag() { dataLayer.push(arguments); }
+                gtag('js', new Date());
+
+                gtag('config', 'UA-5160706-44');
+            </script>
+        <!-- End Google Analytics -->
+    }
+
+    @Html.InlineScripts("~/www/build/js/pagetracking.js")
+
     <script>
         var validationMessage = {
             enterUserName: '@Lang.ErrmsgEntryUsername',

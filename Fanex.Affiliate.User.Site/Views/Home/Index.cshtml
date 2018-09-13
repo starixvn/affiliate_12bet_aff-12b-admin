@@ -5,18 +5,27 @@
 
 @model Fanex.Affiliate.User.Core.ViewModels.HomeViewModel
 
+@using Fanex.Affiliate.User.Core.CoreService
+@using Fanex.Affiliate.User.Core.Constants
+
+@{ 
+    var sessionService = DependencyResolver.Current.GetService<ISessionService>();
+    var shortedLangCode = SystemLanguage.GetShortedCodeForTracking(sessionService.CurrentLanguage);
+}
+
 @section styles{
     <link href="@Url.RenderLink("~/www/build/styles/css/home.css")" rel="stylesheet" />
 }
 
 @section scripts{
+    @Html.InlineScripts("~/www/build/js/pages/home.js")
 }
 
 <div class="content home-page">
     <div id="mainBanner" class="carousel slide banner-center" data-ride="carousel">
         <div class="carousel-inner" role="listbox">
             <div class="item active">
-                <a class="nounderline banner-signup" href="@Url.Action("Index", "Signup")">
+                <a id="bannerSignup" class="nounderline banner-signup" href="@Url.Content("~/Signup/Index")">
                     <div class="upto">
                         @Html.Raw(Lang.UpTo)
                         <span class="value">40%</span>
@@ -31,7 +40,7 @@
             </div>
 
             <div class="item">
-                <a class="nounderline get-banner @(Model.IsAuthenticated ? string.Empty : "loginLink")" href="@Model.BannerLink">
+                <a id="bannerMedia" class="nounderline get-banner mediaLink @(Model.IsAuthenticated ? string.Empty : "mediaLoginLink")" href="@Model.BannerLink">
                     <div class="text-1">
                         <p>@Lang.OptimizeYourWebsite</p>
                         <p>@Lang.AndSocialChannels</p>
@@ -112,7 +121,7 @@
                     <div class="text-content">
                         <ul class="news-content">
                             <li>
-                                <a class="nounderline @(Model.IsAuthenticated ? string.Empty : "loginLink")" href="@Model.BannerLink">
+                                <a class="nounderline mediaLink @(Model.IsAuthenticated ? string.Empty : "mediaLoginLink")" href="@Model.BannerLink">
                                     <span class="news-title">@Lang.NewBannerIsNowAvailable <span class="text-red" style="text-decoration:underline;">@Lang.NewWithExclamationPoint</span></span>
                                     <span>@Lang.YouCanNowLogInYourAffiliateAccount </span>
                                 </a>
@@ -130,3 +139,6 @@
         </div>
     </div>
 </div>
+
+<input type="hidden" id="shortedLangCode" value="@shortedLangCode" />
+<input type="hidden" id="isCLickedBannerLink" value="0" />
