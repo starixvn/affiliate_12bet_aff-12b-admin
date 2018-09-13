@@ -13,7 +13,7 @@ export default class Content extends Component{
     _renderHeader(){
         return (
             <Row>
-                <Cell header={true} colWidth={30}></Cell>
+                <Cell header={true} colWidth={30}>#</Cell>
                 <Cell header={true} colWidth={100} title="12BET User Name">12BET User Name</Cell>
                 <Cell header={true} colWidth={100} title="IBC User Name">IBC User Name</Cell>
                 <Cell header={true} colWidth={100} title="Winlost">Winlost</Cell>

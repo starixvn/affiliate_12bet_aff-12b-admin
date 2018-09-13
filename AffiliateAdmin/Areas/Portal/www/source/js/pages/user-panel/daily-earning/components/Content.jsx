@@ -40,7 +40,7 @@ export class Content extends Component {
     _renderHeader() {
         return (
             <Row>
-                <Cell header={true} colWidth={30}></Cell>
+                <Cell header={true} colWidth={30}>#</Cell>
                 <Cell header={true} colWidth={100} title="Date">Date</Cell>
                 <Cell header={true} colWidth={100} title="Winlost">Winlost</Cell>
                 <Cell header={true} colWidth={100} title="Deposit">Deposit</Cell>
