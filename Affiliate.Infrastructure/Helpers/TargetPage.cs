@@ -16,7 +16,7 @@ namespace Affiliate.Infrastructure.Helpers
         {
             "sportsbook", "home", "casino", "signup", "promotion",
             "numbergame", "keno", "virtualsports", "playtech", "livecasino",
-            "lottery", "cricket"
+            "lottery", "cricket", "esports"
         };
 
         public IEnumerable<string> TargetPageList
