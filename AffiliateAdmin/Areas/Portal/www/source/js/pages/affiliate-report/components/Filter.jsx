@@ -7,7 +7,7 @@ import MultipleSelect from '../../../components/multiple-select';
 import MonthPicker from '@9softstudio/react-monthpicker';
 import { sortByValues, allProduct, minMonthRange } from '../modules/constants';
 import { setReportTitle, setParam } from '../actions';
-import { formatUnit } from '../../../modules/utils';
+import { formatUnit, isValidNumber } from '../../../modules/utils';
 
 class Filter extends Component {
     constructor(props) {
@@ -22,7 +22,6 @@ class Filter extends Component {
             selectedLanguage: '',
             fromMonth: defaultMonth,
             toMonth: defaultMonth,
-            isGetAll: false,
             sortBy: sortByValues.Affiliate,
             isSortAscending: true,
             selectedProductList: allProduct
@@ -30,7 +29,7 @@ class Filter extends Component {
     }
 
     handlePressEnter = (event) => {
-        if(event.charCode === 13){
+        if (event.charCode === 13) {
             this.handleClickSearch();
         }
     }
@@ -44,7 +43,24 @@ class Filter extends Component {
     }
 
     handleSelectFromMonth = (month, year) => {
-        this.setState({ fromMonth: { month, year } });
+        const fromMonth = { month, year };
+        const toMonthRange = this._getMaxToMonth(fromMonth);
+
+        const { min, max } = toMonthRange;
+        const { toMonth } = this.state;
+
+        const isInRange = min.month <= toMonth.month && min.year <= toMonth.year &&
+            max.month >= toMonth.month && max.year >= toMonth.year;
+
+        const newState = isInRange ? {
+            fromMonth: { month, year }
+        } :
+            {
+                fromMonth: { month, year },
+                toMonth: { month, year }
+            }
+            
+        this.setState(newState);
     }
 
     handleSelectToMonth = (month, year) => {
@@ -53,12 +69,6 @@ class Filter extends Component {
 
     handleChangeProduct = (item, selectedProductList) => {
         this.setState({ selectedProductList: selectedProductList });
-    }
-
-    handleChangeGetAll = () => {
-        this.setState((prevState) => ({
-            isGetAll: !prevState.isGetAll
-        }))
     }
 
     handleChangeSortAscending = () => {
@@ -72,7 +82,12 @@ class Filter extends Component {
     }
 
     handleClickSearch = () => {
-        const { selectedProductList, selectedLanguage, fromMonth, toMonth, isGetAll, sortBy, isSortAscending } = this.state;
+        const { selectedProductList, selectedLanguage, fromMonth, toMonth, sortBy, isSortAscending } = this.state;
+
+        if (selectedProductList === '') {
+            return;
+        }
+
         const { productList, pagingOption } = this.props;
 
         const isCheckedAllProduct = selectedProductList === allProduct || selectedProductList.split(',').length === productList.length;
@@ -83,7 +98,6 @@ class Filter extends Component {
             UserName: this.searchedAffiliate,
             FromDate: `${fromMonth.month}/1/${fromMonth.year}`,
             ToDate: `${toMonth.month}/1/${toMonth.year}`,
-            IsGetAll: isGetAll,
             PreferredLanguage: selectedLanguage,
             ProductIds: isCheckedAllProduct ? allProduct : selectedProductList,
             SortType: sortBy,
@@ -97,7 +111,7 @@ class Filter extends Component {
 
     _buildReportTitle(isCheckedAllProduct) {
         const { languageList } = this.props;
-        const { selectedLanguage, fromMonth, toMonth, isGetAll } = this.state;
+        const { selectedLanguage, fromMonth, toMonth } = this.state;
 
         const userNameTitle = `${this.searchedAffiliate && '- USERNAME \'' + this.searchedAffiliate + '\''}`;
         const language = languageList[selectedLanguage] || 'All languages';
@@ -105,9 +119,7 @@ class Filter extends Component {
         const productList = this._getProductDataSource();
         const productName = isCheckedAllProduct ? 'All Products' : productList.filter(p => p.Checked).map(p => p.ProductName).join(',');
 
-        const fromToTitle = isGetAll ?
-            'Get All Dates' :
-            `FROM ${formatUnit(fromMonth.month)}/${fromMonth.year} TO ${formatUnit(toMonth.month)}/${toMonth.year}`;
+        const fromToTitle = `FROM ${formatUnit(fromMonth.month)}/${fromMonth.year} TO ${formatUnit(toMonth.month)}/${toMonth.year}`;
 
         return `AFFILIATE REPORT ${userNameTitle} - ${language} ${productName && '- ' + productName} - ${fromToTitle}`;
     }
@@ -126,11 +138,24 @@ class Filter extends Component {
         })
     }
 
+    _getMaxToMonth(fromMonth) {
+        const maxToMonth = fromMonth.month + 6;
+        const maxToYear = maxToMonth > 12 ? fromMonth.year + 1 : fromMonth.year;
+
+        return {
+            min: fromMonth,
+            max: { month: maxToMonth % 12, year: maxToYear }
+        };
+    }
+
     render() {
-        const { selectedLanguage, fromMonth, toMonth, isGetAll, sortBy, isSortAscending } = this.state;
+        const { selectedLanguage, fromMonth, toMonth, sortBy, isSortAscending, selectedProductList } = this.state;
         const { languageList } = this.props;
 
         const productDataSource = this._getProductDataSource();
+        const isValidSelectedProduct = selectedProductList.length > 0;
+
+        const toMonthRange = this._getMaxToMonth(fromMonth);
 
         return (
             <div className="filter-container">
@@ -152,7 +177,8 @@ class Filter extends Component {
                             }
                         </Input>
                     </FormGroup>
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0" style={{ width: 200 }}>
+                    <FormGroup className={"mb-2 mr-sm-2 mb-sm-0" + `${isValidSelectedProduct ? '' : ' multiple-select-wrapper is-invalid'}`}
+                        style={{ width: 200 }}>
                         <MultipleSelect
                             dataSource={productDataSource}
                             keyField="ProductId"
@@ -167,7 +193,7 @@ class Filter extends Component {
                     </FormGroup>
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                         <Label className="mr-sm-2">From</Label>
-                        <MonthPicker minMonth={minMonthRange.month} minYear={minMonthRange.year} enable={!isGetAll}
+                        <MonthPicker minMonth={minMonthRange.month} minYear={minMonthRange.year}
                             selectedDropdownYear={fromMonth.year}
                             selectedMonth={fromMonth.month}
                             onSelect={this.handleSelectFromMonth}
@@ -175,17 +201,13 @@ class Filter extends Component {
                     </FormGroup>
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                         <Label className="mr-sm-2">To</Label>
-                        <MonthPicker minMonth={minMonthRange.month} minYear={minMonthRange.year} enable={!isGetAll}
+                        <MonthPicker minMonth={toMonthRange.min.month} minYear={toMonthRange.min.year}
+                            maxMonth={toMonthRange.max.month} maxYear={toMonthRange.max.year}
                             selectedDropdownYear={toMonth.year}
+                            selectedYear={toMonth.year}
                             selectedMonth={toMonth.month}
                             onSelect={this.handleSelectToMonth}
                             iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)} />
-                    </FormGroup>
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                        <Label check>
-                            Get All
-                            <Input className="ml-1" type="checkbox" checked={isGetAll} onChange={this.handleChangeGetAll} />
-                        </Label>
                     </FormGroup>
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                         <Label for="SortBy" className="mr-sm-2">Sort By</Label>
@@ -203,7 +225,7 @@ class Filter extends Component {
                             <Input className="ml-1" type="checkbox" checked={isSortAscending} onChange={this.handleChangeSortAscending} />
                         </Label>
                     </FormGroup>
-                    <Button outline color="primary" type="button" onClick={this.handleClickSearch}>
+                    <Button outline color="primary" type="button" onClick={this.handleClickSearch} disabled={!isValidSelectedProduct}>
                         <span className="oi oi-magnifying-glass"></span> Search
                     </Button>
                 </Form>

@@ -17,3 +17,16 @@
         }
     }
 }
+
+.multiple-select-wrapper {
+    &.is-invalid {
+        .multiple-select-label {
+            color: #dc3545;
+            border-color: #dc3545;
+        }
+
+        .invalid-feedback {
+            display: block;
+        }
+    }
+}

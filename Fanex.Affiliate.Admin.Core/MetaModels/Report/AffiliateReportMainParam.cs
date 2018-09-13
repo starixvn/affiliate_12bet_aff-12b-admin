@@ -10,8 +10,6 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Report
 
         public DateTime ToDate { get; set; }
 
-        public bool IsGetAll { get; set; }
-
         public string PreferredLanguage { get; set; }
 
         public string ProductIds { get; set; }

@@ -46,7 +46,6 @@ namespace Fanex.Affiliate.Admin.Core.Repository
             objectDb.AddInParameter("Username", System.Data.DbType.String, param.UserName);
             objectDb.AddInParameter("FromDate", System.Data.DbType.DateTime, param.FromDate);
             objectDb.AddInParameter("ToDate", System.Data.DbType.DateTime, param.ToDate);
-            objectDb.AddInParameter("IsGetAll", System.Data.DbType.Boolean, param.IsGetAll);
             objectDb.AddInParameter("PreferredLanguage", System.Data.DbType.String, param.PreferredLanguage);
             objectDb.AddInParameter("ProductIds", System.Data.DbType.String, param.ProductIds);
             objectDb.AddInParameter("SortType", System.Data.DbType.Byte, param.SortType);
