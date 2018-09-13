@@ -29,10 +29,6 @@ class Filter extends Component {
         }
     }
 
-    componentDidMount() {
-        this.handleClickSearch();
-    }
-
     handlePressEnter = (event) => {
         if(event.charCode === 13){
             this.handleClickSearch();
