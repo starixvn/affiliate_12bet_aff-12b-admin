@@ -44,7 +44,7 @@ class Filter extends Component {
 
     handleSelectFromMonth = (month, year) => {
         const fromMonth = { month, year };
-        const toMonthRange = this._getMaxToMonth(fromMonth);
+        const toMonthRange = this._getToMonthRange(fromMonth);
 
         const { min, max } = toMonthRange;
         const { toMonth } = this.state;
@@ -138,8 +138,8 @@ class Filter extends Component {
         })
     }
 
-    _getMaxToMonth(fromMonth) {
-        const maxToMonth = fromMonth.month + 6;
+    _getToMonthRange(fromMonth) {
+        const maxToMonth = fromMonth.month + 5;
         const maxToYear = maxToMonth > 12 ? fromMonth.year + 1 : fromMonth.year;
 
         return {
@@ -155,7 +155,7 @@ class Filter extends Component {
         const productDataSource = this._getProductDataSource();
         const isValidSelectedProduct = selectedProductList.length > 0;
 
-        const toMonthRange = this._getMaxToMonth(fromMonth);
+        const toMonthRange = this._getToMonthRange(fromMonth);
 
         return (
             <div className="filter-container">

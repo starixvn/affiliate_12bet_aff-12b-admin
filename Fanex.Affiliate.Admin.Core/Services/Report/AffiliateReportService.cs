@@ -31,7 +31,7 @@ namespace Fanex.Affiliate.Admin.Core.Services.Report
 
         private static bool IsValidMonthRange(DateTime from, DateTime to)
         {
-            var maxMonth = from.AddMonths(6);
+            var maxMonth = from.AddMonths(5);
 
             return DateTime.Compare(maxMonth, to) >= 0;
         }
