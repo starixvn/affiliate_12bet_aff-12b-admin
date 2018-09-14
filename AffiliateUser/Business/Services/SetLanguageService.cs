@@ -15,7 +15,10 @@ namespace AffiliateUser.Business.Services
                 {
                     AppSettings.Session.Flag = strLang;
                     AppSettings.Session.Language = strLang;
+                    context.Response.SetCookie(new HttpCookie("afffavoritelang", strLang));
+
                 }
+
                 context.Response.Write(strLang);
             }
             catch (Exception ex)
