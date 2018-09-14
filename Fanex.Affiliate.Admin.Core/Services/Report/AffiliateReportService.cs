@@ -21,7 +21,18 @@ namespace Fanex.Affiliate.Admin.Core.Services.Report
                 return new AffiliateReportMainEntityResult();
             }
 
-            return _affiliateReportRepository.GetMainReportData(param);
+            var mainResult = _affiliateReportRepository.GetMainReportData(param);
+            foreach (var item in mainResult.MainData)
+            {
+                item.CommissionRate = decimal.Round(item.CommissionRate * 100, 2);
+            }
+
+            if (mainResult.Total != null)
+            {
+                mainResult.Total.CommissionRate = decimal.Round(mainResult.Total.CommissionRate * 100, 2);
+            }
+
+            return mainResult;
         }
 
         private static bool IsValidParam(AffiliateReportMainParam param)

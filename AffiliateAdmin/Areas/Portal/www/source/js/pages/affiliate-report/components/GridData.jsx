@@ -42,7 +42,7 @@ export class GridData extends Component {
     _renderHeader() {
         return [
             <Row>
-                <Cell header={true} colWidth={95} rowSpan="2" title="Affiliate">Affiliate</Cell>
+                <Cell header={true} colWidth={100} rowSpan="2" title="Affiliate">Affiliate</Cell>
                 <Cell header={true} colWidth={70} rowSpan="2" title="Total Click">Total Click</Cell>
                 <Cell header={true} colWidth={70} rowSpan="2" title="Unique Click">Unique Click</Cell>
                 <Cell header={true} colWidth={65} rowSpan="2" title="Signup">Signup</Cell>
@@ -103,7 +103,7 @@ export class GridData extends Component {
         const operationalFee = formatDecimal(dataItem.OperationalFee);
         const bankingFee = formatDecimal(dataItem.BankingFee);
         const totalFee = formatDecimal(dataItem.TotalFee);
-        const commRate = formatDecimal(dataItem.CommissionRate / 100);
+        const commRate = formatDecimal(dataItem.CommissionRate) + '%';
         const earning = formatDecimal(dataItem.Earning);
         const affWithdrawal = formatDecimal(dataItem.AffWithdrawal);
         const balanceBf = formatDecimal(dataItem.BalanceBf);
