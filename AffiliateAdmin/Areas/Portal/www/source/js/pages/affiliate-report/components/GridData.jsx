@@ -10,6 +10,8 @@ import { post } from '../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../actions/loaderAction';
 import { allProduct } from '../modules/constants';
 
+const totalText = 'Total (all pages)';
+
 export class GridData extends Component {
     constructor(props) {
         super(props);
@@ -31,7 +33,6 @@ export class GridData extends Component {
         const url = 'Portal/AffiliateReport/GetMainData';
         const response = await post(url, param);
         const { MainData, Total, TotalItem } = response.data;
-        Total.UserName = 'Total (all pages)';
 
         this.setState({ gridData: MainData, total: Total });
         this.props.setPagingOption({ TotalItem, PageIndex: param.PageIndex });
@@ -74,8 +75,8 @@ export class GridData extends Component {
     _renderDataSection(dataList) {
         const { param } = this.props;
 
-        const isAllProductIdentical = param.ProductIds === allProduct || param.ProductIds === "";
-        const productColumnClassName = isAllProductIdentical ? 'text-right' : 'text-right highlight';
+        const isSelectedAllProducts = param.ProductIds === allProduct;
+        const productColumnClassName = isSelectedAllProducts ? 'text-right' : 'text-right highlight';
         const dataRows = [];
 
         for (let i = 0; i < dataList.length; i++) {
@@ -107,9 +108,12 @@ export class GridData extends Component {
         const affWithdrawal = formatDecimal(dataItem.AffWithdrawal);
         const balanceBf = formatDecimal(dataItem.BalanceBf);
 
+        const isTotalRow = dataItem.AffId === 0 && dataItem.UserName === "";
+        const userNameText = isTotalRow ? totalText : dataItem.UserName;
+
         return (
             <Row>
-                <Cell title={dataItem.UserName}>{dataItem.UserName}</Cell>
+                <Cell title={userNameText}>{userNameText}</Cell>
                 <Cell className="text-right" title={totalClick}>{totalClick}</Cell>
                 <Cell className="text-right" title={uniqueClick}>{uniqueClick}</Cell>
                 <Cell className="text-right" title={signup}>{signup}</Cell>
@@ -155,8 +159,8 @@ export class GridData extends Component {
                     autoWidth={true}
                     bodyHeight={300}
                     header={this._renderHeader()}
-                    body={this._renderDataSection(this.state.gridData)}
-                    footer={this._renderDataSection([this.state.total])}
+                    body={this._renderDataSection(gridData)}
+                    footer={this._renderDataSection([total])}
                     containerPadding={40}
                     isPaging={true}
                     pageOption={this.props.pagingOption}

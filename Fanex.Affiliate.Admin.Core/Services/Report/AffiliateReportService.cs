@@ -1,4 +1,5 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO.Report;
+﻿using System;
+using Fanex.Affiliate.Admin.Core.DTO.Report;
 using Fanex.Affiliate.Admin.Core.MetaModels.Report;
 using Fanex.Affiliate.Admin.Core.Repository;
 
@@ -15,7 +16,24 @@ namespace Fanex.Affiliate.Admin.Core.Services.Report
 
         public AffiliateReportMainEntityResult GetMainReportData(AffiliateReportMainParam param)
         {
+            if (!IsValidParam(param))
+            {
+                return new AffiliateReportMainEntityResult();
+            }
+
             return _affiliateReportRepository.GetMainReportData(param);
+        }
+
+        private static bool IsValidParam(AffiliateReportMainParam param)
+        {
+            return !string.IsNullOrEmpty(param.ProductIds) && IsValidMonthRange(param.FromDate, param.ToDate);
+        }
+
+        private static bool IsValidMonthRange(DateTime from, DateTime to)
+        {
+            var maxMonth = from.AddMonths(6);
+
+            return DateTime.Compare(maxMonth, to) >= 0;
         }
     }
 }

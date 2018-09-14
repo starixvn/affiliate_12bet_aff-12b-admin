@@ -1,7 +1,6 @@
 ﻿using System.Web.Mvc;
 using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
-using Fanex.Affiliate.Admin.Core.DTO.Report;
 using Fanex.Affiliate.Admin.Core.MetaModels.Report;
 using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Services;
@@ -43,13 +42,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryHeader]
         public ActionResult GetMainData(AffiliateReportMainParam param)
         {
-            if (string.IsNullOrEmpty(param.ProductIds))
-            {
-                return Json(new AffiliateReportMainEntityResult());
-            }
-
             return Json(_affiliateReportService.GetMainReportData(param));
         }
     }
