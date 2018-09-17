@@ -215,7 +215,6 @@ namespace Fanex.Affiliate.User.Core.Controllers
 
         private void DoSignOut()
         {
-            _cookieService.ClearAllCookies();
             Session.Clear();
             FormsAuthentication.SignOut();
         }
