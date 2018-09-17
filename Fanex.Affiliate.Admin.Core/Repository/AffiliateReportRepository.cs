@@ -77,7 +77,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository
                 OperationalFee = Convert.ToDecimal(reader["OperationalFee"]),
                 BankingFee = Convert.ToDecimal(reader["BankingFee"]),
                 TotalFee = Convert.ToDecimal(reader["TotalFee"]),
-                CommissionRate = Convert.ToDecimal(reader["CommissionRate"]),
+                CommissionRate = decimal.Round(100 * Convert.ToDecimal(reader["CommissionRate"]), 2),
                 Earning = Convert.ToDecimal(reader["Earning"]),
                 AffWithdrawal = Convert.ToDecimal(reader["AffWithdrawal"]),
                 AffAdjustment = Convert.ToDecimal(reader["AffAdjustment"]),
