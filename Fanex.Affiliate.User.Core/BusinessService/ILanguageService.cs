@@ -3,6 +3,6 @@
     public interface ILanguageService
     {
         void SetCulture(string languageCode);
-        string GetCurrentLanguage();
+        string GetFavoriteLanguage();
     }
 }

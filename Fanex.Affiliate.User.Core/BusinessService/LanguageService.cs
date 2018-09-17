@@ -7,7 +7,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 {
     public class LanguageService : ILanguageService
     {
-        public string GetCurrentLanguage()
+        public string GetFavoriteLanguage()
         {
             var langCookie = HttpContext.Current.Request.Cookies["afffavoritelang"]?.Value;
             return SystemLanguage.IsValid(langCookie) ? langCookie : SystemLanguage.DefaultLanguageCode;

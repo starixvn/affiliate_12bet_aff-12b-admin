@@ -24,7 +24,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
         {
             base.Initialize(requestContext);
 
-            var favoriteLanguage = _languageService.GetCurrentLanguage();
+            var favoriteLanguage = _languageService.GetFavoriteLanguage();
             var sessionLang = _sessionService.CurrentLanguage;
             if (favoriteLanguage != sessionLang)
             {
