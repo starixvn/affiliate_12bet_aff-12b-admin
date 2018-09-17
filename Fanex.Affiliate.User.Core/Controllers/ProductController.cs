@@ -3,7 +3,6 @@
     using System.Web.Mvc;
     using CoreService;
     using Fanex.Affiliate.User.Core.BusinessService;
-    using Utilities;
     using ViewModels;
 
     public class ProductController : BaseController

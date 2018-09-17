@@ -1,9 +1,6 @@
 ﻿using System.Web.Mvc;
-using System.Web.Security;
 using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.CoreService;
-using Fanex.Affiliate.User.Core.Utilities;
-using ONEbook.UM.Services;
 
 namespace Fanex.Affiliate.User.Core.Controllers
 {

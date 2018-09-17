@@ -3,11 +3,9 @@
     using System;
     using System.Web.Mvc;
     using Constants;
-    using Extensions;
     using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.CoreService;
     using Fanex.Affiliate.User.Core.Repository.UserPanel;
-    using Fanex.Affiliate.User.Core.Utilities;
     using Filters;
     using MetalModels.UserPanel;
     using ViewModels.UserPanel;

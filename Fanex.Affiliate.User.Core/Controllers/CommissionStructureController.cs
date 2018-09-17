@@ -3,7 +3,6 @@
     using System.Web.Mvc;
     using CoreService;
     using Fanex.Affiliate.User.Core.BusinessService;
-    using Fanex.Affiliate.User.Core.Utilities;
 
     public class CommissionStructureController : BaseController
     {

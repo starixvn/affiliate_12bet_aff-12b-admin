@@ -4,7 +4,6 @@ using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels;
-using ONEbook.UM.Filters;
 
 namespace Fanex.Affiliate.User.Core.Controllers
 {

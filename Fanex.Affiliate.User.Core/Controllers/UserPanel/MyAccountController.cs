@@ -9,11 +9,9 @@
     using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.CoreService;
     using Fanex.Affiliate.User.Core.Repository.UserPanel;
-    using Fanex.Affiliate.User.Core.Utilities;
     using Filters;
     using MetalModels;
     using Newtonsoft.Json;
-    using ONEbook.UM.Filters;
     using Resources;
 
     [CustomAuthorize]

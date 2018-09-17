@@ -6,7 +6,6 @@ using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.Filters;
 using Fanex.Affiliate.User.Core.MetalModels.BetList;
 using Fanex.Affiliate.User.Core.Repository.BetList;
-using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels.BetList;
 
 namespace Fanex.Affiliate.User.Core.Controllers
