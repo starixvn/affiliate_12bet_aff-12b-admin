@@ -1,13 +1,20 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
     using System.Web.Mvc;
+    using Fanex.Affiliate.User.Core.BusinessService;
+    using Fanex.Affiliate.User.Core.CoreService;
+    using Fanex.Affiliate.User.Core.Utilities;
     using Filters;
-    using ONEbook.UM.Filters;
 
-    [CheckUMFilter]
     [CustomAuthorize]
-    public class MainController : Controller
+    public class MainController : BaseController
     {
+        public MainController(ISessionService sessionService,
+            ILanguageService languageService) : base(sessionService, languageService)
+        {
+
+        }
+
         [HttpGet]
         public ActionResult Index()
         {

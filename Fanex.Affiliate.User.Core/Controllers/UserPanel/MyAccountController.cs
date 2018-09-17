@@ -6,23 +6,26 @@
     using Constants;
     using DTO;
     using DTO.UserPanel;
+    using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.CoreService;
     using Fanex.Affiliate.User.Core.Repository.UserPanel;
+    using Fanex.Affiliate.User.Core.Utilities;
     using Filters;
     using MetalModels;
     using Newtonsoft.Json;
     using ONEbook.UM.Filters;
     using Resources;
 
-    [CheckUMFilter]
     [CustomAuthorize]
-    public class MyAccountController : Controller
+    public class MyAccountController : BaseController
     {
         private const string SimplifiedChineseCode = "zh-CN";
         private const string TraditionalChineseCode = "zh-TW";
         private readonly ISessionService _sessionService;
         private readonly IAccountRepository _accountRepository;
-        public MyAccountController(ISessionService sessionService, IAccountRepository accountRepository)
+        public MyAccountController(ISessionService sessionService,
+            ILanguageService languageService, IAccountRepository accountRepository)
+            : base(sessionService, languageService)
         {
             _sessionService = sessionService;
             _accountRepository = accountRepository;

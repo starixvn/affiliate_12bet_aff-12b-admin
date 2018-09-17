@@ -2,13 +2,14 @@
 {
     using System.Web.Mvc;
     using CoreService;
+    using Fanex.Affiliate.User.Core.BusinessService;
     using Utilities;
     using ViewModels;
 
     public class ProductController : BaseController
     {
-        public ProductController(ISessionService sessionService, IAppSetting appSetting)
-            : base(sessionService, appSetting)
+        public ProductController(ISessionService sessionService, ILanguageService languageService)
+            : base(sessionService, languageService)
         {
         }
 

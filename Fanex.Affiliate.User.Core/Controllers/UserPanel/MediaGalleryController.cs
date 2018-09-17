@@ -13,24 +13,24 @@
     using Fanex.Affiliate.User.Core.Utilities;
     using Filters;
     using MetalModels.UserPanel;
-    using ONEbook.UM.Filters;
     using ViewModels.UserPanel.Marketing;
 
-    [CheckUMFilter]
-    [CustomAuthorize]
     public class MediaGalleryController : BaseMarketingController
     {
 
-        public MediaGalleryController(ISessionService sessionService, IAppSetting appSetting, IMarketingService marketingService,
-            IAccountRepository accountRepository) : base(sessionService, appSetting, marketingService, accountRepository)
+        public MediaGalleryController(ISessionService sessionService, IAppSetting appSetting,
+            ILanguageService languageService,
+            IMarketingService marketingService,
+            IAccountRepository accountRepository) :
+            base(sessionService, appSetting, languageService, marketingService, accountRepository)
         {
-           
+
         }
         [HttpGet]
         [AjaxOnly]
         public ActionResult Index()
         {
-            var userSession = _sessionService.UserSession;
+            var userSession = SessionService.UserSession;
             var searchForm = GetSearchFormViewModel(true);
             var linkForm = GetLinkFormViewModel();
 
@@ -46,8 +46,8 @@
                 AffType = userSession.AffType,
                 SelectedDomain = selectedDomain,
                 SelectedPage = selectedPage,
-                TextLinkTemplate = _appSetting.TextLinkTemplate,
-                BannerDomain = _appSetting.GetValue($"BannerDomain{bannerSettingKey}") ?? _appSetting.BannerDomain
+                TextLinkTemplate = AppSetting.TextLinkTemplate,
+                BannerDomain = AppSetting.GetValue($"BannerDomain{bannerSettingKey}") ?? AppSetting.BannerDomain
             };
 
             var viewModel = new MarketingViewModel
@@ -71,7 +71,7 @@
                 return new List<MarketingItem>();
             }
 
-            return _marketingService.GetBannerList(bannerParam);
+            return MarketingService.GetBannerList(bannerParam);
         }
 
 

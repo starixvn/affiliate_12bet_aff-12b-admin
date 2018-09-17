@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.SessionState;
+using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.Utilities;
 using ONEbook.UM.Filters;
@@ -8,22 +9,31 @@ using ONEbook.UM.Filters;
 namespace Fanex.Affiliate.User.Core.Controllers
 {
     [CheckUMFilter]
-    [SessionState(SessionStateBehavior.ReadOnly)]
     public class BaseController : Controller
     {
-        private readonly ISessionService _sessionService;
-        private readonly IAppSetting _appSetting;
+        protected readonly ILanguageService LanguageService;
 
-        protected BaseController(ISessionService sessionService, IAppSetting appSetting)
+        protected BaseController(ISessionService sessionService, 
+            ILanguageService languageService)
         {
-            _sessionService = sessionService;
-            _appSetting = appSetting;
+            SessionService = sessionService;
+            LanguageService = languageService;
         }
 
-        protected ISessionService SessionService => _sessionService;
+        protected ISessionService SessionService { get; }
 
-        protected IAppSetting AppSetting => _appSetting;
+        protected override void Initialize(RequestContext requestContext)
+        {
+            base.Initialize(requestContext);
 
-       
+            var favoriteLanguage = LanguageService.GetCurrentLanguage();
+            var sessionLang = SessionService.CurrentLanguage;
+            if (favoriteLanguage != sessionLang)
+            {
+                SessionService.CurrentLanguage = favoriteLanguage;
+            }
+            LanguageService.SetCulture(favoriteLanguage);
+        }
+
     }
 }

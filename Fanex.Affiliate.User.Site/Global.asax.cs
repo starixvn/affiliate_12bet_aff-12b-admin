@@ -36,13 +36,5 @@ namespace Fanex.Affiliate.User.Site
                 application.Context.Response.Headers.Remove("Server");
             }
         }
-
-        protected void Application_AcquireRequestState(object sender, EventArgs e)
-        {
-            var languageService = DependencyResolver.Current.GetService<ILanguageService>();
-            var sessionService = DependencyResolver.Current.GetService<ISessionService>();
-
-            languageService.SetCulture(sessionService.CurrentLanguage);
-        }
     }
 }

@@ -2,22 +2,21 @@
 {
     using System.Web.Mvc;
     using CoreService;
-    using ONEbook.UM.Filters;
+    using Fanex.Affiliate.User.Core.BusinessService;
+    using Fanex.Affiliate.User.Core.Utilities;
 
-    [CheckUMFilter]
-    public class FaqController : Controller
+    public class FaqController : BaseController
     {
-        private readonly ISessionService _sessionService;
 
-        public FaqController(ISessionService sessionService)
+        public FaqController(ISessionService sessionService,ILanguageService languageService)
+            : base(sessionService, languageService)
         {
-            _sessionService = sessionService;
         }
 
         [HttpGet]
         public ActionResult Index()
         {
-            return View("~/Views/Faq/Index.cshtml", model: _sessionService.CurrentLanguage);
+            return View("~/Views/Faq/Index.cshtml", model: SessionService.CurrentLanguage);
         }
     }
 }

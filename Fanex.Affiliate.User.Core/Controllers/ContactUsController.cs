@@ -19,18 +19,20 @@
         private readonly IAccountRepository _accountRepository;
 
         private readonly ICaptchaService _captchaService;
-
+        private readonly IAppSetting _appSetting;
         public ContactUsController(
             ISessionService sessionService,
             IAppSetting appSetting,
+            ILanguageService languageService,
             IContactService contactService,
             IAccountRepository accountRepository,
             ICaptchaService captchaService)
-            : base(sessionService, appSetting)
+            : base(sessionService, languageService)
         {
             _contactService = contactService;
             _accountRepository = accountRepository;
             _captchaService = captchaService;
+            _appSetting = appSetting;
         }
 
         [HttpGet]
@@ -74,8 +76,8 @@
 
                 var emailParam = new EmailBaseParam
                 {
-                    MailTo = AppSetting.MailContact,
-                    MailCc = AppSetting.MailCc
+                    MailTo = _appSetting.MailContact,
+                    MailCc = _appSetting.MailCc
                 };
 
                 result = _contactService.SendRequest(param, emailParam);

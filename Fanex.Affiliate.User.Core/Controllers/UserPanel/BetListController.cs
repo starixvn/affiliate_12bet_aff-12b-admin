@@ -1,6 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 using System.Web.Mvc;
 using Fanex.Affiliate.User.Core.BetListWebService;
+using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.Filters;
 using Fanex.Affiliate.User.Core.MetalModels.BetList;
@@ -24,8 +25,10 @@ namespace Fanex.Affiliate.User.Core.Controllers
 
         private readonly IBetListRepository _betlistRepository;
 
-        public BetListController(ISessionService sessionService, IAppSetting appSetting, IBetListRepository betlistRepository)
-            : base(sessionService, appSetting)
+        public BetListController(ISessionService sessionService,
+            ILanguageService languageService,
+            IBetListRepository betlistRepository)
+            : base(sessionService, languageService)
         {
             _betlistRepository = betlistRepository;
         }

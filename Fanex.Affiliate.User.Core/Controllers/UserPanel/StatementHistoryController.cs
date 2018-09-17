@@ -4,6 +4,7 @@
     using System.Web.Mvc;
     using Constants;
     using Extensions;
+    using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.CoreService;
     using Fanex.Affiliate.User.Core.Repository.UserPanel;
     using Fanex.Affiliate.User.Core.Utilities;
@@ -12,22 +13,20 @@
     using ONEbook.UM.Filters;
     using ViewModels.UserPanel;
 
-    [CheckUMFilter]
     [CustomAuthorize]
-    public class StatementHistoryController : Controller
+    public class StatementHistoryController : BaseController
     {
         private const int DefaultPageSize = 20;
-        private readonly ISessionService _sessionService;
         private readonly IAppSetting _appSetting;
         private readonly IStatementHistoryRepository _statementHistoryRepository;
 
         public StatementHistoryController(ISessionService sessionService,
+            ILanguageService languageService,
             IAppSetting appSetting,
             IStatementHistoryRepository statementHistoryRepository
 
-            )
+            ) : base(sessionService, languageService)
         {
-            _sessionService = sessionService;
             _appSetting = appSetting;
             _statementHistoryRepository = statementHistoryRepository;
         }
@@ -37,8 +36,8 @@
         {
             var param = new StatementHistoryParam
             {
-                AffId = _sessionService.UserSession.AffId,
-                IsInternal = _sessionService.IsInternal,
+                AffId = SessionService.UserSession.AffId,
+                IsInternal = SessionService.IsInternal,
                 PageSize = DefaultPageSize
             };
 
@@ -53,8 +52,8 @@
         [AjaxOnly]
         public ActionResult Index(StatementHistoryParam param)
         {
-            param.AffId = _sessionService.UserSession.AffId;
-            param.IsInternal = _sessionService.IsInternal;
+            param.AffId = SessionService.UserSession.AffId;
+            param.IsInternal = SessionService.IsInternal;
             param.PageSize = param.PageSize ?? DefaultPageSize;
 
             var statementHistoryList = _statementHistoryRepository.GetStatementHistory(param);
@@ -64,6 +63,6 @@
             return PartialView("~/Views/UserPanel/StatementHistory/StatementHistoryPartial/_StatementHistoryContent.cshtml", statementHistoryList);
         }
 
-       
+
     }
 }

@@ -7,7 +7,6 @@
     using Constants;
     using DTO;
     using DTO.UserPanel;
-    using Enum;
     using Extensions;
     using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.CoreService;
@@ -18,21 +17,19 @@
     using ONEbook.UM.Filters;
     using ViewModels.UserPanel.Statistics;
 
-    [CheckUMFilter]
     [CustomAuthorize]
-    public class LandingPageStatisticsController: Controller
+    public class LandingPageStatisticsController : BaseController
     {
-        private readonly ISessionService _sessionService;
         private readonly IStatisticsRepository _statisticsRepository;
         private readonly IAccountRepository _accountRepository;
         private readonly IMarketingService _marketingService;
         public LandingPageStatisticsController(ISessionService sessionService,
+            ILanguageService languageService,
             IStatisticsRepository statisticsRepository,
             IAccountRepository accountRepository,
             IMarketingService marketingService
-            )
+            ) : base(sessionService, languageService)
         {
-            _sessionService = sessionService;
             _statisticsRepository = statisticsRepository;
             _accountRepository = accountRepository;
             _marketingService = marketingService;
@@ -43,8 +40,8 @@
         [AjaxOnly]
         public ActionResult Index()
         {
-            var userSession = _sessionService.UserSession;
-            var isInternal = _sessionService.IsInternal;
+            var userSession = SessionService.UserSession;
+            var isInternal = SessionService.IsInternal;
 
             var userHasCasino = _accountRepository.UserHasCasino(userSession.UserName, isInternal);
             var memberSitePage = new MemberSitePage(userHasCasino);
@@ -75,8 +72,8 @@
         [AjaxOnly]
         public ActionResult Index(LandingPageStatisticsParam landingPageParam)
         {
-            landingPageParam.AffId = _sessionService.UserSession.AffId;
-            landingPageParam.IsInternal = _sessionService.IsInternal;
+            landingPageParam.AffId = SessionService.UserSession.AffId;
+            landingPageParam.IsInternal = SessionService.IsInternal;
 
             var selectedLanguage = landingPageParam.LanguageCode;
             if (!string.IsNullOrEmpty(selectedLanguage))
@@ -97,7 +94,7 @@
 
         private IEnumerable<SelectListItem> GetLanguageList()
         {
-            var languageList = _marketingService.GetBannerTypeList(_sessionService.IsInternal)
+            var languageList = _marketingService.GetBannerTypeList(SessionService.IsInternal)
                                     .Where(t => t.Type.MatchWith(BannerTypeName.Language));
 
             var dataList = new List<SelectListItem>();
@@ -110,7 +107,7 @@
                     {
                         Value = language.Code,
                         Text = SystemLanguage.GetLanguageText(item.Value),
-                        Selected = language.Code.MatchWith(_sessionService.UserSession.PreferredLanguage)
+                        Selected = language.Code.MatchWith(SessionService.UserSession.PreferredLanguage)
                     });
                 }
             }

@@ -15,17 +15,19 @@
     public class SignupController : BaseController
     {
         private readonly IAccountService _accountService;
-
+        private readonly IAppSetting _appSetting;
         private readonly ICaptchaService _captchaService;
 
         public SignupController(
             ISessionService sessionService,
             IAppSetting appSetting,
             IAccountService accountService,
-            ICaptchaService captchaService) : base(sessionService, appSetting)
+            ILanguageService languageService,
+            ICaptchaService captchaService) : base(sessionService, languageService)
         {
             _accountService = accountService;
             _captchaService = captchaService;
+            _appSetting = appSetting;
         }
 
         [HttpGet]
@@ -75,18 +77,18 @@
                     Gender = param.Gender,
                     State = Server.HtmlEncode(param.State),
                     Language = SessionService.CurrentLanguage,
-                    AffType = AppSetting.AllowedAffiliateTypes.FirstOrDefault(),
+                    AffType = _appSetting.AllowedAffiliateTypes.FirstOrDefault(),
                     Ip = Request.UserHostAddress,
-                    IsLocal = AppSetting.IsLocal
+                    IsLocal = _appSetting.IsLocal
                 };
 
                 var emailParam = new EmailBaseParam
                 {
-                    MailCc = AppSetting.MailCc,
-                    MailContact = AppSetting.MailContact,
-                    MailBcc = AppSetting.MailBcc,
+                    MailCc = _appSetting.MailCc,
+                    MailContact = _appSetting.MailContact,
+                    MailBcc = _appSetting.MailBcc,
                     RootDomain = SiteDomainHelper.GetRootUrl(this),
-                    MailTo = AppSetting.MailContact
+                    MailTo = _appSetting.MailContact
                 };
 
                 result = _accountService.CreateAffiliate(signUpParam, emailParam);

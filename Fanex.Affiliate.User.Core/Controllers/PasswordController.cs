@@ -18,7 +18,7 @@
         private readonly IAccountRepository _accountRepository;
         private readonly ICryptographyService _cryptographyService;
         private readonly IEmailService _mailService;
-        private readonly ILanguageService _languageService;
+        private readonly IAppSetting _appSetting;
 
         public PasswordController(
             ISessionService sessionService,
@@ -27,12 +27,12 @@
             ICryptographyService cryptographyService,
             ILanguageService languageService,
             IEmailService mailService)
-            : base(sessionService, appSetting)
+            : base(sessionService, languageService)
         {
             _accountRepository = accountRepository;
             _cryptographyService = cryptographyService;
-            _languageService = languageService;
             _mailService = mailService;
+            _appSetting = appSetting;
         }
 
         [HttpGet]
@@ -81,15 +81,16 @@
                 var recoverEmailParam = new RecoverPasswordEmailParam
                 {
                     User = userInfo,
-                    MailContact = AppSetting.MailContact,
+                    MailContact = _appSetting.MailContact,
                     MailTo = param.Email,
                     RootDomain = SiteDomainHelper.GetRootUrl(this),
                     Code = code
                 };
 
-                _languageService.SetCulture(userInfo.PreferredLanguage ?? SystemLanguage.DefaultLanguageCode);
+                var userLang = SystemLanguage.IsValid(userInfo.PreferredLanguage) ? userInfo.PreferredLanguage : SystemLanguage.DefaultLanguageCode;
+                LanguageService.SetCulture(userLang);
                 _mailService.SendRecoverPasswordEmail(recoverEmailParam);
-                _languageService.SetCulture(SessionService.CurrentLanguage);
+                LanguageService.SetCulture(SessionService.CurrentLanguage);
             }
 
             return Json(result);
@@ -129,12 +130,13 @@
                     RootDomain = SiteDomainHelper.GetRootUrl(this),
                     NewPassword = newPassword,
                     MailTo = userInfo.Email,
-                    MailContact = AppSetting.MailContact
+                    MailContact = _appSetting.MailContact
                 };
 
-                _languageService.SetCulture(userInfo.PreferredLanguage ?? SystemLanguage.DefaultLanguageCode);
+                var userLang = SystemLanguage.IsValid(userInfo.PreferredLanguage) ? userInfo.PreferredLanguage : SystemLanguage.DefaultLanguageCode;
+                LanguageService.SetCulture(userLang);
                 _mailService.SendNewPasswordEmail(recoverEmailParam);
-                _languageService.SetCulture(SessionService.CurrentLanguage);
+                LanguageService.SetCulture(SessionService.CurrentLanguage);
             }
 
             return View(result);

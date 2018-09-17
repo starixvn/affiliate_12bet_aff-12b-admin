@@ -4,7 +4,6 @@
     using System.Linq;
     using System.Web.Mvc;
     using Constants;
-    using DTO;
     using DTO.UserPanel;
     using Extensions;
     using Fanex.Affiliate.User.Core.BusinessService;
@@ -21,17 +20,23 @@
     public class TextBoxController : BaseMarketingController
     {
 
-        public TextBoxController(ISessionService sessionService, IAppSetting appSetting, IMarketingService marketingService,
-            IAccountRepository accountRepository) : base(sessionService, appSetting, marketingService,accountRepository)
+        public TextBoxController(ISessionService sessionService,
+            IAppSetting appSetting,
+            ILanguageService languageService,
+            IMarketingService marketingService,
+            IAccountRepository accountRepository) : base(sessionService,
+                appSetting,
+                languageService,
+                marketingService, accountRepository)
         {
-           
+
         }
 
         [HttpGet]
         [AjaxOnly]
         public ActionResult Index()
         {
-            var userSession = _sessionService.UserSession;
+            var userSession = SessionService.UserSession;
 
             var searchForm = GetSearchFormViewModel(false);
             var linkForm = GetLinkFormViewModel();
@@ -46,8 +51,8 @@
                 Language = SystemLanguage.LanguageList.FirstOrDefault(l => l.Code.MatchWith(selectedLanguage))?.EnglishName,
                 SelectedDomain = selectedDomain,
                 SelectedPage = selectedPage,
-                ScriptUrl = _appSetting.MediaScriptUrl,
-                TextLinkTemplate = _appSetting.TextLinkTemplate
+                ScriptUrl = AppSetting.MediaScriptUrl,
+                TextLinkTemplate = AppSetting.TextLinkTemplate
             };
 
             var viewModel = new MarketingViewModel
@@ -71,13 +76,13 @@
                 return new List<MarketingItem>();
             }
 
-            return _marketingService.GetTextList(textParam);
+            return MarketingService.GetTextList(textParam);
         }
 
-       
 
 
-       
+
+
 
     }
 }

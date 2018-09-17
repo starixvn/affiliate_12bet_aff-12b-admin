@@ -1,16 +1,19 @@
 ﻿using System.Web.Mvc;
 using System.Web.Security;
+using Fanex.Affiliate.User.Core.BusinessService;
+using Fanex.Affiliate.User.Core.CoreService;
+using Fanex.Affiliate.User.Core.Utilities;
 using ONEbook.UM.Services;
 
 namespace Fanex.Affiliate.User.Core.Controllers
 {
-    public class NotifyController : Controller
+    public class NotifyController : BaseController
     {
-        private readonly IMaintenanceService _maintenanceService;
 
-        public NotifyController(IMaintenanceService maintenanceService)
+        public NotifyController(
+            ISessionService sessionService, ILanguageService languageService)
+            : base(sessionService, languageService)
         {
-            _maintenanceService = maintenanceService;
         }
 
         [HttpGet]
@@ -24,29 +27,6 @@ namespace Fanex.Affiliate.User.Core.Controllers
         {
             return View();
         }
-
-        [HttpGet]
-        public ActionResult UnderMaintenance()
-        {
-            var underMaintenanceTimeFrom = string.Empty;
-            var underMaintenanceTimeTo = string.Empty;
-            var maintenanceInfo = _maintenanceService.GetUnderMaintenanceTime();
-
-            if (!maintenanceInfo.IsUnderMaintenanceTime)
-            {
-                return Redirect(FormsAuthentication.LoginUrl);
-            }
-
-            if (maintenanceInfo.IsUnderMaintenanceTime)
-            {
-                underMaintenanceTimeFrom = maintenanceInfo.From;
-                underMaintenanceTimeTo = maintenanceInfo.To;
-            }
-
-            ViewBag.UmTimeFrom = underMaintenanceTimeFrom;
-            ViewBag.UmTimeTo = underMaintenanceTimeTo;
-
-            return View();
-        }
+       
     }
 }

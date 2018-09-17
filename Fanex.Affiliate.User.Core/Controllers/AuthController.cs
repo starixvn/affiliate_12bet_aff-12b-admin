@@ -14,28 +14,25 @@ using ONEbook.UM.Filters;
 
 namespace Fanex.Affiliate.User.Core.Controllers
 {
-    [CheckUMFilter]
-    public class AuthController : Controller
+    public class AuthController : BaseController
     {
         private readonly IAuthService _authService;
         private readonly ICookieService _cookieService;
-        private readonly ISessionService _sessionService;
-        private readonly IAppSetting _appSetting;
         private readonly ICaptchaService _captchaService;
-
+        private readonly IAppSetting _appSetting;
         public AuthController(
             ISessionService sessionService,
             IAppSetting appSetting,
+            ILanguageService languageService,
             ICookieService cookieService,
             IAuthService authService,
-            ICaptchaService captchaService)
+            ICaptchaService captchaService) : base(sessionService, languageService)
 
         {
             _authService = authService;
             _cookieService = cookieService;
-            _sessionService = sessionService;
-            _appSetting = appSetting;
             _captchaService = captchaService;
+            _appSetting = appSetting;
         }
 
         [ChildActionOnly]
@@ -43,7 +40,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
         [AllowAnonymous]
         public ActionResult AuthenticationForm()
         {
-            if (!User.Identity.IsAuthenticated || _sessionService.UserSession == null)
+            if (!User.Identity.IsAuthenticated || SessionService.UserSession == null)
             {
                 var keyString = Generator.GetRandomString(32);
                 var ivString = Generator.GetRandomString(16);
@@ -75,7 +72,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 });
             }
 
-            if (!_captchaService.IsValid(userParam.ValidationKey, _sessionService.CaptchaCode, Request.UserHostAddress))
+            if (!_captchaService.IsValid(userParam.ValidationKey, SessionService.CaptchaCode, Request.UserHostAddress))
             {
                 return Json(new ResultInfo
                 {
@@ -85,7 +82,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 });
             }
             userParam.LoginIp = Request.UserHostAddress;
-            userParam.Language = _sessionService.CurrentLanguage;
+            userParam.Language = SessionService.CurrentLanguage;
             var loginResult = _authService.GetLoginResult(userParam, false);
 
             if (loginResult.UserInfo != null &&
@@ -100,7 +97,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 var onUserIdParam = GetOnUserIdParam(user.AffId, userParam.LoginIp);
                 user.OnUserId = _authService.GetOnUserId(onUserIdParam);
 
-                _sessionService.AssignSessions(user);
+                SessionService.AssignSessions(user);
                 FormsAuthentication.SetAuthCookie(user.UserName, false);
             }
 
@@ -129,10 +126,10 @@ namespace Fanex.Affiliate.User.Core.Controllers
                     {
                         UserName = loginParam.CustName,
                         LoginIp = clientIpAddress,
-                        Language = _sessionService.CurrentLanguage
+                        Language = SessionService.CurrentLanguage
                     };
 
-                    _sessionService.IsInternal = true;
+                    SessionService.IsInternal = true;
                     userLoginParam.IsInternal = true;
                     var loginResult = _authService.GetLoginResult(userLoginParam, true);
                     var user = loginResult.UserInfo;
@@ -143,7 +140,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
                         var onUserIdParam = GetOnUserIdParam(user.AffId, clientIpAddress, adminId);
                         user.OnUserId = _authService.GetOnUserId(onUserIdParam);
 
-                        _sessionService.AssignSessions(user);
+                        SessionService.AssignSessions(user);
                         FormsAuthentication.SetAuthCookie(user.UserName, false);
                     }
                 }
@@ -161,8 +158,9 @@ namespace Fanex.Affiliate.User.Core.Controllers
         [CustomAuthorize]
         public ActionResult ReCheckin()
         {
-            var onUserId = _sessionService.UserSession.OnUserId;
-            var isKickOut = onUserId > 0 && _authService.Recheckin(_sessionService.UserSession.OnUserId, _sessionService.IsInternal);
+            var onUserId = SessionService.UserSession.OnUserId;
+            var isKickOut = onUserId > 0 && _authService.Recheckin(SessionService.UserSession.OnUserId,
+                SessionService.IsInternal);
 
             if (isKickOut)
             {
@@ -183,11 +181,11 @@ namespace Fanex.Affiliate.User.Core.Controllers
             var captcha = new Random().Next(1000, 9999).ToString();
             if (type == 0)
             {
-                _sessionService.CaptchaCode = captcha;
+                SessionService.CaptchaCode = captcha;
             }
             else
             {
-                _sessionService.SignUpCaptchaCode = captcha;
+                SessionService.SignUpCaptchaCode = captcha;
             }
 
             return File(_captchaService.GenerateImageBuffer(captcha, 65, 26), "image/png");
@@ -202,7 +200,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 Ip = clientIpAddress,
                 NetSessionId = HttpContext.Session.SessionID,
                 SubAccId = adminId,
-                IsInternal = _sessionService.IsInternal
+                IsInternal = SessionService.IsInternal
             };
         }
 

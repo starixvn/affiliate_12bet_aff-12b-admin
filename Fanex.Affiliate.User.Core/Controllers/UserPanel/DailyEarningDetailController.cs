@@ -4,27 +4,25 @@
     using System.Web.Mvc;
     using Constants;
     using Extensions;
+    using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.CoreService;
     using Fanex.Affiliate.User.Core.Repository.UserPanel;
     using Fanex.Affiliate.User.Core.Utilities;
     using Filters;
     using MetalModels.UserPanel;
-    using ONEbook.UM.Filters;
     using ViewModels.UserPanel;
 
-    [CheckUMFilter]
     [CustomAuthorize]
-    public class DailyEarningDetailController : Controller
+    public class DailyEarningDetailController : BaseController
     {
-        private readonly ISessionService _sessionService;
         private readonly IStatementHistoryRepository _statementHistoryRepository;
 
-        public DailyEarningDetailController(ISessionService sessionService,
+        public DailyEarningDetailController(ISessionService sessionService, 
+            ILanguageService languageService,
             IStatementHistoryRepository statementHistoryRepository
 
-            )
+            ) : base(sessionService, languageService)
         {
-            _sessionService = sessionService;
             _statementHistoryRepository = statementHistoryRepository;
         }
 
@@ -32,8 +30,8 @@
         [AjaxOnly]
         public ActionResult Index(DailyEarningParam param)
         {
-            param.AffId = _sessionService.UserSession.AffId;
-            param.IsInternal = _sessionService.IsInternal;
+            param.AffId = SessionService.UserSession.AffId;
+            param.IsInternal = SessionService.IsInternal;
 
             var extraUserInfo = _statementHistoryRepository.GetExtraUserInfo(param.AffId, param.IsInternal);
 

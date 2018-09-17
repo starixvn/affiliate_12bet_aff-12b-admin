@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.Enum;
 using Fanex.Affiliate.User.Core.Filters;
@@ -15,8 +16,8 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
 
         public MemberController(
             ISessionService sessionService,
-            IAppSetting appSetting,
-            IMemberRepository memberRepository) : base(sessionService, appSetting)
+            ILanguageService languageService,
+            IMemberRepository memberRepository) : base(sessionService, languageService)
         {
             _memberRepository = memberRepository;
         }

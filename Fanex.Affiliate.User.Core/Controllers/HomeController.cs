@@ -8,33 +8,27 @@ using ONEbook.UM.Filters;
 
 namespace Fanex.Affiliate.User.Core.Controllers
 {
-    [CheckUMFilter]
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-        private readonly ILanguageService _languageService;
-        private readonly ISessionService _sessionService;
         private readonly IAppSetting _appSetting;
-
         public HomeController(
             ISessionService sessionService,
             IAppSetting appSetting,
-            ILanguageService languageService)
+            ILanguageService languageService) : base(sessionService, languageService)
 
         {
-            _languageService = languageService;
-            _sessionService = sessionService;
             _appSetting = appSetting;
         }
 
         [HttpGet]
         public ActionResult Index()
         {
-            var isAuthenticated = Request.IsAuthenticated && _sessionService.UserSession != null;
+            var isAuthenticated = Request.IsAuthenticated && SessionService.UserSession != null;
 
             var viewModel = new HomeViewModel
             {
                 IsAuthenticated = isAuthenticated,
-                Language = _sessionService.CurrentLanguage,
+                Language = SessionService.CurrentLanguage,
                 SignUpLink = isAuthenticated ? Url.Content("~/UserPanel/Main/#AccountOverView") : Url.Action("Index", "SignUp"),
                 BannerLink = isAuthenticated ? Url.Content("~/UserPanel/Main/#MediaGallery") : "javascript:;",
                 Promotion12BetLink = GetPromotionLink()
@@ -48,8 +42,12 @@ namespace Fanex.Affiliate.User.Core.Controllers
         public ActionResult ChangeLanguage(string languageCode)
         {
             var code = string.IsNullOrEmpty(languageCode) ? SystemLanguage.DefaultLanguageCode : languageCode;
-            _sessionService.CurrentLanguage = code;
-            _languageService.SetCulture(code);
+            if (SystemLanguage.IsValid(code))
+            {
+                SessionService.CurrentLanguage = code;
+                HttpContext.Response.Cookies.Add(new System.Web.HttpCookie("afffavoritelang", code));
+                LanguageService.SetCulture(code);
+            }
 
             return Json(true);
         }

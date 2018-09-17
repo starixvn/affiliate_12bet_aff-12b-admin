@@ -15,28 +15,28 @@
     using MetalModels.UserPanel;
     using ONEbook.UM.Filters;
 
-    [CheckUMFilter]
     [CustomAuthorize]
-    public class MarketingController : Controller
+    public class MarketingController : BaseController
     {
 
-        private readonly ISessionService _sessionService;
-        private readonly IAppSetting _appSetting;
         private readonly IMarketingService _marketingService;
-        public MarketingController(ISessionService sessionService, IAppSetting appSetting, IMarketingService marketingService,
-            IAccountRepository accountRepository)
+        private readonly IAppSetting _appSetting;
+        public MarketingController(ISessionService sessionService, IAppSetting appSetting,
+            ILanguageService languageService,
+            IMarketingService marketingService,
+            IAccountRepository accountRepository) : base(sessionService, languageService)
         {
-            _sessionService = sessionService;
-            _appSetting = appSetting;
+
             _marketingService = marketingService;
+            _appSetting = appSetting;
         }
-        
+
         [HttpGet]
         [AjaxOnly]
         public ActionResult GetSubCategory(string category)
         {
             var type = "CategoryMedia" + category;
-            var subCategoryList = _marketingService.GetBannerTypeList(_sessionService.IsInternal)
+            var subCategoryList = _marketingService.GetBannerTypeList(SessionService.IsInternal)
                                                     .Where(t => t.Type.MatchWith(type));
 
             return Json(subCategoryList, JsonRequestBehavior.AllowGet);
@@ -46,8 +46,8 @@
         [AjaxOnly]
         public ActionResult GetBanner(MarketingBannerParam bannerParam)
         {
-            var userSession = _sessionService.UserSession;
-            var selectedDomain = _marketingService.GetDomainList(userSession.AffId, _sessionService.IsInternal)
+            var userSession = SessionService.UserSession;
+            var selectedDomain = _marketingService.GetDomainList(userSession.AffId, SessionService.IsInternal)
                                                     .FirstOrDefault(d => d.DomainId == bannerParam.SelectedDomainId);
             if (!string.IsNullOrEmpty(bannerParam.SubCategory))
             {
@@ -60,7 +60,8 @@
             bannerParam.AffType = userSession.AffType;
             bannerParam.SelectedDomain = selectedDomain;
             bannerParam.TextLinkTemplate = _appSetting.TextLinkTemplate;
-            bannerParam.BannerDomain = _appSetting.GetValue($"BannerDomain{bannerSettingKey}") ?? _appSetting.BannerDomain;
+            bannerParam.BannerDomain = _appSetting.GetValue($"BannerDomain{bannerSettingKey}") ??
+                _appSetting.BannerDomain;
             bannerParam.Language = SystemLanguage.LanguageList.FirstOrDefault(l => l.Code.MatchWith(bannerParam.Language))?.EnglishName;
 
             var bannerList = GetBannerList(bannerParam);
@@ -73,8 +74,8 @@
         [AjaxOnly]
         public ActionResult GetText(MarketingTextParam textParam)
         {
-            var userSession = _sessionService.UserSession;
-            var selectedDomain = _marketingService.GetDomainList(userSession.AffId, _sessionService.IsInternal)
+            var userSession = SessionService.UserSession;
+            var selectedDomain = _marketingService.GetDomainList(userSession.AffId, SessionService.IsInternal)
                                                     .FirstOrDefault(d => d.DomainId == textParam.SelectedDomainId);
 
             textParam.AffId = userSession.AffId;
@@ -93,10 +94,10 @@
         [AjaxOnly]
         public ActionResult GenerateLink(string selectedLanguage, int selectedDomainId, string selectedPage)
         {
-            var userSession = _sessionService.UserSession;
-            var selectedDomain = _marketingService.GetDomainList(userSession.AffId, _sessionService.IsInternal)
+            var userSession = SessionService.UserSession;
+            var selectedDomain = _marketingService.GetDomainList(userSession.AffId, SessionService.IsInternal)
                                                     .FirstOrDefault(d => d.DomainId == selectedDomainId);
-            var bannerTypeList = _marketingService.GetBannerTypeList(_sessionService.IsInternal);
+            var bannerTypeList = _marketingService.GetBannerTypeList(SessionService.IsInternal);
             var languageList = string.IsNullOrEmpty(selectedLanguage) ? GetLanguageList(bannerTypeList) : null;
 
             var textLinkList = GetTextLinkList(selectedLanguage, selectedPage, selectedDomain, languageList);
@@ -131,7 +132,7 @@
                 return new Dictionary<string, string>();
             }
 
-            var userSession = _sessionService.UserSession;
+            var userSession = SessionService.UserSession;
 
             var linkGenerationParam = new LinkGenerationParam
             {
@@ -160,7 +161,7 @@
                     {
                         Value = language.Code,
                         Text = SystemLanguage.GetLanguageText(item.Value),
-                        Selected = language.Code.MatchWith(_sessionService.UserSession.PreferredLanguage)
+                        Selected = language.Code.MatchWith(SessionService.UserSession.PreferredLanguage)
                     });
                 }
             }

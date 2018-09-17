@@ -1,29 +1,27 @@
 ﻿using System.Web.Mvc;
+using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.CoreService;
-using ONEbook.UM.Filters;
 
 namespace Fanex.Affiliate.User.Core.Controllers
 {
-    [CheckUMFilter]
-    public class TermAndConditionController : Controller
+    public class TermAndConditionController : BaseController
     {
-        private readonly ISessionService _sessionService;
 
-        public TermAndConditionController(ISessionService sessionService)
+        public TermAndConditionController(ISessionService sessionService, ILanguageService languageService) :
+            base(sessionService, languageService)
         {
-            _sessionService = sessionService;
         }
 
         [HttpGet]
         public ActionResult Index()
         {
-            return View("~/Views/TermAndCondition/Index.cshtml", model: _sessionService.CurrentLanguage);
+            return View("~/Views/TermAndCondition/Index.cshtml", model: SessionService.CurrentLanguage);
         }
 
         [HttpGet]
         public ActionResult Popup()
         {
-            return View("~/Views/TermAndCondition/Popup.cshtml", model: _sessionService.CurrentLanguage);
+            return View("~/Views/TermAndCondition/Popup.cshtml", model: SessionService.CurrentLanguage);
         }
     }
 }

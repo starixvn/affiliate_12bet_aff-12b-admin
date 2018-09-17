@@ -18,17 +18,14 @@
     using ONEbook.UM.Filters;
     using ViewModels.UserPanel.Statistics;
 
-    [CheckUMFilter]
     [CustomAuthorize]
-    public class ReferrersStatisticsController : Controller
+    public class ReferrersStatisticsController : BaseController
     {
-        private readonly ISessionService _sessionService;
         private readonly IStatisticsRepository _statisticsRepository;
-        public ReferrersStatisticsController(ISessionService sessionService,
+        public ReferrersStatisticsController(ISessionService sessionService, ILanguageService languageService,
             IStatisticsRepository statisticsRepository
-            )
+            ) : base(sessionService, languageService)
         {
-            _sessionService = sessionService;
             _statisticsRepository = statisticsRepository;
         }
 
@@ -40,8 +37,8 @@
             var now = DateTime.Now;
             var referrerStatisticsParam = new ReferrerStatisticsParam
             {
-                AffId = _sessionService.UserSession.AffId,
-                IsInternal = _sessionService.IsInternal,
+                AffId = SessionService.UserSession.AffId,
+                IsInternal = SessionService.IsInternal,
                 FromDate = new DateTime(now.Year, now.Month, 1),
                 ToDate = now,
                 DeviceType = (byte)DeviceType.PCDevice
@@ -61,8 +58,8 @@
         [AjaxOnly]
         public ActionResult Index(ReferrerStatisticsParam referrerStatisticsParam)
         {
-            referrerStatisticsParam.AffId = _sessionService.UserSession.AffId;
-            referrerStatisticsParam.IsInternal = _sessionService.IsInternal;
+            referrerStatisticsParam.AffId = SessionService.UserSession.AffId;
+            referrerStatisticsParam.IsInternal = SessionService.IsInternal;
 
             var viewModel = new ReferrerStatisticsViewModel
             {

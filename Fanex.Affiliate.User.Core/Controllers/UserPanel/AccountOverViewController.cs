@@ -2,26 +2,26 @@
 {
     using System;
     using System.Web.Mvc;
+    using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.CoreService;
     using Fanex.Affiliate.User.Core.Repository.UserPanel;
+    using Fanex.Affiliate.User.Core.Utilities;
     using Filters;
     using MetalModels.UserPanel;
     using ONEbook.UM.Filters;
     using ViewModels.UserPanel;
 
-    [CheckUMFilter]
     [CustomAuthorize]
-    public class AccountOverviewController:Controller
+    public class AccountOverviewController : BaseController
     {
-        private readonly ISessionService _sessionService;
         private readonly IStatisticsRepository _statisticsRepository;
         private readonly IAccountRepository _accountRepository;
-        public AccountOverviewController(ISessionService sessionService, 
+        public AccountOverviewController(ISessionService sessionService,
+            ILanguageService languageService,
             IStatisticsRepository statisticsRepository,
             IAccountRepository accountRepository
-            )
+            ) : base(sessionService, languageService)
         {
-            _sessionService = sessionService;
             _statisticsRepository = statisticsRepository;
             _accountRepository = accountRepository;
         }
@@ -32,9 +32,9 @@
         {
             var param = new StatisticsOverviewParam
             {
-                AffId = _sessionService.UserSession.AffId,
+                AffId = SessionService.UserSession.AffId,
                 MonthDate = monthDate.HasValue ? monthDate.Value : DateTime.Now.Date,
-                IsInternal = _sessionService.IsInternal
+                IsInternal = SessionService.IsInternal
             };
 
             var viewModel = new AccountOverviewViewModel

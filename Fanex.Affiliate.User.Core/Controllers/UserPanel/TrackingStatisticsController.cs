@@ -1,34 +1,24 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
-    using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
-    using Constants;
-    using DTO;
-    using DTO.UserPanel;
-    using Enum;
     using Extensions;
     using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.CoreService;
     using Fanex.Affiliate.User.Core.Repository.UserPanel;
-    using Fanex.Affiliate.User.Core.Utilities;
     using Filters;
     using MetalModels.UserPanel;
-    using ONEbook.UM.Filters;
     using ViewModels.UserPanel.Statistics;
 
-    [CheckUMFilter]
     [CustomAuthorize]
-    public class TrackingStatisticsController : Controller
+    public class TrackingStatisticsController : BaseController
     {
-        private readonly ISessionService _sessionService;
         private readonly IStatisticsRepository _statisticsRepository;
         public TrackingStatisticsController(ISessionService sessionService,
+            ILanguageService languageService,
             IStatisticsRepository statisticsRepository
-            )
+            ) : base(sessionService, languageService)
         {
-            _sessionService = sessionService;
             _statisticsRepository = statisticsRepository;
         }
 
@@ -36,8 +26,8 @@
         [AjaxOnly]
         public ActionResult Index()
         {
-            var affId = _sessionService.UserSession.AffId;
-            var isInternal = _sessionService.IsInternal;
+            var affId = SessionService.UserSession.AffId;
+            var isInternal = SessionService.IsInternal;
 
             var viewModel = new TrackingStatisticsViewModel
             {
@@ -53,8 +43,8 @@
         [AjaxOnly]
         public ActionResult Index(string trackingCode)
         {
-            var affId = _sessionService.UserSession.AffId;
-            var isInternal = _sessionService.IsInternal;
+            var affId = SessionService.UserSession.AffId;
+            var isInternal = SessionService.IsInternal;
 
             var viewModel = new TrackingStatisticsViewModel
             {
@@ -70,8 +60,8 @@
         [AjaxOnly]
         public ActionResult TrackingStatisticsDetail(TrackingStatisticsDetailParam trackingStatisticsDetailParam)
         {
-            trackingStatisticsDetailParam.AffId = _sessionService.UserSession.AffId;
-            trackingStatisticsDetailParam.IsInternal = _sessionService.IsInternal;
+            trackingStatisticsDetailParam.AffId = SessionService.UserSession.AffId;
+            trackingStatisticsDetailParam.IsInternal = SessionService.IsInternal;
 
             var viewModel = new TrackingStatisticsViewModel
             {
@@ -81,6 +71,6 @@
 
             return PartialView("~/Views/UserPanel/Statistics/StatisticsPartial/_TrackingStatisticsContent.cshtml", viewModel);
         }
-        
+
     }
 }

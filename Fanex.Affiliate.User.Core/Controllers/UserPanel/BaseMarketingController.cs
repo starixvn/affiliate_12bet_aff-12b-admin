@@ -7,6 +7,7 @@ using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.Extensions;
+using Fanex.Affiliate.User.Core.Filters;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Resources;
@@ -15,25 +16,26 @@ using Fanex.Affiliate.User.Core.ViewModels.UserPanel.Marketing;
 
 namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
 {
-    public class BaseMarketingController : Controller
+    [CustomAuthorize]
+    public class BaseMarketingController : BaseController
     {
-        protected readonly ISessionService _sessionService;
-        protected readonly IAppSetting _appSetting;
-        protected readonly IMarketingService _marketingService;
-        protected readonly IAccountRepository _accountRepository;
+        protected readonly IMarketingService MarketingService;
+        protected readonly IAccountRepository AccountRepository;
+        protected readonly IAppSetting AppSetting;
 
         public BaseMarketingController(ISessionService sessionService, IAppSetting appSetting,
-            IMarketingService marketingService,
+            ILanguageService languageService,
+             IMarketingService marketingService,
             IAccountRepository accountRepository)
+            : base(sessionService, languageService)
         {
-            _sessionService = sessionService;
-            _appSetting = appSetting;
-            _marketingService = marketingService;
-            _accountRepository = accountRepository;
+            MarketingService = marketingService;
+            AccountRepository = accountRepository;
+            AppSetting = appSetting;
         }
         protected SearchFormViewModel GetSearchFormViewModel(bool isMediaPage)
         {
-            var bannerTypeList = _marketingService.GetBannerTypeList(_sessionService.IsInternal);
+            var bannerTypeList = MarketingService.GetBannerTypeList(SessionService.IsInternal);
 
             var categoryType = isMediaPage ? BannerTypeName.CategoryMedia : BannerTypeName.Category;
             var viewModel = new SearchFormViewModel
@@ -54,15 +56,15 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
 
         protected LinkFormViewModel GetLinkFormViewModel()
         {
-            var userSession = _sessionService.UserSession;
-            var isInternal = _sessionService.IsInternal;
+            var userSession = SessionService.UserSession;
+            var isInternal = SessionService.IsInternal;
 
-            var userHasCasino = _accountRepository.UserHasCasino(userSession.UserName, isInternal);
+            var userHasCasino = AccountRepository.UserHasCasino(userSession.UserName, isInternal);
             var memberSitePage = new MemberSitePage(userHasCasino);
 
             var viewModel = new LinkFormViewModel
             {
-                DomainList = _marketingService.GetDomainList(userSession.AffId, isInternal),
+                DomainList = MarketingService.GetDomainList(userSession.AffId, isInternal),
                 MemberSitePageList = memberSitePage.PageList.Select(p => new SelectListItem { Value = p, Text = p })
             };
 
@@ -83,7 +85,7 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
                     {
                         Value = language.Code,
                         Text = SystemLanguage.GetLanguageText(item.Value),
-                        Selected = language.Code.MatchWith(_sessionService.UserSession.PreferredLanguage)
+                        Selected = language.Code.MatchWith(SessionService.UserSession.PreferredLanguage)
                     });
                 }
             }
@@ -105,12 +107,12 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
                 return new Dictionary<string, string>();
             }
 
-            var userSession = _sessionService.UserSession;
+            var userSession = SessionService.UserSession;
 
             var linkGenerationParam = new LinkGenerationParam
             {
                 AffId = userSession.AffId,
-                TextLinkTemplate = _appSetting.TextLinkTemplate,
+                TextLinkTemplate = AppSetting.TextLinkTemplate,
                 PreferredLanguage = userSession.PreferredLanguage,
                 SelectedLanguage = selectedLanguage,
                 SelectedDomain = selectedDomain,
@@ -118,7 +120,7 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
                 LanguageList = languageList
             };
 
-            return _marketingService.GenerateLinkList(linkGenerationParam);
+            return MarketingService.GenerateLinkList(linkGenerationParam);
         }
     }
 }

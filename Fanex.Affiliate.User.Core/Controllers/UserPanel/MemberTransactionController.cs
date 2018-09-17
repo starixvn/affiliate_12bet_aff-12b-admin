@@ -2,20 +2,23 @@
 using System.Linq;
 using System.Web.Mvc;
 using Fanex.Affiliate.User.Core.BusinessService;
+using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.Filters;
 using Fanex.Affiliate.User.Core.MetalModels;
+using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels;
 using ONEbook.UM.Filters;
 
 namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
 {
-    [CheckUMFilter]
     [CustomAuthorize]
-    public class MemberTransactionController : Controller
+    public class MemberTransactionController : BaseController
     {
         private readonly IMemberTransactionService _memberTransactionService;
 
-        public MemberTransactionController(IMemberTransactionService memberTransactionService)
+        public MemberTransactionController(ISessionService sessionService,
+            ILanguageService languageService, IMemberTransactionService memberTransactionService)
+            : base(sessionService, languageService)
         {
             _memberTransactionService = memberTransactionService;
         }

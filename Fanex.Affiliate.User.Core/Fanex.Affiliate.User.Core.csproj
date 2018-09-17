@@ -188,6 +188,7 @@
     <Compile Include="Constants\CommGroupName.cs" />
     <Compile Include="Constants\PaymentStatus.cs" />
     <Compile Include="Constants\Product.cs" />
+    <Compile Include="Controllers\UnderMaintenanceController.cs" />
     <Compile Include="Controllers\UserPanel\MemberTransactionController.cs" />
     <Compile Include="Controllers\UserPanel\MemberController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
