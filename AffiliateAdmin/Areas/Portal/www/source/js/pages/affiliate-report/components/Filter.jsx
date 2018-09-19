@@ -7,7 +7,7 @@ import MultipleSelect from '../../../components/multiple-select';
 import MonthPicker from '@9softstudio/react-monthpicker';
 import { sortByValues, allProduct, minMonthRange } from '../modules/constants';
 import { setReportTitle, setParam } from '../actions';
-import { formatUnit, isValidNumber } from '../../../modules/utils';
+import { formatUnit } from '../../../modules/utils';
 
 class Filter extends Component {
     constructor(props) {
@@ -15,7 +15,7 @@ class Filter extends Component {
 
         this.searchedAffiliate = '';
 
-        const now = new Date();
+        const now = new Date(this.props.currentDate);
         const defaultMonth = { month: now.getMonth() + 1, year: now.getFullYear() };
 
         this.state = {
@@ -59,7 +59,7 @@ class Filter extends Component {
                 fromMonth: { month, year },
                 toMonth: { month, year }
             }
-            
+
         this.setState(newState);
     }
 
@@ -138,13 +138,27 @@ class Filter extends Component {
         })
     }
 
-    _getToMonthRange(fromMonth) {
-        const maxToMonth = fromMonth.month + 5;
-        const maxToYear = maxToMonth > 12 ? fromMonth.year + 1 : fromMonth.year;
+    _getToMonthRange(from) {
+        let min = Object.assign({}, from);
+        let maxToMonth = from.month + 5;
+        let maxToYear = maxToMonth > 12 ? from.year + 1 : from.year;
+
+        const now = new Date(this.props.currentDate);
+        let actualMaxMonth = maxToMonth % 12;
+
+        const nowMonth = now.getMonth() + 1;
+        const nowYear = now.getFullYear();
+        
+        if (maxToYear > nowYear || actualMaxMonth > nowMonth && maxToYear === nowYear) {
+            actualMaxMonth = nowMonth;
+            maxToYear = nowYear;
+
+            min = { month: from.month, year: maxToYear }
+        }
 
         return {
-            min: fromMonth,
-            max: { month: maxToMonth % 12, year: maxToYear }
+            min,
+            max: { month: actualMaxMonth, year: maxToYear }
         };
     }
 
@@ -156,6 +170,7 @@ class Filter extends Component {
         const isValidSelectedProduct = selectedProductList.length > 0;
 
         const toMonthRange = this._getToMonthRange(fromMonth);
+        console.log(toMonthRange)
 
         return (
             <div className="filter-container">
@@ -234,8 +249,8 @@ class Filter extends Component {
     }
 }
 
-function mapStateToProps({ productList, pagingOption, languageList }) {
-    return Object.assign({}, { productList, pagingOption, languageList });
+function mapStateToProps({ productList, pagingOption, languageList, currentDate }) {
+    return Object.assign({}, { productList, pagingOption, languageList, currentDate });
 }
 
 function mapDispatchToProps(dispatch) {

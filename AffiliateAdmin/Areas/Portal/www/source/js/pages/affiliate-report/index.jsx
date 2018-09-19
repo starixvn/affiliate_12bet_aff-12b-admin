@@ -28,7 +28,9 @@ for(let i = 0; i < languageList.length; i++){
     language[languageItem.LanguageCode] = languageItem.LanguageName;
 }
 
-const store = configureStore({ productList, languageList: language });
+const currentDate = window.initialState.currentDate;
+
+const store = configureStore({ productList, languageList: language, currentDate });
 
 export default class App extends React.Component {
     constructor(props) {
