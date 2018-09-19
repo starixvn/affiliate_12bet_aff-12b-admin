@@ -49,20 +49,22 @@ export default class AssignGroup extends Component {
                     affInfo
                 }
                 const response = await post(url, params);
-                const result = response.data;
+                if (response && response.status === 200) {
+                    const result = response.data;
 
-                if (result.IsSuccessful) {
-                    window.alert(messages.assignGroupSuccessfully);
-                    const mainFrame = top.frames["mainFrame"];
-                    if (mainFrame) {
-                        mainFrame.location.reload();
+                    if (result.IsSuccessful) {
+                        window.alert(messages.assignGroupSuccessfully);
+                        const mainFrame = top.frames["mainFrame"];
+                        if (mainFrame) {
+                            mainFrame.location.reload();
+                        }
+                        else {
+                            window.location.reload();
+                        }
                     }
                     else {
-                        window.location.reload();
+                        window.alert(result.Message);
                     }
-                }
-                else {
-                    window.alert(result.Message);
                 }
 
                 this.setState({ isShowLoader: false });

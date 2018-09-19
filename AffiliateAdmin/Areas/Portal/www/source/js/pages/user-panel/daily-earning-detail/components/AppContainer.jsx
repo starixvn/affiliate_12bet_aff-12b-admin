@@ -30,13 +30,21 @@ export default class AppContainer extends Component {
         this.setState({ isShowLoader: true });
         const url = 'Portal/UserPanel/StatementHistory/GetDailyEarningDetail';
         const response = await post(url, param);
-        const { MainData, Total } = response.data;
+        if (response && response.status === 200) {
+            const { MainData, Total } = response.data;
 
-        this.setState({
-            isShowLoader: false,
-            selectedProduct: param.selectedProduct,
-            data: { gridData: MainData, total: Total }
-        });
+            this.setState({
+                isShowLoader: false,
+                selectedProduct: param.selectedProduct,
+                data: { gridData: MainData, total: Total }
+            });
+        }
+        else {
+            this.setState({
+                isShowLoader: false,
+                selectedProduct: param.selectedProduct
+            });
+        }
     }
 
     handleChangeProduct = (selectedProduct) => {

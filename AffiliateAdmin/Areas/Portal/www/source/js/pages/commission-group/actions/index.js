@@ -19,17 +19,19 @@ const setGridData = (data) => {
 export const getGroupSettingList = (param) => async(dispatch) => {
     dispatch(toggleLoader(true));
     const response = await fetchGroupSettingData(param);
-    const { CommissionSettingList, TotalRows } = response.data;
+    if (response && response.status === 200) {
+        const { CommissionSettingList, TotalRows } = response.data;
 
-    dispatch(setGridData(CommissionSettingList));
+        dispatch(setGridData(CommissionSettingList));
 
-    const { PageIndex, PageSize } = param;
-    const pagingOption = {
-        PageIndex,
-        PageSize,
-        TotalItem: TotalRows
-    };
-    dispatch(setPagingOption(pagingOption));
+        const { PageIndex, PageSize } = param;
+        const pagingOption = {
+            PageIndex,
+            PageSize,
+            TotalItem: TotalRows
+        };
+        dispatch(setPagingOption(pagingOption));
+    }
     dispatch(toggleLoader(false));
 }
 

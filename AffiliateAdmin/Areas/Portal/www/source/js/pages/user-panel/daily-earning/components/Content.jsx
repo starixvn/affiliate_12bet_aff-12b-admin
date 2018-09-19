@@ -31,9 +31,11 @@ export class Content extends Component {
         this.props.toggleLoader(true);
         const url = 'Portal/UserPanel/StatementHistory/GetDailyEarning';
         const response = await post(url, param);
-        const { MainData, Total } = response.data;
-        
-        this.setState({ gridData: MainData, total: Total });
+        if (response && response.status === 200) {
+            const { MainData, Total } = response.data;
+
+            this.setState({ gridData: MainData, total: Total });
+        }
         this.props.toggleLoader(false);
     }
 

@@ -63,30 +63,32 @@ export class AssignPrivateGroup extends React.Component {
             const param = { commGroup, affInfo };
 
             const response = await post('Portal/CommissionGroup/AssignPrivateGroup', param);
-            const result = response.data;
+            if (response && response.status === 200) {
+                const result = response.data;
 
-            const resultMessage = result.IsSuccessful ?
-                (affInfo.GroupId > 0 ? messages.updateGroupSuccessfully : messages.assignGroupSuccessfully) :
-                result.Message;
+                const resultMessage = result.IsSuccessful ?
+                    (affInfo.GroupId > 0 ? messages.updateGroupSuccessfully : messages.assignGroupSuccessfully) :
+                    result.Message;
 
-            window.scrollTo({ top: 0, behavior: "smooth" });
-            this.setState({
-                isShowMessage: true,
-                isSuccess: result.IsSuccessful,
-                message: [resultMessage],
-                isShowLoader: false
-            });
+                window.scrollTo({ top: 0, behavior: "smooth" });
+                this.setState({
+                    isShowMessage: true,
+                    isSuccess: result.IsSuccessful,
+                    message: [resultMessage],
+                    isShowLoader: false
+                });
 
-            if (result.IsSuccessful) {
-                const mainFrame = top.frames["mainFrame"];
-                window.setTimeout(() => {
-                    if (mainFrame) {
-                        mainFrame.location.reload();
-                    }
-                    else {
-                        window.location.reload();
-                    }
-                }, 2000)
+                if (result.IsSuccessful) {
+                    const mainFrame = top.frames["mainFrame"];
+                    window.setTimeout(() => {
+                        if (mainFrame) {
+                            mainFrame.location.reload();
+                        }
+                        else {
+                            window.location.reload();
+                        }
+                    }, 2000)
+                }
             }
         }
     }

@@ -40,16 +40,18 @@ export class GridData extends Component {
         const isConfirmed = window.confirm('Are you sure you want to delete the commission group ' + groupName + ' ?');
         if (isConfirmed) {
             const response = await this.props.deleteCommGroup({ groupId });
-            const result = response.data;
+            if (response && response.status === 200) {
+                const result = response.data;
 
-            if (result.IsSuccessful) {
-                const gettingParam = Object.assign({}, defaultPagingOption);
-                this.props.getGroupSettingList(gettingParam);
+                if (result.IsSuccessful) {
+                    const gettingParam = Object.assign({}, defaultPagingOption);
+                    this.props.getGroupSettingList(gettingParam);
 
-                window.alert("Delete Commission Group Successfully");
-            }
-            else {
-                window.alert(result.Message);
+                    window.alert("Delete Commission Group Successfully");
+                }
+                else {
+                    window.alert(result.Message);
+                }
             }
         }
     }

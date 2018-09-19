@@ -11,7 +11,7 @@ const getXsrfToken = () => {
     return _xsrfToken;
 }
 
-axios.interceptors.response.use(response => response,
+axios.interceptors.response.use(response => Promise.resolve(response),
     error => {
         const { response } = error;
         if (response) {
@@ -31,14 +31,20 @@ axios.interceptors.response.use(response => response,
                     break;
             }
         }
+
+        return Promise.reject(error);
     });
 
-export const post = (relativeUrl, params) => {
+export const post = (relativeUrl, params, options) => {
     const url = resolveClientUrl(relativeUrl);
     return axios.post(url, params, {
-        headers: {
-            'X-Requested-With': 'XMLHttpRequest',
-            '__RequestVerificationToken': getXsrfToken()
-        }
-    });
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                '__RequestVerificationToken': getXsrfToken()
+            }
+        })
+        .then(response => response)
+        .catch(err => {
+            options && options.onError && options.onError(err);
+        });
 }

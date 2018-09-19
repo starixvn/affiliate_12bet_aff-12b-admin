@@ -49,20 +49,22 @@ export class EditGroup extends React.Component {
 
             const param = { ...selectedGroup, PlatformFeeList: platformFeeList };
             const response = await this.props.updateCommissionGroup(param);
-            const result = response.data;
+            if (response && response.status === 200) {
+                const result = response.data;
 
-            if (result.IsSuccessful) {
-                window.setTimeout(this.props.onClose, 3000);
-                const gettingParam = Object.assign({}, defaultPagingOption);
-                this.props.getGroupSettingList(gettingParam);
+                if (result.IsSuccessful) {
+                    window.setTimeout(this.props.onClose, 3000);
+                    const gettingParam = Object.assign({}, defaultPagingOption);
+                    this.props.getGroupSettingList(gettingParam);
+                }
+
+                this.props.onSave && this.props.onSave();
+                this.setState({
+                    isShowMessage: true,
+                    isSuccess: result.IsSuccessful,
+                    message: [result.IsSuccessful ? messages.updateGroupSuccessfully : result.Message]
+                });
             }
-
-            this.props.onSave && this.props.onSave();
-            this.setState({
-                isShowMessage: true,
-                isSuccess: result.IsSuccessful,
-                message: [result.IsSuccessful ? messages.updateGroupSuccessfully : result.Message]
-            });
             this.props.toggleLoader(false);
         }
     }

@@ -32,10 +32,12 @@ export class GridData extends Component {
         this.props.toggleLoader(true);
         const url = 'Portal/AffiliateReport/GetMainData';
         const response = await post(url, param);
-        const { MainData, Total, TotalItem } = response.data;
+        if (response && response.status === 200) {
+            const { MainData, Total, TotalItem } = response.data;
 
-        this.setState({ gridData: MainData, total: Total });
-        this.props.setPagingOption({ TotalItem, PageIndex: param.PageIndex });
+            this.setState({ gridData: MainData, total: Total });
+            this.props.setPagingOption({ TotalItem, PageIndex: param.PageIndex });
+        }
         this.props.toggleLoader(false);
     }
 
@@ -104,7 +106,7 @@ export class GridData extends Component {
         const operationalFee = formatDecimal(dataItem.OperationalFee);
         const bankingFee = formatDecimal(dataItem.BankingFee);
         const totalFee = formatDecimal(dataItem.TotalFee);
-        
+
         const earning = formatDecimal(dataItem.Earning);
         const affWithdrawal = formatDecimal(dataItem.AffWithdrawal);
         const affAdjustment = formatDecimal(dataItem.AffAdjustment);

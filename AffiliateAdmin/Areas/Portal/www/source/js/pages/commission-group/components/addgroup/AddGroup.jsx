@@ -52,19 +52,21 @@ export class AddGroup extends React.Component {
 
             const param = { ...selectedGroup, PlatformFeeList: platformFeeList };
             const response = await this.props.insertCommissionGroup(param);
-            const result = response.data;
-            if (result.IsSuccessful) {
-                window.setTimeout(this.props.onClose, 3000);
-                const gettingParam = Object.assign({}, defaultPagingOption);
-                this.props.getGroupSettingList(gettingParam);
-            }
+            if (response && response.status === 200) {
+                const result = response.data;
+                if (result.IsSuccessful) {
+                    window.setTimeout(this.props.onClose, 3000);
+                    const gettingParam = Object.assign({}, defaultPagingOption);
+                    this.props.getGroupSettingList(gettingParam);
+                }
 
-            this.props.onSave && this.props.onSave();
-            this.setState({
-                isShowMessage: true,
-                isSuccess: result.IsSuccessful,
-                message: [result.IsSuccessful ? messages.addGroupSuccessfully : result.Message]
-            });
+                this.props.onSave && this.props.onSave();
+                this.setState({
+                    isShowMessage: true,
+                    isSuccess: result.IsSuccessful,
+                    message: [result.IsSuccessful ? messages.addGroupSuccessfully : result.Message]
+                });
+            }
             this.props.toggleLoader(false);
         }
     }
