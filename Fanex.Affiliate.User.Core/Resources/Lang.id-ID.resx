@@ -2032,4 +2032,10 @@
   <data name="ForgotLoginDetail" xml:space="preserve">
     <value>Lupa Detail Masuk?</value>
   </data>
+  <data name="Withdrawal" xml:space="preserve">
+    <value>Penarikan</value>
+  </data>
+  <data name="MobileDevice" xml:space="preserve">
+    <value>Mobile</value>
+  </data>
 </root>

@@ -133,7 +133,7 @@
     <value>Your account is closed. Please contact your administrator!</value>
   </data>
   <data name="LoginLockedAccount" xml:space="preserve">
-    <value>Your account is locked temporarily due to fail to log in greater than 5 times. Please try again after 10 minutes or contact your administrator!</value>
+    <value>Your account is locked temporarily due to 5 consecutive failed login attempts. Please try again after 10 minutes or contact your administrator!</value>
   </data>
   <data name="LoginWrongInfo" xml:space="preserve">
     <value>Wrong username or password.</value>

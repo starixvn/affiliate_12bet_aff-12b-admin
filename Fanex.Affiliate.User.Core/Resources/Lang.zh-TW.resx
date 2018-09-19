@@ -142,7 +142,7 @@
     <value>Url 添加 </value>
   </data>
   <data name="Adjustment" xml:space="preserve">
-    <value>Adjustment</value>
+    <value>調整</value>
   </data>
   <data name="Affiliate" xml:space="preserve">
     <value>合作夥伴</value>
@@ -490,7 +490,7 @@
     <value>捷克</value>
   </data>
   <data name="DailyEarningDetail" xml:space="preserve">
-    <value>Daily Earning Detail</value>
+    <value>每日收益明細</value>
   </data>
   <data name="DailyEarnings" xml:space="preserve">
     <value>日收入</value>
@@ -2037,5 +2037,11 @@
   </data>
   <data name="ForgotLoginDetail" xml:space="preserve">
     <value>忘記登入訊息？</value>
+  </data>
+  <data name="Withdrawal" xml:space="preserve">
+    <value>提款</value>
+  </data>
+  <data name="MobileDevice" xml:space="preserve">
+    <value>手機號碼</value>
   </data>
 </root>

@@ -2,13 +2,18 @@
 
 var Site = (function ($) {
     var _rootUrl = null;
+    var _language = null;
 
     var _me = {
         initialize: function initialize() {
             _rootUrl = $("#RootUrl").val();
+            _language = $("#Language").val();
         },
         resolveRelativeUrl: function resolveRelativeUrl(url) {
             return _rootUrl + url;
+        },
+        getCurrentLanguage: function getCurrentLanguage() {
+            return _language;
         },
         escapeHtml: function escapeHtml(inputString) {
             var div = document.createElement('div');
@@ -35,7 +40,6 @@ var Site = (function ($) {
             $result.html(message);
             $result.show();
         }
-
     };
 
     return _me;

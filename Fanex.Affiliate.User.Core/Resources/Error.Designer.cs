@@ -106,7 +106,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your account is locked temporarily due to fail to log in greater than 5 times. Please try again after 10 minutes or contact your administrator!.
+        ///   Looks up a localized string similar to Your account is locked temporarily due to 5 consecutive failed login attempts. Please try again after 10 minutes or contact your administrator!.
         /// </summary>
         public static string LoginLockedAccount {
             get {

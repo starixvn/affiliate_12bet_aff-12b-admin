@@ -130,7 +130,7 @@
     <value>Tài khoản của bạn bị đóng. Vui lòng liên hệ với quản trị viên của bạn!</value>
   </data>
   <data name="LoginLockedAccount" xml:space="preserve">
-    <value>Tài khoản của bạn bị đóng. Vui lòng liên hệ với quản trị viên của bạn!</value>
+    <value>Tài khoản của bạn bị khóa tạm thời do đăng nhập sai 5 lần liên tiếp. Vui lòng thử lại sau 10 phút hoặc liên hệ với quản trị viên của bạn!</value>
   </data>
   <data name="LoginWrongInfo" xml:space="preserve">
     <value>Tên truy cập hoặc mật khẩu sai.</value>

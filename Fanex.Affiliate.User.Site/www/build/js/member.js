@@ -1245,12 +1245,23 @@
 }));
 
 (function ($) {
+    var _languageCode;
+    var pagingInfoText = {
+        'en-US': 'Page {0} of {1}',
+        'zh-CN': '从 {0} 页到 {1} 页',
+        'zh-TW': '從 {0} 頁到 {1} 頁',
+        'th-TH': 'หน้า {0} จาก {1}',
+        'vi-VN': 'Trang {0}',
+        'ko-KR': '페이지 {0} 중 {1}'
+    }
+
     var DEFAULT_PAGESIZE_LIST = [10, 20, 50, 100, 200];
     var defaultOption = {
         pageIndex: 0,
         pageSize: 20,
         totalItems: 0,
         pageSizeList: DEFAULT_PAGESIZE_LIST,
+        languageCode: 'en-US',
         onChange: function (pageIndex, pageSize) { },
         onClickPrev: function () { },
         onClickLastPrev: function () { },
@@ -1258,6 +1269,10 @@
         onClickLastNext: function () { },
         onChangePageSize: function () { },
     };
+
+    function getPagingInfoText(pageIndex, totalPage) {
+        return (pagingInfoText[_languageCode] || pagingInfoText['en-US']).replace('{0}', pageIndex).replace('{1}', (totalPage || 1));
+    }
 
     function buildPrevButton() {
         var html = ['<a href="javascript:;" title="First" class="icon glyphicon glyphicon-fast-backward page-first disable"></a>'];
@@ -1276,7 +1291,7 @@
 
     function buildPageInfo(totalPage) {
         var html = ['<div class="page-input">'];
-        html.push('<span class="text-pageInfo">Page 1 of ' + (totalPage || 1) + '</span>')
+        html.push('<span class="text-pageInfo">' + getPagingInfoText(1, totalPage) + '</span>')
         html.push('</div>');
 
         return html.join('');
@@ -1295,7 +1310,7 @@
     }
 
     function updatePageInfo($pagerContainer, pageIndex, totalPage) {
-        $pagerContainer.find('.text-pageInfo').text('Page ' + pageIndex + ' of ' + (totalPage || 1));
+        $pagerContainer.find('.text-pageInfo').text(getPagingInfoText(pageIndex, totalPage));
     }
 
     function togglePrevButton($pagerContainer, isEnable) {
@@ -1330,6 +1345,7 @@
                 $self.find("*").off();
                 $self.html("");
 
+                _languageCode = mainOption.languageCode;
                 var totalPage = calculateTotalPage(mainOption.totalItems, mainOption.pageSize);
                 var pageInfo = {
                     pageIndex: mainOption.pageIndex,
@@ -1470,6 +1486,7 @@ var Member = (function ($) {
             totalItems: parseInt($("#TotalItem").val()),
             pageSize: _pageSize,
             pageIndex: _pageIndex,
+            languageCode: Site.getCurrentLanguage(),
             onChange: function (pageIndex, pageSize) {
                 _pageIndex = pageIndex;
                 _pageSize = pageSize;

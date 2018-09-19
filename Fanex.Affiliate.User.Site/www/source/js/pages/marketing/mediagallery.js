@@ -12,6 +12,7 @@
             totalItems: parseInt($("#TotalItem").val()),
             pageSize: _pageSize,
             pageIndex: _pageIndex,
+            languageCode: Site.getCurrentLanguage(),
             onChange: function (pageIndex, pageSize) {
                 _pageIndex = pageIndex;
                 _pageSize = pageSize;

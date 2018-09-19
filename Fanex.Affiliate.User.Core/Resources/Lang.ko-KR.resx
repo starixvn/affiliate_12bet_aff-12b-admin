@@ -145,7 +145,7 @@
     <value>URL주소</value>
   </data>
   <data name="Adjustment" xml:space="preserve">
-    <value>잔액</value>
+    <value>조정</value>
   </data>
   <data name="Affiliate" xml:space="preserve">
     <value>제휴</value>
@@ -1715,7 +1715,7 @@
     <value>승 패</value>
   </data>
   <data name="Withdrawal" xml:space="preserve">
-    <value>출금</value>
+    <value>출금(환전)</value>
   </data>
   <data name="Year" xml:space="preserve">
     <value>년</value>
@@ -2028,5 +2028,8 @@
   </data>
   <data name="ForgotLoginDetail" xml:space="preserve">
     <value> 로그인 정보 찾기</value>
+  </data>
+  <data name="MobileDevice" xml:space="preserve">
+    <value>모바일</value>
   </data>
 </root>

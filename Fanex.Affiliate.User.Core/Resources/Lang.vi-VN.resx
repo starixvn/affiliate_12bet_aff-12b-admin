@@ -142,7 +142,7 @@
     <value>Thêm trang web</value>
   </data>
   <data name="Adjustment" xml:space="preserve">
-    <value>Điều chỉnh số dư</value>
+    <value>Điều chỉnh</value>
   </data>
   <data name="Affiliate" xml:space="preserve">
     <value>CHƯƠNG TRÌNH ĐẠI LÝ</value>
@@ -496,7 +496,7 @@
     <value>Cộng hòa Séc </value>
   </data>
   <data name="DailyEarningDetail" xml:space="preserve">
-    <value>Daily Earning Detail</value>
+    <value>Thu nhập chi tiết mỗi ngày</value>
   </data>
   <data name="DailyEarnings" xml:space="preserve">
     <value>Thu nhập hàng ngày</value>
@@ -2036,5 +2036,11 @@ Cập Nhật Mới Nhất</value>
   </data>
   <data name="ForgotLoginDetail" xml:space="preserve">
     <value>Quên thông tin đăng nhập?</value>
+  </data>
+  <data name="Withdrawal" xml:space="preserve">
+    <value>Số tiền rút</value>
+  </data>
+  <data name="MobileDevice" xml:space="preserve">
+    <value>Di động</value>
   </data>
 </root>

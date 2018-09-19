@@ -1,12 +1,17 @@
 ﻿var Site = (function ($) {
     var _rootUrl = null;
+    var _language = null;
 
     var _me = {
         initialize: function () {
             _rootUrl = $("#RootUrl").val();
+            _language = $("#Language").val();
         },
         resolveRelativeUrl: function (url) {
             return _rootUrl + url;
+        },
+        getCurrentLanguage: function () {
+            return _language;
         },
         escapeHtml: function (inputString) {
             var div = document.createElement('div');
@@ -19,7 +24,7 @@
         hideLoader: function () {
             $("#blocker").hide();
         },
-        redirect: function(url) {
+        redirect: function (url) {
             window.location.href = url;
         },
         reload: function () {
@@ -33,7 +38,6 @@
             $result.html(message);
             $result.show();
         }
-
     };
 
     return _me;
