@@ -36,7 +36,7 @@ class Filter extends Component {
                 <Form inline onSubmit={this.handleClick} style={{ backgroundColor: 'transparent' }}>
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                         <Label className="mr-sm-2">Group Name</Label>{' '}
-                        <Input type="text" className="mr-sm-2 search-box" onChange={this.handleChange} />
+                        <Input type="text" className="mr-sm-2 search-box" value={this.props.searchedGroupName} onChange={this.handleChange} />
                     </FormGroup>
                     <Button outline color="primary" type="button" onClick={this.handleClick}><span className="oi oi-magnifying-glass"></span> Search</Button>
                 </Form>

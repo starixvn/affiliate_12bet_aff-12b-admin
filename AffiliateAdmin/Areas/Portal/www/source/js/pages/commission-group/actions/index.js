@@ -18,6 +18,11 @@ const setGridData = (data) => {
 
 export const getGroupSettingList = (param) => async(dispatch) => {
     dispatch(toggleLoader(true));
+
+    if (!param.GroupName) {
+        dispatch(setSearchedGroupName(''));
+    }
+
     const response = await fetchGroupSettingData(param);
     if (response && response.status === 200) {
         const { CommissionSettingList, TotalRows } = response.data;
