@@ -1221,8 +1221,16 @@ label.require:after {
 .moving-block {
   position: fixed;
   bottom: 15px;
-  right: 145px;
+  right: 135px;
   z-index: 1; }
+  @media (max-width: 769px) {
+    .moving-block {
+      right: 0; }
+      .moving-block .btn-move-top {
+        margin-right: 10px; } }
+  @media (max-width: 1199px) and (min-width: 1024px) {
+    .moving-block {
+      right: 85px; } }
 
 #mainPanel {
   padding-bottom: 15px;
@@ -1393,9 +1401,11 @@ label.require:after {
   line-height: 1.42857; }
 
 .btn-move-top {
-  background: #dcdc1a; }
+  background: #dcdc1a;
+  opacity: 0.3; }
   .btn-move-top:hover {
-    background: #fbfb07; }
+    background: #fbfb07;
+    opacity: 1; }
   .btn-move-top:focus {
     outline: none; }
 

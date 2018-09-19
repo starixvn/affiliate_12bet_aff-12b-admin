@@ -55,8 +55,20 @@ label {
 .moving-block {
     position: fixed;
     bottom: 15px;
-    right: 145px;
+    right: 135px;
     z-index: 1;
+
+    @media (max-width: 769px) {
+        right: 0;
+
+        .btn-move-top {
+            margin-right: 10px;
+        }
+    }
+
+    @media (max-width: 1199px) and (min-width: 1024px) {
+        right: 85px;
+    }
 }
 
 #mainPanel {

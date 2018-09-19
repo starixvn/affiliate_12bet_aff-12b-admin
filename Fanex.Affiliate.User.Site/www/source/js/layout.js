@@ -45,7 +45,14 @@ var Layout = (function ($) {
                     top: menuItemPos.top + heightMenu,
                     left: menuItemPos.left + withMenu - 200
                 });
+            });
 
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 200) {
+                    $('#moveToTop').fadeIn(200);
+                } else {
+                    $('#moveToTop').fadeOut(200);
+                }
             });
         },
         registerAjaxHandlerError: function () {

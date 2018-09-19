@@ -82,9 +82,11 @@
 
 .btn-move-top {
     background: #dcdc1a;
+    opacity: 0.3;
 
     &:hover {
         background: #fbfb07;
+        opacity: 1;
     }
 
     &:focus {

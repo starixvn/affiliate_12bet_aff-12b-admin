@@ -61,5 +61,17 @@
             </div>
         </div>
     </div>
+
+    <script>
+        window.onscroll = function () { scrollFunction() };
+
+        function scrollFunction() {
+            var $button = document.getElementById("moveToTop");
+            if ($button) {
+                var display = (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) ? 'block' : 'none';
+                $button.style.display = display;
+            }
+        }
+    </script>
 </body>
 </html>
