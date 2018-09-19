@@ -170,7 +170,6 @@ class Filter extends Component {
         const isValidSelectedProduct = selectedProductList.length > 0;
 
         const toMonthRange = this._getToMonthRange(fromMonth);
-        console.log(toMonthRange)
 
         return (
             <div className="filter-container">

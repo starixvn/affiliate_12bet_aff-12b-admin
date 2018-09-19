@@ -50,7 +50,7 @@ export class GridData extends Component {
                 <Cell header={true} colWidth={60} rowSpan="2" title="Active Member">Active Member</Cell>
                 <Cell header={true} colWidth={60} rowSpan="2" title="Qualified Member">Qualified Member</Cell>
                 <Cell header={true} colSpan="9" title="Member Statistics">Member Statistics</Cell>
-                <Cell header={true} colSpan="4" title="Affiliate Statistics">Affiliate Statistics</Cell>
+                <Cell header={true} colSpan="5" title="Affiliate Statistics">Affiliate Statistics</Cell>
                 <Cell header={true} colWidth={50} rowSpan="2" title="Month on Month">Month on Month</Cell>
             </Row>,
             <Row>
@@ -67,6 +67,7 @@ export class GridData extends Component {
                 <Cell header={true} colWidth={60} title="Comm%">Comm%</Cell>
                 <Cell header={true} colWidth={80} title="Earning">Earning</Cell>
                 <Cell header={true} colWidth={80} title="Withdrawal">Withdrawal</Cell>
+                <Cell header={true} colWidth={70} title="Adjustment">Adjustment</Cell>
                 <Cell header={true} colWidth={100} title="Balance B/F">Balance B/F</Cell>
             </Row>
         ];
@@ -103,13 +104,15 @@ export class GridData extends Component {
         const operationalFee = formatDecimal(dataItem.OperationalFee);
         const bankingFee = formatDecimal(dataItem.BankingFee);
         const totalFee = formatDecimal(dataItem.TotalFee);
-        const commRate = formatDecimal(dataItem.CommissionRate) + '%';
+        
         const earning = formatDecimal(dataItem.Earning);
         const affWithdrawal = formatDecimal(dataItem.AffWithdrawal);
+        const affAdjustment = formatDecimal(dataItem.AffAdjustment);
         const balanceBf = formatDecimal(dataItem.BalanceBf);
 
         const isTotalRow = dataItem.AffId === 0 && dataItem.UserName === "";
         const userNameText = isTotalRow ? totalText : dataItem.UserName;
+        const commRate = isTotalRow ? 'N/A' : formatDecimal(dataItem.CommissionRate) + '%';
 
         return (
             <Row>
@@ -132,6 +135,7 @@ export class GridData extends Component {
                 <Cell className="text-right" title={commRate}>{commRate}</Cell>
                 <Cell className="text-right" title={earning}>{earning}</Cell>
                 <Cell className="text-right" title={affWithdrawal}>{affWithdrawal}</Cell>
+                <Cell className="text-right" title={affAdjustment}>{affAdjustment}</Cell>
                 <Cell className="text-right" title={balanceBf}>{balanceBf}</Cell>
                 <Cell className="text-center">{dataItem.AffId > 0 ? 'View' : ''}</Cell>
             </Row>
