@@ -54,7 +54,7 @@
 
     $.validator.addMethod("requiredifnullorempty",
         function (value, element, params) {
-            var dependenPropList = params.dependentprop.split(',').filter(p => !!p);
+            var dependenPropList = params.dependentprop.split(',').filter(function (p) { return !!p });
 
             var invalidPropCount = 0;
             var dependentPropCount = dependenPropList.length;

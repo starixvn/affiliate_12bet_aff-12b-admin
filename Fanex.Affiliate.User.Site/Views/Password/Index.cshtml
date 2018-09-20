@@ -3,6 +3,14 @@
     Layout = "~/Views/Shared/_LayoutBeforeLogin.cshtml";
 }
 
+@section styles {
+    <style>
+        .main{
+            min-height: calc(100vh - 282px)
+        }
+    </style>
+}
+
 @section scripts{
     <script src="@Url.RenderLink("~/www/build/js/validation.js")"></script>
     @Html.InlineScripts("~/www/build/js/forgotpassword.js")
