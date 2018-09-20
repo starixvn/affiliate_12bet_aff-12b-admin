@@ -1,20 +1,18 @@
 ﻿@model Fanex.Affiliate.User.Core.MetalModels.Email.PaymentEmailParam
 <div>
-@(Model.User.FirstName)様、,<br /><br />
+    Dear @Model.User.FirstName,<br /><br />
 
-この度は、お引き出し申請して頂きありがとうございます。お客様の受付を致しました、詳細は以下の通りです。 <br />
-受付日時：@Model.RequestDate.ToString("MM/dd/yyyy")<br />
-申請金額：$@Model.Amount<br />
-お客様の受付申請番号は@(Model.TransId).です<br /><br />
- 
-申請については 7 営業日以内をめどに受け付け順にて処理 / 対応しております。<br /><br />
- 
-このEメールはシステムにより自動生成されております。直接このメールご返信なさらないようお願い申し上げます。<br />
-何がご質問ご不明な点がございましたらこちらからお問い合わせ願います。<a href="mailto:@Model.MailContact">@Model.MailContact</a><br /><br />
- 
-また、何かご不明な点等ございましたら、お気軽に12BETまでお問い合わせ願います。<br /><br />
- 
-以上、よろしくお願いします。<br /><br />
- 
-12BETアフィリエイトチーム
+    Thank you for your payment request dated @Model.RequestDate.ToString("MM/dd/yyyy") for the amount of $@Model.Amount .<br />
+    Your request reference number is @Model.TransId .<br /><br />
+
+    Your payment request will be processed within 7 working days. All requests are reviewed in the order in which they are received.<br /><br />
+
+    This is a system auto generated email, please do not reply to this email directly.<br />
+    Do not hesitate to contact us if you have any questions or comments at <a href="mailto:@Model.MailContact">@Model.MailContact</a><br /><br />
+
+    Have a great day!<br /><br />
+
+    Best regards,<br /><br />
+
+    The team at 12Bet Affiliates
 </div>

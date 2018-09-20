@@ -4,22 +4,22 @@
     var recoverUrl = Model.RootDomain + "Password/RecoverPassword?uid=" + userInfo.AffId + "&vid=" + Model.Code;
 }
 <div>
-@(userInfo.FirstName)様、,<br /><br />
+    Dear @userInfo.FirstName,<br /><br />
 
-お客様からユーザー名またはパスワードリセット依頼を申請されました。　申請されていない場合、このメールは無視していただくようお願いいたします。<br />
-申請された場合は、以下のリンクへアクセス、リセット手順を行なってください。のちほどお客様へユーザー名と新しいパスワードをEメールにてお知らせいたします:<br />
-<a href='@recoverUrl'>@recoverUrl</a><br /><br />
+    You have requested to recover your username or password. If you did not request it, please ignore this email.<br />
+    Otherwise please visit the following link, then your new password will be emailed to you shortly:<br />
+    <a href='@recoverUrl'>@recoverUrl</a><br /><br />
 
-お知らせと注意事項<br />
-* ユーザー名: @userInfo.UserName <br />
-* セキュリティ上の観点から、一度弊社からお客様へ新規パスワードを発行し、ご案内させて頂きます。　(後ほどご自身でいつでもこちらから変更ができます)<br />
-* 上記のリンクは、24時間経過しますと自動的に期限切れとなりますのでご注意願います。<br /><br />
+    Please note<br />
+    * Your username is: @userInfo.UserName <br />
+    * Due to security reason, we must provide you a new password (you can change this at anytime later).<br />
+    * The above link will be expired and become useless in 24 hours time.<br /><br />
 
-また、何かご不明な点等ございましたら、お気軽に12BETまでお問い合わせ願います。<br /><br />
+    Have a great day!<br /><br />
 
-以上、よろしくお願いします。<br /><br />
+    Best regards,<br /><br />
 
-12BETアフィリエイトチーム<br />
+    The team at 12Bet Affiliates<br />
 
-<a href="mailto:@Model.MailContact">@Model.MailContact</a>
+    <a href="mailto:@Model.MailContact">@Model.MailContact</a>
 </div>
