@@ -561,6 +561,8 @@
     <Content Include="www\build\styles\Images\apply12bet\3step.vi-VN.png" />
     <Content Include="www\build\styles\Images\apply12bet\3step.zh-CN.png" />
     <Content Include="www\build\styles\Images\apply12bet\3step.zh-TW.png" />
+    <Content Include="www\build\styles\Images\banner-main-left.jpg" />
+    <Content Include="www\build\styles\Images\banner-main-right.jpg" />
     <Content Include="www\build\styles\Images\bg-adv_contact.png" />
     <Content Include="www\build\styles\Images\bg-banner-signup.png" />
     <Content Include="www\build\styles\Images\bg-Commission-Structure_Banner.png" />
@@ -831,6 +833,8 @@
     <Content Include="www\source\styles\Images\apply12bet\3step.th-TH.png" />
     <Content Include="www\source\styles\Images\apply12bet\3step.zh-TW.png" />
     <Content Include="www\source\styles\Images\apply12bet\3step.vi-VN.png" />
+    <Content Include="www\source\styles\Images\banner-main-left.jpg" />
+    <Content Include="www\source\styles\Images\banner-main-right.jpg" />
     <Content Include="www\source\styles\Images\bg-adv_contact.png" />
     <Content Include="www\source\styles\Images\bg-banner-signup.png" />
     <Content Include="www\source\styles\Images\bg-Commission-Structure_Banner.png" />
@@ -1119,6 +1123,10 @@
     <Content Include="www\build\styles\Images\products\game.zh-CN.webp" />
     <Content Include="www\build\styles\Images\products\game.zh-TW.webp" />
     <Content Include="Views\UnderMaintenance\Index.cshtml" />
+    <Content Include="www\source\styles\Images\banner-main-left.webp" />
+    <Content Include="www\source\styles\Images\banner-main-right.webp" />
+    <Content Include="www\build\styles\Images\banner-main-left.webp" />
+    <Content Include="www\build\styles\Images\banner-main-right.webp" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
