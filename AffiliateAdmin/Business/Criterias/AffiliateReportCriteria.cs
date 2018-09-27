@@ -38,7 +38,7 @@ namespace Criterias
         {
             get
             {
-                return "Aff_Admin_AffiliateReport_Sel_xtest";
+                return "Aff_Admin_AffiliateReport_Sel";
             }
         }
     }

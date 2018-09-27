@@ -36,7 +36,7 @@ namespace DataHandler
             hsParam.Add("pageindex", pageIndex);
             hsParam.Add("pagesize", pageSize);
             hsParam.Add("totalpages", 0);
-            DbResult rs = DbHelper.Execute("Aff_Admin_StatementHistory_Sel_xtest", DBType.AFFILIATE_12BET, hsParam);
+            DbResult rs = DbHelper.Execute("Aff_Admin_StatementHistory_Sel", DBType.AFFILIATE_12BET, hsParam);
             totalPages = CastAide.AsInt32(rs.Outputs["totalpages"], 1);
             return rs;
         }

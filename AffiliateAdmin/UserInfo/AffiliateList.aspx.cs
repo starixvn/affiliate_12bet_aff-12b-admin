@@ -116,7 +116,7 @@ public partial class AffiliateList : BasePage
         var selectedCommGroup = slCommGroup.ToString();
         var slLanguage = CastAide.AsString(Request["slLanguage"], string.Empty);
 
-        var commGroupTbl = DbHelper.Execute("Aff_Admin_CommGroupNormal_Sel_xtest", DBType.AFFILIATE_12BET).ResultSet.Tables[0];
+        var commGroupTbl = DbHelper.Execute("Aff_Admin_CommGroupNormal_Sel", DBType.AFFILIATE_12BET).ResultSet.Tables[0];
         var languageTbl = DbHelper.Execute("Aff_MarketSel", DBType.AFFILIATE_12BET).ResultSet.Tables[0];
 
         TemplateHandler.Assign(ref strTemplate, "SearchBy", Resources.Lang.SearchBy);

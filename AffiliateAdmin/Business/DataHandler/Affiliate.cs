@@ -93,7 +93,7 @@ namespace DataHandler
             hsParam.Add("aff_minneteller", "0");
             hsParam.Add("aff_minmoneybookers", "0");
             hsParam.Add("aff_minplayer", "0");
-            DbResult result = DbHelper.Execute("Aff_AffiliateSelEditInfo_xtest", DBType.AFFILIATE_12BET, hsParam);
+            DbResult result = DbHelper.Execute("Aff_AffiliateSelEditInfo", DBType.AFFILIATE_12BET, hsParam);
             strMinMoneyBooker = NumberFormat.DecFormat(result.Outputs["aff_minmoneybookers"], 0);
             strMinNetteller = NumberFormat.DecFormat(result.Outputs["aff_minneteller"], 0);
             strMinWire = NumberFormat.DecFormat(result.Outputs["aff_minwire"], 0);
@@ -106,7 +106,7 @@ namespace DataHandler
             Hashtable hsParam = new Hashtable();
             hsParam.Add("username", strUsername);
             hsParam.Add("iscasino", 0);
-            return DbHelper.Execute("Aff_AffiliateSelGeneralInfo_xtest", DBType.AFFILIATE_12BET, hsParam);
+            return DbHelper.Execute("Aff_AffiliateSelGeneralInfo", DBType.AFFILIATE_12BET, hsParam);
         }
 
         public static void UpdateUser(int intAffId, int intUserId, string strFname, string strLname, string strGender, string strCountry,
@@ -152,7 +152,7 @@ namespace DataHandler
             hsParam.Add("language", strLang);
             hsParam.Add("errcode", intErrCode);
             hsParam.Add("errmsg", strErrMsg);
-            DbResult dbr = DbHelper.Execute("Aff_AffiliateUpdInfo_xtest", DBType.AFFILIATE_12BET, hsParam);
+            DbResult dbr = DbHelper.Execute("Aff_AffiliateUpdInfo", DBType.AFFILIATE_12BET, hsParam);
             intErrCode = CastAide.AsInt32(dbr.Outputs["errcode"]);
             strErrMsg = dbr.Outputs["errmsg"].ToString();
         }
@@ -211,7 +211,7 @@ namespace DataHandler
             hsParam.Add("totalclicksbymobile", 0);
             hsParam.Add("newsignup", 0);
             hsParam.Add("totalplayer", 0);
-            return DbHelper.Execute("Aff_StatisticsSel_xtest", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
+            return DbHelper.Execute("Aff_StatisticsSel", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
         }
 
         //@Vinh
@@ -230,7 +230,7 @@ namespace DataHandler
             hsParam.Add("affid", intAffID);
             hsParam.Add("sporttype", SportType);
             hsParam.Add("monthdate", dtmMonthDate);
-            return DbHelper.Execute("Aff_EarningSelDaily_xtest", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP).ResultSet.Tables[0]; ;
+            return DbHelper.Execute("Aff_EarningSelDaily", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP).ResultSet.Tables[0]; ;
         }
 
         public static DataTable SelAffEarningDetail(int intAffId, int SportType, DateTime dtmMonthDate)
@@ -239,7 +239,7 @@ namespace DataHandler
             hsParam.Add("affid", intAffId);
             hsParam.Add("sporttype", SportType);
             hsParam.Add("monthdate", dtmMonthDate);
-            return DbHelper.Execute("Aff_EarningSelDetail_xtest", DBType.AFFILIATE_12BET, hsParam).ResultSet.Tables[0]; ;
+            return DbHelper.Execute("Aff_EarningSelDetail", DBType.AFFILIATE_12BET, hsParam).ResultSet.Tables[0]; ;
         }
 
         //@Vinh
@@ -249,7 +249,7 @@ namespace DataHandler
             hsParam.Add("affid", intCustId);
             hsParam.Add("fromdate", dtmFDate);
             hsParam.Add("todate", dtmTDate);
-            return DbHelper.Execute("Aff_Admin_ReportDetail_Sel_xtest", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
+            return DbHelper.Execute("Aff_Admin_ReportDetail_Sel", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
         }
 
         //@Vinh
@@ -258,7 +258,7 @@ namespace DataHandler
             Hashtable hsParam = new Hashtable();
             hsParam.Add("fromdate", dtmFDate);
             hsParam.Add("todate", dtmTDate);
-            return DbHelper.Execute("Aff_Admin_ReportDetail_Sel_xtest", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
+            return DbHelper.Execute("Aff_Admin_ReportDetail_Sel", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
         }
 
         //@Vinh
@@ -290,7 +290,7 @@ namespace DataHandler
             hsParam.Add("todate", dtmTDate);
             hsParam.Add("isgetall", isGetAll);
             hsParam.Add("affid", 0);
-            return DbHelper.Execute("Aff_Admin_AffiliateReport_Detail_Sel_xtest", DBType.AFFILIATE_12BET, hsParam, 180);
+            return DbHelper.Execute("Aff_Admin_AffiliateReport_Detail_Sel", DBType.AFFILIATE_12BET, hsParam, 180);
         }
 
         //@Vinh

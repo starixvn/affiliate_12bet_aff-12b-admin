@@ -1,25 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root>
-  <item Environment="DEV,LOCAL,SIT,UAT,PRODUCTION" SpName="Aff_User_UserInfoUpd" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT,PRODUCTION" SpName="Aff_User_UserInfoSel" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT,PRODUCTION" SpName="Aff_User_Login_UserInfoSel" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT,PRODUCTION" SpName="Aff_SessionIdSel" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT,PRODUCTION" SpName="Aff_User_Login_ResultUpd" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT,PRODUCTION" SpName="Aff_AffiliateUser_UserHasCasinoSel" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT,PRODUCTION" SpName="Aff_User_ForgotPassword" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT,PRODUCTION" SpName="Aff_User_RecoverPassWord" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT,PRODUCTION" SpName="Aff_AffiliateUser_ExtraUserInfoSel" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT,PRODUCTION" SpName="Aff_User_StatisticsSel" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT,PRODUCTION" SpName="Aff_User_CommSetting_Sel" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT,PRODUCTION" SpName="Aff_User_PaymentRequest_Upd" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT,PRODUCTION" SpName="Aff_User_GeneralInfo_Sel" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT,PRODUCTION" SpName="Aff_User_PaymentRequest_Sel" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT,PRODUCTION" SpName="Aff_MemberList_Sel" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT,PRODUCTION" SpName="Aff_User_Affiliate_Ins" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT,PRODUCTION" SpName="Aff_ProductList_Sel" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT,PRODUCTION" SpName="Aff_User_Rpt_Commission" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT,PRODUCTION" SpName=" Aff_User_StatementHistory_Sel" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT,PRODUCTION" SpName=" Aff_DailyEarning_Sel" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT,PRODUCTION" SpName=" Aff_DailyEarning_Detail_Sel" Suffix="_xtest"></item>
-
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="test" Suffix="_xtest"></item>
 </Root>

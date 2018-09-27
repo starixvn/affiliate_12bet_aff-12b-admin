@@ -1,18 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root>
-  <item Environment="DEV,LOCAL,SIT,UAT,PRODUCTION" SpName="Aff_Admin_CommGroup_Sel" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT,PRODUCTION" SpName="Aff_Admin_Affiliate_Approved" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT,PRODUCTION" SpName="Aff_Admin_PolicySel" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT,PRODUCTION" SpName="Aff_Admin_CommGroup_Ins" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT,PRODUCTION" SpName="Aff_Admin_CommGroup_Deductions_Sel" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT,PRODUCTION" SpName="Aff_Admin_CommGroup_Upd" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT,PRODUCTION" SpName="Aff_Admin_CommGroup_Del" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT,PRODUCTION" SpName="Aff_Admin_CommGroupNormal_Sel" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT,PRODUCTION" SpName="Aff_Admin_AffiliateInfo_Sel" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT,PRODUCTION" SpName="Aff_Admin_CommGroup_Assign" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT,PRODUCTION" SpName="Aff_ProductList_Sel" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT,PRODUCTION" SpName="Aff_Admin_AffiliateReport_Sel" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT,PRODUCTION" SpName="Aff_Market_Sel" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT,PRODUCTION" SpName="Aff_DailyEarning_Detail_Sel" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT,PRODUCTION" SpName="Aff_DailyEarning_Sel" Suffix="_xtest"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="test" Suffix="_xtest"></item>
 </Root>

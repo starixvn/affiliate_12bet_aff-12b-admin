@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Functions SiteId="32" SiteName="12Bet">
   <Function Name="Authorization">
-    <Setting Key="Aff_SessionIdSel" SpName="Aff_SessionIdSel_xtest" DbName="affiliate_12bet_view" />
-    <Setting Key="Aff_User_Login_UserInfoSel" SpName="Aff_User_Login_UserInfoSel_xtest" DbName="affiliate_12bet" />
-    <Setting Key="Aff_User_Login_UserInfoSel_view" SpName="Aff_User_Login_UserInfoSel_xtest" DbName="affiliate_12bet_view" />
-    <Setting Key="Aff_User_Login_ResultUpd" SpName="Aff_User_Login_ResultUpd_xtest" DbName="affiliate_12bet" />
-    <Setting Key="Aff_User_Login_ResultUpd_view" SpName="Aff_User_Login_ResultUpd_xtest" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_SessionIdSel" SpName="Aff_SessionIdSel" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_User_Login_UserInfoSel" SpName="Aff_User_Login_UserInfoSel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_User_Login_UserInfoSel_view" SpName="Aff_User_Login_UserInfoSel" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_User_Login_ResultUpd" SpName="Aff_User_Login_ResultUpd" DbName="affiliate_12bet" />
+    <Setting Key="Aff_User_Login_ResultUpd_view" SpName="Aff_User_Login_ResultUpd" DbName="affiliate_12bet_view" />
     <Setting Key="Aff_CheckIn" SpName="Aff_CheckIn" DbName="affiliate_12bet" />
     <Setting Key="Aff_CheckIn_view" SpName="Aff_CheckIn" DbName="affiliate_12bet_view" />
     <Setting Key="Aff_Recheckin" SpName="Aff_Recheckin" DbName="affiliate_12bet" />
@@ -13,16 +13,16 @@
   </Function>
 
   <Function Name="AccountInformation">
-    <Setting Key="Aff_User_UserInfoSel" SpName="Aff_User_UserInfoSel_xtest" DbName="affiliate_12bet" />
-    <Setting Key="Aff_User_UserInfoSel_view" SpName="Aff_User_UserInfoSel_xtest" DbName="affiliate_12bet_view" />
-    <Setting Key="Aff_User_UserInfoUpd" SpName="Aff_User_UserInfoUpd_xtest" DbName="affiliate_12bet" />
+    <Setting Key="Aff_User_UserInfoSel" SpName="Aff_User_UserInfoSel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_User_UserInfoSel_view" SpName="Aff_User_UserInfoSel" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_User_UserInfoUpd" SpName="Aff_User_UserInfoUpd" DbName="affiliate_12bet" />
     <Setting Key="Aff_AffiliateUpdPwd" SpName="Aff_AffiliateUpdPwd" DbName="affiliate_12bet" />
 
-    <Setting Key="Aff_AffiliateUser_UserHasCasinoSel" SpName="Aff_AffiliateUser_UserHasCasinoSel_xtest" DbName="affiliate_12bet" />
-    <Setting Key="Aff_AffiliateUser_UserHasCasinoSel_view" SpName="Aff_AffiliateUser_UserHasCasinoSel_xtest" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_AffiliateUser_UserHasCasinoSel" SpName="Aff_AffiliateUser_UserHasCasinoSel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_AffiliateUser_UserHasCasinoSel_view" SpName="Aff_AffiliateUser_UserHasCasinoSel" DbName="affiliate_12bet_view" />
 
-    <Setting Key="Aff_User_GeneralInfo_Sel" SpName="Aff_User_GeneralInfo_Sel_xtest" DbName="affiliate_12bet" />
-    <Setting Key="Aff_User_GeneralInfo_Sel_view" SpName="Aff_User_GeneralInfo_Sel_xtest" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_User_GeneralInfo_Sel" SpName="Aff_User_GeneralInfo_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_User_GeneralInfo_Sel_view" SpName="Aff_User_GeneralInfo_Sel" DbName="affiliate_12bet_view" />
 
     <Setting Key="Aff_CustomerCheck12BetPlayerAccountActivated" SpName="Aff_CustomerCheck12BetPlayerAccountActivated" DbName="affiliate_12bet" />
     <Setting Key="Dot_Dep_CustomerInsMember_Ag_Cust" SpName="Dot_Dep_CustomerInsMember_Ag_Cust" DbName="main" />   
@@ -68,8 +68,8 @@
     <Setting Key="Aff_ClickStatisticsSelByPage" SpName="Aff_ClickStatisticsSelByPage" DbName="affiliate_12bet" />
     <Setting Key="Aff_ClickStatisticsSelByPage_view" SpName="Aff_ClickStatisticsSelByPage" DbName="affiliate_12bet_view" />
 
-    <Setting Key="Aff_User_StatisticsSel" SpName="Aff_User_StatisticsSel_xtest" DbName="affiliate_12bet" />
-    <Setting Key="Aff_User_StatisticsSel_view" SpName="Aff_User_StatisticsSel_xtest" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_User_StatisticsSel" SpName="Aff_User_StatisticsSel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_User_StatisticsSel_view" SpName="Aff_User_StatisticsSel" DbName="affiliate_12bet_view" />
   </Function>
 
   <Function Name="HotNews">
@@ -81,27 +81,27 @@
   </Function>
 
   <Function Name="Password">
-    <Setting Key="Aff_User_ForgotPassword" SpName="Aff_User_ForgotPassword_xtest" DbName="affiliate_12bet" />
-    <Setting Key="Aff_User_RecoverPassWord" SpName="Aff_User_RecoverPassWord_xtest" DbName="affiliate_12bet" />
+    <Setting Key="Aff_User_ForgotPassword" SpName="Aff_User_ForgotPassword" DbName="affiliate_12bet" />
+    <Setting Key="Aff_User_RecoverPassWord" SpName="Aff_User_RecoverPassWord" DbName="affiliate_12bet" />
   </Function>
 
   <Function Name="Statement History">
-    <Setting Key="Aff_User_StatementHistory_Sel" SpName="Aff_User_StatementHistory_Sel_xtest" DbName="affiliate_12bet" />
-    <Setting Key="Aff_User_StatementHistory_Sel_view" SpName="Aff_User_StatementHistory_Sel_xtest" DbName="affiliate_12bet_view" />
-    <Setting Key="Aff_ProductList_Sel" SpName="Aff_ProductList_Sel_xtest" DbName="affiliate_12bet" />
-    <Setting Key="Aff_ProductList_Sel_view" SpName="Aff_ProductList_Sel_xtest" DbName="affiliate_12bet_view" />
-    <Setting Key="Aff_DailyEarning_Sel" SpName="Aff_DailyEarning_Sel_xtest" DbName="affiliate_12bet" />
-    <Setting Key="Aff_DailyEarning_Sel_view" SpName="Aff_DailyEarning_Sel_xtest" DbName="affiliate_12bet_view" />
-    <Setting Key="Aff_AffiliateUser_ExtraUserInfoSel" SpName="Aff_AffiliateUser_ExtraUserInfoSel_xtest" DbName="affiliate_12bet" />
-    <Setting Key="Aff_AffiliateUser_ExtraUserInfoSel_view" SpName="Aff_AffiliateUser_ExtraUserInfoSel_xtest" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_User_StatementHistory_Sel" SpName="Aff_User_StatementHistory_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_User_StatementHistory_Sel_view" SpName="Aff_User_StatementHistory_Sel" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_ProductList_Sel" SpName="Aff_ProductList_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_ProductList_Sel_view" SpName="Aff_ProductList_Sel" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_DailyEarning_Sel" SpName="Aff_DailyEarning_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_DailyEarning_Sel_view" SpName="Aff_DailyEarning_Sel" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_AffiliateUser_ExtraUserInfoSel" SpName="Aff_AffiliateUser_ExtraUserInfoSel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_AffiliateUser_ExtraUserInfoSel_view" SpName="Aff_AffiliateUser_ExtraUserInfoSel" DbName="affiliate_12bet_view" />
 
-    <Setting Key="Aff_DailyEarning_Detail_Sel" SpName="Aff_DailyEarning_Detail_Sel_xtest" DbName="affiliate_12bet" />
-    <Setting Key="Aff_DailyEarning_Detail_Sel_view" SpName="Aff_DailyEarning_Detail_Sel_xtest" DbName="affiliate_12bet_view" />   
+    <Setting Key="Aff_DailyEarning_Detail_Sel" SpName="Aff_DailyEarning_Detail_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_DailyEarning_Detail_Sel_view" SpName="Aff_DailyEarning_Detail_Sel" DbName="affiliate_12bet_view" />   
   </Function>
 
   <Function Name="Commission">
-    <Setting Key="Aff_User_CommSetting_Sel" SpName="Aff_User_CommSetting_Sel_xtest" DbName="affiliate_12bet" />
-    <Setting Key="Aff_User_CommSetting_Sel_view" SpName="Aff_User_CommSetting_Sel_xtest" DbName="affiliate_12bet_view" />   
+    <Setting Key="Aff_User_CommSetting_Sel" SpName="Aff_User_CommSetting_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_User_CommSetting_Sel_view" SpName="Aff_User_CommSetting_Sel" DbName="affiliate_12bet_view" />   
   </Function>
 
   <Function Name="BetList">
@@ -110,25 +110,25 @@
   </Function>
 
   <Function Name="Payment">
-    <Setting Key="Aff_User_PaymentRequest_Sel" SpName="Aff_User_PaymentRequest_Sel_xtest" DbName="affiliate_12bet" />
-    <Setting Key="Aff_User_PaymentRequest_Sel_view" SpName="Aff_User_PaymentRequest_Sel_xtest" DbName="affiliate_12bet_view" />
-    <Setting Key="Aff_User_PaymentRequest_Upd" SpName="Aff_User_PaymentRequest_Upd_xtest" DbName="affiliate_12bet" />
+    <Setting Key="Aff_User_PaymentRequest_Sel" SpName="Aff_User_PaymentRequest_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_User_PaymentRequest_Sel_view" SpName="Aff_User_PaymentRequest_Sel" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_User_PaymentRequest_Upd" SpName="Aff_User_PaymentRequest_Upd" DbName="affiliate_12bet" />
     <Setting Key="Aff_PaymentRequestIns" SpName="Aff_PaymentRequestIns" DbName="affiliate_12bet" />  
   </Function>
 
   <Function Name="SignUp">
-    <Setting Key="Aff_User_Affiliate_Ins" SpName="Aff_User_Affiliate_Ins_xtest" DbName="affiliate_12bet" />
+    <Setting Key="Aff_User_Affiliate_Ins" SpName="Aff_User_Affiliate_Ins" DbName="affiliate_12bet" />
   </Function>
 
   <Function Name="Member">
-    <Setting Key="Aff_MemberList_Sel" SpName="Aff_MemberList_Sel_xtest" DbName="affiliate_12bet" />
-    <Setting Key="Aff_MemberList_Sel_view" SpName="Aff_MemberList_Sel_xtest" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_MemberList_Sel" SpName="Aff_MemberList_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_MemberList_Sel_view" SpName="Aff_MemberList_Sel" DbName="affiliate_12bet_view" />
   </Function>
 
   <Function Name="ContactUs">
     <Setting Key="Aff_EmailHistoryIns" SpName="Aff_EmailHistoryIns" DbName="affiliate_12bet" />  
   </Function>
   <Function Name="CommissionReport">
-    <Setting Key="Aff_User_Rpt_Commission" SpName="Aff_User_Rpt_Commission_xtest" DbName="affiliate_12bet"></Setting>
+    <Setting Key="Aff_User_Rpt_Commission" SpName="Aff_User_Rpt_Commission" DbName="affiliate_12bet"></Setting>
   </Function>
 </Functions>
