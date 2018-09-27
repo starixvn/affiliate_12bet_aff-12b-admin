@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Web;
 using DNAide.Web;
 
 /// <summary>
@@ -6,8 +7,8 @@ using DNAide.Web;
 /// </summary>
 public class SubMenu
 {
-    public static string[] AffApprovedLink = new string[] { "../UserInfo/EarningsHistory.aspx", "../UserInfo/AffiliateUpd.aspx", "../UserInfo/note.aspx", "../UserInfo/Adjustment.aspx", "../UserInfo/MediaStatistics.aspx", "../UserInfo/MemberList.aspx", "../UserInfo/UserLog.aspx", "../UserInfo/MediaStatistics_New.aspx" };
-    public static string[] AffApprovedText = new string[] { Resources.Lang.StatementHistory, Resources.Lang.Edit, Resources.Lang.Note, Resources.Lang.Adjustment, Resources.Lang.TrackingStatistics, Resources.Lang.Member, Resources.Lang.ViewLog, "Click statis New" };
+    public static string[] AffApprovedLink = new string[] { "../UserInfo/EarningsHistory.aspx", "../UserInfo/AffiliateUpd.aspx", "../UserInfo/note.aspx", VirtualPathUtility.ToAbsolute("~/Portal/UserPanel/PlayerDetail/Index"), "../UserInfo/Adjustment.aspx", "../UserInfo/MediaStatistics.aspx", "../UserInfo/MemberList.aspx", "../UserInfo/UserLog.aspx", "../UserInfo/MediaStatistics_New.aspx" };
+    public static string[] AffApprovedText = new string[] { Resources.Lang.StatementHistory, Resources.Lang.Edit, Resources.Lang.Note, Resources.Lang.PlayersDetail, Resources.Lang.Adjustment, Resources.Lang.TrackingStatistics, Resources.Lang.Member, Resources.Lang.ViewLog, "Click statis New" };
 
     public static string[] AffPendingLink = new string[] { "AffiliateUpd.aspx?approved=0", "note.aspx?approved=0" };
     public static string[] AffPendingText = new string[] { Resources.Lang.Edit, Resources.Lang.Note };

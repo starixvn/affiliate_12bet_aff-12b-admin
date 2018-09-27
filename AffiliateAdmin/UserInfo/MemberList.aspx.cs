@@ -28,7 +28,7 @@ public partial class UserInfo_MemberList : IBCPage
 
         LoadData(dtmFDate, dtmTDate, intMemberType, isGetAll);
         //Load submenu
-        TemplateHandler.Assign(ref strTemplate, "submenu", SubMenu.GenSubMenu(SubMenu.AffApprovedLink, SubMenu.AffApprovedText, 5, 0, SubMenu.AffApprovedText[6], "i_customer.png"));
+        TemplateHandler.Assign(ref strTemplate, "submenu", SubMenu.GenSubMenu(SubMenu.AffApprovedLink, SubMenu.AffApprovedText, 6, 0, SubMenu.AffApprovedText[6], "i_customer.png"));
 
         this.HtmlContent = strTemplate;
     }

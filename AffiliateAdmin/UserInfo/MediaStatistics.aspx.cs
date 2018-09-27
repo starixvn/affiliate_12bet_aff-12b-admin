@@ -19,7 +19,7 @@ public partial class UserInfo_MediaStatistics : IBCPage
         TemplateHandler.ReplaceBlock(ref strTpl, "Content", GenerateHTML.TrackingSystem.GetStatisticsAllMonthsContentList(custid, null));
 
         #region Load SubPage
-        TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.AffApprovedLink, SubMenu.AffApprovedText, 4, 0, Resources.Lang.TrackingStatistics, "i_customer.png"));
+        TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.AffApprovedLink, SubMenu.AffApprovedText, 5, 0, Resources.Lang.TrackingStatistics, "i_customer.png"));
         #endregion
 
         this.HtmlContent = strTpl;

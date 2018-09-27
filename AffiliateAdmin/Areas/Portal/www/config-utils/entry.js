@@ -13,10 +13,12 @@ module.exports = {
     [`${jsDist}/pages/report/affiliate-report`]: "./source/js/pages/affiliate-report/index.jsx",
     [`${jsDist}/pages/userpanel/daily-earning`]: "./source/js/pages/user-panel/daily-earning/index.jsx",
     [`${jsDist}/pages/userpanel/daily-earning-detail`]: "./source/js/pages/user-panel/daily-earning-detail/index.jsx",
+    [`${jsDist}/pages/userpanel/player-detail`]: "./source/js/pages/user-panel/player-detail/index.jsx",
 
     [`${styleDist}/portalmain`]: "./source/style/main.scss",
     [`${styleDist}/layout`]: "./source/style/layout/main-layout.scss",
     [`${styleDist}/user-panel-layout`]: "./source/style/layout/user-panel-layout.scss",
     [`${styleDist}/pages/commission-group`]: "./source/style/pages/commission-group.scss",
-    [`${styleDist}/pages/affiliate-report`]: "./source/style/pages/affiliate-report.scss"
+    [`${styleDist}/pages/affiliate-report`]: "./source/style/pages/affiliate-report.scss",
+    [`${styleDist}/pages/user-panel/player-detail`]: "./source/style/pages/user-panel/player-detail.scss"
 };
