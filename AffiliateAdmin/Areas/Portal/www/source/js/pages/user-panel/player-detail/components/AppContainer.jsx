@@ -31,7 +31,7 @@ export default class AppContainer extends Component {
 
             const param = {
                 ProductId: selectedProduct,
-                MonthDate: monthDate,
+                MonthDate: `${monthDate.getMonth() + 1}/1/${monthDate.getFullYear()}`,
                 PageIndex: pagingOption.PageIndex,
                 PageSize: pagingOption.PageSize
             }
