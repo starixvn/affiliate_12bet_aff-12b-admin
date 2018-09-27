@@ -1,34 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Functions SiteId="32" SiteName="12Bet Admin">
   <Function Name="Language">
-    <Setting Key="Aff_Market_Sel" SpName="Aff_Market_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Market_Sel" SpName="Aff_Market_Sel_xtest" DbName="affiliate_12bet" />
   </Function>
   <Function Name="AffiliateInformation">
-    <Setting Key="Aff_Admin_Affiliate_Approved" SpName="Aff_Admin_Affiliate_Approved" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Admin_AffiliateInfo_Sel" SpName="Aff_Admin_AffiliateInfo_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_Affiliate_Approved" SpName="Aff_Admin_Affiliate_Approved_xtest" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_AffiliateInfo_Sel" SpName="Aff_Admin_AffiliateInfo_Sel_xtest" DbName="affiliate_12bet" />
   </Function>
   <Function Name="Commission">
-    <Setting Key="Aff_ProductList_Sel" SpName="Aff_ProductList_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Admin_CommGroup_Deductions_Sel" SpName="Aff_Admin_CommGroup_Deductions_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Admin_CommGroup_Sel" SpName="Aff_Admin_CommGroup_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Admin_CommGroup_Ins" SpName="Aff_Admin_CommGroup_Ins" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Admin_CommGroup_Upd" SpName="Aff_Admin_CommGroup_Upd" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Admin_CommGroup_Del" SpName="Aff_Admin_CommGroup_Del" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Admin_CommGroupNormal_Sel" SpName="Aff_Admin_CommGroupNormal_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_Admin_CommGroup_Assign" SpName="Aff_Admin_CommGroup_Assign" DbName="affiliate_12bet" />
+    <Setting Key="Aff_ProductList_Sel" SpName="Aff_ProductList_Sel_xtest" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_CommGroup_Deductions_Sel" SpName="Aff_Admin_CommGroup_Deductions_Sel_xtest" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_CommGroup_Sel" SpName="Aff_Admin_CommGroup_Sel_xtest" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_CommGroup_Ins" SpName="Aff_Admin_CommGroup_Ins_xtest" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_CommGroup_Upd" SpName="Aff_Admin_CommGroup_Upd_xtest" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_CommGroup_Del" SpName="Aff_Admin_CommGroup_Del_xtest" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_CommGroupNormal_Sel" SpName="Aff_Admin_CommGroupNormal_Sel_xtest" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_CommGroup_Assign" SpName="Aff_Admin_CommGroup_Assign_xtest" DbName="affiliate_12bet" />
   </Function>
   <Function Name="DepositInformation">
     <Setting Key="Deposit_GetCustDataForCreateIBCACByUserName" SpName="Deposit_GetCustDataForCreateIBCACByUserName" DbName="deposit" />
   </Function>
   <Function Name="Auth">
-    <Setting Key="Aff_Admin_PolicySel" SpName="Aff_Admin_PolicySel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_PolicySel" SpName="Aff_Admin_PolicySel_xtest" DbName="affiliate_12bet" />
     <Setting Key="Aff_Recheckin" SpName="Aff_Recheckin" DbName="affiliate_12bet" />
   </Function>
   <Function Name="Report">
-    <Setting Key="Aff_Admin_AffiliateReport_Sel" SpName="Aff_Admin_AffiliateReport_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_AffiliateReport_Sel" SpName="Aff_Admin_AffiliateReport_Sel_xtest" DbName="affiliate_12bet" />
   </Function>
   <Function Name="StatementHistory">
-    <Setting Key="Aff_DailyEarning_Sel" SpName="Aff_DailyEarning_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_DailyEarning_Detail_Sel" SpName="Aff_DailyEarning_Detail_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_DailyEarning_Sel" SpName="Aff_DailyEarning_Sel_xtest" DbName="affiliate_12bet" />
+    <Setting Key="Aff_DailyEarning_Detail_Sel" SpName="Aff_DailyEarning_Detail_Sel_xtest" DbName="affiliate_12bet" />
   </Function>
 </Functions>
