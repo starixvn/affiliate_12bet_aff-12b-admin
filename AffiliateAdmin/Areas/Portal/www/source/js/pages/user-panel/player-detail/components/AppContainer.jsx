@@ -11,62 +11,88 @@ export default class AppContainer extends Component {
     constructor(props) {
         super(props);
 
-        const { productList, param } = window.initialState;
+        const { productList, param, isFromStatistics } = window.initialState;
 
+        this.isFromStatistics = isFromStatistics === 1;
         this.productList = productList;
-        this.param = {
-            ProductId: param.ProductId,
-            MonthDate: param.MonthDate,
-            PageIndex: defaultPagingOption.PageIndex,
-            PageSize: defaultPagingOption.PageSize
-        };
 
         this.state = {
             isShowLoader: false,
             selectedProduct: param.ProductId,
             monthDate: new Date(param.MonthDate),
-            data: { gridData: null, totalItem: 0 }
+            data: { gridData: null },
+            pagingOption: Object.assign({}, defaultPagingOption)
         }
     }
 
     componentDidMount() {
+        if(this.isFromStatistics){
+            const { selectedProduct, monthDate, pagingOption } = this.state;
+
+            const param = {
+                ProductId: selectedProduct,
+                MonthDate: monthDate,
+                PageIndex: pagingOption.PageIndex,
+                PageSize: pagingOption.PageSize
+            }
+
+            this.fetchData(param);
+        }
     }
 
     async fetchData(param) {
         this.setState({ isShowLoader: true });
+
         const url = 'Portal/UserPanel/PlayerDetail/GetPlayerDetailList';
         const response = await post(url, param);
         if (response && response.status === 200) {
             const { MainData, TotalItem } = response.data;
+            const pagingOption = Object.assign({}, this.state.pagingOption, {
+                PageIndex: param.PageIndex,
+                PageSize: param.PageSize,
+                TotalItem
+            });
 
             this.setState({
                 isShowLoader: false,
                 selectedProduct: param.ProductId,
                 monthDate: param.MonthDate,
-                data: { gridData: MainData, totalItem: TotalItem }
+                data: { gridData: MainData },
+                pagingOption
             });
         }
         else {
             this.setState({
-                isShowLoader: false,
-                selectedProduct: param.ProductId,
-                monthDate: param.MonthDate
+                isShowLoader: false
             });
         }
     }
 
     handleSubmit = (filterParam) => {
-        this.param = Object.assign({}, this.param, filterParam, { PageIndex: 1 });
-        this.fetchData(this.param);
+        const { pagingOption } = this.state;
+        const param = {
+            ...filterParam,
+            PageIndex: 1,
+            PageSize: pagingOption.PageSize
+        }
+        this.fetchData(param);
     }
 
     handlePaging = (pagingOption) => {
-        const param = Object.assign(this.param, pagingOption);
+        const { selectedProduct, monthDate } = this.state;
+
+        const param = {
+            ProductId: selectedProduct,
+            MonthDate: monthDate,
+            PageIndex: pagingOption.PageIndex,
+            PageSize: pagingOption.PageSize
+        }
+
         this.fetchData(param);
     }
 
     render() {
-        const { selectedProduct, monthDate, data, isShowLoader } = this.state;
+        const { selectedProduct, monthDate, data, isShowLoader, pagingOption } = this.state;
 
         return (
             <AppLayout>
@@ -75,7 +101,7 @@ export default class AppContainer extends Component {
                     productList={this.productList}
                     selectedProduct={selectedProduct}
                     monthDate={monthDate} />
-                <Content data={data} onPaging={this.handlePaging} />
+                <Content data={data} pagingOption={pagingOption} onPaging={this.handlePaging} />
             </AppLayout>
         );
     }

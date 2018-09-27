@@ -1,16 +1,10 @@
 ﻿import React, { Component } from 'react';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { formatDecimal } from '../../../../modules/numberFormat';
-import { defaultPagingOption } from '../../../../modules/constants';
 
 export default class Content extends Component {
     constructor(props) {
         super(props);
-
-        const pagingOption = Object.assign({}, defaultPagingOption);
-        this.state = {
-            pagingOption
-        }
     }
 
     _renderHeader() {
@@ -32,7 +26,7 @@ export default class Content extends Component {
     _renderDataSection(dataList) {
         const dataRows = [];
 
-        const { pagingOption } = this.state;
+        const { pagingOption } = this.props;
         const startIndex = (pagingOption.PageIndex - 1) * pagingOption.PageSize + 1;
 
         for (let i = 0; i < dataList.length; i++) {
@@ -71,13 +65,12 @@ export default class Content extends Component {
             PageSize: size
         }
 
-        this.setState({ pagingOption: Object.assign({}, this.state.pagingOption, newPaging) });
         this.props.onPaging(newPaging);
     }
 
     render() {
-        const { gridData, totalItem } = this.props.data;
-        const pagingOption = Object.assign({}, this.state.pagingOption, { TotalItem: totalItem });
+        const { pagingOption, data } = this.props;
+        const { gridData } = data;
 
         return gridData && (
             <div className="table-responsive table-striped my-2">

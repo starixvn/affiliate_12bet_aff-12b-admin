@@ -3,6 +3,8 @@
 import { Form, FormGroup, Input, Label, Button } from 'reactstrap';
 import MonthPicker from '@9softstudio/react-monthpicker';
 
+import { shortedMonthNames } from '../../../../modules/constants';
+
 export default class Filter extends Component {
     constructor(props) {
         super(props);
@@ -28,6 +30,10 @@ export default class Filter extends Component {
         this.setState({
             selectedProduct
         })
+    }
+
+    handleFormatMonthPicker = (month, year) => {
+        return `${shortedMonthNames[month - 1]}-${year}`
     }
 
     handleSubmit = (event) => {
@@ -67,6 +73,7 @@ export default class Filter extends Component {
                             selectedDropdownYear={monthDate.getFullYear()}
                             selectedMonth={monthDate.getMonth() + 1}
                             onSelect={this.handleSelectMonth}
+                            onFormat={this.handleFormatMonthPicker}
                             iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)} />
                     </FormGroup>
 
