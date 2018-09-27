@@ -12,7 +12,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
         private readonly ISessionService _sessionService;
         protected readonly ILanguageService _languageService;
         private readonly IMaintenanceService _maintenanceService;
-        protected UnderMaintenanceController(ISessionService sessionService,
+        public UnderMaintenanceController(ISessionService sessionService,
             ILanguageService languageService, IMaintenanceService maintenanceService)
         {
             _sessionService = sessionService;
