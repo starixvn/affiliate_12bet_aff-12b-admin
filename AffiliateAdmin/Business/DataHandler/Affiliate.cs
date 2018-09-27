@@ -85,20 +85,15 @@ namespace DataHandler
             return DbHelper.Execute(criteria.SpName, DBType.AFFILIATE_12BET, hsParam);
         }
 
-        public static DataTable SelAffInfo(int intCustId, ref string strMinCheque, ref string strMinMoneyBooker, ref string strMinNetteller, ref string strMinWire, ref string strMinPlayer)
+        public static DataTable SelAffInfo(int intCustId, ref string strMinMoneyBooker, ref string strMinNetteller, ref string strMinWire, ref string strMinPlayer)
         {
-            //Hashtable hsParam = new Hashtable();
-            //hsParam.Add("custid", intCustId);
-            //return DbHelper.Execute("Aff_CustomerSelEditAffiliate", hsParam, DBType.MAIN).ResultSet.Tables[0];
             Hashtable hsParam = new Hashtable();
             hsParam.Add("affid", intCustId);
             hsParam.Add("aff_minwire", "0");
             hsParam.Add("aff_minneteller", "0");
-            hsParam.Add("aff_mincheque", "0");
             hsParam.Add("aff_minmoneybookers", "0");
             hsParam.Add("aff_minplayer", "0");
             DbResult result = DbHelper.Execute("Aff_AffiliateSelEditInfo", DBType.AFFILIATE_12BET, hsParam);
-            strMinCheque = NumberFormat.DecFormat(result.Outputs["aff_mincheque"], 0);
             strMinMoneyBooker = NumberFormat.DecFormat(result.Outputs["aff_minmoneybookers"], 0);
             strMinNetteller = NumberFormat.DecFormat(result.Outputs["aff_minneteller"], 0);
             strMinWire = NumberFormat.DecFormat(result.Outputs["aff_minwire"], 0);
@@ -114,7 +109,11 @@ namespace DataHandler
             return DbHelper.Execute("Aff_AffiliateSelGeneralInfo", DBType.AFFILIATE_12BET, hsParam);
         }
 
-        public static void UpdateUser(int intAffId, int intUserId, string strFname, string strLname, string strGender, string strCountry, string strEmail, string strPhone, string strMobile, string strAddress, string strCity, string strState, string strPostal, string strLang, string strUrl, string strMoreUrl, string strNoSiteDesc, string strPlayerUserName, string strPayment, string strNetellerId, string strMoneyBookerEmail, string strBankName, string strBankAddress, string strSwiftCode, string strAccName, string strAccNo, string strCheque_FullName, string strCheque_Address, string strCheque_City, string strCheque_State, string strCheque_Postal, string strCheque_Country, string strEmailFormat, ref int intErrCode, ref string strErrMsg)
+        public static void UpdateUser(int intAffId, int intUserId, string strFname, string strLname, string strGender, string strCountry,
+            string strEmail, string strPhone, string strAddress, string strCity, string strState, string strPostal,
+            string strLang, string strUrl, string strMoreUrl, string strNoSiteDesc, string strPlayerUserName, string strPayment,
+            string strNetellerId, string strMoneyBookerEmail, string strBankName, string strBankAddress, string strSwiftCode, string strAccName,
+            string strAccNo, string strEmailFormat, string contactApps, ref int intErrCode, ref string strErrMsg)
         {
             Hashtable hsParam = new Hashtable();
             hsParam.Add("affid", intAffId);
@@ -127,7 +126,6 @@ namespace DataHandler
             hsParam.Add("country", HttpContext.Current.Server.HtmlEncode(strCountry));
             hsParam.Add("email", HttpContext.Current.Server.HtmlEncode(strEmail));
             hsParam.Add("phone", HttpContext.Current.Server.HtmlEncode(strPhone));
-            hsParam.Add("mobilephone", HttpContext.Current.Server.HtmlEncode(strMobile));
             hsParam.Add("address", HttpContext.Current.Server.HtmlEncode(strAddress));
             hsParam.Add("city", HttpContext.Current.Server.HtmlEncode(strCity));
             hsParam.Add("state", HttpContext.Current.Server.HtmlEncode(strState));
@@ -135,6 +133,7 @@ namespace DataHandler
             hsParam.Add("siteurl", HttpContext.Current.Server.HtmlEncode(strUrl));
             hsParam.Add("moresiteurls", HttpContext.Current.Server.HtmlEncode(strMoreUrl.Trim()));
             hsParam.Add("nositedesc", HttpContext.Current.Server.HtmlEncode(strNoSiteDesc.Trim()));
+            hsParam.Add("ContactApps", contactApps);
 
             //combine
             hsParam.Add("preferredpayment", HttpContext.Current.Server.HtmlEncode(strPayment));
@@ -146,12 +145,6 @@ namespace DataHandler
             hsParam.Add("wire_swiftcode", HttpContext.Current.Server.HtmlEncode(strSwiftCode));
             hsParam.Add("wire_accountname", HttpContext.Current.Server.HtmlEncode(strAccName));
             hsParam.Add("wire_accountno", HttpContext.Current.Server.HtmlEncode(strAccNo));
-            hsParam.Add("cheque_fullname", HttpContext.Current.Server.HtmlEncode(strCheque_FullName));
-            hsParam.Add("cheque_address", HttpContext.Current.Server.HtmlEncode(strCheque_Address));
-            hsParam.Add("cheque_city", HttpContext.Current.Server.HtmlEncode(strCheque_City));
-            hsParam.Add("cheque_state", HttpContext.Current.Server.HtmlEncode(strCheque_State));
-            hsParam.Add("cheque_postal", HttpContext.Current.Server.HtmlEncode(strCheque_Postal));
-            hsParam.Add("cheque_country", HttpContext.Current.Server.HtmlEncode(strCheque_Country));
             if (strEmailFormat == "0" || strEmailFormat == "1")
                 hsParam.Add("emailformat", strEmailFormat == "0" ? false : true);
             //endcombine
@@ -256,7 +249,7 @@ namespace DataHandler
             hsParam.Add("affid", intCustId);
             hsParam.Add("fromdate", dtmFDate);
             hsParam.Add("todate", dtmTDate);
-            return DbHelper.Execute("Aff_ReportDetailSelByAff", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
+            return DbHelper.Execute("Aff_Admin_ReportDetail_Sel", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
         }
 
         //@Vinh
@@ -265,7 +258,7 @@ namespace DataHandler
             Hashtable hsParam = new Hashtable();
             hsParam.Add("fromdate", dtmFDate);
             hsParam.Add("todate", dtmTDate);
-            return DbHelper.Execute("Aff_ReportDetailSelAll", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
+            return DbHelper.Execute("Aff_Admin_ReportDetail_Sel", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
         }
 
         //@Vinh
@@ -297,50 +290,7 @@ namespace DataHandler
             hsParam.Add("todate", dtmTDate);
             hsParam.Add("isgetall", isGetAll);
             hsParam.Add("affid", 0);
-            return DbHelper.Execute("Aff_AffiliateReportDetail", DBType.AFFILIATE_12BET, hsParam, 180);
-        }
-
-        //@Vinh 20091209
-        public static DbResult SelAffiliateStatistics(MemberStatisticsReportCriteria criteria)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("username", criteria.Username);
-            if (!string.IsNullOrEmpty(criteria.PreferredLanguage))
-                hsParam.Add("preferredlanguage", criteria.PreferredLanguage);
-            hsParam.Add("fromdate", criteria.DtmFDate);
-            hsParam.Add("todate", criteria.DtmTDate);
-            hsParam.Add("isgetall", criteria.IsGetAll);
-            hsParam.Add("pageindex", criteria.PageIndex);
-            hsParam.Add("pagesize", criteria.PageSize);
-            hsParam.Add("sortby", criteria.SortBy);
-            hsParam.Add("nrows", 0);
-            return DbHelper.Execute(criteria.SpName, DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
-        }
-
-        //@Vinh 20091212
-        public static DbResult SelAffiliateStatisticsDetail(int intAffId, DateTime dtmFDate, DateTime dtmTDate, bool isGetAll)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("affid", intAffId);
-            hsParam.Add("fromdate", dtmFDate);
-            hsParam.Add("todate", dtmTDate);
-            hsParam.Add("isgetall", isGetAll);
-            return DbHelper.Execute("Aff_AffiliateStatisticsDetail", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
-        }
-
-        //@Vinh
-        public static DbResult SelPlayersDetail(int CustId, int sporttype, string strMonth, int pageIndex, int pageSize, ref int totalPages)
-        {
-            Hashtable p = new Hashtable();
-            p.Add("affid", CustId);
-            p.Add("sporttype", sporttype);
-            if (!string.IsNullOrEmpty(strMonth)) p.Add("monthdate", CastAide.AsDateTime(strMonth));
-            p.Add("pageindex", pageIndex);
-            p.Add("pagesize", pageSize); // hardcode pagesize for member/player list
-            p.Add("totalpages", 0);
-            DbResult rs = DbHelper.Execute("Aff_PlayersSelDetail", DBType.AFFILIATE_12BET, p);
-            totalPages = CastAide.AsInt32(rs.Outputs["totalpages"], 1);
-            return rs;
+            return DbHelper.Execute("Aff_Admin_AffiliateReport_Detail_Sel", DBType.AFFILIATE_12BET, hsParam, 180);
         }
 
         //@Vinh
@@ -531,57 +481,6 @@ namespace DataHandler
         public static DbResult SportTypeSel()
         {
             return DbHelper.Execute("Aff_SportTypeSel", DBType.AFFILIATE_12BET);
-        }
-
-        //Bryan@20091212
-        public static DbResult SelAffiliateQMReport(QMReportCriteria criteria)
-        {
-            Hashtable hsParam = new Hashtable();
-            if (!string.IsNullOrEmpty(criteria.Username) && String.Compare(criteria.Username, ("[" + Resources.Lang.All + "]"), true) != 0)
-                hsParam.Add("affname", criteria.Username);
-            if (!string.IsNullOrEmpty(criteria.PreferredLanguage))
-                hsParam.Add("preferredlanguage", criteria.PreferredLanguage);
-            hsParam.Add("month", criteria.Month);
-            hsParam.Add("year", criteria.Year);
-            hsParam.Add("pagesize", criteria.PageSize);
-            hsParam.Add("pageindex", criteria.PageIndex);
-            hsParam.Add("sortby", criteria.SortBy);
-            hsParam.Add("nrows", 0);
-            return DbHelper.Execute(criteria.SpName, DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
-        }
-
-        //Bryan20091212
-        public static DbResult SelAffiliateQMReportDetail(int affid, int month, int year, int intPage, int intPageSize)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("affid", affid);
-            hsParam.Add("month", month);
-            hsParam.Add("year", year);
-            hsParam.Add("pagesize", intPageSize);
-            hsParam.Add("pageindex", intPage);
-            hsParam.Add("nrows", 0);
-            hsParam.Add("totalpages", 0);
-            return DbHelper.Execute("Aff_ReportQMDetail", DBType.AFFILIATE_12BET, hsParam);
-        }
-
-        //Pete20110110
-        public static DbResult SelAffiliateCommissionReport(CommissionReportCriteria criteria)
-        {
-            Hashtable hsParam = new Hashtable();
-            if (!string.IsNullOrEmpty(criteria.Username) && String.Compare(criteria.Username, ("[" + Resources.Lang.All + "]"), true) != 0)
-                hsParam.Add("username", criteria.Username);
-            if (!string.IsNullOrEmpty(criteria.PreferredLanguage))
-                hsParam.Add("preferredlanguage", criteria.PreferredLanguage);
-            DateTime d = new DateTime(criteria.Year, criteria.Month, 1);
-            hsParam.Add("monthdate", d);
-            if (criteria.Sport > 0)
-                hsParam.Add("sportid", criteria.Sport);
-            hsParam.Add("pagesize", criteria.PageSize);
-            hsParam.Add("pageindex", criteria.PageIndex);
-            hsParam.Add("sortby", criteria.SortBy);
-            hsParam.Add("isdesc", criteria.IsDesc);
-            hsParam.Add("nrows", 0);
-            return DbHelper.Execute(criteria.SpName, DBType.AFFILIATE_12BET, hsParam);
         }
 
         //Johnny20100109
@@ -792,56 +691,6 @@ namespace DataHandler
             hsParam.Add("todate", dtmTDate);
             hsParam.Add("isgetall", isGetAll);
             return DbHelper.Execute("DEP_SignUpMembersReport", DBType.DEPOSIT, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
-        }
-
-        //@Smith 20101223
-        public static DbResult ActiveMemberReport(SignUpActiveCriteria criteria)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("fromdate", criteria.DtmFDate.Date);
-            hsParam.Add("todate", criteria.DtmTDate.Date);
-            hsParam.Add("isgetall", criteria.IsGetAll);
-            hsParam.Add("username", criteria.Username);
-            if (!string.IsNullOrEmpty(criteria.PreferredLanguage))
-                hsParam.Add("preferredlanguage", criteria.PreferredLanguage);
-
-            hsParam.Add("pagesize", criteria.PageSize);
-            hsParam.Add("pageindex", criteria.PageIndex);
-            hsParam.Add("nrows", 0);
-            hsParam.Add("sortby", criteria.SortBy);
-            DbResult result = DbHelper.Execute(criteria.SpName, DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
-            return result;
-        }
-
-        //@smith
-        public static DbResult PerformanceReport(PerformanceCriteria criteria)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("username", criteria.Username);
-            if (criteria.Sport > 0)
-                hsParam.Add("sportid", criteria.Sport);
-            hsParam.Add("language", criteria.Language);
-            hsParam.Add("fromdate", criteria.FromDate);
-            hsParam.Add("todate", criteria.ToDate);
-            hsParam.Add("sortby", criteria.SortBy);
-            hsParam.Add("pagesize", criteria.PageSize);
-            hsParam.Add("pageindex", criteria.PageIndex);
-            hsParam.Add("nrows", 0);
-            hsParam.Add("isdesc", criteria.IsDesc);
-
-            return DbHelper.Execute(criteria.SpName, DBType.AFFILIATE_12BET, hsParam,
-                DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
-        }
-
-        //@smith
-        public static DbResult PerformanceReportByAffiliate(int sportID, int affId)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("affid", affId);
-            hsParam.Add("sportid", sportID);
-
-            return DbHelper.Execute("Aff_PerformanceReportByAff", DBType.AFFILIATE_12BET, hsParam,
-                DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
         }
 
         public static bool ValidatePermission(ValidationCriteria criteria)

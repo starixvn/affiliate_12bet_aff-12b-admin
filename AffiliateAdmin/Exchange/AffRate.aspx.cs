@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Text;
 using System.Data;
-using DNAide.Web;
-using DNAide.Utils;
-using DNAide.Core;
+using System.Text;
 using AffiliateAdmin.Business.Constants;
+using DNAide.Core;
+using DNAide.Utils;
+using DNAide.Web;
 
 public partial class AffRate : IBCPage
 {
@@ -23,7 +23,7 @@ public partial class AffRate : IBCPage
         TemplateHandler.Assign(ref strTpl, "date-val", dtmTime.ToString("MM/dd/yyyy"));
         //TemplateHandler.Assign(ref strTpl, "month-val", dtmTime.ToString("MM"));
         //TemplateHandler.Assign(ref strTpl, "year-val", dtmTime.ToString("yyyy"));
-        TemplateHandler.Assign(ref strTpl, "exrate", Resources.Lang.ExchangeRate);        
+        TemplateHandler.Assign(ref strTpl, "exrate", Resources.Lang.ExchangeRate);
         TemplateHandler.Assign(ref strTpl, "currency", Resources.Lang.Currency);
         TemplateHandler.Assign(ref strTpl, "rate", Resources.Lang.Rate);
         TemplateHandler.Assign(ref strTpl, "buyingrate", Resources.Lang.BuyingRate);
@@ -45,7 +45,7 @@ public partial class AffRate : IBCPage
                     StringBuilder strListRow = new StringBuilder();
                     string strRow = TemplateHandler.CopyBlock(strTpl, "content");
                     TemplateHandler.Assign(ref strRow, "over", Common.RowBgOver);
-                    
+
                     foreach (DataRow dr in dtbResult.Rows)
                     {
                         intCount++;
@@ -76,7 +76,6 @@ public partial class AffRate : IBCPage
             }
             else
                 TemplateHandler.ReplaceBlock(ref strTpl, "content", Common.NoInfo(3));
-            TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(new string[] { "AffRate.aspx" }, new string[] { Resources.Lang.ExchangeRate }, 0, intCount, Resources.Lang.ExchangeRate, "i_ex_rate.png"));
         }
         catch (Exception ex)
         {

@@ -17,7 +17,9 @@ public partial class AddDepartment : IBCPage
         TemplateHandler.Assign(ref list, "Description", Resources.Lang.Description);
         TemplateHandler.Assign(ref list, "submit", Resources.Lang.Add);
         TemplateHandler.Assign(ref list, "cancel", Resources.Lang.Cancel);
-        
+
+        TemplateHandler.Assign(ref list, "requireDepartment", Resources.Lang.ErrDepartment);
+
         this.HtmlContent = list;
 
     }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
-using DNAide.Core;
 using AffiliateAdmin.Business.DataAccess;
+using DNAide.Core;
 using DNAide.Web;
 
 public partial class Home : IBCPage
@@ -10,7 +10,6 @@ public partial class Home : IBCPage
     {
         string content = TemplateHandler.LoadTemplate("Home.htm");
 
-        TemplateHandler.Assign(ref content, "submenu", SubMenu.GenSubMenu(new string[] { "Home.aspx" }, new string[] { Resources.Lang.Home }, 0, 0, Resources.Lang.Home, "i_home.png"));
         TemplateHandler.Assign(ref content, "HomeDesc", Resources.Lang.HomeDesc);
         TemplateHandler.Assign(ref content, "TaskWaitingApp", Resources.Lang.TaskWaitingApp);
         TemplateHandler.Assign(ref content, "Affiliate", Resources.Lang.Affiliate);
@@ -28,7 +27,6 @@ public partial class Home : IBCPage
         TemplateHandler.Assign(ref content, "TotalWinlost", Resources.Lang.TotalWinlost);
         TemplateHandler.Assign(ref content, "TotalBonus", Resources.Lang.TotalBonus);
         TemplateHandler.Assign(ref content, "TotalPSPFees", Resources.Lang.TotalPSPFees);
-        TemplateHandler.Assign(ref content, "TotalAdjustment", Resources.Lang.Adjustment);
         TemplateHandler.Assign(ref content, "TotalNetWinlost", Resources.Lang.TotalNetWinlost);
         TemplateHandler.Assign(ref content, "MemInAffPro", Resources.Lang.MemInAffPro);
         TemplateHandler.Assign(ref content, "BannerStatc", Resources.Lang.BannerStatc);
@@ -43,6 +41,21 @@ public partial class Home : IBCPage
         TemplateHandler.Assign(ref content, "Role", Resources.Lang.Role);
         TemplateHandler.Assign(ref content, "themepath", AppSettings.ThemeDir);
         TemplateHandler.Assign(ref content, "WeHave", Resources.Lang.WeHave);
+
+        // links
+        var rootRelativeUrl = ResolveUrl("~/");
+        var affLink = rootRelativeUrl + "Portal/Affiliate";
+        TemplateHandler.Assign(ref content, "affpendinglink", affLink + "?current=2");
+        TemplateHandler.Assign(ref content, "paymentlink", rootRelativeUrl + "Portal/Affiliate?current=5&slSearch=1&slStatus=Pending&fdate=01/01/2008");
+
+        TemplateHandler.Assign(ref content, "affapprovedlink", affLink + "?current=1");
+        TemplateHandler.Assign(ref content, "affdisapprovedlink", affLink + "?current=3");
+        TemplateHandler.Assign(ref content, "affclosedlink", affLink + "?current=4");
+
+        var bannerLink = rootRelativeUrl + "Portal/Marketing";
+        TemplateHandler.Assign(ref content, "bannerlink", bannerLink);
+        TemplateHandler.Assign(ref content, "bannerimglink", bannerLink + "?typeoption=Image");
+        TemplateHandler.Assign(ref content, "bannerflashlink", bannerLink + "?typeoption=Flash");
 
         //dynamic data render
         Decimal dcPSPToday = DataHandler.Member.GetPSPToday();
@@ -66,7 +79,6 @@ public partial class Home : IBCPage
         TemplateHandler.Assign(ref content, "TotalWinlostAll-val", Common.FormatNumber(dr["WinlostAll"]));
         TemplateHandler.Assign(ref content, "TotalBonusAll-val", Common.FormatNumber(dr["BonusAll"]));
         TemplateHandler.Assign(ref content, "TotalPSPFeesAll-val", Common.FormatNumber(dcPSPAll + dcPSPToday));
-        TemplateHandler.Assign(ref content, "TotalAdjustmentAll-val", Common.FormatNumber(dr["AdjustmentAll"]));
         TemplateHandler.Assign(ref content, "TotalNetWinlostAll-val", Common.FormatNumber(dr["NetWinlostAll"]));
 
         TemplateHandler.Assign(ref content, "BannerInPro-val", CastAide.AsInt32(dr["BannerNum"], 0).ToString(Common.NumberFormatPlaceholder));
@@ -85,13 +97,13 @@ public partial class Home : IBCPage
         TemplateHandler.Assign(ref content, "TotalWinlostMonth-val", Common.FormatNumber(dr["WinlostMonth"]));
         TemplateHandler.Assign(ref content, "TotalBonusMonth-val", Common.FormatNumber(dr["BonusMonth"]));
         TemplateHandler.Assign(ref content, "TotalPSPFeesMonth-val", Common.FormatNumber(dcPSPMonth + dcPSPToday));
-        TemplateHandler.Assign(ref content, "TotalAdjustmentMonth-val", Common.FormatNumber(dr["AdjustmentMonth"]));
         TemplateHandler.Assign(ref content, "TotalNetWinlostMonth-val", Common.FormatNumber(dr["NetWinlostMonth"]));
 
         DbResult rs1 = DataHandler.Home.GetGenInforFromDeposit();
         DataTable dtb1 = rs1.ResultSet.Tables[0];
         DataRow dr1 = dtb1.Rows[0];
-        int nonDepositMemAllNum, NonDepositMemMonthNum;
+        int nonDepositMemAllNum;
+        int NonDepositMemMonthNum;
         nonDepositMemAllNum = CastAide.AsInt32(dr1["MemInProAllNum"], 0) - CastAide.AsInt32(dr["DepositMemAllNum"], 0);
         NonDepositMemMonthNum = CastAide.AsInt32(dr1["MemInProMonthNum"], 0) - CastAide.AsInt32(dr["DepositMemMonthNum"], 0);
 
@@ -103,10 +115,11 @@ public partial class Home : IBCPage
 
         int pagesize = CastAide.AsInt32(Request["pagesize"], 20);
         int page = CastAide.AsInt32(Request["page"], 1);
-        int Nrows = 0, totalpages=0;
+        int Nrows = 0;
+        int totalpages = 0;
         int NrowOnCurPage = 0;
         DbResult result;
-        DataTable oldtb = new DataTable() ;
+        DataTable oldtb = new DataTable();
 
         while (NrowOnCurPage == 0)
         {
@@ -114,7 +127,7 @@ public partial class Home : IBCPage
             totalpages = CastAide.AsInt32(result.Outputs["totalpages"]);
             Nrows = CastAide.AsInt32(result.Outputs["NRows"]);
             oldtb = result.ResultSet.Tables[0];
-            if(page == 1)//Break out if page is equal 1
+            if (page == 1)//Break out if page is equal 1
                 NrowOnCurPage = -1;
             else
                 NrowOnCurPage = oldtb.Rows.Count;
@@ -129,9 +142,9 @@ public partial class Home : IBCPage
         foreach (DataRow r in oldtb.Rows)
         {
             string temp = olRow;
-            TemplateHandler.Assign(ref temp, "No-val", ++No + (page-1)*pagesize);
-            TemplateHandler.Assign(ref temp, "logged-in-val", Common.IBCDateTimeFormat(r["LoggedIn"],DTFormatType.DT24h));
-            TemplateHandler.Assign(ref temp, "lastrequest-val", Common.IBCDateTimeFormat(r["LastRequest"],DTFormatType.DT24h));
+            TemplateHandler.Assign(ref temp, "No-val", ++No + (page - 1) * pagesize);
+            TemplateHandler.Assign(ref temp, "logged-in-val", Common.IBCDateTimeFormat(r["LoggedIn"], DTFormatType.DT24h));
+            TemplateHandler.Assign(ref temp, "lastrequest-val", Common.IBCDateTimeFormat(r["LastRequest"], DTFormatType.DT24h));
             TemplateHandler.Assign(ref temp, "IP-val", r["IP"].ToString());
             TemplateHandler.Assign(ref temp, "ipchecker-url", Common.GetIPCheckerURL(r["IP"].ToString()));
             if (r["RoleName"].ToString() == "Admin")
@@ -141,7 +154,9 @@ public partial class Home : IBCPage
             }
             else
             {
-                TemplateHandler.Assign(ref temp, "Username-val", "<a href=\"../Customer/AffDefault.aspx?user=" + r["username"].ToString() + "\"> " + r["username"].ToString() + "</a>");
+                var userName = r["username"];
+                var customerLink = ResolveUrl("~/Portal/Customer?user=" + userName);
+                TemplateHandler.Assign(ref temp, "Username-val", "<a href=\"" + customerLink + "\" target=\"_top\"> " + userName + "</a>");
                 TemplateHandler.Assign(ref temp, "Type-val", Resources.Lang.Affiliate);
             }
             if ((No % 2) == 0)

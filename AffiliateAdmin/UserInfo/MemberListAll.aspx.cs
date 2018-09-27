@@ -40,7 +40,7 @@ public partial class UserInfo_MemberListAll : IBCPage
             string username = string.Empty, ibcUsername = string.Empty, affUsername = string.Empty;
             int totalPages = 1, pageIndex = 0, NRows = 0;//affid = -1
             int width = 900;
-        
+
             TemplateHandler.Assign(ref strTpl, "pagepadd", "padl0");
             string strContent = TemplateHandler.CopyBlock(strTpl, "content");
 
@@ -62,7 +62,7 @@ public partial class UserInfo_MemberListAll : IBCPage
             DataTable dtbResult = DataHandler.Member.SelMemInfoAll(affUsername, username, ibcUsername, ref pageIndex, intPageSize, ref totalPages, ref NRows);
 
             StringBuilder strBuild = new StringBuilder();
-          
+
             if (dtbResult.Rows.Count > 0)
             {
                 int i = (pageIndex - 1) * intPageSize;// hardcode pagesize for member/player list
@@ -94,15 +94,10 @@ public partial class UserInfo_MemberListAll : IBCPage
                 strBuild.Append(Common.NoInfo(10));
             }
 
-            //Hung submenu      
-            TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.MemberLink,SubMenu.MemberText, 0, NRows, string.Empty, "i_member.png"));
-            
             //Add search bar
             string strUserName = CastAide.AsString(Request["txtUsername"], string.Empty);
             string strIBCUsername = CastAide.AsString(Request["txtIBCUsername"], string.Empty);
 
-            //TemplateHandler.Assign(ref strTpl, "username", string.IsNullOrEmpty(username) ? Resources.Lang.Username : username);
-            //TemplateHandler.Assign(ref strTpl, "ibcusername", string.IsNullOrEmpty(strIBCUsername) ? Resources.Lang.IBCUsername : strIBCUsername);
             TemplateHandler.Assign(ref strTpl, "username", string.IsNullOrEmpty(username) ? string.Empty : username);
             TemplateHandler.Assign(ref strTpl, "ibcusername", string.IsNullOrEmpty(strIBCUsername) ? string.Empty : strIBCUsername);
 

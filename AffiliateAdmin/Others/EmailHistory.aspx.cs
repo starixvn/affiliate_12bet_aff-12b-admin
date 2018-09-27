@@ -1,9 +1,13 @@
 ﻿using System;
+using AffiliateAdmin.Portal;
 using DNAide.Core;
 using DNAide.Web;
 
-public partial class Others_EmailHistory : IBCPage
+public partial class Others_EmailHistory : BasePage
 {
+    protected string _htmlContent = string.Empty;
+    protected string _htmlSubmenuContent = string.Empty;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         string content = TemplateHandler.LoadTemplate("Others/EmailHistory.htm");
@@ -35,13 +39,16 @@ public partial class Others_EmailHistory : IBCPage
         TemplateHandler.Assign(ref content, "Cancel", Resources.Lang.Cancel);
         TemplateHandler.Assign(ref content, "timer-val", string.IsNullOrEmpty(Request["slTime"]) ? "0" : Request["slTime"]);
 
-        string name = string.Empty, email = string.Empty, affiliateName = string.Empty;
-
-        int minNo = 0, maxNo = 0, totalEmail = 0, totalpage = 0;
+        string name = string.Empty;
+        string email = string.Empty;
+        string affiliateName = string.Empty;
+        int minNo = 0;
+        int maxNo = 0;
+        int totalEmail = 0;
+        int totalpage = 0;
         int currPage = CastAide.AsInt32(Request["page"], 1);//get the current page from hidden field in form
         int currPageSize = CastAide.AsInt32(Request["pagesize"], 20);//get the current page from hidden field in form
         int searchOption = CastAide.AsInt32(Request["slSearchOption"], -1);
-        bool isUnknown = false;
         object msgId = null;
         string strSearchText = CastAide.AsString(Request["txtSearchText"], string.Empty);
 
@@ -65,11 +72,9 @@ public partial class Others_EmailHistory : IBCPage
             case -2:
                 msgId = -1;
                 break;
-
-            default:
-                break;
         }
-        DateTime fdate = DateTime.Now, tdate = DateTime.Now;
+        DateTime fdate = DateTime.Now;
+        DateTime tdate = DateTime.Now;
         string hasDate = CastAide.AsString(Request["hdchkDate"], string.Empty);
 
         if (hasDate == "on")
@@ -93,7 +98,6 @@ public partial class Others_EmailHistory : IBCPage
         TemplateHandler.Assign(ref content, "minNo", minNo.ToString());
         TemplateHandler.Assign(ref content, "maxNo", maxNo.ToString());
         TemplateHandler.Assign(ref content, "page", currPage);
-        TemplateHandler.Assign(ref content, "submenu", SubMenu.GenSubMenu(SubMenu.AffLink, SubMenu.AffText, 7, totalEmail, Resources.Lang.EmailHistory, "i_email_history.png"));
         if (totalEmail != 0)
         {
             TemplateHandler.Assign(ref content, "paging-top", Common.GenPaging(totalpage, currPage, currPageSize, maxNo, "aPageTop", "txtPageTop", new string[] { Resources.Lang.Delete }, new string[] { "DeleteSelectedMessage();" }, 1020, true, true, true, false));
@@ -104,6 +108,7 @@ public partial class Others_EmailHistory : IBCPage
             TemplateHandler.Assign(ref content, "paging-top", "");
             TemplateHandler.Assign(ref content, "paging-bottom", "");
         }
-        this.HtmlContent = content;
+
+        _htmlContent = content;
     }
 }

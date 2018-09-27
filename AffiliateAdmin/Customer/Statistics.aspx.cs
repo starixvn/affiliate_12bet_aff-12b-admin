@@ -1,10 +1,10 @@
 ﻿using System;
-using DNAide.Web;
-using DNAide.Core;
 using AffiliateAdmin.Business.DataAccess;
+using DNAide.Core;
+using DNAide.Web;
 public partial class Customer_Statistics : IBCPage
 {
-    
+
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -60,7 +60,6 @@ public partial class Customer_Statistics : IBCPage
         TemplateHandler.Assign(ref strTpl, "totalplay-val", totalPlayer.ToString(Common.NumberFormatPlaceholder));
         TemplateHandler.Assign(ref strTpl, "totalqualifiedmembers", Resources.Lang.TotalQualifiedMembers);
         TemplateHandler.Assign(ref strTpl, "totalqualifiedmembers-val", CastAide.AsInt32(result.Outputs["totalqualifiedmembers"]).ToString(Common.NumberFormatPlaceholder));
-        TemplateHandler.Assign(ref strTpl, "totalqualifiedmembersCasino-val", CastAide.AsInt32(result.Outputs["totalqualifiedcasino"]).ToString(Common.NumberFormatPlaceholder));
         TemplateHandler.Assign(ref strTpl, "totalqualifiedmembersHr-val", CastAide.AsInt32(result.Outputs["totalqualifiedmembershr"]).ToString(Common.NumberFormatPlaceholder));
         TemplateHandler.Assign(ref strTpl, "turnovermonth-val", Common.FormatNumber(CastAide.AsDecimal(result.Outputs["totalturnover"])));
 
@@ -90,7 +89,7 @@ public partial class Customer_Statistics : IBCPage
 
         TemplateHandler.Assign(ref strTpl, "fdate", selectedMonth.ToString("MM/dd/yyyy"));
         TemplateHandler.Assign(ref strTpl, "tdate", selectedMonth.AddMonths(1).AddDays(-1).ToString("MM/dd/yyyy"));
-        
+
         this.HtmlContent = strTpl;
     }
 }

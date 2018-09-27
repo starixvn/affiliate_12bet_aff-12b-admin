@@ -1,0 +1,220 @@
+﻿@using Fanex.Affiliate.User.Core.CoreService
+@using Fanex.Affiliate.User.Core.Constants
+@using Fanex.Affiliate.User.Core.Utilities
+@{
+    var sessionService = DependencyResolver.Current.GetService<ISessionService>();
+    var settingService = DependencyResolver.Current.GetService<IAppSetting>();
+    var userSession = sessionService.UserSession;
+    var languageList = SystemLanguage.LanguageList.Where(l => !l.Code.Equals("en-GB") && !l.Code.Equals("es-ES"));
+    var currentLanguage = languageList.FirstOrDefault(l => l.Code.Equals(sessionService.CurrentLanguage))?.NativeName;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@(string.IsNullOrEmpty(ViewBag.Title) ? Lang._12BET + " " + Lang.Affiliate : ViewBag.Title)</title>
+    <link rel="icon" href="~/favicon.ico?v=1">
+    <meta name="google-site-verification" content="iFkj5nsimoERnX2jd-9krswREsacSaFCr3Q22CJtQe0" />
+    <meta name="msvalidate.01" content="D40D4C0F9E67ABAAAFA183F5D313FEFD" />
+    <meta name="description" content="Earn Extra Cash, Join 12BET.com Fast and Easy Online Sports Betting and Casino Affiliate Program. With high conversions, Earn 40% commission for life and more!" />
+    <meta name="keywords" content="12BET, 12BET Affiliate Program, Sports Betting Affiliate, Casino Affiliate, betting affiliate programs, earn extra cash, top affiliate programs, asian casino affiliate programs, Asian betting affiliate programs, high payout affiliate programs" />
+    <meta name="robots" content="index,follow,archive" />
+
+    <link href="~/www/build/styles/css/materialdesignicons.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" rel="stylesheet" crossorigin="anonymous">
+    @if (sessionService.CurrentLanguage == SystemLanguage.VietNamLanguageCode)
+    {
+        <link href="@Url.RenderLink("~/www/build/styles/fonts/tahoma/font.css")" rel="stylesheet" />
+    }
+    else
+    {
+        <link href="@Url.RenderLink("~/www/build/styles/fonts/Montserrat/font.css")" rel="stylesheet" />
+    }
+    <link href="~/www/build/styles/fonts/myriadPro/font.css" rel="stylesheet" />
+    <link href="@Url.RenderLink("~/www/build/styles/css/main.css")" rel="stylesheet" />
+    @RenderSection("styles", required: false)
+</head>
+<body>
+    <div class="header-top">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 col-sm-5 col-md-5 logo">
+                    <a href="@Url.Content("~")"><img src="~/www/build/styles/Images/logo.png" alt="logo" /><span class="logo-text">@Lang.Affiliate</span></a>
+                </div>
+                <div class="col-xs-12 col-sm-7 col-md-7 login">
+                    <div class="user-signup">
+                        @if (!HttpContext.Current.User.Identity.IsAuthenticated || userSession == null)
+                        {
+                            <a class="btn btn-login-mobile" id="mobileLogin">
+                                <span>@Lang.Login</span>
+                            </a>
+                            <div class="sign-up">
+                                <a href="@Url.Content("~/Signup/Index")" class="btn btn-signup"><span class="icon glyphicon glyphicon-pencil"></span>@Lang.SignUpAffiliate</a>
+                            </div>
+                        }
+
+                        <div class="language-container">
+                            <div class="language-selection">
+                                <button class="select-language" id="selectedLanguage">
+                                    <span><i class="flag flag-@sessionService.CurrentLanguage"></i>@(currentLanguage)</span>
+                                    <i class="caret"></i>
+                                </button>
+
+                                <div class="language-list-wrapper" id="languageList">
+                                    <ul class="list-unstyled language-list">
+                                        @foreach (var language in languageList)
+                                        {
+                                            <li>
+                                                <a href="javascript:;" class="language-item" data-option="@language.Code"><i class="flag flag-@language.Code"></i>@language.NativeName</a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @{Html.RenderAction("AuthenticationForm", "Auth");}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-bottom">
+        <div class="navbar">
+            <div class="@RenderSection("classNav", required: false)">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="collapse navbar-collapse menu" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                @{
+                                    var controllerName = ViewContext.RouteData.Values["Controller"].ToString();
+                                }
+                                <li>
+                                    <a class="menu-item @(controllerName == "Home" ? "active" : string.Empty)" href="@Url.Content("~/Home")">
+                                        @Lang.Home
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="menu-item @(controllerName == "CommissionStructure" ? "active" : string.Empty)" href="@Url.Content("~/CommissionStructure")">
+                                        @Lang.CommissionStructure
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="menu-item @(controllerName == "Product" ? "active" : string.Empty)" href="@Url.Content("~/Product")">
+                                        @Lang.Product
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="menu-item @(controllerName == "TermAndCondition" ? "active" : string.Empty)" href="@Url.Content("~/TermAndCondition")">
+                                        @Lang.TermAndCondition
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="menu-item @(controllerName == "FAQ" ? "active" : string.Empty)" href="@Url.Content("~/FAQ")">
+                                        @Lang.Faqs
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="menu-item @(controllerName == "ContactUs" ? "active" : string.Empty)" href="@Url.Content("~/ContactUs")">
+                                        @Lang.ContactUs
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        @RenderBody()
+    </div>
+
+    <div class="footer">
+        <div class="footer-img">
+            <div class="img-top">
+                <a class="item">
+                    <img src="~/www/build/styles/Images/footer/cr-rank-sponsors.png" alt="sponsors" />
+                </a>
+            </div>
+            <div class="img-bottom">
+                <a class="item">
+                    <img src="@Url.Content("~/www/build/styles/Images/footer/cr-18.png")" alt="cr-18-logo" />
+                </a>
+                <a class="item">
+                    <img src="@Url.Content("~/www/build/styles/Images/footer/cr-gamleaware.png")" alt="cr-gamleaware-logo" />
+                </a>
+                <a class="item">
+                    <img src="@Url.Content("~/www/build/styles/Images/footer/cr-cagayan.png")" alt="cr-cagayan-logo" />
+                </a>
+                <a class="item">
+                    <img src="@Url.Content("~/www/build/styles/Images/footer/cr-tst.png")" alt="cr-tst-logo" />
+                </a>
+                <a class="item">
+                    <img src="@Url.Content("~/www/build/styles/Images/footer/cr-thawte.png")" alt="cr-thawte-logo" />
+                </a>
+                <a class="item">
+                    <img src="@Url.Content("~/www/build/styles/Images/footer/cr-playtech.png")" alt="cr-playtech-logo" />
+                </a>
+                <a class="item">
+                    <img src="@Url.Content("~/www/build/styles/Images/footer/cr-safe&secure.png")" alt="cr-safe&secure-logo" />
+                </a>
+            </div>
+        </div>
+        <div class="footer-text">
+            @Lang.Copyright <span class="text-red">12BET.com</span>
+        </div>
+    </div>
+
+    <div class="blocker" id="blocker" style="display: none;">
+        <div class="sk-cube-grid">
+            <div class="sk-cube sk-cube1"></div>
+            <div class="sk-cube sk-cube2"></div>
+            <div class="sk-cube sk-cube3"></div>
+            <div class="sk-cube sk-cube4"></div>
+            <div class="sk-cube sk-cube5"></div>
+            <div class="sk-cube sk-cube6"></div>
+            <div class="sk-cube sk-cube7"></div>
+            <div class="sk-cube sk-cube8"></div>
+            <div class="sk-cube sk-cube9"></div>
+        </div>
+    </div>
+
+    <input type="hidden" id="RootUrl" value="@Url.Content("~")" />
+    <input type="hidden" id="Language" value="@sessionService.CurrentLanguage" />
+    <script>
+        window.Lang = {
+            ServerError: '@Lang.ServerError'
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    @Html.InlineScripts("~/www/build/js/lib/modernizr-webp.js")
+    @Html.InlineScripts("~/www/build/js/jquery.extension.js")
+    <script src="@Url.RenderLink("~/www/build/js/site.js")"></script>
+    <script src="@Url.RenderLink("~/www/build/js/layout.js")"></script>
+
+    @if (userSession != null && !settingService.IsLocal)
+    {
+        <script src="@Url.RenderLink("~/www/build/js/recheckin.js")"></script>
+    }
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

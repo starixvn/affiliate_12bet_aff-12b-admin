@@ -75,7 +75,6 @@ public partial class MemberReport : IBCPage
             TemplateHandler.Assign(ref strTpl, "username-val", strUsername + " --- ");
             TemplateHandler.Assign(ref strTpl, "custid", intCustId);
             strMenuText = Resources.Lang.ReportDetails + " [" + strUsername + "]";
-            //TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.AffApprovedLink, SubMenu.AffApprovedText, 1, 0, Resources.Lang.Report, "i_customer.png"));
         }
         else
         {
@@ -85,7 +84,6 @@ public partial class MemberReport : IBCPage
             TemplateHandler.Assign(ref strTpl, "custid", string.Empty);
             strMenuText = Resources.Lang.ReportDetails;
         }
-        TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.ReportLink, SubMenu.ReportText, 0, 0, SubMenu.ReportText[0], "i_report.png"));
 
         TemplateHandler.Assign(ref strTpl, "isaff-val", Request["isaff"]);
 

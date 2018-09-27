@@ -1,0 +1,23 @@
+﻿@{
+    Layout = "~/Areas/Portal/Views/Shared/_SinglePageLayout.cshtml";
+}
+
+@model Fanex.Affiliate.Admin.Core.ViewModels.AffiliateReportViewModel
+
+@section styles{
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/affiliate-report.css")" rel="stylesheet" />
+}
+
+@section scripts{
+    <script type="text/javascript">
+        window.initialState = {
+            productList: @Html.Raw(Json.Encode(Model.ProductList)),
+            languageList: @Html.Raw(Json.Encode(Model.LanguageList)),
+            currentDate: '@DateTime.Now.ToString("MM/dd/yyyy")'
+        }
+    </script>
+    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/report/affiliate-report.js")"></script>
+}
+
+<div id="root"></div>
+

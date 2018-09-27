@@ -1,0 +1,19 @@
+﻿@{
+    Layout = null;
+}
+@model IEnumerable<Fanex.Affiliate.User.Core.DTO.UserPanel.StatementHistory>
+
+@Html.InlineStyles("~/www/build/styles/css/statement-history.css")
+
+<div class="page-title">
+    <span class="text">@Lang.StatementHistory</span>
+</div>
+
+<div class="info-group">
+    <div id="statementPager"></div>
+    <div id="statementDataList">
+        @{ Html.RenderPartial("~/Views/UserPanel/StatementHistory/StatementHistoryPartial/_StatementHistoryContent.cshtml", Model); }
+    </div>
+</div>
+
+<script src="@Url.RenderLink("~/www/build/js/statement-history.js")"></script>

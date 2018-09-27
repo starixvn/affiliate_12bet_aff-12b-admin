@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections;
-using System.Configuration;
 using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.HtmlControls;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using DNAide.Web;
-using DNAide.Core;
 using AffiliateAdmin.Business.DataAccess;
+using DNAide.Core;
+using DNAide.Web;
 
 public partial class UserInfo_AddNote : IBCPage
 {
@@ -25,6 +16,11 @@ public partial class UserInfo_AddNote : IBCPage
         TemplateHandler.Assign(ref strTpl, "cancel", Resources.Lang.Cancel);
         TemplateHandler.Assign(ref strTpl, "content", Resources.Lang.Content);
         TemplateHandler.Assign(ref strTpl, "custid-val", AppSettings.Session.AffId);
+
+        TemplateHandler.Assign(ref strTpl, "requireNoteContent", Resources.Lang.ErrNoteEmpty);
+        TemplateHandler.Assign(ref strTpl, "addNoteSuccess", Resources.Lang.ErrNoteAdd);
+        TemplateHandler.Assign(ref strTpl, "updateNoteSuccess", Resources.Lang.ErrUpdateSucc);
+
         if (action == 1)//add
         {
             TemplateHandler.RemoveBlock(ref strTpl, "update");

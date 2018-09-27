@@ -7,7 +7,7 @@
     function addNote() {
         $("errMsg").className = "";
         if (Common.isEmpty($("txtNote").value)) {
-            Common.alertError(top.frames[0].Msg.NoteEmpty);
+            Common.alertError(MsgResource.requireNoteContent);
             $("txtNote").value = "";
             $("txtNote").focus();
             return;
@@ -26,7 +26,7 @@
                 if (returnData[0] == 'ok') {
                     $("errMsg").className = "done";
                     setTimeout("parent.LoadData(1);", 1500);
-                    Common.alertSuccess(top.frames[0].Msg.NoteAdd);
+                    Common.alertSuccess(MsgResource.addNoteSuccess);
                 }
                 else {
                     Common.alertError(returnData[1]);
@@ -37,7 +37,7 @@
     function updateNote() {
         $("errMsg").className = "";
         if (Common.isEmpty($("txtNote").value)) {
-            Common.alertError(top.frames[0].Msg.NoteEmpty);
+            Common.alertError(MsgResource.requireNoteContent);
             $("txtNote").value = "";
             $("txtNote").focus();
             return;
@@ -55,7 +55,7 @@
                 var returnData = strdata.responseText.split("@");
                 if (returnData[0] == 'ok') {
                     $("errMsg").className = "done";
-                    Common.alertSuccess(top.frames[0].Msg.UpdateSucc);
+                    Common.alertSuccess(MsgResource.updateNoteSuccess);
                     setTimeout("parent.LoadData(1);", 1500);
                 }
                 else {

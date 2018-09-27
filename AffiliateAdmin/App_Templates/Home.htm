@@ -2,15 +2,10 @@
 <div class="pad10">
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
-            <td colspan="2">
-                {submenu}
-            </td>
-        </tr>
-        <tr>
             <td style="width: 50px">
                 &nbsp;
             </td>
-            <td>
+            <td style="padding-top: 10px;">
                 <span class="text_black">{HomeDesc}</span>
             </td>
         </tr>
@@ -28,13 +23,13 @@
                                 {Affiliate}
                             </td>
                             <td width="15%" align="center" class="text_blu_bl">
-                                <a href="../UserInfo/AffiliateList.aspx?status=pending">{AffNum-val}</a>
+                                <a href="{affpendinglink}" target="_top">{AffNum-val}</a>
                             </td>
                             <td width="40%" align="center" class="text_bold">
                                 {PaymentRequest}
                             </td>
                             <td width="15%" align="center" class="text_blu_bl">
-                                <a href="../Payment/PaymentRequest.aspx?slSearch=1&slStatus=Pending&fdate=01/01/2008">{PaymentReqNum-val}</a>
+                                <a href="{paymentlink}" target="_top">{PaymentReqNum-val}</a>
                             </td>
                         </tr>
                     </table>
@@ -53,9 +48,9 @@
                             {WeHave}<b>{AffInProAll-val}</b>&nbsp;{AffInPro}
                         </div>
                         <br />
-                        <span class="text_blu_bl" style="padding-left:10px;"><a href="../UserInfo/AffiliateList.aspx?status=pending">{PendingAll-val}</a></span>&nbsp;{Pending}&nbsp;/&nbsp;<span class="text_blu_bl">
-                            <a href="../UserInfo/AffiliateList.aspx?status=approved">{ApprovedAll-val}</a></span>&nbsp;{Approved}&nbsp;/&nbsp;<span class="text_blu_bl"><a href="../UserInfo/AffiliateList.aspx?status=disapproved">{DisapprovedAll-val}</a></span>
-                        &nbsp;{Disapproved}&nbsp;/&nbsp;<span class="text_blu_bl"><a href="../UserInfo/AffiliateList.aspx?status=approved&isClosed=true">{ClosedAllNum-val}</a></span>&nbsp;{Closed}
+                        <span class="text_blu_bl" style="padding-left:10px;"><a href="{affpendinglink}" target="_top">{PendingAll-val}</a></span>&nbsp;{Pending}&nbsp;/&nbsp;<span class="text_blu_bl">
+                            <a href="{affapprovedlink}" target="_top">{ApprovedAll-val}</a></span>&nbsp;{Approved}&nbsp;/&nbsp;<span class="text_blu_bl"><a href="{affdisapprovedlink}" target="_top">{DisapprovedAll-val}</a></span>
+                        &nbsp;{Disapproved}&nbsp;/&nbsp;<span class="text_blu_bl"><a href="{affclosedlink}" target="_top">{ClosedAllNum-val}</a></span>&nbsp;{Closed}
                     </div>
                     <!--box -->
                     <div id="tbhome_contsA">
@@ -109,14 +104,6 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="tb_m">
-                                        {TotalAdjustment}
-                                    </td>
-                                    <td class="tbl_hc r">
-                                        {TotalAdjustmentAll-val}
-                                    </td>
-                                </tr>
-                                <tr>
                                     <td class="tbl_f b">
                                         {TotalNetWinlost}
                                     </td>
@@ -139,10 +126,10 @@
                         <tr class="tb_top">
                             <td height="44" style="padding-left: 10px;">
                                 <div style="height: 20px;padding-left:10px;">
-                                    {WeHave}<span class="text_blu_bl"><a href="../Media/ListBannerNew.aspx">{BannerInPro-val}</a></span>&nbsp;{BannerInPro}
+                                    {WeHave}<span class="text_blu_bl"><a href="{bannerlink}" target="_top">{BannerInPro-val}</a></span>&nbsp;{BannerInPro}
                                 </div>
-                                <span class="text_blu_bl" style="padding-left: 10px;"><a href="../Media/ListBannerNew.aspx?typeoption=Image">{ImageBanner-val}</a></span>&nbsp;{ImageBanner}&nbsp;/&nbsp;<span class="text_blu_bl">
-                                    <a href="../Media/ListBannerNew.aspx?typeoption=Flash">{FlashBanner-val}</a></span>&nbsp;{FlashBanner}
+                                <span class="text_blu_bl" style="padding-left: 10px;"><a href="{bannerimglink}" target="_top">{ImageBanner-val}</a></span>&nbsp;{ImageBanner}&nbsp;/&nbsp;<span class="text_blu_bl">
+                                    <a href="{bannerflashlink}" target="_top">{FlashBanner-val}</a></span>&nbsp;{FlashBanner}
                             </td>
                         </tr>
                     </table>
@@ -214,14 +201,6 @@
                                     </td>
                                     <td class="tbl_hc r">
                                         {TotalBonusMonth-val}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="tb_m">
-                                        {TotalAdjustment}
-                                    </td>
-                                    <td class="tbl_hc r">
-                                        {TotalAdjustmentMonth-val}
                                     </td>
                                 </tr>
                                 <tr>

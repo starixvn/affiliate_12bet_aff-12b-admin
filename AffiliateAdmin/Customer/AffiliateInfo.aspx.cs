@@ -1,8 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
-using System.Web.Security;
+using System.Web;
+using System.Web.Script.Serialization;
 using AffiliateAdmin.Business.DataAccess;
+using AffiliateAdmin.DTO;
 using DNAide.Core;
 using DNAide.Utils;
 using DNAide.Web;
@@ -18,7 +23,6 @@ public partial class Customer_AffiliateInfo : IBCPage
         TemplateHandler.Assign(ref strTpl, "lname", Resources.Lang.Lname);
         TemplateHandler.Assign(ref strTpl, "gender", Resources.Lang.Gender);
         TemplateHandler.Assign(ref strTpl, "number", Resources.Lang.ContactNumber);
-        TemplateHandler.Assign(ref strTpl, "mobile", Resources.Lang.Mobile);
         TemplateHandler.Assign(ref strTpl, "language", Resources.Lang.Language);
         TemplateHandler.Assign(ref strTpl, "siteurl", Resources.Lang.SiteUrl);
         TemplateHandler.Assign(ref strTpl, "lastlogin", Resources.Lang.LastLogin);
@@ -35,10 +39,10 @@ public partial class Customer_AffiliateInfo : IBCPage
         TemplateHandler.Assign(ref strTpl, "currlist", Resources.Lang.CurrOnlineList);
         TemplateHandler.Assign(ref strTpl, "ip", Resources.Lang.IP);
         TemplateHandler.Assign(ref strTpl, "lastcheckin", Resources.Lang.LastCheckIn);
-        TemplateHandler.Assign(ref strTpl, "reportdetail", Resources.Lang.ReportDetails);
         TemplateHandler.Assign(ref strTpl, "memberlist", Resources.Lang.MemList);
 
         TemplateHandler.Assign(ref strTpl, "afftype", Resources.Lang.AffiliateType);
+        TemplateHandler.Assign(ref strTpl, "relativeRootUrl-val", VirtualPathUtility.ToAbsolute("~/"));
 
         string strUsername = Server.UrlEncode(Request["username"]);
         if (!string.IsNullOrEmpty(strUsername))
@@ -55,6 +59,9 @@ public partial class Customer_AffiliateInfo : IBCPage
             return;
         }
 
+        var memberListUrl = ResolveClientUrl("~/Portal/Member?txtAffUsername=" + AppSettings.Session.AffUsername);
+
+        TemplateHandler.Assign(ref strTpl, "memberListUrl", memberListUrl);
         TemplateHandler.Assign(ref strTpl, "username", AppSettings.Session.AffUsername);
         TemplateHandler.Assign(ref strTpl, "pageid-val", Request["pageid"]);
 
@@ -88,6 +95,18 @@ public partial class Customer_AffiliateInfo : IBCPage
                 AppSettings.Session.AffId = CastAide.AsInt32(dr["affid"]);
                 AppSettings.Session.IsCasino = CastAide.AsBoolean(result.Outputs["iscasino"]);
 
+                var contactAppJson = CastAide.AsString(dr["ContactApps"], string.Empty);
+                if (!string.IsNullOrEmpty(contactAppJson))
+                {
+                    var blockTemplate = TemplateHandler.CopyBlock(strTpl, "ContactApp");
+                    var htmlAppContact = BuildContactApp(contactAppJson, blockTemplate);
+                    TemplateHandler.ReplaceBlock(ref strTpl, "ContactApp", htmlAppContact);
+                }
+                else
+                {
+                    TemplateHandler.ReplaceBlock(ref strTpl, "ContactApp", string.Empty);
+                }
+
                 TemplateHandler.Assign(ref strTpl, "custid-val", dr["affid"]);
                 TemplateHandler.Assign(ref strTpl, "fnametext-val", cutLongText(dr["firstname"].ToString(), 23));
                 TemplateHandler.Assign(ref strTpl, "fname-val", dr["firstname"]);
@@ -97,7 +116,6 @@ public partial class Customer_AffiliateInfo : IBCPage
                 else
                     TemplateHandler.Assign(ref strTpl, "gender-val", (CastAide.AsBoolean(dr["gender"], true) ? Resources.Lang.Male : Resources.Lang.Female));
                 TemplateHandler.Assign(ref strTpl, "number-val", cutLongText(dr["phone"].ToString(), 23));
-                TemplateHandler.Assign(ref strTpl, "mobile-val", cutLongText(dr["mobilephone"].ToString(), 23));
                 TemplateHandler.Assign(ref strTpl, "email-val", dr["email"]);
                 TemplateHandler.Assign(ref strTpl, "language-val", Common.GerFullTextLang(dr["preferredlanguage"]));
                 TemplateHandler.Assign(ref strTpl, "preferredpayment-val", dr["preferredpayment"]);
@@ -212,7 +230,7 @@ public partial class Customer_AffiliateInfo : IBCPage
     private string GerUrl(string custName)
     {
         string rndStr = Encryption.RandomString(6);
-        string accKey = FormsAuthentication.HashPasswordForStoringInConfigFile(Session.SessionID + rndStr, "MD5");
+        string accKey = GenerateSHA512String(Session.SessionID + rndStr);
         string accID = AppSettings.Session.CustID.ToString();
         string accOnId = AppSettings.Session.OnUser.ToString();
         string _url = AppSettings.Session.AffType == AffType.European ? AppSettings.InternalEuropeanAffiliateURL : AppSettings.InternalAsianAffiliateURL;
@@ -227,5 +245,43 @@ public partial class Customer_AffiliateInfo : IBCPage
     private string cutLongText(string val, int maxLength)
     {
         return (val.Length <= maxLength) ? val : "<span title='" + Server.HtmlEncode(val) + "'>" + val.Substring(0, maxLength - 3) + "...</span>";
+    }
+
+    public static string GenerateSHA512String(string inputString)
+    {
+        var sha512 = SHA512.Create();
+        var bytes = Encoding.UTF8.GetBytes(inputString);
+        var hash = sha512.ComputeHash(bytes);
+
+        return GetStringFromHash(hash);
+    }
+
+    private static string GetStringFromHash(byte[] hash)
+    {
+        var result = new StringBuilder();
+        for (var i = 0; i < hash.Length; i++)
+        {
+            result.Append(hash[i].ToString("X2"));
+        }
+
+        return result.ToString();
+    }
+
+    private static string BuildContactApp(string jsonData, string template)
+    {
+        var serializer = new JavaScriptSerializer();
+        var contactAppList = serializer.Deserialize<IEnumerable<ContactApp>>(jsonData).OrderBy(p => p.Order);
+        var builder = new StringBuilder();
+
+        foreach (var item in contactAppList)
+        {
+            var templateItem = template;
+            TemplateHandler.Assign(ref templateItem, "appname", item.Name);
+            TemplateHandler.Assign(ref templateItem, "appvalue", item.Value);
+
+            builder.Append(templateItem);
+        }
+
+        return builder.ToString();
     }
 }

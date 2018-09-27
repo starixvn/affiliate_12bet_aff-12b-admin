@@ -1,122 +1,116 @@
 <script type="text/javascript">
-	function NewWindow(HtmlName,WinName,ToolOptions)
-	{
-	    window.open(HtmlName,WinName,ToolOptions);
-	}
-	
+    function NewWindow(HtmlName, WinName, ToolOptions) {
+        window.open(HtmlName, WinName, ToolOptions);
+    }
 </script>
-<div id="padl0">
-    {submenu}
-    <form id="frmSearch" name="frmSearch" method="get" onsubmit="checkData();">
-        <input type="hidden" id="X-CSRF-Token" name="X-CSRF-Token" value="{XsrfTokenFormValue}" />
-        <!--search form-->
-        <div id="search_cont">
-            <div id="header_search">
-                {SearchBy}&nbsp;&nbsp;
-                <!--GroupNameSearch-->{optioncommgroup}&nbsp;&nbsp;<!--/GroupNameSearch-->
-                {optionlanguage}
-                <input type="text" value="{username}" title="{username}" style="width:150px;" onblur="setvaluefocus(this,0,'us');" onfocus="setvaluefocus(this,1,'us');" id="txtUsername" name="txtUsername" />&nbsp;&nbsp;
 
-                <input type="text" value="{email}" title="{email}" onblur="setvaluefocus(this,0,'email');" style="width:150px;" onfocus="setvaluefocus(this,1,'email');" id="txtEmail" name="txtEmail" />&nbsp;&nbsp;
-                <input type="text" value="{id}" title="{id}" onblur="setvaluefocus(this,0,'id');" style="width:80px;" onfocus="setvaluefocus(this,1,'id');" id="txtID" name="txtID" />&nbsp;&nbsp;
-                <span id="divsearch" onclick="checkData();">&nbsp;</span>
-                <input type="submit" value="submit" class="hide" />
-            </div>
-            <div id="search_icon">
-                <span id="icontime" onclick="showRefreshTime(true);">&nbsp;</span>
-                <span style="display: none;" id="divTime">
-                    <select id="slTime" name="slTime" onchange="UpdateTime();" onblur="hideRefreshTime(false);">
-                        <option value="0">Never</option>
-                        <option value="300">5 mins</option>
-                        <option value="900">15 mins</option>
-                        <option value="1800">30 mins</option>
-                        <option value="3600">60 mins</option>
-                    </select>
-                </span>
-            </div>
-            <div id="exportExcel" onclick="getAction(this);" style="float:right; vertical-align:middle;">
-                &nbsp;
-                <div id="frameExport"></div>
-            </div>
-            <div id="spTime" style="float:right; vertical-align:middle; padding: 3px 10px 0 0;"></div>
+<form id="frmSearch" name="frmSearch" method="get" onsubmit="checkData();">
+    <input type="hidden" id="X-CSRF-Token" name="X-CSRF-Token" value="{XsrfTokenFormValue}" />
+    <!--search form-->
+    <div id="search_cont">
+        <div id="header_search">
+            {SearchBy}&nbsp;&nbsp;
+            <!--GroupNameSearch-->{optioncommgroup}&nbsp;&nbsp;<!--/GroupNameSearch-->
+            {optionlanguage}
+            <input type="text" value="{username}" title="{username}" style="width:150px;" onblur="setvaluefocus(this,0,'us');" onfocus="setvaluefocus(this,1,'us');" id="txtUsername" name="txtUsername" />&nbsp;&nbsp;
+
+            <input type="text" value="{email}" title="{email}" onblur="setvaluefocus(this,0,'email');" style="width:150px;" onfocus="setvaluefocus(this,1,'email');" id="txtEmail" name="txtEmail" />&nbsp;&nbsp;
+            <input type="text" value="{id}" title="{id}" onblur="setvaluefocus(this,0,'id');" style="width:80px;" onfocus="setvaluefocus(this,1,'id');" id="txtID" name="txtID" />&nbsp;&nbsp;
+            <span id="divsearch" onclick="checkData();">&nbsp;</span>
+            <input type="submit" value="submit" class="hide" />
         </div>
-        <!--/search form-->
-        <!--content form-->
-        {paging-top}
-        <table class="aff-table" cellspacing="1" cellpadding="2" id="tblResult" style="width: {width}px;">
-            <!--header-->
-            <tr>
-                <th style="width: 20px;">&nbsp;</th>
-                <th class="nowrap">{username-text}</th>
-                <th class="nowrap">{fname}</th>
-                <th class="nowrap">{lname}</th>
-                <th class="nowrap">{language}</th>
-                <th class="nowrap">{userdate}</th>
+        <div id="search_icon">
+            <span id="icontime" onclick="showRefreshTime(true);">&nbsp;</span>
+            <span style="display: none;" id="divTime">
+                <select id="slTime" name="slTime" onchange="UpdateTime();" onblur="hideRefreshTime(false);">
+                    <option value="0">Never</option>
+                    <option value="300">5 mins</option>
+                    <option value="900">15 mins</option>
+                    <option value="1800">30 mins</option>
+                    <option value="3600">60 mins</option>
+                </select>
+            </span>
+        </div>
+        <div id="exportExcel" onclick="getAction(this);" style="float:right; vertical-align:middle;">
+            &nbsp;
+            <div id="frameExport"></div>
+        </div>
+        <div id="spTime" style="float:right; vertical-align:middle; padding: 3px 10px 0 0;"></div>
+    </div>
+    <!--/search form-->
+    <!--content form-->
+    {paging-top}
+    <table class="aff-table" cellspacing="1" cellpadding="2" id="tblResult" style="width: {width}px;">
+        <!--header-->
+        <tr>
+            <th style="width: 20px;">&nbsp;</th>
+            <th class="nowrap">{username-text}</th>
+            <th class="nowrap">{fname}</th>
+            <th class="nowrap">{lname}</th>
+            <th class="nowrap">{language}</th>
+            <th class="nowrap">{userdate}</th>
+            <!--approved1-->
+            <th class="nowrap">Casino Date</th>
+            <th class="nowrap">{group}</th>
+            <th class="nowrap">{balancebroughtforward}</th>
+            <th class="nowrap">{member}</th>
+            <th class="nowrap">{password}</th>
+            <!--/approved1-->
+        </tr>
+        <!--/header-->
+        <tbody id="result">
+            <!--content-->
+            <tr bgcolor="{color}" onmouseout="bgColor='{color}'" onmouseover="bgColor='{over}'" class="nowrap">
+                <td class="c">{no}</td>
+                <!--<td>
+                    <a href="AffiliateUpd.aspx?custid={custid}">{Edit}</a>
+                </td>-->
+                <td>
+                    <a style="float:left;" href="{customerUrl}" target="_top"><span id='u{custid}'>{username-val}</span></a>
+                    <!--approved1--><div class="favor {favorcss}" id="{custid}"></div><!--/approved1-->
+                </td>
+                <td>{fname-val}</td>
+                <td>{lname-val}</td>
+                <td>{language-val}</td>
+                <td class="c">{userdate-val}</td>
                 <!--approved1-->
-                <th class="nowrap">Casino Date</th>
-                <th class="nowrap">{group}</th>
-                <th class="nowrap">{balancebroughtforward}</th>
-                <th class="nowrap">{member}</th>
-                <th class="nowrap">{password}</th>
-                <th class="nowrap">{report}</th>
+                <td class="c">{casinodate-val}</td>
+                <td class="c" style="white-space:normal;">
+                    <!--PrivateGroup-->
+                    <a href="#" onclick="ViewGroup('{groupid-val}', '{custid}');" title="View-Edit this group">{group-val}</a>
+                    <!--/PrivateGroup-->
+                    <!--PublicGroup-->
+                    {group-val}
+                    <!--/PublicGroup-->
+                </td>
+                <td class="r">{balancebroughtforward-val}</td>
+                <td class="c">
+                    <!--nummem-->
+                    <!--<a href="../Customer/AffDefault.aspx?user={username-val}&pageid=2">{member-val}</a>-->
+                    <a href="{memberUrl}" target="_top">{member-val}</a>
+                    <!--/nummem-->
+                </td>
+                <td class="c">
+                    <!--no-pass-->
+                    <span class="icedit" onclick="DoCal('../ChangePass.aspx?custid={custid}&username={username-val}&isAdmin={isAdmin}');">&nbsp;</span>
+                    <!--/no-pass-->
+                </td>
                 <!--/approved1-->
             </tr>
-            <!--/header-->
-            <tbody id="result">
-                <!--content-->
-                <tr bgcolor="{color}" onmouseout="bgColor='{color}'" onmouseover="bgColor='{over}'" class="nowrap">
-                    <td class="c">{no}</td>
-                    <!--<td>
-                        <a href="AffiliateUpd.aspx?custid={custid}">{Edit}</a>
-                    </td>-->
-                    <td>
-                        <a style="float:left;" href="../Customer/AffDefault.aspx?custid={custid}&user={username-val}"><span id='u{custid}'>{username-val}</span></a>
-                        <!--approved1--><div class="favor {favorcss}" id="{custid}"></div><!--/approved1-->
-                    </td>
-                    <td>{fname-val}</td>
-                    <td>{lname-val}</td>
-                    <td>{language-val}</td>
-                    <td class="c">{userdate-val}</td>
-                    <!--approved1-->
-                    <td class="c">{casinodate-val}</td>
-                    <td class="c" style="white-space:normal;">
-                        <!--PrivateGroup-->
-                        <a href="#" onclick="ViewGroup('{groupid-val}');" title="View-Edit this group">{group-val}</a>
-                        <!--/PrivateGroup-->
-                        <!--PublicGroup-->
-                        {group-val}
-                        <!--/PublicGroup-->
-                    </td>
-                    <td class="r">{balancebroughtforward-val}</td>
-                    <td class="c">
-                        <!--nummem-->
-                        <!--<a href="../Customer/AffDefault.aspx?user={username-val}&pageid=2">{member-val}</a>-->
-                        <a href="MemberListAll.aspx?txtAffUsername={username-val}">{member-val}</a>
-                        <!--/nummem-->
-                    </td>
-                    <td class="c">
-                        <!--no-pass-->
-                        <span class="icedit" onclick="DoCal('../ChangePass.aspx?custid={custid}&username={username-val}&isAdmin={isAdmin}');">&nbsp;</span>
-                        <!--/no-pass-->
-                    </td>
-                    <td class="c"><a class="icsearch" href="../Report/MemberReport.aspx?custid={custid}&username={username-val}&isaff=1">&nbsp;</a></td>
-                    <!--/approved1-->
-                </tr>
-                <!--/content-->
-            </tbody>
-        </table>
-        {paging-bottom}
-        <!--/content form-->
-        <input type="hidden" id="status" name="status" value="{status-val}" />
-        <input type="hidden" id="page" name="page" value="{page}" />
-        <input type="hidden" id="groupname" name="groupname" value="{groupname-text}" />
-        <input type="hidden" id="us" name="us" value="{username-text}" />
-        <input type="hidden" id="email" name="email" value="{email-text}" />
-        <input type="hidden" id="id" name="id" value="{id-text}" />
-        <input type="hidden" id="timer" name="timer" value="{timer-val}" />
-        <input type="hidden" id="favor" name="favor" value="{favor-val}" />
-        <input type="hidden" id="isclk" name="isclk" value="{isclk-val}" />
-        <input type="hidden" id="nummem" name="nummem" value="{nummem-val}" />
-        <input type="hidden" id="isclosed" name="isclosed" value="{isclosed-val}" />
-    </form>
-</div>
+            <!--/content-->
+        </tbody>
+    </table>
+    {paging-bottom}
+    <!--/content form-->
+    <input type="hidden" id="status" name="status" value="{status-val}" />
+    <input type="hidden" id="page" name="page" value="{page}" />
+    <input type="hidden" id="groupname" name="groupname" value="{groupname-text}" />
+    <input type="hidden" id="us" name="us" value="{username-text}" />
+    <input type="hidden" id="email" name="email" value="{email-text}" />
+    <input type="hidden" id="id" name="id" value="{id-text}" />
+    <input type="hidden" id="timer" name="timer" value="{timer-val}" />
+    <input type="hidden" id="favor" name="favor" value="{favor-val}" />
+    <input type="hidden" id="isclk" name="isclk" value="{isclk-val}" />
+    <input type="hidden" id="nummem" name="nummem" value="{nummem-val}" />
+    <input type="hidden" id="isclosed" name="isclosed" value="{isclosed-val}" />
+</form>

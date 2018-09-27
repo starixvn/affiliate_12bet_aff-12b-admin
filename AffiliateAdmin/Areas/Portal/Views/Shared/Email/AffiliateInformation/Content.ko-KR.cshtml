@@ -1,0 +1,20 @@
+﻿@model Fanex.Affiliate.Admin.Core.DTO.Email.AffInformationEmail
+<div>
+    @(Model.FirstName)고객님께,<br /><br />
+
+    축하드립니다! 12BET의 제휴사로 선정되셨습니다.  <br /><br />
+
+    12BET의 소중한 업무 제휴 파트너로 선정되심을 진심으로 축하드리며 , 성공적인 비지니스  파트너로서 함께 성장해 나갈 수 있기를 기대합니다. 다음의 정보로  고객님의  12BET제휴사 계정에 로그인 하실 수 있습니다.:<br /><br />
+
+    링크: <a href="@Model.UserSiteUrl">@Model.UserSiteUrl</a><br />
+    아이디: @Model.UserName<br />
+    비밀번호: @Model.Password<br /><br />
+
+    배너와 홍보용 자료뿐 아니라 고객님의 제휴 트래킹 URL도 고객님의 제휴사 계정에서 확인 하실 수 있습니다. 더 많은 회원들을 소개하시고 더 많은 수익을 올려보세요!  <br /><br />
+
+    질문이나 불편사항이 있으신 경우 저희에게 바로 연락주시기 바랍니다. <br /><br />
+
+    감사합니다.<br /><br />
+    12BET 업무제휴 팀 <br />
+    <a href="mailto:@Model.MailContact">@Model.MailContact</a>
+</div>

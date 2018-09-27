@@ -13,7 +13,7 @@
         arrError.clear();
         if (Common.isEmpty($("txtRate").value))
         {
-              arrError.push(top.fMenu.Msg.RateRequire);            
+            arrError.push(MsgResource.requireRate);
               arrItem.push("errMsg");
               $('errMsg').show();
               Common.showError(arrError, arrItem, "error_item");
@@ -22,7 +22,7 @@
         var Rate = parseFloat($("txtRate").value);
         if(Rate <= 0)
         {
-            arrError.push(top.fMenu.Msg.Rate);
+            arrError.push(MsgResource.errorRate);
             arrItem.push("errMsg");
             $('errMsg').show();
             Common.showError(arrError, arrItem, "error_item");

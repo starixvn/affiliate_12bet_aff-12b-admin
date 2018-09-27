@@ -94,17 +94,19 @@
                   <input name="txtNumber" id="txtNumber" class="inputbox" value="{number-val}" size="30" type="text" />
                 </td>
               </tr>
-              <tr>
-                <td>
-                  {mobile}
-                </td>
-                <td class="cont12oe">
-                  *
-                </td>
-                <td>
-                  <input name="txtMobile" id="txtMobile" class="inputbox" value="{mobile-val}" size="30" type="text" />
-                </td>
-              </tr>
+                <!--ContactApp-->
+                <tr>
+                    <td>
+                        {appname}
+                    </td>
+                    <td>
+                    <td>
+                        <input name="ContactApps[{i}].Value" id="ContactApp[{i}].Value" class="inputbox" value="{appvalue}" size="30" type="text" />
+                        <input type="hidden" name="ContactApps[{i}].Name" id="ContactApp[{i}].Name" value="{appname}" />
+                        <input type="hidden" name="ContactApps[{i}].Order" id="ContactApp[{i}].Order" value="{order}" />
+                    </td>
+                </tr>
+                <!--/ContactApp-->
             </table>
           </div>
         </td>
@@ -458,7 +460,6 @@
             <span id="spNeteller" class="{cssnetteller}">{minnetteller}</span>
             <span id="spMoneybookers" class="{cssbooker}">{minbooker}</span>
             <span id="spWire" class="{cssbank}">{minbank}</span>
-            <span id="spCheque" class="{csscheque}">{mincheque}</span>
           </td>
         </tr>
         <tr>
@@ -509,78 +510,6 @@
                         <td>
                           <input name="txtMoneyBookerEmail" class="inputbox" value="{moneybookeremail-val}" id="txtMoneyBookerEmail" size="30"
                             type="text" />
-                        </td>
-                      </tr>
-                    </table>
-                  </div>
-                  <div id="divCheque" style="display: none;">
-                    <table>
-                      <tr>
-                        <td class="payment">
-                          {fullname}
-                        </td>
-                        <td class="cont12oe">
-                          *
-                        </td>
-                        <td>
-                          <input name="txtChequeFullName" class="inputbox" value="{cheque_fullname}" id="txtChequeFullName" size="30"
-                            type="text" />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          {address}
-                        </td>
-                        <td class="cont12oe">
-                          *
-                        </td>
-                        <td>
-                          <input name="txtChequeAddress" class="inputbox" value="{cheque_address}" id="txtChequeAddress" size="30" type="text" />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          {city}
-                        </td>
-                        <td class="cont12oe">
-                          *
-                        </td>
-                        <td>
-                          <input name="txtChequeCity" class="inputbox" value="{cheque_city}" id="txtChequeCity" size="30" type="text" />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          {state}
-                        </td>
-                        <td class="cont12oe">
-                          *
-                        </td>
-                        <td>
-                          <input name="txtChequeState" class="inputbox" value="{cheque_state}" id="txtChequeState" size="30" type="text" />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          {postal}
-                        </td>
-                        <td class="cont12oe">
-                          *
-                        </td>
-                        <td>
-                          <input name="txtChequePostcode" class="inputbox" value="{cheque_postal}" id="txtChequePostcode" size="30"
-                            type="text" />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          {country}
-                        </td>
-                        <td class="cont12oe">
-                          *
-                        </td>
-                        <td>
-                          <input name="txtChequeCountry" class="inputbox" value="{cheque_country}" id="txtChequeCountry" size="30" type="text" />
                         </td>
                       </tr>
                     </table>

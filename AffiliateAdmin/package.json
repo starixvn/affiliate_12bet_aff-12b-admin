@@ -1,0 +1,21 @@
+{
+  "name": "affadmin",
+  "version": "1.0.0",
+  "description": "Affiliate Admin",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "install": "cd Areas/Portal/www && npm install",
+    "build:vendor:dev": "npm run build:vendor:dev --prefix Areas/Portal/www",
+    "build:vendor:pro": "npm run build:vendor:pro --prefix Areas/Portal/www",
+    "build:app:dev": "npm run build:app:dev --prefix Areas/Portal/www",
+    "build:app:pro": "npm run build:app:pro --prefix Areas/Portal/www",
+    "build:all:dev": "npm run build:all:dev --prefix Areas/Portal/www",
+    "build:all:pro": "npm run build:all:pro --prefix Areas/Portal/www",
+    "start": "npm run start --prefix Areas/Portal/www"
+  },
+  "keywords": [],
+  "author": "sparta",
+  "license": "ISC"
+}

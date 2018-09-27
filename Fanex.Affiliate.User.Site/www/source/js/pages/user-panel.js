@@ -1,0 +1,111 @@
+﻿var UserPanel = (function ($) {
+    var allowedActionList = ["AccountOverView", "StatementHistory", "MyAccount", "PaymentRequest",
+        "MediaGallery", "TextBox", "TrackingStatistics", "ReferrersStatistics", "LandingPageStatistics",
+        "DailyEarning", "DailyEarningDetail", "BetList", "MessageHistory", "CommissionReport"];
+
+    var _ajaxRequest = null;
+
+    var _me = {
+        datepicker: [],
+        initialize: function () {
+            _me.renderView();
+            UserPanel.initEvent();
+        },
+
+        initEvent: function () {
+            $(window).on('hashchange', function (event) {
+                event.stopPropagation();
+                _me.renderView();
+            });
+
+            $("#mainMenu").on("click", ".menu-item", function (event) {
+                event.stopPropagation();
+                var currentPathWithHash = window.location.pathname + window.location.hash;
+                var hrefMenu = $(this).attr("href");
+                if (currentPathWithHash === hrefMenu) {
+                    _me.renderView();
+                }
+            });
+        },
+
+        activeMenu: function (actionName) {
+            var activeClassName = "active";
+            $("#mainMenu .menu-item").removeClass(activeClassName);
+            $("#menu" + actionName).addClass(activeClassName);
+        },
+
+        renderView: function () {
+            _me.clearEventListener();
+            $("#mainPanel").html("");
+            var action = _me.getActionName();
+            _me.activeMenu(action);
+
+            var queryString = _me.getQueryString();
+
+            var url = Site.resolveRelativeUrl("UserPanel/" + action + queryString);
+
+            if (_ajaxRequest != null) {
+                _ajaxRequest.abort();
+            }
+
+            _ajaxRequest = $.ajax({
+                type: "GET",
+                dataType: "html",
+                cache: false,
+                url: url,
+                success: function (response) {
+                    $("#mainPanel").html(response);
+                },
+                beforeSend: function () {
+                    Site.showLoader();
+                },
+                complete: function () {
+                    Site.hideLoader();
+                }
+            });
+        },
+
+        clearEventListener: function(){
+            $("#mainPanel *").off();
+            if (_me.datepicker) {
+                for (var i = 0; i < _me.datepicker.length; i++) {
+                    if (_me.datepicker[i]) {
+                        _me.datepicker[i].destroy();
+                    }
+                }
+                _me.datepicker = [];
+            }
+        },
+
+        getActionName: function () {
+            var hash = window.location.hash;
+            var action = hash.split('#')[1];
+
+            var queryStringIndexSign = action.indexOf('?');
+            if (queryStringIndexSign !== -1) {
+                action = action.substring(0, queryStringIndexSign);
+            }
+
+            if (!hash || !action || allowedActionList.indexOf(action) === -1) {
+                action = "AccountOverView";
+            }
+
+            return action;
+        },
+
+        getQueryString: function () {
+            var url = window.location.href;
+            var hasQueryString = url.indexOf("?") !== -1;
+
+            if (hasQueryString) {
+                return "?" + url.split('?')[1];
+            }
+
+            return "";
+        }
+    };
+
+    return _me;
+})(jQuery);
+
+UserPanel.initialize();

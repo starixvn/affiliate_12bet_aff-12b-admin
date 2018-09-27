@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Text;
 using System.Data;
-using DNAide.Web;
-using DNAide.Core;
+using System.Text;
 using AffiliateAdmin.Business.DataAccess;
+using DNAide.Core;
+using DNAide.Web;
 
 public partial class UserInfo_EarningsHistory : IBCPage
 {
@@ -13,8 +13,8 @@ public partial class UserInfo_EarningsHistory : IBCPage
         TemplateHandler.RemoveBlock(ref strTpl, "total");
         int affID = AppSettings.Session.AffId;
         var username = string.IsNullOrEmpty(Request["user"]) ? AppSettings.Session.AffUsername : Request["user"];
-       
-        int transType=CastAide.AsInt32(Request["transtype"],-1);
+
+        int transType = CastAide.AsInt32(Request["transtype"], -1);
         #region Load language
         TemplateHandler.Assign(ref strTpl, "edit", Resources.Lang.EditInfor);
         TemplateHandler.Assign(ref strTpl, "note", Resources.Lang.Note);
@@ -62,7 +62,7 @@ public partial class UserInfo_EarningsHistory : IBCPage
         }
         //Get data
         DataTable dtb = new DataTable();
-        DbResult rs = DataHandler.Statement.SelStatementHistory(affID, transType,  dtmFDate, dtmTDate, pageIndex, pageSize, ref totalPages);
+        DbResult rs = DataHandler.Statement.SelStatementHistory(affID, transType, dtmFDate, dtmTDate, pageIndex, pageSize, ref totalPages);
 
         if (rs != null && rs.ResultSet.Tables.Count > 0)
         {
@@ -74,14 +74,15 @@ public partial class UserInfo_EarningsHistory : IBCPage
             numRows = 0;
         }
 
-            
+
         StringBuilder strBuild = new StringBuilder();
-        if (dtb!=null && dtb.Rows.Count > 0)
+        if (dtb != null && dtb.Rows.Count > 0)
         {
             string strContent = TemplateHandler.CopyBlock(strTpl, "content");
             int rowNo = (pageIndex - 1) * pageSize;
             bool isCheckAll = false;
             TemplateHandler.Assign(ref strContent, "over", Common.RowBgOver);
+            var templateDailyEarningUrl = $"{ResolveUrl("~/Portal/UserPanel/StatementHistory/DailyEarning")}?AffId={affID}&MonthDate=";
             foreach (DataRow dr in dtb.Rows)
             {
                 rowNo++;
@@ -117,11 +118,13 @@ public partial class UserInfo_EarningsHistory : IBCPage
                 if (DateTime.Compare(dtmMonthDate, AppSettings.StatementAvailableFrom) < 0 || transtype == 202)
                     TemplateHandler.ReplaceBlock(ref strTmp, "amount-val", Common.FormatNumber(dr["amount"]));
 
+                var dailyEarningUrl = templateDailyEarningUrl + CastAide.AsDateTime(dr["monthdate"]).ToString("MM/dd/yyyy");
+
                 TemplateHandler.Assign(ref strTmp, "color", GetRowStyle(dr["status"].ToString()));
                 TemplateHandler.Assign(ref strTmp, "no", rowNo);
                 TemplateHandler.Assign(ref strTmp, "transid-val", dr["transid"]);
                 TemplateHandler.Assign(ref strTmp, "monthdate-val", (transtype == 202 || transtype == 203) ? dtmMonthDate.ToString("dd-MMM-yyyy") : dtmMonthDate.ToString("MMM-yyyy"));
-                TemplateHandler.Assign(ref strTmp, "month-val", CastAide.AsDateTime(dr["monthdate"]).ToString("MM/dd/yyyy"));
+                TemplateHandler.Assign(ref strTmp, "dailyEarningUrl", dailyEarningUrl);
                 TemplateHandler.Assign(ref strTmp, "bettype-val", GetTransType(dr["transtype"]));
                 TemplateHandler.Assign(ref strTmp, "creator-val", dr["creator"]);
                 TemplateHandler.Assign(ref strTmp, "amount-val", Common.FormatNumber(dr["amount"]));
@@ -145,7 +148,7 @@ public partial class UserInfo_EarningsHistory : IBCPage
         #region Load SubPage
         TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.AffApprovedLink, SubMenu.AffApprovedText, 0, 0, Resources.Lang.StatementHistory, "i_customer.png"));
         //Paging
-        
+
         TemplateHandler.Assign(ref strTpl, "page", pageIndex);
         TemplateHandler.Assign(ref strTpl, "pagesize", pageSize);
         #endregion
@@ -162,8 +165,8 @@ public partial class UserInfo_EarningsHistory : IBCPage
             case 202:
                 return "Payment Request";
             case 203:
-                return "Adjustment";           
-            default :
+                return "Adjustment";
+            default:
                 return "Transaction";
         }
     }
@@ -174,15 +177,15 @@ public partial class UserInfo_EarningsHistory : IBCPage
             case "cancelled":
             case "rejected":
                 return Common.RowBgClosed;
-                //return "Closed";
+            //return "Closed";
             case "approved":
             case "b/f":
                 return Common.RowBgOdd;
-                //return "Approved";
+            //return "Approved";
             case "running":
             case "current":
                 return Common.RowBgPending;
-                //return "Pending";
+            //return "Pending";
             default:
                 return Common.RowBgPending; ;// return "Pending";
         }

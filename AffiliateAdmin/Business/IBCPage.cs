@@ -8,7 +8,6 @@ public class IBCPage : System.Web.UI.Page
 {
     private string _locale;
     protected string HtmlContent = string.Empty;
-    private string _vers = string.Empty;
     protected string ThemePath;
     protected bool IsGetAllCss = true;
 
@@ -100,7 +99,7 @@ public class IBCPage : System.Web.UI.Page
             {
                 string link = "<link href='{RelPath}' type='text/css' rel='stylesheet' />";
                 string links = "\n";
-                var path = RelativePath;// HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) + ResolveUrl("~/");
+                var path = RelativePath;
                 for (int i = 0; i < AppSettings.CssFiles.Length; ++i)
                 {
                     links += link.Replace("{RelPath}", path + AppSettings.CssFiles[i]);

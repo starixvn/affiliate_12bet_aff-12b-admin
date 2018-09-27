@@ -29,7 +29,7 @@ function ExcLogin() {
         parameters: 'un=' + $('txtun').value + '&pw=' + $('txtpw').value + "&X-CSRF-Token=" + $('X-CSRF-Token').value,
         onComplete: function (res) {
             if (res.responseText == 'OK') {
-                parent.location.href = 'Default.aspx';
+                parent.location.href = document.getElementById('rootUrl').value + 'Portal/Home';
             }
             else if (res.responseText == 'UM') {
                 location.href = 'UnderMaintenance.aspx';

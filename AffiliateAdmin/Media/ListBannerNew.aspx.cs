@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Data;
-using DNAide.Web;
 using AffiliateAdmin.Business.DataAccess;
 using DNAide.Core;
+using DNAide.Web;
 
 public partial class ListMediaBanner : IBCPage
 {
-    
-    protected void Page_Load(object sender, EventArgs e) 
+
+    protected void Page_Load(object sender, EventArgs e)
     {
 
         string temp = TemplateHandler.LoadTemplate("Media/MainListBannerNew.htm");
@@ -44,7 +44,7 @@ public partial class ListMediaBanner : IBCPage
                 paramCategory = subCategory;
             }
         }
-        
+
         string lang = (Request["langoption"] == null || Request["langoption"] == "All") ? "" : Request["langoption"];
         string imgtype = (Request["typeoption"] == null || Request["typeoption"] == "All") ? "" : Request["typeoption"];
         string size = (Request["sizeoption"] == null || Request["sizeoption"] == "All") ? "" : Request["sizeoption"];
@@ -53,23 +53,23 @@ public partial class ListMediaBanner : IBCPage
         int afftype = CastAide.AsInt32(Request["afftypeoption"], (int)AffType.Asian);
         int pageSize = CastAide.AsInt32(Request["slPageSize"], 20);
         int currPage = CastAide.AsInt32(Request["page"], 1);
-        
+
         DataView dv = DbHelper.Execute("Aff_BannerSelType_1", DBType.AFFILIATE_12BET).ResultSet.Tables[0].DefaultView;
 
         TemplateHandler.Assign(ref temp, "optioncate", Common.GetDataOptionBanner(dv, "cateoption", "CategoryMedia", cate, true));
         if (hasSubCategory)
             TemplateHandler.Assign(ref temp, "optionsubcate", Common.GetDataOptionBanner(dv, "slSubCategoryMedia", "CategoryMedia" + cate, subCategory, true));
 
-        TemplateHandler.Assign(ref temp, "optionlang", Common.GetDataOptionBanner(dv,"langoption", "Language", lang, true));
-        TemplateHandler.Assign(ref temp, "optioncurrency", Common.GetDataOptionBanner(dv,"currencyoption", "Currency", currency, true));
-        TemplateHandler.Assign(ref temp, "optiontype", Common.GetDataOptionBanner(dv,"typeoption", "ImageType", imgtype, true));
-        TemplateHandler.Assign(ref temp, "optionsize", Common.GetDataOptionBanner(dv, "sizeoption","Size", size, true));
+        TemplateHandler.Assign(ref temp, "optionlang", Common.GetDataOptionBanner(dv, "langoption", "Language", lang, true));
+        TemplateHandler.Assign(ref temp, "optioncurrency", Common.GetDataOptionBanner(dv, "currencyoption", "Currency", currency, true));
+        TemplateHandler.Assign(ref temp, "optiontype", Common.GetDataOptionBanner(dv, "typeoption", "ImageType", imgtype, true));
+        TemplateHandler.Assign(ref temp, "optionsize", Common.GetDataOptionBanner(dv, "sizeoption", "Size", size, true));
 
         DataTable dt = DbHelper.Execute("Aff_AffTypeSel", DBType.AFFILIATE_12BET).ResultSet.Tables[0];
         TemplateHandler.Assign(ref temp, "afftype", Resources.Lang.AffiliateType);
         var tempAffType = afftype.ToString();
         TemplateHandler.Assign(ref temp, "optionafftype", Common.GenDropDownFromTable(dt, "TypeId", "Name", "afftypeoption", ref tempAffType, false));
-        
+
         TemplateHandler.Assign(ref temp, "Device", Resources.Lang.Device);
         TemplateHandler.Assign(ref temp, "slDevice", AffAdmin.GenerateHTML.Domain.GenDeviceList("slDevice", deviceType));
 
@@ -78,7 +78,7 @@ public partial class ListMediaBanner : IBCPage
         TemplateHandler.Assign(ref temp, "ImageType", Resources.Lang.ImageType);
         TemplateHandler.Assign(ref temp, "Action", Resources.Lang.Edit);
         TemplateHandler.Assign(ref temp, "Delete", Resources.Lang.Delete);
-        int minNo=0, maxNo=0, totalBanner=0, totalPage=0;
+        int minNo = 0, maxNo = 0, totalBanner = 0, totalPage = 0;
         TemplateHandler.ReplaceBlock(ref temp, "Content", GenerateHTML.Banner.GetBannerList(
             paramCategory, isSearchByParentCategory, lang, imgtype, size, currency, currPage,
             ref minNo, ref maxNo, ref totalBanner, ref totalPage, pageSize, Common.NormalBanner, afftype, deviceType));
@@ -93,16 +93,12 @@ public partial class ListMediaBanner : IBCPage
             TemplateHandler.Assign(ref temp, "paging-top", "");
             TemplateHandler.Assign(ref temp, "paging-bottom", "");
         }
-        TemplateHandler.Assign(ref temp, "submenu", SubMenu.GenSubMenu(
-            new string[] { "ListText.aspx", "ListBannerNew.aspx" },
-            new string[] { "Text List", "Banner List" },
-            1, totalBanner, Resources.Lang.MediaGallery, "i_media1.png"));
 
         TemplateHandler.Assign(ref temp, "totalMedia-val", totalBanner);
         TemplateHandler.Assign(ref temp, "minNo", minNo.ToString());
         TemplateHandler.Assign(ref temp, "maxNo", maxNo.ToString());
         TemplateHandler.Assign(ref temp, "page-val", currPage.ToString());
         TemplateHandler.Assign(ref temp, "Add-val", Resources.Lang.Add);
-        this.HtmlContent = temp;  
+        this.HtmlContent = temp;
     }
 }

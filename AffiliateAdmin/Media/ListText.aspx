@@ -8,9 +8,7 @@
  <script type="text/javascript">
      window.onload = Init;
 
-     function Init() {
-         parent.frames['fMenu'].ActiveMenu('menu6');
-         
+     function Init() {         
          Common.initDivCheckBox();
          if (($("totalMedia").value == 0)) {
              $("btnDelete").style.display = "none";

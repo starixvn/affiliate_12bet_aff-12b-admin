@@ -2427,4 +2427,10 @@ Note: Country and city information is provided by IP2Location™ and DNSstuff wh
     <value>Win Loss is rounded for reference only. Therefore, Sub Total amount may be different from the sum of Win Loss when it sums all the actual Win Loss amounts.</value>
     <comment>78976</comment>
   </data>
+  <data name="RequireIMAccount" xml:space="preserve">
+    <value>At least one IM account is required</value>
+  </data>
+  <data name="Err501" xml:space="preserve">
+    <value>You are not authorized on this function</value>
+  </data>
 </root>

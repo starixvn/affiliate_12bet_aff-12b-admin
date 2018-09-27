@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="AgentAPI" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="AgentAPI" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="AgentAPI">
+      <s:element name="MemberInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MemberInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MemberInfoResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DepositInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TransDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DepositInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DepositInfoResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WithdrawalInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TransDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WithdrawalInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WithdrawalInfoResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="MemberInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:MemberInfo" />
+  </wsdl:message>
+  <wsdl:message name="MemberInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:MemberInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="DepositInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:DepositInfo" />
+  </wsdl:message>
+  <wsdl:message name="DepositInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:DepositInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="WithdrawalInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:WithdrawalInfo" />
+  </wsdl:message>
+  <wsdl:message name="WithdrawalInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:WithdrawalInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="MemberInfoHttpGetIn">
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="MemberInfoHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="DepositInfoHttpGetIn">
+    <wsdl:part name="UserName" type="s:string" />
+    <wsdl:part name="TransDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DepositInfoHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="WithdrawalInfoHttpGetIn">
+    <wsdl:part name="UserName" type="s:string" />
+    <wsdl:part name="TransDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WithdrawalInfoHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="MemberInfoHttpPostIn">
+    <wsdl:part name="UserName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="MemberInfoHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="DepositInfoHttpPostIn">
+    <wsdl:part name="UserName" type="s:string" />
+    <wsdl:part name="TransDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DepositInfoHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="WithdrawalInfoHttpPostIn">
+    <wsdl:part name="UserName" type="s:string" />
+    <wsdl:part name="TransDate" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WithdrawalInfoHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:portType name="ServiceSoap">
+    <wsdl:operation name="MemberInfo">
+      <wsdl:input message="tns:MemberInfoSoapIn" />
+      <wsdl:output message="tns:MemberInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DepositInfo">
+      <wsdl:input message="tns:DepositInfoSoapIn" />
+      <wsdl:output message="tns:DepositInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WithdrawalInfo">
+      <wsdl:input message="tns:WithdrawalInfoSoapIn" />
+      <wsdl:output message="tns:WithdrawalInfoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ServiceHttpGet">
+    <wsdl:operation name="MemberInfo">
+      <wsdl:input message="tns:MemberInfoHttpGetIn" />
+      <wsdl:output message="tns:MemberInfoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DepositInfo">
+      <wsdl:input message="tns:DepositInfoHttpGetIn" />
+      <wsdl:output message="tns:DepositInfoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WithdrawalInfo">
+      <wsdl:input message="tns:WithdrawalInfoHttpGetIn" />
+      <wsdl:output message="tns:WithdrawalInfoHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ServiceHttpPost">
+    <wsdl:operation name="MemberInfo">
+      <wsdl:input message="tns:MemberInfoHttpPostIn" />
+      <wsdl:output message="tns:MemberInfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DepositInfo">
+      <wsdl:input message="tns:DepositInfoHttpPostIn" />
+      <wsdl:output message="tns:DepositInfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WithdrawalInfo">
+      <wsdl:input message="tns:WithdrawalInfoHttpPostIn" />
+      <wsdl:output message="tns:WithdrawalInfoHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServiceSoap" type="tns:ServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="MemberInfo">
+      <soap:operation soapAction="AgentAPI/MemberInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DepositInfo">
+      <soap:operation soapAction="AgentAPI/DepositInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WithdrawalInfo">
+      <soap:operation soapAction="AgentAPI/WithdrawalInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServiceSoap12" type="tns:ServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="MemberInfo">
+      <soap12:operation soapAction="AgentAPI/MemberInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DepositInfo">
+      <soap12:operation soapAction="AgentAPI/DepositInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WithdrawalInfo">
+      <soap12:operation soapAction="AgentAPI/WithdrawalInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServiceHttpGet" type="tns:ServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="MemberInfo">
+      <http:operation location="/MemberInfo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DepositInfo">
+      <http:operation location="/DepositInfo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WithdrawalInfo">
+      <http:operation location="/WithdrawalInfo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServiceHttpPost" type="tns:ServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="MemberInfo">
+      <http:operation location="/MemberInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DepositInfo">
+      <http:operation location="/DepositInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WithdrawalInfo">
+      <http:operation location="/WithdrawalInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service">
+    <wsdl:port name="ServiceSoap" binding="tns:ServiceSoap">
+      <soap:address location="http://kraf.86812868.com:8010/Service.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ServiceSoap12" binding="tns:ServiceSoap12">
+      <soap12:address location="http://kraf.86812868.com:8010/Service.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ServiceHttpGet" binding="tns:ServiceHttpGet">
+      <http:address location="http://kraf.86812868.com:8010/Service.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ServiceHttpPost" binding="tns:ServiceHttpPost">
+      <http:address location="http://kraf.86812868.com:8010/Service.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

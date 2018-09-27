@@ -2208,6 +2208,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You are not authorized on this function.
+        /// </summary>
+        internal static string Err501 {
+            get {
+                return ResourceManager.GetString("Err501", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create Affiliate Info failed. Please try again.
         /// </summary>
         internal static string Err999 {
@@ -5562,6 +5571,15 @@ namespace Resources {
         internal static string RequiedExplain {
             get {
                 return ResourceManager.GetString("RequiedExplain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to At least one IM account is required.
+        /// </summary>
+        internal static string RequireIMAccount {
+            get {
+                return ResourceManager.GetString("RequireIMAccount", resourceCulture);
             }
         }
         

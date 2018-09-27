@@ -1,6 +1,6 @@
 ﻿using System;
-using DNAide.Web;
 using DNAide.Core;
+using DNAide.Web;
 
 public partial class AffEditRate : IBCPage
 {
@@ -9,9 +9,12 @@ public partial class AffEditRate : IBCPage
         string strTpl = TemplateHandler.LoadTemplate("Exchange/AffEditRate.htm");
         TemplateHandler.Assign(ref strTpl, "exrate", Resources.Lang.ExchangeRate);
         TemplateHandler.Assign(ref strTpl, "curr", Resources.Lang.Currency);
-        TemplateHandler.Assign(ref strTpl, "rate", Request["column"]== "buyingrate" ? Resources.Lang.BuyingRate : Resources.Lang.Rate);
+        TemplateHandler.Assign(ref strTpl, "rate", Request["column"] == "buyingrate" ? Resources.Lang.BuyingRate : Resources.Lang.Rate);
         TemplateHandler.Assign(ref strTpl, "submit", Resources.Lang.Submit);
         TemplateHandler.Assign(ref strTpl, "column", Request["column"]);
+
+        TemplateHandler.Assign(ref strTpl, "errorRate", Resources.Lang.ErrRate);
+        TemplateHandler.Assign(ref strTpl, "requireRate", Resources.Lang.ErrRateRequire);
         try
         {
             if (string.IsNullOrEmpty(Request["exid"]) || string.IsNullOrEmpty(Request["curr"]) || string.IsNullOrEmpty(Request["rate"]))

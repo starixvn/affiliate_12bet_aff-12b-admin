@@ -1,0 +1,27 @@
+﻿@{
+    Layout = null;
+}
+
+@model Fanex.Affiliate.User.Core.ViewModels.UserPanel.PaymentViewModel
+
+<div id="requestPayout">
+    @{ Html.RenderPartial("~/Views/UserPanel/PaymentRequest/PaymentPartial/_RequestPayout.cshtml", Model); }
+</div>
+
+<div id="pendingPayment">
+    @if (Model.PendingPayment != null)
+    {
+        Html.RenderPartial("~/Views/UserPanel/PaymentRequest/PaymentPartial/_PaymentPending.cshtml", Model.PendingPayment);
+    }
+</div>
+
+<div id="paymentList">
+    @{ Html.RenderPartial("~/Views/UserPanel/PaymentRequest/PaymentPartial/_PaymentList.cshtml", Model.PaymentList, new ViewDataDictionary { ["PreferredPayment"] = Model.PreferredPayment }); }
+</div>
+
+<script type="text/javascript">
+    var resourceLang = {
+        invalidRange: '@($"{Lang.AmtErr} {Model.MinAmount.ToStringMoneyWithSymbol()} {Lang.And} {Model.BalBroughtForward.ToStringMoneyWithSymbol()}")',
+        invalidAmount: '@Error.PaymentAmountInvalid'
+    }
+</script>

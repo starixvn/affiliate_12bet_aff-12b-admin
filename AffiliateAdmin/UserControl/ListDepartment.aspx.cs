@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Data;
-using DNAide.Web;
+using System.Text;
 using AffiliateAdmin.Business.DataAccess;
 using DNAide.Core;
-using System.Text;
+using DNAide.Web;
 public partial class ListDepartment : IBCPage
 {
     protected void Page_Load(object sender, EventArgs e)
@@ -22,7 +22,7 @@ public partial class ListDepartment : IBCPage
         TemplateHandler.Assign(ref list, "Edit", Resources.Lang.Edit);
         TemplateHandler.Assign(ref list, "Del", Resources.Lang.Del);
         TemplateHandler.Assign(ref list, "themepath", AppSettings.ThemeDir);
-        
+
         DbResult dbr = null;
         dbr = DataHandler.UserControl.GetListDepartment(null);
         string _content = TemplateHandler.CopyBlock(list, "content");
@@ -65,10 +65,6 @@ public partial class ListDepartment : IBCPage
         }
         TemplateHandler.Assign(ref list, "numDep", counter.ToString());
         TemplateHandler.ReplaceBlock(ref list, "content", strcontent.ToString());
-        TemplateHandler.Assign(ref list, "submenu", SubMenu.GenSubMenu(SubMenu.AdminLink,
-                                                                        SubMenu.AdminText,
-                                                                        1, counter, Resources.Lang.Administrator,
-                                                                        "i_admin.png"));
         TemplateHandler.Assign(ref list, "ChooseConfirm", Resources.Lang.ConfirmDelete);
         TemplateHandler.Assign(ref list, "chooseAtLeast", Resources.Lang.ChooseAtLeast);
         TemplateHandler.Assign(ref list, "AltStatusSucc", Resources.Lang.UpdateStaSucc);

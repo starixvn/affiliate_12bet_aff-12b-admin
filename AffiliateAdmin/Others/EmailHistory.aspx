@@ -1,19 +1,21 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" Inherits="Others_EmailHistory" Codebehind="EmailHistory.aspx.cs" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Portal/Layout.Master" AutoEventWireup="true" Inherits="Others_EmailHistory" Codebehind="EmailHistory.aspx.cs" %>
 
-<!--js-->
-   <link rel="stylesheet" type="text/css" href="../App_Js/Calendar2/Skin/calendar-blue.css" media="all" title="win2k-cold-1" />
-    <script type="text/javascript" src="../App_Js/prototype.js"></script>
-    <script type="text/javascript" src="../App_Js/common.js"></script>  
-    <script type="text/javascript" src="../App_Js/RefreshTime.js"></script>  
+<asp:Content ContentPlaceHolderID="head" runat="server">
+    <link rel="stylesheet" type="text/css" href="../App_Js/Calendar2/Skin/calendar-blue.css" media="all" title="win2k-cold-1" />
+    <link href="../App_Js/dhtmlwindow/dhtmlwindow.css" rel="stylesheet" type="text/css" />
+    <script src="../App_Js/dhtmlwindow/dhtmlwindow.js" type="text/javascript"></script>
     <script src="../App_Js/Calendar2/calendar-normal.js" type="text/javascript"></script>
     <script src="../App_Js/Calendar2/date.js" type="text/javascript"></script>
     <script src="../App_Js/Calendar2/Lang/calendar-e.js" type="text/javascript"></script>
     <script src="../App_Js/Calendar2/calendar-setup.js" type="text/javascript"></script>
+</asp:Content>
 
-    <link href="../App_Js/dhtmlwindow/dhtmlwindow.css" rel="stylesheet" type="text/css" />
-    <script src="../App_Js/dhtmlwindow/dhtmlwindow.js" type="text/javascript"></script>
-    <script type="text/javascript" src="../App_Js/IBCWnd/IBCWnd.js"></script>
-<script type="text/javascript">
+<asp:Content ContentPlaceHolderID="masterContent" runat="server" ID="mainContent">
+    <%=_htmlContent %>
+</asp:Content>
+
+<asp:Content ContentPlaceHolderID="script" runat="server">
+    <script type="text/javascript">
     window.onload = MyFocus;
     var time = 0; //set Timeout for clock refresh
     var timer = null; //set Timeout for choose refresh time
@@ -159,4 +161,4 @@
     }
     
 </script>
-<!--/js-->
+</asp:Content>

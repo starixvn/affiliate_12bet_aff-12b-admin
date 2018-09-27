@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Text;
 using System.Web;
+using System.Web.Script.Serialization;
 using AffiliateAdmin.Business.Constants;
+using AffiliateAdmin.DTO;
 using DNAide.Core;
 using DNAide.Utils;
 using DNAide.Web;
@@ -42,7 +46,6 @@ public partial class AffiliateUpd : IBCPage
         TemplateHandler.Assign(ref strTpl, "country", Resources.Lang.Country);
         TemplateHandler.Assign(ref strTpl, "email", Resources.Lang.Email);
         TemplateHandler.Assign(ref strTpl, "number", Resources.Lang.ContactNumber);
-        TemplateHandler.Assign(ref strTpl, "mobile", Resources.Lang.Mobile);
         TemplateHandler.Assign(ref strTpl, "siteinfo", Resources.Lang.SiteInfo);
         TemplateHandler.Assign(ref strTpl, "siteurl", Resources.Lang.SiteUrl);
         TemplateHandler.Assign(ref strTpl, "moreurl", Resources.Lang.MoreUrl);
@@ -54,7 +57,6 @@ public partial class AffiliateUpd : IBCPage
         TemplateHandler.Assign(ref strTpl, "netteller", Resources.Lang.Netteller);
         TemplateHandler.Assign(ref strTpl, "moneybooker", Resources.Lang.MoneyBooker);
         TemplateHandler.Assign(ref strTpl, "banktrans", Resources.Lang.BankTrans);
-        TemplateHandler.Assign(ref strTpl, "cheque", Resources.Lang.Cheque);
         TemplateHandler.Assign(ref strTpl, "12betusername", Resources.Lang.Bet12Username);
         TemplateHandler.Assign(ref strTpl, "NonDeposit", Resources.Lang.NonDepositAcc);
         TemplateHandler.Assign(ref strTpl, "netelleraccid", Resources.Lang.NetellerAccId);
@@ -81,11 +83,10 @@ public partial class AffiliateUpd : IBCPage
         //Load content user
         string strMinWire = "0";
         string strMinNetteller = "0";
-        string strMinCheque = "0";
         string strMinMoneyBooker = "0";
         string strMinPlayer = "0";
 
-        DataTable dtbCustInfo = DataHandler.Affiliate.SelAffInfo(intcustid, ref strMinCheque, ref strMinMoneyBooker, ref strMinNetteller, ref strMinWire, ref strMinPlayer);
+        DataTable dtbCustInfo = DataHandler.Affiliate.SelAffInfo(intcustid, ref strMinMoneyBooker, ref strMinNetteller, ref strMinWire, ref strMinPlayer);
         if (dtbCustInfo.Rows.Count > 0)
         {
             DataRow dr = dtbCustInfo.Rows[0];
@@ -112,7 +113,6 @@ public partial class AffiliateUpd : IBCPage
             {
                 TemplateHandler.Assign(ref strTpl, "closed", Resources.Lang.Closed);
                 TemplateHandler.ReplaceBlock(ref strTpl, "notapproved", string.Empty);
-                //TemplateHandler.Assign(ref strTpl, "closechecked", CastAide.AsBoolean(dr["closed"]) ? "checked" : string.Empty);
             }
             else
             {
@@ -163,7 +163,6 @@ public partial class AffiliateUpd : IBCPage
             TemplateHandler.Assign(ref strTpl, "country-val", dr["country"].ToString());
             TemplateHandler.Assign(ref strTpl, "email-val", dr["email"].ToString());
             TemplateHandler.Assign(ref strTpl, "number-val", dr["phone"].ToString());
-            TemplateHandler.Assign(ref strTpl, "mobile-val", dr["mobilephone"].ToString());
             TemplateHandler.Assign(ref strTpl, "url-val", dr["siteurl"].ToString());
             TemplateHandler.Assign(ref strTpl, "sitecontent-val", dr["nositedesc"].ToString());
             string strUrls = dr["moresiteurls"].ToString();
@@ -197,12 +196,6 @@ public partial class AffiliateUpd : IBCPage
             TemplateHandler.Assign(ref strTpl, "bankswift-val", dr["wire_swiftcode"].ToString());
             TemplateHandler.Assign(ref strTpl, "bankaccname-val", dr["wire_accountname"].ToString());
             TemplateHandler.Assign(ref strTpl, "bankaccnumber-val", dr["wire_accountno"].ToString());
-            TemplateHandler.Assign(ref strTpl, "cheque_fullname", dr["cheque_fullname"].ToString());
-            TemplateHandler.Assign(ref strTpl, "cheque_address", dr["cheque_address"].ToString());
-            TemplateHandler.Assign(ref strTpl, "cheque_city", dr["cheque_city"].ToString());
-            TemplateHandler.Assign(ref strTpl, "cheque_state", dr["cheque_state"].ToString());
-            TemplateHandler.Assign(ref strTpl, "cheque_postal", dr["cheque_postal"].ToString());
-            TemplateHandler.Assign(ref strTpl, "cheque_country", dr["cheque_country"].ToString());
             //method-val
             TemplateHandler.Assign(ref strTpl, "method-val", dr["preferredpayment"]);
             TemplateHandler.Assign(ref strTpl, "status-val", dr["status"].ToString());
@@ -215,7 +208,6 @@ public partial class AffiliateUpd : IBCPage
             TemplateHandler.Assign(ref strTpl, "minnetteller", "$" + strMinNetteller);
             TemplateHandler.Assign(ref strTpl, "minbooker", "$" + strMinMoneyBooker);
             TemplateHandler.Assign(ref strTpl, "minbank", "$" + strMinWire);
-            TemplateHandler.Assign(ref strTpl, "mincheque", "$" + strMinCheque);
             TemplateHandler.Assign(ref strTpl, "minplayer", "$" + strMinPlayer);
             switch (dr["preferredpayment"].ToString().ToLower())
             {
@@ -225,10 +217,6 @@ public partial class AffiliateUpd : IBCPage
 
                 case "netteller":
                     TemplateHandler.Assign(ref strTpl, "cssnetteller", string.Empty);
-                    break;
-
-                case "cheque":
-                    TemplateHandler.Assign(ref strTpl, "csscheque", string.Empty);
                     break;
 
                 case "moneybookers":
@@ -245,9 +233,20 @@ public partial class AffiliateUpd : IBCPage
             }
             TemplateHandler.Assign(ref strTpl, "cssplayer", "hide");
             TemplateHandler.Assign(ref strTpl, "cssnetteller", "hide");
-            TemplateHandler.Assign(ref strTpl, "csscheque", "hide");
             TemplateHandler.Assign(ref strTpl, "cssbooker", "hide");
             TemplateHandler.Assign(ref strTpl, "cssbank", "hide");
+
+            var contactAppJson = CastAide.AsString(dr["ContactApps"], string.Empty);
+            if (!string.IsNullOrEmpty(contactAppJson))
+            {
+                var blockTemplate = TemplateHandler.CopyBlock(strTpl, "ContactApp");
+                var htmlAppContact = BuildContactApp(contactAppJson, blockTemplate);
+                TemplateHandler.ReplaceBlock(ref strTpl, "ContactApp", htmlAppContact);
+            }
+            else
+            {
+                TemplateHandler.ReplaceBlock(ref strTpl, "ContactApp", string.Empty);
+            }
         }
 
         #region Load SubPage
@@ -262,6 +261,58 @@ public partial class AffiliateUpd : IBCPage
 
         #endregion Load SubPage
 
-        this.HtmlContent = strTpl;
+        this.HtmlContent = strTpl + GenerateMessageResource();
+    }
+
+    private static string BuildContactApp(string jsonData, string template)
+    {
+        var serializer = new JavaScriptSerializer();
+        var contactAppList = serializer.Deserialize<IEnumerable<ContactApp>>(jsonData).OrderBy(p => p.Order);
+        var builder = new StringBuilder();
+
+        var length = contactAppList.Count();
+        for (var i = 0; i < length; i++)
+        {
+            var item = contactAppList.ElementAt(i);
+
+            var templateItem = template;
+            TemplateHandler.Assign(ref templateItem, "appname", item.Name);
+            TemplateHandler.Assign(ref templateItem, "appvalue", item.Value);
+            TemplateHandler.Assign(ref templateItem, "order", item.Order);
+            TemplateHandler.Assign(ref templateItem, "i", i);
+
+            builder.Append(templateItem);
+        }
+
+        return builder.ToString();
+    }
+
+    private static string GenerateMessageResource()
+    {
+        StringBuilder strScript = new StringBuilder();
+        strScript.AppendLine("<script type=\"text/javascript\">");
+        strScript.AppendLine("var MsgResource = {");
+        strScript.AppendLine("FName:\"" + Resources.Lang.ErrFName + "\",");
+        strScript.AppendLine("LName:\"" + Resources.Lang.ErrLName + "\",");
+        strScript.AppendLine("ErrGender:\"" + Resources.Lang.ErrGender + "\",");
+        strScript.AppendLine("Address:\"" + Resources.Lang.ErrAddress + "\",");
+        strScript.AppendLine("City:\"" + Resources.Lang.ErrCity + "\",");
+        strScript.AppendLine("PostCode:\"" + Resources.Lang.ErrPostCode + "\",");
+        strScript.AppendLine("Country:\"" + Resources.Lang.ErrCountry + "\",");
+        strScript.AppendLine("EmailValid:\"" + Resources.Lang.ErrEmailValid + "\",");
+        strScript.AppendLine("ContactNumber:\"" + Resources.Lang.ErrContactNumber + "\",");
+        strScript.AppendLine("SiteUrl:\"" + Resources.Lang.ErrSiteUrl + "\",");
+        strScript.AppendLine("ContactApp:\"" + Resources.Lang.RequireIMAccount + "\",");
+        strScript.AppendLine("UserName12Bet:\"" + Resources.Lang.ErrUserName12Bet + "\",");
+        strScript.AppendLine("Neteller:\"" + Resources.Lang.ErrNeteller + "\",");
+        strScript.AppendLine("Moneybooker:\"" + Resources.Lang.ErrMoneybooker + "\",");
+        strScript.AppendLine("MoneybookerValid:\"" + Resources.Lang.ErrMoneybookerValid + "\",");
+        strScript.AppendLine("BankName:\"" + Resources.Lang.ErrBankName + "\",");
+        strScript.AppendLine("BankAddress:\"" + Resources.Lang.ErrBankAddress + "\",");
+        strScript.AppendLine("BankAccName:\"" + Resources.Lang.ErrBankAccName + "\",");
+        strScript.AppendLine("BankAccNumber:\"" + Resources.Lang.ErrBankAccNumber + "\",");
+        strScript.AppendLine("};</script>");
+
+        return strScript.ToString();
     }
 }

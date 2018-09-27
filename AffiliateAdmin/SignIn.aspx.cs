@@ -14,7 +14,9 @@ public partial class SignIn : IBCPage
         TemplateHandler.Assign(ref temp, "Help", Resources.Lang.Help);
         TemplateHandler.Assign(ref temp, "Logon", Resources.Lang.LogOn);
         TemplateHandler.Assign(ref temp, "now", DateTime.Now.Year.ToString());
-        this.HtmlContent = temp; 
+        TemplateHandler.Assign(ref temp, "relativeRootUrl", ResolveClientUrl("~/"));
+
+        this.HtmlContent = temp;
     }
 
     public override void CheckUnderMaintenance()

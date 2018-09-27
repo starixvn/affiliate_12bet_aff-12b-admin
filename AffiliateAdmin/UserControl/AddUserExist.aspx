@@ -13,13 +13,13 @@
     {
         if($('username').value=='')
         {
-            Common.alertError(top.fMenu.Msg.Username);                                 
+            Common.alertError(MsgResource.requireUserName);
             $('username').focus();
             return false;
         }       
         else if($('dep').value==0 || $('dep').value=='')
         {
-            Common.alertError(top.fMenu.Msg.DepartmentChoose);
+            Common.alertError(MsgResource.requireDepartment);
             $('dep').focus();
             return false;
         }

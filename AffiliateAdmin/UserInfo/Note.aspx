@@ -71,7 +71,7 @@
                if(returnData[0]=='ok')
                {         
                     //$("divNote").innerHTML = returnData[1];
-                    Common.alertError(top.frames[0].Msg.NoteDel); 
+                   Common.alertError(MsgResource.deleteNoteSuccess);
                     $("errMsg").className = "done";
                     $("slPageSize").value = pagesize;
                     setTimeout("LoadData(1);", 1500);
@@ -88,7 +88,7 @@
     function deleteNote(noteid)
     {   
         $("errMsg").className = "";
-        if(!confirm(top.frames[0].Msg.NoteConfirm))
+        if (!confirm(MsgResource.noteConfirm))
             return;
         Common.delayReloadPage1();
         var pagesize = $("slPageSize").value;  
@@ -100,7 +100,7 @@
                var returnData = strdata.responseText.split("@");
                if(returnData[0]=='ok')
                {         
-                    Common.alertError(top.frames[0].Msg.NoteDel);
+                    Common.alertError(MsgResource.NoteDel);
                     $("errMsg").className = "done"; 
                     $("slPageSize").value = pagesize;
                     setTimeout("LoadData(1);", 1500);

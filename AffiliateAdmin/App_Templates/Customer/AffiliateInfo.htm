@@ -47,7 +47,9 @@
                             </td>
                             <td style="width:55%;" class="r">
                                 <a href="{url}" id="lnkUN" style="display: {lnkUN};" target="_blank" class="upper b">
-                                    {username}</a> <span id="spUN" style="display: {spUN}">{username}</span>&nbsp;[<span id="affID">{custid-val}</span>]
+                                    {username}
+                                </a>
+                                <span id="spUN" style="display: {spUN}">{username}</span>&nbsp;[<span id="affID">{custid-val}</span>]
                             </td>
                         </tr>
                         <tr>
@@ -78,14 +80,16 @@
                                 &nbsp;{number-val}
                             </td>
                         </tr>
+                        <!--ContactApp-->
                         <tr>
                             <td class="line_table">
-                                {mobile}
+                                {appname}
                             </td>
                             <td class="line_table r">
-                                &nbsp;{mobile-val}
+                                &nbsp;{appvalue}
                             </td>
                         </tr>
+                        <!--/ContactApp-->
                         <tr>
                             <td class="line_table">
                                 {language}
@@ -149,7 +153,7 @@
                         <!--MemberList-->
                         <tr style="height: 22px;">
                             <td colspan="2">                                
-                                <a href="../UserInfo/MemberListAll.aspx?txtAffUsername={username}" target="fMain">{memberlist}</a>
+                                <a href="{memberListUrl}" target="_top">{memberlist}</a>
                             </td>
                         </tr>
                         <!--/MemberList-->
@@ -192,9 +196,6 @@
                                                     <td class="r">
                                                         {balforward-val}
                                                     </td>
-                                                </tr>
-                                                <tr>                                                    
-                                                    <td><a href="../Report/MemberReport.aspx?isaff=1" target="fMain">{reportdetail}</a></td>
                                                 </tr>
                                             </table>
                                         </div>
@@ -325,5 +326,6 @@
     <input type="hidden" id="hdEmail" name="hdEmail" value="{email-val}" />
     <input type="hidden" id="hdMailOption" name="hdMailOption" value="{mailoption-val}" />
     <input type="hidden" id="hdType" name="hdType" value="{type-val}" />
+    <input type="hidden" id="relativeRootUrl" value="{relativeRootUrl-val}"
 </div>
 </form>

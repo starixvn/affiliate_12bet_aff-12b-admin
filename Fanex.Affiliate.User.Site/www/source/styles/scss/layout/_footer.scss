@@ -1,0 +1,22 @@
+﻿.footer {
+    background: #000;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: auto;
+
+    .footer-text {
+        padding-top: 10px;
+    }
+
+    .item {
+        display: inline-block;
+        padding: 5px;
+
+        &:not(:last-child):after {
+            content: '|';
+            color: #ddd;
+            font-weight: 600;
+            padding-left: 10px;
+        }
+    }
+}

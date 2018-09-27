@@ -1,0 +1,15 @@
+﻿@model Fanex.Affiliate.User.Core.MetalModels.Email.PaymentEmailParam
+<div>
+尊敬的 @Model.User.FirstName,<br /><br />
+
+您好，<br /><br />
+ 
+您交易代碼@(Model.TransId)，日期@(Model.RequestDate.ToString("MM/dd/yyyy"))，金額為$@(Model.Amount)的支付申請已被取消。<br /><br />
+ 
+此郵件為系統郵件，請不要直接回复。<br /><br />
+
+如有任何疑問，歡迎致信<a href="mailto:@Model.MailContact">@Model.MailContact</a>聯繫我們<br /><br />
+ 
+誠摯的<br />
+12BET合作夥伴團隊
+</div>

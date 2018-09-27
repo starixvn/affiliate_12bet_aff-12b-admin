@@ -31,6 +31,7 @@
     <TargetFrameworkProfile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -41,6 +42,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <CodeAnalysisRuleSet>AffiliateAdmin.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -50,6 +52,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <CodeAnalysisRuleSet>AffiliateAdmin.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DNAide, Version=0.0.0.0, Culture=neutral, processorArchitecture=x86">
@@ -71,10 +74,6 @@
     </Reference>
     <Reference Include="Fanex.MailDeliver.MailClient, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Fanex.MailDeliver.MailClient.1.0.0.2\lib\net40\Fanex.MailDeliver.MailClient.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="IBCFile, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fanex.File.1.0.0\lib\net40\IBCFile.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
@@ -106,6 +105,10 @@
       <HintPath>..\packages\EnterpriseLibrary.Unity.5.0.414.0\lib\net40\Microsoft.Practices.Unity.Interception.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Nini">
       <HintPath>_Dependencies\Nini.dll</HintPath>
     </Reference>
@@ -113,20 +116,11 @@
       <HintPath>..\packages\NPOI.2.0.6\lib\net40\NPOI.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ONEbook.UM, Version=2.0.2.6, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ONEbook.UM.2.0.2.6\lib\net40\ONEbook.UM.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="RemotingRef, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RemotingRef.1.0.0.9\lib\net40\RemotingRef.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="ONEbook.UM, Version=2.0.2.9, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ONEbook.UM.2.0.2.9\lib\net40\ONEbook.UM.dll</HintPath>
     </Reference>
     <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\RestSharp.105.2.3\lib\net4\RestSharp.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="SPSRemoting, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SPSRemoting.1.0.0\lib\net40\SPSRemoting.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Sunplus.Agent.Configurations, Version=1.0.4276.26261, Culture=neutral, processorArchitecture=MSIL">
@@ -153,6 +147,30 @@
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.6\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.6\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
@@ -181,6 +199,7 @@
     <Compile Include="Alert.aspx.designer.cs">
       <DependentUpon>Alert.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Areas\Portal\PortalAreaRegistration.cs" />
     <Compile Include="Auth\Error.aspx.designer.cs">
       <DependentUpon>Error.aspx</DependentUpon>
     </Compile>
@@ -220,9 +239,6 @@
     <Compile Include="Business\Services\AdjustmentService.cs" />
     <Compile Include="Business\Services\ChangeAdminPassService.cs" />
     <Compile Include="Business\Services\ChangePassService.cs" />
-    <Compile Include="Business\Services\CommGroupAssignService.cs" />
-    <Compile Include="Business\Services\CommGroupDelService.cs" />
-    <Compile Include="Business\Services\CommGroupUpdService.cs" />
     <Compile Include="Business\Services\DeleteMailListService.cs" />
     <Compile Include="Business\Services\DeleteMemberService.cs" />
     <Compile Include="Business\Services\Message\DeleteMessageListService.cs" />
@@ -313,6 +329,7 @@
     <Compile Include="Domain\EditAffiliateDomain.aspx.designer.cs">
       <DependentUpon>EditAffiliateDomain.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DTO\ContactApp.cs" />
     <Compile Include="Exchange\AffEditRate.aspx.designer.cs">
       <DependentUpon>AffEditRate.aspx</DependentUpon>
     </Compile>
@@ -321,21 +338,6 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="GroupSetting\AddGroup.aspx.designer.cs">
-      <DependentUpon>AddGroup.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="GroupSetting\AssignGroup.aspx.designer.cs">
-      <DependentUpon>AssignGroup.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="GroupSetting\EditGroup.aspx.designer.cs">
-      <DependentUpon>EditGroup.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="GroupSetting\GroupSetting.aspx.designer.cs">
-      <DependentUpon>GroupSetting.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Header.aspx.designer.cs">
-      <DependentUpon>Header.aspx</DependentUpon>
     </Compile>
     <Compile Include="Helpers\TargetPageHelper.cs" />
     <Compile Include="Home\Home.aspx.designer.cs">
@@ -365,18 +367,10 @@
     </Compile>
     <Compile Include="Business\AffType.cs" />
     <Compile Include="Business\AppSettings.cs" />
-    <Compile Include="Business\CacheRef.cs" />
     <Compile Include="Business\CacheUtil.cs" />
     <Compile Include="Business\Common.cs" />
     <Compile Include="Business\Criterias\AffiliateListCriteria.cs" />
     <Compile Include="Business\Criterias\AffiliateReportCriteria.cs" />
-    <Compile Include="Business\Criterias\CasinoPlayerTurnoverReportCriteria.cs" />
-    <Compile Include="Business\Criterias\CommissionReportCriteria.cs" />
-    <Compile Include="Business\Criterias\MemberStatisticsReportCriteria.cs" />
-    <Compile Include="Business\Criterias\PerformanceCriteria.cs" />
-    <Compile Include="Business\Criterias\QMReportCriteria.cs" />
-    <Compile Include="Business\Criterias\SBPlayerTurnoverReportCriteria.cs" />
-    <Compile Include="Business\Criterias\SignUpActiveCriteria.cs" />
     <Compile Include="Business\Criterias\ValidationCriteria.cs" />
     <Compile Include="Business\DataHandler\Account.cs" />
     <Compile Include="Business\DataHandler\Active12BetAccount.cs" />
@@ -386,13 +380,11 @@
     <Compile Include="Business\DataHandler\Domain.cs" />
     <Compile Include="Business\DataHandler\EmailHistory.cs" />
     <Compile Include="Business\DataHandler\ExchangeRate.cs" />
-    <Compile Include="Business\DataHandler\GroupSetting.cs" />
     <Compile Include="Business\DataHandler\Home.cs" />
     <Compile Include="Business\DataHandler\HotNews.cs" />
     <Compile Include="Business\DataHandler\Login.cs" />
     <Compile Include="Business\DataHandler\Member.cs" />
     <Compile Include="Business\DataHandler\PaymentRequest.cs" />
-    <Compile Include="Business\DataHandler\Report.cs" />
     <Compile Include="Business\DataHandler\ServerDateTime.cs" />
     <Compile Include="Business\DataHandler\Statement.cs" />
     <Compile Include="Business\DataHandler\Text.cs" />
@@ -411,7 +403,6 @@
     <Compile Include="Business\GenerateHTML\Banner.cs" />
     <Compile Include="Business\GenerateHTML\Domain.cs" />
     <Compile Include="Business\GenerateHTML\EmailHistory.cs" />
-    <Compile Include="Business\GenerateHTML\GroupSetting.cs" />
     <Compile Include="Business\GenerateHTML\HotNews.cs" />
     <Compile Include="Business\GenerateHTML\Note.cs" />
     <Compile Include="Business\GenerateHTML\OnlineList.cs" />
@@ -539,26 +530,6 @@
       <DependentUpon>AffRate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="GroupSetting\AddGroup.aspx.cs">
-      <DependentUpon>AddGroup.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="GroupSetting\AssignGroup.aspx.cs">
-      <DependentUpon>AssignGroup.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="GroupSetting\EditGroup.aspx.cs">
-      <DependentUpon>EditGroup.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="GroupSetting\GroupSetting.aspx.cs">
-      <DependentUpon>GroupSetting.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Header.aspx.cs">
-      <DependentUpon>Header.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="Home\Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -625,25 +596,21 @@
     <Compile Include="Payment\PaymentUpdate.aspx.designer.cs">
       <DependentUpon>PaymentUpdate.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Portal\BasePage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Portal\Layout.Master.cs">
+      <DependentUpon>Layout.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Portal\Layout.Master.designer.cs">
+      <DependentUpon>Layout.Master</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-    <Compile Include="Report\AffiliateQMReport.aspx.cs">
-      <DependentUpon>AffiliateQMReport.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Report\AffiliateQMReport.aspx.designer.cs">
-      <DependentUpon>AffiliateQMReport.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Report\AffiliateQMReportDetail.aspx.cs">
-      <DependentUpon>AffiliateQMReportDetail.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Report\AffiliateQMReportDetail.aspx.designer.cs">
-      <DependentUpon>AffiliateQMReportDetail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Report\AffiliateReport.aspx.cs">
       <DependentUpon>AffiliateReport.aspx</DependentUpon>
@@ -659,68 +626,12 @@
     <Compile Include="Report\AffiliateReportDetail.aspx.designer.cs">
       <DependentUpon>AffiliateReportDetail.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Report\CasinoPlayerTurnoverReport.aspx.cs">
-      <DependentUpon>CasinoPlayerTurnoverReport.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Report\CasinoPlayerTurnoverReport.aspx.designer.cs">
-      <DependentUpon>CasinoPlayerTurnoverReport.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Report\Commission.aspx.cs">
-      <DependentUpon>Commission.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Report\Commission.aspx.designer.cs">
-      <DependentUpon>Commission.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Report\MemberReport.aspx.cs">
       <DependentUpon>MemberReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Report\MemberReport.aspx.designer.cs">
       <DependentUpon>MemberReport.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Report\MemberStatisticsReport.aspx.cs">
-      <DependentUpon>MemberStatisticsReport.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Report\MemberStatisticsReport.aspx.designer.cs">
-      <DependentUpon>MemberStatisticsReport.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Report\MemberStatisticsReportDetail.aspx.cs">
-      <DependentUpon>MemberStatisticsReportDetail.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Report\MemberStatisticsReportDetail.aspx.designer.cs">
-      <DependentUpon>MemberStatisticsReportDetail.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Report\Performance.aspx.cs">
-      <DependentUpon>Performance.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Report\Performance.aspx.designer.cs">
-      <DependentUpon>Performance.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Report\PerformanceReportByAffiliate.aspx.cs">
-      <DependentUpon>PerformanceReportByAffiliate.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Report\PerformanceReportByAffiliate.aspx.designer.cs">
-      <DependentUpon>PerformanceReportByAffiliate.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Report\SBPlayerTurnoverReport.aspx.cs">
-      <DependentUpon>SBPlayerTurnoverReport.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Report\SBPlayerTurnoverReport.aspx.designer.cs">
-      <DependentUpon>SBPlayerTurnoverReport.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Report\SignUpActive.aspx.cs">
-      <DependentUpon>SignUpActive.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Report\SignUpActive.aspx.designer.cs">
-      <DependentUpon>SignUpActive.aspx</DependentUpon>
     </Compile>
     <Compile Include="SignIn.aspx.cs">
       <DependentUpon>SignIn.aspx</DependentUpon>
@@ -932,13 +843,6 @@
     <Compile Include="UserInfo\Note.aspx.designer.cs">
       <DependentUpon>Note.aspx</DependentUpon>
     </Compile>
-    <Compile Include="UserInfo\PlayersDetail.aspx.cs">
-      <DependentUpon>PlayersDetail.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserInfo\PlayersDetail.aspx.designer.cs">
-      <DependentUpon>PlayersDetail.aspx</DependentUpon>
-    </Compile>
     <Compile Include="UserInfo\UserLog.aspx.cs">
       <DependentUpon>UserLog.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -958,6 +862,39 @@
   <ItemGroup>
     <Content Include="AccessDenied.aspx" />
     <Content Include="Alert.aspx" />
+    <Content Include="App_Data\SpConfig\SpName.local.xml">
+      <DependentUpon>_SpName.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SpConfig\SpName.master.xml">
+      <DependentUpon>_SpName.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SpConfig\SpName.production.xml">
+      <DependentUpon>_SpName.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SpConfig\SpName.sit.xml">
+      <DependentUpon>_SpName.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SpConfig\SpName.uat.xml">
+      <DependentUpon>_SpName.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SpConfig\SpName.xml">
+      <DependentUpon>_SpName.tt</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SpConfig\_SpName.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>_SpName.txt</LastGenOutput>
+    </Content>
+    <Content Include="App_Data\SpConfig\_SpName.txt">
+      <DependentUpon>_SpName.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Content>
+    <Content Include="App_Data\SpConfig\_SpNameConfig.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="App_Data\SpConfig\_SpNameOriginal.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_Js\AutoComplete\autocomplete.js" />
     <Content Include="App_Js\AutoComplete\shadow.png" />
     <Content Include="App_Js\AutoComplete\styles.css" />
@@ -993,10 +930,6 @@
     <Content Include="App_Js\dhtmlwindow\resize.gif" />
     <Content Include="App_Js\dhtmlwindow\restore.gif" />
     <Content Include="App_Js\dhtmlwindow\x.jpg" />
-    <Content Include="App_Js\GroupSetting.css" />
-    <Content Include="App_Js\GroupSetting.js" />
-    <Content Include="App_Js\GroupSettingEdit.js" />
-    <Content Include="App_Js\Header.js" />
     <Content Include="App_Js\IBCWnd\blank.html" />
     <Content Include="App_Js\IBCWnd\IBCWnd.css" />
     <Content Include="App_Js\IBCWnd\IBCWnd.js" />
@@ -1211,10 +1144,6 @@
     <Content Include="App_Templates\Exchange\AffEditRate.htm" />
     <Content Include="App_Templates\Exchange\ExchangeRate.htm" />
     <Content Include="App_Templates\GotoPage.html" />
-    <Content Include="App_Templates\GroupSetting\GroupAssignment.htm" />
-    <Content Include="App_Templates\GroupSetting\GroupSetting.htm" />
-    <Content Include="App_Templates\GroupSetting\GroupSettingEdit.htm" />
-    <Content Include="App_Templates\Header.htm" />
     <Content Include="App_Templates\Home.htm" />
     <Content Include="App_Templates\Login.htm" />
     <Content Include="App_Templates\Media\BannerDetail.htm" />
@@ -1251,22 +1180,11 @@
     <Content Include="App_Templates\Payment\PaymentCanEmail_zh-TW.htm" />
     <Content Include="App_Templates\Payment\PaymentRequest.htm" />
     <Content Include="App_Templates\Payment\PaymentUpdate.htm" />
-    <Content Include="App_Templates\Report\AffiliateQMReport.htm" />
-    <Content Include="App_Templates\Report\AffiliateQMReportDetail.htm" />
     <Content Include="App_Templates\Report\AffiliateReport.htm" />
     <Content Include="App_Templates\Report\AffiliateReportDetail.htm" />
-    <Content Include="App_Templates\Report\CasinoPlayerTurnoverReport.htm" />
-    <Content Include="App_Templates\Report\Commission.htm" />
     <Content Include="App_Templates\Report\MemberReport.htm" />
-    <Content Include="App_Templates\Report\MemberStatisticsReport.htm" />
-    <Content Include="App_Templates\Report\MemberStatisticsReportDetail.htm" />
-    <Content Include="App_Templates\Report\Performance.htm" />
-    <Content Include="App_Templates\Report\PerformanceReportByAffiliate.htm" />
-    <Content Include="App_Templates\Report\SBPlayerTurnoverReport.htm" />
-    <Content Include="App_Templates\Report\SignUpActiveReport.htm" />
     <Content Include="App_Templates\SubMenu.htm" />
     <Content Include="App_Templates\SubMenu1.htm" />
-    <Content Include="App_Templates\SubPage.htm" />
     <Content Include="App_Templates\UserControl\AddDepartment.html" />
     <Content Include="App_Templates\UserControl\AddUser.html" />
     <Content Include="App_Templates\UserControl\AddUserExist.html" />
@@ -1316,7 +1234,6 @@
     <Content Include="App_Templates\UserInfo\MemList.htm" />
     <Content Include="App_Templates\UserInfo\MemListAll.htm" />
     <Content Include="App_Templates\UserInfo\NoteList.htm" />
-    <Content Include="App_Templates\UserInfo\PlayersDetail.htm" />
     <Content Include="App_Templates\UserInfo\UserLog.htm" />
     <Content Include="App_Templates\UserInfo\ViewDaily.htm" />
     <Content Include="App_Templates\UserInfo\ViewDailyDetail.htm" />
@@ -1570,6 +1487,99 @@
     <Content Include="App_Themes\Default\Images\x5.gif" />
     <Content Include="App_Themes\Default\jquery.ui.css" />
     <Content Include="App_Themes\error2.png" />
+    <Content Include="Areas\Portal\www\dist\imgs\email\banner.png" />
+    <Content Include="Areas\Portal\www\dist\imgs\email\banner_en-GB.jpg" />
+    <Content Include="Areas\Portal\www\dist\imgs\email\banner_en-US.jpg" />
+    <Content Include="Areas\Portal\www\dist\imgs\email\banner_en.jpg" />
+    <Content Include="Areas\Portal\www\dist\imgs\email\banner_es-ES.jpg" />
+    <Content Include="Areas\Portal\www\dist\imgs\email\banner_hi-IN.jpg" />
+    <Content Include="Areas\Portal\www\dist\imgs\email\banner_id-ID.jpg" />
+    <Content Include="Areas\Portal\www\dist\imgs\email\banner_ja-JP.jpg" />
+    <Content Include="Areas\Portal\www\dist\imgs\email\banner_ko-KR.jpg" />
+    <Content Include="Areas\Portal\www\dist\imgs\email\banner_th-TH.jpg" />
+    <Content Include="Areas\Portal\www\dist\imgs\email\banner_vi-VN.jpg" />
+    <Content Include="Areas\Portal\www\dist\imgs\email\banner_zh-CN.jpg" />
+    <Content Include="Areas\Portal\www\dist\imgs\email\banner_zh-TW.jpg" />
+    <Content Include="Areas\Portal\www\dist\imgs\email\bgMain.jpg" />
+    <Content Include="Areas\Portal\www\dist\imgs\email\button.png" />
+    <Content Include="Areas\Portal\www\dist\imgs\email\header.png" />
+    <Content Include="Areas\Portal\www\dist\imgs\email\note.png" />
+    <Content Include="Areas\Portal\www\dist\imgs\i_admin.png" />
+    <Content Include="Areas\Portal\www\dist\imgs\i_affiliateslist.png" />
+    <Content Include="Areas\Portal\www\dist\imgs\i_domain.jpg" />
+    <Content Include="Areas\Portal\www\dist\imgs\i_media1.png" />
+    <Content Include="Areas\Portal\www\dist\imgs\i_member.png" />
+    <Content Include="Areas\Portal\www\dist\imgs\i_report.png" />
+    <Content Include="Areas\Portal\www\dist\jquery-3.3.1.min.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\commission\assign-group.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\commission\assign-private-group.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\commission\commission-group.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\layout\pagelayout.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\Recheckin\recheckin.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\report\affiliate-report.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\userpanel\daily-earning-detail.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\userpanel\daily-earning.js" />
+    <Content Include="Areas\Portal\www\dist\style\assets\banner_top.jpg" />
+    <Content Include="Areas\Portal\www\dist\style\assets\i_customer.png" />
+    <Content Include="Areas\Portal\www\dist\style\assets\open-iconic.svg" />
+    <Content Include="Areas\Portal\www\dist\style\layout.css" />
+    <Content Include="Areas\Portal\www\dist\style\pages\affiliate-report.css" />
+    <Content Include="Areas\Portal\www\dist\style\pages\commission-group.css" />
+    <Content Include="Areas\Portal\www\dist\style\portalmain.css" />
+    <Content Include="Areas\Portal\www\dist\style\user-panel-layout.css" />
+    <Content Include="Areas\Portal\www\dist\vendors\bootstrap.css" />
+    <Content Include="Areas\Portal\www\dist\vendors\bootstrap.js" />
+    <Content Include="Areas\Portal\www\dist\vendors\react.js" />
+    <Content Include="Areas\Portal\www\dist\vendors\reactstrap.js" />
+    <Content Include="Areas\Portal\www\index.html" />
+    <Content Include="Areas\Portal\www\config-utils\constant.js" />
+    <Content Include="Areas\Portal\www\config-utils\entry.js" />
+    <Content Include="Areas\Portal\www\source\js\modules\ajaxRequest.js" />
+    <Content Include="Areas\Portal\www\source\js\modules\createReducer.js" />
+    <Content Include="Areas\Portal\www\source\js\modules\dataHandler.js" />
+    <Content Include="Areas\Portal\www\source\js\modules\numberFormat.js" />
+    <Content Include="Areas\Portal\www\source\js\modules\utils.js" />
+    <Content Include="Areas\Portal\www\source\js\pagelayout\lib\jquery.jclock.js" />
+    <Content Include="Areas\Portal\www\source\js\pagelayout\pagelayout.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-information\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-information\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-information\modules\helper.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-information\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\modules\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-private-group\reducer.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\grouplist\GridData.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\modules\constant.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\modules\service.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pagelayout\vendors\jquery-3.3.1.min.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\RecheckIn\recheckin.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\style\assets\banner_top.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\bg_menu.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\bg_search01.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\bg_top.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\icon_head.png" />
+    <Content Include="Areas\Portal\www\source\style\assets\icon_refresh.png" />
+    <Content Include="Areas\Portal\www\source\style\assets\icon_top.png" />
+    <Content Include="Areas\Portal\www\source\style\assets\user-panel\i_customer.png" />
+    <Content Include="Areas\Portal\www\source\style\assets\user-panel\left_button.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\user-panel\right_button.jpg" />
+    <Content Include="Areas\Portal\www\source\style\fonts\open-iconic.svg" />
+    <Content Include="Areas\Portal\www\source\style\vendors\fixedtable\style.css" />
+    <Content Include="Areas\Portal\www\source\style\vendors\reactmonthpicker.css" />
+    <Content Include="Areas\Portal\www\webpack.config.dev.js" />
+    <Content Include="Areas\Portal\www\webpack.config.js" />
+    <Content Include="Areas\Portal\www\webpack.config.vendor.js" />
     <Content Include="Auth\Error.aspx" />
     <Content Include="BetList\BetList.aspx" />
     <Content Include="BetList\BetListCashOutDetail.aspx" />
@@ -1623,13 +1633,7 @@
     <Content Include="Error.aspx" />
     <Content Include="Exchange\AffEditRate.aspx" />
     <Content Include="Exchange\AffRate.aspx" />
-    <Content Include="Footer.htm" />
     <Content Include="Global.asax" />
-    <Content Include="GroupSetting\AddGroup.aspx" />
-    <Content Include="GroupSetting\AssignGroup.aspx" />
-    <Content Include="GroupSetting\EditGroup.aspx" />
-    <Content Include="GroupSetting\GroupSetting.aspx" />
-    <Content Include="Header.aspx" />
     <Content Include="Home\Home.aspx" />
     <Content Include="Media\AddBanner.aspx" />
     <Content Include="Media\AddText.aspx" />
@@ -1644,19 +1648,9 @@
     <Content Include="Payment\PaymentRequest.aspx" />
     <Content Include="Payment\PaymentUpdate.aspx" />
     <Content Include="Release Note.txt" />
-    <Content Include="Report\AffiliateQMReport.aspx" />
-    <Content Include="Report\AffiliateQMReportDetail.aspx" />
     <Content Include="Report\AffiliateReport.aspx" />
     <Content Include="Report\AffiliateReportDetail.aspx" />
-    <Content Include="Report\CasinoPlayerTurnoverReport.aspx" />
-    <Content Include="Report\Commission.aspx" />
     <Content Include="Report\MemberReport.aspx" />
-    <Content Include="Report\MemberStatisticsReport.aspx" />
-    <Content Include="Report\MemberStatisticsReportDetail.aspx" />
-    <Content Include="Report\Performance.aspx" />
-    <Content Include="Report\PerformanceReportByAffiliate.aspx" />
-    <Content Include="Report\SBPlayerTurnoverReport.aspx" />
-    <Content Include="Report\SignUpActive.aspx" />
     <Content Include="SignIn.aspx" />
     <Content Include="SpNames.xml">
       <SubType>Designer</SubType>
@@ -1691,13 +1685,153 @@
     <Content Include="UserInfo\MemberList.aspx" />
     <Content Include="UserInfo\MemberListAll.aspx" />
     <Content Include="UserInfo\Note.aspx" />
-    <Content Include="UserInfo\PlayersDetail.aspx" />
     <Content Include="UserInfo\UserLog.aspx" />
     <Content Include="AppSettings.ini">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Web.12betadmin.sit.config" />
     <Content Include="BetList\BetListNewParlay.ashx" />
+    <Content Include="Areas\Portal\Views\CommissionGroup\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\Web.config" />
+    <Content Include="AffiliateAdmin.ruleset" />
+    <Content Include="Areas\Portal\www\.babelrc" />
+    <Content Include="Areas\Portal\www\source\js\layouts\AppLayout.jsx" />
+    <Content Include="Areas\Portal\www\source\style\abstracts\_variables.scss" />
+    <Content Include="Areas\Portal\www\source\style\base\_base.scss" />
+    <Content Include="Areas\Portal\www\source\style\components\_table.scss" />
+    <Content Include="Areas\Portal\www\source\style\main.scss" />
+    <Content Include="Areas\Portal\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Portal\www\source\style\components\_form.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\commission-group.scss" />
+    <Content Include="Areas\Portal\www\source\style\base\_common.scss" />
+    <Content Include="Portal\Layout.Master" />
+    <Content Include="Areas\Portal\www\source\style\components\_modal.scss" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\components\multiple-select\components\MultipleSelect.jsx" />
+    <Content Include="Areas\Portal\www\source\js\components\multiple-select\components\MultipleSelectLabel.jsx" />
+    <Content Include="Areas\Portal\www\source\js\components\multiple-select\components\MultipleSelectOptionList.jsx" />
+    <Content Include="Areas\Portal\www\source\js\components\multiple-select\components\Option.jsx" />
+    <Content Include="Areas\Portal\www\source\js\components\multiple-select\components\OptionAll.jsx" />
+    <Content Include="Areas\Portal\www\source\js\components\multiple-select\index.jsx" />
+    <Content Include="Areas\Portal\www\source\style\components\_multiple-select.scss" />
+    <Content Include="Areas\Portal\www\source\style\vendors\multiple-select.scss" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\CommGroupInfo.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\deduction\DeductionSetting.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\deduction\PlatformFeeItem.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\QmTurnOverSetting.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\tiersetting\TierSetting.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\tiersetting\TierSettingItem.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-information\index.jsx" />
+    <Content Include="Areas\Portal\Views\Affiliate\Information.cshtml" />
+    <Content Include="Areas\Portal\www\source\style\pages\affiliate-information.scss" />
+    <Content Include="Areas\Portal\Views\Shared\_Header.cshtml" />
+    <Content Include="Areas\Portal\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\_SinglePageLayout.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\_SubMenu.cshtml" />
+    <Content Include="Areas\Portal\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Portal\www\source\style\layout\_header.scss" />
+    <Content Include="Areas\Portal\www\source\style\layout\main-layout.scss" />
+    <Content Include="Areas\Portal\www\source\style\layout\_menu.scss" />
+    <Content Include="Areas\Portal\Views\Customer\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\Member\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\Report\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\Marketing\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\Message\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\ExchangeRate\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\Administrator\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\Domain\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\Affiliate\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\_MainMenu.cshtml" />
+    <Content Include="Areas\Portal\www\source\style\components\open-iconic-bootstrap.scss" />
+    <Content Include="Areas\Portal\www\source\style\fonts\open-iconic.eot" />
+    <Content Include="Areas\Portal\www\source\style\fonts\open-iconic.otf" />
+    <Content Include="Areas\Portal\www\source\style\fonts\open-iconic.ttf" />
+    <Content Include="Areas\Portal\www\source\style\fonts\open-iconic.woff" />
+    <Content Include="Areas\Portal\www\dist\style\assets\open-iconic.eot" />
+    <Content Include="Areas\Portal\www\dist\style\assets\open-iconic.ttf" />
+    <Content Include="Areas\Portal\www\dist\style\assets\open-iconic.woff" />
+    <Content Include="Areas\Portal\www\source\style\components\_button.scss" />
+    <Content Include="Areas\Portal\www\source\style\layout\_filter.scss" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\deduction\FeeSettingItem.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\deduction\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\deduction\PlatformFeeSetting.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\tiersetting\index.jsx" />
+    <Content Include="Areas\Portal\www\dist\vendors\bootstrap-manifest.json" />
+    <Content Include="Areas\Portal\www\dist\vendors\react-manifest.json" />
+    <Content Include="Areas\Portal\www\dist\vendors\reactstrap-manifest.json" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\addgroup\AddGroup.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\addgroup\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\editgroup\EditGroup.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\editgroup\index.jsx" />
+    <Content Include="Areas\Portal\Views\CommissionGroup\AssignGroup.cshtml" />
+    <Content Include="Areas\Portal\Views\CommissionGroup\AssignPrivateGroup.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\CommonLayout.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateApproved\Content.en-GB.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateApproved\Content.en-US.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateApproved\Content.es-ES.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateApproved\Content.hi-IN.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateApproved\Content.id-ID.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateApproved\Content.ja-JP.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateApproved\Content.ko-KR.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateApproved\Content.th-TH.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateApproved\Content.vi-VN.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateApproved\Content.zh-CN.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateApproved\Content.zh-TW.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateInformation\Content.en-GB.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateInformation\Content.en-US.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateInformation\Content.es-ES.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateInformation\Content.hi-IN.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateInformation\Content.id-ID.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateInformation\Content.ja-JP.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateInformation\Content.ko-KR.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateInformation\Content.th-TH.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateInformation\Content.vi-VN.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateInformation\Content.zh-CN.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\AffiliateInformation\Content.zh-TW.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\WithdrawalGuidance\Content.en-GB.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\WithdrawalGuidance\Content.en-US.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\WithdrawalGuidance\Content.es-ES.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\WithdrawalGuidance\Content.hi-IN.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\WithdrawalGuidance\Content.id-ID.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\WithdrawalGuidance\Content.ja-JP.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\WithdrawalGuidance\Content.ko-KR.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\WithdrawalGuidance\Content.th-TH.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\WithdrawalGuidance\Content.vi-VN.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\WithdrawalGuidance\Content.zh-CN.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\WithdrawalGuidance\Content.zh-TW.cshtml" />
+    <Content Include="Areas\Portal\Views\EmailTesting\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\EmailTesting\Preview.cshtml" />
+    <Content Include="Areas\Portal\Views\Auth\RecheckIn.cshtml" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-private-group\AssignPrivateGroup.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-private-group\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-group\AssignGroup.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-group\index.jsx" />
+    <Content Include="Areas\Portal\www\package.json" />
+    <Content Include="Areas\Portal\www\package-lock.json" />
+    <Content Include="Areas\Portal\Views\Password\ChangePassword.cshtml" />
+    <Content Include="package.json" />
+    <Content Include="Areas\Portal\Views\AffiliateReport\Index.cshtml" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\index.jsx" />
+    <Content Include="Areas\Portal\www\source\style\components\monthpicker.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\affiliate-report.scss" />
+    <Content Include="Areas\Portal\www\source\style\components\_spinner.scss" />
+    <Content Include="Areas\Portal\Views\UserPanel\StatementHistory\DailyEarning.cshtml" />
+    <Content Include="Areas\Portal\Views\UserPanel\StatementHistory\DailyEarningDetail.cshtml" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\index.jsx" />
+    <Content Include="Areas\Portal\Views\Shared\_UserPanelLayout.cshtml" />
+    <Content Include="Areas\Portal\www\source\style\layout\user-panel-layout.scss" />
+    <Content Include="Areas\Portal\Views\Shared\_UserPanelMenu.cshtml" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning-detail\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning-detail\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning-detail\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning-detail\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\components\GridData.jsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -1707,7 +1841,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Auth\ProcessLogin.ashx" />
-    <Content Include="Auth\ReCheckIn.ashx" />
     <Content Include="BetList\BetListParlay.ashx" />
     <None Include="Content\Fanex.Result\fanex.result.less" />
     <Content Include="Deployment.ignore" />
@@ -1722,9 +1855,6 @@
     <Content Include="Handler\Adjustment.ashx" />
     <Content Include="Handler\ChangeAdminPass.ashx" />
     <Content Include="Handler\ChangePass.ashx" />
-    <Content Include="Handler\CommGroupAssign.ashx" />
-    <Content Include="Handler\CommGroupDel.ashx" />
-    <Content Include="Handler\CommGroupUpd.ashx" />
     <Content Include="Handler\Banner\DelBanner.ashx" />
     <Content Include="Handler\DeleteMailList.ashx" />
     <Content Include="Handler\DeleteMember.ashx" />
@@ -1818,6 +1948,10 @@
       <Project>{B9A60C3F-FC44-4BF7-B618-68F0118C9000}</Project>
       <Name>Affiliate.Infrastructure</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fanex.Affiliate.Admin.Core\Fanex.Affiliate.Admin.Core.csproj">
+      <Project>{c1c3e2f9-cc94-41a2-96e5-776b9f67e840}</Project>
+      <Name>Fanex.Affiliate.Admin.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WebReferenceUrl Include="http://localhost:52390/AffiliateAPI.asmx">
@@ -1832,7 +1966,19 @@
       <CachedSettingsPropName>AffiliateAdmin_AffBetlistService_AffiliateAPI</CachedSettingsPropName>
     </WebReferenceUrl>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Areas\Portal\www\source\js\actions\" />
+    <Folder Include="Areas\Portal\www\source\js\pages\affiliate-information\components\" />
+    <Folder Include="Areas\Portal\www\source\js\reducers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\Google.Protobuf.dll" />
+    <Analyzer Include="..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\SonarAnalyzer.CSharp.dll" />
+    <Analyzer Include="..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\SonarAnalyzer.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -1848,7 +1994,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>65181</DevelopmentServerPort>
           <DevelopmentServerVPath>/V1</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44331/</IISUrl>
+          <IISUrl>http://localhost:65181/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Data;
-using System.Web;
-using DNAide.Web;
-using AffiliateAdmin.Business.DataAccess;
 using System.Text;
+using System.Web;
+using AffiliateAdmin.Business.DataAccess;
+using DNAide.Web;
 public partial class AddUser : IBCPage
 {
     protected void Page_Load(object sender, EventArgs e)
@@ -23,22 +23,27 @@ public partial class AddUser : IBCPage
         TemplateHandler.Assign(ref list, "department", Resources.Lang.Department);
         TemplateHandler.Assign(ref list, "Add", Resources.Lang.Add);
         TemplateHandler.Assign(ref list, "Cancel", Resources.Lang.Cancel);
-        
+
+        TemplateHandler.Assign(ref list, "requireUserName", Resources.Lang.ErrUsername);
+        TemplateHandler.Assign(ref list, "requirePassword", Resources.Lang.ErrPasswordRequired);
+        TemplateHandler.Assign(ref list, "requireDepartment", Resources.Lang.ErrDepartmentChoose);
+        TemplateHandler.Assign(ref list, "errSpecialCharacter", Resources.Lang.ErrCharacter);
+
         StringBuilder res_opt = new StringBuilder();
-        DbResult dbr = DataHandler.UserControl.GetSelectDepartment();        
+        DbResult dbr = DataHandler.UserControl.GetSelectDepartment();
         string _option = "<Option value='{opt_value}'>{opt_name}</Option>";
-    
+
         foreach (DataRow dr in dbr.ResultSet.Tables[0].Rows)
         {
             string option = _option;
             TemplateHandler.Assign(ref option, "opt_value", dr["groupid"]);
             TemplateHandler.Assign(ref option, "opt_name", dr["groupname"]);
             TemplateHandler.Assign(ref option, "selected", "selected");
-            res_opt.Append(option); 
+            res_opt.Append(option);
         }
         TemplateHandler.Assign(ref _option, "opt_value", "0");
-        TemplateHandler.Assign(ref _option, "opt_name", "[Select Dept]"); 
-        TemplateHandler.Assign(ref list, "option",_option + res_opt.ToString());       
+        TemplateHandler.Assign(ref _option, "opt_name", "[Select Dept]");
+        TemplateHandler.Assign(ref list, "option", _option + res_opt.ToString());
         this.HtmlContent = list;
     }
 }

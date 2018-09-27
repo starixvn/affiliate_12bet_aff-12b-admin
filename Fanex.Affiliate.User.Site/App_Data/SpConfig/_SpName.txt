@@ -1,0 +1,10 @@
+﻿
+
+// Generated helper templates
+// Generated items
+// D:\TeamProject\GIT_LAB\Affiliate\affiliate-12bet\Fanex.Affiliate.User.Site\App_Data\SpConfig\SpName.production.xml
+// D:\TeamProject\GIT_LAB\Affiliate\affiliate-12bet\Fanex.Affiliate.User.Site\App_Data\SpConfig\SpName.uat.xml
+// D:\TeamProject\GIT_LAB\Affiliate\affiliate-12bet\Fanex.Affiliate.User.Site\App_Data\SpConfig\SpName.sit.xml
+// D:\TeamProject\GIT_LAB\Affiliate\affiliate-12bet\Fanex.Affiliate.User.Site\App_Data\SpConfig\SpName.local.xml
+// D:\TeamProject\GIT_LAB\Affiliate\affiliate-12bet\Fanex.Affiliate.User.Site\App_Data\SpConfig\SpName.master.xml
+// D:\TeamProject\GIT_LAB\Affiliate\affiliate-12bet\Fanex.Affiliate.User.Site\App_Data\SpConfig\SpName.xml

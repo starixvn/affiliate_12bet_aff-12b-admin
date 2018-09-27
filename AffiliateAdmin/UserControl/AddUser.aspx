@@ -7,17 +7,17 @@
     function CheckInput() {
 
         if ($('username').value == '') {
-            Common.alertError(top.fMenu.Msg.Username);
+            Common.alertError(MsgResource.requireUserName);
             $('username').focus();
             return false;
         }
         else if ($('password').value == '') {
-            Common.alertError(top.fMenu.Msg.PasswordRequired);
+            Common.alertError(MsgResource.requirePassword);
             $('password').focus();
             return false;
         }
         else if ($('dep').value == 0 || $('dep').value == '') {
-            Common.alertError(top.fMenu.Msg.DepartmentChoose);
+            Common.alertError(MsgResource.requireDepartment);
             $('dep').focus();
             return false;
         }
@@ -80,7 +80,7 @@
         var iChars = "!@#$%^&*()+=-[]\';,./{}|\":<>?";
         for (var i = 0; i < $('username').value.length; i++) {
             if (iChars.indexOf($('username').value.charAt(i)) != -1) {
-                Common.alertError(top.fMenu.Msg.Character);
+                Common.alertError(MsgResource.errSpecialCharacter);
                 return false;
             }
             else

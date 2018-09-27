@@ -71,7 +71,7 @@ public partial class Domain_DomainControl : IBCPage
             throw;
 #endif
         }
-        TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.DomainLink, SubMenu.DomainText, 2, 0, "Domain Control", "i_domain.jpg"));
+
         this.HtmlContent = strTpl;
     }
 }

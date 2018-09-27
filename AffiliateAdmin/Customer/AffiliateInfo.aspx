@@ -10,10 +10,6 @@
     var minHeight = 510;
     window.onresize = function () { setHeight(); };
     window.onload = function () {
-        if (parent.top.frames['fMenu'] !== undefined) {
-            parent.top.frames['fMenu'].ActiveMenu('menu2');
-        }
-
         if ($("hdNoInfo").value == "1")
             window.onresize = "";
         else {
@@ -77,10 +73,8 @@
         }
     }
     function ViewGroup(groupID, groupName) {
-        if (groupID > 1000)
-            parent.fContent.ibcWnd.open("../GroupSetting/EditGroup.aspx?groupid=" + groupID, 'Edit Commission Group for ' + $("spUN").innerHTML, 150, 50, 755, 529, 'class1', 'class2');
-        else
-            parent.fContent.ibcWnd.open("../GroupSetting/EditGroup.aspx?groupid=" + groupID, 'Edit Commission Group', 150, 50, 755, 529, 'class1', 'class2');
+        var url = document.getElementById("relativeRootUrl").value + 'Portal/CommissionGroup/AssignPrivateGroup?affId=' + $("affID").innerHTML;
+        parent.fContent.ibcWnd.open(url, 'Edit Commission Group for ' + $("spUN").innerHTML, 150, 50, 800, 529, 'class1', 'class2');
     }
     function setHeight() {
         var height = 0;
@@ -233,7 +227,8 @@
 
             var status = $('slStatus').value;
             if (status == "Approved") {
-                parent.fContent.ibcWnd.open("../GroupSetting/AssignGroup.aspx?IsApproved=true&affID=" + $("affID").innerHTML + "&affName=" + $("spUN").innerHTML + '&mailoption=' + $("hdMailOption").value, 'Assign Commission Group For New Affiliate', 150, 50, 585, 310, 'class1', 'class2');
+                var url = document.getElementById("relativeRootUrl").value + 'Portal/CommissionGroup/AssignGroup?affId=' + $("affID").innerHTML;
+                parent.fContent.ibcWnd.open(url, 'Assign Commission Group For New Affiliate', 150, 50, 585, 310, 'class1', 'class2');
             }
             else {
                 var ajax = new Ajax.Request("../Handler/UpdAffInfo.ashx", {
@@ -308,7 +303,8 @@
         }
     }
     function ChangeGroup(affid, username) {
-        parent.fContent.ibcWnd.open('../GroupSetting/AssignGroup.aspx?affid=' + affid + '&affName=' + username, 'Change Commission Group For \"' + username + '\"', 150, 50, 585, 310, 'class1', 'class2');
+        var url = document.getElementById("relativeRootUrl").value + 'Portal/CommissionGroup/AssignGroup?affId=' + affid;
+        parent.fContent.ibcWnd.open(url, 'Change Commission Group For \"' + username + '\"', 150, 50, 585, 310, 'class1', 'class2');
     }
 </script>
 <!--/js-->

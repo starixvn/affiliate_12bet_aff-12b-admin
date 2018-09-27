@@ -1,0 +1,26 @@
+﻿.main-container{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.report-title-container{
+    background: #cdd3d9;
+    padding: 4px 15px;
+    color: #333;
+    font-size: 12px;
+
+    .report-title {
+        margin: 0;
+        font-weight: bold;
+    }
+}
+
+.no-info-row {
+    border: 1px solid #ccc;
+    padding: 5px;
+    background: #fff;
+}
+
+.icon-calendar{
+    color: #627eab;
+}

@@ -1,0 +1,177 @@
+﻿@using Fanex.Affiliate.User.Core.Extensions
+
+@{
+    Layout = null;
+}
+
+@model Fanex.Affiliate.User.Core.ViewModels.UserPanel.AccountOverviewViewModel
+@{
+    var selectedMonth = Model.SelectedMonth;
+    var statistics = Model.Statistics;
+    var commissionSettings = Model.CommissionSettingList;
+    var hasCommissionData = commissionSettings != null && commissionSettings.Any();
+}
+
+@Html.InlineStyles("~/www/build/styles/css/account-overview.min.css")
+
+<div class="page-title">
+    <span class="text">@Lang.AccOverview</span>
+</div>
+
+<div class="info-group">
+    <div class="title">
+        <span class="text">@(Lang.Statistic + " " + Lang.For) @selectedMonth.ToString("MMMM-yyyy")</span>
+        <div class="form-group">
+            <div id="monthPicker" class="form-wrapper d-inline-block">
+                <input readonly id="MonthDate" data-original-date="@selectedMonth.ToString("MM/dd/yyyy")" class="form-control d-inline-block" type="text" value="@selectedMonth.ToString("MMM-yyyy")" />
+                <span class="glyphicon glyphicon-calendar" id="monthPickerTrigger"></span>
+            </div>
+            <div class="d-inline-block">
+                <button class="btn btn-submit" id="statisticsSubmit" type="button">@Lang.Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="table">
+        <table class="table-statistics">
+            <thead style="visibility: hidden; height: 0; border: none;">
+                <tr>
+                    <th width="30%"></th>
+                    <th width="10%"></th>
+                    <th width="20%"></th>
+                    <th width="40%"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Lang.NewSignup:</td>
+                    <td class="text-right">@statistics.NewSignups.ToStringNumber()</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>@Lang.TotalActive:</td>
+                    <td class="text-right">@statistics.ActivePlayers.ToStringNumber()</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>@Lang.Tqacsbc:</td>
+                    <td class="text-right">@statistics.QualifiedMembers.ToStringNumber()</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>@Lang.TotalDeposit:</td>
+                    <td class="text-right">@statistics.Deposit.ToStringMoneyWithSymbol()</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>@Lang.Turnover:</td>
+                    <td class="text-right">@statistics.Turnover.ToStringMoneyWithSymbol()</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="info-group">
+    <div class="title">
+        <span class="text">@(Lang.Statistic + " " + Lang.UpToNow)</span>
+    </div>
+
+    <div class="table">
+        <table class="table-statistics">
+            <thead style="visibility: hidden; height: 0;">
+                <tr>
+                    <th width="30%"></th>
+                    <th width="10%"></th>
+                    <th width="20%"></th>
+                    <th width="40%"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Lang.TotalPlay:</td>
+                    <td class="text-right">@statistics.TotalPlayers.ToStringNumber()</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>@Lang.Turnover:</td>
+                    <td class="text-right">@statistics.TurnoverUp.ToStringMoneyWithSymbol()</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>@Lang.TotalDeposit:</td>
+                    <td class="text-right">@statistics.DepositUp.ToStringMoneyWithSymbol()</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>@Lang.BalForward:</td>
+                    <td class="text-right">@statistics.BalanceBroughtForward.ToStringMoneyWithSymbol()</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="info-group">
+    <div class="title">
+        <span class="text">@Lang.CurrentCommissiSetting</span>
+    </div>
+    <div class="table">
+        <table>
+            <thead>
+                <tr>
+                    <th width="20%">@Lang.Product</th>
+                    <th width="5%">@Lang.Tier</th>
+                    <th width="25%">@Lang.NetWinLoss</th>
+                    <th width="20%">@Lang.QualifyingMem</th>
+                    <th width="20%">@Lang.Comm</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (hasCommissionData)
+                {
+                    var totalRow = commissionSettings.Count();
+                    var isFirstRow = true;
+                    for (var i = 0; i < totalRow; i++)
+                    {
+                        var item = commissionSettings.ElementAt(i);
+                        var isLastRow = i == totalRow - 1;
+                        var maxAmount = isLastRow ? "+" : " - " + item.MaxAmount.ToStringMoneyWithSymbol();
+                        var maxQm = isLastRow ? "+" : " - " + item.MaxQm.ToStringNumber();
+                        <tr>
+                            @if (isFirstRow)
+                            {
+                                <td class="bg-sportsbook text-center" rowspan="@totalRow">@Lang.AllProducts</td>
+                            }
+
+                            <td class="text-center">@item.TierId</td>
+                            <td class="text-right">@(item.MinAmount.ToStringMoneyWithSymbol())@maxAmount</td>
+                            <td class="text-right">@(item.MinQm.ToStringNumber())@maxQm</td>
+                            <td class="text-right">@(Convert.ToDouble(item.Commission * 100).ToString())%</td>
+                        </tr>
+
+                        isFirstRow = false;
+                    }
+                }
+            </tbody>
+        </table>
+
+        @if (!hasCommissionData)
+        {
+            <p class="text-center">@Lang.NoInfo</p>
+        }
+    </div>
+</div>
+
+@Html.InlineScripts("~/www/build/js/account-overview.js")

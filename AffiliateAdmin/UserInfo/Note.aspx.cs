@@ -1,13 +1,13 @@
 ﻿using System;
-using DNAide.Web;
 using DNAide.Core;
+using DNAide.Web;
 
 public partial class UserInfo_Note : IBCPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
         int intCustId = AppSettings.Session.AffId;
-        
+
         string strTpl = TemplateHandler.LoadTemplate("UserInfo/NoteList.htm");
         if (string.Compare(Request["ischild"], "1", true) == 0)
             TemplateHandler.ReplaceBlock(ref strTpl, "accoverview", string.Empty);
@@ -20,6 +20,9 @@ public partial class UserInfo_Note : IBCPage
         TemplateHandler.Assign(ref strTpl, "addnote", Resources.Lang.Add);
         TemplateHandler.Assign(ref strTpl, "cancel", Resources.Lang.Cancel);
         TemplateHandler.Assign(ref strTpl, "Delete", Resources.Lang.Delete);
+
+        TemplateHandler.Assign(ref strTpl, "noteConfirm", Resources.Lang.ErrNoteConfirm);
+        TemplateHandler.Assign(ref strTpl, "deleteNoteSuccess", Resources.Lang.ErrNoteDel);
         #endregion
 
         TemplateHandler.Assign(ref strTpl, "ischild", Request["ischild"]);
@@ -29,11 +32,11 @@ public partial class UserInfo_Note : IBCPage
         bool hasData = false;
         int rows = 0;
         TemplateHandler.ReplaceBlock(ref strTpl, "notelist", GenerateHTML.Note.GenNoteList(intCustId, pageIndex, CastAide.AsInt32(Request["slPageSize"], 20), ref hasData, ref rows));
-        if(!hasData)
+        if (!hasData)
             TemplateHandler.RemoveBlock(ref strTpl, "nocontent");
         string strUrlParam = "?approved=" + Request["approved"];
         TemplateHandler.Assign(ref strTpl, "approved-val", Request["approved"]);
-        
+
         #region Load SubPage
         string subPage = string.Empty;
         if (string.Compare(Request["approved"], "0", true) == 0)

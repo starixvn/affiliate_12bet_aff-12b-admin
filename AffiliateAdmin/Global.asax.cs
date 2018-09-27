@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web;
-using System.Web.Security;
-using System.Web.SessionState;
-using System.Data.SqlClient;
+using System.Web.Mvc;
+using Fanex.Affiliate.Admin.Core.Configurations;
 
 namespace AffiliateAdmin
 {
@@ -12,10 +10,15 @@ namespace AffiliateAdmin
     {
         void Application_Start(object sender, EventArgs e)
         {
+            MvcHandler.DisableMvcResponseHeader = true;
+
+            IoCConfig.Register();
             // Code that runs on application startup
             Sunplus.Agent.Configurations.AppSettings.Configuration.Load();
             // Code that runs on application startup
             Fanex.Data.Configuration.DbSettingProviderManager.Current.Start();
+
+            AreaRegistration.RegisterAllAreas();
         }
 
         void Application_End(object sender, EventArgs e)
@@ -34,20 +37,6 @@ namespace AffiliateAdmin
             }
 
             AffiliateAdmin.Business.Helpers.LogHelper.WriteError(ex);
-        }
-
-        void Session_Start(object sender, EventArgs e)
-        {
-            // Code that runs when a new session is started
-        }
-
-        void Session_End(object sender, EventArgs e)
-        {
-            // Code that runs when a session ends. 
-            // Note: The Session_End event is raised only when the sessionstate mode
-            // is set to InProc in the Web.config file. If session mode is set to StateServer 
-            // or SQLServer, the event is not raised.
-
         }
 
         protected void Application_AcquireRequestState(object sender, EventArgs e)

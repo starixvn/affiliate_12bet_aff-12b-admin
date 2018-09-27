@@ -12,7 +12,7 @@
    {
         if($('txtdep').value=='')
         {         
-            Common.alertError(top.fMenu.Msg.Department);
+            Common.alertError(MsgResource.requireDepartment);
             $('txtdep').focus();
             return false;
         }

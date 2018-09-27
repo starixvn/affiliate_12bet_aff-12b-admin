@@ -24,21 +24,19 @@ public partial class UserInfo_MemberActiveList : IBCPage
             TemplateHandler.RemoveBlock(ref strTpl, "active-button");
         }
         TemplateHandler.Assign(ref strTpl, "XsrfTokenFormValue", _XsrfTokenFormValue);
-        TemplateHandler.Assign(ref strTpl, "username-text", Resources.Lang.Username);        
+        TemplateHandler.Assign(ref strTpl, "username-text", Resources.Lang.Username);
         TemplateHandler.Assign(ref strTpl, "ibcusername-text", Resources.Lang.IBCUsername);
         TemplateHandler.Assign(ref strTpl, "fname", Resources.Lang.Fname);
         TemplateHandler.Assign(ref strTpl, "lname", Resources.Lang.Lname);
         TemplateHandler.Assign(ref strTpl, "ActivateAll", Resources.Lang.ActivateAll);
-        TemplateHandler.Assign(ref strTpl, "Activate", Resources.Lang.Active);        
-        TemplateHandler.Assign(ref strTpl, "ibccustid-text", Resources.Lang.IBCCustID);        
+        TemplateHandler.Assign(ref strTpl, "Activate", Resources.Lang.Active);
+        TemplateHandler.Assign(ref strTpl, "ibccustid-text", Resources.Lang.IBCCustID);
         TemplateHandler.Assign(ref strTpl, "CreateDate", Resources.Lang.CreateDate);
         TemplateHandler.Assign(ref strTpl, "search", "Check Status");
         TemplateHandler.Assign(ref strTpl, "pagepadd", "padl0");
-        //submenu      
-        TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.MemberLink, SubMenu.MemberText, 1, 0, string.Empty, "i_member.png"));
 
         try
-        {                        
+        {
             string search = string.Empty;
             string username = string.Empty, lstNotActivatedUser = string.Empty;
 
@@ -56,8 +54,8 @@ public partial class UserInfo_MemberActiveList : IBCPage
 
             #region activated already
 
-            string strContent2 = TemplateHandler.CopyBlock(strTpl, "content2");            
-            
+            string strContent2 = TemplateHandler.CopyBlock(strTpl, "content2");
+
             StringBuilder strBuild2 = new StringBuilder();
 
             if (!string.IsNullOrEmpty(username))
@@ -94,9 +92,9 @@ public partial class UserInfo_MemberActiveList : IBCPage
 
             TemplateHandler.ReplaceBlock(ref strTpl, "content2", strBuild2.ToString());
             #endregion
-           
+
             #region not activated        
-    
+
             string strContent1 = TemplateHandler.CopyBlock(strTpl, "content1");
 
             StringBuilder strBuild1 = new StringBuilder();
@@ -129,8 +127,8 @@ public partial class UserInfo_MemberActiveList : IBCPage
                     }
                 }
             }
-            TemplateHandler.Assign(ref strTpl, "notActivatedMembers", lstNotActivatedUser);                        
-            TemplateHandler.ReplaceBlock(ref strTpl, "content1", strBuild1.ToString());            
+            TemplateHandler.Assign(ref strTpl, "notActivatedMembers", lstNotActivatedUser);
+            TemplateHandler.ReplaceBlock(ref strTpl, "content1", strBuild1.ToString());
             #endregion
 
             #region not exists
@@ -138,7 +136,7 @@ public partial class UserInfo_MemberActiveList : IBCPage
             string str = string.Empty;
             string[] arr = search.Split(',');
             foreach (string item in arr)
-            {                
+            {
                 if (!string.IsNullOrEmpty(item.Trim()))
                 {
                     str += item.Trim() + ", ";
@@ -155,12 +153,12 @@ public partial class UserInfo_MemberActiveList : IBCPage
 
             #endregion
 
-            
-            
+
+
             //Add search bar            
             string strUserName = CastAide.AsString(Request["txtUsername"], string.Empty);
             strUserName = ((string.Compare(strUserName, Resources.Lang.Username, true) == 0 ? string.Empty : strUserName));
-            
+
 
             this.HtmlContent = strTpl;
         }

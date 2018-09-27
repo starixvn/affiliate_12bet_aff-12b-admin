@@ -1,17 +1,19 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" Inherits="AffiliateList" Codebehind="AffiliateList.aspx.cs" %>
-<!--js-->
-<script type="text/javascript" src="../App_Js/prototype.js"></script>
-<script type="text/javascript" src="../App_Js/RefreshTime.js"></script>
-<script src="../App_Js/Common.js" type="text/javascript"></script>
-<script type="text/javascript" src="../App_Js/IBCWnd/IBCWnd.js"></script>
-<script type="text/javascript">
+﻿<%@ Page Language="C#" MasterPageFile="~/Portal/Layout.Master" AutoEventWireup="true" Inherits="AffiliateList" Codebehind="AffiliateList.aspx.cs" %>
+
+<asp:Content ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+
+<asp:Content ContentPlaceHolderID="masterContent" runat="server" ID="mainContent">
+    <%=_htmlContent %>
+</asp:Content>
+
+<asp:Content ContentPlaceHolderID="script" runat="server">
+    <script type="text/javascript">
     window.onload = MyFocus;
     var time = 0;//set Timeout for clock refresh
     var timer = null;//set Timeout for choose refresh time
     var timePage = "";//set Timeout for go to page
-    function MyFocus() {
-        parent.frames['fMenu'].ActiveMenu('menu3');
-        
+    function MyFocus() {        
         //$("slPageSize").value = $("pagesize").value;
         $("slTime").value = $("timer").value;
         if($("slTime").value != "0")
@@ -38,11 +40,9 @@
             $('txtUsername').focus();
         }      
     }
-    function ViewGroup(groupid) {
-        if (groupid > 1000)
-            ibcWnd.open("../GroupSetting/EditGroup.aspx?groupid=" + groupid, 'Edit Commission Group for ' + $("u"+groupid).innerHTML, 150, 50, 755, 529, 'class1', 'class2');
-        else
-            ibcWnd.open("../GroupSetting/EditGroup.aspx?groupid=" + groupid, 'Edit Commission Group', 150, 50, 755, 529, 'class1', 'class2');
+    function ViewGroup(groupid, custId) {
+        var url = '<%=VirtualPathUtility.ToAbsolute("~/")%>' + 'Portal/CommissionGroup/AssignPrivateGroup?affId=' + custId;
+        ibcWnd.open(url, 'Edit Commission Group for ' + $("u" + groupid).innerHTML, 150, 50, 800, 529, 'class1', 'class2');
             
     }
     //Start favorite 
@@ -86,33 +86,8 @@
         }
         element.readOnly = false;
     }
-    //End favorite     
-    function ChangeGroup()
-    {
-        listChk = $$("div .chk");  
-        var i = 0;
-        var listAffID = "";
-        var count = 0;
-        var affid = 0;
-        for(i = 0; i < listChk.length; i++)
-        {
-            if (listChk[i].hasClassName("ic-check")) {
-                affid = listChk[i].id;
-                count++;
-            }
-        }
-        if (count == 1) {
-            ibcWnd.open("../GroupSetting/AssignGroup.aspx?affid=" + affid, 'Change Commission Group', 150, 50, 585, 270, 'class1', 'class2');
-        }
-        else if (count > 1) {
-            ibcWnd.open("../GroupSetting/AssignGroup.aspx", 'Change Commission Group', 150, 50, 585, 270, 'class1', 'class2');
-        }
-        else {
-            alert('Please select Affiliate(s) to change group!');
-        }
-            
-    }
-    //End change group block
+    //End favorite
+
     function CloseDiv() {
         $('divChangePass').style.display ='none';
     }
@@ -184,4 +159,4 @@
         ele.innerHTML = "<iframe src='" + url + "' style='display:none;'></iframe>";
     }
 </script>
-<!--/js-->
+</asp:Content>

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Data;
-using DNAide.Web;
 using AffiliateAdmin.Business.DataAccess;
 using DNAide.Core;
+using DNAide.Web;
 
-public partial class Media_ListText :IBCPage
+public partial class Media_ListText : IBCPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -54,14 +54,11 @@ public partial class Media_ListText :IBCPage
             TemplateHandler.Assign(ref temp, "paging-top", "");
             TemplateHandler.Assign(ref temp, "paging-bottom", "");
         }
-        TemplateHandler.Assign(ref temp, "submenu", SubMenu.GenSubMenu(
-            new string[] { "ListText.aspx", "ListBannerNew.aspx" },
-            new string[] { "Text List", "Banner List" },
-            0, totalBanner, Resources.Lang.MediaGallery, "i_media1.png"));
+
         TemplateHandler.Assign(ref temp, "minNo", minNo.ToString());
         TemplateHandler.Assign(ref temp, "maxNo", maxNo.ToString());
         TemplateHandler.Assign(ref temp, "page-val", currPage.ToString());
         TemplateHandler.Assign(ref temp, "Add-val", Resources.Lang.Add);
-        this.HtmlContent = temp;  
+        this.HtmlContent = temp;
     }
 }

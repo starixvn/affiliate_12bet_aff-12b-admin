@@ -51,10 +51,6 @@ public partial class AffiliateDomain : IBCPage
         }
 
         TemplateHandler.ReplaceBlock(ref list, "content", strcontent.ToString());
-        TemplateHandler.Assign(ref list, "submenu", SubMenu.GenSubMenu(SubMenu.DomainLink,
-                                                                        SubMenu.DomainText,
-                                                                        0, counter, Resources.Lang.Administrator,
-                                                                        "i_domain.jpg"));
         TemplateHandler.Assign(ref list, "ChooseConfirm", Resources.Lang.ConfirmDelAffDomain);
         TemplateHandler.Assign(ref list, "AddAffDomain-val", Resources.Lang.AddAffDomain);
 

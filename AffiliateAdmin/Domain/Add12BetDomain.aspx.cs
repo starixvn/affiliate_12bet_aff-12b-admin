@@ -15,6 +15,8 @@ public partial class Add12BetDomain : IBCPage
         TemplateHandler.Assign(ref list, "submit", Resources.Lang.Add);
         TemplateHandler.Assign(ref list, "cancel", Resources.Lang.Cancel);
 
+        TemplateHandler.Assign(ref list, "requireDomain", Resources.Lang.Err12BetDomain);
+
         this.HtmlContent = list;
     }
 }

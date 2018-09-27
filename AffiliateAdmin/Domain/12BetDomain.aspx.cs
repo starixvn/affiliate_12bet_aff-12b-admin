@@ -53,10 +53,6 @@ public partial class _12BetDomain : IBCPage
             }
 
             TemplateHandler.ReplaceBlock(ref list, "content", strcontent.ToString());
-            TemplateHandler.Assign(ref list, "submenu", SubMenu.GenSubMenu(SubMenu.DomainLink,
-                                                                            SubMenu.DomainText,
-                                                                            1, counter, Resources.Lang.Administrator,
-                                                                            "i_domain.jpg"));
             TemplateHandler.Assign(ref list, "ChooseConfirm", Resources.Lang.ConfirmDel12BetDomain);
             TemplateHandler.Assign(ref list, "Add12BetDomain-val", Resources.Lang.Add12BetDomain);
 

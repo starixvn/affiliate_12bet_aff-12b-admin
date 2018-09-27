@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = Lang.Product;
+    Layout = "~/Views/Shared/_LayoutBeforeLogin.cshtml";
+}
+
+@model Fanex.Affiliate.User.Core.ViewModels.ProductPageViewModel
+
+@{ 
+    var viewName = "~/Views/Product/_Content." + Model.CurrentLanguage + ".cshtml";
+}
+
+@section styles{
+    @Html.InlineStyles("~/www/build/styles/css/products.css")
+}
+
+<div class="content">
+    <div class="page-title">
+        <span class="text">@Lang.Product</span>
+    </div>
+
+    @{ Html.RenderPartial(viewName); }
+
+    @if (!Model.IsAuthenticated)
+    {
+        <div class="col-sm-offset-4 col-sm-5 signup-block">
+            <a href="@Url.Action("Index", "SignUp")" class="btn btn-link btn-block nounderline">@Lang.SignUpAffiliateProgramNow</a>
+        </div>
+    }
+    @RazorHelper.RenderMovingTopButton()
+</div>
+
