@@ -281,6 +281,8 @@
     <Compile Include="Filters\AjaxOnlyAttribute.cs" />
     <Compile Include="Filters\CustomAuthorize.cs" />
     <Compile Include="Filters\GlobalErrorHandlerAttribute.cs" />
+    <Compile Include="Infrastructure\HandleLegacyUrlRoute.cs" />
+    <Compile Include="Infrastructure\UrlSchema.cs" />
     <Compile Include="MetalModels\Attributes\RequiredByCheckedAttribute.cs" />
     <Compile Include="MetalModels\BetList\BetListCashoutDetailParam.cs" />
     <Compile Include="MetalModels\BetList\BetListNewParlayParam.cs" />
