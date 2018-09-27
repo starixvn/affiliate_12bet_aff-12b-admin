@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -15,7 +13,12 @@ namespace Fanex.Affiliate.User.Core.Infrastructure
 
         public HandleLegacyUrlRoute(IDictionary<string, UrlSchema> urlMap)
         {
-            this.urlMap = urlMap ?? throw new ArgumentNullException("urlMap");
+            if (urlMap == null)
+            {
+                throw new ArgumentNullException("urlMap");
+            }
+
+            this.urlMap = urlMap;
         }
 
         public override RouteData GetRouteData(HttpContextBase httpContext)
@@ -23,7 +26,6 @@ namespace Fanex.Affiliate.User.Core.Infrastructure
             var path = httpContext.Request.Path.ToLowerInvariant();
             if (path.EndsWith(".aspx"))
             {
-
                 var item = urlMap.Where(i => path.Contains(i.Key)).DefaultIfEmpty(urlMap.First())
                     .First().Value;
 
@@ -31,7 +33,6 @@ namespace Fanex.Affiliate.User.Core.Infrastructure
 
                 routeData.Values["controller"] = item.Controller;
                 routeData.Values["action"] = item.Action;
-
 
                 return routeData;
             }
