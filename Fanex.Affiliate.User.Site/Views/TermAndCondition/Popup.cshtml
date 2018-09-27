@@ -46,10 +46,6 @@
                         <span class="text">@Lang.TermAndCondition</span>
                     </div>
 
-                    <div class="adv">
-                        <img class="img-responsive" src="~/www/build/styles/Images/term-and-condition/termcondition.jpg" alt="Terms and Conditions" />
-                    </div>
-
                     @{ Html.RenderPartial(viewName); }
 
                     @RazorHelper.RenderMovingTopButton()
@@ -62,6 +58,7 @@
         </div>
     </div>
 
+    @Html.InlineScripts("~/www/build/js/lib/modernizr-webp.js")
     <script>
         window.onscroll = function () { scrollFunction() };
 
