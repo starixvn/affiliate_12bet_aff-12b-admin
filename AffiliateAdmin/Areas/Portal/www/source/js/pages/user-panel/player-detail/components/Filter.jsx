@@ -69,7 +69,7 @@ export default class Filter extends Component {
 
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                         <Label className="mr-sm-2">Month</Label>
-                        <MonthPicker minMonth={1} minYear={2009}
+                        <MonthPicker minMonth={12} minYear={2009}
                             selectedDropdownYear={monthDate.getFullYear()}
                             selectedMonth={monthDate.getMonth() + 1}
                             onSelect={this.handleSelectMonth}
