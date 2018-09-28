@@ -32,7 +32,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
 
             // Assert
             Assert.Equal(expectedMemberList, result);
-            Assert.Empty(actionResult.ViewName);
         }
 
         [Theory]
@@ -128,7 +127,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
 
             var controller = CreateController(memberRepository.Object);
 
-            const string ExpectedViewName = "~/Views/Member/_DataContent.cshtml";
+            const string ExpectedViewName = "~/Views/UserPanel/Member/_DataContent.cshtml";
 
             // Action
             var actionResult = controller.GetMemberList(new MemberParam()) as PartialViewResult;

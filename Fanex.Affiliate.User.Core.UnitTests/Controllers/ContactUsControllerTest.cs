@@ -128,7 +128,11 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             service.Setup(s => s.SendRequest(param, It.IsAny<EmailBaseParam>()))
                 .Returns(expectedResult)
                 .Callback<ContactUsParam, EmailBaseParam>((p, e) => passedParam = p);
-            var controller = CreateController(service.Object);
+
+            var captchaService = new Mock<ICaptchaService>();
+            captchaService.Setup(c => c.IsValid(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()))
+                .Returns(true);
+            var controller = CreateController(service.Object, captchaService: captchaService.Object);
 
             var expectedParam = JsonConvert.SerializeObject(CreateExpectedParam());
 
@@ -155,8 +159,11 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
                 .Returns(expectedResult)
                 .Callback<ContactUsParam, EmailBaseParam>((p, e) => passedParam = e);
 
+            var captchaService = new Mock<ICaptchaService>();
+            captchaService.Setup(c => c.IsValid(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()))
+                .Returns(true);
             var appSetting = Mock.Of<IAppSetting>(ap => ap.MailContact == Constant.DefaultMailContact && ap.MailCc == Constant.DefaultMailCc);
-            var controller = CreateController(service.Object, appSetting: appSetting);
+            var controller = CreateController(service.Object, appSetting: appSetting, captchaService: captchaService.Object);
 
             var expectedParam = JsonConvert.SerializeObject(new EmailBaseParam
             {
@@ -192,7 +199,11 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             UserSession expectedUserSession = null;
             sessionServiceMock.Setup(s => s.UserSession).Returns(expectedUserSession);
 
-            var controller = CreateController(service.Object, sessionService);
+            var captchaService = new Mock<ICaptchaService>();
+            captchaService.Setup(c => c.IsValid(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()))
+                .Returns(true);
+
+            var controller = CreateController(service.Object, sessionService, captchaService: captchaService.Object);
 
             // Action
             controller.Index(param);

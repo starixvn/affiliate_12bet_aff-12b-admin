@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web;
 using System.Web.Mvc;
 using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.Controllers;
@@ -17,11 +18,12 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
 
         [Theory]
         [InlineData(false, "/SignUp/Index", "javascript:;")]
-        [InlineData(true, "/UserPanel/Index/#AccountOverView", "/UserPanel/Index/#MediaGallery")]
+        [InlineData(true, "/UserPanel/Main/#AccountOverView", "/UserPanel/Main/#MediaGallery")]
         public void Index_CheckIsAuthenticated_ReturnCorrectViewModel(bool isAuthenticated, string expectedSignupLink, string expectedBannerlink)
         {
             // Arrange
-            var controller = CreateController(isAuthenticated: isAuthenticated);
+            var sessionService = MockingHelper.GetSessionService();
+            var controller = CreateController(isAuthenticated: isAuthenticated, sessionService: sessionService);
 
             var expectedResult = new HomeViewModel
             {
@@ -117,12 +119,19 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
                 mockRequest.Setup(r => r.Url).Returns(uri);
             }
 
+            var response = new Mock<HttpResponseBase>();
+            response.Setup(r => r.Cookies).Returns(new HttpCookieCollection());
+
             controller.ControllerContext = Mock.Of<ControllerContext>(ctx =>
-                ctx.HttpContext.Request == mockRequest.Object
+                ctx.HttpContext.Request == mockRequest.Object &&
+                ctx.HttpContext.Response == response.Object
             );
 
             var urlHelper = new Mock<UrlHelper>();
-            urlHelper.Setup(x => x.Action(It.IsAny<string>(), It.IsAny<string>())).Returns<string, string>((a, c) => $"/{c}/{a}");
+            urlHelper.Setup(x => x.Action(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns<string, string>((a, c) => $"/{c}/{a}");
+            urlHelper.Setup(x => x.Content(It.IsAny<string>()))
+                .Returns<string>(a => a.Substring(1, a.Length - 1));
             controller.Url = urlHelper.Object;
 
             return controller;
