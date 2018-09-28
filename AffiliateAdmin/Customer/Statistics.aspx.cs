@@ -54,7 +54,6 @@ public partial class Customer_Statistics : IBCPage
         TemplateHandler.Assign(ref strTpl, "currentMonth-val", DateTime.Now.Month);
 
         var playerDetailUrl = VirtualPathUtility.ToAbsolute("~/Portal/UserPanel/PlayerDetail/Index?isFromStatistics=true");
-        TemplateHandler.Assign(ref strTpl, "playerDetailUrl", playerDetailUrl);
 
         var playerDetailByMonthUrl = $"{playerDetailUrl}&monthDate={selectedMonth.ToString("MM/dd/yyyy")}";
         TemplateHandler.Assign(ref strTpl, "playerDetailByMonthUrl", playerDetailByMonthUrl);
