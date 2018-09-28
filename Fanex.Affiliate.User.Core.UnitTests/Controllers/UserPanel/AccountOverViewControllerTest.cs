@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.Controllers.UserPanel;
+using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
@@ -39,11 +41,14 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             accountOverViewRepository.Setup(c => c.GetCommissionSettingList(Constant.DefaultAffId, false))
                                 .Returns(new List<CommissionSetting>());
 
+
             var controller = MockingHelper.FakeController(
-                new AccountOverviewController(sessionService:sessionService, statisticsRepository:
-                statisticsRepository.Object, accountRepository: accountOverViewRepository.Object)
+                CreateController(
+                    sessionService: sessionService,
+                    statisticsRepository: statisticsRepository.Object,
+                    accountRepository: accountOverViewRepository.Object)
                 ) as AccountOverviewController;
-             
+
 
             var expectedResult = JsonConvert.SerializeObject(viewModel);
 
@@ -75,7 +80,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
                                 .Returns(new List<CommissionSetting>());
 
             var controller = MockingHelper.FakeController(
-                new AccountOverviewController(sessionService: sessionService, statisticsRepository:
+                CreateController(sessionService: sessionService, statisticsRepository:
                 statisticsRepository.Object, accountRepository: accountOverViewRepository.Object)
                 ) as AccountOverviewController;
 
@@ -94,6 +99,20 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
 
             // Assert
             Assert.Equal(expectedParamJson, result);
+        }
+
+        private static AccountOverviewController CreateController(
+            ISessionService sessionService = null,
+            ILanguageService languageService = null,
+            IStatisticsRepository statisticsRepository = null,
+            IAccountRepository accountRepository = null)
+        {
+            sessionService = sessionService ?? MockingHelper.GetSessionService();
+            languageService = languageService ?? Mock.Of<ILanguageService>();
+            statisticsRepository = statisticsRepository ?? Mock.Of<IStatisticsRepository>();
+            accountRepository = accountRepository ?? Mock.Of<IAccountRepository>();
+
+            return new AccountOverviewController(sessionService, languageService, statisticsRepository, accountRepository);
         }
     }
 }

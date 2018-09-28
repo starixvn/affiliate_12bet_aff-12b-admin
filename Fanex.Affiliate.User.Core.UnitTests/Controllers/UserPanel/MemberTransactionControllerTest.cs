@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.Controllers.UserPanel;
+using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
@@ -32,9 +33,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
                     OriginalAmount = "98.65"
                 }
             };
-            var service = new Mock<IMemberTransactionService>();
-            service.Setup(s => s.GetTransactionInfo(param)).Returns(transactionList);
-            var controller = new MemberTransactionController(service.Object);
+
+            var memberTransactionService = new Mock<IMemberTransactionService>();
+            memberTransactionService.Setup(s => s.GetTransactionInfo(param)).Returns(transactionList);
+            var controller = CreateController(memberTransactionService: memberTransactionService.Object);
 
             var expectedTotal = 98.65m;
 
@@ -60,13 +62,25 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             var transactionList = new List<Transaction>();
             var service = new Mock<IMemberTransactionService>();
             service.Setup(s => s.GetTransactionInfo(param)).Returns(transactionList);
-            var controller = new MemberTransactionController(service.Object);
+            var controller = CreateController(memberTransactionService: service.Object);
 
             // Action
             controller.Index(param);
 
             // Assert
             Assert.Equal(DateTime.Now.Date, param.Date.Value.Date); ;
+        }
+
+        private MemberTransactionController CreateController(
+            ISessionService sessionService = null,
+            ILanguageService languageService = null,
+            IMemberTransactionService memberTransactionService = null)
+        {
+            sessionService = sessionService ?? new Mock<ISessionService>().Object;
+            languageService = languageService ?? new Mock<ILanguageService>().Object;
+            memberTransactionService = memberTransactionService ?? new Mock<IMemberTransactionService>().Object;
+
+            return new MemberTransactionController(sessionService, languageService, memberTransactionService);
         }
     }
 }

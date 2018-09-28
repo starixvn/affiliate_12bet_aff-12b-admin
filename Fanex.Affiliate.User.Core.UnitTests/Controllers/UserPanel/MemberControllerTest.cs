@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
+using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.Controllers.UserPanel;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
@@ -7,7 +8,6 @@ using Fanex.Affiliate.User.Core.Enum;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
-using Fanex.Affiliate.User.Core.Utilities;
 using Moq;
 using Newtonsoft.Json;
 using Xunit;
@@ -167,12 +167,12 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         private MemberController CreateController(
             IMemberRepository memberRepository,
             ISessionService sessionService = null,
-            IAppSetting appSetting = null)
+            ILanguageService languageService = null)
         {
             sessionService = sessionService ?? MockingHelper.GetSessionService();
-            appSetting = appSetting ?? Mock.Of<IAppSetting>();
+            languageService = languageService ?? Mock.Of<ILanguageService>();
 
-            return new MemberController(sessionService, appSetting, memberRepository);
+            return new MemberController(sessionService, languageService, memberRepository);
         }
     }
 }

@@ -207,15 +207,17 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             ISessionService sessionService = null,
             IAppSetting appSetting = null,
             IAccountRepository accountRepository = null,
-            ICaptchaService captchaService = null)
+            ICaptchaService captchaService = null,
+            ILanguageService languageService = null)
         {
             contactService = contactService ?? Mock.Of<IContactService>();
             sessionService = sessionService ?? MockingHelper.GetSessionService();
             appSetting = appSetting ?? Mock.Of<IAppSetting>();
             accountRepository = accountRepository ?? Mock.Of<IAccountRepository>();
             captchaService = captchaService ?? Mock.Of<ICaptchaService>();
+            languageService = languageService ?? Mock.Of<ILanguageService>();
 
-            var controller = new ContactUsController(sessionService, appSetting, contactService, accountRepository, captchaService);
+            var controller = new ContactUsController(sessionService, appSetting, languageService, contactService, accountRepository, captchaService);
             var request = MockingHelper.GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();
             server.Setup(s => s.HtmlEncode(It.IsAny<string>())).Returns<string>(s => $"Encoded{s}");

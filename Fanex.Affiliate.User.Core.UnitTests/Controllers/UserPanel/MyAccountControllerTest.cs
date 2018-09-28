@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.Controllers;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO;
@@ -18,11 +19,15 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
     public class MyAccountControllerTest
     {
         private const string PlayerUserName = "player";
-        private MyAccountController FakeAccountController(ISessionService sessionService, IAccountRepository accountRepository)
+        private MyAccountController FakeAccountController(
+            ISessionService sessionService = null,
+            IAccountRepository accountRepository = null,
+            ILanguageService languageService = null)
         {
             var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
             var fakeAccountRepository = accountRepository ?? (new Mock<IAccountRepository>()).Object;
-            var controller = new MyAccountController(fakeSessionService, fakeAccountRepository);
+            var fakeLanguageService = languageService ?? Mock.Of<ILanguageService>();
+            var controller = new MyAccountController(fakeSessionService, fakeLanguageService, fakeAccountRepository);
             return MockingHelper.FakeController(controller) as MyAccountController;
         }
         [Fact]
@@ -132,7 +137,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             var accountRepository = new Mock<IAccountRepository>();
             accountRepository.Setup(ac => ac.GetAccountInfo(Constant.DefaultAffId)).Returns(new AccountInformation { PlayerUsername = PlayerUserName });
             accountRepository.Setup(ac => ac.GetDepositPlayerAccount(PlayerUserName)).Returns(new DepositAccountInfo { Success = 1 });
-            var controller = FakeAccountController(null,accountRepository.Object);
+            var controller = FakeAccountController(null, accountRepository.Object);
             var contactAppList = CreateContactAppList();
             contactAppList[0].Value = null;
 
@@ -170,7 +175,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             accountRepository.Setup(ac => ac.GetAccountInfo(Constant.DefaultAffId)).Returns(new AccountInformation { PlayerUsername = PlayerUserName });
             accountRepository.Setup(ac => ac.GetDepositPlayerAccount(PlayerUserName)).Returns(new DepositAccountInfo { Success = 0 });
             accountRepository.Setup(ac => ac.UpdateAccountInformation(It.IsAny<UpdateAccountParam>())).Returns(new ResultInfo { IsOk = true });
-            var controller = FakeAccountController(null,accountRepository.Object);
+            var controller = FakeAccountController(null, accountRepository.Object);
 
             // Action
             var actionResult = controller.Index(new AccountInformation { ContactAppList = CreateContactAppList() }) as JsonResult;
