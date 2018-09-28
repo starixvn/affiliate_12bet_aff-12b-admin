@@ -211,7 +211,7 @@ namespace DataHandler
             hsParam.Add("totalclicksbymobile", 0);
             hsParam.Add("newsignup", 0);
             hsParam.Add("totalplayer", 0);
-            return DbHelper.Execute("Aff_StatisticsSel", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
+            return DbHelper.Execute("Aff_StatisticsSel_xtest", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
         }
 
         //@Vinh
