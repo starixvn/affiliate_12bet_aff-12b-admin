@@ -30,7 +30,7 @@ var Site = (function ($) {
             window.location.href = url;
         },
         reload: function reload() {
-            window.location.reload();
+            window.location.reload(true);
         },
         displayResult: function displayResult(isSuccess, message, selector) {
             selector = selector || "#messageResult";

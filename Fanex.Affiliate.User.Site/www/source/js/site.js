@@ -28,7 +28,7 @@
             window.location.href = url;
         },
         reload: function () {
-            window.location.reload();
+            window.location.reload(true);
         },
         displayResult: function (isSuccess, message, selector) {
             selector = selector || "#messageResult";
