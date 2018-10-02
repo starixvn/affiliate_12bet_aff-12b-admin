@@ -52,7 +52,7 @@ public partial class UserInfo_UserLog : IBCPage
         TemplateHandler.Assign(ref strTpl, "page-val}", pageIndex);
 
         #region Load SubPage
-        TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.AffApprovedLink, SubMenu.AffApprovedText, 6, 0, SubMenu.AffApprovedText[7], "i_customer.png"));
+        TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.AffApprovedLink, SubMenu.AffApprovedText, 7, 0, SubMenu.AffApprovedText[7], "i_customer.png"));
         #endregion
 
         this.HtmlContent = strTpl;

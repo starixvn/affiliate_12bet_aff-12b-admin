@@ -1,0 +1,32 @@
+﻿@{
+    Layout = "~/Areas/Portal/Views/Shared/_UserPanelLayout.cshtml";
+}
+
+@using Fanex.Affiliate.Admin.Core.Constants
+@model Fanex.Affiliate.Admin.Core.ViewModels.UserPanel.PlayerDetailViewModel
+
+@section styles{
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/user-panel/player-detail.css")" rel="stylesheet" />
+}
+
+@section scripts{
+    <script type="text/javascript">
+        window.initialState = {
+            productList: @Html.Raw(Json.Encode(Model.ProductList)),
+            param: {ProductId: @Model.Param.ProductId, MonthDate: '@Model.Param.MonthDate.Value.ToString("MM/dd/yyyy")'},
+            isFromStatistics: @(Convert.ToBoolean(Request["isFromStatistics"]) ? 1 : 0)
+        }
+    </script>
+    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/userpanel/player-detail.js")"></script>
+}
+
+@section menu{
+    @{
+        var menuList = UserPanelConstant.UserPanelMenuList;
+        menuList.ElementAt(3).IsActive = true;
+        Html.RenderPartial("~/Areas/Portal/Views/Shared/_UserPanelMenu.cshtml", menuList);
+    }
+}
+
+<div id="root"></div>
+

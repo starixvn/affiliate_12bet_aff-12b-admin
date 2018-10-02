@@ -271,12 +271,13 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             Assert.Equal(passedParam.Language, Constant.DefaultLanguage);
         }
 
-        private NewsController CreateController(INewsService service, ISessionService sessionService = null)
+        private NewsController CreateController(INewsService newsService, ISessionService sessionService = null, ILanguageService languageService = null)
         {
             sessionService = sessionService ?? MockingHelper.GetSessionService();
+            languageService = languageService ?? new Mock<ILanguageService>().Object;
             var appSetting = Mock.Of<IAppSetting>();
 
-            return new NewsController(sessionService, appSetting, service);
+            return new NewsController(sessionService, languageService, newsService);
         }
     }
 }

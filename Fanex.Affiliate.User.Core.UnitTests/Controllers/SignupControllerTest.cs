@@ -210,16 +210,18 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         }
 
         private SignupController CreateController(
-            IAccountService service,
+            IAccountService accountService,
             ISessionService sessionService = null,
             IAppSetting appSetting = null,
-            ICaptchaService captchaService = null)
+            ICaptchaService captchaService = null,
+            ILanguageService languageService = null)
         {
             sessionService = sessionService ?? MockingHelper.GetSessionService();
             appSetting = appSetting ?? Mock.Of<IAppSetting>();
             captchaService = captchaService ?? Mock.Of<ICaptchaService>();
+            languageService = languageService ?? Mock.Of<ILanguageService>();
 
-            var controller = new SignupController(sessionService, appSetting, service, captchaService);
+            var controller = new SignupController(sessionService, appSetting, accountService, languageService, captchaService);
             var request = MockingHelper.GetHttpRequest();
             var server = new Mock<HttpServerUtilityBase>();
             server.Setup(s => s.HtmlEncode(It.IsAny<string>())).Returns<string>(s => $"Encoded{s}");

@@ -1,4 +1,6 @@
 ﻿using System.Web.Mvc;
+using Fanex.Affiliate.Admin.Core.Attributes;
+using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Services.UserPanel;
@@ -6,6 +8,7 @@ using Fanex.Affiliate.Admin.Core.ViewModels.UserPanel;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
+    [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class StatementHistoryController : Controller
     {
         private readonly IStatementHistoryService _statementHistoryService;
@@ -31,6 +34,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         }
 
         [HttpPost]
+        [ValidateAntiForgeryHeader]
         public ActionResult GetDailyEarning(DailyEarningParam param)
         {
             return Json(_statementHistoryService.GetDailyEarning(param));
@@ -49,6 +53,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         }
 
         [HttpPost]
+        [ValidateAntiForgeryHeader]
         public ActionResult GetDailyEarningDetail(DailyEarningParam param)
         {
             return Json(_statementHistoryService.GetDailyEarningDetail(param));

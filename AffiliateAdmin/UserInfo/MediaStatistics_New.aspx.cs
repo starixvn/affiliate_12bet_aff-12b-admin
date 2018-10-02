@@ -92,6 +92,6 @@ public partial class Report_MediaStatistics_New : IBCPage
             TemplateHandler.ReplaceBlock(ref strTpl, "nodata", Common.NoInfo(4));
         }
         //Assign Paging template
-        TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.AffApprovedLink, SubMenu.AffApprovedText, 7, 0, SubMenu.AffApprovedText[7], "i_report.png"));
+        TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.AffApprovedLink, SubMenu.AffApprovedText, 8, 0, SubMenu.AffApprovedText[7], "i_report.png"));
     }
 }

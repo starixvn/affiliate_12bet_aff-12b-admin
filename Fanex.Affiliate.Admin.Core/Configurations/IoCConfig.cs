@@ -73,6 +73,7 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
             builder.RegisterType<AffiliateReportService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<StatementHistoryRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<StatementHistoryService>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<PlayerDetailRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
     }
 }

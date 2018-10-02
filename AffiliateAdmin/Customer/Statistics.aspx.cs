@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web;
 using AffiliateAdmin.Business.DataAccess;
 using DNAide.Core;
 using DNAide.Web;
@@ -51,6 +52,11 @@ public partial class Customer_Statistics : IBCPage
         TemplateHandler.Assign(ref strTpl, "fmonth", selectedMonth.ToString("MMM-yyyy"));
         TemplateHandler.Assign(ref strTpl, "currentYear-val", DateTime.Now.Year);
         TemplateHandler.Assign(ref strTpl, "currentMonth-val", DateTime.Now.Month);
+
+        var playerDetailUrl = VirtualPathUtility.ToAbsolute("~/Portal/UserPanel/PlayerDetail/Index?isFromStatistics=true");
+
+        var playerDetailByMonthUrl = $"{playerDetailUrl}&monthDate={selectedMonth.ToString("MM/dd/yyyy")}";
+        TemplateHandler.Assign(ref strTpl, "playerDetailByMonthUrl", playerDetailByMonthUrl);
 
         //Assign info
         DbResult result = DataHandler.Affiliate.SelStatistics(intCustId, selectedMonth);
