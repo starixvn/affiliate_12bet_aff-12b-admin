@@ -143,7 +143,7 @@ var Login = (function ($) {
                             }
                         }
                         else {
-                            alert(response.Message);
+                            alert($("<div/>").html(response.Message).text());
                             if (onDialog) {
                                 $username.val("");
                                 $password.val("");

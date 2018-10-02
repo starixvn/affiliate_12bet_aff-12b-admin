@@ -56,7 +56,7 @@ var Layout = (function ($) {
                         window.location.href = Site.resolveRelativeUrl("Notify/PageNotFound");
                         break;
                     case 500:
-                        alert(window.Lang.ServerError);
+                        alert($("<div/>").html(window.Lang.ServerError).text());
                         break;
                     default:
                         break;
