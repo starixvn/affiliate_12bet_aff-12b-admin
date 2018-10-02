@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
 using Fanex.Affiliate.Admin.Core.Repository;
+using Fanex.Affiliate.Admin.Core.Repository.Marketing;
 using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
@@ -74,6 +75,7 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
             builder.RegisterType<StatementHistoryRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<StatementHistoryService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<PlayerDetailRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<LandingPageRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
     }
 }

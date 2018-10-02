@@ -1840,6 +1840,12 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\components\Filter.jsx" />
     <Content Include="Areas\Portal\Views\UserPanel\PlayerDetail\Index.cshtml" />
     <Content Include="Areas\Portal\www\source\style\pages\user-panel\player-detail.scss" />
+    <Content Include="Areas\Portal\Views\LandingPage\Index.cshtml" />
+    <Content Include="Areas\Portal\www\source\js\pages\marketing\landing-page\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\marketing\landing-page\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\marketing\landing-page\components\List.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\marketing\landing-page\components\AddEditPopup.jsx" />
+    <Content Include="Areas\Portal\www\source\style\pages\marketing\landing-page.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
