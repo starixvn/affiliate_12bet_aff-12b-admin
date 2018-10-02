@@ -13,7 +13,6 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@(string.IsNullOrEmpty(ViewBag.Title) ? Lang._12BET + " " + Lang.Affiliate : ViewBag.Title)</title>
@@ -70,7 +69,7 @@
                                         {
                                             var shortedCode = SystemLanguage.SupportedLanguage.ContainsKey(language.Code) ? SystemLanguage.SupportedLanguage[language.Code] : language.ShortedCode;
                                             <li>
-                                                <a href="javascript:;" class="language-item" data-option="@language.Code" data-option-secondary="@shortedCode"><i class="flag flag-@language.Code"></i>@language.NativeName</a>
+                                                <a href="javascript:;" class="language-item" data-option="@shortedCode"><i class="flag flag-@language.Code"></i>@language.NativeName</a>
                                             </li>
                                         }
                                     </ul>

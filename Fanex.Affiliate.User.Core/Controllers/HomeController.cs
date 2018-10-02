@@ -1,6 +1,5 @@
 ﻿using System.Web.Mvc;
 using Fanex.Affiliate.User.Core.BusinessService;
-using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels;
@@ -34,21 +33,6 @@ namespace Fanex.Affiliate.User.Core.Controllers
             };
 
             return View(viewModel);
-        }
-
-
-        [HttpPost]
-        public ActionResult ChangeLanguage(string languageCode)
-        {
-            var code = string.IsNullOrEmpty(languageCode) ? SystemLanguage.DefaultLanguageCode : languageCode;
-            if (SystemLanguage.IsValid(code))
-            {
-                SessionService.CurrentLanguage = code;
-                HttpContext.Response.Cookies.Add(new System.Web.HttpCookie("afffavoritelang", code));
-                LanguageService.SetCulture(code);
-            }
-
-            return Json(true);
         }
 
         private string GetPromotionLink()

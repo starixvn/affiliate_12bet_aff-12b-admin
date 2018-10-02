@@ -10,9 +10,12 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         public string GetFavoriteLanguage()
         {
             var preferedUrlLang = HttpContext.Current.Request["lang"]?.Trim();
+            var preferedLang = SystemLanguage.SupportedLanguage.FirstOrDefault(i => i.Value == preferedUrlLang).Key;
 
-            var preferedLangItem = SystemLanguage.SupportedLanguage.FirstOrDefault(i => i.Value == preferedUrlLang);
-            var preferedLang = preferedLangItem.Key;
+            if (string.IsNullOrEmpty(preferedLang))
+            {
+                preferedLang = SystemLanguage.LanguageList.FirstOrDefault(l => l.ShortedCode == preferedUrlLang)?.Code;
+            }
 
             if (!string.IsNullOrEmpty(preferedLang) && SystemLanguage.IsValid(preferedLang))
             {

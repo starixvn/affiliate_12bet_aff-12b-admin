@@ -16,19 +16,7 @@ var Layout = (function ($) {
         initEvent: function () {
             $("#languageList").on("click", ".language-item", function () {
                 var $selectedItem = $(this);
-                var selectedValue = $selectedItem.data("option");
-
-                $.ajax({
-                    type: "POST",
-                    url: Site.resolveRelativeUrl("Home/ChangeLanguage"),
-                    data: { languageCode: selectedValue },
-                    dataType: "json",
-                    cache: false,
-                    contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-                    success: function (response) {
-                        Site.redirect(Site.resolveRelativeUrl('') + '?lang=' + $selectedItem.data('option-secondary'));
-                    }
-                });
+                Site.redirect(Site.resolveRelativeUrl('') + '?lang=' + $selectedItem.data('option'));
             });
 
             $('li.parent').on('mouseover', function () {
