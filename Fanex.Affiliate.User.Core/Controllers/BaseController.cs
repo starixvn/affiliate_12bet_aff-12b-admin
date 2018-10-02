@@ -28,6 +28,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
             var sessionLang = SessionService.CurrentLanguage;
             if (favoriteLanguage != sessionLang)
             {
+                requestContext.HttpContext.Response.Cookies.Add(new System.Web.HttpCookie("afffavoritelang", favoriteLanguage));
                 SessionService.CurrentLanguage = favoriteLanguage;
             }
             LanguageService.SetCulture(favoriteLanguage);

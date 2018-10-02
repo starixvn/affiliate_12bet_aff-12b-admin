@@ -9,10 +9,13 @@ namespace Fanex.Affiliate.User.Core.BusinessService
     {
         public string GetFavoriteLanguage()
         {
+            var preferedLang = HttpContext.Current.Request["lang"];
             var langCookie = HttpContext.Current.Request.Cookies["afffavoritelang"]?.Value;
-            return SystemLanguage.IsValid(langCookie) ? langCookie : SystemLanguage.DefaultLanguageCode;
 
+            var favoriteLang = SystemLanguage.IsValid(langCookie) ? langCookie : SystemLanguage.DefaultLanguageCode;
+            return !string.IsNullOrEmpty(preferedLang) && SystemLanguage.IsValid(preferedLang) ? preferedLang : favoriteLang;
         }
+
 
         public void SetCulture(string languageCode)
         {
