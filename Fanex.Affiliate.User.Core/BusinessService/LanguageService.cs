@@ -2,18 +2,26 @@
 using System.Threading;
 using System.Web;
 using Fanex.Affiliate.User.Core.Constants;
-
+using System.Linq;
 namespace Fanex.Affiliate.User.Core.BusinessService
 {
     public class LanguageService : ILanguageService
     {
         public string GetFavoriteLanguage()
         {
-            var preferedLang = HttpContext.Current.Request["lang"];
+            var preferedUrlLang = HttpContext.Current.Request["lang"]?.Trim();
+
+            var preferedLang = SystemLanguage.LanguageList.FirstOrDefault(i => i.ShortedCode == preferedUrlLang)?.Code;
+
+            if (!string.IsNullOrEmpty(preferedLang) && SystemLanguage.IsValid(preferedLang))
+            {
+                return preferedLang;
+            }
+
+
             var langCookie = HttpContext.Current.Request.Cookies["afffavoritelang"]?.Value;
 
-            var favoriteLang = SystemLanguage.IsValid(langCookie) ? langCookie : SystemLanguage.DefaultLanguageCode;
-            return !string.IsNullOrEmpty(preferedLang) && SystemLanguage.IsValid(preferedLang) ? preferedLang : favoriteLang;
+            return SystemLanguage.IsValid(langCookie) ? langCookie : SystemLanguage.DefaultLanguageCode;
         }
 
 
