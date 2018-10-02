@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Web;
@@ -10,7 +11,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         public string GetFavoriteLanguage()
         {
             var preferedUrlLang = HttpContext.Current.Request["lang"]?.Trim();
-            var preferedLang = SystemLanguage.SupportedLanguage.FirstOrDefault(i => i.Value == preferedUrlLang).Key;
+            var preferedLang = SystemLanguage.SupportedLanguage.FirstOrDefault(i => string.Equals(i.Value, preferedUrlLang, StringComparison.OrdinalIgnoreCase)).Key;
 
             if (!string.IsNullOrEmpty(preferedLang) && SystemLanguage.IsValid(preferedLang))
             {
