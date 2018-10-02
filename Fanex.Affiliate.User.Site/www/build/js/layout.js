@@ -26,7 +26,7 @@ var Layout = (function ($) {
                     cache: false,
                     contentType: "application/x-www-form-urlencoded; charset=UTF-8",
                     success: function (response) {
-                        location.reload(true);
+                        Site.redirect(Site.resolveRelativeUrl('') + '?lang=' + $selectedItem.data('option-secondary'));
                     }
                 });
             });
