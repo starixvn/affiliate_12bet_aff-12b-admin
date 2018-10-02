@@ -127,7 +127,7 @@
                 });
             }
             else {
-                alert(validationResult.message);
+                alert($("<div/>").html(validationResult.message).text());
             }
         },
 
