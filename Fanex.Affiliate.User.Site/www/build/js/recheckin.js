@@ -33,7 +33,7 @@ var ReCheckIn = (function ($) {
 
         kickout: function kickout(message) {
             clearTimeout(_handler);
-            window.alert(message);
+            alert($("<div/>").html(message).text());
 
             setTimeout(function () {
                 window.location.href = Site.resolveRelativeUrl("");

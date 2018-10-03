@@ -31,7 +31,7 @@
 
         kickout: function (message) {
             clearTimeout(_handler);
-            window.alert(message);
+            alert($("<div/>").html(message).text());
 
             setTimeout(function () {
                 window.location.href = Site.resolveRelativeUrl("");

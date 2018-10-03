@@ -16,8 +16,10 @@ namespace Fanex.Affiliate.User.Core.Constants
             ["vi-VN"] = "vn",
             ["id-ID"] = "id",
             ["hi-IN"] = "hi",
-            ["ko-KR"] = "ko"
+            ["ko-KR"] = "ko",
+            ["ja-JP"] = "jp"
         };
+        public static IDictionary<string, string> SupportedLanguage => _supportedLanguageForGoogleAnalytics;
 
         public const string DefaultLanguageCode = "en-US";
 
@@ -64,5 +66,7 @@ namespace Fanex.Affiliate.User.Core.Constants
         {
             return !string.IsNullOrEmpty(languageCode) && LanguageList.Any(l => Equals(l.Code, languageCode));
         }
+
+
     }
 }

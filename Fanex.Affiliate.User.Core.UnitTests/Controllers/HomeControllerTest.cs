@@ -76,26 +76,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             Assert.Equal(expectedResult, result.Promotion12BetLink);
         }
 
-        [Theory]
-        [InlineData("vi-VN")]
-        [InlineData("")]
-        public void ChangeLanguage_WhenCall_SetLanguageCorrectly(string languageCode)
-        {
-            // Arrange
-            var sessionService = MockingHelper.GetSessionService();
-            var languageService = new Mock<ILanguageService>();
-            var controller = CreateController(languageService: languageService.Object, sessionService: sessionService);
-
-            var expectedLanguagCode = string.IsNullOrEmpty(languageCode) ? "en-US" : languageCode;
-
-            // Action
-            controller.ChangeLanguage(languageCode);
-
-            // Assert
-            Assert.Equal(expectedLanguagCode, sessionService.CurrentLanguage);
-            languageService.Verify(l => l.SetCulture(expectedLanguagCode), Times.Once);
-        }
-
         private HomeController CreateController(
             ILanguageService languageService = null,
             ISessionService sessionService = null,

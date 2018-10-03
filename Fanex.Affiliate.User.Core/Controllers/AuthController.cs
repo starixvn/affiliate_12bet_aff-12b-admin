@@ -17,20 +17,17 @@ namespace Fanex.Affiliate.User.Core.Controllers
     public class AuthController : BaseController
     {
         private readonly IAuthService _authService;
-        private readonly ICookieService _cookieService;
         private readonly ICaptchaService _captchaService;
         private readonly IAppSetting _appSetting;
         public AuthController(
             ISessionService sessionService,
             IAppSetting appSetting,
             ILanguageService languageService,
-            ICookieService cookieService,
             IAuthService authService,
             ICaptchaService captchaService) : base(sessionService, languageService)
 
         {
             _authService = authService;
-            _cookieService = cookieService;
             _captchaService = captchaService;
             _appSetting = appSetting;
         }

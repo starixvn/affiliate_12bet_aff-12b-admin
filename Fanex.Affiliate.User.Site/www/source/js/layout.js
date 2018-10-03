@@ -16,19 +16,7 @@ var Layout = (function ($) {
         initEvent: function () {
             $("#languageList").on("click", ".language-item", function () {
                 var $selectedItem = $(this);
-                var selectedValue = $selectedItem.data("option");
-
-                $.ajax({
-                    type: "POST",
-                    url: Site.resolveRelativeUrl("Home/ChangeLanguage"),
-                    data: { languageCode: selectedValue },
-                    dataType: "json",
-                    cache: false,
-                    contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-                    success: function (response) {
-                        location.reload(true);
-                    }
-                });
+                Site.redirect(Site.resolveRelativeUrl('') + '?lang=' + $selectedItem.data('option'));
             });
 
             $('li.parent').on('mouseover', function () {
@@ -68,7 +56,7 @@ var Layout = (function ($) {
                         window.location.href = Site.resolveRelativeUrl("Notify/PageNotFound");
                         break;
                     case 500:
-                        alert(window.Lang.ServerError);
+                        alert($("<div/>").html(window.Lang.ServerError).text());
                         break;
                     default:
                         break;

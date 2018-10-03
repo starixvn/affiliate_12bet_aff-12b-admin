@@ -67,8 +67,9 @@
                                     <ul class="list-unstyled language-list">
                                         @foreach (var language in languageList)
                                         {
+                                            var shortedCode = SystemLanguage.SupportedLanguage.ContainsKey(language.Code) ? SystemLanguage.SupportedLanguage[language.Code] : language.ShortedCode;
                                             <li>
-                                                <a href="javascript:;" class="language-item" data-option="@language.Code"><i class="flag flag-@language.Code"></i>@language.NativeName</a>
+                                                <a href="javascript:;" class="language-item" data-option="@shortedCode"><i class="flag flag-@language.Code"></i>@language.NativeName</a>
                                             </li>
                                         }
                                     </ul>
