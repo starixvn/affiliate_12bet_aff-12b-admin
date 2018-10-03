@@ -1,5 +1,6 @@
 ﻿import React, { Component } from 'react';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
+import { Button } from 'reactstrap';
 
 export default class List extends Component {
     constructor(props) {
@@ -36,13 +37,14 @@ export default class List extends Component {
         return (
             <Row>
                 <Cell className="text-center">
-                    <input type="checkbox" checked={this.props.selectedPages[dataItem.Id]} onChange={(e) => this.props.onCheckItem(e.target.checked, dataItem.Id)}></input>
+                    <input type="checkbox" checked={this.props.selectedPages[dataItem.PageId]} 
+                        onChange={(e) => this.props.onCheckItem(e.target.checked, dataItem.PageId)} />
                 </Cell>
                 <Cell className="text-center" title={rowNumber}>{rowNumber}</Cell>
-                <Cell className="text-left" title={dataItem.Name}>{dataItem.Name}</Cell>
-                <Cell className="text-left" title={dataItem.Code}>{dataItem.Code}</Cell>
+                <Cell className="text-left" title={dataItem.Name}>{dataItem.PageName}</Cell>
+                <Cell className="text-left" title={dataItem.Code}>{dataItem.PageCode}</Cell>
                 <Cell className="text-center">
-                    <button className="btn btn-link" onClick={() => this.props.onEdit(dataItem.Id)}>
+                    <button className="btn btn-link" onClick={() => this.props.onEdit(dataItem.PageId)}>
                         <span className="oi oi-pencil text-secondary"></span>
                     </button>
                 </Cell>
@@ -57,8 +59,12 @@ export default class List extends Component {
             <div>
                 <div className="selection">
                     <span>Select:</span>
-                    <button type="button" className="btn btn-link text-dark font-weight-bold" onClick={() => this.props.onToggleAll(true)}><u>All</u></button>
-                    <button type="button" className="btn btn-link text-dark font-weight-bold" onClick={() => this.props.onToggleAll(false)}><u>None</u></button>
+                    <Button type="button" color="link" className="text-dark font-weight-bold" onClick={() => this.props.onToggleAll(true)}>
+                        <u>All</u>
+                    </Button>
+                    <Button type="button" color="link" className="text-dark font-weight-bold" onClick={() => this.props.onToggleAll(false)}>
+                        <u>None</u>
+                    </Button>
                 </div>
 
                 <div className="main-content my-2">

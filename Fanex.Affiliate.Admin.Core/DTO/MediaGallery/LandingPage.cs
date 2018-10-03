@@ -2,10 +2,10 @@
 {
     public class LandingPage
     {
-        public int Id { get; set; }
+        public int PageId { get; set; }
 
-        public string Name { get; set; }
+        public string PageName { get; set; }
 
-        public string Code { get; set; }
+        public string PageCode { get; set; }
     }
 }

@@ -42,7 +42,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [FunctionAuthorize(FunctionName = Function.Media, IsHost = true)]
         public ActionResult InsertLandingPage(InsertUpdateLandingPageParam param)
         {
-            return Json(param);
+            AssignCommonParam(param);
+
+            return Json(_landingPageService.InsertLandingPage(param));
         }
 
         [HttpPost]
@@ -50,7 +52,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [FunctionAuthorize(FunctionName = Function.Media, IsHost = true)]
         public ActionResult UpdateLandingPage(InsertUpdateLandingPageParam param)
         {
-            return Json(param);
+            AssignCommonParam(param);
+
+            return Json(_landingPageService.UpdateLandingPage(param));
         }
 
         [HttpPost]
@@ -58,7 +62,16 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [FunctionAuthorize(FunctionName = Function.Media, IsHost = true)]
         public ActionResult DeleteLandingPage(DeleteLandingPageParam param)
         {
-            return Json(param);
+            param.UserId = SessionService.UserId;
+            param.Ip = Request.UserHostAddress;
+
+            return Json(_landingPageService.DeleteLandingPage(param));
+        }
+
+        private void AssignCommonParam(InsertUpdateLandingPageParam param)
+        {
+            param.UserId = SessionService.UserId;
+            param.Ip = Request.UserHostAddress;
         }
     }
 }

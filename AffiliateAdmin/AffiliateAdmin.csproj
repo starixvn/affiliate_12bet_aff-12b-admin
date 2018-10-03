@@ -1526,6 +1526,7 @@
     <Content Include="Areas\Portal\www\dist\style\layout.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\affiliate-report.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\commission-group.css" />
+    <Content Include="Areas\Portal\www\dist\style\pages\media-gallery\landing-page.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\user-panel\player-detail.css" />
     <Content Include="Areas\Portal\www\dist\style\portalmain.css" />
     <Content Include="Areas\Portal\www\dist\style\user-panel-layout.css" />
@@ -1844,7 +1845,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\components\GridData.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\components\AddEditPopup.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\components\InsertUpdateForm.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\media-gallery\landing-page.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

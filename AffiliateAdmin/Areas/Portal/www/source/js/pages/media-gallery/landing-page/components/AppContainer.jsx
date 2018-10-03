@@ -1,9 +1,11 @@
 ﻿import React, { Component } from 'react';
 
-import { Modal, ModalHeader, ModalBody, Button } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 import AppLayout from '../../../../layouts/AppLayout';
 import GridData from './GridData';
+import InsertUpdateForm from './InsertUpdateForm';
+import Loader from '../../../../components/Loader';
 
 import { post } from '../../../../modules/ajaxRequest';
 
@@ -13,7 +15,9 @@ export default class AppContainer extends Component {
 
         this.state = {
             data: [],
-            selectedPages: []
+            selectedPages: {},
+            popupForm: null,
+            isShowLoader: false
         }
     }
 
@@ -21,35 +25,125 @@ export default class AppContainer extends Component {
         this.fetchData();
     }
 
+    toggleLoader(isShow) {
+        this.setState({ isShowLoader: !!isShow });
+    }
+
     fetchData = async () => {
+        this.toggleLoader(true);
         const url = 'Portal/LandingPage/GetLandingPageList';
         const response = await post(url);
         if (response) {
-            console.log(response.data);
             const selectedPages = this._convertSelectedPages(response.data);
-            this.setState({ data: response.data, selectedPages });
+            this.setState({ data: response.data, selectedPages, isShowLoader: false });
         }
         else {
-            console.log(response);
+            this.toggleLoader(false);
         }
     }
 
     _convertSelectedPages(dataList) {
         const selectedPages = {};
         for (let i = 0; i < dataList.length; i++) {
-            const itemId = dataList[i].Id;
+            const itemId = dataList[i].PageId;
             selectedPages[itemId] = false;
         }
 
         return selectedPages;
     }
 
-    onCheckItem = (isChecked, pageId) => {
-        this.setState((prevState => ({ selectedPages: Object.assign({}, prevState.selectedPages, { [pageId]: isChecked }) })), () => console.log(this.state.selectedPages));
+    handleHidePopup = () => {
+        this.setState({ popupForm: null });
     }
 
-    onEdit = (pageId) => {
-        console.log(pageId);
+    handleDelete = async () => {
+        this.toggleLoader(true);
+        const pageIdList = this._getSelectedPageIdList();
+
+        if (pageIdList.length === 0) {
+            return;
+        }
+
+        const url = 'Portal/LandingPage/DeleteLandingPage';
+        const param = {
+            PageIds: pageIdList.join(',')
+        }
+
+        const response = await post(url, param);
+        if (response) {
+            if (response.data.IsSuccessful) {
+                alert('Delete Landing Page Successfully');
+                this.fetchData();
+            }
+            else {
+                alert(response.data.Message);
+            }
+        }
+        else {
+            this.toggleLoader(false);
+        }
+    }
+
+    _getSelectedPageIdList() {
+        const { selectedPages } = this.state;
+
+        return Object.keys(selectedPages).reduce((accumulator, currentValue) => {
+            if (selectedPages[currentValue]) {
+                accumulator.push(currentValue);
+            }
+
+            return accumulator;
+        }, []);
+    }
+
+    handleSave = async (dataItem) => {
+        this.toggleLoader(true);
+        const param = Object.assign({}, dataItem);
+        const url = param.PageId ? 'Portal/LandingPage/UpdateLandingPage' : 'Portal/LandingPage/InsertLandingPage';
+
+        const response = await post(url, param);
+        if (response) {
+            if (response.data.IsSuccessful) {
+                const message = (param.PageId ? 'Update' : 'Insert') + ' Landing Page Successfully';
+                alert(message);
+                this.handleHidePopup();
+                this.fetchData();
+            }
+            else {
+                alert(response.data.Message);
+            }
+        }
+        else {
+            this.toggleLoader(false);
+        }
+    }
+
+    handleAdd = () => {
+        const data = {
+            PageName: '',
+            PageCode: ''
+        }
+
+        this.setState({ popupForm: (<InsertUpdateForm data={data} onCancel={this.handleHidePopup} onSave={this.handleSave} />) });
+    }
+
+    onEdit = async (pageId) => {
+        this.toggleLoader(true);
+        const url = 'Portal/LandingPage/GetLandingPageItem?pageId=' + pageId;
+        const response = await post(url);
+        if (response) {
+            this.setState({
+                popupForm: (<InsertUpdateForm onCancel={this.handleHidePopup} data={response.data} onSave={this.handleSave} />),
+                isShowLoader: false
+            });
+        }
+        else {
+            this.toggleLoader(false);
+        }
+    }
+
+    onCheckItem = (isChecked, pageId) => {
+        this.setState((prevState => ({ selectedPages: Object.assign({}, prevState.selectedPages, { [pageId]: isChecked }) })), () => console.log(this.state.selectedPages));
     }
 
     onToggleAll = (isCheckAll) => {
@@ -60,25 +154,35 @@ export default class AppContainer extends Component {
             return accumulator;
         }, {});
 
-        console.log(newSelectedPages);
         this.setState({ selectedPages: newSelectedPages });
     }
 
     render() {
-        const { data, selectedPages } = this.state;
+        const { data, selectedPages, popupForm, isShowLoader } = this.state;
+        const showPopup = popupForm !== null;
 
         return (
             <AppLayout>
+                <Loader show={isShowLoader} />
                 <div className="landing-page-container my-3">
                     <div className="action-container my-2">
-                        <Button outline type="button" color="danger" className="mr-2">Delete <span className="oi oi-x ml-2"></span></Button>
-                        <Button outline type="button">Add <span className="oi oi-plus ml-2"></span></Button>
+                        <Button outline type="button" color="danger" className="mr-2" onClick={this.handleDelete}>Delete <span className="oi oi-x ml-2"></span></Button>
+                        <Button outline type="button" onClick={this.handleAdd}>Add <span className="oi oi-plus ml-2"></span></Button>
                     </div>
                     <GridData dataList={data}
                         onCheckItem={this.onCheckItem}
                         onEdit={this.onEdit}
                         selectedPages={selectedPages}
                         onToggleAll={this.onToggleAll} />
+
+                    <Modal isOpen={showPopup} toggle={this.handleHidePopup} backdrop='static'>
+                        <ModalHeader toggle={this.handleHidePopup}><span className="iconpopup"></span>Landing Page</ModalHeader>
+                        <ModalBody>
+                            <div className="modal-body-wrapper">
+                                {popupForm}
+                            </div>
+                        </ModalBody>
+                    </Modal>
                 </div>
             </AppLayout>
         )

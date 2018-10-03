@@ -23,9 +23,9 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
                     {
                         result.Add(new LandingPage
                         {
-                            Id = Convert.ToInt32(reader["PageId"]),
-                            Name = Convert.ToString(reader["PageName"]),
-                            Code = Convert.ToString(reader["PageCode"])
+                            PageId = Convert.ToInt32(reader["PageId"]),
+                            PageName = Convert.ToString(reader["PageName"]),
+                            PageCode = Convert.ToString(reader["PageCode"])
                         });
                     }
                 }
@@ -49,9 +49,9 @@ namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
                     {
                         result = new LandingPage
                         {
-                            Id = Convert.ToInt32(reader["PageId"]),
-                            Name = Convert.ToString(reader["PageName"]),
-                            Code = Convert.ToString(reader["PageCode"])
+                            PageId = Convert.ToInt32(reader["PageId"]),
+                            PageName = Convert.ToString(reader["PageName"]),
+                            PageCode = Convert.ToString(reader["PageCode"])
                         };
                     }
                 }

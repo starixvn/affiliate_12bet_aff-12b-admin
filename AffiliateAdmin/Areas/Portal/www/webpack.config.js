@@ -31,10 +31,10 @@ module.exports = env => {
         },
         module: {
             rules: [{
-                    test: /\.(js|jsx)$/,
-                    use: "babel-loader",
-                    exclude: /(node_modules|bower_components)/
-                },
+                test: /\.(js|jsx)$/,
+                use: "babel-loader",
+                exclude: /(node_modules|bower_components)/
+            },
                 {
                     test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|eot|ttf)$/,
                     use: [{
@@ -58,11 +58,23 @@ module.exports = env => {
         module: {
             rules: [{
                 test: /\.s?[ac]ss$/,
-                use: [
-                    "style-loader",
-                    MiniCssExtractPlugin.loader,
-                    "css-loader",
-                    "sass-loader"
+                use: [{
+                        loader: 'style-loader',
+                    },
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                    },
+                    {
+                        loader: 'css-loader',
+                    }, {
+                        loader: 'resolve-url-loader',
+                    }, {
+                        loader: 'sass-loader',
+                        options: {
+                            sourceMap: true,
+                            sourceMapContents: false
+                        }
+                    }
                 ]
             }]
         },
