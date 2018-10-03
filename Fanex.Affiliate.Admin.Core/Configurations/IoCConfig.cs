@@ -10,6 +10,7 @@ using Fanex.Affiliate.Admin.Core.Repository.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
+using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Services.Report;
 using Fanex.Affiliate.Admin.Core.Services.UserPanel;
 using Fanex.Affiliate.Admin.Core.Utilities;
@@ -76,6 +77,7 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
             builder.RegisterType<StatementHistoryService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<PlayerDetailRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<LandingPageRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<LandingPageService>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
     }
 }

@@ -1843,7 +1843,7 @@
     <Content Include="Areas\Portal\Views\LandingPage\Index.cshtml" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\components\AppContainer.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\components\List.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\components\GridData.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\components\AddEditPopup.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\media-gallery\landing-page.scss" />
     <None Include="Properties\Settings.settings">

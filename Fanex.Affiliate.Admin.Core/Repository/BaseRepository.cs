@@ -1,4 +1,7 @@
-﻿using Fanex.Data;
+﻿using System;
+using System.Data;
+using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Data;
 
 namespace Fanex.Affiliate.Admin.Core.Repository
 {
@@ -7,6 +10,23 @@ namespace Fanex.Affiliate.Admin.Core.Repository
         protected internal virtual IObjectDb GetObjectDb(string spName, int timeout = 120)
         {
             return new ObjectDb(spName, timeout);
+        }
+
+        protected static void AssignResultOutputParam(IObjectDb objectDb)
+        {
+            objectDb.AddOutParameter("ErrCode", DbType.Int32, 4);
+            objectDb.AddOutParameter("ErrMsg", DbType.String, 2000);
+        }
+
+        protected static ResultInfo GetResultInfo(IObjectDb objectDb)
+        {
+            var code = objectDb.GetParameterValue("ErrCode");
+
+            return new ResultInfo
+            {
+                Code = code == DBNull.Value ? 0 : Convert.ToInt32(code),
+                Message = objectDb.GetParameterValue("ErrMsg").ToString()
+            };
         }
     }
 }
