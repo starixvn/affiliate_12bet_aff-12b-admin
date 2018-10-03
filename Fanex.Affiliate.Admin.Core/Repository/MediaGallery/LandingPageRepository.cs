@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Fanex.Affiliate.Admin.Core.DTO.Marketing;
+using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 
-namespace Fanex.Affiliate.Admin.Core.Repository.Marketing
+namespace Fanex.Affiliate.Admin.Core.Repository.MediaGallery
 {
     public class LandingPageRepository : ILandingPageRepository
     {

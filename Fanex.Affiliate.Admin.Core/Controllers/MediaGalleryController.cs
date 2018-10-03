@@ -9,9 +9,9 @@ using Fanex.Affiliate.Admin.Core.Services.Common;
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
     [FunctionAuthorize(FunctionName = Function.Media)]
-    public class MarketingController : BaseController
+    public class MediaGalleryController : BaseController
     {
-        public MarketingController(ISessionService sessionService) : base(sessionService)
+        public MediaGalleryController(ISessionService sessionService) : base(sessionService)
         {
         }
 

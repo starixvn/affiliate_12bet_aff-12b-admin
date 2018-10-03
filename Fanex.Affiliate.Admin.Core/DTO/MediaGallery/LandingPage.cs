@@ -1,4 +1,4 @@
-﻿namespace Fanex.Affiliate.Admin.Core.DTO.Marketing
+﻿namespace Fanex.Affiliate.Admin.Core.DTO.MediaGallery
 {
     public class LandingPage
     {

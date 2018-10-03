@@ -153,7 +153,7 @@
     <Compile Include="Controllers\ExchangeRateController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LandingPageController.cs" />
-    <Compile Include="Controllers\MarketingController.cs" />
+    <Compile Include="Controllers\MediaGalleryController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\PasswordController.cs" />
@@ -172,7 +172,7 @@
     <Compile Include="DTO\Email\EmailBase.cs" />
     <Compile Include="DTO\Email\WithdrawalEmail.cs" />
     <Compile Include="DTO\Language.cs" />
-    <Compile Include="DTO\Marketing\LandingPage.cs" />
+    <Compile Include="DTO\MediaGallery\LandingPage.cs" />
     <Compile Include="DTO\Product.cs" />
     <Compile Include="DTO\Report\AffiliateReportMain.cs" />
     <Compile Include="DTO\Report\AffiliateReportMainEntityResult.cs" />
@@ -210,8 +210,8 @@
     <Compile Include="Repository\ILanguageRepository.cs" />
     <Compile Include="Repository\IProductRepository.cs" />
     <Compile Include="Repository\LanguageRepository.cs" />
-    <Compile Include="Repository\Marketing\ILandingPageRepository.cs" />
-    <Compile Include="Repository\Marketing\LandingPageRepository.cs" />
+    <Compile Include="Repository\MediaGallery\ILandingPageRepository.cs" />
+    <Compile Include="Repository\MediaGallery\LandingPageRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="Repository\UserPanel\IPlayerDetailRepository.cs" />
     <Compile Include="Repository\UserPanel\IStatementHistoryRepository.cs" />

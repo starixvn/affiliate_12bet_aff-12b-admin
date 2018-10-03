@@ -52,7 +52,7 @@ public partial class Home : IBCPage
         TemplateHandler.Assign(ref content, "affdisapprovedlink", affLink + "?current=3");
         TemplateHandler.Assign(ref content, "affclosedlink", affLink + "?current=4");
 
-        var bannerLink = rootRelativeUrl + "Portal/Marketing";
+        var bannerLink = rootRelativeUrl + "Portal/MediaGallery";
         TemplateHandler.Assign(ref content, "bannerlink", bannerLink);
         TemplateHandler.Assign(ref content, "bannerimglink", bannerLink + "?typeoption=Image");
         TemplateHandler.Assign(ref content, "bannerflashlink", bannerLink + "?typeoption=Flash");
