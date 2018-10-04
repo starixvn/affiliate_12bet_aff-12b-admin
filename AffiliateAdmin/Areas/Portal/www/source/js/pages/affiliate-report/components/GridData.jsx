@@ -167,7 +167,7 @@ export class GridData extends Component {
                     header={this._renderHeader()}
                     body={this._renderDataSection(gridData)}
                     footer={this._renderDataSection([total])}
-                    containerPadding={40}
+                    containerPadding={20}
                     isPaging={true}
                     pageOption={this.props.pagingOption}
                     onPaging={this.handlePaging}
