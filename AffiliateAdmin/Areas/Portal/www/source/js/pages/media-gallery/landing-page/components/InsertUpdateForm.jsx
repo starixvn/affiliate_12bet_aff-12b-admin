@@ -2,7 +2,7 @@
 import { Col, Button, Form, FormGroup, Label, Input, FormFeedback } from 'reactstrap';
 
 const requiredErrorMessage = 'This field is required';
-const restrictedCharactersPattern = /[\\\/:\*\?"<>\|&%\.'#\[\]\+=]/;
+const restrictedCharactersPattern = /[;\/\?:@=&"<>#%{}\|\\^~\[\]`\s+]/;
 const maxLength = 50;
 const maxLengthErrorMessage = 'This field must not exceed 50 characters';
 
@@ -41,7 +41,7 @@ export default class InsertUpdateForm extends Component {
         if (!result.isValid) {
             result.message = !PageCode ? requiredErrorMessage :
                 (hasRestrictedCharacter ?
-                    'Special characters are not allowed <br/> (\/:*?"<>|&%.\'#[]+=)' :
+                    'Special characters are not allowed:<br/> the blank/empty space and ; / ? : @ = & " < > # % { } | \ ^ ~ [ ] `' :
                     maxLengthErrorMessage);
         }
 
