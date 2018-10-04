@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Text.RegularExpressions;
+using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.MediaGallery;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
@@ -8,6 +10,9 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 {
     public class LandingPageService : ILandingPageService
     {
+        private const string RestrictedCharacterPattern = "[\\/:*?\"<>|&%.\'#\\[\\]+=]";
+        private const string RestricedCharacterErrorMessage = "Special characters are not allowed (\\/:*?\"<>| &%.'#[]+=)";
+
         private readonly ILandingPageRepository _landingPageRepository;
 
         public LandingPageService(ILandingPageRepository landingPageRepository)
@@ -27,17 +32,40 @@ namespace Fanex.Affiliate.Admin.Core.Services.MediaGallery
 
         public ResultInfo InsertLandingPage(InsertUpdateLandingPageParam param)
         {
+            if (HasRestrictedCharacter(param.PageCode))
+            {
+                return new ResultInfo
+                {
+                    Code = Code.GeneralErrorCode,
+                    Message = RestricedCharacterErrorMessage
+                };
+            }
+
             return _landingPageRepository.InsertLandingPage(param);
         }
 
         public ResultInfo UpdateLandingPage(InsertUpdateLandingPageParam param)
         {
+            if (HasRestrictedCharacter(param.PageCode))
+            {
+                return new ResultInfo
+                {
+                    Code = Code.GeneralErrorCode,
+                    Message = RestricedCharacterErrorMessage
+                };
+            }
+
             return _landingPageRepository.UpdateLandingPage(param);
         }
 
         public ResultInfo DeleteLandingPage(DeleteLandingPageParam param)
         {
             return _landingPageRepository.DeleteLandingPage(param);
+        }
+
+        private static bool HasRestrictedCharacter(string input)
+        {
+            return Regex.IsMatch(input, RestrictedCharacterPattern);
         }
     }
 }

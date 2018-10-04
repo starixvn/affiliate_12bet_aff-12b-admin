@@ -57,30 +57,33 @@ export default class AppContainer extends Component {
     }
 
     handleDelete = async () => {
-        this.toggleLoader(true);
         const pageIdList = this._getSelectedPageIdList();
 
         if (pageIdList.length === 0) {
             return;
         }
 
-        const url = 'Portal/LandingPage/DeleteLandingPage';
-        const param = {
-            PageIds: pageIdList.join(',')
-        }
+        const isConfirmed = window.confirm('Are you sure to delete the selected items?');
+        if (isConfirmed) {
+            this.toggleLoader(true);
+            const url = 'Portal/LandingPage/DeleteLandingPage';
+            const param = {
+                PageIds: pageIdList.join(',')
+            }
 
-        const response = await post(url, param);
-        if (response) {
-            if (response.data.IsSuccessful) {
-                alert('Delete Landing Page Successfully');
-                this.fetchData();
+            const response = await post(url, param);
+            if (response) {
+                if (response.data.IsSuccessful) {
+                    alert('Delete Landing Page Successfully');
+                    this.fetchData();
+                }
+                else {
+                    alert(response.data.Message);
+                }
             }
             else {
-                alert(response.data.Message);
+                this.toggleLoader(false);
             }
-        }
-        else {
-            this.toggleLoader(false);
         }
     }
 
@@ -113,9 +116,8 @@ export default class AppContainer extends Component {
                 alert(response.data.Message);
             }
         }
-        else {
-            this.toggleLoader(false);
-        }
+
+        this.toggleLoader(false);
     }
 
     handleAdd = () => {
@@ -143,7 +145,9 @@ export default class AppContainer extends Component {
     }
 
     onCheckItem = (isChecked, pageId) => {
-        this.setState((prevState => ({ selectedPages: Object.assign({}, prevState.selectedPages, { [pageId]: isChecked }) })), () => console.log(this.state.selectedPages));
+        this.setState((prevState => ({ 
+            selectedPages: Object.assign({}, prevState.selectedPages, { [pageId]: isChecked }) 
+        })));
     }
 
     onToggleAll = (isCheckAll) => {

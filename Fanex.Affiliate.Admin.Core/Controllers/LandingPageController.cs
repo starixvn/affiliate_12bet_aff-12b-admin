@@ -1,6 +1,8 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
 using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.MetaModels.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
@@ -42,9 +44,18 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [FunctionAuthorize(FunctionName = Function.Media, IsHost = true)]
         public ActionResult InsertLandingPage(InsertUpdateLandingPageParam param)
         {
-            AssignCommonParam(param);
+            if (ModelState.IsValid)
+            {
+                AssignCommonParam(param);
 
-            return Json(_landingPageService.InsertLandingPage(param));
+                return Json(_landingPageService.InsertLandingPage(param));
+            }
+
+            return Json(new ResultInfo
+            {
+                Code = Code.GeneralErrorCode,
+                Message = string.Join("\n", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
+            });
         }
 
         [HttpPost]
@@ -52,9 +63,18 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [FunctionAuthorize(FunctionName = Function.Media, IsHost = true)]
         public ActionResult UpdateLandingPage(InsertUpdateLandingPageParam param)
         {
-            AssignCommonParam(param);
+            if (ModelState.IsValid)
+            {
+                AssignCommonParam(param);
 
-            return Json(_landingPageService.UpdateLandingPage(param));
+                return Json(_landingPageService.UpdateLandingPage(param));
+            }
+
+            return Json(new ResultInfo
+            {
+                Code = Code.GeneralErrorCode,
+                Message = string.Join("\n", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
+            });
         }
 
         [HttpPost]
@@ -62,10 +82,19 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [FunctionAuthorize(FunctionName = Function.Media, IsHost = true)]
         public ActionResult DeleteLandingPage(DeleteLandingPageParam param)
         {
-            param.UserId = SessionService.UserId;
-            param.Ip = Request.UserHostAddress;
+            if (ModelState.IsValid)
+            {
+                param.UserId = SessionService.UserId;
+                param.Ip = Request.UserHostAddress;
 
-            return Json(_landingPageService.DeleteLandingPage(param));
+                return Json(_landingPageService.DeleteLandingPage(param));
+            }
+
+            return Json(new ResultInfo
+            {
+                Code = Code.GeneralErrorCode,
+                Message = string.Join("\n", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
+            });
         }
 
         private void AssignCommonParam(InsertUpdateLandingPageParam param)
