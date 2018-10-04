@@ -37,9 +37,8 @@ export default class AppContainer extends Component {
             const selectedPages = this._convertSelectedPages(response.data);
             this.setState({ data: response.data, selectedPages, isShowLoader: false });
         }
-        else {
-            this.toggleLoader(false);
-        }
+
+        this.toggleLoader(false);
     }
 
     _convertSelectedPages(dataList) {
@@ -81,9 +80,8 @@ export default class AppContainer extends Component {
                     alert(response.data.Message);
                 }
             }
-            else {
-                this.toggleLoader(false);
-            }
+
+            this.toggleLoader(false);
         }
     }
 
@@ -139,9 +137,8 @@ export default class AppContainer extends Component {
                 isShowLoader: false
             });
         }
-        else {
-            this.toggleLoader(false);
-        }
+
+        this.toggleLoader(false);
     }
 
     onCheckItem = (isChecked, pageId) => {
