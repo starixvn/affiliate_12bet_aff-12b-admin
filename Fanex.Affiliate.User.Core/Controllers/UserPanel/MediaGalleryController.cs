@@ -4,12 +4,10 @@
     using System.Linq;
     using System.Web.Mvc;
     using Constants;
-    using DTO;
     using DTO.UserPanel;
     using Extensions;
     using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.CoreService;
-    using Fanex.Affiliate.User.Core.Repository.UserPanel;
     using Fanex.Affiliate.User.Core.Utilities;
     using Filters;
     using MetalModels.UserPanel;
@@ -17,15 +15,13 @@
 
     public class MediaGalleryController : BaseMarketingController
     {
-
         public MediaGalleryController(ISessionService sessionService, IAppSetting appSetting,
             ILanguageService languageService,
-            IMarketingService marketingService,
-            IAccountRepository accountRepository) :
-            base(sessionService, appSetting, languageService, marketingService, accountRepository)
+            IMarketingService marketingService) :
+            base(sessionService, appSetting, languageService, marketingService)
         {
-
         }
+
         [HttpGet]
         [AjaxOnly]
         public ActionResult Index()
@@ -36,7 +32,7 @@
 
             var selectedLanguage = userSession.PreferredLanguage;
             var selectedDomain = linkForm.DomainList.FirstOrDefault();
-            var selectedPage = linkForm.MemberSitePageList.First().Value;
+            var selectedPage = linkForm.MemberSitePageList.First().PageCode;
             var bannerSettingKey = userSession.PreferredLanguage.Replace("-", string.Empty).ToUpperInvariant();
 
             var bannerParam = new MarketingBannerParam
@@ -60,9 +56,8 @@
 
             ViewBag.TotalItem = bannerParam.Nrows;
 
-            return View("~/Views/UserPanel/Marketing/MediaGallery/index.cshtml", viewModel);
+            return View("~/Views/UserPanel/Marketing/MediaGallery/Index.cshtml", viewModel);
         }
-
 
         private IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam)
         {
@@ -73,7 +68,5 @@
 
             return MarketingService.GetBannerList(bannerParam);
         }
-
-
     }
 }

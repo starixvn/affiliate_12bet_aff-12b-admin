@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
-using Fanex.Affiliate.User.Core.ViewModels;
 
 namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 {
@@ -73,17 +71,6 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
                 IsOk = parameterSet.ErrCode == 0,
                 Message = parameterSet.ErrMsg
             };
-        }
-
-        public bool UserHasCasino(string userName, bool isInternal)
-        {
-            const string uSpKey = "Aff_AffiliateUser_UserHasCasinoSel";
-            var dbMode = isInternal ? DBMode.View : DBMode.Main;
-
-            using (var objectDb = new ObjectDBBuilder(uSpKey, dbMode))
-            {
-                return Convert.ToBoolean(objectDb.DB.ExecuteScalar(new { userName }));
-            }
         }
 
         public UserInfo GetUserInfoByEmail(UserInfoByEmailParam userInfoParam)

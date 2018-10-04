@@ -8,7 +8,6 @@
     using Extensions;
     using Fanex.Affiliate.User.Core.BusinessService;
     using Fanex.Affiliate.User.Core.CoreService;
-    using Fanex.Affiliate.User.Core.Repository.UserPanel;
     using Fanex.Affiliate.User.Core.Utilities;
     using Filters;
     using MetalModels.UserPanel;
@@ -19,17 +18,14 @@
     [CustomAuthorize]
     public class TextBoxController : BaseMarketingController
     {
-
         public TextBoxController(ISessionService sessionService,
             IAppSetting appSetting,
             ILanguageService languageService,
-            IMarketingService marketingService,
-            IAccountRepository accountRepository) : base(sessionService,
+            IMarketingService marketingService) : base(sessionService,
                 appSetting,
                 languageService,
-                marketingService, accountRepository)
+                marketingService)
         {
-
         }
 
         [HttpGet]
@@ -43,7 +39,7 @@
 
             var selectedLanguage = userSession.PreferredLanguage;
             var selectedDomain = linkForm.DomainList.FirstOrDefault();
-            var selectedPage = linkForm.MemberSitePageList.First().Value;
+            var selectedPage = linkForm.MemberSitePageList.First().PageCode;
 
             var textParam = new MarketingTextParam
             {
@@ -65,9 +61,8 @@
 
             ViewBag.TotalItem = textParam.Nrows;
 
-            return View("~/Views/UserPanel/Marketing/TextBox/index.cshtml", viewModel);
+            return View("~/Views/UserPanel/Marketing/TextBox/Index.cshtml", viewModel);
         }
-
 
         private IEnumerable<MarketingItem> GetTextList(MarketingTextParam textParam)
         {
@@ -78,11 +73,5 @@
 
             return MarketingService.GetTextList(textParam);
         }
-
-
-
-
-
-
     }
 }

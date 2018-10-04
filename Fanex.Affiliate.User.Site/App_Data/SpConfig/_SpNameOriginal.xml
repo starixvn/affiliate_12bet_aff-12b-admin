@@ -18,9 +18,6 @@
     <Setting Key="Aff_User_UserInfoUpd" SpName="Aff_User_UserInfoUpd" DbName="affiliate_12bet" />
     <Setting Key="Aff_AffiliateUpdPwd" SpName="Aff_AffiliateUpdPwd" DbName="affiliate_12bet" />
 
-    <Setting Key="Aff_AffiliateUser_UserHasCasinoSel" SpName="Aff_AffiliateUser_UserHasCasinoSel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_AffiliateUser_UserHasCasinoSel_view" SpName="Aff_AffiliateUser_UserHasCasinoSel" DbName="affiliate_12bet_view" />
-
     <Setting Key="Aff_User_GeneralInfo_Sel" SpName="Aff_User_GeneralInfo_Sel" DbName="affiliate_12bet" />
     <Setting Key="Aff_User_GeneralInfo_Sel_view" SpName="Aff_User_GeneralInfo_Sel" DbName="affiliate_12bet_view" />
 
@@ -47,6 +44,8 @@
     <Setting Key="Aff_BannerSel_1_view" SpName="Aff_BannerSel_1" DbName="affiliate_12bet_view" />
     <Setting Key="Aff_TextSel_1" SpName="Aff_TextSel_1" DbName="affiliate_12bet" />
     <Setting Key="Aff_TextSel_1_view" SpName="Aff_TextSel_1" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_Admin_LandingPage_Sel" SpName="Aff_Admin_LandingPage_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_LandingPage_Sel_view" SpName="Aff_Admin_LandingPage_Sel" DbName="affiliate_12bet_view" />
   </Function>
 
   <Function Name="Statistics">   

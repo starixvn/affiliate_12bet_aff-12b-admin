@@ -13,5 +13,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
         IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam, string uSpKey);
 
         IEnumerable<MarketingItem> GetTextList(MarketingTextParam textParam);
+
+        IEnumerable<LandingPage> GetLandingPageList(bool isInternal);
     }
 }

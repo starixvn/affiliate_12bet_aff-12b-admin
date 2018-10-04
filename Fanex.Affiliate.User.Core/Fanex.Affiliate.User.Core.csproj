@@ -243,7 +243,6 @@
     <Compile Include="DTO\ExtraUserInfo.cs" />
     <Compile Include="DTO\Language.cs" />
     <Compile Include="DTO\LatestHotNews.cs" />
-    <Compile Include="DTO\MemberSitePage.cs" />
     <Compile Include="DTO\Payment.cs" />
     <Compile Include="DTO\ProductItem.cs" />
     <Compile Include="DTO\Transaction.cs" />
@@ -255,6 +254,7 @@
     <Compile Include="DTO\UserPanel\DailyEarningResult.cs" />
     <Compile Include="DTO\UserPanel\DepositAccountInfo.cs" />
     <Compile Include="DTO\UserPanel\IbcPlayerAccountInsertResult.cs" />
+    <Compile Include="DTO\UserPanel\LandingPage.cs" />
     <Compile Include="DTO\UserPanel\LandingPageStatistics.cs" />
     <Compile Include="DTO\UserPanel\MarketingItem.cs" />
     <Compile Include="DTO\UserPanel\BannerType.cs" />

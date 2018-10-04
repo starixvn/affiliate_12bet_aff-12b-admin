@@ -5,7 +5,6 @@
     using System.Linq;
     using System.Web.Mvc;
     using Constants;
-    using DTO;
     using DTO.UserPanel;
     using Extensions;
     using Fanex.Affiliate.User.Core.BusinessService;
@@ -19,8 +18,8 @@
     public class LandingPageStatisticsController : BaseController
     {
         private readonly IStatisticsRepository _statisticsRepository;
-        private readonly IAccountRepository _accountRepository;
         private readonly IMarketingService _marketingService;
+
         public LandingPageStatisticsController(ISessionService sessionService,
             ILanguageService languageService,
             IStatisticsRepository statisticsRepository,
@@ -29,7 +28,6 @@
             ) : base(sessionService, languageService)
         {
             _statisticsRepository = statisticsRepository;
-            _accountRepository = accountRepository;
             _marketingService = marketingService;
         }
 
@@ -40,9 +38,6 @@
         {
             var userSession = SessionService.UserSession;
             var isInternal = SessionService.IsInternal;
-
-            var userHasCasino = _accountRepository.UserHasCasino(userSession.UserName, isInternal);
-            var memberSitePage = new MemberSitePage(userHasCasino);
 
             var now = DateTime.Now;
             var landingPageParam = new LandingPageStatisticsParam
@@ -56,7 +51,7 @@
             var viewModel = new LandingPageStatisticsViewModel
             {
                 LanguageList = GetLanguageList(),
-                MemberSitePageList = memberSitePage.PageList,
+                MemberSitePageList = _marketingService.GetLandingPageList(isInternal),
                 FromDate = landingPageParam.FromDate,
                 ToDate = landingPageParam.ToDate,
                 DataList = GetLandingPageStatisticsData(landingPageParam),

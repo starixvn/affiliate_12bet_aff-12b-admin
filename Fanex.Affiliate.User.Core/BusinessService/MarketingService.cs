@@ -128,6 +128,11 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return textList;
         }
 
+        public IEnumerable<LandingPage> GetLandingPageList(bool isInternal)
+        {
+            return _marketingRepository.GetLandingPageList(isInternal);
+        }
+
         private static string GenerateLink(LinkBaseParam linkParam, string shortedLanguageCode)
         {
             var selectedDomain = linkParam.SelectedDomain;
@@ -137,7 +142,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             var result = template.Replace("{scheme}", scheme)
                                 .Replace("{domain}", selectedDomain.DomainName)
                                 .Replace("{custid}", linkParam.AffId.ToString())
-                                .Replace("{target}", linkParam.SelectedPage)
+                                .Replace("{target}", HttpUtility.UrlEncode(linkParam.SelectedPage))
                                 .Replace("{lang}", shortedLanguageCode);
 
             return result;
