@@ -1,9 +1,9 @@
-﻿.main-container{
+﻿.main-container {
     padding-left: 10px;
     padding-right: 10px;
 }
 
-.report-title-container{
+.report-title-container {
     background: #cdd3d9;
     padding: 4px 15px;
     color: #333;
@@ -21,9 +21,16 @@
     background: #fff;
 }
 
-.icon-calendar{
+.icon-calendar {
     color: #627eab;
     font-size: 0.9rem;
     cursor: pointer;
     top: 3px;
+}
+
+.breadcrumb {
+    margin-bottom: 0;
+    margin-bottom: 0.5rem;
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
 }

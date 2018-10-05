@@ -13,8 +13,8 @@ class Filter extends Component {
     constructor(props) {
         super(props);
 
-        const now = new Date(this.props.currentDate);
-        const defaultMonth = { month: now.getMonth() + 1, year: now.getFullYear() };
+        this.now = new Date(this.props.currentDate);
+        const defaultMonth = { month: this.now.getMonth() + 1, year: this.now.getFullYear() };
 
         this.state = {
             userName: '',
@@ -23,21 +23,47 @@ class Filter extends Component {
             toMonth: defaultMonth,
             sortBy: defaultSortBy,
             isSortAscending: true,
-            selectedProductList: allProduct
+            selectedProductList: allProduct,
+            isGetAll: false
         }
+
+        this.cachedMainReportParam = null;
     }
 
     componentDidUpdate(prevProps) {
-        const { param, currentViewLevel } = this.props;
+        const { param, currentViewLevel, pagingOption } = this.props;
 
-        if (currentViewLevel !== prevProps.currentViewLevel || param !== prevProps.param) {
-            this.setState({ userName: param.UserName }, () => {
+        if (currentViewLevel !== prevProps.currentViewLevel) {
+            const callback = () => {
                 const { selectedProductList } = this.state;
                 const { productList } = this.props;
                 const isCheckedAllProduct = selectedProductList === allProduct || selectedProductList.split(',').length === productList.length;
                 const reportTitle = this._buildReportTitle(isCheckedAllProduct);
                 this.props.setReportTitle(reportTitle);
-            });
+            }
+
+            if (this._isMainView()) {
+                const { UserName, PreferredLanguage, FromDate, ToDate, SortType, SortDirectionType, ProductIds } = this.cachedMainReportParam;
+                const from = new Date(FromDate);
+                const to = new Date(ToDate);
+
+                this.setState({
+                    userName: UserName,
+                    selectedLanguage: PreferredLanguage,
+                    fromMonth: { month: from.getMonth() + 1, year: from.getFullYear() },
+                    toMonth: { month: to.getMonth() + 1, year: to.getFullYear() },
+                    sortBy: SortType,
+                    isSortAscending: SortDirectionType === 0,
+                    selectedProductList: ProductIds,
+                    isGetAll: false
+                }, callback);
+
+                this.cachedMainReportParam = Object.assign({}, this.cachedMainReportParam, {PageSize: pagingOption.PageSize});
+                this.props.setParam(this.cachedMainReportParam);
+            }
+            else {
+                this.setState({ userName: param.UserName }, callback);
+            }
         }
     }
 
@@ -61,6 +87,11 @@ class Filter extends Component {
 
     handleSelectFromMonth = (month, year) => {
         const fromMonth = { month, year };
+        if (!this._isMainView()) {
+            this.setState({ fromMonth });
+            return;
+        }
+
         const toMonthRange = this._getToMonthRange(fromMonth);
 
         const { min, max } = toMonthRange;
@@ -98,13 +129,20 @@ class Filter extends Component {
         this.setState({ sortBy: Number(event.target.value) });
     }
 
+    handleChangeGetAll = () => {
+        this.setState((prevState) => ({
+            isGetAll: !prevState.isGetAll
+        }))
+    }
+
     handleClickSearch = () => {
-        const { selectedProductList, selectedLanguage, fromMonth, toMonth, sortBy, isSortAscending, userName } = this.state;
+        const { selectedProductList } = this.state;
 
         if (selectedProductList === '') {
             return;
         }
 
+        const { selectedLanguage, fromMonth, toMonth, sortBy, isSortAscending, userName, isGetAll } = this.state;
         const { productList, pagingOption } = this.props;
 
         const isCheckedAllProduct = selectedProductList === allProduct || selectedProductList.split(',').length === productList.length;
@@ -120,7 +158,12 @@ class Filter extends Component {
             SortType: sortBy,
             SortDirectionType: isSortAscending ? 0 : 1,
             PageIndex: 1,
-            PageSize: pagingOption.PageSize
+            PageSize: pagingOption.PageSize,
+            IsGetAll: isGetAll
+        }
+
+        if (this._isMainView()) {
+            this.cachedMainReportParam = Object.assign({}, param);
         }
 
         this.props.setParam(param);
@@ -158,15 +201,21 @@ class Filter extends Component {
     }
 
     _getToMonthRange(from) {
+        if (!this._isMainView()) {
+            return {
+                min: Object.assign({}, minMonthRange),
+                max: { month: this.now.getMonth() + 1, year: this.now.getFullYear() }
+            };
+        }
+
         let min = Object.assign({}, from);
         let maxToMonth = from.month + 5;
         let maxToYear = maxToMonth > 12 ? from.year + 1 : from.year;
 
-        const now = new Date(this.props.currentDate);
         let actualMaxMonth = maxToMonth % 12;
 
-        const nowMonth = now.getMonth() + 1;
-        const nowYear = now.getFullYear();
+        const nowMonth = this.now.getMonth() + 1;
+        const nowYear = this.now.getFullYear();
 
         if (maxToYear > nowYear || actualMaxMonth > nowMonth && maxToYear === nowYear) {
             actualMaxMonth = nowMonth;
@@ -182,7 +231,7 @@ class Filter extends Component {
     }
 
     render() {
-        const { selectedLanguage, fromMonth, toMonth, sortBy, isSortAscending, selectedProductList, userName } = this.state;
+        const { selectedLanguage, fromMonth, toMonth, sortBy, isSortAscending, selectedProductList, userName, isGetAll } = this.state;
         const { languageList } = this.props;
 
         const productDataSource = this._getProductDataSource();
@@ -234,7 +283,8 @@ class Filter extends Component {
                             selectedDropdownYear={fromMonth.year}
                             selectedMonth={fromMonth.month}
                             onSelect={this.handleSelectFromMonth}
-                            iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)} />
+                            iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)}
+                            enable={!isGetAll} />
                     </FormGroup>
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                         <Label className="mr-sm-2">To</Label>
@@ -244,8 +294,19 @@ class Filter extends Component {
                             selectedYear={toMonth.year}
                             selectedMonth={toMonth.month}
                             onSelect={this.handleSelectToMonth}
-                            iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)} />
+                            iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)}
+                            enable={!isGetAll} />
                     </FormGroup>
+                    {
+                        this._isMainView() ? null : (
+                            <FormGroup check>
+                                <Label check>
+                                    Get All
+                                    <Input className="ml-1 mr-2" type="checkbox" checked={isGetAll} onChange={this.handleChangeGetAll} />
+                                </Label>
+                            </FormGroup>
+                        )
+                    }
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                         <Label for="SortBy" className="mr-sm-2">Sort By</Label>
                         <Input type="select" name="SortBy" id="SortBy" value={sortBy} onChange={this.handleChangeSortBy}>

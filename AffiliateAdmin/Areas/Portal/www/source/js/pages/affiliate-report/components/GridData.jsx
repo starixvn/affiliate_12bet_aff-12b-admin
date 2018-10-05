@@ -24,10 +24,10 @@ export class GridData extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        const { param, currentViewLevel } = this.props;
+        const { param } = this.props;
 
-        if (param !== prevProps.param || currentViewLevel !== prevProps.currentViewLevel) {
-            this.fetchData(this.props.param);
+        if (param !== prevProps.param) {
+            this.fetchData(param);
         }
     }
 
@@ -176,11 +176,12 @@ export class GridData extends Component {
     }
 
     handleViewMonthOnMonth = (UserName) => {
-        const { param } = this.props;
+        const { param, pagingOption } = this.props;
 
         const postParam = Object.assign({}, param, {
             UserName,
-            PageIndex: 1
+            PageIndex: 1,
+            PageSize: pagingOption.PageSize
         })
 
         this.props.setViewLevel(viewLevel.monthOnMonth);
@@ -214,6 +215,7 @@ export class GridData extends Component {
                     isPaging={true}
                     pageOption={this.props.pagingOption}
                     onPaging={this.handlePaging}
+                    adjustedHeight={30}
                 />
             </div>
         );

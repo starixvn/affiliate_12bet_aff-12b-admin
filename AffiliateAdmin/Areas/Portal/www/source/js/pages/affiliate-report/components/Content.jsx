@@ -7,7 +7,7 @@ import { Breadcrumb, BreadcrumbItem, Button } from 'reactstrap';
 import GridData from './GridData';
 import ReportTitle from '../../../components/ReportTitle';
 
-import { setParam, setViewLevel } from '../actions';
+import { setViewLevel } from '../actions';
 import { viewLevel } from '../modules/constants';
 
 export class Content extends Component {
@@ -17,7 +17,6 @@ export class Content extends Component {
 
     handleClickBreadcrumb = () => {
         this.props.setViewLevel(viewLevel.main);
-        this.props.setParam({ PageIndex: 1 });
     }
 
     render() {
@@ -47,7 +46,7 @@ function mapStateToProps({ reportTitle, currentViewLevel }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setParam, setViewLevel }, dispatch);
+    return bindActionCreators({ setViewLevel }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

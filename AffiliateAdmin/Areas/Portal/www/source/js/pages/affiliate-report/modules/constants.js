@@ -5,8 +5,8 @@ const sortByCommon = {
 }
 
 export const defaultSortBy = 1;
-export const sortByMainView = Object.assign({}, sortByCommon, { Affiliate: 1 });
-export const sortByMonthOnMonthView = Object.assign({}, sortByCommon, { Month: 1 });
+export const sortByMainView = Object.assign({}, { Affiliate: 1 }, sortByCommon);
+export const sortByMonthOnMonthView = Object.assign({}, { Month: 1 }, sortByCommon);
 
 export const allProduct = '0';
 
