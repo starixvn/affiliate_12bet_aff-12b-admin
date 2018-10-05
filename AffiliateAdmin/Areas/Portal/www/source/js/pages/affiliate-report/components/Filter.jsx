@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import MultipleSelect from '../../../components/multiple-select';
 import MonthPicker from '@9softstudio/react-monthpicker';
-import { sortByValues, allProduct, minMonthRange } from '../modules/constants';
+import { defaultSortBy, sortByMainView, sortByMonthOnMonthView, allProduct, minMonthRange, viewLevel } from '../modules/constants';
 import { setReportTitle, setParam } from '../actions';
 import { formatUnit } from '../../../modules/utils';
 
@@ -13,19 +13,36 @@ class Filter extends Component {
     constructor(props) {
         super(props);
 
-        this.searchedAffiliate = '';
-
         const now = new Date(this.props.currentDate);
         const defaultMonth = { month: now.getMonth() + 1, year: now.getFullYear() };
 
         this.state = {
+            userName: '',
             selectedLanguage: '',
             fromMonth: defaultMonth,
             toMonth: defaultMonth,
-            sortBy: sortByValues.Affiliate,
+            sortBy: defaultSortBy,
             isSortAscending: true,
             selectedProductList: allProduct
         }
+    }
+
+    componentDidUpdate(prevProps) {
+        const { param, currentViewLevel } = this.props;
+
+        if (currentViewLevel !== prevProps.currentViewLevel || param !== prevProps.param) {
+            this.setState({ userName: param.UserName }, () => {
+                const { selectedProductList } = this.state;
+                const { productList } = this.props;
+                const isCheckedAllProduct = selectedProductList === allProduct || selectedProductList.split(',').length === productList.length;
+                const reportTitle = this._buildReportTitle(isCheckedAllProduct);
+                this.props.setReportTitle(reportTitle);
+            });
+        }
+    }
+
+    _isMainView() {
+        return this.props.currentViewLevel === viewLevel.main;
     }
 
     handlePressEnter = (event) => {
@@ -35,7 +52,7 @@ class Filter extends Component {
     }
 
     handleChangeAffiliate = (event) => {
-        this.searchedAffiliate = event.target.value;
+        this.setState({ userName: event.target.value });
     }
 
     handleChangeLanguage = (event) => {
@@ -82,7 +99,7 @@ class Filter extends Component {
     }
 
     handleClickSearch = () => {
-        const { selectedProductList, selectedLanguage, fromMonth, toMonth, sortBy, isSortAscending } = this.state;
+        const { selectedProductList, selectedLanguage, fromMonth, toMonth, sortBy, isSortAscending, userName } = this.state;
 
         if (selectedProductList === '') {
             return;
@@ -95,7 +112,7 @@ class Filter extends Component {
         this.props.setReportTitle(reportTitle);
 
         const param = {
-            UserName: this.searchedAffiliate,
+            UserName: userName,
             FromDate: `${fromMonth.month}/1/${fromMonth.year}`,
             ToDate: `${toMonth.month}/1/${toMonth.year}`,
             PreferredLanguage: selectedLanguage,
@@ -111,17 +128,19 @@ class Filter extends Component {
 
     _buildReportTitle(isCheckedAllProduct) {
         const { languageList } = this.props;
-        const { selectedLanguage, fromMonth, toMonth } = this.state;
+        const { selectedLanguage, fromMonth, toMonth, userName } = this.state;
+        const isMainView = this._isMainView();
 
-        const userNameTitle = `${this.searchedAffiliate && '- USERNAME \'' + this.searchedAffiliate + '\''}`;
+        const userNameTitle = isMainView ? `${userName && '- USERNAME \'' + userName + '\''}` : (userName && '- ' + userName);
         const language = languageList[selectedLanguage] || 'All languages';
 
         const productList = this._getProductDataSource();
         const productName = isCheckedAllProduct ? 'All Products' : productList.filter(p => p.Checked).map(p => p.ProductName).join(',');
 
         const fromToTitle = `FROM ${formatUnit(fromMonth.month)}/${fromMonth.year} TO ${formatUnit(toMonth.month)}/${toMonth.year}`;
+        const reportName = isMainView ? 'AFFILIATE REPORT' : 'AFFILIATE REPORT MONTH ON MONTH';
 
-        return `AFFILIATE REPORT ${userNameTitle} - ${language} ${productName && '- ' + productName} - ${fromToTitle}`;
+        return `${reportName} ${userNameTitle} ${isMainView ? '- ' + language : ''} ${productName && '- ' + productName} - ${fromToTitle}`;
     }
 
     _getProductDataSource = () => {
@@ -148,7 +167,7 @@ class Filter extends Component {
 
         const nowMonth = now.getMonth() + 1;
         const nowYear = now.getFullYear();
-        
+
         if (maxToYear > nowYear || actualMaxMonth > nowMonth && maxToYear === nowYear) {
             actualMaxMonth = nowMonth;
             maxToYear = nowYear;
@@ -163,13 +182,14 @@ class Filter extends Component {
     }
 
     render() {
-        const { selectedLanguage, fromMonth, toMonth, sortBy, isSortAscending, selectedProductList } = this.state;
+        const { selectedLanguage, fromMonth, toMonth, sortBy, isSortAscending, selectedProductList, userName } = this.state;
         const { languageList } = this.props;
 
         const productDataSource = this._getProductDataSource();
         const isValidSelectedProduct = selectedProductList.length > 0;
 
         const toMonthRange = this._getToMonthRange(fromMonth);
+        const sortByData = this._isMainView() ? sortByMainView : sortByMonthOnMonthView;
 
         return (
             <div className="filter-container">
@@ -179,18 +199,21 @@ class Filter extends Component {
                         <Input type="text" name="Affiliate" id="Affiliate"
                             onKeyPress={this.handlePressEnter}
                             onChange={this.handleChangeAffiliate}
-                            defaultValue={this.searchedAffiliate} />
+                            value={userName} />
                     </FormGroup>
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                        <Input type="select" name="Language" id="Language" value={selectedLanguage} onChange={this.handleChangeLanguage}>
-                            <option value="">All Language</option>
-                            {
-                                Object.keys(languageList).map(lang => {
-                                    return (<option value={lang}>{languageList[lang]}</option>)
-                                })
-                            }
-                        </Input>
-                    </FormGroup>
+                    {
+                        this._isMainView() &&
+                        <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                            <Input type="select" name="Language" id="Language" value={selectedLanguage} onChange={this.handleChangeLanguage}>
+                                <option value="">All Language</option>
+                                {
+                                    Object.keys(languageList).map(lang => {
+                                        return (<option value={lang}>{languageList[lang]}</option>)
+                                    })
+                                }
+                            </Input>
+                        </FormGroup>
+                    }
                     <FormGroup className={"mb-2 mr-sm-2 mb-sm-0" + `${isValidSelectedProduct ? '' : ' multiple-select-wrapper is-invalid'}`}
                         style={{ width: 200 }}>
                         <MultipleSelect
@@ -227,8 +250,8 @@ class Filter extends Component {
                         <Label for="SortBy" className="mr-sm-2">Sort By</Label>
                         <Input type="select" name="SortBy" id="SortBy" value={sortBy} onChange={this.handleChangeSortBy}>
                             {
-                                Object.keys(sortByValues).map(k => {
-                                    return (<option value={sortByValues[k]}>{k}</option>);
+                                Object.keys(sortByData).map(k => {
+                                    return (<option value={sortByData[k]}>{k}</option>);
                                 })
                             }
                         </Input>
@@ -248,8 +271,8 @@ class Filter extends Component {
     }
 }
 
-function mapStateToProps({ productList, pagingOption, languageList, currentDate }) {
-    return Object.assign({}, { productList, pagingOption, languageList, currentDate });
+function mapStateToProps({ productList, pagingOption, languageList, currentDate, currentViewLevel, param }) {
+    return Object.assign({}, { productList, pagingOption, languageList, currentDate, currentViewLevel, param });
 }
 
 function mapDispatchToProps(dispatch) {
