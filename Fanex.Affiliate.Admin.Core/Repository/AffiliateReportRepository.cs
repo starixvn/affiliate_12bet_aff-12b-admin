@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Report;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Report;
@@ -18,18 +19,23 @@ namespace Fanex.Affiliate.Admin.Core.Repository
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                AssignMainReportParam(objectDb, param);
+                AssignCommonParam(objectDb, param);
+                objectDb.AddInParameter("PreferredLanguage", DbType.String, param.PreferredLanguage);
 
                 using (var reader = objectDb.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        dataList.Add(BuildReportMainItem(reader));
+                        var dataItem = (AffiliateReportMain)BuildDataItem(reader);
+                        dataItem.AffId = reader.HasColumn("AffId") ? Convert.ToInt32(reader["AffId"]) : 0;
+                        dataItem.UserName = reader.HasColumn("Username") ? Convert.ToString(reader["Username"]) : string.Empty;
+
+                        dataList.Add(dataItem);
                     }
 
                     if (reader.NextResult() && reader.Read())
                     {
-                        result.Total = BuildReportMainItem(reader);
+                        result.Total = (AffiliateReportMain)BuildDataItem(reader);
                     }
                 }
 
@@ -41,27 +47,61 @@ namespace Fanex.Affiliate.Admin.Core.Repository
             return result;
         }
 
-        private static void AssignMainReportParam(IObjectDb objectDb, AffiliateReportMainParam param)
+        public EntityResult<AffiliateReportDetail> GetDetailReportData(AffiliateReportMainParam param)
         {
-            objectDb.AddInParameter("Username", System.Data.DbType.String, param.UserName);
-            objectDb.AddInParameter("FromDate", System.Data.DbType.DateTime, param.FromDate);
-            objectDb.AddInParameter("ToDate", System.Data.DbType.DateTime, param.ToDate);
-            objectDb.AddInParameter("PreferredLanguage", System.Data.DbType.String, param.PreferredLanguage);
-            objectDb.AddInParameter("ProductIds", System.Data.DbType.String, param.ProductIds);
-            objectDb.AddInParameter("SortType", System.Data.DbType.Byte, param.SortType);
-            objectDb.AddInParameter("SortDirectionType", System.Data.DbType.Byte, param.SortDirectionType);
-            objectDb.AddInParameter("PageIndex", System.Data.DbType.Int32, param.PageIndex);
-            objectDb.AddInParameter("PageSize", System.Data.DbType.Int32, param.PageSize);
+            const string SpKey = "Aff_Admin_AffiliateReport_Detail_Sel";
+            var result = new EntityResult<AffiliateReportDetail>();
 
-            objectDb.AddOutParameter("NRows", System.Data.DbType.Int32, 4);
+            var dataList = new List<AffiliateReportDetail>();
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                AssignCommonParam(objectDb, param);
+                objectDb.AddInParameter("IsGetAll", DbType.Boolean, param.IsGetAll);
+
+                using (var reader = objectDb.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var dataItem = (AffiliateReportDetail)BuildDataItem(reader);
+                        dataItem.MonthDate = reader.HasColumn("MonthDate") ? Convert.ToDateTime(reader["MonthDate"]) : (DateTime?)null;
+                        dataItem.Description = reader.HasColumn("Description") ? Convert.ToString(reader["Description"]) : string.Empty;
+
+                        dataList.Add(dataItem);
+                    }
+
+                    if (reader.NextResult() && reader.Read())
+                    {
+                        result.Total = (AffiliateReportDetail)BuildDataItem(reader);
+                    }
+                }
+
+                result.MainData = dataList;
+                var totalRow = objectDb.GetParameterValue("NRows");
+                result.TotalItem = totalRow == DBNull.Value ? 0 : Convert.ToInt32(totalRow);
+            }
+
+            return result;
         }
 
-        private static AffiliateReportMain BuildReportMainItem(IDataReader reader)
+        private static void AssignCommonParam(IObjectDb objectDb, AffiliateReportMainParam param)
         {
-            return new AffiliateReportMain
+            objectDb.AddInParameter("Username", DbType.String, param.UserName);
+            objectDb.AddInParameter("FromDate", DbType.DateTime, param.FromDate);
+            objectDb.AddInParameter("ToDate", DbType.DateTime, param.ToDate);
+            objectDb.AddInParameter("ProductIds", DbType.String, param.ProductIds);
+            objectDb.AddInParameter("SortType", DbType.Byte, param.SortType);
+            objectDb.AddInParameter("SortDirectionType", DbType.Byte, param.SortDirectionType);
+            objectDb.AddInParameter("PageIndex", DbType.Int32, param.PageIndex);
+            objectDb.AddInParameter("PageSize", DbType.Int32, param.PageSize);
+
+            objectDb.AddOutParameter("NRows", DbType.Int32, 4);
+        }
+
+        private static AffiliateReportBase BuildDataItem(IDataReader reader)
+        {
+            return new AffiliateReportBase
             {
-                AffId = reader.HasColumn("AffId") ? Convert.ToInt32(reader["AffId"]) : 0,
-                UserName = reader.HasColumn("Username") ? Convert.ToString(reader["Username"]) : string.Empty,
                 TotalClick = Convert.ToInt32(reader["TotalClick"]),
                 UniqueClick = Convert.ToInt32(reader["UniqueClick"]),
                 Signup = Convert.ToInt32(reader["Signup"]),

@@ -172,9 +172,12 @@
     <Compile Include="DTO\Email\AffInformationEmail.cs" />
     <Compile Include="DTO\Email\EmailBase.cs" />
     <Compile Include="DTO\Email\WithdrawalEmail.cs" />
+    <Compile Include="DTO\EntityResult.cs" />
     <Compile Include="DTO\Language.cs" />
     <Compile Include="DTO\MediaGallery\LandingPage.cs" />
     <Compile Include="DTO\Product.cs" />
+    <Compile Include="DTO\Report\AffiliateReportBase.cs" />
+    <Compile Include="DTO\Report\AffiliateReportDetail.cs" />
     <Compile Include="DTO\Report\AffiliateReportMain.cs" />
     <Compile Include="DTO\Report\AffiliateReportMainEntityResult.cs" />
     <Compile Include="DTO\ResultInfo.cs" />

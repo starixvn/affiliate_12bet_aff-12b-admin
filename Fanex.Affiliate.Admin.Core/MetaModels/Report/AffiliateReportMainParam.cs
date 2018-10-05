@@ -12,6 +12,8 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Report
 
         public string PreferredLanguage { get; set; }
 
+        public bool IsGetAll { get; set; }
+
         public string ProductIds { get; set; }
 
         public byte SortType { get; set; }
@@ -21,7 +23,5 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Report
         public int PageIndex { get; set; }
 
         public int PageSize { get; set; }
-
-        public int Nrows { get; set; }
     }
 }

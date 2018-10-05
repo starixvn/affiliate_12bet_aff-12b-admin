@@ -1,4 +1,5 @@
 ﻿using System;
+using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Report;
 using Fanex.Affiliate.Admin.Core.MetaModels.Report;
 using Fanex.Affiliate.Admin.Core.Repository;
@@ -24,6 +25,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.Report
             var mainResult = _affiliateReportRepository.GetMainReportData(param);
 
             return mainResult;
+        }
+
+        public EntityResult<AffiliateReportDetail> GetDetailReportData(AffiliateReportMainParam param)
+        {
+            return _affiliateReportRepository.GetDetailReportData(param);
         }
 
         private static bool IsValidParam(AffiliateReportMainParam param)
