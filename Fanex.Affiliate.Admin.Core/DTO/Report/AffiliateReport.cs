@@ -1,7 +1,19 @@
-﻿namespace Fanex.Affiliate.Admin.Core.DTO.Report
+﻿using System;
+
+namespace Fanex.Affiliate.Admin.Core.DTO.Report
 {
-    public class AffiliateReportBase
+    public class AffiliateReport
     {
+        public int AffId { get; set; }
+
+        public string UserName { get; set; }
+
+        public DateTime? MonthDate { get; set; }
+
+        public string Description { get; set; }
+
+        public string MonthDateString => MonthDate.HasValue ? MonthDate.Value.ToString("MM/yyyy") : string.Empty;
+
         public int TotalClick { get; set; }
 
         public int UniqueClick { get; set; }

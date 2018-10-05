@@ -176,10 +176,7 @@
     <Compile Include="DTO\Language.cs" />
     <Compile Include="DTO\MediaGallery\LandingPage.cs" />
     <Compile Include="DTO\Product.cs" />
-    <Compile Include="DTO\Report\AffiliateReportBase.cs" />
-    <Compile Include="DTO\Report\AffiliateReportDetail.cs" />
-    <Compile Include="DTO\Report\AffiliateReportMain.cs" />
-    <Compile Include="DTO\Report\AffiliateReportMainEntityResult.cs" />
+    <Compile Include="DTO\Report\AffiliateReport.cs" />
     <Compile Include="DTO\ResultInfo.cs" />
     <Compile Include="DTO\SelectItem.cs" />
     <Compile Include="DTO\SubMenu.cs" />

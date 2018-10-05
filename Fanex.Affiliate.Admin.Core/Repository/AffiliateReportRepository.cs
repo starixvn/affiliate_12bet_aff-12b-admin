@@ -11,11 +11,11 @@ namespace Fanex.Affiliate.Admin.Core.Repository
 {
     public class AffiliateReportRepository : BaseRepository, IAffiliateReportRepository
     {
-        public AffiliateReportMainEntityResult GetMainReportData(AffiliateReportMainParam param)
+        public EntityResult<AffiliateReport> GetMainReportData(AffiliateReportMainParam param)
         {
             const string SpKey = "Aff_Admin_AffiliateReport_Sel";
-            var result = new AffiliateReportMainEntityResult();
-            var dataList = new List<AffiliateReportMain>();
+            var result = new EntityResult<AffiliateReport>();
+            var dataList = new List<AffiliateReport>();
 
             using (var objectDb = GetObjectDb(SpKey))
             {
@@ -26,16 +26,12 @@ namespace Fanex.Affiliate.Admin.Core.Repository
                 {
                     while (reader.Read())
                     {
-                        var dataItem = (AffiliateReportMain)BuildDataItem(reader);
-                        dataItem.AffId = reader.HasColumn("AffId") ? Convert.ToInt32(reader["AffId"]) : 0;
-                        dataItem.UserName = reader.HasColumn("Username") ? Convert.ToString(reader["Username"]) : string.Empty;
-
-                        dataList.Add(dataItem);
+                        dataList.Add(BuildDataItem(reader));
                     }
 
                     if (reader.NextResult() && reader.Read())
                     {
-                        result.Total = (AffiliateReportMain)BuildDataItem(reader);
+                        result.Total = BuildDataItem(reader);
                     }
                 }
 
@@ -47,12 +43,12 @@ namespace Fanex.Affiliate.Admin.Core.Repository
             return result;
         }
 
-        public EntityResult<AffiliateReportDetail> GetDetailReportData(AffiliateReportMainParam param)
+        public EntityResult<AffiliateReport> GetDetailReportData(AffiliateReportMainParam param)
         {
             const string SpKey = "Aff_Admin_AffiliateReport_Detail_Sel";
-            var result = new EntityResult<AffiliateReportDetail>();
+            var result = new EntityResult<AffiliateReport>();
 
-            var dataList = new List<AffiliateReportDetail>();
+            var dataList = new List<AffiliateReport>();
 
             using (var objectDb = GetObjectDb(SpKey))
             {
@@ -63,16 +59,12 @@ namespace Fanex.Affiliate.Admin.Core.Repository
                 {
                     while (reader.Read())
                     {
-                        var dataItem = (AffiliateReportDetail)BuildDataItem(reader);
-                        dataItem.MonthDate = reader.HasColumn("MonthDate") ? Convert.ToDateTime(reader["MonthDate"]) : (DateTime?)null;
-                        dataItem.Description = reader.HasColumn("Description") ? Convert.ToString(reader["Description"]) : string.Empty;
-
-                        dataList.Add(dataItem);
+                        dataList.Add(BuildDataItem(reader));
                     }
 
                     if (reader.NextResult() && reader.Read())
                     {
-                        result.Total = (AffiliateReportDetail)BuildDataItem(reader);
+                        result.Total = BuildDataItem(reader);
                     }
                 }
 
@@ -98,10 +90,14 @@ namespace Fanex.Affiliate.Admin.Core.Repository
             objectDb.AddOutParameter("NRows", DbType.Int32, 4);
         }
 
-        private static AffiliateReportBase BuildDataItem(IDataReader reader)
+        private static AffiliateReport BuildDataItem(IDataReader reader)
         {
-            return new AffiliateReportBase
+            return new AffiliateReport
             {
+                AffId = reader.HasColumn("AffId") ? Convert.ToInt32(reader["AffId"]) : 0,
+                UserName = reader.HasColumn("Username") ? Convert.ToString(reader["Username"]) : string.Empty,
+                MonthDate = reader.HasColumn("MonthDate") ? Convert.ToDateTime(reader["MonthDate"]) : (DateTime?)null,
+                Description = reader.HasColumn("Description") ? Convert.ToString(reader["Description"]) : string.Empty,
                 TotalClick = Convert.ToInt32(reader["TotalClick"]),
                 UniqueClick = Convert.ToInt32(reader["UniqueClick"]),
                 Signup = Convert.ToInt32(reader["Signup"]),

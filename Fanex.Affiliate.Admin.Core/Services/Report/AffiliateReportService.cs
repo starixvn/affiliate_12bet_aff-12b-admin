@@ -15,19 +15,17 @@ namespace Fanex.Affiliate.Admin.Core.Services.Report
             _affiliateReportRepository = affiliateReportRepository;
         }
 
-        public AffiliateReportMainEntityResult GetMainReportData(AffiliateReportMainParam param)
+        public EntityResult<AffiliateReport> GetMainReportData(AffiliateReportMainParam param)
         {
             if (!IsValidParam(param))
             {
-                return new AffiliateReportMainEntityResult();
+                return new EntityResult<AffiliateReport>();
             }
 
-            var mainResult = _affiliateReportRepository.GetMainReportData(param);
-
-            return mainResult;
+            return _affiliateReportRepository.GetMainReportData(param);
         }
 
-        public EntityResult<AffiliateReportDetail> GetDetailReportData(AffiliateReportMainParam param)
+        public EntityResult<AffiliateReport> GetDetailReportData(AffiliateReportMainParam param)
         {
             return _affiliateReportRepository.GetDetailReportData(param);
         }
