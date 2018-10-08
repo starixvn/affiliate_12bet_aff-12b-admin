@@ -58,10 +58,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [HttpGet]
         public ActionResult GetAffiliateList(string query)
         {
-            var fakeDataList = new[] { "12BETAFF001", "12BETAFF002" };
-            var userName = query.Trim();
-
-            return Json(fakeDataList, JsonRequestBehavior.AllowGet);
+            return Json(_affiliateReportService.SearchAffiliateList(query.Trim()), JsonRequestBehavior.AllowGet);
         }
     }
 }

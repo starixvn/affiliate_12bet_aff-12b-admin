@@ -78,7 +78,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Report
 
         public IList<string> SearchAffiliateList(string userName)
         {
-            const string SpKey = "";
+            const string SpKey = "Aff_AffiliateUsername_SearchEx";
             var result = new List<string>();
 
             using (var objectDb = GetObjectDb(SpKey))
@@ -87,7 +87,10 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Report
 
                 using (var reader = objectDb.ExecuteReader())
                 {
-                    result.Add(Convert.ToString(reader["UserName"]));
+                    while (reader.Read())
+                    {
+                        result.Add(Convert.ToString(reader["UserName"]));
+                    }
                 }
             }
 

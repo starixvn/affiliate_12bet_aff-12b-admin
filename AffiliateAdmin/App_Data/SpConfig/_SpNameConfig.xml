@@ -6,4 +6,5 @@
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_LandingPage_Upd" Suffix="_xtest"></item>
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_LandingPage_Del" Suffix="_xtest"></item>
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_AffiliateReport_Detail_Sel" Suffix="_xtest"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_AffiliateUsername_SearchEx" Suffix="_xtest"></item>
 </Root>
