@@ -215,7 +215,6 @@ export class GridData extends Component {
                     isPaging={true}
                     pageOption={this.props.pagingOption}
                     onPaging={this.handlePaging}
-                    adjustedHeight={30}
                 />
             </div>
         );

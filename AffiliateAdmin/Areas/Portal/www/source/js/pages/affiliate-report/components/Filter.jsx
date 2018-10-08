@@ -172,20 +172,37 @@ class Filter extends Component {
     }
 
     _buildReportTitle(isCheckedAllProduct) {
+        return this._isMainView() ? this._buildMainReportTitle(isCheckedAllProduct) : this._buildMonthOnMonthReportTile(isCheckedAllProduct);
+    }
+
+    _buildMainReportTitle(isCheckedAllProduct) {
         const { languageList } = this.props;
         const { selectedLanguage, fromMonth, toMonth, userName } = this.state;
-        const isMainView = this._isMainView();
 
-        const userNameTitle = isMainView ? `${userName && '- USERNAME \'' + userName + '\''}` : (userName && '- ' + userName);
+        const userNameTitle = `${userName && '- Username contains \'' + userName + '\''}`;
         const language = languageList[selectedLanguage] || 'All languages';
 
         const productList = this._getProductDataSource();
         const productName = isCheckedAllProduct ? 'All Products' : productList.filter(p => p.Checked).map(p => p.ProductName).join(',');
 
         const fromToTitle = `FROM ${formatUnit(fromMonth.month)}/${fromMonth.year} TO ${formatUnit(toMonth.month)}/${toMonth.year}`;
-        const reportName = isMainView ? 'AFFILIATE REPORT' : 'AFFILIATE REPORT MONTH ON MONTH';
+        const reportName = 'AFFILIATE REPORT ';
 
-        return `${reportName} ${userNameTitle} ${isMainView ? '- ' + language : ''} ${productName && '- ' + productName} - ${fromToTitle}`;
+        return `${reportName}${userNameTitle} ${'- ' + language} ${productName && '- ' + productName} - ${fromToTitle}`;
+    }
+
+    _buildMonthOnMonthReportTile(isCheckedAllProduct) {
+        const { fromMonth, toMonth, userName, isGetAll } = this.state;
+
+        const userNameTitle = userName && '- ' + userName;
+        const productList = this._getProductDataSource();
+        const productName = isCheckedAllProduct ? 'All Products' : productList.filter(p => p.Checked).map(p => p.ProductName).join(',');
+
+        const fromToTitle = isGetAll ? 'Get All Dates' :
+            `FROM ${formatUnit(fromMonth.month)}/${fromMonth.year} TO ${formatUnit(toMonth.month)}/${toMonth.year}`;
+        const reportName = 'MONTH ON MONTH ';
+
+        return `${reportName}${userNameTitle} ${productName && '- ' + productName} - ${fromToTitle}`;
     }
 
     _getProductDataSource = () => {

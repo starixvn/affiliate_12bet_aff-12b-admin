@@ -19,22 +19,23 @@ export class Content extends Component {
         this.props.setViewLevel(viewLevel.main);
     }
 
-    render() {
+    _buildReportTitle() {
         const { currentViewLevel, reportTitle } = this.props;
         const isMainView = currentViewLevel === viewLevel.main;
 
+        return isMainView ? reportTitle : (
+            <React.Fragment>
+                <a href="javascript:;" className="btn-link font-weight-bold" onClick={this.handleClickBreadcrumb}>AFFILIATE REPORT</a> > {reportTitle}
+            </React.Fragment>
+        )
+    }
+
+    render() {
+        const { reportTitle } = this.props;
+
         return (
             <div className="data-content my-2">
-                {
-                    !isMainView && (
-                        <Breadcrumb>
-                            <BreadcrumbItem><a href="javascript:;" className="btn-link" onClick={this.handleClickBreadcrumb}>Main</a></BreadcrumbItem>
-                            <BreadcrumbItem active={!isMainView}>Month On Month</BreadcrumbItem>
-                        </Breadcrumb>
-                    )
-                }
-
-                {reportTitle && <ReportTitle content={reportTitle} />}
+                {reportTitle && <ReportTitle content={this._buildReportTitle()} />}
                 <GridData />
             </div>
         );
