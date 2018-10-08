@@ -1984,6 +1984,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Portal\www\source\js\actions\" />
+    <Folder Include="Areas\Portal\www\source\js\components\auto-complete\" />
     <Folder Include="Areas\Portal\www\source\js\pages\affiliate-information\components\" />
     <Folder Include="Areas\Portal\www\source\js\reducers\" />
   </ItemGroup>

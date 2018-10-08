@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Report;
 using Fanex.Affiliate.Admin.Core.MetaModels.Report;
-using Fanex.Affiliate.Admin.Core.Repository;
+using Fanex.Affiliate.Admin.Core.Repository.Report;
 
 namespace Fanex.Affiliate.Admin.Core.Services.Report
 {
@@ -28,6 +29,15 @@ namespace Fanex.Affiliate.Admin.Core.Services.Report
         public EntityResult<AffiliateReport> GetDetailReportData(AffiliateReportMainParam param)
         {
             return _affiliateReportRepository.GetDetailReportData(param);
+        }
+
+        public IList<string> SearchAffiliateList(string userName)
+        {
+            const byte MinCharacterLength = 2;
+
+            return string.IsNullOrEmpty(userName) || userName.Length < MinCharacterLength ?
+                new List<string>() :
+                _affiliateReportRepository.SearchAffiliateList(userName);
         }
 
         private static bool IsValidParam(AffiliateReportMainParam param)

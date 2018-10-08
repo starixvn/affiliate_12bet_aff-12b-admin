@@ -5,9 +5,11 @@ import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import MultipleSelect from '../../../components/multiple-select';
 import MonthPicker from '@9softstudio/react-monthpicker';
+import AutoComplete from '../../../components/auto-complete';
+import { FormText } from 'reactstrap';
 import { defaultSortBy, sortByMainView, sortByMonthOnMonthView, allProduct, minMonthRange, viewLevel } from '../modules/constants';
 import { setReportTitle, setParam } from '../actions';
-import { formatUnit } from '../../../modules/utils';
+import { formatUnit, resolveClientUrl } from '../../../modules/utils';
 
 class Filter extends Component {
     constructor(props) {
@@ -58,7 +60,7 @@ class Filter extends Component {
                     isGetAll: false
                 }, callback);
 
-                this.cachedMainReportParam = Object.assign({}, this.cachedMainReportParam, {PageSize: pagingOption.PageSize});
+                this.cachedMainReportParam = Object.assign({}, this.cachedMainReportParam, { PageSize: pagingOption.PageSize });
                 this.props.setParam(this.cachedMainReportParam);
             }
             else {
@@ -238,20 +240,31 @@ class Filter extends Component {
         const isValidSelectedProduct = selectedProductList.length > 0;
 
         const toMonthRange = this._getToMonthRange(fromMonth);
-        const sortByData = this._isMainView() ? sortByMainView : sortByMonthOnMonthView;
+        const isMainView = this._isMainView();
+        const sortByData = isMainView ? sortByMainView : sortByMonthOnMonthView;
 
         return (
             <div className="filter-container">
                 <Form inline tag="div">
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                         <Label for="Affiliate" className="mr-sm-2">Affiliate</Label>
-                        <Input type="text" name="Affiliate" id="Affiliate"
-                            onKeyPress={this.handlePressEnter}
-                            onChange={this.handleChangeAffiliate}
-                            value={userName} />
+                        {
+                            isMainView ?
+                                (<Input type="text" name="Affiliate" id="Affiliate"
+                                    onKeyPress={this.handlePressEnter}
+                                    onChange={this.handleChangeAffiliate}
+                                    value={userName} />) :
+                                (
+                                    <AutoComplete url={resolveClientUrl('Portal/AffiliateReport/GetAffiliateList')}
+                                        onSelect={(value) => this.setState({ userName: value })}
+                                        onInput={(value) => this.setState({ userName: value })}
+                                        htmlAttributes={{ defaultValue: this.state.userName }}
+                                        characterCountToSearch={2} />
+                                )
+                        }
                     </FormGroup>
                     {
-                        this._isMainView() &&
+                        isMainView &&
                         <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                             <Input type="select" name="Language" id="Language" value={selectedLanguage} onChange={this.handleChangeLanguage}>
                                 <option value="">All Language</option>
@@ -298,7 +311,7 @@ class Filter extends Component {
                             enable={!isGetAll} />
                     </FormGroup>
                     {
-                        this._isMainView() ? null : (
+                        isMainView ? null : (
                             <FormGroup check>
                                 <Label check>
                                     Get All

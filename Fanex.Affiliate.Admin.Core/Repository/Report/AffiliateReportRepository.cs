@@ -7,7 +7,7 @@ using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Report;
 using Fanex.Data;
 
-namespace Fanex.Affiliate.Admin.Core.Repository
+namespace Fanex.Affiliate.Admin.Core.Repository.Report
 {
     public class AffiliateReportRepository : BaseRepository, IAffiliateReportRepository
     {
@@ -71,6 +71,24 @@ namespace Fanex.Affiliate.Admin.Core.Repository
                 result.MainData = dataList;
                 var totalRow = objectDb.GetParameterValue("NRows");
                 result.TotalItem = totalRow == DBNull.Value ? 0 : Convert.ToInt32(totalRow);
+            }
+
+            return result;
+        }
+
+        public IList<string> SearchAffiliateList(string userName)
+        {
+            const string SpKey = "";
+            var result = new List<string>();
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                objectDb.AddInParameter("UserName", DbType.String, userName);
+
+                using (var reader = objectDb.ExecuteReader())
+                {
+                    result.Add(Convert.ToString(reader["UserName"]));
+                }
             }
 
             return result;

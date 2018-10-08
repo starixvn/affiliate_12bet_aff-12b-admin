@@ -54,5 +54,14 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         {
             return Json(_affiliateReportService.GetDetailReportData(param));
         }
+
+        [HttpGet]
+        public ActionResult GetAffiliateList(string query)
+        {
+            var fakeDataList = new[] { "12BETAFF001", "12BETAFF002" };
+            var userName = query.Trim();
+
+            return Json(fakeDataList, JsonRequestBehavior.AllowGet);
+        }
     }
 }
