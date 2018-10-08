@@ -43,27 +43,16 @@ export class GridData extends Component {
             const { MainData, Total, TotalItem } = response.data;
 
             this.setState({ gridData: MainData, total: Total });
-            this.props.setPagingOption({ TotalItem, PageIndex: param.PageIndex });
+            this.props.setPagingOption({ TotalItem, PageIndex: param.PageIndex, PageSize: param.PageSize });
         }
         this.props.toggleLoader(false);
     }
 
     _renderHeader() {
-        const firstColName = this._isMainView() ? 'Affiliate' : 'Month';
+        const isMainView = this._isMainView();
+        const firstColName = isMainView ? 'Affiliate' : 'Month';
 
-        return [
-            <Row>
-                <Cell header={true} colWidth={120} rowSpan="2" title={firstColName}>{firstColName}</Cell>
-                <Cell header={true} colWidth={70} rowSpan="2" title="Total Click">Total Click</Cell>
-                <Cell header={true} colWidth={70} rowSpan="2" title="Unique Click">Unique Click</Cell>
-                <Cell header={true} colWidth={65} rowSpan="2" title="Signup">Signup</Cell>
-                <Cell header={true} colWidth={50} rowSpan="2" title="FDM">FDM</Cell>
-                <Cell header={true} colWidth={60} rowSpan="2" title="Active Member">Active Member</Cell>
-                <Cell header={true} colWidth={60} rowSpan="2" title="Qualified Member">Qualified Member</Cell>
-                <Cell header={true} colSpan="9" title="Member Statistics">Member Statistics</Cell>
-                <Cell header={true} colSpan="5" title="Affiliate Statistics">Affiliate Statistics</Cell>
-                {this._isMainView() && (<Cell header={true} colWidth={50} rowSpan="2" title="Month on Month">Month on Month</Cell>)}
-            </Row>,
+        const secondRow = (
             <Row>
                 <Cell header={true} colWidth={75} title="Deposit">Deposit</Cell>
                 <Cell header={true} colWidth={75} title="Withdrawal">Withdrawal</Cell>
@@ -78,8 +67,26 @@ export class GridData extends Component {
                 <Cell header={true} colWidth={60} title="Comm%">Comm%</Cell>
                 <Cell header={true} colWidth={80} title="Earning">Earning</Cell>
                 <Cell header={true} colWidth={80} title="Withdrawal">Withdrawal</Cell>
-                <Cell header={true} colWidth={70} title="Adjustment">Adjustment</Cell>
+                {isMainView && (<Cell header={true} colWidth={70} title="Adjustment">Adjustment</Cell>)}
                 <Cell header={true} colWidth={100} title="Balance B/F">Balance B/F</Cell>
+            </Row>
+        );
+
+        return [
+            <Row>
+                <Cell header={true} colWidth={120} rowSpan="2" title={firstColName}>{firstColName}</Cell>
+                <Cell header={true} colWidth={70} rowSpan="2" title="Total Click">Total Click</Cell>
+                <Cell header={true} colWidth={70} rowSpan="2" title="Unique Click">Unique Click</Cell>
+                <Cell header={true} colWidth={65} rowSpan="2" title="Signup">Signup</Cell>
+                <Cell header={true} colWidth={50} rowSpan="2" title="FDM">FDM</Cell>
+                <Cell header={true} colWidth={60} rowSpan="2" title="Active Member">Active Member</Cell>
+                <Cell header={true} colWidth={60} rowSpan="2" title="Qualified Member">Qualified Member</Cell>
+                <Cell header={true} colSpan="9" title="Member Statistics">Member Statistics</Cell>
+                <Cell header={true} colSpan={isMainView ? 5 : 4} title="Affiliate Statistics">Affiliate Statistics</Cell>
+                {isMainView && (<Cell header={true} colWidth={50} rowSpan="2" title="Month on Month">Month on Month</Cell>)}
+            </Row>,
+            <Row>
+                {React.Children.toArray(secondRow.props.children)}
             </Row>
         ];
     }
@@ -169,7 +176,7 @@ export class GridData extends Component {
                 <Cell className="text-right" title={commRate}>{commRate}</Cell>
                 <Cell className="text-right" title={earning}>{earning}</Cell>
                 <Cell className="text-right" title={affWithdrawal}>{affWithdrawal}</Cell>
-                <Cell className="text-right" title={affAdjustment}>{affAdjustment}</Cell>
+                {this._isMainView() && (<Cell className="text-right" title={affAdjustment}>{affAdjustment}</Cell>)}
                 <Cell className="text-right" title={balanceBf}>{balanceBf}</Cell>
             </React.Fragment>
         )

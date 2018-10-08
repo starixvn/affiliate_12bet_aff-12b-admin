@@ -6,7 +6,6 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import MultipleSelect from '../../../components/multiple-select';
 import MonthPicker from '@9softstudio/react-monthpicker';
 import AutoComplete from '../../../components/auto-complete';
-import { FormText } from 'reactstrap';
 import { defaultSortBy, sortByMainView, sortByMonthOnMonthView, allProduct, minMonthRange, viewLevel } from '../modules/constants';
 import { setReportTitle, setParam } from '../actions';
 import { formatUnit, resolveClientUrl } from '../../../modules/utils';
@@ -59,11 +58,15 @@ class Filter extends Component {
                     selectedProductList: ProductIds,
                     isGetAll: false
                 }, callback);
-
-                this.cachedMainReportParam = Object.assign({}, this.cachedMainReportParam, { PageSize: pagingOption.PageSize });
+              
                 this.props.setParam(this.cachedMainReportParam);
             }
             else {
+                this.cachedMainReportParam = Object.assign({}, this.cachedMainReportParam, {
+                    PageIndex: pagingOption.PageIndex,
+                    PageSize: pagingOption.PageSize
+                });
+
                 this.setState({ userName: param.UserName }, callback);
             }
         }
