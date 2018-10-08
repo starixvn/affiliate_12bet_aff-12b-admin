@@ -35,7 +35,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
         [ChildActionOnly]
         [HttpGet]
         [AllowAnonymous]
-        public ActionResult AuthenticationForm()
+        public ActionResult AuthenticationForm(string v)
         {
             if (!User.Identity.IsAuthenticated || SessionService.UserSession == null)
             {
