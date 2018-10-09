@@ -13,6 +13,7 @@
     using Resources;
     using Utilities;
     using ViewModels.UserPanel;
+    using System;
 
     [CustomAuthorize]
     public class PaymentRequestController : BaseController
@@ -31,14 +32,24 @@
         [AjaxOnly]
         public ActionResult Index()
         {
-            return View("~/Views/UserPanel/PaymentRequest/Index.cshtml", GetViewModel());
+            return View("~/Views/UserPanel/PaymentRequest/Index.cshtml", GetViewModel(DateTime.Now.Year));
         }
 
+        [HttpPost]
+        [AjaxOnly]
+        public ActionResult Index(int year)
+        {
+            var viewModel = year >= 2009 && year <= DateTime.Now.Year
+                ? GetViewModel(year
+                ) : GetViewModel(DateTime.Now.Year);
+
+            return View("~/Views/UserPanel/PaymentRequest/Index.cshtml", viewModel);
+        }
         [HttpGet]
         [AjaxOnly]
         public ActionResult PaymentRequestPartial()
         {
-            return PartialView("~/Views/UserPanel/PaymentRequest/PaymentPartial/_Main.cshtml", GetViewModel());
+            return PartialView("~/Views/UserPanel/PaymentRequest/PaymentPartial/_Main.cshtml", GetViewModel(DateTime.Now.Year));
         }
 
         [HttpPost]
@@ -108,12 +119,13 @@
             return Json(resultInfo);
         }
 
-        private PaymentViewModel GetViewModel()
+        private PaymentViewModel GetViewModel(int year)
         {
             var paymentParam = new PaymentParam
             {
                 AffId = SessionService.UserSession.AffId,
-                IsInternal = SessionService.IsInternal
+                IsInternal = SessionService.IsInternal,
+                //Year = year
             };
             var paymentList = _paymentService.GetPaymentList(paymentParam);
 
@@ -129,5 +141,6 @@
 
             return viewModel;
         }
+
     }
 }

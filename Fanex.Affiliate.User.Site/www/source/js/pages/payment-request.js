@@ -42,6 +42,11 @@
                 _me.submitForm($(this), "CancelPaymentRequest");
                 return false;
             });
+
+            $('#btnSubmit').click(function (e) {
+                e.preventDefault();
+                _me.submitButton();
+            });
         },
 
         validatePayoutForm: function () {
@@ -97,6 +102,27 @@
                 success: function (response) {
                     $("#paymentRequest").html(response);
                     $("#resultMessage").html(buildMessage(result.Message, result.IsOk)).show();
+                }
+            });
+        },
+
+        submitButton: function () {
+            var year = $("#year").val();
+            $.ajax({
+                type: "POST",
+                url: Site.resolveRelativeUrl("UserPanel/PaymentRequest"),
+                data: JSON.stringify({ "year": year }),
+                dataType: "json",
+                cache: false,
+                contentType: "application/json; charset=UTF-8",
+                success: function (response) {
+                    
+                },
+                beforeSend: function () {
+                    Site.showLoader();
+                },
+                complete: function () {
+                    Site.hideLoader();
                 }
             });
         }

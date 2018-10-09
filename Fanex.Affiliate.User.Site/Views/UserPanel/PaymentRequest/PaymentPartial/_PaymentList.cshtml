@@ -6,10 +6,11 @@
 
 @{
     var hasData = Model != null && Model.Any();
-    var preferredPayment = ViewData.ContainsKey("PreferredPayment") && ViewData["PreferredPayment"] != null ? 
-        ViewData["PreferredPayment"].ToString() : 
+    var preferredPayment = ViewData.ContainsKey("PreferredPayment") && ViewData["PreferredPayment"] != null ?
+        ViewData["PreferredPayment"].ToString() :
         string.Empty;
     var paymentMethod = preferredPayment.Replace("Wire", Lang.BankTransfer);
+    var currentYear = DateTime.Now.Year;
 }
 
 @functions {
@@ -36,6 +37,20 @@
 <div class="info-group">
     <div class="title">
         <span class="text">@Lang.RecentPayment</span>
+        <form class="form-inline">
+            <div class="form-group">
+                <label>@Lang.Year</label>
+                <select class="form-control" id="year">
+
+                    @for (var i = currentYear; i >= 2009; i--)
+                    {
+                        var temp = i == currentYear ? "selected='selected'" : string.Empty;
+                        <option @temp value="@i">@i</option>
+                    }
+                </select>
+                <button type="button" style="margin-left:3px;" class="btn btn-submit" id="btnSubmit">@Lang.Submit</button>
+            </div>
+        </form>
     </div>
 
     <div class="payment-history table">

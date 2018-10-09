@@ -532,6 +532,10 @@
     <Content Include="www\build\styles\css\pages\commissionreport.min.css">
       <DependentUpon>commissionreport.css</DependentUpon>
     </Content>
+    <Content Include="www\build\styles\css\pages\payment-request.css" />
+    <Content Include="www\build\styles\css\pages\payment-request.min.css">
+      <DependentUpon>payment-request.css</DependentUpon>
+    </Content>
     <Content Include="www\build\styles\css\signup.css" />
     <Content Include="www\build\styles\css\signup.min.css">
       <DependentUpon>signup.css</DependentUpon>

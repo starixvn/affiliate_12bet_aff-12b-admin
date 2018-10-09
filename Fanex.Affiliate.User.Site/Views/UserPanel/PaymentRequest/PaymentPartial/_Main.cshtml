@@ -4,6 +4,8 @@
 
 @model Fanex.Affiliate.User.Core.ViewModels.UserPanel.PaymentViewModel
 
+@Html.InlineStyles("~/www/build/styles/css/pages/payment-request.css")
+
 <div id="requestPayout">
     @{ Html.RenderPartial("~/Views/UserPanel/PaymentRequest/PaymentPartial/_RequestPayout.cshtml", Model); }
 </div>

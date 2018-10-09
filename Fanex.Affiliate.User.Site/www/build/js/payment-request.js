@@ -43,6 +43,11 @@ var PaymentRequest = (function ($) {
                 _me.submitForm($(this), "CancelPaymentRequest");
                 return false;
             });
+
+            $('#btnSubmit').click(function (e) {
+                e.preventDefault();
+                _me.submitButton();
+            });
         },
 
         validatePayoutForm: function validatePayoutForm() {
@@ -97,6 +102,25 @@ var PaymentRequest = (function ($) {
                 success: function success(response) {
                     $("#paymentRequest").html(response);
                     $("#resultMessage").html(buildMessage(result.Message, result.IsOk)).show();
+                }
+            });
+        },
+
+        submitButton: function submitButton() {
+            var year = $("#year").val();
+            $.ajax({
+                type: "POST",
+                url: Site.resolveRelativeUrl("UserPanel/PaymentRequest"),
+                data: JSON.stringify({ "year": year }),
+                dataType: "json",
+                cache: false,
+                contentType: "application/json; charset=UTF-8",
+                success: function success(response) {},
+                beforeSend: function beforeSend() {
+                    Site.showLoader();
+                },
+                complete: function complete() {
+                    Site.hideLoader();
                 }
             });
         }
