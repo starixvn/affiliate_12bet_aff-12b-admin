@@ -17,6 +17,10 @@ export class GridData extends Component {
     constructor(props) {
         super(props);
 
+        this.cachedMainReport = null;
+        this.totalItemMainReport = 0;
+        this.count = 0;
+
         this.state = {
             gridData: null,
             total: null
@@ -25,8 +29,26 @@ export class GridData extends Component {
 
     componentDidUpdate(prevProps) {
         const { param } = this.props;
+        const isMainView = this._isMainView();
 
-        if (param !== prevProps.param) {
+        if (param !== prevProps.param && isMainView) {
+            if (this.cachedMainReport && this.cachedMainReport.gridData) {
+                const { gridData, total, totalItem } = this.cachedMainReport;
+
+                this.setState({ gridData, total }, () => {
+                    this.cachedMainReport = null;
+                });
+                this.props.setPagingOption({ TotalItem: totalItem, PageIndex: param.PageIndex, PageSize: param.PageSize });
+            }
+            else {
+                this.fetchData(param);
+            }
+        }
+        else if (param !== prevProps.param) {
+            if (this.cachedMainReport === null) {
+                this.cachedMainReport = Object.assign(this.state, { totalItem: prevProps.pagingOption.TotalItem });
+            }
+
             this.fetchData(param);
         }
     }
@@ -37,13 +59,18 @@ export class GridData extends Component {
 
     async fetchData(param) {
         this.props.toggleLoader(true);
-        const url = `Portal/AffiliateReport/${this._isMainView() ? 'GetMainData' : 'GetDetailData'}`;
+        const isMainView = this._isMainView();
+        const url = `Portal/AffiliateReport/${isMainView ? 'GetMainData' : 'GetDetailData'}`;
         const response = await post(url, param);
         if (response && response.status === 200) {
             const { MainData, Total, TotalItem } = response.data;
 
             this.setState({ gridData: MainData, total: Total });
             this.props.setPagingOption({ TotalItem, PageIndex: param.PageIndex, PageSize: param.PageSize });
+
+            if (isMainView) {
+                this.cachedMainReport = null;
+            }
         }
         this.props.toggleLoader(false);
     }
