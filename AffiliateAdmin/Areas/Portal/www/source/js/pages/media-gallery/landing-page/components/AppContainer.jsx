@@ -17,7 +17,8 @@ export default class AppContainer extends Component {
             data: [],
             selectedPages: {},
             popupForm: null,
-            isShowLoader: false
+            isShowLoader: false,
+            popupTitle: ''
         }
     }
 
@@ -124,7 +125,10 @@ export default class AppContainer extends Component {
             PageCode: ''
         }
 
-        this.setState({ popupForm: (<InsertUpdateForm data={data} onCancel={this.handleHidePopup} onSave={this.handleSave} />) });
+        this.setState({
+            popupForm: (<InsertUpdateForm data={data} onCancel={this.handleHidePopup} onSave={this.handleSave} />),
+            popupTitle: 'Add Landing Page'
+        });
     }
 
     onEdit = async (pageId) => {
@@ -134,7 +138,7 @@ export default class AppContainer extends Component {
         if (response) {
             this.setState({
                 popupForm: (<InsertUpdateForm onCancel={this.handleHidePopup} data={response.data} onSave={this.handleSave} />),
-                isShowLoader: false
+                popupTitle: 'Edit Landing Page'
             });
         }
 
@@ -142,8 +146,8 @@ export default class AppContainer extends Component {
     }
 
     onCheckItem = (isChecked, pageId) => {
-        this.setState((prevState => ({ 
-            selectedPages: Object.assign({}, prevState.selectedPages, { [pageId]: isChecked }) 
+        this.setState((prevState => ({
+            selectedPages: Object.assign({}, prevState.selectedPages, { [pageId]: isChecked })
         })));
     }
 
@@ -159,7 +163,7 @@ export default class AppContainer extends Component {
     }
 
     render() {
-        const { data, selectedPages, popupForm, isShowLoader } = this.state;
+        const { data, selectedPages, popupForm, isShowLoader, popupTitle } = this.state;
         const showPopup = popupForm !== null;
 
         return (
@@ -177,7 +181,7 @@ export default class AppContainer extends Component {
                         onToggleAll={this.onToggleAll} />
 
                     <Modal isOpen={showPopup} toggle={this.handleHidePopup} backdrop='static'>
-                        <ModalHeader toggle={this.handleHidePopup}><span className="iconpopup"></span>Landing Page</ModalHeader>
+                        <ModalHeader toggle={this.handleHidePopup}><span className="iconpopup"></span>{popupTitle}</ModalHeader>
                         <ModalBody>
                             <div className="modal-body-wrapper">
                                 {popupForm}

@@ -41,7 +41,7 @@ export default class InsertUpdateForm extends Component {
         if (!result.isValid) {
             result.message = !PageCode ? requiredErrorMessage :
                 (hasRestrictedCharacter ?
-                    'Special characters are not allowed:<br/> the blank/empty space and ; / ? : @ = & " < > # % { } | \ ^ ~ [ ] `' :
+                    'Special characters are not allowed' :
                     maxLengthErrorMessage);
         }
 
