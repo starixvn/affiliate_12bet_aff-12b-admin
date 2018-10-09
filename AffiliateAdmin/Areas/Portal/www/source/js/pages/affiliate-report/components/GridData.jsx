@@ -52,7 +52,19 @@ export class GridData extends Component {
         const isMainView = this._isMainView();
         const firstColName = isMainView ? 'Affiliate' : 'Month';
 
-        const secondRow = (
+        return [
+            <Row>
+                <Cell header={true} colWidth={120} rowSpan="2" title={firstColName}>{firstColName}</Cell>
+                <Cell header={true} colWidth={70} rowSpan="2" title="Total Click">Total Click</Cell>
+                <Cell header={true} colWidth={70} rowSpan="2" title="Unique Click">Unique Click</Cell>
+                <Cell header={true} colWidth={65} rowSpan="2" title="Signup">Signup</Cell>
+                <Cell header={true} colWidth={50} rowSpan="2" title="FDM">FDM</Cell>
+                <Cell header={true} colWidth={60} rowSpan="2" title="Active Member">Active Member</Cell>
+                <Cell header={true} colWidth={60} rowSpan="2" title="Qualified Member">Qualified Member</Cell>
+                <Cell header={true} colSpan="9" title="Member Statistics">Member Statistics</Cell>
+                <Cell header={true} colSpan={isMainView ? 5 : 4} title="Affiliate Statistics">Affiliate Statistics</Cell>
+                {isMainView && (<Cell header={true} colWidth={50} rowSpan="2" title="Month on Month">Month on Month</Cell>)}
+            </Row>,
             <Row>
                 <Cell header={true} colWidth={75} title="Deposit">Deposit</Cell>
                 <Cell header={true} colWidth={75} title="Withdrawal">Withdrawal</Cell>
@@ -69,24 +81,6 @@ export class GridData extends Component {
                 <Cell header={true} colWidth={80} title="Withdrawal">Withdrawal</Cell>
                 {isMainView && (<Cell header={true} colWidth={70} title="Adjustment">Adjustment</Cell>)}
                 <Cell header={true} colWidth={100} title="Balance B/F">Balance B/F</Cell>
-            </Row>
-        );
-
-        return [
-            <Row>
-                <Cell header={true} colWidth={120} rowSpan="2" title={firstColName}>{firstColName}</Cell>
-                <Cell header={true} colWidth={70} rowSpan="2" title="Total Click">Total Click</Cell>
-                <Cell header={true} colWidth={70} rowSpan="2" title="Unique Click">Unique Click</Cell>
-                <Cell header={true} colWidth={65} rowSpan="2" title="Signup">Signup</Cell>
-                <Cell header={true} colWidth={50} rowSpan="2" title="FDM">FDM</Cell>
-                <Cell header={true} colWidth={60} rowSpan="2" title="Active Member">Active Member</Cell>
-                <Cell header={true} colWidth={60} rowSpan="2" title="Qualified Member">Qualified Member</Cell>
-                <Cell header={true} colSpan="9" title="Member Statistics">Member Statistics</Cell>
-                <Cell header={true} colSpan={isMainView ? 5 : 4} title="Affiliate Statistics">Affiliate Statistics</Cell>
-                {isMainView && (<Cell header={true} colWidth={50} rowSpan="2" title="Month on Month">Month on Month</Cell>)}
-            </Row>,
-            <Row>
-                {React.Children.toArray(secondRow.props.children)}
             </Row>
         ];
     }
