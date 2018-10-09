@@ -45,7 +45,8 @@ export default class AutoComplete extends Component {
         cache: PropTypes.bool,
         queryParamName: PropTypes.string,
         htmlAttributes: PropTypes.object,
-        characterCountToSearch: PropTypes.number
+        characterCountToSearch: PropTypes.number,
+        value: PropTypes.string
     }
 
     static defaultProps = {
@@ -61,6 +62,12 @@ export default class AutoComplete extends Component {
 
     componentWillUnmount() {
         document.removeEventListener('click', this._handleDocumentClick)
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.input.current && prevProps.value !== this.props.value && this.props.value !== this.input.current.value) {
+            this.input.current.value = this.props.value;
+        }
     }
 
     _handleDocumentClick = (event) => {
@@ -119,7 +126,6 @@ export default class AutoComplete extends Component {
     _onSelect = (selectedItem) => {
         const { onSelect } = this.props;
         onSelect && onSelect(selectedItem);
-        this.input.current.value = typeof (selectedItem) === "object" ? selectedItem.value : selectedItem;
 
         this._clearState();
     }

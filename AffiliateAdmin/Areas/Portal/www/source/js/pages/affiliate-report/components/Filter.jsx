@@ -58,7 +58,7 @@ class Filter extends Component {
                     selectedProductList: ProductIds,
                     isGetAll: false
                 }, callback);
-              
+
                 this.props.setParam(this.cachedMainReportParam);
             }
             else {
@@ -278,7 +278,7 @@ class Filter extends Component {
                                     <AutoComplete url={resolveClientUrl('Portal/AffiliateReport/GetAffiliateList')}
                                         onSelect={(value) => this.setState({ userName: value })}
                                         onInput={(value) => this.setState({ userName: value })}
-                                        htmlAttributes={{ defaultValue: this.state.userName }}
+                                        value={userName}
                                         characterCountToSearch={2} />
                                 )
                         }
