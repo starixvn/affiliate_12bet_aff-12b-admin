@@ -6,7 +6,7 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import MultipleSelect from '../../../components/multiple-select';
 import MonthPicker from '@9softstudio/react-monthpicker';
 import AutoComplete from '../../../components/auto-complete';
-import { defaultSortBy, sortByMainView, sortByMonthOnMonthView, allProduct, minMonthRange, viewLevel } from '../modules/constants';
+import { defaultSortBy, sortByMainView, sortByMonthOnMonthView, allProduct, minMonthRange, viewLevel, sortDirectionType } from '../modules/constants';
 import { setReportTitle, setParam } from '../actions';
 import { formatUnit, resolveClientUrl } from '../../../modules/utils';
 
@@ -54,7 +54,7 @@ class Filter extends Component {
                     fromMonth: { month: from.getMonth() + 1, year: from.getFullYear() },
                     toMonth: { month: to.getMonth() + 1, year: to.getFullYear() },
                     sortBy: SortType,
-                    isSortAscending: SortDirectionType === 0,
+                    isSortAscending: SortDirectionType === sortDirectionType.ascending,
                     selectedProductList: ProductIds,
                     isGetAll: false
                 }, callback);
@@ -67,7 +67,11 @@ class Filter extends Component {
                     PageSize: pagingOption.PageSize
                 });
 
-                this.setState({ userName: param.UserName }, callback);
+                this.setState({
+                    userName: param.UserName,
+                    sortBy: sortByMonthOnMonthView.Month,
+                    isSortAscending: false
+                }, callback);
             }
         }
     }
@@ -161,7 +165,7 @@ class Filter extends Component {
             PreferredLanguage: selectedLanguage,
             ProductIds: isCheckedAllProduct ? allProduct : selectedProductList,
             SortType: sortBy,
-            SortDirectionType: isSortAscending ? 0 : 1,
+            SortDirectionType: isSortAscending ? sortDirectionType.ascending : sortDirectionType.descending,
             PageIndex: 1,
             PageSize: pagingOption.PageSize,
             IsGetAll: isGetAll
@@ -225,7 +229,7 @@ class Filter extends Component {
     _getToMonthRange(from) {
         if (!this._isMainView()) {
             return {
-                min: Object.assign({}, minMonthRange),
+                min: Object.assign({}, from),
                 max: { month: this.now.getMonth() + 1, year: this.now.getFullYear() }
             };
         }

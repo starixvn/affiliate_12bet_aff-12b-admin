@@ -60,6 +60,7 @@ export default class AppContainer extends Component {
         const pageIdList = this._getSelectedPageIdList();
 
         if (pageIdList.length === 0) {
+            alert('Please select items to delete');
             return;
         }
 

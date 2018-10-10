@@ -16,3 +16,8 @@ export const viewLevel = {
     main: 1,
     monthOnMonth: 2
 }
+
+export const sortDirectionType = {
+    ascending: 0,
+    descending: 1
+}

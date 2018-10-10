@@ -9,7 +9,7 @@ import { format, formatDecimal } from '../../../modules/numberFormat';
 import { setPagingOption, setViewLevel, setParam } from '../actions';
 import { post } from '../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../actions/loaderAction';
-import { allProduct, viewLevel } from '../modules/constants';
+import { allProduct, viewLevel, sortByMonthOnMonthView, sortDirectionType } from '../modules/constants';
 
 const totalText = 'Total (all pages)';
 
@@ -208,6 +208,8 @@ export class GridData extends Component {
 
         const postParam = Object.assign({}, param, {
             UserName,
+            SortType: sortByMonthOnMonthView.Month,
+            SortDirectionType: sortDirectionType.descending,
             PageIndex: 1,
             PageSize: pagingOption.PageSize
         })
