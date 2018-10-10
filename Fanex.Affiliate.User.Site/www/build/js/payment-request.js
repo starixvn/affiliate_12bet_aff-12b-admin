@@ -44,9 +44,9 @@ var PaymentRequest = (function ($) {
                 return false;
             });
 
-            $('#btnSubmit').click(function (e) {
+            $('#paymentRequest').on("submit", "#paymentListForm", function (e) {
                 e.preventDefault();
-                _me.submitButton();
+                _me.getDataByYear();
             });
         },
 
@@ -106,16 +106,19 @@ var PaymentRequest = (function ($) {
             });
         },
 
-        submitButton: function submitButton() {
+        getDataByYear: function getDataByYear() {
             var year = $("#year").val();
+            console.log("aaa");
             $.ajax({
                 type: "POST",
                 url: Site.resolveRelativeUrl("UserPanel/PaymentRequest"),
                 data: JSON.stringify({ "year": year }),
-                dataType: "json",
+                dataType: "html",
                 cache: false,
                 contentType: "application/json; charset=UTF-8",
-                success: function success(response) {},
+                success: function success(response) {
+                    $("#payment-history").html(response);
+                },
                 beforeSend: function beforeSend() {
                     Site.showLoader();
                 },

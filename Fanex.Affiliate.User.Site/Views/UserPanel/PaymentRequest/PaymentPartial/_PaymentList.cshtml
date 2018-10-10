@@ -10,7 +10,6 @@
         ViewData["PreferredPayment"].ToString() :
         string.Empty;
     var paymentMethod = preferredPayment.Replace("Wire", Lang.BankTransfer);
-    var currentYear = DateTime.Now.Year;
 }
 
 @functions {
@@ -34,62 +33,43 @@
     }
 }
 
-<div class="info-group">
-    <div class="title">
-        <span class="text">@Lang.RecentPayment</span>
-        <form class="form-inline">
-            <div class="form-group">
-                <label>@Lang.Year</label>
-                <select class="form-control" id="year">
 
-                    @for (var i = currentYear; i >= 2009; i--)
+<div class="payment-history table" id="payment-history">
+    <table>
+        <thead>
+            <tr>
+                <th width="10%">@Lang.RefNo</th>
+                <th width="10%">@Lang.DateRequest</th>
+                <th width="10%">@Lang.RequestAmount</th>
+                <th width="10%">@Lang.PaymentMethod</th>
+                <th width="10%">@Lang.CompletedDate</th>
+                <th width="10%">@Lang.Status</th>
+                <th width="20%">@Lang.Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                if (hasData)
+                {
+                    foreach (var item in Model)
                     {
-                        var temp = i == currentYear ? "selected='selected'" : string.Empty;
-                        <option @temp value="@i">@i</option>
-                    }
-                </select>
-                <button type="button" style="margin-left:3px;" class="btn btn-submit" id="btnSubmit">@Lang.Submit</button>
-            </div>
-        </form>
-    </div>
-
-    <div class="payment-history table">
-        <table>
-            <thead>
-                <tr>
-                    <th width="10%">@Lang.RefNo</th>
-                    <th width="10%">@Lang.DateRequest</th>
-                    <th width="10%">@Lang.RequestAmount</th>
-                    <th width="10%">@Lang.PaymentMethod</th>
-                    <th width="10%">@Lang.CompletedDate</th>
-                    <th width="10%">@Lang.Status</th>
-                    <th width="20%">@Lang.Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                @{
-                    if (hasData)
-                    {
-                        foreach (var item in Model)
-                        {
-                            <tr>
-                                <td class="text-center">@item.TransId</td>
-                                <td class="text-center">@item.TransDate.ToString("MM/dd/yyyy")</td>
-                                <td class="text-right">@item.Amount.ToStringMoneyWithSymbol()</td>
-                                <td class="text-center">@paymentMethod</td>
-                                <td class="text-center">@item.CompletedDate.ToString("MM/dd/yyyy")</td>
-                                <td class="text-center text-bold">@ConvertStatus(item.Status)</td>
-                                <td>@item.AffDesc</td>
-                            </tr>
-                        }
+                        <tr>
+                            <td class="text-center">@item.TransId</td>
+                            <td class="text-center">@item.TransDate.ToString("MM/dd/yyyy")</td>
+                            <td class="text-right">@item.Amount.ToStringMoneyWithSymbol()</td>
+                            <td class="text-center">@paymentMethod</td>
+                            <td class="text-center">@item.CompletedDate.ToString("MM/dd/yyyy")</td>
+                            <td class="text-center text-bold">@ConvertStatus(item.Status)</td>
+                            <td>@item.AffDesc</td>
+                        </tr>
                     }
                 }
-            </tbody>
-        </table>
+            }
+        </tbody>
+    </table>
 
-        @if (!hasData)
-        {
-            <p class="text-center">@Lang.NoInfo</p>
-        }
-    </div>
+    @if (!hasData)
+    {
+        <p class="text-center">@Lang.NoInfo</p>
+    }
 </div>

@@ -10,6 +10,6 @@
 
         public decimal MinAmount { get; set; }
 
-        //public int Year { get; set; }
+        public int Year { get; set; }
     }
 }

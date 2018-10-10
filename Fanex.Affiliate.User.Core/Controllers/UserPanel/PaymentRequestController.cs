@@ -39,11 +39,11 @@
         [AjaxOnly]
         public ActionResult Index(int year)
         {
-            var viewModel = year >= 2009 && year <= DateTime.Now.Year
-                ? GetViewModel(year
-                ) : GetViewModel(DateTime.Now.Year);
+            var viewModel = year >= 2009 && year <= DateTime.Now.Year ? GetViewModel(year) : GetViewModel(DateTime.Now.Year);
 
-            return View("~/Views/UserPanel/PaymentRequest/Index.cshtml", viewModel);
+            ViewData["PreferredPayment"] = viewModel.PreferredPayment;
+
+            return PartialView("~/Views/UserPanel/PaymentRequest/PaymentPartial/_PaymentList.cshtml", viewModel.PaymentList);
         }
         [HttpGet]
         [AjaxOnly]
@@ -125,9 +125,10 @@
             {
                 AffId = SessionService.UserSession.AffId,
                 IsInternal = SessionService.IsInternal,
-                //Year = year
+                Year = year
             };
             var paymentList = _paymentService.GetPaymentList(paymentParam);
+
 
             var viewModel = new PaymentViewModel
             {

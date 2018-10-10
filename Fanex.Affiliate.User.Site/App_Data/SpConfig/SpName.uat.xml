@@ -109,8 +109,8 @@
   </Function>
 
   <Function Name="Payment">
-    <Setting Key="Aff_User_PaymentRequest_Sel" SpName="Aff_User_PaymentRequest_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_User_PaymentRequest_Sel_view" SpName="Aff_User_PaymentRequest_Sel" DbName="affiliate_12bet_view" />
+    <Setting Key="Aff_User_PaymentRequest_Sel" SpName="Aff_User_PaymentRequest_Sel_xtest" DbName="affiliate_12bet" />
+    <Setting Key="Aff_User_PaymentRequest_Sel_view" SpName="Aff_User_PaymentRequest_Sel_xtest" DbName="affiliate_12bet_view" />
     <Setting Key="Aff_User_PaymentRequest_Upd" SpName="Aff_User_PaymentRequest_Upd" DbName="affiliate_12bet" />
     <Setting Key="Aff_PaymentRequestIns" SpName="Aff_PaymentRequestIns" DbName="affiliate_12bet" />  
   </Function>
