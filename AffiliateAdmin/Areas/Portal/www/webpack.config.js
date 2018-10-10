@@ -31,10 +31,10 @@ module.exports = env => {
         },
         module: {
             rules: [{
-                test: /\.(js|jsx)$/,
-                use: "babel-loader",
-                exclude: /(node_modules|bower_components)/
-            },
+                    test: /\.(js|jsx)$/,
+                    use: "babel-loader",
+                    exclude: /(node_modules|bower_components)/
+                },
                 {
                     test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|eot|ttf)$/,
                     use: [{
@@ -86,10 +86,6 @@ module.exports = env => {
             new webpack.DllReferencePlugin({
                 context: __dirname,
                 manifest: require(`${clientBundleOutputDir}/vendors/react-manifest.json`)
-            }),
-            new webpack.DllReferencePlugin({
-                context: __dirname,
-                manifest: require(`${clientBundleOutputDir}/vendors/reactstrap-manifest.json`)
             })
         ].concat(isDevBuild ? [] : [new OptimizeCSSAssetsPlugin(), new CleanWebpackPlugin(pathsToClean, cleanOptions), ]),
         devtool: isDevBuild ? "source-map" : undefined

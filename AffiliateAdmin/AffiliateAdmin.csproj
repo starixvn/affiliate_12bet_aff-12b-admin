@@ -1534,7 +1534,6 @@
     <Content Include="Areas\Portal\www\dist\vendors\bootstrap.css" />
     <Content Include="Areas\Portal\www\dist\vendors\bootstrap.js" />
     <Content Include="Areas\Portal\www\dist\vendors\react.js" />
-    <Content Include="Areas\Portal\www\dist\vendors\reactstrap.js" />
     <Content Include="Areas\Portal\www\index.html" />
     <Content Include="Areas\Portal\www\config-utils\constant.js" />
     <Content Include="Areas\Portal\www\config-utils\entry.js" />
@@ -1762,7 +1761,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\tiersetting\index.jsx" />
     <Content Include="Areas\Portal\www\dist\vendors\bootstrap-manifest.json" />
     <Content Include="Areas\Portal\www\dist\vendors\react-manifest.json" />
-    <Content Include="Areas\Portal\www\dist\vendors\reactstrap-manifest.json" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\addgroup\AddGroup.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\addgroup\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\editgroup\EditGroup.jsx" />

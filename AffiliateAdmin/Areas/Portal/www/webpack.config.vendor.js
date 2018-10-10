@@ -37,9 +37,8 @@ module.exports = env => {
             }]
         },
         entry: {
-            react: ["react", "react-dom", "react-redux", "redux", "redux-thunk"],
-            bootstrap: ["bootstrap/dist/css/bootstrap.css"],
-            reactstrap: ["reactstrap"]
+            react: ["react", "react-dom", "react-redux", "redux", "redux-thunk", "reactstrap"],
+            bootstrap: ["bootstrap/dist/css/bootstrap.css"]
         },
         output: {
             publicPath: "dist/vendors",
