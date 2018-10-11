@@ -31,7 +31,8 @@ export class Content extends Component {
         const { param, reportTitle, currentViewLevel } = this.props;
         const isMainView = currentViewLevel === viewLevel.main;
         const url = `Portal/AffiliateReport/${isMainView ? 'GetMainData' : 'GetDetailData'}`;
-        const response = await post(url, param);
+        const postData = Object.assign({}, param, { IsExportExcel: true });
+        const response = await post(url, postData);
         if (response && response.status === 200) {
             const reportExcel = new ReportExcel(response.data, reportTitle, isMainView);
             reportExcel.export();

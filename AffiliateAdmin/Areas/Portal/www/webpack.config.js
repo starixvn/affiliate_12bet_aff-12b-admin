@@ -27,6 +27,7 @@ module.exports = env => {
         resolve: { extensions: [".js", ".jsx"] },
         output: {
             filename: "[name].js",
+            chunkFilename: '../../../../Areas/Portal/www/dist/js/dynamic-chunks/[name].chunk.js',
             publicPath: '/dist/'
         },
         module: {
@@ -48,7 +49,15 @@ module.exports = env => {
                     }]
                 }
             ]
-        }
+        },
+        node: {
+            fs: 'empty'
+        },
+        externals: [
+            { './jszip': 'jszip' },
+            { './ods': 'ods' },
+            { './cptable': 'var cptable' }
+        ]
     });
 
     // Configuration for client-side bundle suitable for running in browsers
@@ -86,10 +95,6 @@ module.exports = env => {
             new webpack.DllReferencePlugin({
                 context: __dirname,
                 manifest: require(`${clientBundleOutputDir}/vendors/react-manifest.json`)
-            }),
-            new webpack.DllReferencePlugin({
-                context: __dirname,
-                manifest: require(`${clientBundleOutputDir}/vendors/xlsxStyle-manifest.json`)
             })
         ].concat(isDevBuild ? [] : [new OptimizeCSSAssetsPlugin(), new CleanWebpackPlugin(pathsToClean, cleanOptions), ]),
         devtool: isDevBuild ? "source-map" : undefined

@@ -1,5 +1,3 @@
-import _XLSX from 'xlsx-style-sparta';
-
 const EXCEL_TYPE = "xlsx";
 const MapExcelType = {
     "number": "n",
@@ -8,7 +6,16 @@ const MapExcelType = {
     "object": "d"
 };
 
+let _XLSX = null;
 export default class Excel {
+    static async process(callback) {
+        _XLSX = await import( /* webpackChunkName: "xlsx-style" */ 'xlsx-style-sparta');
+
+        if (_XLSX) {
+            callback && callback();
+        }
+    }
+
     static export(worksheet, fileName) {
         const option = { bookType: EXCEL_TYPE, bookSST: false, type: 'binary' };
         const workbook = { SheetNames: [fileName], Sheets: {}, Props: {} };

@@ -1511,6 +1511,8 @@
     <Content Include="Areas\Portal\www\dist\imgs\i_member.png" />
     <Content Include="Areas\Portal\www\dist\imgs\i_report.png" />
     <Content Include="Areas\Portal\www\dist\jquery-3.3.1.min.js" />
+    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\vendors~xlsx-style.chunk.js" />
+    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\xlsx-style.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\commission\assign-group.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\commission\assign-private-group.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\commission\commission-group.js" />
@@ -1534,7 +1536,6 @@
     <Content Include="Areas\Portal\www\dist\vendors\bootstrap.css" />
     <Content Include="Areas\Portal\www\dist\vendors\bootstrap.js" />
     <Content Include="Areas\Portal\www\dist\vendors\react.js" />
-    <Content Include="Areas\Portal\www\dist\vendors\xlsxStyle.js" />
     <Content Include="Areas\Portal\www\index.html" />
     <Content Include="Areas\Portal\www\config-utils\constant.js" />
     <Content Include="Areas\Portal\www\config-utils\entry.js" />
@@ -1851,7 +1852,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\components\GridData.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\components\InsertUpdateForm.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\media-gallery\landing-page.scss" />
-    <Content Include="Areas\Portal\www\dist\vendors\xlsxStyle-manifest.json" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

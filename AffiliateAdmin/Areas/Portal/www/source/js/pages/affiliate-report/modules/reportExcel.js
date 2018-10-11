@@ -67,14 +67,16 @@ export default class ReportExcel {
         this.totalColumn = isMainView ? TOTAL_COLUMN : TOTAL_COLUMN - 1;
     }
 
-    export () {
-        this._createTitle();
-        this._createHeader();
-        this._createBodyData();
-        this._createTotalRow();
-        this._createExcelConfig();
+    export() {
+        Excel.process(() => {
+            this._createTitle();
+            this._createHeader();
+            this._createBodyData();
+            this._createTotalRow();
+            this._createExcelConfig();
 
-        Excel.export(this.worksheet, this.title);
+            Excel.export(this.worksheet, this.title);
+        })
     }
 
     _createTitle() {
@@ -206,9 +208,9 @@ export default class ReportExcel {
             [fields.UserName]: totalText,
             [fields.CommissionRate]: "N/A"
         } : {
-            [fields.MonthDateString]: totalText,
-            [fields.CommissionRate]: formatDecimal(totalData.CommissionRate) + '%'
-        }
+                [fields.MonthDateString]: totalText,
+                [fields.CommissionRate]: formatDecimal(totalData.CommissionRate) + '%'
+            }
         const total = Object.assign({}, totalData, customTotalData);
 
         for (let j = 0; j < this.totalColumn; j++) {
@@ -245,149 +247,149 @@ export default class ReportExcel {
         this.worksheet["!merges"] = this.mergeConfig;
         this.worksheet["!ref"] = `${cellStart}:${cellEnd}`;
         this.worksheet['!cols'] = [{
-                wpx: 150
-            }, {
-                wpx: 80
-            }, {
-                wpx: 80
-            }, {
-                wpx: 80
-            }, {
-                wpx: 80
-            }, {
-                wpx: 100
-            }, {
-                wpx: 120
-            },
-            {
-                wpx: 120
-            }, {
-                wpx: 120
-            }, {
-                wpx: 120
-            }, {
-                wpx: 120
-            }, {
-                wpx: 80
-            }, {
-                wpx: 100
-            }, {
-                wpx: 110
-            }, {
-                wpx: 100
-            }, {
-                wpx: 100
-            },
-            {
-                wpx: 80
-            }, {
-                wpx: 100
-            }, {
-                wpx: 100
-            }, {
-                wpx: 100
-            }, {
-                wpx: 120
-            }
+            wpx: 150
+        }, {
+            wpx: 80
+        }, {
+            wpx: 80
+        }, {
+            wpx: 80
+        }, {
+            wpx: 80
+        }, {
+            wpx: 100
+        }, {
+            wpx: 120
+        },
+        {
+            wpx: 120
+        }, {
+            wpx: 120
+        }, {
+            wpx: 120
+        }, {
+            wpx: 120
+        }, {
+            wpx: 80
+        }, {
+            wpx: 100
+        }, {
+            wpx: 110
+        }, {
+            wpx: 100
+        }, {
+            wpx: 100
+        },
+        {
+            wpx: 80
+        }, {
+            wpx: 100
+        }, {
+            wpx: 100
+        }, {
+            wpx: 100
+        }, {
+            wpx: 120
+        }
         ];
     }
 
     _getcolumnConfigs(isMainView) {
         const columnConfigList = [{
-                field: isMainView ? fields.UserName : fields.MonthDateString,
-                [MAIN_SECTION_STYLE]: bodyCellStyle.left,
-                [TOTAL_SECTION_STYLE]: totalCellStyle.default
-            },
-            {
-                field: fields.TotalClick,
-                [MAIN_SECTION_STYLE]: bodyCellStyle.number,
-                [TOTAL_SECTION_STYLE]: totalCellStyle.number
-            },
-            {
-                field: fields.UniqueClick,
-                [MAIN_SECTION_STYLE]: bodyCellStyle.number,
-                [TOTAL_SECTION_STYLE]: totalCellStyle.number
-            },
-            {
-                field: fields.Signup,
-                [MAIN_SECTION_STYLE]: bodyCellStyle.number,
-                [TOTAL_SECTION_STYLE]: totalCellStyle.number
-            },
-            {
-                field: fields.Fdm,
-                [MAIN_SECTION_STYLE]: bodyCellStyle.number,
-                [TOTAL_SECTION_STYLE]: totalCellStyle.number
-            },
-            {
-                field: fields.ActiveMember,
-                [MAIN_SECTION_STYLE]: bodyCellStyle.number,
-                [TOTAL_SECTION_STYLE]: totalCellStyle.number
-            },
-            {
-                field: fields.QualifiedMember,
-                [MAIN_SECTION_STYLE]: bodyCellStyle.number,
-                [TOTAL_SECTION_STYLE]: totalCellStyle.number
-            },
-            {
-                field: fields.Deposit,
-                [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
-                [TOTAL_SECTION_STYLE]: totalCellStyle.decimal
-            },
-            {
-                field: fields.Withdrawal,
-                [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
-                [TOTAL_SECTION_STYLE]: totalCellStyle.decimal
-            },
-            {
-                field: fields.Turnover,
-                [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
-                [TOTAL_SECTION_STYLE]: totalCellStyle.decimal
-            },
-            {
-                field: fields.Winlost,
-                [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
-                [TOTAL_SECTION_STYLE]: totalCellStyle.decimal
-            },
-            {
-                field: fields.Bonus,
-                [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
-                [TOTAL_SECTION_STYLE]: totalCellStyle.decimal
-            },
-            {
-                field: fields.PlatformFee,
-                [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
-                [TOTAL_SECTION_STYLE]: totalCellStyle.decimal
-            },
-            {
-                field: fields.OperationalFee,
-                [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
-                [TOTAL_SECTION_STYLE]: totalCellStyle.decimal
-            },
-            {
-                field: fields.BankingFee,
-                [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
-                [TOTAL_SECTION_STYLE]: totalCellStyle.decimal
-            },
-            {
-                field: fields.TotalFee,
-                [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
-                [TOTAL_SECTION_STYLE]: totalCellStyle.decimal
-            },
-            {
-                field: fields.CommissionRate,
-                [MAIN_SECTION_STYLE]: bodyCellStyle.right,
-                [TOTAL_SECTION_STYLE]: totalCellStyle.right
-            },
-            {
-                field: fields.Earning,
-                [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
-                [TOTAL_SECTION_STYLE]: totalCellStyle.decimal
-            },
-            {
-                field: fields.AffWithdrawal,
-                [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
-                [TOTAL_SECTION_STYLE]: totalCellStyle.decimal
-            }
+            field: isMainView ? fields.UserName : fields.MonthDateString,
+            [MAIN_SECTION_STYLE]: bodyCellStyle.left,
+            [TOTAL_SECTION_STYLE]: totalCellStyle.default
+        },
+        {
+            field: fields.TotalClick,
+            [MAIN_SECTION_STYLE]: bodyCellStyle.number,
+            [TOTAL_SECTION_STYLE]: totalCellStyle.number
+        },
+        {
+            field: fields.UniqueClick,
+            [MAIN_SECTION_STYLE]: bodyCellStyle.number,
+            [TOTAL_SECTION_STYLE]: totalCellStyle.number
+        },
+        {
+            field: fields.Signup,
+            [MAIN_SECTION_STYLE]: bodyCellStyle.number,
+            [TOTAL_SECTION_STYLE]: totalCellStyle.number
+        },
+        {
+            field: fields.Fdm,
+            [MAIN_SECTION_STYLE]: bodyCellStyle.number,
+            [TOTAL_SECTION_STYLE]: totalCellStyle.number
+        },
+        {
+            field: fields.ActiveMember,
+            [MAIN_SECTION_STYLE]: bodyCellStyle.number,
+            [TOTAL_SECTION_STYLE]: totalCellStyle.number
+        },
+        {
+            field: fields.QualifiedMember,
+            [MAIN_SECTION_STYLE]: bodyCellStyle.number,
+            [TOTAL_SECTION_STYLE]: totalCellStyle.number
+        },
+        {
+            field: fields.Deposit,
+            [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
+            [TOTAL_SECTION_STYLE]: totalCellStyle.decimal
+        },
+        {
+            field: fields.Withdrawal,
+            [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
+            [TOTAL_SECTION_STYLE]: totalCellStyle.decimal
+        },
+        {
+            field: fields.Turnover,
+            [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
+            [TOTAL_SECTION_STYLE]: totalCellStyle.decimal
+        },
+        {
+            field: fields.Winlost,
+            [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
+            [TOTAL_SECTION_STYLE]: totalCellStyle.decimal
+        },
+        {
+            field: fields.Bonus,
+            [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
+            [TOTAL_SECTION_STYLE]: totalCellStyle.decimal
+        },
+        {
+            field: fields.PlatformFee,
+            [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
+            [TOTAL_SECTION_STYLE]: totalCellStyle.decimal
+        },
+        {
+            field: fields.OperationalFee,
+            [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
+            [TOTAL_SECTION_STYLE]: totalCellStyle.decimal
+        },
+        {
+            field: fields.BankingFee,
+            [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
+            [TOTAL_SECTION_STYLE]: totalCellStyle.decimal
+        },
+        {
+            field: fields.TotalFee,
+            [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
+            [TOTAL_SECTION_STYLE]: totalCellStyle.decimal
+        },
+        {
+            field: fields.CommissionRate,
+            [MAIN_SECTION_STYLE]: bodyCellStyle.right,
+            [TOTAL_SECTION_STYLE]: totalCellStyle.right
+        },
+        {
+            field: fields.Earning,
+            [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
+            [TOTAL_SECTION_STYLE]: totalCellStyle.decimal
+        },
+        {
+            field: fields.AffWithdrawal,
+            [MAIN_SECTION_STYLE]: bodyCellStyle.decimal,
+            [TOTAL_SECTION_STYLE]: totalCellStyle.decimal
+        }
         ];
 
         if (isMainView) {

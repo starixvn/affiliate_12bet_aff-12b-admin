@@ -107,6 +107,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Report
             objectDb.AddInParameter("SortDirectionType", DbType.Byte, param.SortDirectionType);
             objectDb.AddInParameter("PageIndex", DbType.Int32, param.PageIndex);
             objectDb.AddInParameter("PageSize", DbType.Int32, param.PageSize);
+            objectDb.AddInParameter("IsExportExcel", DbType.Boolean, param.IsExportExcel);
 
             objectDb.AddOutParameter("NRows", DbType.Int32, 4);
         }
