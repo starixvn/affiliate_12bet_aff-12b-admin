@@ -38,6 +38,18 @@ export const headerCellStyle = {
                 rgb: "cccccc"
             }
         },
+        right: {
+            style: "thin",
+            color: {
+                rgb: "cccccc"
+            }
+        },
+        top: {
+            style: "thin",
+            color: {
+                rgb: "cccccc"
+            }
+        },
         bottom: {
             style: "thin",
             color: {

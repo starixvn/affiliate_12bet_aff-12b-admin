@@ -9,13 +9,6 @@ const MapExcelType = {
 };
 
 export default class Excel {
-    // static process(callback) {
-    //     import( /* webpackChunkName: "xlsx-style-sparta" */ 'xlsx-style-sparta').then(XLSX => {
-    //         _XLSX = XLSX;
-    //         callback && callback();
-    //     });
-    // }
-
     static export(worksheet, fileName) {
         const option = { bookType: EXCEL_TYPE, bookSST: false, type: 'binary' };
         const workbook = { SheetNames: [fileName], Sheets: {}, Props: {} };

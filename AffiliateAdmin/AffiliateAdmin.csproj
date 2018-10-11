@@ -1575,6 +1575,7 @@
     <Content Include="Areas\Portal\www\source\style\assets\bg_menu.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\bg_search01.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\bg_top.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\excel-icon.svg" />
     <Content Include="Areas\Portal\www\source\style\assets\icon_head.png" />
     <Content Include="Areas\Portal\www\source\style\assets\icon_refresh.png" />
     <Content Include="Areas\Portal\www\source\style\assets\icon_top.png" />

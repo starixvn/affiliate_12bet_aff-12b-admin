@@ -17,7 +17,7 @@ export class Content extends Component {
     }
 
     shouldComponentUpdate(nextProps) {
-        const { reportTitle, currentViewLevel } = this.props;
+        const { reportTitle } = this.props;
 
         return nextProps.reportTitle !== reportTitle;
     }
@@ -44,21 +44,24 @@ export class Content extends Component {
         const isMainView = currentViewLevel === viewLevel.main;
 
         return isMainView ? (
-            <div>
+            <div className="d-flex align-items-center">
                 {reportTitle}
-                <button type="button" onClick={this.handleExportExcel}>Excel</button>
+                <button type="button" className="ml-auto btn btn-link btn-excel" onClick={this.handleExportExcel} title="Export Excel">
+                    <span className="oi icon-excel"></span>
+                </button>
             </div>
         ) : (
-                <div>
+                <div className="d-flex align-items-center">
                     <a href="javascript:;" className="btn-link font-weight-bold" onClick={this.handleClickBreadcrumb}>AFFILIATE REPORT</a> > {reportTitle}
-                    <button type="button" onClick={this.handleExportExcel}>Excel</button>
+                    <button type="button" className="ml-auto btn btn-link btn-excel" onClick={this.handleExportExcel} title="Export Excel">
+                        <span className="oi icon-excel"></span>
+                    </button>
                 </div>
             )
     }
 
     render() {
         const { reportTitle } = this.props;
-        console.log('title render')
 
         return (
             <div className="data-content my-2">
