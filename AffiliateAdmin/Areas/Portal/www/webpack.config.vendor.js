@@ -21,7 +21,7 @@ module.exports = env => {
     const relativeOutputRootPath = projectPath.clientOutputPath;
 
     const sharedConfig = {
-        context: path.resolve(__dirname, "./"),
+        context: path.resolve(__dirname, "."),
         mode: env,
         stats: { modules: false },
         module: {

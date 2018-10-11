@@ -21,14 +21,13 @@ module.exports = env => {
     const isDevBuild = !(env === environment.production);
 
     const sharedConfig = () => ({
-        context: path.resolve(__dirname, "./"),
         mode: env,
         stats: { modules: false },
         resolve: { extensions: [".js", ".jsx"] },
         output: {
             filename: "[name].js",
-            chunkFilename: '../../../../Areas/Portal/www/dist/js/dynamic-chunks/[name].chunk.js',
-            publicPath: '/dist/'
+            chunkFilename: 'js/dynamic-chunks/[name].chunk.js',
+            publicPath: '/Areas/Portal/www/dist/'
         },
         module: {
             rules: [{
