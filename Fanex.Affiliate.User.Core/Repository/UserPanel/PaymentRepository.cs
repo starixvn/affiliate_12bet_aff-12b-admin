@@ -20,7 +20,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             {
                 AssignPaymentParam(objectDb.DB, paymentParam);
 
-                using (var reader = objectDb.DB.ExecuteReader(paymentParam))
+                using (var reader = objectDb.DB.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -74,12 +74,12 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
         private static void AssignPaymentParam(IObjectDb objectDb, PaymentParam param)
         {
-            objectDb.AddInParameter("AffID", DbType.Int32, param.AffId);
-            objectDb.AddInParameter("Year", DbType.Int32, param.Year);
+            objectDb.AddInParameter("AffID", SqlDbType.Int, param.AffId);
+            objectDb.AddInParameter("Year", SqlDbType.Int, param.Year);
 
-            objectDb.AddOutParameter("PreferredPayment", DbType.String, 20);
-            objectDb.AddOutParameter("BalBroughtForward", DbType.Decimal, 16);
-            objectDb.AddOutParameter("MinAmount", DbType.Decimal, 16);
+            objectDb.AddOutParameter("PreferredPayment", SqlDbType.VarChar, 20);
+            objectDb.AddOutParameter("BalBroughtForward", SqlDbType.Money, 16);
+            objectDb.AddOutParameter("MinAmount", SqlDbType.Money, 16);
         }
 
         private static Payment BuildPaymentItem(IDataReader reader)

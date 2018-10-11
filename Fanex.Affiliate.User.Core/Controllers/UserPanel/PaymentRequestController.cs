@@ -37,7 +37,7 @@
 
         [HttpPost]
         [AjaxOnly]
-        public ActionResult Index(int year)
+        public ActionResult GetDataByYearRequest(int year)
         {
             var viewModel = year >= 2009 && year <= DateTime.Now.Year ? GetViewModel(year) : GetViewModel(DateTime.Now.Year);
 
