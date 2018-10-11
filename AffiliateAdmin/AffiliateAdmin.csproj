@@ -1534,12 +1534,15 @@
     <Content Include="Areas\Portal\www\dist\vendors\bootstrap.css" />
     <Content Include="Areas\Portal\www\dist\vendors\bootstrap.js" />
     <Content Include="Areas\Portal\www\dist\vendors\react.js" />
+    <Content Include="Areas\Portal\www\dist\vendors\xlsxStyle.js" />
     <Content Include="Areas\Portal\www\index.html" />
     <Content Include="Areas\Portal\www\config-utils\constant.js" />
     <Content Include="Areas\Portal\www\config-utils\entry.js" />
     <Content Include="Areas\Portal\www\source\js\modules\ajaxRequest.js" />
     <Content Include="Areas\Portal\www\source\js\modules\createReducer.js" />
     <Content Include="Areas\Portal\www\source\js\modules\dataHandler.js" />
+    <Content Include="Areas\Portal\www\source\js\modules\excel.js" />
+    <Content Include="Areas\Portal\www\source\js\modules\excelStyleConstant.js" />
     <Content Include="Areas\Portal\www\source\js\modules\numberFormat.js" />
     <Content Include="Areas\Portal\www\source\js\modules\utils.js" />
     <Content Include="Areas\Portal\www\source\js\pagelayout\lib\jquery.jclock.js" />
@@ -1551,6 +1554,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\modules\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\modules\reportExcel.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\actions\types.js" />
@@ -1846,6 +1850,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\components\GridData.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\components\InsertUpdateForm.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\media-gallery\landing-page.scss" />
+    <Content Include="Areas\Portal\www\dist\vendors\xlsxStyle-manifest.json" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

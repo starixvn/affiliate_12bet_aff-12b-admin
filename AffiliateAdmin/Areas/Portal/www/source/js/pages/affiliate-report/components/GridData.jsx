@@ -9,9 +9,7 @@ import { format, formatDecimal } from '../../../modules/numberFormat';
 import { setPagingOption, setViewLevel, setParam } from '../actions';
 import { post } from '../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../actions/loaderAction';
-import { allProduct, viewLevel, sortByMonthOnMonthView, sortDirectionType } from '../modules/constants';
-
-const totalText = 'Total (all pages)';
+import { allProduct, viewLevel, sortByMonthOnMonthView, sortDirectionType, totalText, headerText } from '../modules/constants';
 
 export class GridData extends Component {
     constructor(props) {
@@ -77,37 +75,37 @@ export class GridData extends Component {
 
     _renderHeader() {
         const isMainView = this._isMainView();
-        const firstColName = isMainView ? 'Affiliate' : 'Month';
+        const firstColName = isMainView ? headerText.UserName : headerText.MonthDateString;
 
         return [
             <Row>
                 <Cell header={true} colWidth={120} rowSpan="2" title={firstColName}>{firstColName}</Cell>
-                <Cell header={true} colWidth={70} rowSpan="2" title="Total Click">Total Click</Cell>
-                <Cell header={true} colWidth={70} rowSpan="2" title="Unique Click">Unique Click</Cell>
-                <Cell header={true} colWidth={65} rowSpan="2" title="Signup">Signup</Cell>
-                <Cell header={true} colWidth={50} rowSpan="2" title="FDM">FDM</Cell>
-                <Cell header={true} colWidth={60} rowSpan="2" title="Active Member">Active Member</Cell>
-                <Cell header={true} colWidth={60} rowSpan="2" title="Qualified Member">Qualified Member</Cell>
-                <Cell header={true} colSpan="9" title="Member Statistics">Member Statistics</Cell>
-                <Cell header={true} colSpan={isMainView ? 5 : 4} title="Affiliate Statistics">Affiliate Statistics</Cell>
-                {isMainView && (<Cell header={true} colWidth={50} rowSpan="2" title="Month on Month">Month on Month</Cell>)}
+                <Cell header={true} colWidth={70} rowSpan="2" title={headerText.TotalClick}>{headerText.TotalClick}</Cell>
+                <Cell header={true} colWidth={70} rowSpan="2" title={headerText.UniqueClick}>{headerText.UniqueClick}</Cell>
+                <Cell header={true} colWidth={65} rowSpan="2" title={headerText.Signup}>{headerText.Signup}</Cell>
+                <Cell header={true} colWidth={50} rowSpan="2" title={headerText.Fdm}>{headerText.Fdm}</Cell>
+                <Cell header={true} colWidth={60} rowSpan="2" title={headerText.ActiveMember}>{headerText.ActiveMember}</Cell>
+                <Cell header={true} colWidth={60} rowSpan="2" title={headerText.QualifiedMember}>{headerText.QualifiedMember}</Cell>
+                <Cell header={true} colSpan="9" title={headerText.MemberStatistics}>{headerText.MemberStatistics}</Cell>
+                <Cell header={true} colSpan={isMainView ? 5 : 4} title={headerText.AffiliateStatistics}>{headerText.AffiliateStatistics}</Cell>
+                {isMainView && (<Cell header={true} colWidth={50} rowSpan="2" title={headerText.MonthOnMonth}>{headerText.MonthOnMonth}</Cell>)}
             </Row>,
             <Row>
-                <Cell header={true} colWidth={75} title="Deposit">Deposit</Cell>
-                <Cell header={true} colWidth={75} title="Withdrawal">Withdrawal</Cell>
-                <Cell header={true} colWidth={95} title="Turnover">Turnover</Cell>
-                <Cell header={true} colWidth={95} title="WinLoss">WinLoss</Cell>
-                <Cell header={true} colWidth={70} title="Bonus">Bonus</Cell>
-                <Cell header={true} colWidth={70} title="Platform Fee">Platform Fee</Cell>
-                <Cell header={true} colWidth={70} title="Operational Fee">Operational Fee</Cell>
-                <Cell header={true} colWidth={70} title="Banking Fee">Banking Fee</Cell>
-                <Cell header={true} colWidth={70} title="Total Fee">Total Fee</Cell>
+                <Cell header={true} colWidth={75} title={headerText.Deposit}>{headerText.Deposit}</Cell>
+                <Cell header={true} colWidth={75} title={headerText.Withdrawal}>{headerText.Withdrawal}</Cell>
+                <Cell header={true} colWidth={95} title={headerText.Turnover}>{headerText.Turnover}</Cell>
+                <Cell header={true} colWidth={95} title={headerText.Winlost}>{headerText.Winlost}</Cell>
+                <Cell header={true} colWidth={70} title={headerText.Bonus}>{headerText.Bonus}</Cell>
+                <Cell header={true} colWidth={70} title={headerText.PlatformFee}>{headerText.PlatformFee}</Cell>
+                <Cell header={true} colWidth={70} title={headerText.OperationalFee}>{headerText.OperationalFee}</Cell>
+                <Cell header={true} colWidth={70} title={headerText.BankingFee}>{headerText.BankingFee}</Cell>
+                <Cell header={true} colWidth={70} title={headerText.TotalFee}>{headerText.TotalFee}</Cell>
 
-                <Cell header={true} colWidth={60} title="Comm%">Comm%</Cell>
-                <Cell header={true} colWidth={80} title="Earning">Earning</Cell>
-                <Cell header={true} colWidth={80} title="Withdrawal">Withdrawal</Cell>
-                {isMainView && (<Cell header={true} colWidth={70} title="Adjustment">Adjustment</Cell>)}
-                <Cell header={true} colWidth={100} title="Balance B/F">Balance B/F</Cell>
+                <Cell header={true} colWidth={60} title={headerText.CommissionRate}>{headerText.CommissionRate}</Cell>
+                <Cell header={true} colWidth={80} title={headerText.Earning}>{headerText.Earning}</Cell>
+                <Cell header={true} colWidth={80} title={headerText.AffWithdrawal}>{headerText.AffWithdrawal}</Cell>
+                {isMainView && (<Cell header={true} colWidth={70} title={headerText.AffAdjustment}>{headerText.AffAdjustment}</Cell>)}
+                <Cell header={true} colWidth={100} title={headerText.BalanceBf}>{headerText.BalanceBf}</Cell>
             </Row>
         ];
     }

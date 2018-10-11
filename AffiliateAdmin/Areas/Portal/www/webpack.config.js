@@ -86,6 +86,10 @@ module.exports = env => {
             new webpack.DllReferencePlugin({
                 context: __dirname,
                 manifest: require(`${clientBundleOutputDir}/vendors/react-manifest.json`)
+            }),
+            new webpack.DllReferencePlugin({
+                context: __dirname,
+                manifest: require(`${clientBundleOutputDir}/vendors/xlsxStyle-manifest.json`)
             })
         ].concat(isDevBuild ? [] : [new OptimizeCSSAssetsPlugin(), new CleanWebpackPlugin(pathsToClean, cleanOptions), ]),
         devtool: isDevBuild ? "source-map" : undefined

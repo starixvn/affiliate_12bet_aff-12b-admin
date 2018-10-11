@@ -38,7 +38,8 @@ module.exports = env => {
         },
         entry: {
             react: ["react", "react-dom", "react-redux", "redux", "redux-thunk", "reactstrap"],
-            bootstrap: ["bootstrap/dist/css/bootstrap.css"]
+            bootstrap: ["bootstrap/dist/css/bootstrap.css"],
+            xlsxStyle: ["xlsx-style-sparta"]
         },
         output: {
             publicPath: "dist/vendors",
@@ -51,6 +52,14 @@ module.exports = env => {
                 "process.env.NODE_ENV": isDevBuild ? '"development"' : '"production"'
             }),
             new OptimizeCssAssetsPlugin()
+        ],
+        node: {
+            fs: 'empty'
+        },
+        externals: [
+            { './jszip': 'jszip' },
+            { './ods': 'ods' },
+            { './cptable': 'var cptable' }
         ]
     };
 
