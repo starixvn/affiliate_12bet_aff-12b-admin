@@ -14,6 +14,10 @@ var Layout = (function ($) {
             _me.renderHotNews();
         },
         initEvent: function () {
+            $("#selectedLanguage").on("click", function () {
+                $(this).focus();
+            });
+
             $("#languageList").on("click", ".language-item", function () {
                 var $selectedItem = $(this);
                 Site.redirect(Site.resolveRelativeUrl('') + '?lang=' + $selectedItem.data('option'));
