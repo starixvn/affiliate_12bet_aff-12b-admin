@@ -291,10 +291,10 @@ class Filter extends Component {
                         isMainView &&
                         <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                             <Input type="select" name="Language" id="Language" value={selectedLanguage} onChange={this.handleChangeLanguage}>
-                                <option value="">All Language</option>
+                                <option key="lang-all" value="">All Language</option>
                                 {
                                     Object.keys(languageList).map(lang => {
-                                        return (<option value={lang}>{languageList[lang]}</option>)
+                                        return (<option key={'lang-' + lang} value={lang}>{languageList[lang]}</option>)
                                     })
                                 }
                             </Input>
@@ -349,7 +349,7 @@ class Filter extends Component {
                         <Input type="select" name="SortBy" id="SortBy" value={sortBy} onChange={this.handleChangeSortBy}>
                             {
                                 Object.keys(sortByData).map(k => {
-                                    return (<option value={sortByData[k]}>{k}</option>);
+                                    return (<option key={'sortBy-' + k} value={sortByData[k]}>{k}</option>);
                                 })
                             }
                         </Input>

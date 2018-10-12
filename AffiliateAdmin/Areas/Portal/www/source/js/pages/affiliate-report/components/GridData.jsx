@@ -78,7 +78,7 @@ export class GridData extends Component {
         const firstColName = isMainView ? headerText.UserName : headerText.MonthDateString;
 
         return [
-            <Row>
+            <Row key="h1">
                 <Cell header={true} colWidth={120} rowSpan="2" title={firstColName}>{firstColName}</Cell>
                 <Cell header={true} colWidth={70} rowSpan="2" title={headerText.TotalClick}>{headerText.TotalClick}</Cell>
                 <Cell header={true} colWidth={70} rowSpan="2" title={headerText.UniqueClick}>{headerText.UniqueClick}</Cell>
@@ -90,7 +90,7 @@ export class GridData extends Component {
                 <Cell header={true} colSpan={isMainView ? 5 : 4} title={headerText.AffiliateStatistics}>{headerText.AffiliateStatistics}</Cell>
                 {isMainView && (<Cell header={true} colWidth={50} rowSpan="2" title={headerText.MonthOnMonth}>{headerText.MonthOnMonth}</Cell>)}
             </Row>,
-            <Row>
+            <Row key="h2">
                 <Cell header={true} colWidth={75} title={headerText.Deposit}>{headerText.Deposit}</Cell>
                 <Cell header={true} colWidth={75} title={headerText.Withdrawal}>{headerText.Withdrawal}</Cell>
                 <Cell header={true} colWidth={95} title={headerText.Turnover}>{headerText.Turnover}</Cell>
@@ -119,13 +119,13 @@ export class GridData extends Component {
 
         for (let i = 0; i < dataList.length; i++) {
             const dataItem = dataList[i];
-            dataRows.push(this._buildDataRow(dataItem, productColumnClassName));
+            dataRows.push(this._buildDataRow(dataItem, productColumnClassName, i));
         }
 
         return dataRows;
     }
 
-    _buildDataRow(dataItem, productColumnClassName) {
+    _buildDataRow(dataItem, productColumnClassName, index) {
         const isMainView = this._isMainView();
         const isTotalRow = isMainView ? (dataItem.AffId === 0 && dataItem.UserName === "") : (dataItem.MonthDate === null);
         const firstColValue = isTotalRow ?
@@ -133,7 +133,7 @@ export class GridData extends Component {
             (isMainView ? dataItem.UserName : this._buildMonthCell(dataItem.MonthDateString, dataItem.Description));
 
         return (
-            <Row>
+            <Row key={`dataRow-${index}`}>
                 <Cell title={firstColValue}>{firstColValue}</Cell>
                 {this._buildCommonCell(dataItem, productColumnClassName, isTotalRow)}
                 {

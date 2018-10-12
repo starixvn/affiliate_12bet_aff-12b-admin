@@ -6,7 +6,7 @@ export default (props) => {
     return (
         <div className="loader" style={{ display: props.show ? 'block' : 'none' }}>
             <div className="backdrop" style={{ display: backdrop ? 'block' : 'none' }}></div>
-            <div class="spinner">
+            <div className="spinner">
                 <div></div>
                 <div></div>
                 <div></div>
