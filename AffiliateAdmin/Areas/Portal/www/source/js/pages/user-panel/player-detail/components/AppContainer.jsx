@@ -108,7 +108,10 @@ export default class AppContainer extends Component {
     }
 
     render() {
+        const allProduct = 0;
         const { selectedProduct, monthDate, data, isShowLoader, pagingOption } = this.state;
+        const isSelectedAllProducts = selectedProduct === allProduct;
+        const productColumnClassName = isSelectedAllProducts ? 'text-right' : 'text-right highlight';
 
         return (
             <AppLayout>
@@ -118,7 +121,7 @@ export default class AppContainer extends Component {
                     selectedProduct={selectedProduct}
                     monthDate={monthDate}
                     onExportExcel={this.handleExportExcel} />
-                <Content data={data} pagingOption={pagingOption} onPaging={this.handlePaging} />
+                <Content data={data} pagingOption={pagingOption} onPaging={this.handlePaging} productColumnClassName={productColumnClassName}/>
             </AppLayout>
         );
     }

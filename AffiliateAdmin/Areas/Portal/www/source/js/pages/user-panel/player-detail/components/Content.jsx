@@ -23,7 +23,7 @@ export default class Content extends Component {
         )
     }
 
-    _renderDataSection(dataList) {
+    _renderDataSection(dataList, productColumnClassName) {
         const dataRows = [];
 
         const { pagingOption } = this.props;
@@ -31,13 +31,13 @@ export default class Content extends Component {
 
         for (let i = 0; i < dataList.length; i++) {
             const dataItem = dataList[i];
-            dataRows.push(this._buildDataRow(dataItem, startIndex + i));
+            dataRows.push(this._buildDataRow(dataItem, startIndex + i, productColumnClassName));
         }
 
         return dataRows;
     }
 
-    _buildDataRow(dataItem, rowNumber) {
+    _buildDataRow(dataItem, rowNumber, productColumnClassName) {
         const turnover = formatDecimal(dataItem.Turnover);
         const winlost = formatDecimal(dataItem.Winlost);
         const deposit = formatDecimal(dataItem.Deposit);
@@ -50,8 +50,8 @@ export default class Content extends Component {
                 <Cell title={dataItem.UserName}>{dataItem.UserName}</Cell>
                 <Cell title={dataItem.IbcUserName}>{dataItem.IbcUserName}</Cell>
                 <Cell className="text-center" title={dataItem.RegisteredDateText}>{dataItem.RegisteredDateText}</Cell>
-                <Cell className="text-right" title={turnover}>{turnover}</Cell>
-                <Cell className="text-right" title={winlost}>{winlost}</Cell>
+                <Cell className={productColumnClassName} title={turnover}>{turnover}</Cell>
+                <Cell className={productColumnClassName} title={winlost}>{winlost}</Cell>
                 <Cell className="text-right" title={deposit}>{deposit}</Cell>
                 <Cell className="text-right" title={bonus}>{bonus}</Cell>
                 <Cell className="text-right" title={bankingFee}>{bankingFee}</Cell>
@@ -69,7 +69,7 @@ export default class Content extends Component {
     }
 
     render() {
-        const { pagingOption, data } = this.props;
+        const { pagingOption, data, productColumnClassName } = this.props;
         const { gridData } = data;
 
         return gridData && (
@@ -79,7 +79,7 @@ export default class Content extends Component {
                     autoWidth={true}
                     bodyHeight={300}
                     header={this._renderHeader()}
-                    body={this._renderDataSection(gridData)}
+                    body={this._renderDataSection(gridData, productColumnClassName)}
                     containerPadding={20}
                     isPaging={true}
                     pageOption={pagingOption}
