@@ -6,7 +6,9 @@ import Content from './Content';
 import Loader from '../../../../components/Loader';
 import { post } from '../../../../modules/ajaxRequest';
 import { defaultPagingOption } from '../../../../modules/constants';
+import ReportExcel from '../modules/reportExcel';
 
+const API_URL = 'Portal/UserPanel/PlayerDetail/GetPlayerDetailList';
 export default class AppContainer extends Component {
     constructor(props) {
         super(props);
@@ -26,7 +28,7 @@ export default class AppContainer extends Component {
     }
 
     componentDidMount() {
-        if(this.isFromStatistics){
+        if (this.isFromStatistics) {
             const { selectedProduct, monthDate, pagingOption } = this.state;
 
             const param = {
@@ -42,9 +44,7 @@ export default class AppContainer extends Component {
 
     async fetchData(param) {
         this.setState({ isShowLoader: true });
-
-        const url = 'Portal/UserPanel/PlayerDetail/GetPlayerDetailList';
-        const response = await post(url, param);
+        const response = await post(API_URL, param);
         if (response && response.status === 200) {
             const { MainData, TotalItem } = response.data;
             const pagingOption = Object.assign({}, this.state.pagingOption, {
@@ -91,6 +91,22 @@ export default class AppContainer extends Component {
         this.fetchData(param);
     }
 
+    handleExportExcel = async (filterParam) => {
+        this.setState({ isShowLoader: true });
+
+        const param = {
+            ...filterParam,
+            IsExportExcel: true
+        }
+        const response = await post(API_URL, param);
+        if (response && response.status === 200) {
+            const reportExcel = new ReportExcel(response.data);
+            reportExcel.export();
+        }
+
+        this.setState({ isShowLoader: false });
+    }
+
     render() {
         const { selectedProduct, monthDate, data, isShowLoader, pagingOption } = this.state;
 
@@ -100,7 +116,8 @@ export default class AppContainer extends Component {
                 <Filter onSubmit={this.handleSubmit}
                     productList={this.productList}
                     selectedProduct={selectedProduct}
-                    monthDate={monthDate} />
+                    monthDate={monthDate}
+                    onExportExcel={this.handleExportExcel} />
                 <Content data={data} pagingOption={pagingOption} onPaging={this.handlePaging} />
             </AppLayout>
         );

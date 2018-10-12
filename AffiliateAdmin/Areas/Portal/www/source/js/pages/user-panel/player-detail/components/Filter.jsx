@@ -49,6 +49,17 @@ export default class Filter extends Component {
         this.props.onSubmit(param);
     }
 
+    handleExportExcel = () => {
+        const { selectedProduct, monthDate } = this.state;
+
+        const param = {
+            ProductId: selectedProduct,
+            MonthDate: `${monthDate.getMonth() + 1}/1/${monthDate.getFullYear()}`
+        }
+
+        this.props.onExportExcel(param);
+    }
+
     render() {
         const { selectedProduct, monthDate } = this.state;
 
@@ -79,6 +90,10 @@ export default class Filter extends Component {
 
                     <Button outline color="primary" type="button" onClick={this.handleSubmit}>
                         <span className="oi oi-magnifying-glass"></span> Search
+                    </Button>
+
+                    <Button color="link" type="button" className="ml-auto btn-excel" onClick={this.handleExportExcel} title="Export Excel">
+                        <span className="oi icon-excel"></span>
                     </Button>
                 </Form>
             </div>
