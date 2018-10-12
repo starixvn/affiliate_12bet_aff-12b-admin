@@ -1,7 +1,7 @@
 const { projectPath } = require("./constant");
 
-const jsDist = "js";
-const styleDist = "style";
+const jsDist = projectPath.relativeOutputPath + "/js";
+const styleDist = projectPath.relativeOutputPath + "/style";
 
 const clientRoot = projectPath.clientInputPath;
 

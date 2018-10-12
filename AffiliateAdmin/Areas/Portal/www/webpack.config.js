@@ -16,6 +16,8 @@ let cleanOptions = {
     dry: false
 };
 
+const relativeOutputPath = projectPath.relativeOutputPath;
+
 module.exports = env => {
     env = environment[env] || environment.development;
     const isDevBuild = !(env === environment.production);
@@ -25,9 +27,9 @@ module.exports = env => {
         stats: { modules: false },
         resolve: { extensions: [".js", ".jsx"] },
         output: {
+            path: projectPath.rootPath,
             filename: "[name].js",
-            chunkFilename: 'js/dynamic-chunks/[name].chunk.js',
-            publicPath: '/Areas/Portal/www/dist/'
+            chunkFilename: relativeOutputPath + '/js/dynamic-chunks/[name].chunk.js'
         },
         module: {
             rules: [{
@@ -42,7 +44,7 @@ module.exports = env => {
                         options: {
                             limit: 4096,
                             name: "[name].[ext]",
-                            outputPath: "style/assets/",
+                            outputPath: relativeOutputPath + "/style/assets/",
                             publicPath: "assets/"
                         }
                     }]
@@ -86,7 +88,6 @@ module.exports = env => {
                 ]
             }]
         },
-        output: { path: clientBundleOutputDir },
         plugins: [
             new MiniCssExtractPlugin({
                 filename: "[name].css"
