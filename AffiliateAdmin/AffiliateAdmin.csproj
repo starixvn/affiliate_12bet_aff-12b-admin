@@ -1814,8 +1814,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-private-group\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-group\AssignGroup.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-group\index.jsx" />
-    <Content Include="Areas\Portal\www\package.json" />
-    <Content Include="Areas\Portal\www\package-lock.json" />
     <Content Include="Areas\Portal\Views\Password\ChangePassword.cshtml" />
     <Content Include="package.json" />
     <Content Include="Areas\Portal\Views\AffiliateReport\Index.cshtml" />
@@ -2015,7 +2013,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>65181</DevelopmentServerPort>
           <DevelopmentServerVPath>/V1</DevelopmentServerVPath>
-          <IISUrl>http://localhost:65181/</IISUrl>
+          <IISUrl>http://localhost:65181/Aff12BetAdmin</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
