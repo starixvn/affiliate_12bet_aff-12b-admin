@@ -21,15 +21,15 @@ namespace DataHandler
                 hsParam.Add("transtype", transType);
             if (dtmFDate != null && dtmTDate != null)
             {
-                if (Convert.ToDateTime(dtmFDate).CompareTo(Convert.ToDateTime(dtmTDate)) < 0)
-                {
-                    hsParam.Add("fdate", dtmFDate);
-                    hsParam.Add("tdate", dtmTDate);
-                }
-                else
+                if (Convert.ToDateTime(dtmFDate).CompareTo(Convert.ToDateTime(dtmTDate)) > 0)
                 {
                     totalPages = 0;
                     return null;
+                }
+                else
+                {
+                    hsParam.Add("fdate", dtmFDate);
+                    hsParam.Add("tdate", dtmTDate);
                 }
             }
 
