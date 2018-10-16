@@ -149,6 +149,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CommissionGroupController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\CustomerStatisticsController.cs" />
     <Compile Include="Controllers\DomainController.cs" />
     <Compile Include="Controllers\EmailTestingController.cs" />
     <Compile Include="Controllers\ExchangeRateController.cs" />
@@ -202,8 +203,8 @@
     <Compile Include="MetaModels\UserPanel\DailyEarningParam.cs" />
     <Compile Include="MetaModels\UserPanel\PlayerDetailParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\Customer\CustomerRepository.cs" />
-    <Compile Include="Repository\Customer\ICustomerRepository.cs" />
+    <Compile Include="Repository\Customer\CustomerStatisticsRepository.cs" />
+    <Compile Include="Repository\Customer\ICustomerStatisticsRepository.cs" />
     <Compile Include="Repository\Report\AffiliateReportRepository.cs" />
     <Compile Include="Repository\AffiliateRepository.cs" />
     <Compile Include="Repository\AuthRepository.cs" />

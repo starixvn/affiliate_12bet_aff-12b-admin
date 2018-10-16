@@ -2,40 +2,40 @@
 {
     public class CustomerStatistics
     {
-        public int NewSignUp { get; set; }
+        public int NewSignUpByMonth { get; set; }
 
-        public int NewFdm { get; set; }
+        public int NewFdmByMonth { get; set; }
 
-        public int TotalNewSignUp { get; set; }
+        public int NewSignUpTotal { get; set; }
 
-        public int TotalNewFdm { get; set; }
+        public int NewFdmTotal { get; set; }
 
-        public int TotalActivePlayer { get; set; }
+        public int ActivePlayerByMonth { get; set; }
 
-        public int TotalQualifiedActivePlayer { get; set; }
+        public int QualifiedMemberByMonth { get; set; }
 
-        public decimal TotalDeposit { get; set; }
+        public decimal DepositByMonth { get; set; }
 
-        public decimal TotalDepositUp { get; set; }
+        public decimal DepositTotal { get; set; }
 
-        public decimal Turnover { get; set; }
+        public decimal TurnoverByMonth { get; set; }
 
-        public decimal TotalTurnover { get; set; }
+        public decimal TurnoverTotal { get; set; }
 
-        public decimal Winlost { get; set; }
+        public decimal WinlostByMonth { get; set; }
 
-        public decimal TotalWinlost { get; set; }
+        public decimal WinlostTotal { get; set; }
 
-        public int UniqueClick { get; set; }
+        public int UniqueClickByMonth { get; set; }
 
-        public int TotalClick { get; set; }
+        public int TotalClickByMonth { get; set; }
 
-        public int UniqueClickByPcLaptop { get; set; }
+        public int UniqueClickPcLaptopByMonth { get; set; }
 
-        public int TotalClickByPcLaptop { get; set; }
+        public int TotalClickPcLaptopByMonth { get; set; }
 
-        public int UniqueClickByMobile { get; set; }
+        public int UniqueClickMobileByMonth { get; set; }
 
-        public int TotalClickByMobile { get; set; }
+        public int TotalClickMobileByMonth { get; set; }
     }
 }

@@ -80,7 +80,7 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
             builder.RegisterType<PlayerDetailRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<LandingPageRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<LandingPageService>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<CustomerRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<CustomerStatisticsRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
     }
 }

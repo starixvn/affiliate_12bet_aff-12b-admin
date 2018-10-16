@@ -3,7 +3,7 @@ using Fanex.Affiliate.Admin.Core.MetaModels.Customer;
 
 namespace Fanex.Affiliate.Admin.Core.Repository.Customer
 {
-    public interface ICustomerRepository
+    public interface ICustomerStatisticsRepository
     {
         CustomerStatistics GetCustomerStatistics(CustomerStatisticsParam param);
     }
