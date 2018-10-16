@@ -18,7 +18,8 @@ export default class AppContainer extends Component {
             selectedPages: {},
             popupForm: null,
             isShowLoader: false,
-            popupTitle: ''
+            popupTitle: '',
+            shouldResetTableScrollPosition: true
         }
     }
 
@@ -36,7 +37,7 @@ export default class AppContainer extends Component {
         const response = await post(url);
         if (response) {
             const selectedPages = this._convertSelectedPages(response.data);
-            this.setState({ data: response.data, selectedPages, isShowLoader: false });
+            this.setState({ data: response.data, selectedPages, isShowLoader: false, shouldResetTableScrollPosition: true });
         }
 
         this.toggleLoader(false);
@@ -148,7 +149,8 @@ export default class AppContainer extends Component {
 
     onCheckItem = (isChecked, pageId) => {
         this.setState((prevState => ({
-            selectedPages: Object.assign({}, prevState.selectedPages, { [pageId]: isChecked })
+            selectedPages: Object.assign({}, prevState.selectedPages, { [pageId]: isChecked }),
+            shouldResetTableScrollPosition: false
         })));
     }
 
@@ -160,11 +162,11 @@ export default class AppContainer extends Component {
             return accumulator;
         }, {});
 
-        this.setState({ selectedPages: newSelectedPages });
+        this.setState({ selectedPages: newSelectedPages, shouldResetTableScrollPosition: false });
     }
 
     render() {
-        const { data, selectedPages, popupForm, isShowLoader, popupTitle } = this.state;
+        const { data, selectedPages, popupForm, isShowLoader, popupTitle, shouldResetTableScrollPosition } = this.state;
         const showPopup = popupForm !== null;
 
         return (
@@ -179,7 +181,8 @@ export default class AppContainer extends Component {
                         onCheckItem={this.onCheckItem}
                         onEdit={this.onEdit}
                         selectedPages={selectedPages}
-                        onToggleAll={this.onToggleAll} />
+                        onToggleAll={this.onToggleAll}
+                        shouldResetTableScrollPosition={shouldResetTableScrollPosition} />
 
                     <Modal isOpen={showPopup} toggle={this.handleHidePopup} backdrop='static'>
                         <ModalHeader toggle={this.handleHidePopup}><span className="iconpopup"></span>{popupTitle}</ModalHeader>

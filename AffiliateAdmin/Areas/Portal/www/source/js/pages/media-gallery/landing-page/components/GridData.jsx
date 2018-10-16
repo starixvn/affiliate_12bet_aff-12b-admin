@@ -5,9 +5,6 @@ import { Button } from 'reactstrap';
 export default class List extends Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-        }
     }
 
     _renderHeader() {
@@ -53,7 +50,7 @@ export default class List extends Component {
     }
 
     render() {
-        const { dataList } = this.props;
+        const { dataList, shouldResetTableScrollPosition } = this.props;
 
         return dataList && (
             <div>
@@ -76,6 +73,7 @@ export default class List extends Component {
                             header={this._renderHeader()}
                             body={this._renderDataSection(dataList)}
                             containerPadding={20}
+                            shouldResetScrollPosition={shouldResetTableScrollPosition}
                         />
                     </div>
                 </div>
