@@ -1,5 +1,6 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
+    using System;
     using System.Linq;
     using System.Web.Mvc;
     using Constants;
@@ -13,7 +14,6 @@
     using Resources;
     using Utilities;
     using ViewModels.UserPanel;
-    using System;
 
     [CustomAuthorize]
     public class PaymentRequestController : BaseController
@@ -37,13 +37,11 @@
 
         [HttpPost]
         [AjaxOnly]
-        public ActionResult GetDataByYearRequest(int year)
+        public ActionResult GetPaymentListByYear(int year)
         {
             var viewModel = year >= 2009 && year <= DateTime.Now.Year ? GetViewModel(year) : GetViewModel(DateTime.Now.Year);
 
-            ViewData["PreferredPayment"] = viewModel.PreferredPayment;
-
-            return PartialView("~/Views/UserPanel/PaymentRequest/PaymentPartial/_PaymentList.cshtml", viewModel.PaymentList);
+            return PartialView("~/Views/UserPanel/PaymentRequest/PaymentPartial/_PaymentList.cshtml", viewModel);
         }
         [HttpGet]
         [AjaxOnly]

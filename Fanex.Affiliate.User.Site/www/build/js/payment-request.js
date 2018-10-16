@@ -111,7 +111,7 @@ var PaymentRequest = (function ($) {
             console.log("aaa");
             $.ajax({
                 type: "POST",
-                url: Site.resolveRelativeUrl("UserPanel/PaymentRequest/GetDataByYearRequest"),
+                url: Site.resolveRelativeUrl("UserPanel/PaymentRequest/GetPaymentListByYear"),
                 data: JSON.stringify({ "year": year }),
                 dataType: "html",
                 cache: false,

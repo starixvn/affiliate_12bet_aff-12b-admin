@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Data;
-using System.Data;
-using System;
 
 namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 {
@@ -32,9 +32,9 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
                 var preferredPayment = objectDb.DB.GetParameterValue("PreferredPayment");
                 var minAmount = objectDb.DB.GetParameterValue("MinAmount");
 
-                paymentParam.PreferredPayment = preferredPayment == DBNull.Value ? "" : Convert.ToString(preferredPayment);
-                paymentParam.BalBroughtForward = balBroughtForward == DBNull.Value ? 0 : Convert.ToDecimal(balBroughtForward);
-                paymentParam.MinAmount = minAmount == DBNull.Value ? 0 : Convert.ToDecimal(minAmount);
+                paymentParam.PreferredPayment = preferredPayment == DBNull.Value ? string.Empty : Convert.ToString(preferredPayment);
+                paymentParam.BalBroughtForward = balBroughtForward == DBNull.Value ? 0m : Convert.ToDecimal(balBroughtForward);
+                paymentParam.MinAmount = minAmount == DBNull.Value ? 0m : Convert.ToDecimal(minAmount);
             }
 
             return paymentList;

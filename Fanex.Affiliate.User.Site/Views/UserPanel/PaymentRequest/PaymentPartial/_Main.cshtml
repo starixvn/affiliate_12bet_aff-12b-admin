@@ -38,7 +38,7 @@
                 </div>
             </form>
         </div>
-        @{ Html.RenderPartial("~/Views/UserPanel/PaymentRequest/PaymentPartial/_PaymentList.cshtml", Model.PaymentList, new ViewDataDictionary { ["PreferredPayment"] = Model.PreferredPayment }); }
+        @{ Html.RenderPartial("~/Views/UserPanel/PaymentRequest/PaymentPartial/_PaymentList.cshtml", Model); }
     </div>
 </div>
 

@@ -2,13 +2,12 @@
     Layout = null;
 }
 @using Fanex.Affiliate.User.Core.Constants;
-@model IEnumerable<Fanex.Affiliate.User.Core.DTO.Payment>
+@model Fanex.Affiliate.User.Core.ViewModels.UserPanel.PaymentViewModel
 
 @{
-    var hasData = Model != null && Model.Any();
-    var preferredPayment = ViewData.ContainsKey("PreferredPayment") && ViewData["PreferredPayment"] != null ?
-        ViewData["PreferredPayment"].ToString() :
-        string.Empty;
+    var paymentList = Model.PaymentList;
+    var hasData = paymentList != null && paymentList.Any();
+    var preferredPayment = Model.PreferredPayment ?? string.Empty;
     var paymentMethod = preferredPayment.Replace("Wire", Lang.BankTransfer);
 }
 
@@ -51,7 +50,7 @@
             @{
                 if (hasData)
                 {
-                    foreach (var item in Model)
+                    foreach (var item in paymentList)
                     {
                         <tr>
                             <td class="text-center">@item.TransId</td>
