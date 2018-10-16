@@ -23,7 +23,7 @@ export default class AppContainer extends Component {
             selectedProduct: param.ProductId,
             monthDate: new Date(param.MonthDate),
             data: { gridData: null },
-            pagingOption: Object.assign({}, defaultPagingOption)
+            pagingOption: Object.assign({}, defaultPagingOption, { PageList: [100, 200, 500, 1000, 2000] })
         }
     }
 
@@ -121,7 +121,7 @@ export default class AppContainer extends Component {
                     selectedProduct={selectedProduct}
                     monthDate={monthDate}
                     onExportExcel={this.handleExportExcel} />
-                <Content data={data} pagingOption={pagingOption} onPaging={this.handlePaging} productColumnClassName={productColumnClassName}/>
+                <Content data={data} pagingOption={pagingOption} onPaging={this.handlePaging} productColumnClassName={productColumnClassName} />
             </AppLayout>
         );
     }

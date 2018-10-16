@@ -80,7 +80,7 @@ export default class Content extends Component {
                     bodyHeight={300}
                     header={this._renderHeader()}
                     body={this._renderDataSection(gridData, productColumnClassName)}
-                    containerPadding={20}
+                    containerPadding={10}
                     isPaging={true}
                     pageOption={pagingOption}
                     onPaging={this.handlePaging}
