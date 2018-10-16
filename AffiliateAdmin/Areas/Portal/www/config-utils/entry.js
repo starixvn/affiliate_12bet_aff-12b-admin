@@ -16,6 +16,7 @@ module.exports = {
     [`${jsDist}/pages/userpanel/daily-earning-detail`]: clientRoot + "/js/pages/user-panel/daily-earning-detail/index.jsx",
     [`${jsDist}/pages/userpanel/player-detail`]: clientRoot + "/js/pages/user-panel/player-detail/index.jsx",
     [`${jsDist}/pages/media-gallery/landing-page`]: clientRoot + "/js/pages/media-gallery/landing-page/index.jsx",
+    [`${jsDist}/pages/customer/customer-statistics`]: clientRoot + "/js/pages/customer/customer-statistics/index.jsx",
 
     [`${styleDist}/portalmain`]: clientRoot + "/style/main.scss",
     [`${styleDist}/layout`]: clientRoot + "/style/layout/main-layout.scss",
@@ -23,5 +24,6 @@ module.exports = {
     [`${styleDist}/pages/commission-group`]: clientRoot + "/style/pages/commission-group.scss",
     [`${styleDist}/pages/affiliate-report`]: clientRoot + "/style/pages/affiliate-report.scss",
     [`${styleDist}/pages/user-panel/player-detail`]: clientRoot + "/style/pages/user-panel/player-detail.scss",
-    [`${styleDist}/pages/media-gallery/landing-page`]: clientRoot + "/style/pages/media-gallery/landing-page.scss"
+    [`${styleDist}/pages/media-gallery/landing-page`]: clientRoot + "/style/pages/media-gallery/landing-page.scss",
+    [`${styleDist}/pages/customer-statistics`]: clientRoot + "/style/pages/customer-statistics.scss"
 };
