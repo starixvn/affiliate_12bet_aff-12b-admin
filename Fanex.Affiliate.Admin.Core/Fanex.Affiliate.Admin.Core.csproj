@@ -160,6 +160,7 @@
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\PasswordController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Controllers\UserPanel\CustomerMemberController.cs" />
     <Compile Include="Controllers\UserPanel\PlayerDetailController.cs" />
     <Compile Include="Controllers\UserPanel\StatementHistoryController.cs" />
     <Compile Include="DTO\Affiliate\AffiliateBasicInfo.cs" />
@@ -182,6 +183,7 @@
     <Compile Include="DTO\ResultInfo.cs" />
     <Compile Include="DTO\SelectItem.cs" />
     <Compile Include="DTO\SubMenu.cs" />
+    <Compile Include="DTO\UserPanel\CustomerMember.cs" />
     <Compile Include="DTO\UserPanel\DailyEarning.cs" />
     <Compile Include="DTO\UserPanel\DailyEarningDetail.cs" />
     <Compile Include="DTO\UserPanel\DailyEarningDetailResult.cs" />
@@ -200,6 +202,7 @@
     <Compile Include="MetaModels\MediaGallery\DeleteLandingPageParam.cs" />
     <Compile Include="MetaModels\MediaGallery\InsertUpdateLandingPageParam.cs" />
     <Compile Include="MetaModels\Report\AffiliateReportMainParam.cs" />
+    <Compile Include="MetaModels\UserPanel\CustomerMemberParam.cs" />
     <Compile Include="MetaModels\UserPanel\DailyEarningParam.cs" />
     <Compile Include="MetaModels\UserPanel\PlayerDetailParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -221,6 +224,8 @@
     <Compile Include="Repository\MediaGallery\ILandingPageRepository.cs" />
     <Compile Include="Repository\MediaGallery\LandingPageRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
+    <Compile Include="Repository\UserPanel\CustomerMemberRepository.cs" />
+    <Compile Include="Repository\UserPanel\ICustomerMemberRepository.cs" />
     <Compile Include="Repository\UserPanel\IPlayerDetailRepository.cs" />
     <Compile Include="Repository\UserPanel\IStatementHistoryRepository.cs" />
     <Compile Include="Repository\UserPanel\PlayerDetailRepository.cs" />

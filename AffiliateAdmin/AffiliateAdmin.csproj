@@ -1540,11 +1540,13 @@
     <Content Include="Areas\Portal\www\config-utils\constant.js" />
     <Content Include="Areas\Portal\www\config-utils\entry.js" />
     <Content Include="Areas\Portal\www\source\js\modules\ajaxRequest.js" />
+    <Content Include="Areas\Portal\www\source\js\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\modules\createReducer.js" />
     <Content Include="Areas\Portal\www\source\js\modules\dataHandler.js" />
     <Content Include="Areas\Portal\www\source\js\modules\excel.js" />
     <Content Include="Areas\Portal\www\source\js\modules\excelStyleConstant.js" />
     <Content Include="Areas\Portal\www\source\js\modules\numberFormat.js" />
+    <Content Include="Areas\Portal\www\source\js\modules\store.js" />
     <Content Include="Areas\Portal\www\source\js\modules\utils.js" />
     <Content Include="Areas\Portal\www\source\js\pagelayout\lib\jquery.jclock.js" />
     <Content Include="Areas\Portal\www\source\js\pagelayout\pagelayout.js" />
@@ -1573,6 +1575,9 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\member\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\member\modules\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\member\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\modules\reportExcel.js" />
     <Content Include="Areas\Portal\www\source\style\assets\banner_top.jpg" />
@@ -1858,6 +1863,12 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\index.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\customer-statistics.scss" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\member\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\member\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\member\components\GridData.jsx" />
+    <Content Include="Areas\Portal\Views\UserPanel\Member\Index.cshtml" />
+    <Content Include="Areas\Portal\www\source\style\pages\user-panel\member.scss" />
+    <Content Include="Areas\Portal\www\source\style\components\_datepicker.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
