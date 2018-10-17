@@ -30,6 +30,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 param.MonthDate = DateTime.Now;
             }
 
+            param.AffId = SessionService.AffId;
+
             return Json(_customerRepository.GetCustomerStatistics(param));
         }
     }

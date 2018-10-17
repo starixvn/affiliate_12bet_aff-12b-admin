@@ -4,49 +4,66 @@ import MonthPicker from '@9softstudio/react-monthpicker';
 import { Table, FormGroup, Label } from 'reactstrap';
 import { rowTitle } from '../modules/constants';
 import { shortedMonthNames } from '../../../../modules/constants';
+import { post } from '../../../../modules/ajaxRequest';
+import { formatDecimal } from '../../../../modules/numberFormat';
 
+const API_URL = "Portal/CustomerStatistics/GetCustomerStatistics";
 export default class Content extends Component {
     constructor(props) {
         super(props);
         const { monthDate } = this.props;
 
         this.state = {
-            monthDate
+            monthDate: monthDate,
+            data: null
+        }
+    }
+
+    componentDidMount() {
+        const { monthDate } = this.state;
+        this.fetchData(monthDate);
+    }
+
+    fetchData = async (monthDate) => {
+        const param = {
+            monthDate: `${monthDate.getMonth() + 1}/1/${monthDate.getFullYear()}`
+        }
+        const response = await post(API_URL, param);
+        if (response && response.status === 200) {
+            this.setState({
+                monthDate: monthDate,
+                data: response.data
+            });
         }
     }
 
     handleSelectMonth = (month, year) => {
-        this.setState({
-            monthDate: new Date(year, month - 1)
-        })
+        const monthDate = new Date(year, month - 1);
+        this.setState ({
+            monthDate: monthDate
+        });
+
+        this.fetchData(monthDate);
     }
 
     handleFormatMonthPicker = (month, year) => {
         return `${shortedMonthNames[month - 1]}-${year}`
     }
 
-    handleChangeMonthPicker = (event) => {
-        event.preventDefault();
-
-        const { monthDate } = this.state;
-
-        const param = {
-            MonthDate: `${monthDate.getMonth() + 1}/1/${monthDate.getFullYear()}`
-        }
-    }
-
-    render(){
-        const { monthDate } = this.state;
-        return(
-            <div className="table-responsive table-striped my-2">
-                <Table className="tableFilter">
-                    <thead className="theadFilter">
-                        <tr className="trFilter">
+    _renderData(monthDate, data) {
+        const DepositByMonth = formatDecimal(data.DepositByMonth);
+        const DepositTotal = formatDecimal (data.DepositTotal);
+        const TurnoverByMonth = formatDecimal (data.TurnoverByMonth);
+        const TurnoverTotal = formatDecimal(data.TurnoverTotal);
+        const WinlostByMonth = formatDecimal (data.WinlostByMonth);
+        const WinlostTotal = formatDecimal (data.WinlostTotal);
+        return (
+            <div className="table-responsive my-2">
+                <Table>
+                    <thead>
+                        <tr>
+                            <th>{rowTitle.Statistics}</th>
                             <th>
-                                <span id="togtop" title="Toggle Statistics">&nbsp;</span>
-                                Statistics
-                            </th>
-                            <th className="thFilter">
                                 <MonthPicker minMonth={12} minYear={2009}
                                 selectedDropdownYear={monthDate.getFullYear()}
                                 selectedMonth={monthDate.getMonth() + 1}
@@ -54,58 +71,63 @@ export default class Content extends Component {
                                 onFormat={this.handleFormatMonthPicker}
                                 iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)} />
                             </th>
-                            <th>Up To Now</th>
+                            <th>{rowTitle.UpToNow}</th>
                         </tr>
                     </thead>
-                    <tbody className="tbodyFilter">
+                    <tbody>
                         <tr>
                             <th>{rowTitle.NewSignups}</th>
-                            <td>0/0</td>
-                            <td>3,7142/1,829</td>
+                            <td>{data.NewSignUpByMonth}/{data.NewFdmByMonth}</td>
+                            <td>{data.NewSignUpTotal}/{data.NewFdmTotal}</td>
                         </tr>
                         <tr>
                             <th>{rowTitle.TotalActive}</th>
-                            <td>1</td>
+                            <td>{data.ActivePlayerByMonth}</td>
                             <td>N/A</td>
                         </tr>
                         <tr>
                             <th>{rowTitle.TotalQualified}</th>
-                            <td>1</td>
+                            <td>{data.QualifiedMemberByMonth}</td>
                             <td>N/A</td>
                         </tr>
                         <tr>
                             <th>{rowTitle.TotalDeposits}</th>
-                            <td>$0.00</td>
-                            <td>$0.00</td>
+                            <td>${DepositByMonth}</td>
+                            <td>${DepositTotal}</td>
                         </tr>
                         <tr>
                             <th>{rowTitle.Turnover}</th>
-                            <td>$422.86</td>
-                            <td>$52,985.42</td>
+                            <td>${TurnoverByMonth}</td>
+                            <td>${TurnoverTotal}</td>
                         </tr>
                         <tr>
                             <th>{rowTitle.Winlost}</th>
-                            <td>$105.72</td>
-                            <td>-$25,880.05</td>
+                            <td>${WinlostByMonth}</td>
+                            <td>${WinlostTotal}</td>
                         </tr>
                         <tr>
                             <th>{rowTitle.TrackingRate}</th>
-                            <td>0/0</td>
+                            <td>{data.UniqueClickByMonth}/{data.TotalClickByMonth}</td>
                             <td>N/A</td>
                         </tr>
                         <tr>
                             <th>{rowTitle.TrackingRatePC}</th>
-                            <td>10/20</td>
+                            <td>{data.UniqueClickPcLaptopByMonth}/{data.TotalClickPcLaptopByMonth}</td>
                             <td>N/A</td>
                         </tr>
                         <tr>
                             <th>{rowTitle.TrackingRateMobile}</th>
-                            <td>0/0</td>
+                            <td>{data.UniqueClickMobileByMonth}/{data.TotalClickMobileByMonth}</td>
                             <td>N/A</td>
                         </tr>
                     </tbody>
                 </Table>
             </div>
         );
+    }
+
+    render(){
+        const { monthDate, data } = this.state;
+        return data && this._renderData(monthDate, data);
     }
 }

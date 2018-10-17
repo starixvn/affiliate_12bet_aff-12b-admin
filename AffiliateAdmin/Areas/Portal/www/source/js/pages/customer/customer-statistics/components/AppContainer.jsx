@@ -3,19 +3,18 @@
 import AppLayout from '../../../../layouts/AppLayout';
 import Content from './Content';
 
-const API_URL = 'Portal/UserPanel/Customer/CustomerStatistics';
 export default class AppContainer extends Component {
     constructor(props) {
         super(props);
 
-        const { MonthDate } = window.initialState;
+        const { monthDate } = window.initialState;
 
         this.state = {
-            monthDate: new Date(MonthDate)
+            monthDate: new Date(monthDate)
         }
     }
 
-    render(){
+    render() {
         return(
             <AppLayout> 
                 <Content monthDate={this.state.monthDate} />

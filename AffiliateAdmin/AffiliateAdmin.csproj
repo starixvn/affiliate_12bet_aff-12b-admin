@@ -1857,6 +1857,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\index.jsx" />
+    <Content Include="Areas\Portal\www\source\style\pages\customer-statistics.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

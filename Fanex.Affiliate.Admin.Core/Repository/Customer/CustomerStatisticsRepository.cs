@@ -19,27 +19,30 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Customer
 
                 using (var reader = objectDb.ExecuteReader())
                 {
-                    result = new CustomerStatistics
+                    if (reader.Read())
                     {
-                        NewSignUpByMonth = Convert.ToInt32(reader["SignupsByMonth"]),
-                        NewFdmByMonth = Convert.ToInt32(reader["FDMByMonth"]),
-                        NewSignUpTotal = Convert.ToInt32(reader["SignupsTotal"]),
-                        NewFdmTotal = Convert.ToInt32(reader["FDMTotal"]),
-                        ActivePlayerByMonth = Convert.ToInt32(reader["ActivePlayersByMonth"]),
-                        QualifiedMemberByMonth = Convert.ToInt32(reader["QualifiedMembersByMonth"]),
-                        DepositByMonth = Convert.ToDecimal(reader["DepositByMonth"]),
-                        DepositTotal = Convert.ToDecimal(reader["DepositTotal"]),
-                        TurnoverByMonth = Convert.ToDecimal(reader["TurnoverByMonth"]),
-                        TurnoverTotal = Convert.ToDecimal(reader["TurnoverTotal"]),
-                        WinlostByMonth = Convert.ToDecimal(reader["WinlostByMonth"]),
-                        WinlostTotal = Convert.ToDecimal(reader["WinlostTotal"]),
-                        TotalClickByMonth = Convert.ToInt32(reader["TotalClickByMonth"]),
-                        UniqueClickByMonth = Convert.ToInt32(reader["UniqueClickByMonth"]),
-                        UniqueClickPcLaptopByMonth = Convert.ToInt32(reader["UniqueClickPCByMonth"]),
-                        TotalClickPcLaptopByMonth = Convert.ToInt32(reader["TotalClickPCByMonth"]),
-                        UniqueClickMobileByMonth = Convert.ToInt32(reader["UniqueClickMobileByMonth"]),
-                        TotalClickMobileByMonth = Convert.ToInt32(reader["TotalClickMobileByMonth"])
-                    };
+                        result = new CustomerStatistics
+                        {
+                            NewSignUpByMonth = Convert.ToInt32(reader["SignupsByMonth"]),
+                            NewFdmByMonth = Convert.ToInt32(reader["FDMByMonth"]),
+                            NewSignUpTotal = Convert.ToInt32(reader["SignupsTotal"]),
+                            NewFdmTotal = Convert.ToInt32(reader["FDMTotal"]),
+                            ActivePlayerByMonth = Convert.ToInt32(reader["ActivePlayersByMonth"]),
+                            QualifiedMemberByMonth = Convert.ToInt32(reader["QualifiedMembersByMonth"]),
+                            DepositByMonth = Convert.ToDecimal(reader["DepositByMonth"]),
+                            DepositTotal = Convert.ToDecimal(reader["DepositTotal"]),
+                            TurnoverByMonth = Convert.ToDecimal(reader["TurnoverByMonth"]),
+                            TurnoverTotal = Convert.ToDecimal(reader["TurnoverTotal"]),
+                            WinlostByMonth = Convert.ToDecimal(reader["WinlostByMonth"]),
+                            WinlostTotal = Convert.ToDecimal(reader["WinlostTotal"]),
+                            TotalClickByMonth = Convert.ToInt32(reader["TotalClickByMonth"]),
+                            UniqueClickByMonth = Convert.ToInt32(reader["UniqueClickByMonth"]),
+                            UniqueClickPcLaptopByMonth = Convert.ToInt32(reader["UniqueClickPCByMonth"]),
+                            TotalClickPcLaptopByMonth = Convert.ToInt32(reader["TotalClickPCByMonth"]),
+                            UniqueClickMobileByMonth = Convert.ToInt32(reader["UniqueClickMobileByMonth"]),
+                            TotalClickMobileByMonth = Convert.ToInt32(reader["TotalClickMobileByMonth"])
+                        };
+                    }
                 }
             }
 
