@@ -12,6 +12,10 @@ export function format(value, digits = 0) {
     return roundedValue.toFixed(digits).replace(/(\d)(?=(\d{3})+(\.|$))/g, "$1,");
 }
 
+export function formatDecimalWithCurrencySymbol(value, currencySymbol = "$") {
+    return value < 0 ? `-$${format(Math.abs(value))}` : `$${format(value, 2)}`;
+}
+
 export function round(value, digits) {
     const sign = value < 0 ? -1 : 1;
     const absoluteValue = Math.abs(value);

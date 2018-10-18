@@ -18,11 +18,13 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             _customerRepository = customerRepository;
         }
 
-        public ActionResult index()
+        public ActionResult Index()
         {
             return View();
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
         public ActionResult GetCustomerStatistics(CustomerStatisticsParam param)
         {
             if (!param.MonthDate.HasValue)
