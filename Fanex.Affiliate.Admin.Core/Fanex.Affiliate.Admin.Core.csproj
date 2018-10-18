@@ -295,6 +295,8 @@
     <Compile Include="Services\MediaGallery\LandingPageService.cs" />
     <Compile Include="Services\Report\AffiliateReportService.cs" />
     <Compile Include="Services\Report\IAffiliateReportService.cs" />
+    <Compile Include="Services\UserPanel\CustomerMemberService.cs" />
+    <Compile Include="Services\UserPanel\ICustomerMemberService.cs" />
     <Compile Include="Services\UserPanel\IStatementHistoryService.cs" />
     <Compile Include="Services\UserPanel\StatementHistoryService.cs" />
     <Compile Include="Utilities\CryptographyHelper.cs" />
@@ -308,6 +310,7 @@
     <Compile Include="ViewModels\CommissionGroupViewModel.cs" />
     <Compile Include="ViewModels\EmailTemplateViewModel.cs" />
     <Compile Include="ViewModels\GetCommissionGroupViewModel.cs" />
+    <Compile Include="ViewModels\UserPanel\CustomerMemberViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\DailyEarningViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\PlayerDetailViewModel.cs" />
   </ItemGroup>

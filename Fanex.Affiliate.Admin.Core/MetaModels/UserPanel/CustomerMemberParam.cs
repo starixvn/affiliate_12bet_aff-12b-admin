@@ -17,5 +17,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
         public int PageIndex { get; set; }
 
         public int PageSize { get; set; }
+
+        public bool HasHostPermission { get; set; }
     }
 }

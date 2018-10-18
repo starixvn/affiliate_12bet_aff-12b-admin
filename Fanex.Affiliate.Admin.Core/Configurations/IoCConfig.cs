@@ -82,6 +82,7 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
             builder.RegisterType<LandingPageService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<CustomerStatisticsRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<CustomerMemberRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<CustomerMemberService>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
     }
 }

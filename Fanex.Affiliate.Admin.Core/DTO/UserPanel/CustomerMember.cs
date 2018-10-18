@@ -4,8 +4,6 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 {
     public class CustomerMember
     {
-        public int CustId { get; set; }
-
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
@@ -14,12 +12,10 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 
         public string Email { get; set; }
 
-        public int Currency { get; set; }
+        public string CurrencyName { get; set; }
 
         public DateTime RegisteredDate { get; set; }
 
-        public string Phone { get; set; }
-
-        public DateTime CreatedDate { get; set; }
+        public string RegisteredDateString => RegisteredDate.ToString("MM/dd/yyyy hh:mm:ss tt");
     }
 }

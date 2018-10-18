@@ -6,3 +6,10 @@ export const defaultPagingOption = {
 };
 
 export const shortedMonthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+export const globalResource = {
+    From: 'From',
+    To: 'To',
+    GetAll: 'Get All',
+    Search: 'Search'
+}

@@ -36,6 +36,7 @@
   </Function>
   <Function Name="UserPanel">
     <Setting Key="Aff_Admin_PlayersDetail_Sel" SpName="Aff_Admin_PlayersDetail_Sel_xtest" DbName="affiliate_12bet" />
+    <Setting Key="Aff_Admin_Member_Sel" SpName="Aff_Admin_Member_Sel_xtest" DbName="affiliate_12bet" />
   </Function>
   <Function Name="MediaGallery">
     <Setting Key="Aff_Admin_LandingPage_Sel" SpName="Aff_Admin_LandingPage_Sel_xtest" DbName="affiliate_12bet" />
