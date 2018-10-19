@@ -11,7 +11,7 @@ const productList = createReducer([], {});
 
 const languageList = createReducer({}, {});
 
-const currentDate = createReducer('', {});
+const today = createReducer('', {});
 
 const reportTitle = createReducer('', {
     [SET_REPORT_TITLE](prevState, action) {
@@ -38,6 +38,6 @@ export default combineReducers({
     param,
     languageList,
     isShowLoader,
-    currentDate,
+    today,
     currentViewLevel
 });

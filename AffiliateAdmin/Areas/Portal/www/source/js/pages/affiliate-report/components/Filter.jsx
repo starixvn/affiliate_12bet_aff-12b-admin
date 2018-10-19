@@ -14,7 +14,7 @@ class Filter extends Component {
     constructor(props) {
         super(props);
 
-        this.now = new Date(this.props.currentDate);
+        this.now = new Date(this.props.today);
         const defaultMonth = { month: this.now.getMonth() + 1, year: this.now.getFullYear() };
 
         this.state = {
@@ -369,8 +369,8 @@ class Filter extends Component {
     }
 }
 
-function mapStateToProps({ productList, pagingOption, languageList, currentDate, currentViewLevel, param }) {
-    return Object.assign({}, { productList, pagingOption, languageList, currentDate, currentViewLevel, param });
+function mapStateToProps({ productList, pagingOption, languageList, today, currentViewLevel, param }) {
+    return Object.assign({}, { productList, pagingOption, languageList, today, currentViewLevel, param });
 }
 
 function mapDispatchToProps(dispatch) {

@@ -9,17 +9,19 @@ const MapExcelType = {
 let _XLSX = null;
 export default class Excel {
     static async process(callback) {
-        _XLSX = await import( /* webpackChunkName: "xlsx-style" */ 'xlsx-style-sparta');
+        _XLSX = await
+        import ( /* webpackChunkName: "xlsx-style" */ 'xlsx-style-sparta');
 
         if (_XLSX) {
             callback && callback();
         }
     }
 
-    static export(worksheet, fileName) {
+    static
+    export (worksheet, fileName, sheetName = 'Sheet 1') {
         const option = { bookType: EXCEL_TYPE, bookSST: false, type: 'binary' };
-        const workbook = { SheetNames: [fileName], Sheets: {}, Props: {} };
-        workbook.Sheets[fileName] = worksheet;
+        const workbook = { SheetNames: [sheetName], Sheets: {}, Props: {} };
+        workbook.Sheets[sheetName] = worksheet;
 
         var workbookOutput = _XLSX.write(workbook, option);
         this.download(workbookOutput, fileName);
