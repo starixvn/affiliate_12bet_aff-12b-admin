@@ -1544,6 +1544,9 @@
     <Content Include="Areas\Portal\www\index.html" />
     <Content Include="Areas\Portal\www\config-utils\constant.js" />
     <Content Include="Areas\Portal\www\config-utils\entry.js" />
+    <Content Include="Areas\Portal\www\source\js\actions\actionTypes.js" />
+    <Content Include="Areas\Portal\www\source\js\actions\loaderAction.js" />
+    <Content Include="Areas\Portal\www\source\js\actions\pagingAction.js" />
     <Content Include="Areas\Portal\www\source\js\modules\ajaxRequest.js" />
     <Content Include="Areas\Portal\www\source\js\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\modules\createReducer.js" />
@@ -1577,14 +1580,17 @@
     <Content Include="Areas\Portal\www\source\js\pagelayout\vendors\jquery-3.3.1.min.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\RecheckIn\recheckin.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\modules\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\reducers\index.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\member\actions\index.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\member\modules\constants.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\member\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\modules\reportExcel.js" />
+    <Content Include="Areas\Portal\www\source\js\reducers\loaderReducer.js" />
+    <Content Include="Areas\Portal\www\source\js\reducers\pagingReducer.js" />
     <Content Include="Areas\Portal\www\source\style\assets\banner_top.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\bg_menu.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\bg_search01.jpg" />
@@ -1868,13 +1874,19 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\index.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\customer-statistics.scss" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\member\index.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\member\components\AppContainer.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\member\components\GridData.jsx" />
     <Content Include="Areas\Portal\Views\UserPanel\CustomerMember\Index.cshtml" />
-    <Content Include="Areas\Portal\www\source\style\pages\user-panel\member.scss" />
     <Content Include="Areas\Portal\www\source\style\components\_datepicker.scss" />
     <Content Include="Areas\Portal\www\dist\vendors\moment-manifest.json" />
+    <Content Include="Areas\Portal\www\source\js\components\Loader.jsx" />
+    <Content Include="Areas\Portal\www\source\js\components\ReportTitle.jsx" />
+    <Content Include="Areas\Portal\www\source\js\components\auto-complete\AutoComplete.jsx" />
+    <Content Include="Areas\Portal\www\source\js\components\auto-complete\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\components\auto-complete\SuggestionList.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\index.jsx" />
+    <Content Include="Areas\Portal\www\source\style\pages\user-panel\customer-member.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -2010,10 +2022,7 @@
     </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Portal\www\source\js\actions\" />
-    <Folder Include="Areas\Portal\www\source\js\components\auto-complete\" />
     <Folder Include="Areas\Portal\www\source\js\pages\affiliate-information\components\" />
-    <Folder Include="Areas\Portal\www\source\js\reducers\" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\Google.Protobuf.dll" />
