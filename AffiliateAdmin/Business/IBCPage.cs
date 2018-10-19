@@ -117,9 +117,9 @@ public class IBCPage : System.Web.UI.Page
         writer.Write("<html>\n");
         //header
         writer.Write("<head>\n");
-        //writer.Write("<base href='" + VirtualPathUtility.ToAbsolute("~/") + "' />\n");
         writer.Write(AppSettings.HtmlHeader);
         writer.Write(CssLinks);
+        writer.Write("<script type=\"text/javascript\">window.__baseRootUrl='" + VirtualPathUtility.ToAbsolute("~/") + "';</script>\n");
         string aspxContent = LoadTemplate(Request.AppRelativeCurrentExecutionFilePath.Replace("~/", string.Empty));
 
         writer.Write(DNAide.Web.TemplateHandler.CopyBlock(aspxContent, "js").Replace(".js", ".js?ver=" + AppSettings.JsVersion));

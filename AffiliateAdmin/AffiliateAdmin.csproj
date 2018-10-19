@@ -1516,10 +1516,12 @@
     <Content Include="Areas\Portal\www\dist\js\pages\commission\assign-group.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\commission\assign-private-group.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\commission\commission-group.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\customer\customer-statistics.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\layout\pagelayout.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\media-gallery\landing-page.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\Recheckin\recheckin.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\report\affiliate-report.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\userpanel\customer-member.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\userpanel\daily-earning-detail.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\userpanel\daily-earning.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\userpanel\player-detail.js" />
@@ -1529,12 +1531,15 @@
     <Content Include="Areas\Portal\www\dist\style\layout.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\affiliate-report.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\commission-group.css" />
+    <Content Include="Areas\Portal\www\dist\style\pages\customer-statistics.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\media-gallery\landing-page.css" />
+    <Content Include="Areas\Portal\www\dist\style\pages\user-panel\customer-member.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\user-panel\player-detail.css" />
     <Content Include="Areas\Portal\www\dist\style\portalmain.css" />
     <Content Include="Areas\Portal\www\dist\style\user-panel-layout.css" />
     <Content Include="Areas\Portal\www\dist\vendors\bootstrap.css" />
     <Content Include="Areas\Portal\www\dist\vendors\bootstrap.js" />
+    <Content Include="Areas\Portal\www\dist\vendors\moment.js" />
     <Content Include="Areas\Portal\www\dist\vendors\react.js" />
     <Content Include="Areas\Portal\www\index.html" />
     <Content Include="Areas\Portal\www\config-utils\constant.js" />
@@ -1866,9 +1871,10 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\member\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\member\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\member\components\GridData.jsx" />
-    <Content Include="Areas\Portal\Views\UserPanel\Member\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\UserPanel\CustomerMember\Index.cshtml" />
     <Content Include="Areas\Portal\www\source\style\pages\user-panel\member.scss" />
     <Content Include="Areas\Portal\www\source\style\components\_datepicker.scss" />
+    <Content Include="Areas\Portal\www\dist\vendors\moment-manifest.json" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -35,11 +35,11 @@ export class Content extends React.Component {
 
         const response = await post(url, postParam);
         if (response && response.status === 200) {
-            const { MainData, TotalItem, HasHostPermission } = response.data;
+            const { MainData, TotalItem } = response.data;
             const { pagingOption } = this.state;
 
             this.setState({
-                data: { MainData, HasHostPermission },
+                data: MainData,
                 pagingOption: Object.assign({}, pagingOption, { TotalItem: TotalItem })
             });
         }
@@ -54,21 +54,21 @@ export class Content extends React.Component {
                 <Cell header={true} colWidth={100} title={resource.UserName}>{resource.UserName}</Cell>
                 <Cell header={true} colWidth={100} title={resource.FirstName}>{resource.FirstName}</Cell>
                 <Cell header={true} colWidth={100} title={resource.LastName}>{resource.LastName}</Cell>
-                <Cell header={true} colWidth={100} title={resource.EmailAddress}>{resource.EmailAddress}</Cell>
+                {this.props.canViewMemberEmail && (<Cell header={true} colWidth={100} title={resource.EmailAddress}>{resource.EmailAddress}</Cell>)}
                 <Cell header={true} colWidth={50} title={resource.Currency}>{resource.Currency}</Cell>
                 <Cell header={true} colWidth={100} title={resource.RegisterDate}>{resource.RegisterDate}</Cell>
             </Row>
         )
     }
 
-    _renderDataSection(dataList) {
+    _renderDataSection(dataList, canViewMemberEmail) {
         const { pagingOption } = this.state;
         const startIndex = (pagingOption.PageIndex - 1) * pagingOption.PageSize + 1;
         const dataRows = [];
 
         for (let i = 0; i < dataList.length; i++) {
             const dataItem = dataList[i];
-            dataRows.push(this._buildDataRow(dataItem, startIndex + i));
+            dataRows.push(this._buildDataRow(dataItem, startIndex + i, canViewMemberEmail));
         }
 
         return dataRows;
@@ -81,7 +81,7 @@ export class Content extends React.Component {
                 <Cell title={dataItem.UserName}>{dataItem.UserName}</Cell>
                 <Cell title={dataItem.FirstName}>{dataItem.FirstName}</Cell>
                 <Cell title={dataItem.LastName}>{dataItem.LastName}</Cell>
-                <Cell title={dataItem.Email}>{dataItem.Email}</Cell>
+                {this.props.canViewMemberEmail && (<Cell title={dataItem.Email}>{dataItem.Email}</Cell>)}
                 <Cell className="text-center" title={dataItem.CurrencyName}>{dataItem.CurrencyName}</Cell>
                 <Cell className="text-center" title={dataItem.RegisteredDateString}>{dataItem.RegisteredDateString}</Cell>
             </Row>
@@ -103,14 +103,14 @@ export class Content extends React.Component {
     render() {
         const { data, pagingOption } = this.state;
 
-        return data && data.MainData && (
+        return data && (
             <div className="table-responsive table-striped my-2">
                 <Table
                     minWidth={1000}
                     autoWidth={true}
                     bodyHeight={300}
                     header={this._renderHeader()}
-                    body={this._renderDataSection(data.MainData)}
+                    body={this._renderDataSection(data)}
                     containerPadding={10}
                     isPaging={true}
                     pageOption={pagingOption}
@@ -121,8 +121,8 @@ export class Content extends React.Component {
     }
 }
 
-function mapStateToProps({ param }) {
-    return Object.assign({}, { param });
+function mapStateToProps({ param, canViewMemberEmail }) {
+    return Object.assign({}, { param, canViewMemberEmail });
 }
 
 function mapDispatchToProps(dispatch) {

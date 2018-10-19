@@ -29,7 +29,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
                             UserName = Convert.ToString(reader["UserName"]),
                             FirstName = Convert.ToString(reader["FirstName"]),
                             LastName = Convert.ToString(reader["LastName"]),
-                            Email = Convert.ToString(reader["Email"]),
+                            Email = param.CanViewMemberEmail ? Convert.ToString(reader["Email"]) : string.Empty,
                             CurrencyName = Convert.ToString(reader["Currency"]),
                             RegisteredDate = Convert.ToDateTime(reader["RegisteredDate"])
                         });

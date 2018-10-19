@@ -1,7 +1,4 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" Inherits="Customer_AffiliateInfo" CodeBehind="AffiliateInfo.aspx.cs" %>
-<script>
-    var root = '<%=VirtualPathUtility.ToAbsolute("~/Portal/CustomerStatistics/Index")%>';
-</script>
 <!--js-->
 <script type="text/javascript" src="../App_Js/Common.js"></script>
 <script type="text/javascript" src="../App_Js/prototype.js"></script>
@@ -10,7 +7,7 @@
 
 <link href='../App_Js/AutoComplete/styles.css' type='text/css' rel='stylesheet' />
 <script type="text/javascript">
-    var baseUrl = (document.getElementsByTagName('base')[0] || {}).href || "/";
+    var baseUrl = window.__baseRootUrl || "/";
     function hasClass(el, className) {
         if (el.classList)
             return el.classList.contains(className)

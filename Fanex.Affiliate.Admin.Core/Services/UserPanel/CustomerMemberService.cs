@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Linq;
 using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
 using Fanex.Affiliate.Admin.Core.Services.Common;
-using Fanex.Affiliate.Admin.Core.ViewModels.UserPanel;
 
 namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 {
@@ -19,22 +20,12 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
             _customerMemberRepository = customerMemberRepository;
         }
 
-        public CustomerMemberViewModel GetCustomerMember(CustomerMemberParam param)
+        public EntityResult<CustomerMember> GetCustomerMember(CustomerMemberParam param)
         {
-            var hasHostPerimission = _sessionService.UserPermissionList.Any(i =>
-            i.FunctionName.Equals(Function.MemberEmail, StringComparison.OrdinalIgnoreCase) && i.IsHost);
-
             param.AffId = _sessionService.AffId;
-            param.HasHostPermission = hasHostPerimission;
-            var entityResult = _customerMemberRepository.GetCustomerMemberList(param);
+            param.CanViewMemberEmail = _sessionService.UserPermissionList.Any(i => i.FunctionName.Equals(Function.MemberEmail, StringComparison.OrdinalIgnoreCase));
 
-
-            return new CustomerMemberViewModel
-            {
-                MainData = entityResult.MainData,
-                TotalItem = entityResult.TotalItem,
-                HasHostPermission = hasHostPerimission
-            };
+            return _customerMemberRepository.GetCustomerMemberList(param);
         }
     }
 }

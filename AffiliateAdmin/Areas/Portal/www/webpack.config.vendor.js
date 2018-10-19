@@ -38,7 +38,8 @@ module.exports = env => {
         },
         entry: {
             react: ["react", "react-dom", "react-redux", "redux", "redux-thunk", "reactstrap"],
-            bootstrap: ["bootstrap/dist/css/bootstrap.css"]
+            bootstrap: ["bootstrap/dist/css/bootstrap.css"],
+            moment: ["moment"]
         },
         output: {
             publicPath: "dist/vendors",
@@ -46,6 +47,8 @@ module.exports = env => {
             library: "[name]_[hash]"
         },
         plugins: [
+            // Ignore all locale files of moment.js
+            new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
             new CleanWebpackPlugin(pathsToClean, cleanOptions),
             new webpack.DefinePlugin({
                 "process.env.NODE_ENV": isDevBuild ? '"development"' : '"production"'

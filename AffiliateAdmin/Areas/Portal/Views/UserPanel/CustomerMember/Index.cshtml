@@ -3,18 +3,20 @@
 }
 
 @using Fanex.Affiliate.Admin.Core.Constants
+@model Fanex.Affiliate.Admin.Core.ViewModels.UserPanel.CustomerMemberViewModel
 
 @section styles{
-    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/user-panel/member.css")" rel="stylesheet" />
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/user-panel/customer-member.css")" rel="stylesheet" />
 }
 
 @section scripts{
     <script type="text/javascript">
         window.initialState = {
-            currentDate: '@DateTime.Now.ToString("MM/dd/yyyy")'
+            today: '@DateTime.Now.ToString("MM/dd/yyyy")',
+            canViewMemberEmail: @Model.CanViewMemberEmail.ToString().ToLowerInvariant()
         }
     </script>
-    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/userpanel/member.js")"></script>
+    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/userpanel/customer-member.js")"></script>
 }
 
 @section menu{

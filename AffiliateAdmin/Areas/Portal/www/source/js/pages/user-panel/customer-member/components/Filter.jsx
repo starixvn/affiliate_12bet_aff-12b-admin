@@ -11,7 +11,7 @@ export class Filter extends React.Component {
     constructor(props) {
         super(props);
 
-        const now = new Date(this.props.currentDate);
+        const now = new Date(this.props.today);
         this.nowString = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
 
         this.state = {
@@ -99,8 +99,8 @@ export class Filter extends React.Component {
     }
 }
 
-function mapStateToProps({ currentDate }) {
-    return Object.assign({}, { currentDate });
+function mapStateToProps({ today }) {
+    return Object.assign({}, { today });
 }
 
 function mapDispatchToProps(dispatch) {

@@ -18,6 +18,6 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
 
         public int PageSize { get; set; }
 
-        public bool HasHostPermission { get; set; }
+        public bool CanViewMemberEmail { get; set; }
     }
 }

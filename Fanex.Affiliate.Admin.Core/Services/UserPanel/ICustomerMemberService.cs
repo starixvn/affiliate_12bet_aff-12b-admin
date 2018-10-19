@@ -1,10 +1,11 @@
-﻿using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
-using Fanex.Affiliate.Admin.Core.ViewModels.UserPanel;
+﻿using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
+using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 
 namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 {
     public interface ICustomerMemberService
     {
-        CustomerMemberViewModel GetCustomerMember(CustomerMemberParam param);
+        EntityResult<CustomerMember> GetCustomerMember(CustomerMemberParam param);
     }
 }
