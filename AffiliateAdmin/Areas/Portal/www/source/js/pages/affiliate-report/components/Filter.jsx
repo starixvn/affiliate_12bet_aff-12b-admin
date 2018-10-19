@@ -6,9 +6,10 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import MultipleSelect from '../../../components/multiple-select';
 import MonthPicker from '@9softstudio/react-monthpicker';
 import AutoComplete from '../../../components/auto-complete';
-import { defaultSortBy, sortByMainView, sortByMonthOnMonthView, allProduct, minMonthRange, viewLevel, sortDirectionType } from '../modules/constants';
+import { defaultSortBy, sortByMainView, sortByMonthOnMonthView, allProduct, viewLevel, sortDirectionType } from '../modules/constants';
 import { setReportTitle, setParam } from '../actions';
 import { formatUnit, resolveClientUrl } from '../../../modules/utils';
+import { minMonthDate } from '../../../modules/constants';
 
 class Filter extends Component {
     constructor(props) {
@@ -316,7 +317,7 @@ class Filter extends Component {
                     </FormGroup>
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                         <Label className="mr-sm-2">From</Label>
-                        <MonthPicker minMonth={minMonthRange.month} minYear={minMonthRange.year}
+                        <MonthPicker minMonth={minMonthDate.month} minYear={minMonthDate.year}
                             selectedDropdownYear={fromMonth.year}
                             selectedMonth={fromMonth.month}
                             onSelect={this.handleSelectFromMonth}

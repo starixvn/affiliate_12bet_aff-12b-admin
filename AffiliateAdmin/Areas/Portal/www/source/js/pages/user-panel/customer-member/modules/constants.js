@@ -1,4 +1,4 @@
-﻿import { globalResource } from '../../../../modules/constants';
+﻿import { globalResource } from '../../../../modules/globalResource';
 
 export const memberTypes = {
     1: 'Non-Deposited',

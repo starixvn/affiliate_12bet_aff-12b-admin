@@ -14,11 +14,6 @@ export const sortByMonthOnMonthView = Object.assign({}, {
 
 export const allProduct = '0';
 
-export const minMonthRange = {
-    month: 12,
-    year: 2009
-};
-
 export const viewLevel = {
     main: 1,
     monthOnMonth: 2

@@ -1,6 +1,7 @@
 ﻿import React, { Component } from 'react';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { formatDecimal } from '../../../../modules/numberFormat';
+import { headerText } from '../modules/constants';
 
 export default class Content extends Component {
     constructor(props) {
@@ -11,14 +12,14 @@ export default class Content extends Component {
         return (
             <Row>
                 <Cell header={true} colWidth={30}>#</Cell>
-                <Cell header={true} colWidth={100} title="User Name">User Name</Cell>
-                <Cell header={true} colWidth={100} title="IBC User Name">IBC User Name</Cell>
-                <Cell header={true} colWidth={100} title="Registered Date">Registered Date</Cell>
-                <Cell header={true} colWidth={100} title="Turnover">Turnover</Cell>
-                <Cell header={true} colWidth={100} title="Winlost">Winlost</Cell>
-                <Cell header={true} colWidth={100} title="Deposit">Deposit</Cell>
-                <Cell header={true} colWidth={100} title="Bonus">Bonus</Cell>
-                <Cell header={true} colWidth={100} title="Banking Fee">Banking Fee</Cell>
+                <Cell header={true} colWidth={100} title={headerText.UserName}>{headerText.UserName}</Cell>
+                <Cell header={true} colWidth={100} title={headerText.IbcUserName}>{headerText.IbcUserName}</Cell>
+                <Cell header={true} colWidth={100} title={headerText.RegisteredDateText}>{headerText.RegisteredDateText}</Cell>
+                <Cell header={true} colWidth={100} title={headerText.Turnover}>{headerText.Turnover}</Cell>
+                <Cell header={true} colWidth={100} title={headerText.Winlost}>{headerText.Winlost}</Cell>
+                <Cell header={true} colWidth={100} title={headerText.Deposit}>{headerText.Deposit}</Cell>
+                <Cell header={true} colWidth={100} title={headerText.Bonus}>{headerText.Bonus}</Cell>
+                <Cell header={true} colWidth={100} title={headerText.BankingFee}>{headerText.BankingFee}</Cell>
             </Row>
         )
     }

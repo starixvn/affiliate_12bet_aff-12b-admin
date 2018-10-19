@@ -3,8 +3,8 @@
 import Loader from '../../../../components/Loader';
 import MonthPicker from '@9softstudio/react-monthpicker';
 import { Table } from 'reactstrap';
-import { rowTitle } from '../modules/constants';
-import { shortedMonthNames } from '../../../../modules/constants';
+import { rowTitle, resource } from '../modules/constants';
+import { shortedMonthNames, minMonthDate } from '../../../../modules/constants';
 import { post } from '../../../../modules/ajaxRequest';
 import { resolveClientUrl } from '../../../../modules/utils';
 import { formatDecimalWithCurrencySymbol, format } from '../../../../modules/numberFormat';
@@ -13,10 +13,10 @@ const API_URL = "Portal/CustomerStatistics/GetCustomerStatistics";
 export default class Content extends Component {
     constructor(props) {
         super(props);
-        const { monthDate } = this.props;
+        const { today } = this.props;
 
         this.state = {
-            monthDate: monthDate,
+            monthDate: new Date(today),
             data: null,
             isShowLoader: false
         }
@@ -63,7 +63,7 @@ export default class Content extends Component {
                     <th>{rowTitle.Statistics}</th>
                     <th style={{ overflow: 'visible' }}>
                         <div className="position-relative">
-                            <MonthPicker minMonth={12} minYear={2009}
+                            <MonthPicker minMonth={minMonthDate.month} minYear={minMonthDate.year}
                                 selectedDropdownYear={monthDate.getFullYear()}
                                 selectedMonth={monthDate.getMonth() + 1}
                                 onSelect={this.handleSelectMonth}
@@ -92,73 +92,58 @@ export default class Content extends Component {
 
         return (
             <tbody>
-                <tr>
-                    <td className="font-weight-bold">{rowTitle.NewSignups}</td>
-                    <td className="text-right">{format(data.NewSignUpByMonth)}/{format(data.NewFdmByMonth)}</td>
-                    <td className="text-right">{format(data.NewSignUpTotal)}/{format(data.NewFdmTotal)}</td>
-                </tr>
-                <tr>
-                    <td className="font-weight-bold">{rowTitle.TotalActive}</td>
-                    <td className="text-right">
-                        {
+                {
+                    this._buildRow(rowTitle.NewSignups,
+                        `${format(data.NewSignUpByMonth)}/${format(data.NewFdmByMonth)}`,
+                        `${format(data.NewSignUpTotal)}/${format(data.NewFdmTotal)}`)
+                }
+                {
+                    this._buildRow(rowTitle.TotalActive,
+                        (
                             data.ActivePlayerByMonth > 0 ? (
                                 <a href={`${resolveClientUrl('Portal/UserPanel/PlayerDetail/Index?isFromStatistics=true')}&monthDate=${startMonthString}`} target="fContent">
                                     {format(data.ActivePlayerByMonth)}
-                                </a>
-                            ) : format(data.ActivePlayerByMonth)
-                        }
-                    </td>
-                    <td className="text-right">N/A</td>
-                </tr>
-                <tr>
-                    <td className="font-weight-bold">{rowTitle.TotalQualified}</td>
-                    <td className="text-right">{format(data.QualifiedMemberByMonth)}</td>
-                    <td className="text-right">N/A</td>
-                </tr>
-                <tr>
-                    <td className="font-weight-bold">{rowTitle.TotalDeposits}</td>
-                    <td className="text-right">{DepositByMonth}</td>
-                    <td className="text-right">{DepositTotal}</td>
-                </tr>
-                <tr>
-                    <td className="font-weight-bold">{rowTitle.Turnover}</td>
-                    <td className="text-right">{TurnoverByMonth}</td>
-                    <td className="text-right">{TurnoverTotal}</td>
-                </tr>
-                <tr>
-                    <td className="font-weight-bold">{rowTitle.Winlost}</td>
-                    <td className="text-right">{WinlostByMonth}</td>
-                    <td className="text-right">{WinlostTotal}</td>
-                </tr>
-                <tr>
-                    <td className="font-weight-bold">{rowTitle.TrackingRate}</td>
-                    <td className="text-right">
-                        <a href={resolveClientUrl(`UserInfo/MediaStatistics.aspx?month=${startMonthString}`)} target="fContent">
+                                </a>) : format(data.ActivePlayerByMonth)
+                        ),
+                        resource.NA)
+                }
+                {this._buildRow(rowTitle.TotalQualified, format(data.QualifiedMemberByMonth), resource.NA)}
+                {this._buildRow(rowTitle.TotalDeposits, DepositByMonth, DepositTotal)}
+                {this._buildRow(rowTitle.Turnover, TurnoverByMonth, TurnoverTotal)}
+                {this._buildRow(rowTitle.Winlost, WinlostByMonth, WinlostTotal)}
+                {
+                    this._buildRow(rowTitle.TrackingRate,
+                        (<a href={resolveClientUrl(`UserInfo/MediaStatistics.aspx?month=${startMonthString}`)} target="fContent">
                             {format(data.UniqueClickByMonth)}/{format(data.TotalClickByMonth)}
-                        </a>
-                    </td>
-                    <td className="text-right">N/A</td>
-                </tr>
-                <tr>
-                    <td className="font-weight-bold">{rowTitle.TrackingRatePC}</td>
-                    <td className="text-right">
-                        <a href={resolveClientUrl(`UserInfo/MediaStatistics_New.aspx?fdate=${startMonthString}&tdate=${endMonthString}&slDevice=0`)} target="fContent">
+                        </a>),
+                        resource.NA)
+                }
+                {
+                    this._buildRow(rowTitle.TrackingRatePC,
+                        (<a href={resolveClientUrl(`UserInfo/MediaStatistics_New.aspx?fdate=${startMonthString}&tdate=${endMonthString}&slDevice=0`)} target="fContent">
                             {format(data.UniqueClickPcLaptopByMonth)}/{format(data.TotalClickPcLaptopByMonth)}
-                        </a>
-                    </td>
-                    <td className="text-right">N/A</td>
-                </tr>
-                <tr>
-                    <td className="font-weight-bold">{rowTitle.TrackingRateMobile}</td>
-                    <td className="text-right">
-                        <a href={resolveClientUrl(`UserInfo/MediaStatistics_New.aspx?fdate=${startMonthString}&tdate=${endMonthString}&slDevice=1`)} target="fContent">
+                        </a>),
+                        resource.NA)
+                }
+                {
+                    this._buildRow(rowTitle.TrackingRateMobile,
+                        (<a href={resolveClientUrl(`UserInfo/MediaStatistics_New.aspx?fdate=${startMonthString}&tdate=${endMonthString}&slDevice=1`)} target="fContent">
                             {format(data.UniqueClickMobileByMonth)}/{format(data.TotalClickMobileByMonth)}
-                        </a>
-                    </td>
-                    <td className="text-right">N/A</td>
-                </tr>
+                        </a>),
+                        resource.NA)
+                }
             </tbody>
         );
+    }
+
+    _buildRow(title, dataByMonth, dataUpToNow) {
+        return (
+            <tr key={title}>
+                <td className="font-weight-bold">{title}</td>
+                <td className="text-right">{dataByMonth}</td>
+                <td className="text-right">{dataUpToNow}</td>
+            </tr>
+        )
     }
 
     render() {

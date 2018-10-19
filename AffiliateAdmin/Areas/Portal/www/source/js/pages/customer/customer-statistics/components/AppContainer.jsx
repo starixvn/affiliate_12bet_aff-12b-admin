@@ -7,17 +7,14 @@ export default class AppContainer extends Component {
     constructor(props) {
         super(props);
 
-        const { monthDate } = window.initialState;
-
-        this.state = {
-            monthDate: new Date(monthDate)
-        }
+        const { today } = window.initialState;
+        this.today = today;
     }
 
     render() {
         return(
             <AppLayout> 
-                <Content monthDate={this.state.monthDate} />
+                <Content today={this.today} />
             </AppLayout>
         );
     }

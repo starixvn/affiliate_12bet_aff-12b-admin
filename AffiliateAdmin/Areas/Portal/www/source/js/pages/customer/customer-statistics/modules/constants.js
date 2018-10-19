@@ -11,3 +11,7 @@
     TrackingRatePC: "Tracking Rate for PC/Laptop (Unique/Total) New!!!!!",
     TrackingRateMobile: "Tracking Rate for Mobile (Unique/Total) New!!!!!"
 }
+
+export const resource = {
+    NA: "N/A"
+}
