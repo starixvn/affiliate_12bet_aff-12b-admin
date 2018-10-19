@@ -35,7 +35,7 @@ export default class AppContainer extends Component {
 
             this.setState({
                 isShowLoader: false,
-                selectedProduct: param.selectedProduct,
+                selectedProduct: param.ProductId,
                 data: { gridData: MainData, total: Total }
             });
         }
@@ -53,13 +53,16 @@ export default class AppContainer extends Component {
     }
 
     render() {
+        const allProduct = 0;
         const { selectedProduct, data, isShowLoader } = this.state;
+        const isSelectedAllProducts = selectedProduct === allProduct;
+        const productColumnClassName = isSelectedAllProducts ? 'text-right' : 'text-right highlight';
 
         return (
             <AppLayout>
                 <Loader show={isShowLoader} />
                 <Filter onChangeProduct={this.handleChangeProduct} productList={this.productList} selectedProduct={selectedProduct} />
-                <Content data={data} />
+                <Content data={data} productColumnClassName={productColumnClassName} />
             </AppLayout>
         );
     }

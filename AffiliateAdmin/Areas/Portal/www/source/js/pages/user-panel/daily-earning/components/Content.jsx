@@ -17,7 +17,8 @@ export class Content extends Component {
 
         this.state = {
             gridData: null,
-            total: null
+            total: null,
+            selectedProduct: 0
         }
     }
 
@@ -34,7 +35,7 @@ export class Content extends Component {
         if (response && response.status === 200) {
             const { MainData, Total } = response.data;
 
-            this.setState({ gridData: MainData, total: Total });
+            this.setState({ gridData: MainData, total: Total, selectedProduct: param.ProductId });
         }
         this.props.toggleLoader(false);
     }
@@ -53,7 +54,7 @@ export class Content extends Component {
         )
     }
 
-    _renderDataSection(dataList) {
+    _renderDataSection(dataList, productColumnClassName) {
         const dataRows = [];
         const isTotalRow = dataList.length === 1 && !dataList[0].Date;
 
@@ -63,13 +64,13 @@ export class Content extends Component {
 
         for (let i = 0; i < dataList.length; i++) {
             const dataItem = dataList[i];
-            dataRows.push(this._buildDataRow(dataItem, isTotalRow ? null : i + 1));
+            dataRows.push(this._buildDataRow(dataItem, isTotalRow ? null : i + 1, productColumnClassName));
         }
 
         return dataRows;
     }
 
-    _buildDataRow(dataItem, rowNumber) {
+    _buildDataRow(dataItem, rowNumber, productColumnClassName) {
         const winlost = formatDecimal(dataItem.MemberWinLost);
         const deposit = formatDecimal(dataItem.Deposit);
         const withdrawal = formatDecimal(dataItem.Withdrawal);
@@ -86,7 +87,7 @@ export class Content extends Component {
                 <Cell className="text-center" title={dataItem.Date} colSpan={!rowNumber && 2}>
                     {rowNumber ? (<a href={dateLink}>{dataItem.Date}</a>) : dataItem.Date}
                 </Cell>
-                <Cell className="text-right" title={winlost}>{winlost}</Cell>
+                <Cell className={ productColumnClassName } title={winlost}>{winlost}</Cell>
                 <Cell className="text-right" title={deposit}>{deposit}</Cell>
                 <Cell className="text-right" title={withdrawal}>{withdrawal}</Cell>
                 <Cell className="text-right" title={bonus}>{bonus}</Cell>
@@ -96,7 +97,10 @@ export class Content extends Component {
     }
 
     render() {
-        const { gridData, total } = this.state;
+        const allProduct = 0;
+        const { gridData, total, selectedProduct } = this.state;
+        const isSelectedAllProducts = selectedProduct === allProduct;
+        const productColumnClassName = isSelectedAllProducts ? 'text-right' : 'text-right highlight';
 
         return gridData && total && (
             <div className="table-responsive table-striped my-2">
@@ -105,8 +109,8 @@ export class Content extends Component {
                     autoWidth={true}
                     bodyHeight={300}
                     header={this._renderHeader()}
-                    body={this._renderDataSection(gridData)}
-                    footer={this._renderDataSection([total])}
+                    body={this._renderDataSection(gridData, productColumnClassName)}
+                    footer={this._renderDataSection([total], productColumnClassName)}
                     containerPadding={10}
                 />
             </div>
