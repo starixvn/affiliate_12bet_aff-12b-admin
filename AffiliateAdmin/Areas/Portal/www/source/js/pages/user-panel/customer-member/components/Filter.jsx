@@ -49,7 +49,7 @@ export class Filter extends React.Component {
     }
 
     handleSearch = () => {
-        const param = Object.assign(this.state);
+        const param = Object.assign({}, this.state, { PageIndex: 1 });
         this.props.setParam(param);
     }
 

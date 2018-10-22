@@ -21,19 +21,19 @@ export class Content extends React.Component {
 
     componentDidUpdate(prevProps, prevState) {
         if (this.props.param !== prevProps.param) {
-            this.fetchData();
+            const pagingParam = {
+                PageIndex: this.props.param.PageIndex,
+                PageSize: this.state.pagingOption.PageSize
+            }
+
+            this._setStateAndFetchData(pagingParam);
         }
     }
 
-    fetchData = async () => {
+    fetchData = async (param) => {
         this.props.toggleLoader(true);
-        const { param } = this.props;
-        const { pagingOption } = this.state;
-
         const url = 'Portal/UserPanel/CustomerMember/GetCustomerMember';
-        const postParam = Object.assign({}, param, { PageSize: pagingOption.PageSize, PageIndex: pagingOption.PageIndex });
-
-        const response = await post(url, postParam);
+        const response = await post(url, param);
         if (response && response.status === 200) {
             const { MainData, TotalItem } = response.data;
             const { pagingOption } = this.state;
@@ -45,6 +45,25 @@ export class Content extends React.Component {
         }
 
         this.props.toggleLoader(false);
+    }
+
+    handlePaging = (index, size) => {
+        const pagingParam = {
+            PageIndex: index,
+            PageSize: size
+        }
+
+        this._setStateAndFetchData(pagingParam);
+    }
+
+    _setStateAndFetchData = (pagingParam) => {
+        const { pagingOption } = this.state;
+        this.setState({
+            pagingOption: Object.assign({}, pagingOption, pagingParam)
+        });
+
+        const param = Object.assign({}, this.props.param, pagingParam);
+        this.fetchData(param);
     }
 
     _renderHeader() {
@@ -86,18 +105,6 @@ export class Content extends React.Component {
                 <Cell className="text-center" title={dataItem.RegisteredDateString}>{dataItem.RegisteredDateString}</Cell>
             </Row>
         )
-    }
-
-    handlePaging = (index, size) => {
-        const { pagingOption } = this.state;
-        const newPaging = {
-            PageIndex: index,
-            PageSize: size
-        }
-
-        this.setState({
-            pagingOption: Object.assign({}, pagingOption, newPaging)
-        }, () => this.fetchData());
     }
 
     render() {
