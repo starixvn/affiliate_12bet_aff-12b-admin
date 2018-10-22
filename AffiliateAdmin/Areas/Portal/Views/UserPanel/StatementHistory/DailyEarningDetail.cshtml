@@ -7,7 +7,7 @@
 
 @{
     var monthDateString = Model.Param.MonthDate.ToString("MM/dd/yyyy");
-    var queryString = "AffId=" + Model.Param.AffId + "&MonthDate=" + monthDateString;
+    var queryString = "AffId=" + Model.Param.AffId + "&MonthDate=" + monthDateString + "&ProductId=" + Model.Param.ProductId;
 }
 
 @section styles{

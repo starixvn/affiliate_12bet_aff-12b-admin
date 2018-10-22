@@ -8,8 +8,9 @@ import { formatDecimal } from '../../../../modules/numberFormat';
 import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
 import { resolveClientUrl } from '../../../../modules/utils';
+import { resource } from '../modules/constants';
 
-const totalText = 'Total';
+const allProduct = 0;
 
 export class Content extends Component {
     constructor(props) {
@@ -18,8 +19,12 @@ export class Content extends Component {
         this.state = {
             gridData: null,
             total: null,
-            selectedProduct: 0
+            isSelectedAllProducts: true
         }
+    }
+
+    componentDidMount() {
+        this.fetchData(this.props.param);
     }
 
     componentDidUpdate(prevProps) {
@@ -35,7 +40,7 @@ export class Content extends Component {
         if (response && response.status === 200) {
             const { MainData, Total } = response.data;
 
-            this.setState({ gridData: MainData, total: Total, selectedProduct: param.ProductId });
+            this.setState({ gridData: MainData, total: Total, isSelectedAllProducts: param.ProductId === allProduct });
         }
         this.props.toggleLoader(false);
     }
@@ -44,12 +49,12 @@ export class Content extends Component {
         return (
             <Row>
                 <Cell header={true} colWidth={30}>#</Cell>
-                <Cell header={true} colWidth={100} title="Date">Date</Cell>
-                <Cell header={true} colWidth={100} title="Winlost">Winlost</Cell>
-                <Cell header={true} colWidth={100} title="Deposit">Deposit</Cell>
-                <Cell header={true} colWidth={100} title="Withdrawal">Withdrawal</Cell>
-                <Cell header={true} colWidth={100} title="Bonus">Bonus</Cell>
-                <Cell header={true} colWidth={100} title="Banking Fee">Banking Fee</Cell>
+                <Cell header={true} colWidth={100} title={resource.Date}>{resource.Date}</Cell>
+                <Cell header={true} colWidth={100} title={resource.Winlost}>{resource.Winlost}</Cell>
+                <Cell header={true} colWidth={100} title={resource.Deposit}>{resource.Deposit}</Cell>
+                <Cell header={true} colWidth={100} title={resource.Withdrawal}>{resource.Withdrawal}</Cell>
+                <Cell header={true} colWidth={100} title={resource.Bonus}>{resource.Bonus}</Cell>
+                <Cell header={true} colWidth={100} title={resource.BankingFee}>{resource.BankingFee}</Cell>
             </Row>
         )
     }
@@ -59,7 +64,7 @@ export class Content extends Component {
         const isTotalRow = dataList.length === 1 && !dataList[0].Date;
 
         if (isTotalRow) {
-            dataList[0].Date = totalText;
+            dataList[0].Date = resource.Total;
         }
 
         for (let i = 0; i < dataList.length; i++) {
@@ -87,7 +92,7 @@ export class Content extends Component {
                 <Cell className="text-center" title={dataItem.Date} colSpan={!rowNumber && 2}>
                     {rowNumber ? (<a href={dateLink}>{dataItem.Date}</a>) : dataItem.Date}
                 </Cell>
-                <Cell className={ productColumnClassName } title={winlost}>{winlost}</Cell>
+                <Cell className={productColumnClassName} title={winlost}>{winlost}</Cell>
                 <Cell className="text-right" title={deposit}>{deposit}</Cell>
                 <Cell className="text-right" title={withdrawal}>{withdrawal}</Cell>
                 <Cell className="text-right" title={bonus}>{bonus}</Cell>
@@ -97,9 +102,7 @@ export class Content extends Component {
     }
 
     render() {
-        const allProduct = 0;
-        const { gridData, total, selectedProduct } = this.state;
-        const isSelectedAllProducts = selectedProduct === allProduct;
+        const { gridData, total, isSelectedAllProducts } = this.state;
         const productColumnClassName = isSelectedAllProducts ? 'text-right' : 'text-right highlight';
 
         return gridData && total && (

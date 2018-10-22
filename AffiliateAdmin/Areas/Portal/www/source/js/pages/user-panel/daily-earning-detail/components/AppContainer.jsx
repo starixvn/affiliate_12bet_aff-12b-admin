@@ -6,6 +6,8 @@ import Content from './Content';
 import Loader from '../../../../components/Loader';
 import { post } from '../../../../modules/ajaxRequest';
 
+const allProduct = 0;
+
 export default class AppContainer extends Component {
     constructor(props) {
         super(props);
@@ -17,7 +19,7 @@ export default class AppContainer extends Component {
 
         this.state = {
             isShowLoader: false,
-            selectedProduct: 0,
+            selectedProduct: allProduct,
             data: { gridData: null, total: null }
         }
     }
@@ -42,7 +44,7 @@ export default class AppContainer extends Component {
         else {
             this.setState({
                 isShowLoader: false,
-                selectedProduct: param.selectedProduct
+                selectedProduct: param.ProductId
             });
         }
     }
@@ -53,10 +55,8 @@ export default class AppContainer extends Component {
     }
 
     render() {
-        const allProduct = 0;
         const { selectedProduct, data, isShowLoader } = this.state;
-        const isSelectedAllProducts = selectedProduct === allProduct;
-        const productColumnClassName = isSelectedAllProducts ? 'text-right' : 'text-right highlight';
+        const productColumnClassName = selectedProduct === allProduct ? 'text-right' : 'text-right highlight';
 
         return (
             <AppLayout>
