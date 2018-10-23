@@ -1578,7 +1578,10 @@
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\modules\service.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pagelayout\vendors\jquery-3.3.1.min.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\modules\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\RecheckIn\recheckin.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\actions\types.js" />

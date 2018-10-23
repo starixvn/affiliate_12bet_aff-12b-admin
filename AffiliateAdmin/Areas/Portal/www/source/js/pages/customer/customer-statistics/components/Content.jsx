@@ -1,4 +1,6 @@
 ﻿import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import Loader from '../../../../components/Loader';
 import MonthPicker from '@9softstudio/react-monthpicker';
@@ -9,16 +11,19 @@ import { post } from '../../../../modules/ajaxRequest';
 import { resolveClientUrl } from '../../../../modules/utils';
 import { formatDecimalWithCurrencySymbol, format } from '../../../../modules/numberFormat';
 
+import { toggleLoader } from '../../../../actions/loaderAction';
+import { setParam } from '../actions';
+
 const API_URL = "Portal/CustomerStatistics/GetCustomerStatistics";
-export default class Content extends Component {
+export class Content extends Component {
     constructor(props) {
         super(props);
-        const { today } = this.props;
+        const { monthDate, isShowLoader } = this.props;
 
         this.state = {
-            monthDate: new Date(today),
+            monthDate: new Date(monthDate),
             data: null,
-            isShowLoader: false
+            isShowLoader: isShowLoader
         }
     }
 
@@ -27,8 +32,15 @@ export default class Content extends Component {
         this.fetchData(monthDate);
     }
 
+    componentDidUpdate(prevProps) {
+        if(this.props.param !== prevProps.param) {
+            const monthDate = new Date(this.props.today);
+            this.fetchData(monthDate);
+        }
+    }
+
     fetchData = async (monthDate) => {
-        this.setState({ isShowLoader: true });
+        this.props.toggleLoader(true);
         const param = {
             monthDate: `${monthDate.getMonth() + 1}/1/${monthDate.getFullYear()}`
         }
@@ -40,14 +52,12 @@ export default class Content extends Component {
             });
         }
 
-        this.setState({ isShowLoader: false });
+        this.props.toggleLoader(false);
     }
 
     handleSelectMonth = (month, year) => {
         const monthDate = new Date(year, month - 1);
-        this.setState({
-            monthDate: monthDate
-        });
+        this.props.setParam(monthDate);
 
         this.fetchData(monthDate);
     }
@@ -128,13 +138,13 @@ export default class Content extends Component {
                 {
                     this._buildRow(rowTitle.TrackingRateMobile,
                         (<a href={resolveClientUrl(`UserInfo/MediaStatistics_New.aspx?fdate=${startMonthString}&tdate=${endMonthString}&slDevice=1`)} target="fContent">
-                            {format(data.UniqueClickMobileByMonth)}/{format(data.TotalClickMobileByMonth)}
+                        {format(data.UniqueClickMobileByMonth)}/{format(data.TotalClickMobileByMonth)}
                         </a>),
                         resource.NA)
-                }
+                        }
             </tbody>
         );
-    }
+                        }
 
     _buildRow(title, dataByMonth, dataUpToNow) {
         return (
@@ -144,7 +154,7 @@ export default class Content extends Component {
                 <td className="text-right">{dataUpToNow}</td>
             </tr>
         )
-    }
+                        }
 
     render() {
         const { monthDate, data, isShowLoader } = this.state;
@@ -152,10 +162,20 @@ export default class Content extends Component {
             <div className="my-2">
                 <Loader show={isShowLoader} />
                 <Table id="statistic-data-table">
-                    {this._renderHeader(monthDate)}
-                    {this._renderData(monthDate, data)}
+                        {this._renderHeader(monthDate)}
+                        {this._renderData(monthDate, data)}
                 </Table>
             </div>
         );
-    }
-}
+                        }
+                        }
+
+function mapStateToProps({ monthDate, isShowLoader }) {
+    return Object.assign({}, { monthDate, isShowLoader });
+                        }
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ setParam, toggleLoader }, dispatch);
+                        }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Content);
