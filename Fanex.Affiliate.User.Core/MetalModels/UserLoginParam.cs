@@ -18,14 +18,6 @@ namespace Fanex.Affiliate.User.Core.MetalModels
         public string ValidationKey { get; set; }
 
         [SpParam(Ignored = true)]
-        [Required(ErrorMessage = "Login failed")]
-        public string EncriptionKey { get; set; }
-
-        [SpParam(Ignored = true)]
-        [Required(ErrorMessage = "Login failed")]
-        public string EncriptionIv { get; set; }
-
-        [SpParam(Ignored = true)]
         public string LoginIp { get; set; }
 
         [SpParam(Ignored = true)]

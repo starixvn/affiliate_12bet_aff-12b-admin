@@ -19,7 +19,6 @@ namespace Fanex.Affiliate.User.Core.MetalModels
         public string NewPassword { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "ReenterNewPassw")]
-        [Compare("NewPassword", ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "ReenterNewPassw")]
         [DataType(DataType.Password)]
         [SpParam(Ignored = true)]
         public string ConfirmNewPassword { get; set; }
@@ -31,13 +30,5 @@ namespace Fanex.Affiliate.User.Core.MetalModels
         public int ErrCode { get; set; }
 
         public string ErrMsg { get; set; }
-
-        [SpParam(Ignored = true)]
-        [Required(ErrorMessage = "Update Password failed")]
-        public string EncriptionKey { get; set; }
-
-        [SpParam(Ignored = true)]
-        [Required(ErrorMessage = "Update Password failed")]
-        public string EncriptionIv { get; set; }
     }
 }

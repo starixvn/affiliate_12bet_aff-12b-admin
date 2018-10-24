@@ -10,7 +10,7 @@ using Fanex.Affiliate.User.Core.Filters;
 using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.Utilities;
-using ONEbook.UM.Filters;
+using Fanex.Affiliate.User.Core.ViewModels;
 
 namespace Fanex.Affiliate.User.Core.Controllers
 {
@@ -19,17 +19,21 @@ namespace Fanex.Affiliate.User.Core.Controllers
         private readonly IAuthService _authService;
         private readonly ICaptchaService _captchaService;
         private readonly IAppSetting _appSetting;
+        private readonly ICryptographyService _cryptographyService;
+
         public AuthController(
             ISessionService sessionService,
             IAppSetting appSetting,
             ILanguageService languageService,
             IAuthService authService,
-            ICaptchaService captchaService) : base(sessionService, languageService)
+            ICaptchaService captchaService,
+            ICryptographyService cryptographyService) : base(sessionService, languageService)
 
         {
             _authService = authService;
             _captchaService = captchaService;
             _appSetting = appSetting;
+            _cryptographyService = cryptographyService;
         }
 
         [ChildActionOnly]
@@ -37,16 +41,24 @@ namespace Fanex.Affiliate.User.Core.Controllers
         [AllowAnonymous]
         public ActionResult AuthenticationForm(string v)
         {
-            if (!User.Identity.IsAuthenticated || SessionService.UserSession == null)
+            var viewModel = new AuthenticationFormViewModel
             {
-                var keyString = Generator.GetRandomString(32);
-                var ivString = Generator.GetRandomString(16);
+                IsAuthenticated = User.Identity.IsAuthenticated && SessionService.UserSession != null
+            };
 
-                ViewBag.KeyString = keyString;
-                ViewBag.IVString = ivString;
+            if (viewModel.IsAuthenticated)
+            {
+                viewModel.UserName = SessionService.UserSession.UserName;
+            }
+            else
+            {
+                var keyPair = _cryptographyService.GenerateKeyPair();
+                SessionService.PrivateKey = _cryptographyService.ConvertKeyToXmlString(keyPair.PrivateKey);
+
+                viewModel.PublicKey = _cryptographyService.ConvertPublicKeyToString(keyPair.PublicKey);
             }
 
-            return View();
+            return View("~/Views/Auth/AuthenticationForm.cshtml", viewModel);
         }
 
         [ValidateAntiForgeryToken]
@@ -65,7 +77,6 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 {
                     IsOk = false,
                     Message = string.Join(", ", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
-
                 });
             }
 
@@ -75,7 +86,6 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 {
                     IsOk = false,
                     Message = Lang.ValidationCode
-
                 });
             }
             userParam.LoginIp = Request.UserHostAddress;

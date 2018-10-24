@@ -146,11 +146,10 @@
         [HttpGet]
         public ActionResult Update()
         {
-            var keyString = Generator.GetRandomString(32);
-            var ivString = Generator.GetRandomString(16);
+            var keyPair = _cryptographyService.GenerateKeyPair();
+            SessionService.PrivateKey = _cryptographyService.ConvertKeyToXmlString(keyPair.PrivateKey);
 
-            ViewBag.KeyString = keyString;
-            ViewBag.IVString = ivString;
+            ViewBag.PublicKey = _cryptographyService.ConvertPublicKeyToString(keyPair.PublicKey);
 
             return View(new UpdatePasswordParam());
         }
@@ -168,11 +167,24 @@
             }
             else if (ModelState.IsValid)
             {
+                var privateKey = _cryptographyService.ConvertXmlStringToParam(SessionService.PrivateKey);
+                param.NewPassword = _cryptographyService.EncryptPassword(privateKey, param.NewPassword);
+                var confirmedNewPassword = _cryptographyService.EncryptPassword(privateKey, param.ConfirmNewPassword);
+
+                if (param.NewPassword != confirmedNewPassword)
+                {
+                    return Json(new ResultInfo
+                    {
+                        IsOk = false,
+                        Message = Lang.ReenterNewPassw
+                    });
+                }
+
+                param.OldPassword = _cryptographyService.EncryptPassword(privateKey, param.OldPassword);
+
                 param.AffId = SessionService.UserSession.AffId;
                 param.Ip = RequestHelper.GetClientIPAddress();
                 param.Language = SessionService.CurrentLanguage;
-                param.OldPassword = _cryptographyService.EncryptPassword(param.OldPassword, param.EncriptionKey, param.EncriptionIv);
-                param.NewPassword = _cryptographyService.EncryptPassword(param.NewPassword, param.EncriptionKey, param.EncriptionIv);
 
                 var updateResult = _accountRepository.UpdatePassword(param);
                 resultInfo.IsOk = updateResult.IsOk;

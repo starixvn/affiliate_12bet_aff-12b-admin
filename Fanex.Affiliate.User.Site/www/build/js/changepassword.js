@@ -62,12 +62,16 @@ var ChangePassword = (function ($) {
                 var $oldPassword = $("#OldPassword");
                 var $confirmedNewPassword = $("#ConfirmNewPassword");
 
-                var encryptKey = $("#EncriptionKey").val();
-                var encryptIV = $("#EncriptionIv").val();
+                if ($newPassword.val() !== $confirmedNewPassword.val()) {
+                    Site.displayResult(false, resource.notMatchPassword);
+                    return;
+                }
 
-                var encryptedOldPassword = _me.encryptPassword($oldPassword.val(), encryptKey, encryptIV);
-                var encryptedNewPassword = _me.encryptPassword($newPassword.val(), encryptKey, encryptIV);
-                var confirmedNewPassword = _me.encryptPassword($confirmedNewPassword.val(), encryptKey, encryptIV);
+                var publicKey = $("#PublicKey").val();
+
+                var encryptedOldPassword = _me.encryptPassword($oldPassword.val(), publicKey);
+                var encryptedNewPassword = _me.encryptPassword($newPassword.val(), publicKey);
+                var confirmedNewPassword = _me.encryptPassword($confirmedNewPassword.val(), publicKey);
 
                 $oldPassword.val(encryptedOldPassword);
                 $newPassword.val(encryptedNewPassword);
@@ -97,19 +101,11 @@ var ChangePassword = (function ($) {
             }
         },
 
-        encryptPassword: function (password, encryptKey, encryptIV) {
-            if (!password) {
-                return "";
-            }
+        encryptPassword: function (plainText, key) {
+            var encrypt = new JSEncrypt();
+            encrypt.setPublicKey(key);
 
-            var key = CryptoJS.enc.Utf8.parse(encryptKey);
-            var iv = CryptoJS.enc.Utf8.parse(encryptIV);
-
-            return CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(password), key, {
-                iv: iv,
-                mode: CryptoJS.mode.CBC,
-                padding: CryptoJS.pad.Pkcs7
-            }).toString();
+            return encrypt.encrypt(plainText);
         }
     };
 

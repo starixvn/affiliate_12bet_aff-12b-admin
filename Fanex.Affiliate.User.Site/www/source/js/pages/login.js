@@ -69,20 +69,16 @@
             var validationResult = _me.validate(username, password, validation, prefix);
             if (validationResult.isValid) {
                 var token = $('input[name="__RequestVerificationToken"]', $("#userLogin")).val();
-                var encryptKey = $("#KeyString").val();
-                var encryptIV = $("#IVString").val();
+                var publicKey = $("#PublicKey").val();
 
-                var encryptedPassword = _me.encryptPassword(password, encryptKey, encryptIV);
-
+                var encryptedPassword = _me.encrypt(password, publicKey);
                 $password.val(encryptedPassword);
 
                 var postData = {
                     __RequestVerificationToken: token,
                     UserName: username,
                     Password: encryptedPassword,
-                    ValidationKey: validation,
-                    EncriptionKey: encryptKey,
-                    EncriptionIv: encryptIV
+                    ValidationKey: validation
                 };
 
                 $.ajax({
@@ -160,15 +156,11 @@
             return result;
         },
 
-        encryptPassword: function (password, encryptKey, encryptIV) {
-            var key = CryptoJS.enc.Utf8.parse(encryptKey);
-            var iv = CryptoJS.enc.Utf8.parse(encryptIV);
+        encrypt: function (plainText, key) {
+            var encrypt = new JSEncrypt();
+            encrypt.setPublicKey(key);
 
-            return CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(password), key, {
-                iv: iv,
-                mode: CryptoJS.mode.CBC,
-                padding: CryptoJS.pad.Pkcs7
-            }).toString();
+            return encrypt.encrypt(plainText);
         },
         generateDialogCaptcha: function () {
             var captchaUrl = Site.resolveRelativeUrl("Auth/CaptchaImage?_v=" + new Date().getTime());
