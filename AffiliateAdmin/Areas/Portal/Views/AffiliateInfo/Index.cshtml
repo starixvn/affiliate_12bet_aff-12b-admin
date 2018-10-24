@@ -1,0 +1,21 @@
+﻿@{
+    Layout = "~/Areas/Portal/Views/Shared/_SinglePageLayout.cshtml";
+}
+
+@model Fanex.Affiliate.Admin.Core.ViewModels.Affiliate.AffiliateInfoViewModel
+
+@section styles{
+    
+}
+
+@section scripts{
+    <script type="text/javascript">
+        window.initialState = {
+            languageList: @Html.Raw(Json.Encode(Model.LanguageList))
+        }
+    </script>
+    
+}
+
+<div id="root"></div>
+

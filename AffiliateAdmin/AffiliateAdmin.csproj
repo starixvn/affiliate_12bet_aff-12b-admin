@@ -1890,6 +1890,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\index.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\user-panel\customer-member.scss" />
+    <Content Include="Areas\Portal\Views\AffiliateInfo\Index.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -144,6 +144,7 @@
     <Compile Include="Constants\UserPanelConstant.cs" />
     <Compile Include="Controllers\AdministratorController.cs" />
     <Compile Include="Controllers\AffiliateController.cs" />
+    <Compile Include="Controllers\AffiliateInfoController.cs" />
     <Compile Include="Controllers\AffiliateReportController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -164,6 +165,7 @@
     <Compile Include="Controllers\UserPanel\PlayerDetailController.cs" />
     <Compile Include="Controllers\UserPanel\StatementHistoryController.cs" />
     <Compile Include="DTO\Affiliate\AffiliateBasicInfo.cs" />
+    <Compile Include="DTO\Affiliate\AffiliateInfo.cs" />
     <Compile Include="DTO\CommissionGroup\CommGroup.cs" />
     <Compile Include="DTO\CommissionGroup\CommissionGroupResultEntity.cs" />
     <Compile Include="DTO\CommissionGroup\CommissionGroupSetting.cs" />
@@ -192,6 +194,7 @@
     <Compile Include="DTO\UserPanel\PlayerDetailResult.cs" />
     <Compile Include="Extensions\DataReaderExtension.cs" />
     <Compile Include="Extensions\UrlHelperExtension.cs" />
+    <Compile Include="MetaModels\Affiliate\AffiliateInfoParam.cs" />
     <Compile Include="MetaModels\Affiliate\ApproveAffiliateParam.cs" />
     <Compile Include="MetaModels\CommissionGroup\AssignGroupParam.cs" />
     <Compile Include="MetaModels\CommissionGroup\GetCommissionGroupParam.cs" />
@@ -206,6 +209,8 @@
     <Compile Include="MetaModels\UserPanel\DailyEarningParam.cs" />
     <Compile Include="MetaModels\UserPanel\PlayerDetailParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\Affiliate\AffiliateInfoRepository.cs" />
+    <Compile Include="Repository\Affiliate\IAffiliateInfoRepository.cs" />
     <Compile Include="Repository\Customer\CustomerStatisticsRepository.cs" />
     <Compile Include="Repository\Customer\ICustomerStatisticsRepository.cs" />
     <Compile Include="Repository\Report\AffiliateReportRepository.cs" />
@@ -304,6 +309,7 @@
     <Compile Include="Utilities\IMailProcessor.cs" />
     <Compile Include="Utilities\MailProcessor.cs" />
     <Compile Include="Utilities\SiteDomainHelper.cs" />
+    <Compile Include="ViewModels\Affiliate\AffiliateInfoViewModel.cs" />
     <Compile Include="ViewModels\AffiliateReportViewModel.cs" />
     <Compile Include="ViewModels\AssignNormalGroupViewModel.cs" />
     <Compile Include="ViewModels\AssignPrivateGroupViewModel.cs" />
