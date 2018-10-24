@@ -12,29 +12,28 @@ import { resolveClientUrl } from '../../../../modules/utils';
 import { formatDecimalWithCurrencySymbol, format } from '../../../../modules/numberFormat';
 
 import { toggleLoader } from '../../../../actions/loaderAction';
-import { setParam } from '../actions';
+import { setMonthDate } from '../actions';
 
 const API_URL = "Portal/CustomerStatistics/GetCustomerStatistics";
 export class Content extends Component {
     constructor(props) {
         super(props);
-        const { monthDate, isShowLoader } = this.props;
 
         this.state = {
-            monthDate: new Date(monthDate),
-            data: null,
-            isShowLoader: isShowLoader
+            data: null
         }
     }
 
     componentDidMount() {
-        const { monthDate } = this.state;
+        const monthDate = this.props.monthDate;
+
         this.fetchData(monthDate);
     }
 
     componentDidUpdate(prevProps) {
-        if(this.props.param !== prevProps.param) {
-            const monthDate = new Date(this.props.today);
+        if (this.props.monthDate !== prevProps.monthDate) {
+            const monthDate = this.props.monthDate;
+
             this.fetchData(monthDate);
         }
     }
@@ -42,22 +41,22 @@ export class Content extends Component {
     fetchData = async (monthDate) => {
         this.props.toggleLoader(true);
         const param = {
-            monthDate: `${monthDate.getMonth() + 1}/1/${monthDate.getFullYear()}`
+            monthDate
         }
         const response = await post(API_URL, param);
         if (response && response.status === 200) {
+            this.props.setMonthDate(monthDate);
+
             this.setState({
-                monthDate: monthDate,
                 data: response.data
             });
         }
 
-        this.props.toggleLoader(false);
+        this.props.toggleLoader(true);
     }
 
     handleSelectMonth = (month, year) => {
-        const monthDate = new Date(year, month - 1);
-        this.props.setParam(monthDate);
+        const monthDate = `${month}/1/${year}`;
 
         this.fetchData(monthDate);
     }
@@ -138,13 +137,13 @@ export class Content extends Component {
                 {
                     this._buildRow(rowTitle.TrackingRateMobile,
                         (<a href={resolveClientUrl(`UserInfo/MediaStatistics_New.aspx?fdate=${startMonthString}&tdate=${endMonthString}&slDevice=1`)} target="fContent">
-                        {format(data.UniqueClickMobileByMonth)}/{format(data.TotalClickMobileByMonth)}
+                            {format(data.UniqueClickMobileByMonth)}/{format(data.TotalClickMobileByMonth)}
                         </a>),
                         resource.NA)
-                        }
+                }
             </tbody>
         );
-                        }
+    }
 
     _buildRow(title, dataByMonth, dataUpToNow) {
         return (
@@ -154,28 +153,29 @@ export class Content extends Component {
                 <td className="text-right">{dataUpToNow}</td>
             </tr>
         )
-                        }
+    }
 
     render() {
-        const { monthDate, data, isShowLoader } = this.state;
+        const { data } = this.state;
+        const monthDate = new Date(this.props.monthDate);
+
         return data && (
             <div className="my-2">
-                <Loader show={isShowLoader} />
                 <Table id="statistic-data-table">
-                        {this._renderHeader(monthDate)}
-                        {this._renderData(monthDate, data)}
+                    {this._renderHeader(monthDate)}
+                    {this._renderData(monthDate, data)}
                 </Table>
             </div>
         );
-                        }
-                        }
+    }
+}
 
-function mapStateToProps({ monthDate, isShowLoader }) {
-    return Object.assign({}, { monthDate, isShowLoader });
-                        }
+function mapStateToProps({ monthDate }) {
+    return Object.assign({}, { monthDate });
+}
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setParam, toggleLoader }, dispatch);
-                        }
+    return bindActionCreators({ setMonthDate, toggleLoader }, dispatch);
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

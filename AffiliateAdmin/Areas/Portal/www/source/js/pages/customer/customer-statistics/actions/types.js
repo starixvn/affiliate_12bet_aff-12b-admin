@@ -1,1 +1,1 @@
-﻿export const SET_PARAM = 'SET_PARAM';
+﻿export const SET_MONTHDATE = 'SET_MONTHDATE';

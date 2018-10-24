@@ -1,8 +1,8 @@
-﻿import { SET_PARAM } from './types';
+﻿import { SET_MONTHDATE } from './types';
 
-export const setParam = (data) => {
+export const setMonthDate = (data) => {
     return {
-        type: SET_PARAM,
+        type: SET_MONTHDATE,
         data
     }
 }
