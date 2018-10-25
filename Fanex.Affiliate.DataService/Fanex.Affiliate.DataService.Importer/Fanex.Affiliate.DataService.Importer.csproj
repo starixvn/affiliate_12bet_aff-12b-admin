@@ -73,13 +73,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BetsoftService.cs" />
     <Compile Include="DataImportingRunner.cs" />
     <Compile Include="CasinoDataService.cs" />
+    <Compile Include="DTO\Betsoft\BetsoftDataItem.cs" />
     <Compile Include="DTO\CasinoDataMetaModel.cs" />
     <Compile Include="DTO\ColumnName.cs" />
     <Compile Include="DTO\ResultInfo.cs" />
     <Compile Include="Enum\SystemType.cs" />
+    <Compile Include="IBetsoftService.cs" />
     <Compile Include="IDataImportingRunner.cs" />
+    <Compile Include="MetaModels\Betsoft\BetsoftParam.cs" />
     <Compile Include="Repository\BaseRepository.cs" />
     <Compile Include="Utilities\IAppSettings.cs" />
     <Compile Include="Repository\ICasinoDataRepository.cs" />

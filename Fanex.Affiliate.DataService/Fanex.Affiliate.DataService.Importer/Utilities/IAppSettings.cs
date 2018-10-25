@@ -24,6 +24,14 @@
 
         string BccMail { get; }
 
+        string BetsoftBankId { get; }
+
+        string BetsoftPassword { get; }
+
+        string BetsoftApiUrl { get; }
+
+        string BetsoftFormatDateTime { get; }
+
         string GetValue(string key);
     }
 }

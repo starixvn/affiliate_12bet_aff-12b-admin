@@ -27,6 +27,14 @@
 
         public string BccMail => GetValue("BCCMail");
 
+        public string BetsoftBankId => GetValue("BetsoftBankId");
+
+        public string BetsoftPassword => GetValue("BetsoftPassword");
+
+        public string BetsoftApiUrl => GetValue("BetsoftApiUrl");
+
+        public string BetsoftFormatDateTime => GetValue("BetsoftFormatDateTime");
+
         public string GetValue(string key) => ConfigurationManager.AppSettings[key];
     }
 }
