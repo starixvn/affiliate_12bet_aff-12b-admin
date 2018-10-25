@@ -58,7 +58,22 @@ export default class Filter extends Component {
             MonthDate: `${monthDate.getMonth() + 1}/1/${monthDate.getFullYear()}`
         }
 
-        this.props.onExportExcel(param);
+        const title = this._getReportTitle();
+        this.props.onExportExcel(param, title);
+    }
+
+    _getReportTitle() {
+        const { selectedProduct, monthDate } = this.state;
+        const productTitle = selectedProduct === 0 ? 'All Products' : this._getSelectedProductName(selectedProduct);
+        const selectedMonthTitle = this.handleFormatMonthPicker(monthDate.getMonth() + 1, monthDate.getFullYear());
+
+        return `Player Detail - ${productTitle} - ${selectedMonthTitle}`;
+    }
+
+    _getSelectedProductName(productId) {
+        const selectedProduct = this.productList.find(p => p.ProductId === productId);
+
+        return selectedProduct ? selectedProduct.ProductName : '';
     }
 
     render() {

@@ -8,6 +8,7 @@ import { post } from '../../../../modules/ajaxRequest';
 import { defaultPagingOption } from '../../../../modules/constants';
 import ReportExcel from '../modules/reportExcel';
 
+const allProduct = 0;
 const API_URL = 'Portal/UserPanel/PlayerDetail/GetPlayerDetailList';
 export default class AppContainer extends Component {
     constructor(props) {
@@ -91,7 +92,7 @@ export default class AppContainer extends Component {
         this.fetchData(param);
     }
 
-    handleExportExcel = async (filterParam) => {
+    handleExportExcel = async (filterParam, title) => {
         this.setState({ isShowLoader: true });
 
         const param = {
@@ -100,7 +101,7 @@ export default class AppContainer extends Component {
         }
         const response = await post(API_URL, param);
         if (response && response.status === 200) {
-            const reportExcel = new ReportExcel(response.data);
+            const reportExcel = new ReportExcel(response.data, title);
             reportExcel.export();
         }
 
@@ -108,10 +109,8 @@ export default class AppContainer extends Component {
     }
 
     render() {
-        const allProduct = 0;
         const { selectedProduct, monthDate, data, isShowLoader, pagingOption } = this.state;
-        const isSelectedAllProducts = selectedProduct === allProduct;
-        const productColumnClassName = isSelectedAllProducts ? 'text-right' : 'text-right highlight';
+        const productColumnClassName = selectedProduct === allProduct ? 'text-right' : 'text-right highlight';
 
         return (
             <AppLayout>

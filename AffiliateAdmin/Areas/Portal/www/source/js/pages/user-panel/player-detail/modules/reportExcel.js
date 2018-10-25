@@ -7,7 +7,6 @@ import {
     headerText
 } from './constants';
 
-const FILENAME = 'PlayerDetail';
 const HEADER_ROW_INDEX = 0;
 const DATA_ROW_INDEX = 1;
 
@@ -28,8 +27,9 @@ const fields = {
 }
 
 export default class ReportExcel {
-    constructor(data) {
+    constructor(data, title) {
         this.data = data;
+        this.title = title;
 
         this.worksheet = {};
         this.currentRowIndex = DATA_ROW_INDEX;
@@ -43,7 +43,7 @@ export default class ReportExcel {
             this._createBodyData();
             this._createExcelConfig();
 
-            Excel.export(this.worksheet, FILENAME);
+            Excel.export(this.worksheet, this.title);
         })
     }
 
