@@ -13,7 +13,7 @@ export class AppContainer extends Component {
     render() {
         return (
             <AppLayout>
-                <Loader show={this.props.isShowLoager} />
+                <Loader show={this.props.isShowLoader} />
                 <Content />
             </AppLayout>
         );
