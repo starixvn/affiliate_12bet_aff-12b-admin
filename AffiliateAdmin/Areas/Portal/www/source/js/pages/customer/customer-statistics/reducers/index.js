@@ -5,9 +5,9 @@ import { isShowLoader } from '../../../../reducers/loaderReducer';
 import createReducer from '../../../../modules/createReducer';
 
 const today = new Date();
-const iniatialState = `${today.getMonth()}/1/${today.getFullYear()}`;
+const defaultMonthDate = `${today.getMonth()}/1/${today.getFullYear()}`;
 
-const monthDate = createReducer(iniatialState, {
+const monthDate = createReducer(defaultMonthDate, {
     [SET_MONTHDATE](prevState, action) {
         return action.data;
     }

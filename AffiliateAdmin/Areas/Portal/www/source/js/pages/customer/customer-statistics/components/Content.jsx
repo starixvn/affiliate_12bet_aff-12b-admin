@@ -2,7 +2,6 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import Loader from '../../../../components/Loader';
 import MonthPicker from '@9softstudio/react-monthpicker';
 import { Table } from 'reactstrap';
 import { rowTitle, resource } from '../modules/constants';
@@ -25,16 +24,12 @@ export class Content extends Component {
     }
 
     componentDidMount() {
-        const monthDate = this.props.monthDate;
-
-        this.fetchData(monthDate);
+        this.fetchData(this.props.monthDate);
     }
 
     componentDidUpdate(prevProps) {
         if (this.props.monthDate !== prevProps.monthDate) {
-            const monthDate = this.props.monthDate;
-
-            this.fetchData(monthDate);
+            this.fetchData(this.props.monthDate);
         }
     }
 
@@ -45,18 +40,17 @@ export class Content extends Component {
         }
         const response = await post(API_URL, param);
         if (response && response.status === 200) {
-            this.props.setMonthDate(monthDate);
-
             this.setState({
                 data: response.data
             });
         }
 
-        this.props.toggleLoader(true);
+        this.props.toggleLoader(false);
     }
 
     handleSelectMonth = (month, year) => {
         const monthDate = `${month}/1/${year}`;
+        this.props.setMonthDate(monthDate);
 
         this.fetchData(monthDate);
     }

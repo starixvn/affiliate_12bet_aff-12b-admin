@@ -13,7 +13,7 @@ export function format(value, digits = 0) {
 }
 
 export function formatDecimalWithCurrencySymbol(value, currencySymbol = "$") {
-    return value < 0 ? `-$${format(Math.abs(value))}` : `$${format(value, 2)}`;
+    return value < 0 ? `-${currencySymbol}${formatDecimal(Math.abs(value))}` : `${currencySymbol}${formatDecimal(value)}`;
 }
 
 export function round(value, digits) {
