@@ -18,6 +18,7 @@ module.exports = {
     [`${jsDist}/pages/media-gallery/landing-page`]: clientRoot + "/js/pages/media-gallery/landing-page/index.jsx",
     [`${jsDist}/pages/customer/customer-statistics`]: clientRoot + "/js/pages/customer/customer-statistics/index.jsx",
     [`${jsDist}/pages/userpanel/customer-member`]: clientRoot + "/js/pages/user-panel/customer-member/index.jsx",
+    [`${jsDist}/pages/affiliate-info`]: clientRoot + "/js/pages/affiliate-info/index.jsx",
 
     [`${styleDist}/portalmain`]: clientRoot + "/style/main.scss",
     [`${styleDist}/layout`]: clientRoot + "/style/layout/main-layout.scss",
@@ -28,4 +29,5 @@ module.exports = {
     [`${styleDist}/pages/media-gallery/landing-page`]: clientRoot + "/style/pages/media-gallery/landing-page.scss",
     [`${styleDist}/pages/customer-statistics`]: clientRoot + "/style/pages/customer-statistics.scss",
     [`${styleDist}/pages/user-panel/customer-member`]: clientRoot + "/style/pages/user-panel/customer-member.scss",
+    [`${styleDist}/pages/affiliate-info`]: clientRoot + "/style/pages/affiliate-info.scss",
 };

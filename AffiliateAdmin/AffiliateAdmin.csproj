@@ -1513,6 +1513,7 @@
     <Content Include="Areas\Portal\www\dist\jquery-3.3.1.min.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\vendors~xlsx-style.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\xlsx-style.chunk.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\affiliate-info.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\commission\assign-group.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\commission\assign-private-group.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\commission\commission-group.js" />
@@ -1529,6 +1530,7 @@
     <Content Include="Areas\Portal\www\dist\style\assets\i_customer.png" />
     <Content Include="Areas\Portal\www\dist\style\assets\open-iconic.svg" />
     <Content Include="Areas\Portal\www\dist\style\layout.css" />
+    <Content Include="Areas\Portal\www\dist\style\pages\affiliate-info.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\affiliate-report.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\commission-group.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\customer-statistics.css" />
@@ -1562,6 +1564,9 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-information\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-information\modules\helper.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-information\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\modules\constants.js" />
@@ -1891,6 +1896,13 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\index.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\user-panel\customer-member.scss" />
     <Content Include="Areas\Portal\Views\AffiliateInfo\Index.cshtml" />
+    <Content Include="Areas\Portal\www\source\style\pages\affiliate-info.scss" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\reducers\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\GridData.jsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

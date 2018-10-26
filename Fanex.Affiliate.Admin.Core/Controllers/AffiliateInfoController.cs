@@ -15,10 +15,10 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         public AffiliateInfoController(
             ISessionService sessionService,
-            IAffiliateInfoRepository affiliateInfoRepository,
+            //IAffiliateInfoRepository affiliateInfoRepository,
             ILanguageService languageService) : base(sessionService)
         {
-            _affiliateInfoRepository = affiliateInfoRepository;
+            //_affiliateInfoRepository = affiliateInfoRepository;
             _languageService = languageService;
         }
 
