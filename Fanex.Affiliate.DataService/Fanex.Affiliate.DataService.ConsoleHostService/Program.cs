@@ -34,7 +34,7 @@ namespace Fanex.Affiliate.DataService.ConsoleHostService
                 EndDate = now
             };
 
-            var xmlDataList = betsoftService.GetMultipleDataBatch(param);
+            var xmlDataList = betsoftService.GetMultipleRawDataBatch(param);
 
             Console.WriteLine($"Item Count: {xmlDataList.Count}");
             //foreach (var item in xmlDataList)

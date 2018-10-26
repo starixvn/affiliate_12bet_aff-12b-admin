@@ -22,14 +22,14 @@ namespace Fanex.Affiliate.DataService.Importer
             _appSetting = appSetting ?? new AppSettings();
         }
 
-        public string GetData(BetsoftParam param)
+        public string GetRawData(BetsoftParam param)
         {
             string url = BuildUrl(param);
 
             return GetDataString(url);
         }
 
-        public IList<string> GetMultipleDataBatch(BetsoftParam param)
+        public IList<string> GetMultipleRawDataBatch(BetsoftParam param)
         {
             var result = new List<string>();
             var startDate = param.StartDate;
@@ -47,16 +47,16 @@ namespace Fanex.Affiliate.DataService.Importer
                     EndDate = DateTime.Compare(endDateByBatch, endDate) > 0 ? endDate : endDateByBatch
                 };
 
-                result.Add(GetData(paramByBatch));
+                result.Add(GetRawData(paramByBatch));
             }
 
             return result;
         }
 
-        public IList<BetsoftDataItem> ConvertToDataList(string xmlData)
+        public IList<BetsoftDataItem> ConvertToDataList(string rawData)
         {
             var result = new List<BetsoftDataItem>();
-            var xdoc = XDocument.Parse(xmlData);
+            var xdoc = XDocument.Parse(rawData);
 
             var accountList = xdoc.Root.Element("RESPONSE").Elements("ACCOUNT");
             foreach (var account in accountList)

@@ -6,11 +6,11 @@ namespace Fanex.Affiliate.DataService.Importer
 {
     public interface IBetsoftService
     {
-        string GetData(BetsoftParam param);
+        string GetRawData(BetsoftParam param);
 
-        IList<string> GetMultipleDataBatch(BetsoftParam param);
+        IList<string> GetMultipleRawDataBatch(BetsoftParam param);
 
-        IList<BetsoftDataItem> ConvertToDataList(string xmlData);
+        IList<BetsoftDataItem> ConvertToDataList(string rawData);
 
         void Import(IList<BetsoftDataItem> dataList);
     }
