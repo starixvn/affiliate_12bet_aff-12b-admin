@@ -16,35 +16,32 @@ namespace Fanex.Affiliate.DataService.ConsoleHostService
 
         private static void Main(string[] args)
         {
-            RunEbetService();
+            RunBetsoftService();
             Console.ReadLine();
         }
 
         private static void RunBetsoftService()
         {
             var betsoftService = new BetsoftService();
-            var dateTime = new DateTime(2018, 9, 30, 22, 0, 0);
+            var now = DateTime.Now;
+            var start = new DateTime(now.Year, now.Month, now.Day, 12, 0, 0);
             var param = new BetsoftParam
             {
                 ApiUrl = _appSetting.BetsoftApiUrl,
                 BankId = _appSetting.BetsoftBankId,
                 Password = _appSetting.BetsoftPassword,
-                StartDate = dateTime.AddMinutes(-60).ToString(_appSetting.BetsoftFormatDateTime),
-                EndDate = dateTime.ToString(_appSetting.BetsoftFormatDateTime)
+                StartDate = start,
+                EndDate = now
             };
 
-            var dataString = betsoftService.GetData(param);
-            Console.WriteLine(DateTime.Now);
-            var dataList = betsoftService.ConvertToDataList(dataString);
-            betsoftService.Import(dataList);
-            Console.WriteLine(DateTime.Now);
+            var xmlDataList = betsoftService.GetMultipleDataBatch(param);
 
-            //foreach (var item in dataList)
+            Console.WriteLine($"Item Count: {xmlDataList.Count}");
+            //foreach (var item in xmlDataList)
             //{
-            //    Console.WriteLine($"UserName: {item.UserName}, Amount: {item.Amount}, Win: {item.Win}, WinLossDate: {item.WinLossDate}");
+            //    Console.WriteLine(item);
             //}
 
-            Console.WriteLine(dataString);
             Console.WriteLine("Done!!!");
         }
 

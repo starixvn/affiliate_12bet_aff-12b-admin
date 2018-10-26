@@ -8,6 +8,8 @@ namespace Fanex.Affiliate.DataService.Importer
     {
         string GetData(BetsoftParam param);
 
+        IList<string> GetMultipleDataBatch(BetsoftParam param);
+
         IList<BetsoftDataItem> ConvertToDataList(string xmlData);
 
         void Import(IList<BetsoftDataItem> dataList);

@@ -24,11 +24,33 @@ namespace Fanex.Affiliate.DataService.Importer
 
         public string GetData(BetsoftParam param)
         {
-            var inputToHash = $"{param.StartDate}{param.EndDate}{param.BankId}{param.Password}";
-            var hashedString = GenerateHash(inputToHash);
-            var url = $"{param.ApiUrl}?startDate={param.StartDate}&endDate={param.EndDate}&bankId={param.BankId}&hash={hashedString}";
+            string url = BuildUrl(param);
 
             return GetDataString(url);
+        }
+
+        public IList<string> GetMultipleDataBatch(BetsoftParam param)
+        {
+            var result = new List<string>();
+            var startDate = param.StartDate;
+            var endDate = param.EndDate;
+
+            for (var start = startDate; DateTime.Compare(start, endDate) <= 0; start = start.AddHours(1))
+            {
+                var endDateByBatch = start.AddHours(1);
+                var paramByBatch = new BetsoftParam
+                {
+                    ApiUrl = param.ApiUrl,
+                    BankId = param.BankId,
+                    Password = param.Password,
+                    StartDate = start,
+                    EndDate = DateTime.Compare(endDateByBatch, endDate) > 0 ? endDate : endDateByBatch
+                };
+
+                result.Add(GetData(paramByBatch));
+            }
+
+            return result;
         }
 
         public IList<BetsoftDataItem> ConvertToDataList(string xmlData)
@@ -69,11 +91,21 @@ namespace Fanex.Affiliate.DataService.Importer
             throw new NotImplementedException();
         }
 
+        private string BuildUrl(BetsoftParam param)
+        {
+            var startDate = param.StartDate.ToString(_appSetting.BetsoftFormatDateTime);
+            var endDate = param.EndDate.ToString(_appSetting.BetsoftFormatDateTime);
+            var inputToHash = $"{startDate}{endDate}{param.BankId}{param.Password}";
+            var hashedString = GenerateHash(inputToHash);
+
+            return $"{param.ApiUrl}?startDate={startDate}&endDate={endDate}&bankId={param.BankId}&hash={hashedString}";
+        }
+
         private static string GenerateHash(string input)
         {
             var hash = new StringBuilder();
             var md5provider = new MD5CryptoServiceProvider();
-            var bytes = md5provider.ComputeHash(System.Text.Encoding.UTF8.GetBytes(input));
+            var bytes = md5provider.ComputeHash(Encoding.UTF8.GetBytes(input));
 
             for (int i = 0; i < bytes.Length; i++)
             {
