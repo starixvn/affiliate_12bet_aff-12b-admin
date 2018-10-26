@@ -35,6 +35,8 @@
 
         public string BetsoftFormatDateTime => GetValue("BetsoftFormatDateTime");
 
+        public string EbetFormatDateTime => GetValue("EbetFormatDateTime");
+
         public string GetValue(string key) => ConfigurationManager.AppSettings[key];
     }
 }

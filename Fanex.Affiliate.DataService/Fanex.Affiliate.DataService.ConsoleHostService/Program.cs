@@ -2,6 +2,7 @@
 using Fanex.Affiliate.DataService.CheckSum;
 using Fanex.Affiliate.DataService.Importer;
 using Fanex.Affiliate.DataService.Importer.MetaModels.Betsoft;
+using Fanex.Affiliate.DataService.Importer.MetaModels.Ebet;
 using Fanex.Affiliate.DataService.Importer.Utilities;
 using Fanex.Affiliate.DataService.Job;
 using Fanex.Data.Configuration;
@@ -15,7 +16,7 @@ namespace Fanex.Affiliate.DataService.ConsoleHostService
 
         private static void Main(string[] args)
         {
-            RunBetsoftService();
+            RunEbetService();
             Console.ReadLine();
         }
 
@@ -44,6 +45,26 @@ namespace Fanex.Affiliate.DataService.ConsoleHostService
             //}
 
             Console.WriteLine(dataString);
+            Console.WriteLine("Done!!!");
+        }
+
+        private static void RunEbetService()
+        {
+            var appSetting = new AppSettings();
+            var config = new EbetConfigHelper();
+            var configList = config.GetConfigList();
+
+            var ebetService = new EbetService();
+            var now = DateTime.Now;
+            var param = new EbetParam
+            {
+                StartTime = new DateTime(2018, 9, 10, 10, 10, 10).ToString(appSetting.EbetFormatDateTime),
+                EndTime = new DateTime(2018, 10, 10, 10, 10, 10).ToString(appSetting.EbetFormatDateTime)
+            };
+
+            var jsonData = ebetService.GetJsonData(configList[0], param);
+
+            Console.WriteLine(jsonData);
             Console.WriteLine("Done!!!");
         }
 

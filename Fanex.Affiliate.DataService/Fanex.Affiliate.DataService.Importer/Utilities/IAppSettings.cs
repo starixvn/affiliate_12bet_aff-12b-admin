@@ -32,6 +32,8 @@
 
         string BetsoftFormatDateTime { get; }
 
+        string EbetFormatDateTime { get; }
+
         string GetValue(string key);
     }
 }
