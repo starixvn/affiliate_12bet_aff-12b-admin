@@ -1,4 +1,6 @@
-﻿namespace Fanex.Affiliate.DataService.Importer.Utilities
+﻿using System.Collections.Generic;
+
+namespace Fanex.Affiliate.DataService.Importer.Utilities
 {
     public interface IAppSettings
     {
@@ -33,6 +35,8 @@
         string BetsoftFormatDateTime { get; }
 
         string EbetFormatDateTime { get; }
+
+        IList<string> SupportedProductList { get; }
 
         string GetValue(string key);
     }

@@ -97,6 +97,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants\JobSystem.cs" />
     <Compile Include="IJobScheduler.cs" />
     <Compile Include="IJobSchedulerFactory.cs" />
     <Compile Include="JobSchedulerFactory.cs" />

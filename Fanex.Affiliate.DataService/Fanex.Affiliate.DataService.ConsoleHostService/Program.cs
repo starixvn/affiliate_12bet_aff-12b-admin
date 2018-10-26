@@ -16,7 +16,7 @@ namespace Fanex.Affiliate.DataService.ConsoleHostService
         {
             DbSettingProviderManager.Current.Start();
 
-            RunBetsoftService();
+            RunCasinoService();
             Console.ReadLine();
         }
 
