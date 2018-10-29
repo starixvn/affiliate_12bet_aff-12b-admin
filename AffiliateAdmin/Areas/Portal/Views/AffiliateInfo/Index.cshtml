@@ -11,6 +11,7 @@
 @section scripts{
     <script type="text/javascript">
         window.initialState = {
+            commGroupList: @Html.Raw(Json.Encode(Model.CommGroupList)),
             languageList: @Html.Raw(Json.Encode(Model.LanguageList)),
         }
     </script>

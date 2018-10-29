@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import { headerText } from '../modules/constants';
+import { statusList, sortByList } from '../modules/constants';
 
 import { setReportTitle, setParam } from '../actions';
 
@@ -13,7 +13,7 @@ export class Filter extends Component {
         super(props);
 
         this.state = {
-            selectedCommonGroup: '',
+            selectedCommGroup: '',
             selectedLanguage: '',
             selectedStatus: '',
             userName: '',
@@ -24,7 +24,7 @@ export class Filter extends Component {
     }
 
     handleChangeSearchBy = (event) => {
-        this.setState({ selectedCommonGroup : event.target.value });
+        this.setState({ selectedCommGroup : event.target.value });
     }
 
     handleChangeLanguage = (event) => {
@@ -32,7 +32,7 @@ export class Filter extends Component {
     }
 
     handleChangeStatus = (event) => {
-        this.setState({ selectedSortBy : event.target.value });
+        this.setState({ selectedStatus : event.target.value });
     }
 
     handleChangeUsername = (event) => {
@@ -42,9 +42,13 @@ export class Filter extends Component {
     handleChangeEmail = (event) => {
 
     }
+    
+    handleChangeSortBy = (event) => {
+        this.setState({ selectedSortBy : event.target.value });
+    }
 
-    handleChangeSortAscending = (event) => {
-
+    handleChangeSortAscending = () => {
+        this.setState((prevState) => { isSortAscending : !prevState.isSortAscending })
     }
 
     handleClickSearch = (event) => {
@@ -52,17 +56,21 @@ export class Filter extends Component {
     }
 
     render() {
-        const { selectedCommonGroup, selectedLanguage, selectedSortBy } = this.state;
-        const { languageList } = this.props;
+        const { selectedCommGroup, selectedLanguage, selectedSortBy, selectedStatus, isSortAscending } = this.state;
+        const { commGroupList, languageList } = this.props;
 
         return (
             <div className="filter-container">
                 <Form inline tag="div">
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                         <Label for="SearchBy" className="mr-sm-2">Search By</Label>
-                        <Input type="select" name="SearchBy" id="SearchBy" value="selectedCommonGroup" onChange={this.handleChangeSearchBy} >
-                            <option key="commonGroup-all" value="">All comm groups</option>
-
+                        <Input type="select" name="SearchBy" id="SearchBy" value={selectedCommGroup} onChange={this.handleChangeSearchBy} >
+                            <option key="commGroup-all" value="">All comm groups</option>
+                            {
+                                Object.keys(commGroupList).map(commGroup => {
+                                    return (<option key={'commGroup-' + commGroup} value={commGroup}>{commGroupList[commGroup]}</option>)
+                                })
+                            }
                         </Input>
                     </FormGroup>
 
@@ -81,9 +89,12 @@ export class Filter extends Component {
 
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                     {
-                        <Input type="select" name="Status" id="Status" value="selectedStatus" onChange={this.handleChangeStatus}>
-                            <option key="status-all" value="">All Statuses</option>
-
+                        <Input type="select" name="Status" id="Status" value={selectedStatus} onChange={this.handleChangeStatus}>
+                        {
+                            Object.keys(statusList).map(status => {
+                                return (<option key={'status-' + status} value={status}>{statusList[status]}</option>)
+                            })
+                        }
                         </Input>
                     }
                     </FormGroup>
@@ -98,34 +109,37 @@ export class Filter extends Component {
 
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                         <Label for="SortBy" className="mr-sm-2">Sort By</Label>
-                        <Input type="select" name="SortBy" id="SortBy" value="sortBy" onChange={this.handleChangeSortBy} >
-                            <option key="Username" value="">Username</option>
-
+                        <Input type="select" name="SortBy" id="SortBy" value={selectedSortBy} onChange={this.handleChangeSortBy} >
+                                {
+                            Object.keys(sortByList).map(sortBy => {
+                                return (<option key={'sortBy-' + sortBy} value={sortBy}>{sortByList[sortBy]}</option>)
+                        })
+                        }
                         </Input>
                     </FormGroup>
 
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                        <Label check>
                            A-Z
-                           <Input className="ml-1" type="checkbox" checked="checked" onChange={this.handleChangeSortAscending} />
+                           <Input className="ml-1" type="checkbox" checked={isSortAscending} onChange={this.handleChangeSortAscending} />
                        </Label>
                     </FormGroup>
 
-                    <Button outline color="primary" type="button" onClick={this.handleClickSearch}>
+                    <Button outline color="primary" type="button" onClick={this.handleClickSearch} >
                         <span className="oi oi-magnifying-glass"></span> Search
                     </Button>
 </Form>
             </div>
         );
-    }
-    }
+                        }
+                        }
 
-    function mapStateToProps({ pagingOption, languageList, param }) {
-        return Object.assign({}, { pagingOption, languageList, param });
-    }
+    function mapStateToProps({ pagingOption, languageList, commGroupList, param }) {
+        return Object.assign({}, { pagingOption, languageList, commGroupList, param });
+                        }
 
     function mapDispatchToProps(dispatch) {
         return bindActionCreators({ setReportTitle, setParam }, dispatch);
-    }
+                        }
 
     export default connect(mapStateToProps, mapDispatchToProps)(Filter);

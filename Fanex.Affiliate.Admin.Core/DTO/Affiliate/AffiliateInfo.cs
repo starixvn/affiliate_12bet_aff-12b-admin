@@ -4,9 +4,11 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
 {
     public class AffiliateInfo
     {
+        public int AffId { get; set; }
+
         public string UserName { get; set; }
 
-        public bool IsFavorite { get; set; }
+        public string Status { get; set; }
 
         public string FirstName { get; set; }
 
@@ -27,5 +29,9 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
         public decimal BalanceBf { get; set; }
 
         public int Member { get; set; }
+
+        public bool IsFavorite { get; set; }
+
+        public bool IsClosed { get; set; }
     }
 }

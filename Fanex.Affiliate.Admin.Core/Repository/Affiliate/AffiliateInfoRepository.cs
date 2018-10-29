@@ -1,6 +1,11 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
+using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Affiliate;
+using Fanex.Data;
+using System;
+using System.Collections.Generic;
+using System.Data;
 
 namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
 {
@@ -8,7 +13,68 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
     {
         public EntityResult<AffiliateInfo> GetAffiliateList(AffiliateInfoParam param)
         {
-            return new EntityResult<AffiliateInfo>();
+            const string SpKey = "Aff_Admin_AffiliateInfo_Sel";
+            var result = new EntityResult<AffiliateInfo>();
+            var dataList = new List<AffiliateInfo>();
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                AssignParam(objectDb, param);
+                using (var reader = objectDb.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        dataList.Add(BuildDataItem(reader));
+                    }
+
+                    if(reader.NextResult() && reader.Read())
+                    {
+                        result.Total = BuildDataItem(reader);
+                    }
+                }
+                result.MainData = dataList;
+                var totalRow = objectDb.GetParameterValue("NRows");
+                result.TotalItem = totalRow == DBNull.Value ? 0 : Convert.ToInt32(totalRow);
+            }
+            return result;
+        }
+
+        private static void AssignParam (IObjectDb objectDb, AffiliateInfoParam param)
+        {
+            objectDb.AddInParameter("GroupID", DbType.Byte, param.SearchBy);
+            objectDb.AddInParameter("PreferredLanguage", DbType.String, param.Language);
+            objectDb.AddInParameter("Status", DbType.String, param.Status);
+            objectDb.AddInParameter("UserName", DbType.String, param.UserName);
+            objectDb.AddInParameter("Email", DbType.String, param.Email);
+            objectDb.AddInParameter("SortType", DbType.Byte, param.SortBy);
+            objectDb.AddInParameter("SortDirectionType", DbType.Boolean, param.IsSortAscending);
+            objectDb.AddInParameter("PageIndex", DbType.Int32, param.PageIndex);
+            objectDb.AddInParameter("PageSize", DbType.Int32, param.PageSize);
+            objectDb.AddInParameter("IsExportExcel", DbType.Boolean, param.IsExportExcel);
+
+            objectDb.AddOutParameter("NRows", DbType.Int32, 4);
+        }
+
+        private static AffiliateInfo BuildDataItem(IDataReader reader)
+        {
+            return new AffiliateInfo
+            {
+                AffId = reader.HasColumn("AffId") ? Convert.ToInt32(reader["AffId"]) : 0,
+                UserName = reader.HasColumn("Username") ? Convert.ToString(reader["Username"]) : string.Empty,
+                Status = Convert.ToString(reader["Status"]),
+                FirstName = Convert.ToString(reader["FirstName"]),
+                LastName = Convert.ToString(reader["LastName"]),
+                Language = Convert.ToString(reader["PreferredLanguge"]),
+                Email = Convert.ToString(reader["Email"]),
+                RegistrationDate = Convert.ToDateTime(reader["RegisteredDate"]),
+                ApprovalDate = Convert.ToDateTime(reader["ApprovedDate"]),
+                CasinoDate = Convert.ToDateTime(reader["CasinoJoinedDate"]),
+                CommissionGroup = Convert.ToString(reader["GroupName"]),
+                BalanceBf = Convert.ToDecimal(reader["BFF"]),
+                Member = Convert.ToInt32(reader["NoOfMember"]),
+                IsFavorite = Convert.ToBoolean(reader["IsFavorite"]),
+                IsClosed = Convert.ToBoolean(reader["IsClosed"])
+            };
         }
     }
 }

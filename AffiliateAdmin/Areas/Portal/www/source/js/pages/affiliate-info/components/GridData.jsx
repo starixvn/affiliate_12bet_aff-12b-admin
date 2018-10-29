@@ -1,6 +1,7 @@
 ﻿import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux';
+
 import { Table, Button } from 'reactstrap';
 
 import { headerText } from '../modules/constants';
@@ -10,6 +11,19 @@ import { toggleLoader } from '../../../actions/loaderAction';
 export class GridData extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            gridData: null,
+            total: null
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+
+    }
+
+    async fetchData(param) {
+
     }
 
     _renderHeader() {
@@ -35,7 +49,7 @@ export class GridData extends Component {
         );
     }
 
-    _renderData() {
+    _renderDataSection() {
         return(
             <tbody>
                 <tr>
@@ -61,13 +75,17 @@ export class GridData extends Component {
             </tbody>
         );
     }
+
+    _builDataRow() {
+
+    }
     
     render() {
         return (
             <div className="table-responsive table-striped">
                 <Table>
                     {this._renderHeader()}
-                    {this._renderData()}
+                    {this. _renderDataSection()}
                 </Table>
             </div>
             );

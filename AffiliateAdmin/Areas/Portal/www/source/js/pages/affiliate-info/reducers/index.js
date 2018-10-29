@@ -6,7 +6,7 @@ import { SET_REPORT_TITLE, SET_PARAM } from '../actions/types';
 import { pagingOption } from '../../../reducers/pagingReducer';
 import { isShowLoader } from '../../../reducers/loaderReducer';
 
-const commonGroupList = createReducer({}, {});
+const commGroupList = createReducer({}, {});
 
 const languageList = createReducer({}, {});
 
@@ -26,6 +26,7 @@ export default combineReducers({
     pagingOption,
     reportTitle,
     param,
+    commGroupList,
     languageList,
     isShowLoader
 });

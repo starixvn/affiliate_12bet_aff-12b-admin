@@ -6,6 +6,13 @@ import reducer from './reducers';
 import AppContainer from './components/AppContainer';
 import { configureStore } from '../../modules/store';
 
+const commGroupList = [...window.initialState.commGroupList];
+const commGroup = {};
+for(let i = 0; i < commGroupList.length; i++){
+    const commGroupItem = commGroupList[i];
+    commGroup[commGroupItem.LanguageCode] = commGroupItem.LanguageName;
+}
+
 const languageList = [...window.initialState.languageList];
 const language = {};
 for(let i = 0; i < languageList.length; i++){
@@ -13,7 +20,7 @@ for(let i = 0; i < languageList.length; i++){
     language[languageItem.LanguageCode] = languageItem.LanguageName;
 }
 
-const store = configureStore({ languageList: language }, reducer);
+const store = configureStore({ languageList: language, commGroupList: commGroup }, reducer);
 
 export default class App extends Component {
     constructor(props) {

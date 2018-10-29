@@ -1567,6 +1567,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\modules\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\modules\constants.js" />
@@ -1898,7 +1899,6 @@
     <Content Include="Areas\Portal\Views\AffiliateInfo\Index.cshtml" />
     <Content Include="Areas\Portal\www\source\style\pages\affiliate-info.scss" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\index.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\reducers\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\Filter.jsx" />
