@@ -19,21 +19,18 @@ namespace Fanex.Affiliate.User.Core.Controllers
         private readonly IAuthService _authService;
         private readonly ICaptchaService _captchaService;
         private readonly IAppSetting _appSetting;
-        private readonly ICryptographyService _cryptographyService;
 
         public AuthController(
             ISessionService sessionService,
             IAppSetting appSetting,
             ILanguageService languageService,
             IAuthService authService,
-            ICaptchaService captchaService,
-            ICryptographyService cryptographyService) : base(sessionService, languageService)
+            ICaptchaService captchaService) : base(sessionService, languageService)
 
         {
             _authService = authService;
             _captchaService = captchaService;
             _appSetting = appSetting;
-            _cryptographyService = cryptographyService;
         }
 
         [ChildActionOnly]
