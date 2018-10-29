@@ -31,6 +31,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCasino = new System.Windows.Forms.Button();
             this.btnBetsoft = new System.Windows.Forms.Button();
+            this.btnEbet = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -62,11 +63,22 @@
             this.btnBetsoft.UseVisualStyleBackColor = true;
             this.btnBetsoft.Click += new System.EventHandler(this.btnBetsoft_Click);
             // 
+            // btnEbet
+            // 
+            this.btnEbet.Location = new System.Drawing.Point(15, 112);
+            this.btnEbet.Name = "btnEbet";
+            this.btnEbet.Size = new System.Drawing.Size(110, 23);
+            this.btnEbet.TabIndex = 3;
+            this.btnEbet.Text = "12Opal - EBet";
+            this.btnEbet.UseVisualStyleBackColor = true;
+            this.btnEbet.Click += new System.EventHandler(this.btnEbet_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Controls.Add(this.btnEbet);
             this.Controls.Add(this.btnBetsoft);
             this.Controls.Add(this.btnCasino);
             this.Controls.Add(this.label1);
@@ -83,5 +95,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCasino;
         private System.Windows.Forms.Button btnBetsoft;
+        private System.Windows.Forms.Button btnEbet;
     }
 }

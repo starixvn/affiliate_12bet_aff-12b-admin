@@ -31,5 +31,13 @@ namespace Fanex.Affiliate.DataService.WinFormApp
         {
             this.Show();
         }
+
+        private void btnEbet_Click(object sender, EventArgs e)
+        {
+            var ebetForm = new EbetForm();
+            ebetForm.FormClosing += FormClosingHandler;
+            ebetForm.Show();
+            this.Hide();
+        }
     }
 }

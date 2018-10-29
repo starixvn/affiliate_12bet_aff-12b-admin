@@ -9,8 +9,11 @@ namespace Fanex.Affiliate.DataService.Importer
 {
     public class EbetService : IEbetService
     {
-        public EbetService()
+        public readonly IAppSettings _appSetting;
+
+        public EbetService(IAppSettings appSetting = null)
         {
+            _appSetting = appSetting ?? new AppSettings();
         }
 
         public string GetJsonData(EbetApiConfig apiConfig, EbetParam param)
@@ -22,8 +25,8 @@ namespace Fanex.Affiliate.DataService.Importer
             using (var webClient = new WebClient())
             {
                 webClient.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
-                webClient.QueryString.Add("startTimeStr", param.StartTime);
-                webClient.QueryString.Add("endTimeStr", param.EndTime);
+                webClient.QueryString.Add("startTimeStr", param.StartTime.ToString(_appSetting.EbetFormatDateTime));
+                webClient.QueryString.Add("endTimeStr", param.EndTime.ToString(_appSetting.EbetFormatDateTime));
                 webClient.QueryString.Add("channelId", apiConfig.ChannelId);
                 webClient.QueryString.Add("subChannelId", param.SubChanelId.ToString());
                 webClient.QueryString.Add("pageNum", param.PageNumber.ToString());
@@ -35,11 +38,7 @@ namespace Fanex.Affiliate.DataService.Importer
                 var data = webClient.UploadValues(url, "POST", webClient.QueryString);
 
                 return Encoding.UTF8.GetString(data);
-
-                //return webClient.UploadString(url, queryString);
             }
-
-            //return url + "?" + queryString;
         }
     }
 }

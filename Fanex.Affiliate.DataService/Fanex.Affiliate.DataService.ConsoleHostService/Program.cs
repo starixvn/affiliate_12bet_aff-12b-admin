@@ -55,8 +55,8 @@ namespace Fanex.Affiliate.DataService.ConsoleHostService
             var now = DateTime.Now;
             var param = new EbetParam
             {
-                StartTime = new DateTime(2018, 9, 10, 10, 10, 10).ToString(appSetting.EbetFormatDateTime),
-                EndTime = new DateTime(2018, 10, 10, 10, 10, 10).ToString(appSetting.EbetFormatDateTime)
+                StartTime = new DateTime(2018, 9, 10, 10, 10, 10),
+                EndTime = new DateTime(2018, 10, 10, 10, 10, 10)
             };
 
             var jsonData = ebetService.GetJsonData(configList[0], param);
