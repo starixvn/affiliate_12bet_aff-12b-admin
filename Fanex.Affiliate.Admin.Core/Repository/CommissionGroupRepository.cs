@@ -143,7 +143,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository
                         });
                     }
                 }
-                param.GroupId = Convert.ToInt32(objectDb.GetParameterValue("GroupId"));
+                var groupId = objectDb.GetParameterValue("GroupId");
+                param.GroupId = groupId == DBNull.Value ? 0 : Convert.ToInt32(groupId);
             }
 
             return result;

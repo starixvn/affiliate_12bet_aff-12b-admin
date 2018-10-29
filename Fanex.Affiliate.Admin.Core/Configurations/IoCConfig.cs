@@ -16,6 +16,7 @@ using Fanex.Affiliate.Admin.Core.Services.MediaGallery;
 using Fanex.Affiliate.Admin.Core.Services.Report;
 using Fanex.Affiliate.Admin.Core.Services.UserPanel;
 using Fanex.Affiliate.Admin.Core.Utilities;
+using Fanex.Affiliate.Admin.Core.Repository.Affiliate;
 
 namespace Fanex.Affiliate.Admin.Core.Configurations
 {
@@ -83,6 +84,7 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
             builder.RegisterType<CustomerStatisticsRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<CustomerMemberRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<CustomerMemberService>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<AffiliateInfoRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
     }
 }

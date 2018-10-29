@@ -2,7 +2,8 @@
 {
     public class AffiliateInfoParam
     {
-        public byte SearchBy { get; set; }
+        public int UserId { get; set; }
+        public int GroupId { get; set; }
 
         public string Language { get; set; }
 

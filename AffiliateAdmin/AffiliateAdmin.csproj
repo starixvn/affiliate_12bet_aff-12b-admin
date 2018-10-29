@@ -1567,6 +1567,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\modules\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\modules\reportExcel.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\actions\types.js" />

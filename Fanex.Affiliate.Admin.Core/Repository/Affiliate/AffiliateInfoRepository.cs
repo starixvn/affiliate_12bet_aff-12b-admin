@@ -13,7 +13,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
     {
         public EntityResult<AffiliateInfo> GetAffiliateList(AffiliateInfoParam param)
         {
-            const string SpKey = "Aff_Admin_AffiliateInfo_Sel";
+            const string SpKey = "Aff_Admin_Affiliate_Sel";
             var result = new EntityResult<AffiliateInfo>();
             var dataList = new List<AffiliateInfo>();
 
@@ -41,7 +41,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
 
         private static void AssignParam (IObjectDb objectDb, AffiliateInfoParam param)
         {
-            objectDb.AddInParameter("GroupID", DbType.Byte, param.SearchBy);
+            objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
+            objectDb.AddInParameter("GroupID", DbType.Int32, param.GroupId);
             objectDb.AddInParameter("PreferredLanguage", DbType.String, param.Language);
             objectDb.AddInParameter("Status", DbType.String, param.Status);
             objectDb.AddInParameter("UserName", DbType.String, param.UserName);
@@ -64,7 +65,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
                 Status = Convert.ToString(reader["Status"]),
                 FirstName = Convert.ToString(reader["FirstName"]),
                 LastName = Convert.ToString(reader["LastName"]),
-                Language = Convert.ToString(reader["PreferredLanguge"]),
+                Language = Convert.ToString(reader["PreferredLanguage"]),
                 Email = Convert.ToString(reader["Email"]),
                 RegistrationDate = Convert.ToDateTime(reader["RegisteredDate"]),
                 ApprovalDate = Convert.ToDateTime(reader["ApprovedDate"]),

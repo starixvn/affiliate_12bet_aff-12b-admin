@@ -10,7 +10,7 @@ const commGroupList = [...window.initialState.commGroupList];
 const commGroup = {};
 for(let i = 0; i < commGroupList.length; i++){
     const commGroupItem = commGroupList[i];
-    commGroup[commGroupItem.LanguageCode] = commGroupItem.LanguageName;
+    commGroup[commGroupItem.Id] = commGroupItem.Name;
 }
 
 const languageList = [...window.initialState.languageList];

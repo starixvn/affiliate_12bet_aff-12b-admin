@@ -7,18 +7,55 @@ import { toggleLoader } from '../../../actions/loaderAction';
 import ReportTitle from '../../../components/ReportTitle';
 import GridData from './GridData';
 
+import ReportExcel from '../modules/reportExcel';
+import { post } from '../../../modules/ajaxRequest';
+
 export class Content extends Component {
     constructor(props) {
         super(props);
     }
 
-    render() {
+    shouldComponentUpdate(nextprops) {
+        const { reportTitle } = this.props;
+
+        return nextprops.reportTitle !== reportTitle;
+    }
+
+    handleExportExcel = async () => {
+        this.props.toggleLoader(true);
+        const { param, reportTitle } = this.props;
+        const url = `Protal/AffiliateInfo/GetAffiliateList`;
+        const postData = Object.assign({}, param, { IsExportExcel: true });
+        const response = await post(url, postData);
+        
+        if(response && response.status === 200) {
+            const reportExcel = new ReportExcel(response.data, reportTitle)
+            reportExcel.export();
+        }
+        this.props.toggleLoader(false);
+    }
+
+    _buildReportTitle(reportTitle) {
         return (
-            <div className="data-content my-2">
-                <GridData />
+            <div className="d-flex align-items-center">
+                {reportTitle}
+                <button type="button" className="ml-auto btn btn-link btn-excel" onClick={this.handleExportExcel} title="Export Excel">
+                    <span className="oi icon-excel"></span>
+                </button>
             </div>
         );
     }
+
+    render() {
+        const { reportTitle } = this.props;
+
+        return (
+            <div className="data-content my-2">
+                {reportTitle && <ReportTitle content={this._buildReportTitle(reportTitle)} />}
+                <GridData />
+            </div>
+        );
+}
 }
 
 function mapStateToProps({ reportTitle, param }) {

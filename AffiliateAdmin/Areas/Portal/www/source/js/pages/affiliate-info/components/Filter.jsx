@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import { statusList, sortByList } from '../modules/constants';
+import { statusList, sortByList, sortDirectionType, defaultSearchBy, defaultSortBy } from '../modules/constants';
 
 import { setReportTitle, setParam } from '../actions';
 
@@ -13,12 +13,12 @@ export class Filter extends Component {
         super(props);
 
         this.state = {
-            selectedCommGroup: '',
+            selectedCommGroup: defaultSearchBy,
             selectedLanguage: '',
             selectedStatus: '',
             userName: '',
             email: '',
-            selectedSortBy: '',
+            selectedSortBy: defaultSortBy,
             isSortAscending: true
         }
     }
@@ -36,11 +36,11 @@ export class Filter extends Component {
     }
 
     handleChangeUsername = (event) => {
-
+        this.setState({ userName: event.target.value });
     }
 
     handleChangeEmail = (event) => {
-
+        this.setState({ email: event.target.value });
     }
     
     handleChangeSortBy = (event) => {
@@ -51,8 +51,41 @@ export class Filter extends Component {
         this.setState((prevState) => { isSortAscending : !prevState.isSortAscending })
     }
 
-    handleClickSearch = (event) => {
+    handleClickSearch = () => {
+        const { selectedCommGroup, selectedLanguage, selectedStatus, userName, email, selectedSortBy, isSortAscending } = this.state;
+        const { pagingOption } = this.props;
 
+        this.props.setReportTitle(this._buildReportTitle(selectedCommGroup, selectedLanguage, selectedStatus, userName, email));
+        const param = {
+            GroupId: selectedCommGroup,
+            Language: selectedLanguage,
+            Status: selectedStatus,
+            UserName: userName,
+            Email: email,
+            SortBy: selectedSortBy,
+            IsSortAscending: isSortAscending ? sortDirectionType.ascending : sortDirectionType.descending,
+            PageIndex: 1,
+            PageSize: pagingOption.PageSize,
+        }
+        this.props.setParam(param);
+    }
+
+    _buildReportTitle(selectedCommGroup, selectedLanguage, selectedStatus, userName, email) {
+        const { commGroupList, languageList } = this.props;
+
+        const space = ' - ';
+        const reportName = 'AFFILIATE REPORT';
+        const commGroupTitle = commGroupList[selectedCommGroup] || "All Comm Group";
+        const languageTitle = languageList[selectedLanguage] || 'All Languages';
+        const statusTitle = statusList[selectedStatus] || 'All Statuses';
+
+        const userNameContains = 'USERNAME CONTAINS ';
+        const emailConstains = 'EMAIL CONTAINS ';
+        const userNameTitle = userName && space + userNameContains + "'" + userName + "'";
+        const emailTitle = email && space + emailConstains + "'" + email + "'";
+        return `${reportName} ${space} ${commGroupTitle.toUpperCase()} ${space}
+            ${languageTitle.toUpperCase()} ${space} ${statusTitle.toUpperCase()}
+            ${userNameTitle} ${emailTitle}`;
     }
 
     render() {
@@ -112,7 +145,7 @@ export class Filter extends Component {
                         <Input type="select" name="SortBy" id="SortBy" value={selectedSortBy} onChange={this.handleChangeSortBy} >
                                 {
                             Object.keys(sortByList).map(sortBy => {
-                                return (<option key={'sortBy-' + sortBy} value={sortBy}>{sortByList[sortBy]}</option>)
+                                return (<option key={'sortBy-' + sortBy} value={sortByList[sortBy]}>{sortBy}</option>)
                         })
                         }
                         </Input>

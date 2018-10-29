@@ -4,6 +4,9 @@ using Fanex.Affiliate.Admin.Core.Repository.Affiliate;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.ViewModels.Affiliate;
+using Fanex.Affiliate.Admin.Core.Repository;
+using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
+using Fanex.Affiliate.Admin.Core.Attributes;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
@@ -11,13 +14,17 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
     {
         private readonly IAffiliateInfoRepository _affiliateInfoRepository;
 
+        private readonly ICommissionGroupRepository _commissionGroupRepository;
+
         private readonly ILanguageService _languageService;
 
         public AffiliateInfoController(
             ISessionService sessionService,
             IAffiliateInfoRepository affiliateInfoRepository,
+            ICommissionGroupRepository commissionGroupRepository,
             ILanguageService languageService) : base(sessionService)
         {
+            _commissionGroupRepository = commissionGroupRepository;
             _affiliateInfoRepository = affiliateInfoRepository;
             _languageService = languageService;
         }
@@ -25,9 +32,10 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            var param = new GetGroupListParam { AffId = -1 };
             var viewModel = new AffiliateInfoViewModel
             {
-                CommGroupList = _languageService.GetLanguageList(),
+                CommGroupList = _commissionGroupRepository.GetNormalCommGroupList(param),
                 LanguageList = _languageService.GetLanguageList()
             };
 
@@ -35,9 +43,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryHeader]
         public ActionResult GetAffiliateList(AffiliateInfoParam param)
         {
-            return Json(_affiliateInfoRepository.GetAffiliateList(param));
+            param.UserId = SessionService.UserId;
+            var model = _affiliateInfoRepository.GetAffiliateList(param);
+            return Json(model);
         }
     }
 }

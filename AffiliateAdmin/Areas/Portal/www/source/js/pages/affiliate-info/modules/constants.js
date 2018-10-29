@@ -1,5 +1,5 @@
 ﻿export const statusList = {
-    AllStatus: "All Statuses",
+    AllStatuses: "All Statuses",
     Ravorite: "Favorite",
     Pending: "Pending",
     Approved: "Approved",
@@ -7,12 +7,20 @@
     Closed: "Closed"
 }
 
+export const defaultSearchBy = 0;
+export const defaultSortBy = 1;
+
 export const sortByList = {
-    Username: "Username",
-    RegistrationDate: "Registration Date",
-    ApprovalDate: "Approval Date",
-    BalanceBF: "Balance B/F",
-    Member: "Member"
+    Username: 1,
+    RegistrationDate: 2,
+    ApprovalDate: 3,
+    BalanceBF: 4,
+    Member: 5
+}
+
+export const sortDirectionType = {
+    ascending: 0,
+    descending: 1
 }
 
 export const headerText = {
