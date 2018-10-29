@@ -31,7 +31,7 @@
                     return;
                 }
 
-                var publicKey = $("#PublicKey").val();
+                var publicKey = _me.base64DecodeUnicode($("#PublicKey").val());
 
                 var encryptedOldPassword = _me.encryptPassword($oldPassword.val(), publicKey);
                 var encryptedNewPassword = _me.encryptPassword($newPassword.val(), publicKey);
@@ -70,6 +70,11 @@
             encrypt.setPublicKey(key);
 
             return encrypt.encrypt(plainText);
+        },
+        base64DecodeUnicode: function (str) {
+            return decodeURIComponent(Array.prototype.map.call(atob(str), function (c) {
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+            }).join(''))
         }
     };
 

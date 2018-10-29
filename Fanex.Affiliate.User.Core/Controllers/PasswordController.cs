@@ -146,10 +146,7 @@
         [HttpGet]
         public ActionResult Update()
         {
-            var keyPair = _cryptographyService.GenerateKeyPair();
-            SessionService.PrivateKey = _cryptographyService.ConvertKeyToXmlString(keyPair.PrivateKey);
-
-            ViewBag.PublicKey = _cryptographyService.ConvertPublicKeyToString(keyPair.PublicKey);
+            ViewBag.PublicKey = _appSetting.RsaPublicKey;
 
             return View(new UpdatePasswordParam());
         }
@@ -167,9 +164,8 @@
             }
             else if (ModelState.IsValid)
             {
-                var privateKey = _cryptographyService.ConvertXmlStringToParam(SessionService.PrivateKey);
-                param.NewPassword = _cryptographyService.EncryptPassword(privateKey, param.NewPassword);
-                var confirmedNewPassword = _cryptographyService.EncryptPassword(privateKey, param.ConfirmNewPassword);
+                param.NewPassword = _cryptographyService.EncryptPassword(_appSetting.RsaPrivateKey, param.NewPassword);
+                var confirmedNewPassword = _cryptographyService.EncryptPassword(_appSetting.RsaPrivateKey, param.ConfirmNewPassword);
 
                 if (param.NewPassword != confirmedNewPassword)
                 {
@@ -180,7 +176,7 @@
                     });
                 }
 
-                param.OldPassword = _cryptographyService.EncryptPassword(privateKey, param.OldPassword);
+                param.OldPassword = _cryptographyService.EncryptPassword(_appSetting.RsaPrivateKey, param.OldPassword);
 
                 param.AffId = SessionService.UserSession.AffId;
                 param.Ip = RequestHelper.GetClientIPAddress();

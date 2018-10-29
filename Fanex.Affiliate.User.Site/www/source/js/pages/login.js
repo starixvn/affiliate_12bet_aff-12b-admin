@@ -69,7 +69,7 @@
             var validationResult = _me.validate(username, password, validation, prefix);
             if (validationResult.isValid) {
                 var token = $('input[name="__RequestVerificationToken"]', $("#userLogin")).val();
-                var publicKey = $("#PublicKey").val();
+                var publicKey = _me.base64DecodeUnicode($("#PublicKey").val());
 
                 var encryptedPassword = _me.encrypt(password, publicKey);
                 $password.val(encryptedPassword);
@@ -169,6 +169,11 @@
         generateCaptcha: function () {
             var captchaUrl = Site.resolveRelativeUrl("Auth/CaptchaImage?_v=" + new Date().getTime());
             $("#captchaImg").attr("src", captchaUrl);
+        },
+        base64DecodeUnicode: function (str) {
+            return decodeURIComponent(Array.prototype.map.call(atob(str), function (c) {
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+            }).join(''))
         }
     };
 

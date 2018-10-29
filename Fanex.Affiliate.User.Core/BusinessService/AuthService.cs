@@ -1,10 +1,10 @@
 ﻿using System.Web;
-using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.Repository;
 using Fanex.Affiliate.User.Core.Resources;
+using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
@@ -13,13 +13,13 @@ namespace Fanex.Affiliate.User.Core.BusinessService
     {
         private readonly IAuthRepository _authRepository;
         private readonly ICryptographyService _cryptographyService;
-        private readonly ISessionService _sessionService;
+        private readonly IAppSetting _appSetting;
 
-        public AuthService(IAuthRepository authRepository, ICryptographyService cryptographyService, ISessionService sessionService)
+        public AuthService(IAuthRepository authRepository, ICryptographyService cryptographyService, IAppSetting appSetting)
         {
             _authRepository = authRepository;
             _cryptographyService = cryptographyService;
-            _sessionService = sessionService;
+            _appSetting = appSetting;
         }
 
         public LoginResultViewModel GetLoginResult(UserLoginParam userParam, bool isInternal)
@@ -69,8 +69,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             var isMatchPassword = false;
             if (!isInternal)
             {
-                var privateKey = _cryptographyService.ConvertXmlStringToParam(_sessionService.PrivateKey);
-                string encryptedPassword = _cryptographyService.EncryptPassword(privateKey, userParam.Password);
+                string encryptedPassword = _cryptographyService.EncryptPassword(_appSetting.RsaPrivateKey, userParam.Password);
                 isMatchPassword = encryptedPassword.Equals(userInfo.Password);
             }
 

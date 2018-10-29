@@ -40,6 +40,10 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         public DateTime StatementAvailableFrom => Convert.ToDateTime(GetValue("StatementAvailableFrom"));
 
+        public string RsaPublicKey => GetValue("RsaPublicKey");
+
+        public string RsaPrivateKey => GetValue("RsaPrivateKey");
+
         public string GetValue(string key) => ConfigurationManager.AppSettings[key];
     }
 }

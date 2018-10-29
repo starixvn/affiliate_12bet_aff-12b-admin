@@ -2,7 +2,6 @@
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
-using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.Utilities;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
@@ -11,42 +10,11 @@ namespace Fanex.Affiliate.User.Core.BusinessService
     {
         private const int KeySize = 1024;
 
-        public string EncryptPassword(RSAParameters privateKey, string cipherText)
+        public string EncryptPassword(string privateKey, string cipherText)
         {
-            var plainPassword = Decrypt(privateKey, cipherText);
+            var plainPassword = Decrypt(DecodeUtfBase64(privateKey), cipherText);
 
             return CryptographyHelper.Encrypt(plainPassword);
-        }
-
-        public RsaKeyPair GenerateKeyPair()
-        {
-            using (var rsa = new RSACryptoServiceProvider(KeySize))
-            {
-                rsa.PersistKeyInCsp = false;
-
-                return new RsaKeyPair
-                {
-                    PublicKey = rsa.ExportParameters(false),
-                    PrivateKey = rsa.ExportParameters(true)
-                };
-            }
-        }
-
-        public string ConvertKeyToXmlString(RSAParameters keyParam)
-        {
-            var writer = new StringWriter();
-            var serializer = new System.Xml.Serialization.XmlSerializer(typeof(RSAParameters));
-            serializer.Serialize(writer, keyParam);
-
-            return writer.ToString();
-        }
-
-        public RSAParameters ConvertXmlStringToParam(string xmlString)
-        {
-            var reader = new StringReader(xmlString);
-            var serializer = new System.Xml.Serialization.XmlSerializer(typeof(RSAParameters));
-
-            return (RSAParameters)serializer.Deserialize(reader);
         }
 
         /// <summary>
@@ -111,14 +79,14 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return outputStream.ToString();
         }
 
-        private static string Decrypt(RSAParameters privateKey, string cipherText)
+        private static string Decrypt(string privateKey, string cipherText)
         {
             byte[] plain;
 
             using (RSACryptoServiceProvider rsa = new RSACryptoServiceProvider(KeySize))
             {
                 rsa.PersistKeyInCsp = true;
-                rsa.ImportParameters(privateKey);
+                rsa.FromXmlString(privateKey);
 
                 byte[] encodedCipherText = Convert.FromBase64String(cipherText);
                 plain = rsa.Decrypt(encodedCipherText, false);
@@ -202,6 +170,12 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                     stream.Write(value[i]);
                 }
             }
+        }
+
+        private static string DecodeUtfBase64(string base64EncodedData)
+        {
+            var base64EncodedBytes = System.Convert.FromBase64String(base64EncodedData);
+            return Encoding.UTF8.GetString(base64EncodedBytes);
         }
     }
 }

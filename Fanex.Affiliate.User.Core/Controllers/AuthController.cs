@@ -52,10 +52,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
             }
             else
             {
-                var keyPair = _cryptographyService.GenerateKeyPair();
-                SessionService.PrivateKey = _cryptographyService.ConvertKeyToXmlString(keyPair.PrivateKey);
-
-                viewModel.PublicKey = _cryptographyService.ConvertPublicKeyToString(keyPair.PublicKey);
+                viewModel.PublicKey = _appSetting.RsaPublicKey;
             }
 
             return View("~/Views/Auth/AuthenticationForm.cshtml", viewModel);
