@@ -8,14 +8,14 @@ import { configureStore } from '../../modules/store';
 
 const commGroupList = [...window.initialState.commGroupList];
 const commGroup = {};
-for(let i = 0; i < commGroupList.length; i++){
+for (let i = 0; i < commGroupList.length; i++) {
     const commGroupItem = commGroupList[i];
     commGroup[commGroupItem.Id] = commGroupItem.Name;
 }
 
 const languageList = [...window.initialState.languageList];
 const language = {};
-for(let i = 0; i < languageList.length; i++){
+for (let i = 0; i < languageList.length; i++) {
     const languageItem = languageList[i];
     language[languageItem.LanguageCode] = languageItem.LanguageName;
 }

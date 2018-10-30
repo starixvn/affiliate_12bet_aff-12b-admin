@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import { statusList, sortByList, sortDirectionType, defaultSearchBy, defaultSortBy } from '../modules/constants';
+import { statusList, sortByList, defaultSearchBy, defaultSortBy, resource } from '../modules/constants';
 
 import { setReportTitle, setParam } from '../actions';
 
@@ -23,37 +23,16 @@ export class Filter extends Component {
         }
     }
 
-    handleChangeSearchBy = (event) => {
-        this.setState({ selectedCommGroup : event.target.value });
-    }
-
-    handleChangeLanguage = (event) => {
-        this.setState({ selectedLanguage : event.target.value });
-    }
-
-    handleChangeStatus = (event) => {
-        this.setState({ selectedStatus : event.target.value });
-    }
-
-    handleChangeUsername = (event) => {
-        this.setState({ userName: event.target.value });
-    }
-
-    handleChangeEmail = (event) => {
-        this.setState({ email: event.target.value });
-    }
-    
-    handleChangeSortBy = (event) => {
-        this.setState({ selectedSortBy : event.target.value });
+    handleChange = (event) => {
+        this.setState({ [event.target.name]: event.target.value });
     }
 
     handleChangeSortAscending = () => {
-        this.setState((prevState) => { isSortAscending : !prevState.isSortAscending })
+        this.setState((prevState) => ({ isSortAscending: !prevState.isSortAscending }));
     }
 
     handleClickSearch = () => {
         const { selectedCommGroup, selectedLanguage, selectedStatus, userName, email, selectedSortBy, isSortAscending } = this.state;
-        const { pagingOption } = this.props;
 
         this.props.setReportTitle(this._buildReportTitle(selectedCommGroup, selectedLanguage, selectedStatus, userName, email));
         const param = {
@@ -63,9 +42,7 @@ export class Filter extends Component {
             UserName: userName,
             Email: email,
             SortBy: selectedSortBy,
-            IsSortAscending: isSortAscending ? sortDirectionType.ascending : sortDirectionType.descending,
-            PageIndex: 1,
-            PageSize: pagingOption.PageSize,
+            SortDirectionType: isSortAscending ? 0 : 1
         }
         this.props.setParam(param);
     }
@@ -73,17 +50,15 @@ export class Filter extends Component {
     _buildReportTitle(selectedCommGroup, selectedLanguage, selectedStatus, userName, email) {
         const { commGroupList, languageList } = this.props;
 
-        const space = ' - ';
-        const reportName = 'AFFILIATE REPORT';
-        const commGroupTitle = commGroupList[selectedCommGroup] || "All Comm Group";
-        const languageTitle = languageList[selectedLanguage] || 'All Languages';
-        const statusTitle = statusList[selectedStatus] || 'All Statuses';
+        const space = resource.Space;
+        const apostrophe = resource.Apostrophe;
+        const commGroupTitle = commGroupList[selectedCommGroup] || resource.AllCommGroups;
+        const languageTitle = languageList[selectedLanguage] || resource.AllLanguages;
+        const statusTitle = statusList[selectedStatus] || resource.AllStatuses;
 
-        const userNameContains = 'USERNAME CONTAINS ';
-        const emailConstains = 'EMAIL CONTAINS ';
-        const userNameTitle = userName && space + userNameContains + "'" + userName + "'";
-        const emailTitle = email && space + emailConstains + "'" + email + "'";
-        return `${reportName} ${space} ${commGroupTitle.toUpperCase()} ${space}
+        const userNameTitle = userName && space + resource.UsernameContains + apostrophe + userName + apostrophe;
+        const emailTitle = email && space + resource.EmailContains + apostrophe + email + apostrophe;
+        return `${resource.ReportName} ${space} ${commGroupTitle.toUpperCase()} ${space}
             ${languageTitle.toUpperCase()} ${space} ${statusTitle.toUpperCase()}
             ${userNameTitle} ${emailTitle}`;
     }
@@ -96,9 +71,9 @@ export class Filter extends Component {
             <div className="filter-container">
                 <Form inline tag="div">
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                        <Label for="SearchBy" className="mr-sm-2">Search By</Label>
-                        <Input type="select" name="SearchBy" id="SearchBy" value={selectedCommGroup} onChange={this.handleChangeSearchBy} >
-                            <option key="commGroup-all" value="">All comm groups</option>
+                        <Label for="SearchBy" className="mr-sm-2">{resource.SearchBy}</Label>
+                        <Input type="select" name="selectedCommGroup" id="SearchBy" value={selectedCommGroup} onChange={this.handleChange} >
+                            <option key="commGroup-all" value="">{resource.AllCommGroups}</option>
                             {
                                 Object.keys(commGroupList).map(commGroup => {
                                     return (<option key={'commGroup-' + commGroup} value={commGroup}>{commGroupList[commGroup]}</option>)
@@ -108,71 +83,72 @@ export class Filter extends Component {
                     </FormGroup>
 
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                    {
-                        <Input type="select" name="Languge" id="Language" value={selectedLanguage} onChange={this.handleChangeLanguage}>
-                            <option key="lang-all" value="">All Languages</option>
+                        {
+                            <Input type="select" name="selectedLanguage" id="Language" value={selectedLanguage} onChange={this.handleChange}>
+                                <option key="lang-all" value="">{resource.AllLanguages}</option>
+                                {
+                                    Object.keys(languageList).map(lang => {
+                                        return (<option key={'lang-' + lang} value={lang}>{languageList[lang]}</option>)
+                                    })
+                                }
+                            </Input>
+                        }
+                    </FormGroup>
+
+                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                        {
+                            <Input type="select" name="selectedStatus" id="Status" value={selectedStatus} onChange={this.handleChange}>
+                                <option key="status-all" value="">{resource.AllStatuses}</option>
+                                {
+                                    Object.keys(statusList).map(status => {
+                                        return (<option key={'status-' + status} value={status}>{statusList[status]}</option>)
+                                    })
+                                }
+                            </Input>
+                        }
+                    </FormGroup>
+
+                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                        <Input type="text" name="userName" id="Username" placeholder="Username" onChange={this.handleChange} />
+                    </FormGroup>
+
+                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                        <Input type="email" name="email" id="Email" placeholder="Email" onChange={this.handleChange} />
+                    </FormGroup>
+
+                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                        <Label for="SortBy" className="mr-sm-2">{resource.SortBy}</Label>
+                        <Input type="select" name="selectedSortBy" id="SortBy" value={selectedSortBy} onChange={this.handleChange} >
                             {
-                                Object.keys(languageList).map(lang => {
-                                    return (<option key={'lang-' + lang} value={lang}>{languageList[lang]}</option>)
+                                Object.keys(sortByList).map(sortBy => {
+                                    return (<option key={'sortBy-' + sortBy} value={sortByList[sortBy]}>{sortBy}</option>)
                                 })
                             }
                         </Input>
-                    }
                     </FormGroup>
 
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                    {
-                        <Input type="select" name="Status" id="Status" value={selectedStatus} onChange={this.handleChangeStatus}>
-                        {
-                            Object.keys(statusList).map(status => {
-                                return (<option key={'status-' + status} value={status}>{statusList[status]}</option>)
-                            })
-                        }
-                        </Input>
-                    }
-                    </FormGroup>
-
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                        <Input type="text" name="Username" id="Username" placeholder="Username"  onChange={this.handleChangeUsername} />
-                    </FormGroup>
-
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                        <Input type="email" name="Email" id="Email" placeholder="Email"  onChange={this.handleChangeEmail} />
-                    </FormGroup>
-
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                        <Label for="SortBy" className="mr-sm-2">Sort By</Label>
-                        <Input type="select" name="SortBy" id="SortBy" value={selectedSortBy} onChange={this.handleChangeSortBy} >
-                                {
-                            Object.keys(sortByList).map(sortBy => {
-                                return (<option key={'sortBy-' + sortBy} value={sortByList[sortBy]}>{sortBy}</option>)
-                        })
-                        }
-                        </Input>
-                    </FormGroup>
-
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                       <Label check>
-                           A-Z
-                           <Input className="ml-1" type="checkbox" checked={isSortAscending} onChange={this.handleChangeSortAscending} />
-                       </Label>
+                        <Label check>
+                            {resource.AZ}
+                            <Input className="ml-1" type="checkbox" checked={isSortAscending} onChange={this.handleChangeSortAscending} />
+                        </Label>
                     </FormGroup>
 
                     <Button outline color="primary" type="button" onClick={this.handleClickSearch} >
-                        <span className="oi oi-magnifying-glass"></span> Search
+                        <span className="oi oi-magnifying-glass"></span> {resource.Search}
                     </Button>
-</Form>
+                </Form>
             </div>
         );
-                        }
-                        }
+    }
+}
 
-    function mapStateToProps({ pagingOption, languageList, commGroupList, param }) {
-        return Object.assign({}, { pagingOption, languageList, commGroupList, param });
-                        }
+function mapStateToProps({ languageList, commGroupList, param }) {
+    return Object.assign({}, { languageList, commGroupList, param });
+}
 
-    function mapDispatchToProps(dispatch) {
-        return bindActionCreators({ setReportTitle, setParam }, dispatch);
-                        }
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ setReportTitle, setParam }, dispatch);
+}
 
-    export default connect(mapStateToProps, mapDispatchToProps)(Filter);
+export default connect(mapStateToProps, mapDispatchToProps)(Filter);

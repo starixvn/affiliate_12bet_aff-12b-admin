@@ -15,7 +15,7 @@
 
         public byte SortBy { get; set; }
 
-        public bool IsSortAscending { get; set; }
+        public bool SortDirectionType { get; set; }
 
         public int PageIndex { get; set; }
 

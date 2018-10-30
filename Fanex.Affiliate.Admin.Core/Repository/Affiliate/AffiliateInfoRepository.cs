@@ -26,11 +26,6 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
                     {
                         dataList.Add(BuildDataItem(reader));
                     }
-
-                    if(reader.NextResult() && reader.Read())
-                    {
-                        result.Total = BuildDataItem(reader);
-                    }
                 }
                 result.MainData = dataList;
                 var totalRow = objectDb.GetParameterValue("NRows");
@@ -48,7 +43,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
             objectDb.AddInParameter("UserName", DbType.String, param.UserName);
             objectDb.AddInParameter("Email", DbType.String, param.Email);
             objectDb.AddInParameter("SortType", DbType.Byte, param.SortBy);
-            objectDb.AddInParameter("SortDirectionType", DbType.Boolean, param.IsSortAscending);
+            objectDb.AddInParameter("SortDirectionType", DbType.Boolean, param.SortDirectionType);
             objectDb.AddInParameter("PageIndex", DbType.Int32, param.PageIndex);
             objectDb.AddInParameter("PageSize", DbType.Int32, param.PageSize);
             objectDb.AddInParameter("IsExportExcel", DbType.Boolean, param.IsExportExcel);

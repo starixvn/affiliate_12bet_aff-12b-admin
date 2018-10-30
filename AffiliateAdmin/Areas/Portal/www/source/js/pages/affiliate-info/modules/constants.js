@@ -1,6 +1,7 @@
-﻿export const statusList = {
-    AllStatuses: "All Statuses",
-    Ravorite: "Favorite",
+﻿import { globalResource } from '../../../modules/globalResource';
+
+export const statusList = {
+    Favorite: "Favorite",
     Pending: "Pending",
     Approved: "Approved",
     Disapproved: "Disapproved",
@@ -18,11 +19,6 @@ export const sortByList = {
     Member: 5
 }
 
-export const sortDirectionType = {
-    ascending: 0,
-    descending: 1
-}
-
 export const headerText = {
     Index: '#',
     Username: 'Username',
@@ -38,4 +34,20 @@ export const headerText = {
     BalanceBF: 'Balance B/F',
     Member: 'Member',
     Password: 'Password'
+}
+
+export const resource = {
+    Search: globalResource.Search,
+    Space: ' - ',
+    ReportName: 'AFFILIATE REPORT',
+    AllCommGroups: 'All Comm Groups',
+    AllLanguages: 'All Languages',
+    AllStatuses: 'All Statuses',
+    UsernameContains: 'USERNAME CONTAINS ',
+    EmailContains: 'EMAIL CONTAINS ',
+    SearchBy: 'Search By',
+    SortBy: 'Sort By',
+    AZ: 'A-Z',
+    Apostrophe: "'",
+    NA: 'N/A'
 }

@@ -5,6 +5,7 @@ import { SET_REPORT_TITLE, SET_PARAM } from '../actions/types';
 
 import { pagingOption } from '../../../reducers/pagingReducer';
 import { isShowLoader } from '../../../reducers/loaderReducer';
+import { defaultPagingOption } from '../../../modules/constants';
 
 const commGroupList = createReducer({}, {});
 
@@ -16,7 +17,13 @@ const reportTitle = createReducer('', {
     }
 })
 
-const param = createReducer(null, {
+const { PageIndex, PageSize } = defaultPagingOption;
+const defaultParam = {
+    PageIndex,
+    PageSize
+}
+
+const param = createReducer(defaultParam, {
     [SET_PARAM](prevState, action) {
         return Object.assign({}, prevState, action.data);
     }

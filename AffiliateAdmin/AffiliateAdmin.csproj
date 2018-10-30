@@ -1560,10 +1560,10 @@
     <Content Include="Areas\Portal\www\source\js\modules\utils.js" />
     <Content Include="Areas\Portal\www\source\js\pagelayout\lib\jquery.jclock.js" />
     <Content Include="Areas\Portal\www\source\js\pagelayout\pagelayout.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\affiliate-information\actions\index.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\affiliate-information\actions\types.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\affiliate-information\modules\helper.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\affiliate-information\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-info\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-info\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-info\modules\helper.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-info\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\modules\constants.js" />
@@ -1613,6 +1613,12 @@
     <Content Include="Areas\Portal\www\source\style\assets\user-panel\left_button.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\user-panel\right_button.jpg" />
     <Content Include="Areas\Portal\www\source\style\fonts\open-iconic.svg" />
+    <Content Include="Areas\Portal\www\source\style\pages\affiliate-info.css">
+      <DependentUpon>affiliate-info.scss</DependentUpon>
+    </Content>
+    <Content Include="Areas\Portal\www\source\style\pages\affiliate-info.min.css">
+      <DependentUpon>affiliate-info.css</DependentUpon>
+    </Content>
     <Content Include="Areas\Portal\www\source\style\vendors\fixedtable\style.css" />
     <Content Include="Areas\Portal\www\source\style\vendors\reactmonthpicker.css" />
     <Content Include="Areas\Portal\www\webpack.config.dev.js" />
@@ -1759,7 +1765,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\QmTurnOverSetting.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\tiersetting\TierSetting.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\tiersetting\TierSettingItem.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\affiliate-information\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-info\index.jsx" />
     <Content Include="Areas\Portal\Views\Affiliate\Information.cshtml" />
     <Content Include="Areas\Portal\www\source\style\pages\affiliate-information.scss" />
     <Content Include="Areas\Portal\Views\Shared\_Header.cshtml" />
@@ -1904,6 +1910,10 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\GridData.jsx" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -2039,7 +2049,7 @@
     </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Portal\www\source\js\pages\affiliate-information\components\" />
+    <Folder Include="Areas\Portal\www\source\js\pages\customer\customer-info\components\" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\Google.Protobuf.dll" />

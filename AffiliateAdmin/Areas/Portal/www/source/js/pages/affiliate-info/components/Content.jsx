@@ -1,8 +1,7 @@
 ﻿import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators} from 'redux';
+import { bindActionCreators } from 'redux';
 
-import { headerText } from '../modules/constants';
 import { toggleLoader } from '../../../actions/loaderAction';
 import ReportTitle from '../../../components/ReportTitle';
 import GridData from './GridData';
@@ -24,11 +23,11 @@ export class Content extends Component {
     handleExportExcel = async () => {
         this.props.toggleLoader(true);
         const { param, reportTitle } = this.props;
-        const url = `Protal/AffiliateInfo/GetAffiliateList`;
+        const url = `Portal/AffiliateInfo/GetAffiliateList`;
         const postData = Object.assign({}, param, { IsExportExcel: true });
         const response = await post(url, postData);
-        
-        if(response && response.status === 200) {
+
+        if (response && response.status === 200) {
             const reportExcel = new ReportExcel(response.data, reportTitle)
             reportExcel.export();
         }
@@ -55,7 +54,7 @@ export class Content extends Component {
                 <GridData />
             </div>
         );
-}
+    }
 }
 
 function mapStateToProps({ reportTitle, param }) {

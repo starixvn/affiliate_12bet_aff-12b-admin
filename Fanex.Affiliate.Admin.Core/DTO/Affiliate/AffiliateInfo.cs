@@ -33,5 +33,11 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
         public bool IsFavorite { get; set; }
 
         public bool IsClosed { get; set; }
+
+        public string RegistrationDateText => RegistrationDate.ToString("MM/dd/yyyy HH:mm:ss");
+
+        public string ApprovalDateText => ApprovalDate?.ToString("MM/dd/yyyy HH:mm:ss")??"N/A";
+
+        public string CasinoDateText => CasinoDate?.ToString("MM/dd/yyyy")??"N/A";
     }
 }

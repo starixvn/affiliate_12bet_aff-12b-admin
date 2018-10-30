@@ -1,7 +1,7 @@
 import {
     combineReducers
 } from 'redux';
-import createReducer from '../../../modules/createReducer';
+import createReducer from '../../../../modules/createReducer';
 
 import {
     LEFTPANEL_RECEIVE_AFFINFO,
