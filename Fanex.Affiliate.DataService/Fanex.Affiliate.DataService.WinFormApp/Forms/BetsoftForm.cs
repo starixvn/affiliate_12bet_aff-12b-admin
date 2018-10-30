@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Fanex.Affiliate.DataService.Importer;
 using Fanex.Affiliate.DataService.Importer.MetaModels.Betsoft;
@@ -32,43 +31,43 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
         {
             ResetResult();
             richTextResult.Text = "Getting data...";
+            _logBuilder.AppendLine(DateTime.Now.ToString());
 
-            await Task.Run(() =>
+            var betSoftParam = new BetsoftParam
             {
-                var betSoftParam = new BetsoftParam
+                StartDate = startDatePicker.Value,
+                EndDate = endDatePicker.Value,
+                ApiUrl = _appSetting.BetsoftApiUrl,
+                BankId = _appSetting.BetsoftBankId,
+                Password = _appSetting.BetsoftPassword
+            };
+
+            var rawDataList = await _betsoftService.GetMultipleRawDataBatchAsync(betSoftParam);
+
+            if (rawDataList.Any())
+            {
+                var batchCount = 1;
+                foreach (var item in rawDataList)
                 {
-                    StartDate = startDatePicker.Value,
-                    EndDate = endDatePicker.Value,
-                    ApiUrl = _appSetting.BetsoftApiUrl,
-                    BankId = _appSetting.BetsoftBankId,
-                    Password = _appSetting.BetsoftPassword
-                };
+                    _logBuilder.AppendLine($"---Begin Batch {batchCount}---");
+                    _logBuilder.AppendLine(item);
+                    _logBuilder.AppendLine($"---End Batch {batchCount}---");
+                    _logBuilder.AppendLine();
 
-                var rawDataList = _betsoftService.GetMultipleRawDataBatch(betSoftParam);
-
-                if (rawDataList.Any())
-                {
-                    var batchCount = 1;
-                    foreach (var item in rawDataList)
-                    {
-                        _logBuilder.AppendLine($"---Begin Batch {batchCount}---");
-                        _logBuilder.AppendLine(item);
-                        _logBuilder.AppendLine($"---End Batch {batchCount}---");
-                        _logBuilder.AppendLine();
-
-                        batchCount++;
-                    }
+                    batchCount++;
                 }
-                else
-                {
-                    _logBuilder.AppendLine("No information");
-                }
+            }
+            else
+            {
+                _logBuilder.AppendLine("No information");
+            }
 
-                synchronizationContext.Post(new SendOrPostCallback((state) =>
-                {
-                    DisplayResult();
-                }), null);
-            });
+            _logBuilder.AppendLine(DateTime.Now.ToString());
+
+            synchronizationContext.Post(new SendOrPostCallback((state) =>
+            {
+                DisplayResult();
+            }), null);
         }
 
         private void ResetResult()

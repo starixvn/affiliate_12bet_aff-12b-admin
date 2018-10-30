@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
 using System.Xml.Linq;
 using Fanex.Affiliate.DataService.Importer.DTO.Betsoft;
 using Fanex.Affiliate.DataService.Importer.MetaModels.Betsoft;
@@ -29,6 +30,13 @@ namespace Fanex.Affiliate.DataService.Importer
             return GetDataString(url);
         }
 
+        public async Task<string> GetRawDataAsync(BetsoftParam param)
+        {
+            string url = BuildUrl(param);
+
+            return await GetDataStringAsync(url);
+        }
+
         public IList<string> GetMultipleRawDataBatch(BetsoftParam param)
         {
             var result = new List<string>();
@@ -37,20 +45,47 @@ namespace Fanex.Affiliate.DataService.Importer
 
             for (var start = startDate; DateTime.Compare(start, endDate) <= 0; start = start.AddHours(1))
             {
-                var endDateByBatch = start.AddHours(1);
-                var paramByBatch = new BetsoftParam
-                {
-                    ApiUrl = param.ApiUrl,
-                    BankId = param.BankId,
-                    Password = param.Password,
-                    StartDate = start,
-                    EndDate = DateTime.Compare(endDateByBatch, endDate) > 0 ? endDate : endDateByBatch
-                };
-
+                BetsoftParam paramByBatch = BuildParamByBatch(param, endDate, start);
                 result.Add(GetRawData(paramByBatch));
             }
 
             return result;
+        }
+
+        public async Task<IList<string>> GetMultipleRawDataBatchAsync(BetsoftParam param)
+        {
+            var result = new List<string>();
+            var taskList = new List<Task<string>>();
+            var startDate = new DateTime(param.StartDate.Year, param.StartDate.Month, param.StartDate.Day, param.StartDate.Hour, param.StartDate.Minute, param.StartDate.Second);
+            var endDate = new DateTime(param.EndDate.Year, param.EndDate.Month, param.EndDate.Day, param.EndDate.Hour, param.EndDate.Minute, param.EndDate.Second);
+
+            for (var start = startDate; DateTime.Compare(start, endDate) < 0; start = start.AddHours(1))
+            {
+                var paramByBatch = BuildParamByBatch(param, endDate, start);
+                taskList.Add(GetRawDataAsync(paramByBatch));
+            }
+
+            var taskResultList = await Task.WhenAll(taskList);
+            foreach (var resultByBatch in taskResultList)
+            {
+                result.Add(resultByBatch);
+            }
+
+            return result;
+        }
+
+        private static BetsoftParam BuildParamByBatch(BetsoftParam param, DateTime endDate, DateTime start)
+        {
+            var endDateByBatch = start.AddHours(1);
+
+            return new BetsoftParam
+            {
+                ApiUrl = param.ApiUrl,
+                BankId = param.BankId,
+                Password = param.Password,
+                StartDate = start,
+                EndDate = DateTime.Compare(endDateByBatch, endDate) > 0 ? endDate : endDateByBatch
+            };
         }
 
         public IList<BetsoftDataItem> ConvertToDataList(string rawData)
@@ -104,14 +139,17 @@ namespace Fanex.Affiliate.DataService.Importer
         private static string GenerateHash(string input)
         {
             var hash = new StringBuilder();
-            var md5provider = new MD5CryptoServiceProvider();
-            var bytes = md5provider.ComputeHash(Encoding.UTF8.GetBytes(input));
-
-            for (int i = 0; i < bytes.Length; i++)
+            using (var md5provider = new MD5CryptoServiceProvider())
             {
-                hash.Append(bytes[i].ToString("x2"));
+                var bytes = md5provider.ComputeHash(Encoding.UTF8.GetBytes(input));
+
+                for (int i = 0; i < bytes.Length; i++)
+                {
+                    hash.Append(bytes[i].ToString("x2"));
+                }
+
+                return hash.ToString();
             }
-            return hash.ToString();
         }
 
         private string GetDataString(string url)
@@ -119,6 +157,14 @@ namespace Fanex.Affiliate.DataService.Importer
             using (var client = new WebClient())
             {
                 return client.DownloadString(url);
+            }
+        }
+
+        private async Task<string> GetDataStringAsync(string url)
+        {
+            using (var client = new WebClient())
+            {
+                return await client.DownloadStringTaskAsync(url);
             }
         }
 
