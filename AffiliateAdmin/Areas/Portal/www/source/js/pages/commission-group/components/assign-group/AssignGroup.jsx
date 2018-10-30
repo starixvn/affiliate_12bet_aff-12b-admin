@@ -31,7 +31,8 @@ export default class AssignGroup extends Component {
         const { isPrivateGroup, affInfo, selectedGroup } = this.state;
         if (isPrivateGroup) {
             const url = resolveClientUrl('Portal/CommissionGroup/AssignPrivateGroup') + '?affId=' + affInfo.AffId;
-            parent.ibcWnd.open(url, `Approve affiliate ${affInfo.UserName} with a private commission group`, 150, 50, 800, 529, 'class1', 'class2');
+            var left = parent.innerWidth / 2 - 400;
+            parent.ibcWnd.open(url, `Approve affiliate ${affInfo.UserName} with a private commission group`, left, 50, 800, 529, 'class1', 'class2');
         }
         else {
             if (affInfo.GroupId > 0 && affInfo.GroupId === selectedGroup) {
