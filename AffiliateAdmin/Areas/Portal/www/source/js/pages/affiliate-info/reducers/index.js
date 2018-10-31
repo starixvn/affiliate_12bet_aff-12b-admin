@@ -23,7 +23,7 @@ const defaultParam = {
     PageSize
 }
 
-const param = createReducer(defaultParam, {
+const param = createReducer(null, {
     [SET_PARAM](prevState, action) {
         return Object.assign({}, prevState, action.data);
     }

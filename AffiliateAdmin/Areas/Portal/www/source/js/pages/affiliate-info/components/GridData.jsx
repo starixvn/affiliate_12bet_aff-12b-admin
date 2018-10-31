@@ -23,7 +23,10 @@ export class GridData extends Component {
         const { param } = this.props;
 
         if (param !== prevProps.param) {
-            this.fetchData(param);
+            const { pagingOption } = this.props;
+            const updateParam = Object.assign({}, param, { PageIndex: 1, PageSize: pagingOption.PageSize });
+
+            this.fetchData(updateParam);
         }
     }
 
@@ -45,19 +48,19 @@ export class GridData extends Component {
     _renderHeader() {
         return (
             <Row key="theard">
-                <Cell header={true} colWidth={100} title={headerText.Index}>{headerText.Index}</Cell>
+                <Cell header={true} colWidth={80} title={headerText.Index}>{headerText.Index}</Cell>
                 <Cell header={true} colWidth={300} title={headerText.UserName}>{headerText.UserName}</Cell>
                 <Cell header={true} colWidth={200} title={headerText.Status}>{headerText.Status}</Cell>
-                <Cell header={true} colWidth={200} title={headerText.FirstName}>{headerText.FirstName}</Cell>
+                <Cell header={true} colWidth={220} title={headerText.FirstName}>{headerText.FirstName}</Cell>
                 <Cell header={true} colWidth={300} title={headerText.LastName}>{headerText.LastName}</Cell>
                 <Cell header={true} colWidth={300} title={headerText.Language}>{headerText.Language}</Cell>
-                <Cell header={true} colWidth={400} title={headerText.Email}>{headerText.Email}</Cell>
+                <Cell header={true} colWidth={450} title={headerText.Email}>{headerText.Email}</Cell>
                 <Cell header={true} colWidth={300} title={headerText.RegistrationDateText}>{headerText.RegistrationDateText}</Cell>
                 <Cell header={true} colWidth={300} title={headerText.ApprovalDateText}>{headerText.ApprovalDateText}</Cell>
                 <Cell header={true} colWidth={300} title={headerText.CasinoDateText}>{headerText.CasinoDateText}</Cell>
                 <Cell header={true} colWidth={300} title={headerText.CommissionGroup}>{headerText.CommissionGroup}</Cell>
-                <Cell header={true} colWidth={300} title={headerText.BalanceBf}>{headerText.BalanceBf}</Cell>
-                <Cell header={true} colWidth={200} title={headerText.Member}>{headerText.Member}</Cell>
+                <Cell header={true} colWidth={200} title={headerText.BalanceBf}>{headerText.BalanceBf}</Cell>
+                <Cell header={true} colWidth={150} title={headerText.Member}>{headerText.Member}</Cell>
                 <Cell header={true} colWidth={130} title={headerText.Password}>{headerText.Password}</Cell>
             </Row>
         );
@@ -77,28 +80,31 @@ export class GridData extends Component {
     }
 
     _buildDataRow(dataItem, index) {
-        const balanceBf = formatDecimal(dataItem.BalanceBf);
-        const member = format(dataItem.Member);
-
         const { languageList } = this.props;
         const status = dataItem.Status;
         const isShow = status && status.toLowerCase() == "approved";
 
+        const balanceBf = dataItem.BalanceBf ? formatDecimal(dataItem.BalanceBf) : resource.NA;
+        const member = dataItem.Member ? format(dataItem.Member) : resource.NA;
+        const language = languageList[dataItem.Language];
+        const commissionGroup = dataItem.CommissionGroup ? dataItem.CommissionGroup : resource.NA;
+
+
         return (
             <Row key={`dataRow-${index}`}>
-                <Cell className="text-right" title={index}>{index}</Cell>
+                <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell title={dataItem.UserName}>{dataItem.UserName}{dataItem.IsFavorite ? (<span className="favor-check"></span>) : (<span className="favor-uncheck"></span>)}</Cell>
                 <Cell className="text-center" title={dataItem.Status}>{dataItem.Status}</Cell>
                 <Cell title={dataItem.FirstName}>{dataItem.FirstName}</Cell>
                 <Cell title={dataItem.LastName}>{dataItem.LastName}</Cell>
-                <Cell title={dataItem.Language}>{languageList[dataItem.Language]}</Cell>
+                <Cell title={language}>{language}</Cell>
                 <Cell title={dataItem.Email}>{dataItem.Email}</Cell>
-                <Cell className="text-center" title={dataItem.RegistrationDateText}>{dataItem.RegistrationDateText ? dataItem.RegistrationDateText : resource.NA}</Cell>
-                <Cell className="text-center" title={dataItem.ApprovalDateText}>{dataItem.ApprovalDateText ? dataItem.ApprovalDateText : resource.NA}</Cell>
-                <Cell className="text-center" title={dataItem.CasinoDateText}>{dataItem.CasinoDateText ? dataItem.CasinoDateText : resource.NA}</Cell>
-                <Cell className="text-center" title={dataItem.CommissionGroup}>{dataItem.CommissionGroup ? dataItem.CommissionGroup : resource.NA}</Cell>
-                <Cell className="text-right" title={balanceBf}>{dataItem.BalanceBf ? balanceBf : resource.NA}</Cell>
-                <Cell className="text-right" title={member}>{dataItem.Member ? member : resource.NA}</Cell>
+                <Cell className="text-center" title={dataItem.RegistrationDateText}>{dataItem.RegistrationDateText}</Cell>
+                <Cell className="text-center" title={dataItem.ApprovalDateText}>{dataItem.ApprovalDateText}</Cell>
+                <Cell className="text-center" title={dataItem.CasinoDateText}>{dataItem.CasinoDateText}</Cell>
+                <Cell className="text-center" title={commissionGroup}>{commissionGroup}</Cell>
+                <Cell className="text-right" title={balanceBf}>{balanceBf}</Cell>
+                <Cell className="text-right" title={member}>{member}</Cell>
                 <Cell className="text-center" title="Change Password">
                     {
                         isShow && (<button className="btn btn-link">
@@ -147,7 +153,7 @@ function mapStateToProps({ pagingOption, languageList, param }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setPagingOption, toggleLoader, setParam }, dispatch);
+    return bindActionCreators({ setPagingOption, toggleLoader }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GridData);

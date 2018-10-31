@@ -42,7 +42,7 @@ export class Filter extends Component {
             UserName: userName,
             Email: email,
             SortBy: selectedSortBy,
-            SortDirectionType: isSortAscending ? 0 : 1
+            SortDirectionType: !isSortAscending
         }
         this.props.setParam(param);
     }
