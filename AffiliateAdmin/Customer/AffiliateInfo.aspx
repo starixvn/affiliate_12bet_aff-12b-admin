@@ -4,9 +4,32 @@
 <script type="text/javascript" src="../App_Js/Common.js"></script>
 <script type="text/javascript" src="../App_Js/prototype.js"></script>
 <script type="text/javascript" src="../App_Js/AutoComplete/autocomplete.js"></script>
+<script type="text/javascript" src="../App_Js/IBCWnd/IBCWnd.js"></script>
 
 <link href='../App_Js/AutoComplete/styles.css' type='text/css' rel='stylesheet' />
 <script type="text/javascript">
+    function hasClass(el, className) {
+        if (el.classList)
+            return el.classList.contains(className)
+        else
+            return !!el.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'))
+    }
+
+    function addClass(el, className) {
+        if (el.classList)
+            el.classList.add(className)
+        else if (!hasClass(el, className)) el.className += " " + className
+    }
+
+    function removeClass(el, className) {
+        if (el.classList)
+            el.classList.remove(className)
+        else if (hasClass(el, className)) {
+            var reg = new RegExp('(\\s|^)' + className + '(\\s|$)')
+            el.className = el.className.replace(reg, ' ')
+        }
+    }
+
     var minHeight = 510;
     window.onresize = function () { setHeight(); };
     window.onload = function () {
@@ -19,7 +42,7 @@
         }
 
         if ($("hdStatus").value.toLowerCase() != "approved") {
-            parent.document.getElementById("fRightContent").rows = "0,*";
+            addClass(parent.document.getElementById("right-panel-frame"), "not-approved");
             if ($("hdNoInfo").value != "1") {
                 if ($("isReload").value != "2")
                     parent.fContent.location.href = "../UserInfo/AffiliateUpd.aspx?approved=0";
@@ -29,8 +52,8 @@
         }
         else {
 
-            if (parent.document.getElementById("fRightContent").rows == "0,*")
-                parent.document.getElementById("fRightContent").rows = "210,*";
+            if (hasClass(parent.document.getElementById("right-panel-frame"), "not-approved"))
+                removeClass(parent.document.getElementById("right-panel-frame"), "not-approved");
             if ($("hdNoInfo").value == "0") {
                 parent.fStatistics.location.href = "Statistics.aspx";
                 switch ($("hdPageid").value)//linked from affiliate list
@@ -74,7 +97,8 @@
     }
     function ViewGroup(groupID, groupName) {
         var url = document.getElementById("relativeRootUrl").value + 'Portal/CommissionGroup/AssignPrivateGroup?affId=' + $("affID").innerHTML;
-        parent.fContent.ibcWnd.open(url, 'Edit Commission Group for ' + $("spUN").innerHTML, 150, 50, 800, 529, 'class1', 'class2');
+        var left = parent.innerWidth / 2 - 400;
+        parent.ibcWnd.open(url, 'Edit Commission Group for ' + $("spUN").innerHTML, left, 50, 800, 529, 'class1', 'class2');
     }
     function setHeight() {
         var height = 0;
@@ -95,7 +119,8 @@
     var status = null;
     var comm = null;
     function ChangePass(url) {
-        parent.fContent.ibcWnd.open(url, 'Change Password', 150, 50, 350, 175, 'class1', 'class2');
+        var left = parent.innerWidth / 2 - 180;
+        parent.ibcWnd.open(url, 'Change Password', left, 50, 350, 175, 'class1', 'class2');
     }
     //Language Update
     var lang = null;
@@ -228,7 +253,8 @@
             var status = $('slStatus').value;
             if (status == "Approved") {
                 var url = document.getElementById("relativeRootUrl").value + 'Portal/CommissionGroup/AssignGroup?affId=' + $("affID").innerHTML;
-                parent.fContent.ibcWnd.open(url, 'Assign Commission Group For New Affiliate', 150, 50, 585, 310, 'class1', 'class2');
+                var left = parent.innerWidth / 2 - 250;
+                parent.ibcWnd.open(url, 'Assign Commission Group For New Affiliate', left, 50, 585, 310, 'class1', 'class2');
             }
             else {
                 var ajax = new Ajax.Request("../Handler/UpdAffInfo.ashx", {
@@ -288,23 +314,24 @@
     function ShowLeft(isShow) {
         if (isShow) {
             parent.document.getElementById("fInfo").scrolling = "auto";
-            parent.document.getElementById("fCustomer").cols = "266, *";
+            removeClass(parent.document.getElementById("customer-page-container"), "collapse");
             $("left_pane").show();
             $("divExpLeft").hide();
-            parent.fContent.IBC.calculateViewport();
+            //parent.IBCWnd.calculateViewport();
         }
         else {
-            parent.document.getElementById("fCustomer").cols = "25, *";
+            addClass(parent.document.getElementById("customer-page-container"), "collapse");
             parent.document.getElementById("fInfo").scrolling = "no";
             window.scroll(0, 0);
             $("left_pane").hide();
             $("divExpLeft").show();
-            parent.fContent.IBC.calculateViewport();
+            //parent.IBCWnd.calculateViewport();
         }
     }
     function ChangeGroup(affid, username) {
         var url = document.getElementById("relativeRootUrl").value + 'Portal/CommissionGroup/AssignGroup?affId=' + affid;
-        parent.fContent.ibcWnd.open(url, 'Change Commission Group For \"' + username + '\"', 150, 50, 585, 310, 'class1', 'class2');
+        var left = parent.innerWidth / 2 - 250;
+        top.mainFrame.ibcWnd.open(url, 'Change Commission Group For \"' + username + '\"', left, 50, 585, 310, 'class1', 'class2');
     }
 </script>
 <!--/js-->

@@ -25,6 +25,7 @@ Thumbs.db
 *.sbr
 obj/
 bin/
+packages/
 [Rr]elease*/
 _ReSharper*/
 [Tt]est[Rr]esult*
@@ -33,7 +34,6 @@ _ReSharper*/
 /Affiliate Admin/Logs
 Affiliate/Report.csv
 /AffiliateAdmin/Banner
-/packages
 *StyleCop.Cache
 .vs/
 /Fanex.Affiliate.User.Site/Properties/PublishProfiles/
