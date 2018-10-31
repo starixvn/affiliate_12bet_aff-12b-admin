@@ -58,9 +58,7 @@ export class Filter extends Component {
 
         const userNameTitle = userName && space + resource.UsernameContains + apostrophe + userName + apostrophe;
         const emailTitle = email && space + resource.EmailContains + apostrophe + email + apostrophe;
-        return `${resource.ReportName} ${space} ${commGroupTitle.toUpperCase()} ${space}
-            ${languageTitle.toUpperCase()} ${space} ${statusTitle.toUpperCase()}
-            ${userNameTitle} ${emailTitle}`;
+        return `${resource.ReportName}${space}${commGroupTitle.toUpperCase()}${space}${languageTitle.toUpperCase()}${space}${statusTitle.toUpperCase()}${userNameTitle} ${emailTitle}`;
     }
 
     render() {

@@ -22,13 +22,13 @@ export class Content extends Component {
 
     handleExportExcel = async () => {
         this.props.toggleLoader(true);
-        const { param, reportTitle } = this.props;
+        const { param, reportTitle, languageList } = this.props;
         const url = `Portal/AffiliateInfo/GetAffiliateList`;
         const postData = Object.assign({}, param, { IsExportExcel: true });
         const response = await post(url, postData);
 
         if (response && response.status === 200) {
-            const reportExcel = new ReportExcel(response.data, reportTitle)
+            const reportExcel = new ReportExcel(response.data, reportTitle, languageList)
             reportExcel.export();
         }
         this.props.toggleLoader(false);
@@ -57,8 +57,8 @@ export class Content extends Component {
     }
 }
 
-function mapStateToProps({ reportTitle, param }) {
-    return Object.assign({}, { reportTitle, param });
+function mapStateToProps({ reportTitle, param, languageList }) {
+    return Object.assign({}, { reportTitle, param, languageList });
 }
 
 function mapDispatchToProps(dispatch) {

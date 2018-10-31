@@ -46,17 +46,17 @@ export class GridData extends Component {
         return (
             <Row key="theard">
                 <Cell header={true} colWidth={100} title={headerText.Index}>{headerText.Index}</Cell>
-                <Cell header={true} colWidth={300} title={headerText.Username}>{headerText.Username}</Cell>
+                <Cell header={true} colWidth={300} title={headerText.UserName}>{headerText.UserName}</Cell>
                 <Cell header={true} colWidth={200} title={headerText.Status}>{headerText.Status}</Cell>
                 <Cell header={true} colWidth={200} title={headerText.FirstName}>{headerText.FirstName}</Cell>
                 <Cell header={true} colWidth={300} title={headerText.LastName}>{headerText.LastName}</Cell>
                 <Cell header={true} colWidth={300} title={headerText.Language}>{headerText.Language}</Cell>
                 <Cell header={true} colWidth={400} title={headerText.Email}>{headerText.Email}</Cell>
-                <Cell header={true} colWidth={300} title={headerText.RegistrationDate}>{headerText.RegistrationDate}</Cell>
-                <Cell header={true} colWidth={300} title={headerText.ApprovalDate}>{headerText.ApprovalDate}</Cell>
-                <Cell header={true} colWidth={300} title={headerText.CasinoDate}>{headerText.CasinoDate}</Cell>
+                <Cell header={true} colWidth={300} title={headerText.RegistrationDateText}>{headerText.RegistrationDateText}</Cell>
+                <Cell header={true} colWidth={300} title={headerText.ApprovalDateText}>{headerText.ApprovalDateText}</Cell>
+                <Cell header={true} colWidth={300} title={headerText.CasinoDateText}>{headerText.CasinoDateText}</Cell>
                 <Cell header={true} colWidth={300} title={headerText.CommissionGroup}>{headerText.CommissionGroup}</Cell>
-                <Cell header={true} colWidth={300} title={headerText.BalanceBF}>{headerText.BalanceBF}</Cell>
+                <Cell header={true} colWidth={300} title={headerText.BalanceBf}>{headerText.BalanceBf}</Cell>
                 <Cell header={true} colWidth={200} title={headerText.Member}>{headerText.Member}</Cell>
                 <Cell header={true} colWidth={130} title={headerText.Password}>{headerText.Password}</Cell>
             </Row>

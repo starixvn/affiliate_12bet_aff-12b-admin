@@ -21,17 +21,17 @@ export const sortByList = {
 
 export const headerText = {
     Index: '#',
-    Username: 'Username',
+    UserName: 'Username',
     Status: 'Status',
     FirstName: 'First Name',
     LastName: 'Last Name',
     Language: 'Language',
     Email: 'Email',
-    RegistrationDate: 'Registration Date',
-    ApprovalDate: 'Approval Date',
-    CasinoDate: 'Casino Date',
+    RegistrationDateText: 'Registration Date',
+    ApprovalDateText: 'Approval Date',
+    CasinoDateText: 'Casino Date',
     CommissionGroup: 'Commission Group',
-    BalanceBF: 'Balance B/F',
+    BalanceBf: 'Balance B/F',
     Member: 'Member',
     Password: 'Password'
 }
