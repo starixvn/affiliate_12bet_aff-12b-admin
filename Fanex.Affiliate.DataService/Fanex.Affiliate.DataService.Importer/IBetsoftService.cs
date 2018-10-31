@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Fanex.Affiliate.DataService.Importer.DTO.Betsoft;
 using Fanex.Affiliate.DataService.Importer.MetaModels.Betsoft;
 
 namespace Fanex.Affiliate.DataService.Importer
@@ -11,9 +10,11 @@ namespace Fanex.Affiliate.DataService.Importer
 
         IList<string> GetMultipleRawDataBatch(BetsoftParam param);
 
-        IList<BetsoftDataItem> ConvertToDataList(string rawData);
+        string ConvertTimeZone(string rawData);
 
-        void Import(IList<BetsoftDataItem> dataList);
+        void Import(string xmlData);
+
+        void Import(BetsoftParam param);
 
         Task<string> GetRawDataAsync(BetsoftParam param);
 

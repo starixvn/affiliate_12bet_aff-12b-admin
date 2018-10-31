@@ -16,7 +16,7 @@ namespace Fanex.Affiliate.DataService.ConsoleHostService
         {
             DbSettingProviderManager.Current.Start();
 
-            RunCasinoService();
+            RunBetsoftJob();
             Console.ReadLine();
         }
 
@@ -66,6 +66,13 @@ namespace Fanex.Affiliate.DataService.ConsoleHostService
         }
 
         private static void RunCasinoService()
+        {
+            var schedulerFactory = new JobSchedulerFactory();
+            schedulerFactory.SetUp();
+            Console.WriteLine("Done!!!");
+        }
+
+        private static void RunBetsoftJob()
         {
             var schedulerFactory = new JobSchedulerFactory();
             schedulerFactory.SetUp();

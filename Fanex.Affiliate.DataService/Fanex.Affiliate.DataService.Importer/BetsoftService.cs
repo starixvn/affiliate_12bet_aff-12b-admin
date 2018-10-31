@@ -6,25 +6,31 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using Fanex.Affiliate.DataService.Importer.DTO.Betsoft;
+using Fanex.Affiliate.DataService.Importer.Constants;
+using Fanex.Affiliate.DataService.Importer.Exceptions;
 using Fanex.Affiliate.DataService.Importer.MetaModels.Betsoft;
+using Fanex.Affiliate.DataService.Importer.Repository;
 using Fanex.Affiliate.DataService.Importer.Utilities;
 
 namespace Fanex.Affiliate.DataService.Importer
 {
     public class BetsoftService : IBetsoftService
     {
-        public const string Gmt4ZoneId = "SA Western Standard Time";
+        private const string Gmt4ZoneId = "SA Western Standard Time";
 
-        public readonly IAppSettings _appSetting;
+        private readonly IAppSettings _appSetting;
 
-        public BetsoftService(IAppSettings appSetting = null)
+        private readonly IThirdPartyProductRepository _thirdPartyProductRepository;
+
+        public BetsoftService(IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProductRepository = null)
         {
             _appSetting = appSetting ?? new AppSettings();
+            _thirdPartyProductRepository = thirdPartyProductRepository ?? new ThirdPartyProductRepository();
         }
 
         public string GetRawData(BetsoftParam param)
         {
+            AssignConfigValue(param);
             string url = BuildUrl(param);
 
             return GetDataString(url);
@@ -32,6 +38,7 @@ namespace Fanex.Affiliate.DataService.Importer
 
         public async Task<string> GetRawDataAsync(BetsoftParam param)
         {
+            AssignConfigValue(param);
             string url = BuildUrl(param);
 
             return await GetDataStringAsync(url);
@@ -45,7 +52,7 @@ namespace Fanex.Affiliate.DataService.Importer
 
             for (var start = startDate; DateTime.Compare(start, endDate) <= 0; start = start.AddHours(1))
             {
-                BetsoftParam paramByBatch = BuildParamByBatch(param, endDate, start);
+                var paramByBatch = BuildParamByBatch(start, endDate);
                 result.Add(GetRawData(paramByBatch));
             }
 
@@ -61,7 +68,7 @@ namespace Fanex.Affiliate.DataService.Importer
 
             for (var start = startDate; DateTime.Compare(start, endDate) < 0; start = start.AddHours(1))
             {
-                var paramByBatch = BuildParamByBatch(param, endDate, start);
+                var paramByBatch = BuildParamByBatch(start, endDate);
                 taskList.Add(GetRawDataAsync(paramByBatch));
             }
 
@@ -74,56 +81,71 @@ namespace Fanex.Affiliate.DataService.Importer
             return result;
         }
 
-        private static BetsoftParam BuildParamByBatch(BetsoftParam param, DateTime endDate, DateTime start)
+        public string ConvertTimeZone(string rawData)
+        {
+            var xdoc = XDocument.Parse(rawData);
+            var response = xdoc.Root.Element("RESPONSE");
+            if (response.Element("RESULT").Value.ToLowerInvariant() != "ok")
+            {
+                throw new ThirdPartyProductException($"Betsoft Error:\n{rawData}");
+            }
+
+            var accountList = response.Elements("ACCOUNT");
+
+            if (!accountList.Any())
+            {
+                return string.Empty;
+            }
+
+            foreach (var account in accountList)
+            {
+                var betTicketList = account.Element("GAMESESSION").Elements("BET");
+
+                foreach (var bet in betTicketList)
+                {
+                    var betTime = bet.Element("BETTIME").Value;
+                    bet.Element("BETTIME").Value = ToGMT4(DateTime.Parse(betTime)).ToString("yyyy-MM-dd HH:mm:ss.fff");
+                }
+            }
+
+            return xdoc.ToString();
+        }
+
+        public void Import(string xmlData)
+        {
+            if (!string.IsNullOrEmpty(xmlData))
+            {
+                _thirdPartyProductRepository.ImportData(Products.BetsoftProductId, xmlData);
+            }
+        }
+
+        public void Import(BetsoftParam param)
+        {
+            var rawData = GetMultipleRawDataBatchAsync(param).Result;
+
+            foreach (var dataItem in rawData)
+            {
+                var xmlData = ConvertTimeZone(dataItem);
+                Import(xmlData);
+            }
+        }
+
+        private static BetsoftParam BuildParamByBatch(DateTime start, DateTime end)
         {
             var endDateByBatch = start.AddHours(1);
 
             return new BetsoftParam
             {
-                ApiUrl = param.ApiUrl,
-                BankId = param.BankId,
-                Password = param.Password,
                 StartDate = start,
-                EndDate = DateTime.Compare(endDateByBatch, endDate) > 0 ? endDate : endDateByBatch
+                EndDate = DateTime.Compare(endDateByBatch, end) > 0 ? end : endDateByBatch
             };
         }
 
-        public IList<BetsoftDataItem> ConvertToDataList(string rawData)
+        private void AssignConfigValue(BetsoftParam param)
         {
-            var result = new List<BetsoftDataItem>();
-            var xdoc = XDocument.Parse(rawData);
-
-            var accountList = xdoc.Root.Element("RESPONSE").Elements("ACCOUNT");
-            foreach (var account in accountList)
-            {
-                var betTicketList = account.Element("GAMESESSION").Elements("BET")
-                        .Select(betTicket => new BetsoftDataItem
-                        {
-                            UserName = account.Element("USERNAME").Value,
-                            Amount = Convert.ToDecimal(betTicket.Element("AMOUNT").Value),
-                            Win = Convert.ToDecimal(betTicket.Element("WIN").Value),
-                            WinLossDate = DateTime.Parse(betTicket.Element("BETTIME").Value)
-                        });
-
-                result.AddRange(betTicketList);
-            }
-
-            return result;
-        }
-
-        public void Import(IList<BetsoftDataItem> dataList)
-        {
-            var builder = new StringBuilder();
-            builder.AppendLine("<root>");
-            foreach (var item in dataList)
-            {
-                var convertedDateTime = ToGMT4(item.WinLossDate);
-                builder.AppendLine($"<trans username=\"{item.UserName}\" amount=\"{item.Amount}\" win=\"{item.Win}\" winlossdate=\"{convertedDateTime}\" />");
-            }
-            builder.AppendLine("</root>");
-
-            var xmlString = builder.ToString();
-            throw new NotImplementedException();
+            param.ApiUrl = _appSetting.BetsoftApiUrl;
+            param.BankId = _appSetting.BetsoftBankId;
+            param.Password = _appSetting.BetsoftPassword;
         }
 
         private string BuildUrl(BetsoftParam param)

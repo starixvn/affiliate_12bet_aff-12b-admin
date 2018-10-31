@@ -38,6 +38,10 @@ namespace Fanex.Affiliate.DataService.Importer.Utilities
 
         IList<string> SupportedProductList { get; }
 
+        string BetsoftTimeTrackerFolder { get; }
+
+        int BetsoftIntervalTime { get; }
+
         string GetValue(string key);
     }
 }

@@ -78,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BetsoftService.cs" />
+    <Compile Include="Constants\Products.cs" />
     <Compile Include="DataImportingRunner.cs" />
     <Compile Include="CasinoDataService.cs" />
     <Compile Include="DTO\Betsoft\BetsoftDataItem.cs" />
@@ -87,12 +88,15 @@
     <Compile Include="DTO\ResultInfo.cs" />
     <Compile Include="EbetService.cs" />
     <Compile Include="Enum\SystemType.cs" />
+    <Compile Include="Exceptions\ThirdPartyProductException.cs" />
     <Compile Include="IBetsoftService.cs" />
     <Compile Include="IDataImportingRunner.cs" />
     <Compile Include="IEbetService.cs" />
     <Compile Include="MetaModels\Betsoft\BetsoftParam.cs" />
     <Compile Include="MetaModels\Ebet\EbetParam.cs" />
     <Compile Include="Repository\BaseRepository.cs" />
+    <Compile Include="Repository\IThirdPartyProductRepository.cs" />
+    <Compile Include="Repository\ThirdPartyProductRepository.cs" />
     <Compile Include="Utilities\EbetConfigHelper.cs" />
     <Compile Include="Utilities\IAppSettings.cs" />
     <Compile Include="Repository\ICasinoDataRepository.cs" />

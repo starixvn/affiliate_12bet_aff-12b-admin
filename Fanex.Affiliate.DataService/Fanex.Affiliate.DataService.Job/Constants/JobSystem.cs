@@ -12,7 +12,8 @@ namespace Fanex.Affiliate.DataService.Job.Constants
             {
                 return new Dictionary<string, Lazy<IJobScheduler>>
                 {
-                    { "Playtech", new Lazy<IJobScheduler>(() => new PlaytechCasinoScheduler()) }
+                    { "Playtech", new Lazy<IJobScheduler>(() => new PlaytechCasinoScheduler()) },
+                    { "Betsoft", new Lazy<IJobScheduler>(() => new BetsoftScheduler()) }
                 };
             }
         }

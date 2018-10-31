@@ -31,30 +31,23 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
         {
             ResetResult();
             richTextResult.Text = "Getting data...";
-            _logBuilder.AppendLine(DateTime.Now.ToString());
-
             var betSoftParam = new BetsoftParam
             {
                 StartDate = startDatePicker.Value,
-                EndDate = endDatePicker.Value,
-                ApiUrl = _appSetting.BetsoftApiUrl,
-                BankId = _appSetting.BetsoftBankId,
-                Password = _appSetting.BetsoftPassword
+                EndDate = endDatePicker.Value
             };
 
             var rawDataList = await _betsoftService.GetMultipleRawDataBatchAsync(betSoftParam);
-
+            var convertedDataBuilder = new StringBuilder();
             if (rawDataList.Any())
             {
-                var batchCount = 1;
                 foreach (var item in rawDataList)
                 {
-                    _logBuilder.AppendLine($"---Begin Batch {batchCount}---");
                     _logBuilder.AppendLine(item);
-                    _logBuilder.AppendLine($"---End Batch {batchCount}---");
                     _logBuilder.AppendLine();
 
-                    batchCount++;
+                    convertedDataBuilder.AppendLine(_betsoftService.ConvertTimeZone(item));
+                    convertedDataBuilder.AppendLine();
                 }
             }
             else
@@ -62,11 +55,10 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
                 _logBuilder.AppendLine("No information");
             }
 
-            _logBuilder.AppendLine(DateTime.Now.ToString());
-
             synchronizationContext.Post(new SendOrPostCallback((state) =>
             {
                 DisplayResult();
+                richTextConvertedData.Text = convertedDataBuilder.ToString();
             }), null);
         }
 
