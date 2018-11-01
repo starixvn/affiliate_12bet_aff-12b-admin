@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Fanex.Affiliate.DataService.Importer;
 using Fanex.Affiliate.DataService.Importer.MetaModels.Betsoft;
@@ -12,10 +14,12 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
     public partial class BetsoftForm : Form
     {
         private readonly IBetsoftService _betsoftService;
-        private IAppSettings _appSetting;
-        private StringBuilder _logBuilder;
+        private readonly IAppSettings _appSetting;
+        private readonly StringBuilder _logBuilder;
 
         private readonly SynchronizationContext synchronizationContext;
+
+        private readonly IList<string> _convertedDataList;
 
         public BetsoftForm()
         {
@@ -25,52 +29,118 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
             _appSetting = new AppSettings();
             _betsoftService = new BetsoftService();
             synchronizationContext = SynchronizationContext.Current;
+            _convertedDataList = new List<string>();
         }
 
         private async void btnGetRawData_Click(object sender, EventArgs e)
         {
-            ResetResult();
-            richTextResult.Text = "Getting data...";
-            var betSoftParam = new BetsoftParam
-            {
-                StartDate = startDatePicker.Value,
-                EndDate = endDatePicker.Value
-            };
-
-            var rawDataList = await _betsoftService.GetMultipleRawDataBatchAsync(betSoftParam);
+            var rawDataBuilder = new StringBuilder();
             var convertedDataBuilder = new StringBuilder();
-            if (rawDataList.Any())
+            try
             {
-                foreach (var item in rawDataList)
+                ResetResult();
+                richTextLog.Text = "Getting data...";
+                var betSoftParam = new BetsoftParam
                 {
-                    _logBuilder.AppendLine(item);
-                    _logBuilder.AppendLine();
+                    StartDate = startDatePicker.Value,
+                    EndDate = endDatePicker.Value
+                };
 
-                    convertedDataBuilder.AppendLine(_betsoftService.ConvertTimeZone(item));
-                    convertedDataBuilder.AppendLine();
+                var rawDataList = await _betsoftService.GetMultipleRawDataBatchAsync(betSoftParam);
+                if (rawDataList.Any())
+                {
+                    foreach (var item in rawDataList)
+                    {
+                        rawDataBuilder.AppendLine(item);
+                        rawDataBuilder.AppendLine();
+
+                        var convertedData = _betsoftService.ConvertTimeZone(item);
+                        _convertedDataList.Add(convertedData);
+                        convertedDataBuilder.AppendLine(convertedData);
+                        convertedDataBuilder.AppendLine();
+                    }
+                }
+                else
+                {
+                    _logBuilder.AppendLine("No information");
                 }
             }
-            else
+            catch (Exception ex)
             {
-                _logBuilder.AppendLine("No information");
+                _logBuilder.AppendLine(ex.Message);
+                _logBuilder.AppendLine(ex.StackTrace);
+                _logBuilder.AppendLine(ex.Source);
             }
-
-            synchronizationContext.Post(new SendOrPostCallback((state) =>
+            finally
             {
-                DisplayResult();
-                richTextConvertedData.Text = convertedDataBuilder.ToString();
-            }), null);
+                synchronizationContext.Post(new SendOrPostCallback((state) =>
+                {
+                    DisplayResult();
+                    richTextRawData.Text = rawDataBuilder.ToString();
+                    richTextConvertedData.Text = convertedDataBuilder.ToString();
+                }), null);
+            }
+        }
+
+        private async void btnImport_Click(object sender, EventArgs e)
+        {
+            var importButtonText = btnImport.Text;
+            HandleBeforeImporting();
+            try
+            {
+                foreach (var xmlData in _convertedDataList)
+                {
+                    await Task.Run(() =>
+                    {
+                        _betsoftService.Import(xmlData);
+                    });
+                }
+
+                _convertedDataList.Clear();
+                _logBuilder.AppendLine("Import done!!!");
+            }
+            catch (Exception ex)
+            {
+                _logBuilder.AppendLine(ex.Message);
+                _logBuilder.AppendLine(ex.StackTrace);
+                _logBuilder.AppendLine(ex.Source);
+            }
+            finally
+            {
+                synchronizationContext.Post(new SendOrPostCallback((state) =>
+                {
+                    DisplayResult();
+                    HandleAfterImporting();
+                    btnImport.Text = importButtonText;
+                }), null);
+            }
         }
 
         private void ResetResult()
         {
             _logBuilder.Clear();
-            richTextResult.Clear();
+            richTextLog.Clear();
+            richTextRawData.Clear();
+            richTextConvertedData.Clear();
         }
 
         private void DisplayResult()
         {
-            richTextResult.Text = _logBuilder.ToString();
+            richTextLog.Text = _logBuilder.ToString();
+            _logBuilder.Clear();
+        }
+
+        private void HandleBeforeImporting()
+        {
+            btnGetRawData.Enabled = false;
+            btnImport.Enabled = false;
+            btnImport.Text = "Importing...";
+        }
+
+        private void HandleAfterImporting()
+        {
+            btnGetRawData.Enabled = true;
+            btnImport.Enabled = true;
         }
     }
 }

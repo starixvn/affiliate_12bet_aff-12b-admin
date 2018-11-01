@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using Fanex.Affiliate.DataService.WinFormApp.Forms;
+using Fanex.Data.Configuration;
 
 namespace Fanex.Affiliate.DataService.WinFormApp
 {
@@ -8,6 +9,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp
     {
         public MainForm()
         {
+            DbSettingProviderManager.Current.Start();
             InitializeComponent();
         }
 

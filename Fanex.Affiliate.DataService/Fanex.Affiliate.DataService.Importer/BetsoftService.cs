@@ -30,16 +30,16 @@ namespace Fanex.Affiliate.DataService.Importer
 
         public string GetRawData(BetsoftParam param)
         {
-            AssignConfigValue(param);
-            string url = BuildUrl(param);
+            var apiParam = BuildApiParam(param);
+            string url = BuildUrl(apiParam);
 
             return GetDataString(url);
         }
 
         public async Task<string> GetRawDataAsync(BetsoftParam param)
         {
-            AssignConfigValue(param);
-            string url = BuildUrl(param);
+            var apiParam = BuildApiParam(param);
+            string url = BuildUrl(apiParam);
 
             return await GetDataStringAsync(url);
         }
@@ -47,8 +47,8 @@ namespace Fanex.Affiliate.DataService.Importer
         public IList<string> GetMultipleRawDataBatch(BetsoftParam param)
         {
             var result = new List<string>();
-            var startDate = param.StartDate;
-            var endDate = param.EndDate;
+            var startDate = new DateTime(param.StartDate.Year, param.StartDate.Month, param.StartDate.Day, param.StartDate.Hour, param.StartDate.Minute, param.StartDate.Second);
+            var endDate = new DateTime(param.EndDate.Year, param.EndDate.Month, param.EndDate.Day, param.EndDate.Hour, param.EndDate.Minute, param.EndDate.Second);
 
             for (var start = startDate; DateTime.Compare(start, endDate) <= 0; start = start.AddHours(1))
             {
@@ -141,11 +141,16 @@ namespace Fanex.Affiliate.DataService.Importer
             };
         }
 
-        private void AssignConfigValue(BetsoftParam param)
+        private BetsoftParam BuildApiParam(BetsoftParam param)
         {
-            param.ApiUrl = _appSetting.BetsoftApiUrl;
-            param.BankId = _appSetting.BetsoftBankId;
-            param.Password = _appSetting.BetsoftPassword;
+            return new BetsoftParam
+            {
+                StartDate = param.StartDate.ToUniversalTime(),
+                EndDate = param.EndDate.ToUniversalTime(),
+                ApiUrl = _appSetting.BetsoftApiUrl,
+                BankId = _appSetting.BetsoftBankId,
+                Password = _appSetting.BetsoftPassword
+            };
         }
 
         private string BuildUrl(BetsoftParam param)

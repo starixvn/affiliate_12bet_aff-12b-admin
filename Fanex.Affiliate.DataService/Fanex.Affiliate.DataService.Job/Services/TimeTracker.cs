@@ -17,15 +17,16 @@ namespace Fanex.Affiliate.DataService.Job.Services
         public DateTime GetLastestCallSuccess()
         {
             var folderPath = _appSetting.BetsoftTimeTrackerFolder;
+            var negativeIntervalTime = _appSetting.BetsoftIntervalTime * -1;
             if (!Directory.Exists(folderPath))
             {
-                return DateTime.Now;
+                return DateTime.Now.AddMinutes(negativeIntervalTime);
             }
 
             var fileName = GetLatestTrackingFile(folderPath);
             if (string.IsNullOrEmpty(fileName))
             {
-                return DateTime.Now;
+                return DateTime.Now.AddMinutes(negativeIntervalTime);
             }
 
             var lastLine = File.ReadLines(fileName).Last();
