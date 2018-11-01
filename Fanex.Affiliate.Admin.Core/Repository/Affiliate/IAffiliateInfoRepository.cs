@@ -7,5 +7,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
     public interface IAffiliateInfoRepository
     {
         EntityResult<AffiliateInfo> GetAffiliateList(AffiliateInfoParam param);
+
+        ResultInfo UpdateFavorite(InsertUpdateFavoriteParam param);
     }
 }

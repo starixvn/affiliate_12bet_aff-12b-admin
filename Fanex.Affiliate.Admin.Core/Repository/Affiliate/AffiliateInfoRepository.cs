@@ -1,6 +1,5 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
-using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Affiliate;
 using Fanex.Data;
 using System;
@@ -19,12 +18,12 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                AssignParam(objectDb, param);
+                AssignAffiliateInfoParam(objectDb, param);
                 using (var reader = objectDb.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        dataList.Add(BuildDataItem(reader));
+                        dataList.Add(BuildAffiliateInfoItem(reader));
                     }
                 }
                 result.MainData = dataList;
@@ -34,7 +33,30 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
             return result;
         }
 
-        private static void AssignParam (IObjectDb objectDb, AffiliateInfoParam param)
+        public ResultInfo UpdateFavorite(InsertUpdateFavoriteParam param)
+        {
+            const string SpKey = "Aff_Admin_Affiliate_Favorite_Upd";
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                AssignFavoriteParam(objectDb, param);
+                AssignResultOutputParam(objectDb);
+
+                objectDb.ExecuteNonQuery();
+
+                return GetResultInfo(objectDb);
+            }
+        }
+
+        private static void AssignFavoriteParam(IObjectDb objectDb, InsertUpdateFavoriteParam param)
+        {
+            objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
+            objectDb.AddInParameter("AffId", DbType.Int32, param.AffId);
+            objectDb.AddInParameter("IsFavorite", DbType.Boolean, param.IsFavorite);
+            objectDb.AddInParameter("IP", DbType.String, param.Ip);
+        }
+
+        private static void AssignAffiliateInfoParam(IObjectDb objectDb, AffiliateInfoParam param)
         {
             objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
             objectDb.AddInParameter("GroupID", DbType.Int32, param.GroupId);
@@ -51,7 +73,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
             objectDb.AddOutParameter("NRows", DbType.Int32, 4);
         }
 
-        private static AffiliateInfo BuildDataItem(IDataReader reader)
+        private static AffiliateInfo BuildAffiliateInfoItem(IDataReader reader)
         {
             return new AffiliateInfo
             {

@@ -103,7 +103,9 @@ export class GridData extends Component {
         const language = languageList[dataItem.Language];
         const commissionGroup = dataItem.CommissionGroup ? dataItem.CommissionGroup : resource.NA;
 
-        const favor = isFavorite ? "favor-check" : "favor-uncheck";
+        const className = isFavorite ? "favor-check" : "favor-uncheck";
+        const favor = status && (status.toLowerCase() == "approved" ? className : (status.toLowerCase() == "closed" ? className : ""));
+
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell className="text-center" title={index}>{index}</Cell>
@@ -145,17 +147,8 @@ export class GridData extends Component {
     }
 
     async saveFavorite(param) {
-        const url = `Portal/Favorite/UpdateFavorite`;
+        const url = `Portal/AffiliateInfo/UpdateFavorite`;
         const response = await post(url, param);
-        if (response) {
-            if (response.data.IsSuccessful) {
-                const message = ' Update Favorite Successfully';
-                alert(message);
-            }
-            else {
-                alert(response.data.Message);
-            }
-        }
     }
 
     handlePaging = (index, size) => {
