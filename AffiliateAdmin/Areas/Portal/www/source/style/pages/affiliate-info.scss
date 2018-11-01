@@ -1,24 +1,21 @@
-﻿#SearchBy, #Language, #Status, #SortBy {
-    width: 130px;
-}
-
-#Email, #Username {
+﻿#SearchBy, #Email {
     width: 200px;
 }
 
-.favor-check
-{
+.favor-check {
 	background: url(../assets/icon-check.jpg) no-repeat;
 	float: right;
 	width: 15px;
 	height: 15px;
 	cursor:pointer;
 }
-.favor-uncheck
-{
+.favor-uncheck {
 	background: url(../assets/icon-uncheck.jpg) no-repeat;
 	float: right;
 	width: 15px;
 	height: 15px;
 	cursor:pointer;
+}
+.btn.btn-link {
+    padding: 0;
 }

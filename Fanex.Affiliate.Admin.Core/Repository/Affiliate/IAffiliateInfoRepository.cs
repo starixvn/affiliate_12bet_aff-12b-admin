@@ -8,6 +8,6 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
     {
         EntityResult<AffiliateInfo> GetAffiliateList(AffiliateInfoParam param);
 
-        ResultInfo UpdateFavorite(InsertUpdateFavoriteParam param);
+        ResultInfo ToggleFavorite(FavoriteParam param);
     }
 }

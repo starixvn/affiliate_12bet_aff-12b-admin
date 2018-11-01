@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels.Affiliate
 {
-    public class InsertUpdateFavoriteParam
+    public class FavoriteParam
     {
         public int UserId { get; set; }
 

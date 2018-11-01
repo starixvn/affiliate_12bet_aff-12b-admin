@@ -56,21 +56,21 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult UpdateFavorite(InsertUpdateFavoriteParam param)
+        public ActionResult ToggleFavorite(FavoriteParam param)
         {
-            if (ModelState.IsValid)
+            if(param.AffId == 0)
             {
-                param.UserId = SessionService.UserId;
-                param.Ip = Request.UserHostAddress;
-
-                return Json(_affiliateInfoRepository.UpdateFavorite(param));
+                return Json(new ResultInfo
+                {
+                    Code = Code.GeneralErrorCode,
+                    Message = "Update Favorite failed!"
+                });
             }
 
-            return Json(new ResultInfo
-            {
-                Code = Code.GeneralErrorCode,
-                Message = string.Join("\n", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
-            });
+            param.UserId = SessionService.UserId;
+            param.Ip = Request.UserHostAddress;
+
+            return Json(_affiliateInfoRepository.ToggleFavorite(param));
         }
     }
 }

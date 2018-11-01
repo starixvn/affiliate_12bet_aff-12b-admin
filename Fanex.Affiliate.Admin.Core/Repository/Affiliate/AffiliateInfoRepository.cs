@@ -33,7 +33,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
             return result;
         }
 
-        public ResultInfo UpdateFavorite(InsertUpdateFavoriteParam param)
+        public ResultInfo ToggleFavorite(FavoriteParam param)
         {
             const string SpKey = "Aff_Admin_Affiliate_Favorite_Upd";
 
@@ -48,7 +48,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
             }
         }
 
-        private static void AssignFavoriteParam(IObjectDb objectDb, InsertUpdateFavoriteParam param)
+        private static void AssignFavoriteParam(IObjectDb objectDb, FavoriteParam param)
         {
             objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
             objectDb.AddInParameter("AffId", DbType.Int32, param.AffId);
