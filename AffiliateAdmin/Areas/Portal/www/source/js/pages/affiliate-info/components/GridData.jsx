@@ -15,7 +15,8 @@ export class GridData extends Component {
         super(props);
 
         this.state = {
-            gridData: null
+            gridData: null,
+            selectedFavorites: {}
         }
     }
 
@@ -37,12 +38,24 @@ export class GridData extends Component {
 
         if (response && response.status === 200) {
             const { MainData, TotalItem } = response.data;
+            const selectedFavorites = this._convertSelectedFavorites(MainData);
 
-            this.setState({ gridData: MainData });
+            this.setState({ gridData: MainData, selectedFavorites });
 
             this.props.setPagingOption({ TotalItem, PageIndex: param.PageIndex, PageSize: param.PageSize });
         }
         this.props.toggleLoader(false);
+    }
+
+    _convertSelectedFavorites(dataList) {
+        const selectedFavorites = {};
+
+        for (let i = 0; i < dataList.length; i++) {
+            const itemId = dataList[i].AffId;
+            selectedFavorites[itemId] = dataList[i].IsFavorite;
+        }
+
+        return selectedFavorites;
     }
 
     _renderHeader() {
@@ -66,20 +79,21 @@ export class GridData extends Component {
         );
     }
 
-    _renderDataSection(dataList) {
+    _renderDataSection(dataList, selectedFavorites) {
         const dataRows = [];
         const { pagingOption } = this.props;
         const startIndex = (pagingOption.PageIndex - 1) * pagingOption.PageSize + 1;
 
         for (let i = 0; i < dataList.length; i++) {
             const dataItem = dataList[i];
-            dataRows.push(this._buildDataRow(dataItem, i + startIndex));
+            const isFavorite = selectedFavorites[dataItem.AffId];
+            dataRows.push(this._buildDataRow(dataItem, i + startIndex, isFavorite));
         }
 
         return dataRows;
     }
 
-    _buildDataRow(dataItem, index) {
+    _buildDataRow(dataItem, index, isFavorite) {
         const { languageList } = this.props;
         const status = dataItem.Status;
         const isShow = status && status.toLowerCase() == "approved";
@@ -89,11 +103,12 @@ export class GridData extends Component {
         const language = languageList[dataItem.Language];
         const commissionGroup = dataItem.CommissionGroup ? dataItem.CommissionGroup : resource.NA;
 
-
+        const favor = isFavorite ? "favor-check" : "favor-uncheck";
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell className="text-center" title={index}>{index}</Cell>
-                <Cell title={dataItem.UserName}>{dataItem.UserName}{dataItem.IsFavorite ? (<span className="favor-check"></span>) : (<span className="favor-uncheck"></span>)}</Cell>
+                <Cell title={dataItem.UserName}>{dataItem.UserName} <span className={favor} onClick={() => this.changeFavorite(dataItem.AffId, isFavorite)}></span></Cell>
+
                 <Cell className="text-center" title={dataItem.Status}>{dataItem.Status}</Cell>
                 <Cell title={dataItem.FirstName}>{dataItem.FirstName}</Cell>
                 <Cell title={dataItem.LastName}>{dataItem.LastName}</Cell>
@@ -116,6 +131,33 @@ export class GridData extends Component {
         );
     }
 
+    changeFavorite = (affId, isFavorite) => {
+        this.setState(
+            ( prevState => ({ 
+                    selectedFavorites: Object.assign({}, prevState.selectedFavorites, { [affId]: !isFavorite })
+                }) )
+        );
+        const param = {
+            AffId: affId,
+            IsFavorite: !isFavorite
+        }
+        this.saveFavorite(param);
+    }
+
+    async saveFavorite(param) {
+        const url = `Portal/Favorite/UpdateFavorite`;
+        const response = await post(url, param);
+        if (response) {
+            if (response.data.IsSuccessful) {
+                const message = ' Update Favorite Successfully';
+                alert(message);
+            }
+            else {
+                alert(response.data.Message);
+            }
+        }
+    }
+
     handlePaging = (index, size) => {
         const newPaging = {
             PageIndex: index,
@@ -128,7 +170,7 @@ export class GridData extends Component {
     }
 
     render() {
-        const { gridData } = this.state;
+        const { gridData, selectedFavorites } = this.state;
 
         return gridData && (
             <div className="table-responsive table-striped">
@@ -137,7 +179,7 @@ export class GridData extends Component {
                     autoWidth={true}
                     bodyHeight={300}
                     header={this._renderHeader()}
-                    body={this._renderDataSection(gridData)}
+                    body={this._renderDataSection(gridData, selectedFavorites)}
                     containerPadding={20}
                     isPaging={true}
                     pageOption={this.props.pagingOption}

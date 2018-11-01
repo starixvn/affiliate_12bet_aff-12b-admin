@@ -154,6 +154,7 @@
     <Compile Include="Controllers\DomainController.cs" />
     <Compile Include="Controllers\EmailTestingController.cs" />
     <Compile Include="Controllers\ExchangeRateController.cs" />
+    <Compile Include="Controllers\FavoriteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LandingPageController.cs" />
     <Compile Include="Controllers\MediaGalleryController.cs" />
@@ -196,6 +197,7 @@
     <Compile Include="Extensions\UrlHelperExtension.cs" />
     <Compile Include="MetaModels\Affiliate\AffiliateInfoParam.cs" />
     <Compile Include="MetaModels\Affiliate\ApproveAffiliateParam.cs" />
+    <Compile Include="MetaModels\Affiliate\InsertUpdateFavoriteParam.cs" />
     <Compile Include="MetaModels\CommissionGroup\AssignGroupParam.cs" />
     <Compile Include="MetaModels\CommissionGroup\GetCommissionGroupParam.cs" />
     <Compile Include="MetaModels\CommissionGroup\DeleteCommissionGroupParam.cs" />
@@ -210,7 +212,9 @@
     <Compile Include="MetaModels\UserPanel\PlayerDetailParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Affiliate\AffiliateInfoRepository.cs" />
+    <Compile Include="Repository\Affiliate\FavoriteRepository.cs" />
     <Compile Include="Repository\Affiliate\IAffiliateInfoRepository.cs" />
+    <Compile Include="Repository\Affiliate\IFavoriteRepository.cs" />
     <Compile Include="Repository\Customer\CustomerStatisticsRepository.cs" />
     <Compile Include="Repository\Customer\ICustomerStatisticsRepository.cs" />
     <Compile Include="Repository\Report\AffiliateReportRepository.cs" />

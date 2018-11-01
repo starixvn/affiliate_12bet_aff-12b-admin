@@ -55,16 +55,16 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
         {
             return new AffiliateInfo
             {
-                AffId = reader.HasColumn("AffId") ? Convert.ToInt32(reader["AffId"]) : 0,
-                UserName = reader.HasColumn("Username") ? Convert.ToString(reader["Username"]) : string.Empty,
+                AffId = Convert.ToInt32(reader["AffId"]),
+                UserName = Convert.ToString(reader["Username"]),
                 Status = Convert.ToString(reader["Status"]),
                 FirstName = Convert.ToString(reader["FirstName"]),
                 LastName = Convert.ToString(reader["LastName"]),
                 Language = Convert.ToString(reader["PreferredLanguage"]),
                 Email = Convert.ToString(reader["Email"]),
                 RegistrationDate = Convert.ToDateTime(reader["RegisteredDate"]),
-                ApprovalDate = reader.IsDBNull(reader.GetOrdinal("ApprovedDate")) ? (DateTime?)null : Convert.ToDateTime(reader["ApprovedDate"]),
-                CasinoDate = reader.IsDBNull(reader.GetOrdinal("CasinoJoinedDate")) ? (DateTime?)null : Convert.ToDateTime(reader["CasinoJoinedDate"]),
+                ApprovalDate = reader["ApprovedDate"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["ApprovedDate"]),
+                CasinoDate = reader["CasinoJoinedDate"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["CasinoJoinedDate"]),
                 CommissionGroup = Convert.ToString(reader["GroupName"]),
                 BalanceBf = Convert.ToDecimal(reader["BFF"]),
                 Member = Convert.ToInt32(reader["NoOfMember"]),
