@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using Fanex.Affiliate.DataService.Importer.Constants;
-using Fanex.Affiliate.DataService.Importer.Exceptions;
 using Fanex.Affiliate.DataService.Importer.MetaModels.Betsoft;
 using Fanex.Affiliate.DataService.Importer.Repository;
 using Fanex.Affiliate.DataService.Importer.Utilities;
+using Fanex.Logging;
 
 namespace Fanex.Affiliate.DataService.Importer
 {
@@ -47,8 +46,8 @@ namespace Fanex.Affiliate.DataService.Importer
         public IList<string> GetMultipleRawDataBatch(BetsoftParam param)
         {
             var result = new List<string>();
-            var startDate = new DateTime(param.StartDate.Year, param.StartDate.Month, param.StartDate.Day, param.StartDate.Hour, param.StartDate.Minute, param.StartDate.Second);
-            var endDate = new DateTime(param.EndDate.Year, param.EndDate.Month, param.EndDate.Day, param.EndDate.Hour, param.EndDate.Minute, param.EndDate.Second);
+            var startDate = new DateTime(param.StartDate.Year, param.StartDate.Month, param.StartDate.Day, param.StartDate.Hour, 0, 0);
+            var endDate = new DateTime(param.EndDate.Year, param.EndDate.Month, param.EndDate.Day, param.EndDate.Hour, 0, 0);
 
             for (var start = startDate; DateTime.Compare(start, endDate) <= 0; start = start.AddHours(1))
             {
@@ -63,8 +62,8 @@ namespace Fanex.Affiliate.DataService.Importer
         {
             var result = new List<string>();
             var taskList = new List<Task<string>>();
-            var startDate = new DateTime(param.StartDate.Year, param.StartDate.Month, param.StartDate.Day, param.StartDate.Hour, param.StartDate.Minute, param.StartDate.Second);
-            var endDate = new DateTime(param.EndDate.Year, param.EndDate.Month, param.EndDate.Day, param.EndDate.Hour, param.EndDate.Minute, param.EndDate.Second);
+            var startDate = new DateTime(param.StartDate.Year, param.StartDate.Month, param.StartDate.Day, param.StartDate.Hour, 0, 0);
+            var endDate = new DateTime(param.EndDate.Year, param.EndDate.Month, param.EndDate.Day, param.EndDate.Hour, 0, 0);
 
             for (var start = startDate; DateTime.Compare(start, endDate) < 0; start = start.AddHours(1))
             {
@@ -87,16 +86,10 @@ namespace Fanex.Affiliate.DataService.Importer
             var response = xdoc.Root.Element("RESPONSE");
             if (response.Element("RESULT").Value.ToLowerInvariant() != "ok")
             {
-                throw new ThirdPartyProductException($"Betsoft Error:\n{rawData}");
+                LogService.Error($"Betsoft Error:\n{rawData}");
             }
 
             var accountList = response.Elements("ACCOUNT");
-
-            if (!accountList.Any())
-            {
-                return string.Empty;
-            }
-
             foreach (var account in accountList)
             {
                 var betTicketList = account.Element("GAMESESSION").Elements("BET");
@@ -113,10 +106,7 @@ namespace Fanex.Affiliate.DataService.Importer
 
         public void Import(string xmlData)
         {
-            if (!string.IsNullOrEmpty(xmlData))
-            {
-                _thirdPartyProductRepository.ImportData(Products.BetsoftProductId, xmlData);
-            }
+            _thirdPartyProductRepository.ImportData(Products.BetsoftProductId, xmlData);
         }
 
         public void Import(BetsoftParam param)
@@ -143,10 +133,13 @@ namespace Fanex.Affiliate.DataService.Importer
 
         private BetsoftParam BuildApiParam(BetsoftParam param)
         {
+            var start = new DateTime(param.StartDate.Year, param.StartDate.Month, param.StartDate.Day, param.StartDate.Hour, 0, 0, DateTimeKind.Local);
+            var end = new DateTime(param.EndDate.Year, param.EndDate.Month, param.EndDate.Day, param.EndDate.Hour, 0, 0, DateTimeKind.Local);
+
             return new BetsoftParam
             {
-                StartDate = param.StartDate.ToUniversalTime(),
-                EndDate = param.EndDate.ToUniversalTime(),
+                StartDate = start.ToUniversalTime(),
+                EndDate = end.ToUniversalTime(),
                 ApiUrl = _appSetting.BetsoftApiUrl,
                 BankId = _appSetting.BetsoftBankId,
                 Password = _appSetting.BetsoftPassword

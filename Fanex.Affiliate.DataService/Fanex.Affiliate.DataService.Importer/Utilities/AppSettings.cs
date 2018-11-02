@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Configuration;
+    using System.Globalization;
 
     public class AppSettings : IAppSettings
     {
@@ -43,6 +44,8 @@
         public string BetsoftTimeTrackerFolder => GetValue("TimeTrackerFolder");
 
         public int BetsoftIntervalTime => Convert.ToInt32(GetValue("BetsoftIntervalTime"));
+
+        public DateTime BetsoftStartTime => DateTime.ParseExact(GetValue("BetsoftStartTime"), "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal);
 
         public string GetValue(string key) => ConfigurationManager.AppSettings[key];
     }

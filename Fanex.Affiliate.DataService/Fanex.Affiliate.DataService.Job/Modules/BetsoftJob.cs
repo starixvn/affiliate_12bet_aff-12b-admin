@@ -35,16 +35,17 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                 {
                     var lastQueryTime = _timeTracker.GetLastestCallSuccess();
                     var now = DateTime.Now;
+                    var nowByHour = new DateTime(now.Year, now.Month, now.Day, now.Hour, 0, 0, DateTimeKind.Local);
 
                     var betSoftParam = new BetsoftParam
                     {
                         StartDate = lastQueryTime,
-                        EndDate = now
+                        EndDate = nowByHour
                     };
 
                     _betSoftService.Import(betSoftParam);
 
-                    _timeTracker.SaveTime(now);
+                    _timeTracker.SaveTime(nowByHour);
                 }
             }
             catch (Exception exception)

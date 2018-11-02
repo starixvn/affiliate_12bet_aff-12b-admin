@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Fanex.Affiliate.DataService.Importer.Utilities
 {
@@ -33,6 +34,8 @@ namespace Fanex.Affiliate.DataService.Importer.Utilities
         string BetsoftApiUrl { get; }
 
         string BetsoftFormatDateTime { get; }
+
+        DateTime BetsoftStartTime { get; }
 
         string EbetFormatDateTime { get; }
 

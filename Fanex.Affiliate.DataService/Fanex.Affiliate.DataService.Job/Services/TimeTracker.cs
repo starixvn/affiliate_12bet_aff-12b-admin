@@ -17,21 +17,20 @@ namespace Fanex.Affiliate.DataService.Job.Services
         public DateTime GetLastestCallSuccess()
         {
             var folderPath = _appSetting.BetsoftTimeTrackerFolder;
-            var negativeIntervalTime = _appSetting.BetsoftIntervalTime * -1;
             if (!Directory.Exists(folderPath))
             {
-                return DateTime.Now.AddMinutes(negativeIntervalTime);
+                return _appSetting.BetsoftStartTime;
             }
 
             var fileName = GetLatestTrackingFile(folderPath);
             if (string.IsNullOrEmpty(fileName))
             {
-                return DateTime.Now.AddMinutes(negativeIntervalTime);
+                return _appSetting.BetsoftStartTime;
             }
 
             var lastLine = File.ReadLines(fileName).Last();
 
-            return string.IsNullOrEmpty(lastLine) ? DateTime.Now : DateTime.Parse(lastLine);
+            return string.IsNullOrEmpty(lastLine) ? _appSetting.BetsoftStartTime : DateTime.Parse(lastLine);
         }
 
         public void SaveTime(DateTime callTime)
@@ -57,7 +56,7 @@ namespace Fanex.Affiliate.DataService.Job.Services
              .OrderByDescending(f => f.LastWriteTime)
              .FirstOrDefault(f => File.Exists(Path.Combine(folderPath, $"{f.LastWriteTime.ToString("yyyyMMdd")}.txt")));
 
-            return latestFile.FullName;
+            return latestFile?.FullName;
         }
     }
 }

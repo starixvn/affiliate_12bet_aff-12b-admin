@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using Fanex.Affiliate.DataService.Importer;
 using Fanex.Affiliate.DataService.Importer.MetaModels.Betsoft;
 using Fanex.Affiliate.DataService.Importer.MetaModels.Ebet;
@@ -15,8 +16,10 @@ namespace Fanex.Affiliate.DataService.ConsoleHostService
         private static void Main(string[] args)
         {
             DbSettingProviderManager.Current.Start();
-
-            //RunBetsoftJob();
+            var appSetting = new AppSettings();
+            var dataTime = DateTime.ParseExact(appSetting.GetValue("BetsoftStartTime"), "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal);
+            RunBetsoftJob();
+            Console.WriteLine(dataTime.ToString());
             Console.ReadLine();
         }
 
