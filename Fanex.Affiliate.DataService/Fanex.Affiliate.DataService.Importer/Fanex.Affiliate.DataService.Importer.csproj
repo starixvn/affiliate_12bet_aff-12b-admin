@@ -85,7 +85,6 @@
     <Compile Include="Constants\Products.cs" />
     <Compile Include="DataImportingRunner.cs" />
     <Compile Include="CasinoDataService.cs" />
-    <Compile Include="DTO\Betsoft\BetsoftDataItem.cs" />
     <Compile Include="DTO\CasinoDataMetaModel.cs" />
     <Compile Include="DTO\ColumnName.cs" />
     <Compile Include="DTO\Ebet\EbetApiConfig.cs" />
@@ -118,6 +117,9 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DTO\Betsoft\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
