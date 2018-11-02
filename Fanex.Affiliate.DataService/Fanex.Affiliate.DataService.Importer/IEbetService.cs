@@ -5,6 +5,12 @@ namespace Fanex.Affiliate.DataService.Importer
 {
     public interface IEbetService
     {
-        string GetJsonData(EbetApiConfig apiConfig, EbetParam param);
+        string GetJsonData(EbetParam param);
+
+        EbetSummary ConvertDataFromJson(string jsonData);
+
+        string ConvertToXml(EbetSummary summaryData, EbetParam param);
+
+        void Import(string xmlData);
     }
 }

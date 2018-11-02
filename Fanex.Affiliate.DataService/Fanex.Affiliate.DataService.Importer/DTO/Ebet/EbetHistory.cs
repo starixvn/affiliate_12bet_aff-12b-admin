@@ -1,0 +1,16 @@
+﻿namespace Fanex.Affiliate.DataService.Importer.DTO.Ebet
+{
+    public class EbetHistory
+    {
+        public string BetHistoryId { get; set; }
+
+        public string UserName { get; set; }
+
+        public decimal Bet { get; set; }
+
+        public decimal Payout { get; set; }
+
+        public long PayoutUnixTime { get; set; }
+
+    }
+}

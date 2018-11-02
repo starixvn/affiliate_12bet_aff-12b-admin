@@ -16,7 +16,7 @@ namespace Fanex.Affiliate.DataService.ConsoleHostService
         {
             DbSettingProviderManager.Current.Start();
 
-            RunBetsoftJob();
+            //RunBetsoftJob();
             Console.ReadLine();
         }
 
@@ -59,7 +59,7 @@ namespace Fanex.Affiliate.DataService.ConsoleHostService
                 EndTime = new DateTime(2018, 10, 10, 10, 10, 10)
             };
 
-            var jsonData = ebetService.GetJsonData(configList[0], param);
+            var jsonData = ebetService.GetJsonData(param);
 
             Console.WriteLine(jsonData);
             Console.WriteLine("Done!!!");

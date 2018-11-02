@@ -44,11 +44,15 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
                     {
                         UserName = txtUserName.Text,
                         StartTime = startDatePicker.Value,
-                        EndTime = endDatePicker.Value
+                        EndTime = endDatePicker.Value,
+                        ChannelId = config.ChannelId,
+                        ApiUrl = config.ApiServerHost,
+                        PrivateKey = config.PrivateKey,
+                        CurrencyId = config.CurrencyID
                     };
 
-                    var jsonData = _ebetService.GetJsonData(config, param);
-                    _logBuilder.AppendLine($"Currency: {config.CurrencyID}, ChanelId: {config.ChannelId}, ApiUrl: {config.ApiServerHost}");
+                    var jsonData = _ebetService.GetJsonData(param);
+                    _logBuilder.AppendLine($"Currency: {param.CurrencyId}, ChanelId: {param.ChannelId}, ApiUrl: {param.ApiUrl}");
                     _logBuilder.AppendLine($"UserName: {param.UserName}, StartTime: {param.StartTime}, EndTime: {param.EndTime}");
                     _logBuilder.AppendLine(jsonData);
                     _logBuilder.AppendLine("------------------------------------------------------");

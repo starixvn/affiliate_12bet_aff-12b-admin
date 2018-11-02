@@ -85,6 +85,8 @@
     <Compile Include="DTO\CasinoDataMetaModel.cs" />
     <Compile Include="DTO\ColumnName.cs" />
     <Compile Include="DTO\Ebet\EbetApiConfig.cs" />
+    <Compile Include="DTO\Ebet\EbetHistory.cs" />
+    <Compile Include="DTO\Ebet\EbetSummary.cs" />
     <Compile Include="DTO\ResultInfo.cs" />
     <Compile Include="EbetService.cs" />
     <Compile Include="Enum\SystemType.cs" />
@@ -97,6 +99,7 @@
     <Compile Include="Repository\BaseRepository.cs" />
     <Compile Include="Repository\IThirdPartyProductRepository.cs" />
     <Compile Include="Repository\ThirdPartyProductRepository.cs" />
+    <Compile Include="Utilities\DateTimeConverter.cs" />
     <Compile Include="Utilities\EbetConfigHelper.cs" />
     <Compile Include="Utilities\IAppSettings.cs" />
     <Compile Include="Repository\ICasinoDataRepository.cs" />
@@ -105,6 +108,7 @@
     <Compile Include="Repository\CasinoDataRepository.cs" />
     <Compile Include="Utilities\AppSettings.cs" />
     <Compile Include="Utilities\IEbetConfigHelper.cs" />
+    <Compile Include="Utilities\EbetParser.cs" />
     <Compile Include="Utilities\RsaHelper.cs" />
   </ItemGroup>
   <ItemGroup>
