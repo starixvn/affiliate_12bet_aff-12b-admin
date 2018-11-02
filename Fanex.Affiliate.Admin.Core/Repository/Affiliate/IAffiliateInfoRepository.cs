@@ -9,5 +9,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
         EntityResult<AffiliateInfo> GetAffiliateList(AffiliateInfoParam param);
 
         ResultInfo ToggleFavorite(FavoriteParam param);
+
+        ResultInfo ChangePassword(PasswordParam param);
     }
 }

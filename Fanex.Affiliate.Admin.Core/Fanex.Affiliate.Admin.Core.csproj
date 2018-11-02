@@ -197,6 +197,7 @@
     <Compile Include="MetaModels\Affiliate\AffiliateInfoParam.cs" />
     <Compile Include="MetaModels\Affiliate\ApproveAffiliateParam.cs" />
     <Compile Include="MetaModels\Affiliate\FavoriteParam.cs" />
+    <Compile Include="MetaModels\Affiliate\PasswordParam.cs" />
     <Compile Include="MetaModels\CommissionGroup\AssignGroupParam.cs" />
     <Compile Include="MetaModels\CommissionGroup\GetCommissionGroupParam.cs" />
     <Compile Include="MetaModels\CommissionGroup\DeleteCommissionGroupParam.cs" />

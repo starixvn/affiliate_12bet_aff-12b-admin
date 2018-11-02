@@ -48,12 +48,19 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
             }
         }
 
-        private static void AssignFavoriteParam(IObjectDb objectDb, FavoriteParam param)
+        public ResultInfo ChangePassword(PasswordParam param)
         {
-            objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
-            objectDb.AddInParameter("AffId", DbType.Int32, param.AffId);
-            objectDb.AddInParameter("IsFavorite", DbType.Boolean, param.IsFavorite);
-            objectDb.AddInParameter("IP", DbType.String, param.Ip);
+            const string SpKey = "Aff_Admin_Affiliate_Password_Upd";
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                AssignPasswordParam(objectDb, param);
+                AssignResultOutputParam(objectDb);
+
+                objectDb.ExecuteNonQuery();
+
+                return GetResultInfo(objectDb);
+            }
         }
 
         private static void AssignAffiliateInfoParam(IObjectDb objectDb, AffiliateInfoParam param)
@@ -93,6 +100,22 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
                 IsFavorite = Convert.ToBoolean(reader["IsFavorite"]),
                 IsClosed = Convert.ToBoolean(reader["IsClosed"])
             };
+        }
+
+        private static void AssignFavoriteParam(IObjectDb objectDb, FavoriteParam param)
+        {
+            objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
+            objectDb.AddInParameter("AffId", DbType.Int32, param.AffId);
+            objectDb.AddInParameter("IsFavorite", DbType.Boolean, param.IsFavorite);
+            objectDb.AddInParameter("IP", DbType.String, param.Ip);
+        }
+
+        private static void AssignPasswordParam(IObjectDb objectDb, PasswordParam param)
+        {
+            objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
+            objectDb.AddInParameter("AffId", DbType.Int32, param.AffId);
+            objectDb.AddInParameter("Password", DbType.String, param.Password);
+            objectDb.AddInParameter("IP", DbType.String, param.Ip);
         }
     }
 }

@@ -10,9 +10,11 @@ using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.Constants;
 using System.Linq;
+using Fanex.Affiliate.Admin.Core.Utilities;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
+    [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class AffiliateInfoController : BaseController
     {
         private readonly IAffiliateInfoRepository _affiliateInfoRepository;
@@ -71,6 +73,25 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             param.Ip = Request.UserHostAddress;
 
             return Json(_affiliateInfoRepository.ToggleFavorite(param));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult ChangePassword (PasswordParam param)
+        {
+            if(ModelState.IsValid)
+            {
+                param.UserId = SessionService.UserId;
+                param.Ip = Request.UserHostAddress;
+                param.Password = CryptographyHelper.Encrypt(param.Password);
+
+                return Json(_affiliateInfoRepository.ChangePassword(param));
+            }
+            return Json(new ResultInfo
+            {
+                Code = Code.GeneralErrorCode,
+                Message = "Change Password failed!"
+            });
         }
     }
 }

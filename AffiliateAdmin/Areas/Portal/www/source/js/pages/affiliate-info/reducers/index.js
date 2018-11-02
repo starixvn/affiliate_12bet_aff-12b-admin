@@ -1,7 +1,7 @@
 ﻿import { combineReducers } from 'redux';
 
 import createReducer from '../../../modules/createReducer';
-import { SET_REPORT_TITLE, SET_PARAM } from '../actions/types';
+import { SET_REPORT_TITLE, SET_PARAM, SET_TOGGLE_MODAL } from '../actions/types';
 
 import { pagingOption } from '../../../reducers/pagingReducer';
 import { isShowLoader } from '../../../reducers/loaderReducer';
@@ -22,11 +22,18 @@ const param = createReducer(null, {
     }
 })
 
+const toggleModal = createReducer(0, {
+    [SET_TOGGLE_MODAL](prevState, action) {
+        return action.data;
+    }
+})
+
 export default combineReducers({
     pagingOption,
     reportTitle,
     param,
     commGroupList,
     languageList,
-    isShowLoader
+    isShowLoader,
+    toggleModal
 });
