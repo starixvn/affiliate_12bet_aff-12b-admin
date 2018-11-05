@@ -49,19 +49,19 @@ export const resource = {
     SortBy: 'Sort By',
     AZ: 'A-Z',
     Apostrophe: "'",
-    NA: 'N/A'
-}
-
-export const changePasswordText = {
+    NA: 'N/A',
     ChangePassword: 'Change Password',
-    Password: 'Password: ',
-    ConfirmPassword: 'Confirm Password: ',
+    Password: 'Password',
+    ConfirmPassword: 'Confirm Password',
     Submit: "Submit",
     Cancel: "Cancel",
     RequiredPassword: "New Password is required!",
     RequiredConfirmPassword: "Confirm Password is required!",
     ChangePasswordSuccess: "Change password successfully!",
-    RegexCheckPassword: "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})",
-    PasswordErrorMessage: 'The password must contain least a lowercase, an uppercase, a number, a special character and 8 characters or longer!',
+    PasswordErrorMessage: 'Password must have at least 6 charecters, including at least 2 letters and at least 2 digits.',
     ConfirmPasswordErrorMessage: 'Confirm Password is not correct!'
+}
+
+export const regExp = {
+    CheckPassword: "^(?=.*\d+.*\d+)(?=.*[a-zA-Z].*[a-zA-Z]).{6,}$"
 }

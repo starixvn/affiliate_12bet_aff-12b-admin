@@ -79,13 +79,21 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [ValidateAntiForgeryHeader]
         public ActionResult ChangePassword (PasswordParam param)
         {
-            if(ModelState.IsValid)
+            if (param.AffId != 0)
             {
-                param.UserId = SessionService.UserId;
-                param.Ip = Request.UserHostAddress;
-                param.Password = CryptographyHelper.Encrypt(param.Password);
+                if (ModelState.IsValid)
+                {
+                    param.Password = CryptographyHelper.Encrypt(param.Password);
+                    param.ConfirmPassword = CryptographyHelper.Encrypt(param.ConfirmPassword);
 
-                return Json(_affiliateInfoRepository.ChangePassword(param));
+                    if(param.Password == param.ConfirmPassword)
+                    {
+                        param.UserId = SessionService.UserId;
+                        param.Ip = Request.UserHostAddress;
+
+                        return Json(_affiliateInfoRepository.ChangePassword(param));
+                    }
+                }
             }
             return Json(new ResultInfo
             {

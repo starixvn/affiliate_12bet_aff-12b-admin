@@ -1,4 +1,4 @@
-﻿import { SET_REPORT_TITLE, SET_PARAM, SET_TOGGLE_MODAL } from './types';
+﻿import { SET_REPORT_TITLE, SET_PARAM, SET_SHOW_POPUP, SET_AFFID } from './types';
 import { setPagingOption } from '../../../actions/pagingAction';
 
 export { setPagingOption };
@@ -17,9 +17,16 @@ export const setParam = (data) => {
     }
 }
 
-export const setToggleModal = (data) => {
+export const setShowPopup = (data) => {
     return {
-        type: SET_TOGGLE_MODAL,
+        type: SET_SHOW_POPUP,
+        data
+    }
+}
+
+export const setAffId = (data) => {
+    return {
+        type: SET_AFFID,
         data
     }
 }

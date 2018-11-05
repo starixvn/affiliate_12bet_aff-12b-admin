@@ -14,7 +14,16 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Affiliate
         public int AffId { get; set; }
 
         [Required]
+        [MinLength(6)]
+        [DataType(DataType.Password)]
+        [RegularExpression("^(?=.*\\d+.*\\d+)(?=.*[a-zA-Z].*[a-zA-Z]).{6,}$")]
         public string Password { get; set; }
+
+        [Required]
+        [MinLength(6)]
+        [DataType(DataType.Password)]
+        [RegularExpression("^(?=.*\\d+.*\\d+)(?=.*[a-zA-Z].*[a-zA-Z]).{6,}$")]
+        public string ConfirmPassword { get; set; }
 
         public string Ip { get; set; }
     }

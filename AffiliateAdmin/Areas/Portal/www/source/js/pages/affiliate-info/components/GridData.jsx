@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
 import { headerText, resource } from '../modules/constants';
-import { setPagingOption, setParam, setToggleModal } from '../actions';
+import { setPagingOption, setParam, setShowPopup, setAffId } from '../actions';
 import { toggleLoader } from '../../../actions/loaderAction';
 import { post } from '../../../modules/ajaxRequest';
 import { format, formatDecimal } from '../../../modules/numberFormat';
@@ -113,7 +113,7 @@ export class GridData extends Component {
                 <Cell className="text-right" title={member}>{member}</Cell>
                 <Cell className="text-center" title="Change Password">
                     {
-                        isApproved && (<button className="btn btn-link" onClick={() => this.props.setToggleModal({ isToggleModal: true, AffId: dataItem.AffId })}>
+                        isApproved && (<button className="btn btn-link" onClick={() => this.handleChangePassword(dataItem.AffId)}>
                             <span className="oi oi-pencil text-secondary"></span>
                         </button>)
                     }
@@ -148,6 +148,11 @@ export class GridData extends Component {
                 alert(response.data.Message);
             }
         }
+    }
+
+    handleChangePassword = (affId) => {
+        this.props.setShowPopup(true);
+        this.props.setAffId(affId);
     }
 
     handlePaging = (index, size) => {
@@ -187,7 +192,7 @@ function mapStateToProps({ pagingOption, languageList, param }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setPagingOption, toggleLoader, setToggleModal }, dispatch);
+    return bindActionCreators({ setPagingOption, toggleLoader, setShowPopup, setAffId }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GridData);

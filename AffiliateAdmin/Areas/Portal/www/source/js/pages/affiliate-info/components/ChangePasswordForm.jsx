@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Col, Button, Form, FormGroup, Label, Input, FormFeedback, Modal, ModalHeader, ModalBody } from 'reactstrap';
-import { changePasswordText } from '../modules/constants';
-import { setToggleModal } from '../actions';
+import { resource, regExp } from '../modules/constants';
+import { setShowPopup } from '../actions';
 import { toggleLoader } from '../../../actions/loaderAction';
 import { post } from '../../../modules/ajaxRequest';
 
@@ -22,10 +22,11 @@ export class ChangePasswordForm extends Component {
         this.setState({ [event.target.name]: event.target.value })
     }
 
-    handleChangePassword = (affId, password) => {
+    handleChangePassword = (affId, password, confirmPassword) => {
         const param = {
             AffId: affId,
-            Password: password
+            Password: password,
+            ConfirmPassword: confirmPassword
         }
 
         this.saveChangePassword(param)
@@ -39,11 +40,10 @@ export class ChangePasswordForm extends Component {
 
         if (response) {
             if (response.data.IsSuccessful) {
-                alert(changePasswordText.ChangePasswordSuccess);
-                this.props.setToggleModal({
-                    isToggleModal: false,
-                    AffId: 0
-                });
+                alert(resource.ChangePasswordSuccess);
+
+                this.props.setShowPopup(false);
+
                 this.setState({
                     password: '',
                     confirmPassword: ''
@@ -60,15 +60,15 @@ export class ChangePasswordForm extends Component {
     _validatePassword(password) {
         const result = {
             isValid: false,
-            message: changePasswordText.RequiredPassword
+            message: resource.RequiredPassword
         }
 
         if (password) {
-            const regexCheckPassword = new RegExp(changePasswordText.RegexCheckPassword);
+            const regexCheckPassword = new RegExp(regExp.CheckPassword);
             const isValid = regexCheckPassword.test(password);
 
             result.isValid = isValid;
-            result.message = isValid ? "" : changePasswordText.PasswordErrorMessage;
+            result.message = isValid ? "" : resource.PasswordErrorMessage;
         }
 
         return result;
@@ -77,21 +77,21 @@ export class ChangePasswordForm extends Component {
     _validateConfirmPassword(password, confirmPassword) {
         const result = {
             isValid: false,
-            message: changePasswordText.RequiredConfirmPassword
+            message: resource.RequiredConfirmPassword
         }
 
         if (confirmPassword) {
             const isValid = confirmPassword == password;
 
             result.isValid = isValid;
-            result.message = isValid ? "" : changePasswordText.ConfirmPasswordErrorMessage;
+            result.message = isValid ? "" : resource.ConfirmPasswordErrorMessage;
         }
 
         return result;
     }
 
     render() {
-        const { toggleModal } = this.props;
+        const { showPopup, affId } = this.props;
         const { password, confirmPassword } = this.state;
 
         const passwordValidation = this._validatePassword(password);
@@ -99,8 +99,8 @@ export class ChangePasswordForm extends Component {
         const isValid = passwordValidation.isValid && confirmPasswordValidation.isValid;
 
         return (
-            <Modal isOpen={toggleModal.isToggleModal} toggle={() => this.props.setToggleModal(0)} backdrop='static'>
-                <ModalHeader toggle={() => this.props.setToggleModal(0)}><span className="iconpopup"></span>{changePasswordText.ChangePassword}</ModalHeader>
+            <Modal isOpen={showPopup} toggle={() => this.props.setShowPopup(false)} backdrop='static'>
+                <ModalHeader toggle={() => this.props.setShowPopup(false)}><span className="iconpopup"></span>{resource.ChangePassword}</ModalHeader>
                 <ModalBody>
                     <div className="modal-body-wrapper">
                         <div className="change-password-form-container">
@@ -126,8 +126,8 @@ export class ChangePasswordForm extends Component {
                                 </FormGroup>
                             </Form>
 
-                            <Button type="button" color="success" className="mr-3" disabled={!isValid} onClick={() => this.handleChangePassword(toggleModal.AffId, password)}>{changePasswordText.Submit}</Button>
-                            <Button type="button" color="info" onClick={() => this.props.setToggleModal({ isToggleModal: false, AffId: 0 })}>{changePasswordText.Cancel}</Button>
+                            <Button type="button" color="success" className="mr-3" disabled={!isValid} onClick={() => this.handleChangePassword(affId, password, confirmPassword)}>{resource.Submit}</Button>
+                            <Button type="button" color="info" onClick={() => this.props.setShowPopup(false)}>{resource.Cancel}</Button>
                         </div>
                     </div>
                 </ModalBody>
@@ -136,12 +136,12 @@ export class ChangePasswordForm extends Component {
     }
 }
 
-function mapStateToProps({ toggleModal }) {
-    return Object.assign({}, { toggleModal });
+function mapStateToProps({ showPopup, affId }) {
+    return Object.assign({}, { showPopup, affId });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setToggleModal, toggleLoader }, dispatch);
+    return bindActionCreators({ setShowPopup, toggleLoader }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChangePasswordForm);
