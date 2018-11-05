@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Fanex.Affiliate.DataService.Importer;
+using Fanex.Affiliate.DataService.Importer.DTO.Ebet;
 using Fanex.Affiliate.DataService.Importer.MetaModels.Ebet;
 using Fanex.Affiliate.DataService.Importer.Utilities;
 
@@ -13,8 +14,11 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
     public partial class EbetForm : Form
     {
         private readonly IEbetService _ebetService;
-        private IEbetConfigHelper _ebetConfigHelper;
-        private StringBuilder _logBuilder;
+        private readonly IEbetConfigHelper _ebetConfigHelper;
+        private readonly StringBuilder _logBuilder;
+        private readonly StringBuilder _rawDataBuilder;
+        private readonly StringBuilder _convertedXmlBuilder;
+        private readonly IList<string> _convertedXmlList;
 
         private readonly SynchronizationContext synchronizationContext;
 
@@ -23,22 +27,25 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
             InitializeComponent();
 
             _logBuilder = new StringBuilder();
+            _rawDataBuilder = new StringBuilder();
+            _convertedXmlBuilder = new StringBuilder();
             _ebetConfigHelper = new EbetConfigHelper();
             _ebetService = new EbetService();
             synchronizationContext = SynchronizationContext.Current;
+            _convertedXmlList = new List<string>();
         }
 
         private async void btnGetRawData_Click(object sender, EventArgs e)
         {
             ResetResult();
-            richTextResult.Text = "Getting data...";
+            richTextLog.Text = "Getting data...";
 
-            var configList = _ebetConfigHelper.GetConfigList();
-            var taskList = new List<Task>();
-            _logBuilder.AppendLine(DateTime.Now.ToString());
-            foreach (var config in configList)
+            try
             {
-                taskList.Add(Task.Run(() =>
+                var configList = _ebetConfigHelper.GetConfigList();
+                var taskList = new List<Task<IEnumerable<EbetApiResult>>>();
+                _logBuilder.AppendLine(DateTime.Now.ToString());
+                foreach (var config in configList)
                 {
                     var param = new EbetParam
                     {
@@ -48,36 +55,70 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
                         ChannelId = config.ChannelId,
                         ApiUrl = config.ApiServerHost,
                         PrivateKey = config.PrivateKey,
-                        CurrencyId = config.CurrencyID
+                        CurrencyId = config.CurrencyID,
+                        PageNumber = Convert.ToInt32(txtPageNumber.Text),
+                        PageSize = Convert.ToInt32(txtPageSize.Text),
                     };
 
-                    var jsonData = _ebetService.GetRawData(param);
-                    _logBuilder.AppendLine($"Currency: {param.CurrencyId}, ChanelId: {param.ChannelId}, ApiUrl: {param.ApiUrl}");
-                    _logBuilder.AppendLine($"UserName: {param.UserName}, StartTime: {param.StartTime}, EndTime: {param.EndTime}");
-                    _logBuilder.AppendLine(jsonData);
-                    _logBuilder.AppendLine("------------------------------------------------------");
-                    _logBuilder.AppendLine();
-                }));
+                    taskList.Add(_ebetService.GetResultDataList(param));
+                }
+
+                var resultList = await Task.WhenAll(taskList);
+                foreach (var result in resultList)
+                {
+                    foreach (var resultItem in result)
+                    {
+                        var apiParam = resultItem.Param;
+                        _rawDataBuilder.AppendLine($"Currency: {apiParam.CurrencyId}, ChanelId: {apiParam.ChannelId}, ApiUrl: {apiParam.ApiUrl}");
+                        _rawDataBuilder.AppendLine($"UserName: {apiParam.UserName}, StartTime: {apiParam.StartTime}, EndTime: {apiParam.EndTime}");
+                        _rawDataBuilder.AppendLine(resultItem.JsonData);
+                        _rawDataBuilder.AppendLine("------------------------------------------------------");
+                        _rawDataBuilder.AppendLine();
+
+                        var ebetSummary = EbetParser.FromJson(resultItem.JsonData);
+                        var xml = _ebetService.ConvertToXml(ebetSummary, apiParam);
+                        _convertedXmlList.Add(xml);
+
+                        _convertedXmlBuilder.AppendLine(xml);
+                        _convertedXmlBuilder.AppendLine("------------------------------------------------------");
+                        _convertedXmlBuilder.AppendLine();
+                    }
+                }
+
+                _logBuilder.AppendLine(DateTime.Now.ToString());
             }
-
-            await Task.WhenAll(taskList);
-            _logBuilder.AppendLine(DateTime.Now.ToString());
-
-            synchronizationContext.Post(new SendOrPostCallback((state) =>
+            catch (Exception ex)
             {
-                DisplayResult();
-            }), null);
+                _logBuilder.AppendLine(ex.Message);
+                _logBuilder.AppendLine(ex.StackTrace);
+                _logBuilder.AppendLine(ex.Source);
+            }
+            finally
+            {
+                synchronizationContext.Post(new SendOrPostCallback((state) =>
+                {
+                    DisplayResult();
+                }), null);
+            }
         }
 
         private void ResetResult()
         {
             _logBuilder.Clear();
-            richTextResult.Clear();
+            _rawDataBuilder.Clear();
+            _convertedXmlBuilder.Clear();
+            richTextLog.Clear();
+            richTextRawData.Clear();
+            richTextConvertedXml.Clear();
+
+            _convertedXmlList.Clear();
         }
 
         private void DisplayResult()
         {
-            richTextResult.Text = _logBuilder.ToString();
+            richTextLog.Text = _logBuilder.ToString();
+            richTextRawData.Text = _rawDataBuilder.ToString();
+            richTextConvertedXml.Text = _convertedXmlBuilder.ToString();
         }
     }
 }

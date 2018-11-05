@@ -15,6 +15,6 @@ namespace Fanex.Affiliate.DataService.Importer
 
         void Import(string xmlData);
 
-        void Import(EbetParam param);
+        Task Import(EbetParam param);
     }
 }

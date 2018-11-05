@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Fanex.Affiliate.DataService.Importer.DTO.Ebet;
 using Newtonsoft.Json.Linq;
@@ -14,14 +15,14 @@ namespace Fanex.Affiliate.DataService.Importer.Utilities
             return new EbetSummary
             {
                 ResultInfo = GetEbetResultInfo(jsonObject),
-                BetHistories = jsonObject["betHistories"].Children().Select(x => new EbetHistory
+                BetHistories = jsonObject["betHistories"] != null ? jsonObject["betHistories"].Children().Select(x => new EbetHistory
                 {
                     BetHistoryId = Convert.ToString(x["betHistoryId"]),
                     UserName = Convert.ToString(x["username"]),
                     Bet = Convert.ToDecimal(x["bet"]),
                     PayoutUnixTime = Convert.ToInt64(x["payoutTime"]),
                     Payout = Convert.ToDecimal(x["payout"])
-                })
+                }) : new List<EbetHistory>()
             };
         }
 
