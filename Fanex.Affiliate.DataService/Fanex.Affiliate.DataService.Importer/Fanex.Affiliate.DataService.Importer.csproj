@@ -83,12 +83,15 @@
   <ItemGroup>
     <Compile Include="BetsoftService.cs" />
     <Compile Include="Constants\Products.cs" />
+    <Compile Include="Constants\TimeZoneId.cs" />
     <Compile Include="DataImportingRunner.cs" />
     <Compile Include="CasinoDataService.cs" />
     <Compile Include="DTO\CasinoDataMetaModel.cs" />
     <Compile Include="DTO\ColumnName.cs" />
     <Compile Include="DTO\Ebet\EbetApiConfig.cs" />
+    <Compile Include="DTO\Ebet\EbetApiResult.cs" />
     <Compile Include="DTO\Ebet\EbetHistory.cs" />
+    <Compile Include="DTO\Ebet\EbetResultInfo.cs" />
     <Compile Include="DTO\Ebet\EbetSummary.cs" />
     <Compile Include="DTO\ResultInfo.cs" />
     <Compile Include="EbetService.cs" />

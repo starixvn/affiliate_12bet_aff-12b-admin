@@ -51,7 +51,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
                         CurrencyId = config.CurrencyID
                     };
 
-                    var jsonData = _ebetService.GetJsonData(param);
+                    var jsonData = _ebetService.GetRawData(param);
                     _logBuilder.AppendLine($"Currency: {param.CurrencyId}, ChanelId: {param.ChannelId}, ApiUrl: {param.ApiUrl}");
                     _logBuilder.AppendLine($"UserName: {param.UserName}, StartTime: {param.StartTime}, EndTime: {param.EndTime}");
                     _logBuilder.AppendLine(jsonData);

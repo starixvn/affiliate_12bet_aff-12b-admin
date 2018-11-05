@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Globalization;
 using Fanex.Affiliate.DataService.Importer;
+using Fanex.Affiliate.DataService.Importer.Constants;
 using Fanex.Affiliate.DataService.Importer.MetaModels.Betsoft;
 using Fanex.Affiliate.DataService.Importer.MetaModels.Ebet;
 using Fanex.Affiliate.DataService.Importer.Utilities;
@@ -17,9 +17,14 @@ namespace Fanex.Affiliate.DataService.ConsoleHostService
         {
             DbSettingProviderManager.Current.Start();
             var appSetting = new AppSettings();
-            var dataTime = DateTime.ParseExact(appSetting.GetValue("BetsoftStartTime"), "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal);
-            RunBetsoftJob();
-            Console.WriteLine(dataTime.ToString());
+            var timeStamp = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds();
+            var dateTime = DateTimeOffset.FromUnixTimeSeconds(1540823175).DateTime;
+            var convertedTime = DateTimeConverter.ConvertTime(dateTime, TimeZoneId.GmtPlus8, TimeZoneId.Gmt4);
+
+            Console.WriteLine(DateTime.UtcNow.ToString());
+            Console.WriteLine(timeStamp.ToString());
+            Console.WriteLine(dateTime.ToString());
+            Console.WriteLine(convertedTime.ToString());
             Console.ReadLine();
         }
 
@@ -62,7 +67,7 @@ namespace Fanex.Affiliate.DataService.ConsoleHostService
                 EndTime = new DateTime(2018, 10, 10, 10, 10, 10)
             };
 
-            var jsonData = ebetService.GetJsonData(param);
+            var jsonData = ebetService.GetRawData(param);
 
             Console.WriteLine(jsonData);
             Console.WriteLine("Done!!!");

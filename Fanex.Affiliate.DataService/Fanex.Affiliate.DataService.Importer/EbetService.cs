@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Net;
 using System.Text;
+using System.Threading.Tasks;
 using Fanex.Affiliate.DataService.Importer.Constants;
 using Fanex.Affiliate.DataService.Importer.DTO.Ebet;
+using Fanex.Affiliate.DataService.Importer.Exceptions;
 using Fanex.Affiliate.DataService.Importer.MetaModels.Ebet;
 using Fanex.Affiliate.DataService.Importer.Repository;
 using Fanex.Affiliate.DataService.Importer.Utilities;
@@ -21,48 +25,146 @@ namespace Fanex.Affiliate.DataService.Importer
             _thirdPartyProductRepository = thirdPartyProductRepository ?? new ThirdPartyProductRepository();
         }
 
-        public string GetJsonData(EbetParam param)
+        public async Task<string> GetRawData(EbetParam param)
         {
-            param.TimeStamp = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds();
-            param.Signature = RsaHelper.SignAndHash($"{param.UserName}{param.TimeStamp}", param.PrivateKey);
             var url = $"{Uri.UriSchemeHttp}{Uri.SchemeDelimiter}{param.ApiUrl}/api/userbethistory";
+            var formBody = BuildFormBody(param);
 
             using (var webClient = new WebClient())
             {
-                webClient.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
-                webClient.QueryString.Add("startTimeStr", param.StartTime.ToString(_appSetting.EbetFormatDateTime));
-                webClient.QueryString.Add("endTimeStr", param.EndTime.ToString(_appSetting.EbetFormatDateTime));
-                webClient.QueryString.Add("channelId", param.ChannelId);
-                webClient.QueryString.Add("subChannelId", param.SubChanelId.ToString());
-                webClient.QueryString.Add("pageNum", param.PageNumber.ToString());
-                webClient.QueryString.Add("pageSize", param.PageSize.ToString());
-                webClient.QueryString.Add("timestamp", param.TimeStamp.ToString());
-                webClient.QueryString.Add("signature", param.Signature);
-                webClient.QueryString.Add("username", param.UserName);
-
-                var data = webClient.UploadValues(url, "POST", webClient.QueryString);
-
-                return Encoding.UTF8.GetString(data);
+                return Encoding.UTF8.GetString(await webClient.UploadValuesTaskAsync(url, "POST", formBody));
             }
         }
 
-        public EbetSummary ConvertDataFromJson(string jsonData)
+        public async Task<IEnumerable<EbetApiResult>> GetResultDataList(EbetParam param)
         {
-            var result = EbetParser.FromJson(jsonData);
+            var result = new List<EbetApiResult>();
+            var taskList = new List<Task<EbetApiResult>>();
+            var firstJsonData = await GetRawData(param);
+            var resultInfo = EbetParser.GetEbetResultInfo(firstJsonData);
+
+            if (resultInfo.Status != 200)
+            {
+                throw new ThirdPartyProductException($"ProductId: {Products.EbetProductId}\n{firstJsonData}");
+            }
+
+            result.Add(new EbetApiResult { Param = param, JsonData = firstJsonData });
+
+            if (resultInfo.Count > param.PageSize)
+            {
+                var totalPage = (resultInfo.Count / param.PageSize) + (resultInfo.Count % param.PageSize == 0 ? 0 : 1);
+                for (var pageIndex = 2; pageIndex <= totalPage; pageIndex++)
+                {
+                    var paramByBatch = BuildParamByPageNumber(param, pageIndex);
+                    taskList.Add(Task.Run(async () => new EbetApiResult
+                    {
+                        Param = paramByBatch,
+                        JsonData = await GetRawData(paramByBatch)
+                    }));
+                }
+
+                var taskResultList = await Task.WhenAll(taskList);
+                foreach (var resultByBatch in taskResultList)
+                {
+                    result.Add(resultByBatch);
+                }
+            }
 
             return result;
         }
 
         public string ConvertToXml(EbetSummary summaryData, EbetParam param)
         {
-            var builder = new StringBuilder();
-
-            return builder.ToString();
+            return "<Root>" + BuildRequestXml(param) + BuildResponseXml(summaryData) + "</Root>";
         }
 
         public void Import(string xmlData)
         {
             _thirdPartyProductRepository.ImportData(Products.EbetProductId, xmlData);
+        }
+
+        public void Import(EbetParam param)
+        {
+            var resultDataList = GetResultDataList(param);
+
+            foreach (var dataItem in resultDataList.Result)
+            {
+                var ebetSummary = EbetParser.FromJson(dataItem.JsonData);
+                var xml = ConvertToXml(ebetSummary, dataItem.Param);
+                Import(xml);
+            }
+        }
+
+        private NameValueCollection BuildFormBody(EbetParam param)
+        {
+            param.TimeStamp = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds();
+            param.Signature = RsaHelper.SignAndHash($"{param.UserName}{param.TimeStamp}", param.PrivateKey);
+
+            return new NameValueCollection
+            {
+                { "Content-Type", "application/x-www-form-urlencoded" },
+                { "startTimeStr", param.StartTime.ToString(_appSetting.EbetFormatDateTime) },
+                { "endTimeStr", param.EndTime.ToString(_appSetting.EbetFormatDateTime) },
+                { "channelId", param.ChannelId },
+                { "subChannelId", param.SubChanelId.ToString() },
+                { "pageNum", param.PageNumber.ToString() },
+                { "pageSize", param.PageSize.ToString() },
+                { "timestamp", param.TimeStamp.ToString() },
+                { "signature", param.Signature },
+                { "username", param.UserName }
+            };
+        }
+
+        private static EbetParam BuildParamByPageNumber(EbetParam param, int pageNumber)
+        {
+            return new EbetParam
+            {
+                ApiUrl = param.ApiUrl,
+                ChannelId = param.ChannelId,
+                SubChanelId = param.SubChanelId,
+                CurrencyId = param.CurrencyId,
+                PageSize = param.PageSize,
+                PrivateKey = param.PrivateKey,
+                UserName = param.UserName,
+                StartTime = param.StartTime,
+                EndTime = param.EndTime,
+                PageNumber = pageNumber
+            };
+        }
+
+        private static string BuildRequestXml(EbetParam param)
+        {
+            var attributes = "currencyid=\"" + param.CurrencyId + "\" " +
+                            "username=\"" + param.UserName + "\" " +
+                            "starttime=\"" + param.StartTime.ToString() + "\" " +
+                            "endtime=\"" + param.EndTime.ToString() + "\" " +
+                            "pagenumber=\"" + param.PageNumber + "\" " +
+                            "pagesize=\"" + param.PageSize + "\" " +
+                            "timestamp=\"" + param.TimeStamp + "\" " +
+                            "signature=\"" + param.Signature + "\" ";
+
+            return "<Request>" + $"<Param {attributes} />" + "</Request>";
+        }
+
+        private static string BuildResponseXml(EbetSummary ebetSummary)
+        {
+            var builder = new StringBuilder();
+            var resultInfo = ebetSummary.ResultInfo;
+            builder.AppendLine("<Response>");
+            builder.AppendLine($"<Result count=\"{resultInfo.Count}\" remainingvisits=\"{resultInfo.RemainingVisits}\" status=\"{resultInfo.Status}\" />");
+
+            builder.AppendLine("<BetHistoryList>");
+            foreach (var item in ebetSummary.BetHistories)
+            {
+                var payoutTime = DateTimeOffset.FromUnixTimeSeconds(item.PayoutUnixTime).DateTime;
+                var convertedTime = DateTimeConverter.ConvertTime(payoutTime, TimeZoneId.GmtPlus8, TimeZoneId.Gmt4);
+                builder.AppendLine($"<Bethistory id=\"{item.BetHistoryId}\" username=\"{item.UserName}\" bet=\"{item.Bet}\" payout=\"{item.Payout}\" payouttime=\"{convertedTime.ToString()}\" />");
+            }
+            builder.AppendLine("</BetHistoryList>");
+
+            builder.AppendLine("</Response>");
+
+            return builder.ToString();
         }
     }
 }
