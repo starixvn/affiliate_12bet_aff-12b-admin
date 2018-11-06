@@ -41,7 +41,7 @@
 
         public IList<string> SupportedProductList => GetValue("SupportedProductList").Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
 
-        public string BetsoftTimeTrackerFolder => GetValue("TimeTrackerFolder");
+        public string BetsoftTrackerFolder => GetValue("BetsoftTrackerFolder");
 
         public int BetsoftIntervalTime => Convert.ToInt32(GetValue("BetsoftIntervalTime"));
 

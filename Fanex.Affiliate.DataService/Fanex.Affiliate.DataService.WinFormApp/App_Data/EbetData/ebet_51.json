@@ -1,5 +1,5 @@
 ﻿{
-  "count": 158,
+  "count": 116,
   "betHistories": [
     {
       "gameType": 1,
@@ -7,969 +7,18 @@
       "betMap": [
         {
           "betType": 80,
-          "betMoney": 200
-        }
-      ],
-      "bet": 200,
-      "roundNo": "B16-181029222525",
-      "payout": 390,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 19, 30 ],
-      "bankerCards": [ 6, 51 ],
-      "createTime": 1540823130,
-      "payoutTime": 1540823152,
-      "betHistoryId": "5bd7185a755772a47446d6dd",
-      "validBet": 200,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
           "betMoney": 100
         }
       ],
       "bet": 100,
-      "roundNo": "B21-181029222514",
-      "payout": 0,
-      "judgeResult": [ 60 ],
-      "playerCards": [ 19, 1, 29 ],
-      "bankerCards": [ 23, 2, 46 ],
-      "createTime": 1540823121,
-      "payoutTime": 1540823156,
-      "betHistoryId": "5bd71851755772a474468a1e",
-      "validBet": 100,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 200
-        }
-      ],
-      "bet": 200,
-      "roundNo": "B2-181029222531",
-      "payout": 390,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 42, 13 ],
-      "bankerCards": [ 8, 20 ],
-      "createTime": 1540823144,
-      "payoutTime": 1540823158,
-      "betHistoryId": "5bd71868755772a4744736af",
-      "validBet": 200,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B11-181029222516",
-      "payout": 195,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 24, 10, 14 ],
-      "bankerCards": [ 51, 34, 45 ],
-      "createTime": 1540823139,
-      "payoutTime": 1540823159,
-      "betHistoryId": "5bd71863755772a47447177c",
-      "validBet": 100,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B18-181029222553",
-      "payout": 100,
-      "judgeResult": [ 68, 66 ],
-      "playerCards": [ 41, 28 ],
-      "bankerCards": [ 14, 3 ],
-      "createTime": 1540823162,
-      "payoutTime": 1540823178,
-      "betHistoryId": "5bd7187a755772a47447d7f6",
-      "validBet": 0,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B16-181029222559",
-      "payout": 0,
-      "judgeResult": [ 60 ],
-      "playerCards": [ 10, 26, 17 ],
-      "bankerCards": [ 32, 14, 48 ],
-      "createTime": 1540823171,
-      "payoutTime": 1540823190,
-      "betHistoryId": "5bd71883755772a474481b11",
-      "validBet": 100,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B2-181029222605",
-      "payout": 0,
-      "judgeResult": [ 60 ],
-      "playerCards": [ 4, 5, 15 ],
-      "bankerCards": [ 29, 43, 27 ],
-      "createTime": 1540823177,
-      "payoutTime": 1540823196,
-      "betHistoryId": "5bd71889755772a474485343",
-      "validBet": 100,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 200
-        }
-      ],
-      "bet": 200,
-      "roundNo": "B21-181029222603",
-      "payout": 0,
-      "judgeResult": [ 60 ],
-      "playerCards": [ 29, 8, 33 ],
-      "bankerCards": [ 36, 51, 10 ],
-      "createTime": 1540823172,
-      "payoutTime": 1540823205,
-      "betHistoryId": "5bd71884755772a474482454",
-      "validBet": 200,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B18-181029222625",
-      "payout": 0,
-      "judgeResult": [ 60 ],
-      "playerCards": [ 40, 28 ],
-      "bankerCards": [ 31, 2, 24 ],
-      "createTime": 1540823199,
-      "payoutTime": 1540823214,
-      "betHistoryId": "5bd7189f755772a47449120c",
-      "validBet": 100,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 200
-        }
-      ],
-      "bet": 200,
-      "roundNo": "B16-181029222636",
-      "payout": 0,
-      "judgeResult": [ 60 ],
-      "playerCards": [ 6, 20 ],
-      "bankerCards": [ 17, 9 ],
-      "createTime": 1540823207,
-      "payoutTime": 1540823224,
-      "betHistoryId": "5bd718a7755772a4744965b9",
-      "validBet": 200,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B2-181029222643",
-      "payout": 0,
-      "judgeResult": [ 60 ],
-      "playerCards": [ 24, 12, 44 ],
-      "bankerCards": [ 17, 37, 3 ],
-      "createTime": 1540823215,
-      "payoutTime": 1540823235,
-      "betHistoryId": "5bd718af755772a47449a7cb",
-      "validBet": 100,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B11-181029222649",
-      "payout": 0,
-      "judgeResult": [ 60 ],
-      "playerCards": [ 35, 50, 5 ],
-      "bankerCards": [ 33, 13, 24 ],
-      "createTime": 1540823231,
-      "payoutTime": 1540823251,
-      "betHistoryId": "5bd718bf755772a4744a126b",
-      "validBet": 100,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 200
-        }
-      ],
-      "bet": 200,
-      "roundNo": "B18-181029222700",
-      "payout": 390,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 7, 42, 5 ],
-      "bankerCards": [ 26, 35, 2 ],
-      "createTime": 1540823227,
-      "payoutTime": 1540823252,
-      "betHistoryId": "5bd718bb755772a47449fa3a",
-      "validBet": 200,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 200
-        }
-      ],
-      "bet": 200,
-      "roundNo": "B21-181029222653",
-      "payout": 0,
-      "judgeResult": [ 60 ],
-      "playerCards": [ 32, 40, 2 ],
-      "bankerCards": [ 12, 26, 7 ],
-      "createTime": 1540823219,
-      "payoutTime": 1540823255,
-      "betHistoryId": "5bd718b3755772a47449c490",
-      "validBet": 200,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 200
-        }
-      ],
-      "bet": 200,
-      "roundNo": "B16-181029222711",
-      "payout": 390,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 22, 25, 14 ],
-      "bankerCards": [ 27, 36, 40 ],
-      "createTime": 1540823237,
-      "payoutTime": 1540823264,
-      "betHistoryId": "5bd718c5755772a4744a4de1",
-      "validBet": 200,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 200
-        }
-      ],
-      "bet": 200,
-      "roundNo": "B2-181029222722",
-      "payout": 390,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 5, 4, 7 ],
-      "bankerCards": [ 46, 40, 17 ],
-      "createTime": 1540823253,
-      "payoutTime": 1540823273,
-      "betHistoryId": "5bd718d5755772a4744acf40",
-      "validBet": 200,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B18-181029222739",
-      "payout": 0,
-      "judgeResult": [ 60 ],
-      "playerCards": [ 11, 7 ],
-      "bankerCards": [ 11, 14 ],
-      "createTime": 1540823273,
-      "payoutTime": 1540823284,
-      "betHistoryId": "5bd718e9755772a4744b71ca",
-      "validBet": 100,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 300
-        }
-      ],
-      "bet": 300,
-      "roundNo": "B21-181029222742",
-      "payout": 0,
-      "judgeResult": [ 60 ],
-      "playerCards": [ 47, 6 ],
-      "bankerCards": [ 22, 5 ],
-      "createTime": 1540823279,
-      "payoutTime": 1540823299,
-      "betHistoryId": "5bd718ef755772a4744ba0bd",
-      "validBet": 300,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 200
-        }
-      ],
-      "bet": 200,
-      "roundNo": "B11-181029222738",
-      "payout": 390,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 13, 34, 8 ],
-      "bankerCards": [ 24, 40, 27 ],
-      "createTime": 1540823270,
-      "payoutTime": 1540823301,
-      "betHistoryId": "5bd718e6755772a4744b59e6",
-      "validBet": 200,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B16-181029222750",
-      "payout": 195,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 45, 16, 47 ],
-      "bankerCards": [ 33, 30 ],
-      "createTime": 1540823282,
-      "payoutTime": 1540823304,
-      "betHistoryId": "5bd718f2755772a4744bbfc3",
-      "validBet": 100,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B2-181029222801",
-      "payout": 195,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 11, 10 ],
-      "bankerCards": [ 34, 19 ],
-      "createTime": 1540823295,
-      "payoutTime": 1540823306,
-      "betHistoryId": "5bd718ff755772a4744c3102",
-      "validBet": 100,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B11-181029222828",
-      "payout": 195,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 49, 2 ],
-      "bankerCards": [ 51, 6 ],
-      "createTime": 1540823316,
-      "payoutTime": 1540823345,
-      "betHistoryId": "5bd71914755772a4744cc7ea",
-      "validBet": 100,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 400
-        }
-      ],
-      "bet": 400,
-      "roundNo": "B21-181029222846",
-      "payout": 780,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 25, 49, 10 ],
-      "bankerCards": [ 32, 18 ],
-      "createTime": 1540823338,
-      "payoutTime": 1540823367,
-      "betHistoryId": "5bd7192a755772a4744d7f8d",
-      "validBet": 400,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B21-181029222934",
-      "payout": 195,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 14, 0, 32 ],
-      "bankerCards": [ 4, 23 ],
-      "createTime": 1540823386,
-      "payoutTime": 1540823415,
-      "betHistoryId": "5bd7195a755772a4744f18e5",
-      "validBet": 100,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B16-181029223012",
-      "payout": 195,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 50, 14 ],
-      "bankerCards": [ 50, 19 ],
-      "createTime": 1540823423,
-      "payoutTime": 1540823440,
-      "betHistoryId": "5bd7197f755772a4745046d7",
-      "validBet": 100,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B12-181029223017",
-      "payout": 0,
-      "judgeResult": [ 60 ],
-      "playerCards": [ 4, 14 ],
-      "bankerCards": [ 29, 46 ],
-      "createTime": 1540823437,
-      "payoutTime": 1540823456,
-      "betHistoryId": "5bd7198d755772a47450c775",
-      "validBet": 100,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 200
-        }
-      ],
-      "bet": 200,
-      "roundNo": "B12-181029223103",
-      "payout": 390,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 41, 21, 31 ],
-      "bankerCards": [ 24, 44 ],
-      "createTime": 1540823469,
-      "payoutTime": 1540823506,
-      "betHistoryId": "5bd719ad755772a47451dde3",
-      "validBet": 200,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B16-181029223126",
-      "payout": 195,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 42, 48, 33 ],
-      "bankerCards": [ 23, 35, 3 ],
-      "createTime": 1540823492,
-      "payoutTime": 1540823520,
-      "betHistoryId": "5bd719c4755772a474529455",
-      "validBet": 100,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B11-181029223127",
-      "payout": 0,
-      "judgeResult": [ 60 ],
-      "playerCards": [ 48, 46 ],
-      "bankerCards": [ 39, 2 ],
-      "createTime": 1540823496,
-      "payoutTime": 1540823526,
-      "betHistoryId": "5bd719c8755772a47452b08a",
-      "validBet": 100,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 60,
-          "betMoney": 300
-        },
-        {
-          "betType": 68,
-          "betMoney": 40
-        }
-      ],
-      "bet": 340,
-      "roundNo": "B16-181029223207",
-      "payout": 0,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 7, 15, 21 ],
-      "bankerCards": [ 1, 25 ],
-      "createTime": 1540823538,
-      "payoutTime": 1540823558,
-      "betHistoryId": "5bd719f2755772a474541539",
-      "validBet": 340,
-      "username": "hovu10",
-      "userId": 3948211,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B15-181029223205",
-      "payout": 195,
-      "judgeResult": [ 80, 66 ],
-      "playerCards": [ 16, 3, 6 ],
-      "bankerCards": [ 16, 5, 31 ],
-      "createTime": 1540823534,
-      "payoutTime": 1540823573,
-      "betHistoryId": "5bd719ee755772a47453f9f6",
-      "validBet": 100,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 200
-        }
-      ],
-      "bet": 200,
-      "roundNo": "B11-181029223216",
-      "payout": 0,
-      "judgeResult": [ 60 ],
-      "playerCards": [ 43, 25 ],
-      "bankerCards": [ 5, 20 ],
-      "createTime": 1540823544,
-      "payoutTime": 1540823576,
-      "betHistoryId": "5bd719f8755772a47454452a",
-      "validBet": 200,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 60,
-          "betMoney": 200
-        },
-        {
-          "betType": 68,
-          "betMoney": 60
-        }
-      ],
-      "bet": 260,
-      "roundNo": "B16-181029223245",
-      "payout": 0,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 24, 3, 48 ],
-      "bankerCards": [ 19, 29, 14 ],
-      "createTime": 1540823581,
-      "payoutTime": 1540823599,
-      "betHistoryId": "5bd71a1d755772a4745584b7",
-      "validBet": 260,
-      "username": "hovu10",
-      "userId": 3948211,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B12-181029223251",
-      "payout": 195,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 0, 3 ],
-      "bankerCards": [ 39, 34, 43 ],
-      "createTime": 1540823579,
-      "payoutTime": 1540823612,
-      "betHistoryId": "5bd71a1b755772a474557614",
-      "validBet": 100,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B2-181029223303",
-      "payout": 0,
-      "judgeResult": [ 60 ],
-      "playerCards": [ 36, 3, 15 ],
-      "bankerCards": [ 9, 0, 26 ],
-      "createTime": 1540823588,
-      "payoutTime": 1540823617,
-      "betHistoryId": "5bd71a24755772a47455c8a8",
-      "validBet": 100,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 200
-        }
-      ],
-      "bet": 200,
-      "roundNo": "B11-181029223306",
-      "payout": 0,
-      "judgeResult": [ 60 ],
-      "playerCards": [ 13, 37, 40 ],
-      "bankerCards": [ 9, 39, 34 ],
-      "createTime": 1540823592,
-      "payoutTime": 1540823634,
-      "betHistoryId": "5bd71a28755772a47455f2cf",
-      "validBet": 200,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 120
-        }
-      ],
-      "bet": 120,
-      "roundNo": "B16-181029223327",
-      "payout": 0,
-      "judgeResult": [ 60 ],
-      "playerCards": [ 38, 32 ],
-      "bankerCards": [ 40, 2 ],
-      "createTime": 1540823622,
-      "payoutTime": 1540823635,
-      "betHistoryId": "5bd71a46755772a4745706fa",
-      "validBet": 120,
-      "username": "hovu10",
-      "userId": 3948211,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B2-181029223344",
-      "payout": 195,
-      "judgeResult": [ 80, 66 ],
-      "playerCards": [ 4, 17 ],
-      "bankerCards": [ 46, 36 ],
-      "createTime": 1540823629,
-      "payoutTime": 1540823651,
-      "betHistoryId": "5bd71a4d755772a47457349c",
-      "validBet": 100,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B18-181029223348",
-      "payout": 195,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 33, 42, 7 ],
-      "bankerCards": [ 21, 25, 43 ],
-      "createTime": 1540823640,
-      "payoutTime": 1540823665,
-      "betHistoryId": "5bd71a58755772a474579d13",
-      "validBet": 100,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 80
-        }
-      ],
-      "bet": 80,
-      "roundNo": "B16-181029223403",
-      "payout": 0,
-      "judgeResult": [ 60 ],
-      "playerCards": [ 25, 17 ],
-      "bankerCards": [ 23, 17 ],
-      "createTime": 1540823654,
-      "payoutTime": 1540823670,
-      "betHistoryId": "5bd71a66755772a47457f8f3",
-      "validBet": 80,
-      "username": "hovu10",
-      "userId": 3948211,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 300
-        }
-      ],
-      "bet": 300,
-      "roundNo": "B11-181029223403",
-      "payout": 0,
-      "judgeResult": [ 60 ],
-      "playerCards": [ 45, 47 ],
-      "bankerCards": [ 19, 29 ],
-      "createTime": 1540823649,
-      "payoutTime": 1540823681,
-      "betHistoryId": "5bd71a61755772a47457db33",
-      "validBet": 300,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B16-181029223437",
+      "roundNo": "B12-181105100144",
       "payout": 0,
       "judgeResult": [ 60, 88 ],
-      "playerCards": [ 37, 7 ],
-      "bankerCards": [ 26, 13 ],
-      "createTime": 1540823682,
-      "payoutTime": 1540823705,
-      "betHistoryId": "5bd71a82755772a47458f505",
+      "playerCards": [ 39, 37, 3 ],
+      "bankerCards": [ 26, 13, 30 ],
+      "createTime": 1541383330,
+      "payoutTime": 1541383359,
+      "betHistoryId": "5bdfa4a2755772a47435817c",
       "validBet": 100,
       "username": "quang04",
       "userId": 5749607,
@@ -981,19 +30,19 @@
       "betMap": [
         {
           "betType": 80,
-          "betMoney": 400
+          "betMoney": 200
         }
       ],
-      "bet": 400,
-      "roundNo": "B11-181029223450",
-      "payout": 780,
+      "bet": 200,
+      "roundNo": "B6-181105100215",
+      "payout": 390,
       "judgeResult": [ 80 ],
-      "playerCards": [ 40, 33, 49 ],
-      "bankerCards": [ 0, 21, 17 ],
-      "createTime": 1540823699,
-      "payoutTime": 1540823737,
-      "betHistoryId": "5bd71a93755772a47459810f",
-      "validBet": 400,
+      "playerCards": [ 1, 0, 30 ],
+      "bankerCards": [ 8, 28, 12 ],
+      "createTime": 1541383349,
+      "payoutTime": 1541383374,
+      "betHistoryId": "5bdfa4b5755772a47435ea79",
+      "validBet": 200,
       "username": "quang04",
       "userId": 5749607,
       "platform": 2
@@ -1003,342 +52,66 @@
       "gameName": "baccarat",
       "betMap": [
         {
-          "betType": 60,
+          "betType": 80,
+          "betMoney": 200
+        }
+      ],
+      "bet": 200,
+      "roundNo": "B12-181105100246",
+      "payout": 0,
+      "judgeResult": [ 60 ],
+      "playerCards": [ 20, 23 ],
+      "bankerCards": [ 25, 36 ],
+      "createTime": 1541383373,
+      "payoutTime": 1541383409,
+      "betHistoryId": "5bdfa4cd755772a474365f2e",
+      "validBet": 200,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 100
+        }
+      ],
+      "bet": 100,
+      "roundNo": "B6-181105100347",
+      "payout": 0,
+      "judgeResult": [ 60 ],
+      "playerCards": [ 47, 19 ],
+      "bankerCards": [ 19, 16 ],
+      "createTime": 1541383432,
+      "payoutTime": 1541383458,
+      "betHistoryId": "5bdfa508755772a474379454",
+      "validBet": 100,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
           "betMoney": 300
         }
       ],
       "bet": 300,
-      "roundNo": "B11-181029223450",
-      "payout": 0,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 40, 33, 49 ],
-      "bankerCards": [ 0, 21, 17 ],
-      "createTime": 1540823705,
-      "payoutTime": 1540823738,
-      "betHistoryId": "5bd71a99755772a47459b69b",
-      "validBet": 300,
-      "username": "marco240581",
-      "userId": 1267766,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B16-181029223512",
-      "payout": 195,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 4, 5 ],
-      "bankerCards": [ 46, 23 ],
-      "createTime": 1540823718,
-      "payoutTime": 1540823739,
-      "betHistoryId": "5bd71aa6755772a4745a2ce1",
-      "validBet": 100,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 60,
-          "betMoney": 300
-        }
-      ],
-      "bet": 300,
-      "roundNo": "B2-181029223532",
-      "payout": 0,
-      "judgeResult": [ 80, 88 ],
-      "playerCards": [ 4, 25 ],
-      "bankerCards": [ 3, 16, 33 ],
-      "createTime": 1540823745,
-      "payoutTime": 1540823763,
-      "betHistoryId": "5bd71ac1755772a4745afa3f",
-      "validBet": 300,
-      "username": "marco240581",
-      "userId": 1267766,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 60,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B6-181029223545",
-      "payout": 200,
-      "judgeResult": [ 60 ],
-      "playerCards": [ 19, 35 ],
-      "bankerCards": [ 15, 43 ],
-      "createTime": 1540823759,
-      "payoutTime": 1540823774,
-      "betHistoryId": "5bd71acf755772a4745b641c",
-      "validBet": 100,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B11-181029223547",
-      "payout": 195,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 36, 51, 46 ],
-      "bankerCards": [ 18, 24 ],
-      "createTime": 1540823751,
-      "payoutTime": 1540823790,
-      "betHistoryId": "5bd71ac7755772a4745b1f6b",
-      "validBet": 100,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 60,
-          "betMoney": 320
-        }
-      ],
-      "bet": 320,
-      "roundNo": "B11-181029223547",
-      "payout": 0,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 36, 51, 46 ],
-      "bankerCards": [ 18, 24 ],
-      "createTime": 1540823751,
-      "payoutTime": 1540823790,
-      "betHistoryId": "5bd71ac7755772a4745b20ef",
-      "validBet": 320,
-      "username": "marco240581",
-      "userId": 1267766,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 60,
-          "betMoney": 240
-        }
-      ],
-      "bet": 240,
-      "roundNo": "B16-181029223626",
-      "payout": 0,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 39, 20, 27 ],
-      "bankerCards": [ 33, 15, 29 ],
-      "createTime": 1540823799,
-      "payoutTime": 1540823821,
-      "betHistoryId": "5bd71af7755772a4745cdaf4",
-      "validBet": 240,
-      "username": "marco240581",
-      "userId": 1267766,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B16-181029223626",
-      "payout": 195,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 39, 20, 27 ],
-      "bankerCards": [ 33, 15, 29 ],
-      "createTime": 1540823800,
-      "payoutTime": 1540823821,
-      "betHistoryId": "5bd71af8755772a4745cde41",
-      "validBet": 100,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 60,
-          "betMoney": 200
-        }
-      ],
-      "bet": 200,
-      "roundNo": "B11-181029223638",
-      "payout": 400,
-      "judgeResult": [ 60 ],
-      "playerCards": [ 33, 37 ],
-      "bankerCards": [ 22, 2 ],
-      "createTime": 1540823806,
-      "payoutTime": 1540823837,
-      "betHistoryId": "5bd71afe755772a4745d134e",
-      "validBet": 200,
-      "username": "marco240581",
-      "userId": 1267766,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B21-181029223641",
-      "payout": 195,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 22, 8 ],
-      "bankerCards": [ 47, 7 ],
-      "createTime": 1540823808,
-      "payoutTime": 1540823839,
-      "betHistoryId": "5bd71b00755772a4745d20e4",
-      "validBet": 100,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B15-181029223702",
-      "payout": 195,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 38, 48, 26 ],
-      "bankerCards": [ 16, 9 ],
-      "createTime": 1540823831,
-      "payoutTime": 1540823865,
-      "betHistoryId": "5bd71b17755772a4745dd242",
-      "validBet": 100,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 60,
-          "betMoney": 200
-        }
-      ],
-      "bet": 200,
-      "roundNo": "B6-181029223731",
-      "payout": 0,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 16, 9, 44 ],
-      "bankerCards": [ 46, 16, 40 ],
-      "createTime": 1540823858,
-      "payoutTime": 1540823885,
-      "betHistoryId": "5bd71b32755772a4745eb5e3",
-      "validBet": 200,
-      "username": "marco240581",
-      "userId": 1267766,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B11-181029223726",
-      "payout": 0,
-      "judgeResult": [ 60 ],
-      "playerCards": [ 13, 38, 14 ],
-      "bankerCards": [ 18, 1, 16 ],
-      "createTime": 1540823871,
-      "payoutTime": 1540823896,
-      "betHistoryId": "5bd71b3f755772a4745f319b",
-      "validBet": 100,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 60,
-          "betMoney": 200
-        }
-      ],
-      "bet": 200,
-      "roundNo": "B12-181029223754",
-      "payout": 0,
+      "roundNo": "B12-181105100339",
+      "payout": 585,
       "judgeResult": [ 80, 66 ],
-      "playerCards": [ 24, 37 ],
-      "bankerCards": [ 13, 18 ],
-      "createTime": 1540823887,
-      "payoutTime": 1540823912,
-      "betHistoryId": "5bd71b4f755772a4745fb227",
-      "validBet": 200,
-      "username": "marco240581",
-      "userId": 1267766,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 200
-        }
-      ],
-      "bet": 200,
-      "roundNo": "B18-181029223814",
-      "payout": 0,
-      "judgeResult": [ 60 ],
-      "playerCards": [ 16, 39 ],
-      "bankerCards": [ 11, 25, 23 ],
-      "createTime": 1540823903,
-      "payoutTime": 1540823926,
-      "betHistoryId": "5bd71b5f755772a4746036b6",
-      "validBet": 200,
+      "playerCards": [ 39, 39, 20 ],
+      "bankerCards": [ 44, 6 ],
+      "createTime": 1541383427,
+      "payoutTime": 1541383469,
+      "betHistoryId": "5bdfa503755772a474377f83",
+      "validBet": 300,
       "username": "quang04",
       "userId": 5749607,
       "platform": 2
@@ -1353,152 +126,14 @@
         }
       ],
       "bet": 100,
-      "roundNo": "B2-181029223830",
+      "roundNo": "B6-181105100426",
       "payout": 195,
       "judgeResult": [ 80 ],
-      "playerCards": [ 41, 19 ],
-      "bankerCards": [ 7, 23 ],
-      "createTime": 1540823920,
-      "payoutTime": 1540823937,
-      "betHistoryId": "5bd71b70755772a47460b688",
-      "validBet": 100,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 200
-        }
-      ],
-      "bet": 200,
-      "roundNo": "B11-181029223823",
-      "payout": 390,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 39, 38, 46 ],
-      "bankerCards": [ 16, 8 ],
-      "createTime": 1540823917,
-      "payoutTime": 1540823947,
-      "betHistoryId": "5bd71b6d755772a47460a2bb",
-      "validBet": 200,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 200
-        }
-      ],
-      "bet": 200,
-      "roundNo": "B18-181029223854",
-      "payout": 200,
-      "judgeResult": [ 68 ],
-      "playerCards": [ 41, 17, 50 ],
-      "bankerCards": [ 46, 14, 6 ],
-      "createTime": 1540823943,
-      "payoutTime": 1540823971,
-      "betHistoryId": "5bd71b87755772a4746179be",
-      "validBet": 0,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 200
-        }
-      ],
-      "bet": 200,
-      "roundNo": "B18-181029223939",
-      "payout": 390,
-      "judgeResult": [ 80, 88 ],
-      "playerCards": [ 49, 38 ],
-      "bankerCards": [ 46, 7 ],
-      "createTime": 1540823984,
-      "payoutTime": 1540824006,
-      "betHistoryId": "5bd71bb0755772a47462eefe",
-      "validBet": 200,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B21-181029223950",
-      "payout": 100,
-      "judgeResult": [ 68, 88 ],
-      "playerCards": [ 2, 27 ],
-      "bankerCards": [ 13, 39, 27 ],
-      "createTime": 1540823994,
-      "payoutTime": 1540824032,
-      "betHistoryId": "5bd71bba755772a474633951",
-      "validBet": 0,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 60,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B15-181029224029",
-      "payout": 200,
-      "judgeResult": [ 60 ],
-      "playerCards": [ 3, 5, 29 ],
-      "bankerCards": [ 51, 1, 17 ],
-      "createTime": 1540824039,
-      "payoutTime": 1540824073,
-      "betHistoryId": "5bd71be7755772a47464b217",
-      "validBet": 100,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 60,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B6-181029224048",
-      "payout": 200,
-      "judgeResult": [ 60 ],
-      "playerCards": [ 6, 37 ],
-      "bankerCards": [ 47, 3 ],
-      "createTime": 1540824064,
-      "payoutTime": 1540824076,
-      "betHistoryId": "5bd71c00755772a4746591ee",
+      "playerCards": [ 42, 19 ],
+      "bankerCards": [ 50, 6 ],
+      "createTime": 1541383473,
+      "payoutTime": 1541383495,
+      "betHistoryId": "5bdfa531755772a474387fb9",
       "validBet": 100,
       "username": "quang04",
       "userId": 5749607,
@@ -1514,106 +149,14 @@
         }
       ],
       "bet": 100,
-      "roundNo": "B21-181029224039",
+      "roundNo": "B12-181105100438",
       "payout": 0,
       "judgeResult": [ 60 ],
-      "playerCards": [ 7, 5 ],
-      "bankerCards": [ 22, 38, 24 ],
-      "createTime": 1540824044,
-      "payoutTime": 1540824080,
-      "betHistoryId": "5bd71bec755772a47464df00",
-      "validBet": 100,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 60,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B15-181029224121",
-      "payout": 0,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 50, 4 ],
-      "bankerCards": [ 45, 47 ],
-      "createTime": 1540824093,
-      "payoutTime": 1540824118,
-      "betHistoryId": "5bd71c1d755772a474666d21",
-      "validBet": 100,
-      "username": "quynguyen160483",
-      "userId": 4904665,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 200
-        }
-      ],
-      "bet": 200,
-      "roundNo": "B21-181029224128",
-      "payout": 390,
-      "judgeResult": [ 80, 66 ],
-      "playerCards": [ 47, 8, 48 ],
-      "bankerCards": [ 16, 4, 23 ],
-      "createTime": 1540824096,
-      "payoutTime": 1540824132,
-      "betHistoryId": "5bd71c20755772a4746681fe",
-      "validBet": 200,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 60,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B12-181029224125",
-      "payout": 200,
-      "judgeResult": [ 60 ],
-      "playerCards": [ 48, 40, 30 ],
-      "bankerCards": [ 16, 21, 5 ],
-      "createTime": 1540824098,
-      "payoutTime": 1540824134,
-      "betHistoryId": "5bd71c22755772a47466910c",
-      "validBet": 100,
-      "username": "quynguyen160483",
-      "userId": 4904665,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B11-181029224147",
-      "payout": 0,
-      "judgeResult": [ 60 ],
-      "playerCards": [ 12, 4 ],
-      "bankerCards": [ 29, 21, 44 ],
-      "createTime": 1540824115,
-      "payoutTime": 1540824151,
-      "betHistoryId": "5bd71c33755772a474672bba",
+      "playerCards": [ 6, 16, 1 ],
+      "bankerCards": [ 23, 35, 21 ],
+      "createTime": 1541383487,
+      "payoutTime": 1541383532,
+      "betHistoryId": "5bdfa53f755772a47438cafe",
       "validBet": 100,
       "username": "quang04",
       "userId": 5749607,
@@ -1629,17 +172,109 @@
         }
       ],
       "bet": 100,
-      "roundNo": "B21-181029224220",
+      "roundNo": "B18-181105100538",
       "payout": 195,
       "judgeResult": [ 80 ],
-      "playerCards": [ 13, 23, 27 ],
+      "playerCards": [ 42, 46, 28 ],
+      "bankerCards": [ 39, 34, 5 ],
+      "createTime": 1541383549,
+      "payoutTime": 1541383571,
+      "betHistoryId": "5bdfa57d755772a4743a0656",
+      "validBet": 100,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 100
+        }
+      ],
+      "bet": 100,
+      "roundNo": "B12-181105100540",
+      "payout": 0,
+      "judgeResult": [ 60 ],
+      "playerCards": [ 17, 47 ],
+      "bankerCards": [ 14, 22, 49 ],
+      "createTime": 1541383553,
+      "payoutTime": 1541383588,
+      "betHistoryId": "5bdfa581755772a4743a1bea",
+      "validBet": 100,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 200
+        }
+      ],
+      "bet": 200,
+      "roundNo": "B12-181105100636",
+      "payout": 390,
+      "judgeResult": [ 80 ],
+      "playerCards": [ 2, 11, 45 ],
       "bankerCards": [ 30, 47 ],
-      "createTime": 1540824150,
-      "payoutTime": 1540824181,
-      "betHistoryId": "5bd71c56755772a474685afe",
+      "createTime": 1541383606,
+      "payoutTime": 1541383645,
+      "betHistoryId": "5bdfa5b6755772a4743b2eac",
+      "validBet": 200,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 100
+        }
+      ],
+      "bet": 100,
+      "roundNo": "B12-181105101017",
+      "payout": 195,
+      "judgeResult": [ 80 ],
+      "playerCards": [ 35, 25 ],
+      "bankerCards": [ 22, 20 ],
+      "createTime": 1541383821,
+      "payoutTime": 1541383860,
+      "betHistoryId": "5bdfa68d755772a4743fae08",
       "validBet": 100,
-      "username": "quynguyen160483",
-      "userId": 4904665,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 100
+        }
+      ],
+      "bet": 100,
+      "roundNo": "B2-181105101048",
+      "payout": 195,
+      "judgeResult": [ 80 ],
+      "playerCards": [ 4, 24 ],
+      "bankerCards": [ 31, 28, 44 ],
+      "createTime": 1541383863,
+      "payoutTime": 1541383884,
+      "betHistoryId": "5bdfa6b7755772a474409778",
+      "validBet": 100,
+      "username": "quang04",
+      "userId": 5749607,
       "platform": 2
     },
     {
@@ -1652,37 +287,267 @@
         }
       ],
       "bet": 100,
-      "roundNo": "B12-181029224222",
+      "roundNo": "B18-181105101250",
       "payout": 200,
+      "judgeResult": [ 60 ],
+      "playerCards": [ 31, 2, 27 ],
+      "bankerCards": [ 10, 8, 39 ],
+      "createTime": 1541383980,
+      "payoutTime": 1541384004,
+      "betHistoryId": "5bdfa72c755772a47443139b",
+      "validBet": 100,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 100
+        }
+      ],
+      "bet": 100,
+      "roundNo": "B11-181105101852",
+      "payout": 195,
+      "judgeResult": [ 80 ],
+      "playerCards": [ 38, 22 ],
+      "bankerCards": [ 7, 9 ],
+      "createTime": 1541384337,
+      "payoutTime": 1541384371,
+      "betHistoryId": "5bdfa891755772a4744ad71a",
+      "validBet": 100,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 100
+        }
+      ],
+      "bet": 100,
+      "roundNo": "B2-181105101900",
+      "payout": 195,
+      "judgeResult": [ 80 ],
+      "playerCards": [ 6, 22 ],
+      "bankerCards": [ 49, 46 ],
+      "createTime": 1541384349,
+      "payoutTime": 1541384372,
+      "betHistoryId": "5bdfa89d755772a4744b1364",
+      "validBet": 100,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 100
+        }
+      ],
+      "bet": 100,
+      "roundNo": "B12-181105101918",
+      "payout": 100,
+      "judgeResult": [ 68 ],
+      "playerCards": [ 4, 38 ],
+      "bankerCards": [ 26, 42 ],
+      "createTime": 1541384376,
+      "payoutTime": 1541384399,
+      "betHistoryId": "5bdfa8b8755772a4744bae15",
+      "validBet": 0,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 100
+        }
+      ],
+      "bet": 100,
+      "roundNo": "B12-181105102006",
+      "payout": 0,
+      "judgeResult": [ 60 ],
+      "playerCards": [ 21, 19 ],
+      "bankerCards": [ 46, 6 ],
+      "createTime": 1541384415,
+      "payoutTime": 1541384448,
+      "betHistoryId": "5bdfa8df755772a4744c7e8f",
+      "validBet": 100,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 100
+        }
+      ],
+      "bet": 100,
+      "roundNo": "B12-181105102057",
+      "payout": 0,
+      "judgeResult": [ 60 ],
+      "playerCards": [ 1, 0, 2 ],
+      "bankerCards": [ 35, 44 ],
+      "createTime": 1541384461,
+      "payoutTime": 1541384500,
+      "betHistoryId": "5bdfa90d755772a4744d7f86",
+      "validBet": 100,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 200
+        }
+      ],
+      "bet": 200,
+      "roundNo": "B12-181105102149",
+      "payout": 390,
+      "judgeResult": [ 80 ],
+      "playerCards": [ 18, 29 ],
+      "bankerCards": [ 4, 13 ],
+      "createTime": 1541384522,
+      "payoutTime": 1541384551,
+      "betHistoryId": "5bdfa94a755772a4744ec6af",
+      "validBet": 200,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 100
+        }
+      ],
+      "bet": 100,
+      "roundNo": "B11-181105102200",
+      "payout": 0,
+      "judgeResult": [ 60 ],
+      "playerCards": [ 45, 10 ],
+      "bankerCards": [ 12, 21 ],
+      "createTime": 1541384542,
+      "payoutTime": 1541384557,
+      "betHistoryId": "5bdfa95e755772a4744f41b4",
+      "validBet": 100,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 100
+        }
+      ],
+      "bet": 100,
+      "roundNo": "B12-181105102240",
+      "payout": 195,
+      "judgeResult": [ 80 ],
+      "playerCards": [ 9, 26, 11 ],
+      "bankerCards": [ 41, 14 ],
+      "createTime": 1541384566,
+      "payoutTime": 1541384605,
+      "betHistoryId": "5bdfa976755772a4744fc8d7",
+      "validBet": 100,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 200
+        }
+      ],
+      "bet": 200,
+      "roundNo": "B11-181105102243",
+      "payout": 200,
+      "judgeResult": [ 68 ],
+      "playerCards": [ 7, 1, 39 ],
+      "bankerCards": [ 25, 40, 34 ],
+      "createTime": 1541384571,
+      "payoutTime": 1541384608,
+      "betHistoryId": "5bdfa97b755772a4744fe028",
+      "validBet": 0,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 200
+        }
+      ],
+      "bet": 200,
+      "roundNo": "B21-181105102252",
+      "payout": 0,
+      "judgeResult": [ 60 ],
+      "playerCards": [ 20, 50 ],
+      "bankerCards": [ 37, 49 ],
+      "createTime": 1541384580,
+      "payoutTime": 1541384611,
+      "betHistoryId": "5bdfa984755772a4745008b9",
+      "validBet": 200,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 200
+        }
+      ],
+      "bet": 200,
+      "roundNo": "B11-181105102334",
+      "payout": 0,
       "judgeResult": [ 60, 88 ],
-      "playerCards": [ 31, 19, 10 ],
-      "bankerCards": [ 38, 25, 23 ],
-      "createTime": 1540824146,
-      "payoutTime": 1540824191,
-      "betHistoryId": "5bd71c52755772a4746833a3",
-      "validBet": 100,
-      "username": "quynguyen160483",
-      "userId": 4904665,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 200
-        }
-      ],
-      "bet": 200,
-      "roundNo": "B11-181029224239",
-      "payout": 390,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 9, 19 ],
-      "bankerCards": [ 43, 1 ],
-      "createTime": 1540824169,
-      "payoutTime": 1540824200,
-      "betHistoryId": "5bd71c69755772a47468eea8",
+      "playerCards": [ 2, 39 ],
+      "bankerCards": [ 37, 24, 11 ],
+      "createTime": 1541384622,
+      "payoutTime": 1541384655,
+      "betHistoryId": "5bdfa9ae755772a4745103d6",
       "validBet": 200,
       "username": "quang04",
       "userId": 5749607,
@@ -1694,571 +559,19 @@
       "betMap": [
         {
           "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B16-181029224257",
-      "payout": 195,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 24, 8 ],
-      "bankerCards": [ 29, 2 ],
-      "createTime": 1540824183,
-      "payoutTime": 1540824207,
-      "betHistoryId": "5bd71c77755772a47469610b",
-      "validBet": 100,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B15-181029224250",
-      "payout": 195,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 14, 26 ],
-      "bankerCards": [ 50, 33 ],
-      "createTime": 1540824194,
-      "payoutTime": 1540824210,
-      "betHistoryId": "5bd71c82755772a47469b4a6",
-      "validBet": 100,
-      "username": "quynguyen160483",
-      "userId": 4904665,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B6-181029224311",
-      "payout": 195,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 34, 43 ],
-      "bankerCards": [ 42, 50, 2 ],
-      "createTime": 1540824199,
-      "payoutTime": 1540824220,
-      "betHistoryId": "5bd71c87755772a47469df8d",
-      "validBet": 100,
-      "username": "quynguyen160483",
-      "userId": 4904665,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B18-181029224314",
-      "payout": 0,
-      "judgeResult": [ 60 ],
-      "playerCards": [ 48, 33 ],
-      "bankerCards": [ 17, 5 ],
-      "createTime": 1540824201,
-      "payoutTime": 1540824223,
-      "betHistoryId": "5bd71c89755772a47469f5cd",
-      "validBet": 100,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 60,
           "betMoney": 200
         }
       ],
       "bet": 200,
-      "roundNo": "B12-181029224319",
-      "payout": 200,
-      "judgeResult": [ 68 ],
-      "playerCards": [ 47, 43 ],
-      "bankerCards": [ 42, 38 ],
-      "createTime": 1540824204,
-      "payoutTime": 1540824238,
-      "betHistoryId": "5bd71c8c755772a4746a0e8b",
-      "validBet": 0,
-      "username": "quynguyen160483",
-      "userId": 4904665,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B12-181029224319",
-      "payout": 100,
-      "judgeResult": [ 68 ],
-      "playerCards": [ 47, 43 ],
-      "bankerCards": [ 42, 38 ],
-      "createTime": 1540824226,
-      "payoutTime": 1540824239,
-      "betHistoryId": "5bd71ca2755772a4746ada50",
-      "validBet": 0,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B15-181029224338",
+      "roundNo": "B21-181105102339",
       "payout": 0,
       "judgeResult": [ 60 ],
-      "playerCards": [ 30, 0 ],
-      "bankerCards": [ 29, 10 ],
-      "createTime": 1540824236,
-      "payoutTime": 1540824256,
-      "betHistoryId": "5bd71cac755772a4746b2e77",
-      "validBet": 100,
-      "username": "quynguyen160483",
-      "userId": 4904665,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B6-181029224348",
-      "payout": 0,
-      "judgeResult": [ 60 ],
-      "playerCards": [ 44, 30, 41 ],
-      "bankerCards": [ 2, 35, 23 ],
-      "createTime": 1540824233,
-      "payoutTime": 1540824260,
-      "betHistoryId": "5bd71ca9755772a4746b14d2",
-      "validBet": 100,
-      "username": "quynguyen160483",
-      "userId": 4904665,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B18-181029224350",
-      "payout": 195,
-      "judgeResult": [ 80, 66 ],
-      "playerCards": [ 43, 30, 23 ],
-      "bankerCards": [ 15, 47 ],
-      "createTime": 1540824235,
-      "payoutTime": 1540824262,
-      "betHistoryId": "5bd71cab755772a4746b29c7",
-      "validBet": 100,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B21-181029224401",
-      "payout": 0,
-      "judgeResult": [ 60 ],
-      "playerCards": [ 15, 16 ],
-      "bankerCards": [ 51, 46 ],
-      "createTime": 1540824264,
-      "payoutTime": 1540824279,
-      "betHistoryId": "5bd71cc8755772a4746c1fe5",
-      "validBet": 100,
-      "username": "quynguyen160483",
-      "userId": 4904665,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 60,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B16-181029224414",
-      "payout": 0,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 26, 32 ],
-      "bankerCards": [ 15, 16 ],
-      "createTime": 1540824267,
-      "payoutTime": 1540824281,
-      "betHistoryId": "5bd71ccb755772a4746c373e",
-      "validBet": 100,
-      "username": "quynguyen160483",
-      "userId": 4904665,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B12-181029224405",
-      "payout": 0,
-      "judgeResult": [ 60 ],
-      "playerCards": [ 17, 12 ],
-      "bankerCards": [ 50, 51, 1 ],
-      "createTime": 1540824254,
-      "payoutTime": 1540824289,
-      "betHistoryId": "5bd71cbe755772a4746bc98d",
-      "validBet": 100,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B11-181029224416",
-      "payout": 0,
-      "judgeResult": [ 60 ],
-      "playerCards": [ 13, 17 ],
-      "bankerCards": [ 42, 46 ],
-      "createTime": 1540824269,
-      "payoutTime": 1540824296,
-      "betHistoryId": "5bd71ccd755772a4746c49c7",
-      "validBet": 100,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 185
-        }
-      ],
-      "bet": 185,
-      "roundNo": "B2-181029224437",
-      "payout": 0,
-      "judgeResult": [ 60 ],
-      "playerCards": [ 42, 21, 13 ],
-      "bankerCards": [ 43, 3, 0 ],
-      "createTime": 1540824290,
-      "payoutTime": 1540824312,
-      "betHistoryId": "5bd71ce2755772a4746cf2cc",
-      "validBet": 185,
-      "username": "quynguyen160483",
-      "userId": 4904665,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B21-181029224447",
-      "payout": 0,
-      "judgeResult": [ 60 ],
-      "playerCards": [ 14, 2 ],
-      "bankerCards": [ 34, 3, 37 ],
-      "createTime": 1540824294,
-      "payoutTime": 1540824327,
-      "betHistoryId": "5bd71ce6755772a4746d0ae8",
-      "validBet": 100,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 200
-        }
-      ],
-      "bet": 200,
-      "roundNo": "B11-181029224504",
-      "payout": 390,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 42, 33 ],
-      "bankerCards": [ 5, 25 ],
-      "createTime": 1540824314,
-      "payoutTime": 1540824344,
-      "betHistoryId": "5bd71cfa755772a4746dcc62",
+      "playerCards": [ 1, 41 ],
+      "bankerCards": [ 10, 39, 32 ],
+      "createTime": 1541384627,
+      "payoutTime": 1541384659,
+      "betHistoryId": "5bdfa9b3755772a474511976",
       "validBet": 200,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B12-181029224458",
-      "payout": 195,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 5, 28, 46 ],
-      "bankerCards": [ 14, 34, 24 ],
-      "createTime": 1540824303,
-      "payoutTime": 1540824344,
-      "betHistoryId": "5bd71cef755772a4746d6c92",
-      "validBet": 100,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 200
-        }
-      ],
-      "bet": 200,
-      "roundNo": "B21-181029224535",
-      "payout": 0,
-      "judgeResult": [ 60 ],
-      "playerCards": [ 27, 35, 9 ],
-      "bankerCards": [ 19, 40, 10 ],
-      "createTime": 1540824345,
-      "payoutTime": 1540824380,
-      "betHistoryId": "5bd71d19755772a4746ec6d8",
-      "validBet": 200,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B11-181029224553",
-      "payout": 195,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 31, 32 ],
-      "bankerCards": [ 47, 7 ],
-      "createTime": 1540824362,
-      "payoutTime": 1540824391,
-      "betHistoryId": "5bd71d2a755772a4746f40e7",
-      "validBet": 100,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B2-181029224600",
-      "payout": 100,
-      "judgeResult": [ 68 ],
-      "playerCards": [ 24, 41, 11 ],
-      "bankerCards": [ 35, 0, 39 ],
-      "createTime": 1540824370,
-      "payoutTime": 1540824394,
-      "betHistoryId": "5bd71d32755772a4746f86ff",
-      "validBet": 0,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B18-181029224628",
-      "payout": 0,
-      "judgeResult": [ 60 ],
-      "playerCards": [ 32, 33 ],
-      "bankerCards": [ 10, 24, 27 ],
-      "createTime": 1540824403,
-      "payoutTime": 1540824423,
-      "betHistoryId": "5bd71d53755772a474709e8b",
-      "validBet": 100,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 200
-        }
-      ],
-      "bet": 200,
-      "roundNo": "B21-181029224627",
-      "payout": 390,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 21, 24, 2 ],
-      "bankerCards": [ 18, 30, 29 ],
-      "createTime": 1540824394,
-      "payoutTime": 1540824432,
-      "betHistoryId": "5bd71d4a755772a474705209",
-      "validBet": 200,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B18-181029224710",
-      "payout": 0,
-      "judgeResult": [ 60 ],
-      "playerCards": [ 15, 40 ],
-      "bankerCards": [ 48, 50, 51 ],
-      "createTime": 1540824436,
-      "payoutTime": 1540824463,
-      "betHistoryId": "5bd71d74755772a47471aa8a",
-      "validBet": 100,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 200
-        }
-      ],
-      "bet": 200,
-      "roundNo": "B18-181029224751",
-      "payout": 0,
-      "judgeResult": [ 60 ],
-      "playerCards": [ 51, 47, 27 ],
-      "bankerCards": [ 14, 46, 20 ],
-      "createTime": 1540824483,
-      "payoutTime": 1540824508,
-      "betHistoryId": "5bd71da3755772a4747341cf",
-      "validBet": 200,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B15-181029224805",
-      "payout": 0,
-      "judgeResult": [ 60 ],
-      "playerCards": [ 20, 10 ],
-      "bankerCards": [ 8, 19 ],
-      "createTime": 1540824492,
-      "payoutTime": 1540824523,
-      "betHistoryId": "5bd71dac755772a4747389cd",
-      "validBet": 100,
       "username": "quang04",
       "userId": 5749607,
       "platform": 2
@@ -2273,14 +586,14 @@
         }
       ],
       "bet": 300,
-      "roundNo": "B18-181029224836",
+      "roundNo": "B11-181105102426",
       "payout": 0,
       "judgeResult": [ 60 ],
-      "playerCards": [ 45, 34 ],
-      "bankerCards": [ 10, 44 ],
-      "createTime": 1540824527,
-      "payoutTime": 1540824545,
-      "betHistoryId": "5bd71dcf755772a47474a723",
+      "playerCards": [ 9, 40, 17 ],
+      "bankerCards": [ 24, 40, 2 ],
+      "createTime": 1541384673,
+      "payoutTime": 1541384709,
+      "betHistoryId": "5bdfa9e1755772a47452154b",
       "validBet": 300,
       "username": "quang04",
       "userId": 5749607,
@@ -2292,19 +605,19 @@
       "betMap": [
         {
           "betType": 80,
-          "betMoney": 100
+          "betMoney": 300
         }
       ],
-      "bet": 100,
-      "roundNo": "B15-181029224851",
-      "payout": 195,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 23, 4 ],
-      "bankerCards": [ 51, 23, 45 ],
-      "createTime": 1540824535,
-      "payoutTime": 1540824571,
-      "betHistoryId": "5bd71dd7755772a47474ea42",
-      "validBet": 100,
+      "bet": 300,
+      "roundNo": "B21-181105102426",
+      "payout": 0,
+      "judgeResult": [ 60 ],
+      "playerCards": [ 28, 8, 13 ],
+      "bankerCards": [ 35, 13, 33 ],
+      "createTime": 1541384678,
+      "payoutTime": 1541384716,
+      "betHistoryId": "5bdfa9e6755772a474523134",
+      "validBet": 300,
       "username": "quang04",
       "userId": 5749607,
       "platform": 2
@@ -2319,14 +632,221 @@
         }
       ],
       "bet": 400,
-      "roundNo": "B18-181029224912",
+      "roundNo": "B11-181105102515",
+      "payout": 0,
+      "judgeResult": [ 60 ],
+      "playerCards": [ 28, 14 ],
+      "bankerCards": [ 10, 2, 46 ],
+      "createTime": 1541384724,
+      "payoutTime": 1541384755,
+      "betHistoryId": "5bdfaa14755772a474534726",
+      "validBet": 400,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 500
+        }
+      ],
+      "bet": 500,
+      "roundNo": "B21-181105102523",
+      "payout": 500,
+      "judgeResult": [ 68 ],
+      "playerCards": [ 11, 14, 49 ],
+      "bankerCards": [ 46, 28, 49 ],
+      "createTime": 1541384732,
+      "payoutTime": 1541384769,
+      "betHistoryId": "5bdfaa1c755772a474537224",
+      "validBet": 0,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 400
+        }
+      ],
+      "bet": 400,
+      "roundNo": "B11-181105102602",
+      "payout": 0,
+      "judgeResult": [ 60 ],
+      "playerCards": [ 12, 40, 26 ],
+      "bankerCards": [ 29, 23 ],
+      "createTime": 1541384777,
+      "payoutTime": 1541384803,
+      "betHistoryId": "5bdfaa49755772a474547721",
+      "validBet": 400,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 495
+        }
+      ],
+      "bet": 495,
+      "roundNo": "B21-181105102621",
+      "payout": 965.25,
+      "judgeResult": [ 80 ],
+      "playerCards": [ 34, 51, 40 ],
+      "bankerCards": [ 24, 44 ],
+      "createTime": 1541384785,
+      "payoutTime": 1541384823,
+      "betHistoryId": "5bdfaa51755772a47454a5c0",
+      "validBet": 495,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 500
+        }
+      ],
+      "bet": 500,
+      "roundNo": "B11-181105102650",
+      "payout": 975,
+      "judgeResult": [ 80 ],
+      "playerCards": [ 37, 18 ],
+      "bankerCards": [ 25, 22, 6 ],
+      "createTime": 1541384833,
+      "payoutTime": 1541384851,
+      "betHistoryId": "5bdfaa81755772a47455ba89",
+      "validBet": 500,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 100
+        }
+      ],
+      "bet": 100,
+      "roundNo": "B21-181105102709",
+      "payout": 195,
+      "judgeResult": [ 80 ],
+      "playerCards": [ 19, 36 ],
+      "bankerCards": [ 26, 31 ],
+      "createTime": 1541384841,
+      "payoutTime": 1541384867,
+      "betHistoryId": "5bdfaa89755772a47455ef39",
+      "validBet": 100,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 200
+        }
+      ],
+      "bet": 200,
+      "roundNo": "B2-181105102725",
+      "payout": 0,
+      "judgeResult": [ 60 ],
+      "playerCards": [ 50, 12, 17 ],
+      "bankerCards": [ 32, 2, 11 ],
+      "createTime": 1541384854,
+      "payoutTime": 1541384882,
+      "betHistoryId": "5bdfaa96755772a474563ed2",
+      "validBet": 200,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 200
+        }
+      ],
+      "bet": 200,
+      "roundNo": "B11-181105102737",
+      "payout": 390,
+      "judgeResult": [ 80 ],
+      "playerCards": [ 38, 8, 37 ],
+      "bankerCards": [ 43, 35 ],
+      "createTime": 1541384866,
+      "payoutTime": 1541384897,
+      "betHistoryId": "5bdfaaa2755772a47456892d",
+      "validBet": 200,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 300
+        }
+      ],
+      "bet": 300,
+      "roundNo": "B2-181105102809",
+      "payout": 0,
+      "judgeResult": [ 60, 66, 88 ],
+      "playerCards": [ 40, 1 ],
+      "bankerCards": [ 39, 13, 20 ],
+      "createTime": 1541384897,
+      "payoutTime": 1541384922,
+      "betHistoryId": "5bdfaac1755772a474574006",
+      "validBet": 300,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 400
+        }
+      ],
+      "bet": 400,
+      "roundNo": "B2-181105102849",
       "payout": 780,
       "judgeResult": [ 80 ],
-      "playerCards": [ 0, 27 ],
-      "bankerCards": [ 45, 50 ],
-      "createTime": 1540824560,
-      "payoutTime": 1540824582,
-      "betHistoryId": "5bd71df0755772a47475b744",
+      "playerCards": [ 3, 44, 22 ],
+      "bankerCards": [ 35, 29 ],
+      "createTime": 1541384937,
+      "payoutTime": 1541384960,
+      "betHistoryId": "5bdfaae9755772a474581da7",
       "validBet": 400,
       "username": "quang04",
       "userId": 5749607,
@@ -2342,40 +862,17 @@
         }
       ],
       "bet": 100,
-      "roundNo": "B12-181029224920",
+      "roundNo": "B15-181105102914",
       "payout": 195,
-      "judgeResult": [ 80, 88 ],
-      "playerCards": [ 30, 6, 45 ],
-      "bankerCards": [ 39, 13 ],
-      "createTime": 1540824565,
-      "payoutTime": 1540824602,
-      "betHistoryId": "5bd71df5755772a47475d9fc",
+      "judgeResult": [ 80 ],
+      "playerCards": [ 37, 39, 46 ],
+      "bankerCards": [ 34, 14, 21 ],
+      "createTime": 1541384975,
+      "payoutTime": 1541384998,
+      "betHistoryId": "5bdfab0f755772a474590436",
       "validBet": 100,
       "username": "quang04",
       "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 60,
-          "betMoney": 140
-        }
-      ],
-      "bet": 140,
-      "roundNo": "B12-181029224920",
-      "payout": 0,
-      "judgeResult": [ 80, 88 ],
-      "playerCards": [ 30, 6, 45 ],
-      "bankerCards": [ 39, 13 ],
-      "createTime": 1540824584,
-      "payoutTime": 1540824603,
-      "betHistoryId": "5bd71e08755772a47476852a",
-      "validBet": 140,
-      "username": "marco240581",
-      "userId": 1267766,
       "platform": 2
     },
     {
@@ -2388,14 +885,83 @@
         }
       ],
       "bet": 100,
-      "roundNo": "B2-181029224944",
+      "roundNo": "B18-181105103143",
+      "payout": 100,
+      "judgeResult": [ 68 ],
+      "playerCards": [ 43, 15, 2 ],
+      "bankerCards": [ 18, 1, 28 ],
+      "createTime": 1541385116,
+      "payoutTime": 1541385152,
+      "betHistoryId": "5bdfab9c755772a4745c17a2",
+      "validBet": 0,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 100
+        }
+      ],
+      "bet": 100,
+      "roundNo": "B18-181105103240",
+      "payout": 0,
+      "judgeResult": [ 60 ],
+      "playerCards": [ 29, 9, 8 ],
+      "bankerCards": [ 48, 47, 47 ],
+      "createTime": 1541385170,
+      "payoutTime": 1541385204,
+      "betHistoryId": "5bdfabd2755772a4745d592e",
+      "validBet": 100,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 100
+        }
+      ],
+      "bet": 100,
+      "roundNo": "B21-181105103253",
+      "payout": 100,
+      "judgeResult": [ 68 ],
+      "playerCards": [ 1, 22, 35 ],
+      "bankerCards": [ 26, 36, 12 ],
+      "createTime": 1541385181,
+      "payoutTime": 1541385213,
+      "betHistoryId": "5bdfabdd755772a4745d93fa",
+      "validBet": 0,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 100
+        }
+      ],
+      "bet": 100,
+      "roundNo": "B18-181105103332",
       "payout": 195,
       "judgeResult": [ 80, 66 ],
-      "playerCards": [ 31, 44, 20 ],
-      "bankerCards": [ 40, 25 ],
-      "createTime": 1540824591,
-      "payoutTime": 1540824615,
-      "betHistoryId": "5bd71e0f755772a47476bcd7",
+      "playerCards": [ 47, 34, 8 ],
+      "bankerCards": [ 9, 16 ],
+      "createTime": 1541385227,
+      "payoutTime": 1541385247,
+      "betHistoryId": "5bdfac0b755772a4745e9701",
       "validBet": 100,
       "username": "quang04",
       "userId": 5749607,
@@ -2407,360 +973,21 @@
       "betMap": [
         {
           "betType": 80,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B18-181029224950",
-      "payout": 195,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 36, 51, 21 ],
-      "bankerCards": [ 9, 26, 1 ],
-      "createTime": 1540824597,
-      "payoutTime": 1540824626,
-      "betHistoryId": "5bd71e15755772a47476e112",
-      "validBet": 100,
-      "username": "quang04",
-      "userId": 5749607,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 140
-        }
-      ],
-      "bet": 140,
-      "roundNo": "B21-181029224947",
-      "payout": 273,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 36, 43 ],
-      "bankerCards": [ 20, 9 ],
-      "createTime": 1540824614,
-      "payoutTime": 1540824626,
-      "betHistoryId": "5bd71e26755772a474777c62",
-      "validBet": 140,
-      "username": "marco240581",
-      "userId": 1267766,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 140
-        }
-      ],
-      "bet": 140,
-      "roundNo": "B21-181029225033",
-      "payout": 0,
-      "judgeResult": [ 60 ],
-      "playerCards": [ 41, 3 ],
-      "bankerCards": [ 0, 51 ],
-      "createTime": 1540824638,
-      "payoutTime": 1540824671,
-      "betHistoryId": "5bd71e3e755772a4747844d2",
-      "validBet": 140,
-      "username": "marco240581",
-      "userId": 1267766,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 80,
-          "betMoney": 140
-        }
-      ],
-      "bet": 140,
-      "roundNo": "B2-181029225104",
-      "payout": 0,
-      "judgeResult": [ 60 ],
-      "playerCards": [ 34, 31 ],
-      "bankerCards": [ 10, 12, 13 ],
-      "createTime": 1540824675,
-      "payoutTime": 1540824695,
-      "betHistoryId": "5bd71e63755772a474798c24",
-      "validBet": 140,
-      "username": "marco240581",
-      "userId": 1267766,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 60,
-          "betMoney": 140
-        }
-      ],
-      "bet": 140,
-      "roundNo": "B21-181029225118",
-      "payout": 280,
-      "judgeResult": [ 60 ],
-      "playerCards": [ 19, 31, 20 ],
-      "bankerCards": [ 13, 45, 24 ],
-      "createTime": 1540824686,
-      "payoutTime": 1540824723,
-      "betHistoryId": "5bd71e6e755772a47479e45b",
-      "validBet": 140,
-      "username": "marco240581",
-      "userId": 1267766,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 60,
-          "betMoney": 140
-        }
-      ],
-      "bet": 140,
-      "roundNo": "B11-181029225201",
-      "payout": 0,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 49, 3, 6 ],
-      "bankerCards": [ 3, 21 ],
-      "createTime": 1540824739,
-      "payoutTime": 1540824765,
-      "betHistoryId": "5bd71ea3755772a4747b9880",
-      "validBet": 140,
-      "username": "marco240581",
-      "userId": 1267766,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 60,
           "betMoney": 200
         }
       ],
       "bet": 200,
-      "roundNo": "B6-181029225240",
+      "roundNo": "B11-181105103330",
       "payout": 0,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 25, 37 ],
-      "bankerCards": [ 32, 38 ],
-      "createTime": 1540824770,
-      "payoutTime": 1540824788,
-      "betHistoryId": "5bd71ec2755772a4747c98d5",
+      "judgeResult": [ 60, 88 ],
+      "playerCards": [ 39, 19, 7 ],
+      "bankerCards": [ 31, 18 ],
+      "createTime": 1541385223,
+      "payoutTime": 1541385249,
+      "betHistoryId": "5bdfac07755772a4745e74d6",
       "validBet": 200,
-      "username": "marco240581",
-      "userId": 1267766,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 60,
-          "betMoney": 103
-        }
-      ],
-      "bet": 103,
-      "roundNo": "B12-181029225241",
-      "payout": 0,
-      "judgeResult": [ 80, 66 ],
-      "playerCards": [ 3, 42, 1 ],
-      "bankerCards": [ 8, 30 ],
-      "createTime": 1540824774,
-      "payoutTime": 1540824804,
-      "betHistoryId": "5bd71ec6755772a4747cc180",
-      "validBet": 103,
-      "username": "marco240581",
-      "userId": 1267766,
-      "platform": 2
-    },
-    {
-      "gameType": 4,
-      "gameName": "roulette",
-      "betMap": [
-        {
-          "betType": 207,
-          "betMoney": 30,
-          "betTypeInterval": "0",
-          "betNumber": [ 1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34 ]
-        },
-        {
-          "betType": 207,
-          "betMoney": 30,
-          "betTypeInterval": "1",
-          "betNumber": [ 2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35 ]
-        }
-      ],
-      "bet": 60,
-      "roundNo": "R1-181029225531",
-      "payout": 0,
-      "judgeResult": [ 200, 213, 212, 209, 202, 207, 206, 206, 203, 203, 208, 201, 201, 201 ],
-      "number": 30,
-      "createTime": 1540824944,
-      "payoutTime": 1540824982,
-      "betHistoryId": "5bd71f70755772a474824b1b",
-      "validBet": 60,
-      "username": "nhatminh611",
-      "userId": 6798808,
-      "platform": 2
-    },
-    {
-      "gameType": 3,
-      "gameName": "sic-bo",
-      "betMap": [
-        {
-          "betType": 102,
-          "betMoney": 50
-        }
-      ],
-      "bet": 50,
-      "roundNo": "S2-181029225630",
-      "payout": 0,
-      "judgeResult": [ 125, 145, 146, 149, 135, 136, 137, 103, 100, 156 ],
-      "allDices": [ 2, 3, 4 ],
-      "createTime": 1540824998,
-      "payoutTime": 1540825067,
-      "betHistoryId": "5bd71fa6755772a4748410c8",
-      "validBet": 50,
-      "username": "nthanhvu2208",
-      "userId": 6763839,
-      "platform": 2
-    },
-    {
-      "gameType": 3,
-      "gameName": "sic-bo",
-      "betMap": [
-        {
-          "betType": 102,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "S2-181029225755",
-      "payout": 200,
-      "judgeResult": [ 129, 152, 137, 155, 107, 138, 102, 100 ],
-      "allDices": [ 4, 4, 5 ],
-      "createTime": 1540825079,
-      "payoutTime": 1540825131,
-      "betHistoryId": "5bd71ff7755772a4748692d0",
-      "validBet": 100,
-      "username": "nthanhvu2208",
-      "userId": 6763839,
-      "platform": 2
-    },
-    {
-      "gameType": 3,
-      "gameName": "sic-bo",
-      "betMap": [
-        {
-          "betType": 102,
-          "betMoney": 150
-        }
-      ],
-      "bet": 150,
-      "roundNo": "S2-181029225900",
-      "payout": 300,
-      "judgeResult": [ 127, 146, 147, 152, 135, 137, 138, 102, 100, 156 ],
-      "allDices": [ 2, 4, 5 ],
-      "createTime": 1540825149,
-      "payoutTime": 1540825199,
-      "betHistoryId": "5bd7203d755772a47488d703",
-      "validBet": 150,
-      "username": "nthanhvu2208",
-      "userId": 6763839,
-      "platform": 2
-    },
-    {
-      "gameType": 4,
-      "gameName": "roulette",
-      "betMap": [
-        {
-          "betType": 207,
-          "betMoney": 30,
-          "betTypeInterval": "1",
-          "betNumber": [ 2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35 ]
-        },
-        {
-          "betType": 207,
-          "betMoney": 30,
-          "betTypeInterval": "2",
-          "betNumber": [ 3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36 ]
-        }
-      ],
-      "bet": 60,
-      "roundNo": "R1-181029230039",
-      "payout": 90,
-      "judgeResult": [ 200, 214, 212, 209, 202, 207, 206, 206, 203, 203, 203, 203, 208, 201, 201, 201, 201 ],
-      "number": 14,
-      "createTime": 1540825248,
-      "payoutTime": 1540825297,
-      "betHistoryId": "5bd720a0755772a4748bc5c7",
-      "validBet": 60,
-      "username": "nhatminh611",
-      "userId": 6798808,
-      "platform": 2
-    },
-    {
-      "gameType": 3,
-      "gameName": "sic-bo",
-      "betMap": [
-        {
-          "betType": 102,
-          "betMoney": 40
-        }
-      ],
-      "bet": 40,
-      "roundNo": "S2-181029230347",
-      "payout": 0,
-      "judgeResult": [ 120, 140, 142, 146, 134, 135, 137, 103, 100, 156 ],
-      "allDices": [ 1, 2, 4 ],
-      "createTime": 1540825438,
-      "payoutTime": 1540825482,
-      "betHistoryId": "5bd7215e755772a47491abac",
-      "validBet": 40,
-      "username": "nthanhvu2208",
-      "userId": 6763839,
-      "platform": 2
-    },
-    {
-      "gameType": 4,
-      "gameName": "roulette",
-      "betMap": [
-        {
-          "betType": 207,
-          "betMoney": 30,
-          "betTypeInterval": "0",
-          "betNumber": [ 1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34 ]
-        },
-        {
-          "betType": 207,
-          "betMoney": 30,
-          "betTypeInterval": "2",
-          "betNumber": [ 3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36 ]
-        }
-      ],
-      "bet": 60,
-      "roundNo": "R1-181029230445",
-      "payout": 90,
-      "judgeResult": [ 200, 214, 212, 210, 202, 207, 206, 206, 203, 203, 208, 201, 201, 201 ],
-      "number": 10,
-      "createTime": 1540825494,
-      "payoutTime": 1540825538,
-      "betHistoryId": "5bd72196755772a474936fa8",
-      "validBet": 60,
-      "username": "nhatminh611",
-      "userId": 6798808,
+      "username": "quang04",
+      "userId": 5749607,
       "platform": 2
     },
     {
@@ -2773,468 +1000,17 @@
         }
       ],
       "bet": 100,
-      "roundNo": "B11-181029230507",
-      "payout": 195,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 14, 21 ],
-      "bankerCards": [ 36, 7 ],
-      "createTime": 1540825517,
-      "payoutTime": 1540825544,
-      "betHistoryId": "5bd721ad755772a474941c29",
-      "validBet": 100,
-      "username": "quynguyen160483",
-      "userId": 4904665,
-      "platform": 2
-    },
-    {
-      "gameType": 3,
-      "gameName": "sic-bo",
-      "betMap": [
-        {
-          "betType": 102,
-          "betMoney": 40
-        }
-      ],
-      "bet": 40,
-      "roundNo": "S2-181029230450",
-      "payout": 80,
-      "judgeResult": [ 129, 147, 148, 154, 135, 138, 139, 102, 100, 156 ],
-      "allDices": [ 2, 5, 6 ],
-      "createTime": 1540825495,
-      "payoutTime": 1540825554,
-      "betHistoryId": "5bd72197755772a474937801",
-      "validBet": 40,
-      "username": "nthanhvu2208",
-      "userId": 6763839,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 60,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B15-181029230535",
-      "payout": 200,
-      "judgeResult": [ 60, 66 ],
-      "playerCards": [ 41, 2 ],
-      "bankerCards": [ 18, 24 ],
-      "createTime": 1540825552,
-      "payoutTime": 1540825576,
-      "betHistoryId": "5bd721d0755772a474951950",
-      "validBet": 100,
-      "username": "quynguyen160483",
-      "userId": 4904665,
-      "platform": 2
-    },
-    {
-      "gameType": 3,
-      "gameName": "sic-bo",
-      "betMap": [
-        {
-          "betType": 102,
-          "betMoney": 40
-        }
-      ],
-      "bet": 40,
-      "roundNo": "S2-181029230601",
+      "roundNo": "B21-181105103340",
       "payout": 0,
-      "judgeResult": [ 125, 140, 144, 148, 134, 135, 139, 103, 100, 156 ],
-      "allDices": [ 1, 2, 6 ],
-      "createTime": 1540825563,
-      "payoutTime": 1540825627,
-      "betHistoryId": "5bd721db755772a474958177",
-      "validBet": 40,
-      "username": "nthanhvu2208",
-      "userId": 6763839,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 60,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B15-181029230719",
-      "payout": 200,
       "judgeResult": [ 60 ],
-      "playerCards": [ 41, 3 ],
-      "bankerCards": [ 31, 12 ],
-      "createTime": 1540825647,
-      "payoutTime": 1540825683,
-      "betHistoryId": "5bd7222f755772a47497ffb6",
+      "playerCards": [ 44, 50 ],
+      "bankerCards": [ 37, 23, 41 ],
+      "createTime": 1541385232,
+      "payoutTime": 1541385259,
+      "betHistoryId": "5bdfac10755772a4745eb453",
       "validBet": 100,
-      "username": "quynguyen160483",
-      "userId": 4904665,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 60,
-          "betMoney": 195
-        }
-      ],
-      "bet": 195,
-      "roundNo": "B12-181029230726",
-      "payout": 0,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 16, 31, 49 ],
-      "bankerCards": [ 39, 1 ],
-      "createTime": 1540825652,
-      "payoutTime": 1540825688,
-      "betHistoryId": "5bd72234755772a474982a91",
-      "validBet": 195,
-      "username": "quynguyen160483",
-      "userId": 4904665,
-      "platform": 2
-    },
-    {
-      "gameType": 3,
-      "gameName": "sic-bo",
-      "betMap": [
-        {
-          "betType": 102,
-          "betMoney": 60
-        }
-      ],
-      "bet": 60,
-      "roundNo": "S2-181029230715",
-      "payout": 0,
-      "judgeResult": [ 119, 140, 141, 145, 134, 135, 136, 103, 101, 156 ],
-      "allDices": [ 1, 2, 3 ],
-      "createTime": 1540825642,
-      "payoutTime": 1540825700,
-      "betHistoryId": "5bd7222a755772a47497d937",
-      "validBet": 60,
-      "username": "nthanhvu2208",
-      "userId": 6763839,
-      "platform": 2
-    },
-    {
-      "gameType": 3,
-      "gameName": "sic-bo",
-      "betMap": [
-        {
-          "betType": 103,
-          "betMoney": 20
-        }
-      ],
-      "bet": 20,
-      "roundNo": "S2-181029230715",
-      "payout": 40,
-      "judgeResult": [ 119, 140, 141, 145, 134, 135, 136, 103, 101, 156 ],
-      "allDices": [ 1, 2, 3 ],
-      "createTime": 1540825643,
-      "payoutTime": 1540825700,
-      "betHistoryId": "5bd7222b755772a47497e3a8",
-      "validBet": 20,
-      "username": "z4zah0166",
-      "userId": 6735775,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 60,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B21-181029230804",
-      "payout": 0,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 42, 45, 21 ],
-      "bankerCards": [ 33, 3 ],
-      "createTime": 1540825694,
-      "payoutTime": 1540825729,
-      "betHistoryId": "5bd7225e755772a474997123",
-      "validBet": 100,
-      "username": "quynguyen160483",
-      "userId": 4904665,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 60,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B15-181029230814",
-      "payout": 200,
-      "judgeResult": [ 60, 88 ],
-      "playerCards": [ 15, 22, 40 ],
-      "bankerCards": [ 30, 30, 36 ],
-      "createTime": 1540825703,
-      "payoutTime": 1540825744,
-      "betHistoryId": "5bd72267755772a47499b7f0",
-      "validBet": 100,
-      "username": "quynguyen160483",
-      "userId": 4904665,
-      "platform": 2
-    },
-    {
-      "gameType": 3,
-      "gameName": "sic-bo",
-      "betMap": [
-        {
-          "betType": 102,
-          "betMoney": 50
-        }
-      ],
-      "bet": 50,
-      "roundNo": "S2-181029230827",
-      "payout": 0,
-      "judgeResult": [ 121, 141, 142, 149, 134, 136, 137, 103, 101, 156 ],
-      "allDices": [ 1, 3, 4 ],
-      "createTime": 1540825711,
-      "payoutTime": 1540825768,
-      "betHistoryId": "5bd7226f755772a4749a0d14",
-      "validBet": 50,
-      "username": "nthanhvu2208",
-      "userId": 6763839,
-      "platform": 2
-    },
-    {
-      "gameType": 3,
-      "gameName": "sic-bo",
-      "betMap": [
-        {
-          "betType": 101,
-          "betMoney": 20
-        },
-        {
-          "betType": 102,
-          "betMoney": 20
-        }
-      ],
-      "bet": 40,
-      "roundNo": "S2-181029230827",
-      "payout": 40,
-      "judgeResult": [ 121, 141, 142, 149, 134, 136, 137, 103, 101, 156 ],
-      "allDices": [ 1, 3, 4 ],
-      "createTime": 1540825734,
-      "payoutTime": 1540825768,
-      "betHistoryId": "5bd72286755772a4749ac4f9",
-      "validBet": 40,
-      "username": "z4zah0166",
-      "userId": 6735775,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 60,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B6-181029230900",
-      "payout": 0,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 12, 33 ],
-      "bankerCards": [ 32, 8 ],
-      "createTime": 1540825752,
-      "payoutTime": 1540825773,
-      "betHistoryId": "5bd72298755772a4749b5ae1",
-      "validBet": 100,
-      "username": "quynguyen160483",
-      "userId": 4904665,
-      "platform": 2
-    },
-    {
-      "gameType": 1,
-      "gameName": "baccarat",
-      "betMap": [
-        {
-          "betType": 60,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "B15-181029230915",
-      "payout": 0,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 47, 9, 6 ],
-      "bankerCards": [ 26, 32, 7 ],
-      "createTime": 1540825782,
-      "payoutTime": 1540825811,
-      "betHistoryId": "5bd722b6755772a4749c40b8",
-      "validBet": 100,
-      "username": "quynguyen160483",
-      "userId": 4904665,
-      "platform": 2
-    },
-    {
-      "gameType": 3,
-      "gameName": "sic-bo",
-      "betMap": [
-        {
-          "betType": 102,
-          "betMoney": 50
-        }
-      ],
-      "bet": 50,
-      "roundNo": "S2-181029230935",
-      "payout": 100,
-      "judgeResult": [ 130, 153, 137, 155, 107, 139, 102, 101 ],
-      "allDices": [ 4, 4, 6 ],
-      "createTime": 1540825780,
-      "payoutTime": 1540825834,
-      "betHistoryId": "5bd722b4755772a4749c2e74",
-      "validBet": 50,
-      "username": "nthanhvu2208",
-      "userId": 6763839,
-      "platform": 2
-    },
-    {
-      "gameType": 3,
-      "gameName": "sic-bo",
-      "betMap": [
-        {
-          "betType": 102,
-          "betMoney": 50
-        }
-      ],
-      "bet": 50,
-      "roundNo": "S2-181029231042",
-      "payout": 0,
-      "judgeResult": [ 125, 142, 134, 137, 155, 107, 103, 100 ],
-      "allDices": [ 1, 4, 4 ],
-      "createTime": 1540825846,
-      "payoutTime": 1540825900,
-      "betHistoryId": "5bd722f6755772a4749e44c2",
-      "validBet": 50,
-      "username": "nthanhvu2208",
-      "userId": 6763839,
-      "platform": 2
-    },
-    {
-      "gameType": 3,
-      "gameName": "sic-bo",
-      "betMap": [
-        {
-          "betType": 100,
-          "betMoney": 20
-        }
-      ],
-      "bet": 20,
-      "roundNo": "S2-181029231042",
-      "payout": 40,
-      "judgeResult": [ 125, 142, 134, 137, 155, 107, 103, 100 ],
-      "allDices": [ 1, 4, 4 ],
-      "createTime": 1540825848,
-      "payoutTime": 1540825900,
-      "betHistoryId": "5bd722f8755772a4749e5b15",
-      "validBet": 20,
-      "username": "z4zah0166",
-      "userId": 6735775,
-      "platform": 2
-    },
-    {
-      "gameType": 3,
-      "gameName": "sic-bo",
-      "betMap": [
-        {
-          "betType": 102,
-          "betMoney": 50
-        }
-      ],
-      "bet": 50,
-      "roundNo": "S2-181029231148",
-      "payout": 0,
-      "judgeResult": [ 125, 142, 134, 137, 155, 107, 103, 100 ],
-      "allDices": [ 1, 4, 4 ],
-      "createTime": 1540825914,
-      "payoutTime": 1540825966,
-      "betHistoryId": "5bd7233a755772a474a05f61",
-      "validBet": 50,
-      "username": "nthanhvu2208",
-      "userId": 6763839,
-      "platform": 2
-    },
-    {
-      "gameType": 3,
-      "gameName": "sic-bo",
-      "betMap": [
-        {
-          "betType": 100,
-          "betMoney": 20
-        }
-      ],
-      "bet": 20,
-      "roundNo": "S2-181029231148",
-      "payout": 40,
-      "judgeResult": [ 125, 142, 134, 137, 155, 107, 103, 100 ],
-      "allDices": [ 1, 4, 4 ],
-      "createTime": 1540825938,
-      "payoutTime": 1540825967,
-      "betHistoryId": "5bd72352755772a474a12d62",
-      "validBet": 20,
-      "username": "z4zah0166",
-      "userId": 6735775,
-      "platform": 2
-    },
-    {
-      "gameType": 3,
-      "gameName": "sic-bo",
-      "betMap": [
-        {
-          "betType": 102,
-          "betMoney": 100
-        }
-      ],
-      "bet": 100,
-      "roundNo": "S2-181029231254",
-      "payout": 0,
-      "judgeResult": [ 121, 145, 135, 136, 155, 106, 103, 101 ],
-      "allDices": [ 2, 3, 3 ],
-      "createTime": 1540825979,
-      "payoutTime": 1540826040,
-      "betHistoryId": "5bd7237b755772a474a2760f",
-      "validBet": 100,
-      "username": "nthanhvu2208",
-      "userId": 6763839,
-      "platform": 2
-    },
-    {
-      "gameType": 3,
-      "gameName": "sic-bo",
-      "betMap": [
-        {
-          "betType": 100,
-          "betMoney": 20
-        }
-      ],
-      "bet": 20,
-      "roundNo": "S2-181029231254",
-      "payout": 0,
-      "judgeResult": [ 121, 145, 135, 136, 155, 106, 103, 101 ],
-      "allDices": [ 2, 3, 3 ],
-      "createTime": 1540825998,
-      "payoutTime": 1540826040,
-      "betHistoryId": "5bd7238e755772a474a31b77",
-      "validBet": 20,
-      "username": "z4zah0166",
-      "userId": 6735775,
+      "username": "quang04",
+      "userId": 5749607,
       "platform": 2
     },
     {
@@ -3247,18 +1023,1136 @@
         }
       ],
       "bet": 300,
-      "roundNo": "B15-181029231406",
+      "roundNo": "B11-181105103416",
+      "payout": 585,
+      "judgeResult": [ 80 ],
+      "playerCards": [ 31, 41 ],
+      "bankerCards": [ 38, 18 ],
+      "createTime": 1541385267,
+      "payoutTime": 1541385292,
+      "betHistoryId": "5bdfac33755772a4745f8c0c",
+      "validBet": 300,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 200
+        }
+      ],
+      "bet": 200,
+      "roundNo": "B21-181105103426",
+      "payout": 390,
+      "judgeResult": [ 80 ],
+      "playerCards": [ 47, 39, 6 ],
+      "bankerCards": [ 11, 27 ],
+      "createTime": 1541385272,
+      "payoutTime": 1541385304,
+      "betHistoryId": "5bdfac38755772a4745fa8c7",
+      "validBet": 200,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 100
+        }
+      ],
+      "bet": 100,
+      "roundNo": "B16-181105103431",
+      "payout": 0,
+      "judgeResult": [ 60 ],
+      "playerCards": [ 44, 9 ],
+      "bankerCards": [ 11, 3, 51 ],
+      "createTime": 1541385277,
+      "payoutTime": 1541385304,
+      "betHistoryId": "5bdfac3d755772a4745fc614",
+      "validBet": 100,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 100
+        }
+      ],
+      "bet": 100,
+      "roundNo": "B18-181105103507",
+      "payout": 0,
+      "judgeResult": [ 60 ],
+      "playerCards": [ 10, 35, 44 ],
+      "bankerCards": [ 39, 51, 27 ],
+      "createTime": 1541385324,
+      "payoutTime": 1541385346,
+      "betHistoryId": "5bdfac6c755772a47460d52b",
+      "validBet": 100,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 100
+        }
+      ],
+      "bet": 100,
+      "roundNo": "B16-181105103511",
+      "payout": 195,
+      "judgeResult": [ 80, 66 ],
+      "playerCards": [ 38, 51, 39 ],
+      "bankerCards": [ 32, 2, 2 ],
+      "createTime": 1541385318,
+      "payoutTime": 1541385348,
+      "betHistoryId": "5bdfac66755772a47460b633",
+      "validBet": 100,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 100
+        }
+      ],
+      "bet": 100,
+      "roundNo": "B12-181105103524",
+      "payout": 0,
+      "judgeResult": [ 60 ],
+      "playerCards": [ 24, 12, 15 ],
+      "bankerCards": [ 12, 22, 22 ],
+      "createTime": 1541385334,
+      "payoutTime": 1541385369,
+      "betHistoryId": "5bdfac76755772a474610e1a",
+      "validBet": 100,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 100
+        }
+      ],
+      "bet": 100,
+      "roundNo": "B21-181105103551",
+      "payout": 195,
+      "judgeResult": [ 80 ],
+      "playerCards": [ 23, 35 ],
+      "bankerCards": [ 45, 51 ],
+      "createTime": 1541385373,
+      "payoutTime": 1541385386,
+      "betHistoryId": "5bdfac9d755772a47461fe45",
+      "validBet": 100,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 100
+        }
+      ],
+      "bet": 100,
+      "roundNo": "B18-181105103555",
+      "payout": 0,
+      "judgeResult": [ 60 ],
+      "playerCards": [ 8, 4 ],
+      "bankerCards": [ 37, 16, 43 ],
+      "createTime": 1541385360,
+      "payoutTime": 1541385389,
+      "betHistoryId": "5bdfac90755772a47461adaf",
+      "validBet": 100,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 200
+        }
+      ],
+      "bet": 200,
+      "roundNo": "B12-181105103616",
+      "payout": 0,
+      "judgeResult": [ 60 ],
+      "playerCards": [ 9, 0, 35 ],
+      "bankerCards": [ 37, 34, 23 ],
+      "createTime": 1541385389,
+      "payoutTime": 1541385421,
+      "betHistoryId": "5bdfacad755772a474625871",
+      "validBet": 200,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 100
+        }
+      ],
+      "bet": 100,
+      "roundNo": "B16-181105103633",
+      "payout": 195,
+      "judgeResult": [ 80 ],
+      "playerCards": [ 24, 28, 36 ],
+      "bankerCards": [ 0, 15 ],
+      "createTime": 1541385408,
+      "payoutTime": 1541385426,
+      "betHistoryId": "5bdfacc0755772a47462c810",
+      "validBet": 100,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 100
+        }
+      ],
+      "bet": 100,
+      "roundNo": "B11-181105103632",
+      "payout": 0,
+      "judgeResult": [ 60 ],
+      "playerCards": [ 24, 44 ],
+      "bankerCards": [ 11, 30 ],
+      "createTime": 1541385413,
+      "payoutTime": 1541385428,
+      "betHistoryId": "5bdfacc5755772a47462e50a",
+      "validBet": 100,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 200
+        }
+      ],
+      "bet": 200,
+      "roundNo": "B18-181105103637",
+      "payout": 200,
+      "judgeResult": [ 68 ],
+      "playerCards": [ 41, 33, 5 ],
+      "bankerCards": [ 42, 8, 29 ],
+      "createTime": 1541385403,
+      "payoutTime": 1541385435,
+      "betHistoryId": "5bdfacbb755772a47462a311",
+      "validBet": 0,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 200
+        }
+      ],
+      "bet": 200,
+      "roundNo": "B11-181105103714",
+      "payout": 390,
+      "judgeResult": [ 80 ],
+      "playerCards": [ 32, 14 ],
+      "bankerCards": [ 51, 31 ],
+      "createTime": 1541385442,
+      "payoutTime": 1541385470,
+      "betHistoryId": "5bdface2755772a4746389f1",
+      "validBet": 200,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 200
+        }
+      ],
+      "bet": 200,
+      "roundNo": "B12-181105103708",
+      "payout": 390,
+      "judgeResult": [ 80 ],
+      "playerCards": [ 48, 13, 15 ],
+      "bankerCards": [ 26, 42 ],
+      "createTime": 1541385447,
+      "payoutTime": 1541385470,
+      "betHistoryId": "5bdface7755772a47463a18b",
+      "validBet": 200,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 200
+        }
+      ],
+      "bet": 200,
+      "roundNo": "B18-181105103723",
+      "payout": 0,
+      "judgeResult": [ 60, 88 ],
+      "playerCards": [ 12, 17 ],
+      "bankerCards": [ 40, 1 ],
+      "createTime": 1541385451,
+      "payoutTime": 1541385472,
+      "betHistoryId": "5bdfaceb755772a47463b753",
+      "validBet": 200,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 300
+        }
+      ],
+      "bet": 300,
+      "roundNo": "B18-181105103800",
       "payout": 300,
       "judgeResult": [ 68 ],
-      "playerCards": [ 1, 44, 16 ],
-      "bankerCards": [ 7, 30, 36 ],
-      "createTime": 1540826061,
-      "payoutTime": 1540826092,
-      "betHistoryId": "5bd723cd755772a474a50531",
+      "playerCards": [ 33, 10 ],
+      "bankerCards": [ 25, 32 ],
+      "createTime": 1541385490,
+      "payoutTime": 1541385509,
+      "betHistoryId": "5bdfad12755772a47464a6db",
       "validBet": 0,
-      "username": "linhmai",
-      "userId": 6738444,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 100
+        }
+      ],
+      "bet": 100,
+      "roundNo": "B11-181105103758",
+      "payout": 195,
+      "judgeResult": [ 80 ],
+      "playerCards": [ 20, 1 ],
+      "bankerCards": [ 45, 12 ],
+      "createTime": 1541385496,
+      "payoutTime": 1541385513,
+      "betHistoryId": "5bdfad18755772a47464cc8f",
+      "validBet": 100,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 300
+        }
+      ],
+      "bet": 300,
+      "roundNo": "B18-181105103837",
+      "payout": 585,
+      "judgeResult": [ 80 ],
+      "playerCards": [ 0, 42 ],
+      "bankerCards": [ 1, 23, 3 ],
+      "createTime": 1541385526,
+      "payoutTime": 1541385552,
+      "betHistoryId": "5bdfad36755772a4746581d2",
+      "validBet": 300,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 100
+        }
+      ],
+      "bet": 100,
+      "roundNo": "B18-181105104001",
+      "payout": 0,
+      "judgeResult": [ 60 ],
+      "playerCards": [ 7, 32 ],
+      "bankerCards": [ 43, 2, 39 ],
+      "createTime": 1541385616,
+      "payoutTime": 1541385635,
+      "betHistoryId": "5bdfad90755772a4746790b2",
+      "validBet": 100,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 200
+        }
+      ],
+      "bet": 200,
+      "roundNo": "B18-181105104043",
+      "payout": 390,
+      "judgeResult": [ 80 ],
+      "playerCards": [ 44, 16, 21 ],
+      "bankerCards": [ 2, 21 ],
+      "createTime": 1541385651,
+      "payoutTime": 1541385676,
+      "betHistoryId": "5bdfadb3755772a474685a90",
+      "validBet": 200,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 100
+        }
+      ],
+      "bet": 100,
+      "roundNo": "B6-181105104125",
+      "payout": 195,
+      "judgeResult": [ 80 ],
+      "playerCards": [ 36, 47, 27 ],
+      "bankerCards": [ 34, 31 ],
+      "createTime": 1541385697,
+      "payoutTime": 1541385721,
+      "betHistoryId": "5bdfade1755772a474696cae",
+      "validBet": 100,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 100
+        }
+      ],
+      "bet": 100,
+      "roundNo": "B11-181105104226",
+      "payout": 0,
+      "judgeResult": [ 60 ],
+      "playerCards": [ 23, 38, 3 ],
+      "bankerCards": [ 47, 1, 23 ],
+      "createTime": 1541385757,
+      "payoutTime": 1541385789,
+      "betHistoryId": "5bdfae1d755772a4746ae0c4",
+      "validBet": 100,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 200
+        }
+      ],
+      "bet": 200,
+      "roundNo": "B11-181105104315",
+      "payout": 0,
+      "judgeResult": [ 60 ],
+      "playerCards": [ 50, 31 ],
+      "bankerCards": [ 18, 16, 51 ],
+      "createTime": 1541385806,
+      "payoutTime": 1541385833,
+      "betHistoryId": "5bdfae4e755772a4746c0da8",
+      "validBet": 200,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 100
+        }
+      ],
+      "bet": 100,
+      "roundNo": "B2-181105104337",
+      "payout": 0,
+      "judgeResult": [ 60 ],
+      "playerCards": [ 37, 20 ],
+      "bankerCards": [ 24, 31 ],
+      "createTime": 1541385828,
+      "payoutTime": 1541385844,
+      "betHistoryId": "5bdfae64755772a4746c9af9",
+      "validBet": 100,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 100
+        }
+      ],
+      "bet": 100,
+      "roundNo": "B2-181105104412",
+      "payout": 0,
+      "judgeResult": [ 60 ],
+      "playerCards": [ 13, 31 ],
+      "bankerCards": [ 26, 27 ],
+      "createTime": 1541385859,
+      "payoutTime": 1541385879,
+      "betHistoryId": "5bdfae83755772a4746d5d5d",
+      "validBet": 100,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 300
+        }
+      ],
+      "bet": 300,
+      "roundNo": "B11-181105104401",
+      "payout": 585,
+      "judgeResult": [ 80, 66 ],
+      "playerCards": [ 12, 12, 10 ],
+      "bankerCards": [ 2, 17, 41 ],
+      "createTime": 1541385850,
+      "payoutTime": 1541385881,
+      "betHistoryId": "5bdfae7a755772a4746d2725",
+      "validBet": 300,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 100
+        }
+      ],
+      "bet": 100,
+      "roundNo": "B21-181105104442",
+      "payout": 0,
+      "judgeResult": [ 60 ],
+      "playerCards": [ 48, 20 ],
+      "bankerCards": [ 23, 15 ],
+      "createTime": 1541385902,
+      "payoutTime": 1541385917,
+      "betHistoryId": "5bdfaeae755772a4746e6c33",
+      "validBet": 100,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 200
+        }
+      ],
+      "bet": 200,
+      "roundNo": "B2-181105104447",
+      "payout": 390,
+      "judgeResult": [ 80 ],
+      "playerCards": [ 51, 26, 50 ],
+      "bankerCards": [ 31, 19 ],
+      "createTime": 1541385896,
+      "payoutTime": 1541385918,
+      "betHistoryId": "5bdfaea8755772a4746e4727",
+      "validBet": 200,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 200
+        }
+      ],
+      "bet": 200,
+      "roundNo": "B21-181105104523",
+      "payout": 0,
+      "judgeResult": [ 60 ],
+      "playerCards": [ 40, 13, 46 ],
+      "bankerCards": [ 0, 47, 48 ],
+      "createTime": 1541385932,
+      "payoutTime": 1541385963,
+      "betHistoryId": "5bdfaecc755772a4746f3490",
+      "validBet": 200,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 300
+        }
+      ],
+      "bet": 300,
+      "roundNo": "B21-181105104611",
+      "payout": 0,
+      "judgeResult": [ 60 ],
+      "playerCards": [ 40, 2 ],
+      "bankerCards": [ 43, 46, 42 ],
+      "createTime": 1541385979,
+      "payoutTime": 1541386008,
+      "betHistoryId": "5bdfaefb755772a4747071ab",
+      "validBet": 300,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 200
+        }
+      ],
+      "bet": 200,
+      "roundNo": "B18-181105104645",
+      "payout": 0,
+      "judgeResult": [ 60 ],
+      "playerCards": [ 38, 13, 42 ],
+      "bankerCards": [ 35, 49, 14 ],
+      "createTime": 1541386013,
+      "payoutTime": 1541386042,
+      "betHistoryId": "5bdfaf1d755772a474713538",
+      "validBet": 200,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 400
+        }
+      ],
+      "bet": 400,
+      "roundNo": "B21-181105104655",
+      "payout": 0,
+      "judgeResult": [ 60 ],
+      "playerCards": [ 31, 51 ],
+      "bankerCards": [ 31, 2 ],
+      "createTime": 1541386024,
+      "payoutTime": 1541386051,
+      "betHistoryId": "5bdfaf28755772a474717ca8",
+      "validBet": 400,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 200
+        }
+      ],
+      "bet": 200,
+      "roundNo": "B11-181105104703",
+      "payout": 390,
+      "judgeResult": [ 80 ],
+      "playerCards": [ 39, 25, 18 ],
+      "bankerCards": [ 9, 0, 29 ],
+      "createTime": 1541386030,
+      "payoutTime": 1541386066,
+      "betHistoryId": "5bdfaf2e755772a474719ddb",
+      "validBet": 200,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 300
+        }
+      ],
+      "bet": 300,
+      "roundNo": "B18-181105104730",
+      "payout": 0,
+      "judgeResult": [ 60, 66 ],
+      "playerCards": [ 9, 48, 3 ],
+      "bankerCards": [ 44, 41, 47 ],
+      "createTime": 1541386059,
+      "payoutTime": 1541386086,
+      "betHistoryId": "5bdfaf4b755772a474725e6f",
+      "validBet": 300,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 475
+        }
+      ],
+      "bet": 475,
+      "roundNo": "B21-181105104738",
+      "payout": 926.25,
+      "judgeResult": [ 80, 66 ],
+      "playerCards": [ 17, 43, 7 ],
+      "bankerCards": [ 30, 22 ],
+      "createTime": 1541386068,
+      "payoutTime": 1541386096,
+      "betHistoryId": "5bdfaf54755772a474729da2",
+      "validBet": 475,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 400
+        }
+      ],
+      "bet": 400,
+      "roundNo": "B18-181105104815",
+      "payout": 780,
+      "judgeResult": [ 80 ],
+      "playerCards": [ 12, 0, 48 ],
+      "bankerCards": [ 26, 16 ],
+      "createTime": 1541386103,
+      "payoutTime": 1541386128,
+      "betHistoryId": "5bdfaf77755772a474737a7f",
+      "validBet": 400,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 100
+        }
+      ],
+      "bet": 100,
+      "roundNo": "B21-181105104824",
+      "payout": 195,
+      "judgeResult": [ 80 ],
+      "playerCards": [ 12, 24, 48 ],
+      "bankerCards": [ 24, 30 ],
+      "createTime": 1541386112,
+      "payoutTime": 1541386143,
+      "betHistoryId": "5bdfaf80755772a47473a7ce",
+      "validBet": 100,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 100
+        }
+      ],
+      "bet": 100,
+      "roundNo": "B12-181105104833",
+      "payout": 195,
+      "judgeResult": [ 80 ],
+      "playerCards": [ 31, 37 ],
+      "bankerCards": [ 28, 48, 16 ],
+      "createTime": 1541386123,
+      "payoutTime": 1541386156,
+      "betHistoryId": "5bdfaf8b755772a47473f2f3",
+      "validBet": 100,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 100
+        }
+      ],
+      "bet": 100,
+      "roundNo": "B16-181105104850",
+      "payout": 195,
+      "judgeResult": [ 80 ],
+      "playerCards": [ 42, 5 ],
+      "bankerCards": [ 14, 42 ],
+      "createTime": 1541386143,
+      "payoutTime": 1541386159,
+      "betHistoryId": "5bdfaf9f755772a474747edd",
+      "validBet": 100,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 100
+        }
+      ],
+      "bet": 100,
+      "roundNo": "B11-181105104847",
+      "payout": 0,
+      "judgeResult": [ 60, 88 ],
+      "playerCards": [ 18, 26 ],
+      "bankerCards": [ 0, 26 ],
+      "createTime": 1541386152,
+      "payoutTime": 1541386165,
+      "betHistoryId": "5bdfafa8755772a47474b8f6",
+      "validBet": 100,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 100
+        }
+      ],
+      "bet": 100,
+      "roundNo": "B18-181105104856",
+      "payout": 0,
+      "judgeResult": [ 60 ],
+      "playerCards": [ 4, 19, 21 ],
+      "bankerCards": [ 15, 45, 45 ],
+      "createTime": 1541386149,
+      "payoutTime": 1541386172,
+      "betHistoryId": "5bdfafa5755772a47474a84c",
+      "validBet": 100,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 100
+        }
+      ],
+      "bet": 100,
+      "roundNo": "B15-181105104856",
+      "payout": 195,
+      "judgeResult": [ 80 ],
+      "playerCards": [ 23, 11, 0 ],
+      "bankerCards": [ 11, 8, 4 ],
+      "createTime": 1541386159,
+      "payoutTime": 1541386181,
+      "betHistoryId": "5bdfafaf755772a47474eca7",
+      "validBet": 100,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 3,
+      "gameName": "sic-bo",
+      "betMap": [
+        {
+          "betType": 103,
+          "betMoney": 100
+        },
+        {
+          "betType": 121,
+          "betMoney": 20
+        },
+        {
+          "betType": 125,
+          "betMoney": 20
+        }
+      ],
+      "bet": 140,
+      "roundNo": "S2-181105104914",
+      "payout": 0,
+      "judgeResult": [ 129, 149, 151, 153, 136, 137, 139, 102, 100, 156 ],
+      "allDices": [ 3, 4, 6 ],
+      "createTime": 1541386166,
+      "payoutTime": 1541386204,
+      "betHistoryId": "5bdfafb6755772a474751a13",
+      "validBet": 140,
+      "username": "truongleminhbao",
+      "userId": 2085749,
       "platform": 3
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 200
+        }
+      ],
+      "bet": 200,
+      "roundNo": "B11-181105104931",
+      "payout": 0,
+      "judgeResult": [ 60 ],
+      "playerCards": [ 3, 13 ],
+      "bankerCards": [ 22, 30 ],
+      "createTime": 1541386179,
+      "payoutTime": 1541386208,
+      "betHistoryId": "5bdfafc3755772a474756cd0",
+      "validBet": 200,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 300
+        }
+      ],
+      "bet": 300,
+      "roundNo": "B11-181105105017",
+      "payout": 585,
+      "judgeResult": [ 80, 66 ],
+      "playerCards": [ 35, 9, 8 ],
+      "bankerCards": [ 44, 35 ],
+      "createTime": 1541386224,
+      "payoutTime": 1541386256,
+      "betHistoryId": "5bdfaff0755772a47476995d",
+      "validBet": 300,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 200
+        }
+      ],
+      "bet": 200,
+      "roundNo": "B18-181105105024",
+      "payout": 0,
+      "judgeResult": [ 60, 88 ],
+      "playerCards": [ 2, 5, 45 ],
+      "bankerCards": [ 49, 10, 37 ],
+      "createTime": 1541386233,
+      "payoutTime": 1541386261,
+      "betHistoryId": "5bdfaff9755772a47476d12b",
+      "validBet": 200,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 3,
+      "gameName": "sic-bo",
+      "betMap": [
+        {
+          "betType": 103,
+          "betMoney": 100
+        },
+        {
+          "betType": 145,
+          "betMoney": 20
+        },
+        {
+          "betType": 146,
+          "betMoney": 20
+        }
+      ],
+      "bet": 140,
+      "roundNo": "S2-181105105012",
+      "payout": 200,
+      "judgeResult": [ 126, 141, 144, 151, 134, 136, 139, 103, 101, 156 ],
+      "allDices": [ 1, 3, 6 ],
+      "createTime": 1541386233,
+      "payoutTime": 1541386262,
+      "betHistoryId": "5bdfaff9755772a47476d50d",
+      "validBet": 140,
+      "username": "truongleminhbao",
+      "userId": 2085749,
+      "platform": 3
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 300
+        }
+      ],
+      "bet": 300,
+      "roundNo": "B18-181105105109",
+      "payout": 0,
+      "judgeResult": [ 60 ],
+      "playerCards": [ 30, 21 ],
+      "bankerCards": [ 27, 22, 5 ],
+      "createTime": 1541386277,
+      "payoutTime": 1541386303,
+      "betHistoryId": "5bdfb025755772a47477d8e6",
+      "validBet": 300,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 100
+        }
+      ],
+      "bet": 100,
+      "roundNo": "B11-181105105104",
+      "payout": 195,
+      "judgeResult": [ 80, 88 ],
+      "playerCards": [ 3, 46, 41 ],
+      "bankerCards": [ 11, 11, 20 ],
+      "createTime": 1541386271,
+      "payoutTime": 1541386308,
+      "betHistoryId": "5bdfb01f755772a47477b393",
+      "validBet": 100,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
     },
     {
       "gameType": 3,
@@ -3267,41 +2161,54 @@
         {
           "betType": 102,
           "betMoney": 100
+        },
+        {
+          "betType": 149,
+          "betMoney": 20
+        },
+        {
+          "betType": 150,
+          "betMoney": 20
+        },
+        {
+          "betType": 152,
+          "betMoney": 20
         }
       ],
-      "bet": 100,
-      "roundNo": "S2-181029231407",
-      "payout": 0,
-      "judgeResult": [ 125, 147, 135, 155, 105, 138, 103, 100 ],
-      "allDices": [ 2, 2, 5 ],
-      "createTime": 1540826058,
-      "payoutTime": 1540826115,
-      "betHistoryId": "5bd723ca755772a474a4ed80",
-      "validBet": 100,
-      "username": "nthanhvu2208",
-      "userId": 6763839,
-      "platform": 2
+      "bet": 160,
+      "roundNo": "S2-181105105111",
+      "payout": 320,
+      "judgeResult": [ 129, 149, 151, 153, 136, 137, 139, 102, 100, 156 ],
+      "allDices": [ 3, 4, 6 ],
+      "createTime": 1541386285,
+      "payoutTime": 1541386328,
+      "betHistoryId": "5bdfb02d755772a474781e33",
+      "validBet": 160,
+      "username": "truongleminhbao",
+      "userId": 2085749,
+      "platform": 3
     },
     {
-      "gameType": 3,
-      "gameName": "sic-bo",
+      "gameType": 1,
+      "gameName": "baccarat",
       "betMap": [
         {
-          "betType": 101,
-          "betMoney": 30
+          "betType": 80,
+          "betMoney": 400
         }
       ],
-      "bet": 30,
-      "roundNo": "S2-181029231407",
-      "payout": 0,
-      "judgeResult": [ 125, 147, 135, 155, 105, 138, 103, 100 ],
-      "allDices": [ 2, 2, 5 ],
-      "createTime": 1540826075,
-      "payoutTime": 1540826115,
-      "betHistoryId": "5bd723db755772a474a57acc",
-      "validBet": 30,
-      "username": "z4zah0166",
-      "userId": 6735775,
+      "bet": 400,
+      "roundNo": "B18-181105105151",
+      "payout": 780,
+      "judgeResult": [ 80 ],
+      "playerCards": [ 36, 29 ],
+      "bankerCards": [ 33, 8 ],
+      "createTime": 1541386321,
+      "payoutTime": 1541386343,
+      "betHistoryId": "5bdfb051755772a474790492",
+      "validBet": 400,
+      "username": "quang04",
+      "userId": 5749607,
       "platform": 2
     },
     {
@@ -3309,344 +2216,79 @@
       "gameName": "baccarat",
       "betMap": [
         {
-          "betType": 60,
-          "betMoney": 400
+          "betType": 80,
+          "betMoney": 100
         }
       ],
-      "bet": 400,
-      "roundNo": "B15-181029231502",
+      "bet": 100,
+      "roundNo": "B6-181105105218",
       "payout": 0,
-      "judgeResult": [ 80 ],
-      "playerCards": [ 50, 15, 17 ],
-      "bankerCards": [ 46, 3, 41 ],
-      "createTime": 1540826123,
-      "payoutTime": 1540826150,
-      "betHistoryId": "5bd7240b755772a474a6ddb3",
-      "validBet": 400,
-      "username": "linhmai",
-      "userId": 6738444,
-      "platform": 3
-    },
-    {
-      "gameType": 3,
-      "gameName": "sic-bo",
-      "betMap": [
-        {
-          "betType": 102,
-          "betMoney": 120
-        },
-        {
-          "betType": 149,
-          "betMoney": 20
-        },
-        {
-          "betType": 151,
-          "betMoney": 20
-        },
-        {
-          "betType": 152,
-          "betMoney": 20
-        },
-        {
-          "betType": 153,
-          "betMoney": 20
-        }
-      ],
-      "bet": 200,
-      "roundNo": "S2-181029231521",
-      "payout": 0,
-      "judgeResult": [ 126, 145, 147, 150, 135, 136, 138, 103, 101, 156 ],
-      "allDices": [ 2, 3, 5 ],
-      "createTime": 1540826124,
-      "payoutTime": 1540826178,
-      "betHistoryId": "5bd7240c755772a474a6e812",
-      "validBet": 200,
-      "username": "nthanhvu2208",
-      "userId": 6763839,
+      "judgeResult": [ 60 ],
+      "playerCards": [ 9, 27, 36 ],
+      "bankerCards": [ 31, 16, 11 ],
+      "createTime": 1541386348,
+      "payoutTime": 1541386371,
+      "betHistoryId": "5bdfb06c755772a47479a796",
+      "validBet": 100,
+      "username": "quang04",
+      "userId": 5749607,
       "platform": 2
     },
     {
-      "gameType": 4,
-      "gameName": "roulette",
+      "gameType": 1,
+      "gameName": "baccarat",
       "betMap": [
         {
-          "betType": 207,
-          "betMoney": 30,
-          "betTypeInterval": "1",
-          "betNumber": [ 2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35 ]
-        },
-        {
-          "betType": 207,
-          "betMoney": 30,
-          "betTypeInterval": "2",
-          "betNumber": [ 3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36 ]
+          "betType": 80,
+          "betMoney": 100
         }
       ],
-      "bet": 60,
-      "roundNo": "R1-181029231615",
-      "payout": 90,
-      "judgeResult": [ 200, 213, 211, 209, 202, 207, 206, 206, 203, 203, 208, 201, 201, 201 ],
-      "number": 27,
-      "createTime": 1540826192,
-      "payoutTime": 1540826223,
-      "betHistoryId": "5bd72450755772a474a914cc",
-      "validBet": 60,
-      "username": "nhatminh611",
-      "userId": 6798808,
+      "bet": 100,
+      "roundNo": "B18-181105105231",
+      "payout": 0,
+      "judgeResult": [ 60 ],
+      "playerCards": [ 3, 11, 32 ],
+      "bankerCards": [ 33, 25, 36 ],
+      "createTime": 1541386359,
+      "payoutTime": 1541386387,
+      "betHistoryId": "5bdfb077755772a47479f5a9",
+      "validBet": 100,
+      "username": "quang04",
+      "userId": 5749607,
       "platform": 2
     },
     {
       "gameType": 3,
       "gameName": "sic-bo",
       "betMap": [
-        {
-          "betType": 102,
-          "betMoney": 220
-        },
-        {
-          "betType": 149,
-          "betMoney": 20
-        },
-        {
-          "betType": 151,
-          "betMoney": 20
-        },
-        {
-          "betType": 152,
-          "betMoney": 20
-        },
-        {
-          "betType": 153,
-          "betMoney": 20
-        }
-      ],
-      "bet": 300,
-      "roundNo": "S2-181029231627",
-      "payout": 560,
-      "judgeResult": [ 127, 149, 136, 137, 155, 107, 102, 100 ],
-      "allDices": [ 3, 4, 4 ],
-      "createTime": 1540826190,
-      "payoutTime": 1540826244,
-      "betHistoryId": "5bd7244e755772a474a8fefd",
-      "validBet": 300,
-      "username": "nthanhvu2208",
-      "userId": 6763839,
-      "platform": 2
-    },
-    {
-      "gameType": 3,
-      "gameName": "sic-bo",
-      "betMap": [
-        {
-          "betType": 102,
-          "betMoney": 1000
-        }
-      ],
-      "bet": 1000,
-      "roundNo": "S2-181029231732",
-      "payout": 0,
-      "judgeResult": [ 126, 142, 143, 152, 134, 137, 138, 103, 101, 156 ],
-      "allDices": [ 1, 4, 5 ],
-      "createTime": 1540826275,
-      "payoutTime": 1540826308,
-      "betHistoryId": "5bd724a3755772a474ab9cf4",
-      "validBet": 1000,
-      "username": "linhmai",
-      "userId": 6738444,
-      "platform": 3
-    },
-    {
-      "gameType": 3,
-      "gameName": "sic-bo",
-      "betMap": [
-        {
-          "betType": 101,
-          "betMoney": 60
-        },
         {
           "betType": 103,
-          "betMoney": 60
-        }
-      ],
-      "bet": 120,
-      "roundNo": "S2-181029231732",
-      "payout": 240,
-      "judgeResult": [ 126, 142, 143, 152, 134, 137, 138, 103, 101, 156 ],
-      "allDices": [ 1, 4, 5 ],
-      "createTime": 1540826278,
-      "payoutTime": 1540826308,
-      "betHistoryId": "5bd724a6755772a474abbdae",
-      "validBet": 120,
-      "username": "z4zah0166",
-      "userId": 6735775,
-      "platform": 2
-    },
-    {
-      "gameType": 3,
-      "gameName": "sic-bo",
-      "betMap": [
-        {
-          "betType": 100,
-          "betMoney": 20
-        }
-      ],
-      "bet": 20,
-      "roundNo": "S2-181029231835",
-      "payout": 40,
-      "judgeResult": [ 127, 142, 144, 153, 134, 137, 139, 102, 100, 156 ],
-      "allDices": [ 1, 4, 6 ],
-      "createTime": 1540826337,
-      "payoutTime": 1540826373,
-      "betHistoryId": "5bd724e1755772a474ad951d",
-      "validBet": 20,
-      "username": "z4zah0166",
-      "userId": 6735775,
-      "platform": 2
-    },
-    {
-      "gameType": 3,
-      "gameName": "sic-bo",
-      "betMap": [
-        {
-          "betType": 102,
-          "betMoney": 500
-        }
-      ],
-      "bet": 500,
-      "roundNo": "S2-181029231835",
-      "payout": 1000,
-      "judgeResult": [ 127, 142, 144, 153, 134, 137, 139, 102, 100, 156 ],
-      "allDices": [ 1, 4, 6 ],
-      "createTime": 1540826339,
-      "payoutTime": 1540826373,
-      "betHistoryId": "5bd724e3755772a474adad61",
-      "validBet": 500,
-      "username": "linhmai",
-      "userId": 6738444,
-      "platform": 3
-    },
-    {
-      "gameType": 4,
-      "gameName": "roulette",
-      "betMap": [
-        {
-          "betType": 207,
-          "betMoney": 30,
-          "betTypeInterval": "1",
-          "betNumber": [ 2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35 ]
+          "betMoney": 100
         },
         {
-          "betType": 207,
-          "betMoney": 30,
-          "betTypeInterval": "2",
-          "betNumber": [ 3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36 ]
-        }
-      ],
-      "bet": 60,
-      "roundNo": "R1-181029231905",
-      "payout": 90,
-      "judgeResult": [ 200, 213, 211, 209, 202, 207, 206, 206, 203, 203, 203, 203, 208, 201, 201, 201, 201 ],
-      "number": 23,
-      "createTime": 1540826359,
-      "payoutTime": 1540826403,
-      "betHistoryId": "5bd724f7755772a474ae50a6",
-      "validBet": 60,
-      "username": "nhatminh611",
-      "userId": 6798808,
-      "platform": 2
-    },
-    {
-      "gameType": 3,
-      "gameName": "sic-bo",
-      "betMap": [
-        {
-          "betType": 102,
-          "betMoney": 500
-        }
-      ],
-      "bet": 500,
-      "roundNo": "S2-181029231940",
-      "payout": 0,
-      "judgeResult": [ 126, 149, 136, 155, 106, 137, 103, 101 ],
-      "allDices": [ 3, 3, 4 ],
-      "createTime": 1540826404,
-      "payoutTime": 1540826442,
-      "betHistoryId": "5bd72524755772a474afbb61",
-      "validBet": 500,
-      "username": "linhmai",
-      "userId": 6738444,
-      "platform": 3
-    },
-    {
-      "gameType": 3,
-      "gameName": "sic-bo",
-      "betMap": [
-        {
-          "betType": 102,
-          "betMoney": 90
-        },
-        {
-          "betType": 151,
+          "betType": 143,
           "betMoney": 20
         },
         {
-          "betType": 152,
+          "betType": 144,
           "betMoney": 20
         },
         {
-          "betType": 153,
+          "betType": 145,
           "betMoney": 20
         }
       ],
-      "bet": 150,
-      "roundNo": "S2-181029232049",
-      "payout": 180,
+      "bet": 160,
+      "roundNo": "S2-181105105217",
+      "payout": 120,
       "judgeResult": [ 127, 143, 134, 138, 155, 108, 102, 100 ],
       "allDices": [ 1, 5, 5 ],
-      "createTime": 1540826466,
-      "payoutTime": 1540826505,
-      "betHistoryId": "5bd72562755772a474b18674",
-      "validBet": 150,
-      "username": "nthanhvu2208",
-      "userId": 6763839,
-      "platform": 3
-    },
-    {
-      "gameType": 3,
-      "gameName": "sic-bo",
-      "betMap": [
-        {
-          "betType": 102,
-          "betMoney": 160
-        },
-        {
-          "betType": 150,
-          "betMoney": 20
-        },
-        {
-          "betType": 151,
-          "betMoney": 20
-        },
-        {
-          "betType": 152,
-          "betMoney": 20
-        },
-        {
-          "betType": 153,
-          "betMoney": 20
-        }
-      ],
-      "bet": 240,
-      "roundNo": "S2-181029232152",
-      "payout": 0,
-      "judgeResult": [ 125, 142, 134, 137, 155, 107, 103, 100 ],
-      "allDices": [ 1, 4, 4 ],
-      "createTime": 1540826514,
-      "payoutTime": 1540826564,
-      "betHistoryId": "5bd72592755772a474b309f4",
-      "validBet": 240,
-      "username": "nthanhvu2208",
-      "userId": 6763839,
+      "createTime": 1541386356,
+      "payoutTime": 1541386389,
+      "betHistoryId": "5bdfb074755772a47479e87f",
+      "validBet": 160,
+      "username": "truongleminhbao",
+      "userId": 2085749,
       "platform": 3
     },
     {
@@ -3654,23 +2296,46 @@
       "gameName": "baccarat",
       "betMap": [
         {
-          "betType": 60,
-          "betMoney": 1995
+          "betType": 80,
+          "betMoney": 200
         }
       ],
-      "bet": 1995,
-      "roundNo": "B6-181029232241",
-      "payout": 0,
+      "bet": 200,
+      "roundNo": "B6-181105105258",
+      "payout": 200,
+      "judgeResult": [ 68 ],
+      "playerCards": [ 45, 24 ],
+      "bankerCards": [ 19, 24 ],
+      "createTime": 1541386391,
+      "payoutTime": 1541386406,
+      "betHistoryId": "5bdfb097755772a4747ad697",
+      "validBet": 0,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 200
+        }
+      ],
+      "bet": 200,
+      "roundNo": "B18-181105105316",
+      "payout": 390,
       "judgeResult": [ 80 ],
-      "playerCards": [ 15, 19, 36 ],
-      "bankerCards": [ 43, 21 ],
-      "createTime": 1540826571,
-      "payoutTime": 1540826596,
-      "betHistoryId": "5bd725cb755772a474b4bec9",
-      "validBet": 1995,
-      "username": "linhmai",
-      "userId": 6738444,
-      "platform": 3
+      "playerCards": [ 12, 23, 24 ],
+      "bankerCards": [ 42, 20 ],
+      "createTime": 1541386402,
+      "payoutTime": 1541386427,
+      "betHistoryId": "5bdfb0a2755772a4747b1948",
+      "validBet": 200,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
     },
     {
       "gameType": 3,
@@ -3678,14 +2343,10 @@
       "betMap": [
         {
           "betType": 102,
-          "betMoney": 170
+          "betMoney": 200
         },
         {
           "betType": 150,
-          "betMoney": 20
-        },
-        {
-          "betType": 151,
           "betMoney": 20
         },
         {
@@ -3694,21 +2355,90 @@
         },
         {
           "betType": 153,
-          "betMoney": 20
+          "betMoney": 40
         }
       ],
-      "bet": 250,
-      "roundNo": "S2-181029232253",
-      "payout": 340,
-      "judgeResult": [ 133, 154, 138, 139, 155, 109, 102, 100 ],
-      "allDices": [ 5, 6, 6 ],
-      "createTime": 1540826580,
-      "payoutTime": 1540826627,
-      "betHistoryId": "5bd725d4755772a474b50591",
-      "validBet": 250,
-      "username": "nthanhvu2208",
-      "userId": 6763839,
+      "bet": 280,
+      "roundNo": "S2-181105105316",
+      "payout": 0,
+      "judgeResult": [ 120, 143, 134, 155, 104, 138, 103, 100 ],
+      "allDices": [ 1, 1, 5 ],
+      "createTime": 1541386407,
+      "payoutTime": 1541386443,
+      "betHistoryId": "5bdfb0a7755772a4747b3905",
+      "validBet": 280,
+      "username": "truongleminhbao",
+      "userId": 2085749,
       "platform": 3
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 200
+        }
+      ],
+      "bet": 200,
+      "roundNo": "B6-181105105333",
+      "payout": 390,
+      "judgeResult": [ 80 ],
+      "playerCards": [ 9, 23, 51 ],
+      "bankerCards": [ 35, 40, 39 ],
+      "createTime": 1541386420,
+      "payoutTime": 1541386446,
+      "betHistoryId": "5bdfb0b4755772a4747b8287",
+      "validBet": 200,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 200
+        }
+      ],
+      "bet": 200,
+      "roundNo": "B21-181105105436",
+      "payout": 390,
+      "judgeResult": [ 80 ],
+      "playerCards": [ 24, 29, 4 ],
+      "bankerCards": [ 15, 11, 37 ],
+      "createTime": 1541386484,
+      "payoutTime": 1541386516,
+      "betHistoryId": "5bdfb0f4755772a4747d383b",
+      "validBet": 200,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 100
+        }
+      ],
+      "bet": 100,
+      "roundNo": "B11-181105105504",
+      "payout": 0,
+      "judgeResult": [ 60 ],
+      "playerCards": [ 47, 10, 32 ],
+      "bankerCards": [ 48, 50, 0 ],
+      "createTime": 1541386524,
+      "payoutTime": 1541386547,
+      "betHistoryId": "5bdfb11c755772a4747e32f1",
+      "validBet": 100,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
     },
     {
       "gameType": 3,
@@ -3716,36 +2446,270 @@
       "betMap": [
         {
           "betType": 102,
-          "betMoney": 250
-        },
-        {
-          "betType": 150,
-          "betMoney": 20
-        },
-        {
-          "betType": 151,
-          "betMoney": 30
-        },
-        {
-          "betType": 152,
-          "betMoney": 30
-        },
-        {
-          "betType": 153,
-          "betMoney": 30
+          "betMoney": 100
         }
       ],
-      "bet": 360,
-      "roundNo": "S2-181029232356",
+      "bet": 100,
+      "roundNo": "S2-181105105511",
       "payout": 0,
       "judgeResult": [ 121, 140, 143, 147, 134, 135, 138, 103, 101, 156 ],
       "allDices": [ 1, 2, 5 ],
-      "createTime": 1540826641,
-      "payoutTime": 1540826698,
-      "betHistoryId": "5bd72611755772a474b6cafe",
-      "validBet": 360,
-      "username": "nthanhvu2208",
-      "userId": 6763839,
+      "createTime": 1541386518,
+      "payoutTime": 1541386560,
+      "betHistoryId": "5bdfb116755772a4747e1463",
+      "validBet": 100,
+      "username": "truongleminhbao",
+      "userId": 2085749,
+      "platform": 3
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 200
+        }
+      ],
+      "bet": 200,
+      "roundNo": "B11-181105105554",
+      "payout": 0,
+      "judgeResult": [ 60 ],
+      "playerCards": [ 44, 17, 9 ],
+      "bankerCards": [ 10, 26, 37 ],
+      "createTime": 1541386565,
+      "payoutTime": 1541386595,
+      "betHistoryId": "5bdfb145755772a4747f50a8",
+      "validBet": 200,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 3,
+      "gameName": "sic-bo",
+      "betMap": [
+        {
+          "betType": 102,
+          "betMoney": 100
+        }
+      ],
+      "bet": 100,
+      "roundNo": "S2-181105105609",
+      "payout": 200,
+      "judgeResult": [ 127, 142, 144, 153, 134, 137, 139, 102, 100, 156 ],
+      "allDices": [ 1, 4, 6 ],
+      "createTime": 1541386576,
+      "payoutTime": 1541386621,
+      "betHistoryId": "5bdfb150755772a4747f9542",
+      "validBet": 100,
+      "username": "truongleminhbao",
+      "userId": 2085749,
+      "platform": 3
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 200
+        }
+      ],
+      "bet": 200,
+      "roundNo": "B6-181105105646",
+      "payout": 390,
+      "judgeResult": [ 80 ],
+      "playerCards": [ 4, 6, 8 ],
+      "bankerCards": [ 7, 18 ],
+      "createTime": 1541386621,
+      "payoutTime": 1541386638,
+      "betHistoryId": "5bdfb17d755772a47480bcc9",
+      "validBet": 200,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 400
+        }
+      ],
+      "bet": 400,
+      "roundNo": "B11-181105105642",
+      "payout": 0,
+      "judgeResult": [ 60, 88 ],
+      "playerCards": [ 48, 6 ],
+      "bankerCards": [ 1, 40 ],
+      "createTime": 1541386611,
+      "payoutTime": 1541386639,
+      "betHistoryId": "5bdfb173755772a474807194",
+      "validBet": 400,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 100
+        }
+      ],
+      "bet": 100,
+      "roundNo": "B18-181105105720",
+      "payout": 195,
+      "judgeResult": [ 80 ],
+      "playerCards": [ 46, 30, 19 ],
+      "bankerCards": [ 14, 20, 39 ],
+      "createTime": 1541386651,
+      "payoutTime": 1541386675,
+      "betHistoryId": "5bdfb19b755772a474819c58",
+      "validBet": 100,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 3,
+      "gameName": "sic-bo",
+      "betMap": [
+        {
+          "betType": 102,
+          "betMoney": 100
+        }
+      ],
+      "bet": 100,
+      "roundNo": "S2-181105105711",
+      "payout": 0,
+      "judgeResult": [ 118, 140, 134, 135, 155, 105, 103, 100 ],
+      "allDices": [ 1, 2, 2 ],
+      "createTime": 1541386636,
+      "payoutTime": 1541386680,
+      "betHistoryId": "5bdfb18c755772a474812624",
+      "validBet": 100,
+      "username": "truongleminhbao",
+      "userId": 2085749,
+      "platform": 3
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 100
+        }
+      ],
+      "bet": 100,
+      "roundNo": "B2-181105105735",
+      "payout": 0,
+      "judgeResult": [ 60 ],
+      "playerCards": [ 0, 44 ],
+      "bankerCards": [ 34, 49 ],
+      "createTime": 1541386666,
+      "payoutTime": 1541386682,
+      "betHistoryId": "5bdfb1aa755772a47481f357",
+      "validBet": 100,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 500
+        }
+      ],
+      "bet": 500,
+      "roundNo": "B11-181105105727",
+      "payout": 500,
+      "judgeResult": [ 68 ],
+      "playerCards": [ 8, 29, 0 ],
+      "bankerCards": [ 35, 49, 18 ],
+      "createTime": 1541386662,
+      "payoutTime": 1541386692,
+      "betHistoryId": "5bdfb1a6755772a47481dc97",
+      "validBet": 0,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 100
+        }
+      ],
+      "bet": 100,
+      "roundNo": "B6-181105105806",
+      "payout": 195,
+      "judgeResult": [ 80 ],
+      "playerCards": [ 34, 0 ],
+      "bankerCards": [ 32, 24 ],
+      "createTime": 1541386695,
+      "payoutTime": 1541386713,
+      "betHistoryId": "5bdfb1c7755772a47482b66b",
+      "validBet": 100,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 1,
+      "gameName": "baccarat",
+      "betMap": [
+        {
+          "betType": 80,
+          "betMoney": 400
+        }
+      ],
+      "bet": 400,
+      "roundNo": "B11-181105105821",
+      "payout": 780,
+      "judgeResult": [ 80 ],
+      "playerCards": [ 38, 14 ],
+      "bankerCards": [ 19, 50 ],
+      "createTime": 1541386707,
+      "payoutTime": 1541386736,
+      "betHistoryId": "5bdfb1d3755772a474830381",
+      "validBet": 400,
+      "username": "quang04",
+      "userId": 5749607,
+      "platform": 2
+    },
+    {
+      "gameType": 3,
+      "gameName": "sic-bo",
+      "betMap": [
+        {
+          "betType": 103,
+          "betMoney": 100
+        }
+      ],
+      "bet": 100,
+      "roundNo": "S2-181105105810",
+      "payout": 200,
+      "judgeResult": [ 118, 140, 134, 135, 155, 105, 103, 100 ],
+      "allDices": [ 1, 2, 2 ],
+      "createTime": 1541386694,
+      "payoutTime": 1541386751,
+      "betHistoryId": "5bdfb1c6755772a47482b20e",
+      "validBet": 100,
+      "username": "truongleminhbao",
+      "userId": 2085749,
       "platform": 3
     }
   ],

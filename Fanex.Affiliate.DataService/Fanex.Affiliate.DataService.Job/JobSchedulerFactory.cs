@@ -22,6 +22,7 @@ namespace Fanex.Affiliate.DataService.Job
 
             _jobSchedulerList = new List<IJobScheduler>();
             _jobSchedulerList.Add(JobSystem.JobHandlerList["Ebet"].Value);
+            _jobSchedulerList.Add(JobSystem.JobHandlerList["Betsoft"].Value);
 
             //foreach (var product in _appSetting.SupportedProductList)
             //{

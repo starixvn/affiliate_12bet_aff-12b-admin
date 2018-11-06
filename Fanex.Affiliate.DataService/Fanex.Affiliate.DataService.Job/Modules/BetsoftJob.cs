@@ -33,7 +33,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
 
                 if (!isUm)
                 {
-                    var trackerFolderPath = _appSetting.BetsoftTimeTrackerFolder;
+                    var trackerFolderPath = _appSetting.BetsoftTrackerFolder;
                     var lastQueryTime = _timeTracker.GetLastestCallSuccess(trackerFolderPath, _appSetting.BetsoftStartTime);
                     var now = DateTime.Now;
                     var nowByHour = new DateTime(now.Year, now.Month, now.Day, now.Hour, 0, 0, DateTimeKind.Local);

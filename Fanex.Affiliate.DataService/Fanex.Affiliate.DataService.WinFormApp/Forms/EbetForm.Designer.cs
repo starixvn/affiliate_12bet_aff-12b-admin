@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnImportConvertedXml = new System.Windows.Forms.Button();
             this.txtPageSize = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtPageNumber = new System.Windows.Forms.TextBox();
@@ -48,7 +49,6 @@
             this.richTextConvertedXml = new System.Windows.Forms.RichTextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.richTextLog = new System.Windows.Forms.RichTextBox();
-            this.btnImportConvertedXml = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -82,13 +82,23 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Input Param";
             // 
+            // btnImportConvertedXml
+            // 
+            this.btnImportConvertedXml.Location = new System.Drawing.Point(165, 95);
+            this.btnImportConvertedXml.Name = "btnImportConvertedXml";
+            this.btnImportConvertedXml.Size = new System.Drawing.Size(124, 23);
+            this.btnImportConvertedXml.TabIndex = 13;
+            this.btnImportConvertedXml.Text = "Import Converted Xml";
+            this.btnImportConvertedXml.UseVisualStyleBackColor = true;
+            this.btnImportConvertedXml.Click += new System.EventHandler(this.btnImportConvertedXml_Click);
+            // 
             // txtPageSize
             // 
             this.txtPageSize.Location = new System.Drawing.Point(609, 24);
             this.txtPageSize.Name = "txtPageSize";
             this.txtPageSize.Size = new System.Drawing.Size(111, 20);
             this.txtPageSize.TabIndex = 12;
-            this.txtPageSize.Text = "5000";
+            this.txtPageSize.Text = "2000";
             // 
             // label5
             // 
@@ -267,16 +277,6 @@
             this.richTextLog.Size = new System.Drawing.Size(906, 81);
             this.richTextLog.TabIndex = 0;
             this.richTextLog.Text = "";
-            // 
-            // btnImportConvertedXml
-            // 
-            this.btnImportConvertedXml.Location = new System.Drawing.Point(165, 95);
-            this.btnImportConvertedXml.Name = "btnImportConvertedXml";
-            this.btnImportConvertedXml.Size = new System.Drawing.Size(124, 23);
-            this.btnImportConvertedXml.TabIndex = 13;
-            this.btnImportConvertedXml.Text = "Import Converted Xml";
-            this.btnImportConvertedXml.UseVisualStyleBackColor = true;
-            this.btnImportConvertedXml.Click += new System.EventHandler(this.btnImportConvertedXml_Click);
             // 
             // EbetForm
             // 
