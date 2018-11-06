@@ -45,6 +45,14 @@ namespace Fanex.Affiliate.DataService.Importer.Utilities
 
         int BetsoftIntervalTime { get; }
 
+        string EbetTrackerFolder { get; }
+
+        int EbetIntervalTime { get; }
+
+        DateTime EbetStartTime { get; }
+
+        int EbetPageSize { get; }
+
         string GetValue(string key);
     }
 }

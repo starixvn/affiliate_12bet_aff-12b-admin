@@ -33,7 +33,8 @@ namespace Fanex.Affiliate.DataService.Job.Modules
 
                 if (!isUm)
                 {
-                    var lastQueryTime = _timeTracker.GetLastestCallSuccess();
+                    var trackerFolderPath = _appSetting.BetsoftTimeTrackerFolder;
+                    var lastQueryTime = _timeTracker.GetLastestCallSuccess(trackerFolderPath, _appSetting.BetsoftStartTime);
                     var now = DateTime.Now;
                     var nowByHour = new DateTime(now.Year, now.Month, now.Day, now.Hour, 0, 0, DateTimeKind.Local);
 
@@ -45,7 +46,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
 
                     _betSoftService.Import(betSoftParam);
 
-                    _timeTracker.SaveTime(nowByHour);
+                    _timeTracker.SaveTime(trackerFolderPath, nowByHour);
                 }
             }
             catch (Exception exception)

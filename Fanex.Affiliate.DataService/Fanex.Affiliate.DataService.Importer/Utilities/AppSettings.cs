@@ -47,6 +47,14 @@
 
         public DateTime BetsoftStartTime => DateTime.ParseExact(GetValue("BetsoftStartTime"), "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal);
 
+        public string EbetTrackerFolder => GetValue("EbetTrackerFolder");
+
+        public int EbetIntervalTime => Convert.ToInt32(GetValue("EbetIntervalTime"));
+
+        public DateTime EbetStartTime => DateTime.ParseExact(GetValue("EbetStartTime"), "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal);
+
+        public int EbetPageSize => Convert.ToInt32(GetValue("EbetPageSize"));
+
         public string GetValue(string key) => ConfigurationManager.AppSettings[key];
     }
 }

@@ -1,41 +1,31 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using Fanex.Affiliate.DataService.Importer.Utilities;
 
 namespace Fanex.Affiliate.DataService.Job.Services
 {
     public class TimeTracker : ITimeTracker
     {
-        private readonly IAppSettings _appSetting;
-
-        public TimeTracker(IAppSettings appSetting = null)
+        public DateTime GetLastestCallSuccess(string folderPath, DateTime defaultValue)
         {
-            _appSetting = appSetting ?? new AppSettings();
-        }
-
-        public DateTime GetLastestCallSuccess()
-        {
-            var folderPath = _appSetting.BetsoftTimeTrackerFolder;
             if (!Directory.Exists(folderPath))
             {
-                return _appSetting.BetsoftStartTime;
+                return defaultValue;
             }
 
             var fileName = GetLatestTrackingFile(folderPath);
             if (string.IsNullOrEmpty(fileName))
             {
-                return _appSetting.BetsoftStartTime;
+                return defaultValue;
             }
 
             var lastLine = File.ReadLines(fileName).Last();
 
-            return string.IsNullOrEmpty(lastLine) ? _appSetting.BetsoftStartTime : DateTime.Parse(lastLine);
+            return string.IsNullOrEmpty(lastLine) ? defaultValue : DateTime.Parse(lastLine);
         }
 
-        public void SaveTime(DateTime callTime)
+        public void SaveTime(string folderPath, DateTime callTime)
         {
-            var folderPath = _appSetting.BetsoftTimeTrackerFolder;
             var fileName = Path.Combine(folderPath, $"{DateTime.Now.ToString("yyyyMMdd")}.txt");
 
             if (!Directory.Exists(folderPath))
