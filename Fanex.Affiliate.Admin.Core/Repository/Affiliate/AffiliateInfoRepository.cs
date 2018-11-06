@@ -1,10 +1,10 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 using Fanex.Affiliate.Admin.Core.MetaModels.Affiliate;
 using Fanex.Data;
-using System;
-using System.Collections.Generic;
-using System.Data;
 
 namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
 {
@@ -95,8 +95,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
                 ApprovalDate = reader["ApprovedDate"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["ApprovedDate"]),
                 CasinoDate = reader["CasinoJoinedDate"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["CasinoJoinedDate"]),
                 CommissionGroup = Convert.ToString(reader["GroupName"]),
-                BalanceBf = Convert.ToDecimal(reader["BFF"]),
-                Member = Convert.ToInt32(reader["NoOfMember"]),
+                BalanceBf = reader["BFF"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(reader["BFF"]),
+                Member = reader["NoOfMember"] == DBNull.Value ? (int?)null : Convert.ToInt32(reader["NoOfMember"]),
                 IsFavorite = Convert.ToBoolean(reader["IsFavorite"]),
                 IsClosed = Convert.ToBoolean(reader["IsClosed"])
             };

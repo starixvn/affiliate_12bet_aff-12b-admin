@@ -87,8 +87,8 @@ export class GridData extends Component {
         const statusToLower = dataItem.Status && dataItem.Status.toLowerCase();
         const isApproved = statusToLower == "approved";
 
-        const balanceBf = dataItem.BalanceBf ? formatDecimal(dataItem.BalanceBf) : resource.NA;
-        const member = dataItem.Member ? format(dataItem.Member) : resource.NA;
+        const balanceBf = dataItem.BalanceBf === null ? resource.NA : formatDecimal(dataItem.BalanceBf);
+        const member = dataItem.Member === null ? resource.NA : format(dataItem.Member);
         const language = languageList[dataItem.Language];
         const commissionGroup = dataItem.CommissionGroup ? dataItem.CommissionGroup : resource.NA;
 
@@ -100,7 +100,7 @@ export class GridData extends Component {
             <Row key={`dataRow-${index}`}>
                 <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell title={dataItem.UserName}>
-                    <a href={resolveClientUrl(`Portal/Customer?custid=${dataItem.AffId}&user=${dataItem.UserName}`)} target="fContent">
+                    <a href={resolveClientUrl(`Portal/Customer?user=${dataItem.UserName}`)} target="top">
                         {dataItem.UserName}
                     </a>
                     <span className={classNameFavorite} onClick={() => this.handleToggleFavorite(dataItem.AffId, isFavorite)}></span>

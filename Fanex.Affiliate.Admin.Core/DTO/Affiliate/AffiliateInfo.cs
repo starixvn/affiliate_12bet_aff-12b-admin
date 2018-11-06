@@ -26,9 +26,9 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
 
         public string CommissionGroup { get; set; }
 
-        public decimal BalanceBf { get; set; }
+        public decimal? BalanceBf { get; set; }
 
-        public int Member { get; set; }
+        public int? Member { get; set; }
 
         public bool IsFavorite { get; set; }
 
@@ -36,8 +36,8 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
 
         public string RegistrationDateText => RegistrationDate.ToString("MM/dd/yyyy HH:mm:ss");
 
-        public string ApprovalDateText => ApprovalDate?.ToString("MM/dd/yyyy HH:mm:ss")??"N/A";
+        public string ApprovalDateText => ApprovalDate?.ToString("MM/dd/yyyy HH:mm:ss") ?? "N/A";
 
-        public string CasinoDateText => CasinoDate?.ToString("MM/dd/yyyy")??"N/A";
+        public string CasinoDateText => CasinoDate?.ToString("MM/dd/yyyy") ?? "N/A";
     }
 }

@@ -109,8 +109,8 @@ export class ChangePasswordForm extends Component {
                         <div className="change-password-form-container">
                             <Form tag="div" className="mb-5">
                                 <FormGroup row className="mb-2">
-                                    <Label for="Password" sm={5} className="required">Password:</Label>
-                                    <Col sm={7}>
+                                    <Label for="Password" sm={4} className="required">Password:</Label>
+                                    <Col sm={8}>
                                         <Input type="password" name="password" id="Password"
                                             value={password} onChange={this.handleChange} invalid={!passwordValidation.isValid} />
                                         {passwordValidation.message &&
@@ -119,8 +119,8 @@ export class ChangePasswordForm extends Component {
                                 </FormGroup>
 
                                 <FormGroup row>
-                                    <Label for="ConfirmPassword" sm={5} className="required">Confirm Password:</Label>
-                                    <Col sm={7}>
+                                    <Label for="ConfirmPassword" sm={4} className="required">Confirm Password:</Label>
+                                    <Col sm={8}>
                                         <Input type="password" name="confirmPassword" id="ConfirmPassword"
                                             value={confirmPassword} onChange={this.handleChange} invalid={!confirmPasswordValidation.isValid} />
                                         {confirmPasswordValidation.message &&
