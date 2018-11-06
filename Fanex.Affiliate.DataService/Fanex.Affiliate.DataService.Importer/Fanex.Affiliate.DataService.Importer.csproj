@@ -107,6 +107,7 @@
     <Compile Include="Repository\ThirdPartyProductRepository.cs" />
     <Compile Include="Utilities\DateTimeConverter.cs" />
     <Compile Include="Utilities\EbetConfigHelper.cs" />
+    <Compile Include="Utilities\EbetDataSimulator.cs" />
     <Compile Include="Utilities\IAppSettings.cs" />
     <Compile Include="Repository\ICasinoDataRepository.cs" />
     <Compile Include="ICasinoDataService.cs" />
@@ -115,6 +116,7 @@
     <Compile Include="Utilities\AppSettings.cs" />
     <Compile Include="Utilities\IEbetConfigHelper.cs" />
     <Compile Include="Utilities\EbetParser.cs" />
+    <Compile Include="Utilities\IEbetDataSimulator.cs" />
     <Compile Include="Utilities\RsaHelper.cs" />
   </ItemGroup>
   <ItemGroup>

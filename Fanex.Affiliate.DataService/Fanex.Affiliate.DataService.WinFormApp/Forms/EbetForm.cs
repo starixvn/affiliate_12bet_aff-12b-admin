@@ -70,7 +70,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
                     {
                         var apiParam = resultItem.Param;
                         _rawDataBuilder.AppendLine($"Currency: {apiParam.CurrencyId}, ChanelId: {apiParam.ChannelId}, ApiUrl: {apiParam.ApiUrl}");
-                        _rawDataBuilder.AppendLine($"UserName: {apiParam.UserName}, StartTime: {apiParam.StartTime}, EndTime: {apiParam.EndTime}");
+                        _rawDataBuilder.AppendLine($"UserName: {apiParam.UserName}, StartTime: {apiParam.StartTime}, EndTime: {apiParam.EndTime}, PageSize: {apiParam.PageSize}, PageNumber: {apiParam.PageNumber}");
                         _rawDataBuilder.AppendLine(resultItem.JsonData);
                         _rawDataBuilder.AppendLine("------------------------------------------------------");
                         _rawDataBuilder.AppendLine();
@@ -119,6 +119,57 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
             richTextLog.Text = _logBuilder.ToString();
             richTextRawData.Text = _rawDataBuilder.ToString();
             richTextConvertedXml.Text = _convertedXmlBuilder.ToString();
+
+            _logBuilder.Clear();
+            _rawDataBuilder.Clear();
+            _convertedXmlBuilder.Clear();
+        }
+
+        private async void btnImportConvertedXml_Click(object sender, EventArgs e)
+        {
+            HandleBeforeImporting();
+            try
+            {
+                await Task.Run(() =>
+                {
+                    foreach (var xml in _convertedXmlList)
+                    {
+                        _ebetService.Import(xml);
+                    }
+                });
+
+                synchronizationContext.Post(new SendOrPostCallback((state) =>
+                {
+                    richTextLog.Text = "Import successfully!";
+                }), null);
+            }
+            catch (Exception ex)
+            {
+                _logBuilder.AppendLine(ex.Message);
+                _logBuilder.AppendLine(ex.StackTrace);
+                _logBuilder.AppendLine(ex.Source);
+            }
+            finally
+            {
+                synchronizationContext.Post(new SendOrPostCallback((state) =>
+                {
+                    HandleAfterImporting();
+                }), null);
+            }
+        }
+
+        private void HandleBeforeImporting()
+        {
+            btnGetRawData.Enabled = false;
+            btnImportConvertedXml.Enabled = false;
+            richTextLog.Text = "Importing...";
+        }
+
+        private void HandleAfterImporting()
+        {
+            btnGetRawData.Enabled = true;
+            btnImportConvertedXml.Enabled = true;
+            _convertedXmlList.Clear();
         }
     }
 }

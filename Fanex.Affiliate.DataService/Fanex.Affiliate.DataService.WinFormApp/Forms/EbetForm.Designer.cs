@@ -48,6 +48,7 @@
             this.richTextConvertedXml = new System.Windows.Forms.RichTextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.richTextLog = new System.Windows.Forms.RichTextBox();
+            this.btnImportConvertedXml = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -61,6 +62,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnImportConvertedXml);
             this.groupBox1.Controls.Add(this.txtPageSize);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.txtPageNumber);
@@ -266,6 +268,16 @@
             this.richTextLog.TabIndex = 0;
             this.richTextLog.Text = "";
             // 
+            // btnImportConvertedXml
+            // 
+            this.btnImportConvertedXml.Location = new System.Drawing.Point(165, 95);
+            this.btnImportConvertedXml.Name = "btnImportConvertedXml";
+            this.btnImportConvertedXml.Size = new System.Drawing.Size(124, 23);
+            this.btnImportConvertedXml.TabIndex = 13;
+            this.btnImportConvertedXml.Text = "Import Converted Xml";
+            this.btnImportConvertedXml.UseVisualStyleBackColor = true;
+            this.btnImportConvertedXml.Click += new System.EventHandler(this.btnImportConvertedXml_Click);
+            // 
             // EbetForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -311,5 +323,6 @@
         private System.Windows.Forms.RichTextBox richTextConvertedXml;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.RichTextBox richTextLog;
+        private System.Windows.Forms.Button btnImportConvertedXml;
     }
 }

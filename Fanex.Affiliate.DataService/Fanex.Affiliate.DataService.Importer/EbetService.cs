@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +27,14 @@ namespace Fanex.Affiliate.DataService.Importer
 
         public async Task<string> GetRawData(EbetParam param)
         {
+            if (_appSetting.IsLocalTest)
+            {
+                var dataSimulator = new EbetDataSimulator();
+                var filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"App_Data\\EbetData\\ebet_{param.CurrencyId}.json");
+
+                return await dataSimulator.GetLocalData(filePath);
+            }
+
             var url = $"{Uri.UriSchemeHttp}{Uri.SchemeDelimiter}{param.ApiUrl}/api/userbethistory";
             var formBody = BuildFormBody(param);
 
@@ -39,7 +48,7 @@ namespace Fanex.Affiliate.DataService.Importer
         {
             var result = new List<EbetApiResult>();
             var taskList = new List<Task<EbetApiResult>>();
-            var convertedParam = ConvertParamTimeZone(param);
+            var convertedParam = BuildEntryParam(param);
             var firstJsonData = await GetRawData(convertedParam);
             var resultInfo = EbetParser.GetEbetResultInfo(firstJsonData);
 
@@ -92,9 +101,6 @@ namespace Fanex.Affiliate.DataService.Importer
 
         private NameValueCollection BuildFormBody(EbetParam param)
         {
-            param.TimeStamp = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds();
-            param.Signature = RsaHelper.SignAndHash($"{param.UserName}{param.TimeStamp}", param.PrivateKey);
-
             return new NameValueCollection
             {
                 { "Content-Type", "application/x-www-form-urlencoded" },
@@ -127,11 +133,14 @@ namespace Fanex.Affiliate.DataService.Importer
             };
         }
 
-        private static EbetParam ConvertParamTimeZone(EbetParam param)
+        private static EbetParam BuildEntryParam(EbetParam param)
         {
             var copiedParam = BuildParamByPageNumber(param, param.PageNumber);
             copiedParam.StartTime = DateTimeConverter.ToGMT(param.StartTime, TimeZoneId.GmtPlus8);
             copiedParam.EndTime = DateTimeConverter.ToGMT(param.EndTime, TimeZoneId.GmtPlus8);
+
+            copiedParam.TimeStamp = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds();
+            copiedParam.Signature = RsaHelper.SignAndHash($"{copiedParam.UserName}{copiedParam.TimeStamp}", copiedParam.PrivateKey);
 
             return copiedParam;
         }
