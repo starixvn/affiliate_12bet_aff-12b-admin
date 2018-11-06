@@ -1,6 +1,5 @@
 ﻿using System;
 using Fanex.Affiliate.DataService.Importer;
-using Fanex.Affiliate.DataService.Importer.Constants;
 using Fanex.Affiliate.DataService.Importer.MetaModels.Betsoft;
 using Fanex.Affiliate.DataService.Importer.MetaModels.Ebet;
 using Fanex.Affiliate.DataService.Importer.Utilities;
@@ -17,14 +16,9 @@ namespace Fanex.Affiliate.DataService.ConsoleHostService
         {
             DbSettingProviderManager.Current.Start();
             var appSetting = new AppSettings();
-            var timeStamp = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds();
-            var dateTime = DateTimeOffset.FromUnixTimeSeconds(1540823175).DateTime;
-            var convertedTime = DateTimeConverter.ConvertTime(dateTime, TimeZoneId.GmtPlus8, TimeZoneId.Gmt4);
 
-            Console.WriteLine(DateTime.UtcNow.ToString());
-            Console.WriteLine(timeStamp.ToString());
-            Console.WriteLine(dateTime.ToString());
-            Console.WriteLine(convertedTime.ToString());
+            RunJobs();
+
             Console.ReadLine();
         }
 
@@ -80,7 +74,7 @@ namespace Fanex.Affiliate.DataService.ConsoleHostService
             Console.WriteLine("Done!!!");
         }
 
-        private static void RunBetsoftJob()
+        private static void RunJobs()
         {
             var schedulerFactory = new JobSchedulerFactory();
             schedulerFactory.SetUp();

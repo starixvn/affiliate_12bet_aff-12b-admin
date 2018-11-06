@@ -170,6 +170,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
             btnGetRawData.Enabled = true;
             btnImportConvertedXml.Enabled = true;
             _convertedXmlList.Clear();
+            richTextLog.Text = "Import successfully!";
         }
     }
 }

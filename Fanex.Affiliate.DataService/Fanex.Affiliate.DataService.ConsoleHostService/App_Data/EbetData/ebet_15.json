@@ -1,0 +1,448 @@
+﻿{
+  "count": 20,
+  "betHistories": [
+    {
+      "gameType": 3,
+      "gameName": "sic-bo",
+      "betMap": [
+        {
+          "betType": 103,
+          "betMoney": 50
+        }
+      ],
+      "bet": 50,
+      "roundNo": "S2-181029224349",
+      "payout": 100,
+      "judgeResult": [ 125, 145, 146, 149, 135, 136, 137, 103, 100, 156 ],
+      "allDices": [ 2, 3, 4 ],
+      "createTime": 1540824239,
+      "payoutTime": 1540824295,
+      "betHistoryId": "5bd71caf755772a4746b4b5f",
+      "validBet": 50,
+      "username": "pumpkin",
+      "userId": 6773615,
+      "platform": 2
+    },
+    {
+      "gameType": 3,
+      "gameName": "sic-bo",
+      "betMap": [
+        {
+          "betType": 103,
+          "betMoney": 50
+        }
+      ],
+      "bet": 50,
+      "roundNo": "S2-181029224507",
+      "payout": 0,
+      "judgeResult": [ 127, 143, 134, 138, 155, 108, 102, 100 ],
+      "allDices": [ 1, 5, 5 ],
+      "createTime": 1540824316,
+      "payoutTime": 1540824366,
+      "betHistoryId": "5bd71cfc755772a4746de30b",
+      "validBet": 50,
+      "username": "pumpkin",
+      "userId": 6773615,
+      "platform": 2
+    },
+    {
+      "gameType": 3,
+      "gameName": "sic-bo",
+      "betMap": [
+        {
+          "betType": 103,
+          "betMoney": 60
+        }
+      ],
+      "bet": 60,
+      "roundNo": "S2-181029224618",
+      "payout": 0,
+      "judgeResult": [ 132, 153, 137, 139, 155, 109, 102, 101 ],
+      "allDices": [ 4, 6, 6 ],
+      "createTime": 1540824395,
+      "payoutTime": 1540824447,
+      "betHistoryId": "5bd71d4b755772a474705454",
+      "validBet": 60,
+      "username": "pumpkin",
+      "userId": 6773615,
+      "platform": 2
+    },
+    {
+      "gameType": 3,
+      "gameName": "sic-bo",
+      "betMap": [
+        {
+          "betType": 103,
+          "betMoney": 40
+        }
+      ],
+      "bet": 40,
+      "roundNo": "S2-181029224736",
+      "payout": 80,
+      "judgeResult": [ 125, 140, 144, 148, 134, 135, 139, 103, 100, 156 ],
+      "allDices": [ 1, 2, 6 ],
+      "createTime": 1540824462,
+      "payoutTime": 1540824515,
+      "betHistoryId": "5bd71d8e755772a47472847c",
+      "validBet": 40,
+      "username": "pumpkin",
+      "userId": 6773615,
+      "platform": 2
+    },
+    {
+      "gameType": 3,
+      "gameName": "sic-bo",
+      "betMap": [
+        {
+          "betType": 103,
+          "betMoney": 60
+        }
+      ],
+      "bet": 60,
+      "roundNo": "S2-181029224846",
+      "payout": 120,
+      "judgeResult": [ 126, 148, 135, 155, 105, 139, 103, 101 ],
+      "allDices": [ 2, 2, 6 ],
+      "createTime": 1540824544,
+      "payoutTime": 1540824613,
+      "betHistoryId": "5bd71de0755772a4747524c4",
+      "validBet": 60,
+      "username": "pumpkin",
+      "userId": 6773615,
+      "platform": 2
+    },
+    {
+      "gameType": 3,
+      "gameName": "sic-bo",
+      "betMap": [
+        {
+          "betType": 102,
+          "betMoney": 60
+        }
+      ],
+      "bet": 60,
+      "roundNo": "S2-181029225025",
+      "payout": 120,
+      "judgeResult": [ 129, 147, 148, 154, 135, 138, 139, 102, 100, 156 ],
+      "allDices": [ 2, 5, 6 ],
+      "createTime": 1540824651,
+      "payoutTime": 1540824703,
+      "betHistoryId": "5bd71e4b755772a47478bf27",
+      "validBet": 60,
+      "username": "pumpkin",
+      "userId": 6773615,
+      "platform": 2
+    },
+    {
+      "gameType": 3,
+      "gameName": "sic-bo",
+      "betMap": [
+        {
+          "betType": 102,
+          "betMoney": 60
+        }
+      ],
+      "bet": 60,
+      "roundNo": "S2-181029225153",
+      "payout": 120,
+      "judgeResult": [ 128, 151, 136, 155, 106, 139, 102, 101 ],
+      "allDices": [ 3, 3, 6 ],
+      "createTime": 1540824724,
+      "payoutTime": 1540824770,
+      "betHistoryId": "5bd71e94755772a4747b0d42",
+      "validBet": 60,
+      "username": "pumpkin",
+      "userId": 6773615,
+      "platform": 2
+    },
+    {
+      "gameType": 3,
+      "gameName": "sic-bo",
+      "betMap": [
+        {
+          "betType": 103,
+          "betMoney": 60
+        }
+      ],
+      "bet": 60,
+      "roundNo": "S2-181029225300",
+      "payout": 0,
+      "judgeResult": [ 128, 146, 148, 153, 135, 137, 139, 102, 101, 156 ],
+      "allDices": [ 2, 4, 6 ],
+      "createTime": 1540824797,
+      "payoutTime": 1540824841,
+      "betHistoryId": "5bd71edd755772a4747d87c0",
+      "validBet": 60,
+      "username": "pumpkin",
+      "userId": 6773615,
+      "platform": 2
+    },
+    {
+      "gameType": 3,
+      "gameName": "sic-bo",
+      "betMap": [
+        {
+          "betType": 102,
+          "betMoney": 70
+        }
+      ],
+      "bet": 70,
+      "roundNo": "S2-181029225410",
+      "payout": 0,
+      "judgeResult": [ 126, 145, 147, 150, 135, 136, 138, 103, 101, 156 ],
+      "allDices": [ 2, 3, 5 ],
+      "createTime": 1540824867,
+      "payoutTime": 1540824910,
+      "betHistoryId": "5bd71f23755772a4747fca6f",
+      "validBet": 70,
+      "username": "pumpkin",
+      "userId": 6773615,
+      "platform": 2
+    },
+    {
+      "gameType": 3,
+      "gameName": "sic-bo",
+      "betMap": [
+        {
+          "betType": 102,
+          "betMoney": 80
+        }
+      ],
+      "bet": 80,
+      "roundNo": "S2-181029225520",
+      "payout": 0,
+      "judgeResult": [ 120, 141, 134, 136, 155, 106, 103, 100 ],
+      "allDices": [ 1, 3, 3 ],
+      "createTime": 1540824941,
+      "payoutTime": 1540824979,
+      "betHistoryId": "5bd71f6d755772a4748230ce",
+      "validBet": 80,
+      "username": "pumpkin",
+      "userId": 6773615,
+      "platform": 2
+    },
+    {
+      "gameType": 3,
+      "gameName": "sic-bo",
+      "betMap": [
+        {
+          "betType": 103,
+          "betMoney": 50
+        }
+      ],
+      "bet": 50,
+      "roundNo": "S2-181029225630",
+      "payout": 100,
+      "judgeResult": [ 125, 145, 146, 149, 135, 136, 137, 103, 100, 156 ],
+      "allDices": [ 2, 3, 4 ],
+      "createTime": 1540824999,
+      "payoutTime": 1540825067,
+      "betHistoryId": "5bd71fa7755772a47484187c",
+      "validBet": 50,
+      "username": "pumpkin",
+      "userId": 6773615,
+      "platform": 2
+    },
+    {
+      "gameType": 3,
+      "gameName": "sic-bo",
+      "betMap": [
+        {
+          "betType": 102,
+          "betMoney": 60
+        }
+      ],
+      "bet": 60,
+      "roundNo": "S2-181029225755",
+      "payout": 120,
+      "judgeResult": [ 129, 152, 137, 155, 107, 138, 102, 100 ],
+      "allDices": [ 4, 4, 5 ],
+      "createTime": 1540825088,
+      "payoutTime": 1540825131,
+      "betHistoryId": "5bd72000755772a47486e681",
+      "validBet": 60,
+      "username": "pumpkin",
+      "userId": 6773615,
+      "platform": 2
+    },
+    {
+      "gameType": 3,
+      "gameName": "sic-bo",
+      "betMap": [
+        {
+          "betType": 103,
+          "betMoney": 60
+        }
+      ],
+      "bet": 60,
+      "roundNo": "S2-181029225900",
+      "payout": 0,
+      "judgeResult": [ 127, 146, 147, 152, 135, 137, 138, 102, 100, 156 ],
+      "allDices": [ 2, 4, 5 ],
+      "createTime": 1540825160,
+      "payoutTime": 1540825200,
+      "betHistoryId": "5bd72048755772a4748924b6",
+      "validBet": 60,
+      "username": "pumpkin",
+      "userId": 6773615,
+      "platform": 2
+    },
+    {
+      "gameType": 3,
+      "gameName": "sic-bo",
+      "betMap": [
+        {
+          "betType": 103,
+          "betMoney": 60
+        }
+      ],
+      "bet": 60,
+      "roundNo": "S2-181029230007",
+      "payout": 0,
+      "judgeResult": [ 129, 149, 151, 153, 136, 137, 139, 102, 100, 156 ],
+      "allDices": [ 3, 4, 6 ],
+      "createTime": 1540825224,
+      "payoutTime": 1540825257,
+      "betHistoryId": "5bd72088755772a4748b1f2e",
+      "validBet": 60,
+      "username": "pumpkin",
+      "userId": 6773615,
+      "platform": 2
+    },
+    {
+      "gameType": 3,
+      "gameName": "sic-bo",
+      "betMap": [
+        {
+          "betType": 102,
+          "betMoney": 40
+        }
+      ],
+      "bet": 40,
+      "roundNo": "S2-181029230127",
+      "payout": 80,
+      "judgeResult": [ 127, 143, 134, 138, 155, 108, 102, 100 ],
+      "allDices": [ 1, 5, 5 ],
+      "createTime": 1540825298,
+      "payoutTime": 1540825348,
+      "betHistoryId": "5bd720d2755772a4748d4c90",
+      "validBet": 40,
+      "username": "pumpkin",
+      "userId": 6773615,
+      "platform": 2
+    },
+    {
+      "gameType": 3,
+      "gameName": "sic-bo",
+      "betMap": [
+        {
+          "betType": 103,
+          "betMoney": 80
+        }
+      ],
+      "bet": 80,
+      "roundNo": "S2-181029230235",
+      "payout": 0,
+      "judgeResult": [ 132, 153, 137, 139, 155, 109, 102, 101 ],
+      "allDices": [ 4, 6, 6 ],
+      "createTime": 1540825365,
+      "payoutTime": 1540825420,
+      "betHistoryId": "5bd72115755772a4748f5bb9",
+      "validBet": 80,
+      "username": "pumpkin",
+      "userId": 6773615,
+      "platform": 2
+    },
+    {
+      "gameType": 3,
+      "gameName": "sic-bo",
+      "betMap": [
+        {
+          "betType": 103,
+          "betMoney": 60
+        }
+      ],
+      "bet": 60,
+      "roundNo": "S2-181029231940",
+      "payout": 120,
+      "judgeResult": [ 126, 149, 136, 155, 106, 137, 103, 101 ],
+      "allDices": [ 3, 3, 4 ],
+      "createTime": 1540826388,
+      "payoutTime": 1540826441,
+      "betHistoryId": "5bd72514755772a474af30a2",
+      "validBet": 60,
+      "username": "w12bet",
+      "userId": 6750345,
+      "platform": 2
+    },
+    {
+      "gameType": 3,
+      "gameName": "sic-bo",
+      "betMap": [
+        {
+          "betType": 103,
+          "betMoney": 20
+        }
+      ],
+      "bet": 20,
+      "roundNo": "S2-181029232049",
+      "payout": 0,
+      "judgeResult": [ 127, 143, 134, 138, 155, 108, 102, 100 ],
+      "allDices": [ 1, 5, 5 ],
+      "createTime": 1540826466,
+      "payoutTime": 1540826505,
+      "betHistoryId": "5bd72562755772a474b18732",
+      "validBet": 20,
+      "username": "w12bet",
+      "userId": 6750345,
+      "platform": 2
+    },
+    {
+      "gameType": 3,
+      "gameName": "sic-bo",
+      "betMap": [
+        {
+          "betType": 102,
+          "betMoney": 20
+        }
+      ],
+      "bet": 20,
+      "roundNo": "S2-181029232253",
+      "payout": 40,
+      "judgeResult": [ 133, 154, 138, 139, 155, 109, 102, 100 ],
+      "allDices": [ 5, 6, 6 ],
+      "createTime": 1540826584,
+      "payoutTime": 1540826628,
+      "betHistoryId": "5bd725d8755772a474b52405",
+      "validBet": 20,
+      "username": "w12bet",
+      "userId": 6750345,
+      "platform": 2
+    },
+    {
+      "gameType": 3,
+      "gameName": "sic-bo",
+      "betMap": [
+        {
+          "betType": 103,
+          "betMoney": 20
+        }
+      ],
+      "bet": 20,
+      "roundNo": "S2-181029232356",
+      "payout": 40,
+      "judgeResult": [ 121, 140, 143, 147, 134, 135, 138, 103, 101, 156 ],
+      "allDices": [ 1, 2, 5 ],
+      "createTime": 1540826663,
+      "payoutTime": 1540826698,
+      "betHistoryId": "5bd72627755772a474b77f9f",
+      "validBet": 20,
+      "username": "w12bet",
+      "userId": 6750345,
+      "platform": 2
+    }
+  ],
+  "remainingVisits": 499,
+  "status": 200,
+  "apiVersion": "1.3.01"
+}
