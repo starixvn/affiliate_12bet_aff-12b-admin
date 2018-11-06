@@ -10,6 +10,7 @@ using Fanex.Affiliate.DataService.Importer.DTO.Ebet;
 using Fanex.Affiliate.DataService.Importer.MetaModels.Ebet;
 using Fanex.Affiliate.DataService.Importer.Repository;
 using Fanex.Affiliate.DataService.Importer.Utilities;
+using Fanex.Logging;
 
 namespace Fanex.Affiliate.DataService.Importer
 {
@@ -94,6 +95,11 @@ namespace Fanex.Affiliate.DataService.Importer
             foreach (var dataItem in resultDataList)
             {
                 var ebetSummary = EbetParser.FromJson(dataItem.JsonData);
+                if (ebetSummary.ResultInfo.Status != 200)
+                {
+                    LogService.Error($"Error: Ebet - ProductId: {Products.EbetProductId}\n{dataItem.JsonData}");
+                }
+
                 var xml = ConvertToXml(ebetSummary, dataItem.Param);
                 Import(xml);
             }
