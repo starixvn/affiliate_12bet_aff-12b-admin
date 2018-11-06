@@ -9,7 +9,8 @@ import { setPagingOption, setParam, setShowPopup, setAffId } from '../actions';
 import { toggleLoader } from '../../../actions/loaderAction';
 import { post } from '../../../modules/ajaxRequest';
 import { format, formatDecimal } from '../../../modules/numberFormat';
-import { updateObjectInArray } from '../../../modules/dataHandler'
+import { updateObjectInArray } from '../../../modules/dataHandler';
+import { resolveClientUrl } from '../../../modules/utils';
 
 export class GridData extends Component {
     constructor(props) {
@@ -98,7 +99,12 @@ export class GridData extends Component {
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell className="text-center" title={index}>{index}</Cell>
-                <Cell title={dataItem.UserName}>{dataItem.UserName} <span className={classNameFavorite} onClick={() => this.handleToggleFavorite(dataItem.AffId, isFavorite)}></span></Cell>
+                <Cell title={dataItem.UserName}>
+                    <a href={resolveClientUrl(`Portal/Customer?custid=${dataItem.AffId}&user=${dataItem.UserName}`)} target="fContent">
+                        {dataItem.UserName}
+                    </a>
+                    <span className={classNameFavorite} onClick={() => this.handleToggleFavorite(dataItem.AffId, isFavorite)}></span>
+                </Cell>
 
                 <Cell className="text-center" title={dataItem.Status}>{dataItem.Status}</Cell>
                 <Cell title={dataItem.FirstName}>{dataItem.FirstName}</Cell>

@@ -22,7 +22,10 @@ export class ChangePasswordForm extends Component {
         this.setState({ [event.target.name]: event.target.value })
     }
 
-    handleChangePassword = (affId, password, confirmPassword) => {
+    handleChangePassword = () => {
+        const { affId } = this.props;
+        const { password, confirmPassword } = this.state;
+
         const param = {
             AffId: affId,
             Password: password,
@@ -126,7 +129,7 @@ export class ChangePasswordForm extends Component {
                                 </FormGroup>
                             </Form>
 
-                            <Button type="button" color="success" className="mr-3" disabled={!isValid} onClick={() => this.handleChangePassword(affId, password, confirmPassword)}>{resource.Submit}</Button>
+                            <Button type="button" color="success" className="mr-3" disabled={!isValid} onClick={this.handleChangePassword}>{resource.Submit}</Button>
                             <Button type="button" color="info" onClick={() => this.props.setShowPopup(false)}>{resource.Cancel}</Button>
                         </div>
                     </div>

@@ -58,10 +58,10 @@ export const resource = {
     RequiredPassword: "New Password is required!",
     RequiredConfirmPassword: "Confirm Password is required!",
     ChangePasswordSuccess: "Change password successfully!",
-    PasswordErrorMessage: 'Password must have at least 6 charecters, including at least 2 letters and at least 2 digits.',
+    PasswordErrorMessage: 'Password must have at least 6 characters, including at least 2 letters and at least 2 digits.',
     ConfirmPasswordErrorMessage: 'Confirm Password is not correct!'
 }
 
 export const regExp = {
-    CheckPassword: "^(?=.*\d+.*\d+)(?=.*[a-zA-Z].*[a-zA-Z]).{6,}$"
+    CheckPassword: "^(?=.*[0-9]+.*[0-9]+)(?=.*[a-zA-Z].*[a-zA-Z]).{6,}$"
 }

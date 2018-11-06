@@ -84,15 +84,10 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 if (ModelState.IsValid)
                 {
                     param.Password = CryptographyHelper.Encrypt(param.Password);
-                    param.ConfirmPassword = CryptographyHelper.Encrypt(param.ConfirmPassword);
+                    param.UserId = SessionService.UserId;
+                    param.Ip = Request.UserHostAddress;
 
-                    if(param.Password == param.ConfirmPassword)
-                    {
-                        param.UserId = SessionService.UserId;
-                        param.Ip = Request.UserHostAddress;
-
-                        return Json(_affiliateInfoRepository.ChangePassword(param));
-                    }
+                    return Json(_affiliateInfoRepository.ChangePassword(param));
                 }
             }
             return Json(new ResultInfo
