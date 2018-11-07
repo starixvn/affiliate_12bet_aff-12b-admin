@@ -5,12 +5,13 @@ import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
 import { headerText, resource } from '../modules/constants';
-import { setPagingOption, setParam, setShowPopup, setAffId } from '../actions';
+import { setPagingOption, setParam, setShowPopupPassword, setShowPopupCommGroup, setAffId, setCommGroup } from '../actions';
 import { toggleLoader } from '../../../actions/loaderAction';
 import { post } from '../../../modules/ajaxRequest';
 import { format, formatDecimal } from '../../../modules/numberFormat';
 import { updateObjectInArray } from '../../../modules/dataHandler';
 import { resolveClientUrl } from '../../../modules/utils';
+import { EditGroup } from '../../commission-group/components/editgroup/index';
 
 export class GridData extends Component {
     constructor(props) {
@@ -88,9 +89,18 @@ export class GridData extends Component {
         const isApproved = statusToLower == "approved";
 
         const balanceBf = dataItem.BalanceBf === null ? resource.NA : formatDecimal(dataItem.BalanceBf);
-        const member = dataItem.Member === null ? resource.NA : format(dataItem.Member);
+        const member = dataItem.Member === null ? resource.NA : (
+                            <a href={resolveClientUrl(`Portal/Member?txtAffUsername=${dataItem.UserName}`)} target="_top">
+                                {format(dataItem.Member)}
+                            </a>);
+
         const language = languageList[dataItem.Language];
-        const commissionGroup = dataItem.CommissionGroup ? dataItem.CommissionGroup : resource.NA;
+        const commissionGroup = dataItem.CommissionGroup ? (
+                            dataItem.CommissionGroup === dataItem.UserName ? (
+                                <button className="btn btn-link" onClick={() => this.handleEditCommGroup(dataItem.AffId, dataItem.CommissionGroup)}>
+                                    {dataItem.CommissionGroup}
+                                </button>) : dataItem.CommissionGroup
+                            ) : resource.NA;
 
         const isFavorite = dataItem.IsFavorite
         const checkFavorite = isFavorite ? "favor-check" : "favor-uncheck";
@@ -100,7 +110,7 @@ export class GridData extends Component {
             <Row key={`dataRow-${index}`}>
                 <Cell className="text-center" title={index}>{index}</Cell>
                 <Cell title={dataItem.UserName}>
-                    <a href={resolveClientUrl(`Portal/Customer?user=${dataItem.UserName}`)} target="top">
+                    <a href={resolveClientUrl(`Portal/Customer?user=${dataItem.UserName}`)} target="_top">
                         {dataItem.UserName}
                     </a>
                     <span className={classNameFavorite} onClick={() => this.handleToggleFavorite(dataItem.AffId, isFavorite)}></span>
@@ -157,8 +167,14 @@ export class GridData extends Component {
     }
 
     handleChangePassword = (affId) => {
-        this.props.setShowPopup(true);
+        this.props.setShowPopupPassword(true);
         this.props.setAffId(affId);
+    }
+
+    handleEditCommGroup = (affId, commGroup) => {
+        this.props.setShowPopupCommGroup(true);
+        this.props.setAffId(affId);
+        this.props.setCommGroup(commGroup);
     }
 
     handlePaging = (index, size) => {
@@ -198,7 +214,7 @@ function mapStateToProps({ pagingOption, languageList, param }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setPagingOption, toggleLoader, setShowPopup, setAffId }, dispatch);
+    return bindActionCreators({ setPagingOption, toggleLoader, setShowPopupPassword, setShowPopupCommGroup, setAffId, setCommGroup }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GridData);

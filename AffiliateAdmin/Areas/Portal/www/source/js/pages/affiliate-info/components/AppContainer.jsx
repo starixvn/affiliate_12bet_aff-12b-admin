@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import AppLayout from '../../../layouts/AppLayout';
 import Filter from './Filter';
 import Content from './Content';
+import EditCommissionGroup from './EditCommissionGroup';
 import ChangePasswordForm from './ChangePasswordForm';
 import Loader from '../../../components/Loader';
 
@@ -18,6 +19,7 @@ export class AppContainer extends Component {
                 <Loader show={this.props.isShowLoader} />
                 <Filter />
                 <Content />
+                <EditCommissionGroup />
                 <ChangePasswordForm />
             </AppLayout>
         );

@@ -1907,6 +1907,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\GridData.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\ChangePasswordForm.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\EditCommissionGroup.jsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
