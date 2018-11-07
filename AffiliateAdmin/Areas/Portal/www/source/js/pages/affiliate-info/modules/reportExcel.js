@@ -121,9 +121,9 @@ export default class ReportExcel {
         let value = fieldName === fields.Index ? rowIndex + 1 : item[fieldName];
 
         if (fieldName === fields.BalanceBf) {
-            value = value ? formatDecimal(value) : resource.NA;
+            value = value === null ? resource.NA : formatDecimal(value);
         } else if (fieldName === fields.Member) {
-            value = value ? format(value) : resource.NA;
+            value = value === null ? resource.NA : format(value);
         } else if (fieldName === fields.Language) {
             value = this.languageList[value] || '';
         }

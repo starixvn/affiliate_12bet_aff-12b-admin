@@ -11,7 +11,6 @@ import { post } from '../../../modules/ajaxRequest';
 import { format, formatDecimal } from '../../../modules/numberFormat';
 import { updateObjectInArray } from '../../../modules/dataHandler';
 import { resolveClientUrl } from '../../../modules/utils';
-import { EditGroup } from '../../commission-group/components/editgroup/index';
 
 export class GridData extends Component {
     constructor(props) {
@@ -85,26 +84,27 @@ export class GridData extends Component {
 
     _buildDataRow(dataItem, index) {
         const { languageList } = this.props;
-        const statusToLower = dataItem.Status && dataItem.Status.toLowerCase();
-        const isApproved = statusToLower == "approved";
+        const status = dataItem.Status.toLowerCase();
+        const isApproved = status == "approved";
 
         const balanceBf = dataItem.BalanceBf === null ? resource.NA : formatDecimal(dataItem.BalanceBf);
         const member = dataItem.Member === null ? resource.NA : (
-                            <a href={resolveClientUrl(`Portal/Member?txtAffUsername=${dataItem.UserName}`)} target="_top">
-                                {format(dataItem.Member)}
-                            </a>);
+            <a href={resolveClientUrl(`Portal/Member?txtAffUsername=${dataItem.UserName}`)} target="_top">
+                {format(dataItem.Member)}
+            </a>);
 
         const language = languageList[dataItem.Language];
         const commissionGroup = dataItem.CommissionGroup ? (
-                            dataItem.CommissionGroup === dataItem.UserName ? (
-                                <button className="btn btn-link" onClick={() => this.handleEditCommGroup(dataItem.AffId, dataItem.CommissionGroup)}>
-                                    {dataItem.CommissionGroup}
-                                </button>) : dataItem.CommissionGroup
-                            ) : resource.NA;
+            dataItem.CommissionGroup === dataItem.UserName ? (
+                <button className="btn btn-link"
+                    onClick={() => this.handleEditCommGroup(dataItem.AffId, dataItem.CommissionGroup)}>
+                    {dataItem.CommissionGroup}
+                </button>) : dataItem.CommissionGroup
+        ) : resource.NA;
 
         const isFavorite = dataItem.IsFavorite
         const checkFavorite = isFavorite ? "favor-check" : "favor-uncheck";
-        const classNameFavorite = (isApproved || statusToLower == "closed") ? checkFavorite : "";
+        const classNameFavorite = (isApproved || status == "closed") ? checkFavorite : "";
 
         return (
             <Row key={`dataRow-${index}`}>

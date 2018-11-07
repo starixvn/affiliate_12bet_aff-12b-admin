@@ -1,16 +1,15 @@
 ﻿using System.Web.Mvc;
+using Fanex.Affiliate.Admin.Core.Attributes;
+using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.MetaModels.Affiliate;
+using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
+using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Repository.Affiliate;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.Services.Common;
-using Fanex.Affiliate.Admin.Core.ViewModels.Affiliate;
-using Fanex.Affiliate.Admin.Core.Repository;
-using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
-using Fanex.Affiliate.Admin.Core.Attributes;
-using Fanex.Affiliate.Admin.Core.DTO;
-using Fanex.Affiliate.Admin.Core.Constants;
-using System.Linq;
 using Fanex.Affiliate.Admin.Core.Utilities;
+using Fanex.Affiliate.Admin.Core.ViewModels.Affiliate;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
@@ -60,7 +59,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [ValidateAntiForgeryHeader]
         public ActionResult ToggleFavorite(FavoriteParam param)
         {
-            if(param.AffId == 0)
+            if (param.AffId == 0)
             {
                 return Json(new ResultInfo
                 {
@@ -77,7 +76,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        public ActionResult ChangePassword (PasswordParam param)
+        public ActionResult ChangePassword(PasswordParam param)
         {
             if (param.AffId != 0 && ModelState.IsValid)
             {

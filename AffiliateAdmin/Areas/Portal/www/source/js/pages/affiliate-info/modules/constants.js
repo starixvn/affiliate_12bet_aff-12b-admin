@@ -12,11 +12,11 @@ export const defaultSearchBy = 0;
 export const defaultSortBy = 1;
 
 export const sortByList = {
-    Username: 1,
-    RegistrationDate: 2,
-    ApprovalDate: 3,
-    BalanceBF: 4,
-    Member: 5
+    'Username': 1,
+    'Registration Date': 2,
+    'Approval Date': 3,
+    'Balance B/F': 4,
+    'Member': 5
 }
 
 export const headerText = {
