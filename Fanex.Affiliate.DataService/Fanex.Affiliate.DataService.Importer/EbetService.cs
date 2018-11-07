@@ -80,7 +80,7 @@ namespace Fanex.Affiliate.DataService.Importer
 
         public string ConvertToXml(EbetSummary summaryData, EbetParam param)
         {
-            return "<Root>" + BuildRequestXml(param) + BuildResponseXml(summaryData) + "</Root>";
+            return "<ROOT>" + BuildRequestXml(param) + BuildResponseXml(summaryData) + "</ROOT>";
         }
 
         public void Import(string xmlData)
@@ -153,35 +153,35 @@ namespace Fanex.Affiliate.DataService.Importer
 
         private static string BuildRequestXml(EbetParam param)
         {
-            var attributes = "currencyid=\"" + param.CurrencyId + "\" " +
-                            "username=\"" + param.UserName + "\" " +
-                            "starttime=\"" + param.StartTime.ToString() + "\" " +
-                            "endtime=\"" + param.EndTime.ToString() + "\" " +
-                            "pagenumber=\"" + param.PageNumber + "\" " +
-                            "pagesize=\"" + param.PageSize + "\" " +
-                            "timestamp=\"" + param.TimeStamp + "\" " +
-                            "signature=\"" + param.Signature + "\" ";
+            var attributes = "CURRENCYID=\"" + param.CurrencyId + "\" " +
+                            "USERNAME=\"" + param.UserName + "\" " +
+                            "STARTTIME=\"" + param.StartTime.ToString() + "\" " +
+                            "ENDTIME=\"" + param.EndTime.ToString() + "\" " +
+                            "PAGENUMBER=\"" + param.PageNumber + "\" " +
+                            "PAGESIZE=\"" + param.PageSize + "\" " +
+                            "TIMESTAMP=\"" + param.TimeStamp + "\" " +
+                            "SIGNATURE=\"" + param.Signature + "\" ";
 
-            return "<Request>" + $"<Param {attributes} />" + "</Request>";
+            return "<REQUEST>" + $"<PARAM {attributes} />" + "</REQUEST>";
         }
 
         private static string BuildResponseXml(EbetSummary ebetSummary)
         {
             var builder = new StringBuilder();
             var resultInfo = ebetSummary.ResultInfo;
-            builder.AppendLine("<Response>");
-            builder.AppendLine($"<Result count=\"{resultInfo.Count}\" remainingvisits=\"{resultInfo.RemainingVisits}\" status=\"{resultInfo.Status}\" />");
+            builder.AppendLine("<RESPONSE>");
+            builder.AppendLine($"<RESULT COUNT=\"{resultInfo.Count}\" REMAININGVISITS=\"{resultInfo.RemainingVisits}\" STATUS=\"{resultInfo.Status}\" />");
 
-            builder.AppendLine("<BetHistoryList>");
+            builder.AppendLine("<BETHISTORYLIST>");
             foreach (var item in ebetSummary.BetHistories)
             {
                 var payoutTime = DateTimeOffset.FromUnixTimeSeconds(item.PayoutUnixTime).DateTime;
                 var convertedTime = DateTimeConverter.ConvertTime(payoutTime, TimeZoneId.GmtPlus8, TimeZoneId.Gmt4);
-                builder.AppendLine($"<Bethistory id=\"{item.BetHistoryId}\" username=\"{item.UserName}\" bet=\"{item.Bet}\" payout=\"{item.Payout}\" payouttime=\"{convertedTime.ToString()}\" />");
+                builder.AppendLine($"<BETHISTORY ID=\"{item.BetHistoryId}\" USERNAME=\"{item.UserName}\" BET=\"{item.Bet}\" PAYOUT=\"{item.Payout}\" PAYOUTTIME=\"{convertedTime.ToString()}\" />");
             }
-            builder.AppendLine("</BetHistoryList>");
+            builder.AppendLine("</BETHISTORYLIST>");
 
-            builder.AppendLine("</Response>");
+            builder.AppendLine("</RESPONSE>");
 
             return builder.ToString();
         }
