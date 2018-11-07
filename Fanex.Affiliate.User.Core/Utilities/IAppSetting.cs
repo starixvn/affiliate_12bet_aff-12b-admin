@@ -41,6 +41,8 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         string RsaPrivateKey { get; }
 
+        int LoginTimeout { get; }
+
         DateTime StatementAvailableFrom { get; }
     }
 }

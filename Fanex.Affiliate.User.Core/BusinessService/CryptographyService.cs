@@ -17,6 +17,16 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return CryptographyHelper.Encrypt(plainPassword);
         }
 
+        public string EncryptPassword(string password)
+        {
+            return CryptographyHelper.Encrypt(password);
+        }
+
+        public string RsaDecrypt(string privateKey, string cipherText)
+        {
+            return Decrypt(DecodeUtfBase64(privateKey), cipherText);
+        }
+
         /// <summary>
         /// Export public key from MS RSACryptoServiceProvider into OpenSSH PEM string
         /// slightly modified from https://stackoverflow.com/a/28407693

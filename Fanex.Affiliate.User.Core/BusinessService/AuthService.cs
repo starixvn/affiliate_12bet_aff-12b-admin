@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System;
+using System.Web;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.MetalModels;
@@ -34,6 +35,18 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 };
             }
 
+            var passwordInfo = _cryptographyService.RsaDecrypt(_appSetting.RsaPrivateKey, userParam.Password);
+            var passwordQueryString = HttpUtility.ParseQueryString(passwordInfo);
+            var timeStampString = passwordQueryString["t"];
+            if (!IsValidTimeStamp(timeStampString, _appSetting.LoginTimeout))
+            {
+                return new LoginResultViewModel
+                {
+                    Result = new ResultInfo { IsOk = false, Message = Error.YourSessionHasExpired }
+                };
+            }
+
+            userParam.Password = passwordQueryString["p"];
             var loginResultParam = GetLoginResultParam(userParam, user, isInternal);
 
             _authRepository.UpdateLoginResult(loginResultParam);
@@ -69,7 +82,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             var isMatchPassword = false;
             if (!isInternal)
             {
-                string encryptedPassword = _cryptographyService.EncryptPassword(_appSetting.RsaPrivateKey, userParam.Password);
+                string encryptedPassword = _cryptographyService.EncryptPassword(userParam.Password);
                 isMatchPassword = encryptedPassword.Equals(userInfo.Password);
             }
 
@@ -82,6 +95,15 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 IsSuccessful = isInternal || isMatchPassword,
                 IsInternal = userParam.IsInternal
             };
+        }
+
+        private static bool IsValidTimeStamp(string timeStampString, int timeout)
+        {
+            var timestamp = Convert.ToInt64(timeStampString);
+            var utcDateTimeRequest = DateTimeOffset.FromUnixTimeMilliseconds(timestamp).UtcDateTime;
+            var utcNow = DateTime.Now.ToUniversalTime();
+
+            return DateTime.Compare(utcDateTimeRequest, utcNow.AddMinutes(timeout * -1)) >= 0;
         }
     }
 }

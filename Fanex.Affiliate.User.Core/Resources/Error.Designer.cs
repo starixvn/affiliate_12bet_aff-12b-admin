@@ -176,5 +176,14 @@ namespace Fanex.Affiliate.User.Core.Resources {
                 return ResourceManager.GetString("RequireIMAccount", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your session has expired!.
+        /// </summary>
+        public static string YourSessionHasExpired {
+            get {
+                return ResourceManager.GetString("YourSessionHasExpired", resourceCulture);
+            }
+        }
     }
 }

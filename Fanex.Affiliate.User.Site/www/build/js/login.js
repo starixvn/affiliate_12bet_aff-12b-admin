@@ -73,13 +73,14 @@ var Login = (function ($) {
                 var token = $('input[name="__RequestVerificationToken"]', $("#userLogin")).val();
                 var publicKey = _me.base64DecodeUnicode($("#PublicKey").val());
 
-                var encryptedPassword = _me.encrypt(password, publicKey);
-                $password.val(encryptedPassword);
+                var queryString = 'p=' + password + '&t=' + _me.getUtcUnixTimeStamp();
+                var encryptedQueryString = _me.encrypt(queryString, publicKey);
+                $password.val(encryptedQueryString);
 
                 var postData = {
                     __RequestVerificationToken: token,
                     UserName: username,
-                    Password: encryptedPassword,
+                    Password: encryptedQueryString,
                     ValidationKey: validation
                 };
 
@@ -172,6 +173,10 @@ var Login = (function ($) {
             return decodeURIComponent(Array.prototype.map.call(atob(str), function (c) {
                 return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
             }).join(''));
+        },
+        getUtcUnixTimeStamp: function getUtcUnixTimeStamp() {
+            var now = new Date();
+            return Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds(), now.getUTCMilliseconds());
         }
     };
 
