@@ -17,7 +17,8 @@ export class GridData extends Component {
         super(props);
 
         this.state = {
-            gridData: null
+            gridData: null,
+            shouldResetScrollPosition: true
         }
     }
 
@@ -40,7 +41,7 @@ export class GridData extends Component {
         if (response && response.status === 200) {
             const { MainData, TotalItem } = response.data;
 
-            this.setState({ gridData: MainData });
+            this.setState({ gridData: MainData, shouldResetScrollPosition: true });
 
             this.props.setPagingOption({ TotalItem, PageIndex: param.PageIndex, PageSize: param.PageSize });
         }
@@ -158,7 +159,7 @@ export class GridData extends Component {
                 const updateItem = Object.assign({}, gridData[indexItem], { IsFavorite: param.IsFavorite });
                 const gridDataUpdate = updateObjectInArray(gridData, indexItem, updateItem)
 
-                this.setState({ gridData: gridDataUpdate });
+                this.setState({ gridData: gridDataUpdate, shouldResetScrollPosition: false });
             }
             else {
                 alert(response.data.Message);
@@ -189,7 +190,7 @@ export class GridData extends Component {
     }
 
     render() {
-        const { gridData } = this.state;
+        const { gridData, shouldResetScrollPosition } = this.state;
 
         return gridData && (
             <div className="table-responsive table-striped">
@@ -203,6 +204,7 @@ export class GridData extends Component {
                     isPaging={true}
                     pageOption={this.props.pagingOption}
                     onPaging={this.handlePaging}
+                    shouldResetScrollPosition={shouldResetScrollPosition}
                 />
             </div>
         );

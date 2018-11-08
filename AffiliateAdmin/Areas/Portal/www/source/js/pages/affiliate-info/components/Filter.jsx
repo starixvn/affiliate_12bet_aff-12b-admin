@@ -31,6 +31,12 @@ export class Filter extends Component {
         this.setState((prevState) => ({ isSortAscending: !prevState.isSortAscending }));
     }
 
+    handlePressEnter = (event) => {
+        if (event.charCode === 13) {
+            this.handleClickSearch();
+        }
+    }
+
     handleClickSearch = () => {
         const { selectedCommGroup, selectedLanguage, selectedStatus, userName, email, selectedSortBy, isSortAscending } = this.state;
 
@@ -107,11 +113,15 @@ export class Filter extends Component {
                     </FormGroup>
 
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                        <Input type="text" name="userName" id="Username" placeholder="Username" onChange={this.handleChange} />
+                        <Input type="text" name="userName" id="Username" placeholder="Username"
+                            onKeyPress={this.handlePressEnter}
+                            onChange={this.handleChange} />
                     </FormGroup>
 
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                        <Input type="email" name="email" id="Email" placeholder="Email" onChange={this.handleChange} />
+                        <Input type="email" name="email" id="Email" placeholder="Email"
+                            onKeyPress={this.handlePressEnter}
+                            onChange={this.handleChange} />
                     </FormGroup>
 
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
