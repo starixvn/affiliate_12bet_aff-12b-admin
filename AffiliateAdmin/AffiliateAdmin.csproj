@@ -245,8 +245,6 @@
     <Compile Include="Business\Services\Text\DeleteTextService.cs" />
     <Compile Include="Business\Services\DomainControlService.cs" />
     <Compile Include="Business\Services\EditRateService.cs" />
-    <Compile Include="Business\Services\ExportExcelService.cs" />
-    <Compile Include="Business\Services\FavoriteService.cs" />
     <Compile Include="Business\Services\GetAffiliateListService.cs" />
     <Compile Include="Business\Services\GetClickStatisticsListService.cs" />
     <Compile Include="Business\Services\GetCommGroupService.cs" />
@@ -369,7 +367,6 @@
     <Compile Include="Business\AppSettings.cs" />
     <Compile Include="Business\CacheUtil.cs" />
     <Compile Include="Business\Common.cs" />
-    <Compile Include="Business\Criterias\AffiliateListCriteria.cs" />
     <Compile Include="Business\Criterias\AffiliateReportCriteria.cs" />
     <Compile Include="Business\Criterias\ValidationCriteria.cs" />
     <Compile Include="Business\DataHandler\Account.cs" />
@@ -393,13 +390,6 @@
     <Compile Include="Business\DataHandler\UserLog.cs" />
     <Compile Include="Business\DBType.cs" />
     <Compile Include="Business\DepositCustomerInfo.cs" />
-    <Compile Include="Business\Exporters\AffiliateListExporter.cs" />
-    <Compile Include="Business\Exporters\ApprovedAffiliateListExporter.cs" />
-    <Compile Include="Business\Exporters\ClosedAffiliateListExporter.cs" />
-    <Compile Include="Business\Exporters\DisapprovedAffiliateListExporter.cs" />
-    <Compile Include="Business\Exporters\ExporterFactory.cs" />
-    <Compile Include="Business\Exporters\PendingAffiliateListExporter.cs" />
-    <Compile Include="Business\GenerateHTML\AffiliateList.cs" />
     <Compile Include="Business\GenerateHTML\Banner.cs" />
     <Compile Include="Business\GenerateHTML\Domain.cs" />
     <Compile Include="Business\GenerateHTML\EmailHistory.cs" />
@@ -758,13 +748,6 @@
     </Compile>
     <Compile Include="UserInfo\Adjustment.aspx.designer.cs">
       <DependentUpon>Adjustment.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UserInfo\AffiliateList.aspx.cs">
-      <DependentUpon>AffiliateList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserInfo\AffiliateList.aspx.designer.cs">
-      <DependentUpon>AffiliateList.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserInfo\AffiliateUpd.aspx.cs">
       <DependentUpon>AffiliateUpd.aspx</DependentUpon>
@@ -1198,7 +1181,6 @@
     <Content Include="App_Templates\UserControl\PolicyHeader.html" />
     <Content Include="App_Templates\UserInfo\AddNote.htm" />
     <Content Include="App_Templates\UserInfo\Adjustment.htm" />
-    <Content Include="App_Templates\UserInfo\AffList.htm" />
     <Content Include="App_Templates\UserInfo\AffUpd.htm" />
     <Content Include="App_Templates\UserInfo\ApprovalEmail_en-US.htm" />
     <Content Include="App_Templates\UserInfo\ApprovalEmail_es-ES.htm" />
@@ -1713,7 +1695,6 @@
     <Content Include="UserControl\UpdateMultiAdmins.aspx" />
     <Content Include="UserInfo\AddNote.aspx" />
     <Content Include="UserInfo\Adjustment.aspx" />
-    <Content Include="UserInfo\AffiliateList.aspx" />
     <Content Include="UserInfo\AffiliateUpd.aspx" />
     <Content Include="UserInfo\DailyEarning.aspx" />
     <Content Include="UserInfo\DailyEarningDetail.aspx" />
@@ -1920,7 +1901,6 @@
     <Content Include="BetList\BetListParlay.ashx" />
     <None Include="Content\Fanex.Result\fanex.result.less" />
     <Content Include="Deployment.ignore" />
-    <Content Include="ExcelFiles\AffiliateList\AffiliateList.xls" />
     <Content Include="ExcelFiles\Casino\2012\Apr\casino stats march 21.csv" />
     <Content Include="Handler\AccountPolicy.ashx" />
     <Content Include="Handler\ActiveMember.ashx" />
@@ -1938,8 +1918,6 @@
     <Content Include="Handler\DelText.ashx" />
     <Content Include="Handler\DomainControl.ashx" />
     <Content Include="Handler\EditRate.ashx" />
-    <Content Include="Handler\ExportExcel.ashx" />
-    <Content Include="Handler\Favorite.ashx" />
     <Content Include="Handler\GetAffiliateList.ashx" />
     <Content Include="Handler\GetClickStatisticsList.ashx" />
     <Content Include="Handler\GetCommGroup.ashx" />

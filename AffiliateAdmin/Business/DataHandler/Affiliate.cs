@@ -11,80 +11,6 @@ namespace DataHandler
 {
     public class Affiliate
     {
-        public static DbResult ListAff(AffiliateListCriteria criteria)
-        {
-            var hsParam = new Hashtable();
-            hsParam.Add("userid", criteria.UserId);
-            hsParam.Add("status", criteria.Status);
-            hsParam.Add("pageindex", criteria.PageIndex);
-            hsParam.Add("pagesize", criteria.PageSize);
-            if (criteria.GroupId != -1)
-            {
-                hsParam.Add("groupid", criteria.GroupId);
-            }
-
-            hsParam.Add("language", criteria.Language);
-
-            if (!string.IsNullOrEmpty(criteria.Username))
-            {
-                hsParam.Add("username", criteria.Username);
-            }
-
-            if (!string.IsNullOrEmpty(criteria.Email))
-            {
-                hsParam.Add("email", criteria.Email);
-            }
-
-            if (criteria.AffId != -1)
-                hsParam.Add("affid", criteria.AffId);
-
-            if (criteria.IsClosed)
-                hsParam.Add("isclosed", criteria.IsClosed);
-
-            if (criteria.IsAll)
-                hsParam.Add("isall", criteria.IsAll);
-
-            hsParam.Add("nrows", 0);
-            return DbHelper.Execute(criteria.SpName, DBType.AFFILIATE_12BET, hsParam);
-        }
-
-        public static DbResult ListAffFavorie(AffiliateListCriteria criteria)
-        {
-            var hsParam = new Hashtable();
-            hsParam.Add("userid", criteria.UserId);
-            hsParam.Add("status", criteria.Status);
-            if (criteria.PageIndex > 0)
-            {
-                hsParam.Add("pageindex", criteria.PageIndex);
-            }
-
-            if (criteria.PageSize > 0)
-            {
-                hsParam.Add("pagesize", criteria.PageSize);
-            }
-
-            if (criteria.GroupId != -1)
-            {
-                hsParam.Add("groupid", criteria.GroupId);
-            }
-
-            if (!string.IsNullOrEmpty(criteria.Username))
-            {
-                hsParam.Add("username", criteria.Username);
-            }
-
-            if (!string.IsNullOrEmpty(criteria.Email))
-            {
-                hsParam.Add("email", criteria.Email);
-            }
-
-            hsParam.Add("language", criteria.Language);
-            if (criteria.AffId != -1)
-                hsParam.Add("affid", criteria.AffId);
-            hsParam.Add("nrows", 0);
-            return DbHelper.Execute(criteria.SpName, DBType.AFFILIATE_12BET, hsParam);
-        }
-
         public static DataTable SelAffInfo(int intCustId, ref string strMinMoneyBooker, ref string strMinNetteller, ref string strMinWire, ref string strMinPlayer)
         {
             Hashtable hsParam = new Hashtable();
@@ -453,28 +379,6 @@ namespace DataHandler
             Hashtable hsParam = new Hashtable();
             hsParam.Add("affmaster", AppSettings.AffMaster);
             return DbHelper.Execute("Aff_CustomerSelAffUsename", DBType.AFFILIATE_12BET, hsParam);
-        }
-
-        //Vinh@20090627
-        public static DbResult AffFavoriteIns(int intAffId)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("adminid", AppSettings.Session.CustID);
-            hsParam.Add("affid", intAffId);
-            hsParam.Add("errcode", 0);
-            hsParam.Add("errmsg", "");
-            return DbHelper.Execute("Aff_FavoriteIns", DBType.AFFILIATE_12BET, hsParam);
-        }
-
-        //Vinh@20090627
-        public static DbResult AffFavoriteDel(int intAffId)
-        {
-            Hashtable hsParam = new Hashtable();
-            hsParam.Add("adminid", AppSettings.Session.CustID);
-            hsParam.Add("affid", intAffId);
-            hsParam.Add("errcode", 0);
-            hsParam.Add("errmsg", "");
-            return DbHelper.Execute("Aff_FavoriteDel", DBType.AFFILIATE_12BET, hsParam);
         }
 
         //Vinh@20090908
