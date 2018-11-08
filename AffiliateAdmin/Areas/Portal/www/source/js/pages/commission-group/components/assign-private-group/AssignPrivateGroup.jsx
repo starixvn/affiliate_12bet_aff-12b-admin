@@ -79,10 +79,11 @@ export class AssignPrivateGroup extends React.Component {
                 });
 
                 if (result.IsSuccessful) {
-                    const infoFrame = top.frames["fInfo"];
+                    const mainFrame = top.frames["mainFrame"];
+                    const infoFrame = mainFrame && mainFrame.frames["fInfo"];
                     window.setTimeout(() => {
                         if (infoFrame) {
-                            infoFrame.location.reload();
+                            mainFrame.location.reload();
                         }
                         else {
                             parent.postMessage('closePopup', window.location.origin);

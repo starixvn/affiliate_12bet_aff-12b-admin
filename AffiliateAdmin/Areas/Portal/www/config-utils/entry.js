@@ -18,7 +18,7 @@ module.exports = {
     [`${jsDist}/pages/media-gallery/landing-page`]: clientRoot + "/js/pages/media-gallery/landing-page/index.jsx",
     [`${jsDist}/pages/customer/customer-statistics`]: clientRoot + "/js/pages/customer/customer-statistics/index.jsx",
     [`${jsDist}/pages/userpanel/customer-member`]: clientRoot + "/js/pages/user-panel/customer-member/index.jsx",
-    [`${jsDist}/pages/affiliate-info`]: clientRoot + "/js/pages/affiliate-info/index.jsx",
+    [`${jsDist}/pages/affiliate/affiliate-info`]: clientRoot + "/js/pages/affiliate-info/index.jsx",
 
     [`${styleDist}/portalmain`]: clientRoot + "/style/main.scss",
     [`${styleDist}/layout`]: clientRoot + "/style/layout/main-layout.scss",

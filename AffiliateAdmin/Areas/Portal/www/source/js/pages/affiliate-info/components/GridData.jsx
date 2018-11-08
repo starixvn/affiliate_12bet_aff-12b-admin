@@ -2,6 +2,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import { Button } from 'reactstrap';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
 import { headerText, resource } from '../modules/constants';
@@ -89,18 +90,19 @@ export class GridData extends Component {
         const isApproved = status == "approved";
 
         const balanceBf = dataItem.BalanceBf === null ? resource.NA : formatDecimal(dataItem.BalanceBf);
+        const formattedMemberValue = dataItem.Member === null ? resource.NA : format(dataItem.Member);
         const member = dataItem.Member === null ? resource.NA : (
             <a href={resolveClientUrl(`Portal/Member?txtAffUsername=${dataItem.UserName}`)} target="_top">
-                {format(dataItem.Member)}
+                {formattedMemberValue}
             </a>);
 
         const language = languageList[dataItem.Language];
         const commissionGroup = dataItem.CommissionGroup ? (
             dataItem.CommissionGroup === dataItem.UserName ? (
-                <button className="btn btn-link"
+                <Button color="link"
                     onClick={() => this.handleEditCommGroup(dataItem.AffId, dataItem.CommissionGroup)}>
                     {dataItem.CommissionGroup}
-                </button>) : dataItem.CommissionGroup
+                </Button>) : dataItem.CommissionGroup
         ) : resource.NA;
 
         const isFavorite = dataItem.IsFavorite
@@ -125,14 +127,14 @@ export class GridData extends Component {
                 <Cell className="text-center" title={dataItem.RegistrationDateText}>{dataItem.RegistrationDateText}</Cell>
                 <Cell className="text-center" title={dataItem.ApprovalDateText}>{dataItem.ApprovalDateText}</Cell>
                 <Cell className="text-center" title={dataItem.CasinoDateText}>{dataItem.CasinoDateText}</Cell>
-                <Cell className="text-center" title={commissionGroup}>{commissionGroup}</Cell>
+                <Cell className="text-center" title={typeof commissionGroup === 'string' ? commissionGroup : dataItem.CommissionGroup}>{commissionGroup}</Cell>
                 <Cell className="text-right" title={balanceBf}>{balanceBf}</Cell>
-                <Cell className="text-right" title={member}>{member}</Cell>
+                <Cell className="text-right" title={formattedMemberValue}>{member}</Cell>
                 <Cell className="text-center" title="Change Password">
                     {
-                        isApproved && (<button className="btn btn-link" onClick={() => this.handleChangePassword(dataItem.AffId)}>
+                        isApproved && (<Button color="link" onClick={() => this.handleChangePassword(dataItem.AffId)}>
                             <span className="oi oi-pencil text-secondary"></span>
-                        </button>)
+                        </Button>)
                     }
                 </Cell>
             </Row>

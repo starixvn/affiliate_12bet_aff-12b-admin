@@ -1513,7 +1513,7 @@
     <Content Include="Areas\Portal\www\dist\jquery-3.3.1.min.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\vendors~xlsx-style.chunk.js" />
     <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\xlsx-style.chunk.js" />
-    <Content Include="Areas\Portal\www\dist\js\pages\affiliate-info.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\affiliate\affiliate-info.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\commission\assign-group.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\commission\assign-private-group.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\commission\commission-group.js" />
