@@ -8,7 +8,6 @@ export const statusList = {
     Closed: "Closed"
 }
 
-export const defaultSearchBy = 0;
 export const defaultSortBy = 1;
 
 export const sortByList = {

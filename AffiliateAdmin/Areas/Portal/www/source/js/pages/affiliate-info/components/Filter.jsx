@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import { statusList, sortByList, defaultSearchBy, defaultSortBy, resource } from '../modules/constants';
+import { statusList, sortByList, defaultSortBy, resource } from '../modules/constants';
 
 import { setReportTitle, setParam } from '../actions';
 
@@ -12,14 +12,22 @@ export class Filter extends Component {
     constructor(props) {
         super(props);
 
+        this.initialGroupId = this.props.groupId;
+
         this.state = {
-            selectedCommGroup: defaultSearchBy,
+            selectedCommGroup: this.initialGroupId,
             selectedLanguage: '',
             selectedStatus: '',
             userName: '',
             email: '',
             selectedSortBy: defaultSortBy,
             isSortAscending: true
+        }
+    }
+
+    componentDidMount() {
+        if (this.initialGroupId !== 0) {
+            this.handleClickSearch();
         }
     }
 
@@ -77,7 +85,7 @@ export class Filter extends Component {
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                         <Label for="SearchBy" className="mr-sm-2">{resource.SearchBy}</Label>
                         <Input type="select" name="selectedCommGroup" id="SearchBy" value={selectedCommGroup} onChange={this.handleChange} >
-                            <option key="commGroup-all" value="">{resource.AllCommGroups}</option>
+                            <option key="commGroup-all" value={0}>{resource.AllCommGroups}</option>
                             {
                                 Object.keys(commGroupList).map(commGroup => {
                                     return (<option key={'commGroup-' + commGroup} value={commGroup}>{commGroupList[commGroup]}</option>)
@@ -151,8 +159,8 @@ export class Filter extends Component {
     }
 }
 
-function mapStateToProps({ languageList, commGroupList, param }) {
-    return Object.assign({}, { languageList, commGroupList, param });
+function mapStateToProps({ languageList, commGroupList, param, groupId }) {
+    return Object.assign({}, { languageList, commGroupList, param, groupId });
 }
 
 function mapDispatchToProps(dispatch) {

@@ -34,13 +34,14 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Index(int groupId = 0)
         {
             var param = new GetGroupListParam { AffId = -1 };
             var viewModel = new AffiliateInfoViewModel
             {
                 CommGroupList = _commissionGroupRepository.GetNormalCommGroupList(param),
-                LanguageList = _languageService.GetLanguageList()
+                LanguageList = _languageService.GetLanguageList(),
+                SelectedGroupId = groupId
             };
 
             return View("~/Areas/Portal/Views/AffiliateInfo/Index.cshtml", viewModel);

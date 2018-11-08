@@ -10,6 +10,8 @@ const commGroupList = createReducer({}, {});
 
 const languageList = createReducer({}, {});
 
+const groupId = createReducer(0, {});
+
 const reportTitle = createReducer('', {
     [SET_REPORT_TITLE](prevState, action) {
         return action.data;
@@ -56,5 +58,6 @@ export default combineReducers({
     showPopupPassword,
     showPopupCommGroup,
     affId,
-    commGroup
+    commGroup,
+    groupId
 });

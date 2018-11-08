@@ -20,7 +20,9 @@ for (let i = 0; i < languageList.length; i++) {
     language[languageItem.LanguageCode] = languageItem.LanguageName;
 }
 
-const store = configureStore({ languageList: language, commGroupList: commGroup }, reducer);
+const { groupId } = window.initialState;
+
+const store = configureStore({ languageList: language, commGroupList: commGroup, groupId }, reducer);
 
 export default class App extends Component {
     constructor(props) {

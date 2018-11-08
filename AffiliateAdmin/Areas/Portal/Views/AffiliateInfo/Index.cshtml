@@ -13,6 +13,7 @@
         window.initialState = {
             commGroupList: @Html.Raw(Json.Encode(Model.CommGroupList)),
             languageList: @Html.Raw(Json.Encode(Model.LanguageList)),
+            groupId: @Model.SelectedGroupId
         }
     </script>
     <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/affiliate/affiliate-info.js")"></script>
