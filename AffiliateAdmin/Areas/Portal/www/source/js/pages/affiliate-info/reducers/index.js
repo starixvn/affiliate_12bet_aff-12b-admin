@@ -6,43 +6,43 @@ import { SET_REPORT_TITLE, SET_PARAM, SET_SHOW_POPUP_PASSWORD, SET_SHOW_POPUP_CO
 import { pagingOption } from '../../../reducers/pagingReducer';
 import { isShowLoader } from '../../../reducers/loaderReducer';
 
-const commGroupList = createReducer({}, {});
+export const commGroupList = createReducer({}, {});
 
-const languageList = createReducer({}, {});
+export const languageList = createReducer({}, {});
 
-const groupId = createReducer(0, {});
+export const groupId = createReducer(0, {});
 
-const reportTitle = createReducer('', {
+export const reportTitle = createReducer('', {
     [SET_REPORT_TITLE](prevState, action) {
         return action.data;
     }
 })
 
-const param = createReducer(null, {
+export const param = createReducer(null, {
     [SET_PARAM](prevState, action) {
         return Object.assign({}, prevState, action.data);
     }
 })
 
-const showPopupPassword = createReducer(false, {
+export const showPopupPassword = createReducer(false, {
     [SET_SHOW_POPUP_PASSWORD](prevState, action) {
         return action.data;
     }
 })
 
-const showPopupCommGroup = createReducer(false, {
+export const showPopupCommGroup = createReducer(false, {
     [SET_SHOW_POPUP_COMMGROUP](prevState, action) {
         return action.data;
     }
 })
 
-const affId = createReducer(0, {
+export const affId = createReducer(0, {
     [SET_AFFID](prevState, action) {
         return action.data;
     }
 })
 
-const commGroup = createReducer(0, {
+export const commGroup = createReducer(0, {
     [SET_COMM_GROUP](prevState, action) {
         return action.data;
     }

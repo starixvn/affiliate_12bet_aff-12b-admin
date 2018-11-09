@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default (props) => {
+export default function Loader(props) {
     const backdrop = props.backdrop === undefined ? true : props.backdrop;
 
     return (
