@@ -1,4 +1,17 @@
 ﻿var ChangePassword = (function ($) {
+    function encrypt(plainText, key) {
+        var encrypt = new JSEncrypt();
+        encrypt.setPublicKey(key);
+
+        return encrypt.encrypt(plainText);
+    }
+
+    function base64DecodeUnicode(str) {
+        return decodeURIComponent(Array.prototype.map.call(atob(str), function (c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+        }).join(''))
+    }
+
     var _me = {
         initialize: function () {
             _me.initEvent();
@@ -31,11 +44,11 @@
                     return;
                 }
 
-                var publicKey = _me.base64DecodeUnicode($("#PublicKey").val());
+                var publicKey = base64DecodeUnicode($("#PublicKey").val());
 
-                var encryptedOldPassword = _me.encryptPassword($oldPassword.val(), publicKey);
-                var encryptedNewPassword = _me.encryptPassword($newPassword.val(), publicKey);
-                var confirmedNewPassword = _me.encryptPassword($confirmedNewPassword.val(), publicKey);
+                var encryptedOldPassword = encrypt($oldPassword.val(), publicKey);
+                var encryptedNewPassword = encrypt($newPassword.val(), publicKey);
+                var confirmedNewPassword = encrypt($confirmedNewPassword.val(), publicKey);
 
                 $oldPassword.val(encryptedOldPassword);
                 $newPassword.val(encryptedNewPassword);
@@ -63,18 +76,6 @@
                     }
                 });
             }
-        },
-
-        encryptPassword: function (plainText, key) {
-            var encrypt = new JSEncrypt();
-            encrypt.setPublicKey(key);
-
-            return encrypt.encrypt(plainText);
-        },
-        base64DecodeUnicode: function (str) {
-            return decodeURIComponent(Array.prototype.map.call(atob(str), function (c) {
-                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
-            }).join(''))
         }
     };
 

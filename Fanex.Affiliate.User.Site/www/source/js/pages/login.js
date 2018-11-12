@@ -1,4 +1,23 @@
 ﻿var Login = (function ($) {
+    function encrypt(plainText, key) {
+        var encrypt = new JSEncrypt();
+        encrypt.setPublicKey(key);
+
+        return encrypt.encrypt(plainText);
+    }
+
+    function base64DecodeUnicode(str) {
+        return decodeURIComponent(Array.prototype.map.call(atob(str), function (c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+        }).join(''))
+    }
+
+    function getUtcUnixTimeStamp() {
+        var now = new Date();
+        return Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(),
+              now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds(), now.getUTCMilliseconds());
+    }
+
     var _me = {
         initialize: function () {
             _me.registerLoginDialog();
@@ -69,10 +88,10 @@
             var validationResult = _me.validate(username, password, validation, prefix);
             if (validationResult.isValid) {
                 var token = $('input[name="__RequestVerificationToken"]', $("#userLogin")).val();
-                var publicKey = _me.base64DecodeUnicode($("#PublicKey").val());
+                var publicKey = base64DecodeUnicode($("#PublicKey").val());
 
-                var queryString = 'p=' + password + '&t=' + _me.getUtcUnixTimeStamp();
-                var encryptedQueryString = _me.encrypt(queryString, publicKey);
+                var queryString = 'p=' + password + '&t=' + getUtcUnixTimeStamp();
+                var encryptedQueryString = encrypt(queryString, publicKey);
                 $password.val(encryptedQueryString);
 
                 var postData = {
@@ -157,12 +176,6 @@
             return result;
         },
 
-        encrypt: function (plainText, key) {
-            var encrypt = new JSEncrypt();
-            encrypt.setPublicKey(key);
-
-            return encrypt.encrypt(plainText);
-        },
         generateDialogCaptcha: function () {
             var captchaUrl = Site.resolveRelativeUrl("Auth/CaptchaImage?_v=" + new Date().getTime());
             $("#loginDialogcaptchaImg").attr("src", captchaUrl);
@@ -170,16 +183,6 @@
         generateCaptcha: function () {
             var captchaUrl = Site.resolveRelativeUrl("Auth/CaptchaImage?_v=" + new Date().getTime());
             $("#captchaImg").attr("src", captchaUrl);
-        },
-        base64DecodeUnicode: function (str) {
-            return decodeURIComponent(Array.prototype.map.call(atob(str), function (c) {
-                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
-            }).join(''))
-        },
-        getUtcUnixTimeStamp: function () {
-            var now = new Date();
-            return Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(),
-                  now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds(), now.getUTCMilliseconds());
         }
     };
 
