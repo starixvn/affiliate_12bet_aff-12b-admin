@@ -12,7 +12,8 @@
         "build:all:pro": "node node_modules/webpack/bin/webpack.js --config Areas/Portal/www/webpack.config.vendor.js --env=production && node node_modules/webpack/bin/webpack.js --config Areas/Portal/www/webpack.config.js --env=production",
         "start": "node_modules/.bin/webpack-dev-server --config Areas/Portal/www/webpack.config.dev.js --hot --inline --progress --watch-content-base",
         "test": "jest",
-        "test:watch": "npm test --watch"
+        "test:watch": "npm test --watch",
+        "test:coverage": "npm test --coverage"
     },
     "author": "",
     "dependencies": {
