@@ -143,6 +143,10 @@ namespace Fanex.Affiliate.User.Core.Controllers
                         SessionService.AssignSessions(user);
                         FormsAuthentication.SetAuthCookie(user.UserName, false);
                     }
+                    else
+                    {
+                        return Redirect(Url.Action("PageNotFound", "Notify"));
+                    }
                 }
                 else
                 {

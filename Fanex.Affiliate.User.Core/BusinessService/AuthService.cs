@@ -2,6 +2,7 @@
 using System.Collections.Specialized;
 using System.Web;
 using Fanex.Affiliate.User.Core.DTO;
+using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.Repository;
 using Fanex.Affiliate.User.Core.Resources;
@@ -25,35 +26,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public LoginResultViewModel GetLoginResult(UserLoginParam userParam, bool isInternal)
         {
-            var loginInfoQueryString = _cryptographyService.RsaDecrypt(_appSetting.RsaPrivateKey, userParam.LoginInfo);
-            var loginInfo = HttpUtility.ParseQueryString(loginInfoQueryString);
-            var queryStringValidationResult = IsValidQueryStringInfo(loginInfo);
-            if (!queryStringValidationResult.Result.IsOk)
-            {
-                return queryStringValidationResult;
-            }
-
-            userParam.UserName = loginInfo["u"];
-            var user = _authRepository.GetUserInfo(userParam.UserName, isInternal);
-            if (user == null || user.IsClosed)
-            {
-                var message = user == null ? Error.LoginWrongInfo : Error.LoginClosedAccount;
-                return new LoginResultViewModel
-                {
-                    Result = new ResultInfo { IsOk = false, Message = message }
-                };
-            }
-
-            userParam.Password = loginInfo["p"];
-            var isMatchPassword = isInternal || IsMatchPassword(userParam.Password, user.Password);
-            var loginResultInfo = isMatchPassword ? _authRepository.UpdateLoginResult(GetLoginResultParam(userParam, user.AffId), isInternal) :
-                                                    new ResultInfo { IsOk = false, Message = Error.LoginWrongInfo };
-
-            return new LoginResultViewModel
-            {
-                UserInfo = user,
-                Result = loginResultInfo
-            };
+            return isInternal ? GetLoginResultForInternalAdmin(userParam) : GetLoginResultForAffUser(userParam);
         }
 
         public int GetOnUserId(OnUserIdParam onUserIdParam)
@@ -69,6 +42,65 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         public bool Recheckin(int onUserId, bool isInternal)
         {
             return _authRepository.Recheckin(onUserId, isInternal);
+        }
+
+        private LoginResultViewModel GetLoginResultForInternalAdmin(UserLoginParam userParam)
+        {
+            var user = _authRepository.GetUserInfo(userParam.UserName, true);
+            var checkingActiveUserResult = CheckActiveUser(user);
+            if (!checkingActiveUserResult.IsOk)
+            {
+                return new LoginResultViewModel { Result = checkingActiveUserResult };
+            }
+
+            var loginResultInfo = _authRepository.UpdateLoginResult(GetLoginResultParam(userParam, user.AffId), true);
+
+            return new LoginResultViewModel
+            {
+                UserInfo = user,
+                Result = loginResultInfo
+            };
+        }
+
+        private LoginResultViewModel GetLoginResultForAffUser(UserLoginParam userParam)
+        {
+            var loginInfoQueryString = _cryptographyService.RsaDecrypt(_appSetting.RsaPrivateKey, userParam.LoginInfo);
+            var loginInfo = HttpUtility.ParseQueryString(loginInfoQueryString);
+            var queryStringValidationResult = IsValidQueryStringInfo(loginInfo);
+            if (!queryStringValidationResult.Result.IsOk)
+            {
+                return queryStringValidationResult;
+            }
+
+            userParam.UserName = loginInfo["u"];
+            var user = _authRepository.GetUserInfo(userParam.UserName, false);
+            var checkingActiveUserResult = CheckActiveUser(user);
+            if (!checkingActiveUserResult.IsOk)
+            {
+                return new LoginResultViewModel { Result = checkingActiveUserResult };
+            }
+
+            userParam.Password = loginInfo["p"];
+            var loginResultInfo = IsMatchPassword(userParam.Password, user.Password) ?
+                        _authRepository.UpdateLoginResult(GetLoginResultParam(userParam, user.AffId), false) :
+                        new ResultInfo { IsOk = false, Message = Error.LoginWrongInfo };
+
+            return new LoginResultViewModel
+            {
+                UserInfo = user,
+                Result = loginResultInfo
+            };
+        }
+
+        private static ResultInfo CheckActiveUser(AuthorizedUserInfo user)
+        {
+            if (user == null || user.IsClosed)
+            {
+                var message = user == null ? Error.LoginWrongInfo : Error.LoginClosedAccount;
+                return new ResultInfo { IsOk = false, Message = message };
+            }
+
+            return new ResultInfo { IsOk = true };
         }
 
         private LoginResultViewModel IsValidQueryStringInfo(NameValueCollection loginInfo)
