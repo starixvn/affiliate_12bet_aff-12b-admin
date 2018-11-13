@@ -1,6 +1,9 @@
 ﻿'use strict';
 
 var Login = (function ($) {
+    var _refreshCaptchaIntervalId = null;
+    var REFRESH_CAPTCHA_INTERVAL = 600000;
+
     function encrypt(plainText, key) {
         var encrypt = new JSEncrypt();
         encrypt.setPublicKey(key);
@@ -19,20 +22,34 @@ var Login = (function ($) {
         return Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds(), now.getUTCMilliseconds());
     }
 
+    function registerRefreshLoginCaptcha(isShowingModal) {
+        clearInterval(_refreshCaptchaIntervalId);
+        _refreshCaptchaIntervalId = setInterval(function () {
+            if (isShowingModal) {
+                _me.generateDialogCaptcha();
+            } else {
+                _me.generateCaptcha();
+            }
+        }, REFRESH_CAPTCHA_INTERVAL);
+    }
+
     var _me = {
         initialize: function initialize() {
             _me.registerLoginDialog();
             _me.initEvent();
             _me.initLoginDialogEvent();
+            registerRefreshLoginCaptcha(false);
         },
         registerLoginDialog: function registerLoginDialog() {
             $("#loginDialog").on("show.bs.modal", function (e) {
                 _me.generateDialogCaptcha();
+                registerRefreshLoginCaptcha(true);
             });
 
             $("#loginDialog").on("hide.bs.modal", function (e) {
                 $("#loginDialogcaptchaImg").attr("src", "");
                 _me.generateCaptcha();
+                registerRefreshLoginCaptcha(false);
             });
         },
         initLoginDialogEvent: function initLoginDialogEvent() {
@@ -57,6 +74,7 @@ var Login = (function ($) {
 
             $("#loginDialogcaptchaImg").on("click", function () {
                 _me.generateDialogCaptcha();
+                registerRefreshLoginCaptcha(true);
             });
         },
         initEvent: function initEvent() {
@@ -72,6 +90,7 @@ var Login = (function ($) {
 
             $("#captchaImg").on("click", function () {
                 _me.generateCaptcha();
+                registerRefreshLoginCaptcha(false);
             });
         },
 
