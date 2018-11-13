@@ -91,14 +91,13 @@ var Login = (function ($) {
                 var token = $('input[name="__RequestVerificationToken"]', $("#userLogin")).val();
                 var publicKey = base64DecodeUnicode($("#PublicKey").val());
 
-                var queryString = 'p=' + password + '&t=' + getUtcUnixTimeStamp();
+                var queryString = 'u=' + encodeURIComponent(username.trim()) + '&p=' + encodeURIComponent(password) + '&t=' + getUtcUnixTimeStamp();
                 var encryptedQueryString = encrypt(queryString, publicKey);
                 $password.val(encryptedQueryString);
 
                 var postData = {
                     __RequestVerificationToken: token,
-                    UserName: username,
-                    Password: encryptedQueryString,
+                    LoginInfo: encryptedQueryString,
                     ValidationKey: validation
                 };
 

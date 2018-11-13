@@ -131,7 +131,6 @@ namespace Fanex.Affiliate.User.Core.Controllers
                     };
 
                     SessionService.IsInternal = true;
-                    userLoginParam.IsInternal = true;
                     var loginResult = _authService.GetLoginResult(userLoginParam, true);
                     var user = loginResult.UserInfo;
 

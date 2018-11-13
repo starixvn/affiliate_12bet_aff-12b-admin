@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Collections.Specialized;
 using System.Web;
 using Fanex.Affiliate.User.Core.DTO;
-using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.Repository;
 using Fanex.Affiliate.User.Core.Resources;
@@ -25,7 +25,16 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public LoginResultViewModel GetLoginResult(UserLoginParam userParam, bool isInternal)
         {
-            var user = _authRepository.GetUserInfo(userParam);
+            var loginInfoQueryString = _cryptographyService.RsaDecrypt(_appSetting.RsaPrivateKey, userParam.LoginInfo);
+            var loginInfo = HttpUtility.ParseQueryString(loginInfoQueryString);
+            var queryStringValidationResult = IsValidQueryStringInfo(loginInfo);
+            if (!queryStringValidationResult.Result.IsOk)
+            {
+                return queryStringValidationResult;
+            }
+
+            userParam.UserName = loginInfo["u"];
+            var user = _authRepository.GetUserInfo(userParam.UserName, isInternal);
             if (user == null || user.IsClosed)
             {
                 var message = user == null ? Error.LoginWrongInfo : Error.LoginClosedAccount;
@@ -35,30 +44,15 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 };
             }
 
-            var passwordInfo = _cryptographyService.RsaDecrypt(_appSetting.RsaPrivateKey, userParam.Password);
-            var passwordQueryString = HttpUtility.ParseQueryString(passwordInfo);
-            var timeStampString = passwordQueryString["t"];
-            if (!IsValidTimeStamp(timeStampString, _appSetting.LoginTimeout))
-            {
-                return new LoginResultViewModel
-                {
-                    Result = new ResultInfo { IsOk = false, Message = Error.YourSessionHasExpired }
-                };
-            }
-
-            userParam.Password = passwordQueryString["p"];
-            var loginResultParam = GetLoginResultParam(userParam, user, isInternal);
-
-            _authRepository.UpdateLoginResult(loginResultParam);
+            userParam.Password = loginInfo["p"];
+            var isMatchPassword = isInternal || IsMatchPassword(userParam.Password, user.Password);
+            var loginResultInfo = isMatchPassword ? _authRepository.UpdateLoginResult(GetLoginResultParam(userParam, user.AffId), isInternal) :
+                                                    new ResultInfo { IsOk = false, Message = Error.LoginWrongInfo };
 
             return new LoginResultViewModel
             {
                 UserInfo = user,
-                Result = new ResultInfo
-                {
-                    IsOk = loginResultParam.IsSuccessful && loginResultParam.ErrCode == 0,
-                    Message = loginResultParam.IsSuccessful ? loginResultParam.ErrMsg : Error.LoginWrongInfo
-                }
+                Result = loginResultInfo
             };
         }
 
@@ -77,23 +71,58 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return _authRepository.Recheckin(onUserId, isInternal);
         }
 
-        private LoginResultParam GetLoginResultParam(UserLoginParam userParam, AuthorizedUserInfo userInfo, bool isInternal)
+        private LoginResultViewModel IsValidQueryStringInfo(NameValueCollection loginInfo)
         {
-            var isMatchPassword = false;
-            if (!isInternal)
+            var timeStampString = loginInfo["t"];
+            if (!IsValidTimeStamp(timeStampString, _appSetting.LoginTimeout))
             {
-                string encryptedPassword = _cryptographyService.EncryptPassword(userParam.Password);
-                isMatchPassword = encryptedPassword.Equals(userInfo.Password);
+                return new LoginResultViewModel
+                {
+                    Result = new ResultInfo { IsOk = false, Message = Error.YourSessionHasExpired }
+                };
             }
 
+            var userName = loginInfo["u"];
+            var password = loginInfo["p"];
+            if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(password))
+            {
+                return new LoginResultViewModel
+                {
+                    Result = new ResultInfo
+                    {
+                        IsOk = false,
+                        Message = string.IsNullOrEmpty(userName) ? Lang.ErrmsgEntryUsername : Lang.ErrmsgEntryPassword
+                    }
+                };
+            }
+
+            return new LoginResultViewModel
+            {
+                Result = new ResultInfo { IsOk = true }
+            };
+        }
+
+        private bool IsMatchPassword(string passwordInput, string passwordFromDb)
+        {
+            if (string.IsNullOrEmpty(passwordInput))
+            {
+                return false;
+            }
+
+            string encryptedPassword = _cryptographyService.EncryptPassword(passwordInput);
+
+            return encryptedPassword.Equals(passwordFromDb);
+        }
+
+        private LoginResultParam GetLoginResultParam(UserLoginParam userParam, int affId)
+        {
             return new LoginResultParam
             {
-                AffId = userInfo.AffId,
+                AffId = affId,
                 LoginIp = userParam.LoginIp,
                 SessionId = HttpContext.Current.Session.SessionID,
                 Language = userParam.Language,
-                IsSuccessful = isInternal || isMatchPassword,
-                IsInternal = userParam.IsInternal
+                IsSuccessful = true
             };
         }
 

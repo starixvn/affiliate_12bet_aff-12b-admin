@@ -1,13 +1,14 @@
-﻿using Fanex.Affiliate.User.Core.DTO.Auth;
+﻿using Fanex.Affiliate.User.Core.DTO;
+using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.MetalModels;
 
 namespace Fanex.Affiliate.User.Core.Repository
 {
     public interface IAuthRepository
     {
-        AuthorizedUserInfo GetUserInfo(UserLoginParam userLoginParam);
+        AuthorizedUserInfo GetUserInfo(string userName, bool isInternal);
 
-        void UpdateLoginResult(LoginResultParam loginResultParam);
+        ResultInfo UpdateLoginResult(LoginResultParam loginResultParam, bool isInternal);
 
         int GetOnUserId(OnUserIdParam onUserIdParam);
 
