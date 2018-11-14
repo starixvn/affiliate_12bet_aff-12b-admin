@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Threading.Tasks;
 using Fanex.Affiliate.DataService.Importer;
 using Fanex.Affiliate.DataService.Importer.MetaModels.Ebet;
@@ -37,8 +38,8 @@ namespace Fanex.Affiliate.DataService.Job.Modules
 
                 if (!isUm)
                 {
-                    var trackerFolderPath = _appSetting.EbetTrackerFolder;
-                    var defaultStartTime = _appSetting.EbetStartTime;
+                    var trackerFolderPath = _appSetting.GetValue("EbetTrackerFolder");
+                    var defaultStartTime = DateTime.ParseExact(_appSetting.GetValue("EbetStartTime"), "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal);
 
                     var lastQueryTime = _timeTracker.GetLastestCallSuccess(trackerFolderPath, defaultStartTime);
                     var now = DateTime.Now;
@@ -58,7 +59,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                             PrivateKey = config.PrivateKey,
                             CurrencyId = config.CurrencyID,
                             PageNumber = 1,
-                            PageSize = _appSetting.EbetPageSize,
+                            PageSize = Convert.ToInt32(_appSetting.GetValue("EbetPageSize")),
                         };
 
                         taskList.Add(_ebetService.Import(param));

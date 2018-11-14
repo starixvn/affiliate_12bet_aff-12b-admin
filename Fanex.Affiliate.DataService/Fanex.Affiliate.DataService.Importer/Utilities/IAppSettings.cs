@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Fanex.Affiliate.DataService.Importer.Utilities
 {
@@ -27,17 +26,7 @@ namespace Fanex.Affiliate.DataService.Importer.Utilities
 
         string BccMail { get; }
 
-        string EbetFormatDateTime { get; }
-
         IList<string> SupportedProductList { get; }
-
-        string EbetTrackerFolder { get; }
-
-        int EbetIntervalTime { get; }
-
-        DateTime EbetStartTime { get; }
-
-        int EbetPageSize { get; }
 
         string GetValue(string key);
     }

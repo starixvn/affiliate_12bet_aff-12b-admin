@@ -107,11 +107,13 @@ namespace Fanex.Affiliate.DataService.Importer
 
         private NameValueCollection BuildFormBody(EbetParam param)
         {
+            var formatDateTime = _appSetting.GetValue("EbetFormatDateTime");
+
             return new NameValueCollection
             {
                 { "Content-Type", "application/x-www-form-urlencoded" },
-                { "startTimeStr", param.StartTime.ToString(_appSetting.EbetFormatDateTime) },
-                { "endTimeStr", param.EndTime.ToString(_appSetting.EbetFormatDateTime) },
+                { "startTimeStr", param.StartTime.ToString(formatDateTime) },
+                { "endTimeStr", param.EndTime.ToString(formatDateTime) },
                 { "channelId", param.ChannelId },
                 { "subChannelId", param.SubChanelId.ToString() },
                 { "pageNum", param.PageNumber.ToString() },
