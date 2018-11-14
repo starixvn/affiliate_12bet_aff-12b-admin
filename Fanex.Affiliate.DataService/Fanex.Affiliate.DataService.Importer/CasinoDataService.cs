@@ -46,10 +46,10 @@
             {
                 DateImport = date,
                 XmlData = xmlData,
-                AdminId = _appSettings.AdminId
+                AdminId = Convert.ToInt32(_appSettings.GetValue("AdminId"))
             };
 
-            var systemType = (SystemType)_appSettings.SystemType;
+            var systemType = (SystemType)Convert.ToInt32(_appSettings.GetValue("SystemType"));
 
             return SyncDataToDB(systemType, metaModel);
         }
@@ -59,14 +59,14 @@
             ServicePointManager
     .ServerCertificateValidationCallback +=
     (sender, cert, chain, sslPolicyErrors) => true;
-            var path = $"{_appSettings.PathSaveFile}{date.ToString("yyyy/MM/")}";
+            var path = $"{_appSettings.GetValue("PathSaveFile")}{date.ToString("yyyy/MM/")}";
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
             }
 
-            var fileName = $"{path}Casino {date.ToString("yyyyMMdd")}{_appSettings.FileExtension}";
-            var downloadURL = _appSettings.DailyDataUrl.Replace("{date}", date.ToString("yyyy-MM-dd"));
+            var fileName = $"{path}Casino {date.ToString("yyyyMMdd")}{_appSettings.GetValue("FileExtension")}";
+            var downloadURL = _appSettings.GetValue("DailyDataURL").Replace("{date}", date.ToString("yyyy-MM-dd"));
             using (WebClient wc = new WebClient())
             {
                 wc.Proxy = null;
