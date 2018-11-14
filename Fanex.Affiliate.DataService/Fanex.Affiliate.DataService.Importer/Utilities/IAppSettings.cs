@@ -27,23 +27,9 @@ namespace Fanex.Affiliate.DataService.Importer.Utilities
 
         string BccMail { get; }
 
-        string BetsoftBankId { get; }
-
-        string BetsoftPassword { get; }
-
-        string BetsoftApiUrl { get; }
-
-        string BetsoftFormatDateTime { get; }
-
-        DateTime BetsoftStartTime { get; }
-
         string EbetFormatDateTime { get; }
 
         IList<string> SupportedProductList { get; }
-
-        string BetsoftTrackerFolder { get; }
-
-        int BetsoftIntervalTime { get; }
 
         string EbetTrackerFolder { get; }
 

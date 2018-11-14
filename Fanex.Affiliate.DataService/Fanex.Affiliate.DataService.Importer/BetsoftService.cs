@@ -27,35 +27,12 @@ namespace Fanex.Affiliate.DataService.Importer
             _thirdPartyProductRepository = thirdPartyProductRepository ?? new ThirdPartyProductRepository();
         }
 
-        public string GetRawData(BetsoftParam param)
-        {
-            var apiParam = BuildApiParam(param);
-            string url = BuildUrl(apiParam);
-
-            return GetDataString(url);
-        }
-
         public async Task<string> GetRawDataAsync(BetsoftParam param)
         {
             var apiParam = BuildApiParam(param);
             string url = BuildUrl(apiParam);
 
             return await GetDataStringAsync(url);
-        }
-
-        public IList<string> GetMultipleRawDataBatch(BetsoftParam param)
-        {
-            var result = new List<string>();
-            var startDate = new DateTime(param.StartDate.Year, param.StartDate.Month, param.StartDate.Day, param.StartDate.Hour, 0, 0);
-            var endDate = new DateTime(param.EndDate.Year, param.EndDate.Month, param.EndDate.Day, param.EndDate.Hour, 0, 0);
-
-            for (var start = startDate; DateTime.Compare(start, endDate) <= 0; start = start.AddHours(1))
-            {
-                var paramByBatch = BuildParamByBatch(start, endDate);
-                result.Add(GetRawData(paramByBatch));
-            }
-
-            return result;
         }
 
         public async Task<IList<string>> GetMultipleRawDataBatchAsync(BetsoftParam param)
@@ -140,16 +117,17 @@ namespace Fanex.Affiliate.DataService.Importer
             {
                 StartDate = start.ToUniversalTime(),
                 EndDate = end.ToUniversalTime(),
-                ApiUrl = _appSetting.BetsoftApiUrl,
-                BankId = _appSetting.BetsoftBankId,
-                Password = _appSetting.BetsoftPassword
+                ApiUrl = _appSetting.GetValue("BetsoftApiUrl"),
+                BankId = _appSetting.GetValue("BetsoftBankId"),
+                Password = _appSetting.GetValue("BetsoftPassword")
             };
         }
 
         private string BuildUrl(BetsoftParam param)
         {
-            var startDate = param.StartDate.ToString(_appSetting.BetsoftFormatDateTime);
-            var endDate = param.EndDate.ToString(_appSetting.BetsoftFormatDateTime);
+            var format = _appSetting.GetValue("BetsoftFormatDateTime");
+            var startDate = param.StartDate.ToString(format);
+            var endDate = param.EndDate.ToString(format);
             var inputToHash = $"{startDate}{endDate}{param.BankId}{param.Password}";
             var hashedString = GenerateHash(inputToHash);
 
@@ -169,14 +147,6 @@ namespace Fanex.Affiliate.DataService.Importer
                 }
 
                 return hash.ToString();
-            }
-        }
-
-        private string GetDataString(string url)
-        {
-            using (var client = new WebClient())
-            {
-                return client.DownloadString(url);
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using Fanex.Affiliate.DataService.Importer.Utilities;
+﻿using System;
+using Fanex.Affiliate.DataService.Importer.Utilities;
 using Fanex.Affiliate.DataService.Job.Model;
 using Quartz;
 
@@ -25,7 +26,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
               .WithIdentity(jobName + "Trigger", groupName)
               .StartNow()
               .WithSimpleSchedule(x => x
-                  .WithIntervalInMinutes(_appSetting.BetsoftIntervalTime)
+                  .WithIntervalInMinutes(Convert.ToInt32(_appSetting.GetValue("BetsoftIntervalTime")))
                   .RepeatForever())
               .Build();
 

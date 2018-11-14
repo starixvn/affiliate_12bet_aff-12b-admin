@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using Fanex.Affiliate.DataService.Importer;
 using Fanex.Affiliate.DataService.Importer.MetaModels.Betsoft;
 using Fanex.Affiliate.DataService.Importer.Utilities;
@@ -33,8 +34,9 @@ namespace Fanex.Affiliate.DataService.Job.Modules
 
                 if (!isUm)
                 {
-                    var trackerFolderPath = _appSetting.BetsoftTrackerFolder;
-                    var lastQueryTime = _timeTracker.GetLastestCallSuccess(trackerFolderPath, _appSetting.BetsoftStartTime);
+                    var trackerFolderPath = _appSetting.GetValue("BetsoftTrackerFolder");
+                    var defaultStartTime = DateTime.ParseExact(_appSetting.GetValue("BetsoftStartTime"), "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal);
+                    var lastQueryTime = _timeTracker.GetLastestCallSuccess(trackerFolderPath, defaultStartTime);
                     var now = DateTime.Now;
                     var nowByHour = new DateTime(now.Year, now.Month, now.Day, now.Hour, 0, 0, DateTimeKind.Local);
 
