@@ -1542,6 +1542,10 @@
     <Content Include="Areas\Portal\www\source\js\modules\utils.js" />
     <Content Include="Areas\Portal\www\source\js\pagelayout\lib\jquery.jclock.js" />
     <Content Include="Areas\Portal\www\source\js\pagelayout\pagelayout.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\__tests__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\__tests__\Content.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\__tests__\__snapshots__\AppContainer.test.js.snap" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\__tests__\__snapshots__\Content.test.js.snap" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\customer-info\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\customer-info\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\customer-info\modules\helper.js" />
@@ -1889,6 +1893,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\ChangePasswordForm.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\EditCommissionGroup.jsx" />
     <Content Include=".babelrc" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\__tests__\Filter.test.js" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
