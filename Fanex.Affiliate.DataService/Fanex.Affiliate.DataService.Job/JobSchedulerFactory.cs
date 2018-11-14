@@ -21,16 +21,14 @@ namespace Fanex.Affiliate.DataService.Job
             _scheduler = schedulerFactory.GetScheduler();
 
             _jobSchedulerList = new List<IJobScheduler>();
-            _jobSchedulerList.Add(JobSystem.JobHandlerList["Ebet"].Value);
-            _jobSchedulerList.Add(JobSystem.JobHandlerList["Betsoft"].Value);
 
-            //foreach (var product in _appSetting.SupportedProductList)
-            //{
-            //    if (JobSystem.JobHandlerList.ContainsKey(product))
-            //    {
-            //        _jobSchedulerList.Add(JobSystem.JobHandlerList[product].Value);
-            //    }
-            //}
+            foreach (var product in _appSetting.SupportedProductList)
+            {
+                if (JobSystem.JobHandlerList.ContainsKey(product))
+                {
+                    _jobSchedulerList.Add(JobSystem.JobHandlerList[product].Value);
+                }
+            }
         }
 
         public void SetUp()
