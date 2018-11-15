@@ -1,7 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Root>
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="test" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_Admin_LandingPage_Sel" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_User_PaymentRequest_Sel" Suffix="_xtest"></item>
-  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_ProductList_Sel" Suffix="_xtest"></item>
 </Root>
