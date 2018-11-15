@@ -13,6 +13,8 @@ namespace Fanex.Affiliate.DataService.Importer
 {
     public class CrystalService : ICrystalService
     {
+        private const int DelayMillisecond = 15000;
+
         private readonly IAppSettings _appSetting;
 
         public CrystalService(IAppSettings appSetting = null)
@@ -20,31 +22,17 @@ namespace Fanex.Affiliate.DataService.Importer
             _appSetting = appSetting ?? new AppSettings();
         }
 
-        public async Task<IEnumerable<string>> GetRawDataList(CrystalParam param)
+        public IEnumerable<string> GetRawDataList(CrystalParam param)
         {
             var result = new List<string>();
             var paramByTimeZone = BuildParamByTimeZone(param);
-            var firstRawData = await GetRawData(paramByTimeZone);
-            var xDocument = XDocument.Parse(firstRawData);
-            var hasError = string.Equals("error", xDocument.Root.Name.LocalName, StringComparison.InvariantCultureIgnoreCase);
-            if (hasError)
-            {
-                throw new ThirdPartyProductException($"Crystal Product Error\nParam:{JsonConvert.SerializeObject(paramByTimeZone)}\nResult:{firstRawData}");
-            }
 
-            result.Add(firstRawData);
-            var totalPages = Convert.ToInt32(xDocument.Root.Attribute("totalPage")?.Value);
-            if (totalPages > 1 && param.PageNumber <= totalPages)
-            {
-                await Task.Delay(16000);
-                var paramByPage = BuildParam(param, param.PageNumber + 1);
-                result.AddRange(await GetRawDataList(paramByPage));
-            }
+            result.AddRange(GetRawDataByBatch(paramByTimeZone));
 
             return result;
         }
 
-        private async Task<IEnumerable<string>> GetRawDataByBatch(CrystalParam param)
+        private IEnumerable<string> GetRawDataByBatch(CrystalParam param)
         {
             var result = new List<string>();
             var startDate = new DateTime(param.StartTime.Year, param.StartTime.Month, param.StartTime.Day, param.StartTime.Hour, 0, 0);
@@ -52,17 +40,42 @@ namespace Fanex.Affiliate.DataService.Importer
 
             for (var start = startDate; DateTime.Compare(start, endDate) < 0; start = start.AddHours(1))
             {
-                var paramByBatch = BuildParam(new CrystalParam { StartTime = start, EndTime = start.AddHours(1) });
-                taskList.Add(GetRawDataAsync(paramByBatch));
+                var endDateByBatch = start.AddHours(1);
+                var paramByBatch = BuildParam(
+                    new CrystalParam
+                    {
+                        StartTime = start,
+                        EndTime = DateTime.Compare(endDateByBatch, endDate) > 0 ? endDate : endDateByBatch,
+                        PageNumber = param.PageNumber,
+                        PageSize = param.PageSize
+                    },
+                    param.PageNumber);
+                Task.Delay(DelayMillisecond).Wait();
+                var firstRawData = GetRawData(paramByBatch);
+                var xDocument = XDocument.Parse(firstRawData);
+                var hasError = string.Equals("error", xDocument.Root.Name.LocalName, StringComparison.InvariantCultureIgnoreCase);
+                if (hasError)
+                {
+                    throw new ThirdPartyProductException($"Crystal Product Error\nParam:{JsonConvert.SerializeObject(paramByBatch)}\nResult:{firstRawData}");
+                }
+
+                result.Add(firstRawData);
+                var totalPages = Convert.ToInt32(xDocument.Root.Attribute("totalPage")?.Value);
+                var pageNum = Convert.ToInt32(xDocument.Root.Attribute("pageNum")?.Value);
+                if (totalPages > 1 && pageNum < totalPages)
+                {
+                    var paramByPage = BuildParam(paramByBatch, pageNum + 1);
+                    result.AddRange(GetRawDataByBatch(paramByPage));
+                }
             }
 
             return result;
         }
 
-        private async Task<string> GetRawData(CrystalParam param)
+        private string GetRawData(CrystalParam param)
         {
             var apiUrl = BuildApiUrl(param);
-            return await GetDataStringAsync(apiUrl);
+            return GetDataStringAsync(apiUrl);
         }
 
         private CrystalParam BuildParamByTimeZone(CrystalParam entryParam)
@@ -81,7 +94,7 @@ namespace Fanex.Affiliate.DataService.Importer
                 StartTime = param.StartTime,
                 EndTime = param.EndTime,
                 PageNumber = pageNum,
-                PageSize = Convert.ToInt32(_appSetting.GetValue("CrystalPageSize")),
+                PageSize = param.PageSize,
                 Code = _appSetting.GetValue("CrystalCode"),
                 Password = _appSetting.GetValue("CrystalPassword"),
                 Type = Convert.ToByte(_appSetting.GetValue("CrystalType"))
@@ -96,11 +109,11 @@ namespace Fanex.Affiliate.DataService.Importer
             return _appSetting.GetValue("CrystalApiUrl") + $"?opCode={param.Code}&s={startTime}&e={endTime}&pageNum={param.PageNumber}&pageSize={param.PageSize}&pwd={param.Password}&type={param.Type}";
         }
 
-        private async Task<string> GetDataStringAsync(string url)
+        private string GetDataStringAsync(string url)
         {
             using (var client = new WebClient())
             {
-                return await client.DownloadStringTaskAsync(url);
+                return client.DownloadString(url);
             }
         }
     }

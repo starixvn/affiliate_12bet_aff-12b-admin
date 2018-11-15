@@ -41,5 +41,13 @@ namespace Fanex.Affiliate.DataService.WinFormApp
             ebetForm.Show();
             this.Hide();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var crystalForm = new CrystalForm();
+            crystalForm.FormClosing += FormClosingHandler;
+            crystalForm.Show();
+            this.Hide();
+        }
     }
 }
