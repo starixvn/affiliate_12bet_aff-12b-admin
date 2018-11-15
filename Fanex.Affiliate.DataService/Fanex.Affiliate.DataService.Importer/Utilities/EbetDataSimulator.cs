@@ -2,6 +2,7 @@
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Fanex.Affiliate.DataService.Importer.Utilities
 {
@@ -16,7 +17,7 @@ namespace Fanex.Affiliate.DataService.Importer.Utilities
         {
             if (!File.Exists(filePath))
             {
-                return string.Empty;
+                return JsonConvert.SerializeObject(new { status = 999 });
             }
 
             return string.Join(string.Empty, await ReadAllLinesAsync(filePath, Encoding.UTF8));
