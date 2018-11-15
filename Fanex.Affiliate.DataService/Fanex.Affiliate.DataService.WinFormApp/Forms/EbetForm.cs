@@ -44,7 +44,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
             {
                 var configList = _ebetConfigHelper.GetConfigList();
                 var taskList = new List<Task<IEnumerable<EbetApiResult>>>();
-                _logBuilder.AppendLine(DateTime.Now.ToString());
+                _logBuilder.AppendLine("Start:" + DateTime.Now.ToString());
                 foreach (var config in configList)
                 {
                     var param = new EbetParam
@@ -85,7 +85,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
                     }
                 }
 
-                _logBuilder.AppendLine(DateTime.Now.ToString());
+                _logBuilder.AppendLine("End:" + DateTime.Now.ToString());
             }
             catch (Exception ex)
             {

@@ -15,8 +15,6 @@ namespace Fanex.Affiliate.DataService.Importer
 {
     public class BetsoftService : IBetsoftService
     {
-        private const string Gmt4ZoneId = "SA Western Standard Time";
-
         private readonly IAppSettings _appSetting;
 
         private readonly IThirdPartyProductRepository _thirdPartyProductRepository;
@@ -74,7 +72,7 @@ namespace Fanex.Affiliate.DataService.Importer
                 foreach (var bet in betTicketList)
                 {
                     var betTime = bet.Element("BETTIME").Value;
-                    bet.Element("BETTIME").Value = DateTimeConverter.ToGMT(DateTime.Parse(betTime), Gmt4ZoneId).ToString("yyyy-MM-dd HH:mm:ss.fff");
+                    bet.Element("BETTIME").Value = DateTimeConverter.ToGMT(DateTime.Parse(betTime), TimeZoneId.GmtMinus4).ToString("yyyy-MM-dd HH:mm:ss.fff");
                 }
             }
 
