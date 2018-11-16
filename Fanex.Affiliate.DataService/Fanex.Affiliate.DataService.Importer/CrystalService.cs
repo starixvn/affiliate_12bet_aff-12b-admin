@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -14,6 +16,7 @@ namespace Fanex.Affiliate.DataService.Importer
     public class CrystalService : ICrystalService
     {
         private const int DelayTimeMillisecond = 15000;
+        private const string TimeDataFormat = "dd-MM-yyyy HH:mm:ss";
 
         private readonly IAppSettings _appSetting;
 
@@ -27,6 +30,35 @@ namespace Fanex.Affiliate.DataService.Importer
             var paramByTimeZone = BuildParamByTimeZone(param);
 
             return GetRawDataListByBatch(paramByTimeZone);
+        }
+
+        public IEnumerable<string> ConvertDataTimeZone(IEnumerable<string> rawDataList)
+        {
+            var result = new List<string>();
+            foreach (var item in rawDataList)
+            {
+                var xDoc = XDocument.Parse(item);
+                var betHistoryList = xDoc.Root.Elements("history");
+
+                if (betHistoryList != null && betHistoryList.Any())
+                {
+                    foreach (var betHistory in betHistoryList)
+                    {
+                        var changeTimeString = betHistory.Attribute("changeTime")?.Value;
+                        if (!string.IsNullOrEmpty(changeTimeString))
+                        {
+                            var changeTime = DateTime.ParseExact(changeTimeString, TimeDataFormat, CultureInfo.InvariantCulture);
+                            var convertedTime = DateTimeConverter.ConvertTime(changeTime, TimeZoneId.GmtPlus8, TimeZoneId.GmtMinus4);
+                            betHistory.Attribute("changeTime").Value = convertedTime.ToString(TimeDataFormat);
+                        }
+
+                    }
+                }
+
+                result.Add(xDoc.ToString());
+            }
+
+            return result;
         }
 
         private IEnumerable<string> GetRawDataListByBatch(CrystalParam param)
