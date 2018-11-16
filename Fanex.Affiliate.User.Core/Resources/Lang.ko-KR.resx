@@ -1936,7 +1936,7 @@
   <data name="UpTo" xml:space="preserve">
     <value>&lt;span class="text-white"&gt;최대&lt;/span&gt;</value>
   </data>
-  <data name="MonthlyComission" xml:space="preserve">
+  <data name="MonthlyCommission" xml:space="preserve">
     <value>&lt;p class="text-big-white"&gt;월간 커미션 지급!&lt;/p&gt;</value>
   </data>
   <data name="OnSportandCasino" xml:space="preserve">

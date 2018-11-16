@@ -3302,11 +3302,11 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  &lt;p class=&quot;text-big-white&quot;&gt;MONTHLY COMISSION!&lt;/p&gt;.
+        ///   Looks up a localized string similar to  &lt;p class=&quot;text-big-white&quot;&gt;MONTHLY COMMISSION!&lt;/p&gt;.
         /// </summary>
-        public static string MonthlyComission {
+        public static string MonthlyCommission {
             get {
-                return ResourceManager.GetString("MonthlyComission", resourceCulture);
+                return ResourceManager.GetString("MonthlyCommission", resourceCulture);
             }
         }
         
@@ -5238,7 +5238,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to to Beat The Best Comission!.
+        ///   Looks up a localized string similar to to Beat The Best Commission!.
         /// </summary>
         public static string ToBeatTheBestCommission {
             get {
