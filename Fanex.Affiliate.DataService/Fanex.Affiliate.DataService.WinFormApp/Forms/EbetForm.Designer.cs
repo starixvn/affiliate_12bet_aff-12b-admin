@@ -98,7 +98,7 @@
             this.txtPageSize.Name = "txtPageSize";
             this.txtPageSize.Size = new System.Drawing.Size(111, 20);
             this.txtPageSize.TabIndex = 12;
-            this.txtPageSize.Text = "2000";
+            this.txtPageSize.Text = "5000";
             // 
             // label5
             // 
