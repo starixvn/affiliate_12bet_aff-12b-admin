@@ -10,11 +10,12 @@ namespace Fanex.Affiliate.DataService.Job.Constants
         {
             get
             {
-                return new Dictionary<string, Lazy<IJobScheduler>>
+                return new Dictionary<string, Lazy<IJobScheduler>>(StringComparer.InvariantCultureIgnoreCase)
                 {
                     { "Playtech", new Lazy<IJobScheduler>(() => new PlaytechCasinoScheduler()) },
                     { "Betsoft", new Lazy<IJobScheduler>(() => new BetsoftScheduler()) },
-                    { "Ebet", new Lazy<IJobScheduler>(() => new EbetScheduler()) }
+                    { "Ebet", new Lazy<IJobScheduler>(() => new EbetScheduler()) },
+                    { "Crystal", new Lazy<IJobScheduler>(() => new CrystalScheduler()) }
                 };
             }
         }

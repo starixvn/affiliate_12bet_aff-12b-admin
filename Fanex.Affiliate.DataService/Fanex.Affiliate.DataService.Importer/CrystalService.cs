@@ -8,6 +8,7 @@ using System.Xml.Linq;
 using Fanex.Affiliate.DataService.Importer.Constants;
 using Fanex.Affiliate.DataService.Importer.Exceptions;
 using Fanex.Affiliate.DataService.Importer.MetaModels.Crystal;
+using Fanex.Affiliate.DataService.Importer.Repository;
 using Fanex.Affiliate.DataService.Importer.Utilities;
 using Newtonsoft.Json;
 
@@ -16,13 +17,15 @@ namespace Fanex.Affiliate.DataService.Importer
     public class CrystalService : ICrystalService
     {
         private const int DelayTimeMillisecond = 15000;
-        private const string TimeDataFormat = "dd-MM-yyyy HH:mm:ss";
+        private const string TimeDataFormat = "dd-MM-yyyy H:mm:ss";
 
         private readonly IAppSettings _appSetting;
+        private readonly IThirdPartyProductRepository _thirdPartyProductRepository;
 
-        public CrystalService(IAppSettings appSetting = null)
+        public CrystalService(IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProductRepository = null)
         {
             _appSetting = appSetting ?? new AppSettings();
+            _thirdPartyProductRepository = thirdPartyProductRepository ?? new ThirdPartyProductRepository();
         }
 
         public IEnumerable<string> GetRawDataList(CrystalParam param)
@@ -59,6 +62,21 @@ namespace Fanex.Affiliate.DataService.Importer
             }
 
             return result;
+        }
+
+        public void Import(CrystalParam param)
+        {
+            var rawDataList = GetRawDataList(param);
+            var convertedDataTimeZone = ConvertDataTimeZone(rawDataList);
+            Import(convertedDataTimeZone);
+        }
+
+        public void Import(IEnumerable<string> dataList)
+        {
+            foreach (var item in dataList)
+            {
+                _thirdPartyProductRepository.ImportData(Products.CrystalProductId, item);
+            }
         }
 
         private IEnumerable<string> GetRawDataListByBatch(CrystalParam param)

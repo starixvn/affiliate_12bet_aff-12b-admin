@@ -8,5 +8,9 @@ namespace Fanex.Affiliate.DataService.Importer
         IEnumerable<string> GetRawDataList(CrystalParam param);
 
         IEnumerable<string> ConvertDataTimeZone(IEnumerable<string> rawDataList);
+
+        void Import(CrystalParam param);
+
+        void Import(IEnumerable<string> dataList);
     }
 }

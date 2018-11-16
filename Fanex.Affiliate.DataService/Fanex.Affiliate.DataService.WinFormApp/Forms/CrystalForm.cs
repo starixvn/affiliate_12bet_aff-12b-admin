@@ -17,7 +17,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
 
         private readonly SynchronizationContext synchronizationContext;
 
-        private readonly IEnumerable<string> _convertedDataList;
+        private readonly List<string> _convertedDataList;
 
         public CrystalForm()
         {
@@ -44,6 +44,8 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
             };
             try
             {
+                btnGetRawData.Enabled = false;
+                btnImport.Enabled = false;
                 await Task.Run(() =>
                 {
                     var rawDataList = _crystalService.GetRawDataList(param);
@@ -55,6 +57,14 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
                             rawDataBuilder.AppendLine(item);
                             rawDataBuilder.AppendLine();
                             rawDataBuilder.AppendLine("-----------------------------------------");
+                        }
+
+                        _convertedDataList.AddRange(_crystalService.ConvertDataTimeZone(rawDataList));
+                        foreach (var item in _convertedDataList)
+                        {
+                            convertedDataBuilder.AppendLine(item);
+                            convertedDataBuilder.AppendLine();
+                            convertedDataBuilder.AppendLine("-----------------------------------------");
                         }
                     }
                     else
@@ -77,6 +87,8 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
                     DisplayResult();
                     richTextRawData.Text = rawDataBuilder.ToString();
                     richTextConvertedData.Text = convertedDataBuilder.ToString();
+                    btnGetRawData.Enabled = true;
+                    btnImport.Enabled = true;
                 }), null);
             }
         }
@@ -93,6 +105,36 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
         {
             richTextLog.Text = _logBuilder.ToString();
             _logBuilder.Clear();
+        }
+
+        private async void btnImport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                btnGetRawData.Enabled = false;
+                btnImport.Enabled = false;
+                await Task.Run(() =>
+                {
+                    _crystalService.Import(_convertedDataList);
+
+                    _convertedDataList.Clear();
+                    _logBuilder.AppendLine("Done!");
+                });
+            }
+            catch (Exception ex)
+            {
+                _logBuilder.AppendLine(ex.Message);
+                _logBuilder.AppendLine(ex.StackTrace);
+                _logBuilder.AppendLine(ex.Source);
+            }
+            finally
+            {
+                synchronizationContext.Post(new SendOrPostCallback((state) =>
+                {
+                    DisplayResult();
+                    btnGetRawData.Enabled = true;
+                }), null);
+            }
         }
     }
 }

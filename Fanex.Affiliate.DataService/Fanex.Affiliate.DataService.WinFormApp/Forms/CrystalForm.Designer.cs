@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtPageSize = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtPageNumber = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.btnImport = new System.Windows.Forms.Button();
             this.btnGetRawData = new System.Windows.Forms.Button();
             this.endDatePicker = new System.Windows.Forms.DateTimePicker();
@@ -42,10 +46,6 @@
             this.richTextRawData = new System.Windows.Forms.RichTextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.richTextConvertedData = new System.Windows.Forms.RichTextBox();
-            this.txtPageSize = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtPageNumber = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -76,6 +76,40 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Input Param";
             // 
+            // txtPageSize
+            // 
+            this.txtPageSize.Location = new System.Drawing.Point(888, 26);
+            this.txtPageSize.Name = "txtPageSize";
+            this.txtPageSize.Size = new System.Drawing.Size(111, 20);
+            this.txtPageSize.TabIndex = 16;
+            this.txtPageSize.Text = "2000";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(810, 33);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(58, 13);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "Page Size:";
+            // 
+            // txtPageNumber
+            // 
+            this.txtPageNumber.Location = new System.Drawing.Point(671, 26);
+            this.txtPageNumber.Name = "txtPageNumber";
+            this.txtPageNumber.Size = new System.Drawing.Size(111, 20);
+            this.txtPageNumber.TabIndex = 14;
+            this.txtPageNumber.Text = "1";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(593, 33);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(75, 13);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "Page Number:";
+            // 
             // btnImport
             // 
             this.btnImport.Location = new System.Drawing.Point(149, 58);
@@ -84,6 +118,7 @@
             this.btnImport.TabIndex = 7;
             this.btnImport.Text = "Import Converted Data";
             this.btnImport.UseVisualStyleBackColor = true;
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
             // btnGetRawData
             // 
@@ -209,40 +244,6 @@
             this.richTextConvertedData.Size = new System.Drawing.Size(530, 468);
             this.richTextConvertedData.TabIndex = 0;
             this.richTextConvertedData.Text = "";
-            // 
-            // txtPageSize
-            // 
-            this.txtPageSize.Location = new System.Drawing.Point(888, 26);
-            this.txtPageSize.Name = "txtPageSize";
-            this.txtPageSize.Size = new System.Drawing.Size(111, 20);
-            this.txtPageSize.TabIndex = 16;
-            this.txtPageSize.Text = "2000";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(810, 33);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(58, 13);
-            this.label5.TabIndex = 15;
-            this.label5.Text = "Page Size:";
-            // 
-            // txtPageNumber
-            // 
-            this.txtPageNumber.Location = new System.Drawing.Point(671, 26);
-            this.txtPageNumber.Name = "txtPageNumber";
-            this.txtPageNumber.Size = new System.Drawing.Size(111, 20);
-            this.txtPageNumber.TabIndex = 14;
-            this.txtPageNumber.Text = "1";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(593, 33);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(75, 13);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "Page Number:";
             // 
             // CrystalForm
             // 

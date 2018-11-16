@@ -5,5 +5,7 @@
         public const int EbetProductId = 10;
 
         public const int BetsoftProductId = 11;
+
+        public const int CrystalProductId = 12;
     }
 }
