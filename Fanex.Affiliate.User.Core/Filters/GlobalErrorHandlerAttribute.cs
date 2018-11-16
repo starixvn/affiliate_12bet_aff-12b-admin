@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Text;
 using System.Web;
@@ -68,6 +67,18 @@ namespace Fanex.Affiliate.User.Core.Filters
                             .AppendLine($"Agent:{httpRequest.UserAgent}")
                             .AppendLine($"Source:{exception.Source}")
                             .AppendLine($"TargetSite:{exception.TargetSite}");
+
+            var sessionService = DependencyResolver.Current.GetService<ISessionService>();
+            if (sessionService != null)
+            {
+                message.AppendLine($"Current Language: {sessionService.CurrentLanguage}");
+                message.AppendLine($"IsInternal: {sessionService.IsInternal}");
+
+                if (sessionService.UserSession != null)
+                {
+                    message.AppendLine($"User Info: {JsonConvert.SerializeObject(sessionService.UserSession)}");
+                }
+            }
 
             var sqlException = exception as SqlException;
             if (sqlException != null)

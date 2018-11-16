@@ -78,7 +78,7 @@
                         </div>
                     </div>
 
-                    @{Html.RenderAction("AuthenticationForm", "Auth");}
+                    @{Html.RenderAction("AuthenticationForm", "Auth", new { v = DateTime.UtcNow.Ticks });}
                 </div>
             </div>
         </div>

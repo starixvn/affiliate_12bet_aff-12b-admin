@@ -46,13 +46,17 @@
 }
 
 .table-striped {
-    .body-content {
-        tbody {
-            tr {
-                &:nth-of-type(odd) {
-                    td {
-                        background-color: #fafafa;
-                    }
+    tbody {
+        tr {
+            &:nth-of-type(odd) {
+                td {
+                    background-color: #fafafa;
+                }
+            }
+
+            &:hover {
+                td {
+                    background: #fff4c2;
                 }
             }
         }

@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
 import { formatDecimal } from '../../../../modules/numberFormat';
-
-const totalText = 'Total';
+import { resource } from '../modules/constants';
 
 export default class Content extends Component{
     constructor(props) {
@@ -14,34 +13,34 @@ export default class Content extends Component{
         return (
             <Row>
                 <Cell header={true} colWidth={30}>#</Cell>
-                <Cell header={true} colWidth={100} title="12BET User Name">12BET User Name</Cell>
-                <Cell header={true} colWidth={100} title="IBC User Name">IBC User Name</Cell>
-                <Cell header={true} colWidth={100} title="Winlost">Winlost</Cell>
-                <Cell header={true} colWidth={100} title="Deposit">Deposit</Cell>
-                <Cell header={true} colWidth={100} title="Withdrawal">Withdrawal</Cell>
-                <Cell header={true} colWidth={100} title="Bonus">Bonus</Cell>
-                <Cell header={true} colWidth={100} title="Banking Fee">Banking Fee</Cell>
+                <Cell header={true} colWidth={100} title={resource.UserName12Bet}>{resource.UserName12Bet}</Cell>
+                <Cell header={true} colWidth={100} title={resource.IbcUserName}>{resource.IbcUserName}</Cell>
+                <Cell header={true} colWidth={100} title={resource.Winlost}>{resource.Winlost}</Cell>
+                <Cell header={true} colWidth={100} title={resource.Deposit}>{resource.Deposit}</Cell>
+                <Cell header={true} colWidth={100} title={resource.Withdrawal}>{resource.Withdrawal}</Cell>
+                <Cell header={true} colWidth={100} title={resource.Bonus}>{resource.Bonus}</Cell>
+                <Cell header={true} colWidth={100} title={resource.BankingFee}>{resource.BankingFee}</Cell>
             </Row>
         )
     }
 
-    _renderDataSection(dataList) {
+    _renderDataSection(dataList, productColumnClassName) {
         const dataRows = [];
         const isTotalRow = dataList.length === 1 && !dataList[0].IbcUserName;
 
         if(isTotalRow){
-            dataList[0].IbcUserName = totalText;
+            dataList[0].IbcUserName = resource.Total;
         }
 
         for (let i = 0; i < dataList.length; i++) {
             const dataItem = dataList[i];
-            dataRows.push(this._buildDataRow(dataItem, isTotalRow ? null : i + 1));
+            dataRows.push(this._buildDataRow(dataItem, isTotalRow ? null : i + 1, productColumnClassName));
         }
 
         return dataRows;
     }
 
-    _buildDataRow(dataItem, rowNumber) {
+    _buildDataRow(dataItem, rowNumber, productColumnClassName) {
         const winlost = formatDecimal(dataItem.WinLost);
         const deposit = formatDecimal(dataItem.Deposit);
         const withdrawal = formatDecimal(dataItem.Withdrawal);
@@ -53,7 +52,7 @@ export default class Content extends Component{
                 {rowNumber && <Cell className="text-center" title={rowNumber}>{rowNumber}</Cell>}
                 {rowNumber && <Cell className="text-center" title={dataItem.UserName}>{dataItem.UserName}</Cell>}
                 <Cell className="text-center" title={dataItem.IbcUserName} colSpan={!rowNumber && 3}>{dataItem.IbcUserName}</Cell>
-                <Cell className="text-right" title={winlost}>{winlost}</Cell>
+                <Cell className={productColumnClassName} title={winlost}>{winlost}</Cell>
                 <Cell className="text-right" title={deposit}>{deposit}</Cell>
                 <Cell className="text-right" title={withdrawal}>{withdrawal}</Cell>
                 <Cell className="text-right" title={bonus}>{bonus}</Cell>
@@ -64,6 +63,7 @@ export default class Content extends Component{
 
     render() {
         const { gridData, total } = this.props.data;
+        const { productColumnClassName } = this.props;
 
         return gridData && total && (
             <div className="table-responsive table-striped my-2">
@@ -72,8 +72,8 @@ export default class Content extends Component{
                     autoWidth={true}
                     bodyHeight={300}
                     header={this._renderHeader()}
-                    body={this._renderDataSection(gridData)}
-                    footer={this._renderDataSection([total])}
+                    body={this._renderDataSection(gridData, productColumnClassName)}
+                    footer={this._renderDataSection([total], productColumnClassName)}
                     containerPadding={10}
                 />
             </div>

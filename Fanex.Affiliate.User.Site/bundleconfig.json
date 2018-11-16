@@ -19,13 +19,6 @@
     ]
   },
   {
-    "outputFileName": "www/build/js/login.js",
-    "inputFiles": [
-      "www/source/js/lib/aes.js",
-      "www/source/js/pages/login.js"
-    ]
-  },
-  {
     "outputFileName": "www/build/js/changepassword.js",
     "inputFiles": [
       "www/source/js/lib/aes.js",

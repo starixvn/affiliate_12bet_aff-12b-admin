@@ -37,6 +37,12 @@ namespace Fanex.Affiliate.User.Core.Utilities
 
         string MailBcc { get; }
 
+        string RsaPublicKey { get; }
+
+        string RsaPrivateKey { get; }
+
+        int LoginTimeout { get; }
+
         DateTime StatementAvailableFrom { get; }
     }
 }

@@ -16,18 +16,20 @@ let cleanOptions = {
     dry: false
 };
 
+const relativeOutputPath = projectPath.relativeOutputPath;
+
 module.exports = env => {
     env = environment[env] || environment.development;
     const isDevBuild = !(env === environment.production);
 
     const sharedConfig = () => ({
-        context: path.resolve(__dirname, "./"),
         mode: env,
         stats: { modules: false },
         resolve: { extensions: [".js", ".jsx"] },
         output: {
+            path: projectPath.rootPath,
             filename: "[name].js",
-            publicPath: '/dist/'
+            chunkFilename: relativeOutputPath + '/js/dynamic-chunks/[name].chunk.js'
         },
         module: {
             rules: [{
@@ -42,13 +44,21 @@ module.exports = env => {
                         options: {
                             limit: 4096,
                             name: "[name].[ext]",
-                            outputPath: "style/assets/",
+                            outputPath: relativeOutputPath + "/style/assets/",
                             publicPath: "assets/"
                         }
                     }]
                 }
             ]
-        }
+        },
+        node: {
+            fs: 'empty'
+        },
+        externals: [
+            { './jszip': 'jszip' },
+            { './ods': 'ods' },
+            { './cptable': 'var cptable' }
+        ]
     });
 
     // Configuration for client-side bundle suitable for running in browsers
@@ -58,15 +68,26 @@ module.exports = env => {
         module: {
             rules: [{
                 test: /\.s?[ac]ss$/,
-                use: [
-                    "style-loader",
-                    MiniCssExtractPlugin.loader,
-                    "css-loader",
-                    "sass-loader"
+                use: [{
+                        loader: 'style-loader',
+                    },
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                    },
+                    {
+                        loader: 'css-loader',
+                    }, {
+                        loader: 'resolve-url-loader',
+                    }, {
+                        loader: 'sass-loader',
+                        options: {
+                            sourceMap: true,
+                            sourceMapContents: false
+                        }
+                    }
                 ]
             }]
         },
-        output: { path: clientBundleOutputDir },
         plugins: [
             new MiniCssExtractPlugin({
                 filename: "[name].css"
@@ -77,7 +98,7 @@ module.exports = env => {
             }),
             new webpack.DllReferencePlugin({
                 context: __dirname,
-                manifest: require(`${clientBundleOutputDir}/vendors/reactstrap-manifest.json`)
+                manifest: require(`${clientBundleOutputDir}/vendors/moment-manifest.json`)
             })
         ].concat(isDevBuild ? [] : [new OptimizeCSSAssetsPlugin(), new CleanWebpackPlugin(pathsToClean, cleanOptions), ]),
         devtool: isDevBuild ? "source-map" : undefined

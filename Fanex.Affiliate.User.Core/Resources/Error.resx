@@ -156,4 +156,7 @@
   <data name="RequireIMAccount" xml:space="preserve">
     <value>At least one IM account is required</value>
   </data>
+  <data name="YourSessionHasExpired" xml:space="preserve">
+    <value>Your session has expired!</value>
+  </data>
 </root>

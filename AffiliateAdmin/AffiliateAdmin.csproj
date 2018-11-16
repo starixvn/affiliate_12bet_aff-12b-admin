@@ -245,8 +245,6 @@
     <Compile Include="Business\Services\Text\DeleteTextService.cs" />
     <Compile Include="Business\Services\DomainControlService.cs" />
     <Compile Include="Business\Services\EditRateService.cs" />
-    <Compile Include="Business\Services\ExportExcelService.cs" />
-    <Compile Include="Business\Services\FavoriteService.cs" />
     <Compile Include="Business\Services\GetAffiliateListService.cs" />
     <Compile Include="Business\Services\GetClickStatisticsListService.cs" />
     <Compile Include="Business\Services\GetCommGroupService.cs" />
@@ -369,7 +367,6 @@
     <Compile Include="Business\AppSettings.cs" />
     <Compile Include="Business\CacheUtil.cs" />
     <Compile Include="Business\Common.cs" />
-    <Compile Include="Business\Criterias\AffiliateListCriteria.cs" />
     <Compile Include="Business\Criterias\AffiliateReportCriteria.cs" />
     <Compile Include="Business\Criterias\ValidationCriteria.cs" />
     <Compile Include="Business\DataHandler\Account.cs" />
@@ -393,13 +390,6 @@
     <Compile Include="Business\DataHandler\UserLog.cs" />
     <Compile Include="Business\DBType.cs" />
     <Compile Include="Business\DepositCustomerInfo.cs" />
-    <Compile Include="Business\Exporters\AffiliateListExporter.cs" />
-    <Compile Include="Business\Exporters\ApprovedAffiliateListExporter.cs" />
-    <Compile Include="Business\Exporters\ClosedAffiliateListExporter.cs" />
-    <Compile Include="Business\Exporters\DisapprovedAffiliateListExporter.cs" />
-    <Compile Include="Business\Exporters\ExporterFactory.cs" />
-    <Compile Include="Business\Exporters\PendingAffiliateListExporter.cs" />
-    <Compile Include="Business\GenerateHTML\AffiliateList.cs" />
     <Compile Include="Business\GenerateHTML\Banner.cs" />
     <Compile Include="Business\GenerateHTML\Domain.cs" />
     <Compile Include="Business\GenerateHTML\EmailHistory.cs" />
@@ -758,13 +748,6 @@
     </Compile>
     <Compile Include="UserInfo\Adjustment.aspx.designer.cs">
       <DependentUpon>Adjustment.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UserInfo\AffiliateList.aspx.cs">
-      <DependentUpon>AffiliateList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserInfo\AffiliateList.aspx.designer.cs">
-      <DependentUpon>AffiliateList.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserInfo\AffiliateUpd.aspx.cs">
       <DependentUpon>AffiliateUpd.aspx</DependentUpon>
@@ -1198,7 +1181,6 @@
     <Content Include="App_Templates\UserControl\PolicyHeader.html" />
     <Content Include="App_Templates\UserInfo\AddNote.htm" />
     <Content Include="App_Templates\UserInfo\Adjustment.htm" />
-    <Content Include="App_Templates\UserInfo\AffList.htm" />
     <Content Include="App_Templates\UserInfo\AffUpd.htm" />
     <Content Include="App_Templates\UserInfo\ApprovalEmail_en-US.htm" />
     <Content Include="App_Templates\UserInfo\ApprovalEmail_es-ES.htm" />
@@ -1511,12 +1493,18 @@
     <Content Include="Areas\Portal\www\dist\imgs\i_member.png" />
     <Content Include="Areas\Portal\www\dist\imgs\i_report.png" />
     <Content Include="Areas\Portal\www\dist\jquery-3.3.1.min.js" />
+    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\vendors~xlsx-style.chunk.js" />
+    <Content Include="Areas\Portal\www\dist\js\dynamic-chunks\xlsx-style.chunk.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\affiliate\affiliate-info.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\commission\assign-group.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\commission\assign-private-group.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\commission\commission-group.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\customer\customer-statistics.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\layout\pagelayout.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\media-gallery\landing-page.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\Recheckin\recheckin.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\report\affiliate-report.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\userpanel\customer-member.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\userpanel\daily-earning-detail.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\userpanel\daily-earning.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\userpanel\player-detail.js" />
@@ -1524,32 +1512,53 @@
     <Content Include="Areas\Portal\www\dist\style\assets\i_customer.png" />
     <Content Include="Areas\Portal\www\dist\style\assets\open-iconic.svg" />
     <Content Include="Areas\Portal\www\dist\style\layout.css" />
+    <Content Include="Areas\Portal\www\dist\style\pages\affiliate-info.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\affiliate-report.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\commission-group.css" />
+    <Content Include="Areas\Portal\www\dist\style\pages\customer-statistics.css" />
+    <Content Include="Areas\Portal\www\dist\style\pages\media-gallery\landing-page.css" />
+    <Content Include="Areas\Portal\www\dist\style\pages\user-panel\customer-member.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\user-panel\player-detail.css" />
     <Content Include="Areas\Portal\www\dist\style\portalmain.css" />
     <Content Include="Areas\Portal\www\dist\style\user-panel-layout.css" />
     <Content Include="Areas\Portal\www\dist\vendors\bootstrap.css" />
     <Content Include="Areas\Portal\www\dist\vendors\bootstrap.js" />
+    <Content Include="Areas\Portal\www\dist\vendors\moment.js" />
     <Content Include="Areas\Portal\www\dist\vendors\react.js" />
-    <Content Include="Areas\Portal\www\dist\vendors\reactstrap.js" />
     <Content Include="Areas\Portal\www\index.html" />
     <Content Include="Areas\Portal\www\config-utils\constant.js" />
     <Content Include="Areas\Portal\www\config-utils\entry.js" />
+    <Content Include="Areas\Portal\www\source\js\actions\actionTypes.js" />
+    <Content Include="Areas\Portal\www\source\js\actions\loaderAction.js" />
+    <Content Include="Areas\Portal\www\source\js\actions\pagingAction.js" />
     <Content Include="Areas\Portal\www\source\js\modules\ajaxRequest.js" />
+    <Content Include="Areas\Portal\www\source\js\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\modules\createReducer.js" />
     <Content Include="Areas\Portal\www\source\js\modules\dataHandler.js" />
+    <Content Include="Areas\Portal\www\source\js\modules\excel.js" />
+    <Content Include="Areas\Portal\www\source\js\modules\excelStyleConstant.js" />
     <Content Include="Areas\Portal\www\source\js\modules\numberFormat.js" />
+    <Content Include="Areas\Portal\www\source\js\modules\store.js" />
     <Content Include="Areas\Portal\www\source\js\modules\utils.js" />
     <Content Include="Areas\Portal\www\source\js\pagelayout\lib\jquery.jclock.js" />
     <Content Include="Areas\Portal\www\source\js\pagelayout\pagelayout.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\affiliate-information\actions\index.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\affiliate-information\actions\types.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\affiliate-information\modules\helper.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\affiliate-information\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\__tests__\AppContainer.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\__tests__\Content.test.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\__tests__\__snapshots__\AppContainer.test.js.snap" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\__tests__\__snapshots__\Content.test.js.snap" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-info\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-info\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-info\modules\helper.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-info\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\modules\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\modules\reportExcel.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\modules\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\modules\reportExcel.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-report\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\actions\types.js" />
@@ -1562,14 +1571,29 @@
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\modules\service.js" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pagelayout\vendors\jquery-3.3.1.min.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\modules\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\RecheckIn\recheckin.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\modules\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\modules\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\modules\reportExcel.js" />
+    <Content Include="Areas\Portal\www\source\js\reducers\loaderReducer.js" />
+    <Content Include="Areas\Portal\www\source\js\reducers\pagingReducer.js" />
     <Content Include="Areas\Portal\www\source\style\assets\banner_top.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\bg_menu.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\bg_search01.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\bg_top.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\excel-icon.svg" />
+    <Content Include="Areas\Portal\www\source\style\assets\icon-check.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\icon-uncheck.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\icon_head.png" />
     <Content Include="Areas\Portal\www\source\style\assets\icon_refresh.png" />
     <Content Include="Areas\Portal\www\source\style\assets\icon_top.png" />
@@ -1675,7 +1699,6 @@
     <Content Include="UserControl\UpdateMultiAdmins.aspx" />
     <Content Include="UserInfo\AddNote.aspx" />
     <Content Include="UserInfo\Adjustment.aspx" />
-    <Content Include="UserInfo\AffiliateList.aspx" />
     <Content Include="UserInfo\AffiliateUpd.aspx" />
     <Content Include="UserInfo\DailyEarning.aspx" />
     <Content Include="UserInfo\DailyEarningDetail.aspx" />
@@ -1696,7 +1719,6 @@
     <Content Include="Areas\Portal\Views\CommissionGroup\Index.cshtml" />
     <Content Include="Areas\Portal\Views\Web.config" />
     <Content Include="AffiliateAdmin.ruleset" />
-    <Content Include="Areas\Portal\www\.babelrc" />
     <Content Include="Areas\Portal\www\source\js\layouts\AppLayout.jsx" />
     <Content Include="Areas\Portal\www\source\style\abstracts\_variables.scss" />
     <Content Include="Areas\Portal\www\source\style\base\_base.scss" />
@@ -1723,7 +1745,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\QmTurnOverSetting.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\tiersetting\TierSetting.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\tiersetting\TierSettingItem.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\affiliate-information\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-info\index.jsx" />
     <Content Include="Areas\Portal\Views\Affiliate\Information.cshtml" />
     <Content Include="Areas\Portal\www\source\style\pages\affiliate-information.scss" />
     <Content Include="Areas\Portal\Views\Shared\_Header.cshtml" />
@@ -1737,7 +1759,7 @@
     <Content Include="Areas\Portal\Views\Customer\Index.cshtml" />
     <Content Include="Areas\Portal\Views\Member\Index.cshtml" />
     <Content Include="Areas\Portal\Views\Report\Index.cshtml" />
-    <Content Include="Areas\Portal\Views\Marketing\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\MediaGallery\Index.cshtml" />
     <Content Include="Areas\Portal\Views\Message\Index.cshtml" />
     <Content Include="Areas\Portal\Views\ExchangeRate\Index.cshtml" />
     <Content Include="Areas\Portal\Views\Administrator\Index.cshtml" />
@@ -1760,7 +1782,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\tiersetting\index.jsx" />
     <Content Include="Areas\Portal\www\dist\vendors\bootstrap-manifest.json" />
     <Content Include="Areas\Portal\www\dist\vendors\react-manifest.json" />
-    <Content Include="Areas\Portal\www\dist\vendors\reactstrap-manifest.json" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\addgroup\AddGroup.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\addgroup\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\editgroup\EditGroup.jsx" />
@@ -1808,8 +1829,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-private-group\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-group\AssignGroup.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\assign-group\index.jsx" />
-    <Content Include="Areas\Portal\www\package.json" />
-    <Content Include="Areas\Portal\www\package-lock.json" />
     <Content Include="Areas\Portal\Views\Password\ChangePassword.cshtml" />
     <Content Include="package.json" />
     <Content Include="Areas\Portal\Views\AffiliateReport\Index.cshtml" />
@@ -1840,6 +1859,41 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\player-detail\components\Filter.jsx" />
     <Content Include="Areas\Portal\Views\UserPanel\PlayerDetail\Index.cshtml" />
     <Content Include="Areas\Portal\www\source\style\pages\user-panel\player-detail.scss" />
+    <Content Include="Areas\Portal\Views\LandingPage\Index.cshtml" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\components\GridData.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\components\InsertUpdateForm.jsx" />
+    <Content Include="Areas\Portal\www\source\style\pages\media-gallery\landing-page.scss" />
+    <Content Include="Areas\Portal\Views\CustomerStatistics\Index.cshtml" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\index.jsx" />
+    <Content Include="Areas\Portal\www\source\style\pages\customer-statistics.scss" />
+    <Content Include="Areas\Portal\Views\UserPanel\CustomerMember\Index.cshtml" />
+    <Content Include="Areas\Portal\www\source\style\components\_datepicker.scss" />
+    <Content Include="Areas\Portal\www\dist\vendors\moment-manifest.json" />
+    <Content Include="Areas\Portal\www\source\js\components\Loader.jsx" />
+    <Content Include="Areas\Portal\www\source\js\components\ReportTitle.jsx" />
+    <Content Include="Areas\Portal\www\source\js\components\auto-complete\AutoComplete.jsx" />
+    <Content Include="Areas\Portal\www\source\js\components\auto-complete\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\components\auto-complete\SuggestionList.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\index.jsx" />
+    <Content Include="Areas\Portal\www\source\style\pages\user-panel\customer-member.scss" />
+    <Content Include="Areas\Portal\Views\AffiliateInfo\Index.cshtml" />
+    <Content Include="Areas\Portal\www\source\style\pages\affiliate-info.scss" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\GridData.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\ChangePasswordForm.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\EditCommissionGroup.jsx" />
+    <Content Include=".babelrc" />
+    <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\__tests__\Filter.test.js" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -1852,7 +1906,6 @@
     <Content Include="BetList\BetListParlay.ashx" />
     <None Include="Content\Fanex.Result\fanex.result.less" />
     <Content Include="Deployment.ignore" />
-    <Content Include="ExcelFiles\AffiliateList\AffiliateList.xls" />
     <Content Include="ExcelFiles\Casino\2012\Apr\casino stats march 21.csv" />
     <Content Include="Handler\AccountPolicy.ashx" />
     <Content Include="Handler\ActiveMember.ashx" />
@@ -1870,8 +1923,6 @@
     <Content Include="Handler\DelText.ashx" />
     <Content Include="Handler\DomainControl.ashx" />
     <Content Include="Handler\EditRate.ashx" />
-    <Content Include="Handler\ExportExcel.ashx" />
-    <Content Include="Handler\Favorite.ashx" />
     <Content Include="Handler\GetAffiliateList.ashx" />
     <Content Include="Handler\GetClickStatisticsList.ashx" />
     <Content Include="Handler\GetCommGroup.ashx" />
@@ -1975,9 +2026,7 @@
     </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Portal\www\source\js\actions\" />
-    <Folder Include="Areas\Portal\www\source\js\pages\affiliate-information\components\" />
-    <Folder Include="Areas\Portal\www\source\js\reducers\" />
+    <Folder Include="Areas\Portal\www\source\js\pages\customer\customer-info\components\" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\Google.Protobuf.dll" />
@@ -2002,7 +2051,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>65181</DevelopmentServerPort>
           <DevelopmentServerVPath>/V1</DevelopmentServerVPath>
-          <IISUrl>http://localhost:65181/</IISUrl>
+          <IISUrl>http://localhost:65181/Aff12BetAdmin</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -9,7 +9,7 @@ namespace Fanex.Affiliate.User.Core.ViewModels.UserPanel.Statistics
     {
         public IEnumerable<SelectListItem> LanguageList { get; set; }
 
-        public IEnumerable<string> MemberSitePageList { get; set; }
+        public IEnumerable<LandingPage> MemberSitePageList { get; set; }
 
         public DateTime FromDate { get; set; }
 

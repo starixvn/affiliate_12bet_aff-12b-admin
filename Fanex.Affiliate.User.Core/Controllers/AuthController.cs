@@ -10,7 +10,7 @@ using Fanex.Affiliate.User.Core.Filters;
 using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.Utilities;
-using ONEbook.UM.Filters;
+using Fanex.Affiliate.User.Core.ViewModels;
 
 namespace Fanex.Affiliate.User.Core.Controllers
 {
@@ -19,6 +19,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
         private readonly IAuthService _authService;
         private readonly ICaptchaService _captchaService;
         private readonly IAppSetting _appSetting;
+
         public AuthController(
             ISessionService sessionService,
             IAppSetting appSetting,
@@ -35,18 +36,23 @@ namespace Fanex.Affiliate.User.Core.Controllers
         [ChildActionOnly]
         [HttpGet]
         [AllowAnonymous]
-        public ActionResult AuthenticationForm()
+        public ActionResult AuthenticationForm(string v)
         {
-            if (!User.Identity.IsAuthenticated || SessionService.UserSession == null)
+            var viewModel = new AuthenticationFormViewModel
             {
-                var keyString = Generator.GetRandomString(32);
-                var ivString = Generator.GetRandomString(16);
+                IsAuthenticated = User.Identity.IsAuthenticated && SessionService.UserSession != null
+            };
 
-                ViewBag.KeyString = keyString;
-                ViewBag.IVString = ivString;
+            if (viewModel.IsAuthenticated)
+            {
+                viewModel.UserName = SessionService.UserSession.UserName;
+            }
+            else
+            {
+                viewModel.PublicKey = _appSetting.RsaPublicKey;
             }
 
-            return View();
+            return View("~/Views/Auth/AuthenticationForm.cshtml", viewModel);
         }
 
         [ValidateAntiForgeryToken]
@@ -65,7 +71,6 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 {
                     IsOk = false,
                     Message = string.Join(", ", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
-
                 });
             }
 
@@ -75,7 +80,6 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 {
                     IsOk = false,
                     Message = Lang.ValidationCode
-
                 });
             }
             userParam.LoginIp = Request.UserHostAddress;
@@ -127,7 +131,6 @@ namespace Fanex.Affiliate.User.Core.Controllers
                     };
 
                     SessionService.IsInternal = true;
-                    userLoginParam.IsInternal = true;
                     var loginResult = _authService.GetLoginResult(userLoginParam, true);
                     var user = loginResult.UserInfo;
 
@@ -139,6 +142,10 @@ namespace Fanex.Affiliate.User.Core.Controllers
 
                         SessionService.AssignSessions(user);
                         FormsAuthentication.SetAuthCookie(user.UserName, false);
+                    }
+                    else
+                    {
+                        return Redirect(Url.Action("PageNotFound", "Notify"));
                     }
                 }
                 else

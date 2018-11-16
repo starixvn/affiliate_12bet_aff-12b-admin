@@ -1,5 +1,6 @@
 ﻿namespace Fanex.Affiliate.User.Core.Controllers
 {
+    using System;
     using System.Linq;
     using System.Web.Mvc;
     using Constants;
@@ -31,14 +32,22 @@
         [AjaxOnly]
         public ActionResult Index()
         {
-            return View("~/Views/UserPanel/PaymentRequest/Index.cshtml", GetViewModel());
+            return View("~/Views/UserPanel/PaymentRequest/Index.cshtml", GetViewModel(DateTime.Now.Year));
         }
 
+        [HttpPost]
+        [AjaxOnly]
+        public ActionResult GetPaymentListByYear(int year)
+        {
+            var viewModel = year >= 2009 && year <= DateTime.Now.Year ? GetViewModel(year) : GetViewModel(DateTime.Now.Year);
+
+            return PartialView("~/Views/UserPanel/PaymentRequest/PaymentPartial/_PaymentList.cshtml", viewModel);
+        }
         [HttpGet]
         [AjaxOnly]
         public ActionResult PaymentRequestPartial()
         {
-            return PartialView("~/Views/UserPanel/PaymentRequest/PaymentPartial/_Main.cshtml", GetViewModel());
+            return PartialView("~/Views/UserPanel/PaymentRequest/PaymentPartial/_Main.cshtml", GetViewModel(DateTime.Now.Year));
         }
 
         [HttpPost]
@@ -108,14 +117,16 @@
             return Json(resultInfo);
         }
 
-        private PaymentViewModel GetViewModel()
+        private PaymentViewModel GetViewModel(int year)
         {
             var paymentParam = new PaymentParam
             {
                 AffId = SessionService.UserSession.AffId,
-                IsInternal = SessionService.IsInternal
+                IsInternal = SessionService.IsInternal,
+                Year = year
             };
             var paymentList = _paymentService.GetPaymentList(paymentParam);
+
 
             var viewModel = new PaymentViewModel
             {
@@ -129,5 +140,6 @@
 
             return viewModel;
         }
+
     }
 }

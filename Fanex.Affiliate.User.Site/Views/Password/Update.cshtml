@@ -4,6 +4,12 @@
 @model Fanex.Affiliate.User.Core.MetalModels.UpdatePasswordParam
 
 @section scripts{
+    <script type="text/javascript">
+        var resource = {
+            notMatchPassword: '@Lang.ReenterNewPassw'
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsencrypt/2.3.1/jsencrypt.min.js"></script>
     <script src="@Url.RenderLink("~/www/build/js/validation.js")"></script>
     @Html.InlineScripts("~/www/build/js/changepassword.js")
 }
@@ -50,12 +56,6 @@
                 </div>
             </div>
 
-            @if (ViewBag.KeyString != null && ViewBag.IVString != null)
-            {
-                @Html.Hidden("EncriptionKey", ViewBag.KeyString as string)
-                @Html.Hidden("EncriptionIv", ViewBag.IVString as string)
-            }
-
             <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-5">
                     <button type="submit" id="btnSubmit" class="btn btn-submit">@Lang.Submit</button>
@@ -63,5 +63,10 @@
                 </div>
             </div>
         </form>
+
+        @if (ViewBag.PublicKey != null)
+        {
+            @Html.Hidden("PublicKey", ViewBag.PublicKey as string)
+        }
     </div>
 </div>

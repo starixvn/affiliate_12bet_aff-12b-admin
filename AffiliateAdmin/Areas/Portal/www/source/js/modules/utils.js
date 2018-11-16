@@ -1,4 +1,4 @@
-const _rootUrl = document.getElementById('RootUrl').value;
+const _rootUrl = document.getElementById('RootUrl') ? document.getElementById('RootUrl').value : '/';
 
 export const resolveClientUrl = (relativeUrl) => {
     return _rootUrl + relativeUrl;

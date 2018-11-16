@@ -10,18 +10,11 @@ export class Filter extends Component {
     constructor(props) {
         super(props);
 
-        const { productList, param } = window.initialState;
-
-        this.productList = productList;
-        this.param = param;
+        const { param } = this.props;
 
         this.state = {
-            selectedProduct: 0
+            selectedProduct: param.ProductId
         }
-    }
-
-    componentDidMount() {
-        this._submit(this.state.selectedProduct);
     }
 
     handleChangeProduct = (event) => {
@@ -33,13 +26,14 @@ export class Filter extends Component {
     }
 
     _submit(selectedProduct) {
-        const param = Object.assign(this.param, { ProductId: selectedProduct });
+        const param = Object.assign(this.props.param, { ProductId: selectedProduct });
 
         this.props.setParam(param);
     }
 
     render() {
         const { selectedProduct } = this.state;
+        const { productList } = this.props;
 
         return (
             <div className="filter-container">
@@ -49,7 +43,7 @@ export class Filter extends Component {
                         <Input type="select" name="Product" id="Product" value={selectedProduct} onChange={this.handleChangeProduct}>
                             <option value="0">All</option>
                             {
-                                this.productList.map(p => {
+                                productList.map(p => {
                                     return (<option value={p.ProductId}>{p.ProductName}</option>)
                                 })
                             }
@@ -61,8 +55,12 @@ export class Filter extends Component {
     }
 }
 
+function mapStateToProps({ productList, param }) {
+    return Object.assign({}, { productList, param });
+}
+
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({ setParam }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(Filter);
+export default connect(mapStateToProps, mapDispatchToProps)(Filter);

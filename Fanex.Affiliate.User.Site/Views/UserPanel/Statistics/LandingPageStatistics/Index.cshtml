@@ -36,7 +36,7 @@
                 <option value="">@Lang.All</option>
                 @foreach (var page in Model.MemberSitePageList)
                 {
-                    <option value="@page">@page</option>
+                    <option value="@page.PageCode">@page.PageName</option>
                 }
             </select>
         </div>

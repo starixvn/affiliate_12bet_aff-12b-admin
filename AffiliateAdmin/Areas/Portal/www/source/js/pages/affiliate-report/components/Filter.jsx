@@ -5,27 +5,80 @@ import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import MultipleSelect from '../../../components/multiple-select';
 import MonthPicker from '@9softstudio/react-monthpicker';
-import { sortByValues, allProduct, minMonthRange } from '../modules/constants';
+import AutoComplete from '../../../components/auto-complete';
+import { defaultSortBy, sortByMainView, sortByMonthOnMonthView, allProduct, viewLevel, sortDirectionType } from '../modules/constants';
 import { setReportTitle, setParam } from '../actions';
-import { formatUnit } from '../../../modules/utils';
+import { formatUnit, resolveClientUrl } from '../../../modules/utils';
+import { minMonthDate } from '../../../modules/constants';
 
 class Filter extends Component {
     constructor(props) {
         super(props);
 
-        this.searchedAffiliate = '';
-
-        const now = new Date(this.props.currentDate);
-        const defaultMonth = { month: now.getMonth() + 1, year: now.getFullYear() };
+        this.now = new Date(this.props.today);
+        const defaultMonth = { month: this.now.getMonth() + 1, year: this.now.getFullYear() };
 
         this.state = {
+            userName: '',
             selectedLanguage: '',
             fromMonth: defaultMonth,
             toMonth: defaultMonth,
-            sortBy: sortByValues.Affiliate,
+            sortBy: defaultSortBy,
             isSortAscending: true,
-            selectedProductList: allProduct
+            selectedProductList: allProduct,
+            isGetAll: false
         }
+
+        this.cachedMainReportParam = null;
+    }
+
+    componentDidUpdate(prevProps) {
+        const { param, currentViewLevel, pagingOption } = this.props;
+
+        if (currentViewLevel !== prevProps.currentViewLevel) {
+            const callback = () => {
+                const { selectedProductList } = this.state;
+                const { productList } = this.props;
+                const isCheckedAllProduct = selectedProductList === allProduct || selectedProductList.split(',').length === productList.length;
+                const reportTitle = this._buildReportTitle(isCheckedAllProduct);
+                this.props.setReportTitle(reportTitle);
+            }
+
+            if (this._isMainView()) {
+                const { UserName, PreferredLanguage, FromDate, ToDate, SortType, SortDirectionType, ProductIds } = this.cachedMainReportParam;
+                const from = new Date(FromDate);
+                const to = new Date(ToDate);
+
+                this.setState({
+                    userName: UserName,
+                    selectedLanguage: PreferredLanguage,
+                    fromMonth: { month: from.getMonth() + 1, year: from.getFullYear() },
+                    toMonth: { month: to.getMonth() + 1, year: to.getFullYear() },
+                    sortBy: SortType,
+                    isSortAscending: SortDirectionType === sortDirectionType.ascending,
+                    selectedProductList: ProductIds,
+                    isGetAll: false
+                }, callback);
+
+                this.props.setParam(this.cachedMainReportParam);
+            }
+            else {
+                this.cachedMainReportParam = Object.assign({}, this.cachedMainReportParam, {
+                    PageIndex: pagingOption.PageIndex,
+                    PageSize: pagingOption.PageSize
+                });
+
+                this.setState({
+                    userName: param.UserName,
+                    sortBy: sortByMonthOnMonthView.Month,
+                    isSortAscending: false
+                }, callback);
+            }
+        }
+    }
+
+    _isMainView() {
+        return this.props.currentViewLevel === viewLevel.main;
     }
 
     handlePressEnter = (event) => {
@@ -35,7 +88,7 @@ class Filter extends Component {
     }
 
     handleChangeAffiliate = (event) => {
-        this.searchedAffiliate = event.target.value;
+        this.setState({ userName: event.target.value });
     }
 
     handleChangeLanguage = (event) => {
@@ -44,6 +97,11 @@ class Filter extends Component {
 
     handleSelectFromMonth = (month, year) => {
         const fromMonth = { month, year };
+        if (!this._isMainView()) {
+            this.setState({ fromMonth });
+            return;
+        }
+
         const toMonthRange = this._getToMonthRange(fromMonth);
 
         const { min, max } = toMonthRange;
@@ -81,13 +139,20 @@ class Filter extends Component {
         this.setState({ sortBy: Number(event.target.value) });
     }
 
+    handleChangeGetAll = () => {
+        this.setState((prevState) => ({
+            isGetAll: !prevState.isGetAll
+        }))
+    }
+
     handleClickSearch = () => {
-        const { selectedProductList, selectedLanguage, fromMonth, toMonth, sortBy, isSortAscending } = this.state;
+        const { selectedProductList } = this.state;
 
         if (selectedProductList === '') {
             return;
         }
 
+        const { selectedLanguage, fromMonth, toMonth, sortBy, isSortAscending, userName, isGetAll } = this.state;
         const { productList, pagingOption } = this.props;
 
         const isCheckedAllProduct = selectedProductList === allProduct || selectedProductList.split(',').length === productList.length;
@@ -95,33 +160,57 @@ class Filter extends Component {
         this.props.setReportTitle(reportTitle);
 
         const param = {
-            UserName: this.searchedAffiliate,
+            UserName: userName,
             FromDate: `${fromMonth.month}/1/${fromMonth.year}`,
             ToDate: `${toMonth.month}/1/${toMonth.year}`,
             PreferredLanguage: selectedLanguage,
             ProductIds: isCheckedAllProduct ? allProduct : selectedProductList,
             SortType: sortBy,
-            SortDirectionType: isSortAscending ? 0 : 1,
+            SortDirectionType: isSortAscending ? sortDirectionType.ascending : sortDirectionType.descending,
             PageIndex: 1,
-            PageSize: pagingOption.PageSize
+            PageSize: pagingOption.PageSize,
+            IsGetAll: isGetAll
+        }
+
+        if (this._isMainView()) {
+            this.cachedMainReportParam = Object.assign({}, param);
         }
 
         this.props.setParam(param);
     }
 
     _buildReportTitle(isCheckedAllProduct) {
-        const { languageList } = this.props;
-        const { selectedLanguage, fromMonth, toMonth } = this.state;
+        return this._isMainView() ? this._buildMainReportTitle(isCheckedAllProduct) : this._buildMonthOnMonthReportTile(isCheckedAllProduct);
+    }
 
-        const userNameTitle = `${this.searchedAffiliate && '- USERNAME \'' + this.searchedAffiliate + '\''}`;
+    _buildMainReportTitle(isCheckedAllProduct) {
+        const { languageList } = this.props;
+        const { selectedLanguage, fromMonth, toMonth, userName } = this.state;
+
+        const userNameTitle = `${userName && '- Username contains \'' + userName + '\''}`;
         const language = languageList[selectedLanguage] || 'All languages';
 
         const productList = this._getProductDataSource();
         const productName = isCheckedAllProduct ? 'All Products' : productList.filter(p => p.Checked).map(p => p.ProductName).join(',');
 
         const fromToTitle = `FROM ${formatUnit(fromMonth.month)}/${fromMonth.year} TO ${formatUnit(toMonth.month)}/${toMonth.year}`;
+        const reportName = 'AFFILIATE REPORT ';
 
-        return `AFFILIATE REPORT ${userNameTitle} - ${language} ${productName && '- ' + productName} - ${fromToTitle}`;
+        return `${reportName}${userNameTitle} ${'- ' + language} ${productName && '- ' + productName} - ${fromToTitle}`;
+    }
+
+    _buildMonthOnMonthReportTile(isCheckedAllProduct) {
+        const { fromMonth, toMonth, userName, isGetAll } = this.state;
+
+        const userNameTitle = userName && '- ' + userName;
+        const productList = this._getProductDataSource();
+        const productName = isCheckedAllProduct ? 'All Products' : productList.filter(p => p.Checked).map(p => p.ProductName).join(',');
+
+        const fromToTitle = isGetAll ? 'Get All Dates' :
+            `FROM ${formatUnit(fromMonth.month)}/${fromMonth.year} TO ${formatUnit(toMonth.month)}/${toMonth.year}`;
+        const reportName = 'MONTH ON MONTH ';
+
+        return `${reportName}${userNameTitle} ${productName && '- ' + productName} - ${fromToTitle}`;
     }
 
     _getProductDataSource = () => {
@@ -139,16 +228,22 @@ class Filter extends Component {
     }
 
     _getToMonthRange(from) {
+        if (!this._isMainView()) {
+            return {
+                min: Object.assign({}, from),
+                max: { month: this.now.getMonth() + 1, year: this.now.getFullYear() }
+            };
+        }
+
         let min = Object.assign({}, from);
         let maxToMonth = from.month + 5;
         let maxToYear = maxToMonth > 12 ? from.year + 1 : from.year;
 
-        const now = new Date(this.props.currentDate);
         let actualMaxMonth = maxToMonth % 12;
 
-        const nowMonth = now.getMonth() + 1;
-        const nowYear = now.getFullYear();
-        
+        const nowMonth = this.now.getMonth() + 1;
+        const nowYear = this.now.getFullYear();
+
         if (maxToYear > nowYear || actualMaxMonth > nowMonth && maxToYear === nowYear) {
             actualMaxMonth = nowMonth;
             maxToYear = nowYear;
@@ -163,34 +258,49 @@ class Filter extends Component {
     }
 
     render() {
-        const { selectedLanguage, fromMonth, toMonth, sortBy, isSortAscending, selectedProductList } = this.state;
+        const { selectedLanguage, fromMonth, toMonth, sortBy, isSortAscending, selectedProductList, userName, isGetAll } = this.state;
         const { languageList } = this.props;
 
         const productDataSource = this._getProductDataSource();
         const isValidSelectedProduct = selectedProductList.length > 0;
 
         const toMonthRange = this._getToMonthRange(fromMonth);
+        const isMainView = this._isMainView();
+        const sortByData = isMainView ? sortByMainView : sortByMonthOnMonthView;
 
         return (
             <div className="filter-container">
                 <Form inline tag="div">
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                         <Label for="Affiliate" className="mr-sm-2">Affiliate</Label>
-                        <Input type="text" name="Affiliate" id="Affiliate"
-                            onKeyPress={this.handlePressEnter}
-                            onChange={this.handleChangeAffiliate}
-                            defaultValue={this.searchedAffiliate} />
+                        {
+                            isMainView ?
+                                (<Input type="text" name="Affiliate" id="Affiliate"
+                                    onKeyPress={this.handlePressEnter}
+                                    onChange={this.handleChangeAffiliate}
+                                    value={userName} />) :
+                                (
+                                    <AutoComplete url={resolveClientUrl('Portal/AffiliateReport/GetAffiliateList')}
+                                        onSelect={(value) => this.setState({ userName: value })}
+                                        onInput={(value) => this.setState({ userName: value })}
+                                        value={userName}
+                                        characterCountToSearch={2} />
+                                )
+                        }
                     </FormGroup>
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                        <Input type="select" name="Language" id="Language" value={selectedLanguage} onChange={this.handleChangeLanguage}>
-                            <option value="">All Language</option>
-                            {
-                                Object.keys(languageList).map(lang => {
-                                    return (<option value={lang}>{languageList[lang]}</option>)
-                                })
-                            }
-                        </Input>
-                    </FormGroup>
+                    {
+                        isMainView &&
+                        <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                            <Input type="select" name="Language" id="Language" value={selectedLanguage} onChange={this.handleChangeLanguage}>
+                                <option key="lang-all" value="">All Language</option>
+                                {
+                                    Object.keys(languageList).map(lang => {
+                                        return (<option key={'lang-' + lang} value={lang}>{languageList[lang]}</option>)
+                                    })
+                                }
+                            </Input>
+                        </FormGroup>
+                    }
                     <FormGroup className={"mb-2 mr-sm-2 mb-sm-0" + `${isValidSelectedProduct ? '' : ' multiple-select-wrapper is-invalid'}`}
                         style={{ width: 200 }}>
                         <MultipleSelect
@@ -207,11 +317,12 @@ class Filter extends Component {
                     </FormGroup>
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                         <Label className="mr-sm-2">From</Label>
-                        <MonthPicker minMonth={minMonthRange.month} minYear={minMonthRange.year}
+                        <MonthPicker minMonth={minMonthDate.month} minYear={minMonthDate.year}
                             selectedDropdownYear={fromMonth.year}
                             selectedMonth={fromMonth.month}
                             onSelect={this.handleSelectFromMonth}
-                            iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)} />
+                            iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)}
+                            enable={!isGetAll} />
                     </FormGroup>
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                         <Label className="mr-sm-2">To</Label>
@@ -221,14 +332,25 @@ class Filter extends Component {
                             selectedYear={toMonth.year}
                             selectedMonth={toMonth.month}
                             onSelect={this.handleSelectToMonth}
-                            iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)} />
+                            iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)}
+                            enable={!isGetAll} />
                     </FormGroup>
+                    {
+                        isMainView ? null : (
+                            <FormGroup check>
+                                <Label check>
+                                    Get All
+                                    <Input className="ml-1 mr-2" type="checkbox" checked={isGetAll} onChange={this.handleChangeGetAll} />
+                                </Label>
+                            </FormGroup>
+                        )
+                    }
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                         <Label for="SortBy" className="mr-sm-2">Sort By</Label>
                         <Input type="select" name="SortBy" id="SortBy" value={sortBy} onChange={this.handleChangeSortBy}>
                             {
-                                Object.keys(sortByValues).map(k => {
-                                    return (<option value={sortByValues[k]}>{k}</option>);
+                                Object.keys(sortByData).map(k => {
+                                    return (<option key={'sortBy-' + k} value={sortByData[k]}>{k}</option>);
                                 })
                             }
                         </Input>
@@ -248,8 +370,8 @@ class Filter extends Component {
     }
 }
 
-function mapStateToProps({ productList, pagingOption, languageList, currentDate }) {
-    return Object.assign({}, { productList, pagingOption, languageList, currentDate });
+function mapStateToProps({ productList, pagingOption, languageList, today, currentViewLevel, param }) {
+    return Object.assign({}, { productList, pagingOption, languageList, today, currentViewLevel, param });
 }
 
 function mapDispatchToProps(dispatch) {

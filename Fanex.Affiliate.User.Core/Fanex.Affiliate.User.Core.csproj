@@ -243,9 +243,9 @@
     <Compile Include="DTO\ExtraUserInfo.cs" />
     <Compile Include="DTO\Language.cs" />
     <Compile Include="DTO\LatestHotNews.cs" />
-    <Compile Include="DTO\MemberSitePage.cs" />
     <Compile Include="DTO\Payment.cs" />
     <Compile Include="DTO\ProductItem.cs" />
+    <Compile Include="DTO\RsaKeyPair.cs" />
     <Compile Include="DTO\Transaction.cs" />
     <Compile Include="DTO\UserInfo.cs" />
     <Compile Include="DTO\UserPanel\AccountOverviewStatistics.cs" />
@@ -255,6 +255,7 @@
     <Compile Include="DTO\UserPanel\DailyEarningResult.cs" />
     <Compile Include="DTO\UserPanel\DepositAccountInfo.cs" />
     <Compile Include="DTO\UserPanel\IbcPlayerAccountInsertResult.cs" />
+    <Compile Include="DTO\UserPanel\LandingPage.cs" />
     <Compile Include="DTO\UserPanel\LandingPageStatistics.cs" />
     <Compile Include="DTO\UserPanel\MarketingItem.cs" />
     <Compile Include="DTO\UserPanel\BannerType.cs" />
@@ -453,6 +454,7 @@
     <Compile Include="Utilities\RequestHelper.cs" />
     <Compile Include="Utilities\SiteDomainHelper.cs" />
     <Compile Include="DTO\UserPanel\AccountInformation.cs" />
+    <Compile Include="ViewModels\AuthenticationFormViewModel.cs" />
     <Compile Include="ViewModels\BetList\MainBetListViewModel.cs" />
     <Compile Include="ViewModels\EmailTemplateViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />

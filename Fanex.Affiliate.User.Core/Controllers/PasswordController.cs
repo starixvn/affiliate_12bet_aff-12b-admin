@@ -146,11 +146,7 @@
         [HttpGet]
         public ActionResult Update()
         {
-            var keyString = Generator.GetRandomString(32);
-            var ivString = Generator.GetRandomString(16);
-
-            ViewBag.KeyString = keyString;
-            ViewBag.IVString = ivString;
+            ViewBag.PublicKey = _appSetting.RsaPublicKey;
 
             return View(new UpdatePasswordParam());
         }
@@ -168,11 +164,23 @@
             }
             else if (ModelState.IsValid)
             {
+                param.NewPassword = _cryptographyService.EncryptPassword(_appSetting.RsaPrivateKey, param.NewPassword);
+                var confirmedNewPassword = _cryptographyService.EncryptPassword(_appSetting.RsaPrivateKey, param.ConfirmNewPassword);
+
+                if (param.NewPassword != confirmedNewPassword)
+                {
+                    return Json(new ResultInfo
+                    {
+                        IsOk = false,
+                        Message = Lang.ReenterNewPassw
+                    });
+                }
+
+                param.OldPassword = _cryptographyService.EncryptPassword(_appSetting.RsaPrivateKey, param.OldPassword);
+
                 param.AffId = SessionService.UserSession.AffId;
                 param.Ip = RequestHelper.GetClientIPAddress();
                 param.Language = SessionService.CurrentLanguage;
-                param.OldPassword = _cryptographyService.EncryptPassword(param.OldPassword, param.EncriptionKey, param.EncriptionIv);
-                param.NewPassword = _cryptographyService.EncryptPassword(param.NewPassword, param.EncriptionKey, param.EncriptionIv);
 
                 var updateResult = _accountRepository.UpdatePassword(param);
                 resultInfo.IsOk = updateResult.IsOk;

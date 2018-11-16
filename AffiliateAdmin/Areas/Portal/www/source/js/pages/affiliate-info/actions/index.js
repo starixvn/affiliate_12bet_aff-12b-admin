@@ -1,0 +1,46 @@
+﻿import { SET_REPORT_TITLE, SET_PARAM, SET_SHOW_POPUP_PASSWORD, SET_SHOW_POPUP_COMMGROUP, SET_AFFID, SET_COMM_GROUP } from './types';
+import { setPagingOption } from '../../../actions/pagingAction';
+
+export { setPagingOption };
+
+export const setReportTitle = (data) => {
+    return {
+        type: SET_REPORT_TITLE,
+        data
+    }
+}
+
+export const setParam = (data) => {
+    return {
+        type: SET_PARAM,
+        data
+    }
+}
+
+export const setShowPopupPassword = (data) => {
+    return {
+        type: SET_SHOW_POPUP_PASSWORD,
+        data
+    }
+}
+
+export const setShowPopupCommGroup = (data) => {
+    return {
+        type: SET_SHOW_POPUP_COMMGROUP,
+        data
+    }
+}
+
+export const setAffId = (data) => {
+    return {
+        type: SET_AFFID,
+        data
+    }
+}
+
+export const setCommGroup = (data) => {
+    return {
+        type: SET_COMM_GROUP,
+        data
+    }
+}

@@ -1,18 +1,55 @@
 ﻿var Login = (function ($) {
+    var _refreshCaptchaIntervalId = null;
+    var REFRESH_CAPTCHA_INTERVAL = 600000;
+
+    function encrypt(plainText, key) {
+        var encrypt = new JSEncrypt();
+        encrypt.setPublicKey(key);
+
+        return encrypt.encrypt(plainText);
+    }
+
+    function base64DecodeUnicode(str) {
+        return decodeURIComponent(Array.prototype.map.call(atob(str), function (c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+        }).join(''))
+    }
+
+    function getUtcUnixTimeStamp() {
+        var now = new Date();
+        return Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(),
+              now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds(), now.getUTCMilliseconds());
+    }
+
+    function registerRefreshLoginCaptcha(isShowingModal) {
+        clearInterval(_refreshCaptchaIntervalId);
+        _refreshCaptchaIntervalId = setInterval(function () {
+            if (isShowingModal) {
+                _me.generateDialogCaptcha();
+            }
+            else {
+                _me.generateCaptcha();
+            }
+        }, REFRESH_CAPTCHA_INTERVAL);
+    }
+
     var _me = {
         initialize: function () {
             _me.registerLoginDialog();
             _me.initEvent();
             _me.initLoginDialogEvent();
+            registerRefreshLoginCaptcha(false);
         },
         registerLoginDialog: function () {
             $("#loginDialog").on("show.bs.modal", function (e) {
                 _me.generateDialogCaptcha();
+                registerRefreshLoginCaptcha(true);
             })
 
             $("#loginDialog").on("hide.bs.modal", function (e) {
                 $("#loginDialogcaptchaImg").attr("src", "");
                 _me.generateCaptcha();
+                registerRefreshLoginCaptcha(false);
             })
         },
         initLoginDialogEvent: function () {
@@ -37,6 +74,7 @@
 
             $("#loginDialogcaptchaImg").on("click", function () {
                 _me.generateDialogCaptcha();
+                registerRefreshLoginCaptcha(true);
             });
         },
         initEvent: function () {
@@ -52,6 +90,7 @@
 
             $("#captchaImg").on("click", function () {
                 _me.generateCaptcha();
+                registerRefreshLoginCaptcha(false);
             });
         },
 
@@ -69,20 +108,16 @@
             var validationResult = _me.validate(username, password, validation, prefix);
             if (validationResult.isValid) {
                 var token = $('input[name="__RequestVerificationToken"]', $("#userLogin")).val();
-                var encryptKey = $("#KeyString").val();
-                var encryptIV = $("#IVString").val();
+                var publicKey = base64DecodeUnicode($("#PublicKey").val());
 
-                var encryptedPassword = _me.encryptPassword(password, encryptKey, encryptIV);
-
-                $password.val(encryptedPassword);
+                var queryString = 'u=' + encodeURIComponent(username.trim()) + '&p=' + encodeURIComponent(password) + '&t=' + getUtcUnixTimeStamp();
+                var encryptedQueryString = encrypt(queryString, publicKey);
+                $password.val(encryptedQueryString);
 
                 var postData = {
                     __RequestVerificationToken: token,
-                    UserName: username,
-                    Password: encryptedPassword,
-                    ValidationKey: validation,
-                    EncriptionKey: encryptKey,
-                    EncriptionIv: encryptIV
+                    LoginInfo: encryptedQueryString,
+                    ValidationKey: validation
                 };
 
                 $.ajax({
@@ -160,16 +195,6 @@
             return result;
         },
 
-        encryptPassword: function (password, encryptKey, encryptIV) {
-            var key = CryptoJS.enc.Utf8.parse(encryptKey);
-            var iv = CryptoJS.enc.Utf8.parse(encryptIV);
-
-            return CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(password), key, {
-                iv: iv,
-                mode: CryptoJS.mode.CBC,
-                padding: CryptoJS.pad.Pkcs7
-            }).toString();
-        },
         generateDialogCaptcha: function () {
             var captchaUrl = Site.resolveRelativeUrl("Auth/CaptchaImage?_v=" + new Date().getTime());
             $("#loginDialogcaptchaImg").attr("src", captchaUrl);

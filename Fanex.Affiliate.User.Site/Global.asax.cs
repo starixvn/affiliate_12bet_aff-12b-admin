@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Fanex.Affiliate.User.Core.BusinessService;
@@ -18,6 +19,8 @@ namespace Fanex.Affiliate.User.Site
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             MvcHandler.DisableMvcResponseHeader = true;
+            AntiForgeryConfig.RequireSsl = false;
+            AntiForgeryConfig.CookieName = "__CSRFAFFSYS";
 
             DbSettingProviderManager
               .StartNewSession()

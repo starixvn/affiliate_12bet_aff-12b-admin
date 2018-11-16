@@ -5,6 +5,7 @@
 
     function initMonthPicker() {
         $("#MonthDate").monthPicker({
+            range: [new Date(2009, 11, 1), new Date($("#ToDay").val())],
             triggerSelector: "#monthPickerTrigger",
             onSelect: function (month, year) {
                 var date = formatDateUnit(month) + "/01/" + year;

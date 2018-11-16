@@ -129,6 +129,9 @@
   <data name="AffiliateDomain" xml:space="preserve">
     <value>Affiliate Domain</value>
   </data>
+  <data name="AffiliateInfo" xml:space="preserve">
+    <value>Affiliate Info</value>
+  </data>
   <data name="AffiliateReport" xml:space="preserve">
     <value>Affiliate Report</value>
   </data>

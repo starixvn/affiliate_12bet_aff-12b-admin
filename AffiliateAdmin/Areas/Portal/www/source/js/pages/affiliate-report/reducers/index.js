@@ -4,13 +4,14 @@ import { pagingOption } from '../../../reducers/pagingReducer';
 import { isShowLoader } from '../../../reducers/loaderReducer';
 
 import createReducer from '../../../modules/createReducer';
-import { SET_REPORT_TITLE, SET_PARAM } from '../actions/types';
+import { SET_REPORT_TITLE, SET_PARAM, SET_VIEW_LEVEL } from '../actions/types';
+import { viewLevel } from '../modules/constants';
 
 const productList = createReducer([], {});
 
 const languageList = createReducer({}, {});
 
-const currentDate = createReducer('', {});
+const today = createReducer('', {});
 
 const reportTitle = createReducer('', {
     [SET_REPORT_TITLE](prevState, action) {
@@ -24,6 +25,12 @@ const param = createReducer(null, {
     }
 })
 
+const currentViewLevel = createReducer(viewLevel.main, {
+    [SET_VIEW_LEVEL](prevState, action) {
+        return action.data;
+    }
+})
+
 export default combineReducers({
     productList,
     pagingOption,
@@ -31,5 +38,6 @@ export default combineReducers({
     param,
     languageList,
     isShowLoader,
-    currentDate
+    today,
+    currentViewLevel
 });

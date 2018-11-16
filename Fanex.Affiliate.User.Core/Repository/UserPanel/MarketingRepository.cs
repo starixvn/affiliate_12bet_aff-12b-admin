@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
@@ -49,6 +50,30 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             {
                 return objectDb.DB.Query<MarketingItem>(textParam);
             }
+        }
+
+        public IEnumerable<LandingPage> GetLandingPageList(bool isInternal)
+        {
+            const string SpKey = "Aff_Admin_LandingPage_Sel";
+            var dbMode = isInternal ? DBMode.View : DBMode.Main;
+            var result = new List<LandingPage>();
+
+            using (var objectDb = new ObjectDBBuilder(SpKey, dbMode))
+            {
+                using (var reader = objectDb.DB.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        result.Add(new LandingPage
+                        {
+                            PageName = Convert.ToString(reader["PageName"]),
+                            PageCode = Convert.ToString(reader["PageCode"])
+                        });
+                    }
+                }
+            }
+
+            return result;
         }
     }
 }

@@ -1582,19 +1582,14 @@ input[type="radio"], input[type="checkbox"] {
   margin: 0 auto;
   white-space: nowrap; }
   .marquee-container .marquee-content {
-    padding-left: 100%;
     text-indent: 0;
     white-space: nowrap;
     position: absolute;
-    /* Starting position */
-    -moz-transform: translateX(100%);
-    -webkit-transform: translateX(100%);
-    transform: translateX(100%);
     /* Apply animation to this element */
     -moz-animation: marquee linear infinite;
     -webkit-animation: marquee linear infinite;
     animation: marqueekey linear infinite;
-    animation-delay: 0s; }
+    animation-delay: 10s; }
     .marquee-container .marquee-content:hover {
       animation-play-state: paused; }
     .marquee-container .marquee-content a {
@@ -1603,23 +1598,23 @@ input[type="radio"], input[type="checkbox"] {
 /* Move it (define the animation) */
 @-moz-keyframes marqueekey {
   0% {
-    -moz-transform: translateX(0); }
+    -moz-transform: translateX(0%); }
   100% {
     -moz-transform: translateX(-100%); } }
 
 @-webkit-keyframes marqueekey {
   0% {
-    -webkit-transform: translateX(0); }
+    -webkit-transform: translateX(0%); }
   100% {
     -webkit-transform: translateX(-100%); } }
 
 @keyframes marqueekey {
   0% {
-    -moz-transform: translateX(0);
+    -moz-transform: translateX(0%);
     /* Firefox bug fix */
-    -webkit-transform: translateX(0);
+    -webkit-transform: translateX(0%);
     /* Firefox bug fix */
-    transform: translateX(0); }
+    transform: translateX(0%); }
   100% {
     -moz-transform: translateX(-100%);
     /* Firefox bug fix */
@@ -1773,4 +1768,3 @@ input[type="radio"], input[type="checkbox"] {
 
 .login-dialog .modal-body .title-right {
   font-weight: bold; }
-

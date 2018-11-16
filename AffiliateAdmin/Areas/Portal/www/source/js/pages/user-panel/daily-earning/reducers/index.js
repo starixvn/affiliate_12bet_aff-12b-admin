@@ -10,7 +10,10 @@ const param = createReducer(null, {
     }
 })
 
+const productList = createReducer([], {})
+
 export default combineReducers({
+    productList,
     param,
     isShowLoader
 });

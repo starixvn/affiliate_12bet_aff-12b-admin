@@ -2,17 +2,13 @@
     Layout = null;
 }
 
-@using Fanex.Affiliate.User.Core.CoreService
-@{
-    var sessionService = DependencyResolver.Current.GetService<ISessionService>();
-    var userSession = sessionService.UserSession;
-}
+@model Fanex.Affiliate.User.Core.ViewModels.AuthenticationFormViewModel
 
 <div id="userLogin">
-    @if (HttpContext.Current.User.Identity.IsAuthenticated &&  userSession != null)
+    @if (Model.IsAuthenticated)
     {
         <div class="login-after user-login">
-            <a href="@Url.Content("~/UserPanel/Main#AccountOverview")" class="btn btn-signup"><span class="icon glyphicon glyphicon-user"></span>@Lang.MyAcc @userSession.UserName</a>
+            <a href="@Url.Content("~/UserPanel/Main#AccountOverview")" class="btn btn-signup"><span class="icon glyphicon glyphicon-user"></span>@Lang.MyAcc @Model.UserName</a>
                             <a href="@Url.Content("~/Auth/SignOut/")" class="btn btn-login">@Lang.Logout</a>
         </div>
         
@@ -28,10 +24,9 @@
                 <span class="mdi mdi-account-key"></span>
             </a>
             @Html.AntiForgeryToken()
-            @if (ViewBag.KeyString != null && ViewBag.IVString != null)
+            @if (!string.IsNullOrEmpty(Model.PublicKey))
             {
-            @Html.Hidden("KeyString", ViewBag.KeyString as string)
-            @Html.Hidden("IVString", ViewBag.IVString as string)
+                @Html.Hidden("PublicKey", Model.PublicKey)
             }
             <button class="btn btn-login" id="btnLogin" type="button">@Lang.Login</button>
         </div>        

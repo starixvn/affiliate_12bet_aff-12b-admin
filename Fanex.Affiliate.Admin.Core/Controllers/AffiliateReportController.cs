@@ -47,5 +47,18 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         {
             return Json(_affiliateReportService.GetMainReportData(param));
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        public ActionResult GetDetailData(AffiliateReportMainParam param)
+        {
+            return Json(_affiliateReportService.GetDetailReportData(param));
+        }
+
+        [HttpGet]
+        public ActionResult GetAffiliateList(string query)
+        {
+            return Json(_affiliateReportService.SearchAffiliateList(query.Trim()), JsonRequestBehavior.AllowGet);
+        }
     }
 }

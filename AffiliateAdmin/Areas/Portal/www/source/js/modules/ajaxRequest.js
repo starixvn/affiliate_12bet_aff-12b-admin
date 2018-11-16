@@ -22,7 +22,7 @@ axios.interceptors.response.use(response => Promise.resolve(response),
                 case 401:
                 case 403:
                     alert("You are not authorized on this function.");
-                    top.location.href = resolveClientUrl("");
+                    location.reload(true);
                     break;
                 case 500:
                     alert("An error occurred while processing your request");

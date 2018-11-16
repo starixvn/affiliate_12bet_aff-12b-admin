@@ -35,6 +35,19 @@ b.keySize,b.ivSize);l.iv=d.iv;b=a.encrypt.call(this,b,c,d.key,l);b.mixIn(d);retu
 d[k>>>24]^e[n>>>16&255]^j[g>>>8&255]^l[h&255]^c[p++],n=d[n>>>24]^e[g>>>16&255]^j[h>>>8&255]^l[k&255]^c[p++],g=q,h=s,k=t;q=(f[g>>>24]<<24|f[h>>>16&255]<<16|f[k>>>8&255]<<8|f[n&255])^c[p++];s=(f[h>>>24]<<24|f[k>>>16&255]<<16|f[n>>>8&255]<<8|f[g&255])^c[p++];t=(f[k>>>24]<<24|f[n>>>16&255]<<16|f[g>>>8&255]<<8|f[h&255])^c[p++];n=(f[n>>>24]<<24|f[g>>>16&255]<<16|f[h>>>8&255]<<8|f[k&255])^c[p++];a[b]=q;a[b+1]=s;a[b+2]=t;a[b+3]=n},keySize:8});u.AES=p._createHelper(d)})();
 
 var ChangePassword = (function ($) {
+    function encrypt(plainText, key) {
+        var encrypt = new JSEncrypt();
+        encrypt.setPublicKey(key);
+
+        return encrypt.encrypt(plainText);
+    }
+
+    function base64DecodeUnicode(str) {
+        return decodeURIComponent(Array.prototype.map.call(atob(str), function (c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+        }).join(''))
+    }
+
     var _me = {
         initialize: function () {
             _me.initEvent();
@@ -62,12 +75,16 @@ var ChangePassword = (function ($) {
                 var $oldPassword = $("#OldPassword");
                 var $confirmedNewPassword = $("#ConfirmNewPassword");
 
-                var encryptKey = $("#EncriptionKey").val();
-                var encryptIV = $("#EncriptionIv").val();
+                if ($newPassword.val() !== $confirmedNewPassword.val()) {
+                    Site.displayResult(false, resource.notMatchPassword);
+                    return;
+                }
 
-                var encryptedOldPassword = _me.encryptPassword($oldPassword.val(), encryptKey, encryptIV);
-                var encryptedNewPassword = _me.encryptPassword($newPassword.val(), encryptKey, encryptIV);
-                var confirmedNewPassword = _me.encryptPassword($confirmedNewPassword.val(), encryptKey, encryptIV);
+                var publicKey = base64DecodeUnicode($("#PublicKey").val());
+
+                var encryptedOldPassword = encrypt($oldPassword.val(), publicKey);
+                var encryptedNewPassword = encrypt($newPassword.val(), publicKey);
+                var confirmedNewPassword = encrypt($confirmedNewPassword.val(), publicKey);
 
                 $oldPassword.val(encryptedOldPassword);
                 $newPassword.val(encryptedNewPassword);
@@ -95,21 +112,6 @@ var ChangePassword = (function ($) {
                     }
                 });
             }
-        },
-
-        encryptPassword: function (password, encryptKey, encryptIV) {
-            if (!password) {
-                return "";
-            }
-
-            var key = CryptoJS.enc.Utf8.parse(encryptKey);
-            var iv = CryptoJS.enc.Utf8.parse(encryptIV);
-
-            return CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(password), key, {
-                iv: iv,
-                mode: CryptoJS.mode.CBC,
-                padding: CryptoJS.pad.Pkcs7
-            }).toString();
         }
     };
 

@@ -15,5 +15,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         IEnumerable<MarketingItem> GetBannerList(MarketingBannerParam bannerParam);
 
         IEnumerable<MarketingItem> GetTextList(MarketingTextParam textParam);
+
+        IEnumerable<LandingPage> GetLandingPageList(bool isInternal);
     }
 }

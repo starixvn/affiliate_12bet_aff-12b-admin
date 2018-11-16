@@ -97,6 +97,15 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Affiliate Info.
+        /// </summary>
+        public static string AffiliateInfo {
+            get {
+                return ResourceManager.GetString("AffiliateInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Affiliate Report.
         /// </summary>
         public static string AffiliateReport {

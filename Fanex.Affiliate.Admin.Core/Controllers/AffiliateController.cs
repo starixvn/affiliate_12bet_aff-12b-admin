@@ -16,11 +16,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         {
             var subMenu = new List<SubMenu>
             {
-                new SubMenu { Name = Lang.MyFavorite, Url = Url.Content("~/UserInfo/AffiliateList.aspx?status=approved&favor=1&isclk=1") },
-                new SubMenu { Name = Lang.Approved, Url = Url.Content("~/UserInfo/AffiliateList.aspx?status=approved") },
-                new SubMenu { Name = Lang.Pending, Url = Url.Content("~/UserInfo/AffiliateList.aspx?status=pending") },
-                new SubMenu { Name = Lang.Disapproved, Url = Url.Content("~/UserInfo/AffiliateList.aspx?status=disapproved") },
-                new SubMenu { Name = Lang.Closed, Url = Url.Content("~/UserInfo/AffiliateList.aspx?status=approved&isClosed=true") },
+                new SubMenu { Name = Lang.AffiliateInfo, Url = Url.Content("~/Portal/AffiliateInfo/Index") },
                 new SubMenu { Name = Lang.PaymentRequest, Url = Url.Content("~/Payment/PaymentRequest.aspx") },
                 new SubMenu { Name = Lang.CommGroup, Url = Url.Content("~/Portal/CommissionGroup") },
                 new SubMenu { Name = Lang.EmailHistory, Url = Url.Content("~/Others/EmailHistory.aspx") }

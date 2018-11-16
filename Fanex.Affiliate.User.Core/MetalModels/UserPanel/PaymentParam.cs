@@ -9,5 +9,7 @@
         public decimal BalBroughtForward { get; set; }
 
         public decimal MinAmount { get; set; }
+
+        public int Year { get; set; }
     }
 }

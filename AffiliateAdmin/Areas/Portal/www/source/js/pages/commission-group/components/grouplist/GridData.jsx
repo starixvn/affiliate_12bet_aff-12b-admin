@@ -109,7 +109,7 @@ export class GridData extends Component {
                         )}
                         {isFirstItem && (
                             <Cell className="text-center" rowSpan={rowSpan}>
-                                <a href={resolveClientUrl("Portal/Affiliate?current=1&slCommGroup=") + group.GroupId} target="_top">{group.NoAffs}</a>
+                                <a href={resolveClientUrl("Portal/Affiliate?groupId=") + group.GroupId} target="_top">{group.NoAffs}</a>
                             </Cell>
                         )}
                         {isFirstItem && (<Cell className="text-center" rowSpan={rowSpan}>{rawHtml(group.Description)}</Cell>)}
@@ -174,7 +174,7 @@ export class GridData extends Component {
                     bodyHeight={300}
                     header={this._renderHeader()}
                     body={this._renderGroupData()}
-                    containerPadding={40}
+                    containerPadding={20}
                 />
             </div>
         );

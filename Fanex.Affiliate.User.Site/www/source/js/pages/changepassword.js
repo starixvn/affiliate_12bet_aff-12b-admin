@@ -1,4 +1,17 @@
 ﻿var ChangePassword = (function ($) {
+    function encrypt(plainText, key) {
+        var encrypt = new JSEncrypt();
+        encrypt.setPublicKey(key);
+
+        return encrypt.encrypt(plainText);
+    }
+
+    function base64DecodeUnicode(str) {
+        return decodeURIComponent(Array.prototype.map.call(atob(str), function (c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+        }).join(''))
+    }
+
     var _me = {
         initialize: function () {
             _me.initEvent();
@@ -26,12 +39,16 @@
                 var $oldPassword = $("#OldPassword");
                 var $confirmedNewPassword = $("#ConfirmNewPassword");
 
-                var encryptKey = $("#EncriptionKey").val();
-                var encryptIV = $("#EncriptionIv").val();
+                if ($newPassword.val() !== $confirmedNewPassword.val()) {
+                    Site.displayResult(false, resource.notMatchPassword);
+                    return;
+                }
 
-                var encryptedOldPassword = _me.encryptPassword($oldPassword.val(), encryptKey, encryptIV);
-                var encryptedNewPassword = _me.encryptPassword($newPassword.val(), encryptKey, encryptIV);
-                var confirmedNewPassword = _me.encryptPassword($confirmedNewPassword.val(), encryptKey, encryptIV);
+                var publicKey = base64DecodeUnicode($("#PublicKey").val());
+
+                var encryptedOldPassword = encrypt($oldPassword.val(), publicKey);
+                var encryptedNewPassword = encrypt($newPassword.val(), publicKey);
+                var confirmedNewPassword = encrypt($confirmedNewPassword.val(), publicKey);
 
                 $oldPassword.val(encryptedOldPassword);
                 $newPassword.val(encryptedNewPassword);
@@ -59,21 +76,6 @@
                     }
                 });
             }
-        },
-
-        encryptPassword: function (password, encryptKey, encryptIV) {
-            if (!password) {
-                return "";
-            }
-
-            var key = CryptoJS.enc.Utf8.parse(encryptKey);
-            var iv = CryptoJS.enc.Utf8.parse(encryptIV);
-
-            return CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(password), key, {
-                iv: iv,
-                mode: CryptoJS.mode.CBC,
-                padding: CryptoJS.pad.Pkcs7
-            }).toString();
         }
     };
 

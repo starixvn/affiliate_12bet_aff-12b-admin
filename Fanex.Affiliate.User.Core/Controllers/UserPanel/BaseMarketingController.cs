@@ -4,12 +4,10 @@ using System.Web.Mvc;
 using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.CoreService;
-using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.Extensions;
 using Fanex.Affiliate.User.Core.Filters;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
-using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels.UserPanel.Marketing;
@@ -20,17 +18,14 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
     public class BaseMarketingController : BaseController
     {
         protected readonly IMarketingService MarketingService;
-        protected readonly IAccountRepository AccountRepository;
         protected readonly IAppSetting AppSetting;
 
         public BaseMarketingController(ISessionService sessionService, IAppSetting appSetting,
             ILanguageService languageService,
-             IMarketingService marketingService,
-            IAccountRepository accountRepository)
+             IMarketingService marketingService)
             : base(sessionService, languageService)
         {
             MarketingService = marketingService;
-            AccountRepository = accountRepository;
             AppSetting = appSetting;
         }
         protected SearchFormViewModel GetSearchFormViewModel(bool isMediaPage)
@@ -59,13 +54,10 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
             var userSession = SessionService.UserSession;
             var isInternal = SessionService.IsInternal;
 
-            var userHasCasino = AccountRepository.UserHasCasino(userSession.UserName, isInternal);
-            var memberSitePage = new MemberSitePage(userHasCasino);
-
             var viewModel = new LinkFormViewModel
             {
                 DomainList = MarketingService.GetDomainList(userSession.AffId, isInternal),
-                MemberSitePageList = memberSitePage.PageList.Select(p => new SelectListItem { Value = p, Text = p })
+                MemberSitePageList = MarketingService.GetLandingPageList(isInternal)
             };
 
             return viewModel;

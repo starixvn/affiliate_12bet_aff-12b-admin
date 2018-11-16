@@ -1,6 +1,9 @@
-﻿using Fanex.Affiliate.User.Core.DTO;
+﻿using System;
+using System.Data;
+using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.MetalModels;
+using Fanex.Data;
 
 namespace Fanex.Affiliate.User.Core.Repository
 {
@@ -19,25 +22,50 @@ namespace Fanex.Affiliate.User.Core.Repository
             return onUserIdParam.On_UserId;
         }
 
-        public AuthorizedUserInfo GetUserInfo(UserLoginParam userLoginParam)
+        public AuthorizedUserInfo GetUserInfo(string userName, bool isInternal)
         {
             const string spKey = "Aff_User_Login_UserInfoSel";
-            var dbMode = userLoginParam.IsInternal ? DBMode.View : DBMode.Main;
+            var dbMode = isInternal ? DBMode.View : DBMode.Main;
 
-            using (var objectDb = new ObjectDBBuilder(spKey, dbMode))
+            using (var objectDbBuilder = new ObjectDBBuilder(spKey, dbMode))
             {
-                return objectDb.DB.QueryEntity<AuthorizedUserInfo>(userLoginParam);
+                objectDbBuilder.DB.AddInParameter("UserName", SqlDbType.NVarChar, userName);
+
+                using (var reader = objectDbBuilder.DB.ExecuteReader())
+                {
+                    return reader.Read() ? new AuthorizedUserInfo
+                    {
+                        AffId = Convert.ToInt32(reader["AffId"]),
+                        UserName = Convert.ToString(reader["UserName"]),
+                        Password = Convert.ToString(reader["Password"]),
+                        GroupName = Convert.ToString(reader["GroupName"]),
+                        AffType = Convert.ToString(reader["AffType"]),
+                        IsClosed = Convert.ToBoolean(reader["IsClosed"]),
+                        Status = Convert.ToString(reader["Status"]),
+                        PreferredLanguage = Convert.ToString(reader["PreferredLanguage"])
+                    } : null;
+                }
             }
         }
 
-        public void UpdateLoginResult(LoginResultParam loginResultParam)
+        public ResultInfo UpdateLoginResult(LoginResultParam loginResultParam, bool isInternal)
         {
             const string spKey = "Aff_User_Login_ResultUpd";
-            var dbMode = loginResultParam.IsInternal ? DBMode.View : DBMode.Main;
+            var dbMode = isInternal ? DBMode.View : DBMode.Main;
 
-            using (var objectDb = new ObjectDBBuilder(spKey, dbMode))
+            using (var objectDbBuilder = new ObjectDBBuilder(spKey, dbMode))
             {
-                objectDb.DB.ExecuteNonQuery(loginResultParam);
+                var objectDb = objectDbBuilder.DB;
+                AssignUpdateLoginResultParam(objectDb, loginResultParam);
+                objectDb.ExecuteNonQuery(loginResultParam);
+
+                var code = objectDb.GetParameterValue("ErrCode");
+
+                return new ResultInfo
+                {
+                    IsOk = code == null || Convert.ToInt32(code) == 0,
+                    Message = Convert.ToString(objectDb.GetParameterValue("ErrMsg"))
+                };
             }
         }
 
@@ -51,7 +79,6 @@ namespace Fanex.Affiliate.User.Core.Repository
 
                 return objectDb.DB.ExecuteScalar() as string;
             }
-
         }
 
         public bool Recheckin(int onUserId, bool isInternal)
@@ -70,6 +97,18 @@ namespace Fanex.Affiliate.User.Core.Repository
             }
 
             return parameterSet.IsKickedOut;
+        }
+
+        private static void AssignUpdateLoginResultParam(IObjectDb objectDb, LoginResultParam param)
+        {
+            objectDb.AddInParameter("AffId", SqlDbType.Int, param.AffId);
+            objectDb.AddInParameter("LoginIP", SqlDbType.NVarChar, param.LoginIp);
+            objectDb.AddInParameter("Language", SqlDbType.VarChar, param.Language);
+            objectDb.AddInParameter("IsSuccessful", SqlDbType.Bit, param.IsSuccessful);
+            objectDb.AddInParameter("SessionId", SqlDbType.VarChar, param.SessionId);
+
+            objectDb.AddOutParameter("ErrCode", SqlDbType.Int, 4);
+            objectDb.AddOutParameter("ErrMsg", SqlDbType.NVarChar, 2000);
         }
     }
 }

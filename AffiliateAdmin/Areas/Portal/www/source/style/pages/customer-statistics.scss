@@ -1,0 +1,30 @@
+﻿@import "../components/monthpicker";
+
+.rmp-main-container {
+    .mp-form-input {
+        height: calc(1.1rem + 2px);
+        padding-top: 1px;
+        padding-bottom: 1px;
+    }
+}
+
+#statistic-data-table {
+    width: 1000px;
+    line-height: 1;
+
+    > tbody {
+        > tr {
+            > td {
+                padding: 3px 5px;
+            }
+        }
+    }
+
+    > thead {
+        > tr {
+            > th {
+                padding: 1px 5px;
+            }
+        }
+    }
+}

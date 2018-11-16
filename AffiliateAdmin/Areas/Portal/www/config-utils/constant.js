@@ -1,9 +1,4 @@
-const path = require('path');
-
-const inputDir = 'source';
-const outputDir = 'dist';
-
-const rootPath = path.resolve(__dirname, '..');
+const path = require("path");
 
 module.exports = {
     environment: {
@@ -11,8 +6,9 @@ module.exports = {
         production: 'production'
     },
     projectPath: {
-        root: rootPath,
-        clientInputPath: path.join(rootPath, inputDir),
-        clientOutputPath: path.join(rootPath, outputDir)
+        rootPath: path.resolve(__dirname, '../../../../'),
+        clientInputPath: path.resolve(__dirname, '../source'),
+        clientOutputPath: path.resolve(__dirname, '../dist'),
+        relativeOutputPath: 'Areas/Portal/www/dist'
     }
 }

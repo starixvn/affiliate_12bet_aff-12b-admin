@@ -3,18 +3,21 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
+import { Button } from 'reactstrap';
 
 import { format, formatDecimal } from '../../../modules/numberFormat';
-import { setPagingOption } from '../actions';
+import { setPagingOption, setViewLevel, setParam } from '../actions';
 import { post } from '../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../actions/loaderAction';
-import { allProduct } from '../modules/constants';
-
-const totalText = 'Total (all pages)';
+import { allProduct, viewLevel, sortByMonthOnMonthView, sortDirectionType, totalText, headerText } from '../modules/constants';
 
 export class GridData extends Component {
     constructor(props) {
         super(props);
+
+        this.cachedMainReport = null;
+        this.totalItemMainReport = 0;
+        this.count = 0;
 
         this.state = {
             gridData: null,
@@ -23,54 +26,86 @@ export class GridData extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (this.props.param !== prevProps.param) {
-            this.fetchData(this.props.param);
+        const { param } = this.props;
+        const isMainView = this._isMainView();
+
+        if (param !== prevProps.param && isMainView) {
+            if (this.cachedMainReport && this.cachedMainReport.gridData) {
+                const { gridData, total, totalItem } = this.cachedMainReport;
+
+                this.setState({ gridData, total }, () => {
+                    this.cachedMainReport = null;
+                });
+                this.props.setPagingOption({ TotalItem: totalItem, PageIndex: param.PageIndex, PageSize: param.PageSize });
+            }
+            else {
+                this.fetchData(param);
+            }
         }
+        else if (param !== prevProps.param) {
+            if (this.cachedMainReport === null) {
+                this.cachedMainReport = Object.assign(this.state, { totalItem: prevProps.pagingOption.TotalItem });
+            }
+
+            this.fetchData(param);
+        }
+    }
+
+    _isMainView() {
+        return this.props.currentViewLevel === viewLevel.main;
     }
 
     async fetchData(param) {
         this.props.toggleLoader(true);
-        const url = 'Portal/AffiliateReport/GetMainData';
+        const isMainView = this._isMainView();
+        const url = `Portal/AffiliateReport/${isMainView ? 'GetMainData' : 'GetDetailData'}`;
         const response = await post(url, param);
         if (response && response.status === 200) {
             const { MainData, Total, TotalItem } = response.data;
 
             this.setState({ gridData: MainData, total: Total });
-            this.props.setPagingOption({ TotalItem, PageIndex: param.PageIndex });
+            this.props.setPagingOption({ TotalItem, PageIndex: param.PageIndex, PageSize: param.PageSize });
+
+            if (isMainView) {
+                this.cachedMainReport = null;
+            }
         }
         this.props.toggleLoader(false);
     }
 
     _renderHeader() {
-        return [
-            <Row>
-                <Cell header={true} colWidth={100} rowSpan="2" title="Affiliate">Affiliate</Cell>
-                <Cell header={true} colWidth={70} rowSpan="2" title="Total Click">Total Click</Cell>
-                <Cell header={true} colWidth={70} rowSpan="2" title="Unique Click">Unique Click</Cell>
-                <Cell header={true} colWidth={65} rowSpan="2" title="Signup">Signup</Cell>
-                <Cell header={true} colWidth={50} rowSpan="2" title="FDM">FDM</Cell>
-                <Cell header={true} colWidth={60} rowSpan="2" title="Active Member">Active Member</Cell>
-                <Cell header={true} colWidth={60} rowSpan="2" title="Qualified Member">Qualified Member</Cell>
-                <Cell header={true} colSpan="9" title="Member Statistics">Member Statistics</Cell>
-                <Cell header={true} colSpan="5" title="Affiliate Statistics">Affiliate Statistics</Cell>
-                <Cell header={true} colWidth={50} rowSpan="2" title="Month on Month">Month on Month</Cell>
-            </Row>,
-            <Row>
-                <Cell header={true} colWidth={75} title="Deposit">Deposit</Cell>
-                <Cell header={true} colWidth={75} title="Withdrawal">Withdrawal</Cell>
-                <Cell header={true} colWidth={95} title="Turnover">Turnover</Cell>
-                <Cell header={true} colWidth={95} title="WinLoss">WinLoss</Cell>
-                <Cell header={true} colWidth={70} title="Bonus">Bonus</Cell>
-                <Cell header={true} colWidth={70} title="Platform Fee">Platform Fee</Cell>
-                <Cell header={true} colWidth={70} title="Operational Fee">Operational Fee</Cell>
-                <Cell header={true} colWidth={70} title="Banking Fee">Banking Fee</Cell>
-                <Cell header={true} colWidth={70} title="Total Fee">Total Fee</Cell>
+        const isMainView = this._isMainView();
+        const firstColName = isMainView ? headerText.UserName : headerText.MonthDateString;
 
-                <Cell header={true} colWidth={60} title="Comm%">Comm%</Cell>
-                <Cell header={true} colWidth={80} title="Earning">Earning</Cell>
-                <Cell header={true} colWidth={80} title="Withdrawal">Withdrawal</Cell>
-                <Cell header={true} colWidth={70} title="Adjustment">Adjustment</Cell>
-                <Cell header={true} colWidth={100} title="Balance B/F">Balance B/F</Cell>
+        return [
+            <Row key="h1">
+                <Cell header={true} colWidth={120} rowSpan="2" title={firstColName}>{firstColName}</Cell>
+                <Cell header={true} colWidth={70} rowSpan="2" title={headerText.TotalClick}>{headerText.TotalClick}</Cell>
+                <Cell header={true} colWidth={70} rowSpan="2" title={headerText.UniqueClick}>{headerText.UniqueClick}</Cell>
+                <Cell header={true} colWidth={65} rowSpan="2" title={headerText.Signup}>{headerText.Signup}</Cell>
+                <Cell header={true} colWidth={50} rowSpan="2" title={headerText.Fdm}>{headerText.Fdm}</Cell>
+                <Cell header={true} colWidth={60} rowSpan="2" title={headerText.ActiveMember}>{headerText.ActiveMember}</Cell>
+                <Cell header={true} colWidth={60} rowSpan="2" title={headerText.QualifiedMember}>{headerText.QualifiedMember}</Cell>
+                <Cell header={true} colSpan="9" title={headerText.MemberStatistics}>{headerText.MemberStatistics}</Cell>
+                <Cell header={true} colSpan={isMainView ? 5 : 4} title={headerText.AffiliateStatistics}>{headerText.AffiliateStatistics}</Cell>
+                {isMainView && (<Cell header={true} colWidth={50} rowSpan="2" title={headerText.MonthOnMonth}>{headerText.MonthOnMonth}</Cell>)}
+            </Row>,
+            <Row key="h2">
+                <Cell header={true} colWidth={75} title={headerText.Deposit}>{headerText.Deposit}</Cell>
+                <Cell header={true} colWidth={75} title={headerText.Withdrawal}>{headerText.Withdrawal}</Cell>
+                <Cell header={true} colWidth={95} title={headerText.Turnover}>{headerText.Turnover}</Cell>
+                <Cell header={true} colWidth={95} title={headerText.Winlost}>{headerText.Winlost}</Cell>
+                <Cell header={true} colWidth={70} title={headerText.Bonus}>{headerText.Bonus}</Cell>
+                <Cell header={true} colWidth={70} title={headerText.PlatformFee}>{headerText.PlatformFee}</Cell>
+                <Cell header={true} colWidth={70} title={headerText.OperationalFee}>{headerText.OperationalFee}</Cell>
+                <Cell header={true} colWidth={70} title={headerText.BankingFee}>{headerText.BankingFee}</Cell>
+                <Cell header={true} colWidth={70} title={headerText.TotalFee}>{headerText.TotalFee}</Cell>
+
+                <Cell header={true} colWidth={60} title={headerText.CommissionRate}>{headerText.CommissionRate}</Cell>
+                <Cell header={true} colWidth={80} title={headerText.Earning}>{headerText.Earning}</Cell>
+                <Cell header={true} colWidth={80} title={headerText.AffWithdrawal}>{headerText.AffWithdrawal}</Cell>
+                {isMainView && (<Cell header={true} colWidth={70} title={headerText.AffAdjustment}>{headerText.AffAdjustment}</Cell>)}
+                <Cell header={true} colWidth={100} title={headerText.BalanceBf}>{headerText.BalanceBf}</Cell>
             </Row>
         ];
     }
@@ -84,13 +119,40 @@ export class GridData extends Component {
 
         for (let i = 0; i < dataList.length; i++) {
             const dataItem = dataList[i];
-            dataRows.push(this._buildDataRow(dataItem, productColumnClassName));
+            dataRows.push(this._buildDataRow(dataItem, productColumnClassName, i));
         }
 
         return dataRows;
     }
 
-    _buildDataRow(dataItem, productColumnClassName) {
+    _buildDataRow(dataItem, productColumnClassName, index) {
+        const isMainView = this._isMainView();
+        const isTotalRow = isMainView ? (dataItem.AffId === 0 && dataItem.UserName === "") : (dataItem.MonthDate === null);
+        const firstColValue = isTotalRow ?
+            totalText :
+            (isMainView ? dataItem.UserName : this._buildMonthCell(dataItem.MonthDateString, dataItem.Description));
+
+        return (
+            <Row key={`dataRow-${index}`}>
+                <Cell title={firstColValue}>{firstColValue}</Cell>
+                {this._buildCommonCell(dataItem, productColumnClassName, isTotalRow)}
+                {
+                    isMainView && (
+                        <Cell className="text-center">
+                            {dataItem.AffId > 0 ? (
+                                <Button style={{ padding: 0 }} color="link"
+                                    onClick={() => this.handleViewMonthOnMonth(dataItem.UserName)}>View</Button>) : ''}
+                        </Cell>)
+                }
+            </Row>
+        )
+    }
+
+    _buildMonthCell(monthDate, description) {
+        return description ? `${monthDate} (${description})` : monthDate;
+    }
+
+    _buildCommonCell(dataItem, productColumnClassName, isTotalRow) {
         const totalClick = format(dataItem.TotalClick);
         const uniqueClick = format(dataItem.UniqueClick);
         const signup = format(dataItem.Signup);
@@ -111,14 +173,10 @@ export class GridData extends Component {
         const affWithdrawal = formatDecimal(dataItem.AffWithdrawal);
         const affAdjustment = formatDecimal(dataItem.AffAdjustment);
         const balanceBf = formatDecimal(dataItem.BalanceBf);
-
-        const isTotalRow = dataItem.AffId === 0 && dataItem.UserName === "";
-        const userNameText = isTotalRow ? totalText : dataItem.UserName;
-        const commRate = isTotalRow ? 'N/A' : formatDecimal(dataItem.CommissionRate) + '%';
+        const commRate = this._isMainView() && isTotalRow ? 'N/A' : formatDecimal(dataItem.CommissionRate) + '%';
 
         return (
-            <Row>
-                <Cell title={userNameText}>{userNameText}</Cell>
+            <React.Fragment>
                 <Cell className="text-right" title={totalClick}>{totalClick}</Cell>
                 <Cell className="text-right" title={uniqueClick}>{uniqueClick}</Cell>
                 <Cell className="text-right" title={signup}>{signup}</Cell>
@@ -137,11 +195,25 @@ export class GridData extends Component {
                 <Cell className="text-right" title={commRate}>{commRate}</Cell>
                 <Cell className="text-right" title={earning}>{earning}</Cell>
                 <Cell className="text-right" title={affWithdrawal}>{affWithdrawal}</Cell>
-                <Cell className="text-right" title={affAdjustment}>{affAdjustment}</Cell>
+                {this._isMainView() && (<Cell className="text-right" title={affAdjustment}>{affAdjustment}</Cell>)}
                 <Cell className="text-right" title={balanceBf}>{balanceBf}</Cell>
-                <Cell className="text-center">{dataItem.AffId > 0 ? 'View' : ''}</Cell>
-            </Row>
+            </React.Fragment>
         )
+    }
+
+    handleViewMonthOnMonth = (UserName) => {
+        const { param, pagingOption } = this.props;
+
+        const postParam = Object.assign({}, param, {
+            UserName,
+            SortType: sortByMonthOnMonthView.Month,
+            SortDirectionType: sortDirectionType.descending,
+            PageIndex: 1,
+            PageSize: pagingOption.PageSize
+        })
+
+        this.props.setViewLevel(viewLevel.monthOnMonth);
+        this.props.setParam(postParam);
     }
 
     handlePaging = (index, size) => {
@@ -167,7 +239,7 @@ export class GridData extends Component {
                     header={this._renderHeader()}
                     body={this._renderDataSection(gridData)}
                     footer={this._renderDataSection([total])}
-                    containerPadding={40}
+                    containerPadding={20}
                     isPaging={true}
                     pageOption={this.props.pagingOption}
                     onPaging={this.handlePaging}
@@ -177,12 +249,12 @@ export class GridData extends Component {
     }
 }
 
-function mapStateToProps({ pagingOption, param }) {
-    return Object.assign({}, { pagingOption, param });
+function mapStateToProps({ pagingOption, param, currentViewLevel }) {
+    return Object.assign({}, { pagingOption, param, currentViewLevel });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setPagingOption, toggleLoader }, dispatch);
+    return bindActionCreators({ setPagingOption, toggleLoader, setViewLevel, setParam }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GridData);

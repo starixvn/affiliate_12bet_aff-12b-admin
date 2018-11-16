@@ -42,6 +42,11 @@
                 _me.submitForm($(this), "CancelPaymentRequest");
                 return false;
             });
+
+            $('#paymentRequest').on("submit", "#paymentListForm", function (e) {
+                e.preventDefault();
+                _me.getDataByYear();
+            });
         },
 
         validatePayoutForm: function () {
@@ -97,6 +102,28 @@
                 success: function (response) {
                     $("#paymentRequest").html(response);
                     $("#resultMessage").html(buildMessage(result.Message, result.IsOk)).show();
+                }
+            });
+        },
+
+        getDataByYear: function () {
+            var year = $("#year").val();
+            console.log("aaa");
+            $.ajax({
+                type: "POST",
+                url: Site.resolveRelativeUrl("UserPanel/PaymentRequest/GetPaymentListByYear"),
+                data: JSON.stringify({ "year": year }),
+                dataType: "html",
+                cache: false,
+                contentType: "application/json; charset=UTF-8",
+                success: function (response) {
+                    $("#payment-history").html(response);
+                },
+                beforeSend: function () {
+                    Site.showLoader();
+                },
+                complete: function () {
+                    Site.hideLoader();
                 }
             });
         }

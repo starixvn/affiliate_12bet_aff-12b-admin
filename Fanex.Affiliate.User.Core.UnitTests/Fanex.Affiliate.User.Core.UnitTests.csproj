@@ -105,6 +105,7 @@
     <Compile Include="BusinessService\MemberTransactionServiceTest.cs" />
     <Compile Include="Controllers\ContactUsControllerTest.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
+    <Compile Include="Controllers\UserPanel\DailyEarningControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\MemberControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\MemberTransactionControllerTest.cs" />
     <Compile Include="Controllers\SignupControllerTest.cs" />

@@ -100,6 +100,10 @@
     "inputFile": "www/source/js/pages/betlist.js"
   },
   {
+    "outputFile": "www/build/styles/css/pages/payment-request.css",
+    "inputFile": "www/source/styles/pages/payment-request.scss"
+  },
+  {
     "outputFile": "www/build/js/payment-request.js",
     "inputFile": "www/source/js/pages/payment-request.js"
   },
@@ -142,5 +146,9 @@
   {
     "outputFile": "www/build/js/pagetracking.js",
     "inputFile": "www/source/js/components/pagetracking.js"
+  },
+  {
+    "outputFile": "www/build/js/changepassword.js",
+    "inputFile": "www/source/js/changepassword.js"
   }
 ]

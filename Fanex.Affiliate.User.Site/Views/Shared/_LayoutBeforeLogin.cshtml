@@ -34,9 +34,7 @@
 
     @Html.InlineScripts("~/www/build/js/pagetracking.js")
 
-    <script>
-
-        
+    <script type="text/javascript">
         var validationMessage = {
             enterUserName: "@Lang.ErrmsgEntryUsername",
             enterPassword: '@Lang.ErrmsgEntryPassword',
@@ -44,6 +42,7 @@
         }
     </script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsencrypt/2.3.1/jsencrypt.min.js"></script>
     @Html.InlineScripts("~/www/build/js/login.js")
     @RenderSection("scripts", required: false)
 }

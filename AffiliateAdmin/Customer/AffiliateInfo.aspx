@@ -1,5 +1,4 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" Inherits="Customer_AffiliateInfo" CodeBehind="AffiliateInfo.aspx.cs" %>
-
 <!--js-->
 <script type="text/javascript" src="../App_Js/Common.js"></script>
 <script type="text/javascript" src="../App_Js/prototype.js"></script>
@@ -8,6 +7,7 @@
 
 <link href='../App_Js/AutoComplete/styles.css' type='text/css' rel='stylesheet' />
 <script type="text/javascript">
+    var baseUrl = window.__baseRootUrl || "/";
     function hasClass(el, className) {
         if (el.classList)
             return el.classList.contains(className)
@@ -55,7 +55,7 @@
             if (hasClass(parent.document.getElementById("right-panel-frame"), "not-approved"))
                 removeClass(parent.document.getElementById("right-panel-frame"), "not-approved");
             if ($("hdNoInfo").value == "0") {
-                parent.fStatistics.location.href = "Statistics.aspx";
+                parent.fStatistics.location.href = baseUrl + "Portal/CustomerStatistics/Index";
                 switch ($("hdPageid").value)//linked from affiliate list
                 {
                     case "1":
