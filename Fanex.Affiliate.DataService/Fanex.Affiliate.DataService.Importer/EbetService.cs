@@ -50,30 +50,42 @@ namespace Fanex.Affiliate.DataService.Importer
         public async Task<IEnumerable<EbetApiResult>> GetResultDataList(EbetParam param)
         {
             var result = new List<EbetApiResult>();
-            var taskList = new List<Task<EbetApiResult>>();
-            var convertedParam = BuildEntryParam(param);
-            var firstJsonData = await GetRawData(convertedParam);
-            var resultInfo = EbetParser.GetEbetResultInfo(firstJsonData);
-
-            result.Add(new EbetApiResult { Param = convertedParam, JsonData = firstJsonData });
-
-            if (resultInfo.Count > convertedParam.PageSize)
+            if (DateTime.Compare(param.StartTime, param.EndTime) < 0)
             {
-                var totalPage = (resultInfo.Count / convertedParam.PageSize) + (resultInfo.Count % convertedParam.PageSize == 0 ? 0 : 1);
-                for (var pageIndex = 2; pageIndex <= totalPage; pageIndex++)
-                {
-                    var paramByBatch = BuildParamByPageNumber(convertedParam, pageIndex);
-                    taskList.Add(Task.Run(async () => new EbetApiResult
-                    {
-                        Param = paramByBatch,
-                        JsonData = await GetRawData(paramByBatch)
-                    }));
-                }
+                var taskList = new List<Task<EbetApiResult>>();
+                var convertedParam = BuildEntryParam(param);
+                var firstJsonData = await GetRawData(convertedParam);
+                var resultInfo = EbetParser.GetEbetResultInfo(firstJsonData);
 
-                var taskResultList = await Task.WhenAll(taskList);
-                foreach (var resultByBatch in taskResultList)
+                result.Add(new EbetApiResult { Param = convertedParam, JsonData = firstJsonData });
+
+                if (resultInfo.Count > convertedParam.PageSize)
                 {
-                    result.Add(resultByBatch);
+                    var allowedCallingCount = resultInfo.RemainingVisits;
+                    var totalPage = (resultInfo.Count / convertedParam.PageSize) + (resultInfo.Count % convertedParam.PageSize == 0 ? 0 : 1);
+                    for (var pageIndex = 2; pageIndex <= totalPage; pageIndex++)
+                    {
+                        var paramByBatch = BuildParamByPageNumber(convertedParam, pageIndex);
+
+                        if (allowedCallingCount <= 0)
+                        {
+                            await Task.Delay(60000);
+                        }
+
+                        allowedCallingCount--;
+
+                        taskList.Add(Task.Run(async () => new EbetApiResult
+                        {
+                            Param = paramByBatch,
+                            JsonData = await GetRawData(paramByBatch)
+                        }));
+                    }
+
+                    var taskResultList = await Task.WhenAll(taskList);
+                    foreach (var resultByBatch in taskResultList)
+                    {
+                        result.Add(resultByBatch);
+                    }
                 }
             }
 
@@ -151,8 +163,8 @@ namespace Fanex.Affiliate.DataService.Importer
         private static EbetParam BuildEntryParam(EbetParam param)
         {
             var copiedParam = BuildParamByPageNumber(param, param.PageNumber);
-            copiedParam.StartTime = DateTimeConverter.ToGMT(param.StartTime, TimeZoneId.GmtPlus8);
-            copiedParam.EndTime = DateTimeConverter.ToGMT(param.EndTime, TimeZoneId.GmtPlus8);
+            copiedParam.StartTime = DateTimeConverter.ToGMT(param.StartTime.ToUniversalTime(), TimeZoneId.GmtPlus8);
+            copiedParam.EndTime = DateTimeConverter.ToGMT(param.EndTime.ToUniversalTime(), TimeZoneId.GmtPlus8);
 
             return copiedParam;
         }
