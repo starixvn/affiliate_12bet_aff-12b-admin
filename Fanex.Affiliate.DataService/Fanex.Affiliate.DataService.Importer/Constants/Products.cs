@@ -7,5 +7,7 @@
         public const int BetsoftProductId = 11;
 
         public const int CrystalProductId = 12;
+
+        public const int QuartzProductId = 13;
     }
 }

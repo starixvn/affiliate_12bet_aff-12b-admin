@@ -94,6 +94,8 @@
     <Compile Include="DTO\Ebet\EbetHistory.cs" />
     <Compile Include="DTO\Ebet\EbetResultInfo.cs" />
     <Compile Include="DTO\Ebet\EbetSummary.cs" />
+    <Compile Include="DTO\Quartz\QuartzApiParamResultPair.cs" />
+    <Compile Include="DTO\Quartz\QuartzResultInfo.cs" />
     <Compile Include="DTO\ResultInfo.cs" />
     <Compile Include="EbetService.cs" />
     <Compile Include="Enum\SystemType.cs" />
@@ -123,6 +125,7 @@
     <Compile Include="Utilities\IEbetConfigHelper.cs" />
     <Compile Include="Utilities\EbetParser.cs" />
     <Compile Include="Utilities\IEbetDataSimulator.cs" />
+    <Compile Include="Utilities\QuartzParser.cs" />
     <Compile Include="Utilities\RsaHelper.cs" />
   </ItemGroup>
   <ItemGroup>

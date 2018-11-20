@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
+using Fanex.Affiliate.DataService.Importer.DTO.Quartz;
 using Fanex.Affiliate.DataService.Importer.MetaModels.Quartz;
 using Fanex.Affiliate.DataService.Importer.Utilities;
 using Newtonsoft.Json.Linq;
@@ -17,19 +20,44 @@ namespace Fanex.Affiliate.DataService.Importer
             _appSetting = appSetting ?? new AppSettings();
         }
 
-        public async Task<IEnumerable<string>> GetRawDataList(QuartzParam param)
+        public async Task<IEnumerable<QuartzApiParamResultPair>> GetRawDataList(QuartzParam param)
         {
+            var result = new List<QuartzApiParamResultPair>();
+            var taskList = new List<Task<QuartzApiParamResultPair>>();
             var rawData = await GetRawDataAsync(param);
-            throw new NotImplementedException();
+            result.Add(new QuartzApiParamResultPair { Param = param, JsonData = rawData });
+
+            var jObject = JObject.Parse(rawData);
+            var status = Convert.ToString(jObject["status"]);
+
+            if (status == "success")
+            {
+                var resultInfo = QuartzParser.GetResultInfo(jObject);
+                for (var pageNumber = 2; pageNumber <= resultInfo.Pages; pageNumber++)
+                {
+                    var paramByPaging = new QuartzParam { RequestTime = param.RequestTime, PageNumber = pageNumber };
+                    taskList.Add(Task.Run(async () => new QuartzApiParamResultPair
+                    {
+                        Param = paramByPaging,
+                        JsonData = await GetRawDataAsync(paramByPaging)
+                    }));
+                }
+
+                result.AddRange(await Task.WhenAll(taskList));
+            }
+
+            return result;
         }
 
         public async Task<string> GetRawDataAsync(QuartzParam param)
         {
-            var url = _appSetting.GetValue("QuartzApiUrl");
             var jsonBody = BuildBodyParam(param);
+            var url = $"{_appSetting.GetValue("QuartzApiUrl")}?hash={HashMessage(jsonBody)}";
 
             using (var client = new WebClient())
             {
+                client.Headers.Add("Content-Type", "application/json; charset=utf-8");
+
                 return await client.UploadStringTaskAsync(url, jsonBody);
             }
         }
@@ -48,6 +76,31 @@ namespace Fanex.Affiliate.DataService.Importer
                     new JProperty("operator", "12Bet"),
                     new JProperty("action", jAction)
                 ).ToString();
+        }
+
+        private string HashMessage(string message)
+        {
+            var secretKey = _appSetting.GetValue("QuartzSecretKey");
+
+            var encoding = new ASCIIEncoding();
+            var keyByte = encoding.GetBytes(secretKey);
+
+            var hmacmd5 = new HMACSHA256(keyByte);
+            var messageBytes = encoding.GetBytes(message);
+            var hashmessage = hmacmd5.ComputeHash(messageBytes);
+
+            return ByteToString(hashmessage).ToLower();
+        }
+
+        private static string ByteToString(byte[] buff)
+        {
+            var builder = new StringBuilder();
+            for (int i = 0; i < buff.Length; i++)
+            {
+                builder.Append(buff[i].ToString("X2")); // hex format
+            }
+
+            return builder.ToString();
         }
     }
 }
