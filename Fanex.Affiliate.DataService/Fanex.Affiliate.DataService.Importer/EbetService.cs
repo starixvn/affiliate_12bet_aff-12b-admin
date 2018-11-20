@@ -70,9 +70,12 @@ namespace Fanex.Affiliate.DataService.Importer
                         if (allowedCallingCount <= 0)
                         {
                             await Task.Delay(60000);
+                            allowedCallingCount = resultInfo.RemainingVisits;
                         }
-
-                        allowedCallingCount--;
+                        else
+                        {
+                            allowedCallingCount--;
+                        }
 
                         taskList.Add(Task.Run(async () => new EbetApiResult
                         {
