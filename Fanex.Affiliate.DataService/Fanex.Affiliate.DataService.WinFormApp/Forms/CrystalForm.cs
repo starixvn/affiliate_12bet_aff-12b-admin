@@ -99,6 +99,8 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
             richTextLog.Clear();
             richTextRawData.Clear();
             richTextConvertedData.Clear();
+
+            _convertedDataList.Clear();
         }
 
         private void DisplayResult()

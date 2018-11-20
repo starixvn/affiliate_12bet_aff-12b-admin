@@ -108,16 +108,16 @@ namespace Fanex.Affiliate.DataService.Importer
         private IEnumerable<string> GetRawDataListByPaging(CrystalParam paramByBatch)
         {
             var result = new List<string>();
-            var firstRawData = GetRawData(paramByBatch);
-            var xDocument = XDocument.Parse(firstRawData);
+            var rawData = GetRawData(paramByBatch).Result;
+            var xDocument = XDocument.Parse(rawData);
 
             var hasError = string.Equals("error", xDocument.Root.Name.LocalName, StringComparison.InvariantCultureIgnoreCase);
             if (hasError)
             {
-                throw new ThirdPartyProductException($"Crystal Product Error\nParam:{JsonConvert.SerializeObject(paramByBatch)}\nResult:{firstRawData}");
+                throw new ThirdPartyProductException($"Crystal Product Error\nParam:{JsonConvert.SerializeObject(paramByBatch)}\nResult:{rawData}");
             }
 
-            result.Add(firstRawData);
+            result.Add(rawData);
             var totalPages = Convert.ToInt32(xDocument.Root.Attribute("totalPage")?.Value);
             if (totalPages > 1 && paramByBatch.PageNumber < totalPages)
             {
@@ -128,12 +128,12 @@ namespace Fanex.Affiliate.DataService.Importer
             return result;
         }
 
-        private string GetRawData(CrystalParam param)
+        private async Task<string> GetRawData(CrystalParam param)
         {
             var apiUrl = BuildApiUrl(param);
-            Task.Delay(DelayTimeMillisecond).Wait();
+            await Task.Delay(DelayTimeMillisecond);
 
-            return GetDataString(apiUrl);
+            return await GetDataString(apiUrl);
         }
 
         private CrystalParam BuildParamByTimeZone(CrystalParam entryParam)
@@ -167,11 +167,11 @@ namespace Fanex.Affiliate.DataService.Importer
             return _appSetting.GetValue("CrystalApiUrl") + $"?opCode={param.Code}&s={startTime}&e={endTime}&pageNum={param.PageNumber}&pageSize={param.PageSize}&pwd={param.Password}&type={param.Type}";
         }
 
-        private string GetDataString(string url)
+        private async Task<string> GetDataString(string url)
         {
             using (var client = new WebClient())
             {
-                return client.DownloadString(url);
+                return await client.DownloadStringTaskAsync(url);
             }
         }
     }
