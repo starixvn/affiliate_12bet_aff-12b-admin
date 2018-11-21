@@ -28,7 +28,7 @@ namespace Fanex.Affiliate.DataService.Importer
         public async Task<string> GetRawDataAsync(BetsoftParam param)
         {
             var apiParam = BuildApiParam(param);
-            string url = BuildUrl(apiParam);
+            var url = BuildUrl(apiParam);
 
             return await GetDataStringAsync(url);
         }
@@ -46,16 +46,12 @@ namespace Fanex.Affiliate.DataService.Importer
                 taskList.Add(GetRawDataAsync(paramByBatch));
             }
 
-            var taskResultList = await Task.WhenAll(taskList);
-            foreach (var resultByBatch in taskResultList)
-            {
-                result.Add(resultByBatch);
-            }
+            result.AddRange(await Task.WhenAll(taskList));
 
             return result;
         }
 
-        public string ConvertTimeZone(string rawData)
+        public string ConvertDataTimeZone(string rawData)
         {
             var xdoc = XDocument.Parse(rawData);
             var response = xdoc.Root.Element("RESPONSE");
@@ -90,7 +86,7 @@ namespace Fanex.Affiliate.DataService.Importer
 
             foreach (var dataItem in rawData)
             {
-                var xmlData = ConvertTimeZone(dataItem);
+                var xmlData = ConvertDataTimeZone(dataItem);
                 Import(xmlData);
             }
         }

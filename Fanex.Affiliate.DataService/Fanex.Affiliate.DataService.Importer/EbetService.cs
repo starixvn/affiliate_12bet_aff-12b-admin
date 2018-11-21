@@ -84,11 +84,7 @@ namespace Fanex.Affiliate.DataService.Importer
                         }));
                     }
 
-                    var taskResultList = await Task.WhenAll(taskList);
-                    foreach (var resultByBatch in taskResultList)
-                    {
-                        result.Add(resultByBatch);
-                    }
+                    result.AddRange(await Task.WhenAll(taskList));
                 }
             }
 

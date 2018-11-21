@@ -54,7 +54,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
                         rawDataBuilder.AppendLine(item);
                         rawDataBuilder.AppendLine();
 
-                        var convertedData = _betsoftService.ConvertTimeZone(item);
+                        var convertedData = _betsoftService.ConvertDataTimeZone(item);
                         _convertedDataList.Add(convertedData);
                         convertedDataBuilder.AppendLine(convertedData);
                         convertedDataBuilder.AppendLine();
