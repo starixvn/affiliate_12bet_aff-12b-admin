@@ -4,6 +4,7 @@ using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using Fanex.Affiliate.DataService.Importer.Constants;
 using Fanex.Affiliate.DataService.Importer.DTO.Quartz;
 using Fanex.Affiliate.DataService.Importer.MetaModels.Quartz;
 using Fanex.Affiliate.DataService.Importer.Utilities;
@@ -62,6 +63,11 @@ namespace Fanex.Affiliate.DataService.Importer
             }
         }
 
+        public string ConvertToXml(QuartzSummary quartzSummary, QuartzParam param)
+        {
+            return "<ROOT>" + BuildRequestXml(param) + BuildResponseXml(quartzSummary) + "</ROOT>";
+        }
+
         private string BuildBodyParam(QuartzParam param)
         {
             var jAction = new JObject(
@@ -76,6 +82,41 @@ namespace Fanex.Affiliate.DataService.Importer
                     new JProperty("operator", "12Bet"),
                     new JProperty("action", jAction)
                 ).ToString();
+        }
+
+        private static string BuildRequestXml(QuartzParam param)
+        {
+            return "<REQUEST>" + $"<PARAM DATETIME=\"" + param.RequestTime + "\" PAGE =\"" + param.PageNumber + "\" />" + "</REQUEST>";
+        }
+
+        private static string BuildResponseXml(QuartzSummary quartzSummary)
+        {
+            var builder = new StringBuilder();
+            var resultInfo = quartzSummary.ResultInfo;
+            builder.AppendLine("<RESPONSE>");
+            builder.AppendLine($"<RESULT DATETIME=\"{resultInfo.DateTime}\" PAGES=\"{resultInfo.Pages}\" CURRENTPAGE=\"{resultInfo.CurrentPage}\" TOTAL=\"{resultInfo.Total}\" />");
+
+            builder.AppendLine("<BETHISTORYLIST>");
+            foreach (var item in quartzSummary.BetHistoryList)
+            {
+                var convertedTime = DateTimeConverter.ToGMT(item.Time, TimeZoneId.GmtMinus4);
+                var attributes = "PLAYERID=\"" + item.PlayerId + "\" " +
+                            "CURRENCY=\"" + item.Currency + "\" " +
+                            "SESSIONID=\"" + item.SessionId + "\" " +
+                            "GAMEID=\"" + item.GameId + "\" " +
+                            "ROUNDID=\"" + item.RoundId + "\" " +
+                            "TRANSACTIONID=\"" + item.TransactionId + "\" " +
+                            "TYPE=\"" + item.Type + "\" " +
+                            "TIME=\"" + convertedTime.ToString() + "\" " +
+                            "AMOUNT=\"" + item.Amount.ToString() + "\"";
+
+                builder.AppendLine($"<BETHISTORY {attributes} />");
+            }
+            builder.AppendLine("</BETHISTORYLIST>");
+
+            builder.AppendLine("</RESPONSE>");
+
+            return builder.ToString();
         }
 
         private string HashMessage(string message)

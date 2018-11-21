@@ -8,5 +8,7 @@ namespace Fanex.Affiliate.DataService.Importer
     public interface IQuartzService
     {
         Task<IEnumerable<QuartzApiParamResultPair>> GetRawDataList(QuartzParam param);
+
+        string ConvertToXml(QuartzSummary quartzSummary, QuartzParam param);
     }
 }
