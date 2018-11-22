@@ -34,10 +34,18 @@ namespace Fanex.Affiliate.DataService.Importer.Utilities
             };
         }
 
-        public static IEnumerable<QuartzBetHistory> GetHistoryList(string jsonData)
+        public static QuartzSummary FromJsonObject(JObject jsonObject)
+        {
+            return new QuartzSummary
+            {
+                ResultInfo = GetResultInfo(jsonObject),
+                BetHistoryList = GetHistoryList(jsonObject)
+            };
+        }
+
+        public static IEnumerable<QuartzBetHistory> GetHistoryList(JObject jsonObject)
         {
             var result = new List<QuartzBetHistory>();
-            var jsonObject = JObject.Parse(jsonData);
 
             var reportList = jsonObject["report"];
 

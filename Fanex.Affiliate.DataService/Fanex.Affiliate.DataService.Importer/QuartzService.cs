@@ -6,7 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Fanex.Affiliate.DataService.Importer.Constants;
 using Fanex.Affiliate.DataService.Importer.DTO.Quartz;
+using Fanex.Affiliate.DataService.Importer.Exceptions;
 using Fanex.Affiliate.DataService.Importer.MetaModels.Quartz;
+using Fanex.Affiliate.DataService.Importer.Repository;
 using Fanex.Affiliate.DataService.Importer.Utilities;
 using Newtonsoft.Json.Linq;
 
@@ -14,11 +16,16 @@ namespace Fanex.Affiliate.DataService.Importer
 {
     public class QuartzService : IQuartzService
     {
+        private const string SuccessStatus = "success";
+
         private readonly IAppSettings _appSetting;
 
-        public QuartzService(IAppSettings appSetting = null)
+        private readonly IThirdPartyProductRepository _thirdPartyProductRepository;
+
+        public QuartzService(IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProductRepository = null)
         {
             _appSetting = appSetting ?? new AppSettings();
+            _thirdPartyProductRepository = thirdPartyProductRepository ?? new ThirdPartyProductRepository();
         }
 
         public async Task<IEnumerable<QuartzApiParamResultPair>> GetRawDataList(QuartzParam param)
@@ -31,7 +38,7 @@ namespace Fanex.Affiliate.DataService.Importer
             var jObject = JObject.Parse(rawData);
             var status = Convert.ToString(jObject["status"]);
 
-            if (status == "success")
+            if (status == SuccessStatus)
             {
                 var resultInfo = QuartzParser.GetResultInfo(jObject);
                 for (var pageNumber = 2; pageNumber <= resultInfo.Pages; pageNumber++)
@@ -66,6 +73,31 @@ namespace Fanex.Affiliate.DataService.Importer
         public string ConvertToXml(QuartzSummary quartzSummary, QuartzParam param)
         {
             return "<ROOT>" + BuildRequestXml(param) + BuildResponseXml(quartzSummary) + "</ROOT>";
+        }
+
+        public void Import(string xmlData)
+        {
+            _thirdPartyProductRepository.ImportData(Products.EbetProductId, xmlData);
+        }
+
+        public async Task Import(QuartzParam param)
+        {
+            var resultDataList = await GetRawDataList(param);
+
+            foreach (var dataItem in resultDataList)
+            {
+                var jObject = JObject.Parse(dataItem.JsonData);
+                var status = Convert.ToString(jObject["status"]);
+                if (status != SuccessStatus)
+                {
+                    throw new ThirdPartyProductException($"Error: Quartz - ProductId: {Products.QuartzProductId}\n{dataItem.JsonData}");
+                }
+
+                var summary = QuartzParser.FromJsonObject(jObject);
+
+                var xml = ConvertToXml(summary, dataItem.Param);
+                Import(xml);
+            }
         }
 
         private string BuildBodyParam(QuartzParam param)
