@@ -1,0 +1,77 @@
+﻿{
+  "status": "success",
+  "datetime": "2016-07-01 14:21:00",
+  "pages": 1,
+  "currentpage": 1,
+  "total": 3652,
+  "report": [
+    {
+      "playerid": "player01",
+      "operator": "operatorName",
+      "currency": "CNY",
+      "sessions": [
+        {
+          "sessionid": "session1",
+          "gameid": 1001,
+          "rounds": [
+            {
+              "roundid": "1",
+              "status": "INACTIVE",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1",
+                  "time": "2016-07-01 22:12:01",
+                  "amount": 500,
+                  "jpc": 0.1,
+                  "balance": 1000
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "2",
+                  "time": "2016-07-01 22:12:02",
+                  "amount": 60000,
+                  "jpw": 60000,
+                  "jpw_from_jpc": 120,
+                  "balance": 61000
+                }
+              ]
+            },
+            {
+              "roundid": "2",
+              "status": "INACTIVE",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "4",
+                  "time": "2016-07-01 22:13:01",
+                  "amount": 500,
+                  "jpc": 0.1,
+                  "balance": 60500
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "5",
+                  "time": "2016-07-01 22:13:03",
+                  "amount": 0,
+                  "jpw": 0,
+                  "jpw_from_jpc": 0,
+                  "balance": 60500
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "6",
+                  "time": "2016-07-01 22:13:04",
+                  "amount": 200,
+                  "jpw": 0,
+                  "jpw_from_jpc": 0,
+                  "balance": 60700
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

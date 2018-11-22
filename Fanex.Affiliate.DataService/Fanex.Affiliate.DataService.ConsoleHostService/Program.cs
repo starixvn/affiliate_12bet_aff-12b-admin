@@ -24,7 +24,7 @@ namespace Fanex.Affiliate.DataService.ConsoleHostService
             //var xDocument = XDocument.Parse(fakeData);
             //Console.Write(xDocument.Root);
 
-            var dataSimulator = new EbetDataSimulator();
+            var dataSimulator = new DataSimulator();
             var filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"App_Data\\QuartzData\\QuartzData.json");
 
             var jsonData = dataSimulator.GetLocalData(filePath).Result;

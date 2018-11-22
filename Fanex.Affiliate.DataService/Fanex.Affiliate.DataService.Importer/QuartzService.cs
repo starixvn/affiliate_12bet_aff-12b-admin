@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
@@ -32,7 +33,7 @@ namespace Fanex.Affiliate.DataService.Importer
         {
             var result = new List<QuartzApiParamResultPair>();
             var taskList = new List<Task<QuartzApiParamResultPair>>();
-            var rawData = await GetRawDataAsync(param);
+            var rawData = _appSetting.IsLocalTest ? await GetFakeData() : await GetRawDataAsync(param);
             result.Add(new QuartzApiParamResultPair { Param = param, JsonData = rawData });
 
             var jObject = JObject.Parse(rawData);
@@ -174,6 +175,13 @@ namespace Fanex.Affiliate.DataService.Importer
             }
 
             return builder.ToString();
+        }
+
+        private async Task<string> GetFakeData()
+        {
+            var simulator = new DataSimulator();
+
+            return await simulator.GetLocalData(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"App_Data\\QuartzData\\QuartzData.json"));
         }
     }
 }

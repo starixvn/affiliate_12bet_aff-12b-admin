@@ -42,11 +42,19 @@ namespace Fanex.Affiliate.DataService.WinFormApp
             this.Hide();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnCrystal_Click(object sender, EventArgs e)
         {
             var crystalForm = new CrystalForm();
             crystalForm.FormClosing += FormClosingHandler;
             crystalForm.Show();
+            this.Hide();
+        }
+
+        private void btnQuartz_Click(object sender, EventArgs e)
+        {
+            var quartzForm = new QuartzForm();
+            quartzForm.FormClosing += FormClosingHandler;
+            quartzForm.Show();
             this.Hide();
         }
     }

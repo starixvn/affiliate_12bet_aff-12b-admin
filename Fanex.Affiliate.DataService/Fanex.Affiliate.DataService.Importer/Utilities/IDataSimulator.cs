@@ -2,7 +2,7 @@
 
 namespace Fanex.Affiliate.DataService.Importer.Utilities
 {
-    public interface IEbetDataSimulator
+    public interface IDataSimulator
     {
        string GetLocalData(string filePath);
     }

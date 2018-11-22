@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace Fanex.Affiliate.DataService.Importer.Utilities
 {
-    public class EbetDataSimulator : IEbetDataSimulator
+    public class DataSimulator : IDataSimulator
     {
         private const int DefaultBufferSize = 4096;
 
