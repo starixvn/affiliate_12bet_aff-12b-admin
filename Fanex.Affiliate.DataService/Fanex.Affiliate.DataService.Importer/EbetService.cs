@@ -7,10 +7,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Fanex.Affiliate.DataService.Importer.Constants;
 using Fanex.Affiliate.DataService.Importer.DTO.Ebet;
+using Fanex.Affiliate.DataService.Importer.Exceptions;
 using Fanex.Affiliate.DataService.Importer.MetaModels.Ebet;
 using Fanex.Affiliate.DataService.Importer.Repository;
 using Fanex.Affiliate.DataService.Importer.Utilities;
-using Fanex.Logging;
 using Newtonsoft.Json;
 
 namespace Fanex.Affiliate.DataService.Importer
@@ -110,7 +110,7 @@ namespace Fanex.Affiliate.DataService.Importer
                 var ebetSummary = EbetParser.FromJson(dataItem.JsonData);
                 if (ebetSummary.ResultInfo.Status != 200)
                 {
-                    LogService.Error($"Error: Ebet - ProductId: {Products.EbetProductId}\n{dataItem.JsonData}\nParam:{JsonConvert.SerializeObject(param)}");
+                    throw new ThirdPartyProductException($"Error: Ebet - ProductId: {Products.EbetProductId}\n{dataItem.JsonData}\nParam:{JsonConvert.SerializeObject(param)}");
                 }
 
                 var xml = ConvertToXml(ebetSummary, dataItem.Param);
