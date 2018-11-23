@@ -108,6 +108,8 @@
     <Compile Include="Modules\CrystalScheduler.cs" />
     <Compile Include="Modules\EbetJob.cs" />
     <Compile Include="Modules\EbetScheduler.cs" />
+    <Compile Include="Modules\ISoftbetJob.cs" />
+    <Compile Include="Modules\ISoftbetScheduler.cs" />
     <Compile Include="Modules\PlaytechCasinoJob.cs" />
     <Compile Include="Modules\PlaytechCasinoScheduler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
