@@ -181,6 +181,12 @@
     <Content Include="App_Data\QuartzData\QuartzData.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="App_Data\IsoftbetData\isoftbet_1.json" />
+    <None Include="App_Data\IsoftbetData\isoftbet_2.json" />
+    <None Include="App_Data\IsoftbetData\isoftbet_3.json" />
+    <None Include="App_Data\IsoftbetData\isoftbet_4.json" />
+    <None Include="App_Data\IsoftbetData\isoftbet_5.json" />
+    <None Include="App_Data\IsoftbetData\isoftbet_6.json" />
     <None Include="Fanex.Affiliate.DataService.WinFormApp.exe.PRO.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

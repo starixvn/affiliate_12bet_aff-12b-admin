@@ -79,7 +79,7 @@ namespace Fanex.Affiliate.DataService.Importer
             var result = new List<QuartzApiParamResultPair>();
             var taskList = new List<Task<IEnumerable<QuartzApiParamResultPair>>>();
 
-            for (var requestTime = param.StartTime; DateTime.Compare(requestTime, param.EndTime) <= 0; requestTime = requestTime.AddMinutes(1))
+            for (var requestTime = param.StartTime; DateTime.Compare(requestTime, param.EndTime) < 0; requestTime = requestTime.AddMinutes(1))
             {
                 var apiParam = new QuartzApiParam
                 {
