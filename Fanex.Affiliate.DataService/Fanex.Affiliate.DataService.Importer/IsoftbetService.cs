@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
@@ -40,6 +41,15 @@ namespace Fanex.Affiliate.DataService.Importer
                 EndTime = endTime.ToUniversalTime(),
                 PageNumber = param.PageNumber
             };
+
+            if (_appSetting.IsLocalTest)
+            {
+                return (await GetFakeData()).Select(x => new ISoftbetApiParamResultPair
+                {
+                    JsonData = x,
+                    Param = new ISoftbetApiParam { PageNumber = paramByTimeZone.PageNumber, RequestTime = paramByTimeZone.StartTime }
+                });
+            }
 
             return await GetRawDataByBatch(paramByTimeZone);
         }
@@ -103,7 +113,8 @@ namespace Fanex.Affiliate.DataService.Importer
         {
             var result = new List<ISoftbetApiParamResultPair>();
             var taskList = new List<Task<ISoftbetApiParamResultPair>>();
-            var rawData = _appSetting.IsLocalTest ? await GetFakeData() : await GetRawDataAsync(apiParam);
+
+            var rawData = await GetRawDataAsync(apiParam);
             result.Add(new ISoftbetApiParamResultPair { Param = apiParam, JsonData = rawData });
 
             var jObject = JObject.Parse(rawData);
@@ -112,17 +123,20 @@ namespace Fanex.Affiliate.DataService.Importer
             if (status == SuccessStatus)
             {
                 var resultInfo = ISoftbetParser.GetResultInfo(jObject);
-                for (var pageNumber = 2; pageNumber <= resultInfo.Pages; pageNumber++)
+                if (resultInfo.Pages > 1)
                 {
-                    var paramByPaging = new ISoftbetApiParam { RequestTime = apiParam.RequestTime, PageNumber = pageNumber };
-                    taskList.Add(Task.Run(async () => new ISoftbetApiParamResultPair
+                    for (var pageNumber = 2; pageNumber <= resultInfo.Pages; pageNumber++)
                     {
-                        Param = paramByPaging,
-                        JsonData = await GetRawDataAsync(paramByPaging)
-                    }));
-                }
+                        var paramByPaging = new ISoftbetApiParam { RequestTime = apiParam.RequestTime, PageNumber = pageNumber };
+                        taskList.Add(Task.Run(async () => new ISoftbetApiParamResultPair
+                        {
+                            Param = paramByPaging,
+                            JsonData = await GetRawDataAsync(paramByPaging)
+                        }));
+                    }
 
-                result.AddRange(await Task.WhenAll(taskList));
+                    result.AddRange(await Task.WhenAll(taskList));
+                }
             }
 
             return result;
@@ -217,11 +231,17 @@ namespace Fanex.Affiliate.DataService.Importer
             return builder.ToString();
         }
 
-        private async Task<string> GetFakeData()
+        private async Task<IEnumerable<string>> GetFakeData()
         {
+            var taskList = new List<Task<string>>();
             var simulator = new DataSimulator();
+            for (var i = 1; i <= 6; i++)
+            {
+                var filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"App_Data\\ISoftbetData\\isoftbet_{i}.json");
+                taskList.Add(simulator.GetLocalData(filePath));
+            }
 
-            return await simulator.GetLocalData(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"App_Data\\ISoftbetData\\isoftbet_1.json"));
+            return await Task.WhenAll(taskList);
         }
     }
 }
