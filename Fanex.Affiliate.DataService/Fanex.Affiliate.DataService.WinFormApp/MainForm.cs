@@ -52,7 +52,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp
 
         private void btnQuartz_Click(object sender, EventArgs e)
         {
-            var quartzForm = new QuartzForm();
+            var quartzForm = new ISoftbetForm();
             quartzForm.FormClosing += FormClosingHandler;
             quartzForm.Show();
             this.Hide();

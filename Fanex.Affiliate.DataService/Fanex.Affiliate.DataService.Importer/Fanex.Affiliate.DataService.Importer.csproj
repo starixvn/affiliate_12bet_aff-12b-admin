@@ -94,10 +94,10 @@
     <Compile Include="DTO\Ebet\EbetHistory.cs" />
     <Compile Include="DTO\Ebet\EbetResultInfo.cs" />
     <Compile Include="DTO\Ebet\EbetSummary.cs" />
-    <Compile Include="DTO\Quartz\QuartzApiParamResultPair.cs" />
-    <Compile Include="DTO\Quartz\QuartzBetHistory.cs" />
-    <Compile Include="DTO\Quartz\QuartzResultInfo.cs" />
-    <Compile Include="DTO\Quartz\QuartzSummary.cs" />
+    <Compile Include="DTO\ISoftbet\ISoftbetApiParamResultPair.cs" />
+    <Compile Include="DTO\ISoftbet\ISoftbetBetHistory.cs" />
+    <Compile Include="DTO\ISoftbet\ISoftbetResultInfo.cs" />
+    <Compile Include="DTO\ISoftbet\ISoftbetSummary.cs" />
     <Compile Include="DTO\ResultInfo.cs" />
     <Compile Include="EbetService.cs" />
     <Compile Include="Enum\SystemType.cs" />
@@ -106,13 +106,13 @@
     <Compile Include="ICrystalService.cs" />
     <Compile Include="IDataImportingRunner.cs" />
     <Compile Include="IEbetService.cs" />
-    <Compile Include="IQuartzService.cs" />
+    <Compile Include="IISoftbetService.cs" />
     <Compile Include="MetaModels\Betsoft\BetsoftParam.cs" />
     <Compile Include="MetaModels\Crystal\CrystalParam.cs" />
     <Compile Include="MetaModels\Ebet\EbetParam.cs" />
-    <Compile Include="MetaModels\Quartz\QuartzApiParam.cs" />
-    <Compile Include="MetaModels\Quartz\QuartzEntryParam.cs" />
-    <Compile Include="QuartzService.cs" />
+    <Compile Include="MetaModels\ISoftbet\ISoftbetApiParam.cs" />
+    <Compile Include="MetaModels\ISoftbet\ISoftbetEntryParam.cs" />
+    <Compile Include="ISoftbetService.cs" />
     <Compile Include="Repository\BaseRepository.cs" />
     <Compile Include="Repository\IThirdPartyProductRepository.cs" />
     <Compile Include="Repository\ThirdPartyProductRepository.cs" />
@@ -128,7 +128,7 @@
     <Compile Include="Utilities\IEbetConfigHelper.cs" />
     <Compile Include="Utilities\EbetParser.cs" />
     <Compile Include="Utilities\IDataSimulator.cs" />
-    <Compile Include="Utilities\QuartzParser.cs" />
+    <Compile Include="Utilities\ISoftbetParser.cs" />
     <Compile Include="Utilities\RsaHelper.cs" />
   </ItemGroup>
   <ItemGroup>

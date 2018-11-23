@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Fanex.Affiliate.DataService.Importer.MetaModels.Quartz
+namespace Fanex.Affiliate.DataService.Importer.MetaModels.ISoftbet
 {
-    public class QuartzApiParam
+    public class ISoftbetApiParam
     {
         public DateTime RequestTime { get; set; }
 

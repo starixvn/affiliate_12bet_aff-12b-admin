@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using Fanex.Affiliate.DataService.Importer.DTO.Quartz;
+using Fanex.Affiliate.DataService.Importer.DTO.ISoftbet;
 using Newtonsoft.Json.Linq;
 
 namespace Fanex.Affiliate.DataService.Importer.Utilities
 {
-    public static class QuartzParser
+    public static class ISoftbetParser
     {
-        public static QuartzResultInfo GetResultInfo(string jsonData)
+        public static ISoftbetResultInfo GetResultInfo(string jsonData)
         {
             var jsonObject = JObject.Parse(jsonData);
 
@@ -23,9 +23,9 @@ namespace Fanex.Affiliate.DataService.Importer.Utilities
             return Convert.ToString(jsonObject["status"]);
         }
 
-        public static QuartzResultInfo GetResultInfo(JObject jsonObject)
+        public static ISoftbetResultInfo GetResultInfo(JObject jsonObject)
         {
-            return new QuartzResultInfo
+            return new ISoftbetResultInfo
             {
                 DateTime = DateTime.ParseExact(Convert.ToString(jsonObject["datetime"]), "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture),
                 Pages = Convert.ToInt32(jsonObject["pages"]),
@@ -34,18 +34,18 @@ namespace Fanex.Affiliate.DataService.Importer.Utilities
             };
         }
 
-        public static QuartzSummary FromJsonObject(JObject jsonObject)
+        public static ISoftbetSummary FromJsonObject(JObject jsonObject)
         {
-            return new QuartzSummary
+            return new ISoftbetSummary
             {
                 ResultInfo = GetResultInfo(jsonObject),
                 BetHistoryList = GetHistoryList(jsonObject)
             };
         }
 
-        public static IEnumerable<QuartzBetHistory> GetHistoryList(JObject jsonObject)
+        public static IEnumerable<ISoftbetBetHistory> GetHistoryList(JObject jsonObject)
         {
-            var result = new List<QuartzBetHistory>();
+            var result = new List<ISoftbetBetHistory>();
 
             var reportList = jsonObject["report"];
 
@@ -65,7 +65,7 @@ namespace Fanex.Affiliate.DataService.Importer.Utilities
                         {
                             var roundId = r.Value<string>("roundid");
 
-                            result.AddRange(r["transactions"].Children().Select(t => new QuartzBetHistory
+                            result.AddRange(r["transactions"].Children().Select(t => new ISoftbetBetHistory
                             {
                                 PlayerId = playerId,
                                 Currency = currency,

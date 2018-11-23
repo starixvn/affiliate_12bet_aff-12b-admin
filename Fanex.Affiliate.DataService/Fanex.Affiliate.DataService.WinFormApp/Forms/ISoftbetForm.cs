@@ -7,25 +7,25 @@ using System.Windows.Forms;
 using Fanex.Affiliate.DataService.Importer;
 using Fanex.Affiliate.DataService.Importer.Constants;
 using Fanex.Affiliate.DataService.Importer.Exceptions;
-using Fanex.Affiliate.DataService.Importer.MetaModels.Quartz;
+using Fanex.Affiliate.DataService.Importer.MetaModels.ISoftbet;
 using Fanex.Affiliate.DataService.Importer.Utilities;
 using Newtonsoft.Json.Linq;
 
 namespace Fanex.Affiliate.DataService.WinFormApp.Forms
 {
-    public partial class QuartzForm : Form
+    public partial class ISoftbetForm : Form
     {
-        private readonly IQuartzService _quartzService;
+        private readonly IISoftbetService _isoftbetService;
         private readonly StringBuilder _logBuilder;
 
         private readonly SynchronizationContext synchronizationContext;
 
         private readonly List<string> _convertedDataList;
 
-        public QuartzForm()
+        public ISoftbetForm()
         {
             InitializeComponent();
-            _quartzService = new QuartzService();
+            _isoftbetService = new ISoftbetService();
             synchronizationContext = SynchronizationContext.Current;
             _convertedDataList = new List<string>();
             _logBuilder = new StringBuilder();
@@ -38,7 +38,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
             ResetResult();
             richTextLog.Text = "Getting data...";
 
-            var param = new QuartzEntryParam
+            var param = new ISoftbetEntryParam
             {
                 StartTime = startTimePicker.Value,
                 EndTime = endTimePicker.Value,
@@ -50,7 +50,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
                 btnGetRawData.Enabled = false;
                 btnImport.Enabled = false;
 
-                var rawDataList = await _quartzService.GetRawDataList(param);
+                var rawDataList = await _isoftbetService.GetRawDataList(param);
                 if (rawDataList.Any())
                 {
                     foreach (var item in rawDataList)
@@ -63,11 +63,11 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
                         var status = Convert.ToString(jObject["status"]);
                         if (status != "success")
                         {
-                            throw new ThirdPartyProductException($"Error: Quartz - ProductId: {Products.QuartzProductId}\n{item.JsonData}");
+                            throw new ThirdPartyProductException($"Error: ISoftbet - ProductId: {Products.ISoftbetProductId}\n{item.JsonData}");
                         }
 
-                        var summary = QuartzParser.FromJsonObject(jObject);
-                        var xml = _quartzService.ConvertToXml(summary, item.Param);
+                        var summary = ISoftbetParser.FromJsonObject(jObject);
+                        var xml = _isoftbetService.ConvertToXml(summary, item.Param);
 
                         convertedDataBuilder.AppendLine(xml);
                         convertedDataBuilder.AppendLine();

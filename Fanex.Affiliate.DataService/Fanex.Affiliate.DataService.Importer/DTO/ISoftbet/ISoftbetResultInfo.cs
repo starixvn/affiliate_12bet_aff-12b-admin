@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Fanex.Affiliate.DataService.Importer.DTO.Quartz
+namespace Fanex.Affiliate.DataService.Importer.DTO.ISoftbet
 {
-    public class QuartzResultInfo
+    public class ISoftbetResultInfo
     {
         public DateTime DateTime { get; set; }
 

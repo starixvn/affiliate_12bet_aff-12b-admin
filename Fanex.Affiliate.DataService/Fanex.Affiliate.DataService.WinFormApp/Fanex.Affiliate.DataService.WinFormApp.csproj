@@ -107,11 +107,11 @@
     <Compile Include="Forms\EbetForm.Designer.cs">
       <DependentUpon>EbetForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\QuartzForm.cs">
+    <Compile Include="Forms\ISoftbetForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\QuartzForm.Designer.cs">
-      <DependentUpon>QuartzForm.cs</DependentUpon>
+    <Compile Include="Forms\ISoftbetForm.Designer.cs">
+      <DependentUpon>ISoftbetForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -133,8 +133,8 @@
     <EmbeddedResource Include="Forms\EbetForm.resx">
       <DependentUpon>EbetForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\QuartzForm.resx">
-      <DependentUpon>QuartzForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\ISoftbetForm.resx">
+      <DependentUpon>ISoftbetForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -178,15 +178,24 @@
     <Content Include="App_Data\EbetData\ebet_61.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="App_Data\QuartzData\QuartzData.json">
+    <Content Include="App_Data\ISoftbetData\isoftbet_1.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="App_Data\IsoftbetData\isoftbet_1.json" />
-    <None Include="App_Data\IsoftbetData\isoftbet_2.json" />
-    <None Include="App_Data\IsoftbetData\isoftbet_3.json" />
-    <None Include="App_Data\IsoftbetData\isoftbet_4.json" />
-    <None Include="App_Data\IsoftbetData\isoftbet_5.json" />
-    <None Include="App_Data\IsoftbetData\isoftbet_6.json" />
+    <Content Include="App_Data\ISoftbetData\isoftbet_2.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\ISoftbetData\isoftbet_3.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\ISoftbetData\isoftbet_4.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\ISoftbetData\isoftbet_5.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\ISoftbetData\isoftbet_6.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Fanex.Affiliate.DataService.WinFormApp.exe.PRO.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

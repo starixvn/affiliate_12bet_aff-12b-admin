@@ -8,6 +8,6 @@
 
         public const int CrystalProductId = 12;
 
-        public const int QuartzProductId = 13;
+        public const int ISoftbetProductId = 13;
     }
 }

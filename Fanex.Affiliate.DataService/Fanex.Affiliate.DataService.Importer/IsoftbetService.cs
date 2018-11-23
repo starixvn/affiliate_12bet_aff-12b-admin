@@ -6,16 +6,16 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Fanex.Affiliate.DataService.Importer.Constants;
-using Fanex.Affiliate.DataService.Importer.DTO.Quartz;
+using Fanex.Affiliate.DataService.Importer.DTO.ISoftbet;
 using Fanex.Affiliate.DataService.Importer.Exceptions;
-using Fanex.Affiliate.DataService.Importer.MetaModels.Quartz;
+using Fanex.Affiliate.DataService.Importer.MetaModels.ISoftbet;
 using Fanex.Affiliate.DataService.Importer.Repository;
 using Fanex.Affiliate.DataService.Importer.Utilities;
 using Newtonsoft.Json.Linq;
 
 namespace Fanex.Affiliate.DataService.Importer
 {
-    public class QuartzService : IQuartzService
+    public class ISoftbetService : IISoftbetService
     {
         private const string SuccessStatus = "success";
 
@@ -23,18 +23,18 @@ namespace Fanex.Affiliate.DataService.Importer
 
         private readonly IThirdPartyProductRepository _thirdPartyProductRepository;
 
-        public QuartzService(IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProductRepository = null)
+        public ISoftbetService(IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProductRepository = null)
         {
             _appSetting = appSetting ?? new AppSettings();
             _thirdPartyProductRepository = thirdPartyProductRepository ?? new ThirdPartyProductRepository();
         }
 
-        public async Task<IEnumerable<QuartzApiParamResultPair>> GetRawDataList(QuartzEntryParam param)
+        public async Task<IEnumerable<ISoftbetApiParamResultPair>> GetRawDataList(ISoftbetEntryParam param)
         {
             var startTime = new DateTime(param.StartTime.Year, param.StartTime.Month, param.StartTime.Day, param.StartTime.Hour, param.StartTime.Minute, 0);
             var endTime = new DateTime(param.EndTime.Year, param.EndTime.Month, param.EndTime.Day, param.EndTime.Hour, param.EndTime.Minute, 0);
 
-            var paramByTimeZone = new QuartzEntryParam
+            var paramByTimeZone = new ISoftbetEntryParam
             {
                 StartTime = startTime.ToUniversalTime(),
                 EndTime = endTime.ToUniversalTime(),
@@ -44,9 +44,9 @@ namespace Fanex.Affiliate.DataService.Importer
             return await GetRawDataByBatch(paramByTimeZone);
         }
 
-        public string ConvertToXml(QuartzSummary quartzSummary, QuartzApiParam param)
+        public string ConvertToXml(ISoftbetSummary ISoftbetSummary, ISoftbetApiParam param)
         {
-            return "<ROOT>" + BuildRequestXml(param) + BuildResponseXml(quartzSummary) + "</ROOT>";
+            return "<ROOT>" + BuildRequestXml(param) + BuildResponseXml(ISoftbetSummary) + "</ROOT>";
         }
 
         public void Import(string xmlData)
@@ -54,7 +54,7 @@ namespace Fanex.Affiliate.DataService.Importer
             _thirdPartyProductRepository.ImportData(Products.EbetProductId, xmlData);
         }
 
-        public async Task Import(QuartzEntryParam param)
+        public async Task Import(ISoftbetEntryParam param)
         {
             var resultDataList = await GetRawDataList(param);
 
@@ -64,24 +64,24 @@ namespace Fanex.Affiliate.DataService.Importer
                 var status = Convert.ToString(jObject["status"]);
                 if (status != SuccessStatus)
                 {
-                    throw new ThirdPartyProductException($"Error: Quartz - ProductId: {Products.QuartzProductId}\n{dataItem.JsonData}");
+                    throw new ThirdPartyProductException($"Error: ISoftbet - ProductId: {Products.ISoftbetProductId}\n{dataItem.JsonData}");
                 }
 
-                var summary = QuartzParser.FromJsonObject(jObject);
+                var summary = ISoftbetParser.FromJsonObject(jObject);
 
                 var xml = ConvertToXml(summary, dataItem.Param);
                 Import(xml);
             }
         }
 
-        private async Task<IEnumerable<QuartzApiParamResultPair>> GetRawDataByBatch(QuartzEntryParam param)
+        private async Task<IEnumerable<ISoftbetApiParamResultPair>> GetRawDataByBatch(ISoftbetEntryParam param)
         {
-            var result = new List<QuartzApiParamResultPair>();
-            var taskList = new List<Task<IEnumerable<QuartzApiParamResultPair>>>();
+            var result = new List<ISoftbetApiParamResultPair>();
+            var taskList = new List<Task<IEnumerable<ISoftbetApiParamResultPair>>>();
 
             for (var requestTime = param.StartTime; DateTime.Compare(requestTime, param.EndTime) < 0; requestTime = requestTime.AddMinutes(1))
             {
-                var apiParam = new QuartzApiParam
+                var apiParam = new ISoftbetApiParam
                 {
                     RequestTime = requestTime,
                     PageNumber = param.PageNumber
@@ -99,23 +99,23 @@ namespace Fanex.Affiliate.DataService.Importer
             return result;
         }
 
-        private async Task<IEnumerable<QuartzApiParamResultPair>> GetRawDataByPaging(QuartzApiParam apiParam)
+        private async Task<IEnumerable<ISoftbetApiParamResultPair>> GetRawDataByPaging(ISoftbetApiParam apiParam)
         {
-            var result = new List<QuartzApiParamResultPair>();
-            var taskList = new List<Task<QuartzApiParamResultPair>>();
+            var result = new List<ISoftbetApiParamResultPair>();
+            var taskList = new List<Task<ISoftbetApiParamResultPair>>();
             var rawData = _appSetting.IsLocalTest ? await GetFakeData() : await GetRawDataAsync(apiParam);
-            result.Add(new QuartzApiParamResultPair { Param = apiParam, JsonData = rawData });
+            result.Add(new ISoftbetApiParamResultPair { Param = apiParam, JsonData = rawData });
 
             var jObject = JObject.Parse(rawData);
             var status = Convert.ToString(jObject["status"]);
 
             if (status == SuccessStatus)
             {
-                var resultInfo = QuartzParser.GetResultInfo(jObject);
+                var resultInfo = ISoftbetParser.GetResultInfo(jObject);
                 for (var pageNumber = 2; pageNumber <= resultInfo.Pages; pageNumber++)
                 {
-                    var paramByPaging = new QuartzApiParam { RequestTime = apiParam.RequestTime, PageNumber = pageNumber };
-                    taskList.Add(Task.Run(async () => new QuartzApiParamResultPair
+                    var paramByPaging = new ISoftbetApiParam { RequestTime = apiParam.RequestTime, PageNumber = pageNumber };
+                    taskList.Add(Task.Run(async () => new ISoftbetApiParamResultPair
                     {
                         Param = paramByPaging,
                         JsonData = await GetRawDataAsync(paramByPaging)
@@ -128,10 +128,10 @@ namespace Fanex.Affiliate.DataService.Importer
             return result;
         }
 
-        private async Task<string> GetRawDataAsync(QuartzApiParam param)
+        private async Task<string> GetRawDataAsync(ISoftbetApiParam param)
         {
             var jsonBody = BuildBodyParam(param);
-            var url = $"{_appSetting.GetValue("QuartzApiUrl")}?hash={HashMessage(jsonBody)}";
+            var url = $"{_appSetting.GetValue("ISoftbetApiUrl")}?hash={HashMessage(jsonBody)}";
 
             using (var client = new WebClient())
             {
@@ -141,12 +141,12 @@ namespace Fanex.Affiliate.DataService.Importer
             }
         }
 
-        private string BuildBodyParam(QuartzApiParam param)
+        private string BuildBodyParam(ISoftbetApiParam param)
         {
             var jAction = new JObject(
                 new JProperty("command", "wagersFeed"),
                 new JProperty("parameters", new JObject(
-                        new JProperty("datetime", param.RequestTime.ToString(_appSetting.GetValue("QuartzFormatDateTime"))),
+                        new JProperty("datetime", param.RequestTime.ToString(_appSetting.GetValue("ISoftbetFormatDateTime"))),
                         new JProperty("page", param.PageNumber)
                     ))
                 );
@@ -157,20 +157,20 @@ namespace Fanex.Affiliate.DataService.Importer
                 ).ToString();
         }
 
-        private static string BuildRequestXml(QuartzApiParam param)
+        private static string BuildRequestXml(ISoftbetApiParam param)
         {
             return "<REQUEST>" + $"<PARAM DATETIME=\"" + param.RequestTime + "\" PAGE =\"" + param.PageNumber + "\" />" + "</REQUEST>";
         }
 
-        private static string BuildResponseXml(QuartzSummary quartzSummary)
+        private static string BuildResponseXml(ISoftbetSummary ISoftbetSummary)
         {
             var builder = new StringBuilder();
-            var resultInfo = quartzSummary.ResultInfo;
+            var resultInfo = ISoftbetSummary.ResultInfo;
             builder.AppendLine("<RESPONSE>");
             builder.AppendLine($"<RESULT DATETIME=\"{resultInfo.DateTime}\" PAGES=\"{resultInfo.Pages}\" CURRENTPAGE=\"{resultInfo.CurrentPage}\" TOTAL=\"{resultInfo.Total}\" />");
 
             builder.AppendLine("<BETHISTORYLIST>");
-            foreach (var item in quartzSummary.BetHistoryList)
+            foreach (var item in ISoftbetSummary.BetHistoryList)
             {
                 var convertedTime = DateTimeConverter.ToGMT(item.Time, TimeZoneId.GmtMinus4);
                 var attributes = "PLAYERID=\"" + item.PlayerId + "\" " +
@@ -194,7 +194,7 @@ namespace Fanex.Affiliate.DataService.Importer
 
         private string HashMessage(string message)
         {
-            var secretKey = _appSetting.GetValue("QuartzSecretKey");
+            var secretKey = _appSetting.GetValue("ISoftbetSecretKey");
 
             var encoding = new ASCIIEncoding();
             var keyByte = encoding.GetBytes(secretKey);
@@ -221,7 +221,7 @@ namespace Fanex.Affiliate.DataService.Importer
         {
             var simulator = new DataSimulator();
 
-            return await simulator.GetLocalData(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"App_Data\\QuartzData\\QuartzData.json"));
+            return await simulator.GetLocalData(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"App_Data\\ISoftbetData\\isoftbet_1.json"));
         }
     }
 }

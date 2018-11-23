@@ -1,6 +1,6 @@
 ﻿namespace Fanex.Affiliate.DataService.WinFormApp.Forms
 {
-    partial class QuartzForm
+    partial class ISoftbetForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.endTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
             this.txtPageNumber = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.btnImport = new System.Windows.Forms.Button();
@@ -42,8 +44,6 @@
             this.richTextRawData = new System.Windows.Forms.RichTextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.richTextConvertedData = new System.Windows.Forms.RichTextBox();
-            this.endTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -71,6 +71,24 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Input Param";
+            // 
+            // endTimePicker
+            // 
+            this.endTimePicker.CustomFormat = "yyyy/MM/dd HH:mm:00";
+            this.endTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.endTimePicker.Location = new System.Drawing.Point(375, 28);
+            this.endTimePicker.Name = "endTimePicker";
+            this.endTimePicker.Size = new System.Drawing.Size(200, 20);
+            this.endTimePicker.TabIndex = 16;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(304, 34);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(55, 13);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "End Time:";
             // 
             // txtPageNumber
             // 
@@ -205,25 +223,7 @@
             this.richTextConvertedData.TabIndex = 0;
             this.richTextConvertedData.Text = "";
             // 
-            // endTimePicker
-            // 
-            this.endTimePicker.CustomFormat = "yyyy/MM/dd HH:mm:00";
-            this.endTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endTimePicker.Location = new System.Drawing.Point(375, 28);
-            this.endTimePicker.Name = "endTimePicker";
-            this.endTimePicker.Size = new System.Drawing.Size(200, 20);
-            this.endTimePicker.TabIndex = 16;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(304, 34);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 13);
-            this.label1.TabIndex = 15;
-            this.label1.Text = "End Time:";
-            // 
-            // QuartzForm
+            // ISoftbetForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -231,8 +231,8 @@
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox1);
-            this.Name = "QuartzForm";
-            this.Text = "QuartzForm";
+            this.Name = "ISoftbetForm";
+            this.Text = "ISoftbetForm";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox5.ResumeLayout(false);
