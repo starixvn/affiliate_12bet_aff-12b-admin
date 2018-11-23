@@ -2043,4 +2043,34 @@ Cập Nhật Mới Nhất</value>
   <data name="MobileDevice" xml:space="preserve">
     <value>Di động</value>
   </data>
+  <data name="PopupClickHere" xml:space="preserve">
+    <value>đây</value>
+  </data>
+  <data name="PopupDear" xml:space="preserve">
+    <value>Đại lý thân mến,</value>
+  </data>
+  <data name="PopupDuringThisIntegrationPeriod" xml:space="preserve">
+    <value>Trong thời gian này, Quý Đại lý vui lòng thông cảm khi những số liệu hiển thị trên hệ thống chưa chuẩn xác. Bộ phận hỗ trợ Đại lý sẽ cập nhật mức hoa hồng trước ngày thanh toán mỗi tháng cho Đại lý. </value>
+  </data>
+  <data name="PopupExcitingNews" xml:space="preserve">
+    <value>TIN HOT ! HOA HỒNG ĐẠI LÝ NHIỀU HƠN MỖI THÁNG!</value>
+  </data>
+  <data name="PopupIfYouShould" xml:space="preserve">
+    <value>Nếu có thắc mắc nào cần giải đáp, Quý Đại Lý vui lòng liên hệ với bộ phận chăm sóc Đại Lý của chúng tôi tại</value>
+  </data>
+  <data name="PopupPleaseBeAdvised" xml:space="preserve">
+    <value>Hãy cập nhật số điện thoại đang sử dụng vào trang đại lý của bạn, chúng tôi sẽ liên hệ từ ngày 8-15 hàng tháng để thông tin về số tiền thực bạn có thể nhận thông qua bảng tính chuẩn của bộ phận xét duyệt hoa hồng đại lý. </value>
+  </data>
+  <data name="PopupThankYou" xml:space="preserve">
+    <value>Trân trọng,</value>
+  </data>
+  <data name="PopupWeAreCurrently" xml:space="preserve">
+    <value>Báo Cáo Hoa Hồng Đại Lý đang cược bảo trì và cập nhật thêm những sản phẩm mới để tối đa hóa tiền thưởng cho tất cả Đại lý.</value>
+  </data>
+  <data name="PopupWeHaveGoodNews" xml:space="preserve">
+    <value>12BET rất vui khi thông báo đến bạn những tin mới, tốt nhất!</value>
+  </data>
+  <data name="PopupYourAffiliateManager" xml:space="preserve">
+    <value>Bộ Phận Chăm Sóc Đại Lý 12BET</value>
+  </data>
 </root>

@@ -509,6 +509,7 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Error.zh-TW.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Lang.hi-IN.resx" />
     <EmbeddedResource Include="Resources\Lang.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Lang.Designer.cs</LastGenOutput>

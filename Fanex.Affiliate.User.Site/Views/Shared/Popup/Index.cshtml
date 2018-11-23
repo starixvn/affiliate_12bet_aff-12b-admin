@@ -1,0 +1,36 @@
+﻿
+@{
+    Layout = null;
+}
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#popup">
+    Open modal
+</button>
+
+<div class="modal fade popup" tabindex="-1" role="dialog" id="popup">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-main-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title">@Lang.PopupExcitingNews</h3>
+                </div>
+                <div class="modal-body">
+                    <p class="bold">@Lang.PopupDear</p>
+                    <br />
+                    <h6 class="text-indent">@Lang.PopupWeHaveGoodNews</h6>
+                    <p class="text-indent">@Lang.PopupWeAreCurrently</p>
+                    <p class="text-indent">@Lang.PopupDuringThisIntegrationPeriod</p>
+                    <br />
+                    <p class="text-indent">@Lang.PopupPleaseBeAdvised</p>
+                    <br />
+                    <p>@Lang.PopupIfYouShould <a href="@Url.Content("~/ContactUs")">click here.</a></p>
+                    <h6>@Lang.PopupHappyEarning</h6>
+                    <br />
+                    <pre>@Lang.PopupThankYou</pre>
+                    <p class="signature">@Lang.PopupYourAffiliateManager</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

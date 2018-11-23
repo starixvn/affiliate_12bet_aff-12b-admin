@@ -536,6 +536,10 @@
     <Content Include="www\build\styles\css\pages\payment-request.min.css">
       <DependentUpon>payment-request.css</DependentUpon>
     </Content>
+    <Content Include="www\build\styles\css\popup.css" />
+    <Content Include="www\build\styles\css\popup.min.css">
+      <DependentUpon>popup.css</DependentUpon>
+    </Content>
     <Content Include="www\build\styles\css\signup.css" />
     <Content Include="www\build\styles\css\signup.min.css">
       <DependentUpon>signup.css</DependentUpon>
@@ -1131,6 +1135,8 @@
     <Content Include="www\source\styles\Images\banner-main-right.webp" />
     <Content Include="www\build\styles\Images\banner-main-left.webp" />
     <Content Include="www\build\styles\Images\banner-main-right.webp" />
+    <Content Include="www\source\styles\scss\components\_popup.scss" />
+    <Content Include="Views\Shared\Popup\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

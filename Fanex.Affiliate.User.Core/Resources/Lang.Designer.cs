@@ -4058,6 +4058,106 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to click here..
+        /// </summary>
+        public static string PopupClickHere {
+            get {
+                return ResourceManager.GetString("PopupClickHere", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dear Affiliates.
+        /// </summary>
+        public static string PopupDear {
+            get {
+                return ResourceManager.GetString("PopupDear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to During this integration period, kindly disregard the data as displayed in our system as the data will need to be updated manually with the data from other products. We will perform all products manual calculations at the end of every month..
+        /// </summary>
+        public static string PopupDuringThisIntegrationPeriod {
+            get {
+                return ResourceManager.GetString("PopupDuringThisIntegrationPeriod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EXCITING NEWS!  HIGHER EARNINGS ARE WITHIN YOUR REACH!.
+        /// </summary>
+        public static string PopupExcitingNews {
+            get {
+                return ResourceManager.GetString("PopupExcitingNews", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Happy earning!.
+        /// </summary>
+        public static string PopupHappyEarning {
+            get {
+                return ResourceManager.GetString("PopupHappyEarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you should have any further queries or concerns please feel free to contact your affiliate’s team at.
+        /// </summary>
+        public static string PopupIfYouShould {
+            get {
+                return ResourceManager.GetString("PopupIfYouShould", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please be advised to update your latest valid phone number in the 12BET affiliate system immediately as every month our affiliate team will need to contact you from 8th - 15th of the month to inform you of your actual commissions earned after manual calculations. There may be delays in payouts if our affiliate team is unable to reach you..
+        /// </summary>
+        public static string PopupPleaseBeAdvised {
+            get {
+                return ResourceManager.GetString("PopupPleaseBeAdvised", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thank you
+        ///Best regards,.
+        /// </summary>
+        public static string PopupThankYou {
+            get {
+                return ResourceManager.GetString("PopupThankYou", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We are currently in the process of integrating more 12BET products into our affiliate system in order to provide you with higher commission earnings!.
+        /// </summary>
+        public static string PopupWeAreCurrently {
+            get {
+                return ResourceManager.GetString("PopupWeAreCurrently", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We have good news for you..
+        /// </summary>
+        public static string PopupWeHaveGoodNews {
+            get {
+                return ResourceManager.GetString("PopupWeHaveGoodNews", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your Affiliate Manager.
+        /// </summary>
+        public static string PopupYourAffiliateManager {
+            get {
+                return ResourceManager.GetString("PopupYourAffiliateManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Portugal .
         /// </summary>
         public static string Portugal {

@@ -2170,4 +2170,38 @@
     <value>Forgot Login Details?</value>
     <comment>87923</comment>
   </data>
+  <data name="PopupClickHere" xml:space="preserve">
+    <value>click here.</value>
+  </data>
+  <data name="PopupDear" xml:space="preserve">
+    <value>Dear Affiliates</value>
+  </data>
+  <data name="PopupDuringThisIntegrationPeriod" xml:space="preserve">
+    <value>During this integration period, kindly disregard the data as displayed in our system as the data will need to be updated manually with the data from other products. We will perform all products manual calculations at the end of every month.</value>
+  </data>
+  <data name="PopupExcitingNews" xml:space="preserve">
+    <value>EXCITING NEWS!  HIGHER EARNINGS ARE WITHIN YOUR REACH!</value>
+  </data>
+  <data name="PopupHappyEarning" xml:space="preserve">
+    <value>Happy earning!</value>
+  </data>
+  <data name="PopupIfYouShould" xml:space="preserve">
+    <value>If you should have any further queries or concerns please feel free to contact your affiliate’s team at</value>
+  </data>
+  <data name="PopupPleaseBeAdvised" xml:space="preserve">
+    <value>Please be advised to update your latest valid phone number in the 12BET affiliate system immediately as every month our affiliate team will need to contact you from 8th - 15th of the month to inform you of your actual commissions earned after manual calculations. There may be delays in payouts if our affiliate team is unable to reach you.</value>
+  </data>
+  <data name="PopupThankYou" xml:space="preserve">
+    <value>Thank you
+Best regards,</value>
+  </data>
+  <data name="PopupWeAreCurrently" xml:space="preserve">
+    <value>We are currently in the process of integrating more 12BET products into our affiliate system in order to provide you with higher commission earnings!</value>
+  </data>
+  <data name="PopupWeHaveGoodNews" xml:space="preserve">
+    <value>We have good news for you.</value>
+  </data>
+  <data name="PopupYourAffiliateManager" xml:space="preserve">
+    <value>Your Affiliate Manager</value>
+  </data>
 </root>

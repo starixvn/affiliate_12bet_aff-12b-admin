@@ -2032,4 +2032,34 @@
   <data name="MobileDevice" xml:space="preserve">
     <value>모바일</value>
   </data>
+  <data name="PopupClickHere" xml:space="preserve">
+    <value>여기를 클릭!</value>
+  </data>
+  <data name="PopupDear" xml:space="preserve">
+    <value>친애하는 제휴사 사장님께,</value>
+  </data>
+  <data name="PopupDuringThisIntegrationPeriod" xml:space="preserve">
+    <value>통합이 진행되는되는 동안은 매달 모든 제품의 데이터 취합하여 수동으로 커미션을 정산하게되므로 현재  제휴 페이지에 나와있는 데이터는 무시해도 됩니다.</value>
+  </data>
+  <data name="PopupExcitingNews" xml:space="preserve">
+    <value>한층 더 높아진 커미션 소식을 전해드립니다!</value>
+  </data>
+  <data name="PopupIfYouShould" xml:space="preserve">
+    <value>기타 문의사항이 있으시면  제휴팀으로 연락주시기 바랍니다.</value>
+  </data>
+  <data name="PopupPleaseBeAdvised" xml:space="preserve">
+    <value>매월 8일~15일까지 제휴 커미션 안내를 위해 제휴사장님께 연락을 드릴예정이오니 제휴페이지에 연락가능한 전화번호로 업데이트해주시기 바랍니다. 만약,  연락불가능한 전화번호 또는 기타사유로 인해 제휴팀의 연락을 못 받으시면 지급이 지연될 수 있습니다.</value>
+  </data>
+  <data name="PopupThankYou" xml:space="preserve">
+    <value>대단히 감사합니다.</value>
+  </data>
+  <data name="PopupWeAreCurrently" xml:space="preserve">
+    <value>현재 12BET은 더 높은 커미션을 지급하기위해 제휴 시스템을 통합하는 과정에 있습니다.</value>
+  </data>
+  <data name="PopupWeHaveGoodNews" xml:space="preserve">
+    <value>반가운 소식을 전해드립니다.</value>
+  </data>
+  <data name="PopupYourAffiliateManager" xml:space="preserve">
+    <value>12BET제휴 매니저 배상</value>
+  </data>
 </root>

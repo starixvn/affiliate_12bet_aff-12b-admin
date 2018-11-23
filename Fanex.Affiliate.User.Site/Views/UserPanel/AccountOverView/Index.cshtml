@@ -18,6 +18,10 @@
     <span class="text">@Lang.AccOverview</span>
 </div>
 
+<div class="popup">
+    @{ Html.RenderPartial("~/Views/Shared/Popup/Index.cshtml"); }
+</div>
+
 <div class="info-group">
     <div class="title">
         <span class="text">@(Lang.Statistic + " " + Lang.For) @selectedMonth.ToString("MMMM-yyyy")</span>
