@@ -2,7 +2,7 @@
 
 namespace Fanex.Affiliate.DataService.Importer.MetaModels.Quartz
 {
-    public class QuartzParam
+    public class QuartzApiParam
     {
         public DateTime RequestTime { get; set; }
 

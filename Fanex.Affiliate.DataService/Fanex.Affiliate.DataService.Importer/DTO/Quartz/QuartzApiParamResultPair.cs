@@ -4,7 +4,7 @@ namespace Fanex.Affiliate.DataService.Importer.DTO.Quartz
 {
     public class QuartzApiParamResultPair
     {
-        public QuartzParam Param { get; set; }
+        public QuartzApiParam Param { get; set; }
 
         public string JsonData { get; set; }
     }

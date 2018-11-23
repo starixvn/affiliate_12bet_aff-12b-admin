@@ -29,49 +29,22 @@ namespace Fanex.Affiliate.DataService.Importer
             _thirdPartyProductRepository = thirdPartyProductRepository ?? new ThirdPartyProductRepository();
         }
 
-        public async Task<IEnumerable<QuartzApiParamResultPair>> GetRawDataList(QuartzParam param)
+        public async Task<IEnumerable<QuartzApiParamResultPair>> GetRawDataList(QuartzEntryParam param)
         {
-            var result = new List<QuartzApiParamResultPair>();
-            var taskList = new List<Task<QuartzApiParamResultPair>>();
-            var rawData = _appSetting.IsLocalTest ? await GetFakeData() : await GetRawDataAsync(param);
-            result.Add(new QuartzApiParamResultPair { Param = param, JsonData = rawData });
+            var startTime = new DateTime(param.StartTime.Year, param.StartTime.Month, param.StartTime.Day, param.StartTime.Hour, param.StartTime.Minute, 0);
+            var endTime = new DateTime(param.EndTime.Year, param.EndTime.Month, param.EndTime.Day, param.EndTime.Hour, param.EndTime.Minute, 0);
 
-            var jObject = JObject.Parse(rawData);
-            var status = Convert.ToString(jObject["status"]);
-
-            if (status == SuccessStatus)
+            var paramByTimeZone = new QuartzEntryParam
             {
-                var resultInfo = QuartzParser.GetResultInfo(jObject);
-                for (var pageNumber = 2; pageNumber <= resultInfo.Pages; pageNumber++)
-                {
-                    var paramByPaging = new QuartzParam { RequestTime = param.RequestTime, PageNumber = pageNumber };
-                    taskList.Add(Task.Run(async () => new QuartzApiParamResultPair
-                    {
-                        Param = paramByPaging,
-                        JsonData = await GetRawDataAsync(paramByPaging)
-                    }));
-                }
+                StartTime = startTime.ToUniversalTime(),
+                EndTime = endTime.ToUniversalTime(),
+                PageNumber = param.PageNumber
+            };
 
-                result.AddRange(await Task.WhenAll(taskList));
-            }
-
-            return result;
+            return await GetRawDataByBatch(paramByTimeZone);
         }
 
-        public async Task<string> GetRawDataAsync(QuartzParam param)
-        {
-            var jsonBody = BuildBodyParam(param);
-            var url = $"{_appSetting.GetValue("QuartzApiUrl")}?hash={HashMessage(jsonBody)}";
-
-            using (var client = new WebClient())
-            {
-                client.Headers.Add("Content-Type", "application/json; charset=utf-8");
-
-                return await client.UploadStringTaskAsync(url, jsonBody);
-            }
-        }
-
-        public string ConvertToXml(QuartzSummary quartzSummary, QuartzParam param)
+        public string ConvertToXml(QuartzSummary quartzSummary, QuartzApiParam param)
         {
             return "<ROOT>" + BuildRequestXml(param) + BuildResponseXml(quartzSummary) + "</ROOT>";
         }
@@ -81,7 +54,7 @@ namespace Fanex.Affiliate.DataService.Importer
             _thirdPartyProductRepository.ImportData(Products.EbetProductId, xmlData);
         }
 
-        public async Task Import(QuartzParam param)
+        public async Task Import(QuartzEntryParam param)
         {
             var resultDataList = await GetRawDataList(param);
 
@@ -101,7 +74,74 @@ namespace Fanex.Affiliate.DataService.Importer
             }
         }
 
-        private string BuildBodyParam(QuartzParam param)
+        private async Task<IEnumerable<QuartzApiParamResultPair>> GetRawDataByBatch(QuartzEntryParam param)
+        {
+            var result = new List<QuartzApiParamResultPair>();
+            var taskList = new List<Task<IEnumerable<QuartzApiParamResultPair>>>();
+
+            for (var requestTime = param.StartTime; DateTime.Compare(requestTime, param.EndTime) <= 0; requestTime = requestTime.AddMinutes(1))
+            {
+                var apiParam = new QuartzApiParam
+                {
+                    RequestTime = requestTime,
+                    PageNumber = param.PageNumber
+                };
+
+                taskList.Add(GetRawDataByPaging(apiParam));
+            }
+
+            var resultByBatchList = await Task.WhenAll(taskList);
+            foreach (var resultByBatch in resultByBatchList)
+            {
+                result.AddRange(resultByBatch);
+            }
+
+            return result;
+        }
+
+        private async Task<IEnumerable<QuartzApiParamResultPair>> GetRawDataByPaging(QuartzApiParam apiParam)
+        {
+            var result = new List<QuartzApiParamResultPair>();
+            var taskList = new List<Task<QuartzApiParamResultPair>>();
+            var rawData = _appSetting.IsLocalTest ? await GetFakeData() : await GetRawDataAsync(apiParam);
+            result.Add(new QuartzApiParamResultPair { Param = apiParam, JsonData = rawData });
+
+            var jObject = JObject.Parse(rawData);
+            var status = Convert.ToString(jObject["status"]);
+
+            if (status == SuccessStatus)
+            {
+                var resultInfo = QuartzParser.GetResultInfo(jObject);
+                for (var pageNumber = 2; pageNumber <= resultInfo.Pages; pageNumber++)
+                {
+                    var paramByPaging = new QuartzApiParam { RequestTime = apiParam.RequestTime, PageNumber = pageNumber };
+                    taskList.Add(Task.Run(async () => new QuartzApiParamResultPair
+                    {
+                        Param = paramByPaging,
+                        JsonData = await GetRawDataAsync(paramByPaging)
+                    }));
+                }
+
+                result.AddRange(await Task.WhenAll(taskList));
+            }
+
+            return result;
+        }
+
+        private async Task<string> GetRawDataAsync(QuartzApiParam param)
+        {
+            var jsonBody = BuildBodyParam(param);
+            var url = $"{_appSetting.GetValue("QuartzApiUrl")}?hash={HashMessage(jsonBody)}";
+
+            using (var client = new WebClient())
+            {
+                client.Headers.Add("Content-Type", "application/json; charset=utf-8");
+
+                return await client.UploadStringTaskAsync(url, jsonBody);
+            }
+        }
+
+        private string BuildBodyParam(QuartzApiParam param)
         {
             var jAction = new JObject(
                 new JProperty("command", "wagersFeed"),
@@ -117,7 +157,7 @@ namespace Fanex.Affiliate.DataService.Importer
                 ).ToString();
         }
 
-        private static string BuildRequestXml(QuartzParam param)
+        private static string BuildRequestXml(QuartzApiParam param)
         {
             return "<REQUEST>" + $"<PARAM DATETIME=\"" + param.RequestTime + "\" PAGE =\"" + param.PageNumber + "\" />" + "</REQUEST>";
         }

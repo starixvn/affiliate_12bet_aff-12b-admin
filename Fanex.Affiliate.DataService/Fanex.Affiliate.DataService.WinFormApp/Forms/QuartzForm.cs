@@ -38,9 +38,10 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
             ResetResult();
             richTextLog.Text = "Getting data...";
 
-            var param = new QuartzParam
+            var param = new QuartzEntryParam
             {
-                RequestTime = datePicker.Value,
+                StartTime = startTimePicker.Value,
+                EndTime = endTimePicker.Value,
                 PageNumber = Convert.ToInt32(txtPageNumber.Text)
             };
 

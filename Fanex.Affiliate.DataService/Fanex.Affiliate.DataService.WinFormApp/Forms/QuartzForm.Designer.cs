@@ -33,7 +33,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnImport = new System.Windows.Forms.Button();
             this.btnGetRawData = new System.Windows.Forms.Button();
-            this.datePicker = new System.Windows.Forms.DateTimePicker();
+            this.startTimePicker = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.richTextLog = new System.Windows.Forms.RichTextBox();
@@ -42,6 +42,8 @@
             this.richTextRawData = new System.Windows.Forms.RichTextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.richTextConvertedData = new System.Windows.Forms.RichTextBox();
+            this.endTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -54,11 +56,13 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.endTimePicker);
+            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtPageNumber);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.btnImport);
             this.groupBox1.Controls.Add(this.btnGetRawData);
-            this.groupBox1.Controls.Add(this.datePicker);
+            this.groupBox1.Controls.Add(this.startTimePicker);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
@@ -70,7 +74,7 @@
             // 
             // txtPageNumber
             // 
-            this.txtPageNumber.Location = new System.Drawing.Point(393, 27);
+            this.txtPageNumber.Location = new System.Drawing.Point(687, 28);
             this.txtPageNumber.Name = "txtPageNumber";
             this.txtPageNumber.Size = new System.Drawing.Size(111, 20);
             this.txtPageNumber.TabIndex = 14;
@@ -79,7 +83,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(312, 34);
+            this.label4.Location = new System.Drawing.Point(606, 35);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(75, 13);
             this.label4.TabIndex = 13;
@@ -104,23 +108,23 @@
             this.btnGetRawData.UseVisualStyleBackColor = true;
             this.btnGetRawData.Click += new System.EventHandler(this.btnGetRawData_Click);
             // 
-            // datePicker
+            // startTimePicker
             // 
-            this.datePicker.CustomFormat = "yyyy/MM/dd HH:mm:ss";
-            this.datePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.datePicker.Location = new System.Drawing.Point(51, 28);
-            this.datePicker.Name = "datePicker";
-            this.datePicker.Size = new System.Drawing.Size(200, 20);
-            this.datePicker.TabIndex = 3;
+            this.startTimePicker.CustomFormat = "yyyy/MM/dd HH:mm:00";
+            this.startTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.startTimePicker.Location = new System.Drawing.Point(79, 28);
+            this.startTimePicker.Name = "startTimePicker";
+            this.startTimePicker.Size = new System.Drawing.Size(200, 20);
+            this.startTimePicker.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 34);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(33, 13);
+            this.label2.Size = new System.Drawing.Size(58, 13);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Date:";
+            this.label2.Text = "Start Time:";
             // 
             // groupBox5
             // 
@@ -201,6 +205,24 @@
             this.richTextConvertedData.TabIndex = 0;
             this.richTextConvertedData.Text = "";
             // 
+            // endTimePicker
+            // 
+            this.endTimePicker.CustomFormat = "yyyy/MM/dd HH:mm:00";
+            this.endTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.endTimePicker.Location = new System.Drawing.Point(375, 28);
+            this.endTimePicker.Name = "endTimePicker";
+            this.endTimePicker.Size = new System.Drawing.Size(200, 20);
+            this.endTimePicker.TabIndex = 16;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(304, 34);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(55, 13);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "End Time:";
+            // 
             // QuartzForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -231,7 +253,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.Button btnGetRawData;
-        private System.Windows.Forms.DateTimePicker datePicker;
+        private System.Windows.Forms.DateTimePicker startTimePicker;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.RichTextBox richTextLog;
@@ -240,5 +262,7 @@
         private System.Windows.Forms.RichTextBox richTextRawData;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.RichTextBox richTextConvertedData;
+        private System.Windows.Forms.DateTimePicker endTimePicker;
+        private System.Windows.Forms.Label label1;
     }
 }

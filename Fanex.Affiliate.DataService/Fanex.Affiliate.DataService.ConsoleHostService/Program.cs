@@ -30,14 +30,14 @@ namespace Fanex.Affiliate.DataService.ConsoleHostService
             var jsonData = dataSimulator.GetLocalData(filePath).Result;
             var jsonObject = JObject.Parse(jsonData);
             var quartzSummary = QuartzParser.FromJsonObject(jsonObject);
-            var param = new QuartzParam
+            var param = new QuartzEntryParam
             {
-                RequestTime = DateTime.Now,
+                StartTime = DateTime.Now.AddMinutes(-5),
+                EndTime = DateTime.Now,
                 PageNumber = 1
             };
 
             var quartzService = new QuartzService();
-            var xml = quartzService.ConvertToXml(quartzSummary, param);
 
             Console.ReadLine();
         }
