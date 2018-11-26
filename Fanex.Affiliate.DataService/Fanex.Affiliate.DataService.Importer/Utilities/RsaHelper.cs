@@ -36,7 +36,7 @@ namespace Fanex.Affiliate.DataService.Importer.Utilities
 
                 return rsaProvider.VerifyData(plaintext, CryptoConfig.MapNameToOID("MD5"), Convert.FromBase64String(SignedData));
             }
-            catch (CryptographicException e)
+            catch (CryptographicException )
             {
                 return false;
             }

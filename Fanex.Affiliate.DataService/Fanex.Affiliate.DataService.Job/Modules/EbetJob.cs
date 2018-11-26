@@ -43,8 +43,8 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                     var nowByHour = new DateTime(now.Year, now.Month, now.Day, now.Hour, 0, 0, DateTimeKind.Local);
 
                     var pageSize = Convert.ToInt32(_appSetting.GetValue("EbetPageSize"));
-                    var configList = _ebetConfigHelper.GetConfigList();
-                    foreach (var config in configList)
+
+                    foreach (var config in _ebetConfigHelper.GetConfigList())
                     {
                         var folderNameByCurrency = $"{trackerFolderPath}\\Currency_{config.CurrencyID}";
                         var lastQueryTime = _timeTracker.GetLastestCallSuccess(folderNameByCurrency, defaultStartTime);
@@ -64,7 +64,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                                 PageSize = pageSize,
                             };
 
-                            _ebetService.Import(param).ConfigureAwait(false);
+                            _ebetService.Import(param);
                             _timeTracker.SaveTime(folderNameByCurrency, nowByHour);
                         }
                     }

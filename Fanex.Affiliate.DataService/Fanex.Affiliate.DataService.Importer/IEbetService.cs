@@ -7,14 +7,13 @@ namespace Fanex.Affiliate.DataService.Importer
 {
     public interface IEbetService
     {
-        Task<string> GetRawData(EbetParam param);
-
-        Task<IEnumerable<EbetApiResult>> GetResultDataList(EbetParam param);
+        string GetRawData(EbetParam param);
+        IEnumerable<EbetApiResult> GetResultDataList(EbetParam param);
 
         string ConvertToXml(EbetSummary summaryData, EbetParam param);
 
         void Import(string xmlData);
 
-        Task Import(EbetParam param);
+        void Import(EbetParam param);
     }
 }

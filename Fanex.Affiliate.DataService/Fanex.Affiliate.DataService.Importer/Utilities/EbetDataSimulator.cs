@@ -13,17 +13,17 @@ namespace Fanex.Affiliate.DataService.Importer.Utilities
         private const FileOptions DefaultOptions = FileOptions.Asynchronous | FileOptions.SequentialScan;
 
 
-        public async Task<string> GetLocalData(string filePath)
+        public string GetLocalData(string filePath)
         {
             if (!File.Exists(filePath))
             {
                 return JsonConvert.SerializeObject(new { status = 999 });
             }
 
-            return string.Join(string.Empty, await ReadAllLinesAsync(filePath, Encoding.UTF8));
+            return string.Join(string.Empty,  ReadAllLinesAsync(filePath, Encoding.UTF8));
         }
 
-        public static async Task<string[]> ReadAllLinesAsync(string path, Encoding encoding)
+        public static  string[] ReadAllLinesAsync(string path, Encoding encoding)
         {
             var lines = new List<string>();
 
@@ -33,7 +33,7 @@ namespace Fanex.Affiliate.DataService.Importer.Utilities
             using (var reader = new StreamReader(stream, encoding))
             {
                 string line;
-                while ((line = await reader.ReadLineAsync()) != null)
+                while ((line =  reader.ReadLine()) != null)
                 {
                     lines.Add(line);
                 }

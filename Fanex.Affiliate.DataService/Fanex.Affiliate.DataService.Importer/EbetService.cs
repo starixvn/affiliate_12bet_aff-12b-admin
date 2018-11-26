@@ -4,6 +4,7 @@ using System.Collections.Specialized;
 using System.IO;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Fanex.Affiliate.DataService.Importer.Constants;
 using Fanex.Affiliate.DataService.Importer.DTO.Ebet;
@@ -27,7 +28,7 @@ namespace Fanex.Affiliate.DataService.Importer
             _thirdPartyProductRepository = thirdPartyProductRepository ?? new ThirdPartyProductRepository();
         }
 
-        public async Task<string> GetRawData(EbetParam param)
+        public string GetRawData(EbetParam param)
         {
             if (_appSetting.IsLocalTest)
             {
@@ -35,7 +36,7 @@ namespace Fanex.Affiliate.DataService.Importer
                 var fileName = $"ebet_{param.CurrencyId}{(param.PageNumber > 1 ? "_" + param.PageNumber.ToString() : string.Empty)}.json";
                 var filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"App_Data\\EbetData\\{fileName}");
 
-                return await dataSimulator.GetLocalData(filePath);
+                return dataSimulator.GetLocalData(filePath);
             }
 
             var url = $"{Uri.UriSchemeHttp}{Uri.SchemeDelimiter}{param.ApiUrl}/api/userbethistory";
@@ -43,17 +44,17 @@ namespace Fanex.Affiliate.DataService.Importer
 
             using (var webClient = new WebClient())
             {
-                return Encoding.UTF8.GetString(await webClient.UploadValuesTaskAsync(url, "POST", formBody));
+                return Encoding.UTF8.GetString(webClient.UploadValues(url, "POST", formBody));
             }
         }
 
-        public async Task<IEnumerable<EbetApiResult>> GetResultDataList(EbetParam param)
+        public IEnumerable<EbetApiResult> GetResultDataList(EbetParam param)
         {
             var result = new List<EbetApiResult>();
             if (DateTime.Compare(param.StartTime, param.EndTime) < 0)
             {
                 var convertedParam = BuildEntryParam(param);
-                var firstJsonData = await GetRawData(convertedParam);
+                var firstJsonData = GetRawData(convertedParam);
                 var resultInfo = EbetParser.GetEbetResultInfo(firstJsonData);
 
                 result.Add(new EbetApiResult { Param = convertedParam, JsonData = firstJsonData });
@@ -68,7 +69,7 @@ namespace Fanex.Affiliate.DataService.Importer
 
                         if (allowedCallingCount <= 0)
                         {
-                            await Task.Delay(60000);
+                            Thread.Sleep(90000);
                             allowedCallingCount = resultInfo.RemainingVisits;
                         }
                         else
@@ -79,7 +80,7 @@ namespace Fanex.Affiliate.DataService.Importer
                         result.Add(new EbetApiResult
                         {
                             Param = paramByBatch,
-                            JsonData = await GetRawData(paramByBatch)
+                            JsonData = GetRawData(paramByBatch)
                         });
                     }
                 }
@@ -98,13 +99,11 @@ namespace Fanex.Affiliate.DataService.Importer
             _thirdPartyProductRepository.ImportData(Products.EbetProductId, xmlData);
         }
 
-        public async Task Import(EbetParam param)
+        public void Import(EbetParam param)
         {
             try
             {
-                var resultDataList = await GetResultDataList(param);
-
-                foreach (var dataItem in resultDataList)
+                foreach (EbetApiResult dataItem in GetResultDataList(param))
                 {
                     var ebetSummary = EbetParser.FromJson(dataItem.JsonData);
                     if (ebetSummary.ResultInfo.Status != 200)
