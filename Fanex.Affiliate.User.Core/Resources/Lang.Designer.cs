@@ -4121,8 +4121,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Thank you
-        ///Best regards,.
+        ///   Looks up a localized string similar to Thank you &lt;br /&gt;Best regards,.
         /// </summary>
         public static string PopupThankYou {
             get {

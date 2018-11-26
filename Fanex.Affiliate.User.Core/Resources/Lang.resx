@@ -2192,8 +2192,7 @@
     <value>Please be advised to update your latest valid phone number in the 12BET affiliate system immediately as every month our affiliate team will need to contact you from 8th - 15th of the month to inform you of your actual commissions earned after manual calculations. There may be delays in payouts if our affiliate team is unable to reach you.</value>
   </data>
   <data name="PopupThankYou" xml:space="preserve">
-    <value>Thank you
-Best regards,</value>
+    <value>Thank you &lt;br /&gt;Best regards,</value>
   </data>
   <data name="PopupWeAreCurrently" xml:space="preserve">
     <value>We are currently in the process of integrating more 12BET products into our affiliate system in order to provide you with higher commission earnings!</value>
