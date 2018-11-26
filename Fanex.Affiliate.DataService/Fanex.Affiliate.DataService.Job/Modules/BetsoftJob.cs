@@ -40,15 +40,18 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                     var now = DateTime.Now;
                     var nowByHour = new DateTime(now.Year, now.Month, now.Day, now.Hour, 0, 0, DateTimeKind.Local);
 
-                    var betSoftParam = new BetsoftParam
+                    if (DateTime.Compare(lastQueryTime, nowByHour) < 0)
                     {
-                        StartDate = lastQueryTime,
-                        EndDate = nowByHour
-                    };
+                        var betSoftParam = new BetsoftParam
+                        {
+                            StartDate = lastQueryTime,
+                            EndDate = nowByHour
+                        };
 
-                    _betSoftService.Import(betSoftParam);
+                        _betSoftService.Import(betSoftParam);
 
-                    _timeTracker.SaveTime(trackerFolderPath, nowByHour);
+                        _timeTracker.SaveTime(trackerFolderPath, nowByHour);
+                    }
                 }
             }
             catch (Exception exception)

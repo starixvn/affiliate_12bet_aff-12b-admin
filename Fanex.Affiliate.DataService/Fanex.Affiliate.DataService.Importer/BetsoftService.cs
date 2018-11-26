@@ -55,7 +55,7 @@ namespace Fanex.Affiliate.DataService.Importer
         {
             var xdoc = XDocument.Parse(rawData);
             var response = xdoc.Root.Element("RESPONSE");
-            if (response.Element("RESULT").Value.ToLowerInvariant() != "ok")
+            if (!string.Equals("ok", response.Element("RESULT").Value, StringComparison.InvariantCultureIgnoreCase))
             {
                 LogService.Error($"Betsoft Error:\n{rawData}");
             }
