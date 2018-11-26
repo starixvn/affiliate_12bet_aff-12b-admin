@@ -2062,4 +2062,7 @@
   <data name="PopupYourAffiliateManager" xml:space="preserve">
     <value>12BET제휴 매니저 배상</value>
   </data>
+  <data name="PopupHappyEarning" xml:space="preserve">
+    <value> </value>
+  </data>
 </root>
