@@ -43,30 +43,30 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
             try
             {
                 var configList = _ebetConfigHelper.GetConfigList();
-                var taskList = new List<Task<IEnumerable<EbetApiResult>>>();
-                _logBuilder.AppendLine("Start:" + DateTime.Now.ToString());
-                foreach (var config in configList)
+                await Task.Run(() =>
                 {
-                    var param = new EbetParam
+                    _logBuilder.AppendLine("Start:" + DateTime.Now.ToString());
+
+                    var resultList = new List<EbetApiResult>();
+                    foreach (var config in configList)
                     {
-                        UserName = txtUserName.Text,
-                        StartTime = startDatePicker.Value,
-                        EndTime = endDatePicker.Value,
-                        ChannelId = config.ChannelId,
-                        ApiUrl = config.ApiServerHost,
-                        PrivateKey = config.PrivateKey,
-                        CurrencyId = config.CurrencyID,
-                        PageNumber = Convert.ToInt32(txtPageNumber.Text),
-                        PageSize = Convert.ToInt32(txtPageSize.Text),
-                    };
+                        var param = new EbetParam
+                        {
+                            UserName = txtUserName.Text,
+                            StartTime = startDatePicker.Value,
+                            EndTime = endDatePicker.Value,
+                            ChannelId = config.ChannelId,
+                            ApiUrl = config.ApiServerHost,
+                            PrivateKey = config.PrivateKey,
+                            CurrencyId = config.CurrencyID,
+                            PageNumber = Convert.ToInt32(txtPageNumber.Text),
+                            PageSize = Convert.ToInt32(txtPageSize.Text),
+                        };
 
-                    taskList.Add(_ebetService.GetResultDataList(param));
-                }
+                        resultList.AddRange(_ebetService.GetResultDataList(param));
+                    }
 
-                var resultList = await Task.WhenAll(taskList);
-                foreach (var result in resultList)
-                {
-                    foreach (var resultItem in result)
+                    foreach (var resultItem in resultList)
                     {
                         var apiParam = resultItem.Param;
                         _rawDataBuilder.AppendLine($"Currency: {apiParam.CurrencyId}, ChanelId: {apiParam.ChannelId}, ApiUrl: {apiParam.ApiUrl}");
@@ -83,9 +83,9 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
                         _convertedXmlBuilder.AppendLine("------------------------------------------------------");
                         _convertedXmlBuilder.AppendLine();
                     }
-                }
 
-                _logBuilder.AppendLine("End:" + DateTime.Now.ToString());
+                    _logBuilder.AppendLine("End:" + DateTime.Now.ToString());
+                });
             }
             catch (Exception ex)
             {

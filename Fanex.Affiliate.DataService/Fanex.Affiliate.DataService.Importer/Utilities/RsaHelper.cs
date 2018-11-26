@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography;
 using System.Text;
+using Fanex.Logging;
 
 namespace Fanex.Affiliate.DataService.Importer.Utilities
 {
@@ -14,8 +15,6 @@ namespace Fanex.Affiliate.DataService.Importer.Utilities
 
             var byteArrayData = Encoding.UTF8.GetBytes(dataToSign);
 
-            //var privateKeyParam = rsaProvider.ExportParameters(true);
-            //rsaProvider.ImportParameters(privateKeyParam);
             var sign = rsaProvider.SignData(byteArrayData, new MD5CryptoServiceProvider());
 
             return Convert.ToBase64String(sign);
@@ -36,8 +35,9 @@ namespace Fanex.Affiliate.DataService.Importer.Utilities
 
                 return rsaProvider.VerifyData(plaintext, CryptoConfig.MapNameToOID("MD5"), Convert.FromBase64String(SignedData));
             }
-            catch (CryptographicException )
+            catch (CryptographicException ex)
             {
+                LogService.Error(ex.Message, ex);
                 return false;
             }
         }
