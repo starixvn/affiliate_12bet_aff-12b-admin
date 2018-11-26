@@ -18,9 +18,12 @@
     <span class="text">@Lang.AccOverview</span>
 </div>
 
-<div class="popup">
-    @{ Html.RenderPartial("~/Views/Shared/Popup/Index.cshtml"); }
-</div>
+@if (!Model.IsVisited)
+{
+    <div class="popup">
+        @{ Html.RenderPartial("~/Views/Shared/Popup/Index.cshtml"); }
+    </div>
+}
 
 <div class="info-group">
     <div class="title">

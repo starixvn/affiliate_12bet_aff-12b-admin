@@ -462,6 +462,7 @@
     <Compile Include="ViewModels\MemberTransactionViewModel.cs" />
     <Compile Include="ViewModels\ProductPageViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\AccountOverviewViewModel.cs" />
+    <Compile Include="ViewModels\UserPanel\CommissionReportDataViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\CommissionReportViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\DailyEarningDetailViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\DailyEarningViewModel.cs" />

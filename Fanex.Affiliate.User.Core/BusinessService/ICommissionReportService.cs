@@ -10,6 +10,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 {
     public interface ICommissionReportService
     {
-        CommissionReportViewModel GenerateCommissionReportData(int affId, DateTime winlostDate);
+        CommissionReportDataViewModel GenerateCommissionReportData(int affId, DateTime winlostDate);
     }
 }

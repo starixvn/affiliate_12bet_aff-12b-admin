@@ -26,7 +26,17 @@
         [AjaxOnly]
         public ActionResult Index()
         {
-            return View("~/Views/UserPanel/CommissionReport/index.cshtml");
+            var viewModel = new CommissionReportViewModel
+            {
+                IsVisited = SessionService.UserSession != null && SessionService.UserSession.IsVisitedCommissionReportPage
+            };
+
+            if (SessionService.UserSession != null && !SessionService.UserSession.IsVisitedCommissionReportPage)
+            {
+                SessionService.UserSession.IsVisitedCommissionReportPage = true;
+            }
+
+            return View("~/Views/UserPanel/CommissionReport/Index.cshtml", viewModel);
         }
 
         [HttpPost]
@@ -37,7 +47,7 @@
                 ? _commissionReportService.GenerateCommissionReportData(
                 SessionService.UserSession.AffId,
                 new DateTime(year, 1, 1)
-                ) : new CommissionReportViewModel();
+                ) : new CommissionReportDataViewModel();
 
             return Json(viewModel);
         }

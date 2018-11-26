@@ -22,7 +22,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             }
             return type.Value == 0 ? $" ({Lang.Temporary})" : $" ({Lang.Uncalculated})";
         }
-        public CommissionReportViewModel GenerateCommissionReportData(int affId, DateTime winlostDate)
+        public CommissionReportDataViewModel GenerateCommissionReportData(int affId, DateTime winlostDate)
         {
             var rawData = _commissionReportRepository.GetAffiliateCommission(affId, winlostDate);
 
@@ -53,7 +53,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 total.Commission += item.Data.Commission;
             }
 
-            return new CommissionReportViewModel
+            return new CommissionReportDataViewModel
             {
                 Data = byMonth,
                 Total = total

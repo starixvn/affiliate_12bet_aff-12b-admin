@@ -39,10 +39,16 @@
             {
                 Statistics = _statisticsRepository.GetStatisticsOverview(param),
                 CommissionSettingList = _accountRepository.GetCommissionSettingList(param.AffId, param.IsInternal),
-                SelectedMonth = param.MonthDate
+                SelectedMonth = param.MonthDate,
+                IsVisited = SessionService.UserSession != null && SessionService.UserSession.IsVisitedAccountOverViewPage
             };
 
-            return View("~/Views/UserPanel/AccountOverView/index.cshtml", viewModel);
+            if (SessionService.UserSession != null && !SessionService.UserSession.IsVisitedAccountOverViewPage)
+            {
+                SessionService.UserSession.IsVisitedAccountOverViewPage = true;
+            }
+
+            return View("~/Views/UserPanel/AccountOverView/Index.cshtml", viewModel);
         }
     }
 }
