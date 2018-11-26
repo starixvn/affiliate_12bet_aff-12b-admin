@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Threading.Tasks;
 using Fanex.Affiliate.DataService.Importer;
 using Fanex.Affiliate.DataService.Importer.MetaModels.Ebet;
 using Fanex.Affiliate.DataService.Importer.Utilities;
@@ -29,7 +27,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
             _ebetConfigHelper = new EbetConfigHelper();
         }
 
-        public async void Execute(IJobExecutionContext context)
+        public void Execute(IJobExecutionContext context)
         {
             try
             {
@@ -41,33 +39,35 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                     var trackerFolderPath = _appSetting.GetValue("EbetTrackerFolder");
                     var defaultStartTime = DateTime.ParseExact(_appSetting.GetValue("EbetStartTime"), "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal);
 
-                    var lastQueryTime = _timeTracker.GetLastestCallSuccess(trackerFolderPath, defaultStartTime);
                     var now = DateTime.Now;
                     var nowByHour = new DateTime(now.Year, now.Month, now.Day, now.Hour, 0, 0, DateTimeKind.Local);
 
-                    var taskList = new List<Task>();
+                    var pageSize = Convert.ToInt32(_appSetting.GetValue("EbetPageSize"));
                     var configList = _ebetConfigHelper.GetConfigList();
                     foreach (var config in configList)
                     {
-                        var param = new EbetParam
+                        var folderNameByCurrency = $"{trackerFolderPath}\\Currency_{config.CurrencyID}";
+                        var lastQueryTime = _timeTracker.GetLastestCallSuccess(folderNameByCurrency, defaultStartTime);
+
+                        if (DateTime.Compare(lastQueryTime, nowByHour) < 0)
                         {
-                            UserName = string.Empty,
-                            StartTime = lastQueryTime,
-                            EndTime = nowByHour,
-                            ChannelId = config.ChannelId,
-                            ApiUrl = config.ApiServerHost,
-                            PrivateKey = config.PrivateKey,
-                            CurrencyId = config.CurrencyID,
-                            PageNumber = 1,
-                            PageSize = Convert.ToInt32(_appSetting.GetValue("EbetPageSize")),
-                        };
+                            var param = new EbetParam
+                            {
+                                UserName = string.Empty,
+                                StartTime = lastQueryTime,
+                                EndTime = nowByHour,
+                                ChannelId = config.ChannelId,
+                                ApiUrl = config.ApiServerHost,
+                                PrivateKey = config.PrivateKey,
+                                CurrencyId = config.CurrencyID,
+                                PageNumber = 1,
+                                PageSize = pageSize,
+                            };
 
-                        taskList.Add(_ebetService.Import(param));
+                            _ebetService.Import(param).ConfigureAwait(false);
+                            _timeTracker.SaveTime(folderNameByCurrency, nowByHour);
+                        }
                     }
-
-                    await Task.WhenAll(taskList);
-
-                    _timeTracker.SaveTime(trackerFolderPath, nowByHour);
                 }
             }
             catch (Exception exception)
