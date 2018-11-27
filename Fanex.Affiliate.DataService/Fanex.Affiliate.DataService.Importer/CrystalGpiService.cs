@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Xml.Linq;
 using Fanex.Affiliate.DataService.Importer.Constants;
 using Fanex.Affiliate.DataService.Importer.Exceptions;
@@ -108,7 +108,7 @@ namespace Fanex.Affiliate.DataService.Importer
         private IEnumerable<string> GetRawDataListByPaging(CrystalGpiParam paramByBatch)
         {
             var result = new List<string>();
-            var rawData = GetRawData(paramByBatch).Result;
+            var rawData = GetRawData(paramByBatch);
             var xDocument = XDocument.Parse(rawData);
 
             var hasError = string.Equals("error", xDocument.Root.Name.LocalName, StringComparison.InvariantCultureIgnoreCase);
@@ -128,12 +128,12 @@ namespace Fanex.Affiliate.DataService.Importer
             return result;
         }
 
-        private async Task<string> GetRawData(CrystalGpiParam param)
+        private string GetRawData(CrystalGpiParam param)
         {
             var apiUrl = BuildApiUrl(param);
-            await Task.Delay(DelayTimeMillisecond);
+            Thread.Sleep(DelayTimeMillisecond);
 
-            return await GetDataString(apiUrl);
+            return GetDataString(apiUrl);
         }
 
         private CrystalGpiParam BuildParamByTimeZone(CrystalGpiParam entryParam)
@@ -161,17 +161,18 @@ namespace Fanex.Affiliate.DataService.Importer
 
         private string BuildApiUrl(CrystalGpiParam param)
         {
-            var startTime = param.StartTime.ToString(_appSetting.GetValue("CrystalGpiFormatDateTime"));
-            var endTime = param.EndTime.ToString(_appSetting.GetValue("CrystalGpiFormatDateTime"));
+            var formatDateTime = _appSetting.GetValue("CrystalGpiFormatDateTime");
+            var startTime = param.StartTime.ToString(formatDateTime);
+            var endTime = param.EndTime.ToString(formatDateTime);
 
             return _appSetting.GetValue("CrystalGpiApiUrl") + $"?opCode={param.Code}&s={startTime}&e={endTime}&pageNum={param.PageNumber}&pageSize={param.PageSize}&pwd={param.Password}&type={param.Type}";
         }
 
-        private async Task<string> GetDataString(string url)
+        private string GetDataString(string url)
         {
             using (var client = new WebClient())
             {
-                return await client.DownloadStringTaskAsync(url);
+                return client.DownloadString(url);
             }
         }
     }
