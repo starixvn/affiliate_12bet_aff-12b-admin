@@ -238,7 +238,7 @@ namespace Fanex.Affiliate.DataService.Importer
             for (var i = 1; i <= 6; i++)
             {
                 var filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"App_Data\\ISoftbetData\\isoftbet_{i}.json");
-                taskList.Add(simulator.GetLocalData(filePath));
+                taskList.Add(Task.Run(() => simulator.GetLocalData(filePath)));
             }
 
             return await Task.WhenAll(taskList);
