@@ -1,24 +1,28 @@
 ﻿using System;
-using Fanex.Affiliate.DataService.CheckSum;
-using Fanex.Affiliate.DataService.Importer;
+using Fanex.Affiliate.DataService.Importer.Utilities;
 using Fanex.Affiliate.DataService.Job;
 using Fanex.Data.Configuration;
-using Sunplus.UMControllerLibrary;
 
 namespace Fanex.Affiliate.DataService.ConsoleHostService
 {
     internal class Program
     {
+        private static readonly IAppSettings _appSetting = new AppSettings();
+
         private static void Main(string[] args)
         {
             DbSettingProviderManager.Current.Start();
-            IDailyMemberCheckSumRunner dailyMemberCheckSumRunner = new DailyMemberCheckSumRunner();
-            IDataImportingRunner dataImportingRunner = new DataImportingRunner();
-            UMBusiness umBusiness = new UMBusiness();
+            var appSetting = new AppSettings();
 
-            var _scheduler = new JobScheduler();
+            RunJobs();
 
-            _scheduler.Start(dailyMemberCheckSumRunner, dataImportingRunner, umBusiness);
+            Console.ReadLine();
+        }
+
+        private static void RunJobs()
+        {
+            var schedulerFactory = new JobSchedulerFactory();
+            schedulerFactory.SetUp();
             Console.WriteLine("Done!!!");
         }
     }

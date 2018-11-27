@@ -9,4 +9,8 @@
     <Setting Key="Aff_CasinoImportData" SpName="Aff_CasinoImportData" DbName="Affiliate" TimeOut="300" />
     <Setting Key="Task_Aff_MemberDailyCasino_IA" SpName="Task_Aff_MemberDailyCasino_IA" DbName="IncomeAccess" />
   </Function>
+
+  <Function Name="Affiliate - Data Services - Import 12Bet Special Product">
+    <Setting Key="Task_APIProduct_ImportQueue" SpName="Task_APIProduct_ImportQueue" DbName="Affiliate" />
+  </Function>
 </Functions>

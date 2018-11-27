@@ -1,24 +1,28 @@
 ﻿using System.Collections.Generic;
 using Fanex.Affiliate.DataService.CheckSum;
 using Fanex.Affiliate.DataService.Importer;
+using Fanex.Affiliate.DataService.Job.Model;
 using Quartz;
-using Quartz.Impl;
 using Sunplus.UMControllerLibrary;
 
-namespace Fanex.Affiliate.DataService.Job
+namespace Fanex.Affiliate.DataService.Job.Modules
 {
-    public class JobScheduler
+    public class PlaytechCasinoScheduler : IJobScheduler
     {
-        private readonly IScheduler _scheduler;
+        private readonly IDailyMemberCheckSumRunner dailyMemberCheckSumRunner;
+        private readonly IDataImportingRunner dataImportingRunner;
+        private readonly UMBusiness umBusiness;
 
-        public JobScheduler()
+        public PlaytechCasinoScheduler()
         {
-            _scheduler = StdSchedulerFactory.GetDefaultScheduler();
+            dailyMemberCheckSumRunner = new DailyMemberCheckSumRunner();
+            dataImportingRunner = new DataImportingRunner();
+            umBusiness = new UMBusiness();
         }
 
-        public void Start(IDailyMemberCheckSumRunner dailyMemberCheckSumRunner, IDataImportingRunner dataImportingRunner, UMBusiness umBusiness)
+        public ScheduleInfo BuildSchedule()
         {
-            var job = JobBuilder.Create<InHoursJob>()
+            var job = JobBuilder.Create<PlaytechCasinoJob>()
                 .UsingJobData(new JobDataMap(new Dictionary<string, IDailyMemberCheckSumRunner>
                 {
                     { nameof(dailyMemberCheckSumRunner), dailyMemberCheckSumRunner}
@@ -37,13 +41,11 @@ namespace Fanex.Affiliate.DataService.Job
                    .RepeatForever())
                    .Build();
 
-            _scheduler.ScheduleJob(job, trigger);
-            _scheduler.Start();
-        }
-
-        public void Stop()
-        {
-            _scheduler.Shutdown();
+            return new ScheduleInfo
+            {
+                Job = job,
+                Trigger = trigger
+            };
         }
     }
 }

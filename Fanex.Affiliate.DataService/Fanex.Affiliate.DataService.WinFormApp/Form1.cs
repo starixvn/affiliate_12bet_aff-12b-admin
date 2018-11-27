@@ -7,7 +7,6 @@ using System.Text;
 using System.Windows.Forms;
 using Fanex.Affiliate.DataService.Importer;
 using Fanex.Data.Configuration;
-using System.Linq;
 
 namespace Fanex.Affiliate.DataService.WinFormApp
 {
@@ -178,6 +177,11 @@ namespace Fanex.Affiliate.DataService.WinFormApp
         {
             _selectedFiles = null;
             lblStatus.Text = string.Empty;
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //Application.Exit();
         }
     }
 }

@@ -1,29 +1,20 @@
 ﻿using System;
 using System.IO;
 using System.ServiceProcess;
-using Fanex.Affiliate.DataService.CheckSum;
-using Fanex.Affiliate.DataService.Importer;
 using Fanex.Affiliate.DataService.Job;
 using Fanex.Logging;
-using Sunplus.UMControllerLibrary;
 
 namespace Fanex.Affiliate.DataService.WinService
 {
     public partial class Service1 : ServiceBase
     {
-        private readonly IDailyMemberCheckSumRunner _dailyMemberCheckSumRunner;
-        private readonly JobScheduler _scheduler;
-        private readonly IDataImportingRunner _dataImportingRunner;
-        private readonly UMBusiness _umBusiness;
+        private readonly IJobSchedulerFactory _schedulerFactory;
 
         public Service1()
         {
             InitializeComponent();
             Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
-            _scheduler = new JobScheduler();
-            _dailyMemberCheckSumRunner = new DailyMemberCheckSumRunner();
-            _dataImportingRunner = new DataImportingRunner();
-            _umBusiness = new UMBusiness();
+            _schedulerFactory = new JobSchedulerFactory();
         }
 
         protected override void OnStart(string[] args)
@@ -31,7 +22,7 @@ namespace Fanex.Affiliate.DataService.WinService
             try
             {
                 LogService.Info("Start 12bet AFF service");
-                _scheduler.Start(_dailyMemberCheckSumRunner, _dataImportingRunner, _umBusiness);
+                _schedulerFactory.SetUp();
             }
             catch (Exception exception)
             {
@@ -44,13 +35,32 @@ namespace Fanex.Affiliate.DataService.WinService
             try
             {
                 LogService.Info("Stop 12bet AFF service");
-
-                _scheduler.Stop();
+                _schedulerFactory.Shutdown();
             }
             catch (Exception exception)
             {
                 LogService.Error(exception.Message, exception.InnerException);
             }
+        }
+
+        protected override void OnPause()
+        {
+            base.OnPause();
+
+            this._schedulerFactory.Pause();
+        }
+
+        protected override void OnContinue()
+        {
+            base.OnContinue();
+
+            this._schedulerFactory.Resume();
+        }
+
+        protected override void OnShutdown()
+        {
+            base.OnShutdown();
+            this._schedulerFactory.Shutdown();
         }
     }
 }

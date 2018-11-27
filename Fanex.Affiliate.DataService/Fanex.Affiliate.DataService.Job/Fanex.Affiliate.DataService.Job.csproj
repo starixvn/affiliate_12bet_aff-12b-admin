@@ -97,9 +97,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="InHoursJob.cs" />
-    <Compile Include="JobScheduler.cs" />
+    <Compile Include="Constants\JobSystem.cs" />
+    <Compile Include="IJobScheduler.cs" />
+    <Compile Include="IJobSchedulerFactory.cs" />
+    <Compile Include="JobSchedulerFactory.cs" />
+    <Compile Include="Model\ScheduleInfo.cs" />
+    <Compile Include="Modules\BetsoftJob.cs" />
+    <Compile Include="Modules\BetsoftScheduler.cs" />
+    <Compile Include="Modules\EbetJob.cs" />
+    <Compile Include="Modules\EbetScheduler.cs" />
+    <Compile Include="Modules\PlaytechCasinoJob.cs" />
+    <Compile Include="Modules\PlaytechCasinoScheduler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ITimeTracker.cs" />
+    <Compile Include="Services\TimeTracker.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Fanex.Affiliate.DataService.CheckSum\Fanex.Affiliate.DataService.CheckSum.csproj">
@@ -118,6 +129,7 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

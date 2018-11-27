@@ -6,14 +6,10 @@ using Fanex.Logging;
 using Quartz;
 using Sunplus.UMControllerLibrary;
 
-namespace Fanex.Affiliate.DataService.Job
+namespace Fanex.Affiliate.DataService.Job.Modules
 {
-    public class InHoursJob : IJob
+    public class PlaytechCasinoJob : IJob
     {
-        public InHoursJob()
-        {
-        }
-
         public void Execute(IJobExecutionContext context)
         {
             try

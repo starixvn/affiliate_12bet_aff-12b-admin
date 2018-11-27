@@ -41,3 +41,4 @@ node_modules
 CoverageReport/
 /xunitcoverage/*.UnitTests.Coverage.xml
 node_modules
+/Fanex.Affiliate.DataService/packages
