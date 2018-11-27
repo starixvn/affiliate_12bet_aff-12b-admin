@@ -5,7 +5,6 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using Fanex.Affiliate.DataService.Importer.Constants;
 using Fanex.Affiliate.DataService.Importer.DTO.Ebet;
 using Fanex.Affiliate.DataService.Importer.Exceptions;
@@ -195,9 +194,9 @@ namespace Fanex.Affiliate.DataService.Importer
             builder.AppendLine("<BETHISTORYLIST>");
             foreach (var item in ebetSummary.BetHistories)
             {
-                var payoutTime = DateTimeOffset.FromUnixTimeSeconds(item.PayoutUnixTime).DateTime;
-                var convertedTime = DateTimeConverter.ConvertTime(payoutTime, TimeZoneId.GmtPlus8, TimeZoneId.GmtMinus4);
-                builder.AppendLine($"<BETHISTORY ID=\"{item.BetHistoryId}\" USERNAME=\"{item.UserName}\" BET=\"{item.Bet}\" PAYOUT=\"{item.Payout}\" PAYOUTTIME=\"{convertedTime.ToString()}\" />");
+                var payoutTime = DateTimeOffset.FromUnixTimeSeconds(item.PayoutUnixTime).UtcDateTime;
+                var convertedTime = DateTimeConverter.ToGMT(payoutTime, TimeZoneId.GmtMinus4);
+                builder.AppendLine($"<BETHISTORY ID=\"{item.BetHistoryId}\" USERNAME=\"{item.UserName}\" BET=\"{item.Bet}\" PAYOUT=\"{item.Payout}\" PAYOUTTIME=\"{convertedTime.ToString()}\" PAYOUTTIME=\"{item.PayoutUnixTime}\" />");
             }
             builder.AppendLine("</BETHISTORYLIST>");
 
