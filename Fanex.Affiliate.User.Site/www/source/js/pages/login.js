@@ -33,6 +33,11 @@
         }, REFRESH_CAPTCHA_INTERVAL);
     }
 
+    function toggleLoginButton(isEnable, onDialog) {
+        var btnLoginselector = onDialog ? '#btnDialogLogin' : '#btnLogin';
+        $(btnLoginselector).prop('disabled', !isEnable);
+    }
+
     var _me = {
         initialize: function () {
             _me.registerLoginDialog();
@@ -67,7 +72,7 @@
             });
 
             $("#dialogUserInput input").on("keypress", function (e) {
-                if (e.keyCode === 13) {
+                if (e.keyCode === 13 && !$('#btnDialogLogin').prop('disabled')) {
                     _me.requestSignin(true);
                 }
             });
@@ -83,7 +88,7 @@
             });
 
             $("#userLogin input").on("keypress", function (e) {
-                if (e.keyCode === 13) {
+                if (e.keyCode === 13 && !$('#btnLogin').prop('disabled')) {
                     _me.requestSignin();
                 }
             });
@@ -151,13 +156,18 @@
                             else {
                                 Site.reload();
                             }
+                            toggleLoginButton(true, onDialog);
                         }
                     },
                     beforeSend: function () {
                         Site.showLoader();
+                        toggleLoginButton(false, onDialog);
                     },
-                    complete: function () {
+                    complete: function (jqXHR, textStatus) {
                         Site.hideLoader();
+                        if (textStatus === 'error') {
+                            toggleLoginButton(true, onDialog);
+                        }
                     }
                 });
             }
