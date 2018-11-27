@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using Fanex.Affiliate.DataService.Importer.Constants;
 using Fanex.Affiliate.DataService.Importer.Exceptions;
-using Fanex.Affiliate.DataService.Importer.MetaModels.Crystal;
+using Fanex.Affiliate.DataService.Importer.MetaModels.CrystalGpi;
 using Fanex.Affiliate.DataService.Importer.Repository;
 using Fanex.Affiliate.DataService.Importer.Utilities;
 using Newtonsoft.Json;
 
 namespace Fanex.Affiliate.DataService.Importer
 {
-    public class CrystalService : ICrystalService
+    public class CrystalGpiService : ICrystalGpiService
     {
         private const int DelayTimeMillisecond = 15000;
         private const string TimeDataFormat = "dd-MM-yyyy H:mm:ss";
@@ -22,13 +22,13 @@ namespace Fanex.Affiliate.DataService.Importer
         private readonly IAppSettings _appSetting;
         private readonly IThirdPartyProductRepository _thirdPartyProductRepository;
 
-        public CrystalService(IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProductRepository = null)
+        public CrystalGpiService(IAppSettings appSetting = null, IThirdPartyProductRepository thirdPartyProductRepository = null)
         {
             _appSetting = appSetting ?? new AppSettings();
             _thirdPartyProductRepository = thirdPartyProductRepository ?? new ThirdPartyProductRepository();
         }
 
-        public IEnumerable<string> GetRawDataList(CrystalParam param)
+        public IEnumerable<string> GetRawDataList(CrystalGpiParam param)
         {
             var paramByTimeZone = BuildParamByTimeZone(param);
 
@@ -64,7 +64,7 @@ namespace Fanex.Affiliate.DataService.Importer
             return result;
         }
 
-        public void Import(CrystalParam param)
+        public void Import(CrystalGpiParam param)
         {
             var rawDataList = GetRawDataList(param);
             var convertedDataTimeZone = ConvertDataTimeZone(rawDataList);
@@ -79,7 +79,7 @@ namespace Fanex.Affiliate.DataService.Importer
             }
         }
 
-        private IEnumerable<string> GetRawDataListByBatch(CrystalParam param)
+        private IEnumerable<string> GetRawDataListByBatch(CrystalGpiParam param)
         {
             var result = new List<string>();
             var startDate = new DateTime(param.StartTime.Year, param.StartTime.Month, param.StartTime.Day, param.StartTime.Hour, 0, 0);
@@ -89,7 +89,7 @@ namespace Fanex.Affiliate.DataService.Importer
             {
                 var endDateByBatch = start.AddHours(1);
                 var paramByBatch = BuildParam(
-                    new CrystalParam
+                    new CrystalGpiParam
                     {
                         StartTime = start,
                         EndTime = DateTime.Compare(endDateByBatch, endDate) > 0 ? endDate : endDateByBatch,
@@ -105,7 +105,7 @@ namespace Fanex.Affiliate.DataService.Importer
             return result;
         }
 
-        private IEnumerable<string> GetRawDataListByPaging(CrystalParam paramByBatch)
+        private IEnumerable<string> GetRawDataListByPaging(CrystalGpiParam paramByBatch)
         {
             var result = new List<string>();
             var rawData = GetRawData(paramByBatch).Result;
@@ -128,7 +128,7 @@ namespace Fanex.Affiliate.DataService.Importer
             return result;
         }
 
-        private async Task<string> GetRawData(CrystalParam param)
+        private async Task<string> GetRawData(CrystalGpiParam param)
         {
             var apiUrl = BuildApiUrl(param);
             await Task.Delay(DelayTimeMillisecond);
@@ -136,7 +136,7 @@ namespace Fanex.Affiliate.DataService.Importer
             return await GetDataString(apiUrl);
         }
 
-        private CrystalParam BuildParamByTimeZone(CrystalParam entryParam)
+        private CrystalGpiParam BuildParamByTimeZone(CrystalGpiParam entryParam)
         {
             var copiedParam = BuildParam(entryParam, entryParam.PageNumber);
             copiedParam.StartTime = DateTimeConverter.ToGMT(entryParam.StartTime.ToUniversalTime(), TimeZoneId.GmtPlus8);
@@ -145,26 +145,26 @@ namespace Fanex.Affiliate.DataService.Importer
             return copiedParam;
         }
 
-        private CrystalParam BuildParam(CrystalParam param, int pageNum)
+        private CrystalGpiParam BuildParam(CrystalGpiParam param, int pageNum)
         {
-            return new CrystalParam
+            return new CrystalGpiParam
             {
                 StartTime = param.StartTime,
                 EndTime = param.EndTime,
                 PageNumber = pageNum,
                 PageSize = param.PageSize,
-                Code = _appSetting.GetValue("CrystalCode"),
-                Password = _appSetting.GetValue("CrystalPassword"),
-                Type = Convert.ToByte(_appSetting.GetValue("CrystalType"))
+                Code = _appSetting.GetValue("CrystalGpiCode"),
+                Password = _appSetting.GetValue("CrystalGpiPassword"),
+                Type = Convert.ToByte(_appSetting.GetValue("CrystalGpiType"))
             };
         }
 
-        private string BuildApiUrl(CrystalParam param)
+        private string BuildApiUrl(CrystalGpiParam param)
         {
-            var startTime = param.StartTime.ToString(_appSetting.GetValue("CrystalFormatDateTime"));
-            var endTime = param.EndTime.ToString(_appSetting.GetValue("CrystalFormatDateTime"));
+            var startTime = param.StartTime.ToString(_appSetting.GetValue("CrystalGpiFormatDateTime"));
+            var endTime = param.EndTime.ToString(_appSetting.GetValue("CrystalGpiFormatDateTime"));
 
-            return _appSetting.GetValue("CrystalApiUrl") + $"?opCode={param.Code}&s={startTime}&e={endTime}&pageNum={param.PageNumber}&pageSize={param.PageSize}&pwd={param.Password}&type={param.Type}";
+            return _appSetting.GetValue("CrystalGpiApiUrl") + $"?opCode={param.Code}&s={startTime}&e={endTime}&pageNum={param.PageNumber}&pageSize={param.PageSize}&pwd={param.Password}&type={param.Type}";
         }
 
         private async Task<string> GetDataString(string url)

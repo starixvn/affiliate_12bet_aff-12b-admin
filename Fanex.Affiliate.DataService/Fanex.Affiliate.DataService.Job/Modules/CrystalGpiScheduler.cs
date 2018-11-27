@@ -5,20 +5,20 @@ using Quartz;
 
 namespace Fanex.Affiliate.DataService.Job.Modules
 {
-    public class CrystalScheduler : IJobScheduler
+    public class CrystalGpiScheduler : IJobScheduler
     {
         private readonly IAppSettings _appSetting;
 
-        public CrystalScheduler(IAppSettings appSetting = null)
+        public CrystalGpiScheduler(IAppSettings appSetting = null)
         {
             _appSetting = appSetting ?? new AppSettings();
         }
 
         public ScheduleInfo BuildSchedule()
         {
-            const string groupName = "CrystalJobGroup";
-            var jobName = nameof(CrystalJob);
-            var job = JobBuilder.Create<CrystalJob>()
+            const string groupName = "CrystalGpiJobGroup";
+            var jobName = nameof(CrystalGpiJob);
+            var job = JobBuilder.Create<CrystalGpiJob>()
                .WithIdentity(jobName, groupName)
                .Build();
 
@@ -26,7 +26,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
               .WithIdentity(jobName + "Trigger", groupName)
               .StartNow()
               .WithSimpleSchedule(x => x
-                  .WithIntervalInMinutes(Convert.ToInt32(_appSetting.GetValue("CrystalIntervalTime")))
+                  .WithIntervalInMinutes(Convert.ToInt32(_appSetting.GetValue("CrystalGpiIntervalTime")))
                   .RepeatForever())
               .Build();
 

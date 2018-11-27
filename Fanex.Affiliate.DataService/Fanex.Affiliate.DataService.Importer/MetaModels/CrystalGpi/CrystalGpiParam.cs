@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Fanex.Affiliate.DataService.Importer.MetaModels.Crystal
+namespace Fanex.Affiliate.DataService.Importer.MetaModels.CrystalGpi
 {
-    public class CrystalParam
+    public class CrystalGpiParam
     {
         public string Code { get; set; }
 

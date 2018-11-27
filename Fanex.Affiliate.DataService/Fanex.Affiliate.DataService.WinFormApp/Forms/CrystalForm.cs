@@ -6,13 +6,13 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Fanex.Affiliate.DataService.Importer;
-using Fanex.Affiliate.DataService.Importer.MetaModels.Crystal;
+using Fanex.Affiliate.DataService.Importer.MetaModels.CrystalGpi;
 
 namespace Fanex.Affiliate.DataService.WinFormApp.Forms
 {
     public partial class CrystalForm : Form
     {
-        private readonly ICrystalService _crystalService;
+        private readonly ICrystalGpiService _crystalGpiService;
         private readonly StringBuilder _logBuilder;
 
         private readonly SynchronizationContext synchronizationContext;
@@ -22,7 +22,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
         public CrystalForm()
         {
             InitializeComponent();
-            _crystalService = new CrystalService();
+            _crystalGpiService = new CrystalGpiService();
             synchronizationContext = SynchronizationContext.Current;
             _convertedDataList = new List<string>();
             _logBuilder = new StringBuilder();
@@ -35,7 +35,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
 
             ResetResult();
             richTextLog.Text = "Getting data...";
-            var param = new CrystalParam
+            var param = new CrystalGpiParam
             {
                 StartTime = startDatePicker.Value,
                 EndTime = endDatePicker.Value,
@@ -48,7 +48,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
                 btnImport.Enabled = false;
                 await Task.Run(() =>
                 {
-                    var rawDataList = _crystalService.GetRawDataList(param);
+                    var rawDataList = _crystalGpiService.GetRawDataList(param);
 
                     if (rawDataList.Any())
                     {
@@ -59,7 +59,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
                             rawDataBuilder.AppendLine("-----------------------------------------");
                         }
 
-                        _convertedDataList.AddRange(_crystalService.ConvertDataTimeZone(rawDataList));
+                        _convertedDataList.AddRange(_crystalGpiService.ConvertDataTimeZone(rawDataList));
                         foreach (var item in _convertedDataList)
                         {
                             convertedDataBuilder.AppendLine(item);
@@ -117,7 +117,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
                 btnImport.Enabled = false;
                 await Task.Run(() =>
                 {
-                    _crystalService.Import(_convertedDataList);
+                    _crystalGpiService.Import(_convertedDataList);
 
                     _convertedDataList.Clear();
                     _logBuilder.AppendLine("Done!");

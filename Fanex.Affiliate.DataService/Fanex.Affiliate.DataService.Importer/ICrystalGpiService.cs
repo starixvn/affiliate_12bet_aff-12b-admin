@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
-using Fanex.Affiliate.DataService.Importer.MetaModels.Crystal;
+using Fanex.Affiliate.DataService.Importer.MetaModels.CrystalGpi;
 
 namespace Fanex.Affiliate.DataService.Importer
 {
-    public interface ICrystalService
+    public interface ICrystalGpiService
     {
-        IEnumerable<string> GetRawDataList(CrystalParam param);
+        IEnumerable<string> GetRawDataList(CrystalGpiParam param);
 
         IEnumerable<string> ConvertDataTimeZone(IEnumerable<string> rawDataList);
 
-        void Import(CrystalParam param);
+        void Import(CrystalGpiParam param);
 
         void Import(IEnumerable<string> dataList);
     }
