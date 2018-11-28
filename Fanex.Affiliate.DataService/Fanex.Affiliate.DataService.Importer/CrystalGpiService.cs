@@ -75,7 +75,8 @@ namespace Fanex.Affiliate.DataService.Importer
                         StartTime = start,
                         EndTime = DateTime.Compare(endDateByBatch, endDate) > 0 ? endDate : endDateByBatch,
                         PageNumber = param.PageNumber,
-                        PageSize = param.PageSize
+                        PageSize = param.PageSize,
+                        JobType = param.JobType
                     },
                     param.PageNumber);
 
