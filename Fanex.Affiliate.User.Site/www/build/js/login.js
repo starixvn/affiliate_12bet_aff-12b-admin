@@ -1,7 +1,7 @@
 ﻿'use strict';
 
 var Login = (function ($) {
-    var _refreshCaptchaIntervalId = null;
+    var _refreshCaptchaTimeoutId = null;
     var REFRESH_CAPTCHA_INTERVAL = 600000;
 
     function encrypt(plainText, key) {
@@ -23,13 +23,20 @@ var Login = (function ($) {
     }
 
     function registerRefreshLoginCaptcha(isShowingModal) {
-        clearInterval(_refreshCaptchaIntervalId);
-        _refreshCaptchaIntervalId = setInterval(function () {
+        function refreshCaptcha() {
+            console.log(isShowingModal);
             if (isShowingModal) {
                 _me.generateDialogCaptcha();
             } else {
                 _me.generateCaptcha();
             }
+            clearTimeout(_refreshCaptchaTimeoutId);
+            _refreshCaptchaTimeoutId = setTimeout(refreshCaptcha, REFRESH_CAPTCHA_INTERVAL);
+        }
+
+        clearTimeout(_refreshCaptchaTimeoutId);
+        _refreshCaptchaTimeoutId = setTimeout(function () {
+            refreshCaptcha();
         }, REFRESH_CAPTCHA_INTERVAL);
     }
 

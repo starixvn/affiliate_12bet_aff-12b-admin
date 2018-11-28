@@ -59,8 +59,6 @@
   .popup .modal-content .modal-main-content .modal-header {
     background-color: #d43131;
     color: #fff;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
     padding: 8px;
     text-align: center; }
     .popup .modal-content .modal-main-content .modal-header .modal-title {
@@ -84,19 +82,9 @@
       .popup .modal-content .modal-main-content .modal-header .close:focus {
         outline: none; }
 
-.popup .modal-content .modal-body {
-  text-align: justify; }
-  .popup .modal-content .modal-body pre {
-    color: #D05D56;
-    font-size: 1.5rem;
-    margin: 0;
-    font-weight: bold;
-    background-color: inherit;
-    border: 0;
-    padding: 0; }
-  .popup .modal-content .modal-body .signature {
-    font-weight: bold;
-    color: #07437d; }
+.popup .modal-content .modal-body .signature {
+  font-weight: bold;
+  color: #07437d; }
 
 .popup .modal-content h6 {
   color: #D05D56;
