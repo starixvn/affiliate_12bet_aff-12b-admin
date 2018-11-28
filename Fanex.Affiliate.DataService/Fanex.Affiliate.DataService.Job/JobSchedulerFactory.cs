@@ -24,8 +24,13 @@ namespace Fanex.Affiliate.DataService.Job
             {
                 if (JobSystem.JobHandlerList.ContainsKey(product))
                 {
-                    var key = appSetting.ProductListHaveDailyJob.Contains(product) ? $"{product}Daily" : product;
-                    _jobSchedulerList.Add(JobSystem.JobHandlerList[key].Value);
+                    _jobSchedulerList.Add(JobSystem.JobHandlerList[product].Value);
+
+                    var dailyJobKey = $"{product}Daily";
+                    if (appSetting.ProductListHaveDailyJob.Contains(product) && JobSystem.JobHandlerList.ContainsKey(dailyJobKey))
+                    {
+                        _jobSchedulerList.Add(JobSystem.JobHandlerList[dailyJobKey].Value);
+                    }
                 }
             }
         }
