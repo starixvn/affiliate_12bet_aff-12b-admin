@@ -15,7 +15,7 @@ namespace Fanex.Affiliate.DataService.Job.Constants
                     { "Playtech", new Lazy<IJobScheduler>(() => new PlaytechCasinoScheduler()) },
                     { "Betsoft", new Lazy<IJobScheduler>(() => new BetsoftScheduler()) },
                     { "Ebet", new Lazy<IJobScheduler>(() => new EbetScheduler()) },
-                    { "Crystal", new Lazy<IJobScheduler>(() => new CrystalGpiScheduler()) },
+                    { "CrystalGpi", new Lazy<IJobScheduler>(() => new CrystalGpiScheduler()) },
                     { "ISoftbet", new Lazy<IJobScheduler>(() => new ISoftbetScheduler()) }
                 };
             }
