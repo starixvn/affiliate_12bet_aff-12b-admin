@@ -12,21 +12,20 @@ namespace Fanex.Affiliate.DataService.Job
 
         private readonly IList<IJobScheduler> _jobSchedulerList;
 
-        private readonly IAppSettings _appSetting;
-
         public JobSchedulerFactory()
         {
-            _appSetting = new AppSettings();
+            var appSetting = new AppSettings();
             var schedulerFactory = new StdSchedulerFactory();
             _scheduler = schedulerFactory.GetScheduler();
 
             _jobSchedulerList = new List<IJobScheduler>();
 
-            foreach (var product in _appSetting.SupportedProductList)
+            foreach (var product in appSetting.SupportedProductList)
             {
                 if (JobSystem.JobHandlerList.ContainsKey(product))
                 {
-                    _jobSchedulerList.Add(JobSystem.JobHandlerList[product].Value);
+                    var key = appSetting.ProductListHaveDailyJob.Contains(product) ? $"{product}Daily" : product;
+                    _jobSchedulerList.Add(JobSystem.JobHandlerList[key].Value);
                 }
             }
         }

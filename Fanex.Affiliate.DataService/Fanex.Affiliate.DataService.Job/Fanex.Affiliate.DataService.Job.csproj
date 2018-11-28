@@ -104,6 +104,8 @@
     <Compile Include="Model\ScheduleInfo.cs" />
     <Compile Include="Modules\BetsoftJob.cs" />
     <Compile Include="Modules\BetsoftScheduler.cs" />
+    <Compile Include="Modules\CrystalGpiDailyJob.cs" />
+    <Compile Include="Modules\CrystalGpiDailyScheduler.cs" />
     <Compile Include="Modules\CrystalGpiJob.cs" />
     <Compile Include="Modules\CrystalGpiScheduler.cs" />
     <Compile Include="Modules\EbetJob.cs" />

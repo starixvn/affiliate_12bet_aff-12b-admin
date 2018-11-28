@@ -17,5 +17,7 @@ namespace Fanex.Affiliate.DataService.Importer.MetaModels.CrystalGpi
         public string Password { get; set; }
 
         public byte Type { get; set; }
+
+        public byte JobType { get; set; }
     }
 }

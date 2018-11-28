@@ -106,7 +106,7 @@ namespace Fanex.Affiliate.DataService.Importer
             }
 
             var convertedXml = ConvertTimeZoneForRawData(rawData);
-            _thirdPartyProductRepository.ImportData(Products.CrystalProductId, convertedXml);
+            _thirdPartyProductRepository.ImportData(Products.CrystalProductId, convertedXml, paramByPaging.JobType);
 
             return Convert.ToInt32(xDocument.Root.Attribute("totalPage")?.Value);
         }
@@ -219,6 +219,7 @@ namespace Fanex.Affiliate.DataService.Importer
                 EndTime = param.EndTime,
                 PageNumber = pageNum,
                 PageSize = param.PageSize,
+                JobType = param.JobType,
                 Code = _appSetting.GetValue("CrystalGpiCode"),
                 Password = _appSetting.GetValue("CrystalGpiPassword"),
                 Type = Convert.ToByte(_appSetting.GetValue("CrystalGpiType"))
