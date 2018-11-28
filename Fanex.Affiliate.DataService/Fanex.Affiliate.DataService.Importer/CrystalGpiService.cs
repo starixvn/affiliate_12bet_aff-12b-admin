@@ -32,7 +32,7 @@ namespace Fanex.Affiliate.DataService.Importer
         {
             var paramByTimeZone = BuildParamByTimeZone(param);
 
-            return GetRawDataListByBatch(paramByTimeZone);
+            return GetRawDataListByHour(paramByTimeZone);
         }
 
         public IEnumerable<string> ConvertDataTimeZone(IEnumerable<string> rawDataList)
@@ -40,25 +40,8 @@ namespace Fanex.Affiliate.DataService.Importer
             var result = new List<string>();
             foreach (var item in rawDataList)
             {
-                var xDoc = XDocument.Parse(item);
-                var betHistoryList = xDoc.Root.Elements("history");
-
-                if (betHistoryList != null && betHistoryList.Any())
-                {
-                    foreach (var betHistory in betHistoryList)
-                    {
-                        var changeTimeString = betHistory.Attribute("changeTime")?.Value;
-                        if (!string.IsNullOrEmpty(changeTimeString))
-                        {
-                            var changeTime = DateTime.ParseExact(changeTimeString, TimeDataFormat, CultureInfo.InvariantCulture);
-                            var convertedTime = DateTimeConverter.ConvertTime(changeTime, TimeZoneId.GmtPlus8, TimeZoneId.GmtMinus4);
-                            betHistory.Attribute("changeTime").Value = convertedTime.ToString(TimeDataFormat);
-                        }
-
-                    }
-                }
-
-                result.Add(xDoc.ToString());
+                var convertedXmlData = ConvertTimeZoneForRawData(item);
+                result.Add(convertedXmlData);
             }
 
             return result;
@@ -66,9 +49,8 @@ namespace Fanex.Affiliate.DataService.Importer
 
         public void Import(CrystalGpiParam param)
         {
-            var rawDataList = GetRawDataList(param);
-            var convertedDataTimeZone = ConvertDataTimeZone(rawDataList);
-            Import(convertedDataTimeZone);
+            var paramByTimeZone = BuildParamByTimeZone(param);
+            ImportByHour(paramByTimeZone);
         }
 
         public void Import(IEnumerable<string> dataList)
@@ -79,9 +61,8 @@ namespace Fanex.Affiliate.DataService.Importer
             }
         }
 
-        private IEnumerable<string> GetRawDataListByBatch(CrystalGpiParam param)
+        private void ImportByHour(CrystalGpiParam param)
         {
-            var result = new List<string>();
             var startDate = new DateTime(param.StartTime.Year, param.StartTime.Month, param.StartTime.Day, param.StartTime.Hour, 0, 0);
             var endDate = new DateTime(param.EndTime.Year, param.EndTime.Month, param.EndTime.Day, param.EndTime.Hour, 0, 0);
 
@@ -98,34 +79,119 @@ namespace Fanex.Affiliate.DataService.Importer
                     },
                     param.PageNumber);
 
-                var dataListByBatch = GetRawDataListByPaging(paramByBatch);
+                ImportByBatch(paramByBatch);
+            }
+        }
+
+        private void ImportByBatch(CrystalGpiParam paramByBatch)
+        {
+            var totalPages = ImportByPaging(paramByBatch);
+
+            for (var pageNumber = 2; pageNumber <= totalPages; pageNumber++)
+            {
+                var paramByPaging = BuildParam(paramByBatch, pageNumber);
+                ImportByPaging(paramByPaging);
+            }
+        }
+
+        private int ImportByPaging(CrystalGpiParam paramByPaging)
+        {
+            var rawData = GetRawData(paramByPaging);
+            var xDocument = XDocument.Parse(rawData);
+
+            var hasError = string.Equals("error", xDocument.Root.Name.LocalName, StringComparison.InvariantCultureIgnoreCase);
+            if (hasError)
+            {
+                throw new ThirdPartyProductException($"Error: Crystal(Gpi) - ProductId: {Products.CrystalProductId}\nParam:{JsonConvert.SerializeObject(paramByPaging)}\nResult:{rawData}");
+            }
+
+            var convertedXml = ConvertTimeZoneForRawData(rawData);
+            _thirdPartyProductRepository.ImportData(Products.CrystalProductId, convertedXml);
+
+            return Convert.ToInt32(xDocument.Root.Attribute("totalPage")?.Value);
+        }
+
+        private string ConvertTimeZoneForRawData(string rawData)
+        {
+            var xDoc = XDocument.Parse(rawData);
+            var betHistoryList = xDoc.Root.Elements("history");
+
+            if (betHistoryList != null && betHistoryList.Any())
+            {
+                foreach (var betHistory in betHistoryList)
+                {
+                    var changeTimeString = betHistory.Attribute("changeTime")?.Value;
+                    if (!string.IsNullOrEmpty(changeTimeString))
+                    {
+                        var changeTime = DateTime.ParseExact(changeTimeString, TimeDataFormat, CultureInfo.InvariantCulture);
+                        var convertedTime = DateTimeConverter.ConvertTime(changeTime, TimeZoneId.GmtPlus8, TimeZoneId.GmtMinus4);
+                        betHistory.Attribute("changeTime").Value = convertedTime.ToString(TimeDataFormat);
+                    }
+                }
+            }
+
+            return xDoc.ToString();
+        }
+
+        private IEnumerable<string> GetRawDataListByHour(CrystalGpiParam paramByHour)
+        {
+            var result = new List<string>();
+            var startDate = new DateTime(paramByHour.StartTime.Year, paramByHour.StartTime.Month, paramByHour.StartTime.Day, paramByHour.StartTime.Hour, 0, 0);
+            var endDate = new DateTime(paramByHour.EndTime.Year, paramByHour.EndTime.Month, paramByHour.EndTime.Day, paramByHour.EndTime.Hour, 0, 0);
+
+            for (var start = startDate; DateTime.Compare(start, endDate) < 0; start = start.AddHours(1))
+            {
+                var endDateByBatch = start.AddHours(1);
+                var paramByBatch = BuildParam(
+                    new CrystalGpiParam
+                    {
+                        StartTime = start,
+                        EndTime = DateTime.Compare(endDateByBatch, endDate) > 0 ? endDate : endDateByBatch,
+                        PageNumber = paramByHour.PageNumber,
+                        PageSize = paramByHour.PageSize
+                    },
+                    paramByHour.PageNumber);
+
+                var dataListByBatch = GetRawDataListByBatch(paramByBatch);
                 result.AddRange(dataListByBatch);
             }
 
             return result;
         }
 
-        private IEnumerable<string> GetRawDataListByPaging(CrystalGpiParam paramByBatch)
+        private IEnumerable<string> GetRawDataListByBatch(CrystalGpiParam paramByBatch)
         {
             var result = new List<string>();
-            var rawData = GetRawData(paramByBatch);
+            var rawData = GetRawDataByPaging(paramByBatch);
+            var xDocument = XDocument.Parse(rawData);
+            result.Add(rawData);
+
+            var totalPages = Convert.ToInt32(xDocument.Root.Attribute("totalPage")?.Value);
+
+            if (totalPages > 1 && paramByBatch.PageNumber < totalPages)
+            {
+                for (var pageNumber = 2; pageNumber <= totalPages; pageNumber++)
+                {
+                    var paramByPaging = BuildParam(paramByBatch, pageNumber);
+                    result.Add(GetRawDataByPaging(paramByPaging));
+                }
+            }
+
+            return result;
+        }
+
+        private string GetRawDataByPaging(CrystalGpiParam paramByPaging)
+        {
+            var rawData = GetRawData(paramByPaging);
             var xDocument = XDocument.Parse(rawData);
 
             var hasError = string.Equals("error", xDocument.Root.Name.LocalName, StringComparison.InvariantCultureIgnoreCase);
             if (hasError)
             {
-                throw new ThirdPartyProductException($"Crystal Product Error\nParam:{JsonConvert.SerializeObject(paramByBatch)}\nResult:{rawData}");
+                throw new ThirdPartyProductException($"Error: Crystal(Gpi) - ProductId: {Products.CrystalProductId}\nParam:{JsonConvert.SerializeObject(paramByPaging)}\nResult:{rawData}");
             }
 
-            result.Add(rawData);
-            var totalPages = Convert.ToInt32(xDocument.Root.Attribute("totalPage")?.Value);
-            if (totalPages > 1 && paramByBatch.PageNumber < totalPages)
-            {
-                var paramByPaging = BuildParam(paramByBatch, paramByBatch.PageNumber + 1);
-                result.AddRange(GetRawDataListByPaging(paramByPaging));
-            }
-
-            return result;
+            return rawData;
         }
 
         private string GetRawData(CrystalGpiParam param)

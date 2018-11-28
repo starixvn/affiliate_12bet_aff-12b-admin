@@ -40,17 +40,20 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                     var now = DateTime.Now;
                     var nowByHour = new DateTime(now.Year, now.Month, now.Day, now.Hour, 0, 0, DateTimeKind.Local);
 
-                    var param = new CrystalGpiParam
+                    if (DateTime.Compare(lastQueryTime, nowByHour) < 0)
                     {
-                        StartTime = lastQueryTime,
-                        EndTime = nowByHour,
-                        PageNumber = 1,
-                        PageSize = Convert.ToInt32(_appSetting.GetValue("CrystalGpiPageSize"))
-                    };
+                        var param = new CrystalGpiParam
+                        {
+                            StartTime = lastQueryTime,
+                            EndTime = nowByHour,
+                            PageNumber = 1,
+                            PageSize = Convert.ToInt32(_appSetting.GetValue("CrystalGpiPageSize"))
+                        };
 
-                    _crystalGpiService.Import(param);
+                        _crystalGpiService.Import(param);
 
-                    _timeTracker.SaveTime(trackerFolderPath, nowByHour);
+                        _timeTracker.SaveTime(trackerFolderPath, nowByHour);
+                    }
                 }
             }
             catch (Exception exception)
