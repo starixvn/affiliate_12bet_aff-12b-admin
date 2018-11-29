@@ -1,5 +1,5 @@
 ﻿var Login = (function ($) {
-    var _refreshCaptchaIntervalId = null;
+    var _refreshCaptchaTimeoutId = null;
     var REFRESH_CAPTCHA_INTERVAL = 600000;
 
     function encrypt(plainText, key) {
@@ -22,15 +22,26 @@
     }
 
     function registerRefreshLoginCaptcha(isShowingModal) {
-        clearInterval(_refreshCaptchaIntervalId);
-        _refreshCaptchaIntervalId = setInterval(function () {
+        function refreshCaptcha() {
             if (isShowingModal) {
                 _me.generateDialogCaptcha();
             }
             else {
                 _me.generateCaptcha();
             }
+            clearTimeout(_refreshCaptchaTimeoutId);
+            _refreshCaptchaTimeoutId = setTimeout(refreshCaptcha, REFRESH_CAPTCHA_INTERVAL);
+        }
+
+        clearTimeout(_refreshCaptchaTimeoutId);
+        _refreshCaptchaTimeoutId = setTimeout(function () {
+            refreshCaptcha();
         }, REFRESH_CAPTCHA_INTERVAL);
+    }
+
+    function toggleLoginButton(isEnable, onDialog) {
+        var btnLoginselector = onDialog ? '#btnDialogLogin' : '#btnLogin';
+        $(btnLoginselector).prop('disabled', !isEnable);
     }
 
     var _me = {
@@ -67,7 +78,7 @@
             });
 
             $("#dialogUserInput input").on("keypress", function (e) {
-                if (e.keyCode === 13) {
+                if (e.keyCode === 13 && !$('#btnDialogLogin').prop('disabled')) {
                     _me.requestSignin(true);
                 }
             });
@@ -83,7 +94,7 @@
             });
 
             $("#userLogin input").on("keypress", function (e) {
-                if (e.keyCode === 13) {
+                if (e.keyCode === 13 && !$('#btnLogin').prop('disabled')) {
                     _me.requestSignin();
                 }
             });
@@ -151,13 +162,18 @@
                             else {
                                 Site.reload();
                             }
+                            toggleLoginButton(true, onDialog);
                         }
                     },
                     beforeSend: function () {
                         Site.showLoader();
+                        toggleLoginButton(false, onDialog);
                     },
-                    complete: function () {
+                    complete: function (jqXHR, textStatus) {
                         Site.hideLoader();
+                        if (textStatus === 'error') {
+                            toggleLoginButton(true, onDialog);
+                        }
                     }
                 });
             }

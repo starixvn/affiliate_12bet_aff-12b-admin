@@ -42,7 +42,12 @@
                 SelectedMonth = param.MonthDate
             };
 
-            return View("~/Views/UserPanel/AccountOverView/index.cshtml", viewModel);
+            if (SessionService.UserSession != null && !SessionService.UserSession.IsVisitedAccountOverViewPage)
+            {
+                SessionService.UserSession.IsVisitedAccountOverViewPage = true;
+            }
+
+            return View("~/Views/UserPanel/AccountOverView/Index.cshtml", viewModel);
         }
     }
 }

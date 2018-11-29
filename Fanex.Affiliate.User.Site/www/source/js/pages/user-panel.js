@@ -10,12 +10,20 @@
         initialize: function () {
             _me.renderView();
             UserPanel.initEvent();
+            $('#commissionNewsPopup').modal({
+                backdrop: 'static',
+                show: false
+            });
+            _me.getCommissionNewsPopup();
         },
 
         initEvent: function () {
             $(window).on('hashchange', function (event) {
                 event.stopPropagation();
                 _me.renderView();
+                if (_me.canShowCommissionNewsPopup()) {
+                    $('#commissionNewsPopup').modal('show');
+                }
             });
 
             $("#mainMenu").on("click", ".menu-item", function (event) {
@@ -26,6 +34,10 @@
                     _me.renderView();
                 }
             });
+
+            $('#commissionNewsPopup').on('hidden.bs.modal', function (e) {
+                _me.updateVisitedPage();
+            })
         },
 
         activeMenu: function (actionName) {
@@ -44,7 +56,7 @@
 
             var url = Site.resolveRelativeUrl("UserPanel/" + action + queryString);
 
-            if (_ajaxRequest != null) {
+            if (_ajaxRequest !== null) {
                 _ajaxRequest.abort();
             }
 
@@ -102,6 +114,38 @@
             }
 
             return "";
+        },
+
+        getCommissionNewsPopup: function () {
+            $.ajax({
+                type: "GET",
+                dataType: "html",
+                cache: false,
+                url: Site.resolveRelativeUrl("UserPanel/Main/CommissionNewsPopup"),
+                success: function (response) {
+                    $('#commissionNewsPopup').html(response);
+                    if (_me.canShowCommissionNewsPopup()) {
+                        $('#commissionNewsPopup').modal('show');
+                    }
+                }
+            });
+        },
+
+        canShowCommissionNewsPopup: function () {
+            var action = _me.getActionName();
+
+            return (action === 'AccountOverView' && $('#IsVisitedAccountOverviewPage').val() === 'False') ||
+                    (action === 'CommissionReport' && $('#IsVisitedCommissionReportPage').val() === 'False');
+        },
+
+        updateVisitedPage: function () {
+            var action = _me.getActionName();
+            if (action === 'AccountOverView') {
+                $('#IsVisitedAccountOverviewPage').val('True');
+            }
+            else {
+                $('#IsVisitedCommissionReportPage').val('True');
+            }
         }
     };
 

@@ -2044,4 +2044,37 @@
   <data name="MobileDevice" xml:space="preserve">
     <value>手機號碼</value>
   </data>
+  <data name="PopupClickHere" xml:space="preserve">
+    <value>聯繫我們</value>
+  </data>
+  <data name="PopupDear" xml:space="preserve">
+    <value>敬愛的合作夥伴</value>
+  </data>
+  <data name="PopupDuringThisIntegrationPeriod" xml:space="preserve">
+    <value>在這段整合期間，請忽略系統中所顯示的數據。因為我們需要從其他系統，人工更新數據至此網站。我們將在每個月底，人工執行所有結算。</value>
+  </data>
+  <data name="PopupExcitingNews" xml:space="preserve">
+    <value>令人興奮的消息！更高收益的機會來了！</value>
+  </data>
+  <data name="PopupHappyEarning" xml:space="preserve">
+    <value>祝大家財源廣進！</value>
+  </data>
+  <data name="PopupIfYouShould" xml:space="preserve">
+    <value>假如您有其他疑問，請立即與我們的合作夥伴團隊聯繫。</value>
+  </data>
+  <data name="PopupPleaseBeAdvised" xml:space="preserve">
+    <value>提醒您隨時更新在12BET合作夥伴系統中的聯繫方式，因為我們的團隊在每個月8日至15日，會與您聯繫關於結算後的實際佣金。如果無法聯絡上您，將會延遲付款。</value>
+  </data>
+  <data name="PopupThankYou" xml:space="preserve">
+    <value>合作愉快</value>
+  </data>
+  <data name="PopupWeAreCurrently" xml:space="preserve">
+    <value>我們目前正將更多12BET產品，加入合作夥伴系統中，以便為夥伴們提供更高的收入機會！</value>
+  </data>
+  <data name="PopupWeHaveGoodNews" xml:space="preserve">
+    <value>分享各位一個好消息。</value>
+  </data>
+  <data name="PopupYourAffiliateManager" xml:space="preserve">
+    <value>12BET合作夥伴經理</value>
+  </data>
 </root>
