@@ -23,7 +23,6 @@
 
     function registerRefreshLoginCaptcha(isShowingModal) {
         function refreshCaptcha() {
-            console.log(isShowingModal);
             if (isShowingModal) {
                 _me.generateDialogCaptcha();
             }
