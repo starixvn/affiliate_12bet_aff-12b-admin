@@ -11,7 +11,5 @@ namespace Fanex.Affiliate.User.Core.ViewModels.UserPanel
         public IEnumerable<CommissionSetting> CommissionSettingList { get; set; }
 
         public DateTime SelectedMonth { get; set; }
-
-        public bool IsVisited { get; set; }
     }
 }

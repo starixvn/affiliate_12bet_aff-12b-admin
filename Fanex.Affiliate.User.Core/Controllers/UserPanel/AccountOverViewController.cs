@@ -39,8 +39,7 @@
             {
                 Statistics = _statisticsRepository.GetStatisticsOverview(param),
                 CommissionSettingList = _accountRepository.GetCommissionSettingList(param.AffId, param.IsInternal),
-                SelectedMonth = param.MonthDate,
-                IsVisited = SessionService.UserSession != null && SessionService.UserSession.IsVisitedAccountOverViewPage
+                SelectedMonth = param.MonthDate
             };
 
             if (SessionService.UserSession != null && !SessionService.UserSession.IsVisitedAccountOverViewPage)

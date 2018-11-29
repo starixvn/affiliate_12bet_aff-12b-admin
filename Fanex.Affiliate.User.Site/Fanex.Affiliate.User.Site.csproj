@@ -540,6 +540,10 @@
     <Content Include="www\build\styles\css\signup.min.css">
       <DependentUpon>signup.css</DependentUpon>
     </Content>
+    <Content Include="www\build\styles\css\user-panel.css" />
+    <Content Include="www\build\styles\css\user-panel.min.css">
+      <DependentUpon>user-panel.css</DependentUpon>
+    </Content>
     <Content Include="www\build\styles\fonts\Montserrat\font.css" />
     <Content Include="www\build\styles\fonts\Montserrat\font.min.css">
       <DependentUpon>font.css</DependentUpon>
@@ -1132,7 +1136,8 @@
     <Content Include="www\build\styles\Images\banner-main-left.webp" />
     <Content Include="www\build\styles\Images\banner-main-right.webp" />
     <Content Include="www\source\styles\scss\components\_popup.scss" />
-    <Content Include="Views\Shared\Popup\Index.cshtml" />
+    <Content Include="Views\UserPanel\Popup\Index.cshtml" />
+    <Content Include="www\source\styles\pages\user-panel.scss" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

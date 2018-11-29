@@ -26,17 +26,12 @@
         [AjaxOnly]
         public ActionResult Index()
         {
-            var viewModel = new CommissionReportViewModel
-            {
-                IsVisited = SessionService.UserSession != null && SessionService.UserSession.IsVisitedCommissionReportPage
-            };
-
             if (SessionService.UserSession != null && !SessionService.UserSession.IsVisitedCommissionReportPage)
             {
                 SessionService.UserSession.IsVisitedCommissionReportPage = true;
             }
 
-            return View("~/Views/UserPanel/CommissionReport/Index.cshtml", viewModel);
+            return View("~/Views/UserPanel/CommissionReport/Index.cshtml");
         }
 
         [HttpPost]
