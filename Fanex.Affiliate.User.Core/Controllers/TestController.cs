@@ -4,36 +4,52 @@
     using System.Web.Mvc;
     using BusinessService;
     using Constants;
+    using CoreService;
     using DTO;
     using Enum;
+    using Filters;
     using MetalModels.Email;
     using ONEbook.UM.Filters;
     using Utilities;
     using ViewModels;
 
     [CheckUMFilter]
-    public class TestController : Controller
+    [CustomAuthorize]
+    public class TestController : BaseController
     {
         private readonly IMailProcessor _mailProcessor;
         private readonly ILanguageService _languageService;
+        private readonly IAppSetting _appSetting;
 
         private const string MailContact = "walter.tran@starixsoft.com";
 
-        public TestController(ILanguageService languageService)
+        public TestController(ISessionService sessionService,
+            ILanguageService languageService, IAppSetting appSetting) : base(sessionService, languageService)
         {
             _mailProcessor = new MailProcessor();
             _languageService = languageService;
+            _appSetting = appSetting;
         }
 
         [HttpGet]
         public ActionResult Index()
         {
+            if (!IsValidUser())
+            {
+                return HttpNotFound();
+            }
+
             return View();
         }
 
         [HttpGet]
         public ActionResult Preview(TestCriteria criteria)
         {
+            if (!IsValidUser())
+            {
+                return HttpNotFound();
+            }
+
             try
             {
                 _languageService.SetCulture(criteria.Language);
@@ -51,6 +67,11 @@
         [HttpPost]
         public ActionResult SendEmail(TestCriteria criteria)
         {
+            if (!IsValidUser())
+            {
+                return HttpNotFound();
+            }
+
             var success = true;
             var message = string.Empty;
 
@@ -196,6 +217,11 @@
                 MailOption = false,
                 PreferredLanguage = "en-US"
             };
+        }
+
+        private bool IsValidUser()
+        {
+            return _appSetting.IsLocal || SessionService.IsInternal;
         }
     }
 
