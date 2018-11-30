@@ -8,13 +8,9 @@
     var _me = {
         datepicker: [],
         initialize: function () {
+            _me.initializeCommissionNewsPopup();
             _me.renderView();
             UserPanel.initEvent();
-            $('#commissionNewsPopup').modal({
-                backdrop: 'static',
-                show: false
-            });
-            _me.getCommissionNewsPopup();
         },
 
         initEvent: function () {
@@ -116,21 +112,6 @@
             return "";
         },
 
-        getCommissionNewsPopup: function () {
-            $.ajax({
-                type: "GET",
-                dataType: "html",
-                cache: false,
-                url: Site.resolveRelativeUrl("UserPanel/Main/CommissionNewsPopup"),
-                success: function (response) {
-                    $('#commissionNewsPopup').html(response);
-                    if (_me.canShowCommissionNewsPopup()) {
-                        $('#commissionNewsPopup').modal('show');
-                    }
-                }
-            });
-        },
-
         canShowCommissionNewsPopup: function () {
             var action = _me.getActionName();
 
@@ -145,6 +126,17 @@
             }
             else {
                 $('#IsVisitedCommissionReportPage').val('True');
+            }
+        },
+
+        initializeCommissionNewsPopup: function () {
+            $('#commissionNewsPopup').modal({
+                backdrop: 'static',
+                show: false
+            });
+
+            if (_me.canShowCommissionNewsPopup()) {
+                $('#commissionNewsPopup').modal('show');
             }
         }
     };
