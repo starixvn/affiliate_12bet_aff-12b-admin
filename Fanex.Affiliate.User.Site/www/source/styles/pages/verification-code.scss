@@ -1,0 +1,55 @@
+﻿.verification-code-page {
+    p {
+        line-height: 2;
+    }
+
+    .btn-resend, .btn-captcha {
+        width: calc(100% - 30px);
+        height: 28px;
+        margin-left: 15px;
+    }
+
+    .btn-resend {
+        color: #ffffff;
+        background-color: #BDBDBD;
+        box-shadow: -1px 4px 4px #ABABAB;
+    }
+
+    .btn-captcha[disabled] {
+        opacity: 1;
+        background-color: #D9D9D9;
+        font-weight: 900;
+        border-radius: 0;
+    }
+    
+    .span-error {
+        color: #ff0000;
+    }
+
+    @media (min-width: 768px)
+    {
+        .btn-resend, .btn-captcha {
+            width: 155px;
+            margin: 0;
+        }
+
+        form {
+            padding-left: 10px;
+        }
+    }
+}
+
+@media (min-width: 768px)
+{
+    .verification-code-page {
+        margin-left: 10px;
+    }
+}
+
+@media (max-width: 767px)
+{
+    .btn-login {
+        width: 100%;
+        margin: 0;
+    }
+}
