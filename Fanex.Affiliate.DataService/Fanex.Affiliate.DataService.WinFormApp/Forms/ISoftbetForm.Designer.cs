@@ -115,6 +115,7 @@
             this.btnImport.TabIndex = 7;
             this.btnImport.Text = "Import Converted Data";
             this.btnImport.UseVisualStyleBackColor = true;
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
             // btnGetRawData
             // 

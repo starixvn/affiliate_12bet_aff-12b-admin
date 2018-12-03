@@ -48,8 +48,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
 
             try
             {
-                btnGetRawData.Enabled = false;
-                btnImport.Enabled = false;
+                ToggleButton(false);
 
                 await Task.Run(() =>
                 {
@@ -99,8 +98,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
                     DisplayResult();
                     richTextRawData.Text = rawDataBuilder.ToString();
                     richTextConvertedData.Text = convertedDataBuilder.ToString();
-                    btnGetRawData.Enabled = true;
-                    btnImport.Enabled = true;
+                    ToggleButton(true);
                 }), null);
             }
         }
@@ -119,6 +117,45 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
         {
             richTextLog.Text = _logBuilder.ToString();
             _logBuilder.Clear();
+        }
+
+        private void ToggleButton(bool isEnable)
+        {
+            btnGetRawData.Enabled = isEnable;
+            btnImport.Enabled = isEnable;
+        }
+
+        private async void btnImport_Click(object sender, EventArgs e)
+        {
+            const byte JobType = 0;
+            ToggleButton(false);
+            try
+            {
+                await Task.Run(() =>
+                {
+                    foreach (var xml in _convertedDataList)
+                    {
+                        _isoftbetService.Import(xml, JobType);
+                    }
+
+                    _convertedDataList.Clear();
+                    _logBuilder.AppendLine("Done!");
+                });
+            }
+            catch (Exception ex)
+            {
+                _logBuilder.AppendLine(ex.Message);
+                _logBuilder.AppendLine(ex.StackTrace);
+                _logBuilder.AppendLine(ex.Source);
+            }
+            finally
+            {
+                synchronizationContext.Post(new SendOrPostCallback((state) =>
+                {
+                    DisplayResult();
+                    ToggleButton(true);
+                }), null);
+            }
         }
     }
 }

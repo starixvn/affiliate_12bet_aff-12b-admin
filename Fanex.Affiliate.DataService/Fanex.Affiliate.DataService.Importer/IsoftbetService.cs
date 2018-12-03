@@ -66,22 +66,68 @@ namespace Fanex.Affiliate.DataService.Importer
 
         public void Import(ISoftbetEntryParam param)
         {
-            var resultDataList = GetRawDataList(param);
+            var startTime = new DateTime(param.StartTime.Year, param.StartTime.Month, param.StartTime.Day, param.StartTime.Hour, param.StartTime.Minute, 0);
+            var endTime = new DateTime(param.EndTime.Year, param.EndTime.Month, param.EndTime.Day, param.EndTime.Hour, param.EndTime.Minute, 0);
 
-            foreach (var dataItem in resultDataList)
+            var paramByTimeZone = new ISoftbetEntryParam
             {
-                var jObject = JObject.Parse(dataItem.JsonData);
-                var status = Convert.ToString(jObject["status"]);
-                if (status != SuccessStatus)
+                StartTime = startTime.ToUniversalTime(),
+                EndTime = endTime.ToUniversalTime(),
+                PageNumber = param.PageNumber,
+                JobType = param.JobType
+            };
+
+            if (_appSetting.IsLocalTest)
+            {
+                var resultList = GetFakeData().Select(x => new ISoftbetApiParamResultPair
                 {
-                    throw new ThirdPartyProductException($"Error: ISoftbet - ProductId: {Products.ISoftbetProductId}\n{dataItem.JsonData}");
+                    JsonData = x,
+                    Param = new ISoftbetApiParam { PageNumber = paramByTimeZone.PageNumber, RequestTime = paramByTimeZone.StartTime }
+                });
+
+                foreach (var item in resultList)
+                {
+                    ImportDataByResult(item, param.JobType);
                 }
-
-                var summary = ISoftbetParser.FromJsonObject(jObject);
-
-                var xml = ConvertToXml(summary, dataItem.Param);
-                Import(xml, param.JobType);
             }
+            else
+            {
+                ImportDataByBatch(param);
+            }
+        }
+
+        private void ImportDataByBatch(ISoftbetEntryParam param)
+        {
+            for (var requestTime = param.StartTime; DateTime.Compare(requestTime, param.EndTime) < 0; requestTime = requestTime.AddMinutes(1))
+            {
+                var apiParam = new ISoftbetApiParam
+                {
+                    RequestTime = requestTime,
+                    PageNumber = param.PageNumber
+                };
+
+                var rawDataListByPaging = GetRawDataByPaging(apiParam);
+
+                foreach (var item in rawDataListByPaging)
+                {
+                    ImportDataByResult(item, param.JobType);
+                }
+            }
+        }
+
+        private void ImportDataByResult(ISoftbetApiParamResultPair result, byte jobType)
+        {
+            var jObject = JObject.Parse(result.JsonData);
+            var status = Convert.ToString(jObject["status"]);
+            if (status != SuccessStatus)
+            {
+                throw new ThirdPartyProductException($"Error: ISoftbet - ProductId: {Products.ISoftbetProductId}\n{result.JsonData}");
+            }
+
+            var summary = ISoftbetParser.FromJsonObject(jObject);
+
+            var xml = ConvertToXml(summary, result.Param);
+            Import(xml, jobType);
         }
 
         private IEnumerable<ISoftbetApiParamResultPair> GetRawDataByBatch(ISoftbetEntryParam param)
