@@ -9,5 +9,7 @@ namespace Fanex.Affiliate.DataService.Importer.MetaModels.ISoftbet
         public DateTime EndTime { get; set; }
 
         public int PageNumber { get; set; }
+
+        public byte JobType { get; set; }
     }
 }

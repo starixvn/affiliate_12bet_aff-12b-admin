@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Fanex.Affiliate.DataService.Importer;
 using Fanex.Affiliate.DataService.Importer.Constants;
@@ -50,37 +51,40 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
                 btnGetRawData.Enabled = false;
                 btnImport.Enabled = false;
 
-                var rawDataList = await _isoftbetService.GetRawDataList(param);
-                if (rawDataList.Any())
+                await Task.Run(() =>
                 {
-                    foreach (var item in rawDataList)
+                    var rawDataList = _isoftbetService.GetRawDataList(param);
+                    if (rawDataList.Any())
                     {
-                        rawDataBuilder.AppendLine(item.JsonData);
-                        rawDataBuilder.AppendLine();
-                        rawDataBuilder.AppendLine("-----------------------------------------");
-
-                        var jObject = JObject.Parse(item.JsonData);
-                        var status = Convert.ToString(jObject["status"]);
-                        if (status != "success")
+                        foreach (var item in rawDataList)
                         {
-                            throw new ThirdPartyProductException($"Error: ISoftbet - ProductId: {Products.ISoftbetProductId}\n{item.JsonData}");
+                            rawDataBuilder.AppendLine(item.JsonData);
+                            rawDataBuilder.AppendLine();
+                            rawDataBuilder.AppendLine("-----------------------------------------");
+
+                            var jObject = JObject.Parse(item.JsonData);
+                            var status = Convert.ToString(jObject["status"]);
+                            if (status != "success")
+                            {
+                                throw new ThirdPartyProductException($"Error: ISoftbet - ProductId: {Products.ISoftbetProductId}\n{item.JsonData}");
+                            }
+
+                            var summary = ISoftbetParser.FromJsonObject(jObject);
+                            var xml = _isoftbetService.ConvertToXml(summary, item.Param);
+
+                            convertedDataBuilder.AppendLine(xml);
+                            convertedDataBuilder.AppendLine();
+                            convertedDataBuilder.AppendLine("-----------------------------------------");
+
+                            _convertedDataList.Add(xml);
                         }
-
-                        var summary = ISoftbetParser.FromJsonObject(jObject);
-                        var xml = _isoftbetService.ConvertToXml(summary, item.Param);
-
-                        convertedDataBuilder.AppendLine(xml);
-                        convertedDataBuilder.AppendLine();
-                        convertedDataBuilder.AppendLine("-----------------------------------------");
-
-                        _convertedDataList.Add(xml);
+                        _logBuilder.AppendLine("Done!");
                     }
-                    _logBuilder.AppendLine("Done!");
-                }
-                else
-                {
-                    _logBuilder.AppendLine("No information");
-                }
+                    else
+                    {
+                        _logBuilder.AppendLine("No information");
+                    }
+                });
             }
             catch (Exception ex)
             {
