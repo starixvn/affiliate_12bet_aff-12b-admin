@@ -107,12 +107,15 @@
     <Compile Include="IDataImportingRunner.cs" />
     <Compile Include="IEbetService.cs" />
     <Compile Include="IISoftbetService.cs" />
+    <Compile Include="IOpusService.cs" />
     <Compile Include="MetaModels\Betsoft\BetsoftParam.cs" />
     <Compile Include="MetaModels\CrystalGpi\CrystalGpiParam.cs" />
     <Compile Include="MetaModels\Ebet\EbetParam.cs" />
     <Compile Include="MetaModels\ISoftbet\ISoftbetApiParam.cs" />
     <Compile Include="MetaModels\ISoftbet\ISoftbetEntryParam.cs" />
     <Compile Include="ISoftbetService.cs" />
+    <Compile Include="MetaModels\Opus\OpusParam.cs" />
+    <Compile Include="OpusService.cs" />
     <Compile Include="Repository\BaseRepository.cs" />
     <Compile Include="Repository\IThirdPartyProductRepository.cs" />
     <Compile Include="Repository\ThirdPartyProductRepository.cs" />

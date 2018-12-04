@@ -57,5 +57,13 @@ namespace Fanex.Affiliate.DataService.WinFormApp
             quartzForm.Show();
             this.Hide();
         }
+
+        private void btnOpus_Click(object sender, EventArgs e)
+        {
+            var opusForm = new OpusForm();
+            opusForm.FormClosing += FormClosingHandler;
+            opusForm.Show();
+            this.Hide();
+        }
     }
 }
