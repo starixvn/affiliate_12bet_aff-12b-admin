@@ -222,7 +222,16 @@
     <None Include="SampleData\Casino_2017-10-15.csv" />
     <None Include="SampleData\Casino_2017-10-16.csv" />
     <None Include="SampleData\sampled_data.csv" />
-    <Content Include="App_Data\OpusData\OpusDataSample.xml">
+    <Content Include="App_Data\OpusData\opus_2.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\OpusData\opus_1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\OpusData\opus_3.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\OpusData\opus_4.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Template\DailyMemberEmail.cshtml">

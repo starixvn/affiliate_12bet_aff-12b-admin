@@ -114,6 +114,8 @@
     <Compile Include="Modules\ISoftbetDailyScheduler.cs" />
     <Compile Include="Modules\ISoftbetJob.cs" />
     <Compile Include="Modules\ISoftbetScheduler.cs" />
+    <Compile Include="Modules\OpusJob.cs" />
+    <Compile Include="Modules\OpusScheduler.cs" />
     <Compile Include="Modules\PlaytechCasinoJob.cs" />
     <Compile Include="Modules\PlaytechCasinoScheduler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

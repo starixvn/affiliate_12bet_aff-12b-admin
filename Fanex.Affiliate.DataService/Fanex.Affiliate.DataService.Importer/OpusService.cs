@@ -90,9 +90,12 @@ namespace Fanex.Affiliate.DataService.Importer
         {
             if (_appSetting.IsLocalTest)
             {
-                var fakeData = GetFakeData().First();
-                var convertedData = ConvertTimeZoneForRawData(fakeData);
-                Import(convertedData);
+                var fakeDataList = GetFakeData();
+                foreach (var item in fakeDataList)
+                {
+                    var convertedData = ConvertTimeZoneForRawData(item);
+                    Import(convertedData);
+                }
             }
             else
             {
@@ -210,11 +213,19 @@ namespace Fanex.Affiliate.DataService.Importer
 
         private IEnumerable<string> GetFakeData()
         {
+            var result = new List<string>();
             var simulator = new DataSimulator();
-            var filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"App_Data\\OpusData\\OpusDataSample.xml");
-            var data = simulator.GetLocalData(filePath);
+            var folderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"App_Data\\OpusData");
+            var directory = new DirectoryInfo(folderPath);
+            var fileList = directory.GetFiles().Select(f => f.FullName);
 
-            return new List<string> { data };
+            foreach (var file in fileList)
+            {
+                var data = simulator.GetLocalData(file);
+                result.Add(data);
+            }
+
+            return result;
         }
     }
 }
