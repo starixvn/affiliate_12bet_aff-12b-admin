@@ -54,6 +54,12 @@ namespace Fanex.Affiliate.DataService.Importer
                 };
 
                 var paramByBatch = BuildParam(timeRangeParam);
+
+                if (DateTime.Compare(start, entryParam.StartTime) > 0)
+                {
+                    Task.Delay(DelayTimeMillisecond).Wait();
+                }
+
                 var rawData = GetRawData(paramByBatch);
 
                 result.Add(rawData);
@@ -102,6 +108,12 @@ namespace Fanex.Affiliate.DataService.Importer
                     };
 
                     var paramByBatch = BuildParam(timeRangeParam);
+
+                    if (DateTime.Compare(start, entryParam.StartTime) > 0)
+                    {
+                        Task.Delay(DelayTimeMillisecond).Wait();
+                    }
+
                     var rawData = GetRawData(paramByBatch);
                     var convertedData = ConvertTimeZoneForRawData(rawData);
                     Import(convertedData);
@@ -139,11 +151,11 @@ namespace Fanex.Affiliate.DataService.Importer
         {
             var apiUrl = _appSetting.GetValue("OpusApiUrl");
             var queryString = BuildQueryString(param);
+            var url = $"{apiUrl}?{queryString}";
 
-            Task.Delay(DelayTimeMillisecond).Wait();
             using (var client = new WebClient())
             {
-                return client.UploadString(apiUrl, queryString);
+                return client.DownloadString(url);
             }
         }
 
