@@ -56,6 +56,17 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
                             rawDataBuilder.AppendLine();
                             rawDataBuilder.AppendLine("-----------------------------------------");
                         }
+
+                        var convertedData = _opusService.ConvertDataTimeZone(rawDataList);
+                        foreach (var item in convertedData)
+                        {
+                            convertedDataBuilder.AppendLine(item);
+                            convertedDataBuilder.AppendLine();
+                            convertedDataBuilder.AppendLine("-----------------------------------------");
+
+                            _convertedDataList.Add(item);
+                        }
+
                         _logBuilder.AppendLine("Done!");
                     }
                     else
@@ -102,6 +113,38 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
         {
             btnGetRawData.Enabled = isEnable;
             btnImport.Enabled = isEnable;
+        }
+
+        private async void btnImport_Click(object sender, EventArgs e)
+        {
+            ToggleButton(false);
+            try
+            {
+                await Task.Run(() =>
+                {
+                    foreach (var xml in _convertedDataList)
+                    {
+                        _opusService.Import(xml);
+                    }
+
+                    _convertedDataList.Clear();
+                    _logBuilder.AppendLine("Done!");
+                });
+            }
+            catch (Exception ex)
+            {
+                _logBuilder.AppendLine(ex.Message);
+                _logBuilder.AppendLine(ex.StackTrace);
+                _logBuilder.AppendLine(ex.Source);
+            }
+            finally
+            {
+                synchronizationContext.Post(new SendOrPostCallback((state) =>
+                {
+                    DisplayResult();
+                    ToggleButton(true);
+                }), null);
+            }
         }
     }
 }

@@ -9,5 +9,7 @@
         public const int CrystalProductId = 12;
 
         public const int ISoftbetProductId = 13;
+
+        public const int OpusProductId = 14;
     }
 }

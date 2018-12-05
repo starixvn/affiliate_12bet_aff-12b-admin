@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Transaction_Detail>
+  <status_code>00</status_code>
+  <status_text>SUCCESS</status_text>
+  <trans_count>3</trans_count>
+  <datetime>2010-09-15 03:47:54</datetime>
+  <bets>
+    <row id="1">
+      <transaction_id>223812061</transaction_id>
+      <transaction_date_time>2010-09-14 17:00:02</transaction_date_time>
+      <member_code>01_anana</member_code>
+      <member_type>CASH</member_type>
+      <currency>RMB</currency>
+      <balance_start>184.83</balance_start>
+      <balance_end>184.83</balance_end>
+      <bet>2.50</bet>
+      <win>0.00</win>
+      <game_code>E430</game_code>
+      <game_detail>High Speed Cash</game_detail>
+      <bet_status>Loss</bet_status>
+      <player_hand />
+      <game_result />
+      <game_category>EY</game_category>
+      <vendor>Eyecon</vendor>
+      <DrawNumber>0</DrawNumber>
+      <m88_studio />
+      <stamp_date>2010-09-14 17:00:02</stamp_date>
+      <bet_record_id>53707988</bet_record_id>
+    </row>
+    <row id="2">
+      <transaction_id>223812072</transaction_id>
+      <transaction_date_time>2010-09-14 17:00:02</transaction_date_time>
+      <member_code>01_fanqieqin</member_code>
+      <member_type>CASH</member_type>
+      <currency>RMB</currency>
+      <balance_start>110.47</balance_start>
+      <balance_end>120.47</balance_end>
+      <bet>10.00</bet>
+      <win>20.00</win>
+      <game_code>xc_hold_em</game_code>
+      <game_detail>Casino Held'em</game_detail>
+      <bet_status>Win</bet_status>
+      <player_hand />
+      <game_result />
+      <game_category>xc</game_category>
+      <vendor>CTXM</vendor>
+      <DrawNumber>0</DrawNumber>
+      <m88_studio />
+      <stamp_date>2010-09-14 17:00:08</stamp_date>
+      <bet_record_id>53707989</bet_record_id>
+    </row>
+    <row id="3">
+      <transaction_id>1625881884</transaction_id>
+      <transaction_date_time>2016-02-22 00:50:00</transaction_date_time>
+      <member_code>01_ismoyo</member_code>
+      <member_type>CASH</member_type>
+      <currency>IDR</currency>
+      <balance_start>170.63</balance_start>
+      <balance_end>160.63</balance_end>
+      <bet>10.00</bet>
+      <win>0.00</win>
+      <game_code>Dc</game_code>
+      <game_detail>Dice</game_detail>
+      <bet_status>Loss</bet_status>
+      <player_hand>Small</player_hand>
+      <game_result>3, 5, 6</game_result>
+      <game_category>Dc</game_category>
+      <vendor>Casino</vendor>
+      <DrawNumber>0</DrawNumber>
+      <m88_studio>CM</m88_studio>
+      <stamp_date>2016-02-22 00:50:40</stamp_date>
+      <bet_record_id>549845055</bet_record_id>
+      <rebet_amount>0.00</rebet_amount>
+      <app_id>AIR_M_A</app_id>
+    </row>
+  </bets>
+</Transaction_Detail>
