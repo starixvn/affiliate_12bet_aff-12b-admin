@@ -24,7 +24,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
 
             var trigger = TriggerBuilder.Create()
               .WithIdentity(jobName + "Trigger", groupName)
-              .StartNow()
+              .StartAt(DateBuilder.FutureDate(4, IntervalUnit.Minute))
               .WithSimpleSchedule(x => x
                   .WithIntervalInMinutes(Convert.ToInt32(_appSetting.GetValue("ISoftbetIntervalTime")))
                   .RepeatForever())

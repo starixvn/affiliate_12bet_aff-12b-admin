@@ -15,7 +15,7 @@ namespace Fanex.Affiliate.DataService.Job.Modules
 
             var trigger = TriggerBuilder.Create()
               .WithIdentity(jobName + "Trigger", groupName)
-              .StartAt(DateBuilder.FutureDate(10, IntervalUnit.Minute))
+              .StartAt(DateBuilder.FutureDate(15, IntervalUnit.Minute))
               .WithSimpleSchedule(x => x
                   .WithIntervalInHours(12)
                   .RepeatForever())
