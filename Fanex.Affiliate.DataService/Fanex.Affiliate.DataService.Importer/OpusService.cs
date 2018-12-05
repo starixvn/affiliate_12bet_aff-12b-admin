@@ -16,7 +16,7 @@ namespace Fanex.Affiliate.DataService.Importer
 {
     public class OpusService : IOpusService
     {
-        private const int DelayTimeMillisecond = 15000;
+        private const int DelayTimeMillisecond = 16000;
 
         private const int TimeRangeByMinute = 15;
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Net;
-using System.Threading;
+using System.Threading.Tasks;
 using System.Xml.Linq;
 using Fanex.Affiliate.DataService.Importer.Constants;
 using Fanex.Affiliate.DataService.Importer.Exceptions;
@@ -16,7 +16,7 @@ namespace Fanex.Affiliate.DataService.Importer
 {
     public class CrystalGpiService : ICrystalGpiService
     {
-        private const int DelayTimeMillisecond = 15000;
+        private const int DelayTimeMillisecond = 16000;
         private const string TimeDataFormat = "dd-MM-yyyy H:mm:ss";
 
         private readonly IAppSettings _appSetting;
@@ -198,7 +198,7 @@ namespace Fanex.Affiliate.DataService.Importer
         private string GetRawData(CrystalGpiParam param)
         {
             var apiUrl = BuildApiUrl(param);
-            Thread.Sleep(DelayTimeMillisecond);
+            Task.Delay(DelayTimeMillisecond).Wait();
 
             return GetDataString(apiUrl);
         }

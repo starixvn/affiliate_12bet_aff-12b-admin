@@ -272,15 +272,19 @@ namespace Fanex.Affiliate.DataService.Importer
 
         private IEnumerable<string> GetFakeData()
         {
-            var fakeDataList = new List<string>();
+            var result = new List<string>();
             var simulator = new DataSimulator();
-            for (var i = 1; i <= 6; i++)
+            var folderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"App_Data\\ISoftbetData");
+            var directory = new DirectoryInfo(folderPath);
+            var fileList = directory.GetFiles().Select(f => f.FullName);
+
+            foreach (var file in fileList)
             {
-                var filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"App_Data\\ISoftbetData\\isoftbet_{i}.json");
-                fakeDataList.Add(simulator.GetLocalData(filePath));
+                var data = simulator.GetLocalData(file);
+                result.Add(data);
             }
 
-            return fakeDataList;
+            return result;
         }
     }
 }
