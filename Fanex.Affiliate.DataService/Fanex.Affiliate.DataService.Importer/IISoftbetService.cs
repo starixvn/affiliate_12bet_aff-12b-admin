@@ -8,7 +8,7 @@ namespace Fanex.Affiliate.DataService.Importer
     {
         IEnumerable<ISoftbetApiParamResultPair> GetRawDataList(ISoftbetEntryParam param);
 
-        string ConvertToXml(ISoftbetSummary ISoftbetSummary, ISoftbetApiParam param);
+        string ConvertToXml(ISoftbetSummary isoftbetSummary, ISoftbetApiParam param);
 
         void Import(string xmlData, byte jobType);
 

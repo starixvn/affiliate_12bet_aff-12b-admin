@@ -54,9 +54,9 @@ namespace Fanex.Affiliate.DataService.Importer
             return GetRawDataByBatch(paramByTimeZone);
         }
 
-        public string ConvertToXml(ISoftbetSummary ISoftbetSummary, ISoftbetApiParam param)
+        public string ConvertToXml(ISoftbetSummary isoftbetSummary, ISoftbetApiParam param)
         {
-            return "<ROOT>" + BuildRequestXml(param) + BuildResponseXml(ISoftbetSummary) + "</ROOT>";
+            return "<ROOT>" + BuildRequestXml(param) + BuildResponseXml(isoftbetSummary) + "</ROOT>";
         }
 
         public void Import(string xmlData, byte jobType)
@@ -213,15 +213,15 @@ namespace Fanex.Affiliate.DataService.Importer
             return "<REQUEST>" + $"<PARAM DATETIME=\"" + param.RequestTime + "\" PAGE =\"" + param.PageNumber + "\" />" + "</REQUEST>";
         }
 
-        private static string BuildResponseXml(ISoftbetSummary ISoftbetSummary)
+        private static string BuildResponseXml(ISoftbetSummary isoftbetSummary)
         {
             var builder = new StringBuilder();
-            var resultInfo = ISoftbetSummary.ResultInfo;
+            var resultInfo = isoftbetSummary.ResultInfo;
             builder.AppendLine("<RESPONSE>");
             builder.AppendLine($"<RESULT DATETIME=\"{resultInfo.DateTime}\" PAGES=\"{resultInfo.Pages}\" CURRENTPAGE=\"{resultInfo.CurrentPage}\" TOTAL=\"{resultInfo.Total}\" />");
 
             builder.AppendLine("<BETHISTORYLIST>");
-            foreach (var item in ISoftbetSummary.BetHistoryList)
+            foreach (var item in isoftbetSummary.BetHistoryList)
             {
                 var convertedTime = DateTimeConverter.ToGMT(item.Time, TimeZoneId.GmtMinus4);
                 var attributes = "PLAYERID=\"" + item.PlayerId + "\" " +
