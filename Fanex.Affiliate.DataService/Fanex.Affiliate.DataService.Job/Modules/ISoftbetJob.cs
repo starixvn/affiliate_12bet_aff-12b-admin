@@ -37,7 +37,9 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                     var trackerFolderPath = _appSetting.GetValue("ISoftbetTrackerFolder");
                     var defaultStartTime = DateTime.ParseExact(_appSetting.GetValue("ISoftbetStartTime"), "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal);
                     var lastQueryTime = _timeTracker.GetLastestCallSuccess(trackerFolderPath, defaultStartTime);
-                    var now = DateTime.Now;
+
+                    var hourAdjustment = Convert.ToInt32(_appSetting.GetValue("ISoftbetHourAdjustment"));
+                    var now = DateTime.Now.AddHours(hourAdjustment);
                     var nowByHour = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, 0, DateTimeKind.Local);
 
                     var isoftbetParam = new ISoftbetEntryParam
