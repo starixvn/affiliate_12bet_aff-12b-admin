@@ -24,7 +24,7 @@ export default class AppContainer extends Component {
             selectedProduct: param.ProductId,
             monthDate: new Date(param.MonthDate),
             data: { gridData: null },
-            pagingOption: Object.assign({}, defaultPagingOption, { PageList: [100, 200, 500, 1000, 2000] })
+            pagingOption: Object.assign({}, defaultPagingOption, { PageSize: 100, PageList: [100, 200, 500, 1000, 2000] })
         }
     }
 
