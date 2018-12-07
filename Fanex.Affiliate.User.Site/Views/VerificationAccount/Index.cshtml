@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = "~/Views/Shared/_LayoutBeforeLogin.cshtml";
 }
 
@@ -7,11 +6,22 @@
     @Html.InlineStyles("~/www/build/styles/css/verification-code.css")
 }
 
+@section scripts{
+    <script>
+        $(function () {
+            $("#captchaVerificationAccount").on('click', function () {
+                var captchaUrl = Site.resolveRelativeUrl("VerificationAccount/CaptchaImage?_v=" + new Date().getTime());
+                $(this).attr("src", captchaUrl);
+            })
+        })
+    </script>
+}
+
 <div class="content verification-code-page">
     <br />
     <p>Dear Customer,</p>
     <p>Due to many recent failed logins, please verify one more security step.</p>
-    <p>A 6-digits verification code has bên sent to your email address <strong>b*********abc@gmail.com.</strong></p>
+    <p>A 6-digits verification code has been sent to your email address <strong>b*********abc@gmail.com.</strong></p>
     <p>Please enter your username, password and the veritication code below to log in.</p>
     <br />
     <form>
@@ -54,7 +64,9 @@
                     <span class="span-error">Captcha is required</span>
                 </span>
             </div>
-            <button type="button" class="btn btn-captcha" disabled="disabled">abc</button>
+            <div class="validation-value">
+                <img style="cursor:pointer" id="captchaVerificationAccount" src="@Url.Content("~/VerificationAccount/CaptchaImage?_v=" + DateTime.Now.ToLongTimeString()) alt="captcha" />
+            </div>
         </div>
         <br />
         <div class="form-group row">
@@ -64,4 +76,3 @@
         </div>
     </form>
 </div>
-
