@@ -8,13 +8,9 @@ var UserPanel = (function ($) {
     var _me = {
         datepicker: [],
         initialize: function initialize() {
+            _me.initializeCommissionNewsPopup();
             _me.renderView();
             UserPanel.initEvent();
-            $('#commissionNewsPopup').modal({
-                backdrop: 'static',
-                show: false
-            });
-            _me.getCommissionNewsPopup();
         },
 
         initEvent: function initEvent() {
@@ -116,21 +112,6 @@ var UserPanel = (function ($) {
             return "";
         },
 
-        getCommissionNewsPopup: function getCommissionNewsPopup() {
-            $.ajax({
-                type: "GET",
-                dataType: "html",
-                cache: false,
-                url: Site.resolveRelativeUrl("UserPanel/Main/CommissionNewsPopup"),
-                success: function success(response) {
-                    $('#commissionNewsPopup').html(response);
-                    if (_me.canShowCommissionNewsPopup()) {
-                        $('#commissionNewsPopup').modal('show');
-                    }
-                }
-            });
-        },
-
         canShowCommissionNewsPopup: function canShowCommissionNewsPopup() {
             var action = _me.getActionName();
 
@@ -143,6 +124,17 @@ var UserPanel = (function ($) {
                 $('#IsVisitedAccountOverviewPage').val('True');
             } else {
                 $('#IsVisitedCommissionReportPage').val('True');
+            }
+        },
+
+        initializeCommissionNewsPopup: function initializeCommissionNewsPopup() {
+            $('#commissionNewsPopup').modal({
+                backdrop: 'static',
+                show: false
+            });
+
+            if (_me.canShowCommissionNewsPopup()) {
+                $('#commissionNewsPopup').modal('show');
             }
         }
     };

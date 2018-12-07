@@ -8,6 +8,6 @@
 }
 @Html.InlineStyles("~/www/build/styles/css/user-panel.min.css")
 <div id="mainPanel"></div>
-<div id="commissionNewsPopup" class="modal fade popup" role="dialog"></div>
+@{ Html.RenderPartial("~/Views/UserPanel/Popup/Index.cshtml"); }
 <input type="hidden" id="IsVisitedAccountOverviewPage" value="@Model.IsVisitedAccountOverviewPage.ToString()" />
 <input type="hidden" id="IsVisitedCommissionReportPage" value="@Model.IsVisitedCommissionReportPage.ToString()" />
