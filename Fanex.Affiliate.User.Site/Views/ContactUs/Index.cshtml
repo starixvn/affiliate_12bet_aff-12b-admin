@@ -3,11 +3,15 @@
     ViewBag.Title = "12BET Affiliate Program | Contact Us";
 }
 
+@using Fanex.Affiliate.User.Core.Utilities
 @model Fanex.Affiliate.User.Core.DTO.UserInfo
 @{
     var name = Model != null ? $"{Model?.FirstName} {Model?.LastName}" : string.Empty;
     var affiliate = Model?.UserName;
     var email = Model?.Email;
+    var imLink = "tencent://message/?uin=3263593774&Site=qq&Menu=yes";
+    var appSetting = new AppSetting();
+    var mailContact = appSetting.MailContact;
 }
 
 @section styles{
@@ -50,7 +54,7 @@
                             </div>
                             <div class="info">
                                 <p class="language">@Lang.EnglishSupport</p>
-                                <a class="contact-info" href="tencent://message/?uin=1806412043&Site=qq&Menu=yes">
+                                <a class="contact-info" href="@imLink">
                                     <img class="im-icon" src="~/www/build/styles/Images/contact-us/qq_icon.png" />
                                     <span>1806412043</span>
                                 </a>
@@ -65,7 +69,7 @@
                             </div>
                             <div class="info">
                                 <p class="language">@Lang.ChinaSupport</p>
-                                <a class="contact-info" href="tencent://message/?uin=1806412043&Site=qq&Menu=yes">
+                                <a class="contact-info" href="@imLink">
                                     <img class="im-icon" src="~/www/build/styles/Images/contact-us/qq_icon.png" />
                                     <span>1806412043</span>
                                 </a>
@@ -82,7 +86,7 @@
                             </div>
                             <div class="info">
                                 <p class="language">@Lang.IndonesiaSupport</p>
-                                <a class="contact-info" href="tencent://message/?uin=1806412043&Site=qq&Menu=yes">
+                                <a class="contact-info" href="@imLink">
                                     <img class="im-icon" src="~/www/build/styles/Images/contact-us/qq_icon.png" />
                                     <span>1806412043</span>
                                 </a>
@@ -97,7 +101,7 @@
                             </div>
                             <div class="info">
                                 <p class="language">@Lang.ThailandSupport</p>
-                                <a class="contact-info" href="tencent://message/?uin=1806412043&Site=qq&Menu=yes">
+                                <a class="contact-info" href="@imLink">
                                     <img class="im-icon" src="~/www/build/styles/Images/contact-us/qq_icon.png" />
                                     <span>1806412043</span>
                                 </a>
@@ -114,7 +118,7 @@
                             </div>
                             <div class="info">
                                 <p class="language">@Lang.VietnamSupport</p>
-                                <a class="contact-info" href="tencent://message/?uin=1806412043&Site=qq&Menu=yes">
+                                <a class="contact-info" href="@imLink">
                                     <img class="im-icon" src="~/www/build/styles/Images/contact-us/qq_icon.png" />
                                     <span>1806412043</span>
                                 </a>
@@ -129,7 +133,7 @@
                             </div>
                             <div class="info">
                                 <p class="language">@Lang.IndianSupport</p>
-                                <a class="contact-info" href="tencent://message/?uin=1806412043&Site=qq&Menu=yes">
+                                <a class="contact-info" href="@imLink">
                                     <img class="im-icon" src="~/www/build/styles/Images/contact-us/qq_icon.png" />
                                     <span>1806412043</span>
                                 </a>
@@ -149,7 +153,7 @@
         <div class="alert alert-danger" role="alert" id="messageError" style="display: none"></div>
 
         <div id="mainContent">
-            <p class="intro">@Html.Raw(string.Format(Lang.PleaseDirectAnyComment, "<a href=\"mailto:affiliates@12csd.com\">affiliates@12csd.com</a>"))</p>
+            <p class="intro">@Html.Raw(string.Format(Lang.PleaseDirectAnyComment, "<a href=\"mailto:" + mailContact + "\">" + mailContact + "</a>"))</p>
             <form id="contactForm" class="form">
                 @Html.AntiForgeryToken()
                 <div class="form-group">
