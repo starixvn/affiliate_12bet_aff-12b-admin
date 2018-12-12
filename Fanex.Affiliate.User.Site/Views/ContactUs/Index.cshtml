@@ -9,9 +9,23 @@
     var name = Model != null ? $"{Model?.FirstName} {Model?.LastName}" : string.Empty;
     var affiliate = Model?.UserName;
     var email = Model?.Email;
-    var imLink = "tencent://message/?uin=1806412043\u0026Site=qq\u0026Menu=yes";
     var appSetting = new AppSetting();
     var mailContact = appSetting.MailContact;
+    var isMobile = Request.Browser.IsMobileDevice;
+    var imLink = "tencent://message/?uin=1806412043&Site=qq&Menu=yes";
+
+    if(isMobile)
+    {
+        var userAgent = Request.UserAgent.ToLower();
+        if (userAgent.Contains("android"))
+        {
+            imLink = "https://play.google.com/store/apps/details?id=com.tencent.mobileqqi";
+        }
+        else if(userAgent.Contains("iphone") || userAgent.Contains("ipad") || userAgent.Contains("ipod"))
+        {
+            imLink = "https://itunes.apple.com/cn/app/qq-guo-ji-ban/id710380093?mt=8";
+        }
+    }
 }
 
 @section styles{
