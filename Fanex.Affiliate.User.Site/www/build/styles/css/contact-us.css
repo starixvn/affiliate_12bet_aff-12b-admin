@@ -34,7 +34,7 @@
     .languages-item .single-flag img {
       width: 4.6rem;
       margin: 0 auto; }
-  .languages-item .skype-icon {
+  .languages-item .im-icon {
     width: 2rem; }
   .languages-item .info {
     height: 100%;
@@ -52,14 +52,14 @@
       border-bottom: 1px solid #e7e7e7;
       margin: 0;
       font-weight: 500; }
-    .languages-item .info .skype-info {
+    .languages-item .info .contact-info {
       padding-left: 5px;
       padding-top: 10px;
       padding-bottom: 10px;
       color: #138cb6;
       font-weight: 500;
       display: inline-block; }
-      .languages-item .info .skype-info .skype-icon {
+      .languages-item .info .contact-info .im-icon {
         margin-right: 5px; }
 
 .contact-form {
@@ -70,8 +70,6 @@
   flex-direction: column;
   justify-content: space-around;
   padding-top: 10px;
-  margin-right: -15px;
-  margin-left: -15px;
   flex-wrap: wrap; }
   .form .form-group {
     display: flex;
@@ -86,7 +84,7 @@
       flex: 0 0 100px;
       margin-top: 5px; }
     .form .form-group .field {
-      width: calc(100% - 100px);
+      width: calc(100% - 130px);
       height: 30px;
       line-height: 30px;
       padding: 10px;
@@ -95,8 +93,6 @@
     .form .form-group textarea {
       min-height: 100px; }
   .form .group {
-    padding-right: 15px;
-    padding-left: 15px;
     display: flex;
     flex-wrap: wrap;
     flex-basis: 100%; }
