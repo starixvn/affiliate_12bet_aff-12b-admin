@@ -9,7 +9,7 @@ exports[`afiliate info - Filter  should render correctly 1`] = `
     tag="div"
   >
     <FormGroup
-      className="mb-2 mr-sm-2 mb-sm-0"
+      className="my-2 mr-sm-2"
       tag="div"
     >
       <Label
@@ -43,7 +43,7 @@ exports[`afiliate info - Filter  should render correctly 1`] = `
       </Input>
     </FormGroup>
     <FormGroup
-      className="mb-2 mr-sm-2 mb-sm-0"
+      className="my-2 mr-sm-2"
       tag="div"
     >
       <Input
@@ -61,7 +61,7 @@ exports[`afiliate info - Filter  should render correctly 1`] = `
       </Input>
     </FormGroup>
     <FormGroup
-      className="mb-2 mr-sm-2 mb-sm-0"
+      className="my-2 mr-sm-2"
       tag="div"
     >
       <Input
@@ -104,7 +104,7 @@ exports[`afiliate info - Filter  should render correctly 1`] = `
       </Input>
     </FormGroup>
     <FormGroup
-      className="mb-2 mr-sm-2 mb-sm-0"
+      className="my-2 mr-sm-2"
       tag="div"
     >
       <Input
@@ -117,7 +117,7 @@ exports[`afiliate info - Filter  should render correctly 1`] = `
       />
     </FormGroup>
     <FormGroup
-      className="mb-2 mr-sm-2 mb-sm-0"
+      className="my-2 mr-sm-2"
       tag="div"
     >
       <Input
@@ -130,7 +130,7 @@ exports[`afiliate info - Filter  should render correctly 1`] = `
       />
     </FormGroup>
     <FormGroup
-      className="mb-2 mr-sm-2 mb-sm-0"
+      className="my-2 mr-sm-2"
       tag="div"
     >
       <Label
@@ -184,7 +184,7 @@ exports[`afiliate info - Filter  should render correctly 1`] = `
       </Input>
     </FormGroup>
     <FormGroup
-      className="mb-2 mr-sm-2 mb-sm-0"
+      className="my-2 mr-sm-2"
       tag="div"
     >
       <Label
@@ -209,7 +209,38 @@ exports[`afiliate info - Filter  should render correctly 1`] = `
         />
       </Label>
     </FormGroup>
+    <FormGroup
+      className="my-2 mr-sm-2"
+      tag="div"
+    >
+      <Label
+        className="mr-sm-2"
+        for="SortBy"
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        Displayed Columns
+      </Label>
+      <MultipleSelect
+        hasAllOption={true}
+        keyField="columnKey"
+        maxDisplayItemCount={1}
+        noneSelectedLabel="Please Select"
+        onChange={[Function]}
+        statusField="checked"
+        valueField="columnName"
+      />
+    </FormGroup>
     <Button
+      className="my-2"
       color="primary"
       onClick={[Function]}
       outline={true}

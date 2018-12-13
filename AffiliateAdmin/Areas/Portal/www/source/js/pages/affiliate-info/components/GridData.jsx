@@ -12,6 +12,7 @@ import { post } from '../../../modules/ajaxRequest';
 import { format, formatDecimal } from '../../../modules/numberFormat';
 import { updateObjectInArray } from '../../../modules/dataHandler';
 import { resolveClientUrl } from '../../../modules/utils';
+import { convertSelectedColumnList } from '../modules/utils';
 
 export class GridData extends Component {
     constructor(props) {
@@ -199,27 +200,16 @@ export class GridData extends Component {
         this.fetchData(newParam);
     }
 
-    _getSelectedColumnList(){
-        const {columnList} = this.props;
-
-        return columnList.reduce((result, currentValue) => {
-            if(currentValue.checked){
-                result[currentValue.columnKey] = true;
-            }
-
-            return result;
-        }, {});
-    }
-
     render() {
         const { gridData, shouldResetScrollPosition } = this.state;
 
-        if(!gridData){
+        if (!gridData) {
             return null;
         }
 
-        const selectedColumnList = this._getSelectedColumnList();
-        
+        const { columnList } = this.props;       
+        const selectedColumnList = convertSelectedColumnList(columnList);
+
         return (
             <div className="table-responsive table-striped">
                 <Table

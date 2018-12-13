@@ -60,12 +60,12 @@ export class Filter extends Component {
         this.props.setParam(param);
     }
 
-    handleChangeProduct = (item, selectedColumn) => {
-        const {columnList} = this.props;
+    handleChangeColumn = (item, selectedColumn) => {
+        const { columnList } = this.props;
         const selectedColumnList = selectedColumn.split(',').filter(p => !!p);
 
         const newColumnList = columnList.map(item => {
-            const {columnKey, columnName} = item;
+            const { columnKey, columnName } = item;
             const checked = selectedColumnList.indexOf(columnKey) !== -1;
 
             return {
@@ -95,7 +95,6 @@ export class Filter extends Component {
     render() {
         const { selectedCommGroup, selectedLanguage, selectedSortBy, selectedStatus, isSortAscending } = this.state;
         const { commGroupList, languageList, columnList } = this.props;
-        console.log(columnList);
 
         return (
             <div className="filter-container">
@@ -177,7 +176,7 @@ export class Filter extends Component {
                             statusField="checked"
                             maxDisplayItemCount={1}
                             noneSelectedLabel="Please Select"
-                            onChange={this.handleChangeProduct} />
+                            onChange={this.handleChangeColumn} />
                     </FormGroup>
 
                     <Button className="my-2" outline color="primary" type="button" onClick={this.handleClickSearch} >
