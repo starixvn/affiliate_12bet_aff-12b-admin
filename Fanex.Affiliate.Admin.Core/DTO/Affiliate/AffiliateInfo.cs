@@ -34,6 +34,14 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
 
         public bool IsClosed { get; set; }
 
+        public string Currency { get; set; }
+
+        public string PlayerCurrency { get; set; }
+
+        public string PlayerUserName { get; set; }
+
+        public string Phone { get; set; }
+
         public string RegistrationDateText => RegistrationDate.ToString("MM/dd/yyyy HH:mm:ss");
 
         public string ApprovalDateText => ApprovalDate?.ToString("MM/dd/yyyy HH:mm:ss") ?? "N/A";

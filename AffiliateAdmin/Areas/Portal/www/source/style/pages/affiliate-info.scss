@@ -1,4 +1,10 @@
 ﻿@import "../components/modal";
+@import "../components/multiple-select";
+
+.filter-container{
+    padding-top: 0;
+    padding-bottom: 0;
+}
 
 #SearchBy, #Email {
     width: 200px;
@@ -20,4 +26,8 @@
 }
 .btn.btn-link {
     padding: 0;
+}
+
+.multiple-select-container{
+    width: 170px;
 }

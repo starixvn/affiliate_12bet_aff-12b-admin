@@ -98,7 +98,11 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
                 BalanceBf = reader["BFF"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(reader["BFF"]),
                 Member = reader["NoOfMember"] == DBNull.Value ? (int?)null : Convert.ToInt32(reader["NoOfMember"]),
                 IsFavorite = Convert.ToBoolean(reader["IsFavorite"]),
-                IsClosed = Convert.ToBoolean(reader["IsClosed"])
+                IsClosed = Convert.ToBoolean(reader["IsClosed"]),
+                Currency = Convert.ToString(reader["Currency"]),
+                PlayerCurrency = Convert.ToString(reader["PlayerCurrency"]),
+                Phone = Convert.ToString(reader["Phone"]),
+                PlayerUserName = Convert.ToString(reader["Player_Username"])
             };
         }
 

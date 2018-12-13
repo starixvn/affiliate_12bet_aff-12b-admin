@@ -49,28 +49,32 @@ export class GridData extends Component {
         this.props.toggleLoader(false);
     }
 
-    _renderHeader() {
+    _renderHeader(selectedColumnList) {
         return (
             <Row key="theard">
-                <Cell header={true} colWidth={80} title={headerText.Index}>{headerText.Index}</Cell>
+                {selectedColumnList['Index'] && <Cell header={true} colWidth={80} title={headerText.Index}>{headerText.Index}</Cell>}
                 <Cell header={true} colWidth={300} title={headerText.UserName}>{headerText.UserName}</Cell>
-                <Cell header={true} colWidth={200} title={headerText.Status}>{headerText.Status}</Cell>
-                <Cell header={true} colWidth={220} title={headerText.FirstName}>{headerText.FirstName}</Cell>
-                <Cell header={true} colWidth={300} title={headerText.LastName}>{headerText.LastName}</Cell>
-                <Cell header={true} colWidth={300} title={headerText.Language}>{headerText.Language}</Cell>
-                <Cell header={true} colWidth={450} title={headerText.Email}>{headerText.Email}</Cell>
-                <Cell header={true} colWidth={300} title={headerText.RegistrationDateText}>{headerText.RegistrationDateText}</Cell>
-                <Cell header={true} colWidth={300} title={headerText.ApprovalDateText}>{headerText.ApprovalDateText}</Cell>
-                <Cell header={true} colWidth={300} title={headerText.CasinoDateText}>{headerText.CasinoDateText}</Cell>
-                <Cell header={true} colWidth={300} title={headerText.CommissionGroup}>{headerText.CommissionGroup}</Cell>
-                <Cell header={true} colWidth={200} title={headerText.BalanceBf}>{headerText.BalanceBf}</Cell>
-                <Cell header={true} colWidth={150} title={headerText.Member}>{headerText.Member}</Cell>
+                {selectedColumnList['Status'] && <Cell header={true} colWidth={200} title={headerText.Status}>{headerText.Status}</Cell>}
+                {selectedColumnList['FirstName'] && <Cell header={true} colWidth={200} title={headerText.FirstName}>{headerText.FirstName}</Cell>}
+                {selectedColumnList['LastName'] && <Cell header={true} colWidth={200} title={headerText.LastName}>{headerText.LastName}</Cell>}
+                {selectedColumnList['Language'] && <Cell header={true} colWidth={200} title={headerText.Language}>{headerText.Language}</Cell>}
+                {selectedColumnList['Phone'] && <Cell header={true} colWidth={200} title={headerText.Phone}>{headerText.Phone}</Cell>}
+                {selectedColumnList['Email'] && <Cell header={true} colWidth={400} title={headerText.Email}>{headerText.Email}</Cell>}
+                {selectedColumnList['RegistrationDateText'] && <Cell header={true} colWidth={300} title={headerText.RegistrationDateText}>{headerText.RegistrationDateText}</Cell>}
+                {selectedColumnList['ApprovalDateText'] && <Cell header={true} colWidth={300} title={headerText.ApprovalDateText}>{headerText.ApprovalDateText}</Cell>}
+                {selectedColumnList['CasinoDateText'] && <Cell header={true} colWidth={200} title={headerText.CasinoDateText}>{headerText.CasinoDateText}</Cell>}
+                {selectedColumnList['CommissionGroup'] && <Cell header={true} colWidth={300} title={headerText.CommissionGroup}>{headerText.CommissionGroup}</Cell>}
+                {selectedColumnList['BalanceBf'] && <Cell header={true} colWidth={200} title={headerText.BalanceBf}>{headerText.BalanceBf}</Cell>}
+                {selectedColumnList['Currency'] && <Cell header={true} colWidth={150} title={headerText.Currency}>{headerText.Currency}</Cell>}
+                {selectedColumnList['PlayerUserName'] && <Cell header={true} colWidth={200} title={headerText.PlayerUserName}>{headerText.PlayerUserName}</Cell>}
+                {selectedColumnList['PlayerCurrency'] && <Cell header={true} colWidth={150} title={headerText.PlayerCurrency}>{headerText.PlayerCurrency}</Cell>}
+                {selectedColumnList['Member'] && <Cell header={true} colWidth={150} title={headerText.Member}>{headerText.Member}</Cell>}
                 <Cell header={true} colWidth={130} title={headerText.Password}>{headerText.Password}</Cell>
             </Row>
         );
     }
 
-    _renderDataSection(dataList) {
+    _renderDataSection(dataList, selectedColumnList) {
         const dataRows = [];
         const { pagingOption } = this.props;
         const startIndex = (pagingOption.PageIndex - 1) * pagingOption.PageSize + 1;
@@ -78,13 +82,13 @@ export class GridData extends Component {
         for (let i = 0; i < dataList.length; i++) {
             const dataItem = dataList[i];
 
-            dataRows.push(this._buildDataRow(dataItem, i + startIndex));
+            dataRows.push(this._buildDataRow(dataItem, i + startIndex, selectedColumnList));
         }
 
         return dataRows;
     }
 
-    _buildDataRow(dataItem, index) {
+    _buildDataRow(dataItem, index, selectedColumnList) {
         const { languageList } = this.props;
         const status = dataItem.Status.toLowerCase();
         const isApproved = status == "approved";
@@ -111,7 +115,7 @@ export class GridData extends Component {
 
         return (
             <Row key={`dataRow-${index}`}>
-                <Cell className="text-center" title={index}>{index}</Cell>
+                {selectedColumnList['Index'] && <Cell className="text-center" title={index}>{index}</Cell>}
                 <Cell title={dataItem.UserName}>
                     <a href={resolveClientUrl(`Portal/Customer?user=${dataItem.UserName}`)} target="_top">
                         {dataItem.UserName}
@@ -119,17 +123,21 @@ export class GridData extends Component {
                     <span className={classNameFavorite} onClick={() => this.handleToggleFavorite(dataItem.AffId, isFavorite)}></span>
                 </Cell>
 
-                <Cell className="text-center" title={dataItem.Status}>{dataItem.Status}</Cell>
-                <Cell title={dataItem.FirstName}>{dataItem.FirstName}</Cell>
-                <Cell title={dataItem.LastName}>{dataItem.LastName}</Cell>
-                <Cell title={language}>{language}</Cell>
-                <Cell title={dataItem.Email}>{dataItem.Email}</Cell>
-                <Cell className="text-center" title={dataItem.RegistrationDateText}>{dataItem.RegistrationDateText}</Cell>
-                <Cell className="text-center" title={dataItem.ApprovalDateText}>{dataItem.ApprovalDateText}</Cell>
-                <Cell className="text-center" title={dataItem.CasinoDateText}>{dataItem.CasinoDateText}</Cell>
-                <Cell className="text-center" title={typeof commissionGroup === 'string' ? commissionGroup : dataItem.CommissionGroup}>{commissionGroup}</Cell>
-                <Cell className="text-right" title={balanceBf}>{balanceBf}</Cell>
-                <Cell className="text-right" title={formattedMemberValue}>{member}</Cell>
+                {selectedColumnList['Status'] && <Cell className="text-center" title={dataItem.Status}>{dataItem.Status}</Cell>}
+                {selectedColumnList['FirstName'] && <Cell title={dataItem.FirstName}>{dataItem.FirstName}</Cell>}
+                {selectedColumnList['LastName'] && <Cell title={dataItem.LastName}>{dataItem.LastName}</Cell>}
+                {selectedColumnList['Language'] && <Cell title={language}>{language}</Cell>}
+                {selectedColumnList['Phone'] && <Cell className="text-center" title={dataItem.Phone}>{dataItem.Phone}</Cell>}
+                {selectedColumnList['Email'] && <Cell title={dataItem.Email}>{dataItem.Email}</Cell>}
+                {selectedColumnList['RegistrationDateText'] && <Cell className="text-center" title={dataItem.RegistrationDateText}>{dataItem.RegistrationDateText}</Cell>}
+                {selectedColumnList['ApprovalDateText'] && <Cell className="text-center" title={dataItem.ApprovalDateText}>{dataItem.ApprovalDateText}</Cell>}
+                {selectedColumnList['CasinoDateText'] && <Cell className="text-center" title={dataItem.CasinoDateText}>{dataItem.CasinoDateText}</Cell>}
+                {selectedColumnList['CommissionGroup'] && <Cell className="text-center" title={typeof commissionGroup === 'string' ? commissionGroup : dataItem.CommissionGroup}>{commissionGroup}</Cell>}
+                {selectedColumnList['BalanceBf'] && <Cell className="text-right" title={balanceBf}>{balanceBf}</Cell>}
+                {selectedColumnList['Currency'] && <Cell className="text-center" title={dataItem.Currency}>{dataItem.Currency}</Cell>}
+                {selectedColumnList['PlayerUserName'] && <Cell className="text-center" title={dataItem.PlayerUserName}>{dataItem.PlayerUserName}</Cell>}
+                {selectedColumnList['PlayerCurrency'] && <Cell className="text-center" title={dataItem.PlayerCurrency}>{dataItem.PlayerCurrency}</Cell>}
+                {selectedColumnList['Member'] && <Cell className="text-right" title={formattedMemberValue}>{member}</Cell>}
                 <Cell className="text-center" title="Change Password">
                     {
                         isApproved && (<Button color="link" onClick={() => this.handleChangePassword(dataItem.AffId)}>
@@ -191,17 +199,35 @@ export class GridData extends Component {
         this.fetchData(newParam);
     }
 
+    _getSelectedColumnList(){
+        const {columnList} = this.props;
+
+        return columnList.reduce((result, currentValue) => {
+            if(currentValue.checked){
+                result[currentValue.columnKey] = true;
+            }
+
+            return result;
+        }, {});
+    }
+
     render() {
         const { gridData, shouldResetScrollPosition } = this.state;
 
-        return gridData && (
+        if(!gridData){
+            return null;
+        }
+
+        const selectedColumnList = this._getSelectedColumnList();
+        
+        return (
             <div className="table-responsive table-striped">
                 <Table
                     minWidth={1000}
                     autoWidth={true}
                     bodyHeight={300}
-                    header={this._renderHeader()}
-                    body={this._renderDataSection(gridData)}
+                    header={this._renderHeader(selectedColumnList)}
+                    body={this._renderDataSection(gridData, selectedColumnList)}
                     containerPadding={20}
                     isPaging={true}
                     pageOption={this.props.pagingOption}
@@ -213,8 +239,8 @@ export class GridData extends Component {
     }
 }
 
-function mapStateToProps({ pagingOption, languageList, param }) {
-    return Object.assign({}, { pagingOption, languageList, param });
+function mapStateToProps({ pagingOption, languageList, param, columnList }) {
+    return Object.assign({}, { pagingOption, languageList, param, columnList });
 }
 
 function mapDispatchToProps(dispatch) {

@@ -25,14 +25,18 @@ export const headerText = {
     FirstName: 'First Name',
     LastName: 'Last Name',
     Language: 'Language',
+    Phone: 'Mobile Phone',
     Email: 'Email',
     RegistrationDateText: 'Registration Date',
     ApprovalDateText: 'Approval Date',
     CasinoDateText: 'Casino Date',
     CommissionGroup: 'Commission Group',
-    BalanceBf: 'Balance B/F',
+    BalanceBf: 'Balance B/F',    
+    Currency: 'Aff. Currency',
+    PlayerUserName: 'Aff. Player',
+    PlayerCurrency: 'Aff. Player Currency',
     Member: 'Member',
-    Password: 'Password'
+    Password: 'Password',
 }
 
 export const resource = {
@@ -58,7 +62,8 @@ export const resource = {
     RequiredConfirmPassword: "Confirm Password is required!",
     ChangePasswordSuccess: "Change password successfully!",
     PasswordErrorMessage: 'Password must have at least 6 characters, including at least 2 letters and at least 2 digits.',
-    ConfirmPasswordErrorMessage: 'Confirm Password is not correct!'
+    ConfirmPasswordErrorMessage: 'Confirm Password is not correct!',
+    DisplayedColumns: 'Displayed Columns'
 }
 
 export const regExp = {

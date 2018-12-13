@@ -2,11 +2,10 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import MultipleSelect from '../../../components/multiple-select';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { statusList, sortByList, defaultSortBy, resource } from '../modules/constants';
-
-import { setReportTitle, setParam } from '../actions';
-
+import { setReportTitle, setParam, setSelectedColumn } from '../actions';
 
 export class Filter extends Component {
     constructor(props) {
@@ -61,6 +60,24 @@ export class Filter extends Component {
         this.props.setParam(param);
     }
 
+    handleChangeProduct = (item, selectedColumn) => {
+        const {columnList} = this.props;
+        const selectedColumnList = selectedColumn.split(',').filter(p => !!p);
+
+        const newColumnList = columnList.map(item => {
+            const {columnKey, columnName} = item;
+            const checked = selectedColumnList.indexOf(columnKey) !== -1;
+
+            return {
+                columnKey,
+                columnName,
+                checked
+            };
+        })
+
+        this.props.setSelectedColumn(newColumnList);
+    }
+
     _buildReportTitle(selectedCommGroup, selectedLanguage, selectedStatus, userName, email) {
         const { commGroupList, languageList } = this.props;
 
@@ -77,12 +94,13 @@ export class Filter extends Component {
 
     render() {
         const { selectedCommGroup, selectedLanguage, selectedSortBy, selectedStatus, isSortAscending } = this.state;
-        const { commGroupList, languageList } = this.props;
+        const { commGroupList, languageList, columnList } = this.props;
+        console.log(columnList);
 
         return (
             <div className="filter-container">
                 <Form inline tag="div">
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                    <FormGroup className="my-2 mr-sm-2">
                         <Label for="SearchBy" className="mr-sm-2">{resource.SearchBy}</Label>
                         <Input type="select" name="selectedCommGroup" id="SearchBy" value={selectedCommGroup} onChange={this.handleChange} >
                             <option key="commGroup-all" value={0}>{resource.AllCommGroups}</option>
@@ -94,7 +112,7 @@ export class Filter extends Component {
                         </Input>
                     </FormGroup>
 
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                    <FormGroup className="my-2 mr-sm-2">
                         {
                             <Input type="select" name="selectedLanguage" id="Language" value={selectedLanguage} onChange={this.handleChange}>
                                 <option key="lang-all" value="">{resource.AllLanguages}</option>
@@ -107,7 +125,7 @@ export class Filter extends Component {
                         }
                     </FormGroup>
 
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                    <FormGroup className="my-2 mr-sm-2">
                         {
                             <Input type="select" name="selectedStatus" id="Status" value={selectedStatus} onChange={this.handleChange}>
                                 <option key="status-all" value="">{resource.AllStatuses}</option>
@@ -120,19 +138,19 @@ export class Filter extends Component {
                         }
                     </FormGroup>
 
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                    <FormGroup className="my-2 mr-sm-2">
                         <Input type="text" name="userName" id="Username" placeholder="Username"
                             onKeyPress={this.handlePressEnter}
                             onChange={this.handleChange} />
                     </FormGroup>
 
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                    <FormGroup className="my-2 mr-sm-2">
                         <Input type="email" name="email" id="Email" placeholder="Email"
                             onKeyPress={this.handlePressEnter}
                             onChange={this.handleChange} />
                     </FormGroup>
 
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                    <FormGroup className="my-2 mr-sm-2">
                         <Label for="SortBy" className="mr-sm-2">{resource.SortBy}</Label>
                         <Input type="select" name="selectedSortBy" id="SortBy" value={selectedSortBy} onChange={this.handleChange} >
                             {
@@ -143,14 +161,26 @@ export class Filter extends Component {
                         </Input>
                     </FormGroup>
 
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                    <FormGroup className="my-2 mr-sm-2">
                         <Label check>
                             {resource.AZ}
                             <Input className="ml-1" type="checkbox" checked={isSortAscending} onChange={this.handleChangeSortAscending} />
                         </Label>
                     </FormGroup>
 
-                    <Button outline color="primary" type="button" onClick={this.handleClickSearch} >
+                    <FormGroup className="my-2 mr-sm-2">
+                        <Label for="SortBy" className="mr-sm-2">{resource.DisplayedColumns}</Label>
+                        <MultipleSelect
+                            dataSource={columnList}
+                            keyField="columnKey"
+                            valueField="columnName"
+                            statusField="checked"
+                            maxDisplayItemCount={1}
+                            noneSelectedLabel="Please Select"
+                            onChange={this.handleChangeProduct} />
+                    </FormGroup>
+
+                    <Button className="my-2" outline color="primary" type="button" onClick={this.handleClickSearch} >
                         <span className="oi oi-magnifying-glass"></span> {resource.Search}
                     </Button>
                 </Form>
@@ -159,12 +189,12 @@ export class Filter extends Component {
     }
 }
 
-function mapStateToProps({ languageList, commGroupList, param, groupId }) {
-    return Object.assign({}, { languageList, commGroupList, param, groupId });
+function mapStateToProps({ languageList, commGroupList, param, groupId, columnList }) {
+    return Object.assign({}, { languageList, commGroupList, param, groupId, columnList });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setReportTitle, setParam }, dispatch);
+    return bindActionCreators({ setReportTitle, setParam, setSelectedColumn }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);
