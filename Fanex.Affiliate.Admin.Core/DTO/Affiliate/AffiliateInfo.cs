@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web.Script.Serialization;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
 {
@@ -18,10 +19,13 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
 
         public string Email { get; set; }
 
+        [ScriptIgnore]
         public DateTime RegistrationDate { get; set; }
 
+        [ScriptIgnore]
         public DateTime? ApprovalDate { get; set; }
 
+        [ScriptIgnore]
         public DateTime? CasinoDate { get; set; }
 
         public string CommissionGroup { get; set; }

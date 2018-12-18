@@ -49,6 +49,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        [Compress]
         public ActionResult GetAffiliateList(AffiliateInfoParam param)
         {
             param.UserId = SessionService.UserId;
