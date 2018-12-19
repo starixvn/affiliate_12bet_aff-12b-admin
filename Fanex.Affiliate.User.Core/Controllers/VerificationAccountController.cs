@@ -10,12 +10,16 @@ namespace Fanex.Affiliate.User.Core.Controllers
     {
         private readonly ICaptchaService _captchaService;
 
+        private readonly ITwoFactorAuthService _twoFactorAuthService;
+
         public VerificationAccountController(
             ISessionService sessionService,
             ILanguageService languageService,
-            ICaptchaService captchaService) : base(sessionService, languageService)
+            ICaptchaService captchaService,
+            ITwoFactorAuthService twoFactorAuthService) : base(sessionService, languageService)
         {
             _captchaService = captchaService;
+            _twoFactorAuthService = twoFactorAuthService;
         }
 
         [HttpGet]
