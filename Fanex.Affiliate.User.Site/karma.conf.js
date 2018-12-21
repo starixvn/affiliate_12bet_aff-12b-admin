@@ -21,12 +21,18 @@
 
     config.set({
         port: 9975,
-        basePath: '',
         frameworks: ['jasmine'],
         files: fileToInclude,
         browsers: ['PhantomJS'],
-        singleRun: true,
         reporters: ['progress', 'coverage'],
-        preprocessors: { '*.js': ['coverage'] }
+        preprocessors: {
+            'www/source/js/components/*.js': ['coverage'],
+            'www/source/js/pages/**/*.js': ['coverage'],
+            'www/source/js/*.js': ['coverage']
+        },
+        coverageReporter: {
+            type: 'html',
+            dir: 'coverage/'
+        }
     });
 };
