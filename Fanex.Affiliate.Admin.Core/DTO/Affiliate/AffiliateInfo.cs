@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Web.Script.Serialization;
+using Newtonsoft.Json;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
 {
@@ -19,13 +19,13 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
 
         public string Email { get; set; }
 
-        [ScriptIgnore]
+        [JsonIgnore]
         public DateTime RegistrationDate { get; set; }
 
-        [ScriptIgnore]
+        [JsonIgnore]
         public DateTime? ApprovalDate { get; set; }
 
-        [ScriptIgnore]
+        [JsonIgnore]
         public DateTime? CasinoDate { get; set; }
 
         public string CommissionGroup { get; set; }

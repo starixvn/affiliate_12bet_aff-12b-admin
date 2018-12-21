@@ -2,6 +2,7 @@
 using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Affiliate;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
 using Fanex.Affiliate.Admin.Core.Repository;
@@ -54,7 +55,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         {
             param.UserId = SessionService.UserId;
             var model = _affiliateInfoRepository.GetAffiliateList(param);
-            return Json(model);
+
+            return new JsonNetResult
+            {
+                Data = model
+            };
         }
 
         [HttpPost]
