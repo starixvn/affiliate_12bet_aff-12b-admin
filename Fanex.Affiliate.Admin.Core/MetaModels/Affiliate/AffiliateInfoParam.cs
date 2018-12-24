@@ -3,6 +3,9 @@
     public class AffiliateInfoParam
     {
         public int UserId { get; set; }
+
+        public int AffId { get; set; }
+
         public int GroupId { get; set; }
 
         public string Language { get; set; }

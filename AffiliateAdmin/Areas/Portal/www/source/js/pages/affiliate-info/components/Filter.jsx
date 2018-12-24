@@ -19,6 +19,7 @@ export class Filter extends Component {
             selectedStatus: '',
             userName: '',
             email: '',
+            affId: '',
             selectedSortBy: defaultSortBy,
             isSortAscending: true
         }
@@ -45,7 +46,7 @@ export class Filter extends Component {
     }
 
     handleClickSearch = () => {
-        const { selectedCommGroup, selectedLanguage, selectedStatus, userName, email, selectedSortBy, isSortAscending } = this.state;
+        const { selectedCommGroup, selectedLanguage, selectedStatus, userName, email, selectedSortBy, isSortAscending, affId } = this.state;
 
         this.props.setReportTitle(this._buildReportTitle(selectedCommGroup, selectedLanguage, selectedStatus, userName, email));
         const param = {
@@ -55,7 +56,8 @@ export class Filter extends Component {
             UserName: userName,
             Email: email,
             SortBy: selectedSortBy,
-            SortDirectionType: !isSortAscending
+            SortDirectionType: !isSortAscending,
+            AffId: affId
         }
         this.props.setParam(param);
     }
@@ -145,6 +147,12 @@ export class Filter extends Component {
 
                     <FormGroup className="my-2 mr-sm-2">
                         <Input type="email" name="email" id="Email" placeholder="Email"
+                            onKeyPress={this.handlePressEnter}
+                            onChange={this.handleChange} />
+                    </FormGroup>
+
+                    <FormGroup className="my-2 mr-sm-2">
+                        <Input type="text" name="affId" id="AffId" placeholder="Affiliate Id"
                             onKeyPress={this.handlePressEnter}
                             onChange={this.handleChange} />
                     </FormGroup>
