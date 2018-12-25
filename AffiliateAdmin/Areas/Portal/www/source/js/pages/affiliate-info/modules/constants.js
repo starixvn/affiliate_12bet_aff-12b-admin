@@ -48,6 +48,7 @@ export const resource = {
     AllStatuses: 'All Statuses',
     UsernameContains: 'USERNAME CONTAINS ',
     EmailContains: 'EMAIL CONTAINS ',
+    AffIdContains: 'AFFILIATE ID CONTAINS ',
     SearchBy: 'Search By',
     SortBy: 'Sort By',
     AZ: 'A-Z',
@@ -67,5 +68,6 @@ export const resource = {
 }
 
 export const regExp = {
-    CheckPassword: "^(?=.*[0-9]+.*[0-9]+)(?=.*[a-zA-Z].*[a-zA-Z]).{6,}$"
+    CheckPassword: "^(?=.*[0-9]+.*[0-9]+)(?=.*[a-zA-Z].*[a-zA-Z]).{6,}$",
+    CheckAffId: "^([1-9]+[0,9]){0,9}$"
 }

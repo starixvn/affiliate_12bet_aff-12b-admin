@@ -1,10 +1,13 @@
-﻿namespace Fanex.Affiliate.Admin.Core.MetaModels.Affiliate
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Fanex.Affiliate.Admin.Core.MetaModels.Affiliate
 {
     public class AffiliateInfoParam
     {
         public int UserId { get; set; }
 
-        public int AffId { get; set; }
+        [RegularExpression("^([1-9]+[0,9]){0,9}$")]
+        public string AffId { get; set; }
 
         public int GroupId { get; set; }
 

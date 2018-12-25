@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { Button } from 'reactstrap';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
-import { headerText, resource } from '../modules/constants';
+import { headerText, resource, regExp } from '../modules/constants';
 import { setPagingOption, setParam, setShowPopupPassword, setShowPopupCommGroup, setAffId, setCommGroup } from '../actions';
 import { toggleLoader } from '../../../actions/loaderAction';
 import { post } from '../../../modules/ajaxRequest';
@@ -37,15 +37,24 @@ export class GridData extends Component {
 
     async fetchData(param) {
         this.props.toggleLoader(true);
-        const url = `Portal/AffiliateInfo/GetAffiliateList`;
-        const response = await post(url, param);
+        const regexCheckAffId = new RegExp(regExp.CheckAffId);
 
-        if (response && response.status === 200) {
-            const { MainData, TotalItem } = response.data;
+        if (regexCheckAffId.test(param.AffId)) {
+            const url = `Portal/AffiliateInfo/GetAffiliateList`;
+            const response = await post(url, param);
 
-            this.setState({ gridData: MainData, shouldResetScrollPosition: true });
+            if (response && response.status === 200) {
+                const { MainData, TotalItem } = response.data;
 
-            this.props.setPagingOption({ TotalItem, PageIndex: param.PageIndex, PageSize: param.PageSize });
+                this.setState({ gridData: MainData, shouldResetScrollPosition: true });
+
+                this.props.setPagingOption({ TotalItem, PageIndex: param.PageIndex, PageSize: param.PageSize });
+            }
+        }
+        else {
+            this.setState({ gridData: {}, shouldResetScrollPosition: true });
+
+            this.props.setPagingOption({ TotalItem: 0, PageIndex: param.PageIndex, PageSize: param.PageSize });
         }
         this.props.toggleLoader(false);
     }

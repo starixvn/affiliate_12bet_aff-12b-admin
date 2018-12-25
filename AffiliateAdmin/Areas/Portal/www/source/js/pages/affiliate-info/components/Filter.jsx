@@ -48,7 +48,7 @@ export class Filter extends Component {
     handleClickSearch = () => {
         const { selectedCommGroup, selectedLanguage, selectedStatus, userName, email, selectedSortBy, isSortAscending, affId } = this.state;
 
-        this.props.setReportTitle(this._buildReportTitle(selectedCommGroup, selectedLanguage, selectedStatus, userName, email));
+        this.props.setReportTitle(this._buildReportTitle(selectedCommGroup, selectedLanguage, selectedStatus, userName, email, affId));
         const param = {
             GroupId: selectedCommGroup,
             Language: selectedLanguage,
@@ -80,7 +80,7 @@ export class Filter extends Component {
         this.props.setSelectedColumn(newColumnList);
     }
 
-    _buildReportTitle(selectedCommGroup, selectedLanguage, selectedStatus, userName, email) {
+    _buildReportTitle(selectedCommGroup, selectedLanguage, selectedStatus, userName, email, affId) {
         const { commGroupList, languageList } = this.props;
 
         const space = resource.Space;
@@ -91,7 +91,8 @@ export class Filter extends Component {
 
         const userNameTitle = userName && space + resource.UsernameContains + apostrophe + userName + apostrophe;
         const emailTitle = email && space + resource.EmailContains + apostrophe + email + apostrophe;
-        return `${resource.ReportName}${space}${commGroupTitle.toUpperCase()}${space}${languageTitle.toUpperCase()}${space}${statusTitle.toUpperCase()}${userNameTitle} ${emailTitle}`;
+        const affIdTitle = affId && space + resource.AffIdContains + apostrophe + affId + apostrophe;
+        return `${resource.ReportName}${space}${commGroupTitle.toUpperCase()}${space}${languageTitle.toUpperCase()}${space}${statusTitle.toUpperCase()}${userNameTitle}${emailTitle}${affIdTitle}`;
     }
 
     render() {
@@ -152,7 +153,7 @@ export class Filter extends Component {
                     </FormGroup>
 
                     <FormGroup className="my-2 mr-sm-2">
-                        <Input type="text" name="affId" id="AffId" placeholder="Affiliate Id"
+                        <Input type="text" pattern="^[0-9]+$" name="affId" id="AffId" placeholder="Affiliate Id"
                             onKeyPress={this.handlePressEnter}
                             onChange={this.handleChange} />
                     </FormGroup>

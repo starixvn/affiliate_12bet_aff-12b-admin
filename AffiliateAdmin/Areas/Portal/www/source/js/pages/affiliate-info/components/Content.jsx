@@ -9,6 +9,7 @@ import GridData from './GridData';
 import ReportExcel from '../modules/reportExcel';
 import { post } from '../../../modules/ajaxRequest';
 import { convertSelectedColumnList } from '../modules/utils';
+import { regExp } from '../modules/constants';
 
 export class Content extends Component {
     constructor(props) {
@@ -23,14 +24,23 @@ export class Content extends Component {
 
     handleExportExcel = async () => {
         this.props.toggleLoader(true);
-        const { param, reportTitle, languageList, columnList } = this.props;    
+        const { param, reportTitle, languageList, columnList } = this.props;
         const selectedColumnList = convertSelectedColumnList(columnList);
-        const url = `Portal/AffiliateInfo/GetAffiliateList`;
-        const postData = Object.assign({}, param, { IsExportExcel: true });
-        const response = await post(url, postData);
+        const regexCheckAffId = new RegExp(regExp.CheckAffId);
 
-        if (response && response.status === 200) {
-            const reportExcel = new ReportExcel(response.data, reportTitle, languageList, selectedColumnList)
+        if (regexCheckAffId.test(param.AffId)) {
+            const url = `Portal/AffiliateInfo/GetAffiliateList`;
+            const postData = Object.assign({}, param, { IsExportExcel: true });
+            const response = await post(url, postData);
+
+            if (response && response.status === 200) {
+                console.log(response.data);
+                const reportExcel = new ReportExcel(response.data, reportTitle, languageList, selectedColumnList)
+                reportExcel.export();
+            }
+        }
+        else {
+            const reportExcel = new ReportExcel({ MainData: {}, TotalItem: 0 }, reportTitle, languageList, selectedColumnList)
             reportExcel.export();
         }
         this.props.toggleLoader(false);
