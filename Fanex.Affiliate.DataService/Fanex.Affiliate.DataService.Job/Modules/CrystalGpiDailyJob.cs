@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Text;
 using Fanex.Affiliate.DataService.Importer;
 using Fanex.Affiliate.DataService.Importer.MetaModels.CrystalGpi;
@@ -34,21 +35,25 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                 {
                     var now = DateTime.Now;
                     var nowByHour = new DateTime(now.Year, now.Month, now.Day, now.Hour, 0, 0, DateTimeKind.Local);
+                    var minTime = DateTime.ParseExact(_appSetting.GetValue("CrystalGpiStartTime"), "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal);
 
-                    var param = new CrystalGpiParam
+                    if (DateTime.Compare(minTime, nowByHour) < 0)
                     {
-                        StartTime = nowByHour.AddDays(-1).Date,
-                        EndTime = nowByHour,
-                        PageNumber = 1,
-                        PageSize = Convert.ToInt32(_appSetting.GetValue("CrystalGpiPageSize")),
-                        JobType = 1
-                    };
+                        var param = new CrystalGpiParam
+                        {
+                            StartTime = nowByHour.AddDays(-1).Date,
+                            EndTime = nowByHour,
+                            PageNumber = 1,
+                            PageSize = Convert.ToInt32(_appSetting.GetValue("CrystalGpiPageSize")),
+                            JobType = 1
+                        };
 
-                    logBuilder.AppendLine($"Crystal Gpi Daily Job is starting. Request time {param.StartTime.ToString()} - {param.EndTime.ToString()}");
+                        logBuilder.AppendLine($"Crystal Gpi Daily Job is starting. Request time {param.StartTime.ToString()} - {param.EndTime.ToString()}");
 
-                    _crystalGpiService.Import(param);
+                        _crystalGpiService.Import(param);
 
-                    logBuilder.AppendLine("Crystal Gpi Daily Job Done");
+                        logBuilder.AppendLine("Crystal Gpi Daily Job Done");
+                    }
                 }
             }
             catch (Exception exception)

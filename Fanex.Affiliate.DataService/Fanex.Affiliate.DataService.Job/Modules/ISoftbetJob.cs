@@ -42,16 +42,19 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                     var now = DateTime.Now.AddHours(hourAdjustment);
                     var nowByHour = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, 0, DateTimeKind.Local);
 
-                    var isoftbetParam = new ISoftbetEntryParam
+                    if (DateTime.Compare(lastQueryTime, nowByHour) < 0)
                     {
-                        StartTime = lastQueryTime,
-                        EndTime = nowByHour,
-                        PageNumber = 1
-                    };
+                        var isoftbetParam = new ISoftbetEntryParam
+                        {
+                            StartTime = lastQueryTime,
+                            EndTime = nowByHour,
+                            PageNumber = 1
+                        };
 
-                    _isoftbetService.Import(isoftbetParam);
+                        _isoftbetService.Import(isoftbetParam);
 
-                    _timeTracker.SaveTime(trackerFolderPath, nowByHour);
+                        _timeTracker.SaveTime(trackerFolderPath, nowByHour);
+                    }
                 }
             }
             catch (Exception exception)

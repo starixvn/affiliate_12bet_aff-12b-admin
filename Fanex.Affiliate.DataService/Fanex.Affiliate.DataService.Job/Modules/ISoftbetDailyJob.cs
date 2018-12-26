@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Text;
 using Fanex.Affiliate.DataService.CheckSum.Utilities;
 using Fanex.Affiliate.DataService.Importer;
@@ -34,20 +35,24 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                 {
                     var now = DateTime.Now;
                     var nowByHour = new DateTime(now.Year, now.Month, now.Day, now.Hour, 0, 0, DateTimeKind.Local);
+                    var minTime = DateTime.ParseExact(_appSetting.GetValue("ISoftbetStartTime"), "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal);
 
-                    var param = new ISoftbetEntryParam
+                    if (DateTime.Compare(minTime, nowByHour) < 0)
                     {
-                        StartTime = nowByHour.AddDays(-1).Date,
-                        EndTime = nowByHour,
-                        PageNumber = 1,
-                        JobType = 1
-                    };
+                        var param = new ISoftbetEntryParam
+                        {
+                            StartTime = nowByHour.AddDays(-1).Date,
+                            EndTime = nowByHour,
+                            PageNumber = 1,
+                            JobType = 1
+                        };
 
-                    logBuilder.AppendLine($"ISoftbet Daily Job is starting. Request time {param.StartTime.ToString()} - {param.EndTime.ToString()}");
+                        logBuilder.AppendLine($"ISoftbet Daily Job is starting. Request time {param.StartTime.ToString()} - {param.EndTime.ToString()}");
 
-                    _isoftbetService.Import(param);
+                        _isoftbetService.Import(param);
 
-                    logBuilder.AppendLine("ISoftbet Daily Job Done");
+                        logBuilder.AppendLine("ISoftbet Daily Job Done");
+                    }
                 }
             }
             catch (Exception exception)
