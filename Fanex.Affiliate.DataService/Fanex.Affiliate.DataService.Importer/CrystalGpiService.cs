@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Xml.Linq;
 using Fanex.Affiliate.DataService.Importer.Constants;
 using Fanex.Affiliate.DataService.Importer.Exceptions;
@@ -198,7 +198,7 @@ namespace Fanex.Affiliate.DataService.Importer
         private string GetRawData(CrystalGpiParam param)
         {
             var apiUrl = BuildApiUrl(param);
-            Task.Delay(DelayTimeMillisecond).Wait();
+            Thread.Sleep(DelayTimeMillisecond);
 
             return GetDataString(apiUrl);
         }

@@ -4,7 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Xml.Linq;
 using Fanex.Affiliate.DataService.Importer.Constants;
 using Fanex.Affiliate.DataService.Importer.Exceptions;
@@ -57,7 +57,7 @@ namespace Fanex.Affiliate.DataService.Importer
 
                 if (DateTime.Compare(start, entryParam.StartTime) > 0)
                 {
-                    Task.Delay(DelayTimeMillisecond).Wait();
+                    Thread.Sleep(DelayTimeMillisecond);
                 }
 
                 var rawData = GetRawData(paramByBatch);
@@ -114,7 +114,7 @@ namespace Fanex.Affiliate.DataService.Importer
 
                     if (DateTime.Compare(start, entryParam.StartTime) > 0)
                     {
-                        Task.Delay(DelayTimeMillisecond).Wait();
+                        Thread.Sleep(DelayTimeMillisecond);
                     }
 
                     var rawData = GetRawData(paramByBatch);
