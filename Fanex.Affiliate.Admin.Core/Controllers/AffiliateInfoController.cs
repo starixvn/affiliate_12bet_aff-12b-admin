@@ -53,13 +53,25 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [Compress]
         public ActionResult GetAffiliateList(AffiliateInfoParam param)
         {
-            param.UserId = SessionService.UserId;
-            var model = _affiliateInfoRepository.GetAffiliateList(param);
-
-            return new JsonNetResult
+            if (ModelState.IsValid)
             {
-                Data = model
-            };
+                int affId;
+                int.TryParse(param.AffId, out affId);
+
+                param.numberAffId = affId;
+                param.UserId = SessionService.UserId;
+                var model = _affiliateInfoRepository.GetAffiliateList(param);
+
+                return new JsonNetResult
+                {
+                    Data = model
+                };
+            }
+            return Json(new ResultInfo
+            {
+                Code = Code.GeneralErrorCode,
+                Message = "AffId is incorrect!"
+            });
         }
 
         [HttpPost]

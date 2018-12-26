@@ -6,8 +6,10 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Affiliate
     {
         public int UserId { get; set; }
 
-        [RegularExpression("^([1-9]+[0,9]){0,9}$")]
+        [RegularExpression("^(?!(0))([0-9]{0,9})$")]
         public string AffId { get; set; }
+
+        public int numberAffId { get; set; }
 
         public int GroupId { get; set; }
 
