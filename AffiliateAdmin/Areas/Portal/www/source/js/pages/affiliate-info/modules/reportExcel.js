@@ -146,6 +146,8 @@ export default class ReportExcel {
             value = value === null ? resource.NA : format(value);
         } else if (fieldName === fields.Language) {
             value = this.languageList[value] || '';
+        } else if (!value && fieldName === fields.CommissionGroup) {
+            value = resource.NA;
         }
 
         return {
