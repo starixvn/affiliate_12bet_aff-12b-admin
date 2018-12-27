@@ -69,5 +69,5 @@ export const resource = {
 
 export const regExp = {
     CheckPassword: "^(?=.*[0-9]+.*[0-9]+)(?=.*[a-zA-Z].*[a-zA-Z]).{6,}$",
-    CheckAffId: "(^[1-9])(\\d){0,8}$"
+    CheckAffId: "(^[1-9])(\\d*)$"
 }
