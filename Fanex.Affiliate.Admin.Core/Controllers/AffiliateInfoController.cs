@@ -1,7 +1,9 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
 using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Affiliate;
 using Fanex.Affiliate.Admin.Core.MetaModels.CommissionGroup;
@@ -53,12 +55,10 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [Compress]
         public ActionResult GetAffiliateList(AffiliateInfoParam param)
         {
-            if (ModelState.IsValid)
+            int affId;
+            if (int.TryParse(param.AffId, out affId) || string.IsNullOrEmpty(param.AffId))
             {
-                int affId;
-                int.TryParse(param.AffId, out affId);
-
-                param.numberAffId = affId;
+                param.AffIdNumber = affId;
                 param.UserId = SessionService.UserId;
                 var model = _affiliateInfoRepository.GetAffiliateList(param);
 
@@ -67,11 +67,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                     Data = model
                 };
             }
-            return Json(new ResultInfo
+
+            return new JsonNetResult
             {
-                Code = Code.GeneralErrorCode,
-                Message = "AffId is incorrect!"
-            });
+                Data = new EntityResult<AffiliateInfo>
+                {
+                    MainData = new List<AffiliateInfo>(),
+                    TotalItem = 0
+                }
+            };
         }
 
         [HttpPost]

@@ -48,7 +48,8 @@ export class Filter extends Component {
     handleClickSearch = () => {
         const { selectedCommGroup, selectedLanguage, selectedStatus, userName, email, selectedSortBy, isSortAscending, affId } = this.state;
 
-        this.props.setReportTitle(this._buildReportTitle(selectedCommGroup, selectedLanguage, selectedStatus, userName, email, affId));
+        const affIdInput = affId.trim();
+        this.props.setReportTitle(this._buildReportTitle(selectedCommGroup, selectedLanguage, selectedStatus, userName, email, affIdInput));
         const param = {
             GroupId: selectedCommGroup,
             Language: selectedLanguage,
@@ -57,7 +58,7 @@ export class Filter extends Component {
             Email: email,
             SortBy: selectedSortBy,
             SortDirectionType: !isSortAscending,
-            AffId: affId
+            AffId: affIdInput
         }
         this.props.setParam(param);
     }

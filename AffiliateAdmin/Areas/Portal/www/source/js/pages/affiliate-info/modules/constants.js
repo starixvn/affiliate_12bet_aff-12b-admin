@@ -31,7 +31,7 @@ export const headerText = {
     ApprovalDateText: 'Approval Date',
     CasinoDateText: 'Casino Date',
     CommissionGroup: 'Commission Group',
-    BalanceBf: 'Balance B/F',    
+    BalanceBf: 'Balance B/F',
     Currency: 'Aff. Currency',
     PlayerUserName: 'Aff. Player',
     PlayerCurrency: 'Aff. Player Currency',
@@ -69,5 +69,5 @@ export const resource = {
 
 export const regExp = {
     CheckPassword: "^(?=.*[0-9]+.*[0-9]+)(?=.*[a-zA-Z].*[a-zA-Z]).{6,}$",
-    CheckAffId: "^(?!(0))([0-9]{0,9})$"
+    CheckAffId: "(^[1-9])(\\d){0,8}$"
 }

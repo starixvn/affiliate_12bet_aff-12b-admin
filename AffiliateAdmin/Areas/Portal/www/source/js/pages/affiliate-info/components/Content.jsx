@@ -28,13 +28,12 @@ export class Content extends Component {
         const selectedColumnList = convertSelectedColumnList(columnList);
         const regexCheckAffId = new RegExp(regExp.CheckAffId);
 
-        if (regexCheckAffId.test(param.AffId)) {
+        if (param.AffId === '' || regexCheckAffId.test(param.AffId)) {
             const url = `Portal/AffiliateInfo/GetAffiliateList`;
             const postData = Object.assign({}, param, { IsExportExcel: true });
             const response = await post(url, postData);
 
             if (response && response.status === 200) {
-                console.log(response.data);
                 const reportExcel = new ReportExcel(response.data, reportTitle, languageList, selectedColumnList)
                 reportExcel.export();
             }

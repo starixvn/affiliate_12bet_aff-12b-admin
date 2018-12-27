@@ -39,8 +39,8 @@ export class GridData extends Component {
         this.props.toggleLoader(true);
         const regexCheckAffId = new RegExp(regExp.CheckAffId);
 
-        if (regexCheckAffId.test(param.AffId)) {
-            const url = `Portal/AffiliateInfo/GetAffiliateList`;
+        if (param.AffId === '' || regexCheckAffId.test(param.AffId)) {
+            const url = 'Portal/AffiliateInfo/GetAffiliateList';
             const response = await post(url, param);
 
             if (response && response.status === 200) {
