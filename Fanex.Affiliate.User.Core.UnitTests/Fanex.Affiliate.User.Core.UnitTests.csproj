@@ -103,6 +103,7 @@
     <Compile Include="BusinessService\ContactServiceTest.cs" />
     <Compile Include="BusinessService\MemberInfoServiceWrapperTest.cs" />
     <Compile Include="BusinessService\MemberTransactionServiceTest.cs" />
+    <Compile Include="BusinessService\PaymentServiceTest.cs" />
     <Compile Include="Controllers\ContactUsControllerTest.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\DailyEarningControllerTest.cs" />
