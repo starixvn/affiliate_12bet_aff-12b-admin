@@ -125,7 +125,7 @@ export class GridData extends Component {
 
         return (
             <Row key={`dataRow-${index}`}>
-                {selectedColumnList['Index'] && <Cell className="text-center" title={index}>{index}</Cell>}
+                {selectedColumnList['Index'] && <Cell className="text-right" title={index}>{index}</Cell>}
                 <Cell title={dataItem.UserName}>
                     <a href={resolveClientUrl(`Portal/Customer?user=${dataItem.UserName}`)} target="_top">
                         {dataItem.UserName}
@@ -133,20 +133,20 @@ export class GridData extends Component {
                     <span className={classNameFavorite} onClick={() => this.handleToggleFavorite(dataItem.AffId, isFavorite)}></span>
                 </Cell>
 
-                {selectedColumnList['Status'] && <Cell className="text-center" title={dataItem.Status}>{dataItem.Status}</Cell>}
+                {selectedColumnList['Status'] && <Cell title={dataItem.Status}>{dataItem.Status}</Cell>}
                 {selectedColumnList['FirstName'] && <Cell title={dataItem.FirstName}>{dataItem.FirstName}</Cell>}
                 {selectedColumnList['LastName'] && <Cell title={dataItem.LastName}>{dataItem.LastName}</Cell>}
                 {selectedColumnList['Language'] && <Cell title={language}>{language}</Cell>}
-                {selectedColumnList['Phone'] && <Cell className="text-center" title={dataItem.Phone}>{dataItem.Phone}</Cell>}
+                {selectedColumnList['Phone'] && <Cell title={dataItem.Phone}>{dataItem.Phone}</Cell>}
                 {selectedColumnList['Email'] && <Cell title={dataItem.Email}>{dataItem.Email}</Cell>}
-                {selectedColumnList['RegistrationDateText'] && <Cell className="text-center" title={dataItem.RegistrationDateText}>{dataItem.RegistrationDateText}</Cell>}
-                {selectedColumnList['ApprovalDateText'] && <Cell className="text-center" title={dataItem.ApprovalDateText}>{dataItem.ApprovalDateText}</Cell>}
-                {selectedColumnList['CasinoDateText'] && <Cell className="text-center" title={dataItem.CasinoDateText}>{dataItem.CasinoDateText}</Cell>}
-                {selectedColumnList['CommissionGroup'] && <Cell className="text-center" title={typeof commissionGroup === 'string' ? commissionGroup : dataItem.CommissionGroup}>{commissionGroup}</Cell>}
+                {selectedColumnList['RegistrationDateText'] && <Cell title={dataItem.RegistrationDateText}>{dataItem.RegistrationDateText}</Cell>}
+                {selectedColumnList['ApprovalDateText'] && <Cell title={dataItem.ApprovalDateText}>{dataItem.ApprovalDateText}</Cell>}
+                {selectedColumnList['CasinoDateText'] && <Cell title={dataItem.CasinoDateText}>{dataItem.CasinoDateText}</Cell>}
+                {selectedColumnList['CommissionGroup'] && <Cell title={typeof commissionGroup === 'string' ? commissionGroup : dataItem.CommissionGroup}>{commissionGroup}</Cell>}
                 {selectedColumnList['BalanceBf'] && <Cell className="text-right" title={balanceBf}>{balanceBf}</Cell>}
-                {selectedColumnList['Currency'] && <Cell className="text-center" title={dataItem.Currency}>{dataItem.Currency}</Cell>}
-                {selectedColumnList['PlayerUserName'] && <Cell className="text-center" title={dataItem.PlayerUserName}>{dataItem.PlayerUserName}</Cell>}
-                {selectedColumnList['PlayerCurrency'] && <Cell className="text-center" title={dataItem.PlayerCurrency}>{dataItem.PlayerCurrency}</Cell>}
+                {selectedColumnList['Currency'] && <Cell title={dataItem.Currency}>{dataItem.Currency}</Cell>}
+                {selectedColumnList['PlayerUserName'] && <Cell title={dataItem.PlayerUserName}>{dataItem.PlayerUserName}</Cell>}
+                {selectedColumnList['PlayerCurrency'] && <Cell title={dataItem.PlayerCurrency}>{dataItem.PlayerCurrency}</Cell>}
                 {selectedColumnList['Member'] && <Cell className="text-right" title={formattedMemberValue}>{member}</Cell>}
                 <Cell className="text-center" title="Change Password">
                     {

@@ -183,7 +183,7 @@ export default class ReportExcel {
     _getcolumnConfigs() {
         return [{
             field: fields.Index,
-            [MAIN_SECTION_STYLE]: bodyCellStyle.center,
+            [MAIN_SECTION_STYLE]: bodyCellStyle.right,
             width: 70
         }, {
             field: fields.UserName,
@@ -191,7 +191,7 @@ export default class ReportExcel {
             width: 200
         }, {
             field: fields.Status,
-            [MAIN_SECTION_STYLE]: bodyCellStyle.center,
+            [MAIN_SECTION_STYLE]: bodyCellStyle.left,
             width: 150
         }, {
             field: fields.FirstName,
@@ -207,7 +207,7 @@ export default class ReportExcel {
             width: 150
         }, {
             field: fields.Phone,
-            [MAIN_SECTION_STYLE]: bodyCellStyle.center,
+            [MAIN_SECTION_STYLE]: bodyCellStyle.left,
             width: 150
         }, {
             field: fields.Email,
@@ -215,19 +215,19 @@ export default class ReportExcel {
             width: 250
         }, {
             field: fields.RegistrationDateText,
-            [MAIN_SECTION_STYLE]: bodyCellStyle.center,
+            [MAIN_SECTION_STYLE]: bodyCellStyle.left,
             width: 200
         }, {
             field: fields.ApprovalDateText,
-            [MAIN_SECTION_STYLE]: bodyCellStyle.center,
+            [MAIN_SECTION_STYLE]: bodyCellStyle.left,
             width: 200
         }, {
             field: fields.CasinoDateText,
-            [MAIN_SECTION_STYLE]: bodyCellStyle.center,
+            [MAIN_SECTION_STYLE]: bodyCellStyle.left,
             width: 200
         }, {
             field: fields.CommissionGroup,
-            [MAIN_SECTION_STYLE]: bodyCellStyle.center,
+            [MAIN_SECTION_STYLE]: bodyCellStyle.left,
             width: 250
         }, {
             field: fields.BalanceBf,
@@ -235,15 +235,15 @@ export default class ReportExcel {
             width: 200
         }, {
             field: fields.Currency,
-            [MAIN_SECTION_STYLE]: bodyCellStyle.center,
+            [MAIN_SECTION_STYLE]: bodyCellStyle.left,
             width: 120
         }, {
             field: fields.PlayerUserName,
-            [MAIN_SECTION_STYLE]: bodyCellStyle.center,
+            [MAIN_SECTION_STYLE]: bodyCellStyle.left,
             width: 200
         }, {
             field: fields.PlayerCurrency,
-            [MAIN_SECTION_STYLE]: bodyCellStyle.center,
+            [MAIN_SECTION_STYLE]: bodyCellStyle.left,
             width: 140
         }, {
             field: fields.Member,
