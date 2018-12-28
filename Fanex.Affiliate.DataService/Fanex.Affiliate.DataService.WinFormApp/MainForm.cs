@@ -41,5 +41,29 @@ namespace Fanex.Affiliate.DataService.WinFormApp
             ebetForm.Show();
             this.Hide();
         }
+
+        private void btnCrystal_Click(object sender, EventArgs e)
+        {
+            var crystalForm = new CrystalForm();
+            crystalForm.FormClosing += FormClosingHandler;
+            crystalForm.Show();
+            this.Hide();
+        }
+
+        private void btnQuartz_Click(object sender, EventArgs e)
+        {
+            var quartzForm = new ISoftbetForm();
+            quartzForm.FormClosing += FormClosingHandler;
+            quartzForm.Show();
+            this.Hide();
+        }
+
+        private void btnOpus_Click(object sender, EventArgs e)
+        {
+            var opusForm = new OpusForm();
+            opusForm.FormClosing += FormClosingHandler;
+            opusForm.Show();
+            this.Hide();
+        }
     }
 }

@@ -32,6 +32,9 @@
             this.btnCasino = new System.Windows.Forms.Button();
             this.btnBetsoft = new System.Windows.Forms.Button();
             this.btnEbet = new System.Windows.Forms.Button();
+            this.btnCrystal = new System.Windows.Forms.Button();
+            this.btnQuartz = new System.Windows.Forms.Button();
+            this.btnOpus = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -73,11 +76,44 @@
             this.btnEbet.UseVisualStyleBackColor = true;
             this.btnEbet.Click += new System.EventHandler(this.btnEbet_Click);
             // 
+            // btnCrystal
+            // 
+            this.btnCrystal.Location = new System.Drawing.Point(153, 112);
+            this.btnCrystal.Name = "btnCrystal";
+            this.btnCrystal.Size = new System.Drawing.Size(110, 23);
+            this.btnCrystal.TabIndex = 4;
+            this.btnCrystal.Text = "12Crystal - GPI";
+            this.btnCrystal.UseVisualStyleBackColor = true;
+            this.btnCrystal.Click += new System.EventHandler(this.btnCrystal_Click);
+            // 
+            // btnQuartz
+            // 
+            this.btnQuartz.Location = new System.Drawing.Point(15, 155);
+            this.btnQuartz.Name = "btnQuartz";
+            this.btnQuartz.Size = new System.Drawing.Size(110, 23);
+            this.btnQuartz.TabIndex = 5;
+            this.btnQuartz.Text = "12Quartz - iSoftbet";
+            this.btnQuartz.UseVisualStyleBackColor = true;
+            this.btnQuartz.Click += new System.EventHandler(this.btnQuartz_Click);
+            // 
+            // btnOpus
+            // 
+            this.btnOpus.Location = new System.Drawing.Point(153, 155);
+            this.btnOpus.Name = "btnOpus";
+            this.btnOpus.Size = new System.Drawing.Size(110, 23);
+            this.btnOpus.TabIndex = 6;
+            this.btnOpus.Text = "12Diamond - OPUS";
+            this.btnOpus.UseVisualStyleBackColor = true;
+            this.btnOpus.Click += new System.EventHandler(this.btnOpus_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Controls.Add(this.btnOpus);
+            this.Controls.Add(this.btnQuartz);
+            this.Controls.Add(this.btnCrystal);
             this.Controls.Add(this.btnEbet);
             this.Controls.Add(this.btnBetsoft);
             this.Controls.Add(this.btnCasino);
@@ -96,5 +132,8 @@
         private System.Windows.Forms.Button btnCasino;
         private System.Windows.Forms.Button btnBetsoft;
         private System.Windows.Forms.Button btnEbet;
+        private System.Windows.Forms.Button btnCrystal;
+        private System.Windows.Forms.Button btnQuartz;
+        private System.Windows.Forms.Button btnOpus;
     }
 }

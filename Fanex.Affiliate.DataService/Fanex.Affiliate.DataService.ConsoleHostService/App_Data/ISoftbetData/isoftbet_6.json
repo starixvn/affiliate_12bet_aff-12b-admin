@@ -1,0 +1,683 @@
+﻿{
+  "status": "success",
+  "datetime": "2018-11-10 07:20:00",
+  "pages": 1,
+  "currentpage": 1,
+  "total": 54,
+  "report": [
+    {
+      "playerid": "Munir12",
+      "operator": "12Bet",
+      "currency": "IDR",
+      "sessions": [
+        {
+          "sessionid": "1541833123Ti7YY3Vjr3N91vfreqfyr9",
+          "gameid": "4735",
+          "rounds": [
+            {
+              "roundid": "2644735munir121541834413191473611359751611113710",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1541834413185947161065234011870",
+                  "time": "2018-11-10 07:20:13",
+                  "amount": 300,
+                  "balance": 87600,
+                  "jpc": 0
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1541834413128845871887739217413",
+                  "time": "2018-11-10 07:20:13",
+                  "amount": 0,
+                  "balance": 87600,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "2644735munir121541834433136863731949953214014867",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1541834433176241061551137816606",
+                  "time": "2018-11-10 07:20:33",
+                  "amount": 300,
+                  "balance": 87300,
+                  "jpc": 0
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1541834433108653681749699011711",
+                  "time": "2018-11-10 07:20:33",
+                  "amount": 0,
+                  "balance": 87300,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "2644735munir121541834451121841011833299210277040",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1541834451104574981559820512656",
+                  "time": "2018-11-10 07:20:51",
+                  "amount": 300,
+                  "balance": 87000,
+                  "jpc": 0
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1541834451122683601933889311777",
+                  "time": "2018-11-10 07:20:51",
+                  "amount": 0,
+                  "balance": 87000,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "playerid": "Qz111213",
+      "operator": "12Bet",
+      "currency": "VND",
+      "sessions": [
+        {
+          "sessionid": "1541833937yZafxjrPbzLLBmZ3QNHyUK",
+          "gameid": "6515",
+          "rounds": [
+            {
+              "roundid": "02646515qz111213154183439787550508",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1541834400385893984381932411458",
+                  "time": "2018-11-10 07:20:00",
+                  "amount": 1600,
+                  "balance": 84712,
+                  "jpc": 32.000001
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1541834400179977292315759950272",
+                  "time": "2018-11-10 07:20:00",
+                  "amount": 0,
+                  "balance": 84712,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02646515qz111213154183440069412513",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1541834401465873045458313552836",
+                  "time": "2018-11-10 07:20:02",
+                  "amount": 1600,
+                  "balance": 83112,
+                  "jpc": 32.000001
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1541834402284861563801506196736",
+                  "time": "2018-11-10 07:20:02",
+                  "amount": 0,
+                  "balance": 83112,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02646515qz111213154183440257389767",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1541834403606656682909376319597",
+                  "time": "2018-11-10 07:20:03",
+                  "amount": 1600,
+                  "balance": 81512,
+                  "jpc": 32.000001
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1541834403847576992871858676304",
+                  "time": "2018-11-10 07:20:03",
+                  "amount": 1600,
+                  "balance": 83112,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02646515qz111213154183440332264044",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1541834406847972231822963845894",
+                  "time": "2018-11-10 07:20:06",
+                  "amount": 1600,
+                  "balance": 81512,
+                  "jpc": 32.000001
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1541834406482469937191305854661",
+                  "time": "2018-11-10 07:20:06",
+                  "amount": 800,
+                  "balance": 82312,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02646515qz111213154183440633501827",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1541834413104972291828096326970",
+                  "time": "2018-11-10 07:20:13",
+                  "amount": 1600,
+                  "balance": 80712,
+                  "jpc": 32.000001
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1541834413847693981816299096380",
+                  "time": "2018-11-10 07:20:13",
+                  "amount": 0,
+                  "balance": 80712,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02646515qz111213154183441384446060",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1541834416881299302531683527696",
+                  "time": "2018-11-10 07:20:16",
+                  "amount": 1600,
+                  "balance": 79112,
+                  "jpc": 32.000001
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1541834416824300473479642945855",
+                  "time": "2018-11-10 07:20:16",
+                  "amount": 0,
+                  "balance": 79112,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02646515qz111213154183441624248358",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1541834420102465505086810633791",
+                  "time": "2018-11-10 07:20:20",
+                  "amount": 1600,
+                  "balance": 77512,
+                  "jpc": 32.000001
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1541834420208981662325565433032",
+                  "time": "2018-11-10 07:20:20",
+                  "amount": 0,
+                  "balance": 77512,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02646515qz111213154183442083925673",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1541834421454272487378633758158",
+                  "time": "2018-11-10 07:20:21",
+                  "amount": 1600,
+                  "balance": 75912,
+                  "jpc": 32.000001
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1541834421539350765737361581674",
+                  "time": "2018-11-10 07:20:21",
+                  "amount": 0,
+                  "balance": 75912,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02646515qz111213154183442196040517",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1541834423628392593707990211357",
+                  "time": "2018-11-10 07:20:23",
+                  "amount": 1600,
+                  "balance": 74312,
+                  "jpc": 32.000001
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1541834423573213948876641698260",
+                  "time": "2018-11-10 07:20:23",
+                  "amount": 0,
+                  "balance": 74312,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02646515qz111213154183442396685856",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1541834425725557659938957839099",
+                  "time": "2018-11-10 07:20:25",
+                  "amount": 1600,
+                  "balance": 72712,
+                  "jpc": 32.000001
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1541834425930369207240967254751",
+                  "time": "2018-11-10 07:20:25",
+                  "amount": 0,
+                  "balance": 72712,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02646515qz111213154183442523891935",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1541834429627217198930103813411",
+                  "time": "2018-11-10 07:20:29",
+                  "amount": 1600,
+                  "balance": 71112,
+                  "jpc": 32.000001
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1541834429308312321676506168628",
+                  "time": "2018-11-10 07:20:29",
+                  "amount": 0,
+                  "balance": 71112,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02646515qz111213154183442982047950",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1541834433201521179191531564281",
+                  "time": "2018-11-10 07:20:33",
+                  "amount": 1600,
+                  "balance": 69512,
+                  "jpc": 32.000001
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1541834433855227409886053611594",
+                  "time": "2018-11-10 07:20:33",
+                  "amount": 0,
+                  "balance": 69512,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02646515qz111213154183443330627163",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1541834435858766424146068924961",
+                  "time": "2018-11-10 07:20:35",
+                  "amount": 1600,
+                  "balance": 67912,
+                  "jpc": 32.000001
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1541834435176012679562478379134",
+                  "time": "2018-11-10 07:20:35",
+                  "amount": 0,
+                  "balance": 67912,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02646515qz111213154183443535515787",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1541834439484664554876880146136",
+                  "time": "2018-11-10 07:20:39",
+                  "amount": 1600,
+                  "balance": 66312,
+                  "jpc": 32.000001
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1541834439489197101868690936797",
+                  "time": "2018-11-10 07:20:39",
+                  "amount": 0,
+                  "balance": 66312,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02646515qz111213154183443994887763",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1541834440384310271748752284605",
+                  "time": "2018-11-10 07:20:40",
+                  "amount": 1600,
+                  "balance": 64712,
+                  "jpc": 32.000001
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1541834440201055162144711227453",
+                  "time": "2018-11-10 07:20:40",
+                  "amount": 0,
+                  "balance": 64712,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02646515qz111213154183444024602375",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1541834442214026323952931396494",
+                  "time": "2018-11-10 07:20:42",
+                  "amount": 1600,
+                  "balance": 63112,
+                  "jpc": 32.000001
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1541834442257255997504593161115",
+                  "time": "2018-11-10 07:20:42",
+                  "amount": 0,
+                  "balance": 63112,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02646515qz111213154183444244039913",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1541834443570817522251558839827",
+                  "time": "2018-11-10 07:20:43",
+                  "amount": 1600,
+                  "balance": 61512,
+                  "jpc": 32.000001
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1541834443679134116491416664040",
+                  "time": "2018-11-10 07:20:43",
+                  "amount": 1600,
+                  "balance": 63112,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02646515qz111213154183444385579763",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1541834447798202139085545138931",
+                  "time": "2018-11-10 07:20:47",
+                  "amount": 1600,
+                  "balance": 61512,
+                  "jpc": 32.000001
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1541834447231355699490012951708",
+                  "time": "2018-11-10 07:20:47",
+                  "amount": 1600,
+                  "balance": 63112,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02646515qz111213154183444763952430",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1541834451752177059137005644931",
+                  "time": "2018-11-10 07:20:51",
+                  "amount": 1600,
+                  "balance": 61512,
+                  "jpc": 32.000001
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1541834451341219338546139143482",
+                  "time": "2018-11-10 07:20:51",
+                  "amount": 0,
+                  "balance": 61512,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02646515qz111213154183445140922015",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1541834452391053711262374721455",
+                  "time": "2018-11-10 07:20:52",
+                  "amount": 1600,
+                  "balance": 59912,
+                  "jpc": 32.000001
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1541834452373809854585016026090",
+                  "time": "2018-11-10 07:20:52",
+                  "amount": 0,
+                  "balance": 59912,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02646515qz111213154183445318538816",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1541834454351030445408905367596",
+                  "time": "2018-11-10 07:20:54",
+                  "amount": 1600,
+                  "balance": 58312,
+                  "jpc": 32.000001
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1541834454408831178257251872928",
+                  "time": "2018-11-10 07:20:54",
+                  "amount": 0,
+                  "balance": 58312,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02646515qz111213154183445487864685",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1541834455754252694650268251678",
+                  "time": "2018-11-10 07:20:55",
+                  "amount": 1600,
+                  "balance": 56712,
+                  "jpc": 32.000001
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1541834455393660577279353869238",
+                  "time": "2018-11-10 07:20:55",
+                  "amount": 0,
+                  "balance": 56712,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02646515qz111213154183445576956320",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1541834457253080754196205593149",
+                  "time": "2018-11-10 07:20:57",
+                  "amount": 1600,
+                  "balance": 55112,
+                  "jpc": 32.000001
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1541834457939641762773415688117",
+                  "time": "2018-11-10 07:20:57",
+                  "amount": 0,
+                  "balance": 55112,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02646515qz111213154183445759094437",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1541834459509301942053137969278",
+                  "time": "2018-11-10 07:20:59",
+                  "amount": 1600,
+                  "balance": 53512,
+                  "jpc": 32.000001
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1541834459626937109123835198048",
+                  "time": "2018-11-10 07:20:59",
+                  "amount": 0,
+                  "balance": 53512,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -84,6 +84,7 @@
     <Compile Include="BetsoftService.cs" />
     <Compile Include="Constants\Products.cs" />
     <Compile Include="Constants\TimeZoneId.cs" />
+    <Compile Include="CrystalGpiService.cs" />
     <Compile Include="DataImportingRunner.cs" />
     <Compile Include="CasinoDataService.cs" />
     <Compile Include="DTO\CasinoDataMetaModel.cs" />
@@ -93,21 +94,34 @@
     <Compile Include="DTO\Ebet\EbetHistory.cs" />
     <Compile Include="DTO\Ebet\EbetResultInfo.cs" />
     <Compile Include="DTO\Ebet\EbetSummary.cs" />
+    <Compile Include="DTO\ISoftbet\ISoftbetApiParamResultPair.cs" />
+    <Compile Include="DTO\ISoftbet\ISoftbetBetHistory.cs" />
+    <Compile Include="DTO\ISoftbet\ISoftbetResultInfo.cs" />
+    <Compile Include="DTO\ISoftbet\ISoftbetSummary.cs" />
     <Compile Include="DTO\ResultInfo.cs" />
     <Compile Include="EbetService.cs" />
     <Compile Include="Enum\SystemType.cs" />
     <Compile Include="Exceptions\ThirdPartyProductException.cs" />
     <Compile Include="IBetsoftService.cs" />
+    <Compile Include="ICrystalGpiService.cs" />
     <Compile Include="IDataImportingRunner.cs" />
     <Compile Include="IEbetService.cs" />
+    <Compile Include="IISoftbetService.cs" />
+    <Compile Include="IOpusService.cs" />
     <Compile Include="MetaModels\Betsoft\BetsoftParam.cs" />
+    <Compile Include="MetaModels\CrystalGpi\CrystalGpiParam.cs" />
     <Compile Include="MetaModels\Ebet\EbetParam.cs" />
+    <Compile Include="MetaModels\ISoftbet\ISoftbetApiParam.cs" />
+    <Compile Include="MetaModels\ISoftbet\ISoftbetEntryParam.cs" />
+    <Compile Include="ISoftbetService.cs" />
+    <Compile Include="MetaModels\Opus\OpusParam.cs" />
+    <Compile Include="OpusService.cs" />
     <Compile Include="Repository\BaseRepository.cs" />
     <Compile Include="Repository\IThirdPartyProductRepository.cs" />
     <Compile Include="Repository\ThirdPartyProductRepository.cs" />
     <Compile Include="Utilities\DateTimeConverter.cs" />
     <Compile Include="Utilities\EbetConfigHelper.cs" />
-    <Compile Include="Utilities\EbetDataSimulator.cs" />
+    <Compile Include="Utilities\DataSimulator.cs" />
     <Compile Include="Utilities\IAppSettings.cs" />
     <Compile Include="Repository\ICasinoDataRepository.cs" />
     <Compile Include="ICasinoDataService.cs" />
@@ -116,7 +130,8 @@
     <Compile Include="Utilities\AppSettings.cs" />
     <Compile Include="Utilities\IEbetConfigHelper.cs" />
     <Compile Include="Utilities\EbetParser.cs" />
-    <Compile Include="Utilities\IEbetDataSimulator.cs" />
+    <Compile Include="Utilities\IDataSimulator.cs" />
+    <Compile Include="Utilities\ISoftbetParser.cs" />
     <Compile Include="Utilities\RsaHelper.cs" />
   </ItemGroup>
   <ItemGroup>

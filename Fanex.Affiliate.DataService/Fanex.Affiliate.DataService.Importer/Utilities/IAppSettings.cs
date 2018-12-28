@@ -8,6 +8,8 @@ namespace Fanex.Affiliate.DataService.Importer.Utilities
 
         IList<string> SupportedProductList { get; }
 
+        IList<string> ProductListHaveDailyJob { get; }
+
         string GetValue(string key);
     }
 }

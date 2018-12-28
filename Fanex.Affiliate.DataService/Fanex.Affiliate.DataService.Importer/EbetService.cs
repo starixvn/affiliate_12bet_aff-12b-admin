@@ -31,7 +31,7 @@ namespace Fanex.Affiliate.DataService.Importer
         {
             if (_appSetting.IsLocalTest)
             {
-                var dataSimulator = new EbetDataSimulator();
+                var dataSimulator = new DataSimulator();
                 var fileName = $"ebet_{param.CurrencyId}{(param.PageNumber > 1 ? "_" + param.PageNumber.ToString() : string.Empty)}.json";
                 var filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"App_Data\\EbetData\\{fileName}");
 

@@ -6,7 +6,7 @@ namespace Fanex.Affiliate.DataService.Importer.Repository
 {
     public class ThirdPartyProductRepository : BaseRepository, IThirdPartyProductRepository
     {
-        public void ImportData(int productId, string xmlData)
+        public void ImportData(int productId, string xmlData, byte jobType = 0)
         {
             const string SpName = "Task_APIProduct_ImportQueue";
 
@@ -16,6 +16,7 @@ namespace Fanex.Affiliate.DataService.Importer.Repository
                 {
                     objectDb.AddInParameter("ProductId", DbType.Int32, productId);
                     objectDb.AddInParameter("XmlData", DbType.String, xmlData);
+                    objectDb.AddInParameter("JobType", DbType.Byte, jobType);
                     objectDb.AddOutParameter("ErrCode", DbType.Int32, 4);
                     objectDb.AddOutParameter("ErrMsg", DbType.String, 4000);
 
