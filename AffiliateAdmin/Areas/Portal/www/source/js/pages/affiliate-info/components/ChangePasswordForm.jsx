@@ -111,17 +111,17 @@ export class ChangePasswordForm extends Component {
                                 <FormGroup row className="mb-2">
                                     <Label for="Password" sm={4} className="required">Password:</Label>
                                     <Col sm={8}>
-                                        <Input type="password" name="password" id="Password"
+                                        <Input type="password" name="password" id="Password" autocomplete="new-password"
                                             value={password} onChange={this.handleChange} invalid={!passwordValidation.isValid} />
                                         {passwordValidation.message &&
                                             <FormFeedback><div dangerouslySetInnerHTML={{ __html: passwordValidation.message }} /></FormFeedback>}
                                     </Col>
                                 </FormGroup>
 
-                                <FormGroup row>
+                                <FormGroup row className="mb-2">
                                     <Label for="ConfirmPassword" sm={4} className="required">Confirm Password:</Label>
                                     <Col sm={8}>
-                                        <Input type="password" name="confirmPassword" id="ConfirmPassword"
+                                        <Input type="password" name="confirmPassword" id="ConfirmPassword" autocomplete="new-password"
                                             value={confirmPassword} onChange={this.handleChange} invalid={!confirmPasswordValidation.isValid} />
                                         {confirmPasswordValidation.message &&
                                             <FormFeedback><div dangerouslySetInnerHTML={{ __html: confirmPasswordValidation.message }} /></FormFeedback>}

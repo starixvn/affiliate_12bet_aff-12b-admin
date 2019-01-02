@@ -154,7 +154,7 @@ export class Filter extends Component {
                     </FormGroup>
 
                     <FormGroup className="my-2 mr-sm-2">
-                        <Input type="text" pattern="^[0-9]+$" name="affId" id="AffId" placeholder="Affiliate Id"
+                        <Input type="text" name="affId" id="AffId" placeholder="Affiliate Id"
                             onKeyPress={this.handlePressEnter}
                             onChange={this.handleChange} />
                     </FormGroup>
