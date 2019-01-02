@@ -1,4 +1,5 @@
 ﻿using System;
+using OtpNet;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
 {
@@ -6,12 +7,22 @@ namespace Fanex.Affiliate.User.Core.BusinessService
     {
         public string GenerateTotp(string secretKey)
         {
-            throw new NotImplementedException();
+            int affId = 927841;
+            var base32Bytes = Base32Encoding.ToBytes(secretKey);
+
+            Hotp hotp = new Hotp(base32Bytes);
+
+            return hotp.ComputeHOTP(affId);
         }
 
         public bool VerifyTotp(string totp)
         {
-            throw new NotImplementedException();
+            int affId = 927841;
+            var secretKey = "GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ";
+            var base32Bytes = Base32Encoding.ToBytes(secretKey);
+            Hotp hotp = new Hotp(base32Bytes);
+
+            return hotp.VerifyHotp(totp, affId);
         }
     }
 }
