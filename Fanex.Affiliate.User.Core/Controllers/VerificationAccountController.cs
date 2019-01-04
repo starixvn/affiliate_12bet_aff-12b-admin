@@ -23,13 +23,13 @@ namespace Fanex.Affiliate.User.Core.Controllers
             ISessionService sessionService,
             ILanguageService languageService,
             ICaptchaService captchaService,
-            //ITwoFactorAuthService twoFactorAuthService,
+            ITwoFactorAuthService twoFactorAuthService,
             IAccountRepository accountRepository,
             IAppSetting appSetting,
             IEmailService mailService) : base(sessionService, languageService)
         {
             _captchaService = captchaService;
-            //_twoFactorAuthService = twoFactorAuthService;
+            _twoFactorAuthService = twoFactorAuthService;
             _accountRepository = accountRepository;
             _mailService = mailService;
             _appSetting = appSetting;
@@ -56,29 +56,30 @@ namespace Fanex.Affiliate.User.Core.Controllers
         public void SendCode(string email)
         {
             var secretKey = "GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ";
-            //var codeOtp = _twoFactorAuthService.GenerateHotp(secretKey);
+            var codeOtp = _twoFactorAuthService.GenerateHotp(secretKey);
 
             var param = new UserInfoByEmailParam
             {
                 Email = email.Trim(),
                 Ip = RequestHelper.GetClientIPAddress(),
-                ValidCode = secretKey,
+                ValidCode = codeOtp,
                 Language = SessionService.CurrentLanguage
             };
             var userInfo = _accountRepository.GetUserInfoByEmail(param);
 
-            var recoverEmailParam = new RecoverPasswordEmailParam
+            var verificationAccountEmailParam = new VerificationAccountEmailParam
             {
                 User = userInfo,
                 MailContact = _appSetting.MailContact,
                 MailTo = param.Email,
                 RootDomain = SiteDomainHelper.GetRootUrl(this),
-                Code = secretKey
+                Code = codeOtp,
+                Ip = param.Ip
             };
 
             var userLang = SystemLanguage.IsValid(userInfo.PreferredLanguage) ? userInfo.PreferredLanguage : SystemLanguage.DefaultLanguageCode;
             LanguageService.SetCulture(userLang);
-            _mailService.SendRecoverPasswordEmail(recoverEmailParam);
+            _mailService.SendHotpCodeEmail(verificationAccountEmailParam);
             LanguageService.SetCulture(SessionService.CurrentLanguage);
         }
     }

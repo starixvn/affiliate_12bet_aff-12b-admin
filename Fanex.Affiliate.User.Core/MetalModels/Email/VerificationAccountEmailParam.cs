@@ -2,6 +2,8 @@
 {
     public class VerificationAccountEmailParam : EmailBaseParam
     {
-        public int Code { get; set; }
+        public string Code { get; set; }
+
+        public string Ip { get; set; }
     }
 }
