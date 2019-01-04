@@ -35,6 +35,11 @@ export class ChangePasswordForm extends Component {
         this.saveChangePassword(param)
     }
 
+    handleClosePopup = () => {
+        this.props.setShowPopupPassword(false);
+        this.setState({ password: '', confirmPassword: '' });
+    }
+
     async saveChangePassword(param) {
         this.props.toggleLoader(true);
 
@@ -102,16 +107,16 @@ export class ChangePasswordForm extends Component {
         const isValid = passwordValidation.isValid && confirmPasswordValidation.isValid;
 
         return (
-            <Modal isOpen={showPopupPassword} toggle={() => this.props.setShowPopupPassword(false)} backdrop='static'>
-                <ModalHeader toggle={() => this.props.setShowPopupPassword(false)}><span className="iconpopup"></span>{resource.ChangePassword}</ModalHeader>
+            <Modal isOpen={showPopupPassword} toggle={this.handleClosePopup} backdrop='static'>
+                <ModalHeader toggle={this.handleClosePopup}><span className="iconpopup"></span>{resource.ChangePassword}</ModalHeader>
                 <ModalBody>
                     <div className="modal-body-wrapper">
                         <div className="change-password-form-container">
-                            <Form tag="div" className="mb-5">
+                            <Form tag="form" className="mb-5" autocomplete="off">
                                 <FormGroup row className="mb-2">
                                     <Label for="Password" sm={4} className="required">Password:</Label>
                                     <Col sm={8}>
-                                        <Input type="password" name="password" id="Password" autocomplete="new-password"
+                                        <Input type="password" name="password" id="Password" autocomplete="false"
                                             value={password} onChange={this.handleChange} invalid={!passwordValidation.isValid} />
                                         {passwordValidation.message &&
                                             <FormFeedback><div dangerouslySetInnerHTML={{ __html: passwordValidation.message }} /></FormFeedback>}
@@ -121,7 +126,7 @@ export class ChangePasswordForm extends Component {
                                 <FormGroup row className="mb-2">
                                     <Label for="ConfirmPassword" sm={4} className="required">Confirm Password:</Label>
                                     <Col sm={8}>
-                                        <Input type="password" name="confirmPassword" id="ConfirmPassword" autocomplete="new-password"
+                                        <Input type="password" name="confirmPassword" id="ConfirmPassword" autocomplete="false"
                                             value={confirmPassword} onChange={this.handleChange} invalid={!confirmPasswordValidation.isValid} />
                                         {confirmPasswordValidation.message &&
                                             <FormFeedback><div dangerouslySetInnerHTML={{ __html: confirmPasswordValidation.message }} /></FormFeedback>}
@@ -130,7 +135,7 @@ export class ChangePasswordForm extends Component {
                             </Form>
 
                             <Button type="button" color="success" className="mr-3" disabled={!isValid} onClick={this.handleChangePassword}>{resource.Submit}</Button>
-                            <Button type="button" color="info" onClick={() => this.props.setShowPopupPassword(false)}>{resource.Cancel}</Button>
+                            <Button type="button" color="info" onClick={this.handleClosePopup}>{resource.Cancel}</Button>
                         </div>
                     </div>
                 </ModalBody>
