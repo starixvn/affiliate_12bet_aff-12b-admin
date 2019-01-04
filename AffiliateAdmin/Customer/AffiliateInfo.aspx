@@ -33,6 +33,10 @@
     var minHeight = 510;
     window.onresize = function () { setHeight(); };
     window.onload = function () {
+
+        var subQueryString = "affId=" + $("affID").innerHTML;
+        window.affId = $("affID").innerHTML;
+
         if ($("hdNoInfo").value == "1")
             window.onresize = "";
         else {
@@ -45,7 +49,7 @@
             addClass(parent.document.getElementById("right-panel-frame"), "not-approved");
             if ($("hdNoInfo").value != "1") {
                 if ($("isReload").value != "2")
-                    parent.fContent.location.href = "../UserInfo/AffiliateUpd.aspx?approved=0";
+                    parent.fContent.location.href = "../UserInfo/AffiliateUpd.aspx?approved=0&"+subQueryString;
             }
             else
                 parent.fContent.location.href = "blank.html";
@@ -76,10 +80,10 @@
                 switch ($("isReload").value) {
                     case "1": //Change to approved status
                         parent.fStatistics.location.href = "Statistics.aspx";
-                        parent.fContent.location.href = "../UserInfo/AffiliateUpd.aspx";
+                        parent.fContent.location.href = "../UserInfo/AffiliateUpd.aspx?"+subQueryString;
                         break;
                     case "2": //update aff info after aff had approved
-                        parent.fContent.location.href = "../UserInfo/AffiliateUpd.aspx";
+                        parent.fContent.location.href = "../UserInfo/AffiliateUpd.aspx?"+subQueryString;
                         break;
                     case "3": //Update statement
                         parent.fContent.location.href = "../UserInfo/EarningsHistory.aspx";
