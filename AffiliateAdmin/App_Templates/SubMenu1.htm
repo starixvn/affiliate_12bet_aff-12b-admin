@@ -24,10 +24,15 @@
 
 <script>
     window.onSubMenuCick = function (url) {
-        if (url.indexOf("/UserInfo/")) {
-            var affId = window.parent.frames["fInfo"].affId ? window.parent.frames["fInfo"].affId : 0;
-            window.location = url + "?affId=" + affId;
+        var subQueryString = "";
+
+        subQueryString = window.parent.frames["fInfo"] && window.parent.frames["fInfo"].subQueryString && window.parent.frames["fInfo"].subQueryString
+
+        if (url.indexOf("?") == -1) {
+            window.location = url + "?" + subQueryString;
         }
-        console.log(window.location);
+        else {
+            window.location = url + subQueryString;
+        }
     };
 </script>

@@ -5,7 +5,7 @@ public partial class UserInfo_MediaStatistics : IBCPage
     protected void Page_Load(object sender, EventArgs e)
     {
         string strTpl = TemplateHandler.LoadTemplate("UserInfo/MediaStatistics.htm");
-        int custid = AppSettings.Session.AffId;
+        var custid = string.IsNullOrEmpty(Request["affId"]) ? AppSettings.Session.AffId : Convert.ToInt32(Request["affId"]);
 
         TemplateHandler.RemoveBlock(ref strTpl, "StatisticsDetailContent");
         TemplateHandler.Assign(ref strTpl, "TrackingStatistics", Resources.Lang.TrackingStatistics);

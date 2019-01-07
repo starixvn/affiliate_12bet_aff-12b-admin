@@ -6,8 +6,7 @@ public partial class UserInfo_Note : IBCPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        var param = string.IsNullOrEmpty(Request["affId"]) ? AppSettings.Session.AffId.ToString() : Request["affId"];
-        int intCustId = int.Parse(param);
+        var intCustId = string.IsNullOrEmpty(Request["affId"]) ? AppSettings.Session.AffId : Convert.ToInt32(Request["affId"]);
 
         string strTpl = TemplateHandler.LoadTemplate("UserInfo/NoteList.htm");
         if (string.Compare(Request["ischild"], "1", true) == 0)

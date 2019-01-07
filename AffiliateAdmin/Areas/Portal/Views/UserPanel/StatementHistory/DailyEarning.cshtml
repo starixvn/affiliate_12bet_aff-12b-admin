@@ -2,7 +2,8 @@
     Layout = "~/Areas/Portal/Views/Shared/_UserPanelLayout.cshtml";
 }
 @using Fanex.Affiliate.Admin.Core.Constants
-
+@using Fanex.Affiliate.Admin.Core.ViewModels.UserPanel
+@using Fanex.Affiliate.Admin.Core.DTO.Affiliate
 @model Fanex.Affiliate.Admin.Core.ViewModels.UserPanel.DailyEarningViewModel
 
 @section styles{
@@ -20,9 +21,16 @@
 
 @section menu{
     @{ 
-        var menuList = UserPanelConstant.UserPanelMenuList;
-        menuList.ElementAt(0).IsActive = true;
-        Html.RenderPartial("~/Areas/Portal/Views/Shared/_UserPanelMenu.cshtml", menuList);
+        var affiliateLinkParam = new AffiliateLinkParam {
+            AffId = Model.Param.AffId,
+            AffName = Model.Param.AffName
+        };
+        var usePanelMenu = new UserPanelMenuViewModel {
+            SubMenuList = UserPanelConstant.UserPanelMenuList,
+            AffiliateLinkParam = affiliateLinkParam
+        };
+        usePanelMenu.SubMenuList.ElementAt(0).IsActive = true;
+        Html.RenderPartial("~/Areas/Portal/Views/Shared/_UserPanelMenu.cshtml", usePanelMenu);
     }
 }
 

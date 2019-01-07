@@ -34,8 +34,8 @@
     window.onresize = function () { setHeight(); };
     window.onload = function () {
 
-        var subQueryString = "affId=" + $("affID").innerHTML;
-        window.affId = $("affID").innerHTML;
+        var subQueryString = "affId=" + $("affID").innerHTML + "&affName=" + $("spUN").innerHTML;
+        window.subQueryString = subQueryString;
 
         if ($("hdNoInfo").value == "1")
             window.onresize = "";
@@ -59,17 +59,17 @@
             if (hasClass(parent.document.getElementById("right-panel-frame"), "not-approved"))
                 removeClass(parent.document.getElementById("right-panel-frame"), "not-approved");
             if ($("hdNoInfo").value == "0") {
-                parent.fStatistics.location.href = baseUrl + "Portal/CustomerStatistics/Index";
+                parent.fStatistics.location.href = baseUrl + "Portal/CustomerStatistics/Index?" + subQueryString;
                 switch ($("hdPageid").value)//linked from affiliate list
                 {
                     case "1":
-                        parent.fContent.location.href = "../UserInfo/EarningsHistory.aspx?status=Pending";
+                        parent.fContent.location.href = "../UserInfo/EarningsHistory.aspx?status=Pending&" + subQueryString;
                         break;
                     case "2":
-                        parent.fContent.location.href = "../UserInfo/MemberListAll.aspx?all=0";
+                        parent.fContent.location.href = "../UserInfo/MemberListAll.aspx?all=0&" + subQueryString;
                         break;
                     default:
-                        parent.fContent.location.href = "../UserInfo/EarningsHistory.aspx";
+                        parent.fContent.location.href = "../UserInfo/EarningsHistory.aspx?" + subQueryString;
                         break;
                 }
             } else if ($("hdNoInfo").value == "1") {
@@ -86,13 +86,13 @@
                         parent.fContent.location.href = "../UserInfo/AffiliateUpd.aspx?"+subQueryString;
                         break;
                     case "3": //Update statement
-                        parent.fContent.location.href = "../UserInfo/EarningsHistory.aspx";
+                        parent.fContent.location.href = "../UserInfo/EarningsHistory.aspx?" + subQueryString;
                         break;
                     case "4": //Update statement
-                        parent.fContent.location.href = "../UserInfo/Adjustment.aspx";
+                        parent.fContent.location.href = "../UserInfo/Adjustment.aspx?" + subQueryString;
                         break;
                     default:
-                        parent.fContent.location.href = "../UserInfo/EarningsHistory.aspx";
+                        parent.fContent.location.href = "../UserInfo/EarningsHistory.aspx?" + subQueryString;
                         break;
                 }
                 $("isReload").value = "0";

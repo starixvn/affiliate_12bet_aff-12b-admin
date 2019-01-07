@@ -13,7 +13,12 @@ const monthDate = createReducer(defaultMonthDate, {
     }
 })
 
+export const affId = createReducer(0, {});
+export const affName = createReducer('', {});
+
 export default combineReducers({
     monthDate,
-    isShowLoader
+    isShowLoader,
+    affId,
+    affName
 });

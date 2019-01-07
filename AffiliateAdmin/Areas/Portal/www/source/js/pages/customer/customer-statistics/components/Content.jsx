@@ -78,9 +78,12 @@ export class Content extends Component {
                 </tr>
             </thead>
         )
-    }
+                                }
 
     _renderData(monthDate, data) {
+        const { affId, affName } = this.props;
+        const affiliateLinkParam = affId&&affName&&"&affId=" + affId + "&affName=" + affName;
+
         const DepositByMonth = formatDecimalWithCurrencySymbol(data.DepositByMonth);
         const DepositTotal = formatDecimalWithCurrencySymbol(data.DepositTotal);
         const TurnoverByMonth = formatDecimalWithCurrencySymbol(data.TurnoverByMonth);
@@ -104,7 +107,7 @@ export class Content extends Component {
                     this._buildRow(rowTitle.TotalActive,
                         (
                             data.ActivePlayerByMonth > 0 ? (
-                                <a href={`${resolveClientUrl('Portal/UserPanel/PlayerDetail/Index?isFromStatistics=true')}&monthDate=${startMonthString}`} target="fContent">
+                                <a href={`${resolveClientUrl('Portal/UserPanel/PlayerDetail/Index?isFromStatistics=true')}&monthDate=${startMonthString}${affiliateLinkParam}`} target="fContent">
                                     {format(data.ActivePlayerByMonth)}
                                 </a>) : format(data.ActivePlayerByMonth)
                         ),
@@ -116,21 +119,21 @@ export class Content extends Component {
                 {this._buildRow(rowTitle.Winlost, WinlostByMonth, WinlostTotal)}
                 {
                     this._buildRow(rowTitle.TrackingRate,
-                        (<a href={resolveClientUrl(`UserInfo/MediaStatistics.aspx?month=${startMonthString}`)} target="fContent">
+                        (<a href={resolveClientUrl(`UserInfo/MediaStatistics.aspx?month=${startMonthString}${affiliateLinkParam}`)} target="fContent">
                             {format(data.UniqueClickByMonth)}/{format(data.TotalClickByMonth)}
                         </a>),
                         resource.NA)
                 }
                 {
                     this._buildRow(rowTitle.TrackingRatePC,
-                        (<a href={resolveClientUrl(`UserInfo/MediaStatistics_New.aspx?fdate=${startMonthString}&tdate=${endMonthString}&slDevice=0`)} target="fContent">
+                        (<a href={resolveClientUrl(`UserInfo/MediaStatistics_New.aspx?fdate=${startMonthString}&tdate=${endMonthString}&slDevice=0${affiliateLinkParam}`)} target="fContent">
                             {format(data.UniqueClickPcLaptopByMonth)}/{format(data.TotalClickPcLaptopByMonth)}
                         </a>),
                         resource.NA)
                 }
                 {
                     this._buildRow(rowTitle.TrackingRateMobile,
-                        (<a href={resolveClientUrl(`UserInfo/MediaStatistics_New.aspx?fdate=${startMonthString}&tdate=${endMonthString}&slDevice=1`)} target="fContent">
+                        (<a href={resolveClientUrl(`UserInfo/MediaStatistics_New.aspx?fdate=${startMonthString}&tdate=${endMonthString}&slDevice=1${affiliateLinkParam}`)} target="fContent">
                             {format(data.UniqueClickMobileByMonth)}/{format(data.TotalClickMobileByMonth)}
                         </a>),
                         resource.NA)
@@ -164,8 +167,8 @@ export class Content extends Component {
     }
 }
 
-function mapStateToProps({ monthDate }) {
-    return Object.assign({}, { monthDate });
+function mapStateToProps({ monthDate, affId, affName }) {
+    return Object.assign({}, { monthDate, affId, affName });
 }
 
 function mapDispatchToProps(dispatch) {

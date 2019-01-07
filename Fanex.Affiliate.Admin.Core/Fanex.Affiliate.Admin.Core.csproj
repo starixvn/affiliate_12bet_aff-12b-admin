@@ -166,6 +166,7 @@
     <Compile Include="Controllers\UserPanel\CustomerMemberController.cs" />
     <Compile Include="Controllers\UserPanel\PlayerDetailController.cs" />
     <Compile Include="Controllers\UserPanel\StatementHistoryController.cs" />
+    <Compile Include="DTO\AffiliateLinkParam.cs" />
     <Compile Include="DTO\Affiliate\AffiliateBasicInfo.cs" />
     <Compile Include="DTO\Affiliate\AffiliateInfo.cs" />
     <Compile Include="DTO\CommissionGroup\CommGroup.cs" />
@@ -324,6 +325,7 @@
     <Compile Include="ViewModels\UserPanel\CustomerMemberViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\DailyEarningViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\PlayerDetailViewModel.cs" />
+    <Compile Include="ViewModels\UserPanel\UserPanelMenuViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

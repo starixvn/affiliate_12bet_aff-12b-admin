@@ -19,8 +19,7 @@ public partial class AffiliateUpd : IBCPage
         Response.Cache.SetCacheability(HttpCacheability.Private);
         string strTpl = TemplateHandler.LoadTemplate("UserInfo/AffUpd.htm");
 
-        var param = string.IsNullOrEmpty(Request["affId"]) ? AppSettings.Session.AffId.ToString() : Request["affId"];
-        int intCustid = int.Parse(param);
+        var intCustid = string.IsNullOrEmpty(Request["affId"]) ? AppSettings.Session.AffId : Convert.ToInt32(Request["affId"]);
 
         if (!Common.HasReadPermission(PermissionNames.SecurityQA))
             TemplateHandler.RemoveBlock(ref strTpl, "securityqa");

@@ -33,12 +33,12 @@
     }
     function AddNote()
     {
-        ibcWnd.open("AddNote.aspx?action=1", 'Add Note', 150, 50, 370, 230, 'class1', 'class2');
+        ibcWnd.open("AddNote.aspx?action=1&affId=" + $("custid").value, 'Add Note', 150, 50, 370, 230, 'class1', 'class2');
     } 
     
     function editNote(noteid)
     {
-        ibcWnd.open("AddNote.aspx?action=2&noteid=" + noteid, 'Edit Note', 150, 50, 370, 230, 'class1', 'class2');
+        ibcWnd.open("AddNote.aspx?action=2&noteid=" + noteid + "&affId=" + $("custid").value, 'Edit Note', 150, 50, 370, 230, 'class1', 'class2');
     }
     function DelNote()
     {
