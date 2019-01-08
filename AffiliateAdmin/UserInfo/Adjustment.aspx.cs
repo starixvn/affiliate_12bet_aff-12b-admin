@@ -23,8 +23,8 @@ public partial class UserInfo_Adjustment : IBCPage
             var affId = string.IsNullOrEmpty(Request["affId"]) ? AppSettings.Session.AffId : Convert.ToInt32(Request["affId"]);
             var affName = string.IsNullOrEmpty(Request["affName"]) ? AppSettings.Session.AffUsername : Request["affName"];
 
-            TemplateHandler.Assign(ref strTpl, "affiliate-val", affName);
-            TemplateHandler.Assign(ref strTpl, "custid", affId);
+            TemplateHandler.Assign(ref strTpl, "affName-val", affName);
+            TemplateHandler.Assign(ref strTpl, "affId-val", affId);
 
             DbResult rs = DataHandler.Affiliate.SelBalanceBF(affId);
 

@@ -34,6 +34,7 @@ public partial class UserInfo_UserLog : IBCPage
         TemplateHandler.Assign(ref strTpl, "description", Resources.Lang.Description);
         TemplateHandler.Assign(ref strTpl, "ip", Resources.Lang.IP);
         TemplateHandler.Assign(ref strTpl, "page-val", pageIndex);
+        TemplateHandler.Assign(ref strTpl, "affId-val", affID);
         // Content
         TemplateHandler.ReplaceBlock(ref strTpl, "content", GenerateHTML.UserLog.GetLogList(affID, logType, dateFrom, dateTo, pageIndex, pageSize, ref pageCount, ref rowCount));
 

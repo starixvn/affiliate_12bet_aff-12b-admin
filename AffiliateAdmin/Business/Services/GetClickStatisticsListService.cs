@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System;
+using System.Web;
 
 namespace AffiliateAdmin.Business.Services
 {
@@ -11,7 +12,8 @@ namespace AffiliateAdmin.Business.Services
                 IBCHandler.InitializeCulture(HttpContext.Current);
                 context.Response.ContentType = "text/plain";
                 string trackingcode = context.Request.Params["params"];
-                context.Response.Write(GenerateHTML.TrackingSystem.GetStatisticsAllMonthsContentList(AppSettings.Session.AffId, trackingcode));
+                int affId = string.IsNullOrEmpty(context.Request.Params["affId"]) ? AppSettings.Session.AffId : Convert.ToInt32(context.Request.Params["affId"]);
+                context.Response.Write(GenerateHTML.TrackingSystem.GetStatisticsAllMonthsContentList(affId, trackingcode));
             }
         }
     }

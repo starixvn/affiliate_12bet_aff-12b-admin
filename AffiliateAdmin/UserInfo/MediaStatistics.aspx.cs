@@ -17,6 +17,7 @@ public partial class UserInfo_MediaStatistics : IBCPage
         TemplateHandler.Assign(ref strTpl, "UniqueClick", Resources.Lang.UniqueClicks);
         TemplateHandler.Assign(ref strTpl, "Date", Resources.Lang.Date);
         TemplateHandler.ReplaceBlock(ref strTpl, "Content", GenerateHTML.TrackingSystem.GetStatisticsAllMonthsContentList(affId, null));
+        TemplateHandler.Assign(ref strTpl, "affId-val", affId);
 
         #region Load SubPage
         TemplateHandler.Assign(ref strTpl, "submenu", SubMenu.GenSubMenu(SubMenu.AffApprovedLink, SubMenu.AffApprovedText, 5, 0, Resources.Lang.TrackingStatistics, "i_customer.png"));

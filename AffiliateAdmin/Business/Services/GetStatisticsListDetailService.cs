@@ -14,13 +14,14 @@ namespace AffiliateAdmin.Business.Services
                 context.Response.ContentType = "text/plain";
 
                 string[] param = context.Request.Params["params"].Split(";".ToCharArray());
+                int affId = string.IsNullOrEmpty(context.Request.Params["affId"]) ? AppSettings.Session.AffId : Convert.ToInt32(context.Request.Params["affId"]);
 
                 string trackingcode = string.Empty;
                 int month = 5, year = 2009;
                 StringBuilder result = ValidateData(param, ref trackingcode, ref month, ref year);
                 if (string.IsNullOrEmpty(result.ToString()))
                 {
-                    result.Append(GenerateHTML.TrackingSystem.GetStatisticsMonthDetailContent(AppSettings.Session.AffId, month, year, trackingcode));
+                    result.Append(GenerateHTML.TrackingSystem.GetStatisticsMonthDetailContent(affId, month, year, trackingcode));
                 }
 
                 context.Response.Write(result.ToString());
