@@ -27,12 +27,6 @@ export class Content extends Component {
         this.fetchData(this.props.monthDate);
     }
 
-    componentDidUpdate(prevProps) {
-        if (this.props.monthDate !== prevProps.monthDate) {
-            this.fetchData(this.props.monthDate);
-        }
-    }
-
     fetchData = async (monthDate) => {
         this.props.toggleLoader(true);
         const { affId } = this.props;
