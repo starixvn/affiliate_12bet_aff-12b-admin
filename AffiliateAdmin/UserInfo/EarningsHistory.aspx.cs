@@ -13,6 +13,7 @@ public partial class UserInfo_EarningsHistory : IBCPage
         TemplateHandler.RemoveBlock(ref strTpl, "total");
 
         var affID = string.IsNullOrEmpty(Request["affId"]) ? AppSettings.Session.AffId : Convert.ToInt32(Request["affId"]);
+        TemplateHandler.Assign(ref strTpl, "affId-val", affID);
 
         int transType = CastAide.AsInt32(Request["transtype"], -1);
         #region Load language

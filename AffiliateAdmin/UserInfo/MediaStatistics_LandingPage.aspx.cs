@@ -9,7 +9,6 @@ using DNAide.Web;
 public partial class UserInfo_MediaStatistics_LandingPage : IBCPage
 {
     private string strTpl = string.Empty;
-    private StringBuilder strListRow = new StringBuilder();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -35,6 +34,9 @@ public partial class UserInfo_MediaStatistics_LandingPage : IBCPage
         string languageCode = CastAide.AsString(Request["languageCode"]);
         var deviceType = Common.GetDeviceType(Request["slDevice"]);
 
+        var affId = string.IsNullOrEmpty(Request["affId"]) ? AppSettings.Session.AffId : Convert.ToInt32(Request["affId"]);
+        TemplateHandler.Assign(ref strTpl, "affId-val", affId);
+
         TemplateHandler.Assign(ref strTpl, "slPage", TargetPageHelper.GenerateDropdown("sportCode", sportCode));
 
         DataView dv = DbHelper.Execute("Aff_BannerSelType_1", DBType.AFFILIATE_12BET).ResultSet.Tables[0].DefaultView;
@@ -53,7 +55,7 @@ public partial class UserInfo_MediaStatistics_LandingPage : IBCPage
         TemplateHandler.Assign(ref strTpl, "Device", Resources.Lang.Device);
         TemplateHandler.Assign(ref strTpl, "slDevice", AffAdmin.GenerateHTML.Domain.GenDeviceList("slDevice", deviceType));
 
-        DbResult rs = DataHandler.TrackingSystem.SelClickStatisticsByPage(dtmFDate, dtmTDate, sportCode, GetLangCode(languageCode), deviceType);
+        DbResult rs = DataHandler.TrackingSystem.SelClickStatisticsByPage(affId, dtmFDate, dtmTDate, sportCode, GetLangCode(languageCode), deviceType);
 
         DataTable dtb = new DataTable();
         if (rs.ResultSet.Tables.Count > 0)

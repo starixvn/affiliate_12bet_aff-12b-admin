@@ -26,7 +26,7 @@ public partial class UserInfo_Note : IBCPage
         #endregion
 
         TemplateHandler.Assign(ref strTpl, "ischild", Request["ischild"]);
-        TemplateHandler.Assign(ref strTpl, "custid", affId.ToString());
+        TemplateHandler.Assign(ref strTpl, "custid", affId);
         int pageIndex = CastAide.AsInt32(Request["page"], 1);
         TemplateHandler.Assign(ref strTpl, "page-val", pageIndex);
         bool hasData = false;

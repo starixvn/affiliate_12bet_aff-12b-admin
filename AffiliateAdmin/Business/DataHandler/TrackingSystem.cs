@@ -39,10 +39,10 @@ namespace DataHandler
             return DbHelper.Execute("Aff_AffiliateSelClickStatisticsMonthDetail", DBType.AFFILIATE_12BET, hsParam);
         }
 
-        public static DbResult SelClickStatisticsBySite(object fromDate, object toDate, string deviceType)
+        public static DbResult SelClickStatisticsBySite(int affId, object fromDate, object toDate, string deviceType)
         {
             Hashtable hsParam = new Hashtable();
-            hsParam.Add("affid", AppSettings.Session.AffId);
+            hsParam.Add("affid", affId);
             hsParam.Add("fromdate", fromDate);
             hsParam.Add("todate", toDate);
             hsParam.Add("devicetype", byte.Parse(deviceType));
@@ -70,10 +70,10 @@ namespace DataHandler
             return DbHelper.Execute("Aff_ClickStatisticsDetailBySite", DBType.AFFILIATE_12BET, hsParam, DbHelper.MAX_EXEC_TIME_LENGTH_RPTSP);
         }
 
-        public static DbResult SelClickStatisticsByPage(object fromDate, object toDate, string sportCode, string languageCode, string deviceType)
+        public static DbResult SelClickStatisticsByPage(int affId, object fromDate, object toDate, string sportCode, string languageCode, string deviceType)
         {
             Hashtable hsParam = new Hashtable();
-            hsParam.Add("affid", AppSettings.Session.AffId);
+            hsParam.Add("affid", affId);
             hsParam.Add("fromdate", fromDate);
             hsParam.Add("todate", toDate);
             if (!string.IsNullOrEmpty(sportCode))
