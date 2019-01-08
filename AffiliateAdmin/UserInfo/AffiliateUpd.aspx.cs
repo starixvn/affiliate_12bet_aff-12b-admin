@@ -19,7 +19,7 @@ public partial class AffiliateUpd : IBCPage
         Response.Cache.SetCacheability(HttpCacheability.Private);
         string strTpl = TemplateHandler.LoadTemplate("UserInfo/AffUpd.htm");
 
-        var intCustid = string.IsNullOrEmpty(Request["affId"]) ? AppSettings.Session.AffId : Convert.ToInt32(Request["affId"]);
+        var affId = string.IsNullOrEmpty(Request["affId"]) ? AppSettings.Session.AffId : Convert.ToInt32(Request["affId"]);
 
         if (!Common.HasReadPermission(PermissionNames.SecurityQA))
             TemplateHandler.RemoveBlock(ref strTpl, "securityqa");
@@ -87,7 +87,7 @@ public partial class AffiliateUpd : IBCPage
         string strMinMoneyBooker = "0";
         string strMinPlayer = "0";
 
-        DataTable dtbCustInfo = DataHandler.Affiliate.SelAffInfo(intCustid, ref strMinMoneyBooker, ref strMinNetteller, ref strMinWire, ref strMinPlayer);
+        DataTable dtbCustInfo = DataHandler.Affiliate.SelAffInfo(affId, ref strMinMoneyBooker, ref strMinNetteller, ref strMinWire, ref strMinPlayer);
         if (dtbCustInfo.Rows.Count > 0)
         {
             DataRow dr = dtbCustInfo.Rows[0];
@@ -153,7 +153,7 @@ public partial class AffiliateUpd : IBCPage
             TemplateHandler.Assign(ref strTpl, "securequestion_val", dr["question"].ToString());
             TemplateHandler.Assign(ref strTpl, "answer_val", dr["answer"].ToString());
 
-            TemplateHandler.Assign(ref strTpl, "custid-val", intCustid);
+            TemplateHandler.Assign(ref strTpl, "custid-val", affId);
             TemplateHandler.Assign(ref strTpl, "username-val", dr["username"].ToString());
             TemplateHandler.Assign(ref strTpl, "fname-val", dr["firstname"].ToString());
             TemplateHandler.Assign(ref strTpl, "lname-val", dr["lastname"].ToString());

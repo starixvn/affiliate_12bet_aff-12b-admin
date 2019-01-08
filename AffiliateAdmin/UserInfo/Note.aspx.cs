@@ -6,7 +6,7 @@ public partial class UserInfo_Note : IBCPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        var intCustId = string.IsNullOrEmpty(Request["affId"]) ? AppSettings.Session.AffId : Convert.ToInt32(Request["affId"]);
+        var affId = string.IsNullOrEmpty(Request["affId"]) ? AppSettings.Session.AffId : Convert.ToInt32(Request["affId"]);
 
         string strTpl = TemplateHandler.LoadTemplate("UserInfo/NoteList.htm");
         if (string.Compare(Request["ischild"], "1", true) == 0)
@@ -26,12 +26,12 @@ public partial class UserInfo_Note : IBCPage
         #endregion
 
         TemplateHandler.Assign(ref strTpl, "ischild", Request["ischild"]);
-        TemplateHandler.Assign(ref strTpl, "custid", intCustId.ToString());
+        TemplateHandler.Assign(ref strTpl, "custid", affId.ToString());
         int pageIndex = CastAide.AsInt32(Request["page"], 1);
         TemplateHandler.Assign(ref strTpl, "page-val", pageIndex);
         bool hasData = false;
         int rows = 0;
-        TemplateHandler.ReplaceBlock(ref strTpl, "notelist", GenerateHTML.Note.GenNoteList(intCustId, pageIndex, CastAide.AsInt32(Request["slPageSize"], 20), ref hasData, ref rows));
+        TemplateHandler.ReplaceBlock(ref strTpl, "notelist", GenerateHTML.Note.GenNoteList(affId, pageIndex, CastAide.AsInt32(Request["slPageSize"], 20), ref hasData, ref rows));
         if (!hasData)
             TemplateHandler.RemoveBlock(ref strTpl, "nocontent");
         string strUrlParam = "?approved=" + Request["approved"];

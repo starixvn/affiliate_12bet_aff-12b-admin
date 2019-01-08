@@ -20,13 +20,13 @@ public partial class UserInfo_Adjustment : IBCPage
         string strContent = TemplateHandler.CopyBlock(strTpl, "content");
         try
         {
-            var custid = string.IsNullOrEmpty(Request["affId"]) ? AppSettings.Session.AffId : Convert.ToInt32(Request["affId"]);
+            var affId = string.IsNullOrEmpty(Request["affId"]) ? AppSettings.Session.AffId : Convert.ToInt32(Request["affId"]);
             var affName = string.IsNullOrEmpty(Request["affName"]) ? AppSettings.Session.AffUsername : Request["affName"];
 
             TemplateHandler.Assign(ref strTpl, "affiliate-val", affName);
-            TemplateHandler.Assign(ref strTpl, "custid", custid);
+            TemplateHandler.Assign(ref strTpl, "custid", affId);
 
-            DbResult rs = DataHandler.Affiliate.SelBalanceBF(custid);
+            DbResult rs = DataHandler.Affiliate.SelBalanceBF(affId);
 
             decimal dcBF = CastAide.AsDecimal(rs.Outputs["balbroughtforward"]);
             TemplateHandler.Assign(ref strTpl, "balforward-val", Common.FormatNumber(dcBF));
