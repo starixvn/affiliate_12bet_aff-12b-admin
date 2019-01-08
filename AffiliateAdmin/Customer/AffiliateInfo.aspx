@@ -33,9 +33,10 @@
     var minHeight = 510;
     window.onresize = function () { setHeight(); };
     window.onload = function () {
-
-        var subQueryString = "affId=" + $("affID").innerHTML + "&affName=" + $("spUN").innerHTML;
+        var affName = $("spUN").innerHTML;
+        var subQueryString = "affId=" + $("affID").innerHTML + "&affName=" + affName;
         window.subQueryString = subQueryString;
+        window.affName = affName;
 
         if ($("hdNoInfo").value == "1")
             window.onresize = "";

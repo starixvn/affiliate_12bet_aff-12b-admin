@@ -82,7 +82,8 @@ public partial class UserInfo_EarningsHistory : IBCPage
             int rowNo = (pageIndex - 1) * pageSize;
             bool isCheckAll = false;
             TemplateHandler.Assign(ref strContent, "over", Common.RowBgOver);
-            var templateDailyEarningUrl = $"{ResolveUrl("~/Portal/UserPanel/StatementHistory/DailyEarning")}?AffId={affID}&MonthDate=";
+            var affName = string.IsNullOrEmpty(Request["affName"]) ? AppSettings.Session.AffUsername : Request["affName"];
+            var templateDailyEarningUrl = $"{ResolveUrl("~/Portal/UserPanel/StatementHistory/DailyEarning")}?AffId={affID}&AffName={affName}&MonthDate=";
             foreach (DataRow dr in dtb.Rows)
             {
                 rowNo++;
