@@ -35,8 +35,11 @@ export class Content extends Component {
 
     fetchData = async (monthDate) => {
         this.props.toggleLoader(true);
+        const { affId } = this.props;
+
         const param = {
-            monthDate
+            monthDate,
+            affId
         }
         const response = await post(API_URL, param);
         if (response && response.status === 200) {

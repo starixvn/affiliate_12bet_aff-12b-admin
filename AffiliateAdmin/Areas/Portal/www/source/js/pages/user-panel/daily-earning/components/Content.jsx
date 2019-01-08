@@ -83,7 +83,7 @@ export class Content extends Component {
         const bankingFee = formatDecimal(dataItem.BankingFee);
 
         const { param } = this.props;
-        const queryString = `AffId=${param.AffId}&ProductId=${param.ProductId}&MonthDate=${dataItem.Date}`;
+        const queryString = `AffId=${param.AffId}&AffName=${param.AffName}&ProductId=${param.ProductId}&MonthDate=${dataItem.Date}`;
         const dateLink = resolveClientUrl('Portal/UserPanel/StatementHistory/DailyEarningDetail') + '?' + queryString;
 
         return (

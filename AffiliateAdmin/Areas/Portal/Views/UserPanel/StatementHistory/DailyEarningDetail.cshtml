@@ -8,7 +8,7 @@
 
 @{
     var monthDateString = Model.Param.MonthDate.ToString("MM/dd/yyyy");
-    var queryString = "AffId=" + Model.Param.AffId + "&MonthDate=" + monthDateString + "&ProductId=" + Model.Param.ProductId;
+    var queryString = "AffId=" + Model.Param.AffId + "&AffName=" + Model.Param.AffName + "&MonthDate=" + monthDateString + "&ProductId=" + Model.Param.ProductId;
 }
 
 @section styles{
@@ -43,7 +43,7 @@
 
 <div class="breadcrumb-container">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="@Url.Content("~/UserInfo/EarningsHistory.aspx")">Statement History</a></li>
+        <li class="breadcrumb-item"><a href="@Url.Content("~/UserInfo/EarningsHistory.aspx?affId="+Model.Param.AffId+"&affName="+Model.Param.AffName)">Statement History</a></li>
         <li class="breadcrumb-item">
             <a href="@Url.Content("~/Portal/UserPanel/StatementHistory/DailyEarning?" + queryString)">@Model.Param.MonthDate.ToString("MMMM yyyy")</a>
         </li>
