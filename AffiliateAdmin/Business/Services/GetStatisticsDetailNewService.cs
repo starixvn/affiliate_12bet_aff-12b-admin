@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using System.Text;
 using System.Web;
 using DNAide.Core;
 
@@ -22,11 +21,11 @@ namespace AffiliateAdmin.Business.Services
                 string deviceType = Common.GetDeviceType(context.Request["deviceType"]);
                 int pageSize = CastAide.AsInt32(context.Request["pageSize"]);
                 int pageIndex = CastAide.AsInt32(context.Request["pageIndex"]);
-                var result = new StringBuilder();
+                var affId = string.IsNullOrEmpty(context.Request["affId"]) ? AppSettings.Session.AffId : CastAide.AsInt32(context.Request["affId"]);
 
-                result.Append(GenerateHTML.TrackingSystem.GetStatisticsDetail_New(fDate, tDate, domain, sportCode, languageCode, pageSize, pageIndex, deviceType));
+                var result = GenerateHTML.TrackingSystem.GetStatisticsDetail_New(affId, fDate, tDate, domain, sportCode, languageCode, pageSize, pageIndex, deviceType);
 
-                context.Response.Write(result.ToString());
+                context.Response.Write(result);
             }
         }
     }

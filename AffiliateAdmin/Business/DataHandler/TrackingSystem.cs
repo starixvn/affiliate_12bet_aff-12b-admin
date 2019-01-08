@@ -49,10 +49,10 @@ namespace DataHandler
             return DbHelper.Execute("Aff_ClickStatisticsSelBySite", DBType.AFFILIATE_12BET, hsParam);
         }
 
-        public static DbResult SelStatisticsDetail_New(DateTime fDate, DateTime tDate, string domain, string sportCode, string languageCode, int pageSize, int pageIndex, string deviceType)
+        public static DbResult SelStatisticsDetail_New(int affId, DateTime fDate, DateTime tDate, string domain, string sportCode, string languageCode, int pageSize, int pageIndex, string deviceType)
         {
             Hashtable hsParam = new Hashtable();
-            hsParam.Add("affid", AppSettings.Session.AffId);
+            hsParam.Add("affid", affId);
 
             CultureInfo culture = new CultureInfo("en-US");
             hsParam.Add("fromdate", fDate);
