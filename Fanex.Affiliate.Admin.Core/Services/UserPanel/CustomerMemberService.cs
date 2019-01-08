@@ -22,7 +22,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
 
         public EntityResult<CustomerMember> GetCustomerMember(CustomerMemberParam param)
         {
-            param.AffId = _sessionService.AffId;
+            if (param.AffId == 0)
+            {
+                param.AffId = _sessionService.AffId;
+            }
+
             param.CanViewMemberEmail = _sessionService.UserPermissionList.Any(i => i.FunctionName.Equals(Function.MemberEmail, StringComparison.OrdinalIgnoreCase));
 
             return _customerMemberRepository.GetCustomerMemberList(param);
