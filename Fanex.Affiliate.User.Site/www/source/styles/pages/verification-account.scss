@@ -1,9 +1,9 @@
-﻿.verification-code-page {
+﻿.verification-account {
     p {
         line-height: 2;
     }
 
-    .btn-resend, .btn-captcha {
+    .btn-resend {
         width: calc(100% - 30px);
         height: 28px;
         margin-left: 15px;
@@ -15,11 +15,9 @@
         box-shadow: -1px 4px 4px #ABABAB;
     }
 
-    .btn-captcha[disabled] {
-        opacity: 1;
-        background-color: #D9D9D9;
-        font-weight: 900;
-        border-radius: 0;
+    .validation-value {
+        display: block;
+        text-align: center;
     }
     
     .span-error {
@@ -28,9 +26,13 @@
 
     @media (min-width: 768px)
     {
-        .btn-resend, .btn-captcha {
+        .btn-resend {
             width: 155px;
-            margin: 0;
+            margin-left: 8px;
+        }
+
+        .validation-value {
+            display: inline-block;
         }
 
         form {
@@ -49,7 +51,7 @@
 
 @media (min-width: 768px)
 {
-    .verification-code-page {
+    .verification-account {
         margin-left: 10px;
     }
 }

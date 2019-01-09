@@ -2,8 +2,8 @@
 {
     public interface ITwoFactorAuthService
     {
-        string GenerateHotp(string secretKey);
+        string GenerateHotp(string secretKey, int counter);
 
-        bool VerifyHotp(string otp);
+        bool VerifyHotp(string secretKey, int counter, string otp);
     }
 }

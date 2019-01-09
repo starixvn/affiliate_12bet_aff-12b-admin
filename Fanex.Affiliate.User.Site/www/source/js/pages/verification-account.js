@@ -2,6 +2,7 @@
     var _me = {
         initialize: function () {
             _me.initEvent();
+            _me.sendCode();
         },
         initEvent: function () {
             $("#verification-account #btn-resend").on("click", function (e) {
@@ -13,16 +14,23 @@
                 _me.submitForm();
             });
         },
-        resendCode: function () {
+        sendCode: function () {
             $.ajax({
                 type: "POST",
-                url: Site.resolveRelativeUrl("VerificationAccount/ResendCode"),
+                url: Site.resolveRelativeUrl("VerificationAccount/SendCode?Username=" + userName),
                 dataType: "json",
                 cache: false,
                 contentType: "application/json; charset=UTF-8",
                 success: function (response) {
-                    $('.btn-resend').prop("disabled", true);
-                    _me.countDown(60);
+                    if(response.IsOk)
+                    {
+                        $('.btn-resend').prop("disabled", true);
+                        _me.countDown(60);
+                    }
+                    else
+                    {
+                        alert($("<div/>").html(response.Message).text());
+                    }
                 },
                 beforeSend: function () {
                     Site.showLoader();
@@ -51,15 +59,15 @@
 
             if (validationResult) {
                 var param = {
-                    username: username,
-                    password: password,
-                    code: code,
-                    captcha: captcha
+                    Username: username,
+                    Password: password,
+                    Code: code,
+                    Captcha: captcha,
                 }
                 $.ajax({
                     type: "POST",
                     url: Site.resolveRelativeUrl("VerificationAccount/VerifyAccount"),
-                    data: JSON.stringify(param),
+                    data: param,
                     dataType: "json",
                     cache: false,
                     contentType: "application/x-www-form-urlencoded; charset=UTF-8",

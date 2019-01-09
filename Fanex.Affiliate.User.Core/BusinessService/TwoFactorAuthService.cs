@@ -4,24 +4,21 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 {
     public class TwoFactorAuthService : ITwoFactorAuthService
     {
-        public string GenerateHotp(string secretKey)
+        public string GenerateHotp(string secretKey, int counter)
         {
-            int affId = 927841;
             var base32Bytes = Base32Encoding.ToBytes(secretKey);
 
             Hotp hotp = new Hotp(base32Bytes);
 
-            return hotp.ComputeHOTP(affId);
+            return hotp.ComputeHOTP(counter);
         }
 
-        public bool VerifyHotp(string otp)
+        public bool VerifyHotp(string secretKey, int counter, string otp)
         {
-            int affId = 927841;
-            var secretKey = "GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ";
             var base32Bytes = Base32Encoding.ToBytes(secretKey);
             Hotp hotp = new Hotp(base32Bytes);
 
-            return hotp.VerifyHotp(otp, affId);
+            return hotp.VerifyHotp(otp, counter);
         }
     }
 }

@@ -7,6 +7,7 @@ using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.MetalModels.Email;
 using Fanex.Affiliate.User.Core.Constants;
+using Fanex.Affiliate.User.Core.DTO;
 
 namespace Fanex.Affiliate.User.Core.Controllers
 {
@@ -38,10 +39,14 @@ namespace Fanex.Affiliate.User.Core.Controllers
         [HttpGet]
         public ActionResult Index(string userName)
         {
-            //get email by userName
-            string email = "meanuit@gmail.com";
-            SendCode(email);
-            return View();
+            var verificationAccountInfo = GetVerificationAccountInfo(userName);
+
+            var model = new VerificationAccount
+            {
+                Username = userName,
+                Email = verificationAccountInfo.Email
+            };
+            return View(model);
         }
 
         [HttpGet]
@@ -53,34 +58,86 @@ namespace Fanex.Affiliate.User.Core.Controllers
             return File(_captchaService.GenerateImageBuffer(captcha, 100, 28, true), "image/png");
         }
 
-        public void SendCode(string email)
+        public ActionResult SendCode(string userName)
         {
-            var secretKey = "GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ";
-            var codeOtp = _twoFactorAuthService.GenerateHotp(secretKey);
+            var verificationAccountInfo = GetVerificationAccountInfo(userName);
 
-            var param = new UserInfoByEmailParam
+            var codeOtp = _twoFactorAuthService.GenerateHotp(verificationAccountInfo.SecretKey, verificationAccountInfo.Counter);
+
+            try
             {
-                Email = email.Trim(),
-                Ip = RequestHelper.GetClientIPAddress(),
-                ValidCode = codeOtp,
-                Language = SessionService.CurrentLanguage
-            };
-            var userInfo = _accountRepository.GetUserInfoByEmail(param);
+                var param = new UserInfoByEmailParam
+                {
+                    Email = verificationAccountInfo.Email,
+                    Ip = RequestHelper.GetClientIPAddress(),
+                    ValidCode = codeOtp,
+                    Language = SessionService.CurrentLanguage
+                };
+                var userInfo = _accountRepository.GetUserInfoByEmail(param);
 
-            var verificationAccountEmailParam = new VerificationAccountEmailParam
+                var verificationAccountEmailParam = new VerificationAccountEmailParam
+                {
+                    User = userInfo,
+                    MailContact = _appSetting.MailContact,
+                    MailTo = param.Email,
+                    RootDomain = SiteDomainHelper.GetRootUrl(this),
+                    Code = codeOtp,
+                    Ip = param.Ip
+                };
+
+                var userLang = SystemLanguage.IsValid(userInfo.PreferredLanguage) ? userInfo.PreferredLanguage : SystemLanguage.DefaultLanguageCode;
+                LanguageService.SetCulture(userLang);
+                _mailService.SendHotpCodeEmail(verificationAccountEmailParam);
+                LanguageService.SetCulture(SessionService.CurrentLanguage);
+
+                return Json(new ResultInfo
+                {
+                    IsOk = true,
+                    Message = "Send code successful!"
+                });
+            }
+            catch
             {
-                User = userInfo,
-                MailContact = _appSetting.MailContact,
-                MailTo = param.Email,
-                RootDomain = SiteDomainHelper.GetRootUrl(this),
-                Code = codeOtp,
-                Ip = param.Ip
-            };
+                return Json(new ResultInfo
+                {
+                    IsOk = false,
+                    Message = "Send code failed!"
+                });
+            }
+        }
 
-            var userLang = SystemLanguage.IsValid(userInfo.PreferredLanguage) ? userInfo.PreferredLanguage : SystemLanguage.DefaultLanguageCode;
-            LanguageService.SetCulture(userLang);
-            _mailService.SendHotpCodeEmail(verificationAccountEmailParam);
-            LanguageService.SetCulture(SessionService.CurrentLanguage);
+        public ActionResult VerifyAccount(VerificationAccountParam param)
+        {
+            //Check captcha
+            //Check username, password
+
+            var verificationAccountInfo = GetVerificationAccountInfo(param.Username);
+            var result = _twoFactorAuthService.VerifyHotp(verificationAccountInfo.SecretKey, verificationAccountInfo.Counter, param.Code);
+            if(result)
+            {
+                return Json(new ResultInfo
+                {
+                    IsOk = true,
+                    Message = "Verification Account Successful!"
+                });
+            }
+
+            return Json(new ResultInfo
+            {
+                IsOk = false,
+                Message = "Verification Account Failed!"
+            });
+        }
+
+        private VerificationAccount GetVerificationAccountInfo(string useName)
+        {
+            //get Info by usename
+            return new VerificationAccount
+            {
+                Email = "meanuit@gmail.com",
+                SecretKey = "GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ",
+                Counter = 927841 //Affiliate's ID
+            };
         }
     }
 }
