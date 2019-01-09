@@ -4,10 +4,10 @@
     <div id="mainmenu" style="padding-left: 15px;">
         <ul>
             <li>
-                <a href="MediaStatistics_New.aspx"><span>Referrers</span></a>
+                <a href="javascript:onSubMenuCick('MediaStatistics_New.aspx')"><span>Referrers</span></a>
             </li>
             <li id="current">
-                <a href="MediaStatistics_LandingPage.aspx"><span>Landing Pages</span></a>
+                <a href="javascript:onSubMenuCick('MediaStatistics_LandingPage.aspx')"><span>Landing Pages</span></a>
             </li>
         </ul>
     </div>
@@ -182,5 +182,6 @@
     <input type="hidden" id="tmpFromDate" name="tmpFromDate" />    
     <input type="hidden" id="tmpToDate" name="tmpToDate" />    
     <input type="hidden" id="tmpSportCode" name="tmpSportCode" />  
-    <input type="hidden" id="tmpLanguageCode" name="tmpLanguageCode" />  
+    <input type="hidden" id="tmpLanguageCode" name="tmpLanguageCode" />
+    <input type="hidden" id="affId" name="affId" value="{affId-val}" />  
 </form>

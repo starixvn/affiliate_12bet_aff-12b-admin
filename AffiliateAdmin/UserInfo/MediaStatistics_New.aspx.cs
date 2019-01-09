@@ -8,7 +8,6 @@ using DNAide.Web;
 public partial class Report_MediaStatistics_New : IBCPage
 {
     private string strTpl = string.Empty;
-    private StringBuilder strListRow = new StringBuilder();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -37,6 +36,8 @@ public partial class Report_MediaStatistics_New : IBCPage
         }
 
         var deviceType = Common.GetDeviceType(Request["slDevice"]);
+        var affId = string.IsNullOrEmpty(Request["affId"]) ? AppSettings.Session.AffId : Convert.ToInt32(Request["affId"]);
+        TemplateHandler.Assign(ref strTpl, "affId-val", affId);
 
         TemplateHandler.Assign(ref strTpl, "fdate", dtmFDate.ToString("MM/dd/yyyy"));
         TemplateHandler.Assign(ref strTpl, "tdate", dtmTDate.ToString("MM/dd/yyyy"));
@@ -44,7 +45,7 @@ public partial class Report_MediaStatistics_New : IBCPage
         TemplateHandler.Assign(ref strTpl, "Device", Resources.Lang.Device);
         TemplateHandler.Assign(ref strTpl, "slDevice", AffAdmin.GenerateHTML.Domain.GenDeviceList("slDevice", deviceType));
 
-        DbResult rs = DataHandler.TrackingSystem.SelClickStatisticsBySite(dtmFDate, dtmTDate, deviceType);
+        DbResult rs = DataHandler.TrackingSystem.SelClickStatisticsBySite(affId, dtmFDate, dtmTDate, deviceType);
         int totalSignups = CastAide.AsInt32(rs.Outputs["totalsignups"]);
         int totalDeposits = CastAide.AsInt32(rs.Outputs["totalfdms"]);
 

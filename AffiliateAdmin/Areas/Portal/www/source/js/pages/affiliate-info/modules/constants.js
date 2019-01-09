@@ -25,14 +25,18 @@ export const headerText = {
     FirstName: 'First Name',
     LastName: 'Last Name',
     Language: 'Language',
+    Phone: 'Mobile Phone',
     Email: 'Email',
     RegistrationDateText: 'Registration Date',
     ApprovalDateText: 'Approval Date',
     CasinoDateText: 'Casino Date',
     CommissionGroup: 'Commission Group',
     BalanceBf: 'Balance B/F',
+    Currency: 'Aff. Currency',
+    PlayerUserName: 'Aff. Player',
+    PlayerCurrency: 'Aff. Player Currency',
     Member: 'Member',
-    Password: 'Password'
+    Password: 'Password',
 }
 
 export const resource = {
@@ -44,6 +48,7 @@ export const resource = {
     AllStatuses: 'All Statuses',
     UsernameContains: 'USERNAME CONTAINS ',
     EmailContains: 'EMAIL CONTAINS ',
+    AffIdContains: 'AFFILIATE ID ',
     SearchBy: 'Search By',
     SortBy: 'Sort By',
     AZ: 'A-Z',
@@ -58,9 +63,11 @@ export const resource = {
     RequiredConfirmPassword: "Confirm Password is required!",
     ChangePasswordSuccess: "Change password successfully!",
     PasswordErrorMessage: 'Password must have at least 6 characters, including at least 2 letters and at least 2 digits.',
-    ConfirmPasswordErrorMessage: 'Confirm Password is not correct!'
+    ConfirmPasswordErrorMessage: 'Confirm Password is not correct!',
+    DisplayedColumns: 'Displayed Columns'
 }
 
 export const regExp = {
-    CheckPassword: "^(?=.*[0-9]+.*[0-9]+)(?=.*[a-zA-Z].*[a-zA-Z]).{6,}$"
+    CheckPassword: "^(?=.*[0-9]+.*[0-9]+)(?=.*[a-zA-Z].*[a-zA-Z]).{6,}$",
+    CheckAffId: "(^[1-9])(\\d*)$"
 }

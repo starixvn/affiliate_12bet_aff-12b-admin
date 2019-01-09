@@ -5,6 +5,7 @@ using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.MetaModels.Customer;
 using Fanex.Affiliate.Admin.Core.Repository.Customer;
 using Fanex.Affiliate.Admin.Core.Services.Common;
+using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
@@ -18,9 +19,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             _customerRepository = customerRepository;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(AffiliateLinkParam affiliateLinkParam)
         {
-            return View();
+            return View(affiliateLinkParam);
         }
 
         [HttpPost]
@@ -32,7 +33,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 param.MonthDate = DateTime.Now;
             }
 
-            param.AffId = SessionService.AffId;
+            param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
 
             return Json(_customerRepository.GetCustomerStatistics(param));
         }

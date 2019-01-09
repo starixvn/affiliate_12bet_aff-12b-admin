@@ -5,19 +5,34 @@
             <div id="head_top_cont">
                 <div id="button_headtop">
                     <div id="but_conts">
-                      <ul>
-                        <!--menu-->
-                        <li {curr}><a href="{url}"><span>{text}</span></a></li>
-                        <!--/menu-->
-                      </ul>
+                        <ul>
+                            <!--menu-->
+                            <li {curr}><a href="javascript:onSubMenuCick('{url}')"><span>{text}</span></a></li>
+                            <!--/menu-->
+                        </ul>
                     </div>
                 </div>
-                <div id="box_head_02">{pagename}</div>            
+                <div id="box_head_02">{pagename}</div>
             </div>
         </td>
         <td width="32">
-            <div id="icon_refresh_big" title="Refresh" onclick="Common.delayReloadPage1();location.href = location.href;">&nbsp;</div>            
+            <div id="icon_refresh_big" title="Refresh" onclick="Common.delayReloadPage1();location.href = location.href;">&nbsp;</div>
         </td>
     </tr>
 </table>
 <div class="clear"></div>
+
+<script>
+    window.onSubMenuCick = function (url) {
+        var subQueryString = "";
+
+        subQueryString = window.parent.frames["fInfo"] && window.parent.frames["fInfo"].subQueryString && window.parent.frames["fInfo"].subQueryString
+
+        if (url.indexOf("?") == -1) {
+            window.location = url + "?" + subQueryString;
+        }
+        else {
+            window.location = url + subQueryString;
+        }
+    };
+</script>

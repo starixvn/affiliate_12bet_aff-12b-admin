@@ -18,7 +18,6 @@ public partial class UserInfo_MemberActiveList : IBCPage
     {
         string strTpl = TemplateHandler.LoadTemplate("UserInfo/MemActiveList.htm");
 
-
         if (!Common.HasHostPermission(AppSettings.Session.CustID, PermissionNames.ActiveMembers))
         {
             TemplateHandler.RemoveBlock(ref strTpl, "active-button");

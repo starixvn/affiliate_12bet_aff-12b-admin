@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.Report
 {
@@ -8,6 +9,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Report
 
         public string UserName { get; set; }
 
+        [JsonIgnore]
         public DateTime? MonthDate { get; set; }
 
         public string Description { get; set; }

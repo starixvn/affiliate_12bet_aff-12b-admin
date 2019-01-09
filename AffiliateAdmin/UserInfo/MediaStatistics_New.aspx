@@ -69,7 +69,7 @@
             $("tmpSite").value = doman;
 
             params = "fdate=" + fdate + "&tdate=" + tdate + "&domain=" + doman + "&deviceType=" + deviceType
-                + "&pageSize=" + pageSize + "&pageIndex=" + pageIndex;
+                + "&pageSize=" + pageSize + "&pageIndex=" + pageIndex + "&affId=" + $("affId").value;
 
             var ajax = new Ajax.Request("../Handler/GetStatisticsDetail_New.ashx", {
                 method: 'get',

@@ -97,6 +97,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.Helpers.dll</HintPath>
       <Private>True</Private>
@@ -129,6 +130,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\CompressAttribute.cs" />
     <Compile Include="Attributes\CustomAuthorizeAttribute .cs" />
     <Compile Include="Attributes\FunctionAuthorizeAttribute.cs" />
     <Compile Include="Attributes\ValidateAntiForgeryHeaderAttribute.cs" />
@@ -164,6 +166,7 @@
     <Compile Include="Controllers\UserPanel\CustomerMemberController.cs" />
     <Compile Include="Controllers\UserPanel\PlayerDetailController.cs" />
     <Compile Include="Controllers\UserPanel\StatementHistoryController.cs" />
+    <Compile Include="DTO\AffiliateLinkParam.cs" />
     <Compile Include="DTO\Affiliate\AffiliateBasicInfo.cs" />
     <Compile Include="DTO\Affiliate\AffiliateInfo.cs" />
     <Compile Include="DTO\CommissionGroup\CommGroup.cs" />
@@ -193,6 +196,7 @@
     <Compile Include="DTO\UserPanel\PlayerDetail.cs" />
     <Compile Include="DTO\UserPanel\PlayerDetailResult.cs" />
     <Compile Include="Extensions\DataReaderExtension.cs" />
+    <Compile Include="Extensions\JsonNetResult.cs" />
     <Compile Include="Extensions\UrlHelperExtension.cs" />
     <Compile Include="MetaModels\Affiliate\AffiliateInfoParam.cs" />
     <Compile Include="MetaModels\Affiliate\ApproveAffiliateParam.cs" />
@@ -321,6 +325,7 @@
     <Compile Include="ViewModels\UserPanel\CustomerMemberViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\DailyEarningViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\PlayerDetailViewModel.cs" />
+    <Compile Include="ViewModels\UserPanel\UserPanelMenuViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -2,7 +2,8 @@
     Layout = "~/Areas/Portal/Views/Shared/_UserPanelLayout.cshtml";
 }
 @using Fanex.Affiliate.Admin.Core.Constants
-
+@using Fanex.Affiliate.Admin.Core.ViewModels.UserPanel
+@using Fanex.Affiliate.Admin.Core.DTO.Affiliate
 @model Fanex.Affiliate.Admin.Core.ViewModels.UserPanel.DailyEarningViewModel
 
 @section styles{
@@ -12,7 +13,7 @@
     <script type="text/javascript">
         window.initialState = {
             productList: @Html.Raw(Json.Encode(Model.ProductList)),
-            param: {AffId: @Model.Param.AffId, ProductId: @Model.Param.ProductId, MonthDate: '@Model.Param.MonthDate.ToString("MM/dd/yyyy")'}
+            param: {AffId: @Model.Param.AffId, AffName: '@Model.Param.AffName', ProductId: @Model.Param.ProductId, MonthDate: '@Model.Param.MonthDate.ToString("MM/dd/yyyy")'}
         }
     </script>
     <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/userpanel/daily-earning.js")"></script>
@@ -20,15 +21,23 @@
 
 @section menu{
     @{ 
-        var menuList = UserPanelConstant.UserPanelMenuList;
-        menuList.ElementAt(0).IsActive = true;
-        Html.RenderPartial("~/Areas/Portal/Views/Shared/_UserPanelMenu.cshtml", menuList);
+        var affiliateLinkParam = new AffiliateLinkParam
+        {
+            AffId = Model.Param.AffId,
+            AffName = Model.Param.AffName
+        };
+        var usePanelMenu = new UserPanelMenuViewModel {
+            SubMenuList = UserPanelConstant.UserPanelMenuList,
+            AffiliateLinkParam = affiliateLinkParam
+        };
+        usePanelMenu.SubMenuList.ElementAt(0).IsActive = true;
+        Html.RenderPartial("~/Areas/Portal/Views/Shared/_UserPanelMenu.cshtml", usePanelMenu);
     }
 }
 
 <div class="breadcrumb-container">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="@Url.Content("~/UserInfo/EarningsHistory.aspx")">Statement History</a></li>
+        <li class="breadcrumb-item"><a href="@Url.Content("~/UserInfo/EarningsHistory.aspx?affId="+Model.Param.AffId+"&affName="+Model.Param.AffName)">Statement History</a></li>
         <li class="breadcrumb-item active">@Model.Param.MonthDate.ToString("MMMM yyyy")</li>
     </ol>
 </div>

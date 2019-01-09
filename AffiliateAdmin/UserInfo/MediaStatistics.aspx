@@ -9,7 +9,7 @@
 
         try {
             var params;
-            params = "params=" + $("slTrackingCode").value;
+            params = "params=" + $("slTrackingCode").value + "&affId=" + $("affId").value;
 
             var ajax = new Ajax.Request("../Handler/GetClickStatisticsList.ashx", {
                 method: 'post',
@@ -34,7 +34,7 @@
     function ViewStatisticsDetail(month) {
         try {
             var params;
-            params = "params=" + $("slTrackingCode").value + ";" + month;
+            params = "params=" + $("slTrackingCode").value + ";" + month + "&affId=" + $("affId").value;
 
             var ajax = new Ajax.Request("../Handler/GetStatisticsListDetail.ashx", {
                 method: 'post',

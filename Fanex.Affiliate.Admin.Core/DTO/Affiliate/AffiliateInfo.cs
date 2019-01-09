@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
 {
@@ -18,10 +19,13 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
 
         public string Email { get; set; }
 
+        [JsonIgnore]
         public DateTime RegistrationDate { get; set; }
 
+        [JsonIgnore]
         public DateTime? ApprovalDate { get; set; }
 
+        [JsonIgnore]
         public DateTime? CasinoDate { get; set; }
 
         public string CommissionGroup { get; set; }
@@ -33,6 +37,14 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Affiliate
         public bool IsFavorite { get; set; }
 
         public bool IsClosed { get; set; }
+
+        public string Currency { get; set; }
+
+        public string PlayerCurrency { get; set; }
+
+        public string PlayerUserName { get; set; }
+
+        public string Phone { get; set; }
 
         public string RegistrationDateText => RegistrationDate.ToString("MM/dd/yyyy HH:mm:ss");
 

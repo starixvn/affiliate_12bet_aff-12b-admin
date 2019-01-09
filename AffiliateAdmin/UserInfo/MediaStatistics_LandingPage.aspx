@@ -72,7 +72,7 @@
 
             var params;
             params = "fdate=" + fdate + "&tdate=" + tdate + "&sportCode=" + sportCode + "&languageCode=" + languageCode + "&pageSize=" + pageSize + "&pageIndex=" + pageIndex
-            + "&deviceType=" + deviceType;
+            + "&deviceType=" + deviceType + "&affId=" + $("affId").value;
             
 
             var ajax = new Ajax.Request("../Handler/GetStatisticsDetail_New.ashx", {

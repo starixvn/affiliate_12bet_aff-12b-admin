@@ -311,6 +311,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="karma.conf.js" />
     <Content Include="Views\CommissionStructure\Index.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Promotion\Index.cshtml" />
@@ -822,6 +823,7 @@
     <Content Include="www\source\js\pages\user-panel.js" />
     <Content Include="www\source\js\recheckin.js" />
     <Content Include="www\source\js\site.js" />
+    <Content Include="www\source\js\spec\layout.spec.js" />
     <Content Include="www\source\styles\css\bootstrap.css" />
     <Content Include="www\source\styles\css\bootstrap.min.css" />
     <Content Include="www\source\styles\css\main.css" />
@@ -1188,6 +1190,7 @@
       <DependentUpon>Web.tt</DependentUpon>
     </Content>
     <Content Include="Fanex.Affiliate.User.Site.ruleset" />
+    <Content Include="package.json" />
     <None Include="packages.config" />
     <Content Include="www\source\styles\fonts\font_bebas\BEBAS___.TTF" />
     <Content Include="www\source\styles\fonts\Montserrat\Montserrat-Light.ttf" />

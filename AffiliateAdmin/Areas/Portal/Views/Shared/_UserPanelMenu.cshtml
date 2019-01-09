@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Fanex.Affiliate.Admin.Core.DTO.SubMenu>
+﻿@model Fanex.Affiliate.Admin.Core.ViewModels.UserPanel.UserPanelMenuViewModel
 
 <table cellspacing="0" cellpadding="0" width="100%" border="0">
     <tbody>
@@ -8,10 +8,12 @@
             </td>
             <td>
                 <ul class="d-inline-block menu-list">
-                    @foreach (var item in Model)
+                    @foreach (var item in Model.SubMenuList)
                     {
                         <li class="up-item">
-                            <a class="upitem-link @(item.IsActive? "active" : string.Empty)" href="@item.Url"><span class="menu-text">@item.Name</span></a>
+                            <a class="upitem-link @(item.IsActive? "active" : string.Empty)" href="@item.Url?affId=@(Model.AffiliateLinkParam.AffId)&affName=@(Model.AffiliateLinkParam.AffName)">
+                                <span class="menu-text">@item.Name</span>
+                            </a>
                         </li>
                     }
                 </ul>

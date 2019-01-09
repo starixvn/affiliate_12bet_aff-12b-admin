@@ -5,6 +5,7 @@ import createReducer from '../../../../modules/createReducer';
 
 const today = createReducer('', {});
 const canViewMemberEmail = createReducer(false, {});
+const affId = createReducer(0, {});
 
 const param = createReducer(null, {
     [SET_PARAM](prevState, action) {
@@ -16,5 +17,6 @@ export default combineReducers({
     isShowLoader,
     param,
     today,
-    canViewMemberEmail
+    canViewMemberEmail,
+    affId
 });

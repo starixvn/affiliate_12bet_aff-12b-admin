@@ -18,6 +18,7 @@ export default class AppContainer extends Component {
 
         this.isFromStatistics = isFromStatistics === 1;
         this.productList = productList;
+        this.affId = param.affId;
 
         this.state = {
             isShowLoader: false,
@@ -45,7 +46,8 @@ export default class AppContainer extends Component {
 
     async fetchData(param) {
         this.setState({ isShowLoader: true });
-        const response = await post(API_URL, param);
+        const postParam = Object.assign({}, param, { AffId: this.affId });
+        const response = await post(API_URL, postParam);
         if (response && response.status === 200) {
             const { MainData, TotalItem } = response.data;
             const pagingOption = Object.assign({}, this.state.pagingOption, {
@@ -97,6 +99,7 @@ export default class AppContainer extends Component {
 
         const param = {
             ...filterParam,
+            AffId: this.affId,
             IsExportExcel: true
         }
         const response = await post(API_URL, param);

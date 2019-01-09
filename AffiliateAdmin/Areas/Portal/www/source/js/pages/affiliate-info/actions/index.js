@@ -1,4 +1,4 @@
-﻿import { SET_REPORT_TITLE, SET_PARAM, SET_SHOW_POPUP_PASSWORD, SET_SHOW_POPUP_COMMGROUP, SET_AFFID, SET_COMM_GROUP } from './types';
+﻿import { SET_REPORT_TITLE, SET_PARAM, SET_SHOW_POPUP_PASSWORD, SET_SHOW_POPUP_COMMGROUP, SET_AFFID, SET_COMM_GROUP, SET_SELECTED_COLUMN } from './types';
 import { setPagingOption } from '../../../actions/pagingAction';
 
 export { setPagingOption };
@@ -41,6 +41,13 @@ export const setAffId = (data) => {
 export const setCommGroup = (data) => {
     return {
         type: SET_COMM_GROUP,
+        data
+    }
+}
+
+export const setSelectedColumn = (data) => {
+    return {
+        type: SET_SELECTED_COLUMN,
         data
     }
 }

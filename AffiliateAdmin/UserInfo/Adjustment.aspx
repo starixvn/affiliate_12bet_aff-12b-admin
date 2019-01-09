@@ -40,7 +40,7 @@
         var ajax = new Ajax.Request('../Handler/Adjustment.ashx', {
             method: 'post',
             parameters: {
-                custid: $('custid').value, adj: adjVal, des: $('txtDescript').value,
+                custid: $('affId').value, adj: adjVal, des: $('txtDescript').value,
                 "X-CSRF-Token": $('X-CSRF-Token').value
             },
             onComplete: function (strdata) {

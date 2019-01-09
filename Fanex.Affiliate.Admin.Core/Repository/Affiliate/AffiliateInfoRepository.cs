@@ -65,6 +65,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
 
         private static void AssignAffiliateInfoParam(IObjectDb objectDb, AffiliateInfoParam param)
         {
+            objectDb.AddInParameter("AffId", DbType.Int32, param.AffIdNumber);
             objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
             objectDb.AddInParameter("GroupID", DbType.Int32, param.GroupId);
             objectDb.AddInParameter("PreferredLanguage", DbType.String, param.Language);
@@ -98,7 +99,11 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Affiliate
                 BalanceBf = reader["BFF"] == DBNull.Value ? (decimal?)null : Convert.ToDecimal(reader["BFF"]),
                 Member = reader["NoOfMember"] == DBNull.Value ? (int?)null : Convert.ToInt32(reader["NoOfMember"]),
                 IsFavorite = Convert.ToBoolean(reader["IsFavorite"]),
-                IsClosed = Convert.ToBoolean(reader["IsClosed"])
+                IsClosed = Convert.ToBoolean(reader["IsClosed"]),
+                Currency = Convert.ToString(reader["Currency"]),
+                PlayerCurrency = Convert.ToString(reader["PlayerCurrency"]),
+                Phone = Convert.ToString(reader["Phone"]),
+                PlayerUserName = Convert.ToString(reader["Player_Username"])
             };
         }
 

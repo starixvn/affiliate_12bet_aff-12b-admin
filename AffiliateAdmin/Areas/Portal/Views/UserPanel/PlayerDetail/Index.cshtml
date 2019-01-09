@@ -3,6 +3,8 @@
 }
 
 @using Fanex.Affiliate.Admin.Core.Constants
+@using Fanex.Affiliate.Admin.Core.ViewModels.UserPanel
+@using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 @model Fanex.Affiliate.Admin.Core.ViewModels.UserPanel.PlayerDetailViewModel
 
 @section styles{
@@ -13,7 +15,7 @@
     <script type="text/javascript">
         window.initialState = {
             productList: @Html.Raw(Json.Encode(Model.ProductList)),
-            param: {ProductId: @Model.Param.ProductId, MonthDate: '@Model.Param.MonthDate.Value.ToString("MM/dd/yyyy")'},
+            param: {ProductId: @Model.Param.ProductId, MonthDate: '@Model.Param.MonthDate.Value.ToString("MM/dd/yyyy")', affId: @Model.Param.AffId },
             isFromStatistics: @(Convert.ToBoolean(Request["isFromStatistics"]) ? 1 : 0)
         }
     </script>
@@ -22,9 +24,18 @@
 
 @section menu{
     @{
-        var menuList = UserPanelConstant.UserPanelMenuList;
-        menuList.ElementAt(3).IsActive = true;
-        Html.RenderPartial("~/Areas/Portal/Views/Shared/_UserPanelMenu.cshtml", menuList);
+        var affiliateLinkParam = new AffiliateLinkParam
+        {
+            AffId = Model.Param.AffId,
+            AffName = Model.Param.AffName
+        };
+        var usePanelMenu = new UserPanelMenuViewModel
+        {
+            SubMenuList = UserPanelConstant.UserPanelMenuList,
+            AffiliateLinkParam = affiliateLinkParam
+        };
+        usePanelMenu.SubMenuList.ElementAt(3).IsActive = true;
+        Html.RenderPartial("~/Areas/Portal/Views/Shared/_UserPanelMenu.cshtml", usePanelMenu);
     }
 }
 

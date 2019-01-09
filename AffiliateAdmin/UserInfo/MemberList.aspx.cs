@@ -59,6 +59,9 @@ public partial class UserInfo_MemberList : IBCPage
         int intPage = CastAide.AsInt32(Request["page"], 1);
         int intPageSize = CastAide.AsInt32(Request["slPageSize"], 20);
 
+        var param = string.IsNullOrEmpty(Request["affId"]) ? AppSettings.Session.AffId.ToString() : Request["affId"];
+        int intCustid = int.Parse(param);
+
         TemplateHandler.Assign(ref strTemplate, "width", width);
         TemplateHandler.Assign(ref strTemplate, "page", intPage);
 
@@ -66,7 +69,7 @@ public partial class UserInfo_MemberList : IBCPage
 
         Hashtable hsCurrency = ConvertDataTableToHashTable(dtbCurrency, "ExchangeId", "Currency");
 
-        DataTable dt = DataHandler.Member.SelDepositMemInfo(AppSettings.Session.AffId, dtmFDate, dtmTDate, intMemberType, isGetAll, intPage, intPageSize, ref intTotalPages);
+        DataTable dt = DataHandler.Member.SelDepositMemInfo(intCustid, dtmFDate, dtmTDate, intMemberType, isGetAll, intPage, intPageSize, ref intTotalPages);
         int intNumMem = dt.Rows.Count;
         StringBuilder strBuild = new StringBuilder();
         if (intNumMem > 0)

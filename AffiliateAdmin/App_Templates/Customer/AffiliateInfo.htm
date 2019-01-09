@@ -1,8 +1,12 @@
 ﻿<style type="text/css">
-    .ltable tr
-    {
+    .ltable tr {
     	height: 18px;
     	line-height: 18px;
+    }
+
+    td.line_table, td.r {
+        white-space: normal;
+        word-break: break-word;
     }
 </style>
 <form id="frmSearch" name="frmSearch" method="get">
@@ -42,10 +46,10 @@
                     <!--noinfo-->
                     <table width="98%" border="0" cellspacing="0" cellpadding="0">
                         <tr>
-                            <td style="width:45%;height:35px">
+                            <td style="width:44%;height:35px">
                                 <span class="text_bold">{affiliate}</span>
                             </td>
-                            <td style="width:55%;" class="r">
+                            <td style="width:56%;" class="r">
                                 <a href="{url}" id="lnkUN" style="display: {lnkUN};" target="_blank" class="upper b">
                                     {username}
                                 </a>

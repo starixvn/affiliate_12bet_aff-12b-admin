@@ -17,7 +17,7 @@ const REPORT_TITLE_ROW_INDEX = 0;
 const HEADER_ROW_INDEX = 1;
 const DATA_ROW_INDEX = 2;
 
-const TOTAL_COLUMN = 13;
+const TOTAL_COLUMN = 17;
 
 const MAIN_SECTION_STYLE = 'mainSectionStyle';
 
@@ -28,20 +28,25 @@ const fields = {
     FirstName: 'FirstName',
     LastName: 'LastName',
     Language: 'Language',
+    Phone: 'Phone',
     Email: 'Email',
     CommissionGroup: 'CommissionGroup',
     BalanceBf: 'BalanceBf',
     Member: 'Member',
     RegistrationDateText: 'RegistrationDateText',
     ApprovalDateText: 'ApprovalDateText',
-    CasinoDateText: 'CasinoDateText'
+    CasinoDateText: 'CasinoDateText',
+    Currency: 'Currency',
+    PlayerUserName: 'PlayerUserName',
+    PlayerCurrency: 'PlayerCurrency',
 }
 
 export default class ReportExcel {
-    constructor(data, title, languageList) {
+    constructor(data, title, languageList, selectedColumnList) {
         this.title = title;
         this.data = data;
         this.languageList = languageList;
+        this.selectedColumnList = selectedColumnList;
 
         this.worksheet = {};
         this.currentRowIndex = DATA_ROW_INDEX;
@@ -60,6 +65,10 @@ export default class ReportExcel {
         })
     }
 
+    _canBindColumn(columnKey) {
+        return columnKey === fields.UserName || !!this.selectedColumnList[columnKey];
+    }
+
     _createReportTitle() {
         this.mergeConfig.push({
             s: {
@@ -68,7 +77,7 @@ export default class ReportExcel {
             },
             e: {
                 r: REPORT_TITLE_ROW_INDEX,
-                c: TOTAL_COLUMN - 1
+                c: Object.keys(this.selectedColumnList).length
             }
         });
         const address = Excel.getCellAddress({
@@ -83,16 +92,22 @@ export default class ReportExcel {
     }
 
     _createHeader() {
+        let columnIndex = 0;
         for (let i = 0; i < TOTAL_COLUMN; i++) {
             const fieldName = this.columnConfigs[i].field;
-            let address = Excel.getCellAddress({
-                c: i,
-                r: HEADER_ROW_INDEX
-            });
-            this.worksheet[address] = {
-                t: "s",
-                v: headerText[fieldName],
-                s: headerCellStyle
+
+            if (this._canBindColumn(fieldName)) {
+                let address = Excel.getCellAddress({
+                    c: columnIndex,
+                    r: HEADER_ROW_INDEX
+                });
+                this.worksheet[address] = {
+                    t: "s",
+                    v: headerText[fieldName],
+                    s: headerCellStyle
+                }
+
+                columnIndex++;
             }
         }
     }
@@ -102,21 +117,26 @@ export default class ReportExcel {
         for (let i = 0; i < mainData.length; i++) {
             const item = mainData[i];
 
+            let columnIndex = 0;
             for (let j = 0; j < TOTAL_COLUMN; j++) {
-                const address = Excel.getCellAddress({
-                    c: j,
-                    r: this.currentRowIndex
-                });
+                const columnConfig = this.columnConfigs[j];
 
-                this.worksheet[address] = this._buildDataRow(item, MAIN_SECTION_STYLE, i, j);
+                if (this._canBindColumn(columnConfig.field)) {
+                    const address = Excel.getCellAddress({
+                        c: columnIndex,
+                        r: this.currentRowIndex
+                    });
+
+                    this.worksheet[address] = this._buildDataRow(item, MAIN_SECTION_STYLE, columnConfig, i);
+                    columnIndex++;
+                }
             }
 
             this.currentRowIndex++;
         }
     }
 
-    _buildDataRow(item, sectionStyleName, rowIndex, colIndex) {
-        const columnConfig = this.columnConfigs[colIndex];
+    _buildDataRow(item, sectionStyleName, columnConfig, rowIndex) {
         const fieldName = columnConfig.field;
         let value = fieldName === fields.Index ? rowIndex + 1 : item[fieldName];
 
@@ -126,6 +146,8 @@ export default class ReportExcel {
             value = value === null ? resource.NA : format(value);
         } else if (fieldName === fields.Language) {
             value = this.languageList[value] || '';
+        } else if (!value && fieldName === fields.CommissionGroup) {
+            value = resource.NA;
         }
 
         return {
@@ -147,75 +169,86 @@ export default class ReportExcel {
 
         this.worksheet["!merges"] = this.mergeConfig;
         this.worksheet["!ref"] = `${cellStart}:${cellEnd}`;
-        this.worksheet['!cols'] = [{
-            wpx: 70
-        }, {
-            wpx: 200
-        }, {
-            wpx: 150
-        }, {
-            wpx: 170
-        }, {
-            wpx: 170
-        }, {
-            wpx: 150
-        }, {
-            wpx: 250
-        }, {
-            wpx: 200
-        }, {
-            wpx: 200
-        }, {
-            wpx: 200
-        }, {
-            wpx: 250
-        }, {
-            wpx: 200
-        }, {
-            wpx: 200
-        }];
+        this.worksheet['!cols'] = this.columnConfigs.reduce((result, currentItem) => {
+            if (this._canBindColumn(currentItem.field)) {
+                result.push({
+                    wpx: currentItem.width
+                });
+            }
+
+            return result;
+        }, []);
     }
 
     _getcolumnConfigs() {
         return [{
             field: fields.Index,
-            [MAIN_SECTION_STYLE]: bodyCellStyle.center
+            [MAIN_SECTION_STYLE]: bodyCellStyle.right,
+            width: 70
         }, {
             field: fields.UserName,
-            [MAIN_SECTION_STYLE]: bodyCellStyle.left
+            [MAIN_SECTION_STYLE]: bodyCellStyle.left,
+            width: 200
         }, {
             field: fields.Status,
-            [MAIN_SECTION_STYLE]: bodyCellStyle.center
+            [MAIN_SECTION_STYLE]: bodyCellStyle.left,
+            width: 150
         }, {
             field: fields.FirstName,
-            [MAIN_SECTION_STYLE]: bodyCellStyle.left
+            [MAIN_SECTION_STYLE]: bodyCellStyle.left,
+            width: 170
         }, {
             field: fields.LastName,
-            [MAIN_SECTION_STYLE]: bodyCellStyle.left
+            [MAIN_SECTION_STYLE]: bodyCellStyle.left,
+            width: 170
         }, {
             field: fields.Language,
-            [MAIN_SECTION_STYLE]: bodyCellStyle.left
+            [MAIN_SECTION_STYLE]: bodyCellStyle.left,
+            width: 150
+        }, {
+            field: fields.Phone,
+            [MAIN_SECTION_STYLE]: bodyCellStyle.left,
+            width: 150
         }, {
             field: fields.Email,
-            [MAIN_SECTION_STYLE]: bodyCellStyle.left
+            [MAIN_SECTION_STYLE]: bodyCellStyle.left,
+            width: 250
         }, {
             field: fields.RegistrationDateText,
-            [MAIN_SECTION_STYLE]: bodyCellStyle.center
+            [MAIN_SECTION_STYLE]: bodyCellStyle.left,
+            width: 200
         }, {
             field: fields.ApprovalDateText,
-            [MAIN_SECTION_STYLE]: bodyCellStyle.center
+            [MAIN_SECTION_STYLE]: bodyCellStyle.left,
+            width: 200
         }, {
             field: fields.CasinoDateText,
-            [MAIN_SECTION_STYLE]: bodyCellStyle.center
+            [MAIN_SECTION_STYLE]: bodyCellStyle.left,
+            width: 200
         }, {
             field: fields.CommissionGroup,
-            [MAIN_SECTION_STYLE]: bodyCellStyle.center
+            [MAIN_SECTION_STYLE]: bodyCellStyle.left,
+            width: 250
         }, {
             field: fields.BalanceBf,
-            [MAIN_SECTION_STYLE]: bodyCellStyle.right
+            [MAIN_SECTION_STYLE]: bodyCellStyle.right,
+            width: 200
+        }, {
+            field: fields.Currency,
+            [MAIN_SECTION_STYLE]: bodyCellStyle.left,
+            width: 120
+        }, {
+            field: fields.PlayerUserName,
+            [MAIN_SECTION_STYLE]: bodyCellStyle.left,
+            width: 200
+        }, {
+            field: fields.PlayerCurrency,
+            [MAIN_SECTION_STYLE]: bodyCellStyle.left,
+            width: 140
         }, {
             field: fields.Member,
-            [MAIN_SECTION_STYLE]: bodyCellStyle.right
+            [MAIN_SECTION_STYLE]: bodyCellStyle.right,
+            width: 150
         }]
     }
 }

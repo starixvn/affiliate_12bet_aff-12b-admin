@@ -11,7 +11,6 @@
 <script src="../App_Js/Calendar2/calendar-setup.js" type="text/javascript"></script>
 <script type="text/javascript">
     window.onload=function(){getAll();};
-        var test = "123";
     
     function UpdSucc()
     {

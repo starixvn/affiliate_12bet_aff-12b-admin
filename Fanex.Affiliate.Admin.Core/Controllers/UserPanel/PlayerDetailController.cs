@@ -47,7 +47,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         [ValidateAntiForgeryHeader]
         public ActionResult GetPlayerDetailList(PlayerDetailParam param)
         {
-            param.AffId = SessionService.AffId;
+            param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
 
             return Json(_playerDetailRepository.GetPlayerDetailList(param));
         }

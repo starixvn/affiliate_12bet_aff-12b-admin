@@ -7,6 +7,7 @@ using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.UserPanel;
 using Fanex.Affiliate.Admin.Core.ViewModels.UserPanel;
+using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
@@ -21,12 +22,13 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         }
 
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Index(AffiliateLinkParam affiliateLinkParam)
         {
             var viewModel = new CustomerMemberViewModel
             {
                 CanViewMemberEmail = SessionService.UserPermissionList.Any(i =>
-                                        i.FunctionName.Equals(Function.MemberEmail, StringComparison.OrdinalIgnoreCase))
+                                        i.FunctionName.Equals(Function.MemberEmail, StringComparison.OrdinalIgnoreCase)),
+                AffiliateLinkParam = affiliateLinkParam
             };
 
             return View("~/Areas/Portal/Views/UserPanel/CustomerMember/Index.cshtml", viewModel);

@@ -11,15 +11,15 @@ public partial class UserInfo_EarningsHistory : IBCPage
     {
         string strTpl = TemplateHandler.LoadTemplate("UserInfo/EarningsHistory.htm");
         TemplateHandler.RemoveBlock(ref strTpl, "total");
-        int affID = AppSettings.Session.AffId;
-        var username = string.IsNullOrEmpty(Request["user"]) ? AppSettings.Session.AffUsername : Request["user"];
+
+        var affID = string.IsNullOrEmpty(Request["affId"]) ? AppSettings.Session.AffId : Convert.ToInt32(Request["affId"]);
+        TemplateHandler.Assign(ref strTpl, "affId-val", affID);
 
         int transType = CastAide.AsInt32(Request["transtype"], -1);
         #region Load language
         TemplateHandler.Assign(ref strTpl, "edit", Resources.Lang.EditInfor);
         TemplateHandler.Assign(ref strTpl, "note", Resources.Lang.Note);
         TemplateHandler.Assign(ref strTpl, "custid", affID.ToString());
-        TemplateHandler.Assign(ref strTpl, "username", username);
         TemplateHandler.Assign(ref strTpl, "accoverview", Resources.Lang.AccOverview);
         TemplateHandler.Assign(ref strTpl, "earning", Resources.Lang.EarningsHistory);
         TemplateHandler.Assign(ref strTpl, "edit", Resources.Lang.EditInfor);
@@ -82,7 +82,8 @@ public partial class UserInfo_EarningsHistory : IBCPage
             int rowNo = (pageIndex - 1) * pageSize;
             bool isCheckAll = false;
             TemplateHandler.Assign(ref strContent, "over", Common.RowBgOver);
-            var templateDailyEarningUrl = $"{ResolveUrl("~/Portal/UserPanel/StatementHistory/DailyEarning")}?AffId={affID}&MonthDate=";
+            var affName = string.IsNullOrEmpty(Request["affName"]) ? AppSettings.Session.AffUsername : Request["affName"];
+            var templateDailyEarningUrl = $"{ResolveUrl("~/Portal/UserPanel/StatementHistory/DailyEarning")}?AffId={affID}&AffName={affName}&MonthDate=";
             foreach (DataRow dr in dtb.Rows)
             {
                 rowNo++;

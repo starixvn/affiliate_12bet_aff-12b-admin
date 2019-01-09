@@ -103,12 +103,17 @@
     <Compile Include="BusinessService\ContactServiceTest.cs" />
     <Compile Include="BusinessService\MemberInfoServiceWrapperTest.cs" />
     <Compile Include="BusinessService\MemberTransactionServiceTest.cs" />
+    <Compile Include="BusinessService\PaymentServiceTest.cs" />
     <Compile Include="Controllers\ContactUsControllerTest.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\DailyEarningControllerTest.cs" />
+    <Compile Include="Controllers\UserPanel\LandingPageStatisticsControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\MemberControllerTest.cs" />
     <Compile Include="Controllers\UserPanel\MemberTransactionControllerTest.cs" />
     <Compile Include="Controllers\SignupControllerTest.cs" />
+    <Compile Include="Controllers\UserPanel\ReferrersStatisticsControllerTest.cs" />
+    <Compile Include="Controllers\UserPanel\StatisticsControllerTest.cs" />
+    <Compile Include="Controllers\UserPanel\TrackingStatisticsControllerTest.cs" />
     <Compile Include="TestHelper\Constant.cs" />
     <Compile Include="TestHelper\MockingHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -33,6 +33,10 @@
     var minHeight = 510;
     window.onresize = function () { setHeight(); };
     window.onload = function () {
+        var affName = $("spUN").innerHTML;
+        var subQueryString = "affId=" + $("affID").innerHTML + "&affName=" + affName;
+        window.subQueryString = subQueryString;
+
         if ($("hdNoInfo").value == "1")
             window.onresize = "";
         else {
@@ -45,7 +49,7 @@
             addClass(parent.document.getElementById("right-panel-frame"), "not-approved");
             if ($("hdNoInfo").value != "1") {
                 if ($("isReload").value != "2")
-                    parent.fContent.location.href = "../UserInfo/AffiliateUpd.aspx?approved=0";
+                    parent.fContent.location.href = "../UserInfo/AffiliateUpd.aspx?approved=0&"+subQueryString;
             }
             else
                 parent.fContent.location.href = "blank.html";
@@ -55,17 +59,17 @@
             if (hasClass(parent.document.getElementById("right-panel-frame"), "not-approved"))
                 removeClass(parent.document.getElementById("right-panel-frame"), "not-approved");
             if ($("hdNoInfo").value == "0") {
-                parent.fStatistics.location.href = baseUrl + "Portal/CustomerStatistics/Index";
+                parent.fStatistics.location.href = baseUrl + "Portal/CustomerStatistics/Index?" + subQueryString;
                 switch ($("hdPageid").value)//linked from affiliate list
                 {
                     case "1":
-                        parent.fContent.location.href = "../UserInfo/EarningsHistory.aspx?status=Pending";
+                        parent.fContent.location.href = "../UserInfo/EarningsHistory.aspx?status=Pending&" + subQueryString;
                         break;
                     case "2":
-                        parent.fContent.location.href = "../UserInfo/MemberListAll.aspx?all=0";
+                        parent.fContent.location.href = "../UserInfo/MemberListAll.aspx?all=0&" + subQueryString;
                         break;
                     default:
-                        parent.fContent.location.href = "../UserInfo/EarningsHistory.aspx";
+                        parent.fContent.location.href = "../UserInfo/EarningsHistory.aspx?" + subQueryString;
                         break;
                 }
             } else if ($("hdNoInfo").value == "1") {
@@ -76,19 +80,19 @@
                 switch ($("isReload").value) {
                     case "1": //Change to approved status
                         parent.fStatistics.location.href = "Statistics.aspx";
-                        parent.fContent.location.href = "../UserInfo/AffiliateUpd.aspx";
+                        parent.fContent.location.href = "../UserInfo/AffiliateUpd.aspx?"+subQueryString;
                         break;
                     case "2": //update aff info after aff had approved
-                        parent.fContent.location.href = "../UserInfo/AffiliateUpd.aspx";
+                        parent.fContent.location.href = "../UserInfo/AffiliateUpd.aspx?"+subQueryString;
                         break;
                     case "3": //Update statement
-                        parent.fContent.location.href = "../UserInfo/EarningsHistory.aspx";
+                        parent.fContent.location.href = "../UserInfo/EarningsHistory.aspx?" + subQueryString;
                         break;
                     case "4": //Update statement
-                        parent.fContent.location.href = "../UserInfo/Adjustment.aspx";
+                        parent.fContent.location.href = "../UserInfo/Adjustment.aspx?" + subQueryString;
                         break;
                     default:
-                        parent.fContent.location.href = "../UserInfo/EarningsHistory.aspx";
+                        parent.fContent.location.href = "../UserInfo/EarningsHistory.aspx?" + subQueryString;
                         break;
                 }
                 $("isReload").value = "0";

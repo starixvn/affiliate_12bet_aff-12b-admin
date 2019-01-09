@@ -7,7 +7,8 @@ public partial class UserInfo_UserLog : IBCPage
     protected void Page_Load(object sender, EventArgs e)
     {
         string strTpl = TemplateHandler.LoadTemplate("UserInfo/UserLog.htm");
-        int affID = AppSettings.Session.AffId;
+        var affID = string.IsNullOrEmpty(Request["affId"]) ? AppSettings.Session.AffId : Convert.ToInt32(Request["affId"]);
+
         int logType = CastAide.AsInt32(Request["sllogtype"], 0);
         int pageIndex = CastAide.AsInt32(Request["page"], 1);
         DateTime dateFrom = CastAide.AsDateTime(Request["fdate"], DateTime.Now.AddMonths(-6));
@@ -33,6 +34,7 @@ public partial class UserInfo_UserLog : IBCPage
         TemplateHandler.Assign(ref strTpl, "description", Resources.Lang.Description);
         TemplateHandler.Assign(ref strTpl, "ip", Resources.Lang.IP);
         TemplateHandler.Assign(ref strTpl, "page-val", pageIndex);
+        TemplateHandler.Assign(ref strTpl, "affId-val", affID);
         // Content
         TemplateHandler.ReplaceBlock(ref strTpl, "content", GenerateHTML.UserLog.GetLogList(affID, logType, dateFrom, dateTo, pageIndex, pageSize, ref pageCount, ref rowCount));
 

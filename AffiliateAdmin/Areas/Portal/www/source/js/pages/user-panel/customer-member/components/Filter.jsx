@@ -49,7 +49,7 @@ export class Filter extends React.Component {
     }
 
     handleSearch = () => {
-        const param = Object.assign({}, this.state, { PageIndex: 1 });
+        const param = Object.assign({}, this.state, { PageIndex: 1, AffId: this.props.affId });
         this.props.setParam(param);
     }
 
@@ -99,8 +99,8 @@ export class Filter extends React.Component {
     }
 }
 
-function mapStateToProps({ today }) {
-    return Object.assign({}, { today });
+function mapStateToProps({ today, affId }) {
+    return Object.assign({}, { today, affId });
 }
 
 function mapDispatchToProps(dispatch) {

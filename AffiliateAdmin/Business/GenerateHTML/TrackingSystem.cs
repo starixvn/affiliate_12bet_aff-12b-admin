@@ -1,9 +1,9 @@
-﻿using DNAide.Web;
-using DNAide.Core;
+﻿using System;
 using System.Data;
-using AffiliateAdmin.Business.DataAccess;
 using System.Text;
-using System;
+using AffiliateAdmin.Business.DataAccess;
+using DNAide.Core;
+using DNAide.Web;
 namespace GenerateHTML
 {
     /// <summary>
@@ -12,12 +12,12 @@ namespace GenerateHTML
     /// </summary>
     public class TrackingSystem
     {
-        public static string GetStatisticsAllMonthsContentList(int affiliateID,string trackingcode)
+        public static string GetStatisticsAllMonthsContentList(int affiliateID, string trackingcode)
         {
             string htmlContent = TemplateHandler.LoadTemplate("UserInfo/MediaStatistics.htm");
             string strContent = TemplateHandler.CopyBlock(htmlContent, "Content");
             TemplateHandler.Assign(ref strContent, "over", Common.RowBgOver);
-            DbResult result = DataHandler.TrackingSystem.SelClickStatisticsAllMonths(affiliateID,trackingcode);
+            DbResult result = DataHandler.TrackingSystem.SelClickStatisticsAllMonths(affiliateID, trackingcode);
             int cols = 4;
             if (result.ResultSet.Tables.Count > 0)
             {
@@ -29,7 +29,7 @@ namespace GenerateHTML
                     {
                         string strTmp = strContent;
                         TemplateHandler.Assign(ref strTmp, "No-val", ++intNo);
-                        TemplateHandler.Assign(ref strTmp, "TotalClick-val",CastAide.AsInt32(dr["totalclick"]).ToString(Common.NumberFormatPlaceholder));
+                        TemplateHandler.Assign(ref strTmp, "TotalClick-val", CastAide.AsInt32(dr["totalclick"]).ToString(Common.NumberFormatPlaceholder));
                         TemplateHandler.Assign(ref strTmp, "UniqueClick-val", CastAide.AsInt32(dr["uniqueclick"]).ToString(Common.NumberFormatPlaceholder));
                         TemplateHandler.Assign(ref strTmp, "Month-val", Convert.ToDateTime(dr["date"]).ToString("MMMM-yyyy"));
                         TemplateHandler.Assign(ref strTmp, "MonthFull-val", dr["date"].ToString());
@@ -47,12 +47,12 @@ namespace GenerateHTML
 
         }
 
-        public static string GetStatisticsMonthDetailContent(int affiliateID,int month, int year, string trackingcode)
+        public static string GetStatisticsMonthDetailContent(int affiliateID, int month, int year, string trackingcode)
         {
             string htmlContent = TemplateHandler.LoadTemplate("UserInfo/MediaStatistics.htm");
             string strContent = TemplateHandler.CopyBlock(htmlContent, "StatisticsDetailContent");
             TemplateHandler.Assign(ref strContent, "over", Common.RowBgOver);
-            DbResult result = DataHandler.TrackingSystem.SelClickStatisticsDetail(affiliateID,month, year, trackingcode);
+            DbResult result = DataHandler.TrackingSystem.SelClickStatisticsDetail(affiliateID, month, year, trackingcode);
             int cols = 4;
             if (result.ResultSet.Tables.Count > 0)
             {
@@ -128,9 +128,9 @@ namespace GenerateHTML
 
         }
 
-        public static string GetStatisticsDetail_New(DateTime fDate, DateTime tDate, string domain, string sportCode, string languageCode, int pageSize, int pageNum, string deviceType)
+        public static string GetStatisticsDetail_New(int affId, DateTime fDate, DateTime tDate, string domain, string sportCode, string languageCode, int pageSize, int pageNum, string deviceType)
         {
-            DbResult result = DataHandler.TrackingSystem.SelStatisticsDetail_New(fDate, tDate, domain, sportCode, languageCode, pageSize, pageNum, deviceType);
+            DbResult result = DataHandler.TrackingSystem.SelStatisticsDetail_New(affId, fDate, tDate, domain, sportCode, languageCode, pageSize, pageNum, deviceType);
             string htmlContent = TemplateHandler.LoadTemplate("UserInfo/MediaStatistics_New.htm");
             string strContentTable = TemplateHandler.CopyBlock(htmlContent, "StatisticsDetail");
 
@@ -159,7 +159,7 @@ namespace GenerateHTML
                     TemplateHandler.Assign(ref strTmp, "Signups-val", dr["Signups"].ToString());
                     TemplateHandler.Assign(ref strTmp, "FDM-val", dr["FDM"].ToString());
                     TemplateHandler.Assign(ref strTmp, "color", (intNo % 2 == 0) ? Common.RowBgEven : Common.RowBgOdd);
-                    
+
                     strBuild.Append(strTmp);
                 }
             }
