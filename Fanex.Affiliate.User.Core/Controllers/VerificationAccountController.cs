@@ -8,45 +8,47 @@ using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.MetalModels.Email;
 using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.DTO;
+using System.Linq;
+using Fanex.Affiliate.User.Core.Resources;
+using System.Web.Security;
+using RestSharp.Extensions.MonoHttp;
 
 namespace Fanex.Affiliate.User.Core.Controllers
 {
     public class VerificationAccountController : BaseController
     {
-        private readonly ICaptchaService _captchaService;
-
         private readonly ITwoFactorAuthService _twoFactorAuthService;
         private readonly IAccountRepository _accountRepository;
         private readonly IEmailService _mailService;
+        private readonly IAuthService _authService;
+        private readonly ICaptchaService _captchaService;
         private readonly IAppSetting _appSetting;
+        private readonly ICryptographyService _cryptographyService;
 
         public VerificationAccountController(
             ISessionService sessionService,
+            IAppSetting appSetting,
             ILanguageService languageService,
             ICaptchaService captchaService,
             ITwoFactorAuthService twoFactorAuthService,
             IAccountRepository accountRepository,
-            IAppSetting appSetting,
-            IEmailService mailService) : base(sessionService, languageService)
+            IEmailService mailService,
+            IAuthService authService,
+            ICryptographyService cryptographyService) : base(sessionService, languageService)
         {
-            _captchaService = captchaService;
             _twoFactorAuthService = twoFactorAuthService;
             _accountRepository = accountRepository;
             _mailService = mailService;
+            _authService = authService;
+            _captchaService = captchaService;
             _appSetting = appSetting;
+            _cryptographyService = cryptographyService;
         }
 
         [HttpGet]
-        public ActionResult Index(string userName)
+        public ActionResult Index()
         {
-            var verificationAccountInfo = GetVerificationAccountInfo(userName);
-
-            var model = new VerificationAccount
-            {
-                Username = userName,
-                Email = verificationAccountInfo.Email
-            };
-            return View(model);
+            return View();
         }
 
         [HttpGet]
@@ -54,21 +56,20 @@ namespace Fanex.Affiliate.User.Core.Controllers
         public ActionResult CaptchaImage(byte type = 0)
         {
             var captcha = Generator.GetRandomString(4);
-
+            SessionService.CaptchaString = captcha;
             return File(_captchaService.GenerateImageBuffer(captcha, 100, 28, true), "image/png");
         }
 
-        public ActionResult SendCode(string userName)
+        public ActionResult SendCode()
         {
-            var verificationAccountInfo = GetVerificationAccountInfo(userName);
-
-            var codeOtp = _twoFactorAuthService.GenerateHotp(verificationAccountInfo.SecretKey, verificationAccountInfo.Counter);
-
             try
             {
+                var verificationAccount = SessionService.VerificationAccount;
+                var codeOtp = _twoFactorAuthService.GenerateHotp(verificationAccount.SecretKey, verificationAccount.Counter);
+
                 var param = new UserInfoByEmailParam
                 {
-                    Email = verificationAccountInfo.Email,
+                    Email = verificationAccount.Email,
                     Ip = RequestHelper.GetClientIPAddress(),
                     ValidCode = codeOtp,
                     Language = SessionService.CurrentLanguage
@@ -93,7 +94,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 return Json(new ResultInfo
                 {
                     IsOk = true,
-                    Message = "Send code successful!"
+                    Message = Lang.SendCodeSuccessful
                 });
             }
             catch
@@ -101,42 +102,107 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 return Json(new ResultInfo
                 {
                     IsOk = false,
-                    Message = "Send code failed!"
+                    Message = Lang.SendCodeFailed
                 });
             }
         }
 
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        [AllowAnonymous]
         public ActionResult VerifyAccount(VerificationAccountParam param)
         {
-            //Check captcha
-            //Check username, password
+            if (!Request.IsAjaxRequest())
+            {
+                return Json( new ResultInfo
+                {
+                    IsOk = false,
+                    Message = Lang.ErrAuthorized
+                });
+            }
 
-            var verificationAccountInfo = GetVerificationAccountInfo(param.Username);
-            var result = _twoFactorAuthService.VerifyHotp(verificationAccountInfo.SecretKey, verificationAccountInfo.Counter, param.Code);
-            if(result)
+            if (!ModelState.IsValid)
             {
                 return Json(new ResultInfo
                 {
-                    IsOk = true,
-                    Message = "Verification Account Successful!"
+                    IsOk = false,
+                    Message = string.Join(", ", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
                 });
+            }
+
+            if (!_captchaService.IsValid(param.Captcha, SessionService.CaptchaString, Request.UserHostAddress))
+            {
+                return Json(new ResultInfo
+                {
+                    IsOk = false,
+                    Message = Lang.ValidationCaptcha
+                });
+            }
+
+            UserLoginParam userParam = new UserLoginParam
+            {
+                LoginInfo = param.LoginInfo,
+                LoginIp = Request.UserHostAddress,
+                Language = SessionService.CurrentLanguage
+            };
+
+            var loginResult = _authService.VerifyAccount(userParam, SessionService.VerificationAccount.UserName);
+
+            if(loginResult == null)
+            {
+                return Json(new ResultInfo
+                {
+                    IsOk = false,
+                    Message = Lang.ValidationVerificationAccount
+                });
+            }
+
+            if (loginResult.UserInfo != null &&
+                        !_appSetting.AllowedAffiliateTypes.Any(t => t.Equals(loginResult.UserInfo.AffType)))
+            {
+                return Json(new ResultInfo
+                {
+                    IsOk = false,
+                    Message = Lang.NotAllowOnDomain
+                });
+            }
+
+            if (loginResult.Result.IsOk)
+            {
+                var verificationAccount = SessionService.VerificationAccount;
+                var result = _twoFactorAuthService.VerifyHotp(verificationAccount.SecretKey, verificationAccount.Counter, param.Code);
+                if (result)
+                {
+                    Session.Remove(userParam.UserName);
+
+                    var user = loginResult.UserInfo;
+                    var onUserIdParam = GetOnUserIdParam(user.AffId, userParam.LoginIp);
+                    user.OnUserId = _authService.GetOnUserId(onUserIdParam);
+
+                    SessionService.AssignSessions(user);
+                    FormsAuthentication.SetAuthCookie(user.UserName, false);
+
+                    return Json(loginResult.Result);
+                }
             }
 
             return Json(new ResultInfo
             {
                 IsOk = false,
-                Message = "Verification Account Failed!"
+                Message = Lang.ValidationVerificationAccount
             });
         }
 
-        private VerificationAccount GetVerificationAccountInfo(string useName)
+        private OnUserIdParam GetOnUserIdParam(int affId, string clientIpAddress, int adminId = 0)
         {
-            //get Info by usename
-            return new VerificationAccount
+            return new OnUserIdParam
             {
-                Email = "meanuit@gmail.com",
-                SecretKey = "GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ",
-                Counter = 927841 //Affiliate's ID
+                CustId = affId,
+                ServerId = _appSetting.ServerId,
+                Ip = clientIpAddress,
+                NetSessionId = HttpContext.Session.SessionID,
+                SubAccId = adminId,
+                IsInternal = SessionService.IsInternal
             };
         }
     }

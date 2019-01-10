@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Fanex.Affiliate.User.Core.Resources;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,12 +10,13 @@ namespace Fanex.Affiliate.User.Core.MetalModels
 {
     public class VerificationAccountParam
     {
-        public string Username { get; set; }
+        [Required(ErrorMessageResourceType = typeof(Error), ErrorMessageResourceName = "LoginWrongInfo")]
+        public string LoginInfo { get; set; }
 
-        public string Password { get; set; }
-
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "ErrmsgEntryVerificationCode")]
         public string Code { get; set; }
 
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "ErrmsgEntryCaptcha")]
         public string Captcha { get; set; }
     }
 }
