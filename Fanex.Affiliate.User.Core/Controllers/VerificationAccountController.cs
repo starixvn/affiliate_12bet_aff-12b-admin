@@ -1,17 +1,16 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
+using System.Web.Security;
 using System.Web.UI;
 using Fanex.Affiliate.User.Core.BusinessService;
-using Fanex.Affiliate.User.Core.CoreService;
-using Fanex.Affiliate.User.Core.Utilities;
-using Fanex.Affiliate.User.Core.MetalModels;
-using Fanex.Affiliate.User.Core.Repository.UserPanel;
-using Fanex.Affiliate.User.Core.MetalModels.Email;
 using Fanex.Affiliate.User.Core.Constants;
+using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO;
-using System.Linq;
+using Fanex.Affiliate.User.Core.MetalModels;
+using Fanex.Affiliate.User.Core.MetalModels.Email;
+using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Resources;
-using System.Web.Security;
-using RestSharp.Extensions.MonoHttp;
+using Fanex.Affiliate.User.Core.Utilities;
 
 namespace Fanex.Affiliate.User.Core.Controllers
 {
@@ -19,11 +18,10 @@ namespace Fanex.Affiliate.User.Core.Controllers
     {
         private readonly ITwoFactorAuthService _twoFactorAuthService;
         private readonly IAccountRepository _accountRepository;
-        private readonly IEmailService _mailService;
         private readonly IAuthService _authService;
         private readonly ICaptchaService _captchaService;
         private readonly IAppSetting _appSetting;
-        private readonly ICryptographyService _cryptographyService;
+        private readonly IEmailService _mailService;
 
         public VerificationAccountController(
             ISessionService sessionService,
@@ -32,23 +30,24 @@ namespace Fanex.Affiliate.User.Core.Controllers
             ICaptchaService captchaService,
             ITwoFactorAuthService twoFactorAuthService,
             IAccountRepository accountRepository,
-            IEmailService mailService,
             IAuthService authService,
-            ICryptographyService cryptographyService) : base(sessionService, languageService)
+            IEmailService mailService) : base(sessionService, languageService)
         {
             _twoFactorAuthService = twoFactorAuthService;
             _accountRepository = accountRepository;
-            _mailService = mailService;
             _authService = authService;
             _captchaService = captchaService;
             _appSetting = appSetting;
-            _cryptographyService = cryptographyService;
+            _mailService = mailService;
         }
 
         [HttpGet]
         public ActionResult Index()
         {
-            return View();
+            var verificationAccount = SessionService.VerificationAccount;
+            var userInfo = _accountRepository.GetUserInfoById(verificationAccount.AffId, false);
+
+            return View("~/Views/VerificationAccount/Index.cshtml", model: userInfo.Email);
         }
 
         [HttpGet]
@@ -60,51 +59,36 @@ namespace Fanex.Affiliate.User.Core.Controllers
             return File(_captchaService.GenerateImageBuffer(captcha, 100, 28, true), "image/png");
         }
 
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        [AllowAnonymous]
         public ActionResult SendCode()
         {
-            try
+            var verificationAccount = SessionService.VerificationAccount;
+            var userInfo = _accountRepository.GetUserInfoById(verificationAccount.AffId, false);
+            var secretKey = verificationAccount.AffId.ToString();
+            var otp = _twoFactorAuthService.GenerateHotp(secretKey, verificationAccount.Counter);
+
+            var verificationAccountEmailParam = new VerificationAccountEmailParam
             {
-                var verificationAccount = SessionService.VerificationAccount;
-                var codeOtp = _twoFactorAuthService.GenerateHotp(verificationAccount.SecretKey, verificationAccount.Counter);
+                User = userInfo,
+                MailContact = _appSetting.MailContact,
+                MailTo = "walter.tran@starixsoft.com",
+                RootDomain = SiteDomainHelper.GetRootUrl(this),
+                Code = otp,
+                Ip = RequestHelper.GetClientIPAddress()
+            };
 
-                var param = new UserInfoByEmailParam
-                {
-                    Email = verificationAccount.Email,
-                    Ip = RequestHelper.GetClientIPAddress(),
-                    ValidCode = codeOtp,
-                    Language = SessionService.CurrentLanguage
-                };
-                var userInfo = _accountRepository.GetUserInfoByEmail(param);
+            var userLang = SystemLanguage.IsValid(userInfo.PreferredLanguage) ? userInfo.PreferredLanguage : SystemLanguage.DefaultLanguageCode;
+            LanguageService.SetCulture(userLang);
+            _mailService.SendVerificationEmail(verificationAccountEmailParam);
+            LanguageService.SetCulture(SessionService.CurrentLanguage);
 
-                var verificationAccountEmailParam = new VerificationAccountEmailParam
-                {
-                    User = userInfo,
-                    MailContact = _appSetting.MailContact,
-                    MailTo = param.Email,
-                    RootDomain = SiteDomainHelper.GetRootUrl(this),
-                    Code = codeOtp,
-                    Ip = param.Ip
-                };
-
-                var userLang = SystemLanguage.IsValid(userInfo.PreferredLanguage) ? userInfo.PreferredLanguage : SystemLanguage.DefaultLanguageCode;
-                LanguageService.SetCulture(userLang);
-                _mailService.SendHotpCodeEmail(verificationAccountEmailParam);
-                LanguageService.SetCulture(SessionService.CurrentLanguage);
-
-                return Json(new ResultInfo
-                {
-                    IsOk = true,
-                    Message = Lang.SendCodeSuccessful
-                });
-            }
-            catch
+            return Json(new ResultInfo
             {
-                return Json(new ResultInfo
-                {
-                    IsOk = false,
-                    Message = Lang.SendCodeFailed
-                });
-            }
+                IsOk = true,
+                Message = Lang.SendCodeSuccessful
+            });
         }
 
         [ValidateAntiForgeryToken]
@@ -114,7 +98,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
         {
             if (!Request.IsAjaxRequest())
             {
-                return Json( new ResultInfo
+                return Json(new ResultInfo
                 {
                     IsOk = false,
                     Message = Lang.ErrAuthorized
@@ -139,16 +123,19 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 });
             }
 
-            UserLoginParam userParam = new UserLoginParam
+            var userParam = new UserLoginParam
             {
                 LoginInfo = param.LoginInfo,
                 LoginIp = Request.UserHostAddress,
                 Language = SessionService.CurrentLanguage
             };
 
-            var loginResult = _authService.VerifyAccount(userParam, SessionService.VerificationAccount.UserName);
+            var verificationAccount = SessionService.VerificationAccount;
+            var userInfo = _accountRepository.GetUserInfoById(verificationAccount.AffId, false);
 
-            if(loginResult == null)
+            var loginResult = _authService.VerifyAccount(userParam, userInfo.UserName);
+
+            if (loginResult == null)
             {
                 return Json(new ResultInfo
                 {
@@ -169,8 +156,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
 
             if (loginResult.Result.IsOk)
             {
-                var verificationAccount = SessionService.VerificationAccount;
-                var result = _twoFactorAuthService.VerifyHotp(verificationAccount.SecretKey, verificationAccount.Counter, param.Code);
+                var result = _twoFactorAuthService.VerifyHotp(verificationAccount.AffId.ToString(), verificationAccount.Counter, param.Code);
                 if (result)
                 {
                     Session.Remove(userParam.UserName);

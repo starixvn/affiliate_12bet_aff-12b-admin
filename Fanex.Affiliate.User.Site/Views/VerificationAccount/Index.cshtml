@@ -2,9 +2,11 @@
     Layout = "~/Views/Shared/_LayoutBeforeLogin.cshtml";
 }
 
-@model Fanex.Affiliate.User.Core.DTO.VerificationAccount
+@model string
 
-@{  if (Model.Email == null)
+@{
+    var email = Model;  
+    if (string.IsNullOrEmpty(email))
     {
         <h4 class="text-danger">Username is incorrect!</h4>
     }
@@ -21,7 +23,7 @@
             <br />
             <p>Dear Customer,</p>
             <p>Due to many recent failed logins, please verify one more security step.</p>
-            <p>A 6-digits verification code has been sent to your email address <strong>@Model.Email.</strong></p>
+            <p>A 6-digits verification code has been sent to your email address <strong>@email.</strong></p>
             <p>Please enter your username, password and the veritication code below to log in.</p>
             <br />
             <form>
@@ -65,7 +67,7 @@
                         </span>
                     </div>
                     <div class="validation-value">
-                        <img style="cursor:pointer" id="captchaVerificationAccount" src="@Url.Content("~/VerificationAccount/CaptchaImage?_v=" + DateTime.Now.ToLongTimeString()) alt="captcha" />
+                        <img style="cursor:pointer" id="captchaVerificationAccount" src="@Url.Content("~/VerificationAccount/CaptchaImage?_v=" + DateTime.Now.ToLongTimeString())" alt="captcha" />
                     </div>
                 </div>
                 <br />
