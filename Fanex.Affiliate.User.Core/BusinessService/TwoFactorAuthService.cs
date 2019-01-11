@@ -1,4 +1,5 @@
 ﻿using OtpNet;
+using System.Text;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
 {
@@ -6,7 +7,8 @@ namespace Fanex.Affiliate.User.Core.BusinessService
     {
         public string GenerateHotp(string secretKey, int counter)
         {
-            var base32Bytes = Base32Encoding.ToBytes(secretKey);
+            var base32String = Base32Encoding.ToString(Encoding.ASCII.GetBytes(secretKey));
+            var base32Bytes = Base32Encoding.ToBytes(base32String);
 
             Hotp hotp = new Hotp(base32Bytes);
 
@@ -15,7 +17,8 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public bool VerifyHotp(string secretKey, int counter, string otp)
         {
-            var base32Bytes = Base32Encoding.ToBytes(secretKey);
+            var base32String = Base32Encoding.ToString(Encoding.ASCII.GetBytes(secretKey));
+            var base32Bytes = Base32Encoding.ToBytes(base32String);
             Hotp hotp = new Hotp(base32Bytes);
 
             return hotp.VerifyHotp(otp, counter);

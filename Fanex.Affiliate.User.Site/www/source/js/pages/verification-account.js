@@ -41,11 +41,15 @@
             $("#captchaVerificationAccount").attr("src", captchaUrl);
         },
         sendCode: function () {
+            var token = $('input[name="__RequestVerificationToken"]', $("#userLogin")).val();
+
             $.ajax({
                 type: "POST",
                 url: Site.resolveRelativeUrl("VerificationAccount/SendCode"),
+                data: { __RequestVerificationToken: token },
+                dataType: "json",
                 cache: false,
-                contentType: "application/json; charset=UTF-8",
+                contentType: "application/x-www-form-urlencoded; charset=UTF-8",
                 success: function (response) {
                     if(response.IsOk)
                     {

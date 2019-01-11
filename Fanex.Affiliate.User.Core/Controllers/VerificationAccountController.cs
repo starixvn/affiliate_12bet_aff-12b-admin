@@ -51,7 +51,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
             }
             var verificationAccount = SessionService.VerificationAccount;
             var userInfo = _accountRepository.GetUserInfoById(verificationAccount.AffId, false);
-            var email = HandlingEmail(userInfo.Email);
+            var email = ConvertEmail(userInfo.Email);
             return View("~/Views/VerificationAccount/Index.cshtml", model: email);
         }
 
@@ -64,6 +64,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
             return File(_captchaService.GenerateImageBuffer(captcha, 100, 28, true), "image/png");
         }
 
+        [ValidateAntiForgeryToken]
         [HttpPost]
         [AllowAnonymous]
         public ActionResult SendCode()
@@ -72,8 +73,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
 
             var verificationAccount = SessionService.VerificationAccount;
             var userInfo = _accountRepository.GetUserInfoById(verificationAccount.AffId, false);
-            var secretKey = GetSecretKey(verificationAccount.AffId);
-            var otp = _twoFactorAuthService.GenerateHotp(secretKey, verificationAccount.Counter);
+            var otp = _twoFactorAuthService.GenerateHotp(verificationAccount.AffId.ToString(), verificationAccount.Counter);
 
             var verificationAccountEmailParam = new VerificationAccountEmailParam
             {
@@ -162,11 +162,10 @@ namespace Fanex.Affiliate.User.Core.Controllers
 
             if (loginResult.Result.IsOk)
             {
-                var secretKey = GetSecretKey(verificationAccount.AffId);
-                var result = _twoFactorAuthService.VerifyHotp(secretKey, verificationAccount.Counter, param.Code);
+                var result = _twoFactorAuthService.VerifyHotp(verificationAccount.AffId.ToString(), verificationAccount.Counter, param.Code);
                 if (result)
                 {
-                    Session.Remove(userParam.UserName);
+                    SessionService.VerificationAccount = null;
 
                     var user = loginResult.UserInfo;
                     var onUserIdParam = GetOnUserIdParam(user.AffId, userParam.LoginIp);
@@ -199,7 +198,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
             };
         }
 
-        private static string HandlingEmail(string email)
+        private static string ConvertEmail(string email)
         {
             var parts = email.Split('@');
             var nameEmail = parts[0];
@@ -219,12 +218,6 @@ namespace Fanex.Affiliate.User.Core.Controllers
             }
             var newEmail = nameEmail + "@" + parts[1];
             return newEmail;
-        }
-
-        private static string GetSecretKey(int affId)
-        {
-            var secretKey = affId.ToString().Replace('1','B').Replace('8','E').Replace('9','T');
-            return secretKey;
         }
     }
 }
