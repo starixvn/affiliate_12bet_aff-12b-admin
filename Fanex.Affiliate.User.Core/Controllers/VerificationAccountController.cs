@@ -11,6 +11,7 @@ using Fanex.Affiliate.User.Core.MetalModels.Email;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.Utilities;
+using System;
 
 namespace Fanex.Affiliate.User.Core.Controllers
 {
@@ -63,11 +64,12 @@ namespace Fanex.Affiliate.User.Core.Controllers
             return File(_captchaService.GenerateImageBuffer(captcha, 100, 28, true), "image/png");
         }
 
-
         [HttpPost]
         [AllowAnonymous]
         public ActionResult SendCode()
         {
+            SessionService.VerificationAccount.Counter = new Random().Next(int.MinValue, int.MaxValue);
+
             var verificationAccount = SessionService.VerificationAccount;
             var userInfo = _accountRepository.GetUserInfoById(verificationAccount.AffId, false);
             var secretKey = GetSecretKey(verificationAccount.AffId);
@@ -77,7 +79,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
             {
                 User = userInfo,
                 MailContact = _appSetting.MailContact,
-                MailTo = "walter.tran@starixsoft.com",
+                MailTo = userInfo.Email,
                 RootDomain = SiteDomainHelper.GetRootUrl(this),
                 Code = otp,
                 Ip = RequestHelper.GetClientIPAddress()

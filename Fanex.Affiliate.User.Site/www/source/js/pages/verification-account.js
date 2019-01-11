@@ -25,7 +25,7 @@
         initEvent: function () {
             $("#btn-resend").on("click", function (e) {
                 e.preventDefault();
-                _me.resendCode();
+                _me.sendCode();
             });
             $("#btn-login").on("click", function (e) {
                 e.preventDefault();
@@ -44,7 +44,6 @@
             $.ajax({
                 type: "POST",
                 url: Site.resolveRelativeUrl("VerificationAccount/SendCode"),
-                dataType: "json",
                 cache: false,
                 contentType: "application/json; charset=UTF-8",
                 success: function (response) {
@@ -81,9 +80,11 @@
             var password = $('#Password').val();
             var code = $('#Code').val();
             var captcha = $('#Captcha').val();
-            var validationResult = _me.validate(username, password, code, captcha);
+            var $form = $("#verificationAccountForm");
+            var validator = $form.validate();
+            var isValidForm = validator.form();
 
-            if (validationResult) {
+            if (isValidForm) {
                 var token = $('input[name="__RequestVerificationToken"]', $("#userLogin")).val();
                 var publicKey = base64DecodeUnicode($("#PublicKey").val());
 
@@ -111,7 +112,7 @@
                         else {
                             alert($("<div/>").html(response.Message).text());
                             $('#Password').val("");
-                            $('#Captcha').val("abc");
+                            $('#Captcha').val("");
                             _me.getCaptcha();
                         }
                     },
@@ -123,48 +124,6 @@
                     }
                 });
             }
-        },
-        validate: function (username, password, code, captcha) {
-            var empty = "";
-            var result = true;
-            
-            if (username === empty) {
-                $("#Username").focus();
-                $("#UsernameInvalid").removeClass('class');
-                result = false;
-            }
-            else {
-                $("#UsernameInvalid").addClass('help-block hidden');
-            }
-
-            if (password === empty) {
-                $("#Password").focus();
-                $("#PasswordInvalid").removeClass("hidden");
-                result = false;
-            }
-            else {
-                $("#PasswordInvalid").addClass('help-block hidden');
-            }
-
-            if (code === empty) {
-                $("#Code").focus();
-                $("#CodeInvalid").removeClass("hidden");
-                result = false;
-            }
-            else {
-                $("#CodeInvalid").addClass('help-block hidden');
-            }
-
-            if (captcha === empty) {
-                $("#Captcha").focus();
-                $("#CaptchaInvalid").removeClass("hidden");
-                result = false;
-            }
-            else {
-                $("#CaptchaInvalid").addClass('help-block hidden');
-            }
-
-            return result;
         },
     };
     return _me;
