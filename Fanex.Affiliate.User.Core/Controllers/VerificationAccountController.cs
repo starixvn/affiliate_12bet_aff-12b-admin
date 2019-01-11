@@ -44,10 +44,14 @@ namespace Fanex.Affiliate.User.Core.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            if(SessionService.VerificationAccount == null)
+            {
+                return Redirect("/Home");
+            }
             var verificationAccount = SessionService.VerificationAccount;
             var userInfo = _accountRepository.GetUserInfoById(verificationAccount.AffId, false);
-
-            return View("~/Views/VerificationAccount/Index.cshtml", model: userInfo.Email);
+            var email = HandlingEmail(userInfo.Email);
+            return View("~/Views/VerificationAccount/Index.cshtml", model: email);
         }
 
         [HttpGet]
@@ -59,14 +63,14 @@ namespace Fanex.Affiliate.User.Core.Controllers
             return File(_captchaService.GenerateImageBuffer(captcha, 100, 28, true), "image/png");
         }
 
-        [ValidateAntiForgeryToken]
+
         [HttpPost]
         [AllowAnonymous]
         public ActionResult SendCode()
         {
             var verificationAccount = SessionService.VerificationAccount;
             var userInfo = _accountRepository.GetUserInfoById(verificationAccount.AffId, false);
-            var secretKey = verificationAccount.AffId.ToString();
+            var secretKey = GetSecretKey(verificationAccount.AffId);
             var otp = _twoFactorAuthService.GenerateHotp(secretKey, verificationAccount.Counter);
 
             var verificationAccountEmailParam = new VerificationAccountEmailParam
@@ -156,7 +160,8 @@ namespace Fanex.Affiliate.User.Core.Controllers
 
             if (loginResult.Result.IsOk)
             {
-                var result = _twoFactorAuthService.VerifyHotp(verificationAccount.AffId.ToString(), verificationAccount.Counter, param.Code);
+                var secretKey = GetSecretKey(verificationAccount.AffId);
+                var result = _twoFactorAuthService.VerifyHotp(secretKey, verificationAccount.Counter, param.Code);
                 if (result)
                 {
                     Session.Remove(userParam.UserName);
@@ -190,6 +195,34 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 SubAccId = adminId,
                 IsInternal = SessionService.IsInternal
             };
+        }
+
+        private static string HandlingEmail(string email)
+        {
+            var parts = email.Split('@');
+            var nameEmail = parts[0];
+            if(nameEmail.Length > 8)
+            {
+                var step = nameEmail.Length - 4;
+                var item = new string('•', step);
+                nameEmail = nameEmail.Remove(1, step);
+                nameEmail = nameEmail.Insert(1, item);
+            }
+            else
+            {
+                var step = nameEmail.Length - 1;
+                var item = new string('•', step);
+                nameEmail = nameEmail.Remove(0, step);
+                nameEmail = nameEmail.Insert(0, item);
+            }
+            var newEmail = nameEmail + "@" + parts[1];
+            return newEmail;
+        }
+
+        private static string GetSecretKey(int affId)
+        {
+            var secretKey = affId.ToString().Replace('1','B').Replace('8','E').Replace('9','T');
+            return secretKey;
         }
     }
 }
