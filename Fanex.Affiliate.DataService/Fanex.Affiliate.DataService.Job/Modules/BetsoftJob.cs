@@ -40,7 +40,8 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                     var param = new TimeTrackerBaseParam { ProductId = Products.BetsoftProductId };
                     var lastQueryTime = _timeTracker.GetLastestCallSuccess(param, defaultStartTime);
 
-                    var now = DateTime.Now;
+                    var hourAdjustment = Convert.ToInt32(_appSetting.GetValue("BetsoftHourAdjustment"));
+                    var now = DateTime.Now.AddHours(hourAdjustment);
                     var nowByHour = new DateTime(now.Year, now.Month, now.Day, now.Hour, 0, 0, DateTimeKind.Local);
 
                     if (DateTime.Compare(lastQueryTime, nowByHour) < 0)

@@ -40,7 +40,8 @@ namespace Fanex.Affiliate.DataService.Job.Modules
                 {
                     var defaultStartTime = DateTime.ParseExact(_appSetting.GetValue("EbetStartTime"), "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal);
 
-                    var now = DateTime.Now;
+                    var hourAdjustment = Convert.ToInt32(_appSetting.GetValue("EbetHourAdjustment"));
+                    var now = DateTime.Now.AddHours(hourAdjustment);
                     var nowByHour = new DateTime(now.Year, now.Month, now.Day, now.Hour, 0, 0, DateTimeKind.Local);
 
                     var pageSize = Convert.ToInt32(_appSetting.GetValue("EbetPageSize"));
