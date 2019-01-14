@@ -15,7 +15,7 @@
   </Function>
   
   <Function Name="Affiliate - Data Services - Time Tracker">
-    <Setting Key="Task_APIProduct_CallTimeIns" SpName="Task_APIProduct_CallTimeIns" DbName="Affiliate" />
-    <Setting Key="Task_APIProduct_CallTimeByProductSel" SpName="Task_APIProduct_CallTimeByProductSel" DbName="Affiliate" />
+    <Setting Key="Task_APIProduct_CallTimeIns" SpName="Task_APIProduct_CallTimeIns_xpre" DbName="Affiliate" />
+    <Setting Key="Task_APIProduct_CallTimeByProductSel" SpName="Task_APIProduct_CallTimeByProductSel_xpre" DbName="Affiliate" />
   </Function>
 </Functions>
