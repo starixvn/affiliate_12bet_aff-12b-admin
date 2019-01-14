@@ -45,11 +45,11 @@ namespace Fanex.Affiliate.User.Core.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            if(SessionService.VerificationAccount == null)
+            if(SessionService.VerificationSession == null)
             {
                 return Redirect("/Home");
             }
-            var verificationAccount = SessionService.VerificationAccount;
+            var verificationAccount = SessionService.VerificationSession;
             var userInfo = _accountRepository.GetUserInfoById(verificationAccount.AffId, false);
             var email = ConvertEmail(userInfo.Email);
             return View("~/Views/VerificationAccount/Index.cshtml", model: email);
@@ -60,7 +60,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
         public ActionResult CaptchaImage(byte type = 0)
         {
             var captcha = Generator.GetRandomString(4);
-            SessionService.CaptchaString = captcha;
+            SessionService.VerificationSession.Captcha = captcha;
             return File(_captchaService.GenerateImageBuffer(captcha, 100, 28, true), "image/png");
         }
 
@@ -69,9 +69,9 @@ namespace Fanex.Affiliate.User.Core.Controllers
         [AllowAnonymous]
         public ActionResult SendCode()
         {
-            SessionService.VerificationAccount.Counter = new Random().Next(int.MinValue, int.MaxValue);
+            SessionService.VerificationSession.Counter = new Random().Next(int.MinValue, int.MaxValue);
 
-            var verificationAccount = SessionService.VerificationAccount;
+            var verificationAccount = SessionService.VerificationSession;
             var userInfo = _accountRepository.GetUserInfoById(verificationAccount.AffId, false);
             var otp = _twoFactorAuthService.GenerateHotp(verificationAccount.AffId.ToString(), verificationAccount.Counter);
 
@@ -120,7 +120,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 });
             }
 
-            if (!_captchaService.IsValid(param.Captcha, SessionService.CaptchaString, Request.UserHostAddress))
+            if (!_captchaService.IsValid(param.Captcha, SessionService.VerificationSession.Captcha, Request.UserHostAddress))
             {
                 return Json(new ResultInfo
                 {
@@ -136,7 +136,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 Language = SessionService.CurrentLanguage
             };
 
-            var verificationAccount = SessionService.VerificationAccount;
+            var verificationAccount = SessionService.VerificationSession;
             var userInfo = _accountRepository.GetUserInfoById(verificationAccount.AffId, false);
 
             var loginResult = _authService.VerifyAccount(userParam, userInfo.UserName);
@@ -165,7 +165,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 var result = _twoFactorAuthService.VerifyHotp(verificationAccount.AffId.ToString(), verificationAccount.Counter, param.Code);
                 if (result)
                 {
-                    SessionService.VerificationAccount = null;
+                    SessionService.VerificationSession = null;
 
                     var user = loginResult.UserInfo;
                     var onUserIdParam = GetOnUserIdParam(user.AffId, userParam.LoginIp);
