@@ -2,7 +2,9 @@
 using System.Globalization;
 using Fanex.Affiliate.DataService.CheckSum.Utilities;
 using Fanex.Affiliate.DataService.Importer;
+using Fanex.Affiliate.DataService.Importer.Constants;
 using Fanex.Affiliate.DataService.Importer.MetaModels.CrystalGpi;
+using Fanex.Affiliate.DataService.Job.MetaModels.TimeTracker;
 using Fanex.Affiliate.DataService.Job.Services;
 using Fanex.Logging;
 using Quartz;
@@ -34,9 +36,9 @@ namespace Fanex.Affiliate.DataService.Job.Modules
 
                 if (!isUm)
                 {
-                    var trackerFolderPath = _appSetting.GetValue("CrystalGpiTrackerFolder");
                     var defaultStartTime = DateTime.ParseExact(_appSetting.GetValue("CrystalGpiStartTime"), "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal);
-                    var lastQueryTime = _timeTracker.GetLastestCallSuccess(trackerFolderPath, defaultStartTime);
+                    var trackerParam = new TimeTrackerBaseParam { ProductId = Products.CrystalProductId };
+                    var lastQueryTime = _timeTracker.GetLastestCallSuccess(trackerParam, defaultStartTime);
 
                     var hourAdjustment = Convert.ToInt32(_appSetting.GetValue("CrystalGpiHourAdjustment"));
                     var now = DateTime.Now.AddHours(hourAdjustment);
@@ -54,7 +56,12 @@ namespace Fanex.Affiliate.DataService.Job.Modules
 
                         _crystalGpiService.Import(param);
 
-                        _timeTracker.SaveTime(trackerFolderPath, nowByHour);
+                        var saveTimeParam = new InsertTimeTrackerParam
+                        {
+                            ProductId = Products.CrystalProductId,
+                            CallTime = nowByHour
+                        };
+                        _timeTracker.SaveTime(saveTimeParam);
                     }
                 }
             }

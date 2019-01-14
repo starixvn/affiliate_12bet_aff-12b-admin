@@ -1,52 +1,28 @@
 ﻿using System;
-using System.IO;
-using System.Linq;
+using Fanex.Affiliate.DataService.Job.MetaModels.TimeTracker;
+using Fanex.Affiliate.DataService.Job.Repository;
 
 namespace Fanex.Affiliate.DataService.Job.Services
 {
     public class TimeTracker : ITimeTracker
     {
-        public DateTime GetLastestCallSuccess(string folderPath, DateTime defaultValue)
+        private readonly ITimeTrackerRepository _timeTrackerRepository;
+
+        public TimeTracker(ITimeTrackerRepository timeTrackerRepository = null)
         {
-            if (!Directory.Exists(folderPath))
-            {
-                return defaultValue;
-            }
-
-            var fileName = GetLatestTrackingFile(folderPath);
-            if (string.IsNullOrEmpty(fileName))
-            {
-                return defaultValue;
-            }
-
-            var lastLine = File.ReadLines(fileName).Last();
-
-            return string.IsNullOrEmpty(lastLine) ? defaultValue : DateTime.Parse(lastLine);
+            _timeTrackerRepository = timeTrackerRepository ?? new TimeTrackerRepository();
         }
 
-        public void SaveTime(string folderPath, DateTime callTime)
+        public DateTime GetLastestCallSuccess(TimeTrackerBaseParam param, DateTime defaultValue)
         {
-            var fileName = Path.Combine(folderPath, $"{DateTime.Now.ToString("yyyyMMdd")}.txt");
+            var latestTimeSuccess = _timeTrackerRepository.GetLastTimeCallSuccess(param);
 
-            if (!Directory.Exists(folderPath))
-            {
-                Directory.CreateDirectory(folderPath);
-            }
-
-            using (var writer = new StreamWriter(fileName, true))
-            {
-                writer.WriteLine(callTime.ToString());
-            }
+            return latestTimeSuccess.HasValue ? latestTimeSuccess.Value : defaultValue;
         }
 
-        private static string GetLatestTrackingFile(string folderPath)
+        public void SaveTime(InsertTimeTrackerParam param)
         {
-            var directory = new DirectoryInfo(folderPath);
-            var latestFile = directory.GetFiles()
-             .OrderByDescending(f => f.LastWriteTime)
-             .FirstOrDefault(f => File.Exists(Path.Combine(folderPath, $"{f.LastWriteTime.ToString("yyyyMMdd")}.txt")));
-
-            return latestFile?.FullName;
+            _timeTrackerRepository.SaveTime(param);
         }
     }
 }

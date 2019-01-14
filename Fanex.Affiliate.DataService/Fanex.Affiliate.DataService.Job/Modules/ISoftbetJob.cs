@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Globalization;
 using Fanex.Affiliate.DataService.Importer;
+using Fanex.Affiliate.DataService.Importer.Constants;
 using Fanex.Affiliate.DataService.Importer.MetaModels.ISoftbet;
 using Fanex.Affiliate.DataService.Importer.Utilities;
+using Fanex.Affiliate.DataService.Job.MetaModels.TimeTracker;
 using Fanex.Affiliate.DataService.Job.Services;
 using Fanex.Logging;
 using Quartz;
@@ -34,26 +36,31 @@ namespace Fanex.Affiliate.DataService.Job.Modules
 
                 if (!isUm)
                 {
-                    var trackerFolderPath = _appSetting.GetValue("ISoftbetTrackerFolder");
                     var defaultStartTime = DateTime.ParseExact(_appSetting.GetValue("ISoftbetStartTime"), "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal);
-                    var lastQueryTime = _timeTracker.GetLastestCallSuccess(trackerFolderPath, defaultStartTime);
+                    var trackerParam = new TimeTrackerBaseParam { ProductId = Products.ISoftbetProductId };
+                    var lastQueryTime = _timeTracker.GetLastestCallSuccess(trackerParam, defaultStartTime);
 
                     var hourAdjustment = Convert.ToInt32(_appSetting.GetValue("ISoftbetHourAdjustment"));
                     var now = DateTime.Now.AddHours(hourAdjustment);
-                    var nowByHour = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, 0, DateTimeKind.Local);
+                    var nowByMinute = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, 0, DateTimeKind.Local);
 
-                    if (DateTime.Compare(lastQueryTime, nowByHour) < 0)
+                    if (DateTime.Compare(lastQueryTime, nowByMinute) < 0)
                     {
                         var isoftbetParam = new ISoftbetEntryParam
                         {
                             StartTime = lastQueryTime,
-                            EndTime = nowByHour,
+                            EndTime = nowByMinute,
                             PageNumber = 1
                         };
 
                         _isoftbetService.Import(isoftbetParam);
 
-                        _timeTracker.SaveTime(trackerFolderPath, nowByHour);
+                        var saveTimeParam = new InsertTimeTrackerParam
+                        {
+                            ProductId = Products.ISoftbetProductId,
+                            CallTime = nowByMinute
+                        };
+                        _timeTracker.SaveTime(saveTimeParam);
                     }
                 }
             }
