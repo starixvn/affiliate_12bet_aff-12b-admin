@@ -36,6 +36,12 @@ var VerificationAccount = (function () {
                 e.preventDefault();
                 _me.getCaptcha();
             });
+            $('#verification-account input').on('keypress', function (e) {
+                var code = e.keyCode || e.which;
+                if (code == 13) {
+                    _me.submitForm();
+                }
+            });
         },
         getCaptcha: function getCaptcha() {
             var captchaUrl = Site.resolveRelativeUrl("VerificationAccount/CaptchaImage?_v=" + new Date().getTime());

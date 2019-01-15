@@ -162,19 +162,23 @@ namespace Fanex.Affiliate.User.Core.Controllers
 
             if (loginResult.Result.IsOk)
             {
-                var result = _twoFactorAuthService.VerifyHotp(verificationAccount.AffId.ToString(), verificationAccount.Counter, param.Code);
-                if (result)
+                var verifyCode = _twoFactorAuthService.VerifyHotp(verificationAccount.AffId.ToString(), verificationAccount.Counter, param.Code);
+                if (verifyCode)
                 {
-                    SessionService.VerificationSession = null;
+                    var updateVerifyResult = _authService.UpdateVerifyResult(userParam, loginResult.UserInfo.AffId, loginResult.Result.IsOk, false);
+                    if(updateVerifyResult.IsOk)
+                    {
+                        SessionService.VerificationSession = null;
 
-                    var user = loginResult.UserInfo;
-                    var onUserIdParam = GetOnUserIdParam(user.AffId, userParam.LoginIp);
-                    user.OnUserId = _authService.GetOnUserId(onUserIdParam);
+                        var user = loginResult.UserInfo;
+                        var onUserIdParam = GetOnUserIdParam(user.AffId, userParam.LoginIp);
+                        user.OnUserId = _authService.GetOnUserId(onUserIdParam);
 
-                    SessionService.AssignSessions(user);
-                    FormsAuthentication.SetAuthCookie(user.UserName, false);
+                        SessionService.AssignSessions(user);
+                        FormsAuthentication.SetAuthCookie(user.UserName, false);
 
-                    return Json(loginResult.Result);
+                        return Json(loginResult.Result);
+                    }
                 }
             }
 
