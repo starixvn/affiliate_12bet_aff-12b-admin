@@ -69,31 +69,41 @@ namespace Fanex.Affiliate.User.Core.Controllers
         [AllowAnonymous]
         public ActionResult SendCode()
         {
-            SessionService.VerificationSession.Counter = new Random().Next(int.MinValue, int.MaxValue);
-
-            var verificationAccount = SessionService.VerificationSession;
-            var userInfo = _accountRepository.GetUserInfoById(verificationAccount.AffId, false);
-            var otp = _twoFactorAuthService.GenerateHotp(verificationAccount.AffId.ToString(), verificationAccount.Counter);
-
-            var verificationAccountEmailParam = new VerificationAccountEmailParam
+            var countDown = Session["previousTime"] == null ? DateTime.Now.TimeOfDay.TotalMilliseconds : (double)Session["previousTime"];
+            if (Session["previousTime"] == null || DateTime.Now.TimeOfDay.TotalMilliseconds - countDown > 60000)
             {
-                User = userInfo,
-                MailContact = _appSetting.MailContact,
-                MailTo = userInfo.Email,
-                RootDomain = SiteDomainHelper.GetRootUrl(this),
-                Code = otp,
-                Ip = RequestHelper.GetClientIPAddress()
-            };
+                SessionService.VerificationSession.Counter = new Random().Next(int.MinValue, int.MaxValue);
 
-            var userLang = SystemLanguage.IsValid(userInfo.PreferredLanguage) ? userInfo.PreferredLanguage : SystemLanguage.DefaultLanguageCode;
-            LanguageService.SetCulture(userLang);
-            _mailService.SendVerificationEmail(verificationAccountEmailParam);
-            LanguageService.SetCulture(SessionService.CurrentLanguage);
+                var verificationAccount = SessionService.VerificationSession;
+                var userInfo = _accountRepository.GetUserInfoById(verificationAccount.AffId, false);
+                var otp = _twoFactorAuthService.GenerateHotp(verificationAccount.AffId.ToString(), verificationAccount.Counter);
 
+                var verificationAccountEmailParam = new VerificationAccountEmailParam
+                {
+                    User = userInfo,
+                    MailContact = _appSetting.MailContact,
+                    MailTo = userInfo.Email,
+                    RootDomain = SiteDomainHelper.GetRootUrl(this),
+                    Code = otp,
+                    Ip = RequestHelper.GetClientIPAddress()
+                };
+
+                var userLang = SystemLanguage.IsValid(userInfo.PreferredLanguage) ? userInfo.PreferredLanguage : SystemLanguage.DefaultLanguageCode;
+                LanguageService.SetCulture(userLang);
+                _mailService.SendVerificationEmail(verificationAccountEmailParam);
+                LanguageService.SetCulture(SessionService.CurrentLanguage);
+                Session["previousTime"] = DateTime.Now.TimeOfDay.TotalMilliseconds;
+
+                return Json(new ResultInfo
+                {
+                    IsOk = true,
+                    Message = Lang.SendCodeSuccessful
+                });
+            }
             return Json(new ResultInfo
             {
-                IsOk = true,
-                Message = Lang.SendCodeSuccessful
+                IsOk = false,
+                Message = Lang.SendCodeFailed
             });
         }
 

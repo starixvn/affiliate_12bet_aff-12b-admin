@@ -58,12 +58,11 @@ var VerificationAccount = (function () {
                 cache: false,
                 contentType: "application/x-www-form-urlencoded; charset=UTF-8",
                 success: function success(response) {
-                    if (response.IsOk) {
-                        $('.btn-resend').prop("disabled", true);
-                        _me.countDown(60);
-                    } else {
+                    if (!response.IsOk) {
                         alert($("<div/>").html(response.Message).text());
                     }
+                    $('.btn-resend').prop("disabled", true);
+                    _me.countDown(60);
                 },
                 beforeSend: function beforeSend() {
                     Site.showLoader();
