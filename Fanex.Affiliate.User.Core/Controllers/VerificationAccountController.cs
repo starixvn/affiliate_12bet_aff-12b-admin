@@ -2,7 +2,6 @@
 using System.Web.Mvc;
 using System.Web.UI;
 using Fanex.Affiliate.User.Core.BusinessService;
-using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.MetalModels;
@@ -15,23 +14,20 @@ namespace Fanex.Affiliate.User.Core.Controllers
 {
     public class VerificationAccountController : AuthBaseController
     {
-        private readonly ITwoFactorAuthService _twoFactorAuthService;
         private readonly IAccountRepository _accountRepository;
-        private readonly IEmailService _mailService;
+        private readonly IVerificationService _verificationService;
 
         public VerificationAccountController(
             ISessionService sessionService,
             IAppSetting appSetting,
             ILanguageService languageService,
             ICaptchaService captchaService,
-            ITwoFactorAuthService twoFactorAuthService,
             IAccountRepository accountRepository,
             IAuthService authService,
-            IEmailService mailService) : base(sessionService, languageService, appSetting, captchaService, authService)
+            IVerificationService verificationService) : base(sessionService, languageService, appSetting, captchaService, authService)
         {
-            _twoFactorAuthService = twoFactorAuthService;
             _accountRepository = accountRepository;
-            _mailService = mailService;
+            _verificationService = verificationService;
         }
 
         [HttpGet]
@@ -39,11 +35,13 @@ namespace Fanex.Affiliate.User.Core.Controllers
         {
             if (SessionService.VerificationSession == null)
             {
-                return Redirect("/Home");
+                return Redirect(Url.Content("~/Home"));
             }
+
             var verificationAccount = SessionService.VerificationSession;
             var userInfo = _accountRepository.GetUserInfoById(verificationAccount.AffId, false);
             var email = ConvertEmail(userInfo.Email);
+
             return View("~/Views/VerificationAccount/Index.cshtml", model: email);
         }
 
@@ -58,63 +56,48 @@ namespace Fanex.Affiliate.User.Core.Controllers
 
         [ValidateAntiForgeryToken]
         [HttpPost]
-        [AllowAnonymous]
         public ActionResult SendCode()
         {
-            var countDown = Session["previousTime"] == null ? DateTime.Now.TimeOfDay.TotalMilliseconds : (double)Session["previousTime"];
-            if (Session["previousTime"] == null || DateTime.Now.TimeOfDay.TotalMilliseconds - countDown > 60000)
+            var verificationSession = SessionService.VerificationSession;
+            var sendCodeParam = new SendCodeParam
             {
-                var verificationSession = SessionService.VerificationSession;
-                verificationSession.Counter = new Random().Next(int.MinValue, int.MaxValue);
-
-                var userInfo = _accountRepository.GetUserInfoById(verificationSession.AffId, false);
-                var otp = _twoFactorAuthService.GenerateHotp(verificationSession.AffId.ToString(), verificationSession.Counter);
-
-                var verificationAccountEmailParam = new VerificationAccountEmailParam
+                AffId = verificationSession.AffId,
+                SentCodeTime = verificationSession.SentCodeTime,
+                CurrentLanguage = SessionService.CurrentLanguage,
+                VerificationEmailParam = new VerificationAccountEmailParam
                 {
-                    User = userInfo,
                     MailContact = AppSetting.MailContact,
-                    MailTo = userInfo.Email,
-                    RootDomain = SiteDomainHelper.GetRootUrl(this),
-                    Code = otp,
+                    RootDomain = SiteDomainHelper.GetRootUrl(this, AppSetting),
                     Ip = RequestHelper.GetClientIPAddress()
-                };
+                }
+            };
 
-                var userLang = SystemLanguage.IsValid(userInfo.PreferredLanguage) ? userInfo.PreferredLanguage : SystemLanguage.DefaultLanguageCode;
-                LanguageService.SetCulture(userLang);
-                _mailService.SendVerificationEmail(verificationAccountEmailParam);
-                LanguageService.SetCulture(SessionService.CurrentLanguage);
-                Session["previousTime"] = DateTime.Now.TimeOfDay.TotalMilliseconds;
-
-                return Json(new ResultInfo
-                {
-                    IsOk = true,
-                    Message = Lang.SendCodeSuccessful
-                });
+            var result = _verificationService.SendCode(sendCodeParam);
+            if (result.IsOk)
+            {
+                verificationSession.Counter = result.NewCounter;
+                verificationSession.SentCodeTime = GetNewSentCodeTime();
             }
 
             return Json(new ResultInfo
             {
-                IsOk = false,
-                Message = Lang.SendCodeFailed
+                IsOk = result.IsOk,
+                Message = result.Message
             });
         }
 
         [ValidateAntiForgeryToken]
         [HttpPost]
-        [AllowAnonymous]
         public ActionResult VerifyAccount(VerificationAccountParam param)
         {
-            var requestValidtionResult = ValidateLoginRequest(param.Captcha);
+            var verificationSession = SessionService.VerificationSession;
+            var requestValidtionResult = ValidateLoginRequest(param.Captcha, verificationSession.Captcha);
             if (!requestValidtionResult.IsOk)
             {
                 return Json(requestValidtionResult);
             }
 
-            var verificationSession = SessionService.VerificationSession;
-            var isValidOtp = _twoFactorAuthService.VerifyHotp(verificationSession.AffId.ToString(), verificationSession.Counter, param.Code);
-
-            if (isValidOtp)
+            if (_verificationService.IsValidOtp(verificationSession.AffId.ToString(), verificationSession.Counter, param.Code))
             {
                 var userParam = new UserLoginParam
                 {
@@ -127,15 +110,14 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 var userInfo = loginResult.UserInfo;
                 if (userInfo != null && verificationSession.AffId == userInfo.AffId)
                 {
-                    if (!IsValidDomain(userInfo))
+                    if (!IsValidDomain(userInfo.AffType))
                     {
                         return Json(GetErrorResult(Lang.NotAllowOnDomain));
                     }
 
-                    SessionService.VerificationSession = loginResult.VerificationSession;
-
                     if (loginResult.Result.IsOk)
                     {
+                        SessionService.VerificationSession = null;
                         AssignLoginInfoAndSetAuth(userInfo, userParam.LoginIp);
 
                         return Json(loginResult.Result);
@@ -166,6 +148,13 @@ namespace Fanex.Affiliate.User.Core.Controllers
             }
             var newEmail = nameEmail + "@" + parts[1];
             return newEmail;
+        }
+
+        private static long GetNewSentCodeTime()
+        {
+            var now = DateTime.Now;
+
+            return new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second).Ticks;
         }
     }
 }

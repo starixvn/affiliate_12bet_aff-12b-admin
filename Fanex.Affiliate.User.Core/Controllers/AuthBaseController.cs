@@ -35,7 +35,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
 
         protected IAuthService AuthService => _authService;
 
-        protected ResultInfo ValidateLoginRequest(string inputCaptcha)
+        protected ResultInfo ValidateLoginRequest(string inputCaptcha, string sessionCaptcha)
         {
             if (!Request.IsAjaxRequest())
             {
@@ -51,7 +51,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 };
             }
 
-            if (!_captchaService.IsValid(inputCaptcha, SessionService.CaptchaCode, Request.UserHostAddress))
+            if (!_captchaService.IsValid(inputCaptcha, sessionCaptcha, Request.UserHostAddress))
             {
                 return new ResultInfo
                 {
@@ -63,9 +63,9 @@ namespace Fanex.Affiliate.User.Core.Controllers
             return new ResultInfo { IsOk = true };
         }
 
-        protected bool IsValidDomain(AuthorizedUserInfo user)
+        protected bool IsValidDomain(string affType)
         {
-            return user != null && !_appSetting.AllowedAffiliateTypes.Any(t => t.Equals(user.AffType));
+            return _appSetting.AllowedAffiliateTypes.Any(t => t.Equals(affType));
         }
 
         protected void AssignLoginInfoAndSetAuth(AuthorizedUserInfo user, string clientIpAddress, int adminId = 0)

@@ -8,7 +8,7 @@
     var email = Model;  
     if (string.IsNullOrEmpty(email))
     {
-        <h4 class="text-danger">Username is incorrect!</h4>
+        <h4 class="text-danger">You don't have the email address. Please contact administrator!</h4>
     }
     else
     {
@@ -24,14 +24,15 @@
             <br />
             <p>Dear Customer,</p>
             <p>Due to many recent failed logins, please verify one more security step.</p>
-            <p>A 6-digits verification code has been sent to your email address <strong>@email.</strong></p>
+            <p>A 6-digits verification code has been sent to your email address <strong>@email</strong>.</p>
             <p>Please enter your username, password and the veritication code below to log in.</p>
             <br />
             <form id="verificationAccountForm">
+                @Html.AntiForgeryToken()
                 <div class="form-group row">
                     <label for="Usename" class="col-sm-2 control-label require">Username</label>
                     <div class="col-sm-4 col-lg-3">
-                        <input type="text" class="form-control" data-val="true" data-val-required="Username is required" id="Usename" name="Usename" />
+                        <input type="text" class="form-control" autocomplete="off" data-val="true" data-val-required="Username is required" id="Usename" name="Usename" />
                         <span class="field-validation-valid help-block" data-valmsg-for="Usename" data-valmsg-replace="true"></span>
                     </div>
                 </div>
@@ -47,16 +48,16 @@
                 <div class="form-group row">
                     <label for="Code" class="col-sm-2 control-label require">Verification Code</label>
                     <div class="col-sm-4 col-lg-3">
-                        <input type="text" class="form-control" data-val="true" data-val-required="Verification Code is required" id="Code" name="Code" />
+                        <input type="text" class="form-control" autocomplete="off" data-val="true" data-val-required="Verification Code is required" id="Code" name="Code" />
                         <span class="field-validation-valid help-block" data-valmsg-for="Code" data-valmsg-replace="true"></span>
                     </div>
-                    <button type="button" class="btn btn-resend" id="btn-resend">RESEND CODE</button>
+                    <button type="button" class="btn btn-resend" id="btnResend" disabled>RESEND CODE</button>
                 </div>
 
                 <div class="form-group row">
                     <label for="Captcha" class="col-sm-2 control-label require">Captcha</label>
                     <div class="col-sm-4 col-lg-3">
-                        <input type="text" class="form-control" data-val="true" data-val-required="Captcha is required" id="Captcha" name="Captcha" />
+                        <input type="text" class="form-control" autocomplete="off" data-val="true" data-val-required="Captcha is required" id="Captcha" name="Captcha" />
                         <span class="field-validation-valid help-block" data-valmsg-for="Captcha" data-valmsg-replace="true"></span>
                     </div>
                     <div class="validation-value">
@@ -66,7 +67,7 @@
                 <br />
                 <div class="form-group row">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="button" class="btn btn-login" id="btn-login">login</button>
+                        <button type="button" class="btn btn-login" id="btn-login">Login</button>
                     </div>
                 </div>
             </form>

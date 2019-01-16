@@ -1,4 +1,6 @@
 ﻿var VerificationAccount = (function () {
+    var INTERVAL_SENDCODE_SECOND = 900;
+
     function encrypt(plainText, key) {
         var encrypt = new JSEncrypt();
         encrypt.setPublicKey(key);
@@ -20,15 +22,13 @@
     var _me = {
         initialize: function () {
             _me.initEvent();
-            _me.sendCode();
+            _me.sendCode(true);
         },
         initEvent: function () {
-            $("#btn-resend").on("click", function (e) {
-                e.preventDefault();
-                _me.sendCode();
+            $("#btnResend").on("click", function (e) {
+                _me.sendCode(false);
             });
             $("#btn-login").on("click", function (e) {
-                e.preventDefault();
                 _me.submitForm();
             });
             $("#captchaVerificationAccount").on('click', function (e) {
@@ -37,7 +37,7 @@
             });
             $('#verification-account input').on('keypress', function (e) {
                 var code = e.keyCode || e.which;
-                if (code == 13) {
+                if (code === 13) {
                     _me.submitForm();
                 }
             });
@@ -46,8 +46,8 @@
             var captchaUrl = Site.resolveRelativeUrl("VerificationAccount/CaptchaImage?_v=" + new Date().getTime());
             $("#captchaVerificationAccount").attr("src", captchaUrl);
         },
-        sendCode: function () {
-            var token = $('input[name="__RequestVerificationToken"]', $("#userLogin")).val();
+        sendCode: function (isReload) {
+            var token = $('input[name="__RequestVerificationToken"]', $("#verificationAccountForm")).val();
 
             $.ajax({
                 type: "POST",
@@ -57,12 +57,12 @@
                 cache: false,
                 contentType: "application/x-www-form-urlencoded; charset=UTF-8",
                 success: function (response) {
-                    if(!response.IsOk)
-                    {
+                    $('#btnResend').prop("disabled", true);
+                    _me.countDown(INTERVAL_SENDCODE_SECOND);
+
+                    if (!isReload && !response.IsOk) {
                         alert($("<div/>").html(response.Message).text());
                     }
-                    $('.btn-resend').prop("disabled", true);
-                    _me.countDown(60);
                 },
                 beforeSend: function () {
                     Site.showLoader();
@@ -73,12 +73,12 @@
             });
         },
         countDown: function (second) {
-            if (second == 0) {
+            if (second === 0) {
                 clearTimeout(_me.countDown);
-                $('.btn-resend').html('RESEND CODE');
-                $('.btn-resend').prop("disabled", false);
+                $('#btnResend').html('RESEND CODE');
+                $('#btnResend').prop("disabled", false);
             } else {
-                $('.btn-resend').html('RESEND CODE(' + second + ')');
+                $('#btnResend').html('RESEND CODE(' + second + ')');
                 setTimeout(_me.countDown, 1000, --second);
             }
         },

@@ -10,5 +10,7 @@ namespace Fanex.Affiliate.User.Core.DTO
         public int Counter { get; set; }
 
         public string Captcha { get; set; }
+
+        public long SentCodeTime { get; set; }
     }
 }
