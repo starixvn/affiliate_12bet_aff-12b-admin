@@ -1,6 +1,5 @@
-﻿using System.Linq;
+﻿using System;
 using System.Web.Mvc;
-using System.Web.Security;
 using System.Web.UI;
 using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.Constants;
@@ -11,17 +10,13 @@ using Fanex.Affiliate.User.Core.MetalModels.Email;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.Utilities;
-using System;
 
 namespace Fanex.Affiliate.User.Core.Controllers
 {
-    public class VerificationAccountController : BaseController
+    public class VerificationAccountController : AuthBaseController
     {
         private readonly ITwoFactorAuthService _twoFactorAuthService;
         private readonly IAccountRepository _accountRepository;
-        private readonly IAuthService _authService;
-        private readonly ICaptchaService _captchaService;
-        private readonly IAppSetting _appSetting;
         private readonly IEmailService _mailService;
 
         public VerificationAccountController(
@@ -32,20 +27,17 @@ namespace Fanex.Affiliate.User.Core.Controllers
             ITwoFactorAuthService twoFactorAuthService,
             IAccountRepository accountRepository,
             IAuthService authService,
-            IEmailService mailService) : base(sessionService, languageService)
+            IEmailService mailService) : base(sessionService, languageService, appSetting, captchaService, authService)
         {
             _twoFactorAuthService = twoFactorAuthService;
             _accountRepository = accountRepository;
-            _authService = authService;
-            _captchaService = captchaService;
-            _appSetting = appSetting;
             _mailService = mailService;
         }
 
         [HttpGet]
         public ActionResult Index()
         {
-            if(SessionService.VerificationSession == null)
+            if (SessionService.VerificationSession == null)
             {
                 return Redirect("/Home");
             }
@@ -61,7 +53,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
         {
             var captcha = Generator.GetRandomString(4);
             SessionService.VerificationSession.Captcha = captcha;
-            return File(_captchaService.GenerateImageBuffer(captcha, 100, 28, true), "image/png");
+            return File(CaptchaService.GenerateImageBuffer(captcha, 100, 28, true), "image/png");
         }
 
         [ValidateAntiForgeryToken]
@@ -72,16 +64,16 @@ namespace Fanex.Affiliate.User.Core.Controllers
             var countDown = Session["previousTime"] == null ? DateTime.Now.TimeOfDay.TotalMilliseconds : (double)Session["previousTime"];
             if (Session["previousTime"] == null || DateTime.Now.TimeOfDay.TotalMilliseconds - countDown > 60000)
             {
-                SessionService.VerificationSession.Counter = new Random().Next(int.MinValue, int.MaxValue);
+                var verificationSession = SessionService.VerificationSession;
+                verificationSession.Counter = new Random().Next(int.MinValue, int.MaxValue);
 
-                var verificationAccount = SessionService.VerificationSession;
-                var userInfo = _accountRepository.GetUserInfoById(verificationAccount.AffId, false);
-                var otp = _twoFactorAuthService.GenerateHotp(verificationAccount.AffId.ToString(), verificationAccount.Counter);
+                var userInfo = _accountRepository.GetUserInfoById(verificationSession.AffId, false);
+                var otp = _twoFactorAuthService.GenerateHotp(verificationSession.AffId.ToString(), verificationSession.Counter);
 
                 var verificationAccountEmailParam = new VerificationAccountEmailParam
                 {
                     User = userInfo,
-                    MailContact = _appSetting.MailContact,
+                    MailContact = AppSetting.MailContact,
                     MailTo = userInfo.Email,
                     RootDomain = SiteDomainHelper.GetRootUrl(this),
                     Code = otp,
@@ -100,6 +92,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
                     Message = Lang.SendCodeSuccessful
                 });
             }
+
             return Json(new ResultInfo
             {
                 IsOk = false,
@@ -112,111 +105,52 @@ namespace Fanex.Affiliate.User.Core.Controllers
         [AllowAnonymous]
         public ActionResult VerifyAccount(VerificationAccountParam param)
         {
-            if (!Request.IsAjaxRequest())
+            var requestValidtionResult = ValidateLoginRequest(param.Captcha);
+            if (!requestValidtionResult.IsOk)
             {
-                return Json(new ResultInfo
-                {
-                    IsOk = false,
-                    Message = Lang.ErrAuthorized
-                });
+                return Json(requestValidtionResult);
             }
 
-            if (!ModelState.IsValid)
+            var verificationSession = SessionService.VerificationSession;
+            var isValidOtp = _twoFactorAuthService.VerifyHotp(verificationSession.AffId.ToString(), verificationSession.Counter, param.Code);
+
+            if (isValidOtp)
             {
-                return Json(new ResultInfo
+                var userParam = new UserLoginParam
                 {
-                    IsOk = false,
-                    Message = string.Join(", ", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
-                });
-            }
+                    LoginInfo = param.LoginInfo,
+                    LoginIp = Request.UserHostAddress,
+                    Language = SessionService.CurrentLanguage
+                };
 
-            if (!_captchaService.IsValid(param.Captcha, SessionService.VerificationSession.Captcha, Request.UserHostAddress))
-            {
-                return Json(new ResultInfo
+                var loginResult = AuthService.GetLoginResult(userParam, false);
+                var userInfo = loginResult.UserInfo;
+                if (userInfo != null && verificationSession.AffId == userInfo.AffId)
                 {
-                    IsOk = false,
-                    Message = Lang.ValidationCaptcha
-                });
-            }
-
-            var userParam = new UserLoginParam
-            {
-                LoginInfo = param.LoginInfo,
-                LoginIp = Request.UserHostAddress,
-                Language = SessionService.CurrentLanguage
-            };
-
-            var verificationAccount = SessionService.VerificationSession;
-            var userInfo = _accountRepository.GetUserInfoById(verificationAccount.AffId, false);
-
-            var loginResult = _authService.VerifyAccount(userParam, userInfo.UserName);
-
-            if (loginResult == null)
-            {
-                return Json(new ResultInfo
-                {
-                    IsOk = false,
-                    Message = Lang.ValidationVerificationAccount
-                });
-            }
-
-            if (loginResult.UserInfo != null &&
-                        !_appSetting.AllowedAffiliateTypes.Any(t => t.Equals(loginResult.UserInfo.AffType)))
-            {
-                return Json(new ResultInfo
-                {
-                    IsOk = false,
-                    Message = Lang.NotAllowOnDomain
-                });
-            }
-
-            if (loginResult.Result.IsOk)
-            {
-                var verifyCode = _twoFactorAuthService.VerifyHotp(verificationAccount.AffId.ToString(), verificationAccount.Counter, param.Code);
-                if (verifyCode)
-                {
-                    var updateVerifyResult = _authService.UpdateVerifyResult(userParam, loginResult.UserInfo.AffId, loginResult.Result.IsOk, false);
-                    if(updateVerifyResult.IsOk)
+                    if (!IsValidDomain(userInfo))
                     {
-                        SessionService.VerificationSession = null;
+                        return Json(GetErrorResult(Lang.NotAllowOnDomain));
+                    }
 
-                        var user = loginResult.UserInfo;
-                        var onUserIdParam = GetOnUserIdParam(user.AffId, userParam.LoginIp);
-                        user.OnUserId = _authService.GetOnUserId(onUserIdParam);
+                    SessionService.VerificationSession = loginResult.VerificationSession;
 
-                        SessionService.AssignSessions(user);
-                        FormsAuthentication.SetAuthCookie(user.UserName, false);
+                    if (loginResult.Result.IsOk)
+                    {
+                        AssignLoginInfoAndSetAuth(userInfo, userParam.LoginIp);
 
                         return Json(loginResult.Result);
                     }
                 }
             }
 
-            return Json(new ResultInfo
-            {
-                IsOk = false,
-                Message = Lang.ValidationVerificationAccount
-            });
-        }
-
-        private OnUserIdParam GetOnUserIdParam(int affId, string clientIpAddress, int adminId = 0)
-        {
-            return new OnUserIdParam
-            {
-                CustId = affId,
-                ServerId = _appSetting.ServerId,
-                Ip = clientIpAddress,
-                NetSessionId = HttpContext.Session.SessionID,
-                SubAccId = adminId,
-                IsInternal = SessionService.IsInternal
-            };
+            return Json(GetErrorResult(Lang.ValidationVerificationAccount));
         }
 
         private static string ConvertEmail(string email)
         {
             var parts = email.Split('@');
             var nameEmail = parts[0];
-            if(nameEmail.Length > 8)
+            if (nameEmail.Length > 8)
             {
                 var step = nameEmail.Length - 4;
                 var item = new string('•', step);
