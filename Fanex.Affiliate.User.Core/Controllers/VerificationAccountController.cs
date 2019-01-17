@@ -130,26 +130,34 @@ namespace Fanex.Affiliate.User.Core.Controllers
 
         private static string ConvertEmail(string email)
         {
-            var parts = email.Split('@');
-            var nameEmail = parts[0];
-            if (nameEmail.Length > 8)
+            var defaultLength = 8;
+            var showedCharNumber = 1;
+            var substrings = email.Split('@');
+            var emailName = substrings[0];
+            var emailTail = substrings[1];
+            var newEmailName = string.Empty;
+
+            if (emailName.Length > defaultLength)
             {
-                var step = nameEmail.Length - 4;
-                var item = new string('•', step);
-                nameEmail = nameEmail.Remove(1, step);
-                nameEmail = nameEmail.Insert(1, item);
+                showedCharNumber = 4;
+                newEmailName = ReplaceEmailName(emailName, showedCharNumber, 1);
             }
             else
             {
-                var step = nameEmail.Length - 1;
-                var item = new string('•', step);
-                nameEmail = nameEmail.Remove(0, step);
-                nameEmail = nameEmail.Insert(0, item);
+                newEmailName = ReplaceEmailName(emailName, showedCharNumber, 0);
             }
 
-            return nameEmail + "@" + parts[1];
+            return newEmailName + "@" + emailTail;
         }
 
+        private static string ReplaceEmailName (string emailName, int numberCharShow, int indexStart)
+        {
+            var hidCharNumber = emailName.Length - numberCharShow;
+            var stringReplace = new string('•', hidCharNumber);
+            var newEmailName = emailName.Remove(indexStart, hidCharNumber);
+            newEmailName = newEmailName.Insert(indexStart, stringReplace);
+            return newEmailName;
+        }
         private static long GetNewSentCodeTime()
         {
             var now = DateTime.Now;

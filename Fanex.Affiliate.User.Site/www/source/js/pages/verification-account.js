@@ -1,5 +1,7 @@
 ﻿var VerificationAccount = (function () {
+    var _refreshCaptchaTimeoutId = null;
     var INTERVAL_SENDCODE_SECOND = 900;
+    var REFRESH_CAPTCHA_INTERVAL = 600000;
 
     function encrypt(plainText, key) {
         var encrypt = new JSEncrypt();
@@ -19,10 +21,24 @@
         return Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(),
               now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds(), now.getUTCMilliseconds());
     }
+    function registerRefreshCaptcha() {
+        function refreshCaptcha() {
+            console.log("captCha");
+            _me.generateCaptcha();
+            clearTimeout(_refreshCaptchaTimeoutId);
+            _refreshCaptchaTimeoutId = setTimeout(refreshCaptcha, REFRESH_CAPTCHA_INTERVAL);
+        }
+
+        clearTimeout(_refreshCaptchaTimeoutId);
+        _refreshCaptchaTimeoutId = setTimeout(function () {
+            refreshCaptcha();
+        }, REFRESH_CAPTCHA_INTERVAL);
+    }
     var _me = {
         initialize: function () {
             _me.initEvent();
             _me.sendCode(true);
+            registerRefreshCaptcha();
         },
         initEvent: function () {
             $("#btnResend").on("click", function (e) {
@@ -33,7 +49,7 @@
             });
             $("#captchaVerificationAccount").on('click', function (e) {
                 e.preventDefault();
-                _me.getCaptcha();
+                _me.generateCaptcha();
             });
             $('#verification-account input').on('keypress', function (e) {
                 var code = e.keyCode || e.which;
@@ -42,7 +58,7 @@
                 }
             });
         },
-        getCaptcha: function () {
+        generateCaptcha: function () {
             var captchaUrl = Site.resolveRelativeUrl("VerificationAccount/CaptchaImage?_v=" + new Date().getTime());
             $("#captchaVerificationAccount").attr("src", captchaUrl);
         },
@@ -120,7 +136,7 @@
                             alert($("<div/>").html(response.Message).text());
                             $('#Password').val("");
                             $('#Captcha').val("");
-                            _me.getCaptcha();
+                            _me.generateCaptcha();
                         }
                     },
                     beforeSend: function () {
