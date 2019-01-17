@@ -1894,6 +1894,12 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\EditCommissionGroup.jsx" />
     <Content Include=".babelrc" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\__tests__\Filter.test.js" />
+    <Content Include="Areas\Portal\Views\ThirdPartyProduct\Home\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\ThirdPartyProduct\Betsoft\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\ThirdPartyProduct\Ebet\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\ThirdPartyProduct\CrystalGpi\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\ThirdPartyProduct\ISoftbet\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\ThirdPartyProduct\Opus\Index.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -2010,6 +2016,10 @@
     <ProjectReference Include="..\Fanex.Affiliate.Admin.Core\Fanex.Affiliate.Admin.Core.csproj">
       <Project>{c1c3e2f9-cc94-41a2-96e5-776b9f67e840}</Project>
       <Name>Fanex.Affiliate.Admin.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.Affiliate.ThirdPartyProduct\Fanex.Affiliate.ThirdPartyProduct.csproj">
+      <Project>{118a9aa1-c33a-413a-a685-3495cf30c15f}</Project>
+      <Name>Fanex.Affiliate.ThirdPartyProduct</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

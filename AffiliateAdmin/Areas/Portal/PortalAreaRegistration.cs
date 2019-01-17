@@ -28,6 +28,13 @@ namespace AffiliateAdmin.Areas.Portal
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
                 namespaces: new[] { "Fanex.Affiliate.Admin.Core.Controllers" }
             );
+
+            context.MapRoute(
+                name: "ThirdPartyProduct",
+                url: "ThirdPartyProduct/{controller}/{action}/{id}",
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                namespaces: new[] { "Fanex.Affiliate.ThirdPartyProduct.Controllers" }
+            );
         }
     }
 }
