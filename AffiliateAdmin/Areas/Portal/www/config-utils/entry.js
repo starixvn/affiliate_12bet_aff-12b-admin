@@ -20,6 +20,9 @@ module.exports = {
     [`${jsDist}/pages/userpanel/customer-member`]: clientRoot + "/js/pages/user-panel/customer-member/index.jsx",
     [`${jsDist}/pages/affiliate/affiliate-info`]: clientRoot + "/js/pages/affiliate-info/index.jsx",
 
+    //For Thirdparty Product pages
+    [`${jsDist}/pages/thirdparty-product/betsoft`]: clientRoot + "/js/pages/thirdparty-product/betsoft/index.jsx",
+
     [`${styleDist}/portalmain`]: clientRoot + "/style/main.scss",
     [`${styleDist}/layout`]: clientRoot + "/style/layout/main-layout.scss",
     [`${styleDist}/user-panel-layout`]: clientRoot + "/style/layout/user-panel-layout.scss",
