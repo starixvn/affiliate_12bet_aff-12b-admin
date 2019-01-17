@@ -44,20 +44,12 @@ namespace Fanex.Affiliate.User.Core.Controllers
 
             if (!ModelState.IsValid)
             {
-                return new ResultInfo
-                {
-                    IsOk = false,
-                    Message = string.Join(", ", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
-                };
+                return GetErrorResult(string.Join(", ", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage)));
             }
 
             if (!_captchaService.IsValid(inputCaptcha, sessionCaptcha, Request.UserHostAddress))
             {
-                return new ResultInfo
-                {
-                    IsOk = false,
-                    Message = Lang.ValidationCode
-                };
+                return GetErrorResult(Lang.ValidationCode);
             }
 
             return new ResultInfo { IsOk = true };

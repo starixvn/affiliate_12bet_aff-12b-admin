@@ -33,13 +33,13 @@ namespace Fanex.Affiliate.User.Core.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            if (SessionService.VerificationSession == null)
+            var verificationSession = SessionService.VerificationSession;
+            if (verificationSession == null)
             {
                 return Redirect(Url.Content("~/Home"));
             }
 
-            var verificationAccount = SessionService.VerificationSession;
-            var userInfo = _accountRepository.GetUserInfoById(verificationAccount.AffId, false);
+            var userInfo = _accountRepository.GetUserInfoById(verificationSession.AffId, false);
             var email = ConvertEmail(userInfo.Email);
 
             return View("~/Views/VerificationAccount/Index.cshtml", model: email);
@@ -146,8 +146,8 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 nameEmail = nameEmail.Remove(0, step);
                 nameEmail = nameEmail.Insert(0, item);
             }
-            var newEmail = nameEmail + "@" + parts[1];
-            return newEmail;
+
+            return nameEmail + "@" + parts[1];
         }
 
         private static long GetNewSentCodeTime()
