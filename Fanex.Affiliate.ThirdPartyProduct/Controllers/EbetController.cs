@@ -52,7 +52,7 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
                 {
                     var ebetParam = new EbetParam
                     {
-                        UserName = param.UserName,
+                        UserName = param.UserName ?? string.Empty,
                         StartTime = startTime,
                         EndTime = endTime,
                         ChannelId = config.ChannelId,

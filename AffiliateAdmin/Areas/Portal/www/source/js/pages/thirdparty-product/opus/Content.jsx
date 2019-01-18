@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Container, Row, Col, Card, CardHeader, CardBody, CardText } from 'reactstrap';
+import { Container, Row, Col, Card, CardHeader, CardBody, CardText, Input } from 'reactstrap';
 
 export default class Filter extends PureComponent {
     constructor(props) {
@@ -7,6 +7,11 @@ export default class Filter extends PureComponent {
     }
 
     render() {
+        const { data } = this.props;
+        if (!data) {
+            return null;
+        }
+
         return (
             <div className="my-2">
                 <Container fluid={true}>
@@ -15,15 +20,19 @@ export default class Filter extends PureComponent {
                             <Card>
                                 <CardHeader>Raw Data</CardHeader>
                                 <CardBody>
-                                    <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
+                                    <CardText>
+                                        <Input type="textarea" value={data.RawData} rows={55} />
+                                    </CardText>
                                 </CardBody>
                             </Card>
                         </Col>
                         <Col xs="6">
                             <Card>
-                                <CardHeader>Converted Data</CardHeader>
+                                <CardHeader>Converted Data (GMT -4)</CardHeader>
                                 <CardBody>
-                                    <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
+                                    <CardText>
+                                        <Input type="textarea" value={data.ConvertedData} rows={55} />
+                                    </CardText>
                                 </CardBody>
                             </Card>
                         </Col>

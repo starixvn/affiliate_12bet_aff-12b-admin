@@ -1,41 +1,75 @@
 import React, { PureComponent } from 'react';
 
 import { Form, FormGroup, Input, Label, InputGroup, InputGroupAddon, Button } from 'reactstrap';
-import moment from 'moment';
+import { getNowString } from '../modules/utils';
 
 export default class Filter extends PureComponent {
     constructor(props) {
         super(props);
 
-        const nowString = moment().format('YYYY/MM/DD HH:mm:ss');
+        const nowString = getNowString();
         this.state = {
+            currencyId: '',
+            userName: '',
+            pageNumber: 1,
+            pageSize: 2000,
             startTime: nowString,
             endTime: nowString
         }
     }
 
+    handleInputChange = (event) => {
+        const { name, value } = event.target;
+        this.setState({ [name]: value });
+    }
+
+    handleSubmit = () => {
+        const param = Object.assign({}, this.state);
+
+        this.props.onGetRawData(param);
+    }
+
     render() {
-        const { startTime, endTime } = this.state;
+        const { startTime, endTime, userName, pageNumber, pageSize, currencyId } = this.state;
+        const { isLoadingData } = this.props;
 
         return (
             <div className="filter-container">
+                <Form inline tag="div" className="mb-2">
+                    <FormGroup className="mb-2 mr-sm-4 mb-sm-0">
+                        <Label className="mr-2">CurrencyId</Label>
+                        <Input type="text" name="currencyId" value={currencyId} onChange={this.handleInputChange} />
+                    </FormGroup>
+                    <FormGroup className="mb-2 mr-sm-4 mb-sm-0">
+                        <Label className="mr-2">User Name</Label>
+                        <Input type="text" name="userName" value={userName} onChange={this.handleInputChange} />
+                    </FormGroup>
+                    <FormGroup className="mb-2 mr-sm-4 mb-sm-0">
+                        <Label className="mr-2">Page Number</Label>
+                        <Input type="text" name="pageNumber" value={pageNumber} onChange={this.handleInputChange} />
+                    </FormGroup>
+                    <FormGroup className="mb-2 mr-sm-4 mb-sm-0">
+                        <Label className="mr-2">Page Size</Label>
+                        <Input type="text" name="pageSize" value={pageSize} onChange={this.handleInputChange} />
+                    </FormGroup>
+                </Form>
                 <Form inline tag="div">
                     <FormGroup className="mb-2 mr-sm-4 mb-sm-0">
                         <Label className="mr-2">Start Time</Label>
                         <InputGroup size="sm">
-                            <Input type="text" value={startTime} />
+                            <Input type="text" name="startTime" value={startTime} onChange={this.handleInputChange} />
                             <InputGroupAddon addonType="append">yyyy/MM/dd hh:mm:ss</InputGroupAddon>
                         </InputGroup>
                     </FormGroup>
                     <FormGroup className="mb-2 mr-sm-4 mb-sm-0">
                         <Label className="mr-2">End Time</Label>
                         <InputGroup size="sm">
-                            <Input type="text" value={endTime} />
+                            <Input type="text" name="endTime" value={endTime} onChange={this.handleInputChange} />
                             <InputGroupAddon addonType="append">yyyy/MM/dd hh:mm:ss</InputGroupAddon>
                         </InputGroup>
                     </FormGroup>
 
-                    <Button color="primary" type="button">
+                    <Button color="primary" type="button" disabled={isLoadingData} onClick={this.handleSubmit}>
                         Get Raw Data
                     </Button>
                 </Form>

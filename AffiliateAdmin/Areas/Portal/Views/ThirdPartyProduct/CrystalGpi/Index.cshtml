@@ -1,18 +1,15 @@
 ﻿
 @{
-    Layout = null;
+    Layout = "~/Areas/Portal/Views/Shared/_SinglePageLayout.cshtml";
 }
 
-<!DOCTYPE html>
+@section scripts{
+    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/thirdparty-product/crystal-gpi.js")"></script>
+}
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Crystal GPI</title>
-</head>
-<body>
-    <div>
-        <h4>12Crystal - GPI</h4> 
-    </div>
-</body>
-</html>
+<div>
+    <h4>12Crystal - GPI</h4>
+    <p>Api Data: GMT +8</p>
+    <p>Current TimeZone: @TimeZoneInfo.Local.DisplayName</p>
+</div>
+<div id="root"></div>

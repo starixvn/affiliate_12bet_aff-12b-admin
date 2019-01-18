@@ -28,7 +28,6 @@ export default class Filter extends PureComponent {
     render() {
         const { startTime, endTime } = this.state;
         const { isLoadingData } = this.props;
-        console.log(isLoadingData)
 
         return (
             <div className="filter-container">
