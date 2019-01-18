@@ -130,34 +130,33 @@ namespace Fanex.Affiliate.User.Core.Controllers
 
         private static string ConvertEmail(string email)
         {
-            var defaultLength = 8;
-            var showedCharNumber = 1;
-            var substrings = email.Split('@');
-            var emailName = substrings[0];
-            var emailTail = substrings[1];
-            var newEmailName = string.Empty;
-
-            if (emailName.Length > defaultLength)
+            const int EmailLengthToCheck = 8;
+            var emailParts = email.Split(new[] { '@' }, StringSplitOptions.RemoveEmptyEntries);
+            if (emailParts.Length != 2)
             {
-                showedCharNumber = 4;
-                newEmailName = ReplaceEmailName(emailName, showedCharNumber, 1);
-            }
-            else
-            {
-                newEmailName = ReplaceEmailName(emailName, showedCharNumber, 0);
+                return string.Empty;
             }
 
-            return newEmailName + "@" + emailTail;
+            var emailName = emailParts[0];
+            var emailSuffix = emailParts[1];
+
+            var newEmailName = emailName.Length > EmailLengthToCheck ?
+                ReplaceEmailName(emailName, 4, 1) :
+                ReplaceEmailName(emailName, 1, 0);
+
+            return newEmailName + "@" + emailSuffix;
         }
 
-        private static string ReplaceEmailName (string emailName, int numberCharShow, int indexStart)
+        private static string ReplaceEmailName(string emailName, int charLengthToShow, int startIndex)
         {
-            var hidCharNumber = emailName.Length - numberCharShow;
-            var stringReplace = new string('•', hidCharNumber);
-            var newEmailName = emailName.Remove(indexStart, hidCharNumber);
-            newEmailName = newEmailName.Insert(indexStart, stringReplace);
-            return newEmailName;
+            var hiddenCharCount = emailName.Length - charLengthToShow;
+            var stringReplace = new string('•', hiddenCharCount);
+            var convertedEmailName = emailName.Remove(startIndex, hiddenCharCount)
+                                                .Insert(startIndex, stringReplace);
+
+            return convertedEmailName;
         }
+
         private static long GetNewSentCodeTime()
         {
             var now = DateTime.Now;

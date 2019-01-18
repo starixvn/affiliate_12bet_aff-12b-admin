@@ -1,6 +1,6 @@
 ﻿var VerificationAccount = (function () {
     var _refreshCaptchaTimeoutId = null;
-    var INTERVAL_SENDCODE_SECOND = 900;
+    var INTERVAL_SENDCODE_SECOND = 300;
     var REFRESH_CAPTCHA_INTERVAL = 600000;
 
     function encrypt(plainText, key) {
@@ -23,16 +23,13 @@
     }
     function registerRefreshCaptcha() {
         function refreshCaptcha() {
-            console.log("captCha");
             _me.generateCaptcha();
             clearTimeout(_refreshCaptchaTimeoutId);
             _refreshCaptchaTimeoutId = setTimeout(refreshCaptcha, REFRESH_CAPTCHA_INTERVAL);
         }
 
         clearTimeout(_refreshCaptchaTimeoutId);
-        _refreshCaptchaTimeoutId = setTimeout(function () {
-            refreshCaptcha();
-        }, REFRESH_CAPTCHA_INTERVAL);
+        _refreshCaptchaTimeoutId = setTimeout(refreshCaptcha, REFRESH_CAPTCHA_INTERVAL);
     }
     var _me = {
         initialize: function () {
@@ -50,6 +47,7 @@
             $("#captchaVerificationAccount").on('click', function (e) {
                 e.preventDefault();
                 _me.generateCaptcha();
+                registerRefreshCaptcha();
             });
             $('#verification-account input').on('keypress', function (e) {
                 var code = e.keyCode || e.which;
@@ -137,6 +135,7 @@
                             $('#Password').val("");
                             $('#Captcha').val("");
                             _me.generateCaptcha();
+                            registerRefreshCaptcha();
                         }
                     },
                     beforeSend: function () {

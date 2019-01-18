@@ -10,7 +10,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 {
     public class VerificationService : IVerificationService
     {
-        private const int IntervalTimeByMinute = 15;
+        private const int IntervalTimeByMinute = 5;
 
         private readonly ILanguageService _languageService;
         private readonly ITwoFactorAuthService _twoFactorAuthService;
