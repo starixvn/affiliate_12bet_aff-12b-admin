@@ -845,6 +845,10 @@
   <ItemGroup>
     <Content Include="AccessDenied.aspx" />
     <Content Include="Alert.aspx" />
+    <Content Include="App_Data\OpusData\opus_1.xml" />
+    <Content Include="App_Data\OpusData\opus_2.xml" />
+    <Content Include="App_Data\OpusData\opus_3.xml" />
+    <Content Include="App_Data\OpusData\opus_4.xml" />
     <Content Include="App_Data\SpConfig\SpName.local.xml">
       <DependentUpon>_SpName.tt</DependentUpon>
     </Content>
@@ -1900,6 +1904,41 @@
     <Content Include="Areas\Portal\Views\ThirdPartyProduct\CrystalGpi\Index.cshtml" />
     <Content Include="Areas\Portal\Views\ThirdPartyProduct\ISoftbet\Index.cshtml" />
     <Content Include="Areas\Portal\Views\ThirdPartyProduct\Opus\Index.cshtml" />
+    <Content Include="App_Data\EBetConfig.json" />
+    <Content Include="App_Data\EbetData\ebet_13.json" />
+    <Content Include="App_Data\EbetData\ebet_15.json" />
+    <Content Include="App_Data\EbetData\ebet_2.json" />
+    <Content Include="App_Data\EbetData\ebet_3.json" />
+    <Content Include="App_Data\EbetData\ebet_4.json" />
+    <Content Include="App_Data\EbetData\ebet_4_2.json" />
+    <Content Include="App_Data\EbetData\ebet_4_3.json" />
+    <Content Include="App_Data\EbetData\ebet_51.json" />
+    <Content Include="App_Data\EbetData\ebet_61.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_01.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_02.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_03.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_04.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_05.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_06.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_07.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_08.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_09.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_10.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_11.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_12.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_13.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_14.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_15.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_16.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_17.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_18.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_19.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_20.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_21.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_22.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_23.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_24.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_25.json" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
