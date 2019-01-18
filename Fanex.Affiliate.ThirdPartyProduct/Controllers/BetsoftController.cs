@@ -14,6 +14,8 @@ using Newtonsoft.Json;
 
 namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
 {
+    [Authorize]
+    [FunctionAuthorize]
     public class BetsoftController : Controller
     {
         private readonly IBetsoftService _betsoftService;

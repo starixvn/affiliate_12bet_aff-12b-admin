@@ -16,6 +16,8 @@ using Newtonsoft.Json;
 
 namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
 {
+    [Authorize]
+    [FunctionAuthorize]
     public class EbetController : Controller
     {
         private readonly IEbetConfigHelper _ebetConfigHelper;

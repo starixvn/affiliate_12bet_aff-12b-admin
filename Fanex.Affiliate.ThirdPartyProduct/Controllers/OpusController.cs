@@ -13,6 +13,8 @@ using Newtonsoft.Json;
 
 namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
 {
+    [Authorize]
+    [FunctionAuthorize]
     public class OpusController : Controller
     {
         private readonly IOpusService _opusService;
