@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Container, Row, Col, Card, CardHeader, CardBody, CardText } from 'reactstrap';
+import { Container, Row, Col, Card, CardHeader, CardBody, CardText, Input } from 'reactstrap';
 
 export default class Filter extends PureComponent {
     constructor(props) {
@@ -20,15 +20,19 @@ export default class Filter extends PureComponent {
                             <Card>
                                 <CardHeader>Raw Data</CardHeader>
                                 <CardBody>
-                                    <CardText>{data.RawData}</CardText>
+                                    <CardText>
+                                        <Input type="textarea" value={data.RawData} rows={55} />
+                                    </CardText>
                                 </CardBody>
                             </Card>
                         </Col>
                         <Col xs="6">
                             <Card>
-                                <CardHeader>Converted Data</CardHeader>
+                                <CardHeader>Converted Data (GMT -4)</CardHeader>
                                 <CardBody>
-                                    <CardText>{data.ConvertedData}</CardText>
+                                    <CardText>
+                                        <Input type="textarea" value={data.ConvertedData} rows={55} />
+                                    </CardText>
                                 </CardBody>
                             </Card>
                         </Col>

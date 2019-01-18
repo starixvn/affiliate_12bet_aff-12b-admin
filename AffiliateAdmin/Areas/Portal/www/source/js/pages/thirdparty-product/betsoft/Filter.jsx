@@ -1,13 +1,13 @@
 import React, { PureComponent } from 'react';
 
 import { Form, FormGroup, Input, Label, InputGroup, InputGroupAddon, Button } from 'reactstrap';
-import moment from 'moment';
+import { getNowString } from '../modules/utils';
 
 export default class Filter extends PureComponent {
     constructor(props) {
         super(props);
 
-        const nowString = moment().format('YYYY/MM/DD HH:mm:ss');
+        const nowString = getNowString();
         this.state = {
             startTime: nowString,
             endTime: nowString
@@ -27,6 +27,8 @@ export default class Filter extends PureComponent {
 
     render() {
         const { startTime, endTime } = this.state;
+        const { isLoadingData } = this.props;
+        console.log(isLoadingData)
 
         return (
             <div className="filter-container">
@@ -46,7 +48,7 @@ export default class Filter extends PureComponent {
                         </InputGroup>
                     </FormGroup>
 
-                    <Button color="primary" type="button" onClick={this.handleSubmit}>
+                    <Button color="primary" type="button" disabled={isLoadingData} onClick={this.handleSubmit}>
                         Get Raw Data
                     </Button>
                 </Form>

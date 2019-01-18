@@ -10,12 +10,13 @@ export default class AppContainer extends PureComponent {
         super(props);
 
         this.state = {
-            data: null
+            data: null,
+            isLoadingData: false
         }
     }
 
     handleGetRawData = async (param) => {
-        this.setState({ data: null });
+        this.setState({ data: null, isLoadingData: true });
         const response = await post('ThirdPartyProduct/Betsoft/Index', param);
 
         const { LogMessage, RawData, ConvertedData } = response.data;
@@ -24,16 +25,17 @@ export default class AppContainer extends PureComponent {
             console.log(LogMessage);
         }
         else {
-            this.setState({ data: { RawData, ConvertedData } });
+            alert('Done!');
+            this.setState({ data: { RawData, ConvertedData }, isLoadingData: false });
         }
     }
 
     render() {
-        const { data } = this.state;
+        const { data, isLoadingData } = this.state;
 
         return (
             <AppLayout>
-                <Filter onGetRawData={this.handleGetRawData} />
+                <Filter onGetRawData={this.handleGetRawData} isLoadingData={isLoadingData} />
                 <Content data={data} />
             </AppLayout>
         )
