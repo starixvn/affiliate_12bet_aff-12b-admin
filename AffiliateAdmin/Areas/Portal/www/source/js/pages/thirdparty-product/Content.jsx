@@ -21,7 +21,7 @@ export default class Filter extends PureComponent {
                                 <CardHeader>Raw Data</CardHeader>
                                 <CardBody>
                                     <CardText>
-                                        <Input type="textarea" value={data.RawData} rows={55} />
+                                        <Input type="textarea" readOnly value={data.RawData} rows={55} />
                                     </CardText>
                                 </CardBody>
                             </Card>
@@ -31,7 +31,7 @@ export default class Filter extends PureComponent {
                                 <CardHeader>Converted Data (GMT -4)</CardHeader>
                                 <CardBody>
                                     <CardText>
-                                        <Input type="textarea" value={data.ConvertedData} rows={55} />
+                                        <Input type="textarea" readOnly value={data.ConvertedData} rows={55} />
                                     </CardText>
                                 </CardBody>
                             </Card>
