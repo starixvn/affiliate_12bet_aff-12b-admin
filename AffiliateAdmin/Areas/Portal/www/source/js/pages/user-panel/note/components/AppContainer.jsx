@@ -1,8 +1,12 @@
-﻿import React, { Component } from 'react';
+﻿import React, { Component } from "react";
+import { connect } from 'react-redux';
 
-import AppLayout from '../../../../layouts/AppLayout';
+import AppLayout from "../../../../layouts/AppLayout";
+import Content from "./Content";
+import EditNoteForm from "./EditNoteForm";
+import Loader from '../../../../components/Loader';
 
-export default class AppContainer extends Component {
+export class AppContainer extends Component {
     constructor(props) {
         super(props);
     }
@@ -10,8 +14,16 @@ export default class AppContainer extends Component {
     render() {
         return (
             <AppLayout>
-                <h2>Note</ h2>
+                <Loader show={this.props.isShowLoader} />
+                <Content />
+                <EditNoteForm />
             </AppLayout>
         );
     }
 }
+
+function mapStateToProps({ isShowLoader }) {
+    return Object.assign({}, { isShowLoader });
+}
+
+export default connect(mapStateToProps)(AppContainer);
