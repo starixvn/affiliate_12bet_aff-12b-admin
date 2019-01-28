@@ -1,12 +1,10 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
-using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
-using System.Collections.Generic;
+﻿using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 
 namespace Fanex.Affiliate.Admin.Core.ViewModels.UserPanel
 {
     public class NoteViewModel
     {
-        public IEnumerable<Note> NoteList { get; set; }
+        public int TotalItem { get; set; }
 
         public NoteParam Param { get; set; }
     }

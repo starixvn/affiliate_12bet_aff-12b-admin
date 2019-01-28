@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 {
@@ -6,12 +7,13 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
     {
         public int NoteId { get; set; }
 
-        public string Content { get; set; }
+        public string NoteContent { get; set; }
 
         public string CreatedBy { get; set; }
 
-        public DateTime LastModify { get; set; }
+        [JsonIgnore]
+        public DateTime? LastModify { get; set; }
 
-        public string LastModifyText => LastModify.ToString("MM/dd/yyyy HH:mm:ss");
+        public string LastModifyText => LastModify?.ToString("MM/dd/yyyy HH:mm:ss") ?? "N/A";
     }
 }

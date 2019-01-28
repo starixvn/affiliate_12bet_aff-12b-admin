@@ -10,7 +10,6 @@
 @section styles{
     <script type="text/javascript">
         window.initialState = {
-            noteList: @Html.Raw(Json.Encode(Model.NoteList)),
             param: { AffId: @Model.Param.AffId }
         }
     </script>
@@ -26,7 +25,8 @@
         var affiliateLinkParam = new AffiliateLinkParam
         {
             AffId = Model.Param.AffId,
-            AffName = Model.Param.AffName
+            AffName = Model.Param.AffName,
+            TotalItem = Model.TotalItem
         };
         var usePanelMenu = new UserPanelMenuViewModel
         {

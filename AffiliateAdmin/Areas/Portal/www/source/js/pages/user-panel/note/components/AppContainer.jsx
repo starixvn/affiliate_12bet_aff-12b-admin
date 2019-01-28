@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import AppLayout from "../../../../layouts/AppLayout";
 import Content from "./Content";
-import EditNoteForm from "./EditNoteForm";
+import InsertUpdateNoteForm from "./InsertUpdateNoteForm";
 import Loader from '../../../../components/Loader';
 
 export class AppContainer extends Component {
@@ -16,7 +16,7 @@ export class AppContainer extends Component {
             <AppLayout>
                 <Loader show={this.props.isShowLoader} />
                 <Content />
-                <EditNoteForm />
+                <InsertUpdateNoteForm />
             </AppLayout>
         );
     }
