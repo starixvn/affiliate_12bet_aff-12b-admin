@@ -2,7 +2,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { Col, Button, Form, FormGroup, Label, Input, FormFeedback, Modal, ModalHeader, ModalBody } from 'reactstrap';
+import { Alert, Col, Button, Form, FormGroup, Label, Input, FormFeedback, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import { setShowPopup, setNoteList } from '../actions';
 import { toggleLoader } from '../../../../actions/loaderAction';
 import { post } from '../../../../modules/ajaxRequest';
@@ -15,7 +15,10 @@ export class InsertUpdateNoteForm extends Component {
         super(props);
 
         this.state = {
-            noteContent: ''
+            noteContent: '',
+            isShowMessage: false,
+            isSuccess: true,
+            message: ''
         }
     }
 
@@ -65,21 +68,39 @@ export class InsertUpdateNoteForm extends Component {
         const response = await post(url, param);
 
         if (response) {
-            if (response.data.IsSuccessful) {
-                alert(message);
+            const result = response.data;
 
-                this.props.setNoteList([]);
-                this.props.setShowPopup(false);
+            if (response.data.IsSuccessful) {
+                window.setTimeout(this.closePopup, 3000);
             }
-            else {
-                alert(response.data.Message);
-            }
+
+            this.setState({
+                isShowMessage: true,
+                isSuccess: result.IsSuccessful,
+                message: result.IsSuccessful ? message : result.Message
+            });
+
+            window.setTimeout(this.clearState, 3000);
         }
 
         this.props.toggleLoader(false);
     }
 
+    closePopup = () => {
+        this.props.setShowPopup(false);
+        this.props.setNoteList([]);
+    }
+
+    clearState = () => {
+        this.setState({
+            isShowMessage: false,
+            isSuccess: true,
+            message: ''
+        });
+    }
+
     render() {
+        const { isShowMessage, isSuccess, message } = this.state;
         const { isShowPopup, param } = this.props;
         const popupTitle = param.NoteId == 0 ? resource.AddNote : resource.UpdateNote;
         const buttonTitle = param.NoteId == 0 ? globalResource.Add : globalResource.Update;
@@ -92,18 +113,20 @@ export class InsertUpdateNoteForm extends Component {
                 <ModalBody>
                     <div className="modal-body-wrapper">
                         <div className="note-form-container">
+                            <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
+                                <div dangerouslySetInnerHTML={{ __html: message }}></div>
+                            </Alert>
                             <Form tag="form" className="mb-5" autocomplete="off">
                                 <FormGroup row className="mb-2">
-                                    <Label for="noteContent" sm={4} className="required">Content</Label>
-                                    <Col sm={5}>
-                                        <Input type="textarea" name="noteContent" id="noteContent"
+                                    <Label for="noteContent" sm={3} className="label-noteContent required">Content</Label>
+                                    <Col sm={9}>
+                                        <Input type="textarea" name="noteContent" id="noteContent" rows="8"
                                             value={this.state.noteContent} onChange={this.handleChange} invalid={!noteContentValidation.isValid} />
                                         {noteContentValidation.message &&
                                             <FormFeedback><div dangerouslySetInnerHTML={{ __html: noteContentValidation.message }} /></FormFeedback>}
                                     </Col>
                                 </FormGroup>
                             </Form>
-
                             <Button type="button" color="success" className="mr-3" disabled={!noteContentValidation.isValid} onClick={this.handleSave}>{buttonTitle}</Button>
                             <Button type="button" color="info" onClick={() => this.props.setShowPopup(false)}>{globalResource.Cancel}</Button>
                         </div>

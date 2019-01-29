@@ -12,7 +12,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
     [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class NoteController : BaseController
     {
-        private readonly INoteRepository _noteRepository;
+        readonly INoteRepository _noteRepository;
         public NoteController(
             ISessionService sessionService,
             INoteRepository noteRepository) : base(sessionService)
@@ -37,6 +37,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         }
 
         [HttpPost]
+        [ValidateAntiForgeryHeader]
         public ActionResult GetNoteList(NoteParam param)
         {
             param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
@@ -50,6 +51,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         }
 
         [HttpPost]
+        [ValidateAntiForgeryHeader]
         public ActionResult InsertNote(InsertUpdateNoteParam param)
         {
             AssignCommonParam(param);
@@ -63,10 +65,10 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         }
 
         [HttpPost]
+        [ValidateAntiForgeryHeader]
         public ActionResult UpdateNote(InsertUpdateNoteParam param)
         {
             AssignCommonParam(param);
-            param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
 
             var model = _noteRepository.UpdateNote(param);
 
@@ -76,8 +78,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
             };
         }
 
-        private void AssignCommonParam(InsertUpdateNoteParam param)
+        void AssignCommonParam(InsertUpdateNoteParam param)
         {
+            param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
             param.UserId = SessionService.UserId;
             param.Ip = Request.UserHostAddress;
         }
