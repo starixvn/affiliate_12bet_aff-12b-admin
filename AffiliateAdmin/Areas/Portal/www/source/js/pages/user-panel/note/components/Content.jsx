@@ -9,7 +9,7 @@ import { headerText } from '../modules/constants';
 import { globalResource } from '../../../../modules/globalResource';
 
 import { post } from '../../../../modules/ajaxRequest';
-import { setNoteList, setShowPopup, setParam, setPagingOption } from '../actions';
+import { setShowPopup, setParam, setPagingOption } from '../actions';
 import { toggleLoader } from '../../../../actions/loaderAction';
 
 export class Content extends Component {
@@ -23,6 +23,18 @@ export class Content extends Component {
     }
 
     componentDidMount() {
+        this.updateData()
+    }
+
+    componentDidUpdate(prevProps) {
+        const { noteList } = this.props;
+
+        if (noteList !== prevProps.noteList) {
+            this.updateData()
+        }
+    }
+
+    updateData() {
         const { param, pagingOption } = this.props;
         const newParam = Object.assign({}, param, { PageIndex: pagingOption.PageIndex, PageSize: pagingOption.PageSize });
         this.fetchData(newParam);
@@ -107,8 +119,7 @@ export class Content extends Component {
     };
 
     render() {
-        const { shouldResetScrollPosition, pagingOption } = this.props;
-        const { gridData } = this.state;
+        const { gridData, shouldResetScrollPosition } = this.state;
 
         return gridData && (
             <div className="data-content">
@@ -140,7 +151,7 @@ function mapStateToProps({ pagingOption, noteList, param }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setNoteList, setShowPopup, setParam, setPagingOption, toggleLoader }, dispatch);
+    return bindActionCreators({ setShowPopup, setParam, setPagingOption, toggleLoader }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

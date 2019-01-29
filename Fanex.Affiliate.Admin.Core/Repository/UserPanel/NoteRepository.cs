@@ -59,6 +59,9 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
             using (var objectDb = GetObjectDb(SpKey))
             {
                 AssignCommonParam(objectDb, param);
+                objectDb.AddInParameter("CustID", DbType.Int32, param.AffId);
+
+                objectDb.AddOutParameter("Noteid", DbType.Int32, 4);
                 AssignResultOutputParam(objectDb);
 
                 objectDb.ExecuteNonQuery();
@@ -69,11 +72,12 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
 
         public ResultInfo UpdateNote(InsertUpdateNoteParam param)
         {
-            const string SpKey = "Aff_AdminNoteIns";
+            const string SpKey = "Aff_AdminNoteUpd";
             using (var objectDb = GetObjectDb(SpKey))
             {
                 AssignCommonParam(objectDb, param);
                 objectDb.AddInParameter("Noteid", DbType.Int32, param.NoteId);
+                objectDb.AddInParameter("UserID", DbType.Int32, param.UserId);
                 AssignResultOutputParam(objectDb);
 
                 objectDb.ExecuteNonQuery();
@@ -84,13 +88,9 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
 
         private static void AssignCommonParam(IObjectDb objectDb, InsertUpdateNoteParam param)
         {
-            objectDb.AddInParameter("CustID", DbType.Int32, param.AffId);
-            objectDb.AddInParameter("Updateby", DbType.Int32, param.UserId);
+            objectDb.AddInParameter("Updatedby", DbType.Int32, param.UserId);
             objectDb.AddInParameter("Note", DbType.String, param.NoteContent);
             objectDb.AddInParameter("IP", DbType.String, param.Ip);
-
-            objectDb.AddOutParameter("ErrCode", DbType.Int32, 4);
-            objectDb.AddOutParameter("ErrMsg", DbType.String, 2000);
         }
 
         private static Note BuildNoteItem(IDataReader reader)

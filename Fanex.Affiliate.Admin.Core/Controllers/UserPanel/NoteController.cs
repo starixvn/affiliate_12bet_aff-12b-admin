@@ -52,7 +52,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         [HttpPost]
         public ActionResult InsertNote(InsertUpdateNoteParam param)
         {
-            param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
+            AssignCommonParam(param);
 
             var model = _noteRepository.InsertNote(param);
 
@@ -65,6 +65,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         [HttpPost]
         public ActionResult UpdateNote(InsertUpdateNoteParam param)
         {
+            AssignCommonParam(param);
             param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
 
             var model = _noteRepository.UpdateNote(param);
@@ -73,6 +74,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
             {
                 Data = model
             };
+        }
+
+        private void AssignCommonParam(InsertUpdateNoteParam param)
+        {
+            param.UserId = SessionService.UserId;
+            param.Ip = Request.UserHostAddress;
         }
     }
 }
