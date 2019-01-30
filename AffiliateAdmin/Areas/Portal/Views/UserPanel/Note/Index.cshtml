@@ -6,11 +6,11 @@
 @using Fanex.Affiliate.Admin.Core.Constants
 @using Fanex.Affiliate.Admin.Core.ViewModels.UserPanel
 @using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
-@model Fanex.Affiliate.Admin.Core.ViewModels.UserPanel.NoteViewModel
+@model Fanex.Affiliate.Admin.Core.MetaModels.UserPanel.NoteParam
 @section styles{
     <script type="text/javascript">
         window.initialState = {
-            param: { AffId: @Model.Param.AffId }
+            noteInfo: { AffId: @Model.AffId, NoteId: 0, NoteContent: '' }
         }
     </script>
     <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/user-panel/note.css")" rel="stylesheet" />
@@ -24,9 +24,8 @@
     @{
         var affiliateLinkParam = new AffiliateLinkParam
         {
-            AffId = Model.Param.AffId,
-            AffName = Model.Param.AffName,
-            TotalItem = Model.TotalItem
+            AffId = Model.AffId,
+            AffName = Model.AffName,
         };
         var usePanelMenu = new UserPanelMenuViewModel
         {

@@ -3,7 +3,6 @@ using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
 using System.Web.Mvc;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
-using Fanex.Affiliate.Admin.Core.ViewModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
 using Fanex.Affiliate.Admin.Core.Extensions;
 
@@ -12,7 +11,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
     [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class NoteController : BaseController
     {
-        readonly INoteRepository _noteRepository;
+        private readonly INoteRepository _noteRepository;
         public NoteController(
             ISessionService sessionService,
             INoteRepository noteRepository) : base(sessionService)
@@ -24,16 +23,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         public ActionResult Index(NoteParam param)
         {
             param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
-
-            var model = _noteRepository.GetNoteList(param);
-
-            var viewModel = new NoteViewModel
-            {
-                TotalItem = model.TotalItem,
-                Param = param
-            };
             
-            return View("~/Areas/Portal/Views/UserPanel/Note/Index.cshtml", viewModel);
+            return View("~/Areas/Portal/Views/UserPanel/Note/Index.cshtml", param);
         }
 
         [HttpPost]
@@ -52,6 +43,18 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        [Compress]
+        public ActionResult GetNoteById(int affId, int noteId)
+        {
+            return new JsonNetResult
+            {
+                Data = _noteRepository.GetNoteById(affId == 0 ? SessionService.AffId : affId, noteId)
+            };
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        [Compress]
         public ActionResult InsertNote(InsertUpdateNoteParam param)
         {
             AssignCommonParam(param);
@@ -66,6 +69,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        [Compress]
         public ActionResult UpdateNote(InsertUpdateNoteParam param)
         {
             AssignCommonParam(param);
@@ -78,7 +82,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
             };
         }
 
-        void AssignCommonParam(InsertUpdateNoteParam param)
+        private void AssignCommonParam(InsertUpdateNoteParam param)
         {
             param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
             param.UserId = SessionService.UserId;

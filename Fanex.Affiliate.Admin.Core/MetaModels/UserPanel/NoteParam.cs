@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
+﻿namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
 {
     public class NoteParam
     {

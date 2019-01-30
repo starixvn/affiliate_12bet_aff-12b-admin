@@ -1,5 +1,5 @@
 ﻿import { combineReducers } from 'redux';
-import { SET_NOTE_LIST, SET_SHOW_POPUP, SET_PARAM } from '../actions/types';
+import { SET_NOTE_LIST, SET_SHOW_POPUP, SET_NOTE_INFO } from '../actions/types';
 import createReducer from '../../../../modules/createReducer';
 
 import { pagingOption } from '../../../../reducers/pagingReducer';
@@ -17,8 +17,8 @@ export const isShowPopup = createReducer(false, {
     }
 });
 
-export const param = createReducer({}, {
-    [SET_PARAM](prevState, action) {
+export const noteInfo = createReducer({}, {
+    [SET_NOTE_INFO](prevState, action) {
         return Object.assign({}, prevState, action.data);
     }
 });
@@ -28,5 +28,5 @@ export default combineReducers({
     isShowLoader,
     isShowPopup,
     noteList,
-    param
+    noteInfo
 });

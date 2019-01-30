@@ -1,4 +1,6 @@
-﻿export const headerText = {
+﻿export const maxLength = 1000;
+
+export const headerText = {
     Index: '#',
     Content: 'Content',
     CreatedBy: 'Created By',
@@ -8,7 +10,6 @@
 export const resource = {
     RequiredErrorMessage: 'This field is required',
     MaxLengthErrorMessage: 'This field must not exceed 1000 characters',
-    MaxLength: 1000,
     AddNote: "Add Note",
     AddNoteSuccess: "Add Note is successful",
     UpdateNote: "Update Note",

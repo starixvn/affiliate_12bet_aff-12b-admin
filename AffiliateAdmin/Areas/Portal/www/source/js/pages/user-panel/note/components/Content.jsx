@@ -9,7 +9,7 @@ import { headerText } from '../modules/constants';
 import { globalResource } from '../../../../modules/globalResource';
 
 import { post } from '../../../../modules/ajaxRequest';
-import { setShowPopup, setParam, setPagingOption } from '../actions';
+import { setShowPopup, setNoteInfo, setPagingOption } from '../actions';
 import { toggleLoader } from '../../../../actions/loaderAction';
 
 export class Content extends Component {
@@ -35,9 +35,9 @@ export class Content extends Component {
     }
 
     updateData() {
-        const { param, pagingOption } = this.props;
-        const newParam = Object.assign({}, param, { PageIndex: pagingOption.PageIndex, PageSize: pagingOption.PageSize });
-        this.fetchData(newParam);
+        const { noteInfo, pagingOption } = this.props;
+        const param = Object.assign({}, { AffId: noteInfo.AffId, PageIndex: pagingOption.PageIndex, PageSize: pagingOption.PageSize });
+        this.fetchData(param);
     }
 
     async fetchData(param) {
@@ -90,7 +90,7 @@ export class Content extends Component {
                 <Cell title={dataItem.CreatedBy}>{dataItem.CreatedBy}</Cell>
                 <Cell title={dataItem.LastModifyText} className="text-center">{dataItem.LastModifyText}</Cell>
                 <Cell title="Edit Note" className="text-center">
-                    <Button color="link" onClick={() => this.handleShowPopup(dataItem.NoteId, dataItem.NoteContent)}>
+                    <Button color="link" onClick={() => this.handleShowPopup(dataItem.NoteId)}>
                         <span className="oi oi-pencil text-secondary"></span>
                     </Button>
                 </Cell>
@@ -98,18 +98,29 @@ export class Content extends Component {
         )
     }
 
-    handleShowPopup = (noteId, noteContent) => {
-        const { param } = this.props;
-        const newParam = Object.assign({}, param, { NoteId: noteId, NoteContent: noteContent })
+    handleShowPopup = (noteId) => {
+        const { noteInfo } = this.props;
+        const param = Object.assign({}, noteInfo, { NoteId: noteId });
+
+        this.getNoteContentById(param);
 
         this.props.setShowPopup(true);
-        this.props.setParam(newParam);
     }
 
-    handlePaging = (index, size) => {
+    async getNoteContentById(param) {
+        const url = 'Portal/UserPanel/Note/GetNoteById';
+        const response = await post(url, param);
+
+        if (response && response.status === 200) {
+            const newNoteInfo = Object.assign({}, param, { NoteContent: response.NoteContent });
+            this.props.setNoteInfo(newNoteInfo);
+        }
+    }
+
+    handlePaging = (pageIndex, pageSize) => {
         const newPaging = {
-            PageIndex: index,
-            PageSize: size
+            PageIndex: pageIndex,
+            PageSize: pageSize
         };
 
         this.props.setPagingOption(newPaging);
@@ -146,12 +157,12 @@ export class Content extends Component {
 }
 
 
-function mapStateToProps({ pagingOption, noteList, param }) {
-    return Object.assign({}, { pagingOption, noteList, param });
+function mapStateToProps({ pagingOption, noteList, noteInfo }) {
+    return Object.assign({}, { pagingOption, noteList, noteInfo });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setShowPopup, setParam, setPagingOption, toggleLoader }, dispatch);
+    return bindActionCreators({ setShowPopup, setNoteInfo, setPagingOption, toggleLoader }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

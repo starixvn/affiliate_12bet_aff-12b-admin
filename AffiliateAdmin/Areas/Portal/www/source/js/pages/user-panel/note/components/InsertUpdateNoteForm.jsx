@@ -7,7 +7,7 @@ import { setShowPopup, setNoteList } from '../actions';
 import { toggleLoader } from '../../../../actions/loaderAction';
 import { post } from '../../../../modules/ajaxRequest';
 
-import { resource } from '../modules/constants';
+import { resource, maxLength } from '../modules/constants';
 import { globalResource } from '../../../../modules/globalResource';
 
 export class InsertUpdateNoteForm extends Component {
@@ -23,10 +23,10 @@ export class InsertUpdateNoteForm extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        const { param } = this.props;
+        const { noteInfo } = this.props;
 
-        if (param !== prevProps.param) {
-            this.setState({ noteContent: param.NoteContent })
+        if (noteInfo !== prevProps.noteInfo) {
+            this.setState({ noteContent: noteInfo.NoteContent })
         }
     }
 
@@ -38,34 +38,29 @@ export class InsertUpdateNoteForm extends Component {
         const { noteContent } = this.state;
 
         const result = {
-            isValid: !!noteContent && noteContent.length <= resource.MaxLength,
+            isValid: !!noteContent && noteContent.length <= maxLength,
             message: ''
         }
 
         if (!result.isValid) {
-            result.message = !noteContent ? resource.RequiredErrorMessage : resource.MaxLengthErrorMessage;
+            result.message = noteContent ? resource.MaxLengthErrorMessage : resource.RequiredErrorMessage;
         }
 
         return result;
     }
 
     handleSave = () => {
-        const param = Object.assign({}, this.props.param, { NoteContent: this.state.noteContent });
-        this.Save(param);
+        const newNoteInfo = Object.assign({}, this.props.noteInfo, { NoteContent: this.state.noteContent });
+        this.Save(newNoteInfo);
     }
 
-    async Save(param) {
+    async Save(noteInfo) {
         this.props.toggleLoader(true);
 
-        var url = `Portal/UserPanel/Note/UpdateNote`;;
-        var message = resource.UpdateNoteSuccess;
+        var url = noteInfo.NoteId == 0 ? 'Portal/UserPanel/Note/InsertNote' : 'Portal/UserPanel/Note/UpdateNote';
+        var message = noteInfo.NoteId == 0 ? resource.AddNoteSuccess : resource.UpdateNoteSuccess;
 
-        if (param.NoteId == 0) {
-            url = `Portal/UserPanel/Note/InsertNote`;
-            message = resource.AddNoteSuccess;
-        }
-
-        const response = await post(url, param);
+        const response = await post(url, noteInfo);
 
         if (response) {
             const result = response.data;
@@ -101,9 +96,9 @@ export class InsertUpdateNoteForm extends Component {
 
     render() {
         const { isShowMessage, isSuccess, message } = this.state;
-        const { isShowPopup, param } = this.props;
-        const popupTitle = param.NoteId == 0 ? resource.AddNote : resource.UpdateNote;
-        const buttonTitle = param.NoteId == 0 ? globalResource.Add : globalResource.Update;
+        const { isShowPopup, noteInfo } = this.props;
+        const popupTitle = noteInfo.NoteId == 0 ? resource.AddNote : resource.UpdateNote;
+        const buttonTitle = noteInfo.NoteId == 0 ? globalResource.Add : globalResource.Update;
 
         const noteContentValidation = this._validateNoteContent();
 
@@ -137,8 +132,8 @@ export class InsertUpdateNoteForm extends Component {
     }
 }
 
-function mapStateToProps({ isShowPopup, param }) {
-    return Object.assign({}, { isShowPopup, param });
+function mapStateToProps({ isShowPopup, noteInfo }) {
+    return Object.assign({}, { isShowPopup, noteInfo });
 }
 
 function mapDispatchToProps(dispatch) {

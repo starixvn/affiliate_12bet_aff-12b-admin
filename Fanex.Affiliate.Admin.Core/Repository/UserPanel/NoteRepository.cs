@@ -37,6 +37,28 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
             return result;
         }
 
+        public Note GetNoteById(int affId, int noteId)
+        {
+            const string SpKey = "Aff_AdminNoteSel";
+            Note result = null;
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                objectDb.AddInParameter("AffID", DbType.Int32, affId);
+                objectDb.AddInParameter("NoteId", DbType.Int32, noteId);
+
+                using (var reader = objectDb.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        BuildNoteItem(reader);
+                    }
+                }
+            }
+
+            return result;
+        }
+
         public ResultInfo InsertNote(InsertUpdateNoteParam param)
         {
             const string SpKey = "Aff_AdminNoteIns";

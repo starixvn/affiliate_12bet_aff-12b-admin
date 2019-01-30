@@ -1,4 +1,4 @@
-﻿import { SET_NOTE_LIST, SET_SHOW_POPUP, SET_PARAM } from './types';
+﻿import { SET_NOTE_LIST, SET_SHOW_POPUP, SET_NOTE_INFO } from './types';
 
 import { setPagingOption } from '../../../../actions/pagingAction';
 
@@ -18,9 +18,9 @@ export const setShowPopup = (data) => {
     }
 }
 
-export const setParam = (data) => {
+export const setNoteInfo = (data) => {
     return {
-        type: SET_PARAM,
+        type: SET_NOTE_INFO,
         data
     }
 }
