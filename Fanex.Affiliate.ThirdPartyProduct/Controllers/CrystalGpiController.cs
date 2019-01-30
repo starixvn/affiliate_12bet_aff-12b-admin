@@ -5,7 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 using Fanex.Affiliate.DataService.Importer;
+using Fanex.Affiliate.DataService.Importer.Constants;
 using Fanex.Affiliate.DataService.Importer.MetaModels.CrystalGpi;
+using Fanex.Affiliate.DataService.Importer.Utilities;
 using Fanex.Affiliate.ThirdPartyProduct.Attributes;
 using Fanex.Affiliate.ThirdPartyProduct.Constants;
 using Fanex.Affiliate.ThirdPartyProduct.MetaModels;
@@ -44,6 +46,13 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
             {
                 var startTime = DateTime.ParseExact(param.StartTime, Format.RequestDateTime, CultureInfo.InvariantCulture);
                 var endTime = DateTime.ParseExact(param.EndTime, Format.RequestDateTime, CultureInfo.InvariantCulture);
+
+                if (param.IsGetByApiTimeZone)
+                {
+                    startTime = DateTimeConverter.ConvertTime(startTime, TimeZoneId.GmtPlus8, TimeZoneInfo.Local.Id);
+                    endTime = DateTimeConverter.ConvertTime(endTime, TimeZoneId.GmtPlus8, TimeZoneInfo.Local.Id);
+                }
+
                 var crystalGpiParam = new CrystalGpiParam
                 {
                     StartTime = startTime,

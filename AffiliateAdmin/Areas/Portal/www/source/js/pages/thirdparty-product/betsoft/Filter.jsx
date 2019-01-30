@@ -10,13 +10,19 @@ export default class Filter extends PureComponent {
         const nowString = getNowString();
         this.state = {
             startTime: nowString,
-            endTime: nowString
+            endTime: nowString,
+            isGetByApiTimeZone: true
         }
     }
 
     handleInputChange = (event) => {
-        const { name, value } = event.target;
-        this.setState({ [name]: value });
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+
+        this.setState({
+            [name]: value
+        });
     }
 
     handleSubmit = () => {
@@ -26,7 +32,7 @@ export default class Filter extends PureComponent {
     }
 
     render() {
-        const { startTime, endTime } = this.state;
+        const { startTime, endTime, isGetByApiTimeZone } = this.state;
         const { isLoadingData } = this.props;
 
         return (
@@ -45,6 +51,12 @@ export default class Filter extends PureComponent {
                             <Input type="text" name="endTime" value={endTime} onChange={this.handleInputChange} />
                             <InputGroupAddon addonType="append">yyyy/MM/dd hh:mm:ss</InputGroupAddon>
                         </InputGroup>
+                    </FormGroup>
+                    <FormGroup check className="mb-2 mr-sm-4 mb-sm-0">
+                        <Label check>
+                            <Input type="checkbox" name="isGetByApiTimeZone" checked={isGetByApiTimeZone} onChange={this.handleInputChange} />{' '}
+                            Use Api Time Zone (GMT +0)
+                        </Label>
                     </FormGroup>
 
                     <Button color="primary" type="button" disabled={isLoadingData} onClick={this.handleSubmit}>

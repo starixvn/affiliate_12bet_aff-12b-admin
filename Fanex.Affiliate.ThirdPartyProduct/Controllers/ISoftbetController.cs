@@ -44,6 +44,13 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
             {
                 var startTime = DateTime.ParseExact(param.StartTime, Format.RequestDateTime, CultureInfo.InvariantCulture);
                 var endTime = DateTime.ParseExact(param.EndTime, Format.RequestDateTime, CultureInfo.InvariantCulture);
+
+                if (param.IsGetByApiTimeZone)
+                {
+                    startTime = DateTimeConverter.ToGMT(startTime, TimeZoneInfo.Local.Id);
+                    endTime = DateTimeConverter.ToGMT(endTime, TimeZoneInfo.Local.Id);
+                }
+
                 var isoftbetParam = new ISoftbetEntryParam
                 {
                     StartTime = startTime,

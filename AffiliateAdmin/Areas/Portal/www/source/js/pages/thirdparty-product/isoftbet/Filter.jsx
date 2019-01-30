@@ -11,13 +11,19 @@ export default class Filter extends PureComponent {
         this.state = {
             startTime: nowString,
             endTime: nowString,
-            pageNumber: 1
+            pageNumber: 1,
+            isGetByApiTimeZone: true
         }
     }
 
     handleInputChange = (event) => {
-        const { name, value } = event.target;
-        this.setState({ [name]: value });
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+
+        this.setState({
+            [name]: value
+        });
     }
 
     handleSubmit = () => {
@@ -26,7 +32,7 @@ export default class Filter extends PureComponent {
     }
 
     render() {
-        const { startTime, endTime, pageNumber } = this.state;
+        const { startTime, endTime, pageNumber, isGetByApiTimeZone } = this.state;
         const { isLoadingData } = this.props;
 
         return (
@@ -49,6 +55,12 @@ export default class Filter extends PureComponent {
                     <FormGroup className="mb-2 mr-sm-4 mb-sm-0">
                         <Label className="mr-2">Page Number</Label>
                         <Input type="text" name="pageNumber" value={pageNumber} onChange={this.handleInputChange} />
+                    </FormGroup>
+                    <FormGroup check className="mb-2 mr-sm-4 mb-sm-0">
+                        <Label check>
+                            <Input type="checkbox" name="isGetByApiTimeZone" checked={isGetByApiTimeZone} onChange={this.handleInputChange} />{' '}
+                            Use Api Time Zone (GMT +0)
+                        </Label>
                     </FormGroup>
 
                     <Button color="primary" type="button" disabled={isLoadingData} onClick={this.handleSubmit}>
