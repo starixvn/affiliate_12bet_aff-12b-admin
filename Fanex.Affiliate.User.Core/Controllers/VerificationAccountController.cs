@@ -102,8 +102,11 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 var userParam = new UserLoginParam
                 {
                     LoginInfo = param.LoginInfo,
-                    LoginIp = Request.UserHostAddress,
-                    Language = SessionService.CurrentLanguage
+                    LoginIp = RequestHelper.GetClientIPAddress(Request),
+                    Language = SessionService.CurrentLanguage,
+                    Browser = Request.Browser.Browser,
+                    UserAgent = Request.UserAgent,
+                    IsVerifyingAccount = true
                 };
 
                 var loginResult = AuthService.GetLoginResult(userParam, false);
