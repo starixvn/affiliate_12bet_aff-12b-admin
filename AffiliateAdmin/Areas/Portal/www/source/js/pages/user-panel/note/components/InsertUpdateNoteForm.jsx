@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Alert, Col, Button, Form, FormGroup, Label, Input, FormFeedback, Modal, ModalHeader, ModalBody } from 'reactstrap';
-import { setShowPopup, setNoteList } from '../actions';
+import { setShowPopup, getNoteList } from '../actions';
 import { toggleLoader } from '../../../../actions/loaderAction';
 import { post } from '../../../../modules/ajaxRequest';
 
@@ -65,7 +65,11 @@ export class InsertUpdateNoteForm extends Component {
         if (response) {
             const result = response.data;
 
-            if (response.data.IsSuccessful) {
+            if (result.IsSuccessful) {
+                const { noteInfo, pagingOption } = this.props;
+                const param = Object.assign({}, { AffId: noteInfo.AffId, PageIndex: pagingOption.PageIndex, PageSize: pagingOption.PageSize });
+                this.props.getNoteList(param);
+
                 window.setTimeout(this.closePopup, 3000);
             }
 
@@ -75,7 +79,7 @@ export class InsertUpdateNoteForm extends Component {
                 message: result.IsSuccessful ? message : result.Message
             });
 
-            window.setTimeout(this.clearState, 3000);
+            window.setTimeout(this.resetState, 3000);
         }
 
         this.props.toggleLoader(false);
@@ -83,10 +87,9 @@ export class InsertUpdateNoteForm extends Component {
 
     closePopup = () => {
         this.props.setShowPopup(false);
-        this.props.setNoteList([]);
     }
 
-    clearState = () => {
+    resetState = () => {
         this.setState({
             isShowMessage: false,
             isSuccess: true,
@@ -113,7 +116,7 @@ export class InsertUpdateNoteForm extends Component {
                             </Alert>
                             <Form tag="form" className="mb-5" autocomplete="off">
                                 <FormGroup row className="mb-2">
-                                    <Label for="noteContent" sm={3} className="label-noteContent required">Content</Label>
+                                    <Label for="noteContent" sm={3} className="d-flex justify-content-center align-items-center required">Content</Label>
                                     <Col sm={9}>
                                         <Input type="textarea" name="noteContent" id="noteContent" rows="8"
                                             value={this.state.noteContent} onChange={this.handleChange} invalid={!noteContentValidation.isValid} />
@@ -132,12 +135,12 @@ export class InsertUpdateNoteForm extends Component {
     }
 }
 
-function mapStateToProps({ isShowPopup, noteInfo }) {
-    return Object.assign({}, { isShowPopup, noteInfo });
+function mapStateToProps({ isShowPopup, noteInfo, pagingOption }) {
+    return Object.assign({}, { isShowPopup, noteInfo, pagingOption });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setShowPopup, toggleLoader, setNoteList }, dispatch);
+    return bindActionCreators({ setShowPopup, toggleLoader, getNoteList }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(InsertUpdateNoteForm);

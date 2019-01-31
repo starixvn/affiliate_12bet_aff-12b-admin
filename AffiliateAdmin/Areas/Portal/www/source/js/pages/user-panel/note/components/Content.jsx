@@ -9,52 +9,18 @@ import { headerText } from '../modules/constants';
 import { globalResource } from '../../../../modules/globalResource';
 
 import { post } from '../../../../modules/ajaxRequest';
-import { setShowPopup, setNoteInfo, setPagingOption } from '../actions';
+import { setShowPopup, setNoteInfo, setPagingOption, getNoteList } from '../actions';
 import { toggleLoader } from '../../../../actions/loaderAction';
 
 export class Content extends Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            gridData: props.noteList,
-            shouldResetScrollPosition: true
-        }
     }
 
     componentDidMount() {
-        this.updateData()
-    }
-
-    componentDidUpdate(prevProps) {
-        const { noteList } = this.props;
-
-        if (noteList !== prevProps.noteList) {
-            this.updateData()
-        }
-    }
-
-    updateData() {
         const { noteInfo, pagingOption } = this.props;
         const param = Object.assign({}, { AffId: noteInfo.AffId, PageIndex: pagingOption.PageIndex, PageSize: pagingOption.PageSize });
-        this.fetchData(param);
-    }
-
-    async fetchData(param) {
-        this.props.toggleLoader(true);
-
-        const url = 'Portal/UserPanel/Note/GetNoteList';
-        const response = await post(url, param);
-
-        if (response && response.status === 200) {
-            const { MainData, TotalItem } = response.data;
-
-            this.setState({ gridData: MainData, shouldResetScrollPosition: true });
-
-            this.props.setPagingOption({ TotalItem, PageIndex: param.PageIndex, PageSize: param.PageSize });
-        }
-
-        this.props.toggleLoader(false);
+        this.props.getNoteList(param);
     }
 
     _renderHeader() {
@@ -90,7 +56,7 @@ export class Content extends Component {
                 <Cell title={dataItem.CreatedBy}>{dataItem.CreatedBy}</Cell>
                 <Cell title={dataItem.LastModifyText} className="text-center">{dataItem.LastModifyText}</Cell>
                 <Cell title="Edit Note" className="text-center">
-                    <Button color="link" onClick={() => this.handleShowPopup(dataItem.NoteId)}>
+                    <Button className="p-0" color="link" onClick={() => this.handleShowPopup(dataItem.NoteId)}>
                         <span className="oi oi-pencil text-secondary"></span>
                     </Button>
                 </Cell>
@@ -99,20 +65,19 @@ export class Content extends Component {
     }
 
     handleShowPopup = (noteId) => {
-        const { noteInfo } = this.props;
-        const param = Object.assign({}, noteInfo, { NoteId: noteId });
+        const newNoteInfo = Object.assign({}, this.props.noteInfo, { NoteId: noteId, NoteContent: '' });
 
-        this.getNoteContentById(param);
+        noteId === 0 ? this.props.setNoteInfo(newNoteInfo) : this.getNoteContentById(newNoteInfo);
 
         this.props.setShowPopup(true);
     }
 
-    async getNoteContentById(param) {
+    async getNoteContentById(noteInfo) {
         const url = 'Portal/UserPanel/Note/GetNoteById';
-        const response = await post(url, param);
+        const response = await post(url, noteInfo);
 
         if (response && response.status === 200) {
-            const newNoteInfo = Object.assign({}, param, { NoteContent: response.NoteContent });
+            const newNoteInfo = Object.assign({}, noteInfo, { NoteContent: response.data.NoteContent });
             this.props.setNoteInfo(newNoteInfo);
         }
     }
@@ -125,17 +90,17 @@ export class Content extends Component {
 
         this.props.setPagingOption(newPaging);
 
-        const newParam = Object.assign({}, this.props.param, newPaging);
-        this.fetchData(newParam);
+        const newParam = Object.assign({}, newPaging, { AffId: this.props.noteInfo.AffId });
+        this.props.getNoteList(newParam);
     };
 
     render() {
-        const { gridData, shouldResetScrollPosition } = this.state;
+        const { noteList } = this.props;
 
-        return gridData && (
+        return noteList && (
             <div className="data-content">
                 <div className="my-2">
-                    <Button outline type="button" onClick={() => this.handleShowPopup(0, '')}>{globalResource.Add}</Button>
+                    <Button outline type="button" onClick={() => this.handleShowPopup(0)}>{globalResource.Add}</Button>
                 </div>
                 <div className="table-responsive table-striped">
                     <Table
@@ -143,12 +108,11 @@ export class Content extends Component {
                         autoWidth={true}
                         bodyHeight={300}
                         header={this._renderHeader()}
-                        body={this._renderDataSection(gridData)}
+                        body={this._renderDataSection(noteList)}
                         containerPadding={20}
                         isPaging={true}
                         pageOption={this.props.pagingOption}
                         onPaging={this.handlePaging}
-                        shouldResetScrollPosition={shouldResetScrollPosition}
                     />
                 </div>
             </div>
@@ -162,7 +126,7 @@ function mapStateToProps({ pagingOption, noteList, noteInfo }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setShowPopup, setNoteInfo, setPagingOption, toggleLoader }, dispatch);
+    return bindActionCreators({ setShowPopup, setNoteInfo, setPagingOption, toggleLoader, getNoteList }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

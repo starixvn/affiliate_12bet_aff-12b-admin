@@ -34,6 +34,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
                 var totalRow = objectDb.GetParameterValue("NRows");
                 result.TotalItem = totalRow == DBNull.Value ? 0 : Convert.ToInt32(totalRow);
             }
+
             return result;
         }
 
@@ -51,7 +52,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
                 {
                     if (reader.Read())
                     {
-                        BuildNoteItem(reader);
+                        result = BuildNoteItem(reader);
                     }
                 }
             }
