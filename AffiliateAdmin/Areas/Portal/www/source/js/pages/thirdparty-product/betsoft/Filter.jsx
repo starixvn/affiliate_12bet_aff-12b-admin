@@ -11,7 +11,8 @@ export default class Filter extends PureComponent {
         this.state = {
             startTime: nowString,
             endTime: nowString,
-            isGetByApiTimeZone: true
+            isGetByApiTimeZone: true,
+            userName: ''
         }
     }
 
@@ -32,7 +33,7 @@ export default class Filter extends PureComponent {
     }
 
     render() {
-        const { startTime, endTime, isGetByApiTimeZone } = this.state;
+        const { startTime, endTime, isGetByApiTimeZone, userName } = this.state;
         const { isLoadingData } = this.props;
 
         return (
@@ -51,6 +52,11 @@ export default class Filter extends PureComponent {
                             <Input type="text" name="endTime" value={endTime} onChange={this.handleInputChange} />
                             <InputGroupAddon addonType="append">yyyy/MM/dd hh:mm:ss</InputGroupAddon>
                         </InputGroup>
+                    </FormGroup>
+
+                    <FormGroup className="mb-2 mr-sm-4 mb-sm-0">
+                        <Label className="mr-2">User Name</Label>
+                        <Input type="text" name="userName" value={userName} onChange={this.handleInputChange} />
                     </FormGroup>
                     <FormGroup check className="mb-2 mr-sm-4 mb-sm-0">
                         <Label check>

@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using System.Xml.Linq;
 using Fanex.Affiliate.DataService.Importer;
 using Fanex.Affiliate.DataService.Importer.MetaModels.Betsoft;
 using Fanex.Affiliate.DataService.Importer.Utilities;
@@ -59,6 +61,12 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
                 var rawDataList = await _betsoftService.GetMultipleRawDataBatchAsync(betSoftParam);
                 if (rawDataList.Any())
                 {
+                    param.UserName = param.UserName?.Trim();
+                    if (!string.IsNullOrEmpty(param.UserName))
+                    {
+                        rawDataList = GetDataByUserName(rawDataList, param.UserName);
+                    }
+
                     foreach (var item in rawDataList)
                     {
                         rawDataBuilder.AppendLine(item);
@@ -83,6 +91,27 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
                 RawData = rawDataBuilder.ToString(),
                 ConvertedData = convertedDataBuilder.ToString()
             }), "application/json");
+        }
+
+        private IList<string> GetDataByUserName(IList<string> rawDataList, string userName)
+        {
+            var dataList = new List<string>();
+            foreach (var rawData in rawDataList)
+            {
+                var xdoc = XDocument.Parse(rawData);
+                var response = xdoc.Root.Element("RESPONSE");
+                var accountList = response.Elements("ACCOUNT");
+
+                accountList.Where(x => !string.Equals(x.Attribute("id").Value, userName, StringComparison.InvariantCultureIgnoreCase))
+                    .Remove();
+
+                if (accountList.Any())
+                {
+                    dataList.Add(xdoc.ToString());
+                }
+            }
+
+            return dataList;
         }
     }
 }

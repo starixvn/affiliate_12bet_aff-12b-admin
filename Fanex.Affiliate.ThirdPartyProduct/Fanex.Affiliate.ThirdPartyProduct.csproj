@@ -92,6 +92,7 @@
     <Compile Include="MetaModels\EbetRequestParam.cs" />
     <Compile Include="MetaModels\ISoftbetRequestParam.cs" />
     <Compile Include="MetaModels\OpusRequestParam.cs" />
+    <Compile Include="MetaModels\RequestBaseParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\ThirdPartyProductViewModel.cs" />
   </ItemGroup>

@@ -13,7 +13,8 @@ export default class Filter extends PureComponent {
             endTime: nowString,
             pageNumber: 1,
             pageSize: 2000,
-            isGetByApiTimeZone: true
+            isGetByApiTimeZone: true,
+            userName: ''
         }
     }
 
@@ -33,7 +34,7 @@ export default class Filter extends PureComponent {
     }
 
     render() {
-        const { startTime, endTime, pageNumber, pageSize, isGetByApiTimeZone } = this.state;
+        const { startTime, endTime, pageNumber, pageSize, isGetByApiTimeZone, userName } = this.state;
         const { isLoadingData } = this.props;
 
         return (
@@ -63,6 +64,10 @@ export default class Filter extends PureComponent {
                         <Input type="text" name="pageSize" value={pageSize} onChange={this.handleInputChange} />
                     </FormGroup>
 
+                    <FormGroup className="mb-2 mr-sm-4 mb-sm-0">
+                        <Label className="mr-2">User Name</Label>
+                        <Input type="text" name="userName" value={userName} onChange={this.handleInputChange} />
+                    </FormGroup>
                     <FormGroup check className="mb-2 mr-sm-4 mb-sm-0">
                         <Label check>
                             <Input type="checkbox" name="isGetByApiTimeZone" checked={isGetByApiTimeZone} onChange={this.handleInputChange} />{' '}

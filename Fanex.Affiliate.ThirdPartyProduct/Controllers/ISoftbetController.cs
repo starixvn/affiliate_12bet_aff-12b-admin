@@ -72,6 +72,13 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
                         if (string.Equals("success", status))
                         {
                             var summary = ISoftbetParser.FromJsonObject(jObject);
+                            param.UserName = param.UserName?.Trim();
+                            if (!string.IsNullOrEmpty(param.UserName))
+                            {
+                                summary.BetHistoryList = summary.BetHistoryList
+                                    .Where(x => string.Equals(x.PlayerId, param.UserName, StringComparison.InvariantCultureIgnoreCase));
+                            }
+
                             var xml = _isoftbetService.ConvertToXml(summary, item.Param);
 
                             convertedDataBuilder.AppendLine(xml);

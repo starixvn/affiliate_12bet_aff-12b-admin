@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Web.Mvc;
+using System.Xml.Linq;
 using Fanex.Affiliate.DataService.Importer;
 using Fanex.Affiliate.DataService.Importer.Constants;
 using Fanex.Affiliate.DataService.Importer.MetaModels.Opus;
@@ -59,6 +61,12 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
                 var rawDataList = _opusService.GetRawDataList(opusParam);
                 if (rawDataList.Any())
                 {
+                    param.UserName = param.UserName?.Trim();
+                    if (!string.IsNullOrEmpty(param.UserName))
+                    {
+                        rawDataList = GetDataByUserName(rawDataList, param.UserName);
+                    }
+
                     foreach (var item in rawDataList)
                     {
                         rawDataBuilder.AppendLine(item);
@@ -88,6 +96,27 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
                 RawData = rawDataBuilder.ToString(),
                 ConvertedData = convertedDataBuilder.ToString()
             }), "application/json");
+        }
+
+        private IEnumerable<string> GetDataByUserName(IEnumerable<string> rawDataList, string userName)
+        {
+            var dataList = new List<string>();
+
+            foreach (var rawData in rawDataList)
+            {
+                var xdoc = XDocument.Parse(rawData);
+                var betHistoryList = xdoc.Root.Element("bets").Elements("row");
+
+                betHistoryList.Where(x => !string.Equals(x.Element("member_code").Value, userName, StringComparison.InvariantCultureIgnoreCase))
+                    .Remove();
+
+                if (betHistoryList.Any())
+                {
+                    dataList.Add(xdoc.ToString());
+                }
+            }
+
+            return dataList;
         }
     }
 }
