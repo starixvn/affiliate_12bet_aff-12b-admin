@@ -70,23 +70,17 @@ export class InsertUpdateNoteForm extends Component {
                 const param = Object.assign({}, { AffId: noteInfo.AffId, PageIndex: pagingOption.PageIndex, PageSize: pagingOption.PageSize });
                 this.props.getNoteList(param);
 
-                window.setTimeout(this.closePopup, 3000);
+                window.setTimeout(() => this.props.setShowPopup(false), 3000);
             }
 
             this.setState({
                 isShowMessage: true,
                 isSuccess: result.IsSuccessful,
                 message: result.IsSuccessful ? message : result.Message
-            });
-
-            window.setTimeout(this.resetState, 3000);
+            }, () => window.setTimeout(this.resetState, 3000));
         }
 
         this.props.toggleLoader(false);
-    }
-
-    closePopup = () => {
-        this.props.setShowPopup(false);
     }
 
     resetState = () => {
