@@ -44,8 +44,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
             };
             try
             {
-                btnGetRawData.Enabled = false;
-                btnImport.Enabled = false;
+                ToggleButton(false);
                 await Task.Run(() =>
                 {
                     var rawDataList = _crystalGpiService.GetRawDataList(param);
@@ -87,8 +86,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
                     DisplayResult();
                     richTextRawData.Text = rawDataBuilder.ToString();
                     richTextConvertedData.Text = convertedDataBuilder.ToString();
-                    btnGetRawData.Enabled = true;
-                    btnImport.Enabled = true;
+                    ToggleButton(true);
                 }), null);
             }
         }
@@ -109,12 +107,18 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
             _logBuilder.Clear();
         }
 
+        private void ToggleButton(bool isEnable)
+        {
+            btnGetRawData.Enabled = isEnable;
+            btnImport.Enabled = isEnable;
+            btnImportDirectly.Enabled = isEnable;
+        }
+
         private async void btnImport_Click(object sender, EventArgs e)
         {
             try
             {
-                btnGetRawData.Enabled = false;
-                btnImport.Enabled = false;
+                ToggleButton(false);
                 await Task.Run(() =>
                 {
                     _crystalGpiService.Import(_convertedDataList);
@@ -134,8 +138,77 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
                 synchronizationContext.Post(new SendOrPostCallback((state) =>
                 {
                     DisplayResult();
-                    btnGetRawData.Enabled = true;
+                    ToggleButton(true);
                 }), null);
+            }
+        }
+
+        private async void btnImportDirectly_Click(object sender, EventArgs e)
+        {
+            if (DateTime.Compare(startDatePicker.Value, endDatePicker.Value) < 0)
+            {
+                var confirmResult = MessageBox.Show("Are you sure to Import Directly ??",
+                                     "Confirm Import!!",
+                                     MessageBoxButtons.YesNo);
+
+                if (confirmResult == DialogResult.Yes)
+                {
+                    const int TimeRangeByHour = 1;
+                    ResetResult();
+                    richTextLog.Text = "Importing data...";
+
+                    try
+                    {
+                        ToggleButton(false);
+                        var param = new CrystalGpiParam
+                        {
+                            StartTime = startDatePicker.Value,
+                            EndTime = endDatePicker.Value,
+                            PageNumber = Convert.ToInt32(txtPageNumber.Text),
+                            PageSize = Convert.ToInt32(txtPageSize.Text)
+                        };
+
+                        await Task.Run(() =>
+                        {
+                            for (var start = param.StartTime; DateTime.Compare(start, param.EndTime) < 0; start = start.AddHours(TimeRangeByHour))
+                            {
+                                var crystalGpiParam = new CrystalGpiParam
+                                {
+                                    StartTime = start,
+                                    EndTime = start.AddHours(TimeRangeByHour),
+                                    PageNumber = param.PageNumber,
+                                    PageSize = param.PageSize
+                                };
+                                _crystalGpiService.Import(crystalGpiParam);
+                                _logBuilder.AppendLine($"Done - Start:{crystalGpiParam.StartTime.ToString()} - End:{crystalGpiParam.EndTime.ToString()}");
+                                synchronizationContext.Post(new SendOrPostCallback((state) =>
+                                {
+                                    richTextLog.Text = _logBuilder.ToString();
+                                }), null);
+                            }
+                        });
+                    }
+                    catch (Exception ex)
+                    {
+                        _logBuilder.AppendLine(ex.Message);
+                        _logBuilder.AppendLine(ex.StackTrace);
+                        _logBuilder.AppendLine(ex.Source);
+                    }
+                    finally
+                    {
+                        synchronizationContext.Post(new SendOrPostCallback((state) =>
+                        {
+                            _logBuilder.AppendLine("Done!");
+                            richTextLog.Text = _logBuilder.ToString();
+                            _logBuilder.Clear();
+                            ToggleButton(true);
+                        }), null);
+                    }
+                }
+            }
+            else
+            {
+                richTextLog.Text = "Incorrect time range!";
             }
         }
     }

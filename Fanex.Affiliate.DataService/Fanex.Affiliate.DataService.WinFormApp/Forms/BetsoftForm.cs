@@ -132,15 +132,82 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
 
         private void HandleBeforeImporting()
         {
-            btnGetRawData.Enabled = false;
-            btnImport.Enabled = false;
+            ToggleButton(false);
             btnImport.Text = "Importing...";
         }
 
         private void HandleAfterImporting()
         {
-            btnGetRawData.Enabled = true;
-            btnImport.Enabled = true;
+            ToggleButton(true);
+        }
+
+        private void ToggleButton(bool isEnable)
+        {
+            btnGetRawData.Enabled = isEnable;
+            btnImport.Enabled = isEnable;
+            btnImportDirectly.Enabled = isEnable;
+        }
+
+        private async void btnImportDirectly_Click(object sender, EventArgs e)
+        {
+            if (DateTime.Compare(startDatePicker.Value, endDatePicker.Value) < 0)
+            {
+                var confirmResult = MessageBox.Show("Are you sure to Import Directly ??",
+                                     "Confirm Import!!",
+                                     MessageBoxButtons.YesNo);
+
+                if (confirmResult == DialogResult.Yes)
+                {
+                    const int TimeRangeByHour = 1;
+                    ResetResult();
+                    richTextLog.Text = "Importing data...";
+
+                    try
+                    {
+                        ToggleButton(false);
+
+                        await Task.Run(() =>
+                        {
+                            for (var start = startDatePicker.Value; DateTime.Compare(start, endDatePicker.Value) < 0; start = start.AddHours(TimeRangeByHour))
+                            {
+                                var param = new BetsoftParam
+                                {
+                                    StartDate = start,
+                                    EndDate = start.AddHours(TimeRangeByHour)
+                                };
+
+                                _betsoftService.Import(param);
+
+                                _logBuilder.AppendLine($"Done - Start:{param.StartDate.ToString()} - End:{param.EndDate.ToString()}");
+                                synchronizationContext.Post(new SendOrPostCallback((state) =>
+                                {
+                                    richTextLog.Text = _logBuilder.ToString();
+                                }), null);
+                            }
+                        });
+                    }
+                    catch (Exception ex)
+                    {
+                        _logBuilder.AppendLine(ex.Message);
+                        _logBuilder.AppendLine(ex.StackTrace);
+                        _logBuilder.AppendLine(ex.Source);
+                    }
+                    finally
+                    {
+                        synchronizationContext.Post(new SendOrPostCallback((state) =>
+                        {
+                            _logBuilder.AppendLine("Done!");
+                            richTextLog.Text = _logBuilder.ToString();
+                            _logBuilder.Clear();
+                            ToggleButton(true);
+                        }), null);
+                    }
+                }
+            }
+            else
+            {
+                richTextLog.Text = "Incorrect time range!";
+            }
         }
     }
 }

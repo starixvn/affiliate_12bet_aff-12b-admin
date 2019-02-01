@@ -113,6 +113,7 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
         {
             btnGetRawData.Enabled = isEnable;
             btnImport.Enabled = isEnable;
+            btnImportDirectly.Enabled = isEnable;
         }
 
         private async void btnImport_Click(object sender, EventArgs e)
@@ -144,6 +145,67 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
                     DisplayResult();
                     ToggleButton(true);
                 }), null);
+            }
+        }
+
+        private async void btnImportDirectly_Click(object sender, EventArgs e)
+        {
+            if (DateTime.Compare(startTimePicker.Value, endTimePicker.Value) < 0)
+            {
+                var confirmResult = MessageBox.Show("Are you sure to Import Directly ??",
+                                     "Confirm Import!!",
+                                     MessageBoxButtons.YesNo);
+
+                if (confirmResult == DialogResult.Yes)
+                {
+                    ResetResult();
+                    richTextLog.Text = "Importing data...";
+
+                    try
+                    {
+                        ToggleButton(false);
+
+                        await Task.Run(() =>
+                        {
+                            for (var start = startTimePicker.Value; DateTime.Compare(start, endTimePicker.Value) < 0; start = start.AddMinutes(15))
+                            {
+                                var opusParam = new OpusParam
+                                {
+                                    StartTime = start,
+                                    EndTime = start.AddMinutes(15)
+                                };
+                                _opusService.Import(opusParam);
+
+                                _logBuilder.AppendLine($"Done - Start:{opusParam.StartTime.ToString()} - End:{opusParam.EndTime.ToString()}");
+                                synchronizationContext.Post(new SendOrPostCallback((state) =>
+                                {
+                                    richTextLog.Text = _logBuilder.ToString();
+                                }), null);
+                                Thread.Sleep(16000);
+                            }
+                        });
+                    }
+                    catch (Exception ex)
+                    {
+                        _logBuilder.AppendLine(ex.Message);
+                        _logBuilder.AppendLine(ex.StackTrace);
+                        _logBuilder.AppendLine(ex.Source);
+                    }
+                    finally
+                    {
+                        synchronizationContext.Post(new SendOrPostCallback((state) =>
+                        {
+                            _logBuilder.AppendLine("Done!");
+                            richTextLog.Text = _logBuilder.ToString();
+                            _logBuilder.Clear();
+                            ToggleButton(true);
+                        }), null);
+                    }
+                }
+            }
+            else
+            {
+                richTextLog.Text = "Incorrect time range!";
             }
         }
     }
