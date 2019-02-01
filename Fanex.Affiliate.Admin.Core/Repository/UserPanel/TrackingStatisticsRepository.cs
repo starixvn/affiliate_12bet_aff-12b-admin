@@ -54,6 +54,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
         public TrackingStatistics GetTrackingStatisticsDetail(TrackingStatisticsParam param)
         {
             const string SpKey = "Aff_AffiliateSelClickStatisticsMonthDetail";
+            TrackingStatistics result = null;
 
             using (var objectDb = GetObjectDb(SpKey))
             {
@@ -63,9 +64,14 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
 
                 using (var reader = objectDb.ExecuteReader())
                 {
-                    return BuildNoteItem(reader);
+                    if(reader.Read())
+                    {
+                        result = BuildNoteItem(reader);
+                    }
                 }
             }
+
+            return result;
         }
 
         private static void AssignCommonParam(IObjectDb objectDb, TrackingStatisticsParam param)
@@ -78,9 +84,9 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
         {
             return new TrackingStatistics
             {
-                TotalClick = Convert.ToInt32(reader["TotalClick"]),
-                UniqueClick = Convert.ToInt32(reader["UniqueClick"]),
-                Date = Convert.ToDateTime(reader["Date"])
+                TotalClick = reader["TotalClick"] == DBNull.Value ? 0 : Convert.ToInt32(reader["TotalClick"]),
+                UniqueClick = reader["TotalClick"] == DBNull.Value ? 0 :  Convert.ToInt32(reader["UniqueClick"]),
+                Date = reader["Date"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["Date"])
             };
         }
     }

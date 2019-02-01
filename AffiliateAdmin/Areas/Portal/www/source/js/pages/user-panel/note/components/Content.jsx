@@ -109,7 +109,7 @@ export class Content extends Component {
                         bodyHeight={300}
                         header={this._renderHeader()}
                         body={this._renderDataSection(noteList)}
-                        containerPadding={20}
+                        containerPadding={10}
                         isPaging={true}
                         pageOption={this.props.pagingOption}
                         onPaging={this.handlePaging}

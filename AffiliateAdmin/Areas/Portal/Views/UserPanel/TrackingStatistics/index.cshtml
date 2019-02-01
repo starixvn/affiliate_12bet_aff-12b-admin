@@ -11,7 +11,7 @@
     <script type="text/javascript">
         window.initialState = {
             trackingCodeList: @Html.Raw(Json.Encode(Model.TrackingCodeList)),
-            param: { AffId: @Model.TrackingStatisticsParam.AffId }
+            param: { AffId: @Model.TrackingStatisticsParam.AffId, TrackingCode: '' }
         }
     </script>
     <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/user-panel/tracking-statistics.css")" rel="stylesheet" />

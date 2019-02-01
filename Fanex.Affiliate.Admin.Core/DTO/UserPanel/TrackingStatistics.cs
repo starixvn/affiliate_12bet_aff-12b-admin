@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 {
@@ -12,8 +8,10 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 
         public int UniqueClick { get; set; }
 
-        public DateTime Date { get; set; }
+        public DateTime? Date { get; set; }
 
-        public string DateText => Date.ToString("MMMM-yyyy");
+        public string MonthText => Date?.ToString("MMMM-yyyy") ?? "N/A";
+
+        public string DateText => Date?.ToString("MM/dd/yyyy HH:mm:ss") ?? "N/A";
     }
 }

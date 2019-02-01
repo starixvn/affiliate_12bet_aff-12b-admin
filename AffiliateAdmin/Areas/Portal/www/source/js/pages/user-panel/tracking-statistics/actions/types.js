@@ -1,1 +1,2 @@
-﻿
+﻿export const SET_SHOW_STATISTICS_DETAIL = "SET_SHOW_STATISTICS_DETAIL";
+export const SET_PARAM = "SET_PARAM";
