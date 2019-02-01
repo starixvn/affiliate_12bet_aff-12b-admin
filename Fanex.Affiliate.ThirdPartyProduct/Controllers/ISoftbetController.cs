@@ -79,11 +79,14 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
                                     .Where(x => string.Equals(x.PlayerId, param.UserName, StringComparison.InvariantCultureIgnoreCase));
                             }
 
-                            var xml = _isoftbetService.ConvertToXml(summary, item.Param);
+                            if (summary.BetHistoryList.Any())
+                            {
+                                var xml = _isoftbetService.ConvertToXml(summary, item.Param);
 
-                            convertedDataBuilder.AppendLine(xml);
-                            convertedDataBuilder.AppendLine("-----------------------------------------");
-                            convertedDataBuilder.AppendLine();
+                                convertedDataBuilder.AppendLine(xml);
+                                convertedDataBuilder.AppendLine("-----------------------------------------");
+                                convertedDataBuilder.AppendLine();
+                            }
                         }
                     }
                 }
