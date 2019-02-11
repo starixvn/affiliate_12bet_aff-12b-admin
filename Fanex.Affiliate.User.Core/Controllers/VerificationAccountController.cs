@@ -78,11 +78,13 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 verificationSession.Counter = result.NewCounter;
                 verificationSession.SentCodeTime = GetNewSentCodeTime();
             }
+            verificationSession.Token = Guid.NewGuid().ToString();
 
-            return Json(new ResultInfo
+            return Json(new SendCodeResponse
             {
                 IsOk = result.IsOk,
-                Message = result.Message
+                Message = result.Message,
+                VerificationToken = verificationSession.Token
             });
         }
 
@@ -97,7 +99,16 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 return Json(requestValidtionResult);
             }
 
-            if (_verificationService.IsValidOtp(verificationSession.AffId.ToString(), verificationSession.Counter, param.Code))
+            var verificationOtpParam = new VerificationOtpParam
+            {
+                AffId = verificationSession.AffId.ToString(),
+                Counter = verificationSession.Counter,
+                OtpCode = param.Code,
+                SecretKey = verificationSession.Token,
+                HashMessage = param.HashMessage,
+                Captcha = param.Captcha
+            };
+            if (_verificationService.IsValidOtp(verificationOtpParam))
             {
                 var userParam = new UserLoginParam
                 {

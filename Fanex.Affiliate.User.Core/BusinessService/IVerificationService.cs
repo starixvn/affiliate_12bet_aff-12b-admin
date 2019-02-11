@@ -7,6 +7,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
     {
         SendCodeResult SendCode(SendCodeParam param);
 
-        bool IsValidOtp(string secretKey, int counter, string otp);
+        bool IsValidOtp(VerificationOtpParam param);
     }
 }

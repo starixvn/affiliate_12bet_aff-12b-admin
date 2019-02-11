@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Security.Cryptography;
+using System.Text;
 using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.MetalModels;
@@ -68,9 +70,13 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             };
         }
 
-        public bool IsValidOtp(string secretKey, int counter, string otp)
+        public bool IsValidOtp(VerificationOtpParam param)
         {
-            return _twoFactorAuthService.VerifyHotp(secretKey, counter, otp);
+            var authMessage = param.SecretKey + param.Captcha + param.OtpCode;
+            var hashMessage = CreateHashMessage(authMessage, param.SecretKey);
+
+            return string.Equals(hashMessage, param.HashMessage) &&
+                _twoFactorAuthService.VerifyHotp(param.AffId, param.Counter, param.OtpCode);
         }
 
         private static bool CanSendCode(long sentCodeTimeSession)
@@ -80,6 +86,31 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             var elapsedTick = nowTick - sentCodeTimeSession;
 
             return sentCodeTimeSession == 0 || elapsedTick >= 0;
+        }
+
+        private static string CreateHashMessage(string message, string secret)
+        {
+            var secretKey = secret ?? string.Empty;
+            var encoding = new ASCIIEncoding();
+            var keyByte = encoding.GetBytes(secretKey);
+            var messageBytes = encoding.GetBytes(message);
+            using (var hmacsha256 = new HMACSHA256(keyByte))
+            {
+                var hashmessage = hmacsha256.ComputeHash(messageBytes);
+
+                return ByteToString(hashmessage).ToLowerInvariant();
+            }
+        }
+
+        private static string ByteToString(byte[] buff)
+        {
+            var builder = new StringBuilder();
+            for (int i = 0; i < buff.Length; i++)
+            {
+                builder.Append(buff[i].ToString("X2")); // hex format
+            }
+
+            return builder.ToString();
         }
     }
 }

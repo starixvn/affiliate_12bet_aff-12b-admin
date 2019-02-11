@@ -1,10 +1,5 @@
-﻿using Fanex.Affiliate.User.Core.Resources;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using Fanex.Affiliate.User.Core.Resources;
 
 namespace Fanex.Affiliate.User.Core.MetalModels
 {
@@ -18,5 +13,8 @@ namespace Fanex.Affiliate.User.Core.MetalModels
 
         [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "ErrmsgEntryCaptcha")]
         public string Captcha { get; set; }
+
+        [Required(ErrorMessageResourceType = typeof(Lang), ErrorMessageResourceName = "ErrmsgEntryVerificationCode")]
+        public string HashMessage { get; set; }
     }
 }

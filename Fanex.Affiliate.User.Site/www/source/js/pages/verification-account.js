@@ -36,6 +36,9 @@
             _me.initEvent();
             _me.sendCode(true);
             registerRefreshCaptcha();
+
+            var hash = CryptoJS.HmacSHA256("Message", "secret");
+            console.log(hash.toString());
         },
         initEvent: function () {
             $("#btnResend").on("click", function (e) {
@@ -73,9 +76,10 @@
                 success: function (response) {
                     $('#btnResend').prop("disabled", true);
                     _me.countDown(INTERVAL_SENDCODE_SECOND);
+                    $('#VerificationToken').val(response.VerificationToken);
 
                     if (!isReload && !response.IsOk) {
-                        alert($("<div/>").html(response.Message).text());
+                        alert(response.Message);
                     }
                 },
                 beforeSend: function () {
@@ -106,18 +110,22 @@
             var isValidForm = validator.form();
 
             if (isValidForm) {
-                var token = $('input[name="__RequestVerificationToken"]', $("#userLogin")).val();
+                var csrfToken = $('input[name="__RequestVerificationToken"]', $("#userLogin")).val();
                 var publicKey = base64DecodeUnicode($("#PublicKey").val());
 
                 var queryString = 'u=' + encodeURIComponent(username.trim()) + '&p=' + encodeURIComponent(password) + '&t=' + getUtcUnixTimeStamp();
                 var encryptedQueryString = encrypt(queryString, publicKey);
                 $('#Password').val(encryptedQueryString);
 
+                var verificationToken = $('#VerificationToken').val();
+                var hashMessage = CryptoJS.HmacSHA256(verificationToken + captcha + code, verificationToken).toString();
+
                 var param = {
-                    __RequestVerificationToken: token,
+                    __RequestVerificationToken: csrfToken,
                     LoginInfo: encryptedQueryString,
                     Code: code,
                     Captcha: captcha,
+                    HashMessage: hashMessage
                 }
                 $.ajax({
                     type: "POST",
@@ -131,7 +139,7 @@
                             Site.redirect(Site.resolveRelativeUrl("UserPanel/Main/#AccountOverview"));
                         }
                         else {
-                            alert($("<div/>").html(response.Message).text());
+                            alert(response.Message);
                             $('#Password').val("");
                             $('#Captcha').val("");
                             _me.generateCaptcha();
