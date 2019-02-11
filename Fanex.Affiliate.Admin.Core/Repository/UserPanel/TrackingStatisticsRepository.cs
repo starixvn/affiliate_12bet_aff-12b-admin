@@ -45,16 +45,23 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
                     {
                         result.Add(BuildNoteItem(reader));
                     }
+                    if (reader.NextResult())
+                    {
+                        while (reader.Read())
+                        {
+                            result.Add(BuildNoteItem(reader));
+                        }
+                    }
                 }
             }
 
             return result;
         }
 
-        public TrackingStatistics GetTrackingStatisticsDetail(TrackingStatisticsParam param)
+        public IEnumerable<TrackingStatistics> GetTrackingStatisticsDetail(TrackingStatisticsParam param)
         {
             const string SpKey = "Aff_AffiliateSelClickStatisticsMonthDetail";
-            TrackingStatistics result = null;
+            var result = new List<TrackingStatistics>();
 
             using (var objectDb = GetObjectDb(SpKey))
             {
@@ -64,9 +71,9 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
 
                 using (var reader = objectDb.ExecuteReader())
                 {
-                    if(reader.Read())
+                    while (reader.Read())
                     {
-                        result = BuildNoteItem(reader);
+                        result.Add(BuildNoteItem(reader));
                     }
                 }
             }
@@ -86,7 +93,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
             {
                 TotalClick = reader["TotalClick"] == DBNull.Value ? 0 : Convert.ToInt32(reader["TotalClick"]),
                 UniqueClick = reader["TotalClick"] == DBNull.Value ? 0 :  Convert.ToInt32(reader["UniqueClick"]),
-                Date = reader["Date"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["Date"])
+                Date = Convert.ToDateTime(reader["Date"])
             };
         }
     }

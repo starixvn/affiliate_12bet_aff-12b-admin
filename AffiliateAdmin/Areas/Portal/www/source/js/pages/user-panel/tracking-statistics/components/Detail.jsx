@@ -9,21 +9,24 @@ import { headerText, resource } from '../modules/constants';
 
 import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
+import { setDate } from '../actions';
 
 export class Detail extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            gridData: null
+            gridData: []
         }
     }
 
     componentDidUpdate(prevProps) {
-        const { isShowStatisticsDetail, param } = this.props;
+        const { isShowStatisticsDetail, param, date } = this.props;
 
-        if (param !== prevProps.param && isShowStatisticsDetail) {
-            this.fetchData(this.props.param);
+        if (date !== prevProps.date && isShowStatisticsDetail) {
+            const dateTime = new Date(date);
+            const newParam = Object.assign({}, this.props.param, { Month: dateTime.getMonth() + 1, Year: dateTime.getFullYear() });
+            this.fetchData(newParam);
         }
     }
 
@@ -51,7 +54,7 @@ export class Detail extends Component {
     _renderDataSection(dataList) {
         const dataRows = [];
 
-        if(dataList)
+        if(dataList.length)
         {
             for (let i = 0; i < dataList.length; i++) {
                 const dataItem = dataList[i];
@@ -97,12 +100,12 @@ export class Detail extends Component {
 }
 
 
-    function mapStateToProps({ isShowStatisticsDetail, param }) {
-        return Object.assign({}, { isShowStatisticsDetail, param });
+function mapStateToProps({ isShowStatisticsDetail, param, date }) {
+    return Object.assign({}, { isShowStatisticsDetail, param, date });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ toggleLoader }, dispatch);
+    return bindActionCreators({ toggleLoader, setDate }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Detail);

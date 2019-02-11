@@ -3,7 +3,6 @@ using System.Web.Mvc;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
 using Fanex.Affiliate.Admin.Core.ViewModels.UserPanel;
-using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Extensions;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
@@ -11,6 +10,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
     public class TrackingStatisticsController : BaseController
     {
         private readonly ITrackingStatisticsRepository _trackingStatisticsRepository;
+
         public TrackingStatisticsController(
             ISessionService sessionService,
             ITrackingStatisticsRepository trackingStatisticsRepository) : base(sessionService)

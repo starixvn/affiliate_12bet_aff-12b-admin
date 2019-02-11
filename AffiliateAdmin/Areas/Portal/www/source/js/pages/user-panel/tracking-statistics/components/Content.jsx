@@ -8,7 +8,7 @@ import { Button } from 'reactstrap';
 import { headerText } from '../modules/constants';
 
 import { post } from '../../../../modules/ajaxRequest';
-import { setShowStatisticsDetail, setParam } from '../actions';
+import { setShowStatisticsDetail, setDate } from '../actions';
 import { toggleLoader } from '../../../../actions/loaderAction';
 
 export class Content extends Component {
@@ -79,10 +79,7 @@ export class Content extends Component {
     }
 
     handleShowStatisticsDetail = (date) => {
-        const dateTime = new Date(date);
-        const param = Object.assign({}, this.props.param, { Month: dateTime.getMonth(), Year: dateTime.getFullYear() });
-
-        this.props.setParam(param);
+        this.props.setDate(date);
         this.props.setShowStatisticsDetail(true);
     }
 
@@ -110,7 +107,7 @@ function mapStateToProps({ param }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ toggleLoader, setShowStatisticsDetail, setParam }, dispatch);
+    return bindActionCreators({ toggleLoader, setShowStatisticsDetail, setDate }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);
