@@ -1,5 +1,6 @@
 ﻿var VerificationAccount = (function () {
     var _refreshCaptchaTimeoutId = null;
+    var _countdownResendCodeTimeoutId = null;
     var INTERVAL_SENDCODE_SECOND = 300;
     var REFRESH_CAPTCHA_INTERVAL = 600000;
 
@@ -36,9 +37,6 @@
             _me.initEvent();
             _me.sendCode(true);
             registerRefreshCaptcha();
-
-            var hash = CryptoJS.HmacSHA256("Message", "secret");
-            console.log(hash.toString());
         },
         initEvent: function () {
             $("#btnResend").on("click", function (e) {
@@ -91,13 +89,13 @@
             });
         },
         countDown: function (second) {
+            clearTimeout(_countdownResendCodeTimeoutId);
             if (second === 0) {
-                clearTimeout(_me.countDown);
                 $('#btnResend').html('RESEND CODE');
                 $('#btnResend').prop("disabled", false);
             } else {
                 $('#btnResend').html('RESEND CODE(' + second + ')');
-                setTimeout(_me.countDown, 1000, --second);
+                _countdownResendCodeTimeoutId = setTimeout(_me.countDown, 1000, --second);
             }
         },
         submitForm: function () {
@@ -118,7 +116,8 @@
                 $('#Password').val(encryptedQueryString);
 
                 var verificationToken = $('#VerificationToken').val();
-                var hashMessage = CryptoJS.HmacSHA256(verificationToken + captcha + code, verificationToken).toString();
+                var authMessage = encryptedQueryString + verificationToken + captcha + code;
+                var hashMessage = CryptoJS.HmacSHA256(authMessage, verificationToken).toString();
 
                 var param = {
                     __RequestVerificationToken: csrfToken,

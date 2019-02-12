@@ -10,7 +10,9 @@
 
         public string Captcha { get; set; }
 
-        public string SecretKey { get; set; }
+        public string LoginInfo { get; set; }
+
+        public string HashKey { get; set; }
 
         public string HashMessage { get; set; }
     }

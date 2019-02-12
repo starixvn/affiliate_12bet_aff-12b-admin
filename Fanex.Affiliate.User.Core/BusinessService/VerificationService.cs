@@ -59,7 +59,8 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 return new SendCodeResult
                 {
                     IsOk = true,
-                    NewCounter = counter
+                    NewCounter = counter,
+                    NewSendCodeTime = GetNewSentCodeTime()
                 };
             }
 
@@ -72,8 +73,8 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public bool IsValidOtp(VerificationOtpParam param)
         {
-            var authMessage = param.SecretKey + param.Captcha + param.OtpCode;
-            var hashMessage = CreateHashMessage(authMessage, param.SecretKey);
+            var authMessage = param.LoginInfo + param.HashKey + param.Captcha + param.OtpCode;
+            var hashMessage = CreateHashMessage(authMessage, param.HashKey);
 
             return string.Equals(hashMessage, param.HashMessage) &&
                 _twoFactorAuthService.VerifyHotp(param.AffId, param.Counter, param.OtpCode);
@@ -86,6 +87,13 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             var elapsedTick = nowTick - sentCodeTimeSession;
 
             return sentCodeTimeSession == 0 || elapsedTick >= 0;
+        }
+
+        private static long GetNewSentCodeTime()
+        {
+            var now = DateTime.Now;
+
+            return new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second).Ticks;
         }
 
         private static string CreateHashMessage(string message, string secret)

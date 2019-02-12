@@ -59,6 +59,11 @@ namespace Fanex.Affiliate.User.Core.Controllers
         public ActionResult SendCode()
         {
             var verificationSession = SessionService.VerificationSession;
+            if (verificationSession == null)
+            {
+                return Json(GetErrorResult(Error.General));
+            }
+
             var sendCodeParam = new SendCodeParam
             {
                 AffId = verificationSession.AffId,
@@ -76,7 +81,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
             if (result.IsOk)
             {
                 verificationSession.Counter = result.NewCounter;
-                verificationSession.SentCodeTime = GetNewSentCodeTime();
+                verificationSession.SentCodeTime = result.NewSendCodeTime;
             }
             verificationSession.Token = Guid.NewGuid().ToString();
 
@@ -93,6 +98,11 @@ namespace Fanex.Affiliate.User.Core.Controllers
         public ActionResult VerifyAccount(VerificationAccountParam param)
         {
             var verificationSession = SessionService.VerificationSession;
+            if (verificationSession == null)
+            {
+                return Json(GetErrorResult(Error.General));
+            }
+
             var requestValidtionResult = ValidateLoginRequest(param.Captcha, verificationSession.Captcha);
             if (!requestValidtionResult.IsOk)
             {
@@ -104,9 +114,10 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 AffId = verificationSession.AffId.ToString(),
                 Counter = verificationSession.Counter,
                 OtpCode = param.Code,
-                SecretKey = verificationSession.Token,
+                HashKey = verificationSession.Token,
                 HashMessage = param.HashMessage,
-                Captcha = param.Captcha
+                Captcha = param.Captcha,
+                LoginInfo = param.LoginInfo
             };
             if (_verificationService.IsValidOtp(verificationOtpParam))
             {
@@ -169,13 +180,6 @@ namespace Fanex.Affiliate.User.Core.Controllers
                                                 .Insert(startIndex, stringReplace);
 
             return convertedEmailName;
-        }
-
-        private static long GetNewSentCodeTime()
-        {
-            var now = DateTime.Now;
-
-            return new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second).Ticks;
         }
     }
 }
