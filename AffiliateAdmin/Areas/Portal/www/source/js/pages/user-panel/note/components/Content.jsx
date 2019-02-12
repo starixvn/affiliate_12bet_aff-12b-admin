@@ -37,12 +37,21 @@ export class Content extends Component {
 
     _renderDataSection(dataList) {
         const dataRows = [];
-        const { pagingOption } = this.props;
-        const startIndex = (pagingOption.PageIndex - 1) * pagingOption.PageSize + 1;
 
-        for (let i = 0; i < dataList.length; i++) {
-            const dataItem = dataList[i];
-            dataRows.push(this._buildDataRow(dataItem, i + startIndex));
+        if(dataList.length)
+        {
+            const { pagingOption } = this.props;
+            const startIndex = (pagingOption.PageIndex - 1) * pagingOption.PageSize + 1;
+
+            for (let i = 0; i < dataList.length; i++) {
+                const dataItem = dataList[i];
+                dataRows.push(this._buildDataRow(dataItem, i + startIndex));
+            }
+        }
+        else {
+            dataRows.push(<Row>
+                    <Cell className="text-center" colSpan="5">{globalResource.NoInfo}</Cell>
+                </Row>);
         }
 
         return dataRows;
@@ -97,7 +106,7 @@ export class Content extends Component {
     render() {
         const { noteList } = this.props;
 
-        return noteList && (
+        return (
             <div className="data-content">
                 <div className="my-2">
                     <Button outline type="button" onClick={() => this.handleShowPopup(0)}>{globalResource.Add}</Button>

@@ -50,11 +50,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 
         [HttpPost]
 
-        public ActionResult GetTrackingStatisticsDetail(TrackingStatisticsParam param)
+        public ActionResult GetTrackingStatisticsDetailList(TrackingStatisticsParam param)
         {
             param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
 
-            var model = _trackingStatisticsRepository.GetTrackingStatisticsDetail(param);
+            var model = _trackingStatisticsRepository.GetTrackingStatisticsDetailList(param);
 
             return new JsonNetResult
             {

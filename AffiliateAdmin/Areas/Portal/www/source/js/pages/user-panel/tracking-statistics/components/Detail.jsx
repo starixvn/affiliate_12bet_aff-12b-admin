@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
-import { Button } from 'reactstrap';
 
-import { headerText, resource } from '../modules/constants';
+import { headerText } from '../modules/constants';
+import { globalResource } from '../../../../modules/globalResource';
 
 import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
@@ -32,7 +32,7 @@ export class Detail extends Component {
 
     async fetchData(param) {
         this.props.toggleLoader(true);
-        const url = 'Portal/UserPanel/TrackingStatistics/GetTrackingStatisticsDetail';
+        const url = 'Portal/UserPanel/TrackingStatistics/GetTrackingStatisticsDetailList';
         const response = await post(url, param);
         if (response && response.status === 200) {
             this.setState({ gridData: response.data });
@@ -54,17 +54,18 @@ export class Detail extends Component {
     _renderDataSection(dataList) {
         const dataRows = [];
 
-        if(dataList.length)
-        {
+        if (dataList.length) {
             for (let i = 0; i < dataList.length; i++) {
                 const dataItem = dataList[i];
                 dataRows.push(this._buildDataRow(dataItem, i + 1));
             }
         }
         else {
-            dataRows.push(<Row>
-                    <Cell className="text-center" colSpan="4">{resource.NoInfo}</Cell>
-                </Row>);
+            dataRows.push(
+                <Row>
+                    <Cell className="text-center" colSpan="4">{globalResource.NoInfo}</Cell>
+                </Row>
+            );
         }
 
         return dataRows;

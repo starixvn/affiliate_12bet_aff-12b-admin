@@ -10,6 +10,6 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
 
         IEnumerable<TrackingStatistics> GetTrackingStatisticsList(TrackingStatisticsParam param);
 
-        IEnumerable<TrackingStatistics> GetTrackingStatisticsDetail(TrackingStatisticsParam param);
+        IEnumerable<TrackingStatistics> GetTrackingStatisticsDetailList(TrackingStatisticsParam param);
     }
 }

@@ -1,6 +1,4 @@
-﻿import { globalResource } from '../../../../modules/globalResource';
-
-export const headerText = {
+﻿export const headerText = {
     Index: '#',
     Month: 'Month',
     TotalClicks: 'Total Clicks',
@@ -10,7 +8,5 @@ export const headerText = {
 
 export const resource = {
     TrackingCode: 'Tracking Code',
-    Search: globalResource.Search,
     All: '[All]',
-    NoInfo: 'There is no information available'
 }

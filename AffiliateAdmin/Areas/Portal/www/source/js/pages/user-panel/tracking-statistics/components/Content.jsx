@@ -68,10 +68,11 @@ export class Content extends Component {
         return (
             <Row>
                 <Cell title={index} className="text-center">{index}</Cell>
-                <Cell title={dataItem.Date} className="text-center"><Button color="link" className="p-0"
-                        onClick={() => this.handleShowStatisticsDetail(dataItem.Date)}>
+                <Cell title={dataItem.Date} className="text-center">
+                    <Button color="link" className="p-0" onClick={() => this.handleShowStatisticsDetail(dataItem.Date)}>
                         {dataItem.MonthText}
-                    </Button></Cell>
+                    </Button>
+                </Cell>
                 <Cell title={dataItem.TotalClick} className="text-center">{dataItem.TotalClick}</Cell>
                 <Cell title={dataItem.UniqueClick} className="text-center">{dataItem.UniqueClick}</Cell>
             </Row>

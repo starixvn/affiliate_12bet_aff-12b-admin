@@ -6,6 +6,7 @@ import { Form, FormGroup, Input, Label, Button } from 'reactstrap';
 
 import { setParam, setShowStatisticsDetail, setDate } from '../actions';
 import { resource } from '../modules/constants';
+import { globalResource } from '../../../../modules/globalResource';
 
 export class Filter extends Component {
     constructor(props) {
@@ -41,13 +42,13 @@ export class Filter extends Component {
                             <option value="">{resource.All}</option>
                             {
                                 Object.keys(trackingCodeList).map(trackingCode => {
-                                    return (<option key={'trackingCode-' + trackingCode} value={trackingCode}>{ trackingCode }</option>)
+                                    return (<option key={'trackingCode-' + trackingCode} value={trackingCode}>{trackingCode}</option>)
                                 })
                             }
                         </Input>
                     </FormGroup>
                     <Button outline color="primary" type="button" onClick={this.handleClickSearch} >
-                        <span className="oi oi-magnifying-glass"></span> {resource.Search}
+                        <span className="oi oi-magnifying-glass"></span> {globalResource.Search}
                     </Button>
                 </Form>
             </div>

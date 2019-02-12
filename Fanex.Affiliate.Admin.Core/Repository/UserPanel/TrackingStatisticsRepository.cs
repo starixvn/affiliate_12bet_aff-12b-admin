@@ -58,7 +58,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
             return result;
         }
 
-        public IEnumerable<TrackingStatistics> GetTrackingStatisticsDetail(TrackingStatisticsParam param)
+        public IEnumerable<TrackingStatistics> GetTrackingStatisticsDetailList(TrackingStatisticsParam param)
         {
             const string SpKey = "Aff_AffiliateSelClickStatisticsMonthDetail";
             var result = new List<TrackingStatistics>();
