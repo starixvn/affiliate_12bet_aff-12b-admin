@@ -1,11 +1,4 @@
-﻿import { SET_SHOW_STATISTICS_DETAIL, SET_PARAM, SET_DATE } from './types';
-
-export const setShowStatisticsDetail = (data) => {
-    return {
-        type: SET_SHOW_STATISTICS_DETAIL,
-        data
-    }
-}
+﻿import { SET_PARAM, SET_MONTH } from './types';
 
 export const setParam = (data) => {
     return {
@@ -14,9 +7,9 @@ export const setParam = (data) => {
     }
 }
 
-export const setDate = (data) => {
+export const setMonth = (data) => {
     return {
-        type: SET_DATE,
+        type: SET_MONTH,
         data
     }
 }

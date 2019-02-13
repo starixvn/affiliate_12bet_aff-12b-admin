@@ -1,0 +1,22 @@
+﻿
+@{
+    Layout = "~/Areas/Portal/Views/Shared/_SinglePageLayout.cshtml";
+}
+
+@section styles{
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/user-panel/referrers.css")" rel="stylesheet" />
+}
+
+@section scripts{
+    <script type="text/javascript">
+        window.initialState = {
+            today: '@DateTime.Now.ToString("MM/dd/yyyy")',
+            device: 0,
+            affId: 1300390
+        }
+    </script>
+    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/userpanel/referrers.js")"></script>
+}
+
+<div id="root"></div>
+

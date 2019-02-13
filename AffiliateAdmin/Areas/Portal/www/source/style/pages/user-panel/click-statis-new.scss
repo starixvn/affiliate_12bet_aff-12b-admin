@@ -1,0 +1,8 @@
+﻿.sub-menu-container {
+    & + .mainFrameWrapper {
+        #mainFrame {
+            top: 100px;
+            height: calc(100% - 80px);
+        }
+    }
+}

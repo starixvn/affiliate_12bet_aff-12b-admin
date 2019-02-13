@@ -8,8 +8,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
     {
         IEnumerable<TrackingCode> GetTrackingCodeList(int affId);
 
-        IEnumerable<TrackingStatistics> GetTrackingStatisticsList(TrackingStatisticsParam param);
+        IEnumerable<TrackingStatistics> GetTrackingStatisticsAllMonths(TrackingStatisticsParam param);
 
-        IEnumerable<TrackingStatistics> GetTrackingStatisticsDetailList(TrackingStatisticsParam param);
+        IEnumerable<TrackingStatistics> GetTrackingStatisticsByMonth(TrackingStatisticsDetailParam param);
     }
 }

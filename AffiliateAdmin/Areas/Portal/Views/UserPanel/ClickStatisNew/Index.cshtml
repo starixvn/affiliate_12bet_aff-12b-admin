@@ -1,0 +1,52 @@
+﻿
+@{
+    Layout = "~/Areas/Portal/Views/Shared/_UserPanelLayout.cshtml";
+}
+@using Fanex.Affiliate.Admin.Core.Constants
+@using Fanex.Affiliate.Admin.Core.ViewModels.UserPanel
+@using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
+
+@section menu{
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/layout.css")" rel="stylesheet" />
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/user-panel/click-statis-new.css")" rel="stylesheet" />
+    @{
+        var affiliateLinkParam = new AffiliateLinkParam
+        {
+            AffId = 1300390,
+            AffName = "12BETAFF371",
+        };
+        var usePanelMenu = new UserPanelMenuViewModel
+        {
+            SubMenuList = UserPanelConstant.UserPanelMenuList,
+            AffiliateLinkParam = affiliateLinkParam
+        };
+        usePanelMenu.SubMenuList.ElementAt(9).IsActive = true;
+        Html.RenderPartial("~/Areas/Portal/Views/Shared/_UserPanelMenu.cshtml", usePanelMenu);
+    }
+}
+
+@model IEnumerable<Fanex.Affiliate.Admin.Core.DTO.SubMenu>
+
+@{
+    var defaultUrl = (Model.FirstOrDefault(p => p.IsActive) ?? Model.First()).Url;
+    if (defaultUrl.IndexOf('?') == -1 && Request.QueryString.Count > 0)
+    {
+        defaultUrl = defaultUrl + "?" + Request.QueryString.ToString();
+    }
+    else if (Request.QueryString.Count > 0)
+    {
+        defaultUrl = defaultUrl + "&" + Request.QueryString.ToString();
+    }
+}
+
+
+<div class="sub-menu-container">
+    <div class="d-inline-block">
+        @{
+            Html.RenderPartial("~/Areas/Portal/Views/Shared/_SubMenu.cshtml", Model);
+        }
+    </div>
+</div>
+<div class="mainFrameWrapper">
+    <iframe frameborder="0" name="mainFrame" id="mainFrame" src="@defaultUrl"></iframe>
+</div>

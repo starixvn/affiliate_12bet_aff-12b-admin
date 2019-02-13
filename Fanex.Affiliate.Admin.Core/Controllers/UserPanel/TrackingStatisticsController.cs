@@ -4,6 +4,7 @@ using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
 using Fanex.Affiliate.Admin.Core.ViewModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Extensions;
+using Fanex.Affiliate.Admin.Core.Attributes;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
@@ -35,12 +36,13 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         }
 
         [HttpPost]
-
-        public ActionResult GetTrackingStatisticsList(TrackingStatisticsParam param)
+        [ValidateAntiForgeryHeader]
+        [Compress]
+        public ActionResult GetTrackingStatisticsAllMonths(TrackingStatisticsParam param)
         {
             param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
 
-            var model = _trackingStatisticsRepository.GetTrackingStatisticsList(param);
+            var model = _trackingStatisticsRepository.GetTrackingStatisticsAllMonths(param);
 
             return new JsonNetResult
             {
@@ -49,12 +51,13 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         }
 
         [HttpPost]
-
-        public ActionResult GetTrackingStatisticsDetailList(TrackingStatisticsParam param)
+        [ValidateAntiForgeryHeader]
+        [Compress]
+        public ActionResult GetTrackingStatisticsByMonth(TrackingStatisticsDetailParam param)
         {
             param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
 
-            var model = _trackingStatisticsRepository.GetTrackingStatisticsDetailList(param);
+            var model = _trackingStatisticsRepository.GetTrackingStatisticsByMonth(param);
 
             return new JsonNetResult
             {

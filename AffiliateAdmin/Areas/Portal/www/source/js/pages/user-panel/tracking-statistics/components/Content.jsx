@@ -8,7 +8,7 @@ import { Button } from 'reactstrap';
 import { headerText } from '../modules/constants';
 
 import { post } from '../../../../modules/ajaxRequest';
-import { setShowStatisticsDetail, setDate } from '../actions';
+import { setMonth } from '../actions';
 import { toggleLoader } from '../../../../actions/loaderAction';
 
 export class Content extends Component {
@@ -34,7 +34,7 @@ export class Content extends Component {
 
     async fetchData(param) {
         this.props.toggleLoader(true);
-        const url = 'Portal/UserPanel/TrackingStatistics/GetTrackingStatisticsList';
+        const url = 'Portal/UserPanel/TrackingStatistics/GetTrackingStatisticsAllMonths';
         const response = await post(url, param);
         if (response && response.status === 200) {
             this.setState({ gridData: response.data });
@@ -46,9 +46,9 @@ export class Content extends Component {
         return (
             <Row>
                 <Cell header={true} colWidth={40} title={headerText.Index}>{headerText.Index}</Cell>
-                <Cell header={true} colWidth={1000} title={headerText.Month}>{headerText.Month}</Cell>
-                <Cell header={true} colWidth={280} title={headerText.TotalClicks}>{headerText.TotalClicks}</Cell>
-                <Cell header={true} colWidth={280} title={headerText.UniqueClicks}>{headerText.UniqueClicks}</Cell>
+                <Cell header={true} colWidth={600} title={headerText.Month}>{headerText.Month}</Cell>
+                <Cell header={true} colWidth={180} title={headerText.TotalClicks}>{headerText.TotalClicks}</Cell>
+                <Cell header={true} colWidth={180} title={headerText.UniqueClicks}>{headerText.UniqueClicks}</Cell>
             </Row>
         );
     }
@@ -68,8 +68,8 @@ export class Content extends Component {
         return (
             <Row>
                 <Cell title={index} className="text-center">{index}</Cell>
-                <Cell title={dataItem.Date} className="text-center">
-                    <Button color="link" className="p-0" onClick={() => this.handleShowStatisticsDetail(dataItem.Date)}>
+                <Cell title={dataItem.MonthText} className="text-center">
+                    <Button color="link" className="p-0" onClick={() => this.props.setMonth(dataItem.MonthText)}>
                         {dataItem.MonthText}
                     </Button>
                 </Cell>
@@ -79,19 +79,14 @@ export class Content extends Component {
         )
     }
 
-    handleShowStatisticsDetail = (date) => {
-        this.props.setDate(date);
-        this.props.setShowStatisticsDetail(true);
-    }
-
     render() {
         const { gridData } = this.state;
 
         return gridData && (
             <div className="table-responsive table-striped my-2">
                 <Table
-                    minWidth={1000}
-                    autoWidth={true}
+                    width={1020}
+                    autoWidth={false}
                     bodyHeight={300}
                     header={this._renderHeader()}
                     body={this._renderDataSection(gridData)}
@@ -108,7 +103,7 @@ function mapStateToProps({ param }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ toggleLoader, setShowStatisticsDetail, setDate }, dispatch);
+    return bindActionCreators({ toggleLoader, setMonth }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

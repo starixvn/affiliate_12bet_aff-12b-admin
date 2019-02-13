@@ -30,7 +30,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
             return result;
         }
 
-        public IEnumerable<TrackingStatistics> GetTrackingStatisticsList(TrackingStatisticsParam param)
+        public IEnumerable<TrackingStatistics> GetTrackingStatisticsAllMonths(TrackingStatisticsParam param)
         {
             const string SpKey = "Aff_AffiliateSelClickStatisticsAllMonths";
             var result = new List<TrackingStatistics>();
@@ -43,13 +43,13 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
                 {
                     while (reader.Read())
                     {
-                        result.Add(BuildNoteItem(reader));
+                        result.Add(BuildTrackingStatisticsItem(reader));
                     }
                     if (reader.NextResult())
                     {
                         while (reader.Read())
                         {
-                            result.Add(BuildNoteItem(reader));
+                            result.Add(BuildTrackingStatisticsItem(reader));
                         }
                     }
                 }
@@ -58,7 +58,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
             return result;
         }
 
-        public IEnumerable<TrackingStatistics> GetTrackingStatisticsDetailList(TrackingStatisticsParam param)
+        public IEnumerable<TrackingStatistics> GetTrackingStatisticsByMonth(TrackingStatisticsDetailParam param)
         {
             const string SpKey = "Aff_AffiliateSelClickStatisticsMonthDetail";
             var result = new List<TrackingStatistics>();
@@ -73,7 +73,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
                 {
                     while (reader.Read())
                     {
-                        result.Add(BuildNoteItem(reader));
+                        result.Add(BuildTrackingStatisticsItem(reader));
                     }
                 }
             }
@@ -87,12 +87,12 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
             objectDb.AddInParameter("TrackingCode", DbType.String, param.TrackingCode);
         }
 
-        private static TrackingStatistics BuildNoteItem(IDataReader reader)
+        private static TrackingStatistics BuildTrackingStatisticsItem(IDataReader reader)
         {
             return new TrackingStatistics
             {
                 TotalClick = reader["TotalClick"] == DBNull.Value ? 0 : Convert.ToInt32(reader["TotalClick"]),
-                UniqueClick = reader["TotalClick"] == DBNull.Value ? 0 :  Convert.ToInt32(reader["UniqueClick"]),
+                UniqueClick = reader["UniqueClick"] == DBNull.Value ? 0 :  Convert.ToInt32(reader["UniqueClick"]),
                 Date = Convert.ToDateTime(reader["Date"])
             };
         }

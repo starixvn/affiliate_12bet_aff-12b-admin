@@ -12,6 +12,6 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 
         public string MonthText => Date.ToString("MMMM-yyyy");
 
-        public string DateText => Date.ToString("MM/dd/yyyy HH:mm:ss");
+        public string DateText => Date.ToString("MM-dd-yyyy");
     }
 }

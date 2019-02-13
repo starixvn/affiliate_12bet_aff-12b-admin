@@ -1,16 +1,10 @@
 ﻿import { combineReducers } from 'redux';
-import { SET_SHOW_STATISTICS_DETAIL, SET_PARAM, SET_DATE } from '../actions/types';
+import { SET_PARAM, SET_MONTH } from '../actions/types';
 import createReducer from '../../../../modules/createReducer';
 
 import { isShowLoader } from '../../../../reducers/loaderReducer';
 
 export const trackingCodeList = createReducer({}, {});
-
-export const isShowStatisticsDetail = createReducer(false, {
-    [SET_SHOW_STATISTICS_DETAIL](prevState, action) {
-        return action.data;
-    }
-});
 
 export const param = createReducer({}, {
     [SET_PARAM](prevState, action) {
@@ -18,16 +12,15 @@ export const param = createReducer({}, {
     }
 });
 
-export const date = createReducer('', {
-    [SET_DATE](prevState, action) {
+export const month = createReducer('', {
+    [SET_MONTH](prevState, action) {
         return action.data;
     }
 });
 
 export default combineReducers({
     isShowLoader,
-    isShowStatisticsDetail,
     trackingCodeList,
     param,
-    date
+    month
 });

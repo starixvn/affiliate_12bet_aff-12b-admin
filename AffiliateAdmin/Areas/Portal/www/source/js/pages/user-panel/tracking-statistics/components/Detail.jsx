@@ -9,7 +9,6 @@ import { globalResource } from '../../../../modules/globalResource';
 
 import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
-import { setDate } from '../actions';
 
 export class Detail extends Component {
     constructor(props) {
@@ -21,10 +20,10 @@ export class Detail extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        const { isShowStatisticsDetail, param, date } = this.props;
+        const { param, month } = this.props;
 
-        if (date !== prevProps.date && isShowStatisticsDetail) {
-            const dateTime = new Date(date);
+        if (month !== prevProps.month) {
+            const dateTime = new Date(month);
             const newParam = Object.assign({}, this.props.param, { Month: dateTime.getMonth() + 1, Year: dateTime.getFullYear() });
             this.fetchData(newParam);
         }
@@ -32,7 +31,7 @@ export class Detail extends Component {
 
     async fetchData(param) {
         this.props.toggleLoader(true);
-        const url = 'Portal/UserPanel/TrackingStatistics/GetTrackingStatisticsDetailList';
+        const url = 'Portal/UserPanel/TrackingStatistics/GetTrackingStatisticsByMonth';
         const response = await post(url, param);
         if (response && response.status === 200) {
             this.setState({ gridData: response.data });
@@ -44,9 +43,9 @@ export class Detail extends Component {
         return (
             <Row>
                 <Cell header={true} colWidth={40} title={headerText.Index}>{headerText.Index}</Cell>
-                <Cell header={true} colWidth={1000} title={headerText.Date}>{headerText.Date}</Cell>
-                <Cell header={true} colWidth={280} title={headerText.TotalClicks}>{headerText.TotalClicks}</Cell>
-                <Cell header={true} colWidth={280} title={headerText.UniqueClicks}>{headerText.UniqueClicks}</Cell>
+                <Cell header={true} colWidth={600} title={headerText.Date}>{headerText.Date}</Cell>
+                <Cell header={true} colWidth={180} title={headerText.TotalClicks}>{headerText.TotalClicks}</Cell>
+                <Cell header={true} colWidth={180} title={headerText.UniqueClicks}>{headerText.UniqueClicks}</Cell>
             </Row>
         );
     }
@@ -85,11 +84,11 @@ export class Detail extends Component {
     render() {
         const { gridData } = this.state;
 
-        return this.props.isShowStatisticsDetail && (
+        return this.props.month && (
             <div className="table-responsive table-striped my-2">
                 <Table
-                    minWidth={1000}
-                    autoWidth={true}
+                    width={1020}
+                    autoWidth={false}
                     bodyHeight={300}
                     header={this._renderHeader()}
                     body={this._renderDataSection(gridData)}
@@ -101,12 +100,12 @@ export class Detail extends Component {
 }
 
 
-function mapStateToProps({ isShowStatisticsDetail, param, date }) {
-    return Object.assign({}, { isShowStatisticsDetail, param, date });
+function mapStateToProps({ param, month }) {
+    return Object.assign({}, { param, month });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ toggleLoader, setDate }, dispatch);
+    return bindActionCreators({ toggleLoader }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Detail);
