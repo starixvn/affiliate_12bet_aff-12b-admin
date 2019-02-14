@@ -8,7 +8,7 @@ import { headerText } from '../modules/constants';
 import { globalResource } from '../../../../modules/globalResource';
 
 import { post } from '../../../../modules/ajaxRequest';
-import { toggleLoader } from '../../../../actions/loaderAction';
+import { toggleLoader, setPagingOption } from '../actions';
 
 export class Detail extends Component {
     constructor(props) {
@@ -20,20 +20,24 @@ export class Detail extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        const { param, siteUrl } = this.props;
+        const { pagingOption, param, siteUrl } = this.props;
 
         if (siteUrl !== prevProps.siteUrl) {
-            const newParam = Object.assign({}, this.props.param, { SiteUrl: siteUrl });
+            const newParam = Object.assign({}, this.props.param, { SiteUrl: siteUrl, PageIndex: pagingOption.PageIndex, PageSize: pagingOption.PageSize });
             this.fetchData(newParam);
         }
     }
 
     async fetchData(param) {
         this.props.toggleLoader(true);
-        const url = 'Portal/UserPanel/ClickStatisticsNew/GetClickStatisticsNewByMonth';
+        const url = 'Portal/UserPanel/Referrers/GetReferrersBySite';
         const response = await post(url, param);
         if (response && response.status === 200) {
-            this.setState({ gridData: response.data });
+            const { MainData, TotalItem } = response.data;
+
+            this.setState({ gridData: MainData });
+
+            this.props.setPagingOption({ TotalItem, PageIndex: param.PageIndex, PageSize: param.PageSize });
         }
         this.props.toggleLoader(false);
     }
@@ -70,6 +74,18 @@ export class Detail extends Component {
         return dataRows;
     }
 
+    handlePaging = (pageIndex, pageSize) => {
+        const newPaging = {
+            PageIndex: pageIndex,
+            PageSize: pageSize
+        };
+
+        this.props.setPagingOption(newPaging);
+
+        const newParam = Object.assign({}, this.props.param, { SiteUrl: this.props.siteUrl, ...newPaging });
+        this.props.getNoteList(newParam);
+    }
+
     _buildDataRow(dataItem, index) {
         return (
             <Row>
@@ -94,6 +110,9 @@ export class Detail extends Component {
                     header={this._renderHeader()}
                     body={this._renderDataSection(gridData)}
                     containerPadding={10}
+                    isPaging={true}
+                    pageOption={this.props.pagingOption}
+                    onPaging={this.handlePaging}
                 />
             </div>
         );
@@ -101,12 +120,12 @@ export class Detail extends Component {
 }
 
 
-function mapStateToProps({ param, siteUrl }) {
-    return Object.assign({}, { param, siteUrl });
+function mapStateToProps({ pagingOption, param, siteUrl }) {
+    return Object.assign({}, { pagingOption, param, siteUrl });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ toggleLoader }, dispatch);
+    return bindActionCreators({ toggleLoader, setPagingOption }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Detail);

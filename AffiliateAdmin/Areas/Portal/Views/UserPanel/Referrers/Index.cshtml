@@ -1,22 +1,24 @@
 ﻿
 @{
     Layout = "~/Areas/Portal/Views/Shared/_SinglePageLayout.cshtml";
+    var fromDate = Model.FromDate.IsEmpty() ? "" + DateTime.Now.Month + "/01/" + DateTime.Now.Year + "" : Model.FromDate;
+    var toDate = Model.ToDate.IsEmpty() ? DateTime.Now.ToString("MM/dd/yyyy") : Model.ToDate;
 }
 
 @section styles{
     <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/user-panel/referrers.css")" rel="stylesheet" />
 }
-
+@model Fanex.Affiliate.Admin.Core.MetaModels.UserPanel.ReferrersParam
 @section scripts{
     <script type="text/javascript">
         window.initialState = {
-            fromDate: '@DateTime.Now.Month/01/@DateTime.Now.Year',
-            toDate: '@DateTime.Now.ToString("MM/dd/yyyy")',
-            device: 0,
+            fromDate: '@fromDate',
+            toDate: '@toDate',
+            deviceType: @Model.DeviceType,
             param: {
-                AffId: 1300390,
-                FromDate: '@DateTime.Now.Month/01/@DateTime.Now.Year',
-                ToDate: '@DateTime.Now.ToString("MM/dd/yyyy")'
+                AffId: @Model.AffId,
+                FromDate: '@fromDate',
+                ToDate: '@toDate'
             }
         }
     </script>

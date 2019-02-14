@@ -9,8 +9,7 @@ import { headerText } from '../modules/constants';
 import { globalResource } from '../../../../modules/globalResource';
 
 import { post } from '../../../../modules/ajaxRequest';
-import { setSiteUrl } from '../actions';
-import { toggleLoader } from '../../../../actions/loaderAction';
+import { setSiteUrl, toggleLoader } from '../actions';
 
 export class Content extends Component {
     constructor(props) {
@@ -35,7 +34,7 @@ export class Content extends Component {
 
     async fetchData(param) {
         this.props.toggleLoader(true);
-        const url = 'Portal/UserPanel/ClickStatisticsNew/GetClickStatisticsNewAllMonths';
+        const url = 'Portal/UserPanel/Referrers/GetReferrersAllSites';
         const response = await post(url, param);
         if (response && response.status === 200) {
             this.setState({ gridData: response.data });
@@ -78,13 +77,13 @@ export class Content extends Component {
     _buildDataRow(dataItem, index) {
         return (
             <Row>
-                <Cell title={dataItem.SiteUrls}>
-                    <Button color="link" className="p-0" onClick={() => this.props.setSiteUrl(dataItem.SiteUrls)}>
-                        {dataItem.SiteUrls}
-                    </Button>
+                <Cell title={dataItem.SiteUrl}>
+                    {dataItem.SiteUrl == "Old URL" ? dataItem.SiteUrl : (<Button color="link" className="p-0" onClick={() => this.props.setSiteUrl(dataItem.SiteUrl)}>
+                        {dataItem.SiteUrl}
+                    </Button>)}
                 </Cell>
-                <Cell title={dataItem.TotalClicks} className="text-right">{dataItem.TotalClicks}</Cell>
-                <Cell title={dataItem.UniqueClicks} className="text-right">{dataItem.UniqueClicks}</Cell>
+                <Cell title={dataItem.TotalClick} className="text-right">{dataItem.TotalClick}</Cell>
+                <Cell title={dataItem.UniqueClick} className="text-right">{dataItem.UniqueClick}</Cell>
                 <Cell title={dataItem.Signups} className="text-right">{dataItem.Signups}</Cell>
                 <Cell title={dataItem.Fdm} className="text-right">{dataItem.Fdm}</Cell>
             </Row>

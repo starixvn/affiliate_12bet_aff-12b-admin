@@ -11,10 +11,6 @@ export const deviceType = createReducer(0, {
     }
 });
 
-//const today = new Date();
-//const defaultFromDate = `${today.getMonth() + 1}/01/${today.getFullYear()}`;
-//const defaultToDate = `${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()}`;
-
 export const fromDate = createReducer('', {
     [SET_FROM_DATE](prevState, action) {
         return action.data;
@@ -33,11 +29,6 @@ export const siteUrl = createReducer('', {
     }
 });
 
-//const defaultParam = {
-//    Device: 0,
-//    FromDate: defaultFromDate,
-//    ToDate: defaultToDate
-//}
 export const param = createReducer({}, {
     [SET_PARAM](prevState, action) {
         return Object.assign({}, prevState, action.data);

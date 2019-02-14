@@ -5,26 +5,6 @@
 @using Fanex.Affiliate.Admin.Core.Constants
 @using Fanex.Affiliate.Admin.Core.ViewModels.UserPanel
 @using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
-
-@section menu{
-    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/layout.css")" rel="stylesheet" />
-    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/user-panel/click-statis-new.css")" rel="stylesheet" />
-    @{
-        var affiliateLinkParam = new AffiliateLinkParam
-        {
-            AffId = 1300390,
-            AffName = "12BETAFF371",
-        };
-        var usePanelMenu = new UserPanelMenuViewModel
-        {
-            SubMenuList = UserPanelConstant.UserPanelMenuList,
-            AffiliateLinkParam = affiliateLinkParam
-        };
-        usePanelMenu.SubMenuList.ElementAt(9).IsActive = true;
-        Html.RenderPartial("~/Areas/Portal/Views/Shared/_UserPanelMenu.cshtml", usePanelMenu);
-    }
-}
-
 @model IEnumerable<Fanex.Affiliate.Admin.Core.DTO.SubMenu>
 
 @{
@@ -39,6 +19,24 @@
     }
 }
 
+@section menu{
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/layout.css")" rel="stylesheet" />
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/user-panel/click-statistics-new.css")" rel="stylesheet" />
+    @{
+        var affiliateLinkParam = new AffiliateLinkParam
+        {
+            AffId = Convert.ToInt32(Request.QueryString["affId"]),
+            AffName = Request.QueryString["affName"],
+        };
+        var usePanelMenu = new UserPanelMenuViewModel
+        {
+            SubMenuList = UserPanelConstant.UserPanelMenuList,
+            AffiliateLinkParam = affiliateLinkParam
+        };
+        usePanelMenu.SubMenuList.ElementAt(9).IsActive = true;
+        Html.RenderPartial("~/Areas/Portal/Views/Shared/_UserPanelMenu.cshtml", usePanelMenu);
+    }
+}
 
 <div class="sub-menu-container">
     <div class="d-inline-block">

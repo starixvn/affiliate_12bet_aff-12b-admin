@@ -1,6 +1,6 @@
 ﻿namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
 {
-    class ReferrersDetailParam : ReferrersParam
+    public class ReferrersDetailParam : ReferrersParam
     {
         public string SiteUrl { get; set; }
 
