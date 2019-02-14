@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import { Form, FormGroup, Input, Label, Button } from 'reactstrap';
 
-import { setParam, setMonth } from '../actions';
+import { setParam, setSelectedMonth } from '../actions';
 import { resource } from '../modules/constants';
 import { globalResource } from '../../../../modules/globalResource';
 
@@ -25,7 +25,7 @@ export class Filter extends Component {
         const param = Object.assign({}, this.props.param, { TrackingCode: this.state.selectedTrackingCode });
 
         this.props.setParam(param);
-        this.props.setMonth('');
+        this.props.setSelectedMonth('');
     }
 
     render() {
@@ -60,7 +60,7 @@ function mapStateToProps({ trackingCodeList, param }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setParam, setMonth }, dispatch);
+    return bindActionCreators({ setParam, setSelectedMonth }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);

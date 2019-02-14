@@ -1,5 +1,5 @@
 ﻿import { combineReducers } from 'redux';
-import { SET_PARAM, SET_MONTH } from '../actions/types';
+import { SET_PARAM, SET_SELECTED_MONTH } from '../actions/types';
 import createReducer from '../../../../modules/createReducer';
 
 import { isShowLoader } from '../../../../reducers/loaderReducer';
@@ -12,8 +12,8 @@ export const param = createReducer({}, {
     }
 });
 
-export const month = createReducer('', {
-    [SET_MONTH](prevState, action) {
+export const selectedMonth = createReducer('', {
+    [SET_SELECTED_MONTH](prevState, action) {
         return action.data;
     }
 });
@@ -22,5 +22,5 @@ export default combineReducers({
     isShowLoader,
     trackingCodeList,
     param,
-    month
+    selectedMonth
 });

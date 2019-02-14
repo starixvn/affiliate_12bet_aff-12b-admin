@@ -8,7 +8,7 @@ import { Button } from 'reactstrap';
 import { headerText } from '../modules/constants';
 
 import { post } from '../../../../modules/ajaxRequest';
-import { setMonth } from '../actions';
+import { setSelectedMonth } from '../actions';
 import { toggleLoader } from '../../../../actions/loaderAction';
 
 export class Content extends Component {
@@ -69,7 +69,7 @@ export class Content extends Component {
             <Row>
                 <Cell title={index} className="text-center">{index}</Cell>
                 <Cell title={dataItem.MonthText} className="text-center">
-                    <Button color="link" className="p-0" onClick={() => this.props.setMonth(dataItem.MonthText)}>
+                    <Button color="link" className="p-0" onClick={() => this.props.setSelectedMonth(dataItem.MonthText)}>
                         {dataItem.MonthText}
                     </Button>
                 </Cell>
@@ -103,7 +103,7 @@ function mapStateToProps({ param }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ toggleLoader, setMonth }, dispatch);
+    return bindActionCreators({ toggleLoader, setSelectedMonth }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

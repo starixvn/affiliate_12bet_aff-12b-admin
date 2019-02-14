@@ -66,8 +66,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
             using (var objectDb = GetObjectDb(SpKey))
             {
                 AssignCommonParam(objectDb, param);
-                objectDb.AddInParameter("month", DbType.Int32, param.Month);
-                objectDb.AddInParameter("year", DbType.Int32, param.Year);
+                objectDb.AddInParameter("month", DbType.Int32, param.SelectedMonth.Month);
+                objectDb.AddInParameter("year", DbType.Int32, param.SelectedMonth.Year);
 
                 using (var reader = objectDb.ExecuteReader())
                 {

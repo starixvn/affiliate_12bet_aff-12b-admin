@@ -1,2 +1,2 @@
 ﻿export const SET_PARAM = 'SET_PARAM';
-export const SET_MONTH = 'SET_MONTH';
+export const SET_SELECTED_MONTH = 'SET_SELECTED_MONTH';

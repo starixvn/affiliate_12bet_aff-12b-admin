@@ -20,11 +20,11 @@ export class Detail extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        const { param, month } = this.props;
+        const { param, selectedMonth } = this.props;
 
-        if (month !== prevProps.month) {
-            const dateTime = new Date(month);
-            const newParam = Object.assign({}, this.props.param, { Month: dateTime.getMonth() + 1, Year: dateTime.getFullYear() });
+        if (selectedMonth !== prevProps.selectedMonth) {
+            const dateTime = new Date(selectedMonth);
+            const newParam = Object.assign({}, this.props.param, { SelectedMonth: dateTime });
             this.fetchData(newParam);
         }
     }
@@ -84,7 +84,7 @@ export class Detail extends Component {
     render() {
         const { gridData } = this.state;
 
-        return this.props.month && (
+        return this.props.selectedMonth && (
             <div className="table-responsive table-striped my-2">
                 <Table
                     width={1020}
@@ -100,8 +100,8 @@ export class Detail extends Component {
 }
 
 
-function mapStateToProps({ param, month }) {
-    return Object.assign({}, { param, month });
+function mapStateToProps({ param, selectedMonth }) {
+    return Object.assign({}, { param, selectedMonth });
 }
 
 function mapDispatchToProps(dispatch) {
