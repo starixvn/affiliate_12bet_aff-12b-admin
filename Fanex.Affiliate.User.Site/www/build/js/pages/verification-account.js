@@ -120,6 +120,7 @@ var VerificationAccount = (function () {
                 var authMessage = encryptedQueryString + verificationToken + captcha + code;
                 var hashMessage = CryptoJS.HmacSHA256(authMessage, verificationToken).toString();
 
+                var url = Site.resolveRelativeUrl("Execute") + '/' + encodeURIComponent($('#ActionLink').val());
                 var param = {
                     __RequestVerificationToken: csrfToken,
                     LoginInfo: encryptedQueryString,
@@ -129,7 +130,7 @@ var VerificationAccount = (function () {
                 };
                 $.ajax({
                     type: "POST",
-                    url: Site.resolveRelativeUrl("VerificationAccount/VerifyAccount"),
+                    url: url,
                     data: param,
                     dataType: "json",
                     cache: false,

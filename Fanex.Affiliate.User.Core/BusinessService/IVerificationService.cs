@@ -8,5 +8,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         SendCodeResult SendCode(SendCodeParam param);
 
         bool IsValidOtp(VerificationOtpParam param);
+
+        string CreateActionLink(string publicKey);
     }
 }

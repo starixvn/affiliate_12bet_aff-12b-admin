@@ -9,6 +9,7 @@ using Fanex.Affiliate.User.Core.MetalModels.Email;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.Utilities;
+using Fanex.Affiliate.User.Core.ViewModels;
 
 namespace Fanex.Affiliate.User.Core.Controllers
 {
@@ -40,9 +41,14 @@ namespace Fanex.Affiliate.User.Core.Controllers
             }
 
             var userInfo = _accountRepository.GetUserInfoById(verificationSession.AffId, false);
-            var email = ConvertEmail(userInfo.Email);
 
-            return View("~/Views/VerificationAccount/Index.cshtml", model: email);
+            var viewModel = new VerificationAccountViewModel
+            {
+                Email = ConvertEmail(userInfo.Email),
+                ActionLink = ConverterUtils.Base64Encode(_verificationService.CreateActionLink(AppSetting.GetValue("RsaPublicKeyEncodedXml")))
+            };
+
+            return View("~/Views/VerificationAccount/Index.cshtml", viewModel);
         }
 
         [HttpGet]

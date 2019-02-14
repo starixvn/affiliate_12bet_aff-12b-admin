@@ -2,10 +2,10 @@
     Layout = "~/Views/Shared/_LayoutBeforeLogin.cshtml";
 }
 
-@model string
+@model Fanex.Affiliate.User.Core.ViewModels.VerificationAccountViewModel
 
 @{
-    var email = Model;  
+    var email = Model.Email;  
     if (string.IsNullOrEmpty(email))
     {
         <h4 class="text-danger">You don't have the email address. Please contact administrator!</h4>
@@ -73,6 +73,7 @@
                 </div>
 
                 @Html.Hidden("VerificationToken")
+                @Html.Hidden("ActionLink", Model.ActionLink)
             </form>
         </div>
     }

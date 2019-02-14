@@ -18,17 +18,20 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         private readonly ITwoFactorAuthService _twoFactorAuthService;
         private readonly IAccountRepository _accountRepository;
         private readonly IEmailService _mailService;
+        private readonly ICryptographyService _cryptographyService;
 
         public VerificationService(
             ITwoFactorAuthService twoFactorAuthService,
             IAccountRepository accountRepository,
             IEmailService mailService,
-            ILanguageService languageService)
+            ILanguageService languageService,
+            ICryptographyService cryptographyService)
         {
             _twoFactorAuthService = twoFactorAuthService;
             _accountRepository = accountRepository;
             _mailService = mailService;
             _languageService = languageService;
+            _cryptographyService = cryptographyService;
         }
 
         public SendCodeResult SendCode(SendCodeParam param)
@@ -78,6 +81,13 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
             return string.Equals(hashMessage, param.HashMessage) &&
                 _twoFactorAuthService.VerifyHotp(param.AffId, param.Counter, param.OtpCode);
+        }
+
+        public string CreateActionLink(string publicKey)
+        {
+            var queryString = "controller=VerificationAccount&action=VerifyAccount";
+
+            return _cryptographyService.RsaEncrypt(publicKey, queryString);
         }
 
         private static bool CanSendCode(long sentCodeTimeSession)
