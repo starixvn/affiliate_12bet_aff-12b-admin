@@ -1,12 +1,12 @@
 ﻿import { setPagingOption } from '../../../../actions/pagingAction';
 import { toggleLoader } from '../../../../actions/loaderAction';
-import { SET_DEVICE, SET_FROM_DATE, SET_TO_DATE, SET_PARAM } from '../actions/types';
+import { SET_DEVICE_TYPE, SET_FROM_DATE, SET_TO_DATE, SET_SITE_URL, SET_PARAM } from '../actions/types';
 
 export { setPagingOption, toggleLoader };
 
-export const setDevice = (data) => {
+export const setDeviceType = (data) => {
     return {
-        type: SET_DEVICE,
+        type: SET_DEVICE_TYPE,
         data
     }
 }
@@ -21,6 +21,13 @@ export const setFromDate = (data) => {
 export const setToDate = (data) => {
     return {
         type: SET_TO_DATE,
+        data
+    }
+}
+
+export const setSiteUrl = (data) => {
+    return {
+        type: SET_SITE_URL,
         data
     }
 }

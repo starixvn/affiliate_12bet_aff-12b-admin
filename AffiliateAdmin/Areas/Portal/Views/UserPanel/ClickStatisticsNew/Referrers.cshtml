@@ -10,9 +10,14 @@
 @section scripts{
     <script type="text/javascript">
         window.initialState = {
-            today: '@DateTime.Now.ToString("MM/dd/yyyy")',
+            fromDate: '@DateTime.Now.Month/01/@DateTime.Now.Year',
+            toDate: '@DateTime.Now.ToString("MM/dd/yyyy")',
             device: 0,
-            affId: 1300390
+            param: {
+                AffId: 1300390,
+                FromDate: '@DateTime.Now.Month/01/@DateTime.Now.Year',
+                ToDate: '@DateTime.Now.ToString("MM/dd/yyyy")'
+            }
         }
     </script>
     <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/userpanel/referrers.js")"></script>

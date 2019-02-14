@@ -2,9 +2,9 @@
 {
     public class Referrers
     {
-        public string SiteURL { get; set; }
+        public string SiteUrl { get; set; }
 
-        public string WebsiteURL { get; set; }
+        public string WebsiteUrl { get; set; }
 
         public int TotalClick { get; set; }
 
@@ -12,6 +12,6 @@
 
         public int Signups { get; set; }
 
-        public int FDM { get; set; }
+        public int Fdm { get; set; }
     }
 }

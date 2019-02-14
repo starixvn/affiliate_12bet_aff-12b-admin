@@ -4,6 +4,10 @@ import { connect } from 'react-redux';
 import AppLayout from '../../../../layouts/AppLayout';
 import Loader from '../../../../components/Loader';
 
+import Filter from './Filter';
+import Content from './Content';
+import Detail from './Detail';
+
 export class AppContainer extends Component {
     constructor(props) {
         super(props);
@@ -13,10 +17,12 @@ export class AppContainer extends Component {
         return (
             <AppLayout>
                 <Loader show={this.props.isShowLoader} />
-                <h2>Referrers</h2>
+                <Filter />
+                <Content />
+                <Detail />
             </AppLayout>
         );
-}
+    }
 }
 
 function mapStateToProps({ isShowLoader }) {

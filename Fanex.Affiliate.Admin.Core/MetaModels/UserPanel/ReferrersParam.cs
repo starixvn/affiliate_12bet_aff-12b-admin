@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
 {
@@ -12,14 +8,8 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
 
         public int DeviceType { get; set; }
 
-        public DateTime FromDate { get; set; }
+        public string FromDate { get; set; } = $"{DateTime.Now.Month}/01/{DateTime.Now.Year}";
 
-        public DateTime ToDate { get; set; }
-
-        public string SiteURL { get; set; }
-
-        public int PageIndex { get; set; }
-
-        public int PageSize { get; set; }
+        public string ToDate { get; set; } = DateTime.Now.ToString("MM/dd/yyyy");
     }
 }
