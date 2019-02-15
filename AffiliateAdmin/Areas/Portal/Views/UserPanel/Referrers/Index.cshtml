@@ -1,29 +1,74 @@
 ﻿
 @{
-    Layout = "~/Areas/Portal/Views/Shared/_SinglePageLayout.cshtml";
-    var fromDate = Model.FromDate.IsEmpty() ? "" + DateTime.Now.Month + "/01/" + DateTime.Now.Year + "" : Model.FromDate;
-    var toDate = Model.ToDate.IsEmpty() ? DateTime.Now.ToString("MM/dd/yyyy") : Model.ToDate;
+    Layout = "~/Areas/Portal/Views/Shared/_UserPanelLayout.cshtml";
+
+    var affId = Convert.ToInt32(Request.QueryString["affId"]);
+    var affName = Request.QueryString["affName"];
+    var deviceType = Convert.ToInt32(Request.QueryString["deviceType"]);
+    var fromDate = Request.QueryString["fromDate"];
+    var toDate = Request.QueryString["toDate"];
+}
+
+@using Fanex.Affiliate.Admin.Core.Constants
+@using Fanex.Affiliate.Admin.Core.ViewModels.UserPanel
+@using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
+@model IEnumerable<Fanex.Affiliate.Admin.Core.DTO.SubMenu>
+
+@{
+    var defaultUrl = (Model.FirstOrDefault(p => p.IsActive) ?? Model.First()).Url;
+    if (defaultUrl.IndexOf('?') == -1 && Request.QueryString.Count > 0)
+    {
+        defaultUrl = defaultUrl + "?" + Request.QueryString.ToString();
+    }
+    else if (Request.QueryString.Count > 0)
+    {
+        defaultUrl = defaultUrl + "&" + Request.QueryString.ToString();
+    }
 }
 
 @section styles{
     <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/user-panel/referrers.css")" rel="stylesheet" />
 }
-@model Fanex.Affiliate.Admin.Core.MetaModels.UserPanel.ReferrersParam
+
 @section scripts{
     <script type="text/javascript">
         window.initialState = {
-            fromDate: '@fromDate',
-            toDate: '@toDate',
-            deviceType: @Model.DeviceType,
+            today: '@DateTime.Now.ToString("MM/dd/yyyy")',
             param: {
-                AffId: @Model.AffId,
-                FromDate: '@fromDate',
-                ToDate: '@toDate'
+                AffId: @affId,
+                DeviceType: @deviceType,
+                FromDate: '@(fromDate.IsEmpty() ? DateTime.Now.ToString("MM/01/yyyy") : fromDate)',
+                ToDate: '@(toDate.IsEmpty() ? DateTime.Now.ToString("MM/dd/yyyy") : toDate)'
             }
         }
     </script>
     <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/userpanel/referrers.js")"></script>
 }
+
+@section menu{
+    @{
+        var affiliateLinkParam = new AffiliateLinkParam
+        {
+            AffId = affId,
+            AffName = affName,
+        };
+        var usePanelMenu = new UserPanelMenuViewModel
+        {
+            SubMenuList = UserPanelConstant.UserPanelMenuList,
+            AffiliateLinkParam = affiliateLinkParam
+        };
+        usePanelMenu.SubMenuList.ElementAt(9).IsActive = true;
+        Html.RenderPartial("~/Areas/Portal/Views/Shared/_UserPanelMenu.cshtml", usePanelMenu);
+    }
+}
+
+<div class="sub-menu-container">
+    <div class="d-inline-block">
+        @{
+            Html.RenderPartial("~/Areas/Portal/Views/Shared/_SubUserPanelMenu.cshtml", Model);
+        }
+    </div>
+</div>
 
 <div id="root"></div>
 

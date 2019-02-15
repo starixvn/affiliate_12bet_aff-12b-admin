@@ -6,7 +6,8 @@ import reducer from './reducers';
 import AppContainer from './components/AppContainer';
 import { configureStore } from '../../../modules/store';
 
-const store = configureStore(window.initialState, reducer);
+const param = window.initialState.param;
+const store = configureStore({ deviceType: param.DeviceType, fromDate: param.FromDate, toDate: param.ToDate, ...window.initialState }, reducer);
 
 export default class App extends Component {
     constructor(props) {

@@ -2,7 +2,7 @@
 {
     public class ReferrersDetailParam : ReferrersParam
     {
-        public string SiteUrl { get; set; }
+        public string SelectedSiteUrl { get; set; }
 
         public int PageIndex { get; set; }
 

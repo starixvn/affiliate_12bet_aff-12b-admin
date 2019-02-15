@@ -7,8 +7,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
 {
     public interface IReferrersRepository
     {
-        IEnumerable<Referrers> GetReferrersAllSites(ReferrersParam param);
+        IEnumerable<Referrers> GetReferrersList(ReferrersParam param);
 
-        EntityResult<Referrers> GetReferrersBySite(ReferrersDetailParam param);
+        EntityResult<Referrers> GetReferrersDetailList(ReferrersDetailParam param);
     }
 }

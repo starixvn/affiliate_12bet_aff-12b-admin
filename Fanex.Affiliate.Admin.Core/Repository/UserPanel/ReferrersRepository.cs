@@ -10,7 +10,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
 {
     public class ReferrersRepository : BaseRepository, IReferrersRepository
     {
-        public IEnumerable<Referrers> GetReferrersAllSites(ReferrersParam param)
+        public IEnumerable<Referrers> GetReferrersList(ReferrersParam param)
         {
             const string SpKey = "Aff_ClickStatisticsSelBySite";
             var result = new List<Referrers>();
@@ -31,7 +31,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
             return result;
         }
 
-        public EntityResult<Referrers> GetReferrersBySite(ReferrersDetailParam param)
+        public EntityResult<Referrers> GetReferrersDetailList(ReferrersDetailParam param)
         {
             const string SpKey = "Aff_ClickStatisticsDetailBySite";
             var result = new EntityResult<Referrers>();
@@ -40,9 +40,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
             using (var objectDb = GetObjectDb(SpKey))
             {
                 AssignCommonParam(objectDb, param);
-                objectDb.AddInParameter("Domain", DbType.String, param.SiteUrl);
-                objectDb.AddInParameter("SportCode", DbType.String, string.Empty);
-                objectDb.AddInParameter("LanguageCode", DbType.String, string.Empty);
+                objectDb.AddInParameter("Domain", DbType.String, param.SelectedSiteUrl);
                 objectDb.AddInParameter("PageIndex", DbType.Int32, param.PageIndex);
                 objectDb.AddInParameter("PageSize", DbType.Int32, param.PageSize);
 
@@ -69,19 +67,14 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
             objectDb.AddInParameter("FromDate", DbType.String, param.FromDate);
             objectDb.AddInParameter("ToDate", DbType.String, param.ToDate);
             objectDb.AddInParameter("DeviceType", DbType.Int32, param.DeviceType);
-
-            objectDb.AddOutParameter("TotalClicks", DbType.Int32, 4);
-            objectDb.AddOutParameter("UniqueClicks", DbType.Int32, 4);
-            objectDb.AddOutParameter("TotalSignUps", DbType.Int32, 4);
-            objectDb.AddOutParameter("TotalFDMs", DbType.Int32, 4);
         }
 
         private static Referrers BuildReferrersItem(IDataReader reader, bool isGetReferrersBySite)
         {
             return new Referrers
             {
-                SiteUrl = isGetReferrersBySite ? string.Empty : (reader["DomainReferrer"] == DBNull.Value ? string.Empty : Convert.ToString(reader["DomainReferrer"])),
-                WebsiteUrl = isGetReferrersBySite ?  (reader["URLReferrer"] == DBNull.Value ? string.Empty : Convert.ToString(reader["URLReferrer"])) : string.Empty,
+                SiteUrl = isGetReferrersBySite ? string.Empty : (Convert.ToString(reader["DomainReferrer"])),
+                WebsiteUrl = isGetReferrersBySite ? (Convert.ToString(reader["URLReferrer"])) : string.Empty,
                 TotalClick = reader["TotalClick"] == DBNull.Value ? 0 : Convert.ToInt32(reader["TotalClick"]),
                 UniqueClick = reader["UniqueClick"] == DBNull.Value ? 0 : Convert.ToInt32(reader["UniqueClick"]),
                 Signups = reader["Signups"] == DBNull.Value ? 0 : Convert.ToInt32(reader["Signups"]),

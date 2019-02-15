@@ -20,17 +20,17 @@ export class Detail extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        const { pagingOption, param, siteUrl } = this.props;
+        const { pagingOption, selectedSiteUrl } = this.props;
 
-        if (siteUrl !== prevProps.siteUrl) {
-            const newParam = Object.assign({}, this.props.param, { SiteUrl: siteUrl, PageIndex: pagingOption.PageIndex, PageSize: pagingOption.PageSize });
-            this.fetchData(newParam);
+        if (selectedSiteUrl && selectedSiteUrl !== prevProps.selectedSiteUrl) {
+            const param = Object.assign({}, this.props.param, { SelectedSiteUrl: selectedSiteUrl, PageIndex: pagingOption.PageIndex, PageSize: pagingOption.PageSize });
+            this.fetchData(param);
         }
     }
 
     async fetchData(param) {
         this.props.toggleLoader(true);
-        const url = 'Portal/UserPanel/Referrers/GetReferrersBySite';
+        const url = 'Portal/UserPanel/Referrers/GetReferrersDetailList';
         const response = await post(url, param);
         if (response && response.status === 200) {
             const { MainData, TotalItem } = response.data;
@@ -45,11 +45,11 @@ export class Detail extends Component {
     _renderHeader() {
         return (
             <Row>
-                <Cell header={true} colWidth={600} title={headerText.WebsiteUrl}>{headerText.WebsiteUrl}</Cell>
-                <Cell header={true} colWidth={100} title={headerText.TotalClicks}>{headerText.TotalClicks}</Cell>
-                <Cell header={true} colWidth={100} title={headerText.UniqueClicks}>{headerText.UniqueClicks}</Cell>
-                <Cell header={true} colWidth={100} title={headerText.Signups}>{headerText.Signups}</Cell>
-                <Cell header={true} colWidth={100} title={headerText.Fdm}>{headerText.Fdm}</Cell>
+                <Cell header={true} colWidth={580} title={headerText.WebsiteUrl}>{headerText.WebsiteUrl}</Cell>
+                <Cell header={true} colWidth={110} title={headerText.TotalClicks}>{headerText.TotalClicks}</Cell>
+                <Cell header={true} colWidth={110} title={headerText.UniqueClicks}>{headerText.UniqueClicks}</Cell>
+                <Cell header={true} colWidth={110} title={headerText.Signups}>{headerText.Signups}</Cell>
+                <Cell header={true} colWidth={110} title={headerText.Fdm}>{headerText.Fdm}</Cell>
             </Row>
         );
     }
@@ -60,7 +60,7 @@ export class Detail extends Component {
         if (dataList.length) {
             for (let i = 0; i < dataList.length; i++) {
                 const dataItem = dataList[i];
-                dataRows.push(this._buildDataRow(dataItem, i + 1));
+                dataRows.push(this._buildDataRow(dataItem));
             }
         }
         else {
@@ -74,6 +74,18 @@ export class Detail extends Component {
         return dataRows;
     }
 
+    _buildDataRow(dataItem) {
+        return (
+            <Row>
+                <Cell title={dataItem.WebsiteUrl}>{dataItem.WebsiteUrl}</Cell>
+                <Cell title={dataItem.TotalClick} className="text-right">{dataItem.TotalClick}</Cell>
+                <Cell title={dataItem.UniqueClick} className="text-right">{dataItem.UniqueClick}</Cell>
+                <Cell title={dataItem.Signups} className="text-right">{dataItem.Signups}</Cell>
+                <Cell title={dataItem.Fdm} className="text-right">{dataItem.Fdm}</Cell>
+            </Row>
+        )
+    }
+
     handlePaging = (pageIndex, pageSize) => {
         const newPaging = {
             PageIndex: pageIndex,
@@ -82,30 +94,18 @@ export class Detail extends Component {
 
         this.props.setPagingOption(newPaging);
 
-        const newParam = Object.assign({}, this.props.param, { SiteUrl: this.props.siteUrl, ...newPaging });
-        this.props.getNoteList(newParam);
-    }
-
-    _buildDataRow(dataItem, index) {
-        return (
-            <Row>
-                <Cell title={dataItem.WebsiteUrl}>{dataItem.WebsiteUrl}</Cell>
-                <Cell title={dataItem.TotalClicks} className="text-right">{dataItem.TotalClicks}</Cell>
-                <Cell title={dataItem.UniqueClicks} className="text-right">{dataItem.UniqueClicks}</Cell>
-                <Cell title={dataItem.Signups} className="text-right">{dataItem.Signups}</Cell>
-                <Cell title={dataItem.Fdm} className="text-right">{dataItem.Fdm}</Cell>
-            </Row>
-        )
+        const newParam = Object.assign({}, this.props.param, { SelectedSiteUrl: this.props.selectedSiteUrl, ...newPaging });
+        this.fetchData(newParam);
     }
 
     render() {
         const { gridData } = this.state;
 
-        return this.props.siteUrl && (
+        return this.props.selectedSiteUrl && (
             <div className="table-responsive table-striped my-2">
                 <Table
-                    minWidth={1000}
-                    autoWidth={true}
+                    width={1020}
+                    autoWidth={false}
                     bodyHeight={300}
                     header={this._renderHeader()}
                     body={this._renderDataSection(gridData)}
@@ -120,8 +120,8 @@ export class Detail extends Component {
 }
 
 
-function mapStateToProps({ pagingOption, param, siteUrl }) {
-    return Object.assign({}, { pagingOption, param, siteUrl });
+function mapStateToProps({ pagingOption, param, selectedSiteUrl }) {
+    return Object.assign({}, { pagingOption, param, selectedSiteUrl });
 }
 
 function mapDispatchToProps(dispatch) {

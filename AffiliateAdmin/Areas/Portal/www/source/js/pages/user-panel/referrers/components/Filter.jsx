@@ -4,23 +4,25 @@ import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { DatePicker } from '@9softstudio/react-datepicker';
 import { deviceTypes, headerText } from '../modules/constants';
-import { setDeviceType, setFromDate, setToDate, setSiteUrl, setParam } from '../actions';
+import { setDeviceType, setFromDate, setToDate, setSelectedSiteUrl, setParam } from '../actions';
 import { globalResource } from '../../../../modules/globalResource';
 
 const minDate = new Date(2009, 11, 1);
-const now = new Date();
 
 export class Filter extends React.Component {
     constructor(props) {
         super(props);
 
+        const now = new Date(this.props.today);
         this.nowString = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
+
+        this.state = now;
     }
 
     componentDidMount() {
         const toDate = new Date(this.props.toDate);
 
-        if(toDate.getTime() > now.getTime()) {
+        if (toDate.getTime() > this.state.getTime()) {
             this.props.setToDate(this.nowString);
         }
     }
@@ -46,13 +48,14 @@ export class Filter extends React.Component {
     }
 
     handleSearch = () => {
-        const param = Object.assign({}, { ...this.props });
-        this.props.setParam(param);
-        this.props.setSiteUrl('url');
+        const { deviceType, fromDate, toDate, param } = this.props;
+        const newParam = Object.assign({}, param, { DeviceType: deviceType, FromDate: fromDate, ToDate: toDate });
+        this.props.setParam(newParam);
+        this.props.setSelectedSiteUrl('');
     }
 
     render() {
-        const { affId, deviceType, fromDate, toDate } = this.props;
+        const { deviceType, fromDate, toDate } = this.props;
 
         return (
             <div className="filter-container">
@@ -88,12 +91,12 @@ export class Filter extends React.Component {
     }
 }
 
-function mapStateToProps({ affId, deviceType, fromDate, toDate }) {
-    return Object.assign({}, { affId, deviceType, fromDate, toDate });
+function mapStateToProps({ today, deviceType, fromDate, toDate, param }) {
+    return Object.assign({}, { today, deviceType, fromDate, toDate, param });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setDeviceType, setFromDate, setToDate, setSiteUrl, setParam }, dispatch);
+    return bindActionCreators({ setDeviceType, setFromDate, setToDate, setSelectedSiteUrl, setParam }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);

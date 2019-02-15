@@ -8,8 +8,8 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
 
         public int DeviceType { get; set; }
 
-        public string FromDate { get; set; } = $"{DateTime.Now.Month}/01/{DateTime.Now.Year}";
+        public string FromDate { get; set; }
 
-        public string ToDate { get; set; } = DateTime.Now.ToString("MM/dd/yyyy");
+        public string ToDate { get; set; }
     }
 }

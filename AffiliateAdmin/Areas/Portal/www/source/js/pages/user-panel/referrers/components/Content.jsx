@@ -9,7 +9,7 @@ import { headerText } from '../modules/constants';
 import { globalResource } from '../../../../modules/globalResource';
 
 import { post } from '../../../../modules/ajaxRequest';
-import { setSiteUrl, toggleLoader } from '../actions';
+import { setSelectedSiteUrl, toggleLoader } from '../actions';
 
 export class Content extends Component {
     constructor(props) {
@@ -34,7 +34,7 @@ export class Content extends Component {
 
     async fetchData(param) {
         this.props.toggleLoader(true);
-        const url = 'Portal/UserPanel/Referrers/GetReferrersAllSites';
+        const url = 'Portal/UserPanel/Referrers/GetReferrersList';
         const response = await post(url, param);
         if (response && response.status === 200) {
             this.setState({ gridData: response.data });
@@ -45,11 +45,11 @@ export class Content extends Component {
     _renderHeader() {
         return (
             <Row>
-                <Cell header={true} colWidth={600} title={headerText.SiteUrls}>{headerText.SiteUrls}</Cell>
-                <Cell header={true} colWidth={100} title={headerText.TotalClicks}>{headerText.TotalClicks}</Cell>
-                <Cell header={true} colWidth={100} title={headerText.UniqueClicks}>{headerText.UniqueClicks}</Cell>
-                <Cell header={true} colWidth={100} title={headerText.Signups}>{headerText.Signups}</Cell>
-                <Cell header={true} colWidth={100} title={headerText.Fdm}>{headerText.Fdm}</Cell>
+                <Cell header={true} colWidth={580} title={headerText.SiteUrls}>{headerText.SiteUrls}</Cell>
+                <Cell header={true} colWidth={110} title={headerText.TotalClicks}>{headerText.TotalClicks}</Cell>
+                <Cell header={true} colWidth={110} title={headerText.UniqueClicks}>{headerText.UniqueClicks}</Cell>
+                <Cell header={true} colWidth={110} title={headerText.Signups}>{headerText.Signups}</Cell>
+                <Cell header={true} colWidth={110} title={headerText.Fdm}>{headerText.Fdm}</Cell>
             </Row>
         );
     }
@@ -60,7 +60,7 @@ export class Content extends Component {
         if (dataList.length) {
             for (let i = 0; i < dataList.length; i++) {
                 const dataItem = dataList[i];
-                dataRows.push(this._buildDataRow(dataItem, i + 1));
+                dataRows.push(this._buildDataRow(dataItem));
             }
         }
         else {
@@ -74,11 +74,11 @@ export class Content extends Component {
         return dataRows;
     }
 
-    _buildDataRow(dataItem, index) {
+    _buildDataRow(dataItem) {
         return (
             <Row>
                 <Cell title={dataItem.SiteUrl}>
-                    {dataItem.SiteUrl == "Old URL" ? dataItem.SiteUrl : (<Button color="link" className="p-0" onClick={() => this.props.setSiteUrl(dataItem.SiteUrl)}>
+                    {(dataItem.SiteUrl == "Old URL" || dataItem.SiteUrl == "none") ? dataItem.SiteUrl : (<Button color="link" className="p-0" onClick={() => this.props.setSelectedSiteUrl(dataItem.SiteUrl)}>
                         {dataItem.SiteUrl}
                     </Button>)}
                 </Cell>
@@ -96,8 +96,8 @@ export class Content extends Component {
         return (
             <div className="table-responsive table-striped my-2">
                 <Table
-                    minWidth={1000}
-                    autoWidth={true}
+                    width={1020}
+                    autoWidth={false}
                     bodyHeight={300}
                     header={this._renderHeader()}
                     body={this._renderDataSection(gridData)}
@@ -114,7 +114,7 @@ function mapStateToProps({ param }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ toggleLoader, setSiteUrl }, dispatch);
+    return bindActionCreators({ toggleLoader, setSelectedSiteUrl }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);
