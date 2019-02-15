@@ -20,9 +20,9 @@ export class Detail extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        const { param, selectedMonth } = this.props;
+        const { selectedMonth } = this.props;
 
-        if (selectedMonth !== prevProps.selectedMonth) {
+        if (selectedMonth && selectedMonth !== prevProps.selectedMonth) {
             const dateTime = new Date(selectedMonth);
             const newParam = Object.assign({}, this.props.param, { SelectedMonth: dateTime });
             this.fetchData(newParam);
@@ -31,7 +31,7 @@ export class Detail extends Component {
 
     async fetchData(param) {
         this.props.toggleLoader(true);
-        const url = 'Portal/UserPanel/TrackingStatistics/GetTrackingStatisticsByMonth';
+        const url = 'Portal/UserPanel/TrackingStatistics/GetTrackingStatisticsDetailList';
         const response = await post(url, param);
         if (response && response.status === 200) {
             this.setState({ gridData: response.data });

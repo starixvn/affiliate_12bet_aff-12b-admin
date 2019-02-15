@@ -34,7 +34,7 @@ export class Content extends Component {
 
     async fetchData(param) {
         this.props.toggleLoader(true);
-        const url = 'Portal/UserPanel/TrackingStatistics/GetTrackingStatisticsAllMonths';
+        const url = 'Portal/UserPanel/TrackingStatistics/GetTrackingStatisticsList';
         const response = await post(url, param);
         if (response && response.status === 200) {
             this.setState({ gridData: response.data });

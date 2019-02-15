@@ -6,7 +6,7 @@ namespace Fanex.Affiliate.Admin.Core.ViewModels.UserPanel
 {
     public class TrackingStatisticsViewModel
     {
-        public IEnumerable<TrackingCode> TrackingCodeList { get; set; }
+        public IEnumerable<string> TrackingCodeList { get; set; }
 
         public TrackingStatisticsParam TrackingStatisticsParam { get; set; }
     }

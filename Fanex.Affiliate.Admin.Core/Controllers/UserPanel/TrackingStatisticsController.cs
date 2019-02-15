@@ -38,11 +38,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [Compress]
-        public ActionResult GetTrackingStatisticsAllMonths(TrackingStatisticsParam param)
+        public ActionResult GetTrackingStatisticsList(TrackingStatisticsParam param)
         {
             param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
 
-            var model = _trackingStatisticsRepository.GetTrackingStatisticsAllMonths(param);
+            var model = _trackingStatisticsRepository.GetTrackingStatisticsList(param);
 
             return new JsonNetResult
             {
@@ -53,11 +53,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [Compress]
-        public ActionResult GetTrackingStatisticsByMonth(TrackingStatisticsDetailParam param)
+        public ActionResult GetTrackingStatisticsDetailList(TrackingStatisticsDetailParam param)
         {
             param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
 
-            var model = _trackingStatisticsRepository.GetTrackingStatisticsByMonth(param);
+            var model = _trackingStatisticsRepository.GetTrackingStatisticsDetailList(param);
 
             return new JsonNetResult
             {

@@ -40,8 +40,8 @@ export class Filter extends Component {
                         <Input type="select" name="selectedTrackingCode" value={selectedTrackingCode} onChange={this.handleChangeTrackingCode}>
                             <option value="">{resource.All}</option>
                             {
-                                Object.keys(trackingCodeList).map(trackingCode => {
-                                    return (<option key={'trackingCode-' + trackingCode} value={trackingCode}>{trackingCode}</option>)
+                                Object.keys(trackingCodeList).map(index => {
+                                    return (<option key={'trackingCode-' + index} value={trackingCodeList[index]}>{trackingCodeList[index]}</option>)
                                 })
                             }
                         </Input>

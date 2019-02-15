@@ -6,10 +6,10 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
 {
     public interface ITrackingStatisticsRepository
     {
-        IEnumerable<TrackingCode> GetTrackingCodeList(int affId);
+        IEnumerable<string> GetTrackingCodeList(int affId);
 
-        IEnumerable<TrackingStatistics> GetTrackingStatisticsAllMonths(TrackingStatisticsParam param);
+        IEnumerable<TrackingStatistics> GetTrackingStatisticsList(TrackingStatisticsParam param);
 
-        IEnumerable<TrackingStatistics> GetTrackingStatisticsByMonth(TrackingStatisticsDetailParam param);
+        IEnumerable<TrackingStatistics> GetTrackingStatisticsDetailList(TrackingStatisticsDetailParam param);
     }
 }

@@ -6,15 +6,7 @@ import reducer from './reducers';
 import AppContainer from "./components/AppContainer";
 import { configureStore } from '../../../modules/store';
 
-const trackingCodeList = [...window.initialState.trackingCodeList];
-const trackingCode = {};
-for (let i = 0; i < trackingCodeList.length; i++) {
-    const trakingCodeItem = trackingCodeList[i];
-    trackingCode[trakingCodeItem.Name] = trakingCodeItem.Name;
-}
-
-const { param } = window.initialState;
-const store = configureStore({ trackingCodeList: trackingCode, param }, reducer);
+const store = configureStore(window.initialState, reducer);
 
 export default class App extends Component {
     constructor(props) {

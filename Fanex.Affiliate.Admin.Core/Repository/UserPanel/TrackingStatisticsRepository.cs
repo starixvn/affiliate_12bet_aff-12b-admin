@@ -9,10 +9,10 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
 {
     public class TrackingStatisticsRepository : BaseRepository, ITrackingStatisticsRepository
     {
-        public IEnumerable<TrackingCode> GetTrackingCodeList(int affId)
+        public IEnumerable<string> GetTrackingCodeList(int affId)
         {
             const string SpKey = "Aff_AffiliateSelTrackingCode";
-            var result = new List<TrackingCode>();
+            var result = new List<string>();
 
             using (var objectDb = GetObjectDb(SpKey))
             {
@@ -22,7 +22,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
                 {
                     while (reader.Read())
                     {
-                        result.Add(new TrackingCode { Name = Convert.ToString(reader["TrackingCode"]) });
+                        result.Add(Convert.ToString(reader["TrackingCode"]));
                     }
                 }
             }
@@ -30,7 +30,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
             return result;
         }
 
-        public IEnumerable<TrackingStatistics> GetTrackingStatisticsAllMonths(TrackingStatisticsParam param)
+        public IEnumerable<TrackingStatistics> GetTrackingStatisticsList(TrackingStatisticsParam param)
         {
             const string SpKey = "Aff_AffiliateSelClickStatisticsAllMonths";
             var result = new List<TrackingStatistics>();
@@ -58,7 +58,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
             return result;
         }
 
-        public IEnumerable<TrackingStatistics> GetTrackingStatisticsByMonth(TrackingStatisticsDetailParam param)
+        public IEnumerable<TrackingStatistics> GetTrackingStatisticsDetailList(TrackingStatisticsDetailParam param)
         {
             const string SpKey = "Aff_AffiliateSelClickStatisticsMonthDetail";
             var result = new List<TrackingStatistics>();
