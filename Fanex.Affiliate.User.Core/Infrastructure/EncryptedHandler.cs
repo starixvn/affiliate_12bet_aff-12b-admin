@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.SessionState;
 using Fanex.Affiliate.User.Core.BusinessService;
+using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
 using Fanex.Affiliate.User.Core.Utilities;
 
 namespace Fanex.Affiliate.User.Core.Infrastructure
@@ -34,39 +35,71 @@ namespace Fanex.Affiliate.User.Core.Infrastructure
         {
             try
             {
-                var cryptographyService = CryptographyService ?? DependencyResolver.Current.GetService<ICryptographyService>();
-                var appSetting = AppSetting ?? DependencyResolver.Current.GetService<IAppSetting>();
+                var encryptedQuery = _requestContext.RouteData.GetRequiredString("encryptedQuery")?.Trim();
+                var parseQueryResult = TryParseQueryString(encryptedQuery);
 
-                var encryptedUrl = _requestContext.RouteData.GetRequiredString("encryptedUrl");
-                if (string.IsNullOrEmpty(encryptedUrl?.Trim()))
+                if (!parseQueryResult.IsValid)
                 {
-                    _requestContext.HttpContext.Response.StatusCode = (int)HttpStatusCode.NotFound;
+                    SetNotFoundResponse();
                     return;
                 }
 
-                var decodedString = ConverterUtils.Base64Decode(encryptedUrl);
-                var queryString = cryptographyService.RsaDecrypt(appSetting.RsaPrivateKey, decodedString);
-                var paramValues = HttpUtility.ParseQueryString(queryString);
-                var controllerName = paramValues["controller"]?.Trim();
-                var actionName = paramValues["action"]?.Trim();
-                if (!string.IsNullOrEmpty(controllerName) && !string.IsNullOrEmpty(actionName))
+                var controller = ControllerBuilder.Current.GetControllerFactory()
+                                .CreateController(_requestContext, parseQueryResult.ControllerName);
+                if (controller != null)
                 {
-                    var controller = ControllerBuilder.Current.GetControllerFactory().CreateController(_requestContext, controllerName);
-                    if (controller != null)
-                    {
-                        _requestContext.RouteData.Values["action"] = actionName;
-                        controller.Execute(_requestContext);
-                    }
-                }
-                else
-                {
-                    _requestContext.HttpContext.Response.StatusCode = (int)HttpStatusCode.NotFound;
+                    _requestContext.RouteData.Values["action"] = parseQueryResult.ActionName;
+                    controller.Execute(_requestContext);
                 }
             }
             catch (Exception ex)
             {
-                _requestContext.HttpContext.Response.StatusCode = (int)HttpStatusCode.NotFound;
+                SetNotFoundResponse();
             }
+        }
+
+        private void SetNotFoundResponse()
+        {
+            _requestContext.HttpContext.Response.StatusCode = (int)HttpStatusCode.NotFound;
+        }
+
+        private QueryStringResult TryParseQueryString(string encryptedQuery)
+        {
+            if (string.IsNullOrEmpty(encryptedQuery))
+            {
+                return new QueryStringResult { IsValid = false };
+            }
+
+            var queryString = DecryptQueryString(encryptedQuery);
+            var paramValues = HttpUtility.ParseQueryString(queryString);
+
+            var timeQuery = _requestContext.HttpContext.Request.QueryString["t"]?.Trim();
+            var timeToken = paramValues["t"]?.Trim();
+
+            if (!string.Equals(timeQuery, timeToken))
+            {
+                return new QueryStringResult { IsValid = false };
+            }
+
+            var controllerName = paramValues["controller"]?.Trim();
+            var actionName = paramValues["action"]?.Trim();
+
+            return new QueryStringResult
+            {
+                IsValid = !string.IsNullOrEmpty(controllerName) && !string.IsNullOrEmpty(actionName),
+                ControllerName = controllerName,
+                ActionName = actionName
+            };
+        }
+
+        private string DecryptQueryString(string encryptedQuery)
+        {
+            var cryptographyService = CryptographyService ?? DependencyResolver.Current.GetService<ICryptographyService>();
+            var appSetting = AppSetting ?? DependencyResolver.Current.GetService<IAppSetting>();
+
+            var decodedString = ConverterUtils.Base64Decode(encryptedQuery);
+
+            return cryptographyService.RsaDecrypt(appSetting.RsaPrivateKey, decodedString);
         }
     }
 }

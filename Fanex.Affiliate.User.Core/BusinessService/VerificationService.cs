@@ -3,10 +3,12 @@ using System.Security.Cryptography;
 using System.Text;
 using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.DTO;
+using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
 using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.MetalModels.Email;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Resources;
+using Fanex.Affiliate.User.Core.Utilities;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
 {
@@ -19,29 +21,32 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         private readonly IAccountRepository _accountRepository;
         private readonly IEmailService _mailService;
         private readonly ICryptographyService _cryptographyService;
+        private readonly IWrapperUtility _wrapperUtility;
 
         public VerificationService(
             ITwoFactorAuthService twoFactorAuthService,
             IAccountRepository accountRepository,
             IEmailService mailService,
             ILanguageService languageService,
-            ICryptographyService cryptographyService)
+            ICryptographyService cryptographyService,
+            IWrapperUtility wrapperUtility)
         {
             _twoFactorAuthService = twoFactorAuthService;
             _accountRepository = accountRepository;
             _mailService = mailService;
             _languageService = languageService;
             _cryptographyService = cryptographyService;
+            _wrapperUtility = wrapperUtility;
         }
 
         public SendCodeResult SendCode(SendCodeParam param)
         {
             if (CanSendCode(param.SentCodeTime))
             {
-                var counter = new Random().Next(int.MinValue, int.MaxValue);
+                var counter = _wrapperUtility.GetRandomGenerator().Next(int.MinValue, int.MaxValue);
+                var otp = _twoFactorAuthService.GenerateHotp(param.AffId.ToString(), counter);
 
                 var userInfo = _accountRepository.GetUserInfoById(param.AffId, false);
-                var otp = _twoFactorAuthService.GenerateHotp(param.AffId.ToString(), counter);
 
                 var emailParam = param.VerificationEmailParam;
                 var verificationAccountEmailParam = new VerificationAccountEmailParam
@@ -83,25 +88,30 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 _twoFactorAuthService.VerifyHotp(param.AffId, param.Counter, param.OtpCode);
         }
 
-        public string CreateActionLink(string publicKey)
+        public VerificationAction CreateActionLink(string publicKey)
         {
-            var queryString = "controller=VerificationAccount&action=VerifyAccount";
+            var nowTicks = _wrapperUtility.GetNowDateTime().Ticks.ToString();
+            var queryString = "controller=VerificationAccount&action=VerifyAccount&t=" + nowTicks;
 
-            return _cryptographyService.RsaEncrypt(publicKey, queryString);
+            return new VerificationAction
+            {
+                Link = ConverterUtils.Base64Encode(_cryptographyService.RsaEncrypt(publicKey, queryString)),
+                TimeToken = nowTicks
+            };
         }
 
-        private static bool CanSendCode(long sentCodeTimeSession)
+        private bool CanSendCode(long sentCodeTimeSession)
         {
-            var now = DateTime.Now.AddMinutes(IntervalTimeByMinute * -1);
+            var now = _wrapperUtility.GetNowDateTime().AddMinutes(IntervalTimeByMinute * -1);
             var nowTick = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second).Ticks;
             var elapsedTick = nowTick - sentCodeTimeSession;
 
             return sentCodeTimeSession == 0 || elapsedTick >= 0;
         }
 
-        private static long GetNewSentCodeTime()
+        private long GetNewSentCodeTime()
         {
-            var now = DateTime.Now;
+            var now = _wrapperUtility.GetNowDateTime();
 
             return new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second).Ticks;
         }
@@ -116,19 +126,8 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             {
                 var hashmessage = hmacsha256.ComputeHash(messageBytes);
 
-                return ByteToString(hashmessage).ToLowerInvariant();
+                return ConverterUtils.ToHex(hashmessage).ToLowerInvariant();
             }
-        }
-
-        private static string ByteToString(byte[] buff)
-        {
-            var builder = new StringBuilder();
-            for (int i = 0; i < buff.Length; i++)
-            {
-                builder.Append(buff[i].ToString("X2")); // hex format
-            }
-
-            return builder.ToString();
         }
     }
 }

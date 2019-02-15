@@ -1,9 +1,11 @@
-﻿namespace Fanex.Affiliate.User.Core.ViewModels
+﻿using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
+
+namespace Fanex.Affiliate.User.Core.ViewModels
 {
     public class VerificationAccountViewModel
     {
         public string Email { get; set; }
 
-        public string ActionLink { get; set; }
+        public VerificationAction Action { get; set; }
     }
 }

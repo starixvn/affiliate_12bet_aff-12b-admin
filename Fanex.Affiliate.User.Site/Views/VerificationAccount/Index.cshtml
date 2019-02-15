@@ -73,7 +73,8 @@
                 </div>
 
                 @Html.Hidden("VerificationToken")
-                @Html.Hidden("ActionLink", Model.ActionLink)
+                @Html.Hidden("ActionLink", Model.Action.Link)
+                @Html.Hidden("ActionToken", Model.Action.TimeToken)
             </form>
         </div>
     }

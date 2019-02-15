@@ -44,8 +44,8 @@ namespace Fanex.Affiliate.User.Core.Controllers
 
             var viewModel = new VerificationAccountViewModel
             {
-                Email = ConvertEmail(userInfo.Email),
-                ActionLink = ConverterUtils.Base64Encode(_verificationService.CreateActionLink(AppSetting.GetValue("RsaPublicKeyEncodedXml")))
+                Email = EmailHelper.HideEmailPart(userInfo.Email),
+                Action = _verificationService.CreateActionLink(AppSetting.RsaPublicKeyEncodedXml)
             };
 
             return View("~/Views/VerificationAccount/Index.cshtml", viewModel);
@@ -70,19 +70,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 return Json(GetErrorResult(Error.General));
             }
 
-            var sendCodeParam = new SendCodeParam
-            {
-                AffId = verificationSession.AffId,
-                SentCodeTime = verificationSession.SentCodeTime,
-                CurrentLanguage = SessionService.CurrentLanguage,
-                VerificationEmailParam = new VerificationAccountEmailParam
-                {
-                    MailContact = AppSetting.MailContact,
-                    RootDomain = SiteDomainHelper.GetRootUrl(this, AppSetting),
-                    Ip = RequestHelper.GetClientIPAddress(Request)
-                }
-            };
-
+            var sendCodeParam = CreateSendCodeParam();
             var result = _verificationService.SendCode(sendCodeParam);
             if (result.IsOk)
             {
@@ -106,16 +94,78 @@ namespace Fanex.Affiliate.User.Core.Controllers
             var verificationSession = SessionService.VerificationSession;
             if (verificationSession == null)
             {
-                return Json(GetErrorResult(Error.General));
+                return Json(CreateVerifyAccountResult(GetErrorResult(Error.General)));
             }
 
             var requestValidtionResult = ValidateLoginRequest(param.Captcha, verificationSession.Captcha);
             if (!requestValidtionResult.IsOk)
             {
-                return Json(requestValidtionResult);
+                return Json(CreateVerifyAccountResult(requestValidtionResult));
             }
 
-            var verificationOtpParam = new VerificationOtpParam
+            var verificationOtpParam = CreateVerificationOtpParam(param);
+            if (_verificationService.IsValidOtp(verificationOtpParam))
+            {
+                var userParam = CreateUserLoginParam(param.LoginInfo);
+                var loginResult = AuthService.GetLoginResult(userParam, false);
+
+                var userInfo = loginResult.UserInfo;
+                if (userInfo != null && verificationSession.AffId == userInfo.AffId)
+                {
+                    if (!IsValidDomain(userInfo.AffType))
+                    {
+                        return Json(CreateVerifyAccountResult(GetErrorResult(Lang.NotAllowOnDomain)));
+                    }
+
+                    if (loginResult.Result.IsOk)
+                    {
+                        SessionService.VerificationSession = null;
+                        AssignLoginInfoAndSetAuth(userInfo, userParam.LoginIp);
+
+                        return Json(CreateVerifyAccountResult(loginResult.Result));
+                    }
+                }
+            }
+
+            return Json(CreateVerifyAccountResult(GetErrorResult(Lang.ValidationVerificationAccount)));
+        }
+
+        private SendCodeParam CreateSendCodeParam()
+        {
+            var verificationSession = SessionService.VerificationSession;
+
+            return new SendCodeParam
+            {
+                AffId = verificationSession.AffId,
+                SentCodeTime = verificationSession.SentCodeTime,
+                CurrentLanguage = SessionService.CurrentLanguage,
+                VerificationEmailParam = new VerificationAccountEmailParam
+                {
+                    MailContact = AppSetting.MailContact,
+                    RootDomain = SiteDomainHelper.GetRootUrl(this, AppSetting),
+                    Ip = RequestHelper.GetClientIPAddress(Request)
+                }
+            };
+        }
+
+        private UserLoginParam CreateUserLoginParam(string loginInfo)
+        {
+            return new UserLoginParam
+            {
+                LoginInfo = loginInfo,
+                LoginIp = RequestHelper.GetClientIPAddress(Request),
+                Language = SessionService.CurrentLanguage,
+                Browser = Request.Browser.Browser,
+                UserAgent = Request.UserAgent,
+                IsVerifyingAccount = true
+            };
+        }
+
+        private VerificationOtpParam CreateVerificationOtpParam(VerificationAccountParam param)
+        {
+            var verificationSession = SessionService.VerificationSession;
+
+            return new VerificationOtpParam
             {
                 AffId = verificationSession.AffId.ToString(),
                 Counter = verificationSession.Counter,
@@ -125,67 +175,16 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 Captcha = param.Captcha,
                 LoginInfo = param.LoginInfo
             };
-            if (_verificationService.IsValidOtp(verificationOtpParam))
-            {
-                var userParam = new UserLoginParam
-                {
-                    LoginInfo = param.LoginInfo,
-                    LoginIp = RequestHelper.GetClientIPAddress(Request),
-                    Language = SessionService.CurrentLanguage,
-                    Browser = Request.Browser.Browser,
-                    UserAgent = Request.UserAgent,
-                    IsVerifyingAccount = true
-                };
-
-                var loginResult = AuthService.GetLoginResult(userParam, false);
-                var userInfo = loginResult.UserInfo;
-                if (userInfo != null && verificationSession.AffId == userInfo.AffId)
-                {
-                    if (!IsValidDomain(userInfo.AffType))
-                    {
-                        return Json(GetErrorResult(Lang.NotAllowOnDomain));
-                    }
-
-                    if (loginResult.Result.IsOk)
-                    {
-                        SessionService.VerificationSession = null;
-                        AssignLoginInfoAndSetAuth(userInfo, userParam.LoginIp);
-
-                        return Json(loginResult.Result);
-                    }
-                }
-            }
-
-            return Json(GetErrorResult(Lang.ValidationVerificationAccount));
         }
 
-        private static string ConvertEmail(string email)
+        private VerifyAccountResult CreateVerifyAccountResult(ResultInfo result)
         {
-            const int EmailLengthToCheck = 8;
-            var emailParts = email.Split(new[] { '@' }, StringSplitOptions.RemoveEmptyEntries);
-            if (emailParts.Length != 2)
+            return new VerifyAccountResult
             {
-                return string.Empty;
-            }
-
-            var emailName = emailParts[0];
-            var emailSuffix = emailParts[1];
-
-            var newEmailName = emailName.Length > EmailLengthToCheck ?
-                ReplaceEmailName(emailName, 4, 1) :
-                ReplaceEmailName(emailName, 1, 0);
-
-            return newEmailName + "@" + emailSuffix;
-        }
-
-        private static string ReplaceEmailName(string emailName, int charLengthToShow, int startIndex)
-        {
-            var hiddenCharCount = emailName.Length - charLengthToShow;
-            var stringReplace = new string('•', hiddenCharCount);
-            var convertedEmailName = emailName.Remove(startIndex, hiddenCharCount)
-                                                .Insert(startIndex, stringReplace);
-
-            return convertedEmailName;
+                IsOk = result.IsOk,
+                Message = result.Message,
+                Action = _verificationService.CreateActionLink(AppSetting.RsaPublicKeyEncodedXml)
+            };
         }
     }
 }

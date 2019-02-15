@@ -119,7 +119,7 @@
                 var authMessage = encryptedQueryString + verificationToken + captcha + code;
                 var hashMessage = CryptoJS.HmacSHA256(authMessage, verificationToken).toString();
 
-                var url = Site.resolveRelativeUrl("Execute") + '/' + encodeURIComponent($('#ActionLink').val());
+                var url = Site.resolveRelativeUrl("Execute") + '/' + encodeURIComponent($('#ActionLink').val()) + '?t=' +$('#ActionToken').val();
                 var param = {
                     __RequestVerificationToken: csrfToken,
                     LoginInfo: encryptedQueryString,
@@ -145,6 +145,10 @@
                             _me.generateCaptcha();
                             registerRefreshCaptcha();
                         }
+
+                        var action = response.Action;
+                        $('#ActionLink').val(action.Link);
+                        $('#ActionToken').val(action.TimeToken);
                     },
                     beforeSend: function () {
                         Site.showLoader();

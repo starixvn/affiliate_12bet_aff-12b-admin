@@ -17,5 +17,16 @@ namespace Fanex.Affiliate.User.Core.Utilities
             var base64EncodedBytes = System.Convert.FromBase64String(base64EncodedData);
             return encoder.GetString(base64EncodedBytes);
         }
+
+        public static string ToHex(byte[] buff)
+        {
+            var builder = new StringBuilder();
+            for (int i = 0; i < buff.Length; i++)
+            {
+                builder.Append(buff[i].ToString("X2")); // hex format
+            }
+
+            return builder.ToString();
+        }
     }
 }
