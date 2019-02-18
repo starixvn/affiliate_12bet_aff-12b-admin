@@ -2,7 +2,7 @@
 {
     public class VerificationOtpParam
     {
-        public string AffId { get; set; }
+        public string SecretKey { get; set; }
 
         public int Counter { get; set; }
 

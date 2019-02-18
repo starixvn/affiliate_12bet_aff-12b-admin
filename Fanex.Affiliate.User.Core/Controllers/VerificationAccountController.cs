@@ -164,10 +164,11 @@ namespace Fanex.Affiliate.User.Core.Controllers
         private VerificationOtpParam CreateVerificationOtpParam(VerificationAccountParam param)
         {
             var verificationSession = SessionService.VerificationSession;
+            var userInfo = _accountRepository.GetUserInfoById(verificationSession.AffId, false);
 
             return new VerificationOtpParam
             {
-                AffId = verificationSession.AffId.ToString(),
+                SecretKey = userInfo.SecretKey,
                 Counter = verificationSession.Counter,
                 OtpCode = param.Code,
                 HashKey = verificationSession.Token,

@@ -9,6 +9,7 @@ using Fanex.Affiliate.User.Core.MetalModels.Email;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.Utilities;
+using OtpNet;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
 {
@@ -44,9 +45,23 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             if (CanSendCode(param.SentCodeTime))
             {
                 var counter = _wrapperUtility.GetRandomGenerator().Next(int.MinValue, int.MaxValue);
-                var otp = _twoFactorAuthService.GenerateHotp(param.AffId.ToString(), counter);
 
                 var userInfo = _accountRepository.GetUserInfoById(param.AffId, false);
+                if (string.IsNullOrEmpty(userInfo.SecretKey))
+                {
+                    userInfo.SecretKey = TryGetSecretKey(userInfo.AffId);
+
+                    if (string.IsNullOrEmpty(userInfo.SecretKey))
+                    {
+                        return new SendCodeResult
+                        {
+                            IsOk = false,
+                            Message = Lang.SendCodeFailed
+                        };
+                    }
+                }
+
+                var otp = _twoFactorAuthService.GenerateHotp(userInfo.SecretKey, counter);
 
                 var emailParam = param.VerificationEmailParam;
                 var verificationAccountEmailParam = new VerificationAccountEmailParam
@@ -85,7 +100,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             var hashMessage = CreateHashMessage(authMessage, param.HashKey);
 
             return string.Equals(hashMessage, param.HashMessage) &&
-                _twoFactorAuthService.VerifyHotp(param.AffId, param.Counter, param.OtpCode);
+                _twoFactorAuthService.VerifyHotp(param.SecretKey, param.Counter, param.OtpCode);
         }
 
         public VerificationAction CreateActionLink(string publicKey)
@@ -128,6 +143,27 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
                 return ConverterUtils.ToHex(hashmessage).ToLowerInvariant();
             }
+        }
+
+        private string TryGetSecretKey(int affId)
+        {
+            var failedCount = 0;
+            var secretKey = GenerateSecretKey();
+            var result = _accountRepository.CreateSecretKey(affId, secretKey);
+
+            while (!result.IsOk && failedCount <= 10)
+            {
+                failedCount++;
+                secretKey = GenerateSecretKey();
+                result = _accountRepository.CreateSecretKey(affId, secretKey);
+            }
+
+            return failedCount > 10 ? string.Empty : secretKey;
+        }
+
+        private static string GenerateSecretKey()
+        {
+            return Base32Encoding.ToString(KeyGeneration.GenerateRandomKey(20));
         }
     }
 }
