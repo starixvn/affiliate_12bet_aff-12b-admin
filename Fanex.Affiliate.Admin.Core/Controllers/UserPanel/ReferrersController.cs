@@ -21,7 +21,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         }
 
         [HttpGet]
-        public ActionResult Index(int affId, string affName, string fromDate, string toDate, int deviceType = 0, int current = 0)
+        public ActionResult Index(int affId, string affName, string fromDate, string toDate, int deviceType = 0)
         {
             var subMenu = new List<SubMenu>
             {
@@ -29,11 +29,10 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
                     Url = Url.Content($"~/Portal/UserPanel/Referrers/Index?affId={(affId == 0 ? SessionService.AffId : affId)}" + 
                                       $"&affName={affName}&fromDate={fromDate}&toDate={toDate}&deviceType={deviceType}") },
                 new SubMenu { Name = Lang.LandingPages,
-                    Url = Url.Content($"~/Portal/UserPanel/Referrers/Index?affId={(affId == 0 ? SessionService.AffId : affId)}&affName={affName}&current=1") }
+                    Url = Url.Content($"~/Portal/UserPanel/LandingPages/Index?affId={(affId == 0 ? SessionService.AffId : affId)}&affName={affName}&current=1") }
             };
 
-            var activeIndex = current > subMenu.Count - 1 ? 0 : current;
-            subMenu[activeIndex].IsActive = true;
+            subMenu[0].IsActive = true;
 
             return View("~/Areas/Portal/Views/UserPanel/Referrers/Index.cshtml", subMenu);
         }
