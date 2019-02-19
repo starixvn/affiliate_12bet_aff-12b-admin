@@ -48,7 +48,7 @@ export class Detail extends Component {
                 <Cell header={true} colWidth={580} title={headerText.WebsiteUrl}>{headerText.WebsiteUrl}</Cell>
                 <Cell header={true} colWidth={110} title={headerText.TotalClicks}>{headerText.TotalClicks}</Cell>
                 <Cell header={true} colWidth={110} title={headerText.UniqueClicks}>{headerText.UniqueClicks}</Cell>
-                <Cell header={true} colWidth={110} title={headerText.Signups}>{headerText.Signups}</Cell>
+                <Cell header={true} colWidth={110} title={headerText.Signup}>{headerText.Signup}</Cell>
                 <Cell header={true} colWidth={110} title={headerText.Fdm}>{headerText.Fdm}</Cell>
             </Row>
         );
@@ -104,8 +104,9 @@ export class Detail extends Component {
         return this.props.selectedSiteUrl && (
             <div className="table-responsive table-striped my-2">
                 <Table
-                    width={1020}
-                    autoWidth={false}
+                    minWidth={1010}
+                    autoWidth={true}
+                    autoHeight={false}
                     bodyHeight={300}
                     header={this._renderHeader()}
                     body={this._renderDataSection(gridData)}

@@ -1,21 +1,15 @@
 ﻿
 @{
     Layout = "~/Areas/Portal/Views/Shared/_UserPanelLayout.cshtml";
-
-    var affId = Convert.ToInt32(Request.QueryString["affId"]);
-    var affName = Request.QueryString["affName"];
-    var deviceType = Convert.ToInt32(Request.QueryString["deviceType"]);
-    var fromDate = Request.QueryString["fromDate"];
-    var toDate = Request.QueryString["toDate"];
 }
 
 @using Fanex.Affiliate.Admin.Core.Constants
 @using Fanex.Affiliate.Admin.Core.ViewModels.UserPanel
 @using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
-@model IEnumerable<Fanex.Affiliate.Admin.Core.DTO.SubMenu>
+@model Fanex.Affiliate.Admin.Core.ViewModels.UserPanel.ReferrersViewModel
 
 @{
-    var defaultUrl = (Model.FirstOrDefault(p => p.IsActive) ?? Model.First()).Url;
+    var defaultUrl = (Model.SubMenuList.FirstOrDefault(p => p.IsActive) ?? Model.SubMenuList.First()).Url;
     if (defaultUrl.IndexOf('?') == -1 && Request.QueryString.Count > 0)
     {
         defaultUrl = defaultUrl + "?" + Request.QueryString.ToString();
@@ -35,10 +29,11 @@
         window.initialState = {
             today: '@DateTime.Now.ToString("MM/dd/yyyy")',
             param: {
-                AffId: @affId,
-                DeviceType: @deviceType,
-                FromDate: '@(fromDate.IsEmpty() ? DateTime.Now.ToString("MM/01/yyyy") : fromDate)',
-                ToDate: '@(toDate.IsEmpty() ? DateTime.Now.ToString("MM/dd/yyyy") : toDate)'
+                AffId: @Model.ReferrersParam.AffId,
+                DeviceType: @Model.ReferrersParam.DeviceType,
+                FromDate: '@(Model.ReferrersParam.FromDate.IsEmpty() ? DateTime.Now.ToString("MM/01/yyyy") : Model.ReferrersParam.FromDate)',
+                ToDate: '@(Model.ReferrersParam.ToDate.IsEmpty() ? DateTime.Now.ToString("MM/dd/yyyy") :
+                            (DateTime.Parse(Model.ReferrersParam.ToDate) > DateTime.Now ? DateTime.Now.ToString("MM/dd/yyyy") : Model.ReferrersParam.ToDate))'
             }
         }
     </script>
@@ -49,8 +44,8 @@
     @{
         var affiliateLinkParam = new AffiliateLinkParam
         {
-            AffId = affId,
-            AffName = affName,
+            AffId = Model.ReferrersParam.AffId,
+            AffName = Model.ReferrersParam.AffName,
         };
         var usePanelMenu = new UserPanelMenuViewModel
         {
@@ -65,7 +60,7 @@
 <div class="sub-menu-container">
     <div class="d-inline-block">
         @{
-            Html.RenderPartial("~/Areas/Portal/Views/Shared/_SubUserPanelMenu.cshtml", Model);
+            Html.RenderPartial("~/Areas/Portal/Views/Shared/_SubUserPanelMenu.cshtml", Model.SubMenuList);
         }
     </div>
 </div>

@@ -5,10 +5,13 @@
 
 export const headerText = {
     SiteUrls: 'Site URLs',
-    TotalClicks: 'Total Clicks',
-    UniqueClicks: 'Unique Clicks',
+    TotalClick: 'Total Click',
+    UniqueClick: 'Unique Click',
     Signups: 'Signups',
     Fdm: 'FDM',
     Device: 'Device',
-    WebsiteUrl: 'Website URL'
+    WebsiteUrl: 'Website URL',
+    TotalClicks: 'Total Clicks',
+    UniqueClicks: 'Unique Clicks',
+    Signup: 'Sign up',
 }

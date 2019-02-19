@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { DatePicker } from '@9softstudio/react-datepicker';
 import { deviceTypes, headerText } from '../modules/constants';
-import { setDeviceType, setFromDate, setToDate, setSelectedSiteUrl, setParam } from '../actions';
+import { setSelectedSiteUrl, setParam } from '../actions';
 import { globalResource } from '../../../../modules/globalResource';
 
 const minDate = new Date(2009, 11, 1);
@@ -13,49 +13,49 @@ export class Filter extends React.Component {
     constructor(props) {
         super(props);
 
-        const now = new Date(this.props.today);
+        const { today, param } = this.props;
+
+        const now = new Date(today);
         this.nowString = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
 
-        this.state = now;
-    }
-
-    componentDidMount() {
-        const toDate = new Date(this.props.toDate);
-
-        if (toDate.getTime() > this.state.getTime()) {
-            this.props.setToDate(this.nowString);
+        this.state = {
+            deviceType: param.DeviceType,
+            fromDate: param.FromDate,
+            toDate: param.ToDate
         }
     }
 
-    handleChangeDevice = (event) => {
-        this.props.setDeviceType(event.target.value);
+    handleChangeDeviceType = (event) => {
+        this.setState({ [event.target.name]: event.target.value });
     }
 
     handleChangeFromDate = (momentDate) => {
         const selectedDateString = momentDate.format("MM/DD/YYYY");
         const fromDate = new Date(selectedDateString);
-        const toDate = new Date(this.props.toDate);
+        const toDate = new Date(this.state.toDate);
 
         const isOutsideRange = fromDate.getTime() > toDate.getTime();
-        const newToDate = isOutsideRange ? selectedDateString : this.props.toDate;
+        const newToDate = isOutsideRange ? selectedDateString : this.state.toDate;
 
-        this.props.setFromDate(selectedDateString);
-        this.props.setToDate(newToDate);
+        this.setState({
+            fromDate: selectedDateString,
+            toDate: newToDate
+        });
     }
 
     handleChangeToDate = (momentDate) => {
-        this.props.setToDate(momentDate.format("MM/DD/YYYY"));
+        this.setState({ toDate: momentDate.format("MM/DD/YYYY") });
     }
 
     handleSearch = () => {
-        const { deviceType, fromDate, toDate, param } = this.props;
-        const newParam = Object.assign({}, param, { DeviceType: deviceType, FromDate: fromDate, ToDate: toDate });
+        const { deviceType, fromDate, toDate } = this.state;
+        const newParam = Object.assign({}, this.props.param, { DeviceType: deviceType, FromDate: fromDate, ToDate: toDate });
         this.props.setParam(newParam);
         this.props.setSelectedSiteUrl('');
     }
 
     render() {
-        const { deviceType, fromDate, toDate } = this.props;
+        const { deviceType, fromDate, toDate } = this.state;
 
         return (
             <div className="filter-container">
@@ -73,8 +73,8 @@ export class Filter extends React.Component {
                             onChange={this.handleChangeToDate} />
                     </FormGroup>
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                        <Label for="Affiliate" className="mr-sm-2">{headerText.Device}</Label>
-                        <Input type="select" name="Device" id="Device" value={deviceType} onChange={this.handleChangeDevice}>
+                        <Label for="deviceType" className="mr-sm-2">{headerText.Device}</Label>
+                        <Input type="select" name="deviceType" id="deviceType" value={deviceType} onChange={this.handleChangeDeviceType}>
                             {
                                 Object.keys(deviceTypes).map(index => {
                                     return (<option key={`deviceType-${index}`} value={index}>{deviceTypes[index]}</option>)
@@ -91,12 +91,12 @@ export class Filter extends React.Component {
     }
 }
 
-function mapStateToProps({ today, deviceType, fromDate, toDate, param }) {
-    return Object.assign({}, { today, deviceType, fromDate, toDate, param });
+function mapStateToProps({ today, param }) {
+    return Object.assign({}, { today, param });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setDeviceType, setFromDate, setToDate, setSelectedSiteUrl, setParam }, dispatch);
+    return bindActionCreators({ setSelectedSiteUrl, setParam }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);

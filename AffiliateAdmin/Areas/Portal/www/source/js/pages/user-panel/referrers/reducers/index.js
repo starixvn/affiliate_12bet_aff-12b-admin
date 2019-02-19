@@ -1,28 +1,11 @@
 ﻿import { combineReducers } from 'redux';
-import { SET_DEVICE_TYPE, SET_FROM_DATE, SET_TO_DATE, SET_SELECTED_SITE_URL, SET_PARAM } from '../actions/types';
+import { SET_SELECTED_SITE_URL, SET_PARAM } from '../actions/types';
 import createReducer from '../../../../modules/createReducer';
 
 import { pagingOption } from '../../../../reducers/pagingReducer';
 import { isShowLoader } from '../../../../reducers/loaderReducer';
 
 const today = createReducer('', {});
-export const deviceType = createReducer(0, {
-    [SET_DEVICE_TYPE](prevState, action) {
-        return action.data;
-    }
-});
-
-export const fromDate = createReducer('', {
-    [SET_FROM_DATE](prevState, action) {
-        return action.data;
-    }
-});
-
-export const toDate = createReducer('', {
-    [SET_TO_DATE](prevState, action) {
-        return action.data;
-    }
-});
 
 export const selectedSiteUrl = createReducer('', {
     [SET_SELECTED_SITE_URL](prevState, action) {
@@ -40,9 +23,6 @@ export default combineReducers({
     pagingOption,
     isShowLoader,
     today,
-    deviceType,
-    fromDate,
-    toDate,
     selectedSiteUrl,
     param
 });

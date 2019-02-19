@@ -7,6 +7,7 @@ using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.DTO;
 using System.Collections.Generic;
 using Fanex.Affiliate.Admin.Core.Resources;
+using Fanex.Affiliate.Admin.Core.ViewModels.UserPanel;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
@@ -21,20 +22,27 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         }
 
         [HttpGet]
-        public ActionResult Index(int affId, string affName, string fromDate, string toDate, int deviceType = 0)
+        public ActionResult Index(ReferrersParam param)
         {
+            param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
             var subMenu = new List<SubMenu>
             {
                 new SubMenu { Name = Lang.Referrers,
-                    Url = Url.Content($"~/Portal/UserPanel/Referrers/Index?affId={(affId == 0 ? SessionService.AffId : affId)}" + 
-                                      $"&affName={affName}&fromDate={fromDate}&toDate={toDate}&deviceType={deviceType}") },
+                    Url = Url.Content($"~/Portal/UserPanel/Referrers/Index?affId={(param.AffId)}" + 
+                                      $"&affName={param.AffName}&fromDate={param.FromDate}&toDate={param.ToDate}&deviceType={param.DeviceType}") },
                 new SubMenu { Name = Lang.LandingPages,
-                    Url = Url.Content($"~/Portal/UserPanel/LandingPages/Index?affId={(affId == 0 ? SessionService.AffId : affId)}&affName={affName}&current=1") }
+                    Url = Url.Content($"~/Portal/UserPanel/LandingPages/Index?affId={(param.AffId)}&affName={param.AffName}") }
             };
 
             subMenu[0].IsActive = true;
 
-            return View("~/Areas/Portal/Views/UserPanel/Referrers/Index.cshtml", subMenu);
+            var viewModel = new ReferrersViewModel
+            {
+                SubMenuList = subMenu,
+                ReferrersParam = param
+            };
+
+            return View("~/Areas/Portal/Views/UserPanel/Referrers/Index.cshtml", viewModel);
         }
 
         [HttpPost]

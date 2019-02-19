@@ -46,8 +46,8 @@ export class Content extends Component {
         return (
             <Row>
                 <Cell header={true} colWidth={580} title={headerText.SiteUrls}>{headerText.SiteUrls}</Cell>
-                <Cell header={true} colWidth={110} title={headerText.TotalClicks}>{headerText.TotalClicks}</Cell>
-                <Cell header={true} colWidth={110} title={headerText.UniqueClicks}>{headerText.UniqueClicks}</Cell>
+                <Cell header={true} colWidth={110} title={headerText.TotalClick}>{headerText.TotalClick}</Cell>
+                <Cell header={true} colWidth={110} title={headerText.UniqueClick}>{headerText.UniqueClick}</Cell>
                 <Cell header={true} colWidth={110} title={headerText.Signups}>{headerText.Signups}</Cell>
                 <Cell header={true} colWidth={110} title={headerText.Fdm}>{headerText.Fdm}</Cell>
             </Row>
@@ -96,8 +96,8 @@ export class Content extends Component {
         return (
             <div className="table-responsive table-striped my-2">
                 <Table
-                    width={1020}
-                    autoWidth={false}
+                    minWidth={1010}
+                    autoWidth={true}
                     bodyHeight={300}
                     header={this._renderHeader()}
                     body={this._renderDataSection(gridData)}
