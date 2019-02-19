@@ -8,7 +8,7 @@
 
 @using Fanex.Affiliate.Admin.Core.Constants
 @using Fanex.Affiliate.Admin.Core.ViewModels.UserPanel
-@using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
+@using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
 @model Fanex.Affiliate.Admin.Core.ViewModels.UserPanel.LandingPagesViewModel
 
 @{
@@ -45,7 +45,7 @@
         var affiliateLinkParam = new AffiliateLinkParam
         {
             AffId = affId,
-            AffName = affName,
+            AffName = affName
         };
         var usePanelMenu = new UserPanelMenuViewModel
         {

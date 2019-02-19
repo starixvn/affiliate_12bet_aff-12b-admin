@@ -5,7 +5,7 @@
 
 @using Fanex.Affiliate.Admin.Core.Constants
 @using Fanex.Affiliate.Admin.Core.ViewModels.UserPanel
-@using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
+@using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
 @model Fanex.Affiliate.Admin.Core.MetaModels.UserPanel.NoteParam
 @section styles{
     <script type="text/javascript">
@@ -25,7 +25,7 @@
         var affiliateLinkParam = new AffiliateLinkParam
         {
             AffId = Model.AffId,
-            AffName = Model.AffName,
+            AffName = Model.AffName
         };
         var usePanelMenu = new UserPanelMenuViewModel
         {
