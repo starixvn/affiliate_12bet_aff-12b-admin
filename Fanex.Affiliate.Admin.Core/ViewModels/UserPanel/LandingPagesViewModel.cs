@@ -1,4 +1,5 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.ViewModels.UserPanel
@@ -8,5 +9,7 @@ namespace Fanex.Affiliate.Admin.Core.ViewModels.UserPanel
         public IEnumerable<SubMenu> SubMenuList { get; set; }
 
         public IEnumerable<Language> LanguageList { get; set; }
+
+        public AffiliateLinkParam AffiliateLinkParam { get; set; }
     }
 }

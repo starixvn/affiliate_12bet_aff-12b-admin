@@ -23,7 +23,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
                 {
                     while (reader.Read())
                     {
-                        result.Add(BuildReferrersItem(reader, false));
+                        result.Add(BuildReferrersItem(reader, true));
                     }
                 }
             }
@@ -50,7 +50,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
                 {
                     while (reader.Read())
                     {
-                        dataList.Add(BuildReferrersItem(reader, true));
+                        dataList.Add(BuildReferrersItem(reader, false));
                     }
                 }
                 result.MainData = dataList;
@@ -69,12 +69,12 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
             objectDb.AddInParameter("DeviceType", DbType.Int32, param.DeviceType);
         }
 
-        private static Referrers BuildReferrersItem(IDataReader reader, bool isGetReferrersBySite)
+        private static Referrers BuildReferrersItem(IDataReader reader, bool isGetReferrersList)
         {
             return new Referrers
             {
-                SiteUrl = isGetReferrersBySite ? string.Empty : (Convert.ToString(reader["DomainReferrer"])),
-                WebsiteUrl = isGetReferrersBySite ? (Convert.ToString(reader["URLReferrer"])) : string.Empty,
+                SiteUrl = isGetReferrersList ? (Convert.ToString(reader["DomainReferrer"])) : string.Empty,
+                WebsiteUrl = isGetReferrersList ? string.Empty : (Convert.ToString(reader["URLReferrer"])),
                 TotalClick = reader["TotalClick"] == DBNull.Value ? 0 : Convert.ToInt32(reader["TotalClick"]),
                 UniqueClick = reader["UniqueClick"] == DBNull.Value ? 0 : Convert.ToInt32(reader["UniqueClick"]),
                 Signups = reader["Signups"] == DBNull.Value ? 0 : Convert.ToInt32(reader["Signups"]),

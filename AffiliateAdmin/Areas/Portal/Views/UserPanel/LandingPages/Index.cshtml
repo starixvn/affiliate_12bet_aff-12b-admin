@@ -1,14 +1,10 @@
 ﻿
 @{
     Layout = "~/Areas/Portal/Views/Shared/_UserPanelLayout.cshtml";
-
-    var affId = Convert.ToInt32(Request.QueryString["affId"]);
-    var affName = Request.QueryString["affName"];
 }
 
 @using Fanex.Affiliate.Admin.Core.Constants
 @using Fanex.Affiliate.Admin.Core.ViewModels.UserPanel
-@using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
 @model Fanex.Affiliate.Admin.Core.ViewModels.UserPanel.LandingPagesViewModel
 
 @{
@@ -31,10 +27,8 @@
     <script type="text/javascript">
         window.initialState = {
             today: '@DateTime.Now.ToString("MM/dd/yyyy")',
-            languageList: @Model.LanguageList,
-            param: {
-                AffId: @affId
-            }
+            languageList: @Html.Raw(Json.Encode(Model.LanguageList)),
+            param: { AffId: @Model.AffiliateLinkParam.AffId }
         }
     </script>
     <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/userpanel/landing-pages.js")"></script>
@@ -42,15 +36,10 @@
 
 @section menu{
     @{
-        var affiliateLinkParam = new AffiliateLinkParam
-        {
-            AffId = affId,
-            AffName = affName
-        };
         var usePanelMenu = new UserPanelMenuViewModel
         {
             SubMenuList = UserPanelConstant.UserPanelMenuList,
-            AffiliateLinkParam = affiliateLinkParam
+            AffiliateLinkParam = Model.AffiliateLinkParam
         };
         usePanelMenu.SubMenuList.ElementAt(9).IsActive = true;
         Html.RenderPartial("~/Areas/Portal/Views/Shared/_UserPanelMenu.cshtml", usePanelMenu);

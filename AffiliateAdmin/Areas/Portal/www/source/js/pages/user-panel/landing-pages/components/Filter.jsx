@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { DatePicker } from '@9softstudio/react-datepicker';
-import { pageList, deviceTypes, headerText } from '../modules/constants';
+import { pageList, deviceTypes, headerTitle } from '../modules/constants';
 import { setSelectedPage, setParam } from '../actions';
 import { globalResource } from '../../../../modules/globalResource';
 
@@ -26,8 +26,8 @@ export class Filter extends React.Component {
         };
     }
 
-    handleChangeDevice = (event) => {
-        this.props.setDeviceType(event.target.value);
+    handleChange = (event) => {
+        this.setState({ [event.target.name]: event.target.value });
     }
 
     handleChangeFromDate = (momentDate) => {
@@ -59,8 +59,8 @@ export class Filter extends React.Component {
             <div className="filter-container">
                 <Form inline tag="div">
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                        <Label for="page" className="mr-sm-2">{headerText.Device}</Label>
-                        <Input type="select" name="page" id="page" value={page} onChange={this.handleChangeDevice}>
+                        <Label for="page" className="mr-sm-2">{headerTitle.Page}</Label>
+                        <Input type="select" name="page" id="page" value={page} onChange={this.handleChange}>
                             <option value="">{globalResource.All}</option>
                             {
                                 pageList.map(index => {
@@ -70,12 +70,12 @@ export class Filter extends React.Component {
                         </Input>
                     </FormGroup>
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                        <Label for="language" className="mr-sm-2">{headerText.Device}</Label>
-                        <Input type="select" name="language" id="language" value={language} onChange={this.handleChangeDevice}>
+                        <Label for="language" className="mr-sm-2">{headerTitle.Language}</Label>
+                        <Input type="select" name="language" id="language" value={language} onChange={this.handleChange}>
                             <option value="">{globalResource.All}</option>
                             {
-                                Object.keys(languageList).map(index => {
-                                    return (<option key={`language-${index}`} value={index}>{languageList[index]}</option>)
+                                languageList.map(language => {
+                                    return (<option key={`language-${language.LanguageCode}`} value={language.LanguageName}>{language.LanguageName}</option>)
                                 })
                             }
                         </Input>
@@ -93,11 +93,11 @@ export class Filter extends React.Component {
                             onChange={this.handleChangeToDate} />
                     </FormGroup>
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                        <Label for="deviceType" className="mr-sm-2">{headerText.Device}</Label>
-                        <Input type="select" name="deviceType" id="deviceType" value={deviceType} onChange={this.handleChangeDevice}>
+                        <Label for="deviceType" className="mr-sm-2">{headerTitle.Device}</Label>
+                        <Input type="select" name="deviceType" id="deviceType" value={deviceType} onChange={this.handleChange}>
                             {
-                                deviceTypes.map(index => {
-                                    return (<option key={`deviceType-${index}`} value={index}>{index}</option>)
+                                Object.keys(deviceTypes).map(index => {
+                                    return (<option key={`deviceType-${index}`} value={index}>{deviceTypes[index]}</option>)
                                 })
                             }
                         </Input>
