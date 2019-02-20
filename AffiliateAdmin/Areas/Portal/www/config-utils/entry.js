@@ -20,6 +20,13 @@ module.exports = {
     [`${jsDist}/pages/userpanel/customer-member`]: clientRoot + "/js/pages/user-panel/customer-member/index.jsx",
     [`${jsDist}/pages/affiliate/affiliate-info`]: clientRoot + "/js/pages/affiliate-info/index.jsx",
 
+    //For Thirdparty Product pages
+    [`${jsDist}/pages/thirdparty-product/betsoft`]: clientRoot + "/js/pages/thirdparty-product/betsoft/index.jsx",
+    [`${jsDist}/pages/thirdparty-product/ebet`]: clientRoot + "/js/pages/thirdparty-product/ebet/index.jsx",
+    [`${jsDist}/pages/thirdparty-product/crystal-gpi`]: clientRoot + "/js/pages/thirdparty-product/crystal-gpi/index.jsx",
+    [`${jsDist}/pages/thirdparty-product/isoftbet`]: clientRoot + "/js/pages/thirdparty-product/isoftbet/index.jsx",
+    [`${jsDist}/pages/thirdparty-product/opus`]: clientRoot + "/js/pages/thirdparty-product/opus/index.jsx",
+
     [`${styleDist}/portalmain`]: clientRoot + "/style/main.scss",
     [`${styleDist}/layout`]: clientRoot + "/style/layout/main-layout.scss",
     [`${styleDist}/user-panel-layout`]: clientRoot + "/style/layout/user-panel-layout.scss",

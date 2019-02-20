@@ -13,4 +13,9 @@
   <Function Name="Affiliate - Data Services - Import 12Bet Special Product">
     <Setting Key="Task_APIProduct_ImportQueue" SpName="Task_APIProduct_ImportQueue" DbName="Affiliate" />
   </Function>
+  
+  <Function Name="Affiliate - Data Services - Time Tracker">
+    <Setting Key="Task_APIProduct_CallTimeIns" SpName="Task_APIProduct_CallTimeIns" DbName="Affiliate" />
+    <Setting Key="Task_APIProduct_CallTimeByProductSel" SpName="Task_APIProduct_CallTimeByProductSel" DbName="Affiliate" />
+  </Function>
 </Functions>

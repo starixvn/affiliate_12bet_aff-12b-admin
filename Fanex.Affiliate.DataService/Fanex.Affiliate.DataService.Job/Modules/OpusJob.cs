@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Globalization;
 using Fanex.Affiliate.DataService.Importer;
+using Fanex.Affiliate.DataService.Importer.Constants;
 using Fanex.Affiliate.DataService.Importer.MetaModels.Opus;
 using Fanex.Affiliate.DataService.Importer.Utilities;
+using Fanex.Affiliate.DataService.Job.MetaModels.TimeTracker;
 using Fanex.Affiliate.DataService.Job.Services;
 using Fanex.Logging;
 using Quartz;
@@ -34,9 +36,9 @@ namespace Fanex.Affiliate.DataService.Job.Modules
 
                 if (!isUm)
                 {
-                    var trackerFolderPath = _appSetting.GetValue("OpusTrackerFolder");
                     var defaultStartTime = DateTime.ParseExact(_appSetting.GetValue("OpusStartTime"), "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal);
-                    var lastQueryTime = _timeTracker.GetLastestCallSuccess(trackerFolderPath, defaultStartTime);
+                    var trackerParam = new TimeTrackerBaseParam { ProductId = Products.OpusProductId };
+                    var lastQueryTime = _timeTracker.GetLastestCallSuccess(trackerParam, defaultStartTime);
 
                     var hourAdjustment = Convert.ToInt32(_appSetting.GetValue("OpusHourAdjustment"));
                     var now = DateTime.Now.AddHours(hourAdjustment);
@@ -52,7 +54,12 @@ namespace Fanex.Affiliate.DataService.Job.Modules
 
                         _opusService.Import(opusParam);
 
-                        _timeTracker.SaveTime(trackerFolderPath, nowByMinute);
+                        var saveTimeParam = new InsertTimeTrackerParam
+                        {
+                            ProductId = Products.OpusProductId,
+                            CallTime = nowByMinute
+                        };
+                        _timeTracker.SaveTime(saveTimeParam);
                     }
                 }
             }

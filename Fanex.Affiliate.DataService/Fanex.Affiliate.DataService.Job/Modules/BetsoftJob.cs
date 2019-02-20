@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Globalization;
 using Fanex.Affiliate.DataService.Importer;
+using Fanex.Affiliate.DataService.Importer.Constants;
 using Fanex.Affiliate.DataService.Importer.MetaModels.Betsoft;
 using Fanex.Affiliate.DataService.Importer.Utilities;
+using Fanex.Affiliate.DataService.Job.MetaModels.TimeTracker;
 using Fanex.Affiliate.DataService.Job.Services;
 using Fanex.Logging;
 using Quartz;
@@ -34,10 +36,12 @@ namespace Fanex.Affiliate.DataService.Job.Modules
 
                 if (!isUm)
                 {
-                    var trackerFolderPath = _appSetting.GetValue("BetsoftTrackerFolder");
                     var defaultStartTime = DateTime.ParseExact(_appSetting.GetValue("BetsoftStartTime"), "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.AssumeLocal);
-                    var lastQueryTime = _timeTracker.GetLastestCallSuccess(trackerFolderPath, defaultStartTime);
-                    var now = DateTime.Now;
+                    var param = new TimeTrackerBaseParam { ProductId = Products.BetsoftProductId };
+                    var lastQueryTime = _timeTracker.GetLastestCallSuccess(param, defaultStartTime);
+
+                    var hourAdjustment = Convert.ToInt32(_appSetting.GetValue("BetsoftHourAdjustment"));
+                    var now = DateTime.Now.AddHours(hourAdjustment);
                     var nowByHour = new DateTime(now.Year, now.Month, now.Day, now.Hour, 0, 0, DateTimeKind.Local);
 
                     if (DateTime.Compare(lastQueryTime, nowByHour) < 0)
@@ -50,7 +54,12 @@ namespace Fanex.Affiliate.DataService.Job.Modules
 
                         _betSoftService.Import(betSoftParam);
 
-                        _timeTracker.SaveTime(trackerFolderPath, nowByHour);
+                        var saveTimeTrackerParam = new InsertTimeTrackerParam
+                        {
+                            ProductId = Products.BetsoftProductId,
+                            CallTime = nowByHour
+                        };
+                        _timeTracker.SaveTime(saveTimeTrackerParam);
                     }
                 }
             }

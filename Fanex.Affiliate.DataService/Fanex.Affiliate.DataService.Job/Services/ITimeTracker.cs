@@ -1,11 +1,12 @@
 ﻿using System;
+using Fanex.Affiliate.DataService.Job.MetaModels.TimeTracker;
 
 namespace Fanex.Affiliate.DataService.Job.Services
 {
     public interface ITimeTracker
     {
-        DateTime GetLastestCallSuccess(string folderPath, DateTime defaultValue);
+        DateTime GetLastestCallSuccess(TimeTrackerBaseParam param, DateTime defaultValue);
 
-        void SaveTime(string folderPath, DateTime callTime);
+        void SaveTime(InsertTimeTrackerParam param);
     }
 }

@@ -845,6 +845,10 @@
   <ItemGroup>
     <Content Include="AccessDenied.aspx" />
     <Content Include="Alert.aspx" />
+    <Content Include="App_Data\OpusData\opus_1.xml" />
+    <Content Include="App_Data\OpusData\opus_2.xml" />
+    <Content Include="App_Data\OpusData\opus_3.xml" />
+    <Content Include="App_Data\OpusData\opus_4.xml" />
     <Content Include="App_Data\SpConfig\SpName.local.xml">
       <DependentUpon>_SpName.tt</DependentUpon>
     </Content>
@@ -1504,6 +1508,11 @@
     <Content Include="Areas\Portal\www\dist\js\pages\media-gallery\landing-page.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\Recheckin\recheckin.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\report\affiliate-report.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\betsoft.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\crystal-gpi.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\ebet.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\isoftbet.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\opus.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\userpanel\customer-member.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\userpanel\daily-earning-detail.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\userpanel\daily-earning.js" />
@@ -1894,6 +1903,47 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\EditCommissionGroup.jsx" />
     <Content Include=".babelrc" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\__tests__\Filter.test.js" />
+    <Content Include="Areas\Portal\Views\ThirdPartyProduct\Home\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\ThirdPartyProduct\Betsoft\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\ThirdPartyProduct\Ebet\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\ThirdPartyProduct\CrystalGpi\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\ThirdPartyProduct\ISoftbet\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\ThirdPartyProduct\Opus\Index.cshtml" />
+    <Content Include="App_Data\EBetConfig.json" />
+    <Content Include="App_Data\EbetData\ebet_13.json" />
+    <Content Include="App_Data\EbetData\ebet_15.json" />
+    <Content Include="App_Data\EbetData\ebet_2.json" />
+    <Content Include="App_Data\EbetData\ebet_3.json" />
+    <Content Include="App_Data\EbetData\ebet_4.json" />
+    <Content Include="App_Data\EbetData\ebet_4_2.json" />
+    <Content Include="App_Data\EbetData\ebet_4_3.json" />
+    <Content Include="App_Data\EbetData\ebet_51.json" />
+    <Content Include="App_Data\EbetData\ebet_61.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_01.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_02.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_03.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_04.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_05.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_06.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_07.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_08.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_09.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_10.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_11.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_12.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_13.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_14.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_15.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_16.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_17.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_18.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_19.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_20.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_21.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_22.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_23.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_24.json" />
+    <Content Include="App_Data\IsoftbetData\isoftbet_25.json" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -2010,6 +2060,10 @@
     <ProjectReference Include="..\Fanex.Affiliate.Admin.Core\Fanex.Affiliate.Admin.Core.csproj">
       <Project>{c1c3e2f9-cc94-41a2-96e5-776b9f67e840}</Project>
       <Name>Fanex.Affiliate.Admin.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fanex.Affiliate.ThirdPartyProduct\Fanex.Affiliate.ThirdPartyProduct.csproj">
+      <Project>{118a9aa1-c33a-413a-a685-3495cf30c15f}</Project>
+      <Name>Fanex.Affiliate.ThirdPartyProduct</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
