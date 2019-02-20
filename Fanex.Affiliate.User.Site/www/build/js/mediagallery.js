@@ -2,6 +2,7 @@
     var _languageCode;
     var pagingInfoText = {
         'en-US': 'Page {0} of {1}',
+        'id-ID': 'Halaman {0} dari {1}',
         'zh-CN': '从 {0} 页到 {1} 页',
         'zh-TW': '從 {0} 頁到 {1} 頁',
         'th-TH': 'หน้า {0} จาก {1}',

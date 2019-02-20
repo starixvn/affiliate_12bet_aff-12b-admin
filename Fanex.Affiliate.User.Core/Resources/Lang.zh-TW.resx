@@ -923,9 +923,6 @@
   <data name="LandingPages" xml:space="preserve">
     <value>登陸頁面統計</value>
   </data>
-  <data name="Language" xml:space="preserve">
-    <value>語言</value>
-  </data>
   <data name="LaoPeoplesDemRep" xml:space="preserve">
     <value>寮国人民民主共和国</value>
   </data>
@@ -1422,9 +1419,6 @@
   <data name="Singapore" xml:space="preserve">
     <value>新加坡</value>
   </data>
-  <data name="SiteInfor" xml:space="preserve">
-    <value>網站資料</value>
-  </data>
   <data name="SiteUrl" xml:space="preserve">
     <value>網站鏈接</value>
   </data>
@@ -1585,9 +1579,6 @@
   <data name="TotalQualifiedMembers" xml:space="preserve">
     <value>總計活躍合格會員</value>
   </data>
-  <data name="Tqacsbc" xml:space="preserve">
-    <value>總計活躍合格會員</value>
-  </data>
   <data name="TrackingCode" xml:space="preserve">
     <value>追踪代码</value>
   </data>
@@ -1669,7 +1660,7 @@
   <data name="Vietnamese" xml:space="preserve">
     <value>Tiếng Việt</value>
   </data>
-  <data name="WebsiteInformat" xml:space="preserve">
+  <data name="WebsiteInfor" xml:space="preserve">
     <value>網站資料</value>
   </data>
   <data name="WebsiteURL" xml:space="preserve">
@@ -2076,5 +2067,26 @@
   </data>
   <data name="PopupYourAffiliateManager" xml:space="preserve">
     <value>12BET合作夥伴經理</value>
+  </data>
+  <data name="Non_deposited" xml:space="preserve">
+    <value>僅限未存款玩家</value>
+  </data>
+  <data name="User_Name" xml:space="preserve">
+    <value>12BET玩家賬號</value>
+  </data>
+  <data name="QualifyingMembers" xml:space="preserve">
+    <value>≥ 5 </value>
+  </data>
+  <data name="ProductType" xml:space="preserve">
+    <value>產品</value>
+  </data>
+  <data name="ProductBanner" xml:space="preserve">
+    <value>所有的產品都計算在您的每月收入！</value>
+  </data>
+  <data name="MyAccount" xml:space="preserve">
+    <value>我的帳戶</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>語言</value>
   </data>
 </root>

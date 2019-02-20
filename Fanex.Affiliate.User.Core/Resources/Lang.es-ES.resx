@@ -917,9 +917,6 @@
   <data name="LandingPages" xml:space="preserve">
     <value>Landing Pages Statistics</value>
   </data>
-  <data name="Language" xml:space="preserve">
-    <value>Idioma</value>
-  </data>
   <data name="LaoPeoplesDemRep" xml:space="preserve">
     <value>Lao People's Dem Rep </value>
   </data>
@@ -1393,9 +1390,6 @@
   <data name="Singapore" xml:space="preserve">
     <value>Singapore </value>
   </data>
-  <data name="SiteInfor" xml:space="preserve">
-    <value>Información de sitio Web</value>
-  </data>
   <data name="SiteUrl" xml:space="preserve">
     <value>URL de sitio Web</value>
   </data>
@@ -1544,9 +1538,6 @@
   <data name="TotalQualifiedMembers" xml:space="preserve">
     <value>Total de jugadores activos aprobados</value>
   </data>
-  <data name="Tqacsbc" xml:space="preserve">
-    <value>Total de jugadores activos aprobados</value>
-  </data>
   <data name="TrackingCode" xml:space="preserve">
     <value>Código de seguimiento</value>
   </data>
@@ -1628,7 +1619,7 @@
   <data name="Vietnamese" xml:space="preserve">
     <value>Tiếng Việt</value>
   </data>
-  <data name="WebsiteInformat" xml:space="preserve">
+  <data name="WebsiteInfor" xml:space="preserve">
     <value>Información de sitio Web</value>
   </data>
   <data name="WebsiteURL" xml:space="preserve">
@@ -1684,5 +1675,8 @@
   </data>
   <data name="EmailTitleSignUp" xml:space="preserve">
     <value>Su solicitud</value>
+  </data>
+  <data name="MyAccount" xml:space="preserve">
+    <value>Mi cuenta</value>
   </data>
 </root>

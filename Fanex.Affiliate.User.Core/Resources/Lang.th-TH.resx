@@ -924,9 +924,6 @@
   <data name="LandingPages" xml:space="preserve">
     <value>สถิติเข้าหน้าเว็บหลัก</value>
   </data>
-  <data name="Language" xml:space="preserve">
-    <value>ภาษา</value>
-  </data>
   <data name="LaoPeoplesDemRep" xml:space="preserve">
     <value>ประชาชนชาวลาว</value>
   </data>
@@ -1417,9 +1414,6 @@
   <data name="Singapore" xml:space="preserve">
     <value>สิงคโปร์</value>
   </data>
-  <data name="SiteInfor" xml:space="preserve">
-    <value>รายละเอียดเกี่ยวกับเวบไซค์</value>
-  </data>
   <data name="SiteUrl" xml:space="preserve">
     <value>ลิงค์เข้าเวบไซค์</value>
   </data>
@@ -1580,9 +1574,6 @@
   <data name="TotalQualifiedMembers" xml:space="preserve">
     <value>จำนวนผู้เล่นทั้งหมดที่มียอดเกินหนึ่งร้อยเหรียญ</value>
   </data>
-  <data name="Tqacsbc" xml:space="preserve">
-    <value>จำนวนผู้เล่นทั้งหมดที่มียอดเกินหนึ่งร้อยเหรียญ</value>
-  </data>
   <data name="TrackingCode" xml:space="preserve">
     <value>รหัสที่ใช้ตรวจสอบ</value>
   </data>
@@ -1664,7 +1655,7 @@
   <data name="Vietnamese" xml:space="preserve">
     <value>Tiếng Việt</value>
   </data>
-  <data name="WebsiteInformat" xml:space="preserve">
+  <data name="WebsiteInfor" xml:space="preserve">
     <value>รายละเอียดเกี่ยวกับเวบไซค์</value>
   </data>
   <data name="WebsiteURL" xml:space="preserve">
@@ -2071,5 +2062,26 @@
   </data>
   <data name="PopupYourAffiliateManager" xml:space="preserve">
     <value>จากผู้จัดการพันธมิตร</value>
+  </data>
+  <data name="Non_deposited" xml:space="preserve">
+    <value>ใช้ยูสเซอร์ที่ไม่เคยฝากเงินเท่านั้น</value>
+  </data>
+  <data name="User_Name" xml:space="preserve">
+    <value>ยูสเซอร์เนมรับค่าคอมมิชชั่น</value>
+  </data>
+  <data name="QualifyingMembers" xml:space="preserve">
+    <value>มากกว่าหรือเท่ากับ&lt;br /&gt;5</value>
+  </data>
+  <data name="ProductType" xml:space="preserve">
+    <value>ประเภทการเดิมพัน</value>
+  </data>
+  <data name="ProductBanner" xml:space="preserve">
+    <value>รายได้คอมมิชชั่นทุกเดือนนับจากยอดเดิมพันทุกผลิตภัณฑ์!</value>
+  </data>
+  <data name="MyAccount" xml:space="preserve">
+    <value>บัญชีของฉัน</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>ภาษา</value>
   </data>
 </root>

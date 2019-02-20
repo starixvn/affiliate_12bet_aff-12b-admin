@@ -3356,6 +3356,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to My Account.
+        /// </summary>
+        public static string MyAccount {
+            get {
+                return ResourceManager.GetString("MyAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Myanmar .
         /// </summary>
         public static string Myanmar {
@@ -3550,6 +3559,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Non_Deposit {
             get {
                 return ResourceManager.GetString("Non_Deposit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to non-deposited account only.
+        /// </summary>
+        public static string Non_deposited {
+            get {
+                return ResourceManager.GetString("Non_deposited", resourceCulture);
             }
         }
         
@@ -4337,6 +4355,24 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ALL PRODUCTS COUNTED IN YOUR MONTHLY COMMISSION!.
+        /// </summary>
+        public static string ProductBanner {
+            get {
+                return ResourceManager.GetString("ProductBanner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product Type.
+        /// </summary>
+        public static string ProductType {
+            get {
+                return ResourceManager.GetString("ProductType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Program Details.
         /// </summary>
         public static string ProgDetails {
@@ -4387,6 +4423,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string QualifyingMem {
             get {
                 return ResourceManager.GetString("QualifyingMem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ≥ 5 .
+        /// </summary>
+        public static string QualifyingMembers {
+            get {
+                return ResourceManager.GetString("QualifyingMembers", resourceCulture);
             }
         }
         
@@ -4828,15 +4873,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Singapore {
             get {
                 return ResourceManager.GetString("Singapore", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Website Information.
-        /// </summary>
-        public static string SiteInfor {
-            get {
-                return ResourceManager.GetString("SiteInfor", resourceCulture);
             }
         }
         
@@ -5409,15 +5445,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Total Qualified Active Players.
-        /// </summary>
-        public static string Tqacsbc {
-            get {
-                return ResourceManager.GetString("Tqacsbc", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Tracking Code.
         /// </summary>
         public static string TrackingCode {
@@ -5652,6 +5679,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Username.
+        /// </summary>
+        public static string User_Name {
+            get {
+                return ResourceManager.GetString("User_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User Name.
         /// </summary>
         public static string Username {
@@ -5744,9 +5780,9 @@ namespace Fanex.Affiliate.User.Core.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Website Information.
         /// </summary>
-        public static string WebsiteInformat {
+        public static string WebsiteInfor {
             get {
-                return ResourceManager.GetString("WebsiteInformat", resourceCulture);
+                return ResourceManager.GetString("WebsiteInfor", resourceCulture);
             }
         }
         

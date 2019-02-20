@@ -937,9 +937,6 @@
   <data name="LandingPages" xml:space="preserve">
     <value>방문페이지 통계</value>
   </data>
-  <data name="Language" xml:space="preserve">
-    <value>언어</value>
-  </data>
   <data name="LaoPeoplesDemRep" xml:space="preserve">
     <value>라오스</value>
   </data>
@@ -1373,7 +1370,7 @@
     <value>요청하신 출금액이 성공적으로 처리되었습이다.</value>
   </data>
   <data name="RequireInfo" xml:space="preserve">
-    <value>붉은색으로 표시된 부분은 반드시 기재 하셔야합니다.</value>
+    <value>붉은색으로 표시된 부분은 반드시 기재 하셔야합니다.&lt;p&gt;&lt;font color="red"&gt;*&lt;/font&gt; 이메일 주소는 반드시 Gmail로 입력하세요. &lt;/p&gt;</value>
   </data>
   <data name="Reset" xml:space="preserve">
     <value>재설정</value>
@@ -1446,9 +1443,6 @@
   </data>
   <data name="Singapore" xml:space="preserve">
     <value>싱가폴</value>
-  </data>
-  <data name="SiteInfor" xml:space="preserve">
-    <value>웹사이트 정보</value>
   </data>
   <data name="SiteUrl" xml:space="preserve">
     <value>웹사이트 URL</value>
@@ -1606,9 +1600,6 @@
   <data name="TotalQualifiedMembers" xml:space="preserve">
     <value>프로모션을 받을수있는 조건을 충족하는회원</value>
   </data>
-  <data name="Tqacsbc" xml:space="preserve">
-    <value>프로모션을 받을수있는 조건을 충족하는회원</value>
-  </data>
   <data name="TrackingCode" xml:space="preserve">
     <value>트래킹 코드</value>
   </data>
@@ -1696,7 +1687,7 @@
   <data name="Vietnamese" xml:space="preserve">
     <value>Tiếng Việt</value>
   </data>
-  <data name="WebsiteInformat" xml:space="preserve">
+  <data name="WebsiteInfor" xml:space="preserve">
     <value>웹사이트 정보</value>
   </data>
   <data name="WebsiteURL" xml:space="preserve">
@@ -2064,5 +2055,26 @@
   </data>
   <data name="PopupHappyEarning" xml:space="preserve">
     <value> </value>
+  </data>
+  <data name="Non_deposited" xml:space="preserve">
+    <value>본사로 입금한 내역이 없는 계정</value>
+  </data>
+  <data name="User_Name" xml:space="preserve">
+    <value>아이디</value>
+  </data>
+  <data name="QualifyingMembers" xml:space="preserve">
+    <value>5&lt;br /&gt;명 또는 그 이상</value>
+  </data>
+  <data name="ProductType" xml:space="preserve">
+    <value>게임제품 선택</value>
+  </data>
+  <data name="ProductBanner" xml:space="preserve">
+    <value>모든 게임사 등록 완료! 월간 커미션 수익을 높이세요!</value>
+  </data>
+  <data name="MyAccount" xml:space="preserve">
+    <value>계정 정보</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>언어</value>
   </data>
 </root>

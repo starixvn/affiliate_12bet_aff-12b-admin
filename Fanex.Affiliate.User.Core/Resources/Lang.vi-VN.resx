@@ -927,9 +927,6 @@
   <data name="LandingPages" xml:space="preserve">
     <value>Thống kê trang thông tin</value>
   </data>
-  <data name="Language" xml:space="preserve">
-    <value>Ngôn ngữ</value>
-  </data>
   <data name="LaoPeoplesDemRep" xml:space="preserve">
     <value>Cộng hòa dân chủ nhân dân Lào </value>
   </data>
@@ -1419,9 +1416,6 @@
   <data name="Singapore" xml:space="preserve">
     <value>Singapore </value>
   </data>
-  <data name="SiteInfor" xml:space="preserve">
-    <value>Thông tin trang web</value>
-  </data>
   <data name="SiteUrl" xml:space="preserve">
     <value>Địa chỉ trang web</value>
   </data>
@@ -1579,9 +1573,6 @@
   <data name="TotalQualifiedMembers" xml:space="preserve">
     <value>Tổng số người chơi đạt chuẩn</value>
   </data>
-  <data name="Tqacsbc" xml:space="preserve">
-    <value>Tổng số người chơi đạt chuẩn</value>
-  </data>
   <data name="TrackingCode" xml:space="preserve">
     <value>Mã theo dõi</value>
   </data>
@@ -1663,7 +1654,7 @@
   <data name="Vietnamese" xml:space="preserve">
     <value>Tiếng Việt</value>
   </data>
-  <data name="WebsiteInformat" xml:space="preserve">
+  <data name="WebsiteInfor" xml:space="preserve">
     <value>Thông tin trang web</value>
   </data>
   <data name="WebsiteURL" xml:space="preserve">
@@ -2075,5 +2066,26 @@ Cập Nhật Mới Nhất</value>
   </data>
   <data name="PopupHappyEarning" xml:space="preserve">
     <value> </value>
+  </data>
+  <data name="Non_deposited" xml:space="preserve">
+    <value>Tài khoản chưa từng gửi tiền</value>
+  </data>
+  <data name="User_Name" xml:space="preserve">
+    <value>Tên truy cập 12BET</value>
+  </data>
+  <data name="QualifyingMembers" xml:space="preserve">
+    <value>≥ 5 </value>
+  </data>
+  <data name="ProductType" xml:space="preserve">
+    <value>Loại Sản Phẩm</value>
+  </data>
+  <data name="ProductBanner" xml:space="preserve">
+    <value>NHẬN HOA HỒNG MỖI THÁNG VỚI DOANH THU CỦA TẤT CẢ SẢN PHẨM!</value>
+  </data>
+  <data name="MyAccount" xml:space="preserve">
+    <value>Thông tin cá nhân</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Ngôn ngữ</value>
   </data>
 </root>
