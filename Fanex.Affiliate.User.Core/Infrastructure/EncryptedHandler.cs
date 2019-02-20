@@ -73,7 +73,7 @@ namespace Fanex.Affiliate.User.Core.Infrastructure
             var queryString = DecryptQueryString(encryptedQuery);
             var paramValues = HttpUtility.ParseQueryString(queryString);
 
-            var timeQuery = _requestContext.HttpContext.Request.QueryString["t"]?.Trim();
+            var timeQuery = _requestContext.HttpContext.Request.Params["t"]?.Trim();
             var timeToken = paramValues["t"]?.Trim();
 
             if (!string.Equals(timeQuery, timeToken))

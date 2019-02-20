@@ -15,6 +15,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 {
     public class VerificationService : IVerificationService
     {
+        private const int SecretKeyExistedCode = 101;
         private const int IntervalTimeByMinute = 5;
 
         private readonly ILanguageService _languageService;
@@ -49,16 +50,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 var userInfo = _accountRepository.GetUserInfoById(param.AffId, false);
                 if (string.IsNullOrEmpty(userInfo.SecretKey))
                 {
-                    userInfo.SecretKey = TryGetSecretKey(userInfo.AffId);
-
-                    if (string.IsNullOrEmpty(userInfo.SecretKey))
-                    {
-                        return new SendCodeResult
-                        {
-                            IsOk = false,
-                            Message = Lang.SendCodeFailed
-                        };
-                    }
+                    userInfo.SecretKey = TryCreateSecretKey(userInfo.AffId);
                 }
 
                 var otp = _twoFactorAuthService.GenerateHotp(userInfo.SecretKey, counter);
@@ -87,11 +79,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 };
             }
 
-            return new SendCodeResult
-            {
-                IsOk = false,
-                Message = Lang.SendCodeFailed
-            };
+            return CreateSendCodeFailedResult();
         }
 
         public bool IsValidOtp(VerificationOtpParam param)
@@ -145,25 +133,32 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             }
         }
 
-        private string TryGetSecretKey(int affId)
+        private string TryCreateSecretKey(int affId)
         {
-            var failedCount = 0;
             var secretKey = GenerateSecretKey();
-            var result = _accountRepository.CreateSecretKey(affId, secretKey);
+            var resultCode = _accountRepository.CreateSecretKey(affId, secretKey);
 
-            while (!result.IsOk && failedCount <= 10)
+            while (resultCode == SecretKeyExistedCode)
             {
-                failedCount++;
                 secretKey = GenerateSecretKey();
-                result = _accountRepository.CreateSecretKey(affId, secretKey);
+                resultCode = _accountRepository.CreateSecretKey(affId, secretKey);
             }
 
-            return failedCount > 10 ? string.Empty : secretKey;
+            return secretKey;
         }
 
         private static string GenerateSecretKey()
         {
             return Base32Encoding.ToString(KeyGeneration.GenerateRandomKey(20));
+        }
+
+        private static SendCodeResult CreateSendCodeFailedResult()
+        {
+            return new SendCodeResult
+            {
+                IsOk = false,
+                Message = Lang.SendCodeFailed
+            };
         }
     }
 }

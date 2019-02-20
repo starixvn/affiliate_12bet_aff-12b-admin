@@ -4,6 +4,7 @@ using System.Web.UI;
 using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO;
+using Fanex.Affiliate.User.Core.Filters;
 using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.MetalModels.Email;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
@@ -60,6 +61,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
             return File(CaptchaService.GenerateImageBuffer(captcha, 100, 28, true), "image/png");
         }
 
+        [AjaxOnly]
         [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult SendCode()
@@ -87,6 +89,8 @@ namespace Fanex.Affiliate.User.Core.Controllers
             });
         }
 
+        [AjaxOnly]
+        [EncryptedAction]
         [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult VerifyAccount(VerificationAccountParam param)
