@@ -123,9 +123,6 @@
   <data name="AccInfo" xml:space="preserve">
     <value>Informasi Akun</value>
   </data>
-  <data name="Account12bet" xml:space="preserve">
-    <value>Rekening Pemain 12BET</value>
-  </data>
   <data name="AccOverview" xml:space="preserve">
     <value>Dashboard</value>
   </data>
@@ -149,9 +146,6 @@
   </data>
   <data name="AffiliateID" xml:space="preserve">
     <value>ID Afiliasi</value>
-  </data>
-  <data name="AgreeTermNCondition" xml:space="preserve">
-    <value>Saya menyetujui Persyaratan &amp; Ketentuan Afiliasi 12BET.</value>
   </data>
   <data name="Albania" xml:space="preserve">
     <value>Albania</value>
@@ -430,10 +424,10 @@
     <value>Persentase Komisi</value>
   </data>
   <data name="CompletedDate" xml:space="preserve">
-    <value>Tanggal Selesai</value>
+    <value>Tanggal Selesai (mm/dd/yyyy)</value>
   </data>
   <data name="CompleteForm" xml:space="preserve">
-    <value>Harap isi formulir ini untuk mendaftarkan rekening afiliasi 12BET Anda.</value>
+    <value>12BET tidak akan memberikan informasi pribadi Anda pada pihak mana pun. Informasi pribadi Anda dijamin kerahasiaannya dan aman.</value>
   </data>
   <data name="CongoRep" xml:space="preserve">
     <value>Kongo(Rep) </value>
@@ -505,7 +499,7 @@
     <value>Bulan</value>
   </data>
   <data name="DateRequest" xml:space="preserve">
-    <value>Tanggal Permintaan</value>
+    <value>Tanggal Pengajuan (mm/dd/yyyy)</value>
   </data>
   <data name="December" xml:space="preserve">
     <value>Desember</value>
@@ -739,7 +733,7 @@
     <value>FAQ</value>
   </data>
   <data name="FDM" xml:space="preserve">
-    <value>FDM</value>
+    <value>Member yang Deposit Pertama Kali</value>
   </data>
   <data name="February" xml:space="preserve">
     <value>Februari</value>
@@ -781,7 +775,7 @@
     <value>Polinesia Prancis </value>
   </data>
   <data name="From" xml:space="preserve">
-    <value>Dari</value>
+    <value>Dari tanggal</value>
   </data>
   <data name="Gabon" xml:space="preserve">
     <value>Gabon </value>
@@ -925,7 +919,7 @@
     <value>Kuwait </value>
   </data>
   <data name="LandingPages" xml:space="preserve">
-    <value>Halaman Arahan Statistik</value>
+    <value>Landing Page</value>
   </data>
   <data name="LaoPeoplesDemRep" xml:space="preserve">
     <value>Rep. Dem. Rakyat Lao </value>
@@ -1039,7 +1033,7 @@
     <value>Minimum Anggota Lolos Kualifikasi</value>
   </data>
   <data name="MinWithdraw" xml:space="preserve">
-    <value>Jumlah Penarikan Minimum</value>
+    <value>Minimal Penarikan (USD)</value>
   </data>
   <data name="Mobile" xml:space="preserve">
     <value>Yahoo Messenger</value>
@@ -1219,10 +1213,10 @@
     <value>Insert transaction failed.</value>
   </data>
   <data name="PaymentInfor" xml:space="preserve">
-    <value>Informasi Pembayaran</value>
+    <value>Informasi Penarikan </value>
   </data>
   <data name="PaymentMethod" xml:space="preserve">
-    <value>Metode Pembayaran</value>
+    <value>Metode Penarikan</value>
   </data>
   <data name="PaymentRequest" xml:space="preserve">
     <value>Penarikan</value>
@@ -1303,19 +1297,19 @@
     <value>Buku balapan</value>
   </data>
   <data name="RecentPayment" xml:space="preserve">
-    <value>Pembayaran baru-baru ini</value>
+    <value>Penarikan Terkahir</value>
   </data>
   <data name="ReEmail" xml:space="preserve">
-    <value>Verifikasi Alamat Email</value>
+    <value>Ketik ulang e-mail</value>
   </data>
   <data name="ReenterNewPassw" xml:space="preserve">
     <value>Kata Sandi Baru yang dimasukkan kembali tidak valid</value>
   </data>
   <data name="Referrals" xml:space="preserve">
-    <value>Arahan Statistik</value>
+    <value>Referer</value>
   </data>
   <data name="RefNo" xml:space="preserve">
-    <value>No. Ref.</value>
+    <value>No. Referensi</value>
   </data>
   <data name="RegisForm" xml:space="preserve">
     <value>Formulir Permohonan</value>
@@ -1333,19 +1327,19 @@
     <value>Masukkan kembali Kata Sandi Baru</value>
   </data>
   <data name="RequestAmount" xml:space="preserve">
-    <value>Jumlah Permintaan</value>
+    <value>Nominal (USD)</value>
   </data>
   <data name="RequestAmt" xml:space="preserve">
-    <value>Masukkan Jumlah Permintaan (USD)</value>
+    <value>Isi Jumlah Penarikan (USD)</value>
   </data>
   <data name="RequestPayout" xml:space="preserve">
-    <value>Permintaan Pembayaran</value>
+    <value>Proseskan Penarikan Saya</value>
   </data>
   <data name="RequestPayoutSucc" xml:space="preserve">
     <value>Permintaan Pembayaran Berhasil!</value>
   </data>
   <data name="RequireInfo" xml:space="preserve">
-    <value>Bidang bertanda &lt;font color="red"&gt;*&lt;/font&gt; harus diisi</value>
+    <value>Kolom yang bertanda &lt;font color="red"&gt;*&lt;/font&gt; harus diisi.</value>
   </data>
   <data name="Reset" xml:space="preserve">
     <value>Reset</value>
@@ -1411,7 +1405,7 @@
     <value>Sierra Leone </value>
   </data>
   <data name="SignUp" xml:space="preserve">
-    <value>Daftar</value>
+    <value>Member yang Daftar</value>
   </data>
   <data name="Singapore" xml:space="preserve">
     <value>Singapura </value>
@@ -1489,7 +1483,7 @@
     <value>Afiliasi 12Bet - Kata sandi baru Anda</value>
   </data>
   <data name="Submit" xml:space="preserve">
-    <value>Kirim</value>
+    <value>Cek</value>
   </data>
   <data name="Sudan" xml:space="preserve">
     <value>Sudan </value>
@@ -1550,7 +1544,7 @@
     <value>Login Afiliasi</value>
   </data>
   <data name="To" xml:space="preserve">
-    <value>Ke</value>
+    <value>Hingga tanggal</value>
   </data>
   <data name="Togo" xml:space="preserve">
     <value>Togo </value>
@@ -1574,10 +1568,10 @@
     <value>Member yang memenuhi syarat</value>
   </data>
   <data name="TrackingCode" xml:space="preserve">
-    <value>Kode Pelacakan</value>
+    <value>Kode Tracking/Pelacakan</value>
   </data>
   <data name="TrackingStatistics" xml:space="preserve">
-    <value>Statistik Pelacakan</value>
+    <value>Total Klik &amp; Unik Klik</value>
   </data>
   <data name="Transaction" xml:space="preserve">
     <value>Transaksi</value>
@@ -1673,7 +1667,7 @@
     <value>Winlost</value>
   </data>
   <data name="Year" xml:space="preserve">
-    <value>Year</value>
+    <value>Tahun</value>
   </data>
   <data name="Yemen" xml:space="preserve">
     <value>Yaman </value>
@@ -1697,7 +1691,7 @@
     <value>12BET</value>
   </data>
   <data name="_12BETPlayerAcc" xml:space="preserve">
-    <value>Rekening Pemain 12BET</value>
+    <value>Melalui Akun 12BET</value>
   </data>
   <data name="EmailTitleNewPassword" xml:space="preserve">
     <value>Kata sandi baru Anda</value>
@@ -2062,10 +2056,10 @@
   <data name="PopupYourAffiliateManager" xml:space="preserve">
     <value>12BET Affiliate Manager</value>
   </data>
-  <data name="Non_deposited" xml:space="preserve">
+  <data name="NonDeposited" xml:space="preserve">
     <value>akun non-deposit - jika sudah pernah Deposit, silakan buat baru khusus Afiliasi</value>
   </data>
-  <data name="User_Name" xml:space="preserve">
+  <data name="UsernameSignUp" xml:space="preserve">
     <value>Username</value>
   </data>
   <data name="QualifyingMembers" xml:space="preserve">
@@ -2074,13 +2068,16 @@
   <data name="ProductType" xml:space="preserve">
     <value>Tipe Permainan</value>
   </data>
-  <data name="ProductBanner" xml:space="preserve">
-    <value>SEMUA PERMAINAN 12BET DIHITUNG DALAM KOMISI BULANAN ANDA!</value>
-  </data>
   <data name="MyAccount" xml:space="preserve">
     <value>Kelola Akun</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>Bahasa</value>
+  </data>
+  <data name="IN" xml:space="preserve">
+    <value>IDR (Indonesian Rupiah)</value>
+  </data>
+  <data name="Player" xml:space="preserve">
+    <value>Melalui Akun 12BET</value>
   </data>
 </root>

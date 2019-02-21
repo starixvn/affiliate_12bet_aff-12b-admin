@@ -97,15 +97,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 12BET Player Account.
-        /// </summary>
-        public static string Account12bet {
-            get {
-                return ResourceManager.GetString("Account12bet", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Account Number.
         /// </summary>
         public static string AccountNumber {
@@ -201,15 +192,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string AffiliateProgram {
             get {
                 return ResourceManager.GetString("AffiliateProgram", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to I agree to the Terms &amp; Conditions of 12BET Affiliate..
-        /// </summary>
-        public static string AgreeTermNCondition {
-            get {
-                return ResourceManager.GetString("AgreeTermNCondition", resourceCulture);
             }
         }
         
@@ -2602,6 +2584,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to IN.
+        /// </summary>
+        public static string IN {
+            get {
+                return ResourceManager.GetString("IN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to India .
         /// </summary>
         public static string India {
@@ -3563,20 +3554,20 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to non-deposited account only.
-        /// </summary>
-        public static string Non_deposited {
-            get {
-                return ResourceManager.GetString("Non_deposited", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Non-deposited account only.
         /// </summary>
         public static string NonDeposit {
             get {
                 return ResourceManager.GetString("NonDeposit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to non-deposited account only.
+        /// </summary>
+        public static string NonDeposited {
+            get {
+                return ResourceManager.GetString("NonDeposited", resourceCulture);
             }
         }
         
@@ -4040,6 +4031,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Player.
+        /// </summary>
+        public static string Player {
+            get {
+                return ResourceManager.GetString("Player", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please check your email address to find out your username and details about your password..
         /// </summary>
         public static string Pleasecheckyour {
@@ -4351,15 +4351,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string Product12TOPAZ {
             get {
                 return ResourceManager.GetString("Product12TOPAZ", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ALL PRODUCTS COUNTED IN YOUR MONTHLY COMMISSION!.
-        /// </summary>
-        public static string ProductBanner {
-            get {
-                return ResourceManager.GetString("ProductBanner", resourceCulture);
             }
         }
         
@@ -5679,20 +5670,20 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Username.
-        /// </summary>
-        public static string User_Name {
-            get {
-                return ResourceManager.GetString("User_Name", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to User Name.
         /// </summary>
         public static string Username {
             get {
                 return ResourceManager.GetString("Username", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username.
+        /// </summary>
+        public static string UsernameSignUp {
+            get {
+                return ResourceManager.GetString("UsernameSignUp", resourceCulture);
             }
         }
         

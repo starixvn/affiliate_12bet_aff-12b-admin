@@ -76,7 +76,7 @@ namespace Fanex.Affiliate.User.Core.Controllers.UserPanel
                     dataList.Add(new SelectListItem
                     {
                         Value = language.Code,
-                        Text = SystemLanguage.GetLanguageText(item.Value),
+                        Text = SystemLanguage.GetLanguageText(language.DisplayName),
                         Selected = language.Code.MatchWith(SessionService.UserSession.PreferredLanguage)
                     });
                 }

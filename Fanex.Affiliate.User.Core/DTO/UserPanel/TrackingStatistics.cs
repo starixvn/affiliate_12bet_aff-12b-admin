@@ -6,6 +6,6 @@ namespace Fanex.Affiliate.User.Core.DTO.UserPanel
     {
         public DateTime Date { get; set; }
 
-        public string Month => Date.ToString("MMMM-yyyy");
+        public string Month => Date.ToString("MMMM yyyy");
     }
 }

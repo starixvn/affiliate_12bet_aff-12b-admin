@@ -40,7 +40,7 @@
             }
 
             var preferredLanguage = model.PreferredLanguage;
-            model.LanguageName = SystemLanguage.LanguageList.FirstOrDefault(l => l.Code.Equals(preferredLanguage))?.EnglishName ?? preferredLanguage;
+            model.LanguageName = SystemLanguage.LanguageList.FirstOrDefault(l => l.Code.Equals(preferredLanguage))?.DisplayName ?? preferredLanguage;
 
             return View("~/Views/UserPanel/MyAccount/index.cshtml", model);
         }

@@ -123,9 +123,6 @@
   <data name="AccInfo" xml:space="preserve">
     <value>Account Information</value>
   </data>
-  <data name="Account12bet" xml:space="preserve">
-    <value>12BET Player Account</value>
-  </data>
   <data name="AccountNumber" xml:space="preserve">
     <value>Account Number</value>
     <comment>87923</comment>
@@ -155,9 +152,6 @@
   <data name="AffiliateID" xml:space="preserve">
     <value>Affiliate ID</value>
     <comment>87923</comment>
-  </data>
-  <data name="AgreeTermNCondition" xml:space="preserve">
-    <value>I agree to the Terms &amp; Conditions of 12BET Affiliate.</value>
   </data>
   <data name="Albania" xml:space="preserve">
     <value>Albania</value>
@@ -2194,10 +2188,10 @@
   <data name="PopupYourAffiliateManager" xml:space="preserve">
     <value>Your Affiliate Manager</value>
   </data>
-  <data name="Non_deposited" xml:space="preserve">
+  <data name="NonDeposited" xml:space="preserve">
     <value>non-deposited account only</value>
   </data>
-  <data name="User_Name" xml:space="preserve">
+  <data name="UsernameSignUp" xml:space="preserve">
     <value>Username</value>
   </data>
   <data name="QualifyingMembers" xml:space="preserve">
@@ -2206,13 +2200,16 @@
   <data name="ProductType" xml:space="preserve">
     <value>Product Type</value>
   </data>
-  <data name="ProductBanner" xml:space="preserve">
-    <value>ALL PRODUCTS COUNTED IN YOUR MONTHLY COMMISSION!</value>
-  </data>
   <data name="MyAccount" xml:space="preserve">
     <value>My Account</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>Language</value>
+  </data>
+  <data name="IN" xml:space="preserve">
+    <value>IN</value>
+  </data>
+  <data name="Player" xml:space="preserve">
+    <value>Player</value>
   </data>
 </root>

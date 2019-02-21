@@ -123,9 +123,6 @@
   <data name="AccInfo" xml:space="preserve">
     <value>帐户资料</value>
   </data>
-  <data name="Account12bet" xml:space="preserve">
-    <value>12BET玩家帐户</value>
-  </data>
   <data name="AccOverview" xml:space="preserve">
     <value>帐户概要</value>
   </data>
@@ -149,9 +146,6 @@
   </data>
   <data name="AffiliateID" xml:space="preserve">
     <value>合作伙伴号码</value>
-  </data>
-  <data name="AgreeTermNCondition" xml:space="preserve">
-    <value>我同意12BET合作伙伴的规则与条款</value>
   </data>
   <data name="Albania" xml:space="preserve">
     <value>阿尔巴尼亚</value>
@@ -2071,10 +2065,10 @@
   <data name="PopupYourAffiliateManager" xml:space="preserve">
     <value>12BET合作伙伴经理</value>
   </data>
-  <data name="Non_deposited" xml:space="preserve">
+  <data name="NonDeposited" xml:space="preserve">
     <value>仅限未存款玩家</value>
   </data>
-  <data name="User_Name" xml:space="preserve">
+  <data name="UsernameSignUp" xml:space="preserve">
     <value>12BET玩家账号</value>
   </data>
   <data name="QualifyingMembers" xml:space="preserve">
@@ -2082,9 +2076,6 @@
   </data>
   <data name="ProductType" xml:space="preserve">
     <value>产品</value>
-  </data>
-  <data name="ProductBanner" xml:space="preserve">
-    <value>所有的产品都计算在您的每月收入！</value>
   </data>
   <data name="MyAccount" xml:space="preserve">
     <value>我的帐户</value>

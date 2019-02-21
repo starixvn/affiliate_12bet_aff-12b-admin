@@ -123,9 +123,6 @@
   <data name="AccInfo" xml:space="preserve">
     <value>ข้อมูลเกี่ยวกับบัญชี</value>
   </data>
-  <data name="Account12bet" xml:space="preserve">
-    <value>บัญชีที่ใช้เล่นใน 12bet</value>
-  </data>
   <data name="AccOverview" xml:space="preserve">
     <value>ข้อมูลโดยรวมเกี่ยวกับบัญชี</value>
   </data>
@@ -149,9 +146,6 @@
   </data>
   <data name="AffiliateID" xml:space="preserve">
     <value>ไอดีพันธมิตร</value>
-  </data>
-  <data name="AgreeTermNCondition" xml:space="preserve">
-    <value>ฉันยอมรับกติกาและเงื่อนไขของโปรแกรมพันธมิตร 12BET</value>
   </data>
   <data name="Albania" xml:space="preserve">
     <value>อัลบาเนีย</value>
@@ -205,7 +199,7 @@
     <value>ออสเตรีย</value>
   </data>
   <data name="AvailableDomains" xml:space="preserve">
-    <value>โดเมนที่สามารถซื้อได้</value>
+    <value>โดเมนที่ใช้โปรโมทได้</value>
   </data>
   <data name="Azerbaijan" xml:space="preserve">
     <value>อาเซอร์ไบจัน</value>
@@ -478,7 +472,7 @@
     <value>บัญชีพันธมิตรใหม่กำลังรอการอนุมัติ</value>
   </data>
   <data name="Currency" xml:space="preserve">
-    <value>เคอเรนซี่</value>
+    <value>สกุลเงิน</value>
   </data>
   <data name="Current" xml:space="preserve">
     <value>Current</value>
@@ -526,7 +520,7 @@
     <value>รายละเอียด</value>
   </data>
   <data name="DescWebsite" xml:space="preserve">
-    <value>กรุณาระบุว่าคุณจะแนะนำเพื่อนหรือบุคคลอื่น มาสมัครที่เวบไซด์ 12BET ได้ยังไง</value>
+    <value>กรุณาระบุว่าคุณจะแนะนำเพื่อนหรือบุคคลอื่น มาสมัครที่เว็บไซต์ 12BET ได้ยังไง</value>
   </data>
   <data name="DominicaCommonwealthof" xml:space="preserve">
     <value>โดมินิกา</value>
@@ -841,7 +835,7 @@
     <value>ฮังการี</value>
   </data>
   <data name="IagreetotheTerm" xml:space="preserve">
-    <value>ฉันยอมรับในกติกาและเงื่อนไขในโปรแกรม พันธมิตร 12bet</value>
+    <value>ฉันยอมรับในกติกาและเงื่อนไขในโปรแกรม พันธมิตร 12BET</value>
   </data>
   <data name="Iceland" xml:space="preserve">
     <value>ไอซ์แลนด์</value>
@@ -949,7 +943,7 @@
     <value>ลิคเค่นสไตล์</value>
   </data>
   <data name="LinkTo" xml:space="preserve">
-    <value>ไปหน้า</value>
+    <value>ลิ้งค์ไปหน้าเว็บ12BET</value>
   </data>
   <data name="Lithuania" xml:space="preserve">
     <value>ลิทัวเนีย</value>
@@ -1343,7 +1337,7 @@
     <value>การขอจ่ายเงิน เสร็จสมบูรณ์แล้ว</value>
   </data>
   <data name="RequireInfo" xml:space="preserve">
-    <value>กรุณากรอก &lt;font color="red"&gt;*&lt;/font&gt; ทุกช่องที่ระบบแนะนำคะ</value>
+    <value>กรุณากรอกทุกช่องที่มีเครื่องหมาย &lt;font color="red"&gt;*&lt;/font&gt; ระบุไว้</value>
   </data>
   <data name="Reset" xml:space="preserve">
     <value>ลบข้อความ</value>
@@ -1418,7 +1412,7 @@
     <value>ลิงค์เข้าเวบไซค์</value>
   </data>
   <data name="Size" xml:space="preserve">
-    <value>ขนาด</value>
+    <value>ขนาดแบนเนอร์</value>
   </data>
   <data name="Slot" xml:space="preserve">
     <value>สล็อต</value>
@@ -1656,16 +1650,16 @@
     <value>Tiếng Việt</value>
   </data>
   <data name="WebsiteInfor" xml:space="preserve">
-    <value>รายละเอียดเกี่ยวกับเวบไซค์</value>
+    <value>รายละเอียดเกี่ยวกับเว็บไซต์</value>
   </data>
   <data name="WebsiteURL" xml:space="preserve">
-    <value>ระบุลิ้งค์ที่ใช้เข้าเวบไซค์</value>
+    <value>ระบุลิ้งค์ที่ใช้เข้าเว็บไซต์</value>
   </data>
   <data name="WebsiteUrli" xml:space="preserve">
     <value>กรุณากรอกชื่อเวปไซค์ของคุณ {i}</value>
   </data>
   <data name="WebsiteURLIsRequired" xml:space="preserve">
-    <value>จำเป็นต้องมีลิ๊งค์ที่ใช้เข้าเวบไซค์</value>
+    <value>จำเป็นต้องมีลิ้งค์ที่ใช้เข้าเวบไซต์</value>
   </data>
   <data name="WesternSamoa" xml:space="preserve">
     <value>เวสเทริ์นซาโมอา</value>
@@ -1830,7 +1824,7 @@
     <value>สมัครพันธมิตร12BET</value>
   </data>
   <data name="AsAOneTwoBetYouWillEarnCommission" xml:space="preserve">
-    <value>การเป็นพันธมิตรกับเรา คุณจะมีรายได้ค่าคอมมิชชั่นจากสมาชิกที่คุณโปรโมทให้พวกเขารู้จัก12BET ตลอดการเดิมพันในบัญชีของสมาชิกนั้นๆ ระบบล็อคอินพันธมิตรของเราให้บริการข้อมูลสถิติตลอด27ชั่วโมงให้การโปรโมทของคุณสัมฤทธิ์ผล</value>
+    <value>การเป็นพันธมิตรกับเรา คุณจะมีรายได้ค่าคอมมิชชั่นจากสมาชิกที่คุณโปรโมทให้พวกเขารู้จัก12BET ตลอดการเดิมพันในบัญชีของสมาชิกนั้นๆ ระบบข้อมูลพันธมิตรของเราให้บริการข้อมูลสถิติตลอด24ชั่วโมงให้การโปรโมทของคุณสัมฤทธิ์ผล</value>
   </data>
   <data name="WhatNewInAffiliate" xml:space="preserve">
     <value>มีอะไรใหม่ในพันธมิตร</value>
@@ -1962,7 +1956,7 @@
     <value>วันที่เลือก</value>
   </data>
   <data name="Device" xml:space="preserve">
-    <value>อุปกรณ์ที่ใช้</value>
+    <value>อุปกรณ์ที่แสดงผลแบนเนอร์</value>
   </data>
   <data name="PCDevice" xml:space="preserve">
     <value>PC / Laptop</value>
@@ -2063,10 +2057,10 @@
   <data name="PopupYourAffiliateManager" xml:space="preserve">
     <value>จากผู้จัดการพันธมิตร</value>
   </data>
-  <data name="Non_deposited" xml:space="preserve">
+  <data name="NonDeposited" xml:space="preserve">
     <value>ใช้ยูสเซอร์ที่ไม่เคยฝากเงินเท่านั้น</value>
   </data>
-  <data name="User_Name" xml:space="preserve">
+  <data name="UsernameSignUp" xml:space="preserve">
     <value>ยูสเซอร์เนมรับค่าคอมมิชชั่น</value>
   </data>
   <data name="QualifyingMembers" xml:space="preserve">
@@ -2074,9 +2068,6 @@
   </data>
   <data name="ProductType" xml:space="preserve">
     <value>ประเภทการเดิมพัน</value>
-  </data>
-  <data name="ProductBanner" xml:space="preserve">
-    <value>รายได้คอมมิชชั่นทุกเดือนนับจากยอดเดิมพันทุกผลิตภัณฑ์!</value>
   </data>
   <data name="MyAccount" xml:space="preserve">
     <value>บัญชีของฉัน</value>

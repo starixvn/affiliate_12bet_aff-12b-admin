@@ -123,9 +123,6 @@
   <data name="AccInfo" xml:space="preserve">
     <value>Información de cuenta</value>
   </data>
-  <data name="Account12bet" xml:space="preserve">
-    <value>Cuenta de jugador de 12BET</value>
-  </data>
   <data name="AccOverview" xml:space="preserve">
     <value>Descripción general de la cuenta</value>
   </data>
@@ -149,9 +146,6 @@
   </data>
   <data name="AffiliateID" xml:space="preserve">
     <value>Affiliate ID</value>
-  </data>
-  <data name="AgreeTermNCondition" xml:space="preserve">
-    <value>Acepto los términos y condiciones de afiliación de 12BET</value>
   </data>
   <data name="Albania" xml:space="preserve">
     <value>Albania</value>

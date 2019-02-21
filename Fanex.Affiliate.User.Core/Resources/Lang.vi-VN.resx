@@ -123,9 +123,6 @@
   <data name="AccInfo" xml:space="preserve">
     <value>Thông tin tài khoản</value>
   </data>
-  <data name="Account12bet" xml:space="preserve">
-    <value>Tài khoản người chơi 12BET</value>
-  </data>
   <data name="AccOverview" xml:space="preserve">
     <value>Tổng quan về tài khoản</value>
   </data>
@@ -149,9 +146,6 @@
   </data>
   <data name="AffiliateID" xml:space="preserve">
     <value>Mã Số Đại Lý </value>
-  </data>
-  <data name="AgreeTermNCondition" xml:space="preserve">
-    <value>Tôi đồng ý với các điều khoản &amp; điều kiện của 12BET Affiliate.</value>
   </data>
   <data name="Albania" xml:space="preserve">
     <value>Albania</value>
@@ -1826,15 +1820,13 @@
     <value>ĐĂNG KÝ ĐẠI LÝ</value>
   </data>
   <data name="ApplyOneTwoBetAffiliate" xml:space="preserve">
-    <value>Tham Gia Chương Trình
- Đại Lý 12BET</value>
+    <value>Tham Gia Đại Lý 12BET</value>
   </data>
   <data name="AsAOneTwoBetYouWillEarnCommission" xml:space="preserve">
     <value>Mỗi tháng, Đại lý 12BET sẽ nhận Hoa hồng dựa trên số lượng Thành viên mới tham gia chơi tại 12BET do bạn giới thiệu,  mỗi đại lý có thể theo dõi báo cáo cập nhật liên tục trong ngày.</value>
   </data>
   <data name="WhatNewInAffiliate" xml:space="preserve">
-    <value>Đại Lý 12BET
-Cập Nhật Mới Nhất</value>
+    <value>Cập Nhật Thông Tin Mới Nhất</value>
   </data>
   <data name="OneTwoBetAffiliateNews" xml:space="preserve">
     <value>Bản Tin Đại Lý 12BET</value>
@@ -2067,10 +2059,10 @@ Cập Nhật Mới Nhất</value>
   <data name="PopupHappyEarning" xml:space="preserve">
     <value> </value>
   </data>
-  <data name="Non_deposited" xml:space="preserve">
+  <data name="NonDeposited" xml:space="preserve">
     <value>Tài khoản chưa từng gửi tiền</value>
   </data>
-  <data name="User_Name" xml:space="preserve">
+  <data name="UsernameSignUp" xml:space="preserve">
     <value>Tên truy cập 12BET</value>
   </data>
   <data name="QualifyingMembers" xml:space="preserve">
@@ -2078,9 +2070,6 @@ Cập Nhật Mới Nhất</value>
   </data>
   <data name="ProductType" xml:space="preserve">
     <value>Loại Sản Phẩm</value>
-  </data>
-  <data name="ProductBanner" xml:space="preserve">
-    <value>NHẬN HOA HỒNG MỖI THÁNG VỚI DOANH THU CỦA TẤT CẢ SẢN PHẨM!</value>
   </data>
   <data name="MyAccount" xml:space="preserve">
     <value>Thông tin cá nhân</value>
