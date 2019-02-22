@@ -2075,4 +2075,10 @@
   <data name="Language" xml:space="preserve">
     <value>ภาษา</value>
   </data>
+  <data name="MetaTitle" xml:space="preserve">
+    <value>ร่วมเป็นหุ้นส่วนธุรกิจกับ12BET | โปรแกรมพันธมิตร12BET</value>
+  </data>
+  <data name="MetaDescription" xml:space="preserve">
+    <value>เป็นพันธมิตรในการโปรโมทเดิมพันกีฬาและคาสิโนให้กับเว็บไซต์12BETแล้วรับค่าคอมมิชชั่นรายเดือนจากลูกค้าที่แนะนำจากเว็บไซต์คุณ</value>
+  </data>
 </root>

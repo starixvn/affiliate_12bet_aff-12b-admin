@@ -3185,6 +3185,24 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Become 12BET Affiliate Business Partner to promote 12BET Sportsbook and Casino and earn monthly commission from customers brought from your websites..
+        /// </summary>
+        public static string MetaDescription {
+            get {
+                return ResourceManager.GetString("MetaDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Be A Business Partner of 12BET | Affiliate Program - 12BET.
+        /// </summary>
+        public static string MetaTitle {
+            get {
+                return ResourceManager.GetString("MetaTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mexico .
         /// </summary>
         public static string Mexico {

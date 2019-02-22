@@ -250,7 +250,11 @@ http://nicolasgallagher.com/micro-clearfix-hack/
   display: inline-block; }
 
 .form-filter .form-group {
-  width: 330px; }
+  width: 350px; }
 
 .form-filter .btn-submit {
   margin-bottom: 5px; }
+
+@media (max-width: 576px) {
+  .form-filter .form-group {
+    width: 320px; } }

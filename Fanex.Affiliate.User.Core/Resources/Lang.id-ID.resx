@@ -862,7 +862,7 @@
     <value>Indonesia </value>
   </data>
   <data name="Indonesian" xml:space="preserve">
-    <value>Indonesian</value>
+    <value>Bahasa Indonesian</value>
   </data>
   <data name="IP" xml:space="preserve">
     <value>IP</value>
@@ -2079,5 +2079,11 @@
   </data>
   <data name="Player" xml:space="preserve">
     <value>Melalui Akun 12BET</value>
+  </data>
+  <data name="MetaTitle" xml:space="preserve">
+    <value>Jadilah Mitra Bisnis 12BET | Program Afiliasi 12BET</value>
+  </data>
+  <data name="MetaDescription" xml:space="preserve">
+    <value>Menjadi Mitra Bisnis Afiliasi 12BET untuk mempromosikan Olahraga dan Kasino 12BET, serta menghasilkan komisi bulanan dari pelanggan yang datang dari situs Anda.</value>
   </data>
 </root>

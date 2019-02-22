@@ -302,7 +302,11 @@ http://nicolasgallagher.com/micro-clearfix-hack/
   display: inline-block; }
 
 .form-filter .form-group {
-  width: 320px; }
+  width: 350px; }
+
+@media (max-width: 576px) {
+  .form-filter .form-group {
+    width: 320px; } }
 
 #TrackingCode {
   width: 150px; }
