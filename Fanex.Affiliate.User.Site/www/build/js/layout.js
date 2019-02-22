@@ -6,6 +6,22 @@ var Layout = (function ($) {
         $mainBanner.carousel();
     }
 
+    function createNewUrlByLanguage(url, language) {
+        var hasQueryString = url.indexOf('?') !== -1;
+        var updatedQueryParam = 'lang=' + language;
+        var key = 'lang';
+
+        if (hasQueryString) {
+            var regex = new RegExp('([?&])' + key + '=.*?(&|$)', 'i');
+            return regex.test(url) ?
+                url.replace(regex, '$1' + key + '=' + language + '$2') :
+                url + '&' + updatedQueryParam;
+        }
+        else {
+            return url + '?' + updatedQueryParam;
+        }
+    }
+
     var _me = {
         initialize: function () {
             initSlider();
@@ -20,7 +36,7 @@ var Layout = (function ($) {
 
             $("#languageList").on("click", ".language-item", function () {
                 var $selectedItem = $(this);
-                Site.redirect(Site.resolveRelativeUrl('') + '?lang=' + $selectedItem.data('option'));
+                _me.changeLanguage($selectedItem.data('option'));
             });
 
             $('li.parent').on('mouseover', function () {
@@ -83,6 +99,16 @@ var Layout = (function ($) {
                     $marquee.css("animation-duration", timeTaken + "s");
                 }
             });
+        },
+
+        changeLanguage: function (selectedLanguage) {
+            var hash = window.location.hash;
+            var href = window.location.href;
+            var actualUrl = href.substring(0, href.indexOf(hash));
+            var newActualUrl = createNewUrlByLanguage(actualUrl, selectedLanguage);
+
+            var url = newActualUrl + hash;
+            Site.redirect(url);
         }
     }
 

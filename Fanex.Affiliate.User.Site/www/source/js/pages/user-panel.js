@@ -1,4 +1,5 @@
 ﻿var UserPanel = (function ($) {
+    var DEFAULT_ACTION = 'AccountOverView';
     var allowedActionList = ["AccountOverView", "StatementHistory", "MyAccount", "PaymentRequest",
         "MediaGallery", "TextBox", "TrackingStatistics", "ReferrersStatistics", "LandingPageStatistics",
         "DailyEarning", "DailyEarningDetail", "BetList", "MessageHistory", "CommissionReport"];
@@ -22,15 +23,6 @@
                 }
             });
 
-            $("#mainMenu").on("click", ".menu-item", function (event) {
-                event.stopPropagation();
-                var currentPathWithHash = window.location.pathname + window.location.hash;
-                var hrefMenu = $(this).attr("href");
-                if (currentPathWithHash === hrefMenu) {
-                    _me.renderView();
-                }
-            });
-
             $('#commissionNewsPopup').on('hidden.bs.modal', function (e) {
                 _me.updateVisitedPage();
             })
@@ -45,12 +37,11 @@
         renderView: function () {
             _me.clearEventListener();
             $("#mainPanel").html("");
-            var action = _me.getActionName();
-            _me.activeMenu(action);
+            var actionUrl = _me.getActionUrl(false);
+            var actionName = actionUrl.split('?')[0];
+            _me.activeMenu(actionName);
 
-            var queryString = _me.getQueryString();
-
-            var url = Site.resolveRelativeUrl("UserPanel/" + action + queryString);
+            var url = Site.resolveRelativeUrl("UserPanel/" + actionUrl);
 
             if (_ajaxRequest !== null) {
                 _ajaxRequest.abort();
@@ -85,43 +76,35 @@
             }
         },
 
-        getActionName: function () {
+        getActionUrl: function (onlyAction) {
             var hash = window.location.hash;
-            var action = hash.split('#')[1];
-
-            var queryStringIndexSign = action.indexOf('?');
-            if (queryStringIndexSign !== -1) {
-                action = action.substring(0, queryStringIndexSign);
+            var actionUrl = hash.split('#')[1];
+            if (!actionUrl) {
+                return DEFAULT_ACTION;
             }
 
-            if (!hash || !action || allowedActionList.indexOf(action) === -1) {
-                action = "AccountOverView";
+            var urlPartList = actionUrl.split('?');
+            var actionName = urlPartList[0];
+
+            if (allowedActionList.indexOf(actionName) === -1) {
+                actionName = DEFAULT_ACTION;
             }
 
-            return action;
-        },
+            var queryString = (!onlyAction && urlPartList[1]) ? '?' + urlPartList[1] : '';
 
-        getQueryString: function () {
-            var url = window.location.href;
-            var hasQueryString = url.indexOf("?") !== -1;
-
-            if (hasQueryString) {
-                return "?" + url.split('?')[1];
-            }
-
-            return "";
+            return actionName + queryString;
         },
 
         canShowCommissionNewsPopup: function () {
-            var action = _me.getActionName();
+            var action = _me.getActionUrl(true);
 
-            return (action === 'AccountOverView' && $('#IsVisitedAccountOverviewPage').val() === 'False') ||
+            return (action === DEFAULT_ACTION && $('#IsVisitedAccountOverviewPage').val() === 'False') ||
                     (action === 'CommissionReport' && $('#IsVisitedCommissionReportPage').val() === 'False');
         },
 
         updateVisitedPage: function () {
-            var action = _me.getActionName();
-            if (action === 'AccountOverView') {
+            var action = _me.getActionUrl(true);
+            if (action === DEFAULT_ACTION) {
                 $('#IsVisitedAccountOverviewPage').val('True');
             }
             else {
