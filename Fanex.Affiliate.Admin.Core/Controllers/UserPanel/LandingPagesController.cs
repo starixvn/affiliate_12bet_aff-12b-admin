@@ -16,6 +16,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
     {
         private readonly ILanguageService _languageService;
         private readonly ILandingPagesRepository _landingPagesRepository;
+
         public LandingPagesController(
             ISessionService sessionService,
             ILanguageService languageService,

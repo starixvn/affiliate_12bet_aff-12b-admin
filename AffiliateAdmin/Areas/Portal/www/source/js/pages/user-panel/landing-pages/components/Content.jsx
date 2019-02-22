@@ -9,7 +9,7 @@ import { headerTitle } from '../modules/constants';
 import { globalResource } from '../../../../modules/globalResource';
 
 import { post } from '../../../../modules/ajaxRequest';
-import { setSelectedPage, toggleLoader } from '../actions';
+import { setSelectedPage, setShowDetail, toggleLoader } from '../actions';
 
 export class Content extends Component {
     constructor(props) {
@@ -18,10 +18,6 @@ export class Content extends Component {
         this.state = {
             gridData: []
         }
-    }
-
-    componentDidMount() {
-        this.fetchData(this.props.param);
     }
 
     componentDidUpdate(prevProps) {
@@ -34,12 +30,19 @@ export class Content extends Component {
 
     async fetchData(param) {
         this.props.toggleLoader(true);
-        const url = 'Portal/UserPanel/LangdingPages/GetLandingPagesList';
+        const url = 'Portal/UserPanel/LandingPages/GetLandingPagesList';
         const response = await post(url, param);
         if (response && response.status === 200) {
             this.setState({ gridData: response.data });
         }
         this.props.toggleLoader(false);
+    }
+
+    handleSelectedPage = (page, language) => {
+        const selectedPage = Object.assign({}, { SelectedPage: page, Language: language });
+
+        this.props.setSelectedPage(selectedPage);
+        this.props.setShowDetail(true);
     }
 
     _renderHeader() {
@@ -80,7 +83,7 @@ export class Content extends Component {
             <Row>
                 <Cell title={dataItem.SiteUrl}>
                     {(dataItem.Page == "Old URL" || dataItem.Page == "none") ? dataItem.Page :
-                        (<Button color="link" className="p-0" onClick={() => this.props.setSelectedPage(dataItem.Page)}>
+                        (<Button color="link" className="p-0" onClick={() => this.handleSelectedPage(dataItem.Page, dataItem.Language)}>
                             {dataItem.Page}
                         </Button>)}
                 </Cell>
@@ -117,7 +120,7 @@ function mapStateToProps({ param }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ toggleLoader, setSelectedPage }, dispatch);
+    return bindActionCreators({ toggleLoader, setSelectedPage, setShowDetail }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

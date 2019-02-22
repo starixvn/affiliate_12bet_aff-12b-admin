@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { DatePicker } from '@9softstudio/react-datepicker';
 import { pageList, deviceTypes, headerTitle } from '../modules/constants';
-import { setSelectedPage, setParam } from '../actions';
+import { setShowDetail, setParam } from '../actions';
 import { globalResource } from '../../../../modules/globalResource';
 
 const minDate = new Date(2009, 11, 1);
@@ -17,13 +17,22 @@ export class Filter extends React.Component {
         this.nowString = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
 
         this.state = {
-            today: now,
             page: '',
             language: '',
             fromDate: `${now.getMonth() + 1}/01/${now.getFullYear()}`,
             toDate: `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`,
             deviceType: 0
         };
+    }
+
+    componentDidMount() {
+        this.handleSetParam();
+    }
+
+    handleSetParam() {
+        const { page, language, fromDate, toDate, deviceType } = this.state
+        const newParam = Object.assign({}, this.props.param, { Page: page, Language: language, FromDate: fromDate, ToDate: toDate, DeviceType: deviceType });
+        this.props.setParam(newParam);
     }
 
     handleChange = (event) => {
@@ -46,15 +55,14 @@ export class Filter extends React.Component {
     }
 
     handleSearch = () => {
-        const newParam = Object.assign({}, this.props.param, this.state);
-        this.props.setParam(newParam);
-        this.props.setSelectedPage('');
+        this.handleSetParam();
+        this.props.setShowDetail(false);
     }
 
     render() {
         const { page, language, deviceType, fromDate, toDate } = this.state;
         const { languageList } = this.props;
-        console.log(languageList);
+
         return (
             <div className="filter-container">
                 <Form inline tag="div">
@@ -116,7 +124,7 @@ function mapStateToProps({ today, param, languageList }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setSelectedPage, setParam }, dispatch);
+    return bindActionCreators({ setShowDetail, setParam }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);
