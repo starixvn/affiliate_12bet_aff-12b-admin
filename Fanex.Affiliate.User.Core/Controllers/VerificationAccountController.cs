@@ -45,8 +45,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
 
             var viewModel = new VerificationAccountViewModel
             {
-                Email = EmailHelper.HideEmailPart(userInfo.Email),
-                Action = _verificationService.CreateActionLink(AppSetting.RsaPublicKeyEncodedXml)
+                Email = EmailHelper.HideEmailPart(userInfo.Email)
             };
 
             return View("~/Views/VerificationAccount/Index.cshtml", viewModel);
@@ -54,7 +53,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
 
         [HttpGet]
         [OutputCache(NoStore = true, Duration = 0, Location = OutputCacheLocation.None, VaryByParam = "*")]
-        public ActionResult CaptchaImage(byte type = 0)
+        public ActionResult CaptchaImage()
         {
             var captcha = Generator.GetRandomString(4);
             SessionService.VerificationSession.Captcha = captcha;
@@ -85,7 +84,8 @@ namespace Fanex.Affiliate.User.Core.Controllers
             {
                 IsOk = result.IsOk,
                 Message = result.Message,
-                VerificationToken = verificationSession.Token
+                VerificationToken = verificationSession.Token,
+                Action = _verificationService.CreateActionLink(AppSetting.RsaPublicKeyEncodedXml)
             });
         }
 

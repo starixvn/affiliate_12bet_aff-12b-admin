@@ -4,6 +4,7 @@ using System.Text;
 using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
+using Fanex.Affiliate.User.Core.Extensions;
 using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.MetalModels.Email;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
@@ -105,11 +106,9 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         private bool CanSendCode(long sentCodeTimeSession)
         {
-            var now = _wrapperUtility.GetNowDateTime().AddMinutes(IntervalTimeByMinute * -1);
-            var nowTick = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second).Ticks;
-            var elapsedTick = nowTick - sentCodeTimeSession;
+            var now = _wrapperUtility.GetNowDateTime();
 
-            return sentCodeTimeSession == 0 || elapsedTick >= 0;
+            return sentCodeTimeSession == 0 || now.IsAfterBySecond(sentCodeTimeSession, IntervalTimeByMinute);
         }
 
         private long GetNewSentCodeTime()

@@ -14,6 +14,12 @@
         clearTimeout(_refreshCaptchaTimeoutId);
         _refreshCaptchaTimeoutId = setTimeout(refreshCaptcha, REFRESH_CAPTCHA_INTERVAL);
     }
+
+    function updateAction(action) {
+        $('#ActionLink').val(action.Link);
+        $('#ActionToken').val(action.TimeToken);
+    }
+
     var _me = {
         initialize: function () {
             _me.initEvent();
@@ -24,7 +30,7 @@
             $("#btnResend").on("click", function (e) {
                 _me.sendCode(false);
             });
-            $("#btn-login").on("click", function (e) {
+            $("#btnLoginVerification").on("click", function (e) {
                 _me.submitForm();
             });
             $("#captchaVerificationAccount").on('click', function (e) {
@@ -57,6 +63,8 @@
                     $('#btnResend').prop("disabled", true);
                     _me.countDown(INTERVAL_SENDCODE_SECOND);
                     $('#VerificationToken').val(response.VerificationToken);
+                    updateAction(response.Action);
+                    $('#btnLoginVerification').prop('disabled', false).removeClass('disabled');
 
                     if (!isReload && !response.IsOk) {
                         alert(response.Message);
@@ -74,7 +82,8 @@
             clearTimeout(_countdownResendCodeTimeoutId);
             if (second === 0) {
                 $('#btnResend').html('RESEND CODE');
-                $('#btnResend').prop("disabled", false);
+                $('#btnResend').prop('disabled', false);
+                $('#btnLoginVerification').prop('disabled', true).addClass('disabled');
             } else {
                 $('#btnResend').html('RESEND CODE(' + second + ')');
                 _countdownResendCodeTimeoutId = setTimeout(_me.countDown, 1000, --second);
@@ -130,9 +139,7 @@
                             registerRefreshCaptcha();
                         }
 
-                        var action = response.Action;
-                        $('#ActionLink').val(action.Link);
-                        $('#ActionToken').val(action.TimeToken);
+                        updateAction(response.Action);
                     },
                     beforeSend: function () {
                         Site.showLoader();
