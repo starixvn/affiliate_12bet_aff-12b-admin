@@ -75,8 +75,9 @@ namespace Fanex.Affiliate.User.Core.Infrastructure
 
             var timeQuery = _requestContext.HttpContext.Request.Params["t"]?.Trim();
             var timeToken = paramValues["t"]?.Trim();
+            var expirationByMinute = int.Parse(paramValues["e"]?.Trim());
 
-            if (!string.Equals(timeQuery, timeToken) || IsExpired(timeToken))
+            if (!string.Equals(timeQuery, timeToken) || IsExpired(timeToken, expirationByMinute))
             {
                 return new QueryStringResult { IsValid = false };
             }
@@ -102,12 +103,11 @@ namespace Fanex.Affiliate.User.Core.Infrastructure
             return cryptographyService.RsaDecrypt(appSetting.RsaPrivateKey, decodedString);
         }
 
-        private static bool IsExpired(string timeTickString)
+        private static bool IsExpired(string timeTickString, int expirationByMinute)
         {
-            const int TimeOut = 6;
-            var minDateTime = DateTime.Now.AddMinutes(TimeOut * -1);
+            var minDateTime = DateTime.Now.AddMinutes(expirationByMinute * -1);
             var timeTicks = Convert.ToInt64(timeTickString);
-            var dateTimeRequest = DateTimeOffset.FromUnixTimeMilliseconds(timeTicks).LocalDateTime;
+            var dateTimeRequest = new DateTime(timeTicks, DateTimeKind.Local);
 
             return DateTime.Compare(dateTimeRequest, minDateTime) < 0;
         }

@@ -4,7 +4,6 @@ using System.Text;
 using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
-using Fanex.Affiliate.User.Core.Extensions;
 using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.MetalModels.Email;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
@@ -18,6 +17,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
     {
         private const int SecretKeyExistedCode = 101;
         private const int IntervalTimeByMinute = 5;
+        private const int ExpirationByMinute = 1;
 
         private readonly ILanguageService _languageService;
         private readonly ITwoFactorAuthService _twoFactorAuthService;
@@ -76,7 +76,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 {
                     IsOk = true,
                     NewCounter = counter,
-                    NewSendCodeTime = GetNewSentCodeTime()
+                    NewSendCodeTime = GetNewSendCodeTime()
                 };
             }
 
@@ -95,7 +95,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         public VerificationAction CreateActionLink(string publicKey)
         {
             var nowTicks = _wrapperUtility.GetNowDateTime().Ticks.ToString();
-            var queryString = "controller=VerificationAccount&action=VerifyAccount&t=" + nowTicks;
+            var queryString = "controller=VerificationAccount&action=VerifyAccount&t=" + nowTicks + "&e=" + ExpirationByMinute;
 
             return new VerificationAction
             {
@@ -104,14 +104,14 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             };
         }
 
-        private bool CanSendCode(long sentCodeTimeSession)
+        private bool CanSendCode(long sendCodeTimeSession)
         {
-            var now = _wrapperUtility.GetNowDateTime();
+            var maxTime = _wrapperUtility.GetNowDateTime().AddMinutes(IntervalTimeByMinute * -1).Ticks;
 
-            return sentCodeTimeSession == 0 || now.IsAfterBySecond(sentCodeTimeSession, IntervalTimeByMinute);
+            return sendCodeTimeSession == 0 || maxTime - sendCodeTimeSession >= 0;
         }
 
-        private long GetNewSentCodeTime()
+        private long GetNewSendCodeTime()
         {
             var now = _wrapperUtility.GetNowDateTime();
 
