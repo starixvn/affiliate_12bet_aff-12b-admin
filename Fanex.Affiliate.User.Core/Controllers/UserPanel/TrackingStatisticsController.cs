@@ -28,11 +28,12 @@
         {
             var affId = SessionService.UserSession.AffId;
             var isInternal = SessionService.IsInternal;
+            var currentLanguage = SessionService.CurrentLanguage;
 
             var viewModel = new TrackingStatisticsViewModel
             {
                 TrackingCodeList = _statisticsRepository.GetTrackingCode(affId, isInternal).Where(c => !c.MatchWith("[None]")),
-                TrackingStatisticsList = _statisticsRepository.GetTrackingStatistics(affId, null, isInternal),
+                TrackingStatisticsList = _statisticsRepository.GetTrackingStatistics(affId, null, currentLanguage, isInternal),
                 IsDetail = false
             };
 
@@ -45,10 +46,11 @@
         {
             var affId = SessionService.UserSession.AffId;
             var isInternal = SessionService.IsInternal;
+            var currentLanguage = SessionService.CurrentLanguage;
 
             var viewModel = new TrackingStatisticsViewModel
             {
-                TrackingStatisticsList = _statisticsRepository.GetTrackingStatistics(affId, trackingCode, isInternal),
+                TrackingStatisticsList = _statisticsRepository.GetTrackingStatistics(affId, trackingCode, currentLanguage, isInternal),
                 IsDetail = false
             };
 

@@ -40,13 +40,15 @@
 
 .form-filter {
     .form-group {
+        display: inline-flex;
+        align-items: center;
         margin-right: 30px;
 
         label {
-            width: 125px;
+            width: 80px;
 
             &.w150 {
-                width: 175px;
+                width: 150px;
             }
 
             &.w100 {

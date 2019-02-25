@@ -1545,11 +1545,13 @@ table + .button-group {
   margin-bottom: 5px; }
 
 .form-filter .form-group {
+  display: inline-flex;
+  align-items: center;
   margin-right: 30px; }
   .form-filter .form-group label {
-    width: 125px; }
+    width: 80px; }
     .form-filter .form-group label.w150 {
-      width: 175px; }
+      width: 150px; }
     .form-filter .form-group label.w100 {
       width: 100px; }
   .form-filter .form-group .form-control {

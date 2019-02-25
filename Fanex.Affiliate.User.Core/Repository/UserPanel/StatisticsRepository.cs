@@ -20,7 +20,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             }
         }
 
-        public IEnumerable<TrackingStatistics> GetTrackingStatistics(int affId, string trackingCode, bool isInternal)
+        public IEnumerable<TrackingStatistics> GetTrackingStatistics(int affId, string trackingCode, string currentLanguage, bool isInternal)
         {
             const string uSpkey = "Aff_AffiliateSelClickStatisticsAllMonths";
             var dbMode = isInternal ? DBMode.View : DBMode.Main;
@@ -32,14 +32,14 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
                 {
                     while (reader.Read())
                     {
-                        dataList.Add(BuildTrackingStatisticsItem(reader));
+                        dataList.Add(BuildTrackingStatisticsItem(reader, currentLanguage));
                     }
 
                     if (reader.NextResult())
                     {
                         while (reader.Read())
                         {
-                            dataList.Add(BuildTrackingStatisticsItem(reader));
+                            dataList.Add(BuildTrackingStatisticsItem(reader, currentLanguage));
                         }
                     }
                 }
@@ -119,11 +119,14 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             }
         }
 
-        private TrackingStatistics BuildTrackingStatisticsItem(IDataReader reader)
+        private TrackingStatistics BuildTrackingStatisticsItem(IDataReader reader, string currentLanguage)
         {
+            var date = Convert.ToDateTime(reader["Date"]);
+
             return new TrackingStatistics
             {
-                Date = Convert.ToDateTime(reader["Date"]),
+                Date = date,
+                Month = currentLanguage.Equals("id-ID") ? date.ToString("MMMM yyyy", new System.Globalization.CultureInfo(currentLanguage)) : date.ToString("MMMM-yyyy"),
                 TotalClick = reader["TotalClick"] == DBNull.Value ? 0 : Convert.ToInt32(reader["TotalClick"]),
                 UniqueClick = reader["UniqueClick"] == DBNull.Value ? 0 : Convert.ToInt32(reader["UniqueClick"])
             };
