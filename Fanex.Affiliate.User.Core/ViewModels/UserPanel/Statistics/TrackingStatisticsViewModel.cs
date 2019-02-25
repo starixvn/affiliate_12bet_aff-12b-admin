@@ -10,5 +10,7 @@ namespace Fanex.Affiliate.User.Core.ViewModels.UserPanel.Statistics
         public IEnumerable<TrackingStatistics> TrackingStatisticsList { get; set; }
 
         public bool IsDetail { get; set; }
+
+        public string CurrentLanguage { get; set; }
     }
 }

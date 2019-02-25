@@ -8,7 +8,7 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
     {
         IEnumerable<string> GetTrackingCode(int affId, bool isInternal);
 
-        IEnumerable<TrackingStatistics> GetTrackingStatistics(int affId, string trackingCode, string currentLanguage, bool isInternal);
+        IEnumerable<TrackingStatistics> GetTrackingStatistics(int affId, string trackingCode, bool isInternal);
 
         IEnumerable<TrackingStatistics> GetTrackingStatisticsDetail(TrackingStatisticsDetailParam trackingStatisticsDetailParam);
 

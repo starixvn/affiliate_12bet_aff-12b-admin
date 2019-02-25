@@ -28,13 +28,13 @@
         {
             var affId = SessionService.UserSession.AffId;
             var isInternal = SessionService.IsInternal;
-            var currentLanguage = SessionService.CurrentLanguage;
 
             var viewModel = new TrackingStatisticsViewModel
             {
                 TrackingCodeList = _statisticsRepository.GetTrackingCode(affId, isInternal).Where(c => !c.MatchWith("[None]")),
-                TrackingStatisticsList = _statisticsRepository.GetTrackingStatistics(affId, null, currentLanguage, isInternal),
-                IsDetail = false
+                TrackingStatisticsList = _statisticsRepository.GetTrackingStatistics(affId, null, isInternal),
+                IsDetail = false,
+                CurrentLanguage = SessionService.CurrentLanguage
             };
 
             return View("~/Views/UserPanel/Statistics/TrackingStatistics/Index.cshtml", viewModel);
@@ -46,12 +46,12 @@
         {
             var affId = SessionService.UserSession.AffId;
             var isInternal = SessionService.IsInternal;
-            var currentLanguage = SessionService.CurrentLanguage;
 
             var viewModel = new TrackingStatisticsViewModel
             {
-                TrackingStatisticsList = _statisticsRepository.GetTrackingStatistics(affId, trackingCode, currentLanguage, isInternal),
-                IsDetail = false
+                TrackingStatisticsList = _statisticsRepository.GetTrackingStatistics(affId, trackingCode, isInternal),
+                IsDetail = false,
+                CurrentLanguage = SessionService.CurrentLanguage
             };
 
             return PartialView("~/Views/UserPanel/Statistics/StatisticsPartial/_TrackingStatisticsContent.cshtml", viewModel);

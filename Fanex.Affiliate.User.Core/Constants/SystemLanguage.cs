@@ -25,6 +25,8 @@ namespace Fanex.Affiliate.User.Core.Constants
 
         public const string VietNamLanguageCode = "vi-VN";
 
+        public const string IndonesiaLanguageCode = "id-ID";
+
         public const string ShortedDefaultCode = "en";
 
         public const string ShortedEuroCode = "eneuro";
