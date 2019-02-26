@@ -45,13 +45,13 @@ export class Content extends Component {
     _renderHeader() {
         return (
             <Row key="theard">
-                <Cell header={true} colWidth={30} title={headerText.Index}>{headerText.Index}</Cell>
-                <Cell header={true} colWidth={50} title={headerText.Id}>{headerText.Id}</Cell>
+                <Cell header={true} colWidth={20} title={headerText.Index}>{headerText.Index}</Cell>
+                <Cell header={true} colWidth={40} title={headerText.Id}>{headerText.Id}</Cell>
                 <Cell header={true} colWidth={110} title={headerText.Date}>{headerText.Date}</Cell>
-                <Cell header={true} colWidth={80} title={headerText.UpdatedBy}>{headerText.UpdatedBy}</Cell>
-                <Cell header={true} colWidth={150} title={headerText.Action}>{headerText.Action}</Cell>
+                <Cell header={true} colWidth={110} title={headerText.UpdatedBy}>{headerText.UpdatedBy}</Cell>
+                <Cell header={true} colWidth={110} title={headerText.Action}>{headerText.Action}</Cell>
                 <Cell header={true} colWidth={500} title={headerText.Description}>{headerText.Description}</Cell>
-                <Cell header={true} colWidth={80} title={headerText.Ip}>{headerText.Ip}</Cell>
+                <Cell header={true} colWidth={110} title={headerText.Ip}>{headerText.Ip}</Cell>
             </Row>
         );
     }
@@ -83,11 +83,13 @@ export class Content extends Component {
             <Row key={`dataRow-${index}`}>
                 <Cell title={index} className="text-center">{index}</Cell>
                 <Cell title={dataItem.Id} className="text-center">{dataItem.Id}</Cell>
-                <Cell title={dataItem.Date}>{dataItem.Date}</Cell>
+                <Cell title={dataItem.DateText}>{dataItem.DateText}</Cell>
                 <Cell title={dataItem.UpdatedBy} className="text-center">{dataItem.UpdatedBy}</Cell>
-                <Cell title={dataItem.Action}>{dataItem.Action}</Cell>
-                <Cell title={dataItem.Description}>{dataItem.Description}</Cell>
-                <Cell title={dataItem.Ip} className="text-center">{dataItem.Ip}</Cell>
+                <Cell title={dataItem.Description}>{dataItem.Description} <br /> ({dataItem.SpName})</Cell>
+                <Cell title={dataItem.Details}>{dataItem.Details}</Cell>
+                <Cell title={dataItem.Ip} className="text-center">
+                    <a target="_blank" href="http://anonym.to/?http://legacytools.dnsstuff.com/tools/ipall.ch?tool_id=67&amp;token=&amp;toolhandler_redirect=0&amp;ip=${dataItem.Ip}&amp;j=1">&nbsp;{dataItem.Ip}</a>
+                </Cell>
             </Row>
         )
     }

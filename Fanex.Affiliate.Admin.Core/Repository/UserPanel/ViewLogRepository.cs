@@ -35,8 +35,9 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
                             Id = Convert.ToInt32(reader["RefNo"]),
                             Date = Convert.ToDateTime(reader["LoggedDate"]),
                             UpdatedBy = Convert.ToString(reader["UserName"]),
-                            Action = Convert.ToString(reader["TypeName"]) + $" ({Convert.ToString(reader["SPName"])})",
-                            Description = Convert.ToString(reader["Details"]),
+                            SpName = Convert.ToString(reader["SPName"]),
+                            Details = Convert.ToString(reader["Details"]),
+                            Description = Convert.ToString(reader["Description"]),
                             Ip = Convert.ToString(reader["IP"]),
                         });
                     }
