@@ -2041,7 +2041,7 @@
     </Content>
     <Content Include="App_GlobalResources\Lang.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>Lang.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="App_GlobalResources\ResultLang.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
