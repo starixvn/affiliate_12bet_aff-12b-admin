@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Fanex.Affiliate.User.Core.CoreService;
+using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Logging;
 using Newtonsoft.Json;
 
@@ -17,15 +18,18 @@ namespace Fanex.Affiliate.User.Core.Filters
         {
             var exception = filterContext.Exception;
             var httpException = exception as HttpException;
-            if (httpException != null && httpException.GetHttpCode() == 404)
+            if (filterContext.ExceptionHandled || (httpException != null && httpException.GetHttpCode() == 404))
             {
                 return;
             }
 
             var httpContext = filterContext.RequestContext.HttpContext;
-            var message = BuildErrorMessage(exception, httpContext);
 
-            LogService.Error(message.ToString());
+            if (!(exception is HttpAntiForgeryException))
+            {
+                var message = BuildErrorMessage(exception, httpContext);
+                LogService.Error(message.ToString());
+            }
 
             if (httpContext.Request.IsAjaxRequest())
             {
@@ -34,11 +38,12 @@ namespace Fanex.Affiliate.User.Core.Filters
                 var response = httpContext.Response;
                 response.ContentType = "application/json";
                 response.StatusCode = 500;
-                response.Write(JsonConvert.SerializeObject(new
+
+                filterContext.Result = new JsonResult
                 {
-                    Success = false,
-                    exception.Message
-                }));
+                    Data = new { Success = false, Message = Error.General },
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
             }
             else
             {
@@ -50,6 +55,8 @@ namespace Fanex.Affiliate.User.Core.Filters
 
                 filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(routeValue));
             }
+
+            filterContext.ExceptionHandled = true;
         }
 
         private static StringBuilder BuildErrorMessage(Exception exception, HttpContextBase httpContext)
