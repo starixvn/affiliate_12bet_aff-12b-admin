@@ -20,7 +20,7 @@ export class Filter extends React.Component {
             page: '',
             language: '',
             fromDate: `${now.getMonth() + 1}/01/${now.getFullYear()}`,
-            toDate: `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`,
+            toDate: this.nowString,
             deviceType: 0
         };
     }

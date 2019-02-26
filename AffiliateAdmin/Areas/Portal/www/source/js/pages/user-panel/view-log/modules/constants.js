@@ -41,5 +41,6 @@ export const headerText = {
     Date: 'Date',
     UpdatedBy: 'Updated By',
     Action: 'Action',
-    Description: 'Description'
+    Description: 'Description',
+    Ip: 'IP'
 }

@@ -17,12 +17,23 @@ export class Filter extends React.Component {
 
         const now = new Date(today);
         this.nowString = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
+        now.setMonth(now.getMonth() - 6);
 
         this.state = {
             logType: 0,
-            fromDate: `${now.getMonth() + 1}/01/${now.getFullYear()}`,
-            toDate: `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`
+            fromDate: `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`,
+            toDate: this.nowString,
         }
+    }
+
+    componentDidMount() {
+        this.handleSetParam();
+    }
+
+    handleSetParam() {
+        const { logType, fromDate, toDate } = this.state;
+        const newParam = Object.assign({}, this.props.param, { LogType: logType, FromDate: fromDate, ToDate: toDate });
+        this.props.setParam(newParam);
     }
 
     handleChangeLogType = (event) => {
@@ -48,9 +59,7 @@ export class Filter extends React.Component {
     }
 
     handleSearch = () => {
-        const { logType, fromDate, toDate } = this.state;
-        const newParam = Object.assign({}, this.props.param, { LogType: logType, FromDate: fromDate, ToDate: toDate });
-        this.props.setParam(newParam);
+        this.handleSetParam();
     }
 
     render() {
@@ -62,6 +71,7 @@ export class Filter extends React.Component {
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                         <Label for="logType" className="mr-sm-2">{headerText.Type}</Label>
                         <Input type="select" name="logType" id="logType" value={logType} onChange={this.handleChangeLogType}>
+                            <option value="0">{globalResource.All}</option>
                             {
                                 Object.keys(logTypes).map(index => {
                                     return (<option key={`logType-${logTypes[index]}`} value={logTypes[index]}>{index}</option>)
