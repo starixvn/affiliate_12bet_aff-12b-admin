@@ -1,0 +1,37 @@
+﻿@{
+    Layout = "~/Areas/Portal/Views/Shared/_UserPanelLayout.cshtml";
+}
+
+@using Fanex.Affiliate.Admin.Core.Constants
+@using Fanex.Affiliate.Admin.Core.ViewModels.UserPanel
+@model Fanex.Affiliate.Admin.Core.ViewModels.UserPanel.CustomerMemberViewModel
+
+@section styles{
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/user-panel/customer-member.css")" rel="stylesheet" />
+}
+
+@section scripts{
+    <script type="text/javascript">
+        window.initialState = {
+            today: '@DateTime.Now.ToString("MM/dd/yyyy")',
+            canViewMemberEmail: @Model.CanViewMemberEmail.ToString().ToLowerInvariant(),
+            affId: @Model.AffiliateLinkParam.AffId
+        }
+    </script>
+    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/userpanel/customer-member.js")"></script>
+}
+
+@section menu{
+    @{
+        var usePanelMenu = new UserPanelMenuViewModel
+        {
+            SubMenuList = UserPanelConstant.UserPanelMenuList,
+            AffiliateLinkParam = Model.AffiliateLinkParam
+        };
+        usePanelMenu.SubMenuList.ElementAt(6).IsActive = true;
+        Html.RenderPartial("~/Areas/Portal/Views/Shared/_UserPanelMenu.cshtml", usePanelMenu);
+    }
+}
+
+<div id="root"></div>
+

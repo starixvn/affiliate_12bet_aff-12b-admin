@@ -1,0 +1,82 @@
+<style type="text/css">
+  body {
+  font-family:arial,tahoma,verdana,helvetica,sans-serif;
+  font-size:11px;
+  margin:0px;
+  background:url(App_Themes/DefaultV2/images/lgBg.jpg) repeat-x #c8d2d6;
+  }
+</style>
+
+
+<div id="table_main">
+  <div class="contents_box">
+    <div class="lgRight"></div>
+    <div class="lgRp">
+      <div class="logo"></div>
+      <div class="war_box">
+          <div id="errMsg" style="display:none; width:274px;">
+            <div id="error_item">
+              <ul>
+                <li>
+                  <a class="err-msg" id="error_msg"></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+      </div>
+      <div class="form_log">
+          <input type="hidden" id="X-CSRF-Token" name="X-CSRF-Token" value="{XsrfTokenFormValue}" />
+        <table width="100%" height="100%" border="0" align="left" cellpadding="0" cellspacing="0">
+          <tr>
+            <td colspan="3" style="height: 5px;"></td>
+          </tr>
+          <tr>
+            <td width="29" class="icUser">&nbsp;</td>
+            <td width="91" height="39" class="log_text">{Username}</td>
+            <td width="266">
+              <input type="text" name="txtun" id="txtun" style="width:180px;" onkeyup="PreLogin(event);"></input>
+            </td>
+          </tr>
+          <tr>
+            <td class="icPass">&nbsp;</td>
+            <td height="39" class="log_text">{Password}</td>
+            <td>
+              <input type="password" name="txtpw" id="txtpw" style="width:180px;" autocomplete="off" onkeyup="PreLogin(event);"></input>
+            </td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td height="35">&nbsp;</td>
+            <td>
+              <div id="btnlogin">
+                <a  href="javascript:ExcLogin()" class="btLg">{Logon}</a>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3" valign="bottom">
+              <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td width="34" class="footLeft">&nbsp;</td>
+                  <td width="208"  class="footRp">
+                    <div style="padding-top:4px; text-align:center">© Copyright {now} Pacific Sea Invests</div>
+                  </td>
+                  <td width="26" class="footRight">&nbsp;</td>
+                  <td width="60" valign="top" >
+                    <div class="footText" style="padding-top:3px; text-align:center; vertical-align:top;">Best view in</div>
+                  </td>
+                  <td width="38" class="icIE">&nbsp;</td>
+                  <td width="60" class="icFirefox">&nbsp;</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<input type="hidden" id="rootUrl" value="{relativeRootUrl}" />
