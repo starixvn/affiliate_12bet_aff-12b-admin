@@ -1,5 +1,5 @@
 ﻿import { combineReducers } from 'redux';
-import { SET_PARAM } from '../actions/types';
+import { SET_PARAM, SET_SHOW_GROUP } from '../actions/types';
 import createReducer from '../../../../modules/createReducer';
 
 import { pagingOption } from '../../../../reducers/pagingReducer';
@@ -13,9 +13,16 @@ export const param = createReducer({}, {
     }
 });
 
+export const isShowGroup = createReducer(false, {
+    [SET_SHOW_GROUP](prevState, action) {
+        return action.data;
+    }
+});
+
 export default combineReducers({
     pagingOption,
     isShowLoader,
     today,
-    param
+    param,
+    isShowGroup
 });
