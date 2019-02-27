@@ -1,0 +1,136 @@
+﻿@{
+    Layout = null;
+    var currentYear = DateTime.Now.Year;
+}
+
+@Html.InlineStyles("~/www/build/styles/css/pages/commissionreport.css")
+
+<div class="page-title">
+    <span class="text">@Lang.CommissionReport</span>
+</div>
+
+<div class="info-group">
+    <div class="panel custom-panel">
+        <div class="panel-body">
+            <form class="form-inline form-filter">
+                <div class="form-group">
+                    <label>@Lang.Year</label>
+                    <select class="form-control" id="year">
+
+                        @for (var i = currentYear; i >= 2018; i--)
+                        {
+                            var temp = i == currentYear ? "selected='selected'" : string.Empty;
+                            <option @temp value="@i">@i</option>
+                        }
+                    </select>
+                    <button type="button" style="margin-left:3px;" class="btn btn-submit" id="btnSubmit">@Lang.Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="report-container">
+        <div class="table commission-report">
+            <table id="dataTable">
+                <thead>
+                    <tr>
+                        <th class="th numberId">#</th>
+                        <th class="th" data-name="Month">
+                            <div class="th-wrapper">
+                                <span>@Lang.Month</span>
+                                <div class="icon-container">
+                                    <span class="caret asc"></span>
+                                    <span id="defaultSorting" class="caret desc"></span>
+                                </div>
+                            </div>
+                        </th>
+                        <th class="th" data-name="TurnOver">
+                            <div class="th-wrapper">
+                                <span>@Lang.Turnover</span>
+                                <div class="icon-container">
+                                    <span class="caret asc"></span>
+                                    <span class="caret desc"></span>
+                                </div>
+                            </div>
+                        </th>
+                        <th class="th" data-name="WinLoss">
+                            <div class="th-wrapper">
+                                <span>@Lang.GrossWinLoss</span>
+                                <div class="icon-container">
+                                    <span class="caret asc"></span>
+                                    <span class="caret desc"></span>
+                                </div>
+                            </div>
+                        </th>
+                        <th class="th" data-name="PlatformFee">
+                            <div class="th-wrapper">
+                                <span>@Lang.PlatformFee</span>
+                                <div class="icon-container">
+                                    <span class="caret asc"></span>
+                                    <span class="caret desc"></span>
+                                </div>
+                            </div>
+                        </th>
+                        <th class="th" data-name="OperationalFee">
+                            <div class="th-wrapper">
+                                <span>@Lang.OperationalFee</span>
+                                <div class="icon-container">
+                                    <span class="caret asc"></span>
+                                    <span class="caret desc"></span>
+                                </div>
+                            </div>
+                        </th>
+                        <th class="th" data-name="BankingFee">
+                            <div class="th-wrapper">
+                                <span>@Lang.BankingFees</span>
+                                <div class="icon-container">
+                                    <span class="caret asc"></span>
+                                    <span class="caret desc"></span>
+                                </div>
+                            </div>
+                        </th>
+                        <th class="th" data-name="Bonus">
+                            <div class="th-wrapper">
+                                <span>@Lang.Bonus</span>
+                                <div class="icon-container">
+                                    <span class="caret asc"></span>
+                                    <span class="caret desc"></span>
+                                </div>
+                            </div>
+                        </th>
+                        <th class="th" data-name="CommissionRate">
+                            <div class="th-wrapper">
+                                <span>@Lang.CommRate</span>
+                                <div class="icon-container">
+                                    <span class="caret asc"></span>
+                                    <span class="caret desc"></span>
+                                </div>
+                            </div>
+                        </th>
+                        <th class="th" data-name="Commission">
+                            <div class="th-wrapper col-comm">
+                                <span>@(Lang.CommShorted).</span>
+                                <div class="info-container">
+                                    <span title="@Lang.NoteCommissionCalculation" class="glyphicon glyphicon-info-sign"></span>
+                                </div>
+                                <div class="icon-container">
+                                    <span class="caret asc"></span>
+                                    <span class="caret desc"></span>
+                                </div>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="reportData"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    var langResource = {
+        noInfo: '@Lang.NoInfo'
+    }
+</script>
+
+<script src="@Url.RenderLink("~/www/build/js/pages/commission-report.js")"></script>

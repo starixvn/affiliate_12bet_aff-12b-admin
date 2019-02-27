@@ -1,0 +1,44 @@
+﻿@using Fanex.Affiliate.User.Core.Extensions
+@model Fanex.Affiliate.User.Core.ViewModels.UserPanel.Statistics.LandingPageStatisticsViewModel
+
+<table>
+    <thead>
+        <tr>
+            <th width="20%">@Lang.Page</th>
+            <th width="20%">@Lang.Language</th>
+            <th width="15%">@Lang.TotalClick</th>
+            <th width="15%">@Lang.UniqueClick</th>
+            <th width="15%">@Lang.SignUp</th>
+            <th width="15%">@Lang.FDM</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.DataList)
+        {
+            <tr>
+                <td>
+                    @if (Model.IsDetail || item.SportCode.MatchWith("none") || item.SportCode.MatchWith("old url"))
+                    {
+                        @item.SportCode
+                    }
+                    else
+                    {
+                        <a href="javascript:;" class="statisticsItem" data-page="@item.SportCode" data-language="@item.LanguageCode">
+                            @item.SportCode
+                        </a>
+                    }
+                </td>
+                <td>@item.LanguageName</td>
+                <td class="text-right">@item.TotalClick</td>
+                <td class="text-right">@item.UniqueClick</td>
+                <td class="text-right">@item.SignUps</td>
+                <td class="text-right">@item.Fdm</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (Model.IsDetail)
+{
+    <input id="TotalItem" type="hidden" value="@Model.RowNumber" />
+}

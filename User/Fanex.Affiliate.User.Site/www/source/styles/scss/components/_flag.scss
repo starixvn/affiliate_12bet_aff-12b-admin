@@ -1,0 +1,50 @@
+﻿.flag {
+    width: 16px;
+    height: 14px;
+    margin-right: 5px;
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    -webkit-font-smoothing: antialiased;
+    background-image: url('../Images/bootstrap-formhelpers-countries.flags.png');
+
+    &-en-US {
+        background-position: -3281px 0;
+    }
+
+    &-zh-CN {
+        background-position: -714px 0;
+    }
+
+    &-zh-TW {
+        background-position: -3213px 0;
+    }
+
+    &-id-ID {
+        background-position: -1496px 0;
+    }
+
+    &-vi-VN {
+        background-position: -3400px 0;
+    }
+
+    &-th-TH {
+        background-position: -3077px 0;
+    }
+
+    &-ko-KR {
+        background-position: -1819px 0;
+    }
+
+    &-es-ES {
+        background-position: -986px 0;
+    }
+
+    &-ja-JP {
+        background-position: -1683px 0;
+    }
+
+    &-hi-IN {
+        background-position: -1564px 0;
+    }
+}

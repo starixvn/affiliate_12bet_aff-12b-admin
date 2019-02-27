@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = Lang.TermAndCondition;
+    Layout = "~/Views/Shared/_LayoutBeforeLogin.cshtml";
+}
+
+@model string
+@{ 
+    var viewName = "~/Views/TermAndCondition/_Content." + Model + ".cshtml";
+}
+
+<div class="content">
+    <div class="page-title">
+        <span class="text">@Lang.TermAndCondition</span>
+    </div>    
+
+    @{ Html.RenderPartial(viewName); }
+
+    @RazorHelper.RenderMovingTopButton()
+</div>

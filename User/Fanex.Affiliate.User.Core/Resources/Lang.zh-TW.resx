@@ -1,0 +1,2080 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutUs" xml:space="preserve">
+    <value>關於我們</value>
+  </data>
+  <data name="AccInfo" xml:space="preserve">
+    <value>帳戶資料</value>
+  </data>
+  <data name="Account12bet" xml:space="preserve">
+    <value>12BET玩家帳戶</value>
+  </data>
+  <data name="AccOverview" xml:space="preserve">
+    <value>帳戶概要</value>
+  </data>
+  <data name="ActivatedTrackingCode" xml:space="preserve">
+    <value>已有</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>地址</value>
+  </data>
+  <data name="AddressIsRequired" xml:space="preserve">
+    <value>請填寫地址</value>
+  </data>
+  <data name="AddUrl" xml:space="preserve">
+    <value>Url 添加 </value>
+  </data>
+  <data name="Adjustment" xml:space="preserve">
+    <value>調整</value>
+  </data>
+  <data name="Affiliate" xml:space="preserve">
+    <value>合作夥伴</value>
+  </data>
+  <data name="AffiliateID" xml:space="preserve">
+    <value>合作夥伴號碼</value>
+  </data>
+  <data name="AgreeTermNCondition" xml:space="preserve">
+    <value>我同意12BET合作夥伴的規則與條款</value>
+  </data>
+  <data name="Albania" xml:space="preserve">
+    <value>阿爾巴尼亞</value>
+  </data>
+  <data name="Algeria" xml:space="preserve">
+    <value>阿爾及利亞 </value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>全部</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>金額</value>
+  </data>
+  <data name="AmtErr" xml:space="preserve">
+    <value>無效的申請金額！金額必須在……之間 </value>
+  </data>
+  <data name="And" xml:space="preserve">
+    <value>和</value>
+  </data>
+  <data name="Angola" xml:space="preserve">
+    <value>安哥拉</value>
+  </data>
+  <data name="Anguilla" xml:space="preserve">
+    <value>安圭拉</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>核准</value>
+  </data>
+  <data name="April" xml:space="preserve">
+    <value>四月</value>
+  </data>
+  <data name="Argentina" xml:space="preserve">
+    <value>阿根廷</value>
+  </data>
+  <data name="Armenia" xml:space="preserve">
+    <value>阿美尼亞</value>
+  </data>
+  <data name="Aruba" xml:space="preserve">
+    <value>阿路巴</value>
+  </data>
+  <data name="AUD" xml:space="preserve">
+    <value>澳币</value>
+  </data>
+  <data name="August" xml:space="preserve">
+    <value>八月</value>
+  </data>
+  <data name="Australia" xml:space="preserve">
+    <value>澳大利亞</value>
+  </data>
+  <data name="Austria" xml:space="preserve">
+    <value>奧地利</value>
+  </data>
+  <data name="AvailableDomains" xml:space="preserve">
+    <value>可用网址</value>
+  </data>
+  <data name="Azerbaijan" xml:space="preserve">
+    <value>阿塞拜疆</value>
+  </data>
+  <data name="Baccarat" xml:space="preserve">
+    <value>百家樂</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>返回</value>
+  </data>
+  <data name="Bahrain" xml:space="preserve">
+    <value>巴林</value>
+  </data>
+  <data name="BalForward" xml:space="preserve">
+    <value>轉入下月餘額</value>
+  </data>
+  <data name="Bangladesh" xml:space="preserve">
+    <value>孟加拉</value>
+  </data>
+  <data name="BankABA_Swift_SIsRequired" xml:space="preserve">
+    <value>請填寫銀行ABA/Swift/Sort Code信息</value>
+  </data>
+  <data name="BankAccnumber" xml:space="preserve">
+    <value>銀行帳戶號碼</value>
+  </data>
+  <data name="BankAccountNameIsRequired" xml:space="preserve">
+    <value>請填寫銀行賬戶姓名</value>
+  </data>
+  <data name="BankAccountNumbIsRequired" xml:space="preserve">
+    <value>請填寫銀行賬戶號碼</value>
+  </data>
+  <data name="BankAddress" xml:space="preserve">
+    <value>銀行地址</value>
+  </data>
+  <data name="BankAddressisre" xml:space="preserve">
+    <value>請填寫銀行地址</value>
+  </data>
+  <data name="BankName" xml:space="preserve">
+    <value>銀行名</value>
+  </data>
+  <data name="BankNameisrequi" xml:space="preserve">
+    <value>請填寫銀行賬號姓名</value>
+  </data>
+  <data name="BankTransfer" xml:space="preserve">
+    <value>銀行轉帳</value>
+  </data>
+  <data name="Banner" xml:space="preserve">
+    <value>廣告橫額</value>
+  </data>
+  <data name="Barbados" xml:space="preserve">
+    <value>巴貝多</value>
+  </data>
+  <data name="Basketball" xml:space="preserve">
+    <value>籃球</value>
+  </data>
+  <data name="Belarus" xml:space="preserve">
+    <value>白俄羅斯</value>
+  </data>
+  <data name="Belgium" xml:space="preserve">
+    <value>比利時</value>
+  </data>
+  <data name="Belize" xml:space="preserve">
+    <value>貝里斯</value>
+  </data>
+  <data name="Benin" xml:space="preserve">
+    <value>貝南</value>
+  </data>
+  <data name="Bermuda" xml:space="preserve">
+    <value>百慕達</value>
+  </data>
+  <data name="Bet12Username" xml:space="preserve">
+    <value>12BET 用戶名</value>
+  </data>
+  <data name="BETUserNameIsRequired" xml:space="preserve">
+    <value>請填寫12BET用戶名</value>
+  </data>
+  <data name="Bhutan" xml:space="preserve">
+    <value>不丹</value>
+  </data>
+  <data name="Blackjack" xml:space="preserve">
+    <value>21點</value>
+  </data>
+  <data name="Bolivia" xml:space="preserve">
+    <value>玻利維亞</value>
+  </data>
+  <data name="Bonus" xml:space="preserve">
+    <value>紅利</value>
+  </data>
+  <data name="BosniaandHerzegovina" xml:space="preserve">
+    <value>波希尼亞及赫塞哥維那</value>
+  </data>
+  <data name="Botswana" xml:space="preserve">
+    <value>波札那</value>
+  </data>
+  <data name="Brazil" xml:space="preserve">
+    <value>巴西</value>
+  </data>
+  <data name="BruneiDarussalam" xml:space="preserve">
+    <value>汶萊</value>
+  </data>
+  <data name="Bulgaria" xml:space="preserve">
+    <value>保加利亞</value>
+  </data>
+  <data name="BurkinaFaso" xml:space="preserve">
+    <value>布吉納法索</value>
+  </data>
+  <data name="Burundi" xml:space="preserve">
+    <value>蒲隆地</value>
+  </data>
+  <data name="Cambodia" xml:space="preserve">
+    <value>柬埔寨</value>
+  </data>
+  <data name="Cameroon" xml:space="preserve">
+    <value>喀麥隆</value>
+  </data>
+  <data name="Canada" xml:space="preserve">
+    <value>加拿大</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="Cancelled" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="CancelPayoutSucc" xml:space="preserve">
+    <value>您的支付申請已經被取消！</value>
+  </data>
+  <data name="CancelRequest" xml:space="preserve">
+    <value>取消申請</value>
+  </data>
+  <data name="CancelSubject" xml:space="preserve">
+    <value>12Bet合作夥伴- [{transid}] -支付申請通知</value>
+  </data>
+  <data name="CapeVerde" xml:space="preserve">
+    <value>維德角島</value>
+  </data>
+  <data name="Casino" xml:space="preserve">
+    <value>娛樂城</value>
+  </data>
+  <data name="CasinoBonus" xml:space="preserve">
+    <value>娛樂城紅利</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>種類</value>
+  </data>
+  <data name="CaymanIslands" xml:space="preserve">
+    <value>開曼群島</value>
+  </data>
+  <data name="CentralAfricanRep" xml:space="preserve">
+    <value>中非共和國</value>
+  </data>
+  <data name="Chad" xml:space="preserve">
+    <value>查德</value>
+  </data>
+  <data name="Change" xml:space="preserve">
+    <value>變更</value>
+  </data>
+  <data name="ChangePass" xml:space="preserve">
+    <value>更改密碼</value>
+  </data>
+  <data name="ChangePassErr" xml:space="preserve">
+    <value>更改密碼出錯</value>
+  </data>
+  <data name="ChangePassText" xml:space="preserve">
+    <value>使用這個表格來更改您的密碼。一旦更改，您需要使用新密碼來登陸您的帳戶。</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>更改密碼</value>
+  </data>
+  <data name="Cheque" xml:space="preserve">
+    <value>支票</value>
+  </data>
+  <data name="ChequeAddressis" xml:space="preserve">
+    <value>請填寫支票地址</value>
+  </data>
+  <data name="ChequeCityisreq" xml:space="preserve">
+    <value>請填寫支票城市</value>
+  </data>
+  <data name="ChequeCountryis" xml:space="preserve">
+    <value>請填寫支票國家</value>
+  </data>
+  <data name="ChequeFullNamei" xml:space="preserve">
+    <value>請填寫支票全名</value>
+  </data>
+  <data name="ChequePostcode_" xml:space="preserve">
+    <value>請填寫支票郵編</value>
+  </data>
+  <data name="ChequeStateisre" xml:space="preserve">
+    <value>請填寫支票省/州</value>
+  </data>
+  <data name="CHF" xml:space="preserve">
+    <value>法郎</value>
+  </data>
+  <data name="Chile" xml:space="preserve">
+    <value>智利</value>
+  </data>
+  <data name="ChinaPeoplesRep" xml:space="preserve">
+    <value>中國大陸</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>城市</value>
+  </data>
+  <data name="CityIsRequired" xml:space="preserve">
+    <value>請填寫城市</value>
+  </data>
+  <data name="Colombia" xml:space="preserve">
+    <value>哥倫比亞</value>
+  </data>
+  <data name="Comm" xml:space="preserve">
+    <value>佣金比例</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>意見</value>
+  </data>
+  <data name="CommentsIsInvalid" xml:space="preserve">
+    <value>意見填寫無效</value>
+  </data>
+  <data name="CommPercent" xml:space="preserve">
+    <value>佣金%</value>
+  </data>
+  <data name="CompletedDate" xml:space="preserve">
+    <value>完成日期</value>
+  </data>
+  <data name="CompleteForm" xml:space="preserve">
+    <value>請完整填寫此頁註冊表，以確保成功註冊12BET合作夥伴賬號</value>
+  </data>
+  <data name="CongoRep" xml:space="preserve">
+    <value>剛果共和國</value>
+  </data>
+  <data name="ContactInfo" xml:space="preserve">
+    <value>聯絡方式</value>
+  </data>
+  <data name="ContactNumber" xml:space="preserve">
+    <value>聯絡電話號碼</value>
+  </data>
+  <data name="ContactTitle" xml:space="preserve">
+    <value>如有任何意見或問題，請直接發電郵到{email}或填寫以下的表格。</value>
+  </data>
+  <data name="ContactUs" xml:space="preserve">
+    <value>聯繫我們</value>
+  </data>
+  <data name="CookIslands" xml:space="preserve">
+    <value>科克群島</value>
+  </data>
+  <data name="Copyright" xml:space="preserve">
+    <value>© Copyright 2018. All Rights Reserved. Designed and Powered by</value>
+  </data>
+  <data name="CostaRica" xml:space="preserve">
+    <value>哥斯達黎加</value>
+  </data>
+  <data name="CotedIvoireRep" xml:space="preserve">
+    <value>象牙海岸</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>國家</value>
+  </data>
+  <data name="CountryErr" xml:space="preserve">
+    <value>請選擇國家</value>
+  </data>
+  <data name="Creator" xml:space="preserve">
+    <value>建立者</value>
+  </data>
+  <data name="Croatia" xml:space="preserve">
+    <value>克羅地亞</value>
+  </data>
+  <data name="CsdSubject" xml:space="preserve">
+    <value>12BET合作夥伴—新帳戶等待核准</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>外汇</value>
+  </data>
+  <data name="Current" xml:space="preserve">
+    <value>當前的</value>
+  </data>
+  <data name="CurrentCommissiSetting" xml:space="preserve">
+    <value>目前佣金設定</value>
+  </data>
+  <data name="Cyprus" xml:space="preserve">
+    <value>塞浦路斯</value>
+  </data>
+  <data name="CzechRep" xml:space="preserve">
+    <value>捷克</value>
+  </data>
+  <data name="DailyEarningDetail" xml:space="preserve">
+    <value>每日收益明細</value>
+  </data>
+  <data name="DailyEarnings" xml:space="preserve">
+    <value>日收入</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>日期</value>
+  </data>
+  <data name="DateRequest" xml:space="preserve">
+    <value>提款日期</value>
+  </data>
+  <data name="December" xml:space="preserve">
+    <value>十二月</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>默認</value>
+  </data>
+  <data name="Del" xml:space="preserve">
+    <value>刪除</value>
+  </data>
+  <data name="DemRepofCongo" xml:space="preserve">
+    <value>剛果民主共和國</value>
+  </data>
+  <data name="Denmark" xml:space="preserve">
+    <value>丹麥</value>
+  </data>
+  <data name="Deposit" xml:space="preserve">
+    <value>存款</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>描述</value>
+  </data>
+  <data name="DescWebsite" xml:space="preserve">
+    <value>如您沒有網站，請詳細描述 您將如何推廣壹貳博網站。</value>
+  </data>
+  <data name="DominicaCommonwealthof" xml:space="preserve">
+    <value>多米尼克</value>
+  </data>
+  <data name="DominicanRep" xml:space="preserve">
+    <value>多明尼加</value>
+  </data>
+  <data name="Ecuador" xml:space="preserve">
+    <value>厄瓜多爾</value>
+  </data>
+  <data name="Egypt" xml:space="preserve">
+    <value>埃及</value>
+  </data>
+  <data name="ElSalvador" xml:space="preserve">
+    <value>薩爾瓦多</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>電郵地址</value>
+  </data>
+  <data name="Email1" xml:space="preserve">
+    <value>電郵</value>
+  </data>
+  <data name="Emailaddressest" xml:space="preserve">
+    <value>您輸入的電子郵件地址不符。</value>
+  </data>
+  <data name="EmailAddressIsInvalid" xml:space="preserve">
+    <value>電子郵件地址無效</value>
+  </data>
+  <data name="EmailAddressIsRequired" xml:space="preserve">
+    <value>請填寫電郵地址</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="EnglishEU" xml:space="preserve">
+    <value>English_Euro</value>
+  </data>
+  <data name="EnglishSupport" xml:space="preserve">
+    <value>英文</value>
+  </data>
+  <data name="Eritrea" xml:space="preserve">
+    <value>厄利垂亞</value>
+  </data>
+  <data name="Err1" xml:space="preserve">
+    <value>折扣不正確.</value>
+  </data>
+  <data name="Err100" xml:space="preserve">
+    <value>非常抱歉，無法設立代理人</value>
+  </data>
+  <data name="Err1001" xml:space="preserve">
+    <value>無效合作信息</value>
+  </data>
+  <data name="Err1002" xml:space="preserve">
+    <value>您輸入的電郵地址已被使用，請選擇另外一個！</value>
+  </data>
+  <data name="Err1003" xml:space="preserve">
+    <value>12BET用戶名無效</value>
+  </data>
+  <data name="Err1004" xml:space="preserve">
+    <value>用戶信息無效。更新處理失敗。</value>
+  </data>
+  <data name="Err1005" xml:space="preserve">
+    <value>出現錯誤。更新處理失敗</value>
+  </data>
+  <data name="Err1006" xml:space="preserve">
+    <value>出現錯誤。更新處理失敗</value>
+  </data>
+  <data name="Err101" xml:space="preserve">
+    <value>此用戶名不可用</value>
+  </data>
+  <data name="Err102" xml:space="preserve">
+    <value>佔成數不正確(超級總代理設給總代理最高佔成).</value>
+  </data>
+  <data name="Err103" xml:space="preserve">
+    <value>非常抱歉，最小投注額必須小於最大投注額，最大投注額必須小於單場最大投注額</value>
+  </data>
+  <data name="Err104" xml:space="preserve">
+    <value>非常抱歉，信用額度更新失敗，您已經超出您的原始信用額度</value>
+  </data>
+  <data name="Err105" xml:space="preserve">
+    <value>非常抱歉，最小投注額必須等於或大於主代理的最小投注額</value>
+  </data>
+  <data name="Err107" xml:space="preserve">
+    <value>非常抱歉，單場最大投注額必須等於或小於主代理的單場最大投注額</value>
+  </data>
+  <data name="Err111" xml:space="preserve">
+    <value>客戶設立失敗。請重試</value>
+  </data>
+  <data name="Err113" xml:space="preserve">
+    <value>客戶設立失敗。請重試</value>
+  </data>
+  <data name="Err114" xml:space="preserve">
+    <value>客戶設立失敗。請重試</value>
+  </data>
+  <data name="Err115" xml:space="preserve">
+    <value>客戶設立失敗。請重試</value>
+  </data>
+  <data name="Err116" xml:space="preserve">
+    <value>您無權建立/編輯此信息。</value>
+  </data>
+  <data name="Err2" xml:space="preserve">
+    <value>錯誤的最小投注/最大投注/單場最大投注/信用額度/主代理名稱/用戶群</value>
+  </data>
+  <data name="Err3" xml:space="preserve">
+    <value>佔成數不正確.</value>
+  </data>
+  <data name="Err3001" xml:space="preserve">
+    <value>你有一項申請在“待處理”狀態，要設置一項新要求，請先取消這暫停而未完成的操作，或等待這次操作完成為止。</value>
+  </data>
+  <data name="Err3002" xml:space="preserve">
+    <value>無效Role ID。</value>
+  </data>
+  <data name="Err3003" xml:space="preserve">
+    <value>非常抱歉，此代理人沒有足夠金額進行提款。</value>
+  </data>
+  <data name="Err3004" xml:space="preserve">
+    <value>賬號餘額無效或者不支持此幣種或支付方式。</value>
+  </data>
+  <data name="Err3006" xml:space="preserve">
+    <value>插入交易失敗</value>
+  </data>
+  <data name="Err4" xml:space="preserve">
+    <value>佔成數不正確(公司設給最低/高佔成).</value>
+  </data>
+  <data name="Err4001" xml:space="preserve">
+    <value>CustID無效。</value>
+  </data>
+  <data name="Err4002" xml:space="preserve">
+    <value>此交易非提款操作。</value>
+  </data>
+  <data name="Err4003" xml:space="preserve">
+    <value>此交易已被取消。</value>
+  </data>
+  <data name="Err4004" xml:space="preserve">
+    <value>賬號餘額無效或者不支持此幣種。</value>
+  </data>
+  <data name="Err4005" xml:space="preserve">
+    <value>此交易已被取消。</value>
+  </data>
+  <data name="Err5" xml:space="preserve">
+    <value>佔成數不正確(公司設給最高佔成).</value>
+  </data>
+  <data name="Err999" xml:space="preserve">
+    <value>建立合作信息失败，请重试。</value>
+  </data>
+  <data name="ErrAuthorized" xml:space="preserve">
+    <value>您无权进行此操作</value>
+  </data>
+  <data name="errContactNumberEmpty" xml:space="preserve">
+    <value>联络电话号码 未輸入請確認!</value>
+  </data>
+  <data name="ErrDefault" xml:space="preserve">
+    <value>未知錯誤！</value>
+  </data>
+  <data name="errDepositDBConnectFailed" xml:space="preserve">
+    <value>提取壹貳博玩家信息時顯示錯誤。請聯絡管理員。</value>
+  </data>
+  <data name="ErrEmailInvalid" xml:space="preserve">
+    <value>電子郵件地址-無效</value>
+  </data>
+  <data name="ErrEmailRequire" xml:space="preserve">
+    <value>電子郵件地址-必需</value>
+  </data>
+  <data name="errExistAccount" xml:space="preserve">
+    <value>用戶已經擁有IBC帳號</value>
+  </data>
+  <data name="ErrGender" xml:space="preserve">
+    <value>性別 未輸入請確認!</value>
+  </data>
+  <data name="errMobileNumberEmpty" xml:space="preserve">
+    <value>請填寫正確QQ號碼</value>
+  </data>
+  <data name="ErrmsgEntryPassword" xml:space="preserve">
+    <value>請輸入密碼</value>
+  </data>
+  <data name="ErrmsgEntryUsername" xml:space="preserve">
+    <value>請輸入用戶名</value>
+  </data>
+  <data name="ErrmsgEntryValidCode" xml:space="preserve">
+    <value>請輸入驗證碼</value>
+  </data>
+  <data name="ErrMsgForgetPwFail" xml:space="preserve">
+    <value>      
+      重新設定密碼信息錯誤，請&lt;a href='ForgetPass.aspx'&gt;重試&lt;/a&gt;。  如您仍不能重新設定您的密碼，請&lt;a href='ContactUs.aspx'&gt;聯繫我們&lt;/a&gt;。
+    </value>
+  </data>
+  <data name="ErrPaymentMethod" xml:space="preserve">
+    <value>非常抱歉，{method}支付方式暫不可用。&lt;a href='MyAccount.aspx?ispay=1#payment'&gt;請點擊這裡&lt;/a&gt;改選“12BET玩家帳戶”支付。</value>
+  </data>
+  <data name="errSecQuestionEmpty" xml:space="preserve">
+    <value>安全提問 未輸入請確認!</value>
+  </data>
+  <data name="errUserNotFound" xml:space="preserve">
+    <value>無法查找用戶</value>
+  </data>
+  <data name="errYourAnswer" xml:space="preserve">
+    <value>答案 未輸入請確認!</value>
+  </data>
+  <data name="Estonia" xml:space="preserve">
+    <value>愛沙尼亞</value>
+  </data>
+  <data name="Ethiopia" xml:space="preserve">
+    <value>衣索比亞</value>
+  </data>
+  <data name="EUR" xml:space="preserve">
+    <value>欧元</value>
+  </data>
+  <data name="Faqs" xml:space="preserve">
+    <value>常見問題</value>
+  </data>
+  <data name="FDM" xml:space="preserve">
+    <value>FDM</value>
+  </data>
+  <data name="February" xml:space="preserve">
+    <value>二月</value>
+  </data>
+  <data name="Female" xml:space="preserve">
+    <value>女</value>
+  </data>
+  <data name="Fiji" xml:space="preserve">
+    <value>斐濟</value>
+  </data>
+  <data name="Finland" xml:space="preserve">
+    <value>芬蘭</value>
+  </data>
+  <data name="FirstNameIsRequired" xml:space="preserve">
+    <value>請填寫您的名</value>
+  </data>
+  <data name="Flash" xml:space="preserve">
+    <value>動畫</value>
+  </data>
+  <data name="FName" xml:space="preserve">
+    <value>名字</value>
+  </data>
+  <data name="Football" xml:space="preserve">
+    <value>足球</value>
+  </data>
+  <data name="For" xml:space="preserve">
+    <value>為了</value>
+  </data>
+  <data name="Foranyreasonyou" xml:space="preserve">
+    <value>如果您沒有收到電郵，無論原因如何，請您及時聯繫我們，我們很如果您沒有收到電郵，無論原因如何，&lt;a href="{0}"&gt; 請您及時聯繫我們&lt;/a&gt;，我們很樂意為您提供協助</value>
+  </data>
+  <data name="ForgetPassword" xml:space="preserve">
+    <value>忘記密碼？</value>
+  </data>
+  <data name="France" xml:space="preserve">
+    <value>法國</value>
+  </data>
+  <data name="FrenchPolynesia" xml:space="preserve">
+    <value>法屬玻里尼西亞</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>從</value>
+  </data>
+  <data name="Gabon" xml:space="preserve">
+    <value>加彭</value>
+  </data>
+  <data name="GBP" xml:space="preserve">
+    <value>英镑</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>性別</value>
+  </data>
+  <data name="GenerateLink" xml:space="preserve">
+    <value>启用新链接</value>
+  </data>
+  <data name="Georgia" xml:space="preserve">
+    <value>格魯吉亞</value>
+  </data>
+  <data name="Germany" xml:space="preserve">
+    <value>德國</value>
+  </data>
+  <data name="Ghana" xml:space="preserve">
+    <value>加納</value>
+  </data>
+  <data name="Gibraltar" xml:space="preserve">
+    <value>直布羅陀</value>
+  </data>
+  <data name="Greece" xml:space="preserve">
+    <value>希臘</value>
+  </data>
+  <data name="Grenada" xml:space="preserve">
+    <value>格瑞那達</value>
+  </data>
+  <data name="Guatemala" xml:space="preserve">
+    <value>瓜地馬拉</value>
+  </data>
+  <data name="Guinea" xml:space="preserve">
+    <value>幾內亞</value>
+  </data>
+  <data name="Guyana" xml:space="preserve">
+    <value>蓋亞那</value>
+  </data>
+  <data name="Haiti" xml:space="preserve">
+    <value>海地</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>首頁</value>
+  </data>
+  <data name="Honduras" xml:space="preserve">
+    <value>洪都拉斯</value>
+  </data>
+  <data name="HongKong" xml:space="preserve">
+    <value>香港</value>
+  </data>
+  <data name="HotNews" xml:space="preserve">
+    <value>最新消息</value>
+  </data>
+  <data name="HtmlFormat" xml:space="preserve">
+    <value>Html格式</value>
+  </data>
+  <data name="Hungary" xml:space="preserve">
+    <value>匈牙利</value>
+  </data>
+  <data name="IagreetotheTerm" xml:space="preserve">
+    <value>我同意12BET合作夥伴的規則與條款</value>
+  </data>
+  <data name="Iceland" xml:space="preserve">
+    <value>冰島</value>
+  </data>
+  <data name="ID" xml:space="preserve">
+    <value>代碼</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>圖像</value>
+  </data>
+  <data name="ImageType" xml:space="preserve">
+    <value>形式</value>
+  </data>
+  <data name="Important" xml:space="preserve">
+    <value>重要</value>
+  </data>
+  <data name="India" xml:space="preserve">
+    <value>印度</value>
+  </data>
+  <data name="Indonesia" xml:space="preserve">
+    <value>印尼</value>
+  </data>
+  <data name="Indonesian" xml:space="preserve">
+    <value>Indonesian</value>
+  </data>
+  <data name="IP" xml:space="preserve">
+    <value>IP</value>
+  </data>
+  <data name="Iran" xml:space="preserve">
+    <value>伊朗</value>
+  </data>
+  <data name="Iraq" xml:space="preserve">
+    <value>伊拉克</value>
+  </data>
+  <data name="Ireland" xml:space="preserve">
+    <value>愛爾蘭</value>
+  </data>
+  <data name="Israel" xml:space="preserve">
+    <value>以色列</value>
+  </data>
+  <data name="IsRequired" xml:space="preserve">
+    <value>被必需的</value>
+  </data>
+  <data name="Italy" xml:space="preserve">
+    <value>意大利</value>
+  </data>
+  <data name="Jamaica" xml:space="preserve">
+    <value>牙買加</value>
+  </data>
+  <data name="January" xml:space="preserve">
+    <value>一月</value>
+  </data>
+  <data name="Japan" xml:space="preserve">
+    <value>日本</value>
+  </data>
+  <data name="Japanese" xml:space="preserve">
+    <value>日本</value>
+  </data>
+  <data name="Jordan" xml:space="preserve">
+    <value>約旦</value>
+  </data>
+  <data name="July" xml:space="preserve">
+    <value>七月</value>
+  </data>
+  <data name="June" xml:space="preserve">
+    <value>六月</value>
+  </data>
+  <data name="Kenya" xml:space="preserve">
+    <value>肯亞</value>
+  </data>
+  <data name="Korean" xml:space="preserve">
+    <value>한국어</value>
+  </data>
+  <data name="KoreaRep" xml:space="preserve">
+    <value>韓國</value>
+  </data>
+  <data name="Kuwait" xml:space="preserve">
+    <value>科威特</value>
+  </data>
+  <data name="LandingPages" xml:space="preserve">
+    <value>登陸頁面統計</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>語言</value>
+  </data>
+  <data name="LaoPeoplesDemRep" xml:space="preserve">
+    <value>寮国人民民主共和国</value>
+  </data>
+  <data name="Last6Month" xml:space="preserve">
+    <value>對上六個月的收入</value>
+  </data>
+  <data name="LastNameIsRequired" xml:space="preserve">
+    <value>請填寫您的姓</value>
+  </data>
+  <data name="Latvia" xml:space="preserve">
+    <value>拉脫維亞</value>
+  </data>
+  <data name="lblSecureQuestion" xml:space="preserve">
+    <value>安全提問</value>
+  </data>
+  <data name="lblYourAnswer" xml:space="preserve">
+    <value>答案</value>
+  </data>
+  <data name="Lesotho" xml:space="preserve">
+    <value>賴索托</value>
+  </data>
+  <data name="Liechtenstein" xml:space="preserve">
+    <value>列支敦士登</value>
+  </data>
+  <data name="LinkTo" xml:space="preserve">
+    <value>鏈接</value>
+  </data>
+  <data name="Lithuania" xml:space="preserve">
+    <value>立陶宛</value>
+  </data>
+  <data name="LName" xml:space="preserve">
+    <value>姓氏</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>登入</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>登出</value>
+  </data>
+  <data name="Luxembourg" xml:space="preserve">
+    <value>盧森堡</value>
+  </data>
+  <data name="Macao" xml:space="preserve">
+    <value>澳門</value>
+  </data>
+  <data name="Macedonia" xml:space="preserve">
+    <value>馬其頓</value>
+  </data>
+  <data name="Madagascar" xml:space="preserve">
+    <value>馬達加斯加</value>
+  </data>
+  <data name="MailingInfor" xml:space="preserve">
+    <value>郵遞資料</value>
+  </data>
+  <data name="Malawi" xml:space="preserve">
+    <value>馬拉威</value>
+  </data>
+  <data name="Malaysia" xml:space="preserve">
+    <value>馬來西亞</value>
+  </data>
+  <data name="Maldives" xml:space="preserve">
+    <value>馬爾地夫</value>
+  </data>
+  <data name="Male" xml:space="preserve">
+    <value>男</value>
+  </data>
+  <data name="Mali" xml:space="preserve">
+    <value>馬里</value>
+  </data>
+  <data name="Malta" xml:space="preserve">
+    <value>馬爾他</value>
+  </data>
+  <data name="March" xml:space="preserve">
+    <value>三月</value>
+  </data>
+  <data name="Mauritania" xml:space="preserve">
+    <value>茅利塔尼亞</value>
+  </data>
+  <data name="Mauritius" xml:space="preserve">
+    <value>模里西斯</value>
+  </data>
+  <data name="May" xml:space="preserve">
+    <value>五月</value>
+  </data>
+  <data name="Media" xml:space="preserve">
+    <value>媒體冊</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>訊息</value>
+  </data>
+  <data name="MessageHistory" xml:space="preserve">
+    <value>最新消息</value>
+  </data>
+  <data name="MessageSentReview" xml:space="preserve">
+    <value>
+        感謝您與我們聯繫 {br}
+        您的信息已經發送。我們將盡快答复您的申請。{br}
+        如有任何問題，歡迎隨時致電1-34354-3454 {br}{br}
+        祝您好運！ {br}{br}
+        致以敬意， {br}{br}
+        12BET合作夥伴團隊
+    </value>
+  </data>
+  <data name="Mexico" xml:space="preserve">
+    <value>墨西哥</value>
+  </data>
+  <data name="MinAmt_explain" xml:space="preserve">
+    <value>最低總會員淨輸金額</value>
+  </data>
+  <data name="MinQM_explain" xml:space="preserve">
+    <value>最少合格會員人數</value>
+  </data>
+  <data name="MinWithdraw" xml:space="preserve">
+    <value>最低提款金額為</value>
+  </data>
+  <data name="Mobile" xml:space="preserve">
+    <value>QQ</value>
+  </data>
+  <data name="Moldova" xml:space="preserve">
+    <value>摩爾多瓦</value>
+  </data>
+  <data name="MoneyBooker" xml:space="preserve">
+    <value>Moneybookers</value>
+  </data>
+  <data name="MoneybookersEma" xml:space="preserve">
+    <value>Moneybookers電子郵件地址無效</value>
+  </data>
+  <data name="Mongolia" xml:space="preserve">
+    <value>蒙古</value>
+  </data>
+  <data name="Month" xml:space="preserve">
+    <value>月</value>
+  </data>
+  <data name="MonthlyWinlost" xml:space="preserve">
+    <value>每月盈利</value>
+  </data>
+  <data name="Morocco" xml:space="preserve">
+    <value>摩洛哥</value>
+  </data>
+  <data name="Msgkickout" xml:space="preserve">
+    <value>您的帳戶已在別處登錄或此次登錄已超時，被迫登出！</value>
+  </data>
+  <data name="MyAcc" xml:space="preserve">
+    <value>我的帳戶</value>
+  </data>
+  <data name="Myanmar" xml:space="preserve">
+    <value>緬甸</value>
+  </data>
+  <data name="MYR" xml:space="preserve">
+    <value>马币</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>姓名</value>
+  </data>
+  <data name="NameIsInvalid" xml:space="preserve">
+    <value>姓名無效</value>
+  </data>
+  <data name="Namibia" xml:space="preserve">
+    <value>納米比亞</value>
+  </data>
+  <data name="Nauru" xml:space="preserve">
+    <value>諾魯</value>
+  </data>
+  <data name="Nepal" xml:space="preserve">
+    <value>尼泊爾</value>
+  </data>
+  <data name="NetellerAccount" xml:space="preserve">
+    <value>請填寫Neteller帳戶號碼</value>
+  </data>
+  <data name="Netherlands" xml:space="preserve">
+    <value>荷蘭</value>
+  </data>
+  <data name="NetWinLoss" xml:space="preserve">
+    <value>每月盈虧總額 (CNW)($)</value>
+  </data>
+  <data name="NewCaledonia" xml:space="preserve">
+    <value>新喀里多尼亞</value>
+  </data>
+  <data name="NewPass" xml:space="preserve">
+    <value>新密碼</value>
+  </data>
+  <data name="NewPasswordisre" xml:space="preserve">
+    <value>請填寫新密碼</value>
+  </data>
+  <data name="NewSignup" xml:space="preserve">
+    <value>新的註冊</value>
+  </data>
+  <data name="NewTrackingCode" xml:space="preserve">
+    <value>新增</value>
+  </data>
+  <data name="NewZealand" xml:space="preserve">
+    <value>紐西蘭</value>
+  </data>
+  <data name="Niger" xml:space="preserve">
+    <value>尼日</value>
+  </data>
+  <data name="Nigeria" xml:space="preserve">
+    <value>尼日利亞</value>
+  </data>
+  <data name="NoInfo" xml:space="preserve">
+    <value>沒有任何資料</value>
+  </data>
+  <data name="NonDeposit" xml:space="preserve">
+    <value>僅未存款賬戶</value>
+  </data>
+  <data name="none" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="Normal" xml:space="preserve">
+    <value>普通</value>
+  </data>
+  <data name="Norway" xml:space="preserve">
+    <value>挪威</value>
+  </data>
+  <data name="November" xml:space="preserve">
+    <value>十一月</value>
+  </data>
+  <data name="NoWebsite" xml:space="preserve">
+    <value>我沒有網站</value>
+  </data>
+  <data name="NumberGame" xml:space="preserve">
+    <value>百練賽</value>
+  </data>
+  <data name="October" xml:space="preserve">
+    <value>十月</value>
+  </data>
+  <data name="Of" xml:space="preserve">
+    <value>的</value>
+  </data>
+  <data name="OldPass" xml:space="preserve">
+    <value>舊密碼</value>
+  </data>
+  <data name="OldPassandNewPass" xml:space="preserve">
+    <value>請填寫舊密碼和新密碼</value>
+  </data>
+  <data name="OldPassErr" xml:space="preserve">
+    <value>舊密碼錯誤</value>
+  </data>
+  <data name="OldPasswordisre" xml:space="preserve">
+    <value>請填寫舊密碼</value>
+  </data>
+  <data name="Oman" xml:space="preserve">
+    <value>阿曼</value>
+  </data>
+  <data name="OwnWebsite" xml:space="preserve">
+    <value>我有網站</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>頁</value>
+  </data>
+  <data name="PageSize" xml:space="preserve">
+    <value>Page Size</value>
+  </data>
+  <data name="Pakistan" xml:space="preserve">
+    <value>巴基斯坦</value>
+  </data>
+  <data name="Panama" xml:space="preserve">
+    <value>巴拿馬</value>
+  </data>
+  <data name="PapuaNewGuinea" xml:space="preserve">
+    <value>巴布亞紐幾內亞</value>
+  </data>
+  <data name="Paraguay" xml:space="preserve">
+    <value>巴拉圭</value>
+  </data>
+  <data name="PassCheck" xml:space="preserve">
+    <value>密碼必須至少要有６個字符組成，包含最少2個字母和2個以上數字（例如：pass22）</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>密碼</value>
+  </data>
+  <data name="Passwordchanged" xml:space="preserve">
+    <value>更改密碼成功</value>
+  </data>
+  <data name="PaymentErr1001" xml:space="preserve">
+    <value>非常抱歉，數額無效。</value>
+  </data>
+  <data name="PaymentErr1002" xml:space="preserve">
+    <value>無效Role ID。</value>
+  </data>
+  <data name="PaymentErr1003" xml:space="preserve">
+    <value>非常抱歉，此代理人沒有足夠金額進行提款。</value>
+  </data>
+  <data name="PaymentErr1004" xml:space="preserve">
+    <value>賬號餘額無效或者不支持此幣種或支付方式。</value>
+  </data>
+  <data name="PaymentErr1006" xml:space="preserve">
+    <value>插入交易失敗。</value>
+  </data>
+  <data name="PaymentErr1007" xml:space="preserve">
+    <value>插入交易失敗</value>
+  </data>
+  <data name="PaymentInfor" xml:space="preserve">
+    <value>付款資料</value>
+  </data>
+  <data name="PaymentMethod" xml:space="preserve">
+    <value>付款方式 </value>
+  </data>
+  <data name="PaymentRequest" xml:space="preserve">
+    <value>提款要求</value>
+  </data>
+  <data name="PayoutSuccess" xml:space="preserve">
+    <value>您的支付申請已經成功提交！</value>
+  </data>
+  <data name="PayoutTime" xml:space="preserve">
+    <value>每月8號至15號為申請提款時間.</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>等待</value>
+  </data>
+  <data name="PendingComm" xml:space="preserve">
+    <value>等待佣金</value>
+  </data>
+  <data name="PendingRequest" xml:space="preserve">
+    <value>待處理申請</value>
+  </data>
+  <data name="Peru" xml:space="preserve">
+    <value>秘魯</value>
+  </data>
+  <data name="Philippines" xml:space="preserve">
+    <value>菲律賓</value>
+  </data>
+  <data name="PlainText" xml:space="preserve">
+    <value>純文本</value>
+  </data>
+  <data name="Pleasecheckyour" xml:space="preserve">
+    <value>請您登錄您的電子郵箱查找您的用戶名以及密碼等信息。</value>
+  </data>
+  <data name="Poker" xml:space="preserve">
+    <value>撲克</value>
+  </data>
+  <data name="Poland" xml:space="preserve">
+    <value>波蘭</value>
+  </data>
+  <data name="Portugal" xml:space="preserve">
+    <value>葡萄牙</value>
+  </data>
+  <data name="PostCode" xml:space="preserve">
+    <value>郵編</value>
+  </data>
+  <data name="PostcodeZiIsRequired" xml:space="preserve">
+    <value>請填寫郵編</value>
+  </data>
+  <data name="PostDate" xml:space="preserve">
+    <value>增加日期</value>
+  </data>
+  <data name="Preference" xml:space="preserve">
+    <value>首選</value>
+  </data>
+  <data name="PreferLang" xml:space="preserve">
+    <value>首選</value>
+  </data>
+  <data name="PreferLangErr" xml:space="preserve">
+    <value>請選擇語言</value>
+  </data>
+  <data name="Proccessing" xml:space="preserve">
+    <value> 處理中 </value>
+  </data>
+  <data name="ProgDetails" xml:space="preserve">
+    <value>計劃詳情</value>
+  </data>
+  <data name="PSP" xml:space="preserve">
+    <value>PSP</value>
+  </data>
+  <data name="PwdChanged" xml:space="preserve">
+    <value>更改密碼成功</value>
+  </data>
+  <data name="Qatar" xml:space="preserve">
+    <value>卡塔爾</value>
+  </data>
+  <data name="QualifyingMem" xml:space="preserve">
+    <value>合格會員數</value>
+  </data>
+  <data name="Racebook" xml:space="preserve">
+    <value>賽馬</value>
+  </data>
+  <data name="RecentPayment" xml:space="preserve">
+    <value>最近付款 </value>
+  </data>
+  <data name="ReEmail" xml:space="preserve">
+    <value>確認電子郵箱地址</value>
+  </data>
+  <data name="ReenterNewPassw" xml:space="preserve">
+    <value>您再次填寫的新密碼無效</value>
+  </data>
+  <data name="Referrals" xml:space="preserve">
+    <value>推介流量統計</value>
+  </data>
+  <data name="RefNo" xml:space="preserve">
+    <value>訂單號碼</value>
+  </data>
+  <data name="RegisForm" xml:space="preserve">
+    <value>申請表格</value>
+  </data>
+  <data name="RegisSubject" xml:space="preserve">
+    <value>12BET合作夥伴-您的申請</value>
+  </data>
+  <data name="RegisSuccess" xml:space="preserve">
+    <value>
+			感謝您提交申請。&lt;br /&gt;&lt;br /&gt;
+			我們12Bet合作夥伴團隊將會就您的網站和申請詳情進行審核，以確認相關內容是否適合推廣我們的產品。&lt;br /&gt;&lt;br /&gt;
+			我們將在5天內回复您的申請。一旦您的申請被核准，您將立即獲得全權參與進入我們的合作夥伴項目。&lt;br /&gt;&lt;br /&gt;
+			致以敬意，&lt;br /&gt;&lt;br /&gt;
+			12Bet合作夥伴團隊
+	</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>拒絕</value>
+  </data>
+  <data name="RePass" xml:space="preserve">
+    <value>再次輸入新密碼</value>
+  </data>
+  <data name="RequestAmount" xml:space="preserve">
+    <value>提款金額</value>
+  </data>
+  <data name="RequestAmt" xml:space="preserve">
+    <value>輸入要求的金額 ($美金)</value>
+  </data>
+  <data name="RequestPayout" xml:space="preserve">
+    <value>要求提款 </value>
+  </data>
+  <data name="RequestPayoutSucc" xml:space="preserve">
+    <value>提款成功!</value>
+  </data>
+  <data name="RequireInfo" xml:space="preserve">
+    <value>有&lt;font color="red"&gt;*&lt;/font&gt;標記的欄目為必填選項</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>重設</value>
+  </data>
+  <data name="RMB" xml:space="preserve">
+    <value>人民币</value>
+  </data>
+  <data name="Romania" xml:space="preserve">
+    <value>羅馬尼亞</value>
+  </data>
+  <data name="Roulette" xml:space="preserve">
+    <value>輪盤</value>
+  </data>
+  <data name="RussianFederation" xml:space="preserve">
+    <value>俄羅斯</value>
+  </data>
+  <data name="Rwanda" xml:space="preserve">
+    <value>盧安達</value>
+  </data>
+  <data name="SaintChristopherStKittsandNevis" xml:space="preserve">
+    <value>聖克里斯多福及尼維斯</value>
+  </data>
+  <data name="SaintLucia" xml:space="preserve">
+    <value>聖露西亞</value>
+  </data>
+  <data name="SaintVincentandtheGrenadines" xml:space="preserve">
+    <value>聖文森及格瑞那丁</value>
+  </data>
+  <data name="SaoTomeandPrincipe" xml:space="preserve">
+    <value>聖多美及普林西比</value>
+  </data>
+  <data name="SaudiArabia" xml:space="preserve">
+    <value>沙地阿拉伯</value>
+  </data>
+  <data name="SBBonus" xml:space="preserve">
+    <value>體育紅利</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>搜索</value>
+  </data>
+  <data name="SecurityQuestionUpdated" xml:space="preserve">
+    <value>安全問答設置成功！</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="SelectOne" xml:space="preserve">
+    <value>請選擇</value>
+  </data>
+  <data name="Senegal" xml:space="preserve">
+    <value>塞內加爾</value>
+  </data>
+  <data name="September" xml:space="preserve">
+    <value>九月</value>
+  </data>
+  <data name="Seychelles" xml:space="preserve">
+    <value>塞席爾</value>
+  </data>
+  <data name="Sicbo" xml:space="preserve">
+    <value>骰寶</value>
+  </data>
+  <data name="SierraLeone" xml:space="preserve">
+    <value>獅子山</value>
+  </data>
+  <data name="SignUp" xml:space="preserve">
+    <value>註冊</value>
+  </data>
+  <data name="Singapore" xml:space="preserve">
+    <value>新加坡</value>
+  </data>
+  <data name="SiteInfor" xml:space="preserve">
+    <value>網站資料</value>
+  </data>
+  <data name="SiteUrl" xml:space="preserve">
+    <value>網站鏈接</value>
+  </data>
+  <data name="Size" xml:space="preserve">
+    <value>尺寸</value>
+  </data>
+  <data name="Slot" xml:space="preserve">
+    <value>考慮機</value>
+  </data>
+  <data name="Slovakia" xml:space="preserve">
+    <value>斯洛伐克</value>
+  </data>
+  <data name="Slovenia" xml:space="preserve">
+    <value>斯洛文尼亞</value>
+  </data>
+  <data name="Soccer" xml:space="preserve">
+    <value>足球</value>
+  </data>
+  <data name="SolomonIslands" xml:space="preserve">
+    <value>索羅門群島</value>
+  </data>
+  <data name="Somalia" xml:space="preserve">
+    <value>索馬利亞</value>
+  </data>
+  <data name="SouthAfrica" xml:space="preserve">
+    <value>南非</value>
+  </data>
+  <data name="Spain" xml:space="preserve">
+    <value>西班牙</value>
+  </data>
+  <data name="Spanish" xml:space="preserve">
+    <value>Español</value>
+  </data>
+  <data name="Sport" xml:space="preserve">
+    <value>體育</value>
+  </data>
+  <data name="Sportbook" xml:space="preserve">
+    <value>體育博彩</value>
+  </data>
+  <data name="SportType" xml:space="preserve">
+    <value>体育类型</value>
+  </data>
+  <data name="SriLanka" xml:space="preserve">
+    <value>斯里蘭卡</value>
+  </data>
+  <data name="State" xml:space="preserve">
+    <value>省(州)</value>
+  </data>
+  <data name="StateIsRequired" xml:space="preserve">
+    <value>請填寫省/州</value>
+  </data>
+  <data name="StatementHistory" xml:space="preserve">
+    <value>歷史賬目</value>
+  </data>
+  <data name="Statistic" xml:space="preserve">
+    <value>統計</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>狀態</value>
+  </data>
+  <data name="Subject" xml:space="preserve">
+    <value>主旨</value>
+  </data>
+  <data name="SubjectForgetPass" xml:space="preserve">
+    <value>12BET合作夥伴—您的登錄詳情</value>
+  </data>
+  <data name="SubjectIsInvalid" xml:space="preserve">
+    <value>主題無效</value>
+  </data>
+  <data name="SubjectNewPass" xml:space="preserve">
+    <value>12BET合作夥伴—您的新密碼</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>提交</value>
+  </data>
+  <data name="Sudan" xml:space="preserve">
+    <value>蘇丹</value>
+  </data>
+  <data name="Suriname" xml:space="preserve">
+    <value>蘇利南</value>
+  </data>
+  <data name="Swaziland" xml:space="preserve">
+    <value>史瓦濟蘭</value>
+  </data>
+  <data name="Sweden" xml:space="preserve">
+    <value>瑞典</value>
+  </data>
+  <data name="Switzerland" xml:space="preserve">
+    <value>瑞士</value>
+  </data>
+  <data name="SystemParlayDetailNote" xml:space="preserve">
+    <value>盈虧金額計算四捨五入僅供參考，當總計所有實際損失金額時，小計金額可能與盈虧總和有差異。</value>
+    <comment>78976</comment>
+  </data>
+  <data name="Taiwan" xml:space="preserve">
+    <value>台灣</value>
+  </data>
+  <data name="Tanzania" xml:space="preserve">
+    <value>坦尚尼亞</value>
+  </data>
+  <data name="Tennis" xml:space="preserve">
+    <value>網球</value>
+  </data>
+  <data name="TermCondition" xml:space="preserve">
+    <value>條款及規則</value>
+  </data>
+  <data name="TermErr" xml:space="preserve">
+    <value>沒有同意條款及規則，請查看！</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>文本冊</value>
+  </data>
+  <data name="TextLink" xml:space="preserve">
+    <value>文本鏈接</value>
+  </data>
+  <data name="Thai" xml:space="preserve">
+    <value>ภาษาไทย</value>
+  </data>
+  <data name="Thailand" xml:space="preserve">
+    <value>泰國</value>
+  </data>
+  <data name="THB" xml:space="preserve">
+    <value>泰珠</value>
+  </data>
+  <data name="Thisisasystemau" xml:space="preserve">
+    <value>這是一封由系統自動發送的電子郵件，請勿直接回复此電子郵件。</value>
+  </data>
+  <data name="Tier" xml:space="preserve">
+    <value>等級</value>
+  </data>
+  <data name="TitelForgetPass" xml:space="preserve">
+    <value>新的密碼會發到您提供的註冊郵箱。&lt;br /&gt;若您遇到任何困難，請 &lt;a href="{0}"&gt;聯絡我們。&lt;/a&gt;.</value>
+  </data>
+  <data name="TitleLogin" xml:space="preserve">
+    <value>合作夥伴登入</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>到</value>
+  </data>
+  <data name="Togo" xml:space="preserve">
+    <value>多哥</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>總數</value>
+  </data>
+  <data name="TotalActive" xml:space="preserve">
+    <value>活躍玩家總數</value>
+  </data>
+  <data name="TotalClick" xml:space="preserve">
+    <value>总点击量</value>
+  </data>
+  <data name="TotalDeposit" xml:space="preserve">
+    <value>存款總額</value>
+  </data>
+  <data name="TotalPlay" xml:space="preserve">
+    <value>玩家總數</value>
+  </data>
+  <data name="TotalQualifiedMembers" xml:space="preserve">
+    <value>總計活躍合格會員</value>
+  </data>
+  <data name="Tqacsbc" xml:space="preserve">
+    <value>總計活躍合格會員</value>
+  </data>
+  <data name="TrackingCode" xml:space="preserve">
+    <value>追踪代码</value>
+  </data>
+  <data name="TrackingStatistics" xml:space="preserve">
+    <value>追踪统计</value>
+  </data>
+  <data name="Transaction" xml:space="preserve">
+    <value>交易</value>
+  </data>
+  <data name="TrinidadandTobago" xml:space="preserve">
+    <value>千里達及多巴哥</value>
+  </data>
+  <data name="Tunisia" xml:space="preserve">
+    <value>突尼西亞</value>
+  </data>
+  <data name="Turkey" xml:space="preserve">
+    <value>土耳其</value>
+  </data>
+  <data name="Turnover" xml:space="preserve">
+    <value>投注額</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>形式</value>
+  </data>
+  <data name="Uganda" xml:space="preserve">
+    <value>烏干達</value>
+  </data>
+  <data name="Ukraine" xml:space="preserve">
+    <value>烏克蘭</value>
+  </data>
+  <data name="UnderReview" xml:space="preserve">
+    <value>申請在審核中</value>
+  </data>
+  <data name="UniqueClick" xml:space="preserve">
+    <value>有效点击量</value>
+  </data>
+  <data name="UnitedArabEmirates" xml:space="preserve">
+    <value>阿拉伯聯合大公國</value>
+  </data>
+  <data name="UnitedKingdomofGreatBritainandNorthernIreland" xml:space="preserve">
+    <value>英國</value>
+  </data>
+  <data name="UnitedStatesofAmerica" xml:space="preserve">
+    <value>美國</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>未知</value>
+  </data>
+  <data name="UpdateAccSuccess" xml:space="preserve">
+    <value> 您的帳戶資料已成功更新</value>
+  </data>
+  <data name="UpdateSecurityQuestion" xml:space="preserve">
+    <value>補設安全提問</value>
+  </data>
+  <data name="UpToNow" xml:space="preserve">
+    <value>到目前為止</value>
+  </data>
+  <data name="Uruguay" xml:space="preserve">
+    <value>烏拉圭</value>
+  </data>
+  <data name="USD" xml:space="preserve">
+    <value>美元</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>用戶名</value>
+  </data>
+  <data name="Validation" xml:space="preserve">
+    <value>驗證碼</value>
+  </data>
+  <data name="ValidationCode" xml:space="preserve">
+    <value>驗證碼無效！</value>
+  </data>
+  <data name="Venezuela" xml:space="preserve">
+    <value>委內瑞拉</value>
+  </data>
+  <data name="VietNam" xml:space="preserve">
+    <value>越南</value>
+  </data>
+  <data name="Vietnamese" xml:space="preserve">
+    <value>Tiếng Việt</value>
+  </data>
+  <data name="WebsiteInformat" xml:space="preserve">
+    <value>網站資料</value>
+  </data>
+  <data name="WebsiteURL" xml:space="preserve">
+    <value>網站鏈接</value>
+  </data>
+  <data name="WebsiteUrli" xml:space="preserve">
+    <value>請輸入網站鏈接{i}</value>
+  </data>
+  <data name="WebsiteURLIsRequired" xml:space="preserve">
+    <value>請填寫網站鏈接地址</value>
+  </data>
+  <data name="WesternSamoa" xml:space="preserve">
+    <value>西薩摩亞</value>
+  </data>
+  <data name="Winlost" xml:space="preserve">
+    <value>輸贏</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>年</value>
+  </data>
+  <data name="Yemen" xml:space="preserve">
+    <value>葉門</value>
+  </data>
+  <data name="YourEmail" xml:space="preserve">
+    <value>您的電郵:</value>
+  </data>
+  <data name="Yourlogindetail" xml:space="preserve">
+    <value>您的登入資料已送出</value>
+  </data>
+  <data name="Yugoslavia" xml:space="preserve">
+    <value>南斯拉夫</value>
+  </data>
+  <data name="Zambia" xml:space="preserve">
+    <value>尚比亞</value>
+  </data>
+  <data name="Zimbabwe" xml:space="preserve">
+    <value>辛巴威</value>
+  </data>
+  <data name="_12BET" xml:space="preserve">
+    <value>12BET</value>
+  </data>
+  <data name="_12BETPlayerAcc" xml:space="preserve">
+    <value>12BET玩家帳戶</value>
+  </data>
+  <data name="EmailTitleNewPassword" xml:space="preserve">
+    <value>您的新密碼</value>
+  </data>
+  <data name="EmailTitlePasswordRecovery" xml:space="preserve">
+    <value>您的登錄詳情</value>
+  </data>
+  <data name="EmailTitlePayment" xml:space="preserve">
+    <value>支付申請通知</value>
+  </data>
+  <data name="EmailTitleSignUp" xml:space="preserve">
+    <value>您的加盟申請</value>
+  </data>
+  <data name="CasinoClubs" xml:space="preserve">
+    <value>12BET 娛樂城</value>
+  </data>
+  <data name="LiveGames" xml:space="preserve">
+    <value>真人荷官</value>
+  </data>
+  <data name="SlotGames" xml:space="preserve">
+    <value>老虎機遊戲</value>
+  </data>
+  <data name="ProgressiveGames" xml:space="preserve">
+    <value>累積遊戲</value>
+  </data>
+  <data name="TableCardGames" xml:space="preserve">
+    <value>桌面/紙牌遊戲</value>
+  </data>
+  <data name="ScratchArcadeGames" xml:space="preserve">
+    <value>刮刮樂/大型電遊</value>
+  </data>
+  <data name="VideoPokerGames" xml:space="preserve">
+    <value>視頻撲克</value>
+  </data>
+  <data name="Product12EMERALD" xml:space="preserve">
+    <value>PT翡翠廳</value>
+  </data>
+  <data name="Product12RUBY" xml:space="preserve">
+    <value>紅寶廳</value>
+  </data>
+  <data name="Product12DIAMOND" xml:space="preserve">
+    <value>鑽石廳</value>
+  </data>
+  <data name="Product12PEARL" xml:space="preserve">
+    <value>珍珠廳</value>
+  </data>
+  <data name="Product12TOPAZ" xml:space="preserve">
+    <value>黃玉廳</value>
+  </data>
+  <data name="Product12CRYSTAL" xml:space="preserve">
+    <value>水晶廳</value>
+  </data>
+  <data name="Product12OPAL" xml:space="preserve">
+    <value>歐泊廳</value>
+  </data>
+  <data name="Product12AMETHYST" xml:space="preserve">
+    <value>紫晶廳</value>
+  </data>
+  <data name="Product12ONYX" xml:space="preserve">
+    <value>瑪瑙廳</value>
+  </data>
+  <data name="Product12QUARZT" xml:space="preserve">
+    <value>石英廳</value>
+  </data>
+  <data name="Product12AMBER" xml:space="preserve">
+    <value>琥珀廳</value>
+  </data>
+  <data name="RevenueShare" xml:space="preserve">
+    <value>佣金分成</value>
+  </data>
+  <data name="AllProducts" xml:space="preserve">
+    <value>所有產品</value>
+  </data>
+  <data name="MoreDetailProduct" xml:space="preserve">
+    <value>更多有關12BET產品訊息</value>
+  </data>
+  <data name="SupportTime" xml:space="preserve">
+    <value>週一至週六上午9點至下午6點(GMT +8)</value>
+  </data>
+  <data name="ChinaSupport" xml:space="preserve">
+    <value>中文</value>
+  </data>
+  <data name="IndonesiaSupport" xml:space="preserve">
+    <value>印尼文</value>
+  </data>
+  <data name="ThailandSupport" xml:space="preserve">
+    <value>泰文</value>
+  </data>
+  <data name="VietnamSupport" xml:space="preserve">
+    <value>越南文</value>
+  </data>
+  <data name="IndianSupport" xml:space="preserve">
+    <value>印地語</value>
+  </data>
+  <data name="PleaseDirectAnyComment" xml:space="preserve">
+    <value>如有任何意見或問題，歡迎發郵件至{0}，或填寫以下的表格。</value>
+  </data>
+  <data name="ValidationCodeLabel" xml:space="preserve">
+    <value>驗證碼</value>
+  </data>
+  <data name="TermAndCondition" xml:space="preserve">
+    <value>條款與規則</value>
+  </data>
+  <data name="CommissionStructure" xml:space="preserve">
+    <value>佣金結構</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>產品</value>
+  </data>
+  <data name="VirtualSports" xml:space="preserve">
+    <value>虛擬運動</value>
+  </data>
+  <data name="ESports" xml:space="preserve">
+    <value>電子競技</value>
+  </data>
+  <data name="Keno" xml:space="preserve">
+    <value>快樂彩</value>
+  </data>
+  <data name="Lottery" xml:space="preserve">
+    <value>彩票</value>
+  </data>
+  <data name="SignUpAffiliateProgramNow" xml:space="preserve">
+    <value>立即註冊為合作夥伴！</value>
+  </data>
+  <data name="SignUpAffiliate" xml:space="preserve">
+    <value>立即註冊</value>
+  </data>
+  <data name="ApplyOneTwoBetAffiliate" xml:space="preserve">
+    <value>申請12BET合作夥伴</value>
+  </data>
+  <data name="AsAOneTwoBetYouWillEarnCommission" xml:space="preserve">
+    <value>成為12BET合作夥伴後，由您推薦到12BET的每位玩家，只要使用帳戶就可以為您帶來即時的佣金。我們的線上匯報系統會7×24小時服務。</value>
+  </data>
+  <data name="WhatNewInAffiliate" xml:space="preserve">
+    <value>合作夥伴計劃有什麼新功能？</value>
+  </data>
+  <data name="OneTwoBetAffiliateNews" xml:space="preserve">
+    <value>12BET合作夥伴資訊</value>
+  </data>
+  <data name="NewWithExclamationPoint" xml:space="preserve">
+    <value>全新！</value>
+  </data>
+  <data name="NewBannerIsNowAvailable" xml:space="preserve">
+    <value>新橫幅廣告上線</value>
+  </data>
+  <data name="YouCanNowLogInYourAffiliateAccount" xml:space="preserve">
+    <value>您可以登陸合作夥伴帳戶，以獲取網站上的橫幅廣告作使用。</value>
+  </data>
+  <data name="WhatNewInOneTwoBetPromotion" xml:space="preserve">
+    <value>12BET最新優惠活動！</value>
+  </data>
+  <data name="GetToKnowHotPromotion" xml:space="preserve">
+    <value>了解本月最新優惠活動，將信息發布至合夥人的網站與社交媒體，以獲取更多的顧客及佣金。</value>
+  </data>
+  <data name="CannotGetEnough" xml:space="preserve">
+    <value>賺取的佣金</value>
+  </data>
+  <data name="YourCurrentCommision" xml:space="preserve">
+    <value>覺得太少了嗎？</value>
+  </data>
+  <data name="ContactYourAffilliateSupportTeam" xml:space="preserve">
+    <value>聯繫您的合作夥伴支援團隊，賺取獨家佣金，以增加您每個月的收入。</value>
+  </data>
+  <data name="ContactNow" xml:space="preserve">
+    <value>聯繫我們！</value>
+  </data>
+  <data name="OptimizeYourWebsite" xml:space="preserve">
+    <value>優化您的網站</value>
+  </data>
+  <data name="AndSocialChannels" xml:space="preserve">
+    <value>與社交媒體</value>
+  </data>
+  <data name="ThroughSoccerSeason2018" xml:space="preserve">
+    <value>透過二千零十九分之二千零十八新賽季</value>
+  </data>
+  <data name="Update12BetBannersfromYourMediaGallery" xml:space="preserve">
+    <value>在媒體中心取得最新廣告資源</value>
+  </data>
+  <data name="AndPostPromotionsInYourWebsite" xml:space="preserve">
+    <value>並且公告優惠活動</value>
+  </data>
+  <data name="ToBeatTheBestCommission" xml:space="preserve">
+    <value>以獲取最高佣金！</value>
+  </data>
+  <data name="GetBannerNow" xml:space="preserve">
+    <value>立即領取廣告！</value>
+  </data>
+  <data name="UpTo" xml:space="preserve">
+    <value>&lt;span class="text-white"&gt;高達&lt;/span&gt;</value>
+  </data>
+  <data name="MonthlyCommission" xml:space="preserve">
+    <value>&lt;p class="text-white"&gt;&lt;span class="text-red"&gt;體育博彩 &amp; 娛樂城&lt;/span&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="OnSportandCasino" xml:space="preserve">
+    <value>&lt;p class="text-white"&gt;每月佣金！&lt;/p&gt;</value>
+  </data>
+  <data name="YouAreNotAffiliateYet" xml:space="preserve">
+    <value>還不是合作夥伴？</value>
+  </data>
+  <data name="SignUpAffiliatesNow" xml:space="preserve">
+    <value>立即註冊！</value>
+  </data>
+  <data name="CommissionReport" xml:space="preserve">
+    <value>傭金報表</value>
+  </data>
+  <data name="GrossWinLoss" xml:space="preserve">
+    <value>總盈虧</value>
+  </data>
+  <data name="PlatformFee" xml:space="preserve">
+    <value>平台費</value>
+  </data>
+  <data name="OperationalFee" xml:space="preserve">
+    <value>營運費</value>
+  </data>
+  <data name="BankingFees" xml:space="preserve">
+    <value>銀行手續費</value>
+  </data>
+  <data name="CommRate" xml:space="preserve">
+    <value>傭金比例</value>
+  </data>
+  <data name="CommShorted" xml:space="preserve">
+    <value>傭金</value>
+  </data>
+  <data name="NoteCommissionCalculation" xml:space="preserve">
+    <value>傭金=（總盈虧 — 平台費 — 營運費 — 銀行手續費 — 紅利）x 傭金比例</value>
+  </data>
+  <data name="Temporary" xml:space="preserve">
+    <value>暫時</value>
+  </data>
+  <data name="Uncalculated" xml:space="preserve">
+    <value>尚未計算</value>
+  </data>
+  <data name="ServerError" xml:space="preserve">
+    <value>處理您的請求時發生錯誤！ 請聯繫管理員。</value>
+  </data>
+  <data name="MemDepositInfo" xml:space="preserve">
+    <value>會員存款訊息</value>
+  </data>
+  <data name="AccountNumber" xml:space="preserve">
+    <value>銀行帳號</value>
+  </data>
+  <data name="BankCity" xml:space="preserve">
+    <value>城市／鄉鎮</value>
+  </data>
+  <data name="BankCountry" xml:space="preserve">
+    <value>州</value>
+  </data>
+  <data name="TransactionID" xml:space="preserve">
+    <value>交易代碼</value>
+  </data>
+  <data name="Original" xml:space="preserve">
+    <value>最初</value>
+  </data>
+  <data name="USDEqv" xml:space="preserve">
+    <value>USD價值</value>
+  </data>
+  <data name="MemberWithdrawalInfo" xml:space="preserve">
+    <value>會員提款訊息</value>
+  </data>
+  <data name="SelectDate" xml:space="preserve">
+    <value>選擇日期</value>
+  </data>
+  <data name="Device" xml:space="preserve">
+    <value>設備</value>
+  </data>
+  <data name="PCDevice" xml:space="preserve">
+    <value>桌上型電腦／筆記型電腦</value>
+  </data>
+  <data name="YourCustomers" xml:space="preserve">
+    <value>客戶訊息</value>
+  </data>
+  <data name="FirstDepositDate" xml:space="preserve">
+    <value>首次註冊日期</value>
+  </data>
+  <data name="MobileNumber" xml:space="preserve">
+    <value>手機號碼</value>
+  </data>
+  <data name="RegisteredDate" xml:space="preserve">
+    <value>註冊日期</value>
+  </data>
+  <data name="Non_Deposit" xml:space="preserve">
+    <value>無存款紀錄</value>
+  </data>
+  <data name="lblBetLists" xml:space="preserve">
+    <value>投注歷史</value>
+  </data>
+  <data name="result" xml:space="preserve">
+    <value>投注結果</value>
+  </data>
+  <data name="SubCategory" xml:space="preserve">
+    <value>附屬分類</value>
+  </data>
+  <data name="Note2" xml:space="preserve">
+    <value>注意事項</value>
+  </data>
+  <data name="NotAllowOnDomain" xml:space="preserve">
+    <value>很抱歉！您無法在此網域登錄。</value>
+  </data>
+  <data name="MarketingTools" xml:space="preserve">
+    <value>行銷工具</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>統計數據</value>
+  </data>
+  <data name="AffiliateProgram" xml:space="preserve">
+    <value>合作夥伴計劃</value>
+  </data>
+  <data name="AffiliateLogin" xml:space="preserve">
+    <value>合作夥伴登入</value>
+  </data>
+  <data name="NotAffiliateMemberYet" xml:space="preserve">
+    <value>還不是我們的合作夥伴？</value>
+  </data>
+  <data name="SignUpToAffiliateProgram" xml:space="preserve">
+    <value>註冊合作夥伴計劃，賺取每月高達40％的傭金！</value>
+  </data>
+  <data name="JoinNow" xml:space="preserve">
+    <value>立即加入！</value>
+  </data>
+  <data name="WelcomeBack" xml:space="preserve">
+    <value>很高興再次見到你！</value>
+  </data>
+  <data name="ForgotLoginDetail" xml:space="preserve">
+    <value>忘記登入訊息？</value>
+  </data>
+  <data name="Withdrawal" xml:space="preserve">
+    <value>提款</value>
+  </data>
+  <data name="MobileDevice" xml:space="preserve">
+    <value>手機號碼</value>
+  </data>
+  <data name="PopupClickHere" xml:space="preserve">
+    <value>聯繫我們</value>
+  </data>
+  <data name="PopupDear" xml:space="preserve">
+    <value>敬愛的合作夥伴</value>
+  </data>
+  <data name="PopupDuringThisIntegrationPeriod" xml:space="preserve">
+    <value>在這段整合期間，請忽略系統中所顯示的數據。因為我們需要從其他系統，人工更新數據至此網站。我們將在每個月底，人工執行所有結算。</value>
+  </data>
+  <data name="PopupExcitingNews" xml:space="preserve">
+    <value>令人興奮的消息！更高收益的機會來了！</value>
+  </data>
+  <data name="PopupHappyEarning" xml:space="preserve">
+    <value>祝大家財源廣進！</value>
+  </data>
+  <data name="PopupIfYouShould" xml:space="preserve">
+    <value>假如您有其他疑問，請立即與我們的合作夥伴團隊聯繫。</value>
+  </data>
+  <data name="PopupPleaseBeAdvised" xml:space="preserve">
+    <value>提醒您隨時更新在12BET合作夥伴系統中的聯繫方式，因為我們的團隊在每個月8日至15日，會與您聯繫關於結算後的實際佣金。如果無法聯絡上您，將會延遲付款。</value>
+  </data>
+  <data name="PopupThankYou" xml:space="preserve">
+    <value>合作愉快</value>
+  </data>
+  <data name="PopupWeAreCurrently" xml:space="preserve">
+    <value>我們目前正將更多12BET產品，加入合作夥伴系統中，以便為夥伴們提供更高的收入機會！</value>
+  </data>
+  <data name="PopupWeHaveGoodNews" xml:space="preserve">
+    <value>分享各位一個好消息。</value>
+  </data>
+  <data name="PopupYourAffiliateManager" xml:space="preserve">
+    <value>12BET合作夥伴經理</value>
+  </data>
+</root>

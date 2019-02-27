@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = Lang.YourCustomers;
+    Layout = "~/Views/Shared/_LayoutAfterLogin.cshtml";
+
+    var now = DateTime.Now;
+    var fromDate = new DateTime(now.Year, now.Month, 1);
+}
+
+@model IEnumerable<Fanex.Affiliate.User.Core.DTO.UserPanel.Member>
+
+@section styles{
+    @Html.InlineStyles("~/www/build/styles/css/member.css")
+}
+
+@section scripts{
+    <script src="@Url.RenderLink("~/www/build/js/member.js")"></script>
+}
+
+<div id="mainPanel">
+    <div class="page-title">
+        <span class="text">@Lang.YourCustomers</span>
+    </div>
+
+    <div>
+        <div class="form-inline form-filter">
+            <div class="form-group">
+                <label>@Lang.From:</label>
+                <div id="fromPicker" class="d-inline-block date-wrapper">
+                    <input readonly id="FromDate" class="form-control disabled" type="text" value="@fromDate.ToString("MM/dd/yyyy")" />
+                    <span class="glyphicon glyphicon-calendar disabled"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>@Lang.To:</label>
+                <div id="toPicker" class="d-inline-block date-wrapper">
+                    <input readonly id="ToDate" class="form-control disabled" type="text" value="@now.ToString("MM/dd/yyyy")" />
+                    <span class="glyphicon glyphicon-calendar disabled"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        @Lang.All &nbsp;
+                        <input type="checkbox" id="chkGetAll" checked />
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>@Lang.Deposit:</label>
+                <select id="MemberType" class="form-control">
+                    <option value="0">@Lang.All</option>
+                    <option value="1">@Lang.Non_Deposit</option>
+                    <option value="2">@Lang.Deposit</option>
+                </select>
+            </div>
+
+            <button type="button" class="btn btn-submit" id="btnSubmit">@Lang.Submit</button>
+        </div>
+
+        <div id="pager"></div>
+        <div id="dataList">
+            @{ Html.RenderPartial("~/Views/UserPanel/Member/_DataContent.cshtml", Model); }
+        </div>
+    </div>
+</div>
+

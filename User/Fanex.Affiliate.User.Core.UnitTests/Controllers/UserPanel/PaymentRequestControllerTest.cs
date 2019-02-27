@@ -1,0 +1,599 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Web.Mvc;
+using Fanex.Affiliate.User.Core.BusinessService;
+using Fanex.Affiliate.User.Core.Constants;
+using Fanex.Affiliate.User.Core.Controllers;
+using Fanex.Affiliate.User.Core.CoreService;
+using Fanex.Affiliate.User.Core.DTO;
+using Fanex.Affiliate.User.Core.Enum;
+using Fanex.Affiliate.User.Core.MetalModels.Email;
+using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
+using Fanex.Affiliate.User.Core.Repository.UserPanel;
+using Fanex.Affiliate.User.Core.Resources;
+using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
+using Fanex.Affiliate.User.Core.Utilities;
+using Fanex.Affiliate.User.Core.ViewModels.UserPanel;
+using Moq;
+using Newtonsoft.Json;
+using Xunit;
+
+namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
+{
+    public class PaymentRequestControllerTest
+    {
+        private PaymentRequestController CreatePaymentRequestController(ISessionService sessionService = null,
+            IAppSetting appSetting = null,
+            ILanguageService languageService = null,
+            IPaymentService paymentServic = null)
+        {
+            var fakeSessionService = sessionService ?? MockingHelper.GetSessionService();
+            var fakePaymentService = paymentServic ?? (new Mock<IPaymentService>()).Object;
+            var fakeAppsetting = appSetting ?? (new Mock<IAppSetting>()).Object;
+            var fakeLanguageService = languageService ?? (new Mock<ILanguageService>()).Object;
+            var controller = new PaymentRequestController(fakeSessionService, fakeAppsetting, fakeLanguageService, fakePaymentService);
+
+            return MockingHelper.FakeController(controller) as PaymentRequestController;
+        }
+
+        [Fact]
+        public void PaymentRequest_GetPaymentList_ReturnPaymentListCorrectly()
+        {
+            // Arrange
+            var paymentList = new List<Payment> { new Payment() };
+            var paymentService = new Mock<IPaymentService>();
+            paymentService.Setup(p => p.GetPaymentList(It.IsAny<PaymentParam>())).Returns(paymentList);
+
+            var controller = CreatePaymentRequestController(paymentServic: paymentService.Object);
+
+            var expectedResult = new PaymentViewModel { PaymentList = paymentList };
+
+            // Action
+            var actionResult = controller.Index() as ViewResult;
+            var result = actionResult.Model as PaymentViewModel;
+
+            // Assert
+            Assert.Equal(expectedResult.PaymentList, result.PaymentList);
+        }
+
+        [Fact]
+        public void PaymentRequest_GetPaymentList_ReturnOutputInfoCorrectly()
+        {
+            // Arrange
+            const decimal expectedBalBroughtForward = 100m, expectedMinAmount = 10m;
+            const string expectedPreferredPayment = "PlayerAccount";
+
+            var paymentService = new Mock<IPaymentService>();
+            paymentService.Setup(p => p.GetPaymentList(It.IsAny<PaymentParam>()))
+                .Returns(new List<Payment>())
+                .Callback<PaymentParam>(p =>
+                {
+                    p.BalBroughtForward = expectedBalBroughtForward;
+                    p.MinAmount = expectedMinAmount;
+                    p.PreferredPayment = expectedPreferredPayment;
+                });
+
+            var controller = CreatePaymentRequestController(paymentServic: paymentService.Object);
+
+            var expectedResult = new PaymentViewModel
+            {
+                BalBroughtForward = expectedBalBroughtForward,
+                MinAmount = expectedMinAmount,
+                PreferredPayment = expectedPreferredPayment
+            };
+
+            // Action
+            var actionResult = controller.Index() as ViewResult;
+            var result = actionResult.Model as PaymentViewModel;
+
+            // Assert
+            Assert.Equal(expectedResult.BalBroughtForward, result.BalBroughtForward);
+            Assert.Equal(expectedResult.MinAmount, result.MinAmount);
+            Assert.Equal(expectedResult.PreferredPayment, result.PreferredPayment);
+        }
+
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void PaymentRequest_PassedParamInfo_ParamValuesAreCorrect(bool isInternal)
+        {
+            // Arrange
+            PaymentParam passedParam = null;
+            var paymentService = new Mock<IPaymentService>();
+            paymentService.Setup(p => p.GetPaymentList(It.IsAny<PaymentParam>()))
+                .Returns(new List<Payment>())
+                .Callback<PaymentParam>(p =>
+                {
+                    passedParam = p;
+                });
+
+            var sessionService = MockingHelper.GetSessionService();
+            sessionService.IsInternal = isInternal;
+
+            var controller = CreatePaymentRequestController(paymentServic: paymentService.Object);
+
+            var param = new PaymentParam
+            {
+                AffId = TestHelper.Constant.DefaultAffId,
+                IsInternal = isInternal
+            };
+            var expectedParam = JsonConvert.SerializeObject(param);
+
+            // Action
+            controller.Index();
+            var result = JsonConvert.SerializeObject(passedParam);
+
+            // Assert
+            Assert.Equal(expectedParam, result);
+        }
+
+        [Theory]
+        [MemberData(nameof(PaymentViewModelData.GetTestCaseForPendingPayment), MemberType = typeof(PaymentViewModelData))]
+        public void PaymentRequest_CheckPendingPaymentInPaymentList_PendingPaymentHasCorrectValue(IEnumerable<Payment> paymentList, bool expected)
+        {
+            // Arrange
+            var paymentService = new Mock<IPaymentService>();
+            paymentService.Setup(p => p.GetPaymentList(It.IsAny<PaymentParam>()))
+                .Returns(paymentList);
+
+            var controller = CreatePaymentRequestController(paymentServic: paymentService.Object);
+
+            // Action
+            var actionResult = controller.Index() as ViewResult;
+            var result = actionResult.Model as PaymentViewModel;
+
+            // Assert
+            Assert.Equal(expected, result.PendingPayment != null);
+        }
+
+        [Theory]
+        [InlineData(0, 0, false)]
+        [InlineData(-10, 0, false)]
+        [InlineData(10, 10, true)]
+        [InlineData(20, 10, true)]
+        [InlineData(20, 0, true)]
+        public void PaymentRequest_ValidateAmount_ReturnCorrectResult(decimal balance, decimal minAmount, bool expected)
+        {
+            // Arrange
+            PaymentParam passedParam = null;
+            var paymentService = new Mock<IPaymentService>();
+            paymentService.Setup(p => p.GetPaymentList(It.IsAny<PaymentParam>()))
+                .Returns(new List<Payment>())
+                .Callback<PaymentParam>(p =>
+                {
+                    p.BalBroughtForward = balance;
+                    p.MinAmount = minAmount;
+                    passedParam = p;
+                });
+
+            var controller = CreatePaymentRequestController(paymentServic: paymentService.Object);
+            // Action
+            var actionResult = controller.Index() as ViewResult;
+            var result = actionResult.Model as PaymentViewModel;
+
+            // Assert
+            Assert.Equal(expected, result.IsValidAmount);
+        }
+
+        [Theory]
+        [InlineData(true, true)]
+        public void PaymentRequest_ValidateDateRange_GetResultByEnvironment(bool isLocal, bool expected)
+        {
+            // Arrange
+            var appSetting = Mock.Of<IAppSetting>(s => s.IsLocal == isLocal);
+            var controller = CreatePaymentRequestController(appSetting: appSetting);
+
+            // Action
+            var actionResult = controller.Index() as ViewResult;
+            var result = actionResult.Model as PaymentViewModel;
+
+            // Assert
+            Assert.Equal(result.IsValidDate, expected);
+        }
+
+        [Fact]
+        public void CancelPaymentRequest_InternalLogin_SetResultInfoCorrectly()
+        {
+            // Arrange
+            var sessionService = MockingHelper.GetSessionService();
+            sessionService.IsInternal = true;
+
+            var controller = CreatePaymentRequestController(sessionService: sessionService);
+
+            // Action
+            var actionResult = controller.CancelPaymentRequest(new PaymentCancelParam()) as JsonResult;
+            var result = actionResult.Data as ResultInfo;
+
+            // Assert
+            Assert.False(result.IsOk);
+            Assert.Equal(result.Message, Lang.ErrAuthorized);
+        }
+
+        [Fact]
+        public void CancelPaymentRequest_CallRepository_PassParamCorrectly()
+        {
+            // Arrange
+            const long TransId = 1;
+            var param = new PaymentCancelParam { TransId = TransId };
+            PaymentCancelParam passedParam = null;
+
+            var paymentService = new Mock<IPaymentService>();
+            paymentService.Setup(p => p.CancelPaymentRequest(It.IsAny<PaymentCancelParam>(), It.IsAny<PaymentEmailParam>()))
+                            .Returns(new ResultInfo())
+                            .Callback<PaymentCancelParam>(p => passedParam = p);
+
+            var controller = CreatePaymentRequestController(paymentServic: paymentService.Object);
+
+            var expectedResult = JsonConvert.SerializeObject(new PaymentCancelParam
+            {
+                UserId = Constant.DefaultAffId,
+                Language = Constant.DefaultLanguage,
+                Status = "Cancelled",
+                TransId = TransId,
+                Ip = "::1"
+            });
+
+            // Action
+            controller.CancelPaymentRequest(param);
+            var result = JsonConvert.SerializeObject(passedParam);
+
+            // Assert
+            Assert.Equal(expectedResult, result);
+        }
+
+        [Fact]
+        public void CancelPaymentRequest_CallRepository_ReturnResultCorrectly()
+        {
+            // Arrange
+            const long TransId = 1;
+            var param = new PaymentCancelParam { TransId = TransId };
+            var expectedResult = new ResultInfo { IsOk = false, Message = "Failed" };
+
+            var paymentService = new Mock<IPaymentService>();
+            paymentService.Setup(p => p.CancelPaymentRequest(It.IsAny<PaymentCancelParam>(), It.IsAny<PaymentEmailParam>()))
+                            .Returns(expectedResult);
+
+            var controller = CreatePaymentRequestController(paymentServic: paymentService.Object);
+
+            // Action
+            var actionResult = controller.CancelPaymentRequest(param) as JsonResult;
+            var result = actionResult.Data as ResultInfo;
+
+            // Assert
+            Assert.Equal(expectedResult, result);
+        }
+
+        [Fact]
+        public void CancelPaymentRequest_CancelSuccessfully_SendEmail()
+        {
+            // Arrange
+            const long TransId = 1;
+            PaymentEmailParam emailParam = null;
+            var param = new PaymentCancelParam
+            {
+                AffId = Constant.DefaultAffId,
+                TransId = TransId,
+                Amount = 100m,
+                RequestDate = new DateTime(2018, 6, 12)
+            };
+
+            var paymentService = new Mock<IPaymentService>();
+            paymentService.Setup(p => p.CancelPaymentRequest(It.IsAny<PaymentCancelParam>(), It.IsAny<PaymentEmailParam>()))
+                            .Returns(new ResultInfo { IsOk = true });
+
+            var appSetting = GetMockAppSetting();
+            var accountRepository = GetMockAccountRepository();
+
+            var controller = CreatePaymentRequestController(appSetting: appSetting, paymentServic: paymentService.Object);
+
+
+            var expectedResult = JsonConvert.SerializeObject(GetExpectedEmailParam(PaymentRequestType.Cancel));
+
+            // Action
+            controller.CancelPaymentRequest(param);
+            var result = JsonConvert.SerializeObject(emailParam);
+
+            // Assert
+            Assert.Equal(expectedResult, result);
+        }
+
+        [Fact]
+        public void CancelPaymentRequest_CancelFailed_DoNothing()
+        {
+            // Arrange
+            const long TransId = 1;
+            var param = new PaymentCancelParam
+            {
+                TransId = TransId,
+                Amount = 100m,
+                RequestDate = new DateTime(2018, 6, 12)
+            };
+            var resultInfo = new ResultInfo { IsOk = false };
+
+            var paymentService = new Mock<IPaymentService>();
+            paymentService.Setup(p => p.CancelPaymentRequest(It.IsAny<PaymentCancelParam>(), It.IsAny<PaymentEmailParam>()))
+                            .Returns(resultInfo);
+
+            var controller = CreatePaymentRequestController(paymentServic: paymentService.Object);
+
+            // Action
+            controller.CancelPaymentRequest(param);
+
+        }
+
+        [Fact]
+        public void CreatePaymentRequest_InternalLogin_DoNoThingAndSetResultInfoCorrectly()
+        {
+            // Arrange
+            var sessionService = MockingHelper.GetSessionService();
+            sessionService.IsInternal = true;
+
+            var controller = CreatePaymentRequestController(sessionService: sessionService);
+
+            // Action
+            var actionResult = controller.CreatePaymentRequest(new PaymentCreationParam()) as JsonResult;
+            var result = actionResult.Data as ResultInfo;
+
+            // Assert
+            Assert.False(result.IsOk);
+            Assert.Equal(result.Message, Lang.ErrAuthorized);
+        }
+
+        [Fact]
+        public void CreatePaymentRequest_InvalidAmount_DoNoThingAndSetResultInfoCorrectly()
+        {
+            // Arrange
+            var appSetting = Mock.Of<IAppSetting>(a => a.IsLocal);
+            var creationParam = new PaymentCreationParam()
+            {
+                AffId = Constant.DefaultAffId,
+                Amount = 0,
+                MinAmount = 100,
+                BalBroughtForward = 150
+            };
+            var controller = CreatePaymentRequestController(appSetting: appSetting);
+            var expectedResult = new ResultInfo
+            {
+                IsOk = false,
+                Message = Error.PaymentAmountInvalid
+            };
+
+            // Action
+            var actionResult = controller.CreatePaymentRequest(creationParam) as JsonResult;
+            var result = actionResult.Data as ResultInfo;
+
+            // Assert
+            Assert.Equal(expectedResult.IsOk, result.IsOk);
+            Assert.Equal(expectedResult.Message, result.Message);
+        }
+
+        [Fact]
+        public void CreatePaymentRequest_CheckAccountIsActived_PassedParamCorrectly()
+        {
+            // Arrange
+            PaymentCreationParam passedParam = null;
+            var transDate = new DateTime(2018, 6, 13);
+            var creationParam = new PaymentCreationParam()
+            {
+                AffId = Constant.DefaultAffId,
+                Amount = 100,
+                MinAmount = 100,
+                BalBroughtForward = 150
+            };
+
+            var paymentService = new Mock<IPaymentService>();
+            paymentService.Setup(p => p.CancelPaymentRequest(It.IsAny<PaymentCancelParam>(), It.IsAny<PaymentEmailParam>()))
+                            .Returns(new ResultInfo { IsOk = true })
+                            .Callback<PaymentCreationParam>(p =>
+                            {
+                                p.TransDate = transDate;
+                                passedParam = p;
+                            });
+
+            var appSetting = GetMockAppSetting();
+
+
+            var controller = CreatePaymentRequestController(appSetting: appSetting, paymentServic: paymentService.Object);
+
+            var expectedParam = new PaymentCreationParam
+            {
+                AffId = Constant.DefaultAffId,
+                Amount = creationParam.Amount,
+                Ip = "::1",
+                Language = Constant.DefaultLanguage,
+                TransDate = transDate,
+                MinAmount = 100m,
+                BalBroughtForward = 150m,
+                IsLocalTest = true
+            };
+            var expectedResult = JsonConvert.SerializeObject(expectedParam);
+
+            // Action
+            controller.CreatePaymentRequest(creationParam);
+            var result = JsonConvert.SerializeObject(passedParam);
+
+            // Assert
+            Assert.Equal(expectedResult, result);
+        }
+
+        [Fact]
+        public void CreatePaymentRequest_AccountIsNotActived_ReturnCheckingResultIntermediately()
+        {
+            // Arrange
+            var creationParam = new PaymentCreationParam()
+            {
+                Amount = 100,
+                MinAmount = 100,
+                BalBroughtForward = 150
+            };
+            var checkingActiveResult = new ResultInfo
+            {
+                IsOk = false,
+                Message = "Not Actived"
+            };
+
+            var paymentService = new Mock<IPaymentService>();
+            var appSetting = Mock.Of<IAppSetting>(ap => ap.IsLocal);
+
+            var controller = CreatePaymentRequestController(appSetting: appSetting, paymentServic: paymentService.Object);
+
+            // Action
+            var actionResult = controller.CreatePaymentRequest(creationParam) as JsonResult;
+            var result = actionResult.Data as ResultInfo;
+
+            // Assert
+            Assert.Equal(checkingActiveResult, result);
+        }
+
+        [Fact]
+        public void CreatePaymentRequest_AccountIsActivedButCreatePaymentRequestFailed_ReturnCreationResultIntermediately()
+        {
+            // Arrange
+            var creationParam = new PaymentCreationParam()
+            {
+                AffId = Constant.DefaultAffId,
+                Amount = 100,
+                MinAmount = 100,
+                BalBroughtForward = 150
+            };
+
+            var creationResult = new ResultInfo
+            {
+                IsOk = false,
+                Message = "Create Failed"
+            };
+            var paymentService = new Mock<IPaymentService>();
+            paymentService.Setup(p => p.CreatePaymentRequest(It.IsAny<PaymentCreationParam>(), It.IsAny<PaymentEmailParam>())).Returns(creationResult);
+
+            var appSetting = Mock.Of<IAppSetting>(ap => ap.IsLocal);
+
+            var controller = CreatePaymentRequestController(appSetting: appSetting, paymentServic: paymentService.Object);
+
+            // Action
+            var actionResult = controller.CreatePaymentRequest(creationParam) as JsonResult;
+            var result = actionResult.Data as ResultInfo;
+
+            Assert.Equal(creationResult, result);
+        }
+
+        [Fact]
+        public void CreatePaymentRequest_CreateSuccessfully_SendEmailWithCorrectParam()
+        {
+            // Arrange
+            PaymentEmailParam emailParam = null;
+            const int TransId = 1;
+            var transDate = new DateTime(2018, 6, 12);
+            var creationParam = new PaymentCreationParam()
+            {
+                Amount = 100,
+                MinAmount = 100,
+                BalBroughtForward = 150
+            };
+
+            var paymentService = new Mock<IPaymentService>();
+            paymentService.Setup(p => p.CreatePaymentRequest(It.IsAny<PaymentCreationParam>(), It.IsAny<PaymentEmailParam>()))
+                            .Returns(new ResultInfo { IsOk = true })
+                            .Callback<PaymentCreationParam>(p =>
+                            {
+                                p.TransDate = transDate;
+                                p.TransId = TransId;
+                            });
+
+            var appSetting = GetMockAppSetting();
+
+
+            var controller = CreatePaymentRequestController(appSetting: appSetting, paymentServic: paymentService.Object);
+
+
+            var expectedEmailParam = GetExpectedEmailParam(PaymentRequestType.Create);
+            expectedEmailParam.TransId = TransId;
+            expectedEmailParam.RequestDate = transDate;
+            var expectedResult = JsonConvert.SerializeObject(expectedEmailParam);
+
+            // Action
+            controller.CreatePaymentRequest(creationParam);
+            var result = JsonConvert.SerializeObject(emailParam);
+
+            // Assert
+            Assert.Equal(expectedResult, result);
+        }
+
+        private IAccountRepository GetMockAccountRepository(UserInfo userInfo = null)
+        {
+            var accountRepository = new Mock<IAccountRepository>();
+            accountRepository.Setup(ac => ac.GetUserInfoById(Constant.DefaultAffId, false))
+                .Returns(userInfo ?? GetUserInfo());
+
+            return accountRepository.Object;
+        }
+
+        private IAppSetting GetMockAppSetting()
+        {
+            return Mock.Of<IAppSetting>(ap =>
+                ap.IsLocal &&
+                ap.MailContact == Constant.DefaultMailContact &&
+                ap.MailBcc == string.Empty &&
+                ap.MailCc == Constant.DefaultMailCc);
+        }
+
+        private PaymentEmailParam GetExpectedEmailParam(PaymentRequestType paymentType)
+        {
+            var user = GetUserInfo();
+
+            return new PaymentEmailParam
+            {
+                User = user,
+                Amount = 100m,
+                MailBcc = "",
+                MailCc = Constant.DefaultMailCc,
+                MailContact = Constant.DefaultMailContact,
+                MailTo = user.Email,
+                RequestDate = new DateTime(2018, 6, 12),
+                RootDomain = Constant.DefaultRootDomain + "/",
+                TransId = 1,
+                PaymentType = paymentType
+            };
+        }
+
+        private UserInfo GetUserInfo()
+        {
+            return new UserInfo
+            {
+                AffId = Constant.DefaultAffId,
+                Email = Constant.DefaultMailUser,
+                FirstName = "Testing",
+                MailOption = false,
+                PreferredLanguage = Constant.DefaultLanguage,
+                UserName = "test"
+            };
+        }
+    }
+
+    public static class PaymentViewModelData
+    {
+        public static IEnumerable<object[]> GetTestCaseForPendingPayment()
+        {
+            yield return new object[]
+            {
+                new List<Payment> { new Payment { Status = PaymentStatus.Pending } },
+                true
+            };
+
+            yield return new object[]
+            {
+                new List<Payment> { new Payment { Status = PaymentStatus.Approved } },
+                false
+            };
+
+            yield return new object[]
+            {
+                new List<Payment>
+                {
+                    new Payment { Status = PaymentStatus.Approved },
+                    new Payment { Status = PaymentStatus.Pending }
+                },
+                true
+            };
+        }
+    }
+}

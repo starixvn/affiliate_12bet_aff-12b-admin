@@ -1,0 +1,232 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutBeforeLogin.cshtml";
+    ViewBag.Title = "12BET Affiliate Program | Contact Us";
+}
+
+@using Fanex.Affiliate.User.Core.Utilities
+@model Fanex.Affiliate.User.Core.DTO.UserInfo
+@{
+    var name = Model != null ? $"{Model?.FirstName} {Model?.LastName}" : string.Empty;
+    var affiliate = Model?.UserName;
+    var email = Model?.Email;
+    var appSetting = new AppSetting();
+    var mailContact = appSetting.MailContact;
+    var isMobile = Request.Browser.IsMobileDevice;
+    var imLink = "tencent://message/?uin=1806412043&Site=qq&Menu=yes";
+
+    if(isMobile)
+    {
+        var userAgent = Request.UserAgent.ToLower();
+        if (userAgent.Contains("android"))
+        {
+            imLink = "https://play.google.com/store/apps/details?id=com.tencent.mobileqqi";
+        }
+        else if(userAgent.Contains("iphone") || userAgent.Contains("ipad") || userAgent.Contains("ipod"))
+        {
+            imLink = "https://itunes.apple.com/cn/app/qq-guo-ji-ban/id710380093?mt=8";
+        }
+    }
+}
+
+@section styles{
+    @Html.InlineStyles("~/www/build/styles/css/contact-us.css")
+}
+
+@section scripts{
+    <script>
+        var resourceLanguage = {
+            generalError: '@Error.General'
+        }
+    </script>
+    @Html.InlineScripts("~/www/build/js/contactus.js")
+}
+
+<div class="content">
+    <div class="page-title">
+        <span class="text">@Lang.ContactUs</span>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="date-time">
+                    <div class="img-support">
+                        <img class="img-responsive" src="~/www/build/styles/Images/contact-us/Support_girl.png" />
+                    </div>
+                    <div class="date-time-info">
+                        <p class="text-center">@Html.Raw(Lang.SupportTime)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-9">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="languages-item">
+                            <div class="single-flag">
+                                <img src="~/www/build/styles/Images/contact-us/english_lang.png" />
+                            </div>
+                            <div class="info">
+                                <p class="language">@Lang.EnglishSupport</p>
+                                <a class="contact-info" href="skype:affiliate12bet">
+                                    <img class="im-icon" src="~/www/build/styles/Images/contact-us/skype_icon.png" />
+                                    <span>affiliate12bet</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="languages-item">
+                            <div class="single-flag">
+                                <img src="~/www/build/styles/Images/contact-us/China_lang.png" />
+                            </div>
+                            <div class="info">
+                                <p class="language">@Lang.ChinaSupport</p>
+                                <a class="contact-info" href="@imLink">
+                                    <img class="im-icon" style="height: 2rem;" src="~/www/build/styles/Images/contact-us/qq_icon.png" />
+                                    <span>1806412043</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="languages-item">
+                            <div class="single-flag">
+                                <img src="~/www/build/styles/Images/contact-us/indonesian_lang.png" />
+                            </div>
+                            <div class="info">
+                                <p class="language">@Lang.IndonesiaSupport</p>
+                                <a class="contact-info" href="skype:live:aff.12betindo">
+                                    <img class="im-icon" src="~/www/build/styles/Images/contact-us/skype_icon.png" />
+                                    <span>live:aff.12betindo</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="languages-item">
+                            <div class="single-flag">
+                                <img src="~/www/build/styles/Images/contact-us/thailand_lang.png" />
+                            </div>
+                            <div class="info">
+                                <p class="language">@Lang.ThailandSupport</p>
+                                <a class="contact-info" href="skype:th.affiliate12bet">
+                                    <img class="im-icon" src="~/www/build/styles/Images/contact-us/skype_icon.png" />
+                                    <span>th.affiliate12bet</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="languages-item">
+                            <div class="single-flag">
+                                <img src="~/www/build/styles/Images/contact-us/vietnam_lang.png" />
+                            </div>
+                            <div class="info">
+                                <p class="language">@Lang.VietnamSupport</p>
+                                <a class="contact-info" href="skype:crmsupport.1">
+                                    <img class="im-icon" src="~/www/build/styles/Images/contact-us/skype_icon.png" />
+                                    <span>crmsupport.1</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="languages-item">
+                            <div class="single-flag">
+                                <img src="~/www/build/styles/Images/contact-us/india_lang.png" />
+                            </div>
+                            <div class="info">
+                                <p class="language">@Lang.IndianSupport</p>
+                                <a class="contact-info" href="skype:aff12csdindia">
+                                    <img class="im-icon" src="~/www/build/styles/Images/contact-us/skype_icon.png" />
+                                    <span>aff12csdindia</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="contact-form">
+        <div class="alert alert-success" role="alert" id="messageSuccess" style="display: none;">
+            @Html.Raw(Lang.MessageSentReview.Replace("{br}", "<br>"))
+        </div>
+
+        <div class="alert alert-danger" role="alert" id="messageError" style="display: none"></div>
+
+        <div id="mainContent">
+            <p class="intro">@Html.Raw(string.Format(Lang.PleaseDirectAnyComment, "<a href=\"mailto:" + mailContact + "\">" + mailContact + "</a>"))</p>
+            <form id="contactForm" class="form">
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <div class="group group-small">
+                        <label class="require" for="Sender">@Lang.Name</label>
+                        <input class="field" type="text" name="Sender" id="Sender" value="@name" />
+                        <div class="validation-input">
+                            <span class="help-block hide">@Lang.NameIsInvalid</span>
+                        </div>
+                    </div>
+                    <div class="group group-small">
+                        <label for="Affiliate">@Lang.AffiliateID</label>
+                        <input class="field" type="text" name="Affiliate" id="Affiliate" value="@affiliate" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="group group-small">
+                        <label class="require" for="Subject">@Lang.Subject</label>
+                        <input class="field" type="text" name="Subject" id="Subject" />
+                        <div class="validation-input">
+                            <span class="help-block hide">@Lang.SubjectIsInvalid</span>
+                        </div>
+                    </div>
+                    <div class="group group-small">
+                        <label class="require" for="Email">@Lang.Email1</label>
+                        <input class="field emailInput" type="text" name="Email" id="Email" value="@email" />
+                        <div class="validation-input">
+                            <span class="help-block hide">@Lang.EmailAddressIsInvalid</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="group group-full">
+                        <label class="require" for="Content">@Lang.Comment</label>
+                        <textarea class="field" name="Content" id="Content"></textarea>
+                        <div class="validation-input">
+                            <span class="help-block hide">@Lang.CommentsIsInvalid</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="group group-small captcha">
+                        <label class="require" for="Captcha">@Lang.ValidationCodeLabel</label>
+                        <input class="field" type="text" name="Captcha" id="Captcha" autocomplete="off" />
+                        <div class="validation-input">
+                            <span class="help-block hide">@Lang.ErrmsgEntryValidCode</span>
+                        </div>
+                    </div>
+                    <div class="validation-value"><img id="captchaContactUs" src="@Url.Content("~/Auth/CaptchaImage?type=1&_v="+DateTime.Now.ToLongTimeString())" alt="captcha" /></div>
+                </div>
+
+                <div class="form-group">
+                    <div class="group">
+                        <label></label>
+                        <button class="btn btn-submit" type="submit">@Lang.Submit</button>
+                        <button class="btn btn-submit" type="reset" id="btnReset">@Lang.Reset</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+﻿@{
+    Layout = null;
+}
+
+@model IEnumerable<Fanex.Affiliate.User.Core.DTO.UserPanel.MarketingItem>
+
+<div class="list-container">
+    <ul class="list-unstyled list-content">
+        @foreach (var text in Model)
+        {
+
+            <li>
+                <p class="marketing-text">@Html.Raw(text.Message)</p>
+                <input readonly class="link-text" onclick="this.focus();this.select()" type="text"
+                       value="<a onclick='window.open(&quot;@text.RedirectLink?ref=&quot; + encodeURIComponent(window.location.href),&quot;_blank&quot;); return false;' href='javascript:;' target='_blank' id='_affMediaText'></a><script src=&quot;@text.ScriptSrc&quot; type=&quot;text/javascript&quot;></script>" />
+            </li>
+        }
+    </ul>
+
+    <input type="hidden" id="TotalItem" value="@ViewBag.TotalItem" />
+</div>
+
