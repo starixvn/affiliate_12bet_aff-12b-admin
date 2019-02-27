@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Affiliate.Admin.Core", "Fanex.Affiliate.Admin.Core\Fanex.Affiliate.Admin.Core.csproj", "{C1C3E2F9-CC94-41A2-96E5-776B9F67E840}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Affiliate.Admin.Core", "Admin\Fanex.Affiliate.Admin.Core\Fanex.Affiliate.Admin.Core.csproj", "{C1C3E2F9-CC94-41A2-96E5-776B9F67E840}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Affiliate.ThirdPartyProduct", "Fanex.Affiliate.ThirdPartyProduct\Fanex.Affiliate.ThirdPartyProduct.csproj", "{118A9AA1-C33A-413A-A685-3495CF30C15F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Affiliate.ThirdPartyProduct", "Admin\Fanex.Affiliate.ThirdPartyProduct\Fanex.Affiliate.ThirdPartyProduct.csproj", "{118A9AA1-C33A-413A-A685-3495CF30C15F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AffiliateAdmin", "AffiliateAdmin\AffiliateAdmin.csproj", "{CB6C1C24-FB59-4A4F-B546-8C37556DE109}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AffiliateAdmin", "Admin\AffiliateAdmin\AffiliateAdmin.csproj", "{CB6C1C24-FB59-4A4F-B546-8C37556DE109}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{D075715C-26B5-43A3-8B8C-E3062E6B1DBC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Affiliate.Admin.Core.UnitTests", "Fanex.Affiliate.Admin.Core.UnitTests\Fanex.Affiliate.Admin.Core.UnitTests.csproj", "{838B6FF1-B29C-4F44-803B-1D6D85CDBBE8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Affiliate.Admin.Core.UnitTests", "Admin\Fanex.Affiliate.Admin.Core.UnitTests\Fanex.Affiliate.Admin.Core.UnitTests.csproj", "{838B6FF1-B29C-4F44-803B-1D6D85CDBBE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Affiliate.Infrastructure", "Affiliate.Infrastructure\Affiliate.Infrastructure.csproj", "{B9A60C3F-FC44-4BF7-B618-68F0118C9000}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Affiliate.Infrastructure", "Admin\Affiliate.Infrastructure\Affiliate.Infrastructure.csproj", "{B9A60C3F-FC44-4BF7-B618-68F0118C9000}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
