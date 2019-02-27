@@ -2083,4 +2083,7 @@
   <data name="MetaDescription" xml:space="preserve">
     <value>Trở thành đối tác chính thức của 12BET, quảng bá các trò chơi cá cược thể thao, casino trực tuyến và nhận hoa hồng hàng tháng từ những người chơi mà bạn giới thiệu.</value>
   </data>
+  <data name="EmailSignup" xml:space="preserve">
+    <value>Địa chỉ email</value>
+  </data>
 </root>

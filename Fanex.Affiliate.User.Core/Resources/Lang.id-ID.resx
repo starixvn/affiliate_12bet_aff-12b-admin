@@ -2086,4 +2086,7 @@
   <data name="MetaDescription" xml:space="preserve">
     <value>Menjadi Mitra Bisnis Afiliasi 12BET untuk mempromosikan Olahraga dan Kasino 12BET, serta menghasilkan komisi bulanan dari pelanggan yang datang dari situs Anda.</value>
   </data>
+  <data name="EmailSignup" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
 </root>

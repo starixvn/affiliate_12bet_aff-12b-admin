@@ -2081,4 +2081,7 @@
   <data name="MetaDescription" xml:space="preserve">
     <value>เป็นพันธมิตรในการโปรโมทเดิมพันกีฬาและคาสิโนให้กับเว็บไซต์12BETแล้วรับค่าคอมมิชชั่นรายเดือนจากลูกค้าที่แนะนำจากเว็บไซต์คุณ</value>
   </data>
+  <data name="EmailSignup" xml:space="preserve">
+    <value>อีเมลล์แอดเดรส</value>
+  </data>
 </root>

@@ -1447,6 +1447,8 @@ label.require:after {
       text-align: center;
       padding: 4px 5px;
       font-weight: 500; }
+    .table table .non-transform {
+      text-transform: none; }
     .table table td {
       border: 1px solid #cccccc;
       padding: 4px 5px;

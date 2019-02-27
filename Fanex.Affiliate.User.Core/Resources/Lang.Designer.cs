@@ -1594,6 +1594,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email Address.
+        /// </summary>
+        public static string EmailSignup {
+            get {
+                return ResourceManager.GetString("EmailSignup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your new password.
         /// </summary>
         public static string EmailTitleNewPassword {

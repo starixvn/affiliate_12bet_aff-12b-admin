@@ -2218,4 +2218,7 @@
   <data name="MetaDescription" xml:space="preserve">
     <value>Become 12BET Affiliate Business Partner to promote 12BET Sportsbook and Casino and earn monthly commission from customers brought from your websites.</value>
   </data>
+  <data name="EmailSignup" xml:space="preserve">
+    <value>Email Address</value>
+  </data>
 </root>

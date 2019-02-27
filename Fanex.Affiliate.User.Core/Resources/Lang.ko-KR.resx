@@ -2074,4 +2074,7 @@
   <data name="MetaDescription" xml:space="preserve">
     <value>12BET사업파트너가되어 귀하의 웹사이트에 12BET스포츠 및 온라인카지노를 홍보하시고 높은 제휴사 커미션을 받으십시오.</value>
   </data>
+  <data name="EmailSignup" xml:space="preserve">
+    <value>이메일 주소</value>
+  </data>
 </root>

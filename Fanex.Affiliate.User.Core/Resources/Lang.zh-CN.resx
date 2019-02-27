@@ -2089,4 +2089,7 @@
   <data name="MetaDescription" xml:space="preserve">
     <value>成为12BET代理，推广体育与娱乐城游戏赚取丰厚佣金</value>
   </data>
+  <data name="EmailSignup" xml:space="preserve">
+    <value>电邮地址</value>
+  </data>
 </root>

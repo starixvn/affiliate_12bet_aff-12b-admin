@@ -2086,4 +2086,7 @@
   <data name="MetaDescription" xml:space="preserve">
     <value>成為12BET代理，推廣體育與娛樂城遊戲賺取豐厚佣金</value>
   </data>
+  <data name="EmailSignup" xml:space="preserve">
+    <value>電郵地址</value>
+  </data>
 </root>
