@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Functions>
+  <Function Name="Affiliate-Data Services-CheckSum">
+    <Setting Key="Aff_CheckSum" SpName="Aff_CheckSum" DbName="Affiliate" />
+    <Setting Key="IA_CheckSum" SpName="IA_CheckSum" DbName="IncomeAccess" />
+  </Function>
+
+  <Function Name="Affiliate-Data Services-Import">
+    <Setting Key="Aff_CasinoImportData" SpName="Aff_CasinoImportData" DbName="Affiliate" TimeOut="300" />
+    <Setting Key="Task_Aff_MemberDailyCasino_IA" SpName="Task_Aff_MemberDailyCasino_IA" DbName="IncomeAccess" />
+  </Function>
+
+  <Function Name="Affiliate - Data Services - Import 12Bet Special Product">
+    <Setting Key="Task_APIProduct_ImportQueue" SpName="Task_APIProduct_ImportQueue" DbName="Affiliate" />
+  </Function>
+  
+  <Function Name="Affiliate - Data Services - Time Tracker">
+    <Setting Key="Task_APIProduct_CallTimeIns" SpName="Task_APIProduct_CallTimeIns" DbName="Affiliate" />
+    <Setting Key="Task_APIProduct_CallTimeByProductSel" SpName="Task_APIProduct_CallTimeByProductSel" DbName="Affiliate" />
+  </Function>
+</Functions>
