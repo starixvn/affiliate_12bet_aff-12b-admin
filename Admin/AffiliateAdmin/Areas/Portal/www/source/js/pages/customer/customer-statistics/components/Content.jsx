@@ -75,11 +75,11 @@ export class Content extends Component {
                 </tr>
             </thead>
         )
-                                }
+    }
 
     _renderData(monthDate, data) {
         const { affId, affName } = this.props;
-        const affiliateLinkParam = affId&&affName&&"&affId=" + affId + "&affName=" + affName;
+        const affiliateLinkParam = affId && affName && "&affId=" + affId + "&affName=" + affName;
 
         const DepositByMonth = formatDecimalWithCurrencySymbol(data.DepositByMonth);
         const DepositTotal = formatDecimalWithCurrencySymbol(data.DepositTotal);
@@ -116,21 +116,21 @@ export class Content extends Component {
                 {this._buildRow(rowTitle.Winlost, WinlostByMonth, WinlostTotal)}
                 {
                     this._buildRow(rowTitle.TrackingRate,
-                        (<a href={resolveClientUrl(`UserInfo/MediaStatistics.aspx?month=${startMonthString}${affiliateLinkParam}`)} target="fContent">
+                        (<a href={resolveClientUrl(`Portal/UserPanel/TrackingStatistics/Index?${affiliateLinkParam}`)} target="fContent">
                             {format(data.UniqueClickByMonth)}/{format(data.TotalClickByMonth)}
                         </a>),
                         resource.NA)
                 }
                 {
                     this._buildRow(rowTitle.TrackingRatePC,
-                        (<a href={resolveClientUrl(`UserInfo/MediaStatistics_New.aspx?fdate=${startMonthString}&tdate=${endMonthString}&slDevice=0${affiliateLinkParam}`)} target="fContent">
+                        (<a href={resolveClientUrl(`Portal/UserPanel/Referrers/Index?fromDate=${startMonthString}&toDate=${endMonthString}&deviceType=0${affiliateLinkParam}`)} target="fContent">
                             {format(data.UniqueClickPcLaptopByMonth)}/{format(data.TotalClickPcLaptopByMonth)}
                         </a>),
                         resource.NA)
                 }
                 {
                     this._buildRow(rowTitle.TrackingRateMobile,
-                        (<a href={resolveClientUrl(`UserInfo/MediaStatistics_New.aspx?fdate=${startMonthString}&tdate=${endMonthString}&slDevice=1${affiliateLinkParam}`)} target="fContent">
+                        (<a href={resolveClientUrl(`Portal/UserPanel/Referrers/Index?fromDate=${startMonthString}&toDate=${endMonthString}&deviceType=1${affiliateLinkParam}`)} target="fContent">
                             {format(data.UniqueClickMobileByMonth)}/{format(data.TotalClickMobileByMonth)}
                         </a>),
                         resource.NA)

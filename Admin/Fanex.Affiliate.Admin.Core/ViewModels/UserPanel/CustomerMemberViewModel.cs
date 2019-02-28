@@ -1,4 +1,4 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
+﻿using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 
 namespace Fanex.Affiliate.Admin.Core.ViewModels.UserPanel
 {

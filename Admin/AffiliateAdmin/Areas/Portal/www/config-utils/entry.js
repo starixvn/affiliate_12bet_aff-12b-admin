@@ -19,6 +19,11 @@ module.exports = {
     [`${jsDist}/pages/customer/customer-statistics`]: clientRoot + "/js/pages/customer/customer-statistics/index.jsx",
     [`${jsDist}/pages/userpanel/customer-member`]: clientRoot + "/js/pages/user-panel/customer-member/index.jsx",
     [`${jsDist}/pages/affiliate/affiliate-info`]: clientRoot + "/js/pages/affiliate-info/index.jsx",
+    [`${jsDist}/pages/userpanel/note`]: clientRoot + "/js/pages/user-panel/note/index.jsx",
+    [`${jsDist}/pages/userpanel/tracking-statistics`]: clientRoot + "/js/pages/user-panel/tracking-statistics/index.jsx",
+    [`${jsDist}/pages/userpanel/referrers`]: clientRoot + "/js/pages/user-panel/referrers/index.jsx",
+    [`${jsDist}/pages/userpanel/landing-pages`]: clientRoot + "/js/pages/user-panel/landing-pages/index.jsx",
+    [`${jsDist}/pages/userpanel/view-log`]: clientRoot + "/js/pages/user-panel/view-log/index.jsx",
 
     //For Thirdparty Product pages
     [`${jsDist}/pages/thirdparty-product/betsoft`]: clientRoot + "/js/pages/thirdparty-product/betsoft/index.jsx",
@@ -40,4 +45,8 @@ module.exports = {
     [`${styleDist}/pages/customer-statistics`]: clientRoot + "/style/pages/customer-statistics.scss",
     [`${styleDist}/pages/user-panel/customer-member`]: clientRoot + "/style/pages/user-panel/customer-member.scss",
     [`${styleDist}/pages/affiliate-info`]: clientRoot + "/style/pages/affiliate-info.scss",
+    [`${styleDist}/pages/user-panel/note`]: clientRoot + "/style/pages/user-panel/note.scss",
+    [`${styleDist}/pages/user-panel/referrers`]: clientRoot + "/style/pages/user-panel/referrers.scss",
+    [`${styleDist}/pages/user-panel/landing-pages`]: clientRoot + "/style/pages/user-panel/landing-pages.scss",
+    [`${styleDist}/pages/user-panel/view-log`]: clientRoot + "/style/pages/user-panel/view-log.scss",
 };

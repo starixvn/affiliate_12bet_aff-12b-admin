@@ -1,0 +1,51 @@
+﻿import { post } from '../../../../modules/ajaxRequest';
+import { toggleLoader } from '../../../../actions/loaderAction';
+
+import { SET_NOTE_LIST, SET_SHOW_POPUP, SET_NOTE_INFO } from './types';
+
+import { setPagingOption } from '../../../../actions/pagingAction';
+
+export { setPagingOption };
+
+export const setNoteList = (data) => {
+    return {
+        type: SET_NOTE_LIST,
+        data
+    }
+}
+
+export const getNoteList = (param) => async(dispatch) => {
+    dispatch(toggleLoader(true));
+
+    const url = 'Portal/UserPanel/Note/GetNoteList';
+    const response = await post(url, param);
+
+    if (response && response.status === 200) {
+        const { MainData, TotalItem } = response.data;
+
+        dispatch(setNoteList(MainData));
+
+        const { PageIndex, PageSize } = param;
+        const pagingOption = {
+            PageIndex,
+            PageSize,
+            TotalItem: TotalItem
+        };
+        dispatch(setPagingOption(pagingOption));
+    }
+    dispatch(toggleLoader(false));
+}
+
+export const setShowPopup = (data) => {
+    return {
+        type: SET_SHOW_POPUP,
+        data
+    }
+}
+
+export const setNoteInfo = (data) => {
+    return {
+        type: SET_NOTE_INFO,
+        data
+    }
+}

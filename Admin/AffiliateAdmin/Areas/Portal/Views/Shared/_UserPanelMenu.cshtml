@@ -11,7 +11,7 @@
                     @foreach (var item in Model.SubMenuList)
                     {
                         <li class="up-item">
-                            <a class="upitem-link @(item.IsActive? "active" : string.Empty)" href="@item.Url?affId=@(Model.AffiliateLinkParam.AffId)&affName=@(Model.AffiliateLinkParam.AffName)">
+                            <a class="upitem-link @(item.IsActive ? "active" : string.Empty)" href="@item.Url?affId=@(Model.AffiliateLinkParam.AffId)&affName=@(Model.AffiliateLinkParam.AffName)">
                                 <span class="menu-text">@item.Name</span>
                             </a>
                         </li>

@@ -4,5 +4,10 @@ export const globalResource = {
     GetAll: 'Get All',
     Search: 'Search',
     All: 'All',
-    Product: 'Product'
+    Product: 'Product',
+    Add: 'Add',
+    Edit: 'Edit',
+    Update: 'Update',
+    Cancel: 'Cancel',
+    NoInfo: 'There is no information available'
 }

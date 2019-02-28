@@ -7,7 +7,6 @@ using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.UserPanel;
 using Fanex.Affiliate.Admin.Core.ViewModels.UserPanel;
-using Fanex.Affiliate.Admin.Core.DTO.Affiliate;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {

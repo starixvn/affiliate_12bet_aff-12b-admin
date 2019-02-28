@@ -268,6 +268,15 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Landing Pages.
+        /// </summary>
+        public static string LandingPages {
+            get {
+                return ResourceManager.GetString("LandingPages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Member.
         /// </summary>
         public static string Member {
@@ -318,6 +327,15 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         public static string Pending {
             get {
                 return ResourceManager.GetString("Pending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Referrers.
+        /// </summary>
+        public static string Referrers {
+            get {
+                return ResourceManager.GetString("Referrers", resourceCulture);
             }
         }
         
