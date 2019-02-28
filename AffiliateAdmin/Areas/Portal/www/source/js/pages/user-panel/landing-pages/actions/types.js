@@ -1,3 +1,0 @@
-﻿export const SET_SELECTED_PAGE = 'SET_SELECTED_PAGE';
-export const SET_PARAM = 'SET_PARAM';
-export const SET_SHOW_DETAIL = 'SET_SHOW_DETAIL';
