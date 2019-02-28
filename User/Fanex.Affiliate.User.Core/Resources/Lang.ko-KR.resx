@@ -123,9 +123,6 @@
   <data name="AccInfo" xml:space="preserve">
     <value>계정 정보</value>
   </data>
-  <data name="Account12bet" xml:space="preserve">
-    <value>12BET 플레이어 계좌</value>
-  </data>
   <data name="AccountNumber" xml:space="preserve">
     <value>계좌 번호</value>
   </data>
@@ -152,9 +149,6 @@
   </data>
   <data name="AffiliateID" xml:space="preserve">
     <value>제휴 아이디</value>
-  </data>
-  <data name="AgreeTermNCondition" xml:space="preserve">
-    <value>12BET 의 제휴약관에 동의 합니다.</value>
   </data>
   <data name="Albania" xml:space="preserve">
     <value>알바니아</value>
@@ -937,9 +931,6 @@
   <data name="LandingPages" xml:space="preserve">
     <value>방문페이지 통계</value>
   </data>
-  <data name="Language" xml:space="preserve">
-    <value>언어</value>
-  </data>
   <data name="LaoPeoplesDemRep" xml:space="preserve">
     <value>라오스</value>
   </data>
@@ -1373,7 +1364,7 @@
     <value>요청하신 출금액이 성공적으로 처리되었습이다.</value>
   </data>
   <data name="RequireInfo" xml:space="preserve">
-    <value>붉은색으로 표시된 부분은 반드시 기재 하셔야합니다.</value>
+    <value>붉은색으로 표시된 부분은 반드시 기재 하셔야합니다.&lt;p&gt;&lt;font color="red"&gt;*&lt;/font&gt; 이메일 주소는 반드시 Gmail로 입력하세요. &lt;/p&gt;</value>
   </data>
   <data name="Reset" xml:space="preserve">
     <value>재설정</value>
@@ -1446,9 +1437,6 @@
   </data>
   <data name="Singapore" xml:space="preserve">
     <value>싱가폴</value>
-  </data>
-  <data name="SiteInfor" xml:space="preserve">
-    <value>웹사이트 정보</value>
   </data>
   <data name="SiteUrl" xml:space="preserve">
     <value>웹사이트 URL</value>
@@ -1606,9 +1594,6 @@
   <data name="TotalQualifiedMembers" xml:space="preserve">
     <value>프로모션을 받을수있는 조건을 충족하는회원</value>
   </data>
-  <data name="Tqacsbc" xml:space="preserve">
-    <value>프로모션을 받을수있는 조건을 충족하는회원</value>
-  </data>
   <data name="TrackingCode" xml:space="preserve">
     <value>트래킹 코드</value>
   </data>
@@ -1696,7 +1681,7 @@
   <data name="Vietnamese" xml:space="preserve">
     <value>Tiếng Việt</value>
   </data>
-  <data name="WebsiteInformat" xml:space="preserve">
+  <data name="WebsiteInfor" xml:space="preserve">
     <value>웹사이트 정보</value>
   </data>
   <data name="WebsiteURL" xml:space="preserve">
@@ -2064,5 +2049,32 @@
   </data>
   <data name="PopupHappyEarning" xml:space="preserve">
     <value> </value>
+  </data>
+  <data name="NonDeposited" xml:space="preserve">
+    <value>본사로 입금한 내역이 없는 계정</value>
+  </data>
+  <data name="UsernameSignUp" xml:space="preserve">
+    <value>아이디</value>
+  </data>
+  <data name="QualifyingMembers" xml:space="preserve">
+    <value>5&lt;br /&gt;명 또는 그 이상</value>
+  </data>
+  <data name="ProductType" xml:space="preserve">
+    <value>게임제품 선택</value>
+  </data>
+  <data name="MyAccount" xml:space="preserve">
+    <value>계정 정보</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>언어</value>
+  </data>
+  <data name="MetaTitle" xml:space="preserve">
+    <value>12BET 제휴프로그램 | 12BET 사업파트너가 되십시오.</value>
+  </data>
+  <data name="MetaDescription" xml:space="preserve">
+    <value>12BET사업파트너가되어 귀하의 웹사이트에 12BET스포츠 및 온라인카지노를 홍보하시고 높은 제휴사 커미션을 받으십시오.</value>
+  </data>
+  <data name="EmailSignup" xml:space="preserve">
+    <value>이메일 주소</value>
   </data>
 </root>

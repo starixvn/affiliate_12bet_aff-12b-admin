@@ -88,7 +88,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-3 control-label require">@Lang.Email</label>
+                    <label class="col-sm-3 control-label require">@Lang.EmailSignup</label>
                     <div class="col-sm-4">
                         @Html.TextBoxFor(p => p.Email, new { @class = "form-control emailInput" })
                     </div>
@@ -185,7 +185,7 @@
 
             <div class="info-group">
                 <div class="title">
-                    <span class="text">@Lang.WebsiteInformat</span>
+                    <span class="text">@Lang.WebsiteInfor</span>
                 </div>
 
                 <div class="form-horizontal">
@@ -305,7 +305,8 @@
                                 <input type="radio" name="Method" checked /> @Lang._12BETPlayerAcc
                             </label>
                             <div class="form-group col-sm-12">
-                                <label class="control-label require">@Lang.Username</label>
+                                <label class="control-label require">@Lang.UsernameSignUp</label>
+                                <label class="text-red">(@Lang.NonDeposited)</label>
                                 <div class="">
                                     @Html.TextBoxFor(p => p.Player_UserName, new { @class = "form-control", @autocomplete = "off" })
                                 </div>

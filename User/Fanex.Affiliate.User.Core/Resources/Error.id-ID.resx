@@ -136,7 +136,7 @@
     <value>Nama pengguna dan kata sandi salah.</value>
   </data>
   <data name="PaymentBalanceInvalid" xml:space="preserve">
-    <value>Anda tidak dapat meminta pembayaran karena saldo tidak mencukupi.</value>
+    <value>Anda tidak bisa mengajukan Penarikan karena saldo tidak cukup :(</value>
   </data>
   <data name="PaymentMethodInvalid" xml:space="preserve">
     <value>Maaf! Pembayaran melalui {0} tidak tersedia. Pada saat ini, hanya metode 'Rekening Pemain 12Bet' yang didukung. Silakan &lt;a href='{1}'&gt;klik di sini&lt;/a&gt; untuk membuat perubahan.</value>

@@ -13,6 +13,7 @@
     using MetalModels;
     using Newtonsoft.Json;
     using Resources;
+    using Extensions;
 
     [CustomAuthorize]
     public class MyAccountController : BaseController
@@ -40,7 +41,8 @@
             }
 
             var preferredLanguage = model.PreferredLanguage;
-            model.LanguageName = SystemLanguage.LanguageList.FirstOrDefault(l => l.Code.Equals(preferredLanguage))?.EnglishName ?? preferredLanguage;
+            var languageName = SystemLanguage.LanguageList.FirstOrDefault(l => l.Code.Equals(preferredLanguage))?.EnglishName ?? preferredLanguage;
+            model.LanguageName = SystemLanguage.GetLanguageText(languageName);
 
             return View("~/Views/UserPanel/MyAccount/index.cshtml", model);
         }

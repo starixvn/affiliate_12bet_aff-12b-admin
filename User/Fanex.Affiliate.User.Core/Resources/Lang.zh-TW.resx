@@ -123,9 +123,6 @@
   <data name="AccInfo" xml:space="preserve">
     <value>帳戶資料</value>
   </data>
-  <data name="Account12bet" xml:space="preserve">
-    <value>12BET玩家帳戶</value>
-  </data>
   <data name="AccOverview" xml:space="preserve">
     <value>帳戶概要</value>
   </data>
@@ -149,9 +146,6 @@
   </data>
   <data name="AffiliateID" xml:space="preserve">
     <value>合作夥伴號碼</value>
-  </data>
-  <data name="AgreeTermNCondition" xml:space="preserve">
-    <value>我同意12BET合作夥伴的規則與條款</value>
   </data>
   <data name="Albania" xml:space="preserve">
     <value>阿爾巴尼亞</value>
@@ -923,9 +917,6 @@
   <data name="LandingPages" xml:space="preserve">
     <value>登陸頁面統計</value>
   </data>
-  <data name="Language" xml:space="preserve">
-    <value>語言</value>
-  </data>
   <data name="LaoPeoplesDemRep" xml:space="preserve">
     <value>寮国人民民主共和国</value>
   </data>
@@ -1422,9 +1413,6 @@
   <data name="Singapore" xml:space="preserve">
     <value>新加坡</value>
   </data>
-  <data name="SiteInfor" xml:space="preserve">
-    <value>網站資料</value>
-  </data>
   <data name="SiteUrl" xml:space="preserve">
     <value>網站鏈接</value>
   </data>
@@ -1585,9 +1573,6 @@
   <data name="TotalQualifiedMembers" xml:space="preserve">
     <value>總計活躍合格會員</value>
   </data>
-  <data name="Tqacsbc" xml:space="preserve">
-    <value>總計活躍合格會員</value>
-  </data>
   <data name="TrackingCode" xml:space="preserve">
     <value>追踪代码</value>
   </data>
@@ -1669,7 +1654,7 @@
   <data name="Vietnamese" xml:space="preserve">
     <value>Tiếng Việt</value>
   </data>
-  <data name="WebsiteInformat" xml:space="preserve">
+  <data name="WebsiteInfor" xml:space="preserve">
     <value>網站資料</value>
   </data>
   <data name="WebsiteURL" xml:space="preserve">
@@ -2076,5 +2061,32 @@
   </data>
   <data name="PopupYourAffiliateManager" xml:space="preserve">
     <value>12BET合作夥伴經理</value>
+  </data>
+  <data name="NonDeposited" xml:space="preserve">
+    <value>僅限未存款玩家</value>
+  </data>
+  <data name="UsernameSignUp" xml:space="preserve">
+    <value>12BET玩家賬號</value>
+  </data>
+  <data name="QualifyingMembers" xml:space="preserve">
+    <value>≥ 5 </value>
+  </data>
+  <data name="ProductType" xml:space="preserve">
+    <value>產品</value>
+  </data>
+  <data name="MyAccount" xml:space="preserve">
+    <value>我的帳戶</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>語言</value>
+  </data>
+  <data name="MetaTitle" xml:space="preserve">
+    <value>成為12BET代理 | 12BET合作夥伴</value>
+  </data>
+  <data name="MetaDescription" xml:space="preserve">
+    <value>成為12BET代理，推廣體育與娛樂城遊戲賺取豐厚佣金</value>
+  </data>
+  <data name="EmailSignup" xml:space="preserve">
+    <value>電郵地址</value>
   </data>
 </root>

@@ -19,9 +19,6 @@
             _statisticsRepository = statisticsRepository;
         }
 
-
-
-
         [HttpPost]
         [AjaxOnly]
         public ActionResult StatisticsDetailBySite(StatisticsDetailBySiteParam statisticsDetailParam)
