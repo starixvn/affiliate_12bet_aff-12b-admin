@@ -164,8 +164,13 @@
     <Compile Include="Controllers\PasswordController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\UserPanel\CustomerMemberController.cs" />
+    <Compile Include="Controllers\UserPanel\LandingPagesController.cs" />
+    <Compile Include="Controllers\UserPanel\NoteController.cs" />
     <Compile Include="Controllers\UserPanel\PlayerDetailController.cs" />
+    <Compile Include="Controllers\UserPanel\ReferrersController.cs" />
     <Compile Include="Controllers\UserPanel\StatementHistoryController.cs" />
+    <Compile Include="Controllers\UserPanel\TrackingStatisticsController.cs" />
+    <Compile Include="Controllers\UserPanel\ViewLogController.cs" />
     <Compile Include="DTO\AffiliateLinkParam.cs" />
     <Compile Include="DTO\Affiliate\AffiliateBasicInfo.cs" />
     <Compile Include="DTO\Affiliate\AffiliateInfo.cs" />
@@ -193,8 +198,13 @@
     <Compile Include="DTO\UserPanel\DailyEarningDetail.cs" />
     <Compile Include="DTO\UserPanel\DailyEarningDetailResult.cs" />
     <Compile Include="DTO\UserPanel\DailyEarningResult.cs" />
+    <Compile Include="DTO\UserPanel\LandingPages.cs" />
+    <Compile Include="DTO\UserPanel\Note.cs" />
     <Compile Include="DTO\UserPanel\PlayerDetail.cs" />
     <Compile Include="DTO\UserPanel\PlayerDetailResult.cs" />
+    <Compile Include="DTO\UserPanel\Referrers.cs" />
+    <Compile Include="DTO\UserPanel\TrackingStatistics.cs" />
+    <Compile Include="DTO\UserPanel\ViewLog.cs" />
     <Compile Include="Extensions\DataReaderExtension.cs" />
     <Compile Include="Extensions\JsonNetResult.cs" />
     <Compile Include="Extensions\UrlHelperExtension.cs" />
@@ -211,9 +221,19 @@
     <Compile Include="MetaModels\MediaGallery\DeleteLandingPageParam.cs" />
     <Compile Include="MetaModels\MediaGallery\InsertUpdateLandingPageParam.cs" />
     <Compile Include="MetaModels\Report\AffiliateReportMainParam.cs" />
+    <Compile Include="MetaModels\UserPanel\AffiliateLinkParam.cs" />
     <Compile Include="MetaModels\UserPanel\CustomerMemberParam.cs" />
     <Compile Include="MetaModels\UserPanel\DailyEarningParam.cs" />
+    <Compile Include="MetaModels\UserPanel\InsertUpdateNoteParam.cs" />
+    <Compile Include="MetaModels\UserPanel\LandingPagesDetailParam.cs" />
+    <Compile Include="MetaModels\UserPanel\LandingPagesParam.cs" />
+    <Compile Include="MetaModels\UserPanel\NoteParam.cs" />
     <Compile Include="MetaModels\UserPanel\PlayerDetailParam.cs" />
+    <Compile Include="MetaModels\UserPanel\ReferrersDetailParam.cs" />
+    <Compile Include="MetaModels\UserPanel\ReferrersParam.cs" />
+    <Compile Include="MetaModels\UserPanel\TrackingStatisticsDetailParam.cs" />
+    <Compile Include="MetaModels\UserPanel\TrackingStatisticsParam.cs" />
+    <Compile Include="MetaModels\UserPanel\ViewLogParam.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Affiliate\AffiliateInfoRepository.cs" />
     <Compile Include="Repository\Affiliate\IAffiliateInfoRepository.cs" />
@@ -237,10 +257,20 @@
     <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="Repository\UserPanel\CustomerMemberRepository.cs" />
     <Compile Include="Repository\UserPanel\ICustomerMemberRepository.cs" />
+    <Compile Include="Repository\UserPanel\ILandingPagesRepository.cs" />
+    <Compile Include="Repository\UserPanel\INoteRepository.cs" />
     <Compile Include="Repository\UserPanel\IPlayerDetailRepository.cs" />
+    <Compile Include="Repository\UserPanel\IReferrersRepository.cs" />
     <Compile Include="Repository\UserPanel\IStatementHistoryRepository.cs" />
+    <Compile Include="Repository\UserPanel\ITrackingStatisticsRepository.cs" />
+    <Compile Include="Repository\UserPanel\IViewLogRepository.cs" />
+    <Compile Include="Repository\UserPanel\LandingPagesRepository.cs" />
+    <Compile Include="Repository\UserPanel\NoteRepository.cs" />
     <Compile Include="Repository\UserPanel\PlayerDetailRepository.cs" />
+    <Compile Include="Repository\UserPanel\ReferrersRepository.cs" />
     <Compile Include="Repository\UserPanel\StatementHistoryRepository.cs" />
+    <Compile Include="Repository\UserPanel\TrackingStatisticsRepository.cs" />
+    <Compile Include="Repository\UserPanel\ViewLogRepository.cs" />
     <Compile Include="Resources\Lang.zh-TW.Designer.cs">
       <DependentUpon>Lang.zh-TW.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -324,7 +354,10 @@
     <Compile Include="ViewModels\GetCommissionGroupViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\CustomerMemberViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\DailyEarningViewModel.cs" />
+    <Compile Include="ViewModels\UserPanel\LandingPagesViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\PlayerDetailViewModel.cs" />
+    <Compile Include="ViewModels\UserPanel\ReferrersViewModel.cs" />
+    <Compile Include="ViewModels\UserPanel\TrackingStatisticsViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\UserPanelMenuViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
