@@ -1,6 +1,6 @@
 ﻿import { setPagingOption } from '../../../../actions/pagingAction';
 import { toggleLoader } from '../../../../actions/loaderAction';
-import { SET_PARAM, SET_SHOW_GROUP } from '../actions/types';
+import { SET_PARAM, SET_SHOW_ID_LIST } from '../actions/types';
 
 export { setPagingOption, toggleLoader };
 
@@ -11,9 +11,9 @@ export const setParam = (data) => {
     }
 }
 
-export const setShowGroup = (data) => {
+export const setShowIdList = (data) => {
     return {
-        type: SET_SHOW_GROUP,
+        type: SET_SHOW_ID_LIST,
         data
     }
 }

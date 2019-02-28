@@ -9,14 +9,13 @@ import { headerText } from '../modules/constants';
 import { globalResource } from '../../../../modules/globalResource';
 
 import { post } from '../../../../modules/ajaxRequest';
-import { setPagingOption, toggleLoader, setShowGroup } from '../actions';
+import { setPagingOption, toggleLoader, setShowIdList } from '../actions';
 
 export class Content extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            idObject: {},
             gridData: [],
             shouldResetScrollPosition: true
         }
@@ -45,27 +44,20 @@ export class Content extends Component {
         this.props.toggleLoader(false);
     }
 
-    handleShowGroup = (id) => {
-        const { idObject } = this.state;
+    handleShow = (id) => {
+        const { showIdList } = this.props;
         this.setState({ shouldResetScrollPosition: false });
 
-        if(this.props.isShowGroup) {
-            if(idObject.lenght == 0) {
-                this.props.setShowGroup(false);
-            } else {
-                var isContain = false;
-                Object.keys(idObject).map(idItem => {
-                    if(id == idItem) {
-                        isContain = true;
-                    }  
-                });
+        var isContain = false;
 
-                isContain ? this.setState({ idObject: Object.assign({}, delete idObject.id) }) : this.setState({ idObject: Object.assign({}, idObject, { id }) });
+        Object.keys(showIdList).map(idItem => {
+            if (id == idItem) {
+                isContain = true;
             }
-        } else {
-            this.props.setShowGroup(true);
-            this.setState({ idObject: Object.assign({}, idObject, { id }) });
-        }
+        });
+
+        delete showIdList[id];
+        isContain ? this.props.setShowIdList(Object.assign({}, showIdList)) : this.props.setShowIdList(Object.assign({}, showIdList, { [id]: id }));
     }
 
     _renderHeader() {
@@ -85,54 +77,54 @@ export class Content extends Component {
     _renderDataSection(dataList) {
         const dataRows = [];
 
-        if(dataList.length) {
+        if (dataList.length) {
             const { pagingOption } = this.props;
             const startIndex = (pagingOption.PageIndex - 1) * pagingOption.PageSize + 1;
 
             for (let i = 0; i < dataList.length; i++) {
-                var isGroup = false;
+                var isLink = false;
                 var isHide = false;
                 const dataItem = dataList[i];
                 const dataPreviousItem = i == 0 ? {} : dataList[i - 1];
                 const dataNextItem = i == dataList.length - 1 ? {} : dataList[i + 1];
 
-                if ( dataItem.Id == dataPreviousItem.Id) {
+                if (dataItem.Id == dataPreviousItem.Id) {
                     isHide = true;
                 }
 
-                if ( dataItem.Id != dataPreviousItem.Id && dataItem.Id == dataNextItem.Id ) {
-                    isGroup = true;
+                if (dataItem.Id != dataPreviousItem.Id && dataItem.Id == dataNextItem.Id) {
+                    isLink = true;
                 }
 
-                dataRows.push(this._buildDataRow(dataItem, i + startIndex, isGroup, isHide));
+                dataRows.push(this._buildDataRow(dataItem, i + startIndex, isLink, isHide));
             }
         }
         else {
             dataRows.push(<Row>
-                    <Cell className="text-center" colSpan="7">{globalResource.NoInfo}</Cell>
-                </Row>);
+                <Cell className="text-center" colSpan="7">{globalResource.NoInfo}</Cell>
+            </Row>);
         }
 
         return dataRows;
     }
 
-    _buildDataRow(dataItem, index, isGroup, isHide) {
-        var url = "http://anonym.to/?http://legacytools.dnsstuff.com/tools/ipall.ch?tool_id=&token=&toolhandler_redirect=0&ip={dataItem.Ip}j=1";
+    _buildDataRow(dataItem, index, isLink, isHide) {
+        var url = "http://anonym.to/?http://legacytools.dnsstuff.com/tools/ipall.ch?tool_id=67&token=&toolhandler_redirect=0&ip={dataItem.Ip}&j=1";
         var isContain = false;
-        Object.keys(idObject).map(idItem => {
-            if(dataItem.Id == idItem) {
+
+        Object.keys(this.props.showIdList).map(idItem => {
+            if (dataItem.Id == idItem) {
                 isContain = true;
-            }  
+            }
         })
 
-
         return (
-            (isHide ? (this.props.isShowGroup && isContain): true) && <Row key={`dataRow-${index}`}>
+            (isHide ? isContain : true) && <Row key={`dataRow-${index}`}>
                 <Cell title={index} className="text-center">{index}</Cell>
                 <Cell title={dataItem.Id} className="text-center">
-                    { isGroup ? <Button color="link" onClick={() => this.handleShowGroup(dataItem.Id)}>
-                                    {dataItem.Id}
-                               </Button> : dataItem.Id }
+                    {isLink ? <Button color="link" onClick={() => this.handleShow(dataItem.Id)}>
+                        {dataItem.Id}
+                    </Button> : dataItem.Id}
                 </Cell>
                 <Cell title={dataItem.DateText}>{dataItem.DateText}</Cell>
                 <Cell title={dataItem.UpdatedBy} className="text-center">{dataItem.UpdatedBy}</Cell>
@@ -181,12 +173,12 @@ export class Content extends Component {
 }
 
 
-function mapStateToProps({ pagingOption, param, isShowGroup }) {
-    return Object.assign({}, { pagingOption, param, isShowGroup });
+function mapStateToProps({ pagingOption, param, showIdList }) {
+    return Object.assign({}, { pagingOption, param, showIdList });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setPagingOption, toggleLoader, setShowGroup }, dispatch);
+    return bindActionCreators({ setPagingOption, toggleLoader, setShowIdList }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { DatePicker } from '@9softstudio/react-datepicker';
 import { logTypes, headerText } from '../modules/constants';
-import { setSelectedSiteUrl, setParam } from '../actions';
+import { setParam, setShowIdList } from '../actions';
 import { globalResource } from '../../../../modules/globalResource';
 
 const minDate = new Date(2009, 11, 1);
@@ -60,6 +60,7 @@ export class Filter extends React.Component {
 
     handleSearch = () => {
         this.handleSetParam();
+        this.props.setShowIdList({});
     }
 
     render() {
@@ -105,7 +106,7 @@ function mapStateToProps({ today, param }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setParam }, dispatch);
+    return bindActionCreators({ setParam, setShowIdList }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);
