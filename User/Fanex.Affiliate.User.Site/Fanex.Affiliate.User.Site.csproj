@@ -488,6 +488,8 @@
       <DependentUpon>layout.js</DependentUpon>
     </Content>
     <Content Include="www\build\js\lib\bootstrap.min.js" />
+    <Content Include="www\build\js\lib\hmac-sha256.js" />
+    <Content Include="www\build\js\lib\hmac-sha256.min.js" />
     <Content Include="www\build\js\lib\jquery-3.3.1.min.js" />
     <Content Include="www\build\js\lib\modernizr-webp.js" />
     <Content Include="www\build\js\lib\modernizr-webp.min.js">
@@ -513,6 +515,8 @@
     <Content Include="www\build\js\myaccount.min.js">
       <DependentUpon>myaccount.js</DependentUpon>
     </Content>
+    <Content Include="www\build\js\pages\changepassword.js" />
+    <Content Include="www\build\js\pages\changepassword.min.js" />
     <Content Include="www\build\js\pages\commission-report.js" />
     <Content Include="www\build\js\pages\commission-report.min.js">
       <DependentUpon>commission-report.js</DependentUpon>
@@ -521,6 +525,10 @@
     <Content Include="www\build\js\pages\home.min.js">
       <DependentUpon>home.js</DependentUpon>
     </Content>
+    <Content Include="www\build\js\pages\login.js" />
+    <Content Include="www\build\js\pages\login.min.js" />
+    <Content Include="www\build\js\pages\verification-account.js" />
+    <Content Include="www\build\js\pages\verification-account.min.js" />
     <Content Include="www\build\js\pagetracking.js" />
     <Content Include="www\build\js\pagetracking.min.js">
       <DependentUpon>pagetracking.js</DependentUpon>
@@ -622,10 +630,12 @@
     <Content Include="www\build\styles\Images\notify\note_icon.gif" />
     <Content Include="www\build\styles\Images\notify\sry.png" />
     <Content Include="www\build\styles\Images\notify\srynf.png" />
+    <Content Include="www\source\js\components\authhelper.js" />
     <Content Include="www\source\js\components\jquery.extension.js" />
     <Content Include="www\source\js\components\pagetracking.js" />
     <Content Include="www\source\js\components\validation.custom.js" />
     <Content Include="www\source\js\components\website.js" />
+    <Content Include="www\source\js\lib\hmac-sha256.js" />
     <Content Include="www\source\js\lib\jquery.validate.min.js" />
     <Content Include="www\source\js\lib\jquery.validate.unobtrusive.min.js" />
     <Content Include="www\source\js\lib\modernizr-webp.js" />
@@ -800,6 +810,7 @@
     <Content Include="www\source\js\pages\test.js" />
     <Content Include="www\source\js\pages\marketing\textbox.js" />
     <Content Include="www\source\js\pages\user-panel.js" />
+    <Content Include="www\source\js\pages\verification-account.js" />
     <Content Include="www\source\js\recheckin.js" />
     <Content Include="www\source\js\site.js" />
     <Content Include="www\source\js\spec\layout.spec.js" />
@@ -1119,6 +1130,8 @@
     <Content Include="www\build\styles\Images\products\bg-sports_affiliate.webp" />
     <Content Include="www\source\styles\Images\products\bg-sports_affiliate.webp" />
     <Content Include="www\source\styles\Images\products\bg-casino_affiliate.webp" />
+    <Content Include="Views\VerificationAccount\Index.cshtml" />
+    <Content Include="www\source\styles\pages\verification-account.scss" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
