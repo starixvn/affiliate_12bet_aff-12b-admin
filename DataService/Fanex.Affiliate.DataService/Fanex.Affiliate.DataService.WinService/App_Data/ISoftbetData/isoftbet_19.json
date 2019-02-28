@@ -1,0 +1,574 @@
+﻿{
+  "status": "success",
+  "datetime": "2018-12-15 14:03:00",
+  "pages": 1,
+  "currentpage": 1,
+  "total": 46,
+  "report": [
+    {
+      "playerid": "rosal92",
+      "operator": "12Bet",
+      "currency": "IDR",
+      "sessions": [
+        {
+          "sessionid": "1544881703adXxVewSDAKx16jCvh1LUz",
+          "gameid": 4631,
+          "rounds": [
+            {
+              "roundid": "02644631rosal92154488251715072683",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1544882589173279618301579787736",
+                  "time": "2018-12-15 14:03:09",
+                  "amount": 6000,
+                  "balance": 3749698,
+                  "jpc": 0
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1544882589601752796274606896468",
+                  "time": "2018-12-15 14:03:09",
+                  "amount": 0,
+                  "balance": 3749698,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02644631rosal92154488258996087780",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1544882591139080488792977563389",
+                  "time": "2018-12-15 14:03:11",
+                  "amount": 6000,
+                  "balance": 3743698,
+                  "jpc": 0
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1544882591926513136539792411852",
+                  "time": "2018-12-15 14:03:11",
+                  "amount": 0,
+                  "balance": 3743698,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02644631rosal92154488259148958432",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1544882594374764182655377739524",
+                  "time": "2018-12-15 14:03:14",
+                  "amount": 6000,
+                  "balance": 3737698,
+                  "jpc": 0
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1544882594896637869381544077678",
+                  "time": "2018-12-15 14:03:14",
+                  "amount": 0,
+                  "balance": 3737698,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02644631rosal92154488259468806954",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1544882596577266519531782915914",
+                  "time": "2018-12-15 14:03:16",
+                  "amount": 6000,
+                  "balance": 3731698,
+                  "jpc": 0
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1544882596184297772942000744155",
+                  "time": "2018-12-15 14:03:16",
+                  "amount": 0,
+                  "balance": 3731698,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02644631rosal92154488259646404454",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1544882598485281449448912552915",
+                  "time": "2018-12-15 14:03:18",
+                  "amount": 6000,
+                  "balance": 3725698,
+                  "jpc": 0
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1544882598269749363865065722590",
+                  "time": "2018-12-15 14:03:18",
+                  "amount": 0,
+                  "balance": 3725698,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02644631rosal92154488259884832030",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1544882601956629948424597394684",
+                  "time": "2018-12-15 14:03:21",
+                  "amount": 6000,
+                  "balance": 3719698,
+                  "jpc": 0
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1544882601458903389616226323418",
+                  "time": "2018-12-15 14:03:21",
+                  "amount": 4500,
+                  "balance": 3724198,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02644631rosal92154488260114952843",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1544882602543915758004312696483",
+                  "time": "2018-12-15 14:03:22",
+                  "amount": 6000,
+                  "balance": 3718198,
+                  "jpc": 0
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1544882602612853374432276522718",
+                  "time": "2018-12-15 14:03:22",
+                  "amount": 13500,
+                  "balance": 3731698,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02644631rosal92154488260269416717",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1544882604202611814628222172178",
+                  "time": "2018-12-15 14:03:24",
+                  "amount": 6000,
+                  "balance": 3725698,
+                  "jpc": 0
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1544882604555968212375466753053",
+                  "time": "2018-12-15 14:03:24",
+                  "amount": 3000,
+                  "balance": 3728698,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02644631rosal92154488260465165664",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1544882606354916476120524233795",
+                  "time": "2018-12-15 14:03:26",
+                  "amount": 6000,
+                  "balance": 3722698,
+                  "jpc": 0
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1544882607562527414319432240427",
+                  "time": "2018-12-15 14:03:27",
+                  "amount": 6000,
+                  "balance": 3728698,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02644631rosal92154488260738052635",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1544882608286708942307416871603",
+                  "time": "2018-12-15 14:03:28",
+                  "amount": 6000,
+                  "balance": 3722698,
+                  "jpc": 0
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1544882608531323226539851886150",
+                  "time": "2018-12-15 14:03:28",
+                  "amount": 3000,
+                  "balance": 3725698,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02644631rosal92154488260855002189",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1544882609101427105648285123034",
+                  "time": "2018-12-15 14:03:29",
+                  "amount": 6000,
+                  "balance": 3719698,
+                  "jpc": 0
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1544882609894516703075722327463",
+                  "time": "2018-12-15 14:03:29",
+                  "amount": 0,
+                  "balance": 3719698,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02644631rosal92154488260917225205",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1544882611660195173996688467164",
+                  "time": "2018-12-15 14:03:31",
+                  "amount": 6000,
+                  "balance": 3713698,
+                  "jpc": 0
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1544882612190161298859527548675",
+                  "time": "2018-12-15 14:03:32",
+                  "amount": 6000,
+                  "balance": 3719698,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02644631rosal92154488261279008488",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1544882613239728838819912424335",
+                  "time": "2018-12-15 14:03:33",
+                  "amount": 6000,
+                  "balance": 3713698,
+                  "jpc": 0
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1544882613766341365338331379531",
+                  "time": "2018-12-15 14:03:33",
+                  "amount": 18000,
+                  "balance": 3731698,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02644631rosal92154488261368296623",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1544882616127306014666582252489",
+                  "time": "2018-12-15 14:03:36",
+                  "amount": 6000,
+                  "balance": 3725698,
+                  "jpc": 0
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1544882616548770581737467749263",
+                  "time": "2018-12-15 14:03:36",
+                  "amount": 0,
+                  "balance": 3725698,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02644631rosal92154488261635239082",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1544882618151057918706186597777",
+                  "time": "2018-12-15 14:03:38",
+                  "amount": 6000,
+                  "balance": 3719698,
+                  "jpc": 0
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1544882618740729372127489049661",
+                  "time": "2018-12-15 14:03:38",
+                  "amount": 0,
+                  "balance": 3719698,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02644631rosal92154488261853070081",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1544882619816922036636583567430",
+                  "time": "2018-12-15 14:03:39",
+                  "amount": 6000,
+                  "balance": 3713698,
+                  "jpc": 0
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1544882619863232999506156417637",
+                  "time": "2018-12-15 14:03:39",
+                  "amount": 0,
+                  "balance": 3713698,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02644631rosal92154488261960434715",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1544882621342402104986601569985",
+                  "time": "2018-12-15 14:03:41",
+                  "amount": 6000,
+                  "balance": 3707698,
+                  "jpc": 0
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1544882621483851491622006311433",
+                  "time": "2018-12-15 14:03:41",
+                  "amount": 0,
+                  "balance": 3707698,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02644631rosal92154488262175380149",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1544882624448958635264078377429",
+                  "time": "2018-12-15 14:03:44",
+                  "amount": 6000,
+                  "balance": 3701698,
+                  "jpc": 0
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1544882624282439338260574075053",
+                  "time": "2018-12-15 14:03:44",
+                  "amount": 0,
+                  "balance": 3701698,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02644631rosal92154488262478369063",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1544882626647125206036282233560",
+                  "time": "2018-12-15 14:03:46",
+                  "amount": 6000,
+                  "balance": 3695698,
+                  "jpc": 0
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1544882626585153534713071290667",
+                  "time": "2018-12-15 14:03:46",
+                  "amount": 0,
+                  "balance": 3695698,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02644631rosal92154488262628496566",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1544882628206132928214293121903",
+                  "time": "2018-12-15 14:03:48",
+                  "amount": 6000,
+                  "balance": 3689698,
+                  "jpc": 0
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1544882628944227924750076887580",
+                  "time": "2018-12-15 14:03:49",
+                  "amount": 0,
+                  "balance": 3689698,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02644631rosal92154488262961200956",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1544882631569406036369384188809",
+                  "time": "2018-12-15 14:03:51",
+                  "amount": 6000,
+                  "balance": 3683698,
+                  "jpc": 0
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1544882631414415987782492970794",
+                  "time": "2018-12-15 14:03:51",
+                  "amount": 6000,
+                  "balance": 3689698,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02644631rosal92154488263162524282",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1544882632295743486576164321553",
+                  "time": "2018-12-15 14:03:52",
+                  "amount": 6000,
+                  "balance": 3683698,
+                  "jpc": 0
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1544882632875657105268561872298",
+                  "time": "2018-12-15 14:03:52",
+                  "amount": 2250,
+                  "balance": 3685948,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02644631rosal92154488263289389828",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1544882633137180798532628171738",
+                  "time": "2018-12-15 14:03:53",
+                  "amount": 6000,
+                  "balance": 3679948,
+                  "jpc": 0
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1544882634335158269789009386920",
+                  "time": "2018-12-15 14:03:54",
+                  "amount": 0,
+                  "balance": 3679948,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

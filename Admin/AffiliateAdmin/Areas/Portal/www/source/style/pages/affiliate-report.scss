@@ -1,0 +1,24 @@
+﻿@import "../components/multiple-select";
+@import "../components/monthpicker";
+@import "../components/autocomplete";
+
+.multiple-select-container {
+    flex: 1;
+}
+
+.note-info {
+    background: #fff;
+    border: 1px solid #ccc;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+}
+
+.mp-form-container {
+    &.disable {
+        .oi-calendar {
+            cursor: none;
+            color: #99a0a7
+        }
+    }
+}

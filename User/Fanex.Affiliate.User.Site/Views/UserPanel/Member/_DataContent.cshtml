@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Fanex.Affiliate.User.Core.DTO.UserPanel.Member>
+@{
+    var hasData = Model != null && Model.Any();
+}
+
+<div class="table table-responsive">
+    <table>
+        <thead>
+            <tr>
+                <th width="3%"></th>
+                <th width="10%">@Lang.Username</th>
+                <th width="10%">@Lang.FName</th>
+                <th width="10%">@Lang.LName</th>
+                <th width="10%">@Lang.Email</th>
+                <th width="10%">@Lang.MobileNumber</th>
+                <th width="10%">@Lang.RegisteredDate</th>
+                <th width="10%">@Lang.FirstDepositDate</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (hasData)
+            {
+                var index = (int)ViewBag.StartRowNumber;
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="text-center">@index</td>
+                        <td>@item.UserName</td>
+                        <td>@item.FirstName</td>
+                        <td>@item.LastName</td>
+                        <td>@item.Email</td>
+                        <td class="text-center">@item.Phone</td>
+                        <td class="text-center">@(item.RegisteredDate.HasValue ? item.RegisteredDate.Value.ToString("MM/dd/yyyy h:mm:ss tt") : string.Empty)</td>
+                        <td class="text-center">@(item.CreatedDate.HasValue ? item.CreatedDate.Value.ToString("MM/dd/yyyy h:mm:ss tt") : string.Empty)</td>
+                    </tr>
+
+                    index++;
+                }
+            }
+        </tbody>
+    </table>
+
+    @if (!hasData)
+    {
+        <p class="text-center">@Lang.NoInfo</p>
+    }
+
+    <input type="hidden" id="TotalItem" value="@ViewBag.TotalItem" />
+</div>

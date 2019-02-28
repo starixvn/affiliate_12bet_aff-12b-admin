@@ -1,0 +1,208 @@
+﻿{
+  "status": "success",
+  "datetime": "2018-12-15 08:00:00",
+  "pages": 1,
+  "currentpage": 1,
+  "total": 16,
+  "report": [
+    {
+      "playerid": "popoh0711",
+      "operator": "12Bet",
+      "currency": "THB",
+      "sessions": [
+        {
+          "sessionid": "1544860737YkE8S4PHdjgzDLbWi5jCbi",
+          "gameid": 6574,
+          "rounds": [
+            {
+              "roundid": "02646574popoh0711154486079977603694",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1544860801166133743922534123390",
+                  "time": "2018-12-15 08:00:01",
+                  "amount": 1000,
+                  "balance": 18200,
+                  "jpc": 0
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1544860801724364568600640185885",
+                  "time": "2018-12-15 08:00:01",
+                  "amount": 0,
+                  "balance": 18200,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02646574popoh0711154486080127526208",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1544860802599234998936673364630",
+                  "time": "2018-12-15 08:00:02",
+                  "amount": 1000,
+                  "balance": 17200,
+                  "jpc": 0
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1544860802877831189969795659169",
+                  "time": "2018-12-15 08:00:02",
+                  "amount": 0,
+                  "balance": 17200,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02646574popoh0711154486080274969420",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1544860804605197482689578565113",
+                  "time": "2018-12-15 08:00:04",
+                  "amount": 1000,
+                  "balance": 16200,
+                  "jpc": 0
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1544860804193035977104912195358",
+                  "time": "2018-12-15 08:00:04",
+                  "amount": 0,
+                  "balance": 16200,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02646574popoh0711154486080463654094",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1544860805169098835550633268395",
+                  "time": "2018-12-15 08:00:05",
+                  "amount": 1000,
+                  "balance": 15200,
+                  "jpc": 0
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1544860805208100843590219337819",
+                  "time": "2018-12-15 08:00:05",
+                  "amount": 0,
+                  "balance": 15200,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02646574popoh0711154486080576094890",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1544860806424239462813861167818",
+                  "time": "2018-12-15 08:00:06",
+                  "amount": 1000,
+                  "balance": 14200,
+                  "jpc": 0
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1544860806774102586468545580853",
+                  "time": "2018-12-15 08:00:07",
+                  "amount": 0,
+                  "balance": 14200,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02646574popoh0711154486080726763440",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1544860808277794628170594662309",
+                  "time": "2018-12-15 08:00:08",
+                  "amount": 1000,
+                  "balance": 13200,
+                  "jpc": 0
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1544860808944168435358881739480",
+                  "time": "2018-12-15 08:00:08",
+                  "amount": 0,
+                  "balance": 13200,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            },
+            {
+              "roundid": "02646574popoh0711154486080859621377",
+              "status": "INACTIVE",
+              "channel": "mobile",
+              "transactions": [
+                {
+                  "type": "BET",
+                  "transactionid": "1544860810673839077636261955023",
+                  "time": "2018-12-15 08:00:10",
+                  "amount": 1000,
+                  "balance": 12200,
+                  "jpc": 0
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1544860810615312576558395342516",
+                  "time": "2018-12-15 08:00:10",
+                  "amount": 3000,
+                  "balance": 15200,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1544860818839044814342188595066",
+                  "time": "2018-12-15 08:00:18",
+                  "amount": 30000,
+                  "balance": 45200,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                },
+                {
+                  "type": "WIN",
+                  "transactionid": "1544860839275317925130593398802",
+                  "time": "2018-12-15 08:00:39",
+                  "amount": 50000,
+                  "balance": 95200,
+                  "jpw": 0,
+                  "jpw_jpc": 0
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

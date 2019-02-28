@@ -1,0 +1,64 @@
+﻿.popup {
+    .modal-content {
+        .modal-main-content {
+            background-color: #fff;
+            border-radius: 5px;
+
+            .modal-header {
+                background-color: #d43131;
+                color: #fff;
+                padding: 8px;
+                text-align: center;
+
+                .modal-title {
+                    font-weight: bold;
+                }
+
+                .close {
+                    -webkit-appearance: none;
+                    position: absolute;
+                    right: -15px;
+                    top: -10px;
+                    border-radius: 50%;
+                    font-size: 21px;
+                    font-weight: bold;
+                    cursor: pointer;
+                    border: 0;
+                    color: #000;
+                    background-color: buttonface;
+                    opacity: 1;
+                    padding: 1px 6px;
+
+                    &:hover {
+                        opacity: 0.8;
+                    }
+
+                    &:focus {
+                        outline: none;
+                    }
+                }
+            }
+        }
+
+        .modal-body {
+            .signature {
+                font-weight: bold;
+                color: #07437d;
+            }
+        }
+
+        h6 {
+            color: #D05D56;
+            font-size: 1.3rem;
+            margin: 0;
+            padding-bottom: 5px;
+            font-weight: bold;
+        }
+
+        a {
+            color: red;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+    }
+}

@@ -1,0 +1,19 @@
+﻿.highlight
+{
+    background-color: #F8F1A0;
+}
+
+.tblCashOutDetail {
+    margin-left: 10px;
+    margin-bottom: 30px;
+}
+
+.original-ticket .tblCashOutDetail {
+    min-width: initial;
+    width: 825px;
+}
+
+.cashout-ticket .tblCashOutDetail {
+    min-width: initial;
+    width: 745px;
+}

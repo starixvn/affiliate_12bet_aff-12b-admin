@@ -1,0 +1,83 @@
+﻿using System.IO;
+using System.Text;
+using System.Web;
+using AffiliateAdmin.Business.Helpers;
+using AffiliateAdmin.Business.Models.Core;
+using DNAide.Core;
+
+namespace AffiliateAdmin.Business.Services.Banner
+{
+    public class AddBannerService
+    {
+        public ResultInfo AddBanner(HttpContext context)
+        {
+            string newfilename = context.Request.Files[0].FileName;
+            string inputfilename = context.Request.Params["inpFileName"];
+            string category = context.Request.Params["slCategory"];
+            string subCategory = context.Request.Params["slSubCategoryMedia"];
+            string language = context.Request.Params["slLanguage"];
+            string currency = context.Request.Params["slCurrency"];
+            string imageType = context.Request.Params["slImageType"];
+            string size = context.Request.Params["slSize"];
+            string affType = context.Request.Params["slAffType"];
+            string deviceType = context.Request.Params["slDevice"];
+
+            int type = CastAide.AsInt32(context.Request.Params["hidBannerType"], 0);
+
+            string extension = string.Empty;
+            if (!string.IsNullOrEmpty(newfilename))
+            {
+                extension = Path.GetExtension(newfilename);
+                if (!BannerHelper.IsValidExtension(extension))
+                {
+                    return new ResultInfo(ResultInfo.UnknownErrorCode, Resources.Lang.errFileExtension);
+                }
+            }
+
+            if (string.IsNullOrEmpty(inputfilename))
+            {
+                inputfilename = newfilename;
+            }
+            else
+            {
+                if (!BannerHelper.IsValidExtension(Path.GetExtension(inputfilename)))
+                {
+                    return new ResultInfo(ResultInfo.UnknownErrorCode, Resources.Lang.errFileExtension);
+                }
+            }
+
+            string fileName = string.Empty;
+            string newFolder = string.Empty;
+            StringBuilder sb = new StringBuilder();
+            sb.Append("CategoryMedia/");
+            sb.Append(category);
+            sb.Append("/");
+            if (category == "Casino" || category == "Sportsbook")
+            {
+                sb.Append(subCategory);
+                sb.Append("/");
+                category = subCategory;
+            }
+            newFolder = sb.ToString();
+            sb.Append(inputfilename);
+            fileName = sb.ToString();
+
+            var result = BannerHelper.UploadFileWithAutoDetectSize(context, newFolder, inputfilename, out size);
+            if (result.IsSuccessful)
+            {
+                result = DataHandler.Banner.InsertBanner(fileName, category, language, currency, imageType, size, affType, type, deviceType);
+                if (result.IsSuccessful == false)
+                {
+                    BannerHelper.DeleteFile(Path.Combine(newFolder, inputfilename));
+                }
+            }
+
+            if (result.IsSuccessful)
+            {
+                result.Message = Resources.Lang.AddBannerSuccessful;
+            }
+
+            return result;
+        }
+    }
+}

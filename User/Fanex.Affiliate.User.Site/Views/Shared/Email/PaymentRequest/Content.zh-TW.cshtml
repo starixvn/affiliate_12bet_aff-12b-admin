@@ -1,0 +1,17 @@
+﻿@model Fanex.Affiliate.User.Core.MetalModels.Email.PaymentEmailParam
+<div>
+尊敬的 @Model.User.FirstName,<br /><br />
+
+您好，<br /><br />
+ 
+我們已經收到了您日期為@(Model.RequestDate.ToString("MM/dd/yyyy"))，金額$@(Model.Amount)，交易單號為@(Model.TransId)的支付申請。<br /><br />
+ 
+我們會按照收到順序依次審核所有支付申請，您的申請會在七個工作日內被審核完畢。<br /><br />
+ 
+此郵件為系統郵件，請不要直接回复。<br /><br />
+
+如有任何疑問，歡迎致信<a href="mailto:@Model.MailContact">@Model.MailContact</a>聯繫我們<br /><br />
+ 
+誠摯的<br />
+12BET合作夥伴團隊
+</div>

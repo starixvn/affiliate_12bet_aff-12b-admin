@@ -1,0 +1,271 @@
+<%@ Page Language="C#" AutoEventWireup="true" Inherits="AffiliateUpd" CodeBehind="AffiliateUpd.aspx.cs" %>
+
+<!--js-->
+<script type="text/javascript" src="../App_Js/prototype.js"></script>
+<script type="text/javascript" src="../App_Js/Common.js"></script>
+<script type="text/javascript" src="../App_Js/IBCWnd/IBCWnd.js"></script>
+
+<script type="text/javascript">
+    window.onload = function () {
+        $("slPayment").value = $('hdMethod').value;
+        ShowMethod();
+        CloseClick();
+    };
+
+    var arrItem = new Array();
+    var arrError = new Array();
+    function ShowMethod() {
+        var divs = $('divPlayer', 'divNeteller', 'divMoneybookers', 'divWire');
+        var spans = $('spPlayer', 'spNeteller', 'spMoneybookers', 'spWire');
+        for (i = 0; i < 4; i++) {
+            divs[i].hide();
+            spans[i].className = "hide";
+        }
+        if ($("div" + $("slPayment").value))
+            $("div" + $("slPayment").value).show();
+        if ($("sp" + $("slPayment").value))
+            $("sp" + $("slPayment").value).className = "";
+    }
+    function submitForm() {
+        $('errMsg').className = "";
+        $("hdMoreurl").value = "";
+        arrItem.clear();
+        arrError.clear();
+        $('errMsg').hide();
+        var isSucc = CheckSuccess();
+        if (isSucc == false)
+            return false;
+        for (var i = 2; i < 100; i++) {
+            if (!$("txtSiteUrl" + i)) {
+                var length = $("hdMoreurl").value.length;
+                if (length > 0)
+                    $("hdMoreurl").value = $("hdMoreurl").value.substr(0, length - 1);
+                break;
+            }
+            $("hdMoreurl").value = $("hdMoreurl").value + $("txtSiteUrl" + i).value + ";";
+        }
+        Common.delayReloadPage1();
+        return true;
+    }
+    function UpdateSuccess(msg, url, intReload) {
+        Common.hideLoading();
+        if (parent.fInfo) {
+            arrError.clear();
+            arrItem.clear();
+            arrError.push(msg);
+            $('errMsg').className = "done";
+            $('errMsg').show();
+            arrItem.push("error_item");
+            Common.showError(arrError, arrItem, "error_item");
+            //var tmp = "";
+            parent.fInfo.$("isReload").value = "2";
+
+            setTimeout(function () {
+                parent.fInfo.$('frmSearch').submit();
+            }, 2000);
+
+        }
+        else {
+            location.href = url;
+        }
+    }
+    function UpdateErr(msg, itemFocus) {
+        $('errMsg').show();
+        arrError.clear();
+        arrItem.clear();
+        arrError.push(msg);
+        arrItem.push(itemFocus);
+        Common.showError(arrError, arrItem, "error_item");
+        Common.hideLoading();
+    }
+    function CheckSuccess() {
+        if (Common.isEmpty($('txtFName').value)) {
+            arrError.push(MsgResource.FName);
+            arrItem.push("txtFName");
+        }
+        if (Common.isEmpty($('txtLName').value)) {
+            arrError.push(MsgResource.LName);
+            arrItem.push("txtLName");
+        }
+        if (!document.getElementsByName("rdGender")[0].checked) {
+            if (!document.getElementsByName("rdGender")[1].checked) {
+                arrItem.push("rdGender");
+                arrError.push(MsgResource.ErrGender);
+            }
+        }
+        if (Common.isEmpty($('txtAddress').value)) {
+            arrError.push(MsgResource.Address);
+            arrItem.push("txtAddress");
+        }
+        if (Common.isEmpty($('txtCity').value)) {
+            arrError.push(MsgResource.City);
+            arrItem.push("txtCity");
+        }
+
+        if (Common.isEmpty($('txtPost').value)) {
+            arrError.push(MsgResource.PostCode);
+            arrItem.push("txtPost");
+        }
+        if (Common.isEmpty($('selCountry').value)) {
+            arrError.push(MsgResource.Country);
+            arrItem.push("selCountry");
+        }
+        if (!Common.checkMail($('txtEmail').value)) {
+            arrError.push(MsgResource.EmailValid);
+            arrItem.push("txtEmail");
+        }
+        if (Common.isEmpty($('txtNumber').value)) {
+            arrError.push(MsgResource.ContactNumber);
+            arrItem.push("txtNumber");
+        }
+
+        if (Common.isEmpty($("txtSiteUrl").value) && Common.isEmpty($("txtNoWebsite").value)) {
+            arrError.push(MsgResource.SiteUrl);
+            arrItem.push("txtSiteUrl");
+        }
+
+        var contactApp1Id = 'ContactApp[0].Value';
+        var contactApp1 = $(contactApp1Id);
+        var contactApp2 = $('ContactApp[1].Value');
+        var hasManyContactApp = contactApp2 !== null;
+        if (hasManyContactApp && Common.isEmpty(contactApp1.value) && Common.isEmpty(contactApp2.value) ||
+            !hasManyContactApp && contactApp1 && Common.isEmpty(contactApp1.value)) {
+            arrError.push(MsgResource.ContactApp);
+            arrItem.push(contactApp1Id);
+        }
+
+        var listSites = $$(".sites");
+        for (var i = 1; i < listSites.length; i++) {
+            if (listSites[i]) {
+                if (Common.isEmpty(listSites[i].value)) {
+                    arrError.push("Website URL " + (i == 0 ? "" : (i + 1).toString()) + " is required");
+                    arrItem.push(listSites[i].id);
+                    break;
+                }
+            }
+        }
+
+        switch ($("slPayment").value) {
+            case "Player":
+                check12Bet();
+                break;
+            case "Neteller":
+                checkNeteller();
+                break;
+            case "Moneybookers":
+                checkMoneyBooker();
+                break;
+            case "Wire":
+                checkWire();
+                break;
+            default:
+                check12Bet();
+                break;
+        }
+        if (arrItem.length > 0) {
+            $('errMsg').show();
+            Common.showError(arrError, arrItem, "error_item");
+            return false;
+        }
+
+        return true;
+    }
+    function check12Bet() {
+        if (Common.isEmpty($('txtBet12UserName').value)) {
+            arrError.push(MsgResource.UserName12Bet);
+            arrItem.push("txtBet12UserName");
+        }
+    }
+    function checkNeteller() {
+        if (Common.isEmpty($('txtNetellerAccId').value)) {
+            arrError.push(MsgResource.Neteller);
+            arrItem.push("txtNetellerAccId");
+        }
+    }
+    function checkMoneyBooker() {
+        if (Common.isEmpty($('txtMoneyBookerEmail').value)) {
+            arrError.push(MsgResource.Moneybooker);
+            arrItem.push("txtMoneyBookerEmail");
+        }
+        else {
+            if (!Common.checkMail($('txtMoneyBookerEmail').value)) {
+                arrError.push(MsgResource.MoneybookerValid);
+                arrItem.push("txtMoneyBookerEmail");
+            }
+        }
+    }
+    function checkWire() {
+        if (Common.isEmpty($('txtBankName').value)) {
+            arrError.push(MsgResource.BankName);
+            arrItem.push("txtBankName");
+        }
+        if (Common.isEmpty($('txtBankAddress').value)) {
+            arrError.push(MsgResource.BankAddress);
+            arrItem.push("txtBankAddress");
+        }
+        if (Common.isEmpty($('txtBankAccName').value)) {
+            arrError.push(MsgResource.BankAccName);
+            arrItem.push("txtBankAccName");
+        }
+        if (Common.isEmpty($('txtBankAccNumber').value)) {
+            arrError.push(MsgResource.BankAccNumber);
+            arrItem.push("txtBankAccNumber");
+        }
+    }
+    function CloseClick() {
+        if ($("chkStatus")) {
+            $("slComm").disabled = $("chkStatus").checked;
+            if ($("chkStatus").checked) {
+                $("spCommList").hide();
+                $("spComm").show();
+            }
+            else {
+                $("spCommList").show();
+                $("spComm").hide();
+                $("slComm").value = ($("spComm").innerHTML == "0.00" ? "0.30" : $("spComm").innerHTML);
+            }
+        }
+    }
+
+    function AddOneMoreURL() {
+        var listSites = $$(".sites");
+        var siteIndex = listSites.length;
+        if (Common.isEmpty(listSites[siteIndex - 1].value)) {
+            alert("Please input Website URL " + siteIndex.toString());
+            listSites[siteIndex - 1].focus();
+            return;
+        }
+        siteIndex = siteIndex + 1;
+        var table = $("siteUrl");
+        var tr = table.insertRow(table.rows.length);
+        var td1 = IBCWnd.createElement("td", tr);
+        var td2 = IBCWnd.createElement("td", tr);
+        var td3 = IBCWnd.createElement("td", tr);
+        tr.setAttribute("id", "tr" + siteIndex);
+        td2.className = "cont12oe";
+        td2.innerHTML = "*";
+        td1.innerHTML = "Website URL " + siteIndex.toString();
+        td3.innerHTML = "<input type='text' size='30' class='sites' id='txtSiteUrl" + siteIndex + "' name='txtSiteUrl" + siteIndex + "' />&nbsp;&nbsp;<input type=\"button\" onclick=\"DelUrl(" + siteIndex + ");\" class=\"buttonlogin\" value=\"Del\" />";
+        if ($("txtUrl" + siteIndex))
+            $("txtUrl" + siteIndex).focus();
+    }
+    function DelUrl(rowNum) {
+        $("siteUrl").deleteRow(rowNum);
+        reorderRows(rowNum);
+    }
+    
+    function reorderRows(starting) {
+        var tbl = $("siteUrl");
+        if (tbl.tBodies[0].rows[starting]) {
+            for (var i = starting; i < tbl.tBodies[0].rows.length; i++) {
+                var tr = tbl.tBodies[0].rows[i];
+                var tds = tr.getElementsByTagName("td");
+
+                var index = i;
+                tds[0].innerHTML = "Website URL " + index.toString();
+                tds[2].innerHTML = "<input type='text' size='30' value='" + tds[2].childNodes[0].value + "' class='sites' id='txtSiteUrl" + index + "' name='txtSiteUrl" + index + "' />&nbsp;&nbsp;<input type=\"button\" onclick=\"DelUrl(" + index + ");\" class=\"buttonlogin\" value=\"Del\" />";
+            }
+        }
+    }
+</script>
+<!--/js-->

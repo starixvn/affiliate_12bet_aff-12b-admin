@@ -1,0 +1,390 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C1C3E2F9-CC94-41A2-96E5-776B9F67E840}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Fanex.Affiliate.Admin.Core</RootNamespace>
+    <AssemblyName>Fanex.Affiliate.Admin.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>Fanex.Affiliate.Admin.Core.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>Fanex.Affiliate.Admin.Core.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=4.8.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Autofac.4.8.1\lib\net45\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Autofac.Mvc5.4.0.2\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.Data, Version=0.5.404.63, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Data.0.5.404.63\lib\net40\Fanex.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Logging.1.0.0.0\lib\net40\Fanex.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.MailDeliver.MailClient, Version=1.0.0.3, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.MailDeliver.MailClient.1.0.0.3\lib\net40\Fanex.MailDeliver.MailClient.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EnterpriseLibrary.Common.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EnterpriseLibrary.Data.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EnterpriseLibrary.Logging.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EnterpriseLibrary.Unity.5.0.414.0\lib\net40\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EnterpriseLibrary.Unity.5.0.414.0\lib\net40\Microsoft.Practices.Unity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EnterpriseLibrary.Unity.5.0.414.0\lib\net40\Microsoft.Practices.Unity.Interception.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ONEbook.UM, Version=2.0.2.9, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ONEbook.UM.2.0.2.9\lib\net40\ONEbook.UM.dll</HintPath>
+    </Reference>
+    <Reference Include="RazorEngine, Version=3.10.0.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\RazorEngine.3.10.0\lib\net45\RazorEngine.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\RestSharp.105.2.3\lib\net46\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Mvc.5.2.6\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.Razor.3.2.6\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Attributes\CompressAttribute.cs" />
+    <Compile Include="Attributes\CustomAuthorizeAttribute .cs" />
+    <Compile Include="Attributes\FunctionAuthorizeAttribute.cs" />
+    <Compile Include="Attributes\ValidateAntiForgeryHeaderAttribute.cs" />
+    <Compile Include="Configurations\AppSetting.cs" />
+    <Compile Include="Configurations\IAppSetting.cs" />
+    <Compile Include="Constants\AffStatus.cs" />
+    <Compile Include="Constants\AffType.cs" />
+    <Compile Include="Constants\Code.cs" />
+    <Compile Include="Constants\DeductionName.cs" />
+    <Compile Include="Constants\Function.cs" />
+    <Compile Include="Constants\LanguageSystem.cs" />
+    <Compile Include="Constants\TemplateString.cs" />
+    <Compile Include="Constants\UserPanelConstant.cs" />
+    <Compile Include="Controllers\AdministratorController.cs" />
+    <Compile Include="Controllers\AffiliateController.cs" />
+    <Compile Include="Controllers\AffiliateInfoController.cs" />
+    <Compile Include="Controllers\AffiliateReportController.cs" />
+    <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CommissionGroupController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\CustomerStatisticsController.cs" />
+    <Compile Include="Controllers\DomainController.cs" />
+    <Compile Include="Controllers\EmailTestingController.cs" />
+    <Compile Include="Controllers\ExchangeRateController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LandingPageController.cs" />
+    <Compile Include="Controllers\MediaGalleryController.cs" />
+    <Compile Include="Controllers\MemberController.cs" />
+    <Compile Include="Controllers\MessageController.cs" />
+    <Compile Include="Controllers\PasswordController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Controllers\UserPanel\CustomerMemberController.cs" />
+    <Compile Include="Controllers\UserPanel\PlayerDetailController.cs" />
+    <Compile Include="Controllers\UserPanel\StatementHistoryController.cs" />
+    <Compile Include="DTO\AffiliateLinkParam.cs" />
+    <Compile Include="DTO\Affiliate\AffiliateBasicInfo.cs" />
+    <Compile Include="DTO\Affiliate\AffiliateInfo.cs" />
+    <Compile Include="DTO\CommissionGroup\CommGroup.cs" />
+    <Compile Include="DTO\CommissionGroup\CommissionGroupResultEntity.cs" />
+    <Compile Include="DTO\CommissionGroup\CommissionGroupSetting.cs" />
+    <Compile Include="DTO\CommissionGroup\Deduction.cs" />
+    <Compile Include="DTO\CommissionGroup\DeductionSetting.cs" />
+    <Compile Include="DTO\CommissionGroup\TierSetting.cs" />
+    <Compile Include="DTO\Customer\CustomerStatistics.cs" />
+    <Compile Include="DTO\DepositAccountInfo.cs" />
+    <Compile Include="DTO\Email\AffInformationEmail.cs" />
+    <Compile Include="DTO\Email\EmailBase.cs" />
+    <Compile Include="DTO\Email\WithdrawalEmail.cs" />
+    <Compile Include="DTO\EntityResult.cs" />
+    <Compile Include="DTO\Language.cs" />
+    <Compile Include="DTO\MediaGallery\LandingPage.cs" />
+    <Compile Include="DTO\Product.cs" />
+    <Compile Include="DTO\Report\AffiliateReport.cs" />
+    <Compile Include="DTO\ResultInfo.cs" />
+    <Compile Include="DTO\SelectItem.cs" />
+    <Compile Include="DTO\SubMenu.cs" />
+    <Compile Include="DTO\UserPanel\CustomerMember.cs" />
+    <Compile Include="DTO\UserPanel\DailyEarning.cs" />
+    <Compile Include="DTO\UserPanel\DailyEarningDetail.cs" />
+    <Compile Include="DTO\UserPanel\DailyEarningDetailResult.cs" />
+    <Compile Include="DTO\UserPanel\DailyEarningResult.cs" />
+    <Compile Include="DTO\UserPanel\PlayerDetail.cs" />
+    <Compile Include="DTO\UserPanel\PlayerDetailResult.cs" />
+    <Compile Include="Extensions\DataReaderExtension.cs" />
+    <Compile Include="Extensions\JsonNetResult.cs" />
+    <Compile Include="Extensions\UrlHelperExtension.cs" />
+    <Compile Include="MetaModels\Affiliate\AffiliateInfoParam.cs" />
+    <Compile Include="MetaModels\Affiliate\ApproveAffiliateParam.cs" />
+    <Compile Include="MetaModels\Affiliate\FavoriteParam.cs" />
+    <Compile Include="MetaModels\Affiliate\PasswordParam.cs" />
+    <Compile Include="MetaModels\CommissionGroup\AssignGroupParam.cs" />
+    <Compile Include="MetaModels\CommissionGroup\GetCommissionGroupParam.cs" />
+    <Compile Include="MetaModels\CommissionGroup\DeleteCommissionGroupParam.cs" />
+    <Compile Include="MetaModels\CommissionGroup\CreateUpdateCommissionGroupParam.cs" />
+    <Compile Include="MetaModels\CommissionGroup\GetGroupListParam.cs" />
+    <Compile Include="MetaModels\Customer\CustomerStatisticsParam.cs" />
+    <Compile Include="MetaModels\MediaGallery\DeleteLandingPageParam.cs" />
+    <Compile Include="MetaModels\MediaGallery\InsertUpdateLandingPageParam.cs" />
+    <Compile Include="MetaModels\Report\AffiliateReportMainParam.cs" />
+    <Compile Include="MetaModels\UserPanel\CustomerMemberParam.cs" />
+    <Compile Include="MetaModels\UserPanel\DailyEarningParam.cs" />
+    <Compile Include="MetaModels\UserPanel\PlayerDetailParam.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\Affiliate\AffiliateInfoRepository.cs" />
+    <Compile Include="Repository\Affiliate\IAffiliateInfoRepository.cs" />
+    <Compile Include="Repository\Customer\CustomerStatisticsRepository.cs" />
+    <Compile Include="Repository\Customer\ICustomerStatisticsRepository.cs" />
+    <Compile Include="Repository\Report\AffiliateReportRepository.cs" />
+    <Compile Include="Repository\AffiliateRepository.cs" />
+    <Compile Include="Repository\AuthRepository.cs" />
+    <Compile Include="Repository\BaseRepository.cs" />
+    <Compile Include="Repository\CommissionGroupRepository.cs" />
+    <Compile Include="Repository\Report\IAffiliateReportRepository.cs" />
+    <Compile Include="Repository\IAffiliateRepository.cs" />
+    <Compile Include="Repository\IAuthRepository.cs" />
+    <Compile Include="Repository\ICommissionGroupRepository.cs" />
+    <Compile Include="Configurations\IoCConfig.cs" />
+    <Compile Include="Repository\ILanguageRepository.cs" />
+    <Compile Include="Repository\IProductRepository.cs" />
+    <Compile Include="Repository\LanguageRepository.cs" />
+    <Compile Include="Repository\MediaGallery\ILandingPageRepository.cs" />
+    <Compile Include="Repository\MediaGallery\LandingPageRepository.cs" />
+    <Compile Include="Repository\ProductRepository.cs" />
+    <Compile Include="Repository\UserPanel\CustomerMemberRepository.cs" />
+    <Compile Include="Repository\UserPanel\ICustomerMemberRepository.cs" />
+    <Compile Include="Repository\UserPanel\IPlayerDetailRepository.cs" />
+    <Compile Include="Repository\UserPanel\IStatementHistoryRepository.cs" />
+    <Compile Include="Repository\UserPanel\PlayerDetailRepository.cs" />
+    <Compile Include="Repository\UserPanel\StatementHistoryRepository.cs" />
+    <Compile Include="Resources\Lang.zh-TW.Designer.cs">
+      <DependentUpon>Lang.zh-TW.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Lang.zh-CN.Designer.cs">
+      <DependentUpon>Lang.zh-CN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Lang.vi-VN.Designer.cs">
+      <DependentUpon>Lang.vi-VN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Lang.th-TH.Designer.cs">
+      <DependentUpon>Lang.th-TH.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Lang.ko-KR.Designer.cs">
+      <DependentUpon>Lang.ko-KR.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Lang.ja-JP.Designer.cs">
+      <DependentUpon>Lang.ja-JP.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Lang.id-ID.Designer.cs">
+      <DependentUpon>Lang.id-ID.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Lang.hi-IN.Designer.cs">
+      <DependentUpon>Lang.hi-IN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Lang.es-ES.Designer.cs">
+      <DependentUpon>Lang.es-ES.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Lang.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Lang.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Services\AffiliateService.cs" />
+    <Compile Include="Services\CommissionGroupService.cs" />
+    <Compile Include="Services\Common\ISessionService.cs" />
+    <Compile Include="DTO\Common\UserPermission.cs" />
+    <Compile Include="Services\Common\SessionService.cs" />
+    <Compile Include="Services\EmailService.cs" />
+    <Compile Include="Services\IAffiliateService.cs" />
+    <Compile Include="Services\ICommissionGroupService.cs" />
+    <Compile Include="Services\IEmailService.cs" />
+    <Compile Include="Services\ILanguageService.cs" />
+    <Compile Include="Services\LanguageService.cs" />
+    <Compile Include="Services\MediaGallery\ILandingPageService.cs" />
+    <Compile Include="Services\MediaGallery\LandingPageService.cs" />
+    <Compile Include="Services\Report\AffiliateReportService.cs" />
+    <Compile Include="Services\Report\IAffiliateReportService.cs" />
+    <Compile Include="Services\UserPanel\CustomerMemberService.cs" />
+    <Compile Include="Services\UserPanel\ICustomerMemberService.cs" />
+    <Compile Include="Services\UserPanel\IStatementHistoryService.cs" />
+    <Compile Include="Services\UserPanel\StatementHistoryService.cs" />
+    <Compile Include="Utilities\CryptographyHelper.cs" />
+    <Compile Include="Utilities\Generator.cs" />
+    <Compile Include="Utilities\IMailProcessor.cs" />
+    <Compile Include="Utilities\MailProcessor.cs" />
+    <Compile Include="Utilities\SiteDomainHelper.cs" />
+    <Compile Include="ViewModels\Affiliate\AffiliateInfoViewModel.cs" />
+    <Compile Include="ViewModels\AffiliateReportViewModel.cs" />
+    <Compile Include="ViewModels\AssignNormalGroupViewModel.cs" />
+    <Compile Include="ViewModels\AssignPrivateGroupViewModel.cs" />
+    <Compile Include="ViewModels\CommissionGroupViewModel.cs" />
+    <Compile Include="ViewModels\EmailTemplateViewModel.cs" />
+    <Compile Include="ViewModels\GetCommissionGroupViewModel.cs" />
+    <Compile Include="ViewModels\UserPanel\CustomerMemberViewModel.cs" />
+    <Compile Include="ViewModels\UserPanel\DailyEarningViewModel.cs" />
+    <Compile Include="ViewModels\UserPanel\PlayerDetailViewModel.cs" />
+    <Compile Include="ViewModels\UserPanel\UserPanelMenuViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Fanex.Affiliate.Admin.Core.ruleset" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Lang.zh-TW.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Lang.zh-TW.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Lang.zh-CN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Lang.zh-CN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Lang.vi-VN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Lang.vi-VN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Lang.th-TH.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Lang.th-TH.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Lang.ko-KR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Lang.ko-KR.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Lang.ja-JP.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Lang.ja-JP.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Lang.id-ID.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Lang.id-ID.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Lang.hi-IN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Lang.hi-IN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Lang.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Lang.es-ES.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Lang.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Lang.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\Google.Protobuf.dll" />
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\SonarAnalyzer.CSharp.dll" />
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\SonarAnalyzer.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

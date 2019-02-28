@@ -1,0 +1,18 @@
+﻿@model Fanex.Affiliate.Admin.Core.DTO.Affiliate.AffiliateLinkParam
+@{
+    Layout = "~/Areas/Portal/Views/Shared/_SinglePageLayout.cshtml";
+}
+
+@section styles {
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/customer-statistics.css")" rel="stylesheet" />
+}
+
+@section scripts {
+    <script type="text/javascript">
+        window.initialState = { monthDate: '@DateTime.Now.ToString("MM/dd/yyyy")', affId: @Model.AffId, affName: '@Model.AffName' }
+    </script>
+    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/customer/customer-statistics.js")">
+    </script>
+}
+
+<div id="root"></div>
