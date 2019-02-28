@@ -56,7 +56,7 @@
                     <td></td>
                 </tr>
                 <tr>
-                    <td>@Lang.Tqacsbc:</td>
+                    <td>@Lang.TotalQualifiedMembers:</td>
                     <td class="text-right">@statistics.QualifiedMembers.ToStringNumber()</td>
                     <td></td>
                     <td></td>
@@ -157,7 +157,10 @@
 
                             <td class="text-center">@item.TierId</td>
                             <td class="text-right">@(item.MinAmount.ToStringMoneyWithSymbol())@maxAmount</td>
-                            <td class="text-right">@(item.MinQm.ToStringNumber())@maxQm</td>
+                            @if (isFirstRow)
+                            {
+                                <td class="text-center" rowspan="@totalRow">@Html.Raw(Lang.QualifyingMembers)</td>
+                            }
                             <td class="text-right">@(Convert.ToDouble(item.Commission * 100).ToString())%</td>
                         </tr>
 

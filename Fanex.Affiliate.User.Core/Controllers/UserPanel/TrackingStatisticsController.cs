@@ -33,7 +33,8 @@
             {
                 TrackingCodeList = _statisticsRepository.GetTrackingCode(affId, isInternal).Where(c => !c.MatchWith("[None]")),
                 TrackingStatisticsList = _statisticsRepository.GetTrackingStatistics(affId, null, isInternal),
-                IsDetail = false
+                IsDetail = false,
+                CurrentLanguage = SessionService.CurrentLanguage
             };
 
             return View("~/Views/UserPanel/Statistics/TrackingStatistics/Index.cshtml", viewModel);
@@ -49,7 +50,8 @@
             var viewModel = new TrackingStatisticsViewModel
             {
                 TrackingStatisticsList = _statisticsRepository.GetTrackingStatistics(affId, trackingCode, isInternal),
-                IsDetail = false
+                IsDetail = false,
+                CurrentLanguage = SessionService.CurrentLanguage
             };
 
             return PartialView("~/Views/UserPanel/Statistics/StatisticsPartial/_TrackingStatisticsContent.cshtml", viewModel);

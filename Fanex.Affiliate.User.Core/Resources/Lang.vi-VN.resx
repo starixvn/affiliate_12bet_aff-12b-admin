@@ -123,9 +123,6 @@
   <data name="AccInfo" xml:space="preserve">
     <value>Thông tin tài khoản</value>
   </data>
-  <data name="Account12bet" xml:space="preserve">
-    <value>Tài khoản người chơi 12BET</value>
-  </data>
   <data name="AccOverview" xml:space="preserve">
     <value>Tổng quan về tài khoản</value>
   </data>
@@ -149,9 +146,6 @@
   </data>
   <data name="AffiliateID" xml:space="preserve">
     <value>Mã Số Đại Lý </value>
-  </data>
-  <data name="AgreeTermNCondition" xml:space="preserve">
-    <value>Tôi đồng ý với các điều khoản &amp; điều kiện của 12BET Affiliate.</value>
   </data>
   <data name="Albania" xml:space="preserve">
     <value>Albania</value>
@@ -927,9 +921,6 @@
   <data name="LandingPages" xml:space="preserve">
     <value>Thống kê trang thông tin</value>
   </data>
-  <data name="Language" xml:space="preserve">
-    <value>Ngôn ngữ</value>
-  </data>
   <data name="LaoPeoplesDemRep" xml:space="preserve">
     <value>Cộng hòa dân chủ nhân dân Lào </value>
   </data>
@@ -1419,9 +1410,6 @@
   <data name="Singapore" xml:space="preserve">
     <value>Singapore </value>
   </data>
-  <data name="SiteInfor" xml:space="preserve">
-    <value>Thông tin trang web</value>
-  </data>
   <data name="SiteUrl" xml:space="preserve">
     <value>Địa chỉ trang web</value>
   </data>
@@ -1579,9 +1567,6 @@
   <data name="TotalQualifiedMembers" xml:space="preserve">
     <value>Tổng số người chơi đạt chuẩn</value>
   </data>
-  <data name="Tqacsbc" xml:space="preserve">
-    <value>Tổng số người chơi đạt chuẩn</value>
-  </data>
   <data name="TrackingCode" xml:space="preserve">
     <value>Mã theo dõi</value>
   </data>
@@ -1663,7 +1648,7 @@
   <data name="Vietnamese" xml:space="preserve">
     <value>Tiếng Việt</value>
   </data>
-  <data name="WebsiteInformat" xml:space="preserve">
+  <data name="WebsiteInfor" xml:space="preserve">
     <value>Thông tin trang web</value>
   </data>
   <data name="WebsiteURL" xml:space="preserve">
@@ -1835,15 +1820,13 @@
     <value>ĐĂNG KÝ ĐẠI LÝ</value>
   </data>
   <data name="ApplyOneTwoBetAffiliate" xml:space="preserve">
-    <value>Tham Gia Chương Trình
- Đại Lý 12BET</value>
+    <value>Tham Gia Đại Lý 12BET</value>
   </data>
   <data name="AsAOneTwoBetYouWillEarnCommission" xml:space="preserve">
     <value>Mỗi tháng, Đại lý 12BET sẽ nhận Hoa hồng dựa trên số lượng Thành viên mới tham gia chơi tại 12BET do bạn giới thiệu,  mỗi đại lý có thể theo dõi báo cáo cập nhật liên tục trong ngày.</value>
   </data>
   <data name="WhatNewInAffiliate" xml:space="preserve">
-    <value>Đại Lý 12BET
-Cập Nhật Mới Nhất</value>
+    <value>Cập Nhật Thông Tin Mới Nhất</value>
   </data>
   <data name="OneTwoBetAffiliateNews" xml:space="preserve">
     <value>Bản Tin Đại Lý 12BET</value>
@@ -2075,5 +2058,32 @@ Cập Nhật Mới Nhất</value>
   </data>
   <data name="PopupHappyEarning" xml:space="preserve">
     <value> </value>
+  </data>
+  <data name="NonDeposited" xml:space="preserve">
+    <value>Tài khoản chưa từng gửi tiền</value>
+  </data>
+  <data name="UsernameSignUp" xml:space="preserve">
+    <value>Tên truy cập 12BET</value>
+  </data>
+  <data name="QualifyingMembers" xml:space="preserve">
+    <value>≥ 5 </value>
+  </data>
+  <data name="ProductType" xml:space="preserve">
+    <value>Loại Sản Phẩm</value>
+  </data>
+  <data name="MyAccount" xml:space="preserve">
+    <value>Thông tin cá nhân</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Ngôn ngữ</value>
+  </data>
+  <data name="MetaTitle" xml:space="preserve">
+    <value>Trở thành đối tác thương mại của 12BET | Chương trình đại lý 12BET</value>
+  </data>
+  <data name="MetaDescription" xml:space="preserve">
+    <value>Trở thành đối tác chính thức của 12BET, quảng bá các trò chơi cá cược thể thao, casino trực tuyến và nhận hoa hồng hàng tháng từ những người chơi mà bạn giới thiệu.</value>
+  </data>
+  <data name="EmailSignup" xml:space="preserve">
+    <value>Địa chỉ email</value>
   </data>
 </root>

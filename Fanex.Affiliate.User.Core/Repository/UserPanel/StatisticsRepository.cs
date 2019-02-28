@@ -121,9 +121,11 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
 
         private TrackingStatistics BuildTrackingStatisticsItem(IDataReader reader)
         {
+            var date = Convert.ToDateTime(reader["Date"]);
+
             return new TrackingStatistics
             {
-                Date = Convert.ToDateTime(reader["Date"]),
+                Date = date,
                 TotalClick = reader["TotalClick"] == DBNull.Value ? 0 : Convert.ToInt32(reader["TotalClick"]),
                 UniqueClick = reader["UniqueClick"] == DBNull.Value ? 0 : Convert.ToInt32(reader["UniqueClick"])
             };

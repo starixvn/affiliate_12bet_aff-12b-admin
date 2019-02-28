@@ -25,6 +25,8 @@ namespace Fanex.Affiliate.User.Core.Constants
 
         public const string VietNamLanguageCode = "vi-VN";
 
+        public const string IndonesiaLanguageCode = "id-ID";
+
         public const string ShortedDefaultCode = "en";
 
         public const string ShortedEuroCode = "eneuro";
@@ -34,7 +36,7 @@ namespace Fanex.Affiliate.User.Core.Constants
             new Language { Code = "en-US", NativeName = "English", DisplayName = "English", EnglishName = "English", ShortedCode = "en"},
             new Language { Code = "zh-CN", NativeName = "中文简体", DisplayName = "Chinese Simplified", EnglishName = "Chinese Simplified", ShortedCode = "cs"},
             new Language { Code = "zh-TW", NativeName = "中文繁体", DisplayName = "Chinese Traditional", EnglishName = "Chinese Traditional", ShortedCode = "ch"},
-            new Language { Code = "id-ID", NativeName = "Indonesia", DisplayName = "Indonesian", EnglishName = "Indonesian", ShortedCode = "id"},
+            new Language { Code = "id-ID", NativeName = "Indonesia", DisplayName = "Bahasa Indonesia", EnglishName = "Indonesian", ShortedCode = "id"},
             new Language { Code = "vi-VN", NativeName = "Tiếng Việt", DisplayName = "Vietnamese", EnglishName = "Vietnamese", ShortedCode = "vn"},
             new Language { Code = "th-TH", NativeName = "ภาษาไทย", DisplayName = "Thai", EnglishName = "Thai", ShortedCode = "th"},
             new Language { Code = "ko-KR", NativeName = "한국어", DisplayName = "Korean", EnglishName = "Korean", ShortedCode = "ko"},

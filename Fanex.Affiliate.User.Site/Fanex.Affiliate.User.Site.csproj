@@ -837,13 +837,14 @@
     <Content Include="www\source\styles\Images\ads-1\ads-1_392.jpg" />
     <Content Include="www\source\styles\Images\ads-1\ads-1_559.jpg" />
     <Content Include="www\source\styles\Images\ads-1\ads-1_644.jpg" />
+    <Content Include="www\source\styles\Images\apply12bet\3step.vi-VN.png" />
+    <Content Include="www\source\styles\Images\apply12bet\3step.vi-VN.webp" />
     <Content Include="www\source\styles\Images\apply12bet\3step.zh-CN.png" />
     <Content Include="www\source\styles\Images\apply12bet\3step.en-US.png" />
     <Content Include="www\source\styles\Images\apply12bet\3step.id-ID.png" />
     <Content Include="www\source\styles\Images\apply12bet\3step.ko-KR.png" />
     <Content Include="www\source\styles\Images\apply12bet\3step.th-TH.png" />
     <Content Include="www\source\styles\Images\apply12bet\3step.zh-TW.png" />
-    <Content Include="www\source\styles\Images\apply12bet\3step.vi-VN.png" />
     <Content Include="www\source\styles\Images\banner-main-left.jpg" />
     <Content Include="www\source\styles\Images\banner-main-right.jpg" />
     <Content Include="www\source\styles\Images\bg-adv_contact.png" />
@@ -1105,7 +1106,6 @@
     <Content Include="www\source\styles\Images\apply12bet\3step.ko-KR.webp" />
     <Content Include="www\source\styles\Images\apply12bet\3step.th-TH.webp" />
     <Content Include="www\source\styles\Images\apply12bet\3step.zh-TW.webp" />
-    <Content Include="www\source\styles\Images\apply12bet\3step.vi-VN.webp" />
     <Content Include="www\source\styles\Images\products\game.zh-TW.webp" />
     <Content Include="www\source\styles\Images\products\game.zh-CN.webp" />
     <Content Include="www\source\styles\Images\products\game.en-US.webp" />
@@ -1118,7 +1118,6 @@
     <Content Include="www\build\styles\Images\apply12bet\3step.id-ID.webp" />
     <Content Include="www\build\styles\Images\apply12bet\3step.ko-KR.webp" />
     <Content Include="www\build\styles\Images\apply12bet\3step.th-TH.webp" />
-    <Content Include="www\build\styles\Images\apply12bet\3step.vi-VN.webp" />
     <Content Include="www\build\styles\Images\apply12bet\3step.zh-CN.webp" />
     <Content Include="www\build\styles\Images\apply12bet\3step.zh-TW.webp" />
     <Content Include="www\build\styles\Images\apply12bet\3step.ja-JP.webp" />
@@ -1142,6 +1141,7 @@
     <Content Include="www\source\styles\scss\components\_popup.scss" />
     <Content Include="Views\UserPanel\Popup\Index.cshtml" />
     <Content Include="www\source\styles\pages\user-panel.scss" />
+    <Content Include="www\build\styles\Images\apply12bet\3step.vi-VN.webp" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
