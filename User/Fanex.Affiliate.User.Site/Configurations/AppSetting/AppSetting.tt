@@ -4,7 +4,7 @@
 <#@ import namespace="System.Xml" #>
 <#@ output extension=".txt" #>
 <#
-string projectPath = Host.ResolveAssemblyReference("$(SolutionDir)") + @"Fanex.Affiliate.User.Site\";
+string projectPath = Host.ResolveAssemblyReference("$(SolutionDir)") + @"\User\Fanex.Affiliate.User.Site\";
 var environments = new string[] {"local", "sit", "uat", "production", "backupmnl", "master" };
 var sites = new string[] {"asian", "euro"};
 foreach(var environment in environments)
