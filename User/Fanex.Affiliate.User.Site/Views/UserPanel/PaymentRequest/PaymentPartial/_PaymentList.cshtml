@@ -30,6 +30,17 @@
                 return Lang.Unknown;
         }
     }
+
+    static string ConvertPaymentMethod(string paymentMethod)
+    {
+        switch (paymentMethod)
+        {
+            case "Player":
+                return Lang.Player;
+            default:
+                return paymentMethod;
+        }
+    }
 }
 
 
@@ -38,10 +49,10 @@
         <thead>
             <tr>
                 <th width="10%">@Lang.RefNo</th>
-                <th width="10%">@Lang.DateRequest</th>
+                <th width="10%" class="non-transform">@Lang.DateRequest</th>
                 <th width="10%">@Lang.RequestAmount</th>
                 <th width="10%">@Lang.PaymentMethod</th>
-                <th width="10%">@Lang.CompletedDate</th>
+                <th width="10%" class="non-transform">@Lang.CompletedDate</th>
                 <th width="10%">@Lang.Status</th>
                 <th width="20%">@Lang.Description</th>
             </tr>
@@ -56,7 +67,7 @@
                             <td class="text-center">@item.TransId</td>
                             <td class="text-center">@item.TransDate.ToString("MM/dd/yyyy")</td>
                             <td class="text-right">@item.Amount.ToStringMoneyWithSymbol()</td>
-                            <td class="text-center">@paymentMethod</td>
+                            <td class="text-center">@ConvertPaymentMethod(paymentMethod)</td>
                             <td class="text-center">@item.CompletedDate.ToString("MM/dd/yyyy")</td>
                             <td class="text-center text-bold">@ConvertStatus(item.Status)</td>
                             <td>@item.AffDesc</td>

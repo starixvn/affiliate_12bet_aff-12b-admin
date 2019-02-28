@@ -40,6 +40,8 @@
 
 .form-filter {
     .form-group {
+        display: inline-flex;
+        align-items: center;
         margin-right: 30px;
 
         label {

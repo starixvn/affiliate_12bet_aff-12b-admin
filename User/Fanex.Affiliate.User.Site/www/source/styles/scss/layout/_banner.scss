@@ -503,37 +503,27 @@
     background-size: cover;
 
     .text-red {
-        width: 400px;
-        margin: 0;
         color: #ff0000;        
-        font-size: 20px;
+        font-size: 16px;
         font-weight: 600;
         line-height: 1.5;
-        text-align: center;           
-        text-shadow: rgb(255, 255, 255) 1px 0px 0px, rgb(255, 255, 255) 0.540302px 0.841471px 0px, rgb(255, 255, 255) -0.416147px 0.909297px 0px, rgb(255, 255, 255) -0.989992px 0.14112px 0px, rgb(255, 255, 255) -0.653644px -0.756802px 0px, rgb(255, 255, 255) 0.283662px -0.958924px 0px, rgb(255, 255, 255) 0.96017px -0.279415px 0px;    
-        font-style: italic;        
-    }    
-
-    &.cn .text-red {
-        width: 300px;
-        font-size: 30px;
-    }
+        text-align: center;
+        margin-bottom: -260px  
+    }  
 
     @media screen and (min-width: 768px) and (max-width: 1199px) {
         height: 200px;
+
+        .text-red {
+            margin-bottom: -170px 
+        }
     }
 
     @media screen and (max-width: 767px) {
         height: 120px;
-
-        .text-red {
-            width: 250px;
-            font-size: 15px;
-        }
         
-        &.cn .text-red {
-            width: 130px;
-            font-size: 15px;
+        .text-red {
+            margin-bottom: -30px;
         }
     }
 }

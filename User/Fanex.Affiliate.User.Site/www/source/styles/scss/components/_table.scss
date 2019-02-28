@@ -57,6 +57,10 @@
             font-weight: 500;
         }
 
+        .non-transform {
+            text-transform: none;
+        }
+
         td {
             border: 1px solid #cccccc;
             padding: 4px 5px;
