@@ -5,8 +5,8 @@
 <#@ include file="$(SolutionDir)\packages\T4.TemplateFileManager.2.2.1\tools\ttinc\TemplateFilemanager.CS.ttinclude" #>
 
 <#
-	var path = Host.ResolveAssemblyReference("$(SolutionDir)");
-	Directory.SetCurrentDirectory(path);
+	var projectPath = Host.ResolveAssemblyReference("$(SolutionDir)") + @"\Admin\";
+	Directory.SetCurrentDirectory(projectPath);
 	var manager = TemplateFileManager.Create(this);
 
 	const string SpNameTemplate = "SpName=\"{0}\"";
