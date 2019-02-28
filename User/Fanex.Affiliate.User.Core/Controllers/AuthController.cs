@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
 using System.Web.UI;
@@ -14,23 +13,16 @@ using Fanex.Affiliate.User.Core.ViewModels;
 
 namespace Fanex.Affiliate.User.Core.Controllers
 {
-    public class AuthController : BaseController
+    public class AuthController : AuthBaseController
     {
-        private readonly IAuthService _authService;
-        private readonly ICaptchaService _captchaService;
-        private readonly IAppSetting _appSetting;
-
         public AuthController(
             ISessionService sessionService,
             IAppSetting appSetting,
             ILanguageService languageService,
             IAuthService authService,
-            ICaptchaService captchaService) : base(sessionService, languageService)
+            ICaptchaService captchaService) : base(sessionService, languageService, appSetting, captchaService, authService)
 
         {
-            _authService = authService;
-            _captchaService = captchaService;
-            _appSetting = appSetting;
         }
 
         [ChildActionOnly]
@@ -49,7 +41,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
             }
             else
             {
-                viewModel.PublicKey = _appSetting.RsaPublicKey;
+                viewModel.PublicKey = AppSetting.RsaPublicKey;
             }
 
             return View("~/Views/Auth/AuthenticationForm.cshtml", viewModel);
@@ -58,48 +50,45 @@ namespace Fanex.Affiliate.User.Core.Controllers
         [ValidateAntiForgeryToken]
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult SignIn(UserLoginParam userParam)
+        public ActionResult SignIn([Bind(Include = "LoginInfo,ValidationKey")] UserLoginParam userParam)
         {
-            if (!Request.IsAjaxRequest())
+            if (SessionService.VerificationSession != null)
             {
-                return Json(GetErrorResult(Lang.ErrAuthorized));
+                return Json(new LoginResultInfo { IsOk = false, ShouldVerifyAccount = true });
             }
 
-            if (!ModelState.IsValid)
+            var requestValidation = ValidateLoginRequest(userParam.ValidationKey, SessionService.CaptchaCode);
+            if (!requestValidation.IsOk)
             {
-                return Json(new ResultInfo
-                {
-                    IsOk = false,
-                    Message = string.Join(", ", ModelState.Values.SelectMany(x => x.Errors).Select(x => x.ErrorMessage))
-                });
+                return Json(requestValidation);
             }
 
-            if (!_captchaService.IsValid(userParam.ValidationKey, SessionService.CaptchaCode, Request.UserHostAddress))
-            {
-                return Json(new ResultInfo
-                {
-                    IsOk = false,
-                    Message = Lang.ValidationCode
-                });
-            }
-            userParam.LoginIp = Request.UserHostAddress;
+            userParam.LoginIp = RequestHelper.GetClientIPAddress(Request);
             userParam.Language = SessionService.CurrentLanguage;
-            var loginResult = _authService.GetLoginResult(userParam, false);
+            userParam.Browser = Request.Browser.Browser;
+            userParam.UserAgent = Request.UserAgent;
+            userParam.IsVerifyingAccount = false;
+            var loginResult = AuthService.GetLoginResult(userParam, false);
 
-            if (loginResult.UserInfo != null &&
-                        !_appSetting.AllowedAffiliateTypes.Any(t => t.Equals(loginResult.UserInfo.AffType)))
+            if (loginResult.Result.ShouldVerifyAccount)
             {
-                return Json(GetErrorResult(Lang.NotAllowOnDomain));
+                SessionService.VerificationSession = new VerificationSession { AffId = loginResult.UserInfo.AffId };
+
+                return Json(loginResult.Result);
             }
 
-            if (loginResult.Result.IsOk)
+            var userInfo = loginResult.UserInfo;
+            if (userInfo != null)
             {
-                var user = loginResult.UserInfo;
-                var onUserIdParam = GetOnUserIdParam(user.AffId, userParam.LoginIp);
-                user.OnUserId = _authService.GetOnUserId(onUserIdParam);
+                if (!IsValidDomain(userInfo.AffType))
+                {
+                    return Json(GetErrorResult(Lang.NotAllowOnDomain));
+                }
 
-                SessionService.AssignSessions(user);
-                FormsAuthentication.SetAuthCookie(user.UserName, false);
+                if (loginResult.Result.IsOk)
+                {
+                    AssignLoginInfoAndSetAuth(userInfo, userParam.LoginIp);
+                }
             }
 
             return Json(loginResult.Result);
@@ -118,30 +107,29 @@ namespace Fanex.Affiliate.User.Core.Controllers
         {
             if (ModelState.IsValid)
             {
-                var adminSessionId = _authService.GetSessionId(loginParam.AccOnId);
+                var adminSessionId = AuthService.GetSessionId(loginParam.AccOnId);
                 var hashedPassword = Generator.GenerateSHA512String(adminSessionId + loginParam.ChalengeStr);
-                if (string.CompareOrdinal(loginParam.AccKey, hashedPassword) == 0)
+                if (string.Equals(loginParam.AccKey, hashedPassword))
                 {
-                    var clientIpAddress = Request.UserHostAddress;
+                    var clientIpAddress = RequestHelper.GetClientIPAddress(Request);
                     var userLoginParam = new UserLoginParam
                     {
                         UserName = loginParam.CustName,
                         LoginIp = clientIpAddress,
-                        Language = SessionService.CurrentLanguage
+                        Language = SessionService.CurrentLanguage,
+                        Browser = Request.Browser.Browser,
+                        UserAgent = Request.UserAgent,
+                        IsVerifyingAccount = false
                     };
 
                     SessionService.IsInternal = true;
-                    var loginResult = _authService.GetLoginResult(userLoginParam, true);
+                    var loginResult = AuthService.GetLoginResult(userLoginParam, true);
                     var user = loginResult.UserInfo;
 
-                    if (loginResult.Result.IsOk && _appSetting.AllowedAffiliateTypes.Any(t => t.Equals(user.AffType)))
+                    if (loginResult.Result.IsOk && user != null && IsValidDomain(user.AffType))
                     {
                         var adminId = loginParam.AccId * -1;
-                        var onUserIdParam = GetOnUserIdParam(user.AffId, clientIpAddress, adminId);
-                        user.OnUserId = _authService.GetOnUserId(onUserIdParam);
-
-                        SessionService.AssignSessions(user);
-                        FormsAuthentication.SetAuthCookie(user.UserName, false);
+                        AssignLoginInfoAndSetAuth(loginResult.UserInfo, clientIpAddress, adminId);
                     }
                     else
                     {
@@ -163,7 +151,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
         public ActionResult ReCheckin()
         {
             var onUserId = SessionService.UserSession.OnUserId;
-            var isKickOut = onUserId > 0 && _authService.Recheckin(SessionService.UserSession.OnUserId,
+            var isKickOut = onUserId > 0 && AuthService.Recheckin(SessionService.UserSession.OnUserId,
                 SessionService.IsInternal);
 
             if (isKickOut)
@@ -192,29 +180,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 SessionService.SignUpCaptchaCode = captcha;
             }
 
-            return File(_captchaService.GenerateImageBuffer(captcha, 65, 26), "image/png");
-        }
-
-        private OnUserIdParam GetOnUserIdParam(int affId, string clientIpAddress, int adminId = 0)
-        {
-            return new OnUserIdParam
-            {
-                CustId = affId,
-                ServerId = _appSetting.ServerId,
-                Ip = clientIpAddress,
-                NetSessionId = HttpContext.Session.SessionID,
-                SubAccId = adminId,
-                IsInternal = SessionService.IsInternal
-            };
-        }
-
-        private ResultInfo GetErrorResult(string message)
-        {
-            return new ResultInfo
-            {
-                IsOk = false,
-                Message = message
-            };
+            return File(CaptchaService.GenerateImageBuffer(captcha, 65, 26), "image/png");
         }
 
         private void DoSignOut()

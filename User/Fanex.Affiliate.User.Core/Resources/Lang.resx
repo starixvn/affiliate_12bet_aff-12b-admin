@@ -739,7 +739,7 @@
     <value>Please enter username.</value>
   </data>
   <data name="ErrmsgEntryValidCode" xml:space="preserve">
-    <value>Please enter Validation code</value>
+    <value>Please enter Validation code.</value>
   </data>
   <data name="ErrMsgForgetPwFail" xml:space="preserve">
     <value>The information to reset password is not valid, please &lt;a href='ForgetPass.aspx'&gt;try again&lt;/a&gt;. In case you still can not reset your password, please &lt;a href='ContactUs.aspx'&gt;contact us&lt;/a&gt;</value>
@@ -2244,5 +2244,26 @@
   </data>
   <data name="TableCardGames" xml:space="preserve">
     <value>Table/Card Games</value>
+  </data>
+  <data name="EmailTittleVerificationAccount" xml:space="preserve">
+    <value>Verification your account detail</value>
+  </data>
+  <data name="SubjectVerificationAccount" xml:space="preserve">
+    <value>12Bet Affiliates - Verification your account detail</value>
+  </data>
+  <data name="ErrmsgEntryCaptcha" xml:space="preserve">
+    <value>Please enter captcha!</value>
+  </data>
+  <data name="ErrmsgEntryVerificationCode" xml:space="preserve">
+    <value>Please enter verification code.</value>
+  </data>
+  <data name="ValidationCaptcha" xml:space="preserve">
+    <value>You placed an invalid captcha.</value>
+  </data>
+  <data name="SendCodeFailed" xml:space="preserve">
+    <value>Send code failed. You should only refresh page to resend code after 60 seconds</value>
+  </data>
+  <data name="ValidationVerificationAccount" xml:space="preserve">
+    <value>Verification Account failed</value>
   </data>
 </root>

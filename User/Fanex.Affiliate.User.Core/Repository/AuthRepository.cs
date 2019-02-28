@@ -48,7 +48,7 @@ namespace Fanex.Affiliate.User.Core.Repository
             }
         }
 
-        public ResultInfo UpdateLoginResult(LoginResultParam loginResultParam, bool isInternal)
+        public LoginResultInfo UpdateLoginResult(LoginResultParam loginResultParam, bool isInternal)
         {
             const string spKey = "Aff_User_Login_ResultUpd";
             var dbMode = isInternal ? DBMode.View : DBMode.Main;
@@ -57,11 +57,11 @@ namespace Fanex.Affiliate.User.Core.Repository
             {
                 var objectDb = objectDbBuilder.DB;
                 AssignUpdateLoginResultParam(objectDb, loginResultParam);
-                objectDb.ExecuteNonQuery(loginResultParam);
+                objectDb.ExecuteNonQuery();
 
                 var code = objectDb.GetParameterValue("ErrCode");
 
-                return new ResultInfo
+                return new LoginResultInfo
                 {
                     IsOk = code == null || Convert.ToInt32(code) == 0,
                     Message = Convert.ToString(objectDb.GetParameterValue("ErrMsg"))
@@ -99,13 +99,27 @@ namespace Fanex.Affiliate.User.Core.Repository
             return parameterSet.IsKickedOut;
         }
 
+        public int GetFailedLoginCount(int affId, string ipAddress)
+        {
+            const string SpKey = "Aff_User_LoginInfoByDeviceSel";
+
+            using (var objectDb = new ObjectDBBuilder(SpKey))
+            {
+                objectDb.DB.AddInParameter("AffId", SqlDbType.Int, affId);
+                objectDb.DB.AddInParameter("IpAddress", SqlDbType.NVarChar, ipAddress);
+
+                return Convert.ToInt32(objectDb.DB.ExecuteScalar());
+            }
+        }
+
         private static void AssignUpdateLoginResultParam(IObjectDb objectDb, LoginResultParam param)
         {
             objectDb.AddInParameter("AffId", SqlDbType.Int, param.AffId);
-            objectDb.AddInParameter("LoginIP", SqlDbType.NVarChar, param.LoginIp);
+            objectDb.AddInParameter("IpAddress", SqlDbType.NVarChar, param.IpAddress);
+            objectDb.AddInParameter("Browser", SqlDbType.NVarChar, param.Browser);
+            objectDb.AddInParameter("UserAgent", SqlDbType.NVarChar, param.UserAgent);
             objectDb.AddInParameter("Language", SqlDbType.VarChar, param.Language);
             objectDb.AddInParameter("IsSuccessful", SqlDbType.Bit, param.IsSuccessful);
-            objectDb.AddInParameter("SessionId", SqlDbType.VarChar, param.SessionId);
 
             objectDb.AddOutParameter("ErrCode", SqlDbType.Int, 4);
             objectDb.AddOutParameter("ErrMsg", SqlDbType.NVarChar, 2000);

@@ -27,6 +27,20 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return Decrypt(DecodeUtfBase64(privateKey), cipherText);
         }
 
+        public string RsaEncrypt(string publicKey, string cipherText)
+        {
+            using (var rsa = new RSACryptoServiceProvider(KeySize))
+            {
+                rsa.PersistKeyInCsp = true;
+                rsa.FromXmlString(DecodeUtfBase64(publicKey));
+
+                var plainbytes = Encoding.UTF8.GetBytes(cipherText);
+                var cipherbytes = rsa.Encrypt(plainbytes, false);
+
+                return Convert.ToBase64String(cipherbytes);
+            }
+        }
+
         /// <summary>
         /// Export public key from MS RSACryptoServiceProvider into OpenSSH PEM string
         /// slightly modified from https://stackoverflow.com/a/28407693
@@ -91,18 +105,16 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         private static string Decrypt(string privateKey, string cipherText)
         {
-            byte[] plain;
-
-            using (RSACryptoServiceProvider rsa = new RSACryptoServiceProvider(KeySize))
+            using (var rsa = new RSACryptoServiceProvider(KeySize))
             {
                 rsa.PersistKeyInCsp = true;
                 rsa.FromXmlString(privateKey);
 
-                byte[] encodedCipherText = Convert.FromBase64String(cipherText);
-                plain = rsa.Decrypt(encodedCipherText, false);
-            }
+                var encodedCipherText = Convert.FromBase64String(cipherText);
+                var plain = rsa.Decrypt(encodedCipherText, false);
 
-            return Encoding.UTF8.GetString(plain);
+                return Encoding.UTF8.GetString(plain);
+            }
         }
 
         /// <summary>

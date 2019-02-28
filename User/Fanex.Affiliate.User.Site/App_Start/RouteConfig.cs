@@ -36,11 +36,15 @@ namespace Fanex.Affiliate.User.Site
                     @"/signup.aspx",new UrlSchema{Controller="Signup",Action="Index"}
                 }
             }));
+            var encryptedRoute = new Route("Execute/{encryptedQuery}", new EncryptedRouteHandler());
+            routes.Add(encryptedRoute);
+
             routes.MapRoute(
               name: "UserPanel",
               url: "UserPanel/{controller}/{action}/{id}",
               defaults: new { controller = "AccountOverview", action = "Index", id = UrlParameter.Optional }
-          );
+            );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

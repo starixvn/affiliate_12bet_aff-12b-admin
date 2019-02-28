@@ -1693,6 +1693,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Verification your account detail.
+        /// </summary>
+        public static string EmailTittleVerificationAccount {
+            get {
+                return ResourceManager.GetString("EmailTittleVerificationAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to English.
         /// </summary>
         public static string English {
@@ -2116,6 +2125,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please enter captcha!.
+        /// </summary>
+        public static string ErrmsgEntryCaptcha {
+            get {
+                return ResourceManager.GetString("ErrmsgEntryCaptcha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please enter password..
         /// </summary>
         public static string ErrmsgEntryPassword {
@@ -2134,11 +2152,20 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please enter Validation code.
+        ///   Looks up a localized string similar to Please enter Validation code..
         /// </summary>
         public static string ErrmsgEntryValidCode {
             get {
                 return ResourceManager.GetString("ErrmsgEntryValidCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter verification code..
+        /// </summary>
+        public static string ErrmsgEntryVerificationCode {
+            get {
+                return ResourceManager.GetString("ErrmsgEntryVerificationCode", resourceCulture);
             }
         }
         
@@ -4859,6 +4886,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Send code failed. You should only refresh page to resend code after 60 seconds.
+        /// </summary>
+        public static string SendCodeFailed {
+            get {
+                return ResourceManager.GetString("SendCodeFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Senegal .
         /// </summary>
         public static string Senegal {
@@ -5206,6 +5242,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string SubjectNewPass {
             get {
                 return ResourceManager.GetString("SubjectNewPass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12Bet Affiliates - Verification your account detail.
+        /// </summary>
+        public static string SubjectVerificationAccount {
+            get {
+                return ResourceManager.GetString("SubjectVerificationAccount", resourceCulture);
             }
         }
         
@@ -5796,6 +5841,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You placed an invalid captcha..
+        /// </summary>
+        public static string ValidationCaptcha {
+            get {
+                return ResourceManager.GetString("ValidationCaptcha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You placed an invalid code..
         /// </summary>
         public static string ValidationCode {
@@ -5810,6 +5864,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string ValidationCodeLabel {
             get {
                 return ResourceManager.GetString("ValidationCodeLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verification Account failed.
+        /// </summary>
+        public static string ValidationVerificationAccount {
+            get {
+                return ResourceManager.GetString("ValidationVerificationAccount", resourceCulture);
             }
         }
         

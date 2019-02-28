@@ -108,7 +108,6 @@
 
         getDataByYear: function () {
             var year = $("#year").val();
-            console.log("aaa");
             $.ajax({
                 type: "POST",
                 url: Site.resolveRelativeUrl("UserPanel/PaymentRequest/GetPaymentListByYear"),

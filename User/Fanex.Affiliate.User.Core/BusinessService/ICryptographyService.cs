@@ -10,6 +10,8 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         string RsaDecrypt(string privateKey, string cipherText);
 
+        string RsaEncrypt(string publicKey, string cipherText);
+
         string ConvertPublicKeyToString(RSAParameters parameters);
     }
 }

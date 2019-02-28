@@ -13,6 +13,8 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 {
     public class AuthService : IAuthService
     {
+        private const int MaxFailedLoginCount = 5;
+
         private readonly IAuthRepository _authRepository;
         private readonly ICryptographyService _cryptographyService;
         private readonly IAppSetting _appSetting;
@@ -53,7 +55,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 return new LoginResultViewModel { Result = checkingActiveUserResult };
             }
 
-            var loginResultInfo = _authRepository.UpdateLoginResult(GetLoginResultParam(userParam, user.AffId), true);
+            var loginResultInfo = _authRepository.UpdateLoginResult(GetLoginResultParam(userParam, true, user.AffId), true);
 
             return new LoginResultViewModel
             {
@@ -80,27 +82,41 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 return new LoginResultViewModel { Result = checkingActiveUserResult };
             }
 
+            if (!userParam.IsVerifyingAccount)
+            {
+                var failedLoginCount = _authRepository.GetFailedLoginCount(user.AffId, userParam.LoginIp);
+                if (failedLoginCount >= MaxFailedLoginCount)
+                {
+                    return new LoginResultViewModel
+                    {
+                        UserInfo = user,
+                        Result = new LoginResultInfo { IsOk = false, ShouldVerifyAccount = true }
+                    };
+                }
+            }
+
             userParam.Password = loginInfo["p"];
-            var loginResultInfo = IsMatchPassword(userParam.Password, user.Password) ?
-                        _authRepository.UpdateLoginResult(GetLoginResultParam(userParam, user.AffId), false) :
-                        new ResultInfo { IsOk = false, Message = Error.LoginWrongInfo };
+            var isMatchPassword = IsMatchPassword(userParam.Password, user.Password);
+            var loginResultInfo = _authRepository.UpdateLoginResult(GetLoginResultParam(userParam, isMatchPassword, user.AffId), false);
+
+            var isSuccessful = loginResultInfo.IsOk && isMatchPassword;
 
             return new LoginResultViewModel
             {
                 UserInfo = user,
-                Result = loginResultInfo
+                Result = new LoginResultInfo { IsOk = isSuccessful, Message = isSuccessful ? string.Empty : Error.LoginWrongInfo }
             };
         }
 
-        private static ResultInfo CheckActiveUser(AuthorizedUserInfo user)
+        private static LoginResultInfo CheckActiveUser(AuthorizedUserInfo user)
         {
             if (user == null || user.IsClosed)
             {
                 var message = user == null ? Error.LoginWrongInfo : Error.LoginClosedAccount;
-                return new ResultInfo { IsOk = false, Message = message };
+                return new LoginResultInfo { IsOk = false, Message = message };
             }
 
-            return new ResultInfo { IsOk = true };
+            return new LoginResultInfo { IsOk = true };
         }
 
         private LoginResultViewModel IsValidQueryStringInfo(NameValueCollection loginInfo)
@@ -110,7 +126,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             {
                 return new LoginResultViewModel
                 {
-                    Result = new ResultInfo { IsOk = false, Message = Error.YourSessionHasExpired }
+                    Result = new LoginResultInfo { IsOk = false, Message = Error.YourSessionHasExpired }
                 };
             }
 
@@ -120,7 +136,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             {
                 return new LoginResultViewModel
                 {
-                    Result = new ResultInfo
+                    Result = new LoginResultInfo
                     {
                         IsOk = false,
                         Message = string.IsNullOrEmpty(userName) ? Lang.ErrmsgEntryUsername : Lang.ErrmsgEntryPassword
@@ -130,7 +146,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
             return new LoginResultViewModel
             {
-                Result = new ResultInfo { IsOk = true }
+                Result = new LoginResultInfo { IsOk = true }
             };
         }
 
@@ -146,15 +162,16 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return encryptedPassword.Equals(passwordFromDb);
         }
 
-        private LoginResultParam GetLoginResultParam(UserLoginParam userParam, int affId)
+        private LoginResultParam GetLoginResultParam(UserLoginParam userParam, bool isSuccessful, int affId)
         {
             return new LoginResultParam
             {
                 AffId = affId,
-                LoginIp = userParam.LoginIp,
-                SessionId = HttpContext.Current.Session.SessionID,
+                IpAddress = userParam.LoginIp,
+                Browser = userParam.Browser,
+                UserAgent = userParam.UserAgent,
                 Language = userParam.Language,
-                IsSuccessful = true
+                IsSuccessful = isSuccessful
             };
         }
 

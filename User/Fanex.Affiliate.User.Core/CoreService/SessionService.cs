@@ -1,6 +1,7 @@
 ﻿using System.Web;
 using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.DTO.Auth;
+using Fanex.Affiliate.User.Core.DTO;
 
 namespace Fanex.Affiliate.User.Core.CoreService
 {
@@ -14,7 +15,7 @@ namespace Fanex.Affiliate.User.Core.CoreService
         private const string IsInternalKey = "Affiliate12Bet.IsInternalKey";
 
         private const string RsaKeyPairKey = "Affiliate12Bet.RsaKeyPairKey";
-
+        private const string VerificationSessionKey = "Affiliate12Bet.VerificationSessionKey";
         public string CaptchaCode
         {
             get { return HttpContext.Current.Session[CaptchaCodeKey] as string; }
@@ -89,6 +90,12 @@ namespace Fanex.Affiliate.User.Core.CoreService
             };
 
             HttpContext.Current.Session[UserSessionKey] = userSession;
+        }
+
+        public VerificationSession VerificationSession
+        {
+            get { return HttpContext.Current.Session[VerificationSessionKey] as VerificationSession; }
+            set { HttpContext.Current.Session[VerificationSessionKey] = value; }
         }
     }
 }

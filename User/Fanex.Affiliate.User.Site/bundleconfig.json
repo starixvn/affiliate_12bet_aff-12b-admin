@@ -19,13 +19,6 @@
     ]
   },
   {
-    "outputFileName": "www/build/js/changepassword.js",
-    "inputFiles": [
-      "www/source/js/lib/aes.js",
-      "www/source/js/pages/changepassword.js"
-    ]
-  },
-  {
     "outputFileName": "www/build/js/mediagallery.js",
     "inputFiles": [
       "www/source/js/components/pager.js",
@@ -141,6 +134,28 @@
     "outputFileName": "www/build/styles/fonts/myriadPro/font.css",
     "inputFiles": [
       "www/source/styles/fonts/myriadPro/font.css"
+    ]
+  },
+  {
+    "outputFileName": "www/build/js/pages/verification-account.js",
+    "inputFiles": [
+      "www/source/js/lib/hmac-sha256.js",
+      "www/source/js/components/authhelper.js",
+      "www/source/js/pages/verification-account.js"
+    ]
+  },
+  {
+    "outputFileName": "www/build/js/pages/login.js",
+    "inputFiles": [
+      "www/source/js/components/authhelper.js",
+      "www/source/js/pages/login.js"
+    ]
+  },
+  {
+    "outputFileName": "www/build/js/pages/changepassword.js",
+    "inputFiles": [
+      "www/source/js/components/authhelper.js",
+      "www/source/js/pages/changepassword.js"
     ]
   }
 ]

@@ -23,7 +23,7 @@ namespace Fanex.Affiliate.User.Site
         {
             var builder = new ContainerBuilder();
             //Register repository
-            RegisterRepository(builder);
+            RegisterDependencies(builder);
 
             var asselmblyList = GetExecutingAssembly();
             // Register your MVC controllers. (MvcApplication is the name of
@@ -68,7 +68,7 @@ namespace Fanex.Affiliate.User.Site
                 .ToArray();
         }
 
-        private static void RegisterRepository(ContainerBuilder builder)
+        private static void RegisterDependencies(ContainerBuilder builder)
         {
             builder.RegisterType<MaintenanceService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterInstance(CacheService.CreateInstance(CacheType.MemoryCache)).As<ICache>();
@@ -103,6 +103,9 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterType<CommissionReportRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<CommissionReportService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<CaptchaService>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<TwoFactorAuthService>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<VerificationService>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<WrapperUtility>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
     }
 }

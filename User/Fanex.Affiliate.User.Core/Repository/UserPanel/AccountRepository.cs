@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.MetalModels;
@@ -207,6 +209,25 @@ namespace Fanex.Affiliate.User.Core.Repository.UserPanel
             using (var objectDb = new ObjectDBBuilder(uSpKey, mode))
             {
                 return objectDb.DB.Query<CommissionSetting>(new { affId });
+            }
+        }
+
+        public int CreateSecretKey(int affId, string secretKey)
+        {
+            const string uSpKey = "Aff_User_SecretKeyIns";
+
+            using (var objectDb = new ObjectDBBuilder(uSpKey))
+            {
+                objectDb.DB.AddInParameter("AffId", SqlDbType.Int, affId);
+                objectDb.DB.AddInParameter("SecretKey", SqlDbType.VarChar, secretKey);
+                objectDb.DB.AddOutParameter("ErrCode", SqlDbType.Int, 4);
+                objectDb.DB.AddOutParameter("ErrMsg", SqlDbType.NVarChar, 2000);
+
+                objectDb.DB.ExecuteNonQuery();
+
+                var code = objectDb.DB.GetParameterValue("ErrCode");
+
+                return code == DBNull.Value ? 0 : Convert.ToInt32(code);
             }
         }
 

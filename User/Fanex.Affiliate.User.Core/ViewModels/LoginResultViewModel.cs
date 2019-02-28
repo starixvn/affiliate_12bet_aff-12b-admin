@@ -7,6 +7,8 @@ namespace Fanex.Affiliate.User.Core.ViewModels
     {
         public AuthorizedUserInfo UserInfo { get; set; }
 
-        public ResultInfo Result { get; set; }
+        public LoginResultInfo Result { get; set; }
+
+        public VerificationSession VerificationSession { get; set; }
     }
 }
