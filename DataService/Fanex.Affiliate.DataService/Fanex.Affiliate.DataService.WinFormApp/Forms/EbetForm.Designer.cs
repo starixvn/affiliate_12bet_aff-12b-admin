@@ -49,6 +49,7 @@
             this.richTextConvertedXml = new System.Windows.Forms.RichTextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.richTextLog = new System.Windows.Forms.RichTextBox();
+            this.btnImportDirectly = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -62,6 +63,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnImportDirectly);
             this.groupBox1.Controls.Add(this.btnImportConvertedXml);
             this.groupBox1.Controls.Add(this.txtPageSize);
             this.groupBox1.Controls.Add(this.label5);
@@ -278,6 +280,16 @@
             this.richTextLog.TabIndex = 0;
             this.richTextLog.Text = "";
             // 
+            // btnImportDirectly
+            // 
+            this.btnImportDirectly.Location = new System.Drawing.Point(334, 95);
+            this.btnImportDirectly.Name = "btnImportDirectly";
+            this.btnImportDirectly.Size = new System.Drawing.Size(132, 23);
+            this.btnImportDirectly.TabIndex = 20;
+            this.btnImportDirectly.Text = "Import Directly";
+            this.btnImportDirectly.UseVisualStyleBackColor = true;
+            this.btnImportDirectly.Click += new System.EventHandler(this.btnImportDirectly_Click);
+            // 
             // EbetForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -324,5 +336,6 @@
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.RichTextBox richTextLog;
         private System.Windows.Forms.Button btnImportConvertedXml;
+        private System.Windows.Forms.Button btnImportDirectly;
     }
 }

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnImport = new System.Windows.Forms.Button();
             this.btnGetRawData = new System.Windows.Forms.Button();
             this.endDatePicker = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
@@ -40,10 +41,10 @@
             this.richTextRawData = new System.Windows.Forms.RichTextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.richTextConvertedData = new System.Windows.Forms.RichTextBox();
-            this.btnImport = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.richTextLog = new System.Windows.Forms.RichTextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnImportDirectly = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -58,6 +59,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnImportDirectly);
             this.groupBox1.Controls.Add(this.btnImport);
             this.groupBox1.Controls.Add(this.btnGetRawData);
             this.groupBox1.Controls.Add(this.endDatePicker);
@@ -71,6 +73,16 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Input Param";
+            // 
+            // btnImport
+            // 
+            this.btnImport.Location = new System.Drawing.Point(149, 58);
+            this.btnImport.Name = "btnImport";
+            this.btnImport.Size = new System.Drawing.Size(132, 23);
+            this.btnImport.TabIndex = 7;
+            this.btnImport.Text = "Import Converted Data";
+            this.btnImport.UseVisualStyleBackColor = true;
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
             // btnGetRawData
             // 
@@ -188,16 +200,6 @@
             this.richTextConvertedData.TabIndex = 0;
             this.richTextConvertedData.Text = "";
             // 
-            // btnImport
-            // 
-            this.btnImport.Location = new System.Drawing.Point(149, 58);
-            this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(132, 23);
-            this.btnImport.TabIndex = 7;
-            this.btnImport.Text = "Import Converted Data";
-            this.btnImport.UseVisualStyleBackColor = true;
-            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
-            // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.richTextLog);
@@ -226,6 +228,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(987, 491);
             this.panel1.TabIndex = 3;
+            // 
+            // btnImportDirectly
+            // 
+            this.btnImportDirectly.Location = new System.Drawing.Point(324, 58);
+            this.btnImportDirectly.Name = "btnImportDirectly";
+            this.btnImportDirectly.Size = new System.Drawing.Size(132, 23);
+            this.btnImportDirectly.TabIndex = 18;
+            this.btnImportDirectly.Text = "Import Directly";
+            this.btnImportDirectly.UseVisualStyleBackColor = true;
+            this.btnImportDirectly.Click += new System.EventHandler(this.btnImportDirectly_Click);
             // 
             // BetsoftForm
             // 
@@ -271,5 +283,6 @@
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.RichTextBox richTextLog;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnImportDirectly;
     }
 }

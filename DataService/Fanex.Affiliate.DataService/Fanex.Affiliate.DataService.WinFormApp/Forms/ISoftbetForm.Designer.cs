@@ -44,6 +44,7 @@
             this.richTextRawData = new System.Windows.Forms.RichTextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.richTextConvertedData = new System.Windows.Forms.RichTextBox();
+            this.btnImportDirectly = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -56,6 +57,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnImportDirectly);
             this.groupBox1.Controls.Add(this.endTimePicker);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtPageNumber);
@@ -224,6 +226,16 @@
             this.richTextConvertedData.TabIndex = 0;
             this.richTextConvertedData.Text = "";
             // 
+            // btnImportDirectly
+            // 
+            this.btnImportDirectly.Location = new System.Drawing.Point(316, 58);
+            this.btnImportDirectly.Name = "btnImportDirectly";
+            this.btnImportDirectly.Size = new System.Drawing.Size(132, 23);
+            this.btnImportDirectly.TabIndex = 18;
+            this.btnImportDirectly.Text = "Import Directly";
+            this.btnImportDirectly.UseVisualStyleBackColor = true;
+            this.btnImportDirectly.Click += new System.EventHandler(this.btnImportDirectly_Click);
+            // 
             // ISoftbetForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -265,5 +277,6 @@
         private System.Windows.Forms.RichTextBox richTextConvertedData;
         private System.Windows.Forms.DateTimePicker endTimePicker;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnImportDirectly;
     }
 }

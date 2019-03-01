@@ -157,5 +157,76 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
                 }), null);
             }
         }
+
+        private async void btnImportDirectly_Click(object sender, EventArgs e)
+        {
+            if (DateTime.Compare(startTimePicker.Value, endTimePicker.Value) < 0)
+            {
+                var confirmResult = MessageBox.Show("Are you sure to Import Directly ??",
+                                     "Confirm Import!!",
+                                     MessageBoxButtons.YesNo);
+
+                if (confirmResult == DialogResult.Yes)
+                {
+                    const int TimeRangeByMinute = 1;
+                    ResetResult();
+                    richTextLog.Text = "Importing data...";
+
+                    var start = startTimePicker.Value;
+                    var end = endTimePicker.Value;
+                    var param = new ISoftbetEntryParam
+                    {
+                        StartTime = new DateTime(start.Year, start.Month, start.Day, start.Hour, start.Minute, 0),
+                        EndTime = new DateTime(end.Year, end.Month, end.Day, end.Hour, end.Minute, 0),
+                        PageNumber = Convert.ToInt32(txtPageNumber.Text)
+                    };
+                    try
+                    {
+                        ToggleButton(false);
+
+                        await Task.Run(() =>
+                        {
+                            for (var requestTime = param.StartTime; DateTime.Compare(requestTime, param.EndTime) < 0; requestTime = requestTime.AddMinutes(TimeRangeByMinute))
+                            {
+                                var paramByBatch = new ISoftbetEntryParam
+                                {
+                                    StartTime = requestTime,
+                                    EndTime = requestTime.AddMinutes(TimeRangeByMinute),
+                                    PageNumber = Convert.ToInt32(txtPageNumber.Text)
+                                };
+
+                                _isoftbetService.Import(paramByBatch);
+
+                                _logBuilder.AppendLine($"Done - Start:{paramByBatch.StartTime.ToString()} - End:{paramByBatch.EndTime.ToString()}");
+                                synchronizationContext.Post(new SendOrPostCallback((state) =>
+                                {
+                                    richTextLog.Text = _logBuilder.ToString();
+                                }), null);
+                            }
+                        });
+                    }
+                    catch (Exception ex)
+                    {
+                        _logBuilder.AppendLine(ex.Message);
+                        _logBuilder.AppendLine(ex.StackTrace);
+                        _logBuilder.AppendLine(ex.Source);
+                    }
+                    finally
+                    {
+                        synchronizationContext.Post(new SendOrPostCallback((state) =>
+                        {
+                            _logBuilder.AppendLine("Done!");
+                            richTextLog.Text = _logBuilder.ToString();
+                            _logBuilder.Clear();
+                            ToggleButton(true);
+                        }), null);
+                    }
+                }
+            }
+            else
+            {
+                richTextLog.Text = "Incorrect time range!";
+            }
+        }
     }
 }

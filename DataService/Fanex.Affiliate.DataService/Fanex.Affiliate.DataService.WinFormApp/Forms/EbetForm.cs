@@ -160,17 +160,90 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
 
         private void HandleBeforeImporting()
         {
-            btnGetRawData.Enabled = false;
-            btnImportConvertedXml.Enabled = false;
+            ToggleButton(false);
             richTextLog.Text = "Importing...";
         }
 
         private void HandleAfterImporting()
         {
-            btnGetRawData.Enabled = true;
-            btnImportConvertedXml.Enabled = true;
+            ToggleButton(true);
             _convertedXmlList.Clear();
             richTextLog.Text = "Import successfully!";
+        }
+
+        private void ToggleButton(bool isEnable)
+        {
+            btnGetRawData.Enabled = isEnable;
+            btnImportConvertedXml.Enabled = isEnable;
+            btnImportDirectly.Enabled = isEnable;
+        }
+
+        private async void btnImportDirectly_Click(object sender, EventArgs e)
+        {
+            if (DateTime.Compare(startDatePicker.Value, endDatePicker.Value) < 0)
+            {
+                var confirmResult = MessageBox.Show("Are you sure to Import Directly ??",
+                                     "Confirm Import!!",
+                                     MessageBoxButtons.YesNo);
+
+                if (confirmResult == DialogResult.Yes)
+                {
+                    ResetResult();
+                    richTextLog.Text = "Importing data...";
+
+                    try
+                    {
+                        ToggleButton(false);
+
+                        var configList = _ebetConfigHelper.GetConfigList();
+                        await Task.Run(() =>
+                        {
+                            foreach (var config in configList)
+                            {
+                                var param = new EbetParam
+                                {
+                                    UserName = txtUserName.Text,
+                                    StartTime = startDatePicker.Value,
+                                    EndTime = endDatePicker.Value,
+                                    ChannelId = config.ChannelId,
+                                    ApiUrl = config.ApiServerHost,
+                                    PrivateKey = config.PrivateKey,
+                                    CurrencyId = config.CurrencyID,
+                                    PageNumber = Convert.ToInt32(txtPageNumber.Text),
+                                    PageSize = Convert.ToInt32(txtPageSize.Text),
+                                };
+
+                                _ebetService.Import(param);
+                                _logBuilder.AppendLine($"Done - Currency: {param.CurrencyId} - Start:{param.StartTime.ToString()} - End:{param.EndTime.ToString()}");
+                                synchronizationContext.Post(new SendOrPostCallback((state) =>
+                                {
+                                    richTextLog.Text = _logBuilder.ToString();
+                                }), null);
+                            }
+                        });
+                    }
+                    catch (Exception ex)
+                    {
+                        _logBuilder.AppendLine(ex.Message);
+                        _logBuilder.AppendLine(ex.StackTrace);
+                        _logBuilder.AppendLine(ex.Source);
+                    }
+                    finally
+                    {
+                        synchronizationContext.Post(new SendOrPostCallback((state) =>
+                        {
+                            _logBuilder.AppendLine("Done!");
+                            richTextLog.Text = _logBuilder.ToString();
+                            _logBuilder.Clear();
+                            ToggleButton(true);
+                        }), null);
+                    }
+                }
+            }
+            else
+            {
+                richTextLog.Text = "Incorrect time range!";
+            }
         }
     }
 }
