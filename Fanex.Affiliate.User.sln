@@ -11,6 +11,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanex.Affiliate.User.Core.UnitTests", "User\Fanex.Affiliate.User.Core.UnitTests\Fanex.Affiliate.User.Core.UnitTests.csproj", "{855C308C-6651-49B5-8152-5803A4BF52CE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SonarQube", "SonarQube", "{C083008C-38B7-4DDF-A92E-961C98AED0C6}"
+	ProjectSection(SolutionItems) = preProject
+		SonarQube\12betAFFUserCSharp.ruleset = SonarQube\12betAFFUserCSharp.ruleset
+		SonarQube\SolutionBinding.sqconfig = SonarQube\SolutionBinding.sqconfig
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
