@@ -1,4 +1,5 @@
 ﻿using System;
+using Fanex.Logging;
 
 namespace Fanex.Affiliate.User.Core.Utilities
 {
@@ -7,5 +8,7 @@ namespace Fanex.Affiliate.User.Core.Utilities
         DateTime GetNowDateTime();
 
         Random GetRandomGenerator();
+
+        ILogger GetLogger();
     }
 }

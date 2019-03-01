@@ -41,6 +41,16 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             }
         }
 
+        public string ComputeSha256Hash(string rawString)
+        {
+            using (var sha256Hash = SHA256.Create())
+            {
+                var hashedBytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(rawString));
+
+                return ConverterUtils.ToHex(hashedBytes);
+            }
+        }
+
         /// <summary>
         /// Export public key from MS RSACryptoServiceProvider into OpenSSH PEM string
         /// slightly modified from https://stackoverflow.com/a/28407693

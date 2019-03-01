@@ -159,7 +159,6 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 LoginInfo = loginInfo,
                 LoginIp = RequestHelper.GetClientIPAddress(Request),
                 Language = SessionService.CurrentLanguage,
-                Browser = Request.Browser.Browser,
                 UserAgent = Request.UserAgent,
                 IsVerifyingAccount = true
             };
@@ -178,7 +177,11 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 HashKey = verificationSession.Token,
                 HashMessage = param.HashMessage,
                 Captcha = param.Captcha,
-                LoginInfo = param.LoginInfo
+                LoginInfo = param.LoginInfo,
+                AffId = verificationSession.AffId,
+                IpAddress = RequestHelper.GetClientIPAddress(Request),
+                Language = SessionService.CurrentLanguage,
+                UserAgent = Request.UserAgent
             };
         }
 

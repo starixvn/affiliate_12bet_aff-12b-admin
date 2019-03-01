@@ -55,7 +55,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 return new LoginResultViewModel { Result = checkingActiveUserResult };
             }
 
-            var loginResultInfo = _authRepository.UpdateLoginResult(GetLoginResultParam(userParam, true, user.AffId), true);
+            var loginResultInfo = _authRepository.UpdateLoginResult(CreateLoginResultParam(userParam, true, user.AffId), true);
 
             return new LoginResultViewModel
             {
@@ -82,9 +82,10 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 return new LoginResultViewModel { Result = checkingActiveUserResult };
             }
 
+            var hashedDeviceInfo = _cryptographyService.ComputeSha256Hash(Parser.GetDeviceInfo(userParam.UserAgent));
             if (!userParam.IsVerifyingAccount)
             {
-                var failedLoginCount = _authRepository.GetFailedLoginCount(user.AffId, userParam.LoginIp);
+                var failedLoginCount = _authRepository.GetFailedLoginCount(user.AffId, userParam.LoginIp, hashedDeviceInfo);
                 if (failedLoginCount >= MaxFailedLoginCount)
                 {
                     return new LoginResultViewModel
@@ -97,7 +98,8 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
             userParam.Password = loginInfo["p"];
             var isMatchPassword = IsMatchPassword(userParam.Password, user.Password);
-            var loginResultInfo = _authRepository.UpdateLoginResult(GetLoginResultParam(userParam, isMatchPassword, user.AffId), false);
+            var loginResultParam = CreateLoginResultParam(userParam, isMatchPassword, user.AffId, hashedDeviceInfo);
+            var loginResultInfo = _authRepository.UpdateLoginResult(loginResultParam, false);
 
             var isSuccessful = loginResultInfo.IsOk && isMatchPassword;
 
@@ -162,16 +164,15 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return encryptedPassword.Equals(passwordFromDb);
         }
 
-        private LoginResultParam GetLoginResultParam(UserLoginParam userParam, bool isSuccessful, int affId)
+        private LoginResultParam CreateLoginResultParam(UserLoginParam userParam, bool isSuccessful, int affId, string deviceInfo = null)
         {
             return new LoginResultParam
             {
                 AffId = affId,
                 IpAddress = userParam.LoginIp,
-                Browser = userParam.Browser,
-                UserAgent = userParam.UserAgent,
                 Language = userParam.Language,
-                IsSuccessful = isSuccessful
+                IsSuccessful = isSuccessful,
+                DeviceInfo = deviceInfo
             };
         }
 

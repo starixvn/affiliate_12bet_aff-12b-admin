@@ -106,6 +106,7 @@ namespace Fanex.Affiliate.User.Site
             builder.RegisterType<TwoFactorAuthService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<VerificationService>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<WrapperUtility>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<VerificationRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
     }
 }

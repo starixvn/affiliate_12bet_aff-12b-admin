@@ -99,7 +99,7 @@ namespace Fanex.Affiliate.User.Core.Repository
             return parameterSet.IsKickedOut;
         }
 
-        public int GetFailedLoginCount(int affId, string ipAddress)
+        public int GetFailedLoginCount(int affId, string ipAddress, string deviceInfo)
         {
             const string SpKey = "Aff_User_LoginInfoByDeviceSel";
 
@@ -107,6 +107,7 @@ namespace Fanex.Affiliate.User.Core.Repository
             {
                 objectDb.DB.AddInParameter("AffId", SqlDbType.Int, affId);
                 objectDb.DB.AddInParameter("IpAddress", SqlDbType.NVarChar, ipAddress);
+                objectDb.DB.AddInParameter("DeviceInfo", SqlDbType.NVarChar, deviceInfo);
 
                 return Convert.ToInt32(objectDb.DB.ExecuteScalar());
             }
@@ -116,8 +117,7 @@ namespace Fanex.Affiliate.User.Core.Repository
         {
             objectDb.AddInParameter("AffId", SqlDbType.Int, param.AffId);
             objectDb.AddInParameter("IpAddress", SqlDbType.NVarChar, param.IpAddress);
-            objectDb.AddInParameter("Browser", SqlDbType.NVarChar, param.Browser);
-            objectDb.AddInParameter("UserAgent", SqlDbType.NVarChar, param.UserAgent);
+            objectDb.AddInParameter("DeviceInfo", SqlDbType.NVarChar, param.DeviceInfo);
             objectDb.AddInParameter("Language", SqlDbType.VarChar, param.Language);
             objectDb.AddInParameter("IsSuccessful", SqlDbType.Bit, param.IsSuccessful);
 

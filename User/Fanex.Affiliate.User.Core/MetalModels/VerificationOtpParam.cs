@@ -1,6 +1,6 @@
 ﻿namespace Fanex.Affiliate.User.Core.MetalModels
 {
-    public class VerificationOtpParam
+    public class VerificationOtpParam : AuthResultBaseParam
     {
         public string SecretKey { get; set; }
 
@@ -15,5 +15,7 @@
         public string HashKey { get; set; }
 
         public string HashMessage { get; set; }
+
+        public string UserAgent { get; set; }
     }
 }

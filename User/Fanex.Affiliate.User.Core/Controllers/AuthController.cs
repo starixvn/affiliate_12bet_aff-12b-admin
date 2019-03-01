@@ -65,7 +65,6 @@ namespace Fanex.Affiliate.User.Core.Controllers
 
             userParam.LoginIp = RequestHelper.GetClientIPAddress(Request);
             userParam.Language = SessionService.CurrentLanguage;
-            userParam.Browser = Request.Browser.Browser;
             userParam.UserAgent = Request.UserAgent;
             userParam.IsVerifyingAccount = false;
             var loginResult = AuthService.GetLoginResult(userParam, false);
@@ -117,7 +116,6 @@ namespace Fanex.Affiliate.User.Core.Controllers
                         UserName = loginParam.CustName,
                         LoginIp = clientIpAddress,
                         Language = SessionService.CurrentLanguage,
-                        Browser = Request.Browser.Browser,
                         UserAgent = Request.UserAgent,
                         IsVerifyingAccount = false
                     };

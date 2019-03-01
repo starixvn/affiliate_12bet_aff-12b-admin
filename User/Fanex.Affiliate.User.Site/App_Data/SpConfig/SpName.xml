@@ -11,6 +11,7 @@
     <Setting Key="Aff_Recheckin" SpName="Aff_Recheckin" DbName="affiliate_12bet" />
     <Setting Key="Aff_Recheckin_view" SpName="Aff_Recheckin" DbName="affiliate_12bet_view" />
     <Setting Key="Aff_User_LoginInfoByDeviceSel" SpName="Aff_User_LoginInfoByDeviceSel_xtest" DbName="affiliate_12bet" />
+    <Setting Key="Aff_User_VerificationUpd" SpName="Aff_User_VerificationUpd_xtest" DbName="affiliate_12bet" />
   </Function>
 
   <Function Name="AccountInformation">

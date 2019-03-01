@@ -6,4 +6,5 @@
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_User_LoginInfoByDeviceSel" Suffix="_xtest"></item>
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_User_GeneralInfo_Sel" Suffix="_xtest"></item>
   <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_User_SecretKeyIns" Suffix="_xtest"></item>
+  <item Environment="DEV,LOCAL,SIT,UAT" SpName="Aff_User_VerificationUpd" Suffix="_xtest"></item>
 </Root>

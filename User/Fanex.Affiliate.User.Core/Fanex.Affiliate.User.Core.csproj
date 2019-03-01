@@ -332,6 +332,7 @@
     <Compile Include="Infrastructure\HandleLegacyUrlRoute.cs" />
     <Compile Include="Infrastructure\UrlSchema.cs" />
     <Compile Include="MetalModels\Attributes\RequiredByCheckedAttribute.cs" />
+    <Compile Include="MetalModels\AuthResultBaseParam.cs" />
     <Compile Include="MetalModels\BetList\BetListCashoutDetailParam.cs" />
     <Compile Include="MetalModels\BetList\BetListNewParlayParam.cs" />
     <Compile Include="MetalModels\BetList\BetListParam.cs" />
@@ -382,6 +383,7 @@
     <Compile Include="Repository\BetList\IBetListRepository.cs" />
     <Compile Include="Repository\EmailHistoryRepository.cs" />
     <Compile Include="Repository\IEmailHistoryRepository.cs" />
+    <Compile Include="Repository\IVerificationRepository.cs" />
     <Compile Include="Repository\UserPanel\CommissionReportRepository.cs" />
     <Compile Include="Repository\UserPanel\ICommissionReportRepository.cs" />
     <Compile Include="Repository\UserPanel\MemberRepository.cs" />
@@ -402,6 +404,7 @@
     <Compile Include="Repository\UserPanel\MarketingRepository.cs" />
     <Compile Include="Repository\UserPanel\StatementHistoryRepository.cs" />
     <Compile Include="Repository\UserPanel\StatisticsRepository.cs" />
+    <Compile Include="Repository\VerificationRepository.cs" />
     <Compile Include="Resources\Error.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -505,6 +508,7 @@
     <Compile Include="Utilities\IMailProcessor.cs" />
     <Compile Include="Utilities\MemberSitePageHelper.cs" />
     <Compile Include="CoreService\MemoryCacheService.cs" />
+    <Compile Include="Utilities\Parser.cs" />
     <Compile Include="Utilities\RequestHelper.cs" />
     <Compile Include="Utilities\SiteDomainHelper.cs" />
     <Compile Include="DTO\UserPanel\AccountInformation.cs" />

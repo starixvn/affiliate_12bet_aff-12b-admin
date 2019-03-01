@@ -6,6 +6,7 @@ using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
 using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.MetalModels.Email;
+using Fanex.Affiliate.User.Core.Repository;
 using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.Utilities;
@@ -25,6 +26,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         private readonly IEmailService _mailService;
         private readonly ICryptographyService _cryptographyService;
         private readonly IWrapperUtility _wrapperUtility;
+        private readonly IVerificationRepository _verificationRepository;
 
         public VerificationService(
             ITwoFactorAuthService twoFactorAuthService,
@@ -32,7 +34,8 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             IEmailService mailService,
             ILanguageService languageService,
             ICryptographyService cryptographyService,
-            IWrapperUtility wrapperUtility)
+            IWrapperUtility wrapperUtility,
+            IVerificationRepository verificationRepository)
         {
             _twoFactorAuthService = twoFactorAuthService;
             _accountRepository = accountRepository;
@@ -40,6 +43,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             _languageService = languageService;
             _cryptographyService = cryptographyService;
             _wrapperUtility = wrapperUtility;
+            _verificationRepository = verificationRepository;
         }
 
         public SendCodeResult SendCode(SendCodeParam param)
@@ -87,6 +91,19 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         {
             var authMessage = param.LoginInfo + param.HashKey + param.Captcha + param.OtpCode;
             var hashMessage = CreateHashMessage(authMessage, param.HashKey);
+
+            var verificationUpdateParam = new AuthResultBaseParam
+            {
+                AffId = param.AffId,
+                DeviceInfo = _cryptographyService.ComputeSha256Hash(Parser.GetDeviceInfo(param.UserAgent)),
+                IpAddress = param.IpAddress,
+                Language = param.Language
+            };
+            var updateResult = _verificationRepository.UpdateVerificationInfo(verificationUpdateParam);
+            if (!updateResult.IsOk)
+            {
+                _wrapperUtility.GetLogger().Error(updateResult.Message);
+            }
 
             return string.Equals(hashMessage, param.HashMessage) &&
                 _twoFactorAuthService.VerifyHotp(param.SecretKey, param.Counter, param.OtpCode);

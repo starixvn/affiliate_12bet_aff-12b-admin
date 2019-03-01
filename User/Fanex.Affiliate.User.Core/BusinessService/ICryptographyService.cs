@@ -13,5 +13,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         string RsaEncrypt(string publicKey, string cipherText);
 
         string ConvertPublicKeyToString(RSAParameters parameters);
+
+        string ComputeSha256Hash(string rawString);
     }
 }
