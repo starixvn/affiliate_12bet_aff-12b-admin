@@ -99,20 +99,6 @@ namespace Fanex.Affiliate.User.Core.Repository
             return parameterSet.IsKickedOut;
         }
 
-        public int GetFailedLoginCount(int affId, string ipAddress, string deviceInfo)
-        {
-            const string SpKey = "Aff_User_LoginInfoByDeviceSel";
-
-            using (var objectDb = new ObjectDBBuilder(SpKey))
-            {
-                objectDb.DB.AddInParameter("AffId", SqlDbType.Int, affId);
-                objectDb.DB.AddInParameter("IpAddress", SqlDbType.NVarChar, ipAddress);
-                objectDb.DB.AddInParameter("DeviceInfo", SqlDbType.NVarChar, deviceInfo);
-
-                return Convert.ToInt32(objectDb.DB.ExecuteScalar());
-            }
-        }
-
         private static void AssignUpdateLoginResultParam(IObjectDb objectDb, LoginResultParam param)
         {
             objectDb.AddInParameter("AffId", SqlDbType.Int, param.AffId);

@@ -3,6 +3,7 @@ using System.Collections.Specialized;
 using System.Web;
 using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.Auth;
+using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
 using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.Repository;
 using Fanex.Affiliate.User.Core.Resources;
@@ -14,16 +15,23 @@ namespace Fanex.Affiliate.User.Core.BusinessService
     public class AuthService : IAuthService
     {
         private const int MaxFailedLoginCount = 5;
+        private const int AllowedUserDeviceCount = 10;
 
         private readonly IAuthRepository _authRepository;
+        private readonly IVerificationRepository _verificationRepository;
         private readonly ICryptographyService _cryptographyService;
         private readonly IAppSetting _appSetting;
 
-        public AuthService(IAuthRepository authRepository, ICryptographyService cryptographyService, IAppSetting appSetting)
+        public AuthService(
+            IAuthRepository authRepository,
+            ICryptographyService cryptographyService,
+            IAppSetting appSetting,
+            IVerificationRepository verificationRepository)
         {
             _authRepository = authRepository;
             _cryptographyService = cryptographyService;
             _appSetting = appSetting;
+            _verificationRepository = verificationRepository;
         }
 
         public LoginResultViewModel GetLoginResult(UserLoginParam userParam, bool isInternal)
@@ -85,8 +93,8 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             var hashedDeviceInfo = _cryptographyService.ComputeSha256Hash(Parser.GetDeviceInfo(userParam.UserAgent));
             if (!userParam.IsVerifyingAccount)
             {
-                var failedLoginCount = _authRepository.GetFailedLoginCount(user.AffId, userParam.LoginIp, hashedDeviceInfo);
-                if (failedLoginCount >= MaxFailedLoginCount)
+                var verificationInfo = _verificationRepository.GetLoginInfoByUserDevice(user.AffId, userParam.LoginIp, hashedDeviceInfo);
+                if (verificationInfo == null || ShouldVerifyAccount(verificationInfo))
                 {
                     return new LoginResultViewModel
                     {
@@ -119,6 +127,14 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             }
 
             return new LoginResultInfo { IsOk = true };
+        }
+
+        private static bool ShouldVerifyAccount(VerificationInfo verificationInfo)
+        {
+            var failedLoginCount = verificationInfo.FailedLoginCount;
+
+            return (failedLoginCount.HasValue && failedLoginCount.Value >= MaxFailedLoginCount) ||
+                (!failedLoginCount.HasValue && verificationInfo.DeviceCount > AllowedUserDeviceCount);
         }
 
         private LoginResultViewModel IsValidQueryStringInfo(NameValueCollection loginInfo)

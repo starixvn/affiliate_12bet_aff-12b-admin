@@ -15,7 +15,5 @@ namespace Fanex.Affiliate.User.Core.Repository
         string GetSessionId(int onUserId);
 
         bool Recheckin(int onUserId, bool isInternal);
-
-        int GetFailedLoginCount(int affId, string ipAddress, string deviceInfo);
     }
 }

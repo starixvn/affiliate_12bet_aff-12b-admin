@@ -310,6 +310,7 @@
     <Compile Include="DTO\UserPanel\TrackingStatistics.cs" />
     <Compile Include="DTO\UserSession.cs" />
     <Compile Include="DTO\ResultInfo.cs" />
+    <Compile Include="DTO\VerificationAccount\VerificationInfo.cs" />
     <Compile Include="DTO\VerificationAccount\QueryStringResult.cs" />
     <Compile Include="DTO\VerificationAccount\VerificationAction.cs" />
     <Compile Include="DTO\VerificationSession.cs" />

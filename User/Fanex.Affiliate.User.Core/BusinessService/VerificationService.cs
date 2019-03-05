@@ -17,8 +17,8 @@ namespace Fanex.Affiliate.User.Core.BusinessService
     public class VerificationService : IVerificationService
     {
         private const int SecretKeyExistedCode = 101;
-        private const int IntervalTimeByMinute = 5;
-        private const int ExpirationByMinute = 1;
+        private const int ExpirationSendCodeByMinute = 5;
+        private const int ExpirationActionLinkByMinute = 6;
 
         private readonly ILanguageService _languageService;
         private readonly ITwoFactorAuthService _twoFactorAuthService;
@@ -92,27 +92,58 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             var authMessage = param.LoginInfo + param.HashKey + param.Captcha + param.OtpCode;
             var hashMessage = CreateHashMessage(authMessage, param.HashKey);
 
-            var verificationUpdateParam = new AuthResultBaseParam
+            var isValid = string.Equals(hashMessage, param.HashMessage) &&
+                _twoFactorAuthService.VerifyHotp(param.SecretKey, param.Counter, param.OtpCode);
+
+            UpdateVerificationInfo(param, isValid);
+
+            return isValid;
+        }
+
+        private void UpdateVerificationInfo(VerificationOtpParam param, bool isValid)
+        {
+            var verificationParam = CreateVerificationParam(param);
+            var verificationInfo = _verificationRepository.GetLoginInfoByUserDevice(
+                    verificationParam.AffId,
+                    verificationParam.IpAddress,
+                    verificationParam.DeviceInfo);
+
+            if (verificationInfo.FailedLoginCount.HasValue)
+            {
+                var updateResult = _verificationRepository.UpdateVerificationInfo(verificationParam);
+                if (!updateResult.IsOk)
+                {
+                    _wrapperUtility.GetLogger().Error(updateResult.Message);
+                }
+            }
+            else
+            {
+                if (isValid)
+                {
+                    var insertResult = _verificationRepository.InsertUserDeviceInfo(verificationParam);
+                    if (!insertResult.IsOk)
+                    {
+                        _wrapperUtility.GetLogger().Error(insertResult.Message);
+                    }
+                }
+            }
+        }
+
+        private AuthResultBaseParam CreateVerificationParam(VerificationOtpParam param)
+        {
+            return new AuthResultBaseParam
             {
                 AffId = param.AffId,
                 DeviceInfo = _cryptographyService.ComputeSha256Hash(Parser.GetDeviceInfo(param.UserAgent)),
                 IpAddress = param.IpAddress,
                 Language = param.Language
             };
-            var updateResult = _verificationRepository.UpdateVerificationInfo(verificationUpdateParam);
-            if (!updateResult.IsOk)
-            {
-                _wrapperUtility.GetLogger().Error(updateResult.Message);
-            }
-
-            return string.Equals(hashMessage, param.HashMessage) &&
-                _twoFactorAuthService.VerifyHotp(param.SecretKey, param.Counter, param.OtpCode);
         }
 
         public VerificationAction CreateActionLink(string publicKey)
         {
             var nowTicks = _wrapperUtility.GetNowDateTime().Ticks.ToString();
-            var queryString = "controller=VerificationAccount&action=VerifyAccount&t=" + nowTicks + "&e=" + ExpirationByMinute;
+            var queryString = "controller=VerificationAccount&action=VerifyAccount&t=" + nowTicks + "&e=" + ExpirationActionLinkByMinute;
 
             return new VerificationAction
             {
@@ -123,7 +154,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         private bool CanSendCode(long sendCodeTimeSession)
         {
-            var maxTime = _wrapperUtility.GetNowDateTime().AddMinutes(IntervalTimeByMinute * -1).Ticks;
+            var maxTime = _wrapperUtility.GetNowDateTime().AddMinutes(ExpirationSendCodeByMinute * -1).Ticks;
 
             return sendCodeTimeSession == 0 || maxTime - sendCodeTimeSession >= 0;
         }
