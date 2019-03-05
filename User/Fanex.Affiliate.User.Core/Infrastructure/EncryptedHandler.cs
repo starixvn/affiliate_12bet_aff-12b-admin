@@ -52,7 +52,7 @@ namespace Fanex.Affiliate.User.Core.Infrastructure
                     controller.Execute(_requestContext);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 SetNotFoundResponse();
             }

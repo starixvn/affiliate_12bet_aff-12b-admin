@@ -284,8 +284,8 @@
     <Compile Include="DTO\Payment.cs" />
     <Compile Include="DTO\ProductItem.cs" />
     <Compile Include="DTO\RsaKeyPair.cs" />
-    <Compile Include="DTO\SendCodeResponse.cs" />
-    <Compile Include="DTO\SendCodeResult.cs" />
+    <Compile Include="DTO\VerificationAccount\SendCodeResponse.cs" />
+    <Compile Include="DTO\VerificationAccount\SendCodeResult.cs" />
     <Compile Include="DTO\Transaction.cs" />
     <Compile Include="DTO\UserInfo.cs" />
     <Compile Include="DTO\UserPanel\AccountOverviewStatistics.cs" />
@@ -313,8 +313,8 @@
     <Compile Include="DTO\VerificationAccount\VerificationInfo.cs" />
     <Compile Include="DTO\VerificationAccount\QueryStringResult.cs" />
     <Compile Include="DTO\VerificationAccount\VerificationAction.cs" />
-    <Compile Include="DTO\VerificationSession.cs" />
-    <Compile Include="DTO\VerifyAccountResult.cs" />
+    <Compile Include="DTO\VerificationAccount\VerificationSession.cs" />
+    <Compile Include="DTO\VerificationAccount\VerifyAccountResult.cs" />
     <Compile Include="Enum\AffiliateType.cs" />
     <Compile Include="Enum\DeviceType.cs" />
     <Compile Include="Enum\MemberType.cs" />

@@ -1,4 +1,4 @@
-﻿namespace Fanex.Affiliate.User.Core.DTO
+﻿namespace Fanex.Affiliate.User.Core.DTO.VerificationAccount
 {
     public class SendCodeResult : ResultInfo
     {

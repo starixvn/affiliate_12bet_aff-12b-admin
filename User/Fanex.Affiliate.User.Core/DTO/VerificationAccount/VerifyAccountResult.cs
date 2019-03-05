@@ -1,6 +1,4 @@
-﻿using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
-
-namespace Fanex.Affiliate.User.Core.DTO
+﻿namespace Fanex.Affiliate.User.Core.DTO.VerificationAccount
 {
     public class VerifyAccountResult : ResultInfo
     {

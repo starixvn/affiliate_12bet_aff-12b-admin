@@ -1,5 +1,5 @@
-﻿using Fanex.Affiliate.User.Core.DTO;
-using Fanex.Affiliate.User.Core.DTO.Auth;
+﻿using Fanex.Affiliate.User.Core.DTO.Auth;
+using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
 
 namespace Fanex.Affiliate.User.Core.CoreService
 {

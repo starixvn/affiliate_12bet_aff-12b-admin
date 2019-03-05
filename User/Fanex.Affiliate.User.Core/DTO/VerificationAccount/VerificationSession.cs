@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Fanex.Affiliate.User.Core.DTO
+namespace Fanex.Affiliate.User.Core.DTO.VerificationAccount
 {
     [Serializable]
     public class VerificationSession

@@ -1,6 +1,4 @@
-﻿using System.Security.Cryptography;
-
-namespace Fanex.Affiliate.User.Core.BusinessService
+﻿namespace Fanex.Affiliate.User.Core.BusinessService
 {
     public interface ICryptographyService
     {
@@ -11,8 +9,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         string RsaDecrypt(string privateKey, string cipherText);
 
         string RsaEncrypt(string publicKey, string cipherText);
-
-        string ConvertPublicKeyToString(RSAParameters parameters);
 
         string ComputeSha256Hash(string rawString);
     }
