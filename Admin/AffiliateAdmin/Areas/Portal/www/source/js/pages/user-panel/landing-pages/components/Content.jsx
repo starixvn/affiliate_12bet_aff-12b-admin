@@ -8,8 +8,7 @@ import { Button } from 'reactstrap';
 import { headerTitle } from '../modules/constants';
 import { globalResource } from '../../../../modules/globalResource';
 
-import { post } from '../../../../modules/ajaxRequest';
-import { setSelectedPage, setShowDetail, toggleLoader } from '../actions';
+import { setSelectedPage, toggleLoader, fetchData } from '../actions';
 
 export class Content extends Component {
     constructor(props) {
@@ -30,11 +29,13 @@ export class Content extends Component {
 
     async fetchData(param) {
         this.props.toggleLoader(true);
-        const url = 'Portal/UserPanel/LandingPages/GetLandingPagesList';
-        const response = await post(url, param);
-        if (response && response.status === 200) {
-            this.setState({ gridData: response.data });
+
+        const data = await this.props.fetchData(param);
+
+        if (data) {
+            this.setState({ gridData: data });
         }
+
         this.props.toggleLoader(false);
     }
 
@@ -42,7 +43,6 @@ export class Content extends Component {
         const selectedPage = Object.assign({}, { SelectedPage: page, Language: language });
 
         this.props.setSelectedPage(selectedPage);
-        this.props.setShowDetail(true);
     }
 
     _renderHeader() {
@@ -79,15 +79,18 @@ export class Content extends Component {
     }
 
     _buildDataRow(dataItem) {
+        const { languageList } = this.props;
+        const language = languageList[dataItem.LanguageCode] === undefined ? dataItem.LanguageCode : languageList[dataItem.LanguageCode];
+
         return (
             <Row>
                 <Cell title={dataItem.SiteUrl}>
                     {(dataItem.Page == "Old URL" || dataItem.Page == "none") ? dataItem.Page :
-                        (<Button color="link" className="p-0" onClick={() => this.handleSelectedPage(dataItem.Page, dataItem.Language)}>
+                        (<Button color="link" className="p-0" onClick={() => this.handleSelectedPage(dataItem.Page, language)}>
                             {dataItem.Page}
                         </Button>)}
                 </Cell>
-                <Cell title={dataItem.Language} className="text-right">{dataItem.Language}</Cell>
+                <Cell title={language} className="text-right">{language}</Cell>
                 <Cell title={dataItem.TotalClick} className="text-right">{dataItem.TotalClick}</Cell>
                 <Cell title={dataItem.UniqueClick} className="text-right">{dataItem.UniqueClick}</Cell>
                 <Cell title={dataItem.Signups} className="text-right">{dataItem.Signups}</Cell>
@@ -115,12 +118,12 @@ export class Content extends Component {
 }
 
 
-function mapStateToProps({ param }) {
-    return Object.assign({}, { param });
+function mapStateToProps({ param, languageList }) {
+    return Object.assign({}, { param, languageList });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ toggleLoader, setSelectedPage, setShowDetail }, dispatch);
+    return bindActionCreators({ toggleLoader, setSelectedPage, fetchData }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

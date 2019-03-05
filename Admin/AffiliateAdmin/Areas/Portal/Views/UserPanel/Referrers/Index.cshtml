@@ -8,18 +8,6 @@
 @using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
 @model Fanex.Affiliate.Admin.Core.ViewModels.UserPanel.ReferrersViewModel
 
-@{
-    var defaultUrl = (Model.SubMenuList.FirstOrDefault(p => p.IsActive) ?? Model.SubMenuList.First()).Url;
-    if (defaultUrl.IndexOf('?') == -1 && Request.QueryString.Count > 0)
-    {
-        defaultUrl = defaultUrl + "?" + Request.QueryString.ToString();
-    }
-    else if (Request.QueryString.Count > 0)
-    {
-        defaultUrl = defaultUrl + "&" + Request.QueryString.ToString();
-    }
-}
-
 @section styles{
     <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/user-panel/referrers.css")" rel="stylesheet" />
 }

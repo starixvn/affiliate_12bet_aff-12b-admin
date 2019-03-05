@@ -8,8 +8,7 @@ import { Button } from 'reactstrap';
 import { headerText } from '../modules/constants';
 import { globalResource } from '../../../../modules/globalResource';
 
-import { post } from '../../../../modules/ajaxRequest';
-import { setPagingOption, toggleLoader, setShowIdList } from '../actions';
+import { setPagingOption, toggleLoader, setShowIdList, fetchData } from '../actions';
 
 export class Content extends Component {
     constructor(props) {
@@ -25,22 +24,24 @@ export class Content extends Component {
         const { pagingOption, param } = this.props;
 
         if (param !== prevProps.param) {
-            const newParam = Object.assign({}, param, { PageIndex: pagingOption.PageIndex, PageSize: pagingOption.PageSize });
+            const newParam = Object.assign({}, param, { PageIndex: 1, PageSize: pagingOption.PageSize });
             this.fetchData(newParam);
         }
     }
 
     async fetchData(param) {
         this.props.toggleLoader(true);
-        const url = 'Portal/UserPanel/ViewLog/GetViewLogList';
-        const response = await post(url, param);
-        if (response && response.status === 200) {
-            const { MainData, TotalItem } = response.data;
+
+        const data = await this.props.fetchData(param);
+
+        if (data) {
+            const { MainData, TotalItem } = data;
 
             this.setState({ gridData: MainData, shouldResetScrollPosition: true });
 
             this.props.setPagingOption({ TotalItem, PageIndex: param.PageIndex, PageSize: param.PageSize });
         }
+
         this.props.toggleLoader(false);
     }
 
@@ -48,21 +49,12 @@ export class Content extends Component {
         const { showIdList } = this.props;
         this.setState({ shouldResetScrollPosition: false });
 
-        var isContain = false;
-
-        Object.keys(showIdList).map(idItem => {
-            if (id == idItem) {
-                isContain = true;
-            }
-        });
-
-        delete showIdList[id];
-        isContain ? this.props.setShowIdList(Object.assign({}, showIdList)) : this.props.setShowIdList(Object.assign({}, showIdList, { [id]: id }));
+        this.props.setShowIdList(Object.assign({}, showIdList, { [id]: !showIdList[id] }));
     }
 
     _renderHeader() {
         return (
-            <Row key="theard">
+            <Row key="thread">
                 <Cell header={true} colWidth={25} title={headerText.Index}>{headerText.Index}</Cell>
                 <Cell header={true} colWidth={55} title={headerText.Id}>{headerText.Id}</Cell>
                 <Cell header={true} colWidth={110} title={headerText.Date}>{headerText.Date}</Cell>
@@ -82,17 +74,16 @@ export class Content extends Component {
             const startIndex = (pagingOption.PageIndex - 1) * pagingOption.PageSize + 1;
 
             for (let i = 0; i < dataList.length; i++) {
-                var isLink = false;
-                var isHide = false;
+                let isLink = false;
+                let isHide = false;
+
                 const dataItem = dataList[i];
                 const dataPreviousItem = i == 0 ? {} : dataList[i - 1];
                 const dataNextItem = i == dataList.length - 1 ? {} : dataList[i + 1];
 
                 if (dataItem.Id == dataPreviousItem.Id) {
                     isHide = true;
-                }
-
-                if (dataItem.Id != dataPreviousItem.Id && dataItem.Id == dataNextItem.Id) {
+                } else if (dataItem.Id == dataNextItem.Id) {
                     isLink = true;
                 }
 
@@ -109,17 +100,14 @@ export class Content extends Component {
     }
 
     _buildDataRow(dataItem, index, isLink, isHide) {
-        var url = "http://anonym.to/?http://legacytools.dnsstuff.com/tools/ipall.ch?tool_id=67&token=&toolhandler_redirect=0&ip={dataItem.Ip}&j=1";
-        var isContain = false;
+        const url = `http://anonym.to/?http://legacytools.dnsstuff.com/tools/ipall.ch?tool_id=67&token=&toolhandler_redirect=0&ip=${dataItem.Ip}&j=1`;
 
-        Object.keys(this.props.showIdList).map(idItem => {
-            if (dataItem.Id == idItem) {
-                isContain = true;
-            }
-        })
+        if (isHide && !this.props.showIdList[dataItem.Id]) {
+            return null;
+        }
 
         return (
-            (isHide ? isContain : true) && <Row key={`dataRow-${index}`}>
+            <Row key={`dataRow-${index}`}>
                 <Cell title={index} className="text-center">{index}</Cell>
                 <Cell title={dataItem.Id} className="text-center">
                     {isLink ? <Button color="link" onClick={() => this.handleShow(dataItem.Id)}>
@@ -146,6 +134,7 @@ export class Content extends Component {
 
         this.props.setPagingOption(newPaging);
         this.fetchData(newParam);
+        this.props.setShowIdList({});
     };
 
     render() {
@@ -178,7 +167,7 @@ function mapStateToProps({ pagingOption, param, showIdList }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setPagingOption, toggleLoader, setShowIdList }, dispatch);
+    return bindActionCreators({ setPagingOption, toggleLoader, setShowIdList, fetchData }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

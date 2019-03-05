@@ -5,7 +5,7 @@ import createReducer from '../../../../modules/createReducer';
 import { pagingOption } from '../../../../reducers/pagingReducer';
 import { isShowLoader } from '../../../../reducers/loaderReducer';
 
-const today = createReducer('', {});
+const today = createReducer(null, {});
 
 export const param = createReducer({}, {
     [SET_PARAM](prevState, action) {
@@ -15,7 +15,7 @@ export const param = createReducer({}, {
 
 export const showIdList = createReducer({}, {
     [SET_SHOW_ID_LIST](prevState, action) {
-        return action.data;
+        return Object.assign({}, action.data);
     }
 });
 

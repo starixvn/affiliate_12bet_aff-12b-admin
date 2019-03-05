@@ -19,19 +19,19 @@ const MEMBER = 18;
 const USER_CONTROL = 19;
 
 export const logTypes = {
-    CommissionGroup: COMMISSION_GROUP,
-    UserInfo: USER_INFO,
-    Transaction: TRANSACTION,
-    Payout: PAYOUT,
-    Player: PLAYER,
-    Banner: BANNER,
-    Email: EMAIL,
-    UserNote: USER_NOTE,
-    LoginAffiliate: LOGIN_AFFILIATE,
-    LogoutAffiliate: LOGOUT_AFFILIATE,
-    Password: PASSWORD,
-    Adjustment: ADJUSTMENT,
-    Member: MEMBER
+    [COMMISSION_GROUP]: 'CommissionGroup',
+    [USER_INFO]: 'UserInfo',
+    [TRANSACTION]: 'Transaction',
+    [PAYOUT]: 'Payout',
+    [PLAYER]: 'Player',
+    [BANNER]: 'Banner',
+    [EMAIL]: 'Email',
+    [USER_NOTE]: 'UserNote',
+    [LOGIN_AFFILIATE]: 'LoginAffiliate',
+    [LOGOUT_AFFILIATE]: 'LogoutAffiliate',
+    [PASSWORD]: 'Password',
+    [ADJUSTMENT]: 'Adjustment',
+    [MEMBER]: 'Member' 
 }
 
 export const headerText = {

@@ -13,15 +13,15 @@ export class Filter extends React.Component {
     constructor(props) {
         super(props);
 
-        const { today, param } = this.props;
+        const { today } = this.props;
 
         const now = new Date(today);
         this.nowString = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
-        now.setMonth(now.getMonth() - 6);
+        const sixMonthAgo = new Date(now.setMonth(now.getMonth() - 6));
 
         this.state = {
             logType: 0,
-            fromDate: `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`,
+            fromDate: `${sixMonthAgo.getMonth() + 1}/${sixMonthAgo.getDate()}/${sixMonthAgo.getFullYear()}`,
             toDate: this.nowString,
         }
     }
@@ -75,7 +75,7 @@ export class Filter extends React.Component {
                             <option value="0">{globalResource.All}</option>
                             {
                                 Object.keys(logTypes).map(index => {
-                                    return (<option key={`logType-${logTypes[index]}`} value={logTypes[index]}>{index}</option>)
+                                    return (<option key={`logType-${index}`} value={index}>{logTypes[index]}</option>)
                                 })
                             }
                         </Input>

@@ -1,18 +1,18 @@
-﻿namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
+﻿using System;
+
+namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
 {
     public class LandingPagesParam
     {
         public int AffId { get; set; }
 
-        public string Page { get; set; }
-
-        public string Language { get; set; }
+        public string SelectedPage { get; set; }
 
         public string LanguageCode { get; set; }
 
-        public string FromDate { get; set; }
+        public DateTime FromDate { get; set; }
 
-        public string ToDate { get; set; }
+        public DateTime ToDate { get; set; }
 
         public int DeviceType { get; set; }
     }

@@ -2005,6 +2005,8 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\index.jsx" />
+    <Content Include="Areas\Portal\www\source\style\pages\user-panel\view-log.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\user-panel\landing-pages.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

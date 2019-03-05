@@ -4,8 +4,6 @@
     {
         public string Page { get; set; }
 
-        public string Language { get; set; }
-
         public string LanguageCode { get; set; }
 
         public int TotalClick { get; set; }

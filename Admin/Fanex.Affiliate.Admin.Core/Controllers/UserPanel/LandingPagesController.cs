@@ -9,6 +9,9 @@ using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
 using Fanex.Affiliate.Admin.Core.Extensions;
+using Fanex.Affiliate.Admin.Core.Repository.MediaGallery;
+using Fanex.Affiliate.Admin.Core.Constants;
+using System.Linq;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
@@ -16,14 +19,17 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
     {
         private readonly ILanguageService _languageService;
         private readonly ILandingPagesRepository _landingPagesRepository;
+        private readonly ILandingPageRepository _landingPageRepository;
 
         public LandingPagesController(
             ISessionService sessionService,
             ILanguageService languageService,
-            ILandingPagesRepository landingPagesRepository) : base(sessionService)
+            ILandingPagesRepository landingPagesRepository,
+            ILandingPageRepository landingPageRepository) : base(sessionService)
         {
             _languageService = languageService;
             _landingPagesRepository = landingPagesRepository;
+            _landingPageRepository = landingPageRepository;
         }
 
         [HttpGet]
@@ -42,7 +48,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
             {
                 SubMenuList = subMenu,
                 LanguageList = _languageService.GetLanguageList(),
-                AffiliateLinkParam = param
+                AffiliateLinkParam = param,
+                PageList = _landingPageRepository.GetLandingPageList()
             };
 
             return View("~/Areas/Portal/Views/UserPanel/LandingPages/Index.cshtml", viewModel);

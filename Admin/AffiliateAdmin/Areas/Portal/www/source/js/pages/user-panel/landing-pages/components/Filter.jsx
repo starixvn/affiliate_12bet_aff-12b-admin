@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { DatePicker } from '@9softstudio/react-datepicker';
-import { pageList, deviceTypes, headerTitle } from '../modules/constants';
-import { setShowDetail, setParam } from '../actions';
+import { deviceTypes, headerTitle } from '../modules/constants';
+import { setSelectedPage, setParam } from '../actions';
 import { globalResource } from '../../../../modules/globalResource';
 
 const minDate = new Date(2009, 11, 1);
@@ -17,8 +17,8 @@ export class Filter extends React.Component {
         this.nowString = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
 
         this.state = {
-            page: '',
-            language: '',
+            selectedPage: '',
+            languageCode: '',
             fromDate: `${now.getMonth() + 1}/01/${now.getFullYear()}`,
             toDate: this.nowString,
             deviceType: 0
@@ -30,8 +30,8 @@ export class Filter extends React.Component {
     }
 
     handleSetParam() {
-        const { page, language, fromDate, toDate, deviceType } = this.state
-        const newParam = Object.assign({}, this.props.param, { Page: page, Language: language, FromDate: fromDate, ToDate: toDate, DeviceType: deviceType });
+        const { selectedPage, languageCode, fromDate, toDate, deviceType } = this.state
+        const newParam = Object.assign({}, this.props.param, { SelectedPage: selectedPage, LanguageCode: languageCode, FromDate: fromDate, ToDate: toDate, DeviceType: deviceType });
         this.props.setParam(newParam);
     }
 
@@ -56,34 +56,34 @@ export class Filter extends React.Component {
 
     handleSearch = () => {
         this.handleSetParam();
-        this.props.setShowDetail(false);
+        this.props.setSelectedPage({});
     }
 
     render() {
-        const { page, language, deviceType, fromDate, toDate } = this.state;
-        const { languageList } = this.props;
+        const { selectedPage, languageCode, deviceType, fromDate, toDate } = this.state;
+        const { languageList, pageList } = this.props;
 
         return (
             <div className="filter-container">
                 <Form inline tag="div">
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                        <Label for="page" className="mr-sm-2">{headerTitle.Page}</Label>
-                        <Input type="select" name="page" id="page" value={page} onChange={this.handleChange}>
+                        <Label for="selectedPage" className="mr-sm-2">{headerTitle.Page}</Label>
+                        <Input type="select" name="selectedPage" id="selectedPage" value={selectedPage} onChange={this.handleChange}>
                             <option value="">{globalResource.All}</option>
                             {
-                                pageList.map(index => {
-                                    return (<option key={`page-${index}`} value={index}>{index}</option>)
+                                pageList.map(page => {
+                                    return (<option key={`page-${page.PageCode}`} value={page.PageCode}>{page.PageName}</option>)
                                 })
                             }
                         </Input>
                     </FormGroup>
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                        <Label for="language" className="mr-sm-2">{headerTitle.Language}</Label>
-                        <Input type="select" name="language" id="language" value={language} onChange={this.handleChange}>
+                        <Label for="languageCode" className="mr-sm-2">{headerTitle.Language}</Label>
+                        <Input type="select" name="languageCode" id="languageCode" value={languageCode} onChange={this.handleChange}>
                             <option value="">{globalResource.All}</option>
                             {
-                                languageList.map(language => {
-                                    return (<option key={`language-${language.LanguageCode}`} value={language.LanguageName}>{language.LanguageName}</option>)
+                                Object.keys(languageList).map(languageCode => {
+                                    return (<option key={`language-${languageCode}`} value={languageCode}>{languageList[languageCode]}</option>)
                                 })
                             }
                         </Input>
@@ -119,12 +119,12 @@ export class Filter extends React.Component {
     }
 }
 
-function mapStateToProps({ today, param, languageList }) {
-    return Object.assign({}, { today, param, languageList });
+function mapStateToProps({ today, param, languageList, pageList }) {
+    return Object.assign({}, { today, param, languageList, pageList });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setShowDetail, setParam }, dispatch);
+    return bindActionCreators({ setSelectedPage, setParam }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);
