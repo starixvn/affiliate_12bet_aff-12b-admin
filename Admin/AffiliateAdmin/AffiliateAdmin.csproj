@@ -1604,10 +1604,10 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\daily-earning\reducers\index.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-pages\actions\index.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-pages\actions\types.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-pages\modules\constants.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-pages\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\modules\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\modules\constants.js" />
@@ -1976,17 +1976,17 @@
     <Content Include="App_Data\IsoftbetData\isoftbet_23.json" />
     <Content Include="App_Data\IsoftbetData\isoftbet_24.json" />
     <Content Include="App_Data\IsoftbetData\isoftbet_25.json" />
-    <Content Include="Areas\Portal\Views\UserPanel\LandingPages\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\UserPanel\LandingPageStatistics\Index.cshtml" />
     <Content Include="Areas\Portal\Views\UserPanel\Note\Index.cshtml" />
     <Content Include="Areas\Portal\Views\UserPanel\Referrers\Index.cshtml" />
     <Content Include="Areas\Portal\Views\ThirdPartyProduct\ExchangeSummaryTransaction\Index.cshtml" />
     <Content Include="Areas\Portal\Views\UserPanel\TrackingStatistics\index.cshtml" />
     <Content Include="Areas\Portal\Views\UserPanel\ViewLog\Index.cshtml" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-pages\components\AppContainer.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-pages\components\Content.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-pages\components\Detail.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-pages\components\Filter.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-pages\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\components\Detail.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\landing-page-statistics\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\note\components\InsertUpdateNoteForm.jsx" />
@@ -2006,7 +2006,8 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\view-log\index.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\user-panel\view-log.scss" />
-    <Content Include="Areas\Portal\www\source\style\pages\user-panel\landing-pages.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\user-panel\landing-page-statistics.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\user-panel\referrers.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

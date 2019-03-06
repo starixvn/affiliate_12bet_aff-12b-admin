@@ -2,7 +2,7 @@
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
 {
-    public class LandingPagesParam
+    public class LandingPageStatisticsParam
     {
         public int AffId { get; set; }
 

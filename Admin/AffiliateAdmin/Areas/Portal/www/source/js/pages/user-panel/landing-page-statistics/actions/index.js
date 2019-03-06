@@ -1,6 +1,6 @@
 ﻿import { setPagingOption } from '../../../../actions/pagingAction';
 import { toggleLoader } from '../../../../actions/loaderAction';
-import { SET_SELECTED_PAGE, SET_PARAM, SET_SHOW_DETAIL } from '../actions/types';
+import { SET_SELECTED_PAGE, SET_PARAM } from '../actions/types';
 import { post } from '../../../../modules/ajaxRequest';
 
 export { setPagingOption, toggleLoader };
@@ -19,22 +19,15 @@ export const setParam = (data) => {
     }
 }
 
-export const setShowDetail = (data) => {
-    return {
-        type: SET_SHOW_DETAIL,
-        data
-    }
-}
-
-export const fetchData = (param) => async(dispatch) => {
-    const url = 'Portal/UserPanel/LandingPages/GetLandingPagesList';
+export const fetchData = (param) => async () => {
+    const url = 'Portal/UserPanel/LandingPageStatistics/GetLandingPageStatisticsList';
     const response = await post(url, param);
 
-    return response && response.status === 200 ? response.data : null;
+    return response && response.status === 200 ? response.data : [];
 }
 
-export const fetchDetailData = (param) => async(dispatch) => {
-    const url = 'Portal/UserPanel/LandingPages/GetLandingPagesDetailList';
+export const fetchDetailData = (param) => async () => {
+    const url = 'Portal/UserPanel/LandingPageStatistics/GetLandingPageStatisticsDetailList';
     const response = await post(url, param);
 
     return response && response.status === 200 ? response.data : null;

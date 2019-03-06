@@ -14,10 +14,12 @@ export class Filter extends React.Component {
         super(props);
 
         const { today } = this.props;
-
         const now = new Date(today);
+
         this.nowString = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
-        const sixMonthAgo = new Date(now.setMonth(now.getMonth() - 6));
+
+        const sixMonthAgo = new Date(today);
+        sixMonthAgo.setMonth(sixMonthAgo.getMonth() - 6);
 
         this.state = {
             logType: 0,

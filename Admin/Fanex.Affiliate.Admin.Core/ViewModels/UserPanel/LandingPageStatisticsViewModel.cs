@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.ViewModels.UserPanel
 {
-    public class LandingPagesViewModel
+    public class LandingPageStatisticsViewModel
     {
         public IEnumerable<SubMenu> SubMenuList { get; set; }
 

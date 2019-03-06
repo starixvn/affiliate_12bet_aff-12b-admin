@@ -10,25 +10,23 @@ using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.Repository.MediaGallery;
-using Fanex.Affiliate.Admin.Core.Constants;
-using System.Linq;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
-    public class LandingPagesController : BaseController
+    public class LandingPageStatisticsController : BaseController
     {
         private readonly ILanguageService _languageService;
-        private readonly ILandingPagesRepository _landingPagesRepository;
+        private readonly ILandingPageStatisticsRepository _landingPageStatisticsRepository;
         private readonly ILandingPageRepository _landingPageRepository;
 
-        public LandingPagesController(
+        public LandingPageStatisticsController(
             ISessionService sessionService,
             ILanguageService languageService,
-            ILandingPagesRepository landingPagesRepository,
+            ILandingPageStatisticsRepository landingPageStatisticsRepository,
             ILandingPageRepository landingPageRepository) : base(sessionService)
         {
             _languageService = languageService;
-            _landingPagesRepository = landingPagesRepository;
+            _landingPageStatisticsRepository = landingPageStatisticsRepository;
             _landingPageRepository = landingPageRepository;
         }
 
@@ -39,12 +37,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
             var subMenu = new List<SubMenu>
             {
                 new SubMenu { Name = Lang.Referrers, Url = Url.Content($"~/Portal/UserPanel/Referrers/Index?affId={param.AffId}&affName={param.AffName}") },
-                new SubMenu { Name = Lang.LandingPages, Url = Url.Content($"~/Portal/UserPanel/LandingPages/Index?affId={param.AffId}&affName={param.AffName}") }
+                new SubMenu { Name = Lang.LandingPages, Url = Url.Content($"~/Portal/UserPanel/LandingPageStatistics/Index?affId={param.AffId}&affName={param.AffName}") }
             };
 
             subMenu[1].IsActive = true;
 
-            var viewModel = new LandingPagesViewModel
+            var viewModel = new LandingPageStatisticsViewModel
             {
                 SubMenuList = subMenu,
                 LanguageList = _languageService.GetLanguageList(),
@@ -52,17 +50,17 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
                 PageList = _landingPageRepository.GetLandingPageList()
             };
 
-            return View("~/Areas/Portal/Views/UserPanel/LandingPages/Index.cshtml", viewModel);
+            return View("~/Areas/Portal/Views/UserPanel/LandingPageStatistics/Index.cshtml", viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [Compress]
-        public ActionResult GetLandingPagesList(LandingPagesParam param)
+        public ActionResult GetLandingPageStatisticsList(LandingPageStatisticsParam param)
         {
             param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
 
-            var model = _landingPagesRepository.GetLandingPagesList(param);
+            var model = _landingPageStatisticsRepository.GetLandingPageStatisticsList(param);
 
             return new JsonNetResult
             {
@@ -73,11 +71,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [Compress]
-        public ActionResult GetLandingPagesDetailList(LandingPagesDetailParam param)
+        public ActionResult GetLandingPageStatisticsDetailList(LandingPageStatisticsDetailParam param)
         {
             param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
 
-            var model = _landingPagesRepository.GetLandingPagesDetailList(param);
+            var model = _landingPageStatisticsRepository.GetLandingPageStatisticsDetailList(param);
 
             return new JsonNetResult
             {

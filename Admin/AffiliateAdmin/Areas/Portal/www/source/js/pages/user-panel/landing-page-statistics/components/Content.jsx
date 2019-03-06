@@ -30,17 +30,13 @@ export class Content extends Component {
     async fetchData(param) {
         this.props.toggleLoader(true);
 
-        const data = await this.props.fetchData(param);
-
-        if (data) {
-            this.setState({ gridData: data });
-        }
+        this.setState({ gridData: await this.props.fetchData(param) });
 
         this.props.toggleLoader(false);
     }
 
-    handleSelectedPage = (page, language) => {
-        const selectedPage = Object.assign({}, { SelectedPage: page, Language: language });
+    handleSelectedPage = (page, languageCode) => {
+        const selectedPage = Object.assign({}, { SelectedPage: page, LanguageCode: languageCode });
 
         this.props.setSelectedPage(selectedPage);
     }
@@ -80,13 +76,13 @@ export class Content extends Component {
 
     _buildDataRow(dataItem) {
         const { languageList } = this.props;
-        const language = languageList[dataItem.LanguageCode] === undefined ? dataItem.LanguageCode : languageList[dataItem.LanguageCode];
+        const language = languageList[dataItem.LanguageCode] || dataItem.LanguageCode;
 
         return (
             <Row>
                 <Cell title={dataItem.SiteUrl}>
                     {(dataItem.Page == "Old URL" || dataItem.Page == "none") ? dataItem.Page :
-                        (<Button color="link" className="p-0" onClick={() => this.handleSelectedPage(dataItem.Page, language)}>
+                        (<Button color="link" className="p-0" onClick={() => this.handleSelectedPage(dataItem.Page, dataItem.LanguageCode)}>
                             {dataItem.Page}
                         </Button>)}
                 </Cell>

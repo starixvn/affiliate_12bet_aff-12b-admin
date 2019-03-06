@@ -7,8 +7,8 @@ import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { headerText } from '../modules/constants';
 import { globalResource } from '../../../../modules/globalResource';
 
-import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
+import { fetchDetailData } from '../actions';
 
 export class Detail extends Component {
     constructor(props) {
@@ -31,11 +31,10 @@ export class Detail extends Component {
 
     async fetchData(param) {
         this.props.toggleLoader(true);
-        const url = 'Portal/UserPanel/TrackingStatistics/GetTrackingStatisticsDetailList';
-        const response = await post(url, param);
-        if (response && response.status === 200) {
-            this.setState({ gridData: response.data });
-        }
+
+        const data = await this.props.fetchDetailData(param);
+
+        this.setState({ gridData: data });
         this.props.toggleLoader(false);
     }
 
@@ -89,6 +88,7 @@ export class Detail extends Component {
                 <Table
                     width={1020}
                     autoWidth={false}
+                    autoHeight={false}
                     bodyHeight={300}
                     header={this._renderHeader()}
                     body={this._renderDataSection(gridData)}
@@ -105,7 +105,7 @@ function mapStateToProps({ param, selectedMonth }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ toggleLoader }, dispatch);
+    return bindActionCreators({ toggleLoader, fetchDetailData }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Detail);

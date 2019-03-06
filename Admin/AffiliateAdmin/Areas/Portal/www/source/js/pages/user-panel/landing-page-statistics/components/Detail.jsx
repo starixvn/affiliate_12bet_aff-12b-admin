@@ -7,7 +7,6 @@ import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { headerTitle } from '../modules/constants';
 import { globalResource } from '../../../../modules/globalResource';
 
-import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader, setPagingOption, fetchDetailData } from '../actions';
 
 export class Detail extends Component {
@@ -96,17 +95,14 @@ export class Detail extends Component {
 
         this.props.setPagingOption(newPaging);
 
-        const newParam = Object.assign({}, this.props.param, { SelectedPage: this.props.selectedPage, ...newPaging });
+        const newParam = Object.assign({}, this.props.param, { ...this.props.selectedPage, ...newPaging });
         this.fetchData(newParam);
     }
 
     render() {
         const { gridData } = this.state;
 
-        if(Object.keys(this.props.selectedPage).length === 0) {
-            return null;
-        }
-        return (
+        return this.props.selectedPage && (
             <div className="table-responsive table-striped my-2">
                 <Table
                     minWidth={1010}

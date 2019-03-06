@@ -7,8 +7,7 @@ import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { headerText } from '../modules/constants';
 import { globalResource } from '../../../../modules/globalResource';
 
-import { post } from '../../../../modules/ajaxRequest';
-import { toggleLoader, setPagingOption } from '../actions';
+import { toggleLoader, setPagingOption, fetchDetailData } from '../actions';
 
 export class Detail extends Component {
     constructor(props) {
@@ -23,17 +22,17 @@ export class Detail extends Component {
         const { pagingOption, selectedSiteUrl } = this.props;
 
         if (selectedSiteUrl && selectedSiteUrl !== prevProps.selectedSiteUrl) {
-            const param = Object.assign({}, this.props.param, { SelectedSiteUrl: selectedSiteUrl, PageIndex: pagingOption.PageIndex, PageSize: pagingOption.PageSize });
+            const param = Object.assign({}, this.props.param, { SelectedSiteUrl: selectedSiteUrl, PageIndex: 1, PageSize: pagingOption.PageSize });
             this.fetchData(param);
         }
     }
 
     async fetchData(param) {
         this.props.toggleLoader(true);
-        const url = 'Portal/UserPanel/Referrers/GetReferrersDetailList';
-        const response = await post(url, param);
-        if (response && response.status === 200) {
-            const { MainData, TotalItem } = response.data;
+
+        const data = await this.props.fetchDetailData(param);
+        if (data) {
+            const { MainData, TotalItem } = data;
 
             this.setState({ gridData: MainData });
 
@@ -126,7 +125,7 @@ function mapStateToProps({ pagingOption, param, selectedSiteUrl }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ toggleLoader, setPagingOption }, dispatch);
+    return bindActionCreators({ toggleLoader, setPagingOption, fetchDetailData }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Detail);

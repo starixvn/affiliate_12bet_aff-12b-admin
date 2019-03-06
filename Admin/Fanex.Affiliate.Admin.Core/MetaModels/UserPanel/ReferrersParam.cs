@@ -10,8 +10,8 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
 
         public int DeviceType { get; set; }
 
-        public string FromDate { get; set; }
+        public DateTime? FromDate { get; set; }
 
-        public string ToDate { get; set; }
+        public DateTime? ToDate { get; set; }
     }
 }

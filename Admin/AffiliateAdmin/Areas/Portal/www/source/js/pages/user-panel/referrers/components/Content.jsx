@@ -8,8 +8,7 @@ import { Button } from 'reactstrap';
 import { headerText } from '../modules/constants';
 import { globalResource } from '../../../../modules/globalResource';
 
-import { post } from '../../../../modules/ajaxRequest';
-import { setSelectedSiteUrl, toggleLoader } from '../actions';
+import { setSelectedSiteUrl, toggleLoader, fetchData } from '../actions';
 
 export class Content extends Component {
     constructor(props) {
@@ -34,11 +33,10 @@ export class Content extends Component {
 
     async fetchData(param) {
         this.props.toggleLoader(true);
-        const url = 'Portal/UserPanel/Referrers/GetReferrersList';
-        const response = await post(url, param);
-        if (response && response.status === 200) {
-            this.setState({ gridData: response.data });
-        }
+
+        const data = await this.props.fetchData(param);
+
+        this.setState({ gridData: data });
         this.props.toggleLoader(false);
     }
 
@@ -114,7 +112,7 @@ function mapStateToProps({ param }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ toggleLoader, setSelectedSiteUrl }, dispatch);
+    return bindActionCreators({ toggleLoader, setSelectedSiteUrl, fetchData }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

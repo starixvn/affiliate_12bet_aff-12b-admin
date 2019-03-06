@@ -19,9 +19,9 @@
             param: {
                 AffId: @Model.ReferrersParam.AffId,
                 DeviceType: @Model.ReferrersParam.DeviceType,
-                FromDate: '@(Model.ReferrersParam.FromDate.IsEmpty() ? DateTime.Now.ToString("MM/01/yyyy") : Model.ReferrersParam.FromDate)',
-                ToDate: '@(Model.ReferrersParam.ToDate.IsEmpty() ? DateTime.Now.ToString("MM/dd/yyyy") :
-                            (DateTime.Parse(Model.ReferrersParam.ToDate) > DateTime.Now ? DateTime.Now.ToString("MM/dd/yyyy") : Model.ReferrersParam.ToDate))'
+                FromDate: '@(Model.ReferrersParam.FromDate.HasValue ? Model.ReferrersParam.FromDate.Value.ToString("MM/01/yyyy") : DateTime.Now.ToString("MM/01/yyyy"))',
+                ToDate: '@(Model.ReferrersParam.ToDate.HasValue ? (DateTime.Parse(Model.ReferrersParam.ToDate.Value.ToString("MM/dd/yyyy")) > DateTime.Now ? DateTime.Now.ToString("MM/dd/yyyy") : Model.ReferrersParam.ToDate.Value.ToString("MM/dd/yyyy"))
+                            : DateTime.Now.ToString("MM/dd/yyyy"))'
             }
         }
     </script>

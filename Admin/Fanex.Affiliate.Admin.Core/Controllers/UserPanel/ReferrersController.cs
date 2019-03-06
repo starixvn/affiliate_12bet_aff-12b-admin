@@ -28,10 +28,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
             var subMenu = new List<SubMenu>
             {
                 new SubMenu { Name = Lang.Referrers,
-                    Url = Url.Content($"~/Portal/UserPanel/Referrers/Index?affId={(param.AffId)}" + 
-                                      $"&affName={param.AffName}&fromDate={param.FromDate}&toDate={param.ToDate}&deviceType={param.DeviceType}") },
+                    Url = Url.Content($"~/Portal/UserPanel/Referrers/Index?affId={(param.AffId)}&affName={param.AffName}") },
                 new SubMenu { Name = Lang.LandingPages,
-                    Url = Url.Content($"~/Portal/UserPanel/LandingPages/Index?affId={(param.AffId)}&affName={param.AffName}") }
+                    Url = Url.Content($"~/Portal/UserPanel/LandingPageStatistics/Index?affId={(param.AffId)}&affName={param.AffName}") }
             };
 
             subMenu[0].IsActive = true;

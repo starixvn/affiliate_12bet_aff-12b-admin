@@ -5,10 +5,10 @@
 
 @using Fanex.Affiliate.Admin.Core.Constants
 @using Fanex.Affiliate.Admin.Core.ViewModels.UserPanel
-@model Fanex.Affiliate.Admin.Core.ViewModels.UserPanel.LandingPagesViewModel
+@model Fanex.Affiliate.Admin.Core.ViewModels.UserPanel.LandingPageStatisticsViewModel
 
 @section styles{
-    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/user-panel/landing-pages.css")" rel="stylesheet" />
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/user-panel/landing-page-statistics.css")" rel="stylesheet" />
 }
 
 @section scripts{
@@ -20,7 +20,7 @@
             param: { AffId: @Model.AffiliateLinkParam.AffId }
         }
     </script>
-    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/userpanel/landing-pages.js")"></script>
+    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/userpanel/landing-page-statistics.js")"></script>
 }
 
 @section menu{

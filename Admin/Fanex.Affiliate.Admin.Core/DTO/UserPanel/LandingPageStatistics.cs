@@ -1,6 +1,6 @@
 ﻿namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 {
-    public class LandingPages
+    public class LandingPageStatistics
     {
         public string Page { get; set; }
 

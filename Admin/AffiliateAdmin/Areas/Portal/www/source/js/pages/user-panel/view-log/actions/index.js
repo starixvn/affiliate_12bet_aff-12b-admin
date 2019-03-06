@@ -19,7 +19,7 @@ export const setShowIdList = (data) => {
     }
 }
 
-export const fetchData = (param) => async(dispatch) => {
+export const fetchData = (param) => async() => {
     const url = 'Portal/UserPanel/ViewLog/GetViewLogList';
     const response = await post(url, param);
 

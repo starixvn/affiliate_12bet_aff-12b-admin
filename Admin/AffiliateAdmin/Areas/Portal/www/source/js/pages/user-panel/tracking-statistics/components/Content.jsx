@@ -7,8 +7,7 @@ import { Button } from 'reactstrap';
 
 import { headerText } from '../modules/constants';
 
-import { post } from '../../../../modules/ajaxRequest';
-import { setSelectedMonth } from '../actions';
+import { setSelectedMonth, fetchData } from '../actions';
 import { toggleLoader } from '../../../../actions/loaderAction';
 
 export class Content extends Component {
@@ -34,11 +33,10 @@ export class Content extends Component {
 
     async fetchData(param) {
         this.props.toggleLoader(true);
-        const url = 'Portal/UserPanel/TrackingStatistics/GetTrackingStatisticsList';
-        const response = await post(url, param);
-        if (response && response.status === 200) {
-            this.setState({ gridData: response.data });
-        }
+
+        const data = await this.props.fetchData(param);
+
+        this.setState({ gridData: data });
         this.props.toggleLoader(false);
     }
 
@@ -103,7 +101,7 @@ function mapStateToProps({ param }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ toggleLoader, setSelectedMonth }, dispatch);
+    return bindActionCreators({ toggleLoader, setSelectedMonth, fetchData }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

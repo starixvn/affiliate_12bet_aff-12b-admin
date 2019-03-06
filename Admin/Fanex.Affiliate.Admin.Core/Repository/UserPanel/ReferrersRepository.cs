@@ -64,9 +64,9 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
         private static void AssignCommonParam(IObjectDb objectDb, ReferrersParam param)
         {
             objectDb.AddInParameter("AffID", DbType.Int32, param.AffId);
-            objectDb.AddInParameter("FromDate", DbType.String, param.FromDate);
-            objectDb.AddInParameter("ToDate", DbType.String, param.ToDate);
-            objectDb.AddInParameter("DeviceType", DbType.Int32, param.DeviceType);
+            objectDb.AddInParameter("FromDate", DbType.DateTime, param.FromDate);
+            objectDb.AddInParameter("ToDate", DbType.DateTime, param.ToDate);
+            objectDb.AddInParameter("DeviceType", DbType.Int16, param.DeviceType);
         }
 
         private static Referrers BuildReferrersItem(IDataReader reader, bool isGetReferrersList)

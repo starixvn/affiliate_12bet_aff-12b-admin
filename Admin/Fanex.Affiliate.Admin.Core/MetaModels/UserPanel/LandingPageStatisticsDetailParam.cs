@@ -1,6 +1,6 @@
 ﻿namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
 {
-    public class LandingPagesDetailParam : LandingPagesParam
+    public class LandingPageStatisticsDetailParam : LandingPageStatisticsParam
     {
         public int PageIndex { get; set; }
 

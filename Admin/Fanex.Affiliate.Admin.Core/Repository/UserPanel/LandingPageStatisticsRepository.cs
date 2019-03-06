@@ -8,12 +8,12 @@ using System.Data;
 
 namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
 {
-    public class LandingPagesRepository : BaseRepository, ILandingPagesRepository
+    public class LandingPageStatisticsRepository : BaseRepository, ILandingPageStatisticsRepository
     {
-        public IEnumerable<LandingPages> GetLandingPagesList(LandingPagesParam param)
+        public IEnumerable<LandingPageStatistics> GetLandingPageStatisticsList(LandingPageStatisticsParam param)
         {
             const string SpKey = "Aff_ClickStatisticsSelByPage";
-            var result = new List<LandingPages>();
+            var result = new List<LandingPageStatistics>();
 
             using (var objectDb = GetObjectDb(SpKey))
             {
@@ -23,7 +23,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
                 {
                     while (reader.Read())
                     {
-                        result.Add(BuildLandingPagesItem(reader, true));
+                        result.Add(BuildLandingPageStatisticsItem(reader, true));
                     }
                 }
             }
@@ -31,11 +31,11 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
             return result;
         }
 
-        public EntityResult<LandingPages> GetLandingPagesDetailList(LandingPagesDetailParam param)
+        public EntityResult<LandingPageStatistics> GetLandingPageStatisticsDetailList(LandingPageStatisticsDetailParam param)
         {
             const string SpKey = "Aff_ClickStatisticsDetailBySite";
-            var result = new EntityResult<LandingPages>();
-            var dataList = new List<LandingPages>();
+            var result = new EntityResult<LandingPageStatistics>();
+            var dataList = new List<LandingPageStatistics>();
 
             using (var objectDb = GetObjectDb(SpKey))
             {
@@ -50,7 +50,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
                 {
                     while (reader.Read())
                     {
-                        dataList.Add(BuildLandingPagesItem(reader, false));
+                        dataList.Add(BuildLandingPageStatisticsItem(reader, false));
                     }
                 }
                 result.MainData = dataList;
@@ -61,7 +61,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
             return result;
         }
 
-        private static void AssignCommonParam(IObjectDb objectDb, LandingPagesParam param)
+        private static void AssignCommonParam(IObjectDb objectDb, LandingPageStatisticsParam param)
         {
             objectDb.AddInParameter("AffID", DbType.Int32, param.AffId);
             objectDb.AddInParameter("FromDate", DbType.DateTime, param.FromDate);
@@ -71,13 +71,13 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
             objectDb.AddInParameter("DeviceType", DbType.Int16, param.DeviceType);
         }
 
-        private static LandingPages BuildLandingPagesItem(IDataReader reader, bool isGetLandingPagesList)
+        private static LandingPageStatistics BuildLandingPageStatisticsItem(IDataReader reader, bool isGetLandingPageStatisticsList)
         {
-            return new LandingPages
+            return new LandingPageStatistics
             {
-                Page = isGetLandingPagesList ? (Convert.ToString(reader["SportCode"])) : string.Empty,
-                LanguageCode = isGetLandingPagesList ? (Convert.ToString(reader["LanguageCode"])) : string.Empty,
-                WebsiteUrl = isGetLandingPagesList ? string.Empty : (Convert.ToString(reader["URLReferrer"])),
+                Page = isGetLandingPageStatisticsList ? (Convert.ToString(reader["SportCode"])) : string.Empty,
+                LanguageCode = isGetLandingPageStatisticsList ? (Convert.ToString(reader["LanguageCode"])) : string.Empty,
+                WebsiteUrl = isGetLandingPageStatisticsList ? string.Empty : (Convert.ToString(reader["URLReferrer"])),
                 TotalClick = reader["TotalClick"] == DBNull.Value ? 0 : Convert.ToInt32(reader["TotalClick"]),
                 UniqueClick = reader["UniqueClick"] == DBNull.Value ? 0 : Convert.ToInt32(reader["UniqueClick"]),
                 Signups = reader["Signups"] == DBNull.Value ? 0 : Convert.ToInt32(reader["Signups"]),

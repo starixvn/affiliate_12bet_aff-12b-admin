@@ -88,7 +88,7 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
             builder.RegisterType<NoteRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<TrackingStatisticsRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<ReferrersRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
-            builder.RegisterType<LandingPagesRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<LandingPageStatisticsRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<ViewLogRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
     }

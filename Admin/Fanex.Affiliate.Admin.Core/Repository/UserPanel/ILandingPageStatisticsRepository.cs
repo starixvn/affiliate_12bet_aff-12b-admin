@@ -6,10 +6,10 @@ using System.Collections.Generic;
 
 namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
 {
-    public interface ILandingPagesRepository
+    public interface ILandingPageStatisticsRepository
     {
-        IEnumerable<LandingPages> GetLandingPagesList(LandingPagesParam param);
+        IEnumerable<LandingPageStatistics> GetLandingPageStatisticsList(LandingPageStatisticsParam param);
 
-        EntityResult<LandingPages> GetLandingPagesDetailList(LandingPagesDetailParam param);
+        EntityResult<LandingPageStatistics> GetLandingPageStatisticsDetailList(LandingPageStatisticsDetailParam param);
     }
 }
