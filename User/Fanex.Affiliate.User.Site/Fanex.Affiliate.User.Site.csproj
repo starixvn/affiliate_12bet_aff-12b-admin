@@ -1497,11 +1497,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\Google.Protobuf.dll" />
-    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\SonarAnalyzer.CSharp.dll" />
-    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\SonarAnalyzer.dll" />
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.11.0.8083\analyzers\Google.Protobuf.dll" />
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.11.0.8083\analyzers\SonarAnalyzer.CSharp.dll" />
+    <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.7.11.0.8083\analyzers\SonarAnalyzer.dll" />
   </ItemGroup>
-  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -1516,7 +1515,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>56553</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
@@ -1539,7 +1538,6 @@
     <Error Condition="!Exists('..\..\packages\BuildBundlerMinifier.2.8.391\build\BuildBundlerMinifier.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\BuildBundlerMinifier.2.8.391\build\BuildBundlerMinifier.targets'))" />
     <Error Condition="!Exists('..\..\packages\BuildBundlerMinifier.2.8.391\build\BuildBundlerMinifier.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\BuildBundlerMinifier.2.8.391\build\BuildBundlerMinifier.targets'))" />
   </Target>
-  <Import Project="..\..\packages\BuildBundlerMinifier.2.8.391\build\BuildBundlerMinifier.targets" Condition="Exists('..\..\packages\BuildBundlerMinifier.2.8.391\build\BuildBundlerMinifier.targets')" />
   <Import Project="..\..\packages\BuildBundlerMinifier.2.8.391\build\BuildBundlerMinifier.targets" Condition="Exists('..\..\packages\BuildBundlerMinifier.2.8.391\build\BuildBundlerMinifier.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
