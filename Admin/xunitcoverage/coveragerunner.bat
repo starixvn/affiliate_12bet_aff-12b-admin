@@ -19,4 +19,4 @@ goto end
 echo Failure.
 
 :end
-//set /p temp="Hit enter to continue..."
+echo Run Unit Test Coverage Done.
