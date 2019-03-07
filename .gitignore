@@ -42,4 +42,4 @@ CoverageReport/
 node_modules
 /Fanex.Affiliate.DataService/packages
 /Fanex.Affiliate.User.Site/coverage
-*.UnitTests.Coverage.xml
+*.UnitTestCoverage_*.xml
