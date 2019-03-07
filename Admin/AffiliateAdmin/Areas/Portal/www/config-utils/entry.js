@@ -24,6 +24,7 @@ module.exports = {
     [`${jsDist}/pages/userpanel/referrers`]: clientRoot + "/js/pages/user-panel/referrers/index.jsx",
     [`${jsDist}/pages/userpanel/landing-page-statistics`]: clientRoot + "/js/pages/user-panel/landing-page-statistics/index.jsx",
     [`${jsDist}/pages/userpanel/view-log`]: clientRoot + "/js/pages/user-panel/view-log/index.jsx",
+    [`${jsDist}/pages/userpanel/adjustment`]: clientRoot + "/js/pages/user-panel/adjustment/index.jsx",
 
     //For Thirdparty Product pages
     [`${jsDist}/pages/thirdparty-product/betsoft`]: clientRoot + "/js/pages/thirdparty-product/betsoft/index.jsx",
@@ -49,4 +50,5 @@ module.exports = {
     [`${styleDist}/pages/user-panel/referrers`]: clientRoot + "/style/pages/user-panel/referrers.scss",
     [`${styleDist}/pages/user-panel/landing-page-statistics`]: clientRoot + "/style/pages/user-panel/landing-page-statistics.scss",
     [`${styleDist}/pages/user-panel/view-log`]: clientRoot + "/style/pages/user-panel/view-log.scss",
+    [`${styleDist}/pages/user-panel/adjustment`]: clientRoot + "/style/pages/user-panel/adjustment.scss",
 };

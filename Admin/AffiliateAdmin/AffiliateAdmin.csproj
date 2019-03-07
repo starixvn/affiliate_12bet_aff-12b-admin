@@ -1597,6 +1597,8 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\RecheckIn\recheckin.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\adjustment\modules\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\adjustment\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\modules\constants.js" />
@@ -1638,6 +1640,9 @@
     <Content Include="Areas\Portal\www\source\style\assets\icon_head.png" />
     <Content Include="Areas\Portal\www\source\style\assets\icon_refresh.png" />
     <Content Include="Areas\Portal\www\source\style\assets\icon_top.png" />
+    <Content Include="Areas\Portal\www\source\style\assets\user-panel\a_bg.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\user-panel\bg_box_tab.jpg" />
+    <Content Include="Areas\Portal\www\source\style\assets\user-panel\bg_button2.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\user-panel\i_customer.png" />
     <Content Include="Areas\Portal\www\source\style\assets\user-panel\left_button.jpg" />
     <Content Include="Areas\Portal\www\source\style\assets\user-panel\right_button.jpg" />
@@ -2008,6 +2013,12 @@
     <Content Include="Areas\Portal\www\source\style\pages\user-panel\view-log.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\user-panel\landing-page-statistics.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\user-panel\referrers.scss" />
+    <Content Include="Areas\Portal\Views\UserPanel\Adjustment\Index.cshtml" />
+    <Content Include="Areas\Portal\www\source\style\pages\user-panel\note.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\user-panel\adjustment.scss" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\adjustment\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\adjustment\components\Appcontainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\adjustment\components\Content.jsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

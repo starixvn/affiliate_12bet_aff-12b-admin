@@ -49,3 +49,10 @@ export const setNoteInfo = (data) => {
         data
     }
 }
+
+export const getNoteContentById = (param) => async () => {
+    const url = 'Portal/UserPanel/Note/GetNoteById';
+    const response = await post(url, param);
+
+    return response && response.status === 200 ? response.data : null;
+}

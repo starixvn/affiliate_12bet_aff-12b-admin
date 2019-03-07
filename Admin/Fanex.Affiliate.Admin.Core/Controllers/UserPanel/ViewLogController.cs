@@ -18,9 +18,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         }
 
         [HttpGet]
-        public ActionResult Index(AffiliateLinkParam affiliateLinkParam)
+        public ActionResult Index(AffiliateLinkParam param)
         {
-            return View("~/Areas/Portal/Views/UserPanel/ViewLog/Index.cshtml", affiliateLinkParam);
+            param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
+
+            return View("~/Areas/Portal/Views/UserPanel/ViewLog/Index.cshtml", param);
         }
 
         [HttpPost]

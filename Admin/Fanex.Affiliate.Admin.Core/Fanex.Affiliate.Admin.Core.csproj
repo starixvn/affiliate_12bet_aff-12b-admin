@@ -163,6 +163,7 @@
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\PasswordController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Controllers\UserPanel\AdjustmentController.cs" />
     <Compile Include="Controllers\UserPanel\CustomerMemberController.cs" />
     <Compile Include="Controllers\UserPanel\LandingPageStatisticsController.cs" />
     <Compile Include="Controllers\UserPanel\NoteController.cs" />
@@ -171,7 +172,6 @@
     <Compile Include="Controllers\UserPanel\StatementHistoryController.cs" />
     <Compile Include="Controllers\UserPanel\TrackingStatisticsController.cs" />
     <Compile Include="Controllers\UserPanel\ViewLogController.cs" />
-    <Compile Include="DTO\AffiliateLinkParam.cs" />
     <Compile Include="DTO\Affiliate\AffiliateBasicInfo.cs" />
     <Compile Include="DTO\Affiliate\AffiliateInfo.cs" />
     <Compile Include="DTO\CommissionGroup\CommGroup.cs" />
@@ -221,6 +221,7 @@
     <Compile Include="MetaModels\MediaGallery\DeleteLandingPageParam.cs" />
     <Compile Include="MetaModels\MediaGallery\InsertUpdateLandingPageParam.cs" />
     <Compile Include="MetaModels\Report\AffiliateReportMainParam.cs" />
+    <Compile Include="MetaModels\UserPanel\AdjustmentParam.cs" />
     <Compile Include="MetaModels\UserPanel\AffiliateLinkParam.cs" />
     <Compile Include="MetaModels\UserPanel\CustomerMemberParam.cs" />
     <Compile Include="MetaModels\UserPanel\DailyEarningParam.cs" />
@@ -255,7 +256,9 @@
     <Compile Include="Repository\MediaGallery\ILandingPageRepository.cs" />
     <Compile Include="Repository\MediaGallery\LandingPageRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
+    <Compile Include="Repository\UserPanel\AdjustmentRepository.cs" />
     <Compile Include="Repository\UserPanel\CustomerMemberRepository.cs" />
+    <Compile Include="Repository\UserPanel\IAdjustmentRepository.cs" />
     <Compile Include="Repository\UserPanel\ICustomerMemberRepository.cs" />
     <Compile Include="Repository\UserPanel\ILandingPageStatisticsRepository.cs" />
     <Compile Include="Repository\UserPanel\INoteRepository.cs" />

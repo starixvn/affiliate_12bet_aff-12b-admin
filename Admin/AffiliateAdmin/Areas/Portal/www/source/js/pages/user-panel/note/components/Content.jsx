@@ -8,8 +8,7 @@ import { Button } from 'reactstrap';
 import { headerText } from '../modules/constants';
 import { globalResource } from '../../../../modules/globalResource';
 
-import { post } from '../../../../modules/ajaxRequest';
-import { setShowPopup, setNoteInfo, setPagingOption, getNoteList } from '../actions';
+import { setShowPopup, setNoteInfo, setPagingOption, getNoteList, getNoteContentById } from '../actions';
 import { toggleLoader } from '../../../../actions/loaderAction';
 
 export class Content extends Component {
@@ -82,13 +81,16 @@ export class Content extends Component {
     }
 
     async getNoteContentById(noteInfo) {
-        const url = 'Portal/UserPanel/Note/GetNoteById';
-        const response = await post(url, noteInfo);
+        this.props.toggleLoader(true);
 
-        if (response && response.status === 200) {
-            const newNoteInfo = Object.assign({}, noteInfo, { NoteContent: response.data.NoteContent });
+        const data = await this.props.getNoteContentById(noteInfo);
+
+        if (data) {
+            const newNoteInfo = Object.assign({}, noteInfo, { NoteContent: data.NoteContent });
             this.props.setNoteInfo(newNoteInfo);
         }
+
+        this.props.toggleLoader(false);
     }
 
     handlePaging = (pageIndex, pageSize) => {
@@ -135,7 +137,7 @@ function mapStateToProps({ pagingOption, noteList, noteInfo }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setShowPopup, setNoteInfo, setPagingOption, toggleLoader, getNoteList }, dispatch);
+    return bindActionCreators({ setShowPopup, setNoteInfo, setPagingOption, toggleLoader, getNoteList, getNoteContentById }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

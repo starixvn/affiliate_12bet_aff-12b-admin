@@ -90,6 +90,7 @@ namespace Fanex.Affiliate.Admin.Core.Configurations
             builder.RegisterType<ReferrersRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<LandingPageStatisticsRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
             builder.RegisterType<ViewLogRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            builder.RegisterType<AdjustmentRepository>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
     }
 }
