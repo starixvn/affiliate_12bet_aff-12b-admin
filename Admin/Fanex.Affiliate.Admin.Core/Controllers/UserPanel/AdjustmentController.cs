@@ -1,6 +1,7 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
+using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using System.Web.Mvc;
@@ -10,24 +11,32 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
     public class AdjustmentController : BaseController
     {
         private readonly IAdjustmentRepository _adjustmentRepository;
+        private readonly IAffiliateRepository _affiliateRepository;
 
         public AdjustmentController(
             ISessionService sessionService,
-            IAdjustmentRepository adjustmentRepository) : base(sessionService)
+            IAdjustmentRepository adjustmentRepository,
+            IAffiliateRepository affiliateRepository) : base(sessionService)
         {
             _adjustmentRepository = adjustmentRepository;
+            _affiliateRepository = affiliateRepository;
         }
 
         public ActionResult Index(AffiliateLinkParam param)
         {
             param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
 
+            if(!string.Empty.Equals(param.AffName))
+            {
+                var affInfor = _affiliateRepository.GetAffiliateBasicInfo(param.AffId);
+                param.AffName = affInfor.UserName;
+            }
+
             return View("~/Areas/Portal/Views/UserPanel/Adjustment/Index.cshtml", param);
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [Compress]
         public ActionResult GetBalanceBroughtForward(int affId)
         {
             return new JsonNetResult
@@ -39,7 +48,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [Compress]
-        public ActionResult InsertNote(AdjustmentParam param)
+        public ActionResult InsertAdjustment(AdjustmentParam param)
         {
             param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
             param.UserId = SessionService.UserId;

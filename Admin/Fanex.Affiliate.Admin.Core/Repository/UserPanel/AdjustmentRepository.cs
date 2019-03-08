@@ -1,9 +1,4 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using System.Data;
@@ -22,12 +17,12 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
             {
                 objectDb.AddInParameter("AffID", DbType.Int32, affId);
 
-                objectDb.AddOutParameter("BalBroughtForward", DbType.Decimal, 16);
+                objectDb.AddOutParameter("BalBroughtForward", DbType.Currency, 8);
 
                 objectDb.ExecuteNonQuery();
 
                 var BalBroughtForward = objectDb.GetParameterValue("BalBroughtForward");
-                BalanceBf = BalBroughtForward == DBNull.Value ? 0 : Convert.ToInt32(BalBroughtForward);
+                BalanceBf = BalBroughtForward == DBNull.Value ? 0 : Convert.ToDecimal(BalBroughtForward);
             }
 
             return BalanceBf;
@@ -44,7 +39,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
                 objectDb.AddInParameter("transdesc", DbType.String, param.Description);
                 objectDb.AddInParameter("IP", DbType.String, param.Ip);
 
-                objectDb.AddOutParameter("transid", DbType.UInt64, 8);
+                objectDb.AddOutParameter("transid", DbType.Int64, 8);
                 AssignResultOutputParam(objectDb);
 
                 objectDb.ExecuteNonQuery();

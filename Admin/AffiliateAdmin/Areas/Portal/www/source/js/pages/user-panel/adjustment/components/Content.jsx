@@ -4,17 +4,17 @@ import { bindActionCreators } from 'redux';
 
 import { Alert, Col, Button, Form, FormGroup, Label, Input, FormFeedback } from 'reactstrap';
 
-import { toggleLoader } from '../../../../actions/loaderAction';
-import { post } from '../../../../modules/ajaxRequest';
+import { toggleLoader, getBalanceBroughtForward, handleSubmit } from '../actions';
 
-import { resource } from '../modules/constants';
-import { globalResource } from '../../../../modules/globalResource';
+import { resource, regExp } from '../modules/constants';
+import { formatDecimalWithCurrencySymbol } from '../../../../modules/numberFormat';
 
 export class Content extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
+            balanceBf: 0,
             amount: '',
             description: '',
             isShowMessage: false,
@@ -23,8 +23,17 @@ export class Content extends Component {
         }
     }
 
-    componentDidAmount() {
-        const { affId } = this.props;
+    componentDidMount() {
+        this.getBalanceBroughtForward();
+    }
+
+    async getBalanceBroughtForward() {
+        this.props.toggleLoader(true);
+
+        const data = await this.props.getBalanceBroughtForward(this.props.affInfor);
+
+        this.setState({ balanceBf: data });
+        this.props.toggleLoader(false);
     }
 
     handleChange = (event) => {
@@ -32,62 +41,97 @@ export class Content extends Component {
     }
 
     _validateAmount = () => {
-        const { amount } = this.state;
-
+        const amount = this.state.amount.replace(/,/g, '');
+        const regexCheckAmount = new RegExp(regExp.CheckAmount);
         const result = {
-            isValid: true,
+            isValid: regexCheckAmount.test(amount) && parseFloat(amount) != 0,
             message: ''
         }
 
         if (!result.isValid) {
-            result.message = "The amount is invalid";
+            result.message = amount == '' ? resource.Required : resource.Invalid;
         }
 
         return result;
     }
 
-    handleSubmit = () => {
-        const adjustmentInfo = Object.assign({}, { AffId: this.props.affId, Amount: this.state.amount, Description: this.state.description });
+    handleSubmit = async () => {
+        this.props.toggleLoader(true);
+
+        const amountValidation = this._validateAmount();
+
+        if (amountValidation.isValid) {
+            const { amount } = this.state
+            const { affInfor } = this.props;
+            const adjustmentInfo = Object.assign({}, { AffId: affInfor.AffId, Amount: amount.replace(/,/g, ''), Description: this.state.description });
+            const data = await this.props.handleSubmit(adjustmentInfo);
+
+            this.setState({
+                isShowMessage: true,
+                isSuccess: data.IsSuccessful,
+                message: data.IsSuccessful ? resource.Success : data.Message,
+                amount: data.IsSuccessful ? '' : amount
+            }, () => window.setTimeout(this.resetState, 3000));
+
+            this.getBalanceBroughtForward();
+        } else {
+            this.setState({
+                isShowMessage: true,
+                isSuccess: false,
+                message: amountValidation.message,
+            }, () => window.setTimeout(this.resetState, 3000));
+        }
+
+        this.props.toggleLoader(false);
+    }
+
+    resetState = () => {
+        this.setState({
+            isShowMessage: false
+        });
+    }
+
+    handlePressEnter = (event) => {
+        if (event.charCode === 13) {
+            event.preventDefault()
+            this.handleSubmit();
+        }
     }
 
     render() {
+        const { affInfor } = this.props;
         const { isShowMessage, isSuccess, message } = this.state;
-        const amountValidation = this._validateAmount();
-
+        console.log(this._validateAmount());
         return (
             <div className="Adjustment-form-container">
-                <div class="aff-name">12BETAFF226</div>
+                <div class="aff-name">{affInfor.AffName}</div>
                 <div class="clear"></div>
                 <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
                     <div dangerouslySetInnerHTML={{ __html: message }}></div>
                 </Alert>
                 <Form tag="form" className="mb-2" autocomplete="off">
                     <FormGroup row className="mb-2">
-                        <Label sm={3}>Balance Brought Forward</Label>
-                        <Label sm={9}>$9,787,197.87</Label>
+                        <Label sm={4}>{resource.BalanceBf}</Label>
+                        <Label sm={8}>{formatDecimalWithCurrencySymbol(this.state.balanceBf)}</Label>
                     </FormGroup>
                     <FormGroup row className="mb-2">
-                        <Label for="amount" sm={3}>Amount</Label>
-                        <Col sm={9}>
-                            <Input type="text" name="amount" id="amount"
-                                value={this.state.amount} onChange={this.handleChange} invalid={!amountValidation.isValid} />
-                            {amountValidation.message &&
-                                <FormFeedback><div dangerouslySetInnerHTML={{ __html: amountValidation.message }} /></FormFeedback>}
+                        <Label for="amount" className="d-flex align-items-center required" sm={4}>{resource.Amount}</Label>
+                        <Col sm={8}>
+                            <Input type="text" name="amount" id="amount" className="text-right"
+                                value={this.state.amount} onChange={this.handleChange} onKeyPress={this.handlePressEnter} />
                         </Col>
                     </FormGroup>
                     <FormGroup row className="mb-2">
-                        <Label for="description" sm={3} className="d-flex align-items-center required">Description</Label>
-                        <Col sm={9}>
-                            <Input type="textarea" name="description" id="description" rows="10"
-                                value={this.state.description} onChange={this.handleChange} invalid={!amountValidation.isValid} />
-                            {amountValidation.message &&
-                                <FormFeedback><div dangerouslySetInnerHTML={{ __html: amountValidation.message }} /></FormFeedback>}
+                        <Label for="description" sm={4} className="d-flex align-items-center">{resource.Description}</Label>
+                        <Col sm={8}>
+                            <Input type="textarea" name="description" id="description" rows="6"
+                                value={this.state.description} onChange={this.handleChange} />
                         </Col>
                     </FormGroup>
                     <FormGroup row>
-                        <Label sm={3}></Label>
-                        <Col sm={9}>
-                            <Button type="button" color="success" disabled={!amountValidation.isValid} onClick={this.handleSubmit}>Submit</Button>
+                        <Label sm={4}></Label>
+                        <Col sm={8}>
+                            <Button type="button" color="success" onClick={this.handleSubmit}>{resource.Submit}</Button>
                         </Col>
                     </FormGroup>
                 </Form>
@@ -96,12 +140,12 @@ export class Content extends Component {
     }
 }
 
-function mapStateToProps({ affId }) {
-    return Object.assign({}, { affId });
+function mapStateToProps({ affInfor }) {
+    return Object.assign({}, { affInfor });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ toggleLoader }, dispatch);
+    return bindActionCreators({ toggleLoader, getBalanceBroughtForward, handleSubmit }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

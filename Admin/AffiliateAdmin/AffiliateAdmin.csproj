@@ -1597,6 +1597,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\RecheckIn\recheckin.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\adjustment\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\adjustment\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\adjustment\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\customer-member\actions\index.js" />

@@ -9,7 +9,7 @@
 @section styles{
     <script type="text/javascript">
         window.initialState = {
-            affId: @Model.AffId
+            affInfor: { AffId: @Model.AffId, AffName: '@Model.AffName' }
         }
     </script>
     <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/user-panel/adjustment.css")" rel="stylesheet" />
@@ -26,7 +26,7 @@
             SubMenuList = UserPanelConstant.UserPanelMenuList,
             AffiliateLinkParam = Model
         };
-        usePanelMenu.SubMenuList.ElementAt(2).IsActive = true;
+        usePanelMenu.SubMenuList.ElementAt(4).IsActive = true;
         Html.RenderPartial("~/Areas/Portal/Views/Shared/_UserPanelMenu.cshtml", usePanelMenu);
     }
 }
