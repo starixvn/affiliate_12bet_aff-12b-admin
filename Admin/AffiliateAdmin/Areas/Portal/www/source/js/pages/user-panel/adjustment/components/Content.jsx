@@ -70,20 +70,20 @@ export class Content extends Component {
                 isSuccess: data.IsSuccessful,
                 message: data.IsSuccessful ? resource.Success : data.Message,
                 amount: data.IsSuccessful ? '' : amount
-            }, () => window.setTimeout(this.notShowMessage, 3000));
+            }, () => window.setTimeout(this.handleHideMessage, 3000));
 
             this.getBalanceBroughtForward();
         } else {
             this.setState({
                 isSuccess: false,
                 message: amountValidation.message,
-            }, () => window.setTimeout(this.notShowMessage, 3000));
+            }, () => window.setTimeout(this.handleHideMessage, 3000));
         }
 
         this.props.toggleLoader(false);
     }
 
-    notShowMessage = () => {
+    handleHideMessage = () => {
         this.setState({
             isShowMessage: false
         });
@@ -101,7 +101,7 @@ export class Content extends Component {
         const { balanceBf, amount, description, isShowMessage, isSuccess, message } = this.state;
 
         return (
-            <div className="Adjustment-form-container">
+            <div className="adjustment-form-container">
                 <div class="aff-name">{affInfor.AffName}</div>
                 <div class="clear"></div>
                 <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
@@ -113,7 +113,7 @@ export class Content extends Component {
                         <Label sm={8}>{formatDecimalWithCurrencySymbol(balanceBf)}</Label>
                     </FormGroup>
                     <FormGroup row>
-                        <Label for="amount" className="d-flex align-items-center required" sm={4}>{resource.Amount}</Label>
+                        <Label for="amount" className="required" sm={4}>{resource.Amount}</Label>
                         <Col sm={8}>
                             <Input type="text" name="amount" id="amount" className="text-right"
                                 value={amount} onChange={this.handleChange} onKeyPress={this.handlePressEnter} />

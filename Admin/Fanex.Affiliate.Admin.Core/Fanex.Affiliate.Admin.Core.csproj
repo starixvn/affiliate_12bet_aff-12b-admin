@@ -206,6 +206,7 @@
     <Compile Include="DTO\UserPanel\PlayerDetail.cs" />
     <Compile Include="DTO\UserPanel\PlayerDetailResult.cs" />
     <Compile Include="DTO\UserPanel\Referrers.cs" />
+    <Compile Include="DTO\UserPanel\StatementHistory.cs" />
     <Compile Include="DTO\UserPanel\TrackingStatistics.cs" />
     <Compile Include="DTO\UserPanel\ViewLog.cs" />
     <Compile Include="Extensions\DataReaderExtension.cs" />
@@ -235,6 +236,7 @@
     <Compile Include="MetaModels\UserPanel\PlayerDetailParam.cs" />
     <Compile Include="MetaModels\UserPanel\ReferrersDetailParam.cs" />
     <Compile Include="MetaModels\UserPanel\ReferrersParam.cs" />
+    <Compile Include="MetaModels\UserPanel\StatementHistoryParam.cs" />
     <Compile Include="MetaModels\UserPanel\TrackingStatisticsDetailParam.cs" />
     <Compile Include="MetaModels\UserPanel\TrackingStatisticsParam.cs" />
     <Compile Include="MetaModels\UserPanel\ViewLogParam.cs" />

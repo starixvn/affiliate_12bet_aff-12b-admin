@@ -1621,6 +1621,10 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\referrers\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\modules\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\tracking-statistics\modules\Constants.js" />
@@ -2020,6 +2024,12 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\adjustment\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\adjustment\components\Appcontainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\adjustment\components\Content.jsx" />
+    <Content Include="Areas\Portal\Views\UserPanel\StatementHistory\Index.cshtml" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\index.jsx" />
+    <Content Include="Areas\Portal\www\source\style\pages\user-panel\statement-history.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

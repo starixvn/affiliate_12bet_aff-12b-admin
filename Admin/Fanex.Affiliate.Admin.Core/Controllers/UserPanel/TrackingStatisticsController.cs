@@ -5,9 +5,11 @@ using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
 using Fanex.Affiliate.Admin.Core.ViewModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.Attributes;
+using Fanex.Affiliate.Admin.Core.Constants;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
+    [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class TrackingStatisticsController : BaseController
     {
         private readonly ITrackingStatisticsRepository _trackingStatisticsRepository;

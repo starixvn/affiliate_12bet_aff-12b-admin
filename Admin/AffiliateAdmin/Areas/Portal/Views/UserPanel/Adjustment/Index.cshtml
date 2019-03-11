@@ -7,15 +7,15 @@
 @using Fanex.Affiliate.Admin.Core.ViewModels.UserPanel
 @model Fanex.Affiliate.Admin.Core.MetaModels.UserPanel.AffiliateLinkParam
 @section styles{
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/user-panel/adjustment.css")" rel="stylesheet" />
+}
+
+@section scripts{
     <script type="text/javascript">
         window.initialState = {
             affInfor: { AffId: @Model.AffId, AffName: '@Model.AffName' }
         }
     </script>
-    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/user-panel/adjustment.css")" rel="stylesheet" />
-}
-
-@section scripts{
     <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/userpanel/adjustment.js")"></script>
 }
 

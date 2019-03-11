@@ -5,20 +5,46 @@ using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Services.UserPanel;
 using Fanex.Affiliate.Admin.Core.ViewModels.UserPanel;
+using Fanex.Affiliate.Admin.Core.Services.Common;
+using Fanex.Affiliate.Admin.Core.Extensions;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
     [FunctionAuthorize(FunctionName = Function.Affiliate)]
-    public class StatementHistoryController : Controller
+    public class StatementHistoryController : BaseController
     {
         private readonly IStatementHistoryService _statementHistoryService;
 
         private readonly IProductRepository _productRepository;
 
-        public StatementHistoryController(IStatementHistoryService statementHistoryService, IProductRepository productRepository)
+        public StatementHistoryController(
+            ISessionService sessionService,
+            IStatementHistoryService statementHistoryService,
+            IProductRepository productRepository) : base(sessionService)
         {
             _statementHistoryService = statementHistoryService;
             _productRepository = productRepository;
+        }
+
+        [HttpGet]
+        public ActionResult Index(AffiliateLinkParam param)
+        {
+            return View("~/Areas/Portal/Views/UserPanel/StatementHistory/Index.cshtml", param);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryHeader]
+        [Compress]
+        public ActionResult GetStatementHistoryList(StatementHistoryParam param)
+        {
+            param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
+
+            var model = _statementHistoryService.GetStatementHistoryList(param);
+
+            return new JsonNetResult
+            {
+                Data = model
+            };
         }
 
         [HttpGet]

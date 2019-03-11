@@ -12,7 +12,7 @@ export const param = createReducer({}, {
     }
 });
 
-export const selectedMonth = createReducer('', {
+export const selectedMonth = createReducer(null, {
     [SET_SELECTED_MONTH](prevState, action) {
         return action.data;
     }

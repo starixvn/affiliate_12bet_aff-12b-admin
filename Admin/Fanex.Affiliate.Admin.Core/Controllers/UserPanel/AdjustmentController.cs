@@ -5,9 +5,11 @@ using Fanex.Affiliate.Admin.Core.Repository;
 using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using System.Web.Mvc;
+using Fanex.Affiliate.Admin.Core.Constants;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
+    [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class AdjustmentController : BaseController
     {
         private readonly IAdjustmentRepository _adjustmentRepository;

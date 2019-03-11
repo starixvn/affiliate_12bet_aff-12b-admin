@@ -7,16 +7,17 @@
 @using Fanex.Affiliate.Admin.Core.ViewModels.UserPanel
 @using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
 @model Fanex.Affiliate.Admin.Core.ViewModels.UserPanel.TrackingStatisticsViewModel
+
 @section styles{
+}
+
+@section scripts{
     <script type="text/javascript">
         window.initialState = {
             trackingCodeList: @Html.Raw(Json.Encode(Model.TrackingCodeList)),
             param: { AffId: @Model.TrackingStatisticsParam.AffId, TrackingCode: '' }
         }
     </script>
-}
-
-@section scripts{
     <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/userpanel/tracking-statistics.js")"></script>
 }
 

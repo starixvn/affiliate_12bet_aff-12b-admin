@@ -8,7 +8,7 @@ namespace Fanex.Affiliate.Admin.Core.Constants
     {
         public static IEnumerable<SubMenu> UserPanelMenuList => new List<SubMenu>
         {
-            new SubMenu { Name = "Statement History", Url = VirtualPathUtility.ToAbsolute("~/UserInfo/EarningsHistory.aspx") },
+            new SubMenu { Name = "Statement History", Url = VirtualPathUtility.ToAbsolute("~/Portal/UserPanel/StatementHistory/Index") },
             new SubMenu { Name = "Edit", Url = VirtualPathUtility.ToAbsolute("~/UserInfo/AffiliateUpd.aspx") },
             new SubMenu { Name = "Note", Url = VirtualPathUtility.ToAbsolute("~/Portal/UserPanel/Note/Index") },
             new SubMenu { Name = "Players Detail", Url = VirtualPathUtility.ToAbsolute("~/Portal/UserPanel/PlayerDetail/Index") },

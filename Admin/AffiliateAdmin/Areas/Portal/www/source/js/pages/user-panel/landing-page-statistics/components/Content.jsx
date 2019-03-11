@@ -15,7 +15,7 @@ export class Content extends Component {
         super(props);
 
         this.state = {
-            gridData: []
+            gridData: null
         }
     }
 
@@ -57,7 +57,7 @@ export class Content extends Component {
     _renderDataSection(dataList) {
         const dataRows = [];
 
-        if (dataList.length) {
+        if (dataList && dataList.length) {
             for (let i = 0; i < dataList.length; i++) {
                 const dataItem = dataList[i];
                 dataRows.push(this._buildDataRow(dataItem));

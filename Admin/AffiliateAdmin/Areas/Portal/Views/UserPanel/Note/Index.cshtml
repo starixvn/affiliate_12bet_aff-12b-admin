@@ -8,15 +8,15 @@
 @using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
 @model Fanex.Affiliate.Admin.Core.MetaModels.UserPanel.NoteParam
 @section styles{
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/user-panel/note.css")" rel="stylesheet" />
+}
+
+@section scripts{
     <script type="text/javascript">
         window.initialState = {
             noteInfo: { AffId: @Model.AffId, NoteId: 0, NoteContent: '' }
         }
     </script>
-    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/user-panel/note.css")" rel="stylesheet" />
-}
-
-@section scripts{
     <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/userpanel/note.js")"></script>
 }
 

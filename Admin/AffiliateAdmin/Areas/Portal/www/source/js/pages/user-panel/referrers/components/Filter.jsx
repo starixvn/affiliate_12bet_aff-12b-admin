@@ -51,7 +51,7 @@ export class Filter extends React.Component {
         const { deviceType, fromDate, toDate } = this.state;
         const newParam = Object.assign({}, this.props.param, { DeviceType: deviceType, FromDate: fromDate, ToDate: toDate });
         this.props.setParam(newParam);
-        this.props.setSelectedSiteUrl('');
+        this.props.setSelectedSiteUrl(null);
     }
 
     render() {

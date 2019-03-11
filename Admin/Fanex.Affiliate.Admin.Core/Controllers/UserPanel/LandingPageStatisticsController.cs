@@ -10,9 +10,11 @@ using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.Repository.MediaGallery;
+using Fanex.Affiliate.Admin.Core.Constants;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
+    [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class LandingPageStatisticsController : BaseController
     {
         private readonly ILanguageService _languageService;

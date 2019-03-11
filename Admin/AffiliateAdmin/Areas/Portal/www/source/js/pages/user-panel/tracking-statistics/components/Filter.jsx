@@ -25,7 +25,7 @@ export class Filter extends Component {
         const param = Object.assign({}, this.props.param, { TrackingCode: this.state.selectedTrackingCode });
 
         this.props.setParam(param);
-        this.props.setSelectedMonth('');
+        this.props.setSelectedMonth(null);
     }
 
     render() {

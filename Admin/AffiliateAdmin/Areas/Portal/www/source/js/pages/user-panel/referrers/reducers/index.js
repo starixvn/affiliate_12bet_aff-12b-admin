@@ -7,7 +7,7 @@ import { isShowLoader } from '../../../../reducers/loaderReducer';
 
 const today = createReducer(null, {});
 
-export const selectedSiteUrl = createReducer('', {
+export const selectedSiteUrl = createReducer(null, {
     [SET_SELECTED_SITE_URL](prevState, action) {
         return action.data;
     }

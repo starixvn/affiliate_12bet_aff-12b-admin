@@ -54,7 +54,7 @@ export class Content extends Component {
 
     _renderHeader() {
         return (
-            <Row key="thread">
+            <Row key="theard">
                 <Cell header={true} colWidth={25} title={headerText.Index}>{headerText.Index}</Cell>
                 <Cell header={true} colWidth={55} title={headerText.Id}>{headerText.Id}</Cell>
                 <Cell header={true} colWidth={110} title={headerText.Date}>{headerText.Date}</Cell>
@@ -119,7 +119,7 @@ export class Content extends Component {
                 <Cell title={dataItem.Description}>{dataItem.Description} <br /> ({dataItem.SpName})</Cell>
                 <Cell title={dataItem.Details}>{dataItem.Details}</Cell>
                 <Cell title={dataItem.Ip} className="text-center">
-                    <a target="_blank" href={url.replace('{dataItem.Ip}', dataItem.Ip)}>{dataItem.Ip}</a>
+                    <a target="_blank" href={url}>{dataItem.Ip}</a>
                 </Cell>
             </Row>
         )

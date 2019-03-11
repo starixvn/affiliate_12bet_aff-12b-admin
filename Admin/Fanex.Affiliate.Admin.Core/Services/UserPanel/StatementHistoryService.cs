@@ -1,4 +1,6 @@
-﻿using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
+﻿using System;
+using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.UserPanel;
 using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel;
 using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
 
@@ -38,6 +40,11 @@ namespace Fanex.Affiliate.Admin.Core.Services.UserPanel
                 MainData = rawData,
                 Total = total
             };
+        }
+
+        public EntityResult<StatementHistory> GetStatementHistoryList(StatementHistoryParam param)
+        {
+            return _statementHistoryRepository.GetStatementHistoryList(param);
         }
     }
 }

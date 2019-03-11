@@ -8,9 +8,11 @@ using Fanex.Affiliate.Admin.Core.DTO;
 using System.Collections.Generic;
 using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.ViewModels.UserPanel;
+using Fanex.Affiliate.Admin.Core.Constants;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
+    [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class ReferrersController : BaseController
     {
         private readonly IReferrersRepository _referrersRepository;
