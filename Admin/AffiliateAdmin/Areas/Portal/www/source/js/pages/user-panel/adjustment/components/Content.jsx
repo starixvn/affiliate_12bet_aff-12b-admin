@@ -1,11 +1,9 @@
 ﻿import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
 import { Alert, Col, Button, Form, FormGroup, Label, Input, FormFeedback } from 'reactstrap';
 
 import { toggleLoader, getBalanceBroughtForward, handleSubmit } from '../actions';
-
 import { resource, regExp } from '../modules/constants';
 import { formatDecimalWithCurrencySymbol } from '../../../../modules/numberFormat';
 
@@ -57,35 +55,35 @@ export class Content extends Component {
 
     handleSubmit = async () => {
         this.props.toggleLoader(true);
+        this.setState({
+            isShowMessage: true
+        });
 
         const amountValidation = this._validateAmount();
 
         if (amountValidation.isValid) {
             const { amount } = this.state
-            const { affInfor } = this.props;
-            const adjustmentInfo = Object.assign({}, { AffId: affInfor.AffId, Amount: amount.replace(/,/g, ''), Description: this.state.description });
+            const adjustmentInfo = Object.assign({}, { AffId: this.props.affInfor.AffId, Amount: amount.replace(/,/g, ''), Description: this.state.description });
             const data = await this.props.handleSubmit(adjustmentInfo);
 
             this.setState({
-                isShowMessage: true,
                 isSuccess: data.IsSuccessful,
                 message: data.IsSuccessful ? resource.Success : data.Message,
                 amount: data.IsSuccessful ? '' : amount
-            }, () => window.setTimeout(this.resetState, 3000));
+            }, () => window.setTimeout(this.notShowMessage, 3000));
 
             this.getBalanceBroughtForward();
         } else {
             this.setState({
-                isShowMessage: true,
                 isSuccess: false,
                 message: amountValidation.message,
-            }, () => window.setTimeout(this.resetState, 3000));
+            }, () => window.setTimeout(this.notShowMessage, 3000));
         }
 
         this.props.toggleLoader(false);
     }
 
-    resetState = () => {
+    notShowMessage = () => {
         this.setState({
             isShowMessage: false
         });
@@ -100,8 +98,8 @@ export class Content extends Component {
 
     render() {
         const { affInfor } = this.props;
-        const { isShowMessage, isSuccess, message } = this.state;
-        console.log(this._validateAmount());
+        const { balanceBf, amount, description, isShowMessage, isSuccess, message } = this.state;
+
         return (
             <div className="Adjustment-form-container">
                 <div class="aff-name">{affInfor.AffName}</div>
@@ -109,23 +107,23 @@ export class Content extends Component {
                 <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
                     <div dangerouslySetInnerHTML={{ __html: message }}></div>
                 </Alert>
-                <Form tag="form" className="mb-2" autocomplete="off">
+                <Form tag="form" className="mb-3" autocomplete="off">
                     <FormGroup row className="mb-2">
                         <Label sm={4}>{resource.BalanceBf}</Label>
-                        <Label sm={8}>{formatDecimalWithCurrencySymbol(this.state.balanceBf)}</Label>
+                        <Label sm={8}>{formatDecimalWithCurrencySymbol(balanceBf)}</Label>
                     </FormGroup>
-                    <FormGroup row className="mb-2">
+                    <FormGroup row>
                         <Label for="amount" className="d-flex align-items-center required" sm={4}>{resource.Amount}</Label>
                         <Col sm={8}>
                             <Input type="text" name="amount" id="amount" className="text-right"
-                                value={this.state.amount} onChange={this.handleChange} onKeyPress={this.handlePressEnter} />
+                                value={amount} onChange={this.handleChange} onKeyPress={this.handlePressEnter} />
                         </Col>
                     </FormGroup>
-                    <FormGroup row className="mb-2">
+                    <FormGroup row className="mb-3">
                         <Label for="description" sm={4} className="d-flex align-items-center">{resource.Description}</Label>
                         <Col sm={8}>
                             <Input type="textarea" name="description" id="description" rows="6"
-                                value={this.state.description} onChange={this.handleChange} />
+                                value={description} onChange={this.handleChange} />
                         </Col>
                     </FormGroup>
                     <FormGroup row>

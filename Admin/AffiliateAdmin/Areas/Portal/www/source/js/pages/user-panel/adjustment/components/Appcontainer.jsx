@@ -4,7 +4,6 @@ import AppLayout from '../../../../layouts/AppLayout';
 import Loader from '../../../../components/Loader';
 import Content from './Content';
 
-
 export class AppContainer extends Component {
     constructor(props) {
         super(props);

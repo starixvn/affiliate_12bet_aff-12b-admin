@@ -26,7 +26,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         {
             param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
 
-            if(!string.Empty.Equals(param.AffName))
+            if(string.Empty.Equals(param.AffName))
             {
                 var affInfor = _affiliateRepository.GetAffiliateBasicInfo(param.AffId);
                 param.AffName = affInfor.UserName;

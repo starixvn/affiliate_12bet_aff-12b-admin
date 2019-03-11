@@ -9,5 +9,5 @@
 }
 
 export const regExp = {
-    CheckAmount: "^(?!\\.)[\\d]*\\.?[\\d]+$"
+    CheckAmount: "^(?!\\.)\\d*\\.?\\d+$"
 }
