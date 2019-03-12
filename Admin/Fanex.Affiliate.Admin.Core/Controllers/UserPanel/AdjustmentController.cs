@@ -6,6 +6,7 @@ using Fanex.Affiliate.Admin.Core.Repository.UserPanel;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using System.Web.Mvc;
 using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.Resources;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
@@ -47,20 +48,31 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
             };
         }
 
+        [FunctionAuthorize(FunctionName = Function.Affiliate, IsHost = true)]
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [Compress]
         public ActionResult InsertAdjustment(AdjustmentParam param)
         {
-            param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
-            param.UserId = SessionService.UserId;
-            param.Ip = Request.UserHostAddress;
+            if(ModelState.IsValid)
+            {
+                param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
+                param.UserId = SessionService.UserId;
+                param.Ip = Request.UserHostAddress;
 
-            var model = _adjustmentRepository.InsertAdjustment(param);
+                var model = _adjustmentRepository.InsertAdjustment(param);
+
+                return new JsonNetResult
+                {
+                    Data = model
+                };
+            }
 
             return new JsonNetResult
             {
-                Data = model
+                Data = new {
+                    IsSuccessful = false,
+                    Message = Lang.AmountIsInvalid
+                }
             };
         }
     }

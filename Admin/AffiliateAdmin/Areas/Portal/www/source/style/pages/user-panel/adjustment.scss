@@ -1,8 +1,8 @@
 ﻿.adjustment-form-container {
     width: 485px;
-    background: #E4EBF5 url(../../assets/user-panel/bg_box_tab.jpg) repeat-x;
+    background: #e4ebf5;
     padding: 0px 10px;
-    border: 1px solid #c3c3c3;
+    border: 1px solid #b6cef0;
     margin-top: 15px;
 
     .aff-name {
@@ -10,11 +10,11 @@
         margin-left: 10px;
         position: relative;
         display: block;
-        padding: 0px 15px 0px 15px;
+        padding: 0px 15px;
         font-weight: bold;
         font-size: 15px;
         top: -10px;
-        background: url(../../assets/user-panel/a_bg.jpg) repeat-x 50% top;
+        background: linear-gradient(#ffffff, #e4ebf5);
     }
     .clear{
         clear: both;

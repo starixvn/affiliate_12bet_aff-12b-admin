@@ -1,4 +1,6 @@
-﻿namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
 {
     public class AdjustmentParam
     {
@@ -6,6 +8,8 @@
 
         public int UserId { get; set; }
 
+        [Required]
+        [RegularExpression(@"^(?!\.)\d*\.?\d+$")]
         public decimal Amount { get; set; }
 
         public string Description { get; set; }

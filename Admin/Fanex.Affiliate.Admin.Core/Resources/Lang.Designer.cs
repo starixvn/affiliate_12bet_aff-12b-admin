@@ -115,6 +115,15 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The amount is invalid.
+        /// </summary>
+        public static string AmountIsInvalid {
+            get {
+                return ResourceManager.GetString("AmountIsInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Approved.
         /// </summary>
         public static string Approved {

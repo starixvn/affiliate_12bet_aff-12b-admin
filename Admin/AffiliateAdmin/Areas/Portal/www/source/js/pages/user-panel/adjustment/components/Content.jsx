@@ -1,7 +1,7 @@
 ﻿import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Alert, Col, Button, Form, FormGroup, Label, Input, FormFeedback } from 'reactstrap';
+import { Alert, Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 import { toggleLoader, getBalanceBroughtForward, handleSubmit } from '../actions';
 import { resource, regExp } from '../modules/constants';
@@ -70,20 +70,20 @@ export class Content extends Component {
                 isSuccess: data.IsSuccessful,
                 message: data.IsSuccessful ? resource.Success : data.Message,
                 amount: data.IsSuccessful ? '' : amount
-            }, () => window.setTimeout(this.handleHideMessage, 3000));
+            }, () => window.setTimeout(this.hideMessage, 3000));
 
             this.getBalanceBroughtForward();
         } else {
             this.setState({
                 isSuccess: false,
                 message: amountValidation.message,
-            }, () => window.setTimeout(this.handleHideMessage, 3000));
+            }, () => window.setTimeout(this.hideMessage, 3000));
         }
 
         this.props.toggleLoader(false);
     }
 
-    handleHideMessage = () => {
+    hideMessage = () => {
         this.setState({
             isShowMessage: false
         });
@@ -113,14 +113,14 @@ export class Content extends Component {
                         <Label sm={8}>{formatDecimalWithCurrencySymbol(balanceBf)}</Label>
                     </FormGroup>
                     <FormGroup row>
-                        <Label for="amount" className="required" sm={4}>{resource.Amount}</Label>
+                        <Label for="amount" sm={4} className="required">{resource.Amount}</Label>
                         <Col sm={8}>
                             <Input type="text" name="amount" id="amount" className="text-right"
                                 value={amount} onChange={this.handleChange} onKeyPress={this.handlePressEnter} />
                         </Col>
                     </FormGroup>
                     <FormGroup row className="mb-3">
-                        <Label for="description" sm={4} className="d-flex align-items-center">{resource.Description}</Label>
+                        <Label for="description" sm={4} className="align-self-center">{resource.Description}</Label>
                         <Col sm={8}>
                             <Input type="textarea" name="description" id="description" rows="6"
                                 value={description} onChange={this.handleChange} />
