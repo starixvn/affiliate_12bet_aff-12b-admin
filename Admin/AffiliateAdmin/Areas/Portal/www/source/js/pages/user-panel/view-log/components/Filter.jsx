@@ -38,7 +38,7 @@ export class Filter extends React.Component {
         this.props.setParam(newParam);
     }
 
-    handleChangeLogType = (event) => {
+    handleChange = (event) => {
         this.setState({ [event.target.name]: event.target.value });
     }
 
@@ -73,7 +73,7 @@ export class Filter extends React.Component {
                 <Form inline tag="div">
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                         <Label for="logType" className="mr-sm-2">{headerText.Type}</Label>
-                        <Input type="select" name="logType" id="logType" value={logType} onChange={this.handleChangeLogType}>
+                        <Input type="select" name="logType" id="logType" value={logType} onChange={this.handleChange}>
                             <option value="0">{globalResource.All}</option>
                             {
                                 Object.keys(logTypes).map(index => {

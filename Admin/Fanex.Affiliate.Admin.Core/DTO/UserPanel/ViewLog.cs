@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 {
@@ -6,6 +7,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
     {
         public int Id { get; set; }
 
+        [JsonIgnore]
         public DateTime Date { get; set; }
 
         public string UpdatedBy { get; set; }

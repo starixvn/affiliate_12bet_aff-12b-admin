@@ -15,7 +15,7 @@ export class Content extends Component {
         super(props);
 
         this.state = {
-            gridData: [],
+            gridData: null,
             shouldResetScrollPosition: true
         }
     }
@@ -69,7 +69,7 @@ export class Content extends Component {
     _renderDataSection(dataList) {
         const dataRows = [];
 
-        if (dataList.length) {
+        if (dataList && dataList.length) {
             const { pagingOption } = this.props;
             const startIndex = (pagingOption.PageIndex - 1) * pagingOption.PageSize + 1;
 
@@ -100,26 +100,28 @@ export class Content extends Component {
     }
 
     _buildDataRow(dataItem, index, isLink, isHide) {
-        const url = `http://anonym.to/?http://legacytools.dnsstuff.com/tools/ipall.ch?tool_id=67&token=&toolhandler_redirect=0&ip=${dataItem.Ip}&j=1`;
+        const id = dataItem.Id;
+        const ipAddress = dataItem.Ip;
+        const url = `http://anonym.to/?http://legacytools.dnsstuff.com/tools/ipall.ch?tool_id=67&token=&toolhandler_redirect=0&ip=${ipAddress}&j=1`;
 
-        if (isHide && !this.props.showIdList[dataItem.Id]) {
+        if (isHide && !this.props.showIdList[id]) {
             return null;
         }
 
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell title={index} className="text-center">{index}</Cell>
-                <Cell title={dataItem.Id} className="text-center">
-                    {isLink ? <Button color="link" onClick={() => this.handleShow(dataItem.Id)}>
-                        {dataItem.Id}
-                    </Button> : dataItem.Id}
+                <Cell title={id} className="text-center">
+                    {isLink ? <Button color="link" onClick={() => this.handleShow(id)}>
+                        {id}
+                    </Button> : id}
                 </Cell>
                 <Cell title={dataItem.DateText}>{dataItem.DateText}</Cell>
                 <Cell title={dataItem.UpdatedBy} className="text-center">{dataItem.UpdatedBy}</Cell>
                 <Cell title={dataItem.Description}>{dataItem.Description} <br /> ({dataItem.SpName})</Cell>
                 <Cell title={dataItem.Details}>{dataItem.Details}</Cell>
-                <Cell title={dataItem.Ip} className="text-center">
-                    <a target="_blank" href={url}>{dataItem.Ip}</a>
+                <Cell title={ipAddress} className="text-center">
+                    <a target="_blank" href={url}>{ipAddress}</a>
                 </Cell>
             </Row>
         )
