@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 {
@@ -8,6 +9,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 
         public int UniqueClick { get; set; }
 
+        [JsonIgnore]
         public DateTime Date { get; set; }
 
         public string MonthText => Date.ToString("MMMM-yyyy");

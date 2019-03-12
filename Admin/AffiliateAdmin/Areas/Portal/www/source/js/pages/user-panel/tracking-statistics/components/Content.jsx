@@ -6,7 +6,6 @@ import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
 
 import { headerText } from '../modules/constants';
-
 import { setSelectedMonth, fetchData } from '../actions';
 import { toggleLoader } from '../../../../actions/loaderAction';
 

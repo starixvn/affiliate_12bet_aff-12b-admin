@@ -22,7 +22,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         }
 
         [HttpGet]
-        public ActionResult Index(TrackingStatisticsParam param)
+        public ActionResult Index(AffiliateLinkParam param)
         {
             param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
 
@@ -31,7 +31,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
             var viewModel = new TrackingStatisticsViewModel
             {
                 TrackingCodeList = trackingCodeList,
-                TrackingStatisticsParam = param
+                AffiliateLinkParam = param
             };
 
             return View("~/Areas/Portal/Views/UserPanel/TrackingStatistics/Index.cshtml", viewModel);

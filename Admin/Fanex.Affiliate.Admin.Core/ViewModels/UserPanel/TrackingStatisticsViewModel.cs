@@ -8,6 +8,6 @@ namespace Fanex.Affiliate.Admin.Core.ViewModels.UserPanel
     {
         public IEnumerable<string> TrackingCodeList { get; set; }
 
-        public TrackingStatisticsParam TrackingStatisticsParam { get; set; }
+        public AffiliateLinkParam AffiliateLinkParam { get; set; }
     }
 }

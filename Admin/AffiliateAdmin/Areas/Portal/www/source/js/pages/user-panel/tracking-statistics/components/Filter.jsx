@@ -17,7 +17,7 @@ export class Filter extends Component {
         }
     }
 
-    handleChangeTrackingCode = (event) => {
+    handleChange = (event) => {
         this.setState({ [event.target.name]: event.target.value });
     }
 
@@ -37,7 +37,7 @@ export class Filter extends Component {
                 <Form inline tag="div">
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                         <Label className="mr-2">{resource.TrackingCode}</Label>
-                        <Input type="select" name="selectedTrackingCode" value={selectedTrackingCode} onChange={this.handleChangeTrackingCode}>
+                        <Input type="select" name="selectedTrackingCode" value={selectedTrackingCode} onChange={this.handleChange}>
                             <option value="">{resource.All}</option>
                             {
                                 trackingCodeList.map(trackingCode => {

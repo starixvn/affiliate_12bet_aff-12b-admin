@@ -5,7 +5,6 @@
 
 @using Fanex.Affiliate.Admin.Core.Constants
 @using Fanex.Affiliate.Admin.Core.ViewModels.UserPanel
-@using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
 @model Fanex.Affiliate.Admin.Core.ViewModels.UserPanel.TrackingStatisticsViewModel
 
 @section styles{
@@ -15,7 +14,7 @@
     <script type="text/javascript">
         window.initialState = {
             trackingCodeList: @Html.Raw(Json.Encode(Model.TrackingCodeList)),
-            param: { AffId: @Model.TrackingStatisticsParam.AffId, TrackingCode: '' }
+            param: { AffId: @Model.AffiliateLinkParam.AffId, TrackingCode: '' }
         }
     </script>
     <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/userpanel/tracking-statistics.js")"></script>
@@ -23,15 +22,10 @@
 
 @section menu{
     @{
-        var affiliateLinkParam = new AffiliateLinkParam
-        {
-            AffId = Model.TrackingStatisticsParam.AffId,
-            AffName = Model.TrackingStatisticsParam.AffName
-        };
         var usePanelMenu = new UserPanelMenuViewModel
         {
             SubMenuList = UserPanelConstant.UserPanelMenuList,
-            AffiliateLinkParam = affiliateLinkParam
+            AffiliateLinkParam = Model.AffiliateLinkParam
         };
         usePanelMenu.SubMenuList.ElementAt(5).IsActive = true;
         Html.RenderPartial("~/Areas/Portal/Views/Shared/_UserPanelMenu.cshtml", usePanelMenu);

@@ -6,7 +6,6 @@ import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 
 import { headerText } from '../modules/constants';
 import { globalResource } from '../../../../modules/globalResource';
-
 import { toggleLoader } from '../../../../actions/loaderAction';
 import { fetchDetailData } from '../actions';
 
