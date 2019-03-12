@@ -1,11 +1,9 @@
 ﻿import { post } from '../../../../modules/ajaxRequest';
 import { toggleLoader } from '../../../../actions/loaderAction';
-
 import { SET_NOTE_LIST, SET_SHOW_POPUP, SET_NOTE_INFO } from './types';
-
 import { setPagingOption } from '../../../../actions/pagingAction';
 
-export { setPagingOption };
+export { setPagingOption, toggleLoader, post };
 
 export const setNoteList = (data) => {
     return {
@@ -51,7 +49,7 @@ export const setNoteInfo = (data) => {
 }
 
 export const getNoteContentById = (param) => async () => {
-    const url = 'Portal/UserPanel/Note/GetNoteById';
+    const url = 'Portal/UserPanel/Note/GetNoteContentById';
     const response = await post(url, param);
 
     return response && response.status === 200 ? response.data : null;

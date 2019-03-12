@@ -5,8 +5,7 @@
 
 @using Fanex.Affiliate.Admin.Core.Constants
 @using Fanex.Affiliate.Admin.Core.ViewModels.UserPanel
-@using Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
-@model Fanex.Affiliate.Admin.Core.MetaModels.UserPanel.NoteParam
+@model Fanex.Affiliate.Admin.Core.MetaModels.UserPanel.AffiliateLinkParam
 @section styles{
     <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/user-panel/note.css")" rel="stylesheet" />
 }
@@ -22,15 +21,10 @@
 
 @section menu{
     @{
-        var affiliateLinkParam = new AffiliateLinkParam
-        {
-            AffId = Model.AffId,
-            AffName = Model.AffName
-        };
         var usePanelMenu = new UserPanelMenuViewModel
         {
             SubMenuList = UserPanelConstant.UserPanelMenuList,
-            AffiliateLinkParam = affiliateLinkParam
+            AffiliateLinkParam = Model
         };
         usePanelMenu.SubMenuList.ElementAt(2).IsActive = true;
         Html.RenderPartial("~/Areas/Portal/Views/Shared/_UserPanelMenu.cshtml", usePanelMenu);

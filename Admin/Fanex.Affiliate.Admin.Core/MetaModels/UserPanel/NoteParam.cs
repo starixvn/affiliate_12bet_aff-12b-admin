@@ -4,10 +4,8 @@
     {
         public int AffId { get; set; }
 
-        public string AffName { get; set; }
+        public int PageIndex { get; set; }
 
-        public int PageIndex { get; set; } = 1;
-
-        public int PageSize { get; set; } = 20;
+        public int PageSize { get; set; }
     }
 }

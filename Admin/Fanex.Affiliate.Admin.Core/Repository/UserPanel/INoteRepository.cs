@@ -8,7 +8,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
     {
         EntityResult<Note> GetNoteList(NoteParam param);
 
-        Note GetNoteById(int affId, int noteId);
+        Note GetNoteContentById(int affId, int noteId);
 
         ResultInfo InsertNote(InsertUpdateNoteParam param);
 

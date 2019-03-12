@@ -20,7 +20,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         }
 
         [HttpGet]
-        public ActionResult Index(NoteParam param)
+        public ActionResult Index(AffiliateLinkParam param)
         {
             param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
             
@@ -29,6 +29,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
+        [Compress]
         public ActionResult GetNoteList(NoteParam param)
         {
             param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
@@ -44,14 +45,15 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [Compress]
-        public ActionResult GetNoteById(int affId, int noteId)
+        public ActionResult GetNoteContentById(int affId, int noteId)
         {
             return new JsonNetResult
             {
-                Data = _noteRepository.GetNoteById(affId == 0 ? SessionService.AffId : affId, noteId)
+                Data = _noteRepository.GetNoteContentById(affId == 0 ? SessionService.AffId : affId, noteId)
             };
         }
 
+        [FunctionAuthorize(FunctionName = Function.Affiliate, IsHost = true)]
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [Compress]
@@ -67,6 +69,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
             };
         }
 
+        [FunctionAuthorize(FunctionName = Function.Affiliate, IsHost = true)]
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [Compress]

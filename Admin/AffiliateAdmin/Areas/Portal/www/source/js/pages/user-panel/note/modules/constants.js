@@ -10,8 +10,9 @@ export const headerText = {
 export const resource = {
     RequiredErrorMessage: 'This field is required',
     MaxLengthErrorMessage: 'This field must not exceed 1000 characters',
-    AddNote: "Add Note",
-    AddNoteSuccess: "Add Note is successful",
-    UpdateNote: "Update Note",
-    UpdateNoteSuccess: "Update Note is successful",
+    AddNote: 'Add Note',
+    AddNoteSuccess: 'Add Note is successful',
+    UpdateNote: 'Update Note',
+    UpdateNoteSuccess: 'Update Note is successful',
+    Failed: 'The request is failed'
 }

@@ -3,9 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Alert, Col, Button, Form, FormGroup, Label, Input, FormFeedback, Modal, ModalHeader, ModalBody } from 'reactstrap';
-import { setShowPopup, getNoteList } from '../actions';
-import { toggleLoader } from '../../../../actions/loaderAction';
-import { post } from '../../../../modules/ajaxRequest';
+import { setShowPopup, getNoteList, toggleLoader, post } from '../actions';
 
 import { resource, maxLength } from '../modules/constants';
 import { globalResource } from '../../../../modules/globalResource';
@@ -56,6 +54,7 @@ export class InsertUpdateNoteForm extends Component {
 
     async Save(noteInfo) {
         this.props.toggleLoader(true);
+        this.setState({ isShowMessage: true });
 
         var url = noteInfo.NoteId == 0 ? 'Portal/UserPanel/Note/InsertNote' : 'Portal/UserPanel/Note/UpdateNote';
         var message = noteInfo.NoteId == 0 ? resource.AddNoteSuccess : resource.UpdateNoteSuccess;
@@ -67,27 +66,29 @@ export class InsertUpdateNoteForm extends Component {
 
             if (result.IsSuccessful) {
                 const { noteInfo, pagingOption } = this.props;
-                const param = Object.assign({}, { AffId: noteInfo.AffId, PageIndex: pagingOption.PageIndex, PageSize: pagingOption.PageSize });
+                const param = Object.assign({}, { AffId: noteInfo.AffId, PageIndex: 1, PageSize: pagingOption.PageSize });
                 this.props.getNoteList(param);
 
                 window.setTimeout(() => this.props.setShowPopup(false), 3000);
             }
 
             this.setState({
-                isShowMessage: true,
                 isSuccess: result.IsSuccessful,
                 message: result.IsSuccessful ? message : result.Message
-            }, () => window.setTimeout(this.resetState, 3000));
+            }, () => window.setTimeout(this.hideMessage, 3000));
+        } else {
+            this.setState({
+                isSuccess: false,
+                message: resource.Failed
+            }, () => window.setTimeout(this.hideMessage, 3000));
         }
 
         this.props.toggleLoader(false);
     }
 
-    resetState = () => {
+    hideMessage = () => {
         this.setState({
-            isShowMessage: false,
-            isSuccess: true,
-            message: ''
+            isShowMessage: false
         });
     }
 

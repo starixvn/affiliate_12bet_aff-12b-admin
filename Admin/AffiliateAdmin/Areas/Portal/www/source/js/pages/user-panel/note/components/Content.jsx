@@ -8,8 +8,7 @@ import { Button } from 'reactstrap';
 import { headerText } from '../modules/constants';
 import { globalResource } from '../../../../modules/globalResource';
 
-import { setShowPopup, setNoteInfo, setPagingOption, getNoteList, getNoteContentById } from '../actions';
-import { toggleLoader } from '../../../../actions/loaderAction';
+import { setShowPopup, setNoteInfo, setPagingOption, getNoteList, getNoteContentById, toggleLoader } from '../actions';
 
 export class Content extends Component {
     constructor(props) {
@@ -18,7 +17,7 @@ export class Content extends Component {
 
     componentDidMount() {
         const { noteInfo, pagingOption } = this.props;
-        const param = Object.assign({}, { AffId: noteInfo.AffId, PageIndex: pagingOption.PageIndex, PageSize: pagingOption.PageSize });
+        const param = Object.assign({}, { AffId: noteInfo.AffId, PageIndex: 1, PageSize: pagingOption.PageSize });
         this.props.getNoteList(param);
     }
 
@@ -37,8 +36,7 @@ export class Content extends Component {
     _renderDataSection(dataList) {
         const dataRows = [];
 
-        if(dataList.length)
-        {
+        if (dataList.length) {
             const { pagingOption } = this.props;
             const startIndex = (pagingOption.PageIndex - 1) * pagingOption.PageSize + 1;
 
@@ -49,8 +47,8 @@ export class Content extends Component {
         }
         else {
             dataRows.push(<Row>
-                    <Cell className="text-center" colSpan="5">{globalResource.NoInfo}</Cell>
-                </Row>);
+                <Cell className="text-center" colSpan="5">{globalResource.NoInfo}</Cell>
+            </Row>);
         }
 
         return dataRows;

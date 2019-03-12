@@ -38,7 +38,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
             return result;
         }
 
-        public Note GetNoteById(int affId, int noteId)
+        public Note GetNoteContentById(int affId, int noteId)
         {
             const string SpKey = "Aff_AdminNoteSel";
             Note result = null;
