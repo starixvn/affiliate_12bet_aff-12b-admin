@@ -25,7 +25,7 @@ export class Filter extends React.Component {
         }
     }
 
-    handleChangeDeviceType = (event) => {
+    handleChange = (event) => {
         this.setState({ [event.target.name]: event.target.value });
     }
 
@@ -74,7 +74,7 @@ export class Filter extends React.Component {
                     </FormGroup>
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                         <Label for="deviceType" className="mr-sm-2">{headerText.Device}</Label>
-                        <Input type="select" name="deviceType" id="deviceType" value={deviceType} onChange={this.handleChangeDeviceType}>
+                        <Input type="select" name="deviceType" id="deviceType" value={deviceType} onChange={this.handleChange}>
                             {
                                 Object.keys(deviceTypes).map(index => {
                                     return (<option key={`deviceType-${index}`} value={index}>{deviceTypes[index]}</option>)

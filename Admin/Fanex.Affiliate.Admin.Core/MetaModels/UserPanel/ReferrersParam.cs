@@ -2,12 +2,8 @@
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
 {
-    public class ReferrersParam
+    public class ReferrersParam : AffiliateLinkParam
     {
-        public int AffId { get; set; }
-
-        public string AffName { get; set; }
-
         public int DeviceType { get; set; }
 
         public DateTime? FromDate { get; set; }
