@@ -2030,6 +2030,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\index.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\user-panel\statement-history.scss" />
+    <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\components\PaymentInfoForm.jsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

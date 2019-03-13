@@ -53,7 +53,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         [ValidateAntiForgeryHeader]
         public ActionResult InsertAdjustment(AdjustmentParam param)
         {
-            if(ModelState.IsValid)
+            if(ModelState.IsValid && param.Amount != 0)
             {
                 param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
                 param.UserId = SessionService.UserId;

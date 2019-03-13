@@ -6,7 +6,7 @@ import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
 
 import { headerText, globalResource, transTypeList, transaction, MONTHLY_WINLOST, PAYMENT_REQUEST } from '../modules/constants';
-import { setPagingOption, toggleLoader, fetchData } from '../actions';
+import { setPagingOption, toggleLoader, fetchData, setTransactionId } from '../actions';
 import { formatDecimalWithCurrencySymbol } from '../../../../modules/numberFormat';
 import { resolveClientUrl } from '../../../../modules/utils';
 
@@ -15,7 +15,7 @@ export class Content extends Component {
         super(props);
 
         this.state = {
-            gridData: []
+            gridData: null
         }
     }
 
@@ -61,7 +61,7 @@ export class Content extends Component {
     _renderDataSection(dataList) {
         const dataRows = [];
 
-        if (dataList.length) {
+        if (dataList && dataList.length) {
             const { pagingOption } = this.props;
             const startIndex = (pagingOption.PageIndex - 1) * pagingOption.PageSize + 1;
 
@@ -91,11 +91,11 @@ export class Content extends Component {
                 <Cell title={dataItem.DateText} className="text-center">{dataItem.DateText}</Cell>
                 <Cell title={transType} className="text-center">{transTypeList[transType] || transaction }</Cell>
                 <Cell title={amount} className="text-right">
-                    {transType === PAYMENT_REQUEST ? <Button className="p-0" color="link" onClick="ibcWnd.open('../Payment/PaymentUpdate.aspx?transid={dataItem.transId}&lang=E&page=statement', 'Trxn.ID {dataItem.transId}', 80, 0, 500, 510, 'class1', 'class2')">
+                    {transType === PAYMENT_REQUEST ? <Button className="p-0" color="link" onClick={() => this.props.setTransactionId(dataItem.TransId)}>
                             {amount}
                         </Button> : (transType === MONTHLY_WINLOST ?
                         <a href={`${resolveClientUrl('Portal/UserPanel/StatementHistory/DailyEarning')}` + 
-                            `?affId=${param.AffId}&affName=${param.AffName}&monthDate=${dataItem.Date}`} target="fContent">
+                            `?affId=${param.AffId}&affName=${param.AffName}&monthDate=${dataItem.DateText}`} target="fContent">
                             {amount}
                         </a> : amount)
                     }
@@ -147,7 +147,7 @@ function mapStateToProps({ pagingOption, param, showIdList }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setPagingOption, toggleLoader, fetchData }, dispatch);
+    return bindActionCreators({ setPagingOption, toggleLoader, fetchData, setTransactionId }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

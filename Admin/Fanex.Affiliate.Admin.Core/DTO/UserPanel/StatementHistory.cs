@@ -1,9 +1,13 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 {
     public class StatementHistory
     {
+        public long TransId { get; set; }
+
+        [JsonIgnore]
         public DateTime Date { get; set; }
 
         public int TransType { get; set; }

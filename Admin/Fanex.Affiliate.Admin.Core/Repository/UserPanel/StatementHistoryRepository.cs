@@ -33,6 +33,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
                     {
                         dataList.Add(new StatementHistory
                         {
+                            TransId = Convert.ToInt64(reader["TransId"]),
                             Date = Convert.ToDateTime(reader["MonthDate"]),
                             TransType = Convert.ToInt32(reader["TransType"]),
                             Amount = Convert.ToDecimal(reader["Amount"]),

@@ -28,7 +28,7 @@ export class Content extends Component {
     async getBalanceBroughtForward() {
         this.props.toggleLoader(true);
 
-        const data = await this.props.getBalanceBroughtForward(this.props.affInfor);
+        const data = await this.props.getBalanceBroughtForward(this.props.affInfo);
 
         this.setState({ balanceBf: data });
         this.props.toggleLoader(false);
@@ -62,14 +62,15 @@ export class Content extends Component {
         const amountValidation = this._validateAmount();
 
         if (amountValidation.isValid) {
-            const { amount } = this.state
-            const adjustmentInfo = Object.assign({}, { AffId: this.props.affInfor.AffId, Amount: amount.replace(/,/g, ''), Description: this.state.description });
+            const { amount, description } = this.state
+            const adjustmentInfo = Object.assign({}, { AffId: this.props.affInfo.AffId, Amount: amount.replace(/,/g, ''), Description: this.state.description });
             const data = await this.props.handleSubmit(adjustmentInfo);
 
             this.setState({
                 isSuccess: data.IsSuccessful,
                 message: data.IsSuccessful ? resource.Success : data.Message,
-                amount: data.IsSuccessful ? '' : amount
+                amount: data.IsSuccessful ? '' : amount,
+                description: data.IsSuccessful ? '' : description
             }, () => window.setTimeout(this.hideMessage, 3000));
 
             this.getBalanceBroughtForward();
@@ -97,12 +98,12 @@ export class Content extends Component {
     }
 
     render() {
-        const { affInfor } = this.props;
+        const { affInfo } = this.props;
         const { balanceBf, amount, description, isShowMessage, isSuccess, message } = this.state;
 
         return (
             <div className="adjustment-form-container">
-                <div class="aff-name">{affInfor.AffName}</div>
+                <div class="aff-name">{affInfo.AffName}</div>
                 <div class="clear"></div>
                 <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
                     <div dangerouslySetInnerHTML={{ __html: message }}></div>
@@ -138,8 +139,8 @@ export class Content extends Component {
     }
 }
 
-function mapStateToProps({ affInfor }) {
-    return Object.assign({}, { affInfor });
+function mapStateToProps({ affInfo }) {
+    return Object.assign({}, { affInfo });
 }
 
 function mapDispatchToProps(dispatch) {

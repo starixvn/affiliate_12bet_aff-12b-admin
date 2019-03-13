@@ -6,6 +6,7 @@ import Loader from '../../../../components/Loader';
 
 import Filter from './Filter';
 import Content from './Content';
+import PaymentInfoForm from './PaymentInfoForm';
 
 export class AppContainer extends Component {
     constructor(props) {
@@ -18,6 +19,7 @@ export class AppContainer extends Component {
                 <Loader show={this.props.isShowLoader} />
                 <Filter />
                 <Content />
+                <PaymentInfoForm />
             </AppLayout>
         );
     }
