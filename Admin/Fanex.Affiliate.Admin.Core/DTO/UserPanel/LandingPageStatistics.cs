@@ -1,4 +1,6 @@
-﻿namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 {
     public class LandingPageStatistics
     {
@@ -14,6 +16,7 @@
 
         public int Fdm { get; set; }
 
+        [SuppressMessage("Sonar Code Smell", "S3996:UriPropertiesShouldNotBeStrings", Justification = "Reviewed. Suppression is OK here.")]
         public string WebsiteUrl { get; set; }
     }
 }

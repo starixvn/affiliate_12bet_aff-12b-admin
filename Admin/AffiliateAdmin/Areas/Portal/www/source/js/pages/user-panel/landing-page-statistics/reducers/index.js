@@ -7,7 +7,7 @@ import { isShowLoader } from '../../../../reducers/loaderReducer';
 
 export const today = createReducer(null, {});
 
-export const languageList = createReducer([], {});
+export const languageList = createReducer({}, {});
 
 export const pageList = createReducer([], {});
 

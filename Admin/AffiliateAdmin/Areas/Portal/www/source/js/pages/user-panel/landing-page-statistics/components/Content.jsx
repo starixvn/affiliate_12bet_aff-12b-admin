@@ -30,7 +30,9 @@ export class Content extends Component {
     async fetchData(param) {
         this.props.toggleLoader(true);
 
-        this.setState({ gridData: await this.props.fetchData(param) });
+        const data = await this.props.fetchData(param);
+
+        this.setState({ gridData: data });
 
         this.props.toggleLoader(false);
     }
@@ -75,8 +77,7 @@ export class Content extends Component {
     }
 
     _buildDataRow(dataItem) {
-        const { languageList } = this.props;
-        const language = languageList[dataItem.LanguageCode] || dataItem.LanguageCode;
+        const language = this.props.languageList[dataItem.LanguageCode] || dataItem.LanguageCode;
 
         return (
             <Row>
