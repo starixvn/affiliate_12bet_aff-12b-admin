@@ -45,7 +45,7 @@ export class Content extends Component {
 
     _renderHeader() {
         return (
-            <Row>
+            <Row key="thead">
                 <Cell header={true} colWidth={290} title={headerTitle.Page}>{headerTitle.Page}</Cell>
                 <Cell header={true} colWidth={290} title={headerTitle.Language}>{headerTitle.Language}</Cell>
                 <Cell header={true} colWidth={110} title={headerTitle.TotalClick}>{headerTitle.TotalClick}</Cell>
@@ -62,7 +62,7 @@ export class Content extends Component {
         if (dataList && dataList.length) {
             for (let i = 0; i < dataList.length; i++) {
                 const dataItem = dataList[i];
-                dataRows.push(this._buildDataRow(dataItem));
+                dataRows.push(this._buildDataRow(dataItem, i));
             }
         }
         else {
@@ -76,11 +76,11 @@ export class Content extends Component {
         return dataRows;
     }
 
-    _buildDataRow(dataItem) {
+    _buildDataRow(dataItem, index) {
         const language = this.props.languageList[dataItem.LanguageCode] || dataItem.LanguageCode;
 
         return (
-            <Row>
+            <Row key={`dataRow-${index}`}>
                 <Cell title={dataItem.SiteUrl}>
                     {(dataItem.Page == "Old URL" || dataItem.Page == "none") ? dataItem.Page :
                         (<Button color="link" className="p-0" onClick={() => this.handleSelectedPage(dataItem.Page, dataItem.LanguageCode)}>

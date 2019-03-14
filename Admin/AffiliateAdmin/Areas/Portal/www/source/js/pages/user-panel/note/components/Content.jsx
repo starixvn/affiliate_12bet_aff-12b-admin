@@ -23,7 +23,7 @@ export class Content extends Component {
 
     _renderHeader() {
         return (
-            <Row key="theard">
+            <Row key="thead">
                 <Cell header={true} colWidth={40} title={headerText.Index}>{headerText.Index}</Cell>
                 <Cell header={true} colWidth={1000} title={headerText.Content}>{headerText.Content}</Cell>
                 <Cell header={true} colWidth={200} title={headerText.CreatedBy}>{headerText.CreatedBy}</Cell>

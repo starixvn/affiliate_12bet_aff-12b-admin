@@ -1,22 +1,10 @@
-﻿.adjustment-form-container {
-    width: 485px;
-    background: #e4ebf5;
-    padding: 0px 10px;
-    border: 1px solid #b6cef0;
-    margin-top: 15px;
+﻿.adjustment-form {
+    fieldset{
+        width: 485px;
+        background: #e4ebf5;
 
-    .aff-name {
-        float: left;
-        margin-left: 10px;
-        position: relative;
-        display: block;
-        padding: 0px 15px;
-        font-weight: bold;
-        font-size: 15px;
-        top: -10px;
-        background: linear-gradient(#ffffff, #e4ebf5);
-    }
-    .clear{
-        clear: both;
+        legend{
+            background: linear-gradient(#ffffff, #e4ebf5);
+        }
     }
 }

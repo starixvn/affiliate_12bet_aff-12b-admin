@@ -34,13 +34,8 @@ export class Content extends Component {
 
         const data = await this.props.fetchData(param);
 
-        if (data) {
-            const { MainData, TotalItem } = data;
-
-            this.setState({ gridData: MainData, shouldResetScrollPosition: true });
-
-            this.props.setPagingOption({ TotalItem, PageIndex: param.PageIndex, PageSize: param.PageSize });
-        }
+        this.setState({ gridData: data ? data.MainData : null, shouldResetScrollPosition: true });
+        this.props.setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.PageIndex, PageSize: param.PageSize });
 
         this.props.toggleLoader(false);
     }
@@ -54,7 +49,7 @@ export class Content extends Component {
 
     _renderHeader() {
         return (
-            <Row key="theard">
+            <Row key="thead">
                 <Cell header={true} colWidth={25} title={headerText.Index}>{headerText.Index}</Cell>
                 <Cell header={true} colWidth={55} title={headerText.Id}>{headerText.Id}</Cell>
                 <Cell header={true} colWidth={110} title={headerText.Date}>{headerText.Date}</Cell>

@@ -1519,7 +1519,6 @@
     <Content Include="Areas\Portal\www\dist\js\pages\userpanel\customer-member.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\userpanel\daily-earning-detail.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\userpanel\daily-earning.js" />
-    <Content Include="Areas\Portal\www\dist\js\pages\userpanel\landing-pages.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\userpanel\note.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\userpanel\player-detail.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\userpanel\referrers.js" />
@@ -1596,6 +1595,10 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\payment-request\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\payment-request\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\payment-request\modules\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\payment-request\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\RecheckIn\recheckin.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\adjustment\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\adjustment\modules\constants.js" />
@@ -2031,6 +2034,12 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\index.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\user-panel\statement-history.scss" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\components\PaymentInfoForm.jsx" />
+    <Content Include="Areas\Portal\Views\PaymentRequest\Index.cshtml" />
+    <Content Include="Areas\Portal\www\source\js\pages\payment-request\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\Filter.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\style\pages\payment-request.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

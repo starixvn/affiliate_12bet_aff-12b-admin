@@ -1,0 +1,18 @@
+﻿
+@{
+    Layout = "~/Areas/Portal/Views/Shared/_SinglePageLayout.cshtml";
+}
+
+@section styles{
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/styles/pages/payment-request.css")" rel="stylesheet">
+}
+
+@section script{
+    <script type="text/javascript">
+        window.initialState = {
+            today: '@DateTime.Now.ToString("MM/dd/yyyy")'
+        }
+    </script>
+    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Protal/www/dist/js/pages/payment/payment-request.js")"></script>
+}
+

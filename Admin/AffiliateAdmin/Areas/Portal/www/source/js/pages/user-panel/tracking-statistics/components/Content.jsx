@@ -41,7 +41,7 @@ export class Content extends Component {
 
     _renderHeader() {
         return (
-            <Row>
+            <Row key='thead'>
                 <Cell header={true} colWidth={40} title={headerText.Index}>{headerText.Index}</Cell>
                 <Cell header={true} colWidth={600} title={headerText.Month}>{headerText.Month}</Cell>
                 <Cell header={true} colWidth={180} title={headerText.TotalClicks}>{headerText.TotalClicks}</Cell>
@@ -63,7 +63,7 @@ export class Content extends Component {
 
     _buildDataRow(dataItem, index) {
         return (
-            <Row>
+            <Row key={`dataRow-${index}`}>
                 <Cell title={index} className="text-center">{index}</Cell>
                 <Cell title={dataItem.MonthText} className="text-center">
                     <Button color="link" className="p-0" onClick={() => this.props.setSelectedMonth(dataItem.MonthText)}>

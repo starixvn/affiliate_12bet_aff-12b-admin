@@ -102,21 +102,22 @@ export class Content extends Component {
         const { balanceBf, amount, description, isShowMessage, isSuccess, message } = this.state;
 
         return (
-            <div className="adjustment-form-container">
-                <div class="aff-name">{affInfo.AffName}</div>
-                <div class="clear"></div>
-                <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
-                    <div dangerouslySetInnerHTML={{ __html: message }}></div>
-                </Alert>
-                <Form tag="form" className="mb-3" autocomplete="off">
+            <Form tag="form" className="adjustment-form">
+                <fieldset>
+                    <legend>
+                        <h5 className="font-weight-bold">{affInfo.AffName}</h5>
+                    </legend>
+                    <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
+                        <div dangerouslySetInnerHTML={{ __html: message }}></div>
+                    </Alert>
                     <FormGroup row className="mb-2">
                         <Label sm={4}>{resource.BalanceBf}</Label>
                         <Label sm={8}>{formatDecimalWithCurrencySymbol(balanceBf)}</Label>
                     </FormGroup>
-                    <FormGroup row>
+                    <FormGroup row className="mb-2">
                         <Label for="amount" sm={4} className="required">{resource.Amount}</Label>
                         <Col sm={8}>
-                            <Input type="text" name="amount" id="amount" className="text-right"
+                            <Input type="text" name="amount" id="amount" className="text-right h-75"
                                 value={amount} onChange={this.handleChange} onKeyPress={this.handlePressEnter} />
                         </Col>
                     </FormGroup>
@@ -127,14 +128,14 @@ export class Content extends Component {
                                 value={description} onChange={this.handleChange} />
                         </Col>
                     </FormGroup>
-                    <FormGroup row>
+                    <FormGroup row className="mb-2">
                         <Label sm={4}></Label>
                         <Col sm={8}>
                             <Button type="button" color="success" onClick={this.handleSubmit}>{resource.Submit}</Button>
                         </Col>
                     </FormGroup>
-                </Form>
-            </div>
+                </fieldset>
+            </Form>
         );
     }
 }

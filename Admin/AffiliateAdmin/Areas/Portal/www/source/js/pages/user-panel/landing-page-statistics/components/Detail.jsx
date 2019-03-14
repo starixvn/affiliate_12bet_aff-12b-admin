@@ -33,19 +33,15 @@ export class Detail extends Component {
 
         const data = await this.props.fetchDetailData(param);
 
-        if (data) {
-            const { MainData, TotalItem } = data;
+        this.setState({ gridData: data ? data.MainData : null });
+        this.props.setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.PageIndex, PageSize: param.PageSize });
 
-            this.setState({ gridData: MainData });
-
-            this.props.setPagingOption({ TotalItem, PageIndex: param.PageIndex, PageSize: param.PageSize });
-        }
         this.props.toggleLoader(false);
     }
 
     _renderHeader() {
         return (
-            <Row>
+            <Row key="thead">
                 <Cell header={true} colWidth={580} title={headerTitle.WebsiteUrl}>{headerTitle.WebsiteUrl}</Cell>
                 <Cell header={true} colWidth={110} title={headerTitle.TotalClicks}>{headerTitle.TotalClicks}</Cell>
                 <Cell header={true} colWidth={110} title={headerTitle.UniqueClicks}>{headerTitle.UniqueClicks}</Cell>
@@ -61,7 +57,7 @@ export class Detail extends Component {
         if (dataList.length) {
             for (let i = 0; i < dataList.length; i++) {
                 const dataItem = dataList[i];
-                dataRows.push(this._buildDataRow(dataItem));
+                dataRows.push(this._buildDataRow(dataItem, i));
             }
         }
         else {
@@ -75,9 +71,9 @@ export class Detail extends Component {
         return dataRows;
     }
 
-    _buildDataRow(dataItem) {
+    _buildDataRow(dataItem, index) {
         return (
-            <Row>
+            <Row key={`dataRow-${index}`}>
                 <Cell title={dataItem.WebsiteUrl}>{dataItem.WebsiteUrl}</Cell>
                 <Cell title={dataItem.TotalClick} className="text-right">{dataItem.TotalClick}</Cell>
                 <Cell title={dataItem.UniqueClick} className="text-right">{dataItem.UniqueClick}</Cell>

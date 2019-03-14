@@ -39,7 +39,7 @@ export class Detail extends Component {
 
     _renderHeader() {
         return (
-            <Row>
+            <Row key='thead'>
                 <Cell header={true} colWidth={40} title={headerText.Index}>{headerText.Index}</Cell>
                 <Cell header={true} colWidth={600} title={headerText.Date}>{headerText.Date}</Cell>
                 <Cell header={true} colWidth={180} title={headerText.TotalClicks}>{headerText.TotalClicks}</Cell>
@@ -70,7 +70,7 @@ export class Detail extends Component {
 
     _buildDataRow(dataItem, index) {
         return (
-            <Row>
+            <Row key={`dataRow-${index}`}>
                 <Cell title={index} className="text-center">{index}</Cell>
                 <Cell title={dataItem.DateText} className="text-center">{dataItem.DateText}</Cell>
                 <Cell title={dataItem.TotalClick} className="text-center">{dataItem.TotalClick}</Cell>

@@ -42,7 +42,7 @@ export class Content extends Component {
 
     _renderHeader() {
         return (
-            <Row>
+            <Row key='thead'>
                 <Cell header={true} colWidth={580} title={headerText.SiteUrls}>{headerText.SiteUrls}</Cell>
                 <Cell header={true} colWidth={110} title={headerText.TotalClick}>{headerText.TotalClick}</Cell>
                 <Cell header={true} colWidth={110} title={headerText.UniqueClick}>{headerText.UniqueClick}</Cell>
@@ -58,7 +58,7 @@ export class Content extends Component {
         if (dataList && dataList.length) {
             for (let i = 0; i < dataList.length; i++) {
                 const dataItem = dataList[i];
-                dataRows.push(this._buildDataRow(dataItem));
+                dataRows.push(this._buildDataRow(dataItem, i));
             }
         }
         else {
@@ -72,9 +72,9 @@ export class Content extends Component {
         return dataRows;
     }
 
-    _buildDataRow(dataItem) {
+    _buildDataRow(dataItem, index) {
         return (
-            <Row>
+            <Row key={`dataRow-${index}`}>
                 <Cell title={dataItem.SiteUrl}>
                     {(dataItem.SiteUrl == "Old URL" || dataItem.SiteUrl == "none") ? dataItem.SiteUrl : (<Button color="link" className="p-0" onClick={() => this.props.setSelectedSiteUrl(dataItem.SiteUrl)}>
                         {dataItem.SiteUrl}
