@@ -1,4 +1,4 @@
-﻿import React from 'react';
+﻿import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
@@ -9,17 +9,15 @@ import { setParam } from '../actions';
 
 const minDate = new Date(2009, 11, 1);
 
-export class Filter extends React.Component {
+export class Filter extends Component {
     constructor(props) {
         super(props);
 
-        const { today } = this.props;
-        const now = new Date(today);
+        const now = new Date(this.props.today);
 
         this.nowString = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
-
         this.state = {
-            isSearchByUserName: true,
+            searchBy: 0,
             userName: '',
             status: '',
             fromDate: `${now.getMonth() + 1}/01/${now.getFullYear()}`,
@@ -33,11 +31,22 @@ export class Filter extends React.Component {
     }
 
     handleSetParam() {
-        const { isGetAll, fromDate, toDate } = this.state;
-        const newParam = Object.assign({}, this.props.param, { IsGetAll: isGetAll,
+        const { searchBy, userName, status, fromDate, toDate, isGetAll } = this.state;
+
+        const newParam = Object.assign({}, this.props.param, {
+            SearchBy: searchBy,
+            UserName: userName,
+            IsGetAll: isGetAll,
+            Status: isGetAll ? '' : status,
             FromDate: isGetAll ? `${minDate.getMonth() + 1}/${minDate.getDate()}/${minDate.getFullYear()}` : fromDate,
-            ToDate: isGetAll ? this.nowString: toDate });
+            ToDate: isGetAll ? this.nowString : toDate
+        });
+
         this.props.setParam(newParam);
+    }
+
+    handleChange = (event) => {
+        this.setState({ [event.target.name]: event.target.value });
     }
 
     handleChecked = (event) => {
@@ -74,61 +83,60 @@ export class Filter extends React.Component {
     }
 
     render() {
-        const { isSearchByUserName, userName, status, fromDate, toDate, isGetAll } = this.state;
+        const { searchBy, userName, status, fromDate, toDate, isGetAll } = this.state;
 
         return (
             <div className="filter-container">
                 <Form inline tag="div">
-                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                        <Label className="mr-2">{resource.TrackingCode}</Label>
-                        <Input type="select" name="isSearchByUserName" value={isSearchByUserName} onChange={this.handleChange}>
-                            <option value="">{resource.All}</option>
+                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                        <Label className="mr-2">{resource.SearchBy}</Label>
+                        <Input type="select" name="searchBy" value={searchBy} onChange={this.handleChange}>
                             {
-                                searchByList.map((value, index) => {
+                                searchByArray.map((value, index) => {
                                     return (<option key={'searchBy-' + value} value={index}>{value}</option>)
                                 })
                             }
                         </Input>
                     </FormGroup>
-                    { isSearchByUserName ? (
-                        <FormGroup className="my-2 mr-sm-2">
-                            <Input type="text" name="userName" id="Username" placeholder="Username"
-                            onKeyPress={this.handlePressEnter}
-                            onChange={this.handleChange} />
+                    {searchBy == 0 ? (
+                        <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                            <Label className="mr-2">{resource.UserName}</Label>
+                            <Input type="text" name="userName" onKeyPress={this.handlePressEnter} onChange={this.handleChange} />
                         </FormGroup>
                     ) : (
-                        <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                            <Label for="status" className="mr-sm-2">{headerTitle.Status}</Label>
-                            <Input type="select" name="status" id="status" value={status} onChange={this.handleChange}>
-                                <option value="">{globalResource.All}</option>
-                                {
-                                    Object.keys(statusList).map(status => {
-                                        return (<option key={`status-${status}`} value={status}>{statusList[status]}</option>)
-                                    })
-                                }
-                            </Input>
-                        </FormGroup>
-                        )}
-                        <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                            <Label className="mr-sm-2">{globalResource.From}</Label>
-                            <DatePicker minDate={minDate} maxDate={this.nowString} date={fromDate} isEnable={!isGetAll}
-                                iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)}
-                                onChange={this.handleChangeFromDate} />
-                        </FormGroup>
-                        <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                            <Label className="mr-sm-2">{globalResource.To}</Label>
-                            <DatePicker minDate={fromDate} maxDate={this.nowString} date={toDate} isEnable={!isGetAll}
-                                iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)}
-                                onChange={this.handleChangeToDate} />
-                        </FormGroup>
-                        <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                            <FormGroup check>
-                                <Label check>
-                                    {globalResource.GetAll}
-                                    <Input name="isGetAll" className="ml-1 mr-2" type="checkbox" checked={isGetAll} onChange={this.handleChecked} />
-                                </Label>
+                        <React.Fragment>
+                            <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                                <Label for="status" className="mr-sm-2">{resource.Status}</Label>
+                                <Input type="select" name="status" value={status} onChange={this.handleChange} disabled={isGetAll}>
+                                    <option value="">{globalResource.All}</option>
+                                    {
+                                        Object.keys(statusList).map(status => {
+                                            return (<option key={`status-${status}`} value={status}>{statusList[status]}</option>)
+                                        })
+                                    }
+                                </Input>
                             </FormGroup>
-                        </FormGroup>
+                            <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                                <Label className="mr-sm-2">{globalResource.From}</Label>
+                                <DatePicker minDate={minDate} maxDate={this.nowString} date={fromDate} isEnable={!isGetAll}
+                                    iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)}
+                                    onChange={this.handleChangeFromDate} />
+                            </FormGroup>
+                            <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                                <Label className="mr-sm-2">{globalResource.To}</Label>
+                                <DatePicker minDate={fromDate} maxDate={this.nowString} date={toDate} isEnable={!isGetAll}
+                                    iconElement={(<span className="oi oi-calendar icon-calendar ml-1"></span>)}
+                                    onChange={this.handleChangeToDate} />
+                            </FormGroup>
+                            <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                                <FormGroup check>
+                                    <Label check>
+                                        {globalResource.GetAll}
+                                        <Input name="isGetAll" className="ml-1 mr-2" type="checkbox" checked={isGetAll} onChange={this.handleChecked} />
+                                    </Label>
+                                </FormGroup>
+                            </FormGroup>
+                        </React.Fragment>
                     )}
                     <Button outline color="primary" type="button" onClick={this.handleSearch}>
                         <span className="oi oi-magnifying-glass"></span> {globalResource.Search}

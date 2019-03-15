@@ -15,7 +15,8 @@ export class Content extends Component {
         super(props);
 
         this.state = {
-            gridData: null
+            gridData: null,
+            shouldResetScrollPosition: true
         }
     }
 
@@ -33,7 +34,7 @@ export class Content extends Component {
 
         const data = await this.props.fetchData(param);
 
-        this.setState({ gridData: data ? data.MainData : null });
+        this.setState({ gridData: data ? data.MainData : null, shouldResetScrollPosition: true });
         this.props.setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.PageIndex, PageSize: param.PageSize });
 
         this.props.toggleLoader(false);
@@ -86,7 +87,7 @@ export class Content extends Component {
                 <Cell title={dataItem.DateText} className="text-center">{dataItem.DateText}</Cell>
                 <Cell title={transType} className="text-center">{transTypeList[transType] || transaction }</Cell>
                 <Cell title={amount} className="text-right">
-                    {transType === PAYMENT_REQUEST ? <Button className="p-0" color="link" onClick={() => this.props.setTransactionId(dataItem.TransId)}>
+                    {transType === PAYMENT_REQUEST ? <Button className="p-0" color="link" onClick={() => this.handleSetTransactionId(dataItem.TransId)}>
                             {amount}
                         </Button> : (transType === MONTHLY_WINLOST ?
                         <a href={`${resolveClientUrl('Portal/UserPanel/StatementHistory/DailyEarning')}` + 
@@ -102,6 +103,12 @@ export class Content extends Component {
         )
     }
 
+    handleSetTransactionId= (transId) => {
+        this.setState({ shouldResetScrollPosition: false });
+
+        this.props.setTransactionId(transId);
+    }
+
     handlePaging = (pageIndex, pageSize) => {
         const newPaging = {
             PageIndex: pageIndex,
@@ -114,7 +121,7 @@ export class Content extends Component {
     };
 
     render() {
-        const { gridData } = this.state;
+        const { gridData, shouldResetScrollPosition } = this.state;
 
         return (
             <div className="data-content">
@@ -129,6 +136,7 @@ export class Content extends Component {
                         isPaging={true}
                         pageOption={this.props.pagingOption}
                         onPaging={this.handlePaging}
+                        shouldResetScrollPosition={shouldResetScrollPosition}
                     />
                 </div>
             </div>

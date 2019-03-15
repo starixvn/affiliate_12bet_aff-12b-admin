@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import AppLayout from '../../../layouts/AppLayout';
 import Filter from './Filter';
+import Content from './Content';
 import Loader from '../../../components/Loader';
 
 export class AppContainer extends Component {
@@ -15,6 +16,7 @@ export class AppContainer extends Component {
             <AppLayout>
                 <Loader show={this.props.isShowLoader} />
                 <Filter />
+                <Content />
             </AppLayout>
         );
     }

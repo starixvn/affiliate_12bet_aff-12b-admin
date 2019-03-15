@@ -1,1 +1,149 @@
-﻿
+﻿import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
+import { Button } from 'reactstrap';
+
+import { headerText, globalResource, resource } from '../modules/constants';
+
+import { setPagingOption, toggleLoader, fetchData, setTransactionId } from '../actions';
+
+export class Content extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            gridData: null,
+            shouldResetScrollPosition: true
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        const { pagingOption, param } = this.props;
+
+        if (param !== prevProps.param) {
+            const newParam = Object.assign({}, param, { PageIndex: 1, PageSize: pagingOption.PageSize });
+            this.fetchData(newParam);
+        }
+    }
+
+    async fetchData(param) {
+        this.props.toggleLoader(true);
+
+        const data = await this.props.fetchData(param);
+
+        this.setState({ gridData: data ? data.MainData : null, shouldResetScrollPosition: true });
+        this.props.setPagingOption({ TotalItem: data ? data.TotalItem : 0, PageIndex: param.PageIndex, PageSize: param.PageSize });
+
+        this.props.toggleLoader(false);
+    }
+
+    handleSetTransactionId= (trxnId) => {
+        this.setState({ shouldResetScrollPosition: false });
+
+        this.props.setTransactionId(trxnId);
+    }
+
+    _renderHeader() {
+        return (
+            <Row key="thead">
+                <Cell header={true} colWidth={25} title={headerText.Index}>{headerText.Index}</Cell>
+                <Cell header={true} colWidth={100} title={headerText.TrxnId}>{headerText.TrxnId}</Cell>
+                <Cell header={true} colWidth={175} title={headerText.RequestedDate}>{headerText.RequestedDate}</Cell>
+                <Cell header={true} colWidth={100} title={resource.UserName}>{resource.UserName}</Cell>
+                <Cell header={true} colWidth={175} title={headerText.Amount}>{headerText.Amount}</Cell>
+                <Cell header={true} colWidth={75} title={resource.Status}>{resource.Status}</Cell>
+                <Cell header={true} colWidth={175} title={headerText.CompletedDate}>{headerText.CompletedDate}</Cell>
+                <Cell header={true} colWidth={175} title={headerText.Creator}>{headerText.Creator}</Cell>
+            </Row>
+        );
+    }
+
+    _renderDataSection(dataList) {
+        const dataRows = [];
+
+        if (dataList && dataList.length) {
+            const { pagingOption } = this.props;
+            const startIndex = (pagingOption.PageIndex - 1) * pagingOption.PageSize + 1;
+
+            for (let i = 0; i < dataList.length; i++) {
+                const dataItem = dataList[i];
+
+                dataRows.push(this._buildDataRow(dataItem, i + startIndex));
+            }
+        }
+        else {
+            dataRows.push(<Row>
+                <Cell className="text-center" colSpan="8">{globalResource.NoInfo}</Cell>
+            </Row>);
+        }
+
+        return dataRows;
+    }
+
+    _buildDataRow(dataItem, index, isLink, isHide) {
+        return (
+            <Row key={`dataRow-${index}`}>
+                <Cell title={index} className="text-center">{index}</Cell>
+                <Cell title={dataItem.TrxnId} className="text-center">
+                    <Button color="link" onClick={() => this.props.setTransactionId(dataItem.TrxnId)}>
+                        {dataItem.TrxnId}
+                    </Button>
+                </Cell>
+                <Cell title={dataItem.DateText} className="text-center">{dataItem.DateText}</Cell>
+                <Cell title={dataItem.UserName} className="text-center">{dataItem.UserName}</Cell>
+                <Cell title={dataItem.Amount} className="text-right"> {dataItem.Amount}</Cell>
+                <Cell title={dataItem.Status} className="text-center"> {dataItem.Status}</Cell>
+                <Cell title={dataItem.CompletedDate} className="text-center">{dataItem.CompletedDate}</Cell>
+                <Cell title={dataItem.Creator} className="text-center">{dataItem.Creator}</Cell>
+            </Row>
+        )
+    }
+
+    handlePaging = (pageIndex, pageSize) => {
+        const newPaging = {
+            PageIndex: pageIndex,
+            PageSize: pageSize
+        };
+        const newParam = Object.assign({}, this.props.param, newPaging);
+
+        this.props.setPagingOption(newPaging);
+        this.fetchData(newParam);
+        this.props.setShowIdList({});
+    };
+
+    render() {
+        const { gridData, shouldResetScrollPosition } = this.state;
+
+        return (
+            <div className="data-content">
+                <div className="table-responsive table-striped my-2">
+                    <Table
+                        minWidth={1000}
+                        autoWidth={true}
+                        bodyHeight={300}
+                        header={this._renderHeader()}
+                        body={this._renderDataSection(gridData)}
+                        containerPadding={20}
+                        isPaging={true}
+                        pageOption={this.props.pagingOption}
+                        onPaging={this.handlePaging}
+                        shouldResetScrollPosition={shouldResetScrollPosition}
+                    />
+                </div>
+            </div>
+        );
+    }
+}
+
+
+function mapStateToProps({ pagingOption, param }) {
+    return Object.assign({}, { pagingOption, param });
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ setPagingOption, toggleLoader, setTransactionId, fetchData }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Content);

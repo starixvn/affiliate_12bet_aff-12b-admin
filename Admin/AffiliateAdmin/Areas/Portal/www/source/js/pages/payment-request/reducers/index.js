@@ -23,6 +23,7 @@ export const transactionId = createReducer(null, {
 export default combineReducers({
     pagingOption,
     isShowLoader,
+    today,
     param,
     transactionId
 });

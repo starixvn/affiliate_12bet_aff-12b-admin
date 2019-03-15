@@ -1,6 +1,9 @@
-﻿import { globalResource } from '../../../modules/globalResource'
+﻿import { globalResource } from '../../../modules/globalResource';
+
+export { globalResource }
 
 export const headerText = {
+    Index: '#',
     TrxnId: 'Trxn.ID',
     RequestedDate: 'Requested Date',
     Amount: 'Amount',

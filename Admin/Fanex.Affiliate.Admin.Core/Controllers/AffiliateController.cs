@@ -12,6 +12,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         {
         }
 
+        [HttpGet]
         public ActionResult Index(int current = 0)
         {
             var subMenu = new List<SubMenu>
