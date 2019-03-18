@@ -20,6 +20,6 @@ namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 
         public string Description { get; set; }
 
-        public string DateText => Date.ToString("dd/MMM/yyyy");
+        public string DateText => Date.ToString("MMM-yyyy");
     }
 }

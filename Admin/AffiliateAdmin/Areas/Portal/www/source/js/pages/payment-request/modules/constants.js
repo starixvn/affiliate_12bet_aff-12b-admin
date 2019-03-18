@@ -5,16 +5,32 @@ export { globalResource }
 export const headerText = {
     Index: '#',
     TrxnId: 'Trxn.ID',
-    RequestedDate: 'Requested Date',
-    Amount: 'Amount',
-    CompletedDate: 'Completed Date',
     Creator: 'Creator'
 }
 
 export const resource = {
     SearchBy: 'Search By',
+
+    AccountInformation: 'Account Information',
+    UserName: 'User Name',
+    RequestedDate: 'Requested Date',
+    EmailAddress: 'Email Address',
+    FirstName: 'First Name',
+    LastName: 'Last Name',
+
+    PaymentInformation: 'Payment Information',
+    PaymentMethod: 'Payment Method',
+    Amount: 'Amount',
     Status: 'Status',
-    UserName: 'User Name'
+    UserName12Bet: '12BET User Name',
+    CompletedDate: 'Completed Date',
+    UpdatedBy: 'Updated By',
+
+    AdminNote: 'Admin Note',
+    VisibleOnly: 'Visible only to admin',
+
+    AffiliateNote: 'Affiliate Note',
+    VisibleAlso: 'Visible also to affiliate'
 }
 
 export const searchByArray = [ 'User Name', 'Others' ]

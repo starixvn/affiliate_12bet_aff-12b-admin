@@ -8,6 +8,7 @@ import { resource, searchByArray, statusList, globalResource } from '../modules/
 import { setParam } from '../actions';
 
 const minDate = new Date(2009, 11, 1);
+const searchByUserName = 0;
 
 export class Filter extends Component {
     constructor(props) {
@@ -17,9 +18,9 @@ export class Filter extends Component {
 
         this.nowString = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
         this.state = {
-            searchBy: 0,
-            userName: '',
-            status: '',
+            searchBy: searchByUserName,
+            userName: null,
+            status: null,
             fromDate: `${now.getMonth() + 1}/01/${now.getFullYear()}`,
             toDate: this.nowString,
             isGetAll: false
@@ -32,14 +33,14 @@ export class Filter extends Component {
 
     handleSetParam() {
         const { searchBy, userName, status, fromDate, toDate, isGetAll } = this.state;
+        const isSearchByUserName = searchBy == searchByUserName;
 
         const newParam = Object.assign({}, this.props.param, {
-            SearchBy: searchBy,
-            UserName: userName,
-            IsGetAll: isGetAll,
-            Status: isGetAll ? '' : status,
-            FromDate: isGetAll ? `${minDate.getMonth() + 1}/${minDate.getDate()}/${minDate.getFullYear()}` : fromDate,
-            ToDate: isGetAll ? this.nowString : toDate
+            Username: isSearchByUserName ? userName : null,
+            IsGetAll: isSearchByUserName ? true : isGetAll,
+            Status: isSearchByUserName ? null : status,
+            FromDate: isSearchByUserName ? null : fromDate,
+            ToDate: isSearchByUserName ? null : toDate
         });
 
         this.props.setParam(newParam);
@@ -111,7 +112,7 @@ export class Filter extends Component {
                                     <option value="">{globalResource.All}</option>
                                     {
                                         Object.keys(statusList).map(status => {
-                                            return (<option key={`status-${status}`} value={status}>{statusList[status]}</option>)
+                                            return (<option key={`status-${status}`} value={statusList[status]}>{status}</option>)
                                         })
                                     }
                                 </Input>

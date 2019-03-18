@@ -1,13 +1,12 @@
 ﻿import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
 
 import { headerText, globalResource, resource } from '../modules/constants';
-
 import { setPagingOption, toggleLoader, fetchData, setTransactionId } from '../actions';
+import { formatDecimalWithCurrencySymbol } from '../../../modules/numberFormat';
 
 export class Content extends Component {
     constructor(props) {
@@ -82,21 +81,26 @@ export class Content extends Component {
         return dataRows;
     }
 
-    _buildDataRow(dataItem, index, isLink, isHide) {
+    _buildDataRow(dataItem, index) {
+        const amount = formatDecimalWithCurrencySymbol(dataItem.Amount);
+        const status = dataItem.Status.toLowerCase() == 'pending' ? 'Processing' : dataItem.Status;
+        const completedDate = dataItem.Status.toLowerCase() == 'pending' ? '--' : dataItem.CompletedDateText;
+        const creator = dataItem.Status.toLowerCase() == 'pending' ? '--' : dataItem.Creator;
+
         return (
             <Row key={`dataRow-${index}`}>
                 <Cell title={index} className="text-center">{index}</Cell>
-                <Cell title={dataItem.TrxnId} className="text-center">
-                    <Button color="link" onClick={() => this.props.setTransactionId(dataItem.TrxnId)}>
-                        {dataItem.TrxnId}
+                <Cell title={dataItem.TransId} className="text-center">
+                    <Button color="link p-0" onClick={() => this.props.setTransactionId(dataItem.TransId)}>
+                        {dataItem.TransId}
                     </Button>
                 </Cell>
-                <Cell title={dataItem.DateText} className="text-center">{dataItem.DateText}</Cell>
-                <Cell title={dataItem.UserName} className="text-center">{dataItem.UserName}</Cell>
-                <Cell title={dataItem.Amount} className="text-right"> {dataItem.Amount}</Cell>
-                <Cell title={dataItem.Status} className="text-center"> {dataItem.Status}</Cell>
-                <Cell title={dataItem.CompletedDate} className="text-center">{dataItem.CompletedDate}</Cell>
-                <Cell title={dataItem.Creator} className="text-center">{dataItem.Creator}</Cell>
+                <Cell title={dataItem.TransDateText} className="text-center">{dataItem.TransDateText}</Cell>
+                <Cell title={dataItem.AffName} className="text-center">{dataItem.AffName}</Cell>
+                <Cell title={amount} className="text-right"> {amount}</Cell>
+                <Cell title={status} className="text-center text-capitalize"> {status}</Cell>
+                <Cell title={completedDate} className="text-center">{completedDate}</Cell>
+                <Cell title={creator} className="text-center">{creator}</Cell>
             </Row>
         )
     }
@@ -110,7 +114,6 @@ export class Content extends Component {
 
         this.props.setPagingOption(newPaging);
         this.fetchData(newParam);
-        this.props.setShowIdList({});
     };
 
     render() {

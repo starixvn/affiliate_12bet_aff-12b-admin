@@ -193,6 +193,7 @@
     <Compile Include="DTO\Language.cs" />
     <Compile Include="DTO\MediaGallery\LandingPage.cs" />
     <Compile Include="DTO\Payment\PaymentRequest.cs" />
+    <Compile Include="DTO\Payment\PaymentRequestDetail.cs" />
     <Compile Include="DTO\Product.cs" />
     <Compile Include="DTO\Report\AffiliateReport.cs" />
     <Compile Include="DTO\ResultInfo.cs" />

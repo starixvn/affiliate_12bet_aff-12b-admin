@@ -1599,6 +1599,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\payment-request-info\reducer.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\RecheckIn\recheckin.js" />
@@ -2042,6 +2043,9 @@
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\payment-request.scss" />
+    <Content Include="Areas\Portal\Views\PaymentRequest\GetPaymentRequestInfo.cshtml" />
+    <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\payment-request-info\GetPaymentRequestInfo.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\payment-request-info\index.jsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
