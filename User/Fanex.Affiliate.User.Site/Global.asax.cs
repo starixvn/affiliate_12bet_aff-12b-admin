@@ -7,6 +7,7 @@ using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Data;
 using Fanex.Data.OldConnectionStringProvider;
+using System.Configuration;
 
 namespace Fanex.Affiliate.User.Site
 {
@@ -14,9 +15,13 @@ namespace Fanex.Affiliate.User.Site
     {
         protected void Application_Start()
         {
+            var env = ConfigurationManager.AppSettings["Environment"];
             IoCConfig.Register();
             AreaRegistration.RegisterAllAreas();
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            if (env != "LOCAL")
+            {
+                FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            }
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             MvcHandler.DisableMvcResponseHeader = true;
             AntiForgeryConfig.RequireSsl = false;
