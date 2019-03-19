@@ -39,5 +39,6 @@ namespace Fanex.Affiliate.User.Site
                 application.Context.Response.Headers.Remove("Server");
             }
         }
+
     }
 }

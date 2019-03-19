@@ -33,8 +33,6 @@ namespace Fanex.Affiliate.User.Core.Filters
 
             if (httpContext.Request.IsAjaxRequest())
             {
-                httpContext.ClearError();
-
                 var response = httpContext.Response;
                 response.ContentType = "application/json";
                 response.StatusCode = 500;
