@@ -1568,10 +1568,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\__tests__\Content.test.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\__tests__\__snapshots__\AppContainer.test.js.snap" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\components\__tests__\__snapshots__\Content.test.js.snap" />
-    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-info\actions\index.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-info\actions\types.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-info\modules\helper.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-info\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\affiliate-info\modules\constants.js" />
@@ -1597,6 +1593,10 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\reducers\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\actions\index.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\actions\types.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\modules\constants.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\actions\types.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\payment-request-info\reducer.js" />
@@ -1802,7 +1802,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\QmTurnOverSetting.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\tiersetting\TierSetting.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\commission-group\components\shared\tiersetting\TierSettingItem.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-info\index.jsx" />
     <Content Include="Areas\Portal\Views\Affiliate\Information.cshtml" />
     <Content Include="Areas\Portal\www\source\style\pages\affiliate-information.scss" />
     <Content Include="Areas\Portal\Views\Shared\_Header.cshtml" />
@@ -2046,6 +2045,15 @@
     <Content Include="Areas\Portal\Views\PaymentRequest\GetPaymentRequestInfo.cshtml" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\payment-request-info\GetPaymentRequestInfo.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\payment-request-info\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\ChangePasswordForm.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\Content.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\GeneralInfo.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\MainInfo.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\Panel.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\PanelList.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\SearchBox.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\index.jsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -2181,9 +2189,7 @@
       <CachedSettingsPropName>AffiliateAdmin_AffBetlistService_AffiliateAPI</CachedSettingsPropName>
     </WebReferenceUrl>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Areas\Portal\www\source\js\pages\customer\customer-info\components\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\Google.Protobuf.dll" />
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\SonarAnalyzer.CSharp.dll" />

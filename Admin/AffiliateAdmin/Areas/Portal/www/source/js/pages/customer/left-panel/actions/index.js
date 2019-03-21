@@ -4,11 +4,7 @@ import {
     LEFTPANEL_UPDATE_CLOSED_SUCCESS,
     LEFTPANEL_UPDATE_AFFTYPE_SUCCESS
 } from './types';
-import axios from 'axios';
-
-import {
-    resolveClientUrl
-} from '../../../modules/utils';
+import { post } from '../../../../modules/ajaxRequest';
 
 const receiveLeftMenuInfo = (data) => {
     return {
@@ -38,10 +34,13 @@ export const setAffType = (data) => {
     }
 }
 
-export const getLeftMenuInfo = userName => async dispatch => {
-    const url = resolveClientUrl('Portal/Affiliate/GetInfo?username=' + userName);
-    const response = await axios.get(url);
-    dispatch(receiveLeftMenuInfo(response.data));
+export const getAffiliateInfo = userName => async dispatch => {
+    const url = resolveClientUrl('Portal/CustomerLeftPanel/GetAffiliateInfo');
+    const param = { affUsername: userName };
+    const response = await post(url, param);
+
+    const data = response && response.status === 200 ? response.data : null;
+    dispatch(receiveLeftMenuInfo(data));
 }
 
 export const updateGeneralInfo = param => {
