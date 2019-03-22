@@ -102,7 +102,8 @@ namespace Fanex.Affiliate.DataService.Importer
         {
             try
             {
-                foreach (EbetApiResult dataItem in GetResultDataList(param))
+                var resultDataList = GetResultDataList(param);
+                foreach (EbetApiResult dataItem in resultDataList)
                 {
                     var ebetSummary = EbetParser.FromJson(dataItem.JsonData);
                     if (ebetSummary.ResultInfo.Status != 200)
@@ -194,7 +195,7 @@ namespace Fanex.Affiliate.DataService.Importer
             builder.AppendLine("<BETHISTORYLIST>");
             foreach (var item in ebetSummary.BetHistories)
             {
-                var payoutTime = DateTimeOffset.FromUnixTimeSeconds(item.PayoutUnixTime).LocalDateTime;
+                var payoutTime = DateTimeConverter.ToGMT(DateTimeOffset.FromUnixTimeSeconds(item.PayoutUnixTime).DateTime, TimeZoneId.GmtPlus8);
                 builder.AppendLine($"<BETHISTORY ID=\"{item.BetHistoryId}\" USERNAME=\"{item.UserName}\" BET=\"{item.Bet}\" PAYOUT=\"{item.Payout}\" PAYOUTTIME=\"{payoutTime.ToString()}\" />");
             }
             builder.AppendLine("</BETHISTORYLIST>");
