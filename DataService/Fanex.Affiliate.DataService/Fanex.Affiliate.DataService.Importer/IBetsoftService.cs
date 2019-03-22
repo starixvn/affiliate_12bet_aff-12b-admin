@@ -6,8 +6,6 @@ namespace Fanex.Affiliate.DataService.Importer
 {
     public interface IBetsoftService
     {
-        string ConvertDataTimeZone(string rawData);
-
         void Import(string xmlData);
 
         void Import(BetsoftParam param);

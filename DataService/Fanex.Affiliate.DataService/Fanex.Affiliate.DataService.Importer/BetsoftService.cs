@@ -51,30 +51,6 @@ namespace Fanex.Affiliate.DataService.Importer
             return result;
         }
 
-        public string ConvertDataTimeZone(string rawData)
-        {
-            var xdoc = XDocument.Parse(rawData);
-            var response = xdoc.Root.Element("RESPONSE");
-            if (!string.Equals("ok", response.Element("RESULT").Value, StringComparison.InvariantCultureIgnoreCase))
-            {
-                LogService.Error($"Betsoft Error:\n{rawData}");
-            }
-
-            var accountList = response.Elements("ACCOUNT");
-            foreach (var account in accountList)
-            {
-                var betTicketList = account.Element("GAMESESSION").Elements("BET");
-
-                foreach (var bet in betTicketList)
-                {
-                    var betTime = bet.Element("BETTIME").Value;
-                    bet.Element("BETTIME").Value = DateTimeConverter.ToGMT(DateTime.Parse(betTime), TimeZoneId.GmtMinus4).ToString("yyyy-MM-dd HH:mm:ss.fff");
-                }
-            }
-
-            return xdoc.ToString();
-        }
-
         public void Import(string xmlData)
         {
             _thirdPartyProductRepository.ImportData(Products.BetsoftProductId, xmlData);
@@ -82,13 +58,7 @@ namespace Fanex.Affiliate.DataService.Importer
 
         public void Import(BetsoftParam param)
         {
-            var rawData = GetMultipleRawDataBatchAsync(param).Result;
-
-            foreach (var dataItem in rawData)
-            {
-                var xmlData = ConvertDataTimeZone(dataItem);
-                Import(xmlData);
-            }
+            ImportByBatch(param);
         }
 
         private static BetsoftParam BuildParamByBatch(DateTime start, DateTime end)
@@ -149,6 +119,41 @@ namespace Fanex.Affiliate.DataService.Importer
             using (var client = new WebClient())
             {
                 return await client.DownloadStringTaskAsync(url);
+            }
+        }
+
+        private void ImportByBatch(BetsoftParam param)
+        {
+            var startDate = new DateTime(param.StartDate.Year, param.StartDate.Month, param.StartDate.Day, param.StartDate.Hour, 0, 0);
+            var endDate = new DateTime(param.EndDate.Year, param.EndDate.Month, param.EndDate.Day, param.EndDate.Hour, 0, 0);
+
+            for (var start = startDate; DateTime.Compare(start, endDate) < 0; start = start.AddHours(1))
+            {
+                var paramByBatch = BuildParamByBatch(start, endDate);
+                var rawData = GetRawData(paramByBatch);
+                CheckRawData(rawData);
+                Import(rawData);
+            }
+        }
+
+        private string GetRawData(BetsoftParam param)
+        {
+            var apiParam = BuildApiParam(param);
+            var url = BuildUrl(apiParam);
+
+            using (var client = new WebClient())
+            {
+                return client.DownloadString(url);
+            }
+        }
+
+        private void CheckRawData(string rawData)
+        {
+            var xdoc = XDocument.Parse(rawData);
+            var response = xdoc.Root.Element("RESPONSE");
+            if (!string.Equals("ok", response.Element("RESULT").Value, StringComparison.InvariantCultureIgnoreCase))
+            {
+                LogService.Error($"Betsoft Error:\n{rawData}");
             }
         }
     }
