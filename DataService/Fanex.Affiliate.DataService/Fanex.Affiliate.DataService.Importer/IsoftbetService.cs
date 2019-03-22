@@ -223,7 +223,6 @@ namespace Fanex.Affiliate.DataService.Importer
             builder.AppendLine("<BETHISTORYLIST>");
             foreach (var item in isoftbetSummary.BetHistoryList)
             {
-                var convertedTime = DateTimeConverter.ToGMT(item.Time, TimeZoneId.GmtMinus4);
                 var attributes = "PLAYERID=\"" + item.PlayerId + "\" " +
                             "CURRENCY=\"" + item.Currency + "\" " +
                             "SESSIONID=\"" + item.SessionId + "\" " +
@@ -231,7 +230,7 @@ namespace Fanex.Affiliate.DataService.Importer
                             "ROUNDID=\"" + item.RoundId + "\" " +
                             "TRANSACTIONID=\"" + item.TransactionId + "\" " +
                             "TYPE=\"" + item.Type + "\" " +
-                            "TIME=\"" + convertedTime.ToString() + "\" " +
+                            "TIME=\"" + item.Time.ToString() + "\" " +
                             "AMOUNT=\"" + item.Amount.ToString() + "\"";
 
                 builder.AppendLine($"<BETHISTORY {attributes} />");
