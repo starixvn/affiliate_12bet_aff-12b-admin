@@ -27,7 +27,7 @@ export class PaymentInfoForm extends Component {
 
     render() {
         const { transactionId } = this.props;
-        const url = transactionId ? resolveClientUrl(`Payment/PaymentUpdate.aspx?transid=${transactionId}`) : '';
+        const url = transactionId ? resolveClientUrl(`Portal/PaymentRequest/GetPaymentRequestDetail?transid=${transactionId}`) : '';
         return (
             <div className="data-content">
                 <Modal isOpen={transactionId} toggle={() => this.props.setTransactionId(null)} size="lg" backdrop='static'>

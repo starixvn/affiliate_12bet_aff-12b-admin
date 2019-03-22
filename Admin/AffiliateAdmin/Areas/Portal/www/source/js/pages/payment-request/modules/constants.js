@@ -30,7 +30,9 @@ export const resource = {
     VisibleOnly: 'Visible only to admin',
 
     AffiliateNote: 'Affiliate Note',
-    VisibleAlso: 'Visible also to affiliate'
+    VisibleAlso: 'Visible also to affiliate',
+
+    Message: 'You must choose Approved or Rejected for this request!'
 }
 
 export const searchByArray = [ 'User Name', 'Others' ]

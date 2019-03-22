@@ -1599,7 +1599,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\actions\types.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\payment-request-info\reducer.js" />
+    <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\payment-request-detail\reducer.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\RecheckIn\recheckin.js" />
@@ -2042,9 +2042,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\payment-request.scss" />
-    <Content Include="Areas\Portal\Views\PaymentRequest\GetPaymentRequestInfo.cshtml" />
-    <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\payment-request-info\GetPaymentRequestInfo.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\payment-request-info\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\ChangePasswordForm.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\Content.jsx" />
@@ -2054,6 +2051,9 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\PanelList.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\SearchBox.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\payment-request-detail\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\payment-request-detail\PaymentRequestDetail.jsx" />
+    <Content Include="Areas\Portal\Views\PaymentRequest\GetPaymentRequestDetail.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
