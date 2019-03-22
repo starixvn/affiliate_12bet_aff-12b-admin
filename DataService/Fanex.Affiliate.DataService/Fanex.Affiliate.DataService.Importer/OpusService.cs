@@ -157,8 +157,9 @@ namespace Fanex.Affiliate.DataService.Importer
 
         private static void CheckResult(string rawData)
         {
-            var transactionDetail = XDocument.Parse(rawData);
-            var statusCode = transactionDetail.Element("status_code").Value;
+            var xDocument = XDocument.Parse(rawData);
+            var transactionDetail = xDocument.Root;
+            var statusCode = transactionDetail.Element("status_code")?.Value;
             if (statusCode != SuccessStatus)
             {
                 throw new ThirdPartyProductException($"Error: OPUS - ProductId: {Products.OpusProductId}\nResult:{transactionDetail.ToString()}");
