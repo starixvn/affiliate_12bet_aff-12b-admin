@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -19,8 +18,6 @@ namespace Fanex.Affiliate.DataService.Importer
         private const int DelayTimeMillisecond = 16000;
 
         private const int TimeRangeByMinute = 15;
-
-        private const string TimeDataFormat = "yyyy-MM-dd HH:mm:ss";
 
         private const string SuccessStatus = "00";
 
@@ -68,19 +65,6 @@ namespace Fanex.Affiliate.DataService.Importer
             return result;
         }
 
-        public IEnumerable<string> ConvertDataTimeZone(IEnumerable<string> rawDataList)
-        {
-            var result = new List<string>();
-
-            foreach (var item in rawDataList)
-            {
-                var convertedData = ConvertTimeZoneForRawData(item);
-                result.Add(convertedData);
-            }
-
-            return result;
-        }
-
         public void Import(string xmlData)
         {
             _thirdPartyProductRepository.ImportData(Products.OpusProductId, xmlData);
@@ -93,8 +77,8 @@ namespace Fanex.Affiliate.DataService.Importer
                 var fakeDataList = GetFakeData();
                 foreach (var item in fakeDataList)
                 {
-                    var convertedData = ConvertTimeZoneForRawData(item);
-                    Import(convertedData);
+                    CheckResult(item);
+                    Import(item);
                 }
             }
             else
@@ -118,8 +102,8 @@ namespace Fanex.Affiliate.DataService.Importer
                     }
 
                     var rawData = GetRawData(paramByBatch);
-                    var convertedData = ConvertTimeZoneForRawData(rawData);
-                    Import(convertedData);
+                    CheckResult(rawData);
+                    Import(rawData);
                 }
             }
         }
@@ -171,39 +155,9 @@ namespace Fanex.Affiliate.DataService.Importer
             return $"secret_key={param.SecretKey}&operator_id={param.OperatorId}&site_code={param.SiteCode}&product_code={param.ProductCode}&start_time={startTimeString}&end_time={endTimeString}";
         }
 
-        private string ConvertTimeZoneForRawData(string rawData)
+        private static void CheckResult(string rawData)
         {
-            var xDoc = XDocument.Parse(rawData);
-            var root = xDoc.Root;
-            CheckResult(root);
-
-            var betHistoryList = root.Element("bets").Elements("row");
-
-            if (betHistoryList != null && betHistoryList.Any())
-            {
-                foreach (var betHistory in betHistoryList)
-                {
-                    UpdateTimeZoneData("transaction_date_time", betHistory);
-                    UpdateTimeZoneData("stamp_date", betHistory);
-                }
-            }
-
-            return xDoc.ToString();
-        }
-
-        private static void UpdateTimeZoneData(string elementName, XContainer element)
-        {
-            var timeString = element.Element(elementName)?.Value;
-            if (!string.IsNullOrEmpty(timeString))
-            {
-                var time = DateTime.ParseExact(timeString, TimeDataFormat, CultureInfo.InvariantCulture);
-                var convertedTime = DateTimeConverter.ConvertTime(time, TimeZoneId.GmtPlus8, TimeZoneId.GmtMinus4);
-                element.Element(elementName).Value = convertedTime.ToString(TimeDataFormat);
-            }
-        }
-
-        private static void CheckResult(XContainer transactionDetail)
-        {
+            var transactionDetail = XDocument.Parse(rawData);
             var statusCode = transactionDetail.Element("status_code").Value;
             if (statusCode != SuccessStatus)
             {

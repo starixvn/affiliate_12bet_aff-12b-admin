@@ -7,8 +7,6 @@ namespace Fanex.Affiliate.DataService.Importer
     {
         IEnumerable<string> GetRawDataList(OpusParam param);
 
-        IEnumerable<string> ConvertDataTimeZone(IEnumerable<string> rawDataList);
-
         void Import(string xmlData);
 
         void Import(OpusParam param);
