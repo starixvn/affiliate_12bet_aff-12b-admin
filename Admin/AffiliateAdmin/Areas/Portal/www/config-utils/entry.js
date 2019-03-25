@@ -56,5 +56,4 @@ module.exports = {
     [`${styleDist}/pages/user-panel/adjustment`]: clientRoot + "/style/pages/user-panel/adjustment.scss",
     [`${styleDist}/pages/user-panel/statement-history`]: clientRoot + "/style/pages/user-panel/statement-history.scss",
     [`${styleDist}/pages/payment/payment-request`]: clientRoot + "/style/pages/payment/payment-request.scss",
-    [`${styleDist}/pages/payment/payment-request-detail`]: clientRoot + "/style/pages/payment/payment-request-detail.scss",
 };

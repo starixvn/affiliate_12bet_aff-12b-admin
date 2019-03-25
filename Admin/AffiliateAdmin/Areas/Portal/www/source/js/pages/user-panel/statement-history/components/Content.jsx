@@ -96,7 +96,10 @@ export class Content extends Component {
                         </a> : amount)
                     }
                 </Cell>
-                <Cell title={dataItem.Status} className="text-center">{dataItem.Status}</Cell>
+                <Cell title={dataItem.Status} className="text-center">{dataItem.Status === 'pending' ?
+                        <Button className="p-0" color="link" onClick={() => this.handleSetTransactionId(dataItem.TransId)}>
+                            Processing
+                        </Button> : dataItem.Status }</Cell>
                 <Cell title={dataItem.Creator} className="text-center">{dataItem.Creator}</Cell>
                 <Cell title={dataItem.Description}>{dataItem.Description}</Cell>
             </Row>

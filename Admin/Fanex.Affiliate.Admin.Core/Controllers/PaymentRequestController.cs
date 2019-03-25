@@ -26,7 +26,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [HttpPost]
-
         public ActionResult GetPaymentRequestList(PaymentRequestParam param)
         {
             var model = _paymentRequestRepository.GetPaymentRequestList(param);
@@ -43,6 +42,17 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             var model = _paymentRequestRepository.GetPaymentRequestDetail(transId);
 
             return View("~/Areas/Portal/Views/PaymentRequest/GetPaymentRequestDetail.cshtml", model);
+        }
+
+        [HttpPost]
+        public ActionResult GetPaymentRequestInfo(long transId)
+        {
+            var model = _paymentRequestRepository.GetPaymentRequestDetail(transId);
+
+            return new JsonNetResult
+            {
+                Data = model
+            };
         }
     }
 }

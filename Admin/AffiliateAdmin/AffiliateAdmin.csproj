@@ -2041,7 +2041,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\Content.jsx" />
-    <Content Include="Areas\Portal\www\source\style\pages\payment-request.scss" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\AppContainer.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\ChangePasswordForm.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\Content.jsx" />
@@ -2054,6 +2053,10 @@
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\payment-request-detail\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\payment-request-detail\PaymentRequestDetail.jsx" />
     <Content Include="Areas\Portal\Views\PaymentRequest\GetPaymentRequestDetail.cshtml" />
+    <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\PaymentRequestUpdate.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\payment-request\shared\PaymentRequestInfo.jsx" />
+    <Content Include="Areas\Portal\www\source\style\pages\payment\payment-request-detail.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\payment\payment-request.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
