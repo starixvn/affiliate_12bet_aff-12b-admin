@@ -40,8 +40,6 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
         {
             var logBuilder = new StringBuilder();
             var rawDataBuilder = new StringBuilder();
-            var convertedDataBuilder = new StringBuilder();
-            var convertedDataList = new List<string>();
 
             try
             {
@@ -78,14 +76,6 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
                         rawDataBuilder.AppendLine("-----------------------------------------");
                         rawDataBuilder.AppendLine();
                     }
-
-                    convertedDataList.AddRange(_crystalGpiService.ConvertDataTimeZone(rawDataList));
-                    foreach (var item in convertedDataList)
-                    {
-                        convertedDataBuilder.AppendLine(item);
-                        convertedDataBuilder.AppendLine("-----------------------------------------");
-                        rawDataBuilder.AppendLine();
-                    }
                 }
             }
             catch (Exception ex)
@@ -98,12 +88,11 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
             return Content(JsonConvert.SerializeObject(new ThirdPartyProductViewModel
             {
                 LogMessage = logBuilder.ToString(),
-                RawData = rawDataBuilder.ToString(),
-                ConvertedData = convertedDataBuilder.ToString()
+                RawData = rawDataBuilder.ToString()
             }), "application/json");
         }
 
-        private IEnumerable<string> GetDataByUserName(IEnumerable<string> rawDataList, string userName)
+        private static IEnumerable<string> GetDataByUserName(IEnumerable<string> rawDataList, string userName)
         {
             var dataList = new List<string>();
 

@@ -40,7 +40,6 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
         {
             var logBuilder = new StringBuilder();
             var rawDataBuilder = new StringBuilder();
-            var convertedDataBuilder = new StringBuilder();
 
             try
             {
@@ -59,28 +58,16 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
                     EndTime = endTime
                 };
                 var rawDataList = _opusService.GetRawDataList(opusParam);
-                if (rawDataList.Any())
+                param.UserName = param.UserName?.Trim();
+                if (!string.IsNullOrEmpty(param.UserName))
                 {
-                    param.UserName = param.UserName?.Trim();
-                    if (!string.IsNullOrEmpty(param.UserName))
-                    {
-                        rawDataList = GetDataByUserName(rawDataList, param.UserName);
-                    }
+                    rawDataList = GetDataByUserName(rawDataList, param.UserName);
+                }
 
-                    foreach (var item in rawDataList)
-                    {
-                        rawDataBuilder.AppendLine(item);
-                        rawDataBuilder.AppendLine("-----------------------------------------");
-                        convertedDataBuilder.AppendLine();
-                    }
-
-                    var convertedData = _opusService.ConvertDataTimeZone(rawDataList);
-                    foreach (var item in convertedData)
-                    {
-                        convertedDataBuilder.AppendLine(item);
-                        convertedDataBuilder.AppendLine("-----------------------------------------");
-                        convertedDataBuilder.AppendLine();
-                    }
+                foreach (var item in rawDataList)
+                {
+                    rawDataBuilder.AppendLine(item);
+                    rawDataBuilder.AppendLine("-----------------------------------------");
                 }
             }
             catch (Exception ex)
@@ -93,12 +80,11 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
             return Content(JsonConvert.SerializeObject(new ThirdPartyProductViewModel
             {
                 LogMessage = logBuilder.ToString(),
-                RawData = rawDataBuilder.ToString(),
-                ConvertedData = convertedDataBuilder.ToString()
+                RawData = rawDataBuilder.ToString()
             }), "application/json");
         }
 
-        private IEnumerable<string> GetDataByUserName(IEnumerable<string> rawDataList, string userName)
+        private static IEnumerable<string> GetDataByUserName(IEnumerable<string> rawDataList, string userName)
         {
             var dataList = new List<string>();
 
