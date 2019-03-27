@@ -2055,7 +2055,6 @@
     <Content Include="Areas\Portal\Views\PaymentRequest\GetPaymentRequestDetail.cshtml" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\PaymentRequestUpdate.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\shared\PaymentRequestInfo.jsx" />
-    <Content Include="Areas\Portal\www\source\style\pages\payment\payment-request-detail.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\payment\payment-request.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

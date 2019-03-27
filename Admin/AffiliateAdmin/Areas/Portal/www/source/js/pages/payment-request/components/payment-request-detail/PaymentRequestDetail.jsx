@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Alert, Button, Form } from 'reactstrap';
 
-import { toggleLoader } from '../../actions';
+import { toggleLoader, handleUpdate } from '../../actions';
 import { resource, globalResource } from '../../modules/constants';
 import { PaymentRequestInfo } from '../../shared/PaymentRequestInfo';
 
@@ -14,7 +14,7 @@ export class PaymentRequestDetail extends Component {
         const { paymentRequestInfo } = this.props;
 
         this.state = {
-            status: '',
+            status: null,
             adminDesc: paymentRequestInfo.AdminDesc,
             affDesc: paymentRequestInfo.AffDesc,
             isSuccess: true,
@@ -39,15 +39,29 @@ export class PaymentRequestDetail extends Component {
 
         const { paymentRequestInfo } = this.props;
 
-        if (paymentRequestInfo.Status.toLowerCase() == 'pending' && this.state.status != '') {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        if (this.state.status && paymentRequestInfo.Status.toLowerCase() == 'pending') {
             const { status, adminDesc, affDesc } = this.state;
-            const paymentInfo = Object.assign({}, paymentRequestInfo ,{ Status: status, AdminDesc: adminDesc, AffDesc: affDesc });
+            const paymentInfo = Object.assign({}, { TransId: paymentRequestInfo.TransId, Status: status, AdminDesc: adminDesc, AffDesc: affDesc });
             const data = await this.props.handleUpdate(paymentInfo);
 
             this.setState({
                 isSuccess: data.IsSuccessful,
                 message: data.IsSuccessful ? "Update is successful!" : data.Message,
             }, () => window.setTimeout(this.hideMessage, 3000));
+
+            if (data.IsSuccessful) {
+                const mainFrame = top.frames["mainFrame"];
+                const infoFrame = mainFrame && mainFrame.frames["fInfo"];
+                window.setTimeout(() => {
+                    if (infoFrame) {
+                        mainFrame.location.reload();
+                    }
+                    else {
+                        this.handleClosePopup();
+                    }
+                }, 2000)
+            }
 
         } else {
             this.setState({
@@ -72,9 +86,9 @@ export class PaymentRequestDetail extends Component {
     render() {
         const { paymentRequestInfo } = this.props;
         const { adminDesc, affDesc, isSuccess, isShowMessage, message } = this.state;
-        const isPending = paymentRequestInfo.Status.toLowerCase() == 'pending';
+        const isPending = paymentRequestInfo && paymentRequestInfo.Status && paymentRequestInfo.Status.toLowerCase() == 'pending';
 
-        return (
+        return paymentRequestInfo && (
             <Form tag="form" className="payment-request-form">
                 <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
                     <div dangerouslySetInnerHTML={{ __html: message }}></div>
@@ -98,7 +112,7 @@ function mapStateToProps({ paymentRequestInfo }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ toggleLoader }, dispatch);
+    return bindActionCreators({ toggleLoader, handleUpdate }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PaymentRequestDetail);

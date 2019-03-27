@@ -231,6 +231,7 @@
     <Compile Include="MetaModels\MediaGallery\DeleteLandingPageParam.cs" />
     <Compile Include="MetaModels\MediaGallery\InsertUpdateLandingPageParam.cs" />
     <Compile Include="MetaModels\Payment\PaymentRequestParam.cs" />
+    <Compile Include="MetaModels\Payment\PaymentRequestUpdateParam.cs" />
     <Compile Include="MetaModels\Report\AffiliateReportMainParam.cs" />
     <Compile Include="MetaModels\UserPanel\AdjustmentParam.cs" />
     <Compile Include="MetaModels\UserPanel\AffiliateLinkParam.cs" />
@@ -358,6 +359,8 @@
     <Compile Include="Services\LanguageService.cs" />
     <Compile Include="Services\MediaGallery\ILandingPageService.cs" />
     <Compile Include="Services\MediaGallery\LandingPageService.cs" />
+    <Compile Include="Services\Payment\IPaymentRequestService.cs" />
+    <Compile Include="Services\Payment\PaymentRequestService.cs" />
     <Compile Include="Services\Report\AffiliateReportService.cs" />
     <Compile Include="Services\Report\IAffiliateReportService.cs" />
     <Compile Include="Services\UserPanel\CustomerMemberService.cs" />

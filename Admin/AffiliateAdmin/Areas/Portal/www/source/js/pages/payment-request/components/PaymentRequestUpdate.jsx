@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Modal, ModalHeader, ModalBody, Alert, Button, Form } from 'reactstrap';
 
-import { setTransactionId, toggleLoader, getPaymentRequestInfo } from '../actions';
+import { setTransactionId, toggleLoader, getPaymentRequestInfo, handleUpdate } from '../actions';
 import { resource, globalResource } from '../modules/constants';
 import { PaymentRequestInfo } from '../shared/PaymentRequestInfo';
 
@@ -25,7 +25,7 @@ export class PaymentRequestUpdate extends Component {
     componentDidUpdate(prevProps) {
         const { transactionId } = this.props;
 
-        if (transactionId !== prevProps.transactionId) {
+        if (transactionId && transactionId !== prevProps.transactionId) {
             this.handleGetPaymentRequestInfo(transactionId);
         }
     }
@@ -85,7 +85,7 @@ export class PaymentRequestUpdate extends Component {
     render() {
         const { transactionId } = this.props;
         const { paymentRequestInfo, adminDesc, affDesc, isSuccess, isShowMessage, message } = this.state;
-        const isPending = paymentRequestInfo && paymentRequestInfo.Status.toLowerCase() == 'pending';
+        const isPending = paymentRequestInfo && paymentRequestInfo.Status && paymentRequestInfo.Status.toLowerCase() == 'pending';
 
         return  paymentRequestInfo && (
             <div className="data-content">
@@ -105,7 +105,7 @@ export class PaymentRequestUpdate extends Component {
                                     handleChecked={this.handleChecked}   
                                 />
                                 <Button type="button" color="success" className="mr-3" disabled={!isPending} onClick={this.handleSave}>{globalResource.Update}</Button>
-                                <Button type="button" color="info" onClick={this.props.setTransactionId(null)}>{globalResource.Cancel}</Button>
+                                <Button type="button" color="info" onClick={() => this.props.setTransactionId(null)}>{globalResource.Cancel}</Button>
                             </Form>
                         </div>
                     </ModalBody>
@@ -120,7 +120,7 @@ function mapStateToProps({ transactionId }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setTransactionId, toggleLoader, getPaymentRequestInfo }, dispatch);
+    return bindActionCreators({ setTransactionId, toggleLoader, getPaymentRequestInfo, handleUpdate }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PaymentRequestUpdate);

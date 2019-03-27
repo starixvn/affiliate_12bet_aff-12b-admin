@@ -9,5 +9,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Payment
         EntityResult<PaymentRequest> GetPaymentRequestList(PaymentRequestParam param);
 
         PaymentRequestDetail GetPaymentRequestDetail(long transId);
+
+        ResultInfo UpdatePaymentRequest(PaymentRequestUpdateParam param);
     }
 }

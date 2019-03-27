@@ -4,6 +4,7 @@ using Fanex.Affiliate.Admin.Core.DTO.Payment;
 using Fanex.Affiliate.Admin.Core.MetaModels.Payment;
 using System.Collections.Generic;
 using System.Data;
+using Fanex.Data;
 
 namespace Fanex.Affiliate.Admin.Core.Repository.Payment
 {
@@ -87,6 +88,60 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Payment
             }
 
             return result;
+        }
+
+        public ResultInfo UpdatePaymentRequest(PaymentRequestUpdateParam param)
+        {
+            var SpKey = "Aff_PaymentRequestUpd";
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                objectDb.AddInParameter("status", DbType.String, param.Status);
+                AssignCommonParam(objectDb, param);
+                AssignResultOutputParam(objectDb);
+
+                objectDb.ExecuteNonQuery();
+
+                UpdateParam(objectDb, param);
+
+                return GetResultInfo(objectDb);
+            }
+        }
+
+        public ResultInfo ApprovedPaymentRequest(PaymentRequestUpdateParam param)
+        {
+            var SpKey = "Aff_PaymentRequestApprove";
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                AssignCommonParam(objectDb, param);
+                AssignResultOutputParam(objectDb);
+
+                objectDb.ExecuteNonQuery();
+
+                UpdateParam(objectDb, param);
+
+                return GetResultInfo(objectDb);
+            }
+        }
+
+        private static void AssignCommonParam(IObjectDb objectDb, PaymentRequestUpdateParam param)
+        {
+            objectDb.AddInParameter("transid", DbType.Int64, param.TransId);
+            objectDb.AddInParameter("admindesc", DbType.String, param.AdminDesc);
+            objectDb.AddInParameter("affdesc", DbType.String, param.AffDesc);
+            objectDb.AddInParameter("userid", DbType.Int32, param.UserId);
+            objectDb.AddInParameter("ip", DbType.String, param.Ip);
+
+            objectDb.AddOutParameter("preferredlanguage", DbType.String, 8);
+            objectDb.AddOutParameter("mailoption", DbType.Boolean, 1);
+        }
+
+        private static void UpdateParam(IObjectDb objectDb, PaymentRequestUpdateParam param)
+        {
+            var preferredlanguage = objectDb.GetParameterValue("preferredlanguage");
+            param.PreferredLanguage = preferredlanguage == DBNull.Value ? "en-US" : Convert.ToString(preferredlanguage);
+
+            var mailOption = objectDb.GetParameterValue("preferredlanguage");
+            param.MailOption = (mailOption != DBNull.Value) && Convert.ToBoolean(mailOption);
         }
     }
 }

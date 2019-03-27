@@ -12,7 +12,7 @@ export class PaymentRequestInfo extends Component {
 
     render() {
         const { paymentRequestInfo, adminDesc, affDesc, handleChange, handleChecked } = this.props;
-        const isPending = paymentRequestInfo.Status.toLowerCase() == 'pending';
+        const isPending = paymentRequestInfo.Status && paymentRequestInfo.Status.toLowerCase() == 'pending';
 
         return (
             <React.Fragment>
@@ -63,32 +63,32 @@ export class PaymentRequestInfo extends Component {
                     </FormGroup>
                     {
                         isPending ? (
-                        <FormGroup row className="mb-2 ml-1">
-                            <FormGroup className="mr-4" check>
-                                <Label check>
-                                    <Input name="status" type="radio" className="mr-2" value="Approved" onChange={(event) => handleChecked(event)} />
-                                    {statusList.Approved}
-                                </Label>
+                            <FormGroup row className="mb-2 ml-1">
+                                <FormGroup className="mr-4" check>
+                                    <Label check>
+                                        <Input name="status" type="radio" className="mr-2" value="Approved" onChange={(event) => handleChecked(event)} />
+                                        {statusList.Approved}
+                                    </Label>
+                                </FormGroup>
+                                <FormGroup check>
+                                    <Label check>
+                                        <Input name="status" type="radio" className="mr-2" value="Rejected" onChange={(event) => handleChecked(event)} />
+                                        {statusList.Rejected}
+                                    </Label>
+                                </FormGroup>
                             </FormGroup>
-                            <FormGroup check>
-                                <Label check>
-                                    <Input name="status" type="radio" className="mr-2" value="Rejected" onChange={(event) => handleChecked(event)} />
-                                    {statusList.Rejected}
-                                </Label>
-                            </FormGroup>
-                        </FormGroup>
                         ) : (
-                        <React.Fragment>
-                            <FormGroup row className="mb-2">
-                                <Label sm={6}>{resource.CompletedDate}</Label>
-                                <Label sm={6}><strong>{paymentRequestInfo.CompletedDateText}</strong></Label>
-                            </FormGroup>
-                            <FormGroup row className="mb-2">
-                                <Label sm={6}>{resource.UpdatedBy}</Label>
-                                <Label sm={6}>{paymentRequestInfo.Creator}</Label>
-                            </FormGroup>
-                        </React.Fragment>
-                        )
+                                <React.Fragment>
+                                    <FormGroup row className="mb-2">
+                                        <Label sm={6}>{resource.CompletedDate}</Label>
+                                        <Label sm={6}><strong>{paymentRequestInfo.CompletedDateText}</strong></Label>
+                                    </FormGroup>
+                                    <FormGroup row className="mb-2">
+                                        <Label sm={6}>{resource.UpdatedBy}</Label>
+                                        <Label sm={6}>{paymentRequestInfo.Creator}</Label>
+                                    </FormGroup>
+                                </React.Fragment>
+                            )
                     }
                 </fieldset>
                 <Row>
@@ -99,7 +99,7 @@ export class PaymentRequestInfo extends Component {
                             </legend>
                             <FormGroup className="mb-2">
                                 <Label for="adminDesc">{resource.VisibleOnly}</Label>
-                                <Input type="textarea" name="adminDesc" rows="8" disabled={!isPending} value={adminDesc} onChange={(event) =>handleChange(event)} />
+                                <Input type="textarea" name="adminDesc" rows="8" disabled={!isPending} value={adminDesc} onChange={(event) => handleChange(event)} />
                             </FormGroup>
                         </fieldset>
                     </Col>
@@ -110,7 +110,7 @@ export class PaymentRequestInfo extends Component {
                             </legend>
                             <FormGroup className="mb-2">
                                 <Label for="affDesc">{resource.VisibleAlso}</Label>
-                                <Input type="textarea" name="affDesc" rows="8" disabled={!isPending} value={affDesc} onChange={(event) =>handleChange(event)} />
+                                <Input type="textarea" name="affDesc" rows="8" disabled={!isPending} value={affDesc} onChange={(event) => handleChange(event)} />
                             </FormGroup>
                         </fieldset>
                     </Col>
