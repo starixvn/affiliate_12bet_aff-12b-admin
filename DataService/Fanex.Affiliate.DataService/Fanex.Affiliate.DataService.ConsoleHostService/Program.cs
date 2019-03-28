@@ -15,8 +15,25 @@ namespace Fanex.Affiliate.DataService.ConsoleHostService
         {
             DbSettingProviderManager.Current.Start();
 
-            RunOpusService();
+            //RunOpusService();
+            //var _ebetConfigHelper = new EbetConfigHelper();
+            //var _timeTracker = new TimeTracker();
+            //var now = DateTime.Now;
+            //var nowByHour = new DateTime(now.Year, now.Month, now.Day, 5, 0, 0, DateTimeKind.Local);
+            //var configList = _ebetConfigHelper.GetConfigList();
+            //foreach (var config in configList)
+            //{
+            //    var currency = Convert.ToInt32(config.CurrencyID);
+            //    var saveTimeTrackerParam = new InsertTimeTrackerParam
+            //    {
+            //        ProductId = Products.EbetProductId,
+            //        CallTime = nowByHour,
+            //        Currency = currency
+            //    };
+            //    _timeTracker.SaveTime(saveTimeTrackerParam);
+            //}
 
+            Console.WriteLine("Done");
             Console.ReadLine();
         }
 

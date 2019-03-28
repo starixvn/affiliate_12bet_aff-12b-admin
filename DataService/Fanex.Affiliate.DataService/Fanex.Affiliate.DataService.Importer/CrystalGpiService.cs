@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Threading;
-using System.Xml.Linq;
 using Fanex.Affiliate.DataService.Importer.Constants;
 using Fanex.Affiliate.DataService.Importer.Exceptions;
 using Fanex.Affiliate.DataService.Importer.MetaModels.CrystalGpi;
@@ -84,12 +83,16 @@ namespace Fanex.Affiliate.DataService.Importer
         private int ImportByPaging(CrystalGpiParam paramByPaging)
         {
             var rawData = GetRawData(paramByPaging);
-            var xDocument = XDocument.Parse(rawData);
+            var xDocument = XmlHelper.ParseToXDocument(rawData);
+            if (xDocument == null)
+            {
+                throw new ThirdPartyProductException($"Error: Crystal(Gpi)\nParam:{JsonConvert.SerializeObject(paramByPaging)}\nResult:{rawData}");
+            }
 
             var hasError = string.Equals("error", xDocument.Root.Name.LocalName, StringComparison.InvariantCultureIgnoreCase);
             if (hasError)
             {
-                throw new ThirdPartyProductException($"Error: Crystal(Gpi) - ProductId: {Products.CrystalProductId}\nParam:{JsonConvert.SerializeObject(paramByPaging)}\nResult:{rawData}");
+                throw new ThirdPartyProductException($"Error: Crystal(Gpi)\nParam:{JsonConvert.SerializeObject(paramByPaging)}\nResult:{rawData}");
             }
 
             _thirdPartyProductRepository.ImportData(Products.CrystalProductId, rawData, paramByPaging.JobType);
@@ -127,7 +130,7 @@ namespace Fanex.Affiliate.DataService.Importer
         {
             var result = new List<string>();
             var rawData = GetRawDataByPaging(paramByBatch);
-            var xDocument = XDocument.Parse(rawData);
+            var xDocument = XmlHelper.ParseToXDocument(rawData);
             result.Add(rawData);
 
             var totalPages = Convert.ToInt32(xDocument.Root.Attribute("totalPage")?.Value);
@@ -147,12 +150,16 @@ namespace Fanex.Affiliate.DataService.Importer
         private string GetRawDataByPaging(CrystalGpiParam paramByPaging)
         {
             var rawData = GetRawData(paramByPaging);
-            var xDocument = XDocument.Parse(rawData);
+            var xDocument = XmlHelper.ParseToXDocument(rawData);
+            if (xDocument == null)
+            {
+                throw new ThirdPartyProductException($"Error: Crystal(Gpi)\nParam:{JsonConvert.SerializeObject(paramByPaging)}\nResult:{rawData}");
+            }
 
             var hasError = string.Equals("error", xDocument.Root.Name.LocalName, StringComparison.InvariantCultureIgnoreCase);
             if (hasError)
             {
-                throw new ThirdPartyProductException($"Error: Crystal(Gpi) - ProductId: {Products.CrystalProductId}\nParam:{JsonConvert.SerializeObject(paramByPaging)}\nResult:{rawData}");
+                throw new ThirdPartyProductException($"Error: Crystal(Gpi)\nParam:{JsonConvert.SerializeObject(paramByPaging)}\nResult:{rawData}");
             }
 
             return rawData;

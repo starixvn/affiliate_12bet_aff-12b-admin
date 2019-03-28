@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading;
-using System.Xml.Linq;
 using Fanex.Affiliate.DataService.Importer.Constants;
 using Fanex.Affiliate.DataService.Importer.Exceptions;
 using Fanex.Affiliate.DataService.Importer.MetaModels.Opus;
@@ -157,7 +156,12 @@ namespace Fanex.Affiliate.DataService.Importer
 
         private static void CheckResult(string rawData)
         {
-            var xDocument = XDocument.Parse(rawData);
+            var xDocument = XmlHelper.ParseToXDocument(rawData);
+            if (xDocument == null)
+            {
+                throw new ThirdPartyProductException($"Error: Opus - xDocument is null\n{rawData}");
+            }
+
             var transactionDetail = xDocument.Root;
             var statusCode = transactionDetail.Element("status_code")?.Value;
             if (statusCode != SuccessStatus)

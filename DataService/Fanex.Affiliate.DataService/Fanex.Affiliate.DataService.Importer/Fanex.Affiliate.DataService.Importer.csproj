@@ -133,6 +133,7 @@
     <Compile Include="Utilities\IDataSimulator.cs" />
     <Compile Include="Utilities\ISoftbetParser.cs" />
     <Compile Include="Utilities\RsaHelper.cs" />
+    <Compile Include="Utilities\XmlHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
