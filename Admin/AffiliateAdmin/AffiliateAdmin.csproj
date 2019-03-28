@@ -1944,6 +1944,8 @@
     <Content Include="App_Data\IsoftbetData\isoftbet_23.json" />
     <Content Include="App_Data\IsoftbetData\isoftbet_24.json" />
     <Content Include="App_Data\IsoftbetData\isoftbet_25.json" />
+    <Content Include="Areas\Portal\Views\ThirdPartyProduct\ImportQueue\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\ThirdPartyProduct\ImportQueue\XmlData.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

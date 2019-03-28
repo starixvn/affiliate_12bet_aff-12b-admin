@@ -26,6 +26,7 @@ module.exports = {
     [`${jsDist}/pages/thirdparty-product/crystal-gpi`]: clientRoot + "/js/pages/thirdparty-product/crystal-gpi/index.jsx",
     [`${jsDist}/pages/thirdparty-product/isoftbet`]: clientRoot + "/js/pages/thirdparty-product/isoftbet/index.jsx",
     [`${jsDist}/pages/thirdparty-product/opus`]: clientRoot + "/js/pages/thirdparty-product/opus/index.jsx",
+    [`${jsDist}/pages/thirdparty-product/importqueue`]: clientRoot + "/js/pages/thirdparty-product/importqueue/index.jsx",
 
     [`${styleDist}/portalmain`]: clientRoot + "/style/main.scss",
     [`${styleDist}/layout`]: clientRoot + "/style/layout/main-layout.scss",

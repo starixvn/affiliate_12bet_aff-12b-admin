@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Container, Row, Col, Card, CardHeader, CardBody, CardText, Input } from 'reactstrap';
 
-export default class Filter extends PureComponent {
+export default class Content extends PureComponent {
     constructor(props) {
         super(props);
     }
