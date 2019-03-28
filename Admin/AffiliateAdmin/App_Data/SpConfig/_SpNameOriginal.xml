@@ -39,11 +39,13 @@
   <Function Name="Payment">
     <Setting Key="Aff_PaymentRequestSelList" SpName="Aff_PaymentRequestSelList" DbName="affiliate_12bet" />
     <Setting Key="Aff_PaymentRequestSelDetail" SpName="Aff_PaymentRequestSelDetail" DbName="affiliate_12bet" />
+    <Setting Key="Aff_PaymentRequestSelDetail" SpName="Aff_PaymentRequestSelDetail" DbName="affiliate_12bet" />
   </Function>
   <Function Name="StatementHistory">
     <Setting Key="Aff_Admin_StatementHistory_Sel" SpName="Aff_Admin_StatementHistory_Sel" DbName="affiliate_12bet" />
     <Setting Key="Aff_DailyEarning_Sel" SpName="Aff_DailyEarning_Sel" DbName="affiliate_12bet" />
-    <Setting Key="Aff_DailyEarning_Detail_Sel" SpName="Aff_DailyEarning_Detail_Sel" DbName="affiliate_12bet" />
+    <Setting Key="Aff_PaymentRequestApprove" SpName="Aff_PaymentRequestApprove" DbName="main" />
+    <Setting Key="Aff_PaymentRequestUpd" SpName="Aff_PaymentRequestUpd" DbName="affiliate_12bet" />
   </Function>
   <Function Name="UserPanel">
     <Setting Key="Aff_Admin_PlayersDetail_Sel" SpName="Aff_Admin_PlayersDetail_Sel" DbName="affiliate_12bet" />

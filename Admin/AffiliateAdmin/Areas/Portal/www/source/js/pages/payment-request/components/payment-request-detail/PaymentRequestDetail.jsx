@@ -42,12 +42,13 @@ export class PaymentRequestDetail extends Component {
         window.scrollTo({ top: 0, behavior: "smooth" });
         if (this.state.status && paymentRequestInfo.Status.toLowerCase() == 'pending') {
             const { status, adminDesc, affDesc } = this.state;
-            const paymentInfo = Object.assign({}, { TransId: paymentRequestInfo.TransId, Status: status, AdminDesc: adminDesc, AffDesc: affDesc });
+            const paymentInfo = Object.assign({}, { TransId: paymentRequestInfo.TransId, AffId: paymentRequestInfo.AffId, Amount: paymentRequestInfo.Amount,
+                                                    TransDate: paymentRequestInfo.TransDateText, Status: status, AdminDesc: adminDesc, AffDesc: affDesc });
             const data = await this.props.handleUpdate(paymentInfo);
 
             this.setState({
                 isSuccess: data.IsSuccessful,
-                message: data.IsSuccessful ? "Update is successful!" : data.Message,
+                message: data.IsSuccessful ? `Transaction ID ${paymentRequestInfo.TransId} has been updated successfully!` : data.Message,
             }, () => window.setTimeout(this.hideMessage, 3000));
 
             if (data.IsSuccessful) {

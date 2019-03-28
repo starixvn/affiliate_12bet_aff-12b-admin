@@ -223,6 +223,24 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 12Bet Affiliates - [{0}] - Your payment request has been processed and completed successfully.
+        /// </summary>
+        public static string EmailSubjectPaymentRequestApproved {
+            get {
+                return ResourceManager.GetString("EmailSubjectPaymentRequestApproved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12Bet Affiliates - [{0}] - Your payment request has been rejected.
+        /// </summary>
+        public static string EmailSubjectPaymentRequestRejected {
+            get {
+                return ResourceManager.GetString("EmailSubjectPaymentRequestRejected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Affiliate Withdrawal Guidance.
         /// </summary>
         public static string EmailSubjectWithdrawalGuidance {
@@ -246,6 +264,24 @@ namespace Fanex.Affiliate.Admin.Core.Resources {
         public static string EmailTitleAffInfor {
             get {
                 return ResourceManager.GetString("EmailTitleAffInfor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your payment request has been processed and completed successfully.
+        /// </summary>
+        public static string EmailTitlePaymentRequestApproved {
+            get {
+                return ResourceManager.GetString("EmailTitlePaymentRequestApproved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your payment request has been rejected.
+        /// </summary>
+        public static string EmailTitlePaymentRequestRejected {
+            get {
+                return ResourceManager.GetString("EmailTitlePaymentRequestRejected", resourceCulture);
             }
         }
         

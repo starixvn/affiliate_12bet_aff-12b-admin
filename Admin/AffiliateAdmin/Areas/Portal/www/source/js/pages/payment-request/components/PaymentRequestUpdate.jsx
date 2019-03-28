@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Modal, ModalHeader, ModalBody, Alert, Button, Form } from 'reactstrap';
 
-import { setTransactionId, toggleLoader, getPaymentRequestInfo, handleUpdate } from '../actions';
+import { setTransactionId, toggleLoader, getPaymentRequestInfo, handleUpdate, fetchData } from '../actions';
 import { resource, globalResource } from '../modules/constants';
 import { PaymentRequestInfo } from '../shared/PaymentRequestInfo';
 
@@ -13,7 +13,7 @@ export class PaymentRequestUpdate extends Component {
 
         this.state = {
             paymentRequestInfo: null,
-            status: '',
+            status: null,
             adminDesc: '',
             affDesc: '',
             isSuccess: true,
@@ -56,16 +56,30 @@ export class PaymentRequestUpdate extends Component {
 
         const { paymentRequestInfo } = this.state;
 
-        if (paymentRequestInfo.Status.toLowerCase() == 'pending' && this.state.status != '') {
+        if (this.state.status && paymentRequestInfo.Status.toLowerCase() == 'pending') {
             const { status, adminDesc, affDesc } = this.state;
-            const paymentInfo = Object.assign({}, paymentRequestInfo ,{ Status: status, AdminDesc: adminDesc, AffDesc: affDesc });
-            const data = await this.props.handleUpdate(paymentInfo);
+            const paymentInfo = Object.assign({}, { TransId: paymentRequestInfo.TransId, AffId: paymentRequestInfo.AffId, Amount: paymentRequestInfo.Amount,
+                                                    TransDate: paymentRequestInfo.TransDateText, Status: status, AdminDesc: adminDesc, AffDesc: affDesc });
+            const response = await this.props.handleUpdate(paymentInfo);
 
-            this.setState({
-                isSuccess: data.IsSuccessful,
-                message: data.IsSuccessful ? "Update is successful!" : data.Message,
-            }, () => window.setTimeout(this.hideMessage, 3000));
+            if(response) {
+                this.setState({
+                    isSuccess: data.IsSuccessful,
+                    message: data.IsSuccessful ? `Transaction ID ${paymentRequestInfo.TransId} has been updated successfully!` : data.Message,
+                }, () => window.setTimeout(this.hideMessage, 3000));
 
+                window.setTimeout(() => this.props.setTransactionId(null), 3000);
+
+                if (data.IsSuccessful) {
+                    this.props.fetchData(this.props.param);
+                }
+            }
+            else {
+                this.setState({
+                    isSuccess: false,
+                    message: `Transaction ID ${paymentRequestInfo.TransId} has been updated failly!`,
+                }, () => window.setTimeout(this.hideMessage, 3000));
+            }
         } else {
             this.setState({
                 isSuccess: false,
@@ -115,12 +129,12 @@ export class PaymentRequestUpdate extends Component {
     }
 }
 
-function mapStateToProps({ transactionId }) {
-    return Object.assign({}, { transactionId });
+function mapStateToProps({ transactionId, param }) {
+    return Object.assign({}, { transactionId, param });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setTransactionId, toggleLoader, getPaymentRequestInfo, handleUpdate }, dispatch);
+    return bindActionCreators({ setTransactionId, toggleLoader, getPaymentRequestInfo, handleUpdate, fetchData }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PaymentRequestUpdate);

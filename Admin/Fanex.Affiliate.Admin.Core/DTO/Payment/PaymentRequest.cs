@@ -12,6 +12,8 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Payment
 
         public string Status { get; set; }
 
+        public int AffId { get; set; }
+
         public string AffName { get; set; }
 
         public decimal Amount { get; set; }

@@ -141,4 +141,16 @@
   <data name="EmailTitleWithdrawalGuidance" xml:space="preserve">
     <value>Guía de retirada de fondos del afiliado</value>
   </data>
+  <data name="EmailSubjectPaymentRequestApproved" xml:space="preserve">
+    <value>Afiliados de 12BET - [{0}] - Su solicitud de pago se ha procesado y completado correctamente.</value>
+  </data>
+  <data name="EmailTitlePaymentRequestApproved" xml:space="preserve">
+    <value>Su solicitud de pago se ha procesado y completado correctamente.</value>
+  </data>
+  <data name="EmailSubjectPaymentRequestRejected" xml:space="preserve">
+    <value>Afiliados de 12BET - [{0}] - Su solicitud de pago se ha rechazado</value>
+  </data>
+  <data name="EmailTitlePaymentRequestRejected" xml:space="preserve">
+    <value>Su solicitud de pago se ha rechazado</value>
+  </data>
 </root>

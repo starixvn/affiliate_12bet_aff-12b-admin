@@ -2052,10 +2052,32 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\payment-request-detail\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\payment-request-detail\PaymentRequestDetail.jsx" />
-    <Content Include="Areas\Portal\Views\PaymentRequest\GetPaymentRequestDetail.cshtml" />
+    <Content Include="Areas\Portal\Views\PaymentRequest\PaymentRequestDetail.cshtml" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\PaymentRequestUpdate.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\shared\PaymentRequestInfo.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\payment\payment-request.scss" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Approved\Content.zh-TW.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Approved\Content.en-GB.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Approved\Content.en-US.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Approved\Content.es-ES.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Approved\Content.hi-IN.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Approved\Content.id-ID.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Approved\Content.ja-JP.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Approved\Content.ko-KR.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Approved\Content.th-TH.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Approved\Content.vi-VN.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Approved\Content.zh-CN.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Rejected\Content.zh-TW.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Rejected\Content.en-GB.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Rejected\Content.en-US.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Rejected\Content.es-ES.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Rejected\Content.hi-IN.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Rejected\Content.id-ID.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Rejected\Content.ja-JP.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Rejected\Content.ko-KR.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Rejected\Content.th-TH.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Rejected\Content.vi-VN.cshtml" />
+    <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Rejected\Content.zh-CN.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

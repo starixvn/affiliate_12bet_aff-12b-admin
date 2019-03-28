@@ -1,0 +1,16 @@
+﻿@model Fanex.Affiliate.Admin.Core.DTO.Email.PaymentRequestUpdateEmail
+
+<div>
+    尊敬的 @Model.FirstName,  <br /><br />
+
+    提款單號@(Model.TransId), 日期@(Model.TransDate)。<br /><br />
+
+    很高興的通知您，您金額為$@(Model.Amount)的提款申請未獲核准。 <br /><br />
+
+    請發送諮詢郵件至<a href="mailto:@Model.MailContact">@Model.MailContact</a>獲知詳情.<br />
+    這是一封系統郵件，請不要在此郵件基礎上直接回复.<br /><br />
+
+    誠摯的,<br /><br />
+      12BET合作夥伴團隊<br />
+      <a href="mailto:@Model.MailContact">@Model.MailContact</a>
+</div>

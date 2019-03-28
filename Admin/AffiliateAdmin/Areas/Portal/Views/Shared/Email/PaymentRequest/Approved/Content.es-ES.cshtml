@@ -1,0 +1,16 @@
+﻿@model Fanex.Affiliate.Admin.Core.DTO.Email.PaymentRequestUpdateEmail
+
+<div>
+    Estimado/a Sr./Sra. @Model.FirstName,  <br /><br />
+
+    El número de referencia de su solicitud es @Model.TransId, con fecha @Model.TransDate.<br /><br />
+
+    Nos complace informarle de que su solicitud de pago de la cantidad de @Model.Amount dólares se ha completado con éxito y el dinero se ha enviado a su procesador de pagos.<br /><br />
+
+    Este es un sistema de correo electrónico generado de forma automática; no responda a este correo electrónico directamente.<br />
+    No dude en ponerse en contacto con nosotros si tiene alguna pregunta o comentario en <a href="mailto:@Model.MailContact">@Model.MailContact</a><br /> <br />
+
+    Atentamente,<br /><br />
+    Equipo de afiliados de 12BET.<br />
+      <a href="mailto:@Model.MailContact">@Model.MailContact</a>
+</div>

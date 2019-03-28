@@ -69,6 +69,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Payment
                         result = new PaymentRequestDetail
                         {
                             TransId = Convert.ToInt64(reader["Transid"]),
+                            AffId = Convert.ToInt32(reader["AffId"]),
                             AffName = Convert.ToString(reader["username"]),
                             TransDate = Convert.ToDateTime(reader["Transdate"]),
                             Email = Convert.ToString(reader["email"]),
@@ -92,32 +93,19 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Payment
 
         public ResultInfo UpdatePaymentRequest(PaymentRequestUpdateParam param)
         {
-            var SpKey = "Aff_PaymentRequestUpd";
+            var isApproved = "approved".Equals(param.Status.ToLowerInvariant());
+            var SpKey = isApproved ? "Aff_PaymentRequestApprove" : "Aff_PaymentRequestUpd";
+
             using (var objectDb = GetObjectDb(SpKey))
             {
-                objectDb.AddInParameter("status", DbType.String, param.Status);
+                if (!isApproved)
+                {
+                    objectDb.AddInParameter("Status", DbType.String, param.Status);
+                }
                 AssignCommonParam(objectDb, param);
                 AssignResultOutputParam(objectDb);
 
                 objectDb.ExecuteNonQuery();
-
-                UpdateParam(objectDb, param);
-
-                return GetResultInfo(objectDb);
-            }
-        }
-
-        public ResultInfo ApprovedPaymentRequest(PaymentRequestUpdateParam param)
-        {
-            var SpKey = "Aff_PaymentRequestApprove";
-            using (var objectDb = GetObjectDb(SpKey))
-            {
-                AssignCommonParam(objectDb, param);
-                AssignResultOutputParam(objectDb);
-
-                objectDb.ExecuteNonQuery();
-
-                UpdateParam(objectDb, param);
 
                 return GetResultInfo(objectDb);
             }
@@ -125,23 +113,11 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Payment
 
         private static void AssignCommonParam(IObjectDb objectDb, PaymentRequestUpdateParam param)
         {
-            objectDb.AddInParameter("transid", DbType.Int64, param.TransId);
-            objectDb.AddInParameter("admindesc", DbType.String, param.AdminDesc);
-            objectDb.AddInParameter("affdesc", DbType.String, param.AffDesc);
-            objectDb.AddInParameter("userid", DbType.Int32, param.UserId);
-            objectDb.AddInParameter("ip", DbType.String, param.Ip);
-
-            objectDb.AddOutParameter("preferredlanguage", DbType.String, 8);
-            objectDb.AddOutParameter("mailoption", DbType.Boolean, 1);
-        }
-
-        private static void UpdateParam(IObjectDb objectDb, PaymentRequestUpdateParam param)
-        {
-            var preferredlanguage = objectDb.GetParameterValue("preferredlanguage");
-            param.PreferredLanguage = preferredlanguage == DBNull.Value ? "en-US" : Convert.ToString(preferredlanguage);
-
-            var mailOption = objectDb.GetParameterValue("preferredlanguage");
-            param.MailOption = (mailOption != DBNull.Value) && Convert.ToBoolean(mailOption);
+            objectDb.AddInParameter("TransID", DbType.Int64, param.TransId);
+            objectDb.AddInParameter("AdminDesc", DbType.String, param.AdminDesc);
+            objectDb.AddInParameter("AffDesc", DbType.String, param.AffDesc);
+            objectDb.AddInParameter("UserID", DbType.Int32, param.UserId);
+            objectDb.AddInParameter("IP", DbType.String, param.Ip);
         }
     }
 }

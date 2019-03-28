@@ -1,4 +1,5 @@
 ﻿using Fanex.Affiliate.Admin.Core.DTO;
+using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.DTO.Payment;
 using Fanex.Affiliate.Admin.Core.MetaModels.Payment;
 
@@ -10,6 +11,6 @@ namespace Fanex.Affiliate.Admin.Core.Services.Payment
 
         PaymentRequestDetail GetPaymentRequestDetail(long transId);
 
-        ResultInfo UpdatePaymentRequest(PaymentRequestUpdateParam param);
+        ResultInfo UpdatePaymentRequest(PaymentRequestUpdateParam param, PaymentRequestUpdateEmail emailParam);
     }
 }

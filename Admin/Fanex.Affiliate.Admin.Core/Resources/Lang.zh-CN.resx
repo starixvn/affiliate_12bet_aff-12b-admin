@@ -141,4 +141,16 @@
   <data name="EmailTitleWithdrawalGuidance" xml:space="preserve">
     <value>壹贰博合作伙伴提款指南</value>
   </data>
+  <data name="EmailSubjectPaymentRequestApproved" xml:space="preserve">
+    <value>12Bet 合作伙伴 - [{0}] - 您的提款申请已被核准并成功办理</value>
+  </data>
+  <data name="EmailTitlePaymentRequestApproved" xml:space="preserve">
+    <value>您的提款申请已被核准并成功办理</value>
+  </data>
+  <data name="EmailSubjectPaymentRequestRejected" xml:space="preserve">
+    <value>12Bet 合作伙伴 - [{0}] - 您的提款申请未被核准</value>
+  </data>
+  <data name="EmailTitlePaymentRequestRejected" xml:space="preserve">
+    <value>您的提款申请未被核准</value>
+  </data>
 </root>

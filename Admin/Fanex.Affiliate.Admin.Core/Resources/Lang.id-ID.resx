@@ -141,4 +141,16 @@
   <data name="EmailTitleWithdrawalGuidance" xml:space="preserve">
     <value>Afiliasi Penarikan Bimbingan</value>
   </data>
+  <data name="EmailSubjectPaymentRequestApproved" xml:space="preserve">
+    <value>12Bet Affiliates - [{0}] - Permintaan pembayaran Anda telah diproses dan diselesaikan dengan sukses</value>
+  </data>
+  <data name="EmailTitlePaymentRequestApproved" xml:space="preserve">
+    <value>Permintaan pembayaran Anda telah diproses dan diselesaikan dengan sukses</value>
+  </data>
+  <data name="EmailSubjectPaymentRequestRejected" xml:space="preserve">
+    <value>12Bet Affiliates - [{0}] - Permintaan pembayaran Anda telah ditolak</value>
+  </data>
+  <data name="EmailTitlePaymentRequestRejected" xml:space="preserve">
+    <value>Permintaan pembayaran Anda telah ditolak</value>
+  </data>
 </root>

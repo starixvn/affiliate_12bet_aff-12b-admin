@@ -113,5 +113,26 @@ namespace Fanex.Affiliate.Admin.Core.Services
 
             return _mailProcessor.BuildTemplateContent(viewPath, viewModel);
         }
+
+        public void SendPaymentRequestUpdateEmail(PaymentRequestUpdateEmail emailParam)
+        {
+            _languageService.SetCulture(emailParam.Language);
+            emailParam.MailContact = _appSetting.MailContact;
+
+            var TemplateName = emailParam.IsApproved ? "PaymentRequest/Approved" : "PaymentRequest/Rejected";
+
+            var content = GetEmailTextContent(TemplateName, emailParam.Language, emailParam);
+            var subject = emailParam.IsApproved ?
+                string.Format(Lang.EmailSubjectPaymentRequestApproved, emailParam.TransId) :
+                string.Format(Lang.EmailSubjectPaymentRequestRejected, emailParam.TransId);
+            var title = emailParam.IsApproved ? Lang.EmailTitlePaymentRequestApproved : Lang.EmailTitlePaymentRequestRejected;
+
+            var contentToSend = emailParam.IsHtml ?
+                GetEmailHtmlContent(content, title, emailParam.Language, emailParam.RootUrl) :
+                content;
+
+            _mailProcessor.Send(contentToSend, emailParam.MailTo, subject, _appSetting.BccMail, _appSetting.CcMail);
+            _languageService.SetCulture(LanguageSystem.DefaultLanguage);
+        }
     }
 }

@@ -1,8 +1,16 @@
-﻿namespace Fanex.Affiliate.Admin.Core.MetaModels.Payment
+﻿using System;
+
+namespace Fanex.Affiliate.Admin.Core.MetaModels.Payment
 {
     public class PaymentRequestUpdateParam
     {
         public long TransId { get; set; }
+
+        public int AffId { get; set; }
+
+        public decimal Amount { get; set; }
+
+        public DateTime TransDate { get; set; }
 
         public string Status { get; set; }
 
@@ -13,10 +21,5 @@
         public int UserId { get; set; }
 
         public string Ip { get; set; }
-
-        public string PreferredLanguage { get; set; }
-
-        public bool MailOption { get; set; }
-
     }
 }

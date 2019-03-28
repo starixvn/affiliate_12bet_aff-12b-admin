@@ -1,0 +1,17 @@
+﻿@model Fanex.Affiliate.Admin.Core.DTO.Email.PaymentRequestUpdateEmail
+
+<div>
+    @(Model.FirstName)様, <br /><br />
+
+    格別のご愛顧を賜り、スタッフ一同心より感謝しております。<br />
+    受付申請番号 @Model.TransId,日時@(Model.TransDate)<br />
+
+    先日、ご申請された金額$@(Model.Amount)の決算処理が正常終了され、収益金がアカウントへ送信されたことを報告とさせて頂きます。<br /><br />
+
+    このEメールはシステムにより自動生成されております。直接このメールご返信なさらないようお願い申し上げます。<br />
+    何がご質問ご不明な点がございましたらこちらからお問い合わせ願います。<a href="mailto:@Model.MailContact">@Model.MailContact</a><br /> <br />
+
+    ありがとうございました。<br /><br />
+      12BETアフィリエイトチーム<br />
+      <a href="mailto:@Model.MailContact">@Model.MailContact</a>
+</div>

@@ -1,9 +1,11 @@
 ﻿using Fanex.Affiliate.Admin.Core.Attributes;
 using Fanex.Affiliate.Admin.Core.Constants;
+using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Payment;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Payment;
+using Fanex.Affiliate.Admin.Core.Utilities;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
@@ -26,6 +28,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryHeader]
+        [Compress]
         public ActionResult GetPaymentRequestList(PaymentRequestParam param)
         {
             return new JsonNetResult
@@ -35,17 +39,17 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetPaymentRequestDetail(long transId)
+        public ActionResult PaymentRequestDetail(long transId)
         {
             var model = _paymentRequestService.GetPaymentRequestDetail(transId);
 
-            return View("~/Areas/Portal/Views/PaymentRequest/GetPaymentRequestDetail.cshtml", model);
+            return View("~/Areas/Portal/Views/PaymentRequest/PaymentRequestDetail.cshtml", model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [Compress]
-        public ActionResult GetPaymentRequestInfo(long transId)
+        public ActionResult GetPaymentRequestDetail(long transId)
         {
             return new JsonNetResult
             {
@@ -53,17 +57,22 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             };
         }
 
+        [FunctionAuthorize(FunctionName = Function.Payment, IsHost = true)]
         [HttpPost]
         [ValidateAntiForgeryHeader]
-        [Compress]
         public ActionResult UpdatePaymentRequest(PaymentRequestUpdateParam param)
         {
             param.UserId = SessionService.UserId;
             param.Ip = Request.UserHostAddress;
 
+            var emailParam = new PaymentRequestUpdateEmail
+            {
+                RootUrl = SiteDomainHelper.GetRootUrl(this)
+            };
+
             return new JsonNetResult
             {
-                Data = _paymentRequestService.UpdatePaymentRequest(param)
+                Data = _paymentRequestService.UpdatePaymentRequest(param, emailParam)
             };
         }
     }
