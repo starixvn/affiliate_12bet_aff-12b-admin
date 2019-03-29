@@ -1511,8 +1511,10 @@
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\betsoft.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\crystal-gpi.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\ebet.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\importqueue.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\isoftbet.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\opus.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\timetracker.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\userpanel\customer-member.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\userpanel\daily-earning-detail.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\userpanel\daily-earning.js" />
