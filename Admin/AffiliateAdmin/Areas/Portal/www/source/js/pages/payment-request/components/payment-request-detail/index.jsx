@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
 import reducer from './reducer';
-import PaymentRequestDetail from './PaymentRequestDetail';
+import PaymentRequestDetailForm from './PaymentRequestDetailForm';
 import { configureStore } from '../../../../modules/store';
 
 const store = configureStore(window.initialState, reducer);
@@ -16,8 +16,8 @@ export default class App extends Component {
     render() {
         return (
             <Provider store={store}>
-                <PaymentRequestDetail />
-            </Provider>    
+                <PaymentRequestDetailForm />
+            </Provider>
         );
     }
 }

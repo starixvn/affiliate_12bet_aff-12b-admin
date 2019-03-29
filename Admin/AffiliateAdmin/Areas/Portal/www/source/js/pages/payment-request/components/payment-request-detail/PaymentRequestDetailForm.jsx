@@ -5,9 +5,9 @@ import { Alert, Button, Form } from 'reactstrap';
 
 import { toggleLoader, handleUpdate } from '../../actions';
 import { resource, globalResource } from '../../modules/constants';
-import { PaymentRequestInfo } from '../../shared/PaymentRequestInfo';
+import { PaymentRequestDetail } from '../../shared/PaymentRequestDetail';
 
-export class PaymentRequestDetail extends Component {
+export class PaymentRequestDetailForm extends Component {
     constructor(props) {
         super(props);
 
@@ -32,7 +32,6 @@ export class PaymentRequestDetail extends Component {
     }
 
     handleSave = async () => {
-        this.props.toggleLoader(true);
         this.setState({
             isShowMessage: true
         });
@@ -71,8 +70,6 @@ export class PaymentRequestDetail extends Component {
                 message: resource.Message,
             }, () => window.setTimeout(this.hideMessage, 3000));
         }
-
-        this.props.toggleLoader(false);
     }
 
     hideMessage = () => {
@@ -95,10 +92,11 @@ export class PaymentRequestDetail extends Component {
                 <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
                     <div dangerouslySetInnerHTML={{ __html: message }}></div>
                 </Alert>
-                <PaymentRequestInfo
+                <PaymentRequestDetail
                     paymentRequestInfo={paymentRequestInfo}
                     adminDesc={adminDesc}
                     affDesc={affDesc}
+                    isPending={isPending}
                     handleChange={this.handleChange}
                     handleChecked={this.handleChecked}
                 />
@@ -117,4 +115,4 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({ toggleLoader, handleUpdate }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PaymentRequestDetail);
+export default connect(mapStateToProps, mapDispatchToProps)(PaymentRequestDetailForm);

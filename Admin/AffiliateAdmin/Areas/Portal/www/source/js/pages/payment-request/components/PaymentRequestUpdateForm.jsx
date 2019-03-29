@@ -5,7 +5,7 @@ import { Modal, ModalHeader, ModalBody, Alert, Button, Form } from 'reactstrap';
 
 import { setTransactionId, toggleLoader, getPaymentRequestInfo, handleUpdate, setParam } from '../actions';
 import { resource, globalResource } from '../modules/constants';
-import { PaymentRequestInfo } from '../shared/PaymentRequestInfo';
+import { PaymentRequestDetail } from '../shared/PaymentRequestDetail';
 
 export class PaymentRequestUpdateForm extends Component {
     constructor(props) {
@@ -112,10 +112,11 @@ export class PaymentRequestUpdateForm extends Component {
                                 <Alert color={isSuccess ? 'success' : 'danger'} isOpen={isShowMessage}>
                                     <div dangerouslySetInnerHTML={{ __html: message }}></div>
                                 </Alert>
-                                <PaymentRequestInfo
+                                <PaymentRequestDetail
                                     paymentRequestInfo={paymentRequestInfo}
                                     adminDesc={adminDesc}
                                     affDesc={affDesc}
+                                    isPending={isPending}
                                     handleChange={this.handleChange}
                                     handleChecked={this.handleChecked}
                                 />

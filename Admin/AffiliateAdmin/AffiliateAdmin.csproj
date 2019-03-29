@@ -2054,10 +2054,9 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\PanelList.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\SearchBox.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\index.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\payment-request-detail\PaymentRequestDetail.jsx" />
     <Content Include="Areas\Portal\Views\PaymentRequest\PaymentRequestDetail.cshtml" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\PaymentRequestUpdateForm.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\payment-request\shared\PaymentRequestInfo.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\payment-request\shared\PaymentRequestDetail.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\payment\payment-request.scss" />
     <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Approved\Content.zh-TW.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Approved\Content.en-GB.cshtml" />
@@ -2082,6 +2081,7 @@
     <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Rejected\Content.vi-VN.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Rejected\Content.zh-CN.cshtml" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\payment-request-detail\index.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\payment-request-detail\PaymentRequestDetailForm.jsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

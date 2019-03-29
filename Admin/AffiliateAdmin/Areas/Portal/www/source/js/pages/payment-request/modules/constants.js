@@ -35,7 +35,7 @@ export const resource = {
     Message: 'You must choose Approved or Rejected for this request!'
 }
 
-export const searchByArray = [ 'User Name', 'Others' ]
+export const searchByArray = ['User Name', 'Others']
 
 export const statusList = {
     Processing: 'Pending',

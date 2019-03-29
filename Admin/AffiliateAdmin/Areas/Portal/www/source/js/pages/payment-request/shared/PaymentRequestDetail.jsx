@@ -5,14 +5,13 @@ import { Row, Col, FormGroup, Label, Input } from 'reactstrap';
 import { resource, statusList } from '../modules/constants';
 import { formatDecimalWithCurrencySymbol } from '../../../modules/numberFormat';
 
-export class PaymentRequestInfo extends Component {
+export class PaymentRequestDetail extends Component {
     constructor(props) {
         super(props);
     }
 
     render() {
-        const { paymentRequestInfo, adminDesc, affDesc, handleChange, handleChecked } = this.props;
-        const isPending = paymentRequestInfo.Status && paymentRequestInfo.Status.toLowerCase() == 'pending';
+        const { paymentRequestInfo, adminDesc, affDesc, handleChange, handleChecked, isPending } = this.props;
 
         return (
             <React.Fragment>
@@ -124,4 +123,4 @@ function mapStateToProps({ paymentRequestInfo }) {
     return Object.assign({}, { paymentRequestInfo });
 }
 
-export default connect(mapStateToProps)(PaymentRequestInfo);
+export default connect(mapStateToProps)(PaymentRequestDetail);

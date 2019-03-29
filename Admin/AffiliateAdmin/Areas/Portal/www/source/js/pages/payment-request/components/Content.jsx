@@ -38,7 +38,7 @@ export class Content extends Component {
         this.props.toggleLoader(false);
     }
 
-    handleSetTransactionId= (trxnId) => {
+    handleSetTransactionId = (trxnId) => {
         this.setState({ shouldResetScrollPosition: false });
 
         this.props.setTransactionId(trxnId);
