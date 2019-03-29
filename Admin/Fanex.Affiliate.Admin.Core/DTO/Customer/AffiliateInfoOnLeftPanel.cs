@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Newtonsoft.Json;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.Customer
@@ -19,8 +20,10 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Customer
 
         public string ContactApps { get; set; }
 
+        [SuppressMessage("Sonar Code Smell", "S3996:UriPropertiesShouldNotBeStrings", Justification = "Reviewed. Suppression is OK here.")]
         public string SiteUrl { get; set; }
 
+        [SuppressMessage("Sonar Code Smell", "S3996:UriPropertiesShouldNotBeStrings", Justification = "Reviewed. Suppression is OK here.")]
         public string MoreSiteUrl { get; set; }
 
         public string NoSiteDescription { get; set; }

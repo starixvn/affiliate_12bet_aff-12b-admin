@@ -54,6 +54,10 @@
     <Prefer32Bit>false</Prefer32Bit>
     <CodeAnalysisRuleSet>AffiliateAdmin.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup>
+  <!-- Exclude the project from analysis -->
+  <SonarQubeExclude>true</SonarQubeExclude>
+</PropertyGroup>
   <ItemGroup>
     <Reference Include="DNAide, Version=2.1.404.20, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
