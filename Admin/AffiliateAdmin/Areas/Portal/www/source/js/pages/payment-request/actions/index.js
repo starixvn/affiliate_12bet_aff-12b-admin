@@ -27,7 +27,7 @@ export const fetchData = (param) => async () => {
 }
 
 export const getPaymentRequestInfo = (param) => async () => {
-    const url = 'Portal/PaymentRequest/GetPaymentRequestInfo';
+    const url = 'Portal/PaymentRequest/GetPaymentRequestDetail';
     const response = await post(url, param);
 
     return response && response.status === 200 ? response.data : null;

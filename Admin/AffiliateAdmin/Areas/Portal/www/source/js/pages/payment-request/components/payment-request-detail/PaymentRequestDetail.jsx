@@ -42,28 +42,29 @@ export class PaymentRequestDetail extends Component {
         window.scrollTo({ top: 0, behavior: "smooth" });
         if (this.state.status && paymentRequestInfo.Status.toLowerCase() == 'pending') {
             const { status, adminDesc, affDesc } = this.state;
-            const paymentInfo = Object.assign({}, { TransId: paymentRequestInfo.TransId, AffId: paymentRequestInfo.AffId, Amount: paymentRequestInfo.Amount,
-                                                    TransDate: paymentRequestInfo.TransDateText, Status: status, AdminDesc: adminDesc, AffDesc: affDesc });
+            const paymentInfo = Object.assign({}, {
+                TransId: paymentRequestInfo.TransId, AffId: paymentRequestInfo.AffId, Amount: paymentRequestInfo.Amount,
+                TransDate: paymentRequestInfo.TransDateText, Status: status, AdminDesc: adminDesc, AffDesc: affDesc
+            });
             const data = await this.props.handleUpdate(paymentInfo);
 
-            this.setState({
-                isSuccess: data.IsSuccessful,
-                message: data.IsSuccessful ? `Transaction ID ${paymentRequestInfo.TransId} has been updated successfully!` : data.Message,
-            }, () => window.setTimeout(this.hideMessage, 3000));
+            if (data) {
+                this.setState({
+                    isSuccess: data.IsSuccessful,
+                    message: data.IsSuccessful ? `Transaction ID ${paymentRequestInfo.TransId} has been updated successfully!` : data.Message,
+                }, () => window.setTimeout(this.hideMessage, 3000));
 
-            if (data.IsSuccessful) {
-                const mainFrame = top.frames["mainFrame"];
-                const infoFrame = mainFrame && mainFrame.frames["fInfo"];
-                window.setTimeout(() => {
-                    if (infoFrame) {
-                        mainFrame.location.reload();
-                    }
-                    else {
-                        this.handleClosePopup();
-                    }
-                }, 2000)
+                if (data.IsSuccessful) {
+                    parent.postMessage('fetchData', window.location.origin);
+                    window.setTimeout(() => this.handleClosePopup(), 3000);
+                }
             }
-
+            else {
+                this.setState({
+                    isSuccess: false,
+                    message: `Transaction ID ${paymentRequestInfo.TransId} has been updated failly!`,
+                }, () => window.setTimeout(this.hideMessage, 3000));
+            }
         } else {
             this.setState({
                 isSuccess: false,
@@ -99,7 +100,7 @@ export class PaymentRequestDetail extends Component {
                     adminDesc={adminDesc}
                     affDesc={affDesc}
                     handleChange={this.handleChange}
-                    handleChecked={this.handleChecked}   
+                    handleChecked={this.handleChecked}
                 />
                 <Button type="button" color="success" className="mr-3" disabled={!isPending} onClick={this.handleSave}>{globalResource.Update}</Button>
                 <Button type="button" color="info" onClick={this.handleClosePopup}>{globalResource.Cancel}</Button>

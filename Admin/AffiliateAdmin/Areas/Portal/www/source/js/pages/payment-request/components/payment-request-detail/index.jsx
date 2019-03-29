@@ -1,36 +1,25 @@
-﻿import React from 'react';
+﻿import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware, compose } from 'redux';
-import thunkMiddleware from 'redux-thunk';
-import PaymentRequestDetail from './PaymentRequestDetail';
 
 import reducer from './reducer';
+import PaymentRequestDetail from './PaymentRequestDetail';
+import { configureStore } from '../../../../modules/store';
 
-function configureStore(initialState) {
-  const enhancer = compose(
-    applyMiddleware(
-      thunkMiddleware // lets us dispatch() functions
-    )
-  );
+const store = configureStore(window.initialState, reducer);
 
-  return createStore(reducer, initialState, enhancer);
+export default class App extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <Provider store={store}>
+                <PaymentRequestDetail />
+            </Provider>    
+        );
+    }
 }
 
-const store = configureStore(window.initialState);
-
-export class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <Provider store={store}>
-        <PaymentRequestDetail />
-      </Provider>
-    );
-  }
-}
-
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'))

@@ -85,28 +85,28 @@ export class Content extends Component {
             <Row key={`dataRow-${index}`}>
                 <Cell title={index} className="text-center">{index}</Cell>
                 <Cell title={dataItem.DateText} className="text-center">{dataItem.DateText}</Cell>
-                <Cell title={transType} className="text-center">{transTypeList[transType] || transaction }</Cell>
+                <Cell title={transType} className="text-center">{transTypeList[transType] || transaction}</Cell>
                 <Cell title={amount} className="text-right">
                     {transType === PAYMENT_REQUEST ? <Button className="p-0" color="link" onClick={() => this.handleSetTransactionId(dataItem.TransId)}>
-                            {amount}
-                        </Button> : (transType === MONTHLY_WINLOST ?
-                        <a href={`${resolveClientUrl('Portal/UserPanel/StatementHistory/DailyEarning')}` + 
+                        {amount}
+                    </Button> : (transType === MONTHLY_WINLOST ?
+                        <a href={`${resolveClientUrl('Portal/UserPanel/StatementHistory/DailyEarning')}` +
                             `?affId=${param.AffId}&affName=${param.AffName}&monthDate=${dataItem.DateText}`} target="fContent">
                             {amount}
                         </a> : amount)
                     }
                 </Cell>
                 <Cell title={dataItem.Status} className="text-center">{dataItem.Status === 'pending' ?
-                        <Button className="p-0" color="link" onClick={() => this.handleSetTransactionId(dataItem.TransId)}>
-                            Processing
-                        </Button> : dataItem.Status }</Cell>
+                    <Button className="p-0" color="link" onClick={() => this.handleSetTransactionId(dataItem.TransId)}>
+                        Processing
+                        </Button> : dataItem.Status}</Cell>
                 <Cell title={dataItem.Creator} className="text-center">{dataItem.Creator}</Cell>
                 <Cell title={dataItem.Description}>{dataItem.Description}</Cell>
             </Row>
         )
     }
 
-    handleSetTransactionId= (transId) => {
+    handleSetTransactionId = (transId) => {
         this.setState({ shouldResetScrollPosition: false });
 
         this.props.setTransactionId(transId);
@@ -148,8 +148,8 @@ export class Content extends Component {
 }
 
 
-function mapStateToProps({ pagingOption, param, showIdList }) {
-    return Object.assign({}, { pagingOption, param, showIdList });
+function mapStateToProps({ pagingOption, param }) {
+    return Object.assign({}, { pagingOption, param });
 }
 
 function mapDispatchToProps(dispatch) {

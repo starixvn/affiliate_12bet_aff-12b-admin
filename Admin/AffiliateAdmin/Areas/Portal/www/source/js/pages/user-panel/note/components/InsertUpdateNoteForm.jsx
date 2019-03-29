@@ -61,15 +61,15 @@ export class InsertUpdateNoteForm extends Component {
 
         const response = await post(url, noteInfo);
 
-        if (response) {
+        if (response && response.status === 200) {
             const result = response.data;
 
             if (result.IsSuccessful) {
                 const { noteInfo, pagingOption } = this.props;
                 const param = Object.assign({}, { AffId: noteInfo.AffId, PageIndex: 1, PageSize: pagingOption.PageSize });
-                this.props.getNoteList(param);
 
                 window.setTimeout(() => this.props.setShowPopup(false), 3000);
+                window.setTimeout(() => this.props.getNoteList(param), 3500);
             }
 
             this.setState({

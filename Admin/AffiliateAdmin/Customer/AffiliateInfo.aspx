@@ -63,13 +63,13 @@
                 switch ($("hdPageid").value)//linked from affiliate list
                 {
                     case "1":
-                        parent.fContent.location.href = "../UserInfo/EarningsHistory.aspx?status=Pending&" + subQueryString;
+                        parent.fContent.location.href = "../Portal/UserPanel/StatementHistory/Index?status=Pending&" + subQueryString;
                         break;
                     case "2":
                         parent.fContent.location.href = "../UserInfo/MemberListAll.aspx?all=0&" + subQueryString;
                         break;
                     default:
-                        parent.fContent.location.href = "../UserInfo/EarningsHistory.aspx?" + subQueryString;
+                        parent.fContent.location.href = "../Portal/UserPanel/StatementHistory/Index?" + subQueryString;
                         break;
                 }
             } else if ($("hdNoInfo").value == "1") {

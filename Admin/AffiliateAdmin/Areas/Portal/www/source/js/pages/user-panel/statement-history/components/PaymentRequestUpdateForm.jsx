@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 
-import { setTransactionId } from '../actions';
+import { setTransactionId, setParam } from '../actions';
 import { resolveClientUrl } from '../../../../modules/utils';
 
-export class PaymentInfoForm extends Component {
+export class PaymentRequestUpdateForm extends Component {
     constructor(props) {
         super(props);
     }
@@ -23,11 +23,14 @@ export class PaymentInfoForm extends Component {
         if (event.data === 'closePopup') {
             this.props.setTransactionId(null);
         }
+        if (event.data === 'fetchData') {
+            window.setTimeout(() => this.props.setParam(this.props.param), 3500);
+        }
     }
 
     render() {
         const { transactionId } = this.props;
-        const url = transactionId ? resolveClientUrl(`Portal/PaymentRequest/GetPaymentRequestDetail?transid=${transactionId}`) : '';
+        const url = transactionId ? resolveClientUrl(`Portal/PaymentRequest/PaymentRequestDetail?transid=${transactionId}`) : '';
         return (
             <div className="data-content">
                 <Modal isOpen={transactionId} toggle={() => this.props.setTransactionId(null)} size="lg" backdrop='static'>
@@ -43,12 +46,12 @@ export class PaymentInfoForm extends Component {
     }
 }
 
-function mapStateToProps({ transactionId }) {
-    return Object.assign({}, { transactionId });
+function mapStateToProps({ transactionId, param }) {
+    return Object.assign({}, { transactionId, param });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setTransactionId }, dispatch);
+    return bindActionCreators({ setTransactionId, setParam }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PaymentInfoForm);
+export default connect(mapStateToProps, mapDispatchToProps)(PaymentRequestUpdateForm);

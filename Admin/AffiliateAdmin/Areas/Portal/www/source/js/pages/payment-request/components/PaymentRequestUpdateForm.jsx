@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Modal, ModalHeader, ModalBody, Alert, Button, Form } from 'reactstrap';
 
-import { setTransactionId, toggleLoader, getPaymentRequestInfo, handleUpdate, fetchData } from '../actions';
+import { setTransactionId, toggleLoader, getPaymentRequestInfo, handleUpdate, setParam } from '../actions';
 import { resource, globalResource } from '../modules/constants';
 import { PaymentRequestInfo } from '../shared/PaymentRequestInfo';
 
-export class PaymentRequestUpdate extends Component {
+export class PaymentRequestUpdateForm extends Component {
     constructor(props) {
         super(props);
 
@@ -37,18 +37,18 @@ export class PaymentRequestUpdate extends Component {
     handleChecked = (event) => {
         this.setState({ [event.target.name]: event.target.value });
     }
-    
-    handleGetPaymentRequestInfo = async(transId) => {
+
+    handleGetPaymentRequestInfo = async (transId) => {
         this.props.toggleLoader(true);
 
-        const data = await this.props.getPaymentRequestInfo({transId});
+        const data = await this.props.getPaymentRequestInfo({ transId });
 
         data && this.setState({ paymentRequestInfo: data, status: data.status, adminDesc: data.AdminDesc, affDesc: data.AffDesc });
 
         this.props.toggleLoader(false);
     }
 
-    handleSave = async() => {
+    handleSave = async () => {
         this.props.toggleLoader(true);
         this.setState({
             isShowMessage: true
@@ -58,20 +58,21 @@ export class PaymentRequestUpdate extends Component {
 
         if (this.state.status && paymentRequestInfo.Status.toLowerCase() == 'pending') {
             const { status, adminDesc, affDesc } = this.state;
-            const paymentInfo = Object.assign({}, { TransId: paymentRequestInfo.TransId, AffId: paymentRequestInfo.AffId, Amount: paymentRequestInfo.Amount,
-                                                    TransDate: paymentRequestInfo.TransDateText, Status: status, AdminDesc: adminDesc, AffDesc: affDesc });
-            const response = await this.props.handleUpdate(paymentInfo);
+            const paymentInfo = Object.assign({}, {
+                TransId: paymentRequestInfo.TransId, AffId: paymentRequestInfo.AffId, Amount: paymentRequestInfo.Amount,
+                TransDate: paymentRequestInfo.TransDateText, Status: status, AdminDesc: adminDesc, AffDesc: affDesc
+            });
+            const data = await this.props.handleUpdate(paymentInfo);
 
-            if(response) {
+            if (data) {
                 this.setState({
                     isSuccess: data.IsSuccessful,
                     message: data.IsSuccessful ? `Transaction ID ${paymentRequestInfo.TransId} has been updated successfully!` : data.Message,
                 }, () => window.setTimeout(this.hideMessage, 3000));
 
-                window.setTimeout(() => this.props.setTransactionId(null), 3000);
-
                 if (data.IsSuccessful) {
-                    this.props.fetchData(this.props.param);
+                    window.setTimeout(() => this.props.setTransactionId(null), 3000);
+                    window.setTimeout(() => this.props.setParam(this.props.param), 3500);
                 }
             }
             else {
@@ -101,7 +102,7 @@ export class PaymentRequestUpdate extends Component {
         const { paymentRequestInfo, adminDesc, affDesc, isSuccess, isShowMessage, message } = this.state;
         const isPending = paymentRequestInfo && paymentRequestInfo.Status && paymentRequestInfo.Status.toLowerCase() == 'pending';
 
-        return  paymentRequestInfo && (
+        return paymentRequestInfo && (
             <div className="data-content">
                 <Modal isOpen={transactionId} toggle={() => this.props.setTransactionId(null)} size="lg" backdrop='static'>
                     <ModalHeader toggle={() => this.props.setTransactionId(null)}><span className="iconpopup"></span>Trxn.ID {transactionId}</ModalHeader>
@@ -116,7 +117,7 @@ export class PaymentRequestUpdate extends Component {
                                     adminDesc={adminDesc}
                                     affDesc={affDesc}
                                     handleChange={this.handleChange}
-                                    handleChecked={this.handleChecked}   
+                                    handleChecked={this.handleChecked}
                                 />
                                 <Button type="button" color="success" className="mr-3" disabled={!isPending} onClick={this.handleSave}>{globalResource.Update}</Button>
                                 <Button type="button" color="info" onClick={() => this.props.setTransactionId(null)}>{globalResource.Cancel}</Button>
@@ -134,7 +135,7 @@ function mapStateToProps({ transactionId, param }) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ setTransactionId, toggleLoader, getPaymentRequestInfo, handleUpdate, fetchData }, dispatch);
+    return bindActionCreators({ setTransactionId, toggleLoader, getPaymentRequestInfo, handleUpdate, setParam }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PaymentRequestUpdate);
+export default connect(mapStateToProps, mapDispatchToProps)(PaymentRequestUpdateForm);
