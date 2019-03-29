@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 
 import { Form, FormGroup, Input, Label, InputGroup, InputGroupAddon, Button } from 'reactstrap';
 import { getNowString } from '../../modules/utils';
-import { productList } from '../modules/constants';
+import { productList } from '../../modules/constants';
 
 export default class Filter extends PureComponent {
     constructor(props) {
