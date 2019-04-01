@@ -55,9 +55,9 @@
     <CodeAnalysisRuleSet>AffiliateAdmin.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup>
-  <!-- Exclude the project from analysis -->
-  <SonarQubeExclude>true</SonarQubeExclude>
-</PropertyGroup>
+    <!-- Exclude the project from analysis -->
+    <SonarQubeExclude>true</SonarQubeExclude>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DNAide, Version=2.1.404.20, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -1603,7 +1603,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\actions\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\actions\types.js" />
-    <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\payment-request-detail\reducer.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\reducers\index.js" />
     <Content Include="Areas\Portal\www\source\js\pages\RecheckIn\recheckin.js" />
@@ -2039,7 +2038,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\components\Filter.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\index.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\user-panel\statement-history.scss" />
-    <Content Include="Areas\Portal\www\source\js\pages\user-panel\statement-history\components\PaymentRequestUpdateForm.jsx" />
     <Content Include="Areas\Portal\Views\PaymentRequest\Index.cshtml" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\index.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\AppContainer.jsx" />
@@ -2054,9 +2052,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\PanelList.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\components\SearchBox.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\left-panel\index.jsx" />
-    <Content Include="Areas\Portal\Views\PaymentRequest\PaymentRequestDetail.cshtml" />
-    <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\PaymentRequestUpdateForm.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\payment-request\shared\PaymentRequestDetail.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\payment\payment-request.scss" />
     <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Approved\Content.zh-TW.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Approved\Content.en-GB.cshtml" />
@@ -2080,8 +2075,7 @@
     <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Rejected\Content.th-TH.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Rejected\Content.vi-VN.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Rejected\Content.zh-CN.cshtml" />
-    <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\payment-request-detail\index.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\payment-request-detail\PaymentRequestDetailForm.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\shared\PaymentRequestUpdateForm.jsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

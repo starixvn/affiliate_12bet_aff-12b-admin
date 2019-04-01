@@ -102,22 +102,18 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Payment
                 {
                     objectDb.AddInParameter("Status", DbType.String, param.Status);
                 }
-                AssignCommonParam(objectDb, param);
+                objectDb.AddInParameter("TransID", DbType.Int64, param.TransId);
+                objectDb.AddInParameter("AdminDesc", DbType.String, param.AdminDesc);
+                objectDb.AddInParameter("AffDesc", DbType.String, param.AffDesc);
+                objectDb.AddInParameter("UserID", DbType.Int32, param.UserId);
+                objectDb.AddInParameter("IP", DbType.String, param.Ip);
+
                 AssignResultOutputParam(objectDb);
 
                 objectDb.ExecuteNonQuery();
 
                 return GetResultInfo(objectDb);
             }
-        }
-
-        private static void AssignCommonParam(IObjectDb objectDb, PaymentRequestUpdateParam param)
-        {
-            objectDb.AddInParameter("TransID", DbType.Int64, param.TransId);
-            objectDb.AddInParameter("AdminDesc", DbType.String, param.AdminDesc);
-            objectDb.AddInParameter("AffDesc", DbType.String, param.AffDesc);
-            objectDb.AddInParameter("UserID", DbType.Int32, param.UserId);
-            objectDb.AddInParameter("IP", DbType.String, param.Ip);
         }
     }
 }

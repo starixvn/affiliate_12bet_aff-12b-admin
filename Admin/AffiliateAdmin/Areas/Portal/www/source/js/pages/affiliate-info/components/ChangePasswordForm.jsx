@@ -46,7 +46,7 @@ export class ChangePasswordForm extends Component {
         const url = `Portal/AffiliateInfo/ChangePassword`;
         const response = await post(url, param);
 
-        if (response) {
+        if (response ) {
             if (response.data.IsSuccessful) {
                 alert(resource.ChangePasswordSuccess);
 

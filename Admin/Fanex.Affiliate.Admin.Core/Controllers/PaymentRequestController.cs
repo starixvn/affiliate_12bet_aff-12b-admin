@@ -38,14 +38,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             };
         }
 
-        [HttpGet]
-        public ActionResult PaymentRequestDetail(long transId)
-        {
-            var model = _paymentRequestService.GetPaymentRequestDetail(transId);
-
-            return View("~/Areas/Portal/Views/PaymentRequest/PaymentRequestDetail.cshtml", model);
-        }
-
         [HttpPost]
         [ValidateAntiForgeryHeader]
         [Compress]

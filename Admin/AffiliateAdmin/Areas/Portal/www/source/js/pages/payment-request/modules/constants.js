@@ -27,10 +27,10 @@ export const resource = {
     UpdatedBy: 'Updated By',
 
     AdminNote: 'Admin Note',
-    VisibleOnly: 'Visible only to admin',
+    VisibleAdmin: 'Visible only to admin',
 
     AffiliateNote: 'Affiliate Note',
-    VisibleAlso: 'Visible also to affiliate',
+    VisibleAffiliate: 'Visible also to affiliate',
 
     Message: 'You must choose Approved or Rejected for this request!'
 }

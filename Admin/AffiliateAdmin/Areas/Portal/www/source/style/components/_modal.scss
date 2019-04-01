@@ -5,6 +5,14 @@
 .modal-body-wrapper {
     background-color: #e4ebf5;
     padding: 10px;
+
+    .payment-request-update-form {
+        padding: 0 10px 10px;
+        label{
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+    }
 }
 
 .modal-body {

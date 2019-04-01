@@ -27,7 +27,6 @@ module.exports = {
     [`${jsDist}/pages/userpanel/adjustment`]: clientRoot + "/js/pages/user-panel/adjustment/index.jsx",
     [`${jsDist}/pages/userpanel/statement-history`]: clientRoot + "/js/pages/user-panel/statement-history/index.jsx",
     [`${jsDist}/pages/payment/payment-request`]: clientRoot + "/js/pages/payment-request/index.jsx",
-    [`${jsDist}/pages/payment/payment-request-detail`]: clientRoot + "/js/pages/payment-request/components/payment-request-detail/index.jsx",
 
     //For Thirdparty Product pages
     [`${jsDist}/pages/thirdparty-product/betsoft`]: clientRoot + "/js/pages/thirdparty-product/betsoft/index.jsx",

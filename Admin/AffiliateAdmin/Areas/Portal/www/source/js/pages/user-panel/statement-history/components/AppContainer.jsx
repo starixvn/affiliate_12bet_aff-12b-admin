@@ -1,32 +1,51 @@
 ﻿import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import AppLayout from '../../../../layouts/AppLayout';
 import Loader from '../../../../components/Loader';
-
 import Filter from './Filter';
 import Content from './Content';
-import PaymentRequestUpdateForm from './PaymentRequestUpdateForm';
+import PaymentRequestUpdateForm from '../../../payment-request/components/shared/PaymentRequestUpdateForm';
+import { setTransactionId, setParam } from '../actions';
 
 export class AppContainer extends Component {
     constructor(props) {
         super(props);
     }
 
+    handleClosePopup = () => {
+        this.props.setTransactionId(null);
+    }
+
+    handleFetchData = () => {
+        this.props.setParam(this.props.param);
+    }
+
     render() {
+        const { isShowLoader, transactionId } = this.props;
+
         return (
             <AppLayout>
-                <Loader show={this.props.isShowLoader} />
+                <Loader show={isShowLoader} />
                 <Filter />
                 <Content />
-                <PaymentRequestUpdateForm />
+                <PaymentRequestUpdateForm
+                    transactionId={transactionId}
+                    handleClosePopup={this.handleClosePopup}
+                    handleFetchData={this.handleFetchData}
+                />
             </AppLayout>
         );
     }
 }
 
-function mapStateToProps({ isShowLoader }) {
-    return Object.assign({}, { isShowLoader });
+function mapStateToProps({ isShowLoader, transactionId, param }) {
+    return Object.assign({}, { isShowLoader, transactionId, param });
 }
 
-export default connect(mapStateToProps)(AppContainer);
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ setTransactionId, setParam }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);
