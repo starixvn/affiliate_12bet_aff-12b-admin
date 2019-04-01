@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getAffiliateInfo } from '../actions';
 
-import { Col, Button, Form, Label, Input } from 'reactstrap';
+import { Col, Button, Form, Label, Input, FormGroup } from 'reactstrap';
 
 export class SearchBox extends React.Component {
     constructor(props) {
@@ -34,7 +34,6 @@ export class SearchBox extends React.Component {
 
     render() {
         const { userName } = this.state;
-        const { hasData } = this.props;
         return (
             <Form tag="div">
                 <FormGroup row>

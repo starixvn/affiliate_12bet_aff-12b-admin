@@ -1,0 +1,12 @@
+﻿@{
+    Layout = "~/Areas/Portal/Views/Shared/_SinglePageLayout.cshtml";
+}
+
+@section scripts{
+    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/customer/leftpanel.js")"></script>
+}
+@section styles{
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/customer/leftpanel.css")" rel="stylesheet" />
+}
+<div id="root">
+</div>

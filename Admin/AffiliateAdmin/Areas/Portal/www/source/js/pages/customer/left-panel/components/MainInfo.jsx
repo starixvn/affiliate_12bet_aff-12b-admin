@@ -2,7 +2,7 @@ import React from 'react';
 
 //import GeneralInfo from './GeneralInfo';
 //import PanelList from './PanelList';
-import { Col, Button, Form, Label, Input } from 'reactstrap';
+import { Col, Button, Form, Label, Input, FormGroup } from 'reactstrap';
 
 const MainInfo = (props) => {
     return (

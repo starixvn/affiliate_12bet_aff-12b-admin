@@ -27,6 +27,7 @@ module.exports = {
     [`${jsDist}/pages/userpanel/adjustment`]: clientRoot + "/js/pages/user-panel/adjustment/index.jsx",
     [`${jsDist}/pages/userpanel/statement-history`]: clientRoot + "/js/pages/user-panel/statement-history/index.jsx",
     [`${jsDist}/pages/payment/payment-request`]: clientRoot + "/js/pages/payment-request/index.jsx",
+    [`${jsDist}/pages/customer/leftpanel`]: clientRoot + "/js/pages/customer/left-panel/index.jsx",
 
     //For Thirdparty Product pages
     [`${jsDist}/pages/thirdparty-product/betsoft`]: clientRoot + "/js/pages/thirdparty-product/betsoft/index.jsx",
@@ -55,4 +56,5 @@ module.exports = {
     [`${styleDist}/pages/user-panel/adjustment`]: clientRoot + "/style/pages/user-panel/adjustment.scss",
     [`${styleDist}/pages/user-panel/statement-history`]: clientRoot + "/style/pages/user-panel/statement-history.scss",
     [`${styleDist}/pages/payment/payment-request`]: clientRoot + "/style/pages/payment/payment-request.scss",
+    [`${styleDist}/pages/customer/leftpanel`]: clientRoot + "/style/pages/customer/leftpanel.scss",
 };

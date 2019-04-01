@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import AppLayout from '../../../layouts/AppLayout';
+import AppLayout from '../../../../layouts/AppLayout';
 import Content from './Content';
 
 const AppContainer = () => {

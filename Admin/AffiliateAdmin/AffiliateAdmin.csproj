@@ -2076,6 +2076,8 @@
     <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Rejected\Content.vi-VN.cshtml" />
     <Content Include="Areas\Portal\Views\Shared\Email\PaymentRequest\Rejected\Content.zh-CN.cshtml" />
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\shared\PaymentRequestUpdateForm.jsx" />
+    <Content Include="Areas\Portal\Views\Customer\LeftPanel.cshtml" />
+    <Content Include="Areas\Portal\www\source\style\pages\customer\leftpanel.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

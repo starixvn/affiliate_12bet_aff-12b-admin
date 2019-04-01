@@ -1,8 +1,6 @@
 import {
     LEFTPANEL_RECEIVE_AFFINFO,
-    LEFTPANEL_UPDATE_LANGUAGE_SUCCESS,
-    LEFTPANEL_UPDATE_CLOSED_SUCCESS,
-    LEFTPANEL_UPDATE_AFFTYPE_SUCCESS
+    LEFTPANEL_RECEIVE_ONLINELIST
 } from './types';
 import { post } from '../../../../modules/ajaxRequest';
 
@@ -13,29 +11,15 @@ const receiveLeftMenuInfo = (data) => {
     }
 }
 
-export const setLanguage = (data) => {
+const getOnLineList = (data) => {
     return {
-        type: LEFTPANEL_UPDATE_LANGUAGE_SUCCESS,
-        data
-    }
-}
-
-export const setClosedStatus = (data) => {
-    return {
-        type: LEFTPANEL_UPDATE_CLOSED_SUCCESS,
-        data
-    }
-}
-
-export const setAffType = (data) => {
-    return {
-        type: LEFTPANEL_UPDATE_AFFTYPE_SUCCESS,
+        type: LEFTPANEL_RECEIVE_ONLINELIST,
         data
     }
 }
 
 export const getAffiliateInfo = userName => async dispatch => {
-    const url = resolveClientUrl('Portal/CustomerLeftPanel/GetAffiliateInfo');
+    const url = 'Portal/CustomerLeftPanel/GetAffiliateInfo';
     const param = { affUsername: userName };
     const response = await post(url, param);
 
@@ -44,13 +28,13 @@ export const getAffiliateInfo = userName => async dispatch => {
 }
 
 export const updateGeneralInfo = param => {
-    const url = resolveClientUrl('Portal/Affiliate/UpdateInfo');
+    const url = 'Portal/CustomerLeftPanel/UpdateInfo';
 
     return () => axios.post(url, param);
 }
 
 export const changePassword = param => {
-    const url = resolveClientUrl('Portal/Affiliate/ChangePassword');
+    const url = 'Portal/CustomerLeftPanel/ChangePassword';
 
     return () => axios.post(url, param);
 }

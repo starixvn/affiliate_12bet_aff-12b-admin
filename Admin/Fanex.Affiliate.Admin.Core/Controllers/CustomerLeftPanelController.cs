@@ -17,6 +17,11 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             _customerLeftPanelRepository = customerLeftPanelRepository;
         }
 
+        public ActionResult Index()
+        {
+            return View("~/Areas/Portal/Views/Customer/LeftPanel.cshtml");
+        }
+
         [ValidateAntiForgeryHeader]
         [HttpPost]
         [Compress]
