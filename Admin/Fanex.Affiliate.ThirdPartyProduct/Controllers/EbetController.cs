@@ -80,7 +80,8 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
                 {
                     var apiParam = resultItem.Param;
                     rawDataBuilder.AppendLine($"Currency: {apiParam.CurrencyId}, ChanelId: {apiParam.ChannelId}, ApiUrl: {apiParam.ApiUrl}");
-                    rawDataBuilder.AppendLine($"UserName: {apiParam.UserName}, StartTime: {apiParam.StartTime}, EndTime: {apiParam.EndTime}, PageSize: {apiParam.PageSize}, PageNumber: {apiParam.PageNumber}");
+                    var paramInfo = $"UserName: {apiParam.UserName}, StartTime: {apiParam.StartTime}, EndTime: {apiParam.EndTime}, PageSize: {apiParam.PageSize}, PageNumber: {apiParam.PageNumber}";
+                    rawDataBuilder.AppendLine(paramInfo);
                     rawDataBuilder.AppendLine(resultItem.JsonData);
                     rawDataBuilder.AppendLine("------------------------------------------------------");
                     rawDataBuilder.AppendLine();

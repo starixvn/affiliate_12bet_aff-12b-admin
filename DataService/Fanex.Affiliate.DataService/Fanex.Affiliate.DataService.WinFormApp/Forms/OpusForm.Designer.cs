@@ -29,28 +29,19 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnImportDirectly = new System.Windows.Forms.Button();
             this.endTimePicker = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnImport = new System.Windows.Forms.Button();
             this.btnGetRawData = new System.Windows.Forms.Button();
             this.startTimePicker = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.richTextLog = new System.Windows.Forms.RichTextBox();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.richTextRawData = new System.Windows.Forms.RichTextBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.richTextConvertedData = new System.Windows.Forms.RichTextBox();
-            this.btnImportDirectly = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -58,7 +49,6 @@
             this.groupBox1.Controls.Add(this.btnImportDirectly);
             this.groupBox1.Controls.Add(this.endTimePicker);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.btnImport);
             this.groupBox1.Controls.Add(this.btnGetRawData);
             this.groupBox1.Controls.Add(this.startTimePicker);
             this.groupBox1.Controls.Add(this.label2);
@@ -69,6 +59,16 @@
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Input Param";
+            // 
+            // btnImportDirectly
+            // 
+            this.btnImportDirectly.Location = new System.Drawing.Point(160, 58);
+            this.btnImportDirectly.Name = "btnImportDirectly";
+            this.btnImportDirectly.Size = new System.Drawing.Size(132, 23);
+            this.btnImportDirectly.TabIndex = 17;
+            this.btnImportDirectly.Text = "Import Directly";
+            this.btnImportDirectly.UseVisualStyleBackColor = true;
+            this.btnImportDirectly.Click += new System.EventHandler(this.btnImportDirectly_Click);
             // 
             // endTimePicker
             // 
@@ -87,16 +87,6 @@
             this.label1.Size = new System.Drawing.Size(55, 13);
             this.label1.TabIndex = 15;
             this.label1.Text = "End Time:";
-            // 
-            // btnImport
-            // 
-            this.btnImport.Location = new System.Drawing.Point(149, 58);
-            this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(132, 23);
-            this.btnImport.TabIndex = 7;
-            this.btnImport.Text = "Import Converted Data";
-            this.btnImport.UseVisualStyleBackColor = true;
-            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
             // btnGetRawData
             // 
@@ -146,33 +136,14 @@
             this.richTextLog.TabIndex = 0;
             this.richTextLog.Text = "";
             // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.IsSplitterFixed = true;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 197);
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.groupBox3);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.groupBox4);
-            this.splitContainer1.Size = new System.Drawing.Size(1071, 485);
-            this.splitContainer1.SplitterDistance = 521;
-            this.splitContainer1.SplitterWidth = 5;
-            this.splitContainer1.TabIndex = 6;
-            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.richTextRawData);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.Location = new System.Drawing.Point(0, 0);
+            this.groupBox3.Location = new System.Drawing.Point(0, 197);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(521, 485);
-            this.groupBox3.TabIndex = 4;
+            this.groupBox3.Size = new System.Drawing.Size(1071, 485);
+            this.groupBox3.TabIndex = 6;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Raw data";
             // 
@@ -181,46 +152,16 @@
             this.richTextRawData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextRawData.Location = new System.Drawing.Point(3, 16);
             this.richTextRawData.Name = "richTextRawData";
-            this.richTextRawData.Size = new System.Drawing.Size(515, 466);
+            this.richTextRawData.Size = new System.Drawing.Size(1065, 466);
             this.richTextRawData.TabIndex = 3;
             this.richTextRawData.Text = "";
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.richTextConvertedData);
-            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox4.Location = new System.Drawing.Point(0, 0);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(545, 485);
-            this.groupBox4.TabIndex = 5;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Converted Xml";
-            // 
-            // richTextConvertedData
-            // 
-            this.richTextConvertedData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextConvertedData.Location = new System.Drawing.Point(3, 16);
-            this.richTextConvertedData.Name = "richTextConvertedData";
-            this.richTextConvertedData.Size = new System.Drawing.Size(539, 466);
-            this.richTextConvertedData.TabIndex = 0;
-            this.richTextConvertedData.Text = "";
-            // 
-            // btnImportDirectly
-            // 
-            this.btnImportDirectly.Location = new System.Drawing.Point(316, 58);
-            this.btnImportDirectly.Name = "btnImportDirectly";
-            this.btnImportDirectly.Size = new System.Drawing.Size(132, 23);
-            this.btnImportDirectly.TabIndex = 17;
-            this.btnImportDirectly.Text = "Import Directly";
-            this.btnImportDirectly.UseVisualStyleBackColor = true;
-            this.btnImportDirectly.Click += new System.EventHandler(this.btnImportDirectly_Click);
             // 
             // OpusForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1071, 682);
-            this.Controls.Add(this.splitContainer1);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox1);
             this.Name = "OpusForm";
@@ -228,12 +169,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox5.ResumeLayout(false);
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -243,17 +179,13 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DateTimePicker endTimePicker;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.Button btnGetRawData;
         private System.Windows.Forms.DateTimePicker startTimePicker;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.RichTextBox richTextLog;
-        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Button btnImportDirectly;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.RichTextBox richTextRawData;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.RichTextBox richTextConvertedData;
-        private System.Windows.Forms.Button btnImportDirectly;
     }
 }

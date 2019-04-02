@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Container, Row, Col, Card, CardHeader, CardBody, CardText, Input } from 'reactstrap';
 
-export default class Filter extends PureComponent {
+export default class Content extends PureComponent {
     constructor(props) {
         super(props);
     }
@@ -12,11 +12,13 @@ export default class Filter extends PureComponent {
             return null;
         }
 
+        const { RawData, ConvertedData } = data;
+
         return (
             <div className="my-2">
                 <Container fluid={true}>
                     <Row>
-                        <Col xs="6">
+                        <Col xs={ConvertedData === null ? 12 : 6}>
                             <Card>
                                 <CardHeader>Raw Data</CardHeader>
                                 <CardBody>
@@ -26,16 +28,18 @@ export default class Filter extends PureComponent {
                                 </CardBody>
                             </Card>
                         </Col>
-                        <Col xs="6">
-                            <Card>
-                                <CardHeader>Converted Data (GMT -4)</CardHeader>
-                                <CardBody>
-                                    <CardText>
-                                        <Input type="textarea" readOnly value={data.ConvertedData} rows={55} />
-                                    </CardText>
-                                </CardBody>
-                            </Card>
-                        </Col>
+                        {ConvertedData !== null && (
+                            <Col xs="6">
+                                <Card>
+                                    <CardHeader>Converted Data</CardHeader>
+                                    <CardBody>
+                                        <CardText>
+                                            <Input type="textarea" readOnly value={data.ConvertedData} rows={55} />
+                                        </CardText>
+                                    </CardBody>
+                                </Card>
+                            </Col>)
+                        }
                     </Row>
                 </Container>
             </div>

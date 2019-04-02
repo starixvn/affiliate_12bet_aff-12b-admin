@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -19,8 +18,6 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
 
         private readonly SynchronizationContext synchronizationContext;
 
-        private readonly IList<string> _convertedDataList;
-
         public BetsoftForm()
         {
             InitializeComponent();
@@ -29,13 +26,11 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
             _appSetting = new AppSettings();
             _betsoftService = new BetsoftService();
             synchronizationContext = SynchronizationContext.Current;
-            _convertedDataList = new List<string>();
         }
 
         private async void btnGetRawData_Click(object sender, EventArgs e)
         {
             var rawDataBuilder = new StringBuilder();
-            var convertedDataBuilder = new StringBuilder();
             try
             {
                 ResetResult();
@@ -53,11 +48,6 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
                     {
                         rawDataBuilder.AppendLine(item);
                         rawDataBuilder.AppendLine();
-
-                        var convertedData = _betsoftService.ConvertDataTimeZone(item);
-                        _convertedDataList.Add(convertedData);
-                        convertedDataBuilder.AppendLine(convertedData);
-                        convertedDataBuilder.AppendLine();
                     }
                 }
                 else
@@ -77,41 +67,6 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
                 {
                     DisplayResult();
                     richTextRawData.Text = rawDataBuilder.ToString();
-                    richTextConvertedData.Text = convertedDataBuilder.ToString();
-                }), null);
-            }
-        }
-
-        private async void btnImport_Click(object sender, EventArgs e)
-        {
-            var importButtonText = btnImport.Text;
-            HandleBeforeImporting();
-            try
-            {
-                foreach (var xmlData in _convertedDataList)
-                {
-                    await Task.Run(() =>
-                    {
-                        _betsoftService.Import(xmlData);
-                    });
-                }
-
-                _convertedDataList.Clear();
-                _logBuilder.AppendLine("Import done!!!");
-            }
-            catch (Exception ex)
-            {
-                _logBuilder.AppendLine(ex.Message);
-                _logBuilder.AppendLine(ex.StackTrace);
-                _logBuilder.AppendLine(ex.Source);
-            }
-            finally
-            {
-                synchronizationContext.Post(new SendOrPostCallback((state) =>
-                {
-                    DisplayResult();
-                    HandleAfterImporting();
-                    btnImport.Text = importButtonText;
                 }), null);
             }
         }
@@ -121,7 +76,6 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
             _logBuilder.Clear();
             richTextLog.Clear();
             richTextRawData.Clear();
-            richTextConvertedData.Clear();
         }
 
         private void DisplayResult()
@@ -130,21 +84,9 @@ namespace Fanex.Affiliate.DataService.WinFormApp.Forms
             _logBuilder.Clear();
         }
 
-        private void HandleBeforeImporting()
-        {
-            ToggleButton(false);
-            btnImport.Text = "Importing...";
-        }
-
-        private void HandleAfterImporting()
-        {
-            ToggleButton(true);
-        }
-
         private void ToggleButton(bool isEnable)
         {
             btnGetRawData.Enabled = isEnable;
-            btnImport.Enabled = isEnable;
             btnImportDirectly.Enabled = isEnable;
         }
 

@@ -40,7 +40,6 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
         {
             var logBuilder = new StringBuilder();
             var rawDataBuilder = new StringBuilder();
-            var convertedDataBuilder = new StringBuilder();
             try
             {
                 var startTime = DateTime.ParseExact(param.StartTime, Format.RequestDateTime, CultureInfo.InvariantCulture);
@@ -58,7 +57,7 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
                     EndDate = endTime
                 };
 
-                var rawDataList = await _betsoftService.GetMultipleRawDataBatchAsync(betSoftParam);
+                var rawDataList = await _betsoftService.GetMultipleRawDataBatchAsync(betSoftParam).ConfigureAwait(false);
                 if (rawDataList.Any())
                 {
                     param.UserName = param.UserName?.Trim();
@@ -71,10 +70,6 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
                     {
                         rawDataBuilder.AppendLine(item);
                         rawDataBuilder.AppendLine();
-
-                        var convertedData = _betsoftService.ConvertDataTimeZone(item);
-                        convertedDataBuilder.AppendLine(convertedData);
-                        convertedDataBuilder.AppendLine();
                     }
                 }
             }
@@ -88,12 +83,11 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
             return Content(JsonConvert.SerializeObject(new ThirdPartyProductViewModel
             {
                 LogMessage = logBuilder.ToString(),
-                RawData = rawDataBuilder.ToString(),
-                ConvertedData = convertedDataBuilder.ToString()
+                RawData = rawDataBuilder.ToString()
             }), "application/json");
         }
 
-        private IList<string> GetDataByUserName(IList<string> rawDataList, string userName)
+        private static IList<string> GetDataByUserName(IList<string> rawDataList, string userName)
         {
             var dataList = new List<string>();
             foreach (var rawData in rawDataList)

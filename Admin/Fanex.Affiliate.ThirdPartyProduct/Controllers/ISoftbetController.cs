@@ -59,36 +59,32 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
                 };
 
                 var rawDataList = _isoftbetService.GetRawDataList(isoftbetParam);
-                if (rawDataList.Any())
+                foreach (var item in rawDataList)
                 {
-                    foreach (var item in rawDataList)
+                    rawDataBuilder.AppendLine(item.JsonData);
+                    rawDataBuilder.AppendLine("-----------------------------------------");
+                    rawDataBuilder.AppendLine();
+
+                    var jObject = JObject.Parse(item.JsonData);
+                    var status = Convert.ToString(jObject["status"]);
+                    if (!string.Equals("success", status))
                     {
-                        rawDataBuilder.AppendLine(item.JsonData);
-                        rawDataBuilder.AppendLine("-----------------------------------------");
-                        rawDataBuilder.AppendLine();
-
-                        var jObject = JObject.Parse(item.JsonData);
-                        var status = Convert.ToString(jObject["status"]);
-                        if (string.Equals("success", status))
-                        {
-                            var summary = ISoftbetParser.FromJsonObject(jObject);
-                            param.UserName = param.UserName?.Trim();
-                            if (!string.IsNullOrEmpty(param.UserName))
-                            {
-                                summary.BetHistoryList = summary.BetHistoryList
-                                    .Where(x => string.Equals(x.PlayerId, param.UserName, StringComparison.InvariantCultureIgnoreCase));
-                            }
-
-                            if (summary.BetHistoryList.Any())
-                            {
-                                var xml = _isoftbetService.ConvertToXml(summary, item.Param);
-
-                                convertedDataBuilder.AppendLine(xml);
-                                convertedDataBuilder.AppendLine("-----------------------------------------");
-                                convertedDataBuilder.AppendLine();
-                            }
-                        }
+                        return GetContentResult(string.Empty, rawDataBuilder.ToString(), string.Empty);
                     }
+
+                    var summary = ISoftbetParser.FromJsonObject(jObject);
+                    param.UserName = param.UserName?.Trim();
+                    if (!string.IsNullOrEmpty(param.UserName))
+                    {
+                        summary.BetHistoryList = summary.BetHistoryList
+                            .Where(x => string.Equals(x.PlayerId, param.UserName, StringComparison.InvariantCultureIgnoreCase));
+                    }
+
+                    var xml = _isoftbetService.ConvertToXml(summary, item.Param);
+
+                    convertedDataBuilder.AppendLine(xml);
+                    convertedDataBuilder.AppendLine("-----------------------------------------");
+                    convertedDataBuilder.AppendLine();
                 }
             }
             catch (Exception ex)
@@ -98,11 +94,16 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
                 logBuilder.AppendLine(ex.Source);
             }
 
+            return GetContentResult(logBuilder.ToString(), rawDataBuilder.ToString(), convertedDataBuilder.ToString());
+        }
+
+        private ActionResult GetContentResult(string log, string rawData, string convertedData)
+        {
             return Content(JsonConvert.SerializeObject(new ThirdPartyProductViewModel
             {
-                LogMessage = logBuilder.ToString(),
-                RawData = rawDataBuilder.ToString(),
-                ConvertedData = convertedDataBuilder.ToString()
+                LogMessage = log,
+                RawData = rawData,
+                ConvertedData = convertedData
             }), "application/json");
         }
     }
