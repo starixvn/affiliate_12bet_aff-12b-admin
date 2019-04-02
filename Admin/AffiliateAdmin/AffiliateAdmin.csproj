@@ -1538,12 +1538,14 @@
     <Content Include="Areas\Portal\www\dist\style\pages\commission-group.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\customer-statistics.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\media-gallery\landing-page.css" />
-    <Content Include="Areas\Portal\www\dist\style\pages\payment-request.css" />
+    <Content Include="Areas\Portal\www\dist\style\pages\payment\payment-request.css" />
+    <Content Include="Areas\Portal\www\dist\style\pages\user-panel\adjustment.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\user-panel\customer-member.css" />
-    <Content Include="Areas\Portal\www\dist\style\pages\user-panel\landing-pages.css" />
+    <Content Include="Areas\Portal\www\dist\style\pages\user-panel\landing-page-statistics.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\user-panel\note.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\user-panel\player-detail.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\user-panel\referrers.css" />
+    <Content Include="Areas\Portal\www\dist\style\pages\user-panel\statement-history.css" />
     <Content Include="Areas\Portal\www\dist\style\pages\user-panel\view-log.css" />
     <Content Include="Areas\Portal\www\dist\style\portalmain.css" />
     <Content Include="Areas\Portal\www\dist\style\user-panel-layout.css" />
