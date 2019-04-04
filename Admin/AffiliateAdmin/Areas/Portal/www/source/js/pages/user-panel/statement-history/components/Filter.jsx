@@ -5,6 +5,7 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { DatePicker } from '@9softstudio/react-datepicker';
 
 import { globalResource } from '../modules/constants';
+import { getNewFromDateToDate } from '../../../../modules/getNewFromDateToDate';
 import { setParam } from '../actions';
 
 const minDate = new Date(2009, 11, 1);
@@ -34,9 +35,11 @@ export class Filter extends React.Component {
 
     handleSetParam() {
         const { isGetAll, fromDate, toDate } = this.state;
-        const newParam = Object.assign({}, this.props.param, { IsGetAll: isGetAll,
+        const newParam = Object.assign({}, this.props.param, {
+            IsGetAll: isGetAll,
             FromDate: isGetAll ? `${minDate.getMonth() + 1}/${minDate.getDate()}/${minDate.getFullYear()}` : fromDate,
-            ToDate: isGetAll ? this.nowString: toDate });
+            ToDate: isGetAll ? this.nowString : toDate
+        });
         this.props.setParam(newParam);
     }
 
@@ -45,17 +48,7 @@ export class Filter extends React.Component {
     }
 
     handleChangeFromDate = (momentDate) => {
-        const selectedDateString = momentDate.format("MM/DD/YYYY");
-        const fromDate = new Date(selectedDateString);
-        const toDate = new Date(this.state.toDate);
-
-        const isOutsideRange = fromDate.getTime() > toDate.getTime();
-        const newToDate = isOutsideRange ? selectedDateString : this.state.toDate;
-
-        this.setState({
-            fromDate: selectedDateString,
-            toDate: newToDate
-        });
+        this.setState(getNewFromDateToDate(momentDate, this.state.toDate));
     }
 
     handleChangeToDate = (momentDate) => {

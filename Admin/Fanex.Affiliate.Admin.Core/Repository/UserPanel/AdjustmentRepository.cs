@@ -11,8 +11,6 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
         {
             const string SpKey = "Aff_CustomerSelBalBF";
 
-            decimal BalanceBf;
-
             using (var objectDb = GetObjectDb(SpKey))
             {
                 objectDb.AddInParameter("AffID", DbType.Int32, affId);
@@ -21,11 +19,10 @@ namespace Fanex.Affiliate.Admin.Core.Repository.UserPanel
 
                 objectDb.ExecuteNonQuery();
 
-                var BalBroughtForward = objectDb.GetParameterValue("BalBroughtForward");
-                BalanceBf = BalBroughtForward == DBNull.Value ? 0 : Convert.ToDecimal(BalBroughtForward);
+                var balBroughtForward = objectDb.GetParameterValue("BalBroughtForward");
+                return balBroughtForward == DBNull.Value ? 0 : Convert.ToDecimal(balBroughtForward);
             }
 
-            return BalanceBf;
         }
 
         public ResultInfo InsertAdjustment(AdjustmentParam param)

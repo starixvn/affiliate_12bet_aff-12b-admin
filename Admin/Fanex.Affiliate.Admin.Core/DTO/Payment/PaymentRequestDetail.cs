@@ -1,7 +1,12 @@
-﻿namespace Fanex.Affiliate.Admin.Core.DTO.Payment
+﻿using System;
+
+namespace Fanex.Affiliate.Admin.Core.DTO.Payment
 {
+    [Serializable]
     public class PaymentRequestDetail : PaymentRequest
     {
+        public int AffId { get; set; }
+
         public string Email { get; set; }
 
         public string FirstName { get; set; }

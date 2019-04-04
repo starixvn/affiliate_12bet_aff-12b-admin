@@ -32,13 +32,22 @@ export const resource = {
     AffiliateNote: 'Affiliate Note',
     VisibleAffiliate: 'Visible also to affiliate',
 
-    Message: 'You must choose Approved or Rejected for this request!'
+    Message: 'You must choose Approved or Rejected for this request!',
+    UpdateFailed: 'Update transaction failed!',
+    ApprovedLowerCase: 'approved',
+    RejectedLowerCase: 'rejected',
+    PendingLowerCase: 'pending'
 }
 
-export const searchByArray = ['User Name', 'Others']
+const UserName = 0;
+const Others = 1;
+export const searchByList = { 
+    [UserName]: 'User Name',
+    [Others]: 'Others'
+}
 
 export const statusList = {
-    Processing: 'Pending',
+    Pending: 'Processing',
     Approved: 'Approved',
     Rejected: 'Rejected',
     Cancelled: 'Cancelled'

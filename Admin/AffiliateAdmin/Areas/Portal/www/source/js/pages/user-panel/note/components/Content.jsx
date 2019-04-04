@@ -24,11 +24,11 @@ export class Content extends Component {
     _renderHeader() {
         return (
             <Row key="thead">
-                <Cell header={true} colWidth={40} title={headerText.Index}>{headerText.Index}</Cell>
-                <Cell header={true} colWidth={1000} title={headerText.Content}>{headerText.Content}</Cell>
-                <Cell header={true} colWidth={200} title={headerText.CreatedBy}>{headerText.CreatedBy}</Cell>
-                <Cell header={true} colWidth={250} title={headerText.LastModify}>{headerText.LastModify}</Cell>
-                <Cell header={true} colWidth={60} title={globalResource.Edit}>{globalResource.Edit}</Cell>
+                <Cell header={true} colWidth={35} title={headerText.Index}>{headerText.Index}</Cell>
+                <Cell header={true} colWidth={580} title={headerText.Content}>{headerText.Content}</Cell>
+                <Cell header={true} colWidth={150} title={headerText.CreatedBy}>{headerText.CreatedBy}</Cell>
+                <Cell header={true} colWidth={200} title={headerText.LastModify}>{headerText.LastModify}</Cell>
+                <Cell header={true} colWidth={35} title={globalResource.Edit}>{globalResource.Edit}</Cell>
             </Row>
         );
     }

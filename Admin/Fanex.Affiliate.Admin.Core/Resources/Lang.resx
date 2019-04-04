@@ -234,4 +234,130 @@
   <data name="EmailTitlePaymentRequestRejected" xml:space="preserve">
     <value>Your payment request has been rejected</value>
   </data>
+  <data name="Err1" xml:space="preserve">
+    <value>Wrong discount</value>
+  </data>
+  <data name="ApprovedLowerCase" xml:space="preserve">
+    <value>approved</value>
+  </data>
+  <data name="Err100" xml:space="preserve">
+    <value>Sorry, cannot create agent</value>
+  </data>
+  <data name="Err1001" xml:space="preserve">
+    <value>Invalid affiliate information</value>
+  </data>
+  <data name="Err1002" xml:space="preserve">
+    <value>Email Address has been used. Please choose another one!</value>
+  </data>
+  <data name="Err1003" xml:space="preserve">
+    <value>12BET User Name is invalid</value>
+  </data>
+  <data name="Err1004" xml:space="preserve">
+    <value>Invalid user infomation. Update process is unsuccessful</value>
+  </data>
+  <data name="Err1005" xml:space="preserve">
+    <value>Error occurs. Update process is unsuccessful</value>
+  </data>
+  <data name="Err1006" xml:space="preserve">
+    <value>Error occurs. Update process is unsuccessful</value>
+  </data>
+  <data name="Err1007" xml:space="preserve">
+    <value>Email Address has been used by another affiliate. Please choose another one!</value>
+  </data>
+  <data name="Err101" xml:space="preserve">
+    <value>This username is not available</value>
+  </data>
+  <data name="Err102" xml:space="preserve">
+    <value>Wrong position taking (max for master set by super)</value>
+  </data>
+  <data name="Err103" xml:space="preserve">
+    <value>Sorry, min bet must be less than max bet and max bet must be less than max bet per match</value>
+  </data>
+  <data name="Err104" xml:space="preserve">
+    <value>Sorry, credit update is not successful, You have exceeded your master credit</value>
+  </data>
+  <data name="Err105" xml:space="preserve">
+    <value>Sorry, min bet must be equal to or greater than master agent min bet</value>
+  </data>
+  <data name="Err107" xml:space="preserve">
+    <value>Sorry, Max Per Match must be equal to or less than master agent Max Per Match</value>
+  </data>
+  <data name="Err111" xml:space="preserve">
+    <value>Create customer failed. Please try again</value>
+  </data>
+  <data name="Err112" xml:space="preserve">
+    <value>Create customer failed. Please try again</value>
+  </data>
+  <data name="Err113" xml:space="preserve">
+    <value>Create customer failed. Please try again</value>
+  </data>
+  <data name="Err114" xml:space="preserve">
+    <value>Create customer failed. Please try again</value>
+  </data>
+  <data name="Err115" xml:space="preserve">
+    <value>Create customer failed. Please try again</value>
+  </data>
+  <data name="Err116" xml:space="preserve">
+    <value>You are not authorized on this function</value>
+  </data>
+  <data name="Err2" xml:space="preserve">
+    <value>Wrong Min bet/ Max bet/ Max per match/ Credit/ Master Agent name/ user group</value>
+  </data>
+  <data name="Err3" xml:space="preserve">
+    <value>Sorry, this affiliate does not exist. Please contact your Administrator</value>
+  </data>
+  <data name="Err30010" xml:space="preserve">
+    <value>Sorry, this affiliate does not exist. Please contact your Administrator</value>
+  </data>
+  <data name="Err30011" xml:space="preserve">
+    <value>Status must be approved or rejected</value>
+  </data>
+  <data name="Err30012" xml:space="preserve">
+    <value>Sorry, your input transid is invalid. Please recheck it again</value>
+  </data>
+  <data name="Err30014" xml:space="preserve">
+    <value>Sorry, System errors. Cannot insert into bettrans 1</value>
+  </data>
+  <data name="Err30015" xml:space="preserve">
+    <value>Sorry, System errors. Cannot insert into bettrans 2</value>
+  </data>
+  <data name="Err3006" xml:space="preserve">
+    <value>Insert transaction failed</value>
+  </data>
+  <data name="Err4" xml:space="preserve">
+    <value>Wrong position taking (min/max set by company)</value>
+  </data>
+  <data name="Err4001" xml:space="preserve">
+    <value>Invalid CustID</value>
+  </data>
+  <data name="Err4002" xml:space="preserve">
+    <value>This transaction is not a withdrawal</value>
+  </data>
+  <data name="Err4003" xml:space="preserve">
+    <value>This transaction has been cancelled before</value>
+  </data>
+  <data name="Err4004" xml:space="preserve">
+    <value>Invalid balance account or the currency is not supported</value>
+  </data>
+  <data name="Err5" xml:space="preserve">
+    <value>Wrong position taking (max set by company)</value>
+  </data>
+  <data name="Err500" xml:space="preserve">
+    <value>You are not authorized on this function</value>
+  </data>
+  <data name="Err5001" xml:space="preserve">
+    <value>This transaction already accepted</value>
+  </data>
+  <data name="Err999" xml:space="preserve">
+    <value>Create Affiliate Info failed. Please try again</value>
+  </data>
+  <data name="PendingLowerCase" xml:space="preserve">
+    <value>pending</value>
+  </data>
+  <data name="RejectedLowerCase" xml:space="preserve">
+    <value>rejected</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
 </root>

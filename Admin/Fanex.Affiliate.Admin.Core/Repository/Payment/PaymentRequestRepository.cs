@@ -91,29 +91,44 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Payment
             return result;
         }
 
-        public ResultInfo UpdatePaymentRequest(PaymentRequestUpdateParam param)
+        public ResultInfo ApprovePaymentRequest(PaymentRequestUpdateParam param)
         {
-            var isApproved = "approved".Equals(param.Status.ToLowerInvariant());
-            var SpKey = isApproved ? "Aff_PaymentRequestApprove" : "Aff_PaymentRequestUpd";
+            const string SpKey = "Aff_PaymentRequestApprove";
 
             using (var objectDb = GetObjectDb(SpKey))
             {
-                if (!isApproved)
-                {
-                    objectDb.AddInParameter("Status", DbType.String, param.Status);
-                }
-                objectDb.AddInParameter("TransID", DbType.Int64, param.TransId);
-                objectDb.AddInParameter("AdminDesc", DbType.String, param.AdminDesc);
-                objectDb.AddInParameter("AffDesc", DbType.String, param.AffDesc);
-                objectDb.AddInParameter("UserID", DbType.Int32, param.UserId);
-                objectDb.AddInParameter("IP", DbType.String, param.Ip);
-
+                AssignCommonParam(objectDb, param);
                 AssignResultOutputParam(objectDb);
 
                 objectDb.ExecuteNonQuery();
 
                 return GetResultInfo(objectDb);
             }
+        }
+
+        public ResultInfo RejectPaymentRequest(PaymentRequestUpdateParam param)
+        {
+            const string SpKey = "Aff_PaymentRequestUpd";
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                objectDb.AddInParameter("Status", DbType.String, param.Status);
+                AssignCommonParam(objectDb, param);
+                AssignResultOutputParam(objectDb);
+
+                objectDb.ExecuteNonQuery();
+
+                return null;
+            }
+        }
+
+        private static void AssignCommonParam(IObjectDb objectDb, PaymentRequestUpdateParam param)
+        {
+            objectDb.AddInParameter("TransID", DbType.Int64, param.TransId);
+            objectDb.AddInParameter("AdminDesc", DbType.String, param.AdminDesc);
+            objectDb.AddInParameter("AffDesc", DbType.String, param.AffDesc);
+            objectDb.AddInParameter("UserID", DbType.Int32, param.UserId);
+            objectDb.AddInParameter("IP", DbType.String, param.Ip);
         }
     }
 }

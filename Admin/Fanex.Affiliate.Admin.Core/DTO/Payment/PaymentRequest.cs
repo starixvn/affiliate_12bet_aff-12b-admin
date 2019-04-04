@@ -3,6 +3,7 @@ using System;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.Payment
 {
+    [Serializable]
     public class PaymentRequest
     {
         public long TransId { get; set; }
@@ -11,8 +12,6 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Payment
         public DateTime TransDate { get; set; }
 
         public string Status { get; set; }
-
-        public int AffId { get; set; }
 
         public string AffName { get; set; }
 

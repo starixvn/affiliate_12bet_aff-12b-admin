@@ -7,10 +7,23 @@
     padding: 10px;
 
     .payment-request-update-form {
-        padding: 0 10px 10px;
-        label{
+        padding: 5px 10px 10px;
+        label {
+            line-height: 1rem;
             padding-top: 0;
             padding-bottom: 0;
+            margin-bottom: 0;
+        }
+        legend {
+            padding: 0 .2rem;
+        }
+
+        fieldset {
+            padding-bottom: 6px;
+            margin-bottom: .5rem;
+        }
+        textarea {
+            font-size: 12px;
         }
     }
 }

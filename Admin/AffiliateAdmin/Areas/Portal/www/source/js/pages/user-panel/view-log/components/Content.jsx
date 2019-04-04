@@ -50,12 +50,12 @@ export class Content extends Component {
     _renderHeader() {
         return (
             <Row key="thead">
-                <Cell header={true} colWidth={25} title={headerText.Index}>{headerText.Index}</Cell>
-                <Cell header={true} colWidth={55} title={headerText.Id}>{headerText.Id}</Cell>
-                <Cell header={true} colWidth={110} title={headerText.Date}>{headerText.Date}</Cell>
+                <Cell header={true} colWidth={35} title={headerText.Index}>{headerText.Index}</Cell>
+                <Cell header={true} colWidth={70} title={headerText.Id}>{headerText.Id}</Cell>
+                <Cell header={true} colWidth={95} title={headerText.Date}>{headerText.Date}</Cell>
                 <Cell header={true} colWidth={100} title={headerText.UpdatedBy}>{headerText.UpdatedBy}</Cell>
-                <Cell header={true} colWidth={110} title={headerText.Action}>{headerText.Action}</Cell>
-                <Cell header={true} colWidth={500} title={headerText.Description}>{headerText.Description}</Cell>
+                <Cell header={true} colWidth={160} title={headerText.Action}>{headerText.Action}</Cell>
+                <Cell header={true} colWidth={440} title={headerText.Description}>{headerText.Description}</Cell>
                 <Cell header={true} colWidth={100} title={headerText.Ip}>{headerText.Ip}</Cell>
             </Row>
         );

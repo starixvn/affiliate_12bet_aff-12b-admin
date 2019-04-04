@@ -3,6 +3,7 @@ using System;
 
 namespace Fanex.Affiliate.Admin.Core.DTO.UserPanel
 {
+    [Serializable]
     public class Note
     {
         public int NoteId { get; set; }

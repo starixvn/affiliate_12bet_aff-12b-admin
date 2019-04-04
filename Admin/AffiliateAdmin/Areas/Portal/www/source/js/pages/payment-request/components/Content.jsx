@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
 
-import { headerText, globalResource, resource } from '../modules/constants';
+import { headerText, globalResource, resource, statusList } from '../modules/constants';
 import { setPagingOption, toggleLoader, fetchData, setTransactionId } from '../actions';
 import { formatDecimalWithCurrencySymbol } from '../../../modules/numberFormat';
 
@@ -47,13 +47,13 @@ export class Content extends Component {
     _renderHeader() {
         return (
             <Row key="thead">
-                <Cell header={true} colWidth={25} title={headerText.Index}>{headerText.Index}</Cell>
+                <Cell header={true} colWidth={35} title={headerText.Index}>{headerText.Index}</Cell>
                 <Cell header={true} colWidth={100} title={headerText.TrxnId}>{headerText.TrxnId}</Cell>
-                <Cell header={true} colWidth={175} title={headerText.RequestedDate}>{headerText.RequestedDate}</Cell>
+                <Cell header={true} colWidth={175} title={resource.RequestedDate}>{resource.RequestedDate}</Cell>
                 <Cell header={true} colWidth={100} title={resource.UserName}>{resource.UserName}</Cell>
-                <Cell header={true} colWidth={175} title={headerText.Amount}>{headerText.Amount}</Cell>
-                <Cell header={true} colWidth={75} title={resource.Status}>{resource.Status}</Cell>
-                <Cell header={true} colWidth={175} title={headerText.CompletedDate}>{headerText.CompletedDate}</Cell>
+                <Cell header={true} colWidth={150} title={resource.Amount}>{resource.Amount}</Cell>
+                <Cell header={true} colWidth={100} title={resource.Status}>{resource.Status}</Cell>
+                <Cell header={true} colWidth={175} title={resource.CompletedDate}>{resource.CompletedDate}</Cell>
                 <Cell header={true} colWidth={175} title={headerText.Creator}>{headerText.Creator}</Cell>
             </Row>
         );
@@ -83,9 +83,12 @@ export class Content extends Component {
 
     _buildDataRow(dataItem, index) {
         const amount = formatDecimalWithCurrencySymbol(dataItem.Amount);
-        const status = dataItem.Status.toLowerCase() == 'pending' ? 'Processing' : dataItem.Status;
-        const completedDate = dataItem.Status.toLowerCase() == 'pending' ? '--' : dataItem.CompletedDateText;
-        const creator = dataItem.Status.toLowerCase() == 'pending' ? '--' : dataItem.Creator;
+        const statusLowerCase = dataItem.Status.toLowerCase();
+        const pending = resource.PendingLowerCase;
+
+        const status = statusLowerCase === pending ? statusList.Pending : dataItem.Status;
+        const completedDate = statusLowerCase === pending ? '--' : dataItem.CompletedDateText;
+        const creator = statusLowerCase === pending ? '--' : dataItem.Creator;
 
         return (
             <Row key={`dataRow-${index}`}>
@@ -97,8 +100,8 @@ export class Content extends Component {
                 </Cell>
                 <Cell title={dataItem.TransDateText} className="text-center">{dataItem.TransDateText}</Cell>
                 <Cell title={dataItem.AffName} className="text-center">{dataItem.AffName}</Cell>
-                <Cell title={amount} className="text-right"> {amount}</Cell>
-                <Cell title={status} className="text-center text-capitalize"> {status}</Cell>
+                <Cell title={amount} className="text-right">{amount}</Cell>
+                <Cell title={status} className="text-center text-capitalize">{status}</Cell>
                 <Cell title={completedDate} className="text-center">{completedDate}</Cell>
                 <Cell title={creator} className="text-center">{creator}</Cell>
             </Row>

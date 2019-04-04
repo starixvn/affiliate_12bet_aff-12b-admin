@@ -43,13 +43,13 @@ export class Content extends Component {
     _renderHeader() {
         return (
             <Row key="thead">
-                <Cell header={true} colWidth={25} title={headerText.Index}>{headerText.Index}</Cell>
+                <Cell header={true} colWidth={35} title={headerText.Index}>{headerText.Index}</Cell>
                 <Cell header={true} colWidth={100} title={headerText.Date}>{headerText.Date}</Cell>
                 <Cell header={true} colWidth={110} title={headerText.Type}>{headerText.Type}</Cell>
                 <Cell header={true} colWidth={100} title={headerText.Amount}>{headerText.Amount}</Cell>
-                <Cell header={true} colWidth={65} title={headerText.Status}>{headerText.Status}</Cell>
-                <Cell header={true} colWidth={100} title={headerText.Creator}>{headerText.Creator}</Cell>
-                <Cell header={true} colWidth={500} title={headerText.Description}>{headerText.Description}</Cell>
+                <Cell header={true} colWidth={80} title={headerText.Status}>{headerText.Status}</Cell>
+                <Cell header={true} colWidth={110} title={headerText.Creator}>{headerText.Creator}</Cell>
+                <Cell header={true} colWidth={465} title={headerText.Description}>{headerText.Description}</Cell>
             </Row>
         );
     }
