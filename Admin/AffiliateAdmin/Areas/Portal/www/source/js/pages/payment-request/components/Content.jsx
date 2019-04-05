@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Table, Row, Cell } from '@9softstudio/react-fixed-table-header';
 import { Button } from 'reactstrap';
 
-import { headerText, globalResource, resource, statusList } from '../modules/constants';
+import { headerText, globalResource, resource, statusList, pending } from '../modules/constants';
 import { setPagingOption, toggleLoader, fetchData, setTransactionId } from '../actions';
 import { formatDecimalWithCurrencySymbol } from '../../../modules/numberFormat';
 
@@ -84,11 +84,11 @@ export class Content extends Component {
     _buildDataRow(dataItem, index) {
         const amount = formatDecimalWithCurrencySymbol(dataItem.Amount);
         const statusLowerCase = dataItem.Status.toLowerCase();
-        const pending = resource.PendingLowerCase;
+        const pendingStatus = pending.toLowerCase();
 
-        const status = statusLowerCase === pending ? statusList.Pending : dataItem.Status;
-        const completedDate = statusLowerCase === pending ? '--' : dataItem.CompletedDateText;
-        const creator = statusLowerCase === pending ? '--' : dataItem.Creator;
+        const status = statusLowerCase === pendingStatus ? statusList.Pending : dataItem.Status;
+        const completedDate = statusLowerCase === pendingStatus ? '--' : dataItem.CompletedDateText;
+        const creator = statusLowerCase === pendingStatus ? '--' : dataItem.Creator;
 
         return (
             <Row key={`dataRow-${index}`}>

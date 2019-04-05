@@ -5,11 +5,11 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { DatePicker } from '@9softstudio/react-datepicker';
 
 import { resource, searchByList, statusList, globalResource } from '../modules/constants';
-import { getNewFromDateToDate } from '../../../modules/getNewFromDateToDate';
+import { getNewFilterDate } from '../../../modules/newFilterDate';
 import { setParam } from '../actions';
 
 const minDate = new Date(2009, 11, 1);
-const searchByUserName = '0';
+const searchByUserName = 0;
 
 export class Filter extends Component {
     constructor(props) {
@@ -38,7 +38,7 @@ export class Filter extends Component {
 
     handleSetParam() {
         const { searchBy, userName, status, fromDate, toDate, isGetAll } = this.state;
-        const isSearchByUserName = searchBy === searchByUserName;
+        const isSearchByUserName = parseInt(searchBy) === searchByUserName;
 
         const newParam = Object.assign({}, this.props.param, {
             Username: isSearchByUserName ? userName : null,
@@ -59,7 +59,7 @@ export class Filter extends Component {
     }
 
     handleChangeFromDate = (momentDate) => {
-        this.setState(getNewFromDateToDate(momentDate, this.state.toDate));
+        this.setState(getNewFilterDate(momentDate, this.state.toDate));
     }
 
     handleChangeToDate = (momentDate) => {
@@ -133,7 +133,7 @@ export class Filter extends Component {
                             }
                         </Input>
                     </FormGroup>
-                    {searchBy === '0' ? (
+                    {parseInt(searchBy) === searchByUserName ? (
                         <FormGroup className="mb-2 mr-sm-3 mb-sm-0">
                             <Label className="mr-2">{resource.UserName}</Label>
                             <Input type="text" name="userName" value={userName} onKeyPress={this.handlePressEnter} onChange={this.handleChange} />

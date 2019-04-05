@@ -118,7 +118,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Payment
 
                 objectDb.ExecuteNonQuery();
 
-                return null;
+                return GetResultInfo(objectDb);
             }
         }
 

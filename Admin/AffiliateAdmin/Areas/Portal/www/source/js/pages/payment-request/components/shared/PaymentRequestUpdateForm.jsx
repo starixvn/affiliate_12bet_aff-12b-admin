@@ -1,9 +1,13 @@
 ﻿import React, { Component } from 'react';
 import { Modal, ModalHeader, ModalBody, Alert, Button, Form, Row, Col, FormGroup, Label, Input } from 'reactstrap';
 
-import { resource, globalResource, statusList } from '../../modules/constants';
+import { resource, globalResource, statusList, errorList, pending } from '../../modules/constants';
 import { formatDecimalWithCurrencySymbol } from '../../../../modules/numberFormat';
 import { getPaymentRequestDetail, updatePaymentRequest } from './service';
+
+const pendingStatus = pending.toLowerCase();
+const approvedStatus = statusList.Approved.toLowerCase();
+const rejectedStatus = statusList.Rejected.toLowerCase();
 
 export default class PaymentRequestUpdateForm extends Component {
     constructor(props) {
@@ -41,8 +45,8 @@ export default class PaymentRequestUpdateForm extends Component {
     handleSave = async () => {
         const { paymentRequestInfo, status } = this.state;
 
-        if (status && paymentRequestInfo.Status.toLowerCase() === resource.PendingLowerCase &&
-            (status.toLowerCase() === resource.ApprovedLowerCase || status.toLowerCase() === resource.RejectedLowerCase)) {
+        if (status && paymentRequestInfo.Status.toLowerCase() === pendingStatus &&
+            (status.toLowerCase() === approvedStatus || status.toLowerCase() === rejectedStatus)) {
 
             const { adminDesc, affDesc } = this.state;
             const paymentInfo = Object.assign({}, { TransId: paymentRequestInfo.TransId, Status: status, AdminDesc: adminDesc, AffDesc: affDesc });
@@ -64,14 +68,14 @@ export default class PaymentRequestUpdateForm extends Component {
                 this.setState({
                     isSuccess: false,
                     isShowMessage: true,
-                    message: resource.UpdateFailed,
+                    message: errorList.UpdateFailed,
                 }, () => window.setTimeout(this.hideMessage, 3000));
             }
         } else {
             this.setState({
                 isSuccess: false,
                 isShowMessage: true,
-                message: resource.Message,
+                message: errorList.NotChoose,
             }, () => window.setTimeout(this.hideMessage, 3000));
         }
     }
@@ -139,13 +143,13 @@ export default class PaymentRequestUpdateForm extends Component {
                         <FormGroup row className="mb-2 ml-1">
                             <FormGroup className="mr-4" check>
                                 <Label check>
-                                    <Input name="status" type="radio" className="mr-2" value={resource.ApprovedLowerCase} onChange={this.handleChange} />
+                                    <Input name="status" type="radio" className="mr-2" value={statusList.Approved} onChange={this.handleChange} />
                                     {statusList.Approved}
                                 </Label>
                             </FormGroup>
                             <FormGroup check>
                                 <Label check>
-                                    <Input name="status" type="radio" className="mr-2" value={resource.RejectedLowerCase} onChange={this.handleChange} />
+                                    <Input name="status" type="radio" className="mr-2" value={statusList.Rejected} onChange={this.handleChange} />
                                     {statusList.Rejected}
                                 </Label>
                             </FormGroup>
@@ -198,14 +202,19 @@ export default class PaymentRequestUpdateForm extends Component {
         );
     }
 
+    handleClosePopup = () => {
+        this.props.handleClosePopup();
+        this.setState({ status: null, adminDesc: '', affDesc: '' });
+    }
+
     render() {
-        const { transactionId, handleClosePopup } = this.props;
+        const { transactionId } = this.props;
         const { paymentRequestInfo, isSuccess, isShowMessage, message } = this.state;
-        const isPending = paymentRequestInfo && paymentRequestInfo.Status && paymentRequestInfo.Status.toLowerCase() === resource.PendingLowerCase;
+        const isPending = paymentRequestInfo && paymentRequestInfo.Status && paymentRequestInfo.Status.toLowerCase() === pendingStatus;
 
         return paymentRequestInfo && (
-            <Modal isOpen={transactionId} toggle={handleClosePopup} backdrop='static'>
-                <ModalHeader toggle={handleClosePopup}><span className="iconpopup"></span>Trxn.ID {transactionId}</ModalHeader>
+            <Modal isOpen={transactionId} toggle={this.handleClosePopup} backdrop='static'>
+                <ModalHeader toggle={this.handleClosePopup}><span className="iconpopup"></span>Trxn.ID {transactionId}</ModalHeader>
                 <ModalBody>
                     <div className="modal-body-wrapper p-0">
                         <Form tag="form" className="payment-request-update-form">
@@ -216,7 +225,7 @@ export default class PaymentRequestUpdateForm extends Component {
                             {this._renderPaymentInformation(paymentRequestInfo, isPending)}
                             {this._renderNote(paymentRequestInfo, isPending)}
                             <Button type="button" color="success" className="mr-3" disabled={!isPending} onClick={this.handleSave}>{globalResource.Update}</Button>
-                            <Button type="button" color="info" onClick={handleClosePopup}>{globalResource.Cancel}</Button>
+                            <Button type="button" color="info" onClick={this.handleClosePopup}>{globalResource.Cancel}</Button>
                         </Form>
                     </div>
                 </ModalBody>

@@ -1,4 +1,4 @@
-﻿export function getNewFromDateToDate(selectedFromDate, toDateString) {
+﻿export function getNewFilterDate(selectedFromDate, toDateString) {
     const selectedFromDateString = selectedFromDate.format("MM/DD/YYYY");
     const fromDate = new Date(selectedFromDateString);
     const toDate = new Date(toDateString);

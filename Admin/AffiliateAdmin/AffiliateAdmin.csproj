@@ -1560,7 +1560,7 @@
     <Content Include="Areas\Portal\www\source\js\actions\loaderAction.js" />
     <Content Include="Areas\Portal\www\source\js\actions\pagingAction.js" />
     <Content Include="Areas\Portal\www\source\js\modules\ajaxRequest.js" />
-    <Content Include="Areas\Portal\www\source\js\modules\getNewFromDateToDate.js" />
+    <Content Include="Areas\Portal\www\source\js\modules\newFilterDate.js" />
     <Content Include="Areas\Portal\www\source\js\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\modules\createReducer.js" />
     <Content Include="Areas\Portal\www\source\js\modules\dataHandler.js" />
@@ -2082,6 +2082,7 @@
     <Content Include="Areas\Portal\www\source\js\pages\payment-request\components\shared\PaymentRequestUpdateForm.jsx" />
     <Content Include="Areas\Portal\Views\Customer\LeftPanel.cshtml" />
     <Content Include="Areas\Portal\www\source\style\pages\customer\leftpanel.scss" />
+    <Content Include="Areas\Portal\www\source\style\pages\payment\payment-request-modal.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

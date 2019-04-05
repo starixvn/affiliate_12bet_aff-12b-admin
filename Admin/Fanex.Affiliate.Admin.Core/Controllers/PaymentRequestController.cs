@@ -3,7 +3,6 @@ using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.DTO.Email;
 using Fanex.Affiliate.Admin.Core.Extensions;
 using Fanex.Affiliate.Admin.Core.MetaModels.Payment;
-using Fanex.Affiliate.Admin.Core.Resources;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Payment;
 using Fanex.Affiliate.Admin.Core.Utilities;
@@ -55,12 +54,12 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [ValidateAntiForgeryHeader]
         public ActionResult UpdatePaymentRequest(PaymentRequestUpdateParam param)
         {
-            var isApproved = string.Equals(Lang.ApprovedLowerCase, param.Status, System.StringComparison.InvariantCultureIgnoreCase);
-            var isRejected = string.Equals(Lang.RejectedLowerCase, param.Status, System.StringComparison.InvariantCultureIgnoreCase);
+            var isApproved = string.Equals("approved", param.Status, System.StringComparison.InvariantCultureIgnoreCase);
+            var isRejected = string.Equals("rejected", param.Status, System.StringComparison.InvariantCultureIgnoreCase);
             var paymentRequestDetail = _paymentRequestService.GetPaymentRequestDetail(param.TransId);
             
             if ((isApproved || isRejected) && paymentRequestDetail != null &&
-                string.Equals(Lang.PendingLowerCase, paymentRequestDetail.Status, System.StringComparison.InvariantCultureIgnoreCase))
+                string.Equals("pending", paymentRequestDetail.Status, System.StringComparison.InvariantCultureIgnoreCase))
             {
                 param.UserId = SessionService.UserId;
                 param.Ip = Request.UserHostAddress;
@@ -71,7 +70,10 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 var emailParam = new PaymentRequestUpdateEmail
                 {
                     RootUrl = SiteDomainHelper.GetRootUrl(this),
-                    IsApproved = isApproved
+                    IsApproved = isApproved,
+                    TransId = param.TransId,
+                    TransDate = paymentRequestDetail.TransDate.ToString("MM/dd/yyyy"),
+                    Amount = paymentRequestDetail.Amount
                 };
 
                 return new JsonNetResult
