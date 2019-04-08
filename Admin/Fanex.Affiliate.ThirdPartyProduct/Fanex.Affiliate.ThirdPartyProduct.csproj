@@ -32,6 +32,10 @@
     <CodeAnalysisRuleSet>Fanex.Affiliate.ThirdPartyProduct.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CitiXchangeLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Dependencies\CitiXchangeLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.Affiliate.DataService.Importer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>_Dependencies\Fanex.Affiliate.DataService.Importer.dll</HintPath>
@@ -39,6 +43,21 @@
     <Reference Include="Fanex.Data, Version=0.5.404.63, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Data.0.5.404.63\lib\net40\Fanex.Data.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.ThirdParty.Importing.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Dependencies\Fanex.ThirdParty.Importing.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.ThirdParty.Importing.DataAccess, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Dependencies\Fanex.ThirdParty.Importing.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.ThirdParty.Importing.Model, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Dependencies\Fanex.ThirdParty.Importing.Model.dll</HintPath>
+    </Reference>
+    <Reference Include="Fanex.ThirdParty.Importing.Service">
+      <HintPath>_Dependencies\Fanex.ThirdParty.Importing.Service.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EnterpriseLibrary.Common.5.0.414.0\lib\net40\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
@@ -110,6 +129,7 @@
     <Compile Include="Controllers\BetsoftController.cs" />
     <Compile Include="Controllers\CrystalGpiController.cs" />
     <Compile Include="Controllers\EbetController.cs" />
+    <Compile Include="Controllers\ExchangeSummaryTransctionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImportQueueController.cs" />
     <Compile Include="Controllers\ISoftbetController.cs" />
@@ -120,6 +140,7 @@
     <Compile Include="MetaModels\BetsoftRequestParam.cs" />
     <Compile Include="MetaModels\CrystalGpiRequestParam.cs" />
     <Compile Include="MetaModels\EbetRequestParam.cs" />
+    <Compile Include="MetaModels\ExchangeRequestParam.cs" />
     <Compile Include="MetaModels\ImportQueueParam.cs" />
     <Compile Include="MetaModels\ISoftbetRequestParam.cs" />
     <Compile Include="MetaModels\OpusRequestParam.cs" />
@@ -138,7 +159,12 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="_Dependencies\CitiXchangeLibrary.dll" />
     <Content Include="_Dependencies\Fanex.Affiliate.DataService.Importer.dll" />
+    <Content Include="_Dependencies\Fanex.ThirdParty.Importing.Core.dll" />
+    <Content Include="_Dependencies\Fanex.ThirdParty.Importing.DataAccess.dll" />
+    <Content Include="_Dependencies\Fanex.ThirdParty.Importing.Model.dll" />
+    <Content Include="_Dependencies\Fanex.ThirdParty.Importing.Service.dll" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\packages\SonarAnalyzer.CSharp.6.7.1.4347\analyzers\Google.Protobuf.dll" />

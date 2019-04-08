@@ -1511,6 +1511,7 @@
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\betsoft.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\crystal-gpi.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\ebet.js" />
+    <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\exchange-summary-transaction.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\importqueue.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\isoftbet.js" />
     <Content Include="Areas\Portal\www\dist\js\pages\thirdparty-product\opus.js" />
@@ -1949,6 +1950,7 @@
     <Content Include="Areas\Portal\Views\ThirdPartyProduct\ImportQueue\Index.cshtml" />
     <Content Include="Areas\Portal\Views\ThirdPartyProduct\ImportQueue\XmlData.cshtml" />
     <Content Include="Areas\Portal\Views\ThirdPartyProduct\TimeTracker\Index.cshtml" />
+    <Content Include="Areas\Portal\Views\ThirdPartyProduct\ExchangeSummaryTransaction\Index.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
