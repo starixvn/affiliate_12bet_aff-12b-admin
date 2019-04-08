@@ -8,7 +8,7 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.UserPanel
 
         public int UserId { get; set; }
 
-        [RegularExpression(@"^(?!\.)\d*\.?\d+$")]
+        [RegularExpression(@"^\-?\d+\.?\d*$")]
         public decimal Amount { get; set; }
 
         public string Description { get; set; }

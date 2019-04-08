@@ -7,12 +7,16 @@ using Fanex.Affiliate.Admin.Core.Services.Common;
 using System.Web.Mvc;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.Resources;
+using System;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
     [FunctionAuthorize(FunctionName = Function.Affiliate)]
     public class AdjustmentController : BaseController
     {
+        private const decimal MaxOfMoney = 922337203685477;
+        private const decimal MinOfMoney = -922337203685477;
+
         private readonly IAdjustmentRepository _adjustmentRepository;
         private readonly IAffiliateRepository _affiliateRepository;
 
@@ -53,7 +57,8 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         [ValidateAntiForgeryHeader]
         public ActionResult InsertAdjustment(AdjustmentParam param)
         {
-            if(ModelState.IsValid && param.Amount != 0)
+            var absBalanceBf = Math.Abs(_adjustmentRepository.GetBalanceBroughtForward(param.AffId == 0 ? SessionService.AffId : param.AffId));
+            if (ModelState.IsValid && param.Amount != 0 && param.Amount - absBalanceBf >= MinOfMoney && param.Amount + absBalanceBf <= MaxOfMoney)
             {
                 param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
                 param.UserId = SessionService.UserId;
