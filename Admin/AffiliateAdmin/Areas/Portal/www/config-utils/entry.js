@@ -28,6 +28,7 @@ module.exports = {
     [`${jsDist}/pages/thirdparty-product/opus`]: clientRoot + "/js/pages/thirdparty-product/opus/index.jsx",
     [`${jsDist}/pages/thirdparty-product/importqueue`]: clientRoot + "/js/pages/thirdparty-product/importqueue/index.jsx",
     [`${jsDist}/pages/thirdparty-product/timetracker`]: clientRoot + "/js/pages/thirdparty-product/timetracker/index.jsx",
+    [`${jsDist}/pages/thirdparty-product/exchange-summary-transaction`]: clientRoot + "/js/pages/thirdparty-product/exchange-summary-transaction/index.jsx",
 
     [`${styleDist}/portalmain`]: clientRoot + "/style/main.scss",
     [`${styleDist}/layout`]: clientRoot + "/style/layout/main-layout.scss",
