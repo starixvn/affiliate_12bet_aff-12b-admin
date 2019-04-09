@@ -1560,7 +1560,6 @@
     <Content Include="Areas\Portal\www\source\js\actions\loaderAction.js" />
     <Content Include="Areas\Portal\www\source\js\actions\pagingAction.js" />
     <Content Include="Areas\Portal\www\source\js\modules\ajaxRequest.js" />
-    <Content Include="Areas\Portal\www\source\js\modules\newFilterDate.js" />
     <Content Include="Areas\Portal\www\source\js\modules\constants.js" />
     <Content Include="Areas\Portal\www\source\js\modules\createReducer.js" />
     <Content Include="Areas\Portal\www\source\js\modules\dataHandler.js" />

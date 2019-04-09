@@ -6,6 +6,7 @@ using Fanex.Affiliate.Admin.Core.MetaModels.Payment;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services.Payment;
 using Fanex.Affiliate.Admin.Core.Utilities;
+using System;
 using System.Web.Mvc;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
@@ -54,37 +55,17 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
         [ValidateAntiForgeryHeader]
         public ActionResult UpdatePaymentRequest(PaymentRequestUpdateParam param)
         {
-            var isApproved = string.Equals("approved", param.Status, System.StringComparison.InvariantCultureIgnoreCase);
-            var isRejected = string.Equals("rejected", param.Status, System.StringComparison.InvariantCultureIgnoreCase);
-            var paymentRequestDetail = _paymentRequestService.GetPaymentRequestDetail(param.TransId);
-            
-            if ((isApproved || isRejected) && paymentRequestDetail != null &&
-                string.Equals("pending", paymentRequestDetail.Status, System.StringComparison.InvariantCultureIgnoreCase))
+            param.UserId = SessionService.UserId;
+            param.Ip = Request.UserHostAddress;
+
+            var emailParam = new PaymentRequestUpdateEmail
             {
-                param.UserId = SessionService.UserId;
-                param.Ip = Request.UserHostAddress;
-                param.AffId = paymentRequestDetail.AffId;
-                param.Amount = paymentRequestDetail.Amount;
-                param.TransDate = paymentRequestDetail.TransDate;
-
-                var emailParam = new PaymentRequestUpdateEmail
-                {
-                    RootUrl = SiteDomainHelper.GetRootUrl(this),
-                    IsApproved = isApproved,
-                    TransId = param.TransId,
-                    TransDate = paymentRequestDetail.TransDate.ToString("MM/dd/yyyy"),
-                    Amount = paymentRequestDetail.Amount
-                };
-
-                return new JsonNetResult
-                {
-                    Data = _paymentRequestService.UpdatePaymentRequest(param, emailParam)
-                };
-            }
+                RootUrl = SiteDomainHelper.GetRootUrl(this),
+            };
 
             return new JsonNetResult
             {
-                Data = null
+                Data = _paymentRequestService.UpdatePaymentRequest(param, emailParam)
             };
         }
     }

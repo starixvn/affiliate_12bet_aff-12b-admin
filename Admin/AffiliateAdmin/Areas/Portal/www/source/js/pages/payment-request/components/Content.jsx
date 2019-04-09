@@ -8,6 +8,8 @@ import { headerText, globalResource, resource, statusList, pending } from '../mo
 import { setPagingOption, toggleLoader, fetchData, setTransactionId } from '../actions';
 import { formatDecimalWithCurrencySymbol } from '../../../modules/numberFormat';
 
+const pendingStatus = pending.toLowerCase();
+
 export class Content extends Component {
     constructor(props) {
         super(props);
@@ -83,12 +85,11 @@ export class Content extends Component {
 
     _buildDataRow(dataItem, index) {
         const amount = formatDecimalWithCurrencySymbol(dataItem.Amount);
-        const statusLowerCase = dataItem.Status.toLowerCase();
-        const pendingStatus = pending.toLowerCase();
+        const isPending = dataItem.Status.toLowerCase() === pendingStatus;
 
-        const status = statusLowerCase === pendingStatus ? statusList.Pending : dataItem.Status;
-        const completedDate = statusLowerCase === pendingStatus ? '--' : dataItem.CompletedDateText;
-        const creator = statusLowerCase === pendingStatus ? '--' : dataItem.Creator;
+        const status = isPending ? statusList.Pending : dataItem.Status;
+        const completedDate = isPending ? '--' : dataItem.CompletedDateText;
+        const creator = isPending ? '--' : dataItem.Creator;
 
         return (
             <Row key={`dataRow-${index}`}>

@@ -5,11 +5,10 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { DatePicker } from '@9softstudio/react-datepicker';
 
 import { resource, searchByList, statusList, globalResource } from '../modules/constants';
-import { getNewFilterDate } from '../../../modules/newFilterDate';
+import { getDateArrange } from '../../../modules/utils';
 import { setParam } from '../actions';
 
 const minDate = new Date(2009, 11, 1);
-const searchByUserName = 0;
 
 export class Filter extends Component {
     constructor(props) {
@@ -23,7 +22,7 @@ export class Filter extends Component {
         yesterday.setDate(yesterday.getDate() - 1);
 
         this.state = {
-            searchBy: searchByUserName,
+            searchBy: searchByList.UserName,
             userName: null,
             status: null,
             fromDate: `${yesterday.getMonth() + 1}/${yesterday.getDate()}/${yesterday.getFullYear()}`,
@@ -38,7 +37,7 @@ export class Filter extends Component {
 
     handleSetParam() {
         const { searchBy, userName, status, fromDate, toDate, isGetAll } = this.state;
-        const isSearchByUserName = parseInt(searchBy) === searchByUserName;
+        const isSearchByUserName = searchBy === searchByList.UserName;
 
         const newParam = Object.assign({}, this.props.param, {
             Username: isSearchByUserName ? userName : null,
@@ -59,7 +58,7 @@ export class Filter extends Component {
     }
 
     handleChangeFromDate = (momentDate) => {
-        this.setState(getNewFilterDate(momentDate, this.state.toDate));
+        this.setState(getDateArrange(momentDate, this.state.toDate));
     }
 
     handleChangeToDate = (momentDate) => {
@@ -128,12 +127,12 @@ export class Filter extends Component {
                         <Input type="select" name="searchBy" value={searchBy} onChange={this.handleChange}>
                             {
                                 Object.keys(searchByList).map(key => {
-                                    return (<option key={'searchBy-' + key} value={key}>{searchByList[key]}</option>)
+                                    return (<option key={'searchBy-' + key} value={searchByList[key]}>{searchByList[key]}</option>)
                                 })
                             }
                         </Input>
                     </FormGroup>
-                    {parseInt(searchBy) === searchByUserName ? (
+                    {searchBy === searchByList.UserName ? (
                         <FormGroup className="mb-2 mr-sm-3 mb-sm-0">
                             <Label className="mr-2">{resource.UserName}</Label>
                             <Input type="text" name="userName" value={userName} onKeyPress={this.handlePressEnter} onChange={this.handleChange} />

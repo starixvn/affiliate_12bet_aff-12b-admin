@@ -39,8 +39,8 @@ export const errorList = {
 }
 
 export const searchByList = {
-    [0]: 'User Name',
-    [1]: 'Others'
+    UserName: 'User Name',
+    Others: 'Others'
 }
 
 export const pending = 'Pending';

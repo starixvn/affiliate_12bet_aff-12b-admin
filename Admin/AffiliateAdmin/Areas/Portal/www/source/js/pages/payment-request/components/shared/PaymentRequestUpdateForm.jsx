@@ -15,9 +15,7 @@ export default class PaymentRequestUpdateForm extends Component {
 
         this.state = {
             paymentRequestInfo: null,
-            status: null,
-            adminDesc: '',
-            affDesc: '',
+            originalStatus: '',
             isSuccess: true,
             isShowMessage: false,
             message: ''
@@ -33,23 +31,29 @@ export default class PaymentRequestUpdateForm extends Component {
     }
 
     handleChange = (event) => {
-        this.setState({ [event.target.name]: event.target.value });
+        this.setState({ paymentRequestInfo: Object.assign({}, this.state.paymentRequestInfo, { [event.target.name]: event.target.value }) });
     }
 
     handleGetPaymentRequestInfo = async (transId) => {
         const data = await getPaymentRequestDetail({ transId });
 
-        data && this.setState({ paymentRequestInfo: data, status: data.status, adminDesc: data.AdminDesc, affDesc: data.AffDesc });
+        data && this.setState({ paymentRequestInfo: data, originalStatus: data.Status });
     }
 
     handleSave = async () => {
-        const { paymentRequestInfo, status } = this.state;
+        const { paymentRequestInfo, originalStatus } = this.state;
+        const selectedStatus = paymentRequestInfo.Status;
 
-        if (status && paymentRequestInfo.Status.toLowerCase() === pendingStatus &&
-            (status.toLowerCase() === approvedStatus || status.toLowerCase() === rejectedStatus)) {
+        if (originalStatus.toLowerCase() === pendingStatus &&
+            (selectedStatus.toLowerCase() === approvedStatus || selectedStatus.toLowerCase() === rejectedStatus)) {
 
             const { adminDesc, affDesc } = this.state;
-            const paymentInfo = Object.assign({}, { TransId: paymentRequestInfo.TransId, Status: status, AdminDesc: adminDesc, AffDesc: affDesc });
+            const paymentInfo = Object.assign({}, {
+                TransId: paymentRequestInfo.TransId,
+                Status: selectedStatus,
+                AdminDesc: paymentRequestInfo.AdminDesc,
+                AffDesc: paymentRequestInfo.AffDesc
+            });
             const data = await updatePaymentRequest(paymentInfo);
 
             if (data) {
@@ -116,6 +120,40 @@ export default class PaymentRequestUpdateForm extends Component {
         );
     }
 
+    _renderPaymentCompletionInfo(paymentRequestInfo) {
+        return (
+            <React.Fragment>
+                <FormGroup row className="mb-2">
+                    <Label sm={6}>{resource.CompletedDate}</Label>
+                    <Label sm={6}><strong>{paymentRequestInfo.CompletedDateText}</strong></Label>
+                </FormGroup>
+                <FormGroup row className="mb-2">
+                    <Label sm={6}>{resource.UpdatedBy}</Label>
+                    <Label sm={6}>{paymentRequestInfo.Creator}</Label>
+                </FormGroup>
+            </React.Fragment>
+        );
+    }
+
+    _renderOptionalStatus() {
+        return (
+            <FormGroup row className="mb-2 ml-1">
+                <FormGroup className="mr-4" check>
+                    <Label check>
+                        <Input name="Status" type="radio" className="mr-2" value={statusList.Approved} onChange={this.handleChange} />
+                        {statusList.Approved}
+                    </Label>
+                </FormGroup>
+                <FormGroup check>
+                    <Label check>
+                        <Input name="Status" type="radio" className="mr-2" value={statusList.Rejected} onChange={this.handleChange} />
+                        {statusList.Rejected}
+                    </Label>
+                </FormGroup>
+            </FormGroup>
+        );
+    }
+
     _renderPaymentInformation(paymentRequestInfo, isPending) {
         return (
             <fieldset>
@@ -139,33 +177,7 @@ export default class PaymentRequestUpdateForm extends Component {
                     <Label sm={6}><strong>{paymentRequestInfo.PlayerUsername}</strong></Label>
                 </FormGroup>
                 {
-                    isPending ? (
-                        <FormGroup row className="mb-2 ml-1">
-                            <FormGroup className="mr-4" check>
-                                <Label check>
-                                    <Input name="status" type="radio" className="mr-2" value={statusList.Approved} onChange={this.handleChange} />
-                                    {statusList.Approved}
-                                </Label>
-                            </FormGroup>
-                            <FormGroup check>
-                                <Label check>
-                                    <Input name="status" type="radio" className="mr-2" value={statusList.Rejected} onChange={this.handleChange} />
-                                    {statusList.Rejected}
-                                </Label>
-                            </FormGroup>
-                        </FormGroup>
-                    ) : (
-                            <React.Fragment>
-                                <FormGroup row className="mb-2">
-                                    <Label sm={6}>{resource.CompletedDate}</Label>
-                                    <Label sm={6}><strong>{paymentRequestInfo.CompletedDateText}</strong></Label>
-                                </FormGroup>
-                                <FormGroup row className="mb-2">
-                                    <Label sm={6}>{resource.UpdatedBy}</Label>
-                                    <Label sm={6}>{paymentRequestInfo.Creator}</Label>
-                                </FormGroup>
-                            </React.Fragment>
-                        )
+                    isPending ? this._renderOptionalStatus() : this._renderPaymentCompletionInfo(paymentRequestInfo)
                 }
             </fieldset>
         );
@@ -182,8 +194,8 @@ export default class PaymentRequestUpdateForm extends Component {
                             <h6 className="font-weight-bold">{resource.AdminNote}</h6>
                         </legend>
                         <FormGroup>
-                            <Label for="adminDesc">{resource.VisibleAdmin}</Label>
-                            <Input type="textarea" name="adminDesc" rows="6" disabled={!isPending} value={adminDesc} onChange={this.handleChange} />
+                            <Label for="AdminDesc">{resource.VisibleAdmin}</Label>
+                            <Input type="textarea" name="AdminDesc" rows="6" disabled={!isPending} value={adminDesc} onChange={this.handleChange} />
                         </FormGroup>
                     </fieldset>
                 </Col>
@@ -193,8 +205,8 @@ export default class PaymentRequestUpdateForm extends Component {
                             <h6 className="font-weight-bold">{resource.AffiliateNote}</h6>
                         </legend>
                         <FormGroup>
-                            <Label for="affDesc">{resource.VisibleAffiliate}</Label>
-                            <Input type="textarea" name="affDesc" rows="6" disabled={!isPending} value={affDesc} onChange={this.handleChange} />
+                            <Label for="AffDesc">{resource.VisibleAffiliate}</Label>
+                            <Input type="textarea" name="AffDesc" rows="6" disabled={!isPending} value={affDesc} onChange={this.handleChange} />
                         </FormGroup>
                     </fieldset>
                 </Col>
@@ -204,13 +216,13 @@ export default class PaymentRequestUpdateForm extends Component {
 
     handleClosePopup = () => {
         this.props.handleClosePopup();
-        this.setState({ status: null, adminDesc: '', affDesc: '' });
+        this.setState({ paymentRequestInfo: null });
     }
 
     render() {
         const { transactionId } = this.props;
-        const { paymentRequestInfo, isSuccess, isShowMessage, message } = this.state;
-        const isPending = paymentRequestInfo && paymentRequestInfo.Status && paymentRequestInfo.Status.toLowerCase() === pendingStatus;
+        const { paymentRequestInfo, originalStatus, isSuccess, isShowMessage, message } = this.state;
+        const isPending = originalStatus.toLowerCase() === pendingStatus;
 
         return paymentRequestInfo && (
             <Modal isOpen={transactionId} toggle={this.handleClosePopup} backdrop='static'>
