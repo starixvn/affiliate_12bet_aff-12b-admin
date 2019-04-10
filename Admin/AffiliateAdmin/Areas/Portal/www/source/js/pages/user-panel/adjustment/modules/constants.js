@@ -10,8 +10,7 @@ export const message = {
     Invalid: 'The amount is invalid',
     Success: 'Updated successfully!'
 }
-export const maxOfMoney = 922337203685477;
-export const minOfMoney = -922337203685477;
+
 export const regExp = {
-    CheckAmount: "^\\-?\\d+\\.?\\d*$"
+    CheckAmount: "^\\-?\\d+(\\.\\d{0,2})?$"
 }

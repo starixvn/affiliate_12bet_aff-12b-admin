@@ -5,5 +5,6 @@
         public const string Approved = "approved";
         public const string Disapproved = "disapproved";
         public const string Pending = "pending";
+        public const string Rejected = "rejected";
     }
 }

@@ -23,7 +23,3 @@ export function round(value, digits) {
 
     return sign * rounded;
 }
-
-export function formatDecimalWithDigitAndCurrencySymbol(value, digits = 0, currencySymbol = "$") {
-    return value < 0 ? `-${currencySymbol}${format(Math.abs(value), digits)}` : `${currencySymbol}${format(value, digits)}`;
-}

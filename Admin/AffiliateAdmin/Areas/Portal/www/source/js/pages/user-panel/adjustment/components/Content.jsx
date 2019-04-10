@@ -4,8 +4,9 @@ import { bindActionCreators } from 'redux';
 import { Alert, Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 import { toggleLoader, getBalanceBroughtForward, handleSubmit } from '../actions';
-import { message, resource, regExp, minOfMoney, maxOfMoney } from '../modules/constants';
-import { formatDecimalWithDigitAndCurrencySymbol } from '../../../../modules/numberFormat';
+import { message, resource, regExp } from '../modules/constants';
+import { formatDecimalWithCurrencySymbol, format } from '../../../../modules/numberFormat';
+import { money } from '../../../../modules/constants';
 
 const regexCheckAmount = new RegExp(regExp.CheckAmount);
 
@@ -19,8 +20,7 @@ export class Content extends Component {
             description: '',
             isShowMessage: false,
             isSuccess: true,
-            message: '',
-            isError: false
+            message: ''
         }
     }
 
@@ -38,36 +38,33 @@ export class Content extends Component {
     }
 
     handleChange = (event) => {
+        this.setState({ [event.target.name]: event.target.value });
+    }
+
+    handleChangeAmount = (event) => {
         const value = event.target.value;
-        const amount = value.replace('$', '').replace(/,/g, '');
+        const amount = value.replace(/,/g, '');
 
-        if(amount === '-' || amount === '') {
-            this.setState({ [event.target.name]: amount, isError: false });
+        if (amount === '-' || Number(amount) === 0) {
+            this.setState({ [event.target.name]: value });
             return;
         }
 
-        if(amount === '-0') {
-            this.setState({ [event.target.name]: '-$0', isError: false });
-            return;
-        }
-
-        if(this._isAmountValid(amount)) {
-            this.setState({ [event.target.name]: value.includes('.') ? value : formatDecimalWithDigitAndCurrencySymbol(parseFloat(amount)), isError: false })
-        } else {
-            this.setState({ isError: true });
+        if (this._isValidAmount(amount)) {
+            this.setState({ [event.target.name]: value.indexOf('.') != -1 ? value : format(Number(amount)) })
         }
     }
 
-    _isAmountValid = (amount) => {
+    _isValidAmount = (amount) => {
         const absBalanceBf = Math.abs(this.state.balanceBf);
 
-        return regexCheckAmount.test(amount) && parseFloat(amount) - absBalanceBf >= minOfMoney && parseFloat(amount) + absBalanceBf <= maxOfMoney;
+        return regexCheckAmount.test(amount) && Number(amount) - absBalanceBf >= money.MinValue && Number(amount) + absBalanceBf <= money.MaxValue;
     }
 
     _validateAmount = () => {
-        const amount = this.state.amount.replace('$', '').replace(/,/g, '');
+        const amount = this.state.amount.replace(/,/g, '');
         const result = {
-            isValid: this._isAmountValid(amount) && parseFloat(amount) != 0,
+            isValid: this._isValidAmount(amount) && Number(amount) != 0,
             message: ''
         }
 
@@ -85,11 +82,11 @@ export class Content extends Component {
 
         if (amountValidation.isValid) {
             const { amount, description } = this.state;
-            const adjustmentInfo = Object.assign({}, { AffId: this.props.affInfo.AffId, Amount: amount.replace('$', '').replace(/,/g, ''), Description: description });
+            const amountNumber = Number(amount.replace(/,/g, ''));
+            const adjustmentInfo = Object.assign({}, { AffId: this.props.affInfo.AffId, Amount: amountNumber, Description: description });
             const data = await this.props.handleSubmit(adjustmentInfo);
 
             this.setState({
-                isError: false,
                 isShowMessage: true,
                 isSuccess: data.IsSuccessful,
                 message: data.IsSuccessful ? message.Success : data.Message,
@@ -100,7 +97,6 @@ export class Content extends Component {
             this.getBalanceBroughtForward();
         } else {
             this.setState({
-                isError: true,
                 isSuccess: false,
                 isShowMessage: true,
                 message: amountValidation.message,
@@ -125,7 +121,7 @@ export class Content extends Component {
 
     render() {
         const { affInfo } = this.props;
-        const { balanceBf, amount, description, isShowMessage, isSuccess, message, isError } = this.state;
+        const { balanceBf, amount, description, isShowMessage, isSuccess, message } = this.state;
 
         return (
             <Form tag="form" className="adjustment-form">
@@ -138,13 +134,13 @@ export class Content extends Component {
                     </Alert>
                     <FormGroup row className="mb-2">
                         <Label sm={4}>{resource.BalanceBf}</Label>
-                        <Label sm={8}>{formatDecimalWithDigitAndCurrencySymbol(balanceBf)}</Label>
+                        <Label sm={8}>{formatDecimalWithCurrencySymbol(balanceBf)}</Label>
                     </FormGroup>
-                    <FormGroup row className={isError ? "mb-2 has-error" : "mb-2"}>
+                    <FormGroup row className="mb-2">
                         <Label for="amount" sm={4} className="required">{resource.Amount}</Label>
                         <Col sm={8}>
                             <Input type="text" name="amount" id="amount" className="text-right h-75"
-                            value={amount} onChange={this.handleChange} onKeyPress={this.handlePressEnter} />
+                                value={amount} onChange={this.handleChangeAmount} onKeyPress={this.handlePressEnter} />
                         </Col>
                     </FormGroup>
                     <FormGroup row className="mb-3">

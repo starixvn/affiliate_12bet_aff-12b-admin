@@ -43,12 +43,12 @@ namespace Fanex.Affiliate.Admin.Core.Services.Payment
 
         public ResultInfo UpdatePaymentRequest(PaymentRequestUpdateParam param, PaymentRequestUpdateEmail emailParam)
         {
-            var isApproved = string.Equals("approved", param.Status, StringComparison.InvariantCultureIgnoreCase);
-            var isRejected = string.Equals("rejected", param.Status, StringComparison.InvariantCultureIgnoreCase);
+            var isApproved = string.Equals(AffStatus.Approved, param.Status, StringComparison.InvariantCultureIgnoreCase);
+            var isRejected = string.Equals(AffStatus.Rejected, param.Status, StringComparison.InvariantCultureIgnoreCase);
             var paymentRequestDetail = GetPaymentRequestDetail(param.TransId);
 
             if ((isApproved || isRejected) && paymentRequestDetail != null &&
-                string.Equals("pending", paymentRequestDetail.Status, StringComparison.InvariantCultureIgnoreCase))
+                string.Equals(AffStatus.Pending, paymentRequestDetail.Status, StringComparison.InvariantCultureIgnoreCase))
             {
                 param.AffId = paymentRequestDetail.AffId;
                 param.Amount = paymentRequestDetail.Amount;
