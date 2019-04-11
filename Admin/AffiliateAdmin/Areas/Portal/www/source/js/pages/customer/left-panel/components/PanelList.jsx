@@ -5,11 +5,11 @@ import { bindActionCreators } from 'redux';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 import Panel from './Panel';
-import { updateGeneralInfo, setClosedStatus, setAffType } from '../actions';
+import { getOnLineList, toggleLoader } from '../actions';
 
-import { affType, status } from '../modules/helper';
-import { formatDecimal } from '../../../modules/numberFormat';
-import { formatDateTime, parseDateTime, resolveClientUrl } from '../../../modules/utils';
+import { affType, status, resource, message } from '../modules/constants';
+import { formatDecimal } from '../../../../modules/numberFormat';
+import { resolveClientUrl } from '../../../../modules/utils';
 
 export class PanelList extends React.Component {
     constructor(props) {
@@ -19,10 +19,26 @@ export class PanelList extends React.Component {
         this.affStatusDropdown = React.createRef();
 
         this.state = {
+            onlineInfoList: null,
             isChangingAffType: false,
             isChangingAffStatus: false,
             isChangingCommissionGroup: false
         }
+    }
+
+    componentDidMount() {
+        this.handleGetOnLineList(this.props.affName);
+    }
+
+    async handleGetOnLineList(affName) {
+        this.props.toggleLoader(true);
+
+        const data = await this.props.getOnLineList(affName);
+        console.log(data);
+
+        this.setState({ onlineInfoList: data });
+
+        this.props.toggleLoader(false);
     }
 
     toggleChangingAffType(isChanging) {
@@ -37,8 +53,8 @@ export class PanelList extends React.Component {
     }
 
     handleChangeClosedStatus = async () => {
-        const { Closed } = this.props;
-        const nextStatus = !Closed;
+        const { affiliateInfo } = this.props;
+        const nextStatus = !affiliateInfo.Closed;
         const isConfirmed = confirm('Are you sure you want to ' + (nextStatus ? 'close' : 'open') + ' this affiliate?');
         if (isConfirmed) {
             const param = { Closed: nextStatus };
@@ -46,7 +62,7 @@ export class PanelList extends React.Component {
 
             if (response.data.IsSuccessful) {
                 this.props.setClosedStatus(nextStatus);
-                window.alert(window.resource.updateStatusSuccessfully);
+                window.alert(message.updateStatusSuccessfully);
             }
             else {
                 window.alert(response.data.Message);
@@ -71,19 +87,18 @@ export class PanelList extends React.Component {
 
     _renderCommissionPanel() {
         const { isChangingCommissionGroup } = this.state;
-        const { resource } = window;
-        const { Closed, GroupName, BalBroughtForward, AffId, UserName } = this.props;
-        const url = resolveClientUrl('GroupSetting/AssignGroup.aspx') + `?affid=${AffId}&affName=${UserName}`;
-        const title = 'Change Commission Group For \"' + UserName + '\"';
+        const { affiliateInfo } = this.props;
+        const url = resolveClientUrl('GroupSetting/AssignGroup.aspx') + `?affid=${affiliateInfo.AffId}&affName=${affiliateInfo.UserName}`;
+        const title = 'Change Commission Group For \"' + affiliateInfo.UserName + '\"';
 
         return (
-            <Panel heading={resource.comm}>
+            <Panel heading={resource.Commission}>
                 <tr>
-                    <td>{resource.commGroup}</td>
+                    <td>{resource.CommGroup}</td>
                     <td className='text-right'>
                         {
-                            Closed ? GroupName : 
-                            (<span className='popup' onClick={() => this.toggleEditingCommissionPopup(true)}>{GroupName}</span>)
+                            affiliateInfo.Closed ? affiliateInfo.GroupName : 
+                            (<span className='popup' onClick={() => this.toggleEditingCommissionPopup(true)}>{affiliateInfo.GroupName}</span>)
                         }
 
                         <Modal isOpen={isChangingCommissionGroup} backdrop='static' style={{maxWidth: 570}}>
@@ -99,27 +114,23 @@ export class PanelList extends React.Component {
                     </td>
                 </tr>
                 <tr>
-                    <td>{resource.balanceForward}</td>
-                    <td className="r">${formatDecimal(BalBroughtForward)}</td>
-                </tr>
-                <tr>
-                    <td><a href="../Report/MemberReport.aspx?isaff=1" target="fMain">{resource.reportDetails}</a></td>
+                    <td>{resource.BalanceForward}</td>
+                    <td className="r">${formatDecimal(affiliateInfo.BalanceBf)}</td>
                 </tr>
             </Panel>
         )
     }
 
     _renderSettingPanel(isApproved) {
-        const { resource } = window;
-        const { AffType, Status, Closed } = this.props;
+        const { affiliateInfo } = this.props;
         const { isChangingAffType, isChangingAffStatus } = this.state;
 
         return (
-            <Panel heading={resource.setting}>
+            <Panel heading={resource.Setting}>
                 <tr>
-                    <td>{resource.affiliateType}</td>
+                    <td>{resource.AffiliateType}</td>
                     <td className="text-right">
-                        <select style={{ display: isChangingAffType ? 'inline-block' : 'none' }} defaultValue={AffType}
+                        <select style={{ display: isChangingAffType ? 'inline-block' : 'none' }} defaultValue={affiliateInfo.AffType}
                             onBlur={this.toggleChangingAffType.bind(this, false)} ref={this.affTypeDropdown}
                             onChange={this.handleChangeAffType}>
                             {
@@ -129,18 +140,18 @@ export class PanelList extends React.Component {
                             }
                         </select>
                         <span className="popup" style={{ display: isChangingAffType ? 'none' : 'block' }}
-                            onClick={this.toggleChangingAffType.bind(this, true)}>{affType[AffType]}</span>
+                            onClick={this.toggleChangingAffType.bind(this, true)}>{affType[affiliateInfo.AffType]}</span>
                     </td>
                 </tr>
                 <tr>
-                    <td>{resource.status}</td>
+                    <td>{resource.Status}</td>
                     <td className="text-right">
                         {
                             isApproved ?
-                                Status :
+                                affiliateInfo.Status :
                                 (
                                     <div>
-                                        <select style={{ display: isChangingAffStatus ? 'inline-block' : 'none' }} defaultValue={Status}
+                                        <select style={{ display: isChangingAffStatus ? 'inline-block' : 'none' }} defaultValue={affiliateInfo.Status}
                                             onBlur={this.toggleChangingAffStatus.bind(this, false)}
                                             onChange={this.handleChangeStatus} ref={this.affStatusDropdown}>
                                             <option value="Approved">Approved</option>
@@ -148,19 +159,18 @@ export class PanelList extends React.Component {
                                             <option value="Pending">Pending</option>
                                         </select>
                                         <span className="popup" style={{ display: isChangingAffStatus ? 'none' : 'block' }}
-                                            onClick={this.toggleChangingAffStatus.bind(this, true)}>{Status}</span>
+                                            onClick={this.toggleChangingAffStatus.bind(this, true)}>{affiliateInfo.Status}</span>
                                     </div>
                                 )
-
                         }
                     </td>
                 </tr>
                 {
                     isApproved &&
                     <tr>
-                        <td>{resource.closed}</td>
+                        <td>{resource.Closed}</td>
                         <td className="text-right">
-                            <a className="text_box" onClick={this.handleChangeClosedStatus}>{Closed ? resource.yes : resource.no}</a>
+                            <a className="text_box" onClick={this.handleChangeClosedStatus}>{affiliateInfo.Closed ? resource.Yes : resource.No}</a>
                         </td>
                     </tr>
                 }
@@ -169,18 +179,18 @@ export class PanelList extends React.Component {
     }
 
     _renderOnlineInfoPanel() {
-        const { OnlineInfoList } = this.props;
+        const { onlineInfoList } = this.state;
 
         return (
             <Panel heading={resource.currOnlineList} style={{ overflow: 'auto', maxHeight: 110 }}>
                 <tr>
-                    <td width="10" className="text_bold text-center">#</td>
-                    <td width="70" className="text_bold text-center">{resource.ip}</td>
-                    <td width="120" className="text_bold text-center">{resource.lastCheckIn}</td>
+                    <td width="10" className="text_bold text-center">{resource.Index}</td>
+                    <td width="70" className="text_bold text-center">{resource.Ip}</td>
+                    <td width="120" className="text_bold text-center">{resource.LastCheckIn}</td>
                 </tr>
 
                 {
-                    OnlineInfoList && OnlineInfoList.map((item, index) => {
+                    onlineInfoList && onlineInfoList.map((item, index) => {
                         return (
                             <tr key={`onl-info-${index}`}>
                                 <td className="text-center">{index + 1}</td>
@@ -189,7 +199,7 @@ export class PanelList extends React.Component {
                                         {item.Ip}
                                     </a>
                                 </td>
-                                <td className="text-left">{formatDateTime(parseDateTime(item.ReloadTime), 'MM/dd/yyyy HH:mm:ss')}</td>
+                                <td className="text-left">{item.ReloadTimeText}</td>
                             </tr>
                         )
                     })
@@ -199,8 +209,8 @@ export class PanelList extends React.Component {
     }
 
     render() {
-        const { Status } = this.props;
-        const isApproved = Status.toLowerCase() === status.Approved;
+        const { affiliateInfo } = this.props;
+        const isApproved = affiliateInfo.Status.toLowerCase() === status.Approved;
 
         return (
             <React.Fragment>
@@ -212,16 +222,12 @@ export class PanelList extends React.Component {
     }
 }
 
-function mapStateToProps(state) {
-    const { GeneralInfo, OnlineInfoList } = state.leftMenuData;
-
-    const { GroupName, BalBroughtForward, AffType, Status, Closed, AffId, UserName } = GeneralInfo;
-
-    return { GroupName, BalBroughtForward, AffType, Status, Closed, AffId, UserName, OnlineInfoList };
+function mapStateToProps({ affiliateInfo, affName }) {
+    return Object.assign({}, { affiliateInfo, affName });
 };
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ updateGeneralInfo, setClosedStatus, setAffType }, dispatch);
+    return bindActionCreators({ getOnLineList, toggleLoader }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PanelList);

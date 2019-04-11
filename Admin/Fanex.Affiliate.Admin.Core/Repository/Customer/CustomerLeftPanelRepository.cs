@@ -24,7 +24,7 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Customer
                         {
                             AffId = Convert.ToInt32(reader["AffId"]),
                             GroupId = Convert.ToInt32(reader["GroupId"]),
-                            UserName = Convert.ToString(reader["UserName"]),
+                            AffName = Convert.ToString(reader["UserName"]),
                             FirstName = Convert.ToString(reader["FirstName"]),
                             LastName = Convert.ToString(reader["LastName"]),
                             PreferredLanguage = Convert.ToString(reader["PreferredLanguage"]),
@@ -39,7 +39,8 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Customer
                             MoreSiteUrl = Convert.ToString(reader["MoreSiteUrls"]),
                             SiteUrl = Convert.ToString(reader["SiteUrl"]),
                             NoSiteDescription = Convert.ToString(reader["NoSiteDesc"]),
-                            Status = Convert.ToString(reader["Status"])
+                            Status = Convert.ToString(reader["Status"]),
+                            Phone = Convert.ToString(reader["Phone"])
                         };
                     }
                 }

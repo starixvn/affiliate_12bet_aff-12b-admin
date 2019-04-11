@@ -5,8 +5,8 @@ import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 import { updateGeneralInfo, setLanguage, changePassword } from '../actions';
 
-import { status, language } from '../modules/helper';
-import { formatDateTime, parseDateTime } from '../../../modules/utils';
+import { status, resource } from '../modules/constants';
+import { resolveClientUrl } from '../../../../modules/utils';
 import ChangePasswordForm from './ChangePasswordForm';
 
 export class GeneralInfo extends React.Component {
@@ -49,36 +49,39 @@ export class GeneralInfo extends React.Component {
 
     _renderLanguage() {
         const { isChangingLanguage } = this.state;
-        const { PreferredLanguage } = this.props;
+        const { affiliateInfo, languageList } = this.props;
 
         return (
             <React.Fragment>
                 <select style={{ display: isChangingLanguage ? 'inline-block' : 'none' }}
-                    defaultValue={PreferredLanguage} onChange={this.handleChangeLanguage} onBlur={this.handleBlurLanguage}>
+                    defaultValue={affiliateInfo.PreferredLanguage} onChange={this.handleChangeLanguage} onBlur={this.handleBlurLanguage}>
                     {
-                        Object.keys(language).map((key, index) => {
-                            return (<option value={key} key={`affinfo-lang-${index}`}>{language[key]}</option>)
+                        languageList.map(language => {
+                            return (<option value={language.LanguageCode} key={`affinfo-lang-${language.LanguageCode}`}>{language.LanguageName}</option>)
                         })
                     }
                 </select>
                 <span className='popup' style={{ display: isChangingLanguage ? 'none' : 'block' }}
                     onClick={this.clickChangeLanguage}>
-                    {language[PreferredLanguage]}
+                    {
+                        languageList.map(language => {
+                            return (affiliateInfo.PreferredLanguage === language.LanguageCode) && (<option value={language.LanguageCode} key={`language-${language.LanguageCode}`}>{language.LanguageName}</option>)
+                        })
+                    }
                 </span>
             </React.Fragment>
         )
     }
 
     _renderApprovedStatusInfo() {
-        const { resource } = window;
         const { isChangingPassword } = this.state;
-        const { UserName, changePassword } = this.props;
+        const { affiliateInfo, changePassword } = this.props;
         return (
             <React.Fragment>
                 <tr style={{ height: 22 }}>
-                    <td className='line_table'>{resource.password}</td>
+                    <td className='line_table'>{resource.Password}</td>
                     <td className='r line_table'>
-                        <span className='popup' onClick={() => this.toggleChangingPassword(true)}>[change]</span>
+                        <span className='popup' onClick={() => this.toggleChangingPassword(true)}>[{resource.Change}]</span>
 
                         <Modal isOpen={isChangingPassword} backdrop='static'>
                             <ModalHeader toggle={() => this.toggleChangingPassword(false)}>
@@ -87,7 +90,7 @@ export class GeneralInfo extends React.Component {
                             <ModalBody>
                                 <div className="modal-body-wrapper">
                                     {
-                                        isChangingPassword && 
+                                        isChangingPassword &&
                                         <ChangePasswordForm onClose={() => this.toggleChangingPassword(false)}
                                             onSubmit={changePassword} />
                                     }
@@ -98,7 +101,7 @@ export class GeneralInfo extends React.Component {
                 </tr>
                 <tr style={{ height: 22 }}>
                     <td colSpan='2'>
-                        <a href={`../UserInfo/MemberListAll.aspx?txtAffUsername=${UserName}`} target='fMain'>{resource.memList}</a>
+                        <a href={resolveClientUrl(`Portal/Member?txtAffUsername=${affiliateInfo.AffName}`)} target='fMain'>{resource.MemberList}</a>
                     </td>
                 </tr>
             </React.Fragment>
@@ -106,96 +109,83 @@ export class GeneralInfo extends React.Component {
     }
 
     render() {
-        const { resource } = window;
-        const { Status, Closed, UserName, AffId, FirstName, LastName, Gender, Phone, Email, PlayerUsername,
-            SiteUrl, LastLoginDate, LastLoginIP, InternalUrl, PreferredLanguage, PreferredPayment } = this.props;
+        const { affiliateInfo } = this.props;
 
-        const isApproved = Status.toLowerCase() === status.Approved;
-        const siteUrl = SiteUrl.indexOf('http://') === -1 ? 'http://' + SiteUrl : SiteUrl;
+        const isApproved = affiliateInfo.Status.toLowerCase() === status.Approved;
+        const siteUrl = affiliateInfo.SiteUrl.indexOf('http://') === -1 ? 'http://' + affiliateInfo.SiteUrl : affiliateInfo.SiteUrl;
 
         return (
             <React.Fragment>
                 <tr>
                     <td style={{ width: '45%', height: 35 }}>
-                        <span className='text_bold'>{resource.affiliate}</span>
+                        <span className='text_bold'>{resource.Affiliate}</span>
                     </td>
                     <td style={{ width: '55%' }} className='r'>
                         {
-                            isApproved && !Closed ?
-                                (<a href={InternalUrl} className='upper b' target='_blank'>{UserName}</a>) :
-                                (<span>{UserName}</span>)
+                            isApproved && !affiliateInfo.Closed ?
+                                (<a href="#" className='upper b' target='_blank'>{affiliateInfo.AffName}</a>) :
+                                (<span>{affiliateInfo.AffName}</span>)
                         }{' '}
-                        [<span id="affID">{AffId}</span>]
+                        [<span id="affID">{affiliateInfo.AffId}</span>]
 
-                        <input type="hidden" id="hdFname" value={FirstName} />
-                        <input type="hidden" id="hdPreferLang" value={PreferredLanguage} />
-                        <input type="hidden" id="hdPreferredPayment" value={PreferredPayment} />
-                        <input type="hidden" id="hdEmail" value={Email} />
-                        <input type="hidden" id="hdPlayer_Username" value={PlayerUsername} />
-                        
+                        <input type="hidden" id="hdFname" value={affiliateInfo.FirstName} />
+                        <input type="hidden" id="hdPreferLang" value={affiliateInfo.PreferredLanguage} />
+
                     </td>
                 </tr>
                 <tr>
-                    <td className='line_table'>{resource.firstname}</td>
-                    <td className='line_table r'>{FirstName}</td>
+                    <td className='line_table'>{resource.FirstName}</td>
+                    <td className='line_table r'>{affiliateInfo.FirstName}</td>
                 </tr>
                 <tr>
-                    <td className='line_table'>{resource.lastname}</td>
-                    <td className='line_table r'>{LastName}</td>
+                    <td className='line_table'>{resource.LastName}</td>
+                    <td className='line_table r'>{affiliateInfo.LastName}</td>
                 </tr>
                 <tr>
-                    <td className='line_table'>{resource.gender}</td>
-                    <td className='line_table r'>{Gender === null ? '' : (Gender === true ? resource.male : resource.female)}</td>
+                    <td className='line_table'>{resource.Gender}</td>
+                    <td className='line_table r'>{affiliateInfo.Gender === null ? '' : (affiliateInfo.Gender === true ? resource.Male : resource.Female)}</td>
                 </tr>
                 <tr>
-                    <td className='line_table'>{resource.contactNumber}</td>
-                    <td className='line_table r'>{Phone}</td>
+                    <td className='line_table'>{resource.ContactNumber}</td>
+                    <td className='line_table r'>{affiliateInfo.Phone}</td>
                 </tr>
                 <tr>
-                    <td className='line_table'>{resource.language}</td>
+                    <td className='line_table'>{resource.Language}</td>
                     <td className='line_table r'>
                         {this._renderLanguage()}
                     </td>
                 </tr>
                 <tr>
-                    <td className='line_table'>{resource.siteUrl}</td>
+                    <td className='line_table'>{resource.WebsiteUrl}</td>
                     <td className='line_table r'>
                         <a target='_blank' title={siteUrl} href={`http://anonym.to/?${siteUrl}`}>
-                            {SiteUrl.replace('http://', '').replace('www.', '')}
+                            {affiliateInfo.SiteUrl.replace('http://', '').replace('www.', '')}
                         </a>
                     </td>
                 </tr>
                 <tr>
-                    <td className='line_table'>{resource.lastLogin}</td>
-                    <td className='line_table r'>{formatDateTime(parseDateTime(LastLoginDate), 'MM/dd/yyyy HH:mm:ss')}</td>
+                    <td className='line_table'>{resource.LastLogin}</td>
+                    <td className='line_table r'>{affiliateInfo.LastLoginDateText}</td>
                 </tr>
                 <tr>
-                    <td className='line_table'>{resource.lastLoginIp}</td>
+                    <td className='line_table'>{resource.LastLoginIp}</td>
                     <td className='line_table r'>
-                        <a target='_blank' href={`http://anonym.to/?http://legacytools.dnsstuff.com/tools/ipall.ch?tool_id=67&token=&toolhandler_redirect=0&ip=${LastLoginIP}&j=1`}>
-                            {LastLoginIP}
+                        <a target='_blank' href={`http://anonym.to/?http://legacytools.dnsstuff.com/tools/ipall.ch?tool_id=67&token=&toolhandler_redirect=0&ip=${affiliateInfo.LastLoginIp}&j=1`}>
+                            {affiliateInfo.LastLoginIp}
                         </a>
                     </td>
                 </tr>
                 {
-                    isApproved && this._renderApprovedStatusInfo()                   
+                    isApproved && this._renderApprovedStatusInfo()
                 }
             </React.Fragment>
         )
     }
 }
 
-function mapStateToProps(state) {
-    const generalInfo = state.leftMenuData.GeneralInfo;
-
-    const { Status, Closed, UserName, AffId, FirstName, LastName, Gender, Phone, Email, PlayerUsername,
-        PreferredLanguage, SiteUrl, LastLoginDate, LastLoginIP, InternalUrl, PreferredPayment } = generalInfo;
-
-    return {
-        Status, Closed, UserName, AffId, FirstName, LastName, Gender, Phone, Email, PlayerUsername,
-        PreferredLanguage, SiteUrl, LastLoginDate, LastLoginIP, InternalUrl, PreferredPayment
-    };
-};
+function mapStateToProps({ affiliateInfo, languageList }) {
+    return Object.assign({}, { affiliateInfo, languageList });
+}
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({ updateGeneralInfo, setLanguage, changePassword }, dispatch);

@@ -1,33 +1,25 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { Provider } from "react-redux";
-import { createStore, applyMiddleware, compose } from "redux";
-import thunkMiddleware from "redux-thunk";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 
 import reducer from './reducers';
-import AppContainer from "./components/AppContainer";
+import AppContainer from './components/AppContainer';
+import { configureStore } from '../../../modules/store';
 
-function configureStore(initialState) {
-  const enhancer = compose(
-    applyMiddleware(
-      thunkMiddleware // lets us dispatch() functions
-    )
-  );
+const store = configureStore(window.initialState, reducer);
 
-  return createStore(reducer, initialState, enhancer);
+export default class App extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <Provider store={store}>
+                <AppContainer />
+            </Provider>
+        );
+    }
 }
 
-const initialState = {
-  leftMenuData: {}
-};
-const store = configureStore(initialState);
-
-const App = () => {
-  return (
-    <Provider store={store}>
-      <AppContainer />
-    </Provider>
-  );
-}
-
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById('root'));

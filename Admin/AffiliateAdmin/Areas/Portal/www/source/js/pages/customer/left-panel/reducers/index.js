@@ -1,27 +1,23 @@
-import {
-    combineReducers
-} from 'redux';
+import { combineReducers } from 'redux';
 import createReducer from '../../../../modules/createReducer';
 
-import {
-    LEFTPANEL_RECEIVE_AFFINFO,
-    LEFTPANEL_RECEIVE_ONLINELIST
-} from '../actions/types';
+import { LEFTPANEL_RECEIVE_AFFINFO } from '../actions/types';
+import { isShowLoader } from '../../../../reducers/loaderReducer';
 
-const affiliateInfo = createReducer({}, {
-    [LEFTPANEL_RECEIVE_AFFINFO](prevState, data) {
-        return Object.assign({}, data);
+const affName = createReducer('',{});
+const languageList = createReducer({},{});
+
+const affiliateInfo = createReducer(null, {
+    [LEFTPANEL_RECEIVE_AFFINFO](prevState, action) {
+        return action.data && Object.assign({}, prevState, action.data);
     }
 });
 
-const onlineList = createReducer({}, {
-    [LEFTPANEL_RECEIVE_ONLINELIST](prevState, data) {
-        return Object.assign({}, data);
-    }
-});
 
 
 export default combineReducers({
-    affiliateInfo,
-    onlineList
+    isShowLoader,
+    affName,
+    languageList,
+    affiliateInfo
 });

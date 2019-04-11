@@ -10,36 +10,37 @@ export class SearchBox extends React.Component {
         super(props);
 
         this.state = {
-            userName: '12BETAFF2233'
+            affName: this.props.affName
         };
-
-        this.currentUserName = '';
     }
 
     componentDidMount() {
-        const userName = this.state.userName;
-        this.props.getAffiliateInfo(userName);
+        this.props.getAffiliateInfo(this.state.affName);
     }
 
     handleChange = (event) => {
-        this.setState({ userName: event.target.value.trim() });
+        this.setState({ [event.target.name]: event.target.value.trim() });
     }
 
     handleClick = (event) => {
         event.preventDefault();
-        const userName = this.state.userName;
-        this.currentUserName = userName;
-        this.props.getAffiliateInfo(userName);
+        this.props.getAffiliateInfo(this.state.affName);
+    }
+
+    handlePressEnter = (event) => {
+        if (event.charCode === 13) {
+            this.handleClick(event);
+        }
     }
 
     render() {
-        const { userName } = this.state;
+        const { affName } = this.state;
         return (
             <Form tag="div">
                 <FormGroup row>
-                    <Label for="exampleEmail" sm={2}>User Name</Label>
+                    <Label for="affName" sm={2}>User Name</Label>
                     <Col sm={7}>
-                        <Input type="text" name="userName" onChange={this.handleChange} value={userName} />
+                        <Input type="text" name="affName" onChange={this.handleChange} onKeyPress={this.handlePressEnter} value={affName} />
                     </Col>
                     <Button onClick={this.handleClick}>Search</Button>
                 </FormGroup>
@@ -48,8 +49,8 @@ export class SearchBox extends React.Component {
     }
 }
 
-function mapStateToProps({ affiliateInfo }) {
-    return { affiliateInfo };
+function mapStateToProps({ affiliateInfo, affName }) {
+    return Object.assign({}, { affiliateInfo, affName });
 };
 
 function mapDispatchToProps(dispatch) {

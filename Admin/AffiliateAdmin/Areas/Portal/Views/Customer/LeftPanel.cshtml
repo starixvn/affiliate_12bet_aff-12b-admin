@@ -2,11 +2,19 @@
     Layout = "~/Areas/Portal/Views/Shared/_SinglePageLayout.cshtml";
 }
 
-@section scripts{
-    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/customer/leftpanel.js")"></script>
-}
+@model Fanex.Affiliate.Admin.Core.ViewModels.Customer.LeftPanelViewModel
 @section styles{
     <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/customer/leftpanel.css")" rel="stylesheet" />
+}
+
+@section scripts{
+    <script type="text/javascript">
+        window.initialState = {
+            affName: '@Model.AffName',
+            languageList: @Html.Raw(Json.Encode(Model.LanguageList)),
+        }
+    </script>
+    <script type="text/javascript" src="@Url.VersionedLink("~/Areas/Portal/www/dist/js/pages/customer/leftpanel.js")"></script>
 }
 <div id="root">
 </div>

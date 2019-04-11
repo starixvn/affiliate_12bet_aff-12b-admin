@@ -40,6 +40,9 @@
       <HintPath>..\..\packages\Autofac.Mvc5.4.0.2\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="DNAide">
+      <HintPath>..\AffiliateAdmin\_Dependencies\DNAide.dll</HintPath>
+    </Reference>
     <Reference Include="Fanex.Data, Version=0.5.404.63, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Data.0.5.404.63\lib\net40\Fanex.Data.dll</HintPath>
       <Private>True</Private>
@@ -379,6 +382,7 @@
     <Compile Include="ViewModels\AssignNormalGroupViewModel.cs" />
     <Compile Include="ViewModels\AssignPrivateGroupViewModel.cs" />
     <Compile Include="ViewModels\CommissionGroupViewModel.cs" />
+    <Compile Include="ViewModels\Customer\LeftPanelViewModel.cs" />
     <Compile Include="ViewModels\EmailTemplateViewModel.cs" />
     <Compile Include="ViewModels\GetCommissionGroupViewModel.cs" />
     <Compile Include="ViewModels\UserPanel\CustomerMemberViewModel.cs" />

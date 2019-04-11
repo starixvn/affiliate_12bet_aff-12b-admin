@@ -10,7 +10,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Customer
 
         public int GroupId { get; set; }
 
-        public string UserName { get; set; }
+        public string AffName { get; set; }
 
         public string FirstName { get; set; }
 
@@ -46,5 +46,7 @@ namespace Fanex.Affiliate.Admin.Core.DTO.Customer
         public int AffType { get; set; }
 
         public string PreferredLanguage { get; set; }
+
+        public string Phone { get; set; }
     }
 }

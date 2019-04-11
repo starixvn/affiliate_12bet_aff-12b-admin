@@ -10,14 +10,13 @@ class Content extends Component {
     }
 
     render() {
-        const { hasData } = this.props;
         return (
             <div className='data-content'>
                 <div id="left-panel">
                     <div className="left-panel-container">
                         <div className="left-panel-content">
                             <SearchBox />
-                            {hasData && <MainInfo />}
+                            {this.props.affiliateInfo && <MainInfo />}
                         </div>
                     </div>
                 </div>
@@ -27,7 +26,7 @@ class Content extends Component {
 }
 
 function mapStateToProps({ affiliateInfo }) {
-    return { hasData: !!affiliateInfo };
+    return Object.assign({}, { affiliateInfo });
 };
 
 export default connect(mapStateToProps)(Content);
