@@ -10,6 +10,8 @@ namespace Fanex.Affiliate.User.Core.MetalModels
 
         public string CurrentLanguage { get; set; }
 
+        public int IntervalInMinute { get; set; }
+
         public VerificationAccountEmailParam VerificationEmailParam { get; set; }
     }
 }

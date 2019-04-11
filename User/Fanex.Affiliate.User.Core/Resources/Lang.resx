@@ -2261,7 +2261,7 @@
     <value>You placed an invalid captcha.</value>
   </data>
   <data name="SendCodeFailed" xml:space="preserve">
-    <value>Send code failed. You should only refresh page to resend code after 60 seconds</value>
+    <value>Send code failed. You should only refresh page to resend code after 5 minutes</value>
   </data>
   <data name="ValidationVerificationAccount" xml:space="preserve">
     <value>Verification Account failed</value>

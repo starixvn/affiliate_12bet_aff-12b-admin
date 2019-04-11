@@ -178,6 +178,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid/expired verification code, please try again or request a new one.
+        /// </summary>
+        public static string VerificationFailed {
+            get {
+                return ResourceManager.GetString("VerificationFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your session has expired!.
         /// </summary>
         public static string YourSessionHasExpired {

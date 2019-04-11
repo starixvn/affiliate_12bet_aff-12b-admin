@@ -6,7 +6,9 @@ using System.Web.Routing;
 using System.Web.SessionState;
 using Fanex.Affiliate.User.Core.BusinessService;
 using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
+using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.Utilities;
+using Newtonsoft.Json;
 
 namespace Fanex.Affiliate.User.Core.Infrastructure
 {
@@ -40,7 +42,13 @@ namespace Fanex.Affiliate.User.Core.Infrastructure
 
                 if (!parseQueryResult.IsValid)
                 {
-                    SetNotFoundResponse();
+                    var response = _requestContext.HttpContext.Response;
+                    response.StatusCode = (int)HttpStatusCode.BadRequest;
+                    response.ContentType = "application/json";
+                    response.Write(JsonConvert.SerializeObject(
+                        new { IsOk = false, IsExpired = true, Message = Error.General }
+                    ));
+
                     return;
                 }
 

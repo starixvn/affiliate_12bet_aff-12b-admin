@@ -156,6 +156,9 @@
   <data name="RequireIMAccount" xml:space="preserve">
     <value>At least one IM account is required</value>
   </data>
+  <data name="VerificationFailed" xml:space="preserve">
+    <value>Invalid/expired verification code, please try again or request a new one</value>
+  </data>
   <data name="YourSessionHasExpired" xml:space="preserve">
     <value>Your session has expired!</value>
   </data>

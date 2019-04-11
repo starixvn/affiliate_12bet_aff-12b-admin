@@ -1,5 +1,4 @@
-﻿using Fanex.Affiliate.User.Core.DTO;
-using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
+﻿using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
 using Fanex.Affiliate.User.Core.MetalModels;
 
 namespace Fanex.Affiliate.User.Core.BusinessService
@@ -10,6 +9,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         bool IsValidOtp(VerificationOtpParam param);
 
-        VerificationAction CreateActionLink(string publicKey);
+        VerificationAction CreateActionLink(string publicKey, int expirationInMinute);
     }
 }

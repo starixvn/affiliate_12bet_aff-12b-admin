@@ -2,7 +2,6 @@
 using System.Security.Cryptography;
 using System.Text;
 using Fanex.Affiliate.User.Core.Constants;
-using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
 using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.MetalModels.Email;
@@ -17,8 +16,6 @@ namespace Fanex.Affiliate.User.Core.BusinessService
     public class VerificationService : IVerificationService
     {
         private const int SecretKeyExistedCode = 101;
-        private const int ExpirationSendCodeByMinute = 5;
-        private const int ExpirationActionLinkByMinute = 6;
 
         private readonly ILanguageService _languageService;
         private readonly ITwoFactorAuthService _twoFactorAuthService;
@@ -48,7 +45,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 
         public SendCodeResult SendCode(SendCodeParam param)
         {
-            if (CanSendCode(param.SentCodeTime))
+            if (CanSendCode(param.SentCodeTime, param.IntervalInMinute))
             {
                 var counter = _wrapperUtility.GetRandomGenerator().Next(int.MinValue, int.MaxValue);
 
@@ -100,6 +97,18 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return isValid;
         }
 
+        public VerificationAction CreateActionLink(string publicKey, int expirationInMinute)
+        {
+            var nowTicks = _wrapperUtility.GetNowDateTime().Ticks.ToString();
+            var queryString = "controller=VerificationAccount&action=VerifyAccount&t=" + nowTicks + "&e=" + expirationInMinute;
+
+            return new VerificationAction
+            {
+                Link = ConverterUtils.Base64Encode(_cryptographyService.RsaEncrypt(publicKey, queryString)),
+                TimeToken = nowTicks
+            };
+        }
+
         private void UpdateVerificationInfo(VerificationOtpParam param, bool isValid)
         {
             var verificationParam = CreateVerificationParam(param);
@@ -140,21 +149,9 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             };
         }
 
-        public VerificationAction CreateActionLink(string publicKey)
+        private bool CanSendCode(long sendCodeTimeSession, int intervalInMinute)
         {
-            var nowTicks = _wrapperUtility.GetNowDateTime().Ticks.ToString();
-            var queryString = "controller=VerificationAccount&action=VerifyAccount&t=" + nowTicks + "&e=" + ExpirationActionLinkByMinute;
-
-            return new VerificationAction
-            {
-                Link = ConverterUtils.Base64Encode(_cryptographyService.RsaEncrypt(publicKey, queryString)),
-                TimeToken = nowTicks
-            };
-        }
-
-        private bool CanSendCode(long sendCodeTimeSession)
-        {
-            var maxTime = _wrapperUtility.GetNowDateTime().AddMinutes(ExpirationSendCodeByMinute * -1).Ticks;
+            var maxTime = _wrapperUtility.GetNowDateTime().AddMinutes(intervalInMinute * -1).Ticks;
 
             return sendCodeTimeSession == 0 || maxTime - sendCodeTimeSession >= 0;
         }

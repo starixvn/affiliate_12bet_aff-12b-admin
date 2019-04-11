@@ -48,7 +48,7 @@ var AuthHelper = (function ($) {
 var VerificationAccount = (function () {
     var _refreshCaptchaTimeoutId = null;
     var _countdownResendCodeTimeoutId = null;
-    var INTERVAL_SENDCODE_SECOND = 300;
+    var INTERVAL_SENDCODE_SECOND = 60;
     var REFRESH_CAPTCHA_INTERVAL = 600000;
 
     function registerRefreshCaptcha() {
@@ -111,7 +111,6 @@ var VerificationAccount = (function () {
                     _me.countDown(INTERVAL_SENDCODE_SECOND);
                     $('#VerificationToken').val(response.VerificationToken);
                     updateAction(response.Action);
-                    $('#btnLoginVerification').prop('disabled', false).removeClass('disabled');
 
                     if (!isReload && !response.IsOk) {
                         alert(response.Message);
@@ -130,7 +129,6 @@ var VerificationAccount = (function () {
             if (second === 0) {
                 $('#btnResend').html('RESEND CODE');
                 $('#btnResend').prop('disabled', false);
-                $('#btnLoginVerification').prop('disabled', true).addClass('disabled');
             } else {
                 $('#btnResend').html('RESEND CODE(' + second + ')');
                 _countdownResendCodeTimeoutId = setTimeout(_me.countDown, 1000, --second);
@@ -179,7 +177,8 @@ var VerificationAccount = (function () {
                             Site.redirect(Site.resolveRelativeUrl("UserPanel/Main/#AccountOverview"));
                         }
                         else {
-                            alert(response.Message);
+                            var message = response.IsExpired ? resource.verificationFailed : response.Message;
+                            alert(message);
                             $('#Password').val("");
                             $('#Captcha').val("");
                             _me.generateCaptcha();

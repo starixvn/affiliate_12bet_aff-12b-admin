@@ -86,7 +86,9 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 IsOk = result.IsOk,
                 Message = result.Message,
                 VerificationToken = verificationSession.Token,
-                Action = _verificationService.CreateActionLink(AppSetting.RsaPublicKeyEncodedXml)
+                Action = _verificationService.CreateActionLink(
+                    AppSetting.RsaPublicKeyEncodedXml,
+                    Convert.ToInt32(AppSetting.GetValue("ExpirationCodeInMinute")))
             });
         }
 
@@ -144,6 +146,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 AffId = verificationSession.AffId,
                 SentCodeTime = verificationSession.SentCodeTime,
                 CurrentLanguage = SessionService.CurrentLanguage,
+                IntervalInMinute = Convert.ToInt32(AppSetting.GetValue("SendCodeIntervalInMinute")),
                 VerificationEmailParam = new VerificationAccountEmailParam
                 {
                     MailContact = AppSetting.MailContact,
@@ -192,7 +195,9 @@ namespace Fanex.Affiliate.User.Core.Controllers
             {
                 IsOk = result.IsOk,
                 Message = result.Message,
-                Action = _verificationService.CreateActionLink(AppSetting.RsaPublicKeyEncodedXml)
+                Action = _verificationService.CreateActionLink(
+                    AppSetting.RsaPublicKeyEncodedXml,
+                    Convert.ToInt32(AppSetting.GetValue("ExpirationCodeInMinute")))
             };
         }
     }

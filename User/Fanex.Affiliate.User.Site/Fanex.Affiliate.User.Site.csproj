@@ -528,7 +528,9 @@
     <Content Include="www\build\js\pages\login.js" />
     <Content Include="www\build\js\pages\login.min.js" />
     <Content Include="www\build\js\pages\verification-account.js" />
-    <Content Include="www\build\js\pages\verification-account.min.js" />
+    <Content Include="www\build\js\pages\verification-account.min.js">
+      <DependentUpon>verification-account.js</DependentUpon>
+    </Content>
     <Content Include="www\build\js\pagetracking.js" />
     <Content Include="www\build\js\pagetracking.min.js">
       <DependentUpon>pagetracking.js</DependentUpon>
