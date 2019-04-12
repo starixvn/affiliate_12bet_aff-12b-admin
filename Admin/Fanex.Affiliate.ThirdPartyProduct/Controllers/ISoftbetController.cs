@@ -130,6 +130,11 @@ namespace Fanex.Affiliate.ThirdPartyProduct.Controllers
                 return Content(JsonConvert.SerializeObject(ex), "application/json");
             }
 
+            param.UserName = param.UserName?.Trim();
+            if (!string.IsNullOrEmpty(param.UserName))
+            {
+                dataList = dataList.Where(x => string.Equals(x.PlayerId, param.UserName, StringComparison.InvariantCultureIgnoreCase)).ToList();
+            }
             var resultList = GetResultDataList(dataList);
 
             return Content(JsonConvert.SerializeObject(new
