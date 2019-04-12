@@ -136,6 +136,7 @@
     <Compile Include="Controllers\OpusController.cs" />
     <Compile Include="Controllers\TimeTrackerController.cs" />
     <Compile Include="DTO\ImportQueue.cs" />
+    <Compile Include="DTO\ISoftbetReport.cs" />
     <Compile Include="DTO\TimeTracker.cs" />
     <Compile Include="MetaModels\BetsoftRequestParam.cs" />
     <Compile Include="MetaModels\CrystalGpiRequestParam.cs" />
