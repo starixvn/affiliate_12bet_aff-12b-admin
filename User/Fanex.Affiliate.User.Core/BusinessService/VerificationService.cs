@@ -81,7 +81,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 };
             }
 
-            return CreateSendCodeFailedResult();
+            return CreateSendCodeFailedResult(param.IntervalInMinute);
         }
 
         public bool IsValidOtp(VerificationOtpParam param)
@@ -196,12 +196,12 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return Base32Encoding.ToString(KeyGeneration.GenerateRandomKey(20));
         }
 
-        private static SendCodeResult CreateSendCodeFailedResult()
+        private static SendCodeResult CreateSendCodeFailedResult(int sendCodeIntervalTime)
         {
             return new SendCodeResult
             {
                 IsOk = false,
-                Message = Lang.SendCodeFailed
+                Message = string.Format(Error.VerificationSendCodeFailed, sendCodeIntervalTime)
             };
         }
     }

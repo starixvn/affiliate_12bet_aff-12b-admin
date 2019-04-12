@@ -187,6 +187,15 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Send code failed. You should only refresh page to resend code after {0} minutes.
+        /// </summary>
+        public static string VerificationSendCodeFailed {
+            get {
+                return ResourceManager.GetString("VerificationSendCodeFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your session has expired!.
         /// </summary>
         public static string YourSessionHasExpired {

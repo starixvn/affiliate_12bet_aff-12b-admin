@@ -4886,15 +4886,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Send code failed. You should only refresh page to resend code after 5 minutes.
-        /// </summary>
-        public static string SendCodeFailed {
-            get {
-                return ResourceManager.GetString("SendCodeFailed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Senegal .
         /// </summary>
         public static string Senegal {
@@ -5864,15 +5855,6 @@ namespace Fanex.Affiliate.User.Core.Resources {
         public static string ValidationCodeLabel {
             get {
                 return ResourceManager.GetString("ValidationCodeLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Verification Account failed.
-        /// </summary>
-        public static string ValidationVerificationAccount {
-            get {
-                return ResourceManager.GetString("ValidationVerificationAccount", resourceCulture);
             }
         }
         

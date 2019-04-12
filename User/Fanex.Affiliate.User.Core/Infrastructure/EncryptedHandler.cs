@@ -40,7 +40,7 @@ namespace Fanex.Affiliate.User.Core.Infrastructure
                 var encryptedQuery = _requestContext.RouteData.GetRequiredString("encryptedQuery")?.Trim();
                 var parseQueryResult = TryParseQueryString(encryptedQuery);
 
-                if (!parseQueryResult.IsValid)
+                if (!parseQueryResult.IsValid && parseQueryResult.IsExpired)
                 {
                     var response = _requestContext.HttpContext.Response;
                     response.StatusCode = (int)HttpStatusCode.BadRequest;
@@ -51,13 +51,19 @@ namespace Fanex.Affiliate.User.Core.Infrastructure
 
                     return;
                 }
-
-                var controller = ControllerBuilder.Current.GetControllerFactory()
-                                .CreateController(_requestContext, parseQueryResult.ControllerName);
-                if (controller != null)
+                else if (!parseQueryResult.IsValid)
                 {
-                    _requestContext.RouteData.Values["action"] = parseQueryResult.ActionName;
-                    controller.Execute(_requestContext);
+                    SetNotFoundResponse();
+                }
+                else
+                {
+                    var controller = ControllerBuilder.Current.GetControllerFactory()
+                                    .CreateController(_requestContext, parseQueryResult.ControllerName);
+                    if (controller != null)
+                    {
+                        _requestContext.RouteData.Values["action"] = parseQueryResult.ActionName;
+                        controller.Execute(_requestContext);
+                    }
                 }
             }
             catch (Exception)
@@ -87,7 +93,7 @@ namespace Fanex.Affiliate.User.Core.Infrastructure
 
             if (!string.Equals(timeQuery, timeToken) || IsExpired(timeToken, expirationByMinute))
             {
-                return new QueryStringResult { IsValid = false };
+                return new QueryStringResult { IsValid = false, IsExpired = true };
             }
 
             var controllerName = paramValues["controller"]?.Trim();

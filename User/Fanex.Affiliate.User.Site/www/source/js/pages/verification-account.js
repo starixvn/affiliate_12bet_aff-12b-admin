@@ -130,8 +130,7 @@
                             Site.redirect(Site.resolveRelativeUrl("UserPanel/Main/#AccountOverview"));
                         }
                         else {
-                            var message = response.IsExpired ? resource.verificationFailed : response.Message;
-                            alert(message);
+                            response.Message && alert(response.Message);
                             $('#Password').val("");
                             $('#Captcha').val("");
                             _me.generateCaptcha();
@@ -139,6 +138,11 @@
                         }
 
                         updateAction(response.Action);
+                    },
+                    error: function (jqXHR) {
+                        var data = jqXHR.responseJSON;
+                        var message = data.IsExpired ? resource.verificationFailed : data.Message;
+                        message && alert(message);
                     },
                     beforeSend: function () {
                         Site.showLoader();

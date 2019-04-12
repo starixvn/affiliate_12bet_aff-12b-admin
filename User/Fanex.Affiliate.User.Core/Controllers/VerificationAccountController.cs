@@ -134,7 +134,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 }
             }
 
-            return Json(CreateVerifyAccountResult(GetErrorResult(Lang.ValidationVerificationAccount)));
+            return Json(CreateVerifyAccountResult(GetErrorResult(Error.VerificationFailed)));
         }
 
         private SendCodeParam CreateSendCodeParam()
