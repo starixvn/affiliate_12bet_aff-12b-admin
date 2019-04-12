@@ -8,7 +8,9 @@ import { message, resource, regExp } from '../modules/constants';
 import { formatDecimalWithCurrencySymbol, format } from '../../../../modules/numberFormat';
 import { money } from '../../../../modules/constants';
 
-const regexCheckAmount = new RegExp(regExp.CheckAmount);
+const regexCheckAmount = new RegExp(regExp.checkAmount);
+const regexValidAmount = new RegExp(regExp.validAmount);
+const regexShouldFormatAmount = new RegExp(regExp.shouldFormatAmount);
 
 export class Content extends Component {
     constructor(props) {
@@ -45,20 +47,19 @@ export class Content extends Component {
         const value = event.target.value;
         const amount = value.replace(/,/g, '');
 
-        if (amount === '-' || Number(amount) === 0) {
-            this.setState({ [event.target.name]: value });
-            return;
-        }
-
-        if (this._isValidAmount(amount)) {
-            this.setState({ [event.target.name]: value.indexOf('.') != -1 ? value : format(Number(amount)) })
+        if (regexCheckAmount.test(amount)) {
+            if (regexShouldFormatAmount.test(amount) && Number(amount) !== 0 && Number(amount) > Number.MIN_SAFE_INTEGER && Number(amount) < Number.MAX_SAFE_INTEGER) {
+                this.setState({ [event.target.name]: format(Number(amount)) })
+            } else {
+                this.setState({ [event.target.name]: value });
+            }
         }
     }
 
     _isValidAmount = (amount) => {
         const absBalanceBf = Math.abs(this.state.balanceBf);
 
-        return regexCheckAmount.test(amount) && Number(amount) - absBalanceBf >= money.MinValue && Number(amount) + absBalanceBf <= money.MaxValue;
+        return regexValidAmount.test(amount) && Number(amount) - absBalanceBf > money.MinValue && Number(amount) + absBalanceBf < money.MaxValue;
     }
 
     _validateAmount = () => {
@@ -122,6 +123,7 @@ export class Content extends Component {
     render() {
         const { affInfo } = this.props;
         const { balanceBf, amount, description, isShowMessage, isSuccess, message } = this.state;
+        const isValidAmount = this._isValidAmount(amount.replace(/,/g, '')) || amount === '';
 
         return (
             <Form tag="form" className="adjustment-form">
@@ -136,7 +138,7 @@ export class Content extends Component {
                         <Label sm={4}>{resource.BalanceBf}</Label>
                         <Label sm={8}>{formatDecimalWithCurrencySymbol(balanceBf)}</Label>
                     </FormGroup>
-                    <FormGroup row className="mb-2">
+                    <FormGroup row className={isValidAmount ? "mb-2" : "mb-2 has-error"}>
                         <Label for="amount" sm={4} className="required">{resource.Amount}</Label>
                         <Col sm={8}>
                             <Input type="text" name="amount" id="amount" className="text-right h-75"
@@ -153,7 +155,7 @@ export class Content extends Component {
                     <FormGroup row className="mb-2">
                         <Label sm={4}></Label>
                         <Col sm={8}>
-                            <Button type="button" color="success" onClick={this.handleSubmit}>{resource.Submit}</Button>
+                            <Button type="button" color="success" disabled={!isValidAmount} onClick={this.handleSubmit}>{resource.Submit}</Button>
                         </Col>
                     </FormGroup>
                 </fieldset>

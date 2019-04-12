@@ -12,5 +12,7 @@ export const message = {
 }
 
 export const regExp = {
-    CheckAmount: "^\\-?\\d+(\\.\\d{0,2})?$"
+    checkAmount: "^\\-?(\\d+\\.?\\d*)?$",
+    shouldFormatAmount: "^\\-?\\d+$",
+    validAmount: "^\\-?\\d+(\\.\\d{1,})?$"
 }

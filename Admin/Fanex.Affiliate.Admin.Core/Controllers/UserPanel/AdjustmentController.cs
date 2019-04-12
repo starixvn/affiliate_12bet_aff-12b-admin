@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using Fanex.Affiliate.Admin.Core.Constants;
 using Fanex.Affiliate.Admin.Core.Resources;
 using System;
+using Fanex.Affiliate.Admin.Core.DTO;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 {
@@ -55,7 +56,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
         public ActionResult InsertAdjustment(AdjustmentParam param)
         {
             var absBalanceBf = Math.Abs(_adjustmentRepository.GetBalanceBroughtForward(param.AffId == 0 ? SessionService.AffId : param.AffId));
-            if (ModelState.IsValid && param.Amount != 0 && param.Amount - absBalanceBf >= Money.MinValue && param.Amount + absBalanceBf <= Money.MaxValue)
+            if (ModelState.IsValid && param.Amount != 0 && param.Amount - absBalanceBf > Money.MinValue && param.Amount + absBalanceBf < Money.MaxValue)
             {
                 param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
                 param.UserId = SessionService.UserId;
@@ -71,8 +72,9 @@ namespace Fanex.Affiliate.Admin.Core.Controllers.UserPanel
 
             return new JsonNetResult
             {
-                Data = new {
-                    IsSuccessful = false,
+                Data = new ResultInfo
+                {
+                    Code = -1,
                     Message = Lang.AmountIsInvalid
                 }
             };
