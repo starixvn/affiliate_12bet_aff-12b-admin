@@ -1134,6 +1134,17 @@
     <Content Include="www\source\styles\Images\products\bg-casino_affiliate.webp" />
     <Content Include="Views\VerificationAccount\Index.cshtml" />
     <Content Include="www\source\styles\pages\verification-account.scss" />
+    <Content Include="Views\Shared\Email\VerificationAccount\Content.en-GB.cshtml" />
+    <Content Include="Views\Shared\Email\VerificationAccount\Content.en-US.cshtml" />
+    <Content Include="Views\Shared\Email\VerificationAccount\Content.es-ES.cshtml" />
+    <Content Include="Views\Shared\Email\VerificationAccount\Content.hi-IN.cshtml" />
+    <Content Include="Views\Shared\Email\VerificationAccount\Content.id-ID.cshtml" />
+    <Content Include="Views\Shared\Email\VerificationAccount\Content.ja-JP.cshtml" />
+    <Content Include="Views\Shared\Email\VerificationAccount\Content.ko-KR.cshtml" />
+    <Content Include="Views\Shared\Email\VerificationAccount\Content.th-TH.cshtml" />
+    <Content Include="Views\Shared\Email\VerificationAccount\Content.vi-VN.cshtml" />
+    <Content Include="Views\Shared\Email\VerificationAccount\Content.zh-CN.cshtml" />
+    <Content Include="Views\Shared\Email\VerificationAccount\Content.zh-TW.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
