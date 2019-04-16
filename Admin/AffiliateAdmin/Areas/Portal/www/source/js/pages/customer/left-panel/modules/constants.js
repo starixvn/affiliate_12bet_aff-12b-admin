@@ -10,7 +10,6 @@ export const resource = {
     LastName: 'Last Name',
     Gender: 'Gender',
     ContactNumber: 'Contact Number',
-    MSN: 'MSN/YM/QQ',
     Language: 'Language',
     WebsiteUrl: 'Website URL',
     LastLogin: 'Last Login',
@@ -24,7 +23,7 @@ export const resource = {
     AffiliateType: 'Affiliate Type',
     Status: 'Status',
     Closed: 'Closed',
-    Current: 'Current Online List',
+    CurrentOnlineList: 'Current Online List',
     Index: '#',
     Ip: 'IP',
     LastCheckIn: 'Last Check-in',
@@ -42,5 +41,8 @@ export const affType = {
 }
 
 const message = {
-    updateStatusSuccessfully: 'The status has been updated successfully!'
+    statusUpdatedSuccess: 'The status has been updated successfully!',
+    languageUpdatedSuccess: 'The Language has been updated successfully!',
+    affTypeUpdatedSuccess: 'The Affiliate Type has been updated successfully!',
+    affTypeUpdatedFail: 'Occur an error when updating affiliate type!'
 }

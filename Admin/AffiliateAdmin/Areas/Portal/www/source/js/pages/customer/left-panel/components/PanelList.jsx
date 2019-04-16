@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 import Panel from './Panel';
-import { getOnLineList, toggleLoader } from '../actions';
+import { updateAffType, updateClosedStatus, getAffiliateInfo, getOnLineList, toggleLoader, updateStatus } from '../actions';
 
 import { affType, status, resource, message } from '../modules/constants';
 import { formatDecimal } from '../../../../modules/numberFormat';
@@ -14,7 +14,7 @@ import { resolveClientUrl } from '../../../../modules/utils';
 export class PanelList extends React.Component {
     constructor(props) {
         super(props);
-
+        
         this.affTypeDropdown = React.createRef();
         this.affStatusDropdown = React.createRef();
 
@@ -34,7 +34,6 @@ export class PanelList extends React.Component {
         this.props.toggleLoader(true);
 
         const data = await this.props.getOnLineList(affName);
-        console.log(data);
 
         this.setState({ onlineInfoList: data });
 
@@ -49,7 +48,21 @@ export class PanelList extends React.Component {
         this.setState({ isChangingAffStatus: isChanging }, () => isChanging && this.affStatusDropdown.current.focus());
     }
 
-    handleChangeStatus = (event) => {
+    handleChangeStatus = async (event) => {
+        const isConfirmed = window.confirm("Are you sure you want to change status for this affiliate?");
+        if (isConfirmed) {
+            const status = event.target.value;
+            const param = Object.assign({}, { AffId: this.props.affiliateInfo.AffId, Status: status});
+            const data = await this.props.updateStatus(param);
+
+            if (data.IsSuccessful) {
+                window.alert("The status has been updated successfully!");
+                this.props.getAffiliateInfo(this.props.affName);
+            }
+            else {
+                window.alert(data.Message);
+            }
+        }
     }
 
     handleChangeClosedStatus = async () => {
@@ -58,26 +71,29 @@ export class PanelList extends React.Component {
         const isConfirmed = confirm('Are you sure you want to ' + (nextStatus ? 'close' : 'open') + ' this affiliate?');
         if (isConfirmed) {
             const param = { Closed: nextStatus };
-            const response = await this.props.updateGeneralInfo(param);
+            const data = await this.props.updateClosedStatus(param);
 
-            if (response.data.IsSuccessful) {
-                this.props.setClosedStatus(nextStatus);
-                window.alert(message.updateStatusSuccessfully);
+            if (data.IsSuccessful) {
+                window.alert("The status has been updated successfully!");
+                this.props.getAffiliateInfo(this.props.affName);
             }
             else {
-                window.alert(response.data.Message);
+                window.alert(data.Message);
             }
         }
     }
 
     handleChangeAffType = async (event) => {
         const affType = event.target.value;
-        const param = { affType };
-        const response = await this.props.updateGeneralInfo(param);
+        const param = Object.assign({}, { AffId: this.props.affiliateInfo.AffId, AffType: affType });
+        const data = await this.props.updateAffType(param);
 
-        if (response.data.IsSuccessful) {
-            this.props.setAffType(affType);
+        if (data.IsSuccessful) {
+            this.props.getAffiliateInfo(this.props.affName);
             this.toggleChangingAffType(false);
+        }
+        else {
+            window.alert("Occur an error when updating affiliate type!");
         }
     }
 
@@ -97,8 +113,8 @@ export class PanelList extends React.Component {
                     <td>{resource.CommGroup}</td>
                     <td className='text-right'>
                         {
-                            affiliateInfo.Closed ? affiliateInfo.GroupName : 
-                            (<span className='popup' onClick={() => this.toggleEditingCommissionPopup(true)}>{affiliateInfo.GroupName}</span>)
+                            affiliateInfo.Closed ? affiliateInfo.CommGroupName : 
+                            (<span className='popup' onClick={() => this.toggleEditingCommissionPopup(true)}>{affiliateInfo.CommGroupName}</span>)
                         }
 
                         <Modal isOpen={isChangingCommissionGroup} backdrop='static' style={{maxWidth: 570}}>
@@ -181,8 +197,8 @@ export class PanelList extends React.Component {
     _renderOnlineInfoPanel() {
         const { onlineInfoList } = this.state;
 
-        return (
-            <Panel heading={resource.currOnlineList} style={{ overflow: 'auto', maxHeight: 110 }}>
+        return onlineInfoList && (
+            <Panel heading={resource.CurrentOnlineList} style={{ overflow: 'auto', maxHeight: 110 }}>
                 <tr>
                     <td width="10" className="text_bold text-center">{resource.Index}</td>
                     <td width="70" className="text_bold text-center">{resource.Ip}</td>
@@ -210,9 +226,9 @@ export class PanelList extends React.Component {
 
     render() {
         const { affiliateInfo } = this.props;
-        const isApproved = affiliateInfo.Status.toLowerCase() === status.Approved;
+        const isApproved = affiliateInfo && affiliateInfo.Status.toLowerCase() === status.Approved;
 
-        return (
+        return affiliateInfo && (
             <React.Fragment>
                 {isApproved && this._renderCommissionPanel()}
                 {this._renderSettingPanel(isApproved)}
@@ -227,7 +243,7 @@ function mapStateToProps({ affiliateInfo, affName }) {
 };
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ getOnLineList, toggleLoader }, dispatch);
+    return bindActionCreators({ updateAffType, updateClosedStatus, getAffiliateInfo, getOnLineList, toggleLoader, updateStatus }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PanelList);

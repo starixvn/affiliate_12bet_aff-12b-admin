@@ -6,6 +6,8 @@ using Fanex.Affiliate.Admin.Core.Repository.Customer;
 using Fanex.Affiliate.Admin.Core.Services.Common;
 using Fanex.Affiliate.Admin.Core.Services;
 using Fanex.Affiliate.Admin.Core.ViewModels.Customer;
+using Fanex.Affiliate.Admin.Core.MetaModels.Customer;
+using Fanex.Affiliate.Admin.Core.MetaModels;
 
 namespace Fanex.Affiliate.Admin.Core.Controllers
 {
@@ -39,7 +41,6 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             {
                 var affInfo = _affiliateService.GetAffiliateBasicInfo(SessionService.AffId);
                 model.AffName = affInfo.UserName;
-                
             }
 
             return View("~/Areas/Portal/Views/Customer/LeftPanel.cshtml", model);
@@ -65,6 +66,61 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
             {
                 Data = _customerLeftPanelRepository.GetOnlineList(affUsername)
             };
+        }
+
+        [ValidateAntiForgeryHeader]
+        [HttpPost]
+        public ActionResult UpdateLanguage(UpdateLanguageParam param)
+        {
+            AssignParam(param);
+            var test = _customerLeftPanelRepository.UpdateLanguage(param);
+            return new JsonNetResult
+            {
+                Data = test
+            };
+        }
+
+        [ValidateAntiForgeryHeader]
+        [HttpPost]
+        public ActionResult UpdateAffType(UpdateAffTypeParam param)
+        {
+            AssignParam(param);
+            param.Language = LanguageSystem.DefaultLanguage;
+
+            var test = _customerLeftPanelRepository.UpdateAffType(param);
+            return new JsonNetResult
+            {
+                Data = test
+            };
+        }
+
+        [ValidateAntiForgeryHeader]
+        [HttpPost]
+        public ActionResult UpdateStatus(UpdateStatusParam param)
+        {
+            AssignParam(param);
+            return new JsonNetResult
+            {
+                Data = _customerLeftPanelRepository.UpdateStatus(param)
+            };
+        }
+
+        [ValidateAntiForgeryHeader]
+        [HttpPost]
+        public ActionResult UpdateClosedStatus(UpdateClosedStatusParam param)
+        {
+            AssignParam(param);
+            return new JsonNetResult
+            {
+                Data = _customerLeftPanelRepository.UpdateClosedStatus(param)
+            };
+        }
+
+        private void AssignParam(AffiliateBasicInfoParam param)
+        {
+            param.AffId = param.AffId == 0 ? SessionService.AffId : param.AffId;
+            param.UserId = SessionService.UserId;
+            param.Ip = Request.UserHostAddress;
         }
     }
 }

@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using Fanex.Affiliate.Admin.Core.DTO;
 using Fanex.Affiliate.Admin.Core.DTO.Customer;
+using Sunplus.Agent.Configurations;
+using Fanex.Affiliate.Admin.Core.MetaModels.Customer;
 
 namespace Fanex.Affiliate.Admin.Core.Repository.Customer
 {
@@ -72,6 +75,92 @@ namespace Fanex.Affiliate.Admin.Core.Repository.Customer
             }
 
             return result;
+        }
+
+        public ResultInfo UpdateAffType(UpdateAffTypeParam param)
+        {
+            const string SpKey = "Aff_UpdAffType";
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                objectDb.AddInParameter("AffID", DbType.Int32, param.AffId);
+                objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
+                objectDb.AddInParameter("AffType", DbType.Byte, param.AffType);
+                objectDb.AddInParameter("IP", DbType.String, param.Ip);
+                objectDb.AddInParameter("Language", DbType.String, param.Language);
+
+                objectDb.AddOutParameter("ErrCode", DbType.Int32, 4);
+
+                objectDb.ExecuteNonQuery();
+
+                var code = objectDb.GetParameterValue("ErrCode");
+
+                return new ResultInfo
+                {
+                    Code = code == DBNull.Value ? 0 : Convert.ToInt32(code),
+                };
+            }
+        }
+
+        public ResultInfo UpdateClosedStatus(UpdateClosedStatusParam param)
+        {
+            const string SpKey = "Aff_AffiliateUpdClosedStatus";
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                objectDb.AddInParameter("AffId", DbType.Int32, param.AffId);
+                objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
+                objectDb.AddInParameter("Closed", DbType.Boolean, param.IsClosed);
+                objectDb.AddInParameter("IP", DbType.String, param.Ip);
+
+                AssignResultOutputParam(objectDb);
+
+                objectDb.ExecuteNonQuery();
+
+                return GetResultInfo(objectDb);
+            }
+        }
+
+        public ResultInfo UpdateLanguage(UpdateLanguageParam param)
+        {
+            const string SpKey = "Aff_PreferLangUpd";
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                objectDb.AddInParameter("AffId", DbType.Int32, param.AffId);
+                objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
+                objectDb.AddInParameter("Ip", DbType.String, param.Ip);
+                objectDb.AddInParameter("PreferredLanguage", DbType.String, param.PreferredLanguage);
+
+                AssignResultOutputParam(objectDb);
+
+                objectDb.ExecuteNonQuery();
+
+                return GetResultInfo(objectDb);
+            }
+        }
+
+        public ResultInfo UpdateStatus(UpdateStatusParam param)
+        {
+            const string SpKey = "Aff_AffiliateUpdStatus";
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                objectDb.AddInParameter("AffId", DbType.Int32, param.AffId);
+                objectDb.AddInParameter("UserId", DbType.Int32, param.UserId);
+                objectDb.AddInParameter("Ip", DbType.String, param.Ip);
+                objectDb.AddInParameter("Status", DbType.String, param.Status);
+                if (param.GroupId != -1)
+                {
+                    objectDb.AddInParameter("GroupId", DbType.Int32, param.GroupId);
+                }
+
+                AssignResultOutputParam(objectDb);
+
+                objectDb.ExecuteNonQuery();
+
+                return GetResultInfo(objectDb);
+            }
         }
     }
 }

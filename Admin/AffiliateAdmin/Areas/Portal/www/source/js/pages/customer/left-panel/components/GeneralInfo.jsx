@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 
-import { updateGeneralInfo, setLanguage, changePassword } from '../actions';
+import { updateLanguage, getAffiliateInfo, setLanguage, changePassword } from '../actions';
 
 import { status, resource } from '../modules/constants';
 import { resolveClientUrl } from '../../../../modules/utils';
@@ -23,14 +23,15 @@ export class GeneralInfo extends React.Component {
         const isConfirmed = window.confirm("Are you sure you want to change language for this affiliate?");
         if (isConfirmed) {
             const preferredLanguage = event.target.value;
-            const param = { preferredLanguage };
-            const response = await this.props.updateGeneralInfo(param);
+            const param = Object.assign({}, { AffId: this.props.affiliateInfo.AffId, PreferredLanguage: preferredLanguage});
+            const data = await this.props.updateLanguage(param);
 
-            if (response.data.IsSuccessful) {
-                this.props.setLanguage(preferredLanguage);
+            if (data.IsSuccessful) {
+                window.alert("The language has been updated successfully!");
+                this.props.getAffiliateInfo(this.props.affName);
             }
             else {
-                window.alert(response.data.Message);
+                window.alert(data.Message);
             }
         }
     }
@@ -110,17 +111,17 @@ export class GeneralInfo extends React.Component {
 
     render() {
         const { affiliateInfo } = this.props;
+        const isApproved = affiliateInfo && affiliateInfo.Status.toLowerCase() === status.Approved;
+        const siteUrl = affiliateInfo && affiliateInfo.SiteUrl.indexOf('http://') === -1 ? 'http://' + affiliateInfo.SiteUrl : affiliateInfo.SiteUrl;
+        const arryContactApps = JSON.parse(affiliateInfo && affiliateInfo.ContactApps);
 
-        const isApproved = affiliateInfo.Status.toLowerCase() === status.Approved;
-        const siteUrl = affiliateInfo.SiteUrl.indexOf('http://') === -1 ? 'http://' + affiliateInfo.SiteUrl : affiliateInfo.SiteUrl;
-
-        return (
+        return affiliateInfo && (
             <React.Fragment>
                 <tr>
-                    <td style={{ width: '45%', height: 35 }}>
+                    <td style={{ width: '45%' }}>
                         <span className='text_bold'>{resource.Affiliate}</span>
                     </td>
-                    <td style={{ width: '55%' }} className='r'>
+                    <td style={{ width: '55%' }} className='r d-inline-block'>
                         {
                             isApproved && !affiliateInfo.Closed ?
                                 (<a href="#" className='upper b' target='_blank'>{affiliateInfo.AffName}</a>) :
@@ -150,6 +151,10 @@ export class GeneralInfo extends React.Component {
                     <td className='line_table r'>{affiliateInfo.Phone}</td>
                 </tr>
                 <tr>
+                    <td className='line_table'>{arryContactApps && arryContactApps[0].Name}</td>
+                    <td className='line_table r'>{arryContactApps && arryContactApps[0].Value}</td>
+                </tr>
+                <tr>
                     <td className='line_table'>{resource.Language}</td>
                     <td className='line_table r'>
                         {this._renderLanguage()}
@@ -157,7 +162,7 @@ export class GeneralInfo extends React.Component {
                 </tr>
                 <tr>
                     <td className='line_table'>{resource.WebsiteUrl}</td>
-                    <td className='line_table r'>
+                    <td className='line_table r text-truncate'>
                         <a target='_blank' title={siteUrl} href={`http://anonym.to/?${siteUrl}`}>
                             {affiliateInfo.SiteUrl.replace('http://', '').replace('www.', '')}
                         </a>
@@ -183,12 +188,12 @@ export class GeneralInfo extends React.Component {
     }
 }
 
-function mapStateToProps({ affiliateInfo, languageList }) {
-    return Object.assign({}, { affiliateInfo, languageList });
+function mapStateToProps({ affiliateInfo, languageList, affName }) {
+    return Object.assign({}, { affiliateInfo, languageList, affName });
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ updateGeneralInfo, setLanguage, changePassword }, dispatch);
+    return bindActionCreators({ updateLanguage, getAffiliateInfo, setLanguage, changePassword }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GeneralInfo);

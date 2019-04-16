@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getAffiliateInfo } from '../actions';
+import { getAffiliateInfo, setAffName } from '../actions';
 
 import { Col, Button, Form, Label, Input, FormGroup } from 'reactstrap';
 
@@ -24,7 +24,10 @@ export class SearchBox extends React.Component {
 
     handleClick = (event) => {
         event.preventDefault();
-        this.props.getAffiliateInfo(this.state.affName);
+        const { affName } = this.state;
+
+        this.props.setAffName(affName);
+        this.props.getAffiliateInfo(affName);
     }
 
     handlePressEnter = (event) => {
@@ -54,7 +57,7 @@ function mapStateToProps({ affiliateInfo, affName }) {
 };
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ getAffiliateInfo }, dispatch);
+    return bindActionCreators({ getAffiliateInfo, setAffName }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBox);

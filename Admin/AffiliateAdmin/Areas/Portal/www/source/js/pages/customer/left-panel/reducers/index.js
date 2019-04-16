@@ -1,10 +1,15 @@
 import { combineReducers } from 'redux';
 import createReducer from '../../../../modules/createReducer';
 
-import { LEFTPANEL_RECEIVE_AFFINFO } from '../actions/types';
+import { LEFTPANEL_RECEIVE_AFFINFO, SET_AFF_NAME } from '../actions/types';
 import { isShowLoader } from '../../../../reducers/loaderReducer';
 
-const affName = createReducer('',{});
+const affName = createReducer('',{
+    [SET_AFF_NAME](prevState, action) {
+        return action.data;
+    }
+});
+
 const languageList = createReducer({},{});
 
 const affiliateInfo = createReducer(null, {

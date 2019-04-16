@@ -2,11 +2,9 @@
 
 namespace Fanex.Affiliate.Admin.Core.MetaModels.Payment
 {
-    public class PaymentRequestUpdateParam
+    public class PaymentRequestUpdateParam : AffiliateBasicInfoParam
     {
         public long TransId { get; set; }
-
-        public int AffId { get; set; }
 
         public decimal Amount { get; set; }
 
@@ -17,9 +15,5 @@ namespace Fanex.Affiliate.Admin.Core.MetaModels.Payment
         public string AdminDesc { get; set; }
 
         public string AffDesc { get; set; }
-
-        public int UserId { get; set; }
-
-        public string Ip { get; set; }
     }
 }

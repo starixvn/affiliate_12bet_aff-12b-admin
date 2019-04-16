@@ -11,18 +11,11 @@ export class MainInfo extends React.Component {
     }
 
     render() {
-        return (
-            <Form tag="div">
-                <FormGroup row>
-                    <Label sm={2}>Affiliate</Label>
-                    <Col sm={10}>
-                        <Input plaintext value="ABC" />
-                        <p>{this.props.affiliateInfo.AffName}</p>
-                    </Col>
-                </FormGroup>
+        return this.props.affiliateInfo && (
+            <div>
                 <GeneralInfo />
                 <PanelList />
-            </Form >
+            </div >
         );
     }
 }
