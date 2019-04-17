@@ -2,6 +2,7 @@
 @{
     var userInfo = Model.User;
     var forgotPasswordUrl = Model.RootDomain + "Password";
+    var contacUsLink = Model.RootDomain + "ContactUs";
 }
 <div>
     <h3>Dear @userInfo.FirstName,</h3><br />
@@ -10,15 +11,13 @@
 
     <h3>@Model.Code</h3><br />
 
-    This email was generated because of many consecutive failed logins from a web or mobile device located at <a href="#">@Model.Ip</a><br />
+    This email was generated because of many consecutive failed logins from a web or mobile device located at <a href="@string.Format("https://iplocation.com/?ip={0}", Model.Ip)">@Model.Ip</a><br />
     The verification code is required to complete the login. The code will be expired after 15 minutes.<br />
-    If you are not attempting to login then please change the password and consider changing your email password as well to ensure your account security.<br /><br />
+    If you are not attempting to login then please change the password, and consider changing your email password as well to ensure your account security.<br /><br />
 
     If you are unable to access your account then <a href='@forgotPasswordUrl'>use this forgot password link</a> for assistance obtaining a new password.<br /><br />
 
-    Best regards,<br /><br />
-
     The 12Bet Affiliate team<br />
 
-    <a href="http://affiliate.12ying.com">http://affiliate.12ying.com</a>
+    <a href="@contacUsLink">@contacUsLink</a>
 </div>
