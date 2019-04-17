@@ -3,6 +3,7 @@
     var _countdownResendCodeTimeoutId = null;
     var INTERVAL_SENDCODE_SECOND = 60;
     var REFRESH_CAPTCHA_INTERVAL = 600000;
+    var _originalSendCodeText = null;
 
     function registerRefreshCaptcha() {
         function refreshCaptcha() {
@@ -20,15 +21,25 @@
         $('#ActionToken').val(action.TimeToken);
     }
 
+    function isValidEmail(email) {
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return email !== '' && re.test(email);
+    }
+
+    function toggleMessageForEmail(isValid) {
+        $('#emailGroup').toggleClass('has-error', !isValid);
+        $('#emailValidationMessage').toggleClass('hide', isValid);
+    }
+
     var _me = {
         initialize: function () {
+            _originalSendCodeText = $('#btnSendCode').text();
             _me.initEvent();
-            _me.sendCode(true);
             registerRefreshCaptcha();
         },
         initEvent: function () {
-            $("#btnResend").on("click", function (e) {
-                _me.sendCode(false);
+            $("#btnSendCode").on("click", function (e) {
+                _me.sendCode();
             });
             $("#btnLoginVerification").on("click", function (e) {
                 _me.submitForm();
@@ -49,23 +60,30 @@
             var captchaUrl = Site.resolveRelativeUrl("VerificationAccount/CaptchaImage?_v=" + new Date().getTime());
             $("#captchaVerificationAccount").attr("src", captchaUrl);
         },
-        sendCode: function (isReload) {
+        sendCode: function () {
+            var email = $('#Email').val().trim();
             var token = $('input[name="__RequestVerificationToken"]', $("#verificationAccountForm")).val();
+
+            var isValidInputEmail = isValidEmail(email);
+            toggleMessageForEmail(isValidInputEmail);
+            if (!isValidInputEmail) {
+                return;
+            }
 
             $.ajax({
                 type: "POST",
                 url: Site.resolveRelativeUrl("VerificationAccount/SendCode"),
-                data: { __RequestVerificationToken: token },
+                data: { __RequestVerificationToken: token, email: email },
                 dataType: "json",
                 cache: false,
                 contentType: "application/x-www-form-urlencoded; charset=UTF-8",
                 success: function (response) {
-                    $('#btnResend').prop("disabled", true);
+                    $('#btnSendCode').prop("disabled", true);
                     _me.countDown(INTERVAL_SENDCODE_SECOND);
                     $('#VerificationToken').val(response.VerificationToken);
                     updateAction(response.Action);
 
-                    if (!isReload && !response.IsOk) {
+                    if (!response.IsOk) {
                         alert(response.Message);
                     }
                 },
@@ -80,10 +98,10 @@
         countDown: function (second) {
             clearTimeout(_countdownResendCodeTimeoutId);
             if (second === 0) {
-                $('#btnResend').html('RESEND CODE');
-                $('#btnResend').prop('disabled', false);
+                $('#btnSendCode').text(_originalSendCodeText);
+                $('#btnSendCode').prop('disabled', false);
             } else {
-                $('#btnResend').html('RESEND CODE(' + second + ')');
+                $('#btnSendCode').text(_originalSendCodeText + ' (' + second + ')');
                 _countdownResendCodeTimeoutId = setTimeout(_me.countDown, 1000, --second);
             }
         },

@@ -187,7 +187,7 @@ namespace Fanex.Affiliate.User.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Send code failed. You should only refresh page to resend code after {0} minutes.
+        ///   Looks up a localized string similar to Security validation failed.
         /// </summary>
         public static string VerificationSendCodeFailed {
             get {

@@ -3,16 +3,17 @@
         line-height: 2;
     }
 
-    .btn-resend {
+    .btn-sendcode {
         width: calc(100% - 30px);
         height: 28px;
         margin-left: 15px;
-    }
-
-    .btn-resend {
         color: #ffffff;
         background-color: #BDBDBD;
         box-shadow: -1px 4px 4px #ABABAB;
+
+        &:not([disabled]):hover {
+            background-color: #9f9898;
+        }
     }
 
     .validation-value {
@@ -26,7 +27,7 @@
 
     @media (min-width: 768px)
     {
-        .btn-resend {
+        .btn-sendcode {
             width: 155px;
             margin-left: 8px;
         }

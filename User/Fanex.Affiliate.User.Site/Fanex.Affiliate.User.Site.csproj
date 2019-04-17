@@ -583,6 +583,10 @@
     <Content Include="www\build\styles\css\user-panel.min.css">
       <DependentUpon>user-panel.css</DependentUpon>
     </Content>
+    <Content Include="www\build\styles\css\verification-account.css" />
+    <Content Include="www\build\styles\css\verification-account.min.css">
+      <DependentUpon>verification-account.css</DependentUpon>
+    </Content>
     <Content Include="www\build\styles\fonts\Montserrat\font.css" />
     <Content Include="www\build\styles\fonts\Montserrat\font.min.css">
       <DependentUpon>font.css</DependentUpon>

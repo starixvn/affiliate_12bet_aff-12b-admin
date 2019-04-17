@@ -19,7 +19,7 @@
         @section scripts{
             <script type="text/javascript">
                 var resource = {
-                    verificationFailed: '@Error.VerificationFailed'
+                    verificationFailed: '@Error.LoginWrongInfo'
                 }
             </script>
             <script src="@Url.RenderLink("~/www/build/js/validation.js")"></script>
@@ -56,7 +56,15 @@
                         <input type="text" class="form-control" autocomplete="off" data-val="true" data-val-required="Verification Code is required" id="Code" name="Code" />
                         <span class="field-validation-valid help-block" data-valmsg-for="Code" data-valmsg-replace="true"></span>
                     </div>
-                    <button type="button" class="btn btn-resend" id="btnResend" disabled>RESEND CODE</button>
+                </div>
+
+                <div class="form-group row" id="emailGroup">
+                    <label for="Email" class="col-sm-2 control-label require">Email</label>
+                    <div class="col-sm-4 col-lg-3">
+                        <input type="text" class="form-control" autocomplete="off" id="Email" name="Email" />
+                        <span class="help-block field-validation-error hide" id="emailValidationMessage">@Lang.EmailAddressIsInvalid</span>
+                    </div>
+                    <button type="button" class="btn btn-sendcode" id="btnSendCode">SEND CODE</button>
                 </div>
 
                 <div class="form-group row">
@@ -69,10 +77,11 @@
                         <img style="cursor:pointer" id="captchaVerificationAccount" src="@Url.Content("~/VerificationAccount/CaptchaImage?_v=" + DateTime.Now.ToLongTimeString())" alt="captcha" />
                     </div>
                 </div>
+
                 <br />
                 <div class="form-group row">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="button" class="btn btn-login" id="btnLoginVerification">Login</button>
+                        <button type="button" class="btn btn-login" id="btnLoginVerification">@Lang.Login</button>
                     </div>
                 </div>
 

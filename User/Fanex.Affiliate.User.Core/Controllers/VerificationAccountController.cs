@@ -64,15 +64,16 @@ namespace Fanex.Affiliate.User.Core.Controllers
         [AjaxOnly]
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public ActionResult SendCode()
+        public ActionResult SendCode(string email)
         {
             var verificationSession = SessionService.VerificationSession;
-            if (verificationSession == null)
+            if (verificationSession == null || string.IsNullOrEmpty(email))
             {
                 return Json(GetErrorResult(Error.General));
             }
 
             var sendCodeParam = CreateSendCodeParam();
+            sendCodeParam.Email = email;
             var result = _verificationService.SendCode(sendCodeParam);
             if (result.IsOk)
             {
@@ -134,7 +135,7 @@ namespace Fanex.Affiliate.User.Core.Controllers
                 }
             }
 
-            return Json(CreateVerifyAccountResult(GetErrorResult(Error.VerificationFailed)));
+            return Json(CreateVerifyAccountResult(GetErrorResult(Error.LoginWrongInfo)));
         }
 
         private SendCodeParam CreateSendCodeParam()

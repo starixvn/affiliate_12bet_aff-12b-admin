@@ -3,6 +3,7 @@ using System.Security.Cryptography;
 using System.Text;
 using Fanex.Affiliate.User.Core.Constants;
 using Fanex.Affiliate.User.Core.DTO.VerificationAccount;
+using Fanex.Affiliate.User.Core.Extensions;
 using Fanex.Affiliate.User.Core.MetalModels;
 using Fanex.Affiliate.User.Core.MetalModels.Email;
 using Fanex.Affiliate.User.Core.Repository;
@@ -47,14 +48,18 @@ namespace Fanex.Affiliate.User.Core.BusinessService
         {
             if (CanSendCode(param.SentCodeTime, param.IntervalInMinute))
             {
-                var counter = _wrapperUtility.GetRandomGenerator().Next(int.MinValue, int.MaxValue);
-
                 var userInfo = _accountRepository.GetUserInfoById(param.AffId, false);
+                if (!param.Email.MatchWith(userInfo.Email))
+                {
+                    return CreateSendCodeFailedResult();
+                }
+
                 if (string.IsNullOrEmpty(userInfo.SecretKey))
                 {
                     userInfo.SecretKey = TryCreateSecretKey(userInfo.AffId);
                 }
 
+                var counter = _wrapperUtility.GetRandomGenerator().Next(int.MinValue, int.MaxValue);
                 var otp = _twoFactorAuthService.GenerateHotp(userInfo.SecretKey, counter);
 
                 var emailParam = param.VerificationEmailParam;
@@ -81,7 +86,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
                 };
             }
 
-            return CreateSendCodeFailedResult(param.IntervalInMinute);
+            return CreateSendCodeFailedResult();
         }
 
         public bool IsValidOtp(VerificationOtpParam param)
@@ -196,12 +201,12 @@ namespace Fanex.Affiliate.User.Core.BusinessService
             return Base32Encoding.ToString(KeyGeneration.GenerateRandomKey(20));
         }
 
-        private static SendCodeResult CreateSendCodeFailedResult(int sendCodeIntervalTime)
+        private static SendCodeResult CreateSendCodeFailedResult()
         {
             return new SendCodeResult
             {
                 IsOk = false,
-                Message = string.Format(Error.VerificationSendCodeFailed, sendCodeIntervalTime)
+                Message = string.Format(Error.VerificationSendCodeFailed)
             };
         }
     }

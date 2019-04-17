@@ -160,7 +160,7 @@
     <value>Invalid/expired verification code, please try again or request a new one</value>
   </data>
   <data name="VerificationSendCodeFailed" xml:space="preserve">
-    <value>Send code failed. You should only refresh page to resend code after {0} minutes</value>
+    <value>Security validation failed</value>
   </data>
   <data name="YourSessionHasExpired" xml:space="preserve">
     <value>Your session has expired!</value>
