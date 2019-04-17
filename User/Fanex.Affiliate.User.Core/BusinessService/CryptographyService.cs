@@ -7,7 +7,7 @@ namespace Fanex.Affiliate.User.Core.BusinessService
 {
     public class CryptographyService : ICryptographyService
     {
-        private const int KeySize = 1024;
+        private const int KeySize = 2048;
 
         public string EncryptPassword(string privateKey, string cipherText)
         {

@@ -516,7 +516,9 @@
       <DependentUpon>myaccount.js</DependentUpon>
     </Content>
     <Content Include="www\build\js\pages\changepassword.js" />
-    <Content Include="www\build\js\pages\changepassword.min.js" />
+    <Content Include="www\build\js\pages\changepassword.min.js">
+      <DependentUpon>changepassword.js</DependentUpon>
+    </Content>
     <Content Include="www\build\js\pages\commission-report.js" />
     <Content Include="www\build\js\pages\commission-report.min.js">
       <DependentUpon>commission-report.js</DependentUpon>
@@ -526,7 +528,9 @@
       <DependentUpon>home.js</DependentUpon>
     </Content>
     <Content Include="www\build\js\pages\login.js" />
-    <Content Include="www\build\js\pages\login.min.js" />
+    <Content Include="www\build\js\pages\login.min.js">
+      <DependentUpon>login.js</DependentUpon>
+    </Content>
     <Content Include="www\build\js\pages\verification-account.js" />
     <Content Include="www\build\js\pages\verification-account.min.js">
       <DependentUpon>verification-account.js</DependentUpon>
