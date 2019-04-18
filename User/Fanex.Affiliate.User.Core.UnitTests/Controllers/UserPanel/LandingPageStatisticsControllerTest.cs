@@ -38,7 +38,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
 
             // Action
             var result = controller.Index() as ViewResult;
-            var viewName = result.ViewName;
             var model = result.Model as LandingPageStatisticsViewModel;
 
             // Assert
@@ -69,9 +68,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             var controller = CreateController(marketingService: marketingService.Object, staticticsRepository: statisticsRepository.Object);
 
             // Action
-            var result = controller.Index() as ViewResult;
-            var viewName = result.ViewName;
-            var model = result.Model as LandingPageStatisticsViewModel;
+            controller.Index();
 
             // Assert
             Assert.Equal(Constant.DefaultAffId, passedParam.AffId);
@@ -145,7 +142,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             };
         }
 
-        private LandingPageStatisticsController CreateController(
+        private static LandingPageStatisticsController CreateController(
             ISessionService sessionService = null,
             ILanguageService languageService = null,
             IStatisticsRepository staticticsRepository = null,

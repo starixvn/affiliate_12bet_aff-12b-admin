@@ -3,12 +3,8 @@ using System.Collections.Specialized;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Fanex.Affiliate.User.Core.BusinessService;
-using Fanex.Affiliate.User.Core.Controllers;
 using Fanex.Affiliate.User.Core.CoreService;
 using Fanex.Affiliate.User.Core.DTO.Auth;
-using Fanex.Affiliate.User.Core.Repository.UserPanel;
-using Fanex.Affiliate.User.Core.Utilities;
 using Moq;
 
 namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
@@ -32,8 +28,8 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
             );
         }
 
-       
-        
+
+
 
         public static Controller FakeController(Controller controller)
         {
@@ -55,13 +51,14 @@ namespace Fanex.Affiliate.User.Core.UnitTests.TestHelper
 
         public static HttpRequestBase GetHttpRequest()
         {
-            return Mock.Of<HttpRequestBase>(req =>
-                req.ApplicationPath == "/" &&
-                req.UserHostAddress == "::1" &&
-                req.Url == new Uri(Constant.DefaultRootDomain) &&
-                req.ServerVariables == new NameValueCollection() &&
-                req.Browser.Browser == Constant.Browser
-            );
+            var mockHttpRequest = new Mock<HttpRequestBase>();
+            mockHttpRequest.Setup(p => p.ApplicationPath).Returns("/");
+            mockHttpRequest.Setup(p => p.UserHostAddress).Returns("::1");
+            mockHttpRequest.Setup(p => p.Url).Returns(new Uri(Constant.DefaultRootDomain));
+            mockHttpRequest.Setup(p => p.ServerVariables).Returns(new NameValueCollection());
+            mockHttpRequest.Setup(p => p.Browser.Browser).Returns(Constant.Browser);
+
+            return mockHttpRequest.Object;
         }
     }
 }

@@ -9,7 +9,6 @@ using Fanex.Affiliate.User.Core.DTO;
 using Fanex.Affiliate.User.Core.Enum;
 using Fanex.Affiliate.User.Core.MetalModels.Email;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
-using Fanex.Affiliate.User.Core.Repository.UserPanel;
 using Fanex.Affiliate.User.Core.Resources;
 using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
 using Fanex.Affiliate.User.Core.Utilities;
@@ -22,7 +21,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
 {
     public class PaymentRequestControllerTest
     {
-        private PaymentRequestController CreatePaymentRequestController(ISessionService sessionService = null,
+        private static PaymentRequestController CreatePaymentRequestController(ISessionService sessionService = null,
             IAppSetting appSetting = null,
             ILanguageService languageService = null,
             IPaymentService paymentServic = null)
@@ -60,26 +59,27 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         public void PaymentRequest_GetPaymentList_ReturnOutputInfoCorrectly()
         {
             // Arrange
-            const decimal expectedBalBroughtForward = 100m, expectedMinAmount = 10m;
-            const string expectedPreferredPayment = "PlayerAccount";
+            const decimal ExpectedBalBroughtForward = 100m;
+            const decimal ExpectedMinAmount = 10m;
+            const string ExpectedPreferredPayment = "PlayerAccount";
 
             var paymentService = new Mock<IPaymentService>();
             paymentService.Setup(p => p.GetPaymentList(It.IsAny<PaymentParam>()))
                 .Returns(new List<Payment>())
                 .Callback<PaymentParam>(p =>
                 {
-                    p.BalBroughtForward = expectedBalBroughtForward;
-                    p.MinAmount = expectedMinAmount;
-                    p.PreferredPayment = expectedPreferredPayment;
+                    p.BalBroughtForward = ExpectedBalBroughtForward;
+                    p.MinAmount = ExpectedMinAmount;
+                    p.PreferredPayment = ExpectedPreferredPayment;
                 });
 
             var controller = CreatePaymentRequestController(paymentServic: paymentService.Object);
 
             var expectedResult = new PaymentViewModel
             {
-                BalBroughtForward = expectedBalBroughtForward,
-                MinAmount = expectedMinAmount,
-                PreferredPayment = expectedPreferredPayment
+                BalBroughtForward = ExpectedBalBroughtForward,
+                MinAmount = ExpectedMinAmount,
+                PreferredPayment = ExpectedPreferredPayment
             };
 
             // Action
@@ -282,7 +282,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
                             .Returns(new ResultInfo { IsOk = true });
 
             var appSetting = GetMockAppSetting();
-            var accountRepository = GetMockAccountRepository();
 
             var controller = CreatePaymentRequestController(appSetting: appSetting, paymentServic: paymentService.Object);
 
@@ -344,7 +343,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         {
             // Arrange
             var appSetting = Mock.Of<IAppSetting>(a => a.IsLocal);
-            var creationParam = new PaymentCreationParam()
+            var creationParam = new PaymentCreationParam
             {
                 AffId = Constant.DefaultAffId,
                 Amount = 0,
@@ -373,7 +372,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             // Arrange
             PaymentCreationParam passedParam = null;
             var transDate = new DateTime(2018, 6, 13);
-            var creationParam = new PaymentCreationParam()
+            var creationParam = new PaymentCreationParam
             {
                 AffId = Constant.DefaultAffId,
                 Amount = 100,
@@ -420,7 +419,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         public void CreatePaymentRequest_AccountIsNotActived_ReturnCheckingResultIntermediately()
         {
             // Arrange
-            var creationParam = new PaymentCreationParam()
+            var creationParam = new PaymentCreationParam
             {
                 Amount = 100,
                 MinAmount = 100,
@@ -449,7 +448,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
         public void CreatePaymentRequest_AccountIsActivedButCreatePaymentRequestFailed_ReturnCreationResultIntermediately()
         {
             // Arrange
-            var creationParam = new PaymentCreationParam()
+            var creationParam = new PaymentCreationParam
             {
                 AffId = Constant.DefaultAffId,
                 Amount = 100,
@@ -483,7 +482,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             PaymentEmailParam emailParam = null;
             const int TransId = 1;
             var transDate = new DateTime(2018, 6, 12);
-            var creationParam = new PaymentCreationParam()
+            var creationParam = new PaymentCreationParam
             {
                 Amount = 100,
                 MinAmount = 100,
@@ -518,16 +517,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             Assert.Equal(expectedResult, result);
         }
 
-        private IAccountRepository GetMockAccountRepository(UserInfo userInfo = null)
-        {
-            var accountRepository = new Mock<IAccountRepository>();
-            accountRepository.Setup(ac => ac.GetUserInfoById(Constant.DefaultAffId, false))
-                .Returns(userInfo ?? GetUserInfo());
-
-            return accountRepository.Object;
-        }
-
-        private IAppSetting GetMockAppSetting()
+        private static IAppSetting GetMockAppSetting()
         {
             return Mock.Of<IAppSetting>(ap =>
                 ap.IsLocal &&

@@ -213,7 +213,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             Assert.Equal(ExpectedCreator, result);
         }
 
-        private ContactUsController CreateController(
+        private static ContactUsController CreateController(
             IContactService contactService = null,
             ISessionService sessionService = null,
             IAppSetting appSetting = null,

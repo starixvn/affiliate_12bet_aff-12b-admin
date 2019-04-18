@@ -47,7 +47,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             Assert.True(model.IsDetail);
         }
 
-        private StatisticsController CreateController(
+        private static StatisticsController CreateController(
             ISessionService sessionService = null,
             ILanguageService languageService = null,
             IStatisticsRepository staticticsRepository = null)

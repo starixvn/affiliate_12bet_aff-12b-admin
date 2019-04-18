@@ -91,8 +91,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             contactAppList[0].Value = null;
 
             // Action
-            var actionResult = controller.Index(new UserSignUpParam { Captcha = Constant.Captcha, ContactAppList = contactAppList }) as JsonResult;
-            var result = actionResult.Data as ResultInfo;
+            controller.Index(new UserSignUpParam { Captcha = Constant.Captcha, ContactAppList = contactAppList });
 
             // Assert
             accountService.Verify(p => p.CreateAffiliate(It.IsAny<UserSignUpParam>(), It.IsAny<EmailBaseParam>()), Times.Once);
@@ -127,7 +126,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
                         .Callback<UserSignUpParam, EmailBaseParam>((p, e) => passedParam = p);
 
             var appSetting = Mock.Of<IAppSetting>(ap =>
-            ap.AllowedAffiliateTypes == new List<string> { Constant.AffTypeAsian.ToString() } &&
+            ap.AllowedAffiliateTypes == new List<string> { Constant.AffTypeAsian } &&
             ap.IsLocal);
 
             var controller = CreateController(accountService.Object, appSetting: appSetting);
@@ -153,7 +152,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var accountService = new Mock<IAccountService>();
             accountService.Setup(p => p.CreateAffiliate(It.IsAny<UserSignUpParam>(), It.IsAny<EmailBaseParam>())).Returns(expectedResult);
 
-            var appSetting = Mock.Of<IAppSetting>(ap => ap.AllowedAffiliateTypes == new List<string> { Constant.AffTypeAsian.ToString() });
+            var appSetting = Mock.Of<IAppSetting>(ap => ap.AllowedAffiliateTypes == new List<string> { Constant.AffTypeAsian });
 
             var controller = CreateController(accountService.Object, appSetting: appSetting);
             controller.TempData = new TempDataDictionary();
@@ -181,7 +180,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
                                 .Callback<UserSignUpParam, EmailBaseParam>((u, e) => passedEmailParam = e);
 
             var appSetting = Mock.Of<IAppSetting>(ap =>
-            ap.AllowedAffiliateTypes == new List<string> { Constant.AffTypeAsian.ToString() } &&
+            ap.AllowedAffiliateTypes == new List<string> { Constant.AffTypeAsian } &&
             ap.MailContact == Constant.DefaultMailContact &&
             ap.MailCc == Constant.DefaultMailCc &&
             ap.MailBcc == string.Empty);
@@ -209,7 +208,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             Assert.Equal(expectedResult, result);
         }
 
-        private SignupController CreateController(
+        private static SignupController CreateController(
             IAccountService accountService,
             ISessionService sessionService = null,
             IAppSetting appSetting = null,

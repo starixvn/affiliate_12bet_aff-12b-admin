@@ -11,7 +11,6 @@ using Fanex.Affiliate.User.Core.DTO.Auth;
 using Fanex.Affiliate.User.Core.DTO.UserPanel;
 using Fanex.Affiliate.User.Core.MetalModels.UserPanel;
 using Fanex.Affiliate.User.Core.UnitTests.TestHelper;
-using Fanex.Affiliate.User.Core.Utilities;
 using Fanex.Affiliate.User.Core.ViewModels.UserPanel;
 using Moq;
 using Newtonsoft.Json;
@@ -178,7 +177,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var newsService = new Mock<INewsService>();
             newsService.Setup(ns => ns.GetLatestHotNews(IsInternal)).Returns(hotNews);
 
-            var principal = Mock.Of<IPrincipal>(p => p.Identity.IsAuthenticated == true);
+            var principal = Mock.Of<IPrincipal>(p => p.Identity.IsAuthenticated);
             var controllerContext = Mock.Of<ControllerContext>(c => c.HttpContext.User == principal);
 
             var controller = CreateController(newsService.Object);
@@ -213,7 +212,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             var newsService = new Mock<INewsService>();
             newsService.Setup(ns => ns.GetLatestHotNews(IsInternal)).Returns(hotNews);
 
-            var principal = Mock.Of<IPrincipal>(p => p.Identity.IsAuthenticated == true);
+            var principal = Mock.Of<IPrincipal>(p => p.Identity.IsAuthenticated);
             var controllerContext = Mock.Of<ControllerContext>(c => c.HttpContext.User == principal);
 
             var controller = CreateController(newsService.Object);
@@ -271,11 +270,10 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             Assert.Equal(passedParam.Language, Constant.DefaultLanguage);
         }
 
-        private NewsController CreateController(INewsService newsService, ISessionService sessionService = null, ILanguageService languageService = null)
+        private static NewsController CreateController(INewsService newsService, ISessionService sessionService = null, ILanguageService languageService = null)
         {
             sessionService = sessionService ?? MockingHelper.GetSessionService();
             languageService = languageService ?? new Mock<ILanguageService>().Object;
-            var appSetting = Mock.Of<IAppSetting>();
 
             return new NewsController(sessionService, languageService, newsService);
         }

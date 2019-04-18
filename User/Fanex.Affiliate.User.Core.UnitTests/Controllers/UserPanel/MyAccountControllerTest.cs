@@ -19,7 +19,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
     public class MyAccountControllerTest
     {
         private const string PlayerUserName = "player";
-        private MyAccountController FakeAccountController(
+        private static MyAccountController FakeAccountController(
             ISessionService sessionService = null,
             IAccountRepository accountRepository = null,
             ILanguageService languageService = null)
@@ -87,8 +87,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             var controller = FakeAccountController(accountRepository: accountRepository.Object, sessionService: sessionService);
 
             // Action
-            var actionResult = controller.Index() as ViewResult;
-            var result = actionResult.Model as AccountInformation;
+            controller.Index();
 
             // Assert
             Assert.True(expectedAccount.IsRenderState);
@@ -142,8 +141,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             contactAppList[0].Value = null;
 
             // Action
-            var actionResult = controller.Index(new AccountInformation { ContactAppList = contactAppList }) as JsonResult;
-            var result = actionResult.Data as ResultInfo;
+            controller.Index(new AccountInformation { ContactAppList = contactAppList });
 
             // Assert
             accountRepository.Verify(ac => ac.GetAccountInfo(Constant.DefaultAffId), Times.Once);
@@ -189,7 +187,6 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
         public void PostMyAccount_UpdateAccount_PasssedParamCorrectly()
         {
             // Arrange
-            var param = CreateParam();
             UpdateAccountParam passedParam = null;
             var accountRepository = new Mock<IAccountRepository>();
             accountRepository.Setup(ac => ac.GetAccountInfo(Constant.DefaultAffId)).Returns(new AccountInformation());
@@ -197,29 +194,14 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             accountRepository.Setup(ac => ac.UpdateAccountInformation(It.IsAny<UpdateAccountParam>()))
                 .Returns(new ResultInfo { IsOk = true })
                 .Callback<UpdateAccountParam>(p => passedParam = p);
-            var controller = FakeAccountController(null, accountRepository.Object);
 
             var expectedResult = JsonConvert.SerializeObject(CreateExpectedParam());
 
             // Action
-            var actionResult = controller.Index(param);
             var result = JsonConvert.SerializeObject(passedParam);
 
             // Assert
             Assert.Equal(expectedResult, result);
-        }
-
-        private AccountInformation CreateParam()
-        {
-            return new AccountInformation
-            {
-                Phone = "Phone",
-                SiteUrl = "SiteUrl",
-                MoreSiteUrls = "MoreSiteUrls",
-                NoSiteDesc = "NoSiteDesc",
-                PlayerUsername = PlayerUserName,
-                ContactAppList = CreateContactAppList()
-            };
         }
 
         private UpdateAccountParam CreateExpectedParam()

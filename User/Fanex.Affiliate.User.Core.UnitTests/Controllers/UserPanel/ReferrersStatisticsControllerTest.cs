@@ -82,7 +82,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers.UserPanel
             Assert.Equal(expectedParam.IsInternal, param.IsInternal);
         }
 
-        private ReferrersStatisticsController CreateController(
+        private static ReferrersStatisticsController CreateController(
             ISessionService sessionService = null,
             ILanguageService languageService = null,
             IStatisticsRepository staticticsRepository = null)

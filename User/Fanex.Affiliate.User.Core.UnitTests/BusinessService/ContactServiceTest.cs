@@ -73,7 +73,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.BusinessService
             emailService.Verify(e => e.SendContactUsEmail(It.IsAny<EmailBaseParam>(), It.IsAny<ContactUsParam>()), Times.Never);
         }
 
-        private ContactService CreateService(IEmailHistoryRepository repository = null, IEmailService emailService = null)
+        private static ContactService CreateService(IEmailHistoryRepository repository = null, IEmailService emailService = null)
         {
             repository = repository ?? Mock.Of<IEmailHistoryRepository>();
             emailService = emailService ?? Mock.Of<IEmailService>();

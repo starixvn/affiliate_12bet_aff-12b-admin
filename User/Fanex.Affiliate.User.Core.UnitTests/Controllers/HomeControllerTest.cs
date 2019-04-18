@@ -76,7 +76,7 @@ namespace Fanex.Affiliate.User.Core.UnitTests.Controllers
             Assert.Equal(expectedResult, result.Promotion12BetLink);
         }
 
-        private HomeController CreateController(
+        private static HomeController CreateController(
             ILanguageService languageService = null,
             ISessionService sessionService = null,
             IAppSetting appSetting = null,
