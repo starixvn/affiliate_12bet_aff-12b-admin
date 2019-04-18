@@ -16,7 +16,8 @@ namespace Fanex.Affiliate.Admin.Core.Constants
             new SubMenu { Name = "Tracking Statistics", Url = VirtualPathUtility.ToAbsolute("~/Portal/UserPanel/TrackingStatistics/Index") },
             new SubMenu { Name = "Member", Url = VirtualPathUtility.ToAbsolute("~/Portal/UserPanel/CustomerMember/Index") },
             new SubMenu { Name = "View log", Url = VirtualPathUtility.ToAbsolute("~/Portal/UserPanel/ViewLog/Index") },
-            new SubMenu { Name = "Click statis New", Url = VirtualPathUtility.ToAbsolute("~/Portal/UserPanel/Referrers/Index") }
+            new SubMenu { Name = "Click statis New", Url = VirtualPathUtility.ToAbsolute("~/Portal/UserPanel/Referrers/Index") },
+            new SubMenu { Name = "Edit New", Url = VirtualPathUtility.ToAbsolute("~/Portal/UserPanel/UserAccount/Index") }
         };
     }
 }

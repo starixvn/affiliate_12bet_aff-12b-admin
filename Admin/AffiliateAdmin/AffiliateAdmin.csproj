@@ -2082,6 +2082,8 @@
     <Content Include="Areas\Portal\Views\Customer\LeftPanel.cshtml" />
     <Content Include="Areas\Portal\www\source\style\pages\customer\leftpanel.scss" />
     <Content Include="Areas\Portal\www\source\style\pages\payment\payment-request-modal.scss" />
+    <Content Include="Areas\Portal\Views\UserPanel\UserAccount\Index.cshtml" />
+    <Content Include="Areas\Portal\www\source\style\pages\user-panel\user-account.scss" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

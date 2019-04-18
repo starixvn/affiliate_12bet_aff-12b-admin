@@ -177,6 +177,7 @@
     <Compile Include="Controllers\UserPanel\ReferrersController.cs" />
     <Compile Include="Controllers\UserPanel\StatementHistoryController.cs" />
     <Compile Include="Controllers\UserPanel\TrackingStatisticsController.cs" />
+    <Compile Include="Controllers\UserPanel\UserAccountController.cs" />
     <Compile Include="Controllers\UserPanel\ViewLogController.cs" />
     <Compile Include="DTO\Affiliate\AffiliateBasicInfo.cs" />
     <Compile Include="DTO\Affiliate\AffiliateInfo.cs" />
