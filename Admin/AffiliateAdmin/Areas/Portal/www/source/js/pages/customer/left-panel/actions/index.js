@@ -1,5 +1,6 @@
-import { LEFTPANEL_RECEIVE_AFFINFO, SET_AFF_NAME } from './types';
+import { LEFTPANEL_RECEIVE_AFFINFO, SET_AFF_NAME, SET_MONTHDATE, SET_IFRAME_URL } from './types';
 import { post } from '../../../../modules/ajaxRequest';
+import { resolveClientUrl } from '../../../../modules/utils';
 import { toggleLoader } from '../../../../actions/loaderAction';
 
 export { toggleLoader };
@@ -11,6 +12,19 @@ export const setAffName = (data) => {
     }
 }
 
+export const setMonthDate = (data) => {
+    return {
+        type: SET_MONTHDATE,
+        data
+    }
+}
+
+export const setIframeUrl = (data) => {
+    return {
+        type: SET_IFRAME_URL,
+        data
+    }
+}
 
 const receiveLeftMenuInfo = (data) => {
     return {
@@ -27,8 +41,10 @@ export const getAffiliateInfo = (affName) => async(dispatch) => {
 
     const response = await post(url, param);
     const data = response && response.status === 200 && response.data ? response.data : null;
+    const iframeUrl = data ? resolveClientUrl(`Portal/UserPanel/StatementHistory/Index?affId=${data.AffId}&affName=${affName}`) : '';
 
     dispatch(receiveLeftMenuInfo(data));
+    dispatch(setIframeUrl(iframeUrl));
     dispatch(toggleLoader(false));
 }
 

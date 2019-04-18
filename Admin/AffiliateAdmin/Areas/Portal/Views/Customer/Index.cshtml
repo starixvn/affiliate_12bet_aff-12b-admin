@@ -5,6 +5,10 @@
 @{ 
     var queryString = Request.QueryString.ToString();
 }
+
 <div class="mainFrameWrapper">
-    <iframe frameborder="0" name="mainFrame" id="mainFrame" src="@Url.Content("~/Customer/AffDefault.aspx?" + queryString)"></iframe>
+    <iframe frameborder="0" name="mainFrame" id="mainFrame" src="@Url.Content("~/Portal/CustomerLeftPanel?" + queryString)"></iframe>
 </div>
+@*<div class="mainFrameWrapper">
+    <iframe frameborder="0" name="mainFrame" id="mainFrame" src="@Url.Content("~/Customer/AffDefault.aspx?" + queryString)"></iframe>
+</div>*@

@@ -9,5 +9,7 @@ namespace Fanex.Affiliate.Admin.Core.Services
         AffiliateBasicInfo GetAffiliateBasicInfo(int affId);
 
         ResultInfo ApproveAffiliate(ApproveAffiliateParam param);
+
+        AffiliateBasicInfo GetAffiliateBasicInfoByAffName(string affName);
     }
 }

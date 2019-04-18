@@ -4,12 +4,13 @@
 
 @model Fanex.Affiliate.Admin.Core.ViewModels.Customer.LeftPanelViewModel
 @section styles{
-    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/customer/leftpanel.css")" rel="stylesheet" />
+    <link href="@Url.VersionedLink("~/Areas/Portal/www/dist/style/pages/customer/leftpanel.css")" rel="stylesheet" />
 }
 
 @section scripts{
     <script type="text/javascript">
         window.initialState = {
+            monthDate: '@DateTime.Now.ToString("MM/dd/yyyy")',
             affName: '@Model.AffName',
             languageList: @Html.Raw(Json.Encode(Model.LanguageList)),
         }

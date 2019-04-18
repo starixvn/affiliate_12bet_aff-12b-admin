@@ -41,11 +41,10 @@ export class SearchBox extends React.Component {
         return (
             <Form tag="div">
                 <FormGroup row>
-                    <Label for="affName" sm={2}>User Name</Label>
-                    <Col sm={7}>
+                    <Col sm={8}>
                         <Input type="text" name="affName" onChange={this.handleChange} onKeyPress={this.handlePressEnter} value={affName} />
                     </Col>
-                    <Button onClick={this.handleClick}>Search</Button>
+                    <Button id="search-affName" onClick={this.handleClick}>Search</Button>
                 </FormGroup>
             </Form >
         )

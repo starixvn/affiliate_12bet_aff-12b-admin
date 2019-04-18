@@ -21,18 +21,28 @@ namespace Fanex.Affiliate.Admin.Core.Repository
                 {
                     if (reader.Read())
                     {
-                        result = new AffiliateBasicInfo
-                        {
-                            AffId = Convert.ToInt32(reader["AffId"]),
-                            GroupId = Convert.ToInt32(reader["GroupId"]),
-                            UserName = Convert.ToString(reader["UserName"]),
-                            FirstName = Convert.ToString(reader["FirstName"]),
-                            Email = Convert.ToString(reader["Email"]),
-                            MailOption = Convert.ToBoolean(reader["MailOption"]),
-                            PreferredLanguage = Convert.ToString(reader["PreferredLanguage"]),
-                            PlayerUsername = Convert.ToString(reader["PlayerUsername"]),
-                            AffType = Convert.ToByte(reader["AffType"])
-                        };
+                        result = BuildAffiliateBasicInfo(reader);
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        public AffiliateBasicInfo GetAffiliateBasicInfoByAffName(string affName)
+        {
+            const string SpKey = "Aff_Admin_AffiliateInfo_Sel";
+            AffiliateBasicInfo result = null;
+
+            using (var objectDb = GetObjectDb(SpKey))
+            {
+                objectDb.AddInParameter("Username", DbType.String, affName);
+
+                using (var reader = objectDb.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        result = BuildAffiliateBasicInfo(reader);
                     }
                 }
             }
@@ -72,6 +82,22 @@ namespace Fanex.Affiliate.Admin.Core.Repository
             {
                 return objectDb.QueryEntity<DepositAccountInfo>(new { deposit_username = playerUserName });
             }
+        }
+
+        private static AffiliateBasicInfo BuildAffiliateBasicInfo (IDataReader reader)
+        {
+            return new AffiliateBasicInfo
+            {
+                AffId = Convert.ToInt32(reader["AffId"]),
+                GroupId = Convert.ToInt32(reader["GroupId"]),
+                UserName = Convert.ToString(reader["UserName"]),
+                FirstName = Convert.ToString(reader["FirstName"]),
+                Email = Convert.ToString(reader["Email"]),
+                MailOption = Convert.ToBoolean(reader["MailOption"]),
+                PreferredLanguage = Convert.ToString(reader["PreferredLanguage"]),
+                PlayerUsername = Convert.ToString(reader["PlayerUsername"]),
+                AffType = Convert.ToByte(reader["AffType"])
+            };
         }
     }
 }

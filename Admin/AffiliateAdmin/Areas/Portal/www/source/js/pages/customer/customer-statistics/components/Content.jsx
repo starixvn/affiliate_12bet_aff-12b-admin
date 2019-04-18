@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import MonthPicker from '@9softstudio/react-monthpicker';
-import { Table } from 'reactstrap';
+import { Table, Button } from 'reactstrap';
 import { rowTitle, resource } from '../modules/constants';
 import { shortedMonthNames, minMonthDate } from '../../../../modules/constants';
 import { post } from '../../../../modules/ajaxRequest';
@@ -104,7 +104,7 @@ export class Content extends Component {
                     this._buildRow(rowTitle.TotalActive,
                         (
                             data.ActivePlayerByMonth > 0 ? (
-                                <a href={`${resolveClientUrl('Portal/UserPanel/PlayerDetail/Index?isFromStatistics=true')}&monthDate=${startMonthString}${affiliateLinkParam}`} target="fContent">
+                                <a href="javascript:;" onClick={() => this.props.handleSetUrl(resolveClientUrl(`Portal/UserPanel/PlayerDetail/Index?isFromStatistics=true&monthDate=${startMonthString}${affiliateLinkParam}`))}>
                                     {format(data.ActivePlayerByMonth)}
                                 </a>) : format(data.ActivePlayerByMonth)
                         ),
@@ -116,21 +116,21 @@ export class Content extends Component {
                 {this._buildRow(rowTitle.Winlost, WinlostByMonth, WinlostTotal)}
                 {
                     this._buildRow(rowTitle.TrackingRate,
-                        (<a href={resolveClientUrl(`Portal/UserPanel/TrackingStatistics/Index?${affiliateLinkParam}`)} target="fContent">
+                        (<a href="javascript:;" onClick={() => this.props.handleSetUrl(resolveClientUrl(`Portal/UserPanel/TrackingStatistics/Index?${affiliateLinkParam}`))}>
                             {format(data.UniqueClickByMonth)}/{format(data.TotalClickByMonth)}
                         </a>),
                         resource.NA)
                 }
                 {
                     this._buildRow(rowTitle.TrackingRatePC,
-                        (<a href={resolveClientUrl(`Portal/UserPanel/Referrers/Index?fromDate=${startMonthString}&toDate=${endMonthString}&deviceType=0${affiliateLinkParam}`)} target="fContent">
+                        (<a href="javascript:;" onClick={() => this.props.handleSetUrl(resolveClientUrl(`Portal/UserPanel/Referrers/Index?fromDate=${startMonthString}&toDate=${endMonthString}&deviceType=0${affiliateLinkParam}`))}>
                             {format(data.UniqueClickPcLaptopByMonth)}/{format(data.TotalClickPcLaptopByMonth)}
                         </a>),
                         resource.NA)
                 }
                 {
                     this._buildRow(rowTitle.TrackingRateMobile,
-                        (<a href={resolveClientUrl(`Portal/UserPanel/Referrers/Index?fromDate=${startMonthString}&toDate=${endMonthString}&deviceType=1${affiliateLinkParam}`)} target="fContent">
+                        (<a href="javascript:;" onClick={() => this.props.handleSetUrl(resolveClientUrl(`Portal/UserPanel/Referrers/Index?fromDate=${startMonthString}&toDate=${endMonthString}&deviceType=1${affiliateLinkParam}`))}>
                             {format(data.UniqueClickMobileByMonth)}/{format(data.TotalClickMobileByMonth)}
                         </a>),
                         resource.NA)

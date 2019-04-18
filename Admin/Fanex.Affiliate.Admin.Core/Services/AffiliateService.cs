@@ -25,5 +25,10 @@ namespace Fanex.Affiliate.Admin.Core.Services
 
             return _affRepository.ApproveAffiliate(param);
         }
+
+        public AffiliateBasicInfo GetAffiliateBasicInfoByAffName(string affName)
+        {
+            return _affRepository.GetAffiliateBasicInfoByAffName(affName);
+        }
     }
 }

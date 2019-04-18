@@ -1928,8 +1928,6 @@
     <Content Include="Areas\Portal\www\source\js\pages\media-gallery\landing-page\components\InsertUpdateForm.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\media-gallery\landing-page.scss" />
     <Content Include="Areas\Portal\Views\CustomerStatistics\Index.cshtml" />
-    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\components\AppContainer.jsx" />
-    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\components\Content.jsx" />
     <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\index.jsx" />
     <Content Include="Areas\Portal\www\source\style\pages\customer-statistics.scss" />
     <Content Include="Areas\Portal\Views\UserPanel\CustomerMember\Index.cshtml" />
@@ -2084,6 +2082,8 @@
     <Content Include="Areas\Portal\www\source\style\pages\payment\payment-request-modal.scss" />
     <Content Include="Areas\Portal\Views\UserPanel\UserAccount\Index.cshtml" />
     <Content Include="Areas\Portal\www\source\style\pages\user-panel\user-account.scss" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\components\AppContainer.jsx" />
+    <Content Include="Areas\Portal\www\source\js\pages\customer\customer-statistics\components\Content.jsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -2239,7 +2239,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>65181</DevelopmentServerPort>
           <DevelopmentServerVPath>/V1</DevelopmentServerVPath>

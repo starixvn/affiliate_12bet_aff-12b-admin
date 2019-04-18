@@ -1,2 +1,23 @@
-﻿body {
+﻿@import "../customer-statistics";
+@import "../../components/modal";
+.left-panel {
+    line-height: 1.8;
+    width: 254px;
+
+    .general-info {
+        overflow: hidden;
+
+        .row {
+            border-bottom: 1px solid #dee2e6!important;
+        }
+    }
+}
+
+#user-panel{
+    width: 100%;
+    border: none;
+    height: calc(100% - 90px);
+}
+.right-panel {
+    width: calc(100% - 286px);
 }

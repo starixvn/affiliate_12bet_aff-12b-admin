@@ -1,13 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Modal, ModalHeader, ModalBody } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody, Row, Col } from 'reactstrap';
 
 import { updateLanguage, getAffiliateInfo, setLanguage, changePassword } from '../actions';
 
 import { status, resource } from '../modules/constants';
 import { resolveClientUrl } from '../../../../modules/utils';
-import ChangePasswordForm from './ChangePasswordForm';
+import { toggleLoader } from '../../../../actions/loaderAction';
+
+import { ChangePasswordForm } from '../../../affiliate-info/components/ChangePasswordForm';
 
 export class GeneralInfo extends React.Component {
     constructor(props) {
@@ -76,35 +78,22 @@ export class GeneralInfo extends React.Component {
 
     _renderApprovedStatusInfo() {
         const { isChangingPassword } = this.state;
-        const { affiliateInfo, changePassword } = this.props;
+        const { affiliateInfo, affName } = this.props;
         return (
             <React.Fragment>
-                <tr style={{ height: 22 }}>
-                    <td className='line_table'>{resource.Password}</td>
-                    <td className='r line_table'>
+                <Row>
+                    <Col sm={5}>{resource.Password}</Col>
+                    <Col sm={7} className='text-right'>
                         <span className='popup' onClick={() => this.toggleChangingPassword(true)}>[{resource.Change}]</span>
-
-                        <Modal isOpen={isChangingPassword} backdrop='static'>
-                            <ModalHeader toggle={() => this.toggleChangingPassword(false)}>
-                                <span className="iconpopup"></span>Change Password
-                            </ModalHeader>
-                            <ModalBody>
-                                <div className="modal-body-wrapper">
-                                    {
-                                        isChangingPassword &&
-                                        <ChangePasswordForm onClose={() => this.toggleChangingPassword(false)}
-                                            onSubmit={changePassword} />
-                                    }
-                                </div>
-                            </ModalBody>
-                        </Modal>
-                    </td>
-                </tr>
-                <tr style={{ height: 22 }}>
-                    <td colSpan='2'>
-                        <a href={resolveClientUrl(`Portal/Member?txtAffUsername=${affiliateInfo.AffName}`)} target='fMain'>{resource.MemberList}</a>
-                    </td>
-                </tr>
+                            { affiliateInfo && <ChangePasswordForm
+                                showPopupPassword={isChangingPassword}
+                                affId={affiliateInfo.AffId}
+                                setShowPopupPassword={this.toggleChangingPassword}
+                                toggleLoader={toggleLoader}
+                            />}
+                    </Col>
+                </Row>
+                <a href={resolveClientUrl(`Portal/Member?txtAffUsername=${affName}`)} target='fMain'>{resource.MemberList}</a>
             </React.Fragment>
         )
     }
@@ -116,74 +105,68 @@ export class GeneralInfo extends React.Component {
         const arryContactApps = JSON.parse(affiliateInfo && affiliateInfo.ContactApps);
 
         return affiliateInfo && (
-            <React.Fragment>
-                <tr>
-                    <td style={{ width: '45%' }}>
+            <div className="general-info pt-3">
+                <Row>
+                    <Col sm={5}>
                         <span className='text_bold'>{resource.Affiliate}</span>
-                    </td>
-                    <td style={{ width: '55%' }} className='r d-inline-block'>
+                    </Col>
+                    <Col sm={7} className='text-right d-inline-block'>
                         {
                             isApproved && !affiliateInfo.Closed ?
                                 (<a href="#" className='upper b' target='_blank'>{affiliateInfo.AffName}</a>) :
                                 (<span>{affiliateInfo.AffName}</span>)
                         }{' '}
                         [<span id="affID">{affiliateInfo.AffId}</span>]
-
-                        <input type="hidden" id="hdFname" value={affiliateInfo.FirstName} />
-                        <input type="hidden" id="hdPreferLang" value={affiliateInfo.PreferredLanguage} />
-
-                    </td>
-                </tr>
-                <tr>
-                    <td className='line_table'>{resource.FirstName}</td>
-                    <td className='line_table r'>{affiliateInfo.FirstName}</td>
-                </tr>
-                <tr>
-                    <td className='line_table'>{resource.LastName}</td>
-                    <td className='line_table r'>{affiliateInfo.LastName}</td>
-                </tr>
-                <tr>
-                    <td className='line_table'>{resource.Gender}</td>
-                    <td className='line_table r'>{affiliateInfo.Gender === null ? '' : (affiliateInfo.Gender === true ? resource.Male : resource.Female)}</td>
-                </tr>
-                <tr>
-                    <td className='line_table'>{resource.ContactNumber}</td>
-                    <td className='line_table r'>{affiliateInfo.Phone}</td>
-                </tr>
-                <tr>
-                    <td className='line_table'>{arryContactApps && arryContactApps[0].Name}</td>
-                    <td className='line_table r'>{arryContactApps && arryContactApps[0].Value}</td>
-                </tr>
-                <tr>
-                    <td className='line_table'>{resource.Language}</td>
-                    <td className='line_table r'>
-                        {this._renderLanguage()}
-                    </td>
-                </tr>
-                <tr>
-                    <td className='line_table'>{resource.WebsiteUrl}</td>
-                    <td className='line_table r text-truncate'>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={5}>{resource.FirstName}</Col>
+                    <Col sm={7} className='text-right'>{affiliateInfo.FirstName}</Col>
+                </Row>
+                <Row>
+                    <Col sm={5}>{resource.LastName}</Col>
+                    <Col sm={7} className='text-right'>{affiliateInfo.LastName}</Col>
+                </Row>
+                <Row>
+                    <Col sm={5}>{resource.Gender}</Col>
+                    <Col sm={7} className='text-right'>{affiliateInfo.Gender === null ? '' : (affiliateInfo.Gender === true ? resource.Male : resource.Female)}</Col>
+                </Row>
+                <Row>
+                    <Col sm={5}>{resource.ContactNumber}</Col>
+                    <Col sm={7} className='text-right'>{affiliateInfo.Phone}</Col>
+                </Row>
+                <Row>
+                    <Col sm={5}>{arryContactApps && arryContactApps[0].Name}</Col>
+                    <Col sm={7} className='text-right'>{arryContactApps && arryContactApps[0].Value}</Col>
+                </Row>
+                <Row>
+                    <Col sm={5}>{resource.Language}</Col>
+                    <Col sm={7} className='text-right'>{this._renderLanguage()}</Col>
+                </Row>
+                <Row>
+                    <Col sm={5}>{resource.WebsiteUrl}</Col>
+                    <Col sm={7} className='text-right text-truncate'>
                         <a target='_blank' title={siteUrl} href={`http://anonym.to/?${siteUrl}`}>
                             {affiliateInfo.SiteUrl.replace('http://', '').replace('www.', '')}
                         </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td className='line_table'>{resource.LastLogin}</td>
-                    <td className='line_table r'>{affiliateInfo.LastLoginDateText}</td>
-                </tr>
-                <tr>
-                    <td className='line_table'>{resource.LastLoginIp}</td>
-                    <td className='line_table r'>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={5}>{resource.LastLogin}</Col>
+                    <Col sm={7} className='text-right'>{affiliateInfo.LastLoginDateText}</Col>
+                </Row>
+                <Row>
+                    <Col sm={5}>{resource.LastLoginIp}</Col>
+                    <Col sm={7} className='text-right'>
                         <a target='_blank' href={`http://anonym.to/?http://legacytools.dnsstuff.com/tools/ipall.ch?tool_id=67&token=&toolhandler_redirect=0&ip=${affiliateInfo.LastLoginIp}&j=1`}>
                             {affiliateInfo.LastLoginIp}
                         </a>
-                    </td>
-                </tr>
+                    </Col>
+                </Row>
                 {
                     isApproved && this._renderApprovedStatusInfo()
                 }
-            </React.Fragment>
+            </div>
         )
     }
 }

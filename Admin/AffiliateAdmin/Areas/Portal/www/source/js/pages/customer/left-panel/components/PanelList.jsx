@@ -67,10 +67,10 @@ export class PanelList extends React.Component {
 
     handleChangeClosedStatus = async () => {
         const { affiliateInfo } = this.props;
-        const nextStatus = !affiliateInfo.Closed;
+        const nextStatus = !affiliateInfo.IsClosed;
         const isConfirmed = confirm('Are you sure you want to ' + (nextStatus ? 'close' : 'open') + ' this affiliate?');
         if (isConfirmed) {
-            const param = { Closed: nextStatus };
+            const param = { AffId: this.props.affiliateInfo.AffId, IsClosed: nextStatus };
             const data = await this.props.updateClosedStatus(param);
 
             if (data.IsSuccessful) {
@@ -186,7 +186,7 @@ export class PanelList extends React.Component {
                     <tr>
                         <td>{resource.Closed}</td>
                         <td className="text-right">
-                            <a className="text_box" onClick={this.handleChangeClosedStatus}>{affiliateInfo.Closed ? resource.Yes : resource.No}</a>
+                            <a className="text_box" onClick={this.handleChangeClosedStatus}>{affiliateInfo.IsClosed ? resource.Yes : resource.No}</a>
                         </td>
                     </tr>
                 }
@@ -198,7 +198,7 @@ export class PanelList extends React.Component {
         const { onlineInfoList } = this.state;
 
         return onlineInfoList && (
-            <Panel heading={resource.CurrentOnlineList} style={{ overflow: 'auto', maxHeight: 110 }}>
+            <Panel heading={resource.CurrentOnlineList} style={{ overflow: 'auto', maxHeight: 125 }}>
                 <tr>
                     <td width="10" className="text_bold text-center">{resource.Index}</td>
                     <td width="70" className="text_bold text-center">{resource.Ip}</td>

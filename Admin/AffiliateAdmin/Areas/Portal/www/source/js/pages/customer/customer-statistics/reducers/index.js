@@ -13,7 +13,7 @@ const monthDate = createReducer(defaultMonthDate, {
     }
 })
 
-export const affId = createReducer(0, {});
+export const affId = createReducer('', {});
 export const affName = createReducer('', {});
 
 export default combineReducers({

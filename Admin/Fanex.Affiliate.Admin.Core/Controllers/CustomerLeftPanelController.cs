@@ -37,7 +37,7 @@ namespace Fanex.Affiliate.Admin.Core.Controllers
                 LanguageList = _languageService.GetLanguageList()
             };
 
-            if ((user == null || user == string.Empty) && SessionService.AffId != 0)
+            if (string.IsNullOrEmpty(user) && SessionService.AffId != 0)
             {
                 var affInfo = _affiliateService.GetAffiliateBasicInfo(SessionService.AffId);
                 model.AffName = affInfo.UserName;

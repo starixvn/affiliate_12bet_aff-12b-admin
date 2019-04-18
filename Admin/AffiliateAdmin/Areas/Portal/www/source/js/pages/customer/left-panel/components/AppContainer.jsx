@@ -3,13 +3,25 @@ import { connect } from 'react-redux';
 
 import AppLayout from '../../../../layouts/AppLayout';
 import Content from './Content';
+import Loader from '../../../../components/Loader';
 
-const AppContainer = () => {
-    return (
-        <AppLayout>
-            <Content />
-        </AppLayout>
-    );
+export class AppContainer extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    
+    render() {
+        return (
+            <AppLayout>
+                <Loader show={this.props.isShowLoader} />
+                <Content />
+            </AppLayout>
+        );
+    }
 }
 
-export default AppContainer;
+function mapStateToProps({ isShowLoader }) {
+    return Object.assign({}, { isShowLoader });
+}
+
+export default connect(mapStateToProps)(AppContainer);
